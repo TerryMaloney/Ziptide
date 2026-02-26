@@ -6,6 +6,13 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Ziptide/Scenes/MilestoneA_GrabCube.unity
+    guid: 530c597deefe89843ac14d0d3cb73e3b
+  - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 27caad71f395b964fa9fae4d12104ec0,
+      type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 9400408dab37b8c4cbdc4e395bfad0d2,
+      type: 2}

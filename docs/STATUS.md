@@ -6,36 +6,44 @@
 
 ## Current Milestone
 
-- **Phase:** (A/B/C…) — *e.g. A = scaffolding, B = first pod, C = ship + drift*
+- **Phase:** A — **COMPLETE** (Grab Cube on Quest).
+- **Phase A.5:** World Dressing (Sky + Planet + Theme) — implemented; verify on device (see [MILESTONE_A5.md](MILESTONE_A5.md)).
+- **Phase B:** Play-Area Safety + WorldProfile + Theme Switch Station — implemented; verify on device (see [MILESTONE_B.md](MILESTONE_B.md)).
 
 ---
 
 ## ✅ Working on device
 
-- *(List what actually runs on Meta Quest today.)*
+- **Milestone A:** Scene runs on Quest; environment visible (ground, horizon, sky); cube visible and grabbable; locomotion works (teleport/move); user can pick up, drop, and throw the cube.
+- **Milestone A.5 (in progress):** Data-driven world dressing: VisualThemeProfile, SkyPlanetRig (sky + planet), WorldDirector. Menus: **Ziptide > Create Default Visual Theme (Sky + Planet)**; **Ziptide > Apply Theme To Current Scene**.
+- Asmdef skeleton in place (Core, Gameplay, Content, Visuals, Ship, Platform.Quest, Editor).
+- **Milestone B (in progress):** WorldProfile, WorldRuntime, PlayAreaBounds, FallRespawner, ThemeSwitchStation. Menus: **Ziptide > Create Default World Profile**; **Ziptide > Apply World Profile To Current Scene**.
+- **Ziptide menu:** **Ziptide > Apply Quest player defaults**; **Ziptide > Create Milestone A scene (Grab Cube)**; **Ziptide > Create Default Visual Theme (Sky + Planet)**; **Ziptide > Apply Theme To Current Scene**; **Ziptide > Create Default World Profile**; **Ziptide > Apply World Profile To Current Scene**; **Ziptide > Diagnostics > XR Grab Readiness**.
+- **Build pipeline:** `powershell -ExecutionPolicy Bypass -File C:\Ziptide\tools\dev_build_install.ps1` (with optional `-Logcat`).
+- **GPT sync:** `powershell -ExecutionPolicy Bypass -File C:\Ziptide\tools\gpt_sync.ps1` → outputs `GPT_PROJECT_UPDATE.md`.
 
 ---
 
 ## 🔥 Blocking issues
 
-- *(None / or list.)*
+- *(None.)*
 
 ---
 
 ## Next 3 tasks (exact)
 
-1. *(Task one.)*
-2. *(Task two.)*
-3. *(Task three.)*
+1. **Commit and push** current work: `git add -A`, `git commit -m "Milestone B: WorldProfile, respawn, theme switch station"`, `git push`.
+2. **Verify Milestone B on Quest:** Respawn, bounds, theme switch, grab cube (see MILESTONE_B.md).
+3. **Polish (optional):** Floor/ground snapping; remove duplicate build scripts; reintroduce dependency validator.
 
 ---
 
 ## Repo links + build target settings
 
-- **Repo:** https://github.com/TerryMaloney/ziptide (canon: https://github.com/TerryMaloney/Ziptide.git)
-- **Build target:** Meta Quest (Unity)
-- **Unity version:** *(TBD)*
-- **URP:** Yes
+- **Repo:** https://github.com/TerryMaloney/Ziptide.git (public)
+- **Build target:** Meta Quest (Unity), Android, ARM64, IL2CPP, API 29
+- **Unity version:** 2022.3.62f3
+- **URP:** Yes (Balanced for Android)
 
 ---
 

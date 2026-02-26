@@ -1,0 +1,16 @@
+{
+    "name": "Ziptide.Ship",
+    "rootNamespace": "Ziptide",
+    "references": [
+        "Ziptide.Core"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

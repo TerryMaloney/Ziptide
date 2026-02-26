@@ -31,6 +31,18 @@ Systems resolve via **theme registry**, not by asset name in code.
 
 ---
 
+## VisualThemeProfile (World dressing — A.5)
+
+ScriptableObject in Ziptide.Visuals; used by WorldDirector for sky + planet + ground.
+
+- **groundTint:** Color applied to ground plane.
+- **skyGradient:** Gradient for sky sphere (vertical).
+- **planet:** PlanetSettings — baseColor, accentColor, angularSizeDegrees, distance, direction (normalized), rotationSpeed, followPlayer.
+
+Assets under `Assets/Ziptide/Content/VisualThemes/` (e.g. DefaultVisualTheme.asset).
+
+---
+
 ## Registry / single source of "what exists"
 
 - One registry (or manifest) so an LLM can orient instantly.  

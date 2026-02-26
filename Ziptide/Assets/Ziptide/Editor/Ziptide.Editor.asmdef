@@ -1,0 +1,23 @@
+{
+    "name": "Ziptide.Editor",
+    "rootNamespace": "Ziptide",
+    "references": [
+        "Ziptide.Core",
+        "Ziptide.Visuals",
+        "Ziptide.Gameplay",
+        "Ziptide.Content",
+        "Unity.XR.Interaction.Toolkit",
+        "Unity.InputSystem"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

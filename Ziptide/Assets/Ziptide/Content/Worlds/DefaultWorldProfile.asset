@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07615e383cf7fd74aae04406e6219160, type: 3}
+  m_Name: DefaultWorldProfile
+  m_EditorClassIdentifier: 
+  spawnPosition: {x: 0, y: 0, z: 0}
+  spawnEuler: {x: 0, y: 0, z: 0}
+  playAreaSize: {x: 4, y: 4}
+  groundY: 0
+  respawnOnFall: 1
+  fallYThreshold: -2
+  respawnFadeSeconds: 0
+  defaultTheme: {fileID: 11400000, guid: 47546be3a09b4ab46a34c5419d6cb6c0, type: 2}
+  availableThemes:
+  - {fileID: 11400000, guid: 47546be3a09b4ab46a34c5419d6cb6c0, type: 2}
+  - {fileID: 11400000, guid: f5af8d5e3ae99eb4eadd6f743d24bf8a, type: 2}
+  - {fileID: 11400000, guid: 063d36a8bf13fa8488009533dace4057, type: 2}
+  - {fileID: 11400000, guid: 5e0e2aebf4968634ab55d82566615cd6, type: 2}
