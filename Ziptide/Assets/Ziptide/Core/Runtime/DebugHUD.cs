@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.XR;
 using UnityEngine.InputSystem;
 
-namespace Ziptide.Runtime
+namespace Ziptide.Core
 {
     /// <summary>
     /// Development-only on-screen HUD showing XR status, input system, and controller count.

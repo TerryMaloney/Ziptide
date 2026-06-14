@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Ziptide.Runtime
+namespace Ziptide.Core
 {
     /// <summary>
     /// Ensures only the XR Origin camera is active on XR builds (e.g. Quest).

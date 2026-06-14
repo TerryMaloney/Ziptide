@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPosition: {x: 0, y: 0, z: 0}
   spawnEuler: {x: 0, y: 0, z: 0}
-  playAreaSize: {x: 4, y: 4}
+  playAreaSize: {x: 10, y: 10}
   groundY: 0
   respawnOnFall: 1
   fallYThreshold: -2

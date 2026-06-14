@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEditor;
 using Ziptide.Content;
 using Ziptide.Gameplay;
+using UnityEngine.XR.Interaction.Toolkit;
 
 namespace Ziptide.Editor.Setup
 {
@@ -74,6 +75,36 @@ namespace Ziptide.Editor.Setup
                         so.FindProperty("worldRuntime").objectReferenceValue = worldRuntime;
                         so.ApplyModifiedPropertiesWithoutUndo();
                     }
+                }
+            }
+
+            // Ensure Ground has some thickness (Plane collider can be too easy to tunnel through with fast-moving objects)
+            var ground = GameObject.Find("Ground");
+            if (ground != null)
+            {
+                var box = ground.GetComponent<BoxCollider>();
+                if (box == null) box = ground.AddComponent<BoxCollider>();
+                box.center = new Vector3(0f, -0.5f, 0f);
+                box.size = new Vector3(10f, 1f, 10f);
+            }
+
+            // Ensure grabbable cube uses VelocityTracking so it doesn't clip through floor
+            var grabbable = GameObject.Find("GrabbableCube");
+            if (grabbable != null)
+            {
+                var grab = grabbable.GetComponent<XRGrabInteractable>();
+                if (grab != null)
+                {
+                    var soGrab = new SerializedObject(grab);
+                    var movementTypeProp = soGrab.FindProperty("m_MovementType");
+                    if (movementTypeProp != null) { movementTypeProp.enumValueIndex = 1; soGrab.ApplyModifiedPropertiesWithoutUndo(); }
+                }
+
+                var rb = grabbable.GetComponent<Rigidbody>();
+                if (rb != null)
+                {
+                    rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+                    rb.interpolation = RigidbodyInterpolation.Interpolate;
                 }
             }
 

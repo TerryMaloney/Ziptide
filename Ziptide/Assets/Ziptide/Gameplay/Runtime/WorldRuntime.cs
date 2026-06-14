@@ -56,7 +56,7 @@ namespace Ziptide.Gameplay
                 rb.angularVelocity = Vector3.zero;
             }
 
-            var cc = playerRig.GetComponent<CharacterController>();
+            var cc = playerRig.GetComponentInChildren<CharacterController>(true);
             if (cc != null)
             {
                 cc.enabled = false;

@@ -4,7 +4,7 @@ using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.XR;
 
-namespace Ziptide.Runtime
+namespace Ziptide.Core
 {
     /// <summary>
     /// Logs scene, cameras, XR, URP, and renderer state at startup for adb logcat inspection.

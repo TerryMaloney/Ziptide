@@ -1,4 +1,4 @@
-﻿# ZIPTIDE Sync
+# ZIPTIDE Sync
 Time: 2026-02-25 16:19:59
 Commit: 40a044a
 Repo: https://github.com/TerryMaloney/Ziptide.git

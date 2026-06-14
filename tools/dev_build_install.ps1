@@ -1,7 +1,8 @@
 param(
     [string]$UnityExe = "C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Unity.exe",
     [string]$ProjectRoot = "",
-    [switch]$Logcat
+    [switch]$Logcat,
+    [switch]$BuildOnly
 )
 
 if ($ProjectRoot -eq "") {
@@ -55,7 +56,7 @@ $null = New-Item -ItemType Directory -Force -Path $buildLogDir
 $logFile = Join-Path $buildLogDir "android_build.log"
 
 Write-Host "Starting Unity batch build (this takes 1-5 minutes)..."
-$unityArgs = "-batchmode -nographics -quit -projectPath `"$ProjectRoot`" -executeMethod Ziptide.Build.BuildAndroid.APK -logFile `"$logFile`""
+$unityArgs = "-batchmode -nographics -quit -projectPath `"$ProjectRoot`" -executeMethod Ziptide.Build.BuildAndroid.PatchScenesThenAPK -logFile `"$logFile`""
 $proc = Start-Process -FilePath $UnityExe -ArgumentList $unityArgs -Wait -PassThru -NoNewWindow
 $unityExit = $proc.ExitCode
 Write-Host "Unity exited with code: $unityExit"
@@ -70,15 +71,39 @@ if (-not (Test-Path $apk)) {
     exit 1
 }
 
+if ($BuildOnly) {
+    Write-Host "BuildOnly: APK built successfully. Skipping install and logcat. Output: $apk"
+    exit 0
+}
+
+# Unity batchmode kills the ADB server on shutdown; restart it and wait for device reconnection
+Write-Host "Restarting ADB server (Unity may have killed it)..."
+adb start-server | Out-Null
+Start-Sleep -Seconds 3
+Write-Host "Checking for device..."
+$devicesOut = adb devices 2>&1 | Out-String
+if ($devicesOut -notmatch "(?m)^\S+\s+device\s*$") {
+    Write-Host "No device connected. Build OK. APK: $apk" -ForegroundColor Yellow
+    Write-Host "To install + logcat: connect Quest (USB + USB debugging), then run this script again."
+    exit 0
+}
+
 adb install -r $apk
+if ($LASTEXITCODE -ne 0) {
+    Write-Error "APK install failed (exit code $LASTEXITCODE). Ensure device is connected and USB debugging is enabled."
+    exit 1
+}
 Write-Host "Installed: $apk"
 
 if ($Logcat) {
     $pkg = "com.terrymaloney.ziptide"
     $activity = "com.unity3d.player.UnityPlayerActivity"
     Write-Host "Logcat: clearing buffer, launching app, waiting 5s..."
-    adb logcat -c
-    adb shell am start -n "${pkg}/${activity}"
+    adb logcat -c 2>&1 | Out-Null
+    adb shell am start -n "${pkg}/${activity}" 2>&1 | Out-Null
+    if ($LASTEXITCODE -ne 0) {
+        Write-Warning "Failed to launch app via adb; capture logcat manually after launching on device."
+    }
     Start-Sleep -Seconds 5
     $logcatFile = Join-Path $buildLogDir "quest_logcat.log"
     $logcatContent = adb logcat -d -s Unity -s Ziptide 2>&1

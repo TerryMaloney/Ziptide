@@ -3,22 +3,14 @@ using UnityEngine;
 namespace Ziptide.Gameplay
 {
     /// <summary>
-    /// Creates four invisible boundary walls around the play area. Uses Ignore Raycast layer so XR rays don't hit.
+    /// Creates four invisible boundary walls around the play area. Uses Default layer so
+    /// CharacterController (thumbstick locomotion) collides with bounds. Physical roomscale
+    /// walking can still clip the camera through walls unless camera collision is added.
     /// </summary>
     public class PlayAreaBounds : MonoBehaviour
     {
         private const float WallHeight = 3f;
         private const float WallThickness = 0.2f;
-        private const string IgnoreRaycastLayerName = "Ignore Raycast";
-
-        private int _ignoreRaycastLayer;
-
-        private void Awake()
-        {
-            _ignoreRaycastLayer = LayerMask.NameToLayer(IgnoreRaycastLayerName);
-            if (_ignoreRaycastLayer < 0)
-                _ignoreRaycastLayer = 0;
-        }
 
         /// <summary>
         /// Build or rebuild the four walls. Call from WorldRuntime on Start.
@@ -44,7 +36,7 @@ namespace Ziptide.Gameplay
             go.transform.localPosition = position;
             go.transform.localRotation = Quaternion.identity;
             go.transform.localScale = Vector3.one;
-            go.layer = _ignoreRaycastLayer;
+            go.layer = 0; // Default: CharacterController collides so stick locomotion is blocked
 
             var col = go.AddComponent<BoxCollider>();
             col.size = size;

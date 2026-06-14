@@ -5,7 +5,9 @@
         "Ziptide.Core",
         "Ziptide.Visuals",
         "Ziptide.Content",
-        "Unity.XR.Interaction.Toolkit"
+        "Unity.XR.Interaction.Toolkit",
+        "Unity.TextMeshPro",
+        "Unity.InputSystem"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

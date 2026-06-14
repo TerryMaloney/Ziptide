@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2639bf9a7b9b0914ba06bb0bccbc41ba, type: 3}
+  m_Name: DefaultTaserDartGun
+  m_EditorClassIdentifier: 
+  itemId: taser_dart_gun
+  modelPrefab: {fileID: 0}
+  mass: 0.4
+  colliderSizeOverride: {x: 0, y: 0, z: 0}
+  fireCooldown: 0.4
+  muzzleVelocity: 25
+  dartMass: 0.05
+  dartLifetime: 5
+  stunSeconds: 3
+  hitImpulse: 2
+  hapticAmplitude: 0.6
+  hapticDuration: 0.08
+  fireClip: {fileID: 0}
+  impactClip: {fileID: 0}

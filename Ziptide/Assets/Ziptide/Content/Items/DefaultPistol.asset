@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b602f2a5e2f43c142ba037ce6563a4ad, type: 3}
+  m_Name: DefaultPistol
+  m_EditorClassIdentifier: 
+  itemId: pistol
+  modelPrefab: {fileID: 0}
+  mass: 0.3
+  colliderSizeOverride: {x: 0, y: 0, z: 0}
+  fireRate: 0.2
+  range: 50
+  hitForce: 5
+  recoilKick: 0.02
+  hapticAmplitude: 0.5
+  hapticDuration: 0.05
+  muzzleFlashPrefab: {fileID: 0}
+  fireClip: {fileID: 0}

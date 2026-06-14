@@ -1,6 +1,6 @@
 param(
     [string]$RepoRoot = "C:\Ziptide",
-    [string]$OutFile = "C:\Ziptide\GPT_PROJECT_UPDATE.md"
+    [string]$OutFile = "C:\Ziptide\GPT_SYNC.md"
 )
 
 Push-Location $RepoRoot

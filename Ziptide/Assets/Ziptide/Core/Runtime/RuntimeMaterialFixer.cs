@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Ziptide.Runtime
+namespace Ziptide.Core
 {
     /// <summary>
     /// Replaces null or non-URP materials on renderers at runtime so scene objects are visible on Quest.

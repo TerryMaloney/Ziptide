@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 
-namespace Ziptide.Runtime
+namespace Ziptide.Core
 {
     /// <summary>
     /// Ensures all XRI input action assets referenced by ActionBasedController and other XRI components

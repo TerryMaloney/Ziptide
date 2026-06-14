@@ -107,14 +107,24 @@ namespace Ziptide.Editor.Setup
             plane.transform.localScale = Vector3.one;
             if (groundMat != null)
                 plane.GetComponent<Renderer>().sharedMaterial = groundMat;
+            // Add thickness so fast-moving items don't easily tunnel through an infinitely thin plane.
+            var groundBox = plane.AddComponent<BoxCollider>();
+            groundBox.center = new Vector3(0f, -0.5f, 0f);
+            groundBox.size = new Vector3(10f, 1f, 10f);
 
             // Cube (grabbable) -- placed 1.5m forward at arm height, 25cm size
             var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
             cube.name = "GrabbableCube";
             cube.transform.position = new Vector3(0f, 1f, 1.5f);
             cube.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
-            cube.AddComponent<Rigidbody>();
-            cube.AddComponent<XRGrabInteractable>();
+            var cubeRb = cube.AddComponent<Rigidbody>();
+            cubeRb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+            cubeRb.interpolation = RigidbodyInterpolation.Interpolate;
+            var grab = cube.AddComponent<XRGrabInteractable>();
+            var soGrab = new SerializedObject(grab);
+            var movementTypeProp = soGrab.FindProperty("m_MovementType");
+            if (movementTypeProp != null) movementTypeProp.enumValueIndex = 1; // VelocityTracking = 1
+            soGrab.ApplyModifiedPropertiesWithoutUndo();
             if (cubeMat != null)
                 cube.GetComponent<Renderer>().sharedMaterial = cubeMat;
 
