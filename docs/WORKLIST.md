@@ -23,33 +23,38 @@ Last updated: 2026-06-14
 
 ## 🔴 P0 — Hard blockers
 
-- [ ] **Brown screen returning to the test room** (`D0_City → MilestoneA`). Travel *into*
-  D0_City works; the return door produces an unresponsive brown view. Suspect the toxic
-  theme/fog not being reset on travel, and/or a spawn/camera problem on re-entry. *(under
-  investigation)*
+- [x] **Brown screen returning to the test room** — FIXED. The return door's destination
+  (`TestRoom_WorldPack.sceneName` and a `ProximityTravelTrigger`) pointed at `_Boot`, which
+  re-ran bootstrap, spawned duplicate singletons, and dumped the player in the contentless boot
+  scene. Retargeted to `MilestoneA_GrabCube`; added a `TravelCoordinator` guard so `_Boot` can
+  never be a travel destination again.
 
 ## 🟠 P1 — Core controls (target feel: console/Fortnite-like)
 
+- [x] **Jump (A button)** — FIXED. `A` is now a vertical jump (was a forward dash).
+- [x] **Sprint (click left thumbstick)** — FIXED. Hold L3 for ~1.9× move speed.
 - [ ] **No locomotion in the test room.** Walking works in `D0_City` but not `MilestoneA`.
-  Locomotion config is likely per-scene instead of on the persistent rig. Fix: make
-  locomotion live on the persistent rig so every scene has it. *(under investigation)*
-- [ ] **Jump (A button).** Currently `A` triggers a forward dash ("launches you forward").
-  Want: `A` = vertical jump. The forward dash is `DashLocomotion` bound to RightHand
-  primaryButton — needs to become a real jump (CharacterController + gravity).
-- [ ] **Sprint (hold left thumbstick).** Not implemented. Want: hold/click left stick to run
-  (raise move speed while held).
-- [ ] **Choppy head-tracking in D0_City.** Performance — D0_City is unoptimized (~1800+ tris,
-  per master plan R-24). Lower priority than the blockers.
+  D0_City has a per-scene `LocomotionDirector` that sets the move provider's speed; MilestoneA
+  doesn't. Fix: apply the default `LocomotionProfile` from the persistent rig / on every scene.
+  *(needs a "tried to walk in test room" device log to confirm before fixing)*
+- [ ] **Choppy head-tracking in D0_City.** Performance — D0_City is unoptimized. Lower priority.
 
 ## 🟡 P2 — Weapons / combat
 
-- [ ] **Gun aim direction.** Pistol doesn't auto-orient to point forward from the hand on
-  grab; player must hand-rotate it. Fix: set a proper grab attach transform so the muzzle
-  faces forward.
-- [ ] **Projectiles stop short.** Bullets "get stuck a ways out" instead of flying until they
-  hit a drone. Fix: projectile needs sustained forward velocity / correct collision.
-- [ ] **Drone hit reaction.** Drone should take a hit, "crash and die," fall to the ground,
-  and remain (not vanish). Currently no proper death/ragdoll behavior.
+- [x] **Gun aim direction** — FIXED. Guns now use the fixed Grip attach (`useDynamicAttach=false`)
+  so they snap to a forward-facing orientation on grab (verify feel on device).
+- [ ] **Taser dart stops short.** The "stuck bullet" is the taser dart sticking on its first
+  collision (likely the muzzle/player or low launch velocity). Needs `TaserDartGunRuntime`
+  launch velocity + collision-ignore review.
+- [ ] **Drone hit reaction.** Drone should take a hit, crash, fall, and remain (not vanish).
+- [ ] **Holster on waist.** Put the gun on the belt and grab it back. `BeltRig` +
+  `HolsterSocketInteractor` exist but aren't wired onto the persistent rig in these scenes.
+- [ ] **Grab distance.** Limit grab to a sensible range (currently grabbable from far via ray).
+
+## ✅ Also fixed (travel robustness)
+
+- [x] **Gun lost on travel** (`ITEM_DEF_NOT_FOUND`). `ItemFactory` now caches item definitions
+  once loaded so inventory restore after travel can resolve them.
 
 ---
 

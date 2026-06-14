@@ -70,7 +70,7 @@ namespace Ziptide.Gameplay
 
             var grab = go.AddComponent<XRGrabInteractable>();
             grab.movementType = XRBaseInteractable.MovementType.VelocityTracking;
-            grab.useDynamicAttach = true;
+            grab.useDynamicAttach = false; // snap to the Grip attach transform so the gun faces forward on grab
 
             var grip = new GameObject("Grip");
             grip.transform.SetParent(go.transform, false);
@@ -108,7 +108,7 @@ namespace Ziptide.Gameplay
 
             var grab = go.AddComponent<XRGrabInteractable>();
             grab.movementType = XRBaseInteractable.MovementType.VelocityTracking;
-            grab.useDynamicAttach = true;
+            grab.useDynamicAttach = false; // snap to the Grip attach transform so the gun faces forward on grab
 
             var grip = new GameObject("Grip");
             grip.transform.SetParent(go.transform, false);
