@@ -25,6 +25,7 @@ namespace Ziptide.Gameplay
             ApplyGroundScale();
             EnsurePlayAreaBounds();
             EnsureThemeSwitchStation();
+            EnsureFallRespawner();
 
             if (_worldDirector != null && worldProfile.defaultTheme != null)
                 _worldDirector.ApplyTheme(worldProfile.defaultTheme);
@@ -104,6 +105,23 @@ namespace Ziptide.Gameplay
             go.transform.localPosition = Vector3.zero;
             _bounds = go.AddComponent<PlayAreaBounds>();
             _bounds.Build(worldProfile.playAreaSize, worldProfile.groundY);
+        }
+
+        private void EnsureFallRespawner()
+        {
+            if (!worldProfile.respawnOnFall) return;
+
+            GameObject xrOrigin = GameObject.Find("XR Origin");
+            if (xrOrigin == null)
+            {
+                Debug.LogWarning("[Ziptide] WorldRuntime: no 'XR Origin' found; FallRespawner not attached (fall-respawn disabled).");
+                return;
+            }
+
+            var respawner = xrOrigin.GetComponent<FallRespawner>();
+            if (respawner == null)
+                respawner = xrOrigin.AddComponent<FallRespawner>();
+            respawner.SetWorldRuntime(this);
         }
 
         private void EnsureThemeSwitchStation()
