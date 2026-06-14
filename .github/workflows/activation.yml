@@ -24,14 +24,19 @@ jobs:
     name: Request activation file
     runs-on: ubuntu-latest
     steps:
-      - name: Request manual activation file
-        id: getManualLicenseFile
-        uses: game-ci/unity-request-activation-file@v2
-        with:
-          unityVersion: 2022.3.62f3
+      - name: Create manual activation file
+        run: |
+          docker run --rm \
+            -v "${{ github.workspace }}:/root/project" \
+            -w /root/project \
+            unityci/editor:ubuntu-2022.3.62f3-base-3 \
+            unity-editor -batchmode -nographics -logFile /dev/stdout -quit -createManualActivationFile || true
+          echo "Files in workspace:"
+          ls -la "${{ github.workspace }}"
 
       - name: Upload activation file
         uses: actions/upload-artifact@v4
         with:
           name: Unity_Activation_File
-          path: ${{ steps.getManualLicenseFile.outputs.filePath }}
+          path: ${{ github.workspace }}/*.alf
+          if-no-files-found: error
