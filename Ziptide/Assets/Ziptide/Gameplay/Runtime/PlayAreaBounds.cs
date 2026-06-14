@@ -10,6 +10,8 @@ namespace Ziptide.Gameplay
         private const float WallHeight = 3f;
         private const float WallThickness = 0.2f;
         private const string IgnoreRaycastLayerName = "Ignore Raycast";
+        // Unity reserves layer index 2 as the built-in "Ignore Raycast" layer; it always exists.
+        private const int BuiltinIgnoreRaycastLayer = 2;
 
         private int _ignoreRaycastLayer;
 
@@ -17,7 +19,10 @@ namespace Ziptide.Gameplay
         {
             _ignoreRaycastLayer = LayerMask.NameToLayer(IgnoreRaycastLayerName);
             if (_ignoreRaycastLayer < 0)
-                _ignoreRaycastLayer = 0;
+            {
+                Debug.LogWarning($"[Ziptide] PlayAreaBounds: layer '{IgnoreRaycastLayerName}' not found; falling back to built-in Ignore Raycast layer {BuiltinIgnoreRaycastLayer} so walls don't block XR rays.");
+                _ignoreRaycastLayer = BuiltinIgnoreRaycastLayer;
+            }
         }
 
         /// <summary>

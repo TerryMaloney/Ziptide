@@ -8,7 +8,7 @@
 
 - **Phase:** A — **COMPLETE** (Grab Cube on Quest).
 - **Phase A.5:** World Dressing (Sky + Planet + Theme) — implemented; verify on device (see [MILESTONE_A5.md](MILESTONE_A5.md)).
-- **Phase B:** Play-Area Safety + WorldProfile + Theme Switch Station — implemented; verify on device (see [MILESTONE_B.md](MILESTONE_B.md)).
+- **Phase B:** Play-Area Safety + WorldProfile + Theme Switch Station — **code implemented but NOT yet wired into the committed scene** (`MilestoneA_GrabCube.unity` has no `WorldRuntime`). Run **Ziptide > Apply World Profile To Current Scene** and save the scene to activate it. See [MILESTONE_B.md](MILESTONE_B.md).
 
 ---
 
@@ -27,6 +27,13 @@
 ## 🔥 Blocking issues
 
 - *(None.)*
+
+---
+
+## ✅ Tests & CI
+
+- **EditMode tests:** `Assets/Ziptide/Tests/` (assembly `Ziptide.Tests`). Run via Unity Test Runner or CI. See [08_TESTS.md](08_TESTS.md).
+- **CI:** GitHub Actions `.github/workflows/ci.yml` (GameCI) compiles the project and runs EditMode tests on push/PR. Requires repo secrets `UNITY_LICENSE`/`UNITY_EMAIL`/`UNITY_PASSWORD`.
 
 ---
 

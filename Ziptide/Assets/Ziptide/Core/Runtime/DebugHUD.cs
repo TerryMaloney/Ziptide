@@ -18,6 +18,8 @@ namespace Ziptide.Runtime
         private static GameObject s_Root;
         private static Text s_Text;
         private static Coroutine s_UpdateCoroutine;
+        private static bool s_LoggedXrQueryError;
+        private static bool s_LoggedInputQueryError;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void OnLoad()
@@ -79,7 +81,14 @@ namespace Ziptide.Runtime
                 SubsystemManager.GetInstances(displays);
                 xrRunning = displays.Count > 0 && displays[0].running;
             }
-            catch { }
+            catch (System.Exception e)
+            {
+                if (!s_LoggedXrQueryError)
+                {
+                    s_LoggedXrQueryError = true;
+                    Debug.LogWarning("[Ziptide] DebugHUD: XR subsystem query failed - " + e.Message);
+                }
+            }
 
             string inputName = "Unknown";
 #if ENABLE_INPUT_SYSTEM
@@ -101,7 +110,14 @@ namespace Ziptide.Runtime
                         controllerCount++;
                 }
             }
-            catch { }
+            catch (System.Exception e)
+            {
+                if (!s_LoggedInputQueryError)
+                {
+                    s_LoggedInputQueryError = true;
+                    Debug.LogWarning("[Ziptide] DebugHUD: input device query failed - " + e.Message);
+                }
+            }
 
             return $"XR: {(xrRunning ? "YES" : "NO")}\nInput: {inputName}\nControllers: {controllerCount}";
         }

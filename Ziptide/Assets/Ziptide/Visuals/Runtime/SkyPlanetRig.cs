@@ -153,6 +153,7 @@ namespace Ziptide.Visuals
 
             if (_planetTexture == null)
                 _planetTexture = new Texture2D(PlanetTextureSize, PlanetTextureSize);
+            _planetTexture.wrapMode = TextureWrapMode.Clamp;
             for (int y = 0; y < PlanetTextureSize; y++)
                 for (int x = 0; x < PlanetTextureSize; x++)
                 {

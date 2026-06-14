@@ -46,6 +46,9 @@ namespace Ziptide.Editor.Setup
                 }
             }
 
+            // The station's theme buttons are built at play time: WorldRuntime.Start ->
+            // EnsureThemeSwitchStation finds this station and calls SetThemes(profile.availableThemes).
+            // Do NOT call SetThemes here in the editor, or runtime button GameObjects get serialized into the scene.
             ThemeSwitchStation station = Object.FindObjectOfType<ThemeSwitchStation>();
             if (station == null)
             {
