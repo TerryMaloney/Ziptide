@@ -245,10 +245,7 @@ namespace Ziptide.Gameplay
                 }
             }
 
-            var iam = _xriManager.GetComponent<InputActionManager>()
-                      ?? _xriManager.gameObject.AddComponent<InputActionManager>();
-            if (iam.actionAssets == null || iam.actionAssets.Count == 0 || iam.actionAssets[0] == null)
-                Debug.LogWarning("ZIPTIDE: INPUT_ACTIONS_MISSING");
+            EnsurePersistentInputActions();
 
             // Rebind only ACTIVE interactors. Skip inactive GameObjects (e.g. teleport ray GOs
             // managed by ActionBasedControllerManager) to avoid disrupting XRInteractionGroup state.
@@ -272,6 +269,79 @@ namespace Ziptide.Gameplay
             Debug.Log("ZIPTIDE: XRI_WIRING cams=" + cams + " rays=" + totalRays +
                       "(active=" + enabledRays + ") skipped=" + skipped);
             if (totalRays == 0) Debug.LogWarning("ZIPTIDE: NO_RAY_INTERACTORS");
+        }
+
+        /// <summary>
+        /// Guarantees the persistent rig owns its input. The scene's InputActionManager often
+        /// lives on a SEPARATE GameObject (e.g. "_InputActionManager") that the wiring code does
+        /// not see and that is destroyed when the scene unloads on travel — its OnDisable then
+        /// calls actionAsset.Disable() and permanently kills all controller input in the next
+        /// scene (the dead-controller "frozen" bug). Here we (1) gather every input action asset
+        /// the rig references, (2) put them on an InputActionManager on the PERSISTENT manager
+        /// object, (3) clear the asset list on every other InputActionManager so their OnDisable
+        /// is a no-op, and (4) (re)enable the assets so input survives scene travel.
+        /// </summary>
+        private void EnsurePersistentInputActions()
+        {
+            var assets = new System.Collections.Generic.List<InputActionAsset>();
+            void Add(InputActionAsset a) { if (a != null && !assets.Contains(a)) assets.Add(a); }
+
+            var allManagers = FindObjectsOfType<InputActionManager>(true);
+            foreach (var m in allManagers)
+            {
+                if (m == null || m.actionAssets == null) continue;
+                foreach (var a in m.actionAssets) Add(a);
+            }
+            foreach (var c in GetComponentsInChildren<ActionBasedController>(true))
+                Add(GetActionAssetFromController(c));
+
+            var primary = _xriManager.GetComponent<InputActionManager>()
+                          ?? _xriManager.gameObject.AddComponent<InputActionManager>();
+
+            if (assets.Count == 0)
+            {
+                Debug.LogWarning("ZIPTIDE: INPUT_ACTIONS_MISSING");
+                return;
+            }
+
+            primary.actionAssets = assets;
+
+            // Neutralise every other manager so its OnDisable on scene unload can't disable our assets.
+            foreach (var m in allManagers)
+            {
+                if (m == null || m == primary) continue;
+                ClearInputActionAssets(m);
+            }
+
+            // Keep the assets enabled (idempotent). Restores input if a prior unload disabled them.
+            foreach (var a in assets)
+                a.Enable();
+        }
+
+        private static InputActionAsset GetActionAssetFromController(ActionBasedController c)
+        {
+            if (c == null) return null;
+            var prop = c.selectAction;
+            if (prop.reference != null && prop.reference.action != null && prop.reference.action.actionMap != null)
+                return prop.reference.action.actionMap.asset;
+            return null;
+        }
+
+        /// <summary>Clears m_ActionAssets on an InputActionManager so its OnDisable won't disable shared assets.</summary>
+        private static void ClearInputActionAssets(InputActionManager iam)
+        {
+            if (iam == null) return;
+            try
+            {
+                var field = typeof(InputActionManager).GetField(
+                    "m_ActionAssets", BindingFlags.NonPublic | BindingFlags.Instance);
+                if (field != null)
+                    field.SetValue(iam, new System.Collections.Generic.List<InputActionAsset>());
+            }
+            catch (System.Exception ex)
+            {
+                Debug.LogWarning("ZIPTIDE: ClearInputActionAssets failed: " + ex.Message);
+            }
         }
 
         /// <summary>
