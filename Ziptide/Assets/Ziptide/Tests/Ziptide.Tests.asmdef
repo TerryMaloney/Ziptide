@@ -1,0 +1,28 @@
+{
+    "name": "Ziptide.Tests",
+    "rootNamespace": "Ziptide.Tests",
+    "references": [
+        "Ziptide.Core",
+        "Ziptide.Gameplay",
+        "Ziptide.Content",
+        "Ziptide.Visuals",
+        "Ziptide.Editor",
+        "UnityEngine.TestRunner",
+        "UnityEditor.TestRunner"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

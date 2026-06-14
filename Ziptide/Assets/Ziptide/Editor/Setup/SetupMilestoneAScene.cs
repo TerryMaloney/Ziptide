@@ -84,6 +84,12 @@ namespace Ziptide.Editor.Setup
                 var inputAsset = AssetDatabase.LoadAssetAtPath<InputActionAsset>(xriInputActionsPath);
                 if (inputAsset != null)
                     inputManager.actionAssets = new List<InputActionAsset> { inputAsset };
+                else
+                    Debug.LogWarning("[Ziptide] SetupMilestoneAScene: XRI Default Input Actions asset could not be loaded; InputActionManager has no action assets. Import XR Interaction Toolkit Starter Assets and assign them, or grab/select will not work.");
+            }
+            else
+            {
+                Debug.LogWarning("[Ziptide] SetupMilestoneAScene: XRI Default Input Actions asset not found by GUID; InputActionManager has no action assets. Import XR Interaction Toolkit Starter Assets, or grab/select will not work.");
             }
 
             // EventSystem + XRUIInputModule for XR UI (required for ray/UI interaction)

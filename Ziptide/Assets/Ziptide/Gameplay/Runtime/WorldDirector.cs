@@ -46,6 +46,7 @@ namespace Ziptide.Gameplay
             if (xrOrigin != null) return xrOrigin.transform;
             Camera cam = Camera.main;
             if (cam != null) return cam.transform;
+            Debug.LogWarning("[Ziptide] WorldDirector: no 'XR Origin' GameObject or main camera found; planet will follow this object instead of the player.");
             return transform;
         }
 
@@ -65,7 +66,11 @@ namespace Ziptide.Gameplay
         private void ApplyGroundTint()
         {
             GameObject ground = GameObject.Find(GroundObjectName);
-            if (ground == null) return;
+            if (ground == null)
+            {
+                Debug.LogWarning($"[Ziptide] WorldDirector: no GameObject named '{GroundObjectName}' found; ground tint not applied.");
+                return;
+            }
 
             Renderer r = ground.GetComponent<Renderer>();
             if (r == null) return;

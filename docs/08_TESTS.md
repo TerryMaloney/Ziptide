@@ -24,7 +24,17 @@
 
 ## Location
 
-- *(Unity Test Runner / asmdef test assemblies — TBD.)*
+- **EditMode tests:** `Assets/Ziptide/Tests/` (assembly `Ziptide.Tests`, Editor-only).
+  - `EditMode/ZiptideContractTests.cs` covers: Core↛Visuals dependency law
+    (`DependencyValidator.Validate`), `WorldProfile`/`VisualThemeProfile` default sanity,
+    and `PlayAreaBounds.Build` (creates four solid walls, idempotent on rebuild).
+
+## How to run
+
+- **In Unity:** Window > General > Test Runner > EditMode > Run All.
+- **Headless / CI:** GitHub Actions (`.github/workflows/ci.yml`) runs the EditMode suite via
+  GameCI `unity-test-runner` on every push to `main` and `claude/**` and on PRs to `main`.
+  Requires repo secrets `UNITY_LICENSE` (or `UNITY_SERIAL`), `UNITY_EMAIL`, `UNITY_PASSWORD`.
 
 ---
 

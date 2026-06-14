@@ -22,8 +22,6 @@ namespace Ziptide.Content
         public bool respawnOnFall = true;
         [Tooltip("When player Y drops below this, respawn triggers.")]
         public float fallYThreshold = -2f;
-        [Tooltip("Optional delay/fade before respawn (0 = instant).")]
-        public float respawnFadeSeconds = 0f;
 
         [Header("Themes")]
         public VisualThemeProfile defaultTheme;

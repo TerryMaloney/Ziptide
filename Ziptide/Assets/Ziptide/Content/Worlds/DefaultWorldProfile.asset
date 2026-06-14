@@ -18,7 +18,6 @@ MonoBehaviour:
   groundY: 0
   respawnOnFall: 1
   fallYThreshold: -2
-  respawnFadeSeconds: 0
   defaultTheme: {fileID: 11400000, guid: 47546be3a09b4ab46a34c5419d6cb6c0, type: 2}
   availableThemes:
   - {fileID: 11400000, guid: 47546be3a09b4ab46a34c5419d6cb6c0, type: 2}

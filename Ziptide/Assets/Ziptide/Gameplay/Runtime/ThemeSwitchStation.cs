@@ -63,7 +63,7 @@ namespace Ziptide.Gameplay
                     {
                         var mat = new Material(shader);
                         mat.color = theme.groundTint;
-                        r.material = mat;
+                        r.sharedMaterial = mat;
                     }
                 }
 
@@ -87,19 +87,27 @@ namespace Ziptide.Gameplay
     {
         private WorldRuntime _worldRuntime;
         private VisualThemeProfile _theme;
+        private XRSimpleInteractable _interactable;
 
         public void Setup(WorldRuntime worldRuntime, VisualThemeProfile theme, XRSimpleInteractable interactable)
         {
             _worldRuntime = worldRuntime;
             _theme = theme;
-            if (interactable != null)
-                interactable.selectEntered.AddListener(OnSelectEntered);
+            _interactable = interactable;
+            if (_interactable != null)
+                _interactable.selectEntered.AddListener(OnSelectEntered);
         }
 
         private void OnSelectEntered(SelectEnterEventArgs args)
         {
             if (_worldRuntime != null && _theme != null)
                 _worldRuntime.ApplyTheme(_theme);
+        }
+
+        private void OnDestroy()
+        {
+            if (_interactable != null)
+                _interactable.selectEntered.RemoveListener(OnSelectEntered);
         }
     }
 }

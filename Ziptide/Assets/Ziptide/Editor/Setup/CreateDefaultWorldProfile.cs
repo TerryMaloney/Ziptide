@@ -43,7 +43,6 @@ namespace Ziptide.Editor.Setup
             profile.groundY = 0f;
             profile.respawnOnFall = true;
             profile.fallYThreshold = -2f;
-            profile.respawnFadeSeconds = 0f;
             profile.defaultTheme = defaultTheme;
 
             List<VisualThemeProfile> available = new List<VisualThemeProfile> { defaultTheme };
