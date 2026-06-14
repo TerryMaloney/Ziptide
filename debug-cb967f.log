@@ -1,5 +1,0 @@
-{"sessionId":"cb967f","runId":"build","hypothesisId":"H1","location":"BuildAndroid.PatchScenesThenAPK","message":"Splash settings at build start","data":{"m_ShowUnitySplashScreen":"0","m_ShowUnitySplashLogo":"0"},"timestamp":1772407633757}
-{"sessionId":"cb967f","runId":"build","hypothesisId":"H2","location":"BuildAndroid.PatchScenesThenAPK","message":"Splash forced off before APK build","data":{"forced":true},"timestamp":1772407636323}
-{"sessionId":"cb967f","runId":"build","hypothesisId":"H1","location":"BuildAndroid.PatchScenesThenAPK","message":"Splash settings at build start","data":{"m_ShowUnitySplashScreen":"1","m_ShowUnitySplashLogo":"1"},"timestamp":1772408350498}
-{"sessionId":"cb967f","runId":"build","hypothesisId":"H6","location":"ScenePatcherD2.PatchActiveScene","message":"XR Origin check after EnsureLocomotionRig","data":{"found":true},"timestamp":1772408350919}
-{"sessionId":"cb967f","runId":"build","hypothesisId":"H2","location":"BuildAndroid.PatchScenesThenAPK","message":"Pre-APK checkpoint","data":{"auditBlockers":0},"timestamp":1772408353317}
