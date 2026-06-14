@@ -13,3 +13,14 @@
 *.svd
 *.unitypackage
 .DS_Store
+
+# Logcat dumps and on-device diagnostics captured during debugging (never commit)
+boot.txt
+fresh.txt
+test2.txt
+return.txt
+freeze_full.txt
+freeze_log.txt
+freeze_run.txt
+logcat_session.txt
+debug-*.log
