@@ -1,96 +1,125 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.XR.Interaction.Toolkit;
 
 namespace Ziptide.Gameplay
 {
     /// <summary>
-    /// Short forward dash/hop on button press. Uses CharacterController.Move()
-    /// so it respects colliders and doesn't fight XRI move providers.
+    /// Console-style locomotion extras on the persistent XR rig:
+    ///   - Jump: press A (right-hand primary button) for a vertical hop via CharacterController.
+    ///   - Sprint: hold/click the LEFT thumbstick to move faster.
+    /// Self-contained (own gravity, own input actions) so it works in every scene the
+    /// persistent rig travels into. Class name kept as DashLocomotion to preserve existing
+    /// scene component references (GUID) and the LocomotionDirector.Configure() call.
     /// </summary>
     [RequireComponent(typeof(CharacterController))]
     public class DashLocomotion : MonoBehaviour
     {
-        private float _distance = 3f;
-        private float _duration = 0.15f;
-        private float _cooldown = 0.5f;
-        private float _verticalLift = 0.1f;
+        private float _jumpHeight = 1.1f;
+        private float _gravity = 16f;
+        private float _jumpCooldown = 0.2f;
+        private float _sprintMultiplier = 1.9f;
 
         private CharacterController _cc;
-        private Transform _cameraTransform;
-        private InputAction _dashAction;
+        private ActionBasedContinuousMoveProvider _moveProvider;
+        private float _baseMoveSpeed = -1f;
+
+        private InputAction _jumpAction;
+        private InputAction _sprintAction;
 
         private float _cooldownTimer;
-        private float _dashTimer;
-        private Vector3 _dashDirection;
-        private bool _isDashing;
+        private float _verticalVelocity;
+        private bool _jumping;
+        private bool _sprinting;
 
+        /// <summary>
+        /// Kept for LocomotionDirector compatibility. The old dash distance/duration are unused;
+        /// verticalLift is repurposed as an optional jump-height hint, cooldown as jump cooldown.
+        /// </summary>
         public void Configure(float distance, float duration, float cooldown, float verticalLift)
         {
-            _distance = distance;
-            _duration = Mathf.Max(0.01f, duration);
-            _cooldown = cooldown;
-            _verticalLift = verticalLift;
+            if (verticalLift > 0.01f) _jumpHeight = Mathf.Clamp(verticalLift * 6f, 0.4f, 2.5f);
+            _jumpCooldown = Mathf.Max(0.05f, cooldown);
         }
 
         private void OnEnable()
         {
             _cc = GetComponent<CharacterController>();
+            _moveProvider = GetComponentInChildren<ActionBasedContinuousMoveProvider>(true);
 
-            var cam = GetComponentInChildren<Camera>(true);
-            if (cam == null) cam = Camera.main;
-            _cameraTransform = cam != null ? cam.transform : transform;
-
-            if (_dashAction == null)
+            if (_jumpAction == null)
             {
-                _dashAction = new InputAction("ZiptideDash", InputActionType.Button);
-                _dashAction.AddBinding("<XRController>{RightHand}/primaryButton");
+                _jumpAction = new InputAction("ZiptideJump", InputActionType.Button);
+                _jumpAction.AddBinding("<XRController>{RightHand}/primaryButton"); // A
             }
-            _dashAction.Enable();
+            if (_sprintAction == null)
+            {
+                _sprintAction = new InputAction("ZiptideSprint", InputActionType.Button);
+                _sprintAction.AddBinding("<XRController>{LeftHand}/thumbstickClicked"); // L3
+            }
+            _jumpAction.Enable();
+            _sprintAction.Enable();
         }
 
         private void OnDisable()
         {
-            _dashAction?.Disable();
+            EndSprint();
+            _jumpAction?.Disable();
+            _sprintAction?.Disable();
         }
 
         private void Update()
         {
-            if (_cooldownTimer > 0f)
-                _cooldownTimer -= Time.deltaTime;
+            if (_cc == null || !_cc.enabled) return;
+            if (_cooldownTimer > 0f) _cooldownTimer -= Time.deltaTime;
 
-            if (_isDashing)
-            {
-                _dashTimer -= Time.deltaTime;
-                if (_dashTimer <= 0f)
-                {
-                    _isDashing = false;
-                    return;
-                }
-
-                float speed = _distance / _duration;
-                Vector3 move = _dashDirection * speed * Time.deltaTime;
-                move.y += _verticalLift * (Time.deltaTime / _duration);
-                if (_cc != null && _cc.enabled)
-                    _cc.Move(move);
-                return;
-            }
-
-            if (_dashAction != null && _dashAction.WasPressedThisFrame() && _cooldownTimer <= 0f)
-                StartDash();
+            HandleSprint();
+            HandleJump();
         }
 
-        private void StartDash()
+        private void HandleSprint()
         {
-            Vector3 forward = _cameraTransform.forward;
-            forward.y = 0f;
-            if (forward.sqrMagnitude < 0.001f)
-                forward = transform.forward;
-            forward.Normalize();
+            if (_moveProvider == null) return;
 
-            _dashDirection = forward;
-            _dashTimer = _duration;
-            _cooldownTimer = _cooldown;
-            _isDashing = true;
+            bool wantSprint = _sprintAction != null && _sprintAction.IsPressed();
+            if (wantSprint && !_sprinting)
+            {
+                _baseMoveSpeed = _moveProvider.moveSpeed;
+                _moveProvider.moveSpeed = _baseMoveSpeed * _sprintMultiplier;
+                _sprinting = true;
+            }
+            else if (!wantSprint && _sprinting)
+            {
+                EndSprint();
+            }
+        }
+
+        private void EndSprint()
+        {
+            if (_sprinting && _moveProvider != null && _baseMoveSpeed > 0f)
+                _moveProvider.moveSpeed = _baseMoveSpeed;
+            _sprinting = false;
+        }
+
+        private void HandleJump()
+        {
+            bool grounded = _cc.isGrounded;
+
+            if (!_jumping && grounded && _cooldownTimer <= 0f
+                && _jumpAction != null && _jumpAction.WasPressedThisFrame())
+            {
+                _verticalVelocity = Mathf.Sqrt(2f * _gravity * _jumpHeight);
+                _jumping = true;
+                _cooldownTimer = _jumpCooldown;
+            }
+
+            if (_jumping)
+            {
+                _verticalVelocity -= _gravity * Time.deltaTime;
+                _cc.Move(Vector3.up * (_verticalVelocity * Time.deltaTime));
+                if (_verticalVelocity <= 0f && _cc.isGrounded)
+                    _jumping = false;
+            }
         }
     }
 }
