@@ -30,15 +30,26 @@ namespace Ziptide.Gameplay
             return CreateGenericItem(def, position);
         }
 
+        // Holds a static reference to every ItemDefinition we ever resolve. This keeps the
+        // ScriptableObject loaded (prevents GC unload) so inventory restore after scene travel
+        // can still find it even when the destination scene doesn't reference it directly
+        // (fixes ITEM_DEF_NOT_FOUND on travel-restore).
+        private static readonly System.Collections.Generic.Dictionary<string, ItemDefinition> _cache
+            = new System.Collections.Generic.Dictionary<string, ItemDefinition>();
+
         private static ItemDefinition FindDefinition(string itemId)
         {
+            if (_cache.TryGetValue(itemId, out var cached) && cached != null)
+                return cached;
+
             var allDefs = Resources.FindObjectsOfTypeAll<ItemDefinition>();
             foreach (var d in allDefs)
             {
-                if (d != null && d.itemId == itemId)
-                    return d;
+                if (d != null && !string.IsNullOrEmpty(d.itemId))
+                    _cache[d.itemId] = d;
             }
-            return null;
+
+            return _cache.TryGetValue(itemId, out var found) && found != null ? found : null;
         }
 
         private static GameObject CreatePistol(PistolDefinition def, Vector3 position)

@@ -51,6 +51,16 @@ namespace Ziptide.Gameplay
         {
             if (string.IsNullOrEmpty(sceneName)) return;
 
+            // _Boot is the bootstrap scene and must NEVER be a travel destination. Loading it
+            // re-runs bootstrap, spawns a second set of singletons, and drops the player into the
+            // contentless boot scene (the "brown screen" bug). Redirect to the first world.
+            if (sceneName == Ziptide.Core.ZiptideConstants.SceneBoot)
+            {
+                Debug.LogWarning("ZIPTIDE: TRAVEL_BLOCKED dest=_Boot (boot is not a world) – redirecting to "
+                    + Ziptide.Core.ZiptideConstants.FirstWorldScene);
+                sceneName = Ziptide.Core.ZiptideConstants.FirstWorldScene;
+            }
+
             if (_instance == null)
             {
                 Debug.LogWarning("ZIPTIDE: TravelCoordinator not found – falling back to direct load");

@@ -5624,7 +5624,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73c0ac00d9b212e498c8bf76b74a328a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destinationSceneName: _Boot
+  destinationSceneName: MilestoneA_GrabCube
   cooldownSeconds: 3
 --- !u!65 &1060034027
 BoxCollider:
