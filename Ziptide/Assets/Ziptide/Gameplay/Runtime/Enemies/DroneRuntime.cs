@@ -4,24 +4,24 @@ using Ziptide.Core;
 namespace Ziptide.Gameplay
 {
     /// <summary>
-    /// Simple hovering drone: bobs in place, can be shocked via IShockable, counts as target.
-    /// States: Active (patrol bob), Shocked (drops, disabled), Recover (returns).
+    /// Hovering drone target. When shot (TargetRuntime hit) or shocked (taser) it DIES:
+    /// stops hovering, crashes to the ground under gravity, and stays down — it does not
+    /// recover or disappear.
     /// </summary>
     public class DroneRuntime : MonoBehaviour, IShockable
     {
-        private enum State { Active, Shocked, Recovering }
+        private enum State { Active, Dead }
 
         [SerializeField] private float bobAmplitude = 0.15f;
         [SerializeField] private float bobSpeed = 1.5f;
         [SerializeField] private Color activeColor = new Color(0.8f, 0.2f, 0.1f);
-        [SerializeField] private Color shockedColor = new Color(0.1f, 0.8f, 1f);
+        [SerializeField] private Color deadColor = new Color(0.15f, 0.15f, 0.15f);
 
         private State _state = State.Active;
         private Vector3 _homePos;
-        private float _shockTimer;
-        private float _recoverTimer;
         private Renderer _renderer;
         private Material _mat;
+        private TargetRuntime _target;
 
         public static event System.Action<DroneRuntime> OnDroneDisabled;
 
@@ -41,49 +41,47 @@ namespace Ziptide.Gameplay
                     _renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
                 }
             }
+
+            // Die from the pistol/hitscan too: a TargetRuntime hit kills the drone.
+            _target = GetComponent<TargetRuntime>();
+            if (_target != null)
+                _target.OnHit.AddListener(Kill);
+        }
+
+        private void OnDestroy()
+        {
+            if (_target != null) _target.OnHit.RemoveListener(Kill);
         }
 
         private void Update()
         {
-            switch (_state)
-            {
-                case State.Active:
-                    float y = _homePos.y + Mathf.Sin(Time.time * bobSpeed) * bobAmplitude;
-                    transform.position = new Vector3(_homePos.x, y, _homePos.z);
-                    transform.Rotate(Vector3.up, 30f * Time.deltaTime, Space.World);
-                    break;
-
-                case State.Shocked:
-                    _shockTimer -= Time.deltaTime;
-                    transform.position += Vector3.down * 0.3f * Time.deltaTime;
-                    if (_shockTimer <= 0f)
-                    {
-                        _state = State.Recovering;
-                        _recoverTimer = 1.5f;
-                    }
-                    break;
-
-                case State.Recovering:
-                    _recoverTimer -= Time.deltaTime;
-                    transform.position = Vector3.MoveTowards(transform.position, _homePos, 1.5f * Time.deltaTime);
-                    if (_recoverTimer <= 0f || Vector3.Distance(transform.position, _homePos) < 0.05f)
-                    {
-                        transform.position = _homePos;
-                        _state = State.Active;
-                        SetColor(activeColor);
-                    }
-                    break;
-            }
+            if (_state != State.Active) return;
+            float y = _homePos.y + Mathf.Sin(Time.time * bobSpeed) * bobAmplitude;
+            transform.position = new Vector3(_homePos.x, y, _homePos.z);
+            transform.Rotate(Vector3.up, 30f * Time.deltaTime, Space.World);
         }
 
-        public void Shock(float seconds)
+        public void Shock(float seconds) => Kill();
+
+        /// <summary>Kill the drone: stop hovering, crash to the ground under gravity, stay down.</summary>
+        public void Kill()
         {
-            if (_state == State.Shocked) return;
-            _state = State.Shocked;
-            _shockTimer = seconds;
-            SetColor(shockedColor);
-            Debug.Log("ZIPTIDE: DRONE_SHOCKED name=" + gameObject.name);
+            if (_state == State.Dead) return;
+            _state = State.Dead;
+            SetColor(deadColor);
+            Debug.Log("ZIPTIDE: DRONE_DOWN name=" + gameObject.name);
             OnDroneDisabled?.Invoke(this);
+
+            if (GetComponent<Collider>() == null && GetComponentInChildren<Collider>() == null)
+                gameObject.AddComponent<BoxCollider>();
+
+            var rb = GetComponent<Rigidbody>();
+            if (rb == null) rb = gameObject.AddComponent<Rigidbody>();
+            rb.isKinematic = false;
+            rb.useGravity = true;
+            rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+            rb.AddTorque(Random.insideUnitSphere * 2f, ForceMode.Impulse); // tumble as it falls
+            rb.WakeUp();
         }
 
         private void SetColor(Color c)
