@@ -1,13 +1,16 @@
 # Treat Unity serialized YAML as binary for line-ending purposes so they don't show as
 # perpetually "modified" (phantom diffs that block git pull). Unity always writes LF.
-*.unity   -text merge=binary
-*.prefab  -text merge=binary
-*.asset   -text merge=binary
-*.meta    -text merge=binary
+# merge=unityyamlmerge uses Unity's Smart Merge tool (UnityYAMLMerge) to merge scenes/prefabs
+# safely instead of corrupting them. Configure the driver once per machine (see docs/AI_WORKFLOW.md):
+#   git config merge.unityyamlmerge.driver '"<UnityEditor>/Data/Tools/UnityYAMLMerge.exe" merge -p %O %B %A %A'
+*.unity   -text merge=unityyamlmerge
+*.prefab  -text merge=unityyamlmerge
+*.asset   -text merge=unityyamlmerge
+*.controller -text merge=unityyamlmerge
+*.anim    -text merge=unityyamlmerge
+*.mat     -text merge=unityyamlmerge
+*.meta    -text
 *.asmdef  -text
-*.controller -text merge=binary
-*.anim    -text merge=binary
-*.mat     -text merge=binary
 
 # Normal text files
 *.cs   text eol=lf
