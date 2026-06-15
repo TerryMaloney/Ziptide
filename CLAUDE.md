@@ -2,6 +2,25 @@
 
 Read this first every session. It is the contract for how to work in this repo without breaking it.
 
+## ⛔ WORKFLOW INTEGRITY — CHECK THIS FIRST, EVERY SESSION
+If the verification workflow is broken, **STOP and warn Terry LOUDLY at the top of your reply**
+before doing any gameplay/scene work. Working blind (no compile check) is how broken commits
+reached the headset and wasted hours. The workflow is BROKEN if any of these are true:
+- **CI is not green** — the GitHub Actions "CI" run is failing (especially Unity **license
+  activation** failures like `Code 20110 serial invalid`; the Personal `.ulf` expires and must
+  be regenerated — see `docs/RECOVERY_STEPS.md`). If CI can't compile, **I cannot compile-verify
+  my own code**, so any C# change is an unverified guess.
+- The local build reports `Scripts have compiler errors`.
+- I am editing C# that uses APIs I cannot verify (no package source in the cloud container).
+
+When broken, the message must say plainly: **"⚠️ WORKFLOW IS BROKEN — we are flying blind,
+fix this before more code changes,"** then give the recovery steps. Do NOT quietly keep
+shipping code changes that can't be verified.
+
+The north star: Terry puts on the headset, says "move that building / make this do that," and it
+just happens with ~zero errors. That requires the safety net (CI compile + audit) to be HEALTHY.
+Protecting the workflow is higher priority than any single feature.
+
 ## What this is
 A **Meta Quest VR game**. Unity **2022.3.62f3**, **URP**, Android/IL2CPP/ARM64, OpenXR + XR
 Interaction Toolkit **2.5.4**. The Unity project lives in the **`Ziptide/`** subfolder.
