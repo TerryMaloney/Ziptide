@@ -47,6 +47,14 @@ namespace Ziptide.Gameplay
             _cc = GetComponent<CharacterController>();
             _moveProvider = GetComponentInChildren<ActionBasedContinuousMoveProvider>(true);
 
+            // Guarantee a usable walk speed even if no per-scene LocomotionDirector configured it
+            // (fixes "can't move in the test room"). Diagnostic logs the real rig state.
+            if (_moveProvider != null && _moveProvider.moveSpeed < 0.1f)
+                _moveProvider.moveSpeed = 1.75f;
+            Debug.Log("ZIPTIDE: LOCO_STATE moveProvider=" + (_moveProvider != null)
+                + " moveSpeed=" + (_moveProvider != null ? _moveProvider.moveSpeed : 0f)
+                + " cc=" + (_cc != null) + " ccEnabled=" + (_cc != null && _cc.enabled));
+
             if (_jumpAction == null)
             {
                 _jumpAction = new InputAction("ZiptideJump", InputActionType.Button);
@@ -72,6 +80,10 @@ namespace Ziptide.Gameplay
         {
             if (_cc == null || !_cc.enabled) return;
             if (_cooldownTimer > 0f) _cooldownTimer -= Time.deltaTime;
+
+            // Keep walk speed alive across scene loads if something zeroed it.
+            if (!_sprinting && _moveProvider != null && _moveProvider.moveSpeed < 0.1f)
+                _moveProvider.moveSpeed = 1.75f;
 
             HandleSprint();
             HandleJump();

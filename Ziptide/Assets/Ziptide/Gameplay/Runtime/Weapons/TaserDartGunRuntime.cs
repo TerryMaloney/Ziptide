@@ -71,7 +71,7 @@ namespace Ziptide.Gameplay
 
             var dart = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
             dart.name = "TaserDart";
-            dart.transform.position = origin + dir * 0.05f;
+            dart.transform.position = origin + dir * 0.12f;
             dart.transform.rotation = Quaternion.LookRotation(dir) * Quaternion.Euler(90f, 0f, 0f);
             dart.transform.localScale = new Vector3(0.015f, 0.06f, 0.015f);
 
@@ -86,6 +86,13 @@ namespace Ziptide.Gameplay
             rb.useGravity = true;
             rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
             rb.velocity = dir * def.muzzleVelocity;
+
+            // Don't let the dart stick to the gun itself or the player body on spawn
+            // (that was the "bullet stops short / stuck in front of the gun" bug).
+            foreach (var gunCol in GetComponentsInChildren<Collider>(true))
+                if (gunCol != null) Physics.IgnoreCollision(capsule, gunCol);
+            var playerBody = Object.FindObjectOfType<CharacterController>();
+            if (playerBody != null) Physics.IgnoreCollision(capsule, playerBody);
 
             var proj = dart.AddComponent<TaserDartProjectile>();
             proj.Init(def.stunSeconds, def.hitImpulse, def.dartLifetime, def.impactClip);
