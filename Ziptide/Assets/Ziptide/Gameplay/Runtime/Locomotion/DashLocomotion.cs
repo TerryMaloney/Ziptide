@@ -31,6 +31,7 @@ namespace Ziptide.Gameplay
         private float _verticalVelocity;
         private bool _jumping;
         private bool _sprinting;
+        private float _diagTimer;
 
         /// <summary>
         /// Kept for LocomotionDirector compatibility. The old dash distance/duration are unused;
@@ -51,6 +52,7 @@ namespace Ziptide.Gameplay
             // (fixes "can't move in the test room"). Diagnostic logs the real rig state.
             if (_moveProvider != null && _moveProvider.moveSpeed < 0.1f)
                 _moveProvider.moveSpeed = 1.75f;
+            EnsureMoveActionsEnabled();
             Debug.Log("ZIPTIDE: LOCO_STATE moveProvider=" + (_moveProvider != null)
                 + " moveSpeed=" + (_moveProvider != null ? _moveProvider.moveSpeed : 0f)
                 + " cc=" + (_cc != null) + " ccEnabled=" + (_cc != null && _cc.enabled));
@@ -78,6 +80,12 @@ namespace Ziptide.Gameplay
 
         private void Update()
         {
+            // Keep the move provider + its input actions live every frame. On the FIRST scene
+            // load the move action can come up disabled (it's re-armed only after a scene cycle),
+            // which is why movement worked only on the 2nd entry. This fixes first-load movement.
+            EnsureMoveActionsEnabled();
+            MoveDiagTick();
+
             if (_cc == null || !_cc.enabled) return;
             if (_cooldownTimer > 0f) _cooldownTimer -= Time.deltaTime;
 
@@ -111,6 +119,28 @@ namespace Ziptide.Gameplay
             if (_sprinting && _moveProvider != null && _baseMoveSpeed > 0f)
                 _moveProvider.moveSpeed = _baseMoveSpeed;
             _sprinting = false;
+        }
+
+        private void EnsureMoveActionsEnabled()
+        {
+            if (_moveProvider == null) return;
+            if (!_moveProvider.enabled) _moveProvider.enabled = true;
+            var la = _moveProvider.leftHandMoveAction.action;
+            var ra = _moveProvider.rightHandMoveAction.action;
+            if (la != null && !la.enabled) la.Enable();
+            if (ra != null && !ra.enabled) ra.Enable();
+        }
+
+        private void MoveDiagTick()
+        {
+            _diagTimer -= Time.deltaTime;
+            if (_diagTimer > 0f) return;
+            _diagTimer = 1f;
+            var la = _moveProvider != null ? _moveProvider.leftHandMoveAction.action : null;
+            Debug.Log("ZIPTIDE: MOVE_DIAG provEnabled=" + (_moveProvider != null && _moveProvider.enabled)
+                + " leftActEnabled=" + (la != null && la.enabled)
+                + " leftVal=" + (la != null ? la.ReadValue<Vector2>().ToString("F2") : "null")
+                + " grounded=" + (_cc != null && _cc.isGrounded));
         }
 
         private void HandleJump()
