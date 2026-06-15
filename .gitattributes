@@ -1,0 +1,16 @@
+# Treat Unity serialized YAML as binary for line-ending purposes so they don't show as
+# perpetually "modified" (phantom diffs that block git pull). Unity always writes LF.
+*.unity   -text merge=binary
+*.prefab  -text merge=binary
+*.asset   -text merge=binary
+*.meta    -text merge=binary
+*.asmdef  -text
+*.controller -text merge=binary
+*.anim    -text merge=binary
+*.mat     -text merge=binary
+
+# Normal text files
+*.cs   text eol=lf
+*.md   text eol=lf
+*.json text eol=lf
+*.ps1  text eol=crlf
