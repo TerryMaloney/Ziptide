@@ -285,6 +285,23 @@ namespace Ziptide.Gameplay
             Debug.Log("ZIPTIDE: XRI_WIRING cams=" + cams + " rays=" + totalRays +
                       "(active=" + enabledRays + ") skipped=" + skipped);
             if (totalRays == 0) Debug.LogWarning("ZIPTIDE: NO_RAY_INTERACTORS");
+
+            TuneRayInteractors();
+        }
+
+        /// <summary>
+        /// Stops the ray interactors from reeling held objects in/out at a distance (anchor
+        /// control), which made grabbing a gun fiddly ("pass it hand to hand to orient it").
+        /// With anchor control off and the gun's fixed grip attach, a grabbed gun snaps to the
+        /// hand facing forward.
+        /// </summary>
+        private void TuneRayInteractors()
+        {
+            foreach (var ray in GetComponentsInChildren<XRRayInteractor>(true))
+            {
+                if (ray == null) continue;
+                ray.enableAnchorControl = false;
+            }
         }
 
         /// <summary>
