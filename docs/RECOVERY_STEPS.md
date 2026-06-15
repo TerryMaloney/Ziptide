@@ -5,30 +5,38 @@ before any more gameplay testing. (Latest code is already pushed to `terry-local
 
 ---
 
-## ⚠️ Current status: WORKFLOW DEGRADED
-- **CI cannot compile-check** — the GitHub Actions CI fails at Unity license activation
-  (`Code 20110: serial invalid`). The Personal `.ulf` expired. Until fixed, broken C# can reach
-  your build (that's what the `enableAnchorControl` error was). **Top priority.**
+## ✅ Current status: WORKFLOW HEALTHY (2026-06-15)
+CI is green: it compiles the project + runs EditMode tests on every push to `terry-local-wip`.
+Keep it that way — CLAUDE.md's rule stands (if CI goes red, warn loudly + stop shipping C#).
 
 ---
 
-## STEP 1 — Re-activate the Unity license for CI (~5 min)
-I will trigger the "Acquire Unity Activation File" workflow for you (or you can: GitHub → Actions
-→ that workflow → Run workflow on `main`). Then:
+## STEP 1 — Re-activate the Unity license for CI (only if CI starts failing on license again)
+**IMPORTANT — the website route is DEAD.** Unity **no longer supports manual activation of
+Personal licenses** (`license.unity3d.com/manual` says so and only accepts paid Plus/Pro serials).
+The old `.alf` → upload → `.ulf` flow **will never work for a free license** — don't try it. That
+dead end is what caused the long `Code 20110: serial invalid` fight.
 
-1. Open the finished run → download the **`Unity_Activation_File`** artifact → unzip → you get a
-   `.alf` file.
-2. Go to **https://license.unity3d.com/manual**, sign in, upload the `.alf`.
-3. Choose **Unity Personal Edition** (free) → answer the personal-use questions → download the
-   resulting **`.ulf`** file.
-4. Open the `.ulf` in Notepad, **select all, copy**.
-5. GitHub repo → **Settings → Secrets and variables → Actions** → open **`UNITY_LICENSE`** →
-   **Update secret** → paste the entire `.ulf` contents → save.
-6. GitHub → Actions → **CI** → Run workflow on `terry-local-wip` (or just push). Confirm the
-   **EditMode tests** job goes **green**. Green = CI compiles again = we're no longer blind.
+**The method that actually works — grab the `.ulf` your PC already has:**
+1. Open **Unity Hub → (gear) Preferences/Settings → Licenses**. If no **Personal** license is
+   listed, click **Add → Get a free personal license**. (This step writes the license file.)
+2. In File Explorer open **`C:\ProgramData\Unity\`** (View → Hidden items if needed) and open
+   **`Unity_lic.ulf`**. Confirm it's the REAL license, not a request file: a real `.ulf` has
+   `<DeveloperData>`, `<Features>`, `<SerialMasked>`, `<Entitlements ... Tag="UnityPersonal">` and a
+   `<Signature>` block. (A *request* file has ONLY `MachineBindings` + `MachineID` — wrong file.)
+   - If that folder is missing, search C: for `Unity_lic.ulf` but verify it has the
+     `<DeveloperData>`/`<Signature>` sections (ignore stale request files like old 2017 ones).
+3. **Select all → copy** the `.ulf` contents.
+4. GitHub repo → **Settings → Secrets and variables → Actions** → **`UNITY_LICENSE`** →
+   **Update secret** → clear it, paste the entire `.ulf`, **save**.
+5. Re-run CI (push, or Actions → CI → failed run → **Re-run failed jobs**). Success looks like
+   **`Successfully returned ULF license with serial number`** in the activation log.
 
-> If activation keeps failing: the email/password secrets may also need refresh
-> (`UNITY_EMAIL`, `UNITY_PASSWORD`). A Personal license sometimes needs the password secret set.
+> `UNITY_EMAIL` / `UNITY_PASSWORD` secrets must also be set (CI log says
+> `User *** logged in successfully` when they're right). Those were fine throughout — only the
+> `.ulf` was the problem. The `.ulf` is machine-activated and can expire; redo this when it does.
+> Also: `ci.yml` needs `permissions: checks: write`, else the run fails at the very end on
+> "Resource not accessible by integration" even though compile + tests passed.
 
 ## STEP 2 — Give Claude eyes on the rig + scenes (~3 min)
 This lets me SEE your XR rig interactor settings, spawn positions, and stray geometry instead of

@@ -7,14 +7,16 @@ Last updated: 2026-06-15 (session 2 additions: Sandbox Test Lab + Alien Origami 
 
 ---
 
-## ⚠️ WORKFLOW STATUS: DEGRADED — fix before code work
-**CI cannot compile-check** (Unity license expired → `Code 20110 serial invalid`). Until green,
-we are flying blind: unverified C# can reach the headset. See `docs/RECOVERY_STEPS.md`.
+## ✅ WORKFLOW STATUS: HEALTHY — CI is green (2026-06-15)
+**CI compiles + runs EditMode tests on every push to `terry-local-wip`.** No longer flying blind.
+Root cause of the long license fight: **Unity killed manual `.alf`→`.ulf` activation for Personal
+licenses**, so the website round-trip could never work. Fix = activate Personal in **Unity Hub**
+on the PC, copy `C:\ProgramData\Unity\Unity_lic.ulf` into the `UNITY_LICENSE` secret. Also needed
+`permissions: checks: write` in `ci.yml` so the test-runner can publish results. See
+`docs/RECOVERY_STEPS.md`.
 
 ## 🖥️ WHEN BACK AT THE PC — do in this order
-1. **Fix CI's Unity license.** The activation workflow's `.alf` is waiting in GitHub Actions →
-   upload at license.unity3d.com/manual → choose Unity Personal → download `.ulf` → paste into the
-   `UNITY_LICENSE` secret → re-run CI to green. (`RECOVERY_STEPS.md` step 1)
+1. ~~Fix CI's Unity license~~ ✅ DONE — CI green.
 2. **Register Unity Smart Merge** (3 `git config` commands you have) — done if already run.
 3. **Give Claude eyes:** open `MilestoneA_GrabCube`, `_Boot`, `D0_City` → `Ziptide → Diagnostics →
    Dump Scene + Rig Config` in each → `git add docs/_generated; git commit; git push`.
