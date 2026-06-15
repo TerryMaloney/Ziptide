@@ -62,6 +62,13 @@ See `docs/design/LEVEL1_TOXIC_VENICE.md` + `docs/design/CONTROLS_AND_FLIGHT.md`.
    7. World generator v1 (generate-to-editable-data) → 8. Mod/creator mode → 9. Balance tuning.
 10. (Later epic) Online + Risk-style planet conquest + leaderboards (no pay-to-win).
 
+### Ship system (see `docs/design/SHIP_SYSTEM.md`)
+One seamless ship (walkable interior + exterior), first-person cockpit flight, built via a modular
+kit matched to an AI concept image (`ShipBlueprint` + `ShipAssembler`), cosmetic-only monetization
+designed now / store later. Order: data model + profile ownership → ship kit + assembler + audit →
+one full ship → seat + flight-mode + `FlightController` → space scene + tutorial hop → cosmetics
+layer → second ship to prove the pipeline. Ties into the flight scaffold in `CONTROLS_AND_FLIGHT.md`.
+
 ---
 
 ## Project status
