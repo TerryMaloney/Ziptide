@@ -155,50 +155,36 @@ namespace Ziptide.Gameplay
         {
             // Give the freshly-created item one frame to complete Awake/OnEnable.
             yield return null;
-
-            var grab = item != null ? item.GetComponent<XRGrabInteractable>() : null;
-            var mgr = Object.FindObjectOfType<XRInteractionManager>();
-
-            if (grab == null || mgr == null)
-            {
-                Debug.LogWarning("ZIPTIDE: INVENTORY_RESTORE_FAIL item=" + (item != null ? item.name : "null")
-                    + " reason=no_grab_or_manager");
-                yield break;
-            }
+            if (item == null) yield break;
 
             var socket = FindMatchingSocket(slotId, playerRoot);
-            if (socket == null)
+            Transform anchor = socket != null
+                ? (socket.attachTransform != null ? socket.attachTransform : socket.transform)
+                : null;
+
+            if (anchor == null)
             {
-                Debug.LogWarning("ZIPTIDE: INVENTORY_RESTORE_FAIL item=" + item.name
-                    + " reason=no_matching_socket slot=" + slotId);
+                Debug.LogWarning("ZIPTIDE: HOLSTER_DOCK_FAIL item=" + item.name + " reason=no_socket slot=" + slotId);
                 yield break;
             }
 
-            if (socket.hasSelection)
+            // Robust dock: parent the gun to the hip socket and freeze its physics so it RIDES on
+            // the belt and does NOT fall when we travel. Grabbing it later reparents it to the hand.
+            var rb = item.GetComponent<Rigidbody>();
+            if (rb != null)
             {
-                Debug.LogWarning("ZIPTIDE: INVENTORY_RESTORE_FAIL item=" + item.name
-                    + " reason=socket_already_occupied slot=" + slotId);
-                yield break;
+                rb.velocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
+                rb.isKinematic = true;
             }
 
-            // Position the item at the socket attach point, then perform a real socket-select.
-            item.transform.position = socket.attachTransform != null
-                ? socket.attachTransform.position
-                : socket.transform.position;
-            item.transform.rotation = socket.attachTransform != null
-                ? socket.attachTransform.rotation
-                : socket.transform.rotation;
+            var grab = item.GetComponent<XRGrabInteractable>();
+            if (grab != null) grab.retainTransformParent = false;
 
-            try
-            {
-                mgr.SelectEnter(socket as IXRSelectInteractor, grab as IXRSelectInteractable);
-                Debug.Log("ZIPTIDE: HOLSTER_RESTORED item=" + item.name + " slot=" + slotId);
-            }
-            catch (System.Exception ex)
-            {
-                Debug.LogWarning("ZIPTIDE: INVENTORY_RESTORE_FAIL item=" + item.name
-                    + " reason=SelectEnter_exception: " + ex.Message);
-            }
+            item.transform.SetParent(anchor, false);
+            item.transform.localPosition = Vector3.zero;
+            item.transform.localRotation = Quaternion.identity;
+            Debug.Log("ZIPTIDE: HOLSTER_DOCKED item=" + item.name + " slot=" + slotId);
         }
 
         private static HolsterSocketInteractor FindMatchingSocket(string slotId, Transform playerRoot)
