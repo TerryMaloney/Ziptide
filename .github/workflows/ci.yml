@@ -1,0 +1,101 @@
+name: CI
+
+# Compiles the Unity project and runs EditMode tests on every push/PR.
+#
+# REQUIRED repository secrets (Settings > Secrets and variables > Actions):
+#   UNITY_LICENSE  - contents of your Unity Personal .ulf license file
+#   UNITY_EMAIL    - your Unity account email
+#   UNITY_PASSWORD - your Unity account password
+
+on:
+  push:
+    branches:
+      - main
+      - 'claude/**'
+      - terry-local-wip
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+# The Unity project lives in the Ziptide/ subfolder of the repo.
+env:
+  PROJECT_PATH: Ziptide
+  UNITY_VERSION: 2022.3.62f3
+
+jobs:
+  test:
+    name: EditMode tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Cache Library
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.PROJECT_PATH }}/Library
+          key: Library-test-${{ hashFiles(format('{0}/Assets/**', env.PROJECT_PATH), format('{0}/Packages/**', env.PROJECT_PATH), format('{0}/ProjectSettings/**', env.PROJECT_PATH)) }}
+          restore-keys: |
+            Library-test-
+            Library-
+
+      - name: Run EditMode tests
+        uses: game-ci/unity-test-runner@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          projectPath: ${{ env.PROJECT_PATH }}
+          unityVersion: ${{ env.UNITY_VERSION }}
+          testMode: editmode
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          artifactsPath: test-results
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-results
+          path: test-results
+
+  build-android:
+    name: Build Android APK
+    needs: test
+    runs-on: ubuntu-latest
+    # Building the Android player is slow; only do it on main or when manually triggered.
+    if: github.event_name == 'workflow_dispatch' || github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Cache Library
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.PROJECT_PATH }}/Library
+          key: Library-android-${{ hashFiles(format('{0}/Assets/**', env.PROJECT_PATH), format('{0}/Packages/**', env.PROJECT_PATH), format('{0}/ProjectSettings/**', env.PROJECT_PATH)) }}
+          restore-keys: |
+            Library-android-
+            Library-
+
+      - name: Build (Android)
+        uses: game-ci/unity-builder@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          projectPath: ${{ env.PROJECT_PATH }}
+          unityVersion: ${{ env.UNITY_VERSION }}
+          targetPlatform: Android
+
+      - name: Upload build
+        uses: actions/upload-artifact@v4
+        with:
+          name: ziptide-android
+          path: build

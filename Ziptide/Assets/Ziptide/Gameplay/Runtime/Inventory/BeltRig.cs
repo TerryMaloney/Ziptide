@@ -71,6 +71,16 @@ namespace Ziptide.Gameplay
                 holster = go.transform;
             }
 
+            // Functional socket: a trigger collider for proximity detection + the holster socket
+            // interactor so guns can actually be docked here (markers alone do nothing).
+            var trigger = holster.GetComponent<SphereCollider>();
+            if (trigger == null) trigger = holster.gameObject.AddComponent<SphereCollider>();
+            trigger.isTrigger = true;
+            trigger.radius = 0.12f;
+
+            if (holster.GetComponent<HolsterSocketInteractor>() == null)
+                holster.gameObject.AddComponent<HolsterSocketInteractor>();
+
             if (holster.Find("HolsterMarker") == null)
             {
                 var marker = GameObject.CreatePrimitive(PrimitiveType.Sphere);

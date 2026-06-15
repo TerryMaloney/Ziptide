@@ -111,10 +111,26 @@ namespace Ziptide.Gameplay
             // #endregion agent log
 
             EnsureXRIWiring();
+            EnsureBelt();
 
             // #region agent log
             LogRaySnapshot("Awake_AFTER");
             // #endregion agent log
+        }
+
+        /// <summary>
+        /// Ensures a BeltRig (with functional holster sockets) lives on the persistent rig so the
+        /// player can holster a gun and have it travel between scenes. The belt was previously only
+        /// added per-scene by ScenePatcherC0, which the APK build skips — so it never appeared.
+        /// </summary>
+        private void EnsureBelt()
+        {
+            if (GetComponentInChildren<BeltRig>(true) != null) return;
+            var go = new GameObject(Ziptide.Core.ZiptideConstants.GoBeltRig);
+            go.transform.SetParent(transform, false);
+            go.transform.localPosition = Vector3.zero;
+            go.AddComponent<BeltRig>();
+            Debug.Log("ZIPTIDE: BELT_ENSURED on persistent rig");
         }
 
         private void OnDestroy()

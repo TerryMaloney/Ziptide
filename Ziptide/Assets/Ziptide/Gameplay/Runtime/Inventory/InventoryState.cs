@@ -35,10 +35,15 @@ namespace Ziptide.Gameplay
                 if (item == null || item.Definition == null) continue;
 
                 string slotId = DetermineSlot(item);
+
+                // Only HOLSTERED items travel with the player. Loose / in-hand items belong to the
+                // scene they spawned in and are left behind (they unload with the scene). This stops
+                // guns piling up every round-trip and stops scene-spawned guns from following you.
+                if (!slotId.StartsWith("holster"))
+                    continue;
+
                 _saved.Add(new SavedItem { itemId = item.Definition.itemId, slotId = slotId });
-
                 Debug.Log("ZIPTIDE: INVENTORY_SAVED item=" + item.Definition.itemId + " slot=" + slotId);
-
                 ForceDropAndDestroy(item);
             }
         }
