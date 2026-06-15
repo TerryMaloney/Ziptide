@@ -3,7 +3,7 @@
 **The single "what do we do next" list.** Updated every session.
 Design lives in `docs/design/`; long-term vision in `ZIPTIDE_MASTER_BUILD_PLAN.md`.
 
-Last updated: 2026-06-15
+Last updated: 2026-06-15 (session 2 additions: Sandbox Test Lab + Alien Origami surface)
 
 ---
 
@@ -40,6 +40,31 @@ exporter; CI enabled on `terry-local-wip`.
   force-enable-move fix on a clean build.
 - [ ] **Choppy look on entry** — first-frame warm-up; low priority.
 - [ ] Verify on device: holster-rides-hip, taser fly, drone death, jump/sprint.
+
+## 🎨 Sandbox Test Lab (new, CI-gated)
+See `docs/design/SANDBOX_TEST_LAB.md` for the full plan.
+- [ ] `ScenePatcherSandbox` — 30×30 room, 6 zones (grab, weapon range, enemy, travel loop,
+  art wall, loco track). Add `SandboxTestLab` to Build Settings (dev-only).
+- [ ] Zone D travel loop (two ProximityTravelTrigger doors pointing at each other) — real
+  TravelCoordinator path, tight test cycle without needing two full worlds.
+- [ ] **Ziptide transition effect** (fade-to-black 0.2 s + audio stinger): `TravelFadeOverlay`
+  on _Boot Canvas, wired to TravelCoordinator TRAVEL_START. Tune in Zone D, then promote to all
+  worlds. Comfort rule: NO camera movement during transition.
+- [ ] Zone E origami vignette: place 6 Alien Origami kit shapes (fold panel, chevron arch, star
+  cluster, lotus tower stub, tesseract shard, glyph band) — first VR look at the surface family.
+- [ ] `Ziptide > Open Sandbox` editor menu shortcut.
+- [ ] MilestoneA_GrabCube stays UNCHANGED as the Milestone A baseline.
+
+## 🗺️ Alien Origami / Pattern surface family (new, CI-gated)
+See `docs/project_art_plan/ALIEN_ORIGAMI_SURFACE_BRIEF.md` for design + prompt recipe.
+- [ ] Author 6 kit meshes (fold panel, chevron arch, star cluster, lotus tower stub, tesseract
+  shard, glyph band) + 5 materials (`OrigamiMatte`, `OrigamiGold`, `OrigamiGlyph` teal emissive,
+  `OrigamiAmber`, `OrigamiVoid`).
+- [ ] Prototype in Sandbox Zone E → verify Quest budget (≤ 6 draw calls for a corner, 72 FPS).
+- [ ] `AlienOrigami` `WorldArtKitDefinition` ScriptableObject once kit passes budget.
+- [ ] Glyph decal meshes (thin quads on panels, same teal glyph IDs shared with `Stone /
+  Ceremonial Alien` — the shared-glyph story hook).
+- [ ] Promote to a Pattern world patcher after sandbox audit passes.
 
 ## 🛠️ Workflow upgrades (queued)
 - [ ] Switch `dev_build_install.ps1` → `BuildAndroid.PatchScenesThenAPK` (patch + audit every build).
