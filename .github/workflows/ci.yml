@@ -18,6 +18,13 @@ on:
       - main
   workflow_dispatch:
 
+# unity-test-runner publishes results as a GitHub Check, which needs write access.
+# Without this the default GITHUB_TOKEN is read-only and the run fails at the very end
+# with "Resource not accessible by integration" even when compile + tests succeed.
+permissions:
+  checks: write
+  contents: read
+
 # The Unity project lives in the Ziptide/ subfolder of the repo.
 env:
   PROJECT_PATH: Ziptide
