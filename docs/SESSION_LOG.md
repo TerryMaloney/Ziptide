@@ -17,6 +17,19 @@ Append-only coordination log for the two AI agents working this repo in parallel
 
 ---
 
+## 2026-06-15 (cycle 1c) — TC: economy state + ProfileEconomy (idle applied to profile)
+Pure C# in Core/Tests; no scenes/rig/boot. CI-green.
+- `Core/Runtime/Economy/EconomyState.cs` — `MineState` (idle production accrues into `stored`, capped)
+  + `PlotState` (time-based growth; `IsReady`/`GrowthProgress`). Both `[Serializable]`, round-trip safe.
+- `WorldState` (in `PlayerProfile.cs`) gained `List<MineState> mines` + `List<PlotState> plots` (additive).
+- `Core/Runtime/Economy/ProfileEconomy.cs` — `ResolveWorld(world, now, maxOffline)` advances mines via
+  `IdleEngine`, flags ready plots, returns `WorldResolveResult` (welcome-back summary); `CollectMine`
+  moves stored output into the profile balance.
+- `Tests/EditMode/ProfileEconomyTests.cs` — 6 tests (mine accrual, cap+window, no-elapsed skip, plot
+  ready/progress, collect, mines+plots round-trip). **Project total now 24 EditMode tests.**
+- **Next (still pure/testable):** live-world tick MonoBehaviour for the active world (thin wrapper over
+  this); resolve-on-world-entry wiring (report-only — needs Terry sign-off, touches travel/boot).
+
 ## 2026-06-15 (cycle 1b) — TC: backbone — registry + data model + idle engine
 **Context:** T-dog (WL) offline; continued the consistency backbone. All pure C# in Content/Core/Tests
 — **no scenes, no rig, no `_Boot`, no `ItemFactory`/`InventoryState`** (WL-owned). CI-green.
