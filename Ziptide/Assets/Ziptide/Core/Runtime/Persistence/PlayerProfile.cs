@@ -94,5 +94,8 @@ namespace Ziptide.Core
         public bool owned;
         public string ownerId = "";        // for future async planet-conquest
         public long lastResolvedAtUnix;     // idle-accrual anchor (advance mines/gardens since this)
+
+        public List<MineState> mines = new List<MineState>();   // placed extractors (idle production)
+        public List<PlotState> plots = new List<PlotState>();   // garden plots (time-based growth)
     }
 }
