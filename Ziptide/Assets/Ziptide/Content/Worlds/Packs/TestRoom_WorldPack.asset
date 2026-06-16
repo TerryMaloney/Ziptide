@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   packId: test_room
   displayName: Test Room
-  sceneName: MilestoneA_GrabCube
+  sceneName: _Boot
   defaultTheme: {fileID: 0}
   availableThemes: []
   jobs: []
