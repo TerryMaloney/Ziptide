@@ -15,9 +15,9 @@ How we actually work (the constraint that shapes everything):
 
 | Part | What | Rule |
 |------|------|------|
-| **Definition** | a `ScriptableObject` of tunable data | lives in `Ziptide.Content`; has a `public string <thing>Id`; fields are `[Tooltip]`'d data only — **no logic** |
+| **Definition** | a `ScriptableObject` of tunable data | **new types inherit `Ziptide.Content.Definition`** (gives `id` + `displayName`); add `[CreateAssetMenu(menuName="Ziptide/Definitions/…")]`; fields are `[Tooltip]`'d data only — **no logic**. (Legacy `ItemDefinition`/`WorldPackDefinition` keep their own `itemId`/`packId`.) |
 | **Runtime** | a `MonoBehaviour`/class that enacts the def | `public void Init(def)` — **never reflection** (IL2CPP); reads the def, does the behavior |
-| **Registry/Factory** | resolves `id → def/object` | mirror `ItemFactory`: cache + `Resources.FindObjectsOfTypeAll<TDef>()`; **resolve by string id, never hard prefab refs** |
+| **Registry/Factory** | resolves `id → def/object` | use the generic **`DefinitionRegistry<TDef>`** (caches by `id`, warns on dup, auto-discovers via `Resources.LoadAll` from a `Resources/` subfolder) — or mirror `ItemFactory`. **Resolve by string id, never hard prefab refs.** |
 | **Patcher** | idempotent **editor** script that places it in a scene | `Ziptide.Editor.Patching`, uses `PatcherUtil` (find-or-create); the patcher **is** the source of truth, not the `.unity` file |
 | **Audit + Tag** | a `WorldAuditRunner` check + a `ZIPTIDE: <TAG>` log | so a blind build fails loudly at build/runtime, not silently |
 
@@ -50,6 +50,22 @@ Tests/EditMode/<Thing>Tests.cs                   ← headless logic tests (CI ru
 4. **`ZIPTIDE:` tags** — every runtime system logs `Debug.Log("ZIPTIDE: <TAG> key=value")` so one
    logcat tells the whole story at evening verification. (Existing tags: `TRAVEL_*`, `XRI_*`,
    `INVENTORY_*`, `DRONE_DOWN`, `MOVE_DIAG`, `LOCO_STATE`, `BELT_ENSURED`, `DUP_SINGLETON`, …)
+
+## 2b. Backbone status — what's already built (use it, don't reinvent)
+
+These exist on `terry-local-wip` and are CI-green. Build on them:
+- **`Ziptide.Content.Definition`** — base for all new content defs (`id`, `displayName`).
+- **`Ziptide.Content.DefinitionRegistry<TDef>`** — generic id→def registry (auto-discovery + dup-guard).
+- **Definitions** (`Content/Runtime/Definitions/`): `ResourceDefinition`, `ToolDefinition`,
+  `MachineDefinition`, `PlantDefinition`, `CreatureDefinition`, `BiomeDefinition`, `RecipeDefinition`,
+  `BalanceConfig`, plus `ResourceCost`. All have `[CreateAssetMenu]` — author assets in the editor.
+- **Persistence** (`Core/Runtime/Persistence/`): `PlayerProfile`, `ProfileSerializer`; `SaveSystem`
+  (`Gameplay`, **not yet wired into `_Boot`** — wiring is report-only).
+- **Idle** (`Core/Runtime/Economy/IdleEngine.cs`): pure offline-accrual math.
+- **Tests** (`Tests/EditMode/`): the `Ziptide.Tests.EditMode` assembly — add tests here for any new logic.
+
+Still TODO (next backbone cycles): concrete registries wired at boot, harvest/mine/garden runtimes,
+creature behaviors, world generator. Each follows the five-part pattern above.
 
 ## 3. Collision avoidance (two agents, one repo)
 

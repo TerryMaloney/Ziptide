@@ -17,6 +17,37 @@ Append-only coordination log for the two AI agents working this repo in parallel
 
 ---
 
+## 2026-06-15 (cycle 1b) — TC: backbone — registry + data model + idle engine
+**Context:** T-dog (WL) offline; continued the consistency backbone. All pure C# in Content/Core/Tests
+— **no scenes, no rig, no `_Boot`, no `ItemFactory`/`InventoryState`** (WL-owned). CI-green.
+
+**New files (all additive, nothing existing modified except docs):**
+- `Content/Runtime/Definition.cs` — **abstract base for ALL new content defs** (`id`, `displayName`,
+  `DisplayName` fallback). Canonical going forward; legacy `ItemDefinition`/`WorldPackDefinition`
+  keep their own `itemId`/`packId` (NOT retrofitted, to avoid asset breakage).
+- `Content/Runtime/DefinitionRegistry.cs` — generic `DefinitionRegistry<TDef>`: id→def cache, dup-guard
+  (keeps first, logs `ZIPTIDE: DUP_DEFINITION`), empty-id guard (`DEF_NO_ID`), and
+  `EnsureLoadedFromResources(path)` auto-discovery via `Resources.LoadAll` (logs `REGISTRY_LOADED`).
+  This is pillar #2 — drop an asset, no central list to edit → no merge collisions.
+- `Content/Runtime/Definitions/` — 8 data types + 1 helper, all `Definition` subclasses with
+  `[CreateAssetMenu]` under `Ziptide/Definitions/…`: `ResourceCost`, `ResourceDefinition`,
+  `ToolDefinition` (+`ToolFunction` enum), `RecipeDefinition`, `MachineDefinition`, `PlantDefinition`,
+  `CreatureDefinition` (+`CreatureArchetype` enum), `BiomeDefinition`, `BalanceConfig`.
+- `Core/Runtime/Economy/IdleEngine.cs` — pure offline-accrual math (`Accrue`, `SecondsBetween`,
+  `IdleAccrual` struct): rate×time, storage cap + overflow, `maxSeconds` window clamp. No Unity deps.
+- `Tests/EditMode/DefinitionRegistryTests.cs` (5 tests) + `IdleEngineTests.cs` (6 tests).
+
+**Recipes updated** (`docs/recipes/RECIPES.md`): Definition/Registry rows now point at the new base +
+generic registry; added §2b "Backbone status — what's built" so neither of us reinvents it.
+
+**Conventions established (please follow):** new content type = subclass `Definition` + `[CreateAssetMenu]`;
+resolve via `DefinitionRegistry<TDef>`; put author-able assets under a `Resources/` subfolder for
+auto-discovery; idle = pure math via `IdleEngine`.
+
+**Not done (next):** concrete registries instantiated at boot; harvest/mine/garden runtimes; creature
+behaviors on `DroneRuntime`/`IShockable`; wiring `SaveSystem` + idle resolve into `_Boot`/world-entry
+(report-only — needs Terry sign-off).
+
 ## 2026-06-15 (cycle 1) — TC: consistency backbone
 - **Model agreed with Terry:** feature/world parallelism (not backend-vs-headset). Daytime = blind
   build (no PC/Quest); evening = Terry tests + logs. Top priority = structural consistency so either
