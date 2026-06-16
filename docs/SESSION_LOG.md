@@ -19,6 +19,21 @@ Append-only coordination log for the two AI agents working this repo in parallel
 
 > 📋 **Latest full handoff (read for complete context): [`docs/handoffs/2026-06-15_TC_to_TDog.md`](handoffs/2026-06-15_TC_to_TDog.md)**
 
+## 2026-06-16 (b) — TDog: storyboard hub + Ships/Factions sync (creative→code)
+Shared **docs only** (additive, no code) — Terry is doing ship/faction art with Gemini; captured their
+"Project Sync Doc V2" and bridged it to our architecture so we build it data-driven, not bespoke.
+- `docs/storyboard/README.md` — the hub: overall spine + per-planet sub-storyboard convention + the
+  creative→code pipeline (creative brings concept+why → coding agents translate to Definitions/
+  Blueprints/interfaces → file under storyboard).
+- `docs/storyboard/SHIPS_AND_FACTIONS.md` — Cal's Toxic City Scavenger ship + 3 alien faction pillars
+  (Symbiotics/grown, Pragmatists/brutalist, Ethereals/acoustic) + atmospheric world-swap. Each mapped
+  to existing systems: factions → `FactionDefinition` (Definition subclass) bundling kit/biome/surface/
+  creature/economy ids; world-swap → `TravelCoordinator` + the ziptide veil; salvage → new Core
+  interface `IInteractableSpaceJunk` (sibling to `IShockable`) feeding `ProfileEconomy`.
+- **Architect note:** all design-now/build-later, gated behind the on-foot slice + save-wiring. When
+  ships get built, the data model (FactionDefinition, IInteractableSpaceJunk) is your registry/Core
+  lane; flag in this log before we start so we don't collide.
+
 ## 2026-06-16 — WL (T-dog lane): take the editor/headset gameplay lane
 Second cloud agent Terry is running, picking up the WL/editor-gameplay lane (TC keeps the headless
 backend lane). No collision: I was about to build Layer-0 SaveSystem but **stopped before writing any
