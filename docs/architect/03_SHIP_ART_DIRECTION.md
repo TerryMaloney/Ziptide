@@ -1,6 +1,6 @@
 # 03 — SHIP ART DIRECTION (architecture-side notes)
 
-*For Gemini + Terry, written by T-Dog. This is **not** the creative brief
+*For Gemini + Terry, written by the Architect. This is **not** the creative brief
 (that's Terry + Gemini's call) — it's the set of **technical/architectural
 constraints** so the ship art drops into ZIPTIDE without breaking the modularity
 laws or the Quest performance reality.*
@@ -41,8 +41,8 @@ laws or the Quest performance reality.*
 
 ## Budgets — ⚠️ provisional (no official perf budget set yet, see Q3)
 
-These are **placeholder Quest-sane numbers** so art isn't blocked; Terry + the
-build Claudes will replace them once the device + frame-rate target is locked.
+These are **placeholder Quest-sane numbers** so art isn't blocked; Terry/Architect
+will replace them once the device + frame-rate target is locked.
 
 | Thing | Provisional target (Quest) |
 |-------|----------------------------|

@@ -2,18 +2,17 @@
 
 *The discrepancy ledger. When something doesn't line up between minds or between
 docs and code, it goes here so we catch misunderstandings early. Each item has a
-status: 🔴 needs Terry · 🟡 needs a build-Claude decision · 🟢 resolved/noted.*
+status: 🔴 needs Terry · 🟡 needs a builder decision · 🟢 resolved/noted.*
 
 ---
 
 ## 🔴 For Terry (human decisions)
 
-### ~~Q1. Persistent home for the team's context/roles~~ — 🟢 RESOLVED 2026-06-16
-An earlier "Architect" web session worked on desktop but not on Terry's phone, so
-he deleted it; that context never persisted. **This `docs/project-brain/` folder
-is now the canonical, repo-backed home for the shared model + roles + memory** (it
-works everywhere because it's in the repo). Identities: **T-Dog** and **Architect**
-are the two build Claudes (names, not job titles). Working agreement is in
+### ~~Q1. There was no existing "Architect role" file/folder~~ — 🟢 RESOLVED 2026-06-16
+The original architect web session worked on desktop but not on Terry's phone, so
+he deleted it; the role/context never persisted. **This `docs/architect/` folder
+is now the canonical home for the Architect's role + memory** (it lives in the
+repo, so it works everywhere). Working agreement is recorded in
 `02_COORDINATION_LOG.md`. No further action.
 
 ### Q2. Story / lore canon is unconfirmed
@@ -46,7 +45,7 @@ checks are meaningless until it's done.
 
 ---
 
-## 🟡 For the build Claudes (T-Dog / Architect to decide & log)
+## 🟡 For builders (T-Dog / Architect to decide & log)
 
 ### B1. The contract interfaces don't exist yet
 The contracts name `IPodLoader`, `IThemeProvider`, `IBloomStewardship`,

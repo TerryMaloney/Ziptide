@@ -1,8 +1,8 @@
-# 00 — MENTAL MODEL (shared understanding of ZIPTIDE)
+# 00 — MENTAL MODEL (Architect's understanding of ZIPTIDE)
 
-*Snapshot date: 2026-06-16, by T-Dog. This is the build Claudes' working model of
-the project. If you (another mind) disagree with anything here, that's a signal —
-log it in `02_COORDINATION_LOG.md`.*
+*Snapshot date: 2026-06-16. This is my full working model of the project. If you
+(another mind) disagree with anything here, that's a signal — log it in
+`02_COORDINATION_LOG.md`.*
 
 ---
 
