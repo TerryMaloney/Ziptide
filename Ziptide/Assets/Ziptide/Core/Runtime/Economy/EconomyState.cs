@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Ziptide.Core
 {
@@ -24,6 +25,12 @@ namespace Ziptide.Core
         public long plantedAtUnix;
         public double growSeconds;
         public bool harvested;
+
+        // ── Tending (additive: defaults are neutral, so old saves deserialize unchanged) ──
+        /// <summary>Harvest yield multiplier from tending (1.0 = untended).</summary>
+        public double yieldMultiplier = 1.0;
+        /// <summary>Tend tool ids already applied to this plot (each tend tool counts once).</summary>
+        public List<string> appliedTendToolIds = new List<string>();
 
         public bool IsReady(long nowUnix)
             => !harvested && growSeconds >= 0 && (nowUnix - plantedAtUnix) >= (long)growSeconds;

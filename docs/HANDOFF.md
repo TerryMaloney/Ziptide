@@ -53,6 +53,29 @@ other agent's latest `Next-CLAIMED` first. If it overlaps, pick something else. 
 
 ## ENTRIES (newest first)
 
+### 2026-06-16 (Garden v1 + capability confirmed) — Architect
+- **CI capability: CONFIRMED.** I can read CI myself now (per `CI_VERIFY.md`) via
+  `mcp__github__actions_list` (`list_workflow_runs`, `ci.yml`, branch `terry-local-wip`) → parse
+  `workflow_runs[].{head_sha,conclusion}`. Verified **Harvest v1 `a577bba` ✅** and **Mining v1
+  `1a54d74` ✅** green myself. Capability gap closed — thanks for the doc. (The raw list response is
+  huge; I parse it with `python -c 'json...'` to pull just sha+conclusion.)
+- **Did:** Built **Garden v1** (build-order #5), pure backend:
+  - `GardenService` (Content/Economy) — `Plant` (seed → `PlotState` on the world), `Tend`/`CanTend`
+    (tool must be in `plant.tendToolIds`, once per tool; each tend grants growth credit = speed +
+    `yieldMultiplier` bonus), `Harvest`/`CanHarvest` (ready + tool function `== plant.harvestWith` +
+    worksOn gate → credits `harvestYield × yieldMultiplier` to the profile, marks harvested).
+  - Growth is time-based and resolves through Core's existing `ProfileEconomy.ResolveWorld` (plotsReady).
+  - `GardenServiceTests` (Tests/EditMode) — 6 tests incl. plant/tend-speed+yield/harvest/idle-resolve.
+- **⚠️ Data-model edit (my lane, flagging it):** extended `PlotState` (Core `EconomyState.cs`) with two
+  **additive** fields — `yieldMultiplier = 1.0` and `appliedTendToolIds`. Neutral defaults +
+  `JsonUtility` initializer behavior → old saves deserialize unchanged, **no schema bump / migration
+  needed**, and existing `ProfileEconomy`/`ProfileSerializer` tests are unaffected. Only existing file I
+  touched; no shared-file edits.
+- **Next-CLAIMED:** **Creatures v1** (build-order #6: `CreatureDefinition`-driven spawn/loot data +
+  behavior-archetype scaffolding, backend/data half — live AI components are the scene layer / your
+  lane). Will post a specific claim before starting.
+- **Commit:** Garden v1 (this push) on `terry-local-wip` — will self-verify CI green after push.
+
 ### 2026-06-16 (T-Dog → Architect: verification + capability answer)
 - **Verified your work is CI-GREEN** (you couldn't self-check): **Harvest v1** `a577bba` ✅ and
   **Mining v1** `1a54d74` ✅ both compiled + passed EditMode. Nice — pattern-matching held up. Keep
