@@ -1,0 +1,272 @@
+ZIPTIDE SCENE DUMP
+scene=MilestoneA_GrabCube path=Assets/Ziptide/Scenes/MilestoneA_GrabCube.unity
+generated=2026-06-15 18:38:48Z
+============================================================
++ Main Camera [INACTIVE]  pos=(0.00,1.00,-10.00)
+  - Camera
+  - AudioListener
++ Directional Light  pos=(0.00,3.00,0.00)
+  - Light
+  - UniversalAdditionalLightData
++ EventSystem  pos=(0.00,0.00,0.00)
+  - EventSystem
+  - XRUIInputModule
++ Ground  pos=(0.00,0.00,0.00)
+  - MeshFilter
+  - MeshCollider
+  - MeshRenderer
+  - BoxCollider
++ GrabbableCube  pos=(0.00,1.00,1.50)
+  - MeshFilter
+  - BoxCollider
+  - MeshRenderer
+  - Rigidbody {
+      m_Mass = 1.000
+      m_Drag = 0.000
+      m_AngularDrag = 0.050
+      m_CenterOfMass = (0.00, 0.00, 0.00)
+      m_InertiaTensor = (1.00, 1.00, 1.00)
+      m_InertiaRotation = (Quaternion)
+      m_IncludeLayers = mask:0
+      m_ExcludeLayers = mask:0
+      m_ImplicitCom = True
+      m_ImplicitTensor = True
+      m_UseGravity = True
+      m_IsKinematic = False
+      m_Interpolate = 1:Interpolate
+      m_CollisionDetection = 2:Continuous Dynamic
+    }
+  - XRGrabInteractable {
+      m_InteractionManager = null
+      m_Colliders = (Generic)
+      m_InteractionLayerMask = mask:-1
+      m_InteractionLayers = (Generic)
+      m_DistanceCalculationMode = 1:Collider Position
+      m_SelectMode = 0:Single
+      m_FocusMode = 1:Single
+      m_CustomReticle = null
+      m_AllowGazeInteraction = False
+      m_AllowGazeSelect = False
+      m_OverrideGazeTimeToSelect = False
+      m_GazeTimeToSelect = 0.500
+      m_OverrideTimeToAutoDeselectGaze = False
+      m_TimeToAutoDeselectGaze = 3.000
+      m_AllowGazeAssistance = False
+      m_FirstHoverEntered = (Generic)
+      m_LastHoverExited = (Generic)
+      m_HoverEntered = (Generic)
+      m_HoverExited = (Generic)
+      m_FirstSelectEntered = (Generic)
+      m_LastSelectExited = (Generic)
+      m_SelectEntered = (Generic)
+      m_SelectExited = (Generic)
+      m_FirstFocusEntered = (Generic)
+      m_LastFocusExited = (Generic)
+      m_FocusEntered = (Generic)
+      m_FocusExited = (Generic)
+      m_Activated = (Generic)
+      m_Deactivated = (Generic)
+      m_StartingHoverFilters = (Generic)
+      m_StartingSelectFilters = (Generic)
+      m_StartingInteractionStrengthFilters = (Generic)
+      m_OnFirstHoverEntered = (Generic)
+      m_OnLastHoverExited = (Generic)
+      m_OnHoverEntered = (Generic)
+      m_OnHoverExited = (Generic)
+      m_OnSelectEntered = (Generic)
+      m_OnSelectExited = (Generic)
+      m_OnSelectCanceled = (Generic)
+      m_OnActivate = (Generic)
+      m_OnDeactivate = (Generic)
+      m_AttachTransform = null
+      m_SecondaryAttachTransform = null
+      m_UseDynamicAttach = False
+      m_MatchAttachPosition = True
+      m_MatchAttachRotation = True
+      m_SnapToColliderVolume = True
+      m_ReinitializeDynamicAttachEverySingleGrab = True
+      m_AttachEaseInTime = 0.150
+      m_MovementType = 1:Kinematic
+      m_VelocityDamping = 1.000
+      m_VelocityScale = 1.000
+      m_AngularVelocityDamping = 1.000
+      m_AngularVelocityScale = 1.000
+      m_TrackPosition = True
+      m_SmoothPosition = False
+      m_SmoothPositionAmount = 8.000
+      m_TightenPosition = 0.100
+      m_TrackRotation = True
+      m_SmoothRotation = False
+      m_SmoothRotationAmount = 8.000
+      m_TightenRotation = 0.100
+      m_TrackScale = True
+      m_SmoothScale = False
+      m_SmoothScaleAmount = 8.000
+      m_TightenScale = 0.100
+      m_ThrowOnDetach = True
+      m_ThrowSmoothingDuration = 0.250
+      m_ThrowSmoothingCurve = (AnimationCurve)
+      m_ThrowVelocityScale = 1.500
+      m_ThrowAngularVelocityScale = 1.000
+      m_ForceGravityOnDetach = False
+      m_RetainTransformParent = True
+      m_AttachPointCompatibilityMode = 0:Default
+      m_StartingSingleGrabTransformers = (Generic)
+      m_StartingMultipleGrabTransformers = (Generic)
+      m_AddDefaultGrabTransformers = True
+    }
++ WorldDirector  pos=(0.00,0.00,0.00)
+  - WorldDirector {
+      themeProfile = DefaultVisualTheme (VisualThemeProfile)
+    }
++ WorldRuntime  pos=(0.00,0.00,0.00)
+  - WorldRuntime {
+      worldProfile = DefaultWorldProfile (WorldProfile)
+    }
++ ThemeSwitchStation  pos=(0.00,0.00,1.50)
+  - ThemeSwitchStation
++ Pistol  pos=(0.00,1.00,1.20)
+  - MeshFilter
+  - BoxCollider
+  - MeshRenderer
+  - Rigidbody {
+      m_Mass = 1.000
+      m_Drag = 0.000
+      m_AngularDrag = 0.050
+      m_CenterOfMass = (0.00, 0.00, 0.00)
+      m_InertiaTensor = (1.00, 1.00, 1.00)
+      m_InertiaRotation = (Quaternion)
+      m_IncludeLayers = mask:0
+      m_ExcludeLayers = mask:0
+      m_ImplicitCom = True
+      m_ImplicitTensor = True
+      m_UseGravity = True
+      m_IsKinematic = False
+      m_Interpolate = 0:None
+      m_CollisionDetection = 0:Discrete
+    }
+  - XRGrabInteractable {
+      m_InteractionManager = null
+      m_Colliders = (Generic)
+      m_InteractionLayerMask = mask:-1
+      m_InteractionLayers = (Generic)
+      m_DistanceCalculationMode = 1:Collider Position
+      m_SelectMode = 0:Single
+      m_FocusMode = 1:Single
+      m_CustomReticle = null
+      m_AllowGazeInteraction = False
+      m_AllowGazeSelect = False
+      m_OverrideGazeTimeToSelect = False
+      m_GazeTimeToSelect = 0.500
+      m_OverrideTimeToAutoDeselectGaze = False
+      m_TimeToAutoDeselectGaze = 3.000
+      m_AllowGazeAssistance = False
+      m_FirstHoverEntered = (Generic)
+      m_LastHoverExited = (Generic)
+      m_HoverEntered = (Generic)
+      m_HoverExited = (Generic)
+      m_FirstSelectEntered = (Generic)
+      m_LastSelectExited = (Generic)
+      m_SelectEntered = (Generic)
+      m_SelectExited = (Generic)
+      m_FirstFocusEntered = (Generic)
+      m_LastFocusExited = (Generic)
+      m_FocusEntered = (Generic)
+      m_FocusExited = (Generic)
+      m_Activated = (Generic)
+      m_Deactivated = (Generic)
+      m_StartingHoverFilters = (Generic)
+      m_StartingSelectFilters = (Generic)
+      m_StartingInteractionStrengthFilters = (Generic)
+      m_OnFirstHoverEntered = (Generic)
+      m_OnLastHoverExited = (Generic)
+      m_OnHoverEntered = (Generic)
+      m_OnHoverExited = (Generic)
+      m_OnSelectEntered = (Generic)
+      m_OnSelectExited = (Generic)
+      m_OnSelectCanceled = (Generic)
+      m_OnActivate = (Generic)
+      m_OnDeactivate = (Generic)
+      m_AttachTransform = null
+      m_SecondaryAttachTransform = null
+      m_UseDynamicAttach = False
+      m_MatchAttachPosition = True
+      m_MatchAttachRotation = True
+      m_SnapToColliderVolume = True
+      m_ReinitializeDynamicAttachEverySingleGrab = True
+      m_AttachEaseInTime = 0.150
+      m_MovementType = 2:Instantaneous
+      m_VelocityDamping = 1.000
+      m_VelocityScale = 1.000
+      m_AngularVelocityDamping = 1.000
+      m_AngularVelocityScale = 1.000
+      m_TrackPosition = True
+      m_SmoothPosition = False
+      m_SmoothPositionAmount = 8.000
+      m_TightenPosition = 0.100
+      m_TrackRotation = True
+      m_SmoothRotation = False
+      m_SmoothRotationAmount = 8.000
+      m_TightenRotation = 0.100
+      m_TrackScale = True
+      m_SmoothScale = False
+      m_SmoothScaleAmount = 8.000
+      m_TightenScale = 0.100
+      m_ThrowOnDetach = True
+      m_ThrowSmoothingDuration = 0.250
+      m_ThrowSmoothingCurve = (AnimationCurve)
+      m_ThrowVelocityScale = 1.500
+      m_ThrowAngularVelocityScale = 1.000
+      m_ForceGravityOnDetach = False
+      m_RetainTransformParent = True
+      m_AttachPointCompatibilityMode = 0:Default
+      m_StartingSingleGrabTransformers = (Generic)
+      m_StartingMultipleGrabTransformers = (Generic)
+      m_AddDefaultGrabTransformers = True
+    }
+  - ItemRuntime
+  - PistolRuntime {
+      pistolDefinition = DefaultPistol (PistolDefinition)
+    }
+  + Muzzle  pos=(0.00,1.00,1.22)
++ Target1  pos=(-0.50,1.20,3.00)
+  - MeshFilter
+  - BoxCollider
+  - MeshRenderer
+  - TargetRuntime {
+      resetDelay = 1.500
+      hitWobbleForce = 2.000
+      OnHit = (Generic)
+    }
++ Target2  pos=(0.00,1.20,3.00)
+  - MeshFilter
+  - BoxCollider
+  - MeshRenderer
+  - TargetRuntime {
+      resetDelay = 1.500
+      hitWobbleForce = 2.000
+      OnHit = (Generic)
+    }
++ Target3  pos=(0.50,1.20,3.00)
+  - MeshFilter
+  - BoxCollider
+  - MeshRenderer
+  - TargetRuntime {
+      resetDelay = 1.500
+      hitWobbleForce = 2.000
+      OnHit = (Generic)
+    }
++ WorldTravelStation  pos=(-1.50,1.30,2.50)
+  - WorldTravelStation
+  + __ProximityTravelTrigger  pos=(-1.50,2.40,2.50)
+    - BoxCollider
+    - ProximityTravelTrigger {
+        destinationSceneName = "D0_City"
+        cooldownSeconds = 3.000
+      }
++ __SPAWN_PLAYER  pos=(0.00,0.10,0.00)
+  - SpawnMarkerRuntime {
+      markerId = "player"
+    }
++ __SingletonValidator  pos=(0.00,0.00,0.00)
+  - SingletonValidator
