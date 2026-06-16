@@ -24,6 +24,14 @@ namespace Ziptide.Gameplay
         private static PlayerRigPersistence _instance;
         private XRInteractionManager _xriManager;
 
+        [Header("Global fall safety (any gravity world; independent of WorldRuntime/FallRespawner)")]
+        [Tooltip("Meters the rig may fall below its last safe spawn before a forced respawn.")]
+        [SerializeField] private float hardFallLimit = 60f;
+        [Tooltip("Absolute Y backstop: below this, always respawn no matter what.")]
+        [SerializeField] private float absoluteFloorY = -500f;
+        private Vector3 _lastSafePosition;
+        private bool _hasSafePosition;
+
         // #region agent log
         // NOTE: Application.persistentDataPath must NOT be called in static initializers
         // under IL2CPP (Android) — it causes a TypeInitializationException at .cctor time.
@@ -104,6 +112,11 @@ namespace Ziptide.Gameplay
             DontDestroyOnLoad(gameObject);
             SceneManager.sceneLoaded += OnSceneLoaded;
 
+            // Seed the fall-safety with the starting position so the net works even before the
+            // first teleport-to-spawn (e.g. a world with no spawn marker).
+            _lastSafePosition = transform.position;
+            _hasSafePosition = true;
+
             // #region agent log
             ZLog("A", "Awake", "'scene':'" + gameObject.scene.name + "'");
             LogManagerSnapshot("Awake_managers");
@@ -116,6 +129,53 @@ namespace Ziptide.Gameplay
             // #region agent log
             LogRaySnapshot("Awake_AFTER");
             // #endregion agent log
+        }
+
+        /// <summary>
+        /// Global fall-safety net. Runs on the persistent rig in EVERY scene, so it catches the
+        /// "fall forever, never respawn" class of bug even in worlds with no WorldRuntime, no
+        /// FallRespawner, or a missing spawn marker. This is the backstop; FallRespawner +
+        /// WorldProfile.fallYThreshold stay the per-world (nicer, fade-able) first line of defence.
+        /// </summary>
+        private void Update()
+        {
+            if (!_hasSafePosition) return;
+
+            float relativeFloor = _lastSafePosition.y - hardFallLimit;
+            if (transform.position.y < relativeFloor || transform.position.y < absoluteFloorY)
+            {
+                Debug.LogWarning("ZIPTIDE: FALL_SAFETY y=" + transform.position.y.ToString("F1")
+                    + " below floor=" + Mathf.Max(relativeFloor, absoluteFloorY).ToString("F1")
+                    + " — forcing respawn");
+                ForceRespawn();
+            }
+        }
+
+        /// <summary>
+        /// Force the rig back to a safe spot: the scene's spawn marker if present, else the last
+        /// recorded safe position. Always leaves the player standable instead of falling endlessly.
+        /// </summary>
+        private void ForceRespawn()
+        {
+            var cc = GetComponent<CharacterController>();
+            if (cc != null) cc.enabled = false;
+
+            var marker = FindObjectOfType<SpawnMarkerRuntime>();
+            if (marker != null)
+            {
+                transform.position = marker.transform.position;
+                transform.rotation = marker.transform.rotation;
+            }
+            else
+            {
+                // No spawn marker here — return to the last safe spot, nudged up so we settle
+                // onto ground rather than inside it. Guarantees we never fall forever.
+                transform.position = _lastSafePosition + Vector3.up * 0.5f;
+            }
+
+            if (cc != null) cc.enabled = true;
+            _lastSafePosition = transform.position;
+            Debug.Log("ZIPTIDE: FALL_SAFETY_RESPAWN to " + transform.position.ToString("F2"));
         }
 
         /// <summary>
@@ -451,6 +511,11 @@ namespace Ziptide.Gameplay
             }
 
             if (cc != null) cc.enabled = true;
+
+            // Record this as the safe spot for the global fall-safety net.
+            _lastSafePosition = transform.position;
+            _hasSafePosition = true;
+
             Debug.Log("[Ziptide] Teleported to spawn '" + marker.markerId + "' at " + marker.transform.position);
         }
 
