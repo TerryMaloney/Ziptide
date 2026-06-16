@@ -79,7 +79,11 @@ namespace Ziptide.Gameplay
             var canvas = canvasGo.AddComponent<Canvas>();
             canvas.renderMode = RenderMode.WorldSpace;
             canvas.worldCamera = Camera.main;
-            var rt = canvasGo.AddComponent<RectTransform>();
+            // Adding a Canvas auto-creates the RectTransform; AddComponent<RectTransform> would
+            // return null (a GameObject can't hold two Transform-type components), causing the
+            // NRE on the next line. Use the existing one.
+            var rt = canvasGo.GetComponent<RectTransform>();
+            if (rt == null) rt = canvasGo.AddComponent<RectTransform>();
             rt.sizeDelta = new Vector2(2f, 1f);
 
             var textGo = new GameObject("ObjectiveText");
