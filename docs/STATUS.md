@@ -2,6 +2,10 @@
 
 **Single source of truth for "what exists". Check this first every session.**
 
+> ⛔ **HARD RULE (both Claude chats):** read **[`docs/HANDOFF.md`](HANDOFF.md)** at
+> the START of every session and append your "last thing I did" entry at the END.
+> That shared log is how Architect ⇄ T-Dog stay synced without copy-paste.
+
 ---
 
 ## Current Milestone

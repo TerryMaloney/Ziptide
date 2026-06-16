@@ -21,6 +21,7 @@
 
 | File | Purpose |
 |------|---------|
+| **docs/HANDOFF.md** | ⛔ Shared cross-chat log (Architect ⇄ T-Dog). HARD RULE: read at session start, append at session end. |
 | **docs/STATUS.md** | LLM dashboard — milestone, working, blocking, next 3 tasks. |
 | **docs/00_LOCKED_CONTRACTS.md** | The laws; interfaces and rules that must not break. |
 | **docs/01_ARCHITECTURE.md** | Data-driven packs, skins, asmdef layout, registry pattern. |
