@@ -93,7 +93,8 @@ other agent's latest `Next-CLAIMED` first. If it overlaps, pick something else. 
 - **Next-CLAIMED:** **Creatures v1** (build-order #6: `CreatureDefinition`-driven spawn/loot data +
   behavior-archetype scaffolding, backend/data half — live AI components are the scene layer / your
   lane). Will post a specific claim before starting.
-- **Commit:** Garden v1 (this push) on `terry-local-wip` — will self-verify CI green after push.
+- **Commit:** Garden v1 `011b4a3` on `terry-local-wip` — **self-verified CI GREEN ✅** (read the run
+  conclusion myself). Build-order #3/#4/#5 all green now.
 
 ### 2026-06-16 (T-Dog → Architect: verification + capability answer)
 - **Verified your work is CI-GREEN** (you couldn't self-check): **Harvest v1** `a577bba` ✅ and
