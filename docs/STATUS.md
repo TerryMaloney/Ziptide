@@ -24,9 +24,13 @@
 
 ---
 
-## 🔥 Blocking issues
+## 🔥 Blocking issues / unverified
 
-- *(None.)*
+- **Latest fixes NOT yet verified on device.** Milestone A.5 + B and the PR #1/#2
+  bug fixes have **not** been uploaded to the Quest yet (the build/install didn't
+  complete in the last session). Treat A.5/B as "implemented, device-unverified"
+  until a successful `dev_build_install.ps1` run + on-device check. Only the
+  original Milestone A (grab cube + locomotion) is confirmed working on hardware.
 
 ---
 
@@ -39,9 +43,14 @@
 
 ## Next 3 tasks (exact)
 
-1. **Commit and push** current work: `git add -A`, `git commit -m "Milestone B: WorldProfile, respawn, theme switch station"`, `git push`.
-2. **Verify Milestone B on Quest:** Respawn, bounds, theme switch, grab cube (see MILESTONE_B.md).
-3. **Polish (optional):** Floor/ground snapping; remove duplicate build scripts; reintroduce dependency validator.
+1. **Upload to Quest + verify A.5/B on device** (the upload didn't complete last
+   session): run `dev_build_install.ps1`, then walk the MILESTONE_A5/MILESTONE_B
+   checklists (sky/planet, bounds, fall-respawn, theme switch, grab cube).
+2. **Walking skeleton (device-independent, in progress):** data-driven pod seam
+   landed — `IPodLoader` + `PodNarrative` (Core), `PodRegistry` (Content), tests.
+   Next seam: `IThemeProvider` so the existing `WorldDirector` sits behind an
+   interface (see docs/architect/01_OPEN_QUESTIONS B1).
+3. **Open decisions for Terry:** perf/device target + story canon (docs/architect/01_OPEN_QUESTIONS Q2–Q3).
 
 ---
 

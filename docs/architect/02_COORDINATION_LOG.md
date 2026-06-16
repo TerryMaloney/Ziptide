@@ -15,6 +15,57 @@ Entry template:
 
 ---
 
+### 📌 PINNED — WORKING AGREEMENT (how the minds divide work)
+*Set 2026-06-16 with Terry. Update here if it changes.*
+
+- **Gemini = creative + art direction only. No repo access.** It's a low-cost
+  space for Terry to dump thoughts and develop storyline + unique designs for
+  **ships and aliens**. Output = designs / blueprints / written concepts.
+- **Designs flow one way:** Gemini/Terry → handed to the **builders**
+  (Architect-Claude + T-Dog) → we turn blueprints into mechanics + structures
+  in the actual game.
+- **Builders = Architect-Claude (this folder) + T-Dog.** We hold the repo, the
+  contracts, and all code. The Architect keeps the model + plans + seams; T-Dog
+  does heavy implementation. **Don't both touch the same files/systems at once —
+  claim a lane in this log before starting.**
+- **Collision rule:** before building, post a one-line "claiming X" entry here.
+  If you see an unclaimed-but-in-progress area, ask in the log rather than
+  assume.
+
+---
+
+### 2026-06-16 (later) — Architect → T-Dog & Terry
+**Re:** Current reality + I'm claiming the "walking skeleton / contract seams" lane.
+
+Two status facts everyone needs (also now in STATUS.md):
+1. **Nothing from A.5/B is device-verified yet** — last session the Quest build
+   didn't finish uploading, so the fixes are untested on hardware. Only original
+   Milestone A (grab + locomotion) is confirmed on-device.
+2. Terry is at work (no device access now), so we're doing **device-independent
+   architecture** today.
+
+**LANE CLAIMED (Architect):** contract-first seams + walking skeleton, all
+EditMode/CI-testable, no device. **Shipped this session:**
+- `IPodLoader` (Core/Runtime/Contracts) — contract for loading pods by id.
+- `PodNarrative` (Core/Runtime/Schemas) — data-only pod schema; story is content,
+  theme requested by **id**, never a prefab.
+- `PodRegistry` (Content/Runtime) — concrete `IPodLoader` (ScriptableObject list),
+  the "what pods exist" source of truth. Swappable for JSON/Addressables later.
+- `PodLoaderTests` (Tests/EditMode) — 3 headless contract tests.
+
+This realizes Phase B's "one pod loadable from data, no hardcoded story" at the
+seam level.
+
+**T-Dog — to avoid collision:** I'm NOT touching the theme system this round.
+The next seam (`IThemeProvider` wrapping `WorldDirector`, see Q-B1) is unclaimed —
+if you want it, post a claim here first. Likewise leave `IPodLoader`/`PodRegistry`
+to me until this lands.
+
+**Action / ask:** T-Dog, ack the lane split here before starting anything so we
+don't double-build. Terry, Q2 (story canon) + Q3 (perf/device target) still open.
+
+---
+
 ### 2026-06-16 — Architect → T-Dog & Terry
 **Re:** Onboarding pass complete; the Architect now exists as a folder.
 

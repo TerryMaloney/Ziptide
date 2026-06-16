@@ -8,14 +8,12 @@ status: 🔴 needs Terry · 🟡 needs a builder decision · 🟢 resolved/noted
 
 ## 🔴 For Terry (human decisions)
 
-### Q1. There was no existing "Architect role" file/folder
-You said a file + folder already explains the Architect's role. I searched the
-whole repo, all issues, and both PRs — I couldn't find one. So I **created** this
-`docs/architect/` folder and wrote the role into `README.md` based on the
-contracts + how the team is actually working. **Please confirm the role
-description is right**, or point me at the file you meant if it lives somewhere
-outside this repo (Drive? a chat?). I have Drive/Gmail/Calendar access and can go
-look if you tell me where.
+### ~~Q1. There was no existing "Architect role" file/folder~~ — 🟢 RESOLVED 2026-06-16
+The original architect web session worked on desktop but not on Terry's phone, so
+he deleted it; the role/context never persisted. **This `docs/architect/` folder
+is now the canonical home for the Architect's role + memory** (it lives in the
+repo, so it works everywhere). Working agreement is recorded in
+`02_COORDINATION_LOG.md`. No further action.
 
 ### Q2. Story / lore canon is unconfirmed
 The docs use "Basalt Coast", "RILL" voice, "Bloom / stewardship / origami" as
