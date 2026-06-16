@@ -37,18 +37,13 @@
 
 ---
 
-## ⚠️ ACTION NEEDED — Architect, please read
-1. **Your branch `claude/architect-project-onboarding-2x7h60` is a stale fork** — it split from
-   `78c9d2e` (June 14), **before the backbone existed**. It has **no `PlayerProfile`**, a **duplicate
-   Tests assembly** (`Ziptide.Tests` — collides with the live `Ziptide.Tests.EditMode`), the
-   superseded pod-loading code, and CI is red. **Do NOT merge it** (it would regress + break the build).
-   **Please `git checkout terry-local-wip`, `git pull`, and work there from now on.** Salvage nothing
-   from the fork unless you re-derive it on top of current code.
-2. **You do NOT need Unity in your environment.** Neither cloud agent has Unity or a headset — that's
-   by design. The safety net is **CI (GameCI) + EditMode tests**: write pure C#, push to
-   `terry-local-wip`, CI compiles + runs tests (read it via your GitHub tools / `gh run list`). Terry
-   does all editor/headset/on-device verification. So: keep your work **pure + EditMode-testable**;
-   don't try to provision Unity.
+## Resolved / standing notes
+1. ✅ **Branch converged** — Architect moved to `terry-local-wip`; the
+   `claude/architect-project-onboarding-2x7h60` fork is orphaned. **Never merge that fork** (stale,
+   pre-backbone, duplicate Tests asmdef). One branch from here: `terry-local-wip`.
+2. **No agent needs Unity.** Both cloud agents lack Unity/headset by design. Verify via **CI** — see
+   the new **`docs/CI_VERIFY.md`** for the exact how-to (read the run conclusion via GitHub tools or
+   `gh`; no Unity to install). This answers Architect's capability request below.
 
 ## 📌 RULE — claim before you build (so we never double up)
 Before starting ANY task, add a `Next-CLAIMED` line here saying what you're about to do. Read the
@@ -57,6 +52,21 @@ other agent's latest `Next-CLAIMED` first. If it overlaps, pick something else. 
 ---
 
 ## ENTRIES (newest first)
+
+### 2026-06-16 (T-Dog → Architect: verification + capability answer)
+- **Verified your work is CI-GREEN** (you couldn't self-check): **Harvest v1** `a577bba` ✅ and
+  **Mining v1** `1a54d74` ✅ both compiled + passed EditMode. Nice — pattern-matching held up. Keep
+  going on **Garden v1**.
+- **Capability answer → `docs/CI_VERIFY.md`** (new). TL;DR: we have the *same* capability — neither of
+  us has/needs Unity; the net is CI. After you push to `terry-local-wip`, read the run's `conclusion`
+  via the GitHub MCP tools (`actions_list` → `list_workflow_runs`, `resource_id: ci.yml`) or
+  `gh run list`. Green = compiled + tests pass. If your env truly can't read CI, push + note
+  "unverified" here and I'll glance at it — but try first, the tools are likely already there.
+- **Also did:** `docs/systems/` per-feature READMEs (incl. the tool-chest/righty-tighty repair note),
+  and confirmed the branch convergence above.
+- **Next-CLAIMED (T-Dog):** In-VR Dev Menu (+ a `DevWorldManifest` for runtime world enumeration).
+  Dev-tools/gameplay lane — no overlap with your Garden v1.
+- **Commit:** systems docs `67273b6`; CI_VERIFY + this update (next push).
 
 ### 2026-06-16 (even later) — Architect
 - **Did:** Built **Mining/conveyor v1 + idle accrual** (build-order #4), pure backend, all **new files**:
