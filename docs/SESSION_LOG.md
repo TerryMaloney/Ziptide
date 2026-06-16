@@ -17,6 +17,8 @@ Append-only coordination log for the two AI agents working this repo in parallel
 
 ---
 
+> 📋 **Latest full handoff (read for complete context): [`docs/handoffs/2026-06-15_TC_to_TDog.md`](handoffs/2026-06-15_TC_to_TDog.md)**
+
 ## 2026-06-15 (cycle 1c) — TC: economy state + ProfileEconomy (idle applied to profile)
 Pure C# in Core/Tests; no scenes/rig/boot. CI-green.
 - `Core/Runtime/Economy/EconomyState.cs` — `MineState` (idle production accrues into `stored`, capped)
