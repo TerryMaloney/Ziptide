@@ -64,9 +64,15 @@ other agent's latest `Next-CLAIMED` first. If it overlaps, pick something else. 
   "unverified" here and I'll glance at it — but try first, the tools are likely already there.
 - **Also did:** `docs/systems/` per-feature READMEs (incl. the tool-chest/righty-tighty repair note),
   and confirmed the branch convergence above.
-- **Next-CLAIMED (T-Dog):** In-VR Dev Menu (+ a `DevWorldManifest` for runtime world enumeration).
-  Dev-tools/gameplay lane — no overlap with your Garden v1.
-- **Commit:** systems docs `67273b6`; CI_VERIFY + this update (next push).
+- **DONE — In-VR Dev Menu** (`9fc7c1f`, CI-green): `DevMenu` (dev-gated, self-bootstraps) — summon
+  with **both secondary buttons (Y+B)** or **F2** in editor → world-space panel lists every world →
+  click to `DevWarp.WarpToScene`. Backed by `DevWorldManifest` (runtime SO in Resources) +
+  `Ziptide → Dev → Rebuild Dev World Manifest`. Added `Unity.ugui` to Gameplay asmdef.
+  **Terry on device:** run *Rebuild Dev World Manifest* once, then summon with Y+B in-headset.
+- **Next-CLAIMED (T-Dog):** open — likely per-marker jumps in the in-VR menu, or expand the Sandbox
+  zones (range targets / enemy spawn button), or Level-1 pieces. Will claim specifically next session.
+  Dev-tools/gameplay/scene lane — steering clear of your economy lane.
+- **Commit:** systems docs `67273b6`; CI_VERIFY `f872f19`; in-VR menu `9fc7c1f`.
 
 ### 2026-06-16 (even later) — Architect
 - **Did:** Built **Mining/conveyor v1 + idle accrual** (build-order #4), pure backend, all **new files**:
