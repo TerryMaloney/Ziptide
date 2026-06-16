@@ -24,14 +24,21 @@ Append-only coordination log for the two AI agents working this repo in parallel
 manual activation is dead — see RECOVERY_STEPS); TC backbone merged + CI-green; storyboard hub +
 Ships/Factions sync captured. **Did NOT get a build on device** (PC froze, then build failed).
 
-**Open blocker 1 — build fails on `PatchScenesThenAPK`:** `dev_build_install.ps1` now uses the
-self-validating build (`Editor/Build/BuildAndroid.cs`): patchers → `WorldAuditRunner.RunAll()` →
-**throws + aborts if blockers > 0**, else builds APK. Last *committed* audit = 0 blockers, but that
-predates the **D0_City regen**. Strong theory: the regen introduced an audit blocker (likely the
-spawn-below-floor / stray-geometry that IS the lower-level fall glitch), so the build correctly
-aborted. **Need to confirm:** tail of `Ziptide/Builds/android_build.log` (the thrown message) OR the
-locally-rewritten `docs/AUDIT_REPORT.json`. Terry's local D0_City.unity + AUDIT_REPORT.{md,json} are
-modified-uncommitted.
+**Open blocker 1 — build aborts on `PatchScenesThenAPK` (CONFIRMED via build log):**
+`ZIPTIDE: AUDIT_FAIL blockers=2 warnings=2` → `Exception: World audit FAILED with 2 blocker(s)`.
+The self-validating build (patchers → `WorldAuditRunner.RunAll()` → throws if blockers>0) correctly
+refused to ship. Last *committed* audit = 0 blockers, so the **2 new blockers came from the D0_City
+regen** (likely the spawn-below-floor / stray-geometry == the fall glitch). **Still need the WHICH:**
+Terry's `docs/AUDIT_REPORT.md` (.json) is locally modified-uncommitted — push it (or re-run audit +
+commit) and I'll fix the exact 2 blockers. Build log also showed a non-fatal patcher warning on
+MilestoneA ("GameObject destroyed but still accessed", BuildAndroid.cs:50) — watch but lower priority.
+
+**FIXED tonight — step-offset error (CI-verifying):** root cause from the rig dump —
+`CharacterController.stepOffset = 0.5`, `CharacterControllerDriver.minHeight = 0`, so when the driver
+shrinks height on travel, `stepOffset > height + 2*radius` → Unity throws every frame. Fixed at the
+source in `Editor/Setup/EnsureLocomotionRig.cs`: clamp `stepOffset = 0.3` + set driver
+`minHeight = 1.0` (1.0 + 2*0.1 = 1.2 ≥ 0.3 always). Bakes into `_Boot` on the next
+`PatchScenesThenAPK`. **Terry: verify on device next build — the step-offset error should be gone.**
 
 **Open blocker 2 — scene dumps still not generating.** Only `scene_dump_MilestoneA_GrabCube.txt`
 exists (from 18:38). Running `Ziptide → Diagnostics → Dump` on `_Boot`/`D0_City` produced no files

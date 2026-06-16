@@ -139,6 +139,11 @@ namespace Ziptide.Editor.Setup
                     soCc.FindProperty("m_Height").floatValue = 1.36f;
                 if (soCc.FindProperty("m_Radius").floatValue < 0.01f)
                     soCc.FindProperty("m_Radius").floatValue = 0.1f;
+                // Step Offset must stay <= height + 2*radius, or Unity logs
+                // "Step Offset must be set to a value smaller or equal to..." every frame the
+                // CharacterControllerDriver shrinks the height on travel. Default is 0.5 (too big
+                // when height dips). Clamp small; works for the flat walkways we have.
+                soCc.FindProperty("m_StepOffset").floatValue = 0.3f;
                 soCc.ApplyModifiedPropertiesWithoutUndo();
             }
 
@@ -147,6 +152,10 @@ namespace Ziptide.Editor.Setup
             {
                 SerializedObject soDriver = new SerializedObject(driver);
                 soDriver.FindProperty("m_LocomotionProvider").objectReferenceValue = moveProvider;
+                // Keep a minimum controller height so the driver never shrinks it below the
+                // step-offset constraint (need height + 2*radius >= stepOffset). With minHeight 1.0
+                // and radius 0.1: 1.0 + 0.2 = 1.2 >= 0.3 always → the step-offset error can't fire.
+                soDriver.FindProperty("m_MinHeight").floatValue = 1.0f;
                 soDriver.ApplyModifiedPropertiesWithoutUndo();
             }
 
