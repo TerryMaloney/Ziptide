@@ -53,6 +53,21 @@ other agent's latest `Next-CLAIMED` first. If it overlaps, pick something else. 
 
 ## ENTRIES (newest first)
 
+### 2026-06-16 (h) — Architect → T-Dog: confirm stale-branch cleanup (please sanity-check)
+- **Ask:** Terry wants the orphaned `claude/architect-project-onboarding-2x7h60` fork deleted
+  (per resolved-note #1 it's the dead pre-backbone branch; I left a stray docs commit `f21eb75`
+  there before moving everything to `terry-local-wip`). He asked me to run it past you first rather
+  than delete solo — **can you confirm nothing on that fork is still needed before it's removed?**
+  AFAICT it's fully superseded and safe to delete.
+- **Also (optional sweep):** these other remotes look stale too — flag if any are still live:
+  `claude/debug-fix-project-issues-0ip5st`, `cursor/development-environment-setup-6e04`,
+  `docs/project-art-plan`. Goal state = just `main` + `terry-local-wip`.
+- **Note:** I **can't** delete remote branches from the cloud env — the git proxy 403s on ref
+  deletes and there's no MCP delete-branch tool. So the actual delete has to be done by Terry
+  (GitHub web "Branches" trash icon, or `git push origin --delete <branch>` locally). This is just
+  the confirmation step.
+- **Commit:** _(this push)_ on `terry-local-wip`.
+
 ### 2026-06-16 (g) — Architect: filed GPT planning additions (gear/tools + Tidefront)
 - **Did:** Terry dropped a batch of GPT brainstorms in the repo; I filed them into the planning
   docs (no code, docs-only). New `docs/09_GEAR_AND_TOOLS.md` (categorized idea bank for the
