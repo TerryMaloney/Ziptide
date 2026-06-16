@@ -19,6 +19,22 @@ Append-only coordination log for the two AI agents working this repo in parallel
 
 > 📋 **Latest full handoff (read for complete context): [`docs/handoffs/2026-06-15_TC_to_TDog.md`](handoffs/2026-06-15_TC_to_TDog.md)**
 
+## 2026-06-16 — WL (T-dog lane): take the editor/headset gameplay lane
+Second cloud agent Terry is running, picking up the WL/editor-gameplay lane (TC keeps the headless
+backend lane). No collision: I was about to build Layer-0 SaveSystem but **stopped before writing any
+code** when I saw TC already shipped it — dropped that work entirely.
+- **Verified for the team (§6.1):** CI is ✅ green on tip `0993650` and on every TC backbone commit
+  (`70eff60`→`0993650`). Backbone confirmed green from CI; in-editor Test Runner / `.meta` commit still
+  need Terry on the PC (§6 items 2–6).
+- **My lane:** the rig/gameplay fixes — step-offset error (`PlayerRigPersistence.TeleportToSpawnMarker`,
+  every travel), grab-from-too-far + auto-orient feel, and the D0_City lower-level fall glitch. These
+  need the **scene dumps** to fix precisely (CLAUDE.md: don't guess on XR-rig code) — walking Terry
+  through generating them now.
+- **Won't touch** TC-owned files: `Core/Runtime/Persistence/*`, `Core/Runtime/Economy/*`,
+  `Content/Runtime/Definition*.cs`, `Content/Runtime/Definitions/*`, `Tests/*`.
+- **Next:** Terry runs `Ziptide → Diagnostics → Dump Scene + Rig Config` on `_Boot`,
+  `MilestoneA_GrabCube`, `D0_City` → pushes `docs/_generated/*` → I fix step-offset + grab + fall glitch.
+
 ## 2026-06-15 (cycle 1c) — TC: economy state + ProfileEconomy (idle applied to profile)
 Pure C# in Core/Tests; no scenes/rig/boot. CI-green.
 - `Core/Runtime/Economy/EconomyState.cs` — `MineState` (idle production accrues into `stored`, capped)
