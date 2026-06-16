@@ -32,7 +32,10 @@
 | **docs/06_SCHEMAS.md** | WorldProfile, PodNarrative, VisualTheme, registry schemas. |
 | **docs/07_PERF_BUDGET.md** | Quest performance targets. |
 | **docs/08_TESTS.md** | Contract tests, smoke tests, per-module acceptance. |
+| **docs/09_GEAR_AND_TOOLS.md** | Idea bank for non-bullet explorer gear (combat/puzzle/utility/companion/traversal). Design-only; Starter Gear Loop is the near-term focus. |
+| **docs/10_TIDEFRONT.md** | Future galaxy strategy layer (planet control, weighted-probability battles, VR missions, multiplayer). Metadata-first, design-only. |
 | **docs/architect/** | Architect's shared "mind": whole-project mental model, discrepancy ledger, and the cross-LLM coordination log. Start at `docs/architect/README.md`. |
+| **docs/GPT_ADDITIONS/** | Raw GPT planning brainstorms (dated folders). Source material distilled into the numbered modules above — read the modules first, dive into GPT_ADDITIONS for full detail. |
 
 ---
 

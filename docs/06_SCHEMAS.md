@@ -50,4 +50,37 @@ Assets under `Assets/Ziptide/Content/VisualThemes/` (e.g. DefaultVisualTheme.ass
 
 ---
 
+## ToolRecipe (design-only — not implemented)
+
+Future data shape for modular gear. Full idea bank in
+[`docs/09_GEAR_AND_TOOLS.md`](09_GEAR_AND_TOOLS.md). Early implementation may use
+direct MonoBehaviours, but keep names/boundaries ready for a recipe + registry.
+
+```text
+ToolRecipe
+- toolId, displayName, handSlot
+- cooldown, energyCost, activationGesture
+- targetRules, effectRules
+- visualEffectId, soundEffectId
+```
+
+---
+
+## PlanetNode (design-only — Tidefront, not implemented)
+
+Future metadata for the galaxy strategy layer. Full design in
+[`docs/10_TIDEFRONT.md`](10_TIDEFRONT.md). Keep battle resolution
+deterministic/testable from a seed.
+
+```text
+PlanetNode
+- planetId, displayName, biomeType, ownerId
+- resourceType, resourceProductionRate
+- defenseLevel, orbitalShieldLevel, stationedDefenseUnits
+- specialTraitId, adjacentPlanetIds
+- conflictState, instabilityLevel, bloomContaminationLevel
+```
+
+---
+
 *Add schema docs and field lists as they stabilize. Prefer generated ScriptableObjects from schema.*

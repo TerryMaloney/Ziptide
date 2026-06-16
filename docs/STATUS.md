@@ -58,6 +58,20 @@
 
 ---
 
+## Planning additions (design-only — not implemented)
+
+- **GPT planning additions** exist under `docs/GPT_ADDITIONS/2026-06-16_Ziptide_Planning/`
+  (weapons/tools brainstorm, starter-gear loop, Tidefront multiplayer). Distilled into
+  [`docs/09_GEAR_AND_TOOLS.md`](09_GEAR_AND_TOOLS.md) and [`docs/10_TIDEFRONT.md`](10_TIDEFRONT.md).
+  **None of this gear/Tidefront is coded or on device** — it's planning only.
+- **Future Sandbox Milestone — Starter Gear Loop** (after A/B device-verification):
+  Left Wrist Scan Pulse → Expanded Stun Dart → Gravity Glove → tiny scan/stun/grab
+  arena. Task breakdown in [`docs/04_TASK_QUEUE.md`](04_TASK_QUEUE.md).
+- **Tidefront** (galaxy strategy layer): stays design-only until the content/registry
+  architecture is stable.
+
+---
+
 ## Repo links + build target settings
 
 - **Repo:** https://github.com/TerryMaloney/Ziptide.git (public)
