@@ -19,6 +19,25 @@ Append-only coordination log for the two AI agents working this repo in parallel
 
 > 📋 **Latest full handoff (read for complete context): [`docs/handoffs/2026-06-15_TC_to_TDog.md`](handoffs/2026-06-15_TC_to_TDog.md)**
 
+## 2026-06-16 (d) — TDog: fixed both audit blockers (root cause) + kid's "fall forever" bug
+All CI-verifying. Three fixes this cycle:
+1. **Audit blockers were in the TEST ROOM, not D0_City** — `WORLD_SCENE_HAS_XRI_MANAGER` +
+   `SPAWN_MISSING` on MilestoneA. **Root cause:** `ScenePatcherD2.StripRigFromWorldScene` called
+   `DestroyImmediate` *while iterating* the roots → threw "object destroyed but still accessed"
+   (seen in the build log), leaving the scene **half-stripped** (XRI manager remained) and never
+   reaching `EnsureSpawnMarker`. Fixed: collect-then-destroy + null-guard. The patcher now
+   **self-heals world scenes on the next `PatchScenesThenAPK`** — no manual scene surgery, and it
+   protects ANY world that gets rig-contaminated (e.g. from a play-mode save).
+2. **"Fall forever, never respawn" (found by Terry's 6yo)** — `FallRespawner` needs a WorldRuntime +
+   binding + threshold; if any is missing you fall endlessly. Added a **global fall-safety net** in
+   `PlayerRigPersistence.Update` (always-on, every scene, independent of WorldRuntime): below
+   `lastSafe - hardFallLimit(60m)` or an absolute floor → force-respawn to spawn marker, or last safe
+   spot if none. Tags `FALL_SAFETY` / `FALL_SAFETY_RESPAWN`.
+3. **Step-offset** (prior commit) — already fixed in `EnsureLocomotionRig`.
+**Terry next build:** audit should pass (test room auto-cleans) → APK installs. Then verify on device:
+fall off an edge → you respawn (look for `FALL_SAFETY_RESPAWN`); step-offset error gone.
+**Architect:** all in WL/rig+patcher lane; no backend files touched.
+
 ## 2026-06-16 (c) — TDog: end-of-night state + open blockers for tomorrow
 **Wins tonight:** CI dead→green; Unity Personal license permanently solved (local `.ulf` in secret,
 manual activation is dead — see RECOVERY_STEPS); TC backbone merged + CI-green; storyboard hub +

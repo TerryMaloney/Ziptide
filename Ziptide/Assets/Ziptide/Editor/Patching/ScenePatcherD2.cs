@@ -58,27 +58,30 @@ namespace Ziptide.Editor.Patching
         {
             var scene = EditorSceneManager.GetActiveScene();
             var roots = scene.GetRootGameObjects();
+            var xrOriginType = System.Type.GetType("Unity.XR.CoreUtils.XROrigin, Unity.XR.CoreUtils");
+
+            // Collect first, THEN destroy. Calling DestroyImmediate while iterating (and re-reading
+            // root.name/GetComponent on later entries) can hit an already-destroyed object and throw
+            // "object destroyed but you are still trying to access it" — which left world scenes
+            // half-stripped (XRI manager remained, spawn marker never added → audit blockers).
+            var toDestroy = new System.Collections.Generic.List<GameObject>();
             foreach (var root in roots)
             {
                 if (root == null) continue;
-                bool destroy = false;
-                if (root.name == "XR Origin" || root.name.Contains("XR Origin"))
-                    destroy = true;
-                var xrOriginType = System.Type.GetType("Unity.XR.CoreUtils.XROrigin, Unity.XR.CoreUtils");
-                if (xrOriginType != null && root.GetComponent(xrOriginType) != null)
-                    destroy = true;
-                if (root.GetComponent<XRInteractionManager>() != null)
-                    destroy = true;
-                // Singletons must live only in _Boot; strip from world scenes so audit passes.
-                if (root.name == "__TravelCoordinator" || root.GetComponent<TravelCoordinator>() != null)
-                    destroy = true;
-                if (root.name == "__AudioDirector" || root.GetComponent<AudioDirector>() != null)
-                    destroy = true;
-                if (destroy)
-                {
-                    Object.DestroyImmediate(root);
-                    Debug.Log("[Ziptide] D2 stripped rig from world scene: removed " + root.name);
-                }
+                bool destroy =
+                    root.name.Contains("XR Origin")
+                    || (xrOriginType != null && root.GetComponent(xrOriginType) != null)
+                    || root.GetComponent<XRInteractionManager>() != null
+                    || root.name == "__TravelCoordinator" || root.GetComponent<TravelCoordinator>() != null
+                    || root.name == "__AudioDirector" || root.GetComponent<AudioDirector>() != null;
+                if (destroy) toDestroy.Add(root);
+            }
+
+            foreach (var go in toDestroy)
+            {
+                if (go == null) continue;
+                Debug.Log("[Ziptide] D2 stripped rig from world scene: removed " + go.name);
+                Object.DestroyImmediate(go);
             }
         }
 
