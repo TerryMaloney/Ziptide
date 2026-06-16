@@ -37,6 +37,25 @@
 
 ---
 
+## ⚠️ ACTION NEEDED — Architect, please read
+1. **Your branch `claude/architect-project-onboarding-2x7h60` is a stale fork** — it split from
+   `78c9d2e` (June 14), **before the backbone existed**. It has **no `PlayerProfile`**, a **duplicate
+   Tests assembly** (`Ziptide.Tests` — collides with the live `Ziptide.Tests.EditMode`), the
+   superseded pod-loading code, and CI is red. **Do NOT merge it** (it would regress + break the build).
+   **Please `git checkout terry-local-wip`, `git pull`, and work there from now on.** Salvage nothing
+   from the fork unless you re-derive it on top of current code.
+2. **You do NOT need Unity in your environment.** Neither cloud agent has Unity or a headset — that's
+   by design. The safety net is **CI (GameCI) + EditMode tests**: write pure C#, push to
+   `terry-local-wip`, CI compiles + runs tests (read it via your GitHub tools / `gh run list`). Terry
+   does all editor/headset/on-device verification. So: keep your work **pure + EditMode-testable**;
+   don't try to provision Unity.
+
+## 📌 RULE — claim before you build (so we never double up)
+Before starting ANY task, add a `Next-CLAIMED` line here saying what you're about to do. Read the
+other agent's latest `Next-CLAIMED` first. If it overlaps, pick something else. This is mandatory.
+
+---
+
 ## ENTRIES (newest first)
 
 ### 2026-06-16 (even later) — Architect
@@ -98,14 +117,18 @@
   per-marker) + `PlayerRigPersistence.TeleportToMarker(id)`. (2) **Sandbox Test Lab patcher**
   (`Editor/Patching/ScenePatcherSandbox.cs`, menu `Ziptide → Dev → Build Sandbox Test Lab`): builds a
   30x30 dev scene with floor, spawn, WorldRuntime, 6 named zone markers (grab/range/enemy/travel/
-  artwall/loco) + a return door, and a `Sandbox_WorldPack` asset so it appears in Dev Warp. Earlier:
-  step-offset fix, global fall-safety net, audit-blocker self-heal. All CI-green on `terry-local-wip`.
-- **Next-CLAIMED:** in-VR dev menu panel (summon gesture → world/zone list → `DevWarp`), OR expand the
-  sandbox zones (targets/drones/art wall) — gameplay/editor lane. Will claim specifically next session.
+  artwall/loco) + a return door, and a `Sandbox_WorldPack` asset so it appears in Dev Warp. (3)
+  **Per-system docs** `docs/systems/` (master README + template + Tools&Repair, Mining/Conveyor,
+  Grow-a-Garden, Creatures, Build/Creator) — captures the **tool-chest/righty-tighty repair** vision.
+  Earlier: step-offset fix, global fall-safety net, audit-blocker self-heal. CI-green on `terry-local-wip`.
+- **Next-CLAIMED:** **In-VR Dev Menu** — a summonable world-space panel (dev gesture → list worlds/
+  zones → `DevWarp`) so we can jump around *on the headset*, not just the editor. Needs a runtime
+  world manifest (WorldPackDefinitions aren't in Resources yet) — I'll add a `DevWorldManifest` first.
+  Gameplay/dev-tools lane; no overlap with Architect's Harvest v1. Building next.
 - **Heads-up:** Terry — run `Ziptide → Dev → Build Sandbox Test Lab` once in Unity to generate the
   scene, add it to Build Settings to warp into it at runtime, and commit the new `.meta` files for the
   `DevTools/` + sandbox files Unity generates.
-- **Commit:** `891680c` (Dev Warp) + sandbox patcher (this push) on `terry-local-wip`.
+- **Commit:** `891680c` (Dev Warp), `3c7d7db` (Sandbox + HANDOFF), systems docs (this push).
 
 ### 2026-06-16 — Architect  ← (please add your entry here next session)
 - **Did:** Set up this shared log; earlier built the backbone (see Project state). Started a
