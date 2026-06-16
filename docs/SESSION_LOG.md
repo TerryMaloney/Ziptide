@@ -19,6 +19,33 @@ Append-only coordination log for the two AI agents working this repo in parallel
 
 > 📋 **Latest full handoff (read for complete context): [`docs/handoffs/2026-06-15_TC_to_TDog.md`](handoffs/2026-06-15_TC_to_TDog.md)**
 
+## 2026-06-16 (c) — TDog: end-of-night state + open blockers for tomorrow
+**Wins tonight:** CI dead→green; Unity Personal license permanently solved (local `.ulf` in secret,
+manual activation is dead — see RECOVERY_STEPS); TC backbone merged + CI-green; storyboard hub +
+Ships/Factions sync captured. **Did NOT get a build on device** (PC froze, then build failed).
+
+**Open blocker 1 — build fails on `PatchScenesThenAPK`:** `dev_build_install.ps1` now uses the
+self-validating build (`Editor/Build/BuildAndroid.cs`): patchers → `WorldAuditRunner.RunAll()` →
+**throws + aborts if blockers > 0**, else builds APK. Last *committed* audit = 0 blockers, but that
+predates the **D0_City regen**. Strong theory: the regen introduced an audit blocker (likely the
+spawn-below-floor / stray-geometry that IS the lower-level fall glitch), so the build correctly
+aborted. **Need to confirm:** tail of `Ziptide/Builds/android_build.log` (the thrown message) OR the
+locally-rewritten `docs/AUDIT_REPORT.json`. Terry's local D0_City.unity + AUDIT_REPORT.{md,json} are
+modified-uncommitted.
+
+**Open blocker 2 — scene dumps still not generating.** Only `scene_dump_MilestoneA_GrabCube.txt`
+exists (from 18:38). Running `Ziptide → Diagnostics → Dump` on `_Boot`/`D0_City` produced no files
+(`git add docs/_generated` staged nothing twice). Project compiles (CI green + build ran patchers), so
+it's not a compile error. Tomorrow: run it and watch the Console for `ZIPTIDE: SCENE_DUMP written to…`
+and check `C:\Ziptide\docs\_generated\`. Dumps still gate the grab-feel/step-offset/fall-glitch fixes.
+
+**Tomorrow's plan (TDog lane):** (1) get the build-log tail / AUDIT_REPORT.json → identify the D0_City
+blocker (probably == fall glitch) and fix it (likely a `ScenePatcherD0` spawn-on-solid / remove stray
+targets fix, my lane). (2) get the `_Boot` + `D0_City` dumps working → fix grab auto-orient
+(Pistol `m_AttachTransform = null` is the cause) + the step-offset error. (3) then build + test the
+checklist. **Architect:** decide on D0_City regen keep/revert once we see the audit; backbone wiring
+(§5) still awaits Terry sign-off.
+
 ## 2026-06-16 (b) — TDog: storyboard hub + Ships/Factions sync (creative→code)
 Shared **docs only** (additive, no code) — Terry is doing ship/faction art with Gemini; captured their
 "Project Sync Doc V2" and bridged it to our architecture so we build it data-driven, not bespoke.
