@@ -31,6 +31,7 @@
 | **docs/06_SCHEMAS.md** | WorldProfile, PodNarrative, VisualTheme, registry schemas. |
 | **docs/07_PERF_BUDGET.md** | Quest performance targets. |
 | **docs/08_TESTS.md** | Contract tests, smoke tests, per-module acceptance. |
+| **docs/architect/** | Architect's shared "mind": whole-project mental model, discrepancy ledger, and the cross-LLM coordination log. Start at `docs/architect/README.md`. |
 
 ---
 
