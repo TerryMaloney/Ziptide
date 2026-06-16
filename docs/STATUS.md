@@ -1,5 +1,8 @@
 # STATUS — LLM dashboard
 
+⛔ **HARD RULE:** read **`docs/HANDOFF.md`** at the start of every session and append your
+last action at the end. One branch for shared work: **`terry-local-wip`** (green). Pull first.
+
 **Single source of truth for "what exists". Check this first every session.**
 
 ---
