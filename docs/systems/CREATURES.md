@@ -25,5 +25,11 @@ Don't overwhelm comfort with too many fast close-range swarmers at once.
 ## 5. Open questions
 Per-world creature budget number? Do creatures target the player, machines, or both, and how do they pick?
 
+## Per-creature docs
+- **Drone (enemy #1, the reusable template):** [`CREATURE_DRONE.md`](CREATURE_DRONE.md) — hit-location
+  death reactions (center/top/bottom/front/back/sides), the taser "shock → then go down" sequence, and
+  data-driven variants (same base, change look/behavior/intensity). `HitZones` helper is reusable by
+  every future creature.
+
 ## Links
 `MINING_CONVEYOR.md`, `TOOLS_AND_REPAIR.md`, `docs/design/SYSTEMS_ARCHITECTURE.md`.

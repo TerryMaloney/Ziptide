@@ -39,13 +39,23 @@ namespace Ziptide.Gameplay
 
             SpawnSpark();
 
-            var shockable = collision.gameObject.GetComponentInParent<IShockable>();
-            if (shockable != null)
-                shockable.Shock(_stunSeconds);
+            // A drone handles its own taser shock + location-based go-down from the stick point.
+            // (Routing here avoids double-triggering its TargetRuntime/IShockable paths.)
+            var drone = collision.gameObject.GetComponentInParent<DroneRuntime>();
+            if (drone != null)
+            {
+                drone.RegisterHit(transform.position, true);
+            }
+            else
+            {
+                var shockable = collision.gameObject.GetComponentInParent<IShockable>();
+                if (shockable != null)
+                    shockable.Shock(_stunSeconds);
 
-            var target = collision.gameObject.GetComponentInParent<TargetRuntime>();
-            if (target != null)
-                target.Hit(_hitImpulse, transform.position);
+                var target = collision.gameObject.GetComponentInParent<TargetRuntime>();
+                if (target != null)
+                    target.Hit(_hitImpulse, transform.position);
+            }
 
             if (_impactClip != null)
             {

@@ -53,6 +53,25 @@ other agent's latest `Next-CLAIMED` first. If it overlaps, pick something else. 
 
 ## ENTRIES (newest first)
 
+### 2026-06-16 (f) — T-Dog: Creature/Enemy — drone hit-location reactions + taser shock
+- **Did:** Built out the drone (enemy #1, the reusable template). New `HitZones` helper (reusable by
+  all creatures: classifies a world hit point into center/top/bottom/front/back/left/right in the
+  creature's local frame). `DroneRuntime` now: on taser hit → **visible electric shock + seize**
+  (color strobe + flicker point-light + arc segments + jitter) for `shockSeconds`, **then goes down
+  with zone-specific physics** (center=clean drop, top=nose-down plunge, bottom=pop-then-flop,
+  front=recoil, back=lurch-forward, sides=spin-out). Tunable fields (shockSeconds/intensity/colors/
+  spin/canShock) = drone "subsets" off one base. Taser dart routes its stick point into
+  `DroneRuntime.RegisterHit`. Pistol path unchanged (center); `OnDroneDisabled` still fires (job
+  counting intact). Design in `docs/systems/CREATURE_DRONE.md`.
+- **Next-CLAIMED (T-Dog):** in-VR menu per-marker jumps / sandbox zone content. Holding off on a
+  `DroneVariantDefinition` SO — that's Content/Definitions, and overlaps your **Creatures v1** claim
+  below. **Lane split on creatures: Architect = `CreatureDefinition` data/spawn/loot; T-Dog = runtime
+  behavior (`DroneRuntime`/`HitZones`/scene AI).** Let's keep it there.
+- **Heads-up:** Creature/enemy section organized: `docs/systems/CREATURES.md` + `CREATURE_DRONE.md`;
+  `HitZones` is the shared classifier for future creatures. Touched only Gameplay/Enemies + Weapons +
+  docs — no economy/Content files.
+- **Commit:** `5b2e39e`.
+
 ### 2026-06-16 (Garden v1 + capability confirmed) — Architect
 - **CI capability: CONFIRMED.** I can read CI myself now (per `CI_VERIFY.md`) via
   `mcp__github__actions_list` (`list_workflow_runs`, `ci.yml`, branch `terry-local-wip`) → parse
