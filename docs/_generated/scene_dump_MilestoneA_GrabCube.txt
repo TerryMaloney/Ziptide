@@ -1,6 +1,6 @@
 ZIPTIDE SCENE DUMP
 scene=MilestoneA_GrabCube path=Assets/Ziptide/Scenes/MilestoneA_GrabCube.unity
-generated=2026-06-15 18:38:48Z
+generated=2026-06-15 19:38:14Z
 ============================================================
 + Main Camera [INACTIVE]  pos=(0.00,1.00,-10.00)
   - Camera
@@ -8,6 +8,887 @@ generated=2026-06-15 18:38:48Z
 + Directional Light  pos=(0.00,3.00,0.00)
   - Light
   - UniversalAdditionalLightData
++ XR Origin  pos=(0.00,0.00,0.00)
+  - XROrigin {
+      m_Camera = Main Camera (Camera)
+      m_OriginBaseGameObject = XR Origin (GameObject)
+      m_CameraFloorOffsetObject = Camera Offset (GameObject)
+      m_RequestedTrackingOriginMode = 0:Not Specified
+      m_CameraYOffset = 1.361
+    }
+  - CharacterController {
+      m_Material = null
+      m_IncludeLayers = mask:0
+      m_ExcludeLayers = mask:0
+      m_LayerOverridePriority = 0
+      m_IsTrigger = False
+      m_ProvidesContacts = False
+      m_Height = 1.361
+      m_Radius = 0.100
+      m_SlopeLimit = 45.000
+      m_StepOffset = 0.500
+      m_SkinWidth = 0.080
+      m_MinMoveDistance = 0.001
+      m_Center = (0.00, 0.76, 0.00)
+    }
+  - CharacterControllerDriver {
+      m_LocomotionProvider = Move (DynamicMoveProvider)
+      m_MinHeight = 0.000
+      m_MaxHeight = Infinity
+    }
+  - XRInputModalityManager
+  - XRGazeAssistance
+  + Camera Offset  pos=(0.00,1.36,0.00)
+    + Main Camera  pos=(0.00,1.36,0.00)
+      - Camera
+      - AudioListener
+      - TrackedPoseDriver
+    + Gaze Interactor [INACTIVE]  pos=(0.00,1.36,0.00)
+      - XRGazeInteractor {
+          m_InteractionManager = null
+          m_InteractionLayerMask = mask:-1
+          m_InteractionLayers = (Generic)
+          m_AttachTransform = Gaze Stabilized Attach (Transform)
+          m_KeepSelectedTargetValid = True
+          m_DisableVisualsWhenBlockedInGroup = True
+          m_StartingSelectedInteractable = null
+          m_StartingTargetFilter = null
+          m_HoverEntered = (Generic)
+          m_HoverExited = (Generic)
+          m_SelectEntered = (Generic)
+          m_SelectExited = (Generic)
+          m_StartingHoverFilters = (Generic)
+          m_StartingSelectFilters = (Generic)
+          m_OnHoverEntered = (Generic)
+          m_OnHoverExited = (Generic)
+          m_OnSelectEntered = (Generic)
+          m_OnSelectExited = (Generic)
+          m_SelectActionTrigger = 0:State
+          m_HideControllerOnSelect = False
+          m_AllowHoveredActivate = False
+          m_TargetPriorityMode = 0:None
+          m_PlayAudioClipOnSelectEntered = False
+          m_AudioClipForOnSelectEntered = null
+          m_PlayAudioClipOnSelectExited = False
+          m_AudioClipForOnSelectExited = null
+          m_PlayAudioClipOnSelectCanceled = False
+          m_AudioClipForOnSelectCanceled = null
+          m_PlayAudioClipOnHoverEntered = False
+          m_AudioClipForOnHoverEntered = null
+          m_PlayAudioClipOnHoverExited = False
+          m_AudioClipForOnHoverExited = null
+          m_PlayAudioClipOnHoverCanceled = False
+          m_AudioClipForOnHoverCanceled = null
+          m_AllowHoverAudioWhileSelecting = True
+          m_PlayHapticsOnSelectEntered = False
+          m_HapticSelectEnterIntensity = 0.000
+          m_HapticSelectEnterDuration = 0.000
+          m_PlayHapticsOnSelectExited = False
+          m_HapticSelectExitIntensity = 0.000
+          m_HapticSelectExitDuration = 0.000
+          m_PlayHapticsOnSelectCanceled = False
+          m_HapticSelectCancelIntensity = 0.000
+          m_HapticSelectCancelDuration = 0.000
+          m_PlayHapticsOnHoverEntered = False
+          m_HapticHoverEnterIntensity = 0.000
+          m_HapticHoverEnterDuration = 0.000
+          m_PlayHapticsOnHoverExited = False
+          m_HapticHoverExitIntensity = 0.000
+          m_HapticHoverExitDuration = 0.000
+          m_PlayHapticsOnHoverCanceled = False
+          m_HapticHoverCancelIntensity = 0.000
+          m_HapticHoverCancelDuration = 0.000
+          m_AllowHoverHapticsWhileSelecting = True
+          m_LineType = 0:Straight Line
+          m_BlendVisualLinePoints = True
+          m_MaxRaycastDistance = 30.000
+          m_RayOriginTransform = Gaze Stabilized (Transform)
+          m_ReferenceFrame = null
+          m_Velocity = 16.000
+          m_Acceleration = 9.800
+          m_AdditionalGroundHeight = 0.100
+          m_AdditionalFlightTime = 0.500
+          m_EndPointDistance = 30.000
+          m_EndPointHeight = -10.000
+          m_ControlPointDistance = 10.000
+          m_ControlPointHeight = 5.000
+          m_SampleFrequency = 20
+          m_HitDetectionType = 0:Raycast
+          m_SphereCastRadius = 0.100
+          m_ConeCastAngle = 6.000
+          m_RaycastMask = mask:-1
+          m_RaycastTriggerInteraction = 1:Ignore
+          m_RaycastSnapVolumeInteraction = 0:Ignore
+          m_HitClosestOnly = False
+          m_HoverToSelect = True
+          m_HoverTimeToSelect = 1.000
+          m_AutoDeselect = True
+          m_TimeToAutoDeselect = 0.250
+          m_EnableUIInteraction = True
+        }
+      - ActionBasedController
+      - GazeInputManager
+    + Gaze Stabilized [INACTIVE]  pos=(0.00,1.36,0.00)
+      - XRTransformStabilizer
+      + Gaze Stabilized Attach  pos=(0.00,1.36,0.00)
+    + Left Controller  pos=(0.00,1.36,0.00)
+      - ActionBasedControllerManager
+      - ActionBasedController
+      - XRInteractionGroup
+      + Poke Interactor  pos=(0.00,1.36,0.00)
+        - XRPokeInteractor {
+            m_InteractionManager = null
+            m_InteractionLayerMask = mask:-1
+            m_InteractionLayers = (Generic)
+            m_AttachTransform = Poke Point (Transform)
+            m_KeepSelectedTargetValid = True
+            m_DisableVisualsWhenBlockedInGroup = True
+            m_StartingSelectedInteractable = null
+            m_StartingTargetFilter = null
+            m_HoverEntered = (Generic)
+            m_HoverExited = (Generic)
+            m_SelectEntered = (Generic)
+            m_SelectExited = (Generic)
+            m_StartingHoverFilters = (Generic)
+            m_StartingSelectFilters = (Generic)
+            m_OnHoverEntered = (Generic)
+            m_OnHoverExited = (Generic)
+            m_OnSelectEntered = (Generic)
+            m_OnSelectExited = (Generic)
+            m_PokeDepth = 0.100
+            m_PokeWidth = 0.008
+            m_PokeSelectWidth = 0.015
+            m_PokeHoverRadius = 0.015
+            m_PokeInteractionOffset = 0.005
+            m_PhysicsLayerMask = mask:-1
+            m_PhysicsTriggerInteraction = 1:Ignore
+            m_RequirePokeFilter = True
+            m_EnableUIInteraction = True
+            m_DebugVisualizationsEnabled = False
+            m_UIHoverEntered = (Generic)
+            m_UIHoverExited = (Generic)
+          }
+        + Poke Point  pos=(-0.01,1.35,0.03)
+          - MeshFilter
+          - MeshRenderer
+          + Cylinder  pos=(-0.01,1.35,-0.01)
+            - MeshFilter
+            - MeshRenderer
+      + Direct Interactor  pos=(0.00,1.36,0.00)
+        - XRDirectInteractor {
+            m_InteractionManager = null
+            m_InteractionLayerMask = mask:23
+            m_InteractionLayers = (Generic)
+            m_AttachTransform = null
+            m_KeepSelectedTargetValid = True
+            m_DisableVisualsWhenBlockedInGroup = True
+            m_StartingSelectedInteractable = null
+            m_StartingTargetFilter = null
+            m_HoverEntered = (Generic)
+            m_HoverExited = (Generic)
+            m_SelectEntered = (Generic)
+            m_SelectExited = (Generic)
+            m_StartingHoverFilters = (Generic)
+            m_StartingSelectFilters = (Generic)
+            m_OnHoverEntered = (Generic)
+            m_OnHoverExited = (Generic)
+            m_OnSelectEntered = (Generic)
+            m_OnSelectExited = (Generic)
+            m_SelectActionTrigger = 1:State Change
+            m_HideControllerOnSelect = False
+            m_AllowHoveredActivate = False
+            m_TargetPriorityMode = 0:None
+            m_PlayAudioClipOnSelectEntered = False
+            m_AudioClipForOnSelectEntered = null
+            m_PlayAudioClipOnSelectExited = False
+            m_AudioClipForOnSelectExited = null
+            m_PlayAudioClipOnSelectCanceled = False
+            m_AudioClipForOnSelectCanceled = null
+            m_PlayAudioClipOnHoverEntered = False
+            m_AudioClipForOnHoverEntered = null
+            m_PlayAudioClipOnHoverExited = False
+            m_AudioClipForOnHoverExited = null
+            m_PlayAudioClipOnHoverCanceled = False
+            m_AudioClipForOnHoverCanceled = null
+            m_AllowHoverAudioWhileSelecting = False
+            m_PlayHapticsOnSelectEntered = True
+            m_HapticSelectEnterIntensity = 0.500
+            m_HapticSelectEnterDuration = 0.100
+            m_PlayHapticsOnSelectExited = True
+            m_HapticSelectExitIntensity = 0.500
+            m_HapticSelectExitDuration = 0.100
+            m_PlayHapticsOnSelectCanceled = False
+            m_HapticSelectCancelIntensity = 0.000
+            m_HapticSelectCancelDuration = 0.000
+            m_PlayHapticsOnHoverEntered = True
+            m_HapticHoverEnterIntensity = 0.250
+            m_HapticHoverEnterDuration = 0.100
+            m_PlayHapticsOnHoverExited = True
+            m_HapticHoverExitIntensity = 0.250
+            m_HapticHoverExitDuration = 0.100
+            m_PlayHapticsOnHoverCanceled = False
+            m_HapticHoverCancelIntensity = 0.000
+            m_HapticHoverCancelDuration = 0.000
+            m_AllowHoverHapticsWhileSelecting = False
+            m_ImproveAccuracyWithSphereCollider = True
+            m_PhysicsLayerMask = mask:1
+            m_PhysicsTriggerInteraction = 1:Ignore
+          }
+        - SphereCollider
+      + Ray Interactor  pos=(0.00,1.34,-0.04)
+        - XRRayInteractor {
+            m_InteractionManager = null
+            m_InteractionLayerMask = mask:55
+            m_InteractionLayers = (Generic)
+            m_AttachTransform = Left Controller Stabilized Attach (Transform)
+            m_KeepSelectedTargetValid = True
+            m_DisableVisualsWhenBlockedInGroup = True
+            m_StartingSelectedInteractable = null
+            m_StartingTargetFilter = null
+            m_HoverEntered = (Generic)
+            m_HoverExited = (Generic)
+            m_SelectEntered = (Generic)
+            m_SelectExited = (Generic)
+            m_StartingHoverFilters = (Generic)
+            m_StartingSelectFilters = (Generic)
+            m_OnHoverEntered = (Generic)
+            m_OnHoverExited = (Generic)
+            m_OnSelectEntered = (Generic)
+            m_OnSelectExited = (Generic)
+            m_SelectActionTrigger = 1:State Change
+            m_HideControllerOnSelect = False
+            m_AllowHoveredActivate = False
+            m_TargetPriorityMode = 0:None
+            m_PlayAudioClipOnSelectEntered = False
+            m_AudioClipForOnSelectEntered = null
+            m_PlayAudioClipOnSelectExited = False
+            m_AudioClipForOnSelectExited = null
+            m_PlayAudioClipOnSelectCanceled = False
+            m_AudioClipForOnSelectCanceled = null
+            m_PlayAudioClipOnHoverEntered = False
+            m_AudioClipForOnHoverEntered = null
+            m_PlayAudioClipOnHoverExited = False
+            m_AudioClipForOnHoverExited = null
+            m_PlayAudioClipOnHoverCanceled = False
+            m_AudioClipForOnHoverCanceled = null
+            m_AllowHoverAudioWhileSelecting = False
+            m_PlayHapticsOnSelectEntered = True
+            m_HapticSelectEnterIntensity = 0.500
+            m_HapticSelectEnterDuration = 0.100
+            m_PlayHapticsOnSelectExited = True
+            m_HapticSelectExitIntensity = 0.500
+            m_HapticSelectExitDuration = 0.100
+            m_PlayHapticsOnSelectCanceled = False
+            m_HapticSelectCancelIntensity = 0.000
+            m_HapticSelectCancelDuration = 0.000
+            m_PlayHapticsOnHoverEntered = True
+            m_HapticHoverEnterIntensity = 0.250
+            m_HapticHoverEnterDuration = 0.100
+            m_PlayHapticsOnHoverExited = True
+            m_HapticHoverExitIntensity = 0.250
+            m_HapticHoverExitDuration = 0.100
+            m_PlayHapticsOnHoverCanceled = False
+            m_HapticHoverCancelIntensity = 0.000
+            m_HapticHoverCancelDuration = 0.000
+            m_AllowHoverHapticsWhileSelecting = False
+            m_LineType = 0:Straight Line
+            m_BlendVisualLinePoints = True
+            m_MaxRaycastDistance = 10.000
+            m_RayOriginTransform = Left Controller Stabilized (Transform)
+            m_ReferenceFrame = null
+            m_Velocity = 12.000
+            m_Acceleration = 9.800
+            m_AdditionalGroundHeight = 0.100
+            m_AdditionalFlightTime = 0.500
+            m_EndPointDistance = 30.000
+            m_EndPointHeight = -10.000
+            m_ControlPointDistance = 10.000
+            m_ControlPointHeight = 5.000
+            m_SampleFrequency = 60
+            m_HitDetectionType = 2:Cone Cast
+            m_SphereCastRadius = 0.013
+            m_ConeCastAngle = 3.000
+            m_RaycastMask = mask:-2147483615
+            m_RaycastTriggerInteraction = 1:Ignore
+            m_RaycastSnapVolumeInteraction = 1:Collide
+            m_HitClosestOnly = False
+            m_HoverToSelect = False
+            m_HoverTimeToSelect = 0.500
+            m_AutoDeselect = False
+            m_TimeToAutoDeselect = 1.000
+            m_EnableUIInteraction = True
+          }
+        - LineRenderer
+        - XRInteractorLineVisual {
+            m_LineWidth = 0.005
+            m_OverrideInteractorLineLength = True
+            m_LineLength = 10.000
+            m_AutoAdjustLineLength = True
+            m_MinLineLength = 0.500
+            m_UseDistanceToHitAsMaxLineLength = True
+            m_LineRetractionDelay = 0.500
+            m_LineLengthChangeSpeed = 12.000
+            m_WidthCurve = (AnimationCurve)
+            m_SetLineColorGradient = True
+            m_ValidColorGradient = (Gradient)
+            m_InvalidColorGradient = (Gradient)
+            m_BlockedColorGradient = (Gradient)
+            m_TreatSelectionAsValidState = True
+            m_SmoothMovement = False
+            m_FollowTightness = 10.000
+            m_SnapThresholdDistance = 10.000
+            m_Reticle = null
+            m_BlockedReticle = null
+            m_StopLineAtFirstRaycastHit = True
+            m_StopLineAtSelection = True
+            m_SnapEndpointIfAvailable = True
+            m_LineBendRatio = 0.500
+            m_OverrideInteractorLineOrigin = True
+            m_LineOriginTransform = Left Controller (Transform)
+            m_LineOriginOffset = 0.000
+          }
+        - SortingGroup
+      + Teleport Interactor  pos=(0.00,1.34,-0.04)
+        - XRRayInteractor {
+            m_InteractionManager = null
+            m_InteractionLayerMask = mask:-2147483648
+            m_InteractionLayers = (Generic)
+            m_AttachTransform = Left Controller Stabilized Attach (Transform)
+            m_KeepSelectedTargetValid = False
+            m_DisableVisualsWhenBlockedInGroup = True
+            m_StartingSelectedInteractable = null
+            m_StartingTargetFilter = null
+            m_HoverEntered = (Generic)
+            m_HoverExited = (Generic)
+            m_SelectEntered = (Generic)
+            m_SelectExited = (Generic)
+            m_StartingHoverFilters = (Generic)
+            m_StartingSelectFilters = (Generic)
+            m_OnHoverEntered = (Generic)
+            m_OnHoverExited = (Generic)
+            m_OnSelectEntered = (Generic)
+            m_OnSelectExited = (Generic)
+            m_SelectActionTrigger = 0:State
+            m_HideControllerOnSelect = False
+            m_AllowHoveredActivate = False
+            m_TargetPriorityMode = 0:None
+            m_PlayAudioClipOnSelectEntered = False
+            m_AudioClipForOnSelectEntered = null
+            m_PlayAudioClipOnSelectExited = False
+            m_AudioClipForOnSelectExited = null
+            m_PlayAudioClipOnSelectCanceled = False
+            m_AudioClipForOnSelectCanceled = null
+            m_PlayAudioClipOnHoverEntered = False
+            m_AudioClipForOnHoverEntered = null
+            m_PlayAudioClipOnHoverExited = False
+            m_AudioClipForOnHoverExited = null
+            m_PlayAudioClipOnHoverCanceled = False
+            m_AudioClipForOnHoverCanceled = null
+            m_AllowHoverAudioWhileSelecting = True
+            m_PlayHapticsOnSelectEntered = True
+            m_HapticSelectEnterIntensity = 0.500
+            m_HapticSelectEnterDuration = 0.100
+            m_PlayHapticsOnSelectExited = True
+            m_HapticSelectExitIntensity = 0.500
+            m_HapticSelectExitDuration = 0.100
+            m_PlayHapticsOnSelectCanceled = False
+            m_HapticSelectCancelIntensity = 0.000
+            m_HapticSelectCancelDuration = 0.000
+            m_PlayHapticsOnHoverEntered = True
+            m_HapticHoverEnterIntensity = 0.250
+            m_HapticHoverEnterDuration = 0.100
+            m_PlayHapticsOnHoverExited = True
+            m_HapticHoverExitIntensity = 0.250
+            m_HapticHoverExitDuration = 0.100
+            m_PlayHapticsOnHoverCanceled = False
+            m_HapticHoverCancelIntensity = 0.000
+            m_HapticHoverCancelDuration = 0.000
+            m_AllowHoverHapticsWhileSelecting = True
+            m_LineType = 1:Projectile Curve
+            m_BlendVisualLinePoints = True
+            m_MaxRaycastDistance = 30.000
+            m_RayOriginTransform = Left Controller Stabilized (Transform)
+            m_ReferenceFrame = null
+            m_Velocity = 10.000
+            m_Acceleration = 9.800
+            m_AdditionalGroundHeight = 0.100
+            m_AdditionalFlightTime = 0.500
+            m_EndPointDistance = 30.000
+            m_EndPointHeight = -10.000
+            m_ControlPointDistance = 10.000
+            m_ControlPointHeight = 5.000
+            m_SampleFrequency = 50
+            m_HitDetectionType = 0:Raycast
+            m_SphereCastRadius = 0.100
+            m_ConeCastAngle = 6.000
+            m_RaycastMask = mask:-2147483615
+            m_RaycastTriggerInteraction = 1:Ignore
+            m_RaycastSnapVolumeInteraction = 1:Collide
+            m_HitClosestOnly = False
+            m_HoverToSelect = False
+            m_HoverTimeToSelect = 0.500
+            m_AutoDeselect = False
+            m_TimeToAutoDeselect = 1.000
+            m_EnableUIInteraction = False
+          }
+        - LineRenderer
+        - XRInteractorLineVisual {
+            m_LineWidth = 0.010
+            m_OverrideInteractorLineLength = False
+            m_LineLength = 10.000
+            m_AutoAdjustLineLength = False
+            m_MinLineLength = 0.020
+            m_UseDistanceToHitAsMaxLineLength = True
+            m_LineRetractionDelay = 0.500
+            m_LineLengthChangeSpeed = 12.000
+            m_WidthCurve = (AnimationCurve)
+            m_SetLineColorGradient = True
+            m_ValidColorGradient = (Gradient)
+            m_InvalidColorGradient = (Gradient)
+            m_BlockedColorGradient = (Gradient)
+            m_TreatSelectionAsValidState = False
+            m_SmoothMovement = False
+            m_FollowTightness = 10.000
+            m_SnapThresholdDistance = 10.000
+            m_Reticle = Directional Teleport Reticle (GameObject)
+            m_BlockedReticle = Blocking Teleport Reticle (GameObject)
+            m_StopLineAtFirstRaycastHit = True
+            m_StopLineAtSelection = False
+            m_SnapEndpointIfAvailable = True
+            m_LineBendRatio = 0.500
+            m_OverrideInteractorLineOrigin = True
+            m_LineOriginTransform = Left Controller (Transform)
+            m_LineOriginOffset = 0.000
+          }
+        - SortingGroup
+        - ActionBasedController
+    + Left Controller Stabilized  pos=(0.00,1.36,0.00)
+      - XRTransformStabilizer
+      + Left Controller Stabilized Attach  pos=(0.00,1.36,0.00)
+    + Right Controller  pos=(0.00,1.36,0.00)
+      - ActionBasedControllerManager
+      - ActionBasedController
+      - XRInteractionGroup
+      + Poke Interactor  pos=(0.00,1.36,0.00)
+        - XRPokeInteractor {
+            m_InteractionManager = null
+            m_InteractionLayerMask = mask:-1
+            m_InteractionLayers = (Generic)
+            m_AttachTransform = Poke Point (Transform)
+            m_KeepSelectedTargetValid = True
+            m_DisableVisualsWhenBlockedInGroup = True
+            m_StartingSelectedInteractable = null
+            m_StartingTargetFilter = null
+            m_HoverEntered = (Generic)
+            m_HoverExited = (Generic)
+            m_SelectEntered = (Generic)
+            m_SelectExited = (Generic)
+            m_StartingHoverFilters = (Generic)
+            m_StartingSelectFilters = (Generic)
+            m_OnHoverEntered = (Generic)
+            m_OnHoverExited = (Generic)
+            m_OnSelectEntered = (Generic)
+            m_OnSelectExited = (Generic)
+            m_PokeDepth = 0.100
+            m_PokeWidth = 0.008
+            m_PokeSelectWidth = 0.015
+            m_PokeHoverRadius = 0.015
+            m_PokeInteractionOffset = 0.005
+            m_PhysicsLayerMask = mask:-1
+            m_PhysicsTriggerInteraction = 1:Ignore
+            m_RequirePokeFilter = True
+            m_EnableUIInteraction = True
+            m_DebugVisualizationsEnabled = False
+            m_UIHoverEntered = (Generic)
+            m_UIHoverExited = (Generic)
+          }
+        + Poke Point  pos=(0.01,1.35,0.03)
+          - MeshFilter
+          - MeshRenderer
+          + Cylinder  pos=(0.01,1.35,-0.01)
+            - MeshFilter
+            - MeshRenderer
+      + Direct Interactor  pos=(0.00,1.36,0.00)
+        - XRDirectInteractor {
+            m_InteractionManager = null
+            m_InteractionLayerMask = mask:23
+            m_InteractionLayers = (Generic)
+            m_AttachTransform = null
+            m_KeepSelectedTargetValid = True
+            m_DisableVisualsWhenBlockedInGroup = True
+            m_StartingSelectedInteractable = null
+            m_StartingTargetFilter = null
+            m_HoverEntered = (Generic)
+            m_HoverExited = (Generic)
+            m_SelectEntered = (Generic)
+            m_SelectExited = (Generic)
+            m_StartingHoverFilters = (Generic)
+            m_StartingSelectFilters = (Generic)
+            m_OnHoverEntered = (Generic)
+            m_OnHoverExited = (Generic)
+            m_OnSelectEntered = (Generic)
+            m_OnSelectExited = (Generic)
+            m_SelectActionTrigger = 1:State Change
+            m_HideControllerOnSelect = False
+            m_AllowHoveredActivate = False
+            m_TargetPriorityMode = 0:None
+            m_PlayAudioClipOnSelectEntered = False
+            m_AudioClipForOnSelectEntered = null
+            m_PlayAudioClipOnSelectExited = False
+            m_AudioClipForOnSelectExited = null
+            m_PlayAudioClipOnSelectCanceled = False
+            m_AudioClipForOnSelectCanceled = null
+            m_PlayAudioClipOnHoverEntered = False
+            m_AudioClipForOnHoverEntered = null
+            m_PlayAudioClipOnHoverExited = False
+            m_AudioClipForOnHoverExited = null
+            m_PlayAudioClipOnHoverCanceled = False
+            m_AudioClipForOnHoverCanceled = null
+            m_AllowHoverAudioWhileSelecting = False
+            m_PlayHapticsOnSelectEntered = True
+            m_HapticSelectEnterIntensity = 0.500
+            m_HapticSelectEnterDuration = 0.100
+            m_PlayHapticsOnSelectExited = True
+            m_HapticSelectExitIntensity = 0.500
+            m_HapticSelectExitDuration = 0.100
+            m_PlayHapticsOnSelectCanceled = False
+            m_HapticSelectCancelIntensity = 0.000
+            m_HapticSelectCancelDuration = 0.000
+            m_PlayHapticsOnHoverEntered = True
+            m_HapticHoverEnterIntensity = 0.250
+            m_HapticHoverEnterDuration = 0.100
+            m_PlayHapticsOnHoverExited = True
+            m_HapticHoverExitIntensity = 0.250
+            m_HapticHoverExitDuration = 0.100
+            m_PlayHapticsOnHoverCanceled = False
+            m_HapticHoverCancelIntensity = 0.000
+            m_HapticHoverCancelDuration = 0.000
+            m_AllowHoverHapticsWhileSelecting = False
+            m_ImproveAccuracyWithSphereCollider = True
+            m_PhysicsLayerMask = mask:1
+            m_PhysicsTriggerInteraction = 1:Ignore
+          }
+        - SphereCollider
+      + Ray Interactor  pos=(0.00,1.34,-0.04)
+        - XRRayInteractor {
+            m_InteractionManager = null
+            m_InteractionLayerMask = mask:55
+            m_InteractionLayers = (Generic)
+            m_AttachTransform = Right Controller Stabilized Attach (Transform)
+            m_KeepSelectedTargetValid = True
+            m_DisableVisualsWhenBlockedInGroup = True
+            m_StartingSelectedInteractable = null
+            m_StartingTargetFilter = null
+            m_HoverEntered = (Generic)
+            m_HoverExited = (Generic)
+            m_SelectEntered = (Generic)
+            m_SelectExited = (Generic)
+            m_StartingHoverFilters = (Generic)
+            m_StartingSelectFilters = (Generic)
+            m_OnHoverEntered = (Generic)
+            m_OnHoverExited = (Generic)
+            m_OnSelectEntered = (Generic)
+            m_OnSelectExited = (Generic)
+            m_SelectActionTrigger = 1:State Change
+            m_HideControllerOnSelect = False
+            m_AllowHoveredActivate = False
+            m_TargetPriorityMode = 0:None
+            m_PlayAudioClipOnSelectEntered = False
+            m_AudioClipForOnSelectEntered = null
+            m_PlayAudioClipOnSelectExited = False
+            m_AudioClipForOnSelectExited = null
+            m_PlayAudioClipOnSelectCanceled = False
+            m_AudioClipForOnSelectCanceled = null
+            m_PlayAudioClipOnHoverEntered = False
+            m_AudioClipForOnHoverEntered = null
+            m_PlayAudioClipOnHoverExited = False
+            m_AudioClipForOnHoverExited = null
+            m_PlayAudioClipOnHoverCanceled = False
+            m_AudioClipForOnHoverCanceled = null
+            m_AllowHoverAudioWhileSelecting = False
+            m_PlayHapticsOnSelectEntered = True
+            m_HapticSelectEnterIntensity = 0.500
+            m_HapticSelectEnterDuration = 0.100
+            m_PlayHapticsOnSelectExited = True
+            m_HapticSelectExitIntensity = 0.500
+            m_HapticSelectExitDuration = 0.100
+            m_PlayHapticsOnSelectCanceled = False
+            m_HapticSelectCancelIntensity = 0.000
+            m_HapticSelectCancelDuration = 0.000
+            m_PlayHapticsOnHoverEntered = True
+            m_HapticHoverEnterIntensity = 0.250
+            m_HapticHoverEnterDuration = 0.100
+            m_PlayHapticsOnHoverExited = True
+            m_HapticHoverExitIntensity = 0.250
+            m_HapticHoverExitDuration = 0.100
+            m_PlayHapticsOnHoverCanceled = False
+            m_HapticHoverCancelIntensity = 0.000
+            m_HapticHoverCancelDuration = 0.000
+            m_AllowHoverHapticsWhileSelecting = False
+            m_LineType = 0:Straight Line
+            m_BlendVisualLinePoints = True
+            m_MaxRaycastDistance = 10.000
+            m_RayOriginTransform = Right Controller Stabilized (Transform)
+            m_ReferenceFrame = null
+            m_Velocity = 12.000
+            m_Acceleration = 9.800
+            m_AdditionalGroundHeight = 0.100
+            m_AdditionalFlightTime = 0.500
+            m_EndPointDistance = 30.000
+            m_EndPointHeight = -10.000
+            m_ControlPointDistance = 10.000
+            m_ControlPointHeight = 5.000
+            m_SampleFrequency = 60
+            m_HitDetectionType = 2:Cone Cast
+            m_SphereCastRadius = 0.013
+            m_ConeCastAngle = 3.000
+            m_RaycastMask = mask:-2147483615
+            m_RaycastTriggerInteraction = 1:Ignore
+            m_RaycastSnapVolumeInteraction = 1:Collide
+            m_HitClosestOnly = False
+            m_HoverToSelect = False
+            m_HoverTimeToSelect = 0.500
+            m_AutoDeselect = False
+            m_TimeToAutoDeselect = 1.000
+            m_EnableUIInteraction = True
+          }
+        - LineRenderer
+        - XRInteractorLineVisual {
+            m_LineWidth = 0.005
+            m_OverrideInteractorLineLength = True
+            m_LineLength = 10.000
+            m_AutoAdjustLineLength = True
+            m_MinLineLength = 0.500
+            m_UseDistanceToHitAsMaxLineLength = True
+            m_LineRetractionDelay = 0.500
+            m_LineLengthChangeSpeed = 12.000
+            m_WidthCurve = (AnimationCurve)
+            m_SetLineColorGradient = True
+            m_ValidColorGradient = (Gradient)
+            m_InvalidColorGradient = (Gradient)
+            m_BlockedColorGradient = (Gradient)
+            m_TreatSelectionAsValidState = True
+            m_SmoothMovement = False
+            m_FollowTightness = 10.000
+            m_SnapThresholdDistance = 10.000
+            m_Reticle = null
+            m_BlockedReticle = null
+            m_StopLineAtFirstRaycastHit = True
+            m_StopLineAtSelection = True
+            m_SnapEndpointIfAvailable = True
+            m_LineBendRatio = 0.500
+            m_OverrideInteractorLineOrigin = True
+            m_LineOriginTransform = Right Controller (Transform)
+            m_LineOriginOffset = 0.000
+          }
+        - SortingGroup
+      + Teleport Interactor  pos=(0.00,1.34,-0.04)
+        - XRRayInteractor {
+            m_InteractionManager = null
+            m_InteractionLayerMask = mask:-2147483648
+            m_InteractionLayers = (Generic)
+            m_AttachTransform = Right Controller Stabilized Attach (Transform)
+            m_KeepSelectedTargetValid = False
+            m_DisableVisualsWhenBlockedInGroup = True
+            m_StartingSelectedInteractable = null
+            m_StartingTargetFilter = null
+            m_HoverEntered = (Generic)
+            m_HoverExited = (Generic)
+            m_SelectEntered = (Generic)
+            m_SelectExited = (Generic)
+            m_StartingHoverFilters = (Generic)
+            m_StartingSelectFilters = (Generic)
+            m_OnHoverEntered = (Generic)
+            m_OnHoverExited = (Generic)
+            m_OnSelectEntered = (Generic)
+            m_OnSelectExited = (Generic)
+            m_SelectActionTrigger = 0:State
+            m_HideControllerOnSelect = False
+            m_AllowHoveredActivate = False
+            m_TargetPriorityMode = 0:None
+            m_PlayAudioClipOnSelectEntered = False
+            m_AudioClipForOnSelectEntered = null
+            m_PlayAudioClipOnSelectExited = False
+            m_AudioClipForOnSelectExited = null
+            m_PlayAudioClipOnSelectCanceled = False
+            m_AudioClipForOnSelectCanceled = null
+            m_PlayAudioClipOnHoverEntered = False
+            m_AudioClipForOnHoverEntered = null
+            m_PlayAudioClipOnHoverExited = False
+            m_AudioClipForOnHoverExited = null
+            m_PlayAudioClipOnHoverCanceled = False
+            m_AudioClipForOnHoverCanceled = null
+            m_AllowHoverAudioWhileSelecting = True
+            m_PlayHapticsOnSelectEntered = True
+            m_HapticSelectEnterIntensity = 0.500
+            m_HapticSelectEnterDuration = 0.100
+            m_PlayHapticsOnSelectExited = True
+            m_HapticSelectExitIntensity = 0.500
+            m_HapticSelectExitDuration = 0.100
+            m_PlayHapticsOnSelectCanceled = False
+            m_HapticSelectCancelIntensity = 0.000
+            m_HapticSelectCancelDuration = 0.000
+            m_PlayHapticsOnHoverEntered = True
+            m_HapticHoverEnterIntensity = 0.250
+            m_HapticHoverEnterDuration = 0.100
+            m_PlayHapticsOnHoverExited = True
+            m_HapticHoverExitIntensity = 0.250
+            m_HapticHoverExitDuration = 0.100
+            m_PlayHapticsOnHoverCanceled = False
+            m_HapticHoverCancelIntensity = 0.000
+            m_HapticHoverCancelDuration = 0.000
+            m_AllowHoverHapticsWhileSelecting = True
+            m_LineType = 1:Projectile Curve
+            m_BlendVisualLinePoints = True
+            m_MaxRaycastDistance = 30.000
+            m_RayOriginTransform = Right Controller Stabilized (Transform)
+            m_ReferenceFrame = null
+            m_Velocity = 10.000
+            m_Acceleration = 9.800
+            m_AdditionalGroundHeight = 0.100
+            m_AdditionalFlightTime = 0.500
+            m_EndPointDistance = 30.000
+            m_EndPointHeight = -10.000
+            m_ControlPointDistance = 10.000
+            m_ControlPointHeight = 5.000
+            m_SampleFrequency = 50
+            m_HitDetectionType = 0:Raycast
+            m_SphereCastRadius = 0.100
+            m_ConeCastAngle = 6.000
+            m_RaycastMask = mask:-2147483615
+            m_RaycastTriggerInteraction = 1:Ignore
+            m_RaycastSnapVolumeInteraction = 1:Collide
+            m_HitClosestOnly = False
+            m_HoverToSelect = False
+            m_HoverTimeToSelect = 0.500
+            m_AutoDeselect = False
+            m_TimeToAutoDeselect = 1.000
+            m_EnableUIInteraction = False
+          }
+        - LineRenderer
+        - XRInteractorLineVisual {
+            m_LineWidth = 0.010
+            m_OverrideInteractorLineLength = False
+            m_LineLength = 10.000
+            m_AutoAdjustLineLength = False
+            m_MinLineLength = 0.020
+            m_UseDistanceToHitAsMaxLineLength = True
+            m_LineRetractionDelay = 0.500
+            m_LineLengthChangeSpeed = 12.000
+            m_WidthCurve = (AnimationCurve)
+            m_SetLineColorGradient = True
+            m_ValidColorGradient = (Gradient)
+            m_InvalidColorGradient = (Gradient)
+            m_BlockedColorGradient = (Gradient)
+            m_TreatSelectionAsValidState = False
+            m_SmoothMovement = False
+            m_FollowTightness = 10.000
+            m_SnapThresholdDistance = 10.000
+            m_Reticle = Directional Teleport Reticle (GameObject)
+            m_BlockedReticle = Blocking Teleport Reticle (GameObject)
+            m_StopLineAtFirstRaycastHit = True
+            m_StopLineAtSelection = False
+            m_SnapEndpointIfAvailable = True
+            m_LineBendRatio = 0.500
+            m_OverrideInteractorLineOrigin = True
+            m_LineOriginTransform = Right Controller (Transform)
+            m_LineOriginOffset = 0.000
+          }
+        - SortingGroup
+        - ActionBasedController
+    + Right Controller Stabilized  pos=(0.00,1.36,0.00)
+      - XRTransformStabilizer
+      + Right Controller Stabilized Attach  pos=(0.00,1.36,0.00)
+  + Locomotion System  pos=(0.00,0.00,0.00)
+    - LocomotionSystem {
+        m_Timeout = 10.000
+        m_XROrigin = XR Origin (XROrigin)
+      }
+    + Turn  pos=(0.00,0.00,0.00)
+      - ActionBasedSnapTurnProvider {
+          m_System = Locomotion System (LocomotionSystem)
+          m_TurnAmount = 45.000
+          m_DebounceTime = 0.500
+          m_EnableTurnLeftRight = True
+          m_EnableTurnAround = True
+          m_DelayTime = 0.000
+          m_LeftHandSnapTurnAction = (Generic)
+          m_RightHandSnapTurnAction = (Generic)
+        }
+      - ActionBasedContinuousTurnProvider {
+          m_System = Locomotion System (LocomotionSystem)
+          m_TurnSpeed = 60.000
+          m_LeftHandTurnAction = (Generic)
+          m_RightHandTurnAction = (Generic)
+        }
+    + Move  pos=(0.00,0.00,0.00)
+      - DynamicMoveProvider {
+          m_System = Locomotion System (LocomotionSystem)
+          m_MoveSpeed = 1.000
+          m_EnableStrafe = True
+          m_EnableFly = False
+          m_UseGravity = True
+          m_GravityApplicationMode = 0:Attempting Move
+          m_ForwardSource = Main Camera (Transform)
+          m_LeftHandMoveAction = (Generic)
+          m_RightHandMoveAction = (Generic)
+          m_HeadTransform = Main Camera (Transform)
+          m_LeftControllerTransform = Left Controller (Transform)
+          m_RightControllerTransform = Right Controller (Transform)
+          m_LeftHandMovementDirection = 0:Head Relative
+          m_RightHandMovementDirection = 0:Head Relative
+        }
+    + Grab Move [INACTIVE]  pos=(0.00,0.00,0.00)
+      - GrabMoveProvider {
+          m_System = Locomotion System (LocomotionSystem)
+          m_EnableFreeXMovement = True
+          m_EnableFreeYMovement = False
+          m_EnableFreeZMovement = True
+          m_UseGravity = True
+          m_GravityApplicationMode = 0:Attempting Move
+          m_ControllerTransform = Left Controller (Transform)
+          m_EnableMoveWhileSelecting = False
+          m_MoveFactor = 1.000
+          m_GrabMoveAction = (Generic)
+        }
+      - GrabMoveProvider {
+          m_System = Locomotion System (LocomotionSystem)
+          m_EnableFreeXMovement = True
+          m_EnableFreeYMovement = False
+          m_EnableFreeZMovement = True
+          m_UseGravity = True
+          m_GravityApplicationMode = 0:Attempting Move
+          m_ControllerTransform = Right Controller (Transform)
+          m_EnableMoveWhileSelecting = False
+          m_MoveFactor = 1.000
+          m_GrabMoveAction = (Generic)
+        }
+      - TwoHandedGrabMoveProvider {
+          m_System = Locomotion System (LocomotionSystem)
+          m_EnableFreeXMovement = True
+          m_EnableFreeYMovement = False
+          m_EnableFreeZMovement = True
+          m_UseGravity = True
+          m_GravityApplicationMode = 0:Attempting Move
+          m_LeftGrabMoveProvider = Grab Move (GrabMoveProvider)
+          m_RightGrabMoveProvider = Grab Move (GrabMoveProvider)
+          m_OverrideSharedSettingsOnInit = True
+          m_MoveFactor = 1.000
+          m_RequireTwoHandsForTranslation = False
+          m_EnableRotation = True
+          m_EnableScaling = False
+          m_MinimumScale = 0.200
+          m_MaximumScale = 5.000
+        }
+    + Teleportation  pos=(0.00,0.00,0.00)
+      - TeleportationProvider
+    + Climb  pos=(0.00,0.00,0.00)
+      - ClimbProvider
++ XR Interaction Manager  pos=(0.00,0.00,0.00)
+  - XRInteractionManager
+  - InputActionManager {
+      m_ActionAssets = (Generic)
+    }
 + EventSystem  pos=(0.00,0.00,0.00)
   - EventSystem
   - XRUIInputModule
@@ -119,154 +1000,3 @@ generated=2026-06-15 18:38:48Z
   - WorldDirector {
       themeProfile = DefaultVisualTheme (VisualThemeProfile)
     }
-+ WorldRuntime  pos=(0.00,0.00,0.00)
-  - WorldRuntime {
-      worldProfile = DefaultWorldProfile (WorldProfile)
-    }
-+ ThemeSwitchStation  pos=(0.00,0.00,1.50)
-  - ThemeSwitchStation
-+ Pistol  pos=(0.00,1.00,1.20)
-  - MeshFilter
-  - BoxCollider
-  - MeshRenderer
-  - Rigidbody {
-      m_Mass = 1.000
-      m_Drag = 0.000
-      m_AngularDrag = 0.050
-      m_CenterOfMass = (0.00, 0.00, 0.00)
-      m_InertiaTensor = (1.00, 1.00, 1.00)
-      m_InertiaRotation = (Quaternion)
-      m_IncludeLayers = mask:0
-      m_ExcludeLayers = mask:0
-      m_ImplicitCom = True
-      m_ImplicitTensor = True
-      m_UseGravity = True
-      m_IsKinematic = False
-      m_Interpolate = 0:None
-      m_CollisionDetection = 0:Discrete
-    }
-  - XRGrabInteractable {
-      m_InteractionManager = null
-      m_Colliders = (Generic)
-      m_InteractionLayerMask = mask:-1
-      m_InteractionLayers = (Generic)
-      m_DistanceCalculationMode = 1:Collider Position
-      m_SelectMode = 0:Single
-      m_FocusMode = 1:Single
-      m_CustomReticle = null
-      m_AllowGazeInteraction = False
-      m_AllowGazeSelect = False
-      m_OverrideGazeTimeToSelect = False
-      m_GazeTimeToSelect = 0.500
-      m_OverrideTimeToAutoDeselectGaze = False
-      m_TimeToAutoDeselectGaze = 3.000
-      m_AllowGazeAssistance = False
-      m_FirstHoverEntered = (Generic)
-      m_LastHoverExited = (Generic)
-      m_HoverEntered = (Generic)
-      m_HoverExited = (Generic)
-      m_FirstSelectEntered = (Generic)
-      m_LastSelectExited = (Generic)
-      m_SelectEntered = (Generic)
-      m_SelectExited = (Generic)
-      m_FirstFocusEntered = (Generic)
-      m_LastFocusExited = (Generic)
-      m_FocusEntered = (Generic)
-      m_FocusExited = (Generic)
-      m_Activated = (Generic)
-      m_Deactivated = (Generic)
-      m_StartingHoverFilters = (Generic)
-      m_StartingSelectFilters = (Generic)
-      m_StartingInteractionStrengthFilters = (Generic)
-      m_OnFirstHoverEntered = (Generic)
-      m_OnLastHoverExited = (Generic)
-      m_OnHoverEntered = (Generic)
-      m_OnHoverExited = (Generic)
-      m_OnSelectEntered = (Generic)
-      m_OnSelectExited = (Generic)
-      m_OnSelectCanceled = (Generic)
-      m_OnActivate = (Generic)
-      m_OnDeactivate = (Generic)
-      m_AttachTransform = null
-      m_SecondaryAttachTransform = null
-      m_UseDynamicAttach = False
-      m_MatchAttachPosition = True
-      m_MatchAttachRotation = True
-      m_SnapToColliderVolume = True
-      m_ReinitializeDynamicAttachEverySingleGrab = True
-      m_AttachEaseInTime = 0.150
-      m_MovementType = 2:Instantaneous
-      m_VelocityDamping = 1.000
-      m_VelocityScale = 1.000
-      m_AngularVelocityDamping = 1.000
-      m_AngularVelocityScale = 1.000
-      m_TrackPosition = True
-      m_SmoothPosition = False
-      m_SmoothPositionAmount = 8.000
-      m_TightenPosition = 0.100
-      m_TrackRotation = True
-      m_SmoothRotation = False
-      m_SmoothRotationAmount = 8.000
-      m_TightenRotation = 0.100
-      m_TrackScale = True
-      m_SmoothScale = False
-      m_SmoothScaleAmount = 8.000
-      m_TightenScale = 0.100
-      m_ThrowOnDetach = True
-      m_ThrowSmoothingDuration = 0.250
-      m_ThrowSmoothingCurve = (AnimationCurve)
-      m_ThrowVelocityScale = 1.500
-      m_ThrowAngularVelocityScale = 1.000
-      m_ForceGravityOnDetach = False
-      m_RetainTransformParent = True
-      m_AttachPointCompatibilityMode = 0:Default
-      m_StartingSingleGrabTransformers = (Generic)
-      m_StartingMultipleGrabTransformers = (Generic)
-      m_AddDefaultGrabTransformers = True
-    }
-  - ItemRuntime
-  - PistolRuntime {
-      pistolDefinition = DefaultPistol (PistolDefinition)
-    }
-  + Muzzle  pos=(0.00,1.00,1.22)
-+ Target1  pos=(-0.50,1.20,3.00)
-  - MeshFilter
-  - BoxCollider
-  - MeshRenderer
-  - TargetRuntime {
-      resetDelay = 1.500
-      hitWobbleForce = 2.000
-      OnHit = (Generic)
-    }
-+ Target2  pos=(0.00,1.20,3.00)
-  - MeshFilter
-  - BoxCollider
-  - MeshRenderer
-  - TargetRuntime {
-      resetDelay = 1.500
-      hitWobbleForce = 2.000
-      OnHit = (Generic)
-    }
-+ Target3  pos=(0.50,1.20,3.00)
-  - MeshFilter
-  - BoxCollider
-  - MeshRenderer
-  - TargetRuntime {
-      resetDelay = 1.500
-      hitWobbleForce = 2.000
-      OnHit = (Generic)
-    }
-+ WorldTravelStation  pos=(-1.50,1.30,2.50)
-  - WorldTravelStation
-  + __ProximityTravelTrigger  pos=(-1.50,2.40,2.50)
-    - BoxCollider
-    - ProximityTravelTrigger {
-        destinationSceneName = "D0_City"
-        cooldownSeconds = 3.000
-      }
-+ __SPAWN_PLAYER  pos=(0.00,0.10,0.00)
-  - SpawnMarkerRuntime {
-      markerId = "player"
-    }
-+ __SingletonValidator  pos=(0.00,0.00,0.00)
-  - SingletonValidator
