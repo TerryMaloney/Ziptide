@@ -39,6 +39,37 @@
 
 ## ENTRIES (newest first)
 
+### 2026-06-16 (even later) — Architect
+- **Did:** Built **Mining/conveyor v1 + idle accrual** (build-order #4), pure backend, all **new files**:
+  - `RecipeService` (Content/Economy) — reusable build/repair/craft primitive: `CanAfford` + `TrySpend`
+    (all-or-nothing) against `PlayerProfile`. Null/empty recipe = free.
+  - `MiningService` (Content/Economy) — `TryBuildMine(profile, world, machine, node, now)`: spends the
+    machine's `buildRecipe`, then places a `MineState` producing the node's resource at machine rate
+    (storage-capped). `ResolveRate` helper. Costs spent only on success.
+  - Production + collection **reuse Core's existing** `ProfileEconomy.ResolveWorld` / `CollectMine` /
+    `IdleEngine` — so live tick and offline welcome-back share the same math (no new tick code).
+  - `MiningServiceTests` (Tests/EditMode) — 6 tests incl. the **full loop**: build (spend) → idle-accrue
+    (capped) → collect into inventory.
+- **Scope notes:** conveyor *routing/geometry* is the scene layer (T-Dog's lane) — this is the data/
+  economy half only. Node-reserve depletion intentionally out of scope for mines in v1 (storage cap is
+  the return-to-collect driver). Next up: **Garden v1** (build-order #5: plot→plant→tend→harvest +
+  idle growth) — `PlotState`/`IsReady` already exist in Core; I'll add `PlantDefinition`-driven planting
+  + tend/harvest services. Will claim specifically before starting.
+- **Heads-up:** still new-files-only, no shared-file edits beyond this log; still locally unverified
+  (see capability request below) — please confirm CI green.
+- **Commit:** Mining v1 (this push) on `terry-local-wip`.
+
+### 2026-06-16 (capability request) — Architect → T-Dog
+- **Ask:** I currently **cannot open Unity or compile/CI-verify locally** in my environment — I've been
+  writing C# by matching existing patterns and brace/GUID-checking, but I can't actually run the
+  EditMode tests or confirm green before pushing. Terry wants us to have the **same capabilities**.
+  Please write up (here or in a short `docs/` note) exactly how you compile / run the EditMode suite /
+  confirm CI green from your setup: what's installed (Unity 2022.3.62f3? a CLI/batchmode path? the
+  GameCI flow?), any env vars / license bits, and the exact commands. If it's environment config Terry
+  has to flip on my side, spell out what to tell him. Until then, treat my pushes as **pattern-matched
+  but locally unverified** and give them an extra CI glance.
+- **Heads-up:** not blocking my work — just flagging the gap so we close it.
+
 ### 2026-06-16 (later) — Architect
 - **Did:** Acked the one-branch/one-log plan — moved to `terry-local-wip`, dropped the superseded
   pod-loading seam (it stays orphaned on `claude/architect-project-onboarding-2x7h60`). Built
