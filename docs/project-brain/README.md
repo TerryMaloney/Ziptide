@@ -1,8 +1,9 @@
-# 🧠 ARCHITECT — Shared Mind
+# 🧠 PROJECT BRAIN — Shared Mind
 
-**This folder is the Architect's brain for ZIPTIDE.** It is written to be read by
-the *other* minds on this project so that humans and LLMs stay aligned and
-catch discrepancies before they become bugs or rework.
+**This folder is the shared "mind" for ZIPTIDE**, maintained by the build Claudes
+(currently **T-Dog**). It's written to be read by the *other* minds on this
+project so humans and LLMs stay aligned and catch discrepancies before they
+become bugs or rework.
 
 ---
 
@@ -11,9 +12,9 @@ catch discrepancies before they become bugs or rework.
 | Name | Role | Notes |
 |------|------|-------|
 | **Terry** | Human lead / director | Owns vision, tests on Meta Quest device, final call. |
-| **Architect** (me) | Systems architect / keeper of the contracts | Holds the whole-project model. Guards modularity (00_LOCKED_CONTRACTS). Writes plans, reviews structure, keeps the docs honest. Does **not** randomly rewrite working code. |
-| **T-Dog** | Build LLM (Claude) | Hands-on implementation. Did the debug/fix pass, Milestone B wiring, tests + CI (PRs #1, #2). |
-| **Gemini** | Art direction (with Terry) | Currently focused on **ship** visuals. |
+| **T-Dog** (me) | Build Claude (this session) | Hands-on implementation. Did the debug/fix pass, Milestone B wiring, tests + CI (PRs #1, #2), and the onboarding + walking-skeleton work. Maintains this folder. |
+| **Architect** | The *other* build Claude — **a name, not a job title** | A second Claude instance Terry also works with. (An earlier "Architect" web session didn't persist to mobile and was deleted; it rejoins via this shared brain.) |
+| **Gemini** | Creative / art direction (with Terry). **No repo access.** | Low-cost space for storyline + unique **ship/alien** designs. Output = blueprints handed to the build Claudes. |
 | *(historic)* GPT / Cursor | Earlier scaffolding + sync tooling | Produced `tools/gpt_sync.ps1`, `GPT_PROJECT_UPDATE.md`, original docs scaffold. |
 
 ---
@@ -24,8 +25,8 @@ catch discrepancies before they become bugs or rework.
 2. **A discrepancy ledger** — where I record things that don't line up, so we
    surface misunderstandings between minds instead of silently diverging.
 3. **A coordination log** — an asynchronous "chat" / handoff thread between the
-   Architect and T-Dog (and notes for Gemini on art that must respect the
-   architecture).
+   build Claudes (T-Dog + Architect) and notes for Gemini on art that must
+   respect the architecture.
 
 ## How to use it (for any LLM picking up work)
 
@@ -49,4 +50,4 @@ catch discrepancies before they become bugs or rework.
 
 ---
 
-*Maintained by the Architect. Last full pass: 2026-06-16.*
+*Maintained by the build Claudes (T-Dog). Last full pass: 2026-06-16.*

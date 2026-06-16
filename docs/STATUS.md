@@ -49,8 +49,8 @@
 2. **Walking skeleton (device-independent, in progress):** data-driven pod seam
    landed — `IPodLoader` + `PodNarrative` (Core), `PodRegistry` (Content), tests.
    Next seam: `IThemeProvider` so the existing `WorldDirector` sits behind an
-   interface (see docs/architect/01_OPEN_QUESTIONS B1).
-3. **Open decisions for Terry:** perf/device target + story canon (docs/architect/01_OPEN_QUESTIONS Q2–Q3).
+   interface (see docs/project-brain/01_OPEN_QUESTIONS B1).
+3. **Open decisions for Terry:** perf/device target + story canon (docs/project-brain/01_OPEN_QUESTIONS Q2–Q3).
 
 ---
 
