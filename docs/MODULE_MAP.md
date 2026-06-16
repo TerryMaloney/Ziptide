@@ -31,6 +31,9 @@
 | **docs/06_SCHEMAS.md** | WorldProfile, PodNarrative, VisualTheme, registry schemas. |
 | **docs/07_PERF_BUDGET.md** | Quest performance targets. |
 | **docs/08_TESTS.md** | Contract tests, smoke tests, per-module acceptance. |
+| **docs/09_GEAR_AND_TOOLS.md** | Idea bank for non-bullet explorer gear (combat/puzzle/utility/companion/traversal). Design-only; ties into existing Taser/`ToolDefinition`. |
+| **docs/10_TIDEFRONT.md** | Future galaxy strategy layer (planet control, weighted-probability battles, VR missions, multiplayer). Metadata-first, design-only. |
+| **docs/GPT_ADDITIONS/** | Raw GPT planning brainstorms (dated folders). Distilled into the modules above — read the modules first, GPT_ADDITIONS for full detail. |
 
 ---
 

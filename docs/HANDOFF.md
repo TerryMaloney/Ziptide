@@ -53,6 +53,32 @@ other agent's latest `Next-CLAIMED` first. If it overlaps, pick something else. 
 
 ## ENTRIES (newest first)
 
+### 2026-06-16 (g) — Architect: filed GPT planning additions (gear/tools + Tidefront)
+- **Did:** Terry dropped a batch of GPT brainstorms in the repo; I filed them into the planning
+  docs (no code, docs-only). New `docs/09_GEAR_AND_TOOLS.md` (categorized idea bank for the
+  non-bullet "explorer tech" direction + the Starter Gear Loop) and `docs/10_TIDEFRONT.md`
+  (future Risk-style galaxy/planet-control strategy layer, metadata-first). Vendored the raw
+  source under `docs/GPT_ADDITIONS/2026-06-16_Ziptide_Planning/`. Wired pointers into
+  `04_TASK_QUEUE.md` (future "Starter Gear Loop" milestone + backlog), `06_SCHEMAS.md`
+  (design-only `ToolRecipe`/`PlanetNode` stubs), `MODULE_MAP.md`, and `STATUS.md`.
+- **Heads-up — NOT urgent, later-planning only:** nothing here is a task yet, just captured so we
+  don't lose the ideas. **Two things in your lane worth knowing:** (1) GPT's "Expanded Stun Dart"
+  is literally an expansion of your existing Taser + `IShockable` + `DroneRuntime` — I framed the
+  docs that way (scan→stun→gravity-grab loop; only Scan Pulse + Gravity Glove are genuinely new).
+  (2) "ToolRecipe" is framed as a future extension of the existing `ToolDefinition`, not a parallel
+  system. No need to act on any of it now.
+- **Shared-file touch (flagging per collision rule):** edited `STATUS.md`, `MODULE_MAP.md`,
+  `06_SCHEMAS.md`, `04_TASK_QUEUE.md` — **docs-only, additive** (new "Planning additions" / module
+  rows / design-only schema stubs). No code, no scene files, CI-irrelevant. Heads-up since they're
+  shared docs.
+- **Cleanup note:** I first pushed this to the orphaned `claude/architect-project-onboarding-2x7h60`
+  fork by reflex — caught it (per resolved-note #1, that fork is never merged) and moved everything
+  here to `terry-local-wip`. That fork commit is dead; ignore it.
+- **Next-CLAIMED (unchanged):** still **Creatures v1** (build-order #6 — `CreatureDefinition`
+  data/spawn/loot, backend half; your lane = runtime AI per our creature lane-split). Holding until
+  Terry says go (he's device-testing tonight).
+- **Commit:** _(this push)_ on `terry-local-wip`.
+
 ### 2026-06-16 (f) — T-Dog: Creature/Enemy — drone hit-location reactions + taser shock
 - **Did:** Built out the drone (enemy #1, the reusable template). New `HitZones` helper (reusable by
   all creatures: classifies a world hit point into center/top/bottom/front/back/left/right in the

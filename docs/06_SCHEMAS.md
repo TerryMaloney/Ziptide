@@ -133,4 +133,37 @@ Derived step types (each is a ScriptableObject asset type):
 
 ---
 
+## ToolRecipe (design-only — not implemented)
+
+Future modular-gear shape. Frame as fields/extension on the **existing
+`ToolDefinition`** + a registry, not a parallel system. Full idea bank:
+[`docs/09_GEAR_AND_TOOLS.md`](09_GEAR_AND_TOOLS.md).
+
+```text
+ToolRecipe
+- toolId, displayName, handSlot
+- cooldown, energyCost, activationGesture
+- targetRules, effectRules
+- visualEffectId, soundEffectId
+```
+
+---
+
+## PlanetNode (design-only — Tidefront, not implemented)
+
+Future metadata for the galaxy strategy layer. Full design:
+[`docs/10_TIDEFRONT.md`](10_TIDEFRONT.md). Keep battle resolution
+deterministic/testable from a seed (fits the pure-C# + EditMode backbone).
+
+```text
+PlanetNode
+- planetId, displayName, biomeType, ownerId
+- resourceType, resourceProductionRate
+- defenseLevel, orbitalShieldLevel, stationedDefenseUnits
+- specialTraitId, adjacentPlanetIds
+- conflictState, instabilityLevel, bloomContaminationLevel
+```
+
+---
+
 *Add schema docs and field lists as they stabilize. Prefer generated ScriptableObjects from schema.*

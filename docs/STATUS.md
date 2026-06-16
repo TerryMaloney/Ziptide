@@ -61,6 +61,16 @@ last action at the end. One branch for shared work: **`terry-local-wip`** (green
 
 ---
 
+## Planning additions (design-only — not implemented)
+
+- **GPT planning additions** under `docs/GPT_ADDITIONS/2026-06-16_Ziptide_Planning/`
+  (weapons/tools brainstorm, starter-gear loop, Tidefront multiplayer), distilled into
+  [`docs/09_GEAR_AND_TOOLS.md`](09_GEAR_AND_TOOLS.md) and [`docs/10_TIDEFRONT.md`](10_TIDEFRONT.md).
+  **Later planning — none of it is coded or on device.** Gear ideas tie into the existing
+  Taser/`ToolDefinition`; Tidefront stays design-only until the content/registry layer is stable.
+
+---
+
 ## Repo links + build target settings
 
 - **Repo:** https://github.com/TerryMaloney/Ziptide.git (public)
