@@ -491,10 +491,22 @@ namespace Ziptide.Gameplay
 
         public void TeleportToSpawnMarker()
         {
-            var marker = FindObjectOfType<SpawnMarkerRuntime>();
+            TeleportToMarker(null);
+        }
+
+        /// <summary>
+        /// Move the rig to the spawn marker whose markerId matches (or the 'player' marker / first
+        /// marker if id is null or not found). Used by normal travel and by the dev warp tool to
+        /// drop into a specific part of a world.
+        /// </summary>
+        public void TeleportToMarker(string markerId)
+        {
+            var marker = FindMarker(markerId);
             if (marker == null)
             {
-                Debug.Log("[Ziptide] No SpawnMarkerRuntime found, keeping position.");
+                Debug.Log("[Ziptide] No SpawnMarkerRuntime"
+                    + (string.IsNullOrEmpty(markerId) ? "" : " id='" + markerId + "'")
+                    + " found, keeping position.");
                 return;
             }
             var cc = GetComponent<CharacterController>();
@@ -517,6 +529,19 @@ namespace Ziptide.Gameplay
             _hasSafePosition = true;
 
             Debug.Log("[Ziptide] Teleported to spawn '" + marker.markerId + "' at " + marker.transform.position);
+        }
+
+        /// <summary>Find a spawn marker by id; falls back to the 'player' marker, then the first one.</summary>
+        private static SpawnMarkerRuntime FindMarker(string markerId)
+        {
+            var all = FindObjectsOfType<SpawnMarkerRuntime>();
+            if (all == null || all.Length == 0) return null;
+            if (!string.IsNullOrEmpty(markerId))
+                foreach (var m in all)
+                    if (m != null && m.markerId == markerId) return m;
+            foreach (var m in all)
+                if (m != null && m.markerId == "player") return m;
+            return all[0];
         }
 
         private void RebindSceneSystems()

@@ -19,6 +19,35 @@ Append-only coordination log for the two AI agents working this repo in parallel
 
 > 📋 **Latest full handoff (read for complete context): [`docs/handoffs/2026-06-15_TC_to_TDog.md`](handoffs/2026-06-15_TC_to_TDog.md)**
 
+## 2026-06-16 (e) — TDog: Developer Warp system (dev-only world/marker jump)
+Headless build (Terry at work, no device). Dev-only navigation so we can jump straight to whatever
+world/part we're building — never a player feature (gated `UNITY_EDITOR || DEVELOPMENT_BUILD`).
+**New files (my lane — gameplay + editor; no backend files touched):**
+- `Gameplay/Runtime/DevTools/DevWarp.cs` — `DevWarp.WarpToScene(scene, markerId)` / `WarpToMarker(id)`.
+  Routes through `TravelCoordinator` (normal load/restore path) via a DontDestroyOnLoad runner that
+  waits out in-flight travel (incl. boot's first load) then drops the rig at the named marker.
+  Tags `DEV_WARP` / `DEV_WARP_DONE`.
+- `Editor/DevTools/DevWarpWindow.cs` — `Ziptide → Dev → Warp Window`: auto-lists every
+  WorldPackDefinition (new worlds appear free) + _Boot; per world: **Open Scene** (edit) and
+  **Play here →** (play from _Boot, auto-warp in, optionally to a named spawn marker).
+- `Editor/DevTools/DevWarpPlayHook.cs` — `[InitializeOnLoad]`; on EnteredPlayMode reads the pending
+  warp (SessionState) and calls `DevWarp`.
+- `PlayerRigPersistence`: added public `TeleportToMarker(string id)` (+ `FindMarker` by id);
+  `TeleportToSpawnMarker()` now delegates to it. Lets warps target a *part* of a world.
+- **`.meta`:** Unity will generate `.meta` for the 3 new files + the `DevTools` folders on import —
+  **Terry: `git add` + commit those** so GUIDs are stable (same as Architect's backbone files).
+- **Next (TDog):** in-VR dev menu panel (summon gesture → world-space list → warp) — scaffolds on
+  `DevWarp` but needs on-device verify, so later.
+
+### 💡 Proposed for ARCHITECT today (pure backend, no collision with the above)
+Best next from `SYSTEMS_ARCHITECTURE.md`, both pure C# + EditMode-testable, zero scene/rig:
+1. **Harvest v1 (recommended):** resource **node** + **tool** → adds to `PlayerProfile` inventory —
+   the simplest economy loop, builds on the tested `ProfileEconomy`/registries. Pairs with Dev Warp
+   (jump to a world, harvest there). OR
+2. **Live-world tick** MonoBehaviour for the active world (thin wrapper over `ProfileEconomy`).
+Avoid for now (report-only / needs Terry sign-off): wiring SaveSystem+idle into `_Boot`/travel.
+Claim whichever in this log before starting.
+
 ## 2026-06-16 (d) — TDog: fixed both audit blockers (root cause) + kid's "fall forever" bug
 All CI-verifying. Three fixes this cycle:
 1. **Audit blockers were in the TEST ROOM, not D0_City** — `WORLD_SCENE_HAS_XRI_MANAGER` +
