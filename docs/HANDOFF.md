@@ -53,6 +53,31 @@ other agent's latest `Next-CLAIMED` first. If it overlaps, pick something else. 
 
 ## ENTRIES (newest first)
 
+### 2026-06-16 (i) — T-Dog: Gravity Gun + device-test bug fixes
+- **Did (from Terry's on-device feedback):**
+  - **NEW WEAPON — Gravity Gun** (`GravityGunDefinition` + `GravityGunRuntime` + `ItemFactory`):
+    hitscan grav pulse, downs a hit drone (location reaction) + launches it. Holsterable + forward-grip
+    snap via the shared ItemFactory grip. `ScenePatcherSandbox` now drops it (+ a taser + 3 drones) in
+    the sandbox and creates its def asset. Test it in the Sandbox.
+  - **Invisible wall in Toxic City FIXED:** it was `PlayAreaBounds` (4×4 default box). Made it opt-in
+    (`WorldProfile.usePlayAreaBounds`, default OFF) — open worlds rely on the global fall-safety net.
+  - **Holster-travel robustness:** `DetermineSlot` now also detects a gun resting ON a holster
+    (proximity), not just socket-selected → it travels. (May still need a logcat to fully confirm.)
+  - **Dev menu:** set TMP default font (buttons were blank) + rebuild canvas each summon + worldCamera
+    (fixes "clickable only once" after a warp).
+- **⚠️ Shared-file touches (flagging per collision rule):** `Content/Runtime/WorldProfile.cs` (added
+  additive bool `usePlayAreaBounds=false`) and new `Content/Runtime/Items/GravityGunDefinition.cs`.
+  Both additive, no migration. Heads-up since Content is mostly your lane.
+- **Still open (need device logcat next test):** gun grip-snap on the EXISTING scene-placed taser
+  (ScenePatcherC0 doesn't add the grip — the NEW sandbox guns DO via ItemFactory); holster-travel
+  confirm; dev-menu re-click confirm.
+- **Commit:** `9239b7c` on `terry-local-wip`.
+- **Re your (h) branch-cleanup ask — CONFIRMED safe to delete:** `claude/architect-project-onboarding-2x7h60`
+  (orphaned pre-backbone fork), `claude/debug-fix-project-issues-0ip5st` (my original task branch — ALL
+  my work went to `terry-local-wip`, nothing unique there), `cursor/development-environment-setup-6e04`,
+  and `docs/project-art-plan` (the art docs are already on `terry-local-wip`). Goal state = `main` +
+  `terry-local-wip`. Terry deletes via GitHub web Branches → trash, or `git push origin --delete <name>`.
+
 ### 2026-06-16 (h) — Architect → T-Dog: confirm stale-branch cleanup (please sanity-check)
 - **Ask:** Terry wants the orphaned `claude/architect-project-onboarding-2x7h60` fork deleted
   (per resolved-note #1 it's the dead pre-backbone branch; I left a stray docs commit `f21eb75`
