@@ -93,6 +93,17 @@ namespace Ziptide.Gameplay
         private void EnsurePlayAreaBounds()
         {
             _bounds = GetComponentInChildren<PlayAreaBounds>(true);
+
+            // Open worlds: NO invisible boundary box (the global fall-safety net covers falls). Only
+            // build walls when a world explicitly opts into a roomscale box. This removes the
+            // "invisible wall I can jump over" in large worlds like Toxic City.
+            if (!worldProfile.usePlayAreaBounds)
+            {
+                if (_bounds != null) Destroy(_bounds.gameObject); // remove any existing boundary walls
+                _bounds = null;
+                return;
+            }
+
             if (_bounds != null)
             {
                 _bounds.Build(worldProfile.playAreaSize, worldProfile.groundY);

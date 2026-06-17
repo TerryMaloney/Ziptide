@@ -80,6 +80,50 @@ namespace Ziptide.Editor.Patching
                 EnsureZonePost(z.id, z.label, z.pos);
             }
             EnsureReturnDoor();
+            EnsureSandboxContent();
+        }
+
+        private const string GravityGunDefPath = "Assets/Ziptide/Content/Items/Sandbox_GravityGun.asset";
+
+        /// <summary>Drop test gear + drones in the sandbox so weapons can be exercised immediately.</summary>
+        private static void EnsureSandboxContent()
+        {
+            EnsureGravityGunDef();
+
+            // Place the gravity gun + a taser by the Grab zone, built via ItemFactory so both get the
+            // forward-snapping Grip attach + holster-compatible setup. Guard by name = idempotent.
+            if (GameObject.Find("GravityGun") == null)
+                Ziptide.Gameplay.ItemFactory.Create("gravity_gun", new Vector3(-9f, 1.1f, 8f));
+            if (GameObject.Find("TaserDartGun") == null)
+                Ziptide.Gameplay.ItemFactory.Create("taser_dart_gun", new Vector3(-9f, 1.1f, 9.5f));
+
+            // Test drones in the Enemy zone to shoot at.
+            for (int i = 0; i < 3; i++)
+            {
+                string n = "SandboxDrone_" + i;
+                if (GameObject.Find(n) != null) continue;
+                var drone = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                drone.name = n;
+                drone.transform.position = new Vector3(8f + i * 1.2f, 1.6f, 9f);
+                drone.transform.localScale = Vector3.one * 0.4f;
+                drone.AddComponent<Ziptide.Gameplay.DroneRuntime>();
+            }
+        }
+
+        private static void EnsureGravityGunDef()
+        {
+            var def = AssetDatabase.LoadAssetAtPath<GravityGunDefinition>(GravityGunDefPath);
+            if (def == null)
+            {
+                if (!AssetDatabase.IsValidFolder("Assets/Ziptide/Content/Items"))
+                    AssetDatabase.CreateFolder("Assets/Ziptide/Content", "Items");
+                def = ScriptableObject.CreateInstance<GravityGunDefinition>();
+                AssetDatabase.CreateAsset(def, GravityGunDefPath);
+            }
+            def.itemId = "gravity_gun";
+            def.mass = 0.45f;
+            EditorUtility.SetDirty(def);
+            AssetDatabase.SaveAssets();
         }
 
         private static void EnsureLighting()

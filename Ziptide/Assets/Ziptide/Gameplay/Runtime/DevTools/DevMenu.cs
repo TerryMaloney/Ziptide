@@ -60,7 +60,10 @@ namespace Ziptide.Gameplay.DevTools
 
         public void Show()
         {
-            if (_canvasGo == null) BuildCanvas();
+            // Rebuild fresh each time so the canvas re-registers with the CURRENT scene's EventSystem
+            // after a warp (fixes "clickable only once" — the post-travel UI raycast went stale).
+            if (_canvasGo != null) Destroy(_canvasGo);
+            BuildCanvas();
             PositionInFront();
             _canvasGo.SetActive(true);
             _visible = true;
@@ -100,6 +103,7 @@ namespace Ziptide.Gameplay.DevTools
             _canvasGo.transform.SetParent(transform, false);
             var canvas = _canvasGo.AddComponent<Canvas>();
             canvas.renderMode = RenderMode.WorldSpace;
+            canvas.worldCamera = Camera.main;
             _canvasGo.AddComponent<TrackedDeviceGraphicRaycaster>();
             var canvasRt = canvas.GetComponent<RectTransform>();
             canvasRt.sizeDelta = new Vector2(width, height);
@@ -144,6 +148,7 @@ namespace Ziptide.Gameplay.DevTools
             rt.SetParent(parent, false);
             TopRow(rt, yTop, h);
             var t = go.GetComponent<TextMeshProUGUI>();
+            t.font = TMP_Settings.defaultFontAsset;
             t.text = text;
             t.fontSize = size;
             t.color = color;
@@ -165,6 +170,7 @@ namespace Ziptide.Gameplay.DevTools
             lrt.SetParent(rt, false);
             Stretch(lrt);
             var t = labelGo.GetComponent<TextMeshProUGUI>();
+            t.font = TMP_Settings.defaultFontAsset;
             t.text = label;
             t.fontSize = 30;
             t.color = Color.white;

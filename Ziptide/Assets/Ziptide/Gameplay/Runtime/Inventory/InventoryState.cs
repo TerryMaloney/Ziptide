@@ -124,6 +124,22 @@ namespace Ziptide.Gameplay
                 parent = parent.parent;
             }
 
+            // Proximity fallback: a gun resting on a holster may not be socket-SELECTED yet (physics/
+            // timing), which would make it look "loose" and get left behind on travel. If it's sitting
+            // on a holster, still treat it as holstered so it comes with you.
+            var holsters = Object.FindObjectsOfType<HolsterSocketInteractor>();
+            foreach (var h in holsters)
+            {
+                if (h == null) continue;
+                if (Vector3.Distance(item.transform.position, h.transform.position) <= 0.18f)
+                {
+                    string hn = h.gameObject.name.ToLowerInvariant();
+                    if (hn.Contains("left")) return "holster_left";
+                    if (hn.Contains("right")) return "holster_right";
+                    return "holster_center";
+                }
+            }
+
             return "loose";
         }
 

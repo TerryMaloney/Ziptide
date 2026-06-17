@@ -10,7 +10,7 @@ namespace Ziptide.Gameplay
     public class HolsterSocketInteractor : XRSocketInteractor
     {
         [Tooltip("Item IDs this socket accepts (e.g. pistol).")]
-        [SerializeField] private List<string> allowedItemIds = new List<string> { "pistol", "taser_dart_gun" };
+        [SerializeField] private List<string> allowedItemIds = new List<string> { "pistol", "taser_dart_gun", "gravity_gun" };
 
         public override bool CanHover(IXRHoverInteractable interactable)
         {

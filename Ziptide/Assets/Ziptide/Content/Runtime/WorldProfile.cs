@@ -17,6 +17,9 @@ namespace Ziptide.Content
         [Tooltip("Width (X) and length (Z) of the play area in meters.")]
         public Vector2 playAreaSize = new Vector2(4f, 4f);
         public float groundY = 0f;
+        [Tooltip("Build invisible boundary walls around the play area. OFF for open worlds — the " +
+                 "global fall-safety net handles falling. Only enable for a true roomscale box.")]
+        public bool usePlayAreaBounds = false;
 
         [Header("Respawn")]
         public bool respawnOnFall = true;

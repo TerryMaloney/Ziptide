@@ -27,6 +27,9 @@ namespace Ziptide.Gameplay
             if (def is TaserDartGunDefinition taserDef)
                 return CreateTaserDartGun(taserDef, position);
 
+            if (def is GravityGunDefinition gravDef)
+                return CreateGravityGun(gravDef, position);
+
             return CreateGenericItem(def, position);
         }
 
@@ -131,6 +134,47 @@ namespace Ziptide.Gameplay
             var muzzle = new GameObject("Muzzle");
             muzzle.transform.SetParent(go.transform, false);
             muzzle.transform.localPosition = new Vector3(0f, 0f, 0.14f);
+
+            return go;
+        }
+
+        private static GameObject CreateGravityGun(GravityGunDefinition def, Vector3 position)
+        {
+            var go = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            go.name = "GravityGun";
+            go.transform.position = position;
+            go.transform.localScale = new Vector3(0.08f, 0.07f, 0.22f);
+
+            ApplyURPColor(go, new Color(0.45f, 0.3f, 0.7f)); // violet — distinct from the taser
+
+            var rb = go.AddComponent<Rigidbody>();
+            rb.mass = def.mass > 0 ? def.mass : 0.45f;
+            rb.useGravity = true;
+            rb.isKinematic = false;
+            rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+            rb.interpolation = RigidbodyInterpolation.Interpolate;
+
+            var grab = go.AddComponent<XRGrabInteractable>();
+            grab.movementType = XRBaseInteractable.MovementType.VelocityTracking;
+            grab.useDynamicAttach = false; // snap to the Grip attach transform so it faces forward on grab
+            grab.attachEaseInTime = 0f;
+            grab.trackPosition = true;
+            grab.trackRotation = true;
+            grab.retainTransformParent = false;
+
+            var grip = new GameObject("Grip");
+            grip.transform.SetParent(go.transform, false);
+            grip.transform.localPosition = new Vector3(0f, -0.01f, -0.06f);
+            grab.attachTransform = grip.transform;
+
+            var itemRt = go.AddComponent<ItemRuntime>();
+            itemRt.Init(def);
+
+            go.AddComponent<GravityGunRuntime>();
+
+            var muzzle = new GameObject("Muzzle");
+            muzzle.transform.SetParent(go.transform, false);
+            muzzle.transform.localPosition = new Vector3(0f, 0f, 0.15f);
 
             return go;
         }
