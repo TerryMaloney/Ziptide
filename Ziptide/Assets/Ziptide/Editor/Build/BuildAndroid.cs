@@ -49,6 +49,14 @@ namespace Ziptide.Build
                 try { Ziptide.Editor.Patching.ScenePatcherD2.PatchActiveScene(); }
                 catch (Exception ex) { Debug.LogWarning("[Ziptide] D2 patcher warning for " + path + ": " + ex.Message); }
 
+                // The sandbox is generated procedurally (gear + drones + zones) — populate it here so
+                // every build has the content without a manual "Build Sandbox Test Lab" menu step.
+                if (sceneName == Ziptide.Editor.Patching.ScenePatcherSandbox.SceneName)
+                {
+                    try { Ziptide.Editor.Patching.ScenePatcherSandbox.PopulateActiveSandbox(); }
+                    catch (Exception ex) { Debug.LogWarning("[Ziptide] Sandbox patcher warning for " + path + ": " + ex.Message); }
+                }
+
                 EditorSceneManager.MarkSceneDirty(scene);
                 EditorSceneManager.SaveOpenScenes();
             }

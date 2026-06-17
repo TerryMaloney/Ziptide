@@ -41,10 +41,9 @@ namespace Ziptide.Editor.Patching
         public static void BuildFromMenu()
         {
             var scene = OpenOrCreateScene();
-            PopulateScene();
+            PopulateActiveSandbox();
             EditorSceneManager.MarkSceneDirty(scene);
             EditorSceneManager.SaveScene(scene, ScenePath);
-            EnsureWorldPackAsset();
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
             Debug.Log("[Ziptide] Sandbox Test Lab built/updated at " + ScenePath
@@ -52,6 +51,17 @@ namespace Ziptide.Editor.Patching
             EditorUtility.DisplayDialog("Sandbox Test Lab",
                 "Built/updated " + SceneName + ".\n\nAdd it to Build Settings to warp into it at runtime, "
                 + "or use Dev Warp > Open Scene to edit it.", "OK");
+        }
+
+        /// <summary>
+        /// Populate the CURRENTLY-OPEN sandbox scene (floor, spawn, zones, gear, drones). Called by the
+        /// menu and by the build pipeline (BuildAndroid) so the sandbox content is generated on every
+        /// build — no manual menu step required. Idempotent.
+        /// </summary>
+        public static void PopulateActiveSandbox()
+        {
+            PopulateScene();
+            EnsureWorldPackAsset();
         }
 
         private static Scene OpenOrCreateScene()
