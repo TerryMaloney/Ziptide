@@ -77,11 +77,16 @@ Terry tested the cloud APK. Two bugs:
      (CourtyardA, which sits on a real collider), falling back to `worldProfile.spawnPosition` only if
      no marker exists. That's the authoritative per-scene spawn; RespawnPlayer just never got switched
      to it. Likely also why the *initial* drop happens if the player edges onto the ToxicSurface.
-2. **🟡 First room (MilestoneA) — Y+B Dev Menu shows as a blank "square."** Either the world-list
-   buttons aren't rendering (TMP font/canvas — you patched this in `9239b7c`, may not have fully taken)
-   or the **`DevWorldManifest` is empty/stale in the CI build** (the build never rebuilds it — see
-   `AUTOMATION_AUDIT.md` item C). Need Terry to confirm: blank square, or square WITH clickable world
-   buttons? If it's the manifest, fix = rebuild it in the build (audit item C) and/or re-check the font.
+2. **🟡 First room — Y+B Dev Menu = black rectangle on the ground, non-interactive (BLOCKER: can't
+   warp → can't reach Sandbox).** Terry confirmed: dark rectangle near the floor, clicking did nothing.
+   **Root cause:** `DevMenu.BuildCanvas` set `canvas.worldCamera = Camera.main`, which is **null** on
+   this rig (head cam not tagged MainCamera) → world-space canvas has no event camera → not raycastable
+   (dead) and mis-placed.
+   - **I patched `DevMenu.cs` (your lane — flagging, please verify on device):** robust `FindCam()`
+     (Camera.main → allCameras[0] → FindObjectOfType) used for `worldCamera` + `PositionInFront`; added
+     `EnsureEventSystem()` (creates/upgrades to `XRUIInputModule` so ray-clicks land). Compiles in CI;
+     **not device-verified.** If it's still dead on device, likely the ray interactors need "Enable
+     Interaction with UI GameObjects," or the manifest is empty (audit item C — build doesn't rebuild it).
 
 **Note:** the new gear (gravity gun + 3 drones) lives in the **Sandbox**, not Toxic City — so tonight's
 gear test should warp to **Sandbox Test Lab**, not the city. City fall-loop is a separate pre-existing bug.
