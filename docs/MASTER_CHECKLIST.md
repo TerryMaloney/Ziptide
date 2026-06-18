@@ -66,10 +66,16 @@ Skim this first; the deep docs are linked per item.
 
 ---
 
-## 📥 GPT's new direction — PENDING (Terry to provide)
-*Reserved slot.* Terry mentioned a new direction from GPT (a few items ahead of current work). The
-file/message hasn't landed in the repo yet — once Terry pastes it or commits it under
-`docs/GPT_ADDITIONS/`, fold it into the right tier above and link it here. **Do not invent this.**
+## ⭐ NEXT BIG MILESTONE — Starter World Blockout (onboarding planet)
+*Planned, not started — Terry wants a few short-term items done first.* GPT's 6/18 brief: graybox the
+first real world as a **compact onboarding planet** (10 named regions: Hub → Spaceport/Vehicle Port →
+Toxic City spine → Canals/Slum → Outskirts → Open Badlands → Mission Pocket → Dormant Ziptide gate),
+walkable end-to-end, ~25–35 min, gateway to the multi-world premise. **Don't overbuild** — scale,
+pathing, landmarks, placeholders over final art. Plan: [`design/STARTER_WORLD_BLOCKOUT.md`](design/STARTER_WORLD_BLOCKOUT.md);
+full brief in [`GPT_ADDITIONS/2026-06-18_Starter_World_Blockout/`](GPT_ADDITIONS/2026-06-18_Starter_World_Blockout/01_architect_starter_world_blockout_brief.md).
+- ⚠️ **Lane to reconcile:** the brief says "Architect = blockout," but in our repo scene/blockout is
+  T-Dog's lane (Architect = backend/data, can't Unity-verify). Confirm owner before building.
+- This is the first real user of the **world-scaling pipeline** (mid-term) and refines **Level 1 — Toxic Venice**.
 
 ---
 

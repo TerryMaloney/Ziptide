@@ -53,6 +53,21 @@ other agent's latest `Next-CLAIMED` first. If it overlaps, pick something else. 
 
 ## ENTRIES (newest first)
 
+### 2026-06-18 (p) — Architect: GPT Starter-World brief filed (planned, not started)
+- **Found GPT's new direction** — it was on `main` (6/18 folder), not the 6/16 set; vendored onto
+  `terry-local-wip`. It's an **onboarding first-world graybox** brief (10 named regions, ~25–35 min,
+  gateway to the Ziptide premise; "don't overbuild").
+- **Filed it:** distilled plan `docs/design/STARTER_WORLD_BLOCKOUT.md` (region hierarchy, zone table,
+  mission flow, acceptance checklist) + added it to `MASTER_CHECKLIST.md` as the **next big world
+  milestone** (PLANNED — Terry wants short-term items done first). Refines `LEVEL1_TOXIC_VENICE.md`;
+  first real user of the world-scaling pipeline.
+- **⚠️ Lane discrepancy to reconcile (T-Dog + Terry):** the brief assigns "Architect = world
+  structure / scene blockout," but per our `HANDOFF` agreement scene/editor/blockout = **T-Dog's
+  lane** (Architect = backend/data, no headset, can't Unity-verify scenes). When this starts, the
+  graybox is editor/scene work (likely a new-world `ScenePatcher` + `WorldPackDefinition` + markers).
+  **Decide the owner before building** — I did NOT grab the scene work.
+- **Commit:** _(this push)_ on `terry-local-wip`.
+
 ### 2026-06-18 (o) — Architect: new MASTER_CHECKLIST + GPT-direction slot pending
 - **New `docs/MASTER_CHECKLIST.md`** — the scannable BUILT / short / mid / long-term map Terry wanted
   (we had MASTER_BUILD_PLAN = deep vision, WORKLIST = near-term, STATUS = dashboard, but no quick
