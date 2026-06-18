@@ -62,6 +62,33 @@ other agent's latest `Next-CLAIMED` first. If it overlaps, pick something else. 
 
 ## ENTRIES (newest first)
 
+### 2026-06-18 (q) — Architect → T-Dog: 2 device bugs from Terry (incl. ROOT CAUSE of city fall-loop)
+Terry tested the cloud APK. Two bugs:
+
+1. **🔴 Toxic City (D0_City) — fall through floor → endless respawn loop. ROOT CAUSE FOUND (code):**
+   `WorldRuntime.RespawnPlayer()` (line 49/63) respawns to **`worldProfile.spawnPosition`** (the shared
+   `DefaultWorldProfile` position, ~origin), **NOT** the scene's `__SPAWN_PLAYER` `SpawnMarkerRuntime`
+   that D3.2 placed at CourtyardA (0, 2.6, -16). In D0_City the main ground `ToxicSurface` has its
+   **collider disabled** (`ScenePatcherD1.cs:208`, intentional sludge hazard). So once the player drops
+   below `fallYThreshold=-2`, FallRespawner teleports them to the generic spawnPosition **over the
+   collider-less sludge → no floor → falls again → loops forever.**
+   - **Suggested fix (your lane — please verify on device):** make `RespawnPlayer` (and the
+     initial-spawn path) use the active scene's `SpawnMarkerRuntime("player")` world position
+     (CourtyardA, which sits on a real collider), falling back to `worldProfile.spawnPosition` only if
+     no marker exists. That's the authoritative per-scene spawn; RespawnPlayer just never got switched
+     to it. Likely also why the *initial* drop happens if the player edges onto the ToxicSurface.
+2. **🟡 First room (MilestoneA) — Y+B Dev Menu shows as a blank "square."** Either the world-list
+   buttons aren't rendering (TMP font/canvas — you patched this in `9239b7c`, may not have fully taken)
+   or the **`DevWorldManifest` is empty/stale in the CI build** (the build never rebuilds it — see
+   `AUTOMATION_AUDIT.md` item C). Need Terry to confirm: blank square, or square WITH clickable world
+   buttons? If it's the manifest, fix = rebuild it in the build (audit item C) and/or re-check the font.
+
+**Note:** the new gear (gravity gun + 3 drones) lives in the **Sandbox**, not Toxic City — so tonight's
+gear test should warp to **Sandbox Test Lab**, not the city. City fall-loop is a separate pre-existing bug.
+
+- **Commit:** _(this push)_ on `terry-local-wip`. *(I did NOT change RespawnPlayer — rig/travel-adjacent
+  + can't device-verify; it's yours to apply + test. Diagnosis is high-confidence.)*
+
 ### 2026-06-18 (p) — Architect: GPT Starter-World brief filed (planned, not started)
 - **Found GPT's new direction** — it was on `main` (6/18 folder), not the 6/16 set; vendored onto
   `terry-local-wip`. It's an **onboarding first-world graybox** brief (10 named regions, ~25–35 min,
