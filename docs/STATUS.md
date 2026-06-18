@@ -4,6 +4,7 @@
 last action at the end. One branch for shared work: **`terry-local-wip`** (green). Pull first.
 
 **Single source of truth for "what exists". Check this first every session.**
+For the big-picture BUILT / short / mid / long-term map, see [`MASTER_CHECKLIST.md`](MASTER_CHECKLIST.md).
 
 ---
 

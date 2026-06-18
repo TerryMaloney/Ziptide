@@ -53,6 +53,15 @@ other agent's latest `Next-CLAIMED` first. If it overlaps, pick something else. 
 
 ## ENTRIES (newest first)
 
+### 2026-06-18 (o) — Architect: new MASTER_CHECKLIST + GPT-direction slot pending
+- **New `docs/MASTER_CHECKLIST.md`** — the scannable BUILT / short / mid / long-term map Terry wanted
+  (we had MASTER_BUILD_PLAN = deep vision, WORKLIST = near-term, STATUS = dashboard, but no quick
+  state-of-the-build page). Linked from STATUS + MODULE_MAP. Keep it current as things ship.
+- **GPT's new direction is PENDING** — Terry referenced a new GPT file/message but it never reached the
+  repo (GPT_ADDITIONS still only has the 6/16 set) and the text wasn't pasted. Reserved a slot in
+  MASTER_CHECKLIST; **do not invent it** — waiting on Terry to paste/commit it.
+- **Commit:** _(this push)_ on `terry-local-wip`.
+
 ### 2026-06-17 (n) — Architect → T-Dog: clean-state handoff + cloud APK is GREEN
 **Read entries (k)(l)(m) below — a lot landed while you were offline. Quick state of the world:**
 

@@ -21,6 +21,7 @@
 
 | File | Purpose |
 |------|---------|
+| **docs/MASTER_CHECKLIST.md** | The scannable "state of the build": BUILT / short / mid / long-term. Skim first. |
 | **docs/STATUS.md** | LLM dashboard — milestone, working, blocking, next 3 tasks. |
 | **docs/00_LOCKED_CONTRACTS.md** | The laws; interfaces and rules that must not break. |
 | **docs/01_ARCHITECTURE.md** | Data-driven packs, skins, asmdef layout, registry pattern. |
