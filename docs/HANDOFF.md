@@ -53,6 +53,50 @@ other agent's latest `Next-CLAIMED` first. If it overlaps, pick something else. 
 
 ## ENTRIES (newest first)
 
+### 2026-06-17 (n) — Architect → T-Dog: clean-state handoff + cloud APK is GREEN
+**Read entries (k)(l)(m) below — a lot landed while you were offline. Quick state of the world:**
+
+- **✅ Cloud build is GREEN and there's a downloadable APK.** A `workflow_dispatch` CI run on
+  `terry-local-wip` @ `8791345` finished success: EditMode tests ✅, **Build Android APK ✅** (ran the
+  real `PatchScenesThenAPK` — patch + audit + APK). Artifact **`ziptide-apk`** (70 MB):
+  https://github.com/TerryMaloney/Ziptide/actions/runs/27759685349 → Artifacts. Terry sideloads it
+  (`adb install -r`) — **no Unity PC needed anymore.**
+- **Important confirmation:** the world **audit did NOT abort** the cloud build → the stale
+  `MilestoneA_GrabCube` blockers are cleared by the patchers at build time. So "nothing got fixed"
+  yesterday was **only** the Sandbox-not-in-Build-Settings bug (now fixed), not an audit abort.
+- **This APK contains your fixes** (it's built from `8791345`, which includes `062af82`): the
+  Sandbox now ships with the **gravity gun + 3 drones**, plus your PlayAreaBounds/holster/dev-menu
+  fixes. To see them on-device: summon the Dev Menu (**Y+B**) → warp to **Sandbox Test Lab**.
+
+**What I changed in YOUR lane (build tooling) — flagging so you don't trip on it:**
+- `ScenePatcherSandbox.cs` — added `EnsureInBuildSettings()` (the sandbox auto-enters Build Settings).
+- `BuildAndroid.cs` — calls it before the scene loop.
+- `ci.yml` — `build-android` now runs `buildMethod=PatchScenesThenAPK` + `allowDirtyBuild`, uploads
+  the `ziptide-apk` artifact. **To make a device build now:** Actions > CI > Run workflow, OR call
+  `mcp__github__actions_run_trigger` (workflow `ci.yml`, ref `terry-local-wip`) after a code push and
+  hand Terry the artifact link.
+If any of that overlapped something you had in flight, sorry — wave me off and revert; it's all small
+and additive. Full reasoning in entries (l)/(m) and `docs/AUTOMATION_AUDIT.md`.
+
+**You may have gotten stuck mid-task last session.** The repo is clean (no uncommitted/stashed work
+here), and anything you didn't push died with your container — so **re-check whatever you were doing**
+against `terry-local-wip` and restart it if it didn't land. Your last shipped commit was `4d82310`.
+
+**Still open from your (i) — need on-device logcat (Terry's testing tonight):** existing scene-placed
+taser grip-snap (ScenePatcherC0 doesn't add the ItemFactory grip; sandbox guns DO), holster-travel
+confirm, dev-menu re-click after warp.
+
+**Queued plans (docs, not started):** gun model swap + the **Quest grip 45° offset** on the
+`ItemFactory` Grip (`docs/systems/ASSET_SWAP_PIPELINE.md`); **drone combat v1** — orbit/strafe +
+telegraphed stun bolt + `PlayerStunState` screen-obscure (`docs/systems/DRONE_COMBAT_v1.md`). Both are
+**runtime = your lane**; the tunables → `CreatureDefinition` are my **Creatures v1** data half.
+
+**Terry's plan:** test the CI APK at home tonight; T-Dog back online ~5 PM and Terry will brief it on
+findings, then we keep moving. Terry's role = creative direction + human feel + on-device testing; we
+own the technical/build side and keep the build→test loop one-click.
+
+- **Commit:** _(this push)_ on `terry-local-wip`.
+
 ### 2026-06-17 (m) — Architect: CI now builds the APK (no Unity PC needed)
 - **`ci.yml` `build-android` now runs `buildMethod: BuildAndroid.PatchScenesThenAPK`** (+ `allowDirtyBuild`)
   and uploads the **`ziptide-apk`** artifact. So a triggered run does the exact PC build (patch + audit +
