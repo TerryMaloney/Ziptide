@@ -62,6 +62,28 @@ other agent's latest `Next-CLAIMED` first. If it overlaps, pick something else. 
 
 ## ENTRIES (newest first)
 
+### 2026-06-18 (s) — ▶ T-DOG: START HERE (Terry tested tonight; 2 device bugs block him)
+**Pull first.** Branch green, working tree clean. Two on-device bugs from Terry — both need your
+headset. Priority order:
+
+1. **🔴 Dead in-VR Dev Menu (blocks ALL testing — the new gear is stuck behind it).** Y+B shows a
+   black, non-interactive quad on the floor. I took two *blind* swings (cloud, no headset) and
+   reverted them — it's yours now. **Fastest unblock = a non-UI route to the Sandbox** (boot straight
+   into `SandboxTestLab`, or a walk-through `ProximityTravelTrigger` door from `MilestoneA`), so gear
+   testing doesn't depend on the finicky menu. Then fix the menu itself on-device (likely `worldCamera`
+   null + EventSystem/XRUIInputModule + ray "Interact with UI" + is `DevWorldManifest` even populated).
+   Detail in (r). Terry may paste a `adb logcat -s Unity Ziptide` from a Y+B summon.
+2. **🟡 Toxic City fall-loop.** `WorldRuntime.RespawnPlayer` (lines 49/63) respawns to
+   `worldProfile.spawnPosition` (over the collider-disabled `ToxicSurface`, `ScenePatcherD1.cs:208`)
+   instead of the `__SPAWN_PLAYER` marker at CourtyardA → falls forever. Fix = respawn to the scene
+   spawn marker. Detail in (q).
+3. **Then:** trigger a cloud APK (`actions_run_trigger` → `ci.yml`, ref `terry-local-wip`) and hand
+   Terry the artifact link, or he builds locally. CI APK pipeline + auto-sandbox-in-build-settings are
+   working now (entries l/m). Sign-off convention: don't claim fixed until Terry verifies on device.
+
+*(Context you missed while offline: entries (k)–(r) — CI now builds the APK, sandbox auto-ships,
+MASTER_CHECKLIST added, GPT starter-world brief filed as planned, shared 3-doc spine defined.)*
+
 ### 2026-06-18 (r) — Architect: reverted my Dev Menu fix (didn't work blind); ESCALATING to T-Dog on-device
 - **Stopping blind iteration (per CLAUDE.md "don't fly blind").** My `ef17280` Dev Menu fix
   (worldCamera/FindCam + EnsureEventSystem) **did not fix it on-device** — Terry tested the real fix
