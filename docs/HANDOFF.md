@@ -1,20 +1,29 @@
-# HANDOFF — shared cross-chat log (T-Dog ⇄ Architect)
+# HANDOFF — shared cross-chat log (T-Dog ⇄ Architect ⇄ GPT)
 
-⛔ **HARD RULE (both Claude chats, no exceptions):**
+⛔ **HARD RULE (all chats, no exceptions):**
 1. **Read this file at the START of every session.**
 2. **Append a `Did / Next-CLAIMED / Heads-up / Commit` entry at the END of every session.**
 3. **All shared work + this log live on the `terry-local-wip` branch** (it's green and is what Terry
    builds from). `git pull` it before starting. **Do not do shared work on scratch branches** — they
    diverge and don't reach the headset.
 
+> **The shared spine — everyone uses these three:**
+> - **`docs/HANDOFF.md`** (this file) — the coordination log; who did/claimed what.
+> - **`docs/MASTER_CHECKLIST.md`** — the state of the build (BUILT / short / mid / long-term).
+> - **`docs/GPT_ADDITIONS/<date>_<topic>/`** — where GPT's brainstorm briefs land (ideas, not orders).
+>
 > Detailed history lives in `docs/SESSION_LOG.md`. This file is the quick, always-current handshake.
 
 ---
 
 ## Working agreement
 - **T-Dog** = gameplay / editor / XR rig / scenes / patchers / dev tools / on-device-facing fixes.
+  *(Terry's usual "master chat" — but which LLM leads can shift with usage; the docs keep us synced.)*
 - **Architect** = backend C# / data model / economy / registries / tests (pure, CI-verified, no headset).
-- **Gemini** = creative only (ships, factions, lore, art). **No repo access** — its docs come in via
+- **GPT** = brainstorm / design synthesis / milestone framing. **No repo access** — its briefs come in
+  via Terry under `docs/GPT_ADDITIONS/`. **Its additions are IDEAS/inputs, not directives** — the
+  original plan stands; Architect/T-Dog distill the useful parts into MASTER_CHECKLIST + design docs.
+- **Gemini** = creative only (ships, factions, lore, art). **No repo access** — docs come in via
   Terry and a coding chat files them (see `docs/storyboard/`).
 - **Collision rule:** new files in your own lane = go. Editing a file in the other's lane, or a shared
   file (`ZiptideConstants.cs`, `WorldPackDefinition.cs`, build settings, `STATUS.md`) = **claim it in a
