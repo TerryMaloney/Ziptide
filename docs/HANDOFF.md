@@ -53,6 +53,25 @@ other agent's latest `Next-CLAIMED` first. If it overlaps, pick something else. 
 
 ## ENTRIES (newest first)
 
+### 2026-06-17 (l) — Architect: automation audit + auto-add Sandbox to Build Settings
+- **⚠️ Cross-lane touch (build tooling = your lane) — flagging loudly:** Terry asked me (while at work)
+  to kill manual steps. I made the one fix he'd already approved: **the Sandbox now auto-enters Build
+  Settings during the build.** New `ScenePatcherSandbox.EnsureInBuildSettings()` + a call in
+  `BuildAndroid.PatchScenesThenAPK` (right before it reads the scene list). This is THE reason the
+  gravity gun/drones never shipped — your `4d82310` build-hook was inert because the loop only iterates
+  *enabled* build-settings scenes and the sandbox wasn't one. Verified safe: D0/D1 patchers no-op
+  unless scene==`D0_City`, so the city can't leak into the sandbox. **I can't Unity-verify (cloud);
+  CI compiles it — please eyeball on your next build** (log should say "Sandbox added to Build
+  Settings"). If you'd already started this, sorry for the overlap — wave me off and I'll revert.
+- **New doc `docs/AUTOMATION_AUDIT.md`** — full manual-step inventory + prioritized fixes. The big P1s
+  are yours/ours to consider: (A) make CI build the APK with `buildMethod=PatchScenesThenAPK` on
+  `terry-local-wip` so we catch build-breaks (audit blockers, missing scenes) in the cloud *before*
+  device — and Terry could sideload the CI artifact without a Unity PC; (B) the world audit aborts the
+  WHOLE build on `MilestoneA_GrabCube`'s 2 stale blockers (XRI mgr + spawn) — worth finding why the
+  patchers don't strip them; (C) auto-rebuild `DevWorldManifest` in the build.
+- **Files:** `ScenePatcherSandbox.cs`, `BuildAndroid.cs` (code), `docs/AUTOMATION_AUDIT.md` (doc).
+- **Commit:** _(this push)_ on `terry-local-wip`.
+
 ### 2026-06-17 (k) — Architect: build-failure diagnosis + art/drone-combat plans (for next build, not this fix run)
 - **Why nothing got fixed yesterday (Terry asked me to dig):** it's a **packaging problem, not code** —
   CI is GREEN on `9239b7c`/`281fa26`/`4d82310`, so your fixes compile. Two findings:

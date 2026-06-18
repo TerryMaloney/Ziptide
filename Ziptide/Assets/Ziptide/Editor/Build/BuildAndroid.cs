@@ -23,7 +23,13 @@ namespace Ziptide.Build
 
             Ziptide.Editor.Patching.ScenePatcherD0.EnsureD0SceneExists();
 
-            // Reload scenes list — ScenePatcherBoot may have modified it (added _Boot, removed SampleScene).
+            // Ensure the dev Sandbox scene is enabled in Build Settings BEFORE we read the list, so the
+            // loop below opens + populates it and it ships (and can be warped to at runtime). Without
+            // this the sandbox gear/drones never reach the headset. Idempotent; safe in batchmode.
+            try { Ziptide.Editor.Patching.ScenePatcherSandbox.EnsureInBuildSettings(); }
+            catch (Exception ex) { Debug.LogWarning("[Ziptide] Sandbox build-settings ensure warning: " + ex.Message); }
+
+            // Reload scenes list — ScenePatcherBoot/Sandbox may have modified it (added _Boot/Sandbox, removed SampleScene).
             var scenes = EditorBuildSettings.scenes;
             for (int i = 0; i < scenes.Length; i++)
             {

@@ -1,4 +1,5 @@
 #if UNITY_EDITOR
+using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -11,9 +12,11 @@ namespace Ziptide.Editor.Patching
 {
     /// <summary>
     /// Builds the Sandbox Test Lab — a clean, larger (30x30) developer scene to prototype content in
-    /// before it ships to a real world. Idempotent: re-running updates in place. Menu-invoked only
-    /// (NOT part of the build loop, so it can never break a build). Pairs with the Dev Warp window —
-    /// the sandbox + its zone markers show up there for one-click jumping.
+    /// before it ships to a real world. Idempotent: re-running updates in place. Pairs with the Dev
+    /// Warp window — the sandbox + its zone markers show up there for one-click jumping.
+    ///
+    /// The build pipeline (BuildAndroid) calls EnsureInBuildSettings() + PopulateActiveSandbox() so the
+    /// sandbox is always enabled in Build Settings and populated on every build — no manual menu step.
     ///
     /// Zones (named spawn markers + a marker post): grab, range, enemy, travel, artwall, loco.
     /// See docs/design/SANDBOX_TEST_LAB.md for the design.
@@ -62,6 +65,40 @@ namespace Ziptide.Editor.Patching
         {
             PopulateScene();
             EnsureWorldPackAsset();
+        }
+
+        /// <summary>
+        /// Ensure the sandbox scene is ENABLED in Build Settings so the build loop opens + populates it
+        /// and it ships in the APK (and can be warped to at runtime). Idempotent. Called by BuildAndroid
+        /// so no manual "add to Build Settings" step is ever needed — this was the reason the sandbox
+        /// gear/drones never reached the headset. Mirrors ScenePatcherD0.AddSceneToBuildSettings.
+        /// </summary>
+        public static void EnsureInBuildSettings()
+        {
+            string normalized = ScenePath.Replace('\\', '/');
+            if (!File.Exists(ScenePath))
+            {
+                // Don't fabricate a scene mid-build; the menu (Build Sandbox Test Lab) creates it.
+                Debug.LogWarning("[Ziptide] Sandbox scene not found at " + normalized
+                    + " — run 'Ziptide/Dev/Build Sandbox Test Lab' once to create it. "
+                    + "Skipping Build Settings add for this build.");
+                return;
+            }
+
+            var scenes = new List<EditorBuildSettingsScene>(EditorBuildSettings.scenes);
+            int idx = scenes.FindIndex(s => s.path == normalized);
+            if (idx < 0)
+            {
+                scenes.Add(new EditorBuildSettingsScene(normalized, true));
+                EditorBuildSettings.scenes = scenes.ToArray();
+                Debug.Log("[Ziptide] Sandbox added to Build Settings: " + normalized);
+            }
+            else if (!scenes[idx].enabled)
+            {
+                scenes[idx] = new EditorBuildSettingsScene(normalized, true);
+                EditorBuildSettings.scenes = scenes.ToArray();
+                Debug.Log("[Ziptide] Sandbox re-enabled in Build Settings: " + normalized);
+            }
         }
 
         private static Scene OpenOrCreateScene()
