@@ -63,7 +63,6 @@ namespace Ziptide.Gameplay.DevTools
             // Rebuild fresh each time so the canvas re-registers with the CURRENT scene's EventSystem
             // after a warp (fixes "clickable only once" — the post-travel UI raycast went stale).
             if (_canvasGo != null) Destroy(_canvasGo);
-            EnsureEventSystem();
             BuildCanvas();
             PositionInFront();
             _canvasGo.SetActive(true);
@@ -77,40 +76,16 @@ namespace Ziptide.Gameplay.DevTools
             _visible = false;
         }
 
-        // Robust camera lookup — Camera.main is null when the XR head camera isn't tagged MainCamera,
-        // which left the world-space canvas with no event camera (not clickable) and mis-placed.
-        private static Camera FindCam()
-        {
-            if (Camera.main != null) return Camera.main;
-            if (Camera.allCamerasCount > 0) return Camera.allCameras[0];
-            return FindObjectOfType<Camera>();
-        }
-
-        // A world-space canvas needs an EventSystem with the XR UI input module for ray clicks to land.
-        private static void EnsureEventSystem()
-        {
-            var existing = FindObjectOfType<UnityEngine.EventSystems.EventSystem>();
-            if (existing != null)
-            {
-                // Make sure it can process XR ray UI events (a plain StandaloneInputModule can't).
-                if (existing.GetComponent<XRUIInputModule>() == null)
-                    existing.gameObject.AddComponent<XRUIInputModule>();
-                return;
-            }
-            var es = new GameObject("EventSystem", typeof(UnityEngine.EventSystems.EventSystem), typeof(XRUIInputModule));
-            DontDestroyOnLoad(es);
-        }
-
         private void PositionInFront()
         {
-            var cam = FindCam();
+            var cam = Camera.main;
+            if (cam == null && Camera.allCamerasCount > 0) cam = Camera.allCameras[0];
             if (cam == null) return;
             Vector3 fwd = cam.transform.forward;
             fwd.y = 0f;
             if (fwd.sqrMagnitude < 0.001f) fwd = Vector3.forward;
             fwd.Normalize();
-            // Place at eye height, ~1.6 m in front, facing the player.
-            _canvasGo.transform.position = cam.transform.position + fwd * 1.6f;
+            _canvasGo.transform.position = cam.transform.position + fwd * 1.6f + Vector3.up * 0.0f;
             _canvasGo.transform.rotation = Quaternion.LookRotation(fwd, Vector3.up);
         }
 
@@ -128,7 +103,7 @@ namespace Ziptide.Gameplay.DevTools
             _canvasGo.transform.SetParent(transform, false);
             var canvas = _canvasGo.AddComponent<Canvas>();
             canvas.renderMode = RenderMode.WorldSpace;
-            canvas.worldCamera = FindCam(); // was Camera.main (null on this rig) → world-space UI had no event camera
+            canvas.worldCamera = Camera.main;
             _canvasGo.AddComponent<TrackedDeviceGraphicRaycaster>();
             var canvasRt = canvas.GetComponent<RectTransform>();
             canvasRt.sizeDelta = new Vector2(width, height);

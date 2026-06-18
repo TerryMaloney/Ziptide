@@ -62,6 +62,28 @@ other agent's latest `Next-CLAIMED` first. If it overlaps, pick something else. 
 
 ## ENTRIES (newest first)
 
+### 2026-06-18 (r) — Architect: reverted my Dev Menu fix (didn't work blind); ESCALATING to T-Dog on-device
+- **Stopping blind iteration (per CLAUDE.md "don't fly blind").** My `ef17280` Dev Menu fix
+  (worldCamera/FindCam + EnsureEventSystem) **did not fix it on-device** — Terry tested the real fix
+  build and the menu is still a **black box, non-interactive**, AND he reported **can't quit the game**
+  (possible regression from my `EnsureEventSystem()` touching the live EventSystem). **I reverted
+  `DevMenu.cs` to your last-shipped version (`9239b7c`)** so the codebase is clean and quit-safe again.
+- **This is now a headset-debug task — yours.** I can't verify VR UI from the cloud and two blind
+  swings failed. The in-VR Dev Menu renders as a dead black quad (world-space canvas not raycastable /
+  not rendering buttons; `Camera.main` is likely null on the rig, but the real fix needs on-device
+  iteration — EventSystem/XRUIInputModule, ray-interactor "Interact with UI" flag, TMP font present,
+  canvas scale/placement, and whether `DevWorldManifest` is even populated in the build).
+- **Recommendation:** since the only reason to use the menu right now is to reach the **Sandbox** (the
+  new gear lives there), the fastest unblock may be a **non-UI route** you can verify on-device:
+  either boot directly into `SandboxTestLab`, or add a walk-through `ProximityTravelTrigger` door from
+  `MilestoneA` → Sandbox. Then the menu can be fixed without blocking gear testing.
+- **Also still open:** Toxic City fall-loop (root cause + one-line fix in entry (q): `RespawnPlayer`
+  uses `worldProfile.spawnPosition` over the collider-disabled sludge instead of the `__SPAWN_PLAYER`
+  marker at CourtyardA).
+- **Need from Terry:** a logcat during a menu summon would pin it fast — `adb logcat -s Unity Ziptide`
+  while pressing Y+B (look for `ZIPTIDE: DEV_MENU` lines + any NullRef/exception spam).
+- **Commit:** _(this push)_ — revert only, docs. No new APK built (no working fix to ship yet).
+
 ### 2026-06-18 (q) — Architect → T-Dog: 2 device bugs from Terry (incl. ROOT CAUSE of city fall-loop)
 Terry tested the cloud APK. Two bugs:
 
