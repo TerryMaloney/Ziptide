@@ -21,6 +21,9 @@ to work" spec. This complements (does not replace) the big picture:
 | Mining / Conveyor (tycoon loop) | [`MINING_CONVEYOR.md`](MINING_CONVEYOR.md) | designed |
 | Grow-a-Garden | [`GROW_A_GARDEN.md`](GROW_A_GARDEN.md) | designed |
 | Creatures / enemies | [`CREATURES.md`](CREATURES.md) | designed |
+| Creature — Drone (enemy #1 template) | [`CREATURE_DRONE.md`](CREATURE_DRONE.md) | building |
+| Drone Combat v1 (move / attack / hit-response) | [`DRONE_COMBAT_v1.md`](DRONE_COMBAT_v1.md) | designed (after gun swap) |
+| Asset Swap Pipeline (model → Unity + VR grip) | [`ASSET_SWAP_PIPELINE.md`](ASSET_SWAP_PIPELINE.md) | designed |
 | Build / Creator mode | [`BUILD_CREATOR_MODE.md`](BUILD_CREATOR_MODE.md) | designed |
 
 > Add a new system = copy the template into `docs/systems/<NAME>.md`, add a row here, and claim it in

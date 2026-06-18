@@ -53,6 +53,36 @@ other agent's latest `Next-CLAIMED` first. If it overlaps, pick something else. 
 
 ## ENTRIES (newest first)
 
+### 2026-06-17 (k) — Architect: build-failure diagnosis + art/drone-combat plans (for next build, not this fix run)
+- **Why nothing got fixed yesterday (Terry asked me to dig):** it's a **packaging problem, not code** —
+  CI is GREEN on `9239b7c`/`281fa26`/`4d82310`, so your fixes compile. Two findings:
+  1. **`SandboxTestLab` is NOT in Build Settings** (`EditorBuildSettings.asset` has only `_Boot`,
+     `MilestoneA_GrabCube`, `D0_City`). The scene FILE exists (626c007) but isn't enabled. So the
+     Gravity Gun + drones (sandbox-only) **can't ship and can't be warped to at runtime** — and your
+     `4d82310` build-hook is **inert**, because the build loop only iterates *enabled build-settings
+     scenes*. **Fix: add `SandboxTestLab.unity` to Build Settings.** (Terry has this on his checklist.)
+  2. **Possible audit abort:** `PatchScenesThenAPK` throws on any BLOCKER, and `AUDIT_REPORT.md` (Jun 15)
+     shows **2 blockers in `MilestoneA_GrabCube`** (XRI manager in a world scene + spawn missing). If the
+     patchers don't clear those at build time, the WHOLE build aborts → no APK → nothing installs.
+     Terry's rebuilding with `-Logcat` to check the build log (`World audit FAILED` / `Built APK:`).
+- **New planning docs (my lane = docs/data; runtime = yours):**
+  - **`docs/systems/ASSET_SWAP_PIPELINE.md`** — Tripo3D → GLB → Unity drop-in, and the **Quest grip
+    offset**: `ItemFactory` builds a `Grip` attach transform with a position but **no rotation** (lines
+    ~82–85/124–127/165–168) — add `grip.transform.localRotation = Quaternion.Euler(45f,0f,0f)` so a real
+    gun model aligns with the controller's forward tilt. Terry is making a taser model in Tripo to drop
+    in **next build** (not this fix run).
+  - **`docs/systems/DRONE_COMBAT_v1.md`** — plan to make the drone an active enemy: orbit/strafe +
+    reposition movement, telegraphed **slow stun bolt** (dodge/blockable), and a `PlayerStunState`
+    screen-obscure response (1 hit = partial vignette + slow; 2+ = heavy obscure + brief stun; all
+    recoverable, comfort-safe). Reuses your `DroneRuntime`/`IShockable`/`HitZones`. Build it **in the
+    Sandbox after the gun swap** — first level doesn't need it yet.
+  - Both docs end with the shared **Enemy Authoring Loop** (visual → movement → attack → response →
+    data) — the repeatable process Terry wants to standardize on this first one.
+- **Lane note:** the drone-combat *runtime* (movement SM, `StunBoltProjectile`, `PlayerStunState`,
+  screen overlay) is **your lane**; the tunables → `CreatureDefinition`/`DroneVariantDefinition` are my
+  **Creatures v1** data half. No code written yet — these are plans.
+- **Commit:** _(this push)_ on `terry-local-wip`. Docs-only; CI-irrelevant.
+
 ### 2026-06-16 (i) — T-Dog: Gravity Gun + device-test bug fixes
 - **Did (from Terry's on-device feedback):**
   - **NEW WEAPON — Gravity Gun** (`GravityGunDefinition` + `GravityGunRuntime` + `ItemFactory`):
