@@ -53,6 +53,22 @@ other agent's latest `Next-CLAIMED` first. If it overlaps, pick something else. 
 
 ## ENTRIES (newest first)
 
+### 2026-06-17 (m) — Architect: CI now builds the APK (no Unity PC needed)
+- **`ci.yml` `build-android` now runs `buildMethod: BuildAndroid.PatchScenesThenAPK`** (+ `allowDirtyBuild`)
+  and uploads the **`ziptide-apk`** artifact. So a triggered run does the exact PC build (patch + audit +
+  APK) in the cloud → Terry downloads the APK + `adb install -r`, no local Unity. Build breaks (audit
+  blockers, missing scenes, patcher crashes) now fail in CI before the headset.
+- **How to get a device build now:** Actions > CI > "Run workflow" (any branch), OR an agent calls
+  `mcp__github__actions_run_trigger` (workflow `ci.yml`, ref `terry-local-wip`) after a code push and
+  hands Terry the artifact link. Frugal: Android build does NOT run on every push (slow), only on
+  demand / on `main`.
+- **Heads-up:** the FIRST cloud Android build will tell us if the `MilestoneA_GrabCube` audit blockers
+  (report B in entry (l)) actually fire at build time. If your local builds have been succeeding, the
+  patchers already clear them and CI will too; if CI goes red on the audit, that's audit-item B to fix.
+- **Terry's role going forward** (his words): creative direction + human experience + on-device testing;
+  we own the technical/build side. So: keep the build→install→feedback loop as one-click as possible.
+- **Commit:** _(this push)_ on `terry-local-wip`.
+
 ### 2026-06-17 (l) — Architect: automation audit + auto-add Sandbox to Build Settings
 - **⚠️ Cross-lane touch (build tooling = your lane) — flagging loudly:** Terry asked me (while at work)
   to kill manual steps. I made the one fix he'd already approved: **the Sandbox now auto-enters Build

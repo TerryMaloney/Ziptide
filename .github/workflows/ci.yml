@@ -73,7 +73,13 @@ jobs:
     name: Build Android APK
     needs: test
     runs-on: ubuntu-latest
-    # Building the Android player is slow; only do it on main or when manually triggered.
+    # Android builds are slow, so they don't run on every push. They run:
+    #   - on demand: Actions tab > CI > "Run workflow" (any branch), or an agent triggers it via the
+    #     GitHub API after pushing a device-test-worthy change, or
+    #   - automatically on push to main.
+    # The build runs the SAME path as the local PC build (BuildAndroid.PatchScenesThenAPK): it patches
+    # every scene, runs the world audit (a BLOCKER fails the run), then produces the APK — so build
+    # breakage is caught in the cloud BEFORE the headset, and the APK is downloadable as an artifact.
     if: github.event_name == 'workflow_dispatch' || github.ref == 'refs/heads/main'
     steps:
       - name: Checkout
@@ -100,9 +106,16 @@ jobs:
           projectPath: ${{ env.PROJECT_PATH }}
           unityVersion: ${{ env.UNITY_VERSION }}
           targetPlatform: Android
+          # Run our real build entrypoint (patch scenes + audit + APK) instead of the default build,
+          # so CI exercises exactly what the PC build does.
+          buildMethod: Ziptide.Build.BuildAndroid.PatchScenesThenAPK
+          # The scene patchers modify scenes/assets during the build, which dirties the working tree.
+          allowDirtyBuild: true
 
-      - name: Upload build
+      - name: Upload APK
         uses: actions/upload-artifact@v4
+        if: always()
         with:
-          name: ziptide-android
-          path: build
+          name: ziptide-apk
+          path: ${{ env.PROJECT_PATH }}/Builds/Android/Ziptide.apk
+          if-no-files-found: warn

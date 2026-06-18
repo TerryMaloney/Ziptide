@@ -32,19 +32,20 @@ payoff. Grounded in the real scripts (`tools/`), editor menus, and `BuildAndroid
   enabled, populated (gear + drones), and shipped — **no manual Build Settings step.** Kills step #1
   for the sandbox. *(Verify on Terry's next build: the build log should show "Sandbox added to Build
   Settings" and the gun/drones should be in the sandbox on-device.)*
+- **Cloud CI now builds the APK** (was main-only + skipped our patchers). `ci.yml`'s `build-android`
+  job now runs `buildMethod: BuildAndroid.PatchScenesThenAPK` (patch + audit + APK, same as the PC)
+  with `allowDirtyBuild: true`, and uploads the APK as the **`ziptide-apk`** artifact. Trigger it from
+  Actions > CI > **Run workflow** (any branch) or via the API. **Terry can download the APK and
+  `adb install -r` it — no Unity PC required** — and build breaks (audit blockers, missing scenes,
+  patcher crashes) now fail in the cloud *before* the headset. Removes manual steps #4 and #5.
+  - **Agents can self-serve a device build:** after pushing a device-test-worthy change to
+    `terry-local-wip`, trigger the workflow (`mcp__github__actions_run_trigger`, workflow `ci.yml`,
+    ref `terry-local-wip`) and hand Terry the artifact link. So even kicking the build is hands-off.
 
 ### 🔴 P1 — biggest wins, do next
 
-**A. Build the APK in the cloud (CI), not (only) on the PC.** *(removes #4, #5; shrinks #6)*
-`ci.yml` already has a `build-android` job — but it only runs on `main`/manual **and doesn't run our
-patchers/audit** (it uses the default build, not `BuildAndroid.PatchScenesThenAPK`). Two changes:
-  1. Set the builder's **`buildMethod: Ziptide.Build.BuildAndroid.PatchScenesThenAPK`** so CI exercises
-     the *real* patched build + audit (the same path as the PC).
-  2. Allow it on **`terry-local-wip`** via `workflow_dispatch` (and/or push), uploading the APK artifact.
-  Result: push → CI builds the exact APK → Terry downloads it and `adb install -r` (no Unity PC needed).
-  Even if he still builds locally, **CI now catches build-breaking problems (audit blockers, missing
-  scenes, patcher exceptions) before the headset** — the agents can finally self-verify a full build,
-  not just EditMode tests.
+**A. ✅ DONE — Build the APK in the cloud (CI), not (only) on the PC.** *(removes #4, #5; shrinks #6)*
+See P0 above — `ci.yml` now runs the real patched build + audit and uploads the `ziptide-apk` artifact.
 
 **B. Make the world audit non-fatal for non-shipping scenes / self-healing.** *(removes a silent
 build-abort class)*
