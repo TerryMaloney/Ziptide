@@ -148,13 +148,13 @@ namespace Ziptide.Editor.Patching
             Platform(z, "HighwaySpine", new Vector3(0f, 1.5f, 0f), new Vector3(10f, 28f), RoadGray);
             for (int i = 0; i < 4; i++)
                 Landmark(z, "Tower_" + i, new Vector3(i % 2 == 0 ? -9f : 9f, 0f, -10f + i * 7f), 14f + i * 3f, CityGray);
-            Sludge(z, "SludgeUnderSpine", new Vector3(0f, -2f, 0f), new Vector3(30f, 30f));
+            SludgePlane(z, "SludgeUnderSpine", new Vector3(0f, -2f, 0f), new Vector3(30f, 30f));
         }
 
         private static void BuildCanals(Transform z)
         {
             Platform(z, "CanalWalk", new Vector3(0f, 0f, 0f), new Vector3(8f, 24f), CityGray);
-            Sludge(z, "Canal", new Vector3(-6f, -1.5f, 0f), new Vector3(10f, 26f));
+            SludgePlane(z, "Canal", new Vector3(-6f, -1.5f, 0f), new Vector3(10f, 26f));
             Box(z, "PumpMachinery", new Vector3(5f, 1f, 6f), new Vector3(2.5f, 2f, 2.5f), Rust);
             Box(z, "HazardSign", new Vector3(-2f, 1f, 0f), new Vector3(1.2f, 2f, 0.2f), Marker);
         }
@@ -288,7 +288,7 @@ namespace Ziptide.Editor.Patching
             Paint(go, color);
         }
 
-        private static void Sludge(Transform parent, string name, Vector3 localCenter, Vector2 size)
+        private static void SludgePlane(Transform parent, string name, Vector3 localCenter, Vector2 size)
         {
             var go = Prim(parent, name, PrimitiveType.Cube);
             go.transform.localPosition = localCenter;
