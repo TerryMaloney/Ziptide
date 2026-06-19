@@ -61,8 +61,13 @@ namespace Ziptide.Editor.Patching
             string normalized = ScenePath.Replace('\\', '/');
             if (!File.Exists(ScenePath))
             {
-                Debug.LogWarning("[Ziptide] StarterWorld scene not found — run 'Ziptide/Dev/Build Starter World (graybox)' once.");
-                return;
+                // Create an empty scene so the build loop can open + populate it. This makes the CLOUD
+                // APK build generate the starter world too — no manual "Build Starter World" menu step
+                // and no Unity PC required. Mirrors ScenePatcherD0.EnsureD0SceneExists.
+                Directory.CreateDirectory(Path.GetDirectoryName(ScenePath));
+                var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
+                EditorSceneManager.SaveScene(scene, ScenePath);
+                Debug.Log("[Ziptide] Created empty StarterWorld scene at " + normalized + " (will be populated by the build).");
             }
             var scenes = new List<EditorBuildSettingsScene>(EditorBuildSettings.scenes);
             int idx = scenes.FindIndex(s => s.path == normalized);
