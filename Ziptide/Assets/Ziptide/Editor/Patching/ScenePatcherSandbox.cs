@@ -118,6 +118,7 @@ namespace Ziptide.Editor.Patching
         private static void PopulateScene()
         {
             EnsureLighting();
+            EnsureEventSystem();
             EnsureFloor();
             EnsureWorldRuntime();
             EnsureSpawn("player", new Vector3(0f, 0.1f, 0f));
@@ -183,6 +184,20 @@ namespace Ziptide.Editor.Patching
             light.intensity = 1.1f;
             go.transform.rotation = Quaternion.Euler(50f, -30f, 0f);
         }
+
+        /// <summary>
+        /// The sandbox was created as an empty scene, so (unlike the world scenes) it had no
+        /// EventSystem — meaning XR-ray UI clicks (the Dev Menu) died the moment you warped in. Add an
+        /// EventSystem + XRUIInputModule so world-space UI is clickable here too.
+        /// </summary>
+        private static void EnsureEventSystem()
+        {
+            if (Object.FindObjectOfType<UnityEngine.EventSystems.EventSystem>() != null) return;
+            var go = PatcherUtil.EnsureRootObject("EventSystem", Vector3.zero);
+            PatcherUtil.EnsureComponent<UnityEngine.EventSystems.EventSystem>(go);
+            PatcherUtil.EnsureComponent<UnityEngine.XR.Interaction.Toolkit.UI.XRUIInputModule>(go);
+        }
+
 
         private static void EnsureFloor()
         {

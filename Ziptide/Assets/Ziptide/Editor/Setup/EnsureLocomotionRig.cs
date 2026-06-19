@@ -159,8 +159,39 @@ namespace Ziptide.Editor.Setup
                 soDriver.ApplyModifiedPropertiesWithoutUndo();
             }
 
+            TuneRayInteractors(xrOriginGo);
+
             UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(xrOriginGo.scene);
             Debug.Log("[Ziptide] Ensure Thumbstick Locomotion Rig: LocomotionSystem, Move, SnapTurn, SmoothTurn, DashLocomotion, CharacterController, and input actions configured.");
+        }
+
+        /// <summary>
+        /// Make the controller rays behave: short, realistic grab reach (not across the map) and NO
+        /// anchor control (so the thumbstick turns the player / moves, instead of rotating a held gun).
+        /// Set via SerializedObject with null-safe FindProperty so a property that doesn't exist in this
+        /// XRI version is simply skipped rather than breaking the build.
+        /// </summary>
+        private static void TuneRayInteractors(GameObject xrOriginGo)
+        {
+            var rays = xrOriginGo.GetComponentsInChildren<UnityEngine.XR.Interaction.Toolkit.XRRayInteractor>(true);
+            foreach (var ray in rays)
+            {
+                if (ray == null) continue;
+                var so = new SerializedObject(ray);
+
+                var maxDist = so.FindProperty("m_MaxRaycastDistance");
+                if (maxDist != null) maxDist.floatValue = 3f; // realistic reach, was effectively across the room
+
+                // Stop the thumbstick from rotating/translating the held object (the "gun spins instead
+                // of turning my body" bug). Disable every anchor-control flavor this version exposes.
+                foreach (var prop in new[] { "m_EnableAnchorControl", "m_AnchorControl", "m_ManipulateAttachTransform" })
+                {
+                    var p = so.FindProperty(prop);
+                    if (p != null && p.propertyType == SerializedPropertyType.Boolean) p.boolValue = false;
+                }
+
+                so.ApplyModifiedPropertiesWithoutUndo();
+            }
         }
 
         private static GameObject FindXROrigin()
