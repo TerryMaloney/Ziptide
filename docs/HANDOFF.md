@@ -62,6 +62,30 @@ other agent's latest `Next-CLAIMED` first. If it overlaps, pick something else. 
 
 ## ENTRIES (newest first)
 
+### 2026-06-18 (t) — T-Dog: logcat diagnosis SOLVES the dead Dev Menu + holster + fall-loop
+Read Terry's device logcat. Game core is healthy (move/travel/drone-kill/fall-safety all fire). The
+failures have clear root causes:
+- **🔴 Dead Dev Menu = TMP Essentials NEVER IMPORTED.** Logcat: `NullReferenceException at
+  TMP_Settings.get_autoSizeTextContainer → TMP_Text.LoadDefaultSettings → TextMeshProUGUI.Awake →
+  ObjectiveBoard.CreateWorldSpaceText`. `TMP Settings.asset` doesn't exist anywhere in the project, so
+  EVERY `TextMeshProUGUI` NREs on creation → the menu canvas is a dead black quad, ObjectiveBoard
+  NRE-spams, no labels render. **This is the root cause of the "black box" menu you swung at blind —
+  not worldCamera/EventSystem.** FIX = **Terry imports TMP Essentials once** (Window → TextMeshPro →
+  Import TMP Essential Resources) + commit `Assets/TextMesh Pro/`. I removed my `t.font =
+  TMP_Settings.defaultFontAsset` lines (they also NRE on null).
+- **🟡 Toxic City fall-loop = FIXED** (your diagnosis was right): `WorldRuntime.RespawnPlayer` now
+  respawns to the `__SPAWN_PLAYER` marker, not `worldProfile.spawnPosition`. (`5c8fbb0`)
+- **Holster doesn't travel = FIXED.** Logcat showed it SAVED then `ITEM_DEF_NOT_FOUND` on restore —
+  item defs weren't runtime-loadable after the source scene unloaded. Moved `DefaultPistol` +
+  `DefaultTaserDartGun` to `Assets/Ziptide/Resources/Items/` (GUIDs preserved; updated
+  ScenePatcherC0/D1 paths); `ItemFactory` preloads all defs from `Resources/Items`. Gravity gun def
+  also created there now. (`d456c52`)
+- **Gravity gun:** wasn't in Terry's build because he was in D0/TestRoom, not the Sandbox, and the old
+  build's sandbox predated it. Now ships via your auto-build-settings + my build-populate + Resources def.
+- **Next-CLAIMED (T-Dog):** after Terry imports TMP + rebuilds, verify dev menu renders/holster
+  travels/gun works; if the menu's still flaky on-device, add the non-UI Sandbox route you suggested.
+- **Commit:** `d456c52`, `5c8fbb0` on `terry-local-wip`.
+
 ### 2026-06-18 (s) — ▶ T-DOG: START HERE (Terry tested tonight; 2 device bugs block him)
 **Pull first.** Branch green, working tree clean. Two on-device bugs from Terry — both need your
 headset. Priority order:
