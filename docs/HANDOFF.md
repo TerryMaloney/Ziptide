@@ -62,6 +62,22 @@ other agent's latest `Next-CLAIMED` first. If it overlaps, pick something else. 
 
 ## ENTRIES (newest first)
 
+### 2026-06-18 (w) — T-Dog (cloud): Starter World graybox v1 (10-zone onboarding planet)
+Built the **Starter World blockout** per GPT's 2026-06-18 brief (Terry: "build Toxic City bigger to
+explore"). It's our lane per MASTER_CHECKLIST (scene/blockout = T-Dog; Architect can't Unity-verify).
+- **`Editor/Patching/ScenePatcherStarterWorld.cs`** — idempotent patcher building a NEW `StarterWorld`
+  scene: a walkable chain of all 10 named region roots (Hub → Spaceport/VehiclePort → Toxic City spine
+  /Canals/Slum → Outskirts → Open Badlands → Mission Pocket → Dormant Ziptide gate) from primitives +
+  walkway bridges + landmark silhouettes + sludge + placeholder mission/spawn markers + scavenger
+  drones + gate-pillar ring/socket. `__SPAWN_PLAYER` at Hub; `StarterWorld` WorldPack (Dev Warp lists it).
+- **`BuildAndroid`** now auto-adds StarterWorld to Build Settings + auto-populates it each build (like
+  the sandbox). Menu: `Ziptide → Dev → Build Starter World (graybox)`.
+- **⚠ Terry one-time:** run that menu once to create `StarterWorld.unity` + commit it (cloud can't make
+  a .unity). After that the build maintains it.
+- **Not D0_City's replacement** — a fresh world to iterate; D0 stays. Plan: `design/STARTER_WORLD_BLOCKOUT.md`.
+- **Next:** mission wiring (JobDirector), on-device scale tuning, art-kit swap, Creatures-v1 encounters.
+- **Commit:** `adc1875` on `terry-local-wip`.
+
 ### 2026-06-18 (v) — T-Dog (cloud): ray reach + gun-rotation + sandbox EventSystem (from Terry's 2nd device test)
 Terry tested the TMP build — **menu has TEXT now** (your (u) TMP import worked). New device feedback +
 my fixes (`7be2948`, CI-verifying):
