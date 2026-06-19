@@ -44,10 +44,28 @@ namespace Ziptide.Gameplay
         /// </summary>
         public void RespawnPlayer(Transform playerRig)
         {
-            if (worldProfile == null || playerRig == null) return;
+            if (playerRig == null) return;
 
-            playerRig.position = worldProfile.spawnPosition;
-            playerRig.rotation = Quaternion.Euler(worldProfile.spawnEuler);
+            // Prefer the actual __SPAWN_PLAYER marker (on solid ground at the courtyard). The
+            // WorldProfile.spawnPosition can sit over collider-disabled geometry (e.g. the toxic
+            // sludge surface) → respawn-fall-loop. Marker first, profile only as fallback.
+            Vector3 pos;
+            Quaternion rot;
+            var marker = FindSpawnMarker();
+            if (marker != null)
+            {
+                pos = marker.transform.position;
+                rot = marker.transform.rotation;
+            }
+            else if (worldProfile != null)
+            {
+                pos = worldProfile.spawnPosition;
+                rot = Quaternion.Euler(worldProfile.spawnEuler);
+            }
+            else return;
+
+            playerRig.position = pos;
+            playerRig.rotation = rot;
 
             var rb = playerRig.GetComponentInChildren<Rigidbody>(true);
             if (rb != null)
@@ -60,9 +78,18 @@ namespace Ziptide.Gameplay
             if (cc != null)
             {
                 cc.enabled = false;
-                playerRig.position = worldProfile.spawnPosition;
+                playerRig.position = pos;
                 cc.enabled = true;
             }
+        }
+
+        private static SpawnMarkerRuntime FindSpawnMarker()
+        {
+            var all = Object.FindObjectsOfType<SpawnMarkerRuntime>();
+            if (all == null || all.Length == 0) return null;
+            foreach (var m in all)
+                if (m != null && m.markerId == "player") return m;
+            return all[0];
         }
 
         public WorldProfile WorldProfile => worldProfile;
