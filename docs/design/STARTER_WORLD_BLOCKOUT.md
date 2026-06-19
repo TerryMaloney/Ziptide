@@ -1,6 +1,9 @@
 # Starter World Blockout (onboarding planet) — plan
 
-**Status: PLANNED (not started). A few items come first (see MASTER_CHECKLIST short-term).**
+**Status: v1 GRAYBOX BUILT (T-Dog) — `Editor/Patching/ScenePatcherStarterWorld.cs`.** Walkable chain of
+all 10 named region roots + placeholders, auto-ships via `BuildAndroid`, warpable via Dev Warp.
+**One-time:** run `Ziptide → Dev → Build Starter World (graybox)` to create `StarterWorld.unity` +
+commit it; thereafter the build keeps it populated. Next: on-device scale tuning + mission wiring + art-kit swap.
 
 Distilled from the full GPT brief:
 `docs/GPT_ADDITIONS/2026-06-18_Starter_World_Blockout/01_architect_starter_world_blockout_brief.md`

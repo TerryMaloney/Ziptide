@@ -29,6 +29,9 @@ namespace Ziptide.Build
             try { Ziptide.Editor.Patching.ScenePatcherSandbox.EnsureInBuildSettings(); }
             catch (Exception ex) { Debug.LogWarning("[Ziptide] Sandbox build-settings ensure warning: " + ex.Message); }
 
+            try { Ziptide.Editor.Patching.ScenePatcherStarterWorld.EnsureInBuildSettings(); }
+            catch (Exception ex) { Debug.LogWarning("[Ziptide] StarterWorld build-settings ensure warning: " + ex.Message); }
+
             // Reload scenes list — ScenePatcherBoot/Sandbox may have modified it (added _Boot/Sandbox, removed SampleScene).
             var scenes = EditorBuildSettings.scenes;
             for (int i = 0; i < scenes.Length; i++)
@@ -61,6 +64,12 @@ namespace Ziptide.Build
                 {
                     try { Ziptide.Editor.Patching.ScenePatcherSandbox.PopulateActiveSandbox(); }
                     catch (Exception ex) { Debug.LogWarning("[Ziptide] Sandbox patcher warning for " + path + ": " + ex.Message); }
+                }
+
+                if (sceneName == Ziptide.Editor.Patching.ScenePatcherStarterWorld.SceneName)
+                {
+                    try { Ziptide.Editor.Patching.ScenePatcherStarterWorld.PopulateActiveStarterWorld(); }
+                    catch (Exception ex) { Debug.LogWarning("[Ziptide] StarterWorld patcher warning for " + path + ": " + ex.Message); }
                 }
 
                 EditorSceneManager.MarkSceneDirty(scene);
