@@ -203,7 +203,7 @@ namespace Ziptide.Editor.Patching
                 return;
             }
 
-            const string assetPath = "Assets/Ziptide/Content/Items/DefaultPistol.asset";
+            const string assetPath = "Assets/Ziptide/Resources/Items/DefaultPistol.asset";
             var def = AssetDatabase.LoadAssetAtPath<Ziptide.Content.PistolDefinition>(assetPath);
             if (def == null)
             {
@@ -254,10 +254,10 @@ namespace Ziptide.Editor.Patching
 
         private static void EnsureDefaultPistolAsset(string assetPath)
         {
-            if (!AssetDatabase.IsValidFolder("Assets/Ziptide/Content"))
-                AssetDatabase.CreateFolder("Assets/Ziptide", "Content");
-            if (!AssetDatabase.IsValidFolder("Assets/Ziptide/Content/Items"))
-                AssetDatabase.CreateFolder("Assets/Ziptide/Content", "Items");
+            if (!AssetDatabase.IsValidFolder("Assets/Ziptide/Resources"))
+                AssetDatabase.CreateFolder("Assets/Ziptide", "Resources");
+            if (!AssetDatabase.IsValidFolder("Assets/Ziptide/Resources/Items"))
+                AssetDatabase.CreateFolder("Assets/Ziptide/Resources", "Items");
             var def = ScriptableObject.CreateInstance<Ziptide.Content.PistolDefinition>();
             def.itemId = "pistol";
             def.mass = 0.3f;

@@ -635,7 +635,7 @@ namespace Ziptide.Editor.Patching
         {
             if (Object.FindObjectOfType<TaserDartGunRuntime>() != null) return;
 
-            var defPath = "Assets/Ziptide/Content/Items/DefaultTaserDartGun.asset";
+            var defPath = "Assets/Ziptide/Resources/Items/DefaultTaserDartGun.asset";
             var def = AssetDatabase.LoadAssetAtPath<TaserDartGunDefinition>(defPath);
             if (def == null)
             {
@@ -692,11 +692,11 @@ namespace Ziptide.Editor.Patching
 
         private static void EnsureTaserDartGunAsset(string path)
         {
-            if (!AssetDatabase.IsValidFolder("Assets/Ziptide/Content/Items"))
+            if (!AssetDatabase.IsValidFolder("Assets/Ziptide/Resources/Items"))
             {
-                if (!AssetDatabase.IsValidFolder("Assets/Ziptide/Content"))
-                    AssetDatabase.CreateFolder("Assets/Ziptide", "Content");
-                AssetDatabase.CreateFolder("Assets/Ziptide/Content", "Items");
+                if (!AssetDatabase.IsValidFolder("Assets/Ziptide/Resources"))
+                    AssetDatabase.CreateFolder("Assets/Ziptide", "Resources");
+                AssetDatabase.CreateFolder("Assets/Ziptide/Resources", "Items");
             }
             var def = ScriptableObject.CreateInstance<TaserDartGunDefinition>();
             def.itemId = "taser_dart_gun";

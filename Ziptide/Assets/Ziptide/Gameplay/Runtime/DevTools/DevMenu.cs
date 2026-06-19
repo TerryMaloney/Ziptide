@@ -148,7 +148,6 @@ namespace Ziptide.Gameplay.DevTools
             rt.SetParent(parent, false);
             TopRow(rt, yTop, h);
             var t = go.GetComponent<TextMeshProUGUI>();
-            t.font = TMP_Settings.defaultFontAsset;
             t.text = text;
             t.fontSize = size;
             t.color = color;
@@ -170,7 +169,6 @@ namespace Ziptide.Gameplay.DevTools
             lrt.SetParent(rt, false);
             Stretch(lrt);
             var t = labelGo.GetComponent<TextMeshProUGUI>();
-            t.font = TMP_Settings.defaultFontAsset;
             t.text = label;
             t.fontSize = 30;
             t.color = Color.white;

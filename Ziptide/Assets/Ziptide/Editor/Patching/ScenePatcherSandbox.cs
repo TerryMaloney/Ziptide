@@ -130,7 +130,7 @@ namespace Ziptide.Editor.Patching
             EnsureSandboxContent();
         }
 
-        private const string GravityGunDefPath = "Assets/Ziptide/Content/Items/Sandbox_GravityGun.asset";
+        private const string GravityGunDefPath = "Assets/Ziptide/Resources/Items/Sandbox_GravityGun.asset";
 
         /// <summary>Drop test gear + drones in the sandbox so weapons can be exercised immediately.</summary>
         private static void EnsureSandboxContent()
@@ -162,8 +162,10 @@ namespace Ziptide.Editor.Patching
             var def = AssetDatabase.LoadAssetAtPath<GravityGunDefinition>(GravityGunDefPath);
             if (def == null)
             {
-                if (!AssetDatabase.IsValidFolder("Assets/Ziptide/Content/Items"))
-                    AssetDatabase.CreateFolder("Assets/Ziptide/Content", "Items");
+                if (!AssetDatabase.IsValidFolder("Assets/Ziptide/Resources"))
+                    AssetDatabase.CreateFolder("Assets/Ziptide", "Resources");
+                if (!AssetDatabase.IsValidFolder("Assets/Ziptide/Resources/Items"))
+                    AssetDatabase.CreateFolder("Assets/Ziptide/Resources", "Items");
                 def = ScriptableObject.CreateInstance<GravityGunDefinition>();
                 AssetDatabase.CreateAsset(def, GravityGunDefPath);
             }

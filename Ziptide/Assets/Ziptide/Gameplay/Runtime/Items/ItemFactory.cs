@@ -40,10 +40,25 @@ namespace Ziptide.Gameplay
         private static readonly System.Collections.Generic.Dictionary<string, ItemDefinition> _cache
             = new System.Collections.Generic.Dictionary<string, ItemDefinition>();
 
+        private static bool _resourcesPreloaded;
+
         private static ItemDefinition FindDefinition(string itemId)
         {
             if (_cache.TryGetValue(itemId, out var cached) && cached != null)
                 return cached;
+
+            // Preload every item definition under a Resources/Items folder. Resources assets are
+            // loadable at runtime in ANY scene, which fixes ITEM_DEF_NOT_FOUND when restoring a
+            // holstered item after the scene it came from has unloaded.
+            if (!_resourcesPreloaded)
+            {
+                _resourcesPreloaded = true;
+                foreach (var d in Resources.LoadAll<ItemDefinition>("Items"))
+                    if (d != null && !string.IsNullOrEmpty(d.itemId))
+                        _cache[d.itemId] = d;
+                if (_cache.TryGetValue(itemId, out var fromRes) && fromRes != null)
+                    return fromRes;
+            }
 
             var allDefs = Resources.FindObjectsOfTypeAll<ItemDefinition>();
             foreach (var d in allDefs)
