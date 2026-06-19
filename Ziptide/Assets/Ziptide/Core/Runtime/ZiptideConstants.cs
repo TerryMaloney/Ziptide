@@ -10,10 +10,15 @@ namespace Ziptide.Core
         public const string SceneBoot           = "_Boot";
         public const string SceneTestRoom       = "MilestoneA_GrabCube";
         public const string SceneD0City         = "D0_City";
+        public const string SceneSandbox        = "SandboxTestLab";
         public const string SceneSample         = "SampleScene";
 
         /// <summary>Scene loaded by _Boot on Start. Change this to redirect the entry point.</summary>
-        public const string FirstWorldScene     = SceneTestRoom;
+        // ⚠ TEMPORARY DEV BYPASS (2026-06-18, T-Dog): boot straight into the Sandbox so the gravity gun +
+        // drones are reachable WITHOUT the in-VR Dev Menu (currently renders as a dead black panel
+        // on-device). REVERT to SceneTestRoom once the Dev Menu renders/clicks on the headset.
+        // See docs/HANDOFF.md entry (t).
+        public const string FirstWorldScene     = SceneSandbox;
 
         // ── Asset Paths ────────────────────────────────────────────────────
         public const string PathDefaultWorldProfile   = "Assets/Ziptide/Content/World/DefaultWorldProfile.asset";
