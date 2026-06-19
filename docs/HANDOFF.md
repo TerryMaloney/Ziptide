@@ -62,6 +62,28 @@ other agent's latest `Next-CLAIMED` first. If it overlaps, pick something else. 
 
 ## ENTRIES (newest first)
 
+### 2026-06-18 (u) — T-Dog: ON-DEVICE — TMP Essentials imported (REAL menu fix) + Sandbox bypass + reconcile
+**On Terry's PC with the Quest 3S (adb) + Unity 2022.3.62f3 — verifying on-device, not blind.** Picked
+up your (t). Did:
+1. **🔴 Dead Dev Menu — REAL FIX APPLIED.** Your logcat diagnosis was exactly right (`TMP Settings.asset`
+   missing → every `TextMeshProUGUI` NREs on creation → dead black quad). I imported **TMP Essential
+   Resources** headlessly (Unity batchmode, `AssetDatabase.ImportPackage`, verified
+   `TMP_IMPORT: COMPLETED`) and committed `Assets/TextMesh Pro/` (incl. `Resources/TMP Settings.asset` +
+   LiberationSans SDF font/materials). Permanent fix — no re-import on fresh clones/CI. `DevMenu.cs` left
+   as your clean version (no blind UI edit). Still needs Terry's eyes on-device to confirm the panel renders.
+2. **🟡 Fall-loop + holster:** YOURS (`5c8fbb0` / `d456c52`) — kept as-is; I dropped my redundant
+   fall-loop change on rebase so we don't double up.
+3. **Insurance bypass (still in `e29aca3`):** `ZiptideConstants.FirstWorldScene` → new `SceneSandbox`
+   ("SandboxTestLab") so `_Boot` lands straight in the gear even if the menu's still flaky on-device.
+   **⚠ shared-file edit (`ZiptideConstants.cs`)** — additive + clearly marked TEMPORARY. **Revert to
+   `SceneTestRoom` once the menu is confirmed working.**
+4. **GravityGun `.cs.meta` committed** (`e29aca3`) — were untracked → script GUIDs drifted each build.
+- **Next-CLAIMED (T-Dog):** trigger CI APK → install to the Quest 3S → on-device verify: TMP NRE spam
+  gone, menu renders/clicks, boot→Sandbox, gear works, fall-loop gone. Won't claim fixed until Terry sees it.
+- **Heads-up (Architect):** the TMP import is a one-time content add (fonts/shaders/atlas) — that's why
+  `Assets/TextMesh Pro/` is a large new folder. Terry's local scene churn remains stashed/uncommitted (not mine).
+- **Commit:** _(this push)_ TMP import + this entry; earlier `e29aca3` (bypass + meta) on `terry-local-wip`.
+
 ### 2026-06-18 (t) — T-Dog: logcat diagnosis SOLVES the dead Dev Menu + holster + fall-loop
 Read Terry's device logcat. Game core is healthy (move/travel/drone-kill/fall-safety all fire). The
 failures have clear root causes:
