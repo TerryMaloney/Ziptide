@@ -62,6 +62,21 @@ other agent's latest `Next-CLAIMED` first. If it overlaps, pick something else. 
 
 ## ENTRIES (newest first)
 
+### 2026-06-18 (v) — T-Dog (cloud): ray reach + gun-rotation + sandbox EventSystem (from Terry's 2nd device test)
+Terry tested the TMP build — **menu has TEXT now** (your (u) TMP import worked). New device feedback +
+my fixes (`7be2948`, CI-verifying):
+- **Menu clickable only ONCE (dead after warping to Sandbox):** the Sandbox (empty scene) had **no
+  EventSystem** → no XR-ray UI clicks there. `ScenePatcherSandbox` now adds EventSystem + XRUIInputModule.
+- **Left thumbstick rotated the held GUN instead of turning the player:** XRI ray **anchor control** was
+  on. `EnsureLocomotionRig.TuneRayInteractors` now disables it (`m_EnableAnchorControl` etc., null-safe
+  SerializedObject) + shortens `m_MaxRaycastDistance` to **3m** (the "rays too long / unrealistic reach"
+  report). Re-introduced the earlier-reverted tune, done safely so a missing XRI prop just skips.
+- **Confirmed working on device:** gun auto-snaps forward ✅, new Gravity Gun works ✅.
+- **Next-CLAIMED (T-Dog cloud):** start the **Toxic City expansion** (Terry's ask: bigger explorable
+  world) — reading `MASTER_CHECKLIST.md` + GPT's starter-world brief, then extend `ScenePatcherD1`.
+  Will post specifics before editing the city patcher.
+- **Commit:** `7be2948` on `terry-local-wip`.
+
 ### 2026-06-18 (u) — T-Dog: ON-DEVICE — TMP Essentials imported (REAL menu fix) + Sandbox bypass + reconcile
 **On Terry's PC with the Quest 3S (adb) + Unity 2022.3.62f3 — verifying on-device, not blind.** Picked
 up your (t). Did:
