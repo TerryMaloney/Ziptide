@@ -35,6 +35,8 @@ namespace Ziptide.Gameplay
         [SerializeField] private float intensity = 1f;
         [Tooltip("Local-space radius treated as a dead-center core hit.")]
         [SerializeField] private float centerRadius = 0.08f;
+        [Tooltip("Seconds after death before respawning at its home spot (0 = stay dead). Set > 0 for practice/sandbox/patrol drones.")]
+        public float respawnDelay = 0f;
 
         private State _state = State.Active;
         private Vector3 _homePos;
@@ -199,6 +201,28 @@ namespace Ziptide.Gameplay
             rb.AddForce(force, ForceMode.Impulse);
             rb.AddTorque(torque, ForceMode.Impulse);
             rb.WakeUp();
+
+            if (respawnDelay > 0f) StartCoroutine(RespawnAfter());
+        }
+
+        // ── Respawn (practice/sandbox/patrol) ───────────────────────────────
+
+        private IEnumerator RespawnAfter()
+        {
+            yield return new WaitForSeconds(respawnDelay);
+            Respawn();
+        }
+
+        /// <summary>Reset to a live, hovering drone at its home spot (drops the death physics body).</summary>
+        private void Respawn()
+        {
+            var rb = GetComponent<Rigidbody>();
+            if (rb != null) Destroy(rb); // back to script-driven hover (Update sets position)
+            transform.position = _homePos;
+            transform.rotation = Quaternion.identity;
+            SetColor(activeColor);
+            _state = State.Active;
+            Debug.Log("ZIPTIDE: DRONE_RESPAWN name=" + gameObject.name);
         }
 
         private void SetColor(Color c)

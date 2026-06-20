@@ -594,40 +594,49 @@ namespace Ziptide.Editor.Patching
         private static void PlaceDrones(Transform root, CityKitDefinition kit)
         {
             float h = kit.walkwayHeight;
-            string[] names = { "Drone_1", "Drone_2", "Drone_3" };
-            Vector3[] positions = {
-                new Vector3(2f, h + 3f, -6f),
-                new Vector3(-3f, h + 4f, 0f),
-                new Vector3(0f, h + 3.5f, 8f)
+
+            // Tutorial trio near Dispatch (cleared once → respawn 0) + patrol/guard drones stationed at
+            // sensible city spots (courtyards along the spine, the bridges, over the canal) that respawn
+            // so the city stays a live threat to fight. Courtyards: Spawn Z=-16, Dispatch Z=0, Garden Z=18.
+            var drones = new (string name, Vector3 pos, float respawn)[]
+            {
+                ("Drone_1",        new Vector3( 2f, h + 3f,  -6f),  0f),
+                ("Drone_2",        new Vector3(-3f, h + 4f,   0f),  0f),
+                ("Drone_3",        new Vector3( 0f, h + 3.5f,  8f),  0f),
+                ("Patrol_Spawn",   new Vector3( 0f, h + 3f,  -16f), 14f),
+                ("Patrol_Garden",  new Vector3( 0f, h + 3f,   18f), 14f),
+                ("Patrol_BridgeW", new Vector3(-7f, h + 3.5f,  4f), 12f),
+                ("Patrol_BridgeE", new Vector3( 7f, h + 3.5f,  4f), 12f),
+                ("Patrol_Canal",   new Vector3( 0f, h + 2f,   26f), 16f),
             };
 
-            for (int i = 0; i < names.Length; i++)
+            foreach (var d in drones)
             {
-                var existing = root.Find(names[i]);
-                if (existing != null) continue;
+                if (root.Find(d.name) != null) continue;
 
                 var go = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-                go.name = names[i];
+                go.name = d.name;
                 go.transform.SetParent(root, false);
-                go.transform.localPosition = positions[i];
+                go.transform.localPosition = d.pos;
                 go.transform.localScale = new Vector3(0.4f, 0.2f, 0.4f);
 
-                var fin1 = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                fin1.name = "Fin_L";
-                fin1.transform.SetParent(go.transform, false);
-                fin1.transform.localPosition = new Vector3(-0.35f, 0.1f, 0f);
-                fin1.transform.localScale = new Vector3(0.4f, 0.05f, 0.15f);
+                var finL = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                finL.name = "Fin_L";
+                finL.transform.SetParent(go.transform, false);
+                finL.transform.localPosition = new Vector3(-0.35f, 0.1f, 0f);
+                finL.transform.localScale = new Vector3(0.4f, 0.05f, 0.15f);
 
-                var fin2 = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                fin2.name = "Fin_R";
-                fin2.transform.SetParent(go.transform, false);
-                fin2.transform.localPosition = new Vector3(0.35f, 0.1f, 0f);
-                fin2.transform.localScale = new Vector3(0.4f, 0.05f, 0.15f);
+                var finR = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                finR.name = "Fin_R";
+                finR.transform.SetParent(go.transform, false);
+                finR.transform.localPosition = new Vector3(0.35f, 0.1f, 0f);
+                finR.transform.localScale = new Vector3(0.4f, 0.05f, 0.15f);
 
-                go.AddComponent<DroneRuntime>();
+                var dr = go.AddComponent<DroneRuntime>();
+                dr.respawnDelay = d.respawn;
                 go.GetComponent<Collider>().isTrigger = false;
 
-                Undo.RegisterCreatedObjectUndo(go, "Drone " + (i + 1));
+                Undo.RegisterCreatedObjectUndo(go, "Drone " + d.name);
             }
         }
 

@@ -154,7 +154,7 @@ namespace Ziptide.Editor.Patching
                 drone.name = n;
                 drone.transform.position = new Vector3(8f + i * 1.2f, 1.6f, 9f);
                 drone.transform.localScale = Vector3.one * 0.4f;
-                drone.AddComponent<Ziptide.Gameplay.DroneRuntime>();
+                drone.AddComponent<Ziptide.Gameplay.DroneRuntime>().respawnDelay = 8f; // practice: respawn so there's always something to shoot
             }
         }
 

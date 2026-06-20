@@ -90,7 +90,7 @@ namespace Ziptide.Editor.Audit
             SerializedProperty prop = so.GetIterator();
             bool enterChildren = true;
             int count = 0;
-            while (prop.NextVisible(enterChildren) && count < 80)
+            while (prop.NextVisible(enterChildren) && count < 250)
             {
                 enterChildren = false;
                 if (prop.name == "m_Script") continue;

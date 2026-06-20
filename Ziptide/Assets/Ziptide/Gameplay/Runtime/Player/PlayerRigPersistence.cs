@@ -331,10 +331,13 @@ namespace Ziptide.Gameplay
                 if (!i.gameObject.activeInHierarchy) { skipped++; continue; }
                 if (i.interactionManager != _xriManager)
                     i.interactionManager = _xriManager;
-                if (i is XRRayInteractor)
+                if (i is XRRayInteractor ray)
                 {
                     totalRays++;
                     if (i.enabled) enabledRays++;
+                    // Realistic reach — the rays were 10-30m (grab/aim across the room). Set at
+                    // runtime here so it sticks on the live rig regardless of edit-time patching. Tunable.
+                    ray.maxRaycastDistance = 2.5f;
                 }
             }
 

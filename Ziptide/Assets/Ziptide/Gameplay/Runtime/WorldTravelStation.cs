@@ -150,11 +150,13 @@ namespace Ziptide.Gameplay
             var labelGo = CreateTextMesh("To " + label, 0.06f, LabelColor);
             labelGo.transform.SetParent(doorRoot.transform, false);
             labelGo.transform.localPosition = new Vector3(0f, DoorHeight + FrameThickness + 0.15f, 0f);
+            NeutralizeScale(labelGo.transform);
             _owned.Add(labelGo);
 
             var doorLabel = CreateTextMesh(label, 0.05f, new Color(0.85f, 0.9f, 1f));
             doorLabel.transform.SetParent(door.transform, false);
             doorLabel.transform.localPosition = new Vector3(0f, 0.2f, -(DoorDepth * 0.5f + 0.005f));
+            NeutralizeScale(doorLabel.transform);
             _owned.Add(doorLabel);
 
             _owned.Add(doorRoot);
@@ -180,6 +182,18 @@ namespace Ziptide.Gameplay
             ApplyColor(cube, color);
             _owned.Add(cube);
             return cube;
+        }
+
+        // Legacy TextMesh inherits the parent's (often non-uniform) world scale → letters stretch and
+        // stack into the "random vertical letters" Terry saw on the toxic-city doors. Counter the
+        // parent's lossy scale so the text renders square regardless of how the door cube is scaled.
+        private static void NeutralizeScale(Transform t)
+        {
+            var ls = t.parent != null ? t.parent.lossyScale : Vector3.one;
+            t.localScale = new Vector3(
+                Mathf.Approximately(ls.x, 0f) ? 1f : 1f / ls.x,
+                Mathf.Approximately(ls.y, 0f) ? 1f : 1f / ls.y,
+                Mathf.Approximately(ls.z, 0f) ? 1f : 1f / ls.z);
         }
 
         private static GameObject CreateTextMesh(string text, float charSize, Color color)
