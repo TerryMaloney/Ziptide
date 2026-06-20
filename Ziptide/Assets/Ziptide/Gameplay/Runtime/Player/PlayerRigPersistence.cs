@@ -514,15 +514,42 @@ namespace Ziptide.Gameplay
             }
             var cc = GetComponent<CharacterController>();
             if (cc != null) cc.enabled = false;
-            transform.position = marker.transform.position;
+
+            // --- Roomscale-correct spawn ---------------------------------------------------
+            // The rig ROOT is not where the player physically stands; the head (camera) is offset
+            // from the root by the player's tracked position inside their physical playspace. If we
+            // just slam the root onto the marker, a player standing off-center lands off-center too
+            // (that's how Terry ended up 10ft left, over the goo river). So instead we:
+            //   1. snap the marker's Y to the real walkable surface under it (never over goo/void),
+            //   2. shift the rig so the HEAD lands on the marker XZ (cancels the playspace offset),
+            //   3. drop the rig base to the snapped ground.
+            Vector3 target = marker.transform.position;
+
+            // 1. Ground-snap: cast down from just above the marker to find the actual floor.
+            //    QueryTriggerInteraction.Ignore so goo/trigger volumes never count as ground.
+            if (Physics.Raycast(target + Vector3.up * 3f, Vector3.down, out var hit, 12f,
+                    ~0, QueryTriggerInteraction.Ignore))
+            {
+                target.y = hit.point.y;
+            }
+
+            // First put the root on the (ground-snapped) marker so head tracking is sampled there.
+            transform.position = target;
             transform.rotation = marker.transform.rotation;
 
-            // Reset Camera Offset to avoid accumulated offset that can feel like "controllers pulled".
-            var cameraOffset = transform.Find("Camera Offset");
-            if (cameraOffset != null)
+            // 2. Head-align: find the player's head and shift the rig so the head's XZ sits on the
+            //    marker XZ. This cancels whatever physical offset the player has in their playspace.
+            var cam = GetComponentInChildren<Camera>();
+            if (cam != null)
             {
-                cameraOffset.localPosition = Vector3.zero;
-                cameraOffset.localRotation = Quaternion.identity;
+                Vector3 headDelta = target - cam.transform.position;
+                headDelta.y = 0f; // only correct horizontal drift; Y is owned by the ground-snap
+                transform.position += headDelta;
+
+                // 3. Lock the rig base to the snapped ground height.
+                Vector3 p = transform.position;
+                p.y = target.y;
+                transform.position = p;
             }
 
             if (cc != null) cc.enabled = true;
@@ -531,7 +558,8 @@ namespace Ziptide.Gameplay
             _lastSafePosition = transform.position;
             _hasSafePosition = true;
 
-            Debug.Log("[Ziptide] Teleported to spawn '" + marker.markerId + "' at " + marker.transform.position);
+            Debug.Log("ZIPTIDE: SPAWN_AT marker='" + marker.markerId + "' rig=" + transform.position.ToString("F2")
+                + " markerGround=" + target.ToString("F2"));
         }
 
         /// <summary>Find a spawn marker by id; falls back to the 'player' marker, then the first one.</summary>
