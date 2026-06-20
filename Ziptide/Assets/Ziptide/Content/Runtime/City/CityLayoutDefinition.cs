@@ -43,6 +43,44 @@ namespace Ziptide.Content
         public List<CanalRegionDef> canals = new List<CanalRegionDef>();
         public List<DroneZoneDef> droneZones = new List<DroneZoneDef>();
         public ShipyardBerthDef shipyard = new ShipyardBerthDef();
+
+        /// <summary>
+        /// Structural sanity check (pure, no scene). Returns a list of problems — empty == valid.
+        /// Guards against committing an unwalkable / dangling-reference layout. Patcher + tests use it.
+        /// </summary>
+        public List<string> Validate()
+        {
+            var issues = new List<string>();
+
+            if (float.IsNaN(walkwayHeight) || float.IsInfinity(walkwayHeight))
+                issues.Add("walkwayHeight is not a finite number.");
+
+            var ids = new HashSet<string>();
+            foreach (var d in districts)
+            {
+                if (d == null) { issues.Add("Null district entry."); continue; }
+                if (string.IsNullOrEmpty(d.id)) { issues.Add("District with empty id."); continue; }
+                if (!ids.Add(d.id)) issues.Add("Duplicate district id '" + d.id + "'.");
+
+                foreach (var hb in d.heroBuildings)
+                {
+                    if (hb == null) continue;
+                    if (hb.interior != InteriorKind.Empty && string.IsNullOrEmpty(hb.interiorMarkerId))
+                        issues.Add("Hero building '" + hb.id + "' in district '" + d.id + "' has interior but no interiorMarkerId.");
+                }
+            }
+
+            foreach (var c in connections)
+            {
+                if (c == null) { issues.Add("Null connection entry."); continue; }
+                if (!ids.Contains(c.fromDistrictId))
+                    issues.Add("Connection from unknown district '" + c.fromDistrictId + "'.");
+                if (!ids.Contains(c.toDistrictId))
+                    issues.Add("Connection to unknown district '" + c.toDistrictId + "'.");
+            }
+
+            return issues;
+        }
     }
 
     /// <summary>Per-surface colors. A district may override via <see cref="DistrictDef.paletteOverride"/>.</summary>

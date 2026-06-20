@@ -46,6 +46,15 @@ namespace Ziptide.Gameplay
 
         public static event System.Action<DroneRuntime> OnDroneDisabled;
 
+        /// <summary>True while the drone is alive and hovering (not shocked/dead). Combat behavior reads this.</summary>
+        public bool IsActive => _state == State.Active;
+
+        /// <summary>When true, the built-in hover is suspended so <see cref="DroneCombatBehavior"/> owns motion.</summary>
+        public bool CombatDriven { get; set; }
+
+        /// <summary>The spot the drone spawned at; combat behavior patrols/orbits around it.</summary>
+        public Vector3 HomePos => _homePos;
+
         private void Awake()
         {
             _homePos = transform.position;
@@ -76,7 +85,8 @@ namespace Ziptide.Gameplay
 
         private void Update()
         {
-            if (_state != State.Active) return;
+            // CombatDriven drones have their motion owned by DroneCombatBehavior; skip the idle hover.
+            if (_state != State.Active || CombatDriven) return;
             float y = _homePos.y + Mathf.Sin(Time.time * bobSpeed) * bobAmplitude;
             transform.position = new Vector3(_homePos.x, y, _homePos.z);
             transform.Rotate(Vector3.up, spinSpeed * Time.deltaTime, Space.World);

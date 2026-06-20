@@ -391,7 +391,16 @@ namespace Ziptide.Editor.Patching
             drone.transform.localScale = new Vector3(0.4f, 0.2f, 0.4f);
             var dr = drone.AddComponent<DroneRuntime>();
             dr.respawnDelay = respawnDelay;
-            // Combat behavior (DroneCombatBehavior) is attached in the Drone Combat V1 pass.
+
+            if (combat)
+            {
+                var cb = drone.AddComponent<DroneCombatBehavior>();
+                if (!string.IsNullOrEmpty(variantId))
+                {
+                    var prof = Resources.Load<Ziptide.Content.DroneCombatProfile>("Enemies/" + variantId);
+                    if (prof != null) cb.profile = prof;
+                }
+            }
         }
 
         // ── Small helpers ────────────────────────────────────────────────────
