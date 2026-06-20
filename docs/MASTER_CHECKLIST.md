@@ -13,7 +13,7 @@ Skim this first; the deep docs are linked per item.
   [`docs/design/SYSTEMS_ARCHITECTURE.md`](design/SYSTEMS_ARCHITECTURE.md) (build order) ·
   [`docs/systems/`](systems/README.md) (per-system specs).
 
-> Last updated: 2026-06-18.
+> Last updated: 2026-06-20.
 
 ---
 
@@ -39,8 +39,10 @@ Skim this first; the deep docs are linked per item.
 - 🟢 **Job system** (JobDirector, DispatchKiosk, ObjectiveBoard, DeliveryCradle); audio system (AudioDirector).
 
 ### Worlds & dev tools
-- 🟢 Scenes: `_Boot` (persistent rig owner), `MilestoneA_GrabCube` (test room), `D0_City` (Toxic Venice blockout), `SandboxTestLab`.
-- 🟢 **Developer Warp** + **in-VR Dev Menu** (Y+B → warp any world); Sandbox Test Lab; scene-dump exporter.
+- 🟢 Scenes: `_Boot`, `MilestoneA_GrabCube`, `D0_City` (legacy blockout), `SandboxTestLab`, **`StarterWorld`** (10-zone onboarding graybox), **`ToxicCity`** (new blueprint city), **`PvP_Arena01`**.
+- 🟢 **ToxicCity WORLD BLUEPRINT** — `CityLayoutDefinition` + `CityBuilder` + `ScenePatcherToxicCity`: a data-driven, reusable "clone-a-world" recipe (districts/canals/hero interiors/shipyard). *(T-Dog)*
+- 🟢 **Developer Warp** + **in-VR Dev Menu** (Y+B → warp any world, TMP fixed); Sandbox; scene-dump exporter.
+- 🟢 **W001 story + first contract:** STORY.md beats + `ToxicCity_Contract` job (4 steps) with bounty **reward** (`JobDefinition.reward` + `JobRewards.Grant`, tested) → passage credits. *(Architect)* Runtime grant-hook + ObjectiveBoard/RILL text pending.
 
 ---
 
@@ -50,19 +52,24 @@ A brand-new real-time **1v1 PvP** mode, fully separate from single-player. Plan:
 room-code invites), **solo-playable first**, **comfort-first gravity gun**. Distinct from Tidefront
 (that's *async* strategy MP; this is *real-time* PvP).
 - 🟢 **Phase 1 backbone BUILT** — `Ziptide.Multiplayer` pure-C# core (`PvpRules`/`PvpMatch`/`PvpCombatant`/
-  `WeaponCharge`) + 14 EditMode tests *(Architect; CI-verify)*.
-- 🔲 **Phase 2 (T-Dog lane):** PvP arena scene + `ScenePatcherPvP` + wire taser/gravity/locator/hammer +
-  destructible walls + HUD → playable **solo on one headset**.
-- 🔲 **Phase 3 (shared):** import Photon PUN2 + netcode adapter → 2-headset room-code match.
-- 🔲 **Phase 4:** comfort/spawn-protection/disconnect/anti-cheat polish + 2nd arena.
+  `WeaponCharge`) + 14 EditMode tests *(Architect)*.
+- 🟢 **Phase 2 BUILT (solo + bot)** *(T-Dog)* — `PvP_Arena01` + `ScenePatcherPvP`, `PvpPlayer`/`PvpBot`/
+  `PvpMatchDirector`/`PvpHud`, `IPvpDamageable` weapon hits, **all 4 mechanics**: breakable walls +
+  hammer (auto-return), wrist locator (hold→ping/cooldown), comfort gravity hop. Bot = the seam a remote
+  player replaces. *Needs Terry to run `Build PvP Arena` once + on-device feel tuning.*
+- 🔲 **Phase 3 (shared, Terry's PC):** import **Photon PUN2** + `Net/` adapter → 2-headset room-code match (swap bot for remote behind `IPvpDamageable`).
+- 🔲 **Phase 4:** spawn-protection/disconnect/anti-cheat polish + 2nd arena.
 
 ---
 
 ## 🔜 SHORT-TERM (next up — the active loop)
-- 🟡 **Device-verify the latest CI APK**: gravity gun + drones in Sandbox, invisible-wall fix, holster-travel, dev-menu re-click.
+- 🟡 **Device test pass (Terry, at the Quest):** run the one-time Unity menus (`Build Toxic City`,
+  `Build Toxic City Contract`, `Build PvP Arena`) + commit the generated scenes/assets, then build & verify
+  on-device: ToxicCity walkable + drones + bounty, PvP arena vs bot (4 mechanics), spawn/locomotion fixes.
+- 🟢 **Drone Combat v1 BUILT** *(T-Dog)* — non-lethal patrol/engage + telegraphed stun bolts + `PlayerStunReceiver` ([`systems/DRONE_COMBAT_v1.md`](systems/DRONE_COMBAT_v1.md)). On-device tuning pending.
+- 🔲 **JobDirector → `JobRewards.Grant`** runtime hook (pay the W001 bounty on completion; needs a live `PlayerProfile`).
 - 🔲 **Creatures v1** (build-order #6): `CreatureDefinition` data/spawn/loot (Architect) + runtime AI (T-Dog). *(claimed)*
 - 🔲 **Gun model swap + Quest grip offset** — drop the Tripo taser model in ([`systems/ASSET_SWAP_PIPELINE.md`](systems/ASSET_SWAP_PIPELINE.md)).
-- 🔲 **Drone Combat v1** — orbit/strafe movement + telegraphed stun bolt + screen-obscure hit response ([`systems/DRONE_COMBAT_v1.md`](systems/DRONE_COMBAT_v1.md)).
 - 🔲 **Starter Gear Loop** — Left Wrist Scan Pulse + Gravity Glove (stun dart exists) ([`09_GEAR_AND_TOOLS.md`](09_GEAR_AND_TOOLS.md)).
 
 ## 🟡 MID-TERM (once the core loop feels good)
