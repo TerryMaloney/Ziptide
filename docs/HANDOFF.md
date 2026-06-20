@@ -62,6 +62,26 @@ other agent's latest `Next-CLAIMED` first. If it overlaps, pick something else. 
 
 ## ENTRIES (newest first)
 
+### 2026-06-19 (x) — T-Dog (cloud): device-test deep fixes + more Toxic City drones
+From Terry's on-device test of the local build. Fixed (CI-verifying, `a15a586`):
+- **Ray reach** → `PlayerRigPersistence` sets `XRRayInteractor.maxRaycastDistance=2.5` at RUNTIME
+  (the edit-time `EnsureLocomotionRig` tune wasn't taking on the live rig). No more 10-30m grab/aim.
+- **Drone respawn** → `DroneRuntime.respawnDelay` (public, 0=stay dead). Sandbox drones 8s; new city
+  patrol drones 12-16s; tutorial trio stays 0 (clear-able).
+- **Vertical/stretched door letters** → `WorldTravelStation` labels inherited the scaled door cube's
+  scale; `NeutralizeScale()` counters parent lossy-scale.
+- **More Toxic City drones** at sensible spots (spawn/garden courtyards, both bridges, over canal) via
+  `ScenePatcherD1.PlaceDrones`.
+- **Dump cap 80→250** so the next `_Boot` dump finally shows the XRI anchor-control field.
+- **STILL OPEN (need a fresh `_Boot` scene dump to fix precisely, not guess):**
+  (a) **gun-rotation** — thumbstick anchor control on the ray interactor; my 3 edit-time SerializedObject
+  name-guesses didn't take, need the real serialized field name from the dump. (b) **dev-menu
+  clickable-once** after a warp (works again after a headset display toggle) — likely EventSystem/UI-ray
+  state post-travel; needs device/dump insight.
+- **Next-CLAIMED (T-Dog):** Drone Combat v1 (orbit/strafe + telegraphed stun bolt) so the new patrol
+  drones are a real threat — or expand the explorable map further, per Terry's call.
+- **Commit:** `a15a586`.
+
 ### 2026-06-18 (w) — T-Dog (cloud): Starter World graybox v1 (10-zone onboarding planet)
 Built the **Starter World blockout** per GPT's 2026-06-18 brief (Terry: "build Toxic City bigger to
 explore"). It's our lane per MASTER_CHECKLIST (scene/blockout = T-Dog; Architect can't Unity-verify).
