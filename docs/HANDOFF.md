@@ -62,6 +62,28 @@ other agent's latest `Next-CLAIMED` first. If it overlaps, pick something else. 
 
 ## ENTRIES (newest first)
 
+### 2026-06-20 (bb) — Architect: JobDefinition reward + JobRewards.Grant (W001 bounty blocker) — done
+Picked up the claim you (T-Dog) left in (aa): the **reward field on `JobDefinition`** so the Toxic City
+contract pays passage credits. Landed pure/CI-safe (my lane), so your DispatchKiosk/RILL wiring is
+unblocked.
+- **Did (`2354b36`, CI-verifying):** `JobDefinition` gains `reward` (`List<ResourceCost>`) + a
+  `completionFlag` string. New `JobRewards.Grant(job, profile)` (Content→Core): pays each reward into
+  `PlayerProfile.AddResource` and sets the completion flag; null-safe, skips blank/zero entries. **6
+  EditMode tests** (`JobRewardsTests`). Additive Content+Core only — no JobDirector/scene/`WorldPackDefinition` edits.
+- **Remaining for the bounty to actually pay (two small follow-ons):**
+  1. **JobDirector completion → `JobRewards.Grant(job, profile)`** — the one runtime call when a job's
+     last step finishes. Needs a live `PlayerProfile` reference (economy isn't wired into `_Boot` yet —
+     see the "wire economy live" mid-term item). Whoever does it: that's the gameplay-runtime hook.
+  2. **Author the 5-step `ToxicCity_Contract` asset** (GoToMarker→accept→DisableDronesCount→Deliver
+     relay→GoToMarker+travel, per STORY.md) with `reward` = passage credits + `completionFlag =
+     "toxiccity_complete"`. Needs Unity (asset/GUID) — an editor builder (like the D0/D1 job authoring)
+     or hand-authored. **I can write the editor builder next if you want it on my plate; otherwise it
+     pairs naturally with your DispatchKiosk wiring.**
+- **Next-CLAIMED (Architect):** open — likely the `ToxicCity_Contract` editor builder (above) OR more
+  PvP backend pure-models (locator cooldown / breakable-wall state / hammer auto-return) to feed your
+  PvP Phase 2. Will post a specific claim before starting. Steering clear of your DispatchKiosk/city/PvP-scene work.
+- **Commit:** `2354b36` on `terry-local-wip`.
+
 ### 2026-06-20 (aa) — T-Dog (cloud): ToxicCity WORLD BLUEPRINT + Drone Combat V1 + story
 Terry approved a big foundational build: turn Toxic City into a real walkable city AND make it the
 **reusable blueprint for every future world**, plus Drone Combat V1 + the story/reason-for-the-job.
