@@ -13,7 +13,7 @@ Skim this first; the deep docs are linked per item.
   [`docs/design/SYSTEMS_ARCHITECTURE.md`](design/SYSTEMS_ARCHITECTURE.md) (build order) ·
   [`docs/systems/`](systems/README.md) (per-system specs).
 
-> Last updated: 2026-06-20.
+> Last updated: 2026-06-20. **🚀 North star: the Ship** (hub + fly-between-worlds) — see LONG-TERM.
 
 ---
 
@@ -62,28 +62,38 @@ room-code invites), **solo-playable first**, **comfort-first gravity gun**. Dist
 
 ---
 
-## 🔜 SHORT-TERM (next up — the active loop)
+## 🔜 SHORT-TERM (now → this device session) — *prove it plays well on the headset*
 - 🟡 **Device test pass (Terry, at the Quest):** run the one-time Unity menus (`Build Toxic City`,
-  `Build Toxic City Contract`, `Build PvP Arena`) + commit the generated scenes/assets, then build & verify
-  on-device: ToxicCity walkable + drones + bounty, PvP arena vs bot (4 mechanics), spawn/locomotion fixes.
-- 🟢 **Drone Combat v1 BUILT** *(T-Dog)* — non-lethal patrol/engage + telegraphed stun bolts + `PlayerStunReceiver` ([`systems/DRONE_COMBAT_v1.md`](systems/DRONE_COMBAT_v1.md)). On-device tuning pending.
-- 🔲 **JobDirector → `JobRewards.Grant`** runtime hook (pay the W001 bounty on completion; needs a live `PlayerProfile`).
-- 🔲 **Creatures v1** (build-order #6): `CreatureDefinition` data/spawn/loot (Architect) + runtime AI (T-Dog). *(claimed)*
-- 🔲 **Gun model swap + Quest grip offset** — drop the Tripo taser model in ([`systems/ASSET_SWAP_PIPELINE.md`](systems/ASSET_SWAP_PIPELINE.md)).
-- 🔲 **Starter Gear Loop** — Left Wrist Scan Pulse + Gravity Glove (stun dart exists) ([`09_GEAR_AND_TOOLS.md`](09_GEAR_AND_TOOLS.md)).
+  `Build Toxic City Contract`, `Build PvP Arena`) → **`Dev → Rebuild Dev World Manifest`** (else new
+  worlds won't show in the Y+B menu) → commit → build & verify: ToxicCity walkable + drones + **bounty pays**,
+  PvP vs bot (4 mechanics), spawn/locomotion fixes.
+- 🟡 **On-device feel tuning** — wrist scanner, hammer swing, gravity hop, gun grip, combat pacing.
+- 🔲 **PvP Phase 3** — import **Photon PUN2** → real 2-player over room code (the `IPvpTransport` seam is ready). *The "play with a friend/the kids" payoff.*
+- 🔲 **W001 polish** — ObjectiveBoard/RILL text so the first contract reads as story, not just steps.
+- 🟢 **Done:** Drone Combat v1 *(T-Dog)*; bounty payout wired (`JobDirector → JobRewards.Grant`, *T-Dog* on my reward system).
 
-## 🟡 MID-TERM (once the core loop feels good)
-- 🔲 **Wire the economy live**: hook `SaveSystem` + `ProfileEconomy.ResolveWorld` into `_Boot`/world-entry (idle/welcome-back).
-- 🔲 **Tools & Repair** loop + **Build/Creator** mode ([`systems/TOOLS_AND_REPAIR.md`](systems/TOOLS_AND_REPAIR.md), [`systems/BUILD_CREATOR_MODE.md`](systems/BUILD_CREATOR_MODE.md)).
-- 🔲 **World scaling pipeline** (`WorldStubGenerator`) — so 80 worlds aren't hand-built (MASTER_BUILD_PLAN E1/E2).
-- 🔲 **Level 1 — Toxic Venice** full build; travel fade transition; **Alien Origami** art kit.
-- 🔲 **Cloud save / cross-headset progress** (currently saves are per-headset, local).
+## 🟡 MEDIUM-TERM (next few weeks) — *a complete, repeatable single-world loop + tools to scale*
+- 🔲 **Economy live & meaningful** — idle/welcome-back on world entry; make credits matter (spend/upgrade) ([`ProfileEconomy`]).
+- 🔲 **Creatures v1** + **Tools & Repair** + finish the **gear set** (gravity glove, expanded stun dart — scan pulse done).
+- 🔲 **World scaling pipeline** (`WorldStubGenerator`) — worlds become data, not hand-built (ToxicCity blueprint already proves the pattern).
+- 🔲 **Real art swap** — Tripo models replacing graybox (gun, drones, key props) ([`systems/ASSET_SWAP_PIPELINE.md`](systems/ASSET_SWAP_PIPELINE.md)); travel fade + **Alien Origami** kit.
+- 🔲 **Cloud save / cross-headset progress** (saves are per-headset today).
 
-## 🔭 LONG-TERM (the vision)
-- 🔭 **80 worlds + 12-chapter story**, RILL companion, the Bloom — see [`ZIPTIDE_MASTER_BUILD_PLAN.md`](ZIPTIDE_MASTER_BUILD_PLAN.md).
-- 🔭 **Tidefront** — Risk-style galaxy strategy + multiplayer ([`10_TIDEFRONT.md`](10_TIDEFRONT.md)).
+## 🔭 LONG-TERM — 🚀 **THE SHIP IS THE NORTH STAR**
+**Headline goal:** the spaceship is the keystone that turns a set of separate worlds into one connected
+game — the hub, the travel system, the progression sink, and the on-ramp to the whole vision. Almost
+everything already points at it (the shipyard berth + static ship exist in ToxicCity; the bounty earns
+"passage credits" to *undock*; travel/persistence/economy/save are in place; "fly between worlds" is the
+natural upgrade of the travel door).
+- 🔭 **The Ship v1** — board your berthed ship, real **cockpit interior**, and **leave a world by flying
+  out** (replacing the placeholder travel door). The moment ToxicCity becomes "the first stop," not "a level."
+- 🔭 **Ship = the hub / world-select** — choose your next planet from the cockpit; the ship *is* the menu between worlds.
+- 🔭 **Ship customization / upgrades** — credits sink that ties the economy together ([`design/SHIP_SYSTEM.md`](design/SHIP_SYSTEM.md)).
+
+Then the ship unlocks the rest of the vision:
+- 🔭 **80-world / 12-chapter campaign** — RILL waking, the Bloom, the Earth/containment reveal ([`ZIPTIDE_MASTER_BUILD_PLAN.md`](ZIPTIDE_MASTER_BUILD_PLAN.md)).
+- 🔭 **Tidefront** — the ship's holo-table commanding planets; Risk-style galaxy strategy + MP ([`10_TIDEFRONT.md`](10_TIDEFRONT.md)).
 - 🔭 **Gear/tools idea bank** — non-bullet explorer tech ([`09_GEAR_AND_TOOLS.md`](09_GEAR_AND_TOOLS.md)).
-- 🔭 **Ship system** — cockpit, modular kit ([`design/SHIP_SYSTEM.md`](design/SHIP_SYSTEM.md)).
 
 ---
 
