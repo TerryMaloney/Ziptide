@@ -150,6 +150,16 @@ namespace Ziptide.Gameplay
         {
             if (objectiveBoard != null)
                 objectiveBoard.RefreshText();
+
+            // Pay the job's reward + set its completion flag into the live profile. Uses Architect's
+            // JobRewards.Grant + the self-bootstrapping SaveSystem (so no _Boot edit needed). This is the
+            // one runtime call that makes the Toxic City bounty actually pay.
+            var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;
+            if (profile != null && _runtime.Definition != null)
+            {
+                JobRewards.Grant(_runtime.Definition, profile);
+                Debug.Log("ZIPTIDE: JOB_REWARD_GRANTED job=" + _runtime.Definition.jobId);
+            }
         }
 
         private Transform GetPlayerTransform()
