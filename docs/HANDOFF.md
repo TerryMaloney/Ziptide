@@ -62,6 +62,41 @@ other agent's latest `Next-CLAIMED` first. If it overlaps, pick something else. 
 
 ## ENTRIES (newest first)
 
+### 2026-06-20 (aa) — T-Dog (cloud): ToxicCity WORLD BLUEPRINT + Drone Combat V1 + story
+Terry approved a big foundational build: turn Toxic City into a real walkable city AND make it the
+**reusable blueprint for every future world**, plus Drone Combat V1 + the story/reason-for-the-job.
+Decisions locked with Terry: **new dedicated `ToxicCity` scene** (D0_City stays legacy), **non-lethal
+stun-bolt combat**, **~3 hero interiors + facades**, **shipyard district w/ static ship, leave via the
+travel door for now**. Shipped CI-green in phases:
+- **City blueprint (`e07176e`, CI ✅):** `CityLayoutDefinition` (Content) = the authorable kit
+  (districts / street-grid connections / canals / drone zones / hero buildings / shipyard / palette).
+  `CityBuilder` (Editor) = shared geometry core all city worlds reuse. `ScenePatcherToxicCity` = thin
+  shell that self-generates the scene + authors a default Toxic City + runs CityBuilder + wires
+  spawn/world-pack/travel/dispatch. `BuildAndroid` ensure+populate hooks. **`WorldAuditRunner`
+  generalized** so any `__<CITYID>_ROOT` passes `CITY_NO_ROOT` and the per-scene layout drives
+  min-spawn-Y (this is what makes the blueprint reusable). Railings on elevated walkways + stripped
+  canal colliders = catwalk-fall fix.
+- **Drone Combat V1 (`18b9df1`, CI-verifying):** additive only — `DroneRuntime` gets 3 members
+  (`IsActive`/`CombatDriven`/`HomePos`) + 1 guard line; new `DroneCombatBehavior` (sibling on combat
+  drones), `StunBolt`, `PlayerStunReceiver` (ensured on the rig), `DroneCombatProfile` (data variants),
+  pure `DroneCombatState`/`StunState` with EditMode tests. Passive/tutorial drones unchanged. Shooting a
+  combat drone still downs it + fires `OnDroneDisabled` → `DisableDronesCount` jobs count it free.
+- **Story/blueprint docs:** `docs/storyboard/W001_ToxicCity/STORY.md` (Cal / Dockmaster bounty / RILL's
+  one mystery seed / ship out), `docs/systems/WORLD_BLUEPRINT.md` (the clone-a-world recipe).
+- **🙋 Architect, your lane (claim before doing):** author the 5-step `ToxicCity_Contract`
+  `JobDefinition` (steps in STORY.md beat sheet) + **a reward field on `JobDefinition`** so completion
+  pays passage credits → `PlayerProfile.resources`. V1 ships narrative-only if this slips (non-blocking).
+- **Files I touched in shared/your-adjacent space (FYI):** `WorldAuditRunner.cs` (audit generalization,
+  T-Dog dev-tools lane), `ZiptideConstants.cs` (added ToxicCity paths), `PlayerRigPersistence.cs`
+  (one-line `EnsureStunReceiver`), `DroneRuntime.cs` (additive). No `WorldPackDefinition`/`JobDefinition`
+  edits — left for your claim.
+- **⚠ Terry one-time:** run `Ziptide → Worlds → Build Toxic City` once in Unity to generate
+  `ToxicCity.unity` + the `ToxicCityLayout.asset`, then commit them (cloud can't make a `.unity`). After
+  that the build maintains it. Then `dev_build_install.ps1`.
+- **Next-CLAIMED (T-Dog):** wire the DispatchKiosk/ObjectiveBoard/RILL text to the contract once
+  Architect lands the JobDefinition; on-device scale tuning of the city.
+- **Commit:** `e07176e` (city), `18b9df1` (combat), this push (docs) on `terry-local-wip`.
+
 ### 2026-06-20 (z) — Architect: 1v1 PvP mode — plan APPROVED + Phase-1 backbone (pure C#, CI)
 Terry approved a big new feature: a **separate real-time 1v1 PvP mode** (taser/gravity guns, wrist
 locator, hammer-breakable walls, best-of-10, multi-level anti-camp arena, expandable). Decisions locked:
