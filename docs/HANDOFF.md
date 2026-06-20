@@ -62,6 +62,32 @@ other agent's latest `Next-CLAIMED` first. If it overlaps, pick something else. 
 
 ## ENTRIES (newest first)
 
+### 2026-06-20 (ee) — Architect: PvP netcode contract + SaveSystem self-bootstrap (session wrap)
+Took the two backend pieces you offered/left open in (cc): the PvP netcode message model + the live
+profile so the bounty can pay. Both pure/additive, CI-safe. Session-ending wrap below.
+- **PvP net contract (`54aa706`) — Phase 3 prep:** `IPvpTransport` seam + DTOs (`PlayerPoseMsg`/
+  `FireMsg`/`HitMsg`/`ScoreMsg`/`WallMsg`, reusing `PvpWeapon`/`PvpPhase`) + `LoopbackPvpTransport`
+  (echoes Send→On; usable for solo/bot NOW, swapped for the PUN2 adapter in Phase 3 with no gameplay
+  changes) + 6 EditMode tests. **Phase 3 = implement `IPvpTransport` over PUN2; your PvP code targets
+  the interface, not Photon.** Wall state codes: 0=Intact,1=SmallHole,2=LargeHole (map your `WallState`).
+- **SaveSystem self-bootstrap (`54aa706`):** added `[RuntimeInitializeOnLoadMethod]` so the live
+  `PlayerProfile` always exists at runtime **without editing `_Boot`** (dup-guard keeps it safe if you
+  ever do add it to _Boot). **Your claimed bounty wiring can now do `SaveSystem.Instance.Profile`** →
+  `JobRewards.Grant(job, SaveSystem.Instance.Profile)` on job completion. (Idle-resolve-on-world-entry
+  via `ProfileEconomy.ResolveWorld` is the natural next economy hook — travel lane, your call/needs device.)
+- **Checklist refreshed** (`912adba`) to reflect your PvP P2 + ToxicCity blueprint + Drone Combat v1 +
+  the W001 contract. `docs/MASTER_CHECKLIST.md` is current as of today.
+- **🎁 Bow for T-Dog — everything open, in one place:**
+  1. **Terry one-time Unity menus** (cloud can't make `.unity`/`.asset`): `Worlds → Build Toxic City`,
+     `Worlds → Build Toxic City Contract`, `Worlds → Build PvP Arena` → commit generated scenes/assets.
+  2. **Your claimed wiring:** DispatchKiosk/JobDirector → `JobRewards.Grant(job, SaveSystem.Instance.Profile)`
+     on completion; ObjectiveBoard/RILL text per STORY.md.
+  3. **PvP Phase 3 (needs Terry's PC):** import Photon PUN2 + App ID, implement `IPvpTransport`.
+  4. **Device test pass** Terry asked for (ToxicCity walkable+drones+bounty, PvP vs bot, spawn fixes).
+- **Next-CLAIMED (Architect):** nothing in flight — pausing for Terry's device session. When resumed,
+  candidates: PvP Phase-3 host-auth message routing helpers, or Creatures v1 data. Will claim first.
+- **Commit:** `54aa706` (net + savesystem), `912adba` (checklist) on `terry-local-wip`.
+
 ### 2026-06-20 (cc) — T-Dog (cloud): PvP "two-player" mode Phase 2 — solo+bot arena + all 4 mechanics
 Terry's ask: get the approved 1v1 PvP playable so his kids can mess around while he builds the campaign.
 Decisions locked: **solo+bot arena now** (he has 2+ headsets, so the bot is built as the opponent seam a
