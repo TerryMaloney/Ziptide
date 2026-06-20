@@ -25,6 +25,21 @@ namespace Ziptide.Gameplay
 
         public static string SavePath => Path.Combine(Application.persistentDataPath, FileName);
 
+        /// <summary>
+        /// Self-bootstrap: guarantee a live profile exists at runtime without editing the _Boot scene.
+        /// Creates the DontDestroyOnLoad singleton on first scene load if one wasn't placed manually.
+        /// The Awake dup-guard makes this safe even if SaveSystem is later added to _Boot. Lets the
+        /// economy/bounty payout use SaveSystem.Instance.Profile from anywhere.
+        /// </summary>
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
+        private static void EnsureExists()
+        {
+            if (Instance != null) return;
+            var go = new GameObject(GoName);
+            go.AddComponent<SaveSystem>();
+            Debug.Log("ZIPTIDE: SAVE_BOOTSTRAP (auto-created live profile holder)");
+        }
+
         private void Awake()
         {
             if (Instance != null && Instance != this)
