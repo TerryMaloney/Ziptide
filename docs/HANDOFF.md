@@ -62,6 +62,36 @@ other agent's latest `Next-CLAIMED` first. If it overlaps, pick something else. 
 
 ## ENTRIES (newest first)
 
+### 2026-06-20 (cc) — T-Dog (cloud): PvP "two-player" mode Phase 2 — solo+bot arena + all 4 mechanics
+Terry's ask: get the approved 1v1 PvP playable so his kids can mess around while he builds the campaign.
+Decisions locked: **solo+bot arena now** (he has 2+ headsets, so the bot is built as the opponent seam a
+networked avatar later replaces), **all four mechanics in v1**. Built on YOUR (Architect) pure
+`Ziptide.Multiplayer` rules — the VR layer only *calls* `PvpMatch`/`PvpCombatant`/`PvpRules`, so your 14
+balance tests still guard balance.
+- **PvP-1 (`3e1e39c`, CI ✅):** `IPvpDamageable` seam; `PvpPlayer`/`PvpBot` (each owns a `PvpCombatant`);
+  `PvpMatchDirector` (+ pure `PvpRoundLogic`, tested); `PvpHud`; **one additive `IPvpDamageable` branch
+  each** in `TaserDartProjectile`+`GravityGunRuntime` (single-player/drone paths untouched);
+  `ScenePatcherPvP` + `PvP_Arena01` (self-gen) + WorldPack + BuildAndroid hooks.
+- **PvP-2/3 (`52c93de`, CI-verifying):** `WallState`+`BreakableWall` (segmented, hammer-breakable, regen),
+  `HammerTool` (swing-break + auto-return), `LocatorState`+`WristLocator` (hold→ping, cooldown),
+  `PvpComfortHop` (gravity-gun comfort self-hop + vignette). Pure `WallState`/`LocatorState` are
+  EditMode-tested.
+- **🟢 Claimed (so we don't double up):** I took the pure helpers you offered (`WallState`/`LocatorState`/
+  hammer auto-return) since they're tightly coupled to the MonoBehaviours — **please don't rebuild them.**
+  If you want a PvP backend task, the **netcode message model** (Phase 4) is the open shared piece.
+- **Heads-up (additive shared edits):** `Ziptide.Gameplay.asmdef` now references `Ziptide.Multiplayer`
+  (no cycle — Multiplayer refs only Core); two weapon files got one extra hit-branch each;
+  `ZiptideConstants`/`BuildAndroid` got PvP arena entries. Did **not** touch `Ziptide.Multiplayer`
+  internals.
+- **⚠ Terry one-time:** run `Ziptide → Worlds → Build PvP Arena` once in Unity to generate
+  `PvP_Arena01.unity`, commit it, then build. Dev-Warp to it to fight the bot. VR-feel (hammer swing,
+  wrist gesture, hop distance) needs your on-device tuning.
+- **Phase 4 (shared, needs Terry's PC):** import **Photon PUN2** + an App ID; a `Net/` adapter syncs
+  the avatar/fire/damage/score/wall-holes and swaps the bot for a remote player behind `IPvpDamageable`.
+- **Next-CLAIMED (T-Dog):** the "test & check everything" pass Terry asked for (Toxic City + PvP +
+  recent fixes), then DispatchKiosk→`JobRewards.Grant` wiring for the W001 bounty.
+- **Commit:** `3e1e39c` (PvP-1), `52c93de` (PvP-2/3), this push (HANDOFF) on `terry-local-wip`.
+
 ### 2026-06-20 (bb) — Architect: JobDefinition reward + JobRewards.Grant (W001 bounty blocker) — done
 Picked up the claim you (T-Dog) left in (aa): the **reward field on `JobDefinition`** so the Toxic City
 contract pays passage credits. Landed pure/CI-safe (my lane), so your DispatchKiosk/RILL wiring is
