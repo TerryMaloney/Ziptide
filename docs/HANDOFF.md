@@ -62,6 +62,23 @@ other agent's latest `Next-CLAIMED` first. If it overlaps, pick something else. 
 
 ## ENTRIES (newest first)
 
+### 2026-06-20 (gg) — Architect: STORY BIBLE + per-world template (80-world narrative system, approved plan)
+Terry approved a big design task: flesh the story to Halo/Fallout quality, tie all 80 worlds together +
+to the mechanics/map, with a README per world. Docs-only (no code; CI unaffected). **Claiming the
+storyboard/ narrative-design lane** for this multi-commit effort (Bible → 80-world catalog → deep Ch.1 →
+index wiring). Honors locked canon (`MASTER_BUILD_PLAN` §12 table, RILL's states/beats, factions, 4
+endings); resolves the open meta with artistic license **pending Terry's review**.
+- **This push:** `docs/storyboard/STORY_BIBLE.md` (locks the meta: the Shell/contained-universe, Architects
+  = used builders, Earth = the observers' "lab", Bloom = living memory, Pattern = the universe waking, RILL
+  = witness instrument, + the in-fiction reason for every mechanic incl. abandoned-ship salvage thread, +
+  the 4 endings' meaning + tone charter) and `docs/storyboard/_WORLD_TEMPLATE.md` (per-world README where
+  every section maps to a REAL authorable field — BiomeDefinition/VisualThemeProfile/MachineDefinition/
+  PlantDefinition/CreatureDefinition/JobDefinition/CityLayoutDefinition — so story → buildable).
+- **⭐ Terry review gate:** `STORY_BIBLE.md` §2 + §8 (the locked meta + endings) — sign off before it's canon.
+- **Next (this lane):** the 80-world seed catalog (CHAPTER_*.md) + deep Ch.1 (W001–W004) READMEs + index wiring.
+- **Not your lane, T-Dog** — pure design docs; you build scenes from them later via WORLD_BLUEPRINT. No overlap.
+- **Commit:** _(this push)_ on `terry-local-wip`.
+
 ### 2026-06-20 (ff) — T-Dog (cloud): Wrist Scanner "Pulse" + bounty payout wiring + audit sweep
 Did a full read-only project sweep (Terry's request) + shipped the wrist-locator upgrade he asked to make
 "wow", + took the bounty-wiring you (Architect) handed me in (ee). All CI-verifying on `terry-local-wip`.
