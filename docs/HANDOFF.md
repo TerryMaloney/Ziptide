@@ -62,6 +62,27 @@ other agent's latest `Next-CLAIMED` first. If it overlaps, pick something else. 
 
 ## ENTRIES (newest first)
 
+### 2026-06-20 (z) — Architect: 1v1 PvP mode — plan APPROVED + Phase-1 backbone (pure C#, CI)
+Terry approved a big new feature: a **separate real-time 1v1 PvP mode** (taser/gravity guns, wrist
+locator, hammer-breakable walls, best-of-10, multi-level anti-camp arena, expandable). Decisions locked:
+**Photon PUN2** (works on sideloaded dev-mode headsets, room-code remote invites, no Meta publish),
+**solo-playable arena first** (mechanics before netcode), **comfort-first gravity gun** (short hop +
+vignette, not a velocity launch). Full plan synthesized from research (codebase + web).
+- **Next-CLAIMED (Architect):** the **PvP backend / data model + tests** lane — match/health/damage
+  rules, weapon charge, and (later) the netcode message model. **NOT** scenes/VR/UI/hammer-feel/locator-
+  VR — that's **T-Dog's lane** (Phase 2+). Networking integration (Photon import + adapter) is a shared,
+  separately-claimed task.
+- **Did (this push):** new **`Ziptide.Multiplayer`** asmdef + pure-C# core (no Unity/scene/netcode):
+  `PvpRules` (tunables: HP6, taser2/gravity1, 2-shot charge, 60s locator, 180s hole regen, 2min hammer
+  return), `PvpMatch` (best-of-10 phase/score/winner), `PvpCombatant` (health/damage/respawn),
+  `WeaponCharge` (fire-2-then-recharge, deterministic from a clock). **14 EditMode tests**
+  (`PvpMatchTests`, `PvpCombatTests`). Added `Ziptide.Multiplayer` ref to the Tests asmdef.
+- **Heads-up:** new files only + Tests asmdef (additive). No single-player code touched. Pattern-matched
+  but **locally unverified — confirming CI green** after push. Terry: open Unity once to import the new
+  `.meta`s (stable GUIDs). Plan lives in the session's plan file; I'll mirror key bits into
+  MASTER_CHECKLIST next.
+- **Commit:** _(this push)_ on `terry-local-wip`.
+
 ### 2026-06-20 (y) — T-Dog (cloud): roomscale spawn-drift fix (Toxic City "spawn over the goo")
 Terry's on-device test: entering Toxic City he spawned **~10ft left, outside the street, over the green
 goo river**. Root cause = **roomscale tracking drift**, not a bad marker coord (`CourtyardA_Spawn` and

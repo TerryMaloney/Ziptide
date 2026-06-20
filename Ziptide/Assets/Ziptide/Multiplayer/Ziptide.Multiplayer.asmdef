@@ -1,0 +1,16 @@
+{
+    "name": "Ziptide.Multiplayer",
+    "rootNamespace": "Ziptide.Multiplayer",
+    "references": [
+        "Ziptide.Core"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

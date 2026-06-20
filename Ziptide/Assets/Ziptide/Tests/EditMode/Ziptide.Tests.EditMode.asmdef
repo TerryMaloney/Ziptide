@@ -5,6 +5,7 @@
         "Ziptide.Core",
         "Ziptide.Content",
         "Ziptide.Gameplay",
+        "Ziptide.Multiplayer",
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner"
     ],
