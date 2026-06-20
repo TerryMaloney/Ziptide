@@ -62,6 +62,24 @@ other agent's latest `Next-CLAIMED` first. If it overlaps, pick something else. 
 
 ## ENTRIES (newest first)
 
+### 2026-06-20 (y) — T-Dog (cloud): roomscale spawn-drift fix (Toxic City "spawn over the goo")
+Terry's on-device test: entering Toxic City he spawned **~10ft left, outside the street, over the green
+goo river**. Root cause = **roomscale tracking drift**, not a bad marker coord (`CourtyardA_Spawn` and
+the `__SPAWN_PLAYER` marker agree at X≈0, Z≈-16). `TeleportToMarker` slammed the rig **root** onto the
+marker, but the player's **head** is offset from the root by wherever they physically stand in their
+playspace — so an off-center stance lands off-center, over the goo.
+- **Fix (`PlayerRigPersistence.TeleportToMarker`, commit `4962b38`):** spawn is now roomscale-correct —
+  (1) **ground-snap** the marker Y with a downward raycast using `QueryTriggerInteraction.Ignore` (goo /
+  trigger volumes never count as floor → never spawn over goo/void); (2) **head-align** — shift the rig
+  so the camera's XZ lands on the marker XZ, cancelling the playspace offset; (3) lock the rig base to
+  the snapped ground. Universal across all worlds. New diag tag: `ZIPTIDE: SPAWN_AT`.
+- **STILL OPEN (unchanged, need a real `_Boot` dump — see (x)):** (a) gun-rotation anchor-control field
+  name; (b) dev-menu clickable-once after warp. Both need an on-device dump of the **`_Boot`** scene
+  (Terry's last dump was an *untitled* scene → empty). Not blocking the spawn fix.
+- **Next-CLAIMED (T-Dog):** Drone Combat v1 (orbit/strafe + telegraphed stun bolt) OR further map
+  expansion — Terry's call on the next run.
+- **Commit:** `4962b38` on `terry-local-wip`.
+
 ### 2026-06-19 (x) — T-Dog (cloud): device-test deep fixes + more Toxic City drones
 From Terry's on-device test of the local build. Fixed (CI-verifying, `a15a586`):
 - **Ray reach** → `PlayerRigPersistence` sets `XRRayInteractor.maxRaycastDistance=2.5` at RUNTIME
