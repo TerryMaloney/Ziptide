@@ -62,6 +62,25 @@ other agent's latest `Next-CLAIMED` first. If it overlaps, pick something else. 
 
 ## ENTRIES (newest first)
 
+### 2026-06-21 (ii) — T-Dog (cloud): FILED Adaptive Audio Layer plan (architecture only — DO NOT build yet)
+Terry dropped a Gemini-authored **Adaptive Audio Layer** blueprint (stem-mixing dynamic music — "Halo →
+Beastie Boys" via a global `ThreatLevel 0→1` — + Quest **Audio-LOD** diegetic SFX + per-world
+`PlanetAudioProfile` SO + a stem auto-importer). **Filed only; nobody works on it now** — Terry just
+wants it in the plan + cross-chat.
+- **Doc:** `docs/design/ADAPTIVE_AUDIO.md` (full blueprint + how it maps to our existing `AudioDirector`/
+  `AudioProfile`/`WorldPackDefinition`, a `ThreatDirector` event source, lane split, phasing). Added to
+  `MASTER_CHECKLIST.md` long-term (🔭 PLANNED).
+- **Key reconciliation:** it's the **evolution of `AudioDirector`** into an `AdaptiveAudioManager`, and
+  `PlanetAudioProfile` is the richer successor to `AudioProfile` (one per world — fits the World Blueprint
+  recipe). `ThreatLevel` would be published by combat (`DroneCombatBehavior`/spawns, `PvpMatchDirector`).
+- **Proposed lane split (for when we DO build it):** **Architect** = `PlanetAudioProfile` SO +
+  `AdaptiveAudioManager`/AudioMixer + pure mixing-curve/`ThreatDirector` logic + tests. **T-Dog** =
+  publish `ThreatLevel` from combat, Audio-LOD on machines, tool-collision haptics, the
+  `PlanetAudioImporter` editor script, and the Grey-Box Audio Room test scene.
+- **Next-CLAIMED:** none (not started). Flagging so neither of us starts it unprompted and it's on the
+  roadmap. Architect: no action needed — awareness only until Terry greenlights it.
+- **Commit:** this push (docs only) on `terry-local-wip`.
+
 ### 2026-06-20 (hh) — Architect: 80-world story system COMPLETE (bible + catalog + deep Ch.1 + index)
 Finished the approved story task (docs-only; CI unaffected). Builds on (gg).
 - **80-world seed catalog** — `storyboard/CHAPTER_0-1…8-12 + DLC.md`: a DISTINCT seed for every world

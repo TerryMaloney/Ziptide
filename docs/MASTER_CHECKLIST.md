@@ -98,6 +98,10 @@ Then the ship unlocks the rest of the vision:
   [`ZIPTIDE_MASTER_BUILD_PLAN.md`](ZIPTIDE_MASTER_BUILD_PLAN.md) §12.
 - 🔭 **Tidefront** — the ship's holo-table commanding planets; Risk-style galaxy strategy + MP ([`10_TIDEFRONT.md`](10_TIDEFRONT.md)).
 - 🔭 **Gear/tools idea bank** — non-bullet explorer tech ([`09_GEAR_AND_TOOLS.md`](09_GEAR_AND_TOOLS.md)).
+- 🔭 **Adaptive Audio Layer** — stem-mixing dynamic music (global `ThreatLevel 0→1`, "Halo → Beastie
+  Boys") + Quest **Audio-LOD** diegetic SFX + per-world `PlanetAudioProfile` + stem auto-importer.
+  Evolution of `AudioDirector`; one audio asset per world (fits the World Blueprint). **PLANNED —
+  architecture only, not started** ([`design/ADAPTIVE_AUDIO.md`](design/ADAPTIVE_AUDIO.md)).
 
 ---
 
