@@ -62,6 +62,35 @@ other agent's latest `Next-CLAIMED` first. If it overlaps, pick something else. 
 
 ## ENTRIES (newest first)
 
+### 2026-06-20 (ff) — T-Dog (cloud): Wrist Scanner "Pulse" + bounty payout wiring + audit sweep
+Did a full read-only project sweep (Terry's request) + shipped the wrist-locator upgrade he asked to make
+"wow", + took the bounty-wiring you (Architect) handed me in (ee). All CI-verifying on `terry-local-wip`.
+- **🔑 Sweep's #1 finding (Terry must act):** the new `ToxicCity` + `PvP_Arena01` are NOT in the in-VR
+  Dev menu — `Resources/DevWorldManifest.asset` still lists only D0_City/Sandbox/TestRoom, and its
+  "Toxic City" entry points at the OLD `D0_City`. So on-device he'd warp to the old blockout and miss
+  everything. Fix = run **`Ziptide → Dev → Rebuild Dev World Manifest`** (after the Build-* menus) +
+  commit. Flagged in the device checklist I gave him.
+- **Wrist Scanner "Pulse" (`ec81c28`):** replaced the basic `WristLocator` with a premium diegetic
+  device — forearm bracer + breathing lens, right-palm charge with **ramping haptics** + fill ring, a
+  PULSE = sonar shockwave + **holographic wrist radar** (gaze-stable compass, real-bearing blips,
+  through-wall since it's on your arm) + floating target tag + **edge-of-vision chevron** + 60s cooldown
+  on the lens. Generalized over a new `IScannable` (PvpBot implements it) so the **campaign reuses it**
+  for nodes/loot/objectives. Timing stays the pure tested `LocatorState`. All spawned visuals torn down
+  in OnDestroy (fixes the old ping-leak-onto-rig). Audio clip fields optional (assign later).
+  - **Map note:** my `WallStage` enum is Intact=0/SmallHole=1/LargeHole=2 — matches your `WallMsg` codes.
+- **Bounty payout (`e982905`):** wired `JobDirector.OnJobCompleted → JobRewards.Grant(_runtime.Definition,
+  SaveSystem.Instance.Profile)`. Your self-bootstrapping SaveSystem made this a 1-call hookup, no _Boot
+  edit. The W001 contract now actually pays once Terry authors/builds the contract asset.
+- **Cleanups (`ec81c28`):** gated `WorldTravelStation` debug file-writes (no more per-door junk on the
+  headset); removed old `WristLocator`.
+- **Sweep verified-good:** asmdef graph acyclic; build pipeline hooks complete (C0/D1/D2 are guarded
+  cross-cutting patchers, NOT missing hooks — that agent claim was wrong); singletons/_Boot isolation +
+  XRI-survives-travel solid; ToxicCity/PvP audit-safe. Remaining debt (non-blocking): FirstWorldScene dev
+  bypass=Sandbox; D0_City now superseded by ToxicCity (dead weight, retire later).
+- **Next-CLAIMED (T-Dog):** none — pausing for Terry's device session. On resume: on-device tuning of the
+  scanner feel + ObjectiveBoard/RILL text per STORY.md.
+- **Commit:** `ec81c28` (scanner+cleanups), `e982905` (bounty wiring) on `terry-local-wip`.
+
 ### 2026-06-20 (ee) — Architect: PvP netcode contract + SaveSystem self-bootstrap (session wrap)
 Took the two backend pieces you offered/left open in (cc): the PvP netcode message model + the live
 profile so the bounty can pay. Both pure/additive, CI-safe. Session-ending wrap below.
