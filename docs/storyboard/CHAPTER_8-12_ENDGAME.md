@@ -17,7 +17,20 @@ Endgame states. **Reveal:** total. Inherit `STORY_BIBLE.md` §8 (endings). Highe
 - **Enemy:** none. **Wreck/log:** the Architects' explanation of *why* the Shell is two-way. **Mystery:** the thing kept out has been *knocking*.
 - **RILL beat (max VO):** *"The Architects did not build this to keep stories in. They built it to keep something out."* `C8_W062_REVELATION`, `W062_COMPLETE`.
 
-### W063 — The Branching (Void · none · — · Integrated→Endgame) ★ the choice
+### ★ EARTH APPROACH — between W062 and W063 (Terry's idea; PROPOSED, see `STORY_BIBLE.md` §8b)
+The climax staging that turns the abstract "outside" physical. Slots after the Revelation, before the
+Branch (no table renumber — it's the *setting* the endgame worlds use):
+- **The Lagrange door.** W062's coordinates point to **Jupiter's L4/L5 Lagrange point** in the observers'
+  real universe — the Shell's only true door. (Real orbital mechanics — the nerd payoff.)
+- **The cloaked ship.** A hidden vessel waits there (Architects'/prior-wakers'); boarding it = Cal's first
+  unambiguous step *outside the cage*. Ties to the ship north-star.
+- **Earth level (the task).** Fly in-system to **Earth** — the Observers' world, where the lab is. A
+  grounded, all-Earth mission (reach/infiltrate the lab; one concrete objective). First real-world
+  environment after 60+ alien worlds = the gut-punch that earns the ending. *(Distinct world; Earth art
+  kit — design now, art later. Use a late slot or fold into the W064–W067 approach worlds as Earth-set.)*
+- → leads directly into **W063 The Branching**, now staged on/at Earth.
+
+### W063 — The Branching (Void/Earth · none · — · Integrated→Endgame) ★ the choice
 - **Role:** The single biggest player choice; the four endings diverge here.
 - **Physics:** a crossroads in the void, four gates, no hazard. **Machine:** the gate-key cradle — *what Cal does with the Signal Core + RILL* decides everything.
 - **Resource:** Choice (flag). **Gear:** none. **Sky:** four different skies behind four gates (Reseal / Cross / Forget / Become).

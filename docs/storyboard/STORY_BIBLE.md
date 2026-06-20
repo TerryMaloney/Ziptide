@@ -127,6 +127,30 @@ choice; no single "canon" ending.
 - **D — Become / Pattern.** Merge with the Pattern; the universe stops being observed and starts
   **authoring itself**. Cal and RILL dissolve into it. *(Transcendence / assimilation.)*
 
+## 8b. The Earth Approach — climax staging (Terry's idea; PROPOSED, for review)
+Grounds the abstract "outside" in *our* solar system and gives the conclusion a concrete, buildable
+**Earth level**. Slots **between W062 (Revelation) and W063 (Branching)** without renumbering the locked
+table — it's the *physical staging* the endgame worlds happen in.
+1. **The coordinates.** W062's revelation hands Cal a real location: not a void, but a point in the
+   **observers' universe — Jupiter's L4/L5 Lagrange point** (real orbital mechanics; the stable Trojan
+   spot you'd actually hide something). The Shell's only true door opens *there*.
+2. **The cloaked ship.** Parked at the Lagrange point is a **cloaked vessel** — the Architects'/prior-wakers'
+   hidden ship, the docking bridge between the contained pocket-universe and reality. Boarding it = the
+   first time Cal is unambiguously *outside the cage*. (Hard-sci-fi reveal beat; ties to the ship/north-star.)
+3. **Fly to Earth.** Take the ship in-system to **Earth** — the Observers' homeworld, where the "lab" is.
+   First real-world sky/ground after 60+ alien worlds: maximum contrast, maximum gut-punch.
+4. **An Earth level (the task).** A grounded, Earth-set mission — infiltrate/reach the lab, complete one
+   concrete objective (recover/upload/confront) — *all Earth stuff*, no Bloom/Pattern aesthetics, which is
+   exactly why it hits. This is the run-up that earns the conclusion.
+5. **Then the Branch (W063) → the four endings (W064–W068)** resolve here, now with Earth as the stage:
+   reseal the door from Earth's side, cross fully over, reset, or merge.
+
+**Reconciliation with the locked meta:** "Earth = the observers' lab / outside" stays true — we just make
+it *reachable* via the Lagrange door + cloaked ship, so the reveal is physical, not abstract. Cal-is-alien
+still lands (she's the alien standing on Earth). **Build note:** the Earth level is a distinct world (use a
+late/endgame slot or the W064–W067 approach worlds as Earth-set); it needs an Earth art kit — design now,
+art later.
+
 ## 9. Tone charter (apply to every world)
 All-ages, story-deep. Non-lethal stun combat, no gore, no profanity. Stakes are **existential and
 emotional**, not graphic. Wonder first (every sky should make you stop), melancholy underneath, humor via
