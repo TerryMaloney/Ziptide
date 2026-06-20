@@ -35,6 +35,9 @@ namespace Ziptide.Build
             try { Ziptide.Editor.Patching.ScenePatcherToxicCity.EnsureInBuildSettings(); }
             catch (Exception ex) { Debug.LogWarning("[Ziptide] ToxicCity build-settings ensure warning: " + ex.Message); }
 
+            try { Ziptide.Editor.Patching.ScenePatcherPvP.EnsureInBuildSettings(); }
+            catch (Exception ex) { Debug.LogWarning("[Ziptide] PvP arena build-settings ensure warning: " + ex.Message); }
+
             // Reload scenes list — ScenePatcherBoot/Sandbox may have modified it (added _Boot/Sandbox, removed SampleScene).
             var scenes = EditorBuildSettings.scenes;
             for (int i = 0; i < scenes.Length; i++)
@@ -79,6 +82,12 @@ namespace Ziptide.Build
                 {
                     try { Ziptide.Editor.Patching.ScenePatcherToxicCity.PopulateActiveToxicCity(); }
                     catch (Exception ex) { Debug.LogWarning("[Ziptide] ToxicCity patcher warning for " + path + ": " + ex.Message); }
+                }
+
+                if (sceneName == Ziptide.Editor.Patching.ScenePatcherPvP.SceneName)
+                {
+                    try { Ziptide.Editor.Patching.ScenePatcherPvP.PopulateActivePvP(); }
+                    catch (Exception ex) { Debug.LogWarning("[Ziptide] PvP arena patcher warning for " + path + ": " + ex.Message); }
                 }
 
                 EditorSceneManager.MarkSceneDirty(scene);

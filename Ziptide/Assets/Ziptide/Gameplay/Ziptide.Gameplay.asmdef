@@ -5,6 +5,7 @@
         "Ziptide.Core",
         "Ziptide.Visuals",
         "Ziptide.Content",
+        "Ziptide.Multiplayer",
         "Unity.XR.Interaction.Toolkit",
         "Unity.TextMeshPro",
         "Unity.InputSystem",

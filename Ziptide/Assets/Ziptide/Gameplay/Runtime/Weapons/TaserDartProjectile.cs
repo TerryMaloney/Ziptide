@@ -1,5 +1,6 @@
 using UnityEngine;
 using Ziptide.Core;
+using Ziptide.Multiplayer;
 
 namespace Ziptide.Gameplay
 {
@@ -48,13 +49,23 @@ namespace Ziptide.Gameplay
             }
             else
             {
-                var shockable = collision.gameObject.GetComponentInParent<IShockable>();
-                if (shockable != null)
-                    shockable.Shock(_stunSeconds);
+                // PvP: a player/bot combatant takes taser damage (Drone Combat / single-player paths
+                // are untouched — this is just one more branch).
+                var pvp = collision.gameObject.GetComponentInParent<IPvpDamageable>();
+                if (pvp != null)
+                {
+                    pvp.ReceiveHit(PvpWeapon.Taser, transform.position, transform.forward);
+                }
+                else
+                {
+                    var shockable = collision.gameObject.GetComponentInParent<IShockable>();
+                    if (shockable != null)
+                        shockable.Shock(_stunSeconds);
 
-                var target = collision.gameObject.GetComponentInParent<TargetRuntime>();
-                if (target != null)
-                    target.Hit(_hitImpulse, transform.position);
+                    var target = collision.gameObject.GetComponentInParent<TargetRuntime>();
+                    if (target != null)
+                        target.Hit(_hitImpulse, transform.position);
+                }
             }
 
             if (_impactClip != null)

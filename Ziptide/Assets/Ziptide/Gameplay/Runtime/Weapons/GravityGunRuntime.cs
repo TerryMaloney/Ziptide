@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using Ziptide.Content;
+using Ziptide.Multiplayer;
 
 namespace Ziptide.Gameplay
 {
@@ -99,6 +100,13 @@ namespace Ziptide.Gameplay
                         Vector3 launch = dir * def.launchForce + Vector3.up * def.upwardBias;
                         rb.AddForce(launch, ForceMode.Impulse);
                     }
+                }
+                else
+                {
+                    // PvP: a player/bot combatant takes gravity damage + knockback. Additive branch.
+                    var pvp = hit.collider.GetComponentInParent<IPvpDamageable>();
+                    if (pvp != null)
+                        pvp.ReceiveHit(PvpWeapon.Gravity, hit.point, dir);
                 }
                 break; // only the first solid thing the pulse meets
             }
