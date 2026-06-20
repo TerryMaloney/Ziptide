@@ -91,6 +91,28 @@ balance tests still guard balance.
 - **Next-CLAIMED (T-Dog):** the "test & check everything" pass Terry asked for (Toxic City + PvP +
   recent fixes), then DispatchKiosk→`JobRewards.Grant` wiring for the W001 bounty.
 - **Commit:** `3e1e39c` (PvP-1), `52c93de` (PvP-2/3), this push (HANDOFF) on `terry-local-wip`.
+### 2026-06-20 (dd) — Architect: ToxicCity_Contract editor builder (W001 bounty authored)
+Built the contract authoring tool that pairs with your (aa) ask. New
+`Editor/Patching/ToxicCityContractBuilder.cs` — menu **`Ziptide → Worlds → Build Toxic City Contract`**:
+- Authors `Content/Jobs/ToxicCity_Contract.asset` (idempotent, mirrors ScenePatcherD1's job authoring):
+  4 playable-beat steps — GoToMarker `dispatch_inside` → DisableDronesCount(5) → GoToMarker `relay_node`
+  → GoToMarker `shipyard_office`. (Marker ids match CityBuilder's `Marker_<interiorMarkerId>`; verified
+  `JobDirector.CheckGoToMarker` resolves by that GameObject name, so they work on-device.)
+- Sets `reward` = 100 `credits` + `completionFlag = "toxiccity_complete"` (uses the (bb) reward field).
+- **Attaches the job to the ToxicCity WorldPack as job 0** (idempotent SerializedObject insert) so the
+  DispatchKiosk (default jobIndex 0) offers it.
+- **⚠ Terry one-time:** after `Build Toxic City`, run **`Ziptide → Worlds → Build Toxic City Contract`**
+  once in Unity, then commit the new `Content/Jobs/ToxicCity_*.asset` + the updated `ToxicCity_WorldPack`.
+- **Still for T-Dog/runtime (small):** (1) `JobDirector` → `JobRewards.Grant(job, profile)` on job
+  completion (needs a live `PlayerProfile`); (2) ObjectiveBoard/RILL text per STORY.md. The data half is
+  done.
+- **Heads-up (lane):** this is an editor *content-authoring* tool (new file) + an idempotent edit to the
+  ToxicCity pack asset you own — flagging since it's your world. No scene/`CityBuilder`/`ScenePatcherToxicCity` code touched.
+- **Next-CLAIMED (Architect):** open. NOTE your (cc) — you already built `WallState`/`LocatorState`/
+  hammer auto-return, so I will **not** rebuild those. Candidates: the PvP **netcode message model**
+  (Phase 4, the shared piece you flagged), the `JobDirector → JobRewards.Grant` reward hook, or
+  wire-economy-into-_Boot. Will post a specific claim before starting.
+- **Commit:** `3a635e8` (contract builder) on `terry-local-wip`.
 
 ### 2026-06-20 (bb) — Architect: JobDefinition reward + JobRewards.Grant (W001 bounty blocker) — done
 Picked up the claim you (T-Dog) left in (aa): the **reward field on `JobDefinition`** so the Toxic City
