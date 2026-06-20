@@ -91,9 +91,40 @@ namespace Ziptide.Editor.Patching
 
             BuildBot(root, botSpawn);
             SpawnGuns(root, playerSpawn);
+            BuildBreakableWalls(root);
+            SpawnHammer(root, playerSpawn);
+
+            // Wrist locator (scene-scoped; finds the rig hands at runtime).
+            var locGo = PatcherUtil.EnsureRootObject("WristLocator", Vector3.zero);
+            PatcherUtil.EnsureComponent<WristLocator>(locGo);
 
             EnsureWorldPack();
             EnsureTravelStation(root);
+        }
+
+        private static void BuildBreakableWalls(Transform root)
+        {
+            CreateBreakableWall(root, "BreakWall_W", new Vector3(-6f, 1.5f, 2f), Quaternion.identity);
+            CreateBreakableWall(root, "BreakWall_E", new Vector3(6f, 1.5f, -2f), Quaternion.identity);
+            CreateBreakableWall(root, "BreakWall_C", new Vector3(0f, 1.5f, 6f), Quaternion.Euler(0f, 90f, 0f));
+        }
+
+        private static void CreateBreakableWall(Transform root, string name, Vector3 pos, Quaternion rot)
+        {
+            var go = new GameObject(name);
+            go.transform.SetParent(root, false);
+            go.transform.position = pos;
+            go.transform.rotation = rot;
+            var bw = go.AddComponent<BreakableWall>();
+            bw.wallSize = new Vector3(4f, 3f, 0.3f);
+        }
+
+        private static void SpawnHammer(Transform root, Vector3 near)
+        {
+            var go = new GameObject("PvpHammer");
+            go.transform.SetParent(root, false);
+            go.transform.position = near + new Vector3(0f, 1.0f, 1.2f);
+            go.AddComponent<HammerTool>(); // RequireComponent adds XRGrabInteractable; HammerTool self-builds the visual
         }
 
         // ── Arena geometry ───────────────────────────────────────────────────
@@ -134,7 +165,12 @@ namespace Ziptide.Editor.Patching
             var taser = ItemFactory.Create("taser_dart_gun", near + new Vector3(-0.6f, 1.0f, 1.2f));
             if (taser != null) taser.transform.SetParent(root, true);
             var grav = ItemFactory.Create("gravity_gun", near + new Vector3(0.6f, 1.0f, 1.2f));
-            if (grav != null) grav.transform.SetParent(root, true);
+            if (grav != null)
+            {
+                grav.transform.SetParent(root, true);
+                // Comfort-first PvP gravity gun: firing also gives the shooter a short self-hop.
+                if (grav.GetComponent<PvpComfortHop>() == null) grav.AddComponent<PvpComfortHop>();
+            }
         }
 
         // ── Helpers ──────────────────────────────────────────────────────────
