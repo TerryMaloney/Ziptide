@@ -1,0 +1,10 @@
+ZIPTIDE SCENE DUMP
+scene= path=
+generated=2026-06-19 18:02:18Z
+============================================================
++ Main Camera  pos=(0.00,1.00,-10.00)
+  - Camera
+  - AudioListener
++ Directional Light  pos=(0.00,3.00,0.00)
+  - Light
+  - UniversalAdditionalLightData
