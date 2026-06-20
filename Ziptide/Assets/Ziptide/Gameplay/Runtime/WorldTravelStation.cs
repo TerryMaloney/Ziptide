@@ -38,14 +38,8 @@ namespace Ziptide.Gameplay
         // #region agent log
         private static void WLog(string msg, string data)
         {
-            try
-            {
-                string path = Path.Combine(Application.persistentDataPath, "debug-cb967f.log");
-                long ts = System.DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
-                string line = "{\"sessionId\":\"cb967f\",\"location\":\"WorldTravelStation.cs\",\"message\":\"" + msg + "\",\"data\":{" + data + "},\"timestamp\":" + ts + "}\n";
-                File.AppendAllText(path, line);
-            }
-            catch { }
+            // Disabled: this previously wrote a JSON line to persistentDataPath on every door build,
+            // which accumulated junk on the headset. Kept as a no-op so call sites still compile.
         }
         // #endregion agent log
 

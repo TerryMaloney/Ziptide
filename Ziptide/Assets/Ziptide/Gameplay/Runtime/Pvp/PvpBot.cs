@@ -9,7 +9,7 @@ namespace Ziptide.Gameplay
     /// <see cref="IPvpDamageable"/> so the player's taser/gravity guns down it. On death it revives at its
     /// spawn. Phase-4 netcode replaces this with a real avatar behind the same interface.
     /// </summary>
-    public class PvpBot : MonoBehaviour, IPvpDamageable
+    public class PvpBot : MonoBehaviour, IPvpDamageable, IScannable
     {
         public float detectRange = 22f;
         public float standoffDistance = 8f;
@@ -22,6 +22,11 @@ namespace Ziptide.Gameplay
 
         public int PlayerIndex => 1;
         public bool IsAlive => _combatant != null && _combatant.IsAlive && !_dead;
+
+        // IScannable — the wrist scanner detects the opponent (and campaign nodes/loot later).
+        public Transform ScanTransform => transform;
+        public ScanKind ScanKind => Ziptide.Gameplay.ScanKind.Enemy;
+        public bool ScanActive => IsAlive;
 
         private PvpCombatant _combatant;
         private Transform _player;

@@ -94,9 +94,9 @@ namespace Ziptide.Editor.Patching
             BuildBreakableWalls(root);
             SpawnHammer(root, playerSpawn);
 
-            // Wrist locator (scene-scoped; finds the rig hands at runtime).
-            var locGo = PatcherUtil.EnsureRootObject("WristLocator", Vector3.zero);
-            PatcherUtil.EnsureComponent<WristLocator>(locGo);
+            // Wrist scanner (scene-scoped; builds its diegetic forearm device on the rig hand at runtime).
+            var scanGo = PatcherUtil.EnsureRootObject("WristScanner", Vector3.zero);
+            PatcherUtil.EnsureComponent<WristScanner>(scanGo);
 
             EnsureWorldPack();
             EnsureTravelStation(root);
