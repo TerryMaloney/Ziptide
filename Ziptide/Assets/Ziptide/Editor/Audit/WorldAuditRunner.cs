@@ -22,11 +22,13 @@ namespace Ziptide.Editor.Audit
     public static class WorldAuditRunner
     {
         private const string CityKitAssetPath = "Assets/Ziptide/Content/City/DefaultCityKit.asset";
+        private const string ToxicCityLayoutPath = "Assets/Ziptide/Content/City/ToxicCityLayout.asset";
 
         // Scene names that must have at least one return travel door.
         private static readonly HashSet<string> TravelSceneNames = new HashSet<string>
         {
-            "D0_City"
+            "D0_City",
+            "ToxicCity"
         };
 
         // Singletons that must NOT appear directly in world scenes.
@@ -233,7 +235,7 @@ namespace Ziptide.Editor.Audit
             // SPAWN_BELOW_WALKWAY: for city scenes, check spawn Y vs walkway height.
             if (IsCityScene(report.sceneName))
             {
-                float minY = GetCityMinSpawnY();
+                float minY = GetCityMinSpawnY(report.sceneName);
                 if (spawnPos.y < minY)
                 {
                     report.Blocker("SPAWN_BELOW_WALKWAY",
@@ -337,11 +339,12 @@ namespace Ziptide.Editor.Audit
         {
             if (!IsCityScene(report.sceneName)) return;
 
-            // CITY_NO_ROOT
-            if (GameObject.Find("__D1_CITY_ROOT") == null)
+            // CITY_NO_ROOT — accept any patcher's city root (legacy __D1_CITY_ROOT or the generalized
+            // "__<CITYID>_ROOT" produced by ScenePatcherToxicCity / future city patchers).
+            if (!HasCityRoot())
             {
                 report.Blocker("CITY_NO_ROOT",
-                    "GameObject '__D1_CITY_ROOT' not found. City patcher (ScenePatcherD1) may not have run.");
+                    "No city root GameObject (expected '__D1_CITY_ROOT' or '__<CITYID>_ROOT'). City patcher may not have run.");
             }
 
             // CITY_NO_RAMP
@@ -382,8 +385,26 @@ namespace Ziptide.Editor.Audit
             return false;
         }
 
-        private static float GetCityMinSpawnY()
+        private static bool HasCityRoot()
         {
+            foreach (var go in Object.FindObjectsOfType<GameObject>())
+            {
+                if (go.transform.parent != null) continue; // roots only
+                string n = go.name;
+                if (n.StartsWith("__") && n.EndsWith("_ROOT")) return true;
+            }
+            return false;
+        }
+
+        private static float GetCityMinSpawnY(string sceneName)
+        {
+            // ToxicCity (and future CityLayout-driven worlds) read their own layout's walkway height.
+            if (sceneName == "ToxicCity")
+            {
+                var layout = AssetDatabase.LoadAssetAtPath<CityLayoutDefinition>(ToxicCityLayoutPath);
+                if (layout != null)
+                    return layout.walkwayHeight - 0.25f;
+            }
             var kit = AssetDatabase.LoadAssetAtPath<CityKitDefinition>(CityKitAssetPath);
             if (kit != null)
                 return kit.walkwayHeight - 0.25f;

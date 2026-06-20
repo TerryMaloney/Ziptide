@@ -10,6 +10,7 @@ namespace Ziptide.Core
         public const string SceneBoot           = "_Boot";
         public const string SceneTestRoom       = "MilestoneA_GrabCube";
         public const string SceneD0City         = "D0_City";
+        public const string SceneToxicCity      = "ToxicCity";
         public const string SceneSandbox        = "SandboxTestLab";
         public const string SceneSample         = "SampleScene";
 
@@ -27,6 +28,10 @@ namespace Ziptide.Core
         public const string PathTestRoomWorldPack     = "Assets/Ziptide/Content/WorldPacks/TestRoom_WorldPack.asset";
         public const string PathInputActionAsset      = "Assets/Ziptide/Platform/Quest/ZiptideActions.inputactions";
         public const string PathLocomotionProfile     = "Assets/Ziptide/Content/DefaultLocomotionProfile.asset";
+        public const string PathToxicCityScene        = "Assets/Ziptide/Scenes/ToxicCity.unity";
+        public const string PathToxicCityLayout       = "Assets/Ziptide/Content/City/ToxicCityLayout.asset";
+        public const string PathToxicCityWorldPack    = "Assets/Ziptide/Content/Worlds/Packs/ToxicCity_WorldPack.asset";
+        public const string PathDefaultWorldProfileWorlds = "Assets/Ziptide/Content/Worlds/DefaultWorldProfile.asset";
 
         // ── Layer Names ────────────────────────────────────────────────────
         public const string LayerDefault        = "Default";

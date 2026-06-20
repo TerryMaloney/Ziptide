@@ -32,6 +32,9 @@ namespace Ziptide.Build
             try { Ziptide.Editor.Patching.ScenePatcherStarterWorld.EnsureInBuildSettings(); }
             catch (Exception ex) { Debug.LogWarning("[Ziptide] StarterWorld build-settings ensure warning: " + ex.Message); }
 
+            try { Ziptide.Editor.Patching.ScenePatcherToxicCity.EnsureInBuildSettings(); }
+            catch (Exception ex) { Debug.LogWarning("[Ziptide] ToxicCity build-settings ensure warning: " + ex.Message); }
+
             // Reload scenes list — ScenePatcherBoot/Sandbox may have modified it (added _Boot/Sandbox, removed SampleScene).
             var scenes = EditorBuildSettings.scenes;
             for (int i = 0; i < scenes.Length; i++)
@@ -70,6 +73,12 @@ namespace Ziptide.Build
                 {
                     try { Ziptide.Editor.Patching.ScenePatcherStarterWorld.PopulateActiveStarterWorld(); }
                     catch (Exception ex) { Debug.LogWarning("[Ziptide] StarterWorld patcher warning for " + path + ": " + ex.Message); }
+                }
+
+                if (sceneName == Ziptide.Editor.Patching.ScenePatcherToxicCity.SceneName)
+                {
+                    try { Ziptide.Editor.Patching.ScenePatcherToxicCity.PopulateActiveToxicCity(); }
+                    catch (Exception ex) { Debug.LogWarning("[Ziptide] ToxicCity patcher warning for " + path + ": " + ex.Message); }
                 }
 
                 EditorSceneManager.MarkSceneDirty(scene);
