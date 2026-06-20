@@ -26,16 +26,21 @@ Cal — an **alien contract technician** (not human; Earth is earned near the en
 4. **Grand strategy / 4X endgame** — async "Risk on top of the game": duel for planets, leaderboards,
    no pay-to-win. *(designed, last)*
 
-## Sub-storyboards (the index)
+## ⭐ The Story Bible + 80-world system (start here)
+| Doc | What it is |
+|---|---|
+| [`STORY_BIBLE.md`](STORY_BIBLE.md) | **The connective tissue** — locks the meta (the Shell/contained universe, Architects, Earth=the lab, Bloom, Pattern, RILL, the 4 endings) + the in-fiction reason for every mechanic + tone charter. **⭐ Terry review gate.** |
+| [`_WORLD_TEMPLATE.md`](_WORLD_TEMPLATE.md) | Per-world README template — every section maps to a **real authorable data field** so story → buildable. Copy to `W<NNN>_<Name>/README.md`. |
+| **80-world seed catalog** (chapter files) | A distinct seed for every world across all axes. [`CHAPTER_0-1_ARRIVAL`](CHAPTER_0-1_ARRIVAL.md) · [`CHAPTER_2_DISCOVERY`](CHAPTER_2_DISCOVERY.md) · [`CHAPTER_3_ARCHITECTS`](CHAPTER_3_ARCHITECTS.md) · [`CHAPTER_4_SABLE`](CHAPTER_4_SABLE.md) · [`CHAPTER_5_PATTERN`](CHAPTER_5_PATTERN.md) · [`CHAPTER_6_WARDENS`](CHAPTER_6_WARDENS.md) · [`CHAPTER_7_RILL`](CHAPTER_7_RILL.md) · [`CHAPTER_8-12_ENDGAME`](CHAPTER_8-12_ENDGAME.md) · [`DLC`](DLC.md) |
+| **Deep worlds (the depth bar)** | Fully-template'd READMEs: `W001_ToxicCity/README.md`, `W002_DryCistern/`, `W003_GlassShelf/`, `W004_BroadcastTomb/`. |
+| Canonical world table | `../ZIPTIDE_MASTER_BUILD_PLAN.md` §12 (the source-of-truth list of all 80). |
+
+**Workflow per world:** seed (in a CHAPTER_*.md) → full `W<NNN>_<Name>/README.md` from the template
+(when we approach it) → build via `../systems/WORLD_BLUEPRINT.md`. Sub-storyboards index:
+
 | Sub-storyboard | Covers | File |
 |---|---|---|
 | Ships & Factions | Cal's starter ship + the 3 alien faction design pillars + world-swap transitions | [`SHIPS_AND_FACTIONS.md`](SHIPS_AND_FACTIONS.md) |
-| *(per-planet — add as authored)* | one planet/mission each: beats, biome, faction, ship, creatures, job chain | `worlds/<Wxxx>_<name>.md` |
-
-**Convention for a new planet sub-storyboard** (`worlds/Wxxx_<name>.md`): vibe + why-this-world;
-biome → surface family (`../ART_AUDIO_CONTENT_ARCHITECTURE.md`) + economy mechanic; the resident
-faction + its ship; native creatures; the job chain (reuse the World Recipe in
-`../design/LEVEL1_TOXIC_VENICE.md`); the one mystery object (story spine); RILL beats.
 
 ## Anchored to existing design (don't duplicate — cross-reference)
 - Story spine + tone: `../design/STORY_AND_HOOKS.md`

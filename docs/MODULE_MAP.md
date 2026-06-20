@@ -35,6 +35,8 @@
 | **docs/09_GEAR_AND_TOOLS.md** | Idea bank for non-bullet explorer gear (combat/puzzle/utility/companion/traversal). Design-only; ties into existing Taser/`ToolDefinition`. |
 | **docs/10_TIDEFRONT.md** | Future galaxy strategy layer (planet control, weighted-probability battles, VR missions, multiplayer). Metadata-first, design-only. |
 | **docs/GPT_ADDITIONS/** | Raw GPT planning brainstorms (dated folders). Distilled into the modules above — read the modules first, GPT_ADDITIONS for full detail. |
+| **docs/storyboard/STORY_BIBLE.md** | The narrative spine — locked meta + per-mechanic fiction + 4 endings + tone. Start here for story. |
+| **docs/storyboard/** | 80-world story system: `STORY_BIBLE.md`, `_WORLD_TEMPLATE.md`, `CHAPTER_*.md` seed catalog, per-world `W<NNN>_*/README.md`. Canonical world table: `ZIPTIDE_MASTER_BUILD_PLAN.md` §12. |
 
 ---
 

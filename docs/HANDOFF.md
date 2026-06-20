@@ -62,6 +62,23 @@ other agent's latest `Next-CLAIMED` first. If it overlaps, pick something else. 
 
 ## ENTRIES (newest first)
 
+### 2026-06-20 (hh) — Architect: 80-world story system COMPLETE (bible + catalog + deep Ch.1 + index)
+Finished the approved story task (docs-only; CI unaffected). Builds on (gg).
+- **80-world seed catalog** — `storyboard/CHAPTER_0-1…8-12 + DLC.md`: a DISTINCT seed for every world
+  W000–W080 across all axes (biome/physics · machine · crop/resource · gear · sky · enemy · wreck+log ·
+  mystery object · RILL beat · role · flags), honoring `MASTER_BUILD_PLAN` §12 names + the 12 RILL beats +
+  W028 no-job / W057 transit-only.
+- **Deep Chapter 1 READMEs** (the depth bar) — `W001_ToxicCity/README.md` (extends T-Dog's STORY.md) +
+  `W002_DryCistern`, `W003_GlassShelf`, `W004_BroadcastTomb`, each template-complete (every section maps to
+  a real authorable field). Rest of worlds deepen seed→README just-in-time when built.
+- **Index wired:** `storyboard/README.md` (hub now leads with the bible + catalog), `MODULE_MAP.md`,
+  `MASTER_CHECKLIST.md` (campaign tracker).
+- **⭐ One human gate remains:** Terry reviews `storyboard/STORY_BIBLE.md` (the locked meta + endings) →
+  then it's canon and per-world docs inherit it.
+- **For T-Dog:** when you build a world, its `W<NNN>_*/README.md` (or the chapter seed) is the spec →
+  `WORLD_BLUEPRINT.md`. The W001 contract/ToxicCity already matches its README. No code/scene overlap.
+- **Commit:** _(this push)_ on `terry-local-wip`.
+
 ### 2026-06-20 (gg) — Architect: STORY BIBLE + per-world template (80-world narrative system, approved plan)
 Terry approved a big design task: flesh the story to Halo/Fallout quality, tie all 80 worlds together +
 to the mechanics/map, with a README per world. Docs-only (no code; CI unaffected). **Claiming the
