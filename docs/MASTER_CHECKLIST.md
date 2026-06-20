@@ -44,6 +44,20 @@ Skim this first; the deep docs are linked per item.
 
 ---
 
+## ⚔️ PARALLEL TRACK — 1v1 PvP Mode (APPROVED, separate module)
+A brand-new real-time **1v1 PvP** mode, fully separate from single-player. Plan:
+[`design/PVP_1V1_MODE.md`](design/PVP_1V1_MODE.md). Decisions locked: **Photon PUN2** (sideload-friendly,
+room-code invites), **solo-playable first**, **comfort-first gravity gun**. Distinct from Tidefront
+(that's *async* strategy MP; this is *real-time* PvP).
+- 🟢 **Phase 1 backbone BUILT** — `Ziptide.Multiplayer` pure-C# core (`PvpRules`/`PvpMatch`/`PvpCombatant`/
+  `WeaponCharge`) + 14 EditMode tests *(Architect; CI-verify)*.
+- 🔲 **Phase 2 (T-Dog lane):** PvP arena scene + `ScenePatcherPvP` + wire taser/gravity/locator/hammer +
+  destructible walls + HUD → playable **solo on one headset**.
+- 🔲 **Phase 3 (shared):** import Photon PUN2 + netcode adapter → 2-headset room-code match.
+- 🔲 **Phase 4:** comfort/spawn-protection/disconnect/anti-cheat polish + 2nd arena.
+
+---
+
 ## 🔜 SHORT-TERM (next up — the active loop)
 - 🟡 **Device-verify the latest CI APK**: gravity gun + drones in Sandbox, invisible-wall fix, holster-travel, dev-menu re-click.
 - 🔲 **Creatures v1** (build-order #6): `CreatureDefinition` data/spawn/loot (Architect) + runtime AI (T-Dog). *(claimed)*
