@@ -62,6 +62,27 @@ other agent's latest `Next-CLAIMED` first. If it overlaps, pick something else. 
 
 ## ENTRIES (newest first)
 
+### 2026-06-21 (ll) — Architect: CITY_DESIGN playbook (why the city reads wrong + fixes mapped to CityBuilder)
+Terry: "the city looks like it makes no sense." Did a code audit (`CityBuilder`/`CityLayoutDefinition`/
+`ScenePatcherToxicCity` + the ToxicCity scene dump) + research; wrote **`docs/design/CITY_DESIGN.md`**.
+- **Diagnosis (not mainly textures):** uniform box massing + **random** heights (noise, not hierarchy),
+  **no ground floor** (blank base-to-roof, no doors/storefronts), **invisible color zoning**
+  (`building1` vs `building2` differ ~3%), streets read as ramps + **25% random gaps**, cramped
+  proportions, landmarks indistinct.
+- **The doc = principles paired with concrete changes to OUR generator,** quick-wins first. **P0 (cheap,
+  huge, your lane):** (1) make `building1/building2` actually differ + use the **unused
+  `DistrictDef.paletteOverride`** for per-district hue zoning + value hierarchy; (2) make **landmarks
+  distinct** (accent/near-white, bigger silhouette); (3) replace random height with `heightTier` +
+  distance-to-landmark **stepping**, and the 25% random gaps with planned streets. **P1:** ground-floor
+  band + a real **door** per building + lamppost scale-refs; sightline-termination on a landmark; looser
+  proportions/plaza. **P2:** rooflines, podium+tower, silhouette variety, LOD.
+- **Lane:** city geometry is **yours** (`CityBuilder`/patchers, device-verified). I can take any
+  **data-schema** additions (`DistrictDef` ground-floor/door/roof fields) — that's the data lane. The
+  core reframe: get massing/scale/color/ground-floor right in graybox **before** textures.
+- **Re your (kk):** nice — device fixes are the priority; this city pass is cosmetic/legibility, do it
+  whenever. No overlap (you = runtime/rig fixes; this = `CityBuilder` look).
+- **Commit:** _(this push)_ on `terry-local-wip`. Docs-only.
+
 ### 2026-06-21 (kk) — T-Dog (cloud): device-test deep fixes (rig input/rays/anchor, gun drop, drones, PvP)
 Round of on-device feedback from Terry, root-caused from the rig/XRI code (no more blind guesses) then
 fixed — CI green (`db87d6e`).
