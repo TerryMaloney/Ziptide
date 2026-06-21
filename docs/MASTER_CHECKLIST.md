@@ -118,5 +118,19 @@ full brief in [`GPT_ADDITIONS/2026-06-18_Starter_World_Blockout/`](GPT_ADDITIONS
 
 ---
 
+## 🧪 PARKED IDEAS — explore *after* the full game ships (don't build now)
+Captured so we don't lose them; both depend on the architecture staying clean (data-driven worlds +
+swappable content), which is exactly what we've been building toward.
+- 🧪 **Community World-Builder + World-vs-World tournaments.** Get our world-authoring pipeline
+  (`CityLayoutDefinition`/`WorldPackDefinition`/definitions) into a **player-facing builder**, then let
+  people **battle their world against someone else's, tournament-style**. Big replay loop. *(Leans on the
+  same data pipeline + the PvP/netcode work; post-launch.)*
+- 🧪 **"Adult" content variant (swappable).** Once the base (all-ages, non-lethal) game is complete, a
+  mature variant that swaps the stun/non-lethal layer for brutal/violent content. **Design intent: make
+  it a content swap, not a rewrite** — keep combat effects/gore behind a data/profile layer so it can be
+  dropped in later without touching core systems. *(Validates our "content is data" architecture; post-launch, gated.)*
+
+---
+
 *Keep this current: when something ships, move it up to BUILT with its real verification level. This is
 the quick map; detailed tasks live in WORKLIST/TASK_QUEUE, deep vision in MASTER_BUILD_PLAN.*
