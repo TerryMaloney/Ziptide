@@ -49,7 +49,20 @@ namespace Ziptide.Gameplay
 
         private void Update()
         {
-            transform.position += _velocity * Time.deltaTime;
+            Vector3 step = _velocity * Time.deltaTime;
+            float d = step.magnitude;
+
+            // Block on walls: if the bolt's step crosses solid geometry (not the firing drone or the
+            // player), it's absorbed — no shooting through cover even after it's left the muzzle.
+            if (d > 0.0001f && Physics.Raycast(transform.position, step / d, out var hit, d, ~0, QueryTriggerInteraction.Ignore))
+            {
+                var col = hit.collider;
+                bool isDrone = col != null && col.GetComponentInParent<DroneRuntime>() != null;
+                bool isPlayer = col != null && IsRig(col.transform);
+                if (col != null && !isDrone && !isPlayer) { Destroy(gameObject); return; }
+            }
+
+            transform.position += step;
             _life -= Time.deltaTime;
             if (_life <= 0f) { Destroy(gameObject); return; }
 
@@ -59,6 +72,16 @@ namespace Ziptide.Gameplay
                 _receiver.ApplyStun(_stunSeconds, _slowFactor);
                 Destroy(gameObject);
             }
+        }
+
+        private static bool IsRig(Transform t)
+        {
+            while (t != null)
+            {
+                if (t.name == "XR Origin" || t.GetComponent<PlayerStunReceiver>() != null) return true;
+                t = t.parent;
+            }
+            return false;
         }
     }
 }

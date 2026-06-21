@@ -129,7 +129,32 @@ namespace Ziptide.Gameplay
             Vector3 off = desired - home;
             if (off.magnitude > leashRadius) desired = home + off.normalized * leashRadius;
 
-            transform.position = Vector3.Lerp(transform.position, desired, dt * moveLerp);
+            // Collision-aware: a drone moves by transform (no Rigidbody), so without this it flies THROUGH
+            // building walls. Clamp the step at the nearest wall so it never clips into/through geometry.
+            Vector3 next = Vector3.Lerp(transform.position, desired, dt * moveLerp);
+            transform.position = CollideMove(transform.position, next);
+        }
+
+        // Stop the move at the nearest solid wall (ignoring the player rig and other drones).
+        private Vector3 CollideMove(Vector3 from, Vector3 to)
+        {
+            Vector3 delta = to - from;
+            float dist = delta.magnitude;
+            if (dist < 0.0001f) return to;
+            Vector3 dir = delta / dist;
+            const float r = 0.22f;
+            var hits = Physics.SphereCastAll(from, r, dir, dist, ~0, QueryTriggerInteraction.Ignore);
+            float nearest = dist;
+            for (int i = 0; i < hits.Length; i++)
+            {
+                var col = hits[i].collider;
+                if (col == null) continue;
+                if (col.GetComponentInParent<DroneRuntime>() != null) continue; // self / other drones
+                if (IsPlayerRig(col.transform)) continue;                       // the player
+                if (hits[i].distance < nearest) nearest = hits[i].distance;
+            }
+            if (nearest < dist) return from + dir * Mathf.Max(0f, nearest - r);
+            return to;
         }
 
         private void FindPlayer()
