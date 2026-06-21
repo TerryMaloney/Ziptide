@@ -1,0 +1,1693 @@
+ZIPTIDE SCENE DUMP
+scene=ToxicCity path=Assets/Ziptide/Scenes/ToxicCity.unity
+generated=2026-06-20 18:20:20Z
+============================================================
++ __TOXIC_CITY_ROOT  pos=(0.00,0.00,0.00)
+  + Skyline  pos=(0.00,0.00,0.00)
+    + Silhouette_0  pos=(119.64,16.19,0.00)
+      - MeshFilter
+      - MeshRenderer
+    + Silhouette_1  pos=(136.32,42.45,33.60)
+      - MeshFilter
+      - MeshRenderer
+    + Silhouette_2  pos=(124.08,17.36,65.12)
+      - MeshFilter
+      - MeshRenderer
+    + Silhouette_3  pos=(112.63,37.31,99.78)
+      - MeshFilter
+      - MeshRenderer
+    + Silhouette_4  pos=(83.77,37.91,121.36)
+      - MeshFilter
+      - MeshRenderer
+    + Silhouette_5  pos=(49.26,36.99,129.89)
+      - MeshFilter
+      - MeshRenderer
+    + Silhouette_6  pos=(15.99,15.79,131.65)
+      - MeshFilter
+      - MeshRenderer
+    + Silhouette_7  pos=(-17.45,39.55,143.72)
+      - MeshFilter
+      - MeshRenderer
+    + Silhouette_8  pos=(-56.76,36.91,149.65)
+      - MeshFilter
+      - MeshRenderer
+    + Silhouette_9  pos=(-85.97,39.09,124.55)
+      - MeshFilter
+      - MeshRenderer
+    + Silhouette_10  pos=(-113.13,32.71,100.23)
+      - MeshFilter
+      - MeshRenderer
+    + Silhouette_11  pos=(-120.86,28.71,63.43)
+      - MeshFilter
+      - MeshRenderer
+    + Silhouette_12  pos=(-117.43,33.14,28.94)
+      - MeshFilter
+      - MeshRenderer
+    + Silhouette_13  pos=(-123.40,16.39,0.00)
+      - MeshFilter
+      - MeshRenderer
+    + Silhouette_14  pos=(-125.29,41.81,-30.88)
+      - MeshFilter
+      - MeshRenderer
+    + Silhouette_15  pos=(-107.47,34.73,-56.40)
+      - MeshFilter
+      - MeshRenderer
+    + Silhouette_16  pos=(-109.51,21.05,-97.02)
+      - MeshFilter
+      - MeshRenderer
+    + Silhouette_17  pos=(-86.06,16.56,-124.69)
+      - MeshFilter
+      - MeshRenderer
+    + Silhouette_18  pos=(-52.75,43.87,-139.09)
+      - MeshFilter
+      - MeshRenderer
+    + Silhouette_19  pos=(-17.99,27.90,-148.15)
+      - MeshFilter
+      - MeshRenderer
+    + Silhouette_20  pos=(19.16,14.10,-157.82)
+      - MeshFilter
+      - MeshRenderer
+    + Silhouette_21  pos=(50.81,39.05,-133.98)
+      - MeshFilter
+      - MeshRenderer
+    + Silhouette_22  pos=(88.57,25.76,-128.31)
+      - MeshFilter
+      - MeshRenderer
+    + Silhouette_23  pos=(111.97,28.18,-99.20)
+      - MeshFilter
+      - MeshRenderer
+    + Silhouette_24  pos=(141.54,38.52,-74.29)
+      - MeshFilter
+      - MeshRenderer
+    + Silhouette_25  pos=(155.02,38.05,-38.21)
+      - MeshFilter
+      - MeshRenderer
+  + Canals  pos=(0.00,0.00,0.00)
+    + Canal_0  pos=(-14.00,-2.20,16.00)
+      - MeshFilter
+      - MeshRenderer
+    + Canal_1  pos=(0.00,-2.00,10.00)
+      - MeshFilter
+      - MeshRenderer
+  + District_Shipyard  pos=(0.00,0.00,-30.00)
+    + Shipyard_Ground  pos=(0.00,-0.50,-30.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+    + Facade_X_0  pos=(-8.00,4.80,-23.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+      + Win  pos=(-9.55,1.53,-24.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-8.00,1.53,-24.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-8.00,3.16,-24.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-8.00,4.80,-24.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-6.45,4.80,-24.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-9.55,6.43,-24.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-8.00,6.43,-24.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-9.55,8.06,-24.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-6.45,8.06,-24.56)
+        - MeshFilter
+        - MeshRenderer
+    + Facade_X_1  pos=(-1.00,2.74,-23.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+      + Win  pos=(-1.83,1.19,-24.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-0.17,1.19,-24.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-1.83,2.74,-24.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-0.17,2.74,-24.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-1.83,4.29,-24.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-0.17,4.29,-24.56)
+        - MeshFilter
+        - MeshRenderer
+    + Facade_X_2  pos=(6.00,4.72,-23.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+      + Win  pos=(6.00,1.51,-24.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(7.54,1.51,-24.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(6.00,3.12,-24.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(7.54,3.12,-24.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(6.00,4.72,-24.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(6.00,6.33,-24.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(4.46,7.93,-24.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(6.00,7.93,-24.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(7.54,7.93,-24.56)
+        - MeshFilter
+        - MeshRenderer
+    + Facade_X_0  pos=(-8.00,2.51,-37.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+      + Win  pos=(-9.55,1.09,-38.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-8.00,2.51,-38.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-9.55,3.93,-38.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-6.45,3.93,-38.56)
+        - MeshFilter
+        - MeshRenderer
+    + Facade_X_1  pos=(-1.00,4.30,-37.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+      + Win  pos=(-2.33,1.37,-38.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-1.00,1.37,-38.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(0.33,1.37,-38.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-1.00,2.84,-38.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(0.33,2.84,-38.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-2.33,4.30,-38.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-1.00,4.30,-38.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(0.33,4.30,-38.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-1.00,5.76,-38.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(0.33,5.76,-38.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-2.33,7.22,-38.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-1.00,7.22,-38.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(0.33,7.22,-38.56)
+        - MeshFilter
+        - MeshRenderer
+    + Facade_X_2  pos=(6.00,3.01,-37.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+      + Win  pos=(4.41,1.31,-38.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(6.00,1.31,-38.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(7.59,3.01,-38.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(4.41,4.72,-38.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(7.59,4.72,-38.56)
+        - MeshFilter
+        - MeshRenderer
+    + Facade_Z_0  pos=(9.00,4.48,-29.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+      + Win  pos=(7.44,1.43,-30.40)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(7.44,2.96,-30.40)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(7.44,2.96,-29.00)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(7.44,2.96,-27.60)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(7.44,4.48,-30.40)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(7.44,4.48,-29.00)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(7.44,6.01,-30.40)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(7.44,6.01,-29.00)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(7.44,7.53,-29.00)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(7.44,7.53,-27.60)
+        - MeshFilter
+        - MeshRenderer
+    + Facade_Z_0  pos=(-9.00,2.87,-36.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+      + Win  pos=(-10.56,1.24,-36.83)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-10.56,1.24,-35.17)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-10.56,2.87,-36.83)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-10.56,4.49,-36.83)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-10.56,4.49,-35.17)
+        - MeshFilter
+        - MeshRenderer
+    + Facade_Z_1  pos=(-9.00,2.76,-29.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+      + Win  pos=(-10.56,1.20,-29.85)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-10.56,2.76,-29.85)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-10.56,2.76,-28.15)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-10.56,4.32,-29.85)
+        - MeshFilter
+        - MeshRenderer
+    + Landmark_Crane  pos=(8.00,8.00,-36.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+    + Hero_ShipyardOffice  pos=(-7.00,0.00,-28.00)
+      + ShipyardOffice_Floor  pos=(-7.00,0.05,-28.00)
+        - MeshFilter
+        - BoxCollider
+        - MeshRenderer
+      + ShipyardOffice_Ceiling  pos=(-7.00,4.00,-28.00)
+        - MeshFilter
+        - BoxCollider
+        - MeshRenderer
+      + ShipyardOffice_Wall_Zn_a  pos=(-9.10,2.00,-31.50)
+        - MeshFilter
+        - BoxCollider
+        - MeshRenderer
+      + ShipyardOffice_Wall_Zn_b  pos=(-4.90,2.00,-31.50)
+        - MeshFilter
+        - BoxCollider
+        - MeshRenderer
+      + ShipyardOffice_Wall_Zp  pos=(-7.00,2.00,-24.50)
+        - MeshFilter
+        - BoxCollider
+        - MeshRenderer
+      + ShipyardOffice_Wall_Xn  pos=(-10.50,2.00,-28.00)
+        - MeshFilter
+        - BoxCollider
+        - MeshRenderer
+      + ShipyardOffice_Wall_Xp  pos=(-3.50,2.00,-28.00)
+        - MeshFilter
+        - BoxCollider
+        - MeshRenderer
+      + Marker_shipyard_office  pos=(-7.00,0.20,-28.00)
+      + ShipyardOffice_Interactable  pos=(-7.00,0.60,-26.25)
+        - MeshFilter
+        - BoxCollider
+        - MeshRenderer
+  + District_Dispatch  pos=(0.00,0.00,-8.00)
+    + Dispatch_Ground  pos=(0.00,-0.50,-8.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+    + Facade_X_0  pos=(-7.00,3.69,-1.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+      + Win  pos=(-7.00,1.34,-2.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-8.34,2.91,-2.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-8.34,4.48,-2.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-5.66,6.05,-2.56)
+        - MeshFilter
+        - MeshRenderer
+    + Facade_X_1  pos=(0.00,4.24,-1.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+      + Win  pos=(0.00,1.36,-2.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-1.64,2.80,-2.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(0.00,2.80,-2.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(0.00,4.24,-2.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(0.00,5.68,-2.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(1.64,5.68,-2.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-1.64,7.12,-2.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(0.00,7.12,-2.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(1.64,7.12,-2.56)
+        - MeshFilter
+        - MeshRenderer
+    + Facade_X_2  pos=(7.00,3.16,-1.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+      + Win  pos=(6.17,1.37,-2.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(7.83,1.37,-2.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(6.17,3.16,-2.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(7.83,3.16,-2.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(6.17,4.95,-2.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(7.83,4.95,-2.56)
+        - MeshFilter
+        - MeshRenderer
+    + Facade_X_0  pos=(0.00,3.84,-15.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+      + Win  pos=(-0.89,1.39,-16.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-0.89,3.03,-16.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(0.89,3.03,-16.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-0.89,6.29,-16.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(0.89,6.29,-16.56)
+        - MeshFilter
+        - MeshRenderer
+    + Facade_X_1  pos=(7.00,4.15,-15.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+      + Win  pos=(7.00,1.33,-16.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(8.35,1.33,-16.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(5.65,2.74,-16.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(8.35,2.74,-16.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(7.00,4.15,-16.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(8.35,4.15,-16.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(5.65,5.56,-16.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(7.00,5.56,-16.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(5.65,6.98,-16.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(7.00,6.98,-16.56)
+        - MeshFilter
+        - MeshRenderer
+    + Facade_Z_0  pos=(8.00,3.49,-14.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+      + Win  pos=(6.44,1.27,-15.55)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(6.44,1.27,-14.00)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(6.44,1.27,-12.45)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(6.44,2.75,-15.55)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(6.44,2.75,-12.45)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(6.44,4.23,-14.00)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(6.44,5.71,-15.55)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(6.44,5.71,-14.00)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(6.44,5.71,-12.45)
+        - MeshFilter
+        - MeshRenderer
+    + Facade_Z_0  pos=(-8.00,3.28,-7.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+      + Win  pos=(-9.56,1.19,-8.64)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-9.56,1.19,-5.36)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-9.56,2.58,-8.64)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-9.56,2.58,-5.36)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-9.56,3.97,-7.00)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-9.56,3.97,-5.36)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-9.56,5.37,-8.64)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-9.56,5.37,-7.00)
+        - MeshFilter
+        - MeshRenderer
+    + Hero_DispatchHall  pos=(0.00,0.00,-2.00)
+      + DispatchHall_Floor  pos=(0.00,0.05,-2.00)
+        - MeshFilter
+        - BoxCollider
+        - MeshRenderer
+      + DispatchHall_Ceiling  pos=(0.00,4.50,-2.00)
+        - MeshFilter
+        - BoxCollider
+        - MeshRenderer
+      + DispatchHall_Wall_Zn_a  pos=(-2.35,2.25,-5.50)
+        - MeshFilter
+        - BoxCollider
+        - MeshRenderer
+      + DispatchHall_Wall_Zn_b  pos=(2.35,2.25,-5.50)
+        - MeshFilter
+        - BoxCollider
+        - MeshRenderer
+      + DispatchHall_Wall_Zp  pos=(0.00,2.25,1.50)
+        - MeshFilter
+        - BoxCollider
+        - MeshRenderer
+      + DispatchHall_Wall_Xn  pos=(-4.00,2.25,-2.00)
+        - MeshFilter
+        - BoxCollider
+        - MeshRenderer
+      + DispatchHall_Wall_Xp  pos=(4.00,2.25,-2.00)
+        - MeshFilter
+        - BoxCollider
+        - MeshRenderer
+      + Marker_dispatch_inside  pos=(0.00,0.20,-2.00)
+      + DispatchHall_Interactable  pos=(0.00,0.60,-0.25)
+        - MeshFilter
+        - BoxCollider
+        - MeshRenderer
+  + District_Plaza  pos=(0.00,0.00,28.00)
+    + Plaza_Ground  pos=(0.00,-0.50,28.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+    + Facade_X_0  pos=(-2.00,7.11,37.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+      + Win  pos=(-2.89,1.82,35.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-1.11,1.82,35.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-2.89,3.33,35.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-1.11,3.33,35.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-2.89,4.84,35.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-2.89,6.36,35.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-2.89,7.87,35.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-1.11,7.87,35.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-1.11,9.38,35.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-1.11,10.89,35.44)
+        - MeshFilter
+        - MeshRenderer
+    + Facade_X_1  pos=(5.00,5.38,37.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+      + Win  pos=(5.00,1.57,35.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(3.49,3.09,35.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(5.00,3.09,35.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(6.51,3.09,35.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(3.49,4.61,35.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(3.49,6.14,35.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(3.49,7.66,35.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(6.51,7.66,35.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(3.49,9.18,35.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(5.00,9.18,35.44)
+        - MeshFilter
+        - MeshRenderer
+    + Facade_X_0  pos=(-9.00,4.22,19.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+      + Win  pos=(-9.81,1.35,17.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-9.81,2.79,17.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-8.19,2.79,17.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-9.81,4.22,17.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-9.81,7.09,17.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-8.19,7.09,17.44)
+        - MeshFilter
+        - MeshRenderer
+    + Facade_X_1  pos=(-2.00,7.39,19.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+      + Win  pos=(-3.54,1.81,17.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-2.00,1.81,17.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-0.46,1.81,17.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-2.00,3.20,17.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-0.46,3.20,17.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-3.54,4.60,17.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-0.46,4.60,17.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-3.54,5.99,17.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-2.00,5.99,17.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-0.46,5.99,17.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-3.54,7.39,17.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-2.00,7.39,17.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-3.54,8.78,17.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-0.46,8.78,17.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-3.54,10.18,17.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-2.00,10.18,17.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-0.46,10.18,17.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-3.54,11.57,17.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-2.00,11.57,17.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-0.46,11.57,17.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-3.54,12.97,17.44)
+        - MeshFilter
+        - MeshRenderer
+    + Facade_Z_0  pos=(10.00,4.27,27.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+      + Win  pos=(8.44,1.37,27.94)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(8.44,2.82,26.06)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(8.44,4.27,26.06)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(8.44,4.27,27.94)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(8.44,5.73,26.06)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(8.44,7.18,26.06)
+        - MeshFilter
+        - MeshRenderer
+    + Facade_Z_1  pos=(10.00,3.50,34.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+      + Win  pos=(8.44,1.27,33.14)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(8.44,1.27,34.86)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(8.44,2.76,33.14)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(8.44,2.76,34.86)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(8.44,4.25,33.14)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(8.44,5.74,33.14)
+        - MeshFilter
+        - MeshRenderer
+    + Facade_Z_0  pos=(-10.00,4.70,27.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+      + Win  pos=(-11.56,1.51,25.67)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-11.56,1.51,27.00)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-11.56,1.51,28.33)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-11.56,3.10,25.67)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-11.56,3.10,27.00)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-11.56,3.10,28.33)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-11.56,4.70,27.00)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-11.56,4.70,28.33)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-11.56,6.30,25.67)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-11.56,6.30,27.00)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-11.56,6.30,28.33)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-11.56,7.90,25.67)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-11.56,7.90,27.00)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-11.56,7.90,28.33)
+        - MeshFilter
+        - MeshRenderer
+    + Landmark_OligarchTower  pos=(9.00,20.00,34.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+    + Landmark_GardenTower  pos=(-9.00,9.00,34.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+  + District_Market  pos=(26.00,0.00,8.00)
+    + Market_Ground  pos=(26.00,-0.50,8.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+    + Facade_X_0  pos=(18.00,2.91,16.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+      + Win  pos=(18.00,1.26,14.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(19.64,1.26,14.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(16.36,2.91,14.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(19.64,2.91,14.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(16.36,4.57,14.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(19.64,4.57,14.44)
+        - MeshFilter
+        - MeshRenderer
+    + Facade_X_1  pos=(32.00,4.17,16.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+      + Win  pos=(30.45,1.33,14.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(32.00,1.33,14.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(32.00,2.75,14.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(33.55,2.75,14.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(30.45,5.59,14.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(32.00,5.59,14.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(33.55,5.59,14.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(30.45,7.00,14.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(33.55,7.00,14.44)
+        - MeshFilter
+        - MeshRenderer
+    + Facade_X_0  pos=(18.00,3.61,0.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+      + Win  pos=(16.54,1.31,-1.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(18.00,1.31,-1.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(19.46,2.85,-1.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(16.54,4.38,-1.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(19.46,4.38,-1.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(16.54,5.92,-1.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(19.46,5.92,-1.56)
+        - MeshFilter
+        - MeshRenderer
+    + Facade_X_1  pos=(25.00,3.81,0.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+      + Win  pos=(24.11,1.38,-1.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(25.89,1.38,-1.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(24.11,3.00,-1.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(24.11,4.62,-1.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(25.89,4.62,-1.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(24.11,6.24,-1.56)
+        - MeshFilter
+        - MeshRenderer
+    + Facade_X_2  pos=(32.00,2.76,0.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+      + Win  pos=(30.74,1.20,-1.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(32.00,1.20,-1.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(33.26,1.20,-1.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(33.26,2.76,-1.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(30.74,4.33,-1.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(32.00,4.33,-1.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(33.26,4.33,-1.56)
+        - MeshFilter
+        - MeshRenderer
+    + Facade_Z_0  pos=(35.00,4.77,1.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+      + Win  pos=(33.44,1.53,1.00)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(33.44,1.53,2.60)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(33.44,3.15,1.00)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(33.44,4.77,-0.60)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(33.44,4.77,2.60)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(33.44,6.39,-0.60)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(33.44,6.39,1.00)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(33.44,8.01,1.00)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(33.44,8.01,2.60)
+        - MeshFilter
+        - MeshRenderer
+    + Facade_Z_1  pos=(35.00,4.39,15.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+      + Win  pos=(33.44,2.90,14.11)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(33.44,2.90,15.89)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(33.44,5.88,14.11)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(33.44,5.88,15.89)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(33.44,7.38,14.11)
+        - MeshFilter
+        - MeshRenderer
+    + Facade_Z_0  pos=(17.00,5.12,1.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+      + Win  pos=(15.44,1.49,-0.53)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(15.44,1.49,1.00)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(15.44,1.49,2.53)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(15.44,2.94,-0.53)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(15.44,4.40,-0.53)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(15.44,4.40,1.00)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(15.44,7.30,-0.53)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(15.44,7.30,1.00)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(15.44,7.30,2.53)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(15.44,8.75,1.00)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(15.44,8.75,2.53)
+        - MeshFilter
+        - MeshRenderer
+    + Facade_Z_1  pos=(17.00,2.63,8.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+      + Win  pos=(15.44,1.14,6.55)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(15.44,1.14,9.45)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(15.44,2.63,8.00)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(15.44,2.63,9.45)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(15.44,4.11,6.55)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(15.44,4.11,8.00)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(15.44,4.11,9.45)
+        - MeshFilter
+        - MeshRenderer
+    + Facade_Z_2  pos=(17.00,4.47,15.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+      + Win  pos=(15.44,1.43,13.47)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(15.44,1.43,16.53)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(15.44,2.95,15.00)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(15.44,2.95,16.53)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(15.44,4.47,13.47)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(15.44,4.47,15.00)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(15.44,5.99,13.47)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(15.44,5.99,15.00)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(15.44,5.99,16.53)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(15.44,7.50,15.00)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(15.44,7.50,16.53)
+        - MeshFilter
+        - MeshRenderer
+    + Props_Stall  pos=(26.00,0.00,8.00)
+      + Stall_0  pos=(31.25,0.63,7.03)
+        - MeshFilter
+        - BoxCollider
+        - MeshRenderer
+      + Stall_1  pos=(24.18,0.59,6.31)
+        - MeshFilter
+        - BoxCollider
+        - MeshRenderer
+      + Stall_2  pos=(20.18,0.46,7.22)
+        - MeshFilter
+        - BoxCollider
+        - MeshRenderer
+      + Stall_3  pos=(26.29,0.39,2.35)
+        - MeshFilter
+        - BoxCollider
+        - MeshRenderer
+  + District_CanalRow  pos=(-26.00,0.00,8.00)
+    + CanalRow_Ground  pos=(-26.00,-0.50,8.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+    + Facade_X_0  pos=(-31.00,2.71,19.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+      + Win  pos=(-32.29,1.17,17.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-31.00,1.17,17.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-29.71,1.17,17.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-32.29,2.71,17.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-31.00,2.71,17.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-31.00,4.24,17.44)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-29.71,4.24,17.44)
+        - MeshFilter
+        - MeshRenderer
+    + Facade_X_0  pos=(-31.00,3.94,-3.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+      + Win  pos=(-32.41,1.43,-4.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-29.59,1.43,-4.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-31.00,3.11,-4.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-29.59,3.11,-4.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-32.41,4.78,-4.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-31.00,4.78,-4.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-29.59,4.78,-4.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-32.41,6.46,-4.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-29.59,6.46,-4.56)
+        - MeshFilter
+        - MeshRenderer
+    + Facade_X_1  pos=(-24.00,3.72,-3.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+      + Win  pos=(-24.91,1.35,-4.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-24.91,2.93,-4.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-23.09,2.93,-4.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-23.09,4.51,-4.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-23.09,6.09,-4.56)
+        - MeshFilter
+        - MeshRenderer
+    + Facade_Z_0  pos=(-20.00,4.71,5.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+      + Win  pos=(-21.56,1.51,3.38)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-21.56,1.51,5.00)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-21.56,3.11,3.38)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-21.56,3.11,6.62)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-21.56,4.71,3.38)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-21.56,4.71,5.00)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-21.56,6.31,3.38)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-21.56,7.91,5.00)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-21.56,7.91,6.62)
+        - MeshFilter
+        - MeshRenderer
+    + Facade_Z_1  pos=(-20.00,2.80,12.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+      + Win  pos=(-21.56,1.21,12.00)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-21.56,2.80,13.56)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-21.56,4.38,10.44)
+        - MeshFilter
+        - MeshRenderer
+    + Facade_Z_0  pos=(-32.00,2.54,5.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+      + Win  pos=(-33.56,1.10,4.18)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-33.56,2.54,4.18)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-33.56,3.98,4.18)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-33.56,3.98,5.82)
+        - MeshFilter
+        - MeshRenderer
+    + Facade_Z_1  pos=(-32.00,3.92,12.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+      + Win  pos=(-33.56,1.42,11.21)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-33.56,1.42,12.79)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-33.56,3.09,11.21)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-33.56,6.42,11.21)
+        - MeshFilter
+        - MeshRenderer
+      + Win  pos=(-33.56,6.42,12.79)
+        - MeshFilter
+        - MeshRenderer
+    + Hero_RelayVault  pos=(-26.00,0.00,8.00)
+      + RelayVault_Floor  pos=(-26.00,0.05,8.00)
+        - MeshFilter
+        - BoxCollider
+        - MeshRenderer
+      + RelayVault_Ceiling  pos=(-26.00,5.00,8.00)
+        - MeshFilter
+        - BoxCollider
+        - MeshRenderer
+      + RelayVault_Wall_Zn_a  pos=(-28.60,2.50,4.00)
+        - MeshFilter
+        - BoxCollider
+        - MeshRenderer
+      + RelayVault_Wall_Zn_b  pos=(-23.40,2.50,4.00)
+        - MeshFilter
+        - BoxCollider
+        - MeshRenderer
+      + RelayVault_Wall_Zp  pos=(-26.00,2.50,12.00)
+        - MeshFilter
+        - BoxCollider
+        - MeshRenderer
+      + RelayVault_Wall_Xn  pos=(-30.50,2.50,8.00)
+        - MeshFilter
+        - BoxCollider
+        - MeshRenderer
+      + RelayVault_Wall_Xp  pos=(-21.50,2.50,8.00)
+        - MeshFilter
+        - BoxCollider
+        - MeshRenderer
+      + Marker_relay_node  pos=(-26.00,0.20,8.00)
+      + RelayVault_Interactable  pos=(-26.00,0.60,10.00)
+        - MeshFilter
+        - BoxCollider
+        - MeshRenderer
+  + Connections  pos=(0.00,0.00,0.00)
+    + GroundStreet_Shipyard_Dispatch  pos=(0.00,-0.50,-19.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+    + GroundStreet_Dispatch_Plaza  pos=(0.00,-0.50,10.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+    + GroundStreet_Plaza_Market  pos=(13.00,-0.50,18.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+    + GroundStreet_Dispatch_Market  pos=(13.00,-0.50,0.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+    + ElevatedWalkway_Plaza_CanalRow  pos=(-13.00,2.50,18.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+      + Railing_L  pos=(-11.48,3.55,16.02)
+        - MeshFilter
+        - BoxCollider
+        - MeshRenderer
+      + Railing_R  pos=(-14.52,3.55,19.98)
+        - MeshFilter
+        - BoxCollider
+        - MeshRenderer
+    + Bridge_Dispatch_CanalRow  pos=(-13.00,-0.50,0.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+      + Railing_L  pos=(-14.31,0.55,-2.13)
+        - MeshFilter
+        - BoxCollider
+        - MeshRenderer
+      + Railing_R  pos=(-11.69,0.55,2.13)
+        - MeshFilter
+        - BoxCollider
+        - MeshRenderer
+    + Ramp_CanalRow_Market  pos=(0.00,-0.50,8.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+  + Shipyard  pos=(0.00,0.00,-48.00)
+    + BerthDeck  pos=(0.00,-0.50,-48.00)
+      - MeshFilter
+      - BoxCollider
+      - MeshRenderer
+    + Ship_Static_Placeholder  pos=(0.00,1.60,-48.00)
+      + Hull  pos=(0.00,1.60,-48.00)
+        - MeshFilter
+        - BoxCollider
+        - MeshRenderer
+      + Cockpit  pos=(0.00,2.80,-44.40)
+        - MeshFilter
+        - BoxCollider
+        - MeshRenderer
+      + EngineL  pos=(-2.25,1.60,-53.40)
+        - MeshFilter
+        - BoxCollider
+        - MeshRenderer
+      + EngineR  pos=(2.25,1.60,-53.40)
+        - MeshFilter
+        - BoxCollider
+        - MeshRenderer
+  + Drones  pos=(0.00,0.00,0.00)
+    + Tutorial_Dispatch_0  pos=(4.00,4.21,-8.00)
+      - MeshFilter
+      - SphereCollider
+      - MeshRenderer
+      - DroneRuntime {
+          bobAmplitude = 0.150
+          bobSpeed = 1.500
+          spinSpeed = 30.000
+          activeColor = RGBA(0.800, 0.200, 0.100, 1.000)
+          deadColor = RGBA(0.150, 0.150, 0.150, 1.000)
+          shockColor = RGBA(0.300, 0.900, 1.000, 1.000)
+          canShock = True
+          shockSeconds = 0.400
+          intensity = 1.000
+          centerRadius = 0.080
+          respawnDelay = 0.000
+        }
+    + Tutorial_Dispatch_1  pos=(-2.00,3.18,-4.54)
+      - MeshFilter
+      - SphereCollider
+      - MeshRenderer
+      - DroneRuntime {
+          bobAmplitude = 0.150
+          bobSpeed = 1.500
+          spinSpeed = 30.000
+          activeColor = RGBA(0.800, 0.200, 0.100, 1.000)
+          deadColor = RGBA(0.150, 0.150, 0.150, 1.000)
+          shockColor = RGBA(0.300, 0.900, 1.000, 1.000)
+          canShock = True
+          shockSeconds = 0.400
+          intensity = 1.000
+          centerRadius = 0.080
+          respawnDelay = 0.000
+        }
+    + Tutorial_Dispatch_2  pos=(-2.00,3.20,-11.46)
+      - MeshFilter
+      - SphereCollider
+      - MeshRenderer
+      - DroneRuntime {
+          bobAmplitude = 0.150
+          bobSpeed = 1.500
+          spinSpeed = 30.000
+          activeColor = RGBA(0.800, 0.200, 0.100, 1.000)
+          deadColor = RGBA(0.150, 0.150, 0.150, 1.000)
+          shockColor = RGBA(0.300, 0.900, 1.000, 1.000)
+          canShock = True
+          shockSeconds = 0.400
+          intensity = 1.000
+          centerRadius = 0.080
+          respawnDelay = 0.000
+        }
+    + Patrol_Market_0  pos=(32.00,3.10,8.00)
+      - MeshFilter
+      - SphereCollider
+      - MeshRenderer
+      - DroneRuntime {
+          bobAmplitude = 0.150
+          bobSpeed = 1.500
+          spinSpeed = 30.000
+          activeColor = RGBA(0.800, 0.200, 0.100, 1.000)
+          deadColor = RGBA(0.150, 0.150, 0.150, 1.000)
+          shockColor = RGBA(0.300, 0.900, 1.000, 1.000)
+          canShock = True
+          shockSeconds = 0.400
+          intensity = 1.000
+          centerRadius = 0.080
+          respawnDelay = 14.000
+        }
+      - DroneCombatBehavior {
+          detectRange = 10.000
+          loseRange = 14.000
+          lineOfSightMask = mask:-1
+          standoffDistance = 5.000
+          orbitSpeed = 40.000
+          verticalBob = 0.300
+          patrolRadius = 3.000
+          patrolSpeed = 20.000
+          moveLerp = 2.500
+          telegraphSeconds = 0.900
+          boltCooldown = 2.500
+          boltSpeed = 6.000
+          stunSeconds = 1.200
+          slowFactor = 0.450
+          telegraphColor = RGBA(0.300, 0.900, 1.000, 1.000)
+          profile = null
+        }
+    + Patrol_Market_1  pos=(23.00,3.52,13.20)
+      - MeshFilter
+      - SphereCollider
+      - MeshRenderer
+      - DroneRuntime {
+          bobAmplitude = 0.150
+          bobSpeed = 1.500
+          spinSpeed = 30.000
+          activeColor = RGBA(0.800, 0.200, 0.100, 1.000)
+          deadColor = RGBA(0.150, 0.150, 0.150, 1.000)
+          shockColor = RGBA(0.300, 0.900, 1.000, 1.000)
+          canShock = True
+          shockSeconds = 0.400
+          intensity = 1.000
+          centerRadius = 0.080
+          respawnDelay = 14.000
+        }
+      - DroneCombatBehavior {
+          detectRange = 10.000
+          loseRange = 14.000
+          lineOfSightMask = mask:-1
+          standoffDistance = 5.000
+          orbitSpeed = 40.000
+          verticalBob = 0.300
+          patrolRadius = 3.000
+          patrolSpeed = 20.000
+          moveLerp = 2.500
+          telegraphSeconds = 0.900
+          boltCooldown = 2.500
+          boltSpeed = 6.000
+          stunSeconds = 1.200
+          slowFactor = 0.450
+          telegraphColor = RGBA(0.300, 0.900, 1.000, 1.000)
+          profile = null
+        }
+    + Patrol_Market_2  pos=(23.00,3.57,2.80)
+      - MeshFilter
+      - SphereCollider
+      - MeshRenderer
+      - DroneRuntime {
+          bobAmplitude = 0.150
+          bobSpeed = 1.500
+          spinSpeed = 30.000
+          activeColor = RGBA(0.800, 0.200, 0.100, 1.000)
+          deadColor = RGBA(0.150, 0.150, 0.150, 1.000)
+          shockColor = RGBA(0.300, 0.900, 1.000, 1.000)
+          canShock = True
+          shockSeconds = 0.400
+          intensity = 1.000
+          centerRadius = 0.080
+          respawnDelay = 14.000
+        }
+      - DroneCombatBehavior {
+          detectRange = 10.000
+          loseRange = 14.000
+          lineOfSightMask = mask:-1
+          standoffDistance = 5.000
+          orbitSpeed = 40.000
+          verticalBob = 0.300
+          patrolRadius = 3.000
+          patrolSpeed = 20.000
+          moveLerp = 2.500
+          telegraphSeconds = 0.900
+          boltCooldown = 2.500
+          boltSpeed = 6.000
+          stunSeconds = 1.200
+          slowFactor = 0.450
+          telegraphColor = RGBA(0.300, 0.900, 1.000, 1.000)
+          profile = null
+        }
+    + Patrol_Canal_0  pos=(-10.00,4.17,16.00)
+      - MeshFilter
+      - SphereCollider
+      - MeshRenderer
+      - DroneRuntime {
+          bobAmplitude = 0.150
+          bobSpeed = 1.500
+          spinSpeed = 30.000
+          activeColor = RGBA(0.800, 0.200, 0.100, 1.000)
+          deadColor = RGBA(0.150, 0.150, 0.150, 1.000)
+          shockColor = RGBA(0.300, 0.900, 1.000, 1.000)
+          canShock = True
+          shockSeconds = 0.400
+          intensity = 1.000
+          centerRadius = 0.080
+          respawnDelay = 16.000
+        }
+      - DroneCombatBehavior {
+          detectRange = 10.000
+          loseRange = 14.000
+          lineOfSightMask = mask:-1
+          standoffDistance = 5.000
+          orbitSpeed = 40.000
+          verticalBob = 0.300
+          patrolRadius = 3.000
+          patrolSpeed = 20.000
+          moveLerp = 2.500
+          telegraphSeconds = 0.900
+          boltCooldown = 2.500
+          boltSpeed = 6.000
+          stunSeconds = 1.200
+          slowFactor = 0.450
+          telegraphColor = RGBA(0.300, 0.900, 1.000, 1.000)
+          profile = null
+        }
+    + Patrol_Canal_1  pos=(-18.00,3.38,16.00)
+      - MeshFilter
+      - SphereCollider
+      - MeshRenderer
+      - DroneRuntime {
+          bobAmplitude = 0.150
+          bobSpeed = 1.500
+          spinSpeed = 30.000
+          activeColor = RGBA(0.800, 0.200, 0.100, 1.000)
+          deadColor = RGBA(0.150, 0.150, 0.150, 1.000)
+          shockColor = RGBA(0.300, 0.900, 1.000, 1.000)
+          canShock = True
+          shockSeconds = 0.400
+          intensity = 1.000
+          centerRadius = 0.080
+          respawnDelay = 16.000
+        }
+      - DroneCombatBehavior {
+          detectRange = 10.000
+          loseRange = 14.000
+          lineOfSightMask = mask:-1
+          standoffDistance = 5.000
+          orbitSpeed = 40.000
+          verticalBob = 0.300
+          patrolRadius = 3.000
+          patrolSpeed = 20.000
+          moveLerp = 2.500
+          telegraphSeconds = 0.900
+          boltCooldown = 2.500
+          boltSpeed = 6.000
+          stunSeconds = 1.200
+          slowFactor = 0.450
+          telegraphColor = RGBA(0.300, 0.900, 1.000, 1.000)
+          profile = null
+        }
++ Directional Light  pos=(0.00,10.00,0.00)
+  - Light
++ EventSystem  pos=(0.00,0.00,0.00)
+  - EventSystem
+  - XRUIInputModule
++ WorldRuntime  pos=(0.00,0.00,0.00)
+  - WorldRuntime {
+      worldProfile = DefaultWorldProfile (WorldProfile)
+    }
++ __SPAWN_PLAYER  pos=(0.00,0.10,-8.00)
+  - SpawnMarkerRuntime {
+      markerId = "player"
+    }
++ WorldTravelStation  pos=(0.00,0.10,-42.00)
+  - WorldTravelStation
++ JobDirector  pos=(0.00,0.00,0.00)
+  - JobDirector
++ DispatchKiosk  pos=(1.50,1.30,-6.50)
+  - DispatchKiosk
+  - XRSimpleInteractable {
+      m_InteractionManager = null
+      m_Colliders = (Generic)
+      m_InteractionLayerMask = mask:-1
+      m_InteractionLayers = (Generic)
+      m_DistanceCalculationMode = 1:Collider Position
+      m_SelectMode = 0:Single
+      m_FocusMode = 1:Single
+      m_CustomReticle = null
+      m_AllowGazeInteraction = False
+      m_AllowGazeSelect = False
+      m_OverrideGazeTimeToSelect = False
+      m_GazeTimeToSelect = 0.500
+      m_OverrideTimeToAutoDeselectGaze = False
+      m_TimeToAutoDeselectGaze = 3.000
+      m_AllowGazeAssistance = False
+      m_FirstHoverEntered = (Generic)
+      m_LastHoverExited = (Generic)
+      m_HoverEntered = (Generic)
+      m_HoverExited = (Generic)
+      m_FirstSelectEntered = (Generic)
+      m_LastSelectExited = (Generic)
+      m_SelectEntered = (Generic)
+      m_SelectExited = (Generic)
+      m_FirstFocusEntered = (Generic)
+      m_LastFocusExited = (Generic)
+      m_FocusEntered = (Generic)
+      m_FocusExited = (Generic)
+      m_Activated = (Generic)
+      m_Deactivated = (Generic)
+      m_StartingHoverFilters = (Generic)
+      m_StartingSelectFilters = (Generic)
+      m_StartingInteractionStrengthFilters = (Generic)
+      m_OnFirstHoverEntered = (Generic)
+      m_OnLastHoverExited = (Generic)
+      m_OnHoverEntered = (Generic)
+      m_OnHoverExited = (Generic)
+      m_OnSelectEntered = (Generic)
+      m_OnSelectExited = (Generic)
+      m_OnSelectCanceled = (Generic)
+      m_OnActivate = (Generic)
+      m_OnDeactivate = (Generic)
+    }
+  - BoxCollider
++ ObjectiveBoard  pos=(-1.50,1.70,-6.50)
+  - ObjectiveBoard

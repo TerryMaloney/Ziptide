@@ -1,0 +1,244 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f86049fdb144348cbcbeb2d80d53f1, type: 3}
+  m_Name: ToxicCityLayout
+  m_EditorClassIdentifier: 
+  cityId: toxic_city
+  seed: 1337
+  walkwayHeight: 0
+  palette:
+    concrete: {r: 0.34, g: 0.35, b: 0.37, a: 1}
+    metal: {r: 0.28, g: 0.3, b: 0.33, a: 1}
+    toxic: {r: 0.22, g: 0.45, b: 0.12, a: 1}
+    building1: {r: 0.3, g: 0.31, b: 0.34, a: 1}
+    building2: {r: 0.24, g: 0.26, b: 0.3, a: 1}
+    rail: {r: 0.45, g: 0.28, b: 0.18, a: 1}
+    catwalk: {r: 0.4, g: 0.4, b: 0.42, a: 1}
+    facadeWindow: {r: 0.08, g: 0.12, b: 0.14, a: 1}
+    skyline: {r: 0.16, g: 0.17, b: 0.2, a: 1}
+    accent: {r: 0.9, g: 0.75, b: 0.1, a: 1}
+  fogEnabled: 1
+  fogColor: {r: 0.18, g: 0.22, b: 0.16, a: 1}
+  fogDensity: 0.018
+  skylineRingRadius: 140
+  skylineCount: 26
+  skylineMinHeight: 30
+  skylineMaxHeight: 90
+  districts:
+  - id: Shipyard
+    anchor: {x: 0, y: 0, z: -30}
+    bounds: {x: 22, y: 18}
+    heightTier: 1
+    useOverride: 0
+    paletteOverride:
+      concrete: {r: 0.34, g: 0.35, b: 0.37, a: 1}
+      metal: {r: 0.28, g: 0.3, b: 0.33, a: 1}
+      toxic: {r: 0.22, g: 0.45, b: 0.12, a: 1}
+      building1: {r: 0.3, g: 0.31, b: 0.34, a: 1}
+      building2: {r: 0.24, g: 0.26, b: 0.3, a: 1}
+      rail: {r: 0.45, g: 0.28, b: 0.18, a: 1}
+      catwalk: {r: 0.4, g: 0.4, b: 0.42, a: 1}
+      facadeWindow: {r: 0.08, g: 0.12, b: 0.14, a: 1}
+      skyline: {r: 0.16, g: 0.17, b: 0.2, a: 1}
+      accent: {r: 0.9, g: 0.75, b: 0.1, a: 1}
+    landmarks:
+    - name: Crane
+      localPos: {x: 8, y: 0, z: -6}
+      height: 16
+      width: 2
+    heroBuildings:
+    - id: ShipyardOffice
+      localPos: {x: -7, y: 0, z: 2}
+      footprint: {x: 7, y: 7}
+      height: 4
+      interior: 1
+      doorLocalPos: {x: 0, y: 0, z: -3.5}
+      interiorMarkerId: shipyard_office
+    props: []
+  - id: Dispatch
+    anchor: {x: 0, y: 0, z: -8}
+    bounds: {x: 20, y: 18}
+    heightTier: 1
+    useOverride: 0
+    paletteOverride:
+      concrete: {r: 0.34, g: 0.35, b: 0.37, a: 1}
+      metal: {r: 0.28, g: 0.3, b: 0.33, a: 1}
+      toxic: {r: 0.22, g: 0.45, b: 0.12, a: 1}
+      building1: {r: 0.3, g: 0.31, b: 0.34, a: 1}
+      building2: {r: 0.24, g: 0.26, b: 0.3, a: 1}
+      rail: {r: 0.45, g: 0.28, b: 0.18, a: 1}
+      catwalk: {r: 0.4, g: 0.4, b: 0.42, a: 1}
+      facadeWindow: {r: 0.08, g: 0.12, b: 0.14, a: 1}
+      skyline: {r: 0.16, g: 0.17, b: 0.2, a: 1}
+      accent: {r: 0.9, g: 0.75, b: 0.1, a: 1}
+    landmarks: []
+    heroBuildings:
+    - id: DispatchHall
+      localPos: {x: 0, y: 0, z: 6}
+      footprint: {x: 8, y: 7}
+      height: 4.5
+      interior: 1
+      doorLocalPos: {x: 0, y: 0, z: -3.5}
+      interiorMarkerId: dispatch_inside
+    props: []
+  - id: Plaza
+    anchor: {x: 0, y: 0, z: 28}
+    bounds: {x: 24, y: 22}
+    heightTier: 2
+    useOverride: 0
+    paletteOverride:
+      concrete: {r: 0.34, g: 0.35, b: 0.37, a: 1}
+      metal: {r: 0.28, g: 0.3, b: 0.33, a: 1}
+      toxic: {r: 0.22, g: 0.45, b: 0.12, a: 1}
+      building1: {r: 0.3, g: 0.31, b: 0.34, a: 1}
+      building2: {r: 0.24, g: 0.26, b: 0.3, a: 1}
+      rail: {r: 0.45, g: 0.28, b: 0.18, a: 1}
+      catwalk: {r: 0.4, g: 0.4, b: 0.42, a: 1}
+      facadeWindow: {r: 0.08, g: 0.12, b: 0.14, a: 1}
+      skyline: {r: 0.16, g: 0.17, b: 0.2, a: 1}
+      accent: {r: 0.9, g: 0.75, b: 0.1, a: 1}
+    landmarks:
+    - name: OligarchTower
+      localPos: {x: 9, y: 0, z: 6}
+      height: 40
+      width: 6
+    - name: GardenTower
+      localPos: {x: -9, y: 0, z: 6}
+      height: 18
+      width: 5
+    heroBuildings: []
+    props: []
+  - id: Market
+    anchor: {x: 26, y: 0, z: 8}
+    bounds: {x: 22, y: 20}
+    heightTier: 1
+    useOverride: 0
+    paletteOverride:
+      concrete: {r: 0.34, g: 0.35, b: 0.37, a: 1}
+      metal: {r: 0.28, g: 0.3, b: 0.33, a: 1}
+      toxic: {r: 0.22, g: 0.45, b: 0.12, a: 1}
+      building1: {r: 0.3, g: 0.31, b: 0.34, a: 1}
+      building2: {r: 0.24, g: 0.26, b: 0.3, a: 1}
+      rail: {r: 0.45, g: 0.28, b: 0.18, a: 1}
+      catwalk: {r: 0.4, g: 0.4, b: 0.42, a: 1}
+      facadeWindow: {r: 0.08, g: 0.12, b: 0.14, a: 1}
+      skyline: {r: 0.16, g: 0.17, b: 0.2, a: 1}
+      accent: {r: 0.9, g: 0.75, b: 0.1, a: 1}
+    landmarks: []
+    heroBuildings: []
+    props:
+    - kind: Stall
+      center: {x: 0, y: 0, z: 0}
+      size: {x: 12, y: 12}
+      density: 0.5
+  - id: CanalRow
+    anchor: {x: -26, y: 0, z: 8}
+    bounds: {x: 16, y: 26}
+    heightTier: 1
+    useOverride: 0
+    paletteOverride:
+      concrete: {r: 0.34, g: 0.35, b: 0.37, a: 1}
+      metal: {r: 0.28, g: 0.3, b: 0.33, a: 1}
+      toxic: {r: 0.22, g: 0.45, b: 0.12, a: 1}
+      building1: {r: 0.3, g: 0.31, b: 0.34, a: 1}
+      building2: {r: 0.24, g: 0.26, b: 0.3, a: 1}
+      rail: {r: 0.45, g: 0.28, b: 0.18, a: 1}
+      catwalk: {r: 0.4, g: 0.4, b: 0.42, a: 1}
+      facadeWindow: {r: 0.08, g: 0.12, b: 0.14, a: 1}
+      skyline: {r: 0.16, g: 0.17, b: 0.2, a: 1}
+      accent: {r: 0.9, g: 0.75, b: 0.1, a: 1}
+    landmarks: []
+    heroBuildings:
+    - id: RelayVault
+      localPos: {x: 0, y: 0, z: 0}
+      footprint: {x: 9, y: 8}
+      height: 5
+      interior: 2
+      doorLocalPos: {x: 0, y: 0, z: -4}
+      interiorMarkerId: relay_node
+    props: []
+  connections:
+  - fromDistrictId: Shipyard
+    toDistrictId: Dispatch
+    kind: 0
+    width: 8
+    tier: 0
+  - fromDistrictId: Dispatch
+    toDistrictId: Plaza
+    kind: 0
+    width: 8
+    tier: 0
+  - fromDistrictId: Plaza
+    toDistrictId: Market
+    kind: 0
+    width: 6
+    tier: 0
+  - fromDistrictId: Dispatch
+    toDistrictId: Market
+    kind: 0
+    width: 6
+    tier: 0
+  - fromDistrictId: Plaza
+    toDistrictId: CanalRow
+    kind: 1
+    width: 5
+    tier: 1
+  - fromDistrictId: Dispatch
+    toDistrictId: CanalRow
+    kind: 2
+    width: 5
+    tier: 0
+  - fromDistrictId: CanalRow
+    toDistrictId: Market
+    kind: 3
+    width: 5
+    tier: 0
+  canals:
+  - center: {x: -14, y: 0, z: 16}
+    size: {x: 14, y: 30}
+    depth: 2.2
+    useOverride: 0
+    colorOverride: {r: 0.22, g: 0.45, b: 0.12, a: 1}
+  - center: {x: 0, y: 0, z: 10}
+    size: {x: 10, y: 12}
+    depth: 2
+    useOverride: 0
+    colorOverride: {r: 0.22, g: 0.45, b: 0.12, a: 1}
+  droneZones:
+  - id: Tutorial_Dispatch
+    center: {x: 0, y: 0, z: -8}
+    radius: 4
+    count: 3
+    respawnDelay: 0
+    combat: 0
+    variantId: 
+  - id: Patrol_Market
+    center: {x: 26, y: 0, z: 8}
+    radius: 6
+    count: 3
+    respawnDelay: 14
+    combat: 1
+    variantId: 
+  - id: Patrol_Canal
+    center: {x: -14, y: 0, z: 16}
+    radius: 4
+    count: 2
+    respawnDelay: 16
+    combat: 1
+    variantId: 
+  shipyard:
+    enabled: 1
+    berthCenter: {x: 0, y: 0, z: -48}
+    berthSize: {x: 20, y: 16}
+    shipLocalPos: {x: 0, y: 1.6, z: 0}
+    shipSize: {x: 5, y: 3, z: 12}
+    shipRotationY: 0

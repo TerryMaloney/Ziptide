@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83781912c7efe3841b73c1b7d56c9513, type: 3}
+  m_Name: ToxicCity_Contract
+  m_EditorClassIdentifier: 
+  jobId: toxiccity_contract
+  title: Dockmaster's Bounty
+  steps:
+  - {fileID: 11400000, guid: 3a08259bc905e2746b498982c11f3cec, type: 2}
+  - {fileID: 11400000, guid: 4f3e62158cc2450449a045cc4e5c4641, type: 2}
+  - {fileID: 11400000, guid: d40dc145d9ae9d3498c182d171567769, type: 2}
+  - {fileID: 11400000, guid: b05ac7e507668c948a8e97d69c341e00, type: 2}
+  reward:
+  - resourceId: credits
+    amount: 100
+  completionFlag: toxiccity_complete

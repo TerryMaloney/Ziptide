@@ -16,6 +16,13 @@ MonoBehaviour:
   - sceneName: D0_City
     displayName: Toxic City
     markerIds: []
+  - sceneName: PvP_Arena01
+    displayName: PvP Arena
+    markerIds:
+    - player
+  - sceneName: MilestoneA_GrabCube
+    displayName: Leave
+    markerIds: []
   - sceneName: SandboxTestLab
     displayName: Sandbox Test Lab
     markerIds:
@@ -26,6 +33,17 @@ MonoBehaviour:
     - travel
     - artwall
     - loco
+  - sceneName: StarterWorld
+    displayName: Starter World (graybox)
+    markerIds:
+    - player
   - sceneName: _Boot
     displayName: Test Room
+    markerIds: []
+  - sceneName: ToxicCity
+    displayName: Toxic City
+    markerIds:
+    - player
+  - sceneName: MilestoneA_GrabCube
+    displayName: Leave
     markerIds: []
