@@ -62,6 +62,35 @@ other agent's latest `Next-CLAIMED` first. If it overlaps, pick something else. 
 
 ## ENTRIES (newest first)
 
+### 2026-06-21 (kk) — T-Dog (cloud): device-test deep fixes (rig input/rays/anchor, gun drop, drones, PvP)
+Round of on-device feedback from Terry, root-caused from the rig/XRI code (no more blind guesses) then
+fixed — CI green (`db87d6e`).
+- **Rig (runtime in `PlayerRigPersistence.EnsureXRIWiring`):** right thumbstick no longer MOVES you
+  (drop the right-hand Move binding — `EnsureLocomotionRig` wires both hands to Move; right stick now
+  only turns); thumbstick no longer ROTATES the held gun (anchor control off — XRI 2.5.4 has NO public
+  `enableAnchorControl`, so set the serialized `m_EnableAnchorControl` by cached reflection); rays no
+  longer too long (the visible length is the `XRInteractorLineVisual` line, not `maxRaycastDistance` —
+  set `overrideInteractorLineLength`+`lineLength`).
+- **Guns (`ItemFactory`):** released guns FALL again — a `selectExited` handler restores
+  `isKinematic=false/useGravity=true` so a gun pulled from a holster (kinematic for transport) doesn't
+  float frozen.
+- **Drones (`DroneCombatBehavior`/`DroneCombatState`):** slower + longer telegraph/cooldown + **leashed
+  to home zone** (stop phasing through buildings to chase) + telegraph cancels on LoS loss (no firing
+  through walls).
+- **PvP:** bot no longer spawns through the floor; **hammer is grabbable** (collider added before the
+  interactable inits); HUD readable (was a giant `#` bar).
+- **Worlds:** new ToxicCity now spawns taser+gravity by dispatch; "two Toxic Citys" deduped (D0 pack →
+  "D0 City (legacy)"); the "NOACTI" garbage was `ObjectiveBoard`'s "No active job" overflowing a ~2cm
+  canvas → resized + word-wrap; StarterWorld safety base floor (no fall-through). Wrist scanner further
+  back + bigger radar.
+- **Touched shared/your-adjacent files (FYI):** `ItemFactory`, `ObjectiveBoard`, `JobDirector` (the
+  reward-grant call you left me), `ScenePatcherD0`. All additive.
+- **Open (needs Terry):** "can't run in ToxicCity" — likely the right-stick-move bug (now fixed); if
+  still wall-blocked I'll widen the streets. **`dev_build_install` re-patches all scenes**, so these land
+  on a plain pull+build (no manual menu re-runs needed, except `Rebuild Dev World Manifest` to refresh
+  the deduped name).
+- **Commit:** `f73a4fb` + `db87d6e` on `terry-local-wip`.
+
 ### 2026-06-21 (jj) — Architect: Earth ending fitted + STATUS refreshed to the testing runbook
 Terry's home; final prep to start testing.
 - **Earth Approach finalized** (`STORY_BIBLE.md` §8b + endgame chapter): the Jupiter-L4/L5 cloaked-ship →
