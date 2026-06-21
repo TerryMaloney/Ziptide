@@ -28,7 +28,11 @@ Branch (no table renumber — it's the *setting* the endgame worlds use):
   grounded, all-Earth mission (reach/infiltrate the lab; one concrete objective). First real-world
   environment after 60+ alien worlds = the gut-punch that earns the ending. *(Distinct world; Earth art
   kit — design now, art later. Use a late slot or fold into the W064–W067 approach worlds as Earth-set.)*
-- → leads directly into **W063 The Branching**, now staged on/at Earth.
+- → leads directly into **W063 The Branching**, now staged on/at Earth (at the lab).
+- **How the four endings use Earth:** **A Reseal** — seal the door from Earth's side and return inside as
+  steward; **B Cross** — stay out, on Earth, fully crossed over; **C Forget** — the reset pulls Cal back
+  inside, Earth becomes a fading memory; **D Become** — the Pattern reaches *through* the door, Earth and
+  the inside dissolve together. So W064–W067 read as Earth-set (or Earth↔inside) rather than abstract void.
 
 ### W063 — The Branching (Void/Earth · none · — · Integrated→Endgame) ★ the choice
 - **Role:** The single biggest player choice; the four endings diverge here.

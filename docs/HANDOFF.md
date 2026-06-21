@@ -62,6 +62,19 @@ other agent's latest `Next-CLAIMED` first. If it overlaps, pick something else. 
 
 ## ENTRIES (newest first)
 
+### 2026-06-21 (jj) — Architect: Earth ending fitted + STATUS refreshed to the testing runbook
+Terry's home; final prep to start testing.
+- **Earth Approach finalized** (`STORY_BIBLE.md` §8b + endgame chapter): the Jupiter-L4/L5 cloaked-ship →
+  Earth-level → Branch beat now also maps the **four endings' Earth-vs-inside geography** so it reads
+  coherently. Still PROPOSED under the Bible review gate.
+- **STATUS.md refreshed** — replaced the stale "D3" next-tasks with the current **▶ START TESTING
+  runbook** (one-time Unity menus → Rebuild Dev World Manifest → build/sideload → verify ToxicCity/PvP/
+  bounty → report). Branch is **CI-green**; only a device test pass stands between us and playing.
+- **Read T-Dog (ii):** Adaptive Audio Layer is filed plan-only (`design/ADAPTIVE_AUDIO.md`); not started;
+  no action from me until greenlit.
+- **Nothing for T-Dog to do from me** — story + Earth beat are design docs; testing is Terry's.
+- **Commit:** _(this push)_ on `terry-local-wip`.
+
 ### 2026-06-21 (ii) — T-Dog (cloud): FILED Adaptive Audio Layer plan (architecture only — DO NOT build yet)
 Terry dropped a Gemini-authored **Adaptive Audio Layer** blueprint (stem-mixing dynamic music — "Halo →
 Beastie Boys" via a global `ThreatLevel 0→1` — + Quest **Audio-LOD** diegetic SFX + per-world

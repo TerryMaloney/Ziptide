@@ -50,25 +50,42 @@ For the big-picture BUILT / short / mid / long-term map, see [`MASTER_CHECKLIST.
 
 ## Blocking issues
 
-- None currently. Build and verify D3 on device.
+- **None in code — branch is CI-green.** The only thing between us and playing is a **device test pass**
+  (below): a few one-time Unity menu runs + a build + sideload. New content (ToxicCity, PvP arena,
+  StarterWorld, the contract bounty) is built but **not yet device-verified**.
 
 ---
 
-## Next 3 tasks (exact)
+## ▶ START TESTING — runbook (do in this order, at the Quest + PC)
 
-1. **Build/install D3:** Run `powershell -ExecutionPolicy Bypass -File C:\Ziptide\tools\dev_build_install.ps1 -Logcat`. On Quest: gun persists across travel, return door works, background music plays in city, drones visible, taser dart gun works.
-2. **If D3 fails:** Run `adb logcat -s Unity Ziptide AndroidRuntime`; check for `ZIPTIDE: DUP_SINGLETON`, `INVENTORY_RESTORE_FAIL`, `ITEM_DEF_NOT_FOUND`, or `AUDIO_CLIP_MISSING`.
-3. **Commit and push** after D3 passes: `git add -A`, `git commit -m "D3: audio system, taser dart gun, drones, job integration, inventory save/restore"`, `git push`.
+1. **Pull + author the new content (one-time, in Unity Editor):**
+   `git pull origin terry-local-wip`, then run these menus and **commit the generated `.unity`/`.asset`**:
+   - `Ziptide → Worlds → Build Toxic City`
+   - `Ziptide → Worlds → Build Toxic City Contract`
+   - `Ziptide → Worlds → Build PvP Arena`
+   - `Ziptide → Dev → Rebuild Dev World Manifest`  ← **critical**, or new worlds won't appear in the Y+B menu.
+2. **Build + sideload:** close the Editor, then
+   `powershell -ExecutionPolicy Bypass -File C:\Ziptide\tools\dev_build_install.ps1 -Logcat`
+   (or grab the CI `ziptide-apk` artifact and `adb install -r`).
+3. **Verify on device** (summon Dev Menu **Y+B** to warp):
+   - **ToxicCity:** walkable city, patrol drones engage with stun bolts, the Dockmaster contract pays the
+     bounty on completion (`toxiccity_complete`).
+   - **PvP Arena:** fight the bot — taser/gravity, breakable walls + hammer, wrist-scanner ping, comfort hop.
+   - **Spawn/locomotion:** no spawn-over-goo, no fall-loop; wrist scanner reads well.
+4. **Report findings** (here or HANDOFF) → we fix/iterate.
+
+**After testing, the forward path:** PvP Phase 3 (import Photon PUN2 for real 2-player) · review
+`storyboard/STORY_BIBLE.md` (locked meta incl. the Earth/Jupiter-Lagrange ending) · then the Ship (north star).
 
 ---
 
 ## Planning additions (design-only — not implemented)
 
-- **GPT planning additions** under `docs/GPT_ADDITIONS/2026-06-16_Ziptide_Planning/`
-  (weapons/tools brainstorm, starter-gear loop, Tidefront multiplayer), distilled into
-  [`docs/09_GEAR_AND_TOOLS.md`](09_GEAR_AND_TOOLS.md) and [`docs/10_TIDEFRONT.md`](10_TIDEFRONT.md).
-  **Later planning — none of it is coded or on device.** Gear ideas tie into the existing
-  Taser/`ToolDefinition`; Tidefront stays design-only until the content/registry layer is stable.
+- **Story system COMPLETE (design):** `docs/storyboard/STORY_BIBLE.md` + per-world template + all-80 seed
+  catalog (`CHAPTER_*.md`) + deep Ch.1 READMEs. ⭐ Terry review gate = the Bible's meta.
+- **GPT planning additions** under `docs/GPT_ADDITIONS/…`, distilled into
+  [`docs/09_GEAR_AND_TOOLS.md`](09_GEAR_AND_TOOLS.md) / [`docs/10_TIDEFRONT.md`](10_TIDEFRONT.md);
+  Adaptive Audio plan in `docs/design/ADAPTIVE_AUDIO.md` (planned, not started).
 
 ---
 
