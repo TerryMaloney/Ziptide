@@ -129,6 +129,9 @@ swappable content), which is exactly what we've been building toward.
   mature variant that swaps the stun/non-lethal layer for brutal/violent content. **Design intent: make
   it a content swap, not a rewrite** — keep combat effects/gore behind a data/profile layer so it can be
   dropped in later without touching core systems. *(Validates our "content is data" architecture; post-launch, gated.)*
+- 🧪 **Optical-illusion mechanics** — anamorphic reveals / impossible geometry / illusion-camo enemies for
+  the **Pattern** worlds; the meta payoff = a world only coherent from the Observers' viewpoint. Plan:
+  [`design/OPTICAL_ILLUSIONS.md`](design/OPTICAL_ILLUSIONS.md). *(Comfort-gated, visual-not-vestibular; explore later.)*
 
 ---
 
