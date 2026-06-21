@@ -27,7 +27,7 @@ namespace Ziptide.Gameplay
             var go = new GameObject("PvpHudText");
             go.transform.SetParent(transform, false);
             _text = go.AddComponent<TextMesh>();
-            _text.characterSize = 0.05f;
+            _text.characterSize = 0.02f;
             _text.fontSize = 64;
             _text.anchor = TextAnchor.MiddleCenter;
             _text.alignment = TextAlignment.Center;
@@ -38,8 +38,8 @@ namespace Ziptide.Gameplay
         {
             if (_cam == null || _text == null) return;
 
-            // billboard in front of and below the gaze
-            _text.transform.position = _cam.position + _cam.forward * 0.8f - _cam.up * 0.32f;
+            // Small panel, low in the gaze so it doesn't dominate the view.
+            _text.transform.position = _cam.position + _cam.forward * 1.0f - _cam.up * 0.5f;
             _text.transform.rotation = Quaternion.LookRotation(_text.transform.position - _cam.position);
 
             var dir = PvpMatchDirector.Instance;
@@ -47,17 +47,9 @@ namespace Ziptide.Gameplay
             int opp = dir != null ? dir.Score(1) : 0;
             int hp = _player != null && _player.Combatant != null ? _player.Combatant.Health : PvpRules.MaxHealth;
 
-            _text.text = "HP " + HealthBar(hp) + "\nYOU " + you + "  -  " + opp + " BOT"
+            _text.text = "HP " + hp + "/" + PvpRules.MaxHealth + "    You " + you + " - " + opp + " Bot"
                 + (dir != null && dir.Phase == PvpPhase.Ended
                     ? "\nWINNER: " + (dir.Match.WinnerIndex == 0 ? "YOU" : "BOT") : "");
-        }
-
-        private static string HealthBar(int hp)
-        {
-            int max = PvpRules.MaxHealth;
-            var sb = new System.Text.StringBuilder();
-            for (int i = 0; i < max; i++) sb.Append(i < hp ? '#' : '.');
-            return sb.ToString();
         }
     }
 }

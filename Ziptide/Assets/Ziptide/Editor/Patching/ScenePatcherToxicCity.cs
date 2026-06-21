@@ -91,6 +91,16 @@ namespace Ziptide.Editor.Patching
             var pack = EnsureWorldPack(kit, spawnPos);
             EnsureTravelStation(kit);
             EnsureDispatchAndBoard(pack, spawnPos);
+            SpawnStarterWeapons(root, spawnPos);
+        }
+
+        // A taser + gravity gun by the spawn so you can actually fight the drones without hauling one in.
+        private static void SpawnStarterWeapons(Transform root, Vector3 spawnPos)
+        {
+            var taser = ItemFactory.Create("taser_dart_gun", spawnPos + new Vector3(-0.6f, 1.0f, 1.0f));
+            if (taser != null) taser.transform.SetParent(root, true);
+            var grav = ItemFactory.Create("gravity_gun", spawnPos + new Vector3(0.6f, 1.0f, 1.0f));
+            if (grav != null) grav.transform.SetParent(root, true);
         }
 
         // ── Layout asset (self-bootstrapping default) ────────────────────────

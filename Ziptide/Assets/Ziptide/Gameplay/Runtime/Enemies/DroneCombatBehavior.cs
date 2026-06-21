@@ -19,16 +19,19 @@ namespace Ziptide.Gameplay
         public LayerMask lineOfSightMask = ~0;
 
         [Header("Movement")]
-        public float standoffDistance = 5f;
-        public float orbitSpeed = 40f;
+        public float standoffDistance = 6f;
+        public float orbitSpeed = 26f;
         public float verticalBob = 0.3f;
         public float patrolRadius = 3f;
-        public float patrolSpeed = 20f;
-        public float moveLerp = 2.5f;
+        public float patrolSpeed = 18f;
+        public float moveLerp = 1.4f;
+        [Tooltip("Max distance the drone will stray from its home spot — keeps it in its open zone " +
+                 "instead of chasing the player through buildings.")]
+        public float leashRadius = 9f;
 
         [Header("Attack")]
-        public float telegraphSeconds = 0.9f;
-        public float boltCooldown = 2.5f;
+        public float telegraphSeconds = 1.1f;
+        public float boltCooldown = 3.5f;
         public float boltSpeed = 6f;
         public float stunSeconds = 1.2f;
         [Range(0.1f, 1f)] public float slowFactor = 0.45f;
@@ -120,6 +123,11 @@ namespace Ziptide.Gameplay
                 if (look.sqrMagnitude > 0.001f)
                     transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(look), dt * 4f);
             }
+
+            // Leash to home so combat drones hold their open zone instead of phasing through buildings
+            // to chase you ("coming out of nowhere / shooting through walls").
+            Vector3 off = desired - home;
+            if (off.magnitude > leashRadius) desired = home + off.normalized * leashRadius;
 
             transform.position = Vector3.Lerp(transform.position, desired, dt * moveLerp);
         }

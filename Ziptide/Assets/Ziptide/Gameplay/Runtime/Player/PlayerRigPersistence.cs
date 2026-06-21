@@ -353,7 +353,29 @@ namespace Ziptide.Gameplay
                     // Realistic reach — the rays were 10-30m (grab/aim across the room). Set at
                     // runtime here so it sticks on the live rig regardless of edit-time patching. Tunable.
                     ray.maxRaycastDistance = 2.5f;
+
+                    // The thumbstick must NOT rotate the held gun. Disable anchor control via the RUNTIME
+                    // public API — the edit-time SerializedObject patch never reached the live rig, which
+                    // is why "gun spins instead of turning me" kept coming back.
+                    ray.enableAnchorControl = false;
+
+                    // The VISIBLE long ray was the line VISUAL, not the raycast distance — that's why
+                    // shortening maxRaycastDistance alone never changed what you see. Clamp the drawn line.
+                    var lineVisual = ray.GetComponent<XRInteractorLineVisual>();
+                    if (lineVisual != null)
+                    {
+                        lineVisual.overrideInteractorLineLength = true;
+                        lineVisual.lineLength = 2.5f;
+                    }
                 }
+            }
+
+            // Right thumbstick was driving MOVEMENT because EnsureLocomotionRig binds BOTH hands to the
+            // Move action. Drop the right-hand move binding at runtime so the right stick only TURNS (the
+            // snap/smooth turn providers already own it); the left stick still moves. Public API → sticks.
+            foreach (var mp in GetComponentsInChildren<ActionBasedContinuousMoveProvider>(true))
+            {
+                if (mp != null) mp.rightHandMoveAction = default;
             }
 
             int cams = 0;

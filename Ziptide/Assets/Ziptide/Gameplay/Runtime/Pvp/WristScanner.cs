@@ -88,7 +88,7 @@ namespace Ziptide.Gameplay
 
             _bracer = new GameObject("__WristScanner");
             _bracer.transform.SetParent(_leftHand, false);
-            _bracer.transform.localPosition = new Vector3(0f, 0.02f, -0.07f); // back toward the forearm
+            _bracer.transform.localPosition = new Vector3(0f, 0.02f, -0.12f); // sit further back on the forearm
             _bracer.transform.localRotation = Quaternion.identity;
 
             var body = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -181,8 +181,9 @@ namespace Ziptide.Gameplay
             {
                 var go = new GameObject("__HoloRadar");
                 go.transform.SetParent(_bracer.transform, false);
-                go.transform.localPosition = new Vector3(0f, 0.12f, 0f);
+                go.transform.localPosition = new Vector3(0f, 0.16f, 0f);
                 _radar = go.AddComponent<HoloRadar>();
+                _radar.discRadius = 0.1f; // bigger, more readable once it unfolds
                 _radar.Configure(_cam, scanRange);
             }
             _radar.gameObject.SetActive(true);

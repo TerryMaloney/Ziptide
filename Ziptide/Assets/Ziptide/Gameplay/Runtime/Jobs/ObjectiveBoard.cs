@@ -74,7 +74,9 @@ namespace Ziptide.Gameplay
             canvasGo.transform.SetParent(parent, false);
             canvasGo.transform.localPosition = Vector3.zero;
             canvasGo.transform.localRotation = Quaternion.identity;
-            canvasGo.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
+            // ~1m x 0.5m readable board. The old 2x1 @ 0.01 scale was ~2cm wide, so text overflowed to
+            // "NO ACTI..." (the on-screen garbage Terry saw). Bigger rect + small scale fixes it.
+            canvasGo.transform.localScale = new Vector3(0.0025f, 0.0025f, 0.0025f);
 
             var canvas = canvasGo.AddComponent<Canvas>();
             canvas.renderMode = RenderMode.WorldSpace;
@@ -84,7 +86,7 @@ namespace Ziptide.Gameplay
             // NRE on the next line. Use the existing one.
             var rt = canvasGo.GetComponent<RectTransform>();
             if (rt == null) rt = canvasGo.AddComponent<RectTransform>();
-            rt.sizeDelta = new Vector2(2f, 1f);
+            rt.sizeDelta = new Vector2(400f, 220f);
 
             var textGo = new GameObject("ObjectiveText");
             textGo.transform.SetParent(canvasGo.transform, false);
@@ -95,9 +97,12 @@ namespace Ziptide.Gameplay
             textRt.offsetMax = Vector2.zero;
 
             var tmp = textGo.AddComponent<TextMeshProUGUI>();
-            tmp.fontSize = 24;
+            tmp.fontSize = 26;
+            tmp.enableWordWrapping = true;
+            tmp.overflowMode = TextOverflowModes.Overflow;
             tmp.alignment = TextAlignmentOptions.TopLeft;
-            tmp.text = "No job.";
+            tmp.margin = new Vector4(12f, 8f, 12f, 8f);
+            tmp.text = "No active job.";
             return tmp;
         }
     }

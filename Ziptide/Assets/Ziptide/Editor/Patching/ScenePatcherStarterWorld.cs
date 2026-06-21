@@ -84,6 +84,12 @@ namespace Ziptide.Editor.Patching
             EnsureEventSystem();
             EnsureWorldRuntime();
 
+            // Safety base floor: a single walkable slab just under the platforms so the graybox's gaps
+            // between zones/walkways don't drop you into the void ("walk toward the first area and fall
+            // through"). Top sits ~5cm below platform top so platforms still render on top (no z-fight),
+            // and the CharacterController step-offset lets you step back up.
+            BaseFloor(worldRoot);
+
             // Region roots (named exactly per the brief) + their graybox content.
             BuildHub(Zone(worldRoot, "Hub_DockQuarter", new Vector3(0f, 0f, 0f)));
             BuildSpaceport(Zone(worldRoot, "Zone_Spaceport", new Vector3(0f, 0f, 40f)));
@@ -250,6 +256,14 @@ namespace Ziptide.Editor.Patching
             }
             t.localPosition = localPos;
             return t;
+        }
+
+        private static void BaseFloor(Transform parent)
+        {
+            var go = Prim(parent, "SafetyBaseFloor", PrimitiveType.Cube);
+            go.transform.localPosition = new Vector3(0f, PlatformTop - 0.55f, 135f);
+            go.transform.localScale = new Vector3(120f, 1f, 320f);
+            Paint(go, new Color(0.12f, 0.12f, 0.14f));
         }
 
         private static void Platform(Transform parent, string name, Vector3 localCenter, Vector2 size, Color color)

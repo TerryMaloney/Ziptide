@@ -78,7 +78,9 @@ namespace Ziptide.Editor.Patching
             EnsureWorldRuntime();
 
             Vector3 playerSpawn = new Vector3(0f, 0.1f, -12f);
-            Vector3 botSpawn = new Vector3(0f, 0.6f, 12f);
+            // Capsule pivot is at its CENTER (height 2), so it must sit ~1.1m above the floor top or it
+            // sinks through. (Was 0.6 → bottom at -0.4, below the floor.)
+            Vector3 botSpawn = new Vector3(0f, 1.2f, 12f);
             EnsureSpawn("player", playerSpawn);
 
             // Local player + opponent + match brain + HUD (root singletons; the bot rides the arena root).
@@ -124,7 +126,17 @@ namespace Ziptide.Editor.Patching
             var go = new GameObject("PvpHammer");
             go.transform.SetParent(root, false);
             go.transform.position = near + new Vector3(0f, 1.0f, 1.2f);
-            go.AddComponent<HammerTool>(); // RequireComponent adds XRGrabInteractable; HammerTool self-builds the visual
+
+            // The grab COLLIDER and Rigidbody must exist BEFORE XRGrabInteractable initializes, or the
+            // hammer can't be grabbed (this is why pickup failed — HammerTool added the collider too late
+            // in Awake, after the interactable had already gathered its empty collider list).
+            var box = go.AddComponent<BoxCollider>();
+            box.size = new Vector3(0.18f, 0.55f, 0.18f);
+            box.center = new Vector3(0f, 0.2f, 0f);
+            var rb = go.AddComponent<Rigidbody>();
+            rb.useGravity = true;
+
+            go.AddComponent<HammerTool>(); // RequireComponent adds XRGrabInteractable; collider already present
         }
 
         // ── Arena geometry ───────────────────────────────────────────────────

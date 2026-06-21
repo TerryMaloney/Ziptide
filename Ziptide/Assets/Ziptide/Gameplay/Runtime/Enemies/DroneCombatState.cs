@@ -52,7 +52,9 @@ namespace Ziptide.Gameplay
                     break;
 
                 case DroneCombatPhase.Telegraph:
-                    if (distance > LoseRange) { Phase = DroneCombatPhase.Patrol; TelegraphProgress = 0f; break; }
+                    // Lose the shot if the target leaves range OR breaks line-of-sight — no firing
+                    // through walls (you ducking behind cover now actually cancels the bolt).
+                    if (distance > LoseRange || !hasLoS) { Phase = DroneCombatPhase.Patrol; TelegraphProgress = 0f; break; }
                     _telegraphTimer -= dt;
                     TelegraphProgress = TelegraphSeconds > 0f
                         ? Mathf.Clamp01(1f - _telegraphTimer / TelegraphSeconds) : 1f;

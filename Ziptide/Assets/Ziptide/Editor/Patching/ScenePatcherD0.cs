@@ -187,7 +187,7 @@ namespace Ziptide.Editor.Patching
             {
                 var so = new SerializedObject(existing);
                 PatcherUtil.SetString(so, "packId", "d0_city");
-                PatcherUtil.SetString(so, "displayName", "Toxic City");
+                PatcherUtil.SetString(so, "displayName", "D0 City (legacy)");
                 PatcherUtil.SetString(so, "sceneName", "D0_City");
 
                 var audioProfile = ScenePatcherD2.EnsureAudioProfileAsset();
@@ -202,7 +202,7 @@ namespace Ziptide.Editor.Patching
 
             var pack = ScriptableObject.CreateInstance<WorldPackDefinition>();
             pack.packId = "d0_city";
-            pack.displayName = "Toxic City";
+            pack.displayName = "D0 City (legacy)";
             pack.sceneName = "D0_City";
             AssetDatabase.CreateAsset(pack, D0WorldPackPath);
             AssetDatabase.SaveAssets();

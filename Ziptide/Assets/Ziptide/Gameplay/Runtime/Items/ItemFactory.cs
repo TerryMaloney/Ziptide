@@ -109,6 +109,7 @@ namespace Ziptide.Gameplay
             muzzle.transform.SetParent(go.transform, false);
             muzzle.transform.localPosition = new Vector3(0f, 0f, 0.12f);
 
+            RestorePhysicsOnRelease(go, grab);
             return go;
         }
 
@@ -150,6 +151,7 @@ namespace Ziptide.Gameplay
             muzzle.transform.SetParent(go.transform, false);
             muzzle.transform.localPosition = new Vector3(0f, 0f, 0.14f);
 
+            RestorePhysicsOnRelease(go, grab);
             return go;
         }
 
@@ -191,7 +193,26 @@ namespace Ziptide.Gameplay
             muzzle.transform.SetParent(go.transform, false);
             muzzle.transform.localPosition = new Vector3(0f, 0f, 0.15f);
 
+            RestorePhysicsOnRelease(go, grab);
             return go;
+        }
+
+        /// <summary>
+        /// On release, force the gun back to a falling rigidbody. A gun pulled out of a holster (which
+        /// sets isKinematic=true for transport) is otherwise "restored" by XRGrab to kinematic on
+        /// release and FLOATS in mid-air instead of dropping. This listener runs after XRGrab's restore,
+        /// so it wins. Safe for holstering: the socket re-sets kinematic right after it grabs the gun.
+        /// </summary>
+        private static void RestorePhysicsOnRelease(GameObject go, XRGrabInteractable grab)
+        {
+            if (grab == null) return;
+            grab.selectExited.AddListener(_ =>
+            {
+                var rb = go != null ? go.GetComponent<Rigidbody>() : null;
+                if (rb == null) return;
+                rb.isKinematic = false;
+                rb.useGravity = true;
+            });
         }
 
         private static GameObject CreateGenericItem(ItemDefinition def, Vector3 position)
