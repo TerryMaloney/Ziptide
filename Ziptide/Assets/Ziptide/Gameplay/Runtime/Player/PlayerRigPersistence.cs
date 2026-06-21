@@ -354,10 +354,11 @@ namespace Ziptide.Gameplay
                     // runtime here so it sticks on the live rig regardless of edit-time patching. Tunable.
                     ray.maxRaycastDistance = 2.5f;
 
-                    // The thumbstick must NOT rotate the held gun. Disable anchor control via the RUNTIME
-                    // public API — the edit-time SerializedObject patch never reached the live rig, which
-                    // is why "gun spins instead of turning me" kept coming back.
-                    ray.enableAnchorControl = false;
+                    // The thumbstick must NOT rotate the held gun. XRI 2.5.4 exposes NO public setter for
+                    // anchor control, so set the serialized field directly. The name is the same stable
+                    // [SerializeField] EnsureLocomotionRig uses, and being serialized it survives IL2CPP
+                    // stripping. (The prior public-property + edit-time attempts never took on the live rig.)
+                    DisableAnchorControl(ray);
 
                     // The VISIBLE long ray was the line VISUAL, not the raycast distance — that's why
                     // shortening maxRaycastDistance alone never changed what you see. Clamp the drawn line.
@@ -385,6 +386,23 @@ namespace Ziptide.Gameplay
             Debug.Log("ZIPTIDE: XRI_WIRING cams=" + cams + " rays=" + totalRays +
                       "(active=" + enabledRays + ") skipped=" + skipped);
             if (totalRays == 0) Debug.LogWarning("ZIPTIDE: NO_RAY_INTERACTORS");
+        }
+
+        // XRI 2.5.4 has no public setter for the ray's anchor control, so we set the serialized field by
+        // reflection (cached). It's the same stable [SerializeField] name EnsureLocomotionRig uses.
+        private static System.Reflection.FieldInfo _anchorControlField;
+        private static bool _anchorControlFieldResolved;
+        private static void DisableAnchorControl(XRRayInteractor ray)
+        {
+            if (ray == null) return;
+            if (!_anchorControlFieldResolved)
+            {
+                _anchorControlFieldResolved = true;
+                _anchorControlField = typeof(XRRayInteractor).GetField("m_EnableAnchorControl",
+                    System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            }
+            if (_anchorControlField != null && _anchorControlField.FieldType == typeof(bool))
+                _anchorControlField.SetValue(ray, false);
         }
 
         /// <summary>
