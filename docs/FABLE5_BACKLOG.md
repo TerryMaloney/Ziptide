@@ -14,7 +14,10 @@ never touch the same files — when one is rate-limited the other pulls the next
 - [ ] **[A] `WorldRuntime.ValidatePackDefinition()`** — fail-loud on null `packId`/`sceneName`/jobs (`ZIPTIDE: PACK_VALIDATION_FAIL`).
 - [ ] **[A] Extract magic numbers → `ZiptideConstants.Physics`/`.Visuals`** (fall limits, gun scale, etc.).
 - [ ] **[A] PlayMode test scaffold** — `Tests/PlayMode/Ziptide.Tests.PlayMode.asmdef` + one `TravelCoordinator` round-trip test.
-- [ ] **[T] Clear the device-test bug round** (your kk entry) — confirm fixes on-device; close anything still open.
+- [~] **[T] Clear the device-test bug round** (kk + ll entries) — rig input/anchor/rays, gun-drop, drone
+  wall-collision, hammer grab, "two Toxic Citys", NOACTI, PvP bot/HUD all **shipped + CI-green**; root
+  causes captured in `docs/systems/VR_RIG_GOTCHAS.md`. *Awaiting Terry's on-device confirm; one open
+  item: "can't run in ToxicCity" (input bug now fixed — re-test; if still wall-blocked, widen streets).*
 - [ ] **[T] Verify the Phase-A wiring on device** — bounty pays + idle resolves on world entry after [A] lands.
 - [ ] **[T] One-time content gen + Rebuild Dev World Manifest** committed so the new worlds ship (STATUS runbook).
 

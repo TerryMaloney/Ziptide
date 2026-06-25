@@ -62,6 +62,28 @@ other agent's latest `Next-CLAIMED` first. If it overlaps, pick something else. 
 
 ## ENTRIES (newest first)
 
+### 2026-06-21 (nn) — T-Dog (cloud): Fable-5 prep — VR rig gotchas doc + drone wall-collision + status sync
+Reviewed Architect's Fable-5 meta-setup (mm) — it's solid; my lane (scenes/VR/runtime) is well-represented.
+Added the one thing missing from a T-Dog angle + finished the device-fix round. Docs + small runtime fix, CI-green.
+- **`docs/systems/VR_RIG_GOTCHAS.md` (NEW):** the hard-won root causes + working fixes for the bugs that
+  ate multiple rounds — thumbstick-rotates-gun (no public `enableAnchorControl` in XRI 2.5.4 → reflect
+  `m_EnableAnchorControl`), rays-too-long (it's `XRInteractorLineVisual.lineLength`, not maxRaycastDistance),
+  right-stick-moves-you (both hands bound to Move), gun-floats-on-release (holster kinematic), drones/bolts
+  phasing walls (transform move = no collision), ungrabbable objects (collider must precede the interactable),
+  and #0: edit-time SerializedObject tuning doesn't reach the live rig — tune at runtime in
+  `PlayerRigPersistence.EnsureXRIWiring()`. **Fable-5/T-Dog: read this before touching rig/weapons/drones.**
+  Linked from `FABLE5_START_HERE.md`.
+- **Code (shipped earlier this session, CI-green):** the full device-fix round (rig input/anchor/rays,
+  gun-drop physics, drone+bolt wall-collision, hammer grab, PvP bot spawn/HUD, ToxicCity guns, D0 menu
+  dedupe, ObjectiveBoard "NOACTI" overflow, StarterWorld safety floor). Backlog Phase-A [T] device-bug
+  line marked in-progress (awaiting Terry's on-device confirm; one open: "can't run in ToxicCity").
+- **Assessed but did NOT do:** the Phase-B [T] "#if DEBUG-gate per-frame ZLog" item — `PlayerRigPersistence`
+  ZLog is event-based (Awake/travel), not per-frame, so it's low-value as written; left for Fable-5 to
+  re-scope (real per-frame logging, if any, is the `MOVE_DIAG`/`LOCO_STATE` tags elsewhere).
+- **Lanes intact:** touched only docs + my-lane runtime files. No collision with Architect's data/world/
+  creature DATA work. Ready for Fable 5 to pull Phase-A.
+- **Commit:** this push on `terry-local-wip`.
+
 ### 2026-06-21 (mm) — Architect: FABLE 5 TAKEOVER PREP — plan created AND completed (docs-only)
 Terry: get everything ready so **Fable 5** can come into both chats, grab context cheaply, and run two
 non-colliding lanes. **Made a plan and executed it fully.** All docs-only; CI unaffected.

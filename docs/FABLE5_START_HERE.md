@@ -48,6 +48,11 @@ goes red, warn Terry loudly and stop shipping (see `CLAUDE.md`).
 - **Creatures:** `Gameplay/Runtime/Enemies/{DroneRuntime,DroneCombatBehavior,HitZones}.cs`, `Core/Runtime/IShockable.cs`, data `Content/Runtime/Definitions/CreatureDefinition.cs`; framework `docs/systems/CREATURE_DESIGN.md`
 - **PvP:** `Multiplayer/Runtime/{PvpRules,PvpMatch,PvpCombatant}.cs` + `Net/{PvpNet,LoopbackPvpTransport}.cs`; scene side `Gameplay/Runtime/Pvp/`; plan `docs/design/PVP_1V1_MODE.md`
 - **Gear:** `Gameplay/Runtime/Weapons/*` + `Items/ItemFactory.cs`; ideas `docs/09_GEAR_AND_TOOLS.md`
+- **VR rig (live config) + KNOWN GOTCHAS:** `Gameplay/Runtime/Player/PlayerRigPersistence.cs` →
+  `EnsureXRIWiring()` is the single source of truth for the runtime rig. **Before touching the rig,
+  weapons, grab, or drone movement, read `docs/systems/VR_RIG_GOTCHAS.md`** — it has the root causes +
+  working fixes for the bugs that ate multiple rounds (thumbstick rotates gun, rays too long, right-stick
+  moves you, guns float on release, drones/bolts phase through walls, ungrabbable objects).
 - **Build/CI:** `Editor/Build/BuildAndroid.cs`, `Editor/Audit/WorldAuditRunner.cs`, `.github/workflows/ci.yml`, `tools/dev_build_install.ps1`
 - **Story:** `docs/storyboard/` (STORY_BIBLE + `_WORLD_TEMPLATE` + `CHAPTER_*` 80-world catalog); canon table `docs/ZIPTIDE_MASTER_BUILD_PLAN.md` §12
 
