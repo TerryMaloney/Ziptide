@@ -94,6 +94,8 @@ natural upgrade of the travel door).
 Then the ship unlocks the rest of the vision:
 - 🔭 **80-world / 12-chapter campaign** — RILL waking, the Bloom, the Earth/containment reveal. **Story
   fully designed:** [`storyboard/STORY_BIBLE.md`](storyboard/STORY_BIBLE.md) (locked meta, ⭐ Terry review)
+  + the **identity layer** [`storyboard/THE_TRANSMISSION.md`](storyboard/THE_TRANSMISSION.md) (Cal = the
+  Debugger; the self-message; the trapped partner; ⭐ Terry review)
   + per-world template + **all-80 seed catalog** (`storyboard/CHAPTER_*.md`) + deep Ch.1 READMEs (W001–W004).
   Each world ties story → real buildable data (biome/machines/crops/enemies/sky). Canon table:
   [`ZIPTIDE_MASTER_BUILD_PLAN.md`](ZIPTIDE_MASTER_BUILD_PLAN.md) §12.

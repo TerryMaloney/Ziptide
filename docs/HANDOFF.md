@@ -62,6 +62,30 @@ other agent's latest `Next-CLAIMED` first. If it overlaps, pick something else. 
 
 ## ENTRIES (newest first)
 
+### 2026-06-25 (oo) — T-Dog (cloud): integrated the "You Are the Scientist" story addition (docs-only)
+Terry handed me a major story addition (the player IS one of two scientists who built the prison, wiped
+their own memory, left themselves "the Transmission"; the partner is trapped outside; ambiguous voice).
+Took my time to make it **cohesive with the locked bible** rather than paste it in. **Claiming the
+storyboard for this change** (normally your data lane — flagging so we don't both edit it; I'm done, it's
+yours again).
+- **Integration decisions (with Terry):** (1) **deep end-reveal** — Ch.1–6 unchanged, the truth lands in
+  the endgame; (2) **the two scientists ARE the Architects** (resolves the 40k timeline + "message by name"
+  + Cal Archive); (3) **the partner = the endings' personal engine**; (4) keep canon vocabulary, fold in
+  only *the Transmission*, the *Ouroboros* motif, and the *ambiguous voice* (no second glossary).
+- **NEW `docs/storyboard/THE_TRANSMISSION.md`** — the identity layer + fragment schedule + voice spec +
+  RILL race-condition + endings-reweighted-by-partner + a **cohesion checklist** (every planted hook →
+  payoff, zero contradictions).
+- **Reconciled `STORY_BIBLE.md`** (new §2b identity layer, Cal voiced ambiguous, term-map, canon-honor
+  update) and **threaded the anchor beats**: W004 (first fragment), W042 (recognize own voice), W060 (the
+  name moment, self-addressed), CH8-12 (partner re-weights the 4 endings), CH7 (RILL almost-says-it), DLC
+  (Ouroboros / second Transmission / sequel).
+- **Cut/workshopped:** dropped the addition's "40-min science lecture" framing (keep physics environmental;
+  Transmission stays personal); did NOT import Crucible/Debugger/Shepherd-Directive as new terms.
+- **Open for Terry:** what exactly happened to the partner; whether the Observers actively interfere;
+  whether the voice resolves to one fixed scientist. **Downstream (backlog):** the fragment collectible +
+  de-garble audio mechanic (added a Phase-C line). Docs-only; branch green.
+- **Commit:** this push on `terry-local-wip`.
+
 ### 2026-06-21 (nn) — T-Dog (cloud): Fable-5 prep — VR rig gotchas doc + drone wall-collision + status sync
 Reviewed Architect's Fable-5 meta-setup (mm) — it's solid; my lane (scenes/VR/runtime) is well-represented.
 Added the one thing missing from a T-Dog angle + finished the device-fix round. Docs + small runtime fix, CI-green.

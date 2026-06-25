@@ -10,6 +10,12 @@ universe is one of many*. The DLC opens a **second contained universe** (a new "
 only after a base-game ending — letting other endings, other Cals, and the **Observers** themselves become
 playable territory. Reuses every system; new biome/art kits + a new faction.
 
+**Sequel / identity-layer hook (`THE_TRANSMISSION.md` §8):** Game 1 ends with Cal knowing who she is and
+the gate open — her **partner** is on the other side, and so is the level *above* the Architects. The
+sequel is **going through**, and there is a **second Transmission**: Cal recorded a new self-message before
+crossing (it's what she does now). **W075 The Cal Archive = the Ouroboros made literal** — a vault of every
+prior Debugger cycle; proof the self-wipe is a loop she's run before.
+
 > Seeds are intentionally brief. Promote to full `_WORLD_TEMPLATE.md` READMEs when DLC is greenlit.
 
 | World | Working name | Seed hook (biome · enemy · twist) |

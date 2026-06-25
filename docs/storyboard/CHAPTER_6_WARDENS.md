@@ -35,7 +35,7 @@ state:** Unsealing → naming. **Reveal:** "the cage has a conscience too, and s
 - **Role:** Lore hub; a post that recorded the outside; grants a Record.
 - **Physics:** cramped listening station, static hazard. **Machine:** restore the receiver + tape conveyor.
 - **Resource:** Record. **Gear:** signal-decryptor. **Sky:** none — oscilloscopes painting the outside's "voice."
-- **Enemy:** none. **Wreck/log:** decades of intercepted Observer chatter. **Mystery:** one recording is Cal's own voice, from outside.
+- **Enemy:** none. **Wreck/log:** decades of intercepted Observer chatter. **Mystery:** one recording is Cal's own voice, from outside. *→ **Transmission fragment:** the beat where Cal first consciously recognizes the voice as her own (`THE_TRANSMISSION.md` §3).*
 - **RILL/flag:** Unsealing. `W042_COMPLETE`.
 
 ### W043 — Warden Parliament (Interior · none · Warden · Unsealing) ★ branch

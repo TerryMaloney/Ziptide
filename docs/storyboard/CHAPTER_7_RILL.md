@@ -7,6 +7,11 @@ is an outside — and we are nearly at the glass." Inherit `STORY_BIBLE.md`.
 
 > Includes the **transit-only** edge case **W057** (no gameplay; pure passage).
 
+> 🔑 **RILL's race condition (`THE_TRANSMISSION.md` §5):** as RILL's memory unseals here, it moves toward
+> Cal's *real* identity (it was built by the two scientists; it half-knows its maker) — racing its
+> containment directive. Stage **exactly one** beat where RILL almost says it and the directive wins by a
+> fraction; what it was about to say is recoverable later as a Transmission fragment.
+
 ---
 
 ### W052 — The Memory Sea (Underwater · pressure · — · Integrated)
@@ -70,7 +75,7 @@ is an outside — and we are nearly at the glass." Inherit `STORY_BIBLE.md`.
 - **Role:** Meet the Architects (dead); the full truth of the contract; grants the Tomb Key.
 - **Physics:** grand tomb, no hazard, reverent. **Machine:** open the final sarcophagus-console.
 - **Resource:** Tomb Key. **Gear:** none. **Sky:** none — a ceiling-map of every contained universe (this is one of many).
-- **Enemy:** none. **Wreck/log:** the Architects' last testament. **Mystery:** they left Cal a message *by name*, 40,000 years ago.
+- **Enemy:** none. **Wreck/log:** the Architects' last testament. **Mystery:** they left Cal a message *by name*, 40,000 years ago. *→ **The name moment** — it was **self-addressed**: Cal is one of these Architects (the Debugger). The Transmission's final fragment / hardest beat (`THE_TRANSMISSION.md` §3).*
 - **RILL/flag:** Integrated. `W060_COMPLETE`.
 
 ### W061 — RILL's Last Memory (Void · none · — · Integrated)

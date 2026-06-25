@@ -8,6 +8,13 @@ Endgame states. **Reveal:** total. Inherit `STORY_BIBLE.md` §8 (endings). Highe
 > Branch math: W063 reads the `PLAYER_*` flags (Mara/Sable/Warden, repaired/destroyed seal, trusted/
 > ignored RILL) + the W063 choice → sets `C12_W063_ENDING_A/B/C/D` → routes to the matching approach world.
 
+> 🔑 **Identity-layer payoff (`THE_TRANSMISSION.md`):** by here the Transmission has assembled — Cal is the
+> **Debugger** who built this and chose to enter, and her **partner is trapped outside** (the Observers'
+> side, reached via the Earth Approach below). This gives the four endings a *personal* axis on top of the
+> cosmic one: **A Reseal** = stay safe but **abandon the partner**; **B Cross** = go *to them*; **C Forget**
+> = wipe again, the **Ouroboros** loop continues; **D Become** = merge, partner unreachable. The name moment
+> (W060) should land just before the Branch.
+
 ---
 
 ### W062 — The Revelation Chamber (Interior · none · — · Integrated) ★ RILL beat, signature

@@ -19,6 +19,8 @@ image of **a sky that isn't from any world Cal has seen**.
 ## 3. The mystery object
 The **final broadcast**, recoverable from the spine: it's **addressed to "the watchers"** — not to anyone
 inside the network. The first time the outside is named, before anyone understands it.
+*→ This is also the **first Transmission fragment** — it reads as garbled junk now and only de-garbles
+later (see `../THE_TRANSMISSION.md` §3). What's hidden in the static is Cal's own voice.*
 
 ## 4. Planet physics & biome → `BiomeDefinition`
 - `hazardType`: **static** (discharge arcs damage/scramble gear near live panels; forces careful pathing).

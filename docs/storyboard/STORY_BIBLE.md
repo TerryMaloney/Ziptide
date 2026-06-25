@@ -10,6 +10,13 @@ and only resolves what was open.
 > docs inherit from it. Tone target (locked with Terry): **all-ages, story-deep** — non-lethal/stun
 > combat, no gore, kid-playable, but with the emotional + philosophical weight a paying-attention player
 > loves. *Halo's awe + Fallout's worldbuilding, minus the mature content.* It should feel like playing a movie.
+>
+> 🔑 **The identity layer sits UNDER this bible — see [`THE_TRANSMISSION.md`](THE_TRANSMISSION.md).** The
+> Ch.1–6 journey below plays exactly as written; the endgame reveals Cal is **the Debugger** — one of the
+> two lead Architects who built the Shell, went in, and wiped herself, leaving the Transmission to find her
+> way home and reach the partner she left outside. It *completes* the hooks this bible already plants
+> (W060 message-by-name, W042 voice-from-outside, the Cal Archive, RILL's "one specific person"). Read
+> THE_TRANSMISSION before treating Cal's identity or the endings as final.
 
 ---
 
@@ -54,11 +61,30 @@ brief's "our universe is inside a lab / there are other universes" seed.
 the machine turns out to be the world; the more she fixes it the more it wakes up; the more it wakes the
 more she learns it was built to keep her asleep — and that there's a door.
 
+## 2b. The identity layer (the deep reveal — full spec in `THE_TRANSMISSION.md`)
+The surface (Ch.1–6) is the spine above. The **deep truth**, revealed in the endgame, recontextualizes it:
+- **Cal is one of the two lead Architects** — the **Debugger** — who built the Shell, then volunteered to
+  go *inside* and erase her own memory to test whether a made world can wake and choose. The "Architects"
+  thus aren't strangers: they're **her and her partner** (plus the broader builder-people whose tombs you
+  find — and prior cycles of Cal herself, the **Ouroboros**: she has done this before; cf. DLC W075).
+- **The amnesia is self-inflicted and load-bearing.** RILL's sealed memory (the surface mystery) and
+  *Cal's own* sealed identity (the deep mystery) wake in parallel; the **Transmission** is the message Cal
+  recorded *for herself* before the wipe, recovered in fragments across the worlds.
+- **The partner** is the other scientist, trapped **outside** the Shell (the Observers' side, reached via
+  the Earth Approach §8b) — the personal stake that gives the four endings their weight.
+- **Vocabulary note:** keep this bible's terms (Shell / Observers / Bloom / Pattern). The addition's
+  "Crucible" = the Shell; its "Architects who sanctioned it" = our **Observers**; "Debugger Protocol" = the
+  two scientists' plan; "Shepherd Directive" = RILL's containment directive; "Ouroboros Stack" = the
+  recursion/Cal Archive. *Don't introduce the second glossary across docs.*
+
 ## 3. Cal (protagonist)
 Blue-collar alien salvager/technician, mercenary and tired, *not* a chosen one — that's the point. Never
-stated to be human; never stated to be alien. The wrongness sits (reflections, hands, how NPCs name her
-species) until the Earth reveal recontextualizes it. Her motivation is small and human-feeling: money,
-passage credits, get unstuck, move on. The story happens *to* her because she's the one holding RILL.
+stated to be human; never stated to be alien; **voiced gender-ambiguous** (a male+female blend — the
+identity gap made audible; see `THE_TRANSMISSION.md` §4). The wrongness sits (reflections, hands, how NPCs
+name her species) until the Earth reveal recontextualizes it. Her motivation is small and human-feeling:
+money, passage credits, get unstuck, move on. The story happens *to* her because she's the one holding RILL
+— **and the deep reveal is that none of it was an accident: she's the Debugger who chose this** (§2b /
+`THE_TRANSMISSION.md`). The mercenary surface is genuine; she doesn't know the rest until the end.
 
 ## 4. Factions & throughline
 | Faction | Want | Cal's arc with them | Worlds |
@@ -164,8 +190,12 @@ Architects; ~100 `ZiptideFlags`; the 4-ending branch W063→W068; **W028 no-job*
 **Newly locked here (review me):** the Shell/contained-universe frame; Architects = used builders;
 Earth = the observers' lab; the Bloom = living memory; the Pattern = the universe waking; RILL = witness
 instrument; the in-fiction reason for every mechanic; the meaning of the four endings.
+**The identity layer (review me — `THE_TRANSMISSION.md`):** Cal = the Debugger (one of two lead
+Architects); self-inflicted amnesia; the Transmission self-message + de-garble mechanic; the trapped
+partner as the endings' engine; the Ouroboros recursion; the ambiguous voice.
 **Still deliberately open** (deepen per-world as we build): exact Architect employer, Sable's leader
-face, the specific W024 color, DLC W069–W080 content.
+face, the specific W024 color, DLC W069–W080 content; **what exactly happened to the partner**; whether
+the Observers actively interfere with the reconstruction; whether the voice resolves to one fixed scientist.
 
 ---
 *Per-world docs live in `docs/storyboard/` (template: `_WORLD_TEMPLATE.md`; catalog: `CHAPTER_*.md`;
