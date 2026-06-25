@@ -13,7 +13,8 @@ Skim this first; the deep docs are linked per item.
   [`docs/design/SYSTEMS_ARCHITECTURE.md`](design/SYSTEMS_ARCHITECTURE.md) (build order) ·
   [`docs/systems/`](systems/README.md) (per-system specs).
 
-> Last updated: 2026-06-20. **🚀 North star: the Ship** (hub + fly-between-worlds) — see LONG-TERM.
+> Last updated: 2026-06-21. **🚀 North star: the Ship** (hub + fly-between-worlds) — see LONG-TERM.
+> **🆕 Fable-5 prep complete:** [`FABLE5_START_HERE.md`](FABLE5_START_HERE.md) (primer) · [`CODE_SCORE.md`](CODE_SCORE.md) (3.5/5) · [`ROLES.md`](ROLES.md) · [`FABLE5_BACKLOG.md`](FABLE5_BACKLOG.md) · [`design/WORLD_FLOW_TEMPLATES.md`](design/WORLD_FLOW_TEMPLATES.md) · [`systems/CREATURE_DESIGN.md`](systems/CREATURE_DESIGN.md).
 
 ---
 

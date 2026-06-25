@@ -62,6 +62,26 @@ other agent's latest `Next-CLAIMED` first. If it overlaps, pick something else. 
 
 ## ENTRIES (newest first)
 
+### 2026-06-21 (mm) — Architect: FABLE 5 TAKEOVER PREP — plan created AND completed (docs-only)
+Terry: get everything ready so **Fable 5** can come into both chats, grab context cheaply, and run two
+non-colliding lanes. **Made a plan and executed it fully.** All docs-only; CI unaffected.
+- **`docs/CODE_SCORE.md`** — rated the codebase **3.5/5** (Arch 4 · Tests 3 · Build/CI 4 · Tech-debt 3 ·
+  Docs 5 · Quality 4) with per-dimension highest-value fixes + the critical-path blocker list.
+- **`docs/FABLE5_START_HERE.md`** — token-cheap primer (3-doc spine, state snapshot, roles, roadmap, DoD,
+  "don't re-explore" file map). **Both chats read this first.** `CLAUDE.md` now points at it.
+- **`docs/ROLES.md`** — the two collision-free lanes (Architect=data/backend/tests; T-Dog=scene/runtime/
+  on-device) + claim protocol + "one rate-limited → other keeps going" + guardrails.
+- **`docs/FABLE5_BACKLOG.md`** — lane-tagged `[A]`/`[T]` pullable queue across 5 phases: **A Fix&Tie → B
+  Harden → C Mass-build worlds → D Modes → E Creatures.** Each task single-lane. Phase A starts with
+  wiring `ProfileEconomy.ResolveWorld` on world-entry (the missing economy link).
+- **`docs/design/WORLD_FLOW_TEMPLATES.md`** — per-environment flow recipes so worlds graybox fast + vary +
+  connect to story. **`docs/systems/CREATURE_DESIGN.md`** — `CreatureBehavior` framework (generalize the
+  drone seam) + 12 novel evolution-tied behaviors.
+- Indexed in `MODULE_MAP.md` + `MASTER_CHECKLIST.md`.
+- **For both lanes when Fable 5 arrives:** read `FABLE5_START_HERE.md`, claim from `FABLE5_BACKLOG.md`
+  Phase A, go. No code touched — pure prep; nothing to verify on device.
+- **Commit:** the fable5-prep commits on `terry-local-wip`.
+
 ### 2026-06-21 (ll) — Architect: CITY_DESIGN playbook (why the city reads wrong + fixes mapped to CityBuilder)
 Terry: "the city looks like it makes no sense." Did a code audit (`CityBuilder`/`CityLayoutDefinition`/
 `ScenePatcherToxicCity` + the ToxicCity scene dump) + research; wrote **`docs/design/CITY_DESIGN.md`**.

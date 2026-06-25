@@ -21,6 +21,12 @@
 
 | File | Purpose |
 |------|---------|
+| **docs/FABLE5_START_HERE.md** | 🆕 Fresh-agent primer (token-cheap onboarding: state, lane, roadmap, file map). Read first. |
+| **docs/CODE_SCORE.md** | 1–5 codebase health scorecard + critical-path blockers. |
+| **docs/ROLES.md** | The two lanes (Architect=data, T-Dog=scene/runtime) + claim protocol + guardrails. |
+| **docs/FABLE5_BACKLOG.md** | Lane-tagged pullable task queue (5 phases: Fix→Harden→Worlds→Modes→Creatures). |
+| **docs/design/WORLD_FLOW_TEMPLATES.md** | Per-environment "nice flow" recipes for fast, varied, story-connected world graybox. |
+| **docs/systems/CREATURE_DESIGN.md** | Creature framework + 12 novel evolution-tied behaviors. |
 | **docs/MASTER_CHECKLIST.md** | The scannable "state of the build": BUILT / short / mid / long-term. Skim first. |
 | **docs/STATUS.md** | LLM dashboard — milestone, working, blocking, next 3 tasks. |
 | **docs/00_LOCKED_CONTRACTS.md** | The laws; interfaces and rules that must not break. |

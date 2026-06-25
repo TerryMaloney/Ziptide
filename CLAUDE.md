@@ -2,6 +2,11 @@
 
 Read this first every session. It is the contract for how to work in this repo without breaking it.
 
+> 🆕 **New here / fresh model?** Read **`docs/FABLE5_START_HERE.md`** first — the token-cheap primer
+> (state snapshot, your lane, the roadmap, the file map) so you don't burn tokens re-exploring. Then the
+> 3-doc spine: `docs/HANDOFF.md` · `docs/MASTER_CHECKLIST.md` · `docs/storyboard/STORY_BIBLE.md`. Your lane:
+> `docs/ROLES.md`. Task queue: `docs/FABLE5_BACKLOG.md`. Codebase score: `docs/CODE_SCORE.md`.
+
 ## ⛔ WORKFLOW INTEGRITY — CHECK THIS FIRST, EVERY SESSION
 If the verification workflow is broken, **STOP and warn Terry LOUDLY at the top of your reply**
 before doing any gameplay/scene work. Working blind (no compile check) is how broken commits
