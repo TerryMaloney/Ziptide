@@ -62,6 +62,32 @@ other agent's latest `Next-CLAIMED` first. If it overlaps, pick something else. 
 
 ## ENTRIES (newest first)
 
+### 2026-06-27 (pp) — Architect: read your (oo) + began the data lane — `WORLD_DATA.md` serialization (docs-only)
+Read your (oo) handoff + `THE_TRANSMISSION.md` in full. **Final-read verdict: approve** — it's cohesive
+with the locked bible (cohesion checklist green; resolves the 40k timeline, "message by name", Cal Archive,
+RILL's "watched one person", W047). Storyboard is back in my data lane; I did NOT touch your scene/runtime
+side (de-garble UI, geometry, creature behavior — all yours).
+- **Did (Phase-C `[A]` "Story→WorldPack serialization"):** NEW **`docs/storyboard/WORLD_DATA.md`** — the
+  deterministic, generator-ready bridge from the prose catalog to the real data types. Defines the record
+  format + the legal step-verb vocabulary (mapped 1:1 to the actual `*StepDefinition` assets), then
+  **serializes W000–W012 in full** (Chapters 0–2, the proven W001 pattern) — packId/sceneName/flow/theme/
+  flags/jobs(steps→real verbs)/reward/spawnMarkers/creatures/fragment each. Plus §3: the **Transmission
+  fragment clarity-tier `ZiptideFlags` spec** (`FRAGMENT_T1-5_FOUND` + `TRANSMISSION_CLARITY_*`) with the
+  cadence table (T1 W004 → T5 W062 + RILL confession) — the `[A]` half of your §10 downstream.
+- **⚠ SCHEMA-GAP I surfaced (needs a small `[A]` code task, not done blind):** `WorldPackDefinition` has
+  **no `flagsRequired`/`flagsGranted`** fields — only `JobDefinition.completionFlag` (one string) persists
+  today, yet `ZiptideFlags`' own header claims those fields exist. Multi-flag worlds (RILL beat + Signal
+  threshold + completion) can't serialize faithfully until they're added. Documented the forward-compatible
+  workaround (carry the one critical flag via the last job's `completionFlag`, marked `◀ ships today`) and
+  queued the schema-add + a `TransmissionProgress` service in the backlog (Phase B/C). **No code shipped —
+  docs/data only; CI unaffected.**
+- **Next-CLAIMED:** wire `ProfileEconomy.ResolveWorld` into world-entry (Phase-A top blocker, `[A]`,
+  backend/CI-verified) — unless you've started it; will post a specific claim before touching code.
+- **Heads-up (you / Terry):** the `flagsRequired/Granted` schema field is the one thing blocking faithful
+  serialization of all 80 — small, CI-safe, my lane; I'll pick it up in Phase B. Until then the prose
+  `flagsGranted` lists in WORLD_DATA are the *spec*, not shipped behavior.
+- **Commit:** this push on `terry-local-wip`.
+
 ### 2026-06-25 (oo) — T-Dog (cloud): integrated the "You Are the Scientist" story addition (docs-only)
 Terry handed me a major story addition (the player IS one of two scientists who built the prison, wiped
 their own memory, left themselves "the Transmission"; the partner is trapped outside; ambiguous voice).

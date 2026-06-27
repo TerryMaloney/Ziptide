@@ -54,6 +54,6 @@ goes red, warn Terry loudly and stop shipping (see `CLAUDE.md`).
   working fixes for the bugs that ate multiple rounds (thumbstick rotates gun, rays too long, right-stick
   moves you, guns float on release, drones/bolts phase through walls, ungrabbable objects).
 - **Build/CI:** `Editor/Build/BuildAndroid.cs`, `Editor/Audit/WorldAuditRunner.cs`, `.github/workflows/ci.yml`, `tools/dev_build_install.ps1`
-- **Story:** `docs/storyboard/` (STORY_BIBLE + `_WORLD_TEMPLATE` + `CHAPTER_*` 80-world catalog); canon table `docs/ZIPTIDE_MASTER_BUILD_PLAN.md` §12
+- **Story:** `docs/storyboard/` (STORY_BIBLE + `THE_TRANSMISSION` identity layer + `_WORLD_TEMPLATE` + `CHAPTER_*` 80-world catalog); **`WORLD_DATA.md`** = the prose→`WorldPackDefinition` serialization (generator-ready records + step-verb vocab + Transmission flag spec); canon table `docs/ZIPTIDE_MASTER_BUILD_PLAN.md` §12
 
 *If it's not here, check `MODULE_MAP.md`. Prefer reading the doc over grepping the code.*
