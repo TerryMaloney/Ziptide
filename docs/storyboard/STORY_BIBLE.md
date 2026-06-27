@@ -193,9 +193,12 @@ instrument; the in-fiction reason for every mechanic; the meaning of the four en
 **The identity layer (review me — `THE_TRANSMISSION.md`):** Cal = the Debugger (one of two lead
 Architects); self-inflicted amnesia; the Transmission self-message + de-garble mechanic; the trapped
 partner as the endings' engine; the Ouroboros recursion; the ambiguous voice.
+**Identity-layer details now DECIDED** (recommended defaults, Terry can override — `THE_TRANSMISSION.md`):
+the partner crossed to pull the Debugger out and was stranded on the far side (*she went in for you*); the
+Observers stay passive except one endgame escalation; the voice resolves to one fixed person (you = the
+Debugger) at the name moment.
 **Still deliberately open** (deepen per-world as we build): exact Architect employer, Sable's leader
-face, the specific W024 color, DLC W069–W080 content; **what exactly happened to the partner**; whether
-the Observers actively interfere with the reconstruction; whether the voice resolves to one fixed scientist.
+face, the specific W024 color, DLC W069–W080 content.
 
 ---
 *Per-world docs live in `docs/storyboard/` (template: `_WORLD_TEMPLATE.md`; catalog: `CHAPTER_*.md`;

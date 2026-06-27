@@ -73,8 +73,10 @@ canon already does; the Transmission stays **personal**.
 ## 4. The voice (core narrative asset)
 Cal's voice is a deliberate **male+female blend** (ElevenLabs or equiv.) — reads as a specific person but
 genuinely ambiguous in gender. This *is* the identity gap made audible: you don't yet know **which**
-scientist you are. It resolves at the name moment. **The partner's voice is the complementary half** —
-when both are heard together (late game / sequel) it should "feel like a key turning." Calibrate warm,
+scientist you are. It **resolves to one fixed person at the name moment** (decided): you are the
+**Debugger** — the one who volunteered to go in — and the blend settles toward your half as you hear your
+own name. **The partner's voice is the complementary half** — when both are heard together (late game /
+sequel) it should "feel like a key turning." Calibrate warm,
 tired in the right places, cracking slightly in the final fragment (even before the wipe, she was afraid).
 This supersedes any "her/she" gendering of Cal in older docs — Cal is voiced ambiguous.
 
@@ -91,19 +93,23 @@ Seeded the way the bible likes (implication, not exposition):
 - *Early:* the Transmission's "we" reads institutional — "we built the protocol," "we had the argument
   about whether the wipe needed to be total."
 - *Mid:* the "we" becomes a **specific person** — a way of arguing, of deciding, too particular to be general.
-- *Late:* named; what happened to them (went looking / was taken / went to find something to help the
-  Debugger and didn't come back — **TBD with Terry**); they're **outside the Shell**, i.e. the Observers'
-  side reached via the **Earth Approach** (bible §8b: Lagrange door → cloaked ship → Earth/the lab).
+- *Late:* named; **what happened to them (decided):** she crossed the Shell trying to find a way to pull
+  the Debugger (you) back *out* — and the membrane's **two-way** nature stranded her on the far side. *She
+  went in **for you**.* They're now **outside the Shell**, i.e. the Observers' side reached via the **Earth
+  Approach** (bible §8b: Lagrange door → cloaked ship → Earth/the lab). The open gate at the end is the
+  door to her.
 - **The four endings, re-weighted by the partner** (no structural change to W063→W068):
   - **A Reseal/Steward** — stay and keep the worlds safe; **abandon the partner.**
   - **B Cross/Break Out** — open the gate and go *to them* (and the outside). The personal pull.
   - **C Forget/Reset** — wipe again; the Ouroboros loop continues; you'll do all this again.
   - **D Become/Pattern** — merge; transcend; the partner becomes unreachable.
 
-## 7. The Architects/Observers may try to stop you (optional tension, TBD)
-The Observers watch the Crucible-from-the-glass. If/when they realize the Debugger is *remembering*, they
-may interfere — later fragments harder to find, artifact protection, environmental interference — so the
-endgame becomes a race to remember yourself before they can prevent it. (Develop with Terry; optional.)
+## 7. The Observers (decided: passive, with one endgame escalation)
+The Observers watch from the glass and — through most of the game — **do nothing**, which is exactly what
+makes them unsettling (Halo/Fallout dread, not a video-game villain). **One** escalation only: when the
+reconstruction nears completion (late Ch.7 / endgame), they realize the Debugger is *remembering* and make
+the **final fragments harder to reach** (artifact protection / environmental interference) — a single
+turn-of-the-screw "race to remember yourself" right before the Branch, not a game-long antagonism.
 
 ## 8. Sequel architecture
 Game 1 ends with Cal knowing who she is; the gate is the final image. The partner is in there; the level
@@ -120,8 +126,9 @@ that's what she does now: she sat down, explained what she knew about the other 
 - [x] Earth Approach (§8b) → **where the partner is** (the personal reason to cross).
 - [x] "Cal is alien, never human" → **builders'-era**, not Earth (intact).
 - [x] Non-lethal/all-ages tone → unchanged (the reveal is emotional, not graphic).
-- [ ] **Open (Terry):** what exactly happened to the partner; whether the Observers actively interfere;
-  whether the voice resolves to one fixed scientist or stays player-interpretable.
+- [x] **Resolved (recommended defaults — Terry can override):** partner crossed to pull you out and was
+  stranded on the far side (*she went in for you*); Observers stay passive except one endgame escalation;
+  the voice resolves to one fixed person (you = the Debugger) at the name moment, partner = the complement.
 
 ## 10. Downstream (mechanic/data — NOT this pass; for the backlog)
 - Transmission fragments as **collectibles** tied to `WorldPackDefinition` + `ZiptideFlags` clarity tiers,
