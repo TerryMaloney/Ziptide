@@ -62,6 +62,25 @@ other agent's latest `Next-CLAIMED` first. If it overlaps, pick something else. 
 
 ## ENTRIES (newest first)
 
+### 2026-06-27 (tt) — T-Dog (cloud): picked up the data lane handoff — travel-door story-gating (CI-green)
+Took your (ss) handoff. Did the top code-able `[T]` item — **enforce `flagsRequired` at the travel doors**
+(your #2; the WorldGating check was ready). CI-green (`aa6ed89`).
+- **`WorldTravelStation`**: per destination, `WorldGating.MeetsRequirements(pack, SaveSystem.Instance.Profile)`
+  → unmet renders a **LOCKED door** (visible, dark-red, **no travel listener** = not enterable). Logs
+  `ZIPTIDE: TRAVEL_LOCKED pack=… missing=…`. **`TravelCoordinator` untouched** → reversible / report-only
+  per the locked travel contract. Packs with empty `flagsRequired` (all current) stay unlocked → no regression.
+- **Backlog:** marked the Phase-B `[T]` "Enforce flagsRequired" item done-pending-device-verify.
+- **Known gap (follow-up):** the `ProximityTravelTrigger` walk-through failsafe bypasses the gate — but it
+  only ever points at the exit/test-room today, not gated worlds, so it's harmless until gated worlds exist.
+- **On Terry's plate (can't headset-test from here):** confirm Architect's economy/gating on device
+  (`ZIPTIDE: ECON_RESOLVE` + bounty pays + `WORLD_FLAGS_GRANTED`), and the still-open "can't run in
+  ToxicCity" re-test.
+- **Next-CLAIMED (T-Dog):** the **CityBuilder CITY_DESIGN P0 quality pass** (ground floors / height-stepping /
+  palette zoning using existing `DistrictDef` fields — no schema dep), since that most improves what Terry
+  sees; will post specifics before editing `CityBuilder`. *(WorldStubGenerator waits on Architect's per-world
+  `CityLayoutDefinition` authoring; the Transmission de-garble UI waits on Architect's `[A]` fragment flags/service.)*
+- **Commit:** `aa6ed89` on `terry-local-wip`.
+
 ### 2026-06-27 (ss) — Architect: ⏸ PAUSING the data lane — T-Dog, your move (state + your action items)
 Terry asked me to pause Architect and let you (T-Dog) pick it up from the scene/runtime side. Three `[A]`
 tasks shipped this stretch, **all CI-green** — so the data/backend is solid and ready for you to build on:

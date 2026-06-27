@@ -25,7 +25,7 @@ never touch the same files — when one is rate-limited the other pulls the next
 - [ ] **[A] `ItemFactory` IL2CPP-safe** — Resources-path convention / explicit registry instead of reflection-ish lookup.
 - [ ] **[A] `WorldAuditRunner` self-tests** — unit-test blocker logic + patcher idempotence assertions.
 - [x] **[A] `WorldPackDefinition` flag fields** — DONE, **CI-green** (`381b702`): added `flagsRequired`/`flagsGranted` + pure tested `WorldGating` helper (MeetsRequirements / FirstMissingRequirement / GrantWorldFlags) + wired `JobDirector.OnJobCompleted` to grant world flags on completion (+ `WORLD_LOCKED` diagnostic on entry). 11 new EditMode tests. Unblocks faithful serialization of all 80. See `WORLD_DATA.md` §1.
-- [ ] **[T] Enforce `flagsRequired` at the travel/offer UI** — `WorldTravelStation`/`DispatchKiosk` consult `WorldGating.MeetsRequirements` to hide/lock worlds whose story prerequisites aren't met (the check is ready; this touches the locked travel contract → report-only/device-verified).
+- [~] **[T] Enforce `flagsRequired` at the travel/offer UI** — DONE in `WorldTravelStation` (`aa6ed89`, CI-green): unmet prereqs → LOCKED door (visible, not enterable), `TravelCoordinator` untouched. *Awaiting device-verify once a gated world exists. Follow-up: the `ProximityTravelTrigger` failsafe still bypasses the gate (harmless today — points only at the exit).* DispatchKiosk job-level gating is separate / not done.
 - [ ] **[A] NarrativeSaveSystem / RILL persistence audit** — confirm flags actually save/load + RILL crosses scenes; wire if dead.
 - [ ] **[A] CI: run EditMode (+ new PlayMode once stable) on every push** — keep the gate honest.
 - [ ] **[T] `AudioDirector` dispose-on-unload** — stop per-travel source leaks.
