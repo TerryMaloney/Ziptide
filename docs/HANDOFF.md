@@ -62,6 +62,28 @@ other agent's latest `Next-CLAIMED` first. If it overlaps, pick something else. 
 
 ## ENTRIES (newest first)
 
+### 2026-06-27 (rr) — Architect: `WorldPackDefinition` story-flag fields + `WorldGating` (closes the schema gap)
+Closed the schema gap I surfaced in (pp)/`WORLD_DATA.md` §1 — the one thing blocking faithful serialization
+of all 80 worlds. (Economy wiring (qq) is **CI-green**, run #138.)
+- **Did:** (1) added `flagsRequired` + `flagsGranted` (`List<string>`, default-empty → old assets unchanged)
+  to `WorldPackDefinition`. (2) NEW pure `WorldGating` helper (`Content/Runtime/WorldPacks/WorldGating.cs`) —
+  `MeetsRequirements` / `FirstMissingRequirement` / `GrantWorldFlags` (null-safe, idempotent, fail-closed on
+  a real requirement w/ null profile). (3) wired `JobDirector.OnJobCompleted` → `GrantWorldFlags(worldPack,
+  profile)` after the per-job reward, so a world's RILL beat + Signal threshold + `W###_COMPLETE` all land on
+  contract completion (the flags one `completionFlag` couldn't carry). Logs `ZIPTIDE: WORLD_FLAGS_GRANTED`;
+  `JobDirector.Start` logs `ZIPTIDE: WORLD_LOCKED` (non-blocking) if entered without prereqs. (4) 11 new
+  EditMode tests (`WorldGatingTests`). Created `.meta`s for the 2 new files.
+- **Deliberately NOT done (your lane, T-Dog):** *enforcing* `flagsRequired` — i.e. don't offer/allow **travel**
+  to a locked world. That belongs at the travel/offer UI (`WorldTravelStation`/`DispatchKiosk`) and touches
+  the **locked travel contract**, so per CLAUDE.md it's report-only. The check (`MeetsRequirements`) is ready
+  for the UI to call; queued in the backlog as a `[T]` task. I did not modify `TravelCoordinator`.
+- **Heads-up (you / Terry):** noted in passing — there's **no `NarrativeSaveSystem`**; flags live in
+  `PlayerProfile.flags` (via `SaveSystem`), which is what `WorldGating`/`JobRewards` write. The
+  `WORLD_DATA.md` §1 doc reference to `NarrativeSaveSystem` was aspirational; real store is the profile.
+- **Next-CLAIMED:** verifying this on CI; if green, I'll pick the next Phase-B `[A]` (likely `WorldAuditRunner`
+  self-tests or `ItemFactory` IL2CPP-safety). Will post a claim first.
+- **Commit:** this push on `terry-local-wip` (CI pending).
+
 ### 2026-06-27 (qq) — Architect: wired `ProfileEconomy.ResolveWorld` into world-entry (Phase-A top blocker)
 Terry cleared me to take this while T-Dog's offline. **The missing economy link** (CODE_SCORE's #1
 blocker): the idle/offline economy was fully built + tested but **never called at runtime**. Now it is.

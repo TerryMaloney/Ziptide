@@ -30,6 +30,14 @@ namespace Ziptide.Gameplay
         {
             if (worldPack == null) return;
 
+            // Non-blocking story-gate diagnostic: if the player reached this world without its required
+            // flags, log it (don't yank them mid-scene — enforcement belongs at the travel/offer UI, which
+            // touches the locked travel contract). Helps catch out-of-order travel during testing.
+            var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;
+            string missing = WorldGating.FirstMissingRequirement(worldPack, profile);
+            if (missing != null)
+                Debug.Log("ZIPTIDE: WORLD_LOCKED world=" + worldPack.packId + " missingFlag=" + missing);
+
             _playerTransform = GetPlayerTransform();
             CreateSpawnMarkers();
             EnsureBoardAndKiosk();
@@ -159,6 +167,13 @@ namespace Ziptide.Gameplay
             {
                 JobRewards.Grant(_runtime.Definition, profile);
                 Debug.Log("ZIPTIDE: JOB_REWARD_GRANTED job=" + _runtime.Definition.jobId);
+
+                // World-level story flags (RILL beat + Signal threshold + W###_COMPLETE) that a single
+                // job completionFlag can't all carry. Granted when the world's contract finishes.
+                int worldFlags = WorldGating.GrantWorldFlags(worldPack, profile);
+                if (worldFlags > 0)
+                    Debug.Log("ZIPTIDE: WORLD_FLAGS_GRANTED world=" +
+                              (worldPack != null ? worldPack.packId : "?") + " count=" + worldFlags);
             }
         }
 

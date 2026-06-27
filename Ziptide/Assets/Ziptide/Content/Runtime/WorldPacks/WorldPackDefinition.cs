@@ -36,5 +36,15 @@ namespace Ziptide.Content
         [Header("Audio")]
         [Tooltip("Background music for this world. Null = silence.")]
         public AudioProfile audioProfile;
+
+        [Header("Story gating")]
+        [Tooltip("Flags (use Ziptide.Core.ZiptideFlags constants) that must ALL be set before this world " +
+                 "is available. Empty = always available. Checked by WorldGating.MeetsRequirements.")]
+        public List<string> flagsRequired = new List<string>();
+
+        [Tooltip("Flags set when this world's content is completed (e.g. RILL beat + Signal threshold + " +
+                 "W###_COMPLETE). Granted by WorldGating.GrantWorldFlags on job completion. These are the " +
+                 "world-level flags that a single JobDefinition.completionFlag can't all carry.")]
+        public List<string> flagsGranted = new List<string>();
     }
 }

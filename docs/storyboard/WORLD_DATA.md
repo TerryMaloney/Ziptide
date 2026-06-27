@@ -55,26 +55,30 @@ item, not a record field.
 
 ---
 
-## 1. ⚠ SCHEMA-GAP — world-level flag gating is not in the SO yet
+## 1. World-level flag gating — ✅ schema landed (CI-green)
 
-`WorldPackDefinition` today has **no `flagsRequired` / `flagsGranted`** fields. The only flag that actually
-persists on completion is **`JobDefinition.completionFlag`** (one string, set by `JobRewards.Grant`). The
-`ZiptideFlags` header even *says* "Use these in `WorldPackDefinition.flagsRequired and flagsGranted`" — but
-those fields don't exist. **This is the one code change Phase-C data needs.**
+**Resolved (2026-06-27, `[A]`).** `WorldPackDefinition` now has **`List<string> flagsRequired`** and
+**`List<string> flagsGranted`** (both default-empty, so old assets deserialize unchanged). Logic lives in
+the pure, EditMode-tested **`WorldGating`** helper (`Content/Runtime/WorldPacks/WorldGating.cs`):
+- `WorldGating.MeetsRequirements(pack, profile)` — all required flags set? (empty list = always; null
+  profile fails closed on a real requirement). `FirstMissingRequirement(...)` for "locked because…" UI.
+- `WorldGating.GrantWorldFlags(pack, profile)` — sets all `flagsGranted` on the profile; null-safe,
+  idempotent, returns the newly-set count.
 
-**Decision for this serialization (forward-compatible):**
-- Every record lists `flagsRequired` / `flagsGranted` as the *intended* gate — this is the design truth.
-- **Until the schema lands,** the single most story-critical flag per world is carried by the **last job's
-  `completionFlag`** (that path works today). Records mark it with **`◀ ships today`**.
-- The remaining `flagsGranted` (Signal thresholds, RILL beats, faction flags) need the schema field. Queued:
+**Wired:** `JobDirector.OnJobCompleted` now calls `GrantWorldFlags` (after the per-job `JobRewards.Grant`),
+so a world's RILL beat + Signal threshold + `W###_COMPLETE` all land when its contract finishes — the flags
+a single `JobDefinition.completionFlag` couldn't all carry. `JobDirector.Start` logs `ZIPTIDE: WORLD_LOCKED`
+(non-blocking) if a world is entered without its requirements.
 
-> **[A] Phase-A/B code task — `WorldPackDefinition` flag fields.** Add `public List<string> flagsRequired`
-> and `public List<string> flagsGranted` (default empty). Have `WorldRuntime` (a) refuse/redirect entry if
-> `flagsRequired` aren't all set, and (b) set all `flagsGranted` via `NarrativeSaveSystem` on world-complete.
-> Multi-flag worlds (RILL beat + Signal threshold + completion) need this — `completionFlag` only carries one.
-> CI-safe, tested. This unblocks faithful serialization of all 80. Add to `FABLE5_BACKLOG.md` Phase B.
+**Still a follow-up (`[T]`, travel/UI lane):** *enforcing* `flagsRequired` — don't *offer/allow travel to* a
+locked world. That belongs at the travel/offer UI (`WorldTravelStation`/`DispatchKiosk`), which touches the
+locked travel contract, so it's report-only, not done blind here. The check (`MeetsRequirements`) is ready
+for that UI to call. Queued in `FABLE5_BACKLOG.md`.
 
-Until then the prose `flagsGranted` lists below are the **spec**, not the shipped behavior.
+**Serialization note:** records still mark the single critical flag carried by a job's `completionFlag` with
+**`◀ ships today`**; the *rest* of each record's `flagsGranted` now ship for real via `JobDirector` + the new
+fields. The prose `flagsGranted` lists below are now **authorable + enforced on completion** (entry-gating
+pending the `[T]` UI hook).
 
 ---
 

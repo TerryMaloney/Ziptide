@@ -24,7 +24,8 @@ never touch the same files — when one is rate-limited the other pulls the next
 ## Phase B — HARDEN ARCHITECTURE (close the red-team risks before scaling)
 - [ ] **[A] `ItemFactory` IL2CPP-safe** — Resources-path convention / explicit registry instead of reflection-ish lookup.
 - [ ] **[A] `WorldAuditRunner` self-tests** — unit-test blocker logic + patcher idempotence assertions.
-- [ ] **[A] `WorldPackDefinition` flag fields** — add `List<string> flagsRequired`/`flagsGranted` (the SO lacks them; `ZiptideFlags`' header wrongly claims they exist). `WorldRuntime` gates entry on required + sets granted via `NarrativeSaveSystem` on complete. *Unblocks faithful serialization of all 80 (multi-flag worlds — `completionFlag` only carries one). See `WORLD_DATA.md` §1.*
+- [x] **[A] `WorldPackDefinition` flag fields** — DONE, **CI-pending**: added `flagsRequired`/`flagsGranted` + pure tested `WorldGating` helper (MeetsRequirements / FirstMissingRequirement / GrantWorldFlags) + wired `JobDirector.OnJobCompleted` to grant world flags on completion (+ `WORLD_LOCKED` diagnostic on entry). 11 new EditMode tests. Unblocks faithful serialization of all 80. See `WORLD_DATA.md` §1.
+- [ ] **[T] Enforce `flagsRequired` at the travel/offer UI** — `WorldTravelStation`/`DispatchKiosk` consult `WorldGating.MeetsRequirements` to hide/lock worlds whose story prerequisites aren't met (the check is ready; this touches the locked travel contract → report-only/device-verified).
 - [ ] **[A] NarrativeSaveSystem / RILL persistence audit** — confirm flags actually save/load + RILL crosses scenes; wire if dead.
 - [ ] **[A] CI: run EditMode (+ new PlayMode once stable) on every push** — keep the gate honest.
 - [ ] **[T] `AudioDirector` dispose-on-unload** — stop per-travel source leaks.
