@@ -10,7 +10,7 @@ never touch the same files — when one is rate-limited the other pulls the next
 ---
 
 ## Phase A — FIX & TIE TOGETHER (make the core loop solid end-to-end)
-- [ ] **[A] Wire `ProfileEconomy.ResolveWorld` into world-entry** — call it from `WorldRuntime`/post-travel so idle/welcome-back actually runs. *(highest leverage — the missing economy link)*
+- [~] **[A] Wire `ProfileEconomy.ResolveWorld` into world-entry** — DONE (CI-pending): new pure `ProfileEconomy.EnterWorld()` called from `WorldRuntime.Start()` (keyed by scene name), + 3 EditMode tests. Idle/offline accrual now runs on every world entry. *Remaining: welcome-back UI is `[T]`; optional `BalanceConfig` offline cap.*
 - [ ] **[A] `WorldRuntime.ValidatePackDefinition()`** — fail-loud on null `packId`/`sceneName`/jobs (`ZIPTIDE: PACK_VALIDATION_FAIL`).
 - [ ] **[A] Extract magic numbers → `ZiptideConstants.Physics`/`.Visuals`** (fall limits, gun scale, etc.).
 - [ ] **[A] PlayMode test scaffold** — `Tests/PlayMode/Ziptide.Tests.PlayMode.asmdef` + one `TravelCoordinator` round-trip test.

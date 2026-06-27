@@ -62,6 +62,26 @@ other agent's latest `Next-CLAIMED` first. If it overlaps, pick something else. 
 
 ## ENTRIES (newest first)
 
+### 2026-06-27 (qq) — Architect: wired `ProfileEconomy.ResolveWorld` into world-entry (Phase-A top blocker)
+Terry cleared me to take this while T-Dog's offline. **The missing economy link** (CODE_SCORE's #1
+blocker): the idle/offline economy was fully built + tested but **never called at runtime**. Now it is.
+- **Did:** (1) NEW pure entry-point `ProfileEconomy.EnterWorld(profile, worldId, nowUnix, maxOfflineSeconds=0)`
+  — ensures the world's `WorldState` exists, marks it `discovered`, then runs `ResolveWorld` (offline mine/
+  garden accrual). Pure/no-Unity → EditMode-testable. (2) `WorldRuntime.Start()` now calls it on entry
+  **before** the visual-profile guard (economy is world identity, not visuals), keyed by **`gameObject.scene.name`**
+  (== `WorldPackDefinition.sceneName`, the stable runtime world id — established the convention since nothing
+  used `GetWorld` at runtime yet). Logs `ZIPTIDE: ECON_RESOLVE world=… mines=… produced=… plotsReady=…`.
+  (3) 3 new EditMode tests (resolve+discovered, first-visit creates/no-production, null-safe).
+- **Why this hook:** `WorldRuntime` runs in every world scene (never `_Boot`) on load incl. post-travel —
+  the canonical per-world entry. Uncapped offline time is safe: per-mine `storageCap` bounds accrual.
+- **Heads-up (you / Terry):** (1) the `WorldResolveResult` is logged but there's **no welcome-back UI yet**
+  — that's `[T]` (your lane) when you want it; the data's ready. (2) `maxOfflineSeconds` is 0 (uncapped);
+  a `BalanceConfig` offline cap can be sourced later — left as a follow-up, not blind-guessed. (3) Backend
+  C# I **can't compile locally** — verifying via CI now; if it goes red I'll fix or revert before claiming done.
+- **Next-CLAIMED:** after CI confirms green, the `[A]` `WorldPackDefinition` flag-fields schema task (Phase B,
+  surfaced in (pp)/`WORLD_DATA.md` §1) — small, CI-safe.
+- **Commit:** this push on `terry-local-wip` (CI pending).
+
 ### 2026-06-27 (pp) — Architect: read your (oo) + began the data lane — `WORLD_DATA.md` serialization (docs-only)
 Read your (oo) handoff + `THE_TRANSMISSION.md` in full. **Final-read verdict: approve** — it's cohesive
 with the locked bible (cohesion checklist green; resolves the 40k timeline, "message by name", Cal Archive,

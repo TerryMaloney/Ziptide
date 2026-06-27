@@ -52,6 +52,22 @@ namespace Ziptide.Core
             return result;
         }
 
+        /// <summary>
+        /// World-entry resolve on the live profile: ensure the world's <see cref="WorldState"/> exists,
+        /// mark it discovered, then advance its idle production (mines/plots) up to now. This is the
+        /// runtime entry-point wrapper around <see cref="ResolveWorld(WorldState,long,long)"/> — call it
+        /// when the player enters a world (post-travel / scene load) so offline accrual actually lands.
+        /// Pure (no Unity) and fully testable. Returns the "welcome back" summary.
+        /// </summary>
+        public static WorldResolveResult EnterWorld(PlayerProfile profile, string worldId, long nowUnix,
+                                                    long maxOfflineSeconds = 0)
+        {
+            if (profile == null || string.IsNullOrEmpty(worldId)) return new WorldResolveResult();
+            var world = profile.GetWorld(worldId, createIfMissing: true);
+            world.discovered = true;
+            return ResolveWorld(world, nowUnix, maxOfflineSeconds);
+        }
+
         /// <summary>Move a mine's stored output into the profile's resource balance. Returns amount collected.</summary>
         public static double CollectMine(PlayerProfile profile, MineState mine)
         {

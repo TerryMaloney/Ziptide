@@ -65,6 +65,46 @@ namespace Ziptide.Tests.EditMode
         }
 
         [Test]
+        public void EnterWorld_ResolvesAndMarksDiscovered()
+        {
+            var profile = new PlayerProfile();
+            var w = profile.GetWorld("ToxicCity", createIfMissing: true);
+            w.lastResolvedAtUnix = 1000;
+            w.mines.Add(new MineState { resourceId = "scrap", ratePerSecond = 2.0, lastResolvedAtUnix = 1000 });
+
+            var r = ProfileEconomy.EnterWorld(profile, "ToxicCity", nowUnix: 1100);
+
+            Assert.AreEqual(1, r.minesResolved);
+            Assert.AreEqual(200.0, r.totalProduced, 1e-9);          // 2/s * 100s
+            Assert.IsTrue(profile.GetWorld("ToxicCity").discovered); // entry marks discovery
+            Assert.AreEqual(1100L, profile.GetWorld("ToxicCity").lastResolvedAtUnix);
+        }
+
+        [Test]
+        public void EnterWorld_FirstVisit_CreatesWorldNoProduction()
+        {
+            var profile = new PlayerProfile();
+            Assert.IsNull(profile.GetWorld("NewWorld")); // not present yet
+
+            var r = ProfileEconomy.EnterWorld(profile, "NewWorld", nowUnix: 5000);
+
+            Assert.AreEqual(0, r.minesResolved);                  // nothing to accrue on first visit
+            var ws = profile.GetWorld("NewWorld");
+            Assert.IsNotNull(ws);                                 // created
+            Assert.IsTrue(ws.discovered);
+            Assert.AreEqual(5000L, ws.lastResolvedAtUnix);        // anchor set to entry time
+        }
+
+        [Test]
+        public void EnterWorld_NullProfileOrId_IsSafe()
+        {
+            Assert.AreEqual(0, ProfileEconomy.EnterWorld(null, "x", 1).minesResolved);
+            var profile = new PlayerProfile();
+            Assert.AreEqual(0, ProfileEconomy.EnterWorld(profile, "", 1).minesResolved);
+            Assert.AreEqual(0, ProfileEconomy.EnterWorld(profile, null, 1).minesResolved);
+        }
+
+        [Test]
         public void CollectMine_MovesStoredToProfile()
         {
             var profile = new PlayerProfile();

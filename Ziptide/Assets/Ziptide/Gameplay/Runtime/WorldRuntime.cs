@@ -1,5 +1,6 @@
 using UnityEngine;
 using Ziptide.Content;
+using Ziptide.Core;
 using Ziptide.Visuals;
 
 namespace Ziptide.Gameplay
@@ -19,6 +20,10 @@ namespace Ziptide.Gameplay
 
         private void Start()
         {
+            // World entry: advance idle/offline economy for this world FIRST (independent of the visual
+            // profile — a world without a WorldProfile still has an economy keyed by its scene name).
+            ResolveEconomyOnEntry();
+
             if (worldProfile == null) return;
 
             EnsureWorldDirector();
@@ -28,6 +33,28 @@ namespace Ziptide.Gameplay
 
             if (_worldDirector != null && worldProfile.defaultTheme != null)
                 _worldDirector.ApplyTheme(worldProfile.defaultTheme);
+        }
+
+        /// <summary>
+        /// Resolve this world's idle economy on entry: ensure its WorldState exists, mark it discovered,
+        /// and accrue offline mine/garden production since the last visit. The world is keyed by its
+        /// scene name (== <see cref="WorldPackDefinition.sceneName"/>), the stable runtime world id.
+        /// No-op until a profile exists; the pure math + WorldState handling live in ProfileEconomy.
+        /// </summary>
+        private void ResolveEconomyOnEntry()
+        {
+            var save = SaveSystem.Instance;
+            if (save == null || save.Profile == null) return;
+
+            string worldId = gameObject.scene.name;
+            if (string.IsNullOrEmpty(worldId)) return;
+
+            long now = System.DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+            var r = ProfileEconomy.EnterWorld(save.Profile, worldId, now);
+            Debug.Log("ZIPTIDE: ECON_RESOLVE world=" + worldId +
+                      " mines=" + r.minesResolved +
+                      " produced=" + r.totalProduced.ToString("0.##") +
+                      " plotsReady=" + r.plotsReady);
         }
 
         /// <summary>
