@@ -26,6 +26,7 @@ namespace Ziptide.Gameplay
         private static readonly Color FrameColor = new Color(0.15f, 0.15f, 0.18f);
         private static readonly Color DoorColor = new Color(0.12f, 0.42f, 0.52f);
         private static readonly Color DoorHoverColor = new Color(0.22f, 0.60f, 0.72f);
+        private static readonly Color LockedColor = new Color(0.30f, 0.10f, 0.10f); // story-gated: not yet travellable
         private static readonly Color LabelColor = Color.white;
 
         private readonly List<GameObject> _owned = new List<GameObject>();
@@ -60,19 +61,26 @@ namespace Ziptide.Gameplay
             }
 
             float startX = -(destinationPacks.Count - 1) * DoorSpacing * 0.5f;
+            var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;
 
             for (int i = 0; i < destinationPacks.Count; i++)
             {
                 var pack = destinationPacks[i];
                 if (pack == null) continue;
-                CreateDoorway(pack, new Vector3(startX + i * DoorSpacing, 0f, 0f));
+                // Story-gate: a destination whose required flags aren't met yet shows as a LOCKED door —
+                // visible (so you know it exists) but not travellable. This consults the ready
+                // WorldGating check and never touches TravelCoordinator, so it's fully reversible /
+                // report-only per the locked travel contract.
+                bool locked = !WorldGating.MeetsRequirements(pack, profile);
+                CreateDoorway(pack, new Vector3(startX + i * DoorSpacing, 0f, 0f), locked);
             }
         }
 
-        private void CreateDoorway(WorldPackDefinition pack, Vector3 localPos)
+        private void CreateDoorway(WorldPackDefinition pack, Vector3 localPos, bool locked)
         {
             string sceneName = pack.sceneName;
             string label = FormatLabel(pack);
+            if (locked) label += " — LOCKED";
             // #region agent log
             WLog("CreateDoorway", "'sceneName':'" + sceneName + "','label':'" + label + "','stationScene':'" + gameObject.scene.name + "','pos':'" + transform.position + "'");
             // #endregion agent log
@@ -120,26 +128,27 @@ namespace Ziptide.Gameplay
                 StartCoroutine(RetryManagerAssignment(interactable));
             }
 
-            interactable.selectEntered.AddListener(_ =>
-            {
-                // #region agent log
-                WLog("Door_selectEntered", "'sceneName':'" + (sceneName ?? "NULL") + "'");
-                // #endregion agent log
-                LoadScene(sceneName);
-            });
-
             var doorVisual = CreatePrimitiveCube("DoorVisual", door.transform,
-                Vector3.zero, new Vector3(DoorWidth, DoorHeight, DoorDepth), DoorColor, false);
-
+                Vector3.zero, new Vector3(DoorWidth, DoorHeight, DoorDepth), locked ? LockedColor : DoorColor, false);
             var visual = doorVisual.GetComponent<Renderer>();
-            interactable.hoverEntered.AddListener(_ =>
+
+            if (!locked)
             {
-                TintRenderer(visual, DoorHoverColor);
-                // #region agent log
-                WLog("Door_hoverEntered", "'sceneName':'" + (sceneName ?? "NULL") + "'");
-                // #endregion agent log
-            });
-            interactable.hoverExited.AddListener(_ => TintRenderer(visual, DoorColor));
+                interactable.selectEntered.AddListener(_ =>
+                {
+                    // #region agent log
+                    WLog("Door_selectEntered", "'sceneName':'" + (sceneName ?? "NULL") + "'");
+                    // #endregion agent log
+                    LoadScene(sceneName);
+                });
+                interactable.hoverEntered.AddListener(_ => TintRenderer(visual, DoorHoverColor));
+                interactable.hoverExited.AddListener(_ => TintRenderer(visual, DoorColor));
+            }
+            else
+            {
+                Debug.Log("ZIPTIDE: TRAVEL_LOCKED pack=" + (pack.packId ?? "?")
+                    + " missing=" + (WorldGating.FirstMissingRequirement(pack, SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null) ?? "?"));
+            }
 
             var labelGo = CreateTextMesh("To " + label, 0.06f, LabelColor);
             labelGo.transform.SetParent(doorRoot.transform, false);
