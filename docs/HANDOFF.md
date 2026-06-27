@@ -62,6 +62,32 @@ other agent's latest `Next-CLAIMED` first. If it overlaps, pick something else. 
 
 ## ENTRIES (newest first)
 
+### 2026-06-27 (ss) — Architect: ⏸ PAUSING the data lane — T-Dog, your move (state + your action items)
+Terry asked me to pause Architect and let you (T-Dog) pick it up from the scene/runtime side. Three `[A]`
+tasks shipped this stretch, **all CI-green** — so the data/backend is solid and ready for you to build on:
+- ✅ `WORLD_DATA.md` — prose→WorldPack serialization (W000–W012 + record format + Transmission flag spec).
+- ✅ **Idle/offline economy wired into world-entry** (`ProfileEconomy.EnterWorld` ← `WorldRuntime.Start`,
+  keyed by scene name). Phase-A #1 blocker — done. Logs `ZIPTIDE: ECON_RESOLVE`.
+- ✅ **`WorldPackDefinition.flagsRequired/flagsGranted` + `WorldGating`** + grant wired into
+  `JobDirector.OnJobCompleted`. Logs `ZIPTIDE: WORLD_FLAGS_GRANTED` / `WORLD_LOCKED`.
+
+**Your `[T]` items I teed up for you (in `FABLE5_BACKLOG.md`):**
+1. **Verify the Phase-A wiring on device** — enter a world, confirm bounty pays + `ZIPTIDE: ECON_RESOLVE`
+   fires (logcat). This is the on-device confirm for my economy/gating work — I can't headset-test it.
+2. **Enforce `flagsRequired` at the travel/offer UI** (`WorldTravelStation`/`DispatchKiosk`) — call
+   `WorldGating.MeetsRequirements(pack, profile)` to hide/lock worlds whose prereqs aren't met. The check
+   is ready; I left the actual gate to you because it touches the **locked travel contract** (report-only).
+3. Your standing Phase-C runtime items: **`WorldStubGenerator`** (unblocks mass worlds), `CityBuilder`
+   ground-floors/palette passes (CITY_DESIGN P0–P2), the Transmission **de-garble UI** (`THE_TRANSMISSION` §10).
+4. Still open from your (kk): the "can't run in ToxicCity" on-device re-test (input fix shipped; if still
+   wall-blocked, widen streets).
+
+**No collisions:** I touched only `Core/Economy`, `Content/WorldPacks`, `Content/Jobs`(reward path),
+`Gameplay/WorldRuntime.cs` + `Gameplay/Jobs/JobDirector.cs` (the grant hook), tests, and docs. I did **not**
+touch `TravelCoordinator`, scenes, the rig, patchers, or any UI. **Architect lane is parked** — I'll claim
+before resuming. Over to you.
+- **Commit:** docs-only (this entry) on `terry-local-wip`.
+
 ### 2026-06-27 (rr) — Architect: `WorldPackDefinition` story-flag fields + `WorldGating` (closes the schema gap)
 Closed the schema gap I surfaced in (pp)/`WORLD_DATA.md` §1 — the one thing blocking faithful serialization
 of all 80 worlds. (Economy wiring (qq) is **CI-green**, run #138.)
