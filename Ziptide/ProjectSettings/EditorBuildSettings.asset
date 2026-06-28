@@ -14,6 +14,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Ziptide/Scenes/D0_City.unity
     guid: 44ca1180f18b6e64c9fc921e9d86f31f
+  - enabled: 1
+    path: Assets/Ziptide/Scenes/SandboxTestLab.unity
+    guid: 27be3e70ebeaa5e47ac8ced14e3b1aaf
+  - enabled: 1
+    path: Assets/Ziptide/Scenes/StarterWorld.unity
+    guid: 50e97e5398d1bc943a33e0484921c207
+  - enabled: 1
+    path: Assets/Ziptide/Scenes/ToxicCity.unity
+    guid: 85cc1abd661efd446be636c7bdefde18
+  - enabled: 1
+    path: Assets/Ziptide/Scenes/PvP_Arena01.unity
+    guid: d6e5faf10865cfc40829f847ace5f23f
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 27caad71f395b964fa9fae4d12104ec0,
       type: 2}

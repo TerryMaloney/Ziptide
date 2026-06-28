@@ -24,3 +24,5 @@ MonoBehaviour:
     localPosition: {x: 0, y: 0.1, z: -8}
     localEulerAngles: {x: 0, y: 0, z: 0}
   audioProfile: {fileID: 0}
+  flagsRequired: []
+  flagsGranted: []

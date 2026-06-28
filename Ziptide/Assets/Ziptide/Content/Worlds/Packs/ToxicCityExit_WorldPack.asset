@@ -20,3 +20,5 @@ MonoBehaviour:
   jobs: []
   spawnMarkers: []
   audioProfile: {fileID: 0}
+  flagsRequired: []
+  flagsGranted: []
