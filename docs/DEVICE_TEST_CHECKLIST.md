@@ -83,6 +83,8 @@ adb logcat | findstr "ZIPTIDE"
 - [ ] **Y+B** opens the dev menu; it lists **Toxic City** (the new one), **PvP Arena**, Starter World, Sandbox.
 - [ ] Only **ONE** "Toxic City" (the old D0 now shows as **"D0 City (legacy)"**). *(dedupe fix)*
 - [ ] Warp works — and works **more than once / after closing & reopening** the menu. *(the old "clickable once" bug)*
+- [ ] **"D0 City (legacy)" — the taser now SNAPS to a forward grip** when you grab it (was hanging at a weird
+  angle). *(legacy gun routed to the same attach config as the ToxicCity guns)*
 
 ## 3. Toxic City (the new blueprint world)
 - [ ] **Spawn on the dispatch plaza, on solid ground — NOT over the goo / not 10ft off.** `(SPAWN_AT)`
@@ -90,6 +92,10 @@ adb logcat | findstr "ZIPTIDE"
 - [ ] **You can move around / "run" the city** *(the open question — confirm the input fix solved it; if you're physically blocked by walls/narrow streets, say so and I'll widen them)*.
 - [ ] Walk the layout — boulevard + side streets read as a city you can loop.
 - [ ] **Combat drones** (Market / Canal zones): they engage, but **don't shoot too often**, **aren't too fast**, and **DON'T fly through building walls** or **shoot through walls**. `(PVP_BOT_FIRE / DRONE)`  *(feel: tell me if still too fast/spammy)*
+- [ ] **Drone feel — tuned this round:** they should read as **more alive** (orbit isn't a stiff fixed circle —
+  they dart a little closer then back off, bob organically, a pack doesn't move in lockstep) and **slightly
+  more capable** (a touch faster, fires a bit more often) — but still **fair, telegraphed, and NOT wall-phasing**.
+  *(feel: too strong / too weak now? still collision-clean?)*
 - [ ] Shoot a drone → it **downs with the right hit-zone reaction**. `(DRONE_DOWN)`
 - [ ] **ObjectiveBoard reads cleanly** — "No active job. Use the kiosk to start." — **not the clipped "NOACTI"** garbage. *(overflow fix)*
 - [ ] **No random vertical/stretched letters** on the travel-door labels.

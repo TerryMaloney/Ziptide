@@ -19,20 +19,20 @@ namespace Ziptide.Gameplay
         public LayerMask lineOfSightMask = ~0;
 
         [Header("Movement")]
-        public float standoffDistance = 6f;
-        public float orbitSpeed = 26f;
-        public float verticalBob = 0.3f;
+        public float standoffDistance = 5.5f;
+        public float orbitSpeed = 32f;
+        public float verticalBob = 0.4f;
         public float patrolRadius = 3f;
         public float patrolSpeed = 18f;
-        public float moveLerp = 1.4f;
+        public float moveLerp = 1.7f;
         [Tooltip("Max distance the drone will stray from its home spot — keeps it in its open zone " +
                  "instead of chasing the player through buildings.")]
         public float leashRadius = 9f;
 
         [Header("Attack")]
-        public float telegraphSeconds = 1.1f;
-        public float boltCooldown = 3.5f;
-        public float boltSpeed = 6f;
+        public float telegraphSeconds = 1.0f;
+        public float boltCooldown = 2.8f;
+        public float boltSpeed = 6.5f;
         public float stunSeconds = 1.2f;
         [Range(0.1f, 1f)] public float slowFactor = 0.45f;
         public Color telegraphColor = new Color(0.3f, 0.9f, 1f);
@@ -45,12 +45,15 @@ namespace Ziptide.Gameplay
         private Transform _player;
         private PlayerStunReceiver _receiver;
         private float _orbitAngle;
+        private float _phase; // per-drone offset so a pack doesn't move in lockstep
         private GameObject _telegraphFx;
         private Renderer _telegraphRenderer;
 
         private void Awake()
         {
             _drone = GetComponent<DroneRuntime>();
+            // Per-drone phase offset so multiple drones don't bob/orbit in sync (reads as alive, not cloned).
+            _phase = (GetInstanceID() & 0x3FF) * 0.123f;
             ApplyProfile();
             _fsm.DetectRange = detectRange;
             _fsm.LoseRange = loseRange;
@@ -109,15 +112,19 @@ namespace Ziptide.Gameplay
             {
                 _orbitAngle += patrolSpeed * dt * Mathf.Deg2Rad;
                 desired = home + new Vector3(Mathf.Cos(_orbitAngle), 0f, Mathf.Sin(_orbitAngle)) * patrolRadius;
-                desired.y = home.y + Mathf.Sin(Time.time) * verticalBob;
+                desired.y = home.y + Mathf.Sin(Time.time + _phase) * verticalBob;
             }
             else
             {
-                _orbitAngle += orbitSpeed * dt * Mathf.Deg2Rad;
+                // Lifelike engage: NON-UNIFORM orbit speed + a slow "breathe" in/out on the standoff radius
+                // (darts a little closer, then backs off) + the per-drone phase so a pack isn't synchronized.
+                // Still feeds the leash clamp + CollideMove below, so it never clips walls or leaves its zone.
+                _orbitAngle += orbitSpeed * dt * Mathf.Deg2Rad * (1f + 0.35f * Mathf.Sin(Time.time * 0.6f + _phase));
                 Vector3 center = _player.position;
-                Vector3 ring = new Vector3(Mathf.Cos(_orbitAngle), 0f, Mathf.Sin(_orbitAngle)) * standoffDistance;
+                float breathe = standoffDistance + Mathf.Sin(Time.time * 0.5f + _phase) * 1.0f;
+                Vector3 ring = new Vector3(Mathf.Cos(_orbitAngle), 0f, Mathf.Sin(_orbitAngle)) * breathe;
                 desired = center + ring;
-                desired.y = home.y + Mathf.Sin(Time.time * 1.5f) * verticalBob;
+                desired.y = home.y + Mathf.Sin(Time.time * 1.5f + _phase) * verticalBob;
                 // face the player
                 Vector3 look = center - transform.position; look.y = 0f;
                 if (look.sqrMagnitude > 0.001f)
