@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: D0_WorldPack
   m_EditorClassIdentifier: 
   packId: d0_city
-  displayName: Toxic City
+  displayName: D0 City (legacy)
   sceneName: D0_City
   defaultTheme: {fileID: 0}
   availableThemes: []
@@ -21,3 +21,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 03920f65abc1a5c4ba3780d7cf989c1a, type: 2}
   spawnMarkers: []
   audioProfile: {fileID: 11400000, guid: 6fbda911a1633ed4eac94eed037a0781, type: 2}
+  flagsRequired: []
+  flagsGranted: []
