@@ -183,8 +183,11 @@ namespace Ziptide.Editor.Setup
                 if (maxDist != null) maxDist.floatValue = 3f; // realistic reach, was effectively across the room
 
                 // Stop the thumbstick from rotating/translating the held object (the "gun spins instead
-                // of turning my body" bug). Disable every anchor-control flavor this version exposes.
-                foreach (var prop in new[] { "m_EnableAnchorControl", "m_AnchorControl", "m_ManipulateAttachTransform" })
+                // of turning my body" bug). The real serialized gate in XRI 2.5.4 is m_AllowAnchorControl
+                // (confirmed in the Ray/Teleport/Gaze interactor prefabs); the other names never existed on
+                // the interactor, so the edit-time disable silently no-oped for rounds. List the correct one
+                // first and keep the legacy names as harmless null-guarded fallbacks for other XRI versions.
+                foreach (var prop in new[] { "m_AllowAnchorControl", "m_EnableAnchorControl", "m_AnchorControl", "m_ManipulateAttachTransform" })
                 {
                     var p = so.FindProperty(prop);
                     if (p != null && p.propertyType == SerializedPropertyType.Boolean) p.boolValue = false;

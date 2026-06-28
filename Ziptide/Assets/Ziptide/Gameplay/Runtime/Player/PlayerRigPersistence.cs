@@ -353,22 +353,31 @@ namespace Ziptide.Gameplay
                     // Realistic reach — the rays were 10-30m (grab/aim across the room). Set at
                     // runtime here so it sticks on the live rig regardless of edit-time patching. Tunable.
                     ray.maxRaycastDistance = 2.5f;
-
-                    // The thumbstick must NOT rotate the held gun. XRI 2.5.4 exposes NO public setter for
-                    // anchor control, so set the serialized field directly. The name is the same stable
-                    // [SerializeField] EnsureLocomotionRig uses, and being serialized it survives IL2CPP
-                    // stripping. (The prior public-property + edit-time attempts never took on the live rig.)
-                    DisableAnchorControl(ray);
-
-                    // The VISIBLE long ray was the line VISUAL, not the raycast distance — that's why
-                    // shortening maxRaycastDistance alone never changed what you see. Clamp the drawn line.
-                    var lineVisual = ray.GetComponent<XRInteractorLineVisual>();
-                    if (lineVisual != null)
-                    {
-                        lineVisual.overrideInteractorLineLength = true;
-                        lineVisual.lineLength = 2.5f;
-                    }
                 }
+            }
+
+            // ⭐ THE persistent bug: the right thumbstick rotated/translated the held gun/hammer instead of
+            // TURNING the player. XRI's XRRayInteractor gates anchor manipulation on the serialized bool
+            // m_AllowAnchorControl. The OLD reflection looked up "m_EnableAnchorControl" — a name that does
+            // NOT exist on the interactor (the real field is m_AllowAnchorControl, confirmed in the XRI 2.5.4
+            // Ray/Teleport/Gaze interactor prefabs), so GetField returned null and the gun kept spinning.
+            // Gate it off on EVERY ray, including the INACTIVE teleport ray each hand owns (so it stays off
+            // after ActionBasedControllerManager swaps rays). Belt-and-suspenders: also hard-disable the two
+            // bound input actions so nothing reads the stick for anchor control.
+            foreach (var ray in GetComponentsInChildren<XRRayInteractor>(true))
+                DisableAnchorControl(ray);
+            DisableAnchorInputActions();
+
+            // Fix the long↔short ray-length jump: each hand has TWO ray interactors (select + teleport),
+            // each with its OWN XRInteractorLineVisual, swapped by ActionBasedControllerManager. The earlier
+            // fix only touched the active select ray, so the inactive teleport ray kept its long (~10m) line
+            // and the drawn length "jumped" when the manager swapped which ray was active. Clamp the drawn
+            // length on ALL line visuals (incl. inactive) so it's a stable short ray either way.
+            foreach (var lv in GetComponentsInChildren<XRInteractorLineVisual>(true))
+            {
+                if (lv == null) continue;
+                lv.overrideInteractorLineLength = true;
+                lv.lineLength = 2.5f;
             }
 
             // Right thumbstick was driving MOVEMENT because EnsureLocomotionRig binds BOTH hands to the
@@ -388,8 +397,13 @@ namespace Ziptide.Gameplay
             if (totalRays == 0) Debug.LogWarning("ZIPTIDE: NO_RAY_INTERACTORS");
         }
 
-        // XRI 2.5.4 has no public setter for the ray's anchor control, so we set the serialized field by
-        // reflection (cached). It's the same stable [SerializeField] name EnsureLocomotionRig uses.
+        // Turns the ray interactor's anchor manipulation OFF — the gate that decides whether the right
+        // thumbstick rotates/translates the held object instead of being free for player turning.
+        // XRI 2.5.4 exposes no compile-safe public setter and the cloud build can't verify package symbols,
+        // so we set the serialized bool by cached reflection. CRITICAL: the field is m_AllowAnchorControl
+        // (confirmed in the XRI Ray/Teleport/Gaze interactor prefabs) — the previous code looked up
+        // "m_EnableAnchorControl", which does NOT exist, so GetField returned null and the gate was never
+        // touched (that's the bug that survived every round). Log loudly if the name ever drifts again.
         private static System.Reflection.FieldInfo _anchorControlField;
         private static bool _anchorControlFieldResolved;
         private static void DisableAnchorControl(XRRayInteractor ray)
@@ -398,11 +412,43 @@ namespace Ziptide.Gameplay
             if (!_anchorControlFieldResolved)
             {
                 _anchorControlFieldResolved = true;
-                _anchorControlField = typeof(XRRayInteractor).GetField("m_EnableAnchorControl",
+                _anchorControlField = typeof(XRRayInteractor).GetField("m_AllowAnchorControl",
                     System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+                if (_anchorControlField == null || _anchorControlField.FieldType != typeof(bool))
+                    Debug.LogWarning("ZIPTIDE: ANCHOR_FIELD_MISSING m_AllowAnchorControl — gun may still rotate");
             }
             if (_anchorControlField != null && _anchorControlField.FieldType == typeof(bool))
                 _anchorControlField.SetValue(ray, false);
+        }
+
+        // Belt-and-suspenders for the anchor bug: hard-disable the two input actions the right thumbstick is
+        // bound to for anchor control ("Rotate Anchor" / "Translate Anchor" in the Interaction map). Even if
+        // the interactor gate above is ever re-enabled, no input reaches the manipulation. Runs AFTER
+        // EnsurePersistentInputActions() (which Enable()s the whole asset) and on every scene load, so the
+        // two actions stay off while everything else (grab, turn, move) stays live.
+        private void DisableAnchorInputActions()
+        {
+            var primary = _xriManager != null ? _xriManager.GetComponent<InputActionManager>() : null;
+            if (primary == null || primary.actionAssets == null) return;
+            int disabled = 0;
+            foreach (var asset in primary.actionAssets)
+            {
+                if (asset == null) continue;
+                foreach (var map in asset.actionMaps)
+                {
+                    if (map == null) continue;
+                    foreach (var action in map.actions)
+                    {
+                        if (action == null) continue;
+                        if (action.name == "Rotate Anchor" || action.name == "Translate Anchor")
+                        {
+                            action.Disable();
+                            disabled++;
+                        }
+                    }
+                }
+            }
+            Debug.Log("ZIPTIDE: ANCHOR_ACTIONS_DISABLED count=" + disabled);
         }
 
         /// <summary>
