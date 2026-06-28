@@ -12,19 +12,34 @@ changes frequently **don't take** (prefab/instantiation/travel reset). **Rule: t
 `PlayerRigPersistence.EnsureXRIWiring()`**, iterating `GetComponentsInChildren<XRBaseInteractor>(true)` /
 move+turn providers. That method is the single source of truth for live-rig config.
 
-## #1 — Thumbstick ROTATES the held gun instead of turning you
-- **Root cause:** XRI ray *anchor control* (`XRRayInteractor`). **XRI 2.5.4 has NO public
-  `enableAnchorControl`** — using it is a CS1061 compile error (CI caught it).
-- **Fix (shipped):** set the serialized field `m_EnableAnchorControl=false` by **cached reflection** at
-  runtime (`PlayerRigPersistence.DisableAnchorControl`). It's a `[SerializeField]`, so it survives IL2CPP
-  stripping. Reflection on an XRI serialized field is the sanctioned exception to the "no reflection" rule
-  (that rule is about runtime *item creation*; there's simply no public API here).
+## #1 — Thumbstick ROTATES/translates the held gun (or hammer) instead of turning you ⭐ THE PERSISTENT ONE
+- **Symptom:** survived MULTIPLE "fixes" — the right stick kept rotating/moving the held object closer/farther.
+- **REAL root cause (found 2026-06-28):** the disable code reflected the field **`m_EnableAnchorControl`** —
+  **a name that does not exist** on `XRRayInteractor`. `GetField`/`FindProperty` returned `null`, so the
+  anchor gate was **never actually set**; the reflection silently no-oped every single round. The actual
+  serialized field is **`m_AllowAnchorControl`** (confirm it yourself: it's `m_AllowAnchorControl: 1` in the
+  XRI 2.5.4 `Ray Interactor.prefab` / `Teleport Interactor.prefab` / `Gaze Interactor.prefab`). There is no
+  public `enableAnchorControl` *or* `allowAnchorControl`-safe symbol we can compile-verify (no package source
+  — see #8), so reflection on the **confirmed** field name is the right tool.
+- **Fix (shipped):** two layers, both in `EnsureXRIWiring()`:
+  1. `DisableAnchorControl(ray)` sets **`m_AllowAnchorControl=false`** by cached reflection on **every**
+     `XRRayInteractor` (incl. the inactive teleport ray each hand owns). It logs `ANCHOR_FIELD_MISSING` if the
+     name ever drifts again — so a future regression is **visible in logcat instead of silent**.
+  2. `DisableAnchorInputActions()` hard-`.Disable()`s the **"Rotate Anchor" / "Translate Anchor"** input
+     actions (after `EnsurePersistentInputActions()` enables the asset), so even if the gate is ever re-opened
+     no stick input reaches anchor manipulation. Logs `ANCHOR_ACTIONS_DISABLED count=2`.
+- **Lesson:** silent reflection (`GetField` returning null) is a trap — always log when the field/action isn't
+  found, or a no-op masquerades as a fix for rounds. `EnsureLocomotionRig.TuneRayInteractors` also had the
+  wrong name; it now lists `m_AllowAnchorControl` first.
 
-## #2 — Interactor ray looks WAY too long
+## #2 — Interactor ray looks WAY too long, or JUMPS long↔short when you point at things
 - **Root cause:** the *visible* line is `XRInteractorLineVisual`, **not** `XRRayInteractor.maxRaycastDistance`.
-  Shortening maxRaycastDistance changes hit distance but not what you SEE.
-- **Fix (shipped):** per ray, `lineVisual.overrideInteractorLineLength = true; lineVisual.lineLength = 2.5f;`
-  (public API, fine to call directly). Keep maxRaycastDistance in sync for hit reach.
+  Shortening maxRaycastDistance changes hit distance but not what you SEE. The **jump** is a second trap:
+  each hand has **TWO** ray interactors (select + teleport, swapped by `ActionBasedControllerManager`), each
+  with its **own** line visual — clamping only the active one leaves the other long, so it flickers on swap.
+- **Fix (shipped):** iterate **`GetComponentsInChildren<XRInteractorLineVisual>(true)`** (ALL of them, incl.
+  inactive teleport rays) and set `overrideInteractorLineLength = true; lineLength = 2.5f;` (public API, fine
+  to call directly). Keep maxRaycastDistance in sync for hit reach.
 
 ## #3 — Right thumbstick MOVES you (fwd/back) instead of only turning
 - **Root cause:** `EnsureLocomotionRig` binds the Move action to **both** hands; the turn providers are
@@ -69,7 +84,8 @@ public API name is uncertain (see #1), either (a) reflect a known `[SerializeFie
 push and let CI's compile catch a wrong name fast — cheaper than guessing in prose.
 
 ## Where these fixes live (so you extend, not re-add)
-- Rig input/rays/anchor: `PlayerRigPersistence.EnsureXRIWiring()` + `DisableAnchorControl()`.
+- Rig input/rays/anchor: `PlayerRigPersistence.EnsureXRIWiring()` + `DisableAnchorControl()` (m_AllowAnchorControl)
+  + `DisableAnchorInputActions()`.
 - Gun physics: `ItemFactory.RestorePhysicsOnRelease()`.
 - Drone/projectile collision: `DroneCombatBehavior.CollideMove()`, `StunBolt.Update()`, `DroneCombatState`.
 - Spawn correctness (roomscale head-align + ground-snap): `PlayerRigPersistence.TeleportToMarker()`.

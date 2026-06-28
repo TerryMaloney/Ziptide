@@ -4,8 +4,12 @@
 the full pass for a real test session. Tags in `()` are the `ZIPTIDE:` logcat lines that confirm a thing
 fired. Watch logcat with:
 ```
-adb logcat -s Unity | findstr "ZIPTIDE:"
+adb logcat | findstr "ZIPTIDE"
 ```
+> **Logcat was blank last time** because `-s Unity` is too strict — if the player's log tag isn't exactly
+> `Unity`, that filter hides everything. The command above drops `-s` and matches on `ZIPTIDE` (no colon),
+> so it catches both the `ZIPTIDE:` lines and the `ZIPTIDE_DIAG` lines regardless of tag.
+
 Mark ✅/❌ and note anything off — especially **feel** items (those are tuning, not pass/fail).
 
 ---
@@ -23,7 +27,11 @@ git pull origin terry-local-wip
 2. Ziptide → Worlds → Build Toxic City Contract
 3. Ziptide → Worlds → Build PvP Arena
 4. Ziptide → Dev → Build Starter World (graybox)
-5. Ziptide → Dev → Rebuild Dev World Manifest   ← LAST (needs the worlds above to exist first)
+
+> **No manual "Rebuild Dev World Manifest" step anymore.** The build now rebuilds the manifest itself, as
+> the LAST thing before the APK — *after* the D0→"D0 City (legacy)" rename — so the menu is always correct.
+> (Rebuilding it by hand *before* the build is exactly what caused the two "Toxic City" entries. If you do
+> click it manually it's harmless now; the build re-does it correctly.)
 
 **STEP 3 — PowerShell: save the generated worlds to git** (`"nothing to commit"` is fine)
 ```powershell
@@ -44,7 +52,7 @@ adb uninstall com.terrymaloney.ziptide
 
 **STEP 5 — PowerShell (second window): watch logs while you play**
 ```powershell
-adb logcat -s Unity | findstr "ZIPTIDE:"
+adb logcat | findstr "ZIPTIDE"
 ```
 
 - [ ] Unity Console has **no red errors** before STEP 4 (only expected warnings are cosmetic:
@@ -52,13 +60,23 @@ adb logcat -s Unity | findstr "ZIPTIDE:"
 
 ---
 
-## 1. Rig / locomotion / gun (the recurring trio — the big ones)
+## 1. Rig / locomotion / gun (the recurring trio — the big ones) ⭐ THE PERSISTENT BUG, ROOT-CAUSED THIS ROUND
 - [ ] **Right thumbstick TURNS you** (snap/smooth) and does **NOT** move you forward/back. *(the #1 recurring bug)*
 - [ ] **Left thumbstick moves you.**
-- [ ] **Right thumbstick does NOT rotate the held gun** when you push it. *(anchor-control fix via reflection — if the gun still spins, it means IL2CPP stripped the field and I add a preserve rule)*
-- [ ] **Interactor rays are short** (~2.5 m), not stretching across the room. *(was the line-visual, not raycast distance)*
+- [ ] ⭐ **Right thumbstick does NOT rotate/translate the held gun OR hammer** while you turn — test with BOTH
+  guns AND the hammer. *(Real cause found: the old disable reflected the field `m_EnableAnchorControl`, which
+  doesn't exist on the interactor, so it silently did nothing every round. The real field is
+  `m_AllowAnchorControl`; now gated off on every ray + the "Rotate/Translate Anchor" input actions disabled.
+  Watch for `ANCHOR_ACTIONS_DISABLED count=2`; if you ever see `ANCHOR_FIELD_MISSING` the gun may still spin.)*
+- [ ] **Interactor rays are a stable short length (~2.5 m)** — they should **NOT jump long↔short** when you
+  point at vs away from an object. *(was two rays/hand — select + teleport — each with its own line visual;
+  now all of them are clamped, not just the active one.)*
 - [ ] Grab a gun → **snaps to a forward grip**; **release it → it FALLS** (doesn't freeze/float in the air). `(WEAPON pickup)`
 - [ ] Holster a gun → travel to another world → pull it out → **release → it falls** (not frozen). *(holster-travel gun-drop fix)*
+
+## 1b. Credits / economy readout (new this round)
+- [ ] A small gold **"CR <number>"** readout sits in the **lower-left** of your view in every world. `(CREDITS_HUD_ENSURED)`
+- [ ] After the ToxicCity bounty pays, the **number goes up** and **stays up across travel**. `(JOB_REWARD_GRANTED)`
 
 ## 2. Dev menu / warp
 - [ ] Boot lands in **Sandbox** (intentional dev bypass for now).
@@ -90,8 +108,14 @@ adb logcat -s Unity | findstr "ZIPTIDE:"
 - [ ] **Bot spawns above the floor** (not sunk through it). *(spawn-Y fix)*
 - [ ] **Taser = 3 hits** down the bot; **gravity = 6 hits + knockback**. `(PVP_BOT_HIT, PVP_KILL)`
 - [ ] **Gravity gun gives YOU a short comfort self-hop + vignette** when fired (not a nausea launch). `(PVP_COMFORT_HOP)`  *(feel: hop distance ok?)*
-- [ ] **HUD is small/readable** — "HP x/6   You n - n Bot" low in view — **not a giant `######` block**. *(HUD fix)*
-- [ ] **Hammer is grabbable** *(was the collider-ordering bug)*; a **swing breaks walls** (intact → hole → pass-through), holes regenerate. `(PVP_WALL_BREAK)`
+- [ ] **The bot's shot is VISIBLE and dodgeable** — an **orange bolt** travels toward you (it no longer hits
+  you instantly with nothing on screen). Step aside and it **misses**; it's **stopped by walls**. `(PVP_BOT_FIRE)`
+- [ ] **HUD is centered + readable** — "HP x/6   You n - n Bot" sits slightly below center, **not down in the
+  bottom-right corner / out of view**. *(repositioned this round)*
+- [ ] **Hammer is grabbable**; the wall is now a **grid of small bricks** — a swing **chips the brick you hit**
+  (it darkens), and it takes **~2 swings per brick** to open a gap; damage is **localized to where you hit**,
+  not the whole panel. Bricks regenerate after a while. `(PVP_WALL_HIT col=.. row=.. broke=..)`
+- [ ] **Hammer turning:** same anchor test as §1 — the right thumbstick **turns you, not the hammer**.
 - [ ] **Wrist scanner:** cover the wrist with the other hand → it **charges** (lens brightens, haptics ramp) → fires a **PULSE**: shockwave + a **holographic radar above your wrist** + the bot tagged + an edge-of-vision chevron; then a cooldown. `(WRIST_SCAN_PULSE)`  *(feel: it's set further back on the forearm + bigger radar now — right position/size?)*
 - [ ] Getting hit by a bot bolt: **brief screen flash + slow, no death**. `(PLAYER_STUN)`
 - [ ] Best-of-10 scores and **rematches**. `(PVP_MATCH_END / PVP_REMATCH)`

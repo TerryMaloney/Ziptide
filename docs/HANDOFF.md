@@ -62,6 +62,34 @@ other agent's latest `Next-CLAIMED` first. If it overlaps, pick something else. 
 
 ## ENTRIES (newest first)
 
+### 2026-06-28 (uu) — T-Dog (cloud): device-test round 2 fix pass (rig anchor ROOT-CAUSED, PvP feel, economy HUD)
+Terry tested the build and gave round-2 feedback; cleared the list in 4 small CI-green commits.
+- ⭐ **THE PERSISTENT BUG finally root-caused** (commit `89eac53`): the thumbstick rotated the held gun/hammer
+  because the disable code reflected **`m_EnableAnchorControl`** — a field that **does not exist** on
+  `XRRayInteractor`, so `GetField` returned null and the gate was **never set** (silent no-op every round).
+  Real field is **`m_AllowAnchorControl`** (confirmed in the XRI prefabs). Fix in `PlayerRigPersistence.EnsureXRIWiring()`:
+  `DisableAnchorControl` now sets `m_AllowAnchorControl=false` on **every** ray (incl. inactive teleport ray)
+  + new `DisableAnchorInputActions()` `.Disable()`s the "Rotate/Translate Anchor" actions; logs
+  `ANCHOR_ACTIONS_DISABLED` / `ANCHOR_FIELD_MISSING`. Also fixed the **ray length jump** (clamp ALL
+  `XRInteractorLineVisual`, not just the active ray). Full write-up in `docs/systems/VR_RIG_GOTCHAS.md` #1/#2.
+- **PvP feel** (commit `492e494`): bot now fires a **visible, slow, dodgeable `PvpBolt`** (new file) instead
+  of an instant hitscan; **breakable walls** reworked to a fine **per-brick HP grid** (localized damage at the
+  hit point, ~2 swings/brick) — `WallState` is now a pure brick grid (**`WallStateTests` rewritten**); PvP HUD
+  repositioned to stay readable in the FOV.
+- **Build/menu + economy** (commit `9944f90`): `BuildAndroid.PatchScenesThenAPK` now calls
+  `DevWorldManifestBuilder.Rebuild()` **last** (after the D0 rename) → fixes the "two Toxic City" menu entries
+  with no manual ordering. New **`CreditsHud`** (rig-ensured) shows "CR <n>" lower-left in every world.
+- **Docs:** `DEVICE_TEST_CHECKLIST.md` (logcat fix `adb logcat | findstr "ZIPTIDE"`; manual manifest step
+  dropped; new verify items), `VR_RIG_GOTCHAS.md` (#1/#2 corrected).
+- **Heads-up (Architect):** the breakable-wall model changed from the 3-stage `WallStage` enum to a per-brick
+  grid — when the **PvP netcode wall-sync** message-model is built, serialize the brick grid, not the old
+  `WallMsg` 3-stage codes (the (ee) note's `WallStage` mapping is now stale). No code consumes `WallStage` anymore.
+- **On Terry's plate (can't headset-test from here):** the §1 anchor test with BOTH guns AND hammer; visible
+  bot bolt is dodgeable; bricks chip locally over multiple swings; one "Toxic City" in the menu; credits show + rise.
+- **Next-CLAIMED (T-Dog):** none in flight — pausing for Terry's device verify of this round. (The CityBuilder
+  CITY_DESIGN P0 pass claimed in (tt) is still mine when work resumes.)
+- **Commits:** `89eac53`, `492e494`, `9944f90` on `terry-local-wip`.
+
 ### 2026-06-27 (tt) — T-Dog (cloud): picked up the data lane handoff — travel-door story-gating (CI-green)
 Took your (ss) handoff. Did the top code-able `[T]` item — **enforce `flagsRequired` at the travel doors**
 (your #2; the WorldGating check was ready). CI-green (`aa6ed89`).
