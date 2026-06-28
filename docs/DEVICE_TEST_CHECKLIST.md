@@ -10,19 +10,45 @@ Mark ✅/❌ and note anything off — especially **feel** items (those are tuni
 
 ---
 
-## 0. One-time setup (in Unity, before building)
-- [ ] `cd C:\Ziptide; git pull`
-- [ ] `Ziptide → Worlds → Build Toxic City`
-- [ ] `Ziptide → Worlds → Build Toxic City Contract`
-- [ ] `Ziptide → Worlds → Build PvP Arena`
-- [ ] `Ziptide → Dev → Build Starter World (graybox)` (regenerates with the safety floor)
-- [ ] `Ziptide → Dev → Rebuild Dev World Manifest` (so the Y+B menu lists the new worlds + drops the dup name)
-- [ ] Commit the generated `.unity`/`.asset`/manifest, then build+install:
-  `powershell -ExecutionPolicy Bypass -File C:\Ziptide\tools\dev_build_install.ps1`
-  *(`dev_build_install` re-runs all patchers, so scene-side fixes apply automatically.)*
-- [ ] If install fails with `INSTALL_FAILED_UPDATE_INCOMPATIBLE`: `adb uninstall com.terrymaloney.ziptide` then re-run.
-- [ ] Unity Console has **no red errors** (the only expected warnings are cosmetic: `frameH` unused,
-  `AudioDirector._fadeTimer/_fading` unused — harmless).
+## 0. One-time setup (full copy-paste)
+
+**STEP 1 — PowerShell: get the latest code**
+```powershell
+cd C:\Ziptide
+git pull origin terry-local-wip
+```
+
+**STEP 2 — In Unity (click these in the top menu bar, in order; wait for each to finish):**
+1. Ziptide → Worlds → Build Toxic City
+2. Ziptide → Worlds → Build Toxic City Contract
+3. Ziptide → Worlds → Build PvP Arena
+4. Ziptide → Dev → Build Starter World (graybox)
+5. Ziptide → Dev → Rebuild Dev World Manifest   ← LAST (needs the worlds above to exist first)
+
+**STEP 3 — PowerShell: save the generated worlds to git** (`"nothing to commit"` is fine)
+```powershell
+cd C:\Ziptide
+git add -A
+git commit -m "Generate worlds + manifest for device test"
+git push origin terry-local-wip
+```
+
+**STEP 4 — PowerShell: build + install to the headset**
+```powershell
+powershell -ExecutionPolicy Bypass -File C:\Ziptide\tools\dev_build_install.ps1
+```
+If it fails with `INSTALL_FAILED_UPDATE_INCOMPATIBLE`, run this then re-run STEP 4:
+```powershell
+adb uninstall com.terrymaloney.ziptide
+```
+
+**STEP 5 — PowerShell (second window): watch logs while you play**
+```powershell
+adb logcat -s Unity | findstr "ZIPTIDE:"
+```
+
+- [ ] Unity Console has **no red errors** before STEP 4 (only expected warnings are cosmetic:
+  `frameH` unused, `AudioDirector._fadeTimer/_fading` unused — harmless).
 
 ---
 
