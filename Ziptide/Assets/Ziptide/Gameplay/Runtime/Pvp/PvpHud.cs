@@ -38,8 +38,9 @@ namespace Ziptide.Gameplay
         {
             if (_cam == null || _text == null) return;
 
-            // Small panel, low in the gaze so it doesn't dominate the view.
-            _text.transform.position = _cam.position + _cam.forward * 1.0f - _cam.up * 0.5f;
+            // Panel sits centered and only slightly below the gaze so it stays comfortably readable inside
+            // the FOV (it was forward*1.0 - up*0.5 ≈ 26° down, which drifted out of view at the bottom).
+            _text.transform.position = _cam.position + _cam.forward * 0.9f - _cam.up * 0.22f;
             _text.transform.rotation = Quaternion.LookRotation(_text.transform.position - _cam.position);
 
             var dir = PvpMatchDirector.Instance;

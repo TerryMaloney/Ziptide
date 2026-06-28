@@ -17,6 +17,8 @@ namespace Ziptide.Gameplay
         public float fireRange = 14f;
         public float telegraphSeconds = 0.8f;
         public float fireCooldown = 1.8f;
+        [Tooltip("Bolt travel speed — slow enough to see and dodge.")]
+        public float boltSpeed = 5f;
         public float reviveDelay = 2.5f;
         public LayerMask lineOfSightMask = ~0;
 
@@ -113,8 +115,16 @@ namespace Ziptide.Gameplay
         private void FireAtPlayer()
         {
             if (_playerCombatant == null) _playerCombatant = FindObjectOfType<PvpPlayer>();
-            if (_playerCombatant == null) return;
-            _playerCombatant.ReceiveHit(PvpWeapon.Taser, _player != null ? _player.position : transform.position, transform.forward);
+            if (_playerCombatant == null || _player == null) return;
+            // Spawn a VISIBLE, slow bolt the player can see and dodge (was an instant hitscan that landed
+            // with nothing on screen). The bolt registers the PvP hit itself when it reaches the player.
+            Vector3 origin = transform.position + Vector3.up * 0.5f;
+            Vector3 dir = (_player.position - origin);
+            if (dir.sqrMagnitude < 0.0001f) dir = transform.forward;
+            dir.Normalize();
+            var go = new GameObject("PvpBolt");
+            go.transform.position = origin + dir * 0.6f;
+            go.AddComponent<PvpBolt>().Init(dir * boltSpeed, _playerCombatant, _player);
             Debug.Log("ZIPTIDE: PVP_BOT_FIRE");
         }
 

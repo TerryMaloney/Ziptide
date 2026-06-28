@@ -113,7 +113,9 @@ namespace Ziptide.Gameplay
                     foreach (var h in hits)
                     {
                         var wall = h.GetComponentInParent<BreakableWall>();
-                        if (wall != null) { wall.HitFromHammer(); _lastBreakAt = Time.time; break; }
+                        // Pass the hammer head's world position so the wall damages the brick we actually
+                        // struck (localized break at the hit point), not the whole panel.
+                        if (wall != null) { wall.HitFromHammer(_head.position); _lastBreakAt = Time.time; break; }
                     }
                 }
             }
