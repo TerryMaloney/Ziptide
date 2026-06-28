@@ -107,6 +107,13 @@ namespace Ziptide.Build
             if (auditBlockers > 0)
                 throw new Exception("World audit FAILED with " + auditBlockers + " blocker(s). See docs/AUDIT_REPORT.md.");
 
+            // Rebuild the in-VR dev-menu manifest LAST, after all patchers have updated the world packs
+            // (incl. the D0 → "D0 City (legacy)" rename). Doing it here means the menu is always fresh and
+            // correct without a manual ordering step — fixes the "two Toxic City entries" caused by the
+            // manifest being rebuilt by hand BEFORE the rename patcher ran.
+            try { Ziptide.Editor.DevTools.DevWorldManifestBuilder.Rebuild(); }
+            catch (Exception ex) { Debug.LogWarning("[Ziptide] Dev world manifest rebuild warning: " + ex.Message); }
+
             Ziptide.Editor.Setup.ApplyQuestPlayerDefaults.EnsureSplashDisabled();
             APK();
         }

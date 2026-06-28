@@ -126,6 +126,7 @@ namespace Ziptide.Gameplay
             EnsureXRIWiring();
             EnsureBelt();
             EnsureStunReceiver();
+            EnsureCreditsHud();
 
             // #region agent log
             LogRaySnapshot("Awake_AFTER");
@@ -195,6 +196,20 @@ namespace Ziptide.Gameplay
             {
                 gameObject.AddComponent<PlayerStunReceiver>();
                 Debug.Log("ZIPTIDE: STUN_RECEIVER_ENSURED on persistent rig");
+            }
+        }
+
+        /// <summary>
+        /// Ensures a <see cref="CreditsHud"/> lives on the persistent rig so the player's credit balance is
+        /// visible in every world (the economy was paying out but had no on-screen readout). Rig-ensured for
+        /// the same reason as the belt/stun receiver: the rig is in _Boot/DontDestroyOnLoad.
+        /// </summary>
+        private void EnsureCreditsHud()
+        {
+            if (GetComponent<CreditsHud>() == null)
+            {
+                gameObject.AddComponent<CreditsHud>();
+                Debug.Log("ZIPTIDE: CREDITS_HUD_ENSURED on persistent rig");
             }
         }
 
