@@ -88,7 +88,11 @@ namespace Ziptide.Gameplay
             else if (d < standoffDistance - 0.5f) step = -to.normalized;
             // strafe a little so it isn't a sitting duck
             step += Vector3.Cross(Vector3.up, to.normalized) * 0.4f * Mathf.Sin(Time.time);
-            transform.position += step * moveSpeed * Time.deltaTime;
+            // Collision-aware move: clamp the step at the nearest wall so the bot never phases through solid
+            // geometry (universal rule — nothing moves through walls unless explicitly allowed). Mirrors
+            // DroneCombatBehavior.CollideMove.
+            Vector3 next = transform.position + step * moveSpeed * Time.deltaTime;
+            transform.position = CollideMove(transform.position, next);
             if (to.sqrMagnitude > 0.01f)
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(to.x, 0f, to.z)), Time.deltaTime * 4f);
 
@@ -168,6 +172,29 @@ namespace Ziptide.Gameplay
             var rig = FindObjectOfType<PlayerRigPersistence>();
             if (rig != null) _player = rig.GetComponentInChildren<Camera>()?.transform;
             if (_player == null && Camera.main != null) _player = Camera.main.transform;
+        }
+
+        // Stop the move at the nearest solid wall (ignoring the bot itself and the player rig). Without this
+        // the bot moved by raw transform writes and walked through arena walls.
+        private Vector3 CollideMove(Vector3 from, Vector3 to)
+        {
+            Vector3 delta = to - from;
+            float dist = delta.magnitude;
+            if (dist < 0.0001f) return to;
+            Vector3 dir = delta / dist;
+            const float r = 0.3f;
+            var hits = Physics.SphereCastAll(from, r, dir, dist, ~0, QueryTriggerInteraction.Ignore);
+            float nearest = dist;
+            for (int i = 0; i < hits.Length; i++)
+            {
+                var col = hits[i].collider;
+                if (col == null) continue;
+                if (col.GetComponentInParent<PvpBot>() != null) continue; // self
+                if (IsPlayerRig(col.transform)) continue;                 // the player
+                if (hits[i].distance < nearest) nearest = hits[i].distance;
+            }
+            if (nearest < dist) return from + dir * Mathf.Max(0f, nearest - r);
+            return to;
         }
 
         private bool HasLineOfSight()

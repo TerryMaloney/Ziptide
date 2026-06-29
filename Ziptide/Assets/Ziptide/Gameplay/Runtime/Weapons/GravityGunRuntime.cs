@@ -87,7 +87,11 @@ namespace Ziptide.Gameplay
             System.Array.Sort(hits, (a, b) => a.distance.CompareTo(b.distance));
             foreach (var hit in hits)
             {
-                if (hit.collider != null && hit.collider.transform.IsChildOf(transform)) continue; // skip self
+                if (hit.collider != null && hit.collider.transform.IsChildOf(transform)) continue; // skip the gun
+                // Don't pulse the WIELDER. The muzzle sits at hand height just in front of the body, so the
+                // ray's first hit can be the player's own rig collider — in PvP the rig is an IPvpDamageable
+                // (PvpPlayer), so the gun was damaging the shooter ("gravity gun shoots myself").
+                if (hit.collider != null && IsPlayerRig(hit.collider.transform)) continue;
                 beamEnd = hit.point;
 
                 var drone = hit.collider.GetComponentInParent<DroneRuntime>();
@@ -117,6 +121,18 @@ namespace Ziptide.Gameplay
                 controllerInteractor.SendHapticImpulse(def.hapticAmplitude, def.hapticDuration);
             if (_audioSource != null && def.fireClip != null)
                 _audioSource.PlayOneShot(def.fireClip);
+        }
+
+        // Walk up to see if a collider belongs to the player rig (so the gun never pulses its wielder).
+        private static bool IsPlayerRig(Transform t)
+        {
+            while (t != null)
+            {
+                if (t.name == "XR Origin" || t.GetComponent<PlayerRigPersistence>() != null
+                    || t.GetComponent<PvpPlayer>() != null) return true;
+                t = t.parent;
+            }
+            return false;
         }
 
         private void SetupBeam()

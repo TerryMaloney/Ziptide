@@ -15,10 +15,10 @@ namespace Ziptide.Gameplay
         public Color color = new Color(0.40f, 0.42f, 0.46f);
 
         [Tooltip("Brick grid resolution (more = smaller pieces).")]
-        public int cols = 6;
-        public int rows = 5;
+        public int cols = 8;
+        public int rows = 6;
         [Tooltip("Hammer swings needed to break one brick.")]
-        public int brickHits = 2;
+        public int brickHits = 4;
 
         private static readonly Color CrackedColor = new Color(0.12f, 0.08f, 0.08f);
 

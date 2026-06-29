@@ -30,7 +30,7 @@ namespace Ziptide.Gameplay
             var ball = GameObject.CreatePrimitive(PrimitiveType.Sphere);
             ball.name = "Bolt";
             ball.transform.SetParent(transform, false);
-            ball.transform.localScale = Vector3.one * 0.28f;
+            ball.transform.localScale = Vector3.one * 0.14f; // smaller — device test said the bolt was too big
             var col = ball.GetComponent<Collider>();
             if (col != null) Destroy(col);
             var r = ball.GetComponent<Renderer>();
