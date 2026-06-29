@@ -380,7 +380,12 @@ namespace Ziptide.Gameplay
             // after ActionBasedControllerManager swaps rays). Belt-and-suspenders: also hard-disable the two
             // bound input actions so nothing reads the stick for anchor control.
             foreach (var ray in GetComponentsInChildren<XRRayInteractor>(true))
+            {
                 DisableAnchorControl(ray);
+                // Force grab: a grabbed object snaps to the HAND instead of hanging out at the ray's hit
+                // distance. (Device test: "pick up the gun at that distance and it stays at that distance.")
+                EnableForceGrab(ray);
+            }
             DisableAnchorInputActions();
 
             // Fix the long↔short ray-length jump: each hand has TWO ray interactors (select + teleport),
@@ -392,7 +397,8 @@ namespace Ziptide.Gameplay
             {
                 if (lv == null) continue;
                 lv.overrideInteractorLineLength = true;
-                lv.lineLength = 2.5f;
+                lv.lineLength = 1.4f;   // realistic reach — 2.5 still read as "too long" on device
+                DisableLineSnap(lv);    // don't stretch the line out to a target you're pointing at
             }
 
             // Right thumbstick was driving MOVEMENT because EnsureLocomotionRig binds BOTH hands to the
@@ -434,6 +440,42 @@ namespace Ziptide.Gameplay
             }
             if (_anchorControlField != null && _anchorControlField.FieldType == typeof(bool))
                 _anchorControlField.SetValue(ray, false);
+        }
+
+        // Force grab on a ray interactor (serialized m_UseForceGrab, confirmed in the XRI Ray Interactor
+        // prefab). With it on, grabbing a distant object reels it to the hand instead of holding it out at
+        // the ray's hit distance. Reflection (no compile-verifiable public symbol in the cloud build).
+        private static System.Reflection.FieldInfo _forceGrabField;
+        private static bool _forceGrabResolved;
+        private static void EnableForceGrab(XRRayInteractor ray)
+        {
+            if (ray == null) return;
+            if (!_forceGrabResolved)
+            {
+                _forceGrabResolved = true;
+                _forceGrabField = typeof(XRRayInteractor).GetField("m_UseForceGrab",
+                    System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            }
+            if (_forceGrabField != null && _forceGrabField.FieldType == typeof(bool))
+                _forceGrabField.SetValue(ray, true);
+        }
+
+        // Stop the line visual from snapping its endpoint out to whatever it's pointing at (serialized
+        // m_SnapEndpointIfAvailable, confirmed in the XRI Ray Interactor prefab) — that snap is why the ray
+        // "lengthened" when aimed at a grabbable. Keeps the drawn line a stable short length.
+        private static System.Reflection.FieldInfo _lineSnapField;
+        private static bool _lineSnapResolved;
+        private static void DisableLineSnap(XRInteractorLineVisual lv)
+        {
+            if (lv == null) return;
+            if (!_lineSnapResolved)
+            {
+                _lineSnapResolved = true;
+                _lineSnapField = typeof(XRInteractorLineVisual).GetField("m_SnapEndpointIfAvailable",
+                    System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            }
+            if (_lineSnapField != null && _lineSnapField.FieldType == typeof(bool))
+                _lineSnapField.SetValue(lv, false);
         }
 
         // Belt-and-suspenders for the anchor bug: hard-disable the two input actions the right thumbstick is

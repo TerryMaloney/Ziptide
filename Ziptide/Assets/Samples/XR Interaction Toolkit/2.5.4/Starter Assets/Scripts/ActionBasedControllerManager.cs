@@ -279,8 +279,14 @@ namespace UnityEngine.XR.Interaction.Toolkit.Samples.StarterAssets
 
         void OnRaySelectEntered(SelectEnterEventArgs args)
         {
-            // Disable locomotion and turn actions
-            DisableLocomotionActions();
+            // ZIPTIDE EDIT: keep TURN + MOVE live while holding an object. This is a shooter — you grab a
+            // gun with your dominant (right) hand and STILL need to turn/strafe. Stock XRI disabled all
+            // locomotion here to stop the thumbstick from doing both turn AND object-anchor-control; but we
+            // globally disable anchor control (PlayerRigPersistence.DisableAnchorControl /
+            // DisableAnchorInputActions), so there's no conflict to mediate. Only suppress teleport mode
+            // while holding. (Without this, grabbing with the right hand killed the right-stick turn.)
+            DisableAction(m_TeleportModeActivate);
+            DisableAction(m_TeleportModeCancel);
         }
 
         void OnRaySelectExited(SelectExitEventArgs args)

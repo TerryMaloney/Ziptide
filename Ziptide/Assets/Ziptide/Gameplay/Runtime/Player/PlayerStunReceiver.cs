@@ -18,8 +18,8 @@ namespace Ziptide.Gameplay
         private readonly StunState _stun = new StunState();
         private Camera _cam;
         private ActionBasedContinuousMoveProvider _move;
-        private float _baseMoveSpeed;
-        private bool _slowApplied;
+        private float _baseMoveSpeed = -1f; // the TRUE full-speed value, captured once while NOT slowed
+        private bool _haveBase;
 
         private GameObject _flashGo;
         private Renderer _flashRenderer;
@@ -56,16 +56,12 @@ namespace Ziptide.Gameplay
 
             if (_move != null)
             {
-                if (!_stun.IsClear)
-                {
-                    if (!_slowApplied) { _baseMoveSpeed = _move.moveSpeed; _slowApplied = true; }
-                    _move.moveSpeed = _baseMoveSpeed * _stun.SlowFactor;
-                }
-                else if (_slowApplied)
-                {
-                    _move.moveSpeed = _baseMoveSpeed;
-                    _slowApplied = false;
-                }
+                // Capture the TRUE base speed exactly once, and only while NOT slowed, so we can never
+                // latch a reduced value as "base" (that bug left walking permanently slow after a stun that
+                // straddled a scene load). Then ALWAYS drive moveSpeed = base * SlowFactor: it self-heals —
+                // the instant the stun clears, SlowFactor is 1, so speed snaps back to base every frame.
+                if (!_haveBase && _stun.IsClear) { _baseMoveSpeed = _move.moveSpeed; _haveBase = true; }
+                if (_haveBase) _move.moveSpeed = _baseMoveSpeed * _stun.SlowFactor;
             }
 
             UpdateFlash();
