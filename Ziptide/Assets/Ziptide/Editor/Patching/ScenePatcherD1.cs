@@ -666,24 +666,27 @@ namespace Ziptide.Editor.Patching
             rb.interpolation = RigidbodyInterpolation.Interpolate;
 
             var grab = go.AddComponent<UnityEngine.XR.Interaction.Toolkit.XRGrabInteractable>();
-            var soGrab = new SerializedObject(grab);
-            var movProp = soGrab.FindProperty("m_MovementType");
-            if (movProp != null) movProp.enumValueIndex = 1;
-            var dynProp = soGrab.FindProperty("m_UseDynamicAttach");
-            if (dynProp != null) dynProp.boolValue = false; // snap to the fixed Grip, not where the hand grabs
-            var easeProp = soGrab.FindProperty("m_AttachEaseInTime");
-            if (easeProp != null) easeProp.floatValue = 0f;  // instant snap, no drift
-            soGrab.ApplyModifiedPropertiesWithoutUndo();
 
+            // Create the Grip FIRST so we can reference it inside the SerializedObject block below. The grip
+            // is the forward-grip the gun snaps to when grabbed.
             var grip = new GameObject("Grip");
             grip.transform.SetParent(go.transform, false);
             grip.transform.localPosition = new Vector3(0f, -0.01f, -0.06f);
 
-            // Forward-grip snap: point the grab at the Grip transform. This assignment was MISSING, so the
-            // legacy taser hung at the dynamic-attach pose ("doesn't snap in the proper direction"). With
-            // attachTransform set + useDynamicAttach=false above, it snaps to a forward grip exactly like the
-            // ToxicCity guns (which get this config via ItemFactory.CreateTaserDartGun).
-            grab.attachTransform = grip.transform;
+            // Set EVERYTHING (incl. m_AttachTransform) via SerializedObject in ONE block, THEN apply — so it
+            // all bakes into the saved scene. Previously attachTransform was assigned via the public property
+            // AFTER ApplyModified, which didn't persist into the baked scene, so the legacy taser still hung
+            // at the dynamic-attach pose ("doesn't snap in the proper direction").
+            var soGrab = new SerializedObject(grab);
+            var movProp = soGrab.FindProperty("m_MovementType");
+            if (movProp != null) movProp.enumValueIndex = 1;                       // VelocityTracking
+            var dynProp = soGrab.FindProperty("m_UseDynamicAttach");
+            if (dynProp != null) dynProp.boolValue = false;                        // snap to the fixed Grip
+            var easeProp = soGrab.FindProperty("m_AttachEaseInTime");
+            if (easeProp != null) easeProp.floatValue = 0f;                        // instant snap, no drift
+            var attachProp = soGrab.FindProperty("m_AttachTransform");
+            if (attachProp != null) attachProp.objectReferenceValue = grip.transform; // the forward grip
+            soGrab.ApplyModifiedPropertiesWithoutUndo();
 
             var muzzle = new GameObject("Muzzle");
             muzzle.transform.SetParent(go.transform, false);

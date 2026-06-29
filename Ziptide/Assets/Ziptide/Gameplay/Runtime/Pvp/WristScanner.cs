@@ -71,15 +71,29 @@ namespace Ziptide.Gameplay
 
         private void FindHands()
         {
-            var interactors = FindObjectsOfType<XRBaseControllerInteractor>();
-            if (interactors == null || interactors.Length < 2 || _cam == null) return;
-            var a = interactors[0];
-            var b = interactors[1];
-            float da = Vector3.Dot(a.transform.position - _cam.position, _cam.right);
-            _leftInteractor = da < 0 ? a : b;
-            _rightInteractor = da < 0 ? b : a;
-            _leftHand = _leftInteractor.transform;
-            _rightHand = _rightInteractor.transform;
+            if (_cam == null) return;
+            // Resolve hands from the CONTROLLERS (one per hand), not interactors — each hand has SEVERAL
+            // interactors (direct + ray + teleport), so the old interactors[0]/[1] could pick two on the
+            // SAME hand, leaving _rightHand on the left side and the cover-wrist gesture never firing.
+            var controllers = FindObjectsOfType<ActionBasedController>();
+            if (controllers == null || controllers.Length < 2) return;
+            ActionBasedController left = null, right = null;
+            float leftDot = float.MaxValue, rightDot = float.MinValue;
+            foreach (var c in controllers)
+            {
+                if (c == null) continue;
+                float d = Vector3.Dot(c.transform.position - _cam.position, _cam.right);
+                if (d < leftDot) { leftDot = d; left = c; }   // most-left controller
+                if (d > rightDot) { rightDot = d; right = c; } // most-right controller
+            }
+            if (left == null || right == null || left == right) return;
+            _leftHand = left.transform;
+            _rightHand = right.transform;
+            // Haptics still go through an interactor under each controller (may be null — guarded at use).
+            _leftInteractor = left.GetComponentInChildren<XRBaseControllerInteractor>();
+            _rightInteractor = right.GetComponentInChildren<XRBaseControllerInteractor>();
+            Debug.Log("ZIPTIDE: WRIST_HANDS left=" + (_leftHand != null) + " right=" + (_rightHand != null)
+                + " leftInteractor=" + (_leftInteractor != null) + " rightInteractor=" + (_rightInteractor != null));
         }
 
         private void BuildBracer()

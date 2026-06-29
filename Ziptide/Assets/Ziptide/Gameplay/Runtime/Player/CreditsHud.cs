@@ -33,7 +33,7 @@ namespace Ziptide.Gameplay
             var go = new GameObject("CreditsHudText");
             go.transform.SetParent(transform, false);
             _text = go.AddComponent<TextMesh>();
-            _text.characterSize = 0.018f;
+            _text.characterSize = 0.01f; // smaller — was a big "CR 0" in the middle of the view
             _text.fontSize = 64;
             _text.anchor = TextAnchor.MiddleLeft;
             _text.alignment = TextAlignment.Left;
@@ -49,8 +49,9 @@ namespace Ziptide.Gameplay
             }
             if (_text == null) return;
 
-            // Lower-left of the comfortable FOV, billboarded so it tracks the gaze without drifting offscreen.
-            _text.transform.position = _cam.position + _cam.forward * 0.9f - _cam.up * 0.30f - _cam.right * 0.34f;
+            // Lower-LEFT corner of the comfortable FOV (steeper down/left angle than before — it was reading
+            // as a big label near center). Billboarded so it tracks the gaze without drifting offscreen.
+            _text.transform.position = _cam.position + _cam.forward * 0.8f - _cam.up * 0.36f - _cam.right * 0.46f;
             _text.transform.rotation = Quaternion.LookRotation(_text.transform.position - _cam.position);
 
             if (Time.unscaledTime < _nextRefresh) return;
