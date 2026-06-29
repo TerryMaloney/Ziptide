@@ -63,20 +63,27 @@ adb logcat | findstr "ZIPTIDE"
 ## 1. Rig / locomotion / gun (the recurring trio — the big ones) ⭐ THE PERSISTENT BUG, ROOT-CAUSED THIS ROUND
 - [ ] **Right thumbstick TURNS you** (snap/smooth) and does **NOT** move you forward/back. *(the #1 recurring bug)*
 - [ ] **Left thumbstick moves you.**
-- [ ] ⭐ **Right thumbstick does NOT rotate/translate the held gun OR hammer** while you turn — test with BOTH
-  guns AND the hammer. *(Real cause found: the old disable reflected the field `m_EnableAnchorControl`, which
-  doesn't exist on the interactor, so it silently did nothing every round. The real field is
-  `m_AllowAnchorControl`; now gated off on every ray + the "Rotate/Translate Anchor" input actions disabled.
-  Watch for `ANCHOR_ACTIONS_DISABLED count=2`; if you ever see `ANCHOR_FIELD_MISSING` the gun may still spin.)*
-- [ ] **Interactor rays are a stable short length (~2.5 m)** — they should **NOT jump long↔short** when you
-  point at vs away from an object. *(was two rays/hand — select + teleport — each with its own line visual;
-  now all of them are clamped, not just the active one.)*
-- [ ] Grab a gun → **snaps to a forward grip**; **release it → it FALLS** (doesn't freeze/float in the air). `(WEAPON pickup)`
-- [ ] Holster a gun → travel to another world → pull it out → **release → it falls** (not frozen). *(holster-travel gun-drop fix)*
+- [ ] ⭐ **Right thumbstick does NOT rotate/translate the held gun OR hammer** while you turn (guns AND hammer).
+- [ ] ⭐ **You can TURN while holding a gun in your RIGHT (dominant) hand** — last round the right-hand grab
+  blocked turning (left-hand grab was fine). *(Cause: the XRI controller manager disabled Turn on grab; now it
+  keeps Turn+Move live while holding, only teleport is suppressed.)* Test: grab gun **right hand**, push right
+  stick → **you turn.**
+- [ ] **Rays look like a realistic arm-length reach (~1.4 m)** and are **stable** — they should NOT stretch out
+  to a gun/door when you point at it. *(line endpoint-snap disabled, length shortened)*
+- [ ] **Grabbing a gun pulls it INTO your hand** — it should NOT stay floating out at the distance you grabbed
+  it from. *(force-grab enabled)*
+- [ ] Grab a gun → **snaps to a forward grip**; **release it → it FALLS** (doesn't freeze/float). `(WEAPON pickup)`
+- [ ] Holster a gun → travel → pull it out → **release → it falls**. *(holster-travel gun-drop fix)*
 
-## 1b. Credits / economy readout (new this round)
-- [ ] A small gold **"CR <number>"** readout sits in the **lower-left** of your view in every world. `(CREDITS_HUD_ENSURED)`
+## 1b. Credits / economy readout
+- [ ] A **small** gold **"CR <number>"** readout sits in the **lower-LEFT corner** (not a big label near center). `(CREDITS_HUD_ENSURED)`
 - [ ] After the ToxicCity bounty pays, the **number goes up** and **stays up across travel**. `(JOB_REWARD_GRANTED)`
+  *(it stays at CR 0 until you actually complete a bounty — that's expected.)*
+
+## 1c. Movement speed — REGRESSION CHECK (was getting stuck slow)
+- [ ] **Walking speed stays NORMAL** the whole session — especially **after the PvP room** and **after getting
+  hit by a drone/bot** (left thumbstick must not become permanently slow). *(stun no longer latches a reduced
+  base speed; it self-heals to full the instant the stun clears.)* `(PLAYER_STUN appears, then speed returns)*
 
 ## 2. Dev menu / warp
 - [ ] Boot lands in **Sandbox** (intentional dev bypass for now).
@@ -113,19 +120,24 @@ adb logcat | findstr "ZIPTIDE"
 - [ ] Warp to **PvP Arena**; fight the bot.
 - [ ] **Bot spawns above the floor** (not sunk through it). *(spawn-Y fix)*
 - [ ] **Taser = 3 hits** down the bot; **gravity = 6 hits + knockback**. `(PVP_BOT_HIT, PVP_KILL)`
-- [ ] **Gravity gun gives YOU a short comfort self-hop + vignette** when fired (not a nausea launch). `(PVP_COMFORT_HOP)`  *(feel: hop distance ok?)*
-- [ ] **The bot's shot is VISIBLE and dodgeable** — an **orange bolt** travels toward you (it no longer hits
-  you instantly with nothing on screen). Step aside and it **misses**; it's **stopped by walls**. `(PVP_BOT_FIRE)`
-- [ ] **HUD is centered + readable** — "HP x/6   You n - n Bot" sits slightly below center, **not down in the
-  bottom-right corner / out of view**. *(repositioned this round)*
-- [ ] **Hammer is grabbable**; the wall is now a **grid of small bricks** — a swing **chips the brick you hit**
-  (it darkens), and it takes **~2 swings per brick** to open a gap; damage is **localized to where you hit**,
-  not the whole panel. Bricks regenerate after a while. `(PVP_WALL_HIT col=.. row=.. broke=..)`
-- [ ] **Hammer turning:** same anchor test as §1 — the right thumbstick **turns you, not the hammer**.
-- [ ] **Wrist scanner:** cover the wrist with the other hand → it **charges** (lens brightens, haptics ramp) → fires a **PULSE**: shockwave + a **holographic radar above your wrist** + the bot tagged + an edge-of-vision chevron; then a cooldown. `(WRIST_SCAN_PULSE)`  *(feel: it's set further back on the forearm + bigger radar now — right position/size?)*
-- [ ] Getting hit by a bot bolt: **brief screen flash + slow, no death**. `(PLAYER_STUN)`
+- [ ] ⭐ **The gravity gun does NOT damage/launch YOU when you fire it** (last round it "shot myself"). It
+  should only hit the bot / drones. *(the muzzle ray now skips the wielder's own rig.)*
+- [ ] **Gravity gun gives YOU a short comfort self-hop + vignette** when fired (intended, not a nausea launch). `(PVP_COMFORT_HOP)`  *(feel: hop distance ok?)*
+- [ ] **The bot's shot is a VISIBLE, dodgeable orange bolt** — and it's **smaller now** (was too big). Step
+  aside → it **misses**; walls **stop it**. `(PVP_BOT_FIRE)`
+- [ ] ⭐ **The bot does NOT move through walls** — it should bump into them and go around. `(was phasing through)`
+- [ ] **HUD sits low and readable** (a bit further below center this round), not in a corner / out of view.
+- [ ] **Hammer walls:** now a **finer grid of smaller bricks**, and each brick takes **~4 swings** (more than
+  before). A swing **chips the brick you hit** (it darkens) and opens a localized gap. `(PVP_WALL_HIT col=.. row=.. broke=..)`
+- [ ] **Hammer turning:** right thumbstick **turns you, not the hammer**, and you **can turn while holding it**.
+- [ ] ⭐ **Wrist scanner now WORKS:** cover the wrist with the other hand → it **charges** (lens brightens,
+  haptics ramp) → fires a **PULSE** (shockwave + holo radar + bot tagged + edge chevron) → cooldown. Watch for
+  `ZIPTIDE: WRIST_HANDS left=True right=True` then `WRIST_SCAN_PULSE`. *(last round it silently never fired
+  because both "hands" resolved to the same controller; now resolved from the two controllers by side.)*
+- [ ] Getting hit by a bot bolt: **brief screen flash + slow, no death** — and the slow **fully clears** (no
+  stuck-slow afterward; see §1c). `(PLAYER_STUN)`
 - [ ] Best-of-10 scores and **rematches**. `(PVP_MATCH_END / PVP_REMATCH)`
-- [ ] Bot **doesn't phase through arena walls or shoot through them**.
+- [ ] Bot **doesn't shoot through walls**.
 
 ## 7. Starter World
 - [ ] Warp to **Starter World**; the first area you walk toward **no longer has a gap you fall through**. *(safety base floor)*

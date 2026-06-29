@@ -62,6 +62,30 @@ other agent's latest `Next-CLAIMED` first. If it overlaps, pick something else. 
 
 ## ENTRIES (newest first)
 
+### 2026-06-29 (vv) — T-Dog (cloud): device-test round 3 (right-hand turn, stuck-slow walk, self-shoot, bot collision)
+Terry's round-3 device feedback cleared in 3 CI-green commits (`39e9fc8`, `afd0aa7`, `509ad90`).
+- **Right-handed grab couldn't turn:** the XRI `ActionBasedControllerManager.OnRaySelectEntered` disabled
+  Turn+Move on grab (stock behavior to avoid turn/anchor conflict). Since we now globally kill anchor control,
+  there's no conflict — edited it to keep Turn+Move live on grab (only suppress teleport). **Note: this edits a
+  Starter Assets sample script** (`Samples/.../ActionBasedControllerManager.cs`) — flagged so a sample re-import
+  doesn't silently revert it.
+- **Walking permanently slow after PvP/stun:** `PlayerStunReceiver` cached base move speed from the live
+  (already-slowed) value behind a flag → a stun straddling a scene load latched the reduced value as "base."
+  Rewrote to capture true base once (while unslowed) and always set `moveSpeed = base * SlowFactor` (self-heals).
+- **Gravity gun "shoots myself":** muzzle ray's first hit was the wielder's own rig (an IPvpDamageable in PvP) →
+  skip the player rig in the raycast. **PvP bot phased through walls:** added `CollideMove` (SphereCast clamp)
+  mirroring `DroneCombatBehavior` — reinforced the universal "nothing moves through solids" rule.
+- **Rays:** shortened drawn line 2.5→1.4m, disabled endpoint-snap (`m_SnapEndpointIfAvailable`), enabled
+  force-grab (`m_UseForceGrab`) so grabbed objects reel to the hand. **Bricks:** 6x5→8x6, 2→4 hits. **Bot bolt:**
+  smaller. **Credits HUD:** smaller + true lower-left. **Wrist locator:** resolve hands from the two
+  `ActionBasedController`s by side (was picking two interactors on the same hand). **Legacy D0 taser snap:** set
+  `m_AttachTransform` inside the SerializedObject block (the post-Apply public assignment wasn't baking).
+- **Heads-up (Architect):** none of your data lane touched. One shared/third-party file edited (the XRI sample
+  controller manager) — documented above.
+- **On Terry's plate:** turn-while-holding (right hand), no stuck-slow after PvP, gravity gun doesn't self-hit,
+  bot respects walls, wrist locator fires (`WRIST_HANDS`), legacy taser snaps.
+- **Commits:** `39e9fc8`, `afd0aa7`, `509ad90` on `terry-local-wip`.
+
 ### 2026-06-28 (uu) — T-Dog (cloud): device-test round 2 fix pass (rig anchor ROOT-CAUSED, PvP feel, economy HUD)
 Terry tested the build and gave round-2 feedback; cleared the list in 4 small CI-green commits.
 - ⭐ **THE PERSISTENT BUG finally root-caused** (commit `89eac53`): the thumbstick rotated the held gun/hammer
