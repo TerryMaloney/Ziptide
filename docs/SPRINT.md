@@ -16,8 +16,8 @@ CI green per push; APK dispatch at the end.
 ## Task board
 | # | Task | Status |
 |---|------|--------|
-| 0 | GAME_PLAN.md (roadmap-of-record M0–M8) + pointer updates + this sprint open | 🟡 this commit |
-| 1 | `SignalState` + `RillState` (Core, pure, tested) — Signal tier 0–4 from flags; RILL memory-state machine from flags | ⬜ |
+| 0 | GAME_PLAN.md (roadmap-of-record M0–M8) + pointer updates + this sprint open | ✅ `f276474` |
+| 1 | `SignalState` + `RillState` (Core, pure, tested) — Signal tier 0–4 from flags; RILL memory-state machine from flags | ✅ this commit |
 | 2 | `RillLineLibrary` (Content SO) + `RillLineAuthor` (Editor, authors the 12 arc beats + W001–W012 entry lines into `Resources/Story/RillLines.asset`) + `RillCompanion` (Gameplay: orb + TextMesh subtitle, world-enter/flag/job triggers) + `EnsureRillCompanion()` on the rig | ⬜ |
 | 3 | Collectibles: `CollectibleSpawnDefinition` (+ `WorldPackDefinition.collectibles`), `CollectibleRuntime` (grab → `JobDirector.ReportCollect` + flag), JobDirector runtime spawn, `WorldJobLibrary` `Collect()`/`Pickup()` verbs, **W002 mineral + W004 fragment converted to REAL Collect steps**, tests | ⬜ |
 | 4 | `ChoiceStation` (two-option interactable → writes flag; pack-data spawnable) + tests | ⬜ |
@@ -25,15 +25,18 @@ CI green per push; APK dispatch at the end.
 | 6 | Close: HANDOFF entry, runbook/checklist RILL+fragment smoke items, **APK dispatch green** | ⬜ |
 
 ## ▶ RESUMING? — current state & exact next action
-- **Current micro-step:** Task 0 (docs) being committed: GAME_PLAN.md written; START_HERE banner +
-  roadmap section repointed; HOW_TO_CHANGE story-pipeline section added; old sprint archived to
-  `docs/sprints/`; this file opened.
-- **Next action:** commit+push Task 0 → verify CI → start Task 1: create
-  `Core/Runtime/Story/SignalState.cs` (pure: `Tier(profile)` 0–4 from `SIGNAL_THRESHOLD_1/2/3` +
-  `SIGNAL_MAX`) and `Core/Runtime/Story/RillState.cs` (pure: derive `RillMemoryState` from flags —
-  mapping in "Specs" below) + EditMode tests, one commit.
-- **Then:** Task 2 → 3 → 4 → (5) → 6 in order. Each commit updates this board + this section.
-- **Branch:** `terry-local-wip`. Last CI-green: `1583a61`. APK verify = `actions_run_trigger`
+- **Current micro-step:** Task 1 committed — `Core/Runtime/SignalState.cs` + `RillState.cs`
+  (+ `RillMemoryState` enum) + `Tests/EditMode/StoryStateTests.cs` (7 tests). Verify CI on this push.
+- **Next action:** Task 2 — `Content/Runtime/Story/RillLineLibrary.cs` (SO: List&lt;RillLine&gt;
+  {id, trigger(WorldEnter|FlagSet|JobComplete), key, requiredState(AnyOr…), text}); an Editor
+  `RillLineAuthor.EnsureAuthored()` that creates `Assets/Ziptide/Resources/Story/RillLines.asset`
+  populated with the 12 arc beats (§5.2 lines) + a world-entry line per W001–W012 (register per
+  RillMemoryState); wire `EnsureAuthored()` into `BuildAndroid.PatchScenesThenAPK` next to
+  `CreatureVariantAuthor.EnsureAllAuthored()`; then `Gameplay/Runtime/Story/RillCompanion.cs` (orb +
+  TextMesh subtitle, sceneLoaded + 1s flag-diff poll, queue, `ZIPTIDE: RILL_LINE`) + ONE
+  `EnsureRillCompanion()` call in `PlayerRigPersistence.Awake` (after `EnsureCreditsHud()`).
+- **Then:** Task 3 → 4 → (5) → 6 in order. Each commit updates this board + this section.
+- **Branch:** `terry-local-wip`. Last CI-green: `f276474` (docs). APK verify = `actions_run_trigger`
   workflow_dispatch on ci.yml (~20–30 min), check `build-android` job + `ziptide-apk` artifact.
 
 ## Specs (condensed — execute without re-deriving; verified against code this session)
