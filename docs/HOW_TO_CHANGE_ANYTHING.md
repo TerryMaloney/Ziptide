@@ -24,20 +24,21 @@ Legend: **Edit** = the one place to change · **Then** = how it takes effect · 
 | ⚠ **Change ToxicCity specifically** | its layout asset for data; `ScenePatcherToxicCity.cs` for shell logic (hand-tuned reference world) | menu `Build Toxic City` / next build | audit + device |
 
 ## Sky / atmosphere / look
-*(Task 2 will make this fully per-world — section updated when it lands.)*
 
 | I want to… | Edit | Then | Verify |
 |---|---|---|---|
-| **Change a world's sky/planet/ground tint** | that world's `VisualThemeProfile` asset (gradient, PlanetSettings, groundTint) | `WorldRuntime` applies it on entry | look at it (device) |
+| **Change a GENERATED world's sky/planet/ground tint** | its layout asset's **`Sky theme` block** (`skyHorizonColor`/`skyTopColor`/`themeGroundTint`/`planet*`) — the layout is the source of truth; the generator (re)writes `Content/Worlds/Themes/<Scene>_Theme` + `Profiles/<Scene>_WorldProfile` from it every regen | regen (build or menu) | look at it (device) |
+| **Change a HAND-BUILT world's sky** (ToxicCity/D0/etc.) | that world's `VisualThemeProfile` asset directly (gradient bottom=horizon top=zenith, PlanetSettings, groundTint) | `WorldRuntime` applies on entry | device |
+| **Hide the planet in a world** | layout `planetVisible = false` (renders at 1° = dim star) | regen | device |
 | **Change fog** | the layout's `fogEnabled/fogColor/fogDensity` | regen | device |
 | **City color identity** (concrete/metal/buildings/accent) | the layout's `palette` (or a district's `paletteOverride`) | regen | device; rules in `docs/design/CITY_DESIGN.md` |
 
 ## Weapons / gear
-*(Task 3 adds per-asset visual tuning — section updated when it lands.)*
 
 | I want to… | Edit | Then | Verify |
 |---|---|---|---|
 | **Tune weapon gameplay feel** (fire rate, range, stun time, launch force, haptics, cooldowns) | the weapon's definition asset under `Resources/Items/` (Pistol/TaserDartGun/GravityGun definitions — all plain fields) | live next run (ItemFactory reads the asset) | fire it on device |
+| **Tune weapon SIZE / COLOR / GRIP / MUZZLE** | same definition asset — `visualScale` (zero = keep default), `visualColor` (alpha 0 = keep default), `gripLocalPos`, `muzzleLocalPos` | live next run | grab it on device — grip angle/size feel |
 | **Add a new item that can be spawned/holstered/travel** | new definition asset **under `Resources/Items/`** (CI FAILS if placed elsewhere or with a duplicate `itemId` — `ItemRegistryConventionTests`) + a creation branch in `ItemFactory` for new *types* | `ItemFactory.Create(itemId, pos)` anywhere | `ZIPTIDE: ITEM_REGISTRY` lists it at boot |
 | **Give a weapon a real 3D model** | set `modelPrefab` on its definition (import the .glb first) | factory hook (visual swap is a small ItemFactory change if not yet wired for that type) | device |
 

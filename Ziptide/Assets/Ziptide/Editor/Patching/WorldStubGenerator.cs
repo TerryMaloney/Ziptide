@@ -128,7 +128,12 @@ namespace Ziptide.Editor.Patching
 
             EnsureLighting();
             EnsureEventSystem();
-            EnsureWorldRuntime();
+
+            // Per-world sky/atmosphere from the layout's theme block — the layout is the source of truth
+            // ("change the sky" = edit two colors on the layout asset; regeneration rewrites the assets).
+            var theme = ThemeAuthor.EnsureThemeAsset(kit);
+            var worldProfile = ThemeAuthor.EnsureWorldProfileAsset(kit, theme);
+            EnsureWorldRuntime(worldProfile);
 
             var spawnDistrict = FindDistrict(kit, kit.spawnDistrictId) ?? kit.districts[0];
             Vector3 spawnPos = spawnDistrict.anchor + new Vector3(0f, kit.walkwayHeight + 0.1f, 0f);
@@ -166,11 +171,12 @@ namespace Ziptide.Editor.Patching
             PatcherUtil.EnsureComponent<UnityEngine.XR.Interaction.Toolkit.UI.XRUIInputModule>(go);
         }
 
-        private static void EnsureWorldRuntime()
+        private static void EnsureWorldRuntime(WorldProfile profile)
         {
             var go = PatcherUtil.EnsureRootObject("WorldRuntime", Vector3.zero);
             var wr = PatcherUtil.EnsureComponent<WorldRuntime>(go);
-            var profile = AssetDatabase.LoadAssetAtPath<WorldProfile>(ZiptideConstants.PathDefaultWorldProfileWorlds);
+            if (profile == null)
+                profile = AssetDatabase.LoadAssetAtPath<WorldProfile>(ZiptideConstants.PathDefaultWorldProfileWorlds);
             if (profile != null)
             {
                 var so = new SerializedObject(wr);

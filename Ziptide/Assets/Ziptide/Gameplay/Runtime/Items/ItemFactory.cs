@@ -81,6 +81,13 @@ namespace Ziptide.Gameplay
             return null;
         }
 
+        // ── Definition-driven visual tuning (zero/clear on the asset = keep the factory default) ──
+        private static Vector3 Vec(Vector3 fromDef, Vector3 factoryDefault)
+            => fromDef == Vector3.zero ? factoryDefault : fromDef;
+
+        private static Color Col(Color fromDef, Color factoryDefault)
+            => fromDef.a <= 0f ? factoryDefault : fromDef;
+
         private static string KnownIds()
         {
             var sb = new System.Text.StringBuilder();
@@ -97,9 +104,9 @@ namespace Ziptide.Gameplay
             var go = GameObject.CreatePrimitive(PrimitiveType.Cube);
             go.name = "Pistol";
             go.transform.position = position;
-            go.transform.localScale = new Vector3(0.08f, 0.04f, 0.2f);
+            go.transform.localScale = Vec(def.visualScale, new Vector3(0.08f, 0.04f, 0.2f));
 
-            ApplyURPColor(go, new Color(0.3f, 0.3f, 0.35f));
+            ApplyURPColor(go, Col(def.visualColor, new Color(0.3f, 0.3f, 0.35f)));
 
             var rb = go.AddComponent<Rigidbody>();
             rb.mass = def.mass > 0 ? def.mass : 0.3f;
@@ -118,7 +125,7 @@ namespace Ziptide.Gameplay
 
             var grip = new GameObject("Grip");
             grip.transform.SetParent(go.transform, false);
-            grip.transform.localPosition = new Vector3(0f, -0.01f, -0.05f);
+            grip.transform.localPosition = Vec(def.gripLocalPos, new Vector3(0f, -0.01f, -0.05f));
             grab.attachTransform = grip.transform;
 
             var itemRt = go.AddComponent<ItemRuntime>();
@@ -129,7 +136,7 @@ namespace Ziptide.Gameplay
 
             var muzzle = new GameObject("Muzzle");
             muzzle.transform.SetParent(go.transform, false);
-            muzzle.transform.localPosition = new Vector3(0f, 0f, 0.12f);
+            muzzle.transform.localPosition = Vec(def.muzzleLocalPos, new Vector3(0f, 0f, 0.12f));
 
             RestorePhysicsOnRelease(go, grab);
             return go;
@@ -140,9 +147,9 @@ namespace Ziptide.Gameplay
             var go = GameObject.CreatePrimitive(PrimitiveType.Cube);
             go.name = "TaserDartGun";
             go.transform.position = position;
-            go.transform.localScale = new Vector3(0.07f, 0.06f, 0.25f);
+            go.transform.localScale = Vec(def.visualScale, new Vector3(0.07f, 0.06f, 0.25f));
 
-            ApplyURPColor(go, new Color(0.2f, 0.55f, 0.6f));
+            ApplyURPColor(go, Col(def.visualColor, new Color(0.2f, 0.55f, 0.6f)));
 
             var rb = go.AddComponent<Rigidbody>();
             rb.mass = def.mass > 0 ? def.mass : 0.4f;
@@ -161,7 +168,7 @@ namespace Ziptide.Gameplay
 
             var grip = new GameObject("Grip");
             grip.transform.SetParent(go.transform, false);
-            grip.transform.localPosition = new Vector3(0f, -0.01f, -0.06f);
+            grip.transform.localPosition = Vec(def.gripLocalPos, new Vector3(0f, -0.01f, -0.06f));
             grab.attachTransform = grip.transform;
 
             var itemRt = go.AddComponent<ItemRuntime>();
@@ -171,7 +178,7 @@ namespace Ziptide.Gameplay
 
             var muzzle = new GameObject("Muzzle");
             muzzle.transform.SetParent(go.transform, false);
-            muzzle.transform.localPosition = new Vector3(0f, 0f, 0.14f);
+            muzzle.transform.localPosition = Vec(def.muzzleLocalPos, new Vector3(0f, 0f, 0.14f));
 
             RestorePhysicsOnRelease(go, grab);
             return go;
@@ -182,9 +189,9 @@ namespace Ziptide.Gameplay
             var go = GameObject.CreatePrimitive(PrimitiveType.Cube);
             go.name = "GravityGun";
             go.transform.position = position;
-            go.transform.localScale = new Vector3(0.08f, 0.07f, 0.22f);
+            go.transform.localScale = Vec(def.visualScale, new Vector3(0.08f, 0.07f, 0.22f));
 
-            ApplyURPColor(go, new Color(0.45f, 0.3f, 0.7f)); // violet — distinct from the taser
+            ApplyURPColor(go, Col(def.visualColor, new Color(0.45f, 0.3f, 0.7f))); // violet default — distinct from the taser
 
             var rb = go.AddComponent<Rigidbody>();
             rb.mass = def.mass > 0 ? def.mass : 0.45f;
@@ -203,7 +210,7 @@ namespace Ziptide.Gameplay
 
             var grip = new GameObject("Grip");
             grip.transform.SetParent(go.transform, false);
-            grip.transform.localPosition = new Vector3(0f, -0.01f, -0.06f);
+            grip.transform.localPosition = Vec(def.gripLocalPos, new Vector3(0f, -0.01f, -0.06f));
             grab.attachTransform = grip.transform;
 
             var itemRt = go.AddComponent<ItemRuntime>();
@@ -213,7 +220,7 @@ namespace Ziptide.Gameplay
 
             var muzzle = new GameObject("Muzzle");
             muzzle.transform.SetParent(go.transform, false);
-            muzzle.transform.localPosition = new Vector3(0f, 0f, 0.15f);
+            muzzle.transform.localPosition = Vec(def.muzzleLocalPos, new Vector3(0f, 0f, 0.15f));
 
             RestorePhysicsOnRelease(go, grab);
             return go;
@@ -242,7 +249,8 @@ namespace Ziptide.Gameplay
             var go = GameObject.CreatePrimitive(PrimitiveType.Cube);
             go.name = def.itemId;
             go.transform.position = position;
-            go.transform.localScale = Vector3.one * 0.1f;
+            go.transform.localScale = Vec(def.visualScale, Vector3.one * 0.1f);
+            if (def.visualColor.a > 0f) ApplyURPColor(go, def.visualColor);
 
             var rb = go.AddComponent<Rigidbody>();
             rb.mass = def.mass > 0 ? def.mass : 0.5f;

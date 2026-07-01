@@ -16,26 +16,24 @@ device pass, batches sized so a cutoff never strands half-done work.
 ## Task board
 | # | Task | Status |
 |---|------|--------|
-| 0 | `SPRINT.md` (this file) + START_HERE pointer | 🔄 this commit |
-| 1 | `HOW_TO_CHANGE_ANYTHING.md` playbook (skeleton now; +1 section as each task lands) | 🔄 this commit |
-| 2 | Per-world sky/theme modularity (`themeSpec` in layout → generator authors Theme+WorldProfile) | ⬜ |
-| 3 | Weapon visual/feel data-drive (`ItemDefinition` visual fields + `ItemFactory` fallback) | ⬜ |
+| 0 | `SPRINT.md` (this file) + START_HERE pointer | ✅ `9b9ff2a` |
+| 1 | `HOW_TO_CHANGE_ANYTHING.md` playbook (skeleton + sections as tasks land) | 🔄 running (sky+weapons sections done) |
+| 2 | Per-world sky/theme modularity (layout `Sky theme` block → `ThemeAuthor` → generator wires per-world Theme+WorldProfile) | ✅ this commit (CI pending) |
+| 3 | Weapon visual/feel data-drive (`ItemDefinition` visualScale/visualColor/gripLocalPos/muzzleLocalPos + `ItemFactory` fallbacks; zero/clear = unchanged) | ✅ this commit (CI pending) |
 | 4 | **WORLD BUILDOUT W002–W012** (`WorldFlowKits` + `WorldLayoutLibrary` + `WorldJobLibrary`; batches a: W002–W004, b: W005–W008, c: W009–W012; APK dispatch after each) | ⬜ **GATED** on APK run `28547683786` succeeding |
 | 5 | Ship modular foundation (`ShipDefinition` data SO + `docs/systems/SHIPS.md`) | ⬜ |
 | 6 | Creature data modularity (`DroneCombatProfile` variants per biome + `CreatureDefinition` catalog) | ⬜ |
 | 7 | Sprint close (HANDOFF/checklist/runbook refresh + final APK green) | ⬜ |
 
 ## ▶ RESUMING? — current state & exact next action
-- **Current micro-step:** Task 0+1 (this file + the playbook skeleton), committing now.
-- **Next action after this commit:** Task 2 (theme modularity) + Task 3 (weapon fields) — both small
-  ⚙CI items, one push, then check CI.
-- **Gate to check before Task 4:** APK dispatch run **28547683786** (branch `terry-local-wip`,
-  workflow_dispatch on ci.yml) must have `conclusion: success` — it validates the WorldStubGenerator
-  build hook + gives the audit baseline. Check via GitHub MCP `actions_get` → `get_workflow_run`. If it
-  FAILED: read the failed job log, fix the generated-worlds hook in `BuildAndroid.cs` /
-  `WorldStubGenerator.cs` before authoring any worlds.
-- **Nothing else is in flight.** Branch `terry-local-wip`; last known CI-green commit: `c855213`
-  (124/124 EditMode tests).
+- **Current micro-step:** Tasks 2+3 just committed (themes + weapon fields). **Verify CI on this push**
+  (compile + EditMode; behavior-preserving changes, should be green).
+- **Next action:** check the Task-4 gate → APK dispatch run **28547683786** (`actions_get` →
+  `get_workflow_run`; branch `terry-local-wip`). If `success`: start Task 4 batch (a) — `WorldFlowKits`
+  + `WorldLayoutLibrary` (W002–W004) + `WorldJobLibrary`, wired into `BuildAndroid` via
+  `WorldLayoutLibrary.EnsureAllAuthored()` before the generator ensure-call. If FAILED: read failed job
+  log, fix the generated-worlds hook in `BuildAndroid.cs`/`WorldStubGenerator.cs` first.
+- **Files in flight:** none beyond this commit. Branch `terry-local-wip`; last CI-green: `c855213`.
 
 ## Specs the tasks execute from (don't re-derive)
 - Approved sprint plan: mirrored below in "Task specs"; story data: `docs/storyboard/WORLD_DATA.md`

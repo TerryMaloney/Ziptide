@@ -43,6 +43,21 @@ namespace Ziptide.Content
         public Color fogColor = new Color(0.18f, 0.22f, 0.16f);
         public float fogDensity = 0.018f;
 
+        [Header("Sky theme (generated worlds: WorldStubGenerator authors a VisualThemeProfile from this — " +
+                "THIS is the source of truth, not the theme asset)")]
+        [Tooltip("Sky color at the horizon (gradient t=0).")]
+        public Color skyHorizonColor = new Color(0.55f, 0.42f, 0.30f);
+        [Tooltip("Sky color at the zenith (gradient t=1).")]
+        public Color skyTopColor = new Color(0.25f, 0.28f, 0.35f);
+        [Tooltip("Ground material tint applied by the theme.")]
+        public Color themeGroundTint = new Color(0.40f, 0.42f, 0.40f);
+        [Tooltip("Show a planet in the sky (the growing 'you're closer to the truth' cue).")]
+        public bool planetVisible = true;
+        public Color planetBaseColor = new Color(0.40f, 0.50f, 0.70f);
+        public Color planetAccentColor = new Color(0.25f, 0.35f, 0.50f);
+        [Tooltip("Planet apparent size in degrees (grows across chapters: ~8 early → ~25 late).")]
+        public float planetAngularSize = 12f;
+
         [Header("Skyline (distant silhouettes for scale)")]
         public float skylineRingRadius = 140f;
         public int skylineCount = 26;
