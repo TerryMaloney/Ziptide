@@ -156,6 +156,16 @@ namespace Ziptide.Gameplay
                 go.transform.SetParent(root.transform);
                 go.transform.localPosition = c.localPosition + Vector3.up * 0.9f; // hover at grab height
                 go.AddComponent<CollectibleRuntime>().Init(c, this);
+
+                // A fragment pickup gets a playback console beside it — the de-garble device lives
+                // where the recording was found. Re-visits show the message clearer as tiers rise.
+                if (!string.IsNullOrEmpty(c.flagOnCollect) && c.flagOnCollect.StartsWith("FRAGMENT_"))
+                {
+                    var console = new GameObject("TransmissionConsole_" + c.itemId);
+                    console.transform.SetParent(root.transform);
+                    console.transform.localPosition = c.localPosition + new Vector3(1.5f, 0f, 0f);
+                    console.AddComponent<TransmissionConsole>();
+                }
             }
         }
 
