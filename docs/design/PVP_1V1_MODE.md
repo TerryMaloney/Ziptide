@@ -77,9 +77,9 @@ self-motion = nausea risk → comfort-first) · spawn protection / out-of-bounds
 - **Phase 0 — Decisions/research:** ✅ done (PUN2, remote room-code, segmented walls, comfort-first, solo-first).
 - **Phase 1 — Backbone (no netcode):** ✅ `Ziptide.Multiplayer` pure-C# rules core + 14 tests (Architect).
   TODO: scene + WorldPack + `ScenePatcherPvP` + MonoBehaviour wiring → appears in Y+B menu.
-- **Phase 2 — Mechanics solo (T-Dog lane):** wire taser/gravity/locator/hammer + `BreakableWall` to the
+- **Phase 2 — Mechanics solo:** wire taser/gravity/locator/hammer + `BreakableWall` to the
   core, HUD, respawn, comfort gravity hop. **Tune feel on one headset — the first real build.**
-- **Phase 3 — Networking (Photon PUN2, shared/claimed):** import PUN2; `Net/` adapter; sync
+- **Phase 3 — Networking (Photon PUN2):** import PUN2; `Net/` adapter; sync
   head+2-hands avatar, fire/damage/score/wall-hole; host-authoritative hits; room-code host/join;
   2-headset test; voice (Quest Party Chat first).
 - **Phase 4 — Polish:** comfort toggles, spawn protection, disconnect/rejoin, anti-cheat pass, 2nd arena.

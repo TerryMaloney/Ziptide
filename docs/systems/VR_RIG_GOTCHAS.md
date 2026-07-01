@@ -1,6 +1,6 @@
 # VR / Rig Gotchas — hard-won fixes (READ before touching the XR rig, weapons, or drones)
 
-**T-Dog lane.** These are bugs that recurred for *multiple rounds* because the obvious fix was wrong.
+**The operator's rig/weapons/drone notes.** These are bugs that recurred for *multiple rounds* because the obvious fix was wrong.
 Each entry: symptom → real root cause → the fix that actually works (file + exact API). Don't re-derive
 these — it cost real device cycles. All the runtime rig fixes live in
 `Gameplay/Runtime/Player/PlayerRigPersistence.cs → EnsureXRIWiring()`, which runs on **every scene load**,

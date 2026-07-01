@@ -84,6 +84,6 @@ Interaction Toolkit **2.5.4**. The Unity project lives in the **`Ziptide/`** sub
 ## Key docs
 - `docs/CONNECTIONS_AND_RECOVERY.md` — system map + every root cause + prevention plan (read this).
 - `docs/D4_BOOT_ADDITIVE_WORLD_ARCHITECTURE.md` — boot/world contract.
-- `docs/WORKLIST.md` — current punch list.
+- `docs/FABLE5_BACKLOG.md` — the live task queue (tagged ⚙CI/🔧UNITY/🎮DEVICE) · `docs/MASTER_CHECKLIST.md` — build state. *(The old `WORKLIST.md`/`04_TASK_QUEUE.md` are retired.)*
 - `docs/project_art_plan/` — art/audio/prompt-to-world pipeline.
 - `docs/ZIPTIDE_MASTER_BUILD_PLAN.md` — long-term 80-world vision.

@@ -7,14 +7,15 @@ Skim this first; the deep docs are linked per item.
   stubbed) · 🟡 in progress · 🔲 planned/stubbed · 🔭 vision.
 - **Most gameplay is "scaffold" quality** — it exists and compiles, but is rough and not all
   on-device-verified. That's expected; this list tracks reality, not polish.
-- **Related docs:** [`STATUS.md`](STATUS.md) (current milestone dashboard) ·
-  [`WORKLIST.md`](WORKLIST.md) (near-term punch list) ·
+- **Related docs:** [`FABLE5_BACKLOG.md`](FABLE5_BACKLOG.md) (the live task queue) ·
+  [`TERRY_RUNBOOK.md`](TERRY_RUNBOOK.md) (what Terry bakes/tests) ·
   [`ZIPTIDE_MASTER_BUILD_PLAN.md`](ZIPTIDE_MASTER_BUILD_PLAN.md) (deep long-term vision/architecture) ·
   [`docs/design/SYSTEMS_ARCHITECTURE.md`](design/SYSTEMS_ARCHITECTURE.md) (build order) ·
   [`docs/systems/`](systems/README.md) (per-system specs).
 
-> Last updated: 2026-06-21. **🚀 North star: the Ship** (hub + fly-between-worlds) — see LONG-TERM.
-> **🆕 Fable-5 prep complete:** [`FABLE5_START_HERE.md`](FABLE5_START_HERE.md) (primer) · [`CODE_SCORE.md`](CODE_SCORE.md) (3.5/5) · [`ROLES.md`](ROLES.md) · [`FABLE5_BACKLOG.md`](FABLE5_BACKLOG.md) · [`design/WORLD_FLOW_TEMPLATES.md`](design/WORLD_FLOW_TEMPLATES.md) · [`systems/CREATURE_DESIGN.md`](systems/CREATURE_DESIGN.md).
+> Last updated: 2026-07-01. **🚀 North star: the Ship** (hub + fly-between-worlds) — see LONG-TERM.
+> **🆕 Single-operator setup live:** [`FABLE5_START_HERE.md`](FABLE5_START_HERE.md) (primer) · [`CODE_SCORE.md`](CODE_SCORE.md) (3.5/5) · [`ROLES.md`](ROLES.md) · [`FABLE5_BACKLOG.md`](FABLE5_BACKLOG.md) · [`TERRY_RUNBOOK.md`](TERRY_RUNBOOK.md).
+> **🎮 3 rounds of device-test fixes shipped + CI-green, awaiting headset** (rig anchor/turn/rays/force-grab, stuck-slow, gravity self-hit, bot wall-collision, HUD/wrist/walls, drone feel, legacy-gun snap) — see `HANDOFF.md` uu/vv. Don't re-do; verify on-device.
 
 ---
 
@@ -24,7 +25,7 @@ Skim this first; the deep docs are linked per item.
 - ✅ CI: compiles + runs EditMode tests on every push (`terry-local-wip` green).
 - ✅ **Cloud APK build** — CI builds the real APK (patch + audit) and uploads `ziptide-apk`; sideload, no Unity PC needed.
 - ✅ **Sandbox auto-adds to Build Settings** during the build (no manual step).
-- ✅ Shared cross-chat coordination log ([`HANDOFF.md`](HANDOFF.md)); world-integrity audit (blockers fail the build).
+- ✅ Single-operator continuity log ([`HANDOFF.md`](HANDOFF.md)); world-integrity audit (blockers fail the build).
 
 ### Core / data / economy (🟢 backend, CI-green, not yet wired into live boot)
 - 🟢 `PlayerProfile` + `ProfileSerializer` + `SaveSystem` (built, **not yet wired** into `_Boot`/world-entry).

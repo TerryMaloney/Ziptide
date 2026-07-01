@@ -44,13 +44,19 @@ tags each task this way):
 see `CLAUDE.md`). 5. For any 🔧/🎮 step, **append it to `TERRY_RUNBOOK.md`** so Terry can batch it. 6. Log
 it in `HANDOFF.md`; update `MASTER_CHECKLIST.md` if state changed.
 
-## Current state snapshot (2026-06-27)
+## Current state snapshot (2026-07-01)
 - **CI green** on `terry-local-wip`. Code score **3.5/5** (`CODE_SCORE.md`). One branch, single operator.
 - **Built:** core loop (job→bounty→profile), economy core **now wired into world-entry** (`ECON_RESOLVE`),
   **story-flag gating** (`WorldPackDefinition.flagsRequired/Granted` + `WorldGating` + travel-door lock),
   **PvP solo+bot** (4 mechanics), **ToxicCity** world + the reusable **CityBuilder**, drones+combat v1, gear
   (taser/gravity/pistol/wrist-scanner/hammer), CI APK build, the full **80-world story design** +
   `WORLD_DATA.md` serialization (W000–W012).
+- **3 rounds of device-test fixes shipped + CI-green** (don't re-derive these — see `HANDOFF.md` uu/vv +
+  `docs/systems/VR_RIG_GOTCHAS.md`): the persistent thumbstick-rotates-gun bug (real field
+  `m_AllowAnchorControl`), turn-while-holding (right hand), rays shortened + force-grab, stuck-slow-walk
+  self-heal, gravity-gun no-self-hit, PvP bot wall-collision, visible dodgeable bot bolt, per-brick
+  breakable walls, credits HUD, wrist-locator hand resolution, drone "lifelike" feel, legacy-D0 gun snap.
+  **All awaiting on-device confirmation** — that's the open loop, not new code.
 - **Pending Terry:** the full **device-test pass** (`DEVICE_TEST_CHECKLIST.md` + `TERRY_RUNBOOK.md`) — a lot
   is CI-green but not yet headset-verified. His ❌s/feel-notes drive the next round.
 - **Not yet:** `WorldStubGenerator` (mass worlds) · 3 of 4 creature archetypes · Photon netcode (PvP Ph.3) ·

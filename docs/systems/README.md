@@ -3,7 +3,7 @@
 One short README per gameplay system, so each part has a clear "how it works / how it's *supposed*
 to work" spec. This complements (does not replace) the big picture:
 - `docs/design/SYSTEMS_ARCHITECTURE.md` — the overall architecture + build order.
-- `docs/HANDOFF.md` — the cross-chat coordination log (read first every session).
+- `docs/HANDOFF.md` — the single-operator continuity log (read first every session).
 - `docs/storyboard/` — story/world/ship creative + how it maps to code.
 
 **Each system doc follows this template** (keep it short, update as we build):

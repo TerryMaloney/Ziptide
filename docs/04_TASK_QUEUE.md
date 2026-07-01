@@ -1,5 +1,8 @@
 # 04 — TASK QUEUE
 
+> ⛔ **RETIRED (2026-07-01).** The live queue is **`docs/FABLE5_BACKLOG.md`** (tagged ⚙CI/🔧UNITY/🎮DEVICE);
+> state is **`docs/MASTER_CHECKLIST.md`**. Kept only for history.
+
 **Current and upcoming tasks.**
 
 ---

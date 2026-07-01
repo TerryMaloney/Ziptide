@@ -1,5 +1,9 @@
 # ZIPTIDE — Active Worklist (the running tally)
 
+> ⛔ **RETIRED (2026-07-01) — do NOT use this as the queue.** The live task queue is
+> **`docs/FABLE5_BACKLOG.md`** (prioritized, tagged ⚙CI/🔧UNITY/🎮DEVICE); build state is
+> **`docs/MASTER_CHECKLIST.md`**. Kept only for history — it predates the single-operator setup.
+
 **The single "what do we do next" list.** Updated every session.
 Design lives in `docs/design/`; long-term vision in `ZIPTIDE_MASTER_BUILD_PLAN.md`.
 

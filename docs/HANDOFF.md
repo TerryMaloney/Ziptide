@@ -28,6 +28,22 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-01 (xx) — operator: consolidation finish pass (docs-only) — this closes the last two-chat session
+Terry consolidated to one operator; (ww) did the bulk. This is the small finish sweep so the handoff is
+airtight for whatever model lands next (Fable 5 gets ~1 prompt — it must go to game work, not cleanup).
+- Dropped the last forward-looking two-lane labels: `VR_RIG_GOTCHAS.md` "T-Dog lane" → "the operator's
+  notes"; retired the two competing queues (`WORKLIST.md`, `04_TASK_QUEUE.md`) with a banner pointing at
+  `FABLE5_BACKLOG.md` + `MASTER_CHECKLIST.md`; repointed `CLAUDE.md`'s stale "punch list" line; fixed
+  `MASTER_CHECKLIST.md`'s WORKLIST pointer + "cross-chat" wording.
+- Refreshed the state snapshot in `FABLE5_START_HERE.md` + `MASTER_CHECKLIST.md`: **rounds 1–3 device-test
+  fixes are all CI-green and awaiting the headset** — the next model should verify on-device, not re-derive.
+- Verified HANDOFF's forward sections + the spine already read single-operator (no reframe needed).
+- **This was the last commit from the second ("T-Dog") chat** — it's closing. Going forward there is ONE
+  operator on `terry-local-wip`; whoever's next reads `FABLE5_START_HERE.md`. My round-1/2/3 rig/PvP/economy
+  fixes (uu/vv) are in the branch and CI-green, waiting only on Terry's device pass.
+- **Next:** none — the open loop is Terry's `TERRY_RUNBOOK.md §1` bake + `DEVICE_TEST_CHECKLIST.md`.
+- **Commit:** this docs-only push on `terry-local-wip`.
+
 ### 2026-06-29 (ww) — Architect: 🔀 RETIRED the two-chat split → single-operator handoff (docs-only)
 Terry's call: Fable 5 will likely get only ~one usable prompt, so we consolidated **everything to a single
 operator** ("Architect" = whatever one model drives) — one prompt should go straight to game work, not
