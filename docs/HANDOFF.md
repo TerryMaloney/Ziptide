@@ -28,6 +28,34 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-01 (yy) — operator (Fable 5): first single-operator work pass — world factory + hardening slate
+First session under the consolidated model. Read the spine, took the highest-leverage ⚙CI slate; two
+pushes, both small-commit + CI-verified. **No rig/PvP/scene files touched** — Terry's pending device pass
+is undisturbed.
+- **`WorldStubGenerator` (Phase-C E2 — the force-multiplier), BUILT data-driven:** `CityLayoutDefinition`
+  gained a world-identity block (`sceneName`/`displayName`/`spawnDistrictId`/`spawnStarterWeapons`;
+  additive, old assets unaffected). Any layout with a `sceneName` is turned into a full world — scene at
+  `Scenes/Generated/<sceneName>.unity`, populated via `CityBuilder`, WorldPack + exit pack, spawn,
+  JobDirector/kiosk/board, Build Settings — via `Ziptide → Worlds → Generate World From Selected Layout`
+  / `Generate All Layout Worlds`, **and `BuildAndroid` regenerates them on every build** (ensure +
+  per-scene hook, try/catch-guarded like the rest). Regeneration preserves authored pack data (jobs/
+  flags/themes) so story wiring survives. ToxicCity keeps its hand-tuned patcher (its layout's
+  `sceneName` stays empty). **A new world is now: author one layout asset.**
+- **Transmission system, ⚙CI half:** `ZiptideFlags` + `FRAGMENT_T1-5_FOUND`/`FRAGMENT_RILL_CONFESS` and
+  derived `TRANSMISSION_CLARITY_1-3/MAX`; pure `TransmissionProgress` (ComputeTier / SyncClarityFlags —
+  cumulative, idempotent, clarity never regresses; MAX = all 5 + RILL's line); `JobDirector` re-syncs
+  after flag grants → `ZIPTIDE: TRANSMISSION_CLARITY`. Spec: `WORLD_DATA.md` §3.
+- **WorldPack fail-loud validation:** pure `WorldPackValidator` + `JobDirector.Start` →
+  `ZIPTIDE: PACK_VALIDATION_FAIL` per issue (warnings only).
+- **`ItemFactory` IL2CPP-safe:** `Resources/Items` enforced canonical; loaded-objects scan demoted to a
+  warned last resort (`ITEM_DEF_OUTSIDE_RESOURCES`); logs list known ids; NEW `ItemRegistryConventionTests`
+  makes a misplaced/duplicate ItemDefinition a **CI failure** instead of a device mystery.
+- **18 new EditMode tests** total this pass.
+- **Next:** author the first generated-world layout (**W002 Dry Cistern** per `WORLD_DATA.md`) to prove the
+  factory end-to-end, then continue Phase B (`WorldAuditRunner` self-tests). Terry: nothing new for you —
+  your `TERRY_RUNBOOK.md` §1 bake + device pass is unchanged and still the critical path.
+- **Commits:** hardening `589b701` + world factory (this push) on `terry-local-wip`.
+
 ### 2026-07-01 (xx) — operator: consolidation finish pass (docs-only) — this closes the last two-chat session
 Terry consolidated to one operator; (ww) did the bulk. This is the small finish sweep so the handoff is
 airtight for whatever model lands next (Fable 5 gets ~1 prompt — it must go to game work, not cleanup).

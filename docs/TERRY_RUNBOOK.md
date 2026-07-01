@@ -48,8 +48,10 @@ Do these in order after pulling. Each generates committable assets. *(This mirro
 
 ## Reference — the full editor menu map (for when the operator asks for a specific bake)
 **Generate committable assets:** `Worlds → Build Toxic City` · `… Build Toxic City Contract` ·
-`… Build PvP Arena` · `Dev → Build Starter World (graybox)` · `Dev → Build Sandbox Test Lab` ·
-`Dev → Rebuild Dev World Manifest`.
+`… Build PvP Arena` · `Worlds → Generate World From Selected Layout` / `Generate All Layout Worlds`
+*(NEW — the world factory: any `CityLayoutDefinition` asset with a `sceneName` becomes a full world;
+the build also auto-regenerates these, so running the menu is only needed to preview in-editor)* ·
+`Dev → Build Starter World (graybox)` · `Dev → Build Sandbox Test Lab` · `Dev → Rebuild Dev World Manifest`.
 **Apply to the open scene:** `Apply Boot Scene Patcher` · `Apply D0/D1/D2 … To Current Scene` ·
 `Apply Theme To Current Scene`.
 **Debug:** `Audit → Run Audit (All Scenes)` · `Diagnostics → Dump Scene + Rig Config` · `Dev → Warp Window`.

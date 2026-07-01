@@ -21,6 +21,18 @@ namespace Ziptide.Content
         [Tooltip("Deterministic seed for prop scatter / window jitter.")]
         public int seed = 1337;
 
+        [Header("World identity (WorldStubGenerator — leave sceneName empty for hand-built worlds)")]
+        [Tooltip("Scene to generate for this layout (e.g. \"W002_DryCistern\"). Empty = NOT auto-generated " +
+                 "(ToxicCity has its own patcher). Non-empty = WorldStubGenerator + the build pipeline " +
+                 "create/populate Scenes/Generated/<sceneName>.unity from this data alone.")]
+        public string sceneName = "";
+        [Tooltip("Travel-door / dev-menu label. Falls back to cityId if empty.")]
+        public string displayName = "";
+        [Tooltip("District id to spawn the player in. Empty = first district.")]
+        public string spawnDistrictId = "";
+        [Tooltip("Drop a taser + gravity gun by the spawn (combat worlds).")]
+        public bool spawnStarterWeapons = false;
+
         [Header("Global")]
         [Tooltip("Canonical walkable Y — district ground slabs sit with their TOP at this height. The audit's spawn-on-walkway check reads this.")]
         public float walkwayHeight = 0f;

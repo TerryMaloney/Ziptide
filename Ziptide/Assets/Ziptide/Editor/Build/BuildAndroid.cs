@@ -38,6 +38,11 @@ namespace Ziptide.Build
             try { Ziptide.Editor.Patching.ScenePatcherPvP.EnsureInBuildSettings(); }
             catch (Exception ex) { Debug.LogWarning("[Ziptide] PvP arena build-settings ensure warning: " + ex.Message); }
 
+            // Data-driven worlds: every CityLayoutDefinition with a sceneName gets its generated scene
+            // created + enabled here, then populated in the loop below. Author a layout asset → it ships.
+            try { Ziptide.Editor.Patching.WorldStubGenerator.EnsureGeneratedInBuildSettings(); }
+            catch (Exception ex) { Debug.LogWarning("[Ziptide] Generated-worlds build-settings ensure warning: " + ex.Message); }
+
             // Reload scenes list — ScenePatcherBoot/Sandbox may have modified it (added _Boot/Sandbox, removed SampleScene).
             var scenes = EditorBuildSettings.scenes;
             for (int i = 0; i < scenes.Length; i++)
@@ -89,6 +94,11 @@ namespace Ziptide.Build
                     try { Ziptide.Editor.Patching.ScenePatcherPvP.PopulateActivePvP(); }
                     catch (Exception ex) { Debug.LogWarning("[Ziptide] PvP arena patcher warning for " + path + ": " + ex.Message); }
                 }
+
+                // Generated worlds: if this scene belongs to a CityLayoutDefinition (by sceneName),
+                // rebuild it from its data so every build reflects the current layout asset.
+                try { Ziptide.Editor.Patching.WorldStubGenerator.PatchActiveSceneIfGenerated(); }
+                catch (Exception ex) { Debug.LogWarning("[Ziptide] Generated-world patcher warning for " + path + ": " + ex.Message); }
 
                 EditorSceneManager.MarkSceneDirty(scene);
                 EditorSceneManager.SaveOpenScenes();
