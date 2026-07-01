@@ -31,11 +31,11 @@ device pass, batches sized so a cutoff never strands half-done work.
   `WorldJobLibrary` (contracts, rewards, gating flags, GoToMarker targets as PACK DATA — JobDirector
   materializes `Marker_<id>` at runtime) + wiring (`BuildAndroid` seeds layouts; `Populate` attaches jobs).
   W004 grants `FRAGMENT_T1_FOUND` — the first Transmission fragment goes live.
-- **APK-gate history:** first dispatch `28547683786` FAILED on **runner disk exhaustion** pulling the
-  Unity image (NOT code — Unity never started). Fixed in ci.yml (`Free disk space` step, commit `4d2a886`);
-  **re-dispatched** — find the newest `workflow_dispatch` run on `terry-local-wip` and check it. If it
-  fails on disk again: free more (remove /opt/hostedtoolcache subdirs) or switch the job to a
-  larger runner. If it PASSES: the generated-worlds pipeline is proven end-to-end (audit incl.).
+- **APK-gate history:** first dispatch `28547683786` FAILED on runner disk exhaustion (infra, not code);
+  fixed in ci.yml (`4d2a886`). **Re-dispatch `28548558401` SUCCEEDED** (~31 min, full pipeline + artifact)
+  — the disk fix + the generated-worlds hook are proven. **The FINAL full-pipeline dispatch is now
+  running on the 11-worlds head** (`e463b6f`, queued ~22:0x) — it authors creature data + all 11 layouts,
+  generates/populates 11 scenes, audits each, builds the APK.
 - **Next action:** batch (c) just committed — **all 11 story worlds (W002–W012) are now authored** with
   the complete Ch.1–2 gating chain (toxiccity_complete→W002→…→W012) and beats: FRAGMENT_T1 (W004),
   C4_SABLE_INTRO (W007), C2_ARCHITECTS_NAMED (W008), C2_W009_RILL_MISIDENTIFIED, SIGNAL_THRESHOLD_2
