@@ -1,10 +1,10 @@
 # ▶ START HERE — the single-operator manual (read this first, then stop reading)
 
-> **✅ MODULARITY SPRINT COMPLETE (2026-07-01):** 11 story worlds (W002–W012) now build themselves from
-> data every APK build, fully audit-verified — see `docs/SPRINT.md` for the record + the crash-resume
-> protocol for future sprints. **`docs/HOW_TO_CHANGE_ANYTHING.md` is the change-safety playbook — consult
-> it BEFORE modifying any system.** Next up: Terry's device pass (`TERRY_RUNBOOK.md`), then
-> `FABLE5_BACKLOG.md`.
+> **🎯 THE ROADMAP-OF-RECORD IS `docs/GAME_PLAN.md`** (graybox → shipped, milestones M0–M8) — read it
+> after this file. The ACTIVE sprint's live state is **`docs/SPRINT.md`** (takeover prompt: "Read
+> docs/SPRINT.md and continue"). **`docs/HOW_TO_CHANGE_ANYTHING.md` is the change-safety playbook —
+> consult it BEFORE modifying any system.** *(Modularity sprint ✅ 2026-07-01: 11 story worlds W002–W012
+> build from data every APK, audit-verified — record in `docs/sprints/`.)*
 
 **You are THE operator building Ziptide. You own the whole project — data, backend, tests, editor
 patchers, world/story content, docs. There is no second chat and no "lane" to pick.** Terry is your only
@@ -68,10 +68,11 @@ it in `HANDOFF.md`; update `MASTER_CHECKLIST.md` if state changed.
 - **Not yet:** `WorldStubGenerator` (mass worlds) · 3 of 4 creature archetypes · Photon netcode (PvP Ph.3) ·
   79 of 80 worlds buildable · Transmission fragment system.
 
-## Roadmap-of-record (phases in order; pull from `FABLE5_BACKLOG.md`)
-**A Fix & tie together → B Harden architecture → C Mass-build worlds from data → D Finish modes → E Creatures.**
-No forced "next task" — read the queue and take the highest-leverage item you can move (prefer ⚙ CI work
-when Terry's away; batch 🔧/🎮 for when he's on).
+## Roadmap-of-record: `docs/GAME_PLAN.md` (milestones M0–M8, dependency-ordered)
+**M0 device-proof → M1 story speaks → M2 the job is real → M3 living worlds → M4 the ship → M5 content
+at scale → M6 look & sound → M7 modes → M8 ship it.** Each milestone runs as a sprint (`docs/SPRINT.md` =
+live state); `FABLE5_BACKLOG.md` holds the current milestone's expanded queue. Prefer ⚙ CI work when
+Terry's away; batch 🔧/🎮 for when he's on. *(The old A–E phase list is retired into GAME_PLAN's milestones.)*
 
 ## Definition of Done (every task)
 CI-green (compile + EditMode + audit) · for 🔧/🎮 work, **Terry-verified** · a HANDOFF entry appended ·

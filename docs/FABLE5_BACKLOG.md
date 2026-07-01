@@ -1,5 +1,10 @@
 # BACKLOG — prioritized task queue (single operator)
 
+> **🎯 The roadmap-of-record is now `docs/GAME_PLAN.md` (milestones M0–M8)** — this backlog is the
+> CURRENT milestone's expanded queue; the active sprint's live state is `docs/SPRINT.md`.
+> Now active: **M0 device-proof (Terry-gated)** ∥ **M1 The Story Speaks (in progress — SPRINT.md)**.
+> The A–E phase framing below predates GAME_PLAN; its unfinished items are absorbed into the milestones.
+
 **The roadmap as a pullable queue.** Every task is tagged by **who can verify it** (see `ROLES.md`):
 - **⚙CI** — you write it and self-verify via CI (compile + EditMode + audit + APK). Do these freely.
 - **🔧UNITY** — you write the patcher/tool C#; **Terry runs a menu** to bake the scene/asset (queue it in

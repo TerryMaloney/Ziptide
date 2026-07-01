@@ -52,6 +52,14 @@ Legend: **Edit** = the one place to change · **Then** = how it takes effect · 
 | **New creature *types* (non-drone)** | Phase E (`docs/systems/CREATURE_DESIGN.md`) — `CreatureDefinition` data exists; runtime behaviors not built yet | — | — |
 
 ## Story / progression
+
+> **THE STORY-CHANGE PIPELINE (one direction, always):**
+> `STORY_BIBLE.md` (canon prose) → the world's **`WORLD_DATA.md` record** (flags/jobs/markers/beats as
+> data) → the **library spec** (`WorldLayoutLibrary`/`WorldJobLibrary`/`RillLineLibrary` entries) → the
+> **next build** regenerates the world. Never edit downstream artifacts (packs/scenes) to change story —
+> edit the record + library and let the factory re-author. This is what makes "change the story and the
+> game follows" mechanically true.
+
 | I want to… | Edit | Then | Verify |
 |---|---|---|---|
 | **Story canon** | `docs/storyboard/STORY_BIBLE.md` + `THE_TRANSMISSION.md` (locked — deepen, don't contradict) | serialize changes into `WORLD_DATA.md` records → world/job assets | cohesion checklist in THE_TRANSMISSION §9 |
