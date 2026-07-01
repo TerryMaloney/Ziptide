@@ -55,6 +55,13 @@ is undisturbed.
   factory end-to-end, then continue Phase B (`WorldAuditRunner` self-tests). Terry: nothing new for you —
   your `TERRY_RUNBOOK.md` §1 bake + device pass is unchanged and still the critical path.
 - **Commits:** hardening `589b701` + world factory (this push) on `terry-local-wip`.
+- **ADDENDUM (same session):** both pushes went **CI-red** — and the failure was the new
+  `ItemRegistryConventionTests` guard **catching a real pre-existing hazard on its first run**:
+  `Content/Items/Sandbox_GravityGun.asset`, a zero-reference orphan duplicating `itemId: gravity_gun`
+  with the live `Resources/Items` copy (leftover from `d456c52`'s holster-travel fix — exactly the
+  ITEM_DEF_NOT_FOUND class of bug). Verified nothing references its guid (scenes reference the Resources
+  copy); deleted the orphan (+ empty folder meta). 122/124 passing on the red runs (all other new tests
+  green) → fix restores 124/124. The guard earning its keep on day one is the point of Phase B.
 
 ### 2026-07-01 (xx) — operator: consolidation finish pass (docs-only) — this closes the last two-chat session
 Terry consolidated to one operator; (ww) did the bulk. This is the small finish sweep so the handoff is
