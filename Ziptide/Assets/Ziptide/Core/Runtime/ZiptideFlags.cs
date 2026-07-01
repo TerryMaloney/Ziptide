@@ -85,6 +85,22 @@ namespace Ziptide.Core
         public const string SIGNAL_THRESHOLD_3      = "SIGNAL_THRESHOLD_3";
         public const string SIGNAL_MAX              = "SIGNAL_MAX";
 
+        // ── The Transmission (identity layer — docs/storyboard/THE_TRANSMISSION.md, WORLD_DATA.md §3) ──
+        // FRAGMENT_T#_FOUND = set when that fragment collectible is recovered (authored per-world).
+        // TRANSMISSION_CLARITY_* = DERIVED tiers — never author these; TransmissionProgress.SyncClarityFlags
+        // computes them from the found fragments (the de-garble UI reads the tier).
+        public const string FRAGMENT_T1_FOUND       = "FRAGMENT_T1_FOUND";   // W004 — garbled junk; "addressed to the watchers"
+        public const string FRAGMENT_T2_FOUND       = "FRAGMENT_T2_FOUND";   // W042 — "the voice is mine"
+        public const string FRAGMENT_T3_FOUND       = "FRAGMENT_T3_FOUND";   // W047/W051 era — the "we" becomes the partner
+        public const string FRAGMENT_T4_FOUND       = "FRAGMENT_T4_FOUND";   // W060 — THE NAME MOMENT + a coordinate
+        public const string FRAGMENT_T5_FOUND       = "FRAGMENT_T5_FOUND";   // W062 — "you built it and chose to enter"
+        public const string FRAGMENT_RILL_CONFESS   = "FRAGMENT_RILL_CONFESS"; // late — RILL's cut-off line, recovered elsewhere
+
+        public const string TRANSMISSION_CLARITY_1  = "TRANSMISSION_CLARITY_1"; // after T1 — static; register: professional
+        public const string TRANSMISSION_CLARITY_2  = "TRANSMISSION_CLARITY_2"; // after T2 — half-legible; register: confessional
+        public const string TRANSMISSION_CLARITY_3  = "TRANSMISSION_CLARITY_3"; // after T3/T4 — clear; register: intimate
+        public const string TRANSMISSION_CLARITY_MAX = "TRANSMISSION_CLARITY_MAX"; // full assembly (T1–T5 + RILL confession) — endgame only
+
         // ── World Completions (batch — W001 through W068) ─────────────────
         // For worlds not individually listed above, use this pattern:
         //   NarrativeSaveSystem.SetFlag("W" + worldId.PadLeft(3,'0') + "_COMPLETE");

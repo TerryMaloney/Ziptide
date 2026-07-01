@@ -17,7 +17,7 @@ namespace Ziptide.Gameplay
             var def = FindDefinition(itemId);
             if (def == null)
             {
-                Debug.LogWarning("ZIPTIDE: ITEM_DEF_NOT_FOUND id=" + itemId);
+                Debug.LogWarning("ZIPTIDE: ITEM_DEF_NOT_FOUND id=" + itemId + " known=[" + KnownIds() + "]");
                 return null;
             }
 
@@ -47,8 +47,9 @@ namespace Ziptide.Gameplay
             if (_cache.TryGetValue(itemId, out var cached) && cached != null)
                 return cached;
 
-            // Preload every item definition under a Resources/Items folder. Resources assets are
-            // loadable at runtime in ANY scene, which fixes ITEM_DEF_NOT_FOUND when restoring a
+            // CANONICAL PATH — every ItemDefinition asset lives under Resources/Items (enforced by the
+            // ItemRegistryConventionTests CI guard). Resources assets are loadable at runtime in ANY
+            // scene and survive IL2CPP builds, which fixes ITEM_DEF_NOT_FOUND when restoring a
             // holstered item after the scene it came from has unloaded.
             if (!_resourcesPreloaded)
             {
@@ -56,10 +57,14 @@ namespace Ziptide.Gameplay
                 foreach (var d in Resources.LoadAll<ItemDefinition>("Items"))
                     if (d != null && !string.IsNullOrEmpty(d.itemId))
                         _cache[d.itemId] = d;
+                Debug.Log("ZIPTIDE: ITEM_REGISTRY loaded=" + _cache.Count + " ids=[" + KnownIds() + "]");
                 if (_cache.TryGetValue(itemId, out var fromRes) && fromRes != null)
                     return fromRes;
             }
 
+            // LAST-RESORT fallback — only sees definitions something already loaded (a scene reference).
+            // Unreliable on device: nothing keeps them loaded after travel. If THIS is what resolves the
+            // id, the asset is misplaced — warn so it gets moved under Resources/Items.
             var allDefs = Resources.FindObjectsOfTypeAll<ItemDefinition>();
             foreach (var d in allDefs)
             {
@@ -67,7 +72,24 @@ namespace Ziptide.Gameplay
                     _cache[d.itemId] = d;
             }
 
-            return _cache.TryGetValue(itemId, out var found) && found != null ? found : null;
+            if (_cache.TryGetValue(itemId, out var found) && found != null)
+            {
+                Debug.LogWarning("ZIPTIDE: ITEM_DEF_OUTSIDE_RESOURCES id=" + itemId +
+                                 " (resolved only via the loaded-objects scan — move the asset under a Resources/Items folder or it will fail after travel on device)");
+                return found;
+            }
+            return null;
+        }
+
+        private static string KnownIds()
+        {
+            var sb = new System.Text.StringBuilder();
+            foreach (var kv in _cache)
+            {
+                if (sb.Length > 0) sb.Append(',');
+                sb.Append(kv.Key);
+            }
+            return sb.ToString();
         }
 
         private static GameObject CreatePistol(PistolDefinition def, Vector3 position)

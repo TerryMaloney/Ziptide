@@ -30,6 +30,12 @@ namespace Ziptide.Gameplay
         {
             if (worldPack == null) return;
 
+            // Fail-loud pack sanity check — bad data (empty ids, null steps) logs instead of silently
+            // no-opping jobs. Warnings only; the world still runs so a data slip can't brick a build.
+            var issues = WorldPackValidator.Validate(worldPack);
+            for (int i = 0; i < issues.Count; i++)
+                Debug.LogWarning("ZIPTIDE: PACK_VALIDATION_FAIL pack=" + worldPack.packId + " issue=" + issues[i]);
+
             // Non-blocking story-gate diagnostic: if the player reached this world without its required
             // flags, log it (don't yank them mid-scene — enforcement belongs at the travel/offer UI, which
             // touches the locked travel contract). Helps catch out-of-order travel during testing.
@@ -174,6 +180,13 @@ namespace Ziptide.Gameplay
                 if (worldFlags > 0)
                     Debug.Log("ZIPTIDE: WORLD_FLAGS_GRANTED world=" +
                               (worldPack != null ? worldPack.packId : "?") + " count=" + worldFlags);
+
+                // A grant may have included a FRAGMENT_T#_FOUND — re-derive the Transmission clarity
+                // tier so the de-garble UI always reads a consistent value.
+                int clarity = Ziptide.Core.TransmissionProgress.SyncClarityFlags(profile);
+                if (clarity > 0)
+                    Debug.Log("ZIPTIDE: TRANSMISSION_CLARITY tier=" +
+                              Ziptide.Core.TransmissionProgress.ComputeTier(profile));
             }
         }
 
