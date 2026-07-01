@@ -82,6 +82,16 @@ jobs:
     # breakage is caught in the cloud BEFORE the headset, and the APK is downloadable as an artifact.
     if: github.event_name == 'workflow_dispatch' || github.ref == 'refs/heads/main'
     steps:
+      # The Unity Android editor Docker image is ~12 GB and the stock runner ships with only ~14 GB
+      # free — the docker pull died with "no space left on device" (run 28547683786). Evict the big
+      # preinstalled toolchains we never use (.NET, Android cmdline SDK, Haskell, CodeQL, docker cache)
+      # BEFORE pulling; frees ~25-30 GB.
+      - name: Free disk space for the Unity image
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL /usr/local/.ghcup
+          sudo docker image prune --all --force || true
+          df -h /
+
       - name: Checkout
         uses: actions/checkout@v4
         with:
