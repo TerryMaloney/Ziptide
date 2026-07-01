@@ -69,6 +69,7 @@ Legend: **Edit** = the one place to change · **Then** = how it takes effect · 
 | **RILL's arc pacing (when the register shifts)** | `Core/Runtime/RillState.cs` capstone-flag mapping (pure, tested) | derived — never stored | `StoryStateTests` |
 | **Signal pressure (what tier a world grants)** | the world's `flagsGranted` (SIGNAL_THRESHOLD_*) in `WorldJobLibrary`; consumers call `SignalState.Tier(profile)` | live next build | `StoryStateTests` |
 | **A collectible pickup / a Transmission fragment's location** | the world's spec in `WorldJobLibrary` — `.Collect(itemId,count)` step + `.Pickup(itemId,pos,flagOnCollect)` entries (fragment = a Pickup with `FRAGMENT_T#_FOUND`) | build re-authors the pack; JobDirector spawns `CollectibleRuntime` at scene start; early grabs bank (`JobRuntimeCollectTests`) | `ZIPTIDE: COLLECTED item=…` |
+| **A story choice / branch beat (incl. the 4 endings)** | add a `ChoiceSpawnDefinition` to the world's pack (`choices` list — prompt, two labels, two flags from `ZiptideFlags`) | JobDirector spawns a `ChoiceStation`; choosing writes the flag, locks the station, RILL reacts via FlagSet lines; validator rejects no-flag/same-flag choices | `ZIPTIDE: CHOICE_MADE choice=… flag=…` |
 
 ## Economy
 | I want to… | Edit | Then | Verify |

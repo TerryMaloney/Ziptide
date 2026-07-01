@@ -38,6 +38,11 @@ namespace Ziptide.Content
                  "Pure data — JobDirector materializes CollectibleRuntime objects, like spawnMarkers.")]
         public List<CollectibleSpawnDefinition> collectibles = new List<CollectibleSpawnDefinition>();
 
+        [Header("Choices")]
+        [Tooltip("Two-option story set-pieces spawned at scene start (branch beats / endings). " +
+                 "Pure data — JobDirector materializes ChoiceStation objects, like spawnMarkers.")]
+        public List<ChoiceSpawnDefinition> choices = new List<ChoiceSpawnDefinition>();
+
         [Header("Audio")]
         [Tooltip("Background music for this world. Null = silence.")]
         public AudioProfile audioProfile;

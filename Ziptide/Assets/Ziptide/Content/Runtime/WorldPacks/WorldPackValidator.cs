@@ -71,6 +71,58 @@ namespace Ziptide.Content
                     else if (string.IsNullOrEmpty(sm.markerId)) issues.Add("spawnMarkers[" + m + "] has empty markerId");
                 }
 
+            if (pack.collectibles != null)
+                for (int c = 0; c < pack.collectibles.Count; c++)
+                {
+                    var col = pack.collectibles[c];
+                    if (col == null) issues.Add("collectibles[" + c + "] is null");
+                    else if (string.IsNullOrEmpty(col.itemId)) issues.Add("collectibles[" + c + "] has empty itemId");
+                }
+
+            // THE un-completable-contract check: every Collect step must be satisfiable by the pack's
+            // physical pickups (they're the only source of collect credits in generated worlds). A step
+            // demanding more items than the pack spawns can never finish.
+            if (pack.jobs != null && pack.collectibles != null)
+            {
+                var available = new Dictionary<string, int>();
+                for (int c = 0; c < pack.collectibles.Count; c++)
+                {
+                    var col = pack.collectibles[c];
+                    if (col == null || string.IsNullOrEmpty(col.itemId)) continue;
+                    available.TryGetValue(col.itemId, out int n);
+                    available[col.itemId] = n + 1;
+                }
+                for (int j = 0; j < pack.jobs.Count; j++)
+                {
+                    var job = pack.jobs[j];
+                    if (job == null || job.steps == null) continue;
+                    for (int s = 0; s < job.steps.Count; s++)
+                    {
+                        if (job.steps[s] is CollectItemIdCountStepDefinition ci &&
+                            !string.IsNullOrEmpty(ci.itemId) && ci.count > 0)
+                        {
+                            available.TryGetValue(ci.itemId, out int have);
+                            if (have < ci.count)
+                                issues.Add((string.IsNullOrEmpty(job.jobId) ? "jobs[" + j + "]" : job.jobId) +
+                                           " Collect '" + ci.itemId + "' needs " + ci.count +
+                                           " but pack spawns " + have + " — likely un-completable");
+                        }
+                    }
+                }
+            }
+
+            if (pack.choices != null)
+                for (int c = 0; c < pack.choices.Count; c++)
+                {
+                    var ch = pack.choices[c];
+                    string where = "choices[" + c + "]";
+                    if (ch == null) { issues.Add(where + " is null"); continue; }
+                    if (string.IsNullOrEmpty(ch.flagA) && string.IsNullOrEmpty(ch.flagB))
+                        issues.Add(where + " writes no flag on either option");
+                    if (!string.IsNullOrEmpty(ch.flagA) && ch.flagA == ch.flagB)
+                        issues.Add(where + " has the same flag on both options — not a choice");
+                }
+
             // Blank strings inside the gating lists are ignored by WorldGating, but they're almost
             // always an authoring slip — surface them.
             if (pack.flagsRequired != null)

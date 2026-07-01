@@ -20,28 +20,24 @@ CI green per push; APK dispatch at the end.
 | 1 | `SignalState` + `RillState` (Core, pure, tested) — Signal tier 0–4 from flags; RILL memory-state machine from flags | ✅ this commit |
 | 2 | `RillLineLibrary` (Content SO) + `RillLineAuthor` (Editor, authors the 12 arc beats + W001–W012 entry lines into `Resources/Story/RillLines.asset`) + `RillCompanion` (Gameplay: orb + TextMesh subtitle, world-enter/flag/job triggers) + `EnsureRillCompanion()` on the rig | ✅ this commit |
 | 3 | Collectibles: `CollectibleSpawnDefinition` (+ `WorldPackDefinition.collectibles`), `CollectibleRuntime` (grab → `JobDirector.ReportCollect` + flag), JobDirector runtime spawn, `WorldJobLibrary` `Collect()`/`Pickup()` verbs, **W002 mineral + W004 fragment converted to REAL Collect steps**, `JobRuntime` early-grab BANK (anti-soft-lock) + 5 tests | ✅ this commit |
-| 4 | `ChoiceStation` (two-option interactable → writes flag; pack-data spawnable) + tests | ⬜ |
+| 4 | `ChoiceStation` (two-option interactable → writes flag; pack-data spawnable) + validator choice/collectible checks (incl. the un-completable-Collect guard) + 5 tests | ✅ this commit |
 | 5 | De-garble playback stub (tier → text variant, reads `TransmissionProgress`) — budget-permitting | ⬜ |
 | 6 | Close: HANDOFF entry, runbook/checklist RILL+fragment smoke items, **APK dispatch green** | ⬜ |
 
 ## ▶ RESUMING? — current state & exact next action
-- **Current micro-step:** Task 3 committed — collectibles are LIVE: `CollectibleSpawnDefinition` pack
-  data + `CollectibleRuntime` (grab → count + flag + clarity re-sync + absorb) + JobDirector spawn +
-  `WorldJobLibrary.Collect/Pickup` verbs; **W002 = 3 mineral samples, W004 = the first Transmission
-  fragment as a physical pickup** (`FRAGMENT_T1_FOUND` on grab). CRITICAL design note: physical pickups
-  can be grabbed ANY time, so `JobRuntime` gained a **collect BANK** (early/pre-accept grabs credit when
-  a matching Collect step goes live — `JobRuntimeCollectTests`, 5 tests; without this a grabbed-early
-  pickup soft-locked the contract). Verify CI on this push.
-- **Next action:** Task 4 — `Gameplay/Runtime/Story/ChoiceStation.cs`: self-building two-option
-  set-piece (XRSimpleInteractable panels, manager wiring + retry per `WorldTravelStation.CreateDoorway`
-  pattern), `Init(prompt, labelA, flagA, labelB, flagB)` → select writes the flag +
-  `ZIPTIDE: CHOICE_MADE flag=…` + locks both panels (RILL reacts via its FlagSet lines);
-  `[Serializable] ChoiceSpawnDefinition` {prompt, labelA, flagA, labelB, flagB, localPosition} +
-  `WorldPackDefinition.choices` list + JobDirector spawn (same Marker_ pattern). Pure flag-write logic
-  testable via a small `ChoiceLogic` helper if needed; no world authors one yet (first use W019/W043 —
-  M5). Then Task (5) de-garble stub if budget → Task 6 close + APK dispatch.
-- **Branch:** `terry-local-wip`. CI-green: `f276474`, `dcf67fb`; `fdb5738` (task 2) pending. APK verify =
-  `actions_run_trigger` workflow_dispatch on ci.yml (~20–30 min), check `build-android` + artifact.
+- **Current micro-step:** Task 4 committed — `ChoiceStation` (pedestal + two selectable panels, flag
+  write + lock, already-chosen saves render resolved) + `ChoiceSpawnDefinition` + `WorldPackDefinition.
+  choices` + JobDirector spawn; `WorldPackValidator` extended (collectible sanity, choice sanity, and
+  the **un-completable-Collect guard**: a Collect step demanding more items than the pack spawns is
+  reported) + 5 new validator tests. No world authors a choice yet (first: W019/W043 — M5).
+- **Next action:** Task 5 (budget-permitting) — de-garble playback stub: a small `TransmissionConsole`
+  interactable (pack-data or W004-authored later) that reads `TransmissionProgress.ComputeTier` and
+  shows the tier's text variant (4 authored garble stages). If budget is tight, SKIP to Task 6:
+  HANDOFF entry (tag after zz per single-operator log), TERRY_RUNBOOK + DEVICE_TEST_CHECKLIST items
+  (RILL lines in W001–W012, fragment pickup in W004, mineral collect in W002), MASTER_CHECKLIST state
+  line, then **dispatch the APK workflow** (`actions_run_trigger` on ci.yml, branch terry-local-wip)
+  and confirm `build-android` + `ziptide-apk` artifact green → stamp this file ✅ COMPLETE.
+- **Branch:** `terry-local-wip`. CI-green: `f276474`, `dcf67fb`, `fdb5738`; `b5033b4` (task 3) pending.
 
 ## Specs (condensed — execute without re-deriving; verified against code this session)
 - **Flags API:** `PlayerProfile.HasFlag/SetFlag` (`Core/Runtime/Persistence/PlayerProfile.cs:29-34`);

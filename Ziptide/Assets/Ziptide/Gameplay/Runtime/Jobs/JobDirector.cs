@@ -47,6 +47,7 @@ namespace Ziptide.Gameplay
             _playerTransform = GetPlayerTransform();
             CreateSpawnMarkers();
             CreateCollectibles();
+            CreateChoices();
             EnsureBoardAndKiosk();
             _runtime.StepChanged += OnStepChanged;
             _runtime.JobCompleted += OnJobCompleted;
@@ -122,6 +123,22 @@ namespace Ziptide.Gameplay
                 go.transform.localPosition = m.localPosition;
                 go.transform.localEulerAngles = m.localEulerAngles;
                 _markerTransforms.Add(go.transform);
+            }
+        }
+
+        // Materialize the pack's choice set-pieces at runtime (same pure-data pattern as the markers).
+        private void CreateChoices()
+        {
+            if (worldPack.choices == null || worldPack.choices.Count == 0) return;
+            var root = new GameObject("Choices");
+            root.transform.SetParent(transform);
+            foreach (var c in worldPack.choices)
+            {
+                if (c == null) continue;
+                var go = new GameObject("Choice_" + c.choiceId);
+                go.transform.SetParent(root.transform);
+                go.transform.localPosition = c.localPosition;
+                go.AddComponent<ChoiceStation>().Init(c);
             }
         }
 

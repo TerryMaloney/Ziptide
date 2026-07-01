@@ -110,5 +110,68 @@ namespace Ziptide.Tests.EditMode
             var issues = WorldPackValidator.Validate(null);
             Assert.AreEqual(1, issues.Count);
         }
+
+        // ── M1: collectibles + choices ──────────────────────────────────────
+
+        [Test]
+        public void CollectStep_WithEnoughPickups_PassesClean()
+        {
+            var ci = ScriptableObject.CreateInstance<CollectItemIdCountStepDefinition>();
+            ci.itemId = "mineral_sample"; ci.count = 3;
+
+            var pack = Pack();
+            pack.jobs.Add(JobWith(ci));
+            for (int i = 0; i < 3; i++)
+                pack.collectibles.Add(new CollectibleSpawnDefinition { itemId = "mineral_sample" });
+
+            Assert.IsEmpty(WorldPackValidator.Validate(pack));
+        }
+
+        [Test]
+        public void CollectStep_WithTooFewPickups_IsReported()
+        {
+            var ci = ScriptableObject.CreateInstance<CollectItemIdCountStepDefinition>();
+            ci.itemId = "transmission_fragment"; ci.count = 1;
+
+            var pack = Pack();
+            pack.jobs.Add(JobWith(ci)); // no pickup authored — un-completable
+
+            var issues = WorldPackValidator.Validate(pack);
+            Assert.AreEqual(1, issues.Count, string.Join(" | ", issues));
+            StringAssert.Contains("un-completable", issues[0]);
+        }
+
+        [Test]
+        public void Collectible_WithEmptyItemId_IsReported()
+        {
+            var pack = Pack();
+            pack.collectibles.Add(new CollectibleSpawnDefinition { itemId = "" });
+
+            var issues = WorldPackValidator.Validate(pack);
+            Assert.AreEqual(1, issues.Count, string.Join(" | ", issues));
+        }
+
+        [Test]
+        public void Choice_WritingNoFlags_OrTheSameFlag_IsReported()
+        {
+            var pack = Pack();
+            pack.choices.Add(new ChoiceSpawnDefinition { choiceId = "c1", flagA = "", flagB = "" });
+            pack.choices.Add(new ChoiceSpawnDefinition { choiceId = "c2", flagA = "SAME", flagB = "SAME" });
+
+            var issues = WorldPackValidator.Validate(pack);
+            Assert.AreEqual(2, issues.Count, string.Join(" | ", issues));
+        }
+
+        [Test]
+        public void WellFormedChoice_PassesClean()
+        {
+            var pack = Pack();
+            pack.choices.Add(new ChoiceSpawnDefinition
+            {
+                choiceId = "ending", flagA = "C12_W063_ENDING_A", flagB = "C12_W063_ENDING_B"
+            });
+
+            Assert.IsEmpty(WorldPackValidator.Validate(pack));
+        }
     }
 }
