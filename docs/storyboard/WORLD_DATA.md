@@ -88,12 +88,15 @@ These twelve are serialized in full as the reference pattern. Chapters 3–12 fo
 (seeds already in `CHAPTER_3…8-12.md` + `DLC.md`); serialize them on demand when each world is built — no
 value in front-loading 68 records that will drift before they're touched.
 
-> **BUILD STATUS (modularity sprint):** W002–W004 are **implemented from these records** via
+> **BUILD STATUS (modularity sprint + M1):** W002–W012 are **implemented from these records** via
 > `WorldLayoutLibrary` + `WorldJobLibrary` (Editor) — auto-built every APK build. Deviations from the
 > records, all deliberate: (1) **W002's gate is `toxiccity_complete`**, not `TUTORIAL_COMPLETE` — W000 is
-> parked (needs the ship system), so the chain must be playable today; (2) **Collect/Deliver steps are
-> deferred** (no collectible-spawning system yet) — contracts use GoToMarker/DisableDrones; upgrade the
-> step assets when collectibles land; (3) swarm/tendril combat = **drone stand-ins** until Phase E.
+> parked (needs the ship system), so the chain must be playable today; (2) ~~Collect/Deliver steps
+> deferred~~ **Collect steps are LIVE (M1)** — physical pickups spawn from pack data
+> (`CollectibleSpawnDefinition` → `CollectibleRuntime`; early grabs bank in `JobRuntime`): W002 has 3
+> `mineral_sample` pickups, **W004's first Transmission fragment is a real object** at the broadcast
+> core (`FRAGMENT_T1_FOUND` on grab). Deliver steps land with the M2 repair loop; (3) swarm/tendril
+> combat = **drone stand-ins** until M3.
 
 > Resource ids below (`credits`, `scrap`, `signal_node`, `mineral`, `crystal`, `memory_shard`, `spore`,
 > `prism`, `fuel_cell`, `data_chip`, `carapace`, `salt`, `resonator`, `jump_core`) are the `resourceId`

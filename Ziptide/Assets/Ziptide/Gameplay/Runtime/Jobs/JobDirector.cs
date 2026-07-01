@@ -46,6 +46,7 @@ namespace Ziptide.Gameplay
 
             _playerTransform = GetPlayerTransform();
             CreateSpawnMarkers();
+            CreateCollectibles();
             EnsureBoardAndKiosk();
             _runtime.StepChanged += OnStepChanged;
             _runtime.JobCompleted += OnJobCompleted;
@@ -121,6 +122,23 @@ namespace Ziptide.Gameplay
                 go.transform.localPosition = m.localPosition;
                 go.transform.localEulerAngles = m.localEulerAngles;
                 _markerTransforms.Add(go.transform);
+            }
+        }
+
+        // Materialize the pack's collectible pickups at runtime (same pure-data pattern as the
+        // spawn markers — no scene objects, survives world regeneration).
+        private void CreateCollectibles()
+        {
+            if (worldPack.collectibles == null || worldPack.collectibles.Count == 0) return;
+            var root = new GameObject("Collectibles");
+            root.transform.SetParent(transform);
+            foreach (var c in worldPack.collectibles)
+            {
+                if (c == null) continue;
+                var go = new GameObject("Collectible_" + c.itemId);
+                go.transform.SetParent(root.transform);
+                go.transform.localPosition = c.localPosition + Vector3.up * 0.9f; // hover at grab height
+                go.AddComponent<CollectibleRuntime>().Init(c, this);
             }
         }
 

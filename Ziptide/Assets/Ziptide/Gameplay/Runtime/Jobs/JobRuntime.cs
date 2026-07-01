@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Ziptide.Content;
 
@@ -22,6 +23,11 @@ namespace Ziptide.Gameplay
         public int ShootProgress { get; private set; }
         public int DroneProgress { get; private set; }
 
+        // Physical pickups can be grabbed BEFORE their Collect step is current (they exist in the world
+        // from scene start). Early grabs bank here and are credited the moment a matching Collect step
+        // becomes current — otherwise a destroyed pickup would soft-lock the contract.
+        private readonly Dictionary<string, int> _collectBank = new Dictionary<string, int>();
+
         public void StartJob(JobDefinition definition)
         {
             Definition = definition;
@@ -33,6 +39,9 @@ namespace Ziptide.Gameplay
             DroneProgress = 0;
             RefreshStepText();
             StepChanged?.Invoke();
+            // Pickups grabbed BEFORE accepting the job are already banked — credit them now (the bank
+            // deliberately survives StartJob: a collected physical item stays collected).
+            ApplyCollectBank();
         }
 
         public void ReportGoToArrived(string markerId)
@@ -45,8 +54,8 @@ namespace Ziptide.Gameplay
 
         public void ReportCollect(string itemId)
         {
-            if (IsComplete || Definition == null) return;
-            var step = GetCurrentStep();
+            if (IsComplete || string.IsNullOrEmpty(itemId)) return;
+            var step = Definition != null ? GetCurrentStep() : null;
             if (step is CollectItemIdCountStepDefinition collect && collect.itemId == itemId)
             {
                 CollectProgress++;
@@ -54,6 +63,13 @@ namespace Ziptide.Gameplay
                     AdvanceStep();
                 else
                     StepChanged?.Invoke();
+            }
+            else
+            {
+                // Grabbed before the job started or before its step is current — bank it;
+                // StartJob/ApplyCollectBank credit it the moment a matching Collect step is live.
+                _collectBank.TryGetValue(itemId, out int n);
+                _collectBank[itemId] = n + 1;
             }
         }
 
@@ -122,6 +138,34 @@ namespace Ziptide.Gameplay
             CurrentStepIndex++;
             RefreshStepText();
             StepChanged?.Invoke();
+            ApplyCollectBank();
+        }
+
+        // Credit banked early grabs against the step that just became current. May advance again
+        // (recursion terminates: each pass consumes bank and/or moves the step index forward).
+        private void ApplyCollectBank()
+        {
+            if (IsComplete) return;
+            var step = GetCurrentStep() as CollectItemIdCountStepDefinition;
+            if (step == null || string.IsNullOrEmpty(step.itemId)) return;
+            if (!_collectBank.TryGetValue(step.itemId, out int banked) || banked <= 0) return;
+
+            int need = step.count - CollectProgress;
+            int take = banked < need ? banked : need;
+            CollectProgress += take;
+            banked -= take;
+            if (banked > 0) _collectBank[step.itemId] = banked;
+            else _collectBank.Remove(step.itemId);
+
+            if (CollectProgress >= step.count)
+            {
+                AdvanceStep();
+            }
+            else
+            {
+                RefreshStepText();
+                StepChanged?.Invoke();
+            }
         }
 
         private void RefreshStepText()

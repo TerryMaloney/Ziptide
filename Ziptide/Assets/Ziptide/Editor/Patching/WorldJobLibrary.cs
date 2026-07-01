@@ -30,11 +30,23 @@ namespace Ziptide.Editor.Patching
             public string jobId, title, completionFlag;
             public List<(string kind, string markerId, Vector3 pos, int count)> steps = new List<(string, string, Vector3, int)>();
             public List<(string resourceId, double amount)> reward = new List<(string, double)>();
+            public List<CollectibleSpawnDefinition> pickups = new List<CollectibleSpawnDefinition>();
             public string[] flagsRequired = new string[0];
             public string[] flagsGranted = new string[0];
 
             public Spec Go(string markerId, Vector3 pos) { steps.Add(("go", markerId, pos, 0)); return this; }
             public Spec Drones(int count) { steps.Add(("drones", null, Vector3.zero, count)); return this; }
+            // Collect step: requires <count> pickups of <itemId> — pair with Pickup() entries below.
+            public Spec Collect(string itemId, int count) { steps.Add(("collect", itemId, Vector3.zero, count)); return this; }
+            // A physical pickup in the world (JobDirector spawns a CollectibleRuntime from pack data).
+            public Spec Pickup(string itemId, Vector3 pos, string flagOnCollect = "", string label = "")
+            {
+                pickups.Add(new CollectibleSpawnDefinition
+                {
+                    itemId = itemId, localPosition = pos, flagOnCollect = flagOnCollect, displayName = label
+                });
+                return this;
+            }
             public Spec Reward(string id, double amt) { reward.Add((id, amt)); return this; }
         }
 
@@ -54,6 +66,11 @@ namespace Ziptide.Editor.Patching
                     }
                     .Go("shaft_descent", new Vector3(10, 0.1f, 26))     // DeepShaft district
                     .Drones(3)                                           // the gallery swarm (drone stand-in)
+                    // REAL collect step (was deferred): three mineral samples along the gallery route.
+                    .Collect("mineral_sample", 3)
+                    .Pickup("mineral_sample", new Vector3(4, 0.1f, 24), label: "mineral sample")
+                    .Pickup("mineral_sample", new Vector3(-4, 0.1f, 28), label: "mineral sample")
+                    .Pickup("mineral_sample", new Vector3(-10, 0.1f, 24), label: "mineral sample")
                     .Go("pump_house", new Vector3(-16, 0.1f, 22))        // ChamberA hero building
                     .Reward("credits", 60).Reward("mineral", 5);
 
@@ -94,6 +111,12 @@ namespace Ziptide.Editor.Patching
                     .Go("junction_a", new Vector3(-18, 0.1f, 14))
                     .Go("junction_b", new Vector3(2, 0.1f, 28))
                     .Go("broadcast_core", new Vector3(-16, 0.1f, 40))
+                    // THE FIRST TRANSMISSION FRAGMENT IS A PHYSICAL OBJECT (was deferred): you must
+                    // pick it up at the broadcast core — FRAGMENT_T1_FOUND fires the moment you grab
+                    // it (the pack's flagsGranted keeps it too as an idempotent completion backstop).
+                    .Collect("transmission_fragment", 1)
+                    .Pickup("transmission_fragment", new Vector3(-16, 0.1f, 41),
+                            flagOnCollect: ZiptideFlags.FRAGMENT_T1_FOUND, label: "?? recording")
                     .Reward("credits", 90).Reward("memory_shard", 1);
 
                 case "W005_OxidizedCanopy":
@@ -258,6 +281,16 @@ namespace Ziptide.Editor.Patching
                     else
                         marker.localPosition = s.pos;
                 }
+                else if (s.kind == "collect")
+                {
+                    // markerId carries the itemId for collect steps (same tuple, no schema churn).
+                    var step = LoadOrCreate<CollectItemIdCountStepDefinition>(stepPath);
+                    step.itemId = s.markerId;
+                    step.count = s.count;
+                    step.stepLabel = "Collect " + s.count + " " + s.markerId.Replace('_', ' ');
+                    EditorUtility.SetDirty(step);
+                    job.steps.Add(step);
+                }
                 else // "drones"
                 {
                     var step = LoadOrCreate<DisableDronesCountStepDefinition>(stepPath);
@@ -267,6 +300,10 @@ namespace Ziptide.Editor.Patching
                     job.steps.Add(step);
                 }
             }
+
+            // Physical pickups are PACK data (JobDirector spawns CollectibleRuntime at scene start).
+            pack.collectibles.Clear();
+            foreach (var p in spec.pickups) pack.collectibles.Add(p);
 
             job.reward.Clear();
             foreach (var (resourceId, amount) in spec.reward)

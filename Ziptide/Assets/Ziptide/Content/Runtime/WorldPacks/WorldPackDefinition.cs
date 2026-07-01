@@ -33,6 +33,11 @@ namespace Ziptide.Content
         [Tooltip("Named spawn points for GoToMarker steps and travel spawn.")]
         public List<SpawnMarkerDefinition> spawnMarkers = new List<SpawnMarkerDefinition>();
 
+        [Header("Collectibles")]
+        [Tooltip("Physical pickups spawned at scene start (collect steps / Transmission fragments). " +
+                 "Pure data — JobDirector materializes CollectibleRuntime objects, like spawnMarkers.")]
+        public List<CollectibleSpawnDefinition> collectibles = new List<CollectibleSpawnDefinition>();
+
         [Header("Audio")]
         [Tooltip("Background music for this world. Null = silence.")]
         public AudioProfile audioProfile;
