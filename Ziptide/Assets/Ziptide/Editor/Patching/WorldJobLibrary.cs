@@ -96,6 +96,65 @@ namespace Ziptide.Editor.Patching
                     .Go("broadcast_core", new Vector3(-16, 0.1f, 40))
                     .Reward("credits", 90).Reward("memory_shard", 1);
 
+                case "W005_OxidizedCanopy":
+                    return new Spec
+                    {
+                        jobId = "w005_harvest",
+                        title = "Scrub the Spores, Work the Canopy",   // Mara's first contract
+                        completionFlag = ZiptideFlags.W005_COMPLETE,
+                        flagsRequired = new[] { ZiptideFlags.W004_COMPLETE },
+                        flagsGranted = new[] { ZiptideFlags.W005_COMPLETE, ZiptideFlags.C2_W005_JOB_COMPLETE },
+                    }
+                    .Go("canopy_lift", new Vector3(-22, 0.1f, 14))
+                    .Drones(4)
+                    .Go("scrubber", new Vector3(2, 0.1f, 32))
+                    .Reward("credits", 110).Reward("spore", 6);
+
+                case "W006_MirrorFlats":
+                    return new Spec
+                    {
+                        jobId = "w006_prisms",
+                        title = "Align the Prism Towers",
+                        completionFlag = ZiptideFlags.W006_COMPLETE,
+                        flagsRequired = new[] { ZiptideFlags.W005_COMPLETE },
+                        flagsGranted = new[] { ZiptideFlags.W006_COMPLETE },
+                    }
+                    .Go("flats_edge", new Vector3(0, 0.1f, 4))
+                    .Go("prism_tower_a", new Vector3(-26, 0.1f, 15))
+                    .Go("prism_tower_b", new Vector3(26, 0.1f, 17))
+                    .Go("beam_collector", new Vector3(0, 0.1f, 35))
+                    .Reward("credits", 100).Reward("prism", 3);
+
+                case "W007_SableStation":
+                    return new Spec
+                    {
+                        jobId = "w007_fuelrig",
+                        title = "Repair Sable's Fuel Rig",
+                        completionFlag = ZiptideFlags.W007_COMPLETE,
+                        flagsRequired = new[] { ZiptideFlags.W006_COMPLETE },
+                        // First Sable contact seeds the Ch.4 arc.
+                        flagsGranted = new[] { ZiptideFlags.W007_COMPLETE, ZiptideFlags.C4_SABLE_INTRO },
+                    }
+                    .Go("airlock", new Vector3(-20, 0.1f, 12))
+                    .Go("fuel_rig", new Vector3(4, 0.1f, 27))
+                    .Go("observation_deck", new Vector3(-18, 0.1f, 40)) // the Shell-grid viewport reveal
+                    .Reward("credits", 120).Reward("fuel_cell", 1);
+
+                case "W008_SealedArchive":
+                    return new Spec
+                    {
+                        jobId = "w008_archive",
+                        title = "Restore the Archive",
+                        completionFlag = ZiptideFlags.W008_COMPLETE,
+                        flagsRequired = new[] { ZiptideFlags.W007_COMPLETE },
+                        // The Architects get NAMED here — Ch.2's lore turn.
+                        flagsGranted = new[] { ZiptideFlags.W008_COMPLETE, ZiptideFlags.C2_ARCHITECTS_NAMED },
+                    }
+                    .Go("vault_door", new Vector3(-18, 0.1f, 12))
+                    .Go("power_core", new Vector3(2, 0.1f, 26))
+                    .Go("reader_hall", new Vector3(-16, 0.1f, 38))
+                    .Reward("credits", 120).Reward("data_chip", 2);
+
                 default:
                     return null;
             }
