@@ -21,8 +21,8 @@ device pass, batches sized so a cutoff never strands half-done work.
 | 2 | Per-world sky/theme modularity (layout `Sky theme` block → `ThemeAuthor` → generator wires per-world Theme+WorldProfile) | ✅ this commit (CI pending) |
 | 3 | Weapon visual/feel data-drive (`ItemDefinition` visualScale/visualColor/gripLocalPos/muzzleLocalPos + `ItemFactory` fallbacks; zero/clear = unchanged) | ✅ this commit (CI pending) |
 | 4 | **WORLD BUILDOUT W002–W012** (`WorldLayoutLibrary` + `WorldJobLibrary`; batches a: W002–W004 ✅ this commit, b: W005–W008 ⬜, c: W009–W012 ⬜; APK dispatch after each) | 🔄 batch (a) authored |
-| 5 | Ship modular foundation (`ShipDefinition` data SO + `docs/systems/SHIPS.md`) | ⬜ |
-| 6 | Creature data modularity (`DroneCombatProfile` variants per biome + `CreatureDefinition` catalog) | ⬜ |
+| 5 | Ship modular foundation (`ShipDefinition` data SO + `docs/systems/SHIPS.md` — ship = mobile travel station, phased S0–S4) | ✅ this commit |
+| 6 | Creature data modularity (`CreatureVariantAuthor`: drone_easy/standard/veteran bands in `Resources/Enemies` + creature catalog; W002 patrol uses drone_easy) | ✅ this commit |
 | 7 | Sprint close (HANDOFF/checklist/runbook refresh + final APK green) | ⬜ |
 
 ## ▶ RESUMING? — current state & exact next action
@@ -36,9 +36,11 @@ device pass, batches sized so a cutoff never strands half-done work.
   **re-dispatched** — find the newest `workflow_dispatch` run on `terry-local-wip` and check it. If it
   fails on disk again: free more (remove /opt/hostedtoolcache subdirs) or switch the job to a
   larger runner. If it PASSES: the generated-worlds pipeline is proven end-to-end (audit incl.).
-- **Next action:** verify CI (compile+EditMode) on this push → verify the re-dispatched APK run → if
-  both green, dispatch ANOTHER APK build (it will now author W002–W004 + build their scenes — watch the
-  audit!) → then batch (b): W005–W008 specs in the two libraries (same pattern, WORLD_DATA records).
+- **Next action:** verify CI (compile+EditMode) on the last pushes → verify the re-dispatched APK run
+  (disk fix) → if both green, dispatch ANOTHER APK build (it will now author creature data + W002–W004
+  layouts + build their scenes — watch the audit!) → then batch (b): W005–W008 specs in
+  `WorldLayoutLibrary`+`WorldJobLibrary` (same pattern, WORLD_DATA records; add the needed
+  `W###_COMPLETE` consts to ZiptideFlags).
 - **Known simplifications (documented, deliberate):** Collect/Deliver steps deferred (no collectible
   spawning yet) — batch jobs use Go/Drones only; swarm/tendril = drone stand-ins (Phase E); W002 gate is
   `toxiccity_complete` not TUTORIAL_COMPLETE (W000 parked). Branch `terry-local-wip`; last CI-green `c855213`.

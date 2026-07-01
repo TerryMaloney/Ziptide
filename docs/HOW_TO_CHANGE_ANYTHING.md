@@ -43,11 +43,11 @@ Legend: **Edit** = the one place to change · **Then** = how it takes effect · 
 | **Give a weapon a real 3D model** | set `modelPrefab` on its definition (import the .glb first) | factory hook (visual swap is a small ItemFactory change if not yet wired for that type) | device |
 
 ## Creatures / drones
-*(Task 6 expands this — section updated when it lands.)*
 
 | I want to… | Edit | Then | Verify |
 |---|---|---|---|
-| **Tune drone combat difficulty** (speed, fire rate, damage feel) | a `DroneCombatProfile` asset in `Resources/Enemies/` | set that asset's name as `variantId` on the world's `DroneZoneDef` (layout asset) | fight it on device |
+| **Tune drone combat difficulty per world** | the `DroneCombatProfile` variants in `Resources/Enemies/` (`drone_easy` / `drone_standard` / `drone_veteran` — chapter bands, authored by `CreatureVariantAuthor`) — or add a new one | set its name as `variantId` on the world's `DroneZoneDef` (layout asset); regen | fight it on device |
+| **Story-creature stats/loot** (Phase-E prep) | the `CreatureDefinition` assets under `Content/Creatures/Generated/` (swarm_bug, tendril, …) — data-ready; **nothing consumes them until Phase E's `CreatureRuntime`** | — | EditMode/CI |
 | **Change where/how many drones spawn in a world** | the layout's `droneZones` (center/radius/count/respawnDelay/combat) | regen | `ZIPTIDE: DRONE_DOWN` etc. |
 | **New creature *types* (non-drone)** | Phase E (`docs/systems/CREATURE_DESIGN.md`) — `CreatureDefinition` data exists; runtime behaviors not built yet | — | — |
 
@@ -71,8 +71,13 @@ Legend: **Edit** = the one place to change · **Then** = how it takes effect · 
 | ⚠ **PvP scene/arena/HUD** | scene-side files under `Gameplay/Runtime/Pvp/` — pending Terry's device round; coordinate first | — | device |
 
 ## Ships / vehicles
-*(Task 5 creates this system — section updated when it lands.)* Today: static berth placeholder only
-(`ShipyardBerthDef` in the layout). Flight architecture doc coming at `docs/systems/SHIPS.md`.
+
+| I want to… | Edit | Then | Verify |
+|---|---|---|---|
+| **Ship size/cockpit/flight feel/comfort vignette** | the `ShipDefinition` asset (data-only today; the S1 boardable-shell runtime consumes it — build plan in `docs/systems/SHIPS.md`) | — | — |
+| **Add an upgrade socket / a second hull** | `slots` list / a new `ShipDefinition` asset | — | — |
+| **Where the berth+placeholder ship sits in a world** | the layout's `ShipyardBerthDef` | regen | device |
+| ⚠ **Build the boardable ship (S1+)** | follow `docs/systems/SHIPS.md` phases — the ship is a **mobile travel station**; NEVER bypass `TravelCoordinator`, never parent the rig to the hull | — | device |
 
 ## Audio
 | I want to… | Edit | Then | Verify |

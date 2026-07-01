@@ -81,7 +81,7 @@ namespace Ziptide.Editor.Patching
             Connect(kit, "ChamberA", "CisternMouth", ConnectionKind.Ramp, 5); // loop closes
 
             // Swarm world — drone stand-in until Phase-E creature runtime (WORLD_DATA W002 note).
-            kit.droneZones.Add(new DroneZoneDef { id = "Patrol_Gallery", center = new Vector3(24, 0, 6), radius = 5f, count = 3, respawnDelay = 15f, combat = true });
+            kit.droneZones.Add(new DroneZoneDef { id = "Patrol_Gallery", center = new Vector3(24, 0, 6), radius = 5f, count = 3, respawnDelay = 15f, combat = true, variantId = "drone_easy" });
             kit.spawnDistrictId = "CisternMouth";
             kit.spawnStarterWeapons = true;
             kit.shipyard.enabled = false;
