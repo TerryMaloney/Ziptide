@@ -127,6 +127,7 @@ namespace Ziptide.Gameplay
             EnsureBelt();
             EnsureStunReceiver();
             EnsureCreditsHud();
+            EnsureRillCompanion();
 
             // #region agent log
             LogRaySnapshot("Awake_AFTER");
@@ -210,6 +211,20 @@ namespace Ziptide.Gameplay
             {
                 gameObject.AddComponent<CreditsHud>();
                 Debug.Log("ZIPTIDE: CREDITS_HUD_ENSURED on persistent rig");
+            }
+        }
+
+        /// <summary>
+        /// Ensures RILL (the story companion — orb + subtitle line delivery) lives on the persistent rig
+        /// so it crosses scenes automatically, per the MASTER_BUILD_PLAN §5 spec ("ships with
+        /// PlayerRigPersistence"). Same rig-ensured pattern as the stun receiver / credits HUD.
+        /// </summary>
+        private void EnsureRillCompanion()
+        {
+            if (GetComponent<RillCompanion>() == null)
+            {
+                gameObject.AddComponent<RillCompanion>();
+                Debug.Log("ZIPTIDE: RILL_ENSURED on persistent rig");
             }
         }
 

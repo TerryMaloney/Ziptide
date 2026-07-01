@@ -18,26 +18,31 @@ CI green per push; APK dispatch at the end.
 |---|------|--------|
 | 0 | GAME_PLAN.md (roadmap-of-record M0–M8) + pointer updates + this sprint open | ✅ `f276474` |
 | 1 | `SignalState` + `RillState` (Core, pure, tested) — Signal tier 0–4 from flags; RILL memory-state machine from flags | ✅ this commit |
-| 2 | `RillLineLibrary` (Content SO) + `RillLineAuthor` (Editor, authors the 12 arc beats + W001–W012 entry lines into `Resources/Story/RillLines.asset`) + `RillCompanion` (Gameplay: orb + TextMesh subtitle, world-enter/flag/job triggers) + `EnsureRillCompanion()` on the rig | ⬜ |
+| 2 | `RillLineLibrary` (Content SO) + `RillLineAuthor` (Editor, authors the 12 arc beats + W001–W012 entry lines into `Resources/Story/RillLines.asset`) + `RillCompanion` (Gameplay: orb + TextMesh subtitle, world-enter/flag/job triggers) + `EnsureRillCompanion()` on the rig | ✅ this commit |
 | 3 | Collectibles: `CollectibleSpawnDefinition` (+ `WorldPackDefinition.collectibles`), `CollectibleRuntime` (grab → `JobDirector.ReportCollect` + flag), JobDirector runtime spawn, `WorldJobLibrary` `Collect()`/`Pickup()` verbs, **W002 mineral + W004 fragment converted to REAL Collect steps**, tests | ⬜ |
 | 4 | `ChoiceStation` (two-option interactable → writes flag; pack-data spawnable) + tests | ⬜ |
 | 5 | De-garble playback stub (tier → text variant, reads `TransmissionProgress`) — budget-permitting | ⬜ |
 | 6 | Close: HANDOFF entry, runbook/checklist RILL+fragment smoke items, **APK dispatch green** | ⬜ |
 
 ## ▶ RESUMING? — current state & exact next action
-- **Current micro-step:** Task 1 committed — `Core/Runtime/SignalState.cs` + `RillState.cs`
-  (+ `RillMemoryState` enum) + `Tests/EditMode/StoryStateTests.cs` (7 tests). Verify CI on this push.
-- **Next action:** Task 2 — `Content/Runtime/Story/RillLineLibrary.cs` (SO: List&lt;RillLine&gt;
-  {id, trigger(WorldEnter|FlagSet|JobComplete), key, requiredState(AnyOr…), text}); an Editor
-  `RillLineAuthor.EnsureAuthored()` that creates `Assets/Ziptide/Resources/Story/RillLines.asset`
-  populated with the 12 arc beats (§5.2 lines) + a world-entry line per W001–W012 (register per
-  RillMemoryState); wire `EnsureAuthored()` into `BuildAndroid.PatchScenesThenAPK` next to
-  `CreatureVariantAuthor.EnsureAllAuthored()`; then `Gameplay/Runtime/Story/RillCompanion.cs` (orb +
-  TextMesh subtitle, sceneLoaded + 1s flag-diff poll, queue, `ZIPTIDE: RILL_LINE`) + ONE
-  `EnsureRillCompanion()` call in `PlayerRigPersistence.Awake` (after `EnsureCreditsHud()`).
-- **Then:** Task 3 → 4 → (5) → 6 in order. Each commit updates this board + this section.
-- **Branch:** `terry-local-wip`. Last CI-green: `f276474` (docs). APK verify = `actions_run_trigger`
-  workflow_dispatch on ci.yml (~20–30 min), check `build-android` job + `ziptide-apk` artifact.
+- **Current micro-step:** Task 2 committed — `RillLineLibrary` (Content/Story) + `RillLineAuthor`
+  (Editor: 12 canonical beats §5.2 + 11 Ch.1–2 entry lines + 4 flag reactions, build-wired next to
+  `CreatureVariantAuthor`) + `RillCompanion` (Gameplay/Story: orb near left shoulder, TextMesh subtitle
+  low-center, sceneLoaded + 1s flag-diff poll, once-latch via `RILL_SAID_<id>` profile flags,
+  `ZIPTIDE: RILL_LINE`) + `EnsureRillCompanion()` on the rig. Verify CI on this push.
+- **Next action:** Task 3 — collectibles. (i) `Content/Runtime/WorldPacks/CollectibleSpawnDefinition.cs`
+  ([Serializable]: itemId, displayName, localPosition, flagOnCollect, accentColor) + `collectibles`
+  list on `WorldPackDefinition`; (ii) `Gameplay/Runtime/Story/CollectibleRuntime.cs` (self-built visual,
+  collider BEFORE XRGrabInteractable — gotcha #6; selectEntered → `JobDirector.ReportCollect(itemId)` +
+  SetFlag(flagOnCollect) + `TransmissionProgress.SyncClarityFlags` + destroy; `ZIPTIDE: COLLECTED`);
+  (iii) JobDirector spawns pack collectibles at Start (Marker_ pattern); (iv) `WorldJobLibrary`:
+  `Collect(itemId,count)` + `Pickup(itemId,pos,flag)` verbs; W002 gains 3 `mineral_sample` pickups +
+  Collect step after the drones; W004 gains the fragment pickup at `broadcast_core`
+  (flagOnCollect=FRAGMENT_T1_FOUND) + Collect step last; (v) EditMode tests (collect counting against a
+  CollectItemIdCountStepDefinition; spawn-def flag write). Update WORLD_DATA deferred notes.
+- **Then:** Task 4 → (5) → 6. Each commit updates this board + this section.
+- **Branch:** `terry-local-wip`. Last CI-green: `f276474`; `dcf67fb` (task 1) pending. APK verify =
+  `actions_run_trigger` workflow_dispatch on ci.yml (~20–30 min), check `build-android` + artifact.
 
 ## Specs (condensed — execute without re-deriving; verified against code this session)
 - **Flags API:** `PlayerProfile.HasFlag/SetFlag` (`Core/Runtime/Persistence/PlayerProfile.cs:29-34`);

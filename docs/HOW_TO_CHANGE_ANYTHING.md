@@ -65,6 +65,9 @@ Legend: **Edit** = the one place to change · **Then** = how it takes effect · 
 | **Story canon** | `docs/storyboard/STORY_BIBLE.md` + `THE_TRANSMISSION.md` (locked — deepen, don't contradict) | serialize changes into `WORLD_DATA.md` records → world/job assets | cohesion checklist in THE_TRANSMISSION §9 |
 | **A world's story data** (flags, fragments, beats → mechanics) | its record in `docs/storyboard/WORLD_DATA.md`, then the matching pack/job assets | see Worlds rows above | validator + flag log tags |
 | **Transmission fragments/clarity** | fragment flags live in `ZiptideFlags`; tier derivation in `TransmissionProgress` (pure, tested — thresholds are code by design) | clarity re-syncs after any grant | `ZIPTIDE: TRANSMISSION_CLARITY` |
+| **What RILL says (a line's text / add a line)** | `Editor/Patching/RillLineAuthor.cs` (code = source of truth; asset regenerates every build) — triggers: WorldEnter(sceneName) / FlagSet(flag) | build re-authors `Resources/Story/RillLines.asset`; `RillCompanion` (rig-ensured) delivers | `ZIPTIDE: RILL_LINE id=…` |
+| **RILL's arc pacing (when the register shifts)** | `Core/Runtime/RillState.cs` capstone-flag mapping (pure, tested) | derived — never stored | `StoryStateTests` |
+| **Signal pressure (what tier a world grants)** | the world's `flagsGranted` (SIGNAL_THRESHOLD_*) in `WorldJobLibrary`; consumers call `SignalState.Tier(profile)` | live next build | `StoryStateTests` |
 
 ## Economy
 | I want to… | Edit | Then | Verify |

@@ -43,6 +43,8 @@ namespace Ziptide.Build
             // scene created + enabled here and populated in the loop below. Author a layout → it ships.
             try { Ziptide.Editor.Patching.CreatureVariantAuthor.EnsureAllAuthored(); }
             catch (Exception ex) { Debug.LogWarning("[Ziptide] Creature data author warning: " + ex.Message); }
+            try { Ziptide.Editor.Patching.RillLineAuthor.EnsureAuthored(); }
+            catch (Exception ex) { Debug.LogWarning("[Ziptide] RILL line author warning: " + ex.Message); }
             try { Ziptide.Editor.Patching.WorldLayoutLibrary.EnsureAllAuthored(); }
             catch (Exception ex) { Debug.LogWarning("[Ziptide] World layout library warning: " + ex.Message); }
             try { Ziptide.Editor.Patching.WorldStubGenerator.EnsureGeneratedInBuildSettings(); }
