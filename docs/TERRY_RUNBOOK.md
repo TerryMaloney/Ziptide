@@ -39,6 +39,22 @@ Do these in order after pulling. Each generates committable assets. *(This mirro
 - [ ] Send the operator the **❌s + feel notes** (ray length, drone speed, scanner size, hop distance, gun
   grip, city scale). Those drive the next round.
 
+## 2b. NEW — the 11 story worlds (modularity sprint; they build themselves)
+The build now **auto-authors and ships W002–W012** (no menu steps — they appear in the Y+B dev menu after
+your next build/sideload). Quick smoke per world (a minute each, warp via Y+B):
+- [ ] Spawn is on solid ground, you can walk the loop, and the **sky/mood is distinct** (W002 pitch-dark
+  cistern → W003 bright mesas → W004 dead-screen dread → W005 rust dusk → W006 blinding salt → W007
+  space station + HUGE gridded planet → W008 gold-lit archive → W009 amber swarm city → W010 storm coast →
+  W011 dark resonance → W012 raw void + the Shell filling the sky).
+- [ ] The kiosk offers the contract; the objective board updates; drones fight where expected (W002 easy /
+  W005+W009 standard).
+- [ ] **Story gating:** doors to W002 stay LOCKED until the ToxicCity bounty is done, then unlock in chain
+  order (`TRAVEL_LOCKED` in logcat when locked — that's correct behavior now, not a bug).
+- [ ] Completing W004's contract logs `WORLD_FLAGS_GRANTED` + `TRANSMISSION_CLARITY tier=1` (the first
+  fragment!).
+- [ ] Feel notes: which worlds' scale/colors/heights feel wrong — each is fixable by editing ITS layout
+  asset fields (see `HOW_TO_CHANGE_ANYTHING.md`).
+
 ## 3. The two open judgment calls (yours)
 - **"Can you run in Toxic City?"** — was it the input bug (now fixed) or actual walls/narrow streets? If
   still wall-blocked, say so and the streets get widened.

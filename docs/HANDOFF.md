@@ -28,6 +28,37 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-01 (zz) — operator (Fable 5): THE MODULARITY SPRINT — everything modular, 11 worlds authored
+Terry's directive: Fable 5 is nearly out of usage; make everything modular + documented so **Opus can
+finish without breaking anything**, build max content, keep it crash-resumable. Sprint tracked live in
+**`docs/SPRINT.md`** (the takeover file — one-line prompt: *"Read docs/SPRINT.md and continue"*).
+- **Modularity shipped (all CI-green):**
+  - **`HOW_TO_CHANGE_ANYTHING.md`** — the playbook: change X → edit exactly Y → Z verifies, across
+    worlds/sky/weapons/creatures/story/economy/PvP/ships + the do-not-touch list. THE Opus safety net.
+  - **Per-world skies:** layout `Sky theme` block → `ThemeAuthor` → per-world Theme+WorldProfile assets;
+    "change W007's sky" = edit two colors on its layout asset.
+  - **Weapon tuning:** `ItemDefinition.visualScale/visualColor/gripLocalPos/muzzleLocalPos` (zero = keep
+    factory default) — gun feel is per-asset now.
+  - **Ships:** `ShipDefinition` (hull/cockpit/flight-feel/upgrade slots) + `docs/systems/SHIPS.md` — the
+    locked architecture (ship = **mobile travel station**; fly-out is presentation; S0–S4 phased plan
+    with contract guardrails).
+  - **Creatures:** `drone_easy/standard/veteran` DroneCombatProfile bands in `Resources/Enemies` (a
+    world picks via `DroneZoneDef.variantId`) + the Phase-E `CreatureDefinition` catalog.
+- **CONTENT: all 11 story worlds W002–W012 authored as data** (`WorldLayoutLibrary` + `WorldJobLibrary`,
+  from `WORLD_DATA.md`): each with a distinct sky/palette/fog identity, walkable district loop, story
+  contract + rewards, and **live chapter gating** (toxiccity_complete→W002→…→W012). Beats live:
+  **FRAGMENT_T1** (W004, first Transmission fragment), C4_SABLE_INTRO (W007), C2_ARCHITECTS_NAMED
+  (W008), C2_W009_RILL_MISIDENTIFIED, SIGNAL_THRESHOLD_2 (W010), **C2_CONTAINMENT_REVEALED** (W012 —
+  the Shell at 30° filling the sky). The BUILD authors layouts + scenes + packs + jobs itself — a new
+  world ships with zero manual steps; adding W013 = one ~30-line spec per library.
+- **CI infra fixed en route:** the APK job was dying on runner-disk exhaustion pulling the Unity image
+  (NOT code) — `ci.yml` now frees ~25-30GB first.
+- **Deliberate deferrals (documented in WORLD_DATA + SPRINT):** Collect/Deliver steps (needs collectible
+  spawning); swarm/tendril runtime (Phase E — drone stand-ins); W000 tutorial (needs the ship).
+- **Next / verification state:** see `SPRINT.md` "RESUMING?" — the full-pipeline APK dispatch (builds
+  all 11 worlds through the audit) is the remaining proof; Terry's device pass then covers everything.
+- **Commits:** `9b9ff2a`→`bd9946d` on `terry-local-wip`, every push CI-green.
+
 ### 2026-07-01 (yy) — operator (Fable 5): first single-operator work pass — world factory + hardening slate
 First session under the consolidated model. Read the spine, took the highest-leverage ⚙CI slate; two
 pushes, both small-commit + CI-verified. **No rig/PvP/scene files touched** — Terry's pending device pass
