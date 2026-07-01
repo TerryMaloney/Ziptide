@@ -43,6 +43,7 @@ Skim this first; the deep docs are linked per item.
 ### Worlds & dev tools
 - 🟢 Scenes: `_Boot`, `MilestoneA_GrabCube`, `D0_City` (legacy blockout), `SandboxTestLab`, **`StarterWorld`** (10-zone onboarding graybox), **`ToxicCity`** (new blueprint city), **`PvP_Arena01`**.
 - 🟢 **ToxicCity WORLD BLUEPRINT** — `CityLayoutDefinition` + `CityBuilder` + `ScenePatcherToxicCity`: a data-driven, reusable "clone-a-world" recipe (districts/canals/hero interiors/shipyard). *(T-Dog)*
+- 🟢 **WORLD FACTORY (`WorldStubGenerator`)** — the blueprint generalized: any `CityLayoutDefinition` with a `sceneName` auto-becomes a full world (generated scene + WorldPack + exit door + spawn + jobs shell + Build Settings), regenerated on **every build**. World #2–#80 = one layout asset each. CI-green; first real layout (W002) not yet authored. *(Fable 5)*
 - 🟢 **Developer Warp** + **in-VR Dev Menu** (Y+B → warp any world, TMP fixed); Sandbox; scene-dump exporter.
 - 🟢 **W001 story + first contract:** STORY.md beats + `ToxicCity_Contract` job (4 steps) with bounty **reward** (`JobDefinition.reward` + `JobRewards.Grant`, tested) → passage credits. *(Architect)* Runtime grant-hook + ObjectiveBoard/RILL text pending.
 
