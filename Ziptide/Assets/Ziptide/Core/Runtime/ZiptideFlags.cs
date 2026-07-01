@@ -113,6 +113,9 @@ namespace Ziptide.Core
         public const string W006_COMPLETE           = "W006_COMPLETE";
         public const string W007_COMPLETE           = "W007_COMPLETE";
         public const string W008_COMPLETE           = "W008_COMPLETE";
+        public const string W010_COMPLETE           = "W010_COMPLETE";
+        public const string W011_COMPLETE           = "W011_COMPLETE";
+        public const string W012_COMPLETE           = "W012_COMPLETE";
         public const string W009_COMPLETE           = "W009_COMPLETE";
         public const string W019_COMPLETE           = "W019_COMPLETE";
         public const string W020_COMPLETE           = "W020_COMPLETE";

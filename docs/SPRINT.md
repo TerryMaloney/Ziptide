@@ -20,7 +20,7 @@ device pass, batches sized so a cutoff never strands half-done work.
 | 1 | `HOW_TO_CHANGE_ANYTHING.md` playbook (skeleton + sections as tasks land) | 🔄 running (sky+weapons sections done) |
 | 2 | Per-world sky/theme modularity (layout `Sky theme` block → `ThemeAuthor` → generator wires per-world Theme+WorldProfile) | ✅ this commit (CI pending) |
 | 3 | Weapon visual/feel data-drive (`ItemDefinition` visualScale/visualColor/gripLocalPos/muzzleLocalPos + `ItemFactory` fallbacks; zero/clear = unchanged) | ✅ this commit (CI pending) |
-| 4 | **WORLD BUILDOUT W002–W012** (`WorldLayoutLibrary` + `WorldJobLibrary`; batch a: W002–W004 ✅ `a903672` CI-green, batch b: W005–W008 ✅ this commit, batch c: W009–W012 ⬜; APK dispatch validates all) | 🔄 batches a+b authored |
+| 4 | **WORLD BUILDOUT W002–W012** (`WorldLayoutLibrary` + `WorldJobLibrary`; batch a: W002–W004 ✅ CI-green, batch b: W005–W008 ✅ CI-pending `ddb7f02`, batch c: W009–W012 ✅ this commit) — **ALL 11 WORLDS AUTHORED**; the full-pipeline APK dispatch is the remaining proof | 🔄 verify |
 | 5 | Ship modular foundation (`ShipDefinition` data SO + `docs/systems/SHIPS.md` — ship = mobile travel station, phased S0–S4) | ✅ this commit |
 | 6 | Creature data modularity (`CreatureVariantAuthor`: drone_easy/standard/veteran bands in `Resources/Enemies` + creature catalog; W002 patrol uses drone_easy) | ✅ this commit |
 | 7 | Sprint close (HANDOFF/checklist/runbook refresh + final APK green) | ⬜ |
@@ -36,12 +36,13 @@ device pass, batches sized so a cutoff never strands half-done work.
   **re-dispatched** — find the newest `workflow_dispatch` run on `terry-local-wip` and check it. If it
   fails on disk again: free more (remove /opt/hostedtoolcache subdirs) or switch the job to a
   larger runner. If it PASSES: the generated-worlds pipeline is proven end-to-end (audit incl.).
-- **Next action:** all sprint pushes so far are **CI-green** (`9b9ff2a…a722222`). Batch (b) W005–W008
-  just committed (canopy/mirror-flats/sable-station/archive — layouts + contracts + Ch.2 gating chain
-  W004→W005→W006→W007→W008, C4_SABLE_INTRO + C2_ARCHITECTS_NAMED granted). Verify CI on this push →
-  check the disk-fix APK dispatch (`28548558401`) → if green, **dispatch a fresh APK build** (authors
-  creature data + all 7 world layouts + builds their scenes through the audit) → then batch (c)
-  W009–W012 (chitinwall city / tidal coastal / hum underground / void gate — same pattern) → Task 7 close.
+- **Next action:** batch (c) just committed — **all 11 story worlds (W002–W012) are now authored** with
+  the complete Ch.1–2 gating chain (toxiccity_complete→W002→…→W012) and beats: FRAGMENT_T1 (W004),
+  C4_SABLE_INTRO (W007), C2_ARCHITECTS_NAMED (W008), C2_W009_RILL_MISIDENTIFIED, SIGNAL_THRESHOLD_2
+  (W010), C2_CONTAINMENT_REVEALED (W012 capstone, planet=the Shell at 30°). Verify CI on `ddb7f02` +
+  this push → check the disk-fix APK dispatch `28548558401` → **dispatch a fresh APK** (authors creature
+  data + all 11 layouts + generates/populates 11 scenes + audit + APK — the make-or-break world-factory
+  proof; if the audit flags a world, fix its layout numbers, re-dispatch) → Task 7 close-out docs.
 - **Known simplifications (documented, deliberate):** Collect/Deliver steps deferred (no collectible
   spawning yet) — batch jobs use Go/Drones only; swarm/tendril = drone stand-ins (Phase E); W002 gate is
   `toxiccity_complete` not TUTORIAL_COMPLETE (W000 parked). Branch `terry-local-wip`; last CI-green `c855213`.

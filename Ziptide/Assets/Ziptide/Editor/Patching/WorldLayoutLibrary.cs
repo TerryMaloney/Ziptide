@@ -39,6 +39,10 @@ namespace Ziptide.Editor.Patching
             made += Ensure("W006_MirrorFlats", BuildW006MirrorFlats);
             made += Ensure("W007_SableStation", BuildW007SableStation);
             made += Ensure("W008_SealedArchive", BuildW008SealedArchive);
+            made += Ensure("W009_Chitinwall", BuildW009Chitinwall);
+            made += Ensure("W010_TidalArray", BuildW010TidalArray);
+            made += Ensure("W011_TheHum", BuildW011TheHum);
+            made += Ensure("W012_MarasLastJump", BuildW012MarasLastJump);
             if (made > 0) { AssetDatabase.SaveAssets(); AssetDatabase.Refresh(); }
             return made;
         }
@@ -317,6 +321,163 @@ namespace Ziptide.Editor.Patching
             return kit;
         }
 
+        // ── W009 — Chitinwall (swarm city: carapace alleys, insect-aurora, combat-forward) ─────────
+        private static CityLayoutDefinition BuildW009Chitinwall()
+        {
+            var kit = NewKit("chitinwall", "W009_Chitinwall", "Chitinwall", seed: 2009);
+
+            kit.skyHorizonColor = new Color(0.45f, 0.30f, 0.12f); // insectile aurora — amber churn
+            kit.skyTopColor = new Color(0.18f, 0.10f, 0.22f);     // into violet
+            kit.themeGroundTint = new Color(0.30f, 0.24f, 0.16f);
+            kit.planetVisible = true; kit.planetAngularSize = 16f; // clearly banded by the grid now
+            kit.planetBaseColor = new Color(0.45f, 0.40f, 0.55f);
+            kit.planetAccentColor = new Color(0.20f, 0.55f, 0.60f);
+            kit.fogEnabled = true; kit.fogColor = new Color(0.20f, 0.14f, 0.08f); kit.fogDensity = 0.02f;
+            kit.skylineCount = 22; kit.skylineMinHeight = 20f; kit.skylineMaxHeight = 60f; // the wall itself
+            kit.palette.concrete = new Color(0.36f, 0.28f, 0.18f); // chitin browns
+            kit.palette.building1 = new Color(0.42f, 0.32f, 0.20f);
+            kit.palette.building2 = new Color(0.30f, 0.24f, 0.16f);
+            kit.palette.accent = new Color(0.85f, 0.60f, 0.20f);
+
+            District(kit, "Undercity", new Vector3(0, 0, 0), 18, 16, 1);
+            District(kit, "WallGate", new Vector3(-22, 0, 10), 14, 12, 2,
+                hero: ("GateHouse", new Vector3(0, 0, 2), 8, 6, 5f, InteriorKind.Mission, "wall_gate"));
+            District(kit, "HiveMarket", new Vector3(22, 0, 12), 18, 16, 1,
+                props: ("Stall", Vector3.zero, 12, 12, 0.5f));
+            District(kit, "PylonArray", new Vector3(0, 0, 32), 16, 14, 2,
+                landmark: ("DeterrentPylon", new Vector3(0, 0, 3), 20f, 2.5f));
+
+            Connect(kit, "Undercity", "WallGate", ConnectionKind.GroundStreet, 5);  // tight alleys
+            Connect(kit, "Undercity", "HiveMarket", ConnectionKind.GroundStreet, 5);
+            Connect(kit, "WallGate", "PylonArray", ConnectionKind.ElevatedWalkway, 5, tier: 1);
+            Connect(kit, "HiveMarket", "PylonArray", ConnectionKind.Ramp, 5);
+            Connect(kit, "WallGate", "HiveMarket", ConnectionKind.Bridge, 5);       // vertical loop
+
+            // The signature swarm world (drone stand-ins until Phase E): two pushy patrols.
+            kit.droneZones.Add(new DroneZoneDef { id = "Swarm_Market", center = new Vector3(22, 0, 12), radius = 6f, count = 3, respawnDelay = 12f, combat = true, variantId = "drone_standard" });
+            kit.droneZones.Add(new DroneZoneDef { id = "Swarm_Pylons", center = new Vector3(0, 0, 32), radius = 5f, count = 3, respawnDelay = 12f, combat = true, variantId = "drone_standard" });
+            kit.spawnDistrictId = "Undercity";
+            kit.spawnStarterWeapons = true;
+            kit.shipyard.enabled = false;
+            return kit;
+        }
+
+        // ── W010 — Tidal Array (coastal: ringed planet, storm light, tide canals, turbine route) ───
+        private static CityLayoutDefinition BuildW010TidalArray()
+        {
+            var kit = NewKit("tidal_array", "W010_TidalArray", "Tidal Array", seed: 2010);
+
+            kit.skyHorizonColor = new Color(0.55f, 0.58f, 0.50f); // storm light
+            kit.skyTopColor = new Color(0.20f, 0.26f, 0.34f);
+            kit.themeGroundTint = new Color(0.36f, 0.40f, 0.38f); // wet slate
+            kit.planetVisible = true; kit.planetAngularSize = 18f; // the vast ringed tide-puller
+            kit.planetBaseColor = new Color(0.60f, 0.55f, 0.45f);
+            kit.planetAccentColor = new Color(0.80f, 0.75f, 0.60f);
+            kit.fogEnabled = true; kit.fogColor = new Color(0.30f, 0.34f, 0.36f); kit.fogDensity = 0.015f;
+            kit.skylineCount = 0;
+            kit.palette.concrete = new Color(0.38f, 0.40f, 0.40f);
+            kit.palette.building1 = new Color(0.34f, 0.38f, 0.40f);
+            kit.palette.building2 = new Color(0.28f, 0.32f, 0.36f);
+            kit.palette.toxic = new Color(0.16f, 0.35f, 0.30f);    // the luminous tide
+            kit.palette.accent = new Color(0.30f, 0.85f, 0.75f);
+
+            District(kit, "ShoreCamp", new Vector3(0, 0, 0), 18, 14, 0);
+            District(kit, "TurbineA", new Vector3(-24, 0, 16), 14, 12, 1,
+                landmark: ("Turbine_A", new Vector3(0, 0, 3), 15f, 3f));
+            District(kit, "TurbineB", new Vector3(24, 0, 18), 14, 12, 1,
+                landmark: ("Turbine_B", new Vector3(0, 0, 3), 15f, 3f));
+            District(kit, "SaltWorks", new Vector3(0, 0, 36), 16, 12, 1);
+
+            // High-ground crossings over the tide flats — the flood-timing feel in graybox.
+            Connect(kit, "ShoreCamp", "TurbineA", ConnectionKind.Bridge, 5);
+            Connect(kit, "ShoreCamp", "TurbineB", ConnectionKind.Bridge, 5);
+            Connect(kit, "TurbineA", "SaltWorks", ConnectionKind.ElevatedWalkway, 5, tier: 1);
+            Connect(kit, "TurbineB", "SaltWorks", ConnectionKind.ElevatedWalkway, 5, tier: 1);
+
+            // The tide itself: luminous no-stand flats between the districts.
+            kit.canals.Add(new CanalRegionDef { center = new Vector3(-12, 0, 10), size = new Vector2(14, 24), depth = 2f });
+            kit.canals.Add(new CanalRegionDef { center = new Vector3(12, 0, 12), size = new Vector2(14, 24), depth = 2f });
+
+            kit.spawnDistrictId = "ShoreCamp";
+            kit.spawnStarterWeapons = false; // tendril world — Phase E
+            kit.shipyard.enabled = false;
+            return kit;
+        }
+
+        // ── W011 — The Hum (underground resonance: warm dark, pulsing crystal accents, no combat) ──
+        private static CityLayoutDefinition BuildW011TheHum()
+        {
+            var kit = NewKit("the_hum", "W011_TheHum", "The Hum", seed: 2011);
+
+            kit.skyHorizonColor = new Color(0.06f, 0.04f, 0.05f);
+            kit.skyTopColor = new Color(0.10f, 0.07f, 0.09f);
+            kit.themeGroundTint = new Color(0.22f, 0.18f, 0.18f);
+            kit.planetVisible = false;
+            kit.fogEnabled = true; kit.fogColor = new Color(0.06f, 0.03f, 0.05f); kit.fogDensity = 0.04f;
+            kit.skylineCount = 0;
+            kit.palette.concrete = new Color(0.26f, 0.22f, 0.22f);
+            kit.palette.building1 = new Color(0.22f, 0.18f, 0.20f);
+            kit.palette.building2 = new Color(0.18f, 0.15f, 0.17f);
+            kit.palette.accent = new Color(0.90f, 0.30f, 0.55f);   // the crystals pulsing in time
+
+            District(kit, "TunnelMouth", new Vector3(0, 0, 0), 14, 12, 0);
+            District(kit, "ResonatorA", new Vector3(-18, 0, 12), 14, 12, 1,
+                hero: ("BankA", new Vector3(0, 0, 2), 7, 6, 4.5f, InteriorKind.Mission, "resonator_bank_a"));
+            District(kit, "ResonatorB", new Vector3(4, 0, 26), 14, 12, 1,
+                hero: ("BankB", new Vector3(0, 0, 2), 7, 6, 4.5f, InteriorKind.Mission, "resonator_bank_b"));
+            District(kit, "MinersCamp", new Vector3(-16, 0, 38), 14, 12, 0,
+                landmark: ("CrystalChord", new Vector3(0, 0, 3), 12f, 2f));
+
+            Connect(kit, "TunnelMouth", "ResonatorA", ConnectionKind.GroundStreet, 4);
+            Connect(kit, "ResonatorA", "ResonatorB", ConnectionKind.Ramp, 4);
+            Connect(kit, "ResonatorB", "MinersCamp", ConnectionKind.GroundStreet, 4);
+            Connect(kit, "ResonatorA", "MinersCamp", ConnectionKind.Ramp, 4);
+
+            kit.spawnDistrictId = "TunnelMouth";
+            kit.spawnStarterWeapons = false; // no enemies — the Hum is the presence
+            kit.shipyard.enabled = false;
+            return kit;
+        }
+
+        // ── W012 — Mara's Last Jump (void: the Shell wall fills the sky; Ch.2 capstone) ────────────
+        private static CityLayoutDefinition BuildW012MarasLastJump()
+        {
+            var kit = NewKit("maras_last_jump", "W012_MarasLastJump", "Mara's Last Jump", seed: 2012);
+
+            kit.skyHorizonColor = new Color(0.01f, 0.01f, 0.03f); // raw void
+            kit.skyTopColor = new Color(0.03f, 0.03f, 0.06f);
+            kit.themeGroundTint = new Color(0.20f, 0.21f, 0.25f); // gantry steel
+            kit.planetVisible = true; kit.planetAngularSize = 30f; // the SHELL — unmissable, hexagonal-cyan
+            kit.planetBaseColor = new Color(0.10f, 0.20f, 0.26f);
+            kit.planetAccentColor = new Color(0.20f, 0.75f, 0.85f);
+            kit.fogEnabled = false;
+            kit.skylineCount = 0;
+            kit.palette.concrete = new Color(0.24f, 0.25f, 0.30f);
+            kit.palette.building1 = new Color(0.20f, 0.22f, 0.28f);
+            kit.palette.building2 = new Color(0.16f, 0.18f, 0.24f);
+            kit.palette.accent = new Color(0.95f, 0.65f, 0.15f);   // hazard-gantry orange
+
+            District(kit, "Gantry", new Vector3(0, 0, 0), 16, 12, 0,
+                landmark: ("JumpGantry", new Vector3(4, 0, 3), 18f, 2.5f));
+            District(kit, "GateCoreA", new Vector3(-20, 0, 14), 14, 12, 1,
+                hero: ("CoreA", new Vector3(0, 0, 2), 7, 6, 4.5f, InteriorKind.Mission, "gate_core_a"));
+            District(kit, "GateCoreB", new Vector3(6, 0, 28), 14, 12, 1,
+                hero: ("CoreB", new Vector3(0, 0, 2), 7, 6, 4.5f, InteriorKind.Mission, "gate_core_b"));
+            District(kit, "LaunchPoint", new Vector3(-16, 0, 42), 14, 10, 2,
+                landmark: ("MarasShip", new Vector3(0, 0, 2), 4f, 6f));
+
+            // Drifting-debris feel: everything is bridges over void (the fall net catches misses).
+            Connect(kit, "Gantry", "GateCoreA", ConnectionKind.Bridge, 4);
+            Connect(kit, "GateCoreA", "GateCoreB", ConnectionKind.Bridge, 4);
+            Connect(kit, "GateCoreB", "LaunchPoint", ConnectionKind.Bridge, 4);
+            Connect(kit, "GateCoreA", "LaunchPoint", ConnectionKind.ElevatedWalkway, 4, tier: 1);
+
+            kit.spawnDistrictId = "Gantry";
+            kit.spawnStarterWeapons = false; // the void is the enemy
+            kit.shipyard.enabled = false;
+            return kit;
+        }
+
         // ── Spec helpers (keep the world builders readable) ────────────────────────────────────────
         private static CityLayoutDefinition NewKit(string cityId, string sceneName, string displayName, int seed)
         {
@@ -331,7 +492,8 @@ namespace Ziptide.Editor.Patching
 
         private static void District(CityLayoutDefinition kit, string id, Vector3 anchor, float w, float l, int tier,
             (string name, Vector3 pos, float height, float width)? landmark = null,
-            (string id, Vector3 pos, float fw, float fl, float h, InteriorKind kind, string markerId)? hero = null)
+            (string id, Vector3 pos, float fw, float fl, float h, InteriorKind kind, string markerId)? hero = null,
+            (string kind, Vector3 center, float pw, float pl, float density)? props = null)
         {
             var d = new DistrictDef { id = id, anchor = anchor, bounds = new Vector2(w, l), heightTier = tier };
             if (landmark.HasValue)
@@ -343,6 +505,8 @@ namespace Ziptide.Editor.Patching
                     height = hero.Value.h, interior = hero.Value.kind,
                     doorLocalPos = new Vector3(0f, 0f, -hero.Value.fl / 2f), interiorMarkerId = hero.Value.markerId,
                 });
+            if (props.HasValue)
+                d.props.Add(new PropPatchDef { kind = props.Value.kind, center = props.Value.center, size = new Vector2(props.Value.pw, props.Value.pl), density = props.Value.density });
             kit.districts.Add(d);
         }
 

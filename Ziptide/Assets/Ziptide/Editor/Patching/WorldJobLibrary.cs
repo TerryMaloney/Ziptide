@@ -155,6 +155,67 @@ namespace Ziptide.Editor.Patching
                     .Go("reader_hall", new Vector3(-16, 0.1f, 38))
                     .Reward("credits", 120).Reward("data_chip", 2);
 
+                case "W009_Chitinwall":
+                    return new Spec
+                    {
+                        jobId = "w009_pylons",
+                        title = "Raise the Swarm-Deterrent Pylons",
+                        completionFlag = ZiptideFlags.W009_COMPLETE,
+                        flagsRequired = new[] { ZiptideFlags.W008_COMPLETE },
+                        // RILL's memory audibly glitches here — Ch.2's ★ beat.
+                        flagsGranted = new[] { ZiptideFlags.W009_COMPLETE, ZiptideFlags.C2_W009_RILL_MISIDENTIFIED },
+                    }
+                    .Go("wall_gate", new Vector3(-22, 0.1f, 12))
+                    .Drones(6)                                       // the signature swarm world
+                    .Go("pylon_array", new Vector3(0, 0.1f, 34))
+                    .Reward("credits", 130).Reward("carapace", 4);
+
+                case "W010_TidalArray":
+                    return new Spec
+                    {
+                        jobId = "w010_turbines",
+                        title = "Restart the Tidal Turbines",
+                        completionFlag = ZiptideFlags.W010_COMPLETE,
+                        flagsRequired = new[] { ZiptideFlags.W009_COMPLETE },
+                        flagsGranted = new[] { ZiptideFlags.W010_COMPLETE, ZiptideFlags.SIGNAL_THRESHOLD_2 },
+                    }
+                    .Go("shore_camp", new Vector3(0, 0.1f, 4))
+                    .Go("turbine_a", new Vector3(-24, 0.1f, 17))
+                    .Go("turbine_b", new Vector3(24, 0.1f, 19))
+                    .Go("salt_works", new Vector3(0, 0.1f, 37))
+                    .Reward("credits", 120).Reward("salt", 4);
+
+                case "W011_TheHum":
+                    return new Spec
+                    {
+                        jobId = "w011_resonators",
+                        title = "Tune the Resonator Banks",
+                        completionFlag = ZiptideFlags.W011_COMPLETE,
+                        flagsRequired = new[] { ZiptideFlags.W010_COMPLETE },
+                        flagsGranted = new[] { ZiptideFlags.W011_COMPLETE },
+                    }
+                    .Go("tunnel_mouth", new Vector3(0, 0.1f, 4))
+                    .Go("resonator_bank_a", new Vector3(-18, 0.1f, 14))
+                    .Go("resonator_bank_b", new Vector3(4, 0.1f, 28))
+                    .Go("miners_camp", new Vector3(-16, 0.1f, 40))
+                    .Reward("credits", 110).Reward("resonator", 3);
+
+                case "W012_MarasLastJump":
+                    return new Spec
+                    {
+                        jobId = "w012_stabilize",
+                        title = "Stabilize the Failing Gate",
+                        completionFlag = ZiptideFlags.C2_CONTAINMENT_REVEALED,
+                        flagsRequired = new[] { ZiptideFlags.W011_COMPLETE },
+                        // Chapter 2 capstone: Mara's ship bounces off the Shell — the cage is REAL.
+                        flagsGranted = new[] { ZiptideFlags.W012_COMPLETE, ZiptideFlags.C2_CONTAINMENT_REVEALED },
+                    }
+                    .Go("gantry", new Vector3(0, 0.1f, 4))
+                    .Go("gate_core_a", new Vector3(-20, 0.1f, 16))
+                    .Go("gate_core_b", new Vector3(6, 0.1f, 30))
+                    .Go("launch_point", new Vector3(-16, 0.1f, 44))
+                    .Reward("credits", 150).Reward("jump_core", 1);
+
                 default:
                     return null;
             }
