@@ -106,7 +106,9 @@ namespace Ziptide.Core
         //   NarrativeSaveSystem.SetFlag("W" + worldId.PadLeft(3,'0') + "_COMPLETE");
         // Key individual completions:
         public const string W001_COMPLETE           = "W001_COMPLETE";
+        public const string W002_COMPLETE           = "W002_COMPLETE";
         public const string W003_COMPLETE           = "W003_COMPLETE";
+        public const string W004_COMPLETE           = "W004_COMPLETE";
         public const string W009_COMPLETE           = "W009_COMPLETE";
         public const string W019_COMPLETE           = "W019_COMPLETE";
         public const string W020_COMPLETE           = "W020_COMPLETE";

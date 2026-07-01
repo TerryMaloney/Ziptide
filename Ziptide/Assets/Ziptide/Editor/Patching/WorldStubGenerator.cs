@@ -143,6 +143,10 @@ namespace Ziptide.Editor.Patching
             EnsureTravelStation(kit);
             EnsureDispatchAndBoard(pack, spawnPos);
 
+            // Story contract + gating from the WorldJobLibrary spec (jobs, steps, rewards, flags,
+            // GoToMarker targets as pack data). No-op for worlds without a spec.
+            WorldJobLibrary.EnsureJobsFor(kit, pack);
+
             if (kit.spawnStarterWeapons)
             {
                 var taser = ItemFactory.Create("taser_dart_gun", spawnPos + new Vector3(-0.6f, 1.0f, 1.0f));
@@ -212,8 +216,13 @@ namespace Ziptide.Editor.Patching
             pack.packId = kit.cityId;
             pack.displayName = string.IsNullOrEmpty(kit.displayName) ? kit.cityId : kit.displayName;
             pack.sceneName = kit.sceneName;
-            pack.spawnMarkers.Clear();
-            pack.spawnMarkers.Add(new SpawnMarkerDefinition { markerId = "player", localPosition = spawnPos });
+            // Update ONLY the player spawn — objective markers authored by WorldJobLibrary (or by hand)
+            // are preserved across regeneration, same as jobs/flags/themes.
+            var player = pack.spawnMarkers.Find(m => m != null && m.markerId == "player");
+            if (player == null)
+                pack.spawnMarkers.Add(new SpawnMarkerDefinition { markerId = "player", localPosition = spawnPos });
+            else
+                player.localPosition = spawnPos;
             EditorUtility.SetDirty(pack);
             return pack;
         }

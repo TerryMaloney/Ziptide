@@ -38,8 +38,11 @@ namespace Ziptide.Build
             try { Ziptide.Editor.Patching.ScenePatcherPvP.EnsureInBuildSettings(); }
             catch (Exception ex) { Debug.LogWarning("[Ziptide] PvP arena build-settings ensure warning: " + ex.Message); }
 
-            // Data-driven worlds: every CityLayoutDefinition with a sceneName gets its generated scene
-            // created + enabled here, then populated in the loop below. Author a layout asset → it ships.
+            // Data-driven worlds: first seed any missing story-world layout assets (create-only — never
+            // overwrites edits), then every CityLayoutDefinition with a sceneName gets its generated
+            // scene created + enabled here and populated in the loop below. Author a layout → it ships.
+            try { Ziptide.Editor.Patching.WorldLayoutLibrary.EnsureAllAuthored(); }
+            catch (Exception ex) { Debug.LogWarning("[Ziptide] World layout library warning: " + ex.Message); }
             try { Ziptide.Editor.Patching.WorldStubGenerator.EnsureGeneratedInBuildSettings(); }
             catch (Exception ex) { Debug.LogWarning("[Ziptide] Generated-worlds build-settings ensure warning: " + ex.Message); }
 

@@ -20,20 +20,28 @@ device pass, batches sized so a cutoff never strands half-done work.
 | 1 | `HOW_TO_CHANGE_ANYTHING.md` playbook (skeleton + sections as tasks land) | 🔄 running (sky+weapons sections done) |
 | 2 | Per-world sky/theme modularity (layout `Sky theme` block → `ThemeAuthor` → generator wires per-world Theme+WorldProfile) | ✅ this commit (CI pending) |
 | 3 | Weapon visual/feel data-drive (`ItemDefinition` visualScale/visualColor/gripLocalPos/muzzleLocalPos + `ItemFactory` fallbacks; zero/clear = unchanged) | ✅ this commit (CI pending) |
-| 4 | **WORLD BUILDOUT W002–W012** (`WorldFlowKits` + `WorldLayoutLibrary` + `WorldJobLibrary`; batches a: W002–W004, b: W005–W008, c: W009–W012; APK dispatch after each) | ⬜ **GATED** on APK run `28547683786` succeeding |
+| 4 | **WORLD BUILDOUT W002–W012** (`WorldLayoutLibrary` + `WorldJobLibrary`; batches a: W002–W004 ✅ this commit, b: W005–W008 ⬜, c: W009–W012 ⬜; APK dispatch after each) | 🔄 batch (a) authored |
 | 5 | Ship modular foundation (`ShipDefinition` data SO + `docs/systems/SHIPS.md`) | ⬜ |
 | 6 | Creature data modularity (`DroneCombatProfile` variants per biome + `CreatureDefinition` catalog) | ⬜ |
 | 7 | Sprint close (HANDOFF/checklist/runbook refresh + final APK green) | ⬜ |
 
 ## ▶ RESUMING? — current state & exact next action
-- **Current micro-step:** Tasks 2+3 just committed (themes + weapon fields). **Verify CI on this push**
-  (compile + EditMode; behavior-preserving changes, should be green).
-- **Next action:** check the Task-4 gate → APK dispatch run **28547683786** (`actions_get` →
-  `get_workflow_run`; branch `terry-local-wip`). If `success`: start Task 4 batch (a) — `WorldFlowKits`
-  + `WorldLayoutLibrary` (W002–W004) + `WorldJobLibrary`, wired into `BuildAndroid` via
-  `WorldLayoutLibrary.EnsureAllAuthored()` before the generator ensure-call. If FAILED: read failed job
-  log, fix the generated-worlds hook in `BuildAndroid.cs`/`WorldStubGenerator.cs` first.
-- **Files in flight:** none beyond this commit. Branch `terry-local-wip`; last CI-green: `c855213`.
+- **Current micro-step:** Task 4 **batch (a)** just committed: `WorldLayoutLibrary` (W002 Dry Cistern /
+  W003 Glass Shelf / W004 Broadcast Tomb — create-only layout seeding, biome skies/palettes/districts) +
+  `WorldJobLibrary` (contracts, rewards, gating flags, GoToMarker targets as PACK DATA — JobDirector
+  materializes `Marker_<id>` at runtime) + wiring (`BuildAndroid` seeds layouts; `Populate` attaches jobs).
+  W004 grants `FRAGMENT_T1_FOUND` — the first Transmission fragment goes live.
+- **APK-gate history:** first dispatch `28547683786` FAILED on **runner disk exhaustion** pulling the
+  Unity image (NOT code — Unity never started). Fixed in ci.yml (`Free disk space` step, commit `4d2a886`);
+  **re-dispatched** — find the newest `workflow_dispatch` run on `terry-local-wip` and check it. If it
+  fails on disk again: free more (remove /opt/hostedtoolcache subdirs) or switch the job to a
+  larger runner. If it PASSES: the generated-worlds pipeline is proven end-to-end (audit incl.).
+- **Next action:** verify CI (compile+EditMode) on this push → verify the re-dispatched APK run → if
+  both green, dispatch ANOTHER APK build (it will now author W002–W004 + build their scenes — watch the
+  audit!) → then batch (b): W005–W008 specs in the two libraries (same pattern, WORLD_DATA records).
+- **Known simplifications (documented, deliberate):** Collect/Deliver steps deferred (no collectible
+  spawning yet) — batch jobs use Go/Drones only; swarm/tendril = drone stand-ins (Phase E); W002 gate is
+  `toxiccity_complete` not TUTORIAL_COMPLETE (W000 parked). Branch `terry-local-wip`; last CI-green `c855213`.
 
 ## Specs the tasks execute from (don't re-derive)
 - Approved sprint plan: mirrored below in "Task specs"; story data: `docs/storyboard/WORLD_DATA.md`
