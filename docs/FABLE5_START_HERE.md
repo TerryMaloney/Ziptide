@@ -1,5 +1,9 @@
 # ▶ START HERE — the single-operator manual (read this first, then stop reading)
 
+> **🔄 ACTIVE SPRINT:** a modularity/content sprint is in flight — **read `docs/SPRINT.md` FIRST** (live
+> state + exact next action) and continue it. **`docs/HOW_TO_CHANGE_ANYTHING.md`** is the change-safety
+> playbook — consult it before modifying any system.
+
 **You are THE operator building Ziptide. You own the whole project — data, backend, tests, editor
 patchers, world/story content, docs. There is no second chat and no "lane" to pick.** Terry is your only
 teammate: he's the **hands** for the things you physically can't do (run Unity, wear the headset). This

@@ -1,0 +1,88 @@
+# HOW TO CHANGE ANYTHING — the modularity playbook
+
+**For any operator (esp. Opus after Fable 5): find the thing you want to change, edit exactly what this
+table says, and let the listed verifier prove it.** Everything here is data/asset-driven by design — if a
+change seems to require editing runtime C# or scene YAML by hand, STOP and re-read the row; you're
+probably about to break something that has a data path. Rows marked ⚠ are report-only zones (locked
+contracts — confirm with Terry first).
+
+Legend: **Edit** = the one place to change · **Then** = how it takes effect · **Verify** = the proof.
+
+---
+
+## Worlds
+
+| I want to… | Edit | Then | Verify |
+|---|---|---|---|
+| **Change a world's layout/geometry** (districts, streets, canals, buildings, landmarks) | that world's `CityLayoutDefinition` asset (`Content/City/…`) — positions/bounds/heights/connections are plain fields | the next build regenerates the scene (`WorldStubGenerator` build hook); or preview via `Ziptide → Worlds → Generate World From Selected Layout` | APK build's `WorldAuditRunner` (spawn/floor/trap checks); walk it on device |
+| **Add a whole new world** | author a new `CityLayoutDefinition` with the `World identity` block filled (`sceneName` = `W###_Name`) — copy a `WorldLayoutLibrary` spec as the template | it auto-ships next build (scene + WorldPack + exit door + spawn + kiosk/board, Build Settings) | dev menu (Y+B) lists it; audit green |
+| **Rewrite a world wholesale** | swap/replace its layout asset (keep `sceneName`) | build regenerates from the new data | same |
+| **Change where the player spawns** | layout `spawnDistrictId` (or the pack's `spawnMarkers`) | regen | `ZIPTIDE: SPAWN_AT` in logcat |
+| **Change a world's jobs/steps/rewards** | the world's `JobDefinition` + step assets (`Content/Jobs/…`), `reward` list, `completionFlag` | live next run (JobDirector reads the pack) | `ZIPTIDE: PACK_VALIDATION_FAIL` warns on slips; `JOB_REWARD_GRANTED` on completion |
+| **Gate a world behind story progress** | the world's `WorldPackDefinition.flagsRequired` (use `ZiptideFlags` constants) | travel doors show it LOCKED until met | `ZIPTIDE: TRAVEL_LOCKED` / `WORLD_LOCKED` |
+| **Grant story flags on world completion** | `WorldPackDefinition.flagsGranted` | granted when the contract finishes | `ZIPTIDE: WORLD_FLAGS_GRANTED` |
+| ⚠ **Change ToxicCity specifically** | its layout asset for data; `ScenePatcherToxicCity.cs` for shell logic (hand-tuned reference world) | menu `Build Toxic City` / next build | audit + device |
+
+## Sky / atmosphere / look
+*(Task 2 will make this fully per-world — section updated when it lands.)*
+
+| I want to… | Edit | Then | Verify |
+|---|---|---|---|
+| **Change a world's sky/planet/ground tint** | that world's `VisualThemeProfile` asset (gradient, PlanetSettings, groundTint) | `WorldRuntime` applies it on entry | look at it (device) |
+| **Change fog** | the layout's `fogEnabled/fogColor/fogDensity` | regen | device |
+| **City color identity** (concrete/metal/buildings/accent) | the layout's `palette` (or a district's `paletteOverride`) | regen | device; rules in `docs/design/CITY_DESIGN.md` |
+
+## Weapons / gear
+*(Task 3 adds per-asset visual tuning — section updated when it lands.)*
+
+| I want to… | Edit | Then | Verify |
+|---|---|---|---|
+| **Tune weapon gameplay feel** (fire rate, range, stun time, launch force, haptics, cooldowns) | the weapon's definition asset under `Resources/Items/` (Pistol/TaserDartGun/GravityGun definitions — all plain fields) | live next run (ItemFactory reads the asset) | fire it on device |
+| **Add a new item that can be spawned/holstered/travel** | new definition asset **under `Resources/Items/`** (CI FAILS if placed elsewhere or with a duplicate `itemId` — `ItemRegistryConventionTests`) + a creation branch in `ItemFactory` for new *types* | `ItemFactory.Create(itemId, pos)` anywhere | `ZIPTIDE: ITEM_REGISTRY` lists it at boot |
+| **Give a weapon a real 3D model** | set `modelPrefab` on its definition (import the .glb first) | factory hook (visual swap is a small ItemFactory change if not yet wired for that type) | device |
+
+## Creatures / drones
+*(Task 6 expands this — section updated when it lands.)*
+
+| I want to… | Edit | Then | Verify |
+|---|---|---|---|
+| **Tune drone combat difficulty** (speed, fire rate, damage feel) | a `DroneCombatProfile` asset in `Resources/Enemies/` | set that asset's name as `variantId` on the world's `DroneZoneDef` (layout asset) | fight it on device |
+| **Change where/how many drones spawn in a world** | the layout's `droneZones` (center/radius/count/respawnDelay/combat) | regen | `ZIPTIDE: DRONE_DOWN` etc. |
+| **New creature *types* (non-drone)** | Phase E (`docs/systems/CREATURE_DESIGN.md`) — `CreatureDefinition` data exists; runtime behaviors not built yet | — | — |
+
+## Story / progression
+| I want to… | Edit | Then | Verify |
+|---|---|---|---|
+| **Story canon** | `docs/storyboard/STORY_BIBLE.md` + `THE_TRANSMISSION.md` (locked — deepen, don't contradict) | serialize changes into `WORLD_DATA.md` records → world/job assets | cohesion checklist in THE_TRANSMISSION §9 |
+| **A world's story data** (flags, fragments, beats → mechanics) | its record in `docs/storyboard/WORLD_DATA.md`, then the matching pack/job assets | see Worlds rows above | validator + flag log tags |
+| **Transmission fragments/clarity** | fragment flags live in `ZiptideFlags`; tier derivation in `TransmissionProgress` (pure, tested — thresholds are code by design) | clarity re-syncs after any grant | `ZIPTIDE: TRANSMISSION_CLARITY` |
+
+## Economy
+| I want to… | Edit | Then | Verify |
+|---|---|---|---|
+| **Job payouts** | each `JobDefinition.reward` | live | `JOB_REWARD_GRANTED` |
+| **Idle/mine/garden rates & caps** | `BalanceConfig` / `MachineDefinition` / `PlantDefinition` assets; per-mine `storageCap` bounds offline accrual | resolved on world entry | `ZIPTIDE: ECON_RESOLVE` |
+
+## PvP
+| I want to… | Edit | Then | Verify |
+|---|---|---|---|
+| **Match rules** (HP, hit damage, charges, timers, best-of) | `Multiplayer/Runtime/PvpRules.cs` consts (pure, fully tested) | EditMode tests enforce the contract — update `PvpMatchTests`/`PvpCombatTests` with the rule change | CI |
+| ⚠ **PvP scene/arena/HUD** | scene-side files under `Gameplay/Runtime/Pvp/` — pending Terry's device round; coordinate first | — | device |
+
+## Ships / vehicles
+*(Task 5 creates this system — section updated when it lands.)* Today: static berth placeholder only
+(`ShipyardBerthDef` in the layout). Flight architecture doc coming at `docs/systems/SHIPS.md`.
+
+## Audio
+| I want to… | Edit | Then | Verify |
+|---|---|---|---|
+| **World music/ambience** | the world's `AudioProfile` asset → `WorldPackDefinition.audioProfile` | `AudioDirector` applies on travel | device |
+
+## ⚠ The do-not-touch-casually list (locked contracts — `CLAUDE.md`)
+`TravelCoordinator` (only scene-change path) · `_Boot` ownership/rig singletons · `PlayerRigPersistence.EnsureXRIWiring`
+(read `docs/systems/VR_RIG_GOTCHAS.md` FIRST) · `InputActionManager` · holster-only travel rule · no
+reflection for item creation · never hand-edit `.unity`/`.prefab` YAML (patchers/data only).
+
+---
+*Verify workflow for ANY change: push → CI (compile + EditMode) → for scenes/feel, APK dispatch → Terry
+sideloads. Log-tag reference: grep `ZIPTIDE:` in `CLAUDE.md` + this file.*
