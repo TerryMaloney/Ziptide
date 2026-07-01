@@ -1,9 +1,24 @@
-# 🔄 SPRINT — THE MODULARITY SPRINT (live state — read this FIRST if you're taking over)
+# ✅ SPRINT COMPLETE — THE MODULARITY SPRINT (2026-07-01, all verification green)
 
-> **TAKEOVER PROMPT IS ONE LINE:** *"Read `docs/SPRINT.md` and continue the sprint."* This file is the
-> crash-resume state: what the sprint is, what's done, what's in flight, and the exact next action.
-> **The operator updates this file in the same commit as every push.** If usage dies mid-task, the next
-> model (T-Dog-account Fable 5, or Opus) resumes here with zero context loss.
+> **THE SPRINT IS DONE AND FULLY VERIFIED.** Every push CI-green; the final full-pipeline APK build
+> (run `28550453119`) **succeeded**: it authored creature data + all 11 world layouts, generated and
+> populated 11 scenes, **passed the world audit on every one**, built the IL2CPP APK, and uploaded the
+> `ziptide-apk` artifact. Whoever's next: read `FABLE5_START_HERE.md` → `HOW_TO_CHANGE_ANYTHING.md` →
+> `FABLE5_BACKLOG.md` and pull the next task. **This file stays as the sprint record + the crash-resume
+> protocol template for the NEXT sprint** (copy the structure; update every push).
+
+## What shipped (the one-paragraph version)
+Everything is modular and documented: 11 story worlds (W002–W012, Chapters 1–2) build themselves from
+data every APK build — each with its own sky/palette/contract/story-gating (first Transmission fragment
+at W004, the Shell reveal at W012); weapon feel, drone difficulty, per-world skies, and ship parameters
+are all per-asset edits mapped in `HOW_TO_CHANGE_ANYTHING.md`; the ship architecture is locked in
+`docs/systems/SHIPS.md` (S1 boardable shell is the next big 🔧 build); the APK pipeline is healthy (disk
+fix) and proven end-to-end. Terry's next sideload contains the whole arc — his runbook §2b has the
+11-world smoke list. Remaining seams (deliberate): Collect/Deliver steps need collectible spawning;
+swarm/tendril need Phase-E runtime; W000 needs the ship.
+
+---
+*(Below: the sprint's live log as it ran — kept as the record.)*
 
 **Sprint goal (Terry, 2026-07-01):** make every system modular (worlds/weapons/sky/creatures/ships —
 changeable via data without breaking anything), build max graybox story-world content, document it all in
@@ -17,13 +32,13 @@ device pass, batches sized so a cutoff never strands half-done work.
 | # | Task | Status |
 |---|------|--------|
 | 0 | `SPRINT.md` (this file) + START_HERE pointer | ✅ `9b9ff2a` |
-| 1 | `HOW_TO_CHANGE_ANYTHING.md` playbook (skeleton + sections as tasks land) | 🔄 running (sky+weapons sections done) |
+| 1 | `HOW_TO_CHANGE_ANYTHING.md` playbook (all sections: worlds/sky/weapons/creatures/ships/story/economy/PvP) | ✅ complete |
 | 2 | Per-world sky/theme modularity (layout `Sky theme` block → `ThemeAuthor` → generator wires per-world Theme+WorldProfile) | ✅ this commit (CI pending) |
 | 3 | Weapon visual/feel data-drive (`ItemDefinition` visualScale/visualColor/gripLocalPos/muzzleLocalPos + `ItemFactory` fallbacks; zero/clear = unchanged) | ✅ this commit (CI pending) |
-| 4 | **WORLD BUILDOUT W002–W012** (`WorldLayoutLibrary` + `WorldJobLibrary`; batch a: W002–W004 ✅ CI-green, batch b: W005–W008 ✅ CI-pending `ddb7f02`, batch c: W009–W012 ✅ this commit) — **ALL 11 WORLDS AUTHORED**; the full-pipeline APK dispatch is the remaining proof | 🔄 verify |
+| 4 | **WORLD BUILDOUT W002–W012** — all 11 worlds authored + **APK-audit-verified** (run `28550453119`: 11 scenes generated, audit clean, APK artifact produced) | ✅ complete |
 | 5 | Ship modular foundation (`ShipDefinition` data SO + `docs/systems/SHIPS.md` — ship = mobile travel station, phased S0–S4) | ✅ this commit |
 | 6 | Creature data modularity (`CreatureVariantAuthor`: drone_easy/standard/veteran bands in `Resources/Enemies` + creature catalog; W002 patrol uses drone_easy) | ✅ this commit |
-| 7 | Sprint close (HANDOFF/checklist/runbook refresh + final APK green) | ⬜ |
+| 7 | Sprint close (HANDOFF (zz) / checklist / backlog / runbook §2b refreshed + final APK green `28550453119`) | ✅ complete |
 
 ## ▶ RESUMING? — current state & exact next action
 - **Current micro-step:** Task 4 **batch (a)** just committed: `WorldLayoutLibrary` (W002 Dry Cistern /
