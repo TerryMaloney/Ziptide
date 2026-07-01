@@ -109,7 +109,7 @@ adb logcat | findstr "ZIPTIDE"
 - [ ] **Run the contract:** accept at the Dispatch kiosk → do the steps → on completion the **bounty pays** and flags set. `(JOB_REWARD_GRANTED, WORLD_FLAGS_GRANTED)`
 - [ ] The **travel door** by the shipyard works (returns you out).
 
-## 4. Economy wiring (Architect's, needs your headset)
+## 4. Economy wiring (needs your headset)
 - [ ] On **entering any world**, idle/welcome-back resolves. `(ECON_RESOLVE)`
 - [ ] The bounty's **passage credits actually land in your profile** (persist across travel).
 

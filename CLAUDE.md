@@ -2,10 +2,11 @@
 
 Read this first every session. It is the contract for how to work in this repo without breaking it.
 
-> 🆕 **New here / fresh model?** Read **`docs/FABLE5_START_HERE.md`** first — the token-cheap primer
-> (state snapshot, your lane, the roadmap, the file map) so you don't burn tokens re-exploring. Then the
-> 3-doc spine: `docs/HANDOFF.md` · `docs/MASTER_CHECKLIST.md` · `docs/storyboard/STORY_BIBLE.md`. Your lane:
-> `docs/ROLES.md`. Task queue: `docs/FABLE5_BACKLOG.md`. Codebase score: `docs/CODE_SCORE.md`.
+> 🆕 **New here / fresh model?** Read **`docs/FABLE5_START_HERE.md`** first — the single-operator manual
+> (state snapshot, the ⚙CI/🔧UNITY/🎮DEVICE verification model, the roadmap, the file map) so you don't burn
+> tokens re-exploring. **You own the whole project; Terry is the hands for Unity/headset.** Then the spine:
+> `docs/HANDOFF.md` (session log) · `docs/MASTER_CHECKLIST.md` · `docs/FABLE5_BACKLOG.md` (task queue) ·
+> `docs/TERRY_RUNBOOK.md` (what Terry runs). Operating model: `docs/ROLES.md`. Codebase score: `docs/CODE_SCORE.md`.
 
 ## ⛔ WORKFLOW INTEGRITY — CHECK THIS FIRST, EVERY SESSION
 If the verification workflow is broken, **STOP and warn Terry LOUDLY at the top of your reply**

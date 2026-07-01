@@ -21,9 +21,10 @@
 
 | File | Purpose |
 |------|---------|
-| **docs/FABLE5_START_HERE.md** | 🆕 Fresh-agent primer (token-cheap onboarding: state, lane, roadmap, file map). Read first. |
+| **docs/FABLE5_START_HERE.md** | 🆕 Single-operator manual (token-cheap onboarding: state, ⚙/🔧/🎮 verification model, roadmap, file map). Read first. |
 | **docs/CODE_SCORE.md** | 1–5 codebase health scorecard + critical-path blockers. |
-| **docs/ROLES.md** | The two lanes (Architect=data, T-Dog=scene/runtime) + claim protocol + guardrails. |
+| **docs/ROLES.md** | The operating model: one operator; ⚙CI (you) vs 🔧UNITY / 🎮DEVICE (Terry) + the patcher recipe + guardrails. |
+| **docs/TERRY_RUNBOOK.md** | Everything queued that needs Terry's hands (Unity menu bakes + the headset pass). |
 | **docs/FABLE5_BACKLOG.md** | Lane-tagged pullable task queue (5 phases: Fix→Harden→Worlds→Modes→Creatures). |
 | **docs/design/WORLD_FLOW_TEMPLATES.md** | Per-environment "nice flow" recipes for fast, varied, story-connected world graybox. |
 | **docs/systems/CREATURE_DESIGN.md** | Creature framework + 12 novel evolution-tied behaviors. |

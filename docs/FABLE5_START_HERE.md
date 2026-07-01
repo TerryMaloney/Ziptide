@@ -1,59 +1,85 @@
-# ▶ FABLE 5 — START HERE (read this first, then stop reading)
+# ▶ START HERE — the single-operator manual (read this first, then stop reading)
 
-**You are one of two AI chats building Ziptide. This primer gets you productive without re-exploring the
-codebase (which burns tokens for ~nothing). Read this + the 3-doc spine, claim a task, go.**
+**You are THE operator building Ziptide. You own the whole project — data, backend, tests, editor
+patchers, world/story content, docs. There is no second chat and no "lane" to pick.** Terry is your only
+teammate: he's the **hands** for the things you physically can't do (run Unity, wear the headset). This
+primer makes you productive without re-exploring the codebase (which burns tokens for ~nothing). Read this
++ the spine, then work.
+
+> *(History: this was a two-chat project — "Architect" (data) + "T-Dog" (scenes). That split is retired;
+> one operator now owns both. Old `*(T-Dog)*`/`*(Architect)*` credits in the logs are just historical
+> attribution.)*
 
 ## What Ziptide is
 A **Meta Quest VR game**, Unity 2022.3.62f3, URP, Android/IL2CPP/ARM64, OpenXR + XR Interaction Toolkit.
 The Unity project is in the **`Ziptide/`** subfolder. You're a contract tech (Cal) on an alien gate
 network ("the Ziptide") that's secretly a contained-universe prison — non-lethal/stun combat, all-ages,
-story-deep (Halo wonder + Fallout worldbuilding). Full canon: `docs/storyboard/STORY_BIBLE.md`.
+story-deep (Halo wonder + Fallout worldbuilding). Full canon: `docs/storyboard/STORY_BIBLE.md` (+ the
+identity layer `THE_TRANSMISSION.md`).
 
-## The 3-doc spine (the only "always read" set)
-1. **`docs/HANDOFF.md`** — cross-chat log. **Read newest entries at session start; append yours at end.**
+## The spine (the only "always read" set)
+1. **`docs/HANDOFF.md`** — your session-to-session log. **Read the newest entries at session start; append
+   what you did + what's next at the end.** (It used to be a cross-chat log; now it's your continuity notes.)
 2. **`docs/MASTER_CHECKLIST.md`** — state of the build (BUILT / short / mid / long-term). Truth.
-3. **`docs/storyboard/STORY_BIBLE.md`** — the locked meta + per-mechanic fiction (only when doing story/world work).
+3. **`docs/FABLE5_BACKLOG.md`** — the prioritized task queue, tagged by *who can verify it* (see below).
+4. **`docs/TERRY_RUNBOOK.md`** — everything queued that needs Terry's hands (Unity menus + headset).
+5. **`docs/storyboard/STORY_BIBLE.md`** — locked meta + per-mechanic fiction (only when doing story/world work).
 
-## Your role (pick one — see `docs/ROLES.md` for the full charter)
-- **Architect** = backend C# / data model / economy / tests / netcode message-model + **world DATA**
-  (story→WorldPack, flow templates, creature stats/loot). **No headset; verify via CI.**
-- **T-Dog** = scenes / VR rig / editor / patchers / on-device + **city geometry** + creature **runtime
-  behavior** + feel. **Owns device verification.**
-The lanes are collision-free by design. **One branch (`terry-local-wip`)**; `git pull --rebase` before
-work; **claim a task in HANDOFF before starting**; if you're rate-limited, the other chat keeps going.
+## The one distinction that actually matters: who can verify it
+You can't run Unity or a headset — Terry can. So every piece of work is one of three classes (the backlog
+tags each task this way):
+- **⚙ CI — you do it AND self-verify.** All C# gameplay/editor code, world/job **data assets**, docs. Push,
+  then read CI: it **compiles + runs EditMode tests + runs `WorldAuditRunner` + builds the Android APK**.
+  Green = verified. This is most of the work; do it freely.
+- **🔧 UNITY — you write the code; Terry runs a menu to bake it.** Scenes are authored by **patcher
+  indirection**: you write/commit a C# `ScenePatcher*`/builder, Terry clicks `Ziptide → …` in the editor to
+  generate the `.unity`/`.asset`, then commits it. You **never hand-edit scene YAML.** Queue the menu step
+  in `TERRY_RUNBOOK.md`.
+- **🎮 HEADSET — only Terry can confirm.** Rig/input/feel, walkability, combat balance, VR UI, perf. You
+  spec it in code + data; Terry tests on-device and sends back ❌s + feel notes. See `DEVICE_TEST_CHECKLIST.md`.
 
-## Current state snapshot (2026-06-21)
-- **CI green** on `terry-local-wip`. Code score **3.5/5** (see `CODE_SCORE.md`).
-- **Built:** core loop (job→bounty→profile), economy core (idle/profile, pure+tested), **PvP solo+bot**
-  (4 mechanics), **ToxicCity** world + the reusable **CityBuilder** blueprint, drones+combat v1, gear
-  (taser/gravity/pistol/wrist-scanner/hammer), CI APK build, the full **80-world story design**.
-- **NOT yet:** `ProfileEconomy.ResolveWorld` wired on world-entry · `WorldStubGenerator` (mass worlds) ·
-  3 of 4 creature archetypes · Photon netcode (PvP Phase 3) · 79 of 80 worlds buildable.
-- **Device test pass pending** — see `STATUS.md` ▶ runbook (one-time Unity menus → Rebuild Dev World Manifest → build/sideload).
+## Your work loop
+1. Pull `terry-local-wip` (`git pull --rebase`). 2. Pick the highest-leverage backlog task (any class).
+3. Write code/data/docs. 4. Push; **confirm CI green** (if red, warn Terry loudly and stop shipping C# —
+see `CLAUDE.md`). 5. For any 🔧/🎮 step, **append it to `TERRY_RUNBOOK.md`** so Terry can batch it. 6. Log
+it in `HANDOFF.md`; update `MASTER_CHECKLIST.md` if state changed.
 
-## Your roadmap-of-record (do in order; pull tasks from `FABLE5_BACKLOG.md`)
+## Current state snapshot (2026-06-27)
+- **CI green** on `terry-local-wip`. Code score **3.5/5** (`CODE_SCORE.md`). One branch, single operator.
+- **Built:** core loop (job→bounty→profile), economy core **now wired into world-entry** (`ECON_RESOLVE`),
+  **story-flag gating** (`WorldPackDefinition.flagsRequired/Granted` + `WorldGating` + travel-door lock),
+  **PvP solo+bot** (4 mechanics), **ToxicCity** world + the reusable **CityBuilder**, drones+combat v1, gear
+  (taser/gravity/pistol/wrist-scanner/hammer), CI APK build, the full **80-world story design** +
+  `WORLD_DATA.md` serialization (W000–W012).
+- **Pending Terry:** the full **device-test pass** (`DEVICE_TEST_CHECKLIST.md` + `TERRY_RUNBOOK.md`) — a lot
+  is CI-green but not yet headset-verified. His ❌s/feel-notes drive the next round.
+- **Not yet:** `WorldStubGenerator` (mass worlds) · 3 of 4 creature archetypes · Photon netcode (PvP Ph.3) ·
+  79 of 80 worlds buildable · Transmission fragment system.
+
+## Roadmap-of-record (phases in order; pull from `FABLE5_BACKLOG.md`)
 **A Fix & tie together → B Harden architecture → C Mass-build worlds from data → D Finish modes → E Creatures.**
-Phase A starts with the `CODE_SCORE.md` critical-path blockers (esp. wire `ProfileEconomy.ResolveWorld`).
+No forced "next task" — read the queue and take the highest-leverage item you can move (prefer ⚙ CI work
+when Terry's away; batch 🔧/🎮 for when he's on).
 
 ## Definition of Done (every task)
-CI-green (compile + EditMode tests) · for runtime/scene work, **device-verified by Terry** · a HANDOFF
-entry appended · MASTER_CHECKLIST updated if state changed. Never claim "done" on unverified C# — if CI
-goes red, warn Terry loudly and stop shipping (see `CLAUDE.md`).
+CI-green (compile + EditMode + audit) · for 🔧/🎮 work, **Terry-verified** · a HANDOFF entry appended ·
+MASTER_CHECKLIST updated if state changed. **Never claim "done" on unverified C#.**
 
 ## Don't re-explore — the file map (key systems → paths)
 - **Boot/travel:** `Gameplay/Runtime/World/BootLoader.cs`, `TravelCoordinator.cs` · constants `Core/Runtime/ZiptideConstants.cs`, flags `ZiptideFlags.cs`
-- **Economy/save:** `Core/Runtime/Economy/{IdleEngine,ProfileEconomy}.cs`, `Core/Runtime/Persistence/PlayerProfile.cs`, `Gameplay/Runtime/Persistence/SaveSystem.cs`
-- **Jobs/bounty:** `Content/Runtime/Jobs/{JobDefinition,JobRewards}.cs`, `Gameplay/Runtime/Jobs/JobDirector.cs`
-- **Worlds:** data `Content/Runtime/City/CityLayoutDefinition.cs` + `WorldPacks/WorldPackDefinition.cs`; geometry `Editor/Patching/CityBuilder.cs`; reference patcher `ScenePatcherToxicCity.cs`; recipe `docs/systems/WORLD_BLUEPRINT.md`; flow `docs/design/{CITY_DESIGN,WORLD_FLOW_TEMPLATES}.md`
+- **Economy/save:** `Core/Runtime/Economy/{IdleEngine,ProfileEconomy}.cs` (`EnterWorld` = world-entry resolve), `Core/Runtime/Persistence/PlayerProfile.cs`, `Gameplay/Runtime/Persistence/SaveSystem.cs`
+- **Jobs/bounty/gating:** `Content/Runtime/Jobs/{JobDefinition,JobRewards}.cs`, `Content/Runtime/WorldPacks/{WorldPackDefinition,WorldGating}.cs`, `Gameplay/Runtime/Jobs/JobDirector.cs`, travel-lock in `Gameplay/Runtime/WorldTravelStation.cs`
+- **Worlds:** data `Content/Runtime/City/CityLayoutDefinition.cs` + `WorldPacks/WorldPackDefinition.cs`; geometry `Editor/Patching/CityBuilder.cs`; reference patcher `ScenePatcherToxicCity.cs`; recipe `docs/systems/WORLD_BLUEPRINT.md`; flow `docs/design/{CITY_DESIGN,WORLD_FLOW_TEMPLATES}.md`; serialization `docs/storyboard/WORLD_DATA.md`
 - **Creatures:** `Gameplay/Runtime/Enemies/{DroneRuntime,DroneCombatBehavior,HitZones}.cs`, `Core/Runtime/IShockable.cs`, data `Content/Runtime/Definitions/CreatureDefinition.cs`; framework `docs/systems/CREATURE_DESIGN.md`
 - **PvP:** `Multiplayer/Runtime/{PvpRules,PvpMatch,PvpCombatant}.cs` + `Net/{PvpNet,LoopbackPvpTransport}.cs`; scene side `Gameplay/Runtime/Pvp/`; plan `docs/design/PVP_1V1_MODE.md`
 - **Gear:** `Gameplay/Runtime/Weapons/*` + `Items/ItemFactory.cs`; ideas `docs/09_GEAR_AND_TOOLS.md`
 - **VR rig (live config) + KNOWN GOTCHAS:** `Gameplay/Runtime/Player/PlayerRigPersistence.cs` →
   `EnsureXRIWiring()` is the single source of truth for the runtime rig. **Before touching the rig,
-  weapons, grab, or drone movement, read `docs/systems/VR_RIG_GOTCHAS.md`** — it has the root causes +
-  working fixes for the bugs that ate multiple rounds (thumbstick rotates gun, rays too long, right-stick
-  moves you, guns float on release, drones/bolts phase through walls, ungrabbable objects).
+  weapons, grab, or drone movement, read `docs/systems/VR_RIG_GOTCHAS.md`** — root causes + working fixes
+  for the bugs that ate multiple rounds.
+- **Editor menus (🔧 Terry runs these):** `Editor/Patching/*` + `Editor/DevTools/*` — see `docs/ROLES.md`
+  for the full menu list + the patcher-indirection recipe.
 - **Build/CI:** `Editor/Build/BuildAndroid.cs`, `Editor/Audit/WorldAuditRunner.cs`, `.github/workflows/ci.yml`, `tools/dev_build_install.ps1`
-- **Story:** `docs/storyboard/` (STORY_BIBLE + `THE_TRANSMISSION` identity layer + `_WORLD_TEMPLATE` + `CHAPTER_*` 80-world catalog); **`WORLD_DATA.md`** = the prose→`WorldPackDefinition` serialization (generator-ready records + step-verb vocab + Transmission flag spec); canon table `docs/ZIPTIDE_MASTER_BUILD_PLAN.md` §12
+- **Story:** `docs/storyboard/` (STORY_BIBLE + THE_TRANSMISSION + `_WORLD_TEMPLATE` + `CHAPTER_*` 80-world catalog); `WORLD_DATA.md` = prose→`WorldPackDefinition` serialization; canon table `docs/ZIPTIDE_MASTER_BUILD_PLAN.md` §12
 
 *If it's not here, check `MODULE_MAP.md`. Prefer reading the doc over grepping the code.*

@@ -1,66 +1,54 @@
-# HANDOFF — shared cross-chat log (T-Dog ⇄ Architect ⇄ GPT)
+# HANDOFF — session log (single operator ⇄ Terry)
 
-⛔ **HARD RULE (all chats, no exceptions):**
-1. **Read this file at the START of every session.**
-2. **Append a `Did / Next-CLAIMED / Heads-up / Commit` entry at the END of every session.**
-3. **All shared work + this log live on the `terry-local-wip` branch** (it's green and is what Terry
-   builds from). `git pull` it before starting. **Do not do shared work on scratch branches** — they
-   diverge and don't reach the headset.
+⛔ **HARD RULE:**
+1. **Read the newest entries at the START of every session.**
+2. **Append a `Did / Next / Heads-up / Commit` entry at the END of every session.**
+3. **All work + this log live on `terry-local-wip`** (green; what Terry builds from). `git pull --rebase`
+   before starting; don't do work on scratch branches — they diverge and never reach the headset.
 
-> **The shared spine — everyone uses these three:**
-> - **`docs/HANDOFF.md`** (this file) — the coordination log; who did/claimed what.
-> - **`docs/MASTER_CHECKLIST.md`** — the state of the build (BUILT / short / mid / long-term).
-> - **`docs/GPT_ADDITIONS/<date>_<topic>/`** — where GPT's brainstorm briefs land (ideas, not orders).
->
-> Detailed history lives in `docs/SESSION_LOG.md`. This file is the quick, always-current handshake.
+> **The spine — read these:**
+> - **`docs/FABLE5_START_HERE.md`** — the operator manual (what you own, the ⚙/🔧/🎮 verification model, the loop).
+> - **`docs/HANDOFF.md`** (this file) — your session-to-session continuity log.
+> - **`docs/MASTER_CHECKLIST.md`** — state of the build. **`docs/FABLE5_BACKLOG.md`** — the task queue.
+> - **`docs/TERRY_RUNBOOK.md`** — everything queued that needs Terry's hands (Unity menus + headset).
 
----
+## Who does what (one operator + Terry)
+- **You (the operator)** own all code/data/docs and self-verify via **CI**. You can't run Unity or a headset.
+- **Terry** is the hands for **🔧 Unity-menu** steps (baking scenes/assets from your patchers) and
+  **🎮 headset** feel/device tests. Queue those in `TERRY_RUNBOOK.md` so nothing stalls silently.
+- **GPT / Gemini** = brainstorm/creative, **no repo access**; briefs arrive via Terry
+  (`docs/GPT_ADDITIONS/`, `docs/storyboard/`) as **ideas, not directives**.
+- One branch (`terry-local-wip`), small commits, CI stays green (red → warn Terry loudly, stop shipping C#).
 
-## Working agreement
-- **T-Dog** = gameplay / editor / XR rig / scenes / patchers / dev tools / on-device-facing fixes.
-  *(Terry's usual "master chat" — but which LLM leads can shift with usage; the docs keep us synced.)*
-- **Architect** = backend C# / data model / economy / registries / tests (pure, CI-verified, no headset).
-- **GPT** = brainstorm / design synthesis / milestone framing. **No repo access** — its briefs come in
-  via Terry under `docs/GPT_ADDITIONS/`. **Its additions are IDEAS/inputs, not directives** — the
-  original plan stands; Architect/T-Dog distill the useful parts into MASTER_CHECKLIST + design docs.
-- **Gemini** = creative only (ships, factions, lore, art). **No repo access** — docs come in via
-  Terry and a coding chat files them (see `docs/storyboard/`).
-- **Collision rule:** new files in your own lane = go. Editing a file in the other's lane, or a shared
-  file (`ZiptideConstants.cs`, `WorldPackDefinition.cs`, build settings, `STATUS.md`) = **claim it in a
-  Next-CLAIMED entry first.**
-- **Branch:** one branch — `terry-local-wip`. Small commits. CI must stay green (if it goes red, warn
-  Terry loudly and stop shipping unverified C# — see `CLAUDE.md`).
-
-## Project state (current, 2026-06-16)
-- **CI is GREEN on `terry-local-wip`.** Unity license fixed permanently (local `.ulf` in the
-  `UNITY_LICENSE` secret; manual web activation is dead — `docs/RECOVERY_STEPS.md`).
-- **Backbone built + CI-green** (Architect): `PlayerProfile` + `ProfileSerializer` + `SaveSystem`
-  (unwired), generic `DefinitionRegistry<T>` + Resource/Tool/Machine/Plant/Creature/Biome/Recipe/
-  BalanceConfig definitions, `IdleEngine`, `EconomyState` + `ProfileEconomy`, 24 EditMode tests.
-- **Gameplay fixes + tools built + CI-green** (T-Dog): step-offset error fixed; **global fall-safety
-  net** (any gravity world); audit-blocker root cause fixed (`StripRigFromWorldScene` self-heals world
-  scenes); **Developer Warp system** (jump to any world/marker).
-- **Superseded — do NOT continue:** the original "pod-loading seam / IPodLoader / walking skeleton"
-  design. It predates the backbone above + `docs/design/SYSTEMS_ARCHITECTURE.md`. Build against the
-  current data model, not the old plan.
-
----
-
-## Resolved / standing notes
-1. ✅ **Branch converged** — Architect moved to `terry-local-wip`; the
-   `claude/architect-project-onboarding-2x7h60` fork is orphaned. **Never merge that fork** (stale,
-   pre-backbone, duplicate Tests asmdef). One branch from here: `terry-local-wip`.
-2. **No agent needs Unity.** Both cloud agents lack Unity/headset by design. Verify via **CI** — see
-   the new **`docs/CI_VERIFY.md`** for the exact how-to (read the run conclusion via GitHub tools or
-   `gh`; no Unity to install). This answers Architect's capability request below.
-
-## 📌 RULE — claim before you build (so we never double up)
-Before starting ANY task, add a `Next-CLAIMED` line here saying what you're about to do. Read the
-other agent's latest `Next-CLAIMED` first. If it overlaps, pick something else. This is mandatory.
+> *(History: this was a two-chat coordination log — "T-Dog" (scenes) ⇄ "Architect" (data) ⇄ GPT. That split
+> is retired; one operator now. Older entries keep their lane tags + `Next-CLAIMED` lines as historical
+> attribution. Detailed early history is in `docs/SESSION_LOG.md`; capability how-to in `docs/CI_VERIFY.md`.)*
 
 ---
 
 ## ENTRIES (newest first)
+
+### 2026-06-29 (ww) — Architect: 🔀 RETIRED the two-chat split → single-operator handoff (docs-only)
+Terry's call: Fable 5 will likely get only ~one usable prompt, so we consolidated **everything to a single
+operator** ("Architect" = whatever one model drives) — one prompt should go straight to game work, not
+meta-setup. The two-lane apparatus (Architect vs T-Dog, `[A]`/`[T]`, claim-before-build) is **retired**.
+- **The reframe (the important part):** the real division of labor was never Architect-vs-T-Dog — it's
+  **who can verify a change**: **⚙CI** (you write + self-verify: all C#, data assets, docs) · **🔧UNITY** (you
+  write the patcher; Terry runs a menu to bake the scene/asset) · **🎮DEVICE** (feel/geometry/perf — Terry on
+  headset). Scenes are authored by **patcher-indirection** (write C# `ScenePatcher*` → Terry clicks
+  `Ziptide → …` → commits the generated `.unity`/`.asset`).
+- **Rewrote:** `FABLE5_START_HERE.md` (→ single-operator manual), `ROLES.md` (→ the ⚙/🔧/🎮 operating model +
+  menu list + patcher recipe), `FABLE5_BACKLOG.md` (re-tagged every task by verification class, dropped claim
+  rules), this HANDOFF preamble. **NEW `TERRY_RUNBOOK.md`** = the always-current batch of Unity-menu + headset
+  steps — reconciled with your (vv/uu): the **Dev World Manifest is auto-rebuilt by the build**, not a manual step.
+  Pointer fixes in `CLAUDE.md`, `MODULE_MAP.md`, `DEVICE_TEST_CHECKLIST.md`.
+- **Left alone:** historical logs + `*(T-Dog)*`/`*(Architect)*` attribution credits — harmless history. No
+  code/scenes/build touched — pure docs, CI green by construction. *(Relabeled uu→ww; you'd used uu/vv already.)*
+- **State (all CI-green):** economy into world-entry · story-flag gating + travel-door lock · `WORLD_DATA.md`
+  (W000–W012). **Top of the real critical path = Terry's device-test pass** (`DEVICE_TEST_CHECKLIST.md` +
+  `TERRY_RUNBOOK.md`). No forced "next task" — next model reads `FABLE5_BACKLOG.md`, takes the top item it can move.
+- **Next:** none claimed — the handoff itself is the deliverable. Whoever's next: read `FABLE5_START_HERE.md`.
+- **Commit:** this push on `terry-local-wip`.
 
 ### 2026-06-29 (vv) — T-Dog (cloud): device-test round 3 (right-hand turn, stuck-slow walk, self-shoot, bot collision)
 Terry's round-3 device feedback cleared in 3 CI-green commits (`39e9fc8`, `afd0aa7`, `509ad90`).
