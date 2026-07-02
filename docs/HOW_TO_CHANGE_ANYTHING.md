@@ -32,6 +32,9 @@ Legend: **Edit** = the one place to change · **Then** = how it takes effect · 
 | **Hide the planet in a world** | layout `planetVisible = false` (renders at 1° = dim star) | regen | device |
 | **Change fog** | the layout's `fogEnabled/fogColor/fogDensity` | regen | device |
 | **City color identity** (concrete/metal/buildings/accent) | the layout's `palette` (or a district's `paletteOverride`) | regen | device; rules in `docs/design/CITY_DESIGN.md` |
+| **Retune a world's SKYSCAPE** (stars/nebula/moons/banded giant/Shell grid/shimmer) | its `Content/Worlds/SkyVistas/<Scene>_Vista.asset` (`SkyVistaDefinition` — the asset is the live truth, seeded once by `SkyVistaLibrary`) | next build (`SkyVistaAuthor` re-points the theme; textures bake at world entry) | `SKY_VISTA_*` audit rules; device |
+| **Add a skyscape to a NEW world** | add a `Build*` method + `Specs()` row in `Editor/Patching/SkyVistaLibrary.cs` (create-only) | next build seeds + assigns it | `SkyVistaTests` progression suite; audit |
+| ⚠ **Change the CANON sky progression** (Shell grid reveal, giant growth, W003 moons, RILL cyan) | `SkyVistaLibrary.cs` + the pinned expectations in `Tests/EditMode/SkyVistaTests.cs` — story canon, confirm with Terry first | delete the affected vista assets to reseed, rebuild | the canon tests themselves |
 
 ## Weapons / gear
 

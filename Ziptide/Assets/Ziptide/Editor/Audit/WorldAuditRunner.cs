@@ -86,6 +86,7 @@ namespace Ziptide.Editor.Audit
                     RunTravelChecks(sceneReport);
                     RunCityGeometryChecks(sceneReport);
                     RunSingletonChecks(sceneReport);
+                    SkyVistaAuditRules.Run(sceneReport);
                 }
 
                 report.scenes.Add(sceneReport);
