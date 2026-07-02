@@ -42,6 +42,7 @@ namespace Ziptide.Editor.Patching
 
             BuildShipyard(root, kit);
             BuildDroneZones(root, kit);
+            BuildHazardZones(root, kit);
 
             _matCache.Clear();
         }
@@ -360,6 +361,21 @@ namespace Ziptide.Editor.Patching
             Cube(ship, "Cockpit", new Vector3(0f, s.shipSize.y * 0.4f, s.shipSize.z * 0.3f), new Vector3(s.shipSize.x * 0.7f, s.shipSize.y * 0.5f, s.shipSize.z * 0.3f), kit.palette.accent, true);
             Cube(ship, "EngineL", new Vector3(-s.shipSize.x * 0.45f, 0f, -s.shipSize.z * 0.45f), new Vector3(s.shipSize.x * 0.25f, s.shipSize.y * 0.5f, s.shipSize.z * 0.2f), kit.palette.metal, true);
             Cube(ship, "EngineR", new Vector3(s.shipSize.x * 0.45f, 0f, -s.shipSize.z * 0.45f), new Vector3(s.shipSize.x * 0.25f, s.shipSize.y * 0.5f, s.shipSize.z * 0.2f), kit.palette.metal, true);
+        }
+
+        // ── Hazards (biome mechanics — GAME_PLAN M2) ─────────────────────────
+        private static void BuildHazardZones(Transform root, CityLayoutDefinition kit)
+        {
+            if (kit.hazards == null || kit.hazards.Count == 0) return;
+            var hazardRoot = NewChild(root, "Hazards");
+            foreach (var h in kit.hazards)
+            {
+                if (h == null) continue;
+                var go = new GameObject("Hazard_" + h.id);
+                go.transform.SetParent(hazardRoot, false);
+                go.transform.position = new Vector3(h.center.x, kit.walkwayHeight, h.center.z);
+                go.AddComponent<HazardZoneRuntime>().Init(h);
+            }
         }
 
         // ── Drones (passive here; combat wired in MakeDrone) ─────────────────

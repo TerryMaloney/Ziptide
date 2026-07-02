@@ -69,6 +69,7 @@ namespace Ziptide.Content
         public List<ConnectionDef> connections = new List<ConnectionDef>();
         public List<CanalRegionDef> canals = new List<CanalRegionDef>();
         public List<DroneZoneDef> droneZones = new List<DroneZoneDef>();
+        public List<HazardZoneDef> hazards = new List<HazardZoneDef>();
         public ShipyardBerthDef shipyard = new ShipyardBerthDef();
 
         /// <summary>
@@ -201,6 +202,35 @@ namespace Ziptide.Content
         public bool combat = false;
         [Tooltip("Optional DroneCombatProfile asset name in Resources/Enemies (blank = serialized defaults).")]
         public string variantId = "";
+    }
+
+    /// <summary>The five biome hazard mechanics (GAME_PLAN M2). Non-lethal per canon — they push/slow, never kill.</summary>
+    public enum HazardKind
+    {
+        Wind,      // steady horizontal push while inside (exterior worlds)
+        Static,    // periodic zap: flash + brief slow ticks
+        Flood,     // heavy movement slow while inside (tide flats, canals)
+        Spore,     // slow-building fog: longer slow ticks (forest/canopy)
+        Radiation  // escalating flash the longer you stay + a push back out
+    }
+
+    /// <summary>
+    /// A biome hazard volume authored as LAYOUT data: the generator spawns a HazardZoneRuntime box per
+    /// entry. Hazards make biomes mechanical, not just palettes — author them WITH the world.
+    /// </summary>
+    [Serializable]
+    public class HazardZoneDef
+    {
+        public string id = "Hazard";
+        public HazardKind kind = HazardKind.Wind;
+        [Tooltip("Zone center (XZ; Y is derived from walkway height).")]
+        public Vector3 center = Vector3.zero;
+        [Tooltip("Box size of the volume (Y = how tall the effect reaches).")]
+        public Vector3 size = new Vector3(8f, 4f, 8f);
+        [Tooltip("Effect strength: Wind = push m/s · Static/Spore/Flood = slow factor is derived · Radiation = escalation rate.")]
+        public float strength = 1.5f;
+        [Tooltip("Wind only: horizontal push direction (normalized at runtime; zero = +X).")]
+        public Vector3 direction = new Vector3(1f, 0f, 0f);
     }
 
     /// <summary>A big silhouette block unique to a district (tower, refinery, etc.).</summary>

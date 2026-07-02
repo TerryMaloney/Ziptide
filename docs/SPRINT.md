@@ -18,7 +18,7 @@ rig/PvP/XRI samples, CI green per push, APK dispatch at the end).
 |---|------|--------|
 | 0 | Archive M1 sprint; open this one | ✅ `756956e` |
 | 1 | **Repair loop**: `RepairableMachine` (3 hands-on stages: grab panel off → seat the part → flip the switch) + `MachineSpawnDefinition` pack data + JobDirector spawn + `RepairMachineCountStepDefinition` + `JobRuntime.ReportRepair` (+ bank, like collect) + `WorldJobLibrary .Repair()/.Machine()` verbs + **W002 finale = repair the cistern pump** + validator guard + 7 tests | ✅ this commit |
-| 2 | **Hazard zones**: `HazardZoneDef` list on `CityLayoutDefinition` (Wind/Static/Flood/Spore/Radiation, center/size/strength) + `HazardZoneRuntime` (trigger volume; push / slow-stun via `PlayerStunReceiver.ApplyStun`; `ZIPTIDE: HAZARD`) + generator spawn + author W003 wind / W005 spore / W010 flood in `WorldLayoutLibrary` + validator/test | ⬜ |
+| 2 | **Hazard zones**: `HazardZoneDef` list on `CityLayoutDefinition` + `HazardZoneRuntime` (SERIALIZED def — gotcha #7; poll-based; Wind push / Static+Spore ticks / Flood drag / Radiation escalate+shove; slab visual) + `CityBuilder.BuildHazardZones` + authored W003 wind crossings / W005 spore pockets / W010 tide-flat flood | ✅ this commit |
 | 3 | **Economy world objects**: `MiningRigRuntime` (binds a `MineState` in this world's `WorldState`; select → `ProfileEconomy.CollectMine` → credits HUD moves; `ZIPTIDE: MINE_COLLECT`) + `GardenPlotRuntime` (PlotState grow/harvest) + pack/layout spawn + W002 gets a mineral rig + tests for any new pure logic | ⬜ |
 | 4 | Starter-gear trio (Scan Pulse → Taser → Gravity Glove onboarding) — **DEFERRED to W000/M4** (onboarding order needs the tutorial world; gear itself already exists). Documented here so nobody re-derives. | ⏸ deferred |
 | 5 | Close: HANDOFF (bbb), runbook §2d M2 smoke, checklist, MASTER_CHECKLIST, **APK dispatch green** | ⬜ |
@@ -34,19 +34,24 @@ rig/PvP/XRI samples, CI green per push, APK dispatch at the end).
   "arrive → collect → repair → paid" is authored. Validator: machine sanity + Repair↔machine guard.
   Tests: `JobRuntimeRepairTests` (5) + 2 validator. Kept W002's final Go("pump_house") BEFORE the
   machine so the objective board walks you there first.
-- **Next action:** verify CI on this push → Task 2 (hazard zones): `HazardZoneDef` [Serializable] on
-  `CityLayoutDefinition` (enum Wind/Static/Flood/Spore/Radiation + center/size/strength) + a `hazards`
-  list; `Gameplay/Runtime/World/HazardZoneRuntime.cs` — self-built trigger volume (BoxCollider
-  isTrigger + translucent tint), OnTriggerStay against the rig: Wind = steady push (CharacterController
-  .Move via rig transform nudge — CAREFUL: move the XR Origin root, not the camera), Static/Spore =
-  periodic `PlayerStunReceiver.ApplyStun(0.4f, 0.55f)` ticks, Flood = strong slow while inside,
-  Radiation = escalating flash + push-back. `ZIPTIDE: HAZARD kind=… enter/exit`. Spawned by
-  `WorldStubGenerator.Populate` from the layout's hazards list. Author: W003 wind lanes between mesas,
-  W005 spore pockets under the canopy, W010 flood strips on the tide flats (edit `WorldLayoutLibrary`).
-  Validator/test: pure `HazardZoneDef` sanity if a pure seam exists; otherwise author-data eyeball +
-  audit reliance (zones are triggers — the spawn-overlap audit ignores them).
-- **Then:** Task 3 (mining rig / garden plot) → Task 5 close + APK dispatch.
-- **Branch:** `terry-local-wip`. CI-green head: `970be83`; `756956e` (sprint open, docs-only) pending.
+- **Current micro-step (task 2 committed):** hazards live. `HazardZoneDef`+`HazardKind` on the layout;
+  `HazardZoneRuntime` holds a **SERIALIZED def** (the generator assigns at edit time — private fields
+  don't cross into the saved scene, gotcha #7) and builds bounds+slab in `Awake`; detection = position
+  poll (no rig physics coupling); slows go through the self-healing stun path. Authored: W003 crosswind
+  bridge lanes, W005 spore pockets, W010 tide-flat flood drag. Layout assets are NOT committed — CI
+  re-authors them fresh each build, so builder edits ship (Terry's stale local copies just have empty
+  hazard lists until regenerated).
+- **Next action:** verify CI → Task 3 (economy world objects): `Gameplay/Runtime/Story/MiningRigRuntime.cs`
+  — pack-data spawn (`MiningRigSpawnDefinition`? keep simpler: reuse `MachineSpawnDefinition`? NO — new
+  small `[Serializable] EconomySpawnDefinition` {kind Mine|Garden, id, resourceId/plantId, ratePerSecond,
+  storageCap, localPosition} + `economy` list on the pack). Rig binds a `MineState` in
+  `profile.GetWorld(sceneName).mines` (create if missing, keyed by machineId=id), shows stored on a
+  TextMesh, select → `ProfileEconomy.CollectMine` → `ZIPTIDE: MINE_COLLECT amt=…`. Garden: `PlotState`
+  plant/harvest via select (GardenService if it fits, else direct PlotState). W002 gets a mineral rig
+  near the pump. Library verb `.Mine(id, resourceId, rate, cap, pos)`. Tests for any pure seam
+  (MineState binding logic → extract a pure helper if needed).
+- **Then:** Task 5 close + APK dispatch.
+- **Branch:** `terry-local-wip`. CI-green: `468458b` (task 1). This push pending.
 
 ## Specs (verified against code this session — don't re-derive)
 - `JobRuntime` step pattern + bank: see `_collectBank`/`ApplyCollectBank` (added in M1) — mirror for repair.

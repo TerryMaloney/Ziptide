@@ -128,7 +128,20 @@ namespace Ziptide.Editor.Patching
             Connect(kit, "RelayShelfA", "RelayShelfB", ConnectionKind.Ramp, 5);
             Connect(kit, "RelayShelfB", "SkiffWreck", ConnectionKind.Bridge, 5); // loop
 
-            // No combat (tendrils are Phase-E) — a breather world on purpose.
+            // No combat (tendrils are Phase-E) — the WIND is the antagonist here (M2 hazard):
+            // crosswind lanes over the two exposed bridge crossings shove you toward the edge.
+            kit.hazards.Add(new HazardZoneDef
+            {
+                id = "wind_crossing_a", kind = HazardKind.Wind,
+                center = new Vector3(-10, 0, 22), size = new Vector3(14, 5, 10),
+                strength = 1.6f, direction = new Vector3(1f, 0f, -0.4f)
+            });
+            kit.hazards.Add(new HazardZoneDef
+            {
+                id = "wind_crossing_b", kind = HazardKind.Wind,
+                center = new Vector3(15, 0, 8), size = new Vector3(12, 5, 10),
+                strength = 1.9f, direction = new Vector3(-0.6f, 0f, 1f)
+            });
             kit.spawnDistrictId = "SkiffWreck";
             kit.spawnStarterWeapons = false;
             kit.shipyard.enabled = false;
@@ -204,6 +217,18 @@ namespace Ziptide.Editor.Patching
             Connect(kit, "GroveEdge", "ForestFloor", ConnectionKind.GroundStreet, 6); // loop
 
             kit.droneZones.Add(new DroneZoneDef { id = "Patrol_Canopy", center = new Vector3(2, 0, 30), radius = 6f, count = 4, respawnDelay = 14f, combat = true, variantId = "drone_standard" });
+            // Spore pockets under the canopy (M2 hazard): linger and the fog slows you — the scrub job
+            // reads as actually needed. One on the forest floor, one by the grove.
+            kit.hazards.Add(new HazardZoneDef
+            {
+                id = "spore_floor", kind = HazardKind.Spore,
+                center = new Vector3(-8, 0, 6), size = new Vector3(10, 4, 10), strength = 1f
+            });
+            kit.hazards.Add(new HazardZoneDef
+            {
+                id = "spore_grove", kind = HazardKind.Spore,
+                center = new Vector3(18, 0, 20), size = new Vector3(12, 4, 8), strength = 1f
+            });
             kit.spawnDistrictId = "ForestFloor";
             kit.spawnStarterWeapons = true;
             kit.shipyard.enabled = false;
@@ -397,6 +422,19 @@ namespace Ziptide.Editor.Patching
             // The tide itself: luminous no-stand flats between the districts.
             kit.canals.Add(new CanalRegionDef { center = new Vector3(-12, 0, 10), size = new Vector2(14, 24), depth = 2f });
             kit.canals.Add(new CanalRegionDef { center = new Vector3(12, 0, 12), size = new Vector2(14, 24), depth = 2f });
+
+            // Flood drag over the same flats (M2 hazard): wade off the bridges and the tide slows you
+            // hard — the crossings become the safe route, mechanically not just visually.
+            kit.hazards.Add(new HazardZoneDef
+            {
+                id = "tide_west", kind = HazardKind.Flood,
+                center = new Vector3(-12, 0, 10), size = new Vector3(14, 3, 24), strength = 1f
+            });
+            kit.hazards.Add(new HazardZoneDef
+            {
+                id = "tide_east", kind = HazardKind.Flood,
+                center = new Vector3(12, 0, 12), size = new Vector3(14, 3, 24), strength = 1f
+            });
 
             kit.spawnDistrictId = "ShoreCamp";
             kit.spawnStarterWeapons = false; // tendril world — Phase E
