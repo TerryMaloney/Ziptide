@@ -57,6 +57,9 @@ namespace Ziptide.Gameplay
                 "BOARD SHIP", PanelColor, () =>
                 {
                     _berthReturnPos = RigPosition() ?? (transform.TransformPoint(doorLocalPos) + Vector3.forward);
+                    // Re-evaluate story gating EVERY boarding — you may have just finished the contract
+                    // that unlocks the next world (locks were stale when computed once in Awake).
+                    RebuildHelmRows();
                     TeleportRig(transform.TransformPoint(cockpitLocalPos) + Vector3.up * 0.1f);
                     Debug.Log("ZIPTIDE: SHIP_BOARD");
                 });
@@ -76,36 +79,10 @@ namespace Ziptide.Gameplay
 
             // The helm console: destination rows, story-gated like the travel doors.
             var console = MakeCube("Helm", deckCenter + new Vector3(0f, 0.7f, 1.3f),
-                new Vector3(2.6f, 1.0f, 0.15f), new Color(0.10f, 0.12f, 0.15f), collider: false);
+                new Vector3(2.6f, 1.3f, 0.15f), new Color(0.10f, 0.12f, 0.15f), collider: false);
             console.transform.localRotation = Quaternion.Euler(-20f, 0f, 0f);
 
-            var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;
-            int shown = 0;
-            for (int i = 0; i < destinationPacks.Count && shown < 8; i++)
-            {
-                var pack = destinationPacks[i];
-                if (pack == null || string.IsNullOrEmpty(pack.sceneName)) continue;
-                if (pack.sceneName == gameObject.scene.name) continue; // not the world we're parked in
-
-                bool locked = !WorldGating.MeetsRequirements(pack, profile);
-                string label = string.IsNullOrEmpty(pack.displayName) ? pack.packId : pack.displayName;
-                string sceneName = pack.sceneName;
-                var packRef = pack;
-
-                int row = shown / 2, col = shown % 2;
-                Vector3 pos = deckCenter + new Vector3(-0.65f + col * 1.3f, 1.05f - row * 0.28f, 1.22f);
-                var rowPanel = MakePanel("Dest_" + pack.packId, transform.TransformPoint(pos),
-                    (locked ? "LOCKED - " : "") + label, locked ? LockedColor : PanelColor,
-                    locked
-                        ? (System.Action)(() => Debug.Log("ZIPTIDE: TRAVEL_LOCKED pack=" + packRef.packId +
-                            " missing=" + (WorldGating.FirstMissingRequirement(packRef,
-                                SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null) ?? "?")))
-                        : () => StartCoroutine(FlyOutThenTravel(sceneName)),
-                    small: true);
-                rowPanel.transform.SetParent(transform, true);
-                rowPanel.transform.localRotation = Quaternion.Euler(-20f, 0f, 0f);
-                shown++;
-            }
+            RebuildHelmRows();
 
             // Disembark.
             var off = MakePanel("DisembarkPanel", transform.TransformPoint(deckCenter + new Vector3(0f, 0.6f, -1.55f)),
@@ -118,6 +95,47 @@ namespace Ziptide.Gameplay
                     Debug.Log("ZIPTIDE: SHIP_DISEMBARK");
                 }, small: true);
             off.transform.rotation = transform.rotation * Quaternion.Euler(0f, 180f, 0f);
+        }
+
+        // The helm's destination rows, rebuilt on every boarding so lock states are always CURRENT
+        // (finishing a contract then boarding must show the next world unlocked). Fits 12 worlds
+        // (2 cols × 6 rows) — the whole authored arc, not the first 8.
+        private Transform _helmRowsRoot;
+
+        private void RebuildHelmRows()
+        {
+            if (_helmRowsRoot != null) Destroy(_helmRowsRoot.gameObject);
+            _helmRowsRoot = new GameObject("HelmRows").transform;
+            _helmRowsRoot.SetParent(transform, false);
+
+            Vector3 deckCenter = cockpitLocalPos;
+            var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;
+            int shown = 0;
+            for (int i = 0; i < destinationPacks.Count && shown < 12; i++)
+            {
+                var pack = destinationPacks[i];
+                if (pack == null || string.IsNullOrEmpty(pack.sceneName)) continue;
+                if (pack.sceneName == gameObject.scene.name) continue; // not the world we're parked in
+
+                bool locked = !WorldGating.MeetsRequirements(pack, profile);
+                string label = string.IsNullOrEmpty(pack.displayName) ? pack.packId : pack.displayName;
+                string sceneName = pack.sceneName;
+                var packRef = pack;
+
+                int row = shown / 2, col = shown % 2;
+                Vector3 pos = deckCenter + new Vector3(-0.65f + col * 1.3f, 1.25f - row * 0.24f, 1.22f);
+                var rowPanel = MakePanel("Dest_" + pack.packId, transform.TransformPoint(pos),
+                    (locked ? "LOCKED - " : "") + label, locked ? LockedColor : PanelColor,
+                    locked
+                        ? (System.Action)(() => Debug.Log("ZIPTIDE: TRAVEL_LOCKED pack=" + packRef.packId +
+                            " missing=" + (WorldGating.FirstMissingRequirement(packRef,
+                                SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null) ?? "?")))
+                        : () => StartCoroutine(FlyOutThenTravel(sceneName)),
+                    small: true);
+                rowPanel.transform.SetParent(_helmRowsRoot, true);
+                rowPanel.transform.localRotation = Quaternion.Euler(-20f, 0f, 0f);
+                shown++;
+            }
         }
 
         // ── S2: the fly-out presentation (comfort-first — the WORLD moves, never the camera) ─────

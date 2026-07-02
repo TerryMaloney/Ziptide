@@ -22,6 +22,7 @@ namespace Ziptide.Gameplay
         private string _flagOnCollect;
         private JobDirector _director;
         private Transform _visual;
+        private Transform _label;
         private bool _collected;
 
         /// <summary>Build + arm the pickup. Call immediately after AddComponent (spawner does).</summary>
@@ -75,6 +76,7 @@ namespace Ziptide.Gameplay
             tm.color = accent;
             labelGo.transform.SetParent(transform, false);
             labelGo.transform.localPosition = Vector3.up * 0.32f;
+            _label = labelGo.transform;
         }
 
         private void Update()
@@ -87,12 +89,8 @@ namespace Ziptide.Gameplay
 
             // Billboard the label at the camera so it's always readable.
             var cam = Camera.main;
-            if (cam != null)
-            {
-                var label = transform.Find("Label");
-                if (label != null)
-                    label.rotation = Quaternion.LookRotation(label.position - cam.transform.position);
-            }
+            if (cam != null && _label != null)
+                _label.rotation = Quaternion.LookRotation(_label.position - cam.transform.position);
         }
 
         private static void ApplyUnlit(GameObject go, Color color)
