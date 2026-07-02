@@ -97,10 +97,20 @@ The contract-tech fantasy becomes hands-on, not fetch-quests.
   `AdaptiveAudioManager` (4-stem, Signal-reactive per `ADAPTIVE_AUDIO.md`); SFX library; VFX pass.
 - **Gate:** W001 & the Ch.1 band look/sound shipped-quality at 72fps on-device.
 
-### M7 — Modes
-- 🔧/⚙ **PvP Phase 3** Photon PUN2 (Terry's PC import; `IPvpTransport` seam is ready) + Phase 4 polish.
-- Tidefront / community-builder / adult-variant: **parked, post-launch** (§4).
-- **Gate:** two headsets play a room-code match.
+### M7 — THE MULTIPLAYER PROGRAM *(promoted + expanded by Terry 2026-07-02; runs in parallel with
+M3+ as its own track — own sprint file `docs/SPRINT_MULTIPLAYER.md`, zero file overlap with the story
+milestones. Designs: `docs/design/PVP_ARENA_AAA.md` + `docs/design/TIDEFRONT_AAA.md`.)*
+- **M7a — Arena (PvP → AAA fun):** A1 Bot Brain (pure utility AI + difficulty-as-data; thread
+  `IPvpTransport` + `WeaponCharge` while rewiring) → A2 Arena Factory (5 biome arenas w/ cover points +
+  waypoint graphs) → A3 Modes (N-combatant matches; Gun Game / KotH / Fragment Rush / Horde-with-M3-
+  creatures) → A4 Arsenal (6 weapons, pad pickups) → A5 Progression (credits into the ONE economy,
+  unlocks, daily seed). **Gate:** a stranger plays 10 varied matches and wants an 11th.
+- **M7b — Online:** Photon PUN2 (Terry's PC) behind the already-threaded transport → remote avatar →
+  room codes → voice → polish. **Gate:** two headsets play a room-code match.
+- **M7c — Tidefront (the Risk layer — UN-parked):** B1 conquest sim (pure, deterministic, story-worlds-
+  as-map) → B2 holo war table vs AI → B3 **VR mission modifiers** (attacks/defenses offer real contracts
+  inside the actual worlds) → B4 hotseat → Photon live. **Gate:** two players finish a war; missions
+  change outcomes. *(League/seasons/ranks stay post-launch, §4.)*
 
 ### M8 — Ship It
 - ⚙/🎮 Title/settings/comfort/accessibility/saves UX · perf hardening to the budget doc · Meta store
@@ -127,8 +137,8 @@ any fresh model stays one line: **"Read docs/SPRINT.md and continue."**
 ---
 
 ## §4 Parked (post-launch — do not build before M8)
-Tidefront (async strategy MP) · community world-builder · adult-variant content split · anything
-requiring a live-ops backend.
+Tidefront **ranked league/seasons/async-cloud-store** (the core Tidefront game is ACTIVE — M7c) ·
+community world-builder · adult-variant content split · anything requiring a live-ops backend.
 
 ---
 *Written 2026-07-01 by the operator (Fable 5), executing the approved ROAD-TO-AAA plan. Spec pointers:

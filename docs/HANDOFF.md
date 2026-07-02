@@ -28,6 +28,23 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-02 (ddd) — operator (Fable 5, 2nd session): 🎮 THE MULTIPLAYER PROGRAM opened (M7 promoted) — CLAIM
+Terry redirected this session to multiplayer: PvP → AAA fun + Tidefront (the Risk layer) UN-parked.
+*(Label skips (ccc) — that's reserved for the story-track session's M3 close per its SPRINT task 7.)*
+- **Did:** deep-dived the as-built PvP (bot = range-keeping turret; one 34m room; pure core +
+  `IPvpTransport`/`WeaponCharge` built but bypassed) and the Tidefront concept; wrote the two production
+  designs — **`design/PVP_ARENA_AAA.md`** (A1 Bot Brain w/ difficulty-as-data → A2 Arena Factory (5 biome
+  arenas) → A3 modes incl. Horde-with-M3-creatures → A4 six-weapon arsenal → A5 one-economy progression →
+  A6 Photon) and **`design/TIDEFRONT_AAA.md`** (B1 deterministic conquest sim over the STORY WORLDS as
+  the map → B2 holo war table → B3 VR-mission odds modifiers INSIDE the real worlds → B4 hotseat→Photon;
+  league stays post-launch). GAME_PLAN M7 rewritten to the three-track program; §4 updated.
+- **⚠ PARALLEL-TRACK CLAIM (two sprints are now live):** this track owns **`Multiplayer/**`,
+  `Gameplay/Runtime/Pvp/**`, arena patchers/layouts**, + its docs, tracked in **`SPRINT_MULTIPLAYER.md`**.
+  The story track (SPRINT.md, M3 creatures, tasks 4–7 open) owns creature/world/RILL files. Zero overlap
+  by construction — whoever resumes either track: read your own sprint file, don't cross the line.
+- **Next (this session):** A1a BotBrain pure core + B1a Conquest sim core — both pure C#, CI-verified.
+- **Commit:** this push on `terry-local-wip`.
+
 ### 2026-07-02 (bbb) — operator (Fable 5): M2 "THE JOB IS REAL" built — repair loop, hazards, visible economy
 Same-session continuation after M1 closed (APK `28581416414` green). All ⚙CI; sprint tracked in SPRINT.md.
 - **The hands-on repair loop** (`468458b`, CI-green): `RepairableMachine` — pull the access panel off,
