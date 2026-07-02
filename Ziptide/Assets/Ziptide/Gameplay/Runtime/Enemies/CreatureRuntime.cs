@@ -106,8 +106,10 @@ namespace Ziptide.Gameplay
             _down = true;
             if (_behavior != null) _behavior.enabled = false;
             Tint(DownTint);
-            // Crumple, don't ragdoll — readable and cheap.
+            // Crumple, don't ragdoll — readable and cheap — with a burst of discharge arcs so the
+            // disable reads as an EVENT, not a texture swap (the drone shock-arc pattern).
             transform.localScale = new Vector3(_homeScale.x * 1.15f, _homeScale.y * 0.35f, _homeScale.z * 1.15f);
+            for (int i = 0; i < 6; i++) SpawnArc();
 
             var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;
             if (profile != null && _def != null && _def.loot != null)
@@ -130,6 +132,35 @@ namespace Ziptide.Gameplay
             Tint(Color.white, restore: true);
             if (_behavior != null) _behavior.enabled = true;
             Debug.Log("ZIPTIDE: CREATURE_RESPAWN id=" + creatureId);
+        }
+
+        // A short emissive discharge arc flicked out from the body (the DroneRuntime spark pattern).
+        private void SpawnArc()
+        {
+            var arc = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            arc.name = "Arc";
+            var col = arc.GetComponent<Collider>();
+            if (col != null) Destroy(col);
+            Vector3 dir = Random.onUnitSphere;
+            float len = 0.12f + Random.value * 0.22f;
+            arc.transform.position = transform.position + dir * (len * 0.5f);
+            arc.transform.rotation = Quaternion.LookRotation(dir);
+            arc.transform.localScale = new Vector3(0.012f, 0.012f, len);
+            var r = arc.GetComponent<Renderer>();
+            if (r != null)
+            {
+                var shader = Shader.Find("Universal Render Pipeline/Unlit");
+                if (shader == null) shader = Shader.Find("Universal Render Pipeline/Lit");
+                if (shader != null)
+                {
+                    var mat = new Material(shader);
+                    mat.color = StunTint;
+                    if (mat.HasProperty("_BaseColor")) mat.SetColor("_BaseColor", StunTint);
+                    r.material = mat;
+                    r.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+                }
+            }
+            Destroy(arc, 0.08f);
         }
 
         private void Tint(Color c, bool restore = false)

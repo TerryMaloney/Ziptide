@@ -223,12 +223,27 @@ namespace Ziptide.Gameplay
                 streaks.Add(sGo.transform);
             }
 
+            // Departure readout floats over the helm — a countdown sells the launch.
+            var countGo = new GameObject("__DepartReadout");
+            var countText = countGo.AddComponent<TextMesh>();
+            countText.characterSize = 0.06f;
+            countText.fontSize = 48;
+            countText.anchor = TextAnchor.MiddleCenter;
+            countText.alignment = TextAlignment.Center;
+            countText.color = new Color(0.75f, 0.9f, 1f);
+            countGo.transform.position = transform.TransformPoint(cockpitLocalPos + new Vector3(0f, 1.6f, 1.2f));
+            countGo.transform.rotation = transform.rotation;
+
             float t = 0f;
             while (t < flyOutSeconds)
             {
                 t += Time.deltaTime;
                 float ramp = Mathf.Clamp01(t / 1.5f); // engines spool up
                 float speed = 18f + 42f * ramp;
+                float remaining = flyOutSeconds - t;
+                countText.text = remaining > 1f
+                    ? "DEPARTING IN " + Mathf.CeilToInt(remaining)
+                    : "PUNCH IT";
                 foreach (var st in streaks)
                 {
                     if (st == null) continue;
@@ -242,6 +257,7 @@ namespace Ziptide.Gameplay
             }
 
             Destroy(streakRoot.gameObject); // travel unloads the scene anyway; be tidy if it's slow
+            Destroy(countGo);
             TravelCoordinator.TravelTo(sceneName); // the ONLY legal path (locked contract #1)
         }
 
