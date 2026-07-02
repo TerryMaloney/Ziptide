@@ -31,9 +31,9 @@
 ### 2026-07-02 (lll) — operator (Fable 5, MP track): ⏸ PAUSE AT 90% USAGE — session wrap, everything green, Terry has his install path
 Terry called the pause (90% usage): **no new building.** Final state of this session's work:
 - **CI green through head `24ffb69`** (A3-scene modes + A6-prep + A4 arsenal all compile+test clean).
-  APK dispatch `28624909237` (A3 head) GREEN — arenas audit-clean with boards/zones/doors. The FINAL
-  dispatch (A4 head, arsenal + respawning pads baked in) was queued at wrap — **whoever resumes:
-  check it; if red, that's task #0.** Terry installs from that artifact.
+  APK dispatch `28624909237` (A3 head) GREEN — arenas audit-clean with boards/zones/doors.
+  **✅ THE FINAL APK IS GREEN: run `28625681163` on `24ffb69`** — arsenal + respawning pads baked,
+  audit-clean, `ziptide-apk` artifact uploaded. **That run's artifact is the one Terry installs.**
 - **📦 `docs/GET_IT_ON_THE_HEADSETS.md`** — Terry's one-stop page: artifact download vs PowerShell
   build (`tools/dev_build_install.ps1` / `quest_smoke.ps1`), one-headset + BOTH-headset adb installs,
   and the honest two-player state: **his Photon setup (TWO_QUEST_SETUP steps 1–4) is doable today;
