@@ -91,6 +91,7 @@ Legend: **Edit** = the one place to change · **Then** = how it takes effect · 
 
 | I want to… | Edit | Then | Verify |
 |---|---|---|---|
+| **Board-the-ship destinations / which worlds the helm lists** | automatic: every authored world pack whose scene ships (Exit packs skipped); story-gating at the helm = `WorldGating`, same as doors | `CityBuilder.BuildShipyard` wires `ShipBoardingStation` per berth; enable a world's berth via its layout `shipyard.enabled` | `ZIPTIDE: SHIP_BOARD / SHIP_DEPART dest=…` |
 | **Ship size/cockpit/flight feel/comfort vignette** | the `ShipDefinition` asset (data-only today; the S1 boardable-shell runtime consumes it — build plan in `docs/systems/SHIPS.md`) | — | — |
 | **Add an upgrade socket / a second hull** | `slots` list / a new `ShipDefinition` asset | — | — |
 | **Where the berth+placeholder ship sits in a world** | the layout's `ShipyardBerthDef` | regen | device |

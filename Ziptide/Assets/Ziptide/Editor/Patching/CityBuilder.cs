@@ -363,6 +363,36 @@ namespace Ziptide.Editor.Patching
             Cube(ship, "Cockpit", new Vector3(0f, s.shipSize.y * 0.4f, s.shipSize.z * 0.3f), new Vector3(s.shipSize.x * 0.7f, s.shipSize.y * 0.5f, s.shipSize.z * 0.3f), kit.palette.accent, true);
             Cube(ship, "EngineL", new Vector3(-s.shipSize.x * 0.45f, 0f, -s.shipSize.z * 0.45f), new Vector3(s.shipSize.x * 0.25f, s.shipSize.y * 0.5f, s.shipSize.z * 0.2f), kit.palette.metal, true);
             Cube(ship, "EngineR", new Vector3(s.shipSize.x * 0.45f, 0f, -s.shipSize.z * 0.45f), new Vector3(s.shipSize.x * 0.25f, s.shipSize.y * 0.5f, s.shipSize.z * 0.2f), kit.palette.metal, true);
+
+            // S1 (GAME_PLAN M4 / SHIPS.md): the berthed ship is BOARDABLE — a travel station wearing a
+            // ship costume. Destinations = every authored world pack whose scene ships in the build
+            // (skip Exit return-packs and this world's own pack); story-gating happens at runtime.
+            var station = ship.gameObject.AddComponent<ShipBoardingStation>();
+            station.Configure(CollectDestinationPacks(kit.sceneName),
+                new Vector3(0f, s.shipSize.y * 0.75f, s.shipSize.z * 0.25f),   // cockpit deck on the hull top
+                new Vector3(-s.shipSize.x * 0.5f - 1.2f, 0.2f, 0f));           // boarding panel by the door side
+        }
+
+        private static List<WorldPackDefinition> CollectDestinationPacks(string currentSceneName)
+        {
+            var packs = new List<WorldPackDefinition>();
+            var enabledScenes = new HashSet<string>();
+            foreach (var sc in EditorBuildSettings.scenes)
+                if (sc.enabled && !string.IsNullOrEmpty(sc.path))
+                    enabledScenes.Add(System.IO.Path.GetFileNameWithoutExtension(sc.path));
+
+            foreach (var guid in AssetDatabase.FindAssets("t:WorldPackDefinition",
+                         new[] { "Assets/Ziptide/Content/Worlds/Packs" }))
+            {
+                var pack = AssetDatabase.LoadAssetAtPath<WorldPackDefinition>(AssetDatabase.GUIDToAssetPath(guid));
+                if (pack == null || string.IsNullOrEmpty(pack.sceneName)) continue;
+                if (pack.name.Contains("Exit")) continue;                 // return-packs aren't destinations
+                if (pack.sceneName == currentSceneName) continue;         // not the world we're parked in
+                if (!enabledScenes.Contains(pack.sceneName)) continue;    // only scenes that actually ship
+                packs.Add(pack);
+            }
+            packs.Sort((a, b) => string.CompareOrdinal(a.packId, b.packId));
+            return packs;
         }
 
         // ── Creatures (GAME_PLAN M3 — archetype behavior attached by data) ───

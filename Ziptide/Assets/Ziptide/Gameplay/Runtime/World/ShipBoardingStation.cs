@@ -1,0 +1,214 @@
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
+using Ziptide.Content;
+using Ziptide.Core;
+
+namespace Ziptide.Gameplay
+{
+    /// <summary>
+    /// S1 of the north star (GAME_PLAN M4; architecture LOCKED in docs/systems/SHIPS.md): the berthed
+    /// ship becomes BOARDABLE — a mobile travel station wearing a ship costume. A boarding panel at the
+    /// hull door teleports you up to the cockpit deck; the helm lists destination worlds (story-gated
+    /// exactly like travel doors via <see cref="WorldGating"/>); selecting one goes through
+    /// <see cref="TravelCoordinator.TravelTo"/> — the ONLY legal path (locked contract #1). A disembark
+    /// panel puts you back on the berth. The rig is TELEPORTED, never parented (SHIPS.md guardrail).
+    /// Fields are SERIALIZED (assigned at edit time by CityBuilder — gotcha #7); geometry builds in
+    /// Awake. Logs ZIPTIDE: SHIP_BOARD / SHIP_DISEMBARK / SHIP_DEPART dest=…
+    /// The S2 fly-out presentation (engine audio + window starfield) layers onto Depart later.
+    /// </summary>
+    public class ShipBoardingStation : MonoBehaviour
+    {
+        [Tooltip("Destination packs (assigned at edit time from the authored world packs).")]
+        [SerializeField] private List<WorldPackDefinition> destinationPacks = new List<WorldPackDefinition>();
+
+        [Tooltip("Cockpit deck position, local to the hull root (player stands here after boarding).")]
+        [SerializeField] private Vector3 cockpitLocalPos = new Vector3(0f, 2.2f, 2.4f);
+
+        [Tooltip("Boarding panel position, local to the hull root (outside, by the door).")]
+        [SerializeField] private Vector3 doorLocalPos = new Vector3(-3.2f, 0.2f, 0f);
+
+        private static readonly Color PanelColor = new Color(0.16f, 0.40f, 0.50f);
+        private static readonly Color PanelHot = new Color(0.25f, 0.62f, 0.75f);
+        private static readonly Color LockedColor = new Color(0.30f, 0.10f, 0.10f);
+
+        private Vector3 _berthReturnPos;
+
+        /// <summary>Edit-time wiring (CityBuilder) — serialized fields only, no scene work here.</summary>
+        public void Configure(List<WorldPackDefinition> packs, Vector3 cockpitPos, Vector3 doorPos)
+        {
+            destinationPacks = packs ?? new List<WorldPackDefinition>();
+            cockpitLocalPos = cockpitPos;
+            doorLocalPos = doorPos;
+        }
+
+        private void Awake()
+        {
+            BuildBoardingPanel();
+            BuildCockpitDeck();
+        }
+
+        // ── Boarding ─────────────────────────────────────────────────────────
+
+        private void BuildBoardingPanel()
+        {
+            var panel = MakePanel("BoardPanel", transform.TransformPoint(doorLocalPos) + Vector3.up * 1.2f,
+                "BOARD SHIP", PanelColor, () =>
+                {
+                    _berthReturnPos = RigPosition() ?? (transform.TransformPoint(doorLocalPos) + Vector3.forward);
+                    TeleportRig(transform.TransformPoint(cockpitLocalPos) + Vector3.up * 0.1f);
+                    Debug.Log("ZIPTIDE: SHIP_BOARD");
+                });
+            panel.transform.rotation = transform.rotation;
+        }
+
+        private void BuildCockpitDeck()
+        {
+            // A walkable deck on the hull top at the cockpit: floor + low rail + seat + helm.
+            Vector3 deckCenter = cockpitLocalPos;
+            var deck = MakeCube("CockpitDeck", deckCenter + new Vector3(0f, -0.1f, 0f),
+                new Vector3(3.4f, 0.2f, 3.4f), new Color(0.18f, 0.20f, 0.24f), collider: true);
+            MakeCube("RailL", deckCenter + new Vector3(-1.7f, 0.45f, 0f), new Vector3(0.1f, 0.9f, 3.4f), new Color(0.13f, 0.14f, 0.17f), true);
+            MakeCube("RailR", deckCenter + new Vector3(1.7f, 0.45f, 0f), new Vector3(0.1f, 0.9f, 3.4f), new Color(0.13f, 0.14f, 0.17f), true);
+            MakeCube("RailB", deckCenter + new Vector3(0f, 0.45f, -1.7f), new Vector3(3.4f, 0.9f, 0.1f), new Color(0.13f, 0.14f, 0.17f), true);
+            MakeCube("PilotSeat", deckCenter + new Vector3(0f, 0.3f, -0.9f), new Vector3(0.6f, 0.6f, 0.6f), new Color(0.25f, 0.22f, 0.20f), true);
+
+            // The helm console: destination rows, story-gated like the travel doors.
+            var console = MakeCube("Helm", deckCenter + new Vector3(0f, 0.7f, 1.3f),
+                new Vector3(2.6f, 1.0f, 0.15f), new Color(0.10f, 0.12f, 0.15f), collider: false);
+            console.transform.localRotation = Quaternion.Euler(-20f, 0f, 0f);
+
+            var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;
+            int shown = 0;
+            for (int i = 0; i < destinationPacks.Count && shown < 8; i++)
+            {
+                var pack = destinationPacks[i];
+                if (pack == null || string.IsNullOrEmpty(pack.sceneName)) continue;
+                if (pack.sceneName == gameObject.scene.name) continue; // not the world we're parked in
+
+                bool locked = !WorldGating.MeetsRequirements(pack, profile);
+                string label = string.IsNullOrEmpty(pack.displayName) ? pack.packId : pack.displayName;
+                string sceneName = pack.sceneName;
+                var packRef = pack;
+
+                int row = shown / 2, col = shown % 2;
+                Vector3 pos = deckCenter + new Vector3(-0.65f + col * 1.3f, 1.05f - row * 0.28f, 1.22f);
+                var rowPanel = MakePanel("Dest_" + pack.packId, transform.TransformPoint(pos),
+                    (locked ? "LOCKED - " : "") + label, locked ? LockedColor : PanelColor,
+                    locked
+                        ? (System.Action)(() => Debug.Log("ZIPTIDE: TRAVEL_LOCKED pack=" + packRef.packId +
+                            " missing=" + (WorldGating.FirstMissingRequirement(packRef,
+                                SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null) ?? "?")))
+                        : () =>
+                        {
+                            Debug.Log("ZIPTIDE: SHIP_DEPART dest=" + sceneName);
+                            TravelCoordinator.TravelTo(sceneName); // the ONLY legal path
+                        },
+                    small: true);
+                rowPanel.transform.SetParent(transform, true);
+                rowPanel.transform.localRotation = Quaternion.Euler(-20f, 0f, 0f);
+                shown++;
+            }
+
+            // Disembark.
+            var off = MakePanel("DisembarkPanel", transform.TransformPoint(deckCenter + new Vector3(0f, 0.6f, -1.55f)),
+                "DISEMBARK", new Color(0.35f, 0.28f, 0.14f), () =>
+                {
+                    Vector3 back = _berthReturnPos != Vector3.zero
+                        ? _berthReturnPos
+                        : transform.TransformPoint(doorLocalPos) + Vector3.forward;
+                    TeleportRig(back);
+                    Debug.Log("ZIPTIDE: SHIP_DISEMBARK");
+                }, small: true);
+            off.transform.rotation = transform.rotation * Quaternion.Euler(0f, 180f, 0f);
+        }
+
+        // ── Rig teleport (never parent the rig — SHIPS.md guardrail) ─────────
+
+        private static Vector3? RigPosition()
+        {
+            var rig = FindObjectOfType<PlayerRigPersistence>();
+            return rig != null ? rig.transform.position : (Vector3?)null;
+        }
+
+        private static void TeleportRig(Vector3 worldPos)
+        {
+            var rig = FindObjectOfType<PlayerRigPersistence>();
+            if (rig == null) return;
+            var cc = rig.GetComponent<CharacterController>();
+            if (cc != null) cc.enabled = false;   // same pattern as the fall-safety respawn
+            rig.transform.position = worldPos;
+            if (cc != null) cc.enabled = true;
+        }
+
+        // ── Primitive helpers ────────────────────────────────────────────────
+
+        private GameObject MakeCube(string name, Vector3 localPos, Vector3 scale, Color color, bool collider)
+        {
+            var go = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            go.name = name;
+            go.transform.SetParent(transform, false);
+            go.transform.localPosition = localPos;
+            go.transform.localScale = scale;
+            var c = go.GetComponent<Collider>();
+            if (c != null) c.enabled = collider;
+            Paint(go, color);
+            return go;
+        }
+
+        private GameObject MakePanel(string name, Vector3 worldPos, string label, Color color,
+                                     System.Action onSelect, bool small = false)
+        {
+            var root = new GameObject(name);
+            root.transform.position = worldPos;
+
+            var plate = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            plate.name = "Plate";
+            plate.transform.SetParent(root.transform, false);
+            plate.transform.localScale = small ? new Vector3(1.15f, 0.22f, 0.05f) : new Vector3(0.9f, 0.45f, 0.06f);
+            Paint(plate, color);
+            var renderer = plate.GetComponent<Renderer>();
+
+            var interactable = plate.AddComponent<XRSimpleInteractable>();
+            var mgr = Object.FindObjectOfType<XRInteractionManager>();
+            if (mgr != null) interactable.interactionManager = mgr;
+            interactable.selectEntered.AddListener(_ => onSelect?.Invoke());
+            interactable.hoverEntered.AddListener(_ => Tint(renderer, PanelHot));
+            interactable.hoverExited.AddListener(_ => Tint(renderer, color));
+
+            var textGo = new GameObject("Label");
+            var tm = textGo.AddComponent<TextMesh>();
+            tm.text = label;
+            tm.characterSize = small ? 0.028f : 0.05f;
+            tm.fontSize = 48;
+            tm.anchor = TextAnchor.MiddleCenter;
+            tm.alignment = TextAlignment.Center;
+            tm.color = Color.white;
+            textGo.transform.SetParent(root.transform, false); // unit-scale parent — no stretch (door-label lesson)
+            textGo.transform.localPosition = new Vector3(0f, 0f, -0.06f);
+
+            return root;
+        }
+
+        private static void Paint(GameObject go, Color color)
+        {
+            var r = go.GetComponent<Renderer>();
+            if (r == null) return;
+            var shader = Shader.Find("Universal Render Pipeline/Lit");
+            if (shader == null) shader = Shader.Find("Standard");
+            if (shader == null) return;
+            var mat = new Material(shader);
+            if (mat.HasProperty("_BaseColor")) mat.SetColor("_BaseColor", color);
+            else if (mat.HasProperty("_Color")) mat.SetColor("_Color", color);
+            r.sharedMaterial = mat;
+            r.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+        }
+
+        private static void Tint(Renderer r, Color color)
+        {
+            if (r == null || r.material == null) return;
+            if (r.material.HasProperty("_BaseColor")) r.material.SetColor("_BaseColor", color);
+            else if (r.material.HasProperty("_Color")) r.material.color = color;
+        }
+    }
+}

@@ -94,7 +94,11 @@ namespace Ziptide.Editor.Patching
             kit.droneZones.Add(new DroneZoneDef { id = "Patrol_Gallery", center = new Vector3(24, 0, 6), radius = 5f, count = 3, respawnDelay = 15f, combat = true, variantId = "drone_easy" });
             kit.spawnDistrictId = "CisternMouth";
             kit.spawnStarterWeapons = true;
-            kit.shipyard.enabled = false;
+            // M4-S1: W002 gets the first BOARDABLE berth — the ship starts replacing the travel door
+            // on the Ch.1 band (SHIPS.md). Southwest of the loop, clear of all districts.
+            kit.shipyard.enabled = true;
+            kit.shipyard.berthCenter = new Vector3(-20, 0, -8);
+            kit.shipyard.shipRotationY = 25f;
             return kit;
         }
 

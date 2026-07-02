@@ -50,6 +50,14 @@ collision-clean is LAW (CollideMove everywhere); no rig/PvP/XRI-sample edits.
 - **LANE NOTE (Terry 2026-07-02): architect is working PvP/multiplayer IN PARALLEL — `Gameplay/Runtime/Pvp/`, `Multiplayer/`, `ScenePatcherPvP`, `Net/` are ARCHITECT'S. Don't touch; only CONSUME IPvpDamageable; pull --rebase before every push.**
 - **Branch:** `terry-local-wip`. CI-green through task 1-2 (`6ccc989` #191 pending at last check).
 
+## M4-S1 EARLY START (while the M3 APK gate runs — Terry suspended waiting)
+`ShipBoardingStation` (Gameplay/World): the berthed hull is BOARDABLE — board panel → teleport to the
+cockpit deck (rig teleported, never parented), helm lists ALL shipped world packs story-gated via
+`WorldGating` (LOCKED rows log TRAVEL_LOCKED), depart via `TravelCoordinator.TravelTo` ONLY, disembark
+returns to the berth. `CityBuilder.BuildShipyard` wires it per berth (edit-time pack collection from
+`Content/Worlds/Packs`, Exit packs + unshipped scenes skipped); **W002's berth enabled** (first Ch.1
+ship). When the M3 dispatch lands: stamp M3 → archive → open the M4 sprint file with S1 ✅.
+
 ## Working rules (unchanged)
 CI green per push; APK dispatch at close (`actions_run_trigger`, ci.yml, terry-local-wip). Creature
 motion must be smooth, telegraphed, non-lethal; never yank the player camera (comfort rule).
