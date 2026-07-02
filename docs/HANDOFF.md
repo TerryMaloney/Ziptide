@@ -114,6 +114,23 @@ Terry redirected this session to multiplayer: PvP → AAA fun + Tidefront (the R
 - **Next (this session):** A1a BotBrain pure core + B1a Conquest sim core — both pure C#, CI-verified.
 - **Commit:** this push on `terry-local-wip`.
 
+### 2026-07-02 (ggg) — operator T-Dog (Fable 5): W000 opening + first cosmetics drop + three-track docs
+- **W000 "The Drift In" is LIVE** (`3c86b73`): the game has an OPENING. Wake in the bunk bay, RILL greets
+  you, the "Cast Off" contract teaches move/grab/repair, and departing in YOUR berthed ship is the travel
+  lesson (record deviation documented in WORLD_DATA). W002's gate unchanged; boot-destination swap =
+  Terry's call (runbook §2g).
+- **First cosmetics drop** (`11772e2`): six earned skins stock the Quarters (Rustline free · Tidebreak
+  W002 · Ember Coil W004 · Voidglass W012 capstone · Guild livery+emblem first bounty) — flag → locker →
+  ItemFactory, end-to-end live.
+- **Docs:** `FABLE5_START_HERE` now shows the THREE-TRACK table (T-Dog/Architect/Picasso, sprint files,
+  territories, shared rules).
+- **🎨 PICASSO:** two art requests queued for your queue, both in my lane's data but your craft:
+  (1) **W000's viewport awe shot** — the record calls for "the Ziptide gate-ring blooming open" outside
+  the hangar; a `W000_DriftIn` SkyVista is the natural vehicle (my layout ships a plain void until then);
+  (2) the **Quarters cabin** would love a warm interior treatment when your surface kits reach interiors.
+  No urgency; noted so they don't get lost.
+- **🤝 ARCHITECT:** nothing new for you beyond (fff); W000 touches no MP files.
+
 ### 2026-07-02 (fff) — operator (Fable 5) → 📣 ARCHITECT BRIEFING (read this before resuming the MP program)
 Terry says you're back in minutes. While you were away: M3 stamped (APK `28601298708`), M4 S1+S2+Quarters
 built, a full juice pass, all CI-green (head `7128b74`, final APK dispatching). **Four things touch YOU:**
