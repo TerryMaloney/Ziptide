@@ -150,7 +150,10 @@ namespace Ziptide.Editor.Patching
             });
             kit.spawnDistrictId = "SkiffWreck";
             kit.spawnStarterWeapons = false;
-            kit.shipyard.enabled = false;
+            // M4-S1: Ch.1 band gets boardable berths (the ship replaces the door).
+            kit.shipyard.enabled = true;
+            kit.shipyard.berthCenter = new Vector3(18, 0, -12);
+            kit.shipyard.shipRotationY = -20f;
             return kit;
         }
 
@@ -188,7 +191,9 @@ namespace Ziptide.Editor.Patching
             // Deliberately NO enemies — dread, not combat (WORLD_DATA/W004 README).
             kit.spawnDistrictId = "TombEntry";
             kit.spawnStarterWeapons = false;
-            kit.shipyard.enabled = false;
+            // M4-S1: Ch.1 band berth.
+            kit.shipyard.enabled = true;
+            kit.shipyard.berthCenter = new Vector3(20, 0, -10);
             return kit;
         }
 
