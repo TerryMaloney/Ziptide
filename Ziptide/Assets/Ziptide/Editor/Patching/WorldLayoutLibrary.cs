@@ -88,7 +88,9 @@ namespace Ziptide.Editor.Patching
             Connect(kit, "DeepShaft", "ChamberA", ConnectionKind.GroundStreet, 5);
             Connect(kit, "ChamberA", "CisternMouth", ConnectionKind.Ramp, 5); // loop closes
 
-            // Swarm world — drone stand-in until Phase-E creature runtime (WORLD_DATA W002 note).
+            // Light-grazers live in the dark gallery (M3): they GROW while unlit — the cistern's
+            // darkness is their mechanic. The drone patrol stays as the ranged threat.
+            kit.creatureZones.Add(new CreatureZoneDef { id = "Grazers_Dark", center = new Vector3(-6, 0, 26), radius = 3f, count = 2, respawnDelay = 30f, creatureId = "light_grazer" });
             kit.droneZones.Add(new DroneZoneDef { id = "Patrol_Gallery", center = new Vector3(24, 0, 6), radius = 5f, count = 3, respawnDelay = 15f, combat = true, variantId = "drone_easy" });
             kit.spawnDistrictId = "CisternMouth";
             kit.spawnStarterWeapons = true;
@@ -216,6 +218,7 @@ namespace Ziptide.Editor.Patching
             Connect(kit, "Scrubber", "GroveEdge", ConnectionKind.Ramp, 5);
             Connect(kit, "GroveEdge", "ForestFloor", ConnectionKind.GroundStreet, 6); // loop
 
+            kit.creatureZones.Add(new CreatureZoneDef { id = "Swarm_Canopy", center = new Vector3(18, 0, 22), radius = 4f, count = 2, respawnDelay = 25f, creatureId = "swarm_bug" });
             kit.droneZones.Add(new DroneZoneDef { id = "Patrol_Canopy", center = new Vector3(2, 0, 30), radius = 6f, count = 4, respawnDelay = 14f, combat = true, variantId = "drone_standard" });
             // Spore pockets under the canopy (M2 hazard): linger and the fog slows you — the scrub job
             // reads as actually needed. One on the forest floor, one by the grove.
@@ -379,6 +382,8 @@ namespace Ziptide.Editor.Patching
             Connect(kit, "WallGate", "HiveMarket", ConnectionKind.Bridge, 5);       // vertical loop
 
             // The signature swarm world (drone stand-ins until Phase E): two pushy patrols.
+            kit.creatureZones.Add(new CreatureZoneDef { id = "Tether_Wall", center = new Vector3(-18, 0, 20), radius = 3f, count = 1, respawnDelay = 40f, creatureId = "tether_swarm" });
+            kit.creatureZones.Add(new CreatureZoneDef { id = "Molters_Wall", center = new Vector3(-10, 0, 30), radius = 4f, count = 2, respawnDelay = 30f, creatureId = "husk_molter" });
             kit.droneZones.Add(new DroneZoneDef { id = "Swarm_Market", center = new Vector3(22, 0, 12), radius = 6f, count = 3, respawnDelay = 12f, combat = true, variantId = "drone_standard" });
             kit.droneZones.Add(new DroneZoneDef { id = "Swarm_Pylons", center = new Vector3(0, 0, 32), radius = 5f, count = 3, respawnDelay = 12f, combat = true, variantId = "drone_standard" });
             kit.spawnDistrictId = "Undercity";
@@ -510,6 +515,10 @@ namespace Ziptide.Editor.Patching
             Connect(kit, "GateCoreB", "LaunchPoint", ConnectionKind.Bridge, 4);
             Connect(kit, "GateCoreA", "LaunchPoint", ConnectionKind.ElevatedWalkway, 4, tier: 1);
 
+            // The Shell's sentinel at the failing gate: DORMANT statue on a fresh save —
+            // but W010 grants SIGNAL_THRESHOLD_2, so by the time you stand here it WATCHES,
+            // and crowding it during the capstone gets you warned. The world reacts to you.
+            kit.creatureZones.Add(new CreatureZoneDef { id = "Warden_Gate", center = new Vector3(-14, 0, 42), radius = 1f, count = 1, respawnDelay = 0f, creatureId = "warden" });
             kit.spawnDistrictId = "Gantry";
             kit.spawnStarterWeapons = false; // the void is the enemy
             kit.shipyard.enabled = false;

@@ -19,7 +19,6 @@ namespace Ziptide.Editor.Patching
     public static class CreatureVariantAuthor
     {
         private const string EnemiesResourceFolder = "Assets/Ziptide/Resources/Enemies";
-        private const string CreatureFolder = "Assets/Ziptide/Content/Creatures/Generated";
 
         [MenuItem("Ziptide/Worlds/Author Creature Data (missing only)")]
         public static void AuthorFromMenu()
@@ -53,11 +52,23 @@ namespace Ziptide.Editor.Patching
                 p.stunSeconds = 1.4f; p.slowFactor = 0.4f;
             });
 
-            // ── Story-creature catalog (Phase-E data; ids match the WORLD_DATA `creatures:` lines) ──
+            // ── Story-creature catalog (ids match the WORLD_DATA `creatures:` lines; the behavior is
+            //    picked by CityBuilder.MakeCreature — special ids override the archetype default) ──
             made += Creature("swarm_bug", CreatureArchetype.Swarmer, hp: 8f, speed: 4.5f, dmg: 2f,
                 biome: "dry_cistern", loot: ("carapace", 1));
             made += Creature("tendril", CreatureArchetype.WallCrawler, hp: 20f, speed: 2f, dmg: 4f,
                 biome: "glass_shelf", loot: ("spore", 1));
+            // M3 novel behaviors + the Warden:
+            made += Creature("light_grazer", CreatureArchetype.Swarmer, hp: 14f, speed: 1.6f, dmg: 2f,
+                biome: "dry_cistern", loot: ("spore", 2));
+            made += Creature("witness_mite", CreatureArchetype.Swarmer, hp: 10f, speed: 3.5f, dmg: 2f,
+                biome: "mirror_flats", loot: ("prism", 1));
+            made += Creature("tether_swarm", CreatureArchetype.Swarmer, hp: 16f, speed: 2f, dmg: 3f,
+                biome: "chitinwall", loot: ("carapace", 3));
+            made += Creature("husk_molter", CreatureArchetype.WallCrawler, hp: 18f, speed: 2.4f, dmg: 3f,
+                biome: "chitinwall", loot: ("carapace", 2));
+            made += Creature("warden", CreatureArchetype.Bruiser, hp: 60f, speed: 3.2f, dmg: 0f,
+                biome: "", loot: ("data_chip", 1)); // lawful — damage 0; the arrest is a stun
 
             if (made > 0) { AssetDatabase.SaveAssets(); AssetDatabase.Refresh(); }
             return made;
@@ -78,9 +89,12 @@ namespace Ziptide.Editor.Patching
         private static int Creature(string id, CreatureArchetype archetype, float hp, float speed, float dmg,
             string biome, (string resourceId, double amount) loot)
         {
-            string path = CreatureFolder + "/" + id + ".asset";
+            // Creatures MUST live under Resources/Enemies: CreatureRuntime resolves its definition at
+            // runtime via Resources.Load("Enemies/<id>") and CityBuilder picks the behavior from the
+            // same path at build time. (Was Content/Creatures/Generated — unreachable at runtime.)
+            string path = EnemiesResourceFolder + "/" + id + ".asset";
             if (AssetDatabase.LoadAssetAtPath<CreatureDefinition>(path) != null) return 0;
-            Directory.CreateDirectory(CreatureFolder);
+            Directory.CreateDirectory(EnemiesResourceFolder);
             var c = ScriptableObject.CreateInstance<CreatureDefinition>();
             c.id = id; // Definition-registry id (matches WORLD_DATA `creatures:` lines)
             c.archetype = archetype;
