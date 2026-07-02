@@ -1,10 +1,20 @@
 # The Forge studio's fast lane: renders turnaround PNGs of every Forge asset (no APK) so an LLM
 # session can download the `forge-photos` artifact, LOOK at the images, and iterate the recipe.
-# Dispatch from the Actions tab or:  POST /actions/workflows/forge-photos.yml/dispatches {ref}
+# Triggers automatically on any push that touches Forge code/recipes (push-triggered workflows run
+# from any branch — unlike workflow_dispatch, which GitHub only registers from the default branch;
+# main is stale, so the dispatch trigger below only becomes usable if this file ever lands on main).
 # Uses game-ci unity-builder (graphics-enabled under xvfb) — never the test-runner (-nographics risk).
 name: Forge Photos
 
 on:
+  push:
+    branches:
+      - terry-local-wip
+      - 'claude/**'
+    paths:
+      - 'Ziptide/Assets/Ziptide/Editor/Patching/Forge*'
+      - 'Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/**'
+      - '.github/workflows/forge-photos.yml'
   workflow_dispatch:
 
 env:
