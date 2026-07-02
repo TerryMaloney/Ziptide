@@ -3,7 +3,8 @@
     "rootNamespace": "Ziptide",
     "references": [
         "Ziptide.Core",
-        "Ziptide.Visuals"
+        "Ziptide.Visuals",
+        "Ziptide.Multiplayer"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

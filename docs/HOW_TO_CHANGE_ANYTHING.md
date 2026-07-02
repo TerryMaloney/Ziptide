@@ -85,6 +85,10 @@ Legend: **Edit** = the one place to change · **Then** = how it takes effect · 
 | I want to… | Edit | Then | Verify |
 |---|---|---|---|
 | **Match rules** (HP, hit damage, charges, timers, best-of) | `Multiplayer/Runtime/PvpRules.cs` consts (pure, fully tested) | EditMode tests enforce the contract — update `PvpMatchTests`/`PvpCombatTests` with the rule change | CI |
+| **Bot difficulty / how smart the bot fights** | the `Resources/Bots/{rookie,regular,veteran,nightmare}.asset` profiles (aim error, reaction time, leading, dodge, cover discipline, retreat, cadence) — or set the arena bot's `difficulty` string in `ScenePatcherPvP.BuildBot` | live next run (PvpBot loads the asset) | fight it; `PVP_BOT_BRAIN` in logcat |
+| **Bot decision LOGIC** (states/behaviors) | `Multiplayer/Runtime/Bots/BotBrain.cs` (pure, 14 tests define the contract — change both together) | CI | `BotBrainTests` |
+| **Where the bot patrols / takes cover** | `ScenePatcherPvP.BuildBotNav` (Way_*/Cover_P* points; A2 arenas author these per layout) | regen | watch it fight |
+| **Tidefront war math** (odds, costs, outcomes, catalogs, AI) | `Multiplayer/Runtime/Conquest/{ConquestRules,ConquestCatalog,ConquestAI}.cs` (pure, 17 tests) | CI | `ConquestTests` |
 | ⚠ **PvP scene/arena/HUD** | scene-side files under `Gameplay/Runtime/Pvp/` — pending Terry's device round; coordinate first | — | device |
 
 ## Ships / vehicles

@@ -161,6 +161,48 @@ namespace Ziptide.Editor.Patching
             Cube(root, "Cover_2", new Vector3(8f, 0.9f, 4f), new Vector3(2f, 1.8f, 2f), CoverColor, true);
             Cube(root, "Cover_3", new Vector3(-7f, 0.9f, 8f), new Vector3(2f, 1.8f, 2f), CoverColor, true);
             Cube(root, "Cover_4", new Vector3(7f, 0.9f, -8f), new Vector3(2f, 1.8f, 2f), CoverColor, true);
+
+            BuildBotNav(root);
+        }
+
+        // ── Bot navigation data (consumed by PvpBot's BotBrain) ─────────────────────────────────────
+        // Way_* = a patrol circuit (floor ring + the platform top). Cover_P* = standing spots in each
+        // cover block's shadow (two per block, opposite faces — the runtime picks whichever actually
+        // breaks the player's line of sight at that moment). Empty transforms; zero draw cost.
+        private static void BuildBotNav(Transform root)
+        {
+            var old = GameObject.Find("__PVP_BOTNAV");
+            if (old != null) Object.DestroyImmediate(old);
+            var nav = new GameObject("__PVP_BOTNAV");
+            nav.transform.SetParent(root, false);
+
+            Vector3[] ways =
+            {
+                new Vector3(-12f, 0.1f, -12f), new Vector3(12f, 0.1f, -12f),
+                new Vector3(14f, 0.1f, 0f),    new Vector3(12f, 0.1f, 12f),
+                new Vector3(-12f, 0.1f, 12f),  new Vector3(-14f, 0.1f, 0f),
+                new Vector3(0f, 1.6f, 0f),     // the platform top — high ground is on the route
+                new Vector3(0f, 0.1f, -13f),
+            };
+            for (int i = 0; i < ways.Length; i++)
+                NavPoint(nav.transform, "Way_" + (i + 1), ways[i]);
+
+            // Two shadow spots per cover block (block centers mirror BuildArena above).
+            Vector3[] covers = { new Vector3(-8f, 0f, -4f), new Vector3(8f, 0f, 4f), new Vector3(-7f, 0f, 8f), new Vector3(7f, 0f, -8f) };
+            int n = 1;
+            foreach (var c in covers)
+            {
+                Vector3 toCenter = (Vector3.zero - c).normalized;
+                NavPoint(nav.transform, "Cover_P" + n++, c - toCenter * 1.6f + Vector3.up * 0.1f); // outside face
+                NavPoint(nav.transform, "Cover_P" + n++, c + toCenter * 1.6f + Vector3.up * 0.1f); // inside face
+            }
+        }
+
+        private static void NavPoint(Transform parent, string name, Vector3 pos)
+        {
+            var go = new GameObject(name);
+            go.transform.SetParent(parent, false);
+            go.transform.localPosition = pos;
         }
 
         private static void BuildBot(Transform root, Vector3 pos)
@@ -169,7 +211,8 @@ namespace Ziptide.Editor.Patching
             bot.name = "PvpBot";
             bot.transform.SetParent(root, false);
             bot.transform.position = pos;
-            bot.AddComponent<PvpBot>();
+            var pb = bot.AddComponent<PvpBot>();
+            pb.difficulty = "regular"; // tune per arena via BotProfileDefinition assets in Resources/Bots
         }
 
         private static void SpawnGuns(Transform root, Vector3 near)

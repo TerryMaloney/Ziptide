@@ -25,8 +25,8 @@ story worlds as the map).
 |---|------|--------|
 | 0 | Designs + GAME_PLAN M7 + this sprint file + HANDOFF claim | ✅ `f005caf` |
 | A1a | **BotBrain pure core** (`Multiplayer/Runtime/Bots/`): Vec3/BotRng (deterministic), BotPerception/BotDecision, the 8-state machine (reaction-time model, LKP hunting, cover hide/peek cycle, band-holding strafe, flank reposition, sticky retreat, dodge-⊥-threat, lead + bounded aim-error cone), `BotProfileData` Rookie→Nightmare presets + 14 EditMode tests | ✅ this commit (CI pending) |
-| A1b | `BotProfileDefinition` SO + 4 difficulty assets (author util) | ⬜ |
-| A1c | **PvpBot scene rewrite** consuming BotBrain + waypoint graph/cover baked by patcher + threading `IPvpTransport`/`WeaponCharge` through the live loop *(touches Pvp scene files — safe: story track never edits them)* | ⬜ |
+| A1b | `BotProfileDefinition` SO (Content, +Multiplayer asmdef ref — acyclic) + `BotProfileAuthor` (create-only, build-wired: rookie/regular/veteran/nightmare into `Resources/Bots`) | ✅ this commit (CI pending) |
+| A1c | **PvpBot rewrite: the brain is in the arena.** Perceive (LOS, player velocity, incoming-dart scan @5Hz, baked cover/waypoints) → `BotBrain.Tick` → execute (CollideMove kept, dodge burst-steps, strafe, telegraph LAW kept, `WeaponCharge`-gated visible `PvpBolt` at the brain's led+erred aim). `ScenePatcherPvP.BuildBotNav` bakes Way_1-8 patrol ring (incl. platform top) + Cover_P1-8 shadow spots. Brain+charge reset on revive. *(Deliberate re-scope: `IPvpTransport` threading of the whole match loop moved to A6-prep — the bot rewrite doesn't need it and scoping it here risked the match flow before a device pass.)* | ✅ this commit (CI pending) |
 | B1a+b | **Conquest sim core COMPLETE** (`Multiplayer/Runtime/Conquest/`): PlanetNode (14-field spec) · ConquestState (players/stockpiles/turn economy: instability-penalized production, decay, fleet upkeep, attack limits) · ConquestRules (odds clamp 10–90, +5%/pt, anti-snowball constants) · ConquestResolver (seeded, 5 outcomes, vessel/defense specials: gate jammer/piercer, shieldbreaker, minefield, null-ark consumed, repair swarm, dogpile bonus, mission modifiers ± ) · ConquestCatalog (8 defenses + 8 vessels) · **ConquestGalaxy (the map IS W001–W012**, chain + cross-links, 2-player setup) · ConquestAI (3 profiles: reinforce/build/attack-best-odds, plays via the same public API as a human) + **17 EditMode tests** incl. a full headless AI-vs-AI war + JsonUtility save round-trip | ✅ this commit (CI pending) |
 | A2 | Arena Factory: `ArenaLayoutDefinition` + `ArenaLayoutLibrary` (5 arenas) + `ScenePatcherArena` + BuildAndroid hook | ⬜ |
 | A3 | PvpMatch → N combatants/teams + Gun Game + KotH + Fragment Rush + Horde (creature waves) | ⬜ |
@@ -55,9 +55,13 @@ story worlds as the map).
      teleport out on round start, sync `CosmeticLocker.GetEquipped` strings in the match handshake
      (string-pure by design for exactly this). Cosmetics are looks-never-stats — no balance review.
   4. A1c must NOT regress: `PvpBot`'s `CollideMove` wall-clamping + visible `PvpBolt` firing.
-- **Next action:** A1b (BotProfileDefinition SO + author util) then **A1c (PvpBot scene rewrite:**
-  perception→`BotBrain`→execution, waypoint/cover baking in ScenePatcherPvP, thread `IPvpTransport` +
-  `WeaponCharge`, honor constraints 2+4). Then A2 (Arena Factory).
+- **Next action:** verify CI on the A1b+A1c push, then **A2 (Arena Factory)**: `ArenaLayoutDefinition`
+  (bounds/tiers/cover/waypoints/spawnPairs/objectiveZones/weaponPads/hazardMutators/themeSpec) +
+  `ArenaLayoutLibrary` (5 arenas per PVP_ARENA_AAA §A2) + `ScenePatcherArena` (generalize ScenePatcherPvP
+  — reuse its Cube/Ramp/nav helpers) + BuildAndroid hook. Then A3 (PvpMatch → N combatants + modes).
+  NOTE for A1c device pass (runbook entry pending at close): watch `PVP_BOT_BRAIN difficulty=regular`,
+  bot now patrols a ring, hunts your last position when you break LOS, ducks behind cover blocks when
+  hit, and retreats at low HP. Difficulty = edit `Resources/Bots/*.asset`.
 - **Verified facts (don't re-derive):** PvP live loop currently BYPASSES `IPvpTransport` and never uses
   `WeaponCharge` — A1c threads both. Bot today = range-keeper (spec of its exact behavior + gaps is in
   PVP_ARENA_AAA "Why this will work"). The Multiplayer asmdef is pure C# (no Unity refs) — **keep
