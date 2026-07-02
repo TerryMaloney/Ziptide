@@ -32,6 +32,7 @@ story worlds as the map).
 | A3 | PvpMatch → N combatants/teams + Gun Game + KotH + Fragment Rush + Horde (creature waves) | ⬜ |
 | A4 | Arsenal: Static Net, Sonic Thumper, Prism Beam + pads + WeaponCharge wiring + bot weapon prefs | ⬜ |
 | A5 | Progression: match stats, credits payout, unlock flags, daily seed | ⬜ |
+| A5.5 | **Pre-round locker** (fff crossover, frozen API in `systems/QUARTERS.md`): `QuartersRoom` per arena spawn, round-timer exit gate, teleport-out on round start, equipped-cosmetic strings in the match handshake | ⬜ |
 | B2 | Holo war table vs ConquestAI (Sandbox placement) | ⬜ |
 | B3 | VR mission modifiers (ConquestMissionLibrary → real world contracts → odds mods) | ⬜ |
 | B4 | Hotseat sync → (after A6) Photon live sync | ⬜ |
@@ -39,15 +40,22 @@ story worlds as the map).
 | — | Close: HANDOFF, checklist, playbook rows per chunk, APK dispatch green | ⬜ |
 
 ## ▶ RESUMING? — current state & exact next action
-- **Current micro-step:** B1 (Conquest sim core) committed — verify CI on this push (with A1a's run).
-- **⚠ ABSORB FIRST:** the story-track session (T-Dog) finished M3+M4 (creatures, Warden, boardable ship
-  S1/S2, Quarters + cosmetics architecture) and left notes in **HANDOFF (fff)** for THIS track: two
-  hot-fixes to absorb, a **`PlayerIndex = -1` filter caveat** (creatures implement IPvpDamageable with
-  -1 — the A1c PvpBot rewrite and any PvP hit iteration MUST filter index < 0), and a **pre-round
-  locker crossover with a frozen API** (Quarters cosmetics ↔ PvP pre-round). Read fff before A1c.
-- **Next action:** A1b (BotProfileDefinition SO + author util) then **A1c (PvpBot scene rewrite** —
-  perception→BotBrain→execution + waypoint/cover baking in ScenePatcherPvP + thread IPvpTransport +
-  WeaponCharge; honor the fff caveats). Then A2 (Arena Factory).
+- **Current micro-step:** B1 (Conquest sim core) pushed (`bba6349`, rebased onto the ship head) — verify
+  CI on it. A1a is already green (181/181) after the story-track's two cross-fixes.
+- **✅ fff BRIEFING ABSORBED (constraints for all remaining A-tasks):**
+  1. Cross-fixes reviewed + accepted: `BotMath` uint-literal fix (CS0029, same values) and `BotBrain`
+     same-tick HeardFire reaction (my test defined that contract — keeping it).
+  2. **`PlayerIndex >= 0` LAW:** `CreatureRuntime` implements `IPvpDamageable` with `PlayerIndex = -1`.
+     Bot targeting, match registration, hit aggregation, and netcode must filter `PlayerIndex >= 0` —
+     never assume every damageable is a combatant.
+  3. **A5.5 (new board task): the PvP pre-round locker** — `QuartersRoom` is host-agnostic + frozen API
+     (`docs/systems/QUARTERS.md`): spawn one at each arena spawn, gate its exit on the round timer,
+     teleport out on round start, sync `CosmeticLocker.GetEquipped` strings in the match handshake
+     (string-pure by design for exactly this). Cosmetics are looks-never-stats — no balance review.
+  4. A1c must NOT regress: `PvpBot`'s `CollideMove` wall-clamping + visible `PvpBolt` firing.
+- **Next action:** A1b (BotProfileDefinition SO + author util) then **A1c (PvpBot scene rewrite:**
+  perception→`BotBrain`→execution, waypoint/cover baking in ScenePatcherPvP, thread `IPvpTransport` +
+  `WeaponCharge`, honor constraints 2+4). Then A2 (Arena Factory).
 - **Verified facts (don't re-derive):** PvP live loop currently BYPASSES `IPvpTransport` and never uses
   `WeaponCharge` — A1c threads both. Bot today = range-keeper (spec of its exact behavior + gaps is in
   PVP_ARENA_AAA "Why this will work"). The Multiplayer asmdef is pure C# (no Unity refs) — **keep
