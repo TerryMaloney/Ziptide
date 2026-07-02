@@ -18,7 +18,7 @@ collision-clean is LAW (CollideMove everywhere); no rig/PvP/XRI-sample edits.
 | 0 | Archive M2; open this sprint | ✅ `99b2491` |
 | 1 | Framework: `CreatureRuntime` (IShockable + **IPvpDamageable** — taser dart AND gravity gun hit creatures with ZERO weapon edits; non-lethal crumple disable; loot→profile; respawn) + `CreatureBehaviorBase` (shared CollideMove LAW, leash, touch-stun w/ cooldown, MakePart) + `CreatureZoneDef` + `CityBuilder.BuildCreatureZones`/`MakeCreature` (behavior attached by archetype at edit time) | ✅ this commit |
 | 2 | Archetypes: `SwarmerBehavior` (boid cluster; bodies GATHER TIGHT as the dart telegraph) + `BruiserBehavior` (windup paw-the-ground telegraph → straight line charge → wall-slam skips to vulnerable Recover; stun interrupts mid-charge) + pure `ChargeState` + 5 tests | ✅ this commit |
-| 3 | Archetypes: `WallCrawlerBehavior` (surface-stick, drop-lunge) + `FlyerBehavior` (hover high, dive at head, climb) | ⬜ |
+| 3 | Archetypes: `WallCrawlerBehavior` (8-ray wall find, surface-stick + normal-align, ripple telegraph → drop-lunge, stun knocks it OFF the wall) + `FlyerBehavior` (figure-8 soar, dead-still hover telegraph w/ folded wings → head dive, pulls up at 1m, stun cancels to Climb) — factory switch complete for all 4 archetypes | ✅ this commit |
 | 4 | `WardenBehavior` — lawful enforcer (warn → pursue → disable, never ambush), escalates by `SignalState.Tier` (pure `WardenState` mapping + tests) | ⬜ |
 | 5 | Novel behaviors (existing-gear counters): **Witness-mite** (moves only unobserved — pure gaze test), **Light-grazer** (grows in dark, shrinks in light), **Tether-swarm** (shared pool, cut the tether), **Husk-molter** (decoy husk on stun) — as `CreatureBehavior` subclasses/variants; drop to 2 if budget demands (document) | ⬜ |
 | 6 | Author: W002 light-grazers in the dark cistern · W005 canopy swarmers · W009 tether-swarm + wall-crawlers on the chitin wall · W012 a dormant Warden at the gate (Signal tier 2 there — it WATCHES) + creature data assets in `CreatureVariantAuthor` | ⬜ |
@@ -34,7 +34,8 @@ collision-clean is LAW (CollideMove everywhere); no rig/PvP/XRI-sample edits.
   visuals/colliders built at RUNTIME in the behavior's Awake→BuildVisuals (gotcha #7); each behavior
   keeps ≥1 keepCollider part so weapons can hit it. WallCrawler/Flyer currently FALL BACK to Swarmer in
   the factory switch — replace when task 3 lands.
-- **Next action:** verify CI → Task 3: `WallCrawlerBehavior` (raycast to the nearest wall within ~6m,
+- **DONE (task 3):** WallCrawler + Flyer as specced below; factory switch handles all four archetypes.
+- **Old task-3 spec (kept for reference):** `WallCrawlerBehavior` (raycast to the nearest wall within ~6m,
   stick to its surface — position on hit point + align to normal — crawl along it toward the player's
   wall-adjacent point; when player within ~3m, DROP + lunge once, then re-climb; telegraph = a ripple
   scale pulse before the drop) + `FlyerBehavior` (hover at home +4–6m, slow figure-8; when player in

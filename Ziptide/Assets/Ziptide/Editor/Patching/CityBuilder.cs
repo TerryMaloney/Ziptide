@@ -404,8 +404,12 @@ namespace Ziptide.Editor.Patching
                 case CreatureArchetype.Bruiser:
                     go.AddComponent<BruiserBehavior>();
                     break;
-                // WallCrawler + Flyer land in the next M3 task; Swarmer stands in so a zone
-                // authored early still moves (documented in SPRINT).
+                case CreatureArchetype.WallCrawler:
+                    go.AddComponent<WallCrawlerBehavior>();
+                    break;
+                case CreatureArchetype.Flyer:
+                    go.AddComponent<FlyerBehavior>();
+                    break;
                 default:
                     go.AddComponent<SwarmerBehavior>();
                     break;
