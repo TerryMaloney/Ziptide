@@ -114,7 +114,13 @@ The next build carries the story layer. Smoke it while doing §2b:
   moves — only the streaks. Any nausea = ❌ + note.**
 - [ ] **DISEMBARK** (panel behind the seat) puts you back on the berth (`SHIP_DISEMBARK`).
 - [ ] Doors still work (fallback until the ship is device-proven).
-- [ ] Feel notes: fly-out length, streak density/speed, deck size, helm row readability.
+- [ ] **QUARTERS (new):** on the cockpit deck, the purple **QUARTERS** panel teleports you into a warm
+  little cabin aft — three display bays (WEAPON SKINS / SHIP LIVERY / TRAILS & EMBLEMS), each showing
+  **"NO ITEMS AVAILABLE — check back after the next supply drop"** (correct — the stock is empty on
+  purpose), plus a locker board listing your equipped looks (all "default"). **RETURN TO DECK** exits.
+  `(QUARTERS_ENTER / QUARTERS_BROWSE)`
+- [ ] Feel notes: fly-out length, streak density/speed, deck size, helm row readability, quarters
+  room size/coziness.
 
 ## 3. The two open judgment calls (yours)
 - **"Can you run in Toxic City?"** — was it the input bug (now fixed) or actual walls/narrow streets? If

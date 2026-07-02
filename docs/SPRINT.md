@@ -13,7 +13,9 @@
 | 3 | **Ch.1 berths** — W002/W003/W004 + ToxicCity boardable (doors stay as fallback until device-proven) | ✅ `96132ec` (CI #204) |
 | 4 | **S3 upgrade sockets** — `ShipSlotDef` sockets accept `Resources/Items` ids (engine tier → shorter fly-out; scanner tier feeds wrist scanner; cargo raises carry). DeliveryCradle socket pattern + effect wiring + tests | ⬜ NEXT |
 | 5 | **W000 wake-on-ship tutorial** — the intro world: wake in the hull, RILL boot sequence, gear intro (Scan Pulse → Taser → Gravity per the deferred M2 trio), first contract, first flight to W001. Needs a small ship-interior layout + W000 gating swap (`TUTORIAL_COMPLETE` replaces `toxiccity_complete` on W002 per WORLD_DATA note) | ⬜ |
-| 6 | Close: HANDOFF, runbook, checklist, **APK dispatch** → ✅ stamp | ⬜ (a fresh APK on the S1/S2 head is being dispatched now — covers M1–M4-so-far for Terry's sideload) |
+| 6 | **THE QUARTERS** (Terry's brief): `CosmeticDefinition` + pure `CosmeticLocker` (6 tests) + host-agnostic `QuartersRoom` (3 bays, locker board, empty-stock stub) + ItemFactory skin seam + ship hosts it aft (QUARTERS ⇄ RETURN panels) + `docs/systems/QUARTERS.md` w/ the architect PvP-locker crossover | ✅ this commit |
+| 7 | Retrospective polish: helm re-gates on every boarding, 12-world grid, label cache | ✅ `83b8d47` |
+| 8 | Close: HANDOFF (ddd+eee), runbook §2f, checklist, **final APK dispatch** → M4-so-far verified (S3 sockets + W000 remain the M4 tail) | 🟡 |
 
 ## ▶ RESUMING? — current state & exact next action
 - **Current:** S1+S2+Ch.1 berths CI-green (#202–#204); docs (runbook §2f, HANDOFF ddd) in `8d2a370`

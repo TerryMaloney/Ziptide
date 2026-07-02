@@ -21,16 +21,46 @@ namespace Ziptide.Gameplay
                 return null;
             }
 
+            GameObject built;
             if (def is PistolDefinition pistolDef)
-                return CreatePistol(pistolDef, position);
+                built = CreatePistol(pistolDef, position);
+            else if (def is TaserDartGunDefinition taserDef)
+                built = CreateTaserDartGun(taserDef, position);
+            else if (def is GravityGunDefinition gravDef)
+                built = CreateGravityGun(gravDef, position);
+            else
+                built = CreateGenericItem(def, position);
 
-            if (def is TaserDartGunDefinition taserDef)
-                return CreateTaserDartGun(taserDef, position);
+            ApplyEquippedCosmetic(built, itemId);
+            return built;
+        }
 
-            if (def is GravityGunDefinition gravDef)
-                return CreateGravityGun(gravDef, position);
+        /// <summary>
+        /// The QUARTERS seam (docs/systems/QUARTERS.md): if the profile has a weapon skin equipped for
+        /// this itemId (via the pure CosmeticLocker), tint the built weapon with it. A LOOK, never a
+        /// stat — colliders/physics untouched, so skins are legal in every mode including PvP. No
+        /// cosmetics authored yet → GetEquipped returns null → no-op.
+        /// </summary>
+        private static void ApplyEquippedCosmetic(GameObject go, string itemId)
+        {
+            if (go == null) return;
+            var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;
+            string equippedId = Ziptide.Core.CosmeticLocker.GetEquipped(profile, itemId);
+            if (string.IsNullOrEmpty(equippedId)) return;
 
-            return CreateGenericItem(def, position);
+            var cosmetic = Resources.Load<Ziptide.Content.CosmeticDefinition>("Cosmetics/" + equippedId);
+            if (cosmetic == null || cosmetic.bodyColor.a <= 0.01f) return;
+
+            Color c = cosmetic.bodyColor;
+            foreach (var r in go.GetComponentsInChildren<Renderer>(true))
+            {
+                if (r == null || r.sharedMaterial == null) continue;
+                var mat = new Material(r.sharedMaterial);
+                if (mat.HasProperty("_BaseColor")) mat.SetColor("_BaseColor", c);
+                else if (mat.HasProperty("_Color")) mat.SetColor("_Color", c);
+                r.sharedMaterial = mat;
+            }
+            Debug.Log("ZIPTIDE: COSMETIC_APPLIED id=" + equippedId + " item=" + itemId);
         }
 
         // Holds a static reference to every ItemDefinition we ever resolve. This keeps the

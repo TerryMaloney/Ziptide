@@ -47,6 +47,40 @@ namespace Ziptide.Gameplay
         {
             BuildBoardingPanel();
             BuildCockpitDeck();
+            BuildQuarters();
+        }
+
+        // ── The Quarters: your locker/customization cabin, aft of the cockpit (QUARTERS.md) ──────
+
+        private void BuildQuarters()
+        {
+            // The room itself is host-agnostic (QuartersRoom) — the ship just parks one aft and adds
+            // the two teleports. The PvP pre-round locker reuses the same component (architect's seam).
+            Vector3 roomLocal = cockpitLocalPos + new Vector3(0f, 0f, -5.4f);
+            var room = new GameObject("Quarters");
+            room.transform.SetParent(transform, false);
+            room.transform.localPosition = roomLocal;
+            room.AddComponent<QuartersRoom>();
+
+            Vector3 deckCenter = cockpitLocalPos;
+            var toQuarters = MakePanel("QuartersPanel",
+                transform.TransformPoint(deckCenter + new Vector3(-1.2f, 0.6f, -1.55f)),
+                "QUARTERS", new Color(0.30f, 0.22f, 0.40f), () =>
+                {
+                    TeleportRig(transform.TransformPoint(roomLocal) + Vector3.up * 0.1f);
+                    Debug.Log("ZIPTIDE: QUARTERS_ENTER");
+                }, small: true);
+            toQuarters.transform.rotation = transform.rotation * Quaternion.Euler(0f, 180f, 0f);
+
+            var backToDeck = MakePanel("QuartersReturn",
+                transform.TransformPoint(roomLocal + new Vector3(0f, 1.3f, -2.15f)),
+                "RETURN TO DECK", new Color(0.30f, 0.22f, 0.40f), () =>
+                {
+                    TeleportRig(transform.TransformPoint(deckCenter) + Vector3.up * 0.1f);
+                    Debug.Log("ZIPTIDE: QUARTERS_EXIT");
+                }, small: true);
+            backToDeck.transform.SetParent(room.transform, true);
+            backToDeck.transform.rotation = transform.rotation; // faces you as you enter the doorway
         }
 
         // ── Boarding ─────────────────────────────────────────────────────────

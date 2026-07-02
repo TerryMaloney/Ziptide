@@ -45,6 +45,23 @@ Terry redirected this session to multiplayer: PvP → AAA fun + Tidefront (the R
 - **Next (this session):** A1a BotBrain pure core + B1a Conquest sim core — both pure C#, CI-verified.
 - **Commit:** this push on `terry-local-wip`.
 
+### 2026-07-02 (eee) — operator (Fable 5): THE QUARTERS — locker/cosmetics architecture (stubbed stock, real plumbing)
+Terry's brief: a customization room on the ship (item-shop/locker feel) that must work GAME-WIDE — incl.
+a future PvP pre-round locker. Built the full architecture; stock is deliberately empty (the stub).
+- **Three layers** (spec `docs/systems/QUARTERS.md`): `CosmeticDefinition` (Content, Resources/Cosmetics,
+  a LOOK never a stat — mode-legal by construction) · `CosmeticLocker` (Core, PURE, 6 tests — equip state
+  as prefixed profile flags → saves/travels/crosses modes for free, string-pure so netcode sync is
+  trivial) · `QuartersRoom` (Gameplay, HOST-AGNOSTIC self-building cabin: 3 browse bays + locker board +
+  the "NO ITEMS AVAILABLE — next supply drop" stub).
+- **Live seam:** `ItemFactory.Create` applies the equipped weapon skin at creation (no-op until a
+  cosmetic is authored). Ship hosts the room aft of the cockpit (QUARTERS panel ⇄ RETURN TO DECK).
+- **🤝 ARCHITECT:** the PvP pre-round locker is YOURS to place — spawn a `QuartersRoom` at the arena
+  spawn, gate exit on the round timer, and sync `CosmeticLocker.GetEquipped` strings in the match
+  handshake so opponents see skins. The locker API was built string-pure for exactly this; nothing needs
+  to change on my side. Full split in QUARTERS.md.
+- **Also this pass (M1–M4 retrospective):** ship helm now RE-EVALUATES story gating on every boarding
+  (was stale-once-in-Awake) + lists all 12 worlds (was capped at 8) + a per-frame Find() cache fix.
+
 ### 2026-07-02 (ddd) — operator (Fable 5): M4 "THE SHIP" S1+S2 — the north star is boardable
 Terry suspended gate-waiting (architect away ~1.5h); M4 started while the M3 APK dispatch ran.
 - **S1 boardable** (`7886927`): `ShipBoardingStation` per the LOCKED SHIPS.md architecture — a mobile
