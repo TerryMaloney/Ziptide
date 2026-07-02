@@ -1,5 +1,6 @@
 #if UNITY_EDITOR
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using Ziptide.Content;
 using Ziptide.Gameplay;
@@ -43,6 +44,7 @@ namespace Ziptide.Editor.Patching
             BuildShipyard(root, kit);
             BuildDroneZones(root, kit);
             BuildHazardZones(root, kit);
+            BuildCreatureZones(root, kit);
 
             _matCache.Clear();
         }
@@ -361,6 +363,53 @@ namespace Ziptide.Editor.Patching
             Cube(ship, "Cockpit", new Vector3(0f, s.shipSize.y * 0.4f, s.shipSize.z * 0.3f), new Vector3(s.shipSize.x * 0.7f, s.shipSize.y * 0.5f, s.shipSize.z * 0.3f), kit.palette.accent, true);
             Cube(ship, "EngineL", new Vector3(-s.shipSize.x * 0.45f, 0f, -s.shipSize.z * 0.45f), new Vector3(s.shipSize.x * 0.25f, s.shipSize.y * 0.5f, s.shipSize.z * 0.2f), kit.palette.metal, true);
             Cube(ship, "EngineR", new Vector3(s.shipSize.x * 0.45f, 0f, -s.shipSize.z * 0.45f), new Vector3(s.shipSize.x * 0.25f, s.shipSize.y * 0.5f, s.shipSize.z * 0.2f), kit.palette.metal, true);
+        }
+
+        // ── Creatures (GAME_PLAN M3 — archetype behavior attached by data) ───
+        private static void BuildCreatureZones(Transform root, CityLayoutDefinition kit)
+        {
+            if (kit.creatureZones == null || kit.creatureZones.Count == 0) return;
+            var creatureRoot = NewChild(root, "Creatures");
+            foreach (var z in kit.creatureZones)
+            {
+                if (z == null) continue;
+                for (int i = 0; i < z.count; i++)
+                {
+                    float a = (i / (float)Mathf.Max(1, z.count)) * Mathf.PI * 2f;
+                    var pos = new Vector3(
+                        z.center.x + Mathf.Cos(a) * z.radius,
+                        kit.walkwayHeight + 0.5f,
+                        z.center.z + Mathf.Sin(a) * z.radius);
+                    MakeCreature(creatureRoot, z.id + "_" + i, pos, z.creatureId, z.respawnDelay);
+                }
+            }
+        }
+
+        private static void MakeCreature(Transform parent, string name, Vector3 pos, string creatureId, float respawnDelay)
+        {
+            var go = new GameObject(name);
+            go.transform.SetParent(parent, false);
+            go.transform.position = pos;
+
+            var rt = go.AddComponent<CreatureRuntime>();
+            rt.creatureId = creatureId;
+            rt.respawnDelay = respawnDelay;
+
+            // Behavior by data: novel behavior ids get explicit cases; else the definition's archetype.
+            var def = AssetDatabase.LoadAssetAtPath<CreatureDefinition>(
+                "Assets/Ziptide/Resources/Enemies/" + creatureId + ".asset");
+            var archetype = def != null ? def.archetype : CreatureArchetype.Swarmer;
+            switch (archetype)
+            {
+                case CreatureArchetype.Bruiser:
+                    go.AddComponent<BruiserBehavior>();
+                    break;
+                // WallCrawler + Flyer land in the next M3 task; Swarmer stands in so a zone
+                // authored early still moves (documented in SPRINT).
+                default:
+                    go.AddComponent<SwarmerBehavior>();
+                    break;
+            }
         }
 
         // ── Hazards (biome mechanics — GAME_PLAN M2) ─────────────────────────

@@ -70,6 +70,7 @@ namespace Ziptide.Content
         public List<CanalRegionDef> canals = new List<CanalRegionDef>();
         public List<DroneZoneDef> droneZones = new List<DroneZoneDef>();
         public List<HazardZoneDef> hazards = new List<HazardZoneDef>();
+        public List<CreatureZoneDef> creatureZones = new List<CreatureZoneDef>();
         public ShipyardBerthDef shipyard = new ShipyardBerthDef();
 
         /// <summary>
@@ -202,6 +203,24 @@ namespace Ziptide.Content
         public bool combat = false;
         [Tooltip("Optional DroneCombatProfile asset name in Resources/Enemies (blank = serialized defaults).")]
         public string variantId = "";
+    }
+
+    /// <summary>
+    /// A spawn zone for N creatures (GAME_PLAN M3; generalizes DroneZoneDef). creatureId names a
+    /// CreatureDefinition in Resources/Enemies; the builder attaches the behavior for its archetype
+    /// (novel behavior ids get their own subclass in the factory).
+    /// </summary>
+    [Serializable]
+    public class CreatureZoneDef
+    {
+        public string id = "CreatureZone";
+        public Vector3 center = Vector3.zero;
+        public float radius = 4f;
+        public int count = 3;
+        [Tooltip("Seconds before a disabled creature re-forms (0 = stays down).")]
+        public float respawnDelay = 0f;
+        [Tooltip("CreatureDefinition asset name in Resources/Enemies (e.g. swarm_bug, tendril, warden).")]
+        public string creatureId = "swarm_bug";
     }
 
     /// <summary>The five biome hazard mechanics (GAME_PLAN M2). Non-lethal per canon — they push/slow, never kill.</summary>
