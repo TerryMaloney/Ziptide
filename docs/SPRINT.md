@@ -1,98 +1,67 @@
-# ✅ SPRINT COMPLETE — M1: THE STORY SPEAKS (2026-07-01, all verification green)
+# 🟡 ACTIVE SPRINT — M2: THE JOB IS REAL (opened 2026-07-01)
 
-> **THE SPRINT IS DONE AND FULLY VERIFIED.** Every task CI-green; the final full-pipeline APK dispatch
-> (run `28581416414`, head `523e52f`) **succeeded**: EditMode tests + world audit + IL2CPP APK built and
-> the 70 MB `ziptide-apk` artifact uploaded. The build re-authors RILL's lines, the collectible packs,
-> and all 11 story worlds from data. **Whoever's next:** the roadmap is `docs/GAME_PLAN.md` — the next
-> milestone is **M2 "The Job Is Real"** (machine-repair loop, in-world mining/garden, biome hazards,
-> starter-gear trio). Open a fresh SPRINT.md (copy this structure; archive this one to `docs/sprints/`),
-> or hold for Terry's device pass (runbook §2b + §2c) if he's about to test. Takeover prompt stays:
-> **"Read docs/SPRINT.md and continue."**
+> **Takeover prompt for any fresh model: "Read docs/SPRINT.md and continue."** Live state, updated in
+> the same commit as every push. Roadmap: `docs/GAME_PLAN.md` (this = milestone **M2**). Playbook:
+> `docs/HOW_TO_CHANGE_ANYTHING.md`. Prior sprints: `docs/sprints/` (M1 just closed — APK run
+> `28581416414` green).
 
-## What shipped (the one-paragraph version)
-The game has a voice: **RILL** rides the rig (orb + subtitles) delivering the 12 canonical arc beats +
-per-world entry lines from build-authored data; the **Signal** and **RILL's memory arc** are pure tested
-derivations any system can read; **collectibles are physical** (W002 minerals, W004's first Transmission
-fragment as a grabbable object) with a collect-bank so early grabs can't soft-lock; **ChoiceStation**
-covers every branch beat as pack data; the **de-garble console** plays the Transmission at the current
-clarity tier (register arc through the name moment). One CI red (undefined helper) was caught by the
-EditMode gate and fixed same-session — the safety net works.
-
----
-*(Below: the sprint's live log as it ran — kept as the record.)*
-
-**Sprint goal:** the game gets its VOICE — RILL speaks (text-subtitle first, VO slots in at M6), the
-Signal becomes a number any system can read, Transmission fragments become physical pickups (real
-Collect steps), and story choices become a placeable set-piece. All ⚙CI. Constraints: small commits;
-don't touch rig/PvP/XRI-sample files beyond a single `Ensure*` call (device round pending);
-CI green per push; APK dispatch at the end.
+**Sprint goal:** the contract-tech FANTASY becomes hands-on. Machines are repaired with your hands
+(panel → part → power), biomes get mechanical hazards, and the economy becomes visible world objects
+(mining rig / garden plot you collect from). **Acceptance gate (GAME_PLAN M2):** W002 plays a full
+"arrive → collect → repair → paid" loop. All ⚙CI; same constraints as M1 (small commits, don't touch
+rig/PvP/XRI samples, CI green per push, APK dispatch at the end).
 
 ---
 
 ## Task board
 | # | Task | Status |
 |---|------|--------|
-| 0 | GAME_PLAN.md (roadmap-of-record M0–M8) + pointer updates + this sprint open | ✅ `f276474` |
-| 1 | `SignalState` + `RillState` (Core, pure, tested) — Signal tier 0–4 from flags; RILL memory-state machine from flags | ✅ this commit |
-| 2 | `RillLineLibrary` (Content SO) + `RillLineAuthor` (Editor, authors the 12 arc beats + W001–W012 entry lines into `Resources/Story/RillLines.asset`) + `RillCompanion` (Gameplay: orb + TextMesh subtitle, world-enter/flag/job triggers) + `EnsureRillCompanion()` on the rig | ✅ this commit |
-| 3 | Collectibles: `CollectibleSpawnDefinition` (+ `WorldPackDefinition.collectibles`), `CollectibleRuntime` (grab → `JobDirector.ReportCollect` + flag), JobDirector runtime spawn, `WorldJobLibrary` `Collect()`/`Pickup()` verbs, **W002 mineral + W004 fragment converted to REAL Collect steps**, `JobRuntime` early-grab BANK (anti-soft-lock) + 5 tests | ✅ this commit |
-| 4 | `ChoiceStation` (two-option interactable → writes flag; pack-data spawnable) + validator choice/collectible checks (incl. the un-completable-Collect guard) + 5 tests | ✅ this commit |
-| 5 | De-garble playback: `TransmissionText` (Core, 5 tier variants incl. the name moment, tested) + `TransmissionConsole` (select → render tier; auto-spawns beside fragment pickups) | ✅ this commit |
-| 6 | Close: HANDOFF (aaa), runbook §2c M1 smoke items, MASTER_CHECKLIST M1 line, **APK dispatch green** | ✅ run `28581416414` |
+| 0 | Archive M1 sprint; open this one | 🟡 this commit |
+| 1 | **Repair loop**: `RepairableMachine` (3 hands-on stages: grab panel off → seat the part → flip the switch) + `MachineSpawnDefinition` pack data + JobDirector spawn + `RepairMachineCountStepDefinition` + `JobRuntime.ReportRepair` (+ bank, like collect) + `WorldJobLibrary .Repair()/.Machine()` verbs + **W002 finale = repair the cistern pump** + tests | ⬜ |
+| 2 | **Hazard zones**: `HazardZoneDef` list on `CityLayoutDefinition` (Wind/Static/Flood/Spore/Radiation, center/size/strength) + `HazardZoneRuntime` (trigger volume; push / slow-stun via `PlayerStunReceiver.ApplyStun`; `ZIPTIDE: HAZARD`) + generator spawn + author W003 wind / W005 spore / W010 flood in `WorldLayoutLibrary` + validator/test | ⬜ |
+| 3 | **Economy world objects**: `MiningRigRuntime` (binds a `MineState` in this world's `WorldState`; select → `ProfileEconomy.CollectMine` → credits HUD moves; `ZIPTIDE: MINE_COLLECT`) + `GardenPlotRuntime` (PlotState grow/harvest) + pack/layout spawn + W002 gets a mineral rig + tests for any new pure logic | ⬜ |
+| 4 | Starter-gear trio (Scan Pulse → Taser → Gravity Glove onboarding) — **DEFERRED to W000/M4** (onboarding order needs the tutorial world; gear itself already exists). Documented here so nobody re-derives. | ⏸ deferred |
+| 5 | Close: HANDOFF (bbb), runbook §2d M2 smoke, checklist, MASTER_CHECKLIST, **APK dispatch green** | ⬜ |
 
 ## ▶ RESUMING? — current state & exact next action
-- **SPRINT CLOSED.** Final gate passed: APK dispatch `28581416414` (head `523e52f`) — EditMode ✅,
-  Build Android APK ✅, `ziptide-apk` artifact (70 MB) ✅.
-- **Next action for whoever resumes:** read `GAME_PLAN.md` → open the **M2 "The Job Is Real"** sprint
-  (fresh SPRINT.md, this file → `docs/sprints/SPRINT_2026-07-01_M1_STORY.md`), OR hold for Terry's
-  device pass (`TERRY_RUNBOOK.md` §1 bake → §2b/§2c smoke) and clear his ❌s first — his call.
-- **Branch:** `terry-local-wip`. CI-green head: `523e52f`.
+- **Current micro-step:** sprint opened (this commit archives M1 → `docs/sprints/SPRINT_2026-07-01_M1_STORY.md`).
+- **Next action:** Task 1 — the repair loop. Files: (i) `Content/Runtime/WorldPacks/MachineSpawnDefinition.cs`
+  ([Serializable]: machineId, displayName, localPosition, partItemId, partLocalPosition); `machines` list
+  on `WorldPackDefinition`. (ii) `Content/Runtime/Jobs/RepairMachineCountStepDefinition.cs`
+  {machineId (blank = any), count} — mirror the Collect step. (iii) `JobRuntime.ReportRepair(machineId)`
+  + a repair BANK exactly like `_collectBank` (machines can be fixed before the step is current).
+  (iv) `Gameplay/Runtime/Story/RepairableMachine.cs` — self-built: body + sparking "broken" tint; stage 1
+  PANEL = grab the panel plate off (XRGrabInteractable, on selectEntered detach → stage done); stage 2
+  PART = a grabbable part spawns at partLocalPosition; when it comes within 0.3 m of the socket → snap +
+  consume; stage 3 SWITCH = XRSimpleInteractable lever → machine hums (color/light), calls
+  `JobDirector.ReportRepair(machineId)`, `ZIPTIDE: MACHINE_REPAIRED id=…`. Collider-before-interactable
+  (gotcha #6); manager wiring + retry (travel-door pattern). (v) JobDirector `CreateMachines()` (Marker_
+  pattern) + `ReportRepair` passthrough. (vi) `WorldJobLibrary`: `.Repair(machineId)` step verb +
+  `.Machine(machineId, pos, partItemId, partPos)`; **W002**: replace the final Go("pump_house") with
+  Machine("cistern_pump", pump-house pos, part "pump_valve" spawned back at the shaft) + Repair step —
+  the gate loop. (vii) `WorldPackValidator`: Repair step ↔ machines cross-check (like the Collect guard).
+  (viii) Tests: `JobRuntimeRepairTests` (in-order, early-repair bank, machineId filter, any-machine).
+- **Then:** Task 2 → 3 → 5. Each commit updates this board + this section.
+- **Branch:** `terry-local-wip`. CI-green head: `970be83`.
 
-## Specs (condensed — execute without re-deriving; verified against code this session)
-- **Flags API:** `PlayerProfile.HasFlag/SetFlag` (`Core/Runtime/Persistence/PlayerProfile.cs:29-34`);
-  live profile via `SaveSystem.Instance.Profile` (self-bootstrapping). All flag names in `ZiptideFlags`.
-- **RillState mapping** (MASTER_BUILD_PLAN §5.1 enum · derive, never store): EndgameA–D ⇐
-  `C12_W063_ENDING_A..D` · Integrated ⇐ `C6_W051_RILL_NAMED` · Unsealing ⇐ `W028_COMPLETE` or
-  `C4_W028_NO_JOB` · Remembering ⇐ `C2_CONTAINMENT_REVEALED` (W012 capstone) or `C3_W013_MEMORY_SHARD` ·
-  Stirring ⇐ `W004_COMPLETE` · else Dormant.
-- **SignalState:** tier 4 ⇐ `SIGNAL_MAX`, 3 ⇐ `SIGNAL_THRESHOLD_3`, 2 ⇐ `_2` (granted by W010),
-  1 ⇐ `_1` (granted by W004), else 0. Log consumer-side `ZIPTIDE: SIGNAL_TIER`.
-- **The 12 RILL arc beats** (MASTER_BUILD_PLAN §5.2 — exact lines there): W001 boot · W004 cargo
-  question · W009 misidentify · W013 memory shard · W019 refusal · W024 color · W028 unprompted ·
-  W037 Warden staredown · W039 Pattern warning · W051 name choice · W062 revelation · W068 endings.
-  W001–W012 beats trigger on their flag grants (flags already granted by `WorldJobLibrary` specs);
-  W013+ beats are authored NOW in the library data but fire when those worlds/flags exist (M5).
-  Also author one short world-entry line per W001–W012 (register: Dormant=terse/functional,
-  Stirring=curious — per STORY_BIBLE).
-- **RillCompanion:** ensured from `PlayerRigPersistence` (same pattern as `EnsureStunReceiver`/
-  `EnsureCreditsHud` — one added call, nothing else touched on the rig). Small hovering orb near the
-  left shoulder + TextMesh subtitle (NO TMP — project convention) low-center (CreditsHud/PvpHud
-  positioning pattern). Triggers: `SceneManager.sceneLoaded` (WorldEnter by sceneName) + 1s profile
-  flag-diff poll (FlagSet lines). Queue lines, ~4–5s display, `ZIPTIDE: RILL_LINE id=<id>`.
-  Lines load from `Resources/Story/RillLines` (authored asset).
-- **Collectibles:** `JobDirector.ReportCollect(itemId)` EXISTS (`JobDirector.cs:102`) →
-  `JobRuntime.ReportCollect` counts against `CollectItemIdCountStepDefinition{itemId,count}` (both
-  exist). Missing = the physical pickup + spawn data. Add `[Serializable] CollectibleSpawnDefinition`
-  {itemId, displayName, localPosition, flagOnCollect, accentColor} + `WorldPackDefinition.collectibles`
-  list; JobDirector spawns them at Start (Marker_ pattern — runtime objects, no scene YAML);
-  `CollectibleRuntime` self-builds visual (collider BEFORE XRGrabInteractable — gotcha #6!), on first
-  select → ReportCollect + SetFlag(flagOnCollect) + `TransmissionProgress.SyncClarityFlags` + destroy;
-  `ZIPTIDE: COLLECTED item=<id>`. `WorldJobLibrary`: `Collect(itemId,count)` verb + `Pickup(itemId,pos,
-  flag)` entries; convert **W002** (+3 `mineral_sample` pickups in the gallery, Collect step after the
-  drones) and **W004** (fragment pickup at `broadcast_core`, `flagOnCollect=FRAGMENT_T1_FOUND`, Collect
-  step last — keep the pack's flagsGranted as-is; SetFlag is idempotent). Update WORLD_DATA deferred notes.
-- **ChoiceStation:** self-building two-panel interactable (XRSimpleInteractable pattern from
-  `WorldTravelStation.CreateDoorway` — manager wiring + retry included), `Init(prompt, labelA, flagA,
-  labelB, flagB)`; select → SetFlag + `ZIPTIDE: CHOICE_MADE flag=<f>` + lock both panels. Pack-data:
-  `[Serializable] ChoiceSpawnDefinition` + pack list + JobDirector spawn (same pattern). No world
-  authors one yet (first use W019/W043 — M5); mechanism + tests only.
-- **Don't touch:** `TravelCoordinator`, PvP files, XRI samples, rig internals beyond the one Ensure call.
+## Specs (verified against code this session — don't re-derive)
+- `JobRuntime` step pattern + bank: see `_collectBank`/`ApplyCollectBank` (added in M1) — mirror for repair.
+- `WorldPackDefinition` lists: `spawnMarkers` / `collectibles` / `choices` (+ now `machines`); JobDirector
+  materializes each at Start (`CreateSpawnMarkers/CreateCollectibles/CreateChoices` — add `CreateMachines`).
+- `WorldJobLibrary.Spec`: steps tuple `(kind, markerId, pos, count)` — reuse markerId slot for machineId;
+  `pickups` list pattern for machines. Authoring switch in `EnsureJobsFor` (add "repair" branch).
+- Economy: `PlayerProfile.GetWorld(worldId, createIfMissing)` → `WorldState{mines, plots}`;
+  `ProfileEconomy.CollectMine(profile, mine)` moves stored → balance; `WorldRuntime.Start` already calls
+  `EnterWorld` (ECON_RESOLVE) keyed by scene name → **use scene name as worldId** in MiningRigRuntime.
+  `MineState{machineId, resourceId, ratePerSecond, stored, storageCap, lastResolvedAtUnix}`.
+- `PlayerStunReceiver.ApplyStun(seconds, slowFactor)` = the slow/flash effect hazards reuse (rig-ensured).
+- `CityLayoutDefinition` is the layout SO (Content/City) — hazard defs go there so worlds author hazards
+  as data; `WorldStubGenerator.PatchActiveSceneIfGenerated` + `Populate` is where scene objects get built.
+- TextMesh only (no TMP). New .cs files need .meta (uuid4 hex). Collider BEFORE grab component.
 
 ## Working rules (unchanged)
-CI green after every push (red → stop + fix; `CLAUDE.md`). Never hand-edit scene YAML. New `.cs` files
-need `.meta` files with fresh GUIDs (python uuid4 hex — see existing pattern). EditMode tests live in
-`Ziptide/Assets/Ziptide/Tests/EditMode/`. Commit trailers per repo convention.
+CI green after every push (red → stop, fix — M1's #177 proved the gate works). APK verify =
+`actions_run_trigger` on ci.yml, ref terry-local-wip, ~20–30 min, check Build Android APK + artifact.
 
 ---
-*Sprint opened 2026-07-01 by the operator (Fable 5, T-Dog account) executing GAME_PLAN M1. On close this
-file gets the ✅ stamp + moves to `docs/sprints/`.*
+*Sprint opened 2026-07-01 by the operator (Fable 5) — GAME_PLAN M2. On close: ✅ stamp + archive.*
