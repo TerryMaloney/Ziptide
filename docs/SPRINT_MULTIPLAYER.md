@@ -45,13 +45,21 @@ story worlds as the map).
   ✅ GREEN** (run `28608110578`, full pipeline + artifact): the smart bot + 4 difficulty profiles are
   in a sideloadable build. Tests asmdef now references Ziptide.Editor (editor-only tests can validate
   the authoring libraries — ArenaLibraryTests uses it).
-- **Next action:** verify CI on the A3-core push AND the arena-APK dispatch (queued after `450e047`;
-  bakes all 5 arena scenes through the audit — watch Tidal/Void's elevated spawns; fix layout numbers
-  if the audit flags them). Then **A3-scene** (mode director + lobby board + attacker identity: extend
-  `IPvpDamageable.ReceiveHit` context or add a hit-source registry so N-way kills credit correctly —
-  design it against the fff `PlayerIndex >= 0` law). Then A4 arsenal (Static Net / Sonic Thumper /
-  Prism Beam runtimes + pads become timed respawners — `WeaponPadDef.respawnSeconds` already in data;
-  the Gun Game default ladder already names all six).
+- **A3-core CI: ✅ GREEN** (`f04732e`, 237 tests). **First arena-APK dispatch (`28609713198`) FAILED at
+  the audit — exactly as predicted**: diagnosed by spec inspection (the failure section wasn't in the
+  log tail; the audit exception precedes ~200 lines of perf stats — check `docs/AUDIT_REPORT.md` inside
+  the workspace or reason from the blocker rules). Root causes, all data, fixed in `800ff25`:
+  Tidal's covers sat ON the spawn islands' centers (SPAWN_OVERLAP_SOLID) · Void's spawn sat in the
+  Up_S ramp footprint · the arena exit door spawned outside Void's wall (now lateral +3m).
+  **Re-dispatch queued on `800ff25`** — verify it: if the audit STILL fails, pull the run's failed-job
+  log at higher tail_lines and search "AUDIT" / "blocker" for the exact scene+check, then fix that
+  layout's numbers in `ArenaLayoutLibrary` (assets aren't committed; CI re-authors each build so spec
+  edits apply directly).
+- **Next action after arena APK green:** **A3-scene** (mode director + lobby board + attacker
+  identity: extend `IPvpDamageable.ReceiveHit` context or a hit-source registry so N-way kills credit
+  correctly — design against the fff `PlayerIndex >= 0` law; Horde spawning via `CreatureVariantAuthor`
+  defs + `HordeState.WaveCreatures`). Then A4 arsenal (Static Net / Sonic Thumper / Prism Beam runtimes
+  + pads become timed respawners — `respawnSeconds` already in data; the Gun Game ladder names all six).
 - **✅ fff BRIEFING ABSORBED (constraints for all remaining A-tasks):**
   1. Cross-fixes reviewed + accepted: `BotMath` uint-literal fix (CS0029, same values) and `BotBrain`
      same-tick HeardFire reaction (my test defined that contract — keeping it).
