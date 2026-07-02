@@ -34,6 +34,9 @@ namespace Ziptide.Gameplay
         private bool _flagsPrimed;
         private float _lineTimer;
         private float _pollTimer;
+        private string _currentFullText = "";
+        private float _revealStarted;
+        private const float CharsPerSecond = 34f; // the typewriter reveal — RILL speaks, not pastes
 
         private static readonly Color DormantColor = new Color(0.25f, 0.45f, 0.65f);
         private static readonly Color StirringColor = new Color(0.30f, 0.80f, 0.95f);
@@ -119,14 +122,20 @@ namespace Ziptide.Gameplay
             if (_lineTimer > 0f)
             {
                 _lineTimer -= Time.deltaTime;
-                if (_lineTimer <= 0f) _text.text = "";
+                // Typewriter reveal: characters arrive at speaking pace, so a line READS as spoken —
+                // and long lines hold the screen until they finish revealing plus a beat.
+                int visible = Mathf.Min(_currentFullText.Length,
+                    Mathf.FloorToInt((Time.time - _revealStarted) * CharsPerSecond));
+                _text.text = visible > 0 ? _currentFullText.Substring(0, visible) : "";
+                if (_lineTimer <= 0f) { _text.text = ""; _currentFullText = ""; }
             }
 
             if (_lineTimer <= 0f && _pending.Count > 0)
             {
                 var line = _pending.Dequeue();
-                _text.text = "RILL: " + line.text;
-                _lineTimer = LineSeconds + line.text.Length * 0.02f; // a touch longer for long lines
+                _currentFullText = "RILL: " + line.text;
+                _revealStarted = Time.time;
+                _lineTimer = LineSeconds + _currentFullText.Length / CharsPerSecond; // reveal + read time
                 if (line.voClip != null)
                     AudioSource.PlayClipAtPoint(line.voClip, _orb != null ? _orb.transform.position : transform.position, 0.9f);
                 Debug.Log("ZIPTIDE: RILL_LINE id=" + line.id);
@@ -186,7 +195,11 @@ namespace Ziptide.Gameplay
             if (_orb != null)
             {
                 // Hover near the left shoulder with a small idle bob; drift, don't snap (it's alive).
-                Vector3 target = _cam.position + _cam.forward * 0.55f - _cam.right * 0.38f
+                // While SPEAKING it leans in toward your gaze — a companion talking TO you, not near you.
+                bool speaking = _lineTimer > 0f;
+                float side = speaking ? -0.22f : -0.38f;
+                float fwd = speaking ? 0.62f : 0.55f;
+                Vector3 target = _cam.position + _cam.forward * fwd + _cam.right * side
                                + _cam.up * (-0.02f + Mathf.Sin(Time.time * 1.7f) * 0.02f);
                 _orb.transform.position = Vector3.Lerp(_orb.transform.position, target, Time.deltaTime * 4f);
 

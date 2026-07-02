@@ -102,6 +102,12 @@ namespace Ziptide.Editor.Patching
             Flag("react_signal2", ZiptideFlags.SIGNAL_THRESHOLD_2,
                  "The Signal again. Stronger. It is not random — it answers you.");
 
+            // ── The ship (M4) — the companion has opinions about home ───────────────────────────────
+            Flag("react_ship_board", "SHIP_FIRST_BOARD",
+                 "Home. Or the nearest thing either of us has to one.");
+            Flag("react_quarters", "QUARTERS_FIRST_VISIT",
+                 "Your quarters. The Guild manifest calls this compartment 'storage.' I disagree.");
+
             return L;
         }
     }

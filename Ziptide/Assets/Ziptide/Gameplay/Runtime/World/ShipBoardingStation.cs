@@ -68,6 +68,8 @@ namespace Ziptide.Gameplay
                 "QUARTERS", new Color(0.30f, 0.22f, 0.40f), () =>
                 {
                     TeleportRig(transform.TransformPoint(roomLocal) + Vector3.up * 0.1f);
+                    var prof = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;
+                    if (prof != null) prof.SetFlag("QUARTERS_FIRST_VISIT"); // RILL's line, once per save
                     Debug.Log("ZIPTIDE: QUARTERS_ENTER");
                 }, small: true);
             toQuarters.transform.rotation = transform.rotation * Quaternion.Euler(0f, 180f, 0f);
@@ -95,6 +97,9 @@ namespace Ziptide.Gameplay
                     // that unlocks the next world (locks were stale when computed once in Awake).
                     RebuildHelmRows();
                     TeleportRig(transform.TransformPoint(cockpitLocalPos) + Vector3.up * 0.1f);
+                    // RILL notices your first boarding (its FlagSet line fires once per save).
+                    var prof = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;
+                    if (prof != null) prof.SetFlag("SHIP_FIRST_BOARD");
                     Debug.Log("ZIPTIDE: SHIP_BOARD");
                 });
             panel.transform.rotation = transform.rotation;
