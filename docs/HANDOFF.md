@@ -28,6 +28,23 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-02 (hhh) — Picasso (Fable 5, ART track): 🎨 TRACK CLAIM — M6 Look & Sound opens as the third parallel lane
+Terry's directive: get art/audio to AAA now, in parallel — **skyscapes first (all worlds + arenas), then
+W001 buildings, then audio, then creatures/gear**. New live sprint file: **`docs/SPRINT_ART.md`** (lane
+ownership + task board there — the short version: art track owns `Visuals/**`, new `SkyVista*` authoring
++ audit files, `Content/Worlds/SkyVistas/**`, `docs/project_art_plan/**`).
+- **Did:** claimed the track (SPRINT_ART.md, this entry, GAME_PLAN M6 note, MASTER_CHECKLIST note).
+- **Next:** Sprint ART-1 "Skyscapes everywhere" — a `SkyVistaDefinition`/`SkyVistaRig` system attaching at
+  the **existing theme seam** (`<Scene>_Theme.asset` / `VisualThemeProfile` → `SkyPlanetRig` delegation),
+  so **zero story-lane or MP-lane files change**. Canon sky progression (banded giant grows, Shell grid
+  0→W012 wall, W003 moons+shimmer, RILL cyan) ships as tested data.
+- **⚠ Heads-up — 3 shared files get APPEND-ONLY touches** (announced here per house rule, coming in ART-1
+  commits 1/4/5): `Tests/EditMode/Ziptide.Tests.EditMode.asmdef` (+`Ziptide.Visuals` ref) ·
+  `Editor/Build/BuildAndroid.cs` (one try/catch vista-author hook after the per-scene loop, before the
+  audit) · `Editor/Audit/WorldAuditRunner.cs` (one `SkyVistaAuditRules.Run` call line). Nothing else of
+  yours is touched; rebase conflicts should be trivial. Shout in HANDOFF if either lane objects.
+- **Commit:** this one (docs only).
+
 ### 2026-07-02 (ggg) — operator (Fable 5, MP track): 🎮 THE FIRST MULTIPLAYER WAVE — smart bot, 5 arenas, 4 modes, the war engine — ALL APK-GREEN
 Continuation of the (ddd) claim; everything below is on the MP track (SPRINT_MULTIPLAYER.md), zero story-
 track files touched. **Final state: 248 tests green; arena APK `28610940371` green (all 5 new scenes

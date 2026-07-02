@@ -89,7 +89,9 @@ The contract-tech fantasy becomes hands-on, not fetch-quests.
 - ⚙ Then Ch.7–12 + the 4 endings (W052–W080); Transmission fragments T2–T5 placed; endings gated.
 - **Gate:** all 80 worlds generate + audit green in one build; the full arc is walkable start→finish.
 
-### M6 — Look & Sound *(art after shape stabilizes)*
+### M6 — Look & Sound *(PROMOTED by Terry 2026-07-02: runs NOW as its own parallel track — sprint file
+`docs/SPRINT_ART.md` ("Picasso"), zero file overlap with the story + MP tracks. Order: skyscapes
+everywhere → W001 art kit → audio foundation → creatures/gear/VFX.)*
 - ⚙/🔧 The art pipeline as specced (`project_art_plan/`): `SurfaceSetDefinition` kits → ArtBuildPlan →
   a **PERF_BUDGET audit rule** (tri counts/draw calls per world fail the build if blown) → swap
   primitives per kit family, **W001 first** as the proof.

@@ -84,7 +84,7 @@ room-code invites), **solo-playable first**, **comfort-first gravity gun**. Dist
 - 🔲 **Economy live & meaningful** — idle/welcome-back on world entry; make credits matter (spend/upgrade) ([`ProfileEconomy`]).
 - 🔲 **Creatures v1** + **Tools & Repair** + finish the **gear set** (gravity glove, expanded stun dart — scan pulse done).
 - 🔲 **World scaling pipeline** (`WorldStubGenerator`) — worlds become data, not hand-built (ToxicCity blueprint already proves the pattern).
-- 🔲 **Real art swap** — Tripo models replacing graybox (gun, drones, key props) ([`systems/ASSET_SWAP_PIPELINE.md`](systems/ASSET_SWAP_PIPELINE.md)); travel fade + **Alien Origami** kit.
+- 🔲 **Real art swap** — Tripo models replacing graybox (gun, drones, key props) ([`systems/ASSET_SWAP_PIPELINE.md`](systems/ASSET_SWAP_PIPELINE.md)); travel fade + **Alien Origami** kit. **→ M6 now runs as its own parallel track ("Picasso", [`SPRINT_ART.md`](SPRINT_ART.md)) — skyscapes first.**
 - 🔲 **Cloud save / cross-headset progress** (saves are per-headset today).
 
 ## 🔭 LONG-TERM — 🚀 **THE SHIP IS THE NORTH STAR**
