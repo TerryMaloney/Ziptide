@@ -1,9 +1,25 @@
-# 🟡 ACTIVE SPRINT — M1: THE STORY SPEAKS (opened 2026-07-01)
+# ✅ SPRINT COMPLETE — M1: THE STORY SPEAKS (2026-07-01, all verification green)
 
-> **Takeover prompt for any fresh model: "Read docs/SPRINT.md and continue."** This file is the live
-> state — **updated in the same commit as every push** so a rate-limit cutoff strands nothing. The
-> roadmap-of-record is `docs/GAME_PLAN.md` (this sprint = milestone **M1**). Change-safety playbook:
-> `docs/HOW_TO_CHANGE_ANYTHING.md`. Previous sprint's record: `docs/sprints/SPRINT_2026-07-01_MODULARITY.md`.
+> **THE SPRINT IS DONE AND FULLY VERIFIED.** Every task CI-green; the final full-pipeline APK dispatch
+> (run `28581416414`, head `523e52f`) **succeeded**: EditMode tests + world audit + IL2CPP APK built and
+> the 70 MB `ziptide-apk` artifact uploaded. The build re-authors RILL's lines, the collectible packs,
+> and all 11 story worlds from data. **Whoever's next:** the roadmap is `docs/GAME_PLAN.md` — the next
+> milestone is **M2 "The Job Is Real"** (machine-repair loop, in-world mining/garden, biome hazards,
+> starter-gear trio). Open a fresh SPRINT.md (copy this structure; archive this one to `docs/sprints/`),
+> or hold for Terry's device pass (runbook §2b + §2c) if he's about to test. Takeover prompt stays:
+> **"Read docs/SPRINT.md and continue."**
+
+## What shipped (the one-paragraph version)
+The game has a voice: **RILL** rides the rig (orb + subtitles) delivering the 12 canonical arc beats +
+per-world entry lines from build-authored data; the **Signal** and **RILL's memory arc** are pure tested
+derivations any system can read; **collectibles are physical** (W002 minerals, W004's first Transmission
+fragment as a grabbable object) with a collect-bank so early grabs can't soft-lock; **ChoiceStation**
+covers every branch beat as pack data; the **de-garble console** plays the Transmission at the current
+clarity tier (register arc through the name moment). One CI red (undefined helper) was caught by the
+EditMode gate and fixed same-session — the safety net works.
+
+---
+*(Below: the sprint's live log as it ran — kept as the record.)*
 
 **Sprint goal:** the game gets its VOICE — RILL speaks (text-subtitle first, VO slots in at M6), the
 Signal becomes a number any system can read, Transmission fragments become physical pickups (real
@@ -22,18 +38,15 @@ CI green per push; APK dispatch at the end.
 | 3 | Collectibles: `CollectibleSpawnDefinition` (+ `WorldPackDefinition.collectibles`), `CollectibleRuntime` (grab → `JobDirector.ReportCollect` + flag), JobDirector runtime spawn, `WorldJobLibrary` `Collect()`/`Pickup()` verbs, **W002 mineral + W004 fragment converted to REAL Collect steps**, `JobRuntime` early-grab BANK (anti-soft-lock) + 5 tests | ✅ this commit |
 | 4 | `ChoiceStation` (two-option interactable → writes flag; pack-data spawnable) + validator choice/collectible checks (incl. the un-completable-Collect guard) + 5 tests | ✅ this commit |
 | 5 | De-garble playback: `TransmissionText` (Core, 5 tier variants incl. the name moment, tested) + `TransmissionConsole` (select → render tier; auto-spawns beside fragment pickups) | ✅ this commit |
-| 6 | Close: HANDOFF (aaa), runbook §2c M1 smoke items, MASTER_CHECKLIST M1 line, **APK dispatch green** | 🟡 docs this commit; APK dispatch next |
+| 6 | Close: HANDOFF (aaa), runbook §2c M1 smoke items, MASTER_CHECKLIST M1 line, **APK dispatch green** | ✅ run `28581416414` |
 
 ## ▶ RESUMING? — current state & exact next action
-- **Current micro-step:** Task 6 close-out docs committed (HANDOFF `aaa`, runbook §2c M1 smoke,
-  MASTER_CHECKLIST M1 line). **Head `fd1cdce` is CI-green (run #179)** — the whole M1 stack compiles +
-  all EditMode tests pass (the #177 red was an undefined helper, fixed `5be0800`; net worked).
-- **Next action:** **dispatch the APK workflow** — GitHub MCP `actions_run_trigger` on `ci.yml`,
-  ref `terry-local-wip` → poll the run (~20–30 min) → confirm the `Build Android APK` job + the
-  `ziptide-apk` artifact succeed (the build also re-authors RillLines + packs and re-audits all
-  worlds). If green: stamp this file **✅ SPRINT COMPLETE** + archive note. If the audit flags a world,
-  fix its data, re-dispatch. THEN: next sprint = **M2 "The Job Is Real"** per `GAME_PLAN.md`.
-- **Branch:** `terry-local-wip`. CI-green head: `fd1cdce` (#179).
+- **SPRINT CLOSED.** Final gate passed: APK dispatch `28581416414` (head `523e52f`) — EditMode ✅,
+  Build Android APK ✅, `ziptide-apk` artifact (70 MB) ✅.
+- **Next action for whoever resumes:** read `GAME_PLAN.md` → open the **M2 "The Job Is Real"** sprint
+  (fresh SPRINT.md, this file → `docs/sprints/SPRINT_2026-07-01_M1_STORY.md`), OR hold for Terry's
+  device pass (`TERRY_RUNBOOK.md` §1 bake → §2b/§2c smoke) and clear his ❌s first — his call.
+- **Branch:** `terry-local-wip`. CI-green head: `523e52f`.
 
 ## Specs (condensed — execute without re-deriving; verified against code this session)
 - **Flags API:** `PlayerProfile.HasFlag/SetFlag` (`Core/Runtime/Persistence/PlayerProfile.cs:29-34`);
