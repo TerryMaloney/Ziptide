@@ -226,5 +226,153 @@ namespace Ziptide.Tests.EditMode
             SkyVistaTexture.BakeBody(body, W, H, b);
             CollectionAssert.AreEqual(a, b);
         }
+
+        // ── Library: the canon progression (SkyVistaLibrary specs, in-memory) ─
+
+        private static Dictionary<string, SkyVistaDefinition> BuildLibrary()
+        {
+            var built = new Dictionary<string, SkyVistaDefinition>();
+            foreach (var spec in Ziptide.Editor.Patching.SkyVistaLibrary.Specs())
+                built[spec.Key] = spec.Value();
+            return built;
+        }
+
+        [Test]
+        public void Library_CoversAllStoryWorldsAndArenas()
+        {
+            var lib = BuildLibrary();
+            string[] required =
+            {
+                "ToxicCity",
+                "W002_DryCistern", "W003_GlassShelf", "W004_BroadcastTomb", "W005_OxidizedCanopy",
+                "W006_MirrorFlats", "W007_SableStation", "W008_SealedArchive", "W009_Chitinwall",
+                "W010_TidalArray", "W011_TheHum", "W012_MarasLastJump",
+                "Arena_Cistern", "Arena_Chitinwall", "Arena_MirrorFlats", "Arena_Tidal", "Arena_Void"
+            };
+            foreach (var scene in required)
+                Assert.IsTrue(lib.ContainsKey(scene), "no vista spec for " + scene);
+        }
+
+        [Test]
+        public void Library_AllVistasValidateClean_WithUniqueIds()
+        {
+            var lib = BuildLibrary();
+            var ids = new HashSet<string>();
+            foreach (var kv in lib)
+            {
+                var issues = kv.Value.Validate();
+                Assert.IsEmpty(issues, kv.Key + ": " + string.Join(" | ", issues));
+                Assert.IsTrue(ids.Add(kv.Value.vistaId), "duplicate vistaId " + kv.Value.vistaId);
+            }
+        }
+
+        [Test]
+        public void Canon_ShellGrid_InvisibleThroughW006_ThenMonotonic_ToFullWallAtW012()
+        {
+            var lib = BuildLibrary();
+            string[] storyOrder =
+            {
+                "ToxicCity",
+                "W002_DryCistern", "W003_GlassShelf", "W004_BroadcastTomb", "W005_OxidizedCanopy",
+                "W006_MirrorFlats", "W007_SableStation", "W008_SealedArchive", "W009_Chitinwall",
+                "W010_TidalArray", "W011_TheHum", "W012_MarasLastJump"
+            };
+            float prev = 0f;
+            foreach (var scene in storyOrder)
+            {
+                float g = lib[scene].shellGridIntensity;
+                Assert.GreaterOrEqual(g, prev, "Shell grid regressed at " + scene);
+                prev = g;
+            }
+            Assert.AreEqual(0f, lib["W006_MirrorFlats"].shellGridIntensity, "grid must be invisible through W006");
+            Assert.Greater(lib["W007_SableStation"].shellGridIntensity, 0f, "W007 is the first faint glimpse");
+            Assert.AreEqual(0.5f, lib["W009_Chitinwall"].shellGridIntensity, 0.01f, "W009 is the banding beat");
+            Assert.AreEqual(1f, lib["W012_MarasLastJump"].shellGridIntensity, "W012 is the full wall");
+        }
+
+        [Test]
+        public void Canon_TheBandedGiant_GrowsAcrossTheEarlyWorlds()
+        {
+            var lib = BuildLibrary();
+            float SizeOfGiant(string scene)
+            {
+                foreach (var b in lib[scene].bodies)
+                    if (b.type == SkyVistaDefinition.BodyType.BandedPlanet) return b.angularSizeDeg;
+                Assert.Fail(scene + " has no banded giant");
+                return 0f;
+            }
+            // The canon growth beats: dim over W001 → closer at W005 → HUGE at W007 → the wall-body at W012.
+            float w001 = SizeOfGiant("ToxicCity");
+            float w005 = SizeOfGiant("W005_OxidizedCanopy");
+            float w007 = SizeOfGiant("W007_SableStation");
+            float w012 = SizeOfGiant("W012_MarasLastJump");
+            Assert.Greater(w005, w001);
+            Assert.Greater(w007, w005);
+            Assert.Greater(w012, w007);
+        }
+
+        [Test]
+        public void Canon_W003_HasTwoMoons_AndTheFirstPatternShimmer()
+        {
+            var lib = BuildLibrary();
+            var w003 = lib["W003_GlassShelf"];
+            int moons = 0;
+            foreach (var b in w003.bodies)
+                if (b.type == SkyVistaDefinition.BodyType.Moon) moons++;
+            Assert.AreEqual(2, moons, "W003 canon: two moons");
+            Assert.IsTrue(w003.zenithShimmer.enabled, "W003 canon: the zenith shimmer is the first Pattern seed");
+            // And no earlier world shimmers.
+            Assert.IsFalse(lib["ToxicCity"].zenithShimmer.enabled);
+            Assert.IsFalse(lib["W002_DryCistern"].zenithShimmer.enabled);
+        }
+
+        [Test]
+        public void Canon_RillCyan_IsSeededInAnEarlyWorldSky()
+        {
+            var lib = BuildLibrary();
+            Color rill = Ziptide.Editor.Patching.SkyVistaLibrary.RillCyan;
+            var w005 = lib["W005_OxidizedCanopy"];
+            Assert.IsTrue(w005.nebula.enabled);
+            Assert.Less(ColorDistance(w005.nebula.colorB, rill), 0.01f,
+                "W005's nebula must carry RILL's exact chased color");
+        }
+
+        [Test]
+        public void Arenas_HaveDistinctSkies()
+        {
+            var lib = BuildLibrary();
+            string[] arenas = { "Arena_Cistern", "Arena_Chitinwall", "Arena_MirrorFlats", "Arena_Tidal", "Arena_Void" };
+            for (int i = 0; i < arenas.Length; i++)
+                for (int j = i + 1; j < arenas.Length; j++)
+                {
+                    var a = lib[arenas[i]];
+                    var b = lib[arenas[j]];
+                    bool differ = ColorDistance(a.skyGradient.Evaluate(0f), b.skyGradient.Evaluate(0f)) > 0.02f
+                        || ColorDistance(a.skyGradient.Evaluate(1f), b.skyGradient.Evaluate(1f)) > 0.02f
+                        || a.bodies.Count != b.bodies.Count
+                        || Mathf.Abs(a.shellGridIntensity - b.shellGridIntensity) > 0.02f
+                        || a.nebula.enabled != b.nebula.enabled
+                        || (a.bodies.Count > 0 && b.bodies.Count > 0 && a.bodies[0].type != b.bodies[0].type);
+                    Assert.IsTrue(differ, arenas[i] + " and " + arenas[j] + " read as the same sky");
+                }
+        }
+
+        [Test]
+        public void Library_EveryVistaBakesWithoutError()
+        {
+            var px = new Color32[W * H];
+            var bodyPx = new Color32[W * H];
+            foreach (var kv in BuildLibrary())
+            {
+                SkyVistaTexture.BakeDome(kv.Value, W, H, px);
+                foreach (var b in kv.Value.bodies)
+                    SkyVistaTexture.BakeBody(b, W, H, bodyPx);
+            }
+        }
+
+        private static float ColorDistance(Color a, Color b)
+        {
+            return Mathf.Abs(a.r - b.r) + Mathf.Abs(a.g - b.g) + Mathf.Abs(a.b - b.b);
+        }
     }
 }
