@@ -28,6 +28,31 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-01 (aaa) — operator (Fable 5): GAME_PLAN (the road to AAA) + M1 "THE STORY SPEAKS" built
+Executed the approved ROAD-TO-AAA plan from the prior session (written there, never committed) and then
+built milestone M1 end-to-end. Sprint tracked live in `docs/SPRINT.md` per the resumability protocol.
+- **`docs/GAME_PLAN.md` is the roadmap-of-record now** (`f276474`): gap matrix, milestones **M0
+  device-proof → M1 story → M2 job → M3 creatures → M4 ship → M5 80 worlds → M6 art/audio → M7 modes →
+  M8 cert**, each with an acceptance gate + the two standing contracts (changeability invariant,
+  SPRINT.md crash-resume). START_HERE/backlog/HOW_TO_CHANGE repointed; modularity sprint archived to
+  `docs/sprints/`.
+- **M1 shipped (all ⚙CI, tests per piece):**
+  `SignalState` + `RillState` (pure derivations, `dcf67fb`) · **RILL speaks** — `RillLineLibrary` +
+  `RillLineAuthor` (12 canonical beats + Ch.1–2 entry lines + reactions, build-authored into
+  `Resources/Story/RillLines`) + `RillCompanion` on the rig (orb + subtitle, `fdb5738`) ·
+  **collectibles are physical** — pack-data pickups, `CollectibleRuntime`, `WorldJobLibrary
+  .Collect/.Pickup`, W002 minerals + **W004's first Transmission fragment as a real object**, and the
+  `JobRuntime` **collect bank** (early/pre-accept grabs can't soft-lock — `JobRuntimeCollectTests`;
+  `b5033b4`+fix `5be0800`) · **ChoiceStation** two-option set-piece + validator guards incl. the
+  un-completable-Collect check (`1f64270`) · **de-garble playback** — `TransmissionText` tier variants
+  (register arc through the name moment) + `TransmissionConsole` auto-spawned beside fragment pickups
+  (`fd1cdce`, CI-green run #179).
+- **CI discipline note:** run #177 went red (undefined helper in `CollectibleRuntime`) — caught by the
+  EditMode job, fixed in `5be0800`, head re-verified green. The safety net works.
+- **On Terry's plate:** runbook §1 bake + §2b 11-world smoke + **NEW §2c M1 smoke** (RILL lines,
+  W002 collect, W004 fragment + console). — **Next:** M2 "The Job Is Real" per GAME_PLAN.
+- **Commits:** `f276474`…`fd1cdce` on `terry-local-wip`.
+
 ### 2026-07-01 (zz) — operator (Fable 5): THE MODULARITY SPRINT — everything modular, 11 worlds authored
 Terry's directive: Fable 5 is nearly out of usage; make everything modular + documented so **Opus can
 finish without breaking anything**, build max content, keep it crash-resumable. Sprint tracked live in

@@ -55,6 +55,24 @@ your next build/sideload). Quick smoke per world (a minute each, warp via Y+B):
 - [ ] Feel notes: which worlds' scale/colors/heights feel wrong — each is fixable by editing ITS layout
   asset fields (see `HOW_TO_CHANGE_ANYTHING.md`).
 
+## 2c. NEW — M1 "The Story Speaks" (RILL + fragments + playback; no menu steps, all auto)
+The next build carries the story layer. Smoke it while doing §2b:
+- [ ] **RILL exists:** a small glowing orb hovers near your **left shoulder** in every world; entering a
+  world shows a **"RILL: …" subtitle** low-center (`ZIPTIDE: RILL_LINE` in logcat). W001/ToxicCity =
+  "Systems nominal. I think."
+- [ ] **RILL reacts to story beats:** finishing W004's contract → the cargo question; W009 → the
+  misidentify glitch line; W012 → "it's a cage."
+- [ ] **W002 collect step:** the contract now has "Collect 3 mineral sample" — three small glowing
+  shards on the gallery route; grab each (`ZIPTIDE: COLLECTED`). Grabbing them EARLY (before that step)
+  must still count when the step arrives.
+- [ ] **W004 fragment is physical:** a "?? recording" shard at the broadcast core — grabbing it logs
+  `COLLECTED item=transmission_fragment flag=FRAGMENT_T1_FOUND` + `TRANSMISSION_CLARITY tier=1` and
+  RILL comments.
+- [ ] **Playback console:** next to where the fragment sat is a small terminal — point + select the
+  screen → mostly-static text with a few legible words (`TRANSMISSION_PLAYBACK tier=1`). (It gets
+  clearer in later chapters — tier 0 shows "signal too degraded" if you somehow play it pre-fragment.)
+- [ ] Feel notes: RILL orb position/size, subtitle readability, line timing, shard visibility.
+
 ## 3. The two open judgment calls (yours)
 - **"Can you run in Toxic City?"** — was it the input bug (now fixed) or actual walls/narrow streets? If
   still wall-blocked, say so and the streets get widened.

@@ -22,23 +22,18 @@ CI green per push; APK dispatch at the end.
 | 3 | Collectibles: `CollectibleSpawnDefinition` (+ `WorldPackDefinition.collectibles`), `CollectibleRuntime` (grab → `JobDirector.ReportCollect` + flag), JobDirector runtime spawn, `WorldJobLibrary` `Collect()`/`Pickup()` verbs, **W002 mineral + W004 fragment converted to REAL Collect steps**, `JobRuntime` early-grab BANK (anti-soft-lock) + 5 tests | ✅ this commit |
 | 4 | `ChoiceStation` (two-option interactable → writes flag; pack-data spawnable) + validator choice/collectible checks (incl. the un-completable-Collect guard) + 5 tests | ✅ this commit |
 | 5 | De-garble playback: `TransmissionText` (Core, 5 tier variants incl. the name moment, tested) + `TransmissionConsole` (select → render tier; auto-spawns beside fragment pickups) | ✅ this commit |
-| 6 | Close: HANDOFF entry, runbook/checklist RILL+fragment smoke items, **APK dispatch green** | ⬜ |
+| 6 | Close: HANDOFF (aaa), runbook §2c M1 smoke items, MASTER_CHECKLIST M1 line, **APK dispatch green** | 🟡 docs this commit; APK dispatch next |
 
 ## ▶ RESUMING? — current state & exact next action
-- **Current micro-step:** Task 5 committed — `TransmissionText.Render(tier)` (Core, pure: 5 authored
-  variants walking the canon register arc static→professional→confessional→intimate→**the name
-  moment**, `TransmissionTextTests`) + `TransmissionConsole` (select → renders the CURRENT tier on its
-  screen; re-select after new fragments = clearer message). JobDirector auto-spawns a console beside
-  any FRAGMENT_* pickup — W004's broadcast core has the full loop TODAY: grab fragment → clarity rises
-  → play it back. **CI note:** run #177 (task 3) went RED — `ApplyUnlit` undefined in
-  CollectibleRuntime; fixed in `5be0800` (this push). #178 fails the same way; superseded.
-- **Next action:** verify CI green on this push → Task 6 close-out: HANDOFF entry (next tag after zz),
-  TERRY_RUNBOOK + DEVICE_TEST_CHECKLIST smoke items (RILL speaks on entry in W001–W012 + beat lines,
-  W002 mineral collect, W004 fragment pickup + console playback), MASTER_CHECKLIST state line, then
-  **dispatch the APK workflow** (`actions_run_trigger` on ci.yml, branch terry-local-wip, ~20–30 min)
-  and confirm `build-android` + `ziptide-apk` artifact green → stamp this file ✅ COMPLETE.
-- **Branch:** `terry-local-wip`. CI-green: `f276474`, `dcf67fb`, `fdb5738`. RED: `b5033b4`/`1f64270`
-  (fixed by `5be0800`).
+- **Current micro-step:** Task 6 close-out docs committed (HANDOFF `aaa`, runbook §2c M1 smoke,
+  MASTER_CHECKLIST M1 line). **Head `fd1cdce` is CI-green (run #179)** — the whole M1 stack compiles +
+  all EditMode tests pass (the #177 red was an undefined helper, fixed `5be0800`; net worked).
+- **Next action:** **dispatch the APK workflow** — GitHub MCP `actions_run_trigger` on `ci.yml`,
+  ref `terry-local-wip` → poll the run (~20–30 min) → confirm the `Build Android APK` job + the
+  `ziptide-apk` artifact succeed (the build also re-authors RillLines + packs and re-audits all
+  worlds). If green: stamp this file **✅ SPRINT COMPLETE** + archive note. If the audit flags a world,
+  fix its data, re-dispatch. THEN: next sprint = **M2 "The Job Is Real"** per `GAME_PLAN.md`.
+- **Branch:** `terry-local-wip`. CI-green head: `fd1cdce` (#179).
 
 ## Specs (condensed — execute without re-deriving; verified against code this session)
 - **Flags API:** `PlayerProfile.HasFlag/SetFlag` (`Core/Runtime/Persistence/PlayerProfile.cs:29-34`);
