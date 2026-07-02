@@ -43,6 +43,11 @@ namespace Ziptide.Content
                  "Pure data — JobDirector materializes ChoiceStation objects, like spawnMarkers.")]
         public List<ChoiceSpawnDefinition> choices = new List<ChoiceSpawnDefinition>();
 
+        [Header("Machines")]
+        [Tooltip("Repairable machines spawned at scene start (the hands-on repair loop: panel → part → " +
+                 "power). Pure data — JobDirector materializes RepairableMachine objects, like spawnMarkers.")]
+        public List<MachineSpawnDefinition> machines = new List<MachineSpawnDefinition>();
+
         [Header("Audio")]
         [Tooltip("Background music for this world. Null = silence.")]
         public AudioProfile audioProfile;

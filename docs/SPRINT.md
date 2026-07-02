@@ -16,33 +16,37 @@ rig/PvP/XRI samples, CI green per push, APK dispatch at the end).
 ## Task board
 | # | Task | Status |
 |---|------|--------|
-| 0 | Archive M1 sprint; open this one | 🟡 this commit |
-| 1 | **Repair loop**: `RepairableMachine` (3 hands-on stages: grab panel off → seat the part → flip the switch) + `MachineSpawnDefinition` pack data + JobDirector spawn + `RepairMachineCountStepDefinition` + `JobRuntime.ReportRepair` (+ bank, like collect) + `WorldJobLibrary .Repair()/.Machine()` verbs + **W002 finale = repair the cistern pump** + tests | ⬜ |
+| 0 | Archive M1 sprint; open this one | ✅ `756956e` |
+| 1 | **Repair loop**: `RepairableMachine` (3 hands-on stages: grab panel off → seat the part → flip the switch) + `MachineSpawnDefinition` pack data + JobDirector spawn + `RepairMachineCountStepDefinition` + `JobRuntime.ReportRepair` (+ bank, like collect) + `WorldJobLibrary .Repair()/.Machine()` verbs + **W002 finale = repair the cistern pump** + validator guard + 7 tests | ✅ this commit |
 | 2 | **Hazard zones**: `HazardZoneDef` list on `CityLayoutDefinition` (Wind/Static/Flood/Spore/Radiation, center/size/strength) + `HazardZoneRuntime` (trigger volume; push / slow-stun via `PlayerStunReceiver.ApplyStun`; `ZIPTIDE: HAZARD`) + generator spawn + author W003 wind / W005 spore / W010 flood in `WorldLayoutLibrary` + validator/test | ⬜ |
 | 3 | **Economy world objects**: `MiningRigRuntime` (binds a `MineState` in this world's `WorldState`; select → `ProfileEconomy.CollectMine` → credits HUD moves; `ZIPTIDE: MINE_COLLECT`) + `GardenPlotRuntime` (PlotState grow/harvest) + pack/layout spawn + W002 gets a mineral rig + tests for any new pure logic | ⬜ |
 | 4 | Starter-gear trio (Scan Pulse → Taser → Gravity Glove onboarding) — **DEFERRED to W000/M4** (onboarding order needs the tutorial world; gear itself already exists). Documented here so nobody re-derives. | ⏸ deferred |
 | 5 | Close: HANDOFF (bbb), runbook §2d M2 smoke, checklist, MASTER_CHECKLIST, **APK dispatch green** | ⬜ |
 
 ## ▶ RESUMING? — current state & exact next action
-- **Current micro-step:** sprint opened (this commit archives M1 → `docs/sprints/SPRINT_2026-07-01_M1_STORY.md`).
-- **Next action:** Task 1 — the repair loop. Files: (i) `Content/Runtime/WorldPacks/MachineSpawnDefinition.cs`
-  ([Serializable]: machineId, displayName, localPosition, partItemId, partLocalPosition); `machines` list
-  on `WorldPackDefinition`. (ii) `Content/Runtime/Jobs/RepairMachineCountStepDefinition.cs`
-  {machineId (blank = any), count} — mirror the Collect step. (iii) `JobRuntime.ReportRepair(machineId)`
-  + a repair BANK exactly like `_collectBank` (machines can be fixed before the step is current).
-  (iv) `Gameplay/Runtime/Story/RepairableMachine.cs` — self-built: body + sparking "broken" tint; stage 1
-  PANEL = grab the panel plate off (XRGrabInteractable, on selectEntered detach → stage done); stage 2
-  PART = a grabbable part spawns at partLocalPosition; when it comes within 0.3 m of the socket → snap +
-  consume; stage 3 SWITCH = XRSimpleInteractable lever → machine hums (color/light), calls
-  `JobDirector.ReportRepair(machineId)`, `ZIPTIDE: MACHINE_REPAIRED id=…`. Collider-before-interactable
-  (gotcha #6); manager wiring + retry (travel-door pattern). (v) JobDirector `CreateMachines()` (Marker_
-  pattern) + `ReportRepair` passthrough. (vi) `WorldJobLibrary`: `.Repair(machineId)` step verb +
-  `.Machine(machineId, pos, partItemId, partPos)`; **W002**: replace the final Go("pump_house") with
-  Machine("cistern_pump", pump-house pos, part "pump_valve" spawned back at the shaft) + Repair step —
-  the gate loop. (vii) `WorldPackValidator`: Repair step ↔ machines cross-check (like the Collect guard).
-  (viii) Tests: `JobRuntimeRepairTests` (in-order, early-repair bank, machineId filter, any-machine).
-- **Then:** Task 2 → 3 → 5. Each commit updates this board + this section.
-- **Branch:** `terry-local-wip`. CI-green head: `970be83`.
+- **Current micro-step:** Task 1 committed — the repair loop is LIVE. `RepairableMachine` (pull the
+  rusted panel off → the exposed socket shows the fault → fetch the part from where the pack spawned it
+  → it snaps in at 0.3 m → flip the switch → lamp goes green) + `MachineSpawnDefinition`/`machines` pack
+  list + JobDirector `CreateMachines` + `ReportRepair` + `RepairMachineCountStepDefinition` +
+  `JobRuntime` repair BANK (early/pre-accept fixes credit later; blank machineId = any machine, drains
+  across banked ids) + `.Machine()/.Repair()` library verbs. **W002's contract now ends with actually
+  repairing the cistern pump** (valve spawns back at the shaft — the fetch is the job): the M2 gate loop
+  "arrive → collect → repair → paid" is authored. Validator: machine sanity + Repair↔machine guard.
+  Tests: `JobRuntimeRepairTests` (5) + 2 validator. Kept W002's final Go("pump_house") BEFORE the
+  machine so the objective board walks you there first.
+- **Next action:** verify CI on this push → Task 2 (hazard zones): `HazardZoneDef` [Serializable] on
+  `CityLayoutDefinition` (enum Wind/Static/Flood/Spore/Radiation + center/size/strength) + a `hazards`
+  list; `Gameplay/Runtime/World/HazardZoneRuntime.cs` — self-built trigger volume (BoxCollider
+  isTrigger + translucent tint), OnTriggerStay against the rig: Wind = steady push (CharacterController
+  .Move via rig transform nudge — CAREFUL: move the XR Origin root, not the camera), Static/Spore =
+  periodic `PlayerStunReceiver.ApplyStun(0.4f, 0.55f)` ticks, Flood = strong slow while inside,
+  Radiation = escalating flash + push-back. `ZIPTIDE: HAZARD kind=… enter/exit`. Spawned by
+  `WorldStubGenerator.Populate` from the layout's hazards list. Author: W003 wind lanes between mesas,
+  W005 spore pockets under the canopy, W010 flood strips on the tide flats (edit `WorldLayoutLibrary`).
+  Validator/test: pure `HazardZoneDef` sanity if a pure seam exists; otherwise author-data eyeball +
+  audit reliance (zones are triggers — the spawn-overlap audit ignores them).
+- **Then:** Task 3 (mining rig / garden plot) → Task 5 close + APK dispatch.
+- **Branch:** `terry-local-wip`. CI-green head: `970be83`; `756956e` (sprint open, docs-only) pending.
 
 ## Specs (verified against code this session — don't re-derive)
 - `JobRuntime` step pattern + bank: see `_collectBank`/`ApplyCollectBank` (added in M1) — mirror for repair.

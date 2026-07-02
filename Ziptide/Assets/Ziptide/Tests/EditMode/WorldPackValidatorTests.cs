@@ -173,5 +173,34 @@ namespace Ziptide.Tests.EditMode
 
             Assert.IsEmpty(WorldPackValidator.Validate(pack));
         }
+
+        // ── M2: machines / repair ───────────────────────────────────────────
+
+        [Test]
+        public void RepairStep_WithItsMachineSpawned_PassesClean()
+        {
+            var rm = ScriptableObject.CreateInstance<RepairMachineCountStepDefinition>();
+            rm.machineId = "cistern_pump"; rm.count = 1;
+
+            var pack = Pack();
+            pack.jobs.Add(JobWith(rm));
+            pack.machines.Add(new MachineSpawnDefinition { machineId = "cistern_pump" });
+
+            Assert.IsEmpty(WorldPackValidator.Validate(pack));
+        }
+
+        [Test]
+        public void RepairStep_WithoutItsMachine_IsReported()
+        {
+            var rm = ScriptableObject.CreateInstance<RepairMachineCountStepDefinition>();
+            rm.machineId = "cistern_pump"; rm.count = 1;
+
+            var pack = Pack();
+            pack.jobs.Add(JobWith(rm)); // no machine authored — un-completable
+
+            var issues = WorldPackValidator.Validate(pack);
+            Assert.AreEqual(1, issues.Count, string.Join(" | ", issues));
+            StringAssert.Contains("un-completable", issues[0]);
+        }
     }
 }

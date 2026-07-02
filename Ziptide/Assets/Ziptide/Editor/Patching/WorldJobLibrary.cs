@@ -31,6 +31,7 @@ namespace Ziptide.Editor.Patching
             public List<(string kind, string markerId, Vector3 pos, int count)> steps = new List<(string, string, Vector3, int)>();
             public List<(string resourceId, double amount)> reward = new List<(string, double)>();
             public List<CollectibleSpawnDefinition> pickups = new List<CollectibleSpawnDefinition>();
+            public List<MachineSpawnDefinition> machines = new List<MachineSpawnDefinition>();
             public string[] flagsRequired = new string[0];
             public string[] flagsGranted = new string[0];
 
@@ -44,6 +45,18 @@ namespace Ziptide.Editor.Patching
                 pickups.Add(new CollectibleSpawnDefinition
                 {
                     itemId = itemId, localPosition = pos, flagOnCollect = flagOnCollect, displayName = label
+                });
+                return this;
+            }
+            // Repair step: requires the named machine's hands-on fix — pair with a Machine() entry.
+            public Spec Repair(string machineId) { steps.Add(("repair", machineId, Vector3.zero, 1)); return this; }
+            // A repairable machine in the world (JobDirector spawns a RepairableMachine from pack data).
+            public Spec Machine(string machineId, Vector3 pos, string partItemId, Vector3 partPos, string label = "")
+            {
+                machines.Add(new MachineSpawnDefinition
+                {
+                    machineId = machineId, localPosition = pos, partItemId = partItemId,
+                    partLocalPosition = partPos, displayName = label
                 });
                 return this;
             }
@@ -72,6 +85,11 @@ namespace Ziptide.Editor.Patching
                     .Pickup("mineral_sample", new Vector3(-4, 0.1f, 28), label: "mineral sample")
                     .Pickup("mineral_sample", new Vector3(-10, 0.1f, 24), label: "mineral sample")
                     .Go("pump_house", new Vector3(-16, 0.1f, 22))        // ChamberA hero building
+                    // THE M2 GATE LOOP: the contract title was always "Restart the Cistern Pumps" — now
+                    // you actually do it with your hands: pull the pump's panel, fetch the valve from
+                    // back at the shaft (the walk is the job), seat it, flip the power.
+                    .Machine("cistern_pump", new Vector3(-16, 0.1f, 23), "pump_valve", new Vector3(10, 0.1f, 25), "cistern pump")
+                    .Repair("cistern_pump")
                     .Reward("credits", 60).Reward("mineral", 5);
 
                 case "W003_GlassShelf":
@@ -291,6 +309,16 @@ namespace Ziptide.Editor.Patching
                     EditorUtility.SetDirty(step);
                     job.steps.Add(step);
                 }
+                else if (s.kind == "repair")
+                {
+                    // markerId carries the machineId for repair steps.
+                    var step = LoadOrCreate<RepairMachineCountStepDefinition>(stepPath);
+                    step.machineId = s.markerId;
+                    step.count = s.count;
+                    step.stepLabel = "Repair the " + s.markerId.Replace('_', ' ');
+                    EditorUtility.SetDirty(step);
+                    job.steps.Add(step);
+                }
                 else // "drones"
                 {
                     var step = LoadOrCreate<DisableDronesCountStepDefinition>(stepPath);
@@ -301,9 +329,11 @@ namespace Ziptide.Editor.Patching
                 }
             }
 
-            // Physical pickups are PACK data (JobDirector spawns CollectibleRuntime at scene start).
+            // Physical pickups + machines are PACK data (JobDirector spawns the runtimes at scene start).
             pack.collectibles.Clear();
             foreach (var p in spec.pickups) pack.collectibles.Add(p);
+            pack.machines.Clear();
+            foreach (var m in spec.machines) pack.machines.Add(m);
 
             job.reward.Clear();
             foreach (var (resourceId, amount) in spec.reward)

@@ -48,6 +48,7 @@ namespace Ziptide.Gameplay
             CreateSpawnMarkers();
             CreateCollectibles();
             CreateChoices();
+            CreateMachines();
             EnsureBoardAndKiosk();
             _runtime.StepChanged += OnStepChanged;
             _runtime.JobCompleted += OnJobCompleted;
@@ -106,6 +107,14 @@ namespace Ziptide.Gameplay
             _runtime.ReportCollect(itemId);
         }
 
+        /// <summary>
+        /// Called by RepairableMachine when its final repair stage completes. For RepairMachineCountStep.
+        /// </summary>
+        public void ReportRepair(string machineId)
+        {
+            _runtime.ReportRepair(machineId);
+        }
+
         private void OnDroneDisabled(DroneRuntime drone)
         {
             _runtime.ReportDroneDisabled();
@@ -123,6 +132,22 @@ namespace Ziptide.Gameplay
                 go.transform.localPosition = m.localPosition;
                 go.transform.localEulerAngles = m.localEulerAngles;
                 _markerTransforms.Add(go.transform);
+            }
+        }
+
+        // Materialize the pack's repairable machines at runtime (same pure-data pattern as the markers).
+        private void CreateMachines()
+        {
+            if (worldPack.machines == null || worldPack.machines.Count == 0) return;
+            var root = new GameObject("Machines");
+            root.transform.SetParent(transform);
+            foreach (var m in worldPack.machines)
+            {
+                if (m == null) continue;
+                var go = new GameObject("Machine_" + m.machineId);
+                go.transform.SetParent(root.transform);
+                go.transform.localPosition = m.localPosition;
+                go.AddComponent<RepairableMachine>().Init(m, this);
             }
         }
 

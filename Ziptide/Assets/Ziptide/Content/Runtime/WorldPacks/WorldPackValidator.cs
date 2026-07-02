@@ -111,6 +111,44 @@ namespace Ziptide.Content
                 }
             }
 
+            if (pack.machines != null)
+                for (int m = 0; m < pack.machines.Count; m++)
+                {
+                    var mac = pack.machines[m];
+                    if (mac == null) issues.Add("machines[" + m + "] is null");
+                    else if (string.IsNullOrEmpty(mac.machineId)) issues.Add("machines[" + m + "] has empty machineId");
+                }
+
+            // A Repair step naming a machine the pack never spawns can't complete (same class of guard
+            // as the Collect check above).
+            if (pack.jobs != null)
+            {
+                for (int j = 0; j < pack.jobs.Count; j++)
+                {
+                    var job = pack.jobs[j];
+                    if (job == null || job.steps == null) continue;
+                    for (int s = 0; s < job.steps.Count; s++)
+                    {
+                        if (job.steps[s] is RepairMachineCountStepDefinition rm)
+                        {
+                            if (rm.count <= 0)
+                                issues.Add(job.jobId + " Repair count must be > 0");
+                            if (!string.IsNullOrEmpty(rm.machineId))
+                            {
+                                bool found = false;
+                                if (pack.machines != null)
+                                    for (int m = 0; m < pack.machines.Count; m++)
+                                        if (pack.machines[m] != null && pack.machines[m].machineId == rm.machineId)
+                                        { found = true; break; }
+                                if (!found)
+                                    issues.Add(job.jobId + " Repair '" + rm.machineId +
+                                               "' but the pack spawns no such machine — likely un-completable");
+                            }
+                        }
+                    }
+                }
+            }
+
             if (pack.choices != null)
                 for (int c = 0; c < pack.choices.Count; c++)
                 {
