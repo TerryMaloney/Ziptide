@@ -14,7 +14,7 @@ namespace Ziptide.Multiplayer.Conquest
         public string fromPlanetId = "";
         public string targetPlanetId = "";
         public List<string> vesselIds = new List<string>();   // committed from the attacker's fleet
-        public int missionModifier = 0;                        // VR mission result: +attack / −defense points
+        public int missionModifier = 0;                        // signed VR-mission tilt: >0 attacker won (+attack), <0 defender won (+defense)
     }
 
     [Serializable]
@@ -74,7 +74,9 @@ namespace Ziptide.Multiplayer.Conquest
             if (!ignoreShield) defenseScore += target.orbitalShieldLevel;
             if (halvesDroneNet && target.builtDefenseIds.Contains("drone_net")) defenseScore -= 1;
             if (target.conflictState == ConflictState.UnderAttack) defenseScore += ConquestRules.DogpileBonus;
-            if (order.missionModifier < 0) defenseScore += order.missionModifier; // defense sabotage
+            // missionModifier is a signed tilt: >0 = the ATTACKER won their VR mission (added to attack
+            // above); <0 = the DEFENDER won theirs — those points reinforce the defense.
+            if (order.missionModifier < 0) defenseScore -= order.missionModifier;
             if (defenseScore < 0) defenseScore = 0;
 
             report.attackScore = attackScore;
