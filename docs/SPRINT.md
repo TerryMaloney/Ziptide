@@ -19,7 +19,7 @@ rig/PvP/XRI samples, CI green per push, APK dispatch at the end).
 | 0 | Archive M1 sprint; open this one | ✅ `756956e` |
 | 1 | **Repair loop**: `RepairableMachine` (3 hands-on stages: grab panel off → seat the part → flip the switch) + `MachineSpawnDefinition` pack data + JobDirector spawn + `RepairMachineCountStepDefinition` + `JobRuntime.ReportRepair` (+ bank, like collect) + `WorldJobLibrary .Repair()/.Machine()` verbs + **W002 finale = repair the cistern pump** + validator guard + 7 tests | ✅ this commit |
 | 2 | **Hazard zones**: `HazardZoneDef` list on `CityLayoutDefinition` + `HazardZoneRuntime` (SERIALIZED def — gotcha #7; poll-based; Wind push / Static+Spore ticks / Flood drag / Radiation escalate+shove; slab visual) + `CityBuilder.BuildHazardZones` + authored W003 wind crossings / W005 spore pockets / W010 tide-flat flood | ✅ this commit |
-| 3 | **Economy world objects**: `MiningRigRuntime` (binds a `MineState` in this world's `WorldState`; select → `ProfileEconomy.CollectMine` → credits HUD moves; `ZIPTIDE: MINE_COLLECT`) + `GardenPlotRuntime` (PlotState grow/harvest) + pack/layout spawn + W002 gets a mineral rig + tests for any new pure logic | ⬜ |
+| 3 | **Economy world objects**: `MineSpawnDefinition` + `MiningRigRuntime` (binds `MineState` in this world's save — idle backend intact; live accrual + readout; select hopper → `ProfileEconomy.CollectMine`) + `.Mine()` verb + **W002 mineral extractor by the pump**. *(GardenPlotRuntime = same pattern, follow-up when a garden world is authored — noted, not built.)* | ✅ this commit |
 | 4 | Starter-gear trio (Scan Pulse → Taser → Gravity Glove onboarding) — **DEFERRED to W000/M4** (onboarding order needs the tutorial world; gear itself already exists). Documented here so nobody re-derives. | ⏸ deferred |
 | 5 | Close: HANDOFF (bbb), runbook §2d M2 smoke, checklist, MASTER_CHECKLIST, **APK dispatch green** | ⬜ |
 
@@ -41,17 +41,16 @@ rig/PvP/XRI samples, CI green per push, APK dispatch at the end).
   bridge lanes, W005 spore pockets, W010 tide-flat flood drag. Layout assets are NOT committed — CI
   re-authors them fresh each build, so builder edits ship (Terry's stale local copies just have empty
   hazard lists until regenerated).
-- **Next action:** verify CI → Task 3 (economy world objects): `Gameplay/Runtime/Story/MiningRigRuntime.cs`
-  — pack-data spawn (`MiningRigSpawnDefinition`? keep simpler: reuse `MachineSpawnDefinition`? NO — new
-  small `[Serializable] EconomySpawnDefinition` {kind Mine|Garden, id, resourceId/plantId, ratePerSecond,
-  storageCap, localPosition} + `economy` list on the pack). Rig binds a `MineState` in
-  `profile.GetWorld(sceneName).mines` (create if missing, keyed by machineId=id), shows stored on a
-  TextMesh, select → `ProfileEconomy.CollectMine` → `ZIPTIDE: MINE_COLLECT amt=…`. Garden: `PlotState`
-  plant/harvest via select (GardenService if it fits, else direct PlotState). W002 gets a mineral rig
-  near the pump. Library verb `.Mine(id, resourceId, rate, cap, pos)`. Tests for any pure seam
-  (MineState binding logic → extract a pure helper if needed).
-- **Then:** Task 5 close + APK dispatch.
-- **Branch:** `terry-local-wip`. CI-green: `468458b` (task 1). This push pending.
+- **Current micro-step (task 3 committed):** the idle economy is a WORLD OBJECT now. `MiningRigRuntime`
+  binds a `MineState` keyed `machineId=id` in `profile.GetWorld(sceneName)` (same worldId key
+  `WorldRuntime` uses for ECON_RESOLVE, so offline accrual + this rig share one save record); def is
+  tuning source-of-truth, save keeps progress; live accrual + floating readout; select the hopper →
+  `CollectMine` pays the profile (watch the credits/resource totals move). W002 has a mineral extractor
+  by the pump house. Garden plot = same pattern, deliberately deferred until a garden world is authored.
+- **Next action:** verify CI on this push → Task 5 close-out: HANDOFF (bbb), runbook §2d (M2 smoke:
+  repair the W002 pump hands-on, wind shove on W003 bridges, spore slow in W005, flood drag in W010,
+  mine hopper payout), MASTER_CHECKLIST M2 line, GAME_PLAN M2 gate note → **APK dispatch** → ✅ stamp.
+- **Branch:** `terry-local-wip`. CI-green: `468458b`; `4a02079` (hazards) pending; this push next.
 
 ## Specs (verified against code this session — don't re-derive)
 - `JobRuntime` step pattern + bank: see `_collectBank`/`ApplyCollectBank` (added in M1) — mirror for repair.

@@ -60,6 +60,16 @@ namespace Ziptide.Editor.Patching
                 });
                 return this;
             }
+            // A placed extractor (idle economy made visible; JobDirector spawns a MiningRigRuntime).
+            public Spec Mine(string id, string resourceId, double rate, double cap, Vector3 pos)
+            {
+                mineRigs.Add(new MineSpawnDefinition
+                {
+                    id = id, resourceId = resourceId, ratePerSecond = rate, storageCap = cap, localPosition = pos
+                });
+                return this;
+            }
+            public List<MineSpawnDefinition> mineRigs = new List<MineSpawnDefinition>();
             public Spec Reward(string id, double amt) { reward.Add((id, amt)); return this; }
         }
 
@@ -90,6 +100,9 @@ namespace Ziptide.Editor.Patching
                     // back at the shaft (the walk is the job), seat it, flip the power.
                     .Machine("cistern_pump", new Vector3(-16, 0.1f, 23), "pump_valve", new Vector3(10, 0.1f, 25), "cistern pump")
                     .Repair("cistern_pump")
+                    // Idle economy made visible: a mineral extractor by the pump house — it produces
+                    // while you're away (ECON_RESOLVE) and pays out when you select the hopper.
+                    .Mine("cistern_extractor", "mineral", 0.05, 40, new Vector3(-13, 0.1f, 20))
                     .Reward("credits", 60).Reward("mineral", 5);
 
                 case "W003_GlassShelf":
@@ -329,11 +342,13 @@ namespace Ziptide.Editor.Patching
                 }
             }
 
-            // Physical pickups + machines are PACK data (JobDirector spawns the runtimes at scene start).
+            // Physical pickups + machines + mines are PACK data (JobDirector spawns the runtimes at scene start).
             pack.collectibles.Clear();
             foreach (var p in spec.pickups) pack.collectibles.Add(p);
             pack.machines.Clear();
             foreach (var m in spec.machines) pack.machines.Add(m);
+            pack.mines.Clear();
+            foreach (var m in spec.mineRigs) pack.mines.Add(m);
 
             job.reward.Clear();
             foreach (var (resourceId, amount) in spec.reward)

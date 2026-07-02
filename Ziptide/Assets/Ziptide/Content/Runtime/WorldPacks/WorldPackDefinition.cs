@@ -48,6 +48,11 @@ namespace Ziptide.Content
                  "power). Pure data — JobDirector materializes RepairableMachine objects, like spawnMarkers.")]
         public List<MachineSpawnDefinition> machines = new List<MachineSpawnDefinition>();
 
+        [Header("Mines")]
+        [Tooltip("Placed extractors spawned at scene start — each binds a MineState in this world's " +
+                 "save data (idle economy) and pays out when the hopper is selected.")]
+        public List<MineSpawnDefinition> mines = new List<MineSpawnDefinition>();
+
         [Header("Audio")]
         [Tooltip("Background music for this world. Null = silence.")]
         public AudioProfile audioProfile;

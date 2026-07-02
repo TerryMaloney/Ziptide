@@ -77,6 +77,7 @@ Legend: **Edit** = the one place to change · **Then** = how it takes effect · 
 | I want to… | Edit | Then | Verify |
 |---|---|---|---|
 | **Job payouts** | each `JobDefinition.reward` | live | `JOB_REWARD_GRANTED` |
+| **A placed extractor (visible idle mine)** | the world's spec in `WorldJobLibrary` — `.Mine(id, resourceId, rate, cap, pos)` | JobDirector spawns `MiningRigRuntime` bound to the world's `MineState` (idle accrual already resolves on entry); select the hopper to collect | `ZIPTIDE: MINE_COLLECT id=… amt=…` |
 | **Idle/mine/garden rates & caps** | `BalanceConfig` / `MachineDefinition` / `PlantDefinition` assets; per-mine `storageCap` bounds offline accrual | resolved on world entry | `ZIPTIDE: ECON_RESOLVE` |
 
 ## PvP

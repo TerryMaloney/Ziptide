@@ -49,6 +49,7 @@ namespace Ziptide.Gameplay
             CreateCollectibles();
             CreateChoices();
             CreateMachines();
+            CreateMines();
             EnsureBoardAndKiosk();
             _runtime.StepChanged += OnStepChanged;
             _runtime.JobCompleted += OnJobCompleted;
@@ -132,6 +133,23 @@ namespace Ziptide.Gameplay
                 go.transform.localPosition = m.localPosition;
                 go.transform.localEulerAngles = m.localEulerAngles;
                 _markerTransforms.Add(go.transform);
+            }
+        }
+
+        // Materialize the pack's placed extractors at runtime (bound to this world's idle-economy save).
+        private void CreateMines()
+        {
+            if (worldPack.mines == null || worldPack.mines.Count == 0) return;
+            var root = new GameObject("Mines");
+            root.transform.SetParent(transform);
+            string worldId = gameObject.scene.name; // same key WorldRuntime uses for ECON_RESOLVE
+            foreach (var m in worldPack.mines)
+            {
+                if (m == null) continue;
+                var go = new GameObject("Mine_" + m.id);
+                go.transform.SetParent(root.transform);
+                go.transform.localPosition = m.localPosition;
+                go.AddComponent<MiningRigRuntime>().Init(m, worldId);
             }
         }
 
