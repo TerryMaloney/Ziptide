@@ -1,0 +1,52 @@
+# The Forge studio's fast lane: renders turnaround PNGs of every Forge asset (no APK) so an LLM
+# session can download the `forge-photos` artifact, LOOK at the images, and iterate the recipe.
+# Dispatch from the Actions tab or:  POST /actions/workflows/forge-photos.yml/dispatches {ref}
+# Uses game-ci unity-builder (graphics-enabled under xvfb) — never the test-runner (-nographics risk).
+name: Forge Photos
+
+on:
+  workflow_dispatch:
+
+env:
+  PROJECT_PATH: Ziptide
+  UNITY_VERSION: 2022.3.62f3
+
+jobs:
+  photos:
+    name: Render Forge turnarounds
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Cache Library
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.PROJECT_PATH }}/Library
+          key: Library-photos-${{ hashFiles(format('{0}/Assets/**', env.PROJECT_PATH), format('{0}/Packages/**', env.PROJECT_PATH), format('{0}/ProjectSettings/**', env.PROJECT_PATH)) }}
+          restore-keys: |
+            Library-photos-
+            Library-
+
+      - name: Render photos (editor batchmode, no player build)
+        uses: game-ci/unity-builder@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          projectPath: ${{ env.PROJECT_PATH }}
+          unityVersion: ${{ env.UNITY_VERSION }}
+          targetPlatform: StandaloneLinux64
+          buildMethod: Ziptide.Editor.Patching.ForgePhotoBooth.RenderAllBatch
+          allowDirtyBuild: true
+
+      - name: Upload photos
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: forge-photos
+          path: ${{ env.PROJECT_PATH }}/Builds/Photos
+          if-no-files-found: error
