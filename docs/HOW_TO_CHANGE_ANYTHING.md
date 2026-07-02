@@ -87,7 +87,9 @@ Legend: **Edit** = the one place to change · **Then** = how it takes effect · 
 | **Match rules** (HP, hit damage, charges, timers, best-of) | `Multiplayer/Runtime/PvpRules.cs` consts (pure, fully tested) | EditMode tests enforce the contract — update `PvpMatchTests`/`PvpCombatTests` with the rule change | CI |
 | **Bot difficulty / how smart the bot fights** | the `Resources/Bots/{rookie,regular,veteran,nightmare}.asset` profiles (aim error, reaction time, leading, dodge, cover discipline, retreat, cadence) — or set the arena bot's `difficulty` string in `ScenePatcherPvP.BuildBot` | live next run (PvpBot loads the asset) | fight it; `PVP_BOT_BRAIN` in logcat |
 | **Bot decision LOGIC** (states/behaviors) | `Multiplayer/Runtime/Bots/BotBrain.cs` (pure, 14 tests define the contract — change both together) | CI | `BotBrainTests` |
-| **Where the bot patrols / takes cover** | `ScenePatcherPvP.BuildBotNav` (Way_*/Cover_P* points; A2 arenas author these per layout) | regen | watch it fight |
+| **Where the bot patrols / takes cover** | `ScenePatcherPvP.BuildBotNav` (the original arena) or the arena's layout asset `waypoints`/`coverPoints` | regen | watch it fight |
+| **Change an arena** (geometry, cover, sky, bot tier, pads, hazards) | its `ArenaLayoutDefinition` asset under `Content/Arenas/Generated/` — every field is data | next build regenerates the scene (or `Ziptide → Worlds → Build All Arenas`) | `ArenaLibraryTests` + fight it |
+| **Add a whole new arena** | copy a `Build*` method in `ArenaLayoutLibrary` (or duplicate an arena asset with a new `sceneName`) | auto-ships next build | dev menu lists it |
 | **Tidefront war math** (odds, costs, outcomes, catalogs, AI) | `Multiplayer/Runtime/Conquest/{ConquestRules,ConquestCatalog,ConquestAI}.cs` (pure, 17 tests) | CI | `ConquestTests` |
 | ⚠ **PvP scene/arena/HUD** | scene-side files under `Gameplay/Runtime/Pvp/` — pending Terry's device round; coordinate first | — | device |
 

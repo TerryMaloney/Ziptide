@@ -52,6 +52,12 @@ namespace Ziptide.Build
             try { Ziptide.Editor.Patching.WorldStubGenerator.EnsureGeneratedInBuildSettings(); }
             catch (Exception ex) { Debug.LogWarning("[Ziptide] Generated-worlds build-settings ensure warning: " + ex.Message); }
 
+            // PvP arenas: seed missing layout assets (create-only), then ensure their scenes ship.
+            try { Ziptide.Editor.Patching.ArenaLayoutLibrary.EnsureAllAuthored(); }
+            catch (Exception ex) { Debug.LogWarning("[Ziptide] Arena layout library warning: " + ex.Message); }
+            try { Ziptide.Editor.Patching.ScenePatcherArena.EnsureAllInBuildSettings(); }
+            catch (Exception ex) { Debug.LogWarning("[Ziptide] Arena build-settings ensure warning: " + ex.Message); }
+
             // Reload scenes list — ScenePatcherBoot/Sandbox may have modified it (added _Boot/Sandbox, removed SampleScene).
             var scenes = EditorBuildSettings.scenes;
             for (int i = 0; i < scenes.Length; i++)
@@ -108,6 +114,10 @@ namespace Ziptide.Build
                 // rebuild it from its data so every build reflects the current layout asset.
                 try { Ziptide.Editor.Patching.WorldStubGenerator.PatchActiveSceneIfGenerated(); }
                 catch (Exception ex) { Debug.LogWarning("[Ziptide] Generated-world patcher warning for " + path + ": " + ex.Message); }
+
+                // Generated arenas: same contract for ArenaLayoutDefinitions.
+                try { Ziptide.Editor.Patching.ScenePatcherArena.PatchActiveSceneIfArena(); }
+                catch (Exception ex) { Debug.LogWarning("[Ziptide] Arena patcher warning for " + path + ": " + ex.Message); }
 
                 EditorSceneManager.MarkSceneDirty(scene);
                 EditorSceneManager.SaveOpenScenes();

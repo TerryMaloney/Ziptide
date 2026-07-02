@@ -19,9 +19,16 @@ namespace Ziptide.Editor.Patching
         private const string ThemeFolder = "Assets/Ziptide/Content/Worlds/Themes";
         private const string ProfileFolder = "Assets/Ziptide/Content/Worlds/Profiles";
 
-        public static VisualThemeProfile EnsureThemeAsset(CityLayoutDefinition kit)
+        public static VisualThemeProfile EnsureThemeAsset(CityLayoutDefinition kit) =>
+            EnsureThemeAsset(kit.sceneName, kit.skyHorizonColor, kit.skyTopColor, kit.themeGroundTint,
+                kit.planetVisible, kit.planetBaseColor, kit.planetAccentColor, kit.planetAngularSize);
+
+        /// <summary>Raw-color overload — arenas (and any future non-city host) author skies through the
+        /// same pipeline without needing a CityLayoutDefinition.</summary>
+        public static VisualThemeProfile EnsureThemeAsset(string sceneName, Color horizon, Color top,
+            Color ground, bool planetVisible, Color planetBase, Color planetAccent, float planetSize)
         {
-            string path = ThemeFolder + "/" + kit.sceneName + "_Theme.asset";
+            string path = ThemeFolder + "/" + sceneName + "_Theme.asset";
             var theme = AssetDatabase.LoadAssetAtPath<VisualThemeProfile>(path);
             if (theme == null)
             {
@@ -30,31 +37,35 @@ namespace Ziptide.Editor.Patching
                 AssetDatabase.CreateAsset(theme, path);
             }
 
-            theme.groundTint = kit.themeGroundTint;
+            theme.groundTint = ground;
 
             var grad = new Gradient();
             grad.SetKeys(
                 new[]
                 {
-                    new GradientColorKey(kit.skyHorizonColor, 0f), // t=0 = horizon (SkyPlanetRig samples bottom-up)
-                    new GradientColorKey(kit.skyTopColor, 1f),
+                    new GradientColorKey(horizon, 0f), // t=0 = horizon (SkyPlanetRig samples bottom-up)
+                    new GradientColorKey(top, 1f),
                 },
                 new[] { new GradientAlphaKey(1f, 0f), new GradientAlphaKey(1f, 1f) });
             theme.skyGradient = grad;
 
             if (theme.planet == null) theme.planet = new VisualThemeProfile.PlanetSettings();
-            theme.planet.baseColor = kit.planetBaseColor;
-            theme.planet.accentColor = kit.planetAccentColor;
-            theme.planet.angularSizeDegrees = kit.planetVisible ? Mathf.Max(1f, kit.planetAngularSize) : 1f;
+            theme.planet.baseColor = planetBase;
+            theme.planet.accentColor = planetAccent;
+            theme.planet.angularSizeDegrees = planetVisible ? Mathf.Max(1f, planetSize) : 1f;
             // No "off" flag on PlanetSettings — 1° at default distance reads as a dim star when hidden.
 
             EditorUtility.SetDirty(theme);
             return theme;
         }
 
-        public static WorldProfile EnsureWorldProfileAsset(CityLayoutDefinition kit, VisualThemeProfile theme)
+        public static WorldProfile EnsureWorldProfileAsset(CityLayoutDefinition kit, VisualThemeProfile theme) =>
+            EnsureWorldProfileAsset(kit.sceneName, kit.walkwayHeight, theme);
+
+        /// <summary>Raw overload (see the theme overload above).</summary>
+        public static WorldProfile EnsureWorldProfileAsset(string sceneName, float groundY, VisualThemeProfile theme)
         {
-            string path = ProfileFolder + "/" + kit.sceneName + "_WorldProfile.asset";
+            string path = ProfileFolder + "/" + sceneName + "_WorldProfile.asset";
             var profile = AssetDatabase.LoadAssetAtPath<WorldProfile>(path);
             if (profile == null)
             {
@@ -63,10 +74,10 @@ namespace Ziptide.Editor.Patching
                 AssetDatabase.CreateAsset(profile, path);
             }
 
-            profile.groundY = kit.walkwayHeight;
+            profile.groundY = groundY;
             profile.respawnOnFall = true;
-            profile.fallYThreshold = kit.walkwayHeight - 3f; // below any canal/hazard depth
-            profile.usePlayAreaBounds = false;               // open worlds — the global fall net handles edges
+            profile.fallYThreshold = groundY - 3f;   // below any canal/hazard depth
+            profile.usePlayAreaBounds = false;       // open spaces — the global fall net handles edges
             profile.defaultTheme = theme;
             if (theme != null && !profile.availableThemes.Contains(theme))
                 profile.availableThemes.Add(theme);
