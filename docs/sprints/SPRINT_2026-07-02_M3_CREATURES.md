@@ -1,0 +1,67 @@
+# ✅ SPRINT COMPLETE — M3: LIVING WORLDS (2026-07-02, all verification green)
+
+> **DONE AND FULLY VERIFIED.** Every push CI-green (after the two cross-lane fixes below); the final
+> full-pipeline APK dispatch (run `28601298708`, head `6465e03`) **succeeded** — audit clean, 70 MB
+> `ziptide-apk` artifact. Framework + 4 archetypes + Warden + 4 novel behaviors, authored into
+> W002/W005/W009/W012. **M4 "The Ship" started in the same session — its live state is this file's
+> successor; see the task board's M4 section below and `docs/sprints/` for this record.**
+
+**Sprint goal:** worlds get inhabitants that aren't drones. The `CreatureBehavior` framework
+(generalizing the proven drone seam), the 4 base archetypes, the Signal-reactive **Warden**, and the
+first novel behaviors — authored into W002/W005/W009/W012 so the arc's biomes read alive. All ⚙CI;
+collision-clean is LAW (CollideMove everywhere); no rig/PvP/XRI-sample edits.
+
+---
+
+## Task board
+| # | Task | Status |
+|---|------|--------|
+| 0 | Archive M2; open this sprint | ✅ `99b2491` |
+| 1 | Framework: `CreatureRuntime` (IShockable + **IPvpDamageable** — taser dart AND gravity gun hit creatures with ZERO weapon edits; non-lethal crumple disable; loot→profile; respawn) + `CreatureBehaviorBase` (shared CollideMove LAW, leash, touch-stun w/ cooldown, MakePart) + `CreatureZoneDef` + `CityBuilder.BuildCreatureZones`/`MakeCreature` (behavior attached by archetype at edit time) | ✅ this commit |
+| 2 | Archetypes: `SwarmerBehavior` (boid cluster; bodies GATHER TIGHT as the dart telegraph) + `BruiserBehavior` (windup paw-the-ground telegraph → straight line charge → wall-slam skips to vulnerable Recover; stun interrupts mid-charge) + pure `ChargeState` + 5 tests | ✅ this commit |
+| 3 | Archetypes: `WallCrawlerBehavior` (8-ray wall find, surface-stick + normal-align, ripple telegraph → drop-lunge, stun knocks it OFF the wall) + `FlyerBehavior` (figure-8 soar, dead-still hover telegraph w/ folded wings → head dive, pulls up at 1m, stun cancels to Climb) — factory switch complete for all 4 archetypes | ✅ this commit |
+| 4 | `WardenBehavior` — the Shell's immune system: statue at tier 0 → WATCHES at tier 1 → WARNS when crowded at tier 2 (eye ramps red over the window) → PURSUES only if you stand ground, one lawful arrest-stun then disengages; backing off de-escalates; C6_WARDEN_ALLY = calm green. Pure `WardenState` + 6 tests. Factory: creatureId "warden" special-case | ✅ this commit |
+| 5 | ALL FOUR novel behaviors: **Witness-mite** (gaze-freeze via pure `GazeMath` + 6 tests; stalks between glances), **Light-grazer** (grows in dark, shrinks under your attention-cone — Prism Beam replaces gaze at M5, documented), **Tether-swarm** (bugs have NO colliders; the glowing tether node is the only hittable thing — cut the cord), **Husk-molter** (stun → sheds grey decoy + skitters out the back, one molt per cooldown). Factory ids wired | ✅ this commit |
+| 6 | Authored: W002 light-grazers (dark gallery) · W005 canopy swarm_bugs · W009 tether-swarm + husk-molters on the wall · W012 the gate Warden (wakes at Signal 2) · 5 new creature defs. **FIXED: Creature() wrote to Content/Creatures — unreachable; now Resources/Enemies where CreatureRuntime + the factory actually look** | ✅ this commit |
+| 7 | Close: HANDOFF (ccc) ✅, runbook §2e ✅, checklist ✅, **APK dispatch ✅ run `28601298708`** | ✅ |
+
+## ▶ RESUMING? — current state & exact next action
+- **Current micro-step:** Task 5 committed (all four novels). Earlier context: KEY DESIGN FACTS: creatures are hit
+  through the EXISTING weapon dispatch — the taser dart checks DroneRuntime → **IPvpDamageable** →
+  IShockable, the gravity gun checks DroneRuntime → IPvpDamageable — so `CreatureRuntime` implements
+  IShockable + IPvpDamageable (PlayerIndex = -1, never registered with PvpMatchDirector) and NO weapon
+  file was touched. Behavior subclass is attached at EDIT time by `CityBuilder.MakeCreature` switching
+  on the CreatureDefinition's archetype (AssetDatabase load from `Assets/Ziptide/Resources/Enemies/`);
+  visuals/colliders built at RUNTIME in the behavior's Awake→BuildVisuals (gotcha #7); each behavior
+  keeps ≥1 keepCollider part so weapons can hit it. WallCrawler/Flyer currently FALL BACK to Swarmer in
+  the factory switch — replace when task 3 lands.
+- **DONE (task 3):** WallCrawler + Flyer as specced below; factory switch handles all four archetypes.
+- **Old task-3 spec (kept for reference):** `WallCrawlerBehavior` (raycast to the nearest wall within ~6m,
+  stick to its surface — position on hit point + align to normal — crawl along it toward the player's
+  wall-adjacent point; when player within ~3m, DROP + lunge once, then re-climb; telegraph = a ripple
+  scale pulse before the drop) + `FlyerBehavior` (hover at home +4–6m, slow figure-8; when player in
+  range: telegraph hover-pause → DIVE at the head (CollideMove-clamped), pull up at 1m, climb back;
+  contact = base touch-stun). Both extend `CreatureBehaviorBase`, update the `MakeCreature` switch.
+  Then Task 4 (Warden + pure WardenState tests) → 5 (novel: Witness-mite gaze-freeze w/ pure
+  `IsObserved(headFwd, toCreature, cos)` test · Light-grazer dark-grow/light-shrink · Tether-swarm
+  shared-pool + cuttable tether · Husk-molter decoy-on-stun; drop to 2 if budget, document) →
+  6 (author zones: W002 light_grazer, W005 swarm_bug canopy, W009 tether_swarm + tendril crawlers,
+  W012 warden at the gate; add creature defs to `CreatureVariantAuthor`) → 7 close + APK.
+- **CI incident (resolved in `0d7c772`):** runs #194–#196 red from architect's `BotMath.cs` CS0029 (uint ternary) — minimal cross-lane type fix, no design change; my #197 superseded. If resuming: confirm `0d7c772`+ is green, then dispatch the APK (`actions_run_trigger`, ci.yml, terry-local-wip), verify Build Android APK + `ziptide-apk` artifact, stamp this file ✅ COMPLETE, archive to `docs/sprints/SPRINT_2026-07-02_M3_CREATURES.md`. Next: M4 the Ship (S1 boardable — `docs/systems/SHIPS.md`).
+- **LANE NOTE (Terry 2026-07-02): architect is working PvP/multiplayer IN PARALLEL — `Gameplay/Runtime/Pvp/`, `Multiplayer/`, `ScenePatcherPvP`, `Net/` are ARCHITECT'S. Don't touch; only CONSUME IPvpDamageable; pull --rebase before every push.**
+- **Branch:** `terry-local-wip`. CI-green through task 1-2 (`6ccc989` #191 pending at last check).
+
+## M4-S1 EARLY START (while the M3 APK gate runs — Terry suspended waiting)
+`ShipBoardingStation` (Gameplay/World): the berthed hull is BOARDABLE — board panel → teleport to the
+cockpit deck (rig teleported, never parented), helm lists ALL shipped world packs story-gated via
+`WorldGating` (LOCKED rows log TRAVEL_LOCKED), depart via `TravelCoordinator.TravelTo` ONLY, disembark
+returns to the berth. `CityBuilder.BuildShipyard` wires it per berth (edit-time pack collection from
+`Content/Worlds/Packs`, Exit packs + unshipped scenes skipped); **W002's berth enabled** (first Ch.1
+ship). When the M3 dispatch lands: stamp M3 → archive → open the M4 sprint file with S1 ✅.
+
+## Working rules (unchanged)
+CI green per push; APK dispatch at close (`actions_run_trigger`, ci.yml, terry-local-wip). Creature
+motion must be smooth, telegraphed, non-lethal; never yank the player camera (comfort rule).
+
+---
+*Opened 2026-07-02 by the operator (Fable 5) — GAME_PLAN M3.*
