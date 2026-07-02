@@ -123,6 +123,11 @@ namespace Ziptide.Build
                 EditorSceneManager.SaveOpenScenes();
             }
 
+            // Sky vistas (art track): seed missing vista assets (create-only), then point each generated
+            // theme at its canon vista. Runs after the loop so every <Scene>_Theme.asset exists.
+            try { Ziptide.Editor.Patching.SkyVistaLibrary.EnsureAllAuthored(); Ziptide.Editor.Patching.SkyVistaAuthor.AssignAll(); }
+            catch (Exception ex) { Debug.LogWarning("[Ziptide] Sky vista author warning: " + ex.Message); }
+
             // Run world integrity audit BEFORE building APK. Any BLOCKER aborts the build.
             int auditBlockers = 0;
             try
