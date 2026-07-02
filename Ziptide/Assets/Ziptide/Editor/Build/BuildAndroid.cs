@@ -45,6 +45,8 @@ namespace Ziptide.Build
             catch (Exception ex) { Debug.LogWarning("[Ziptide] Creature data author warning: " + ex.Message); }
             try { Ziptide.Editor.Patching.BotProfileAuthor.EnsureAllAuthored(); }
             catch (Exception ex) { Debug.LogWarning("[Ziptide] Bot profile author warning: " + ex.Message); }
+            try { Ziptide.Editor.Patching.CosmeticAuthor.EnsureAuthored(); }
+            catch (Exception ex) { Debug.LogWarning("[Ziptide] Cosmetics author warning: " + ex.Message); }
             try { Ziptide.Editor.Patching.RillLineAuthor.EnsureAuthored(); }
             catch (Exception ex) { Debug.LogWarning("[Ziptide] RILL line author warning: " + ex.Message); }
             try { Ziptide.Editor.Patching.WorldLayoutLibrary.EnsureAllAuthored(); }

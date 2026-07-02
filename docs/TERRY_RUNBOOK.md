@@ -115,10 +115,13 @@ The next build carries the story layer. Smoke it while doing §2b:
 - [ ] **DISEMBARK** (panel behind the seat) puts you back on the berth (`SHIP_DISEMBARK`).
 - [ ] Doors still work (fallback until the ship is device-proven).
 - [ ] **QUARTERS (new):** on the cockpit deck, the purple **QUARTERS** panel teleports you into a warm
-  little cabin aft — three display bays (WEAPON SKINS / SHIP LIVERY / TRAILS & EMBLEMS), each showing
-  **"NO ITEMS AVAILABLE — check back after the next supply drop"** (correct — the stock is empty on
-  purpose), plus a locker board listing your equipped looks (all "default"). **RETURN TO DECK** exits.
-  `(QUARTERS_ENTER / QUARTERS_BROWSE)`
+  little cabin aft — three display bays with your ACTUAL taser + gravity gun turning on the plinths,
+  plus a locker board. **THE FIRST SUPPLY DROP IS LIVE:** the WEAPON SKINS bay lists **Rustline** (free)
+  immediately; finishing story worlds unlocks more (W002 → Tidebreak taser, W004 → Ember Coil gravity,
+  the W012 capstone → **Voidglass**; first bounty → the Wake Guild livery + emblem). **Select a skin →
+  the showcase weapon AND every gun you pick up afterward wears it** (`COSMETIC_EQUIPPED` /
+  `COSMETIC_APPLIED`). Bays with nothing unlocked yet show "NO ITEMS AVAILABLE" — correct.
+  **RETURN TO DECK** exits. `(QUARTERS_ENTER / QUARTERS_BROWSE)`
 - [ ] Feel notes: fly-out length, streak density/speed, deck size, helm row readability, quarters
   room size/coziness.
 

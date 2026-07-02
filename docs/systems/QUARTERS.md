@@ -11,8 +11,9 @@ architecture, so stocking it is pure data.
    (WeaponSkin / ShipLivery / Trail / Emblem), `targetItemId` (weapon skins), the LOOK (body/accent
    color, scale mult — **a look, never a stat**, so cosmetics are legal in every mode incl. PvP), and
    `ownedFlag` (ownership = a profile flag → story rewards, bounty milestones, or a future shop all
-   just set flags). Assets live under **`Resources/Cosmetics/`**. None authored yet — author via a
-   create-only `CosmeticAuthor` entry when the first drop is designed.
+   just set flags). Assets live under **`Resources/Cosmetics/`**. **The first drop is authored** (`CosmeticAuthor`,
+   create-only, build-wired): Rustline (free) · Tidebreak (W002) · Ember Coil (W004) · Voidglass
+   (the W012 capstone) · Wake Guild livery + First Contract emblem (first bounty). Add drops there.
 2. **Pure state — `CosmeticLocker`** (`Core/Runtime/`, tested): THE one source of truth for "what's
    equipped on what". Equip state = profile flags with a reserved prefix (`COSM_EQUIP:<target>=<id>`),
    so it **saves, travels, and crosses modes for free** — no new persistence. One equip per target;
