@@ -45,16 +45,12 @@ story worlds as the map).
   ✅ GREEN** (run `28608110578`, full pipeline + artifact): the smart bot + 4 difficulty profiles are
   in a sideloadable build. Tests asmdef now references Ziptide.Editor (editor-only tests can validate
   the authoring libraries — ArenaLibraryTests uses it).
-- **A3-core CI: ✅ GREEN** (`f04732e`, 237 tests). **First arena-APK dispatch (`28609713198`) FAILED at
-  the audit — exactly as predicted**: diagnosed by spec inspection (the failure section wasn't in the
-  log tail; the audit exception precedes ~200 lines of perf stats — check `docs/AUDIT_REPORT.md` inside
-  the workspace or reason from the blocker rules). Root causes, all data, fixed in `800ff25`:
-  Tidal's covers sat ON the spawn islands' centers (SPAWN_OVERLAP_SOLID) · Void's spawn sat in the
-  Up_S ramp footprint · the arena exit door spawned outside Void's wall (now lateral +3m).
-  **Re-dispatch queued on `800ff25`** — verify it: if the audit STILL fails, pull the run's failed-job
-  log at higher tail_lines and search "AUDIT" / "blocker" for the exact scene+check, then fix that
-  layout's numbers in `ArenaLayoutLibrary` (assets aren't committed; CI re-authors each build so spec
-  edits apply directly).
+- **✅ THE ARENA APK IS GREEN** (run `28610940371` on `800ff25`): all five arenas authored, generated,
+  **audit-clean**, and in the `ziptide-apk` artifact — after one failed dispatch whose blockers
+  (Tidal spawn-in-cover, Void spawn-under-ramp, exit outside the wall) were diagnosed and fixed as
+  pure layout data. **Everything shipped this session is now APK-verified end to end:** the smart bot
+  (4 difficulty assets) in six fighting spaces, the four mode engines, N-player/team matches, and the
+  Tidefront conquest sim. 248 tests green.
 - **Next action after arena APK green:** **A3-scene** (mode director + lobby board + attacker
   identity: extend `IPvpDamageable.ReceiveHit` context or a hit-source registry so N-way kills credit
   correctly — design against the fff `PlayerIndex >= 0` law; Horde spawning via `CreatureVariantAuthor`

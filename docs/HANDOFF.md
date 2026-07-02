@@ -28,6 +28,33 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-02 (ggg) — operator (Fable 5, MP track): 🎮 THE FIRST MULTIPLAYER WAVE — smart bot, 5 arenas, 4 modes, the war engine — ALL APK-GREEN
+Continuation of the (ddd) claim; everything below is on the MP track (SPRINT_MULTIPLAYER.md), zero story-
+track files touched. **Final state: 248 tests green; arena APK `28610940371` green (all 5 new scenes
+audit-clean + artifact); runbook §2g has Terry's smoke list.**
+- **A1 — the bot is an opponent:** pure `BotBrain` (8 states: hunt-to-LKP, cover hide/peek, flank,
+  sticky retreat-while-shooting, dodge-⊥-threat, velocity leading, bounded aim-error) + difficulty as
+  DATA (`Resources/Bots/{rookie…nightmare}` assets) + `PvpBot` rewritten as the brain's body (CollideMove
+  + visible telegraph/bolt preserved; `WeaponCharge` finally wired; `PlayerIndex >= 0` law honored).
+- **A2 — the Arena Factory:** `ArenaLayoutDefinition` + generic `ScenePatcherArena` (build-hooked) +
+  5 launch arenas as data (Cistern/Chitinwall/MirrorFlats/Tidal-with-live-flood/Void-under-the-Shell).
+  First dispatch FAILED at the audit (Tidal spawn-in-cover, Void spawn-under-ramp, exit outside wall) —
+  fixed as pure layout numbers, re-dispatch green. The audit caught real map defects pre-headset.
+- **A3-core — the mode engines (pure):** `PvpMatch` → N combatants + teams (1v1 default untouched);
+  GunGame (6-weapon ladder) / KotH (sole-king, rotating zones) / FragmentRush (carry-bank CTF) / Horde
+  (deterministic bot+creature waves, Quest-capped).
+- **B1 — the Tidefront war engine (pure):** PlanetNode/State/Rules/Resolver (seeded, 10–90 clamp,
+  5 outcomes, all 8+8 catalog specials) over **the story worlds as the galaxy** + ConquestAI (plays via
+  the human API) + save round-trip + a full headless AI-vs-AI war test. One semantics inversion caught
+  by its own test (defender missions now reinforce defense) — fixed.
+- **Also en route:** Content+Editor asmdefs gained acyclic Multiplayer refs; Tests asmdef gained
+  Ziptide.Editor (authoring libraries are now CI-validated directly); 2 CI reds diagnosed+fixed
+  same-session (CS0234, mission-modifier semantics).
+- **Next on the MP board (SPRINT_MULTIPLAYER):** A3-scene (mode director + lobby board + attacker
+  identity) → A4 arsenal (Static Net/Sonic Thumper/Prism Beam + respawning pads) → A5 progression +
+  the (fff) Quarters pre-round locker → B2 holo war table → A6 Photon.
+- **Commits:** `f005caf`→`800ff25`+ on `terry-local-wip`.
+
 ### 2026-07-02 (ddd) — operator (Fable 5, 2nd session): 🎮 THE MULTIPLAYER PROGRAM opened (M7 promoted) — CLAIM
 Terry redirected this session to multiplayer: PvP → AAA fun + Tidefront (the Risk layer) UN-parked.
 *(Label skips (ccc) — that's reserved for the story-track session's M3 close per its SPRINT task 7.)*

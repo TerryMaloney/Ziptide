@@ -122,6 +122,24 @@ The next build carries the story layer. Smoke it while doing §2b:
 - [ ] Feel notes: fly-out length, streak density/speed, deck size, helm row readability, quarters
   room size/coziness.
 
+## 2g. NEW — M7 Multiplayer: the SMART BOT + five arenas (all auto)
+The next build carries the multiplayer program's first wave. Warp via Y+B:
+- [ ] **The bot is a real opponent now** (original PvP Arena + all new arenas; `PVP_BOT_BRAIN` in
+  logcat): it patrols a route when it hasn't seen you; **breaks line of sight and it HUNTS your last
+  position** then searches; **shoot it and it ducks behind cover**, then peek-fires; it flanks if you
+  hold still too long; at low HP it **retreats while still shooting**. Telegraph (yellow flash) is
+  always there — the fight should feel fair, just smarter.
+- [ ] **Five new arenas in the dev menu** — quick lap each: **The Cistern** (dark, glowing center
+  hill, two breakable tunnel walls), **Chitinwall** (catwalk alleys — fight happens on two levels),
+  **Mirror Flats** (long bright lanes, LOW cover — the VETERAN bot leads your strafe here, dodge
+  sideways after it flashes), **Tidal Array** (island hopping; the center ford DRAGS you — bridges are
+  the safe route), **The Shell Gate** (bridges under a huge Shell; NIGHTMARE bot — expect to lose).
+- [ ] Each arena: spawn solid, distinct sky, taser+gravity+pistol on glowing pads, hammer by spawn,
+  exit door 3m to your right at spawn.
+- [ ] **Difficulty is yours to tune:** `Resources/Bots/{rookie,regular,veteran,nightmare}.asset` —
+  sliders for aim error, reaction time, dodge chance, cover discipline. Feel notes on which tier
+  feels "fun-hard" vs "unfair" drive the tuning.
+
 ## 3. The two open judgment calls (yours)
 - **"Can you run in Toxic City?"** — was it the input bug (now fixed) or actual walls/narrow streets? If
   still wall-blocked, say so and the streets get widened.
