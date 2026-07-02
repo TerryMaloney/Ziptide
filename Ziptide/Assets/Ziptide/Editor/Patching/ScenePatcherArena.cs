@@ -344,7 +344,10 @@ namespace Ziptide.Editor.Patching
                     doors.Add(EnsureWorldPack(other)); // idempotent — packs exist regardless of patch order
 
             // Lateral offset — a rear offset can land outside the perimeter wall on edge spawns (Void).
-            Vector3 pos = def.playerSpawn + new Vector3(3f, 0f, 0f);
+            // 4.5m (was 3): the door ROW spans station ±3.2m now that every sibling arena gets a door —
+            // at +3 the leftmost door sat 0.2m from the spawn (SPAWN_OVERLAP_SOLID bait). Verified against
+            // all five layouts: row stays inside every east wall.
+            Vector3 pos = def.playerSpawn + new Vector3(4.5f, 0f, 0f);
             var go = PatcherUtil.EnsureRootObject(ZiptideConstants.GoWorldTravelStation, pos);
             var station = PatcherUtil.EnsureComponent<WorldTravelStation>(go);
             var so = new SerializedObject(station);
