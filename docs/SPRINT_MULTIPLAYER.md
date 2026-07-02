@@ -40,8 +40,10 @@ story worlds as the map).
 | — | Close: HANDOFF, checklist, playbook rows per chunk, APK dispatch green | ⬜ |
 
 ## ▶ RESUMING? — current state & exact next action
-- **Current micro-step:** B1 (Conquest sim core) pushed (`bba6349`, rebased onto the ship head) — verify
-  CI on it. A1a is already green (181/181) after the story-track's two cross-fixes.
+- **Current micro-step:** ✅ BOTH PURE CORES CI-GREEN (`0c74653`, 205/205): A1a BotBrain (with the
+  story-track's two cross-fixes absorbed) and B1 Conquest sim (one semantics fix — a defender's won
+  mission now REINFORCES defense; the test caught it, run `28605639015`). The multiplayer program's
+  brains exist and are proven; everything from here is scene/data assembly on top of them.
 - **✅ fff BRIEFING ABSORBED (constraints for all remaining A-tasks):**
   1. Cross-fixes reviewed + accepted: `BotMath` uint-literal fix (CS0029, same values) and `BotBrain`
      same-tick HeardFire reaction (my test defined that contract — keeping it).
