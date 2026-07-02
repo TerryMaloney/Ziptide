@@ -89,6 +89,21 @@ The next build carries the story layer. Smoke it while doing §2b:
   step out (no stuck-slow).
 - [ ] Feel notes: wind strength, slow severity, repair-part snap distance, mine rate/cap.
 
+## 2e. NEW — M3 "Living Worlds" (creatures; all auto)
+- [ ] **W002 (dark gallery):** two greenish blobs that **GROW while you're not looking at them** and
+  drift at you; **facing them shrinks them** back down (they recoil to the dark). `(CREATURE_DOWN)`
+- [ ] **W005 (canopy):** skittering bug clusters orbit you and **pull tight just before darting in** —
+  the gather is the tell. Taser stuns the whole cluster.
+- [ ] **W009 (chitin wall):** shooting the **tether-swarm's bugs does nothing** — cut the **glowing
+  cord node** strung between the clusters instead. Also: two crawlers that **ripple then drop-lunge**
+  off the wall; and a stun makes a molter **shed a grey decoy** and skitter out the back (`HUSK_MOLT`)
+  — hit the moving one.
+- [ ] **W012 (the failing gate):** the tall sentinel by the gate core. If you did W010 first (Signal 2),
+  it **turns its eye to watch you**; crowd it and the eye **ramps orange→red** (back off = it calms);
+  stand your ground and it makes ONE arrest-stun, then disengages (`WARDEN mode=…`, `WARDEN_ARREST`).
+- [ ] Universal: creatures never pass through walls; disables are non-lethal crumples; slows always clear.
+- [ ] Feel notes: creature speeds/sizes, telegraph readability, Warden warning window.
+
 ## 3. The two open judgment calls (yours)
 - **"Can you run in Toxic City?"** — was it the input bug (now fixed) or actual walls/narrow streets? If
   still wall-blocked, say so and the streets get widened.

@@ -47,9 +47,9 @@ Legend: **Edit** = the one place to change · **Then** = how it takes effect · 
 | I want to… | Edit | Then | Verify |
 |---|---|---|---|
 | **Tune drone combat difficulty per world** | the `DroneCombatProfile` variants in `Resources/Enemies/` (`drone_easy` / `drone_standard` / `drone_veteran` — chapter bands, authored by `CreatureVariantAuthor`) — or add a new one | set its name as `variantId` on the world's `DroneZoneDef` (layout asset); regen | fight it on device |
-| **Story-creature stats/loot** (Phase-E prep) | the `CreatureDefinition` assets under `Content/Creatures/Generated/` (swarm_bug, tendril, …) — data-ready; **nothing consumes them until Phase E's `CreatureRuntime`** | — | EditMode/CI |
+| **Story-creature stats/loot** | the `CreatureDefinition` assets under `Resources/Enemies/` (authored by `CreatureVariantAuthor`; hp/speed/loot/shockable plain fields) | `CreatureRuntime` loads them at spawn | fight it on device; `ZIPTIDE: CREATURE_DOWN` |
 | **Change where/how many drones spawn in a world** | the layout's `droneZones` (center/radius/count/respawnDelay/combat) | regen | `ZIPTIDE: DRONE_DOWN` etc. |
-| **New creature *types* (non-drone)** | Phase E (`docs/systems/CREATURE_DESIGN.md`) — `CreatureDefinition` data exists; runtime behaviors not built yet | — | — |
+| **New creature *types* (non-drone)** | a `CreatureBehaviorBase` subclass (M3 framework — CollideMove/leash/touch-stun inherited) + a def in `CreatureVariantAuthor` + a factory id case in `CityBuilder.MakeCreature` | place via `creatureZones` | archetype FSM tests + device |
 
 ## Story / progression
 

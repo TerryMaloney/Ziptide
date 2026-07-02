@@ -49,7 +49,7 @@ namespace Ziptide.Multiplayer.Bots
     public sealed class BotRng
     {
         private uint _state;
-        public BotRng(int seed) { _state = (uint)(seed == 0 ? 2463534242 : seed); }
+        public BotRng(int seed) { _state = seed == 0 ? 2463534242u : (uint)seed; }
 
         public uint NextUint()
         {
