@@ -1,92 +1,54 @@
-# ✅ SPRINT COMPLETE — M2: THE JOB IS REAL (2026-07-02, all verification green)
+# 🟡 ACTIVE SPRINT — M3: LIVING WORLDS (opened 2026-07-02)
 
-> **THE SPRINT IS DONE AND FULLY VERIFIED.** Every task CI-green; the final full-pipeline APK dispatch
-> (run `28584124082`, head `d6df219`) **succeeded**: EditMode tests + world audit + IL2CPP APK + the
-> 70 MB `ziptide-apk` artifact. **Whoever's next:** roadmap is `docs/GAME_PLAN.md` — next milestone is
-> **M3 "Living Worlds"** (CreatureBehavior framework generalizing the drone seam, the 4 archetypes
-> Swarmer/WallCrawler/Flyer/Bruiser, Signal-reactive Wardens, first 4 novel behaviors per
-> `systems/CREATURE_DESIGN.md`). Open a fresh SPRINT.md (copy this structure; archive this one), or hold
-> for Terry's device pass (runbook §2b/2c/2d — TWO milestones of content are waiting on his headset).
-> Takeover prompt stays: **"Read docs/SPRINT.md and continue."**
+> **Takeover prompt: "Read docs/SPRINT.md and continue."** Live state, updated every push. Roadmap:
+> `docs/GAME_PLAN.md` (this = **M3**). Spec: `docs/systems/CREATURE_DESIGN.md` (framework rules: every
+> creature = readable telegraph + existing-gear counter + non-lethal disable + evolution reason).
+> Playbook: `HOW_TO_CHANGE_ANYTHING.md`. Prior sprints: `docs/sprints/` (M1+M2 closed, APKs green).
 
-## What shipped (the one-paragraph version)
-The job is hands-on now: W002's pump is repaired with your hands (panel → fetched part → power switch,
-anti-soft-lock repair bank), biomes are mechanical (W003 crosswind bridge lanes, W005 spore fog, W010
-tide-flat drag — all layout data, all non-lethal with self-clearing slows), and the idle economy is a
-world object (a mineral extractor with a live readout whose hopper pays your profile — same save record
-the offline resolve uses). Deferred with rationale: gear-trio onboarding (W000/M4), garden plot (same
-pattern as the rig, when a garden world is authored).
-
----
-*(Below: the sprint's live log as it ran — kept as the record.)*
-
-**Sprint goal:** the contract-tech FANTASY becomes hands-on. Machines are repaired with your hands
-(panel → part → power), biomes get mechanical hazards, and the economy becomes visible world objects
-(mining rig / garden plot you collect from). **Acceptance gate (GAME_PLAN M2):** W002 plays a full
-"arrive → collect → repair → paid" loop. All ⚙CI; same constraints as M1 (small commits, don't touch
-rig/PvP/XRI samples, CI green per push, APK dispatch at the end).
+**Sprint goal:** worlds get inhabitants that aren't drones. The `CreatureBehavior` framework
+(generalizing the proven drone seam), the 4 base archetypes, the Signal-reactive **Warden**, and the
+first novel behaviors — authored into W002/W005/W009/W012 so the arc's biomes read alive. All ⚙CI;
+collision-clean is LAW (CollideMove everywhere); no rig/PvP/XRI-sample edits.
 
 ---
 
 ## Task board
 | # | Task | Status |
 |---|------|--------|
-| 0 | Archive M1 sprint; open this one | ✅ `756956e` |
-| 1 | **Repair loop**: `RepairableMachine` (3 hands-on stages: grab panel off → seat the part → flip the switch) + `MachineSpawnDefinition` pack data + JobDirector spawn + `RepairMachineCountStepDefinition` + `JobRuntime.ReportRepair` (+ bank, like collect) + `WorldJobLibrary .Repair()/.Machine()` verbs + **W002 finale = repair the cistern pump** + validator guard + 7 tests | ✅ this commit |
-| 2 | **Hazard zones**: `HazardZoneDef` list on `CityLayoutDefinition` + `HazardZoneRuntime` (SERIALIZED def — gotcha #7; poll-based; Wind push / Static+Spore ticks / Flood drag / Radiation escalate+shove; slab visual) + `CityBuilder.BuildHazardZones` + authored W003 wind crossings / W005 spore pockets / W010 tide-flat flood | ✅ this commit |
-| 3 | **Economy world objects**: `MineSpawnDefinition` + `MiningRigRuntime` (binds `MineState` in this world's save — idle backend intact; live accrual + readout; select hopper → `ProfileEconomy.CollectMine`) + `.Mine()` verb + **W002 mineral extractor by the pump**. *(GardenPlotRuntime = same pattern, follow-up when a garden world is authored — noted, not built.)* | ✅ this commit |
-| 4 | Starter-gear trio (Scan Pulse → Taser → Gravity Glove onboarding) — **DEFERRED to W000/M4** (onboarding order needs the tutorial world; gear itself already exists). Documented here so nobody re-derives. | ⏸ deferred |
-| 5 | Close: HANDOFF (bbb), runbook §2d M2 smoke, MASTER_CHECKLIST M2 line, **APK dispatch green** | ✅ run `28584124082` |
+| 0 | Archive M2; open this sprint | 🟡 this commit |
+| 1 | Framework: `CreatureRuntime` (health/IShockable/non-lethal disable/loot/respawn; loads `CreatureDefinition` by serialized id) + `CreatureBehaviorBase` (CollideMove, leash, player find, telegraph, contact-stun) + `CreatureZoneDef` on the layout + `CityBuilder.BuildCreatureZones` | ⬜ |
+| 2 | Archetypes: `SwarmerBehavior` (boid cluster darts) + `BruiserBehavior` (telegraphed wall-slamming charge; pure `ChargeState` FSM + tests) | ⬜ |
+| 3 | Archetypes: `WallCrawlerBehavior` (surface-stick, drop-lunge) + `FlyerBehavior` (hover high, dive at head, climb) | ⬜ |
+| 4 | `WardenBehavior` — lawful enforcer (warn → pursue → disable, never ambush), escalates by `SignalState.Tier` (pure `WardenState` mapping + tests) | ⬜ |
+| 5 | Novel behaviors (existing-gear counters): **Witness-mite** (moves only unobserved — pure gaze test), **Light-grazer** (grows in dark, shrinks in light), **Tether-swarm** (shared pool, cut the tether), **Husk-molter** (decoy husk on stun) — as `CreatureBehavior` subclasses/variants; drop to 2 if budget demands (document) | ⬜ |
+| 6 | Author: W002 light-grazers in the dark cistern · W005 canopy swarmers · W009 tether-swarm + wall-crawlers on the chitin wall · W012 a dormant Warden at the gate (Signal tier 2 there — it WATCHES) + creature data assets in `CreatureVariantAuthor` | ⬜ |
+| 7 | Close: HANDOFF (ccc), runbook §2e smoke, checklist, **APK dispatch green** → ✅ stamp | ⬜ |
 
 ## ▶ RESUMING? — current state & exact next action
-- **Current micro-step:** Task 1 committed — the repair loop is LIVE. `RepairableMachine` (pull the
-  rusted panel off → the exposed socket shows the fault → fetch the part from where the pack spawned it
-  → it snaps in at 0.3 m → flip the switch → lamp goes green) + `MachineSpawnDefinition`/`machines` pack
-  list + JobDirector `CreateMachines` + `ReportRepair` + `RepairMachineCountStepDefinition` +
-  `JobRuntime` repair BANK (early/pre-accept fixes credit later; blank machineId = any machine, drains
-  across banked ids) + `.Machine()/.Repair()` library verbs. **W002's contract now ends with actually
-  repairing the cistern pump** (valve spawns back at the shaft — the fetch is the job): the M2 gate loop
-  "arrive → collect → repair → paid" is authored. Validator: machine sanity + Repair↔machine guard.
-  Tests: `JobRuntimeRepairTests` (5) + 2 validator. Kept W002's final Go("pump_house") BEFORE the
-  machine so the objective board walks you there first.
-- **Current micro-step (task 2 committed):** hazards live. `HazardZoneDef`+`HazardKind` on the layout;
-  `HazardZoneRuntime` holds a **SERIALIZED def** (the generator assigns at edit time — private fields
-  don't cross into the saved scene, gotcha #7) and builds bounds+slab in `Awake`; detection = position
-  poll (no rig physics coupling); slows go through the self-healing stun path. Authored: W003 crosswind
-  bridge lanes, W005 spore pockets, W010 tide-flat flood drag. Layout assets are NOT committed — CI
-  re-authors them fresh each build, so builder edits ship (Terry's stale local copies just have empty
-  hazard lists until regenerated).
-- **Current micro-step (task 3 committed):** the idle economy is a WORLD OBJECT now. `MiningRigRuntime`
-  binds a `MineState` keyed `machineId=id` in `profile.GetWorld(sceneName)` (same worldId key
-  `WorldRuntime` uses for ECON_RESOLVE, so offline accrual + this rig share one save record); def is
-  tuning source-of-truth, save keeps progress; live accrual + floating readout; select the hopper →
-  `CollectMine` pays the profile (watch the credits/resource totals move). W002 has a mineral extractor
-  by the pump house. Garden plot = same pattern, deliberately deferred until a garden world is authored.
-- **SPRINT CLOSED.** All pushes CI-green (#184–#187); final gate = APK dispatch `28584124082`
-  (head `d6df219`): EditMode ✅, Build Android APK ✅, `ziptide-apk` 70 MB ✅.
-- **Next for whoever resumes:** `GAME_PLAN.md` → **M3 Living Worlds** (fresh SPRINT.md; archive this
-  file to `docs/sprints/SPRINT_2026-07-02_M2_JOB.md`), or hold for Terry's device pass — two milestones
-  of content (runbook §2b/2c/2d) are waiting on his headset, and his ❌s outrank new code.
-- **Branch:** `terry-local-wip`. CI-green head: `d6df219`.
-
-## Specs (verified against code this session — don't re-derive)
-- `JobRuntime` step pattern + bank: see `_collectBank`/`ApplyCollectBank` (added in M1) — mirror for repair.
-- `WorldPackDefinition` lists: `spawnMarkers` / `collectibles` / `choices` (+ now `machines`); JobDirector
-  materializes each at Start (`CreateSpawnMarkers/CreateCollectibles/CreateChoices` — add `CreateMachines`).
-- `WorldJobLibrary.Spec`: steps tuple `(kind, markerId, pos, count)` — reuse markerId slot for machineId;
-  `pickups` list pattern for machines. Authoring switch in `EnsureJobsFor` (add "repair" branch).
-- Economy: `PlayerProfile.GetWorld(worldId, createIfMissing)` → `WorldState{mines, plots}`;
-  `ProfileEconomy.CollectMine(profile, mine)` moves stored → balance; `WorldRuntime.Start` already calls
-  `EnterWorld` (ECON_RESOLVE) keyed by scene name → **use scene name as worldId** in MiningRigRuntime.
-  `MineState{machineId, resourceId, ratePerSecond, stored, storageCap, lastResolvedAtUnix}`.
-- `PlayerStunReceiver.ApplyStun(seconds, slowFactor)` = the slow/flash effect hazards reuse (rig-ensured).
-- `CityLayoutDefinition` is the layout SO (Content/City) — hazard defs go there so worlds author hazards
-  as data; `WorldStubGenerator.PatchActiveSceneIfGenerated` + `Populate` is where scene objects get built.
-- TextMesh only (no TMP). New .cs files need .meta (uuid4 hex). Collider BEFORE grab component.
+- **Current micro-step:** sprint opened (archives M2 → `docs/sprints/SPRINT_2026-07-02_M2_JOB.md`).
+- **Next action:** Task 1. Files: `Gameplay/Runtime/Enemies/CreatureRuntime.cs` (serialized
+  `creatureId`; Awake loads `Resources.Load<CreatureDefinition>("Enemies/"+id)`; health from def;
+  `IShockable.Shock` → stun-tint + behavior pause; hits via existing weapon paths → `ReceiveHit`-style
+  public `RegisterHit(point, taser)`; at 0 hp → DISABLE (non-lethal: crumple tint, behavior off,
+  loot → profile via `ResourceCost` list, optional respawn), `ZIPTIDE: CREATURE_DOWN id=`) +
+  `Gameplay/Runtime/Enemies/CreatureBehaviorBase.cs` (abstract; protected CollideMove copied from the
+  proven DroneCombatBehavior SphereCast clamp ignoring creatures+rig; HomePos leash; player via
+  `PlayerStunReceiver.Head`; `TouchStun(seconds, slow)` helper with per-contact cooldown; abstract
+  `Tick(dt, playerDist, hasLoS)`), + `CreatureZoneDef` {id, center, radius, count, respawnDelay,
+  creatureId} on `CityLayoutDefinition` + `CityBuilder.BuildCreatureZones/MakeCreature` (primitive body
+  per archetype, CreatureRuntime.creatureId serialized — gotcha #7: only serialized fields cross into
+  the scene; visuals in Awake).
+- **Verified facts:** `CreatureDefinition` {archetype enum Swarmer/WallCrawler/Flyer/Bruiser, maxHealth,
+  moveSpeed, damage, biomeId, loot(List<ResourceCost>), shockable} exists; `CreatureVariantAuthor`
+  already authors `swarm_bug` (Swarmer) + `tendril` (WallCrawler) into `Resources/Enemies`; add new ids
+  there (create-only). `SignalState.Tier(profile)` 0–4 (M1). `PlayerStunReceiver.ApplyStun` = non-lethal
+  player hit. TextMesh only; .meta with uuid4; collider before grab (not relevant — creatures aren't
+  grabbable); CollideMove is LAW.
+- **Branch:** `terry-local-wip`. CI-green head: `d13656a`.
 
 ## Working rules (unchanged)
-CI green after every push (red → stop, fix — M1's #177 proved the gate works). APK verify =
-`actions_run_trigger` on ci.yml, ref terry-local-wip, ~20–30 min, check Build Android APK + artifact.
+CI green per push; APK dispatch at close (`actions_run_trigger`, ci.yml, terry-local-wip). Creature
+motion must be smooth, telegraphed, non-lethal; never yank the player camera (comfort rule).
 
 ---
-*Sprint opened 2026-07-01 by the operator (Fable 5) — GAME_PLAN M2. On close: ✅ stamp + archive.*
+*Opened 2026-07-02 by the operator (Fable 5) — GAME_PLAN M3.*
