@@ -157,14 +157,16 @@ namespace Ziptide.Editor.Patching
             Platform(a, "Bridge_N", V(0, 0.6f, 12), V(8, 1.2f, 3));
             Platform(a, "Bridge_W", V(-12, 0.6f, 0), V(3, 1.2f, 8));
             Platform(a, "Bridge_E", V(12, 0.6f, 0), V(3, 1.2f, 8));
-            Cover(a, -12, -12, y: 2.1f); Cover(a, 12, 12, y: 2.1f); Cover(a, 12, -12, y: 2.1f); Cover(a, -12, 12, y: 2.1f);
+            // Covers sit at the islands' INNER corners — never on the island centers, which are the
+            // spawns (a cover centered on the spawn = SPAWN_OVERLAP_SOLID audit blocker).
+            Cover(a, -9, -9, y: 2.1f); Cover(a, 9, 9, y: 2.1f); Cover(a, 9, -9, y: 2.1f); Cover(a, -9, 9, y: 2.1f);
 
             a.hazards.Add(new HazardZoneDef { id = "Tide", kind = HazardKind.Flood, center = Vector3.zero, size = new Vector3(10f, 3f, 10f), strength = 1.2f });
 
             a.playerSpawn = V(-12, 1.3f, -12);
             a.botSpawn = V(12, 2.4f, 12);
             Ways(a, V(-12, 1.8f, -12), V(12, 1.8f, -12), V(12, 1.8f, 12), V(-12, 1.8f, 12), V(0, 1.8f, -12), V(0, 1.8f, 12), V(-12, 1.8f, 0), V(12, 1.8f, 0));
-            CoverPts(a, V(-13.8f, 1.4f, -12), V(-10.2f, 1.4f, -12), V(13.8f, 1.4f, 12), V(10.2f, 1.4f, 12), V(13.8f, 1.4f, -12), V(-13.8f, 1.4f, 12));
+            CoverPts(a, V(-10.8f, 1.4f, -9), V(-7.2f, 1.4f, -9), V(10.8f, 1.4f, 9), V(7.2f, 1.4f, 9), V(10.8f, 1.4f, -9), V(-10.8f, 1.4f, 9));
             Pad(a, "taser_dart_gun", V(-13, 1.4f, -13)); Pad(a, "gravity_gun", V(-11, 1.4f, -13)); Pad(a, "pistol", V(0, 1.4f, 0));
             Zone(a, "center_ford", V(0, 0.6f, 0), 3.5f);
             return a;
@@ -194,11 +196,13 @@ namespace Ziptide.Editor.Patching
             BreakWall(a, "HubScreen_W", V(-4.2f, 3f, 0), 0f);
             BreakWall(a, "HubScreen_E", V(4.2f, 3f, 0), 0f);
 
-            a.playerSpawn = V(0, 0.2f, -25);
+            // Spawn CLEAR of the Up_S ramp (ramps span x∈[-2,2]; a spawn under a tilted ramp collider
+            // trips the SPAWN_OVERLAP_SOLID / trapped checks).
+            a.playerSpawn = V(6, 0.2f, -24);
             a.botSpawn = V(0, 3.1f, 20);
-            Ways(a, V(0, 2.1f, -18), V(0, 2.2f, 0), V(0, 2.1f, 18), V(-18, 2.1f, 0), V(18, 2.1f, 0), V(8, 2.1f, 20), V(-8, 2.1f, -20), V(0, 0.3f, -24));
+            Ways(a, V(0, 2.1f, -18), V(0, 2.2f, 0), V(0, 2.1f, 18), V(-18, 2.1f, 0), V(18, 2.1f, 0), V(8, 2.1f, 20), V(-8, 2.1f, -20), V(6, 0.3f, -23));
             CoverPts(a, V(-2.4f, 2.2f, 4.2f), V(2.4f, 2.2f, -4.2f), V(0, 2.1f, 17.2f), V(0, 2.1f, -17.2f), V(-6, 2.1f, 0), V(6, 2.1f, 0));
-            Pad(a, "taser_dart_gun", V(-1, 0.3f, -24)); Pad(a, "gravity_gun", V(1, 0.3f, -24)); Pad(a, "pistol", V(0, 2.4f, 0));
+            Pad(a, "taser_dart_gun", V(5, 0.3f, -22)); Pad(a, "gravity_gun", V(7, 0.3f, -22)); Pad(a, "pistol", V(0, 2.4f, 0));
             Zone(a, "hub", V(0, 2, 0), 3.5f);
             return a;
         }

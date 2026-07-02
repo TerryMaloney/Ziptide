@@ -300,7 +300,8 @@ namespace Ziptide.Editor.Patching
             exitPack.sceneName = FirstOtherBuildSceneName(def.sceneName);
             EditorUtility.SetDirty(exitPack);
 
-            Vector3 pos = def.playerSpawn + new Vector3(0f, 0f, -3f);
+            // Lateral offset — a rear offset can land outside the perimeter wall on edge spawns (Void).
+            Vector3 pos = def.playerSpawn + new Vector3(3f, 0f, 0f);
             var go = PatcherUtil.EnsureRootObject(ZiptideConstants.GoWorldTravelStation, pos);
             var station = PatcherUtil.EnsureComponent<WorldTravelStation>(go);
             var so = new SerializedObject(station);
