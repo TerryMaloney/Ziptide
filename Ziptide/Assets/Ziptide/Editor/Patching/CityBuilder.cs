@@ -396,10 +396,13 @@ namespace Ziptide.Editor.Patching
             rt.respawnDelay = respawnDelay;
 
             // Behavior by data: special ids get explicit cases; else the definition's archetype.
-            if (creatureId == "warden")
+            switch (creatureId)
             {
-                go.AddComponent<WardenBehavior>();
-                return;
+                case "warden": go.AddComponent<WardenBehavior>(); return;
+                case "witness_mite": go.AddComponent<WitnessMiteBehavior>(); return;
+                case "light_grazer": go.AddComponent<LightGrazerBehavior>(); return;
+                case "tether_swarm": go.AddComponent<TetherSwarmBehavior>(); return;
+                case "husk_molter": go.AddComponent<HuskMolterBehavior>(); return;
             }
             var def = AssetDatabase.LoadAssetAtPath<CreatureDefinition>(
                 "Assets/Ziptide/Resources/Enemies/" + creatureId + ".asset");

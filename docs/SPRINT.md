@@ -20,12 +20,12 @@ collision-clean is LAW (CollideMove everywhere); no rig/PvP/XRI-sample edits.
 | 2 | Archetypes: `SwarmerBehavior` (boid cluster; bodies GATHER TIGHT as the dart telegraph) + `BruiserBehavior` (windup paw-the-ground telegraph → straight line charge → wall-slam skips to vulnerable Recover; stun interrupts mid-charge) + pure `ChargeState` + 5 tests | ✅ this commit |
 | 3 | Archetypes: `WallCrawlerBehavior` (8-ray wall find, surface-stick + normal-align, ripple telegraph → drop-lunge, stun knocks it OFF the wall) + `FlyerBehavior` (figure-8 soar, dead-still hover telegraph w/ folded wings → head dive, pulls up at 1m, stun cancels to Climb) — factory switch complete for all 4 archetypes | ✅ this commit |
 | 4 | `WardenBehavior` — the Shell's immune system: statue at tier 0 → WATCHES at tier 1 → WARNS when crowded at tier 2 (eye ramps red over the window) → PURSUES only if you stand ground, one lawful arrest-stun then disengages; backing off de-escalates; C6_WARDEN_ALLY = calm green. Pure `WardenState` + 6 tests. Factory: creatureId "warden" special-case | ✅ this commit |
-| 5 | Novel behaviors (existing-gear counters): **Witness-mite** (moves only unobserved — pure gaze test), **Light-grazer** (grows in dark, shrinks in light), **Tether-swarm** (shared pool, cut the tether), **Husk-molter** (decoy husk on stun) — as `CreatureBehavior` subclasses/variants; drop to 2 if budget demands (document) | ⬜ |
+| 5 | ALL FOUR novel behaviors: **Witness-mite** (gaze-freeze via pure `GazeMath` + 6 tests; stalks between glances), **Light-grazer** (grows in dark, shrinks under your attention-cone — Prism Beam replaces gaze at M5, documented), **Tether-swarm** (bugs have NO colliders; the glowing tether node is the only hittable thing — cut the cord), **Husk-molter** (stun → sheds grey decoy + skitters out the back, one molt per cooldown). Factory ids wired | ✅ this commit |
 | 6 | Author: W002 light-grazers in the dark cistern · W005 canopy swarmers · W009 tether-swarm + wall-crawlers on the chitin wall · W012 a dormant Warden at the gate (Signal tier 2 there — it WATCHES) + creature data assets in `CreatureVariantAuthor` | ⬜ |
 | 7 | Close: HANDOFF (ccc), runbook §2e smoke, checklist, **APK dispatch green** → ✅ stamp | ⬜ |
 
 ## ▶ RESUMING? — current state & exact next action
-- **Current micro-step:** Tasks 1+2 committed (one compiling unit). KEY DESIGN FACTS: creatures are hit
+- **Current micro-step:** Task 5 committed (all four novels). Earlier context: KEY DESIGN FACTS: creatures are hit
   through the EXISTING weapon dispatch — the taser dart checks DroneRuntime → **IPvpDamageable** →
   IShockable, the gravity gun checks DroneRuntime → IPvpDamageable — so `CreatureRuntime` implements
   IShockable + IPvpDamageable (PlayerIndex = -1, never registered with PvpMatchDirector) and NO weapon
