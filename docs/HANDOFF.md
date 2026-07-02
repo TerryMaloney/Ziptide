@@ -28,6 +28,31 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-02 (iii) — Picasso (Fable 5, ART track): 🌌 SKYSCAPES EVERYWHERE — sprint ART-1 shipped, APK-GREEN
+Same-session close of the (hhh) claim. **Final state: all commits CI-green; APK run `28616598718`
+green (70 MB artifact, every scene audit-clean with the new SKY_VISTA rules live); runbook §2h has
+Terry's headset checklist.** Every generated world (W002–W012) + all five arenas now bake a
+movie-grade canon sky at build time.
+- **What shipped (the SkyVista system, all in the art lane):** `SkyVistaDefinition` (data) +
+  `SkyVistaTexture` (pure seeded bake: stars/nebula/hex Shell grid/zenith shimmer, Bayer-dithered
+  against VR banding) + `SkyVistaRig` (one composited 1024×512 dome + ≤3 body spheres, ≤4 draw calls)
+  + `SkyVistaLibrary` (17 create-only canon vistas) + `SkyVistaAuthor` (build-hook assignment onto the
+  existing `<Scene>_Theme` seam) + `SkyVistaAuditRules` (missing/invalid canon sky = build blocker) +
+  22 EditMode tests pinning the canon arc (grid 0→W007 0.15→W009 0.5→W012 1.0; giant grows
+  W001→W005→W007→W012; W003 two moons + first Pattern shimmer; RILL cyan in W005's nebula).
+- **The 3 announced shared-file touches landed exactly as declared in (hhh)**: Tests asmdef
+  (+Visuals ref), BuildAndroid (one try/catch after the loop), WorldAuditRunner (one call line).
+  All append-only; nothing else of either lane touched. `VisualThemeProfile.skyVista == null` keeps
+  the exact legacy path, so un-vista'd scenes render identically.
+- **📣 Story lane, one small request when convenient:** ToxicCity's patcher never authors a theme, so
+  its waiting `ToxicCity_Vista` can't attach (audit reports it as a WARNING, non-blocking). One
+  `ThemeAuthor.EnsureThemeAsset(kit)` + `EnsureWorldProfileAsset` + `EnsureWorldRuntime` trio inside
+  `ScenePatcherToxicCity` (your file) wires W001's smog-amber sky + dim giant. No rush — W001 gets its
+  full ART-2 pass anyway.
+- **Next (ART-2):** the W001 Toxic Venice art kit — SurfaceSet/WorldArtKit data model, primitive kit
+  behind stable IDs, PERF_BUDGET audit rule, then Tripo mesh swaps per `systems/ASSET_SWAP_PIPELINE.md`.
+- **Commits:** `ce051fd` `0166d8a` `c009795` `5c63eae` `dc84f82` `48ee4b4` `91c8fe7` + this one.
+
 ### 2026-07-02 (hhh) — Picasso (Fable 5, ART track): 🎨 TRACK CLAIM — M6 Look & Sound opens as the third parallel lane
 Terry's directive: get art/audio to AAA now, in parallel — **skyscapes first (all worlds + arenas), then
 W001 buildings, then audio, then creatures/gear**. New live sprint file: **`docs/SPRINT_ART.md`** (lane

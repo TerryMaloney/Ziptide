@@ -40,7 +40,7 @@ moons + zenith Pattern shimmer; RILL's cyan seeded in early nebulae). Attaches a
 | 3 | `SkyVistaLibrary` (create-only, WorldLayoutLibrary pattern): 17 canon vistas as data (ToxicCity reserved + W002–W012 + 5 arenas) + `Specs()` + 8 progression tests (grid 0→1 monotonic, giant growth, W003 moons+shimmer, RILL cyan, arena distinctness) | ✅ `5c63eae` |
 | 4 | `SkyVistaAuthor.AssignAll()` (sets `skyVista` on each `Content/Worlds/Themes/<Scene>_Theme.asset` — worlds AND arenas — after the build's per-scene loop) + BuildAndroid hook ⚠ | ✅ `dc84f82` |
 | 5 | `SkyVistaAuditRules` (`SKY_VISTA_MISSING`/`SKY_VISTA_INVALID` blockers; `SKY_VISTA_UNWIRED`/light-count warnings) + WorldAuditRunner call line ⚠ + `HOW_TO_CHANGE_ANYTHING.md` sky rows | ✅ `48ee4b4` |
-| 6 | Close: APK dispatch green · runbook §2h 🎮 items (canon progression reads, 72fps, banding check) · HANDOFF wrap | 🟡 in progress |
+| 6 | Close: APK dispatch green · runbook §2h 🎮 items (canon progression reads, 72fps, banding check) · HANDOFF wrap | ✅ **APK run `28616598718` green (70 MB artifact, audit-clean incl. SKY_VISTA rules)** |
 
 ## Next sprints (order per Terry)
 - **ART-2 — W001 Toxic Venice full pass:** SurfaceSet/WorldArtKit registries + ArtBuildPlan pipeline +
@@ -51,12 +51,13 @@ moons + zenith Pattern shimmer; RILL's cyan seeded in early nebulae). Attaches a
   creature files), weapon models via Tripo, Bloom/Pattern VFX language (`ALIEN_ORIGAMI_SURFACE_BRIEF.md`).
 
 ## ▶ RESUMING? — current state & exact next action
-- **Current:** ART-1 tasks 0–5 pushed (`ce051fd`…`48ee4b4`); tests/CI green through `c009795`,
-  later runs pending at last check. APK dispatch is the remaining gate.
-- **Next action:** confirm CI green on `48ee4b4`; dispatch the APK workflow (`ci.yml`
-  workflow_dispatch on `terry-local-wip`); verify `ziptide-apk` artifact + audit-clean (the new
-  `SKY_VISTA_*` rules run inside it); then Terry's §2h runbook pass. After that → ART-2 (W001
-  Toxic Venice art kit; brief in `project_art_plan/W001_TOXIC_VENICE_ART_BRIEF.md`).
+- **Current:** **SPRINT ART-1 CODE-COMPLETE + APK-GREEN** (run `28616598718`, 70 MB artifact,
+  all scenes audit-clean with the SKY_VISTA rules live). Every generated world + arena ships a canon
+  sky. Open loop: Terry's §2h headset pass (canon progression reads / 72fps / banding).
+- **Next action:** start **ART-2 — W001 Toxic Venice art kit** (brief:
+  `project_art_plan/W001_TOXIC_VENICE_ART_BRIEF.md`): `SurfaceSetDefinition` + `WorldArtKitDefinition`
+  data model first (pure + tests, same commit pattern as ART-1), then the primitive ToxicVenice kit,
+  then the PERF_BUDGET audit rule. Fold in Terry's §2h ❌s first if any arrive.
 - **Story-lane request (queued, not urgent):** ToxicCity's patcher doesn't author a theme, so its
   waiting vista can't attach — one `ThemeAuthor.EnsureThemeAsset` call inside `ScenePatcherToxicCity`
   (story-owned file) wires it. Coordinate via HANDOFF when convenient; W001 gets its full art pass in
