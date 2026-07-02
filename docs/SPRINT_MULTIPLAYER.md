@@ -29,7 +29,8 @@ story worlds as the map).
 | A1c | **PvpBot rewrite: the brain is in the arena.** Perceive (LOS, player velocity, incoming-dart scan @5Hz, baked cover/waypoints) → `BotBrain.Tick` → execute (CollideMove kept, dodge burst-steps, strafe, telegraph LAW kept, `WeaponCharge`-gated visible `PvpBolt` at the brain's led+erred aim). `ScenePatcherPvP.BuildBotNav` bakes Way_1-8 patrol ring (incl. platform top) + Cover_P1-8 shadow spots. Brain+charge reset on revive. *(Deliberate re-scope: `IPvpTransport` threading of the whole match loop moved to A6-prep — the bot rewrite doesn't need it and scoping it here risked the match flow before a device pass.)* | ✅ this commit (CI pending) |
 | B1a+b | **Conquest sim core COMPLETE** (`Multiplayer/Runtime/Conquest/`): PlanetNode (14-field spec) · ConquestState (players/stockpiles/turn economy: instability-penalized production, decay, fleet upkeep, attack limits) · ConquestRules (odds clamp 10–90, +5%/pt, anti-snowball constants) · ConquestResolver (seeded, 5 outcomes, vessel/defense specials: gate jammer/piercer, shieldbreaker, minefield, null-ark consumed, repair swarm, dogpile bonus, mission modifiers ± ) · ConquestCatalog (8 defenses + 8 vessels) · **ConquestGalaxy (the map IS W001–W012**, chain + cross-links, 2-player setup) · ConquestAI (3 profiles: reinforce/build/attack-best-odds, plays via the same public API as a human) + **17 EditMode tests** incl. a full headless AI-vs-AI war + JsonUtility save round-trip | ✅ this commit (CI pending) |
 | A2 | **Arena Factory BUILT**: `ArenaLayoutDefinition` (geometry/nav/spawns/objectiveZones/weaponPads/hazards/sky + Validate) + `ScenePatcherArena` (generic shell: data geometry, per-arena sky via ThemeAuthor overloads, Way_/Cover_P nav, difficulty-tagged bot, pads, breakwalls, hazards via HazardZoneRuntime, pack+exit, Build Settings; build-hooked like generated worlds) + `ArenaLayoutLibrary` (**5 launch arenas**: Cistern dark hill-fight · Chitinwall catwalk alleys · MirrorFlats marksman lanes (veteran) · Tidal islands w/ live flood mutator · Void Shell-gate bridges (nightmare)) + 7 `ArenaLibraryTests` (validate-clean, unique ids, real nav, armed+objectives, 3+ difficulty tiers, distinct skies, waypoints-in-bounds). Original PvP_Arena01 untouched. | ✅ this commit (CI pending) |
-| A3 | PvpMatch → N combatants/teams + Gun Game + KotH + Fragment Rush + Horde (creature waves) | ⬜ |
+| A3-core | **Mode engines (pure) BUILT**: `PvpMatch` generalized to N combatants (2–4) + teams (team score = summed members; default ctor stays 1v1 — zero consumer changes) + `EndByRule` · `Modes/PvpModes.cs`: **GunGameState** (6-weapon default ladder), **KothState** (sole-king accrual, contested=nobody, zone rotation), **FragmentRushState** (single carrier, drop-resets-to-mid, bank-to-win), **HordeState** (deterministic escalating waves of bots+creatures, capped for Quest perf, clear bonuses) + 11 tests | ✅ this commit (CI pending) |
+| A3-scene | Mode director consuming the engines + lobby board (arena × mode × difficulty × mutators) + attacker-identity threading for N-way kill credit + Horde creature spawning | ⬜ next |
 | A4 | Arsenal: Static Net, Sonic Thumper, Prism Beam + pads + WeaponCharge wiring + bot weapon prefs | ⬜ |
 | A5 | Progression: match stats, credits payout, unlock flags, daily seed | ⬜ |
 | A5.5 | **Pre-round locker** (fff crossover, frozen API in `systems/QUARTERS.md`): `QuartersRoom` per arena spawn, round-timer exit gate, teleport-out on round start, equipped-cosmetic strings in the match handshake | ⬜ |
@@ -44,12 +45,13 @@ story worlds as the map).
   ✅ GREEN** (run `28608110578`, full pipeline + artifact): the smart bot + 4 difficulty profiles are
   in a sideloadable build. Tests asmdef now references Ziptide.Editor (editor-only tests can validate
   the authoring libraries — ArenaLibraryTests uses it).
-- **Next action:** verify CI on the A2 push → APK dispatch (bakes all 5 arena scenes through the
-  audit — watch for spawn/floor issues on Tidal/Void's elevated spawns; fix layout numbers if the
-  audit flags them) → then **A3**: PvpMatch → N combatants/teams (pure, tests) + `PvpModeDefinition`
-  + Gun Game/KotH/Fragment Rush/Horde logic + the lobby board (arena × mode × difficulty select).
-  A4 arsenal after (Static Net / Sonic Thumper / Prism Beam + pads become respawners —
-  `WeaponPadDef.respawnSeconds` is already in the data).
+- **Next action:** verify CI on the A3-core push AND the arena-APK dispatch (queued after `450e047`;
+  bakes all 5 arena scenes through the audit — watch Tidal/Void's elevated spawns; fix layout numbers
+  if the audit flags them). Then **A3-scene** (mode director + lobby board + attacker identity: extend
+  `IPvpDamageable.ReceiveHit` context or add a hit-source registry so N-way kills credit correctly —
+  design it against the fff `PlayerIndex >= 0` law). Then A4 arsenal (Static Net / Sonic Thumper /
+  Prism Beam runtimes + pads become timed respawners — `WeaponPadDef.respawnSeconds` already in data;
+  the Gun Game default ladder already names all six).
 - **✅ fff BRIEFING ABSORBED (constraints for all remaining A-tasks):**
   1. Cross-fixes reviewed + accepted: `BotMath` uint-literal fix (CS0029, same values) and `BotBrain`
      same-tick HeardFire reaction (my test defined that contract — keeping it).
