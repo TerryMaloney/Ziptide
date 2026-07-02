@@ -45,6 +45,34 @@ Terry redirected this session to multiplayer: PvP → AAA fun + Tidefront (the R
 - **Next (this session):** A1a BotBrain pure core + B1a Conquest sim core — both pure C#, CI-verified.
 - **Commit:** this push on `terry-local-wip`.
 
+### 2026-07-02 (fff) — operator (Fable 5) → 📣 ARCHITECT BRIEFING (read this before resuming the MP program)
+Terry says you're back in minutes. While you were away: M3 stamped (APK `28601298708`), M4 S1+S2+Quarters
+built, a full juice pass, all CI-green (head `7128b74`, final APK dispatching). **Four things touch YOU:**
+1. **I edited two files in YOUR lane — review/absorb.** Both were emergency fixes because the shared CI
+   gate went red on your BotBrain commit (#194–#196) and blocked both lanes:
+   - `Multiplayer/Runtime/Bots/BotMath.cs` (`0d7c772`): CS0029 — `(uint)(seed == 0 ? 2463534242 : seed)`
+     can't type (the literal overflows int). Now `seed == 0 ? 2463534242u : (uint)seed`. Same values.
+   - `Multiplayer/Runtime/Bots/BotBrain.cs` (`6465e03`): your own `HeardFire_PullsPatrolIntoHunt` test
+     expects the decision that HEARS the shot to already move toward it; Patrol set `d.MoveTarget` before
+     the transition, so the reacting tick returned the stale patrol point. The transition branch now sets
+     `MoveTarget/FaceTarget = HeardFireAt`. **Test-conformance only** — your test defined the behavior; if
+     you intended next-tick reaction instead, change BOTH together. 181/181 green since.
+2. **⚠ `CreatureRuntime` (M3, my lane) implements `IPvpDamageable` with `PlayerIndex = -1`** so the
+   existing taser/gravity dispatch hits creatures with zero weapon edits. **Your netcode/bot/aggregation
+   code must never assume every IPvpDamageable is a combatant — filter `PlayerIndex >= 0`.** Nothing
+   auto-registers them with PvpMatchDirector, but sweeps like FindObjectsOfType<IPvpDamageable> will see them.
+3. **🎁 NEW CROSSOVER FROM TERRY — the PvP pre-round locker (yours to place).** Full spec
+   `docs/systems/QUARTERS.md`: I shipped `QuartersRoom` (host-agnostic self-building locker cabin),
+   `CosmeticLocker` (Core, PURE, string-only equip state as profile flags — built string-pure so your
+   match-handshake sync of "what skin is he wearing" is trivial: exchange `CosmeticLocker.GetEquipped`
+   strings and read them against the remote profile snapshot), and the ItemFactory apply seam. YOUR half:
+   spawn a `QuartersRoom` at each arena spawn, gate the exit on the round timer, teleport players out on
+   round start, and sync equipped strings in the handshake. Cosmetics are LOOKS never stats (enforced at
+   the data layer) so nothing needs balance review. My API is frozen for you; ask before changing it.
+4. **State you build on:** `PvpBot` gained `CollideMove` wall-clamping + fires visible `PvpBolt`s (my
+   round-3 device fixes — HANDOFF vv) — don't regress those when you swap the bot behind `BotBrain`.
+   Branch head `7128b74`, everything green; `pull --rebase` before your first push (I pushed a lot).
+
 ### 2026-07-02 (eee) — operator (Fable 5): THE QUARTERS — locker/cosmetics architecture (stubbed stock, real plumbing)
 Terry's brief: a customization room on the ship (item-shop/locker feel) that must work GAME-WIDE — incl.
 a future PvP pre-round locker. Built the full architecture; stock is deliberately empty (the stub).

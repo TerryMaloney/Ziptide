@@ -6,6 +6,12 @@
 > patchers/layouts, and the two design docs. The story track owns creatures/worlds/RILL. If you are a
 > fresh session and BOTH sprints are open, pick the one your prompt names; never edit the other's files.
 > Designs (the spec source): **`docs/design/PVP_ARENA_AAA.md`** + **`docs/design/TIDEFRONT_AAA.md`**.
+>
+> **📣 RESUMING 2026-07-02? READ `docs/HANDOFF.md` entry (fff) FIRST** — two of this track's files were
+> hot-fixed while you were away (BotMath CS0029 + BotBrain same-tick HeardFire, test-conformance), the
+> M3 creature runtime now implements IPvpDamageable with PlayerIndex=-1 (filter for it), and Terry added
+> a NEW crossover task for this track: the **PvP pre-round locker** (spawn the shipped `QuartersRoom`,
+> gate on round timer, sync equipped-cosmetic strings in the handshake — spec `docs/systems/QUARTERS.md`).
 > Roadmap slot: `GAME_PLAN.md` M7a/M7b/M7c.
 
 **Program goal (Terry, 2026-07-02):** PvP from tester-room to AAA fun (smart bots, real arenas, modes,
