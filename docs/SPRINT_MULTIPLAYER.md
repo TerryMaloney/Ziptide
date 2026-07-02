@@ -32,6 +32,10 @@ story worlds as the map).
 | A3-core | **Mode engines (pure) BUILT**: `PvpMatch` generalized to N combatants (2–4) + teams (team score = summed members; default ctor stays 1v1 — zero consumer changes) + `EndByRule` · `Modes/PvpModes.cs`: **GunGameState** (6-weapon default ladder), **KothState** (sole-king accrual, contested=nobody, zone rotation), **FragmentRushState** (single carrier, drop-resets-to-mid, bank-to-win), **HordeState** (deterministic escalating waves of bots+creatures, capped for Quest perf, clear bonuses) + 11 tests | ✅ this commit (CI pending) |
 | A3-scene | Mode director consuming the engines + lobby board (arena × mode × difficulty × mutators) + attacker-identity threading for N-way kill credit + Horde creature spawning | ⬜ next |
 | A4 | Arsenal: Static Net, Sonic Thumper, Prism Beam + pads + WeaponCharge wiring + bot weapon prefs | ⬜ |
+| A4.5 | **Augments** (Terry 2026-07-02; spec `design/ABILITIES_AND_ARSENAL.md` §2): `AugmentDefinition` + pure `AugmentEffects` registry + slot/equip runtime (1 active + 1 passive) + the six launch augments + arena pads + Horde wave-clear reward. Story/Tidefront placements follow via the libraries. | ⬜ |
+| A4.6 | **Dual-wield** (§3): `DualWieldCoordinator` shared-`WeaponCharge`-pool (flexibility, same DPS ceiling), `twoHandedOnly` flag on heavy defs, Nightmare-bot cosmetic pairing, disabled in Gun Game | ⬜ |
+| A4.7 | **Locator v2** (§4): pure `LocatorState` extension first (afterglow window, tier params, tested) → gauntlet form + cylinder radar + ground-ring pulse scene work → tiers via ship S3 scanner slot. Gauntlet mesh is Picasso's (their P4+). | ⬜ |
+| A6-prep | **Two-Quest online setup instructions** (Terry directive 2026-07-02, due at THIS sprint's close): `docs/TWO_QUEST_SETUP.md` — Photon account + App ID + PUN2 import (Terry's PC) + scripting-define seam (`ZIPTIDE_PHOTON`) + build/sideload-both-headsets + room-code join flow; plus the `IPvpTransport` adapter skeleton that compiles with AND without PUN2 present | ⬜ due |
 | A5 | Progression: match stats, credits payout, unlock flags, daily seed | ⬜ |
 | A5.5 | **Pre-round locker** (fff crossover, frozen API in `systems/QUARTERS.md`): `QuartersRoom` per arena spawn, round-timer exit gate, teleport-out on round start, equipped-cosmetic strings in the match handshake | ⬜ |
 | B2 | Holo war table vs ConquestAI (Sandbox placement) | ⬜ |
@@ -56,6 +60,17 @@ story worlds as the map).
   correctly — design against the fff `PlayerIndex >= 0` law; Horde spawning via `CreatureVariantAuthor`
   defs + `HordeState.WaveCreatures`). Then A4 arsenal (Static Net / Sonic Thumper / Prism Beam runtimes
   + pads become timed respawners — `respawnSeconds` already in data; the Gun Game ladder names all six).
+- **📐 New Terry directives absorbed (2026-07-02, designed → board):** `docs/design/ABILITIES_AND_ARSENAL.md`
+  adds A4.5 (Augments — the ability-item category, all modes), A4.6 (shared-charge-pool dual-wield),
+  A4.7 (Locator v2 rework). Build order A4 → A4.5 → A4.6 → A4.7. The project-wide cross-track order now
+  lives in **`docs/PRIORITIES.md`**. And: **the two-Quest online setup instructions are DUE at this
+  sprint's close** (A6-prep row below) — Terry wants two headsets fighting; his setup steps run in
+  parallel with our remaining code.
+- **🎨 The art track is LIVE** (`SPRINT_ART.md`, operator "Picasso"): ART-1 skyscapes shipped APK-green —
+  our five arenas got canon `SkyVista` skies via the theme seam, ZERO MP files touched (their announced
+  appends: Tests asmdef / BuildAndroid hook / WorldAuditRunner line). Their lane = `Visuals/**` + art
+  authoring/audit files; the verified seam map is `docs/ART_PLUG_POINTS.md`. The Locator-v2 gauntlet mesh
+  is queued with them (ART-4).
 - **✅ fff BRIEFING ABSORBED (constraints for all remaining A-tasks):**
   1. Cross-fixes reviewed + accepted: `BotMath` uint-literal fix (CS0029, same values) and `BotBrain`
      same-tick HeardFire reaction (my test defined that contract — keeping it).

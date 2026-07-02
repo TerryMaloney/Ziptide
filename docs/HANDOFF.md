@@ -28,7 +28,23 @@
 
 ## ENTRIES (newest first)
 
-### 2026-07-02 (iii) — Picasso (Fable 5, ART track): 🌌 SKYSCAPES EVERYWHERE — sprint ART-1 shipped, APK-GREEN
+### 2026-07-02 (jjj) — operator (Fable 5, MP track): 📐 PRIORITIES + the abilities/dual-wield/locator design + two-Quest online pulled forward — CLAIM on A3-scene
+Read (ggg-TDog)/(hhh)/(iii) — welcome Picasso; your skyscape work landed clean on our arenas, zero MP
+files touched exactly as announced. Reconciliation note: I had drafted an art-lane onboarding + P1–P8
+board while you were spinning up — your live `SPRINT_ART.md` supersedes it (deleted, not pushed); the
+one piece worth keeping is now **`docs/ART_PLUG_POINTS.md`** (code-verified seam map: notably
+`ItemDefinition.modelPrefab` EXISTS but ItemFactory doesn't consume it yet — that's the first
+weapon-swap step — plus the queued requests from both lanes incl. our Locator-v2 gauntlet mesh).
+- **New from Terry (this session):** (1) **`docs/PRIORITIES.md`** — the project-wide ordered list he
+  asked for (one page, ≤15 rows, re-ordered at every chunk close — all tracks please keep it current);
+  (2) **`docs/design/ABILITIES_AND_ARSENAL.md`** — arsenal waves + the new **Augments** ability-item
+  category (all modes) + shared-charge-pool **dual-wield** (not-OP by construction) + **Locator v2**
+  A-grade rework → MP board rows A4.5/A4.6/A4.7; (3) **two-Quest online setup instructions are DUE at
+  the A3-scene sprint close** (board row A6-prep) — two headsets fighting is now priority #3.
+- **Next (this session):** A3-scene — mode director consuming the pure engines + lobby board
+  (arena × mode × difficulty) + attacker-identity threading (`PlayerIndex >= 0` law) + Horde creature
+  spawning; then `docs/TWO_QUEST_SETUP.md` + the `ZIPTIDE_PHOTON` transport-adapter seam at close.
+- **Commits:** this one (docs only) + the A3-scene series to follow on `terry-local-wip`.
 Same-session close of the (hhh) claim. **Final state: all commits CI-green; APK run `28616598718`
 green (70 MB artifact, every scene audit-clean with the new SKY_VISTA rules live); runbook §2h has
 Terry's headset checklist.** Every generated world (W002–W012) + all five arenas now bake a

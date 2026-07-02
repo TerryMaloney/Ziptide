@@ -19,6 +19,9 @@ docs (this file, GAME_PLAN, MASTER_CHECKLIST, HOW_TO_CHANGE) are append-friendly
 | **Multiplayer** ("Architect") | `docs/SPRINT_MULTIPLAYER.md` | `Multiplayer/**`, `Gameplay/Runtime/Pvp/**`, arenas, bots, netcode |
 | **Art & Audio** ("Picasso") | `docs/SPRINT_ART.md` | `Visuals/**`, SkyVistas/Art authoring+audits, `project_art_plan/`, audio |
 
+**The cross-track order of importance is `docs/PRIORITIES.md`** — one page, ≤15 rows, re-ordered at
+every chunk close. When your track's next item is ambiguous, that page is the tiebreaker.
+
 > *(History: originally two chats (Architect/T-Dog), then one operator, now three tracks. Old lane tags
 > in the logs are historical attribution.)*
 
