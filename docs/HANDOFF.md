@@ -45,6 +45,21 @@ Terry redirected this session to multiplayer: PvP → AAA fun + Tidefront (the R
 - **Next (this session):** A1a BotBrain pure core + B1a Conquest sim core — both pure C#, CI-verified.
 - **Commit:** this push on `terry-local-wip`.
 
+### 2026-07-02 (ddd) — operator (Fable 5): M4 "THE SHIP" S1+S2 — the north star is boardable
+Terry suspended gate-waiting (architect away ~1.5h); M4 started while the M3 APK dispatch ran.
+- **S1 boardable** (`7886927`): `ShipBoardingStation` per the LOCKED SHIPS.md architecture — a mobile
+  travel station wearing a ship costume. BOARD panel → teleport to the cockpit deck (rig teleported via
+  the fall-safety CC pattern, NEVER parented); helm rows = all shipped world packs, story-gated via
+  `WorldGating` like doors; depart via `TravelCoordinator.TravelTo` ONLY; DISEMBARK returns.
+  `CityBuilder.BuildShipyard` wires it on every enabled berth (edit-time pack collection, Exit packs +
+  unshipped scenes skipped).
+- **S2 fly-out** (`34627dd`): seat the pilot → 26 star-streaks race past, stretching as engines spool
+  (~4.5s, serialized) → travel. Pure WORLD motion, zero camera manipulation. Audio/starfield at M6.
+- **Ch.1 berths** (`96132ec` + W002 in S1): W002/W003/W004 + ToxicCity all have boardable ships; doors
+  stay as fallback until device-proven (the M4 gate).
+- **On Terry's plate:** runbook **§2f** (board/fly/comfort check). — **Remaining M4:** S3 upgrade
+  sockets (economy sink) + W000 wake-on-ship tutorial.
+
 ### 2026-07-02 (ccc) — operator (Fable 5): M3 "LIVING WORLDS" built — creature framework, 4 archetypes, Warden, 4 novels
 Same-session continuation (M1+M2 closed, APKs green). All ⚙CI, tracked in SPRINT.md. **Lane note: architect
 runs the MULTIPLAYER PROGRAM in parallel (own sprint `SPRINT_MULTIPLAYER.md`); I consume IPvpDamageable,

@@ -104,6 +104,18 @@ The next build carries the story layer. Smoke it while doing §2b:
 - [ ] Universal: creatures never pass through walls; disables are non-lethal crumples; slows always clear.
 - [ ] Feel notes: creature speeds/sizes, telegraph readability, Warden warning window.
 
+## 2f. NEW — M4 "The Ship" S1+S2 (boardable + fly-out; all auto)
+- [ ] **W002/W003/W004 + ToxicCity:** a berthed ship sits on a deck pad — walk to the hull's side,
+  select **BOARD SHIP** → you're teleported up to the **cockpit deck** (`SHIP_BOARD`).
+- [ ] The **helm** lists destination worlds as rows — locked ones dark-red **LOCKED** (same story
+  gating as doors, `TRAVEL_LOCKED`), open ones teal.
+- [ ] Select a destination → **the fly-out**: you're seated, star-streaks race past and stretch as the
+  engines spool (~4.5s) → the world loads (`SHIP_DEPART dest=…`). **Comfort check: the CAMERA never
+  moves — only the streaks. Any nausea = ❌ + note.**
+- [ ] **DISEMBARK** (panel behind the seat) puts you back on the berth (`SHIP_DISEMBARK`).
+- [ ] Doors still work (fallback until the ship is device-proven).
+- [ ] Feel notes: fly-out length, streak density/speed, deck size, helm row readability.
+
 ## 3. The two open judgment calls (yours)
 - **"Can you run in Toxic City?"** — was it the input bug (now fixed) or actual walls/narrow streets? If
   still wall-blocked, say so and the streets get widened.
