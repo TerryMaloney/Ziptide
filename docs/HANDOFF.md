@@ -28,6 +28,27 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-02 (bbb) — operator (Fable 5): M2 "THE JOB IS REAL" built — repair loop, hazards, visible economy
+Same-session continuation after M1 closed (APK `28581416414` green). All ⚙CI; sprint tracked in SPRINT.md.
+- **The hands-on repair loop** (`468458b`, CI-green): `RepairableMachine` — pull the access panel off,
+  fetch + seat the part (spawned away from the machine: the fetch IS the job), flip the power switch →
+  `JobDirector.ReportRepair`. `MachineSpawnDefinition` pack data + `RepairMachineCountStepDefinition` +
+  a `JobRuntime` repair BANK (early/pre-accept fixes can't be lost — `JobRuntimeRepairTests`) + validator
+  Repair↔machine guard. **W002's contract now ends by actually restarting the cistern pump** — the M2
+  gate loop "arrive → collect → repair → paid" is authored.
+- **Biome hazards** (`4a02079`): `HazardZoneDef` on the LAYOUT (authored with the world) →
+  `HazardZoneRuntime` (serialized def — gotcha #7; position-poll detection; non-lethal: Wind shove /
+  Static zap / Flood drag / Spore fog / Radiation escalate+eject; slows ride the self-healing stun path).
+  Authored: W003 crosswind bridge lanes, W005 spore pockets, W010 tide-flat flood.
+- **Visible idle economy** (`4e3bb15`): `MiningRigRuntime` binds a `MineState` in the world's save
+  (same worldId as ECON_RESOLVE — one record), live accrual + readout, select the hopper →
+  `ProfileEconomy.CollectMine`. W002 gets a mineral extractor by the pump.
+- **Deferred with rationale:** starter-gear-trio onboarding (needs W000/the ship — M4); GardenPlotRuntime
+  (same pattern as the rig; build when a garden world is authored).
+- **On Terry's plate:** runbook **§2d** (repair the pump hands-on, wind/spore/flood feel, mine payout).
+- **Commits:** `756956e`…`4e3bb15` on `terry-local-wip`. Next per GAME_PLAN: **M3 Living Worlds**
+  (CreatureBehavior framework + archetypes) — or Terry's device pass first.
+
 ### 2026-07-01 (aaa) — operator (Fable 5): GAME_PLAN (the road to AAA) + M1 "THE STORY SPEAKS" built
 Executed the approved ROAD-TO-AAA plan from the prior session (written there, never committed) and then
 built milestone M1 end-to-end. Sprint tracked live in `docs/SPRINT.md` per the resumability protocol.

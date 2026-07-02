@@ -21,7 +21,7 @@ rig/PvP/XRI samples, CI green per push, APK dispatch at the end).
 | 2 | **Hazard zones**: `HazardZoneDef` list on `CityLayoutDefinition` + `HazardZoneRuntime` (SERIALIZED def — gotcha #7; poll-based; Wind push / Static+Spore ticks / Flood drag / Radiation escalate+shove; slab visual) + `CityBuilder.BuildHazardZones` + authored W003 wind crossings / W005 spore pockets / W010 tide-flat flood | ✅ this commit |
 | 3 | **Economy world objects**: `MineSpawnDefinition` + `MiningRigRuntime` (binds `MineState` in this world's save — idle backend intact; live accrual + readout; select hopper → `ProfileEconomy.CollectMine`) + `.Mine()` verb + **W002 mineral extractor by the pump**. *(GardenPlotRuntime = same pattern, follow-up when a garden world is authored — noted, not built.)* | ✅ this commit |
 | 4 | Starter-gear trio (Scan Pulse → Taser → Gravity Glove onboarding) — **DEFERRED to W000/M4** (onboarding order needs the tutorial world; gear itself already exists). Documented here so nobody re-derives. | ⏸ deferred |
-| 5 | Close: HANDOFF (bbb), runbook §2d M2 smoke, checklist, MASTER_CHECKLIST, **APK dispatch green** | ⬜ |
+| 5 | Close: HANDOFF (bbb), runbook §2d M2 smoke, MASTER_CHECKLIST M2 line, **APK dispatch green** | 🟡 docs this commit; APK next |
 
 ## ▶ RESUMING? — current state & exact next action
 - **Current micro-step:** Task 1 committed — the repair loop is LIVE. `RepairableMachine` (pull the
@@ -47,10 +47,12 @@ rig/PvP/XRI samples, CI green per push, APK dispatch at the end).
   tuning source-of-truth, save keeps progress; live accrual + floating readout; select the hopper →
   `CollectMine` pays the profile (watch the credits/resource totals move). W002 has a mineral extractor
   by the pump house. Garden plot = same pattern, deliberately deferred until a garden world is authored.
-- **Next action:** verify CI on this push → Task 5 close-out: HANDOFF (bbb), runbook §2d (M2 smoke:
-  repair the W002 pump hands-on, wind shove on W003 bridges, spore slow in W005, flood drag in W010,
-  mine hopper payout), MASTER_CHECKLIST M2 line, GAME_PLAN M2 gate note → **APK dispatch** → ✅ stamp.
-- **Branch:** `terry-local-wip`. CI-green: `468458b`; `4a02079` (hazards) pending; this push next.
+- **Current micro-step:** Task 5 close-out docs committed (HANDOFF bbb, runbook §2d, checklist M2 line).
+- **Next action:** confirm CI green on `4e3bb15` + this docs push → **dispatch the APK workflow**
+  (`actions_run_trigger`, ci.yml, ref terry-local-wip, ~30 min) → confirm Build Android APK +
+  `ziptide-apk` artifact → stamp this file ✅ COMPLETE. Then per GAME_PLAN: **M3 Living Worlds**
+  (CreatureBehavior framework, 4 archetypes, Wardens) — or hold for Terry's device pass (§2b/2c/2d).
+- **Branch:** `terry-local-wip`. CI-green: `468458b`; `4a02079`/`4e3bb15` pending at last check.
 
 ## Specs (verified against code this session — don't re-derive)
 - `JobRuntime` step pattern + bank: see `_collectBank`/`ApplyCollectBank` (added in M1) — mirror for repair.

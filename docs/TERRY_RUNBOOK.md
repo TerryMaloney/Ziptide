@@ -73,6 +73,22 @@ The next build carries the story layer. Smoke it while doing §2b:
   clearer in later chapters — tier 0 shows "signal too degraded" if you somehow play it pre-fragment.)
 - [ ] Feel notes: RILL orb position/size, subtitle readability, line timing, shard visibility.
 
+## 2d. NEW — M2 "The Job Is Real" (hands-on repair, hazards, visible mine; all auto)
+- [ ] **W002 — the full gate loop:** accept the contract → descend → down the drones → grab the 3
+  mineral samples → at the pump house, **repair the pump with your hands**: pull the rusted access
+  panel off (it comes free — drop it), walk back toward the shaft for the glowing **pump valve**, carry
+  it to the exposed socket (it snaps in), flip the **power switch** → lamp goes green
+  (`MACHINE_STAGE`/`MACHINE_REPAIRED`) → bounty pays.
+- [ ] **W002 extractor:** next to the pump, a small rig with a floating readout that ticks up — select
+  the **hopper** → yield pays into your profile (`MINE_COLLECT`). Leave the world, come back later —
+  it produced while you were gone (`ECON_RESOLVE`).
+- [ ] **W003 wind:** the two exposed bridge crossings **shove you sideways** (tinted lanes) — lean into
+  it. `(HAZARD kind=Wind enter)`
+- [ ] **W005 spores / W010 flood:** standing in the tinted pockets **slows you** (flash ticks); wading
+  the W010 tide flats drags hard — the bridges are the safe route. Slows must **fully clear** when you
+  step out (no stuck-slow).
+- [ ] Feel notes: wind strength, slow severity, repair-part snap distance, mine rate/cap.
+
 ## 3. The two open judgment calls (yours)
 - **"Can you run in Toxic City?"** — was it the input bug (now fixed) or actual walls/narrow streets? If
   still wall-blocked, say so and the streets get widened.
