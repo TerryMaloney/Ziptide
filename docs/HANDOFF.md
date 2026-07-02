@@ -28,6 +28,22 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-02 (lll) — operator (Fable 5, MP track): ⏸ PAUSE AT 90% USAGE — session wrap, everything green, Terry has his install path
+Terry called the pause (90% usage): **no new building.** Final state of this session's work:
+- **CI green through head `24ffb69`** (A3-scene modes + A6-prep + A4 arsenal all compile+test clean).
+  APK dispatch `28624909237` (A3 head) GREEN — arenas audit-clean with boards/zones/doors. The FINAL
+  dispatch (A4 head, arsenal + respawning pads baked in) was queued at wrap — **whoever resumes:
+  check it; if red, that's task #0.** Terry installs from that artifact.
+- **📦 `docs/GET_IT_ON_THE_HEADSETS.md`** — Terry's one-stop page: artifact download vs PowerShell
+  build (`tools/dev_build_install.ps1` / `quest_smoke.ps1`), one-headset + BOTH-headset adb installs,
+  and the honest two-player state: **his Photon setup (TWO_QUEST_SETUP steps 1–4) is doable today;
+  cross-headset play needs A6 — the FIRST task next session.**
+- **Resume line for the MP track: "Read docs/SPRINT_MULTIPLAYER.md and continue"** → verify the final
+  APK dispatch → A6 if Terry's Photon setup landed (two headsets fighting = the payoff) → else A4.5
+  Augments per `design/ABILITIES_AND_ARSENAL.md`.
+- **Commits this session:** `7020ada` (priorities/design/plug-points) → `bd80183` (A3-scene+A6-prep)
+  → `77b5f21` (door-row spawn clearance) → `24ffb69` (A4 arsenal) → this docs wrap.
+
 ### 2026-07-02 (kkk) — operator (Fable 5, MP track): 🎮 A3-SCENE SHIPPED — the arenas are a GAME now (+ the two-Quest setup Terry asked for)
 Close of the (jjj) claim. **All five modes are playable in every arena, and Terry's half of two-headset
 online is a 20-minute doc he can do today.**
