@@ -1,9 +1,24 @@
-# 🟡 ACTIVE SPRINT — M2: THE JOB IS REAL (opened 2026-07-01)
+# ✅ SPRINT COMPLETE — M2: THE JOB IS REAL (2026-07-02, all verification green)
 
-> **Takeover prompt for any fresh model: "Read docs/SPRINT.md and continue."** Live state, updated in
-> the same commit as every push. Roadmap: `docs/GAME_PLAN.md` (this = milestone **M2**). Playbook:
-> `docs/HOW_TO_CHANGE_ANYTHING.md`. Prior sprints: `docs/sprints/` (M1 just closed — APK run
-> `28581416414` green).
+> **THE SPRINT IS DONE AND FULLY VERIFIED.** Every task CI-green; the final full-pipeline APK dispatch
+> (run `28584124082`, head `d6df219`) **succeeded**: EditMode tests + world audit + IL2CPP APK + the
+> 70 MB `ziptide-apk` artifact. **Whoever's next:** roadmap is `docs/GAME_PLAN.md` — next milestone is
+> **M3 "Living Worlds"** (CreatureBehavior framework generalizing the drone seam, the 4 archetypes
+> Swarmer/WallCrawler/Flyer/Bruiser, Signal-reactive Wardens, first 4 novel behaviors per
+> `systems/CREATURE_DESIGN.md`). Open a fresh SPRINT.md (copy this structure; archive this one), or hold
+> for Terry's device pass (runbook §2b/2c/2d — TWO milestones of content are waiting on his headset).
+> Takeover prompt stays: **"Read docs/SPRINT.md and continue."**
+
+## What shipped (the one-paragraph version)
+The job is hands-on now: W002's pump is repaired with your hands (panel → fetched part → power switch,
+anti-soft-lock repair bank), biomes are mechanical (W003 crosswind bridge lanes, W005 spore fog, W010
+tide-flat drag — all layout data, all non-lethal with self-clearing slows), and the idle economy is a
+world object (a mineral extractor with a live readout whose hopper pays your profile — same save record
+the offline resolve uses). Deferred with rationale: gear-trio onboarding (W000/M4), garden plot (same
+pattern as the rig, when a garden world is authored).
+
+---
+*(Below: the sprint's live log as it ran — kept as the record.)*
 
 **Sprint goal:** the contract-tech FANTASY becomes hands-on. Machines are repaired with your hands
 (panel → part → power), biomes get mechanical hazards, and the economy becomes visible world objects
@@ -21,7 +36,7 @@ rig/PvP/XRI samples, CI green per push, APK dispatch at the end).
 | 2 | **Hazard zones**: `HazardZoneDef` list on `CityLayoutDefinition` + `HazardZoneRuntime` (SERIALIZED def — gotcha #7; poll-based; Wind push / Static+Spore ticks / Flood drag / Radiation escalate+shove; slab visual) + `CityBuilder.BuildHazardZones` + authored W003 wind crossings / W005 spore pockets / W010 tide-flat flood | ✅ this commit |
 | 3 | **Economy world objects**: `MineSpawnDefinition` + `MiningRigRuntime` (binds `MineState` in this world's save — idle backend intact; live accrual + readout; select hopper → `ProfileEconomy.CollectMine`) + `.Mine()` verb + **W002 mineral extractor by the pump**. *(GardenPlotRuntime = same pattern, follow-up when a garden world is authored — noted, not built.)* | ✅ this commit |
 | 4 | Starter-gear trio (Scan Pulse → Taser → Gravity Glove onboarding) — **DEFERRED to W000/M4** (onboarding order needs the tutorial world; gear itself already exists). Documented here so nobody re-derives. | ⏸ deferred |
-| 5 | Close: HANDOFF (bbb), runbook §2d M2 smoke, MASTER_CHECKLIST M2 line, **APK dispatch green** | 🟡 docs this commit; APK next |
+| 5 | Close: HANDOFF (bbb), runbook §2d M2 smoke, MASTER_CHECKLIST M2 line, **APK dispatch green** | ✅ run `28584124082` |
 
 ## ▶ RESUMING? — current state & exact next action
 - **Current micro-step:** Task 1 committed — the repair loop is LIVE. `RepairableMachine` (pull the
@@ -47,12 +62,12 @@ rig/PvP/XRI samples, CI green per push, APK dispatch at the end).
   tuning source-of-truth, save keeps progress; live accrual + floating readout; select the hopper →
   `CollectMine` pays the profile (watch the credits/resource totals move). W002 has a mineral extractor
   by the pump house. Garden plot = same pattern, deliberately deferred until a garden world is authored.
-- **Current micro-step:** Task 5 close-out docs committed (HANDOFF bbb, runbook §2d, checklist M2 line).
-- **Next action:** confirm CI green on `4e3bb15` + this docs push → **dispatch the APK workflow**
-  (`actions_run_trigger`, ci.yml, ref terry-local-wip, ~30 min) → confirm Build Android APK +
-  `ziptide-apk` artifact → stamp this file ✅ COMPLETE. Then per GAME_PLAN: **M3 Living Worlds**
-  (CreatureBehavior framework, 4 archetypes, Wardens) — or hold for Terry's device pass (§2b/2c/2d).
-- **Branch:** `terry-local-wip`. CI-green: `468458b`; `4a02079`/`4e3bb15` pending at last check.
+- **SPRINT CLOSED.** All pushes CI-green (#184–#187); final gate = APK dispatch `28584124082`
+  (head `d6df219`): EditMode ✅, Build Android APK ✅, `ziptide-apk` 70 MB ✅.
+- **Next for whoever resumes:** `GAME_PLAN.md` → **M3 Living Worlds** (fresh SPRINT.md; archive this
+  file to `docs/sprints/SPRINT_2026-07-02_M2_JOB.md`), or hold for Terry's device pass — two milestones
+  of content (runbook §2b/2c/2d) are waiting on his headset, and his ❌s outrank new code.
+- **Branch:** `terry-local-wip`. CI-green head: `d6df219`.
 
 ## Specs (verified against code this session — don't re-derive)
 - `JobRuntime` step pattern + bank: see `_collectBank`/`ApplyCollectBank` (added in M1) — mirror for repair.
