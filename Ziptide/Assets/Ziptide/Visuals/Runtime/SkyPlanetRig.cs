@@ -32,6 +32,22 @@ namespace Ziptide.Visuals
         {
             if (profile == null) return;
 
+            // Vista path: the theme carries a full skyscape — delegate everything to SkyVistaRig and
+            // park the legacy sky/planet. Null vista = the legacy path below, unchanged.
+            if (profile.skyVista != null)
+            {
+                _currentProfile = null; // stops the legacy Update() planet-follow
+                if (_skyRoot != null) _skyRoot.SetActive(false);
+                if (_planetRoot != null) _planetRoot.SetActive(false);
+                EnsureVistaRig().gameObject.SetActive(true);
+                _vistaRig.ApplyVista(profile.skyVista, playerTransform);
+                return;
+            }
+
+            if (_vistaRig != null) _vistaRig.gameObject.SetActive(false);
+            if (_skyRoot != null) _skyRoot.SetActive(true);
+            if (_planetRoot != null) _planetRoot.SetActive(true);
+
             _currentProfile = profile;
             _playerTransform = playerTransform != null ? playerTransform : transform;
 
@@ -39,6 +55,23 @@ namespace Ziptide.Visuals
             EnsurePlanet();
             ApplySkyFromProfile(profile);
             ApplyPlanetFromProfile(profile);
+        }
+
+        private SkyVistaRig _vistaRig;
+
+        private SkyVistaRig EnsureVistaRig()
+        {
+            if (_vistaRig != null) return _vistaRig;
+            _vistaRig = GetComponentInChildren<SkyVistaRig>(true);
+            if (_vistaRig != null) return _vistaRig;
+
+            var go = new GameObject("SkyVistaRig");
+            go.transform.SetParent(transform);
+            go.transform.localPosition = Vector3.zero;
+            go.transform.localRotation = Quaternion.identity;
+            go.transform.localScale = Vector3.one;
+            _vistaRig = go.AddComponent<SkyVistaRig>();
+            return _vistaRig;
         }
 
         private void Update()

@@ -18,6 +18,13 @@ namespace Ziptide.Visuals
         [Header("Planet")]
         public PlanetSettings planet = new PlanetSettings();
 
+        [Header("Sky Vista (optional — full skyscape)")]
+        [Tooltip("When set, SkyPlanetRig delegates the whole sky to SkyVistaRig (dome layers + bodies) " +
+                 "and the legacy gradient/planet above are ignored. Null = legacy path, zero change. " +
+                 "Assigned per world by SkyVistaAuthor during the build; survives theme regeneration " +
+                 "because ThemeAuthor writes individual fields and never touches this one.")]
+        public SkyVistaDefinition skyVista;
+
         private void OnValidate()
         {
             if (planet.direction.sqrMagnitude > 0.01f)
