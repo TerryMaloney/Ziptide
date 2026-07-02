@@ -32,6 +32,8 @@ namespace Ziptide.Gameplay
         private readonly List<GameObject> _browseRows = new List<GameObject>();
         private TextMesh _lockerBoard;
 
+        private readonly List<Transform> _displays = new List<Transform>();
+
         private void Awake()
         {
             BuildShell();
@@ -39,6 +41,43 @@ namespace Ziptide.Gameplay
             BuildBay("SHIP LIVERY", CosmeticKind.ShipLivery, new Vector3(0f, 0f, 2.0f), 0f);
             BuildBay("TRAILS & EMBLEMS", CosmeticKind.Trail, new Vector3(1.55f, 0f, 1.6f), -35f);
             BuildLockerBoard();
+            BuildGearDisplays();
+        }
+
+        private void Update()
+        {
+            // The display pieces turn slowly on their plinths — the locker showcases, it doesn't store.
+            foreach (var d in _displays)
+                if (d != null) d.Rotate(Vector3.up, 25f * Time.deltaTime, Space.World);
+        }
+
+        /// <summary>
+        /// YOUR ACTUAL GEAR on the plinths: real weapons built by ItemFactory — which means they wear
+        /// whatever skin is equipped, automatically, through the same seam the live guns use. Display
+        /// pieces are de-fanged: interaction and physics stripped so they can't be grabbed or knocked off.
+        /// </summary>
+        private void BuildGearDisplays()
+        {
+            SpawnDisplay("taser_dart_gun", transform.TransformPoint(new Vector3(-1.55f, 1.15f, 1.6f)));
+            SpawnDisplay("gravity_gun", transform.TransformPoint(new Vector3(1.55f, 1.15f, 1.6f)));
+        }
+
+        private void SpawnDisplay(string itemId, Vector3 worldPos)
+        {
+            var piece = ItemFactory.Create(itemId, worldPos);
+            if (piece == null) return; // definition not loaded in this scene — plinth stays empty
+            piece.name = "Display_" + itemId;
+            piece.transform.SetParent(transform, true);
+            piece.transform.rotation = Quaternion.Euler(0f, Random.value * 360f, 0f);
+
+            foreach (var grab in piece.GetComponentsInChildren<XRGrabInteractable>(true))
+                grab.enabled = false; // a showcase, not an armory
+            var rb = piece.GetComponent<Rigidbody>();
+            if (rb != null) { rb.isKinematic = true; rb.useGravity = false; }
+            foreach (var col in piece.GetComponentsInChildren<Collider>(true))
+                col.enabled = false;
+
+            _displays.Add(piece.transform);
         }
 
         // ── The shell: floor, walls with a doorway, warm trim ────────────────
