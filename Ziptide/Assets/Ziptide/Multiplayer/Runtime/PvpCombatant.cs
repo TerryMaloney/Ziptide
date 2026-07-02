@@ -1,7 +1,7 @@
 namespace Ziptide.Multiplayer
 {
-    /// <summary>The two PvP weapons and the damage each applies.</summary>
-    public enum PvpWeapon { Taser, Gravity }
+    /// <summary>Every PvP weapon and the damage each applies (A4 added the arsenal trio).</summary>
+    public enum PvpWeapon { Taser, Gravity, StaticNet, SonicThumper, PrismBeam }
 
     /// <summary>
     /// Pure per-player combat state: health pool + damage intake + respawn. No Unity, no netcode, so the
@@ -40,7 +40,16 @@ namespace Ziptide.Multiplayer
 
         public void Respawn() => Health = MaxHealth;
 
-        public static int DamageFor(PvpWeapon weapon) =>
-            weapon == PvpWeapon.Taser ? PvpRules.TaserDamage : PvpRules.GravityDamage;
+        public static int DamageFor(PvpWeapon weapon)
+        {
+            switch (weapon)
+            {
+                case PvpWeapon.Taser: return PvpRules.TaserDamage;
+                case PvpWeapon.StaticNet: return PvpRules.StaticNetDamage;
+                case PvpWeapon.SonicThumper: return PvpRules.SonicThumperDamage;
+                case PvpWeapon.PrismBeam: return PvpRules.PrismBeamDamage;
+                default: return PvpRules.GravityDamage;
+            }
+        }
     }
 }

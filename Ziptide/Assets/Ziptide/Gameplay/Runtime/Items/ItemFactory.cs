@@ -28,6 +28,8 @@ namespace Ziptide.Gameplay
                 built = CreateTaserDartGun(taserDef, position);
             else if (def is GravityGunDefinition gravDef)
                 built = CreateGravityGun(gravDef, position);
+            else if (def is ArenaWeaponDefinition arenaDef)
+                built = CreateArenaWeapon(arenaDef, position);
             else
                 built = CreateGenericItem(def, position);
 
@@ -272,6 +274,77 @@ namespace Ziptide.Gameplay
                 rb.isKinematic = false;
                 rb.useGravity = true;
             });
+        }
+
+        /// <summary>The A4 arsenal: one shared gun shell, the kind picks the runtime. Distinct default
+        /// silhouettes/colors so each reads at a glance (green net-lobber / amber mallet / magenta prism).</summary>
+        private static GameObject CreateArenaWeapon(ArenaWeaponDefinition def, Vector3 position)
+        {
+            Vector3 scale; Color color; Vector3 grip; Vector3 muzzle;
+            switch (def.kind)
+            {
+                case ArenaWeaponKind.SonicThumper:
+                    scale = new Vector3(0.09f, 0.09f, 0.34f);        // stubby mallet
+                    color = new Color(1f, 0.62f, 0.25f);
+                    grip = new Vector3(0f, -0.01f, -0.12f);
+                    muzzle = new Vector3(0f, 0f, 0.17f);
+                    break;
+                case ArenaWeaponKind.PrismBeam:
+                    scale = new Vector3(0.06f, 0.08f, 0.34f);        // long prism rifle
+                    color = new Color(0.85f, 0.35f, 0.9f);
+                    grip = new Vector3(0f, -0.02f, -0.10f);
+                    muzzle = new Vector3(0f, 0f, 0.18f);
+                    break;
+                default: // StaticNet
+                    scale = new Vector3(0.09f, 0.06f, 0.24f);        // wide-mouth lobber
+                    color = new Color(0.3f, 0.85f, 0.5f);
+                    grip = new Vector3(0f, -0.01f, -0.07f);
+                    muzzle = new Vector3(0f, 0.01f, 0.13f);
+                    break;
+            }
+
+            var go = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            go.name = def.itemId;
+            go.transform.position = position;
+            go.transform.localScale = Vec(def.visualScale, scale);
+            ApplyURPColor(go, Col(def.visualColor, color));
+
+            var rb = go.AddComponent<Rigidbody>();
+            rb.mass = def.mass > 0 ? def.mass : 0.45f;
+            rb.useGravity = true;
+            rb.isKinematic = false;
+            rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+            rb.interpolation = RigidbodyInterpolation.Interpolate;
+
+            var grab = go.AddComponent<XRGrabInteractable>();
+            grab.movementType = XRBaseInteractable.MovementType.VelocityTracking;
+            grab.useDynamicAttach = false;
+            grab.attachEaseInTime = 0f;
+            grab.trackPosition = true;
+            grab.trackRotation = true;
+            grab.retainTransformParent = false;
+
+            var gripGo = new GameObject("Grip");
+            gripGo.transform.SetParent(go.transform, false);
+            gripGo.transform.localPosition = Vec(def.gripLocalPos, grip);
+            grab.attachTransform = gripGo.transform;
+
+            var itemRt = go.AddComponent<ItemRuntime>();
+            itemRt.Init(def);
+
+            var muzzleGo = new GameObject("Muzzle");
+            muzzleGo.transform.SetParent(go.transform, false);
+            muzzleGo.transform.localPosition = Vec(def.muzzleLocalPos, muzzle);
+
+            switch (def.kind)
+            {
+                case ArenaWeaponKind.SonicThumper: go.AddComponent<SonicThumperRuntime>(); break;
+                case ArenaWeaponKind.PrismBeam: go.AddComponent<PrismBeamRuntime>(); break;
+                default: go.AddComponent<StaticNetGunRuntime>(); break;
+            }
+
+            RestorePhysicsOnRelease(go, grab);
+            return go;
         }
 
         private static GameObject CreateGenericItem(ItemDefinition def, Vector3 position)

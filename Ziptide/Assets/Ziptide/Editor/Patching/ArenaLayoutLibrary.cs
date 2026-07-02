@@ -72,6 +72,7 @@ namespace Ziptide.Editor.Patching
             Ways(a, G(-15, -15), G(15, -15), G(18, 0), G(15, 15), G(-15, 15), G(-18, 0), V(0, 1.6f, 0), G(0, -16));
             CoverPts(a, G(-10, -9.8f), G(-10, -6.2f), G(10, 9.8f), G(10, 6.2f), G(-12, 7.8f), G(12, -7.8f), G(-4, 15.8f), G(4, -15.8f));
             Pad(a, "taser_dart_gun", G(-1, -16)); Pad(a, "gravity_gun", G(1, -16)); Pad(a, "pistol", V(0, 2.1f, 0));
+            Pad(a, "static_net", G(18, 0)); // A4: net the hill approaches from the east flank
             Zone(a, "hill", V(0, 1.6f, 0), 4f);
             return a;
         }
@@ -102,6 +103,7 @@ namespace Ziptide.Editor.Patching
             CoverPts(a, G(-5, -15.8f), G(-5, -12.2f), G(5, -11.8f), G(5, -8.2f), G(-5, -5.8f), G(5, -1.8f), G(-5, 4.2f), G(5, 10.2f), G(0, 16.2f), G(0, -21.8f));
             Pad(a, "taser_dart_gun", G(-1, -23)); Pad(a, "gravity_gun", G(1, -23));
             Pad(a, "pistol", V(-13, 3.4f, 0)); Pad(a, "pistol", V(13, 3.4f, 0));
+            Pad(a, "sonic_thumper", G(0, -2)); // A4: mid-alley, between the two breakable walls (synergy)
             Zone(a, "midalley", V(0, 0, 1), 3.5f);
             return a;
         }
@@ -132,6 +134,7 @@ namespace Ziptide.Editor.Patching
             CoverPts(a, G(-15, -7.4f), G(-9, 7.4f), G(-3, -7.4f), G(3, 7.4f), G(9, -7.4f), G(15, 7.4f), G(1.2f, 0), G(-1.2f, 0));
             Pad(a, "taser_dart_gun", G(-25, -12)); Pad(a, "gravity_gun", G(-27, -12));
             Pad(a, "pistol", G(0, -14)); Pad(a, "pistol", G(0, 14));
+            Pad(a, "prism_beam", G(-6, 0)); // A4: marksman country earns the lane weapon
             Zone(a, "center", V(0, 0, 0), 4f);
             return a;
         }
@@ -168,6 +171,7 @@ namespace Ziptide.Editor.Patching
             Ways(a, V(-12, 1.8f, -12), V(12, 1.8f, -12), V(12, 1.8f, 12), V(-12, 1.8f, 12), V(0, 1.8f, -12), V(0, 1.8f, 12), V(-12, 1.8f, 0), V(12, 1.8f, 0));
             CoverPts(a, V(-10.8f, 1.4f, -9), V(-7.2f, 1.4f, -9), V(10.8f, 1.4f, 9), V(7.2f, 1.4f, 9), V(10.8f, 1.4f, -9), V(-10.8f, 1.4f, 9));
             Pad(a, "taser_dart_gun", V(-13, 1.4f, -13)); Pad(a, "gravity_gun", V(-11, 1.4f, -13)); Pad(a, "pistol", V(0, 1.4f, 0));
+            Pad(a, "static_net", V(0, 1.4f, 12)); // A4: net the north bridge — slow the flood-dodgers
             Zone(a, "center_ford", V(0, 0.6f, 0), 3.5f);
             return a;
         }
@@ -203,6 +207,7 @@ namespace Ziptide.Editor.Patching
             Ways(a, V(0, 2.1f, -18), V(0, 2.2f, 0), V(0, 2.1f, 18), V(-18, 2.1f, 0), V(18, 2.1f, 0), V(8, 2.1f, 20), V(-8, 2.1f, -20), V(6, 0.3f, -23));
             CoverPts(a, V(-2.4f, 2.2f, 4.2f), V(2.4f, 2.2f, -4.2f), V(0, 2.1f, 17.2f), V(0, 2.1f, -17.2f), V(-6, 2.1f, 0), V(6, 2.1f, 0));
             Pad(a, "taser_dart_gun", V(5, 0.3f, -22)); Pad(a, "gravity_gun", V(7, 0.3f, -22)); Pad(a, "pistol", V(0, 2.4f, 0));
+            Pad(a, "prism_beam", V(6, 2.1f, 20)); // A4: deep on the bot's ring — a risky prize (nightmare arena)
             Zone(a, "hub", V(0, 2, 0), 3.5f);
             return a;
         }

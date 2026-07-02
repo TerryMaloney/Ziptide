@@ -57,6 +57,8 @@ namespace Ziptide.Build
             // PvP arenas: seed missing layout assets (create-only), then ensure their scenes ship.
             try { Ziptide.Editor.Patching.ArenaLayoutLibrary.EnsureAllAuthored(); }
             catch (Exception ex) { Debug.LogWarning("[Ziptide] Arena layout library warning: " + ex.Message); }
+            try { Ziptide.Editor.Patching.ArenaWeaponAuthor.EnsureAllAuthored(); }
+            catch (Exception ex) { Debug.LogWarning("[Ziptide] Arena weapon author warning: " + ex.Message); }
             try { Ziptide.Editor.Patching.ScenePatcherArena.EnsureAllInBuildSettings(); }
             catch (Exception ex) { Debug.LogWarning("[Ziptide] Arena build-settings ensure warning: " + ex.Message); }
 

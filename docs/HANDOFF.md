@@ -50,8 +50,16 @@ online is a 20-minute doc he can do today.**
   it compiles into Assembly-CSharp NEXT TO PUN2 (no Photon-asmdef surgery ever), fully inert behind
   `ZIPTIDE_PHOTON`. CI stays green with Photon absent by construction.
 - **Terry:** runbook **§2i** = the mode smoke list + the two-Quest homework pointer.
-- **Next:** CI + APK dispatch on this; then **A4 arsenal** → A4.5 Augments → A4.6 dual-wield →
-  A4.7 locator v2 (`design/ABILITIES_AND_ARSENAL.md`).
+- **⚔ SAME SESSION, A4 TOO — the arsenal shipped:** **Static Net** (lobbed slow-zone: player slowed
+  via StunReceiver, bots via a new `PvpBot.ApplySlow` hook) · **Sonic Thumper** (swing-shockwave:
+  damage + shove + one-swing wall breaks) · **Prism Beam** (hold-to-charge, growing guide-line
+  telegraph = the counter, heavy lane hit) — all as `ArenaWeaponDefinition` assets (create-only
+  `ArenaWeaponAuthor` → Resources/Items, build-hooked) through a shared ItemFactory shell; damage
+  table in `PvpRules` (1/2/3, tested non-lethal-canon); **pads are timed respawners now**
+  (`WeaponPadRuntime` — map control is real); one role-fit pad added per arena; **Gun Game runs the
+  full 6-rung ladder**. Deferred: bot weapon prefs (bots keep their bolts until A5/feel notes).
+- **Next:** CI + APK dispatch on this; then **A4.5 Augments** → A4.6 dual-wield → A4.7 locator v2
+  (`design/ABILITIES_AND_ARSENAL.md`).
 - **Commits:** this push on `terry-local-wip`.
 
 ### 2026-07-02 (jjj) — operator (Fable 5, MP track): 📐 PRIORITIES + the abilities/dual-wield/locator design + two-Quest online pulled forward — CLAIM on A3-scene

@@ -198,22 +198,18 @@ namespace Ziptide.Editor.Patching
             pb.difficulty = def.botDifficulty;
         }
 
-        /// <summary>A2: spawn each pad's weapon once (visible base slab marks the spot). A4 upgrades
-        /// pads into timed respawners — the data (respawnSeconds) is already here.</summary>
+        /// <summary>A4: pads are timed respawners — the patcher bakes the slab + a WeaponPadRuntime;
+        /// all item creation happens at runtime (round restarts and respawns share one path).</summary>
         private static void SpawnWeaponPads(Transform root, ArenaLayoutDefinition def)
         {
             foreach (var pad in def.weaponPads)
             {
                 if (pad == null || string.IsNullOrEmpty(pad.itemId)) continue;
-                Cube(root, "Pad_" + pad.itemId, pad.position + new Vector3(0f, 0.05f, 0f),
+                var slab = Cube(root, "Pad_" + pad.itemId, pad.position + new Vector3(0f, 0.05f, 0f),
                     new Vector3(0.8f, 0.1f, 0.8f), new Color(0.2f, 0.6f, 0.7f));
-                var item = ItemFactory.Create(pad.itemId, pad.position + new Vector3(0f, 1.0f, 0f));
-                if (item != null)
-                {
-                    item.transform.SetParent(root, true);
-                    if (pad.itemId == "gravity_gun" && item.GetComponent<PvpComfortHop>() == null)
-                        item.AddComponent<PvpComfortHop>();
-                }
+                var pr = slab.AddComponent<WeaponPadRuntime>();
+                pr.itemId = pad.itemId;
+                pr.respawnSeconds = pad.respawnSeconds;
             }
         }
 

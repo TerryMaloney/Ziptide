@@ -74,6 +74,17 @@ namespace Ziptide.Gameplay
         [HideInInspector] public bool hasObjective;
         [HideInInspector] public Vector3 objectivePoint;
 
+        // Slow field (A4 Static Net): movement multiplier while inside a SlowZoneRuntime.
+        private float _slowUntil;
+        private float _slowFactor = 1f;
+
+        /// <summary>Slow the bot's movement (re-applied while inside a slow zone; expires on its own).</summary>
+        public void ApplySlow(float seconds, float factor)
+        {
+            _slowUntil = Mathf.Max(_slowUntil, Time.time + seconds);
+            _slowFactor = Mathf.Clamp(factor, 0.1f, 1f);
+        }
+
         // Nav (baked by ScenePatcherPvP/ScenePatcherArena under __PVP_BOTNAV)
         private readonly List<Vector3> _waypoints = new List<Vector3>();
         private readonly List<Vector3> _coverPoints = new List<Vector3>();
@@ -198,7 +209,8 @@ namespace Ziptide.Gameplay
                     step += Vector3.Cross(Vector3.up, toPlayer.normalized) * (0.6f * d.StrafeSign);
                 }
             }
-            Vector3 next = transform.position + step * moveSpeed * dt;
+            float speedScale = Time.time < _slowUntil ? _slowFactor : 1f;
+            Vector3 next = transform.position + step * moveSpeed * speedScale * dt;
             transform.position = CollideMove(transform.position, next);
 
             Vector3 face = ToV3(d.FaceTarget) - transform.position; face.y = 0f;

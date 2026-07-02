@@ -190,6 +190,12 @@ row on the right now has a door to EVERY arena — that's your arena select).
   (3 banks wins). Dying drops it back to mid. Bots shadow the orb — and hunt YOU when you carry.
 - [ ] **HORDE**: waves of bots + creatures (swarm bugs, tendrils, wardens), one more every wave,
   breather between waves. Tell me which wave you die on per difficulty — that's the tuning data.
+- [ ] **THE NEW GUNS (A4)** — each arena grew one new pad, and pads now RESPAWN their weapon
+  (~20s after you take one): **Static Net** (green lobber — arc a net, it opens a crackling slow
+  field; try netting the bot mid-chase) · **Sonic Thumper** (amber mallet — SWING it hard near the
+  bot or a breakable wall; one swing cracks the wall) · **Prism Beam** (magenta rifle — HOLD the
+  trigger; a thin guide line grows to full range, then a heavy beam fires; release early to cancel).
+  Gun Game now runs all six weapons. Feel notes per weapon = the tuning data.
 - [ ] **🏠 HOMEWORK (do anytime, ~20 min, no code needed): `docs/TWO_QUEST_SETUP.md` steps 1–4** —
   Photon account + PUN2 import + App ID + the `Ziptide → Net → Enable Photon` menu click. That's
   YOUR half of two-headset PvP; the operator's half (A6) plugs straight into it.

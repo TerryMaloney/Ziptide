@@ -21,9 +21,6 @@ namespace Ziptide.Gameplay
         [Tooltip("Seconds of breather between cleared Horde waves.")]
         public float hordeWaveDelay = 4f;
 
-        // TODO(A4): replace with GunGameState.DefaultLadder once static_net/sonic_thumper/prism_beam
-        // exist in ItemFactory — until then the ladder is only what the factory can build TODAY.
-        private static readonly string[] LadderNow = { "taser_dart_gun", "pistol", "gravity_gun" };
 
         private PvpMatchDirector _dir;
         private PvpPlayer _player;
@@ -126,7 +123,7 @@ namespace Ziptide.Gameplay
             switch (_mode)
             {
                 case PvpModeKind.GunGame:
-                    _gunGame = new GunGameState(combatants, LadderNow);
+                    _gunGame = new GunGameState(combatants); // A4: the full six-weapon DefaultLadder
                     RackPlayerWeapon(0);
                     break;
                 case PvpModeKind.KingOfTheHill:

@@ -31,7 +31,7 @@ story worlds as the map).
 | A2 | **Arena Factory BUILT**: `ArenaLayoutDefinition` (geometry/nav/spawns/objectiveZones/weaponPads/hazards/sky + Validate) + `ScenePatcherArena` (generic shell: data geometry, per-arena sky via ThemeAuthor overloads, Way_/Cover_P nav, difficulty-tagged bot, pads, breakwalls, hazards via HazardZoneRuntime, pack+exit, Build Settings; build-hooked like generated worlds) + `ArenaLayoutLibrary` (**5 launch arenas**: Cistern dark hill-fight · Chitinwall catwalk alleys · MirrorFlats marksman lanes (veteran) · Tidal islands w/ live flood mutator · Void Shell-gate bridges (nightmare)) + 7 `ArenaLibraryTests` (validate-clean, unique ids, real nav, armed+objectives, 3+ difficulty tiers, distinct skies, waypoints-in-bounds). Original PvP_Arena01 untouched. | ✅ this commit (CI pending) |
 | A3-core | **Mode engines (pure) BUILT**: `PvpMatch` generalized to N combatants (2–4) + teams (team score = summed members; default ctor stays 1v1 — zero consumer changes) + `EndByRule` · `Modes/PvpModes.cs`: **GunGameState** (6-weapon default ladder), **KothState** (sole-king accrual, contested=nobody, zone rotation), **FragmentRushState** (single carrier, drop-resets-to-mid, bank-to-win), **HordeState** (deterministic escalating waves of bots+creatures, capped for Quest perf, clear bonuses) + 11 tests | ✅ this commit (CI pending) |
 | A3-scene | **MODES ARE PLAYABLE**: `PvpModeDirector` (scene body for all four engines: GunGame racks the player's next ladder weapon · KotH ticks patcher-baked `__PVP_ZONES` hills with bots CONTESTING via the new objective-magnet · FragmentRush v1 you-carry-bots-hunt · Horde waves spawn bots + runtime creatures w/ death-polling per the PlayerIndex law) + `ArenaLobbyBoard` (mode × difficulty × bot-count tiles at every arena spawn; arena select = the travel station now doors to EVERY sibling arena) + attacker identity (`PvpHitSource` same-frame report from every weapon → N-way kill credit, 1v1 fallback intact) + `PvpMatchDirector` generalized (N combatants, kill/end/restart events) + HUD mode line + 5 new tests | ✅ this commit (CI pending) |
-| A4 | Arsenal: Static Net, Sonic Thumper, Prism Beam + pads + WeaponCharge wiring + bot weapon prefs | ⬜ |
+| A4 | **THE ARSENAL SHIPPED**: `ArenaWeaponDefinition` (kind→runtime via ItemFactory) + **Static Net** (lobbed arc → `SlowZoneRuntime`; slows player via StunReceiver + bots via new `PvpBot.ApplySlow`) + **Sonic Thumper** (swing-triggered shockwave: damage+shove+breaks walls, HammerTool idiom) + **Prism Beam** (hold-to-charge with growing guide-line telegraph → heavy lane beam, cancel-free) + `PvpRules` damage table (net 1 / thumper 2 / prism 3, tested: lethal-eventually, never one-shot) + **pads are timed respawners** (`WeaponPadRuntime`, runtime-spawned) + `ArenaWeaponAuthor` (create-only → Resources/Items, build-hooked) + one role-fit new pad per arena + Gun Game runs the FULL 6-rung DefaultLadder + 5 tests. *(Deferred: bot weapon prefs — bots keep bolts; prefs land with A5 stats or on Terry's feel notes.)* | ✅ this commit (CI pending) |
 | A4.5 | **Augments** (Terry 2026-07-02; spec `design/ABILITIES_AND_ARSENAL.md` §2): `AugmentDefinition` + pure `AugmentEffects` registry + slot/equip runtime (1 active + 1 passive) + the six launch augments + arena pads + Horde wave-clear reward. Story/Tidefront placements follow via the libraries. | ⬜ |
 | A4.6 | **Dual-wield** (§3): `DualWieldCoordinator` shared-`WeaponCharge`-pool (flexibility, same DPS ceiling), `twoHandedOnly` flag on heavy defs, Nightmare-bot cosmetic pairing, disabled in Gun Game | ⬜ |
 | A4.7 | **Locator v2** (§4): pure `LocatorState` extension first (afterglow window, tier params, tested) → gauntlet form + cylinder radar + ground-ring pulse scene work → tiers via ship S3 scanner slot. Gauntlet mesh is Picasso's (their P4+). | ⬜ |
@@ -45,12 +45,11 @@ story worlds as the map).
 | — | Close: HANDOFF, checklist, playbook rows per chunk, APK dispatch green | ⬜ |
 
 ## ▶ RESUMING? — current state & exact next action
-- **Current micro-step (2026-07-02, 3rd session):** A3-scene + A6-prep committed — **verify CI, then
-  dispatch an APK** (the patcher now bakes zones/board/all-arena doors into every arena scene).
-  After that: **A4 arsenal** (Static Net / Sonic Thumper / Prism Beam runtimes + pads → timed
-  respawners; then swap `PvpModeDirector.LadderNow` for `GunGameState.DefaultLadder` — the 3-weapon
-  interim ladder is marked with that exact TODO seam). Then A4.5 Augments per
-  `design/ABILITIES_AND_ARSENAL.md`.
+- **Current micro-step (2026-07-02, 3rd session):** A3-scene + A6-prep + **A4 arsenal** all committed —
+  **verify CI on the A4 push, then dispatch a fresh APK** (arena scenes re-bake with zones/board/
+  all-arena doors/new pads; ArenaWeaponAuthor seeds the three definitions at build). After that:
+  **A4.5 Augments** per `design/ABILITIES_AND_ARSENAL.md` §2 (AugmentDefinition + pure AugmentEffects
+  registry first — ⚙CI), then A4.6 dual-wield, A4.7 locator v2, A5 progression + A5.5 locker.
 - **A3-scene design notes (don't re-derive):** attacker identity = `PvpHitSource` static same-frame
   report (interface unchanged — CreatureRuntime is story-lane); bots contest objectives via
   `PvpBot.hasObjective/objectivePoint` (Patrol magnet only — combat states untouched); Fragment v1 =
