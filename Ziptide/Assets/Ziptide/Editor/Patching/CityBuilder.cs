@@ -395,7 +395,12 @@ namespace Ziptide.Editor.Patching
             rt.creatureId = creatureId;
             rt.respawnDelay = respawnDelay;
 
-            // Behavior by data: novel behavior ids get explicit cases; else the definition's archetype.
+            // Behavior by data: special ids get explicit cases; else the definition's archetype.
+            if (creatureId == "warden")
+            {
+                go.AddComponent<WardenBehavior>();
+                return;
+            }
             var def = AssetDatabase.LoadAssetAtPath<CreatureDefinition>(
                 "Assets/Ziptide/Resources/Enemies/" + creatureId + ".asset");
             var archetype = def != null ? def.archetype : CreatureArchetype.Swarmer;

@@ -19,7 +19,7 @@ collision-clean is LAW (CollideMove everywhere); no rig/PvP/XRI-sample edits.
 | 1 | Framework: `CreatureRuntime` (IShockable + **IPvpDamageable** — taser dart AND gravity gun hit creatures with ZERO weapon edits; non-lethal crumple disable; loot→profile; respawn) + `CreatureBehaviorBase` (shared CollideMove LAW, leash, touch-stun w/ cooldown, MakePart) + `CreatureZoneDef` + `CityBuilder.BuildCreatureZones`/`MakeCreature` (behavior attached by archetype at edit time) | ✅ this commit |
 | 2 | Archetypes: `SwarmerBehavior` (boid cluster; bodies GATHER TIGHT as the dart telegraph) + `BruiserBehavior` (windup paw-the-ground telegraph → straight line charge → wall-slam skips to vulnerable Recover; stun interrupts mid-charge) + pure `ChargeState` + 5 tests | ✅ this commit |
 | 3 | Archetypes: `WallCrawlerBehavior` (8-ray wall find, surface-stick + normal-align, ripple telegraph → drop-lunge, stun knocks it OFF the wall) + `FlyerBehavior` (figure-8 soar, dead-still hover telegraph w/ folded wings → head dive, pulls up at 1m, stun cancels to Climb) — factory switch complete for all 4 archetypes | ✅ this commit |
-| 4 | `WardenBehavior` — lawful enforcer (warn → pursue → disable, never ambush), escalates by `SignalState.Tier` (pure `WardenState` mapping + tests) | ⬜ |
+| 4 | `WardenBehavior` — the Shell's immune system: statue at tier 0 → WATCHES at tier 1 → WARNS when crowded at tier 2 (eye ramps red over the window) → PURSUES only if you stand ground, one lawful arrest-stun then disengages; backing off de-escalates; C6_WARDEN_ALLY = calm green. Pure `WardenState` + 6 tests. Factory: creatureId "warden" special-case | ✅ this commit |
 | 5 | Novel behaviors (existing-gear counters): **Witness-mite** (moves only unobserved — pure gaze test), **Light-grazer** (grows in dark, shrinks in light), **Tether-swarm** (shared pool, cut the tether), **Husk-molter** (decoy husk on stun) — as `CreatureBehavior` subclasses/variants; drop to 2 if budget demands (document) | ⬜ |
 | 6 | Author: W002 light-grazers in the dark cistern · W005 canopy swarmers · W009 tether-swarm + wall-crawlers on the chitin wall · W012 a dormant Warden at the gate (Signal tier 2 there — it WATCHES) + creature data assets in `CreatureVariantAuthor` | ⬜ |
 | 7 | Close: HANDOFF (ccc), runbook §2e smoke, checklist, **APK dispatch green** → ✅ stamp | ⬜ |
@@ -46,7 +46,8 @@ collision-clean is LAW (CollideMove everywhere); no rig/PvP/XRI-sample edits.
   shared-pool + cuttable tether · Husk-molter decoy-on-stun; drop to 2 if budget, document) →
   6 (author zones: W002 light_grazer, W005 swarm_bug canopy, W009 tether_swarm + tendril crawlers,
   W012 warden at the gate; add creature defs to `CreatureVariantAuthor`) → 7 close + APK.
-- **Branch:** `terry-local-wip`. CI-green head: `d13656a`; `99b2491` (docs) pending.
+- **LANE NOTE (Terry 2026-07-02): architect is working PvP/multiplayer IN PARALLEL — `Gameplay/Runtime/Pvp/`, `Multiplayer/`, `ScenePatcherPvP`, `Net/` are ARCHITECT'S. Don't touch; only CONSUME IPvpDamageable; pull --rebase before every push.**
+- **Branch:** `terry-local-wip`. CI-green through task 1-2 (`6ccc989` #191 pending at last check).
 
 ## Working rules (unchanged)
 CI green per push; APK dispatch at close (`actions_run_trigger`, ci.yml, terry-local-wip). Creature
