@@ -124,7 +124,15 @@ namespace Ziptide.Multiplayer.Bots
                     d.MoveTarget = p.PatrolPoint;
                     d.FaceTarget = p.PatrolPoint;
                     if (reacted) Enter(BotState.Engage, p.Now);
-                    else if (p.HeardFire) { _lastKnownPos = p.HeardFireAt; _hasLkp = true; Enter(BotState.Hunt, p.Now); }
+                    else if (p.HeardFire)
+                    {
+                        _lastKnownPos = p.HeardFireAt; _hasLkp = true;
+                        Enter(BotState.Hunt, p.Now);
+                        // React THIS tick — the decision that hears the shot already moves on it
+                        // (BotBrainTests.HeardFire_PullsPatrolIntoHunt).
+                        d.MoveTarget = p.HeardFireAt;
+                        d.FaceTarget = p.HeardFireAt;
+                    }
                     break;
 
                 case BotState.Hunt:
