@@ -77,6 +77,27 @@ namespace Ziptide.Editor.Patching
         {
             switch (sceneName)
             {
+                case "W000_DriftIn":
+                    return new Spec
+                    {
+                        jobId = "w000_onboard",
+                        title = "Cast Off",
+                        // Ships today per the WORLD_DATA record: no payout, TUTORIAL_COMPLETE on finish.
+                        completionFlag = ZiptideFlags.TUTORIAL_COMPLETE,
+                        flagsRequired = new string[0], // the entry world
+                        flagsGranted = new[] { ZiptideFlags.TUTORIAL_COMPLETE, ZiptideFlags.FIRST_TRAVEL,
+                                               ZiptideFlags.C1_W001_RILL_BOOT },
+                    }
+                    // The record's helm→coupler→gate route, teaching each verb the game now HAS:
+                    .Go("helm", new Vector3(0, 0.1f, 20))                       // move/look — walk to your ship
+                    .Collect("guild_manifest", 1)                               // grab — take your papers
+                    .Pickup("guild_manifest", new Vector3(-4, 0.1f, 2), label: "guild manifest")
+                    .Machine("gate_coupler", new Vector3(6, 0.1f, 14), "coupler_cell",
+                             new Vector3(-3, 0.1f, 16), "gate coupler")         // repair — prime the coupler
+                    .Repair("gate_coupler")
+                    .Reward("credits", 0);
+                    // Then RILL points you at the ship: boarding + departing IS the travel lesson.
+
                 case "W002_DryCistern":
                     return new Spec
                     {

@@ -80,6 +80,8 @@ namespace Ziptide.Editor.Patching
                  "I understand the Pattern now. It was never the enemy. It was the first of us.");
 
             // ── Chapter 1–2 world-entry lines (register: Dormant = terse; Stirring = questions) ─────
+            Enter("enter_w000", "W000_DriftIn",
+                  "...there you are. I have been awake for six minutes and I already have opinions. The coupler is down; your papers are by the bunk. Shall we?");
             Enter("enter_w002", "W002_DryCistern", "Cistern registry says these pumps died forty years ago. Contract says otherwise.");
             Enter("enter_w003", "W003_GlassShelf", "Wind advisory. The baffles are down. That is the whole briefing.");
             Enter("enter_w004", "W004_BroadcastTomb", "The broadcast spine is dark. Something here was transmitting long before the Guild arrived.");

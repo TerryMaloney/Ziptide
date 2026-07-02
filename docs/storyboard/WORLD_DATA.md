@@ -88,7 +88,14 @@ These twelve are serialized in full as the reference pattern. Chapters 3–12 fo
 (seeds already in `CHAPTER_3…8-12.md` + `DLC.md`); serialize them on demand when each world is built — no
 value in front-loading 68 records that will drift before they're touched.
 
-> **BUILD STATUS (modularity sprint + M1):** W002–W012 are **implemented from these records** via
+> **BUILD STATUS (through M4):** **W000 + W002–W012 are implemented from these records.** W000 "The
+> Drift In" is LIVE (built via the factory; the ship's berth is in the hangar and casting off — board →
+> helm → depart — is the travel lesson; the coupler is a hands-on REPAIR, teaching M2's verb; deviation
+> from the record: the third Go(gate) step became board-the-ship, which is truer to the beat). The
+> gate-ring viewport awe shot is the ART track's SkyVista for this scene. W002's gate deliberately stays
+> `toxiccity_complete` (unchanged) so the existing chain keeps working; making W000 the BOOT destination
+> is a one-line `BootLoader` change in a ⚠ report-only zone — Terry's call after he plays it.
+> Older status: W002–W012 are **implemented from these records** via
 > `WorldLayoutLibrary` + `WorldJobLibrary` (Editor) — auto-built every APK build. Deviations from the
 > records, all deliberate: (1) **W002's gate is `toxiccity_complete`**, not `TUTORIAL_COMPLETE` — W000 is
 > parked (needs the ship system), so the chain must be playable today; (2) ~~Collect/Deliver steps

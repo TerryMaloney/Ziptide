@@ -164,6 +164,17 @@ whether the skies make you stop:
 - [ ] ToxicCity itself still shows the OLD sky (its patcher has no theme seam yet — queued with the
   story lane; its canon vista is authored and waiting).
 
+## 2g. NEW — W000 "The Drift In" (the game's opening; all auto)
+- [ ] Warp to **Your Ship** (W000) via Y+B: you wake in a tight warm-dark **bunk bay** — RILL greets you
+  ("...there you are. I have been awake for six minutes and I already have opinions.").
+- [ ] The **Cast Off** contract at the kiosk: walk to the **helm** marker in the berth bay → grab your
+  **guild manifest** by the bunk → repair the **gate coupler** (panel → coupler cell → power) →
+  `TUTORIAL_COMPLETE` grants.
+- [ ] Your ship is berthed RIGHT THERE — board it, hit QUARTERS if you like, then depart to Toxic City:
+  casting off is the travel lesson.
+- [ ] **Judgment call for you:** should W000 become the actual BOOT destination (replacing the Sandbox
+  dev-bypass)? One-line BootLoader change in a locked zone — say the word after you play it.
+
 ## 3. The two open judgment calls (yours)
 - **"Can you run in Toxic City?"** — was it the input bug (now fixed) or actual walls/narrow streets? If
   still wall-blocked, say so and the streets get widened.

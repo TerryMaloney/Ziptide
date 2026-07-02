@@ -32,6 +32,7 @@ namespace Ziptide.Editor.Patching
         public static int EnsureAllAuthored()
         {
             int made = 0;
+            made += Ensure("W000_DriftIn", BuildW000DriftIn);
             made += Ensure("W002_DryCistern", BuildW002DryCistern);
             made += Ensure("W003_GlassShelf", BuildW003GlassShelf);
             made += Ensure("W004_BroadcastTomb", BuildW004BroadcastTomb);
@@ -56,6 +57,42 @@ namespace Ziptide.Editor.Patching
             AssetDatabase.CreateAsset(kit, path);
             Debug.Log("[Ziptide] WorldLayoutLibrary authored " + path);
             return 1;
+        }
+
+        // ── W000 — The Drift In (YOUR SHIP: interior tutorial — wake, learn the verbs, cast off) ──
+        private static CityLayoutDefinition BuildW000DriftIn()
+        {
+            var kit = NewKit("w000_drift_in", "W000_DriftIn", "Your Ship", seed: 2000);
+
+            // Ship-interior feel: near-black enclosed sky, warm cabin fog, no planet/skyline.
+            // (The record's "viewport on the gate-ring blooming open" awe shot is the ART TRACK's —
+            // Picasso's SkyVista for this scene replaces the void when authored; flagged in HANDOFF.)
+            kit.skyHorizonColor = new Color(0.04f, 0.04f, 0.06f);
+            kit.skyTopColor = new Color(0.07f, 0.07f, 0.10f);
+            kit.themeGroundTint = new Color(0.20f, 0.19f, 0.18f);
+            kit.planetVisible = false;
+            kit.fogEnabled = true; kit.fogColor = new Color(0.05f, 0.04f, 0.03f); kit.fogDensity = 0.05f;
+            kit.skylineCount = 0;
+            kit.palette.concrete = new Color(0.24f, 0.23f, 0.22f);
+            kit.palette.building1 = new Color(0.20f, 0.20f, 0.21f);
+            kit.palette.building2 = new Color(0.17f, 0.17f, 0.19f);
+            kit.palette.accent = new Color(0.85f, 0.70f, 0.30f); // the cabin gold (matches the Quarters trim)
+
+            // A tight two-room hangar: the bunk bay you wake in, and the berth bay with your ship.
+            District(kit, "BunkBay", new Vector3(0, 0, 0), 14, 12, 0,
+                landmark: ("Bunk", new Vector3(-4, 0, -3), 2.5f, 3f));
+            District(kit, "BerthBay", new Vector3(0, 0, 18), 20, 18, 0,
+                landmark: ("GantryCrane", new Vector3(7, 0, 5), 10f, 2f));
+            Connect(kit, "BunkBay", "BerthBay", ConnectionKind.GroundStreet, 5);
+
+            // No combat, no hazards — the tutorial's only pressure is curiosity.
+            kit.spawnDistrictId = "BunkBay";
+            kit.spawnStarterWeapons = true; // the taser on the rack = the grab lesson
+            // YOUR ship, berthed right here — casting off IS the tutorial's final beat.
+            kit.shipyard.enabled = true;
+            kit.shipyard.berthCenter = new Vector3(0, 0, 20);
+            kit.shipyard.shipRotationY = 0f;
+            return kit;
         }
 
         // ── W002 — The Dry Cistern (underground: dark chambers, one light shaft, loop) ─────────────
