@@ -34,13 +34,13 @@ moons + zenith Pattern shimmer; RILL's cyan seeded in early nebulae). Attaches a
 ## Task board
 | # | Task | Status |
 |---|------|--------|
-| 0 | Claim: this sprint file + HANDOFF entry + GAME_PLAN/CHECKLIST notes | ✅ this commit |
-| 1 | `SkyVistaDefinition` (SO: gradient/stars/nebula/≤3 celestial bodies/shell grid/shimmer/light+ambient+fog) + `SkyVistaTexture` (pure Color32 bake: value-noise stars+nebula, hex-grid layer, 4×4 Bayer dither) + EditMode tests (determinism, dither anti-banding, hex no-op at 0, validation) + Tests-asmdef `Ziptide.Visuals` ref ⚠ | ⬜ |
-| 2 | `SkyVistaRig` (runtime: 1024×512 composited dome + 0–3 body spheres, URP/Unlit, no shadows; applies light/ambient/fog after theme base pass) + `VisualThemeProfile.skyVista` field + `SkyPlanetRig` delegation (null = legacy path, zero visual change) | ⬜ |
-| 3 | `SkyVistaLibrary` (create-only, WorldLayoutLibrary pattern): 18 canon vistas as data (W001–W012 progression + ToxicCity + 5 arenas) + `Specs()` + progression tests (planet growth monotonic, shell grid 0→1, W003 shimmer, RILL cyan present, unique ids) | ⬜ |
-| 4 | `SkyVistaAuthor.AssignAll()` (sets `skyVista` on each `Content/Worlds/Themes/<Scene>_Theme.asset` — worlds AND arenas — after the build's per-scene loop) + BuildAndroid hook ⚠ | ⬜ |
-| 5 | `SkyVistaAuditRules` (`SKY_VISTA_MISSING`/`SKY_VISTA_INVALID` blockers, >1 directional light, >3 bodies, identical-adjacent-sky warning) + WorldAuditRunner call line ⚠ + `HOW_TO_CHANGE_ANYTHING.md` sky-vista rows | ⬜ |
-| 6 | Close: APK dispatch green · runbook 🎮 items (72fps with vistas, canon progression W001→W012 reads, arena skies distinct) · HANDOFF wrap | ⬜ |
+| 0 | Claim: this sprint file + HANDOFF entry + GAME_PLAN/CHECKLIST notes | ✅ `ce051fd` (CI green) |
+| 1 | `SkyVistaDefinition` (SO: gradient/stars/nebula/≤3 celestial bodies/shell grid/shimmer/light+ambient+fog) + `SkyVistaTexture` (pure Color32 bake: value-noise stars+nebula, hex-grid layer, 4×4 Bayer dither) + 14 EditMode tests + Tests-asmdef `Ziptide.Visuals` ref ⚠ | ✅ `0166d8a` (CI green) |
+| 2 | `SkyVistaRig` (runtime: 1024×512 composited dome + 0–3 body spheres, URP/Unlit, no shadows; scene tie-ins after theme base pass) + `VisualThemeProfile.skyVista` field + `SkyPlanetRig` delegation (null = legacy path, zero visual change) | ✅ `c009795` (CI green) |
+| 3 | `SkyVistaLibrary` (create-only, WorldLayoutLibrary pattern): 17 canon vistas as data (ToxicCity reserved + W002–W012 + 5 arenas) + `Specs()` + 8 progression tests (grid 0→1 monotonic, giant growth, W003 moons+shimmer, RILL cyan, arena distinctness) | ✅ `5c63eae` |
+| 4 | `SkyVistaAuthor.AssignAll()` (sets `skyVista` on each `Content/Worlds/Themes/<Scene>_Theme.asset` — worlds AND arenas — after the build's per-scene loop) + BuildAndroid hook ⚠ | ✅ `dc84f82` |
+| 5 | `SkyVistaAuditRules` (`SKY_VISTA_MISSING`/`SKY_VISTA_INVALID` blockers; `SKY_VISTA_UNWIRED`/light-count warnings) + WorldAuditRunner call line ⚠ + `HOW_TO_CHANGE_ANYTHING.md` sky rows | ✅ `48ee4b4` |
+| 6 | Close: APK dispatch green · runbook §2h 🎮 items (canon progression reads, 72fps, banding check) · HANDOFF wrap | 🟡 in progress |
 
 ## Next sprints (order per Terry)
 - **ART-2 — W001 Toxic Venice full pass:** SurfaceSet/WorldArtKit registries + ArtBuildPlan pipeline +
@@ -51,10 +51,16 @@ moons + zenith Pattern shimmer; RILL's cyan seeded in early nebulae). Attaches a
   creature files), weapon models via Tripo, Bloom/Pattern VFX language (`ALIEN_ORIGAMI_SURFACE_BRIEF.md`).
 
 ## ▶ RESUMING? — current state & exact next action
-- **Current:** track claimed; task 1 is next (pure data+texture core, no consumers — safe first commit).
-- **Next action:** author `Visuals/Runtime/SkyVistas/{SkyVistaDefinition,SkyVistaTexture}.cs` (+ .metas,
-  folder meta), add `Ziptide.Visuals` to the Tests asmdef, write `Tests/EditMode/SkyVistaTests.cs`
-  (texture/validation portion). Push; confirm CI green.
+- **Current:** ART-1 tasks 0–5 pushed (`ce051fd`…`48ee4b4`); tests/CI green through `c009795`,
+  later runs pending at last check. APK dispatch is the remaining gate.
+- **Next action:** confirm CI green on `48ee4b4`; dispatch the APK workflow (`ci.yml`
+  workflow_dispatch on `terry-local-wip`); verify `ziptide-apk` artifact + audit-clean (the new
+  `SKY_VISTA_*` rules run inside it); then Terry's §2h runbook pass. After that → ART-2 (W001
+  Toxic Venice art kit; brief in `project_art_plan/W001_TOXIC_VENICE_ART_BRIEF.md`).
+- **Story-lane request (queued, not urgent):** ToxicCity's patcher doesn't author a theme, so its
+  waiting vista can't attach — one `ThemeAuthor.EnsureThemeAsset` call inside `ScenePatcherToxicCity`
+  (story-owned file) wires it. Coordinate via HANDOFF when convenient; W001 gets its full art pass in
+  ART-2 anyway.
 - **Branch:** `terry-local-wip`, same rules as the other tracks (pull --rebase, small CI-green commits,
   .meta per new file, TextMesh only, no scene YAML).
 

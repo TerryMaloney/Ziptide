@@ -140,6 +140,27 @@ The next build carries the multiplayer program's first wave. Warp via Y+B:
   sliders for aim error, reaction time, dodge chance, cover discipline. Feel notes on which tier
   feels "fun-hard" vs "unfair" drive the tuning.
 
+## 2h. NEW — ART track: SKYSCAPES EVERYWHERE (all auto; Picasso's first wave)
+The next build gives **every generated world + all five arenas a movie-grade sky** (one baked dome +
+up to 3 celestial bodies; ~zero perf cost — ≤4 draw calls). Look UP in each world; this pass is about
+whether the skies make you stop:
+- [ ] **The canon progression reads** (this is story, not decoration): W005 — the banded giant is
+  CLOSER than you remember from the city; W007 Sable Station — raw space, dense stars, the giant is
+  HUGE and there's a **faint hexagonal grid** if you look for it; W009 Chitinwall — amber/violet
+  aurora sky, the grid is now clearly banding the planet; **W012 — the full Shell wall + starfield.
+  This is the "oh." moment of Chapter 2 — tell me if it lands.**
+- [ ] **W003 Glass Shelf**: TWO moons + a faint geometric shimmer straight up at the zenith (the
+  first Pattern seed — subtle by design; can you find it without knowing where to look?).
+- [ ] **W002/W004/W011** (the underground/sealed worlds) stay oppressive-dark — no stars leaking in.
+- [ ] **Arenas**: five distinct skies; **The Shell Gate arena now fights under a BLACK HOLE** with an
+  accretion ring + the full grid.
+- [ ] **72 FPS check with skies on** (the dome bakes once at world entry during the travel
+  transition — flag any hitch on entering a world).
+- [ ] **VR banding check**: the sky gradients are dithered — flag any visible color-stepping bands,
+  especially in the dark worlds.
+- [ ] ToxicCity itself still shows the OLD sky (its patcher has no theme seam yet — queued with the
+  story lane; its canon vista is authored and waiting).
+
 ## 3. The two open judgment calls (yours)
 - **"Can you run in Toxic City?"** — was it the input bug (now fixed) or actual walls/narrow streets? If
   still wall-blocked, say so and the streets get widened.
