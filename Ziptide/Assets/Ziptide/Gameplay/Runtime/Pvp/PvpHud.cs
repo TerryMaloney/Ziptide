@@ -44,11 +44,20 @@ namespace Ziptide.Gameplay
             _text.transform.rotation = Quaternion.LookRotation(_text.transform.position - _cam.position);
 
             var dir = PvpMatchDirector.Instance;
-            int you = dir != null ? dir.Score(0) : 0;
-            int opp = dir != null ? dir.Score(1) : 0;
             int hp = _player != null && _player.Combatant != null ? _player.Combatant.Health : PvpRules.MaxHealth;
 
-            _text.text = "HP " + hp + "/" + PvpRules.MaxHealth + "    You " + you + " - " + opp + " Bot"
+            // "You 3 - 1 Bots" sums every opponent so N-way FFA stays one readable number.
+            int you = dir != null ? dir.Score(0) : 0;
+            int opp = 0;
+            if (dir != null)
+                for (int i = 1; i < dir.PlayerCount; i++) opp += dir.Score(i);
+
+            string modeLine = PvpModeDirector.Instance != null && PvpModeDirector.Instance.StatusLine.Length > 0
+                ? "\n" + PvpModeDirector.Instance.StatusLine : "";
+
+            _text.text = "HP " + hp + "/" + PvpRules.MaxHealth + "    You " + you + " - " + opp
+                + (dir != null && dir.PlayerCount > 2 ? " Bots" : " Bot")
+                + modeLine
                 + (dir != null && dir.Phase == PvpPhase.Ended
                     ? "\nWINNER: " + (dir.Match.WinnerIndex == 0 ? "YOU" : "BOT") : "");
         }

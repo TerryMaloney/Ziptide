@@ -8,8 +8,9 @@ namespace Ziptide.Gameplay
     /// </summary>
     public static class PvpRoundLogic
     {
-        /// <summary>In 1v1, whoever didn't die gets the kill.</summary>
-        public static int KillerOf(int killedIndex) => killedIndex == 1 ? 0 : 1;
+        /// <summary>Fallback inference when no weapon reported its firer: in 1v1 whoever didn't die gets
+        /// the kill; with more combatants a dead bot credits the player (bots don't fight each other).</summary>
+        public static int KillerOf(int killedIndex) => killedIndex == 0 ? 1 : 0;
 
         /// <summary>Credit the killer for a death; returns the killer index and whether the match ended.</summary>
         public static (int killer, bool ended) ResolveDeath(PvpMatch match, int killedIndex)

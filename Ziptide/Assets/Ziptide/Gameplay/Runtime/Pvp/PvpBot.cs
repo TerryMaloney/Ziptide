@@ -24,9 +24,13 @@ namespace Ziptide.Gameplay
         [Tooltip("Bolt travel speed — slow enough to see and dodge.")]
         public float boltSpeed = 5f;
         public float reviveDelay = 2.5f;
+        [Tooltip("False = stays down after a kill (Horde waves). True = the classic arena revive loop.")]
+        public bool autoRevive = true;
+        [Tooltip("Combatant index for N-way matches (1–3; the mode director assigns extra bots).")]
+        public int playerIndex = 1;
         public LayerMask lineOfSightMask = ~0;
 
-        public int PlayerIndex => 1;
+        public int PlayerIndex => playerIndex;
         public bool IsAlive => _combatant != null && _combatant.IsAlive && !_dead;
 
         // IScannable — the wrist scanner detects the opponent.
@@ -64,6 +68,11 @@ namespace Ziptide.Gameplay
         private Vector3 _moveTarget;
         private float _dodgeUntil;
         private Vector3 _dodgeDir;
+
+        // Objective magnet (A3 modes): when set, Patrol gravitates here instead of the waypoint ring —
+        // KotH bots contest the hill, Fragment bots shadow the fragment. Combat states are unchanged.
+        [HideInInspector] public bool hasObjective;
+        [HideInInspector] public Vector3 objectivePoint;
 
         // Nav (baked by ScenePatcherPvP/ScenePatcherArena under __PVP_BOTNAV)
         private readonly List<Vector3> _waypoints = new List<Vector3>();
@@ -104,6 +113,15 @@ namespace Ziptide.Gameplay
         private BotBrain NewBrain() =>
             new BotBrain(_profile, seed: (difficulty + name).GetHashCode());
 
+        /// <summary>Live difficulty swap (lobby board) — re-resolves the profile and grows a fresh brain.</summary>
+        public void SetDifficulty(string id)
+        {
+            if (string.IsNullOrEmpty(id)) return;
+            difficulty = id;
+            _profile = ResolveProfile(id);
+            if (_brain != null) _brain = NewBrain(); // pre-Start: Start builds it from the new id anyway
+        }
+
         /// <summary>Difficulty as data: the Resources asset wins; code presets are the fallback.</summary>
         public static BotProfileData ResolveProfile(string id)
         {
@@ -122,7 +140,7 @@ namespace Ziptide.Gameplay
         {
             if (_dead)
             {
-                if (Time.time >= _reviveAt) Revive();
+                if (autoRevive && Time.time >= _reviveAt) Revive();
                 return;
             }
             if (_player == null) { FindPlayer(); if (_player == null) return; }
@@ -254,6 +272,7 @@ namespace Ziptide.Gameplay
 
         private Vector3 NextPatrolPoint()
         {
+            if (hasObjective) return objectivePoint;
             if (_waypoints.Count == 0) return _home;
             if (FlatDist(transform.position, _waypoints[_patrolIndex]) < 1.5f)
                 _patrolIndex = (_patrolIndex + 1) % _waypoints.Count;
@@ -281,7 +300,7 @@ namespace Ziptide.Gameplay
             dir.Normalize();
             var go = new GameObject("PvpBolt");
             go.transform.position = origin + dir * 0.6f;
-            go.AddComponent<PvpBolt>().Init(dir * boltSpeed, _playerCombatant, _player);
+            go.AddComponent<PvpBolt>().Init(dir * boltSpeed, _playerCombatant, _player, playerIndex);
             Debug.Log("ZIPTIDE: PVP_BOT_FIRE");
         }
 
@@ -307,6 +326,13 @@ namespace Ziptide.Gameplay
             if (_collider != null) _collider.enabled = false;
             PvpMatchDirector.Instance?.ReportDeath(PlayerIndex);
             Debug.Log("ZIPTIDE: PVP_BOT_DOWN");
+        }
+
+        /// <summary>Wave-spawner reset (Horde): re-home the bot and give it a fresh life.</summary>
+        public void ResetAt(Vector3 pos)
+        {
+            _home = pos;
+            Revive();
         }
 
         private void Revive()

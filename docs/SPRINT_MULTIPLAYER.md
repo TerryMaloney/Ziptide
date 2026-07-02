@@ -30,12 +30,12 @@ story worlds as the map).
 | B1a+b | **Conquest sim core COMPLETE** (`Multiplayer/Runtime/Conquest/`): PlanetNode (14-field spec) · ConquestState (players/stockpiles/turn economy: instability-penalized production, decay, fleet upkeep, attack limits) · ConquestRules (odds clamp 10–90, +5%/pt, anti-snowball constants) · ConquestResolver (seeded, 5 outcomes, vessel/defense specials: gate jammer/piercer, shieldbreaker, minefield, null-ark consumed, repair swarm, dogpile bonus, mission modifiers ± ) · ConquestCatalog (8 defenses + 8 vessels) · **ConquestGalaxy (the map IS W001–W012**, chain + cross-links, 2-player setup) · ConquestAI (3 profiles: reinforce/build/attack-best-odds, plays via the same public API as a human) + **17 EditMode tests** incl. a full headless AI-vs-AI war + JsonUtility save round-trip | ✅ this commit (CI pending) |
 | A2 | **Arena Factory BUILT**: `ArenaLayoutDefinition` (geometry/nav/spawns/objectiveZones/weaponPads/hazards/sky + Validate) + `ScenePatcherArena` (generic shell: data geometry, per-arena sky via ThemeAuthor overloads, Way_/Cover_P nav, difficulty-tagged bot, pads, breakwalls, hazards via HazardZoneRuntime, pack+exit, Build Settings; build-hooked like generated worlds) + `ArenaLayoutLibrary` (**5 launch arenas**: Cistern dark hill-fight · Chitinwall catwalk alleys · MirrorFlats marksman lanes (veteran) · Tidal islands w/ live flood mutator · Void Shell-gate bridges (nightmare)) + 7 `ArenaLibraryTests` (validate-clean, unique ids, real nav, armed+objectives, 3+ difficulty tiers, distinct skies, waypoints-in-bounds). Original PvP_Arena01 untouched. | ✅ this commit (CI pending) |
 | A3-core | **Mode engines (pure) BUILT**: `PvpMatch` generalized to N combatants (2–4) + teams (team score = summed members; default ctor stays 1v1 — zero consumer changes) + `EndByRule` · `Modes/PvpModes.cs`: **GunGameState** (6-weapon default ladder), **KothState** (sole-king accrual, contested=nobody, zone rotation), **FragmentRushState** (single carrier, drop-resets-to-mid, bank-to-win), **HordeState** (deterministic escalating waves of bots+creatures, capped for Quest perf, clear bonuses) + 11 tests | ✅ this commit (CI pending) |
-| A3-scene | Mode director consuming the engines + lobby board (arena × mode × difficulty × mutators) + attacker-identity threading for N-way kill credit + Horde creature spawning | ⬜ next |
+| A3-scene | **MODES ARE PLAYABLE**: `PvpModeDirector` (scene body for all four engines: GunGame racks the player's next ladder weapon · KotH ticks patcher-baked `__PVP_ZONES` hills with bots CONTESTING via the new objective-magnet · FragmentRush v1 you-carry-bots-hunt · Horde waves spawn bots + runtime creatures w/ death-polling per the PlayerIndex law) + `ArenaLobbyBoard` (mode × difficulty × bot-count tiles at every arena spawn; arena select = the travel station now doors to EVERY sibling arena) + attacker identity (`PvpHitSource` same-frame report from every weapon → N-way kill credit, 1v1 fallback intact) + `PvpMatchDirector` generalized (N combatants, kill/end/restart events) + HUD mode line + 5 new tests | ✅ this commit (CI pending) |
 | A4 | Arsenal: Static Net, Sonic Thumper, Prism Beam + pads + WeaponCharge wiring + bot weapon prefs | ⬜ |
 | A4.5 | **Augments** (Terry 2026-07-02; spec `design/ABILITIES_AND_ARSENAL.md` §2): `AugmentDefinition` + pure `AugmentEffects` registry + slot/equip runtime (1 active + 1 passive) + the six launch augments + arena pads + Horde wave-clear reward. Story/Tidefront placements follow via the libraries. | ⬜ |
 | A4.6 | **Dual-wield** (§3): `DualWieldCoordinator` shared-`WeaponCharge`-pool (flexibility, same DPS ceiling), `twoHandedOnly` flag on heavy defs, Nightmare-bot cosmetic pairing, disabled in Gun Game | ⬜ |
 | A4.7 | **Locator v2** (§4): pure `LocatorState` extension first (afterglow window, tier params, tested) → gauntlet form + cylinder radar + ground-ring pulse scene work → tiers via ship S3 scanner slot. Gauntlet mesh is Picasso's (their P4+). | ⬜ |
-| A6-prep | **Two-Quest online setup instructions** (Terry directive 2026-07-02, due at THIS sprint's close): `docs/TWO_QUEST_SETUP.md` — Photon account + App ID + PUN2 import (Terry's PC) + scripting-define seam (`ZIPTIDE_PHOTON`) + build/sideload-both-headsets + room-code join flow; plus the `IPvpTransport` adapter skeleton that compiles with AND without PUN2 present | ⬜ due |
+| A6-prep | **Two-Quest online setup SHIPPED**: `docs/TWO_QUEST_SETUP.md` (Terry's steps 1–4 doable TODAY; step 5 = first smoke after A6) + `PvpNetHub` transport registry (loopback default) + the full Photon adapter/room-code launcher in `Assets/ZiptideNet/` (Assembly-CSharp, NO asmdef — sidesteps PUN2 asmdef surgery; 100% inert behind `ZIPTIDE_PHOTON`) + `Ziptide → Net → Enable/Disable Photon` menu | ✅ this commit (CI pending) |
 | A5 | Progression: match stats, credits payout, unlock flags, daily seed | ⬜ |
 | A5.5 | **Pre-round locker** (fff crossover, frozen API in `systems/QUARTERS.md`): `QuartersRoom` per arena spawn, round-timer exit gate, teleport-out on round start, equipped-cosmetic strings in the match handshake | ⬜ |
 | B2 | Holo war table vs ConquestAI (Sandbox placement) | ⬜ |
@@ -45,10 +45,19 @@ story worlds as the map).
 | — | Close: HANDOFF, checklist, playbook rows per chunk, APK dispatch green | ⬜ |
 
 ## ▶ RESUMING? — current state & exact next action
-- **Current micro-step:** A2 (Arena Factory + 5 arenas) committed — verify CI. **A1's APK gate is
-  ✅ GREEN** (run `28608110578`, full pipeline + artifact): the smart bot + 4 difficulty profiles are
-  in a sideloadable build. Tests asmdef now references Ziptide.Editor (editor-only tests can validate
-  the authoring libraries — ArenaLibraryTests uses it).
+- **Current micro-step (2026-07-02, 3rd session):** A3-scene + A6-prep committed — **verify CI, then
+  dispatch an APK** (the patcher now bakes zones/board/all-arena doors into every arena scene).
+  After that: **A4 arsenal** (Static Net / Sonic Thumper / Prism Beam runtimes + pads → timed
+  respawners; then swap `PvpModeDirector.LadderNow` for `GunGameState.DefaultLadder` — the 3-weapon
+  interim ladder is marked with that exact TODO seam). Then A4.5 Augments per
+  `design/ABILITIES_AND_ARSENAL.md`.
+- **A3-scene design notes (don't re-derive):** attacker identity = `PvpHitSource` static same-frame
+  report (interface unchanged — CreatureRuntime is story-lane); bots contest objectives via
+  `PvpBot.hasObjective/objectivePoint` (Patrol magnet only — combat states untouched); Fragment v1 =
+  only the player banks (bots guard/hunt — readable + fair); Horde reuses the arena bot as wave-bot #1
+  (`ResetAt`), extra combatant indices 1–3, creatures polled for downs (PlayerIndex -1 never
+  registers); racked weapons are never Destroy()ed while held (XR gotcha).
+- **Earlier state:** A2 arenas + A1 smart bot APK-green (runs `28610940371` / `28608110578`).
 - **✅ THE ARENA APK IS GREEN** (run `28610940371` on `800ff25`): all five arenas authored, generated,
   **audit-clean**, and in the `ziptide-apk` artifact — after one failed dispatch whose blockers
   (Tidal spawn-in-cover, Void spawn-under-ramp, exit outside the wall) were diagnosed and fixed as

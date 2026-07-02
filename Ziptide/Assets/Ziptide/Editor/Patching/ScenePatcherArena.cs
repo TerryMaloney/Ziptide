@@ -83,6 +83,7 @@ namespace Ziptide.Editor.Patching
 
             BuildGeometry(root, def);
             BuildBotNav(root, def);
+            BuildZones(root, def);
 
             EnsureLighting();
             EnsureEventSystem();
@@ -99,8 +100,10 @@ namespace Ziptide.Editor.Patching
             PatcherUtil.EnsureComponent<PvpPlayer>(pgo);
             var dgo = PatcherUtil.EnsureRootObject("PvpMatchDirector", Vector3.zero);
             PatcherUtil.EnsureComponent<PvpMatchDirector>(dgo);
+            PatcherUtil.EnsureComponent<PvpModeDirector>(dgo);   // A3: modes run on top of the match
             var hgo = PatcherUtil.EnsureRootObject("PvpHud", Vector3.zero);
             PatcherUtil.EnsureComponent<PvpHud>(hgo);
+            BuildLobbyBoard(def);
 
             BuildBot(root, def);
             SpawnWeaponPads(root, def);
@@ -149,6 +152,40 @@ namespace Ziptide.Editor.Patching
                 NavPoint(nav.transform, "Way_" + (i + 1), def.waypoints[i]);
             for (int i = 0; i < def.coverPoints.Count; i++)
                 NavPoint(nav.transform, "Cover_P" + (i + 1), def.coverPoints[i]);
+        }
+
+        /// <summary>A3: objective zones baked like the bot nav — name/position/radius(scale.x) children
+        /// the mode director reads at runtime (KotH hills, the Fragment mid).</summary>
+        private static void BuildZones(Transform root, ArenaLayoutDefinition def)
+        {
+            var old = GameObject.Find("__PVP_ZONES");
+            if (old != null) Object.DestroyImmediate(old);
+            if (def.objectiveZones == null || def.objectiveZones.Count == 0) return;
+            var group = new GameObject("__PVP_ZONES");
+            group.transform.SetParent(root, false);
+            foreach (var z in def.objectiveZones)
+            {
+                if (z == null) continue;
+                var go = new GameObject("Zone_" + z.zoneId);
+                go.transform.SetParent(group.transform, false);
+                go.transform.localPosition = z.position;
+                go.transform.localScale = new Vector3(z.radius, 1f, z.radius); // radius rides scale.x
+            }
+        }
+
+        /// <summary>A3: the match board — mode × difficulty × bot count, facing the spawn (lateral -X;
+        /// the exit door owns +X).</summary>
+        private static void BuildLobbyBoard(ArenaLayoutDefinition def)
+        {
+            Vector3 pos = def.playerSpawn + new Vector3(-3f, 0f, 0f);
+            // Keep the board inside the perimeter (MirrorFlats spawns 4m off its west wall).
+            pos.x = Mathf.Clamp(pos.x, -def.floorSize.x / 2f + 2.5f, def.floorSize.x / 2f - 2.5f);
+            pos.z = Mathf.Clamp(pos.z, -def.floorSize.y / 2f + 2.5f, def.floorSize.y / 2f - 2.5f);
+            var go = PatcherUtil.EnsureRootObject("ArenaLobbyBoard", pos);
+            Vector3 away = pos - def.playerSpawn; away.y = 0f;
+            if (away.sqrMagnitude > 0.01f)
+                go.transform.rotation = Quaternion.LookRotation(away); // tiles/labels live on -Z: +Z away = readable from spawn
+            PatcherUtil.EnsureComponent<ArenaLobbyBoard>(go);
         }
 
         private static void BuildBot(Transform root, ArenaLayoutDefinition def)
@@ -300,6 +337,12 @@ namespace Ziptide.Editor.Patching
             exitPack.sceneName = FirstOtherBuildSceneName(def.sceneName);
             EditorUtility.SetDirty(exitPack);
 
+            // A3: the station is the ARENA SELECT — Leave + a door to every sibling arena.
+            var doors = new List<WorldPackDefinition> { exitPack };
+            foreach (var other in AllArenas())
+                if (other != null && other.sceneName != def.sceneName)
+                    doors.Add(EnsureWorldPack(other)); // idempotent — packs exist regardless of patch order
+
             // Lateral offset — a rear offset can land outside the perimeter wall on edge spawns (Void).
             Vector3 pos = def.playerSpawn + new Vector3(3f, 0f, 0f);
             var go = PatcherUtil.EnsureRootObject(ZiptideConstants.GoWorldTravelStation, pos);
@@ -308,8 +351,9 @@ namespace Ziptide.Editor.Patching
             var listProp = so.FindProperty("destinationPacks");
             if (listProp != null)
             {
-                listProp.arraySize = 1;
-                listProp.GetArrayElementAtIndex(0).objectReferenceValue = exitPack;
+                listProp.arraySize = doors.Count;
+                for (int i = 0; i < doors.Count; i++)
+                    listProp.GetArrayElementAtIndex(i).objectReferenceValue = doors[i];
                 so.ApplyModifiedPropertiesWithoutUndo();
             }
         }

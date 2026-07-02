@@ -8,8 +8,8 @@ Tracks: 📖 story/ship "T-Dog" (`SPRINT.md`) · 🎮 MP "Architect" (`SPRINT_MU
 | # | Priority | Track | Why it's here | State |
 |---|----------|-------|---------------|-------|
 | 1 | **THE DEVICE PASS** — runbook §1 + §2b–§2h (story worlds, RILL, repair, creatures, ship, W000 opening, smart bot + 5 arenas, skyscapes) | 🧑 | ~seven milestones of CI-green work have never touched a headset; every feel-tuning decision downstream waits on these ❌s/notes | ⏳ blocking |
-| 2 | **A3-scene: modes playable** — mode director + lobby board (arena × mode × difficulty) + attacker identity + Horde spawning | 🎮 | the engines exist; this makes the arenas an actual GAME you can replay | in flight |
-| 3 | **TWO-QUEST ONLINE SETUP** — Terry's setup instructions (Photon account/App ID/PUN2 import) + the transport-adapter seam so two headsets can fight | 🎮🧑 | Terry directive 2026-07-02: instructions due at the A3-scene sprint close; Terry-side setup runs in parallel with remaining code | due next close |
+| 2 | **A3-scene: modes playable** — mode director + lobby board (arena × mode × difficulty) + attacker identity + Horde spawning | 🎮 | the engines exist; this makes the arenas an actual GAME you can replay | ✅ shipped (CI/APK verify) |
+| 3 | **TWO-QUEST ONLINE SETUP** — `docs/TWO_QUEST_SETUP.md` steps 1–4 are Terry-doable NOW (Photon account/App ID/PUN2/menu click); adapter + registry shipped dormant | 🎮🧑 | Terry directive 2026-07-02 — his setup unblocks A6's cross-headset smoke | Terry's court |
 | 4 | **A4: the arsenal** — Static Net / Sonic Thumper / Prism Beam runtimes + pads become timed respawners | 🎮 | Gun Game's ladder already names them; map control needs them | specced |
 | 5 | **Abilities + dual-wield + locator v2** (`design/ABILITIES_AND_ARSENAL.md`) — the Augment item category (all modes), charge-pool dual-wield, wrist locator A-grade rework | 🎮 | Terry directive 2026-07-02; touches story AND arena AND Tidefront | designed → build |
 | 6 | **ART-2: W001 Toxic Venice kit + PERF_BUDGET audit rule** | 🎨 | the first real surface family + the rule that protects 72fps forever (ART-1 skyscapes ✅ APK-green) | next art session |

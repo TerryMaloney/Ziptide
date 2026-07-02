@@ -15,13 +15,15 @@ namespace Ziptide.Gameplay
         private PvpPlayer _target;
         private Transform _head;
         private float _life = 4f;
+        private int _sourceIndex = 1;   // firer's combatant index — kill credit in N-way matches
         private const float HitRadius = 0.55f;
 
-        public void Init(Vector3 velocity, PvpPlayer target, Transform head)
+        public void Init(Vector3 velocity, PvpPlayer target, Transform head, int sourceIndex = 1)
         {
             _velocity = velocity;
             _target = target;
             _head = head;
+            _sourceIndex = sourceIndex;
             BuildVisual();
         }
 
@@ -71,7 +73,10 @@ namespace Ziptide.Gameplay
             if (Vector3.Distance(transform.position, hp) <= HitRadius)
             {
                 if (_target != null)
+                {
+                    PvpHitSource.Report(_sourceIndex);
                     _target.ReceiveHit(PvpWeapon.Taser, transform.position, _velocity.sqrMagnitude > 0.001f ? _velocity.normalized : Vector3.forward);
+                }
                 Destroy(gameObject);
             }
         }

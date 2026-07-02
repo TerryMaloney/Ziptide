@@ -175,6 +175,25 @@ whether the skies make you stop:
 - [ ] **Judgment call for you:** should W000 become the actual BOOT destination (replacing the Sandbox
   dev-bypass)? One-line BootLoader change in a locked zone — say the word after you play it.
 
+## 2i. NEW — M7 A3: THE MODES ARE PLAYABLE (all auto) + your two-Quest homework
+In any of the five arenas, next to your spawn there's now a **MATCH BOARD** (left side; the exit-door
+row on the right now has a door to EVERY arena — that's your arena select).
+- [ ] **Board basics**: ray-click a mode / difficulty / bot count tile (they gold-highlight), hit
+  **START MATCH** — the round restarts with your picks. Logcat: `ZIPTIDE: LOBBY_START …`.
+- [ ] **DEATHMATCH with 2–3 bots**: multiple bots hunt you at once; your kills credit YOU on the HUD
+  ("You N - M Bots"). Watch `PVP_KILL killer=0` when you down one, `killer=1/2/3` when one tags you.
+- [ ] **GUN GAME**: each kill racks your NEXT weapon at chest height in front of you (taser → pistol →
+  gravity; the full 6-rung ladder arrives with A4's new guns). Finish the ladder = win.
+- [ ] **KOTH**: a gold ring lights up — stand in it to bank hold-seconds (HUD shows "hold Xs/90s");
+  bots now PUSH the hill, "CONTESTED" shows when you share it.
+- [ ] **FRAGMENT**: grab the gold orb at mid (walk into it), run it back to your spawn ring to bank
+  (3 banks wins). Dying drops it back to mid. Bots shadow the orb — and hunt YOU when you carry.
+- [ ] **HORDE**: waves of bots + creatures (swarm bugs, tendrils, wardens), one more every wave,
+  breather between waves. Tell me which wave you die on per difficulty — that's the tuning data.
+- [ ] **🏠 HOMEWORK (do anytime, ~20 min, no code needed): `docs/TWO_QUEST_SETUP.md` steps 1–4** —
+  Photon account + PUN2 import + App ID + the `Ziptide → Net → Enable Photon` menu click. That's
+  YOUR half of two-headset PvP; the operator's half (A6) plugs straight into it.
+
 ## 3. The two open judgment calls (yours)
 - **"Can you run in Toxic City?"** — was it the input bug (now fixed) or actual walls/narrow streets? If
   still wall-blocked, say so and the streets get widened.

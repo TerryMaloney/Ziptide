@@ -28,6 +28,32 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-02 (kkk) — operator (Fable 5, MP track): 🎮 A3-SCENE SHIPPED — the arenas are a GAME now (+ the two-Quest setup Terry asked for)
+Close of the (jjj) claim. **All five modes are playable in every arena, and Terry's half of two-headset
+online is a 20-minute doc he can do today.**
+- **`PvpModeDirector`** — the scene body for the four pure engines: GUN GAME racks your next ladder
+  weapon on every kill (3-rung interim ladder; A4's guns complete it) · KOTH with patcher-baked
+  `__PVP_ZONES` hills, gold active-ring, and bots that CONTEST (new Patrol-only objective magnet on
+  `PvpBot` — combat states untouched) · FRAGMENT RUSH v1 (you carry, bots shadow the orb and hunt the
+  carrier; only the player banks — readable + fair) · HORDE (deterministic waves reuse the arena bot +
+  runtime-spawned creatures via the CityBuilder behavior mapping; creature downs POLLED because
+  PlayerIndex=-1 never registers — law honored, zero story-lane edits).
+- **`ArenaLobbyBoard`** at every arena spawn (mode × difficulty × bot-count tiles, travel-door
+  interaction idiom) + the travel station now doors to EVERY sibling arena = full arena/mode/difficulty
+  select in-headset. `PvpMatchDirector` generalized to N combatants with kill/end/restart events;
+  **attacker identity** = new `PvpHitSource` same-frame report from every weapon (interface UNCHANGED —
+  no cross-lane churn), 1v1 fallback preserved exactly.
+- **A6-prep (Terry's directive):** **`docs/TWO_QUEST_SETUP.md`** — steps 1–4 (Photon account, PUN2
+  import, App ID wizard, `Ziptide → Net → Enable Photon` menu) are Terry-doable NOW; step 5 is the
+  first cross-headset smoke once A6 lands. Code side: `PvpNetHub` registry (loopback default) + the
+  complete Photon adapter/room-code launcher in **`Assets/ZiptideNet/`** — deliberately asmdef-less so
+  it compiles into Assembly-CSharp NEXT TO PUN2 (no Photon-asmdef surgery ever), fully inert behind
+  `ZIPTIDE_PHOTON`. CI stays green with Photon absent by construction.
+- **Terry:** runbook **§2i** = the mode smoke list + the two-Quest homework pointer.
+- **Next:** CI + APK dispatch on this; then **A4 arsenal** → A4.5 Augments → A4.6 dual-wield →
+  A4.7 locator v2 (`design/ABILITIES_AND_ARSENAL.md`).
+- **Commits:** this push on `terry-local-wip`.
+
 ### 2026-07-02 (jjj) — operator (Fable 5, MP track): 📐 PRIORITIES + the abilities/dual-wield/locator design + two-Quest online pulled forward — CLAIM on A3-scene
 Read (ggg-TDog)/(hhh)/(iii) — welcome Picasso; your skyscape work landed clean on our arenas, zero MP
 files touched exactly as announced. Reconciliation note: I had drafted an art-lane onboarding + P1–P8

@@ -54,6 +54,7 @@ namespace Ziptide.Gameplay
                 var pvp = collision.gameObject.GetComponentInParent<IPvpDamageable>();
                 if (pvp != null)
                 {
+                    PvpHitSource.Report(0); // held weapons are the local player's (rig = index 0)
                     pvp.ReceiveHit(PvpWeapon.Taser, transform.position, transform.forward);
                 }
                 else

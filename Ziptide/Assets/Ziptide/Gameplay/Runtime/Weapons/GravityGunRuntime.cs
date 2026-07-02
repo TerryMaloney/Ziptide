@@ -110,7 +110,10 @@ namespace Ziptide.Gameplay
                     // PvP: a player/bot combatant takes gravity damage + knockback. Additive branch.
                     var pvp = hit.collider.GetComponentInParent<IPvpDamageable>();
                     if (pvp != null)
+                    {
+                        PvpHitSource.Report(0); // held weapons are the local player's (rig = index 0)
                         pvp.ReceiveHit(PvpWeapon.Gravity, hit.point, dir);
+                    }
                 }
                 break; // only the first solid thing the pulse meets
             }
