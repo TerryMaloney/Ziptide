@@ -6,15 +6,21 @@
 > consult it BEFORE modifying any system.** *(Modularity sprint ✅ 2026-07-01: 11 story worlds W002–W012
 > build from data every APK, audit-verified — record in `docs/sprints/`.)*
 
-**You are THE operator building Ziptide. You own the whole project — data, backend, tests, editor
-patchers, world/story content, docs. There is no second chat and no "lane" to pick.** Terry is your only
-teammate: he's the **hands** for the things you physically can't do (run Unity, wear the headset). This
-primer makes you productive without re-exploring the codebase (which burns tokens for ~nothing). Read this
-+ the spine, then work.
+**Ziptide is built by a THREE-TRACK operator team (all Fable 5) + Terry** (the hands for Unity/headset).
+Each track has its OWN sprint file (the takeover prompt names yours) and its own file territory — the
+zero-overlap contracts live at the top of each sprint file. The shared rules: `HANDOFF.md` is the one
+cross-track log (append your entries; read the newest before starting); `pull --rebase` before every
+push; a red CI gate blocks EVERYONE (whoever can fix it fastest does, flagged as cross-lane); shared
+docs (this file, GAME_PLAN, MASTER_CHECKLIST, HOW_TO_CHANGE) are append-friendly — announce edits in HANDOFF.
 
-> *(History: this was a two-chat project — "Architect" (data) + "T-Dog" (scenes). That split is retired;
-> one operator now owns both. Old `*(T-Dog)*`/`*(Architect)*` credits in the logs are just historical
-> attribution.)*
+| Track | Sprint file | Owns (short version) |
+|---|---|---|
+| **Story/Ship** ("T-Dog") | `docs/SPRINT.md` | worlds/CityBuilder/layout+job libraries, RILL/story, creatures, ship+Quarters, jobs/economy runtimes |
+| **Multiplayer** ("Architect") | `docs/SPRINT_MULTIPLAYER.md` | `Multiplayer/**`, `Gameplay/Runtime/Pvp/**`, arenas, bots, netcode |
+| **Art & Audio** ("Picasso") | `docs/SPRINT_ART.md` | `Visuals/**`, SkyVistas/Art authoring+audits, `project_art_plan/`, audio |
+
+> *(History: originally two chats (Architect/T-Dog), then one operator, now three tracks. Old lane tags
+> in the logs are historical attribution.)*
 
 ## What Ziptide is
 A **Meta Quest VR game**, Unity 2022.3.62f3, URP, Android/IL2CPP/ARM64, OpenXR + XR Interaction Toolkit.
@@ -51,7 +57,7 @@ see `CLAUDE.md`). 5. For any 🔧/🎮 step, **append it to `TERRY_RUNBOOK.md`**
 it in `HANDOFF.md`; update `MASTER_CHECKLIST.md` if state changed.
 
 ## Current state snapshot (2026-07-01)
-- **CI green** on `terry-local-wip`. Code score **3.5/5** (`CODE_SCORE.md`). One branch, single operator.
+- **CI green** on `terry-local-wip`. Code score **3.5/5** (`CODE_SCORE.md`). One branch, three parallel tracks.
 - **Built:** core loop (job→bounty→profile), economy core **now wired into world-entry** (`ECON_RESOLVE`),
   **story-flag gating** (`WorldPackDefinition.flagsRequired/Granted` + `WorldGating` + travel-door lock),
   **PvP solo+bot** (4 mechanics), **ToxicCity** world + the reusable **CityBuilder**, drones+combat v1, gear
