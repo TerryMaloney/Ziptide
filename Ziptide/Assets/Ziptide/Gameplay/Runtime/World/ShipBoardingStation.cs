@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -99,11 +100,7 @@ namespace Ziptide.Gameplay
                         ? (System.Action)(() => Debug.Log("ZIPTIDE: TRAVEL_LOCKED pack=" + packRef.packId +
                             " missing=" + (WorldGating.FirstMissingRequirement(packRef,
                                 SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null) ?? "?")))
-                        : () =>
-                        {
-                            Debug.Log("ZIPTIDE: SHIP_DEPART dest=" + sceneName);
-                            TravelCoordinator.TravelTo(sceneName); // the ONLY legal path
-                        },
+                        : () => StartCoroutine(FlyOutThenTravel(sceneName)),
                     small: true);
                 rowPanel.transform.SetParent(transform, true);
                 rowPanel.transform.localRotation = Quaternion.Euler(-20f, 0f, 0f);
@@ -121,6 +118,85 @@ namespace Ziptide.Gameplay
                     Debug.Log("ZIPTIDE: SHIP_DISEMBARK");
                 }, small: true);
             off.transform.rotation = transform.rotation * Quaternion.Euler(0f, 180f, 0f);
+        }
+
+        // ── S2: the fly-out presentation (comfort-first — the WORLD moves, never the camera) ─────
+
+        [Tooltip("Seconds of fly-out presentation before the travel fires (S2; tune per SHIPS.md).")]
+        [SerializeField] private float flyOutSeconds = 4.5f;
+
+        private bool _departing;
+
+        private IEnumerator FlyOutThenTravel(string sceneName)
+        {
+            if (_departing) yield break; // one departure at a time
+            _departing = true;
+            Debug.Log("ZIPTIDE: SHIP_DEPART dest=" + sceneName);
+
+            // Seat the pilot (a teleport, not parenting) so the streaks read from the right spot.
+            TeleportRig(transform.TransformPoint(cockpitLocalPos + new Vector3(0f, 0.1f, -0.9f)));
+
+            // Star streaks: elongated unlit slivers racing PAST the deck, ramping with a launch rumble
+            // feel — pure world motion, zero camera manipulation (VR comfort law).
+            var streaks = new List<Transform>();
+            var streakRoot = new GameObject("__FlyOutStreaks").transform;
+            for (int i = 0; i < 26; i++)
+            {
+                var sGo = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                sGo.name = "Streak_" + i;
+                var col = sGo.GetComponent<Collider>();
+                if (col != null) Destroy(col);
+                sGo.transform.SetParent(streakRoot, false);
+                var r = sGo.GetComponent<Renderer>();
+                if (r != null)
+                {
+                    var shader = Shader.Find("Universal Render Pipeline/Unlit");
+                    if (shader == null) shader = Shader.Find("Universal Render Pipeline/Lit");
+                    if (shader != null)
+                    {
+                        var mat = new Material(shader);
+                        var c = new Color(0.75f, 0.85f, 1f);
+                        mat.color = c;
+                        if (mat.HasProperty("_BaseColor")) mat.SetColor("_BaseColor", c);
+                        r.material = mat;
+                        r.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+                    }
+                }
+                ResetStreak(sGo.transform, randomizeAlong: true);
+                streaks.Add(sGo.transform);
+            }
+
+            float t = 0f;
+            while (t < flyOutSeconds)
+            {
+                t += Time.deltaTime;
+                float ramp = Mathf.Clamp01(t / 1.5f); // engines spool up
+                float speed = 18f + 42f * ramp;
+                foreach (var st in streaks)
+                {
+                    if (st == null) continue;
+                    st.position -= transform.forward * speed * Time.deltaTime;
+                    // Streaks stretch with speed — reads as acceleration without moving the player.
+                    st.localScale = new Vector3(0.05f, 0.05f, 1.5f + 5f * ramp);
+                    if (Vector3.Dot(st.position - transform.position, transform.forward) < -25f)
+                        ResetStreak(st, randomizeAlong: false);
+                }
+                yield return null;
+            }
+
+            Destroy(streakRoot.gameObject); // travel unloads the scene anyway; be tidy if it's slow
+            TravelCoordinator.TravelTo(sceneName); // the ONLY legal path (locked contract #1)
+        }
+
+        private void ResetStreak(Transform st, bool randomizeAlong)
+        {
+            // Scatter around the deck in a ring, ahead of the ship, oriented along the flight axis.
+            Vector2 ring = Random.insideUnitCircle.normalized * (4f + Random.value * 8f);
+            float along = randomizeAlong ? Random.Range(-20f, 30f) : 30f;
+            Vector3 deckWorld = transform.TransformPoint(cockpitLocalPos);
+            st.position = deckWorld + transform.right * ring.x + transform.up * (ring.y * 0.6f + 1f)
+                        + transform.forward * along;
+            st.rotation = transform.rotation;
         }
 
         // ── Rig teleport (never parent the rig — SHIPS.md guardrail) ─────────
