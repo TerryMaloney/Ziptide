@@ -17,8 +17,8 @@ story worlds as the map).
 ## Task board
 | # | Task | Status |
 |---|------|--------|
-| 0 | Designs + GAME_PLAN M7 + this sprint file + HANDOFF claim | 🔄 this commit |
-| A1a | **BotBrain pure core** (`Multiplayer/Runtime/Bots/`): BotPerception/BotDecision structs, the 8-state utility machine, seeded determinism + `BotProfileData` (pure mirror of the SO fields) + ~15 EditMode tests | ⬜ next |
+| 0 | Designs + GAME_PLAN M7 + this sprint file + HANDOFF claim | ✅ `f005caf` |
+| A1a | **BotBrain pure core** (`Multiplayer/Runtime/Bots/`): Vec3/BotRng (deterministic), BotPerception/BotDecision, the 8-state machine (reaction-time model, LKP hunting, cover hide/peek cycle, band-holding strafe, flank reposition, sticky retreat, dodge-⊥-threat, lead + bounded aim-error cone), `BotProfileData` Rookie→Nightmare presets + 14 EditMode tests | ✅ this commit (CI pending) |
 | A1b | `BotProfileDefinition` SO + 4 difficulty assets (author util) | ⬜ |
 | A1c | **PvpBot scene rewrite** consuming BotBrain + waypoint graph/cover baked by patcher + threading `IPvpTransport`/`WeaponCharge` through the live loop *(touches Pvp scene files — safe: story track never edits them)* | ⬜ |
 | B1a | **Conquest sim core** (`Multiplayer/Runtime/Conquest/`): PlanetNode, ConquestState (+ story-world galaxy builder), ConquestRules, ConquestResolver (seeded, clamp 10–90, 5 outcomes) + ~25 tests | ⬜ next |
@@ -34,12 +34,12 @@ story worlds as the map).
 | — | Close: HANDOFF, checklist, playbook rows per chunk, APK dispatch green | ⬜ |
 
 ## ▶ RESUMING? — current state & exact next action
-- **Current micro-step:** committing the program docs (designs, GAME_PLAN M7, this file, HANDOFF claim).
-- **Next action:** build **A1a (BotBrain pure core)** then **B1a (Conquest sim core)** — both pure C#,
-  no scene edits, fully CI-verifiable. Specs live in the two design docs (§A1 / §"The sim"); mirror the
-  PvpRules/PvpMatch pure-core pattern (`Multiplayer/Runtime/`, no Unity types, EditMode tests in
-  `Tests/EditMode/`). New folders under Multiplayer/Runtime need folder + file `.meta`s (python-uuid
-  pattern used everywhere this session).
+- **Current micro-step:** A1a (BotBrain pure core) committed — verify CI on this push.
+- **Next action:** **B1a (Conquest sim core)** — `Multiplayer/Runtime/Conquest/`: PlanetNode (14-field
+  spec), ConquestState + story-world galaxy builder, ConquestRules (clamp 10–90, +5%/point, costs),
+  ConquestResolver (seeded, 5 outcomes) + tests; then B1b (catalog tables + ConquestAI + save). Spec:
+  TIDEFRONT_AAA "The sim". Same pure-C# rules as Bots (no UnityEngine; folder needs a folderAsset meta).
+  A1b/A1c (SO profiles + PvpBot scene rewrite) come after both pure cores are green.
 - **Verified facts (don't re-derive):** PvP live loop currently BYPASSES `IPvpTransport` and never uses
   `WeaponCharge` — A1c threads both. Bot today = range-keeper (spec of its exact behavior + gaps is in
   PVP_ARENA_AAA "Why this will work"). The Multiplayer asmdef is pure C# (no Unity refs) — **keep
