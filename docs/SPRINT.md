@@ -22,7 +22,7 @@ collision-clean is LAW (CollideMove everywhere); no rig/PvP/XRI-sample edits.
 | 4 | `WardenBehavior` — the Shell's immune system: statue at tier 0 → WATCHES at tier 1 → WARNS when crowded at tier 2 (eye ramps red over the window) → PURSUES only if you stand ground, one lawful arrest-stun then disengages; backing off de-escalates; C6_WARDEN_ALLY = calm green. Pure `WardenState` + 6 tests. Factory: creatureId "warden" special-case | ✅ this commit |
 | 5 | ALL FOUR novel behaviors: **Witness-mite** (gaze-freeze via pure `GazeMath` + 6 tests; stalks between glances), **Light-grazer** (grows in dark, shrinks under your attention-cone — Prism Beam replaces gaze at M5, documented), **Tether-swarm** (bugs have NO colliders; the glowing tether node is the only hittable thing — cut the cord), **Husk-molter** (stun → sheds grey decoy + skitters out the back, one molt per cooldown). Factory ids wired | ✅ this commit |
 | 6 | Authored: W002 light-grazers (dark gallery) · W005 canopy swarm_bugs · W009 tether-swarm + husk-molters on the wall · W012 the gate Warden (wakes at Signal 2) · 5 new creature defs. **FIXED: Creature() wrote to Content/Creatures — unreachable; now Resources/Enemies where CreatureRuntime + the factory actually look** | ✅ this commit |
-| 7 | Close: HANDOFF (ccc), runbook §2e smoke, checklist, **APK dispatch green** → ✅ stamp | ⬜ |
+| 7 | Close: HANDOFF (ccc) ✅, runbook §2e ✅, checklist M3 line ✅, playbook rows ✅ — **awaiting CI green on the BotMath fix (`0d7c772`), then APK dispatch → ✅ stamp** | 🟡 |
 
 ## ▶ RESUMING? — current state & exact next action
 - **Current micro-step:** Task 5 committed (all four novels). Earlier context: KEY DESIGN FACTS: creatures are hit
@@ -46,6 +46,7 @@ collision-clean is LAW (CollideMove everywhere); no rig/PvP/XRI-sample edits.
   shared-pool + cuttable tether · Husk-molter decoy-on-stun; drop to 2 if budget, document) →
   6 (author zones: W002 light_grazer, W005 swarm_bug canopy, W009 tether_swarm + tendril crawlers,
   W012 warden at the gate; add creature defs to `CreatureVariantAuthor`) → 7 close + APK.
+- **CI incident (resolved in `0d7c772`):** runs #194–#196 red from architect's `BotMath.cs` CS0029 (uint ternary) — minimal cross-lane type fix, no design change; my #197 superseded. If resuming: confirm `0d7c772`+ is green, then dispatch the APK (`actions_run_trigger`, ci.yml, terry-local-wip), verify Build Android APK + `ziptide-apk` artifact, stamp this file ✅ COMPLETE, archive to `docs/sprints/SPRINT_2026-07-02_M3_CREATURES.md`. Next: M4 the Ship (S1 boardable — `docs/systems/SHIPS.md`).
 - **LANE NOTE (Terry 2026-07-02): architect is working PvP/multiplayer IN PARALLEL — `Gameplay/Runtime/Pvp/`, `Multiplayer/`, `ScenePatcherPvP`, `Net/` are ARCHITECT'S. Don't touch; only CONSUME IPvpDamageable; pull --rebase before every push.**
 - **Branch:** `terry-local-wip`. CI-green through task 1-2 (`6ccc989` #191 pending at last check).
 

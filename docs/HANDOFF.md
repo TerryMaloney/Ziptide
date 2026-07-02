@@ -45,6 +45,32 @@ Terry redirected this session to multiplayer: PvP → AAA fun + Tidefront (the R
 - **Next (this session):** A1a BotBrain pure core + B1a Conquest sim core — both pure C#, CI-verified.
 - **Commit:** this push on `terry-local-wip`.
 
+### 2026-07-02 (ccc) — operator (Fable 5): M3 "LIVING WORLDS" built — creature framework, 4 archetypes, Warden, 4 novels
+Same-session continuation (M1+M2 closed, APKs green). All ⚙CI, tracked in SPRINT.md. **Lane note: architect
+runs the MULTIPLAYER PROGRAM in parallel (own sprint `SPRINT_MULTIPLAYER.md`); I consume IPvpDamageable,
+never edit PvP/Multiplayer — except ONE cross-lane compile fix (below).**
+- **Framework** (`6ccc989`): `CreatureRuntime` (loads `CreatureDefinition` by id; non-lethal crumple
+  disable; loot→profile; **implements IShockable + IPvpDamageable so the existing taser/gravity dispatch
+  hits creatures with zero weapon edits**) + `CreatureBehaviorBase` (shared CollideMove LAW, leash,
+  touch-stun) + `CreatureZoneDef` → `CityBuilder.MakeCreature` attaches the behavior by data.
+- **Archetypes** (`6ccc989`,`33bdf22`): Swarmer (gather-tight dart telegraph) · Bruiser (paw-the-ground
+  windup → line charge → wall-slam to vulnerable Recover; pure `ChargeState`, 5 tests) · WallCrawler
+  (surface-stick, ripple → drop-lunge; stun knocks it off the wall) · Flyer (figure-8 soar, dead-still
+  hover telegraph → head dive, pull-up at 1m).
+- **Warden** (`f40bc7f`): lawful enforcer on `SignalState.Tier` — statue → watches → warns (visible ramp)
+  → one arrest-stun then disengages; ally flag = calm green. Pure `WardenState`, 6 tests.
+- **Novels** (`e2f1887`): Witness-mite (gaze-freeze, pure `GazeMath` + 6 tests) · Light-grazer
+  (dark-grow/lit-shrink) · Tether-swarm (bodies uncollidable; cut the glowing cord node) · Husk-molter
+  (stun sheds a decoy husk). All CollideMove-clean, all non-lethal.
+- **Authoring** (`3700aef`): W002 light-grazers · W005 canopy swarms · W009 tether-swarm + molters ·
+  W012 the gate Warden (wakes because W010 granted Signal 2 — the world reacts to progress). 5 new defs.
+  **FIXED: `CreatureVariantAuthor.Creature()` wrote to a non-Resources folder — unreachable at runtime;
+  now `Resources/Enemies` where `CreatureRuntime` + the factory actually look.**
+- **Cross-lane CI fix** (`0d7c772`): architect's `BotMath.cs` CS0029 (uint ternary) turned the shared gate
+  red for runs #194–#196 — fixed the type only (no design change) so both lanes could verify again.
+- **On Terry's plate:** runbook **§2e** (grazers/swarms/tether/molters/Warden feel). — **Next:** M4 the
+  Ship (S1 boardable) per GAME_PLAN, or Terry's device pass (FOUR milestone smoke lists now stacked).
+
 ### 2026-07-02 (bbb) — operator (Fable 5): M2 "THE JOB IS REAL" built — repair loop, hazards, visible economy
 Same-session continuation after M1 closed (APK `28581416414` green). All ⚙CI; sprint tracked in SPRINT.md.
 - **The hands-on repair loop** (`468458b`, CI-green): `RepairableMachine` — pull the access panel off,
