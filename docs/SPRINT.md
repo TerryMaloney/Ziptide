@@ -15,7 +15,8 @@
 | 5 | **W000 wake-on-ship tutorial** — the intro world: wake in the hull, RILL boot sequence, gear intro (Scan Pulse → Taser → Gravity per the deferred M2 trio), first contract, first flight to W001. Needs a small ship-interior layout + W000 gating swap (`TUTORIAL_COMPLETE` replaces `toxiccity_complete` on W002 per WORLD_DATA note) | ⬜ |
 | 6 | **THE QUARTERS** (Terry's brief): `CosmeticDefinition` + pure `CosmeticLocker` (6 tests) + host-agnostic `QuartersRoom` (3 bays, locker board, empty-stock stub) + ItemFactory skin seam + ship hosts it aft (QUARTERS ⇄ RETURN panels) + `docs/systems/QUARTERS.md` w/ the architect PvP-locker crossover | ✅ this commit |
 | 7 | Retrospective polish: helm re-gates on every boarding, 12-world grid, label cache | ✅ `83b8d47` |
-| 8 | Close: HANDOFF (ddd+eee), runbook §2f, checklist, **final APK dispatch** → M4-so-far verified (S3 sockets + W000 remain the M4 tail) | 🟡 |
+| 8 | Close: HANDOFF (ddd/eee/fff), runbook §2f, **final APK ✅ run `28604219729` (70 MB, head `7128b74`)** — the sideload carries M1+M2+M3+M4-S1/S2+Quarters+juice. **S3 sockets + W000 wake-on-ship + the first cosmetics drop remain the M4 tail.** | ✅ |
+| 9 | Juice pass (Terry's AAA-feel directive): RILL typewriter + lean-in + ship/quarters lines · Quarters real-gear showcase plinths · depart countdown ("PUNCH IT") · creature disable arcs · live helm gating + 12-world grid | ✅ `a9ba870`…`7128b74` |
 
 ## ▶ RESUMING? — current state & exact next action
 - **Current:** S1+S2+Ch.1 berths CI-green (#202–#204); docs (runbook §2f, HANDOFF ddd) in `8d2a370`
