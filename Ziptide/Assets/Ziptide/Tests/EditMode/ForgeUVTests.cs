@@ -116,15 +116,37 @@ namespace Ziptide.Tests.EditMode
         [Test]
         public void MirroredPart_ReusesItsIsland()
         {
+            // The mirrored instance flips winding (b↔c), so vertex ORDER differs — the contract is
+            // that both copies use the SAME island with the SAME UV set, not positional identity.
             var p = Part(ForgeOp.BeveledBox, new Vector3(0.1f, 0.1f, 0.1f));
             p.position = new Vector3(0.2f, 0f, 0f);
             p.mirrorX = true;
             var r = Recipe(p);
+            var islands = ForgeUV.ComputeIslands(r);
+            Assert.AreEqual(1, islands.Count, "a mirrored part is ONE island, not two");
+            var isl = islands[0].rect;
             var mesh = ForgeMesh.Build(r);
             var uvs = mesh.uv;
             int half = uvs.Length / 2;
+
+            var first = new List<Vector2>();
+            var second = new List<Vector2>();
+            const float eps = 1e-4f;
+            for (int i = 0; i < uvs.Length; i++)
+            {
+                Assert.IsTrue(uvs[i].x >= isl.xMin - eps && uvs[i].x <= isl.xMax + eps
+                    && uvs[i].y >= isl.yMin - eps && uvs[i].y <= isl.yMax + eps,
+                    "mirrored-part uv escaped the shared island: " + uvs[i]);
+                (i < half ? first : second).Add(uvs[i]);
+            }
+            System.Comparison<Vector2> byXY = (a, b) => a.x != b.x ? a.x.CompareTo(b.x) : a.y.CompareTo(b.y);
+            first.Sort(byXY);
+            second.Sort(byXY);
             for (int i = 0; i < half; i++)
-                Assert.AreEqual(uvs[i], uvs[half + i], "mirrored copy must reuse the source UVs");
+            {
+                Assert.AreEqual(first[i].x, second[i].x, 1e-5f, "mirrored UV set diverged (x) at " + i);
+                Assert.AreEqual(first[i].y, second[i].y, 1e-5f, "mirrored UV set diverged (y) at " + i);
+            }
         }
 
         [Test]
