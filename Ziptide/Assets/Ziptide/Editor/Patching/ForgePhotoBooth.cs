@@ -85,7 +85,7 @@ namespace Ziptide.Editor.Patching
                 var mf = root.AddComponent<MeshFilter>();
                 mf.sharedMesh = Ziptide.Visuals.ForgeMesh.Build(recipe);
                 var mr = root.AddComponent<MeshRenderer>();
-                mr.sharedMaterials = Ziptide.Visuals.ForgeMaterials.ForRecipe(recipe);
+                mr.sharedMaterials = BuildTexturedPreviewMaterials(recipe);
                 yield return (root, spec.Key);
             }
         }
@@ -120,6 +120,44 @@ namespace Ziptide.Editor.Patching
                 .transform.localRotation = Quaternion.Euler(-20f, 0f, 0f);
             Part("Sight", PrimitiveType.Cube, new Vector3(0f, 0.032f, 0.03f), new Vector3(0.01f, 0.012f, 0.03f), new Color(0.85f, 0.70f, 0.30f));
             return root;
+        }
+
+        /// <summary>
+        /// FORGE II E1.2: booth materials carry the BAKED ALBEDO atlas (one texture shared by all
+        /// slot materials — each submesh samples its own island) so photo critique sees the real
+        /// textured surface, not flat palette colors. GlowPanel slots preview their emission as
+        /// whole-submesh glow (exactly right pre-E1.3: the glow slot's submesh IS the glow parts).
+        /// </summary>
+        private static Material[] BuildTexturedPreviewMaterials(Ziptide.Visuals.ForgeRecipeDefinition recipe)
+        {
+            const int size = 1024;
+            var meta = Ziptide.Visuals.ForgeTexture.BakeMeta(recipe, size);
+            var px = new Color32[size * size];
+            Ziptide.Visuals.ForgeTexture.BakeAlbedo(recipe, meta, size, px);
+            var albedo = new Texture2D(size, size, TextureFormat.RGBA32, false);
+            albedo.SetPixels32(px);
+            albedo.Apply(false, false);
+
+            var slots = Ziptide.Visuals.ForgeMesh.UsedPaletteSlots(recipe);
+            var shader = Shader.Find("Universal Render Pipeline/Lit");
+            var mats = new Material[Mathf.Max(1, slots.Count)];
+            for (int i = 0; i < mats.Length; i++)
+            {
+                var m = new Material(shader) { name = "BoothPreview_" + i };
+                m.SetTexture("_BaseMap", albedo);
+                m.SetColor("_BaseColor", Color.white);
+                if (i < slots.Count)
+                {
+                    var styleSpec = Ziptide.Visuals.ForgeTexture.SlotStyle(recipe, slots[i]);
+                    if (styleSpec.style == Ziptide.Visuals.ForgeStyle.GlowPanel)
+                    {
+                        m.EnableKeyword("_EMISSION");
+                        m.SetColor("_EmissionColor", styleSpec.emissive * styleSpec.emissiveIntensity);
+                    }
+                }
+                mats[i] = m;
+            }
+            return mats;
         }
 
         /// <summary>Photograph one root object from all shot angles. Returns PNG count written.</summary>

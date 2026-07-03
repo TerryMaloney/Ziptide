@@ -65,7 +65,7 @@ namespace Ziptide.Visuals
     {
         public const int MaxParts = 24;
         public const int MaxPaletteSlots = 6;
-        public const int CurrentSchemaVersion = 1;
+        public const int CurrentSchemaVersion = 2; // v2 = FORGE II slotStyles; v1 assets stay valid
         public const float MaxPartExtent = 4f;
 
         [Tooltip("Stable id, lowercase snake_case (e.g. 'taser_gun_mk1'). Unique across Resources/Forge.")]
@@ -76,6 +76,9 @@ namespace Ziptide.Visuals
         public string[] storyTags;
         [Tooltip("Up to 6 colors; parts reference slots by index. Fewer colors = fewer draw calls.")]
         public Color[] palette = { Color.gray };
+        [Tooltip("FORGE II: material style per palette slot (parallel to palette; missing/short = " +
+                 "PaintedMetal defaults). Drives the texture bake: wear/grime/panels/cells/emissive.")]
+        public ForgeStyleSpec[] slotStyles;
         [Tooltip("Hard triangle budget — over it, tests and the audit fail the build.")]
         public int budgetTris = 3000;
         public ForgePart[] parts;
@@ -86,7 +89,8 @@ namespace Ziptide.Visuals
         {
             var issues = new List<string>();
             if (string.IsNullOrEmpty(recipeId)) issues.Add("empty recipeId");
-            if (schemaVersion != CurrentSchemaVersion) issues.Add("unknown schemaVersion " + schemaVersion);
+            if (schemaVersion < 1 || schemaVersion > CurrentSchemaVersion)
+                issues.Add("unknown schemaVersion " + schemaVersion);
             if (!ForgePalettes.IsKnownFamily(surfaceFamily)) issues.Add("unknown surfaceFamily '" + surfaceFamily + "'");
             if (palette == null || palette.Length < 1 || palette.Length > MaxPaletteSlots)
                 issues.Add("palette must have 1.." + MaxPaletteSlots + " colors");

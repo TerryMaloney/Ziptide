@@ -80,6 +80,16 @@ namespace Ziptide.Editor.Patching
                 },
                 budgetTris: 3000);
 
+            // FORGE II styles (parallel to the palette): the texture bake reads these.
+            d.slotStyles = new[]
+            {
+                new ForgeStyleSpec { style = ForgeStyle.RustedMetal, wear = 0.55f, grime = 0.5f, panelDensity = 3f },  // 0 body
+                new ForgeStyleSpec { style = ForgeStyle.BareMetal, wear = 0.35f, grime = 0.3f },                       // 1 gunmetal
+                new ForgeStyleSpec { style = ForgeStyle.PaintedMetal, wear = 0.45f, grime = 0.4f, panelDensity = 2f }, // 2 tape
+                new ForgeStyleSpec { style = ForgeStyle.GlowPanel, wear = 0.1f, grime = 0f,                            // 3 charge teal
+                    emissive = new Color(0.30f, 0.80f, 0.95f), emissiveIntensity = 3f },
+            };
+
             d.parts = new[]
             {
                 new ForgePart // receiver
