@@ -45,7 +45,8 @@ namespace Ziptide.Editor.Patching
                 if (c != null) BuildConnection(root, kit, c);
 
             BuildShipyard(root, kit);
-            WorldPoiBuilder.Build(root, kit); // P1c gameplay pockets (no-op without experience+pois)
+            WorldPoiBuilder.Build(root, kit);      // P1c gameplay pockets (no-op without experience+pois)
+            WorldDressingBuilder.Build(root, kit); // P1d route cairns + P1e biome scatter (same gate)
             BuildDroneZones(root, kit);
             BuildHazardZones(root, kit);
             BuildCreatureZones(root, kit);
