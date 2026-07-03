@@ -93,6 +93,7 @@ namespace Ziptide.Editor.Audit
                     RunCityGeometryChecks(sceneReport);
                     RunSingletonChecks(sceneReport);
                     SkyVistaAuditRules.Run(sceneReport);
+                    ExperienceAuditRules.Run(sceneReport); // Quality Bar P1f gates
                 }
 
                 report.scenes.Add(sceneReport);
