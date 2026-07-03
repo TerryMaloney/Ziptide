@@ -45,32 +45,43 @@ namespace Ziptide.Visuals
             return new List<int>(used);
         }
 
-        /// <summary>Build the combined mesh. Deterministic: same recipe → identical vertex data.</summary>
+        /// <summary>Build the combined mesh. Deterministic: same recipe → identical vertex data.
+        /// FORGE II: every part projects into its own UV-atlas island (ForgeUV) and the mesh carries
+        /// uv0 + tangents so the texture bake (E1.2+) has texel ownership and normal-map support.</summary>
         public static Mesh Build(ForgeRecipeDefinition recipe)
         {
             var verts = new List<Vector3>();
             var normals = new List<Vector3>();
+            var uvs = new List<Vector2>();
             var slotTris = new Dictionary<int, List<int>>();
 
+            var islands = ForgeUV.ComputeIslands(recipe);
+            var islandByPart = new Dictionary<int, Rect>();
+            foreach (var isl in islands) islandByPart[isl.partIndex] = isl.rect;
+
             if (recipe != null && recipe.parts != null)
-                foreach (var part in recipe.parts)
+                for (int pi = 0; pi < recipe.parts.Length; pi++)
                 {
+                    var part = recipe.parts[pi];
                     if (part == null) continue;
                     var local = BuildPart(part);
-                    AppendInstance(local, part, mirrored: false, verts, normals, SlotList(slotTris, part.paletteSlot));
+                    Rect island = islandByPart.TryGetValue(pi, out var r) ? r : new Rect(0f, 0f, 1f, 1f);
+                    AppendInstance(local, part, island, mirrored: false, verts, normals, uvs, SlotList(slotTris, part.paletteSlot));
                     if (part.mirrorX)
-                        AppendInstance(local, part, mirrored: true, verts, normals, SlotList(slotTris, part.paletteSlot));
+                        AppendInstance(local, part, island, mirrored: true, verts, normals, uvs, SlotList(slotTris, part.paletteSlot));
                 }
 
             var mesh = new Mesh { name = recipe != null ? "Forge_" + recipe.recipeId : "Forge" };
             if (verts.Count > 65000) mesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
             mesh.SetVertices(verts);
             mesh.SetNormals(normals);
+            mesh.SetUVs(0, uvs);
             var slots = UsedPaletteSlots(recipe);
             mesh.subMeshCount = Mathf.Max(1, slots.Count);
             for (int i = 0; i < slots.Count; i++)
                 mesh.SetTriangles(slotTris[slots[i]], i);
             mesh.RecalculateBounds();
+            mesh.RecalculateTangents(); // tangents follow our UVs; normals stay ours
             return mesh;
         }
 
@@ -99,11 +110,13 @@ namespace Ziptide.Visuals
             return list;
         }
 
-        private static void AppendInstance(PartGeometry local, ForgePart part, bool mirrored,
-            List<Vector3> verts, List<Vector3> normals, List<int> tris)
+        private static void AppendInstance(PartGeometry local, ForgePart part, Rect island, bool mirrored,
+            List<Vector3> verts, List<Vector3> normals, List<Vector2> uvs, List<int> tris)
         {
             var rot = Quaternion.Euler(part.eulerRotation);
             var scl = part.scale == Vector3.zero ? Vector3.one : part.scale;
+            var proj = ForgeUV.ProjectionFor(part.op);
+            Bounds localBounds = LocalBounds(local);
 
             Vector3 Xform(Vector3 v)
             {
@@ -116,11 +129,17 @@ namespace Ziptide.Visuals
 
             if (part.smooth)
             {
-                // Indexed: shared verts, accumulated normals.
+                // Indexed: shared verts, accumulated normals, per-VERTEX UVs (a smooth surface can't
+                // hold per-face UVs — the one wrap-seam column this leaves is a documented artifact).
                 int baseIndex = verts.Count;
                 var acc = new Vector3[local.vertices.Count];
                 for (int i = 0; i < local.vertices.Count; i++)
-                    verts.Add(Xform(local.vertices[i]));
+                {
+                    Vector3 lv = local.vertices[i];
+                    verts.Add(Xform(lv));
+                    ForgeUV.ProjectTriangle(proj, lv, lv, lv, lv, localBounds, out var uv, out _, out _);
+                    uvs.Add(ForgeUV.ToAtlas(uv, island));
+                }
                 for (int t = 0; t < local.triangles.Count; t += 3)
                 {
                     int a = local.triangles[t], b = local.triangles[t + 1], c = local.triangles[t + 2];
@@ -134,19 +153,34 @@ namespace Ziptide.Visuals
             }
             else
             {
-                // Exploded: unique verts per face, hard edges.
+                // Exploded: unique verts per face, hard edges, per-FACE UVs with wrap fix.
                 for (int t = 0; t < local.triangles.Count; t += 3)
                 {
                     int a = local.triangles[t], b = local.triangles[t + 1], c = local.triangles[t + 2];
                     if (mirrored) { int tmp = b; b = c; c = tmp; }
-                    Vector3 va = Xform(local.vertices[a]), vb = Xform(local.vertices[b]), vc = Xform(local.vertices[c]);
+                    Vector3 la = local.vertices[a], lb = local.vertices[b], lc = local.vertices[c];
+                    Vector3 localFn = FaceNormal(la, lb, lc);
+                    ForgeUV.ProjectTriangle(proj, la, lb, lc, localFn, localBounds,
+                        out var ua, out var ub, out var uc);
+                    Vector3 va = Xform(la), vb = Xform(lb), vc = Xform(lc);
                     Vector3 fn = FaceNormal(va, vb, vc);
                     int i0 = verts.Count;
                     verts.Add(va); verts.Add(vb); verts.Add(vc);
                     normals.Add(fn); normals.Add(fn); normals.Add(fn);
+                    uvs.Add(ForgeUV.ToAtlas(ua, island));
+                    uvs.Add(ForgeUV.ToAtlas(ub, island));
+                    uvs.Add(ForgeUV.ToAtlas(uc, island));
                     tris.Add(i0); tris.Add(i0 + 1); tris.Add(i0 + 2);
                 }
             }
+        }
+
+        private static Bounds LocalBounds(PartGeometry g)
+        {
+            if (g.vertices.Count == 0) return new Bounds(Vector3.zero, Vector3.one * 0.001f);
+            var b = new Bounds(g.vertices[0], Vector3.zero);
+            for (int i = 1; i < g.vertices.Count; i++) b.Encapsulate(g.vertices[i]);
+            return b;
         }
 
         private static Vector3 FaceNormal(Vector3 a, Vector3 b, Vector3 c)
