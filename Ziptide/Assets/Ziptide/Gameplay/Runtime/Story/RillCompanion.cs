@@ -133,7 +133,9 @@ namespace Ziptide.Gameplay
             if (_lineTimer <= 0f && _pending.Count > 0)
             {
                 var line = _pending.Dequeue();
-                _currentFullText = "RILL: " + line.text;
+                // Wrap BEFORE the reveal so the typewriter substring includes the line breaks —
+                // TextMesh has no wrapping and unwrapped lines ran off-screen on device.
+                _currentFullText = SubtitleText.Wrap("RILL: " + line.text);
                 _revealStarted = Time.time;
                 _lineTimer = LineSeconds + _currentFullText.Length / CharsPerSecond; // reveal + read time
                 if (line.voClip != null)
@@ -179,7 +181,7 @@ namespace Ziptide.Gameplay
             {
                 var go = new GameObject("__RillSubtitle");
                 _text = go.AddComponent<TextMesh>();
-                _text.characterSize = 0.012f;
+                _text.characterSize = 0.009f; // device pass: 0.012 read as "large and in your face"
                 _text.fontSize = 64;
                 _text.anchor = TextAnchor.MiddleCenter;
                 _text.alignment = TextAlignment.Center;
@@ -216,9 +218,12 @@ namespace Ziptide.Gameplay
 
             if (_text != null)
             {
-                // Subtitle low-center, above the credits readout, billboarded.
-                _text.transform.position = _cam.position + _cam.forward * 0.9f - _cam.up * 0.27f;
+                // Subtitle low-center (cinema subtitle zone — NOT mid-gaze), billboarded, with a
+                // short alpha fade-in so lines arrive instead of popping "in your face".
+                _text.transform.position = _cam.position + _cam.forward * 0.9f - _cam.up * 0.33f;
                 _text.transform.rotation = Quaternion.LookRotation(_text.transform.position - _cam.position);
+                float alpha = _lineTimer > 0f ? Mathf.Clamp01((Time.time - _revealStarted) / 0.45f) : 1f;
+                var c = _text.color; c.a = alpha; _text.color = c;
             }
         }
 
