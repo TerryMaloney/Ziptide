@@ -28,6 +28,17 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-04 (uuu) — Picasso (Fable 5): 🔓 SPAWN WAVE LOCK PICKED — the audit was checking the WRONG marker
+Supersedes (ttt)'s hypotheses. The 79b4437 fixes WERE in run `28683403086` — yet "overlapping" props
+sat at POI CENTERS, which a 12m push-out makes impossible. Real cause: `RunSpawnChecks` used
+`FindObjectOfType<SpawnMarkerRuntime>()` — ANY marker — and POIs plant `poi_*` markers, so spawn
+checks ran at random POI pedestals/masts; H5's scene-order changes shuffled which marker won per
+world (hence the drifting world set and the phantom "terrain overlaps spawn"). Fix pushed: the audit
+resolves `__SPAWN_PLAYER` BY NAME first (fallback: any marker) + reports ALL overlapping colliders
+instead of breaking on the first. The 79b4437 spawn-Y/exclusion fixes stay — correct hygiene
+regardless. Re-dispatched; expect green. Lesson recorded for every future gate: **an audit rule must
+identify its subject unambiguously — never "FindObjectOfType and hope."**
+
 ### 2026-07-04 (ttt) — Picasso (Fable 5): ⛔ CIRCUIT BREAKER on the APK spawn blockers — full diagnosis for the next session + FORGE II E1.1/E1.2 SHIPPED
 **Shipped this stretch (all CI-green):** FORGE II **E1.1** UV atlas (`241f2c4`+`f6415f5`) and **E1.2**
 texture bake (`ba6f869`+`6e0509c`) — the taser is TEXTURED in the checkpoint photos (panels/rust/

@@ -199,9 +199,17 @@ namespace Ziptide.Editor.Audit
 
         private static void RunSpawnChecks(SceneAuditReport report)
         {
-            // Find spawn marker.
-            var marker = Object.FindObjectOfType<SpawnMarkerRuntime>();
-            GameObject markerGo = marker != null ? marker.gameObject : GameObject.Find("__SPAWN_PLAYER");
+            // Find THE PLAYER spawn marker BY NAME first. FindObjectOfType<SpawnMarkerRuntime>()
+            // returns an arbitrary marker — and POIs plant "poi_*" markers too, so the old order
+            // audited spawn-overlap at random POI pedestals/masts (the H5 scene-order shuffle made
+            // which marker "won" drift per world per build — the entire SPAWN_OVERLAP_SOLID wave,
+            // HANDOFF ttt/uuu).
+            GameObject markerGo = GameObject.Find("__SPAWN_PLAYER");
+            if (markerGo == null)
+            {
+                var marker = Object.FindObjectOfType<SpawnMarkerRuntime>();
+                markerGo = marker != null ? marker.gameObject : null;
+            }
 
             if (markerGo == null)
             {
@@ -235,10 +243,11 @@ namespace Ziptide.Editor.Audit
                 if (col == floorCollider) continue;
                 if (col.bounds.max.y <= spawnFeetY) continue; // Walkable surface below feet — not an obstruction.
                 if (IsPartOfPlayerRig(col.transform)) continue; // XR Origin / player rig is placed at spawn in editor.
+                // Report EVERY overlapping collider (the old break-after-first hid the rest, costing
+                // one full APK cycle per hidden blocker — HANDOFF ttt §3).
                 report.Blocker("SPAWN_OVERLAP_SOLID",
                     "Solid collider '" + col.name + "' overlaps spawn position. Player would spawn inside geometry.",
                     GetPath(col.gameObject));
-                break;
             }
 
             // SPAWN_BELOW_WALKWAY: for city scenes, check spawn Y vs walkway height.
