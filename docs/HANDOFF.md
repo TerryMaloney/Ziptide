@@ -28,6 +28,36 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-04 (ttt) — Picasso (Fable 5): ⛔ CIRCUIT BREAKER on the APK spawn blockers — full diagnosis for the next session + FORGE II E1.1/E1.2 SHIPPED
+**Shipped this stretch (all CI-green):** FORGE II **E1.1** UV atlas (`241f2c4`+`f6415f5`) and **E1.2**
+texture bake (`ba6f869`+`6e0509c`) — the taser is TEXTURED in the checkpoint photos (panels/rust/
+grime/teal glow; before/after sent to Terry). **Q2d** opt-in landed (`00aa595`, W002 GalleryB) +
+runbook §2n. Audit observability: red runs now print `ZIPTIDE: AUDIT_BLOCKER` lines + upload
+`audit-report` artifact (`e9b4ece`) — this is how everything below was diagnosed remotely.
+
+**🔴 BLOCKED (3 APK reds — breaker invoked): SPAWN_OVERLAP_SOLID wave from the H3 terrain swap.**
+Runs: `28672584908` (blind, 10 blockers) → `28682909567` (named: 3× spawn-inside-ExperienceTerrain,
+5× POI props at spawn) → fix `79b4437` (spawn Y samples `WorldExperienceBuilder.HeightAt`; POI
+12m exclusion ring + 4 tests) → `28683403086` (**9 blockers, SET CHANGED: W002/W008 now PASS**,
+W003/W004/W009 newly appear — progress, not a loop, but two deeper causes remain):
+1. **Prop reach ≥ the exclusion ring.** Pushed-out POIs sit AT 12m; their props (WatchMast/
+   Pedestal/DaisStep) extend from the POI center — read `WorldPoiBuilder.BuildCombatCamp/
+   BuildRuin/BuildStoryDais` prop offsets, then either raise `SpawnExclusionRadius` to
+   max-prop-reach + 1m sphere + margin (likely 18–20m) or compute per-POI-kind reach. The pure
+   `ExcludeFromSpawn` + tests are already there — retune, don't rewrite.
+2. **W004-class terrain overlap persists** even with spawn at `HeightAt + 0.15`: verify
+   `BuildTerrain`'s vertex heights EXACTLY match `HeightAt` at the spawn anchor (the file says
+   they MUST; suspect an offset/resolution mismatch), and note the audit raycast starts at
+   +0.2m — a spawn even slightly inside a non-convex MeshCollider gets no floor hit AND an
+   overlap flag together.
+3. **Audit quality-of-life for whoever fixes this:** `RunSpawnChecks` `break`s after the FIRST
+   overlapping collider per scene, so each fix reveals the next — remove the break / collect all
+   overlaps per scene in one pass (tiny change) before re-dispatching, or you'll pay a 30-min APK
+   cycle per hidden blocker.
+**Resume:** fix 1+2+3 in one commit-pair, re-dispatch, expect green; then Terry's §2n W002 walk.
+Board rows marked 🔴 in SPRINT.md. The E1.2-textured Forge + Q2d buildings are already in these
+builds and unaffected — they ship the moment the spawn wave clears.
+
 ### 2026-07-04 (sss) — Picasso (Fable 5, likely-final Fable session): 🧭 SUCCESSION RECONCILED — every track resumable by any model; FORGE II opens
 Terry's directive: Architect + T-Dog are out of Fable (T-Dog cut mid-queue); make the WHOLE project
 runnable by Opus/Sonnet-class operators. Reviewed everything qqq/rrr set up — the takeover kit is
