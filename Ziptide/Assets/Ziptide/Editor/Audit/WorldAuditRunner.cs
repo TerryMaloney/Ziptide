@@ -466,7 +466,20 @@ namespace Ziptide.Editor.Audit
         private static void LogSummary(WorldAuditReport report)
         {
             if (report.totalBlockers > 0)
+            {
                 Debug.LogError("ZIPTIDE: AUDIT_FAIL blockers=" + report.totalBlockers + " warnings=" + report.totalWarnings);
+                // Print every blocker into the build log — a remote operator diagnosing a red CI
+                // run has no other way to read the report (docs/AUDIT_REPORT.md stays in the
+                // workspace). One line per blocker, capped defensively.
+                int printed = 0;
+                foreach (var scene in report.scenes)
+                    foreach (var f in scene.findings)
+                    {
+                        if (f.severity != AuditSeverity.Blocker) continue;
+                        if (printed++ >= 40) { Debug.LogError("ZIPTIDE: AUDIT_BLOCKER ... (truncated)"); return; }
+                        Debug.LogError("ZIPTIDE: AUDIT_BLOCKER scene=" + scene.sceneName + " " + f);
+                    }
+            }
             else
                 Debug.Log("ZIPTIDE: AUDIT_OK blockers=0 warnings=" + report.totalWarnings);
         }

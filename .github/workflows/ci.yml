@@ -129,3 +129,13 @@ jobs:
           name: ziptide-apk
           path: ${{ env.PROJECT_PATH }}/Builds/Android/Ziptide.apk
           if-no-files-found: warn
+
+      # The audit writes its full report into the workspace; on a red run it's the ONLY diagnosis
+      # source a remote operator has, so ship it as an artifact unconditionally.
+      - name: Upload audit report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: audit-report
+          path: docs/AUDIT_REPORT.*
+          if-no-files-found: warn
