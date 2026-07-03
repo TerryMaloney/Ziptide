@@ -53,6 +53,10 @@ namespace Ziptide.Build
             catch (Exception ex) { Debug.LogWarning("[Ziptide] Garden author warning: " + ex.Message); }
             try { Ziptide.Editor.Patching.WorldLayoutLibrary.EnsureAllAuthored(); }
             catch (Exception ex) { Debug.LogWarning("[Ziptide] World layout library warning: " + ex.Message); }
+            // ARCHITECTURE V2 Q1: committed world specs (docs/worldspecs/*.spec.json) are the editable
+            // truth ON TOP of the library's seeded defaults — apply them before scenes generate.
+            try { Ziptide.Editor.Spec.WorldSpecCompiler.CompileAll(); }
+            catch (Exception ex) { Debug.LogWarning("[Ziptide] World spec compile warning: " + ex.Message); }
             try { Ziptide.Editor.Patching.WorldStubGenerator.EnsureGeneratedInBuildSettings(); }
             catch (Exception ex) { Debug.LogWarning("[Ziptide] Generated-worlds build-settings ensure warning: " + ex.Message); }
 

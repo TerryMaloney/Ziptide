@@ -235,6 +235,17 @@ Your last test drove this whole program. Next build/sideload, please check exact
   extractor 40 CR". Select the base → your credits drop and a REAL rig rises (`SOCKET_BUILD`),
   producing like any mine. Leave and return — **your built machine is still there**.
 
+## 2k. NEW — ARCHITECTURE V2: export the World Specs (one menu click, ~1 min)
+The overhaul's keystone landed: every world can now be driven by ONE editable text file (a "spec").
+Your click creates the starting spec for every existing world:
+- [ ] In Unity: **`Ziptide → Worlds → Export All World Specs (JSON)`** → files appear in
+  `docs/worldspecs/`.
+- [ ] Commit + push them (`git add docs/worldspecs; git commit -m "world specs exported"; git push`).
+- From then on: "make W005's world bigger, redder, with two more combat camps" = an LLM edits
+  `docs/worldspecs/W005_OxidizedCanopy.spec.json`, the build applies it, and the validators/quality
+  gates reject anything broken BEFORE it can reach your headset. That's the "request it and it
+  happens" pipeline from your PDF.
+
 ## 3. The two open judgment calls (yours)
 - **"Can you run in Toxic City?"** — was it the input bug (now fixed) or actual walls/narrow streets? If
   still wall-blocked, say so and the streets get widened.
