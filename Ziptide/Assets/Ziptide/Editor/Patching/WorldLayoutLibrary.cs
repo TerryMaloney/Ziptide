@@ -286,6 +286,11 @@ namespace Ziptide.Editor.Patching
             District(kit, "CisternMouth", new Vector3(0, 0, 0), 16, 16, 0,
                 landmark: ("LightShaft", new Vector3(4, 0, 4), 22f, 1.5f)); // the single shaft of surface light
             District(kit, "GalleryB", new Vector3(24, 0, 6), 16, 14, 0);
+            // Q2d (V2.5 building proof, qqq envelope): GalleryB opts into real generated buildings —
+            // the first district anywhere to wear BuildingGrammar. CI regenerates this layout fresh;
+            // Terry's machine keeps a local asset (create-only), so his editor needs a one-time
+            // delete of Content/City/Generated/W002_DryCistern_Layout.asset to see it locally.
+            kit.districts[kit.districts.Count - 1].buildingStyleId = "toxic_tenement";
             District(kit, "DeepShaft", new Vector3(10, 0, 26), 14, 14, 1,
                 landmark: ("OldWinch", new Vector3(-3, 0, 3), 9f, 2f));
             District(kit, "ChamberA", new Vector3(-16, 0, 20), 18, 16, 0,

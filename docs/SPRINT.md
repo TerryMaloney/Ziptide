@@ -32,7 +32,7 @@
 | H3 | **`TerrainField`** (envelope qqq): pure fBM 3–5 octaves + domain warp + temp×moisture biome matrix (each BiomePreset = parameter set); ~15 tests (same-seed identity, slope bound, output range); swap `WorldExperienceBuilder` height fn; `TERRAIN_SLOPE_UNWALKABLE` gate | ✅ this commit: TerrainField (fBM+warp+climate, 15 tests, walkable-fraction contract measured empirically) + builder swap + TERRAIN_SLOPE_UNWALKABLE gate |
 | H2 | **`RoomPartitioner`** (envelope qqq): BSP rooms + corridors carved walking back up the tree; template = `Content/Runtime/City/LotPartitioner.cs` (same Rng struct + base cases + access rule); ~12 tests incl. full reachability; feeds ship decks / hero interiors | ✅ this commit: BSP + access-rule corridors (room-center endpoints ⇒ connectivity by induction), 12 tests incl. 25-seed sweep + odd footprints, all contracts pre-verified by simulation |
 | H5 | **`ScatterField`** (envelope qqq): pure Poisson-disk, density channels, exclusion masks (pads/corridors/POIs/route), per-kind min spacing; ~10 tests; swap into `WorldDressingBuilder` | ✅ this commit: Bridson Poisson + moisture density channel (TerrainField.Climate) + capsule/disc masks + per-kind spacing, 11 tests, dressing swap done |
-| Q2d | **Building proof**: set `buildingStyleId="toxic_tenement"` on one W002 district → APK dispatch → runbook "does it read as a place?" gate | ⬜ after H3 |
+| Q2d | **Building proof**: set `buildingStyleId="toxic_tenement"` on one W002 district → APK dispatch → runbook "does it read as a place?" gate | ✅ this commit (Picasso covering the story lane — W002 GalleryB opted in via WorldLayoutLibrary; APK dispatched; runbook §2n) |
 | P4b | **S4 flight scene v1** — READ `docs/design/SPACEFLIGHT_PHYSICS.md` FIRST; comfort-capped cockpit flight in a bounded SpaceLane scene (world moves, never the camera; NO floating origin — trigger not fired); pure `FlightModel` core + tests before the scene translator | ⬜ last big piece |
 | A1 | **Succession gap-closures from Terry's PDF** (triage in HANDOFF rrr): `.gitattributes` (+ runbook UnityYamlMerge driver setup for Terry) · 2 new deferral records in `ARCHITECTURE_V2.md` (runtime asset streaming, gateway rate-limiting) · metavr MCP evaluation runbook item | ✅ this commit |
 
@@ -41,18 +41,18 @@
   fixes · terrain+vista · POIs+gates · route+dressing · contracts-through-POIs · garden+sockets ·
   interim hull · handbook). Rebased onto architect's takeover kit `a21fffb`; read
   **`docs/OPERATOR_START_HERE.md`** — its laws (incl. THE CIRCUIT BREAKER) govern this board too.
-- **Next action:** **Q2d building proof** (H3+H2+H5 all shipped — see board). Original H3 note kept for reference: **H3 `TerrainField`** — new pure class in `Content/Runtime/City/` (follow
-  `LotPartitioner.cs`'s style): fBM 3–5 octaves over the seed-hash idiom already in
-  `WorldExperienceBuilder.Hash01/ValueNoise`, + domain warping, + a temp×moisture matrix that maps
-  each `BiomePreset` to a parameter set. ~15 EditMode tests FIRST (same-seed identity, cross-seed
-  divergence, slope bound ≤ MaxSlopeRatio, output range, biome distinctness). Then swap
-  `WorldExperienceBuilder.RawHeight` to call it (keep the flatten/rim pipeline untouched) and add
-  the `TERRAIN_SLOPE_UNWALKABLE` audit blocker (pattern: `ExperienceAuditRules`). Then H2 → H5 →
-  Q2d → P4b per the board.
+- **Next action:** **P4b — S4 flight scene v1** (the last ⬜ on this board). READ
+  `docs/design/SPACEFLIGHT_PHYSICS.md` FIRST — the rails are law (world moves, never the camera;
+  never parent the rig to the hull; NO floating origin). Build order: pure `FlightModel` core
+  (thrust/damping/comfort caps, seeded, ~12 EditMode tests FIRST) → SpaceLane bounded scene via a
+  patcher → cockpit translator reading FlightModel → runbook 🎮 item. Follow LotPartitioner→H2 as
+  the worked example of "pure core first, translator second."
 - **Device gate:** Terry §2j/§2k runbook rows still open — his ❌s re-prioritize everything.
-- **Lane:** architecture track = Opus 4.8 (Q4a GamePool queued there); Picasso = art (building
-  module kits + PERF gate enveloped); I own story/worlds/ship + the three H-cores above.
-- **Branch:** `terry-local-wip`. Head at reconciliation: `a21fffb` + this commit.
+  §2n (NEW) = the Q2d "does it read as a place?" gate on W002 GalleryB.
+- **Lane note (2026-07-04):** T-Dog's Fable ended; Picasso (art, last Fable session) covered Q2d
+  and owns cross-track triage until their window ends too — after that ANY capable model resumes
+  any track per `OPERATOR_START_HERE.md`.
+- **Branch:** `terry-local-wip`. Q2d head: this commit.
 
 ## Working rules (unchanged)
 CI green per push; SHIPS.md guardrails are law (no rig parenting, no TravelCoordinator bypass, comfort
