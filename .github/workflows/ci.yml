@@ -137,5 +137,7 @@ jobs:
         if: always()
         with:
           name: audit-report
-          path: docs/AUDIT_REPORT.*
+          path: |
+            docs/AUDIT_REPORT.*
+            ${{ env.PROJECT_PATH }}/Builds/Reports/*
           if-no-files-found: warn
