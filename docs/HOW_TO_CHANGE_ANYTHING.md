@@ -35,6 +35,9 @@ Legend: **Edit** = the one place to change · **Then** = how it takes effect · 
 | **Retune a world's SKYSCAPE** (stars/nebula/moons/banded giant/Shell grid/shimmer) | its `Content/Worlds/SkyVistas/<Scene>_Vista.asset` (`SkyVistaDefinition` — the asset is the live truth, seeded once by `SkyVistaLibrary`) | next build (`SkyVistaAuthor` re-points the theme; textures bake at world entry) | `SKY_VISTA_*` audit rules; device |
 | **Add a skyscape to a NEW world** | add a `Build*` method + `Specs()` row in `Editor/Patching/SkyVistaLibrary.cs` (create-only) | next build seeds + assigns it | `SkyVistaTests` progression suite; audit |
 | ⚠ **Change the CANON sky progression** (Shell grid reveal, giant growth, W003 moons, RILL cyan) | `SkyVistaLibrary.cs` + the pinned expectations in `Tests/EditMode/SkyVistaTests.cs` — story canon, confirm with Terry first | delete the affected vista assets to reseed, rebuild | the canon tests themselves |
+| **FORGE a new asset from a prompt** (item/prop/creature/ship look) | add a `Build*()` method + `Specs()` row in `Editor/Patching/ForgeRecipeLibrary.cs` (grammar + loop: `project_art_plan/FORGE_STUDIO_GUIDE.md`) | push → `forge-photos` workflow auto-renders turnarounds → view the artifact → iterate | `ForgeRecipeLibraryTests` (budget/sockets/palette law); `FORGE_*` audit blockers |
+| **Retune a forged asset's look** | its `Resources/Forge/<recipeId>.asset` (the live truth once seeded) or delete it to reseed from the library method | next build / `Ziptide → Art → Forge Photo Booth` for instant local photos | turnarounds + device |
+| **Give an item a forged look** | one `Assignments` line in `Editor/Patching/ForgeAuthor.cs` (assetPath → recipeId) | build hook sets `forgeRecipeId`; ItemFactory applies at spawn | `FORGE_RECIPE_MISSING` blocker; `ZIPTIDE: FORGE_APPLIED` in logcat |
 
 ## Weapons / gear
 

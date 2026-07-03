@@ -132,6 +132,11 @@ namespace Ziptide.Build
             try { Ziptide.Editor.Patching.SkyVistaLibrary.EnsureAllAuthored(); Ziptide.Editor.Patching.SkyVistaAuthor.AssignAll(); }
             catch (Exception ex) { Debug.LogWarning("[Ziptide] Sky vista author warning: " + ex.Message); }
 
+            // Forge (art track): seed missing recipe assets (create-only), then point item definitions
+            // at their generated looks. ItemFactory applies them at spawn via ForgeVisualApplier.
+            try { Ziptide.Editor.Patching.ForgeRecipeLibrary.EnsureAllAuthored(); Ziptide.Editor.Patching.ForgeAuthor.AssignAll(); }
+            catch (Exception ex) { Debug.LogWarning("[Ziptide] Forge author warning: " + ex.Message); }
+
             // Run world integrity audit BEFORE building APK. Any BLOCKER aborts the build.
             int auditBlockers = 0;
             try

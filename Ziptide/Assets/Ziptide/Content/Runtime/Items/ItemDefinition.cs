@@ -13,6 +13,10 @@ namespace Ziptide.Content
         [Tooltip("Optional prefab to instantiate as visual; if null, use existing renderer on this object.")]
         public GameObject modelPrefab;
 
+        [Tooltip("Forge recipe id (Resources/Forge) — the generated-mesh look. Empty = primitive visual. " +
+                 "Assigned in data by ForgeAuthor; applied by ItemFactory via ForgeVisualApplier.")]
+        public string forgeRecipeId = "";
+
         [Header("Physics (optional overrides)")]
         [Tooltip("Mass for Rigidbody. 0 = leave default.")]
         public float mass = 0.5f;

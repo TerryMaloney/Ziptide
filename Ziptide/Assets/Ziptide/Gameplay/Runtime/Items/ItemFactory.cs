@@ -33,6 +33,11 @@ namespace Ziptide.Gameplay
             else
                 built = CreateGenericItem(def, position);
 
+            // Forge look (art track): definitions carrying a forgeRecipeId swap the primitive body for
+            // the generated mesh — a look, never a stat; missing recipe = graceful primitive fallback.
+            if (built != null && !string.IsNullOrEmpty(def.forgeRecipeId))
+                Ziptide.Visuals.ForgeVisualApplier.TryApply(built, def.forgeRecipeId);
+
             ApplyEquippedCosmetic(built, itemId);
             return built;
         }

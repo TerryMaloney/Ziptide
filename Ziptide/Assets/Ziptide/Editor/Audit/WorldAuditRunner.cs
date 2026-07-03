@@ -65,6 +65,12 @@ namespace Ziptide.Editor.Audit
             // BOOT_SCENE_MISSING: first enabled scene must be _Boot.
             RunBootSceneCheck(report, scenes);
 
+            // Forge recipes/item-look integrity (art track) — project-wide, once per audit.
+            var forgeReport = new SceneAuditReport { sceneName = "__FORGE__" };
+            try { ForgeAuditRules.Run(forgeReport); }
+            catch (System.Exception ex) { forgeReport.Warning("FORGE_AUDIT_ERROR", ex.Message); }
+            report.scenes.Add(forgeReport);
+
             foreach (var sceneBuildEntry in scenes)
             {
                 if (!sceneBuildEntry.enabled) continue;

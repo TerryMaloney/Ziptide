@@ -28,6 +28,28 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-03 (mmm) — Picasso (Fable 5, ART track): 🔨 THE ASSET FORGE — Terry's LLM studio is live; first forged asset = the taser
+Terry's directive: an LLM studio — prompt → real in-game asset, in code, no Tripo/asset fees. Built as
+sprint ART-2 (board: `SPRINT_ART.md`; how-to: **`docs/project_art_plan/FORGE_STUDIO_GUIDE.md`** — read
+that to forge assets from any session). *(Note: ART-1's close entry (iii) was lost in an MP-track rebase —
+for the record: skyscapes shipped APK-green, run `28616598718`, runbook §2h has Terry's checklist.)*
+- **What the Forge is:** `ForgeRecipeDefinition` (7-op closed shape grammar, ≤6-color palette, sockets,
+  tri budget, surfaceFamily law) → pure deterministic `ForgeMesh` (submesh-per-palette-slot, flat-shaded,
+  22 tests) → `ForgeVisualApplier` (runtime look swap, cached, graceful fallback) → **`forge-photos`
+  workflow auto-renders 7-angle turnarounds on every Forge push** — an LLM session downloads the
+  artifact, LOOKS at the PNGs, iterates. Proven end-to-end this session (spike photos viewed + acted on).
+  First recipe: `taser_gun_mk1` (Salvage family, RILL-teal charge windows).
+- **📣 Coordination touches (all append-only, same protocol as (hhh)):** `ItemDefinition` +1 field
+  (`forgeRecipeId` after the dormant `modelPrefab`) · `ItemFactory.Create` +1 block (forge look before
+  cosmetics; missing recipe = primitive fallback, zero behavior change) · `BuildAndroid` +1 try/catch
+  (next to the SkyVista hook) · `WorldAuditRunner` +1 global `__FORGE__` report block
+  (`FORGE_RECIPE_MISSING/INVALID/OVER_BUDGET` blockers). Cosmetics tint via material instances, so the
+  shared Forge material cache is safe under skins.
+- **CI note:** first geometry push went red on my own outwardness tests (cylinder strip winding) — fixed
+  same-push-cycle; that's the guardrail working.
+- **Next:** iterate the taser turnarounds → APK with the first forged weapon → drone body, ship hull,
+  cosmetic mesh variants, W001 building kit through the same loop.
+
 ### 2026-07-02 (lll) — operator (Fable 5, MP track): ⏸ PAUSE AT 90% USAGE — session wrap, everything green, Terry has his install path
 Terry called the pause (90% usage): **no new building.** Final state of this session's work:
 - **CI green through head `24ffb69`** (A3-scene modes + A6-prep + A4 arsenal all compile+test clean).
