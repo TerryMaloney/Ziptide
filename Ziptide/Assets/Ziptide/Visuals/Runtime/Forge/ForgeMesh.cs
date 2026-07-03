@@ -271,13 +271,13 @@ namespace Ziptide.Visuals
                 float a = i * Mathf.PI * 2f / n;
                 g.vertices.Add(new Vector3(Mathf.Cos(a) * radiusX, -hy, Mathf.Sin(a) * radiusZ));
             }
-            // Side (outward): note verts go counter-clockwise seen from +Y as angle increases,
-            // which is CLOCKWISE seen from outside at the ring — wind accordingly.
+            // Side (outward). Winding verified against Cross(b-a, c-a)·radial > 0 — the first cut of
+            // this strip was inside-out and CI's ConvexOps_FaceOutward caught it.
             for (int i = 0; i < n; i++)
             {
                 int j = (i + 1) % n;
-                g.triangles.Add(topStart + i); g.triangles.Add(botStart + i); g.triangles.Add(botStart + j);
-                g.triangles.Add(topStart + i); g.triangles.Add(botStart + j); g.triangles.Add(topStart + j);
+                g.triangles.Add(topStart + i); g.triangles.Add(botStart + j); g.triangles.Add(botStart + i);
+                g.triangles.Add(topStart + i); g.triangles.Add(topStart + j); g.triangles.Add(botStart + j);
             }
             // Caps.
             int topC = g.vertices.Count; g.vertices.Add(new Vector3(0f, hy, 0f));
@@ -309,18 +309,18 @@ namespace Ziptide.Visuals
             for (int i = 0; i < n; i++)
             {
                 int j = (i + 1) % n;
-                // Outer wall (outward).
-                g.triangles.Add(oTop + i); g.triangles.Add(oBot + i); g.triangles.Add(oBot + j);
-                g.triangles.Add(oTop + i); g.triangles.Add(oBot + j); g.triangles.Add(oTop + j);
-                // Inner wall (inward).
-                g.triangles.Add(iTop + i); g.triangles.Add(iBot + j); g.triangles.Add(iBot + i);
-                g.triangles.Add(iTop + i); g.triangles.Add(iTop + j); g.triangles.Add(iBot + j);
+                // Outer wall (radially outward).
+                g.triangles.Add(oTop + i); g.triangles.Add(oBot + j); g.triangles.Add(oBot + i);
+                g.triangles.Add(oTop + i); g.triangles.Add(oTop + j); g.triangles.Add(oBot + j);
+                // Inner wall (radially inward — opposite strip winding).
+                g.triangles.Add(iTop + i); g.triangles.Add(iBot + i); g.triangles.Add(iBot + j);
+                g.triangles.Add(iTop + i); g.triangles.Add(iBot + j); g.triangles.Add(iTop + j);
                 // Top ring cap (+Y).
-                g.triangles.Add(oTop + i); g.triangles.Add(oTop + j); g.triangles.Add(iTop + j);
-                g.triangles.Add(oTop + i); g.triangles.Add(iTop + j); g.triangles.Add(iTop + i);
+                g.triangles.Add(oTop + i); g.triangles.Add(iTop + i); g.triangles.Add(iTop + j);
+                g.triangles.Add(oTop + i); g.triangles.Add(iTop + j); g.triangles.Add(oTop + j);
                 // Bottom ring cap (-Y).
-                g.triangles.Add(oBot + i); g.triangles.Add(iBot + j); g.triangles.Add(oBot + j);
-                g.triangles.Add(oBot + i); g.triangles.Add(iBot + i); g.triangles.Add(iBot + j);
+                g.triangles.Add(oBot + i); g.triangles.Add(iBot + j); g.triangles.Add(iBot + i);
+                g.triangles.Add(oBot + i); g.triangles.Add(oBot + j); g.triangles.Add(iBot + j);
             }
         }
 
@@ -345,8 +345,8 @@ namespace Ziptide.Visuals
                 {
                     int j = (i + 1) % n;
                     int lo = start + r * n, hi = start + (r + 1) * n;
-                    g.triangles.Add(hi + i); g.triangles.Add(lo + i); g.triangles.Add(lo + j);
-                    g.triangles.Add(hi + i); g.triangles.Add(lo + j); g.triangles.Add(hi + j);
+                    g.triangles.Add(hi + i); g.triangles.Add(lo + j); g.triangles.Add(lo + i);
+                    g.triangles.Add(hi + i); g.triangles.Add(hi + j); g.triangles.Add(lo + j);
                 }
             // Caps where the profile is open.
             if (profile[0].x > 0.001f)
