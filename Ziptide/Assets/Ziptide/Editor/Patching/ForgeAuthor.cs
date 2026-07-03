@@ -21,6 +21,26 @@ namespace Ziptide.Editor.Patching
                 "Assets/Ziptide/Resources/Items/DefaultTaserDartGun.asset", "taser_gun_mk1"),
         };
 
+        /// <summary>R2: LOCK = a human approval action. Bakes the current content hash as the
+        /// baseline (approved manual/AI upgrades ARE the baseline — never compared to the builder).
+        /// A locked asset that later drifts from this hash fails the build (FORGE_LOCKED_DRIFT).</summary>
+        [MenuItem("Ziptide/Art/Lock Selected Forge Recipe (bake hash)")]
+        public static void LockSelected()
+        {
+            int locked = 0;
+            foreach (var obj in Selection.objects)
+            {
+                if (!(obj is Ziptide.Visuals.ForgeRecipeDefinition recipe)) continue;
+                recipe.lockedContentHash = recipe.ComputeContentHash();
+                recipe.qualityState = Ziptide.Visuals.ForgeQualityState.Locked;
+                EditorUtility.SetDirty(recipe);
+                locked++;
+                Debug.Log("[Ziptide] ForgeAuthor LOCKED " + recipe.recipeId + " @ " + recipe.lockedContentHash);
+            }
+            if (locked > 0) AssetDatabase.SaveAssets();
+            EditorUtility.DisplayDialog("Forge Lock", locked + " recipe(s) locked at their current content.", "OK");
+        }
+
         [MenuItem("Ziptide/Art/Assign Forge Recipes To Items")]
         public static void AssignAllFromMenu()
         {

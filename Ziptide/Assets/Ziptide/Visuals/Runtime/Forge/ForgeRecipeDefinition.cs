@@ -1,8 +1,16 @@
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 namespace Ziptide.Visuals
 {
+    /// <summary>Asset lifecycle (reconciliation R2). Proxy = playable production contract;
+    /// Locked = pinned behind a human-baked content hash — it cannot silently change.</summary>
+    public enum ForgeQualityState
+    {
+        Proxy, ProxyPlus, ProductionCandidate, ProductionReady, NeedsRegen, Deprecated, Locked
+    }
+
     /// <summary>Closed op set — the whole shape vocabulary of the Forge. schemaVersion guards it:
     /// an LLM inventing a new op fails Validate(), never silently no-ops.</summary>
     public enum ForgeOp
@@ -84,6 +92,82 @@ namespace Ziptide.Visuals
         public ForgePart[] parts;
         public ForgeSocket[] sockets;
 
+        [Header("Lifecycle (reconciliation R2 — see ASSET_FORGE_MAP.md)")]
+        [Tooltip("Proxy → … → ProductionReady. Locked = pinned behind lockedContentHash (audit-enforced). " +
+                 "Deprecated = story no longer uses it; never auto-deleted.")]
+        public ForgeQualityState qualityState = ForgeQualityState.Proxy;
+        [Tooltip("Human-baked approval baseline (Ziptide → Art → Lock Selected Forge Recipe). Locked " +
+                 "assets whose current content hash differs = FORGE_LOCKED_DRIFT build blocker.")]
+        public string lockedContentHash = "";
+        [Tooltip("Prose for humans — the dependency auditor NEVER parses this.")]
+        [TextArea] public string storyRole = "";
+        [Tooltip("Structured canon anchors (e.g. W001, rill_teal, bloom) — staleness detection input.")]
+        public string[] storyRefs;
+        [Tooltip("World/scene ids whose rules this asset depends on (e.g. ToxicCity, W002_DryCistern).")]
+        public string[] worldRuleRefs;
+        [Tooltip("Style/family tokens beyond surfaceFamily (e.g. glow_teal, rusted_metal).")]
+        public string[] tokenRefs;
+
+        /// <summary>
+        /// Deterministic content hash over everything that defines the LOOK (parts, palette, styles,
+        /// sockets, budget, family). Pure + platform-stable (FNV-1a over a canonical string; fixed
+        /// number formatting). Lifecycle fields themselves are excluded so locking doesn't change
+        /// the hash it pins.
+        /// </summary>
+        public string ComputeContentHash()
+        {
+            var sb = new StringBuilder(1024);
+            sb.Append(recipeId).Append('|').Append(surfaceFamily).Append('|').Append(budgetTris).Append('|');
+            if (palette != null)
+                foreach (var c in palette) AppendColor(sb, c);
+            if (slotStyles != null)
+                foreach (var s in slotStyles)
+                {
+                    if (s == null) { sb.Append("~|"); continue; }
+                    sb.Append((int)s.style).Append(',').Append(F(s.wear)).Append(',').Append(F(s.grime))
+                      .Append(',').Append(F(s.panelDensity)).Append(',').Append(F(s.cellSize)).Append(',');
+                    AppendColor(sb, s.emissive);
+                    sb.Append(F(s.emissiveIntensity)).Append('|');
+                }
+            if (parts != null)
+                foreach (var p in parts)
+                {
+                    if (p == null) { sb.Append("~|"); continue; }
+                    sb.Append(p.name).Append(',').Append((int)p.op).Append(',');
+                    AppendVec(sb, p.size); sb.Append(F(p.bevel)).Append(',').Append(p.segments).Append(',')
+                      .Append(F(p.wallThickness)).Append(',');
+                    if (p.profile != null)
+                        foreach (var pt in p.profile) sb.Append(F(pt.x)).Append(':').Append(F(pt.y)).Append(';');
+                    AppendVec(sb, p.position); AppendVec(sb, p.eulerRotation); AppendVec(sb, p.scale);
+                    sb.Append(p.mirrorX ? 1 : 0).Append(',').Append(p.paletteSlot).Append(',')
+                      .Append(p.smooth ? 1 : 0).Append('|');
+                }
+            if (sockets != null)
+                foreach (var s in sockets)
+                {
+                    if (s == null) { sb.Append("~|"); continue; }
+                    sb.Append(s.name).Append(',');
+                    AppendVec(sb, s.localPosition); AppendVec(sb, s.localEuler); sb.Append('|');
+                }
+            return Fnv1a64(sb.ToString());
+        }
+
+        private static string F(float v) => v.ToString("F4", System.Globalization.CultureInfo.InvariantCulture);
+        private static void AppendVec(StringBuilder sb, Vector3 v)
+        { sb.Append(F(v.x)).Append(',').Append(F(v.y)).Append(',').Append(F(v.z)).Append(','); }
+        private static void AppendColor(StringBuilder sb, Color c)
+        { sb.Append(F(c.r)).Append(',').Append(F(c.g)).Append(',').Append(F(c.b)).Append(','); }
+
+        private static string Fnv1a64(string s)
+        {
+            unchecked
+            {
+                ulong h = 14695981039346656037UL;
+                foreach (char c in s) { h ^= c; h *= 1099511628211UL; }
+                return h.ToString("x16");
+            }
+        }
+
         /// <summary>Pure validation; empty list = well-formed. Mirrors the SkyVista convention.</summary>
         public List<string> Validate()
         {
@@ -97,6 +181,8 @@ namespace Ziptide.Visuals
             if (parts == null || parts.Length == 0) issues.Add("no parts");
             else if (parts.Length > MaxParts) issues.Add("more than " + MaxParts + " parts");
             if (budgetTris <= 0) issues.Add("budgetTris must be positive");
+            if (qualityState == ForgeQualityState.Locked && string.IsNullOrEmpty(lockedContentHash))
+                issues.Add("Locked without a lockedContentHash — bake it via Ziptide > Art > Lock Selected Forge Recipe");
 
             if (parts != null)
                 for (int i = 0; i < parts.Length; i++)

@@ -29,7 +29,12 @@ namespace Ziptide.Editor.Audit
                         + "' but Resources/Forge has no such recipe. ForgeAuthor/ForgeRecipeLibrary should have seeded it.");
             }
 
-            // Every authored recipe must validate and stay inside its budget.
+            // Builder specs by id (for locked-vs-builder divergence warnings).
+            var builderById = new System.Collections.Generic.Dictionary<string, ForgeRecipeDefinition>();
+            foreach (var spec in Ziptide.Editor.Patching.ForgeRecipeLibrary.Specs())
+                builderById[spec.Key] = null; // built lazily below only when needed
+
+            // Every authored recipe must validate, stay inside its budget, and honor its lifecycle.
             foreach (var guid in AssetDatabase.FindAssets("t:ForgeRecipeDefinition"))
             {
                 var recipe = AssetDatabase.LoadAssetAtPath<ForgeRecipeDefinition>(AssetDatabase.GUIDToAssetPath(guid));
@@ -45,6 +50,33 @@ namespace Ziptide.Editor.Audit
                         report.Blocker("FORGE_RECIPE_OVER_BUDGET",
                             "Recipe '" + recipe.recipeId + "' builds " + tris + " tris, budget " + recipe.budgetTris + ".");
                 }
+
+                // Lifecycle rules (R2). Locked = pinned to the human-baked baseline hash.
+                if (recipe.qualityState == ForgeQualityState.Locked
+                    && !string.IsNullOrEmpty(recipe.lockedContentHash))
+                {
+                    if (recipe.ComputeContentHash() != recipe.lockedContentHash)
+                        report.Blocker("FORGE_LOCKED_DRIFT",
+                            "LOCKED recipe '" + recipe.recipeId + "' changed after approval. Re-lock "
+                            + "deliberately (Ziptide > Art > Lock Selected Forge Recipe) or revert.");
+                    else if (builderById.ContainsKey(recipe.recipeId))
+                    {
+                        foreach (var spec in Ziptide.Editor.Patching.ForgeRecipeLibrary.Specs())
+                            if (spec.Key == recipe.recipeId)
+                            {
+                                var built = spec.Value();
+                                if (built.ComputeContentHash() != recipe.lockedContentHash)
+                                    report.Warning("FORGE_LOCKED_BUILDER_DIVERGED",
+                                        "Builder spec for LOCKED '" + recipe.recipeId + "' no longer matches "
+                                        + "the approved asset (create-only protects it; review the builder).");
+                                break;
+                            }
+                    }
+                }
+                if (recipe.qualityState == ForgeQualityState.Deprecated)
+                    report.Warning("FORGE_DEPRECATED",
+                        "Recipe '" + recipe.recipeId + "' is Deprecated — story no longer uses it; "
+                        + "never auto-delete, retire consumers first.");
             }
         }
     }

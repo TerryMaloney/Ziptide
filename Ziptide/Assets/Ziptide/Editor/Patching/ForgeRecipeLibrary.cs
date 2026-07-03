@@ -80,6 +80,13 @@ namespace Ziptide.Editor.Patching
                 },
                 budgetTris: 3000);
 
+            // Lifecycle + structured refs (R2): the dependency auditor reads the arrays, never prose.
+            d.qualityState = ForgeQualityState.ProxyPlus;
+            d.storyRole = "Cal's starter stun tool — salvage-tech that hums with RILL's teal.";
+            d.storyRefs = new[] { "rill_teal", "salvage_tech", "stun_combat" };
+            d.worldRuleRefs = new[] { "ToxicCity" };
+            d.tokenRefs = new[] { "rusted_metal", "glow_teal", "panel_lines" };
+
             // FORGE II styles (parallel to the palette): the texture bake reads these.
             d.slotStyles = new[]
             {
