@@ -50,6 +50,8 @@ namespace Ziptide.Gameplay
             CreateChoices();
             CreateMachines();
             CreateMines();
+            CreateGardens();
+            CreateBuildSockets();
             EnsureBoardAndKiosk();
             _runtime.StepChanged += OnStepChanged;
             _runtime.JobCompleted += OnJobCompleted;
@@ -133,6 +135,40 @@ namespace Ziptide.Gameplay
                 go.transform.localPosition = m.localPosition;
                 go.transform.localEulerAngles = m.localEulerAngles;
                 _markerTransforms.Add(go.transform);
+            }
+        }
+
+        // Materialize the pack's build sockets at runtime (built machines persist as MineStates).
+        private void CreateBuildSockets()
+        {
+            if (worldPack.sockets == null || worldPack.sockets.Count == 0) return;
+            var root = new GameObject("BuildSockets");
+            root.transform.SetParent(transform);
+            string worldId = gameObject.scene.name;
+            foreach (var s in worldPack.sockets)
+            {
+                if (s == null) continue;
+                var go = new GameObject("Socket_" + s.id);
+                go.transform.SetParent(root.transform);
+                go.transform.localPosition = s.localPosition;
+                go.AddComponent<BuildSocketRuntime>().Init(s, worldId);
+            }
+        }
+
+        // Materialize the pack's garden planters at runtime (bound to this world's PlotState save).
+        private void CreateGardens()
+        {
+            if (worldPack.gardens == null || worldPack.gardens.Count == 0) return;
+            var root = new GameObject("Gardens");
+            root.transform.SetParent(transform);
+            string worldId = gameObject.scene.name; // same key WorldRuntime uses for ECON_RESOLVE
+            foreach (var g in worldPack.gardens)
+            {
+                if (g == null) continue;
+                var go = new GameObject("Garden_" + g.id);
+                go.transform.SetParent(root.transform);
+                go.transform.localPosition = g.localPosition;
+                go.AddComponent<GardenPlotRuntime>().Init(g, worldId);
             }
         }
 

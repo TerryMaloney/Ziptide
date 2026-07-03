@@ -25,6 +25,8 @@ namespace Ziptide.Core
         public long plantedAtUnix;
         public double growSeconds;
         public bool harvested;
+        /// <summary>Which physical planter owns this plot (additive — old saves default empty).</summary>
+        public string plotId = "";
 
         // ── Tending (additive: defaults are neutral, so old saves deserialize unchanged) ──
         /// <summary>Harvest yield multiplier from tending (1.0 = untended).</summary>

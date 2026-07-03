@@ -53,6 +53,16 @@ namespace Ziptide.Content
                  "save data (idle economy) and pays out when the hopper is selected.")]
         public List<MineSpawnDefinition> mines = new List<MineSpawnDefinition>();
 
+        [Header("Gardens")]
+        [Tooltip("Garden planters spawned at scene start (Quality Bar P3) — each binds a PlotState in " +
+                 "this world's save data: plant, grow over real time, harvest by hand.")]
+        public List<GardenSpawnDefinition> gardens = new List<GardenSpawnDefinition>();
+
+        [Header("Build sockets")]
+        [Tooltip("Machine build sockets (Quality Bar P3) — pay credits, raise a real extractor; the " +
+                 "built machine persists in this world's save (same path as mines).")]
+        public List<BuildSocketSpawnDefinition> sockets = new List<BuildSocketSpawnDefinition>();
+
         [Header("Audio")]
         [Tooltip("Background music for this world. Null = silence.")]
         public AudioProfile audioProfile;

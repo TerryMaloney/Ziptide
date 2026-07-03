@@ -49,6 +49,8 @@ namespace Ziptide.Build
             catch (Exception ex) { Debug.LogWarning("[Ziptide] Cosmetics author warning: " + ex.Message); }
             try { Ziptide.Editor.Patching.RillLineAuthor.EnsureAuthored(); }
             catch (Exception ex) { Debug.LogWarning("[Ziptide] RILL line author warning: " + ex.Message); }
+            try { Ziptide.Editor.Patching.GardenAuthor.EnsureAuthored(); }
+            catch (Exception ex) { Debug.LogWarning("[Ziptide] Garden author warning: " + ex.Message); }
             try { Ziptide.Editor.Patching.WorldLayoutLibrary.EnsureAllAuthored(); }
             catch (Exception ex) { Debug.LogWarning("[Ziptide] World layout library warning: " + ex.Message); }
             try { Ziptide.Editor.Patching.WorldStubGenerator.EnsureGeneratedInBuildSettings(); }

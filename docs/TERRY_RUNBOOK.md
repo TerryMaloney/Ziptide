@@ -227,6 +227,13 @@ Your last test drove this whole program. Next build/sideload, please check exact
   answer gates whether we roll POIs/paths/dressing across all 12 (P1c-g) or re-tune first.
 - [ ] Watch perf while looking at the terrain + vista (it's one static mesh + ~40 blocks — should be
   fine, but flag any judder).
+- [ ] **GARDEN (P3):** follow the cairn trail to the HarvestGrove pocket (planter boxes + flora).
+  Select a soil bed → it plants (`GARDEN_PLANT`); the plant **visibly grows** (dew bulb = 2 min);
+  when it shimmers READY, select again → harvest pays (`GARDEN_HARVEST`, credits HUD moves). Leave
+  the world mid-grow and come back — growth continued while you were away.
+- [ ] **BUILDING (P3):** at the MachineSite pocket, the plinth shows a hologram + "BUILD: mineral
+  extractor 40 CR". Select the base → your credits drop and a REAL rig rises (`SOCKET_BUILD`),
+  producing like any mine. Leave and return — **your built machine is still there**.
 
 ## 3. The two open judgment calls (yours)
 - **"Can you run in Toxic City?"** — was it the input bug (now fixed) or actual walls/narrow streets? If

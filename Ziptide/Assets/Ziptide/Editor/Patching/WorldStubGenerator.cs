@@ -244,6 +244,46 @@ namespace Ziptide.Editor.Patching
                         pack.spawnMarkers.Add(new SpawnMarkerDefinition { markerId = mid, localPosition = pos });
                     else
                         m.localPosition = pos;
+
+                    // Build sockets (P3): every MachineSite POI gets a socket on its plinth — pay
+                    // credits, raise a real extractor that persists in the world save.
+                    if (poi.type == PoiType.MachineSite)
+                    {
+                        string sid = "socket_" + poi.id;
+                        // Matches WorldPoiBuilder.BuildMachineSite's SocketPlinth (0, 0.9 top, 2.6).
+                        var socketPos = pos + new Vector3(0f, 0.7f, 2.6f);
+                        var sdef = pack.sockets.Find(ss => ss != null && ss.id == sid);
+                        if (sdef == null)
+                            pack.sockets.Add(new BuildSocketSpawnDefinition { id = sid, localPosition = socketPos });
+                        else
+                            sdef.localPosition = socketPos;
+                    }
+
+                    // Gardens (P3): every HarvestGrove POI gets 6 planters on WorldPoiBuilder's planter
+                    // grid — plants ladder round-robin (fast / mid / idle). Find-or-update by id, so
+                    // hand-tuned plantIds survive; positions always follow the layout.
+                    if (poi.type == PoiType.HarvestGrove)
+                    {
+                        string[] ladder = { "dew_bulb", "rust_fern", "glass_reed" };
+                        for (int gi = 0; gi < 6; gi++)
+                        {
+                            // Matches WorldPoiBuilder.BuildHarvestGrove's planter layout; soil sits on
+                            // the planter box top (+0.68 over the pad).
+                            var offset = new Vector3((gi % 3 - 1) * 3.2f, 0.68f, (gi / 3 == 0 ? -1f : 1f) * 2.4f);
+                            string gid = "garden_" + poi.id + "_" + gi;
+                            var g = pack.gardens.Find(gg => gg != null && gg.id == gid);
+                            if (g == null)
+                            {
+                                pack.gardens.Add(new GardenSpawnDefinition
+                                {
+                                    id = gid, plantId = ladder[gi % ladder.Length],
+                                    localPosition = pos + offset - new Vector3(0f, 0.2f, 0f)
+                                });
+                            }
+                            else
+                                g.localPosition = pos + offset - new Vector3(0f, 0.2f, 0f);
+                        }
+                    }
                 }
             }
             EditorUtility.SetDirty(pack);
