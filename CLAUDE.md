@@ -2,11 +2,12 @@
 
 Read this first every session. It is the contract for how to work in this repo without breaking it.
 
-> 🆕 **New here / fresh model?** Read **`docs/FABLE5_START_HERE.md`** first — the single-operator manual
-> (state snapshot, the ⚙CI/🔧UNITY/🎮DEVICE verification model, the roadmap, the file map) so you don't burn
-> tokens re-exploring. **You own the whole project; Terry is the hands for Unity/headset.** Then the spine:
-> `docs/HANDOFF.md` (session log) · `docs/MASTER_CHECKLIST.md` · `docs/FABLE5_BACKLOG.md` (task queue) ·
-> `docs/TERRY_RUNBOOK.md` (what Terry runs). Operating model: `docs/ROLES.md`. Codebase score: `docs/CODE_SCORE.md`.
+> 🆕 **New here / fresh model (Fable, Opus 4.8, anyone)?** Read **`docs/OPERATOR_START_HERE.md`**
+> first — the MODEL-AGNOSTIC manual: the four tracks + takeover prompts, the doc blackboard, THE LAWS
+> (spec-is-truth · pure-core-first · gate-per-quality-dimension · **the circuit breaker: 3 CI-reds on
+> one task → stop and escalate**), and honest Opus calibration. Then the spine: `docs/HANDOFF.md`
+> (cross-track log) · `docs/PRIORITIES.md` (cross-track order) · your track's `docs/SPRINT_*.md` ·
+> `docs/TERRY_RUNBOOK.md` (what Terry runs). *(Legacy detail: `docs/FABLE5_START_HERE.md`.)*
 
 ## ⛔ WORKFLOW INTEGRITY — CHECK THIS FIRST, EVERY SESSION
 If the verification workflow is broken, **STOP and warn Terry LOUDLY at the top of your reply**

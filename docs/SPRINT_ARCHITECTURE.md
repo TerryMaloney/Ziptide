@@ -24,20 +24,26 @@ any LLM: request a change as data, build, gates catch mistakes.
 | Q2b/H1 | **`BuildingGrammar` SHIPPED** (pure, seeded): WFC-lite — the DOOR collapses first onto a street-fronted `Lot.Front*` edge (LotPartitioner guarantees one), windows/solids fill seeded, contradiction-free socket set = no backtracking ever. `BuildingStyleDefinition` (SO + `ToData()` mirror, `styleId`/`surfaceFamily` = Art Registry keys) + `BuildingStyleAuthor` (create-only: salvage_row + toxic_tenement → Resources/BuildingStyles, build-hooked). **11 tests** incl. end-to-end partition→plan door law | ✅ this commit |
 | Q2c/H1 | **`BuildingBuilder` SHIPPED** (Editor): plans → multi-storey shells w/ ENTERABLE doorways (+`__DOOR` audit markers); modules resolve via **`ArtModuleRegistry`** (`buildingModule:<styleId>/<Module>`, primitive fallback — Picasso's seam). DORMANT wire in CityBuilder's district pass (announced): opts in via new `DistrictDef.buildingStyleId` — zero change to existing worlds until a layout/spec sets it. Gates live: `BUILDING_DOOR_BLOCKED` (raycast from markers) + `BUILDING_OVER_BUDGET` (renderer cap/district); `LOT_OVERLAP` enforced in the pure tests | ✅ this commit |
 | Q2d | W002 warren proof: set `buildingStyleId` on one W002 district (via spec once Terry exports, or layout edit) + APK + runbook gate ("does it read as a place?") | ⬜ next operator |
-| Q3 | **`TerrainField`** (pure, ~15 tests): octaved fBM + domain warp + temp×moisture biome matrix; BiomePreset → parameter set mapping; `TERRAIN_SLOPE_UNWALKABLE` gate. T-Dog swaps WorldExperienceBuilder's height fn (announced) | ⬜ |
-| Q4a | **`GamePool`** (Gameplay): pooled spawn/despawn; call-site swaps in PvpBolt/darts/arcs/thump rings/nets (behavior-preserving) | ⬜ |
-| Q4b | **`PERF_BUDGET` audit rule**: per-scene tris/materials/renderer-count/lights vs QUEST_ART_AUDIO_PERFORMANCE_BUDGET.md — WARN 80%, BLOCK over caps, exempt `_Boot`. + shader-variant WARN | ⬜ |
-| Q5 | Process: LFS-ready commented `.gitattributes` stanzas + V2 laws → CLAUDE.md/HOW_TO_CHANGE_ANYTHING + WorldSpec how-to row | ⬜ |
-| — | Close per phase: CI green → APK dispatch → audit green → runbook rows → HANDOFF | ⬜ |
+| H3/Q3 | **`TerrainField`** → **ENVELOPE TO T-DOG** (HANDOFF qqq; they have Fable): pure fBM (3–5 octaves over the existing seed-hash idiom) + domain warp + temp×moisture biome matrix; each `BiomePreset` = a parameter set; ~15 tests (same-seed identity, slope bound, output range); swap `WorldExperienceBuilder`'s height fn; `TERRAIN_SLOPE_UNWALKABLE` gate | 📨 T-Dog |
+| H2 | **`RoomPartitioner`** → **ENVELOPE TO T-DOG**: BSP interior rooms + corridors carved walking back up the tree; LotPartitioner (`Content/Runtime/City/LotPartitioner.cs`) is the template (same Rng struct, same min-area/aspect base cases, + an access rule: every room reaches a corridor); ~12 tests incl. full-reachability; feeds ship decks / hero interiors / hive worlds | 📨 T-Dog |
+| H5 | **`ScatterField`** → **ENVELOPE TO T-DOG**: pure Poisson-disk scatter, density-by-channel (biome-matrix ready), exclusion masks (pads/corridors/POIs/route), per-kind min spacing; ~10 tests; swap into `WorldDressingBuilder`; then a `scatterSpec` WorldSpec v2 field (this track adds the spec field after) | 📨 T-Dog |
+| Q4a | **`GamePool`** (THIS track — routine, Opus-sized): pooled spawn/despawn for PvpBolt/taser darts/stun arcs/thump rings/nets (each is CreatePrimitive+Destroy per shot today); behavior-preserving; ~8 call-site swaps + a pool reuse test | ⬜ NEXT for this track |
+| Q4b | **`PERF_BUDGET` audit rule** → **ENVELOPE TO PICASSO** (their budget doc; ExperienceAuditRules is the pattern): tris/materials/renderers/lights per scene, WARN 80% / BLOCK over, exempt `_Boot` | 📨 Picasso |
+| H4 | **Art Registry** SHIPPED: `Editor/Art/ArtModuleRegistry.cs` (resolve-through, primitive fallback) + **`docs/design/ART_REGISTRY.md`** (id families + laws + deferral triggers). Picasso fulfills `buildingModule:*` ids (envelope in qqq) | ✅ `cd79dac`+ |
+| H6 | **TAKEOVER KIT** SHIPPED: `docs/OPERATOR_START_HERE.md` (model-agnostic manual: blackboard, envelopes, circuit breaker, Opus calibration) + CLAUDE.md pointer swap + FABLE5_START_HERE legacy banner + `design/SPACEFLIGHT_PHYSICS.md` (P4b rails) + PRIORITIES rev 4 + HANDOFF (qqq) briefings | ✅ this commit |
+| Q5 | LFS-ready commented `.gitattributes` stanzas (only remaining Q5 sliver — laws landed via OPERATOR_START_HERE) | ⬜ small |
+| — | Close per phase: CI green → APK dispatch → audit green → runbook rows → HANDOFF | recurring |
 
 ## ▶ RESUMING? — current state & exact next action
-- **State:** Q0 + Q1a/b/c shipped — verify CI on this push. Q1d is Terry's one-menu export
-  (runbook §2k); until he commits the exported specs, the spec folder is empty and CompileAll is a
-  no-op (safe by design).
-- **Next action:** **Q2b — `BuildingGrammar`** (pure, seeded socketed-module assembly over the lots:
-  wallSolid/wallWindow/doorway/floor/roofFlat/roofRaked per storey; door ALWAYS on a `Lot` frontage
-  edge — the Lot struct carries FrontS/E/N/W exactly for this), then Q2c `BuildingBuilder` (Editor
-  static T-Dog calls from CityBuilder's district pass) + the three BUILDING_* gates.
+- **State (2026-07-03, the LAST Fable architect session):** Q1 + Q2a + H1 buildings + H4 registry +
+  H6 takeover kit all shipped; H2/H3/H5 enveloped to T-Dog, Q4b to Picasso (HANDOFF qqq). This
+  track's operator is **Opus 4.8 from here** — that is fine by design; read `OPERATOR_START_HERE.md`.
+- **Next action (Opus-sized):** **Q4a `GamePool`** — one small class + ~8 mechanical call-site swaps
+  (each spawn site currently `CreatePrimitive`/`new GameObject` + `Destroy`; pool key = a string
+  kind; reset state on checkout; keep visuals identical). Then Q5's `.gitattributes` sliver. Then
+  support Q2d (the W002 building proof is a one-line layout/spec opt-in + APK dispatch).
+- **Circuit breaker applies** (OPERATOR_START_HERE law 5): 3 CI-reds on one task → stop, write up,
+  move on.
 - **Verified facts (don't re-derive):** world factory chain = `WorldLayoutLibrary` (create-only
   authors) → `CityLayoutDefinition` (+`experience` since P1) → `WorldStubGenerator`/`CityBuilder` →
   `WorldExperienceBuilder`/`WorldPoiBuilder`/`WorldDressingBuilder`. POI verbs: CombatCamp/HarvestGrove/

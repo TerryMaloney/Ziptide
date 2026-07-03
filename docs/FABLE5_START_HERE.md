@@ -1,4 +1,9 @@
-# ▶ START HERE — the single-operator manual (read this first, then stop reading)
+# ▶ START HERE — the single-operator manual (LEGACY — superseded 2026-07-03)
+
+> ⚠️ **THE CURRENT MANUAL IS `docs/OPERATOR_START_HERE.md`** (model-agnostic: Fable, Opus 4.8,
+> anyone — four tracks, the blackboard, THE LAWS, the circuit breaker, Opus calibration). Read THAT
+> first. This file stays as the detailed legacy reference (state snapshots, history); where the two
+> disagree, OPERATOR_START_HERE wins.
 
 > **🎯 THE ROADMAP-OF-RECORD IS `docs/GAME_PLAN.md`** (graybox → shipped, milestones M0–M8) — read it
 > after this file. The ACTIVE sprint's live state is **`docs/SPRINT.md`** (takeover prompt: "Read

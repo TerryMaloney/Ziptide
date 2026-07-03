@@ -28,6 +28,52 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-03 (qqq) — architect (Fable 5, final Fable session): 🏛 V2.5 TAKEOVER HARDENING — buildings live, the Opus succession kit, and YOUR briefings
+Terry's 2nd PDF stacked on V2 + the hard fact: **the architect falls back to Opus 4.8 within a
+couple prompts; T-Dog inherits the complicated work while their Fable lasts; Picasso continues art.**
+Read **`docs/OPERATOR_START_HERE.md`** — the new model-agnostic manual (blackboard mapping, task
+envelopes, THE CIRCUIT BREAKER law, Opus calibration). `CLAUDE.md` now points there.
+- **SHIPPED this session (all my lane, CI-verified per push):** H1 **real buildings** —
+  `BuildingGrammar` (pure WFC-lite, door-on-street law) + `BuildingBuilder` (enterable doorways,
+  `__DOOR` markers) + `BUILDING_DOOR_BLOCKED`/`BUILDING_OVER_BUDGET` gates + 2 starter styles +
+  dormant CityBuilder wire behind new `DistrictDef.buildingStyleId` (empty = zero change) +
+  `ArtModuleRegistry` (the Art Registry seam). Earlier: Q1 WorldSpec + Q2a LotPartitioner.
+  New docs: **`design/ART_REGISTRY.md`** (the art contract) · **`design/SPACEFLIGHT_PHYSICS.md`**
+  (P4b's design rails) · `OPERATOR_START_HERE.md`.
+- **📣 T-DOG — three envelopes (you have Fable; these are the complicated ones, full specs on
+  `SPRINT_ARCHITECTURE.md` rows):**
+  1. **H3 `TerrainField`** — GOAL pure fBM (3–5 octaves over the existing seed-hash) + domain warp +
+     temp×moisture biome matrix; INPUTS `WorldExperienceBuilder` (your height seam), ARCHITECTURE_V2
+     §Q3; ACCEPTANCE ~15 EditMode tests (determinism/slope/range) + your height-fn swap + one world
+     re-dispatched showing variety; BUDGET ~1 commit-pair.
+  2. **H2 `RoomPartitioner`** — GOAL BSP interior rooms + corridors carved walking back up the tree
+     (LotPartitioner's math is your template — same Rng, same base cases + an access rule); feeds
+     your ship decks + hero interiors; ACCEPTANCE ~12 tests (all rooms reachable via corridors);
+     BUDGET ~1 commit.
+  3. **H5 `ScatterField`** — GOAL Poisson-disk scatter w/ density channel + exclusion masks,
+     replacing `WorldDressingBuilder`'s hand-roll; ACCEPTANCE ~10 tests + your dressing swap.
+  Also YOURS: board reconciliation (P3 `a17d44a`/P4a `954b969` are COMMITTED — stamp them ✅);
+  **Q2d building proof** (set `buildingStyleId="toxic_tenement"` on one W002 district, dispatch,
+  runbook gate); P4b READS `SPACEFLIGHT_PHYSICS.md` FIRST (one rule: never parent the rig to the
+  moving hull); P5 handbook = "edit the spec" chapter once Terry runs §2k.
+- **📣 PICASSO — two envelopes:**
+  1. **Building-module Forge family** (your highest-leverage unit): fulfill
+     `buildingModule:<styleId>/<Module>` ids per `design/ART_REGISTRY.md` — wall/window/door/roof
+     recipes for `salvage_row` + `toxic_tenement`; register via `ArtModuleRegistry.Register` from an
+     editor author in your lane; ACCEPTANCE turnarounds + an APK where W002's warren wears your kit.
+     Your planned `SurfaceSetDefinition`/`WorldArtKitDefinition` slot IS this registry — build them
+     as its fulfillment layer (and fix your board's ART-2/ART-3 numbering collision while there).
+  2. **PERF_BUDGET audit rule** (moved to you — it's your budget doc): per-scene tris/materials/
+     renderers/lights vs `QUEST_ART_AUDIO_PERFORMANCE_BUDGET.md`, WARN 80%/BLOCK over, exempt
+     `_Boot`; `ExperienceAuditRules` is the pattern; announced WorldAuditRunner call line.
+- **📣 TERRY — your queue, unchanged and still open (verified none done):** runbook **§2k** spec
+  export (one menu click — unlocks spec-driven everything) · §2j/§2h/§2i headset passes ·
+  `TWO_QUEST_SETUP.md` steps 1–4.
+- **This track's remaining board (sized for Opus-me):** Q4a `GamePool` (routine, specced) · Q2d
+  support · SPEC v2 fields (`buildingStyleId` already flows; `scatterSpec`/`storyBeats` when H5
+  lands). Resume line unchanged: **"Read docs/SPRINT_ARCHITECTURE.md and continue."**
+- **Commits:** `cd79dac` (H1 buildings) + this docs push on `terry-local-wip`.
+
 ### 2026-07-03 (ppp) — architect (Fable 5): 🏗 ARCHITECTURE V2 program opened — Terry's PDF becomes the fourth track (CLAIM)
 Terry uploaded a 12-page architecture report (deterministic procedural VR worlds + AI-driven dev) and
 directed an overhaul: backend + LITERAL buildings, executable by any LLM ("request something be like
