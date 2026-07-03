@@ -12,10 +12,11 @@ namespace Ziptide.Editor.Patching
     /// spawn → POIs → (StoryAnchor placed by the ring on the vista sightline). Navigation by
     /// landmark, not luck: from any cairn you can see the next one and usually the beacon.
     ///
-    /// P1e DRESSING/SCATTER: density-graded, biome-keyed prop clusters (rocks, flora, debris,
-    /// crystals, bones) hash-scattered across the playable bowl — MASKED off pads, corridors, POI
-    /// pockets and the cairn route so gameplay space stays clean. Detail is a PASS, not
-    /// hand-placement: a mid-level LLM tunes two knobs (density, palette) per world.
+    /// P1e→H5 DRESSING/SCATTER: biome-keyed prop clusters (rocks, flora, debris, crystals, bones)
+    /// placed by the PURE ScatterField (Poisson blue-noise — no clumps, no bald patches) with a
+    /// moisture-driven density channel (TerrainField.Climate: vegetation pools where the water is)
+    /// and exclusion masks over pads, corridors, POI pockets and the cairn route. Detail is a PASS,
+    /// not hand-placement: a mid-level LLM tunes two knobs (density, palette) per world.
     ///
     /// Everything is deterministic from kit.seed, placed at terrain height, marked static for
     /// batching, and collider-free below knee height (nothing here may block CollideMove).
@@ -108,7 +109,7 @@ namespace Ziptide.Editor.Patching
             }
         }
 
-        // ── P1e: biome scatter ────────────────────────────────────────────────────────────────────
+        // ── P1e→H5: biome scatter via the pure ScatterField (Poisson blue-noise + climate density) ─
 
         private static void ScatterBiomeProps(Transform parent, CityLayoutDefinition kit, ExperienceDef ex, List<Vector2> route)
         {
@@ -116,57 +117,71 @@ namespace Ziptide.Editor.Patching
             scatterRoot.SetParent(parent, false);
 
             float R = Mathf.Max(60f, ex.worldRadius) * 0.86f; // stay inside the rim climb
-            int clusters = Mathf.Clamp(Mathf.RoundToInt(R * R / 380f), 60, 240);
 
-            for (int i = 0; i < clusters; i++)
+            // Exclusion masks: the route, every POI pocket, every pad — gameplay space stays clean.
+            var masks = new List<ScatterMask>();
+            for (int i = 0; i < route.Count - 1; i++)
+                masks.Add(ScatterMask.Capsule(route[i], route[i + 1], RouteClearance));
+            if (kit.pois != null)
+                foreach (var poi in kit.pois)
+                    if (poi != null)
+                        masks.Add(ScatterMask.Disc(new Vector2(poi.position.x, poi.position.z), PoiClearance));
+            foreach (var d in kit.districts)
+                if (d != null)
+                    masks.Add(ScatterMask.Disc(new Vector2(d.anchor.x, d.anchor.z),
+                        Mathf.Max(d.bounds.x, d.bounds.y) * 0.5f + 10f));
+            if (kit.shipyard != null && kit.shipyard.enabled)
+                masks.Add(ScatterMask.Disc(new Vector2(kit.shipyard.berthCenter.x, kit.shipyard.berthCenter.z),
+                    Mathf.Max(kit.shipyard.berthSize.x, kit.shipyard.berthSize.y) * 0.5f + 10f));
+
+            // Density follows MOISTURE (TerrainField.Climate) — vegetation and texture pool where the
+            // water is, thin out on the dry ridges. Kind 0 is the rare landmark prop (lonely by law).
+            var points = ScatterField.Generate(R, 20f, 4, kit.seed,
+                masks, (x, z) => 0.30f + 0.55f * TerrainField.Climate(x, z, kit.seed).y,
+                new float[] { 70f, 0f, 0f, 0f });
+
+            int n = 0;
+            foreach (var pt in points)
             {
-                // Deterministic polar scatter from the seed.
-                float a = Hash01(i, 11, kit.seed) * Mathf.PI * 2f;
-                float r = Mathf.Sqrt(Hash01(i, 23, kit.seed)) * R;
-                var p = new Vector2(Mathf.Cos(a) * r, Mathf.Sin(a) * r);
-
-                if (TooCloseToRoute(p, route, RouteClearance)) continue;
-                if (TooCloseToPois(p, kit, PoiClearance)) continue;
-                if (TooCloseToPads(p, kit, 10f)) continue;
-
-                float y = WorldExperienceBuilder.HeightAt(kit, p.x, p.y);
-                var cluster = new GameObject("Prop_" + i).transform;
+                float y = WorldExperienceBuilder.HeightAt(kit, pt.Position.x, pt.Position.y);
+                var cluster = new GameObject("Prop_" + n).transform;
                 cluster.SetParent(scatterRoot, false);
-                cluster.position = new Vector3(p.x, y, p.y);
-                BuildPropCluster(cluster, ex, kit.seed, i);
+                cluster.position = new Vector3(pt.Position.x, y, pt.Position.y);
+                BuildPropCluster(cluster, ex, kit.seed, n, pt.Kind);
+                n++;
             }
         }
 
-        /// <summary>One small prop cluster keyed to the biome — the world's texture, up close.</summary>
-        private static void BuildPropCluster(Transform at, ExperienceDef ex, int seed, int salt)
+        /// <summary>One prop cluster: kind 0 = the biome's RARE feature; 1-3 = its common texture.</summary>
+        private static void BuildPropCluster(Transform at, ExperienceDef ex, int seed, int salt, int kind)
         {
             Color ground = ex.groundColor;
             Color glow = ex.vistaAccentColor;
-            float pick = Hash01(salt, 31, seed);
 
             switch (ex.biome)
             {
                 case BiomePreset.Dunes:
-                    if (pick < 0.6f) Rocks(at, ground * 0.8f, seed, salt, 2, 0.9f);
-                    else Bones(at, new Color(0.75f, 0.72f, 0.65f), seed, salt);
+                    if (kind == 0) Bones(at, new Color(0.75f, 0.72f, 0.65f), seed, salt);
+                    else Rocks(at, ground * 0.8f, seed, salt, 2, 0.9f);
                     break;
                 case BiomePreset.Mesas:
-                    if (pick < 0.7f) Rocks(at, ground * 0.7f, seed, salt, 3, 1.3f);
-                    else Shards(at, glow, seed, salt, 0.5f);
+                    if (kind == 0) Shards(at, glow, seed, salt, 0.9f);
+                    else Rocks(at, ground * 0.7f, seed, salt, 3, 1.3f);
                     break;
                 case BiomePreset.Canyon:
-                    if (pick < 0.5f) Rocks(at, ground * 0.75f, seed, salt, 3, 1.1f);
-                    else if (pick < 0.8f) Tufts(at, new Color(0.35f, 0.55f, 0.30f), seed, salt);
-                    else Debris(at, new Color(0.35f, 0.30f, 0.28f), seed, salt);
+                    if (kind == 0) Debris(at, new Color(0.35f, 0.30f, 0.28f), seed, salt);
+                    else if (kind == 1) Rocks(at, ground * 0.75f, seed, salt, 3, 1.1f);
+                    else Tufts(at, new Color(0.35f, 0.55f, 0.30f), seed, salt);
                     break;
                 case BiomePreset.CavernFloor:
-                    if (pick < 0.55f) Shards(at, glow, seed, salt, 1.2f); // glow crystals light the dark
-                    else Rocks(at, ground * 0.6f, seed, salt, 2, 1.0f);
+                    if (kind == 0) Shards(at, glow, seed, salt, 1.6f); // the big glow crystal
+                    else if (kind == 1) Rocks(at, ground * 0.6f, seed, salt, 2, 1.0f);
+                    else Shards(at, glow, seed, salt, 0.8f);
                     break;
                 case BiomePreset.TideFlats:
-                    if (pick < 0.5f) Tufts(at, new Color(0.30f, 0.55f, 0.50f), seed, salt);
-                    else if (pick < 0.8f) Debris(at, ground * 0.7f, seed, salt);
-                    else Shards(at, glow, seed, salt, 0.4f);
+                    if (kind == 0) Shards(at, glow, seed, salt, 0.6f);
+                    else if (kind == 1) Debris(at, ground * 0.7f, seed, salt);
+                    else Tufts(at, new Color(0.30f, 0.55f, 0.50f), seed, salt);
                     break;
                 default:
                     Rocks(at, ground * 0.8f, seed, salt, 2, 0.9f);
@@ -237,45 +252,7 @@ namespace Ziptide.Editor.Patching
             }
         }
 
-        // ── Masks + helpers ───────────────────────────────────────────────────────────────────────
-
-        private static bool TooCloseToRoute(Vector2 p, List<Vector2> route, float clearance)
-        {
-            for (int i = 0; i < route.Count - 1; i++)
-            {
-                Vector2 a = route[i], b = route[i + 1], ab = b - a;
-                float len2 = ab.sqrMagnitude;
-                float t = len2 < 0.001f ? 0f : Mathf.Clamp01(Vector2.Dot(p - a, ab) / len2);
-                if (Vector2.Distance(p, a + ab * t) < clearance) return true;
-            }
-            return false;
-        }
-
-        private static bool TooCloseToPois(Vector2 p, CityLayoutDefinition kit, float clearance)
-        {
-            if (kit.pois == null) return false;
-            foreach (var poi in kit.pois)
-                if (poi != null && Vector2.Distance(p, new Vector2(poi.position.x, poi.position.z)) < clearance)
-                    return true;
-            return false;
-        }
-
-        private static bool TooCloseToPads(Vector2 p, CityLayoutDefinition kit, float margin)
-        {
-            foreach (var d in kit.districts)
-            {
-                if (d == null) continue;
-                float r = Mathf.Max(d.bounds.x, d.bounds.y) * 0.5f + margin;
-                if (Vector2.Distance(p, new Vector2(d.anchor.x, d.anchor.z)) < r) return true;
-            }
-            if (kit.shipyard != null && kit.shipyard.enabled)
-            {
-                float r = Mathf.Max(kit.shipyard.berthSize.x, kit.shipyard.berthSize.y) * 0.5f + margin;
-                if (Vector2.Distance(p, new Vector2(kit.shipyard.berthCenter.x, kit.shipyard.berthCenter.z)) < r)
-                    return true;
-            }
-            return false;
-        }
+        // ── Helpers ───────────────────────────────────────────────────────────────────────────────
 
         private static float Hash01(int x, int z, int seed)
         {
