@@ -24,7 +24,7 @@ Get-Content "$Repo\Ziptide\ProjectSettings\EditorBuildSettings.asset" -ErrorActi
 Write-Host ""
 Write-Host "Last ZIPTIDE device tags (from current logcat buffer):" -ForegroundColor Cyan
 $tags = adb logcat -d -s Unity 2>$null | Select-String "ZIPTIDE:|LOCO_STATE" | Select-Object -Last 30
-if ($tags) { $tags } else { Write-Host "  (none in buffer — launch the app, then re-run)" }
+if ($tags) { $tags } else { Write-Host "  (none in buffer -- launch the app, then re-run)" }
 
 Write-Host ""
 Write-Host "REMINDER: pull + rebuild before testing so the APK matches the commit above:" -ForegroundColor Yellow

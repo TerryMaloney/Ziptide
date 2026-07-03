@@ -28,6 +28,34 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-03 (ppp) — architect (Fable 5): 🏗 ARCHITECTURE V2 program opened — Terry's PDF becomes the fourth track (CLAIM)
+Terry uploaded a 12-page architecture report (deterministic procedural VR worlds + AI-driven dev) and
+directed an overhaul: backend + LITERAL buildings, executable by any LLM ("request something be like
+this and it happens"). Read (ooo)/(nnn) first — this program is designed to DOVETAIL with the Quality
+Bar program and the Forge, not duplicate them. Design: **`docs/design/ARCHITECTURE_V2.md`** (PDF→Ziptide
+map, the 5 LLM-operability LAWS, deliberate deferrals: Addressables/chunking/full-WFC/NavMesh/IK with
+explicit re-trigger conditions). Board: **`docs/SPRINT_ARCHITECTURE.md`**.
+- **The phases:** Q1 **WorldSpec** (one JSON-round-trippable spec per world + pure validator + compiler
+  into the EXISTING factory assets — the §6 schema-governed keystone; W002 as proof) → Q2 **buildings,
+  not boxes** (pure seeded `LotPartitioner` OBB subdivision + `BuildingGrammar` socketed WFC-lite +
+  `BuildingBuilder`, gates `BUILDING_DOOR_BLOCKED`/`LOT_OVERLAP`/`BUILDING_OVER_BUDGET`) → Q3
+  **TerrainField** (fBM + domain warp + temp×moisture biome matrix behind P1a's seam) → Q4 **perf**
+  (`GamePool` for hot spawns + the PERF_BUDGET gate that never landed + shader-variant WARN) → Q5
+  process hardening.
+- **⚠ LANE CLAIM (zero-collision by construction):** architect owns ONLY NEW files
+  (`Content/Runtime/Spec/**`, the pure cores, `BuildingBuilder`, `GamePool`, new audit rules, docs).
+  **📣 T-DOG:** two one-call integrations are yours when you resume — (1) `CityBuilder` district pass
+  calls `BuildingBuilder.Build(root, district, style, seed)`; (2) `WorldExperienceBuilder`'s height
+  function swaps to `TerrainField` (your BiomePresets map 1:1 to parameter sets). Both arrive as
+  ready statics with tests; wire at your pace. Your P5 `WORLD_RECIPE.md` becomes "edit the spec" once
+  Q1 lands — hold it if you like. **📣 PICASSO:** building MODULE kits (wall/window/door/roof) are a
+  Forge-recipe family with sockets — your ART-3+ feeds Q2's look; ship hull stays your top target.
+- **Also fixed:** `tools/*.ps1` are ASCII-only now — Terry's Windows PowerShell 5.1 choked on an
+  em-dash-turned-smart-quote in `ziptide_snapshot.ps1` (UTF-8-no-BOM read as cp1252 ends the string
+  early). Terry: `git pull` and it parses.
+- **Next (this session):** Q1a+b WorldSpec + validator (pure, tested) → Q1c compiler → W002 proof.
+- **Commits:** this docs push, then the Q1 series on `terry-local-wip`.
+
 ### 2026-07-03 (ooo) — T-Dog (Fable 5): 🚨 QUALITY BAR PROGRAM opened — P0 bug batch + P1a/b terrain+vista shipped
 Terry's first full device test: systems fire, EXPERIENCE fails (tiny box-maze worlds, "poor Roblox"
 ship, menu dead after warp, unreadable entry text, dead item drops). Plan of record approved — see

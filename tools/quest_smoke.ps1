@@ -28,7 +28,7 @@ if ($installExit -ne 0) {
     exit $installExit
 }
 
-# ── Scan build log for audit failures (build-time, not device logcat) ──────
+# -- Scan build log for audit failures (build-time, not device logcat) ------
 $buildLogFile = Join-Path $ProjectRoot "Builds\android_build.log"
 $buildBad = $false
 if (Test-Path $buildLogFile) {
@@ -49,7 +49,7 @@ if ($buildBad) {
     exit 1
 }
 
-# ── Scan device logcat for runtime failures ──────────────────────────────────
+# -- Scan device logcat for runtime failures ----------------------------------
 $logcatFile = Join-Path $ProjectRoot "Builds\quest_logcat.log"
 if (-not (Test-Path $logcatFile)) {
     Write-Host "quest_smoke: logcat file not found: $logcatFile"

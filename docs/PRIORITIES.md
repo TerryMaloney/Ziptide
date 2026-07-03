@@ -1,28 +1,28 @@
-# 🎯 PRIORITIES — the whole project, one ordered list (2026-07-02, rev 2)
+# 🎯 PRIORITIES — the whole project, one ordered list (2026-07-03, rev 3 — post-device-test + PDF overhaul)
 
 **The single answer to "what matters next, project-wide."** Updated at every track's chunk close.
-Detail lives in `GAME_PLAN.md` (milestones) + the three sprint files; this page is the cross-track order.
-Tracks: 📖 story/ship "T-Dog" (`SPRINT.md`) · 🎮 MP "Architect" (`SPRINT_MULTIPLAYER.md`) · 🎨 art "Picasso"
-(`SPRINT_ART.md`) · 🧑 Terry.
+Tracks: 📖 story "T-Dog" (`SPRINT.md`) · 🎮 MP "Architect-MP" (`SPRINT_MULTIPLAYER.md`) · 🎨 art "Picasso"
+(`SPRINT_ART.md`) · 🏗 architecture (`SPRINT_ARCHITECTURE.md`) · 🧑 Terry.
+Context shift: Terry's device verdict = "systems fire, EXPERIENCE fails" → the Quality Bar program
+(T-Dog) + the ARCHITECTURE V2 program (Terry's PDF) now outrank new modes/content.
 
-| # | Priority | Track | Why it's here | State |
-|---|----------|-------|---------------|-------|
-| 1 | **THE DEVICE PASS** — runbook §1 + §2b–§2h (story worlds, RILL, repair, creatures, ship, W000 opening, smart bot + 5 arenas, skyscapes) | 🧑 | ~seven milestones of CI-green work have never touched a headset; every feel-tuning decision downstream waits on these ❌s/notes | ⏳ blocking |
-| 2 | **A3-scene: modes playable** — mode director + lobby board (arena × mode × difficulty) + attacker identity + Horde spawning | 🎮 | the engines exist; this makes the arenas an actual GAME you can replay | ✅ shipped (CI/APK verify) |
-| 3 | **TWO-QUEST ONLINE SETUP** — `docs/TWO_QUEST_SETUP.md` steps 1–4 are Terry-doable NOW (Photon account/App ID/PUN2/menu click); adapter + registry shipped dormant | 🎮🧑 | Terry directive 2026-07-02 — his setup unblocks A6's cross-headset smoke | Terry's court |
-| 4 | **A4: the arsenal** — Static Net / Sonic Thumper / Prism Beam runtimes + pads as timed respawners + full Gun Game ladder | 🎮 | Gun Game's ladder already names them; map control needs them | ✅ shipped (CI/APK verify) |
-| 5 | **Abilities + dual-wield + locator v2** (`design/ABILITIES_AND_ARSENAL.md`) — the Augment item category (all modes), charge-pool dual-wield, wrist locator A-grade rework | 🎮 | Terry directive 2026-07-02; touches story AND arena AND Tidefront | designed → build |
-| 6 | **ART-2: W001 Toxic Venice kit + PERF_BUDGET audit rule** | 🎨 | the first real surface family + the rule that protects 72fps forever (ART-1 skyscapes ✅ APK-green) | next art session |
-| 7 | **M4 tail: S3 ship upgrade sockets** (+ ToxicCity theme wiring — Picasso's queued request) | 📖 | the economy's flagship sink; W000 opening shipped ✅, S3 is what's left | specced |
-| 8 | **B2: the Tidefront holo war table** (vs the AI) | 🎮 | the war engine is proven; this makes it a mode Terry can sit at | engine done |
-| 9 | **M5: Chapter 3 (W013–W019)** via the world factory — each batch WITH its new tool/creature/beat | 📖 | content scale resumes once the device pass validates the Ch.1–2 base | factory ready |
-| 10 | **B3: Tidefront VR mission modifiers** — attacks offer real contracts inside the story worlds | 🎮 | the killer crossover; reuses existing job steps | after B2 |
-| 11 | **ART-3: audio foundation + RILL VO** (adaptive stems, ambience, ElevenLabs into the existing line slots) | 🎨 | the emotional spine gets its voice; text stubs already carry the data | slots exist |
-| 12 | **A6/B4: online play live** — PUN2 adapter on `IPvpTransport`, room codes, then live Tidefront | 🎮🧑 | lands on the #3 setup; bots backfill empty slots by design | seam ready |
-| 13 | **M5 back half: Ch.4–12 + the 4 endings** | 📖 | the full arc | — |
-| 14 | **ART-4: creature/gear/VFX kits across chapters** | 🎨 | after shapes stabilize | — |
-| 15 | **M8: UX/menus/comfort/save-slots → Meta cert → store assets** | all | ship it | — |
+| # | Priority | Track | Why | State |
+|---|----------|-------|-----|-------|
+| 1 | **DEVICE RE-TEST of the quality wave** — runbook §2j+ (terrain worlds W002/W003/W006, POIs/breadcrumbs, garden/build sockets, new ship hull, forged taser, subtitles/menu fixes) | 🧑 | the P0–P4a + Forge work exists to fix his exact ❌ list; only the headset can confirm | ⏳ next Terry sitting |
+| 2 | **V2-Q1: the WorldSpec** — one spec per world + validator + compiler (the "request it and it happens" keystone) | 🏗 | everything downstream (buildings, terrain, art) hangs off one editable document per world | in flight |
+| 3 | **V2-Q2: buildings, not boxes** — lot partitioning + socketed building grammar + gates | 🏗 | the literal-architecture half of Terry's mandate; the biggest remaining "Roblox" reader | after Q1 |
+| 4 | **ART-3: W001 Toxic Venice built WITH the Forge** (+ ToxicCity theme wiring) | 🎨 | the Forge proved the loop on one taser; now a whole world's look | Picasso resume point |
+| 5 | **P5: `WORLD_RECIPE.md`** — the mid-level-LLM world handbook (post-Q1: "edit the spec") | 📖 | locks in LLM-operability; cheap after Q1 | T-Dog resume point |
+| 6 | **V2-Q3: TerrainField** (fBM + domain warp + biome matrix) | 🏗 | kills the "every hill is the same hill" flatness at the math layer | after Q2 |
+| 7 | **V2-Q4: perf** — GamePool + the PERF_BUDGET gate + shader WARN | 🏗 | protects 72fps before art density rises (ART-3 raises it) | after Q3 |
+| 8 | **P4b: S4 free-flight** (comfort-capped cockpit) | 📖 | the Star Wars pillar's first playable slice | specced |
+| 9 | **A6: two-Quest online** — avatar sync over the shipped seam (Terry's Photon setup = TWO_QUEST_SETUP steps 1–4, still his homework) | 🎮🧑 | the seam + adapter are dormant-ready; unpark when experience bar is met | parked by Terry's pause |
+| 10 | **A4.5–A4.7: Augments / dual-wield / locator v2** (`design/ABILITIES_AND_ARSENAL.md`) | 🎮 | designed, buildable; after the experience overhaul | parked |
+| 11 | **B2/B3: Tidefront war table + mission modifiers** | 🎮 | engine proven; needs the world quality bar first | parked |
+| 12 | **M5: Chapter 3+ content at scale** — via WorldSpec once Q1/Q2 land | 📖 | content scale resumes on the NEW recipe, not the old one | after Q1/Q2 |
+| 13 | **ART-4: creature/gear kits via Forge** (+ the real ship hull — Picasso's top asset target) | 🎨 | after W001 proves the world-scale Forge flow | — |
+| 14 | **RILL VO + adaptive audio (ART-5/M6)** | 🎨📖 | the emotional layer once worlds feel right | — |
+| 15 | **M8: cert/store/UX** | all | ship it | — |
 
-**Standing rules:** anything CI-red jumps to #0 · Terry's ❌s/feel-notes from #1 slot in at #2 ·
-a track never blocks on another track's queue (pull your own next item) · this list is re-ordered, not
-appended — keep it ≤15 rows.
+**Standing rules:** CI-red jumps to #0 · Terry ❌s slot in at #2 · a track never blocks on another's
+queue · re-ordered, never appended — keep ≤15 rows.
