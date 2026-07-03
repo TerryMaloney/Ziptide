@@ -85,21 +85,21 @@ namespace Ziptide.Editor.Patching
                 new ForgePart // receiver
                 {
                     name = "Receiver", op = ForgeOp.BeveledBox,
-                    size = new Vector3(0.036f, 0.05f, 0.13f), bevel = 0.006f,
+                    size = new Vector3(0.036f, 0.054f, 0.13f), bevel = 0.006f,
                     position = new Vector3(0f, 0.01f, -0.01f), paletteSlot = 0
                 },
-                new ForgePart // barrel forward along +Z
+                new ForgePart // barrel forward along +Z — stubby and thick (v2: was long/thin, read as a toy)
                 {
                     name = "Barrel", op = ForgeOp.Cylinder, segments = 10,
-                    size = new Vector3(0.026f, 0.09f, 0.026f),
-                    position = new Vector3(0f, 0.012f, 0.095f),
+                    size = new Vector3(0.032f, 0.065f, 0.032f),
+                    position = new Vector3(0f, 0.012f, 0.085f),
                     eulerRotation = new Vector3(90f, 0f, 0f), paletteSlot = 1
                 },
                 new ForgePart // muzzle ring — the teal business end
                 {
-                    name = "MuzzleRing", op = ForgeOp.Tube, segments = 10, wallThickness = 0.006f,
-                    size = new Vector3(0.034f, 0.018f, 0.034f),
-                    position = new Vector3(0f, 0.012f, 0.132f),
+                    name = "MuzzleRing", op = ForgeOp.Tube, segments = 10, wallThickness = 0.007f,
+                    size = new Vector3(0.04f, 0.02f, 0.04f),
+                    position = new Vector3(0f, 0.012f, 0.112f),
                     eulerRotation = new Vector3(90f, 0f, 0f), paletteSlot = 3
                 },
                 new ForgePart // coil housing greebles on top
@@ -115,26 +115,26 @@ namespace Ziptide.Editor.Patching
                     position = new Vector3(0.02f, 0.014f, 0.005f),
                     mirrorX = true, paletteSlot = 3
                 },
-                new ForgePart // drill-style grip, ~110° to the barrel
+                new ForgePart // drill-style grip, ~114° to the barrel (v2: more rake, longer)
                 {
                     name = "Grip", op = ForgeOp.BeveledBox, bevel = 0.005f,
-                    size = new Vector3(0.03f, 0.085f, 0.04f),
-                    position = new Vector3(0f, -0.052f, -0.043f),
-                    eulerRotation = new Vector3(-20f, 0f, 0f), paletteSlot = 0
+                    size = new Vector3(0.03f, 0.09f, 0.04f),
+                    position = new Vector3(0f, -0.054f, -0.044f),
+                    eulerRotation = new Vector3(-24f, 0f, 0f), paletteSlot = 0
                 },
-                new ForgePart // trigger nub under the receiver front
+                new ForgePart // trigger nub under the receiver front (v2: bigger, it vanished in photos)
                 {
                     name = "TriggerBlock", op = ForgeOp.Wedge,
-                    size = new Vector3(0.018f, 0.02f, 0.028f),
-                    position = new Vector3(0f, -0.018f, 0.02f),
+                    size = new Vector3(0.02f, 0.024f, 0.032f),
+                    position = new Vector3(0f, -0.02f, 0.022f),
                     eulerRotation = new Vector3(180f, 0f, 0f), paletteSlot = 1
                 },
-                new ForgePart // rounded back cap
+                new ForgePart // rounded back cap (v2: full ellipsoid half-sunk in the back — the rotated
+                              // dome bulged sideways in the v1 turnarounds)
                 {
-                    name = "BackCap", op = ForgeOp.SphereSection, bevel = 0.55f, segments = 10,
-                    size = new Vector3(0.034f, 0.05f, 0.03f), smooth = true,
-                    position = new Vector3(0f, 0.01f, -0.078f),
-                    eulerRotation = new Vector3(-90f, 0f, 0f), paletteSlot = 0
+                    name = "BackCap", op = ForgeOp.SphereSection, bevel = 1f, segments = 10,
+                    size = new Vector3(0.036f, 0.046f, 0.03f), smooth = true,
+                    position = new Vector3(0f, 0.01f, -0.077f), paletteSlot = 0
                 },
             };
 
@@ -142,7 +142,7 @@ namespace Ziptide.Editor.Patching
             {
                 // +45° X = the Quest controller forward-tilt fix (ASSET_SWAP_PIPELINE.md §4).
                 new ForgeSocket { name = "Grip", localPosition = new Vector3(0f, -0.045f, -0.05f), localEuler = new Vector3(45f, 0f, 0f) },
-                new ForgeSocket { name = "Muzzle", localPosition = new Vector3(0f, 0.012f, 0.145f), localEuler = Vector3.zero },
+                new ForgeSocket { name = "Muzzle", localPosition = new Vector3(0f, 0.012f, 0.125f), localEuler = Vector3.zero },
             };
 
             return d;

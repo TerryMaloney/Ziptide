@@ -1,5 +1,16 @@
 # 🟡 ACTIVE SPRINT — THE ART & AUDIO TRACK (M6 pulled parallel, opened 2026-07-02)
 
+> **⚡ ART-2 — THE ASSET FORGE (Terry's LLM studio) — ACTIVE 2026-07-03.** Prompt → recipe → generated
+> mesh → CI-rendered turnarounds an LLM can SEE → iterate → APK. Manual: `project_art_plan/FORGE_STUDIO_GUIDE.md`.
+> | # | Task | Status |
+> |---|------|--------|
+> | 1 | SPIKE: PhotoBooth + forge-photos workflow; verify a session can view CI-rendered PNGs | ✅ `394ed14`/`ceb3df3` — photos viewed by this session |
+> | 2 | ForgeRecipeDefinition + ForgeMesh + ForgeMaterials + 13 mesh tests | ✅ `1daa597` (+winding fix `7d6f031` — CI's outwardness tests caught it) |
+> | 3 | ForgeRecipeLibrary + `taser_gun_mk1` + 7 catalog tests + booth renders recipes | ✅ `602587c` |
+> | 4 | Coordination: ItemDefinition.forgeRecipeId + ItemFactory hook + ForgeVisualApplier + ForgeAuthor + BuildAndroid/audit hooks + studio guide + playbook rows | ✅ `1e69879` (HANDOFF mmm) |
+> | 5 | Iterate the taser via turnarounds (v2 pushed: stubby barrel, fixed back cap, chunkier grip) | 🟡 |
+> | 6 | Close: CI+photos green on head · APK dispatch · runbook §2i · HANDOFF wrap | ⬜ |
+
 > **Takeover prompt: "Read docs/SPRINT_ART.md and continue."** This is the art track's live state — it
 > runs IN PARALLEL with the story track (`docs/SPRINT.md`, M4 ship) and the multiplayer track
 > (`docs/SPRINT_MULTIPLAYER.md`, M7) with **zero file overlap**. Operator name for this track: **Picasso**

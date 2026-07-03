@@ -200,6 +200,18 @@ row on the right now has a door to EVERY arena — that's your arena select).
   Photon account + PUN2 import + App ID + the `Ziptide → Net → Enable Photon` menu click. That's
   YOUR half of two-headset PvP; the operator's half (A6) plugs straight into it.
 
+## 2i. NEW — ART track: THE FIRST FORGED WEAPON (all auto; the LLM studio's proof)
+The next build replaces the taser's primitive block with a **generated mesh** (the Asset Forge —
+your "LLM studio" is live; manual: `docs/project_art_plan/FORGE_STUDIO_GUIDE.md`):
+- [ ] Spawn/grab the **taser** anywhere (Sandbox is easiest): it's now a chunky salvage pistol —
+  rust-red receiver, stubby gunmetal barrel with a **teal muzzle ring**, coil greebles on top, teal
+  charge windows on the flanks, drill-style grip (`ZIPTIDE: FORGE_APPLIED` in logcat).
+- [ ] **Grip/aim feel**: the gun should sit naturally in the hand (the +45° tilt is baked into the
+  Forge grip socket). If aim points high/low, say by how much — it's one number in the recipe.
+- [ ] Firing/holster/travel behavior unchanged (the swap is look-only; colliders untouched).
+- [ ] Want a different look? Just tell any session: *"make the taser more X"* — that's the studio
+  loop now. Same for new assets: drone bodies, the ship hull, props are next.
+
 ## 3. The two open judgment calls (yours)
 - **"Can you run in Toxic City?"** — was it the input bug (now fixed) or actual walls/narrow streets? If
   still wall-blocked, say so and the streets get widened.
