@@ -33,6 +33,9 @@ namespace Ziptide.Editor.Patching
             _matCache.Clear();
 
             BuildSkylineAndFog(root, kit);
+            // Quality Bar P1: heightfield terrain + arrival vista UNDER the districts (no-op unless
+            // kit.experience.enabled). Runs after fog setup so it can thin fog for vista visibility.
+            WorldExperienceBuilder.Build(root, kit);
             BuildCanals(root, kit);
 
             foreach (var d in kit.districts)

@@ -64,6 +64,9 @@ namespace Ziptide.Content
         public float skylineMinHeight = 30f;
         public float skylineMaxHeight = 90f;
 
+        [Header("Experience layout (Quality Bar P1 — terrain/vista; disabled = classic district-only recipe)")]
+        public ExperienceDef experience = new ExperienceDef();
+
         [Header("Layout")]
         public List<DistrictDef> districts = new List<DistrictDef>();
         public List<ConnectionDef> connections = new List<ConnectionDef>();
@@ -83,6 +86,17 @@ namespace Ziptide.Content
 
             if (float.IsNaN(walkwayHeight) || float.IsInfinity(walkwayHeight))
                 issues.Add("walkwayHeight is not a finite number.");
+
+            if (experience != null && experience.enabled)
+            {
+                if (experience.worldRadius < 60f)
+                    issues.Add("experience.worldRadius " + experience.worldRadius + " is too small (min 60).");
+                if (experience.heightAmplitude < 0f)
+                    issues.Add("experience.heightAmplitude is negative.");
+                if (experience.vista != VistaKind.None &&
+                    new Vector2(experience.vistaDirection.x, experience.vistaDirection.z).sqrMagnitude < 0.001f)
+                    issues.Add("experience.vistaDirection has no XZ direction for vista " + experience.vista + ".");
+            }
 
             var ids = new HashSet<string>();
             foreach (var d in districts)
@@ -110,6 +124,49 @@ namespace Ziptide.Content
 
             return issues;
         }
+    }
+
+    /// <summary>Terrain landform families for the Experience layout. Each maps to a height recipe in
+    /// WorldExperienceBuilder — pick the one matching the world's WORLD_DATA fiction.</summary>
+    public enum BiomePreset { None, Dunes, Mesas, Canyon, CavernFloor, TideFlats }
+
+    /// <summary>Hero landmark families for arrival vistas — 40–80m kit assemblies the spawn faces.</summary>
+    public enum VistaKind { None, GateSpire, Wreck, Monolith, CrystalForest, ArchRing }
+
+    /// <summary>
+    /// THE WORLD EXPERIENCE block (Quality Bar P1 — the post-device-test recipe fix). When enabled the
+    /// builder adds a 250–400m heightfield terrain UNDER the districts (they become built pads on real
+    /// land, linked by graded corridors), a cliff-bowl bound at worldRadius, and a composed arrival
+    /// vista the spawn faces. Additive and default-OFF: arenas/ToxicCity/W000 keep the classic recipe.
+    /// </summary>
+    [Serializable]
+    public class ExperienceDef
+    {
+        [Tooltip("Master switch. Off = classic district-only recipe (arenas, interiors, legacy).")]
+        public bool enabled = false;
+        [Tooltip("Latched by WorldLayoutLibrary's one-time upgrade pass so hand-edits are never re-seeded.")]
+        public bool authored = false;
+
+        [Header("Terrain")]
+        public BiomePreset biome = BiomePreset.Dunes;
+        [Tooltip("Playable radius in meters (target 250–400; the audit quality gate fails tiny worlds).")]
+        public float worldRadius = 300f;
+        [Tooltip("Max terrain relief in meters. The builder clamps to walkable slopes.")]
+        public float heightAmplitude = 16f;
+        [Tooltip("Terrain ground color (theme tint still applies to district slabs).")]
+        public Color groundColor = new Color(0.45f, 0.38f, 0.28f);
+
+        [Header("Arrival vista")]
+        public VistaKind vista = VistaKind.GateSpire;
+        [Tooltip("Direction (XZ) from the player spawn toward the hero landmark; spawn faces this.")]
+        public Vector3 vistaDirection = new Vector3(0f, 0f, 1f);
+        [Tooltip("Distance from spawn to the hero landmark (m). Fog is auto-thinned to keep it visible.")]
+        public float vistaDistance = 170f;
+        [Tooltip("Hero landmark height (m). 40–80 reads as monumental at distance.")]
+        public float vistaHeight = 60f;
+        public Color vistaColor = new Color(0.75f, 0.70f, 0.62f);
+        [Tooltip("Emissive-accent color for the landmark's glow elements (ring, seams, crystals).")]
+        public Color vistaAccentColor = new Color(0.95f, 0.80f, 0.35f);
     }
 
     /// <summary>Per-surface colors. A district may override via <see cref="DistrictDef.paletteOverride"/>.</summary>

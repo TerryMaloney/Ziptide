@@ -28,6 +28,36 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-03 (ooo) — T-Dog (Fable 5): 🚨 QUALITY BAR PROGRAM opened — P0 bug batch + P1a/b terrain+vista shipped
+Terry's first full device test: systems fire, EXPERIENCE fails (tiny box-maze worlds, "poor Roblox"
+ship, menu dead after warp, unreadable entry text, dead item drops). Plan of record approved — see
+**`docs/SPRINT.md`** (targets: No Man's Sky worlds · Fortnite fun · Roblox+ garden/building · Star Wars
+flight · everything executable by a mid-level LLM via data schemas + build-failing quality gates).
+- **P0 shipped:** dev menu UI-session rebind on every Show (`MENU_UI`/`MENU_CLICK` diags) + 6-per-page
+  pager · RILL subtitles wrapped (pure `SubtitleText.Wrap`, 5 tests)/smaller/lower/fade-in ·
+  `ReleaseFeel` on every factory item (throw rescue + pulse + FIRST_RELEASE RILL hint) · pistol joins
+  starter spawns.
+- **P1a/b shipped (THE recipe fix):** `WorldExperienceBuilder` — seeded heightfield terrain (biome
+  presets Dunes/Mesas/Canyon/CavernFloor/TideFlats, 240–320m playable, cliff-bowl bound, walkable slope
+  clamp, districts/connections flattened in as graded pads/corridors so ALL existing contracts keep
+  working) + composed arrival vistas (GateSpire/Wreck/Monolith/CrystalForest/ArchRing hero landmarks
+  40–80m, midground clusters, spawn faces the vista, fog auto-thinned). Terrain meshes are project
+  assets (stable GUIDs, no scene bloat).
+- **📣 ARCHITECT — shared-file touch (append-only, same protocol as (hhh)):** `CityLayoutDefinition`
+  gained `experience` (ExperienceDef + BiomePreset/VistaKind enums) + Validate() rules gated behind
+  `experience.enabled`. **Default OFF — your arena layouts are untouched** (they never enable it).
+  `WorldLayoutLibrary.EnsureExperienceAuthored()` upgrades W002–W012 once (latched via
+  `experience.authored`); W000 latched off (interior). CityBuilder calls the new builder right after
+  fog setup; spawn markers now take a yaw (faces vista).
+- **📣 PICASSO:** your SkyVistas now sit behind real terrain horizons — vista landmarks are placed to
+  read AGAINST your skies; if a world's sky fights its new ground color (list in
+  `WorldLayoutLibrary.EnsureExperienceAuthored`), retune the sky, not the ground. Ship-hull mesh is
+  still your highest-value target (P4 interim hull is next on my board as the stopgap).
+- **Next-CLAIMED (T-Dog):** P1f quality-gate audit rules (bland-by-data worlds FAIL the build) → P1c
+  POI system. Terry's §2j runbook pass gates the full P1c–g rollout.
+- **Heads-up Terry:** runbook **§2j** — the "does it feel like a world now?" check on W002/W003/W006.
+- **Commit:** P0 `e17eff9`/`c186afa`/`749f370` (pushed as rebased head `be2d916`), P1a/b this push.
+
 ### 2026-07-03 (nnn) — Picasso (Fable 5, ART track): ✅ ART-2 CLOSED — Forge APK-green, taser v2 verified in turnarounds
 Close of (mmm). **APK run `28630103333` green on `e88e70e`** — the forged taser ships in the artifact;
 `FORGE_*` audit blockers live; 274 tests green. The taser v2 turnarounds were reviewed by this session

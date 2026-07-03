@@ -212,6 +212,22 @@ your "LLM studio" is live; manual: `docs/project_art_plan/FORGE_STUDIO_GUIDE.md`
 - [ ] Want a different look? Just tell any session: *"make the taser more X"* — that's the studio
   loop now. Same for new assets: drone bodies, the ship hull, props are next.
 
+## 2j. NEW — QUALITY BAR P0+P1: "does it feel like a world now?" (all auto; THE gate for scaling)
+Your last test drove this whole program. Next build/sideload, please check exactly these:
+- [ ] **Menu:** Y+B menu → warp somewhere → Y+B again → **buttons still click** (was the "clickable
+  once" bug; logcat shows `MENU_CLICK` per press and `MENU_UI ... raysRebound=` per open). Worlds now
+  page **6 at a time** (PREV/NEXT).
+- [ ] **Entry text:** RILL's world-entry line is smaller, lower, wrapped to a readable column, fades in.
+- [ ] **Release feel:** guns pulse briefly when released and carry your hand's throw; first drop makes
+  RILL explain the holster. 3 starter guns now (taser, gravity, pistol).
+- [ ] **THE BIG ONE — W002 / W003 / W006:** warp in. You should arrive FACING a huge landmark on real
+  terrain — a 250–320m landscape (canyon basin / stepped mesas / blinding flats) with the built
+  areas sitting on graded pads, a cliff rim at the edge, distinct ground per world. Walk off the pads
+  onto the land. **Tell the operator: does it feel like an alien world or still like a box?** Your
+  answer gates whether we roll POIs/paths/dressing across all 12 (P1c-g) or re-tune first.
+- [ ] Watch perf while looking at the terrain + vista (it's one static mesh + ~40 blocks — should be
+  fine, but flag any judder).
+
 ## 3. The two open judgment calls (yours)
 - **"Can you run in Toxic City?"** — was it the input bug (now fixed) or actual walls/narrow streets? If
   still wall-blocked, say so and the streets get widened.

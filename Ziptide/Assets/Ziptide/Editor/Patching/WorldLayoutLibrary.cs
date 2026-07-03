@@ -44,8 +44,134 @@ namespace Ziptide.Editor.Patching
             made += Ensure("W010_TidalArray", BuildW010TidalArray);
             made += Ensure("W011_TheHum", BuildW011TheHum);
             made += Ensure("W012_MarasLastJump", BuildW012MarasLastJump);
-            if (made > 0) { AssetDatabase.SaveAssets(); AssetDatabase.Refresh(); }
+            int upgraded = EnsureExperienceAuthored();
+            if (made > 0 || upgraded > 0) { AssetDatabase.SaveAssets(); AssetDatabase.Refresh(); }
             return made;
+        }
+
+        // ── QUALITY BAR P1 — the Experience upgrade pass ───────────────────────────────────────────
+        // The library is CREATE-ONLY, so new CityLayoutDefinition fields never reach assets that
+        // already exist on disk. This pass writes each world's ExperienceDef (terrain biome + arrival
+        // vista, per its WORLD_DATA fiction) exactly ONCE — experience.authored latches, so hand-tuning
+        // in the inspector afterwards is never overwritten. Runs inside EnsureAllAuthored → every build.
+
+        private static int EnsureExperienceAuthored()
+        {
+            int n = 0;
+            // W000 is a ship interior — the experience recipe stays OFF, latched so this never re-runs.
+            n += Experience("W000_DriftIn", (kit, ex) => { ex.enabled = false; });
+
+            n += Experience("W002_DryCistern", (kit, ex) =>
+            {   // A vast drained basin — canyon channels where the water was; pump arches on the sky.
+                ex.enabled = true; ex.biome = BiomePreset.Canyon; ex.worldRadius = 260f; ex.heightAmplitude = 18f;
+                ex.groundColor = new Color(0.52f, 0.46f, 0.36f);
+                ex.vista = VistaKind.ArchRing; ex.vistaDirection = new Vector3(0.3f, 0f, 1f);
+                ex.vistaDistance = 150f; ex.vistaHeight = 55f;
+                ex.vistaColor = new Color(0.62f, 0.58f, 0.48f); ex.vistaAccentColor = new Color(0.35f, 0.85f, 0.80f);
+            });
+            n += Experience("W003_GlassShelf", (kit, ex) =>
+            {   // Wind-scoured stepped shelf; a shard monolith leans into the gale.
+                ex.enabled = true; ex.biome = BiomePreset.Mesas; ex.worldRadius = 280f; ex.heightAmplitude = 20f;
+                ex.groundColor = new Color(0.44f, 0.50f, 0.48f);
+                ex.vista = VistaKind.Monolith; ex.vistaDirection = new Vector3(-0.5f, 0f, 1f);
+                ex.vistaDistance = 170f; ex.vistaHeight = 62f;
+                ex.vistaColor = new Color(0.55f, 0.62f, 0.66f); ex.vistaAccentColor = new Color(0.55f, 0.90f, 0.95f);
+            });
+            n += Experience("W004_BroadcastTomb", (kit, ex) =>
+            {   // Ash dunes under a dead transmitter spine — the broadcast tower IS the vista.
+                ex.enabled = true; ex.biome = BiomePreset.Dunes; ex.worldRadius = 280f; ex.heightAmplitude = 14f;
+                ex.groundColor = new Color(0.40f, 0.37f, 0.42f);
+                ex.vista = VistaKind.GateSpire; ex.vistaDirection = new Vector3(0f, 0f, 1f);
+                ex.vistaDistance = 180f; ex.vistaHeight = 72f;
+                ex.vistaColor = new Color(0.35f, 0.34f, 0.38f); ex.vistaAccentColor = new Color(0.95f, 0.30f, 0.25f);
+            });
+            n += Experience("W005_OxidizedCanopy", (kit, ex) =>
+            {   // An overgrown gorge; canopy giants (crystal-forest kit reads as growth) on the ridge.
+                ex.enabled = true; ex.biome = BiomePreset.Canyon; ex.worldRadius = 300f; ex.heightAmplitude = 22f;
+                ex.groundColor = new Color(0.36f, 0.44f, 0.30f);
+                ex.vista = VistaKind.CrystalForest; ex.vistaDirection = new Vector3(0.8f, 0f, 0.6f);
+                ex.vistaDistance = 160f; ex.vistaHeight = 58f;
+                ex.vistaColor = new Color(0.45f, 0.38f, 0.26f); ex.vistaAccentColor = new Color(0.55f, 0.95f, 0.45f);
+            });
+            n += Experience("W006_MirrorFlats", (kit, ex) =>
+            {   // Blinding still flats; one monolith breaks the horizon. Emptiness is the point.
+                ex.enabled = true; ex.biome = BiomePreset.TideFlats; ex.worldRadius = 320f; ex.heightAmplitude = 8f;
+                ex.groundColor = new Color(0.72f, 0.72f, 0.68f);
+                ex.vista = VistaKind.Monolith; ex.vistaDirection = new Vector3(1f, 0f, 0.1f);
+                ex.vistaDistance = 200f; ex.vistaHeight = 66f;
+                ex.vistaColor = new Color(0.80f, 0.80f, 0.78f); ex.vistaAccentColor = new Color(1.00f, 0.92f, 0.60f);
+            });
+            n += Experience("W007_SableStation", (kit, ex) =>
+            {   // Dark mesa country; a colossal wreck marks how the station got here.
+                ex.enabled = true; ex.biome = BiomePreset.Mesas; ex.worldRadius = 260f; ex.heightAmplitude = 22f;
+                ex.groundColor = new Color(0.22f, 0.20f, 0.24f);
+                ex.vista = VistaKind.Wreck; ex.vistaDirection = new Vector3(-1f, 0f, 0.4f);
+                ex.vistaDistance = 150f; ex.vistaHeight = 48f;
+                ex.vistaColor = new Color(0.30f, 0.28f, 0.30f); ex.vistaAccentColor = new Color(0.95f, 0.70f, 0.30f);
+            });
+            n += Experience("W008_SealedArchive", (kit, ex) =>
+            {   // A hushed cavern floor; the seal-slab looms — an archive closed from the inside.
+                ex.enabled = true; ex.biome = BiomePreset.CavernFloor; ex.worldRadius = 240f; ex.heightAmplitude = 10f;
+                ex.groundColor = new Color(0.26f, 0.28f, 0.32f);
+                ex.vista = VistaKind.Monolith; ex.vistaDirection = new Vector3(0.2f, 0f, -1f);
+                ex.vistaDistance = 140f; ex.vistaHeight = 58f;
+                ex.vistaColor = new Color(0.34f, 0.37f, 0.42f); ex.vistaAccentColor = new Color(0.40f, 0.80f, 0.95f);
+            });
+            n += Experience("W009_Chitinwall", (kit, ex) =>
+            {   // Chitin dunes; the grown arch-ring is the Wall's living architecture.
+                ex.enabled = true; ex.biome = BiomePreset.Dunes; ex.worldRadius = 280f; ex.heightAmplitude = 16f;
+                ex.groundColor = new Color(0.46f, 0.38f, 0.28f);
+                ex.vista = VistaKind.ArchRing; ex.vistaDirection = new Vector3(0.6f, 0f, -0.8f);
+                ex.vistaDistance = 160f; ex.vistaHeight = 60f;
+                ex.vistaColor = new Color(0.50f, 0.42f, 0.30f); ex.vistaAccentColor = new Color(0.70f, 0.85f, 0.30f);
+            });
+            n += Experience("W010_TidalArray", (kit, ex) =>
+            {   // Wet tide flats; the array tower stands where the wrong tide answers to.
+                ex.enabled = true; ex.biome = BiomePreset.TideFlats; ex.worldRadius = 320f; ex.heightAmplitude = 10f;
+                ex.groundColor = new Color(0.34f, 0.44f, 0.46f);
+                ex.vista = VistaKind.GateSpire; ex.vistaDirection = new Vector3(-0.7f, 0f, -0.7f);
+                ex.vistaDistance = 190f; ex.vistaHeight = 68f;
+                ex.vistaColor = new Color(0.40f, 0.48f, 0.52f); ex.vistaAccentColor = new Color(0.35f, 0.75f, 1.00f);
+            });
+            n += Experience("W011_TheHum", (kit, ex) =>
+            {   // Bass-dark stone bowl; the resonant monolith is the sound made visible.
+                ex.enabled = true; ex.biome = BiomePreset.CavernFloor; ex.worldRadius = 260f; ex.heightAmplitude = 12f;
+                ex.groundColor = new Color(0.24f, 0.22f, 0.20f);
+                ex.vista = VistaKind.Monolith; ex.vistaDirection = new Vector3(0f, 0f, 1f);
+                ex.vistaDistance = 150f; ex.vistaHeight = 64f;
+                ex.vistaColor = new Color(0.30f, 0.27f, 0.24f); ex.vistaAccentColor = new Color(0.90f, 0.65f, 0.25f);
+            });
+            n += Experience("W012_MarasLastJump", (kit, ex) =>
+            {   // Burnt launch mesas; the gantry spire points at the sky she left through.
+                ex.enabled = true; ex.biome = BiomePreset.Mesas; ex.worldRadius = 320f; ex.heightAmplitude = 18f;
+                ex.groundColor = new Color(0.42f, 0.34f, 0.28f);
+                ex.vista = VistaKind.GateSpire; ex.vistaDirection = new Vector3(0.4f, 0f, 1f);
+                ex.vistaDistance = 200f; ex.vistaHeight = 78f;
+                ex.vistaColor = new Color(0.46f, 0.42f, 0.40f); ex.vistaAccentColor = new Color(0.70f, 0.85f, 1.00f);
+            });
+            return n;
+        }
+
+        private static int Experience(string sceneName, System.Action<CityLayoutDefinition, ExperienceDef> author)
+        {
+            string path = LayoutFolder + "/" + sceneName + "_Layout.asset";
+            var kit = AssetDatabase.LoadAssetAtPath<CityLayoutDefinition>(path);
+            if (kit == null) return 0;
+            if (kit.experience == null) kit.experience = new ExperienceDef();
+            if (kit.experience.authored) return 0;
+
+            author(kit, kit.experience);
+            kit.experience.authored = true;
+            if (kit.experience.enabled)
+            {
+                // Distant silhouettes must stand OUTSIDE the terrain bowl, and thick city fog would
+                // swallow a 300m world — the builder also clamps fog to vista distance at build time.
+                kit.skylineRingRadius = Mathf.Max(kit.skylineRingRadius, kit.experience.worldRadius + 60f);
+            }
+            EditorUtility.SetDirty(kit);
+            Debug.Log("[Ziptide] Experience authored → " + sceneName + " biome=" + kit.experience.biome +
+                      " radius=" + kit.experience.worldRadius + " vista=" + kit.experience.vista);
+            return 1;
         }
 
         private static int Ensure(string sceneName, System.Func<CityLayoutDefinition> builder)

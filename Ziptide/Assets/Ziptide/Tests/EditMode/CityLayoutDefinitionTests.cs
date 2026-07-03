@@ -28,6 +28,42 @@ namespace Ziptide.Tests.EditMode
         }
 
         [Test]
+        public void Experience_Disabled_AddsNoIssues()
+        {
+            var kit = MakeValid();
+            kit.experience.enabled = false;
+            kit.experience.worldRadius = 1f; // nonsense values are fine while disabled
+            CollectionAssert.IsEmpty(kit.Validate());
+        }
+
+        [Test]
+        public void Experience_TinyRadius_IsFlagged()
+        {
+            var kit = MakeValid();
+            kit.experience.enabled = true;
+            kit.experience.worldRadius = 40f;
+            CollectionAssert.IsNotEmpty(kit.Validate());
+        }
+
+        [Test]
+        public void Experience_VistaWithoutDirection_IsFlagged()
+        {
+            var kit = MakeValid();
+            kit.experience.enabled = true;
+            kit.experience.vista = VistaKind.Monolith;
+            kit.experience.vistaDirection = Vector3.zero;
+            CollectionAssert.IsNotEmpty(kit.Validate());
+        }
+
+        [Test]
+        public void Experience_EnabledWithDefaults_IsValid()
+        {
+            var kit = MakeValid();
+            kit.experience.enabled = true;
+            CollectionAssert.IsEmpty(kit.Validate());
+        }
+
+        [Test]
         public void Connection_ToUnknownDistrict_IsFlagged()
         {
             var kit = MakeValid();

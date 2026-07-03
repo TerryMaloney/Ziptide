@@ -137,7 +137,7 @@ namespace Ziptide.Editor.Patching
 
             var spawnDistrict = FindDistrict(kit, kit.spawnDistrictId) ?? kit.districts[0];
             Vector3 spawnPos = spawnDistrict.anchor + new Vector3(0f, kit.walkwayHeight + 0.1f, 0f);
-            EnsureSpawn("player", spawnPos);
+            EnsureSpawn("player", spawnPos, WorldExperienceBuilder.SpawnYawDegrees(kit));
 
             var pack = EnsureWorldPack(kit, spawnPos);
             EnsureTravelStation(kit);
@@ -191,10 +191,12 @@ namespace Ziptide.Editor.Patching
             }
         }
 
-        private static void EnsureSpawn(string markerId, Vector3 pos)
+        private static void EnsureSpawn(string markerId, Vector3 pos, float yawDegrees = 0f)
         {
             string objName = markerId == "player" ? ZiptideConstants.GoSpawnPlayer : "__SPAWN_" + markerId;
             var go = PatcherUtil.EnsureRootObject(objName, pos);
+            // Arrival staging (P1b): the rig spawns with the marker's rotation, so aim it at the vista.
+            go.transform.rotation = Quaternion.Euler(0f, yawDegrees, 0f);
             var marker = PatcherUtil.EnsureComponent<SpawnMarkerRuntime>(go);
             var so = new SerializedObject(marker);
             PatcherUtil.SetString(so, "markerId", markerId);
