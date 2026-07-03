@@ -167,11 +167,56 @@ namespace Ziptide.Editor.Patching
                 // Distant silhouettes must stand OUTSIDE the terrain bowl, and thick city fog would
                 // swallow a 300m world — the builder also clamps fog to vista distance at build time.
                 kit.skylineRingRadius = Mathf.Max(kit.skylineRingRadius, kit.experience.worldRadius + 60f);
+                AuthorStandardPois(kit);
             }
             EditorUtility.SetDirty(kit);
             Debug.Log("[Ziptide] Experience authored → " + sceneName + " biome=" + kit.experience.biome +
-                      " radius=" + kit.experience.worldRadius + " vista=" + kit.experience.vista);
+                      " radius=" + kit.experience.worldRadius + " vista=" + kit.experience.vista +
+                      " pois=" + kit.pois.Count);
             return 1;
+        }
+
+        /// <summary>
+        /// THE STANDARD POI RING (P1c) — the default gameplay-pocket layout every experience world
+        /// starts from: 8 POIs / 7 verbs arranged around the bowl relative to the vista direction, so
+        /// the StoryAnchor sits en route to the hero landmark and the secret hides behind you.
+        /// CREATE-ONLY per list: a world with ANY hand-authored POIs is never touched. Distances are
+        /// fractions of worldRadius, capped inside the cliff rim. This ring passes every P1f quality
+        /// gate by construction — a custom world's hand table must too (docs/WORLD_RECIPE.md).
+        /// </summary>
+        private static void AuthorStandardPois(CityLayoutDefinition kit)
+        {
+            if (kit.pois == null) kit.pois = new System.Collections.Generic.List<PoiDef>();
+            if (kit.pois.Count > 0) return;
+            var ex = kit.experience;
+
+            var dir = new Vector2(ex.vistaDirection.x, ex.vistaDirection.z);
+            if (dir.sqrMagnitude < 0.001f) dir = Vector2.up;
+            dir.Normalize();
+            float R = ex.worldRadius;
+
+            Vector2 At(float deg, float frac)
+            {
+                float rad = deg * Mathf.Deg2Rad;
+                var d = new Vector2(
+                    dir.x * Mathf.Cos(rad) - dir.y * Mathf.Sin(rad),
+                    dir.x * Mathf.Sin(rad) + dir.y * Mathf.Cos(rad));
+                return d * (R * frac);
+            }
+            void Add(string id, PoiType type, Vector2 p, int tier = 0) =>
+                kit.pois.Add(new PoiDef { id = id, type = type, position = new Vector3(p.x, 0f, p.y), tier = tier });
+
+            Add("story", PoiType.StoryAnchor, dir * (ex.vistaDistance * 0.62f));  // on the vista sightline
+            Add("camp_a", PoiType.CombatCamp, At(65f, 0.45f));
+            Add("camp_b", PoiType.CombatCamp, At(-110f, 0.58f), 1);
+            Add("grove", PoiType.HarvestGrove, At(150f, 0.40f));
+            Add("works", PoiType.MachineSite, At(-40f, 0.50f));
+            Add("ruin", PoiType.RuinCache, At(115f, 0.55f));
+            Add("cave", PoiType.CaveSecret, At(-155f, 0.70f), 1);                 // far, behind the spawn
+            Vector3 berth = kit.shipyard != null && kit.shipyard.enabled
+                ? kit.shipyard.berthCenter
+                : (kit.districts.Count > 0 ? kit.districts[0].anchor : Vector3.zero);
+            Add("berth", PoiType.TravelBerth, new Vector2(berth.x, berth.z));
         }
 
         private static int Ensure(string sceneName, System.Func<CityLayoutDefinition> builder)

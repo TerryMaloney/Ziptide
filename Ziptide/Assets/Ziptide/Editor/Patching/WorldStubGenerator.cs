@@ -227,6 +227,25 @@ namespace Ziptide.Editor.Patching
                 pack.spawnMarkers.Add(new SpawnMarkerDefinition { markerId = "player", localPosition = spawnPos });
             else
                 player.localPosition = spawnPos;
+
+            // POI markers (P1c): keep "poi_<id>" pack entries in sync with the layout's POI network so
+            // contracts route through POIs (GoToMarker) and dev warp can land at any pocket. Marker Y
+            // follows the terrain pad. Hand-authored non-POI markers are untouched.
+            if (kit.pois != null)
+            {
+                foreach (var poi in kit.pois)
+                {
+                    if (poi == null || string.IsNullOrEmpty(poi.id)) continue;
+                    string mid = "poi_" + poi.id;
+                    float y = WorldExperienceBuilder.HeightAt(kit, poi.position.x, poi.position.z) + 0.2f;
+                    var pos = new Vector3(poi.position.x, y, poi.position.z);
+                    var m = pack.spawnMarkers.Find(mm => mm != null && mm.markerId == mid);
+                    if (m == null)
+                        pack.spawnMarkers.Add(new SpawnMarkerDefinition { markerId = mid, localPosition = pos });
+                    else
+                        m.localPosition = pos;
+                }
+            }
             EditorUtility.SetDirty(pack);
             return pack;
         }

@@ -67,6 +67,9 @@ namespace Ziptide.Content
         [Header("Experience layout (Quality Bar P1 — terrain/vista; disabled = classic district-only recipe)")]
         public ExperienceDef experience = new ExperienceDef();
 
+        [Header("Points of Interest (Quality Bar P1c — the gameplay pockets; see docs/WORLD_RECIPE.md)")]
+        public List<PoiDef> pois = new List<PoiDef>();
+
         [Header("Layout")]
         public List<DistrictDef> districts = new List<DistrictDef>();
         public List<ConnectionDef> connections = new List<ConnectionDef>();
@@ -96,6 +99,14 @@ namespace Ziptide.Content
                 if (experience.vista != VistaKind.None &&
                     new Vector2(experience.vistaDirection.x, experience.vistaDirection.z).sqrMagnitude < 0.001f)
                     issues.Add("experience.vistaDirection has no XZ direction for vista " + experience.vista + ".");
+            }
+
+            var poiIds = new HashSet<string>();
+            foreach (var p in pois)
+            {
+                if (p == null) { issues.Add("Null POI entry."); continue; }
+                if (string.IsNullOrEmpty(p.id)) { issues.Add("POI with empty id."); continue; }
+                if (!poiIds.Add(p.id)) issues.Add("Duplicate POI id '" + p.id + "'.");
             }
 
             var ids = new HashSet<string>();
@@ -167,6 +178,25 @@ namespace Ziptide.Content
         public Color vistaColor = new Color(0.75f, 0.70f, 0.62f);
         [Tooltip("Emissive-accent color for the landmark's glow elements (ring, seams, crystals).")]
         public Color vistaAccentColor = new Color(0.95f, 0.80f, 0.35f);
+    }
+
+    /// <summary>
+    /// The seven POI verbs (Quality Bar P1c). Each type has a builder in WorldPoiBuilder that stages a
+    /// 15–30m gameplay pocket; contracts route through POIs by marker id ("poi_&lt;id&gt;").
+    /// </summary>
+    public enum PoiType { CombatCamp, HarvestGrove, MachineSite, RuinCache, CaveSecret, StoryAnchor, TravelBerth }
+
+    /// <summary>A Point of Interest — where the gameplay lives. A world needs 5–9 with ≥3 distinct
+    /// verbs (the audit quality gates enforce it).</summary>
+    [Serializable]
+    public class PoiDef
+    {
+        public string id = "poi";
+        public PoiType type = PoiType.RuinCache;
+        [Tooltip("World-space XZ; Y is ignored — the pocket sits on a level pad graded into the terrain.")]
+        public Vector3 position = Vector3.zero;
+        [Tooltip("0 = early/easy, 1 = mid, 2 = capstone. Drives encounter size and payout.")]
+        public int tier = 0;
     }
 
     /// <summary>Per-surface colors. A district may override via <see cref="DistrictDef.paletteOverride"/>.</summary>

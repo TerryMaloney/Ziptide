@@ -45,6 +45,7 @@ namespace Ziptide.Editor.Patching
                 if (c != null) BuildConnection(root, kit, c);
 
             BuildShipyard(root, kit);
+            WorldPoiBuilder.Build(root, kit); // P1c gameplay pockets (no-op without experience+pois)
             BuildDroneZones(root, kit);
             BuildHazardZones(root, kit);
             BuildCreatureZones(root, kit);
@@ -418,7 +419,8 @@ namespace Ziptide.Editor.Patching
             }
         }
 
-        private static void MakeCreature(Transform parent, string name, Vector3 pos, string creatureId, float respawnDelay)
+        // Internal: WorldPoiBuilder stages CombatCamp encounters through the same creature factory.
+        internal static void MakeCreature(Transform parent, string name, Vector3 pos, string creatureId, float respawnDelay)
         {
             var go = new GameObject(name);
             go.transform.SetParent(parent, false);

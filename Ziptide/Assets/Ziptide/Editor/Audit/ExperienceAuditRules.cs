@@ -13,12 +13,13 @@ namespace Ziptide.Editor.Audit
     /// shipping a 30-second box-maze — the bar is enforced, not hoped for.
     ///
     /// Gate roster (grows with the program; see docs/SPRINT.md):
-    ///  - WORLD_TOO_SMALL     (blocker)  worldRadius under 200m
-    ///  - TERRAIN_MISSING     (blocker)  no ExperienceTerrain mesh+collider in the scene
-    ///  - NO_VISTA_LANDMARK   (blocker)  no hero landmark for the arrival sightline
-    ///  - POI_COUNT_LOW / VERB_VARIETY_LOW / EST_PLAY_MINUTES_LOW / STORY_ANCHOR_MISSING land WITH the
-    ///    POI schema (P1c) — a gate must never precede the content that satisfies it, or CI reddens
-    ///    for every lane.
+    ///  - WORLD_TOO_SMALL       (blocker)  worldRadius under 200m
+    ///  - TERRAIN_MISSING       (blocker)  no ExperienceTerrain mesh+collider in the scene
+    ///  - NO_VISTA_LANDMARK     (blocker)  no hero landmark for the arrival sightline
+    ///  - POI_COUNT_LOW         (blocker)  fewer than 5 POIs — not enough to explore
+    ///  - VERB_VARIETY_LOW      (blocker)  fewer than 3 distinct POI verbs — same-y gameplay
+    ///  - STORY_ANCHOR_MISSING  (blocker)  no staged story beat in the world
+    ///  - EST_PLAY_MINUTES_LOW  (blocker)  PoiQuality heuristic under 8 minutes
     /// Scenes whose layout has experience disabled (arenas, interiors like W000, legacy) are exempt.
     /// </summary>
     public static class ExperienceAuditRules
@@ -63,6 +64,46 @@ namespace Ziptide.Editor.Audit
                         "Layout wants vista " + ex.vista + " but the scene has no ArrivalVista/Hero_* " +
                         "assembly. Regenerate: Ziptide > Worlds > Generate All Layout Worlds.");
             }
+
+            RunPoiGates(report, kit);
+        }
+
+        // ── POI gates (P1c) — the "30 seconds of gameplay" rejection ─────────────────────────────
+
+        private static void RunPoiGates(SceneAuditReport report, CityLayoutDefinition kit)
+        {
+            var pois = kit.pois;
+            int count = 0;
+            if (pois != null)
+                foreach (var p in pois)
+                    if (p != null) count++;
+
+            if (count < 5)
+            {
+                report.Blocker("POI_COUNT_LOW",
+                    "World has " + count + " POIs — the quality bar is 5-9. Author the POI table on the " +
+                    "layout asset (docs/WORLD_RECIPE.md) or clear kit.pois to re-seed the standard ring.");
+                return; // the remaining gates would just repeat the same root cause
+            }
+
+            int verbs = PoiQuality.DistinctVerbCount(pois);
+            if (verbs < 3)
+                report.Blocker("VERB_VARIETY_LOW",
+                    "POI set covers only " + verbs + " distinct verbs — the bar is 3+. Mix types " +
+                    "(CombatCamp / HarvestGrove / MachineSite / RuinCache / CaveSecret / StoryAnchor).");
+
+            if (!PoiQuality.HasStoryAnchor(pois))
+                report.Blocker("STORY_ANCHOR_MISSING",
+                    "No StoryAnchor POI — every world stages its WORLD_DATA beat as a setpiece.");
+
+            Vector3 spawn = Vector3.zero;
+            foreach (var d in kit.districts)
+                if (d != null && (d.id == kit.spawnDistrictId || spawn == Vector3.zero)) spawn = d.anchor;
+            float minutes = PoiQuality.EstimatePlayMinutes(pois, spawn);
+            if (minutes < 8f)
+                report.Blocker("EST_PLAY_MINUTES_LOW",
+                    "Estimated play is " + minutes.ToString("F1") + " min — the bar is 8+. Add POIs, " +
+                    "raise tiers, or spread the network wider (PoiQuality documents the heuristic).");
         }
 
         private static CityLayoutDefinition FindLayoutForScene(string sceneName)

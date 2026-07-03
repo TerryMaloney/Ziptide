@@ -116,25 +116,71 @@ namespace Ziptide.Editor.Patching
             }
         }
 
-        // ── Flatten sites: districts, connection corridors, berth, spawn ─────────────────────────
+        // ── Shared height pipeline (BuildTerrain vertices + HeightAt placement MUST match) ────────
+
+        private static float Amp(ExperienceDef ex) => Mathf.Min(ex.heightAmplitude, BaseWavelength * MaxSlopeRatio);
+        private static float Radius(ExperienceDef ex) => Mathf.Max(60f, ex.worldRadius);
+
+        /// <summary>Biome height + cliff-bowl rim, BEFORE any flattening. Relative to walkwayHeight.</summary>
+        private static float RawHeight(CityLayoutDefinition kit, ExperienceDef ex, float x, float z)
+        {
+            float h = BiomeHeight(ex.biome, Fbm(x, z, kit.seed), Amp(ex));
+            float radius = Radius(ex);
+            float r = Mathf.Sqrt(x * x + z * z);
+            float rim = Mathf.Clamp01((r - radius * 0.82f) / (radius * 0.18f));
+            return h + rim * rim * CliffHeight;
+        }
+
+        /// <summary>
+        /// Final terrain height (world Y) at an XZ point — the placement API for POI/marker/prop
+        /// builders. Identical math to the mesh vertices, so placed objects sit ON the ground.
+        /// </summary>
+        public static float HeightAt(CityLayoutDefinition kit, float x, float z)
+        {
+            var ex = kit != null ? kit.experience : null;
+            if (ex == null || !ex.enabled) return kit != null ? kit.walkwayHeight : 0f;
+            var flats = CollectFlattenSites(kit);
+            float h = RawHeight(kit, ex, x, z);
+            float target;
+            float w = FlattenWeight(new Vector2(x, z), flats, out target);
+            return kit.walkwayHeight + Mathf.Lerp(h, target, w);
+        }
+
+        // ── Flatten sites: districts, connection corridors, berth, POI pads ──────────────────────
 
         private struct FlatSite
         {
             public Vector2 a, b;        // segment (a==b for a disc)
             public float innerRadius;   // fully flat inside this
             public float feather;       // blend band beyond it
+            public float targetY;       // height (rel. walkway) the site grades to; NaN = walkway pad
         }
 
         private static List<FlatSite> CollectFlattenSites(CityLayoutDefinition kit)
         {
             var flats = new List<FlatSite>();
+            var ex = kit.experience;
 
             foreach (var d in kit.districts)
             {
                 if (d == null) continue;
                 var c = new Vector2(d.anchor.x, d.anchor.z);
                 float r = Mathf.Max(d.bounds.x, d.bounds.y) * 0.5f + 6f;
-                flats.Add(new FlatSite { a = c, b = c, innerRadius = r, feather = 18f });
+                flats.Add(new FlatSite { a = c, b = c, innerRadius = r, feather = 18f, targetY = float.NaN });
+            }
+
+            // POI pads (P1c): a level pocket graded to the NATURAL height at its center, so distant
+            // POIs sit in the landscape instead of sinking to spawn level. TravelBerth POIs skip —
+            // they stand on existing berth/district pads.
+            foreach (var p in kit.pois)
+            {
+                if (p == null || p.type == PoiType.TravelBerth) continue;
+                var c = new Vector2(p.position.x, p.position.z);
+                flats.Add(new FlatSite
+                {
+                    a = c, b = c, innerRadius = 13f, feather = 15f,
+                    targetY = RawHeight(kit, ex, c.x, c.y)
+                });
             }
 
             foreach (var conn in kit.connections)
@@ -153,7 +199,8 @@ namespace Ziptide.Editor.Patching
                     a = new Vector2(from.anchor.x, from.anchor.z),
                     b = new Vector2(to.anchor.x, to.anchor.z),
                     innerRadius = conn.width * 0.5f + 3f,
-                    feather = 14f
+                    feather = 14f,
+                    targetY = float.NaN
                 });
             }
 
@@ -161,7 +208,7 @@ namespace Ziptide.Editor.Patching
             {
                 var c = new Vector2(kit.shipyard.berthCenter.x, kit.shipyard.berthCenter.z);
                 float r = Mathf.Max(kit.shipyard.berthSize.x, kit.shipyard.berthSize.y) * 0.5f + 6f;
-                flats.Add(new FlatSite { a = c, b = c, innerRadius = r, feather = 18f });
+                flats.Add(new FlatSite { a = c, b = c, innerRadius = r, feather = 18f, targetY = float.NaN });
             }
 
             return flats;
@@ -176,15 +223,22 @@ namespace Ziptide.Editor.Patching
             return Vector2.Distance(p, a + ab * t);
         }
 
-        /// <summary>0 = leave terrain; 1 = force to walkway height (inside a pad/corridor).</summary>
-        private static float FlattenWeight(Vector2 p, List<FlatSite> flats)
+        /// <summary>0 = leave terrain; 1 = force to the winning site's target height. The strongest
+        /// site decides the target (NaN target = the -0.04 walkway pad).</summary>
+        private static float FlattenWeight(Vector2 p, List<FlatSite> flats, out float targetY)
         {
             float w = 0f;
+            targetY = -0.04f;
             for (int i = 0; i < flats.Count; i++)
             {
                 float dist = DistToSegment(p, flats[i].a, flats[i].b);
                 float t = 1f - Mathf.Clamp01((dist - flats[i].innerRadius) / flats[i].feather);
-                w = Mathf.Max(w, t * t * (3f - 2f * t)); // smoothstep the band
+                t = t * t * (3f - 2f * t); // smoothstep the band
+                if (t > w)
+                {
+                    w = t;
+                    targetY = float.IsNaN(flats[i].targetY) ? -0.04f : flats[i].targetY;
+                }
             }
             return w;
         }
@@ -193,8 +247,7 @@ namespace Ziptide.Editor.Patching
 
         private static void BuildTerrain(Transform root, CityLayoutDefinition kit, ExperienceDef ex, List<FlatSite> flats)
         {
-            float radius = Mathf.Max(60f, ex.worldRadius);
-            float amp = Mathf.Min(ex.heightAmplitude, BaseWavelength * MaxSlopeRatio); // walkable clamp
+            float radius = Radius(ex);
             float extent = radius + 50f; // run past the rim so the bowl edge has ground behind it
             int res = Mathf.Clamp(Mathf.RoundToInt(extent * 2f / CellSize), 32, 220);
 
@@ -208,16 +261,12 @@ namespace Ziptide.Editor.Patching
                 {
                     float x = -extent + xi * (extent * 2f / res);
                     float z = -extent + zi * (extent * 2f / res);
-                    float h = BiomeHeight(ex.biome, Fbm(x, z, kit.seed), amp);
 
-                    // Cliff bowl: past 82% of the radius the land climbs into the rim.
-                    float r = Mathf.Sqrt(x * x + z * z);
-                    float rim = Mathf.Clamp01((r - radius * 0.82f) / (radius * 0.18f));
-                    h += rim * rim * CliffHeight;
-
-                    // Graded pads/corridors where the built world sits.
-                    float flat = FlattenWeight(new Vector2(x, z), flats);
-                    h = Mathf.Lerp(h, -0.04f, flat); // just under slab tops at walkwayHeight
+                    // Same pipeline as HeightAt: raw biome+rim height, then graded pads/corridors.
+                    float h = RawHeight(kit, ex, x, z);
+                    float target;
+                    float flat = FlattenWeight(new Vector2(x, z), flats, out target);
+                    h = Mathf.Lerp(h, target, flat);
 
                     int i = zi * (res + 1) + xi;
                     verts[i] = new Vector3(x, kit.walkwayHeight + h, z);
