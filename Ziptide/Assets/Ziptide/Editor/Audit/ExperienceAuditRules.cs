@@ -20,6 +20,7 @@ namespace Ziptide.Editor.Audit
     ///  - VERB_VARIETY_LOW      (blocker)  fewer than 3 distinct POI verbs — same-y gameplay
     ///  - STORY_ANCHOR_MISSING  (blocker)  no staged story beat in the world
     ///  - EST_PLAY_MINUTES_LOW  (blocker)  PoiQuality heuristic under 8 minutes
+    ///  - TERRAIN_SLOPE_UNWALKABLE (blocker) TerrainField.WalkableFraction under its bar (H3)
     /// Scenes whose layout has experience disabled (arenas, interiors like W000, legacy) are exempt.
     /// </summary>
     public static class ExperienceAuditRules
@@ -66,6 +67,17 @@ namespace Ziptide.Editor.Audit
             }
 
             RunPoiGates(report, kit);
+
+            // H3: the terrain math promises MOSTLY-walkable ground (TerrainFieldTests pin it per
+            // biome) — this re-measures THIS world's actual biome/amplitude/seed combination, so a
+            // hand-tuned spec can never ship an unclimbable world.
+            float walkable = TerrainField.WalkableFraction(
+                ex.biome, ex.heightAmplitude, kit.seed, Mathf.Max(60f, ex.worldRadius) * 0.8f);
+            if (walkable < TerrainField.MinWalkableFraction)
+                report.Blocker("TERRAIN_SLOPE_UNWALKABLE",
+                    "Only " + (walkable * 100f).ToString("F0") + "% of the terrain is walkable (bar " +
+                    (TerrainField.MinWalkableFraction * 100f).ToString("F0") + "%). Lower " +
+                    "experience.heightAmplitude or pick a gentler biome.");
         }
 
         // ── POI gates (P1c) — the "30 seconds of gameplay" rejection ─────────────────────────────

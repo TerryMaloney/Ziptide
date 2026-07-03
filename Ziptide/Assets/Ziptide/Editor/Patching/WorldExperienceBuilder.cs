@@ -68,55 +68,10 @@ namespace Ziptide.Editor.Patching
             }
         }
 
-        private static float ValueNoise(float x, float z, int seed)
-        {
-            int x0 = Mathf.FloorToInt(x), z0 = Mathf.FloorToInt(z);
-            float fx = x - x0, fz = z - z0;
-            fx = fx * fx * (3f - 2f * fx); // smoothstep
-            fz = fz * fz * (3f - 2f * fz);
-            float a = Hash01(x0, z0, seed), b = Hash01(x0 + 1, z0, seed);
-            float c = Hash01(x0, z0 + 1, seed), d = Hash01(x0 + 1, z0 + 1, seed);
-            return Mathf.Lerp(Mathf.Lerp(a, b, fx), Mathf.Lerp(c, d, fx), fz); // 0..1
-        }
-
-        /// <summary>3-octave fbm in -1..1 with the dominant feature at BaseWavelength.</summary>
-        private static float Fbm(float x, float z, int seed)
-        {
-            float n = 0f, amp = 0.55f, freq = 1f / BaseWavelength;
-            for (int o = 0; o < 3; o++)
-            {
-                n += (ValueNoise(x * freq, z * freq, seed + o * 101) * 2f - 1f) * amp;
-                amp *= 0.45f;
-                freq *= 2.1f;
-            }
-            return Mathf.Clamp(n, -1f, 1f);
-        }
-
-        // ── Biome height recipes ──────────────────────────────────────────────────────────────────
-
-        private static float BiomeHeight(BiomePreset biome, float n, float amp)
-        {
-            switch (biome)
-            {
-                case BiomePreset.Mesas:
-                    // Terraced steps with a soft shoulder — table-lands.
-                    float terraced = Mathf.Floor((n * 0.5f + 0.5f) * 4f) / 4f;
-                    return (Mathf.Lerp(terraced, n * 0.5f + 0.5f, 0.2f) * 2f - 1f) * amp * 1.15f;
-                case BiomePreset.Canyon:
-                    // Ridged: high walls, carved channels down at the noise zero-crossings.
-                    return (Mathf.Abs(n) * 1.7f - 0.45f) * amp;
-                case BiomePreset.CavernFloor:
-                    // Gentle undulation — most relief comes from dressing (stalagmites, P1e).
-                    return n * amp * 0.45f;
-                case BiomePreset.TideFlats:
-                    // Near-flat with broad shallow pools (negative-only relief).
-                    return Mathf.Min(0f, n) * amp * 0.5f + n * amp * 0.1f;
-                default: // Dunes
-                    return n * amp;
-            }
-        }
-
         // ── Shared height pipeline (BuildTerrain vertices + HeightAt placement MUST match) ────────
+        // H3 (ARCHITECTURE V2 Q3): the biome math lives in the PURE, tested Content.TerrainField
+        // (fBM + domain warp + per-biome parameter sets, internal slope-safety clamp). This builder
+        // only adds the cliff-bowl rim and the flatten pipeline — scene code translates.
 
         private static float Amp(ExperienceDef ex) => Mathf.Min(ex.heightAmplitude, BaseWavelength * MaxSlopeRatio);
         private static float Radius(ExperienceDef ex) => Mathf.Max(60f, ex.worldRadius);
@@ -124,7 +79,7 @@ namespace Ziptide.Editor.Patching
         /// <summary>Biome height + cliff-bowl rim, BEFORE any flattening. Relative to walkwayHeight.</summary>
         private static float RawHeight(CityLayoutDefinition kit, ExperienceDef ex, float x, float z)
         {
-            float h = BiomeHeight(ex.biome, Fbm(x, z, kit.seed), Amp(ex));
+            float h = TerrainField.Height(ex.biome, x, z, Amp(ex), kit.seed);
             float radius = Radius(ex);
             float r = Mathf.Sqrt(x * x + z * z);
             float rim = Mathf.Clamp01((r - radius * 0.82f) / (radius * 0.18f));
