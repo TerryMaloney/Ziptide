@@ -30,7 +30,7 @@
 | P5 | **docs/WORLD_RECIPE.md** — the mid-level-LLM handbook, worked W005 example + spec-first chapter (V2 Q1 aligned) | ✅ this commit |
 | — | — **TAKEOVER (2026-07-04): architect is Opus now; T-Dog owns everything but art. HANDOFF (qqq) envelopes below are THE queue.** — | — |
 | H3 | **`TerrainField`** (envelope qqq): pure fBM 3–5 octaves + domain warp + temp×moisture biome matrix (each BiomePreset = parameter set); ~15 tests (same-seed identity, slope bound, output range); swap `WorldExperienceBuilder` height fn; `TERRAIN_SLOPE_UNWALKABLE` gate | ✅ this commit: TerrainField (fBM+warp+climate, 15 tests, walkable-fraction contract measured empirically) + builder swap + TERRAIN_SLOPE_UNWALKABLE gate |
-| H2 | **`RoomPartitioner`** (envelope qqq): BSP rooms + corridors carved walking back up the tree; template = `Content/Runtime/City/LotPartitioner.cs` (same Rng struct + base cases + access rule); ~12 tests incl. full reachability; feeds ship decks / hero interiors | ⬜ (Fable-sized) |
+| H2 | **`RoomPartitioner`** (envelope qqq): BSP rooms + corridors carved walking back up the tree; template = `Content/Runtime/City/LotPartitioner.cs` (same Rng struct + base cases + access rule); ~12 tests incl. full reachability; feeds ship decks / hero interiors | ✅ this commit: BSP + access-rule corridors (room-center endpoints ⇒ connectivity by induction), 12 tests incl. 25-seed sweep + odd footprints, all contracts pre-verified by simulation |
 | H5 | **`ScatterField`** (envelope qqq): pure Poisson-disk, density channels, exclusion masks (pads/corridors/POIs/route), per-kind min spacing; ~10 tests; swap into `WorldDressingBuilder` | ⬜ (Fable-sized) |
 | Q2d | **Building proof**: set `buildingStyleId="toxic_tenement"` on one W002 district → APK dispatch → runbook "does it read as a place?" gate | ⬜ after H3 |
 | P4b | **S4 flight scene v1** — READ `docs/design/SPACEFLIGHT_PHYSICS.md` FIRST; comfort-capped cockpit flight in a bounded SpaceLane scene (world moves, never the camera; NO floating origin — trigger not fired); pure `FlightModel` core + tests before the scene translator | ⬜ last big piece |
@@ -41,7 +41,7 @@
   fixes · terrain+vista · POIs+gates · route+dressing · contracts-through-POIs · garden+sockets ·
   interim hull · handbook). Rebased onto architect's takeover kit `a21fffb`; read
   **`docs/OPERATOR_START_HERE.md`** — its laws (incl. THE CIRCUIT BREAKER) govern this board too.
-- **Next action:** **H2 `RoomPartitioner`** (H3 shipped this commit — see board). Original H3 note kept for reference: **H3 `TerrainField`** — new pure class in `Content/Runtime/City/` (follow
+- **Next action:** **H5 `ScatterField`** (H3+H2 shipped — see board). Original H3 note kept for reference: **H3 `TerrainField`** — new pure class in `Content/Runtime/City/` (follow
   `LotPartitioner.cs`'s style): fBM 3–5 octaves over the seed-hash idiom already in
   `WorldExperienceBuilder.Hash01/ValueNoise`, + domain warping, + a temp×moisture matrix that maps
   each `BiomePreset` to a parameter set. ~15 EditMode tests FIRST (same-seed identity, cross-seed
