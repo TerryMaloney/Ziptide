@@ -40,11 +40,22 @@ namespace Ziptide.Editor.Patching
             string fauna = kit.creatureZones != null && kit.creatureZones.Count > 0
                 ? kit.creatureZones[0].creatureId : "swarm_bug";
 
+            // Spawn exclusion: a POI's own props (watch masts, dais steps, pedestals) reach ~8m from
+            // its center — any POI closer than that to the player spawn gets pushed straight out to
+            // the exclusion ring (SPAWN_OVERLAP_SOLID on 5 worlds, diag run 28682909567).
+            var spawnDistrict = kit.districts.Count > 0 ? kit.districts[0] : null;
+            foreach (var d in kit.districts)
+                if (d != null && d.id == kit.spawnDistrictId) spawnDistrict = d;
+            Vector2 spawnXZ = spawnDistrict != null
+                ? new Vector2(spawnDistrict.anchor.x, spawnDistrict.anchor.z)
+                : Vector2.zero;
+
             foreach (var poi in kit.pois)
             {
                 if (poi == null || string.IsNullOrEmpty(poi.id)) continue;
-                float y = WorldExperienceBuilder.HeightAt(kit, poi.position.x, poi.position.z);
-                var pos = new Vector3(poi.position.x, y, poi.position.z);
+                Vector2 xz = ExcludeFromSpawn(new Vector2(poi.position.x, poi.position.z), spawnXZ);
+                float y = WorldExperienceBuilder.HeightAt(kit, xz.x, xz.y);
+                var pos = new Vector3(xz.x, y, xz.y);
 
                 var poiRoot = new GameObject("__POI_" + poi.id).transform;
                 poiRoot.SetParent(poisRoot, false);
@@ -193,6 +204,21 @@ namespace Ziptide.Editor.Patching
         }
 
         // ── Helper ────────────────────────────────────────────────────────────────────────────────
+
+        /// <summary>POI props reach ~8m from the POI center — keep every POI at least this far
+        /// from the player spawn so no prop can overlap it (audit SPAWN_OVERLAP_SOLID).</summary>
+        public const float SpawnExclusionRadius = 12f;
+
+        /// <summary>Pure: push a POI straight out to the exclusion ring if it sits too close to
+        /// spawn; POIs already outside are untouched. Degenerate (POI == spawn) pushes +X.</summary>
+        public static Vector2 ExcludeFromSpawn(Vector2 poiXZ, Vector2 spawnXZ)
+        {
+            Vector2 delta = poiXZ - spawnXZ;
+            float dist = delta.magnitude;
+            if (dist >= SpawnExclusionRadius) return poiXZ;
+            Vector2 dir = dist > 0.01f ? delta / dist : Vector2.right;
+            return spawnXZ + dir * SpawnExclusionRadius;
+        }
 
         private static GameObject Block(Transform parent, string name, Vector3 localPos, Vector3 scale,
             Color color, bool collider)

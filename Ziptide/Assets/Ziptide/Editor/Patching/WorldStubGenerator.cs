@@ -136,7 +136,11 @@ namespace Ziptide.Editor.Patching
             EnsureWorldRuntime(worldProfile);
 
             var spawnDistrict = FindDistrict(kit, kit.spawnDistrictId) ?? kit.districts[0];
-            Vector3 spawnPos = spawnDistrict.anchor + new Vector3(0f, kit.walkwayHeight + 0.1f, 0f);
+            // Spawn Y samples the SAME height pipeline the terrain collider is built from
+            // (H3 TerrainField + flatten grading) — assuming walkwayHeight put spawns inside the
+            // new terrain on 3 worlds (SPAWN_OVERLAP_SOLID, diag run 28682909567).
+            float spawnGroundY = WorldExperienceBuilder.HeightAt(kit, spawnDistrict.anchor.x, spawnDistrict.anchor.z);
+            Vector3 spawnPos = new Vector3(spawnDistrict.anchor.x, spawnGroundY + 0.15f, spawnDistrict.anchor.z);
             EnsureSpawn("player", spawnPos, WorldExperienceBuilder.SpawnYawDegrees(kit));
 
             var pack = EnsureWorldPack(kit, spawnPos);
