@@ -67,8 +67,8 @@ is the confirmed perf floor. The two qqq envelopes fold in as E5.1 (building mod
 
 | # | Task (envelope in FORGE_II doc) | Status |
 |---|------|--------|
-| E1.1 | UV atlas in ForgeMesh + tangents + tests (visuals unchanged) | ⬜ NEXT |
-| E1.2 | ForgeTexture rasterizer + albedo styles + schemaVersion 2 → textured taser in booth ("not flat" checkpoint) | ⬜ |
+| E1.1 | UV atlas in ForgeMesh + tangents + tests (visuals unchanged) | ✅ `241f2c4`+fix `f6415f5` (CI green) |
+| E1.2 | ForgeTexture rasterizer + albedo styles + schemaVersion 2 → textured taser in booth ("not flat" checkpoint) | 🟡 `ba6f869` pushed — awaiting CI + the checkpoint photos |
 | E1.3 | Normal/MSA/emissive maps + ONE material per asset | ⬜ |
 | E1.4 | ForgeBaker (build-time bake → ASTC) + gitignore + applier/booth prefer baked → **Terry photo checkpoint** | ⬜ |
 | E5.2 | PERF_BUDGET audit gate (independent — do anytime, 1 commit) | ⬜ |
