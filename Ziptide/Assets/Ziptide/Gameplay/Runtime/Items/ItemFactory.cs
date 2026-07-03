@@ -39,6 +39,9 @@ namespace Ziptide.Gameplay
                 Ziptide.Visuals.ForgeVisualApplier.TryApply(built, def.forgeRecipeId);
 
             ApplyEquippedCosmetic(built, itemId);
+            // Release polish LAST so its selectExited listener runs after RestorePhysicsOnRelease.
+            if (built != null && built.GetComponent<XRGrabInteractable>() != null)
+                built.AddComponent<ReleaseFeel>();
             return built;
         }
 

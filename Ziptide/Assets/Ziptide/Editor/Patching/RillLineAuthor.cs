@@ -103,6 +103,8 @@ namespace Ziptide.Editor.Patching
                  "Did you feel that? Every gate on the network just... inhaled.");
             Flag("react_signal2", ZiptideFlags.SIGNAL_THRESHOLD_2,
                  "The Signal again. Stronger. It is not random — it answers you.");
+            Flag("react_first_release", ZiptideFlags.FIRST_RELEASE,
+                 "Dropped gear stays where it falls — and stays behind when we travel. The holster on your hip keeps it with us.");
 
             // ── The ship (M4) — the companion has opinions about home ───────────────────────────────
             Flag("react_ship_board", "SHIP_FIRST_BOARD",

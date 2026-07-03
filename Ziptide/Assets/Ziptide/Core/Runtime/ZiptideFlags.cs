@@ -10,6 +10,7 @@ namespace Ziptide.Core
         // ── Tutorial / Onboarding ──────────────────────────────────────────
         public const string TUTORIAL_COMPLETE       = "TUTORIAL_COMPLETE";
         public const string FIRST_HOLSTER           = "FIRST_HOLSTER";
+        public const string FIRST_RELEASE           = "FIRST_RELEASE";
         public const string FIRST_TRAVEL            = "FIRST_TRAVEL";
         public const string FIRST_JOB_COMPLETE      = "FIRST_JOB_COMPLETE";
         public const string FIRST_DRONE_DOWN        = "FIRST_DRONE_DOWN";

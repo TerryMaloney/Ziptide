@@ -153,6 +153,8 @@ namespace Ziptide.Editor.Patching
                 if (taser != null) taser.transform.SetParent(root, true);
                 var grav = ItemFactory.Create("gravity_gun", spawnPos + new Vector3(0.6f, 1.0f, 1.0f));
                 if (grav != null) grav.transform.SetParent(root, true);
+                var pistol = ItemFactory.Create("pistol", spawnPos + new Vector3(0f, 1.0f, 1.2f));
+                if (pistol != null) pistol.transform.SetParent(root, true);
             }
         }
 
