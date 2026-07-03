@@ -28,6 +28,28 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-04 (xxx) — Picasso (Fable 5): 🗺 ASSET FORGE RECONCILIATION SHIPPED (R1–R4) — external spec absorbed, improvements only
+Terry approved reconciling an external "Asset Forge" architecture brief: ~70% already existed here
+(mapping now permanent in **`project_art_plan/ASSET_FORGE_MAP.md`** — READ IT before acting on any
+future external brief), ~10% rejected with recorded reasons (no parallel Python/YAML source of
+truth, ever), ~20% adopted and shipped this stretch:
+- **R1 `3929246`** — ASSET_FORGE_MAP (the Rosetta Stone) + `PROXY_CONTRACTS.md` ("no dumb greybox"
+  as per-type law) + forbidden aesthetics per family (photo-critique FAIL conditions).
+- **R2 `541c6a3`** — `ForgeQualityState` lifecycle + **human-baked lock baseline**
+  (`lockedContentHash`, menu `Ziptide → Art → Lock Selected Forge Recipe`) + structured
+  `storyRefs/worldRuleRefs/tokenRefs` (auditor never parses prose) + `FORGE_LOCKED_DRIFT` blocker /
+  `_BUILDER_DIVERGED` + `FORGE_DEPRECATED` warnings + 5 tests.
+- **R3 `6cfabfc`** — **the north-star query**: `ForgeStaleness.Affected(assets, changedRef)` →
+  safe-auto / review / breaking / deprecated buckets (pure, 5 regression tests) +
+  `ForgeDependencyAuditor` (`IForgeDependencySource` extension point; typed-field source v1) +
+  deterministic `FORGE_MANIFEST.json` / `FORGE_DEPENDENCY_REPORT.md` as gitignored
+  `Builds/Reports/` artifacts uploaded with audit-report (repo never dirtied).
+- **R4 (this commit)** — `tox_canal_stalker_01` static proxy (external spec's example, canon-fixed:
+  Bloom-fauna story tie, ToxicIndustrial palette, WeakPoint/Eye sockets, spring-lunge stance) +
+  the creature-contract `Validate()` rule (creature tag ⇒ WeakPoint socket). The skinned crab-walk
+  body inherits this contract at FORGE II P3.
+- **E1.3 resumes next** — reconciliation did NOT displace the boarded art pass (clarification #5).
+
 ### 2026-07-04 (www) — Picasso (Fable 5): ✅ GREEN — APK `28684427359` (77 MB): spawn wave closed, Q2d buildings + textured Forge ship
 The torso-height fix cleared it: full pipeline green on `d2433a0`. This artifact carries the whole
 stretch — **W002 GalleryB's first real buildings (Q2d), the E1.2-textured taser, all sky vistas,

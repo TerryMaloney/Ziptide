@@ -217,7 +217,12 @@ namespace Ziptide.Visuals
                 }
                 if (names.Contains("Grip") && !names.Contains("Muzzle"))
                     issues.Add("handheld contract: a Grip socket requires a Muzzle socket");
+                if (storyTags != null && System.Array.IndexOf(storyTags, "creature") >= 0
+                    && !names.Contains("WeakPoint"))
+                    issues.Add("creature contract (PROXY_CONTRACTS.md): a WeakPoint socket is required");
             }
+            else if (storyTags != null && System.Array.IndexOf(storyTags, "creature") >= 0)
+                issues.Add("creature contract (PROXY_CONTRACTS.md): a WeakPoint socket is required");
 
             return issues;
         }
