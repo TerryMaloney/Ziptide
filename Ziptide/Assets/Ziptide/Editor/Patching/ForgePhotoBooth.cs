@@ -66,12 +66,28 @@ namespace Ziptide.Editor.Patching
         }
 
         /// <summary>
-        /// The list of things to photograph. Spike: one calibration target. When ForgeRecipeLibrary
-        /// lands, this enumerates every recipe's built mesh instead.
+        /// The list of things to photograph: every recipe in the studio's catalog, built through the
+        /// exact runtime path (ForgeMesh + ForgeMaterials). Falls back to the calibration rig if the
+        /// catalog is ever empty so the photo pipeline itself stays verifiable.
         /// </summary>
         private static IEnumerable<(GameObject root, string id)> Subjects()
         {
-            yield return (BuildCalibrationTarget(), "spike_calibration");
+            var specs = ForgeRecipeLibrary.Specs();
+            if (specs.Count == 0)
+            {
+                yield return (BuildCalibrationTarget(), "spike_calibration");
+                yield break;
+            }
+            foreach (var spec in specs)
+            {
+                var recipe = spec.Value();
+                var root = new GameObject("Forge_" + spec.Key);
+                var mf = root.AddComponent<MeshFilter>();
+                mf.sharedMesh = Ziptide.Visuals.ForgeMesh.Build(recipe);
+                var mr = root.AddComponent<MeshRenderer>();
+                mr.sharedMaterials = Ziptide.Visuals.ForgeMaterials.ForRecipe(recipe);
+                yield return (root, spec.Key);
+            }
         }
 
         /// <summary>
