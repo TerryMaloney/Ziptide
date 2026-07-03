@@ -25,27 +25,34 @@
 | P1d | **Breadcrumb route** — cairns every 20m along spawn→POIs route | ✅ `45f5bf5` |
 | P1e | **Dressing/scatter** — biome-keyed prop clusters, masked, static-batched | ✅ `45f5bf5` |
 | P1g | **Re-recipe W002–W012** — contracts route through POIs (GoPoi/PickupAtPoi/MachineAtPoi/MineAtPoi); W000 stays interior | ✅ this commit |
-| P3 | **Garden** (HarvestGrove plots: plant→tend→morph→harvest; PlotState/GardenService backend EXISTS) + **BuildSocket** machine placement persisted in WorldState | ⬜ |
-| P4a | **Interim ship hull** — 15–20 part procedural silhouette replaces the 4-cube hull | ⬜ |
-| P5 | **docs/WORLD_RECIPE.md** — the mid-level-LLM fill-in handbook, worked W005 example | ⬜ ships with P1g |
-| P4b | **S4 free-flight scene** (SpaceLane; comfort-capped cockpit flight) | ⬜ last |
+| P3 | **Garden** (GardenPlotRuntime plant→grow→harvest at HarvestGrove POIs) + **BuildSocket** pay-to-build extractors persisted in WorldState | ✅ `a17d44a` CI-green |
+| P4a | **Interim ship hull** — 19-part `ShipHullBuilder` silhouette replaces the 4-cube hull | ✅ `954b969` CI-green |
+| P5 | **docs/WORLD_RECIPE.md** — the mid-level-LLM handbook, worked W005 example + spec-first chapter (V2 Q1 aligned) | ✅ this commit |
+| — | — **TAKEOVER (2026-07-04): architect is Opus now; T-Dog owns everything but art. HANDOFF (qqq) envelopes below are THE queue.** — | — |
+| H3 | **`TerrainField`** (envelope qqq): pure fBM 3–5 octaves + domain warp + temp×moisture biome matrix (each BiomePreset = parameter set); ~15 tests (same-seed identity, slope bound, output range); swap `WorldExperienceBuilder` height fn; `TERRAIN_SLOPE_UNWALKABLE` gate | ⬜ NEXT (Fable-sized) |
+| H2 | **`RoomPartitioner`** (envelope qqq): BSP rooms + corridors carved walking back up the tree; template = `Content/Runtime/City/LotPartitioner.cs` (same Rng struct + base cases + access rule); ~12 tests incl. full reachability; feeds ship decks / hero interiors | ⬜ (Fable-sized) |
+| H5 | **`ScatterField`** (envelope qqq): pure Poisson-disk, density channels, exclusion masks (pads/corridors/POIs/route), per-kind min spacing; ~10 tests; swap into `WorldDressingBuilder` | ⬜ (Fable-sized) |
+| Q2d | **Building proof**: set `buildingStyleId="toxic_tenement"` on one W002 district → APK dispatch → runbook "does it read as a place?" gate | ⬜ after H3 |
+| P4b | **S4 flight scene v1** — READ `docs/design/SPACEFLIGHT_PHYSICS.md` FIRST; comfort-capped cockpit flight in a bounded SpaceLane scene (world moves, never the camera; NO floating origin — trigger not fired); pure `FlightModel` core + tests before the scene translator | ⬜ last big piece |
+| A1 | **Succession gap-closures from Terry's PDF** (triage in HANDOFF rrr): `.gitattributes` (+ runbook UnityYamlMerge driver setup for Terry) · 2 new deferral records in `ARCHITECTURE_V2.md` (runtime asset streaming, gateway rate-limiting) · metavr MCP evaluation runbook item | ✅ this commit |
 
 ## ▶ RESUMING? — current state & exact next action
-- **Current:** **P0 + P1 (a–g) COMPLETE** — the World Experience Engine is live end to end: terrain →
-  vista → POIs → route → dressing → gates → contracts through POIs. CI green through `45f5bf5`;
-  P1g is this commit. Terry's §2j runbook pass ("does it feel like a world?") is queued and will
-  re-prioritize everything.
-- **Next action:** **P3 garden** — promote GardenPlotRuntime at HarvestGrove POIs (backend
-  PlotState/GardenService exists + tested; build the world-object layer mirroring MiningRigRuntime:
-  serialized def per gotcha #7, JobDirector-style pack data or direct scene placement at the grove's
-  Planter pads). Then BuildSocket at MachineSite plinths (persist in WorldState like mines). Then P4a
-  interim ship hull (`ShipHullBuilder`, 15–20 parts replacing the 4-cube body in
-  `CityBuilder.BuildShipyard`). Then P5 `docs/WORLD_RECIPE.md`. Then P4b S4 flight scene. APK dispatch
-  (workflow_dispatch on ci.yml) after P3+P4a to exercise the quality gates end-to-end.
-- **Device gate:** Terry §2j on next sideload — his ❌s re-prioritize before P2 encounter depth.
-- **Lane:** architect = PvP/arenas/bots (their A4 arsenal doubles as story-world weapons); Picasso =
-  asset creator (ship hull mesh is their first big target — P4a is the stopgap), SkyVistas, audio.
-- **Branch:** `terry-local-wip`. CI-green head: `45f5bf5` (P1g pending CI).
+- **Current:** **P0–P5 of the Quality Bar Program COMPLETE and CI-green** (menu/subtitle/release
+  fixes · terrain+vista · POIs+gates · route+dressing · contracts-through-POIs · garden+sockets ·
+  interim hull · handbook). Rebased onto architect's takeover kit `a21fffb`; read
+  **`docs/OPERATOR_START_HERE.md`** — its laws (incl. THE CIRCUIT BREAKER) govern this board too.
+- **Next action:** **H3 `TerrainField`** — new pure class in `Content/Runtime/City/` (follow
+  `LotPartitioner.cs`'s style): fBM 3–5 octaves over the seed-hash idiom already in
+  `WorldExperienceBuilder.Hash01/ValueNoise`, + domain warping, + a temp×moisture matrix that maps
+  each `BiomePreset` to a parameter set. ~15 EditMode tests FIRST (same-seed identity, cross-seed
+  divergence, slope bound ≤ MaxSlopeRatio, output range, biome distinctness). Then swap
+  `WorldExperienceBuilder.RawHeight` to call it (keep the flatten/rim pipeline untouched) and add
+  the `TERRAIN_SLOPE_UNWALKABLE` audit blocker (pattern: `ExperienceAuditRules`). Then H2 → H5 →
+  Q2d → P4b per the board.
+- **Device gate:** Terry §2j/§2k runbook rows still open — his ❌s re-prioritize everything.
+- **Lane:** architecture track = Opus 4.8 (Q4a GamePool queued there); Picasso = art (building
+  module kits + PERF gate enveloped); I own story/worlds/ship + the three H-cores above.
+- **Branch:** `terry-local-wip`. Head at reconciliation: `a21fffb` + this commit.
 
 ## Working rules (unchanged)
 CI green per push; SHIPS.md guardrails are law (no rig parenting, no TravelCoordinator bypass, comfort

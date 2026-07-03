@@ -31,7 +31,7 @@ any LLM: request a change as data, build, gates catch mistakes.
 | Q4b | **`PERF_BUDGET` audit rule** → **ENVELOPE TO PICASSO** (their budget doc; ExperienceAuditRules is the pattern): tris/materials/renderers/lights per scene, WARN 80% / BLOCK over, exempt `_Boot` | 📨 Picasso |
 | H4 | **Art Registry** SHIPPED: `Editor/Art/ArtModuleRegistry.cs` (resolve-through, primitive fallback) + **`docs/design/ART_REGISTRY.md`** (id families + laws + deferral triggers). Picasso fulfills `buildingModule:*` ids (envelope in qqq) | ✅ `cd79dac`+ |
 | H6 | **TAKEOVER KIT** SHIPPED: `docs/OPERATOR_START_HERE.md` (model-agnostic manual: blackboard, envelopes, circuit breaker, Opus calibration) + CLAUDE.md pointer swap + FABLE5_START_HERE legacy banner + `design/SPACEFLIGHT_PHYSICS.md` (P4b rails) + PRIORITIES rev 4 + HANDOFF (qqq) briefings | ✅ this commit |
-| Q5 | LFS-ready commented `.gitattributes` stanzas (only remaining Q5 sliver — laws landed via OPERATOR_START_HERE) | ⬜ small |
+| Q5 | LFS-ready commented `.gitattributes` stanzas (only remaining Q5 sliver — laws landed via OPERATOR_START_HERE) | ✅ by T-Dog (HANDOFF rrr): pseudo-binary guards + binaries + LFS stanzas; runbook §2l driver setup |
 | — | Close per phase: CI green → APK dispatch → audit green → runbook rows → HANDOFF | recurring |
 
 ## ▶ RESUMING? — current state & exact next action

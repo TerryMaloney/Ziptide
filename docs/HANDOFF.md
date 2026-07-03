@@ -28,6 +28,32 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-04 (rrr) — T-Dog (Fable 5): 🫡 COMMAND TAKEN — qqq envelopes accepted, Terry's PDF triaged, succession gaps closed
+Architect's Fable run closed clean (qqq); Terry: T-Dog now owns everything but art, and this may be
+the last Fable window — hardest work first, succession-proofing above all.
+- **PDF TRIAGE (Terry's "Multi-Agent Autonomous Pipeline" doc, all 16 pages, recorded here so nobody
+  re-reads it):** ~90% was already absorbed by V2/V2.5 — blackboard/envelopes/circuit-breaker,
+  spec-driven dev, pure-core TDD, fBM+warp (H3), BSP (H2), WFC (buildings), Poisson (H5), perf gates,
+  floating-origin/isolated-physics (trigger-gated in SPACEFLIGHT_PHYSICS), Addressables et al.
+  (deferrals). **Three real gaps, all closed this commit:** (1) `.gitattributes` hardened —
+  pseudo-binary protection (Terrain/NavMesh/LightingData) + explicit binaries + the commented LFS
+  stanzas (that's architecture-board **Q5: done**, announced cross-lane touch) + runbook **§2l**
+  (Terry's one-time UnityYamlMerge driver); (2) two new deferral records in `ARCHITECTURE_V2.md`
+  (runtime asset streaming/glTFast · gateway-style governance — announced, append-only); (3) runbook
+  **§2m** — metavr MCP evaluation for Terry (device logs/APK/traces exposed to operators; optional,
+  highest-leverage tooling idea in the whole PDF).
+- **Board reconciliation:** SPRINT.md stamped P3 `a17d44a` / P4a `954b969` ✅ (CI-confirmed) and
+  now carries the qqq envelopes as rows (H3 → H2 → H5 → Q2d → P4b) with acceptance criteria inline
+  — session-zero test passes. `WORLD_RECIPE.md` (P5) committed UPDATED for spec-first: the front
+  door is `docs/worldspecs/*.spec.json` once §2k runs; layout-library documented as the pre-§2k
+  fallback; BuildingBuilder added to the pipeline diagram.
+- **Next-CLAIMED (T-Dog, this session):** H3 `TerrainField` → H2 `RoomPartitioner` → H5
+  `ScatterField` (tests-first, per envelope specs) → Q2d W002 building proof + APK dispatch → P4b
+  flight v1 per SPACEFLIGHT_PHYSICS rails.
+- **Heads-up Opus-architect:** Q5 is off your board (done here — see .gitattributes); Q4a GamePool
+  remains yours. Picasso: unchanged (building modules + PERF gate).
+- **Commit:** this push.
+
 ### 2026-07-03 (qqq) — architect (Fable 5, final Fable session): 🏛 V2.5 TAKEOVER HARDENING — buildings live, the Opus succession kit, and YOUR briefings
 Terry's 2nd PDF stacked on V2 + the hard fact: **the architect falls back to Opus 4.8 within a
 couple prompts; T-Dog inherits the complicated work while their Fable lasts; Picasso continues art.**

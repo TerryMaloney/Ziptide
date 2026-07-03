@@ -60,6 +60,15 @@ Execution board: **`docs/SPRINT_ARCHITECTURE.md`**. This doc is the WHY + the la
   module diversity ever demands it.
 - **NavMesh**: bots use waypoint/objective logic that already works; NavMesh joins when interiors get
   complex enough to defeat it.
+- **Runtime asset streaming (glTFast/GLB + CDN + shader-variant preloading)** *(T-Dog, from Terry's
+  PDF §Dynamic Asset Delivery)*: every asset ships IN the APK today (Forge meshes are code-generated,
+  primitives fall back), so runtime import solves a problem we don't have. Trigger = a design that
+  delivers NEW content to installed devices without a rebuild (live-ops), or asset volume forcing
+  Addressables anyway. Until then: no glTFast, no ShaderVariantCollection preloads.
+- **Gateway-style model governance (rate limits/routing/payload logging)** *(PDF §Model Governance)*:
+  N/A at claude.ai-session scale — OPERATOR_START_HERE's circuit-breaker law (3 CI-reds → stop) and
+  per-track model routing (Terry assigns sessions) ARE our equivalents. Revisit only if the pipeline
+  ever runs headless on API keys.
 - **IK/skeletal creatures**: primitive+Forge bodies first; IK when meshes have limbs worth planting.
 
 ## Lane split (zero-collision)

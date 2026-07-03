@@ -246,6 +246,23 @@ Your click creates the starting spec for every existing world:
   gates reject anything broken BEFORE it can reach your headset. That's the "request it and it
   happens" pipeline from your PDF.
 
+## 2l. NEW — git safety, one-time (~2 min; from your PDF's version-control chapter)
+Four operators + you push to one branch — this makes scene-file collisions unable to corrupt anything:
+- [ ] In PowerShell, in the repo (exact commands also in `docs/AI_WORKFLOW.md` §Smart Merge):
+  `$uy = "C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\Tools\UnityYAMLMerge.exe"`
+  `git config --global merge.unityyamlmerge.name "Unity SmartMerge"`
+  `git config --global merge.unityyamlmerge.driver "`"$uy`" merge -p `"%O`" `"%B`" `"%A`" `"%A`""`
+- `.gitattributes` now also protects Terrain/NavMesh/Lighting pseudo-binaries and carries the LFS
+  plan as comments (we deliberately DON'T enable LFS until the repo carries real audio/texture
+  weight — the operators know the trigger).
+
+## 2m. OPTIONAL — metavr MCP (would give your operators eyes on the headset)
+Your PDF's Meta VR CLI is real and free: it exposes Quest device tools (install APK, pull logcat,
+performance traces) to AI assistants over MCP. If you connect it to your Claude sessions
+(`npx -y metavr mcp install claude-code` per Meta's docs, then link the headset), operators could
+read `ZIPTIDE:` device logs and install builds WITHOUT you hand-copying logcat — the single biggest
+speedup available for the device-feedback loop. Entirely optional; try it when you have 20 minutes.
+
 ## 3. The two open judgment calls (yours)
 - **"Can you run in Toxic City?"** — was it the input bug (now fixed) or actual walls/narrow streets? If
   still wall-blocked, say so and the streets get widened.
