@@ -53,8 +53,18 @@ explicit re-trigger conditions). Board: **`docs/SPRINT_ARCHITECTURE.md`**.
 - **Also fixed:** `tools/*.ps1` are ASCII-only now — Terry's Windows PowerShell 5.1 choked on an
   em-dash-turned-smart-quote in `ziptide_snapshot.ps1` (UTF-8-no-BOM read as cp1252 ends the string
   early). Terry: `git pull` and it parses.
-- **Next (this session):** Q1a+b WorldSpec + validator (pure, tested) → Q1c compiler → W002 proof.
-- **Commits:** this docs push, then the Q1 series on `terry-local-wip`.
+- **SAME SESSION — Q1 + Q2a SHIPPED, ALL CI-GREEN** (runs `28655203093`/`28655400471`):
+  **Q1 the WorldSpec** — `WorldSpec` (reuses the layout/pack Serializable classes verbatim; JSON
+  round-trip) + pure `WorldSpecValidator` (stable CODE-token errors, registry-aware; 14 tests) +
+  `WorldSpecCompiler` (CompileAll from `docs/worldspecs/`, ExportAll reverse, SPEC_DRIFT warn,
+  BuildAndroid hook). **Terry's runbook §2k**: one menu click exports the starting spec for every
+  world — after that, "change a world" = edit its spec file. **Q2a `LotPartitioner`** — pure seeded
+  lot subdivision with a PROVABLE frontage guarantee (landlocking cuts become internal streets),
+  min-area/aspect laws, 11 tests incl. a 25-seed sweep.
+- **Next:** **Q2b `BuildingGrammar`** (socketed modules door onto `Lot.Front*` edges) → Q2c
+  `BuildingBuilder` + the three BUILDING_* gates → Q3 TerrainField → Q4 perf. Resume line:
+  **"Read docs/SPRINT_ARCHITECTURE.md and continue."**
+- **Commits:** `5b5b1b6` (Q0 docs + ps1 fix) → `edfd2d3` (Q1) → `499cfa3` (Q2a) on `terry-local-wip`.
 
 ### 2026-07-03 (ooo) — T-Dog (Fable 5): 🚨 QUALITY BAR PROGRAM opened — P0 bug batch + P1a/b terrain+vista shipped
 Terry's first full device test: systems fire, EXPERIENCE fails (tiny box-maze worlds, "poor Roblox"
