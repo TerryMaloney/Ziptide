@@ -28,6 +28,14 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-03 (nnn) — Picasso (Fable 5, ART track): ✅ ART-2 CLOSED — Forge APK-green, taser v2 verified in turnarounds
+Close of (mmm). **APK run `28630103333` green on `e88e70e`** — the forged taser ships in the artifact;
+`FORGE_*` audit blockers live; 274 tests green. The taser v2 turnarounds were reviewed by this session
+(solid barrel, seated back cap, raked grip — the v1→v2 critique cycle proves the studio loop end to
+end). Terry: runbook **§2i** has your in-VR check (grip/aim feel + `ZIPTIDE: FORGE_APPLIED` in logcat);
+§2h still has the skies pass. **Next on the art track: ART-3 — W001 Toxic Venice built WITH the Forge.**
+Adding any new asset is now pure prompt work — see `project_art_plan/FORGE_STUDIO_GUIDE.md`.
+
 ### 2026-07-03 (mmm) — Picasso (Fable 5, ART track): 🔨 THE ASSET FORGE — Terry's LLM studio is live; first forged asset = the taser
 Terry's directive: an LLM studio — prompt → real in-game asset, in code, no Tripo/asset fees. Built as
 sprint ART-2 (board: `SPRINT_ART.md`; how-to: **`docs/project_art_plan/FORGE_STUDIO_GUIDE.md`** — read

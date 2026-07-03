@@ -8,8 +8,13 @@
 > | 2 | ForgeRecipeDefinition + ForgeMesh + ForgeMaterials + 13 mesh tests | ✅ `1daa597` (+winding fix `7d6f031` — CI's outwardness tests caught it) |
 > | 3 | ForgeRecipeLibrary + `taser_gun_mk1` + 7 catalog tests + booth renders recipes | ✅ `602587c` |
 > | 4 | Coordination: ItemDefinition.forgeRecipeId + ItemFactory hook + ForgeVisualApplier + ForgeAuthor + BuildAndroid/audit hooks + studio guide + playbook rows | ✅ `1e69879` (HANDOFF mmm) |
-> | 5 | Iterate the taser via turnarounds (v2 pushed: stubby barrel, fixed back cap, chunkier grip) | 🟡 |
-> | 6 | Close: CI+photos green on head · APK dispatch · runbook §2i · HANDOFF wrap | ⬜ |
+> | 5 | Iterate the taser via turnarounds (v2 verified in photos: solid barrel, seated back cap, raked grip — reads as a salvage stun pistol) | ✅ `e88e70e` |
+> | 6 | Close: CI+photos green on head · APK dispatch · runbook §2i · HANDOFF wrap | ✅ **APK run `28630103333` green — the forged taser is in the sideloadable artifact; FORGE_* audit rules live** |
+>
+> **ART-2 SHIPPED 2026-07-03.** The studio loop is proven twice over (calibration + taser v1→v2 critique
+> cycle). Next: **ART-3 — W001 Toxic Venice pass built WITH the Forge** (buildings/props as recipes +
+> PERF_BUDGET audit rule), then audio (ART-4), creatures/gear via story-lane coordination (ART-5).
+> New assets meanwhile = pure prompt work: add a recipe, push, view, iterate (FORGE_STUDIO_GUIDE.md).
 
 > **Takeover prompt: "Read docs/SPRINT_ART.md and continue."** This is the art track's live state — it
 > runs IN PARALLEL with the story track (`docs/SPRINT.md`, M4 ship) and the multiplayer track
@@ -62,9 +67,10 @@ moons + zenith Pattern shimmer; RILL's cyan seeded in early nebulae). Attaches a
   creature files), weapon models via Tripo, Bloom/Pattern VFX language (`ALIEN_ORIGAMI_SURFACE_BRIEF.md`).
 
 ## ▶ RESUMING? — current state & exact next action
-- **Current:** **SPRINT ART-1 CODE-COMPLETE + APK-GREEN** (run `28616598718`, 70 MB artifact,
-  all scenes audit-clean with the SKY_VISTA rules live). Every generated world + arena ships a canon
-  sky. Open loop: Terry's §2h headset pass (canon progression reads / 72fps / banding).
+- **Current:** **ART-1 AND ART-2 BOTH SHIPPED APK-GREEN** (skies: run `28616598718`; Forge + forged
+  taser: run `28630103333`). Open loops are Terry's headset passes (§2h skies, §2i taser grip/feel).
+- **Next sprint: ART-3 — W001 Toxic Venice built WITH the Forge** (building/prop recipes + the
+  PERF_BUDGET audit rule per `W001_TOXIC_VENICE_ART_BRIEF.md`), folding in any §2h/§2i ❌s first.
 - **Next action:** start **ART-2 — W001 Toxic Venice art kit** (brief:
   `project_art_plan/W001_TOXIC_VENICE_ART_BRIEF.md`): `SurfaceSetDefinition` + `WorldArtKitDefinition`
   data model first (pure + tests, same commit pattern as ART-1), then the primitive ToxicVenice kit,
