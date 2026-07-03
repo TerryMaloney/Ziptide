@@ -28,6 +28,16 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-04 (vvv) — Picasso (Fable 5): 🔓 SPAWN WAVE, LAYER 2 — the fixed marker exposed the check's own geometry
+With (uuu)'s marker fix in, run `28683955083` showed the TRUE signal: ALL 11 worlds, identical
+blocker, real spawn vs ExperienceTerrain — uniform = the check itself. An ankle-height
+OverlapSphere(spawn, 0.35) always grazes the ground; it survived pre-H3 only by accident (flat slab
+terrain stayed under the bounds filter; and the floor-identity skip breaks when the down-ray hits a
+graded PAD collider while the sphere touches the TERRAIN collider beside it). Fix: the overlap check
+runs at TORSO height (spawn + 0.9m, r=0.3) — ground can't touch it, a mast/wall at spawn still does.
+Re-dispatched. If THIS one is red with a new signature, the next session should treat the audit's
+spawn suite as the suspect first, geometry second (two of two waves were check bugs, not scene bugs).
+
 ### 2026-07-04 (uuu) — Picasso (Fable 5): 🔓 SPAWN WAVE LOCK PICKED — the audit was checking the WRONG marker
 Supersedes (ttt)'s hypotheses. The 79b4437 fixes WERE in run `28683403086` — yet "overlapping" props
 sat at POI CENTERS, which a 12m push-out makes impossible. Real cause: `RunSpawnChecks` used

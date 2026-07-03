@@ -233,10 +233,15 @@ namespace Ziptide.Editor.Audit
             }
 
             // SPAWN_OVERLAP_SOLID: flag only obstructions (walls, boxes), not walkable floor or the player rig.
-            // Exclude: the raycast floor hit, walkable surfaces, and the XR Origin (player) which is expected at spawn.
+            // The check runs at TORSO height (+0.9m, r=0.3): an ankle-height sphere always grazes
+            // the ground and was only "saved" by two accidents — flat slab terrain staying under the
+            // bounds filter, and the floor-identity skip (defeated when the down-ray hits a graded
+            // PAD collider while the sphere touches the TERRAIN collider beside it). H3's hills
+            // exposed both — the uniform 11-world false wave, HANDOFF uuu/vvv. A mast or wall at
+            // spawn still intersects a torso sphere; the ground cannot.
             Collider floorCollider = hasFloor ? floorHit.collider : null;
             float spawnFeetY = spawnPos.y + 0.2f;
-            Collider[] overlapping = Physics.OverlapSphere(spawnPos, 0.35f);
+            Collider[] overlapping = Physics.OverlapSphere(spawnPos + Vector3.up * 0.9f, 0.3f);
             foreach (var col in overlapping)
             {
                 if (col.isTrigger) continue;
