@@ -360,14 +360,13 @@ namespace Ziptide.Editor.Patching
             Cube(yardRoot, "BerthDeck", new Vector3(0f, kit.walkwayHeight - SlabThickness * 0.5f, 0f),
                 new Vector3(s.berthSize.x, SlabThickness, s.berthSize.y), kit.palette.metal, true);
 
-            // Static ship placeholder (blue-collar salvage rig silhouette) — walkable-proof, not flyable.
+            // Static ship (blue-collar salvage rig) — walkable-proof, not flyable. P4a: the hull is a
+            // real ~19-part silhouette now (ShipHullBuilder), same bounding box, so the boarding
+            // station's deck/panel offsets below are unchanged.
             var ship = NewChild(yardRoot, "Ship_Static_Placeholder");
             ship.localPosition = new Vector3(s.shipLocalPos.x, kit.walkwayHeight + s.shipLocalPos.y, s.shipLocalPos.z);
             ship.localRotation = Quaternion.Euler(0f, s.shipRotationY, 0f);
-            Cube(ship, "Hull", Vector3.zero, s.shipSize, kit.palette.building2, true);
-            Cube(ship, "Cockpit", new Vector3(0f, s.shipSize.y * 0.4f, s.shipSize.z * 0.3f), new Vector3(s.shipSize.x * 0.7f, s.shipSize.y * 0.5f, s.shipSize.z * 0.3f), kit.palette.accent, true);
-            Cube(ship, "EngineL", new Vector3(-s.shipSize.x * 0.45f, 0f, -s.shipSize.z * 0.45f), new Vector3(s.shipSize.x * 0.25f, s.shipSize.y * 0.5f, s.shipSize.z * 0.2f), kit.palette.metal, true);
-            Cube(ship, "EngineR", new Vector3(s.shipSize.x * 0.45f, 0f, -s.shipSize.z * 0.45f), new Vector3(s.shipSize.x * 0.25f, s.shipSize.y * 0.5f, s.shipSize.z * 0.2f), kit.palette.metal, true);
+            ShipHullBuilder.Build(ship, s.shipSize, kit.palette);
 
             // S1 (GAME_PLAN M4 / SHIPS.md): the berthed ship is BOARDABLE — a travel station wearing a
             // ship costume. Destinations = every authored world pack whose scene ships in the build
