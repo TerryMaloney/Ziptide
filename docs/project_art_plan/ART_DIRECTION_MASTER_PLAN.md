@@ -36,3 +36,14 @@ to prove the pipeline, then upgraded to real assets behind the same IDs.
 
 Every visual element belongs to a surface family + kit and resolves by ID (see
 `ART_AUDIO_CONTENT_ARCHITECTURE.md`). No bespoke one-off materials in scenes.
+
+## Forbidden aesthetics (photo-critique FAIL conditions — reconciliation 2026-07-04)
+
+**All families:** N64-flat untextured geometry · functionless spikes/greebles · direct franchise
+lookalikes · generic bug/zombie/dinosaur creatures (evolution reason + story tie required).
+**Per family:** Toxic Earth Industrial / Salvage — no clean chrome, no showroom finishes; wear
+tells the maintenance story. Upper-Class Clean Glass — no grime (the class divide IS the contrast).
+Alien Origami / Pattern — no rivets, pipes, or repair tape; zero grime; only the 5-material
+teal/gold/amber/black/white language. Cosmic — no opaque "space walls"; vastness via backdrops.
+Stone/Ceremonial — no medieval-fantasy tropes; glyphs are geometric, never alphabetic.
+Full list + enforcement: `PROXY_CONTRACTS.md` (rubric) + `ForgePalettes` (tested color law).

@@ -68,7 +68,8 @@ is the confirmed perf floor. The two qqq envelopes fold in as E5.1 (building mod
 | # | Task (envelope in FORGE_II doc) | Status |
 |---|------|--------|
 | E1.1 | UV atlas in ForgeMesh + tangents + tests (visuals unchanged) | ✅ `241f2c4`+fix `f6415f5` (CI green) |
-| E1.2 | ForgeTexture rasterizer + albedo styles + schemaVersion 2 → textured taser in booth ("not flat" checkpoint) | ✅ `ba6f869`+tune `6e0509c` — CI green, checkpoint photos verified (panels/rust/grime/teal glow all read). NEXT: E1.3 normal/MSA/emissive maps per FORGE_II doc |
+| E1.2 | ForgeTexture rasterizer + albedo styles + schemaVersion 2 → textured taser in booth ("not flat" checkpoint) | ✅ `ba6f869`+tune `6e0509c` — CI green, checkpoint photos verified |
+| R1–R4 | **ASSET FORGE RECONCILIATION** (Terry-approved 2026-07-04, plan in `ASSET_FORGE_MAP.md`): R1 mapping+contracts docs · R2 lifecycle/lock-baseline/structured-refs + audit · R3 dependency auditor + staleness buckets + manifest (artifacts to gitignored `Builds/Reports/`) · R4 `tox_canal_stalker_01` proxy | 🟡 R1 this commit; **then E1.3 resumes — NOT displaced** |
 | E1.3 | Normal/MSA/emissive maps + ONE material per asset | ⬜ |
 | E1.4 | ForgeBaker (build-time bake → ASTC) + gitignore + applier/booth prefer baked → **Terry photo checkpoint** | ⬜ |
 | E5.2 | PERF_BUDGET audit gate (independent — do anytime, 1 commit) | ⬜ |

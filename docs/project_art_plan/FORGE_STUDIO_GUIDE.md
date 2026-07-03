@@ -64,6 +64,10 @@ What the LLM turns that into (the recipe vocabulary — `ForgeRecipeDefinition.c
 - Recipes are **create-only** seeds: the `.asset` under `Resources/Forge/` is the live truth once created
   (delete it to reseed from code). Same contract as every other authoring library in the repo.
 - Budgets by type: handheld ≤3k tris · drone/creature ≤2k · large prop ≤5k · ship hull ≤8k.
+- **Forbidden aesthetics = photo-critique FAIL conditions** (reconciliation 2026-07-04): N64-flat
+  untextured output, clean chrome in lived-in families, functionless detail, franchise lookalikes,
+  generic creature fallbacks. Per-family bans: `ART_DIRECTION_MASTER_PLAN.md`; contracts per asset
+  type: `PROXY_CONTRACTS.md`; lifecycle/locking + staleness: `ASSET_FORGE_MAP.md`.
 
 ## Wiring an asset into the game (who consumes recipes)
 - **Items/weapons:** set `forgeRecipeId` on the item's definition — done in data by
