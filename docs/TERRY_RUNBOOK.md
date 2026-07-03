@@ -263,6 +263,19 @@ performance traces) to AI assistants over MCP. If you connect it to your Claude 
 read `ZIPTIDE:` device logs and install builds WITHOUT you hand-copying logcat — the single biggest
 speedup available for the device-feedback loop. Entirely optional; try it when you have 20 minutes.
 
+## 2n. NEW — Q2d: THE FIRST REAL BUILDINGS (W002 GalleryB; one judgment call)
+The next build gives W002's GalleryB district **actual generated buildings** (lots + door-on-street
+grammar, `toxic_tenement` style) instead of facade slabs — the proof gate for the whole building
+system:
+- [ ] **One-time on your machine:** delete `Assets/Ziptide/Content/City/Generated/W002_DryCistern_Layout.asset`
+  (it's create-only and yours predates the opt-in; the next build reseeds it with buildings on).
+  CI builds already carry it.
+- [ ] Warp to W002 → walk to GalleryB (east of the cistern mouth). **THE question: does it read as
+  a PLACE — a street of buildings you could enter — or as boxes?** Doorways must be walkable
+  (audit-guaranteed but confirm the feel), no doors blocked, no floating geometry.
+- [ ] Feel notes → HANDOFF; a ❌ here re-prioritizes the building track before more styles are made.
+  (Picasso's building-module kit lands on the same seam next — E5.1 in `FORGE_II_QUALITY_LEAP.md`.)
+
 ## 3. The two open judgment calls (yours)
 - **"Can you run in Toxic City?"** — was it the input bug (now fixed) or actual walls/narrow streets? If
   still wall-blocked, say so and the streets get widened.
