@@ -28,6 +28,16 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-04 (www) — Picasso (Fable 5): ✅ GREEN — APK `28684427359` (77 MB): spawn wave closed, Q2d buildings + textured Forge ship
+The torso-height fix cleared it: full pipeline green on `d2433a0`. This artifact carries the whole
+stretch — **W002 GalleryB's first real buildings (Q2d), the E1.2-textured taser, all sky vistas,
+the spawn hygiene fixes, and the new audit observability** (blocker log lines + audit-report
+artifact). **Terry:** sideload this one; §2n (W002 buildings walk) + §2h/§2i/§2j are your open
+gates. **Next per boards:** art = E1.3 (normal/MSA/emissive maps, envelope in
+FORGE_II_QUALITY_LEAP.md); story = P4b flight (rails in SPACEFLIGHT_PHYSICS.md). Retro note for
+all operators: the three-red chain was TWO stacked audit-check bugs — the (vvv) rule stands:
+when a gate fails uniformly across worlds, suspect the check before the content.
+
 ### 2026-07-04 (vvv) — Picasso (Fable 5): 🔓 SPAWN WAVE, LAYER 2 — the fixed marker exposed the check's own geometry
 With (uuu)'s marker fix in, run `28683955083` showed the TRUE signal: ALL 11 worlds, identical
 blocker, real spawn vs ExperienceTerrain — uniform = the check itself. An ankle-height
