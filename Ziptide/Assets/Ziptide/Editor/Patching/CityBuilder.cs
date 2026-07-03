@@ -39,7 +39,15 @@ namespace Ziptide.Editor.Patching
             BuildCanals(root, kit);
 
             foreach (var d in kit.districts)
-                if (d != null) BuildDistrict(root, kit, d);
+                if (d != null)
+                {
+                    BuildDistrict(root, kit, d);
+                    // ARCHITECTURE V2.5 H1 (announced append, HANDOFF qqq): real generated buildings —
+                    // lots + grammar + enterable doorways. No-op unless the district opts in via
+                    // buildingStyleId, so every existing world renders exactly as before.
+                    try { BuildingBuilder.Build(root, d, kit.walkwayHeight, kit.seed); }
+                    catch (System.Exception ex) { Debug.LogWarning("[Ziptide] BuildingBuilder warning for " + d.id + ": " + ex.Message); }
+                }
 
             foreach (var c in kit.connections)
                 if (c != null) BuildConnection(root, kit, c);

@@ -224,6 +224,10 @@ namespace Ziptide.Content
         public Vector3 anchor = Vector3.zero;
         [Tooltip("XZ footprint of the district plaza in meters.")]
         public Vector2 bounds = new Vector2(24f, 24f);
+        [Tooltip("ARCHITECTURE V2.5 H1: BuildingStyleDefinition id in Resources/BuildingStyles — non-empty " +
+                 "opts this district into real generated buildings (lots + grammar) via BuildingBuilder. " +
+                 "Empty = classic facade slabs (default; nothing changes until a layout/spec opts in).")]
+        public string buildingStyleId = "";
         [Tooltip("0..3 multiplier band for facade building heights.")]
         public int heightTier = 1;
         public bool useOverride = false;
