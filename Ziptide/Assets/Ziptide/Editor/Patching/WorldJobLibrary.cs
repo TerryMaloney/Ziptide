@@ -28,48 +28,86 @@ namespace Ziptide.Editor.Patching
         private class Spec
         {
             public string jobId, title, completionFlag;
-            public List<(string kind, string markerId, Vector3 pos, int count)> steps = new List<(string, string, Vector3, int)>();
+            public List<(string kind, string markerId, Vector3 pos, int count, string label)> steps
+                = new List<(string, string, Vector3, int, string)>();
             public List<(string resourceId, double amount)> reward = new List<(string, double)>();
-            public List<CollectibleSpawnDefinition> pickups = new List<CollectibleSpawnDefinition>();
-            public List<MachineSpawnDefinition> machines = new List<MachineSpawnDefinition>();
+            // Spawn entries carry an optional POI anchor (P1g): atPoi != null → localPosition is an
+            // OFFSET from that POI's terrain pad, resolved by EnsureJobsFor.
+            public List<(CollectibleSpawnDefinition def, string atPoi)> pickups
+                = new List<(CollectibleSpawnDefinition, string)>();
+            public List<(MachineSpawnDefinition def, string atPoi, string partAtPoi)> machines
+                = new List<(MachineSpawnDefinition, string, string)>();
+            public List<(MineSpawnDefinition def, string atPoi)> mineRigs
+                = new List<(MineSpawnDefinition, string)>();
             public string[] flagsRequired = new string[0];
             public string[] flagsGranted = new string[0];
 
-            public Spec Go(string markerId, Vector3 pos) { steps.Add(("go", markerId, pos, 0)); return this; }
-            public Spec Drones(int count) { steps.Add(("drones", null, Vector3.zero, count)); return this; }
+            public Spec Go(string markerId, Vector3 pos, string label = null)
+            { steps.Add(("go", markerId, pos, 0, label)); return this; }
+            // P1g: route the contract THROUGH the POI network. "poi_<id>" pack markers are synced from
+            // kit.pois by WorldStubGenerator — no raw coordinates in the spec at all.
+            public Spec GoPoi(string poiId, string label)
+            { steps.Add(("go", "poi_" + poiId, Vector3.zero, 0, label)); return this; }
+            public Spec Drones(int count) { steps.Add(("drones", null, Vector3.zero, count, null)); return this; }
             // Collect step: requires <count> pickups of <itemId> — pair with Pickup() entries below.
-            public Spec Collect(string itemId, int count) { steps.Add(("collect", itemId, Vector3.zero, count)); return this; }
+            public Spec Collect(string itemId, int count) { steps.Add(("collect", itemId, Vector3.zero, count, null)); return this; }
             // A physical pickup in the world (JobDirector spawns a CollectibleRuntime from pack data).
             public Spec Pickup(string itemId, Vector3 pos, string flagOnCollect = "", string label = "")
             {
-                pickups.Add(new CollectibleSpawnDefinition
+                pickups.Add((new CollectibleSpawnDefinition
                 {
                     itemId = itemId, localPosition = pos, flagOnCollect = flagOnCollect, displayName = label
-                });
+                }, null));
+                return this;
+            }
+            public Spec PickupAtPoi(string itemId, string poiId, Vector3 offset, string flagOnCollect = "", string label = "")
+            {
+                pickups.Add((new CollectibleSpawnDefinition
+                {
+                    itemId = itemId, localPosition = offset, flagOnCollect = flagOnCollect, displayName = label
+                }, poiId));
                 return this;
             }
             // Repair step: requires the named machine's hands-on fix — pair with a Machine() entry.
-            public Spec Repair(string machineId) { steps.Add(("repair", machineId, Vector3.zero, 1)); return this; }
+            public Spec Repair(string machineId) { steps.Add(("repair", machineId, Vector3.zero, 1, null)); return this; }
             // A repairable machine in the world (JobDirector spawns a RepairableMachine from pack data).
             public Spec Machine(string machineId, Vector3 pos, string partItemId, Vector3 partPos, string label = "")
             {
-                machines.Add(new MachineSpawnDefinition
+                machines.Add((new MachineSpawnDefinition
                 {
                     machineId = machineId, localPosition = pos, partItemId = partItemId,
                     partLocalPosition = partPos, displayName = label
-                });
+                }, null, null));
+                return this;
+            }
+            // Machine at one POI, its missing part at ANOTHER — the walk between pockets is the job.
+            public Spec MachineAtPoi(string machineId, string poiId, Vector3 offset, string partItemId,
+                string partAtPoi, Vector3 partOffset, string label = "")
+            {
+                machines.Add((new MachineSpawnDefinition
+                {
+                    machineId = machineId, localPosition = offset, partItemId = partItemId,
+                    partLocalPosition = partOffset, displayName = label
+                }, poiId, partAtPoi));
                 return this;
             }
             // A placed extractor (idle economy made visible; JobDirector spawns a MiningRigRuntime).
             public Spec Mine(string id, string resourceId, double rate, double cap, Vector3 pos)
             {
-                mineRigs.Add(new MineSpawnDefinition
+                mineRigs.Add((new MineSpawnDefinition
                 {
                     id = id, resourceId = resourceId, ratePerSecond = rate, storageCap = cap, localPosition = pos
-                });
+                }, null));
                 return this;
             }
-            public List<MineSpawnDefinition> mineRigs = new List<MineSpawnDefinition>();
+            public Spec MineAtPoi(string id, string resourceId, double rate, double cap, string poiId, Vector3 offset)
+            {
+                mineRigs.Add((new MineSpawnDefinition
+                {
+                    id = id, resourceId = resourceId, ratePerSecond = rate, storageCap = cap, localPosition = offset
+                }, poiId));
+                return this;
+            }
             public Spec Reward(string id, double amt) { reward.Add((id, amt)); return this; }
         }
 
@@ -108,22 +146,23 @@ namespace Ziptide.Editor.Patching
                         flagsRequired = new[] { "toxiccity_complete" },
                         flagsGranted = new[] { ZiptideFlags.W002_COMPLETE },
                     }
-                    .Go("shaft_descent", new Vector3(10, 0.1f, 26))     // DeepShaft district
+                    // P1g: the contract now WALKS THE WORLD — every leg lands on a POI pocket.
+                    .GoPoi("camp_a", "Reach the gallery camp")
                     .Drones(3)                                           // the gallery swarm (drone stand-in)
-                    // REAL collect step (was deferred): three mineral samples along the gallery route.
-                    .Collect("mineral_sample", 3)
-                    .Pickup("mineral_sample", new Vector3(4, 0.1f, 24), label: "mineral sample")
-                    .Pickup("mineral_sample", new Vector3(-4, 0.1f, 28), label: "mineral sample")
-                    .Pickup("mineral_sample", new Vector3(-10, 0.1f, 24), label: "mineral sample")
-                    .Go("pump_house", new Vector3(-16, 0.1f, 22))        // ChamberA hero building
-                    // THE M2 GATE LOOP: the contract title was always "Restart the Cistern Pumps" — now
-                    // you actually do it with your hands: pull the pump's panel, fetch the valve from
-                    // back at the shaft (the walk is the job), seat it, flip the power.
-                    .Machine("cistern_pump", new Vector3(-16, 0.1f, 23), "pump_valve", new Vector3(10, 0.1f, 25), "cistern pump")
+                    .Collect("mineral_sample", 3)                        // samples strewn across three pockets
+                    .PickupAtPoi("mineral_sample", "ruin", new Vector3(2f, 0.1f, 1f), label: "mineral sample")
+                    .PickupAtPoi("mineral_sample", "camp_a", new Vector3(-3f, 0.1f, 2f), label: "mineral sample")
+                    .PickupAtPoi("mineral_sample", "grove", new Vector3(1f, 0.1f, -3f), label: "mineral sample")
+                    .GoPoi("works", "Reach the pump works")
+                    // THE M2 GATE LOOP at POI scale: the pump lives at the works, its valve waits back
+                    // at the ruin cache — the walk between pockets IS the job.
+                    .MachineAtPoi("cistern_pump", "works", new Vector3(4.5f, 0.1f, -2f),
+                                  "pump_valve", "ruin", new Vector3(-2f, 0.1f, 1.5f), "cistern pump")
                     .Repair("cistern_pump")
-                    // Idle economy made visible: a mineral extractor by the pump house — it produces
-                    // while you're away (ECON_RESOLVE) and pays out when you select the hopper.
-                    .Mine("cistern_extractor", "mineral", 0.05, 40, new Vector3(-13, 0.1f, 20))
+                    // Idle economy made visible: an extractor at the works — it produces while you're
+                    // away (ECON_RESOLVE) and pays out when you select the hopper.
+                    .MineAtPoi("cistern_extractor", "mineral", 0.05, 40, "works", new Vector3(-4f, 0.1f, 3f))
+                    .GoPoi("story", "Reach the old basin heart")
                     .Reward("credits", 60).Reward("mineral", 5);
 
                 case "W003_GlassShelf":
@@ -135,9 +174,10 @@ namespace Ziptide.Editor.Patching
                         flagsRequired = new[] { ZiptideFlags.W002_COMPLETE },
                         flagsGranted = new[] { ZiptideFlags.W003_COMPLETE },
                     }
-                    .Go("mesa_base", new Vector3(-24, 0.1f, 14))
-                    .Go("baffle_relay_a", new Vector3(4, 0.1f, 34))
-                    .Go("baffle_relay_b", new Vector3(32, 0.1f, 18))
+                    .GoPoi("camp_a", "Reach the mesa base camp")
+                    .GoPoi("works", "Raise baffle relay one")
+                    .GoPoi("ruin", "Raise baffle relay two")
+                    .GoPoi("story", "Reach the shelf's edge shrine")
                     .Reward("credits", 70).Reward("crystal", 4);
 
                 case "W004_BroadcastTomb":
@@ -159,15 +199,14 @@ namespace Ziptide.Editor.Patching
                             ZiptideFlags.W004_COMPLETE,
                         },
                     }
-                    .Go("tomb_entry", new Vector3(0, 0.1f, 4))
-                    .Go("junction_a", new Vector3(-18, 0.1f, 14))
-                    .Go("junction_b", new Vector3(2, 0.1f, 28))
-                    .Go("broadcast_core", new Vector3(-16, 0.1f, 40))
-                    // THE FIRST TRANSMISSION FRAGMENT IS A PHYSICAL OBJECT (was deferred): you must
-                    // pick it up at the broadcast core — FRAGMENT_T1_FOUND fires the moment you grab
-                    // it (the pack's flagsGranted keeps it too as an idempotent completion backstop).
+                    .GoPoi("ruin", "Trace the dead junction")
+                    .GoPoi("cave", "Follow the spine underground")
+                    .GoPoi("story", "Reach the broadcast core")
+                    // THE FIRST TRANSMISSION FRAGMENT IS A PHYSICAL OBJECT: it waits on the story
+                    // anchor's dais — FRAGMENT_T1_FOUND fires the moment you grab it (the pack's
+                    // flagsGranted keeps it too as an idempotent completion backstop).
                     .Collect("transmission_fragment", 1)
-                    .Pickup("transmission_fragment", new Vector3(-16, 0.1f, 41),
+                    .PickupAtPoi("transmission_fragment", "story", new Vector3(0f, 0.95f, 0f),
                             flagOnCollect: ZiptideFlags.FRAGMENT_T1_FOUND, label: "?? recording")
                     .Reward("credits", 90).Reward("memory_shard", 1);
 
@@ -180,9 +219,10 @@ namespace Ziptide.Editor.Patching
                         flagsRequired = new[] { ZiptideFlags.W004_COMPLETE },
                         flagsGranted = new[] { ZiptideFlags.W005_COMPLETE, ZiptideFlags.C2_W005_JOB_COMPLETE },
                     }
-                    .Go("canopy_lift", new Vector3(-22, 0.1f, 14))
+                    .GoPoi("grove", "Reach the canopy grove")
                     .Drones(4)
-                    .Go("scrubber", new Vector3(2, 0.1f, 32))
+                    .GoPoi("works", "Restart the spore scrubber")
+                    .GoPoi("story", "Reach the overgrown gate")
                     .Reward("credits", 110).Reward("spore", 6);
 
                 case "W006_MirrorFlats":
@@ -194,10 +234,10 @@ namespace Ziptide.Editor.Patching
                         flagsRequired = new[] { ZiptideFlags.W005_COMPLETE },
                         flagsGranted = new[] { ZiptideFlags.W006_COMPLETE },
                     }
-                    .Go("flats_edge", new Vector3(0, 0.1f, 4))
-                    .Go("prism_tower_a", new Vector3(-26, 0.1f, 15))
-                    .Go("prism_tower_b", new Vector3(26, 0.1f, 17))
-                    .Go("beam_collector", new Vector3(0, 0.1f, 35))
+                    .GoPoi("ruin", "Align prism tower one")
+                    .GoPoi("works", "Align prism tower two")
+                    .GoPoi("cave", "Find the buried reflector")
+                    .GoPoi("story", "Reach the beam collector")
                     .Reward("credits", 100).Reward("prism", 3);
 
                 case "W007_SableStation":
@@ -210,9 +250,9 @@ namespace Ziptide.Editor.Patching
                         // First Sable contact seeds the Ch.4 arc.
                         flagsGranted = new[] { ZiptideFlags.W007_COMPLETE, ZiptideFlags.C4_SABLE_INTRO },
                     }
-                    .Go("airlock", new Vector3(-20, 0.1f, 12))
-                    .Go("fuel_rig", new Vector3(4, 0.1f, 27))
-                    .Go("observation_deck", new Vector3(-18, 0.1f, 40)) // the Shell-grid viewport reveal
+                    .GoPoi("ruin", "Reach the crash perimeter")
+                    .GoPoi("works", "Repair the fuel rig")
+                    .GoPoi("story", "Reach the observation deck") // the Shell-grid viewport reveal
                     .Reward("credits", 120).Reward("fuel_cell", 1);
 
                 case "W008_SealedArchive":
@@ -225,9 +265,9 @@ namespace Ziptide.Editor.Patching
                         // The Architects get NAMED here — Ch.2's lore turn.
                         flagsGranted = new[] { ZiptideFlags.W008_COMPLETE, ZiptideFlags.C2_ARCHITECTS_NAMED },
                     }
-                    .Go("vault_door", new Vector3(-18, 0.1f, 12))
-                    .Go("power_core", new Vector3(2, 0.1f, 26))
-                    .Go("reader_hall", new Vector3(-16, 0.1f, 38))
+                    .GoPoi("ruin", "Find the vault door")
+                    .GoPoi("works", "Restart the power core")
+                    .GoPoi("story", "Enter the reader hall")
                     .Reward("credits", 120).Reward("data_chip", 2);
 
                 case "W009_Chitinwall":
@@ -240,9 +280,10 @@ namespace Ziptide.Editor.Patching
                         // RILL's memory audibly glitches here — Ch.2's ★ beat.
                         flagsGranted = new[] { ZiptideFlags.W009_COMPLETE, ZiptideFlags.C2_W009_RILL_MISIDENTIFIED },
                     }
-                    .Go("wall_gate", new Vector3(-22, 0.1f, 12))
+                    .GoPoi("camp_a", "Reach the wall gate camp")
                     .Drones(6)                                       // the signature swarm world
-                    .Go("pylon_array", new Vector3(0, 0.1f, 34))
+                    .GoPoi("camp_b", "Clear the second nest")
+                    .GoPoi("story", "Raise the pylon array")
                     .Reward("credits", 130).Reward("carapace", 4);
 
                 case "W010_TidalArray":
@@ -254,10 +295,10 @@ namespace Ziptide.Editor.Patching
                         flagsRequired = new[] { ZiptideFlags.W009_COMPLETE },
                         flagsGranted = new[] { ZiptideFlags.W010_COMPLETE, ZiptideFlags.SIGNAL_THRESHOLD_2 },
                     }
-                    .Go("shore_camp", new Vector3(0, 0.1f, 4))
-                    .Go("turbine_a", new Vector3(-24, 0.1f, 17))
-                    .Go("turbine_b", new Vector3(24, 0.1f, 19))
-                    .Go("salt_works", new Vector3(0, 0.1f, 37))
+                    .GoPoi("camp_a", "Reach the shore camp")
+                    .GoPoi("ruin", "Restart turbine one")
+                    .GoPoi("works", "Restart turbine two")
+                    .GoPoi("story", "Reach the salt works")
                     .Reward("credits", 120).Reward("salt", 4);
 
                 case "W011_TheHum":
@@ -269,10 +310,10 @@ namespace Ziptide.Editor.Patching
                         flagsRequired = new[] { ZiptideFlags.W010_COMPLETE },
                         flagsGranted = new[] { ZiptideFlags.W011_COMPLETE },
                     }
-                    .Go("tunnel_mouth", new Vector3(0, 0.1f, 4))
-                    .Go("resonator_bank_a", new Vector3(-18, 0.1f, 14))
-                    .Go("resonator_bank_b", new Vector3(4, 0.1f, 28))
-                    .Go("miners_camp", new Vector3(-16, 0.1f, 40))
+                    .GoPoi("cave", "Enter the tunnel mouth")
+                    .GoPoi("ruin", "Tune resonator bank one")
+                    .GoPoi("works", "Tune resonator bank two")
+                    .GoPoi("story", "Reach the miners' camp")
                     .Reward("credits", 110).Reward("resonator", 3);
 
                 case "W012_MarasLastJump":
@@ -285,10 +326,10 @@ namespace Ziptide.Editor.Patching
                         // Chapter 2 capstone: Mara's ship bounces off the Shell — the cage is REAL.
                         flagsGranted = new[] { ZiptideFlags.W012_COMPLETE, ZiptideFlags.C2_CONTAINMENT_REVEALED },
                     }
-                    .Go("gantry", new Vector3(0, 0.1f, 4))
-                    .Go("gate_core_a", new Vector3(-20, 0.1f, 16))
-                    .Go("gate_core_b", new Vector3(6, 0.1f, 30))
-                    .Go("launch_point", new Vector3(-16, 0.1f, 44))
+                    .GoPoi("camp_a", "Reach the launch gantry")
+                    .GoPoi("works", "Stabilize gate core one")
+                    .GoPoi("cave", "Stabilize gate core two")
+                    .GoPoi("story", "Reach Mara's launch point")
                     .Reward("credits", 150).Reward("jump_core", 1);
 
                 default:
@@ -303,6 +344,24 @@ namespace Ziptide.Editor.Patching
         {
             var spec = SpecFor(kit.sceneName);
             if (spec == null || pack == null) return;
+
+            // P1g: resolve POI anchors — "AtPoi" spawn offsets and GoPoi markers land on the POI's
+            // terrain pad. Non-experience worlds have no POIs; offsets pass through untouched.
+            var poiPos = new Dictionary<string, Vector3>();
+            if (kit.pois != null)
+                foreach (var p in kit.pois)
+                    if (p != null && !string.IsNullOrEmpty(p.id))
+                        poiPos[p.id] = new Vector3(p.position.x,
+                            WorldExperienceBuilder.HeightAt(kit, p.position.x, p.position.z) + 0.1f,
+                            p.position.z);
+            Vector3 Resolve(Vector3 offset, string atPoi)
+            {
+                if (string.IsNullOrEmpty(atPoi)) return offset;
+                if (poiPos.TryGetValue(atPoi, out var basePos)) return basePos + offset;
+                Debug.LogWarning("[Ziptide] WorldJobLibrary: spec for " + kit.sceneName +
+                                 " targets unknown POI '" + atPoi + "' — using raw offset.");
+                return offset;
+            }
 
             Directory.CreateDirectory(JobFolder);
             string basePath = JobFolder + "/" + kit.sceneName;
@@ -322,16 +381,20 @@ namespace Ziptide.Editor.Patching
                     var step = LoadOrCreate<GoToMarkerStepDefinition>(stepPath);
                     step.markerId = s.markerId;
                     step.arriveDistance = GoArriveDistance;
-                    step.stepLabel = "Go to " + s.markerId.Replace('_', ' ');
+                    step.stepLabel = s.label ?? "Go to " + s.markerId.Replace('_', ' ');
                     EditorUtility.SetDirty(step);
                     job.steps.Add(step);
 
                     // The marker itself is pack DATA — JobDirector creates Marker_<id> at runtime.
-                    var marker = pack.spawnMarkers.Find(m => m != null && m.markerId == s.markerId);
-                    if (marker == null)
-                        pack.spawnMarkers.Add(new SpawnMarkerDefinition { markerId = s.markerId, localPosition = s.pos });
-                    else
-                        marker.localPosition = s.pos;
+                    // "poi_" markers are already synced (with terrain heights) by WorldStubGenerator.
+                    if (!s.markerId.StartsWith("poi_"))
+                    {
+                        var marker = pack.spawnMarkers.Find(m => m != null && m.markerId == s.markerId);
+                        if (marker == null)
+                            pack.spawnMarkers.Add(new SpawnMarkerDefinition { markerId = s.markerId, localPosition = s.pos });
+                        else
+                            marker.localPosition = s.pos;
+                    }
                 }
                 else if (s.kind == "collect")
                 {
@@ -363,13 +426,27 @@ namespace Ziptide.Editor.Patching
                 }
             }
 
-            // Physical pickups + machines + mines are PACK data (JobDirector spawns the runtimes at scene start).
+            // Physical pickups + machines + mines are PACK data (JobDirector spawns the runtimes at
+            // scene start). AtPoi entries resolve to their POI's terrain pad here.
             pack.collectibles.Clear();
-            foreach (var p in spec.pickups) pack.collectibles.Add(p);
+            foreach (var (def, atPoi) in spec.pickups)
+            {
+                def.localPosition = Resolve(def.localPosition, atPoi);
+                pack.collectibles.Add(def);
+            }
             pack.machines.Clear();
-            foreach (var m in spec.machines) pack.machines.Add(m);
+            foreach (var (def, atPoi, partAtPoi) in spec.machines)
+            {
+                def.localPosition = Resolve(def.localPosition, atPoi);
+                def.partLocalPosition = Resolve(def.partLocalPosition, partAtPoi ?? atPoi);
+                pack.machines.Add(def);
+            }
             pack.mines.Clear();
-            foreach (var m in spec.mineRigs) pack.mines.Add(m);
+            foreach (var (def, atPoi) in spec.mineRigs)
+            {
+                def.localPosition = Resolve(def.localPosition, atPoi);
+                pack.mines.Add(def);
+            }
 
             job.reward.Clear();
             foreach (var (resourceId, amount) in spec.reward)
