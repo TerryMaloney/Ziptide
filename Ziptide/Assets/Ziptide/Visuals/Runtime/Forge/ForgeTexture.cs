@@ -261,10 +261,13 @@ namespace Ziptide.Visuals
             }
 
             // Grime: settles on down-facing surfaces, breaks up with noise. Darker + murkier.
+            // (v2 tune from the first checkpoint photos: capped — full-strength grime crushed
+            // down-faces to black bands.)
             if (spec.grime > 0.01f)
             {
                 float g = spec.grime * (1f - tx.up01) * (0.5f + 0.5f * SkyVistaTexture.Fbm(tx.u * 10f + 7f, tx.v * 10f + 3f, 103, 2));
-                c = Color.Lerp(c, new Color(c.r * 0.35f, c.g * 0.36f, c.b * 0.33f), Mathf.Clamp01(g));
+                g = Mathf.Min(g, 0.55f);
+                c = Color.Lerp(c, new Color(c.r * 0.5f, c.g * 0.51f, c.b * 0.47f), Mathf.Clamp01(g));
             }
 
             return c;

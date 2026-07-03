@@ -152,7 +152,10 @@ namespace Ziptide.Editor.Patching
                     if (styleSpec.style == Ziptide.Visuals.ForgeStyle.GlowPanel)
                     {
                         m.EnableKeyword("_EMISSION");
-                        m.SetColor("_EmissionColor", styleSpec.emissive * styleSpec.emissiveIntensity);
+                        // The booth camera has no tonemapping — full recipe intensity clips to
+                        // white blobs (first checkpoint photos). Preview clamps; the game path
+                        // uses the real intensity with URP handling.
+                        m.SetColor("_EmissionColor", styleSpec.emissive * Mathf.Min(styleSpec.emissiveIntensity, 1.1f));
                     }
                 }
                 mats[i] = m;
