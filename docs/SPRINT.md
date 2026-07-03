@@ -1,39 +1,52 @@
-# 🟡 ACTIVE SPRINT — M4: THE SHIP (opened 2026-07-02; S1+S2 SHIPPED same-session)
+# 🟡 ACTIVE SPRINT — QUALITY BAR PROGRAM (opened 2026-07-03, post-first-device-test pivot)
 
-> **Takeover prompt: "Read docs/SPRINT.md and continue."** Roadmap: `docs/GAME_PLAN.md` (this = **M4**,
-> the north star). Architecture LOCKED: `docs/systems/SHIPS.md` (the ship is a mobile travel station;
-> TravelCoordinator is the only scene path; rig is teleported, never parented). Prior sprints incl.
-> M1/M2/M3 records: `docs/sprints/` — all APK-verified.
+> **Takeover prompt: "Read docs/SPRINT.md and continue."** Roadmap: `docs/GAME_PLAN.md`.
+> **The approved plan of record:** Terry's first device test said the SYSTEMS work but the EXPERIENCE
+> fails — worlds are tiny senseless box-mazes, the ship reads "poor Roblox", menu re-click bug is back,
+> entry text unreadable, items drop dead. The fix: keep the world FACTORY, replace the RECIPE.
+> Quality targets Terry named: **No Man's Sky** worlds · **Fortnite** fun · **Roblox+** garden/building ·
+> **Star Wars** flight. Everything must end up executable by a **mid-level LLM** (data schemas +
+> fill-in recipes + build-failing quality gates, never taste-dependent code).
+> Prior sprint M4 (ship S1/S2/Quarters/W000): `docs/sprints/` + HANDOFF ddd–ggg. S3 sockets folded
+> into P2/P4 below.
 
 ## Task board
 | # | Task | Status |
 |---|------|--------|
-| 1 | **S1 boardable shell** — `ShipBoardingStation` (board → cockpit deck → story-gated helm → depart via TravelCoordinator → disembark) wired by `CityBuilder.BuildShipyard` on every enabled berth | ✅ `7886927` (CI #202) |
-| 2 | **S2 fly-out presentation** — seat the pilot, star-streaks spool + stretch ~4.5s (pure world motion, zero camera movement), then travel | ✅ `34627dd` (CI #203) |
-| 3 | **Ch.1 berths** — W002/W003/W004 + ToxicCity boardable (doors stay as fallback until device-proven) | ✅ `96132ec` (CI #204) |
-| 4 | **S3 upgrade sockets** — `ShipSlotDef` sockets accept `Resources/Items` ids (engine tier → shorter fly-out; scanner tier feeds wrist scanner; cargo raises carry). DeliveryCradle socket pattern + effect wiring + tests | ⬜ NEXT |
-| 5 | **W000 wake-on-ship tutorial** — the intro world: wake in the hull, RILL boot sequence, gear intro (Scan Pulse → Taser → Gravity per the deferred M2 trio), first contract, first flight to W001. Needs a small ship-interior layout + W000 gating swap (`TUTORIAL_COMPLETE` replaces `toxiccity_complete` on W002 per WORLD_DATA note) | ⬜ |
-| 6 | **THE QUARTERS** (Terry's brief): `CosmeticDefinition` + pure `CosmeticLocker` (6 tests) + host-agnostic `QuartersRoom` (3 bays, locker board, empty-stock stub) + ItemFactory skin seam + ship hosts it aft (QUARTERS ⇄ RETURN panels) + `docs/systems/QUARTERS.md` w/ the architect PvP-locker crossover | ✅ this commit |
-| 7 | Retrospective polish: helm re-gates on every boarding, 12-world grid, label cache | ✅ `83b8d47` |
-| 8 | Close: HANDOFF (ddd/eee/fff), runbook §2f, **final APK ✅ run `28604219729` (70 MB, head `7128b74`)** — the sideload carries M1+M2+M3+M4-S1/S2+Quarters+juice. **S3 sockets + W000 wake-on-ship + the first cosmetics drop remain the M4 tail.** | ✅ |
-| 9 | Juice pass (Terry's AAA-feel directive): RILL typewriter + lean-in + ship/quarters lines · Quarters real-gear showcase plinths · depart countdown ("PUNCH IT") · creature disable arcs · live helm gating + 12-world grid | ✅ `a9ba870`…`7128b74` |
+| P0.1 | **DevMenu click-once fix** — persistent UI session (ray interactors re-register with the CURRENT scene's XRUIInputModule on Show) + `MENU_CLICK`/`MENU_UI` diags | 🔨 in progress |
+| P0.2 | **DevMenu pager** — 6 worlds/page + PREV/NEXT (menu was unusably tall) | 🔨 with P0.1 |
+| P0.3 | **RILL subtitle readable** — word-wrap ~38 chars, 25% smaller, lower anchor, fade-in | ⬜ |
+| P0.4 | **Release feel** — throw-velocity rescue on release + highlight pulse + `ITEM_RELEASE` log + RILL holster hint on first release | ⬜ |
+| P0.5 | **Pistol visible** — `pulse_pistol` joins starter-weapon spawns (3 guns, not 2) | ⬜ |
+| P1a | **Terrain, not slabs** — heightfield ground 250–400m, seeded biome curve presets (dunes/mesas/canyon/cavern/tide-flats), bounds ring, slope validator | ⬜ |
+| P1b | **Arrival vista** — spawn faces a composed vista: 40–80m hero landmark + midground + SkyVista | ⬜ |
+| P1f | **QUALITY GATES** — audit rules that FAIL the build: WORLD_TOO_SMALL / POI_COUNT_LOW / NO_VISTA_LANDMARK / VERB_VARIETY_LOW / EST_PLAY_MINUTES_LOW / STORY_ANCHOR_MISSING | ⬜ (right after P1a+b) |
+| P1c | **POI system** — PoiDef {type,pos,tier}; builders: CombatCamp, HarvestGrove, MachineSite, RuinCache, CaveSecret, StoryAnchor, TravelBerth; contracts route through POIs | ⬜ |
+| P1d | **Path/breadcrumb network** — graded main route + edge lights linking arrival→POIs→StoryAnchor | ⬜ |
+| P1e | **Dressing/scatter pass** — density-graded biome props + ambient motion, masked off paths/POIs | ⬜ |
+| P1g | **Re-recipe W002–W012** through the new engine (W000 stays interior) | ⬜ |
+| P3 | **Garden** (HarvestGrove plots: plant→tend→morph→harvest; PlotState/GardenService backend EXISTS) + **BuildSocket** machine placement persisted in WorldState | ⬜ |
+| P4a | **Interim ship hull** — 15–20 part procedural silhouette replaces the 4-cube hull | ⬜ |
+| P5 | **docs/WORLD_RECIPE.md** — the mid-level-LLM fill-in handbook, worked W005 example | ⬜ ships with P1g |
+| P4b | **S4 free-flight scene** (SpaceLane; comfort-capped cockpit flight) | ⬜ last |
 
 ## ▶ RESUMING? — current state & exact next action
-- **Current:** S1+S2+Ch.1 berths CI-green (#202–#204); docs (runbook §2f, HANDOFF ddd) in `8d2a370`
-  (#205 green). M3 stamped + archived this commit. A full-pipeline APK dispatch on the ship head is
-  running — verify `ziptide-apk` lands, then Terry's sideload carries M1+M2+M3+M4-S1/S2.
-- **Next action:** Task 4 (S3 sockets): socket panel per `ShipSlotDef` on the cockpit deck
-  (`XRSocketInteractor` subclass — copy `DeliveryCradleSocketInteractor`'s allowed-ids pattern); accepted
-  item id sets a profile flag/resource (`SHIP_SLOT_<slotId>_<itemId>`); effect wiring: engine tier reads
-  it to scale `flyOutSeconds`. Author 2 slots on the default hull (`ShipDefinition.slots`). Tests for the
-  pure tier→flyout mapping. THEN Task 5 (W000) — the big one; read WORLD_DATA W000 record first.
-- **Lane:** architect owns PvP/Multiplayer (SPRINT_MULTIPLAYER.md); I consume IPvpDamageable only.
-  Cross-lane fixes this session (BotMath CS0029, BotBrain same-tick test) — flagged in HANDOFF ccc.
-- **Branch:** `terry-local-wip`. CI-green head: `8d2a370`.
+- **Current:** Program just opened. Approved plan: `/root/.claude/plans/` copy is transient — THIS file
+  + `docs/GAME_PLAN.md` are the durable record. Working P0.1+P0.2 (one commit: `DevMenu.cs`).
+- **Next action:** finish DevMenu (persistent EventSystem/XRUIInputModule fallback + ray re-register on
+  Show + pager), then P0.3 (`RillCompanion.DriveSubtitle` wrap/fade), then P0.4+P0.5, one commit each,
+  CI-green between. Then P1a+b in `WorldExperienceBuilder` (new file) + additive fields on
+  `CityLayoutDefinition` (ANNOUNCE in HANDOFF — shared with architect's arenas).
+- **Device gate:** after P0 + P1a/b land, Terry does the "does it feel like a world?" pass BEFORE we
+  scale P1c–g across all worlds.
+- **Lane:** architect = PvP/arenas/bots (their A4 arsenal doubles as story-world weapons); Picasso =
+  asset creator (ship hull is their first big target), SkyVistas, audio. I own P0/P1/P3/P4/P5.
+- **Branch:** `terry-local-wip`. CI-green head at open: `b9def1c`.
 
 ## Working rules (unchanged)
 CI green per push; SHIPS.md guardrails are law (no rig parenting, no TravelCoordinator bypass, comfort
-first — never move the camera); TextMesh only; .meta per new file; pull --rebase before push.
+first — never move the camera); TextMesh only (menus use TMP UGUI already in DevMenu — dev-only file);
+.meta per new file; pull --rebase before push; report-only zones need Terry's sign-off.
 
 ---
-*M4 opened 2026-07-02 by the operator (Fable 5). S1+S2 shipped same-session while the M3 gate ran.*
+*Quality Bar Program opened 2026-07-03 by T-Dog after Terry's first full device test.*
