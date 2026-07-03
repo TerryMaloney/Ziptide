@@ -20,7 +20,7 @@ any LLM: request a change as data, build, gates catch mistakes.
 | Q1b | **`WorldSpecValidator`** SHIPPED (pure): stable CODE-token errors — identity/seed, experience bounds, POI count/verbs/spacing/bounds/dup + StoryAnchor-when-flags predicate, district/connection/spawn refs, registry checks (creatures/plants/items; null set = permissive), mine/socket economy sanity. **14 tests** | ✅ this commit |
 | Q1c | **`WorldSpecCompiler`** SHIPPED (Editor): `CompileAll()` reads `docs/worldspecs/*.spec.json` → validate vs REAL registries → fan out to `<scene>_Layout.asset` + `<scene>_WorldPack.asset` (create-or-update, WorldStubGenerator enriches at build) · `ExportAllFromMenu()` reverse-generates a spec per existing world · `SPEC_DRIFT` WARN on round-trip divergence · BuildAndroid hook (announced append) | ✅ this commit |
 | Q1d | **Proof (🔧UNITY)**: Terry runs `Ziptide → Worlds → Export All World Specs (JSON)` once and commits `docs/worldspecs/*.spec.json` — every world gets its editable truth document; from then on "change a world" = edit its spec (fidelity is by-construction: export and compile share the same object graph). Runbook §2k | ⬜ Terry |
-| Q2a | **`LotPartitioner`** (pure, seeded, ~15 tests): OBB recursive subdivision of district rects → lots + right-of-ways; base cases min-area/frontage/aspect w/ probabilistic acceptance | ⬜ |
+| Q2a | **`LotPartitioner`** SHIPPED (pure, seeded xorshift): recursive subdivision of district rects → lots + right-of-ways (perimeter ring + internal avenues); base cases min-area (child-length bound `req`), MinSide, aspect law (violations only when no legal cut existed — provable), **frontage GUARANTEE** (a cut that would landlock a child becomes a street both children front). **11 tests** incl. 25-seed frontage sweep + area conservation | ✅ this commit |
 | Q2b | **`BuildingGrammar`** (pure, seeded, ~20 tests): socketed modules (wallSolid/wallWindow/doorway/floor/roofFlat/roofRaked/cornerTrim/balcony), WFC-lite lowest-entropy assembly, 1–3 storeys, door-always-on-frontage proven by socket design. `BuildingStyleDefinition` = data | ⬜ |
 | Q2c | **`BuildingBuilder`** (Editor, static entry T-Dog calls from CityBuilder's district pass): grammar output → primitives now / Forge-kit lookup later. Gates: `BUILDING_DOOR_BLOCKED` · `LOT_OVERLAP` · `BUILDING_OVER_BUDGET` | ⬜ |
 | Q2d | W002 warren proof build + runbook gate ("does it read as a place?") | ⬜ |
@@ -34,8 +34,10 @@ any LLM: request a change as data, build, gates catch mistakes.
 - **State:** Q0 + Q1a/b/c shipped — verify CI on this push. Q1d is Terry's one-menu export
   (runbook §2k); until he commits the exported specs, the spec folder is empty and CompileAll is a
   no-op (safe by design).
-- **Next action:** **Q2a — `LotPartitioner`** (pure, seeded OBB recursive subdivision + tests), then
-  Q2b `BuildingGrammar` (socketed WFC-lite), then Q2c `BuildingBuilder` + gates. The Terry-visible win.
+- **Next action:** **Q2b — `BuildingGrammar`** (pure, seeded socketed-module assembly over the lots:
+  wallSolid/wallWindow/doorway/floor/roofFlat/roofRaked per storey; door ALWAYS on a `Lot` frontage
+  edge — the Lot struct carries FrontS/E/N/W exactly for this), then Q2c `BuildingBuilder` (Editor
+  static T-Dog calls from CityBuilder's district pass) + the three BUILDING_* gates.
 - **Verified facts (don't re-derive):** world factory chain = `WorldLayoutLibrary` (create-only
   authors) → `CityLayoutDefinition` (+`experience` since P1) → `WorldStubGenerator`/`CityBuilder` →
   `WorldExperienceBuilder`/`WorldPoiBuilder`/`WorldDressingBuilder`. POI verbs: CombatCamp/HarvestGrove/
