@@ -58,29 +58,39 @@ moons + zenith Pattern shimmer; RILL's cyan seeded in early nebulae). Attaches a
 | 5 | `SkyVistaAuditRules` (`SKY_VISTA_MISSING`/`SKY_VISTA_INVALID` blockers; `SKY_VISTA_UNWIRED`/light-count warnings) + WorldAuditRunner call line ⚠ + `HOW_TO_CHANGE_ANYTHING.md` sky rows | ✅ `48ee4b4` |
 | 6 | Close: APK dispatch green · runbook §2h 🎮 items (canon progression reads, 72fps, banding check) · HANDOFF wrap | ✅ **APK run `28616598718` green (70 MB artifact, audit-clean incl. SKY_VISTA rules)** |
 
-## Next sprints (order per Terry)
-- **ART-2 — W001 Toxic Venice full pass:** SurfaceSet/WorldArtKit registries + ArtBuildPlan pipeline +
-  PERF_BUDGET audit rule + primitive kit → Tripo mesh swap behind stable IDs (`W001_TOXIC_VENICE_ART_BRIEF.md`).
-- **ART-3 — Audio foundation:** `AdaptiveAudioManager` (4-stem, Signal-reactive), ambience beds, SFX
-  library, RILL VO (ElevenLabs) + Transmission blend-voice specs for Terry (`ADAPTIVE_AUDIO.md`).
-- **ART-4 — Creatures/gear/VFX:** visual kits for creatures (spec + handoff to story lane, which owns
-  creature files), weapon models via Tripo, Bloom/Pattern VFX language (`ALIEN_ORIGAMI_SURFACE_BRIEF.md`).
+## 🟡 ACTIVE — ART-3: FORGE II, THE QUALITY LEAP *(numbering fixed per qqq: ART-1 skies · ART-2 Forge ·
+ART-3 THIS · ART-4 W001 via Forge+registry · ART-5 audio)*
+**Plan of record: `docs/project_art_plan/FORGE_II_QUALITY_LEAP.md`** — Terry-approved 2026-07-04,
+written as executable envelopes (all design decisions made; implement, don't re-litigate). Quest 3
+is the confirmed perf floor. The two qqq envelopes fold in as E5.1 (building modules) + E5.2
+(PERF_BUDGET gate).
+
+| # | Task (envelope in FORGE_II doc) | Status |
+|---|------|--------|
+| E1.1 | UV atlas in ForgeMesh + tangents + tests (visuals unchanged) | ⬜ NEXT |
+| E1.2 | ForgeTexture rasterizer + albedo styles + schemaVersion 2 → textured taser in booth ("not flat" checkpoint) | ⬜ |
+| E1.3 | Normal/MSA/emissive maps + ONE material per asset | ⬜ |
+| E1.4 | ForgeBaker (build-time bake → ASTC) + gitignore + applier/booth prefer baked → **Terry photo checkpoint** | ⬜ |
+| E5.2 | PERF_BUDGET audit gate (independent — do anytime, 1 commit) | ⬜ |
+| P2 | New ops (Capsule/Frustum/Torus/SweepSpline/OrganicBlob) + modifiers + Quest-3 class budgets | ⬜ |
+| P3 | ForgeCreatureBody + ForgeSkinnedBuilder + ⚠ coordination commit (forgeBodyId) + drone/swarmer bodies | ⬜ |
+| P4 | ForgeMotor (velocity-observing gaits/waves/breath/look-at/stun-droop) + booth pose shot | ⬜ |
+| E5.1 | Building-module family for `salvage_row`+`toxic_tenement` via ArtModuleRegistry (pairs with story Q2d) | ⬜ after E1.x |
+| E5.3 | Flora (LeafCard+ForgeSway, 2 plants) + 3 W001 props | ⬜ |
+| — | Close: guide v2 rubric · APK · runbook §2n · HANDOFF | ⬜ |
 
 ## ▶ RESUMING? — current state & exact next action
-- **Current:** **ART-1 AND ART-2 BOTH SHIPPED APK-GREEN** (skies: run `28616598718`; Forge + forged
-  taser: run `28630103333`). Open loops are Terry's headset passes (§2h skies, §2i taser grip/feel).
-- **Next sprint: ART-3 — W001 Toxic Venice built WITH the Forge** (building/prop recipes + the
-  PERF_BUDGET audit rule per `W001_TOXIC_VENICE_ART_BRIEF.md`), folding in any §2h/§2i ❌s first.
-- **Next action:** start **ART-2 — W001 Toxic Venice art kit** (brief:
-  `project_art_plan/W001_TOXIC_VENICE_ART_BRIEF.md`): `SurfaceSetDefinition` + `WorldArtKitDefinition`
-  data model first (pure + tests, same commit pattern as ART-1), then the primitive ToxicVenice kit,
-  then the PERF_BUDGET audit rule. Fold in Terry's §2h ❌s first if any arrive.
-- **Story-lane request (queued, not urgent):** ToxicCity's patcher doesn't author a theme, so its
-  waiting vista can't attach — one `ThemeAuthor.EnsureThemeAsset` call inside `ScenePatcherToxicCity`
-  (story-owned file) wires it. Coordinate via HANDOFF when convenient; W001 gets its full art pass in
-  ART-2 anyway.
-- **Branch:** `terry-local-wip`, same rules as the other tracks (pull --rebase, small CI-green commits,
-  .meta per new file, TextMesh only, no scene YAML).
+- **Current:** ART-1 + ART-2 shipped APK-green (skies `28616598718`; Forge+taser `28630103333`).
+  ART-3 opened; no code landed yet. Open Terry loops: §2h/§2i headset passes.
+- **Next action:** execute **E1.1** exactly as specced in `FORGE_II_QUALITY_LEAP.md` §P1 (UV atlas
+  in `Visuals/Runtime/Forge/ForgeMesh.cs`, tests first, visuals unchanged, 1 commit). Then E1.2.
+  E5.2 (PERF gate) is a good first commit for a fresh session — independent and fully specced.
+- **Story-lane request (still queued):** ToxicCity's patcher authors no theme, so its sky vista
+  can't attach — one `ThemeAuthor.EnsureThemeAsset(kit)` call in `ScenePatcherToxicCity` wires it.
+- **Branch:** `terry-local-wip`, house rules (pull --rebase, small CI-green commits, .meta per new
+  file, no scene YAML). Operator manual: `docs/OPERATOR_START_HERE.md`. Photo loop: push any
+  `Forge*`/`Visuals/Runtime/Forge/**` change → `forge-photos` workflow auto-renders → download the
+  artifact → view → iterate against the FORGE_II quality rubric.
 
 ---
 *Opened 2026-07-02 by Picasso (Fable 5) on Terry's directive. Working rules identical to the other tracks.*

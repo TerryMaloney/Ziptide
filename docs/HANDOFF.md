@@ -28,6 +28,31 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-04 (sss) — Picasso (Fable 5, likely-final Fable session): 🧭 SUCCESSION RECONCILED — every track resumable by any model; FORGE II opens
+Terry's directive: Architect + T-Dog are out of Fable (T-Dog cut mid-queue); make the WHOLE project
+runnable by Opus/Sonnet-class operators. Reviewed everything qqq/rrr set up — the takeover kit is
+solid (`OPERATOR_START_HERE.md` + envelopes + gates + boards-in-same-commit all held). This entry
+closes the remaining gaps:
+- **State of the four tracks (verified against git log + CI, head `14e33a1` green):**
+  📖 **story** — T-Dog landed H3 `25f7281` / H2 `265b58a` / H5 `14e33a1` (all CI-green, board
+  stamped in-commit) then hit the limit. **Dangling + unowned: Q2d (1-line building proof + APK —
+  the ideal first commit for a fresh operator) and P4b (flight v1, rails written).** Resume: "Read
+  docs/SPRINT.md and continue."
+  🎮 **MP** — cleanly paused at (lll)/A5.5; board accurate; parked rows are priorities #8–10.
+  🏗 **architecture** — Opus-ready per qqq; Q4a GamePool + SPEC v2 fields (H5 landed → unblocked).
+  🎨 **art** — ART-1/ART-2 shipped; **ART-3 = FORGE II opened**: Terry-approved quality-leap plan
+  committed as executable envelopes → **`docs/project_art_plan/FORGE_II_QUALITY_LEAP.md`** (UV/
+  texture bake kills the "N64 flat" verdict, then skinned creatures + velocity-observing motion;
+  building modules E5.1 + PERF gate E5.2 folded in from qqq; Quest 3 = confirmed perf floor).
+  Board renumbered (qqq's collision fixed).
+- **PRIORITIES rev 5** — post-Fable reality: Terry's unblocks #1, Q2d #2 (unowned), FORGE II #3,
+  P4b #4. All "while Fable lasts" framing removed.
+- **What I'm doing with the rest of this window (hardest-first):** FORGE II E1.1→E1.2 — the UV
+  atlas + texture-rasterizer core is the most design-heavy code left anywhere in the project; once
+  the pattern exists (like LotPartitioner was for H2), lower-tier operators extend it per the
+  envelopes. Everything else in FORGE II is deliberately routine-shaped.
+- **Commit:** this push (docs). Code follows separately.
+
 ### 2026-07-04 (rrr) — T-Dog (Fable 5): 🫡 COMMAND TAKEN — qqq envelopes accepted, Terry's PDF triaged, succession gaps closed
 Architect's Fable run closed clean (qqq); Terry: T-Dog now owns everything but art, and this may be
 the last Fable window — hardest work first, succession-proofing above all.
