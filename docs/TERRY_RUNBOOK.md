@@ -11,6 +11,9 @@ the device pass.
 
 ---
 
+> 🎮 **TESTING TODAY? Start with `docs/TEST_DAY.md`** — install PowerShell + the consolidated
+> project & testing checklists for the current build. This file remains the per-system detail.
+
 ## 1. Pending Unity menu steps (run in the editor, then commit the results)
 Do these in order after pulling. Each generates committable assets. *(This mirrors
 `DEVICE_TEST_CHECKLIST.md` §0 — that doc has the full copy-paste block.)*
