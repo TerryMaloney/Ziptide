@@ -43,12 +43,12 @@
   fixes · terrain+vista · POIs+gates · route+dressing · contracts-through-POIs · garden+sockets ·
   interim hull · handbook). Rebased onto architect's takeover kit `a21fffb`; read
   **`docs/OPERATOR_START_HERE.md`** — its laws (incl. THE CIRCUIT BREAKER) govern this board too.
-- **Next action:** **P4b — S4 flight scene v1** (the last ⬜ on this board). READ
-  `docs/design/SPACEFLIGHT_PHYSICS.md` FIRST — the rails are law (world moves, never the camera;
-  never parent the rig to the hull; NO floating origin). Build order: pure `FlightModel` core
-  (thrust/damping/comfort caps, seeded, ~12 EditMode tests FIRST) → SpaceLane bounded scene via a
-  patcher → cockpit translator reading FlightModel → runbook 🎮 item. Follow LotPartitioner→H2 as
-  the worked example of "pure core first, translator second."
+- **Next action:** **finish P4b** — the pure `FlightModel` core SHIPPED (`2bc39e0`, 11 tests;
+  comfort laws are in the math). Remaining is routine-shaped: `ScenePatcherSpaceLane`
+  (WorldStubGenerator pattern: cockpit deck + `__FLIGHT_WORLD` ring course + starfield) +
+  `FlightSceneController` translator (world moves inversely, rig static — copy the S2 fly-out
+  pattern; stick inputs via the InputActionManager idiom) + helm destination pack + runbook 🎮 row.
+  Then a full APK dispatch. Session-zero check: this row + the P4b board row are the whole spec.
   **Meta-loop follow-ups live in `docs/design/ZIPTIDE_META_LOOP.md`** (conquest command
   model → architecture track; proxy kits → Picasso; ecology/mutation content → next wave).
 - **Device gate:** Terry §2j/§2k runbook rows still open — his ❌s re-prioritize everything.
