@@ -68,11 +68,23 @@ namespace Ziptide.Editor.Patching
                 ex.vista = VistaKind.ArchRing; ex.vistaDirection = new Vector3(0.3f, 0f, 1f);
                 ex.vistaDistance = 150f; ex.vistaHeight = 55f;
                 ex.vistaColor = new Color(0.62f, 0.58f, 0.48f); ex.vistaAccentColor = new Color(0.35f, 0.85f, 0.80f);
-                // Q2d BUILDING PROOF: ChamberA wears the toxic_tenement grammar — the first district
-                // with REAL enterable buildings (BuildingGrammar door law + BuildingBuilder shells).
-                foreach (var d in kit.districts)
-                    if (d != null && d.id == "ChamberA") d.buildingStyleId = "toxic_tenement";
             });
+            // Q2d hygiene (ALWAYS-RUN — outside the authored latch): ChamberA hosts the PumpHouse
+            // hero building, and generated tenements collide with it — BUILDING_DOOR_BLOCKED caught
+            // exactly that in dispatch 28693699592 (the gate doing its job). GalleryB carries the
+            // building proof (seeded in BuildW002DryCistern); ChamberA must stay hero-only.
+            {
+                var w002 = AssetDatabase.LoadAssetAtPath<CityLayoutDefinition>(
+                    LayoutFolder + "/W002_DryCistern_Layout.asset");
+                if (w002 != null)
+                    foreach (var d in w002.districts)
+                        if (d != null && d.id == "ChamberA" && !string.IsNullOrEmpty(d.buildingStyleId))
+                        {
+                            d.buildingStyleId = "";
+                            EditorUtility.SetDirty(w002);
+                            n++;
+                        }
+            }
             n += Experience("W003_GlassShelf", (kit, ex) =>
             {   // Wind-scoured stepped shelf; a shard monolith leans into the gale.
                 ex.enabled = true; ex.biome = BiomePreset.Mesas; ex.worldRadius = 280f; ex.heightAmplitude = 20f;
