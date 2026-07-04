@@ -215,40 +215,60 @@ namespace Ziptide.Editor.Patching
                     name = "Carapace", op = ForgeOp.SphereSection, bevel = 0.5f, segments = 12, smooth = true,
                     size = new Vector3(0.66f, 0.34f, 0.8f), position = new Vector3(0f, 0.36f, -0.06f), paletteSlot = 1
                 },
-                new ForgePart // scavenged industrial plate, crooked on top
+                new ForgePart // scavenged industrial plate — sunk into the dome, heavy grime (v2: read as cardboard)
                 {
                     name = "ScrapPlate", op = ForgeOp.BeveledBox, bevel = 0.008f,
-                    size = new Vector3(0.3f, 0.035f, 0.42f), position = new Vector3(0.09f, 0.52f, 0.02f),
-                    eulerRotation = new Vector3(4f, 18f, 6f), paletteSlot = 1
+                    size = new Vector3(0.28f, 0.03f, 0.38f), position = new Vector3(0.08f, 0.47f, 0.0f),
+                    eulerRotation = new Vector3(6f, 22f, 9f), paletteSlot = 1
                 },
-                new ForgePart // front leg pair — coiled crab stance (mirrored)
+                // Legs v2: TWO segments each — upper reaches up-and-out from the hip, lower drops
+                // to a footfall. The bent knee is what sells "coiled to lunge" (v1 read as sticks).
+                new ForgePart
                 {
-                    name = "LegFront", op = ForgeOp.BeveledBox, bevel = 0.006f,
-                    size = new Vector3(0.07f, 0.46f, 0.09f), position = new Vector3(0.34f, 0.22f, 0.24f),
-                    eulerRotation = new Vector3(0f, -20f, 55f), mirrorX = true, paletteSlot = 0
+                    name = "LegFrontUpper", op = ForgeOp.BeveledBox, bevel = 0.005f,
+                    size = new Vector3(0.065f, 0.3f, 0.08f), position = new Vector3(0.36f, 0.36f, 0.24f),
+                    eulerRotation = new Vector3(0f, -15f, 65f), mirrorX = true, paletteSlot = 0
                 },
-                new ForgePart // mid leg pair
+                new ForgePart
                 {
-                    name = "LegMid", op = ForgeOp.BeveledBox, bevel = 0.006f,
-                    size = new Vector3(0.07f, 0.5f, 0.09f), position = new Vector3(0.37f, 0.24f, -0.02f),
-                    eulerRotation = new Vector3(0f, 0f, 60f), mirrorX = true, paletteSlot = 0
+                    name = "LegFrontLower", op = ForgeOp.BeveledBox, bevel = 0.005f,
+                    size = new Vector3(0.055f, 0.42f, 0.07f), position = new Vector3(0.54f, 0.2f, 0.28f),
+                    eulerRotation = new Vector3(0f, -15f, -25f), mirrorX = true, paletteSlot = 0
                 },
-                new ForgePart // rear leg pair — the spring-lunge coil
+                new ForgePart
                 {
-                    name = "LegRear", op = ForgeOp.BeveledBox, bevel = 0.006f,
-                    size = new Vector3(0.08f, 0.54f, 0.1f), position = new Vector3(0.33f, 0.26f, -0.28f),
-                    eulerRotation = new Vector3(0f, 25f, 62f), mirrorX = true, paletteSlot = 0
+                    name = "LegMidUpper", op = ForgeOp.BeveledBox, bevel = 0.005f,
+                    size = new Vector3(0.065f, 0.32f, 0.08f), position = new Vector3(0.38f, 0.38f, -0.02f),
+                    eulerRotation = new Vector3(0f, 0f, 70f), mirrorX = true, paletteSlot = 0
                 },
-                new ForgePart // toxin sacs on the flanks (the glowing tell — mirrored)
+                new ForgePart
+                {
+                    name = "LegMidLower", op = ForgeOp.BeveledBox, bevel = 0.005f,
+                    size = new Vector3(0.055f, 0.44f, 0.07f), position = new Vector3(0.58f, 0.2f, -0.02f),
+                    eulerRotation = new Vector3(0f, 0f, -22f), mirrorX = true, paletteSlot = 0
+                },
+                new ForgePart
+                {
+                    name = "LegRearUpper", op = ForgeOp.BeveledBox, bevel = 0.005f,
+                    size = new Vector3(0.07f, 0.34f, 0.09f), position = new Vector3(0.35f, 0.38f, -0.27f),
+                    eulerRotation = new Vector3(0f, 20f, 72f), mirrorX = true, paletteSlot = 0
+                },
+                new ForgePart
+                {
+                    name = "LegRearLower", op = ForgeOp.BeveledBox, bevel = 0.005f,
+                    size = new Vector3(0.06f, 0.46f, 0.08f), position = new Vector3(0.56f, 0.21f, -0.32f),
+                    eulerRotation = new Vector3(0f, 20f, -20f), mirrorX = true, paletteSlot = 0
+                },
+                new ForgePart // toxin sacs — pushed OUTBOARD so the glow reads in silhouette (v2)
                 {
                     name = "ToxinSac", op = ForgeOp.SphereSection, bevel = 1f, segments = 10, smooth = true,
-                    size = new Vector3(0.15f, 0.13f, 0.18f), position = new Vector3(0.27f, 0.33f, -0.08f),
+                    size = new Vector3(0.18f, 0.15f, 0.2f), position = new Vector3(0.31f, 0.37f, -0.06f),
                     mirrorX = true, paletteSlot = 2
                 },
-                new ForgePart // filter-gill bank across the front (its face IS an air filter)
+                new ForgePart // filter-gill bank across the front — bigger, forward (v2: barely visible)
                 {
                     name = "GillBank", op = ForgeOp.GreebleStrip, segments = 6,
-                    size = new Vector3(0.09f, 0.07f, 0.3f), position = new Vector3(0f, 0.27f, 0.44f),
+                    size = new Vector3(0.11f, 0.1f, 0.34f), position = new Vector3(0f, 0.3f, 0.46f),
                     eulerRotation = new Vector3(0f, 90f, 0f), paletteSlot = 3
                 },
                 new ForgePart // pale underside plate

@@ -28,6 +28,20 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-04 (yyy) — Picasso (Fable 5): 🦀 stalker v2 — first full creature photo-critique cycle
+- **Did:** Reviewed the `tox_canal_stalker_01` v1 turnarounds from `forge-photos` (run on `215e110`).
+  Rubric verdict: body/carapace/glow read, but **legs read as flat sticks** (single-segment boxes),
+  **scrap plate read as cardboard** (floating, too thin), **toxin-sac glow invisible in silhouette**
+  (tucked under the shell). v2 recipe fix (this commit): each leg is now **two segments with a bent
+  knee** (upper reaches up-and-out, lower drops to the footfall — sells "coiled to lunge"), sacs
+  pushed outboard to x=0.31, gill bank enlarged/forward, plate sunk into the dome. ~12 parts;
+  budget 2000 tris enforced by `FORGE_RECIPE_OVER_BUDGET` + library tests.
+- **Next-CLAIMED:** view the v2 turnarounds; if it reads, R4 is closed → **FORGE II E1.3**
+  (normal/MSA/emissive, ONE material per asset) per `FORGE_II_QUALITY_LEAP.md`.
+- **Heads-up:** lesson for the studio guide rubric — mirrored single-box limbs ALWAYS read as sticks;
+  creature limbs need ≥2 segments per the silhouette rule even at proxy tier.
+- **Commit:** _(this one)_
+
 ### 2026-07-04 (xxx) — Picasso (Fable 5): 🗺 ASSET FORGE RECONCILIATION SHIPPED (R1–R4) — external spec absorbed, improvements only
 Terry approved reconciling an external "Asset Forge" architecture brief: ~70% already existed here
 (mapping now permanent in **`project_art_plan/ASSET_FORGE_MAP.md`** — READ IT before acting on any
