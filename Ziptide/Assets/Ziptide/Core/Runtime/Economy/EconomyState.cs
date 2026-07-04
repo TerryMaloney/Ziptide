@@ -16,6 +16,33 @@ namespace Ziptide.Core
         public long lastResolvedAtUnix; // idle anchor for this mine
     }
 
+    /// <summary>The factory node vocabulary (Meta-Loop D). None = not a machine (recipe gate value).</summary>
+    public enum MachineType
+    {
+        None, InputBin, Conveyor, Splitter, Combiner, Processor, BioRefiner, Assembler, Storage,
+        OutputStation, PowerNode
+    }
+
+    /// <summary>
+    /// One factory machine node — LAYOUT IS DATA, VISUALS ARE A SKIN (Meta-Loop law): the graph
+    /// simulates abstractly (never per-item rigidbodies); grid pose + ports + visualProxyId exist so
+    /// a future VR conveyor skin renders this without touching the simulation. Lives in Core beside
+    /// MineState/PlotState because it IS save data (WorldState.factory).
+    /// </summary>
+    [Serializable]
+    public class MachineNodeState
+    {
+        public string nodeId = "";
+        public MachineType type = MachineType.Processor;
+        public int gridX, gridY;                   // layout cell
+        public int rotationSteps;                  // 0-3 quarter turns
+        public List<string> inputNodeIds = new List<string>(); // upstream ports
+        public string recipeId = "";               // Processor/BioRefiner/Assembler only
+        public bool powered = true;                // PowerNode gating hook (v1: authored)
+        public string visualProxyId = "";          // Art Registry seam
+        public int progressTicks;                  // current batch progress (saved)
+    }
+
     /// <summary>A garden plot's saved state. Growth is pure elapsed time since <see cref="plantedAtUnix"/>
     /// (no per-tick simulation needed — offline-friendly).</summary>
     [Serializable]

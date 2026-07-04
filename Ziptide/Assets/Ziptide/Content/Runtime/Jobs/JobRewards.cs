@@ -25,7 +25,8 @@ namespace Ziptide.Content
                 {
                     var r = job.reward[i];
                     if (r == null || string.IsNullOrEmpty(r.resourceId) || r.amount == 0) continue;
-                    profile.AddResource(r.resourceId, r.amount);
+                    RewardRouter.Grant(profile, LedgerSource.Campaign, r.resourceId, r.amount,
+                        reason: job.jobId, relatedId: job.name);
                 }
             }
 

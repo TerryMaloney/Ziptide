@@ -75,7 +75,7 @@ namespace Ziptide.Core
             double amt = mine.stored;
             if (amt <= 0) return 0;
             mine.stored = 0;
-            profile.AddResource(mine.resourceId, amt);
+            RewardRouter.Grant(profile, LedgerSource.Factory, mine.resourceId, amt, reason: mine.machineId);
             return amt;
         }
     }

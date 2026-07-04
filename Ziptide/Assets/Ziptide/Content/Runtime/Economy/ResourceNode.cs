@@ -34,7 +34,8 @@ namespace Ziptide.Content
 
             if (IsFinite) Remaining -= result.amount;
             if (result.amount > 0 && profile != null)
-                profile.AddResource(result.resourceId, result.amount);
+                RewardRouter.Grant(profile, LedgerSource.Campaign, result.resourceId, result.amount,
+                    reason: "harvest_node");
             return result;
         }
     }

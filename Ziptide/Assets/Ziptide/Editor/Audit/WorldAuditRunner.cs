@@ -71,6 +71,12 @@ namespace Ziptide.Editor.Audit
             catch (System.Exception ex) { forgeReport.Warning("FORGE_AUDIT_ERROR", ex.Message); }
             report.scenes.Add(forgeReport);
 
+            // META-LOOP economy integrity (one economy, registered ids, flow report) — project-wide.
+            var econReport = new SceneAuditReport { sceneName = "__ECONOMY__" };
+            try { EconomyAuditRules.Run(econReport); }
+            catch (System.Exception ex) { econReport.Warning("ECONOMY_AUDIT_ERROR", ex.Message); }
+            report.scenes.Add(econReport);
+
             foreach (var sceneBuildEntry in scenes)
             {
                 if (!sceneBuildEntry.enabled) continue;

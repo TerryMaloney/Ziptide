@@ -53,6 +53,8 @@ namespace Ziptide.Build
             catch (Exception ex) { Debug.LogWarning("[Ziptide] RILL line author warning: " + ex.Message); }
             try { Ziptide.Editor.Patching.GardenAuthor.EnsureAuthored(); }
             catch (Exception ex) { Debug.LogWarning("[Ziptide] Garden author warning: " + ex.Message); }
+            try { Ziptide.Editor.Patching.EconomyAuthor.EnsureAuthored(); }
+            catch (Exception ex) { Debug.LogWarning("[Ziptide] Economy author warning: " + ex.Message); }
             try { Ziptide.Editor.Patching.WorldLayoutLibrary.EnsureAllAuthored(); }
             catch (Exception ex) { Debug.LogWarning("[Ziptide] World layout library warning: " + ex.Message); }
             // ARCHITECTURE V2 Q1: committed world specs (docs/worldspecs/*.spec.json) are the editable

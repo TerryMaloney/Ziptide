@@ -52,8 +52,13 @@ namespace Ziptide.Core
             if (p.resources == null) p.resources = new System.Collections.Generic.List<ResourceAmount>();
             if (p.worlds == null) p.worlds = new System.Collections.Generic.List<WorldState>();
 
-            // Migration scaffold (no-op while schema is at 1):
-            //   if (p.schemaVersion < 2) { /* transform v1 -> v2 */ p.schemaVersion = 2; }
+            // v1 → v2 (META-LOOP): the transaction ledger arrived; older saves simply start empty.
+            if (p.schemaVersion < 2)
+            {
+                if (p.ledger == null) p.ledger = new System.Collections.Generic.List<LedgerEntry>();
+                p.schemaVersion = 2;
+            }
+            if (p.ledger == null) p.ledger = new System.Collections.Generic.List<LedgerEntry>();
 
             if (p.schemaVersion < PlayerProfile.CurrentSchemaVersion)
                 p.schemaVersion = PlayerProfile.CurrentSchemaVersion;

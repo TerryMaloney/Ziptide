@@ -35,6 +35,7 @@
 | Q2d | **Building proof**: set `buildingStyleId="toxic_tenement"` on one W002 district → APK dispatch → runbook "does it read as a place?" gate | ✅ **APK run `28684427359` GREEN (77 MB artifact)** — W002 GalleryB wears real buildings; Terry's §2n walk is the open gate |
 | SPWN | **THE SPAWN WAVE — closed (HANDOFF ttt→vvv):** two layers, BOTH audit-check bugs — wrong marker (POIs plant `poi_*` markers) then ankle-height sphere always grazing ground. Fixes: `__SPAWN_PLAYER` by name · all overlaps listed · check at torso height · spawn-Y/POI-exclusion hygiene retained | ✅ `28684427359` green |
 | P4b | **S4 flight scene v1** — READ `docs/design/SPACEFLIGHT_PHYSICS.md` FIRST; comfort-capped cockpit flight in a bounded SpaceLane scene (world moves, never the camera; NO floating origin — trigger not fired); pure `FlightModel` core + tests before the scene translator | ⬜ last big piece |
+| ML | **META-LOOP ARCHITECTURE LOCK** (Terry's brief + GPT addendum; **build plan = `docs/design/ZIPTIDE_META_LOOP.md`**): ResourceDefinition registry + RESOURCE_ID_UNREGISTERED gate · transaction LEDGER + RewardRouter (8 chokepoints wired — the mode contract) · RecipeDefinition factory fields · ProductionGraph (validate/tick/capped catch-up) + WorldState.factory · save schemaVersion v2 + migration fixture · EconomyFlowModel + NO_SOURCE/NO_SINK/UNUSED warns + generated ECONOMY_FLOW_REPORT · **GoldenMetaLoopTests = the acceptance test**. Conquest command-model + income routing ENVELOPED to architecture track; proxy kits + Forge-staleness glue ENVELOPED to Picasso | ✅ this commit |
 | A1 | **Succession gap-closures from Terry's PDF** (triage in HANDOFF rrr): `.gitattributes` (+ runbook UnityYamlMerge driver setup for Terry) · 2 new deferral records in `ARCHITECTURE_V2.md` (runtime asset streaming, gateway rate-limiting) · metavr MCP evaluation runbook item | ✅ this commit |
 
 ## ▶ RESUMING? — current state & exact next action
@@ -48,6 +49,8 @@
   (thrust/damping/comfort caps, seeded, ~12 EditMode tests FIRST) → SpaceLane bounded scene via a
   patcher → cockpit translator reading FlightModel → runbook 🎮 item. Follow LotPartitioner→H2 as
   the worked example of "pure core first, translator second."
+  **Meta-loop follow-ups live in `docs/design/ZIPTIDE_META_LOOP.md`** (conquest command
+  model → architecture track; proxy kits → Picasso; ecology/mutation content → next wave).
 - **Device gate:** Terry §2j/§2k runbook rows still open — his ❌s re-prioritize everything.
   §2n (NEW) = the Q2d "does it read as a place?" gate on W002 GalleryB.
 - **Lane note (2026-07-04):** T-Dog's Fable ended; Picasso (art, last Fable session) covered Q2d

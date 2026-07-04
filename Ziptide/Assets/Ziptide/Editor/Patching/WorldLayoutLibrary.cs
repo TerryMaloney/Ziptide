@@ -68,6 +68,10 @@ namespace Ziptide.Editor.Patching
                 ex.vista = VistaKind.ArchRing; ex.vistaDirection = new Vector3(0.3f, 0f, 1f);
                 ex.vistaDistance = 150f; ex.vistaHeight = 55f;
                 ex.vistaColor = new Color(0.62f, 0.58f, 0.48f); ex.vistaAccentColor = new Color(0.35f, 0.85f, 0.80f);
+                // Q2d BUILDING PROOF: ChamberA wears the toxic_tenement grammar — the first district
+                // with REAL enterable buildings (BuildingGrammar door law + BuildingBuilder shells).
+                foreach (var d in kit.districts)
+                    if (d != null && d.id == "ChamberA") d.buildingStyleId = "toxic_tenement";
             });
             n += Experience("W003_GlassShelf", (kit, ex) =>
             {   // Wind-scoured stepped shelf; a shard monolith leans into the gale.

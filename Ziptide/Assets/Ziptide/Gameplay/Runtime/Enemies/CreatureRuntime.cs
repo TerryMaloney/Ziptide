@@ -115,7 +115,8 @@ namespace Ziptide.Gameplay
             if (profile != null && _def != null && _def.loot != null)
                 foreach (var l in _def.loot)
                     if (l != null && !string.IsNullOrEmpty(l.resourceId))
-                        profile.AddResource(l.resourceId, l.amount);
+                        RewardRouter.Grant(profile, LedgerSource.Campaign, l.resourceId, l.amount,
+                            reason: "creature_" + creatureId, worldId: gameObject.scene.name);
 
             Debug.Log("ZIPTIDE: CREATURE_DOWN id=" + creatureId + " name=" + gameObject.name);
             if (respawnDelay > 0f) StartCoroutine(RespawnAfter());

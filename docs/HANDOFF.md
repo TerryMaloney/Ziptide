@@ -150,6 +150,33 @@ closes the remaining gaps:
   envelopes. Everything else in FORGE II is deliberately routine-shaped.
 - **Commit:** this push (docs). Code follows separately.
 
+### 2026-07-04 (sss) — T-Dog (Fable 5): 🧬 THE META-LOOP LOCK — one economy spine, golden-loop-proven
+Terry's brief (garden/factory/multiplayer must share ONE economy with the campaign) + GPT's
+addendum, reconciled against what exists (the garden ALREADY shipped in P3 — brief assumed
+otherwise). **Build plan + laws + appendix: `docs/design/ZIPTIDE_META_LOOP.md`** — read that first.
+- **SHIPPED:** `ResourceDefinition` registry (Resources/Economy, EconomyAuthor seeds all 13 live ids)
+  + **RESOURCE_ID_UNREGISTERED build-failing gate** · transaction **ledger** (`PlayerProfile.ledger`,
+  ring-capped) + **`RewardRouter`** — THE mode-contract chokepoint, 8 call sites wired (jobs, garden
+  harvest, mine collect, recipe costs, build sockets, creature loot, node harvest, factory) ·
+  `RecipeDefinition` factory fields (machineType/ticks/unlock/story tags — ADDITIVE, announced) ·
+  **`ProductionGraph`** pure sim (layout-is-data law, validate/tick/capped catch-up) +
+  `WorldState.factory` · save **schemaVersion v2** + migration + old-save fixture test ·
+  `EconomyFlowModel` + NO_SOURCE/NO_SINK/UNUSED warns + generated `docs/_generated/
+  ECONOMY_FLOW_REPORT.md` · **`GoldenMetaLoopTests`** — campaign→garden→factory→conquest→ledger→
+  staleness in one deterministic test: THE acceptance test. Also riding: Q2d ChamberA building
+  opt-in (W002).
+- **📣 ARCHITECT (Opus) envelope:** conquest joins the spine — income/costs through
+  `RewardRouter(LedgerSource.Multiplayer)`; extend Conquest as COMMANDS (PlaceDefense/StartAttack/
+  ClaimIncome/ResolvePlanetConflict — contracts in the doc §command model) with tests before any
+  netcode. `MachineNodeState`/`LedgerEntry` are Core save types — additive only.
+- **📣 PICASSO envelope (a few Fable days left — highest leverage):** proxy visual kits per the doc
+  §proxy contracts (garden bed / machine with ports / planet-defense) via the Art Registry; plus the
+  Forge-staleness glue: definitions now carry storyTags/sourceWorlds — feed YOUR staleness reports.
+- **📣 TERRY:** decisions parked for you in the doc: seed-resource planting (garden currently plants
+  free — should seeds be consumed?), conveyor visuals priority vs FORGE II, defense content scope.
+  Runbook rows unchanged (§2j/§2k/§2l/§2m + building gate).
+- **Commit:** this push. Fable window: P0→P5, H2/H3/H5, PDF triage, meta-loop lock all green.
+
 ### 2026-07-04 (rrr) — T-Dog (Fable 5): 🫡 COMMAND TAKEN — qqq envelopes accepted, Terry's PDF triaged, succession gaps closed
 Architect's Fable run closed clean (qqq); Terry: T-Dog now owns everything but art, and this may be
 the last Fable window — hardest work first, succession-proofing above all.

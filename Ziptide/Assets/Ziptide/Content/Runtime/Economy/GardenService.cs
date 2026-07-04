@@ -125,7 +125,8 @@ namespace Ziptide.Content
                 {
                     var y = plant.harvestYield[i];
                     if (y == null || string.IsNullOrEmpty(y.resourceId) || y.amount <= 0) continue;
-                    profile.AddResource(y.resourceId, y.amount * mult);
+                    RewardRouter.Grant(profile, LedgerSource.Garden, y.resourceId, y.amount * mult,
+                        reason: plant.id, relatedId: plot.plotId);
                     entries++;
                 }
             }

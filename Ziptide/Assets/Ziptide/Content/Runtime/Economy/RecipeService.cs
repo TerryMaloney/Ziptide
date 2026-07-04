@@ -33,7 +33,8 @@ namespace Ziptide.Content
             {
                 var c = recipe.costs[i];
                 if (c == null || string.IsNullOrEmpty(c.resourceId) || c.amount <= 0) continue;
-                profile.AddResource(c.resourceId, -c.amount);
+                RewardRouter.TrySpend(profile, LedgerSource.RecipeCost, c.resourceId, c.amount,
+                    reason: recipe.id);
             }
             return true;
         }

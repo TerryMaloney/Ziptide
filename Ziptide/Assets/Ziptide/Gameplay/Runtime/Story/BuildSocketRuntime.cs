@@ -96,7 +96,8 @@ namespace Ziptide.Gameplay
                 return;
             }
 
-            profile.AddResource("credits", -_def.buildCost);
+            RewardRouter.TrySpend(profile, LedgerSource.UpgradeCost, "credits", _def.buildCost,
+                reason: "build_" + _def.id, worldId: _worldId);
             // The built machine IS a mine save-entry — MiningRigRuntime.Init binds/creates it and the
             // idle economy picks it up like any authored extractor.
             RaiseRig();

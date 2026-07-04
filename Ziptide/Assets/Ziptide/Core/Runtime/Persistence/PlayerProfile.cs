@@ -13,7 +13,7 @@ namespace Ziptide.Core
     public class PlayerProfile
     {
         /// <summary>Bump when the shape changes; ProfileSerializer migrates older saves forward.</summary>
-        public const int CurrentSchemaVersion = 1;
+        public const int CurrentSchemaVersion = 2; // v2: META-LOOP — transaction ledger (additive)
 
         public int schemaVersion = CurrentSchemaVersion;
         public string playerId = "";
@@ -24,6 +24,9 @@ namespace Ziptide.Core
         public List<string> flags = new List<string>();
         public List<ResourceAmount> resources = new List<ResourceAmount>();
         public List<WorldState> worlds = new List<WorldState>();
+        /// <summary>Meta-Loop v2: the transaction ledger (ring-capped; see ResourceLedger).
+        /// Mutate ONLY through RewardRouter — the mode contract's single economy path.</summary>
+        public List<LedgerEntry> ledger = new List<LedgerEntry>();
 
         // ── Flags ───────────────────────────────────────────────────────────
         public bool HasFlag(string flag) => !string.IsNullOrEmpty(flag) && flags.Contains(flag);
@@ -97,5 +100,8 @@ namespace Ziptide.Core
 
         public List<MineState> mines = new List<MineState>();   // placed extractors (idle production)
         public List<PlotState> plots = new List<PlotState>();   // garden plots (time-based growth)
+        /// <summary>Meta-Loop v2: this world's factory layout + batch progress. The graph LAYOUT is
+        /// the save-truth (visuals are a skin); ProductionGraph (Content) simulates it.</summary>
+        public List<MachineNodeState> factory = new List<MachineNodeState>();
     }
 }
