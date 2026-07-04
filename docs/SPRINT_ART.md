@@ -69,8 +69,8 @@ is the confirmed perf floor. The two qqq envelopes fold in as E5.1 (building mod
 |---|------|--------|
 | E1.1 | UV atlas in ForgeMesh + tangents + tests (visuals unchanged) | ✅ `241f2c4`+fix `f6415f5` (CI green) |
 | E1.2 | ForgeTexture rasterizer + albedo styles + schemaVersion 2 → textured taser in booth ("not flat" checkpoint) | ✅ `ba6f869`+tune `6e0509c` — CI green, checkpoint photos verified |
-| R1–R4 | **ASSET FORGE RECONCILIATION** (Terry-approved 2026-07-04, map in `ASSET_FORGE_MAP.md`): R1 docs `3929246` · R2 lifecycle/lock/refs `541c6a3` · R3 staleness buckets + manifest `6cfabfc` · R4 stalker proxy `215e110` + v2 photo-critique pass (bent-knee legs, outboard sacs — this commit) | ✅ pushed — **E1.3 RESUMES NEXT** (normal/MSA/emissive maps per FORGE_II doc §E1.3) |
-| E1.3 | Normal/MSA/emissive maps + ONE material per asset | ⬜ |
+| R1–R4 | **ASSET FORGE RECONCILIATION** (Terry-approved 2026-07-04, map in `ASSET_FORGE_MAP.md`): R1 docs `3929246` · R2 lifecycle/lock/refs `541c6a3` · R3 staleness buckets + manifest `6cfabfc` · R4 stalker `215e110`→v3 `196f57d` (photo loop ×3: `Limb()` joint-point legs; turnarounds pass, run `28692323345`) | ✅ **ALL CLOSED** — E1.3 active |
+| E1.3 | Normal/MSA/emissive maps + ONE material per asset | 🟡 ACTIVE |
 | E1.4 | ForgeBaker (build-time bake → ASTC) + gitignore + applier/booth prefer baked → **Terry photo checkpoint** | ⬜ |
 | E5.2 | PERF_BUDGET audit gate (independent — do anytime, 1 commit) | ⬜ |
 | P2 | New ops (Capsule/Frustum/Torus/SweepSpline/OrganicBlob) + modifiers + Quest-3 class budgets | ⬜ |

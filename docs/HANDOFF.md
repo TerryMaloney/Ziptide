@@ -28,6 +28,16 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-04 (aaaa) — Picasso (Fable 5): ✅ R4 CLOSED — stalker v3 passes the rubric; E1.3 opened
+- **Did:** v3 turnarounds (photos run `28692323345` on `9b890f1`) PASS: legs connect at the body,
+  bend at the knee, plant on the ground; arched ambush-crab silhouette reads at a glance; teal
+  toxin sacs read in silhouette; no forbidden aesthetics. The `Limb(from,to)` joint-point builder
+  (`196f57d`) is what fixed it — reuse it for every future multi-segment limb. Reconciliation
+  R1–R4 now fully closed on the SPRINT_ART board.
+- **Next-CLAIMED:** **FORGE II E1.3** — normal/MSA/emissive maps in ForgeTexture + ONE material
+  per asset, per `FORGE_II_QUALITY_LEAP.md` §E1.3.
+- **Commit:** _(this one)_
+
 ### 2026-07-04 (zzz) — Picasso (Fable 5): 🚑 CI un-broken — duplicate ResourceDefinition removed (heads-up, economy session)
 - **Did:** `54f75ba` (META-LOOP economy spine) went CI-RED: its new
   `Content/Runtime/Economy/ResourceDefinition.cs` collided with the pre-existing
