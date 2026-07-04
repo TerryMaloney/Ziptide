@@ -28,6 +28,19 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-04 (zzz) — Picasso (Fable 5): 🚑 CI un-broken — duplicate ResourceDefinition removed (heads-up, economy session)
+- **Did:** `54f75ba` (META-LOOP economy spine) went CI-RED: its new
+  `Content/Runtime/Economy/ResourceDefinition.cs` collided with the pre-existing
+  `Content/Runtime/Definitions/ResourceDefinition.cs` (CS0101 + duplicate CreateAssetMenu), which
+  broke compile for every lane. Verified before acting: all live consumers (`EconomyAuthor`,
+  `EconomyAuditRules`) use the NEW class's fields; the old file's `baseValue/tier/color` had zero
+  consumers; no serialized asset references the old script GUID. **Deleted the old file + .meta**
+  (this commit) — the new Economy/ version is the one truth.
+- **Heads-up (economy session):** if you meant to keep `baseValue`-style pricing, add it to YOUR
+  `Economy/ResourceDefinition.cs` — don't restore the Definitions/ copy. And per the laws: check
+  your own CI run before ending a stretch; this one shipped red.
+- **Commit:** _(this one)_
+
 ### 2026-07-04 (yyy) — Picasso (Fable 5): 🦀 stalker v2 — first full creature photo-critique cycle
 - **Did:** Reviewed the `tox_canal_stalker_01` v1 turnarounds from `forge-photos` (run on `215e110`).
   Rubric verdict: body/carapace/glow read, but **legs read as flat sticks** (single-segment boxes),
