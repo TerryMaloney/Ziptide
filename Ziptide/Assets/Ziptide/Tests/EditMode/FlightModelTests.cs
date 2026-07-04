@@ -71,8 +71,10 @@ namespace Ziptide.Tests.EditMode
         [Test]
         public void SoftWall_BleedsSpeedInsteadOfHardStopping()
         {
+            // One 72Hz tick at maxSpeed covers ~0.55m — start INSIDE that distance of the wall so
+            // this tick actually crosses it (the first CI run started 1m out and never touched it).
             var s = default(FlightState);
-            s.position = Vector3.forward * (P.laneRadius - 1f);
+            s.position = Vector3.forward * (P.laneRadius - 0.3f);
             s.speed = P.maxSpeed;
             s = FlightModel.Tick(s, P, 1f, 0f, 1f / 72f);
             Assert.Less(s.speed, P.maxSpeed, "wall contact should bleed speed");
