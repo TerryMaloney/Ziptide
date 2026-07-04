@@ -36,11 +36,17 @@
   knee** (upper reaches up-and-out, lower drops to the footfall — sells "coiled to lunge"), sacs
   pushed outboard to x=0.31, gill bank enlarged/forward, plate sunk into the dome. ~12 parts;
   budget 2000 tris enforced by `FORGE_RECIPE_OVER_BUDGET` + library tests.
-- **Next-CLAIMED:** view the v2 turnarounds; if it reads, R4 is closed → **FORGE II E1.3**
+- **v2 verdict (photos on `395e286`):** sacs now read in silhouette ✅, but the hand-tuned leg
+  eulers left upper/lower segments FLOATING APART at the knee — read as scattered slabs. **v3 (this
+  commit):** new `Limb(from, to, …)` helper in the library builds each segment BETWEEN explicit
+  hip/knee/foot joint points (`Quaternion.FromToRotation`, ends extended past the joint) so knees
+  connect by construction; knee raised ABOVE the hip for the arched crab stance; gill bank sunk.
+- **Next-CLAIMED:** view the v3 turnarounds; if it reads, R4 is closed → **FORGE II E1.3**
   (normal/MSA/emissive, ONE material per asset) per `FORGE_II_QUALITY_LEAP.md`.
-- **Heads-up:** lesson for the studio guide rubric — mirrored single-box limbs ALWAYS read as sticks;
-  creature limbs need ≥2 segments per the silhouette rule even at proxy tier.
-- **Commit:** _(this one)_
+- **Heads-up:** two rubric lessons — (1) mirrored single-box limbs ALWAYS read as sticks; limbs need
+  ≥2 segments even at proxy tier. (2) never hand-tune segment eulers to meet at a joint; use
+  `Limb()` with joint points — geometry by construction, not by eye.
+- **Commit:** `395e286` (v2), _(this one — v3)_
 
 ### 2026-07-04 (xxx) — Picasso (Fable 5): 🗺 ASSET FORGE RECONCILIATION SHIPPED (R1–R4) — external spec absorbed, improvements only
 Terry approved reconciling an external "Asset Forge" architecture brief: ~70% already existed here

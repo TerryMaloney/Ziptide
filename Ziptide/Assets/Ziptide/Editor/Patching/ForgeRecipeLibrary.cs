@@ -215,60 +215,31 @@ namespace Ziptide.Editor.Patching
                     name = "Carapace", op = ForgeOp.SphereSection, bevel = 0.5f, segments = 12, smooth = true,
                     size = new Vector3(0.66f, 0.34f, 0.8f), position = new Vector3(0f, 0.36f, -0.06f), paletteSlot = 1
                 },
-                new ForgePart // scavenged industrial plate — sunk into the dome, heavy grime (v2: read as cardboard)
+                new ForgePart // scavenged industrial plate — sunk into the dome, heavy grime
                 {
                     name = "ScrapPlate", op = ForgeOp.BeveledBox, bevel = 0.008f,
-                    size = new Vector3(0.28f, 0.03f, 0.38f), position = new Vector3(0.08f, 0.47f, 0.0f),
+                    size = new Vector3(0.28f, 0.05f, 0.38f), position = new Vector3(0.08f, 0.46f, 0.0f),
                     eulerRotation = new Vector3(6f, 22f, 9f), paletteSlot = 1
                 },
-                // Legs v2: TWO segments each — upper reaches up-and-out from the hip, lower drops
-                // to a footfall. The bent knee is what sells "coiled to lunge" (v1 read as sticks).
-                new ForgePart
-                {
-                    name = "LegFrontUpper", op = ForgeOp.BeveledBox, bevel = 0.005f,
-                    size = new Vector3(0.065f, 0.3f, 0.08f), position = new Vector3(0.36f, 0.36f, 0.24f),
-                    eulerRotation = new Vector3(0f, -15f, 65f), mirrorX = true, paletteSlot = 0
-                },
-                new ForgePart
-                {
-                    name = "LegFrontLower", op = ForgeOp.BeveledBox, bevel = 0.005f,
-                    size = new Vector3(0.055f, 0.42f, 0.07f), position = new Vector3(0.54f, 0.2f, 0.28f),
-                    eulerRotation = new Vector3(0f, -15f, -25f), mirrorX = true, paletteSlot = 0
-                },
-                new ForgePart
-                {
-                    name = "LegMidUpper", op = ForgeOp.BeveledBox, bevel = 0.005f,
-                    size = new Vector3(0.065f, 0.32f, 0.08f), position = new Vector3(0.38f, 0.38f, -0.02f),
-                    eulerRotation = new Vector3(0f, 0f, 70f), mirrorX = true, paletteSlot = 0
-                },
-                new ForgePart
-                {
-                    name = "LegMidLower", op = ForgeOp.BeveledBox, bevel = 0.005f,
-                    size = new Vector3(0.055f, 0.44f, 0.07f), position = new Vector3(0.58f, 0.2f, -0.02f),
-                    eulerRotation = new Vector3(0f, 0f, -22f), mirrorX = true, paletteSlot = 0
-                },
-                new ForgePart
-                {
-                    name = "LegRearUpper", op = ForgeOp.BeveledBox, bevel = 0.005f,
-                    size = new Vector3(0.07f, 0.34f, 0.09f), position = new Vector3(0.35f, 0.38f, -0.27f),
-                    eulerRotation = new Vector3(0f, 20f, 72f), mirrorX = true, paletteSlot = 0
-                },
-                new ForgePart
-                {
-                    name = "LegRearLower", op = ForgeOp.BeveledBox, bevel = 0.005f,
-                    size = new Vector3(0.06f, 0.46f, 0.08f), position = new Vector3(0.56f, 0.21f, -0.32f),
-                    eulerRotation = new Vector3(0f, 20f, -20f), mirrorX = true, paletteSlot = 0
-                },
+                // Legs v3: each leg is hip→knee→foot with the knee ABOVE the hip (arched crab
+                // stance); Limb() spans the joint points so the knee connects by construction
+                // (v2's hand-tuned eulers left the segments floating apart).
+                Limb("LegFrontUpper", new Vector3(0.24f, 0.30f, 0.20f), new Vector3(0.52f, 0.48f, 0.28f), 0.07f, 0.085f, 0),
+                Limb("LegFrontLower", new Vector3(0.52f, 0.48f, 0.28f), new Vector3(0.64f, 0.02f, 0.38f), 0.055f, 0.065f, 0),
+                Limb("LegMidUpper", new Vector3(0.24f, 0.30f, 0.00f), new Vector3(0.55f, 0.48f, -0.02f), 0.07f, 0.085f, 0),
+                Limb("LegMidLower", new Vector3(0.55f, 0.48f, -0.02f), new Vector3(0.70f, 0.02f, -0.05f), 0.055f, 0.065f, 0),
+                Limb("LegRearUpper", new Vector3(0.22f, 0.30f, -0.24f), new Vector3(0.50f, 0.46f, -0.34f), 0.07f, 0.085f, 0),
+                Limb("LegRearLower", new Vector3(0.50f, 0.46f, -0.34f), new Vector3(0.60f, 0.02f, -0.48f), 0.055f, 0.065f, 0),
                 new ForgePart // toxin sacs — pushed OUTBOARD so the glow reads in silhouette (v2)
                 {
                     name = "ToxinSac", op = ForgeOp.SphereSection, bevel = 1f, segments = 10, smooth = true,
                     size = new Vector3(0.18f, 0.15f, 0.2f), position = new Vector3(0.31f, 0.37f, -0.06f),
                     mirrorX = true, paletteSlot = 2
                 },
-                new ForgePart // filter-gill bank across the front — bigger, forward (v2: barely visible)
+                new ForgePart // filter-gill bank across the front, sunk into the hide (v2 poked out like a plank)
                 {
                     name = "GillBank", op = ForgeOp.GreebleStrip, segments = 6,
-                    size = new Vector3(0.11f, 0.1f, 0.34f), position = new Vector3(0f, 0.3f, 0.46f),
+                    size = new Vector3(0.11f, 0.1f, 0.34f), position = new Vector3(0f, 0.3f, 0.42f),
                     eulerRotation = new Vector3(0f, 90f, 0f), paletteSlot = 3
                 },
                 new ForgePart // pale underside plate
@@ -290,6 +261,25 @@ namespace Ziptide.Editor.Patching
         }
 
         // ── Builders ───────────────────────────────────────────────────────────────────────────────
+
+        /// <summary>
+        /// A limb segment spanning two joint points. Both ends extend 0.03 past the joint so
+        /// consecutive segments interpenetrate there — the knee connects by construction instead
+        /// of by hand-tuned eulers (which drift; see stalker v2).
+        /// </summary>
+        private static ForgePart Limb(string name, Vector3 from, Vector3 to, float width, float depth, int paletteSlot)
+        {
+            Vector3 d = to - from;
+            float len = d.magnitude;
+            return new ForgePart
+            {
+                name = name, op = ForgeOp.BeveledBox, bevel = 0.005f,
+                size = new Vector3(width, len + 0.06f, depth),
+                position = (from + to) * 0.5f,
+                eulerRotation = Quaternion.FromToRotation(Vector3.up, d / len).eulerAngles,
+                mirrorX = true, paletteSlot = paletteSlot
+            };
+        }
 
         private static ForgeRecipeDefinition NewRecipe(string id, string family, string[] tags, Color[] palette, int budgetTris)
         {
