@@ -142,6 +142,84 @@ namespace Ziptide.Tests.EditMode
             Assert.Greater(max - min, 0.1f, "the bake is still flat — no surface information");
         }
 
+        // ── FORGE II E1.3: normal / MSA / emissive map contracts ────────────
+
+        [Test]
+        public void Normal_IsExactlyNeutral_WhereTheStyleAddsNoDetail()
+        {
+            var r = ScriptableObject.CreateInstance<ForgeRecipeDefinition>();
+            r.recipeId = "flat_test";
+            r.palette = new[] { Color.gray };
+            r.slotStyles = new[] { new ForgeStyleSpec { style = ForgeStyle.PaintedMetal, wear = 0f, grime = 0f, panelDensity = 0f } };
+            r.parts = new[] { new ForgePart { name = "Box", op = ForgeOp.BeveledBox, size = new Vector3(0.2f, 0.1f, 0.3f), bevel = 0.01f, paletteSlot = 0 } };
+
+            var meta = ForgeTexture.BakeMeta(r, S);
+            var px = new Color32[S * S];
+            ForgeTexture.BakeNormal(r, meta, S, px);
+            var neutral = new Color32(128, 128, 255, 255);
+            for (int i = 0; i < px.Length; i++)
+                Assert.AreEqual(neutral, px[i], "detail-free style must bake a perfectly neutral normal at " + i);
+        }
+
+        [Test]
+        public void Normal_PanelGrooves_BendNormals_AndBakeIsDeterministic()
+        {
+            var r = TwoPartRecipe(); // slot 0 has panelDensity 2 + wear
+            var meta = ForgeTexture.BakeMeta(r, S);
+            var a = new Color32[S * S];
+            var b = new Color32[S * S];
+            ForgeTexture.BakeNormal(r, meta, S, a);
+            ForgeTexture.BakeNormal(r, ForgeTexture.BakeMeta(r, S), S, b);
+            CollectionAssert.AreEqual(a, b, "normal bake must be deterministic");
+
+            int bent = 0;
+            var neutral = new Color32(128, 128, 255, 255);
+            for (int i = 0; i < a.Length; i++)
+                if (meta[i].covered && meta[i].slot == 0 && !a[i].Equals(neutral)) bent++;
+            Assert.Greater(bent, 20, "grooved/worn style produced no normal detail");
+        }
+
+        [Test]
+        public void MSA_StyleResponses_MatchTheMaterialVocabulary()
+        {
+            var t = new ForgeTexture.Texel { covered = true, u = 0.4f, v = 0.6f, edge01 = 1f, up01 = 1f };
+            float metalM = ForgeTexture.ComposeMetalSmooth(new ForgeStyleSpec { style = ForgeStyle.BareMetal, wear = 0f, grime = 0f }, t).x;
+            float slimeS = ForgeTexture.ComposeMetalSmooth(new ForgeStyleSpec { style = ForgeStyle.Slime, grime = 0f }, t).y;
+            float stoneS = ForgeTexture.ComposeMetalSmooth(new ForgeStyleSpec { style = ForgeStyle.Stone, grime = 0f }, t).y;
+            Assert.Greater(metalM, 0.7f, "bare metal must be metallic");
+            Assert.Greater(slimeS, stoneS + 0.3f, "wet slime must be far glossier than stone");
+        }
+
+        [Test]
+        public void MSA_GrimeRoughensDownFaces()
+        {
+            var spec = new ForgeStyleSpec { style = ForgeStyle.PaintedMetal, wear = 0f, grime = 1f };
+            var down = new ForgeTexture.Texel { covered = true, u = 0.11f, v = 0.83f, edge01 = 1f, up01 = 0f };
+            var up = down; up.up01 = 1f;
+            Assert.Less(ForgeTexture.ComposeMetalSmooth(spec, down).y,
+                ForgeTexture.ComposeMetalSmooth(spec, up).y - 0.02f,
+                "grimed down-faces must be rougher");
+        }
+
+        [Test]
+        public void Emissive_OnlyGlowSlots_Emit()
+        {
+            var r = TwoPartRecipe(); // slot 1 = GlowPanel cyan
+            var meta = ForgeTexture.BakeMeta(r, S);
+            var px = new Color32[S * S];
+            ForgeTexture.BakeEmissive(r, meta, S, px);
+
+            int lit = 0;
+            for (int i = 0; i < px.Length; i++)
+            {
+                if (!meta[i].covered) continue; // gutters may carry dilated bleed
+                bool black = px[i].r == 0 && px[i].g == 0 && px[i].b == 0;
+                if (meta[i].slot == 0) Assert.IsTrue(black, "non-glow slot emitted at " + i);
+                else if (!black) lit++;
+            }
+            Assert.Greater(lit, 20, "the glow slot baked no emission");
+        }
+
         [Test]
         public void Voronoi_IsDeterministic_AndBounded()
         {

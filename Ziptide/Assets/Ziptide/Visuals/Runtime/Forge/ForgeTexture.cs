@@ -186,8 +186,7 @@ namespace Ziptide.Visuals
                     pixels[i] = SkyVistaTexture.DitherTo32(ComposeAlbedo(baseCol, spec, tx), x, y);
                 }
 
-            Dilate(meta, size, pixels);
-            Dilate2(meta, size, pixels);
+            DilatePixels(meta, size, pixels);
         }
 
         /// <summary>One texel's albedo — the layer stack from FORGE_II_QUALITY_LEAP §P1.</summary>
@@ -273,6 +272,229 @@ namespace Ziptide.Visuals
             return c;
         }
 
+        // ── E1.3: height field → normal map ─────────────────────────────────
+
+        /// <summary>
+        /// One texel's surface height, 0.5 neutral. EXACTLY 0.5 when the style adds no relief
+        /// (the map-content contract: normal map neutral where no detail) — features use the SAME
+        /// masks/seeds as the albedo layers so relief and color align texel-for-texel.
+        /// </summary>
+        public static float ComposeHeight(ForgeStyleSpec spec, Texel tx)
+        {
+            float h = 0.5f;
+
+            switch (spec.style)
+            {
+                case ForgeStyle.RustedMetal:
+                {
+                    float rust = SkyVistaTexture.Fbm(tx.u * 7f + 3f, tx.v * 7f + 9f, 47, 3);
+                    if (rust > 0.55f) h -= (rust - 0.55f) / 0.45f * 0.12f; // rust pits in
+                    break;
+                }
+                case ForgeStyle.Chitin:
+                {
+                    float f1 = Voronoi(tx.u / spec.cellSize, tx.v / spec.cellSize, 53);
+                    h -= (1f - Mathf.SmoothStep(0f, 0.35f, f1)) * 0.18f;  // cell-border grooves
+                    break;
+                }
+                case ForgeStyle.Stone:
+                {
+                    float m = SkyVistaTexture.Fbm(tx.u * 9f, tx.v * 9f, 61, 3);
+                    h -= Mathf.SmoothStep(0.55f, 0.8f, m) * 0.15f;        // cracks
+                    break;
+                }
+                case ForgeStyle.Bark:
+                {
+                    float stripe = Mathf.Abs(Mathf.Sin(tx.v * 40f + SkyVistaTexture.Fbm(tx.u * 5f, tx.v * 5f, 71, 2) * 6f));
+                    h += (stripe - 0.5f) * 0.2f;                           // ridges
+                    break;
+                }
+                case ForgeStyle.Slime:
+                {
+                    float blotch = SkyVistaTexture.Fbm(tx.u * 6f, tx.v * 6f, 83, 2);
+                    h += Mathf.SmoothStep(0.5f, 0.75f, blotch) * 0.12f;    // wet bumps
+                    break;
+                }
+                case ForgeStyle.Leaf:
+                {
+                    float vein = Mathf.Abs(Mathf.Sin(tx.u * 3.1416f) * Mathf.Sin(tx.v * 28f));
+                    h += Mathf.SmoothStep(0.85f, 1f, vein) * 0.1f;         // raised veins
+                    break;
+                }
+                case ForgeStyle.GlowPanel:
+                    h -= 0.06f; // panel face sits slightly inset in its housing
+                    break;
+            }
+
+            // Panel-line grooves (same grid as the albedo lines).
+            if (spec.panelDensity > 0.01f)
+            {
+                float pu = Frac(tx.u * spec.panelDensity);
+                float pv = Frac(tx.v * spec.panelDensity);
+                float line = Mathf.Min(Mathf.Min(pu, 1f - pu), Mathf.Min(pv, 1f - pv));
+                if (line < 0.02f) h -= 0.18f;
+            }
+
+            // Edge wear rounds the corner off (same band as the albedo wear).
+            bool metalFamily = spec.style == ForgeStyle.PaintedMetal || spec.style == ForgeStyle.BareMetal
+                || spec.style == ForgeStyle.RustedMetal || spec.style == ForgeStyle.GlowPanel;
+            if (metalFamily && spec.wear > 0.01f)
+            {
+                float band = 0.05f + 0.18f * spec.wear;
+                h -= Mathf.SmoothStep(band, 0f, tx.edge01) * 0.1f * spec.wear;
+            }
+
+            return h;
+        }
+
+        private const float NormalStrength = 6f; // height-delta → slope scale (groove ≈ 45°)
+
+        /// <summary>
+        /// Tangent-space normal map: per-texel height (ComposeHeight) → central differences →
+        /// encoded RGB. Neighbors outside the texel's island fall back to its own height, so
+        /// island borders stay flat instead of reading as cliffs. Uncovered texels are neutral.
+        /// </summary>
+        public static void BakeNormal(ForgeRecipeDefinition recipe, Texel[] meta, int size, Color32[] pixels)
+        {
+            if (pixels == null || pixels.Length != size * size) return;
+
+            var height = new float[size * size];
+            for (int i = 0; i < height.Length; i++)
+                height[i] = meta[i].covered ? ComposeHeight(SlotStyle(recipe, meta[i].slot), meta[i]) : 0.5f;
+
+            var neutral = new Color32(128, 128, 255, 255);
+            for (int y = 0; y < size; y++)
+                for (int x = 0; x < size; x++)
+                {
+                    int i = y * size + x;
+                    if (!meta[i].covered) { pixels[i] = neutral; continue; }
+
+                    float c = height[i];
+                    float Sample(int nx, int ny)
+                    {
+                        if (nx < 0 || ny < 0 || nx >= size || ny >= size) return c;
+                        int n = ny * size + nx;
+                        return meta[n].covered && meta[n].slot == meta[i].slot ? height[n] : c;
+                    }
+                    float dx = (Sample(x - 1, y) - Sample(x + 1, y)) * NormalStrength;
+                    float dy = (Sample(x, y - 1) - Sample(x, y + 1)) * NormalStrength;
+                    Vector3 n3 = new Vector3(dx, dy, 1f).normalized;
+                    pixels[i] = new Color32(
+                        (byte)Mathf.RoundToInt((n3.x * 0.5f + 0.5f) * 255f),
+                        (byte)Mathf.RoundToInt((n3.y * 0.5f + 0.5f) * 255f),
+                        (byte)Mathf.RoundToInt((n3.z * 0.5f + 0.5f) * 255f), 255);
+                }
+        }
+
+        // ── E1.3: metallic-smoothness (URP _MetallicGlossMap: R=metallic, A=smoothness) ──
+
+        /// <summary>Per-style base surface response (metallic, smoothness).</summary>
+        public static Vector2 StyleMetalSmooth(ForgeStyle style)
+        {
+            switch (style)
+            {
+                case ForgeStyle.PaintedMetal: return new Vector2(0.15f, 0.45f);
+                case ForgeStyle.BareMetal: return new Vector2(0.85f, 0.55f);
+                case ForgeStyle.RustedMetal: return new Vector2(0.55f, 0.35f);
+                case ForgeStyle.Chitin: return new Vector2(0f, 0.55f);
+                case ForgeStyle.Slime: return new Vector2(0f, 0.85f); // wet — the hide's tell
+                case ForgeStyle.Stone: return new Vector2(0f, 0.18f);
+                case ForgeStyle.Bark: return new Vector2(0f, 0.15f);
+                case ForgeStyle.Leaf: return new Vector2(0f, 0.4f);
+                case ForgeStyle.GlowPanel: return new Vector2(0.2f, 0.5f);
+                default: return new Vector2(0f, 0.4f);
+            }
+        }
+
+        /// <summary>One texel's (metallic, smoothness) — same masks as the albedo layers.</summary>
+        public static Vector2 ComposeMetalSmooth(ForgeStyleSpec spec, Texel tx)
+        {
+            Vector2 ms = StyleMetalSmooth(spec.style);
+
+            if (spec.style == ForgeStyle.RustedMetal)
+            {
+                float rust = SkyVistaTexture.Fbm(tx.u * 7f + 3f, tx.v * 7f + 9f, 47, 3);
+                if (rust > 0.55f)
+                {
+                    float k = (rust - 0.55f) / 0.45f * 0.8f;
+                    ms.x = Mathf.Lerp(ms.x, 0.1f, k);  // rust is not metallic
+                    ms.y = Mathf.Lerp(ms.y, 0.15f, k); // and very rough
+                }
+            }
+
+            bool metalFamily = spec.style == ForgeStyle.PaintedMetal || spec.style == ForgeStyle.BareMetal
+                || spec.style == ForgeStyle.RustedMetal || spec.style == ForgeStyle.GlowPanel;
+            if (metalFamily && spec.wear > 0.01f)
+            {
+                float band = 0.05f + 0.18f * spec.wear;
+                float wearNoise = SkyVistaTexture.ValueNoise(tx.u * 40f, tx.v * 40f, 97);
+                float w = Mathf.SmoothStep(band, 0f, tx.edge01) * (0.5f + 0.5f * wearNoise) * spec.wear;
+                ms.x = Mathf.Lerp(ms.x, 0.9f, w);      // worn edges show bare metal
+                ms.y = Mathf.Lerp(ms.y, 0.65f, w);
+            }
+
+            if (spec.grime > 0.01f)
+            {
+                float g = spec.grime * (1f - tx.up01) * (0.5f + 0.5f * SkyVistaTexture.Fbm(tx.u * 10f + 7f, tx.v * 10f + 3f, 103, 2));
+                g = Mathf.Min(g, 0.55f);
+                ms.x *= 1f - 0.5f * g;                 // grime dulls both
+                ms.y *= 1f - 0.7f * g;
+            }
+
+            return ms;
+        }
+
+        /// <summary>Bake the _MetallicGlossMap atlas: R=metallic, G=255 (unused), B=0, A=smoothness.</summary>
+        public static void BakeMSA(ForgeRecipeDefinition recipe, Texel[] meta, int size, Color32[] pixels)
+        {
+            if (pixels == null || pixels.Length != size * size) return;
+            for (int i = 0; i < pixels.Length; i++)
+            {
+                if (!meta[i].covered) { pixels[i] = new Color32(0, 255, 0, 100); continue; }
+                Vector2 ms = ComposeMetalSmooth(SlotStyle(recipe, meta[i].slot), meta[i]);
+                pixels[i] = new Color32(
+                    (byte)Mathf.RoundToInt(Mathf.Clamp01(ms.x) * 255f), 255, 0,
+                    (byte)Mathf.RoundToInt(Mathf.Clamp01(ms.y) * 255f));
+            }
+            DilatePixels(meta, size, pixels);
+        }
+
+        // ── E1.3: emissive map (GlowPanel slots only) ───────────────────────
+
+        /// <summary>Brightest glow intensity in the recipe — the material's _EmissionColor scalar;
+        /// per-slot intensity is baked into the map relative to it.</summary>
+        public static float MaxEmissiveIntensity(ForgeRecipeDefinition recipe)
+        {
+            float max = 0f;
+            if (recipe != null && recipe.slotStyles != null)
+                foreach (var s in recipe.slotStyles)
+                    if (s != null && s.style == ForgeStyle.GlowPanel && s.emissiveIntensity > max)
+                        max = s.emissiveIntensity;
+            return max;
+        }
+
+        /// <summary>Bake the _EmissionMap atlas: glow-slot texels carry their color (scaled to the
+        /// recipe's brightest glow, soft fbm breakup); everything else is black.</summary>
+        public static void BakeEmissive(ForgeRecipeDefinition recipe, Texel[] meta, int size, Color32[] pixels)
+        {
+            if (pixels == null || pixels.Length != size * size) return;
+            float maxI = Mathf.Max(0.0001f, MaxEmissiveIntensity(recipe));
+            var black = new Color32(0, 0, 0, 255);
+
+            for (int y = 0; y < size; y++)
+                for (int x = 0; x < size; x++)
+                {
+                    int i = y * size + x;
+                    var tx = meta[i];
+                    var spec = tx.covered ? SlotStyle(recipe, tx.slot) : null;
+                    if (spec == null || spec.style != ForgeStyle.GlowPanel) { pixels[i] = black; continue; }
+                    float rel = Mathf.Clamp01(spec.emissiveIntensity / maxI)
+                        * (0.85f + 0.15f * SkyVistaTexture.Fbm(tx.u * 5f, tx.v * 5f, 113, 2));
+                    pixels[i] = SkyVistaTexture.DitherTo32(spec.emissive * rel, x, y);
+                }
+            DilatePixels(meta, size, pixels);
+        }
+
         // ── Helpers ─────────────────────────────────────────────────────────
 
         public static Color SlotColor(ForgeRecipeDefinition r, int slot)
@@ -301,45 +523,36 @@ namespace Ziptide.Visuals
             return Mathf.Sqrt(best);
         }
 
-        /// <summary>One-ring dilation of covered colors into uncovered texels (bilinear gutter bleed).</summary>
-        private static void Dilate(Texel[] meta, int size, Color32[] px)
+        /// <summary>
+        /// Two-ring dilation of covered colors into uncovered gutter texels (bilinear/mip bleed
+        /// safety). NON-MUTATING on meta — a local coverage copy tracks the growing ring, so one
+        /// BakeMeta result can feed every map bake (albedo/normal/MSA/emissive) untouched.
+        /// </summary>
+        private static void DilatePixels(Texel[] meta, int size, Color32[] px)
         {
-            var copy = (Color32[])px.Clone();
-            for (int y = 0; y < size; y++)
-                for (int x = 0; x < size; x++)
-                {
-                    int i = y * size + x;
-                    if (meta[i].covered) continue;
-                    for (int oy = -1; oy <= 1 && !meta[i].covered; oy++)
-                        for (int ox = -1; ox <= 1; ox++)
-                        {
-                            int nx = x + ox, ny = y + oy;
-                            if (nx < 0 || ny < 0 || nx >= size || ny >= size) continue;
-                            if (meta[ny * size + nx].covered) { px[i] = copy[ny * size + nx]; meta[i].covered = true; meta[i].slot = 254; goto next; }
-                        }
-                    next: ;
-                }
-            // Un-mark the bleed ring so a second pass extends it one more texel.
-            for (int i = 0; i < meta.Length; i++) if (meta[i].slot == 254) { meta[i].slot = 255; }
-        }
+            var covered = new bool[meta.Length];
+            for (int i = 0; i < meta.Length; i++) covered[i] = meta[i].covered;
 
-        private static void Dilate2(Texel[] meta, int size, Color32[] px)
-        {
-            var copy = (Color32[])px.Clone();
-            for (int y = 0; y < size; y++)
-                for (int x = 0; x < size; x++)
-                {
-                    int i = y * size + x;
-                    if (meta[i].covered) continue;
-                    for (int oy = -1; oy <= 1; oy++)
-                        for (int ox = -1; ox <= 1; ox++)
-                        {
-                            int nx = x + ox, ny = y + oy;
-                            if (nx < 0 || ny < 0 || nx >= size || ny >= size) continue;
-                            if (meta[ny * size + nx].covered) { px[i] = copy[ny * size + nx]; goto next; }
-                        }
-                    next: ;
-                }
+            for (int ring = 0; ring < 2; ring++)
+            {
+                var copy = (Color32[])px.Clone();
+                var grown = (bool[])covered.Clone();
+                for (int y = 0; y < size; y++)
+                    for (int x = 0; x < size; x++)
+                    {
+                        int i = y * size + x;
+                        if (covered[i]) continue;
+                        for (int oy = -1; oy <= 1; oy++)
+                            for (int ox = -1; ox <= 1; ox++)
+                            {
+                                int nx = x + ox, ny = y + oy;
+                                if (nx < 0 || ny < 0 || nx >= size || ny >= size) continue;
+                                if (covered[ny * size + nx]) { px[i] = copy[ny * size + nx]; grown[i] = true; goto next; }
+                            }
+                        next: ;
+                    }
+                covered = grown;
+            }
         }
 
         private static float Frac(float f) => f - Mathf.Floor(f);
