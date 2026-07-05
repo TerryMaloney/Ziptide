@@ -15,10 +15,12 @@ namespace Ziptide.Gameplay
     [RequireComponent(typeof(CharacterController))]
     public class DashLocomotion : MonoBehaviour
     {
+        private const float FallbackWalkSpeed = 3f; // matches LocomotionProfile.moveSpeed default
+
         private float _jumpHeight = 1.1f;
         private float _gravity = 16f;
         private float _jumpCooldown = 0.2f;
-        private float _sprintMultiplier = 1.9f;
+        private float _sprintMultiplier = 2f;
 
         private CharacterController _cc;
         private ActionBasedContinuousMoveProvider _moveProvider;
@@ -43,6 +45,13 @@ namespace Ziptide.Gameplay
             _jumpCooldown = Mathf.Max(0.05f, cooldown);
         }
 
+        /// <summary>Profile-driven sprint. Values ≤1 (including 0 from pre-sprint assets that
+        /// lack the field) keep the built-in default rather than disabling sprint.</summary>
+        public void ConfigureSprint(float multiplier)
+        {
+            if (multiplier > 1.01f) _sprintMultiplier = Mathf.Min(multiplier, 4f);
+        }
+
         private void OnEnable()
         {
             _cc = GetComponent<CharacterController>();
@@ -51,11 +60,12 @@ namespace Ziptide.Gameplay
             // Guarantee a usable walk speed even if no per-scene LocomotionDirector configured it
             // (fixes "can't move in the test room"). Diagnostic logs the real rig state.
             if (_moveProvider != null && _moveProvider.moveSpeed < 0.1f)
-                _moveProvider.moveSpeed = 1.75f;
+                _moveProvider.moveSpeed = FallbackWalkSpeed;
             EnsureMoveActionsEnabled();
             Debug.Log("ZIPTIDE: LOCO_STATE moveProvider=" + (_moveProvider != null)
                 + " moveSpeed=" + (_moveProvider != null ? _moveProvider.moveSpeed : 0f)
                 + " cc=" + (_cc != null) + " ccEnabled=" + (_cc != null && _cc.enabled));
+            Debug.Log("ZIPTIDE: CONTROLS move=left-stick turn=right-stick sprint=hold-L3 jump=A menu=hold-Y+B");
 
             if (_jumpAction == null)
             {
@@ -91,7 +101,7 @@ namespace Ziptide.Gameplay
 
             // Keep walk speed alive across scene loads if something zeroed it.
             if (!_sprinting && _moveProvider != null && _moveProvider.moveSpeed < 0.1f)
-                _moveProvider.moveSpeed = 1.75f;
+                _moveProvider.moveSpeed = FallbackWalkSpeed;
 
             HandleSprint();
             HandleJump();
@@ -101,16 +111,22 @@ namespace Ziptide.Gameplay
         {
             if (_moveProvider == null) return;
 
+            // Track the walk speed while NOT sprinting so a mid-sprint profile change
+            // (scene travel reapplies LocomotionDirector) can't restore a stale base.
+            if (!_sprinting && _moveProvider.moveSpeed >= 0.1f)
+                _baseMoveSpeed = _moveProvider.moveSpeed;
+
             bool wantSprint = _sprintAction != null && _sprintAction.IsPressed();
             if (wantSprint && !_sprinting)
             {
-                _baseMoveSpeed = _moveProvider.moveSpeed;
                 _moveProvider.moveSpeed = _baseMoveSpeed * _sprintMultiplier;
                 _sprinting = true;
+                Debug.Log("ZIPTIDE: LOCO_STATE sprint=true speed=" + _moveProvider.moveSpeed);
             }
             else if (!wantSprint && _sprinting)
             {
                 EndSprint();
+                Debug.Log("ZIPTIDE: LOCO_STATE sprint=false speed=" + _moveProvider.moveSpeed);
             }
         }
 

@@ -12,9 +12,14 @@ namespace Ziptide.Content
     public class LocomotionProfile : ScriptableObject
     {
         [Header("Movement")]
-        public float moveSpeed = 1.75f;
+        [Tooltip("Base walk speed m/s. Test Day 1: 1.75 felt like wading — Fortnite-class base is ~3.")]
+        public float moveSpeed = 3f;
         public bool useGravity = true;
         public bool enableStrafe = false;
+
+        [Header("Sprint (hold/click LEFT thumbstick)")]
+        [Tooltip("Sprint speed = moveSpeed x this. ~2.0 lands near Fortnite sprint (6 m/s).")]
+        public float sprintMultiplier = 2f;
 
         [Header("Turning")]
         public TurnMode turnMode = TurnMode.Smooth;

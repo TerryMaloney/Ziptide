@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89798d2e1da427640a3f63abab46aaa5, type: 3}
   m_Name: DefaultLocomotionProfile
   m_EditorClassIdentifier: 
-  moveSpeed: 1.75
+  moveSpeed: 3
   useGravity: 1
   enableStrafe: 0
+  sprintMultiplier: 2
   turnMode: 0
   smoothTurnSpeed: 120
   snapTurnAngle: 45
