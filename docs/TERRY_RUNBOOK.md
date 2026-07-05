@@ -252,9 +252,10 @@ Your click creates the starting spec for every existing world:
 ## 2l. NEW — git safety, one-time (~2 min; from your PDF's version-control chapter)
 Four operators + you push to one branch — this makes scene-file collisions unable to corrupt anything:
 - [ ] In PowerShell, in the repo (exact commands also in `docs/AI_WORKFLOW.md` §Smart Merge):
-  `$uy = "C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\Tools\UnityYAMLMerge.exe"`
   `git config --global merge.unityyamlmerge.name "Unity SmartMerge"`
-  `git config --global merge.unityyamlmerge.driver "`"$uy`" merge -p `"%O`" `"%B`" `"%A`" `"%A`""`
+  `git config --global merge.unityyamlmerge.driver '"C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Data\Tools\UnityYAMLMerge.exe" merge -p "%O" "%B" "%A" "%A"'`
+  *(single-quoted on purpose — the old backtick-escaped version fails to parse in Windows
+  PowerShell 5.1 with "error: invalid pattern"; tested 2026-07-05.)*
 - `.gitattributes` now also protects Terrain/NavMesh/Lighting pseudo-binaries and carries the LFS
   plan as comments (we deliberately DON'T enable LFS until the repo carries real audio/texture
   weight — the operators know the trigger).
