@@ -230,10 +230,11 @@ namespace Ziptide.Editor.Patching
                 Limb("LegMidLower", new Vector3(0.55f, 0.48f, -0.02f), new Vector3(0.70f, 0.02f, -0.05f), 0.055f, 0.065f, 0),
                 Limb("LegRearUpper", new Vector3(0.22f, 0.30f, -0.24f), new Vector3(0.50f, 0.46f, -0.34f), 0.07f, 0.085f, 0),
                 Limb("LegRearLower", new Vector3(0.50f, 0.46f, -0.34f), new Vector3(0.60f, 0.02f, -0.48f), 0.055f, 0.065f, 0),
-                new ForgePart // toxin sacs — pushed OUTBOARD so the glow reads in silhouette (v2)
+                new ForgePart // toxin sacs — outboard for silhouette, raised clear of the leg
+                // sight-lines (v4: a sac behind a leg bleeds a 1px glow outline around it)
                 {
                     name = "ToxinSac", op = ForgeOp.SphereSection, bevel = 1f, segments = 10, smooth = true,
-                    size = new Vector3(0.18f, 0.15f, 0.2f), position = new Vector3(0.31f, 0.37f, -0.06f),
+                    size = new Vector3(0.18f, 0.15f, 0.2f), position = new Vector3(0.3f, 0.44f, -0.11f),
                     mirrorX = true, paletteSlot = 2
                 },
                 new ForgePart // filter-gill bank across the front, sunk into the hide (v2 poked out like a plank)

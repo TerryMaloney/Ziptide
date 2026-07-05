@@ -28,6 +28,32 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-05 (bbbb) — Picasso (Fable 5): 🗺✨ E1.3 SHIPPED — normal/MSA/emissive maps, ONE material per asset
+- **Did:** FORGE II E1.3 in four commits, all CI+photos green on head:
+  `8a086f7` (E1.3a) map bakes in ForgeTexture — height-per-style → tangent normal (island-aware
+  Sobel, EXACTLY neutral where no detail), `_MetallicGlossMap` R=metal/A=smooth from the style
+  vocabulary + wear/grime masks, `_EmissionMap` glow-slots-only; non-mutating DilatePixels; 6 new
+  contract tests. `15bdae9` (E1.3b) `ForgeMesh.BuildSingle` submesh collapse + booth renders ONE
+  URP/Lit material with all four maps (keywords `_NORMALMAP`/`_METALLICGLOSSMAP`/`_EMISSION`;
+  desktop AG-swizzle for the runtime normal texture — E1.4's importer does it properly).
+  `1e64c68` (E1.3c) **booth environment pinned** — the throwaway scene inherited the procedural
+  skybox; smooth surfaces reflected cyan sky rims that read as defects. `e0211c3` (E1.3d)
+  **studio x-ray**: booth dumps `atlas_albedo/msa/emissive/normal.png` per recipe into the
+  photo artifact.
+- **Checkpoint verdict:** the taser now reads as a REAL ASSET — panel grooves in relief, per-style
+  light response, glow confined to the panel. The "not flat" era is over.
+- **Forensics worth remembering:** stalker photos showed 1px cyan lines hugging leg silhouettes.
+  Measured (x-ray atlases + pixel scans): every map/island CLEAN — the lines are the glowing sac
+  BEHIND a leg peeking sub-pixel around its silhouette (MSAA edge blend), i.e., COMPOSITION, not
+  pipeline. Fix in this commit: sacs raised clear of leg sight-lines (y .44, z −.11); Slime
+  smoothness 0.85→0.7 (bevel-seam glints). **Lesson: before touching bake code over a photo
+  defect, x-ray the atlases — 10 minutes of pixel measurement beats a day of theory.**
+- **Next-CLAIMED:** E1.4 (ForgeBaker → ASTC-imported baked assets, applier/booth prefer baked,
+  Terry photo checkpoint) per FORGE_II doc — then E5.2 PERF gate.
+- **Heads-up (Terry):** recipes are create-only — delete `Resources/Forge/tox_canal_stalker_01`
+  once in Unity to reseed the v4 sac positions on your machine.
+- **Commit:** _(this one)_
+
 ### 2026-07-04 (aaaa) — Picasso (Fable 5): ✅ R4 CLOSED — stalker v3 passes the rubric; E1.3 opened
 - **Did:** v3 turnarounds (photos run `28692323345` on `9b890f1`) PASS: legs connect at the body,
   bend at the knee, plant on the ground; arched ambush-crab silhouette reads at a glance; teal

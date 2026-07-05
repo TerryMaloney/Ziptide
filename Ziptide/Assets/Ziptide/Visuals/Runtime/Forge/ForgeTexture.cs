@@ -397,7 +397,7 @@ namespace Ziptide.Visuals
                 case ForgeStyle.BareMetal: return new Vector2(0.85f, 0.55f);
                 case ForgeStyle.RustedMetal: return new Vector2(0.55f, 0.35f);
                 case ForgeStyle.Chitin: return new Vector2(0f, 0.55f);
-                case ForgeStyle.Slime: return new Vector2(0f, 0.85f); // wet — the hide's tell
+                case ForgeStyle.Slime: return new Vector2(0f, 0.7f); // wet — the hide's tell (0.85 glinted on bevel seams)
                 case ForgeStyle.Stone: return new Vector2(0f, 0.18f);
                 case ForgeStyle.Bark: return new Vector2(0f, 0.15f);
                 case ForgeStyle.Leaf: return new Vector2(0f, 0.4f);
