@@ -187,6 +187,19 @@ namespace Ziptide.Editor.Patching
             string dir = Path.Combine(outRoot, id);
             Directory.CreateDirectory(dir);
 
+            // Pin the environment: the default procedural skybox leaks into ambient + glossy
+            // reflections (E1.3's smooth surfaces picked up cyan sky rims — a critique artifact,
+            // not the asset). Flat dark ambient, no reflection probe — the 3 lights are the truth.
+            var prevSkybox = RenderSettings.skybox;
+            var prevAmbientMode = RenderSettings.ambientMode;
+            var prevAmbientLight = RenderSettings.ambientLight;
+            var prevReflectionMode = RenderSettings.defaultReflectionMode;
+            RenderSettings.skybox = null;
+            RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Flat;
+            RenderSettings.ambientLight = new Color(0.16f, 0.16f, 0.17f);
+            RenderSettings.defaultReflectionMode = UnityEngine.Rendering.DefaultReflectionMode.Custom;
+            RenderSettings.customReflectionTexture = null;
+
             // 3-point light rig (isolated throwaway scene — light count here never ships).
             var lights = new List<GameObject>();
             GameObject Rig(string name, Vector3 euler, float intensity, Color color)
@@ -248,6 +261,10 @@ namespace Ziptide.Editor.Patching
                 Object.DestroyImmediate(tex);
                 Object.DestroyImmediate(camGo);
                 foreach (var l in lights) Object.DestroyImmediate(l);
+                RenderSettings.skybox = prevSkybox;
+                RenderSettings.ambientMode = prevAmbientMode;
+                RenderSettings.ambientLight = prevAmbientLight;
+                RenderSettings.defaultReflectionMode = prevReflectionMode;
             }
 
             return written;
