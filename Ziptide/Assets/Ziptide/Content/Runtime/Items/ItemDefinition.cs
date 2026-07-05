@@ -36,5 +36,8 @@ namespace Ziptide.Content
 
         [Tooltip("Muzzle point (local). Zero = factory default. Bolts/rays originate here.")]
         public Vector3 muzzleLocalPos = Vector3.zero;
+
+        [Tooltip("Grip attach rotation (local euler). Zero = the +45X convention so the barrel points where the index finger points.")]
+        public Vector3 gripLocalEuler = Vector3.zero;
     }
 }

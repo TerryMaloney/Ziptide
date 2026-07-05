@@ -42,7 +42,20 @@ namespace Ziptide.Gameplay
             // Release polish LAST so its selectExited listener runs after RestorePhysicsOnRelease.
             if (built != null && built.GetComponent<XRGrabInteractable>() != null)
                 built.AddComponent<ReleaseFeel>();
+            if (built != null)
+                Debug.Log("ZIPTIDE: ITEM_SPAWN id=" + itemId + " scale=" + built.transform.localScale.ToString("F3"));
             return built;
+        }
+
+        /// <summary>
+        /// The grip pose every gun shares (ASSET_SWAP_PIPELINE §4): +45° X on the attach transform
+        /// so the barrel points where the index finger points, instead of down the controller body
+        /// (Test Day 1: "guns aim at whatever angle you picked them up at"). Definitions can
+        /// override per item via gripLocalEuler; zero means "use the convention".
+        /// </summary>
+        private static void PoseGrip(Transform grip, Vector3 defEuler)
+        {
+            grip.localRotation = Quaternion.Euler(Vec(defEuler, new Vector3(45f, 0f, 0f)));
         }
 
         /// <summary>
@@ -166,6 +179,7 @@ namespace Ziptide.Gameplay
             var grip = new GameObject("Grip");
             grip.transform.SetParent(go.transform, false);
             grip.transform.localPosition = Vec(def.gripLocalPos, new Vector3(0f, -0.01f, -0.05f));
+            PoseGrip(grip.transform, def.gripLocalEuler);
             grab.attachTransform = grip.transform;
 
             var itemRt = go.AddComponent<ItemRuntime>();
@@ -209,6 +223,7 @@ namespace Ziptide.Gameplay
             var grip = new GameObject("Grip");
             grip.transform.SetParent(go.transform, false);
             grip.transform.localPosition = Vec(def.gripLocalPos, new Vector3(0f, -0.01f, -0.06f));
+            PoseGrip(grip.transform, def.gripLocalEuler);
             grab.attachTransform = grip.transform;
 
             var itemRt = go.AddComponent<ItemRuntime>();
@@ -251,6 +266,7 @@ namespace Ziptide.Gameplay
             var grip = new GameObject("Grip");
             grip.transform.SetParent(go.transform, false);
             grip.transform.localPosition = Vec(def.gripLocalPos, new Vector3(0f, -0.01f, -0.06f));
+            PoseGrip(grip.transform, def.gripLocalEuler);
             grab.attachTransform = grip.transform;
 
             var itemRt = go.AddComponent<ItemRuntime>();
@@ -335,6 +351,7 @@ namespace Ziptide.Gameplay
             var gripGo = new GameObject("Grip");
             gripGo.transform.SetParent(go.transform, false);
             gripGo.transform.localPosition = Vec(def.gripLocalPos, grip);
+            PoseGrip(gripGo.transform, def.gripLocalEuler);
             grab.attachTransform = gripGo.transform;
 
             var itemRt = go.AddComponent<ItemRuntime>();
