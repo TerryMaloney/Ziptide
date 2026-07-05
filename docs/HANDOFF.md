@@ -28,6 +28,25 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-05 (cccc) — Picasso (Fable 5): 📦 STOCK-TAKE + APK dispatched — succession state for Opus/Sonnet
+- **Did:** (1) Chased the last E1.3 artifact to ground: the cyan leg outline survived the sac move
+  → NOT occlusion; root cause = **grazing-angle (anisotropic) sample footprints reaching past the
+  8px atlas gutter into the neighbor island** (legs pack beside the glowing sac). Fix `ed101fd`:
+  gutter 8→16px, dilation 2→6 rings, booth aniso 0. This is a REAL pipeline fix that also protects
+  the E1.4 on-device path. (2) Dispatched the **headset APK: CI run `28752341766`** on `6681a7f`
+  (E1.3 + Q2d buildings + skies + economy spine + all story/job layers — CI seeds all assets fresh,
+  so Terry needs ZERO Unity steps for this build). (3) **PRIORITIES rev 6** = the succession order.
+- **Takeover state per track:** 🎨 art — E1.1–E1.3 shipped/proven, E1.4 is next (envelope fully
+  written; the photo loop + atlas x-ray are the eyes); 📖 story — Q2d shipped, P4b flight unowned
+  (design rails in `SPACEFLIGHT_PHYSICS.md`); 🏗 — economy spine fresh (`54f75ba`), Q4a specced;
+  🎮 — parked on Terry's TWO_QUEST steps. Every envelope is executable by Opus/Sonnet: read
+  `OPERATOR_START_HERE.md` → track board → `PRIORITIES.md`.
+- **Debugging laws added this stretch (rubric-grade, keep):** x-ray the atlases before touching
+  bake code · a photo defect that survives a world-space change is atlas/sampling-space · mirrored
+  single-box limbs read as sticks · `Limb(from,to)` for all multi-segment limbs · when a gate fails
+  uniformly across worlds, suspect the CHECK before the content.
+- **Commit:** _(this one)_
+
 ### 2026-07-05 (bbbb) — Picasso (Fable 5): 🗺✨ E1.3 SHIPPED — normal/MSA/emissive maps, ONE material per asset
 - **Did:** FORGE II E1.3 in four commits, all CI+photos green on head:
   `8a086f7` (E1.3a) map bakes in ForgeTexture — height-per-style → tangent normal (island-aware
