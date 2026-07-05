@@ -524,16 +524,18 @@ namespace Ziptide.Visuals
         }
 
         /// <summary>
-        /// Two-ring dilation of covered colors into uncovered gutter texels (bilinear/mip bleed
-        /// safety). NON-MUTATING on meta — a local coverage copy tracks the growing ring, so one
-        /// BakeMeta result can feed every map bake (albedo/normal/MSA/emissive) untouched.
+        /// Deep dilation of covered colors into uncovered gutter texels. Six rings fill most of
+        /// the 16px gutter from each side, so even grazing-angle (anisotropic) sample footprints
+        /// that reach past an island border read the island's OWN colors, never the neighbor's.
+        /// NON-MUTATING on meta — a local coverage copy tracks the growing ring, so one BakeMeta
+        /// result can feed every map bake (albedo/normal/MSA/emissive) untouched.
         /// </summary>
         private static void DilatePixels(Texel[] meta, int size, Color32[] px)
         {
             var covered = new bool[meta.Length];
             for (int i = 0; i < meta.Length; i++) covered[i] = meta[i].covered;
 
-            for (int ring = 0; ring < 2; ring++)
+            for (int ring = 0; ring < 6; ring++)
             {
                 var copy = (Color32[])px.Clone();
                 var grown = (bool[])covered.Clone();

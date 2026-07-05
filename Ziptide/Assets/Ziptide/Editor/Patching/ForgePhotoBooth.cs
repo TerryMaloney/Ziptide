@@ -139,6 +139,8 @@ namespace Ziptide.Editor.Patching
                 var t = new Texture2D(size, size, TextureFormat.RGBA32, false, linear);
                 t.SetPixels32(px);
                 t.Apply(false, false);
+                t.filterMode = FilterMode.Bilinear;
+                t.anisoLevel = 0; // grazing-angle aniso footprints reach across atlas gutters
                 return t;
             }
 

@@ -15,8 +15,14 @@ namespace Ziptide.Visuals
     /// </summary>
     public static class ForgeUV
     {
-        /// <summary>Gutter between islands in UV units (8px at a 1024 atlas).</summary>
-        public const float Gutter = 8f / 1024f;
+        /// <summary>
+        /// Gutter between islands in UV units (16px at a 1024 atlas). Sized for GRAZING-ANGLE
+        /// sampling: anisotropic/stretched footprints on edge-on faces reach many texels past the
+        /// island border, and with a thin gutter they land in the NEIGHBOR island (the E1.3 "cyan
+        /// leg outline" — legs packed next to the glowing sac). Pairs with deep dilation in
+        /// ForgeTexture so the reachable gutter carries the island's own colors.
+        /// </summary>
+        public const float Gutter = 16f / 1024f;
 
         public struct Island
         {
