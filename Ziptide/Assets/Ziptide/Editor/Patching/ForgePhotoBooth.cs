@@ -148,11 +148,22 @@ namespace Ziptide.Editor.Patching
             var msa = Tex(true);
             Ziptide.Visuals.ForgeTexture.BakeEmissive(recipe, meta, size, px);
             var emissive = Tex(false);
+            Ziptide.Visuals.ForgeTexture.BakeNormal(recipe, meta, size, px);
+            var normalCanonical = Tex(true);
+
+            // Studio X-ray: dump the baked atlases beside the turnarounds so a session can inspect
+            // the maps themselves when a photo shows a surface defect it can't attribute.
+            string atlasDir = Path.Combine(Path.GetDirectoryName(Application.dataPath), "Builds", "Photos", recipe.recipeId);
+            Directory.CreateDirectory(atlasDir);
+            File.WriteAllBytes(Path.Combine(atlasDir, "atlas_albedo.png"), albedo.EncodeToPNG());
+            File.WriteAllBytes(Path.Combine(atlasDir, "atlas_msa.png"), msa.EncodeToPNG());
+            File.WriteAllBytes(Path.Combine(atlasDir, "atlas_emissive.png"), emissive.EncodeToPNG());
+            File.WriteAllBytes(Path.Combine(atlasDir, "atlas_normal.png"), normalCanonical.EncodeToPNG());
+            Object.DestroyImmediate(normalCanonical);
 
             // Desktop URP/Lit unpacks _BumpMap as DXT5nm-style (x in A, y in G) — swizzle the
             // canonical RGB bake for the editor booth. E1.4's PNG import converts properly via
             // TextureImporter; the on-device runtime path skips normal maps entirely.
-            Ziptide.Visuals.ForgeTexture.BakeNormal(recipe, meta, size, px);
             for (int i = 0; i < px.Length; i++) px[i] = new Color32(255, px[i].g, 255, px[i].r);
             var normal = Tex(true);
 
