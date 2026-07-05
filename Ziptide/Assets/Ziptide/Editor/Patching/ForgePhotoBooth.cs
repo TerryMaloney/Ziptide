@@ -83,9 +83,9 @@ namespace Ziptide.Editor.Patching
                 var recipe = spec.Value();
                 var root = new GameObject("Forge_" + spec.Key);
                 var mf = root.AddComponent<MeshFilter>();
-                mf.sharedMesh = Ziptide.Visuals.ForgeMesh.Build(recipe);
+                mf.sharedMesh = Ziptide.Visuals.ForgeMesh.BuildSingle(recipe);
                 var mr = root.AddComponent<MeshRenderer>();
-                mr.sharedMaterials = BuildTexturedPreviewMaterials(recipe);
+                mr.sharedMaterial = BuildSingleTexturedMaterial(recipe);
                 yield return (root, spec.Key);
             }
         }
@@ -123,44 +123,59 @@ namespace Ziptide.Editor.Patching
         }
 
         /// <summary>
-        /// FORGE II E1.2: booth materials carry the BAKED ALBEDO atlas (one texture shared by all
-        /// slot materials — each submesh samples its own island) so photo critique sees the real
-        /// textured surface, not flat palette colors. GlowPanel slots preview their emission as
-        /// whole-submesh glow (exactly right pre-E1.3: the glow slot's submesh IS the glow parts).
+        /// FORGE II E1.3: ONE URP/Lit material carrying the full baked set — albedo, tangent-space
+        /// normal, _MetallicGlossMap (R=metal, A=smooth), _EmissionMap (glow slots only). Pairs
+        /// with ForgeMesh.BuildSingle: per-slot identity lives in the maps, not in submeshes, so
+        /// photo critique sees the shipping surface response at one draw call.
         /// </summary>
-        private static Material[] BuildTexturedPreviewMaterials(Ziptide.Visuals.ForgeRecipeDefinition recipe)
+        private static Material BuildSingleTexturedMaterial(Ziptide.Visuals.ForgeRecipeDefinition recipe)
         {
             const int size = 1024;
             var meta = Ziptide.Visuals.ForgeTexture.BakeMeta(recipe, size);
             var px = new Color32[size * size];
-            Ziptide.Visuals.ForgeTexture.BakeAlbedo(recipe, meta, size, px);
-            var albedo = new Texture2D(size, size, TextureFormat.RGBA32, false);
-            albedo.SetPixels32(px);
-            albedo.Apply(false, false);
 
-            var slots = Ziptide.Visuals.ForgeMesh.UsedPaletteSlots(recipe);
-            var shader = Shader.Find("Universal Render Pipeline/Lit");
-            var mats = new Material[Mathf.Max(1, slots.Count)];
-            for (int i = 0; i < mats.Length; i++)
+            Texture2D Tex(bool linear)
             {
-                var m = new Material(shader) { name = "BoothPreview_" + i };
-                m.SetTexture("_BaseMap", albedo);
-                m.SetColor("_BaseColor", Color.white);
-                if (i < slots.Count)
-                {
-                    var styleSpec = Ziptide.Visuals.ForgeTexture.SlotStyle(recipe, slots[i]);
-                    if (styleSpec.style == Ziptide.Visuals.ForgeStyle.GlowPanel)
-                    {
-                        m.EnableKeyword("_EMISSION");
-                        // The booth camera has no tonemapping — full recipe intensity clips to
-                        // white blobs (first checkpoint photos). Preview clamps; the game path
-                        // uses the real intensity with URP handling.
-                        m.SetColor("_EmissionColor", styleSpec.emissive * Mathf.Min(styleSpec.emissiveIntensity, 1.1f));
-                    }
-                }
-                mats[i] = m;
+                var t = new Texture2D(size, size, TextureFormat.RGBA32, false, linear);
+                t.SetPixels32(px);
+                t.Apply(false, false);
+                return t;
             }
-            return mats;
+
+            Ziptide.Visuals.ForgeTexture.BakeAlbedo(recipe, meta, size, px);
+            var albedo = Tex(false);
+            Ziptide.Visuals.ForgeTexture.BakeMSA(recipe, meta, size, px);
+            var msa = Tex(true);
+            Ziptide.Visuals.ForgeTexture.BakeEmissive(recipe, meta, size, px);
+            var emissive = Tex(false);
+
+            // Desktop URP/Lit unpacks _BumpMap as DXT5nm-style (x in A, y in G) — swizzle the
+            // canonical RGB bake for the editor booth. E1.4's PNG import converts properly via
+            // TextureImporter; the on-device runtime path skips normal maps entirely.
+            Ziptide.Visuals.ForgeTexture.BakeNormal(recipe, meta, size, px);
+            for (int i = 0; i < px.Length; i++) px[i] = new Color32(255, px[i].g, 255, px[i].r);
+            var normal = Tex(true);
+
+            var m = new Material(Shader.Find("Universal Render Pipeline/Lit")) { name = "BoothSingle_" + recipe.recipeId };
+            m.SetTexture("_BaseMap", albedo);
+            m.SetColor("_BaseColor", Color.white);
+            m.SetTexture("_BumpMap", normal);
+            m.EnableKeyword("_NORMALMAP");
+            m.SetTexture("_MetallicGlossMap", msa);
+            m.SetFloat("_Smoothness", 1f); // the baked A channel is the truth — don't halve it
+            m.EnableKeyword("_METALLICGLOSSMAP");
+
+            float maxI = Ziptide.Visuals.ForgeTexture.MaxEmissiveIntensity(recipe);
+            if (maxI > 0f)
+            {
+                m.SetTexture("_EmissionMap", emissive);
+                // The booth camera has no tonemapping — full recipe intensity clips to white
+                // blobs (first checkpoint photos). Preview clamps; the game path uses the real
+                // intensity with URP handling.
+                m.SetColor("_EmissionColor", Color.white * Mathf.Min(maxI, 1.1f));
+                m.EnableKeyword("_EMISSION");
+            }
+            return m;
         }
 
         /// <summary>Photograph one root object from all shot angles. Returns PNG count written.</summary>

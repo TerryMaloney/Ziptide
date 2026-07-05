@@ -85,6 +85,22 @@ namespace Ziptide.Visuals
             return mesh;
         }
 
+        /// <summary>E1.3: Build with every palette-slot submesh collapsed into ONE — the single
+        /// textured-material path (per-slot identity lives in the baked atlas maps now, so
+        /// submeshes would only cost extra draw calls).</summary>
+        public static Mesh BuildSingle(ForgeRecipeDefinition recipe)
+        {
+            var mesh = Build(recipe);
+            if (mesh.subMeshCount > 1)
+            {
+                var all = new List<int>();
+                for (int s = 0; s < mesh.subMeshCount; s++) all.AddRange(mesh.GetTriangles(s));
+                mesh.subMeshCount = 1;
+                mesh.SetTriangles(all, 0);
+            }
+            return mesh;
+        }
+
         /// <summary>Indexed local-space geometry for one part (before transform/mirror/shading).</summary>
         public static PartGeometry BuildPart(ForgePart part)
         {

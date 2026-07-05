@@ -151,6 +151,18 @@ namespace Ziptide.Tests.EditMode
         }
 
         [Test]
+        public void BuildSingle_CollapsesSubmeshes_KeepingEveryTriangle()
+        {
+            var a = Part(ForgeOp.BeveledBox); a.paletteSlot = 0;
+            var b = Part(ForgeOp.Cylinder); b.paletteSlot = 1;
+            var r = Recipe(a, b);
+            var single = ForgeMesh.BuildSingle(r);
+            Assert.AreEqual(1, single.subMeshCount, "E1.3: one textured material = one submesh");
+            Assert.AreEqual(ForgeMesh.CountTriangles(r), single.triangles.Length / 3,
+                "the collapse must not drop or duplicate triangles");
+        }
+
+        [Test]
         public void Normals_AreUnitLength()
         {
             var r = Recipe(Part(ForgeOp.SphereSection), Part(ForgeOp.Lathe));
