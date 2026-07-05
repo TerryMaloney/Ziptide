@@ -249,6 +249,22 @@ Your click creates the starting spec for every existing world:
   gates reject anything broken BEFORE it can reach your headset. That's the "request it and it
   happens" pipeline from your PDF.
 
+## 2o. NEW — TEST DAY 2 re-check list (after the Feel & Clarity waves land; one row per fix)
+Each row names its logcat tag — if the tag shows and the feel is right, check it off.
+- [ ] Sprint: hold/click LEFT stick → clearly faster (`LOCO_STATE sprint=true`); speed feels Fortnite-ish
+- [ ] Guns: every gun snaps to a consistent grip angle on grab; laser sight shows aim
+- [ ] Laser guns are hand-sized (not miniature)
+- [ ] Grey weapon: visible tracer every shot
+- [ ] Matchboard: spawn on TOP of the floor (`ARENA_SPAWN_OK`), menu text doesn't overlap
+- [ ] PvP HUD: small, low in view, doesn't block sight
+- [ ] W003 Glass Shelf: spawn ground is clean (no white-noise shimmer)
+- [ ] W005: when something hits you, you can SEE the source (`HAZARD_HIT src=`)
+- [ ] Kiosk: a beacon/arrow leads you to it (`BEACON_TARGET`)
+- [ ] RILL subtitles sit lower and fade out
+- [ ] W000 ship: fuel cell → console lights → PUNCH IT → flight transition (`FLIGHT_*` tags)
+- [ ] Gardens: at least one garden plot visibly exists in W005 with a beacon
+Full program + envelope details: `docs/TEST_DAY_1_RESPONSE.md`.
+
 ## 2l. NEW — git safety, one-time (~2 min; from your PDF's version-control chapter)
 Four operators + you push to one branch — this makes scene-file collisions unable to corrupt anything:
 - [ ] In PowerShell, in the repo (exact commands also in `docs/AI_WORKFLOW.md` §Smart Merge):

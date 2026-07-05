@@ -1,4 +1,11 @@
-# 🎯 PRIORITIES — the whole project, one ordered list (2026-07-05, rev 6 — TAKEOVER-READY)
+# 🎯 PRIORITIES — the whole project, one ordered list (2026-07-05, rev 7 — TEST DAY 1 VERDICT)
+
+> **rev 7 change:** Terry's first full device pass landed (HANDOFF dddd). Per the standing rules
+> his ❌ list is now **#2–#3**: `docs/TEST_DAY_1_RESPONSE.md` **Wave 1** (10 one-commit quick
+> fixes — tiny guns, grip pose, tracers, arena spawn, W003 z-fight, hazard tells, HUD size,
+> matchboard text, kiosk beacon, subtitle) then **Wave 2** (Fortnite-grade movement + aim v2).
+> Wave 3 items map onto existing rows (flight = P4b, destruction v2 = MP lane, HUD/how-to = new
+> UI row). E1.4 (old #2) slides to #4 — still the biggest visual win. Everything below shifts.
 
 **The single answer to "what matters next, project-wide."** Updated at every track's chunk close.
 Tracks: 📖 story (`SPRINT.md`) · 🎮 MP (`SPRINT_MULTIPLAYER.md`) · 🎨 Picasso (`SPRINT_ART.md`) ·

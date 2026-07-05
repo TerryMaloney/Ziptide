@@ -28,6 +28,25 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-05 (dddd) — Picasso (Fable 5): 🎮 TEST DAY 1 VERDICT IS IN — the Feel & Clarity program opens (`docs/TEST_DAY_1_RESPONSE.md`)
+- **Did:** Terry ran the full 11-world pass on `874c905` (local rebuild after repo sync — his repo
+  had been at `e88e70e`, ART-2 era, which explained the earlier "old problems"; signature-mismatch
+  install issue solved by one `adb uninstall`). His feedback is triaged into the program of record:
+  **`docs/TEST_DAY_1_RESPONSE.md`** — Wave 1 quick fixes → Wave 2 feel leap (Fortnite-grade
+  movement + aim) → Wave 3 systems (PUNCH-IT flight v1, destruction v2, HUD/how-to-play) →
+  Wave 4 content surfacing (gardens exist in packs but never appeared — audit gap).
+- **✅ Confirmed on device:** full environments render/read ("much better, I can see full
+  environments!"), W005 swarm = "major leap," hammer great in PvP, worlds+gating all work.
+- **❌ Verbatim highlights (full list in the response doc):** can't run ("Fortnite level controls
+  and speed"), guns keep pickup angle + some "suuuper tiny," grey weapon shoots invisibly, PvP HUD
+  "massive right in your face," matchboard text overlaps + spawned half under level, W003 spawn
+  ground = "white noise" (z-fight), W005 invisible damage, kiosk unfindable, no ship flight yet
+  ("i don't see punch it"), blocks should fracture like CoD Siege, garden/mechanics content unseen.
+- **Next-CLAIMED:** executing Wave 1/2 in this session while Fable lasts (movement tune first);
+  everything else is enveloped for ANY operator — take the top unclaimed row of
+  TEST_DAY_1_RESPONSE Wave 1.
+- **Commit:** _(this one)_
+
 ### 2026-07-05 (cccc) — Picasso (Fable 5): 📦 STOCK-TAKE + APK dispatched — succession state for Opus/Sonnet
 - **Did:** (1) Chased the last E1.3 artifact to ground: the cyan leg outline survived the sac move
   → NOT occlusion; root cause = **grazing-angle (anisotropic) sample footprints reaching past the
