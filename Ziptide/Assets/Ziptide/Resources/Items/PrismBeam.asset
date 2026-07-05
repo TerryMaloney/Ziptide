@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 320e29a7fc554d15b152546f5388da00, type: 3}
+  m_Name: PrismBeam
+  m_EditorClassIdentifier: 
+  itemId: prism_beam
+  modelPrefab: {fileID: 0}
+  forgeRecipeId: 
+  mass: 0.5
+  colliderSizeOverride: {x: 0, y: 0, z: 0}
+  visualScale: {x: 0, y: 0, z: 0}
+  visualColor: {r: 0, g: 0, b: 0, a: 0}
+  gripLocalPos: {x: 0, y: 0, z: 0}
+  muzzleLocalPos: {x: 0, y: 0, z: 0}
+  kind: 2
+  fireCooldown: 1.2
+  netThrowSpeed: 9
+  swingSpeed: 1.6
+  beamThickness: 0.05

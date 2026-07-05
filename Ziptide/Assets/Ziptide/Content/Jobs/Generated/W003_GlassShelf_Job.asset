@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83781912c7efe3841b73c1b7d56c9513, type: 3}
+  m_Name: W003_GlassShelf_Job
+  m_EditorClassIdentifier: 
+  jobId: w003_baffles
+  title: Raise the Wind Baffles
+  steps:
+  - {fileID: 11400000, guid: 6b4a1f97dbe7e8c48b82c253ae67273f, type: 2}
+  - {fileID: 11400000, guid: 06cef91cd8f6c324b8b6b5cc5c897f54, type: 2}
+  - {fileID: 11400000, guid: 930a2ae0ecd3eab41959e8d8bc597437, type: 2}
+  - {fileID: 11400000, guid: cbd2106e2c4fa674181009710040002b, type: 2}
+  reward:
+  - resourceId: credits
+    amount: 70
+  - resourceId: crystal
+    amount: 4
+  completionFlag: W003_COMPLETE

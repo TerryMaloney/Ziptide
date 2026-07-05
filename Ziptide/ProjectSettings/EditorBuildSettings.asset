@@ -26,6 +26,57 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Ziptide/Scenes/PvP_Arena01.unity
     guid: d6e5faf10865cfc40829f847ace5f23f
+  - enabled: 1
+    path: Assets/Ziptide/Scenes/Generated/W000_DriftIn.unity
+    guid: 58f7d700d96165d49b01169702583d8d
+  - enabled: 1
+    path: Assets/Ziptide/Scenes/Generated/W002_DryCistern.unity
+    guid: c3a35b787e3c37f4587df1610ee973e8
+  - enabled: 1
+    path: Assets/Ziptide/Scenes/Generated/W003_GlassShelf.unity
+    guid: 47d3660100b924d458669145d5214785
+  - enabled: 1
+    path: Assets/Ziptide/Scenes/Generated/W004_BroadcastTomb.unity
+    guid: c428bb4017262814e9dc5f3fe307c497
+  - enabled: 1
+    path: Assets/Ziptide/Scenes/Generated/W005_OxidizedCanopy.unity
+    guid: 567701b21c5f0614dbf4bde4242b076b
+  - enabled: 1
+    path: Assets/Ziptide/Scenes/Generated/W006_MirrorFlats.unity
+    guid: bb07d3202212f03468d2d510b82789af
+  - enabled: 1
+    path: Assets/Ziptide/Scenes/Generated/W007_SableStation.unity
+    guid: 4f86fe2d2cf6477489de08050dc2a0b9
+  - enabled: 1
+    path: Assets/Ziptide/Scenes/Generated/W008_SealedArchive.unity
+    guid: 63037f8eb78297a4fb745ab60c0a541d
+  - enabled: 1
+    path: Assets/Ziptide/Scenes/Generated/W009_Chitinwall.unity
+    guid: 6bb885e17c7a8ef46bd7d73c9526709e
+  - enabled: 1
+    path: Assets/Ziptide/Scenes/Generated/W010_TidalArray.unity
+    guid: fb86f567f5f800446aa70a5827d7821b
+  - enabled: 1
+    path: Assets/Ziptide/Scenes/Generated/W011_TheHum.unity
+    guid: e032047672594cc459db1e0817b8124e
+  - enabled: 1
+    path: Assets/Ziptide/Scenes/Generated/W012_MarasLastJump.unity
+    guid: 48b9a7c6e01b6914b8702f32e29d84f5
+  - enabled: 1
+    path: Assets/Ziptide/Scenes/Arenas/Arena_Chitinwall.unity
+    guid: 6da1d3f2bb1e88d43a8db6ef298c3505
+  - enabled: 1
+    path: Assets/Ziptide/Scenes/Arenas/Arena_Cistern.unity
+    guid: 16f60942cb0f25d4ab67d443d3bdfa45
+  - enabled: 1
+    path: Assets/Ziptide/Scenes/Arenas/Arena_MirrorFlats.unity
+    guid: 9bdefe6e91a56b74a98196ff14124332
+  - enabled: 1
+    path: Assets/Ziptide/Scenes/Arenas/Arena_Tidal.unity
+    guid: 29cedb7a46fead940b102124da0b0f74
+  - enabled: 1
+    path: Assets/Ziptide/Scenes/Arenas/Arena_Void.unity
+    guid: f4bec8bcb60afb549849c7870d4d7065
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 27caad71f395b964fa9fae4d12104ec0,
       type: 2}

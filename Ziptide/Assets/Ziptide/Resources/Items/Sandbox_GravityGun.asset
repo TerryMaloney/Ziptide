@@ -14,8 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: gravity_gun
   modelPrefab: {fileID: 0}
+  forgeRecipeId: 
   mass: 0.45
   colliderSizeOverride: {x: 0, y: 0, z: 0}
+  visualScale: {x: 0, y: 0, z: 0}
+  visualColor: {r: 0, g: 0, b: 0, a: 0}
+  gripLocalPos: {x: 0, y: 0, z: 0}
+  muzzleLocalPos: {x: 0, y: 0, z: 0}
   range: 25
   fireCooldown: 0.6
   launchForce: 14

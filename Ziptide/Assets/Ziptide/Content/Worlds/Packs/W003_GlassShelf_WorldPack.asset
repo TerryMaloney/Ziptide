@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6b0e96e73756524d9948ec90b6406cc, type: 3}
+  m_Name: W003_GlassShelf_WorldPack
+  m_EditorClassIdentifier: 
+  packId: glass_shelf
+  displayName: Glass Shelf
+  sceneName: W003_GlassShelf
+  defaultTheme: {fileID: 0}
+  availableThemes: []
+  jobs:
+  - {fileID: 11400000, guid: d2079abb910424844a9e8fdc28d6fdf7, type: 2}
+  spawnMarkers:
+  - markerId: player
+    localPosition: {x: 0, y: 0.11000001, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+  - markerId: poi_story
+    localPosition: {x: -47.136314, y: -7.3556185, z: 94.27263}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+  - markerId: poi_camp_a
+    localPosition: {x: -125.953, y: 0.75826997, z: -3.4413035}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+  - markerId: poi_camp_b
+    localPosition: {x: 161.33508, y: 0.4927997, z: 18.567389}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+  - markerId: poi_grove
+    localPosition: {x: -6.710516, y: 0.5908416, z: -111.79879}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+  - markerId: poi_works
+    localPosition: {x: 32.527767, y: -8.149767, z: 136.16881}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+  - markerId: poi_ruin
+    localPosition: {x: -95.73034, y: -7.887041, z: -120.630424}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+  - markerId: poi_cave
+    localPosition: {x: 153.52963, y: -8.327963, z: -121.838615}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+  - markerId: poi_berth
+    localPosition: {x: 18, y: 0.16, z: -12}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+  collectibles: []
+  choices: []
+  machines: []
+  mines: []
+  gardens:
+  - id: garden_grove_0
+    plantId: dew_bulb
+    localPosition: {x: -9.910516, y: 1.0708416, z: -114.19879}
+  - id: garden_grove_1
+    plantId: rust_fern
+    localPosition: {x: -6.710516, y: 1.0708416, z: -114.19879}
+  - id: garden_grove_2
+    plantId: glass_reed
+    localPosition: {x: -3.510516, y: 1.0708416, z: -114.19879}
+  - id: garden_grove_3
+    plantId: dew_bulb
+    localPosition: {x: -9.910516, y: 1.0708416, z: -109.39879}
+  - id: garden_grove_4
+    plantId: rust_fern
+    localPosition: {x: -6.710516, y: 1.0708416, z: -109.39879}
+  - id: garden_grove_5
+    plantId: glass_reed
+    localPosition: {x: -3.510516, y: 1.0708416, z: -109.39879}
+  sockets:
+  - id: socket_works
+    resourceId: mineral
+    buildCost: 40
+    ratePerSecond: 0.05
+    storageCap: 40
+    localPosition: {x: 32.527767, y: -7.449767, z: 138.76881}
+  audioProfile: {fileID: 0}
+  flagsRequired:
+  - W002_COMPLETE
+  flagsGranted:
+  - W003_COMPLETE

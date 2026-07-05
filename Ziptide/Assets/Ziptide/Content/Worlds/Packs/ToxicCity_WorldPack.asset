@@ -23,6 +23,12 @@ MonoBehaviour:
   - markerId: player
     localPosition: {x: 0, y: 0.1, z: -8}
     localEulerAngles: {x: 0, y: 0, z: 0}
+  collectibles: []
+  choices: []
+  machines: []
+  mines: []
+  gardens: []
+  sockets: []
   audioProfile: {fileID: 0}
   flagsRequired: []
   flagsGranted: []

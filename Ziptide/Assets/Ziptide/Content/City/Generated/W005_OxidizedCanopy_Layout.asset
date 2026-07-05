@@ -1,0 +1,241 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f86049fdb144348cbcbeb2d80d53f1, type: 3}
+  m_Name: W005_OxidizedCanopy_Layout
+  m_EditorClassIdentifier: 
+  cityId: oxidized_canopy
+  seed: 2005
+  sceneName: W005_OxidizedCanopy
+  displayName: Oxidized Canopy
+  spawnDistrictId: ForestFloor
+  spawnStarterWeapons: 1
+  walkwayHeight: 0
+  palette:
+    concrete: {r: 0.35, g: 0.26, b: 0.18, a: 1}
+    metal: {r: 0.28, g: 0.3, b: 0.33, a: 1}
+    toxic: {r: 0.22, g: 0.45, b: 0.12, a: 1}
+    building1: {r: 0.42, g: 0.28, b: 0.16, a: 1}
+    building2: {r: 0.3, g: 0.22, b: 0.14, a: 1}
+    rail: {r: 0.45, g: 0.28, b: 0.18, a: 1}
+    catwalk: {r: 0.4, g: 0.4, b: 0.42, a: 1}
+    facadeWindow: {r: 0.08, g: 0.12, b: 0.14, a: 1}
+    skyline: {r: 0.16, g: 0.17, b: 0.2, a: 1}
+    accent: {r: 0.9, g: 0.55, b: 0.15, a: 1}
+  fogEnabled: 1
+  fogColor: {r: 0.3, g: 0.16, b: 0.08, a: 1}
+  fogDensity: 0.02
+  skyHorizonColor: {r: 0.85, g: 0.45, b: 0.2, a: 1}
+  skyTopColor: {r: 0.35, g: 0.18, b: 0.14, a: 1}
+  themeGroundTint: {r: 0.35, g: 0.24, b: 0.14, a: 1}
+  planetVisible: 1
+  planetBaseColor: {r: 0.55, g: 0.45, b: 0.6, a: 1}
+  planetAccentColor: {r: 0.35, g: 0.28, b: 0.45, a: 1}
+  planetAngularSize: 14
+  skylineRingRadius: 360
+  skylineCount: 10
+  skylineMinHeight: 18
+  skylineMaxHeight: 40
+  experience:
+    enabled: 1
+    authored: 1
+    biome: 3
+    worldRadius: 300
+    heightAmplitude: 22
+    groundColor: {r: 0.36, g: 0.44, b: 0.3, a: 1}
+    vista: 4
+    vistaDirection: {x: 0.8, y: 0, z: 0.6}
+    vistaDistance: 160
+    vistaHeight: 58
+    vistaColor: {r: 0.45, g: 0.38, b: 0.26, a: 1}
+    vistaAccentColor: {r: 0.55, g: 0.95, b: 0.45, a: 1}
+  pois:
+  - id: story
+    type: 5
+    position: {x: 79.36, y: 0, z: 59.52}
+    tier: 0
+  - id: camp_a
+    type: 0
+    position: {x: -27.768166, y: 0, z: 132.11333}
+    tier: 0
+  - id: camp_b
+    type: 0
+    position: {x: 50.494713, y: 0, z: -166.51212}
+    tier: 1
+  - id: grove
+    type: 1
+    position: {x: -119.13844, y: 0, z: -14.353824}
+    tier: 0
+  - id: works
+    type: 2
+    position: {x: 149.77621, y: 0, z: -8.190508}
+    tier: 0
+  - id: ruin
+    type: 3
+    position: {x: -145.51009, y: 0, z: 77.79341}
+    tier: 0
+  - id: cave
+    type: 4
+    position: {x: -99.009796, y: 0, z: -185.19466}
+    tier: 1
+  - id: berth
+    type: 6
+    position: {x: 0, y: 0, z: 0}
+    tier: 0
+  districts:
+  - id: ForestFloor
+    anchor: {x: 0, y: 0, z: 0}
+    bounds: {x: 18, y: 16}
+    buildingStyleId: 
+    heightTier: 0
+    useOverride: 0
+    paletteOverride:
+      concrete: {r: 0.34, g: 0.35, b: 0.37, a: 1}
+      metal: {r: 0.28, g: 0.3, b: 0.33, a: 1}
+      toxic: {r: 0.22, g: 0.45, b: 0.12, a: 1}
+      building1: {r: 0.3, g: 0.31, b: 0.34, a: 1}
+      building2: {r: 0.24, g: 0.26, b: 0.3, a: 1}
+      rail: {r: 0.45, g: 0.28, b: 0.18, a: 1}
+      catwalk: {r: 0.4, g: 0.4, b: 0.42, a: 1}
+      facadeWindow: {r: 0.08, g: 0.12, b: 0.14, a: 1}
+      skyline: {r: 0.16, g: 0.17, b: 0.2, a: 1}
+      accent: {r: 0.9, g: 0.75, b: 0.1, a: 1}
+    landmarks: []
+    heroBuildings: []
+    props: []
+  - id: CanopyLift
+    anchor: {x: -22, y: 0, z: 12}
+    bounds: {x: 16, y: 14}
+    buildingStyleId: 
+    heightTier: 2
+    useOverride: 0
+    paletteOverride:
+      concrete: {r: 0.34, g: 0.35, b: 0.37, a: 1}
+      metal: {r: 0.28, g: 0.3, b: 0.33, a: 1}
+      toxic: {r: 0.22, g: 0.45, b: 0.12, a: 1}
+      building1: {r: 0.3, g: 0.31, b: 0.34, a: 1}
+      building2: {r: 0.24, g: 0.26, b: 0.3, a: 1}
+      rail: {r: 0.45, g: 0.28, b: 0.18, a: 1}
+      catwalk: {r: 0.4, g: 0.4, b: 0.42, a: 1}
+      facadeWindow: {r: 0.08, g: 0.12, b: 0.14, a: 1}
+      skyline: {r: 0.16, g: 0.17, b: 0.2, a: 1}
+      accent: {r: 0.9, g: 0.75, b: 0.1, a: 1}
+    landmarks:
+    - name: LiftTrunk
+      localPos: {x: 0, y: 0, z: 3}
+      height: 24
+      width: 3
+    heroBuildings: []
+    props: []
+  - id: GroveEdge
+    anchor: {x: 24, y: 0, z: 10}
+    bounds: {x: 16, y: 16}
+    buildingStyleId: 
+    heightTier: 1
+    useOverride: 0
+    paletteOverride:
+      concrete: {r: 0.34, g: 0.35, b: 0.37, a: 1}
+      metal: {r: 0.28, g: 0.3, b: 0.33, a: 1}
+      toxic: {r: 0.22, g: 0.45, b: 0.12, a: 1}
+      building1: {r: 0.3, g: 0.31, b: 0.34, a: 1}
+      building2: {r: 0.24, g: 0.26, b: 0.3, a: 1}
+      rail: {r: 0.45, g: 0.28, b: 0.18, a: 1}
+      catwalk: {r: 0.4, g: 0.4, b: 0.42, a: 1}
+      facadeWindow: {r: 0.08, g: 0.12, b: 0.14, a: 1}
+      skyline: {r: 0.16, g: 0.17, b: 0.2, a: 1}
+      accent: {r: 0.9, g: 0.75, b: 0.1, a: 1}
+    landmarks: []
+    heroBuildings: []
+    props: []
+  - id: Scrubber
+    anchor: {x: 2, y: 0, z: 30}
+    bounds: {x: 16, y: 14}
+    buildingStyleId: 
+    heightTier: 1
+    useOverride: 0
+    paletteOverride:
+      concrete: {r: 0.34, g: 0.35, b: 0.37, a: 1}
+      metal: {r: 0.28, g: 0.3, b: 0.33, a: 1}
+      toxic: {r: 0.22, g: 0.45, b: 0.12, a: 1}
+      building1: {r: 0.3, g: 0.31, b: 0.34, a: 1}
+      building2: {r: 0.24, g: 0.26, b: 0.3, a: 1}
+      rail: {r: 0.45, g: 0.28, b: 0.18, a: 1}
+      catwalk: {r: 0.4, g: 0.4, b: 0.42, a: 1}
+      facadeWindow: {r: 0.08, g: 0.12, b: 0.14, a: 1}
+      skyline: {r: 0.16, g: 0.17, b: 0.2, a: 1}
+      accent: {r: 0.9, g: 0.75, b: 0.1, a: 1}
+    landmarks: []
+    heroBuildings:
+    - id: SporeScrubber
+      localPos: {x: 0, y: 0, z: 2}
+      footprint: {x: 8, y: 7}
+      height: 5
+      interior: 2
+      doorLocalPos: {x: 0, y: 0, z: -3.5}
+      interiorMarkerId: scrubber
+    props: []
+  connections:
+  - fromDistrictId: ForestFloor
+    toDistrictId: CanopyLift
+    kind: 3
+    width: 5
+    tier: 0
+  - fromDistrictId: CanopyLift
+    toDistrictId: Scrubber
+    kind: 1
+    width: 5
+    tier: 1
+  - fromDistrictId: Scrubber
+    toDistrictId: GroveEdge
+    kind: 3
+    width: 5
+    tier: 0
+  - fromDistrictId: GroveEdge
+    toDistrictId: ForestFloor
+    kind: 0
+    width: 6
+    tier: 0
+  canals: []
+  droneZones:
+  - id: Patrol_Canopy
+    center: {x: 2, y: 0, z: 30}
+    radius: 6
+    count: 4
+    respawnDelay: 14
+    combat: 1
+    variantId: drone_standard
+  hazards:
+  - id: spore_floor
+    kind: 3
+    center: {x: -8, y: 0, z: 6}
+    size: {x: 10, y: 4, z: 10}
+    strength: 1
+    direction: {x: 1, y: 0, z: 0}
+  - id: spore_grove
+    kind: 3
+    center: {x: 18, y: 0, z: 20}
+    size: {x: 12, y: 4, z: 8}
+    strength: 1
+    direction: {x: 1, y: 0, z: 0}
+  creatureZones:
+  - id: Swarm_Canopy
+    center: {x: 18, y: 0, z: 22}
+    radius: 4
+    count: 2
+    respawnDelay: 25
+    creatureId: swarm_bug
+  shipyard:
+    enabled: 0
+    berthCenter: {x: 0, y: 0, z: 0}
+    berthSize: {x: 18, y: 14}
+    shipLocalPos: {x: 0, y: 1.4, z: 0}
+    shipSize: {x: 5, y: 3, z: 11}
+    shipRotationY: 0

@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afb3bb4a5f9d9e7459bb0e883289e918, type: 3}
+  m_Name: stun_charge_cell
+  m_EditorClassIdentifier: 
+  id: recipe_stun_charge_cell
+  displayName: stun charge cell
+  costs:
+  - resourceId: spore
+    amount: 2
+  - resourceId: mineral
+    amount: 2
+  craftSeconds: 0
+  producesId: stun_charge_cell
+  producesAmount: 1
+  requiredMachineType: 6
+  durationTicks: 12
+  unlockFlag: 
+  sourceWorlds:
+  - W002_DryCistern
+  storyTags:
+  - guild_work
+  campaignUse: 1
+  multiplayerUse: 0

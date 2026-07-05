@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6b0e96e73756524d9948ec90b6406cc, type: 3}
+  m_Name: W004_BroadcastTomb_WorldPack
+  m_EditorClassIdentifier: 
+  packId: broadcast_tomb
+  displayName: The Broadcast Tomb
+  sceneName: W004_BroadcastTomb
+  defaultTheme: {fileID: 0}
+  availableThemes: []
+  jobs:
+  - {fileID: 11400000, guid: d2741554b8478784c8c2a2cc2a167cbb, type: 2}
+  spawnMarkers:
+  - markerId: player
+    localPosition: {x: 0, y: 0.11000001, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+  - markerId: poi_story
+    localPosition: {x: 0, y: -3.1320574, z: 111.6}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+  - markerId: poi_camp_a
+    localPosition: {x: -114.194786, y: 2.9922774, z: 53.249897}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+  - markerId: poi_camp_b
+    localPosition: {x: 152.60608, y: -2.5221374, z: -55.544067}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+  - markerId: poi_grove
+    localPosition: {x: -56.000008, y: -1.0419877, z: -96.99484}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+  - markerId: poi_works
+    localPosition: {x: 89.99026, y: 8.82832, z: 107.24622}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+  - markerId: poi_ruin
+    localPosition: {x: -139.5714, y: -1.3178179, z: -65.08322}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+  - markerId: poi_cave
+    localPosition: {x: 82.83319, y: 0.21724847, z: -177.63632}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+  - markerId: poi_berth
+    localPosition: {x: 20, y: 0.16, z: -10}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+  collectibles:
+  - itemId: transmission_fragment
+    displayName: ?? recording
+    localPosition: {x: 0, y: -2.2820575, z: 111.6}
+    flagOnCollect: FRAGMENT_T1_FOUND
+    accentColor: {r: 0, g: 0, b: 0, a: 0}
+  choices: []
+  machines: []
+  mines: []
+  gardens:
+  - id: garden_grove_0
+    plantId: dew_bulb
+    localPosition: {x: -59.20001, y: -0.56198764, z: -99.394844}
+  - id: garden_grove_1
+    plantId: rust_fern
+    localPosition: {x: -56.000008, y: -0.56198764, z: -99.394844}
+  - id: garden_grove_2
+    plantId: glass_reed
+    localPosition: {x: -52.800007, y: -0.56198764, z: -99.394844}
+  - id: garden_grove_3
+    plantId: dew_bulb
+    localPosition: {x: -59.20001, y: -0.56198764, z: -94.59484}
+  - id: garden_grove_4
+    plantId: rust_fern
+    localPosition: {x: -56.000008, y: -0.56198764, z: -94.59484}
+  - id: garden_grove_5
+    plantId: glass_reed
+    localPosition: {x: -52.800007, y: -0.56198764, z: -94.59484}
+  sockets:
+  - id: socket_works
+    resourceId: mineral
+    buildCost: 40
+    ratePerSecond: 0.05
+    storageCap: 40
+    localPosition: {x: 89.99026, y: 9.528319, z: 109.84622}
+  audioProfile: {fileID: 0}
+  flagsRequired:
+  - W003_COMPLETE
+  flagsGranted:
+  - C1_WAKE_GUILD_INTRO
+  - C1_W004_RILL_ASKED_CARGO
+  - SIGNAL_THRESHOLD_1
+  - FRAGMENT_T1_FOUND
+  - W004_COMPLETE

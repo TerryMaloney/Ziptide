@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b850c859cac4fc2b8159e97c043d4e2, type: 3}
+  m_Name: prism
+  m_EditorClassIdentifier: 
+  id: prism
+  displayName: prism
+  category: 4
+  sourceWorlds:
+  - W006_MirrorFlats
+  storyTags:
+  - light
+  rarity: 1
+  storageCap: 0
+  multiplayerUse: 0
+  expectedSourcePerHour: 0
+  expectedSinkPerHour: 0
+  progressionPhase: 0

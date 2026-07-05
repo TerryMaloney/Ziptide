@@ -1,0 +1,235 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f86049fdb144348cbcbeb2d80d53f1, type: 3}
+  m_Name: W010_TidalArray_Layout
+  m_EditorClassIdentifier: 
+  cityId: tidal_array
+  seed: 2010
+  sceneName: W010_TidalArray
+  displayName: Tidal Array
+  spawnDistrictId: ShoreCamp
+  spawnStarterWeapons: 0
+  walkwayHeight: 0
+  palette:
+    concrete: {r: 0.38, g: 0.4, b: 0.4, a: 1}
+    metal: {r: 0.28, g: 0.3, b: 0.33, a: 1}
+    toxic: {r: 0.16, g: 0.35, b: 0.3, a: 1}
+    building1: {r: 0.34, g: 0.38, b: 0.4, a: 1}
+    building2: {r: 0.28, g: 0.32, b: 0.36, a: 1}
+    rail: {r: 0.45, g: 0.28, b: 0.18, a: 1}
+    catwalk: {r: 0.4, g: 0.4, b: 0.42, a: 1}
+    facadeWindow: {r: 0.08, g: 0.12, b: 0.14, a: 1}
+    skyline: {r: 0.16, g: 0.17, b: 0.2, a: 1}
+    accent: {r: 0.3, g: 0.85, b: 0.75, a: 1}
+  fogEnabled: 1
+  fogColor: {r: 0.3, g: 0.34, b: 0.36, a: 1}
+  fogDensity: 0.015
+  skyHorizonColor: {r: 0.55, g: 0.58, b: 0.5, a: 1}
+  skyTopColor: {r: 0.2, g: 0.26, b: 0.34, a: 1}
+  themeGroundTint: {r: 0.36, g: 0.4, b: 0.38, a: 1}
+  planetVisible: 1
+  planetBaseColor: {r: 0.6, g: 0.55, b: 0.45, a: 1}
+  planetAccentColor: {r: 0.8, g: 0.75, b: 0.6, a: 1}
+  planetAngularSize: 18
+  skylineRingRadius: 380
+  skylineCount: 0
+  skylineMinHeight: 30
+  skylineMaxHeight: 90
+  experience:
+    enabled: 1
+    authored: 1
+    biome: 5
+    worldRadius: 320
+    heightAmplitude: 10
+    groundColor: {r: 0.34, g: 0.44, b: 0.46, a: 1}
+    vista: 1
+    vistaDirection: {x: -0.7, y: 0, z: -0.7}
+    vistaDistance: 190
+    vistaHeight: 68
+    vistaColor: {r: 0.4, g: 0.48, b: 0.52, a: 1}
+    vistaAccentColor: {r: 0.35, g: 0.75, b: 1, a: 1}
+  pois:
+  - id: story
+    type: 5
+    position: {x: -83.29718, y: 0, z: -83.29718}
+    tier: 0
+  - id: camp_a
+    type: 0
+    position: {x: 49.250908, y: 0, z: -135.31573}
+    tier: 0
+  - id: camp_b
+    type: 0
+    position: {x: -78.43795, y: 0, z: 168.21071}
+    tier: 1
+  - id: grove
+    type: 1
+    position: {x: 123.638504, y: 0, z: 33.12883}
+    tier: 0
+  - id: works
+    type: 2
+    position: {x: -159.39114, y: 0, z: -13.9449215}
+    tier: 0
+  - id: ruin
+    type: 3
+    position: {x: 165.3859, y: 0, z: -60.19553}
+    tier: 0
+  - id: cave
+    type: 4
+    position: {x: 76.612495, y: 0, z: 210.49115}
+    tier: 1
+  - id: berth
+    type: 6
+    position: {x: 0, y: 0, z: 0}
+    tier: 0
+  districts:
+  - id: ShoreCamp
+    anchor: {x: 0, y: 0, z: 0}
+    bounds: {x: 18, y: 14}
+    buildingStyleId: 
+    heightTier: 0
+    useOverride: 0
+    paletteOverride:
+      concrete: {r: 0.34, g: 0.35, b: 0.37, a: 1}
+      metal: {r: 0.28, g: 0.3, b: 0.33, a: 1}
+      toxic: {r: 0.22, g: 0.45, b: 0.12, a: 1}
+      building1: {r: 0.3, g: 0.31, b: 0.34, a: 1}
+      building2: {r: 0.24, g: 0.26, b: 0.3, a: 1}
+      rail: {r: 0.45, g: 0.28, b: 0.18, a: 1}
+      catwalk: {r: 0.4, g: 0.4, b: 0.42, a: 1}
+      facadeWindow: {r: 0.08, g: 0.12, b: 0.14, a: 1}
+      skyline: {r: 0.16, g: 0.17, b: 0.2, a: 1}
+      accent: {r: 0.9, g: 0.75, b: 0.1, a: 1}
+    landmarks: []
+    heroBuildings: []
+    props: []
+  - id: TurbineA
+    anchor: {x: -24, y: 0, z: 16}
+    bounds: {x: 14, y: 12}
+    buildingStyleId: 
+    heightTier: 1
+    useOverride: 0
+    paletteOverride:
+      concrete: {r: 0.34, g: 0.35, b: 0.37, a: 1}
+      metal: {r: 0.28, g: 0.3, b: 0.33, a: 1}
+      toxic: {r: 0.22, g: 0.45, b: 0.12, a: 1}
+      building1: {r: 0.3, g: 0.31, b: 0.34, a: 1}
+      building2: {r: 0.24, g: 0.26, b: 0.3, a: 1}
+      rail: {r: 0.45, g: 0.28, b: 0.18, a: 1}
+      catwalk: {r: 0.4, g: 0.4, b: 0.42, a: 1}
+      facadeWindow: {r: 0.08, g: 0.12, b: 0.14, a: 1}
+      skyline: {r: 0.16, g: 0.17, b: 0.2, a: 1}
+      accent: {r: 0.9, g: 0.75, b: 0.1, a: 1}
+    landmarks:
+    - name: Turbine_A
+      localPos: {x: 0, y: 0, z: 3}
+      height: 15
+      width: 3
+    heroBuildings: []
+    props: []
+  - id: TurbineB
+    anchor: {x: 24, y: 0, z: 18}
+    bounds: {x: 14, y: 12}
+    buildingStyleId: 
+    heightTier: 1
+    useOverride: 0
+    paletteOverride:
+      concrete: {r: 0.34, g: 0.35, b: 0.37, a: 1}
+      metal: {r: 0.28, g: 0.3, b: 0.33, a: 1}
+      toxic: {r: 0.22, g: 0.45, b: 0.12, a: 1}
+      building1: {r: 0.3, g: 0.31, b: 0.34, a: 1}
+      building2: {r: 0.24, g: 0.26, b: 0.3, a: 1}
+      rail: {r: 0.45, g: 0.28, b: 0.18, a: 1}
+      catwalk: {r: 0.4, g: 0.4, b: 0.42, a: 1}
+      facadeWindow: {r: 0.08, g: 0.12, b: 0.14, a: 1}
+      skyline: {r: 0.16, g: 0.17, b: 0.2, a: 1}
+      accent: {r: 0.9, g: 0.75, b: 0.1, a: 1}
+    landmarks:
+    - name: Turbine_B
+      localPos: {x: 0, y: 0, z: 3}
+      height: 15
+      width: 3
+    heroBuildings: []
+    props: []
+  - id: SaltWorks
+    anchor: {x: 0, y: 0, z: 36}
+    bounds: {x: 16, y: 12}
+    buildingStyleId: 
+    heightTier: 1
+    useOverride: 0
+    paletteOverride:
+      concrete: {r: 0.34, g: 0.35, b: 0.37, a: 1}
+      metal: {r: 0.28, g: 0.3, b: 0.33, a: 1}
+      toxic: {r: 0.22, g: 0.45, b: 0.12, a: 1}
+      building1: {r: 0.3, g: 0.31, b: 0.34, a: 1}
+      building2: {r: 0.24, g: 0.26, b: 0.3, a: 1}
+      rail: {r: 0.45, g: 0.28, b: 0.18, a: 1}
+      catwalk: {r: 0.4, g: 0.4, b: 0.42, a: 1}
+      facadeWindow: {r: 0.08, g: 0.12, b: 0.14, a: 1}
+      skyline: {r: 0.16, g: 0.17, b: 0.2, a: 1}
+      accent: {r: 0.9, g: 0.75, b: 0.1, a: 1}
+    landmarks: []
+    heroBuildings: []
+    props: []
+  connections:
+  - fromDistrictId: ShoreCamp
+    toDistrictId: TurbineA
+    kind: 2
+    width: 5
+    tier: 0
+  - fromDistrictId: ShoreCamp
+    toDistrictId: TurbineB
+    kind: 2
+    width: 5
+    tier: 0
+  - fromDistrictId: TurbineA
+    toDistrictId: SaltWorks
+    kind: 1
+    width: 5
+    tier: 1
+  - fromDistrictId: TurbineB
+    toDistrictId: SaltWorks
+    kind: 1
+    width: 5
+    tier: 1
+  canals:
+  - center: {x: -12, y: 0, z: 10}
+    size: {x: 14, y: 24}
+    depth: 2
+    useOverride: 0
+    colorOverride: {r: 0.22, g: 0.45, b: 0.12, a: 1}
+  - center: {x: 12, y: 0, z: 12}
+    size: {x: 14, y: 24}
+    depth: 2
+    useOverride: 0
+    colorOverride: {r: 0.22, g: 0.45, b: 0.12, a: 1}
+  droneZones: []
+  hazards:
+  - id: tide_west
+    kind: 2
+    center: {x: -12, y: 0, z: 10}
+    size: {x: 14, y: 3, z: 24}
+    strength: 1
+    direction: {x: 1, y: 0, z: 0}
+  - id: tide_east
+    kind: 2
+    center: {x: 12, y: 0, z: 12}
+    size: {x: 14, y: 3, z: 24}
+    strength: 1
+    direction: {x: 1, y: 0, z: 0}
+  creatureZones: []
+  shipyard:
+    enabled: 0
+    berthCenter: {x: 0, y: 0, z: 0}
+    berthSize: {x: 18, y: 14}
+    shipLocalPos: {x: 0, y: 1.4, z: 0}
+    shipSize: {x: 5, y: 3, z: 11}
+    shipRotationY: 0

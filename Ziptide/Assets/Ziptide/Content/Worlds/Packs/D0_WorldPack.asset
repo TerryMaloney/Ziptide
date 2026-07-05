@@ -20,6 +20,12 @@ MonoBehaviour:
   jobs:
   - {fileID: 11400000, guid: 03920f65abc1a5c4ba3780d7cf989c1a, type: 2}
   spawnMarkers: []
+  collectibles: []
+  choices: []
+  machines: []
+  mines: []
+  gardens: []
+  sockets: []
   audioProfile: {fileID: 11400000, guid: 6fbda911a1633ed4eac94eed037a0781, type: 2}
   flagsRequired: []
   flagsGranted: []

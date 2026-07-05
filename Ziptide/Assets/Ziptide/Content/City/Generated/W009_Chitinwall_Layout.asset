@@ -1,0 +1,251 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f86049fdb144348cbcbeb2d80d53f1, type: 3}
+  m_Name: W009_Chitinwall_Layout
+  m_EditorClassIdentifier: 
+  cityId: chitinwall
+  seed: 2009
+  sceneName: W009_Chitinwall
+  displayName: Chitinwall
+  spawnDistrictId: Undercity
+  spawnStarterWeapons: 1
+  walkwayHeight: 0
+  palette:
+    concrete: {r: 0.36, g: 0.28, b: 0.18, a: 1}
+    metal: {r: 0.28, g: 0.3, b: 0.33, a: 1}
+    toxic: {r: 0.22, g: 0.45, b: 0.12, a: 1}
+    building1: {r: 0.42, g: 0.32, b: 0.2, a: 1}
+    building2: {r: 0.3, g: 0.24, b: 0.16, a: 1}
+    rail: {r: 0.45, g: 0.28, b: 0.18, a: 1}
+    catwalk: {r: 0.4, g: 0.4, b: 0.42, a: 1}
+    facadeWindow: {r: 0.08, g: 0.12, b: 0.14, a: 1}
+    skyline: {r: 0.16, g: 0.17, b: 0.2, a: 1}
+    accent: {r: 0.85, g: 0.6, b: 0.2, a: 1}
+  fogEnabled: 1
+  fogColor: {r: 0.2, g: 0.14, b: 0.08, a: 1}
+  fogDensity: 0.02
+  skyHorizonColor: {r: 0.45, g: 0.3, b: 0.12, a: 1}
+  skyTopColor: {r: 0.18, g: 0.1, b: 0.22, a: 1}
+  themeGroundTint: {r: 0.3, g: 0.24, b: 0.16, a: 1}
+  planetVisible: 1
+  planetBaseColor: {r: 0.45, g: 0.4, b: 0.55, a: 1}
+  planetAccentColor: {r: 0.2, g: 0.55, b: 0.6, a: 1}
+  planetAngularSize: 16
+  skylineRingRadius: 340
+  skylineCount: 22
+  skylineMinHeight: 20
+  skylineMaxHeight: 60
+  experience:
+    enabled: 1
+    authored: 1
+    biome: 1
+    worldRadius: 280
+    heightAmplitude: 16
+    groundColor: {r: 0.46, g: 0.38, b: 0.28, a: 1}
+    vista: 5
+    vistaDirection: {x: 0.6, y: 0, z: -0.8}
+    vistaDistance: 160
+    vistaHeight: 60
+    vistaColor: {r: 0.5, g: 0.42, b: 0.3, a: 1}
+    vistaAccentColor: {r: 0.7, g: 0.85, b: 0.3, a: 1}
+  pois:
+  - id: story
+    type: 5
+    position: {x: 59.52, y: 0, z: -79.36}
+    tier: 0
+  - id: camp_a
+    type: 0
+    position: {x: 123.30576, y: 0, z: 25.916954}
+    tier: 0
+  - id: camp_b
+    type: 0
+    position: {x: -155.4113, y: 0, z: -47.128395}
+    tier: 1
+  - id: grove
+    type: 1
+    position: {x: -13.396902, y: 0, z: 111.195885}
+    tier: 0
+  - id: works
+    type: 2
+    position: {x: -7.644474, y: 0, z: -139.79114}
+    tier: 0
+  - id: ruin
+    type: 3
+    position: {x: 72.607185, y: 0, z: 135.80942}
+    tier: 0
+  - id: cave
+    type: 4
+    position: {x: -172.84834, y: 0, z: 92.40914}
+    tier: 1
+  - id: berth
+    type: 6
+    position: {x: 0, y: 0, z: 0}
+    tier: 0
+  districts:
+  - id: Undercity
+    anchor: {x: 0, y: 0, z: 0}
+    bounds: {x: 18, y: 16}
+    buildingStyleId: 
+    heightTier: 1
+    useOverride: 0
+    paletteOverride:
+      concrete: {r: 0.34, g: 0.35, b: 0.37, a: 1}
+      metal: {r: 0.28, g: 0.3, b: 0.33, a: 1}
+      toxic: {r: 0.22, g: 0.45, b: 0.12, a: 1}
+      building1: {r: 0.3, g: 0.31, b: 0.34, a: 1}
+      building2: {r: 0.24, g: 0.26, b: 0.3, a: 1}
+      rail: {r: 0.45, g: 0.28, b: 0.18, a: 1}
+      catwalk: {r: 0.4, g: 0.4, b: 0.42, a: 1}
+      facadeWindow: {r: 0.08, g: 0.12, b: 0.14, a: 1}
+      skyline: {r: 0.16, g: 0.17, b: 0.2, a: 1}
+      accent: {r: 0.9, g: 0.75, b: 0.1, a: 1}
+    landmarks: []
+    heroBuildings: []
+    props: []
+  - id: WallGate
+    anchor: {x: -22, y: 0, z: 10}
+    bounds: {x: 14, y: 12}
+    buildingStyleId: 
+    heightTier: 2
+    useOverride: 0
+    paletteOverride:
+      concrete: {r: 0.34, g: 0.35, b: 0.37, a: 1}
+      metal: {r: 0.28, g: 0.3, b: 0.33, a: 1}
+      toxic: {r: 0.22, g: 0.45, b: 0.12, a: 1}
+      building1: {r: 0.3, g: 0.31, b: 0.34, a: 1}
+      building2: {r: 0.24, g: 0.26, b: 0.3, a: 1}
+      rail: {r: 0.45, g: 0.28, b: 0.18, a: 1}
+      catwalk: {r: 0.4, g: 0.4, b: 0.42, a: 1}
+      facadeWindow: {r: 0.08, g: 0.12, b: 0.14, a: 1}
+      skyline: {r: 0.16, g: 0.17, b: 0.2, a: 1}
+      accent: {r: 0.9, g: 0.75, b: 0.1, a: 1}
+    landmarks: []
+    heroBuildings:
+    - id: GateHouse
+      localPos: {x: 0, y: 0, z: 2}
+      footprint: {x: 8, y: 6}
+      height: 5
+      interior: 2
+      doorLocalPos: {x: 0, y: 0, z: -3}
+      interiorMarkerId: wall_gate
+    props: []
+  - id: HiveMarket
+    anchor: {x: 22, y: 0, z: 12}
+    bounds: {x: 18, y: 16}
+    buildingStyleId: 
+    heightTier: 1
+    useOverride: 0
+    paletteOverride:
+      concrete: {r: 0.34, g: 0.35, b: 0.37, a: 1}
+      metal: {r: 0.28, g: 0.3, b: 0.33, a: 1}
+      toxic: {r: 0.22, g: 0.45, b: 0.12, a: 1}
+      building1: {r: 0.3, g: 0.31, b: 0.34, a: 1}
+      building2: {r: 0.24, g: 0.26, b: 0.3, a: 1}
+      rail: {r: 0.45, g: 0.28, b: 0.18, a: 1}
+      catwalk: {r: 0.4, g: 0.4, b: 0.42, a: 1}
+      facadeWindow: {r: 0.08, g: 0.12, b: 0.14, a: 1}
+      skyline: {r: 0.16, g: 0.17, b: 0.2, a: 1}
+      accent: {r: 0.9, g: 0.75, b: 0.1, a: 1}
+    landmarks: []
+    heroBuildings: []
+    props:
+    - kind: Stall
+      center: {x: 0, y: 0, z: 0}
+      size: {x: 12, y: 12}
+      density: 0.5
+  - id: PylonArray
+    anchor: {x: 0, y: 0, z: 32}
+    bounds: {x: 16, y: 14}
+    buildingStyleId: 
+    heightTier: 2
+    useOverride: 0
+    paletteOverride:
+      concrete: {r: 0.34, g: 0.35, b: 0.37, a: 1}
+      metal: {r: 0.28, g: 0.3, b: 0.33, a: 1}
+      toxic: {r: 0.22, g: 0.45, b: 0.12, a: 1}
+      building1: {r: 0.3, g: 0.31, b: 0.34, a: 1}
+      building2: {r: 0.24, g: 0.26, b: 0.3, a: 1}
+      rail: {r: 0.45, g: 0.28, b: 0.18, a: 1}
+      catwalk: {r: 0.4, g: 0.4, b: 0.42, a: 1}
+      facadeWindow: {r: 0.08, g: 0.12, b: 0.14, a: 1}
+      skyline: {r: 0.16, g: 0.17, b: 0.2, a: 1}
+      accent: {r: 0.9, g: 0.75, b: 0.1, a: 1}
+    landmarks:
+    - name: DeterrentPylon
+      localPos: {x: 0, y: 0, z: 3}
+      height: 20
+      width: 2.5
+    heroBuildings: []
+    props: []
+  connections:
+  - fromDistrictId: Undercity
+    toDistrictId: WallGate
+    kind: 0
+    width: 5
+    tier: 0
+  - fromDistrictId: Undercity
+    toDistrictId: HiveMarket
+    kind: 0
+    width: 5
+    tier: 0
+  - fromDistrictId: WallGate
+    toDistrictId: PylonArray
+    kind: 1
+    width: 5
+    tier: 1
+  - fromDistrictId: HiveMarket
+    toDistrictId: PylonArray
+    kind: 3
+    width: 5
+    tier: 0
+  - fromDistrictId: WallGate
+    toDistrictId: HiveMarket
+    kind: 2
+    width: 5
+    tier: 0
+  canals: []
+  droneZones:
+  - id: Swarm_Market
+    center: {x: 22, y: 0, z: 12}
+    radius: 6
+    count: 3
+    respawnDelay: 12
+    combat: 1
+    variantId: drone_standard
+  - id: Swarm_Pylons
+    center: {x: 0, y: 0, z: 32}
+    radius: 5
+    count: 3
+    respawnDelay: 12
+    combat: 1
+    variantId: drone_standard
+  hazards: []
+  creatureZones:
+  - id: Tether_Wall
+    center: {x: -18, y: 0, z: 20}
+    radius: 3
+    count: 1
+    respawnDelay: 40
+    creatureId: tether_swarm
+  - id: Molters_Wall
+    center: {x: -10, y: 0, z: 30}
+    radius: 4
+    count: 2
+    respawnDelay: 30
+    creatureId: husk_molter
+  shipyard:
+    enabled: 0
+    berthCenter: {x: 0, y: 0, z: 0}
+    berthSize: {x: 18, y: 14}
+    shipLocalPos: {x: 0, y: 1.4, z: 0}
+    shipSize: {x: 5, y: 3, z: 11}
+    shipRotationY: 0

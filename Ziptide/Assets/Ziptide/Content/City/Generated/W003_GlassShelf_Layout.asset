@@ -1,0 +1,229 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f86049fdb144348cbcbeb2d80d53f1, type: 3}
+  m_Name: W003_GlassShelf_Layout
+  m_EditorClassIdentifier: 
+  cityId: glass_shelf
+  seed: 2003
+  sceneName: W003_GlassShelf
+  displayName: Glass Shelf
+  spawnDistrictId: SkiffWreck
+  spawnStarterWeapons: 0
+  walkwayHeight: 0
+  palette:
+    concrete: {r: 0.62, g: 0.66, b: 0.64, a: 1}
+    metal: {r: 0.28, g: 0.3, b: 0.33, a: 1}
+    toxic: {r: 0.22, g: 0.45, b: 0.12, a: 1}
+    building1: {r: 0.58, g: 0.64, b: 0.66, a: 1}
+    building2: {r: 0.52, g: 0.58, b: 0.62, a: 1}
+    rail: {r: 0.45, g: 0.28, b: 0.18, a: 1}
+    catwalk: {r: 0.4, g: 0.4, b: 0.42, a: 1}
+    facadeWindow: {r: 0.08, g: 0.12, b: 0.14, a: 1}
+    skyline: {r: 0.16, g: 0.17, b: 0.2, a: 1}
+    accent: {r: 0.3, g: 0.75, b: 0.8, a: 1}
+  fogEnabled: 0
+  fogColor: {r: 0.18, g: 0.22, b: 0.16, a: 1}
+  fogDensity: 0.018
+  skyHorizonColor: {r: 0.78, g: 0.88, b: 0.92, a: 1}
+  skyTopColor: {r: 0.22, g: 0.38, b: 0.62, a: 1}
+  themeGroundTint: {r: 0.58, g: 0.62, b: 0.6, a: 1}
+  planetVisible: 1
+  planetBaseColor: {r: 0.85, g: 0.85, b: 0.9, a: 1}
+  planetAccentColor: {r: 0.7, g: 0.75, b: 0.85, a: 1}
+  planetAngularSize: 8
+  skylineRingRadius: 340
+  skylineCount: 0
+  skylineMinHeight: 30
+  skylineMaxHeight: 90
+  experience:
+    enabled: 1
+    authored: 1
+    biome: 2
+    worldRadius: 280
+    heightAmplitude: 20
+    groundColor: {r: 0.44, g: 0.5, b: 0.48, a: 1}
+    vista: 3
+    vistaDirection: {x: -0.5, y: 0, z: 1}
+    vistaDistance: 170
+    vistaHeight: 62
+    vistaColor: {r: 0.55, g: 0.62, b: 0.66, a: 1}
+    vistaAccentColor: {r: 0.55, g: 0.9, b: 0.95, a: 1}
+  pois:
+  - id: story
+    type: 5
+    position: {x: -47.136314, y: 0, z: 94.27263}
+    tier: 0
+  - id: camp_a
+    type: 0
+    position: {x: -125.953, y: 0, z: -3.4413035}
+    tier: 0
+  - id: camp_b
+    type: 0
+    position: {x: 161.33508, y: 0, z: 18.567389}
+    tier: 1
+  - id: grove
+    type: 1
+    position: {x: -6.710516, y: 0, z: -111.79879}
+    tier: 0
+  - id: works
+    type: 2
+    position: {x: 32.527767, y: 0, z: 136.16881}
+    tier: 0
+  - id: ruin
+    type: 3
+    position: {x: -95.73034, y: 0, z: -120.630424}
+    tier: 0
+  - id: cave
+    type: 4
+    position: {x: 153.52963, y: 0, z: -121.838615}
+    tier: 1
+  - id: berth
+    type: 6
+    position: {x: 18, y: 0, z: -12}
+    tier: 0
+  districts:
+  - id: SkiffWreck
+    anchor: {x: 0, y: 0, z: 0}
+    bounds: {x: 18, y: 16}
+    buildingStyleId: 
+    heightTier: 0
+    useOverride: 0
+    paletteOverride:
+      concrete: {r: 0.34, g: 0.35, b: 0.37, a: 1}
+      metal: {r: 0.28, g: 0.3, b: 0.33, a: 1}
+      toxic: {r: 0.22, g: 0.45, b: 0.12, a: 1}
+      building1: {r: 0.3, g: 0.31, b: 0.34, a: 1}
+      building2: {r: 0.24, g: 0.26, b: 0.3, a: 1}
+      rail: {r: 0.45, g: 0.28, b: 0.18, a: 1}
+      catwalk: {r: 0.4, g: 0.4, b: 0.42, a: 1}
+      facadeWindow: {r: 0.08, g: 0.12, b: 0.14, a: 1}
+      skyline: {r: 0.16, g: 0.17, b: 0.2, a: 1}
+      accent: {r: 0.9, g: 0.75, b: 0.1, a: 1}
+    landmarks:
+    - name: CrashedSkiff
+      localPos: {x: 5, y: 0, z: -4}
+      height: 4
+      width: 6
+    heroBuildings: []
+    props: []
+  - id: MesaBase
+    anchor: {x: -24, y: 0, z: 14}
+    bounds: {x: 20, y: 18}
+    buildingStyleId: 
+    heightTier: 1
+    useOverride: 0
+    paletteOverride:
+      concrete: {r: 0.34, g: 0.35, b: 0.37, a: 1}
+      metal: {r: 0.28, g: 0.3, b: 0.33, a: 1}
+      toxic: {r: 0.22, g: 0.45, b: 0.12, a: 1}
+      building1: {r: 0.3, g: 0.31, b: 0.34, a: 1}
+      building2: {r: 0.24, g: 0.26, b: 0.3, a: 1}
+      rail: {r: 0.45, g: 0.28, b: 0.18, a: 1}
+      catwalk: {r: 0.4, g: 0.4, b: 0.42, a: 1}
+      facadeWindow: {r: 0.08, g: 0.12, b: 0.14, a: 1}
+      skyline: {r: 0.16, g: 0.17, b: 0.2, a: 1}
+      accent: {r: 0.9, g: 0.75, b: 0.1, a: 1}
+    landmarks: []
+    heroBuildings: []
+    props: []
+  - id: RelayShelfA
+    anchor: {x: 4, y: 0, z: 30}
+    bounds: {x: 16, y: 14}
+    buildingStyleId: 
+    heightTier: 2
+    useOverride: 0
+    paletteOverride:
+      concrete: {r: 0.34, g: 0.35, b: 0.37, a: 1}
+      metal: {r: 0.28, g: 0.3, b: 0.33, a: 1}
+      toxic: {r: 0.22, g: 0.45, b: 0.12, a: 1}
+      building1: {r: 0.3, g: 0.31, b: 0.34, a: 1}
+      building2: {r: 0.24, g: 0.26, b: 0.3, a: 1}
+      rail: {r: 0.45, g: 0.28, b: 0.18, a: 1}
+      catwalk: {r: 0.4, g: 0.4, b: 0.42, a: 1}
+      facadeWindow: {r: 0.08, g: 0.12, b: 0.14, a: 1}
+      skyline: {r: 0.16, g: 0.17, b: 0.2, a: 1}
+      accent: {r: 0.9, g: 0.75, b: 0.1, a: 1}
+    landmarks:
+    - name: BaffleRelayA
+      localPos: {x: 0, y: 0, z: 4}
+      height: 12
+      width: 2
+    heroBuildings: []
+    props: []
+  - id: RelayShelfB
+    anchor: {x: 30, y: 0, z: 16}
+    bounds: {x: 16, y: 14}
+    buildingStyleId: 
+    heightTier: 1
+    useOverride: 0
+    paletteOverride:
+      concrete: {r: 0.34, g: 0.35, b: 0.37, a: 1}
+      metal: {r: 0.28, g: 0.3, b: 0.33, a: 1}
+      toxic: {r: 0.22, g: 0.45, b: 0.12, a: 1}
+      building1: {r: 0.3, g: 0.31, b: 0.34, a: 1}
+      building2: {r: 0.24, g: 0.26, b: 0.3, a: 1}
+      rail: {r: 0.45, g: 0.28, b: 0.18, a: 1}
+      catwalk: {r: 0.4, g: 0.4, b: 0.42, a: 1}
+      facadeWindow: {r: 0.08, g: 0.12, b: 0.14, a: 1}
+      skyline: {r: 0.16, g: 0.17, b: 0.2, a: 1}
+      accent: {r: 0.9, g: 0.75, b: 0.1, a: 1}
+    landmarks:
+    - name: BaffleRelayB
+      localPos: {x: 2, y: 0, z: 2}
+      height: 12
+      width: 2
+    heroBuildings: []
+    props: []
+  connections:
+  - fromDistrictId: SkiffWreck
+    toDistrictId: MesaBase
+    kind: 0
+    width: 6
+    tier: 0
+  - fromDistrictId: MesaBase
+    toDistrictId: RelayShelfA
+    kind: 2
+    width: 5
+    tier: 0
+  - fromDistrictId: RelayShelfA
+    toDistrictId: RelayShelfB
+    kind: 3
+    width: 5
+    tier: 0
+  - fromDistrictId: RelayShelfB
+    toDistrictId: SkiffWreck
+    kind: 2
+    width: 5
+    tier: 0
+  canals: []
+  droneZones: []
+  hazards:
+  - id: wind_crossing_a
+    kind: 0
+    center: {x: -10, y: 0, z: 22}
+    size: {x: 14, y: 5, z: 10}
+    strength: 1.6
+    direction: {x: 1, y: 0, z: -0.4}
+  - id: wind_crossing_b
+    kind: 0
+    center: {x: 15, y: 0, z: 8}
+    size: {x: 12, y: 5, z: 10}
+    strength: 1.9
+    direction: {x: -0.6, y: 0, z: 1}
+  creatureZones: []
+  shipyard:
+    enabled: 1
+    berthCenter: {x: 18, y: 0, z: -12}
+    berthSize: {x: 18, y: 14}
+    shipLocalPos: {x: 0, y: 1.4, z: 0}
+    shipSize: {x: 5, y: 3, z: 11}
+    shipRotationY: -20

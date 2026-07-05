@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07615e383cf7fd74aae04406e6219160, type: 3}
+  m_Name: W005_OxidizedCanopy_WorldProfile
+  m_EditorClassIdentifier: 
+  spawnPosition: {x: 0, y: 0, z: 0}
+  spawnEuler: {x: 0, y: 0, z: 0}
+  playAreaSize: {x: 4, y: 4}
+  groundY: 0
+  usePlayAreaBounds: 0
+  respawnOnFall: 1
+  fallYThreshold: -3
+  respawnFadeSeconds: 0
+  defaultTheme: {fileID: 11400000, guid: f73717708aab9704da5b711275cd198d, type: 2}
+  availableThemes:
+  - {fileID: 11400000, guid: f73717708aab9704da5b711275cd198d, type: 2}

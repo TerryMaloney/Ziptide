@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aabc72b65f644a258cf77561051cf602, type: 3}
+  m_Name: drone_veteran
+  m_EditorClassIdentifier: 
+  detectRange: 12
+  loseRange: 14
+  standoffDistance: 4
+  orbitSpeed: 52
+  verticalBob: 0.3
+  patrolRadius: 3
+  patrolSpeed: 20
+  telegraphSeconds: 0.7
+  boltCooldown: 1.9
+  boltSpeed: 7.5
+  stunSeconds: 1.4
+  slowFactor: 0.4

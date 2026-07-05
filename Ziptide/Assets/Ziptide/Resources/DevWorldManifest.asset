@@ -13,8 +13,43 @@ MonoBehaviour:
   m_Name: DevWorldManifest
   m_EditorClassIdentifier: 
   worlds:
+  - sceneName: Arena_Chitinwall
+    displayName: 'Arena: Chitinwall'
+    markerIds:
+    - player
+  - sceneName: MilestoneA_GrabCube
+    displayName: Leave
+    markerIds: []
+  - sceneName: Arena_Cistern
+    displayName: 'Arena: The Cistern'
+    markerIds:
+    - player
+  - sceneName: MilestoneA_GrabCube
+    displayName: Leave
+    markerIds: []
+  - sceneName: Arena_MirrorFlats
+    displayName: 'Arena: Mirror Flats'
+    markerIds:
+    - player
+  - sceneName: MilestoneA_GrabCube
+    displayName: Leave
+    markerIds: []
+  - sceneName: Arena_Tidal
+    displayName: 'Arena: Tidal Array'
+    markerIds:
+    - player
+  - sceneName: MilestoneA_GrabCube
+    displayName: Leave
+    markerIds: []
+  - sceneName: Arena_Void
+    displayName: 'Arena: The Shell Gate'
+    markerIds:
+    - player
+  - sceneName: MilestoneA_GrabCube
+    displayName: Leave
+    markerIds: []
   - sceneName: D0_City
-    displayName: Toxic City
+    displayName: D0 City (legacy)
     markerIds: []
   - sceneName: PvP_Arena01
     displayName: PvP Arena
@@ -44,6 +79,179 @@ MonoBehaviour:
     displayName: Toxic City
     markerIds:
     - player
+  - sceneName: MilestoneA_GrabCube
+    displayName: Leave
+    markerIds: []
+  - sceneName: W000_DriftIn
+    displayName: Your Ship
+    markerIds:
+    - player
+    - helm
+  - sceneName: MilestoneA_GrabCube
+    displayName: Leave
+    markerIds: []
+  - sceneName: W002_DryCistern
+    displayName: The Dry Cistern
+    markerIds:
+    - player
+    - poi_story
+    - poi_camp_a
+    - poi_camp_b
+    - poi_grove
+    - poi_works
+    - poi_ruin
+    - poi_cave
+    - poi_berth
+  - sceneName: MilestoneA_GrabCube
+    displayName: Leave
+    markerIds: []
+  - sceneName: W003_GlassShelf
+    displayName: Glass Shelf
+    markerIds:
+    - player
+    - poi_story
+    - poi_camp_a
+    - poi_camp_b
+    - poi_grove
+    - poi_works
+    - poi_ruin
+    - poi_cave
+    - poi_berth
+  - sceneName: MilestoneA_GrabCube
+    displayName: Leave
+    markerIds: []
+  - sceneName: W004_BroadcastTomb
+    displayName: The Broadcast Tomb
+    markerIds:
+    - player
+    - poi_story
+    - poi_camp_a
+    - poi_camp_b
+    - poi_grove
+    - poi_works
+    - poi_ruin
+    - poi_cave
+    - poi_berth
+  - sceneName: MilestoneA_GrabCube
+    displayName: Leave
+    markerIds: []
+  - sceneName: W005_OxidizedCanopy
+    displayName: Oxidized Canopy
+    markerIds:
+    - player
+    - poi_story
+    - poi_camp_a
+    - poi_camp_b
+    - poi_grove
+    - poi_works
+    - poi_ruin
+    - poi_cave
+    - poi_berth
+  - sceneName: MilestoneA_GrabCube
+    displayName: Leave
+    markerIds: []
+  - sceneName: W006_MirrorFlats
+    displayName: The Mirror Flats
+    markerIds:
+    - player
+    - poi_story
+    - poi_camp_a
+    - poi_camp_b
+    - poi_grove
+    - poi_works
+    - poi_ruin
+    - poi_cave
+    - poi_berth
+  - sceneName: MilestoneA_GrabCube
+    displayName: Leave
+    markerIds: []
+  - sceneName: W007_SableStation
+    displayName: Sable Station
+    markerIds:
+    - player
+    - poi_story
+    - poi_camp_a
+    - poi_camp_b
+    - poi_grove
+    - poi_works
+    - poi_ruin
+    - poi_cave
+    - poi_berth
+  - sceneName: MilestoneA_GrabCube
+    displayName: Leave
+    markerIds: []
+  - sceneName: W008_SealedArchive
+    displayName: The Sealed Archive
+    markerIds:
+    - player
+    - poi_story
+    - poi_camp_a
+    - poi_camp_b
+    - poi_grove
+    - poi_works
+    - poi_ruin
+    - poi_cave
+    - poi_berth
+  - sceneName: MilestoneA_GrabCube
+    displayName: Leave
+    markerIds: []
+  - sceneName: W009_Chitinwall
+    displayName: Chitinwall
+    markerIds:
+    - player
+    - poi_story
+    - poi_camp_a
+    - poi_camp_b
+    - poi_grove
+    - poi_works
+    - poi_ruin
+    - poi_cave
+    - poi_berth
+  - sceneName: MilestoneA_GrabCube
+    displayName: Leave
+    markerIds: []
+  - sceneName: W010_TidalArray
+    displayName: Tidal Array
+    markerIds:
+    - player
+    - poi_story
+    - poi_camp_a
+    - poi_camp_b
+    - poi_grove
+    - poi_works
+    - poi_ruin
+    - poi_cave
+    - poi_berth
+  - sceneName: MilestoneA_GrabCube
+    displayName: Leave
+    markerIds: []
+  - sceneName: W011_TheHum
+    displayName: The Hum
+    markerIds:
+    - player
+    - poi_story
+    - poi_camp_a
+    - poi_camp_b
+    - poi_grove
+    - poi_works
+    - poi_ruin
+    - poi_cave
+    - poi_berth
+  - sceneName: MilestoneA_GrabCube
+    displayName: Leave
+    markerIds: []
+  - sceneName: W012_MarasLastJump
+    displayName: Mara's Last Jump
+    markerIds:
+    - player
+    - poi_story
+    - poi_camp_a
+    - poi_camp_b
+    - poi_grove
+    - poi_works
+    - poi_ruin
+    - poi_cave
+    - poi_berth
   - sceneName: MilestoneA_GrabCube
     displayName: Leave
     markerIds: []

@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83781912c7efe3841b73c1b7d56c9513, type: 3}
+  m_Name: W009_Chitinwall_Job
+  m_EditorClassIdentifier: 
+  jobId: w009_pylons
+  title: Raise the Swarm-Deterrent Pylons
+  steps:
+  - {fileID: 11400000, guid: 195a856d79d5f534ea69a3f564123f0d, type: 2}
+  - {fileID: 11400000, guid: aa4d15dfb56303d4994ed80c83caa24c, type: 2}
+  - {fileID: 11400000, guid: 3ab605dd60689794d8f550ac3d674be6, type: 2}
+  - {fileID: 11400000, guid: 21aca196e80c0164ead3f49a2ae0e025, type: 2}
+  reward:
+  - resourceId: credits
+    amount: 130
+  - resourceId: carapace
+    amount: 4
+  completionFlag: W009_COMPLETE

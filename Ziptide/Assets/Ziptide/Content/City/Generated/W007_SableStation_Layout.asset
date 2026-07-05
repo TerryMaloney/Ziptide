@@ -1,0 +1,220 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f86049fdb144348cbcbeb2d80d53f1, type: 3}
+  m_Name: W007_SableStation_Layout
+  m_EditorClassIdentifier: 
+  cityId: sable_station
+  seed: 2007
+  sceneName: W007_SableStation
+  displayName: Sable Station
+  spawnDistrictId: Dock
+  spawnStarterWeapons: 0
+  walkwayHeight: 0
+  palette:
+    concrete: {r: 0.24, g: 0.25, b: 0.28, a: 1}
+    metal: {r: 0.28, g: 0.3, b: 0.33, a: 1}
+    toxic: {r: 0.22, g: 0.45, b: 0.12, a: 1}
+    building1: {r: 0.2, g: 0.22, b: 0.26, a: 1}
+    building2: {r: 0.16, g: 0.18, b: 0.22, a: 1}
+    rail: {r: 0.45, g: 0.28, b: 0.18, a: 1}
+    catwalk: {r: 0.4, g: 0.4, b: 0.42, a: 1}
+    facadeWindow: {r: 0.08, g: 0.12, b: 0.14, a: 1}
+    skyline: {r: 0.16, g: 0.17, b: 0.2, a: 1}
+    accent: {r: 0.9, g: 0.25, b: 0.2, a: 1}
+  fogEnabled: 0
+  fogColor: {r: 0.18, g: 0.22, b: 0.16, a: 1}
+  fogDensity: 0.018
+  skyHorizonColor: {r: 0.02, g: 0.02, b: 0.05, a: 1}
+  skyTopColor: {r: 0.01, g: 0.01, b: 0.03, a: 1}
+  themeGroundTint: {r: 0.2, g: 0.21, b: 0.24, a: 1}
+  planetVisible: 1
+  planetBaseColor: {r: 0.3, g: 0.45, b: 0.55, a: 1}
+  planetAccentColor: {r: 0.15, g: 0.6, b: 0.7, a: 1}
+  planetAngularSize: 22
+  skylineRingRadius: 320
+  skylineCount: 0
+  skylineMinHeight: 30
+  skylineMaxHeight: 90
+  experience:
+    enabled: 1
+    authored: 1
+    biome: 2
+    worldRadius: 260
+    heightAmplitude: 22
+    groundColor: {r: 0.22, g: 0.2, b: 0.24, a: 1}
+    vista: 2
+    vistaDirection: {x: -1, y: 0, z: 0.4}
+    vistaDistance: 150
+    vistaHeight: 48
+    vistaColor: {r: 0.3, g: 0.28, b: 0.3, a: 1}
+    vistaAccentColor: {r: 0.95, g: 0.7, b: 0.3, a: 1}
+  pois:
+  - id: story
+    type: 5
+    position: {x: -86.348335, y: 0, z: 34.539333}
+    tier: 0
+  - id: camp_a
+    type: 0
+    position: {x: -85.291306, y: 0, z: -80.08992}
+    tier: 0
+  - id: camp_b
+    type: 0
+    position: {x: 100.51586, y: 0, z: 112.41532}
+    tier: 1
+  - id: grove
+    type: 1
+    position: {x: 64.31246, y: 0, z: -81.73071}
+    tier: 0
+  - id: works
+    type: 2
+    position: {x: -61.428783, y: 0, z: 114.57096}
+    tier: 0
+  - id: ruin
+    type: 3
+    position: {x: 7.9789743, y: 0, z: -142.77724}
+    tier: 0
+  - id: cave
+    type: 4
+    position: {x: 181.71648, y: 0, z: 10.155058}
+    tier: 1
+  - id: berth
+    type: 6
+    position: {x: 0, y: 0, z: 0}
+    tier: 0
+  districts:
+  - id: Dock
+    anchor: {x: 0, y: 0, z: 0}
+    bounds: {x: 16, y: 14}
+    buildingStyleId: 
+    heightTier: 0
+    useOverride: 0
+    paletteOverride:
+      concrete: {r: 0.34, g: 0.35, b: 0.37, a: 1}
+      metal: {r: 0.28, g: 0.3, b: 0.33, a: 1}
+      toxic: {r: 0.22, g: 0.45, b: 0.12, a: 1}
+      building1: {r: 0.3, g: 0.31, b: 0.34, a: 1}
+      building2: {r: 0.24, g: 0.26, b: 0.3, a: 1}
+      rail: {r: 0.45, g: 0.28, b: 0.18, a: 1}
+      catwalk: {r: 0.4, g: 0.4, b: 0.42, a: 1}
+      facadeWindow: {r: 0.08, g: 0.12, b: 0.14, a: 1}
+      skyline: {r: 0.16, g: 0.17, b: 0.2, a: 1}
+      accent: {r: 0.9, g: 0.75, b: 0.1, a: 1}
+    landmarks: []
+    heroBuildings: []
+    props: []
+  - id: AirlockRow
+    anchor: {x: -20, y: 0, z: 10}
+    bounds: {x: 14, y: 12}
+    buildingStyleId: 
+    heightTier: 1
+    useOverride: 0
+    paletteOverride:
+      concrete: {r: 0.34, g: 0.35, b: 0.37, a: 1}
+      metal: {r: 0.28, g: 0.3, b: 0.33, a: 1}
+      toxic: {r: 0.22, g: 0.45, b: 0.12, a: 1}
+      building1: {r: 0.3, g: 0.31, b: 0.34, a: 1}
+      building2: {r: 0.24, g: 0.26, b: 0.3, a: 1}
+      rail: {r: 0.45, g: 0.28, b: 0.18, a: 1}
+      catwalk: {r: 0.4, g: 0.4, b: 0.42, a: 1}
+      facadeWindow: {r: 0.08, g: 0.12, b: 0.14, a: 1}
+      skyline: {r: 0.16, g: 0.17, b: 0.2, a: 1}
+      accent: {r: 0.9, g: 0.75, b: 0.1, a: 1}
+    landmarks: []
+    heroBuildings:
+    - id: Airlock
+      localPos: {x: 0, y: 0, z: 2}
+      footprint: {x: 7, y: 6}
+      height: 4.5
+      interior: 2
+      doorLocalPos: {x: 0, y: 0, z: -3}
+      interiorMarkerId: airlock
+    props: []
+  - id: FuelRig
+    anchor: {x: 4, y: 0, z: 26}
+    bounds: {x: 16, y: 14}
+    buildingStyleId: 
+    heightTier: 1
+    useOverride: 0
+    paletteOverride:
+      concrete: {r: 0.34, g: 0.35, b: 0.37, a: 1}
+      metal: {r: 0.28, g: 0.3, b: 0.33, a: 1}
+      toxic: {r: 0.22, g: 0.45, b: 0.12, a: 1}
+      building1: {r: 0.3, g: 0.31, b: 0.34, a: 1}
+      building2: {r: 0.24, g: 0.26, b: 0.3, a: 1}
+      rail: {r: 0.45, g: 0.28, b: 0.18, a: 1}
+      catwalk: {r: 0.4, g: 0.4, b: 0.42, a: 1}
+      facadeWindow: {r: 0.08, g: 0.12, b: 0.14, a: 1}
+      skyline: {r: 0.16, g: 0.17, b: 0.2, a: 1}
+      accent: {r: 0.9, g: 0.75, b: 0.1, a: 1}
+    landmarks:
+    - name: FuelGantry
+      localPos: {x: 3, y: 0, z: 3}
+      height: 16
+      width: 3
+    heroBuildings: []
+    props: []
+  - id: ObservationDeck
+    anchor: {x: -18, y: 0, z: 38}
+    bounds: {x: 16, y: 12}
+    buildingStyleId: 
+    heightTier: 2
+    useOverride: 0
+    paletteOverride:
+      concrete: {r: 0.34, g: 0.35, b: 0.37, a: 1}
+      metal: {r: 0.28, g: 0.3, b: 0.33, a: 1}
+      toxic: {r: 0.22, g: 0.45, b: 0.12, a: 1}
+      building1: {r: 0.3, g: 0.31, b: 0.34, a: 1}
+      building2: {r: 0.24, g: 0.26, b: 0.3, a: 1}
+      rail: {r: 0.45, g: 0.28, b: 0.18, a: 1}
+      catwalk: {r: 0.4, g: 0.4, b: 0.42, a: 1}
+      facadeWindow: {r: 0.08, g: 0.12, b: 0.14, a: 1}
+      skyline: {r: 0.16, g: 0.17, b: 0.2, a: 1}
+      accent: {r: 0.9, g: 0.75, b: 0.1, a: 1}
+    landmarks:
+    - name: Viewport
+      localPos: {x: 0, y: 0, z: 4}
+      height: 10
+      width: 8
+    heroBuildings: []
+    props: []
+  connections:
+  - fromDistrictId: Dock
+    toDistrictId: AirlockRow
+    kind: 0
+    width: 4
+    tier: 0
+  - fromDistrictId: AirlockRow
+    toDistrictId: FuelRig
+    kind: 0
+    width: 4
+    tier: 0
+  - fromDistrictId: FuelRig
+    toDistrictId: ObservationDeck
+    kind: 3
+    width: 4
+    tier: 0
+  - fromDistrictId: AirlockRow
+    toDistrictId: ObservationDeck
+    kind: 1
+    width: 4
+    tier: 1
+  canals: []
+  droneZones: []
+  hazards: []
+  creatureZones: []
+  shipyard:
+    enabled: 0
+    berthCenter: {x: 0, y: 0, z: 0}
+    berthSize: {x: 18, y: 14}
+    shipLocalPos: {x: 0, y: 1.4, z: 0}
+    shipSize: {x: 5, y: 3, z: 11}
+    shipRotationY: 0

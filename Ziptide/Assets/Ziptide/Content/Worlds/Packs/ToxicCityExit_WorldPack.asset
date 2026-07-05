@@ -19,6 +19,12 @@ MonoBehaviour:
   availableThemes: []
   jobs: []
   spawnMarkers: []
+  collectibles: []
+  choices: []
+  machines: []
+  mines: []
+  gardens: []
+  sockets: []
   audioProfile: {fileID: 0}
   flagsRequired: []
   flagsGranted: []

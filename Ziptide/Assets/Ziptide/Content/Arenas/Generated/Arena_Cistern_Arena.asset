@@ -1,0 +1,115 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 778c803fbe8d49b1beb601a70bf2d150, type: 3}
+  m_Name: Arena_Cistern_Arena
+  m_EditorClassIdentifier: 
+  arenaId: arena_cistern
+  sceneName: Arena_Cistern
+  displayName: 'Arena: The Cistern'
+  botDifficulty: regular
+  skyHorizonColor: {r: 0.05, g: 0.05, b: 0.06, a: 1}
+  skyTopColor: {r: 0.09, g: 0.09, b: 0.11, a: 1}
+  groundTint: {r: 0.18, g: 0.17, b: 0.16, a: 1}
+  planetVisible: 0
+  planetBaseColor: {r: 0.4, g: 0.5, b: 0.7, a: 1}
+  planetAccentColor: {r: 0.25, g: 0.35, b: 0.5, a: 1}
+  planetAngularSize: 12
+  fogEnabled: 1
+  fogColor: {r: 0.02, g: 0.02, b: 0.03, a: 1}
+  fogDensity: 0.03
+  floorColor: {r: 0.2, g: 0.19, b: 0.18, a: 1}
+  wallColor: {r: 0.24, g: 0.22, b: 0.2, a: 1}
+  coverColor: {r: 0.32, g: 0.28, b: 0.22, a: 1}
+  platformColor: {r: 0.85, g: 0.7, b: 0.3, a: 1}
+  floorSize: {x: 44, y: 44}
+  wallHeight: 5
+  platforms:
+  - blockName: LightShaftHill
+    position: {x: 0, y: 1, z: 0}
+    size: {x: 9, y: 1, z: 9}
+  ramps:
+  - rampName: Ramp_S
+    position: {x: 0, y: 0.5, z: -7}
+    size: {x: 4, y: 0.4, z: 6}
+    tiltX: -14
+    rotY: 0
+  - rampName: Ramp_N
+    position: {x: 0, y: 0.5, z: 7}
+    size: {x: 4, y: 0.4, z: 6}
+    tiltX: 14
+    rotY: 0
+  covers:
+  - blockName: Cover_1
+    position: {x: -10, y: 0.9, z: -8}
+    size: {x: 2, y: 1.8, z: 2}
+  - blockName: Cover_2
+    position: {x: 10, y: 0.9, z: 8}
+    size: {x: 2, y: 1.8, z: 2}
+  - blockName: Cover_3
+    position: {x: -12, y: 0.9, z: 6}
+    size: {x: 2, y: 1.8, z: 2}
+  - blockName: Cover_4
+    position: {x: 12, y: 0.9, z: -6}
+    size: {x: 2, y: 1.8, z: 2}
+  - blockName: Cover_5
+    position: {x: -4, y: 0.9, z: 14}
+    size: {x: 2, y: 1.8, z: 2}
+  - blockName: Cover_6
+    position: {x: 4, y: 0.9, z: -14}
+    size: {x: 2, y: 1.8, z: 2}
+  breakableWalls:
+  - wallName: Tunnel_W
+    position: {x: -9, y: 1.5, z: 0}
+    rotY: 90
+    size: {x: 4, y: 3, z: 0.3}
+  - wallName: Tunnel_E
+    position: {x: 9, y: 1.5, z: 0}
+    rotY: 90
+    size: {x: 4, y: 3, z: 0.3}
+  playerSpawn: {x: 0, y: 0.1, z: -17}
+  botSpawn: {x: 0, y: 1.2, z: 17}
+  waypoints:
+  - {x: -15, y: 0.1, z: -15}
+  - {x: 15, y: 0.1, z: -15}
+  - {x: 18, y: 0.1, z: 0}
+  - {x: 15, y: 0.1, z: 15}
+  - {x: -15, y: 0.1, z: 15}
+  - {x: -18, y: 0.1, z: 0}
+  - {x: 0, y: 1.6, z: 0}
+  - {x: 0, y: 0.1, z: -16}
+  coverPoints:
+  - {x: -10, y: 0.1, z: -9.8}
+  - {x: -10, y: 0.1, z: -6.2}
+  - {x: 10, y: 0.1, z: 9.8}
+  - {x: 10, y: 0.1, z: 6.2}
+  - {x: -12, y: 0.1, z: 7.8}
+  - {x: 12, y: 0.1, z: -7.8}
+  - {x: -4, y: 0.1, z: 15.8}
+  - {x: 4, y: 0.1, z: -15.8}
+  objectiveZones:
+  - zoneId: hill
+    position: {x: 0, y: 1.6, z: 0}
+    radius: 4
+  weaponPads:
+  - itemId: taser_dart_gun
+    position: {x: -1, y: 0.1, z: -16}
+    respawnSeconds: 20
+  - itemId: gravity_gun
+    position: {x: 1, y: 0.1, z: -16}
+    respawnSeconds: 20
+  - itemId: pistol
+    position: {x: 0, y: 2.1, z: 0}
+    respawnSeconds: 20
+  - itemId: static_net
+    position: {x: 18, y: 0.1, z: 0}
+    respawnSeconds: 20
+  hazards: []

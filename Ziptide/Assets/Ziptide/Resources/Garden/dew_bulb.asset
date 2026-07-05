@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b95a89bbfb2ad014f81819fd7a3ffd5c, type: 3}
+  m_Name: dew_bulb
+  m_EditorClassIdentifier: 
+  id: dew_bulb
+  displayName: dew bulb
+  biomeId: 
+  growSeconds: 120
+  harvestYield:
+  - resourceId: credits
+    amount: 10
+  - resourceId: spore
+    amount: 2
+  tendToolIds: []
+  harvestWith: 1

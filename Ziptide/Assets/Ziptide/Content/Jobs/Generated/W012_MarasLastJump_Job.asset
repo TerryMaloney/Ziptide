@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83781912c7efe3841b73c1b7d56c9513, type: 3}
+  m_Name: W012_MarasLastJump_Job
+  m_EditorClassIdentifier: 
+  jobId: w012_stabilize
+  title: Stabilize the Failing Gate
+  steps:
+  - {fileID: 11400000, guid: ff9319628de818e45b0c087bf934451d, type: 2}
+  - {fileID: 11400000, guid: 209c17cadd48b29488ccef81a3325a15, type: 2}
+  - {fileID: 11400000, guid: fcd54513b7235c1439334749c5023b9b, type: 2}
+  - {fileID: 11400000, guid: c03bc190591156547a1d7a47dd5dbf1c, type: 2}
+  reward:
+  - resourceId: credits
+    amount: 150
+  - resourceId: jump_core
+    amount: 1
+  completionFlag: C2_CONTAINMENT_REVEALED

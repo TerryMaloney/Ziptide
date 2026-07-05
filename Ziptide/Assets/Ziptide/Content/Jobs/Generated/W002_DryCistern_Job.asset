@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83781912c7efe3841b73c1b7d56c9513, type: 3}
+  m_Name: W002_DryCistern_Job
+  m_EditorClassIdentifier: 
+  jobId: w002_pumps
+  title: Restart the Cistern Pumps
+  steps:
+  - {fileID: 11400000, guid: f824c5aff24c35a48b3ac6418fb41ebe, type: 2}
+  - {fileID: 11400000, guid: e9d8c374dea3ab34ba009b82b7158ac6, type: 2}
+  - {fileID: 11400000, guid: 7618de62bbd2d48479056f24211052a0, type: 2}
+  - {fileID: 11400000, guid: 1e138311365e0c64da1780f43bd17900, type: 2}
+  - {fileID: 11400000, guid: db199ede93d9ea441b72acae53f731dc, type: 2}
+  - {fileID: 11400000, guid: 7579653568b26df4f93d54ed7ddbd34a, type: 2}
+  reward:
+  - resourceId: credits
+    amount: 60
+  - resourceId: mineral
+    amount: 5
+  completionFlag: W002_COMPLETE

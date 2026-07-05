@@ -1,0 +1,223 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f86049fdb144348cbcbeb2d80d53f1, type: 3}
+  m_Name: W011_TheHum_Layout
+  m_EditorClassIdentifier: 
+  cityId: the_hum
+  seed: 2011
+  sceneName: W011_TheHum
+  displayName: The Hum
+  spawnDistrictId: TunnelMouth
+  spawnStarterWeapons: 0
+  walkwayHeight: 0
+  palette:
+    concrete: {r: 0.26, g: 0.22, b: 0.22, a: 1}
+    metal: {r: 0.28, g: 0.3, b: 0.33, a: 1}
+    toxic: {r: 0.22, g: 0.45, b: 0.12, a: 1}
+    building1: {r: 0.22, g: 0.18, b: 0.2, a: 1}
+    building2: {r: 0.18, g: 0.15, b: 0.17, a: 1}
+    rail: {r: 0.45, g: 0.28, b: 0.18, a: 1}
+    catwalk: {r: 0.4, g: 0.4, b: 0.42, a: 1}
+    facadeWindow: {r: 0.08, g: 0.12, b: 0.14, a: 1}
+    skyline: {r: 0.16, g: 0.17, b: 0.2, a: 1}
+    accent: {r: 0.9, g: 0.3, b: 0.55, a: 1}
+  fogEnabled: 1
+  fogColor: {r: 0.06, g: 0.03, b: 0.05, a: 1}
+  fogDensity: 0.04
+  skyHorizonColor: {r: 0.06, g: 0.04, b: 0.05, a: 1}
+  skyTopColor: {r: 0.1, g: 0.07, b: 0.09, a: 1}
+  themeGroundTint: {r: 0.22, g: 0.18, b: 0.18, a: 1}
+  planetVisible: 0
+  planetBaseColor: {r: 0.4, g: 0.5, b: 0.7, a: 1}
+  planetAccentColor: {r: 0.25, g: 0.35, b: 0.5, a: 1}
+  planetAngularSize: 12
+  skylineRingRadius: 320
+  skylineCount: 0
+  skylineMinHeight: 30
+  skylineMaxHeight: 90
+  experience:
+    enabled: 1
+    authored: 1
+    biome: 4
+    worldRadius: 260
+    heightAmplitude: 12
+    groundColor: {r: 0.24, g: 0.22, b: 0.2, a: 1}
+    vista: 3
+    vistaDirection: {x: 0, y: 0, z: 1}
+    vistaDistance: 150
+    vistaHeight: 64
+    vistaColor: {r: 0.3, g: 0.27, b: 0.24, a: 1}
+    vistaAccentColor: {r: 0.9, g: 0.65, b: 0.25, a: 1}
+  pois:
+  - id: story
+    type: 5
+    position: {x: 0, y: 0, z: 93}
+    tier: 0
+  - id: camp_a
+    type: 0
+    position: {x: -106.03802, y: 0, z: 49.446335}
+    tier: 0
+  - id: camp_b
+    type: 0
+    position: {x: 141.70564, y: 0, z: -51.576637}
+    tier: 1
+  - id: grove
+    type: 1
+    position: {x: -52.000008, y: 0, z: -90.06664}
+    tier: 0
+  - id: works
+    type: 2
+    position: {x: 83.562386, y: 0, z: 99.58578}
+    tier: 0
+  - id: ruin
+    type: 3
+    position: {x: -129.602, y: 0, z: -60.43442}
+    tier: 0
+  - id: cave
+    type: 4
+    position: {x: 76.916534, y: 0, z: -164.94801}
+    tier: 1
+  - id: berth
+    type: 6
+    position: {x: 0, y: 0, z: 0}
+    tier: 0
+  districts:
+  - id: TunnelMouth
+    anchor: {x: 0, y: 0, z: 0}
+    bounds: {x: 14, y: 12}
+    buildingStyleId: 
+    heightTier: 0
+    useOverride: 0
+    paletteOverride:
+      concrete: {r: 0.34, g: 0.35, b: 0.37, a: 1}
+      metal: {r: 0.28, g: 0.3, b: 0.33, a: 1}
+      toxic: {r: 0.22, g: 0.45, b: 0.12, a: 1}
+      building1: {r: 0.3, g: 0.31, b: 0.34, a: 1}
+      building2: {r: 0.24, g: 0.26, b: 0.3, a: 1}
+      rail: {r: 0.45, g: 0.28, b: 0.18, a: 1}
+      catwalk: {r: 0.4, g: 0.4, b: 0.42, a: 1}
+      facadeWindow: {r: 0.08, g: 0.12, b: 0.14, a: 1}
+      skyline: {r: 0.16, g: 0.17, b: 0.2, a: 1}
+      accent: {r: 0.9, g: 0.75, b: 0.1, a: 1}
+    landmarks: []
+    heroBuildings: []
+    props: []
+  - id: ResonatorA
+    anchor: {x: -18, y: 0, z: 12}
+    bounds: {x: 14, y: 12}
+    buildingStyleId: 
+    heightTier: 1
+    useOverride: 0
+    paletteOverride:
+      concrete: {r: 0.34, g: 0.35, b: 0.37, a: 1}
+      metal: {r: 0.28, g: 0.3, b: 0.33, a: 1}
+      toxic: {r: 0.22, g: 0.45, b: 0.12, a: 1}
+      building1: {r: 0.3, g: 0.31, b: 0.34, a: 1}
+      building2: {r: 0.24, g: 0.26, b: 0.3, a: 1}
+      rail: {r: 0.45, g: 0.28, b: 0.18, a: 1}
+      catwalk: {r: 0.4, g: 0.4, b: 0.42, a: 1}
+      facadeWindow: {r: 0.08, g: 0.12, b: 0.14, a: 1}
+      skyline: {r: 0.16, g: 0.17, b: 0.2, a: 1}
+      accent: {r: 0.9, g: 0.75, b: 0.1, a: 1}
+    landmarks: []
+    heroBuildings:
+    - id: BankA
+      localPos: {x: 0, y: 0, z: 2}
+      footprint: {x: 7, y: 6}
+      height: 4.5
+      interior: 2
+      doorLocalPos: {x: 0, y: 0, z: -3}
+      interiorMarkerId: resonator_bank_a
+    props: []
+  - id: ResonatorB
+    anchor: {x: 4, y: 0, z: 26}
+    bounds: {x: 14, y: 12}
+    buildingStyleId: 
+    heightTier: 1
+    useOverride: 0
+    paletteOverride:
+      concrete: {r: 0.34, g: 0.35, b: 0.37, a: 1}
+      metal: {r: 0.28, g: 0.3, b: 0.33, a: 1}
+      toxic: {r: 0.22, g: 0.45, b: 0.12, a: 1}
+      building1: {r: 0.3, g: 0.31, b: 0.34, a: 1}
+      building2: {r: 0.24, g: 0.26, b: 0.3, a: 1}
+      rail: {r: 0.45, g: 0.28, b: 0.18, a: 1}
+      catwalk: {r: 0.4, g: 0.4, b: 0.42, a: 1}
+      facadeWindow: {r: 0.08, g: 0.12, b: 0.14, a: 1}
+      skyline: {r: 0.16, g: 0.17, b: 0.2, a: 1}
+      accent: {r: 0.9, g: 0.75, b: 0.1, a: 1}
+    landmarks: []
+    heroBuildings:
+    - id: BankB
+      localPos: {x: 0, y: 0, z: 2}
+      footprint: {x: 7, y: 6}
+      height: 4.5
+      interior: 2
+      doorLocalPos: {x: 0, y: 0, z: -3}
+      interiorMarkerId: resonator_bank_b
+    props: []
+  - id: MinersCamp
+    anchor: {x: -16, y: 0, z: 38}
+    bounds: {x: 14, y: 12}
+    buildingStyleId: 
+    heightTier: 0
+    useOverride: 0
+    paletteOverride:
+      concrete: {r: 0.34, g: 0.35, b: 0.37, a: 1}
+      metal: {r: 0.28, g: 0.3, b: 0.33, a: 1}
+      toxic: {r: 0.22, g: 0.45, b: 0.12, a: 1}
+      building1: {r: 0.3, g: 0.31, b: 0.34, a: 1}
+      building2: {r: 0.24, g: 0.26, b: 0.3, a: 1}
+      rail: {r: 0.45, g: 0.28, b: 0.18, a: 1}
+      catwalk: {r: 0.4, g: 0.4, b: 0.42, a: 1}
+      facadeWindow: {r: 0.08, g: 0.12, b: 0.14, a: 1}
+      skyline: {r: 0.16, g: 0.17, b: 0.2, a: 1}
+      accent: {r: 0.9, g: 0.75, b: 0.1, a: 1}
+    landmarks:
+    - name: CrystalChord
+      localPos: {x: 0, y: 0, z: 3}
+      height: 12
+      width: 2
+    heroBuildings: []
+    props: []
+  connections:
+  - fromDistrictId: TunnelMouth
+    toDistrictId: ResonatorA
+    kind: 0
+    width: 4
+    tier: 0
+  - fromDistrictId: ResonatorA
+    toDistrictId: ResonatorB
+    kind: 3
+    width: 4
+    tier: 0
+  - fromDistrictId: ResonatorB
+    toDistrictId: MinersCamp
+    kind: 0
+    width: 4
+    tier: 0
+  - fromDistrictId: ResonatorA
+    toDistrictId: MinersCamp
+    kind: 3
+    width: 4
+    tier: 0
+  canals: []
+  droneZones: []
+  hazards: []
+  creatureZones: []
+  shipyard:
+    enabled: 0
+    berthCenter: {x: 0, y: 0, z: 0}
+    berthSize: {x: 18, y: 14}
+    shipLocalPos: {x: 0, y: 1.4, z: 0}
+    shipSize: {x: 5, y: 3, z: 11}
+    shipRotationY: 0

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a48d17caeb4e1240af39398bd6d9998, type: 3}
+  m_Name: witness_mite
+  m_EditorClassIdentifier: 
+  id: witness_mite
+  displayName: 
+  archetype: 0
+  maxHealth: 10
+  moveSpeed: 3.5
+  damage: 2
+  biomeId: mirror_flats
+  loot:
+  - resourceId: prism
+    amount: 1
+  shockable: 1

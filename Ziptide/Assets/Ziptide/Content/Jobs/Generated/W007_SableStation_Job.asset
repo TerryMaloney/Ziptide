@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83781912c7efe3841b73c1b7d56c9513, type: 3}
+  m_Name: W007_SableStation_Job
+  m_EditorClassIdentifier: 
+  jobId: w007_fuelrig
+  title: Repair Sable's Fuel Rig
+  steps:
+  - {fileID: 11400000, guid: e7879558f960eb2418f10a2fb0df95da, type: 2}
+  - {fileID: 11400000, guid: 5bfd0a73a7e0dda49b250b558fd0ddd3, type: 2}
+  - {fileID: 11400000, guid: 8462e89ed9dfcc046bb25b60a97da53c, type: 2}
+  reward:
+  - resourceId: credits
+    amount: 120
+  - resourceId: fuel_cell
+    amount: 1
+  completionFlag: W007_COMPLETE

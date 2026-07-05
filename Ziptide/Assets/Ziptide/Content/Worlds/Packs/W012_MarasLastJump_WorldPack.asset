@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6b0e96e73756524d9948ec90b6406cc, type: 3}
+  m_Name: W012_MarasLastJump_WorldPack
+  m_EditorClassIdentifier: 
+  packId: maras_last_jump
+  displayName: Mara's Last Jump
+  sceneName: W012_MarasLastJump
+  defaultTheme: {fileID: 0}
+  availableThemes: []
+  jobs:
+  - {fileID: 11400000, guid: 4e7e97690714de64584e8acc8328981c, type: 2}
+  spawnMarkers:
+  - markerId: player
+    localPosition: {x: 0, y: 0.11000001, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+  - markerId: poi_story
+    localPosition: {x: 46.05245, y: 0.3157041, z: 115.13112}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+  - markerId: poi_camp_a
+    localPosition: {x: -98.57221, y: -7.1860375, z: 104.97391}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+  - markerId: poi_camp_b
+    localPosition: {x: 138.35732, y: -7.225535, z: -123.71182}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+  - markerId: poi_grove
+    localPosition: {x: -100.591644, y: -6.9714866, z: -79.1538}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+  - markerId: poi_works
+    localPosition: {x: 141.01042, y: -7.4308424, z: 75.60466}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+  - markerId: poi_ruin
+    localPosition: {x: -175.72583, y: 0.60694367, z: -9.820276}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+  - markerId: poi_cave
+    localPosition: {x: 12.498533, y: 1.4331752, z: -223.65105}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+  - markerId: poi_berth
+    localPosition: {x: 0, y: 0.16, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+  collectibles: []
+  choices: []
+  machines: []
+  mines: []
+  gardens:
+  - id: garden_grove_0
+    plantId: dew_bulb
+    localPosition: {x: -103.79164, y: -6.4914865, z: -81.5538}
+  - id: garden_grove_1
+    plantId: rust_fern
+    localPosition: {x: -100.591644, y: -6.4914865, z: -81.5538}
+  - id: garden_grove_2
+    plantId: glass_reed
+    localPosition: {x: -97.39165, y: -6.4914865, z: -81.5538}
+  - id: garden_grove_3
+    plantId: dew_bulb
+    localPosition: {x: -103.79164, y: -6.4914865, z: -76.7538}
+  - id: garden_grove_4
+    plantId: rust_fern
+    localPosition: {x: -100.591644, y: -6.4914865, z: -76.7538}
+  - id: garden_grove_5
+    plantId: glass_reed
+    localPosition: {x: -97.39165, y: -6.4914865, z: -76.7538}
+  sockets:
+  - id: socket_works
+    resourceId: mineral
+    buildCost: 40
+    ratePerSecond: 0.05
+    storageCap: 40
+    localPosition: {x: 141.01042, y: -6.7308426, z: 78.20466}
+  audioProfile: {fileID: 0}
+  flagsRequired:
+  - W011_COMPLETE
+  flagsGranted:
+  - W012_COMPLETE
+  - C2_CONTAINMENT_REVEALED

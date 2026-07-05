@@ -1,0 +1,119 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 778c803fbe8d49b1beb601a70bf2d150, type: 3}
+  m_Name: Arena_Void_Arena
+  m_EditorClassIdentifier: 
+  arenaId: arena_void
+  sceneName: Arena_Void
+  displayName: 'Arena: The Shell Gate'
+  botDifficulty: nightmare
+  skyHorizonColor: {r: 0.01, g: 0.01, b: 0.03, a: 1}
+  skyTopColor: {r: 0.03, g: 0.03, b: 0.06, a: 1}
+  groundTint: {r: 0.06, g: 0.07, b: 0.1, a: 1}
+  planetVisible: 1
+  planetBaseColor: {r: 0.1, g: 0.2, b: 0.26, a: 1}
+  planetAccentColor: {r: 0.2, g: 0.75, b: 0.85, a: 1}
+  planetAngularSize: 30
+  fogEnabled: 0
+  fogColor: {r: 0.15, g: 0.16, b: 0.2, a: 1}
+  fogDensity: 0.02
+  floorColor: {r: 0.05, g: 0.06, b: 0.09, a: 1}
+  wallColor: {r: 0.14, g: 0.16, b: 0.22, a: 1}
+  coverColor: {r: 0.22, g: 0.25, b: 0.32, a: 1}
+  platformColor: {r: 0.24, g: 0.26, b: 0.32, a: 1}
+  floorSize: {x: 52, y: 52}
+  wallHeight: 5
+  platforms:
+  - blockName: Walk_NS
+    position: {x: 0, y: 1.5, z: 0}
+    size: {x: 4, y: 0.6, z: 44}
+  - blockName: Walk_EW
+    position: {x: 0, y: 1.5, z: 0}
+    size: {x: 44, y: 0.6, z: 4}
+  - blockName: Hub
+    position: {x: 0, y: 1.6, z: 0}
+    size: {x: 8, y: 0.8, z: 8}
+  - blockName: Ring_N
+    position: {x: 0, y: 1.5, z: 20}
+    size: {x: 20, y: 0.6, z: 4}
+  - blockName: Ring_S
+    position: {x: 0, y: 1.5, z: -20}
+    size: {x: 20, y: 0.6, z: 4}
+  ramps:
+  - rampName: Up_S
+    position: {x: 0, y: 0.7, z: -24}
+    size: {x: 4, y: 0.4, z: 6}
+    tiltX: 12
+    rotY: 0
+  - rampName: Up_N
+    position: {x: 0, y: 0.7, z: 24}
+    size: {x: 4, y: 0.4, z: 6}
+    tiltX: -12
+    rotY: 0
+  covers:
+  - blockName: Cover_1
+    position: {x: -2.4, y: 2.8, z: 2.4}
+    size: {x: 2, y: 1.8, z: 2}
+  - blockName: Cover_2
+    position: {x: 2.4, y: 2.8, z: -2.4}
+    size: {x: 2, y: 1.8, z: 2}
+  - blockName: Cover_3
+    position: {x: 0, y: 2.7, z: 19}
+    size: {x: 2, y: 1.8, z: 2}
+  - blockName: Cover_4
+    position: {x: 0, y: 2.7, z: -19}
+    size: {x: 2, y: 1.8, z: 2}
+  breakableWalls:
+  - wallName: HubScreen_W
+    position: {x: -4.2, y: 3, z: 0}
+    rotY: 0
+    size: {x: 4, y: 3, z: 0.3}
+  - wallName: HubScreen_E
+    position: {x: 4.2, y: 3, z: 0}
+    rotY: 0
+    size: {x: 4, y: 3, z: 0.3}
+  playerSpawn: {x: 6, y: 0.2, z: -24}
+  botSpawn: {x: 0, y: 3.1, z: 20}
+  waypoints:
+  - {x: 0, y: 2.1, z: -18}
+  - {x: 0, y: 2.2, z: 0}
+  - {x: 0, y: 2.1, z: 18}
+  - {x: -18, y: 2.1, z: 0}
+  - {x: 18, y: 2.1, z: 0}
+  - {x: 8, y: 2.1, z: 20}
+  - {x: -8, y: 2.1, z: -20}
+  - {x: 6, y: 0.3, z: -23}
+  coverPoints:
+  - {x: -2.4, y: 2.2, z: 4.2}
+  - {x: 2.4, y: 2.2, z: -4.2}
+  - {x: 0, y: 2.1, z: 17.2}
+  - {x: 0, y: 2.1, z: -17.2}
+  - {x: -6, y: 2.1, z: 0}
+  - {x: 6, y: 2.1, z: 0}
+  objectiveZones:
+  - zoneId: hub
+    position: {x: 0, y: 2, z: 0}
+    radius: 3.5
+  weaponPads:
+  - itemId: taser_dart_gun
+    position: {x: 5, y: 0.3, z: -22}
+    respawnSeconds: 20
+  - itemId: gravity_gun
+    position: {x: 7, y: 0.3, z: -22}
+    respawnSeconds: 20
+  - itemId: pistol
+    position: {x: 0, y: 2.4, z: 0}
+    respawnSeconds: 20
+  - itemId: prism_beam
+    position: {x: 6, y: 2.1, z: 20}
+    respawnSeconds: 20
+  hazards: []

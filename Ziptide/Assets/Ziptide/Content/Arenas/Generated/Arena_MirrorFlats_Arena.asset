@@ -1,0 +1,117 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 778c803fbe8d49b1beb601a70bf2d150, type: 3}
+  m_Name: Arena_MirrorFlats_Arena
+  m_EditorClassIdentifier: 
+  arenaId: arena_mirrorflats
+  sceneName: Arena_MirrorFlats
+  displayName: 'Arena: Mirror Flats'
+  botDifficulty: veteran
+  skyHorizonColor: {r: 0.93, g: 0.91, b: 0.86, a: 1}
+  skyTopColor: {r: 0.55, g: 0.66, b: 0.78, a: 1}
+  groundTint: {r: 0.8, g: 0.8, b: 0.78, a: 1}
+  planetVisible: 1
+  planetBaseColor: {r: 0.75, g: 0.78, b: 0.85, a: 1}
+  planetAccentColor: {r: 0.6, g: 0.66, b: 0.78, a: 1}
+  planetAngularSize: 14
+  fogEnabled: 0
+  fogColor: {r: 0.15, g: 0.16, b: 0.2, a: 1}
+  fogDensity: 0.02
+  floorColor: {r: 0.78, g: 0.78, b: 0.76, a: 1}
+  wallColor: {r: 0.7, g: 0.72, b: 0.74, a: 1}
+  coverColor: {r: 0.62, g: 0.66, b: 0.7, a: 1}
+  platformColor: {r: 0.72, g: 0.74, b: 0.76, a: 1}
+  floorSize: {x: 60, y: 36}
+  wallHeight: 5
+  platforms:
+  - blockName: Perch_W
+    position: {x: -24, y: 1, z: 0}
+    size: {x: 8, y: 1, z: 10}
+  - blockName: Perch_E
+    position: {x: 24, y: 1, z: 0}
+    size: {x: 8, y: 1, z: 10}
+  ramps:
+  - rampName: Ramp_W
+    position: {x: -19, y: 0.5, z: 0}
+    size: {x: 4, y: 0.4, z: 6}
+    tiltX: 0
+    rotY: 90
+  - rampName: Ramp_E
+    position: {x: 19, y: 0.5, z: 0}
+    size: {x: 4, y: 0.4, z: 6}
+    tiltX: 0
+    rotY: -90
+  covers:
+  - blockName: LowCover_0
+    position: {x: -15, y: 0.55, z: -6}
+    size: {x: 2.4, y: 1.1, z: 1.2}
+  - blockName: LowCover_1
+    position: {x: -9, y: 0.55, z: 6}
+    size: {x: 2.4, y: 1.1, z: 1.2}
+  - blockName: LowCover_2
+    position: {x: -3, y: 0.55, z: -6}
+    size: {x: 2.4, y: 1.1, z: 1.2}
+  - blockName: LowCover_3
+    position: {x: 3, y: 0.55, z: 6}
+    size: {x: 2.4, y: 1.1, z: 1.2}
+  - blockName: LowCover_4
+    position: {x: 9, y: 0.55, z: -6}
+    size: {x: 2.4, y: 1.1, z: 1.2}
+  - blockName: LowCover_5
+    position: {x: 15, y: 0.55, z: 6}
+    size: {x: 2.4, y: 1.1, z: 1.2}
+  breakableWalls:
+  - wallName: MidScreen
+    position: {x: 0, y: 1.5, z: 0}
+    rotY: 90
+    size: {x: 4, y: 3, z: 0.3}
+  playerSpawn: {x: -26, y: 0.1, z: -13}
+  botSpawn: {x: 26, y: 1.2, z: 13}
+  waypoints:
+  - {x: -24, y: 1.6, z: 0}
+  - {x: 24, y: 1.6, z: 0}
+  - {x: -12, y: 0.1, z: -12}
+  - {x: 12, y: 0.1, z: -12}
+  - {x: 12, y: 0.1, z: 12}
+  - {x: -12, y: 0.1, z: 12}
+  - {x: 0, y: 0.1, z: -8}
+  - {x: 0, y: 0.1, z: 8}
+  coverPoints:
+  - {x: -15, y: 0.1, z: -7.4}
+  - {x: -9, y: 0.1, z: 7.4}
+  - {x: -3, y: 0.1, z: -7.4}
+  - {x: 3, y: 0.1, z: 7.4}
+  - {x: 9, y: 0.1, z: -7.4}
+  - {x: 15, y: 0.1, z: 7.4}
+  - {x: 1.2, y: 0.1, z: 0}
+  - {x: -1.2, y: 0.1, z: 0}
+  objectiveZones:
+  - zoneId: center
+    position: {x: 0, y: 0, z: 0}
+    radius: 4
+  weaponPads:
+  - itemId: taser_dart_gun
+    position: {x: -25, y: 0.1, z: -12}
+    respawnSeconds: 20
+  - itemId: gravity_gun
+    position: {x: -27, y: 0.1, z: -12}
+    respawnSeconds: 20
+  - itemId: pistol
+    position: {x: 0, y: 0.1, z: -14}
+    respawnSeconds: 20
+  - itemId: pistol
+    position: {x: 0, y: 0.1, z: 14}
+    respawnSeconds: 20
+  - itemId: prism_beam
+    position: {x: -6, y: 0.1, z: 0}
+    respawnSeconds: 20
+  hazards: []

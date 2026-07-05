@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6b0e96e73756524d9948ec90b6406cc, type: 3}
+  m_Name: W000_DriftIn_WorldPack
+  m_EditorClassIdentifier: 
+  packId: w000_drift_in
+  displayName: Your Ship
+  sceneName: W000_DriftIn
+  defaultTheme: {fileID: 0}
+  availableThemes: []
+  jobs:
+  - {fileID: 11400000, guid: 27bbc721da67f0d44b305e9c3834a35a, type: 2}
+  spawnMarkers:
+  - markerId: player
+    localPosition: {x: 0, y: 0.15, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+  - markerId: helm
+    localPosition: {x: 0, y: 0.1, z: 20}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+  collectibles:
+  - itemId: guild_manifest
+    displayName: guild manifest
+    localPosition: {x: -4, y: 0.1, z: 2}
+    flagOnCollect: 
+    accentColor: {r: 0, g: 0, b: 0, a: 0}
+  choices: []
+  machines:
+  - machineId: gate_coupler
+    displayName: gate coupler
+    localPosition: {x: 6, y: 0.1, z: 14}
+    partItemId: coupler_cell
+    partLocalPosition: {x: -3, y: 0.1, z: 16}
+  mines: []
+  gardens: []
+  sockets: []
+  audioProfile: {fileID: 0}
+  flagsRequired: []
+  flagsGranted:
+  - TUTORIAL_COMPLETE
+  - FIRST_TRAVEL
+  - C1_W001_RILL_BOOT

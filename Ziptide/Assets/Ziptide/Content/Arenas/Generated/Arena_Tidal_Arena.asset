@@ -1,0 +1,116 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 778c803fbe8d49b1beb601a70bf2d150, type: 3}
+  m_Name: Arena_Tidal_Arena
+  m_EditorClassIdentifier: 
+  arenaId: arena_tidal
+  sceneName: Arena_Tidal
+  displayName: 'Arena: Tidal Array'
+  botDifficulty: regular
+  skyHorizonColor: {r: 0.55, g: 0.58, b: 0.5, a: 1}
+  skyTopColor: {r: 0.2, g: 0.26, b: 0.34, a: 1}
+  groundTint: {r: 0.3, g: 0.36, b: 0.36, a: 1}
+  planetVisible: 1
+  planetBaseColor: {r: 0.6, g: 0.55, b: 0.45, a: 1}
+  planetAccentColor: {r: 0.8, g: 0.75, b: 0.6, a: 1}
+  planetAngularSize: 18
+  fogEnabled: 1
+  fogColor: {r: 0.3, g: 0.34, b: 0.36, a: 1}
+  fogDensity: 0.012
+  floorColor: {r: 0.24, g: 0.32, b: 0.32, a: 1}
+  wallColor: {r: 0.32, g: 0.36, b: 0.38, a: 1}
+  coverColor: {r: 0.38, g: 0.4, b: 0.36, a: 1}
+  platformColor: {r: 0.42, g: 0.44, b: 0.42, a: 1}
+  floorSize: {x: 48, y: 48}
+  wallHeight: 5
+  platforms:
+  - blockName: Island_SW
+    position: {x: -12, y: 0.6, z: -12}
+    size: {x: 12, y: 1.2, z: 12}
+  - blockName: Island_SE
+    position: {x: 12, y: 0.6, z: -12}
+    size: {x: 12, y: 1.2, z: 12}
+  - blockName: Island_NW
+    position: {x: -12, y: 0.6, z: 12}
+    size: {x: 12, y: 1.2, z: 12}
+  - blockName: Island_NE
+    position: {x: 12, y: 0.6, z: 12}
+    size: {x: 12, y: 1.2, z: 12}
+  - blockName: Bridge_S
+    position: {x: 0, y: 0.6, z: -12}
+    size: {x: 8, y: 1.2, z: 3}
+  - blockName: Bridge_N
+    position: {x: 0, y: 0.6, z: 12}
+    size: {x: 8, y: 1.2, z: 3}
+  - blockName: Bridge_W
+    position: {x: -12, y: 0.6, z: 0}
+    size: {x: 3, y: 1.2, z: 8}
+  - blockName: Bridge_E
+    position: {x: 12, y: 0.6, z: 0}
+    size: {x: 3, y: 1.2, z: 8}
+  ramps: []
+  covers:
+  - blockName: Cover_1
+    position: {x: -9, y: 2.1, z: -9}
+    size: {x: 2, y: 1.8, z: 2}
+  - blockName: Cover_2
+    position: {x: 9, y: 2.1, z: 9}
+    size: {x: 2, y: 1.8, z: 2}
+  - blockName: Cover_3
+    position: {x: 9, y: 2.1, z: -9}
+    size: {x: 2, y: 1.8, z: 2}
+  - blockName: Cover_4
+    position: {x: -9, y: 2.1, z: 9}
+    size: {x: 2, y: 1.8, z: 2}
+  breakableWalls: []
+  playerSpawn: {x: -12, y: 1.3, z: -12}
+  botSpawn: {x: 12, y: 2.4, z: 12}
+  waypoints:
+  - {x: -12, y: 1.8, z: -12}
+  - {x: 12, y: 1.8, z: -12}
+  - {x: 12, y: 1.8, z: 12}
+  - {x: -12, y: 1.8, z: 12}
+  - {x: 0, y: 1.8, z: -12}
+  - {x: 0, y: 1.8, z: 12}
+  - {x: -12, y: 1.8, z: 0}
+  - {x: 12, y: 1.8, z: 0}
+  coverPoints:
+  - {x: -10.8, y: 1.4, z: -9}
+  - {x: -7.2, y: 1.4, z: -9}
+  - {x: 10.8, y: 1.4, z: 9}
+  - {x: 7.2, y: 1.4, z: 9}
+  - {x: 10.8, y: 1.4, z: -9}
+  - {x: -10.8, y: 1.4, z: 9}
+  objectiveZones:
+  - zoneId: center_ford
+    position: {x: 0, y: 0.6, z: 0}
+    radius: 3.5
+  weaponPads:
+  - itemId: taser_dart_gun
+    position: {x: -13, y: 1.4, z: -13}
+    respawnSeconds: 20
+  - itemId: gravity_gun
+    position: {x: -11, y: 1.4, z: -13}
+    respawnSeconds: 20
+  - itemId: pistol
+    position: {x: 0, y: 1.4, z: 0}
+    respawnSeconds: 20
+  - itemId: static_net
+    position: {x: 0, y: 1.4, z: 12}
+    respawnSeconds: 20
+  hazards:
+  - id: Tide
+    kind: 2
+    center: {x: 0, y: 0, z: 0}
+    size: {x: 10, y: 3, z: 10}
+    strength: 1.2
+    direction: {x: 1, y: 0, z: 0}

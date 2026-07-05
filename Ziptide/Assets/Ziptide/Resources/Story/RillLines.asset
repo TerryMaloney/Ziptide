@@ -1,0 +1,231 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdeb4a8c9d90428bbab48a2aca1febe3, type: 3}
+  m_Name: RillLines
+  m_EditorClassIdentifier: 
+  lines:
+  - id: beat01_boot
+    trigger: 0
+    key: ToxicCity
+    text: Systems nominal. I think.
+    once: 1
+    voClip: {fileID: 0}
+  - id: beat02_cargo
+    trigger: 1
+    key: C1_W004_RILL_ASKED_CARGO
+    text: What are you carrying that requires containment?
+    once: 1
+    voClip: {fileID: 0}
+  - id: beat03_misidentify
+    trigger: 1
+    key: C2_W009_RILL_MISIDENTIFIED
+    text: "I know this\u2014wait, I do not. That is new."
+    once: 1
+    voClip: {fileID: 0}
+  - id: beat04_shard
+    trigger: 1
+    key: C3_W013_MEMORY_SHARD
+    text: I was here. Or something that used to be me was here.
+    once: 1
+    voClip: {fileID: 0}
+  - id: beat05_refusal
+    trigger: 1
+    key: C3_W019_RILL_REFUSED
+    text: I cannot help you break this seal. Ask me why.
+    once: 1
+    voClip: {fileID: 0}
+  - id: beat06_color
+    trigger: 1
+    key: C4_W024_COLOR_NAMED
+    text: That is the color I have been trying to name for 40,000 years.
+    once: 1
+    voClip: {fileID: 0}
+  - id: beat07_unprompted
+    trigger: 1
+    key: C4_W028_NO_JOB
+    text: Some worlds do not want to be completed. This is one of them.
+    once: 1
+    voClip: {fileID: 0}
+  - id: beat08_staredown
+    trigger: 1
+    key: C5_W037_WARDEN_STANDOFF
+    text: It recognizes me. Interesting.
+    once: 1
+    voClip: {fileID: 0}
+  - id: beat09_pattern
+    trigger: 1
+    key: C6_W039_PATTERN_WARNING
+    text: It is not spreading toward you. It is spreading toward your memories.
+    once: 1
+    voClip: {fileID: 0}
+  - id: beat10_name
+    trigger: 1
+    key: C6_W051_RILL_NAMED
+    text: I have carried a designation for 40,000 years. Today I would rather have
+      a name.
+    once: 1
+    voClip: {fileID: 0}
+  - id: beat11_revelation
+    trigger: 1
+    key: C8_W062_REVELATION
+    text: The Architects did not build this to keep stories in. They built it to
+      keep something out.
+    once: 1
+    voClip: {fileID: 0}
+  - id: beat12_endA
+    trigger: 1
+    key: C12_W063_ENDING_A
+    text: The network needs a witness. I was built for this. Go home, Cal.
+    once: 1
+    voClip: {fileID: 0}
+  - id: beat12_endB
+    trigger: 1
+    key: C12_W063_ENDING_B
+    text: "Wherever you are crossing to \u2014 I am coming with you."
+    once: 1
+    voClip: {fileID: 0}
+  - id: beat12_endC
+    trigger: 1
+    key: C12_W063_ENDING_C
+    text: Let me forget. Some memories are heavier than the cage that held them.
+    once: 1
+    voClip: {fileID: 0}
+  - id: beat12_endD
+    trigger: 1
+    key: C12_W063_ENDING_D
+    text: I understand the Pattern now. It was never the enemy. It was the first
+      of us.
+    once: 1
+    voClip: {fileID: 0}
+  - id: enter_w000
+    trigger: 0
+    key: W000_DriftIn
+    text: ...there you are. I have been awake for six minutes and I already have
+      opinions. The coupler is down; your papers are by the bunk. Shall we?
+    once: 1
+    voClip: {fileID: 0}
+  - id: enter_w002
+    trigger: 0
+    key: W002_DryCistern
+    text: Cistern registry says these pumps died forty years ago. Contract says otherwise.
+    once: 1
+    voClip: {fileID: 0}
+  - id: enter_w003
+    trigger: 0
+    key: W003_GlassShelf
+    text: Wind advisory. The baffles are down. That is the whole briefing.
+    once: 1
+    voClip: {fileID: 0}
+  - id: enter_w004
+    trigger: 0
+    key: W004_BroadcastTomb
+    text: The broadcast spine is dark. Something here was transmitting long before
+      the Guild arrived.
+    once: 1
+    voClip: {fileID: 0}
+  - id: enter_w005
+    trigger: 0
+    key: W005_OxidizedCanopy
+    text: The canopy is growing through the machines. Do you think it minds us fixing
+      them?
+    once: 1
+    voClip: {fileID: 0}
+  - id: enter_w006
+    trigger: 0
+    key: W006_MirrorFlats
+    text: No lifesigns. No wind. Why does an empty world need this much light?
+    once: 1
+    voClip: {fileID: 0}
+  - id: enter_w007
+    trigger: 0
+    key: W007_SableStation
+    text: This station is not on my charts. The person running it prefers it that
+      way.
+    once: 1
+    voClip: {fileID: 0}
+  - id: enter_w008
+    trigger: 0
+    key: W008_SealedArchive
+    text: An archive that was sealed from the inside. I have questions. I suspect
+      it has answers.
+    once: 1
+    voClip: {fileID: 0}
+  - id: enter_w009
+    trigger: 0
+    key: W009_Chitinwall
+    text: The wall is not architecture. It grew. Stay near the pylons.
+    once: 1
+    voClip: {fileID: 0}
+  - id: enter_w010
+    trigger: 0
+    key: W010_TidalArray
+    text: The tide here does not follow the moon. It follows something else. I am
+      still counting what.
+    once: 1
+    voClip: {fileID: 0}
+  - id: enter_w011
+    trigger: 0
+    key: W011_TheHum
+    text: Listen. That sound is in the rock, not the machines. It was here first.
+    once: 1
+    voClip: {fileID: 0}
+  - id: enter_w012
+    trigger: 0
+    key: W012_MarasLastJump
+    text: Mara filed a flight plan straight out of the system. I want to watch. I
+      need to watch.
+    once: 1
+    voClip: {fileID: 0}
+  - id: react_fragment_t1
+    trigger: 1
+    key: FRAGMENT_T1_FOUND
+    text: That recording is addressed to the watchers. It is mostly static. Keep
+      it anyway.
+    once: 1
+    voClip: {fileID: 0}
+  - id: react_containment
+    trigger: 1
+    key: C2_CONTAINMENT_REVEALED
+    text: "Her ship did not fail. The sky refused it. Cal \u2014 it's a cage."
+    once: 1
+    voClip: {fileID: 0}
+  - id: react_signal1
+    trigger: 1
+    key: SIGNAL_THRESHOLD_1
+    text: Did you feel that? Every gate on the network just... inhaled.
+    once: 1
+    voClip: {fileID: 0}
+  - id: react_signal2
+    trigger: 1
+    key: SIGNAL_THRESHOLD_2
+    text: "The Signal again. Stronger. It is not random \u2014 it answers you."
+    once: 1
+    voClip: {fileID: 0}
+  - id: react_first_release
+    trigger: 1
+    key: FIRST_RELEASE
+    text: "Dropped gear stays where it falls \u2014 and stays behind when we travel.
+      The holster on your hip keeps it with us."
+    once: 1
+    voClip: {fileID: 0}
+  - id: react_ship_board
+    trigger: 1
+    key: SHIP_FIRST_BOARD
+    text: Home. Or the nearest thing either of us has to one.
+    once: 1
+    voClip: {fileID: 0}
+  - id: react_quarters
+    trigger: 1
+    key: QUARTERS_FIRST_VISIT
+    text: Your quarters. The Guild manifest calls this compartment 'storage.' I disagree.
+    once: 1
+    voClip: {fileID: 0}

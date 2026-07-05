@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83781912c7efe3841b73c1b7d56c9513, type: 3}
+  m_Name: W008_SealedArchive_Job
+  m_EditorClassIdentifier: 
+  jobId: w008_archive
+  title: Restore the Archive
+  steps:
+  - {fileID: 11400000, guid: 7e75d082267508642927a1c04b44eb27, type: 2}
+  - {fileID: 11400000, guid: 2f70b8be53184284791909efa218fc73, type: 2}
+  - {fileID: 11400000, guid: 0cea45f8dd2f2f340a0f41d561b7eeff, type: 2}
+  reward:
+  - resourceId: credits
+    amount: 120
+  - resourceId: data_chip
+    amount: 2
+  completionFlag: W008_COMPLETE

@@ -1,0 +1,236 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ced9f85ce2c5966e612be06a27474e1, type: 3}
+  m_Name: tox_canal_stalker_01
+  m_EditorClassIdentifier: 
+  recipeId: tox_canal_stalker_01
+  schemaVersion: 2
+  surfaceFamily: ToxicIndustrial
+  storyTags:
+  - creature
+  - standard
+  - ambush
+  palette:
+  - {r: 0.07, g: 0.07, b: 0.08, a: 1}
+  - {r: 0.36, g: 0.3, b: 0.18, a: 1}
+  - {r: 0.3, g: 0.8, b: 0.95, a: 1}
+  - {r: 0.42, g: 0.4, b: 0.36, a: 1}
+  slotStyles:
+  - style: 4
+    wear: 0
+    grime: 0.25
+    panelDensity: 0
+    cellSize: 0.25
+    emissive: {r: 0, g: 0, b: 0, a: 1}
+    emissiveIntensity: 2
+  - style: 2
+    wear: 0.6
+    grime: 0.5
+    panelDensity: 0
+    cellSize: 0.25
+    emissive: {r: 0, g: 0, b: 0, a: 1}
+    emissiveIntensity: 2
+  - style: 8
+    wear: 0.35
+    grime: 0.35
+    panelDensity: 0
+    cellSize: 0.25
+    emissive: {r: 0.3, g: 0.8, b: 0.95, a: 1}
+    emissiveIntensity: 2.5
+  - style: 3
+    wear: 0.35
+    grime: 0.3
+    panelDensity: 0
+    cellSize: 0.15
+    emissive: {r: 0, g: 0, b: 0, a: 1}
+    emissiveIntensity: 2
+  budgetTris: 2000
+  parts:
+  - name: Body
+    op: 4
+    size: {x: 0.6, y: 0.3, z: 0.85}
+    bevel: 1
+    segments: 12
+    wallThickness: 0.01
+    profile: []
+    position: {x: 0, y: 0.3, z: 0}
+    eulerRotation: {x: 0, y: 0, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+    mirrorX: 0
+    paletteSlot: 0
+    smooth: 1
+  - name: Carapace
+    op: 4
+    size: {x: 0.66, y: 0.34, z: 0.8}
+    bevel: 0.5
+    segments: 12
+    wallThickness: 0.01
+    profile: []
+    position: {x: 0, y: 0.36, z: -0.06}
+    eulerRotation: {x: 0, y: 0, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+    mirrorX: 0
+    paletteSlot: 1
+    smooth: 1
+  - name: ScrapPlate
+    op: 0
+    size: {x: 0.28, y: 0.05, z: 0.38}
+    bevel: 0.008
+    segments: 8
+    wallThickness: 0.01
+    profile: []
+    position: {x: 0.08, y: 0.46, z: 0}
+    eulerRotation: {x: 6, y: 22, z: 9}
+    scale: {x: 1, y: 1, z: 1}
+    mirrorX: 0
+    paletteSlot: 1
+    smooth: 0
+  - name: LegFrontUpper
+    op: 0
+    size: {x: 0.07, y: 0.40234482, z: 0.085}
+    bevel: 0.005
+    segments: 8
+    wallThickness: 0.01
+    profile: []
+    position: {x: 0.38, y: 0.39, z: 0.24000001}
+    eulerRotation: {x: 13.513975, y: 352.59793, z: 302.73523}
+    scale: {x: 1, y: 1, z: 1}
+    mirrorX: 1
+    paletteSlot: 0
+    smooth: 0
+  - name: LegFrontLower
+    op: 0
+    size: {x: 0.055, y: 0.5457983, z: 0.065}
+    bevel: 0.005
+    segments: 8
+    wallThickness: 0.01
+    profile: []
+    position: {x: 0.58, y: 0.25, z: 0.32999998}
+    eulerRotation: {x: 11.879073, y: 281.9182, z: 194.62088}
+    scale: {x: 1, y: 1, z: 1}
+    mirrorX: 1
+    paletteSlot: 0
+    smooth: 0
+  - name: LegMidUpper
+    op: 0
+    size: {x: 0.07, y: 0.41902646, z: 0.085}
+    bevel: 0.005
+    segments: 8
+    wallThickness: 0.01
+    profile: []
+    position: {x: 0.395, y: 0.39, z: -0.01}
+    eulerRotation: {x: 356.8066, y: 1.8387696, z: 300.1414}
+    scale: {x: 1, y: 1, z: 1}
+    mirrorX: 1
+    paletteSlot: 0
+    smooth: 0
+  - name: LegMidLower
+    op: 0
+    size: {x: 0.055, y: 0.5447679, z: 0.065}
+    bevel: 0.005
+    segments: 8
+    wallThickness: 0.01
+    profile: []
+    position: {x: 0.625, y: 0.25, z: -0.035}
+    eulerRotation: {x: 356.45197, y: 22.055824, z: 198.06047}
+    scale: {x: 1, y: 1, z: 1}
+    mirrorX: 1
+    paletteSlot: 0
+    smooth: 0
+  - name: LegRearUpper
+    op: 0
+    size: {x: 0.07, y: 0.39763886, z: 0.085}
+    bevel: 0.005
+    segments: 8
+    wallThickness: 0.01
+    profile: []
+    position: {x: 0.36, y: 0.38, z: -0.29}
+    eulerRotation: {x: 342.77203, y: 10.047965, z: 299.74487}
+    scale: {x: 1, y: 1, z: 1}
+    mirrorX: 1
+    paletteSlot: 0
+    smooth: 0
+  - name: LegRearLower
+    op: 0
+    size: {x: 0.055, y: 0.5324405, z: 0.065}
+    bevel: 0.005
+    segments: 8
+    wallThickness: 0.01
+    profile: []
+    position: {x: 0.55, y: 0.24000001, z: -0.41}
+    eulerRotation: {x: 342.76248, y: 106.97594, z: 192.80426}
+    scale: {x: 1, y: 1, z: 1}
+    mirrorX: 1
+    paletteSlot: 0
+    smooth: 0
+  - name: ToxinSac
+    op: 4
+    size: {x: 0.18, y: 0.15, z: 0.2}
+    bevel: 1
+    segments: 10
+    wallThickness: 0.01
+    profile: []
+    position: {x: 0.3, y: 0.44, z: -0.11}
+    eulerRotation: {x: 0, y: 0, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+    mirrorX: 1
+    paletteSlot: 2
+    smooth: 1
+  - name: GillBank
+    op: 6
+    size: {x: 0.11, y: 0.1, z: 0.34}
+    bevel: 0
+    segments: 6
+    wallThickness: 0.01
+    profile: []
+    position: {x: 0, y: 0.3, z: 0.42}
+    eulerRotation: {x: 0, y: 90, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+    mirrorX: 0
+    paletteSlot: 3
+    smooth: 0
+  - name: Underside
+    op: 4
+    size: {x: 0.5, y: 0.16, z: 0.7}
+    bevel: 0.4
+    segments: 10
+    wallThickness: 0.01
+    profile: []
+    position: {x: 0, y: 0.2, z: 0}
+    eulerRotation: {x: 180, y: 0, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+    mirrorX: 0
+    paletteSlot: 3
+    smooth: 1
+  sockets:
+  - name: WeakPoint
+    localPosition: {x: 0, y: 0.27, z: 0.46}
+    localEuler: {x: 0, y: 0, z: 0}
+  - name: Eye
+    localPosition: {x: 0, y: 0.42, z: 0.38}
+    localEuler: {x: 0, y: 0, z: 0}
+  qualityState: 0
+  lockedContentHash: 
+  storyRole: "Feral Bloom-adapted canal fauna \u2014 ambushes from toxic water; scan
+    pulse exposes its gill cluster."
+  storyRefs:
+  - bloom_fauna
+  - toxin
+  - scan_pulse
+  - stun_combat
+  worldRuleRefs:
+  - ToxicCity
+  - W001
+  tokenRefs:
+  - wet_rubber
+  - oxidized_bronze
+  - glow_teal

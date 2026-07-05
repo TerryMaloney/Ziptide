@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83781912c7efe3841b73c1b7d56c9513, type: 3}
+  m_Name: W006_MirrorFlats_Job
+  m_EditorClassIdentifier: 
+  jobId: w006_prisms
+  title: Align the Prism Towers
+  steps:
+  - {fileID: 11400000, guid: eb3f71d19af30ef4b9665e8c1d8d8a55, type: 2}
+  - {fileID: 11400000, guid: f8010088b52a1ca47a3666139b2ba769, type: 2}
+  - {fileID: 11400000, guid: df1a5ea00d2c24e4d931bd066eda26ec, type: 2}
+  - {fileID: 11400000, guid: fc566eeff7ded524184ff2cdfc5da404, type: 2}
+  reward:
+  - resourceId: credits
+    amount: 100
+  - resourceId: prism
+    amount: 3
+  completionFlag: W006_COMPLETE

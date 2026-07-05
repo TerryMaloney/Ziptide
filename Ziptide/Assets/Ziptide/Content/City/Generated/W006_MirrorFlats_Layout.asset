@@ -1,0 +1,217 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f86049fdb144348cbcbeb2d80d53f1, type: 3}
+  m_Name: W006_MirrorFlats_Layout
+  m_EditorClassIdentifier: 
+  cityId: mirror_flats
+  seed: 2006
+  sceneName: W006_MirrorFlats
+  displayName: The Mirror Flats
+  spawnDistrictId: FlatsEdge
+  spawnStarterWeapons: 0
+  walkwayHeight: 0
+  palette:
+    concrete: {r: 0.78, g: 0.78, b: 0.76, a: 1}
+    metal: {r: 0.28, g: 0.3, b: 0.33, a: 1}
+    toxic: {r: 0.22, g: 0.45, b: 0.12, a: 1}
+    building1: {r: 0.72, g: 0.74, b: 0.76, a: 1}
+    building2: {r: 0.66, g: 0.7, b: 0.74, a: 1}
+    rail: {r: 0.45, g: 0.28, b: 0.18, a: 1}
+    catwalk: {r: 0.4, g: 0.4, b: 0.42, a: 1}
+    facadeWindow: {r: 0.08, g: 0.12, b: 0.14, a: 1}
+    skyline: {r: 0.16, g: 0.17, b: 0.2, a: 1}
+    accent: {r: 0.95, g: 0.9, b: 0.55, a: 1}
+  fogEnabled: 0
+  fogColor: {r: 0.18, g: 0.22, b: 0.16, a: 1}
+  fogDensity: 0.018
+  skyHorizonColor: {r: 0.93, g: 0.91, b: 0.86, a: 1}
+  skyTopColor: {r: 0.55, g: 0.66, b: 0.78, a: 1}
+  themeGroundTint: {r: 0.8, g: 0.8, b: 0.78, a: 1}
+  planetVisible: 1
+  planetBaseColor: {r: 0.75, g: 0.78, b: 0.85, a: 1}
+  planetAccentColor: {r: 0.6, g: 0.66, b: 0.78, a: 1}
+  planetAngularSize: 14
+  skylineRingRadius: 380
+  skylineCount: 0
+  skylineMinHeight: 30
+  skylineMaxHeight: 90
+  experience:
+    enabled: 1
+    authored: 1
+    biome: 5
+    worldRadius: 320
+    heightAmplitude: 8
+    groundColor: {r: 0.72, g: 0.72, b: 0.68, a: 1}
+    vista: 3
+    vistaDirection: {x: 1, y: 0, z: 0.1}
+    vistaDistance: 200
+    vistaHeight: 66
+    vistaColor: {r: 0.8, g: 0.8, b: 0.78, a: 1}
+    vistaAccentColor: {r: 1, g: 0.92, b: 0.6, a: 1}
+  pois:
+  - id: story
+    type: 5
+    position: {x: 123.384605, y: 0, z: 12.338461}
+    tier: 0
+  - id: camp_a
+    type: 0
+    position: {x: 47.56894, y: 0, z: 135.91614}
+    tier: 0
+  - id: camp_b
+    type: 0
+    position: {x: -45.809753, y: 0, z: -179.85777}
+    tier: 1
+  - id: grove
+    type: 1
+    position: {x: -116.66935, y: 0, z: 52.65227}
+    tier: 0
+  - id: works
+    type: 2
+    position: {x: 132.19238, y: 0, z: -90.139725}
+    tier: 0
+  - id: ruin
+    type: 3
+    position: {x: -89.883545, y: 0, z: 151.31737}
+    tier: 0
+  - id: cave
+    type: 4
+    position: {x: -192.58574, y: 0, z: -114.39724}
+    tier: 1
+  - id: berth
+    type: 6
+    position: {x: 0, y: 0, z: 0}
+    tier: 0
+  districts:
+  - id: FlatsEdge
+    anchor: {x: 0, y: 0, z: 0}
+    bounds: {x: 20, y: 18}
+    buildingStyleId: 
+    heightTier: 0
+    useOverride: 0
+    paletteOverride:
+      concrete: {r: 0.34, g: 0.35, b: 0.37, a: 1}
+      metal: {r: 0.28, g: 0.3, b: 0.33, a: 1}
+      toxic: {r: 0.22, g: 0.45, b: 0.12, a: 1}
+      building1: {r: 0.3, g: 0.31, b: 0.34, a: 1}
+      building2: {r: 0.24, g: 0.26, b: 0.3, a: 1}
+      rail: {r: 0.45, g: 0.28, b: 0.18, a: 1}
+      catwalk: {r: 0.4, g: 0.4, b: 0.42, a: 1}
+      facadeWindow: {r: 0.08, g: 0.12, b: 0.14, a: 1}
+      skyline: {r: 0.16, g: 0.17, b: 0.2, a: 1}
+      accent: {r: 0.9, g: 0.75, b: 0.1, a: 1}
+    landmarks: []
+    heroBuildings: []
+    props: []
+  - id: PrismTowerA
+    anchor: {x: -26, y: 0, z: 14}
+    bounds: {x: 14, y: 12}
+    buildingStyleId: 
+    heightTier: 0
+    useOverride: 0
+    paletteOverride:
+      concrete: {r: 0.34, g: 0.35, b: 0.37, a: 1}
+      metal: {r: 0.28, g: 0.3, b: 0.33, a: 1}
+      toxic: {r: 0.22, g: 0.45, b: 0.12, a: 1}
+      building1: {r: 0.3, g: 0.31, b: 0.34, a: 1}
+      building2: {r: 0.24, g: 0.26, b: 0.3, a: 1}
+      rail: {r: 0.45, g: 0.28, b: 0.18, a: 1}
+      catwalk: {r: 0.4, g: 0.4, b: 0.42, a: 1}
+      facadeWindow: {r: 0.08, g: 0.12, b: 0.14, a: 1}
+      skyline: {r: 0.16, g: 0.17, b: 0.2, a: 1}
+      accent: {r: 0.9, g: 0.75, b: 0.1, a: 1}
+    landmarks:
+    - name: PrismA
+      localPos: {x: 0, y: 0, z: 2}
+      height: 18
+      width: 2
+    heroBuildings: []
+    props: []
+  - id: PrismTowerB
+    anchor: {x: 26, y: 0, z: 16}
+    bounds: {x: 14, y: 12}
+    buildingStyleId: 
+    heightTier: 0
+    useOverride: 0
+    paletteOverride:
+      concrete: {r: 0.34, g: 0.35, b: 0.37, a: 1}
+      metal: {r: 0.28, g: 0.3, b: 0.33, a: 1}
+      toxic: {r: 0.22, g: 0.45, b: 0.12, a: 1}
+      building1: {r: 0.3, g: 0.31, b: 0.34, a: 1}
+      building2: {r: 0.24, g: 0.26, b: 0.3, a: 1}
+      rail: {r: 0.45, g: 0.28, b: 0.18, a: 1}
+      catwalk: {r: 0.4, g: 0.4, b: 0.42, a: 1}
+      facadeWindow: {r: 0.08, g: 0.12, b: 0.14, a: 1}
+      skyline: {r: 0.16, g: 0.17, b: 0.2, a: 1}
+      accent: {r: 0.9, g: 0.75, b: 0.1, a: 1}
+    landmarks:
+    - name: PrismB
+      localPos: {x: 0, y: 0, z: 2}
+      height: 18
+      width: 2
+    heroBuildings: []
+    props: []
+  - id: BeamCollector
+    anchor: {x: 0, y: 0, z: 34}
+    bounds: {x: 16, y: 14}
+    buildingStyleId: 
+    heightTier: 1
+    useOverride: 0
+    paletteOverride:
+      concrete: {r: 0.34, g: 0.35, b: 0.37, a: 1}
+      metal: {r: 0.28, g: 0.3, b: 0.33, a: 1}
+      toxic: {r: 0.22, g: 0.45, b: 0.12, a: 1}
+      building1: {r: 0.3, g: 0.31, b: 0.34, a: 1}
+      building2: {r: 0.24, g: 0.26, b: 0.3, a: 1}
+      rail: {r: 0.45, g: 0.28, b: 0.18, a: 1}
+      catwalk: {r: 0.4, g: 0.4, b: 0.42, a: 1}
+      facadeWindow: {r: 0.08, g: 0.12, b: 0.14, a: 1}
+      skyline: {r: 0.16, g: 0.17, b: 0.2, a: 1}
+      accent: {r: 0.9, g: 0.75, b: 0.1, a: 1}
+    landmarks:
+    - name: Collector
+      localPos: {x: 0, y: 0, z: 3}
+      height: 14
+      width: 4
+    heroBuildings: []
+    props: []
+  connections:
+  - fromDistrictId: FlatsEdge
+    toDistrictId: PrismTowerA
+    kind: 0
+    width: 8
+    tier: 0
+  - fromDistrictId: FlatsEdge
+    toDistrictId: PrismTowerB
+    kind: 0
+    width: 8
+    tier: 0
+  - fromDistrictId: PrismTowerA
+    toDistrictId: BeamCollector
+    kind: 0
+    width: 7
+    tier: 0
+  - fromDistrictId: PrismTowerB
+    toDistrictId: BeamCollector
+    kind: 0
+    width: 7
+    tier: 0
+  canals: []
+  droneZones: []
+  hazards: []
+  creatureZones: []
+  shipyard:
+    enabled: 0
+    berthCenter: {x: 0, y: 0, z: 0}
+    berthSize: {x: 18, y: 14}
+    shipLocalPos: {x: 0, y: 1.4, z: 0}
+    shipSize: {x: 5, y: 3, z: 11}
+    shipRotationY: 0

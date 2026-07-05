@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83781912c7efe3841b73c1b7d56c9513, type: 3}
+  m_Name: W000_DriftIn_Job
+  m_EditorClassIdentifier: 
+  jobId: w000_onboard
+  title: Cast Off
+  steps:
+  - {fileID: 11400000, guid: 1ac481bae748e884fbc1f70b1c3c24fc, type: 2}
+  - {fileID: 11400000, guid: e88456bb95febf449b358ea92d1e2d49, type: 2}
+  - {fileID: 11400000, guid: f49be380dd6b77c4fa2d0d8369bbda44, type: 2}
+  reward:
+  - resourceId: credits
+    amount: 0
+  completionFlag: TUTORIAL_COMPLETE

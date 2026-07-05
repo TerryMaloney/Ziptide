@@ -1,0 +1,109 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6b0e96e73756524d9948ec90b6406cc, type: 3}
+  m_Name: W002_DryCistern_WorldPack
+  m_EditorClassIdentifier: 
+  packId: dry_cistern
+  displayName: The Dry Cistern
+  sceneName: W002_DryCistern
+  defaultTheme: {fileID: 0}
+  availableThemes: []
+  jobs:
+  - {fileID: 11400000, guid: 935a6808d9bc0e246b3aa997dd4d3f8f, type: 2}
+  spawnMarkers:
+  - markerId: player
+    localPosition: {x: 0, y: 0.11000001, z: 0}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+  - markerId: poi_story
+    localPosition: {x: 26.723352, y: -0.032113343, z: 89.07784}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+  - markerId: poi_camp_a
+    localPosition: {x: -87.35769, y: -3.2198195, z: 77.830795}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+  - markerId: poi_camp_b
+    localPosition: {x: 120.90895, y: -1.0111783, z: -90.12027}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+  - markerId: poi_grove
+    localPosition: {x: -75.68743, y: 2.4979317, z: -71.3261}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+  - markerId: poi_works
+    localPosition: {x: 108.65401, y: 7.047499, z: 71.3744}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+  - markerId: poi_ruin
+    localPosition: {x: -141.5019, y: -0.00922288, z: -20.644814}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+  - markerId: poi_cave
+    localPosition: {x: 26.275215, y: 1.1122357, z: -180.09334}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+  - markerId: poi_berth
+    localPosition: {x: -20, y: 0.16, z: -8}
+    localEulerAngles: {x: 0, y: 0, z: 0}
+  collectibles:
+  - itemId: mineral_sample
+    displayName: mineral sample
+    localPosition: {x: -139.5019, y: -0.00922288, z: -19.644814}
+    flagOnCollect: 
+    accentColor: {r: 0, g: 0, b: 0, a: 0}
+  - itemId: mineral_sample
+    displayName: mineral sample
+    localPosition: {x: -90.35769, y: -3.2198198, z: 79.830795}
+    flagOnCollect: 
+    accentColor: {r: 0, g: 0, b: 0, a: 0}
+  - itemId: mineral_sample
+    displayName: mineral sample
+    localPosition: {x: -74.68743, y: 2.4979315, z: -74.3261}
+    flagOnCollect: 
+    accentColor: {r: 0, g: 0, b: 0, a: 0}
+  choices: []
+  machines:
+  - machineId: cistern_pump
+    displayName: cistern pump
+    localPosition: {x: 113.15401, y: 7.047499, z: 69.3744}
+    partItemId: pump_valve
+    partLocalPosition: {x: -143.5019, y: -0.00922288, z: -19.144814}
+  mines:
+  - id: cistern_extractor
+    resourceId: mineral
+    ratePerSecond: 0.05
+    storageCap: 40
+    localPosition: {x: 104.65401, y: 7.047499, z: 74.3744}
+  gardens:
+  - id: garden_grove_0
+    plantId: dew_bulb
+    localPosition: {x: -78.88743, y: 2.9779317, z: -73.726105}
+  - id: garden_grove_1
+    plantId: rust_fern
+    localPosition: {x: -75.68743, y: 2.9779317, z: -73.726105}
+  - id: garden_grove_2
+    plantId: glass_reed
+    localPosition: {x: -72.487434, y: 2.9779317, z: -73.726105}
+  - id: garden_grove_3
+    plantId: dew_bulb
+    localPosition: {x: -78.88743, y: 2.9779317, z: -68.9261}
+  - id: garden_grove_4
+    plantId: rust_fern
+    localPosition: {x: -75.68743, y: 2.9779317, z: -68.9261}
+  - id: garden_grove_5
+    plantId: glass_reed
+    localPosition: {x: -72.487434, y: 2.9779317, z: -68.9261}
+  sockets:
+  - id: socket_works
+    resourceId: mineral
+    buildCost: 40
+    ratePerSecond: 0.05
+    storageCap: 40
+    localPosition: {x: 108.65401, y: 7.747499, z: 73.974396}
+  audioProfile: {fileID: 0}
+  flagsRequired:
+  - toxiccity_complete
+  flagsGranted:
+  - W002_COMPLETE

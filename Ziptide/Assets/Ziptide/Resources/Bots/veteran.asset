@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30bc0b750a6149ffaf6b1b5d87ac5faf, type: 3}
+  m_Name: veteran
+  m_EditorClassIdentifier: 
+  reactionSeconds: 0.35
+  aimErrorDegrees: 2.5
+  leadTargets: 1
+  dodgeChance: 0.6
+  coverDiscipline: 0.8
+  peekSeconds: 0.9
+  hideSeconds: 1.2
+  retreatBelowHP: 2
+  fireCooldownScale: 1
+  engageStandoff: 9
+  engageBand: 2
+  fireRange: 15
+  rushRange: 3.5
+  strafeFlipSeconds: 1.1
+  searchSeconds: 5
+  repositionEvery: 7

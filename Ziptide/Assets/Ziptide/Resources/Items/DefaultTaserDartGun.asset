@@ -14,8 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: taser_dart_gun
   modelPrefab: {fileID: 0}
+  forgeRecipeId: taser_gun_mk1
   mass: 0.4
   colliderSizeOverride: {x: 0, y: 0, z: 0}
+  visualScale: {x: 0, y: 0, z: 0}
+  visualColor: {r: 0, g: 0, b: 0, a: 0}
+  gripLocalPos: {x: 0, y: 0, z: 0}
+  muzzleLocalPos: {x: 0, y: 0, z: 0}
   fireCooldown: 0.4
   muzzleVelocity: 25
   dartMass: 0.05

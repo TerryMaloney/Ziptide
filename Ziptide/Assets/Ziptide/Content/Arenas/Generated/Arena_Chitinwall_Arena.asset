@@ -1,0 +1,129 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 778c803fbe8d49b1beb601a70bf2d150, type: 3}
+  m_Name: Arena_Chitinwall_Arena
+  m_EditorClassIdentifier: 
+  arenaId: arena_chitinwall
+  sceneName: Arena_Chitinwall
+  displayName: 'Arena: Chitinwall'
+  botDifficulty: regular
+  skyHorizonColor: {r: 0.45, g: 0.3, b: 0.12, a: 1}
+  skyTopColor: {r: 0.18, g: 0.1, b: 0.22, a: 1}
+  groundTint: {r: 0.3, g: 0.24, b: 0.16, a: 1}
+  planetVisible: 1
+  planetBaseColor: {r: 0.45, g: 0.4, b: 0.55, a: 1}
+  planetAccentColor: {r: 0.2, g: 0.55, b: 0.6, a: 1}
+  planetAngularSize: 16
+  fogEnabled: 0
+  fogColor: {r: 0.15, g: 0.16, b: 0.2, a: 1}
+  fogDensity: 0.02
+  floorColor: {r: 0.3, g: 0.24, b: 0.16, a: 1}
+  wallColor: {r: 0.36, g: 0.28, b: 0.18, a: 1}
+  coverColor: {r: 0.42, g: 0.32, b: 0.2, a: 1}
+  platformColor: {r: 0.36, g: 0.3, b: 0.22, a: 1}
+  floorSize: {x: 40, y: 56}
+  wallHeight: 5
+  platforms:
+  - blockName: Catwalk_W
+    position: {x: -13, y: 2.5, z: 0}
+    size: {x: 6, y: 0.6, z: 30}
+  - blockName: Catwalk_E
+    position: {x: 13, y: 2.5, z: 0}
+    size: {x: 6, y: 0.6, z: 30}
+  ramps:
+  - rampName: Ramp_W
+    position: {x: -13, y: 1.2, z: -18}
+    size: {x: 4, y: 0.4, z: 6}
+    tiltX: 18
+    rotY: 0
+  - rampName: Ramp_E
+    position: {x: 13, y: 1.2, z: 18}
+    size: {x: 4, y: 0.4, z: 6}
+    tiltX: -18
+    rotY: 0
+  covers:
+  - blockName: Cover_1
+    position: {x: -5, y: 0.9, z: -14}
+    size: {x: 2, y: 1.8, z: 2}
+  - blockName: Cover_2
+    position: {x: 5, y: 0.9, z: -10}
+    size: {x: 2, y: 1.8, z: 2}
+  - blockName: Cover_3
+    position: {x: -5, y: 0.9, z: -4}
+    size: {x: 2, y: 1.8, z: 2}
+  - blockName: Cover_4
+    position: {x: 5, y: 0.9, z: 0}
+    size: {x: 2, y: 1.8, z: 2}
+  - blockName: Cover_5
+    position: {x: -5, y: 0.9, z: 6}
+    size: {x: 2, y: 1.8, z: 2}
+  - blockName: Cover_6
+    position: {x: 5, y: 0.9, z: 12}
+    size: {x: 2, y: 1.8, z: 2}
+  - blockName: Cover_7
+    position: {x: 0, y: 0.9, z: 18}
+    size: {x: 2, y: 1.8, z: 2}
+  - blockName: Cover_8
+    position: {x: 0, y: 0.9, z: -20}
+    size: {x: 2, y: 1.8, z: 2}
+  breakableWalls:
+  - wallName: AlleyWall_A
+    position: {x: 0, y: 1.5, z: -7}
+    rotY: 0
+    size: {x: 4, y: 3, z: 0.3}
+  - wallName: AlleyWall_B
+    position: {x: 0, y: 1.5, z: 9}
+    rotY: 0
+    size: {x: 4, y: 3, z: 0.3}
+  playerSpawn: {x: 0, y: 0.1, z: -24}
+  botSpawn: {x: 0, y: 1.2, z: 24}
+  waypoints:
+  - {x: -13, y: 3.2, z: -12}
+  - {x: -13, y: 3.2, z: 12}
+  - {x: 13, y: 3.2, z: 12}
+  - {x: 13, y: 3.2, z: -12}
+  - {x: 0, y: 0.1, z: -18}
+  - {x: 0, y: 0.1, z: 16}
+  - {x: -8, y: 0.1, z: 0}
+  - {x: 8, y: 0.1, z: 0}
+  coverPoints:
+  - {x: -5, y: 0.1, z: -15.8}
+  - {x: -5, y: 0.1, z: -12.2}
+  - {x: 5, y: 0.1, z: -11.8}
+  - {x: 5, y: 0.1, z: -8.2}
+  - {x: -5, y: 0.1, z: -5.8}
+  - {x: 5, y: 0.1, z: -1.8}
+  - {x: -5, y: 0.1, z: 4.2}
+  - {x: 5, y: 0.1, z: 10.2}
+  - {x: 0, y: 0.1, z: 16.2}
+  - {x: 0, y: 0.1, z: -21.8}
+  objectiveZones:
+  - zoneId: midalley
+    position: {x: 0, y: 0, z: 1}
+    radius: 3.5
+  weaponPads:
+  - itemId: taser_dart_gun
+    position: {x: -1, y: 0.1, z: -23}
+    respawnSeconds: 20
+  - itemId: gravity_gun
+    position: {x: 1, y: 0.1, z: -23}
+    respawnSeconds: 20
+  - itemId: pistol
+    position: {x: -13, y: 3.4, z: 0}
+    respawnSeconds: 20
+  - itemId: pistol
+    position: {x: 13, y: 3.4, z: 0}
+    respawnSeconds: 20
+  - itemId: sonic_thumper
+    position: {x: 0, y: 0.1, z: -2}
+    respawnSeconds: 20
+  hazards: []
