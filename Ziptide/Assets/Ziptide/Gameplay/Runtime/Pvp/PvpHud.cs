@@ -12,6 +12,7 @@ namespace Ziptide.Gameplay
         private Transform _cam;
         private TextMesh _text;
         private PvpPlayer _player;
+        private bool _snapped;
 
         private void Start()
         {
@@ -27,7 +28,7 @@ namespace Ziptide.Gameplay
             var go = new GameObject("PvpHudText");
             go.transform.SetParent(transform, false);
             _text = go.AddComponent<TextMesh>();
-            _text.characterSize = 0.02f;
+            _text.characterSize = 0.012f;
             _text.fontSize = 64;
             _text.anchor = TextAnchor.MiddleCenter;
             _text.alignment = TextAlignment.Center;
@@ -38,9 +39,14 @@ namespace Ziptide.Gameplay
         {
             if (_cam == null || _text == null) return;
 
-            // Panel sits centered and only slightly below the gaze so it stays comfortably readable inside
-            // the FOV (it was forward*1.0 - up*0.5 ≈ 26° down, which drifted out of view at the bottom).
-            _text.transform.position = _cam.position + _cam.forward * 0.9f - _cam.up * 0.34f;
+            // An instrument, not a blindfold (Test Day 1: "massive, right up in your face,
+            // blocking most of my view"): ~1.6 m out, ~28 degrees below gaze, smaller glyphs,
+            // and a lazy follow so it trails the view instead of riding glued to it.
+            Vector3 target = _cam.position + _cam.forward * 1.6f - _cam.up * 0.85f;
+            _text.transform.position = _snapped
+                ? Vector3.Lerp(_text.transform.position, target, Time.deltaTime * 5f)
+                : target;
+            _snapped = true;
             _text.transform.rotation = Quaternion.LookRotation(_text.transform.position - _cam.position);
 
             var dir = PvpMatchDirector.Instance;
