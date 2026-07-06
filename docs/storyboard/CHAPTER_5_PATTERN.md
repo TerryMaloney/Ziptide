@@ -70,6 +70,9 @@ Threshold 3 → climbing to MAX. **Reveal:** "it's waking up — and so are you.
 - **Physics:** frozen confrontation plaza, no hazard, scripted tension. **Machine:** none — a dialogue/standoff beat, not a repair.
 - **Resource:** Warden Key. **Gear:** none. **Sky:** dead calm, the grid bright, one Warden lit by it.
 - **Enemy:** one **Warden** (does *not* attack — recognizes RILL). **Wreck/log:** the Warden's intact memory of RILL from 40k years ago. **Mystery:** the Warden calls RILL by a name RILL doesn't know yet.
+- **Warden beat (named "Aegis-Nine" from this scene on — soul pass, 2026-07-06):** its enforcement
+  cadence breaks down into something personal mid-sentence — *"Aegis-Nine. Directive: enforce.
+  Recognition:— [designation lost]. You. I remember you. Why do I remember you."*
 - **RILL beat:** *"It recognizes me. Interesting."* `C5_W037_WARDEN_STANDOFF`, `W037_COMPLETE`.
 
 ### W038 — The Edge (Void · void · — · Unsealing)

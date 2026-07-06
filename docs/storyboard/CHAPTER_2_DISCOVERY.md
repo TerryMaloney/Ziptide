@@ -12,6 +12,8 @@ Threshold 1→2. **Reveal:** "it's a cage." Inherit `STORY_BIBLE.md`.
 - **Physics:** rusted forest canopy, spore haze (slows), vertical branch traversal. **Machine:** spore-scrubber + conveyor of harvested pods.
 - **Resource/Crop:** Spore (plantable, tend→harvest). **Gear:** Bloom Splicer v0 (turn a hostile vine into a bridge). **Sky:** rust-orange dusk, falling spores like snow, the banded planet larger now.
 - **Enemy:** **drone** patrol + tendrils. **Wreck/log:** a botanist survey drone; log: *"the forest grows toward the broadcast, not the sun."* **Mystery:** the Bloom is *cultivating* the relays.
+- **Mara beat:** her contract note, brisk and warm — *"Guild pays by the job, not the story behind it.
+  Try to remember that, and you'll last longer than the ones who don't."*
 - **RILL/flag:** Stirring; *"This grew on purpose."* `W005_COMPLETE`.
 
 ### W006 — The Mirror Flats (Exterior · reflection · — · Stirring)
@@ -26,6 +28,8 @@ Threshold 1→2. **Reveal:** "it's a cage." Inherit `STORY_BIBLE.md`.
 - **Physics:** zero-hazard orbital station, low-g corridors. **Machine:** repair the station's fuel rig (Sable's, not the Guild's).
 - **Resource:** Fuel Cell. **Gear:** grav-glove upgrade (low-g handling). **Sky:** through viewports — the whole curve of a world inside a faint hexagonal *grid* (first clear glimpse of the Shell).
 - **Enemy:** Sable **guards** (non-lethal standoff; can be talked past). **Wreck/log:** a Guild ship Sable salvaged; log: *"they'll tell you it's for your safety."* **Mystery:** Sable have a map of the network with an *edge*.
+- **Sable beat:** *"You're Guild. Guild smiles right up until the invoice. Say what you actually want, and
+  we'll see if I still like you after."*
 - **RILL/flag:** Stirring; meets resistance for the first time. `C4_SABLE_INTRO` (early seed), `W007_COMPLETE`.
 
 ### W008 — The Sealed Archive (Interior · static · Wake Guild · Stirring)
@@ -61,6 +65,9 @@ Threshold 1→2. **Reveal:** "it's a cage." Inherit `STORY_BIBLE.md`.
 - **Physics:** open void / radiation hazard (exposure timer), drifting debris, low-g. **Machine:** stabilize a failing gate so Mara can jump (she's testing the *edge*).
 - **Resource:** Jump Core. **Gear:** rad-shielding + the Jump Core (unlocks deeper travel). **Sky:** raw void — and the unmistakable hexagonal **Shell** wall, with Mara's tiny ship arcing toward it and *bouncing off*.
 - **Enemy:** none — the void is the enemy. **Wreck/log:** the gantry of a prior jump attempt. **Mystery:** Mara's telemetry shows the wall is *getting closer* over centuries.
+- **Mara beat (before the jump, forcing a grin):** *"If I'm wrong, you'll never see me again. If I'm
+  right... you'll wish I was."* **(after, bouncing off the wall, shaking):** *"...it's real. Cal, it's
+  real, and it let me live. I don't know why it let me live."*
 - **RILL/flag:** Stirring → nearly Remembering. `C2_CONTAINMENT_REVEALED`, `W012_COMPLETE`.
 
 ---

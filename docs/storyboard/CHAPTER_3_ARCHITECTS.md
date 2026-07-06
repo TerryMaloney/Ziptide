@@ -47,6 +47,9 @@ was *there*." Inherit `STORY_BIBLE.md`.
 - **Physics:** clean corporate interior, no hazard. **Machine:** the Guild's master console (build/upgrade station — unlocks better machines).
 - **Resource:** Blueprint. **Gear:** build-tier 2 unlock (better machines/recipes). **Sky:** floor-to-ceiling window onto the network rendered as a glowing web — with a dark center.
 - **Enemy:** none. **Wreck/log:** Guild founding records. **Mystery:** the Guild's logo is an Architect glyph.
+- **Mara beat:** she lays out the intent with total conviction, then, quieter, a crack in it — *"They
+  built this to hold something back. We're going to open it anyway. I've made my peace with what that
+  might cost. I need you to at least let me have made peace with it."*
 - **RILL/flag:** Remembering; quietly hostile to the Guild. `C3_MARA_REVEAL`, `W018_COMPLETE`.
 
 ### W019 — The Unmade World (Void · void · — · Remembering) ★ RILL beat, signature
