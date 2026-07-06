@@ -372,7 +372,10 @@ namespace Ziptide.Gameplay
                 AudioSource.PlayClipAtPoint(clip, _center + Vector3.up * 1.5f, 0.85f);
         }
 
-        /// <summary>1.6 s riser: filtered noise swell + a sine sweep 70→750 Hz. Deterministic.</summary>
+        /// <summary>1.6 s riser (v8, five deterministic layers): filtered-noise swell, sine sweep
+        /// 70→750 Hz, a 36→52 Hz SUB you feel more than hear, a throb that accelerates with the
+        /// orbiting pillars (4→14 Hz — sound and image share one clock), and a high shimmer that
+        /// only exists near the crest. Soft-clipped so the layers fuse instead of stacking.</summary>
         private static AudioClip MakeRiser()
         {
             const int rate = 22050;
@@ -380,38 +383,64 @@ namespace Ziptide.Gameplay
             var s = new float[n];
             var rng = new System.Random(777);
             float lp = 0f;
+            float throbPhase = 0f;
             for (int i = 0; i < n; i++)
             {
                 float t = i / (float)n;
+                float sec = i / (float)rate;
                 float noise = (float)(rng.NextDouble() * 2.0 - 1.0);
                 lp = Mathf.Lerp(lp, noise, 0.04f + 0.25f * t); // filter opens as it builds
+
                 float freq = Mathf.Lerp(70f, 750f, t * t);
-                float sweep = Mathf.Sin(2f * Mathf.PI * freq * (i / (float)rate));
+                float sweep = Mathf.Sin(2f * Mathf.PI * freq * sec);
+
+                float sub = Mathf.Sin(2f * Mathf.PI * Mathf.Lerp(36f, 52f, t) * sec);
+
+                // The throb accelerates like the pillar orbit — integrate the rate for phase.
+                throbPhase += Mathf.Lerp(4f, 14f, t) / rate;
+                float throb = 0.72f + 0.28f * Mathf.Sin(2f * Mathf.PI * throbPhase);
+
+                float shimmer = (Mathf.Sin(2f * Mathf.PI * 2400f * sec)
+                               + Mathf.Sin(2f * Mathf.PI * 3170f * sec)) * 0.5f * t * t * t;
+
                 float env = t * t; // swells into the crest
-                s[i] = (lp * 0.55f + sweep * 0.45f) * env * 0.9f;
+                float mix = (lp * 0.5f * throb + sweep * 0.34f + sub * 0.30f + shimmer * 0.12f) * env;
+                s[i] = (float)System.Math.Tanh(mix * 1.6f) * 0.85f;
             }
             var clip = AudioClip.Create("ZiptideRiser", n, 1, rate, false);
             clip.SetData(s, 0);
             return clip;
         }
 
-        /// <summary>1.0 s arrival boom: the riser reversed in spirit — hot start, long soft tail.</summary>
+        /// <summary>1.3 s arrival boom (v8): a 25 ms noise CRACK, a 170→42 Hz pitch-drop body —
+        /// the actual "boom" — a 40 Hz sub tail, and a long low-pass wash that closes as the
+        /// tide sinks. Hot start, soft-clipped, long forgiving tail.</summary>
         private static AudioClip MakeBoom()
         {
             const int rate = 22050;
-            int n = (int)(rate * 1.0f);
+            int n = (int)(rate * 1.3f);
             var s = new float[n];
             var rng = new System.Random(778);
             float lp = 0f;
+            float dropPhase = 0f;
             for (int i = 0; i < n; i++)
             {
                 float t = i / (float)n;
+                float sec = i / (float)rate;
                 float noise = (float)(rng.NextDouble() * 2.0 - 1.0);
-                lp = Mathf.Lerp(lp, noise, 0.3f - 0.26f * t); // filter closes as it fades
-                float freq = Mathf.Lerp(500f, 60f, Mathf.Sqrt(t));
-                float sweep = Mathf.Sin(2f * Mathf.PI * freq * (i / (float)rate));
-                float env = (1f - t) * (1f - t);
-                s[i] = (lp * 0.4f + sweep * 0.6f) * env * 0.9f;
+                lp = Mathf.Lerp(lp, noise, 0.3f - 0.26f * Mathf.Clamp01(t)); // wash closes as it fades
+
+                float crack = sec < 0.025f ? noise * (1f - sec / 0.025f) : 0f;
+
+                // The pitch-drop body: integrate a falling frequency so the phase stays continuous.
+                dropPhase += Mathf.Lerp(170f, 42f, Mathf.Clamp01(sec / 0.35f)) / rate;
+                float body = Mathf.Sin(2f * Mathf.PI * dropPhase) * Mathf.Exp(-3.2f * sec);
+
+                float sub = Mathf.Sin(2f * Mathf.PI * 40f * sec) * Mathf.Exp(-2.1f * sec);
+
+                float wash = lp * (1f - t) * (1f - t);
+                float mix = crack * 0.55f + body * 0.62f + sub * 0.34f + wash * 0.38f;
+                s[i] = (float)System.Math.Tanh(mix * 1.5f) * 0.85f;
             }
             var clip = AudioClip.Create("ZiptideBoom", n, 1, rate, false);
             clip.SetData(s, 0);

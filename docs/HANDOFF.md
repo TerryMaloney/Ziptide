@@ -55,7 +55,11 @@
   (3) ~~destination name floating in the crest~~ **DONE v3** (`36ed663`+fix): TextMesh label
   (characterSize law: 0.045 × 64) fades in above the ring during the dial-in, billboards to the
   camera, burns away into the crest — names resolved via `DevWorldManifest` displayName;
-  (4) real audio at ART-5; (5) ~~door-anchored variant~~ **DONE v6**:
+  (4) real audio at ART-5 — meanwhile **v8 upgraded the synthesis**: riser is now 5 layers
+  (noise swell, sweep, 36→52 Hz sub, a throb that ACCELERATES with the pillar orbit 4→14 Hz —
+  sound and image share one clock — crest-only shimmer), boom is crack + 170→42 Hz pitch-drop
+  body + 40 Hz sub tail + closing wash, both tanh soft-clipped and still deterministic; real
+  clips simply replace `MakeRiser`/`MakeBoom` at ART-5; (5) ~~door-anchored variant~~ **DONE v6**:
   `TravelCoordinator.TravelTo(scene, gatePos)` overload (static pending anchor, consumed —
   never carried stale — on every travel start) → `PlayDeparture(..., gatePos)` → the doorway
   TORRENT: extra streaks pour from the door frame toward the ring while k<0.8, 2 jets during
