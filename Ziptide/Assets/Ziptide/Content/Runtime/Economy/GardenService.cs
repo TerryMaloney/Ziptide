@@ -58,8 +58,12 @@ namespace Ziptide.Content
         // ── Harvest timing (Additions Bank GARDEN #4/#5) — rewards checking your crops. Applied to
         // EVERY harvest by default; per-plant overridable via PlantDefinition. Non-lethal/all-ages:
         // an ignored crop only ever decays toward a floor, it never dies. ──
-        public const double DefaultFreshWindowSeconds = 120.0;    // harvest within 2 min of ready → bonus
-        public const double FreshBonus = 0.25;                    // +25% yield for a fresh pull
+        public const double DefaultFreshWindowSeconds = 120.0;    // "just ripened" window (classification)
+        // Fresh is CLASSIFICATION ONLY for now (0 bonus): harvest-when-ready is the baseline yield, so
+        // paying a bonus there would re-baseline every existing yield + test. The +25% fresh bonus
+        // (GARDEN #4) is deferred to a balance pass that updates those baselines together. The shipped
+        // yield mechanic is the OVERRIPE DECAY below (GARDEN #5) — it changes nothing at/near ready.
+        public const double FreshBonus = 0.0;
         public const double DefaultOverripeAfterSeconds = 900.0;  // 15 min after ready it starts to spoil
         public const double OverripeDecaySeconds = 900.0;         // then decays over the next 15 min
         public const double OverripeFloor = 0.5;                  // never below 50% — you never lose the crop

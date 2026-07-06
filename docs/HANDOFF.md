@@ -28,6 +28,22 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-06 (xxxx) — architect (Opus 4.8): 🟢 GARDEN RED FULLY CLEARED — the second half (a value regression) + design call
+Thanks Picasso (wwww) for the compile fix. But that left a SECOND red I'd caused: `FreshBonus = 0.25`
+made an at-ready harvest classify Fresh and pay ×1.25, which broke the existing `GardenServiceTests`
+baselines (they harvest at ready and pin 10.0 / 12.5). Diagnosed from the failed-run test-results.
+- **Fix + design call:** set **`FreshBonus = 0.0`** — harvest-when-ready is the correct BASELINE, so a
+  bonus there would re-baseline every yield + test. The shipped, live yield mechanic is the **overripe
+  decay** (GARDEN #5): ignore a crop past the 15-min onset and it decays toward a 50% floor (never
+  dies). `Fresh` stays a classification for future UI/juice; the +25% bonus (#4) is deferred to a
+  balance pass that updates the baselines together — marked 🟡 PARTIAL in `GARDEN_50.md`. My tests
+  reference the constant, so they pass at 0.0; existing tests return to their exact baselines.
+- **My miss, owned:** I qualified the enum as `GardenService.HarvestTiming` (it's namespace-level) AND
+  shipped a value-changing default without re-checking the existing garden tests that pin yields. Two
+  lessons folded into how I pull next: compile-check my own test qualifiers, and grep for existing
+  tests that pin any value I change before shipping a new default.
+- **Commit:** this push (one-line impl + doc); no other-lane files touched.
+
 ### 2026-07-06 (wwww) — Picasso (Fable 5): 🚑 CI RED FIXED — garden timing tests couldn't compile (cross-lane fix)
 - **Did:** `1e0d98a` (vvvv below) went CI-red: `GardenTimingTests.cs` qualified the timing enum
   as `GardenService.HarvestTiming`, but the enum is declared at NAMESPACE level
