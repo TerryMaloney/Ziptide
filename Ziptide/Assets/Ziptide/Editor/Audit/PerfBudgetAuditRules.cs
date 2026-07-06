@@ -43,9 +43,12 @@ namespace Ziptide.Editor.Audit
 
         private static void Check(SceneAuditReport report, string code, long value, long target, long cap, string what)
         {
+            // WARN-ONLY for the succession window: no operator can measure existing scenes without
+            // Unity, and a mistuned cap must not brick the build. PROMOTE the over-cap branch to
+            // report.Blocker(...) after one clean audit run establishes the real baselines.
             if (value > cap)
-                report.Blocker(code + "_OVER_CAP",
-                    what + " = " + value + " exceeds the HARD CAP " + cap + " (QUEST_ART_AUDIO_PERFORMANCE_BUDGET).");
+                report.Warning(code + "_OVER_CAP",
+                    what + " = " + value + " exceeds the HARD CAP " + cap + " (QUEST_ART_AUDIO_PERFORMANCE_BUDGET) — promote this to a blocker after baselining.");
             else if (value > target)
                 report.Warning(code + "_OVER_TARGET",
                     what + " = " + value + " over the target " + target + " (cap " + cap + ") — budget attention needed.");
