@@ -19,6 +19,12 @@ Do these in order after pulling. Each generates committable assets. *(This mirro
 `DEVICE_TEST_CHECKLIST.md` §0 — that doc has the full copy-paste block.)*
 
 - [ ] PowerShell: `cd C:\Ziptide; git pull origin terry-local-wip`
+- [ ] **NEW (depth pass 2, 2026-07-06) — W007's sky got a second moon + more stars/nebula in code, but
+  `SkyVistaLibrary` is create-only, so the *existing* baked asset won't pick it up on its own:** delete
+  `Assets/Ziptide/Content/Worlds/SkyVistas/W007_SableStation_Vista.asset` (+ its `.meta`) in the Project
+  window, THEN run `Ziptide → Art → Author Sky Vistas (missing only)` — it'll regenerate that one file
+  from the updated code. Commit the regenerated `.asset`. (W012 was left alone on purpose — it's already
+  at max intensity by design; adding more would dilute the "the wall is the point" staging.)
 - [ ] `Ziptide → Worlds → Build Toxic City`
 - [ ] `Ziptide → Worlds → Build Toxic City Contract`
 - [ ] `Ziptide → Worlds → Build PvP Arena`

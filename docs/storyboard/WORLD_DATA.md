@@ -503,6 +503,42 @@ When a world from `CHAPTER_3…8-12.md` / `DLC.md` comes up for build, write its
 matching `spawnMarkers`/patcher marker `x`; resource ids must exist in (or be added to) the `ResourceDefinition`
 registry. Keep records terse — the prose READMEs hold the why; this file holds the *what the generator needs*.
 
+## 4.1 Sky Vista authoring — turning a chapter's `Sky:` line into real space (added 2026-07-06)
+The rendering side of this is **already built and richer than most authored worlds use** — don't
+undersell it. `SkyVistaDefinition` (`Visuals/Runtime/SkyVistas/`), authored per-scene in
+`Editor/Patching/SkyVistaLibrary.cs`, supports a full dome (gradient + stars + nebula + the Shell
+grid + a zenith shimmer) plus **up to 3 celestial bodies** (`BandedPlanet`, `Moon`, `SunDisc`,
+`BlackHole` — each with size, direction, color, band pattern, day/night terminator `phase`, and slow
+rotation). Only W007 (Sable Station) and W012 (Mara's Last Jump) currently push this toward a
+genuinely "you can see space" look; every `CHAPTER_*.md` Void/Exterior/Coastal world going forward
+should reach for the same toolkit whenever the seed's `Sky:` text says so — a flat two-color gradient
+reads as budget-sci-fi, and the system doesn't require that.
+
+**Mapping table (chapter `Sky:` prose → `SkyVistaDefinition` field):**
+| If the `Sky:` text says... | Set |
+|---|---|
+| a visible world/planet, "the banded giant," a moon | `bodies` — add a `CelestialBodyDef`; `BandedPlanet` for the recurring giant (bigger `angularSizeDeg` = closer to the story's midpoint), `Moon` for smaller companions, `SunDisc` for a local star, `BlackHole` for void/endgame set-pieces |
+| "raw space," "dense stars," "the void" | `stars.density` up (0.4–0.6 reads as open space; near 0 for atmosphere/haze worlds) + low `stars.horizonFade` so they reach the "floor" |
+| aurora, "churning," colored haze, a named color (RILL's cyan, etc.) | `nebula.enabled = true` with `colorA`/`colorB`; `coverage` for how much sky it eats, `altitudeBias` for zenith vs. horizon lean |
+| "the Shell wall," "the grid," "the cage revealed" | `shellGridIntensity` — canon progression is 0 at W001 → 1.0 at W012; keep raising it as containment becomes explicit, never lower it once a world sets it high |
+| "a faint geometric shimmer," Pattern foreshadowing | `zenithShimmer.enabled = true`, low `intensity` (0.1–0.25) — this is the subliminal seed, not the payoff |
+| interior/underground/sealed ("no sky") | leave `bodies` empty and skip stars/nebula — a black or near-black gradient IS the correct answer; don't force space into a cave |
+
+**Worked example — W038 The Edge** (`CHAPTER_5_PATTERN.md`): *"the Shell filling half of everything —
+and through a hairline crack, a different kind of light: flat, white, steady."* → a near-black
+gradient, `shellGridIntensity` at or near 1.0 (this is the closest look at the wall yet), ONE
+oversized body if the Shell itself is rendered as a body-scale dome feature (or handled by a
+dedicated wall shader if one exists by the time this is built — check before assuming `bodies`
+covers it), NO nebula (the scene's whole point is the wall's stillness, not spectacle) — restraint is
+also a valid choice, not every "space" world needs all three bodies + nebula at once.
+
+**Mechanism note:** `SkyVistaLibrary.cs` is **create-only** — editing a `Build*` method never changes
+an already-generated `.asset` file; the asset has to be deleted and the `Ziptide → Art → Author Sky
+Vistas (missing only)` menu re-run in Unity to pick up the change (`TERRY_RUNBOOK.md` carries the
+current queue of exactly which assets need this). This is why sky work for **already-built** worlds
+needs a runbook step even though it's a pure code edit; sky work for **not-yet-built** worlds (all of
+M5) needs no such step — the first `EnsureAllAuthored()` run creates it correctly the first time.
+
 ---
 *Sources: `STORY_BIBLE.md`, `THE_TRANSMISSION.md`, `CHAPTER_0-1`/`CHAPTER_2`, `W001_ToxicCity/README.md`
 (shipped pattern), the real `WorldPackDefinition`/`JobDefinition`/`ZiptideFlags`/`*StepDefinition` types.

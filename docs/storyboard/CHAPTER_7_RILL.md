@@ -66,7 +66,10 @@ is an outside — and we are nearly at the glass." Inherit `STORY_BIBLE.md`.
 - **Role:** Pure passage — **no gameplay**; a contemplative travel corridor between the resolution worlds
   and the descent to the tombs. A "breath" beat (use sparingly; like W028 it's deliberate).
 - **Physics:** drifting transit, no hazard, no objective. **Machine:** none. **Resource:** none.
-- **Gear:** none. **Sky:** the whole network seen end-to-end as Cal passes through it; RILL narrates softly.
+- **Gear:** none. **Sky:** the corridor walls fall away entirely — every world Cal has repaired hangs
+  visible at once, gate-lit points strung across real, dense starfield (this is the one place in the
+  game deep space is the WHOLE view, not a backdrop glimpse); the banded giant from the early worlds
+  drifts past, small and far now; RILL narrates softly over it.
 - **Enemy:** none. **Wreck/log:** none. **Mystery:** for one moment the corridor shows the outside, then hides it.
 - **RILL/flag:** Integrated; reflective monologue. `W057_COMPLETE` (entry/exit only).
 

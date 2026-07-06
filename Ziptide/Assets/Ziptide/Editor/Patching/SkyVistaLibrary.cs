@@ -158,14 +158,21 @@ namespace Ziptide.Editor.Patching
         }
 
         // W007 Sable Station — raw space; dense stars, cold nebula, the giant HUGE, the Shell FAINT (first glimpse).
+        // Retuned 2026-07-06 (depth pass 2): a second, smaller body for parallax (Terry's "interstellar" bar
+        // wants more than one thing hanging in frame) + a touch more star density/nebula coverage. NOTE: this
+        // is a create-only asset (SkyVistaLibrary header) — the existing W007_SableStation_Vista.asset needs
+        // deleting + `Ziptide → Art → Author Sky Vistas` re-run in Unity before this change is visible
+        // (queued in TERRY_RUNBOOK.md).
         private static SkyVistaDefinition BuildW007SableStation()
         {
             var d = NewVista("w007_sable_station",
                 new Color(0.02f, 0.02f, 0.05f), new Color(0.01f, 0.01f, 0.03f));
             Body(d, SkyVistaDefinition.BodyType.BandedPlanet, 22f, new Vector3(0.2f, 0.30f, 0.93f),
                 new Color(0.30f, 0.45f, 0.55f), new Color(0.15f, 0.60f, 0.70f), bands: 8, seed: 71, phase: 0.35f);
-            d.stars.density = 0.5f; d.stars.seed = 72; d.stars.horizonFade = 0.02f; // space: stars to the "floor"
-            d.nebula.enabled = true; d.nebula.seed = 73; d.nebula.coverage = 0.35f; d.nebula.altitudeBias = 0.1f;
+            Body(d, SkyVistaDefinition.BodyType.Moon, 5f, new Vector3(0.45f, 0.42f, 0.80f),
+                new Color(0.55f, 0.56f, 0.60f), new Color(0.35f, 0.38f, 0.45f), bands: 3, seed: 74, phase: 0.55f);
+            d.stars.density = 0.6f; d.stars.seed = 72; d.stars.horizonFade = 0.02f; // space: stars to the "floor"
+            d.nebula.enabled = true; d.nebula.seed = 73; d.nebula.coverage = 0.42f; d.nebula.altitudeBias = 0.1f;
             d.nebula.colorA = new Color(0.20f, 0.15f, 0.35f);
             d.nebula.colorB = new Color(0.10f, 0.35f, 0.45f);
             d.shellGridIntensity = 0.15f;       // canon: "a world inside a faint hexagonal grid"
