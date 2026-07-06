@@ -16,6 +16,10 @@ MonoBehaviour:
   useGravity: 1
   enableStrafe: 0
   sprintMultiplier: 2
+  crouchSpeedFactor: 0.55
+  slideBoost: 1.35
+  slideSeconds: 0.8
+  autoRunDoubleTapWindow: 0.35
   turnMode: 0
   smoothTurnSpeed: 120
   snapTurnAngle: 45

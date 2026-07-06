@@ -21,6 +21,16 @@ namespace Ziptide.Content
         [Tooltip("Sprint speed = moveSpeed x this. ~2.0 lands near Fortnite sprint (6 m/s).")]
         public float sprintMultiplier = 2f;
 
+        [Header("Crouch / Slide / Auto-run (CONTROL_SCHEME.md)")]
+        [Tooltip("Crouched move speed = moveSpeed x this.")]
+        public float crouchSpeedFactor = 0.55f;
+        [Tooltip("Slide entry speed = sprint speed x this, decaying over slideSeconds.")]
+        public float slideBoost = 1.35f;
+        [Tooltip("How long a slide carries before settling into the crouch.")]
+        public float slideSeconds = 0.8f;
+        [Tooltip("Double-click window on L3 that toggles auto-run (seconds).")]
+        public float autoRunDoubleTapWindow = 0.35f;
+
         [Header("Turning")]
         public TurnMode turnMode = TurnMode.Smooth;
         public float smoothTurnSpeed = 120f;

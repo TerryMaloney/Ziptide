@@ -62,6 +62,7 @@ namespace Ziptide.Gameplay
             {
                 dash.Configure(p.dashDistance, p.dashDuration, p.dashCooldown, p.dashVerticalLift);
                 dash.ConfigureSprint(p.sprintMultiplier);
+                dash.ConfigureBody(p.crouchSpeedFactor, p.slideBoost, p.slideSeconds, p.autoRunDoubleTapWindow);
                 dash.enabled = p.dashEnabled;
             }
         }
