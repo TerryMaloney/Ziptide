@@ -28,6 +28,27 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-06 (ffff) — Picasso (Fable 5): 🏁 THE FINAL SPRINT — full control scheme, PUNCH IT, how-to boards, content gate
+- **Did (all one-commit, board-stamped):** S1+S2 `caa7f1a` — `docs/design/CONTROL_SCHEME.md` (the
+  Fortnite verb table as spec; every ⬜ row is an envelope) + crouch (R3, CC capped vs HMD drivers,
+  cam −0.55) / slide (crouch-while-sprinting, decaying boost) / auto-run (double-L3, gaze-forward)
+  with ONE speed resolver in `DashLocomotion` and all values profile-driven. S3 `a1da115` — laser
+  sight on every gun (`GunLaserSight`, added centrally by ItemFactory to anything with Muzzle+grab).
+  S5 `b48deff` — ping (`PingTool`, rig-ensured, empty-left-hand trigger → 20 s beacon). S4
+  `49e6341` — quick-swap (`QuickSwap`, B swaps hand⇄belt via XRInteractionManager; Y+B chord
+  guarded). S6 `a89bd12` — **PUNCH IT**: W000 ship grows a beaconed console; rails take-off
+  (star-streaks via TracerFx, rig never parented) → TravelTo ToxicCity. S7 `45e922b` —
+  `WORLD_CONTENT` audit (nothing ships invisible) + `GARDEN_SPAWNED` logs + green beacon on each
+  world's first plot. S8 `fcf01c8` — HOW IT WORKS panel on the match board (live per selected
+  mode) + 3-step sign on every kiosk. S9 (this commit) — succession stamps.
+- **Dangling (boarded, not blocking):** fuel-cell ARMING gate for PUNCH IT (one `if` on the berth
+  BuildSocket completion); free-flight on the tested `FlightModel`; destruction v2 chunks; ADS
+  zoom + reload rows of CONTROL_SCHEME; 1.1/1.4 close from Terry's next `ITEM_SPAWN`/`SPAWN_AT`
+  logs.
+- **Next-CLAIMED:** none — Fable window ends. Successor protocol lives in the STATE OF THE PROJECT
+  box atop `OPERATOR_START_HERE.md`.
+- **Commit:** _(this one)_
+
 ### 2026-07-06 (eeee) — Picasso (Fable 5): ⚡ WAVE 1 SHIPPED — nine feel/clarity fixes in one stretch, all CI-green
 - **Did:** executed the whole TEST_DAY_1_RESPONSE Wave 1 + movement 2.1 (status block stamped in
   that doc, per-commit list there). Highlights for future debuggers: (1) the match-board text

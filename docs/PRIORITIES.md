@@ -1,11 +1,13 @@
-# 🎯 PRIORITIES — the whole project, one ordered list (2026-07-05, rev 7 — TEST DAY 1 VERDICT)
+# 🎯 PRIORITIES — the whole project, one ordered list (2026-07-06, rev 8 — POST-FINAL-SPRINT)
 
-> **rev 7 change:** Terry's first full device pass landed (HANDOFF dddd). Per the standing rules
-> his ❌ list is now **#2–#3**: `docs/TEST_DAY_1_RESPONSE.md` **Wave 1** (10 one-commit quick
-> fixes — tiny guns, grip pose, tracers, arena spawn, W003 z-fight, hazard tells, HUD size,
-> matchboard text, kiosk beacon, subtitle) then **Wave 2** (Fortnite-grade movement + aim v2).
-> Wave 3 items map onto existing rows (flight = P4b, destruction v2 = MP lane, HUD/how-to = new
-> UI row). E1.4 (old #2) slides to #4 — still the biggest visual win. Everything below shifts.
+> **rev 8 change (the Fable sign-off):** Test-Day-1 Wave 1 + the FINAL SPRINT are SHIPPED
+> (HANDOFF eeee/ffff): full control scheme (`design/CONTROL_SCHEME.md`), PUNCH IT, how-to boards,
+> WORLD_CONTENT gate. The order now: **#1 Terry's next test pass** (runbook §2o; his ❌s +
+> `ITEM_SPAWN`/`SPAWN_AT` lines close 1.1/1.4) · **#2 FORGE II E1.4** (textures on device — biggest
+> visible win) · **#3 flight follow-through** (fuel-cell arming `if` → free-flight on the tested
+> FlightModel) · **#4 destruction v2** (MP lane) · **#5 remaining CONTROL_SCHEME rows** (ADS,
+> reload, player menu) · then the standing list below (Q4a, P5, E5.x, A6…). Start protocol:
+> the STATE OF THE PROJECT box atop `OPERATOR_START_HERE.md`.
 
 **The single answer to "what matters next, project-wide."** Updated at every track's chunk close.
 Tracks: 📖 story (`SPRINT.md`) · 🎮 MP (`SPRINT_MULTIPLAYER.md`) · 🎨 Picasso (`SPRINT_ART.md`) ·

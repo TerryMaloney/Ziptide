@@ -1,5 +1,27 @@
 # ▶ OPERATOR START HERE — the model-agnostic manual (read this first, then stop reading)
 
+> ## 📍 STATE OF THE PROJECT — 2026-07-06 (the last Fable session's sign-off)
+> Everything below this box is the standing manual; this box is where things ARE.
+> - **What just shipped (final Fable sprint):** the full Fortnite-class control set
+>   (`docs/design/CONTROL_SCHEME.md` — sprint/crouch/slide/auto-run/jump/laser-sights/quick-swap/
+>   ping, all data-driven), PUNCH-IT cast-off in W000, how-to-play boards, the WORLD_CONTENT
+>   nothing-ships-invisible audit, plus the whole Test-Day-1 fix wave before it
+>   (`docs/TEST_DAY_1_RESPONSE.md` status block).
+> - **Take the top item:** (1) any Terry ❌ from his latest logcat/test → it outranks everything;
+>   (2) `TEST_DAY_1_RESPONSE.md` open rows (1.1 tiny guns / 1.4 spawn — both close from
+>   `ITEM_SPAWN`/`SPAWN_AT` log lines; destruction v2); (3) `PRIORITIES.md` order — art resumes at
+>   FORGE II **E1.4** (`project_art_plan/FORGE_II_QUALITY_LEAP.md`), story at flight arming +
+>   free-flight (`ShipCastOffRuntime` + tested `FlightModel`), architecture at Q4a.
+> - **The laws that keep this safe:** CI-green per commit, one issue-sized change; boards stamped
+>   in the SAME commit as every push; circuit breaker (3 CI-reds on one task → stop + HANDOFF);
+>   never hand-edit scene YAML — patchers only; verify through the gates, not through hope;
+>   when a photo/device defect survives a world-space change, suspect atlas/sampling space;
+>   when a gate fails uniformly, suspect the CHECK before the content.
+> - **Debug vocabulary you inherit:** `TracerFx.Spawn` (any visible line), `ObjectiveBeacon.Attach`
+>   (any "go here"), `ApplyStun(sec,slow,sourcePos)` (any player damage), rig `Ensure*` chain in
+>   `PlayerRigPersistence` (any new player-side tool), `Limb(from,to)` (any multi-segment limb),
+>   the booth atlas x-ray (any texture question).
+
 **You are THE OPERATOR of one of Ziptide's four tracks. You might be Fable 5, Opus 4.8, or any
 capable model — this project is built so that does not matter.** The architecture is explicitly
 defined: specs are data, generators are pure + seeded + tested, quality is enforced by build-failing

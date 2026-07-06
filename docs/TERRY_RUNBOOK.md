@@ -261,9 +261,18 @@ Each row names its logcat tag — if the tag shows and the feel is right, check 
 - [ ] W005: when something hits you, you can SEE the source (`HAZARD_HIT src=`)
 - [ ] Kiosk: a beacon/arrow leads you to it (`BEACON_TARGET`)
 - [ ] RILL subtitles sit lower and fade out
-- [ ] W000 ship: fuel cell → console lights → PUNCH IT → flight transition (`FLIGHT_*` tags)
-- [ ] Gardens: at least one garden plot visibly exists in W005 with a beacon
-Full program + envelope details: `docs/TEST_DAY_1_RESPONSE.md`.
+- [ ] W000 ship: beaconed console by the stern → press PUNCH IT → star streaks → arrive ToxicCity (`FLIGHT_LAUNCH/DEPART`)
+- [ ] Gardens: a green beacon marks the first garden plot in harvest-grove worlds (`GARDEN_SPAWNED`)
+
+### Final-sprint controls (CONTROL_SCHEME.md — the full Fortnite set)
+- [ ] Crouch: click RIGHT stick → view lowers, slower move (`LOCO_STATE crouch=true`)
+- [ ] Slide: crouch WHILE sprinting → short speed burst then crouched (`LOCO_STATE slide=`)
+- [ ] Auto-run: DOUBLE-click LEFT stick → runs where you look; stick/jump cancels (`LOCO_STATE autorun=`)
+- [ ] Laser sight: every held gun shows a thin aim line to the first hit
+- [ ] Quick-swap: with a gun held, tap B → swaps with the belt gun; empty hand + B = draw (`QUICK_SWAP`)
+- [ ] Ping: EMPTY left hand, pull trigger at a spot → gold beacon drops for 20s (`PING_AT`)
+- [ ] Match board: HOW IT WORKS panel beside it changes with the selected mode; kiosk carries its 3-step sign
+Full program + envelope details: `docs/TEST_DAY_1_RESPONSE.md` + `docs/design/CONTROL_SCHEME.md`.
 
 ## 2l. NEW — git safety, one-time (~2 min; from your PDF's version-control chapter)
 Four operators + you push to one branch — this makes scene-file collisions unable to corrupt anything:
