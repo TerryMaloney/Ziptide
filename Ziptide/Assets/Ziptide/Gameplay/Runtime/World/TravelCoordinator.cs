@@ -96,7 +96,7 @@ namespace Ziptide.Gameplay
             //    through here, so every one of them gets the moment.
             if (rig != null)
             {
-                float lead = ZiptideGateEffect.PlayDeparture(rig.transform.position);
+                float lead = ZiptideGateEffect.PlayDeparture(rig.transform.position, DisplayNameFor(sceneName));
                 yield return new WaitForSeconds(lead);
             }
 
@@ -165,6 +165,17 @@ namespace Ziptide.Gameplay
                 Debug.Log("ZIPTIDE: TRAVEL_OK dest=" + sceneName);
 
             _travelling = false;
+        }
+
+        /// <summary>Human name for the tide's destination label (falls back to the scene name).</summary>
+        private static string DisplayNameFor(string sceneName)
+        {
+            var manifest = DevWorldManifest.Load();
+            if (manifest != null && manifest.worlds != null)
+                foreach (var w in manifest.worlds)
+                    if (w != null && w.sceneName == sceneName && !string.IsNullOrEmpty(w.displayName))
+                        return w.displayName;
+            return sceneName;
         }
 
         // ── XRI readiness criteria ──────────────────────────────────────────

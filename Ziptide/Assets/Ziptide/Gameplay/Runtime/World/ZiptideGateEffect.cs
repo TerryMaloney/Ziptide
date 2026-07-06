@@ -27,6 +27,7 @@ namespace Ziptide.Gameplay
 
         private Transform[] _pillars;
         private Transform _pool; // the glowing tide pool underfoot
+        private TextMesh _label; // destination name riding the tide (departure only)
         private Material _mat;
         private Vector3 _center;
         private float _t, _duration;
@@ -36,10 +37,11 @@ namespace Ziptide.Gameplay
 
         /// <summary>Start the departure tide around <paramref name="center"/>. Returns the lead
         /// time until the crest — the caller cuts the scene exactly then.</summary>
-        public static float PlayDeparture(Vector3 center)
+        public static float PlayDeparture(Vector3 center, string destinationName = null)
         {
-            Spawn(center, departure: true, duration: 1.6f);
-            Debug.Log("ZIPTIDE: ZIPTIDE_GATE depart");
+            var fx = Spawn(center, departure: true, duration: 1.6f);
+            if (!string.IsNullOrEmpty(destinationName)) fx.BuildDestinationLabel(destinationName);
+            Debug.Log("ZIPTIDE: ZIPTIDE_GATE depart dest=" + (destinationName ?? "?"));
             return 1.45f; // cut just inside the crest flash
         }
 
@@ -50,7 +52,7 @@ namespace Ziptide.Gameplay
             Debug.Log("ZIPTIDE: ZIPTIDE_GATE arrive");
         }
 
-        private static void Spawn(Vector3 center, bool departure, float duration)
+        private static ZiptideGateEffect Spawn(Vector3 center, bool departure, float duration)
         {
             var go = new GameObject(departure ? "__ZiptideDepart" : "__ZiptideArrive");
             var fx = go.AddComponent<ZiptideGateEffect>();
@@ -59,6 +61,21 @@ namespace Ziptide.Gameplay
             fx._duration = duration;
             fx.Build();
             fx.PlayAudio();
+            return fx;
+        }
+
+        /// <summary>The destination's name rides the tide — fades in above the ring, billboarded.</summary>
+        private void BuildDestinationLabel(string destinationName)
+        {
+            var go = new GameObject("__Destination");
+            go.transform.SetParent(transform, false);
+            _label = go.AddComponent<TextMesh>();
+            _label.text = destinationName.ToUpperInvariant();
+            _label.characterSize = 0.045f; // readable at ~2.4 m (characterSize x fontSize law)
+            _label.fontSize = 64;
+            _label.anchor = TextAnchor.MiddleCenter;
+            _label.alignment = TextAlignment.Center;
+            _label.color = new Color(Crest.r, Crest.g, Crest.b, 0f);
         }
 
         private void Build()
@@ -108,6 +125,18 @@ namespace Ziptide.Gameplay
             {
                 _streakTimer = streakRate;
                 SpawnStreaks(k);
+            }
+
+            // Destination name: fades in over the dial-in, hovers above the ring, faces the player.
+            if (_label != null)
+            {
+                var cam = Camera.main;
+                _label.transform.position = _center + Vector3.up * 2.55f;
+                if (cam != null)
+                    _label.transform.rotation = Quaternion.LookRotation(_label.transform.position - cam.transform.position);
+                var lc = _label.color;
+                lc.a = Mathf.Clamp01(k * 3f) * (1f - Mathf.SmoothStep(0f, 1f, (k - 0.85f) / 0.15f));
+                _label.color = lc;
             }
 
             // Haptics build with the tide — you FEEL the gate before you see the crest.
