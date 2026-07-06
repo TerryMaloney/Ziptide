@@ -28,6 +28,23 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-06 (kkkk) — Picasso (Fable 5): 🦴 P3 SKINNING CORE LANDED CI-GREEN — the last hard math is done
+- **Did:** `0795527` — `ForgeCreatureBody` (creature genome: core parts on the root bone, limb
+  chains one-bone-per-segment, ≤12-bone Validate gate, GaitRole per limb for the P4 motor) +
+  `ForgeSkinnedBuilder` (ONE rigid-weighted skinned mesh; islands reuse the E1.1 packer; the
+  BIND-POSE LAW is spelled out in the file header) + 6 tests. The decisive one,
+  `PosingABone_MovesExactlyItsVertices`, CPU-skins verts through the bindposes — the
+  "explodes when a bone moves" failure class is now impossible to ship.
+- **Why this order:** skinning was the ONLY remaining system with no repo pattern to imitate.
+  Everything left anywhere in the project now has a worked, tested example: recipes, bodies,
+  audits, patchers, rig tools, UI boards, control verbs, bakes, photo loop.
+- **The P3 finish (easy half, for any operator):** (1) author `drone_sentinel_01` +
+  `cave_swarmer_01` genomes (data only, copy SampleBody in the tests); (2) the enveloped
+  CreatureBehaviorBase early-out (jjjj); (3) attach SkinnedMeshRenderer: `bones = result.bones`,
+  `sharedMesh = result.mesh`, `rootBone = bones[0]`, material from ForgeMaterials/baked; (4) P4
+  ForgeMotor drives bone localRotation by GaitRole (phase-offset sines — pure math, testable).
+- **Commit:** _(this one)_
+
 ### 2026-07-06 (jjjj) — Picasso (Fable 5): 🛡 E5.2 PERF GATE SHIPPED + the creature-skin envelope
 - **Did:** `PerfBudgetAuditRules` (FORGE II E5.2) — per-scene static tris/unique-materials/
   renderers/lights vs QUEST_ART_AUDIO_PERFORMANCE_BUDGET: WARN over target, BLOCK over hard cap.

@@ -76,7 +76,7 @@ is the confirmed perf floor. The two qqq envelopes fold in as E5.1 (building mod
 | AVATAR | PlayerAvatarRig — salvage gloves + chest rig (the player's skin) | ✅ `2d57076` — rig-ensured; QUARTERS recolors later |
 | E5.2 | PERF_BUDGET audit gate — tris/materials/renderers/lights per scene, warn at target / block at cap | ✅ `PerfBudgetAuditRules` + runner line (this commit) |
 | P2 | New ops (Capsule/Frustum/Torus/SweepSpline/OrganicBlob) + modifiers + Quest-3 class budgets | ⬜ |
-| P3 | ForgeCreatureBody + ForgeSkinnedBuilder + ⚠ coordination commit (forgeBodyId) + drone/swarmer bodies | ⬜ |
+| P3 | ForgeCreatureBody + ForgeSkinnedBuilder + ⚠ coordination commit (forgeBodyId) + drone/swarmer bodies | 🟡 **CORE ✅ `0795527`** (genome SO + skinning math + 6 tests incl. the CPU-skin bind-pose proof, CI-green). Remaining = the EASY half: drone/swarmer genomes as data + CreatureBehaviorBase early-out + SMR wiring (envelope in HANDOFF jjjj/kkkk) |
 | P4 | ForgeMotor (velocity-observing gaits/waves/breath/look-at/stun-droop) + booth pose shot | ⬜ |
 | E5.1 | Building-module family for `salvage_row`+`toxic_tenement` via ArtModuleRegistry (pairs with story Q2d) | ⬜ after E1.x |
 | E5.3 | Flora (LeafCard+ForgeSway, 2 plants) + 3 W001 props | ⬜ |
