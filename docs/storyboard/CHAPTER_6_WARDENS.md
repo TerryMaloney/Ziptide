@@ -29,6 +29,8 @@ state:** Unsealing → naming. **Reveal:** "the cage has a conscience too, and s
 - **Physics:** besieged station, no hazard, defensive set-piece. **Machine:** the station's mass-driver (Sable's last gambit at the wall).
 - **Resource:** Sable Disk. **Gear:** Energy Shield Disc. **Sky:** viewport: Sable's fleet breaking on the Shell.
 - **Enemy:** Guard/Warden (side-dependent). **Wreck/log:** Sable's leader's last broadcast. **Mystery:** Sable were *right* about the door — wrong about the cost.
+- **Sable beat:** *"Ask me if I'd do it again. Go on, ask. ...Yes. I'd just do it slower. That's the only
+  lesson I've got for you."*
 - **RILL/flag:** Unsealing. `C4_SABLE_*` payoff, `W041_COMPLETE`.
 
 ### W042 — The Listening Post (Interior · static · — · Unsealing)
@@ -43,6 +45,9 @@ state:** Unsealing → naming. **Reveal:** "the cage has a conscience too, and s
 - **Physics:** vast assembly hall, no hazard, social/standoff set-piece. **Machine:** present your case (a flag-driven "build" of trust).
 - **Resource:** Warden Vote. **Gear:** none. **Sky:** none — a dome of thousands of Warden eyes.
 - **Enemy:** Wardens (hostile only if `C6_WARDEN_ENEMY`). **Wreck/log:** the Wardens' founding directive. **Mystery:** the Wardens were *inhabitants* once, volunteered to become guards.
+- **Aegis-Nine beat:** arguing Cal's case to a dome of its own kind, at personal risk — *"I stood watch
+  for forty thousand years and never once needed a reason. I have one now. That should frighten all of
+  you more than it does."*
 - **RILL/flag:** Unsealing. `C6_WARDEN_ALLY`/`C6_WARDEN_ENEMY`, `PLAYER_HELPED_WARDEN`, `W043_COMPLETE`.
 
 ### W044 — The Glass Bloom (Exterior · Bloom · — · Unsealing)
@@ -64,6 +69,10 @@ state:** Unsealing → naming. **Reveal:** "the cage has a conscience too, and s
 - **Physics:** Guild sanctum, no hazard, dialogue/choice set-piece. **Machine:** the Guild's gate-key cradle (where RILL would be *used*).
 - **Resource:** Mara Key. **Gear:** none. **Sky:** none — a window onto the crack in the Shell, widening.
 - **Enemy:** none. **Wreck/log:** Mara's private logs — she's afraid of RILL. **Mystery:** the "key" would erase RILL to open the door.
+- **Mara beat (the pitch):** *"I'm not asking you to trust the Guild. I'm asking you to trust that I've
+  run out of better ideas. RILL is the key. I know what that makes me for asking. I decided I could live
+  with it. Can you?"* **(if opposed):** *"...Then I hope whatever you're planning is better than mine. I
+  don't have a version of this where we both get to be right."*
 - **RILL/flag:** Unsealing. `PLAYER_HELPED_MARA`/oppose, `W046_COMPLETE`.
 
 ### W047 — The Architect's Chamber (Interior · none · — · Unsealing)
@@ -85,6 +94,8 @@ state:** Unsealing → naming. **Reveal:** "the cage has a conscience too, and s
 - **Physics:** repurposed Warden station, no hazard. **Machine:** refit a Warden to fight *with* you (build/repair an ally unit).
 - **Resource:** Warden Fuel. **Gear:** Warden escort drone (combat ally). **Sky:** viewport onto the grid, now mapped with safe routes.
 - **Enemy:** none (or hostile if enemy-branch — base is sealed to you). **Wreck/log:** the defector's reasons. **Mystery:** the Warden remembers being Cal's *neighbor*, long ago.
+- **Aegis-Nine beat (the naming payoff — echoes RILL's own W051, doesn't duplicate it):** *"Aegis-Nine was
+  a function. I find I would rather be a person, if it's permitted. Call me Nine."*
 - **RILL/flag:** Unsealing. `C6_WARDEN_ALLY` payoff, `W049_COMPLETE`.
 
 ### W050 — The Convergence (Void · all · — · Unsealing) ★ set-piece

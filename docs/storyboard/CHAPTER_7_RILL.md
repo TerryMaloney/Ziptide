@@ -47,6 +47,8 @@ is an outside — and we are nearly at the glass." Inherit `STORY_BIBLE.md`.
 - **Physics:** repaired station, no hazard, quiet. **Machine:** rebuild what the war broke (restorative build).
 - **Resource:** Peace Token. **Gear:** none. **Sky:** the debris belt of failed jumps, now a memorial.
 - **Enemy:** none. **Wreck/log:** Sable survivors' reconciliation (or eulogy). **Mystery:** Sable's last act gives Cal the wall's true frequency.
+- **Sable beat (closing, quieter than W041):** *"Peace doesn't feel like winning. Feels like finally
+  being tired enough to stop."*
 - **RILL/flag:** Integrated. `C4_SABLE_*` final payoff, `W055_COMPLETE`.
 
 ### W056 — The Wake Guild End (Interior · none · Wake Guild · Integrated)
@@ -54,6 +56,10 @@ is an outside — and we are nearly at the glass." Inherit `STORY_BIBLE.md`.
 - **Physics:** emptied HQ, no hazard. **Machine:** shut down (or seize) the Guild's master console.
 - **Resource:** Guild Key. **Gear:** none. **Sky:** the network-web window, half its lights now dark.
 - **Enemy:** none. **Wreck/log:** Mara's final message (varies by `PLAYER_HELPED_MARA`). **Mystery:** the Guild were inhabitants who found the door first — and couldn't take it.
+- **Mara beat (final — the full arc's payoff): (if helped):** *"Funny — I spent three years planning
+  how to use you. Never once planned on liking you. Go on. Go find out what you're really looking for."*
+  **(if opposed):** *"You were right and I hate it. Do better with what's coming than I did with what I
+  had."*
 - **RILL/flag:** Integrated. `W056_COMPLETE`.
 
 ### W057 — Transit Void (Void · none · — · Integrated) ★ transit-only edge case
@@ -76,6 +82,9 @@ is an outside — and we are nearly at the glass." Inherit `STORY_BIBLE.md`.
 - **Physics:** solemn open homeland, no hazard. **Machine:** relight the homeland beacon (free the dormant Wardens — or don't).
 - **Resource:** Homeland Key. **Gear:** none. **Sky:** a sky full of returning Wardens, if allied.
 - **Enemy:** Warden (if enemy branch). **Wreck/log:** the volunteers' farewell to their old lives. **Mystery:** the Wardens can leave anytime — they stay out of love for the inside worlds.
+- **Nine's beat (closing, explicitly rhyming with RILL's own arc — not the same beat twice, the same
+  THEME twice, on purpose):** *"RILL chose a name too, I hear. Good. It took the rest of us forty
+  thousand years to learn that trick. Maybe you'll teach the others faster than the Architects taught us."*
 - **RILL/flag:** Integrated. `C6_WARDEN_*` final payoff, `W059_COMPLETE`.
 
 ### W060 — The Architect's Tomb (Interior · none · — · Integrated)
