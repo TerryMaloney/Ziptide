@@ -128,6 +128,7 @@ namespace Ziptide.Gameplay
             EnsureStunReceiver();
             EnsureCreditsHud();
             EnsureRillCompanion();
+            EnsurePingTool();
 
             // #region agent log
             LogRaySnapshot("Awake_AFTER");
@@ -186,6 +187,13 @@ namespace Ziptide.Gameplay
         /// player can holster a gun and have it travel between scenes. The belt was previously only
         /// added per-scene by ScenePatcherC0, which the APK build skips — so it never appeared.
         /// </summary>
+        /// <summary>Ensures the ping tool (CONTROL_SCHEME.md) lives on the persistent rig.</summary>
+        private void EnsurePingTool()
+        {
+            if (GetComponent<PingTool>() == null)
+                gameObject.AddComponent<PingTool>();
+        }
+
         /// <summary>
         /// Ensures a <see cref="PlayerStunReceiver"/> lives on the persistent rig so non-lethal drone
         /// stun bolts (Drone Combat V1) can flash the screen + briefly slow movement in every world.
