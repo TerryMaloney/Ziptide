@@ -367,7 +367,7 @@ namespace Ziptide.Editor.Patching
                     size = new Vector3(0.056f, 0.1f, 0.056f), position = new Vector3(0f, -0.055f, -0.05f),
                     eulerRotation = new Vector3(90f, 0f, 0f), paletteSlot = 2 },
                 new ForgePart { name = "SideVents", op = ForgeOp.GreebleStrip, segments = 4,
-                    size = new Vector3(0.012f, 0.04f, 0.1f), position = new Vector3(0.052f, 0.012f, -0.03f),
+                    size = new Vector3(0.03f, 0.018f, 0.11f), position = new Vector3(0.055f, 0.012f, -0.03f),
                     eulerRotation = new Vector3(0f, 0f, -90f), mirrorX = true, paletteSlot = 1 },
                 new ForgePart { name = "Grip", op = ForgeOp.BeveledBox, bevel = 0.005f,
                     size = new Vector3(0.03f, 0.09f, 0.045f), position = new Vector3(0f, -0.072f, -0.1f),
@@ -412,7 +412,7 @@ namespace Ziptide.Editor.Patching
             d.parts = new[]
             {
                 new ForgePart { name = "Haft", op = ForgeOp.Cylinder, segments = 10,
-                    size = new Vector3(0.032f, 0.26f, 0.032f), position = new Vector3(0f, 0f, -0.1f),
+                    size = new Vector3(0.048f, 0.26f, 0.048f), position = new Vector3(0f, 0f, -0.1f),
                     eulerRotation = new Vector3(90f, 0f, 0f), paletteSlot = 2 },
                 new ForgePart { name = "PommelGlow", op = ForgeOp.Cylinder, segments = 10,
                     size = new Vector3(0.038f, 0.016f, 0.038f), position = new Vector3(0f, 0f, -0.235f),
