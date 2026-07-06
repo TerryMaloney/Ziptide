@@ -84,6 +84,13 @@ The contract-tech fantasy becomes hands-on, not fetch-quests.
 - **Gate:** travel doors retired in favor of the ship on at least the Ch.1 worlds; W000 playable.
 
 ### M5 — Content at Scale *(the world factory earns its keep)*
+> **Prerequisite CLOSED 2026-07-06 (the Story Bible Lock, HANDOFF gggg):** the narrative M5 authors
+> against was checked, tightened, and formally signed off — `STORY_BIBLE.md` + `THE_TRANSMISSION.md` are
+> now **CANON**, the Earth Approach + all four endings (`CHAPTER_8-12_ENDGAME.md`) were rewritten from a
+> design memo into full staged scenes, a continuity audit ran clean (one open item logged, not hidden —
+> see `THE_TRANSMISSION.md` §9b), and `ZIPTIDE_MASTER_BUILD_PLAN.md` §3.1's stale schema sketch got a
+> drift note pointing at the real source of truth. **W013+ authoring may now proceed against this bible
+> with confidence** — nothing here should move again except through the same Terry-reviewed gate.
 - ⚙ Ch.3–6 (W013–W051) in chapter batches via `WorldLayoutLibrary`/`WorldJobLibrary` — **each batch adds
   its chapter's new tool/creature/story beat so content and systems grow together (NOT retrofit).**
 - ⚙ Then Ch.7–12 + the 4 endings (W052–W080); Transmission fragments T2–T5 placed; endings gated.

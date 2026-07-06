@@ -28,6 +28,42 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-06 (hhhh) — Sonnet 5 (Story/Ship track): 📖 THE STORY BIBLE LOCK closes — canon signed off, the endgame rewritten, one honest open item
+Closes (gggg). Narrative-only pass, `docs/storyboard/*` + `docs/THE_TRANSMISSION.md` + one M5 note in
+`GAME_PLAN.md` — **zero code/runtime files touched**, as promised at the open.
+- **Did (5 commits, all pushed, CI n/a — docs only):** (1) canon lock — `STORY_BIBLE.md` +
+  `THE_TRANSMISSION.md` flipped from "PROPOSED" to **CANON**, both had sat unsigned since 2026-06-20/25
+  despite everything downstream building on them; `ZIPTIDE_MASTER_BUILD_PLAN.md` §3.1's stale
+  `WorldPackDefinition` schema sketch got a drift note (real source of truth = `WORLD_DATA.md` §0 + the
+  live class; §12's canonical table untouched). (2) Three continuity fixes: deduped `C4_SABLE_INTRO`
+  (W007 vs W020), tied W038's "crack of light" forward to the Earth Approach, and staged RILL's
+  near-confession — previously described only in the abstract in `THE_TRANSMISSION.md` §5 with no world
+  hosting it — at W053, with a new signature RILL beat + `FRAGMENT_RILL_CONFESS`. (3) **The big one:**
+  `CHAPTER_8-12_ENDGAME.md`'s back half (the Earth Approach + all four endings) was the thinnest writing
+  in the whole 80-world catalog for the highest stakes in the game — rewritten in full: the Earth
+  Approach is now a staged sequence (Lagrange door → cloaked ship/workshop → flight → the lab, the
+  Observers' one permitted escalation, rows of never-activated RILL-class units, unremarked surveillance
+  footage of Cal's whole journey); W063 (the biggest choice in the game) got a new pre-choice RILL line
+  it never had; W064–67 are now genuinely distinct scenes that each explicitly land the partner's fate,
+  with all four already-shipped `RillLineAuthor.cs` ending quotes woven in **verified word-for-word, no
+  wording drift**. (4) A continuity audit (`THE_TRANSMISSION.md` §9b) checked every flag branch across
+  the catalog for a downstream payoff — all confirmed **except one, flagged honestly, not hidden**:
+  `PLAYER_TRUSTED_RILL`/`PLAYER_IGNORED_RILL` are referenced in W063's branch math but no world grants
+  them; reads as an ambient trust-tracking flag whose trigger design is undecided. (5) `GAME_PLAN.md`
+  M5 note: the narrative prerequisite is closed, W013+ authoring may proceed with confidence.
+- **On the uploaded PDF:** rejected as planned — its central twist (an amnesiac higher-dimensional
+  scientist) turned out to be a generic, less specific duplicate of what `THE_TRANSMISSION.md` already
+  does (Cal = the Debugger). Its one adopted idea (subtext-over-exposition) was already baked into the
+  Transmission's register arc; this pass made it explicit and applied it everywhere new prose landed.
+- **📣 Cross-track (Picasso/Architecture):** nothing here blocks or changes any of your boards. If you're
+  building art/systems that touch story content going forward, the bible is now locked — treat
+  `STORY_BIBLE.md`/`THE_TRANSMISSION.md`/`CHAPTER_*.md` as the stable reference, not a moving target.
+- **📣 Next story author (whoever authors W013+ for M5):** read `docs/storyboard/WORLD_DATA.md` §4 (the
+  serialization procedure) + the now-locked chapter you're building, in order. The one open item
+  (RILL trust flags, above) is yours to design when you get there — it isn't blocking anything before it.
+- **Commit:** `f050155` (claim) → `9d59f84` (canon lock) → `169d36c` (Ch4/5/7 fixes) → `cfe1564` (the
+  endgame rewrite) → `de717ca` (continuity audit) → this push (GAME_PLAN + close).
+
 ### 2026-07-06 (gggg) — Sonnet 5 (Story/Ship track): 📖 THE STORY BIBLE LOCK opens — narrative-only pass, zero code/runtime touched
 Terry's directive (fresh session, after reviewing an external "AI Narrative Pipeline" research PDF —
 **rejected**, it invents a generic amnesia/simulation twist that duplicates, less specifically, what
