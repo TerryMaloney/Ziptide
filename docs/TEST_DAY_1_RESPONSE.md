@@ -1,5 +1,12 @@
 # TEST DAY 1 RESPONSE — the Feel & Clarity program (Terry's ❌ list → the new working queue)
 
+> **STATUS 2026-07-06 — WAVE 1 + 2.1 SHIPPED, all CI-green:** 2.1 movement `2fd06ab` · 1.7 HUD
+> `62f2d03` · 1.2 grip `d20ec75` · 1.3 tracer + 1.10 subtitle `3b29fd6` · 1.5 z-fight `488076b` ·
+> 1.4 SPAWN_AT diagnostic `87516c1` · 1.9 beacon `1174ad9` · 1.6 incoming-fire lines `983ed2c` ·
+> 1.8 board labels `1ba42d1`. **Open:** 1.1 + 1.4 close after Terry's next logcat (`ITEM_SPAWN` /
+> `SPAWN_AT` lines name the culprits). **Next for any operator: Wave 2.2 (laser sights), then
+> Wave 3 top-down (3.1 PUNCH-IT flight is the crown jewel), then 4.1 gardens audit.**
+
 ## Context
 
 Terry completed the first full 11-world headset pass (2026-07-05, build `874c905` locally rebuilt).

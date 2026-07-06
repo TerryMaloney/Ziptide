@@ -28,6 +28,21 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-06 (eeee) — Picasso (Fable 5): ⚡ WAVE 1 SHIPPED — nine feel/clarity fixes in one stretch, all CI-green
+- **Did:** executed the whole TEST_DAY_1_RESPONSE Wave 1 + movement 2.1 (status block stamped in
+  that doc, per-commit list there). Highlights for future debuggers: (1) the match-board text
+  overlap was `characterSize × fontSize` — TextMesh MULTIPLIES them; keep characterSize ~0.01 at
+  fontSize 64. (2) The "white noise" ground was terrain graded 4cm under slabs + POI pockets
+  landing exactly coplanar on flat biomes — keep a ≥0.12 band around slab tops. (3) Incoming
+  damage is now visible via `ApplyStun(sec, slow, sourcePos)` → red tracer + `PLAYER_HIT src=`;
+  use the 3-arg overload for anything that hurts the player. (4) `TracerFx.Spawn` and
+  `ObjectiveBeacon.Attach` are the new reusable FX vocabulary.
+- **Next-CLAIMED:** nothing — Fable window closing. Successor: take Wave 2.2 (laser sights on
+  guns via the TracerFx pattern), then 3.1 PUNCH-IT flight (FlightModel is tested and waiting).
+- **Heads-up (Terry):** pull + local rebuild to get all nine; keep logcat running — `ITEM_SPAWN`
+  and `SPAWN_AT` lines will close the two instrumented mysteries (tiny guns, under-floor spawn).
+- **Commit:** _(this one)_
+
 ### 2026-07-05 (dddd) — Picasso (Fable 5): 🎮 TEST DAY 1 VERDICT IS IN — the Feel & Clarity program opens (`docs/TEST_DAY_1_RESPONSE.md`)
 - **Did:** Terry ran the full 11-world pass on `874c905` (local rebuild after repo sync — his repo
   had been at `e88e70e`, ART-2 era, which explained the earlier "old problems"; signature-mismatch
