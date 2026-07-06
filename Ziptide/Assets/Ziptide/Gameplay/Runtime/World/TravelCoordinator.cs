@@ -93,10 +93,17 @@ namespace Ziptide.Gameplay
             // 0. THE ZIPTIDE (the game's namesake moment): the departure tide gathers around the
             //    player and crests — the scene cut lands INSIDE the crest flash, so the hard load
             //    reads as the tide taking you. Every travel path (doors, ship, warps) comes
-            //    through here, so every one of them gets the moment.
+            //    through here, so every one of them gets the moment. The tide is TINTED by the
+            //    destination's sky (manifest entry) — every gate is colored by where you're going.
+            var destEntry = ManifestEntryFor(sceneName);
+            string destName = destEntry != null && !string.IsNullOrEmpty(destEntry.displayName)
+                ? destEntry.displayName : sceneName;
+            Color destHorizon = destEntry != null ? destEntry.skyHorizon : default;
+            Color destZenith = destEntry != null ? destEntry.skyZenith : default;
             if (rig != null)
             {
-                float lead = ZiptideGateEffect.PlayDeparture(rig.transform.position, DisplayNameFor(sceneName));
+                float lead = ZiptideGateEffect.PlayDeparture(rig.transform.position, destName,
+                    destHorizon, destZenith);
                 yield return new WaitForSeconds(lead);
             }
 
@@ -124,8 +131,8 @@ namespace Ziptide.Gameplay
             playerRig.TeleportToSpawnMarker();
             playerRig.EnsureXRIWiring();
 
-            // The receding tide releases you into the new world.
-            ZiptideGateEffect.PlayArrival(playerRig.transform.position);
+            // The receding tide releases you into the new world, colored with ITS sky.
+            ZiptideGateEffect.PlayArrival(playerRig.transform.position, destHorizon, destZenith);
 
             // 5. Wait for XRI to be ready (up to 5 seconds).
             float elapsed = 0f;
@@ -167,15 +174,16 @@ namespace Ziptide.Gameplay
             _travelling = false;
         }
 
-        /// <summary>Human name for the tide's destination label (falls back to the scene name).</summary>
-        private static string DisplayNameFor(string sceneName)
+        /// <summary>The manifest entry for a scene — the tide's display name + sky tint. Null if
+        /// the manifest hasn't been generated or the scene isn't in it.</summary>
+        private static DevTools.DevWorldManifest.Entry ManifestEntryFor(string sceneName)
         {
             var manifest = DevTools.DevWorldManifest.Load();
             if (manifest != null && manifest.worlds != null)
                 foreach (var w in manifest.worlds)
-                    if (w != null && w.sceneName == sceneName && !string.IsNullOrEmpty(w.displayName))
-                        return w.displayName;
-            return sceneName;
+                    if (w != null && w.sceneName == sceneName)
+                        return w;
+            return null;
         }
 
         // ── XRI readiness criteria ──────────────────────────────────────────

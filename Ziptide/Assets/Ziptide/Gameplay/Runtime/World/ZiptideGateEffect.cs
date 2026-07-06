@@ -25,6 +25,11 @@ namespace Ziptide.Gameplay
         private static readonly Color Crest = new Color(0.85f, 0.98f, 1f);
         private static AudioClip _riser, _boom;
 
+        // Destination tint (v4): the tide is colored by WHERE YOU'RE GOING — wall from the
+        // destination sky's horizon, streaks from its zenith. Teal when no vista is authored.
+        private Color _tintWall = Teal;
+        private Color _tintStreak = Teal;
+
         private Transform[] _pillars;
         private Transform _pool; // the glowing tide pool underfoot
         private TextMesh _label; // destination name riding the tide (departure only)
@@ -36,20 +41,44 @@ namespace Ziptide.Gameplay
         private float _hapticTimer;
 
         /// <summary>Start the departure tide around <paramref name="center"/>. Returns the lead
-        /// time until the crest — the caller cuts the scene exactly then.</summary>
-        public static float PlayDeparture(Vector3 center, string destinationName = null)
+        /// time until the crest — the caller cuts the scene exactly then. Pass the destination
+        /// sky colors (from the DevWorldManifest entry) to tint the tide toward where you're
+        /// going; alpha-0 colors fall back to Ziptide teal.</summary>
+        public static float PlayDeparture(Vector3 center, string destinationName = null,
+            Color destSkyHorizon = default, Color destSkyZenith = default)
         {
             var fx = Spawn(center, departure: true, duration: 1.6f);
+            fx.SetTint(destSkyHorizon, destSkyZenith);
             if (!string.IsNullOrEmpty(destinationName)) fx.BuildDestinationLabel(destinationName);
             Debug.Log("ZIPTIDE: ZIPTIDE_GATE depart dest=" + (destinationName ?? "?"));
             return 1.45f; // cut just inside the crest flash
         }
 
-        /// <summary>The receding tide in the new world, around the arrival point.</summary>
-        public static void PlayArrival(Vector3 center)
+        /// <summary>The receding tide in the new world, around the arrival point. Tinted with
+        /// THIS world's sky — the tide relaxes into the sky it brought you to.</summary>
+        public static void PlayArrival(Vector3 center,
+            Color skyHorizon = default, Color skyZenith = default)
         {
-            Spawn(center, departure: false, duration: 1.0f);
+            var fx = Spawn(center, departure: false, duration: 1.0f);
+            fx.SetTint(skyHorizon, skyZenith);
             Debug.Log("ZIPTIDE: ZIPTIDE_GATE arrive");
+        }
+
+        /// <summary>Blend the tide toward a destination sky, kept luminous (a cave world's
+        /// near-black horizon still has to read as energy, not shadow).</summary>
+        private void SetTint(Color skyHorizon, Color skyZenith)
+        {
+            _tintWall = TideTint(skyHorizon);
+            _tintStreak = TideTint(skyZenith);
+        }
+
+        private static Color TideTint(Color sky)
+        {
+            if (sky.a <= 0f) return Teal; // no vista authored — the tide stays Ziptide teal
+            float max = Mathf.Max(sky.r, Mathf.Max(sky.g, sky.b));
+            Color bright = max < 0.55f && max > 0.001f ? sky * (0.55f / max) : sky;
+            bright.a = 1f;
+            return Color.Lerp(Teal, bright, 0.75f);
         }
 
         private static ZiptideGateEffect Spawn(Vector3 center, bool departure, float duration)
@@ -182,7 +211,11 @@ namespace Ziptide.Gameplay
                 heat = 1f - Mathf.SmoothStep(0f, 1f, k * 1.4f); // arrives hot, cools fast
             }
 
-            _mat.SetColor("_BaseColor", Color.Lerp(Teal, Crest, heat));
+            // Departure: the tide starts Ziptide teal and BECOMES the destination sky as it
+            // gathers — the gate is colored by where you're going. Arrival: the tide is already
+            // that sky, cooling from the crest into it.
+            Color baseCol = _departure ? Color.Lerp(Teal, _tintWall, k) : _tintWall;
+            _mat.SetColor("_BaseColor", Color.Lerp(baseCol, Crest, heat));
 
             // The tide pool underfoot swells with the ring (thin — it's a sheen, not a wall).
             if (_pool != null)
@@ -212,10 +245,15 @@ namespace Ziptide.Gameplay
         private void SpawnStreaks(float k)
         {
             // Tangential chords spiraling around the ring — quantized colors so TracerFx's
-            // material cache stays tiny.
+            // material cache stays tiny (the tint is quantized to 0.2 steps so different
+            // destinations share cache entries instead of each minting ~5 new materials).
             float radius = _departure ? Mathf.Lerp(2.5f, 1.2f, k) : Mathf.Lerp(1.2f, 3f, k);
             int step = Mathf.RoundToInt(k * 4f);
-            Color c = Color.Lerp(Teal, Crest, step / 4f);
+            Color tint = new Color(
+                Mathf.Round(_tintStreak.r * 5f) / 5f,
+                Mathf.Round(_tintStreak.g * 5f) / 5f,
+                Mathf.Round(_tintStreak.b * 5f) / 5f);
+            Color c = Color.Lerp(tint, Crest, step / 4f);
             for (int i = 0; i < 3; i++)
             {
                 float a = Random.Range(0f, Mathf.PI * 2f);

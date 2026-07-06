@@ -38,8 +38,13 @@
   (deterministic samples — replace with real audio at ART-5). World-anchored, camera never moves,
   ~40 renderers <2s. Logs `ZIPTIDE_GATE depart/arrive`.
 - **"Do a little more" queue for the next operator (Terry wants this INCREDIBLE, keep layering):**
-  (1) tint the tide toward the DESTINATION world's sky colors (SkyVistaLibrary lookup by scene —
-  every gate colored by where you're going); (2) RILL gate lines ("brace!") via RillLineAuthor;
+  (1) ~~tint the tide toward the DESTINATION world's sky colors~~ **DONE v4**: the manifest
+  builder now copies each vista's skyGradient horizon/zenith into `DevWorldManifest.Entry`
+  (`skyHorizon`/`skyZenith`, alpha 0 = unauthored → teal fallback), and the departure tide
+  BECOMES the destination sky as it gathers (wall=horizon, streaks=zenith, brightness-floored
+  so cave-black worlds still read as energy); arrival cools from the crest into the new
+  world's sky. Manifest regenerates on every build (BuildAndroid hook already existed);
+  (2) RILL gate lines ("brace!") via RillLineAuthor;
   (3) ~~destination name floating in the crest~~ **DONE v3** (`36ed663`+fix): TextMesh label
   (characterSize law: 0.045 × 64) fades in above the ring during the dial-in, billboards to the
   camera, burns away into the crest — names resolved via `DevWorldManifest` displayName;

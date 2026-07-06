@@ -44,6 +44,16 @@ namespace Ziptide.Editor.DevTools
                     foreach (var m in pack.spawnMarkers)
                         if (m != null && !string.IsNullOrEmpty(m.markerId)) entry.markerIds.Add(m.markerId);
 
+                // Copy the world's sky colors so runtime systems (THE ZIPTIDE gate tint) can see
+                // them without loading Visuals assets. Alpha stays 0 when no vista is authored.
+                var vista = AssetDatabase.LoadAssetAtPath<Ziptide.Visuals.SkyVistaDefinition>(
+                    Ziptide.Editor.Patching.SkyVistaLibrary.AssetPathFor(pack.sceneName));
+                if (vista != null && vista.skyGradient != null)
+                {
+                    entry.skyHorizon = Opaque(vista.skyGradient.Evaluate(0f));
+                    entry.skyZenith = Opaque(vista.skyGradient.Evaluate(1f));
+                }
+
                 manifest.worlds.Add(entry);
             }
 
@@ -51,6 +61,8 @@ namespace Ziptide.Editor.DevTools
             AssetDatabase.SaveAssets();
             Debug.Log("[Ziptide] DevWorldManifest rebuilt: " + manifest.worlds.Count + " world(s).");
         }
+
+        private static Color Opaque(Color c) => new Color(c.r, c.g, c.b, 1f);
     }
 }
 #endif

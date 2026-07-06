@@ -18,6 +18,12 @@ namespace Ziptide.Gameplay.DevTools
             public string sceneName;
             public string displayName;
             public List<string> markerIds = new List<string>();
+
+            // The world's sky, copied from its SkyVistaDefinition by the manifest builder so
+            // runtime systems (chiefly THE ZIPTIDE gate tint) can know a destination's colors
+            // without the Visuals assembly or non-Resources assets. Alpha 0 = not authored.
+            public Color skyHorizon;
+            public Color skyZenith;
         }
 
         public List<Entry> worlds = new List<Entry>();
