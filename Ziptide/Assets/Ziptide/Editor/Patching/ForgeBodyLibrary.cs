@@ -1,0 +1,171 @@
+#if UNITY_EDITOR
+using System.Collections.Generic;
+using System.IO;
+using UnityEditor;
+using UnityEngine;
+using Ziptide.Visuals;
+
+namespace Ziptide.Editor.Patching
+{
+    /// <summary>
+    /// Code-authored <see cref="ForgeCreatureBody"/> assets — THE STUDIO'S CREATURE BOOK (FORGE II
+    /// P3 genomes; the skinning/gait cores turn these into walking bodies). Asset ids MATCH
+    /// CreatureDefinition ids (Resources/Enemies) on purpose: CreatureBehaviorBase asks
+    /// ForgeCreatureVisualApplier by creatureId, so authoring a body here upgrades every spawn of
+    /// that creature in every world with zero zone-data edits. CREATE-ONLY like ForgeRecipeLibrary:
+    /// an existing asset under Resources/Forge/Bodies is the live, editable truth; delete it to
+    /// reseed from code. TO ADD A CREATURE: write a Build* method (start from BuildSwarmBug),
+    /// keep Validate() empty and bones ≤ 12 — the tests pin both.
+    /// </summary>
+    public static class ForgeBodyLibrary
+    {
+        public const string BodyFolder = "Assets/Ziptide/Resources/Forge/Bodies";
+
+        [MenuItem("Ziptide/Art/Author Forge Creature Bodies (missing only)")]
+        public static void AuthorFromMenu()
+        {
+            int made = EnsureAllAuthored();
+            EditorUtility.DisplayDialog("Forge Body Library",
+                made + " body asset(s) created under " + BodyFolder + " (existing ones untouched).", "OK");
+        }
+
+        /// <summary>creatureId → genome builder. Pure; test-inspectable.</summary>
+        public static List<KeyValuePair<string, System.Func<ForgeCreatureBody>>> Specs()
+        {
+            return new List<KeyValuePair<string, System.Func<ForgeCreatureBody>>>
+            {
+                Spec("swarm_bug", BuildSwarmBug),
+                Spec("light_grazer", BuildLightGrazer),
+            };
+        }
+
+        /// <summary>Create any missing body assets. Returns how many were created.</summary>
+        public static int EnsureAllAuthored()
+        {
+            int made = 0;
+            foreach (var spec in Specs())
+            {
+                string path = BodyFolder + "/" + spec.Key + ".asset";
+                if (AssetDatabase.LoadAssetAtPath<ForgeCreatureBody>(path) != null) continue;
+                Directory.CreateDirectory(BodyFolder);
+                var body = spec.Value();
+                AssetDatabase.CreateAsset(body, path);
+                Debug.Log("[Ziptide] ForgeBodyLibrary authored " + path);
+                made++;
+            }
+            if (made > 0) { AssetDatabase.SaveAssets(); AssetDatabase.Refresh(); }
+            return made;
+        }
+
+        private static KeyValuePair<string, System.Func<ForgeCreatureBody>> Spec(
+            string id, System.Func<ForgeCreatureBody> builder)
+            => new KeyValuePair<string, System.Func<ForgeCreatureBody>>(id, builder);
+
+        // ── Genomes ────────────────────────────────────────────────────────────────────────────────
+
+        /// <summary>
+        /// swarm_bug (W005 canopy / W009 chitin wall) — a squat six-legged chitin skitterer.
+        /// Six 1-segment legs (no knee — the scuttle reads through the hip swing), a pair of
+        /// antennae that sway in the air, amber carapace over dark legs, one hot amber eye.
+        /// 1 + 6 + 2 = 9 bones.
+        /// </summary>
+        private static ForgeCreatureBody BuildSwarmBug()
+        {
+            var b = ScriptableObject.CreateInstance<ForgeCreatureBody>();
+            b.bodyId = "swarm_bug";
+            b.palette = new[]
+            {
+                new Color(0.16f, 0.12f, 0.08f), // 0 legs — dark chitin
+                new Color(0.55f, 0.38f, 0.16f), // 1 carapace — amber
+                new Color(0.35f, 0.24f, 0.12f), // 2 underside — worn amber-brown
+                new Color(1.00f, 0.55f, 0.15f), // 3 eye — hot amber glow
+            };
+            b.slotStyles = new ForgeStyleSpec[0];
+            b.coreParts = new[]
+            {
+                new ForgePart { name = "Carapace", op = ForgeOp.SphereSection, bevel = 1f, segments = 10,
+                    smooth = true, size = new Vector3(0.34f, 0.16f, 0.42f), position = new Vector3(0f, 0.18f, 0f), paletteSlot = 1 },
+                new ForgePart { name = "Belly", op = ForgeOp.SphereSection, bevel = 1f, segments = 8,
+                    smooth = true, size = new Vector3(0.26f, 0.10f, 0.32f), position = new Vector3(0f, 0.12f, 0f), paletteSlot = 2 },
+                new ForgePart { name = "Head", op = ForgeOp.SphereSection, bevel = 1f, segments = 8,
+                    smooth = true, size = new Vector3(0.16f, 0.12f, 0.16f), position = new Vector3(0f, 0.17f, 0.22f), paletteSlot = 1 },
+            };
+            b.limbs = new[]
+            {
+                Leg("LegFront", new Vector3(0.13f, 0.15f, 0.14f), new Vector3(0.85f, -1f, 0.25f)),
+                Leg("LegMid", new Vector3(0.15f, 0.15f, 0f), new Vector3(1f, -1f, 0f)),
+                Leg("LegRear", new Vector3(0.13f, 0.15f, -0.14f), new Vector3(0.85f, -1f, -0.25f)),
+                new ForgeLimb
+                {
+                    name = "Antenna", attachLocal = new Vector3(0.05f, 0.22f, 0.28f),
+                    chainDirection = new Vector3(0.25f, 0.7f, 0.65f), role = GaitRole.Antenna, mirrorX = true,
+                    segments = new[] { new ForgeLimbSegment { size = new Vector3(0.012f, 0.15f, 0.012f), paletteSlot = 0 } }
+                },
+            };
+            b.eyeLocal = new Vector3(0f, 0.19f, 0.30f);
+            b.eyeRadius = 0.03f;
+            b.eyePaletteSlot = 3;
+            return b;
+        }
+
+        private static ForgeLimb Leg(string name, Vector3 attach, Vector3 dir) => new ForgeLimb
+        {
+            name = name, attachLocal = attach, chainDirection = dir, role = GaitRole.Leg, mirrorX = true,
+            segments = new[] { new ForgeLimbSegment { size = new Vector3(0.025f, 0.20f, 0.03f), paletteSlot = 0 } }
+        };
+
+        /// <summary>
+        /// light_grazer (W002 dry cistern) — the pale drifting grazer: a soft luminous bell with
+        /// four 2-segment tentacles trailing under it (Tentacle role — the traveling wave does the
+        /// "alive in the dark" read) and one large soft-green eye. 1 + 8 = 9 bones.
+        /// </summary>
+        private static ForgeCreatureBody BuildLightGrazer()
+        {
+            var b = ScriptableObject.CreateInstance<ForgeCreatureBody>();
+            b.bodyId = "light_grazer";
+            b.palette = new[]
+            {
+                new Color(0.30f, 0.42f, 0.32f), // 0 tentacles — muted moss
+                new Color(0.62f, 0.78f, 0.58f), // 1 bell — pale luminous green
+                new Color(0.45f, 0.60f, 0.45f), // 2 underbell
+                new Color(0.55f, 1.00f, 0.60f), // 3 eye — soft green glow
+            };
+            b.slotStyles = new ForgeStyleSpec[0];
+            b.coreParts = new[]
+            {
+                new ForgePart { name = "Bell", op = ForgeOp.SphereSection, bevel = 1f, segments = 12,
+                    smooth = true, size = new Vector3(0.40f, 0.34f, 0.40f), position = new Vector3(0f, 0.34f, 0f), paletteSlot = 1 },
+                new ForgePart { name = "Underbell", op = ForgeOp.SphereSection, bevel = 1f, segments = 10,
+                    smooth = true, size = new Vector3(0.30f, 0.16f, 0.30f), position = new Vector3(0f, 0.20f, 0f), paletteSlot = 2 },
+            };
+            b.limbs = new[]
+            {
+                new ForgeLimb
+                {
+                    name = "TentacleFront", attachLocal = new Vector3(0.11f, 0.18f, 0.09f),
+                    chainDirection = new Vector3(0.3f, -1f, 0.18f), role = GaitRole.Tentacle, mirrorX = true,
+                    segments = new[]
+                    {
+                        new ForgeLimbSegment { size = new Vector3(0.035f, 0.16f, 0.035f), paletteSlot = 0 },
+                        new ForgeLimbSegment { size = new Vector3(0.022f, 0.14f, 0.022f), paletteSlot = 0 },
+                    }
+                },
+                new ForgeLimb
+                {
+                    name = "TentacleRear", attachLocal = new Vector3(0.11f, 0.18f, -0.09f),
+                    chainDirection = new Vector3(0.35f, -1f, -0.22f), role = GaitRole.Tentacle, mirrorX = true,
+                    segments = new[]
+                    {
+                        new ForgeLimbSegment { size = new Vector3(0.035f, 0.16f, 0.035f), paletteSlot = 0 },
+                        new ForgeLimbSegment { size = new Vector3(0.022f, 0.14f, 0.022f), paletteSlot = 0 },
+                    }
+                },
+            };
+            b.eyeLocal = new Vector3(0f, 0.36f, 0.19f);
+            b.eyeRadius = 0.045f;
+            b.eyePaletteSlot = 3;
+            return b;
+        }
+    }
+}
+#endif

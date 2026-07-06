@@ -34,6 +34,23 @@ namespace Ziptide.Gameplay
         {
             Runtime = GetComponent<CreatureRuntime>();
             BuildVisuals();
+            // FORGE II P3+P4: if an authored creature body exists for this id, the skinned
+            // WALKING body takes over the look. The primitive parts stay alive but invisible
+            // (subclass fields keep their references; Tick logic is untouched) — a look,
+            // never a stat.
+            if (Ziptide.Visuals.ForgeCreatureVisualApplier.TryApply(gameObject, Runtime.creatureId))
+                foreach (var r in GetComponentsInChildren<MeshRenderer>(true))
+                    if (r != null && !IsUnderForgeVisual(r.transform)) r.enabled = false;
+        }
+
+        private bool IsUnderForgeVisual(Transform t)
+        {
+            while (t != null && t != transform)
+            {
+                if (t.name == Ziptide.Visuals.ForgeCreatureVisualApplier.VisualChildName) return true;
+                t = t.parent;
+            }
+            return false;
         }
 
         private void Update()

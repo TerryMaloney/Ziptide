@@ -86,13 +86,20 @@ something in the story we can just add it... it's also got to be in the regular 
   bindposes never touched). + 6 EditMode tests; the decisive one, `MirroredLegs_AreAntiPhase`,
   builds the real skeleton, poses it at peak swing, and proves left/right feet displace in
   OPPOSITE z — the "both legs kick together" failure class is now unshippable.
-- **The P3+P4 finish for any operator (all pieces now exist):** (1) author `drone_sentinel_01` /
-  `cave_swarmer_01` genomes (data, copy the tests' SampleBody); (2) in the creature spawn path:
-  `var r = ForgeSkinnedBuilder.Build(body);` → parent r.skeletonRoot, add SkinnedMeshRenderer
-  (`bones = r.bones, sharedMesh = r.mesh, rootBone = r.bones[0]`, material from ForgeMaterials);
-  (3) `AddComponent<ForgeCreatureAnimator>().Bind(body, r.bones)` — done, it walks when the
-  behavior moves it; (4) CreatureBehaviorBase early-out envelope (jjjj) still applies.
-- **Commit:** _(this push)_
+- **The P3+P4 finish — DONE same session (next push after `ec08396`):** the whole creature
+  pipeline is live end-to-end: `ForgeSkinnedBuilder` now emits one submesh per used palette
+  slot (`Result.paletteSlots`, sorted — same contract as ForgeMesh) → `ForgeCreatureVisualApplier`
+  (Visuals; the creature twin of ForgeVisualApplier) loads `Resources/Forge/Bodies/<creatureId>`,
+  builds skeleton+SkinnedMeshRenderer with per-slot materials (eye slot emissive), binds
+  `ForgeCreatureAnimator` → `CreatureBehaviorBase.Awake` tries it after BuildVisuals and hides
+  the primitive MeshRenderers on success (subclass field refs stay alive — a look, never a
+  stat) → `ForgeBodyLibrary` (Editor, CREATE-ONLY, build-hooked) authors genomes whose ids
+  MATCH CreatureDefinition ids, so authoring a body upgrades every spawn with zero zone edits.
+  First two genomes: `swarm_bug` (six 1-seg legs + antennae, amber chitin) and `light_grazer`
+  (four 2-seg Tentacle chains, pale luminous bell). +2 catalog gates (every genome validates,
+  builds through BOTH real cores, stays in budget) +1 submesh contract test.
+  **TO ADD A CREATURE BODY: one Build* method in ForgeBodyLibrary. That's the whole job now.**
+- **Commit:** `ec08396` (motor core) + the pipeline finish (this push).
 
 ### 2026-07-06 (ssss) — architect (Opus 4.8): 🗺 BANK PULL — POI reachability check (WORLDS #13), WARN-only
 Second bank pull, architecture lane (GamePool `94f74ac` was CI-green; this builds on that momentum).

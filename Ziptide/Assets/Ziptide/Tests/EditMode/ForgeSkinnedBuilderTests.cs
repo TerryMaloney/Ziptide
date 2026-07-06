@@ -161,6 +161,28 @@ namespace Ziptide.Tests.EditMode
         }
 
         [Test]
+        public void Submeshes_MatchUsedPaletteSlots_SortedAndComplete()
+        {
+            var body = SampleBody(); // slots 0 (legs), 1 (torso/tail), 3 (default eye) → 3 submeshes
+            var r = ForgeSkinnedBuilder.Build(body);
+            try
+            {
+                CollectionAssert.AreEqual(new[] { 0, 1, 3 }, r.paletteSlots,
+                    "one submesh per used palette slot, sorted");
+                Assert.AreEqual(r.paletteSlots.Length, r.mesh.subMeshCount);
+                int total = 0;
+                for (int s = 0; s < r.mesh.subMeshCount; s++)
+                {
+                    int n = r.mesh.GetTriangles(s).Length;
+                    Assert.Greater(n, 0, "submesh " + s + " is empty");
+                    total += n;
+                }
+                Assert.AreEqual(r.mesh.triangles.Length, total, "no triangle lost to the split");
+            }
+            finally { Object.DestroyImmediate(r.skeletonRoot); }
+        }
+
+        [Test]
         public void Validate_CatchesTheBoneBudget()
         {
             var body = SampleBody();

@@ -287,6 +287,9 @@ Each row names its logcat tag — if the tag shows and the feel is right, check 
 - [ ] Quick-swap: with a gun held, tap B → swaps with the belt gun; empty hand + B = draw (`QUICK_SWAP`)
 - [ ] Ping: EMPTY left hand, pull trigger at a spot → gold beacon drops for 20s (`PING_AT`)
 - [ ] Match board: HOW IT WORKS panel beside it changes with the selected mode; kiosk carries its 3-step sign
+- [ ] **CREATURES WALK now:** W005/W009 swarm bugs are six-legged amber chitin skitterers whose legs
+  actually scuttle; W002 grazers are pale glowing bells with waving tentacles (`FORGE_CREATURE_APPLIED`
+  in logcat). Feel notes: leg speed vs body speed, size, do the feet float above ground?
 - [ ] **THE ZIPTIDE**: travel through ANY door/ship/warp → teal tide rises + orbits + contracts
   around you, controllers rumble in crescendo, white crest flash = the cut, receding tide on
   arrival + boom (`ZIPTIDE_GATE depart/arrive`). The destination's NAME rides above the ring,

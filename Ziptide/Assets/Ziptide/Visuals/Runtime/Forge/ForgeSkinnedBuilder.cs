@@ -24,6 +24,7 @@ namespace Ziptide.Visuals
             public Mesh mesh;              // vertices in root space, boneWeights + bindposes set
             public Transform[] bones;      // [0] = root; then limb segments in declaration order
             public GameObject skeletonRoot;// owns the bone hierarchy; caller parents + adds SMR
+            public int[] paletteSlots;     // palette slot per submesh — materials in this order
         }
 
         /// <summary>Build mesh + skeleton. Caller owns the returned skeletonRoot GameObject.</summary>
@@ -32,7 +33,9 @@ namespace Ziptide.Visuals
             var verts = new List<Vector3>();
             var normals = new List<Vector3>();
             var uvs = new List<Vector2>();
-            var tris = new List<int>();
+            // One submesh per used palette slot (sorted), so each slot gets its own material —
+            // the same contract ForgeMesh.Build gives recipes.
+            var trisBySlot = new SortedDictionary<int, List<int>>();
             var weights = new List<BoneWeight>();
 
             // ── Skeleton ────────────────────────────────────────────────────
@@ -95,6 +98,8 @@ namespace Ziptide.Visuals
                 Rect island = islandByPart.TryGetValue(pi, out var r) ? r : new Rect(0f, 0f, 1f, 1f);
                 Matrix4x4 pose = partPose[pi];
                 var bw = new BoneWeight { boneIndex0 = partBone[pi], weight0 = 1f };
+                if (!trisBySlot.TryGetValue(part.paletteSlot, out var tris))
+                    trisBySlot[part.paletteSlot] = tris = new List<int>();
 
                 for (int t = 0; t < local.triangles.Count; t += 3)
                 {
@@ -127,7 +132,15 @@ namespace Ziptide.Visuals
             mesh.SetVertices(verts);
             mesh.SetNormals(normals);
             mesh.SetUVs(0, uvs);
-            mesh.SetTriangles(tris, 0);
+            var paletteSlots = new int[Mathf.Max(1, trisBySlot.Count)];
+            mesh.subMeshCount = paletteSlots.Length;
+            int sub = 0;
+            foreach (var kv in trisBySlot) // SortedDictionary — deterministic slot order
+            {
+                paletteSlots[sub] = kv.Key;
+                mesh.SetTriangles(kv.Value, sub);
+                sub++;
+            }
             mesh.boneWeights = weights.ToArray();
 
             var bindposes = new Matrix4x4[bones.Count];
@@ -137,7 +150,8 @@ namespace Ziptide.Visuals
             mesh.RecalculateBounds();
             mesh.RecalculateTangents();
 
-            return new Result { mesh = mesh, bones = bones.ToArray(), skeletonRoot = rootGo };
+            return new Result { mesh = mesh, bones = bones.ToArray(), skeletonRoot = rootGo,
+                paletteSlots = paletteSlots };
         }
 
         /// <summary>One chain: bones at each joint (+Y along the chain), a box segment per bone.</summary>

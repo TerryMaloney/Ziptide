@@ -146,6 +146,10 @@ namespace Ziptide.Build
             // at their generated looks. ItemFactory applies them at spawn via ForgeVisualApplier.
             try { Ziptide.Editor.Patching.ForgeRecipeLibrary.EnsureAllAuthored(); Ziptide.Editor.Patching.ForgeAuthor.AssignAll(); }
             catch (Exception ex) { Debug.LogWarning("[Ziptide] Forge author warning: " + ex.Message); }
+            // P3+P4: seed missing creature GENOME assets (create-only, ids match CreatureDefinitions).
+            // CreatureBehaviorBase applies the skinned walking body at spawn via ForgeCreatureVisualApplier.
+            try { Ziptide.Editor.Patching.ForgeBodyLibrary.EnsureAllAuthored(); }
+            catch (Exception ex) { Debug.LogWarning("[Ziptide] Forge body author warning: " + ex.Message); }
             // E1.4: bake mesh+maps+material+prefab per recipe → Resources/ForgeBaked (gitignored,
             // regenerated every build). The runtime applier prefers these textured looks on device.
             try { Ziptide.Editor.Patching.ForgeBaker.BakeAll(); }
