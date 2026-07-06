@@ -39,5 +39,8 @@ namespace Ziptide.Content
 
         [Tooltip("Grip attach rotation (local euler). Zero = the +45X convention so the barrel points where the index finger points.")]
         public Vector3 gripLocalEuler = Vector3.zero;
+
+        [Tooltip("Laser sight color while held. Alpha 0 = the default sight color.")]
+        public Color laserSightColor = new Color(0f, 0f, 0f, 0f);
     }
 }

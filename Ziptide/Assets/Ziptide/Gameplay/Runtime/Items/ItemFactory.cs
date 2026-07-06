@@ -42,6 +42,10 @@ namespace Ziptide.Gameplay
             // Release polish LAST so its selectExited listener runs after RestorePhysicsOnRelease.
             if (built != null && built.GetComponent<XRGrabInteractable>() != null)
                 built.AddComponent<ReleaseFeel>();
+            // Every gun (anything with a Muzzle + grab) gets the aim line (CONTROL_SCHEME "Aim").
+            if (built != null && built.transform.Find("Muzzle") != null
+                && built.GetComponent<XRGrabInteractable>() != null)
+                built.AddComponent<GunLaserSight>().Init(def.laserSightColor);
             if (built != null)
                 Debug.Log("ZIPTIDE: ITEM_SPAWN id=" + itemId + " scale=" + built.transform.localScale.ToString("F3"));
             return built;
