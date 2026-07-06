@@ -67,13 +67,16 @@ namespace Ziptide.Editor.Patching
 
         /// <summary>
         /// The list of things to photograph: every recipe in the studio's catalog, built through the
-        /// exact runtime path (ForgeMesh + ForgeMaterials). Falls back to the calibration rig if the
-        /// catalog is ever empty so the photo pipeline itself stays verifiable.
+        /// exact runtime path (ForgeMesh + ForgeMaterials), plus every CREATURE BODY in
+        /// ForgeBodyLibrary — built through the real skinning core and frozen at a mid-stride gait
+        /// frame, so the photos critique the walk pose, not just the sculpt. Falls back to the
+        /// calibration rig if both catalogs are ever empty so the pipeline itself stays verifiable.
         /// </summary>
         private static IEnumerable<(GameObject root, string id)> Subjects()
         {
             var specs = ForgeRecipeLibrary.Specs();
-            if (specs.Count == 0)
+            var bodies = ForgeBodyLibrary.Specs();
+            if (specs.Count == 0 && bodies.Count == 0)
             {
                 yield return (BuildCalibrationTarget(), "spike_calibration");
                 yield break;
@@ -88,6 +91,51 @@ namespace Ziptide.Editor.Patching
                 mr.sharedMaterial = BuildSingleTexturedMaterial(recipe);
                 yield return (root, spec.Key);
             }
+            foreach (var spec in bodies)
+                yield return (BuildBodySubject(spec.Key, spec.Value()), "body_" + spec.Key);
+        }
+
+        /// <summary>
+        /// A creature body posed MID-STRIDE: skinned through ForgeSkinnedBuilder, per-slot flat
+        /// materials (the runtime dev look, eye emissive), and one ForgeGaitMotor frame at full
+        /// speed composed onto the bones — so a bad knee bend or crossed legs shows up in the
+        /// turnaround, not on the headset.
+        /// </summary>
+        private static GameObject BuildBodySubject(string id, Ziptide.Visuals.ForgeCreatureBody body)
+        {
+            var root = new GameObject("ForgeBody_" + id);
+            var r = Ziptide.Visuals.ForgeSkinnedBuilder.Build(body);
+            r.skeletonRoot.transform.SetParent(root.transform, false);
+
+            var smr = root.AddComponent<SkinnedMeshRenderer>();
+            smr.bones = r.bones;
+            smr.sharedMesh = r.mesh;
+            smr.rootBone = r.bones[0];
+            smr.updateWhenOffscreen = true; // edit-mode bounds come from the skinned verts
+
+            var mats = new Material[r.paletteSlots.Length];
+            for (int i = 0; i < r.paletteSlots.Length; i++)
+            {
+                int slot = r.paletteSlots[i];
+                Color c = body.palette != null && slot < body.palette.Length ? body.palette[slot] : Color.magenta;
+                var m = new Material(Shader.Find("Universal Render Pipeline/Lit"));
+                m.SetColor("_BaseColor", c);
+                if (slot == body.eyePaletteSlot)
+                {
+                    m.EnableKeyword("_EMISSION");
+                    m.SetColor("_EmissionColor", c * 1.1f); // booth has no tonemapping — clamp
+                }
+                mats[i] = m;
+            }
+            smr.sharedMaterials = mats;
+
+            // Freeze one full-speed gait frame (t chosen mid-swing; same math the device runs).
+            var q = new Quaternion[body.BoneCount()];
+            Ziptide.Visuals.ForgeGaitMotor.Evaluate(body, 0.33f, 1f, q);
+            for (int i = 1; i < r.bones.Length && i < q.Length; i++)
+                r.bones[i].localRotation = r.bones[i].localRotation * q[i];
+
+            return root;
         }
 
         /// <summary>
