@@ -42,14 +42,20 @@ Threshold 1→2. **Reveal:** "it's a cage." Inherit `STORY_BIBLE.md`.
 ### W009 — Chitinwall (City · swarm · — · Stirring) ★ RILL beat
 - **Role:** Combat-forward swarm city; RILL misidentifies a species — its memory glitches audibly.
 - **Physics:** carapace-built city, swarm hazard, tight alleys. **Machine:** swarm-deterrent pylons (build + power).
-- **Resource:** Carapace. **Gear:** Static Net (catch swarms). **Sky:** a churning insectile aurora; the planet now clearly *banded by the grid*.
+- **Resource:** Carapace. **Gear:** Static Net (catch swarms) · **Breaker Blade** (added: melee pack
+  2026-07-06, additive — a salvager's flat pry-blade; the chitin alleys are too tight for firing lanes,
+  and a blade that cracks carapace walls is how locals opened shortcuts long before the Guild arrived).
+  **Sky:** a churning insectile aurora; the planet now clearly *banded by the grid*.
 - **Enemy:** **swarm** (the signature swarm world). **Wreck/log:** an exterminator rig; log: *"they were people before the wall."* **Mystery:** the chitin is grown, not built — Bloom again.
 - **RILL beat:** *"I know this—wait, I do not. That is new."* `C2_W009_RILL_MISIDENTIFIED`, `W009_COMPLETE`.
 
 ### W010 — Tidal Array (Coastal · flood · — · Stirring)
 - **Role:** Timing/traversal world around rising toxic tides; teaches the flood hazard.
 - **Physics:** coastal flats, periodic flood (get to high ground), slick footing. **Machine:** restart the tidal turbines (a charging array for a seal).
-- **Resource:** Salt. **Gear:** hover-pad/drift mod (cross water). **Sky:** a vast ringed planet pulling the tides; storm light.
+- **Resource:** Salt. **Gear:** hover-pad/drift mod (cross water) · **Tide Pike** (added: melee pack
+  2026-07-06, additive — the drowned fishing rigs' gaffing pike, still racked by the turbine docks; a
+  long reach-weapon for spearing tide-borne tendrils off the walkways without leaving high ground).
+  **Sky:** a vast ringed planet pulling the tides; storm light.
 - **Enemy:** **tendril** (tide-borne Bloom). **Wreck/log:** a drowned fishing rig; log: *"the tide's getting higher every cycle."* **Mystery:** the tides sync to the Signal meter, not the moon.
 - **RILL/flag:** Stirring. `W010_COMPLETE`, `SIGNAL_THRESHOLD_2`.
 

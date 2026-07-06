@@ -25,6 +25,15 @@ Do these in order after pulling. Each generates committable assets. *(This mirro
   window, THEN run `Ziptide → Art → Author Sky Vistas (missing only)` — it'll regenerate that one file
   from the updated code. Commit the regenerated `.asset`. (W012 was left alone on purpose — it's already
   at max intensity by design; adding more would dilute the "the wall is the point" staging.)
+- [ ] **NEW (melee pack, 2026-07-06) — two arenas gained melee weapon pads in code (Cistern:
+  `breaker_blade` west flank · Chitinwall: `tide_pike` on the west catwalk), but `ArenaLayoutLibrary`
+  is create-only like the vistas:** delete `Assets/Ziptide/Content/Arenas/Generated/Arena_Cistern_Arena.asset`
+  and `Arena_Chitinwall_Arena.asset` (+ `.meta`s), then run `Ziptide → Worlds → Author Arena Layouts
+  (missing only)` (or just build — it's build-hooked) to reseed them with the new pads, then rebuild
+  those two arena scenes. The two melee weapon ASSETS themselves (`BreakerBlade`/`TidePike` under
+  `Resources/Items`) need no action — `ArenaWeaponAuthor` creates missing ones automatically at build.
+  The blade also joins the starter-weapon lineup in every generated story world on the next world
+  rebuild — no manual step, just look for the flat cyan blade next to the three guns at spawn.
 - [ ] `Ziptide → Worlds → Build Toxic City`
 - [ ] `Ziptide → Worlds → Build Toxic City Contract`
 - [ ] `Ziptide → Worlds → Build PvP Arena`

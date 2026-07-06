@@ -73,6 +73,7 @@ namespace Ziptide.Editor.Patching
             CoverPts(a, G(-10, -9.8f), G(-10, -6.2f), G(10, 9.8f), G(10, 6.2f), G(-12, 7.8f), G(12, -7.8f), G(-4, 15.8f), G(4, -15.8f));
             Pad(a, "taser_dart_gun", G(-1, -16)); Pad(a, "gravity_gun", G(1, -16)); Pad(a, "pistol", V(0, 2.1f, 0));
             Pad(a, "static_net", G(18, 0)); // A4: net the hill approaches from the east flank
+            Pad(a, "breaker_blade", G(-18, 0)); // MP100: the tunnels are blade country — close, dark, no lanes
             Zone(a, "hill", V(0, 1.6f, 0), 4f);
             return a;
         }
@@ -104,6 +105,7 @@ namespace Ziptide.Editor.Patching
             Pad(a, "taser_dart_gun", G(-1, -23)); Pad(a, "gravity_gun", G(1, -23));
             Pad(a, "pistol", V(-13, 3.4f, 0)); Pad(a, "pistol", V(13, 3.4f, 0));
             Pad(a, "sonic_thumper", G(0, -2)); // A4: mid-alley, between the two breakable walls (synergy)
+            Pad(a, "tide_pike", V(-13, 3.4f, -10)); // MP100: catwalk king — hold the narrow high ground with reach
             Zone(a, "midalley", V(0, 0, 1), 3.5f);
             return a;
         }

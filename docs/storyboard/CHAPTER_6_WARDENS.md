@@ -85,7 +85,9 @@ state:** Unsealing → naming. **Reveal:** "the cage has a conscience too, and s
 ### W048 — Chitinwall 2 (City · swarm · — · Unsealing)
 - **Role:** Callback combat world; the swarm city, now Pattern-infected; pure action breather.
 - **Physics:** carapace city + Pattern bleed, swarm hazard, tight verticality. **Machine:** the wall's old deterrent grid, upgraded.
-- **Resource:** Carapace (high-tier). **Gear:** Static Net tier 2. **Sky:** insect-aurora fracturing into Pattern cells.
+- **Resource:** Carapace (high-tier). **Gear:** Static Net tier 2 · **Breaker Blade tier 2** (added:
+  melee pack 2026-07-06, additive — the W009 pry-blade re-edged with Pattern-hardened carapace; same
+  swing, bites walls the original can't). **Sky:** insect-aurora fracturing into Pattern cells.
 - **Enemy:** **swarm** + Pattern. **Wreck/log:** the Chitinwall survivors from W025, here, holding out. **Mystery:** the swarm is fleeing the Pattern, not attacking Cal.
 - **RILL/flag:** Unsealing. `W048_COMPLETE`.
 

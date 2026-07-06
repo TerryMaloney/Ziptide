@@ -159,6 +159,10 @@ namespace Ziptide.Editor.Patching
                 if (grav != null) grav.transform.SetParent(root, true);
                 var pistol = ItemFactory.Create("pistol", spawnPos + new Vector3(0f, 1.0f, 1.2f));
                 if (pistol != null) pistol.transform.SetParent(root, true);
+                // MP100 melee pack: the blade joins the starter lineup — melee is a first-class verb
+                // in the regular game, not an arena exclusive (Terry, 2026-07-06).
+                var blade = ItemFactory.Create("breaker_blade", spawnPos + new Vector3(-1.2f, 1.0f, 1.1f));
+                if (blade != null) blade.transform.SetParent(root, true);
             }
         }
 
