@@ -376,6 +376,11 @@ namespace Ziptide.Editor.Patching
             ship.localRotation = Quaternion.Euler(0f, s.shipRotationY, 0f);
             ShipHullBuilder.Build(ship, s.shipSize, kit.palette);
 
+            // PUNCH IT (Test Day 1): only the W000 tutorial ship gets the cast-off console —
+            // its launch IS the tutorial's final beat. Other berths stay boarding stations.
+            if (kit.sceneName == "W000_DriftIn" && ship.GetComponent<ShipCastOffRuntime>() == null)
+                ship.gameObject.AddComponent<ShipCastOffRuntime>();
+
             // S1 (GAME_PLAN M4 / SHIPS.md): the berthed ship is BOARDABLE — a travel station wearing a
             // ship costume. Destinations = every authored world pack whose scene ships in the build
             // (skip Exit return-packs and this world's own pack); story-gating happens at runtime.
