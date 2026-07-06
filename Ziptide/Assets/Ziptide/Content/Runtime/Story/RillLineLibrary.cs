@@ -10,8 +10,11 @@ namespace Ziptide.Content
     {
         WorldEnter,   // key = scene name; fires when that world loads
         FlagSet,      // key = a ZiptideFlags name; fires when the profile gains that flag
-        GateDeparture // key = DESTINATION scene name (or "*" = any); fires as THE ZIPTIDE rises.
+        GateDeparture,// key = DESTINATION scene name (or "*" = any); fires as THE ZIPTIDE rises.
                       // One line is picked at random from the matches (specific beats wildcard).
+        FollowUp      // key = a ZiptideFlags name RILL noticed earlier; fires unprompted, `crossingsDelay`
+                       // gate-departures later — a companion who's still thinking about something, not
+                       // just reacting to it once (see docs/systems/COMPANION_MEMORY.md, added 2026-07-06).
     }
 
     /// <summary>One deliverable line (subtitle now; a VO clip slots in at the art/audio pass). Despite the
@@ -40,6 +43,10 @@ namespace Ziptide.Content
         [Tooltip("Who says this line. Default \"RILL\" — every line authored before the Cal banter pass "
                  + "(2026-07-06) is unaffected. Cal's lines set this to \"CAL\".")]
         public string speaker = "RILL";
+
+        [Tooltip("FollowUp trigger only: how many gate crossings after `key` is first noticed before this "
+                 + "line fires unprompted. Ignored for every other trigger.")]
+        public int crossingsDelay = 6;
 
         /// <summary>Pure formatting — the subtitle text as it should read on screen. Kept out of
         /// RillCompanion so it's testable without a MonoBehaviour/scene.</summary>

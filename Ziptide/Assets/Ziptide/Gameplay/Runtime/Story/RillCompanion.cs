@@ -13,7 +13,10 @@ namespace Ziptide.Gameplay
     /// on world entry (scene name) and on story-flag grants (1s profile poll — flags are granted by
     /// job/world completion, so a poll is plenty). A small hovering orb near the left shoulder gives the
     /// voice a body; its glow follows <see cref="RillState"/>. VO clips slot into the same lines at the
-    /// M6 audio pass. Logs ZIPTIDE: RILL_LINE per delivery.
+    /// M6 audio pass. Also owns a <see cref="FollowUpTracker"/> (added 2026-07-06, "companion memory" —
+    /// docs/systems/COMPANION_MEMORY.md): a flag being granted can start a countdown, in gate crossings,
+    /// to a line that fires unprompted much later — RILL bringing something back up on her own clock,
+    /// not just reacting the moment it happens. Logs ZIPTIDE: RILL_LINE per delivery.
     /// </summary>
     public class RillCompanion : MonoBehaviour
     {
@@ -30,6 +33,8 @@ namespace Ziptide.Gameplay
 
         private readonly Queue<RillLine> _pending = new Queue<RillLine>();
         private readonly List<RillLine> _scratch = new List<RillLine>();
+        private readonly List<RillLine> _dueFollowUps = new List<RillLine>();
+        private readonly FollowUpTracker _followUps = new FollowUpTracker();
         private readonly HashSet<string> _knownFlags = new HashSet<string>();
         private bool _flagsPrimed;
         private float _lineTimer;
@@ -82,6 +87,12 @@ namespace Ziptide.Gameplay
 
         private void EnqueueGateLine(string destSceneName)
         {
+            // Ticks unconditionally, before any early-return below — a FollowUp's clock runs on every
+            // gate crossing regardless of whether this specific crossing also has an ordinary gate line.
+            _dueFollowUps.Clear();
+            _followUps.TickGateCrossing(_dueFollowUps);
+            for (int i = 0; i < _dueFollowUps.Count; i++) _pending.Enqueue(_dueFollowUps[i]);
+
             if (_library == null) return;
             var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;
 
@@ -121,6 +132,16 @@ namespace Ziptide.Gameplay
             }
         }
 
+        /// <summary>A flag just became true — start the countdown on any FollowUp line watching it, so
+        /// RILL (or Cal) can bring it back up several gate crossings from now, unprompted.</summary>
+        private void RegisterFollowUps(string flag)
+        {
+            if (_library == null) return;
+            _scratch.Clear();
+            _library.Collect(RillTrigger.FollowUp, flag, _scratch);
+            for (int i = 0; i < _scratch.Count; i++) _followUps.Register(_scratch[i]);
+        }
+
         private void PollFlags()
         {
             _pollTimer -= Time.deltaTime;
@@ -144,6 +165,7 @@ namespace Ziptide.Gameplay
                 string flag = profile.flags[i];
                 if (flag == null || flag.StartsWith(SaidFlagPrefix) || !_knownFlags.Add(flag)) continue;
                 EnqueueMatching(RillTrigger.FlagSet, flag);
+                RegisterFollowUps(flag);
             }
         }
 

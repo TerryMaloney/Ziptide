@@ -96,7 +96,7 @@ has nothing to push against.
 ## 3b. Cal & RILL — the relationship, not just the arc (added: soul pass, 2026-07-06)
 The memory-state arc (Dormant→Stirring→Remembering→Unsealing→Integrated) is the SKELETON. What makes an
 audience feel a companion the way Halo's players feel Cortana and Chief is the ROUTINE — banter in worlds
-that carry no flagged beat at all, not just the twelve signature moments. Two rules for every session
+that carry no flagged beat at all, not just the twelve signature moments. Three rules for every session
 that touches RILL content from here on:
 1. **RILL gets ambient lines, not just plot lines.** The already-shipped `RillTrigger.GateDeparture`
    wildcard pool is the right home for these — add to it generously. A companion who only speaks when the
@@ -105,6 +105,12 @@ that touches RILL content from here on:
    RILL's dry wit should occasionally crack into one sincere line, then snap back before it gets heavy —
    never let a vulnerable line sit alone with jokes on neither side of it, or it reads as melodrama
    instead of affection.
+3. **She has a memory that keeps running without the player (added 2026-07-06 —
+   `RillTrigger.FollowUp`, `docs/systems/COMPANION_MEMORY.md`).** Not every reaction has to happen the
+   moment its trigger fires. A flag noticed now can surface again several gate crossings later,
+   unprompted — RILL bringing something back up because she's still been thinking about it, not
+   because the player asked. This is the single biggest lever for "alive": a companion whose thoughts
+   have their own timeline, not just a stimulus-response loop.
 
 **RILL's running bit (cheap, extensible — "the log"):** RILL keeps a private, deadpan tally of how many
 times Cal's machine-scolding habit has *worked* — the thing started right after she insulted it. RILL

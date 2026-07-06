@@ -27,6 +27,7 @@ to work" spec. This complements (does not replace) the big picture:
 | Build / Creator mode | [`BUILD_CREATOR_MODE.md`](BUILD_CREATOR_MODE.md) | designed |
 | Voice Pipeline (subtitle-now/VO-later, all characters) | [`VOICE_PIPELINE.md`](VOICE_PIPELINE.md) | designed — mechanism live for RILL+Cal |
 | Skyscape Design (the Prospect bar — atmosphere, occlusion, drift) | [`SKYSCAPE_DESIGN.md`](SKYSCAPE_DESIGN.md) | **plan only** — not yet built |
+| Companion Memory (RILL brings things back up, unprompted) | [`COMPANION_MEMORY.md`](COMPANION_MEMORY.md) | **shipped** — `RillTrigger.FollowUp`, CI-tested |
 
 > Add a new system = copy the template into `docs/systems/<NAME>.md`, add a row here, and claim it in
 > `docs/HANDOFF.md` before writing code for it.

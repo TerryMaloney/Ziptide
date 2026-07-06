@@ -200,6 +200,28 @@ namespace Ziptide.Editor.Patching
             CalGate("cal_gate_any_howdoyou", "*", "I still don't know how you make a tide out of light. I've stopped asking.", once: false);
             CalGate("cal_gate_w007", "W007_SableStation", "Sable's turf. Manners, please.", once: true);
 
+            // ═══════════════════════════════════════════════════════════════════════════════════════
+            // COMPANION MEMORY — RILL brings something back up, unprompted, gate crossings later
+            // (docs/systems/COMPANION_MEMORY.md, added 2026-07-06). Each watches a flag already granted
+            // above; `crossings` is how many gate departures after that flag is first noticed before the
+            // line fires on its own. This is what makes RILL feel like she has a throughline of thought
+            // that keeps running whether or not Cal's looking, not just a stimulus-response reaction.
+            // ═══════════════════════════════════════════════════════════════════════════════════════
+            void FollowUp(string id, string flag, string text, int crossings) =>
+                L.Add(new RillLine { id = id, trigger = RillTrigger.FollowUp, key = flag, text = text, crossingsDelay = crossings });
+            void CalFollowUp(string id, string flag, string text, int crossings) =>
+                L.Add(new RillLine { id = id, trigger = RillTrigger.FollowUp, key = flag, text = text,
+                                     crossingsDelay = crossings, speaker = "CAL" });
+
+            FollowUp("followup_cargo", ZiptideFlags.C1_W004_RILL_ASKED_CARGO,
+                "I never received an answer about the cargo. I have stopped expecting one. That is new, too.", crossings: 9);
+            FollowUp("followup_cage", ZiptideFlags.C2_CONTAINMENT_REVEALED,
+                "I have had time to think about the cage. I keep arriving at the same word: deliberate. I did not expect to end up there.", crossings: 7);
+            CalFollowUp("cal_followup_cage", ZiptideFlags.C2_CONTAINMENT_REVEALED,
+                "You've had 'a while' to think about a lot of things. I'm starting to worry you're outpacing me on all of them.", crossings: 8);
+            FollowUp("followup_refused", ZiptideFlags.C3_W019_RILL_REFUSED,
+                "You never asked me again why I refused. I have been waiting. I think I am relieved you didn't.", crossings: 6);
+
             return L;
         }
     }
