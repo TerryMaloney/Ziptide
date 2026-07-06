@@ -14,7 +14,9 @@ namespace Ziptide.Content
                       // One line is picked at random from the matches (specific beats wildcard).
     }
 
-    /// <summary>One deliverable RILL line (subtitle now; a VO clip slots in at the art/audio pass).</summary>
+    /// <summary>One deliverable line (subtitle now; a VO clip slots in at the art/audio pass). Despite the
+    /// class name this carries BOTH speakers — RILL and Cal (see <see cref="speaker"/>) — sharing one
+    /// trigger/delivery pipeline so their banter interleaves without a second companion/subtitle system.</summary>
     [Serializable]
     public class RillLine
     {
@@ -34,6 +36,14 @@ namespace Ziptide.Content
 
         [Tooltip("Optional VO clip — empty until the M6 audio pass; subtitles carry the line until then.")]
         public AudioClip voClip;
+
+        [Tooltip("Who says this line. Default \"RILL\" — every line authored before the Cal banter pass "
+                 + "(2026-07-06) is unaffected. Cal's lines set this to \"CAL\".")]
+        public string speaker = "RILL";
+
+        /// <summary>Pure formatting — the subtitle text as it should read on screen. Kept out of
+        /// RillCompanion so it's testable without a MonoBehaviour/scene.</summary>
+        public string FormatSubtitle() => speaker + ": " + text;
     }
 
     /// <summary>

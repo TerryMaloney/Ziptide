@@ -169,7 +169,7 @@ namespace Ziptide.Gameplay
                 var line = _pending.Dequeue();
                 // Wrap BEFORE the reveal so the typewriter substring includes the line breaks —
                 // TextMesh has no wrapping and unwrapped lines ran off-screen on device.
-                _currentFullText = SubtitleText.Wrap("RILL: " + line.text);
+                _currentFullText = SubtitleText.Wrap(line.FormatSubtitle());
                 _revealStarted = Time.time;
                 _lineTimer = LineSeconds + _currentFullText.Length / CharsPerSecond; // reveal + read time
                 if (line.voClip != null)

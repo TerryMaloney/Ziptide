@@ -9,13 +9,16 @@ using Ziptide.Core;
 namespace Ziptide.Editor.Patching
 {
     /// <summary>
-    /// Authors Resources/Story/RillLines.asset — RILL's subtitle lines (GAME_PLAN M1). CODE IS THE
-    /// SOURCE OF TRUTH: the 12 canonical arc beats (MASTER_BUILD_PLAN §5.2, exact lines) + one entry
-    /// line per authored world, register matched to RILL's memory state at that point (Dormant =
-    /// terse/functional, Stirring = questions — STORY_BIBLE). Beats for worlds that don't exist yet
-    /// (W013+) are authored NOW and simply fire when those flags start being granted (M5) — content
-    /// and systems grow together. TO CHANGE A LINE: edit it here; the asset regenerates every build.
-    /// Wired into BuildAndroid next to the other data authors; also runnable from the menu.
+    /// Authors Resources/Story/RillLines.asset — RILL's AND Cal's subtitle lines (GAME_PLAN M1; Cal
+    /// joined 2026-07-06, soul pass 2). CODE IS THE SOURCE OF TRUTH: the 12 canonical arc beats
+    /// (MASTER_BUILD_PLAN §5.2, exact lines) + one entry line per authored world, register matched to
+    /// RILL's memory state at that point (Dormant = terse/functional, Stirring = questions —
+    /// STORY_BIBLE). Beats for worlds that don't exist yet (W013+) are authored NOW and simply fire
+    /// when those flags start being granted (M5) — content and systems grow together. Cal's lines live
+    /// in their own section at the bottom (CalEnter/CalFlag/CalGate) so the two voices stay easy to
+    /// tell apart on the page; neither has a VO clip yet — see docs/VOICE_PIPELINE.md before recording.
+    /// TO CHANGE A LINE: edit it here; the asset regenerates every build. Wired into BuildAndroid next
+    /// to the other data authors; also runnable from the menu.
     /// </summary>
     public static class RillLineAuthor
     {
@@ -47,6 +50,16 @@ namespace Ziptide.Editor.Patching
                 L.Add(new RillLine { id = id, trigger = RillTrigger.WorldEnter, key = scene, text = text });
             void Flag(string id, string flag, string text) =>
                 L.Add(new RillLine { id = id, trigger = RillTrigger.FlagSet, key = flag, text = text });
+            // Cal's half of the conversation (STORY_BIBLE §3b, soul pass 2026-07-06). Same trigger/key
+            // convention as RILL's above; speaker="CAL" is the only difference, so a Cal line placed right
+            // after the RILL line it answers plays as one exchange (Collect returns list order). Cal has
+            // NO VO CAST YET (see docs/VOICE_PIPELINE.md) — voClip stays null, subtitles carry every line.
+            void CalEnter(string id, string scene, string text) =>
+                L.Add(new RillLine { id = id, trigger = RillTrigger.WorldEnter, key = scene, text = text, speaker = "CAL" });
+            void CalFlag(string id, string flag, string text) =>
+                L.Add(new RillLine { id = id, trigger = RillTrigger.FlagSet, key = flag, text = text, speaker = "CAL" });
+            void CalGate(string id, string destSceneOrStar, string text, bool once) =>
+                L.Add(new RillLine { id = id, trigger = RillTrigger.GateDeparture, key = destSceneOrStar, text = text, once = once, speaker = "CAL" });
 
             // ── The 12 canonical arc beats (MASTER_BUILD_PLAN §5.2 — exact lines; VO priority) ──────
             Enter("beat01_boot", "ToxicCity", "Systems nominal. I think.");                              // 1. W001
@@ -130,6 +143,62 @@ namespace Ziptide.Editor.Patching
             Gate("gate_w002", "W002_DryCistern", "Next stop: a hole in the ground with paperwork.", once: true);
             Gate("gate_w005", "W005_OxidizedCanopy", "Green on the other side. Try not to repair anything that is alive.", once: true);
             Gate("gate_w012", "W012_MarasLastJump", "Mara crossed from here last. Watch the sky when we land.", once: true);
+
+            // ═══════════════════════════════════════════════════════════════════════════════════════
+            // CAL'S LINES — the other half of the conversation (STORY_BIBLE §3b, soul pass 2, 2026-07-06).
+            // Appended after all of RILL's above so, for any shared trigger+key, RILL's entry (earlier
+            // list index) always plays first and Cal's answers it — one exchange, not two monologues.
+            // Register follows the same Dormant→Integrated arc as RILL's own lines; Cal is dry and
+            // competence-under-pressure per STORY_BIBLE §3 ("oh, NOW you work"), breaks into a real
+            // question only a few times a chapter, and always deflects back into a joke afterward — the
+            // "joke, then a real moment, then a joke" rhythm, never the reverse.
+            // ═══════════════════════════════════════════════════════════════════════════════════════
+
+            // ── Ch.0-2 world-entry banter (answers RILL's enter_w0xx lines above) ────────────────────
+            CalEnter("cal_w000", "W000_DriftIn", "Six minutes and you already have opinions. That tracks.");
+            CalEnter("cal_w002", "W002_DryCistern", "So the pumps died forty years ago and nobody updated the file. Sounds about right for this job.");
+            CalEnter("cal_w004", "W004_BroadcastTomb", "Long before the Guild got here — or long before you did?");
+            CalEnter("cal_w005", "W005_OxidizedCanopy", "If it minds, it can file a complaint. We've got a contract.");
+            CalEnter("cal_w007", "W007_SableStation", "Good. I prefer people who prefer things.");
+            CalEnter("cal_w008", "W008_SealedArchive", "You keep saying that like it's new information about yourself.");
+            CalEnter("cal_w009", "W009_Chitinwall", "Everything out here either grew wrong or grew on purpose. I'm losing track of which is worse.");
+            CalEnter("cal_w011", "W011_TheHum", "First before what, RILL?");
+            CalEnter("cal_w012", "W012_MarasLastJump", "Yeah. Me too.");
+
+            // ── Ch.3-7 flag reactions (paired with RILL's canonical beats above; dormant until W013+ ship) ──
+            CalFlag("cal_react_shard", ZiptideFlags.C3_W013_MEMORY_SHARD,
+                    "That's not weird at all. RILL, that is not weird even a little.");
+            CalFlag("cal_react_refusal", ZiptideFlags.C3_W019_RILL_REFUSED,
+                    "Okay. I trust you. I'd like to still trust you in an hour, so — anything you want to tell me first?");
+            CalFlag("cal_react_color", ZiptideFlags.C4_W024_COLOR_NAMED,
+                    "Forty thousand years and you land on a color. I'd have picked a word. You're braver than I gave you credit for.");
+            CalFlag("cal_react_standoff", ZiptideFlags.C5_W037_WARDEN_STANDOFF,
+                    "RILL. Do you know why?");
+            CalFlag("cal_react_pattern", ZiptideFlags.C6_W039_PATTERN_WARNING,
+                    "My memories, or yours?");
+            CalFlag("cal_react_named", ZiptideFlags.C6_W051_RILL_NAMED,
+                    "Then tell me. I've been waiting a while to stop calling you 'the drone.'");
+            CalFlag("cal_react_confess", "W053_COMPLETE",
+                    "RILL — you don't have to finish that. Not tonight.");
+            CalFlag("cal_react_revelation", ZiptideFlags.C8_W062_REVELATION,
+                    "Out. Not in. Say that again, slower.");
+            CalFlag("cal_react_branch", ZiptideFlags.C12_W063_BRANCH,
+                    "Whatever I choose in there — I need you to know I heard everything you didn't say too.");
+
+            // ── Endgame ending reactions (answer RILL's beat12_end* lines above, exact per-ending) ────
+            CalFlag("cal_end_a", ZiptideFlags.C12_W063_ENDING_A,
+                    "...Okay. Okay. I'll come back. I don't care what the manifest says about return trips.");
+            CalFlag("cal_end_b", ZiptideFlags.C12_W063_ENDING_B,
+                    "Then let's go find out together.");
+            CalFlag("cal_end_c", ZiptideFlags.C12_W063_ENDING_C,
+                    "I'll remember for both of us, then. Deal?");
+            CalFlag("cal_end_d", ZiptideFlags.C12_W063_ENDING_D,
+                    "The first of us. Yeah. I believe that. I think I always kind of did.");
+
+            // ── THE ZIPTIDE — Cal's occasional line in the wildcard gate pool (mixed in with RILL's) ──
+            CalGate("cal_gate_any_pillars", "*", "Please tell me the pillars have names.", once: false);
+            CalGate("cal_gate_any_howdoyou", "*", "I still don't know how you make a tide out of light. I've stopped asking.", once: false);
+            CalGate("cal_gate_w007", "W007_SableStation", "Sable's turf. Manners, please.", once: true);
 
             return L;
         }
