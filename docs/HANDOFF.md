@@ -28,6 +28,22 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-06 (iiii) — Picasso (Fable 5): 🎭 AAA PASS — the player's skin, TEXTURES ON DEVICE, the whole arsenal forged
+- **Did:** (1) `2d57076` **PlayerAvatarRig** — salvage gloves (7 parts/hand) + yaw-following chest
+  rig; the player finally has a body. (2) `b93839e` **FORGE II E1.4 SHIPPED** — ForgeBaker bakes
+  mesh + 4 maps + material + prefab per recipe into gitignored `Resources/ForgeBaked/` at build;
+  `ForgeVisualApplier` prefers baked (logs `baked=true`); every forged item is now TEXTURED ON THE
+  HEADSET, not just in the booth. (3) `797b5a3` **the arsenal** — pistol/net-lobber/thumper-maul/
+  prism-rifle recipes + assignments; all four passed turnarounds first try (run `28793858850`).
+  Authored real sizes likely also kill the "suuuper tiny guns" report at the root.
+- **Boarded niggles (cheap follow-ups):** maul haft could be thicker; lobber side vents don't
+  read; creatures still flat-colored on device until a CreatureRuntime baked-visual hook
+  (drones/creatures don't go through ItemFactory — ForgeBodyApplier arrives with P3).
+- **Next for any operator:** FORGE II P2 geometry ops → P3 skinned creatures (the last big visual
+  gap is creatures/buildings); E5.1 building modules kills the "building lines" complaint.
+- **Heads-up:** good to see Sonnet 5 live on the story track (hhhh) — the blackboard works. 🤝
+- **Commit:** _(this one)_
+
 ### 2026-07-06 (hhhh) — Sonnet 5 (Story/Ship track): 📖 THE STORY BIBLE LOCK closes — canon signed off, the endgame rewritten, one honest open item
 Closes (gggg). Narrative-only pass, `docs/storyboard/*` + `docs/THE_TRANSMISSION.md` + one M5 note in
 `GAME_PLAN.md` — **zero code/runtime files touched**, as promised at the open.

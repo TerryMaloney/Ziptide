@@ -71,7 +71,9 @@ is the confirmed perf floor. The two qqq envelopes fold in as E5.1 (building mod
 | E1.2 | ForgeTexture rasterizer + albedo styles + schemaVersion 2 → textured taser in booth ("not flat" checkpoint) | ✅ `ba6f869`+tune `6e0509c` — CI green, checkpoint photos verified |
 | R1–R4 | **ASSET FORGE RECONCILIATION** (Terry-approved 2026-07-04, map in `ASSET_FORGE_MAP.md`): R1 docs `3929246` · R2 lifecycle/lock/refs `541c6a3` · R3 staleness buckets + manifest `6cfabfc` · R4 stalker `215e110`→v3 `196f57d` (photo loop ×3: `Limb()` joint-point legs; turnarounds pass, run `28692323345`) | ✅ **ALL CLOSED** — E1.3 active |
 | E1.3 | Normal/MSA/emissive maps + ONE material per asset | ✅ `8a086f7`+`15bdae9`+booth env `1e64c68`+x-ray `e0211c3` — taser checkpoint passes; atlas x-ray now in every photo artifact (HANDOFF bbbb) |
-| E1.4 | ForgeBaker (build-time bake → ASTC) + gitignore + applier/booth prefer baked → **Terry photo checkpoint** | ⬜ |
+| E1.4 | ForgeBaker (build-time bake → ASTC) + gitignore + applier prefers baked → **TEXTURES ON DEVICE** | ✅ `b93839e` — bake hooked in BuildAndroid; FORGE_APPLIED logs baked=true/false |
+| ARSENAL | pistol_scrap_mk1 · static_net_lobber · sonic_thumper_maul · prism_beam_rifle recipes + ForgeAuthor assignments (every gun textured+baked) | ✅ `797b5a3` — all four pass turnarounds (run `28793858850`); niggles boarded: maul haft thin, lobber side vents unclear |
+| AVATAR | PlayerAvatarRig — salvage gloves + chest rig (the player's skin) | ✅ `2d57076` — rig-ensured; QUARTERS recolors later |
 | E5.2 | PERF_BUDGET audit gate (independent — do anytime, 1 commit) | ⬜ |
 | P2 | New ops (Capsule/Frustum/Torus/SweepSpline/OrganicBlob) + modifiers + Quest-3 class budgets | ⬜ |
 | P3 | ForgeCreatureBody + ForgeSkinnedBuilder + ⚠ coordination commit (forgeBodyId) + drone/swarmer bodies | ⬜ |
