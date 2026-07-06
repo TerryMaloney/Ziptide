@@ -30,6 +30,10 @@ namespace Ziptide.Gameplay
         private Color _tintWall = Teal;
         private Color _tintStreak = Teal;
 
+        // Door anchor (v6): when a physical door/gate started the travel, the tide visibly
+        // pours out of that doorway toward the ring during the dial-in. Null = ring only.
+        private Vector3? _doorPos;
+
         private Transform[] _pillars;
         private Transform _pool; // the glowing tide pool underfoot
         private TextMesh _label; // destination name riding the tide (departure only)
@@ -45,10 +49,11 @@ namespace Ziptide.Gameplay
         /// sky colors (from the DevWorldManifest entry) to tint the tide toward where you're
         /// going; alpha-0 colors fall back to Ziptide teal.</summary>
         public static float PlayDeparture(Vector3 center, string destinationName = null,
-            Color destSkyHorizon = default, Color destSkyZenith = default)
+            Color destSkyHorizon = default, Color destSkyZenith = default, Vector3? gatePos = null)
         {
             var fx = Spawn(center, departure: true, duration: 1.6f);
             fx.SetTint(destSkyHorizon, destSkyZenith);
+            fx._doorPos = gatePos; // v6: the tide pours OUT OF THE DOORWAY toward the ring
             if (!string.IsNullOrEmpty(destinationName)) fx.BuildDestinationLabel(destinationName);
             Debug.Log("ZIPTIDE: ZIPTIDE_GATE depart dest=" + (destinationName ?? "?"));
             return 1.45f; // cut just inside the crest flash
@@ -263,6 +268,24 @@ namespace Ziptide.Gameplay
                 Vector3 p1 = _center + new Vector3(Mathf.Cos(a2), 0f, Mathf.Sin(a2)) * (radius * 0.92f)
                     + Vector3.up * (y + Random.Range(-0.2f, 0.2f));
                 TracerFx.Spawn(p0, p1, c, 0.02f, 0.16f);
+            }
+
+            // v6 — the doorway torrent: when a physical door started this travel, the tide
+            // visibly pours OUT of it toward the ring. Strongest during the dial-in, handing
+            // over to the ring as the crest takes charge.
+            if (_departure && _doorPos.HasValue && k < 0.8f)
+            {
+                Vector3 door = _doorPos.Value;
+                int jets = k < 0.5f ? 2 : 1;
+                for (int i = 0; i < jets; i++)
+                {
+                    float y = Random.Range(0.25f, 2.0f);
+                    Vector3 p0 = door + Vector3.up * y + Random.insideUnitSphere * 0.25f;
+                    float a = Random.Range(0f, Mathf.PI * 2f);
+                    Vector3 p1 = _center + new Vector3(Mathf.Cos(a), 0f, Mathf.Sin(a)) * radius
+                        + Vector3.up * (y * 0.8f);
+                    TracerFx.Spawn(p0, p1, c, 0.025f, 0.22f);
+                }
             }
         }
 

@@ -44,6 +44,19 @@ namespace Ziptide.Gameplay
             if (_instance == this) _instance = null;
         }
 
+        // Where the tide should erupt FROM (a door/gate world position), set by the anchored
+        // TravelTo overload and consumed by the next travel. Static because doors call the
+        // static API; cleared on every travel start so a stale anchor can never leak forward.
+        private static Vector3? _pendingGatePos;
+
+        /// <summary>Travel with a gate anchor — THE ZIPTIDE pours out of the doorway at
+        /// <paramref name="gatePos"/> instead of only ringing the player.</summary>
+        public static void TravelTo(string sceneName, Vector3 gatePos)
+        {
+            _pendingGatePos = gatePos;
+            TravelTo(sceneName);
+        }
+
         /// <summary>
         /// Primary travel API. Falls back to direct SceneManager.LoadScene if no coordinator.
         /// </summary>
@@ -63,6 +76,7 @@ namespace Ziptide.Gameplay
 
             if (_instance == null)
             {
+                _pendingGatePos = null;
                 Debug.LogWarning("ZIPTIDE: TravelCoordinator not found – falling back to direct load");
                 var rig = Object.FindObjectOfType<PlayerRigPersistence>();
                 if (rig != null) rig.PrepareForSceneTravel();
@@ -75,15 +89,18 @@ namespace Ziptide.Gameplay
 
         private void StartTravelCoroutine(string sceneName)
         {
+            // Consume the anchor even when the request is ignored — never carry a stale one.
+            Vector3? gatePos = _pendingGatePos;
+            _pendingGatePos = null;
             if (_travelling)
             {
                 Debug.LogWarning("ZIPTIDE: TravelCoordinator already travelling – ignoring duplicate request");
                 return;
             }
-            StartCoroutine(TravelCoroutine(sceneName));
+            StartCoroutine(TravelCoroutine(sceneName, gatePos));
         }
 
-        private IEnumerator TravelCoroutine(string sceneName)
+        private IEnumerator TravelCoroutine(string sceneName, Vector3? gatePos)
         {
             _travelling = true;
             Debug.Log("ZIPTIDE: TRAVEL_START dest=" + sceneName);
@@ -103,7 +120,7 @@ namespace Ziptide.Gameplay
             if (rig != null)
             {
                 float lead = ZiptideGateEffect.PlayDeparture(rig.transform.position, destName,
-                    destHorizon, destZenith);
+                    destHorizon, destZenith, gatePos);
                 // RILL rides the tide — her line starts over the rise and carries across the cut
                 // (she lives on the persistent rig).
                 RillCompanion.OnGateDeparture(sceneName);

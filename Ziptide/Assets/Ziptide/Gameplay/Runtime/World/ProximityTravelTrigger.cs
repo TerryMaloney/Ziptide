@@ -36,7 +36,8 @@ namespace Ziptide.Gameplay
 
             Debug.Log("ZIPTIDE: PROXIMITY_TRAVEL dest=" + destinationSceneName);
 
-            TravelCoordinator.TravelTo(destinationSceneName);
+            // Anchor THE ZIPTIDE to this door frame — the tide pours out of the doorway.
+            TravelCoordinator.TravelTo(destinationSceneName, transform.position);
         }
 
         /// <summary>Called by patchers to set the destination without opening the scene.</summary>

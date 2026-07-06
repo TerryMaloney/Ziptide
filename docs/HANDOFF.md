@@ -52,8 +52,14 @@
   (3) ~~destination name floating in the crest~~ **DONE v3** (`36ed663`+fix): TextMesh label
   (characterSize law: 0.045 × 64) fades in above the ring during the dial-in, billboards to the
   camera, burns away into the crest — names resolved via `DevWorldManifest` displayName;
-  (4) real audio at ART-5; (5) door-anchored variant: pass the door pose so the tide erupts
-  THROUGH the doorway.
+  (4) real audio at ART-5; (5) ~~door-anchored variant~~ **DONE v6**:
+  `TravelCoordinator.TravelTo(scene, gatePos)` overload (static pending anchor, consumed —
+  never carried stale — on every travel start) → `PlayDeparture(..., gatePos)` → the doorway
+  TORRENT: extra streaks pour from the door frame toward the ring while k<0.8, 2 jets during
+  the dial-in handing over to 1 as the crest takes charge. Wired at both door paths
+  (`WorldTravelStation` select + `ProximityTravelTrigger` walk-through); ship cast-off keeps
+  its own streak language on purpose. Remaining on the ladder: real audio (ART-5) — and
+  whatever Terry's verdict asks for.
 - **⚠ Lesson (v3 went CI-red once):** `DevWorldManifest` lives in namespace
   `Ziptide.Gameplay.DevTools`, not `Ziptide.Gameplay` — same assembly, different namespace.
   Qualify as `DevTools.DevWorldManifest` from TravelCoordinator-land. CS0103 if you forget.

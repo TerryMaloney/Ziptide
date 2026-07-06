@@ -139,7 +139,7 @@ namespace Ziptide.Gameplay
                     // #region agent log
                     WLog("Door_selectEntered", "'sceneName':'" + (sceneName ?? "NULL") + "'");
                     // #endregion agent log
-                    LoadScene(sceneName);
+                    LoadScene(sceneName, door != null ? door.transform.position : (Vector3?)null);
                 });
                 interactable.hoverEntered.AddListener(_ => TintRenderer(visual, DoorHoverColor));
                 interactable.hoverExited.AddListener(_ => TintRenderer(visual, DoorColor));
@@ -250,14 +250,16 @@ namespace Ziptide.Gameplay
             Debug.LogWarning("ZIPTIDE: DOOR_MANAGER_RETRY_FAIL after 10 frames");
         }
 
-        private static void LoadScene(string sceneName)
+        private static void LoadScene(string sceneName, Vector3? gatePos = null)
         {
             // #region agent log
             WLog("LoadScene_called", "'sceneName':'" + (sceneName ?? "NULL") + "','activeScene':'" + SceneManager.GetActiveScene().name + "'");
             // #endregion agent log
             if (string.IsNullOrEmpty(sceneName)) return;
             // TravelCoordinator handles SaveBeforeTravel + XRI-ready gate + RestoreAfterTravel.
-            TravelCoordinator.TravelTo(sceneName);
+            // A door anchor makes THE ZIPTIDE pour out of that doorway.
+            if (gatePos.HasValue) TravelCoordinator.TravelTo(sceneName, gatePos.Value);
+            else TravelCoordinator.TravelTo(sceneName);
         }
     }
 }
