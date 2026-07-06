@@ -133,6 +133,39 @@ that's what she does now: she sat down, explained what she knew about the other 
   stranded on the far side (*she went in for you*); Observers stay passive except one endgame escalation;
   the voice resolves to one fixed person (you = the Debugger) at the name moment, partner = the complement.
 
+## 9b. Continuity audit — the full spine (Story Bible Lock pass, 2026-07-06)
+Every planted mystery/flag-branch across the 68-world catalog, checked for a downstream payoff. Written
+honestly — one genuinely open item is flagged rather than papered over.
+- [x] W001 "wrong-signature relay" (and the per-world mystery-object device generally, `STORY_BIBLE.md`
+  §7) → resolved **retroactively** by the Revelation arc (W047/W060/W062), not individual payoff scenes —
+  by design: the device explicitly says these "pay off later," not "pay off individually."
+- [x] `C4_SABLE_ALLIED`/`C4_SABLE_OPPOSED` (W020/W023) → `PLAYER_HELPED_SABLE` → paid off at W041 (Last
+  Stand) + W055 (Sable Peace).
+- [x] `C6_WARDEN_ALLY`/`C6_WARDEN_ENEMY` (W037/W043) → `PLAYER_HELPED_WARDEN` → paid off at W049 (Ally
+  Base) + W059 (Warden's Homeland).
+- [x] `PLAYER_HELPED_MARA`/oppose (W046) → paid off at W056 (the Wake Guild End — Mara's final message
+  varies by this flag).
+- [x] `PLAYER_REPAIRED_SEAL`/`PLAYER_DESTROYED_SEAL` (W036) → feeds the W063 branch-math directly (see
+  this chapter's header) rather than a single dramatic beat — an accumulated-weight flag by design, not
+  a scene payoff.
+- [ ] **Open item (not fixed in this pass):** `PLAYER_TRUSTED_RILL`/`PLAYER_IGNORED_RILL` are listed in
+  W063's branch math but no world in the catalog explicitly *grants* them — they read as an ambient
+  behavior-tracking flag meant to be set continuously by how the player treats RILL's suggestions across
+  many worlds, not one world's job. Flagged here so the exact trigger design isn't silently forgotten;
+  belongs to whoever builds the ending-flag system (M5/engineering), not to a narrative-only pass.
+- [x] `C7_RILL_CHOSE_NAME_A/B/C` (W051) vs. the ending `A/B/C/D` branch (W063) — confirmed independent
+  axes (a personal/trust-based naming moment vs. the cosmic/personal ending choice); not meant to align
+  1:1, no fix needed.
+- [x] RILL's near-confession (§5) → now staged concretely at W053 (previously described only in the
+  abstract, with no world hosting it).
+- [x] The Ouroboros light pre-seed → the W063/W066 chamber-wall logs, in Cal's own handwriting (added
+  this pass); the full truth stays DLC W075's alone to tell.
+- [x] Every already-shipped RILL quoted line (the 12 canonical arc beats + the 4 ending lines,
+  `RillLineAuthor.cs`) checked word-for-word against this pass's rewritten catalog — no wording drift.
+- [x] The four endings (W064–W067) each land a distinct final image and an explicit, different fate for
+  the partner — verified no two read as a palette-swap of the same scene (this pass's primary craft goal).
+- No chapter found to contradict an earlier one across a full read-through, Ch.0 through DLC.
+
 ## 10. Downstream (mechanic/data — NOT this pass; for the backlog)
 - Transmission fragments as **collectibles** tied to `WorldPackDefinition` + `ZiptideFlags` clarity tiers,
   one per chapter milestone `[A]`; **de-garble playback + recognition UI** `[T]` (ties to the planned
