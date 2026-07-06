@@ -88,8 +88,19 @@ namespace Ziptide.Gameplay
             _travelling = true;
             Debug.Log("ZIPTIDE: TRAVEL_START dest=" + sceneName);
 
-            // 1. Save inventory before anything is destroyed by scene unload.
             var rig = Object.FindObjectOfType<PlayerRigPersistence>();
+
+            // 0. THE ZIPTIDE (the game's namesake moment): the departure tide gathers around the
+            //    player and crests — the scene cut lands INSIDE the crest flash, so the hard load
+            //    reads as the tide taking you. Every travel path (doors, ship, warps) comes
+            //    through here, so every one of them gets the moment.
+            if (rig != null)
+            {
+                float lead = ZiptideGateEffect.PlayDeparture(rig.transform.position);
+                yield return new WaitForSeconds(lead);
+            }
+
+            // 1. Save inventory before anything is destroyed by scene unload.
             if (rig != null)
                 rig.PrepareForSceneTravel();
             else
@@ -112,6 +123,9 @@ namespace Ziptide.Gameplay
 
             playerRig.TeleportToSpawnMarker();
             playerRig.EnsureXRIWiring();
+
+            // The receding tide releases you into the new world.
+            ZiptideGateEffect.PlayArrival(playerRig.transform.position);
 
             // 5. Wait for XRI to be ready (up to 5 seconds).
             float elapsed = 0f;
