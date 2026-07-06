@@ -28,6 +28,36 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-06 (gggg) — Sonnet 5 (Story/Ship track): 📖 THE STORY BIBLE LOCK opens — narrative-only pass, zero code/runtime touched
+Terry's directive (fresh session, after reviewing an external "AI Narrative Pipeline" research PDF —
+**rejected**, it invents a generic amnesia/simulation twist that duplicates, less specifically, what
+`THE_TRANSMISSION.md` already does): only 13/92 worlds are built and the world factory is
+story-driven, so the full story needs to be nailed down — movie-quality, tied end-to-end to the
+cliffhanger — **before** the next ~68 worlds get authored against it.
+- **Survey finding that reframes the ask:** the mythology is NOT thin. `STORY_BIBLE.md` +
+  `THE_TRANSMISSION.md` already hold a real, specific reveal (Shell/Architects/Observers/Earth-as-
+  the-lab; Cal = the Debugger, one of two scientists who built the Shell and wiped her own memory;
+  her partner stranded outside by the two-way membrane = the cliffhanger). Every chapter 3–12 + DLC
+  already has a seed catalog. What's thin is what's **built** (Act 1 only), not what's written.
+- **Two governance gaps closed this pass:** both bible docs were still stamped "PROPOSED — awaiting
+  Terry's review" from 2026-06-20/25, never formally signed off — Terry's call: **lock as canon,
+  refine in place** (this session). `ZIPTIDE_MASTER_BUILD_PLAN.md` §3.1's original
+  `WorldPackDefinition` schema sketch predates and doesn't match what shipped — drift note added,
+  `WORLD_DATA.md` §0 + the live class are the real source of truth (§12's canonical 80-world table
+  is untouched and still authoritative for numbering).
+- **Scope (confirmed with Terry): spine-first tightening**, NOT a uniform rewrite of all 68 unbuilt
+  worlds. The core throughline (RILL's arc, the Architects/Observers escalation, the identity
+  reveal, the Earth Approach, the 4 endings, the cliffhanger) gets real tightening; surrounding
+  seed/filler worlds get a consistency pass only.
+- **📣 Cross-track heads-up (Picasso/Architecture):** `docs/storyboard/*` and `docs/THE_TRANSMISSION.md`
+  are the ONLY files in motion this pass — no code, no `ZiptideFlags.cs`/`WorldJobLibrary.cs`/
+  `WorldPackDefinition.cs` changes (any wording drift vs. already-shipped RILL lines gets called out
+  as a small separate follow-up, not done here). Nothing here blocks FORGE II, flight follow-through,
+  or Q4a — proceed on your boards as normal.
+- **Next-CLAIMED (this session):** chapter-by-chapter tightening commits in story order (Ch.3→Ch.12),
+  ending with a continuity audit and a closing summary for whoever authors W013+ next (M5).
+- **Commit:** this push (HANDOFF + `SPRINT.md` row only — the writing pass follows in subsequent commits).
+
 ### 2026-07-06 (ffff) — Picasso (Fable 5): 🏁 THE FINAL SPRINT — full control scheme, PUNCH IT, how-to boards, content gate
 - **Did (all one-commit, board-stamped):** S1+S2 `caa7f1a` — `docs/design/CONTROL_SCHEME.md` (the
   Fortnite verb table as spec; every ⬜ row is an envelope) + crouch (R3, CC capped vs HMD drivers,
