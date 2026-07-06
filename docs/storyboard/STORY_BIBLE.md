@@ -129,6 +129,22 @@ the joke — *"Incident log: fourteen,"* said flatly with no other context, carr
   you are about to choose. I am not going to tell you which way to choose it. I am allowed to be afraid
   anyway."*
 
+**Cal talks back now (added: soul pass 2, 2026-07-06).** Everything above was written as RILL's half
+of a conversation nobody could answer — a companion who only ever receives banter isn't a
+relationship, she's an audience. `RillLine` (the data both characters' lines are made of) now carries
+a `speaker` field, so Cal's questions and reactions ride the exact same trigger/delivery pipeline as
+RILL's lines (`Content/Runtime/Story/RillLineLibrary.cs`; authored in
+`Editor/Patching/RillLineAuthor.cs`'s Cal section; **no VO cast for either character yet** — see
+`docs/systems/VOICE_PIPELINE.md` before anyone records anything). The same two rules from above apply
+to Cal's side of the line: ambient banter, not just plot reactions, and jokes bracketing the rare real
+question. Two examples already live and dormant, waiting on their worlds to ship:
+- RILL (Ch.6, on the Pattern's warning): *"It is not spreading toward you. It is spreading toward your
+  memories."* — Cal, immediately: *"My memories, or yours?"* (a real question that lands closer to
+  Cal's own hidden identity than either of them knows — don't answer it early).
+- RILL (Ch.7, the near-confession, W053): *[stops mid-sentence]* — Cal, quiet: *"RILL — you don't have
+  to finish that. Not tonight."* (the "real moment" beat; no joke follows this one on purpose — the
+  scene needs the silence more than the recovery).
+
 ## 4. Factions & throughline
 | Faction | Want | Cal's arc with them | Worlds |
 |---|---|---|---|
