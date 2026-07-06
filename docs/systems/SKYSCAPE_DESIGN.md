@@ -8,6 +8,12 @@ on a different planet,"* the way *Prospect* (2018) does on a screen. A planet or
 skybox is not enough. This doc exists so that bar is nailed down in writing before more worlds get
 authored against a weaker one.
 
+**This is a north star, not a systems doc among many.** Terry said this directly: the skyscape is one
+of the biggest things that drove him to make this game at all. That puts it in the same category as
+the workflow-integrity rule at the top of `CLAUDE.md` — something later sessions should trip over and
+read, not something that quietly sits in `docs/systems/` until someone happens to open it. `CLAUDE.md`
+now points here (see its Key docs list) for exactly that reason.
+
 ## 0. The thesis, in one line
 **The sky should never read as a backdrop. It should read as weather.** A backdrop is something you
 glance at once and stop seeing. Weather is something the air itself is doing to you right now —
@@ -56,6 +62,15 @@ starfield flex — it almost never shows clean open space. What it actually does
 **The lesson for Ziptide, precisely:** stop treating the sky as a sticker to add variety to (one planet,
 some stars, done) and start treating it as **atmosphere the player is standing inside of.** The
 celestial bodies matter less than the air between the player and them.
+
+**What NOT to copy — the reference is a feeling, not a camera.** *Prospect* is a *film*: its texture
+comes partly from a physical lens (flares, chromatic aberration, grain, dirt on glass). None of that
+should be copied literally into a VR headset. Those artifacts all imply *a camera between the eye and
+the world* — the moment a lens flare sweeps across a player's vision in VR, it contradicts the fact
+that they have no camera, no lens, they're just *there*, and it reads as a screen effect pasted over
+reality instead of reality itself. Adopt the atmosphere (haze, particulate, grounded color, occlusion).
+Leave the cinematography (flares, grain, vignette-from-a-lens) at the door — presence is the whole
+advantage VR has over the film that inspired this, and those specific tricks spend it for nothing.
 
 ## 2. Design pillars
 1. **Occlusion over exposure.** The biggest, most impressive sky object in a world should be glimpsed
@@ -115,6 +130,36 @@ says "none" or is purely functional stays Interior):
 - **Interior** (sealed/underground/no-sky worlds): no change — `Sky: none` with a dark gradient and
   maybe a light nebula-glow (as several already do, e.g. W002/W011) is *correct*, not a gap. Forcing
   space into a cave is the opposite mistake.
+
+## 4.1 Hazard → atmosphere defaults (turn a field every world already has into a starting point)
+Picking tier (§4) still takes judgment, but the *particulate/haze/color* choice within a tier doesn't
+have to start from a blank page — every world in every chapter doc is already tagged with a hazard
+type in its header (`Biome · hazard · Faction · RILLstate`). That field is a free, already-authored
+hook straight into "what's drifting" (pillar 3) and "what color is the air" (pillar 4). Counted across
+the full `CHAPTER_*.md` catalog, the vocabulary is exactly this list — small enough to give every one
+of them a default:
+
+| Hazard tag | Atmosphere default |
+|---|---|
+| `Bloom` / spore | Warm spore-particulate, biolume tint in the haze — the game's own closest match to *Prospect*'s pollen-lit canopy air. Already the intended read for W005; extend the same default to every other Bloom-tagged world. |
+| `fire` | Smoke haze (not mist — opaque and rising, not settling), ember-orange particulate, hot color bleed into ambient. |
+| `acid` | Sickly green-yellow haze, slightly corrosive-looking drifting motes, cold-hostile color grade (this is a hazard that should feel actively unfriendly, not just atmospheric). |
+| `radiation` | Thin, sparse haze — this is the one hazard where LESS particulate reads as more dangerous (nothing to see means nothing to warn you); a few sparse hot-colored glints instead of a dense drift. |
+| `flood` | Moisture haze near the ground (mist rising off water), refracted/rippling light on the underside of the haze card. |
+| `vibration` / `cave-in` | Dust/rock particulate shaken loose rather than drifting — short, irregular puffs instead of a steady drift; usually paired with `Interior` tier (underground), so this is about the dust catching what little light exists, not a sky treatment. |
+| `swarm` | The swarm itself doubles as the particulate layer at a distance — no separate drift system needed, just treat distant swarm silhouettes as the "something is always moving" pillar. |
+| `static` | Flickering/strobing haze density rather than a steady one — reads as signal interference in the air itself, ties the hazard's name literally into the atmosphere. |
+| `pattern` | Geometric, non-natural particulate (motes that don't drift smoothly — they should feel *wrong*, stepping or glitching) and a color-shifting haze, not a fixed tint. |
+| `reflection` | Doubled haze/horizon (the world's signature "sky and its mirror" — lean into it, don't fight it with a single clean atmosphere layer). |
+| `wind` | Streaked, motion-elongated particulate (dust/sand dragged sideways, not drifting gently) — the one hazard where the drift should look forceful, not ambient. |
+| `void` | Sparse-to-none particulate, stars dominant, haze card thin or absent — the "raw space" treatment already used at W007/W012. |
+| `pressure` (underwater) | Not sky at all — but the same haze-card logic applies to visibility through water: light shafts + drifting sediment instead of drifting spores, same pillar, different medium. |
+| `all` (convergence set-pieces, e.g. W050) | Every layer active at once is the ONE place this is correct — the point of a convergence world is atmospheric overload. |
+| `none` | No mandated atmosphere treatment — defer entirely to biome/`Sky:` text and the tier from §4. |
+
+This is a default, not a rule — a `Bloom` world that wants to subvert the expectation (a *cold* Bloom
+world, say) should. The point is that "what should the air be doing here" now has a documented first
+guess for every hazard tag already in the game's data, instead of needing bespoke invention 55 times.
 
 ## 5. The pass/fail rubric (read this before authoring or judging any world's sky)
 A vista passes the Prospect bar if the honest answer to all of these is yes:

@@ -88,3 +88,5 @@ Interaction Toolkit **2.5.4**. The Unity project lives in the **`Ziptide/`** sub
 - `docs/FABLE5_BACKLOG.md` — the live task queue (tagged ⚙CI/🔧UNITY/🎮DEVICE) · `docs/MASTER_CHECKLIST.md` — build state. *(The old `WORKLIST.md`/`04_TASK_QUEUE.md` are retired.)*
 - `docs/project_art_plan/` — art/audio/prompt-to-world pipeline.
 - `docs/ZIPTIDE_MASTER_BUILD_PLAN.md` — long-term 80-world vision.
+- `docs/systems/SKYSCAPE_DESIGN.md` — **the Prospect bar.** Terry named the skyscape as one of the
+  biggest things that drove him to make this game — read before touching any sky/vista/atmosphere work.
