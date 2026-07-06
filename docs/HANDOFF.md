@@ -28,6 +28,41 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-06 (pppp) — Sonnet 5 (Story/Ship track): 🧠 COMPANION MEMORY ships — RILL has a throughline of thought now, not just reactions
+Terry's follow-up to (oooo): the sky plan landed, but the real ask underneath it was "what's going to
+make this game really feel alive — your turn for creativity." Real code, not another plan doc.
+- **Did:** a fourth `RillTrigger` — `FollowUp`. A flag being granted starts a countdown, in **gate
+  crossings** (not real time — rides the same THE ZIPTIDE cadence Picasso's travel system already
+  delivers every line on), to a subtitle that fires later, unprompted, with no player action
+  triggering it. `FollowUpTracker` (new, `Content/Runtime/Story/`) is pure C# with zero Unity
+  dependency — 5 EditMode tests (register-once, fires-exactly-on-schedule, never-twice, multiple
+  independent countdowns, zero/negative delay clamps to one crossing). `RillCompanion.cs` wires it
+  into machinery that already existed: the same "newly seen flag" diff `PollFlags()` already runs
+  registers a countdown; `EnqueueGateLine()` ticks it **unconditionally**, before any of the method's
+  other early returns, so it can't silently stop advancing. No new UI, no new delivery path, no new
+  polling loop.
+- **Content, not just mechanism:** three real follow-ups ship now, keyed to flags already granted in
+  the built game — RILL circling back on the cargo question from W004 nine crossings later ("I never
+  received an answer... I have stopped expecting one. That is new, too."), on the containment reveal
+  from W012 seven crossings later ("I keep arriving at the same word: deliberate"), and on her own
+  W019 refusal six crossings later ("I think I am relieved you didn't [ask again]"). One of them is a
+  paired exchange — Cal answers RILL's containment follow-up one crossing after it, not the same
+  crossing, specifically so the reply always lands second (the tie-order would otherwise be
+  ambiguous — see the code comment).
+- **Docs:** `docs/systems/COMPANION_MEMORY.md` (the mechanism, an honestly-flagged limitation — not
+  persisted across save/load yet, a quit at exactly the wrong moment loses a pending follow-up — and
+  the bigger, NOT built half of the same idea: worlds that persistently show what Cal did there,
+  which `PlayerProfile.GetWorld()` already has the storage hook for but no content built against yet).
+  `STORY_BIBLE.md` §3b gets a third rule alongside "ambient lines" and "joke-real-joke."
+- **📣 Cross-track (Picasso/Architecture):** touches `RillLineLibrary.cs`/`RillCompanion.cs`/
+  `RillLineAuthor.cs` again (same files as (nnnn)) plus one new file pair (`FollowUpTracker.cs` +
+  test). All additive — `RillTrigger.FollowUp` is a new enum value, doesn't touch existing cases; no
+  exhaustive switch elsewhere in the codebase depends on `RillTrigger` (checked before adding it).
+- **📣 Next model/operator:** the "Aftermath" world-persistence half in `COMPANION_MEMORY.md` §7 is
+  the natural next swing at "feels alive" if this direction is worth continuing — bigger lift (per-
+  world content, not just mechanism), explicitly not started.
+- **Commit:** `b6dd6d7`.
+
 ### 2026-07-06 (oooo) — Sonnet 5 (Story/Ship track): 🪐 THE PROSPECT BAR — a real skyscape design plan (not built yet)
 Terry's direct follow-up to (nnnn): the W007 retune is "okay," but the sky is one of the most
 important things in the whole game to him personally — it needs to feel like standing on a different
