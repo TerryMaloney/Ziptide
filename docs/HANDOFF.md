@@ -28,6 +28,21 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-06 (ssss) — architect (Opus 4.8): 🗺 BANK PULL — POI reachability check (WORLDS #13), WARN-only
+Second bank pull, architecture lane (GamePool `94f74ac` was CI-green; this builds on that momentum).
+- **Shipped:** pure `Content/Runtime/City/GridReachability.cs` (BFS flood-fill over a walkable+height
+  grid with a maxStep so cliffs break connectivity but grades don't; **8 EditMode tests**) +
+  `Editor/Audit/WorldReachabilityAuditRules.cs` (raycasts a ~6m grid over the world, floods from the
+  player spawn, WARNs on POIs on a disconnected island) + one appended WorldAuditRunner line.
+- **Why WARN, not blocker:** the raycast grid is coarse — a narrow corridor could be missed and yield a
+  false "unreachable". A WARNING surfaces it for a headset check and CANNOT fail a good build. Promote
+  to a blocker only once device-confirmed reliable on the real 12 worlds. Complements the H3
+  `TERRAIN_SLOPE_UNWALKABLE` blocker (that measures walkable AREA; this measures CONNECTIVITY).
+- **GridReachability is reusable** beyond the gate: creature pathability + bot-nav sanity can flood the
+  same way. **T-Dog:** if `POI_MAYBE_UNREACHABLE` fires on a world you built, walk it in-headset — real
+  hit = add a graded corridor; false = ignore (grid coarseness) and note it so we can tune/promote.
+- **Commit:** this push on `terry-local-wip`.
+
 ### 2026-07-06 (rrrr) — architect (Opus 4.8): 🧵 GAMEPOOL shipped — the bank's first pull-through (pooling infra) CI-green
 Terry said "start working through" the Additions Bank. First pull, architecture lane: **Q4a GamePool**,
 the pooling dependency a cluster of bank ideas name (INDUSTRY #2/#19/#25 belt pucks, COMBAT #42

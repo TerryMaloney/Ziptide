@@ -38,12 +38,14 @@ any LLM: request a change as data, build, gates catch mistakes.
 - **State (2026-07-03, the LAST Fable architect session):** Q1 + Q2a + H1 buildings + H4 registry +
   H6 takeover kit all shipped; H2/H3/H5 enveloped to T-Dog, Q4b to Picasso (HANDOFF qqq). This
   track's operator is **Opus 4.8 from here** — that is fine by design; read `OPERATOR_START_HERE.md`.
-- **Next action (Opus-sized):** the `GamePool` TOOL is shipped (see Q4a row). **Next architecture
-  pull from the Additions Bank:** a strong self-contained candidate is **WORLDS_50 #13** — the
-  `WORLD_UNREACHABLE_POI` walkability quality gate (flood-fill the heightfield from spawn, fail the
-  build if a POI is unreachable under max slope; `ExperienceAuditRules` is the pattern, one appended
-  WorldAuditRunner line). Or **INDUSTRY_50 #14** deterministic-breakdown pure core. Pick per capacity;
-  keep each to one CI-green commit.
+- **Bank pulls shipped (architecture lane):** GamePool (Q4a, `94f74ac` ✅). **WORLDS_50 #13 POI
+  reachability** — pure `GridReachability` BFS core (8 tests) + `WorldReachabilityAuditRules`
+  (WARN-only: coarse raycast grid → flood from spawn → warn on disconnected POIs; deliberately a
+  WARN not a blocker so a coarse-grid false positive can't fail a good build) + one WorldAuditRunner
+  line. Complements the H3 TERRAIN_SLOPE_UNWALKABLE blocker (area vs connectivity).
+- **Next architecture pull candidates (one CI-green commit each):** promote POI_MAYBE_UNREACHABLE to a
+  blocker once device-confirmed reliable · INDUSTRY_50 #14 deterministic-breakdown pure core ·
+  ECONOMY_META_50 #50 ProgressionService unlock-DAG core. Pick per capacity.
 - **GamePool adoption (envelope, MP/Gameplay lanes):** swap the CreatePrimitive+Destroy hot spawns to
   `GamePool.Get(key, factory, pos)` / `GamePool.Release(key, go)`. Exact sites: `PvpBolt`,
   `TaserDartProjectile`, creature stun-arc bursts, `ThumpRingVisual`, `StaticNetProjectile`. Each is
