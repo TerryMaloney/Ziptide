@@ -58,8 +58,15 @@
   TORRENT: extra streaks pour from the door frame toward the ring while k<0.8, 2 jets during
   the dial-in handing over to 1 as the crest takes charge. Wired at both door paths
   (`WorldTravelStation` select + `ProximityTravelTrigger` walk-through); ship cast-off keeps
-  its own streak language on purpose. Remaining on the ladder: real audio (ART-5) — and
-  whatever Terry's verdict asks for.
+  its own streak language on purpose. **v7 — THE FLASH (the seamless cut):** an OPAQUE white
+  sphere, culling off, parented to the camera, spawned at k≥0.88 of departure — it rides the
+  persistent rig ACROSS the synchronous scene load, so the load freeze happens on white
+  instead of a frozen world view (VR-comfort win, and the cut reads as one continuous crest);
+  the arrival tide lifts it 0.12 s in. Opaque+cull-off deliberately (a runtime transparent
+  fade could be lost to URP shader-variant stripping on device — nothing else in the build
+  uses transparent Unlit); `FlashTimeout` (3 s) guarantees a failed travel never strands a
+  white screen. Remaining on the ladder: real audio (ART-5) — and whatever Terry's verdict
+  asks for.
 - **⚠ Lesson (v3 went CI-red once):** `DevWorldManifest` lives in namespace
   `Ziptide.Gameplay.DevTools`, not `Ziptide.Gameplay` — same assembly, different namespace.
   Qualify as `DevTools.DevWorldManifest` from TravelCoordinator-land. CS0103 if you forget.

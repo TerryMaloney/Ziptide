@@ -34,6 +34,14 @@ namespace Ziptide.Gameplay
         // pours out of that doorway toward the ring during the dial-in. Null = ring only.
         private Vector3? _doorPos;
 
+        // The crest flash shell (v7): an OPAQUE white sphere around the camera with culling
+        // off (we're inside it), parented to the camera so it rides the persistent rig ACROSS
+        // the scene load — the synchronous-load freeze happens on white, not on a frozen world
+        // view. Opaque + cull-off is pure render state, so it can't be lost to URP shader
+        // variant stripping the way a runtime transparent fade could.
+        private static GameObject _flash;
+        private bool _flashDone;
+
         private Transform[] _pillars;
         private Transform _pool; // the glowing tide pool underfoot
         private TextMesh _label; // destination name riding the tide (departure only)
@@ -183,10 +191,73 @@ namespace Ziptide.Gameplay
                     if (c != null) c.SendHapticImpulse(Mathf.Clamp01(amp), 0.1f);
             }
 
+            // v7 — THE FLASH: just before the cut, the crest whites out the whole view. The
+            // shell rides the camera across the load; the arrival tide lifts it 0.12 s in,
+            // resolving white → white-hot pillars → the new world.
+            if (_departure && !_flashDone && k >= 0.88f)
+            {
+                _flashDone = true;
+                SpawnFlash();
+            }
+            if (!_departure && !_flashDone && _t >= 0.12f)
+            {
+                _flashDone = true;
+                ClearFlash();
+            }
+
             if (_t >= _duration + 0.1f)
             {
                 Destroy(_mat);
                 Destroy(gameObject);
+            }
+        }
+
+        private static void SpawnFlash()
+        {
+            if (_flash != null) return;
+            var cam = Camera.main;
+            if (cam == null) return;
+            _flash = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            _flash.name = "__ZiptideFlash";
+            var col = _flash.GetComponent<Collider>();
+            if (col != null) Destroy(col);
+            _flash.transform.SetParent(cam.transform, false);
+            _flash.transform.localPosition = Vector3.zero;
+            _flash.transform.localScale = Vector3.one * 1.2f; // radius 0.6 m — past the near plane, around the head
+            var r = _flash.GetComponent<Renderer>();
+            var m = new Material(Shader.Find("Universal Render Pipeline/Unlit"));
+            m.SetColor("_BaseColor", Crest);
+            m.SetFloat("_Cull", (float)UnityEngine.Rendering.CullMode.Off); // we're INSIDE the sphere
+            r.sharedMaterial = m;
+            r.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+            _flash.AddComponent<FlashTimeout>(); // safety net: never strand a white screen
+        }
+
+        private static void ClearFlash()
+        {
+            if (_flash != null)
+            {
+                Destroy(_flash);
+                _flash = null;
+            }
+        }
+
+        /// <summary>If arrival never plays (failed travel, missing rig), the flash must still
+        /// lift — a stranded white screen would be worse than any missing polish.</summary>
+        private sealed class FlashTimeout : MonoBehaviour
+        {
+            private float _life = 3f;
+
+            private void Update()
+            {
+                _life -= Time.deltaTime;
+                if (_life <= 0f) Destroy(gameObject);
+            }
+
+            private void OnDestroy()
+            {
+                var r = GetComponent<Renderer>();
+                if (r != null && r.sharedMaterial != null) Destroy(r.sharedMaterial);
             }
         }
 

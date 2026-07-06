@@ -277,8 +277,11 @@ Each row names its logcat tag — if the tag shows and the feel is right, check 
   arrival + boom (`ZIPTIDE_GATE depart/arrive`). The destination's NAME rides above the ring,
   and the tide is TINTED toward that world's sky (needs the manifest: it regenerates on every
   build, or run `Ziptide → Dev → Rebuild Dev World Manifest` once). RILL speaks over the rise
-  ("Brace. The tide has us." — varies per crossing, `RILL_LINE gate_*`). Verdict wanted: does it
-  feel Stargate-grade EVERY time? Do the colors read as "where I'm going"? What would make it more?
+  ("Brace. The tide has us." — varies per crossing, `RILL_LINE gate_*`). Door-started travels
+  pour streaks OUT of the doorway; the crest now whites out the view so the load happens on
+  white, and the arrival tide resolves out of it — the cut should feel like ONE moment.
+  Verdict wanted: does it feel Stargate-grade EVERY time? Do the colors read as "where I'm
+  going"? What would make it more?
 Full program + envelope details: `docs/TEST_DAY_1_RESPONSE.md` + `docs/design/CONTROL_SCHEME.md`.
 
 ## 2l. NEW — git safety, one-time (~2 min; from your PDF's version-control chapter)
