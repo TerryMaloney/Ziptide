@@ -88,7 +88,7 @@ namespace Ziptide.Gameplay
                     {
                         _nextArrestAllowed = Time.time + 8f;
                         var stun = FindObjectOfType<PlayerStunReceiver>();
-                        if (stun != null) stun.ApplyStun(2.5f, 0.3f);
+                        if (stun != null) stun.ApplyStun(2.5f, 0.3f, transform.position);
                         Debug.Log("ZIPTIDE: WARDEN_ARREST");
                     }
                     break;

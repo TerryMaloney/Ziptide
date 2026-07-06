@@ -69,7 +69,7 @@ namespace Ziptide.Gameplay
             if (_receiver == null) _receiver = FindObjectOfType<PlayerStunReceiver>();
             if (_receiver != null && Vector3.Distance(transform.position, _receiver.HitPoint) <= HitRadius)
             {
-                _receiver.ApplyStun(_stunSeconds, _slowFactor);
+                _receiver.ApplyStun(_stunSeconds, _slowFactor, transform.position);
                 Destroy(gameObject);
             }
         }

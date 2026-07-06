@@ -47,6 +47,21 @@ namespace Ziptide.Gameplay
             Debug.Log("ZIPTIDE: PLAYER_STUN sec=" + seconds.ToString("F2") + " slow=" + slowFactor.ToString("F2"));
         }
 
+        /// <summary>
+        /// Stun with a known attacker position: additionally draws the incoming-fire line toward
+        /// the player's head so you can SEE what hit you (Test Day 1, W005: "getting hit by
+        /// something but i cant tell what").
+        /// </summary>
+        public void ApplyStun(float seconds, float slowFactor, Vector3 sourcePos)
+        {
+            ApplyStun(seconds, slowFactor);
+            Vector3 head = HitPoint;
+            Vector3 toward = head - sourcePos;
+            if (toward.sqrMagnitude > 0.04f)
+                TracerFx.Spawn(sourcePos, head - toward.normalized * 0.4f, new Color(1f, 0.3f, 0.2f), 0.02f, 0.25f);
+            Debug.Log("ZIPTIDE: PLAYER_HIT src=" + sourcePos.ToString("F1"));
+        }
+
         private void Update()
         {
             _stun.Tick(Time.deltaTime);

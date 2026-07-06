@@ -102,7 +102,7 @@ namespace Ziptide.Gameplay
         {
             if (dist > touchRadius || Time.time < _nextTouchAllowed) return;
             _nextTouchAllowed = Time.time + touchCooldown;
-            if (_stun != null) _stun.ApplyStun(touchStunSeconds, touchSlowFactor);
+            if (_stun != null) _stun.ApplyStun(touchStunSeconds, touchSlowFactor, transform.position);
         }
 
         protected static bool IsPlayerRig(Transform t)
