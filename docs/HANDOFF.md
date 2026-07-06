@@ -40,9 +40,15 @@
 - **"Do a little more" queue for the next operator (Terry wants this INCREDIBLE, keep layering):**
   (1) tint the tide toward the DESTINATION world's sky colors (SkyVistaLibrary lookup by scene —
   every gate colored by where you're going); (2) RILL gate lines ("brace!") via RillLineAuthor;
-  (3) destination name floating in the crest (TextMesh, characterSize law); (4) real audio at
-  ART-5; (5) door-anchored variant: pass the door pose so the tide erupts THROUGH the doorway.
-- **Commit:** _(this one)_
+  (3) ~~destination name floating in the crest~~ **DONE v3** (`36ed663`+fix): TextMesh label
+  (characterSize law: 0.045 × 64) fades in above the ring during the dial-in, billboards to the
+  camera, burns away into the crest — names resolved via `DevWorldManifest` displayName;
+  (4) real audio at ART-5; (5) door-anchored variant: pass the door pose so the tide erupts
+  THROUGH the doorway.
+- **⚠ Lesson (v3 went CI-red once):** `DevWorldManifest` lives in namespace
+  `Ziptide.Gameplay.DevTools`, not `Ziptide.Gameplay` — same assembly, different namespace.
+  Qualify as `DevTools.DevWorldManifest` from TravelCoordinator-land. CS0103 if you forget.
+- **Commit:** `d326162` (v1), `7738153` (v2), `36ed663` (v3, red) + namespace fix (this push).
 
 ### 2026-07-06 (kkkk) — Picasso (Fable 5): 🦴 P3 SKINNING CORE LANDED CI-GREEN — the last hard math is done
 - **Did:** `0795527` — `ForgeCreatureBody` (creature genome: core parts on the root bone, limb

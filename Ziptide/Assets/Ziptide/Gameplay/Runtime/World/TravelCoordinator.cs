@@ -170,7 +170,7 @@ namespace Ziptide.Gameplay
         /// <summary>Human name for the tide's destination label (falls back to the scene name).</summary>
         private static string DisplayNameFor(string sceneName)
         {
-            var manifest = DevWorldManifest.Load();
+            var manifest = DevTools.DevWorldManifest.Load();
             if (manifest != null && manifest.worlds != null)
                 foreach (var w in manifest.worlds)
                     if (w != null && w.sceneName == sceneName && !string.IsNullOrEmpty(w.displayName))
