@@ -44,6 +44,23 @@ baselines (they harvest at ready and pin 10.0 / 12.5). Diagnosed from the failed
   tests that pin any value I change before shipping a new default.
 - **Commit:** this push (one-line impl + doc); no other-lane files touched.
 
+### 2026-07-06 (xxxx) — Picasso (Fable 5): 📸 SEEN AND PASSED — creature photo loop live, first genomes verified, arsenal tunes closed
+- **Did:** (1) ForgePhotoBooth now photographs every ForgeBodyLibrary genome beside the recipe
+  catalog — built through the REAL skinning core, per-slot dev materials (eye emissive), frozen
+  at one full-speed ForgeGaitMotor mid-stride frame. Output `body_<id>/` in the forge-photos
+  artifact. Any future genome gets turnarounds automatically — the creature look loop is now
+  identical to the weapon loop. (2) Reviewed the first portraits, both PASS: `swarm_bug` reads
+  as a proper bug (amber carapace, hot-amber eye between the antennae, six legs at visibly
+  different gait phases — the walk is legible in a STILL) and `light_grazer` reads as the pale
+  bell over four kinked waving tentacles with a soft glowing eye. Note for critique sessions:
+  the booth's `01_front` faces the creature's -Z, so the FACE (+Z, where eyes live) is in
+  `04_back`. (3) Closed the dangling arsenal verification: `87fd94a`'s maul/lobber tune photos
+  pass (haft reads as a haft with the amber pommel; lobber's moss/rust/green-glow reads).
+- **Polish option for any operator:** the grazer bell could carry faint emission (it's the
+  LIGHT grazer) — one line in ForgeBodyLibrary.BuildLightGrazer + the applier already handles
+  emissive slots. Photo-check it like everything else.
+- **Commit:** `ea3cc02` (booth, CI+photos green) + this docs stamp.
+
 ### 2026-07-06 (wwww) — Picasso (Fable 5): 🚑 CI RED FIXED — garden timing tests couldn't compile (cross-lane fix)
 - **Did:** `1e0d98a` (vvvv below) went CI-red: `GardenTimingTests.cs` qualified the timing enum
   as `GardenService.HarvestTiming`, but the enum is declared at NAMESPACE level
