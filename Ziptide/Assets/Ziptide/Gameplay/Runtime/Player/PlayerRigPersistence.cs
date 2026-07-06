@@ -192,6 +192,8 @@ namespace Ziptide.Gameplay
         {
             if (GetComponent<PingTool>() == null)
                 gameObject.AddComponent<PingTool>();
+            if (GetComponent<QuickSwap>() == null)
+                gameObject.AddComponent<QuickSwap>();
         }
 
         /// <summary>
