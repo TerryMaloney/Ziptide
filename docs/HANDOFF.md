@@ -28,6 +28,49 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-06 (uuuu) — Fable 5 (MP track takeover): ⚔️ MP100 OPENS — the hundred-improvements board + THE MELEE PAIR ships as wave 1
+Terry's directive: "look at our multiplayer mode/arena/pvp... This needs to be tip top. I want a
+hundred improvements" + "find some good places for some melee weapons... instead of replacing
+something in the story we can just add it... it's also got to be in the regular game as well."
+- **The board:** `docs/design/MP100_BOARD.md` — 100 numbered, concrete, individually-claimable
+  improvements across bots/arenas/modes/arsenal/augments/progression/locator/Tidefront/netcode/feel,
+  built from a full code survey (three parallel research passes) + the three MP design docs. Key
+  finding baked into the statuses: a large fraction of "what would make MP tip-top" was ALREADY
+  SPECED in `PVP_ARENA_AAA.md`/`TIDEFRONT_AAA.md`/`ABILITIES_AND_ARSENAL.md` and never built — those
+  rows are marked 🔷 with pointers to the exact spec text, so nobody re-designs them. Suggested
+  8-wave build order at the bottom; wave 1 shipped with the board itself.
+- **Wave 1 = THE MELEE PAIR (`5b8872a` + `dc88091`, 11 board items):** the survey confirmed the game
+  had NO true melee — the Sonic Thumper is a swing-gated positional AoE pulse, HammerTool only breaks
+  walls. Now: **Breaker Blade** (fast 1H contact swings, per-target debounce paces the DPS, cracks
+  breakable walls, and is the new FINAL Gun Game rung — 7-rung ladder, melee finish) and **Tide Pike**
+  (committed thrusts, first body on the line, real poke-back, reach identity). Balance in `PvpRules`
+  (blade lighter+faster than pike, neither one-shots, neither out-hits the prism per hit, thresholds
+  demand a REAL swing) pinned by 6 new/updated EditMode tests. `CreatureRuntime` gets explicit
+  per-weapon melee cases so story-game creatures react properly instead of silently taking the
+  gravity fallback. **Bots got ears the same commit:** new `PvpNoise` channel (PvpHitSource idiom) —
+  swings and thumps report noise; `PvpBot` finally feeds the A1 brain's `HeardFire` hook (which
+  shipped as a silent `false` with a "hook" comment) and treats a swing inside melee reach as a
+  dodge-triggering threat the dart-only scan could never see.
+- **Placement (all additive, nothing replaced):** arena pads — Cistern's dark west flank gets the
+  blade (tunnels are blade country), Chitinwall's west catwalk gets the pike (narrow high ground +
+  reach). The blade joins the **starter-weapon lineup in every generated story world** (melee is a
+  first-class verb in the regular game, per Terry). Storyboard homes: W009 Chitinwall (the locals'
+  carapace pry-tool), W010 Tidal Array (the drowned fishing rigs' gaffing pike), W048 (tier-2 blade
+  callback).
+- **⚠️ Terry runbook (queued in §1):** `ArenaLayoutLibrary` is create-only — the two arena assets
+  need delete+reseed (`Content/Arenas/Generated/Arena_Cistern_Arena.asset` + `Arena_Chitinwall_Arena
+  .asset`, then `Ziptide → Worlds → Author Arena Layouts (missing only)` or just build) before the
+  new pads appear. The weapon assets themselves author automatically at build.
+- **📣 Cross-track:** touched `Multiplayer/**`, `Gameplay/Runtime/Pvp|Weapons|Items|Enemies`,
+  `Editor/Patching/{ArenaLayoutLibrary,ArenaWeaponAuthor,WorldStubGenerator}` — the MP track's own
+  lane per SPRINT_MULTIPLAYER. Picasso's gait/creature work untouched (`CreatureRuntime.ReceiveHit`
+  got new cases only, no behavior-file edits). All additive enum values; no exhaustive switches on
+  `PvpWeapon`/`ArenaWeaponKind` elsewhere (checked).
+- **📣 Next MP operator:** read `MP100_BOARD.md`, claim a wave-2 row (bots feel alive: items 3-6,
+  9, 26 — mostly pure-testable). The board is the queue; this SPRINT file stays the coarse view.
+- **Commit:** `5b8872a` (melee-1: the pair + bot ears) → `dc88091` (melee-2: placement) → this push
+  (the board + SPRINT/HANDOFF).
+
 ### 2026-07-06 (tttt) — Picasso (Fable 5): 🦿 P4 GAIT MOTOR — the creatures learn to walk (pure core + proof tests)
 - **Did:** `ForgeGaitMotor` (Visuals) — pure math: (body, time, speed01) → per-bone LOCAL rotation
   deltas aligned with ForgeSkinnedBuilder's bone order. **THE CONJUGATION LAW** (read the file
