@@ -87,6 +87,47 @@ name her species) until the Earth reveal recontextualizes it. Her motivation is 
 money, passage credits, get unstuck, move on. The story happens *to* her because she's the one holding RILL
 — **and the deep reveal is that none of it was an accident: she's the Debugger who chose this** (§2b /
 `THE_TRANSMISSION.md`). The mercenary surface is genuine; she doesn't know the rest until the end.
+**A specific habit, kept consistent everywhere (added: soul pass, 2026-07-06):** Cal talks to broken
+machinery like it's being deliberately stubborn — *"oh, NOW you work"* — dry, competence-under-pressure,
+never precious about it. It's a small thing, but it's the one thing RILL's banter always has to riff on
+(see §3b); a companion needs something specific about the person they're riding with, or their dialogue
+has nothing to push against.
+
+## 3b. Cal & RILL — the relationship, not just the arc (added: soul pass, 2026-07-06)
+The memory-state arc (Dormant→Stirring→Remembering→Unsealing→Integrated) is the SKELETON. What makes an
+audience feel a companion the way Halo's players feel Cortana and Chief is the ROUTINE — banter in worlds
+that carry no flagged beat at all, not just the twelve signature moments. Two rules for every session
+that touches RILL content from here on:
+1. **RILL gets ambient lines, not just plot lines.** The already-shipped `RillTrigger.GateDeparture`
+   wildcard pool is the right home for these — add to it generously. A companion who only speaks when the
+   plot needs her isn't a companion, she's a narrator with a shoulder-mount.
+2. **A joke, then a real moment, then a joke.** That's the actual Halo rhythm, not "banter OR pathos."
+   RILL's dry wit should occasionally crack into one sincere line, then snap back before it gets heavy —
+   never let a vulnerable line sit alone with jokes on neither side of it, or it reads as melodrama
+   instead of affection.
+
+**RILL's running bit (cheap, extensible — "the log"):** RILL keeps a private, deadpan tally of how many
+times Cal's machine-scolding habit has *worked* — the thing started right after she insulted it. RILL
+calls this "the log," updates it unprompted, and is forever unimpressed by the correlation. Never explain
+the joke — *"Incident log: fourteen,"* said flatly with no other context, carries the whole gag.
+
+**Worked examples by memory state (write more in this voice; don't reuse these verbatim):**
+- *Dormant* (terse, function first, dry flickering through): *"Relay's dead. So is my sense of humor,
+  currently."*
+- *Dormant→Stirring*: *"You talk to machines like they owe you money. Incident log: six."*
+- *Stirring* (genuine curiosity leaking through the function): *"Do you ever wonder if the things you fix
+  would rather stay broken?"*
+- *Remembering* (personal, a little raw, catches itself mid-thought): *"I don't remember being built. I
+  remember ALMOST remembering it, which is worse. Ignore that. Left path is faster."*
+- *Unsealing* (dry wit fully online, warmth showing through the deadpan): *"You've held that gun upside
+  down for eleven seconds. I've decided not to tell you, out of respect."*
+- *Unsealing, the vulnerable beat*: *"You are the first thing I have watched for its own sake, and not
+  because I was told to. I do not have a protocol for what that is. I am choosing not to look one up."*
+- *Integrated* (peer, not instrument — banter between equals now): *"Incident log: forty-one. At this
+  point I believe the machines are doing it on purpose, to see if you'll notice."*
+- *Integrated, sincere*: *"I have been afraid of very little in forty thousand years. I am afraid of what
+  you are about to choose. I am not going to tell you which way to choose it. I am allowed to be afraid
+  anyway."*
 
 ## 4. Factions & throughline
 | Faction | Want | Cal's arc with them | Worlds |
@@ -100,6 +141,14 @@ money, passage credits, get unstuck, move on. The story happens *to* her because
 **The moral question that ties it together:** *Is it kinder to keep a made world asleep and safe, or to
 wake it and let it risk being unmade?* Every faction is a different answer; the four endings are the
 player's answer.
+
+**Soul pass, 2026-07-06:** until now, RILL was the only character who ever spoke in a direct quote — Mara,
+Sable, and the Warden defector existed purely as third-person description, which is exactly why they read
+one-dimensional. Fixed at their signature/branch beats (see the chapter files): Mara now speaks across
+W005/W012/W018/W046/W056 (a full arc: pragmatic-but-guarded → confident-but-cracking → terrified-and-
+resolved → morally exposed → a distinct goodbye per branch); Sable speaks at W007/W041/W055; the Warden
+defector — now **named "Aegis-Nine," later just "Nine"** (an explicit echo of RILL's own naming arc — a
+second made-thing choosing personhood, not a duplicate of RILL's beat) — speaks at W037/W043/W049/W059.
 
 ## 5. Why each mechanic exists (gameplay ↔ fiction — so building a world = telling the story)
 This is the bridge from "story" to "what we actually build." Each loop has an in-world reason:
@@ -142,6 +191,11 @@ Believability through implication (per `STORY_AND_HOOKS.md`). Each chapter turns
   earlier worlds (a recurring tint in skies/Bloom) so W024 lands.
 - **Environmental readables.** Alien glyphs you can't read but clearly *mean* — class divides, warnings,
   Architect marks. Same glyph family across worlds = the shared-author hook.
+- **Named secondary voices (added: soul pass, 2026-07-06).** Every faction lead (Mara, Sable, the Warden
+  defector) gets real quoted dialogue at their signature/branch beats, not just description — a character
+  who only exists in the third person reads as a mechanic wearing a faction badge. Keep this to their
+  established signature worlds so the device stays cheap to extend as more factions arrive in W013+; RILL
+  is the only character allowed unlimited lines.
 
 ## 8. The four endings (locked structure W063→W068; my meaning, for review)
 Map to the canon Endgame A/B/C/D + RILL memory states. Chosen by accumulated `PLAYER_*` flags + the W063
@@ -188,6 +242,13 @@ All-ages, story-deep. Non-lethal stun combat, no gore, no profanity. Stakes are 
 emotional**, not graphic. Wonder first (every sky should make you stop), melancholy underneath, humor via
 RILL's dry glitches. A kid can play it as "fix robots on cool planets"; an adult catches that it's about
 consciousness, captivity, and what we owe the things we make.
+
+**No faction mouthpieces (added: soul pass, 2026-07-06).** Every named character who appears more than
+once should contradict themselves at least once — Mara believes in the mission AND is afraid of what it
+costs; Sable is right about the door AND wrong about the price; Aegis-Nine enforces the cage AND recognizes
+the thing standing in front of it. A character who is only ever consistent with their faction's stated
+goal reads as a mechanic wearing a nameplate, not a person. **A joke, then a real moment, then a joke**
+(§3b) applies to their dialogue too, not just RILL's.
 
 ## 10. Canon honor list (do not contradict) + what this Bible locks
 **Honor (already canon):** RILL's 5 memory states + 12 arc beats (W001/004/009/013/019/024/028/037/039/
