@@ -42,13 +42,25 @@
 | SBL2 | Continuity fixes: deduped `C4_SABLE_INTRO`, tied W038's crack-of-light forward, staged RILL's near-confession at W053 (`FRAGMENT_RILL_CONFESS`) | ✅ `169d36c` |
 | SBL3 | **The big rewrite** — `CHAPTER_8-12_ENDGAME.md`: Earth Approach is now a full staged scene sequence; W063 got a new pre-choice RILL line; W064–W068 are genuinely distinct, each landing the partner's fate explicitly; all 4 shipped ending quotes verified word-for-word | ✅ `cfe1564` |
 | SBL4 | DLC.md verified consistent (no edits needed) + continuity audit `THE_TRANSMISSION.md` §9b — every flag branch checked, one honest open item logged (`PLAYER_TRUSTED_RILL`/`IGNORED_RILL` trigger design, for M5/engineering) | ✅ `de717ca` |
-| SBL5 | Close: `GAME_PLAN.md` M5 prerequisite note + closing HANDOFF (hhhh) for Picasso/Architecture/next story author | ✅ this commit |
+| SBL5 | Close: `GAME_PLAN.md` M5 prerequisite note + closing HANDOFF (hhhh) for Picasso/Architecture/next story author | ✅ `de717ca` |
+| — | — **THE SOUL PASS — CLOSED 2026-07-06 (HANDOFF hhhh to mmmm).** Terry directive after SBL: plot is solid but "one-dimensional" no Cortana/Chief-style bond, no Arbiter-style faction-internal conflict, no felt moral stakes (Halo/Fallout comparison). Narrative-only, `STORY_BIBLE.md` + `CHAPTER_2/3/5/6/7.md`, zero code touched. — | ✅ |
+| SOUL1 | `STORY_BIBLE.md` §3b "Cal & RILL the relationship, not just the arc": ambient-line rule (piggybacks Picasso's shipped `RillTrigger.GateDeparture` pool) + "a joke, then a real moment, then a joke" rhythm + "the log" running gag, 8 worked example lines across every memory state | ✅ `8bb00a2` |
+| SOUL2 | `STORY_BIBLE.md` §7 "named secondary voices" rule + §9 "no faction mouthpieces" rule (every recurring character must contradict themselves at least once worked examples for Mara/Sable/Aegis-Nine) | ✅ `8bb00a2` |
+| SOUL3 | **Mara gets a real voice** 5-beat quoted arc: W005 (contract, brisk) to W012 (before/after the jump, scared and vindicated) to W018 (conviction cracking) to W046 (the pitch to use RILL as the key) to W056 (final line, branches on helped/opposed) | ✅ `7bc23e3` + `fc07d40` |
+| SOUL4 | **Sable gets a real voice** W007 (first contact, prickly) to W041 (the last stand, no regrets but slower) to W055 (peace, quieter than winning) | ✅ `7bc23e3` + `fc07d40` |
+| SOUL5 | **Warden defector named** (Aegis-Nine to "Nine") W037 (recognizes RILL, breaks cadence) to W043 (argues Cal's case at personal risk) to W049 (the naming payoff, rhymes with RILL's W051 without duplicating it) to W059 (closing callback to RILL's arc) | ✅ `7bc23e3` + `fc07d40` |
+| SOUL6 | Close: closing HANDOFF (mmmm) for Picasso/Architecture the bible's relationship/voice rules now govern all future dialogue for W013+ | ✅ this commit |
 
 ## ▶ RESUMING? — current state & exact next action
 - **Current:** **P0–P5 of the Quality Bar Program COMPLETE and CI-green** (menu/subtitle/release
   fixes · terrain+vista · POIs+gates · route+dressing · contracts-through-POIs · garden+sockets ·
   interim hull · handbook). Rebased onto architect's takeover kit `a21fffb`; read
   **`docs/OPERATOR_START_HERE.md`** — its laws (incl. THE CIRCUIT BREAKER) govern this board too.
+- **Narrative track (2026-07-06):** THE STORY BIBLE LOCK (SBL1-5) then THE SOUL PASS (SOUL1-6) both
+  closed — `docs/storyboard/*` is now canon AND has real character voices (Mara/Sable/Aegis-Nine
+  quoted at every signature beat, RILL's ambient-line voice guide in `STORY_BIBLE.md` §3b). W013+
+  world authoring (M5) can proceed against a locked, emotionally-load-bearing bible. Zero code touched
+  by either pass — next story author still needs to read `WORLD_DATA.md` §4 before authoring.
 - **Next action:** **finish P4b** — the pure `FlightModel` core SHIPPED (`2bc39e0`, 11 tests;
   comfort laws are in the math). Remaining is routine-shaped: `ScenePatcherSpaceLane`
   (WorldStubGenerator pattern: cockpit deck + `__FLIGHT_WORLD` ring course + starfield) +

@@ -28,6 +28,50 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-06 (mmmm) — Sonnet 5 (Story/Ship track): 💔 THE SOUL PASS closes — Mara, Sable, and the Warden defector finally speak
+Closes a second, deeper narrative pass opened right after (hhhh). Terry's directive on reviewing THE
+STORY BIBLE LOCK: the plot architecture is sound now, but the story is still "one-dimensional" — no
+Cortana/Chief-style bond, no Arbiter-style faction-internal conflict, no felt moral stakes, citing
+Halo and the Fallout TV show as the bar. Narrative-only, `docs/storyboard/STORY_BIBLE.md` +
+`CHAPTER_2/3/5/6/7.md` — **zero code/runtime files touched**, same discipline as the first pass.
+- **Diagnosis (concrete, not vibes):** re-read the full 68-world catalog — RILL was the ONLY
+  character who ever spoke in a direct quote anywhere in the docs. Mara, Sable, and the Wardens
+  existed purely as third-person plot-function description ("Mara reveals X," "Sable resolves").
+  That's the whole gap: real relationships need real voices, not summaries of relationships.
+- **Did (3 content commits, docs-only):**
+  1. `STORY_BIBLE.md` new **§3b "Cal & RILL — the relationship, not just the arc"** — two rules: (a)
+     RILL gets ambient personality lines via Picasso's already-shipped `RillTrigger.GateDeparture`
+     pool, not just plot lines; (b) the actual Halo rhythm, "a joke, then a real moment, then a
+     joke." Introduces **"the log"** — RILL's deadpan running tally of Cal scolding broken machinery
+     ("Incident log: fourteen.") — as a cheap, extensible device. 8 worked example lines spanning
+     every memory state, Dormant through Integrated, ready to pour into that trigger pool as content.
+     Also added §7 **"named secondary voices"** (every faction lead gets real quotes at signature
+     beats) and §9 **"no faction mouthpieces"** (every recurring character must contradict themselves
+     at least once — Mara believes the mission AND fears its cost; Sable is right about the door AND
+     wrong about the price; the Warden enforces the cage AND recognizes RILL).
+  2. **Mara's full 5-beat arc**, now quoted at W005 (brisk contract voice) → W012 (scared before the
+     jump, vindicated after) → W018 (conviction with a crack in it) → W046 (the pitch to use RILL as
+     the key — the hardest ask in her arc) → W056 (final line, branches on helped/opposed).
+  3. **Sable's 3-beat arc** — W007 (prickly first contact) → W041 (no regrets, "I'd just do it
+     slower") → W055 (peace that "feels like finally being tired enough to stop").
+  4. **The Warden defector, finally named** — "Aegis-Nine," later just "Nine" — W037 (recognizes
+     RILL, its enforcement cadence breaking down mid-sentence) → W043 (argues Cal's case to a dome
+     of its own kind, at personal risk) → W049 (the naming payoff: "I find I would rather be a
+     person, if it's permitted. Call me Nine.") → W059 (closing callback that explicitly RHYMES with
+     RILL's own W051 naming — same theme twice on purpose, not a duplicated beat, documented as such).
+- **📣 Cross-track (Picasso/Architecture):** nothing here blocks or changes your boards. Two things
+  worth knowing: (1) `STORY_BIBLE.md` §3b's 8 example RILL lines are pre-written content for
+  Picasso's `RillTrigger.GateDeparture` ambient pool whenever someone wants to pour real lines into
+  it — not a request to do it now, just noting the content exists and where. (2) The bible's new
+  "no faction mouthpieces" rule (§9) now governs any NEW dialogue anyone writes for Mara/Sable/
+  Wardens/RILL going forward — worth a skim before adding character lines to any track.
+- **📣 Next story author (W013+, M5):** the bible now has both a locked plot spine (SBL pass) and a
+  voice guide for how characters actually talk (this pass). Read `STORY_BIBLE.md` §3b/§7/§9 before
+  writing any new character dialogue — the two rules there are checkable, not vibes.
+- **Commit:** `8bb00a2` (soul-1: voice guide + rules) → `7bc23e3` (soul-2: Mara/Sable/Nine first
+  lines) → `fc07d40` (soul-3: Mara's arc completes, Sable's war ends, Nine chooses a name) → this
+  push (SPRINT.md rows + this close).
+
 ### 2026-07-06 (llll) — Picasso (Fable 5): 🌊 THE ZIPTIDE — the namesake moment ships on every travel
 > **STATUS: v1–v7 ALL CI-GREEN** (`d326162`→`ec84c01`). The full "do a little more" ladder below is
 > executed except real audio (ART-5, needs actual clips). Awaiting Terry's headset verdict (runbook
