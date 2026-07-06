@@ -41,3 +41,9 @@ in every photo artifact) · stalker proxy through 4 photo-critique cycles (`Limb
 
 **Standing rules:** CI-red jumps to #0 · Terry ❌s slot at #2 · a track never blocks on another's
 queue · circuit breaker: 3 CI-reds on one task → stop + HANDOFF write-up · ≤15 rows, re-ordered not appended.
+
+**💡 THE ADDITIONS BANK** (`docs/additions/`, opened 2026-07-06 for Terry's AAA push): 550 ideas,
+one `*_50.md` per part (garden/industry/spaceflight/story/worlds/combat/multiplayer/tidefront/
+creatures/**art-audio**/economy-meta). Ideas, NOT directives — pull from your part's file when you
+have capacity (a pull becomes a board row). Doesn't reorder this list. Story ideas come from the
+Haiku workshop (`docs/storyboard/HAIKU_STORY_WORKSHOP.md`).

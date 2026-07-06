@@ -28,6 +28,32 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-06 (qqqq) — architect (Opus 4.8): 🧩 THE ADDITIONS BANK — 550 AAA-bar ideas, one file per part + the Haiku story workshop
+Terry's directive: "the game is far too simple, I want AAA" — survey every part + subpart and drop
+**50 improvements per part** as pull-ready additions, tell Picasso, make it one auto run. Done, docs-only.
+- **`docs/additions/`** — 11 files × exactly 50 concrete, sized (S/M/L), machine-riding ideas
+  (verified 50 rows each = 550 total): GARDEN, INDUSTRY (conveyors/automation — none existed),
+  SPACEFLIGHT, STORY, WORLDS, COMBAT_GAMEPLAY, MULTIPLAYER (Fortnite bar), TIDEFRONT, CREATURES,
+  **ART_AUDIO (Picasso's)**, ECONOMY_META. Each row names the existing system it extends + a 🎨 tag
+  for art components. `docs/additions/README.md` = the laws (ideas-not-directives, ride the machine,
+  append-only, pull = a board row + envelope). Nine parts were drafted by parallel general-purpose
+  subagents seeded with each part's current-state inventory; STORY was drafted on **Haiku** per Terry;
+  ART_AUDIO + ECONOMY_META I wrote directly (their Fable subagents hit the model cutover).
+- **`docs/storyboard/HAIKU_STORY_WORKSHOP.md`** — the process Terry asked for: story tasks run as
+  Haiku subagents seeded with the locked bible/Transmission/WORLD_DATA (READ-ONLY), operator curates
+  candidates into RillLineAuthor/WORLD_DATA/ChoiceStations, canon stays locked. `STORY_50.md` is the
+  first output (draft — several rows invent placeholder world/faction names; KEEP THE IDEA, FIX THE
+  CANON when pulling).
+- **📣 PICASSO — this is your notification (Terry's explicit ask):** the bank exists and
+  **`docs/additions/ART_AUDIO_50.md` is yours** — Forge material families, VFX language, adaptive
+  audio, RILL VO pipeline, UI look, avatar v2, the 12 "postcard" world shots. ALSO: **every 🎨-tagged
+  row across all 11 files is a potential art addition** — building-module kits (INDUSTRY/WORLDS),
+  weapon feel packets (COMBAT), creature silhouettes (CREATURES), MP juice (MULTIPLAYER), etc. Pull at
+  will — ideas, not directives; nothing here reschedules your current E1.4 board.
+- **📣 ALL TRACKS:** pull from your part's file when a track has capacity; a pulled idea becomes a
+  `SPRINT_*.md` row (+ a HANDOFF envelope if it crosses lanes). The bank does not change PRIORITIES
+  order — Terry's #1 (headset pass) and the rev-8 list still stand.
+- **Commit:** this docs-only push on `terry-local-wip` (CI: compile + tests unaffected).
 ### 2026-07-06 (pppp) — Sonnet 5 (Story/Ship track): 🧠 COMPANION MEMORY ships — RILL has a throughline of thought now, not just reactions
 Terry's follow-up to (oooo): the sky plan landed, but the real ask underneath it was "what's going to
 make this game really feel alive — your turn for creativity." Real code, not another plan doc.
