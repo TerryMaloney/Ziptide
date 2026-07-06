@@ -28,6 +28,39 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-06 (oooo) — Sonnet 5 (Story/Ship track): 🪐 THE PROSPECT BAR — a real skyscape design plan (not built yet)
+Terry's direct follow-up to (nnnn): the W007 retune is "okay," but the sky is one of the most
+important things in the whole game to him personally — it needs to feel like standing on a different
+planet, the way *Prospect* (2018) does, not "a sun or an object in the sky." Explicitly asked for a
+plan (not a ship-it now, though feasible pieces are welcome), and to iterate twice past the first draft
+before presenting it.
+- **Did:** `docs/systems/SKYSCAPE_DESIGN.md` — the thesis (why this is worth real budget, and *why VR
+  specifically*: real stereo depth from layering haze/particulate/body at genuinely different
+  world-space distances, not one flat skybox — an effect that doesn't exist outside a headset), six
+  design pillars (occlusion over exposure; atmosphere as a layer, not a fog slider; something always
+  drifting; the sky's color reaching the ground; scale felt not announced; restraint as a valid
+  signature), a technique stack with real Quest costs checked against `PerfBudgetAuditRules` (1
+  light target/3 cap total — **nothing in this plan adds a light**), three authoring tiers
+  (Signature/Standard/Interior) so it's achievable across the 68 unbuilt worlds without every sky
+  getting the same maximal treatment, and a 5-question pass/fail rubric. Iterated twice per the ask:
+  round 2 added the stereo-depth mechanism (the single most VR-native argument in the doc) and
+  disambiguated this from the existing "No Man's Sky" terrain-variety bar in `SPRINT.md` (different
+  axis, not a conflict) + flagged that soundscape is half of "feels like a place" and this doc doesn't
+  cover it (not scoped in, explicitly not forgotten either).
+- **Also shipped:** a companion visual Artifact — three composed sky mockups (Oxidized Canopy/
+  Signature, Sable Station/Standard, The Edge/Signature-restraint) built from the exact layers the doc
+  proposes (haze card, occlusion silhouette, drifting particulate, grid/nebula), not concept art —
+  an honest preview of the technique, not a promise of final fidelity.
+- **Status: plan only, nothing built.** First executable step if this moves forward (§6 of the doc):
+  prototype the haze card + particulate drift on ONE already-built world (W005 Oxidized Canopy —
+  closest in mood to the reference already) and get Terry's on-device gut check before touching the
+  other 11.
+- **📣 Cross-track (Picasso/Architecture):** no code touched this entry — pure design doc + a
+  standalone visual mockup. If/when this moves to implementation, the haze-card and particulate-drift
+  layers are the cheapest, highest-value first build (§3/§6 of the doc) and the natural next claim for
+  whoever owns visual systems next.
+- **Commit:** `50621a5`.
+
 ### 2026-07-06 (nnnn) — Sonnet 5 (Story/Ship track): 🗣 DEPTH PASS 2 closes — Cal talks back, and the sky finally looks like space
 Closes a third narrative/systems pass, opened right after (mmmm). Terry's directive: even after the
 Soul Pass gave Mara/Sable/the Warden real voices, Cal — the character the player actually IS — had
