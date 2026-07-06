@@ -131,10 +131,15 @@ namespace Ziptide.Editor.Patching
             {
                 if (p == null || p.type == PoiType.TravelBerth) continue;
                 var c = new Vector2(p.position.x, p.position.z);
+                // On near-flat biomes the natural height ≈ walkway height, which puts the pad
+                // COPLANAR with district/berth slabs → z-fight shimmer. Keep pads out of the
+                // ±0.12 band around slab tops (relative heights: 0 == walkwayHeight).
+                float ty = RawHeight(kit, ex, c.x, c.y);
+                if (Mathf.Abs(ty) < 0.12f) ty = -0.12f;
                 flats.Add(new FlatSite
                 {
                     a = c, b = c, innerRadius = 13f, feather = 15f,
-                    targetY = RawHeight(kit, ex, c.x, c.y)
+                    targetY = ty
                 });
             }
 
@@ -192,7 +197,9 @@ namespace Ziptide.Editor.Patching
                 if (t > w)
                 {
                     w = t;
-                    targetY = float.IsNaN(flats[i].targetY) ? -0.04f : flats[i].targetY;
+                    // Districts grade a real step below the walk slabs: -0.04 was inside depth-buffer
+                    // z-fight range at distance (Test Day 1: W003 spawn ground read as "white noise").
+                    targetY = float.IsNaN(flats[i].targetY) ? -0.12f : flats[i].targetY;
                 }
             }
             return w;
