@@ -26,11 +26,13 @@ namespace Ziptide.Gameplay
         private static AudioClip _riser, _boom;
 
         private Transform[] _pillars;
+        private Transform _pool; // the glowing tide pool underfoot
         private Material _mat;
         private Vector3 _center;
         private float _t, _duration;
         private bool _departure;
         private float _streakTimer;
+        private float _hapticTimer;
 
         /// <summary>Start the departure tide around <paramref name="center"/>. Returns the lead
         /// time until the crest — the caller cuts the scene exactly then.</summary>
@@ -77,6 +79,18 @@ namespace Ziptide.Gameplay
                 r.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
                 _pillars[i] = p.transform;
             }
+
+            // The tide pool: a thin glowing disk underfoot that swells with the ring.
+            var pool = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+            pool.name = "TidePool";
+            var pc = pool.GetComponent<Collider>();
+            if (pc != null) Destroy(pc);
+            pool.transform.SetParent(transform, false);
+            var pr = pool.GetComponent<Renderer>();
+            pr.sharedMaterial = _mat;
+            pr.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+            _pool = pool.transform;
+
             _t = 0f;
             Pose(0f);
         }
@@ -94,6 +108,16 @@ namespace Ziptide.Gameplay
             {
                 _streakTimer = streakRate;
                 SpawnStreaks(k);
+            }
+
+            // Haptics build with the tide — you FEEL the gate before you see the crest.
+            _hapticTimer -= Time.deltaTime;
+            if (_hapticTimer <= 0f)
+            {
+                _hapticTimer = 0.09f;
+                float amp = _departure ? 0.08f + 0.55f * k * k : 0.5f * (1f - k) * (1f - k);
+                foreach (var c in Object.FindObjectsOfType<UnityEngine.XR.Interaction.Toolkit.ActionBasedController>())
+                    if (c != null) c.SendHapticImpulse(Mathf.Clamp01(amp), 0.1f);
             }
 
             if (_t >= _duration + 0.1f)
@@ -115,7 +139,9 @@ namespace Ziptide.Gameplay
                 float e = k * k; // ease-in — the tide GATHERS
                 radius = Mathf.Lerp(2.7f, 1.05f, e);
                 spin = 25f * _t + 90f * _t * _t * 2f;       // integrated accelerating orbit
-                rise = Mathf.Clamp01(k * 1.6f);
+                // Dial-in beat: the first ~15% is streaks + the pool only (the chevrons locking),
+                // THEN the wall rises — anticipation before the event.
+                rise = Mathf.Clamp01((k - 0.15f) * 1.9f);
                 heat = Mathf.SmoothStep(0f, 1f, (k - 0.75f) / 0.25f); // white-hot crest at the end
             }
             else
@@ -129,12 +155,22 @@ namespace Ziptide.Gameplay
 
             _mat.SetColor("_BaseColor", Color.Lerp(Teal, Crest, heat));
 
+            // The tide pool underfoot swells with the ring (thin — it's a sheen, not a wall).
+            if (_pool != null)
+            {
+                _pool.position = _center + Vector3.up * 0.012f;
+                float poolR = _departure ? Mathf.Lerp(0.4f, radius, Mathf.Clamp01(k * 3f)) : radius;
+                _pool.localScale = new Vector3(poolR * 2f, 0.008f, poolR * 2f);
+            }
+
             for (int i = 0; i < Pillars; i++)
             {
                 float ang = (i / (float)Pillars) * 360f + spin;
                 // Staggered wave: neighboring pillars lead/lag so the wall reads as WATER.
                 float wave = 0.75f + 0.25f * Mathf.Sin(ang * Mathf.Deg2Rad * 3f + _t * 9f);
                 float h = Mathf.Max(0.02f, 2.3f * rise * wave);
+                // Crest eruption: at the flash, every third pillar JETS skyward — the wave breaks.
+                if (i % 3 == 0) h *= 1f + 1.7f * heat;
                 Vector3 dir = new Vector3(Mathf.Cos(ang * Mathf.Deg2Rad), 0f, Mathf.Sin(ang * Mathf.Deg2Rad));
                 _pillars[i].position = _center + dir * radius + Vector3.up * (h * 0.5f);
                 _pillars[i].rotation = Quaternion.LookRotation(dir);
