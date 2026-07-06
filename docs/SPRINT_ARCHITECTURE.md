@@ -27,7 +27,7 @@ any LLM: request a change as data, build, gates catch mistakes.
 | H3/Q3 | **`TerrainField`** → **ENVELOPE TO T-DOG** (HANDOFF qqq; they have Fable): pure fBM (3–5 octaves over the existing seed-hash idiom) + domain warp + temp×moisture biome matrix; each `BiomePreset` = a parameter set; ~15 tests (same-seed identity, slope bound, output range); swap `WorldExperienceBuilder`'s height fn; `TERRAIN_SLOPE_UNWALKABLE` gate | 📨 T-Dog |
 | H2 | **`RoomPartitioner`** → **ENVELOPE TO T-DOG**: BSP interior rooms + corridors carved walking back up the tree; LotPartitioner (`Content/Runtime/City/LotPartitioner.cs`) is the template (same Rng struct, same min-area/aspect base cases, + an access rule: every room reaches a corridor); ~12 tests incl. full-reachability; feeds ship decks / hero interiors / hive worlds | 📨 T-Dog |
 | H5 | **`ScatterField`** → **ENVELOPE TO T-DOG**: pure Poisson-disk scatter, density-by-channel (biome-matrix ready), exclusion masks (pads/corridors/POIs/route), per-kind min spacing; ~10 tests; swap into `WorldDressingBuilder`; then a `scatterSpec` WorldSpec v2 field (this track adds the spec field after) | 📨 T-Dog |
-| Q4a | **`GamePool`** (THIS track — routine, Opus-sized): pooled spawn/despawn for PvpBolt/taser darts/stun arcs/thump rings/nets (each is CreatePrimitive+Destroy per shot today); behavior-preserving; ~8 call-site swaps + a pool reuse test | ⬜ NEXT for this track |
+| Q4a | **`GamePool` TOOL SHIPPED** (Opus 4.8): pure `Core/Runtime/PoolCore.cs` (generic free-list, Created/Reused/Live/Free bookkeeping, retained cap, get/release hooks) + **10 EditMode tests** + `Core/Runtime/GamePool.cs` (GameObject wrapper: keyed pools, park-under-inactive-root, per-scene reset, `Prewarm`, `LogStats`). Adds files, changes NO existing behaviour. **Scope split (deliberate):** the ~8 live call-site swaps (PvpBolt/darts/arcs/rings/nets) are device-sensitive combat/VR files in the MP/Gameplay lanes — enveloped to those lanes (HANDOFF, exact sites) rather than swapped from the architecture chair. This is the dependency the bank's pooled-mover ideas name (INDUSTRY #2/#19/#25, COMBAT #42, CREATURES #20). | ✅ this commit; adoption 📨 |
 | Q4b | **`PERF_BUDGET` audit rule** → **ENVELOPE TO PICASSO** (their budget doc; ExperienceAuditRules is the pattern): tris/materials/renderers/lights per scene, WARN 80% / BLOCK over, exempt `_Boot` | 📨 Picasso |
 | H4 | **Art Registry** SHIPPED: `Editor/Art/ArtModuleRegistry.cs` (resolve-through, primitive fallback) + **`docs/design/ART_REGISTRY.md`** (id families + laws + deferral triggers). Picasso fulfills `buildingModule:*` ids (envelope in qqq) | ✅ `cd79dac`+ |
 | H6 | **TAKEOVER KIT** SHIPPED: `docs/OPERATOR_START_HERE.md` (model-agnostic manual: blackboard, envelopes, circuit breaker, Opus calibration) + CLAUDE.md pointer swap + FABLE5_START_HERE legacy banner + `design/SPACEFLIGHT_PHYSICS.md` (P4b rails) + PRIORITIES rev 4 + HANDOFF (qqq) briefings | ✅ this commit |
@@ -38,10 +38,17 @@ any LLM: request a change as data, build, gates catch mistakes.
 - **State (2026-07-03, the LAST Fable architect session):** Q1 + Q2a + H1 buildings + H4 registry +
   H6 takeover kit all shipped; H2/H3/H5 enveloped to T-Dog, Q4b to Picasso (HANDOFF qqq). This
   track's operator is **Opus 4.8 from here** — that is fine by design; read `OPERATOR_START_HERE.md`.
-- **Next action (Opus-sized):** **Q4a `GamePool`** — one small class + ~8 mechanical call-site swaps
-  (each spawn site currently `CreatePrimitive`/`new GameObject` + `Destroy`; pool key = a string
-  kind; reset state on checkout; keep visuals identical). Then Q5's `.gitattributes` sliver. Then
-  support Q2d (the W002 building proof is a one-line layout/spec opt-in + APK dispatch).
+- **Next action (Opus-sized):** the `GamePool` TOOL is shipped (see Q4a row). **Next architecture
+  pull from the Additions Bank:** a strong self-contained candidate is **WORLDS_50 #13** — the
+  `WORLD_UNREACHABLE_POI` walkability quality gate (flood-fill the heightfield from spawn, fail the
+  build if a POI is unreachable under max slope; `ExperienceAuditRules` is the pattern, one appended
+  WorldAuditRunner line). Or **INDUSTRY_50 #14** deterministic-breakdown pure core. Pick per capacity;
+  keep each to one CI-green commit.
+- **GamePool adoption (envelope, MP/Gameplay lanes):** swap the CreatePrimitive+Destroy hot spawns to
+  `GamePool.Get(key, factory, pos)` / `GamePool.Release(key, go)`. Exact sites: `PvpBolt`,
+  `TaserDartProjectile`, creature stun-arc bursts, `ThumpRingVisual`, `StaticNetProjectile`. Each is
+  behaviour-preserving; verify visuals identical on device. Gameplay-critical projectiles carry hit
+  semantics — do them WITH a device pass, not blind.
 - **Circuit breaker applies** (OPERATOR_START_HERE law 5): 3 CI-reds on one task → stop, write up,
   move on.
 - **Verified facts (don't re-derive):** world factory chain = `WorldLayoutLibrary` (create-only

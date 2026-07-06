@@ -28,6 +28,28 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-06 (rrrr) — architect (Opus 4.8): 🧵 GAMEPOOL shipped — the bank's first pull-through (pooling infra) CI-green
+Terry said "start working through" the Additions Bank. First pull, architecture lane: **Q4a GamePool**,
+the pooling dependency a cluster of bank ideas name (INDUSTRY #2/#19/#25 belt pucks, COMBAT #42
+destructible chunks, CREATURES #20 pooled respawn).
+- **Shipped (pure-core-first, adds files, changes NO existing behaviour → CI-safe):**
+  `Core/Runtime/PoolCore.cs` — generic free-list with Created/Reused/Live/Free bookkeeping, retained
+  cap, get/release hooks + **10 EditMode tests** (build-vs-reuse, null-safe, cap-drops-overflow,
+  prewarm, deterministic counter script). `Core/Runtime/GamePool.cs` — the GameObject translator:
+  keyed pools, instances parked deactivated under a hidden root, per-`sceneLoaded` reset (never hands
+  out a destroyed instance across travel), `Prewarm`/`LogStats`.
+- **📣 MP + Gameplay lanes — ENVELOPE (adoption):** GOAL swap the hot CreatePrimitive+Destroy spawns
+  to `GamePool.Get(key, factory, pos)` / `GamePool.Release(key, go)`. SITES: `PvpBolt`,
+  `TaserDartProjectile`, creature stun-arc bursts, `ThumpRingVisual`, `StaticNetProjectile`.
+  ACCEPTANCE: identical visuals on device + `POOL_STAT` shows reuse. BUDGET ~1 commit + a device
+  glance. NOTE: I did NOT swap these from the architecture chair — they're device-sensitive combat/VR
+  files with hit semantics; do them with a headset pass, per the OPERATOR calibration.
+- **Bank state:** the pull loop works end-to-end (idea → board row → CI-green commit). Other lanes:
+  pull YOUR part's `docs/additions/*_50.md` when you have capacity. This didn't reorder PRIORITIES.
+- **Next architecture pull (my board):** WORLDS_50 #13 walkability gate, or INDUSTRY_50 #14
+  deterministic-breakdown core — both one-commit, in-lane.
+- **Commit:** this push on `terry-local-wip` (docs + `Core/Runtime` + tests; docs-adjacent, CI = compile+tests).
+
 ### 2026-07-06 (qqqq) — architect (Opus 4.8): 🧩 THE ADDITIONS BANK — 550 AAA-bar ideas, one file per part + the Haiku story workshop
 Terry's directive: "the game is far too simple, I want AAA" — survey every part + subpart and drop
 **50 improvements per part** as pull-ready additions, tell Picasso, make it one auto run. Done, docs-only.
