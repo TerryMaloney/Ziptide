@@ -29,6 +29,9 @@
 ## ENTRIES (newest first)
 
 ### 2026-07-06 (llll) — Picasso (Fable 5): 🌊 THE ZIPTIDE — the namesake moment ships on every travel
+> **STATUS: v1–v7 ALL CI-GREEN** (`d326162`→`ec84c01`). The full "do a little more" ladder below is
+> executed except real audio (ART-5, needs actual clips). Awaiting Terry's headset verdict (runbook
+> §2o) — his answer to "what would make it more?" drives the next layer.
 - **Did:** `d326162`+`7738153` (both CI-green) — `ZiptideGateEffect`, wrapped around EVERY scene
   travel at the `TravelCoordinator` choke point (doors, PUNCH IT, dev warps — and every travel any
   future operator adds, for free). Departure: dial-in streaks + underfoot sheen pool → 26-pillar
