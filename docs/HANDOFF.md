@@ -28,6 +28,29 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-06 (tttt) — Picasso (Fable 5): 🦿 P4 GAIT MOTOR — the creatures learn to walk (pure core + proof tests)
+- **Did:** `ForgeGaitMotor` (Visuals) — pure math: (body, time, speed01) → per-bone LOCAL rotation
+  deltas aligned with ForgeSkinnedBuilder's bone order. **THE CONJUGATION LAW** (read the file
+  header before touching): gait angles are authored about ROOT-space axes and conjugated into bone
+  space with the SAME chainRot the builder used (`delta = inv(chainRot) * rootDelta * chainRot`) —
+  FromToRotation(up, down) picks an arbitrary twist for straight-down legs, but builder and motor
+  compute the identical quaternion so it cancels. Never author swings about raw bone-local axes.
+  Roles: Leg (anti-phase mirror + diagonal-gait limb parity + rectified lagging knee, near-still at
+  idle), Tail (traveling wave, whip amplitude toward tip, never sleeps), Tentacle (two-axis wave),
+  Wing (opposed flap), Antenna (incommensurate sway). Root stays identity — body bob is the mover's
+  job. + `ForgeCreatureAnimator` (thin applier: Bind(body, bones), self-measures its own world
+  speed each LateUpdate so NO Gameplay reference is needed; `bone.localRotation = baseLocal * delta`,
+  bindposes never touched). + 6 EditMode tests; the decisive one, `MirroredLegs_AreAntiPhase`,
+  builds the real skeleton, poses it at peak swing, and proves left/right feet displace in
+  OPPOSITE z — the "both legs kick together" failure class is now unshippable.
+- **The P3+P4 finish for any operator (all pieces now exist):** (1) author `drone_sentinel_01` /
+  `cave_swarmer_01` genomes (data, copy the tests' SampleBody); (2) in the creature spawn path:
+  `var r = ForgeSkinnedBuilder.Build(body);` → parent r.skeletonRoot, add SkinnedMeshRenderer
+  (`bones = r.bones, sharedMesh = r.mesh, rootBone = r.bones[0]`, material from ForgeMaterials);
+  (3) `AddComponent<ForgeCreatureAnimator>().Bind(body, r.bones)` — done, it walks when the
+  behavior moves it; (4) CreatureBehaviorBase early-out envelope (jjjj) still applies.
+- **Commit:** _(this push)_
+
 ### 2026-07-06 (ssss) — architect (Opus 4.8): 🗺 BANK PULL — POI reachability check (WORLDS #13), WARN-only
 Second bank pull, architecture lane (GamePool `94f74ac` was CI-green; this builds on that momentum).
 - **Shipped:** pure `Content/Runtime/City/GridReachability.cs` (BFS flood-fill over a walkable+height
