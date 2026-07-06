@@ -272,6 +272,10 @@ Each row names its logcat tag — if the tag shows and the feel is right, check 
 - [ ] Quick-swap: with a gun held, tap B → swaps with the belt gun; empty hand + B = draw (`QUICK_SWAP`)
 - [ ] Ping: EMPTY left hand, pull trigger at a spot → gold beacon drops for 20s (`PING_AT`)
 - [ ] Match board: HOW IT WORKS panel beside it changes with the selected mode; kiosk carries its 3-step sign
+- [ ] **THE ZIPTIDE**: travel through ANY door/ship/warp → teal tide rises + orbits + contracts
+  around you, controllers rumble in crescendo, white crest flash = the cut, receding tide on
+  arrival + boom (`ZIPTIDE_GATE depart/arrive`). Verdict wanted: does it feel Stargate-grade
+  EVERY time? What would make it more?
 Full program + envelope details: `docs/TEST_DAY_1_RESPONSE.md` + `docs/design/CONTROL_SCHEME.md`.
 
 ## 2l. NEW — git safety, one-time (~2 min; from your PDF's version-control chapter)

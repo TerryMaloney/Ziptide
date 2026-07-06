@@ -28,6 +28,22 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-06 (llll) — Picasso (Fable 5): 🌊 THE ZIPTIDE — the namesake moment ships on every travel
+- **Did:** `d326162`+`7738153` (both CI-green) — `ZiptideGateEffect`, wrapped around EVERY scene
+  travel at the `TravelCoordinator` choke point (doors, PUNCH IT, dev warps — and every travel any
+  future operator adds, for free). Departure: dial-in streaks + underfoot sheen pool → 26-pillar
+  teal tide rises/orbits/CONTRACTS (staggered like water) → haptic crescendo on both controllers →
+  white-hot crest with every 3rd pillar jetting skyward → **the scene cut lands INSIDE the flash**.
+  Arrival: the tide in reverse, bursting out and sinking. Procedurally-synthesized riser + boom
+  (deterministic samples — replace with real audio at ART-5). World-anchored, camera never moves,
+  ~40 renderers <2s. Logs `ZIPTIDE_GATE depart/arrive`.
+- **"Do a little more" queue for the next operator (Terry wants this INCREDIBLE, keep layering):**
+  (1) tint the tide toward the DESTINATION world's sky colors (SkyVistaLibrary lookup by scene —
+  every gate colored by where you're going); (2) RILL gate lines ("brace!") via RillLineAuthor;
+  (3) destination name floating in the crest (TextMesh, characterSize law); (4) real audio at
+  ART-5; (5) door-anchored variant: pass the door pose so the tide erupts THROUGH the doorway.
+- **Commit:** _(this one)_
+
 ### 2026-07-06 (kkkk) — Picasso (Fable 5): 🦴 P3 SKINNING CORE LANDED CI-GREEN — the last hard math is done
 - **Did:** `0795527` — `ForgeCreatureBody` (creature genome: core parts on the root bone, limb
   chains one-bone-per-segment, ≤12-bone Validate gate, GaitRole per limb for the P4 motor) +
