@@ -9,8 +9,8 @@ is an outside — and we are nearly at the glass." Inherit `STORY_BIBLE.md`.
 
 > 🔑 **RILL's race condition (`THE_TRANSMISSION.md` §5):** as RILL's memory unseals here, it moves toward
 > Cal's *real* identity (it was built by the two scientists; it half-knows its maker) — racing its
-> containment directive. Stage **exactly one** beat where RILL almost says it and the directive wins by a
-> fraction; what it was about to say is recoverable later as a Transmission fragment.
+> containment directive. **Staged at W053 below** — the one beat where RILL almost says it and the
+> directive wins by a fraction; what it was about to say is recoverable later as a Transmission fragment.
 
 ---
 
@@ -21,12 +21,19 @@ is an outside — and we are nearly at the glass." Inherit `STORY_BIBLE.md`.
 - **Enemy:** none. **Wreck/log:** RILL's own earliest logs, intact. **Mystery:** in the oldest memory, RILL has a face.
 - **RILL/flag:** Integrated. `C7_RILL_MEMORY_UNSEALED`, `W052_COMPLETE`.
 
-### W053 — RILL's First World (Exterior · none · — · Integrated)
-- **Role:** Visit the world RILL was made in; gentle traversal; deep character payoff.
+### W053 — RILL's First World (Exterior · none · — · Integrated) ★ RILL beat, the near-confession
+- **Role:** Visit the world RILL was made in; gentle traversal; the closest RILL ever comes to saying
+  what it knows.
 - **Physics:** pastoral ruin, no hazard, open and calm. **Machine:** restore the workshop that built RILL.
 - **Resource:** Shard. **Gear:** none new. **Sky:** the first sky RILL ever recorded — and the color, native here.
-- **Enemy:** none. **Wreck/log:** RILL's maker's notes. **Mystery:** RILL was built to watch *one specific person* — and it wasn't Cal. Or was it?
-- **RILL/flag:** Integrated. `W053_COMPLETE`.
+- **Enemy:** none. **Wreck/log:** RILL's maker's notes, in handwriting Cal's own hand keeps almost matching.
+  **Mystery:** RILL was built to watch *one specific person* — and it wasn't Cal. Or was it?
+- **RILL beat (the near-confession, signature):** standing in the workshop, RILL starts to answer its
+  own mystery on its own — *"I was built to watch—"* — and stops. Not interrupted. Refuses itself. A
+  long pause, then, quieter than Cal has ever heard it: *"The directive is older than I am. I am
+  sorry."* It says nothing else the rest of the world. The unfinished sentence is recoverable later as
+  a Transmission fragment (`THE_TRANSMISSION.md` §5) — RILL never says it here, and never says it
+  again. `FRAGMENT_RILL_CONFESS` (seeded here; recovered in the endgame), `W053_COMPLETE`.
 
 ### W054 — The Broken Pattern (Pattern · pattern · — · Integrated)
 - **Role:** A Pattern that *failed* — a glimpse of what waking wrong looks like; hard combat-puzzle.

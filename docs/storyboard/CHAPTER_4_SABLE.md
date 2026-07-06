@@ -14,7 +14,8 @@ breaking it has a body count." Inherit `STORY_BIBLE.md`.
 - **Physics:** acid tide flats, acid hazard (corrodes gear over time), reef cover. **Machine:** overload a seal-pylon (Sable wants it down).
 - **Resource:** Copper. **Gear:** Foam Cannon (neutralize acid / make cover). **Sky:** verdigris-green storm, the planet streaked with the grid.
 - **Enemy:** **drone** (Guild defense). **Wreck/log:** acid-eaten landing craft. **Mystery:** under the seal is an Architect door, not machinery.
-- **RILL/flag:** Remembering. `C4_SABLE_INTRO`, `W020_COMPLETE`.
+- **RILL/flag:** Remembering; *"Sable was patient. That patience is over."* `W020_COMPLETE`. *(`C4_SABLE_INTRO`
+  was already granted at W007 — first contact is Ch.2; this is the war opening, not a re-introduction.)*
 
 ### W021 — The Lattice (Pattern · static · — · Remembering)
 - **Role:** Pure Pattern puzzle-combat; the network's skeleton exposed.

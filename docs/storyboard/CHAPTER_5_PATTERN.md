@@ -75,8 +75,8 @@ Threshold 3 → climbing to MAX. **Reveal:** "it's waking up — and so are you.
 ### W038 — The Edge (Void · void · — · Unsealing)
 - **Role:** Literal edge-of-the-map world; stand at the Shell wall; chapter exhale before Ch.6.
 - **Physics:** void platform at the boundary, void hazard, low-g. **Machine:** sample the wall (grants Edge Stone).
-- **Resource:** Edge Stone. **Gear:** rad/void shielding tier 2. **Sky:** the **Shell** filling half of everything — and through a hairline crack, *a different kind of light*.
-- **Enemy:** none. **Wreck/log:** every prior waker's final marker, planted here. **Mystery:** the crack wasn't there last cycle.
+- **Resource:** Edge Stone. **Gear:** rad/void shielding tier 2. **Sky:** the **Shell** filling half of everything — and through a hairline crack, *a different kind of light*: flat, white, steady — nothing in any world Cal has walked casts light like that.
+- **Enemy:** none. **Wreck/log:** every prior waker's final marker, planted here. **Mystery:** the crack wasn't there last cycle. *(Payoff seed: this is the first true look at Earth's daylight, unrecognized — the Earth Approach in `CHAPTER_8-12_ENDGAME.md` is Cal finally walking through this same crack.)*
 - **RILL/flag:** Unsealing; *"That light is not from in here."* `W038_COMPLETE`.
 
 ---
