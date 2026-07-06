@@ -1,7 +1,8 @@
-# 🎮 TEST DAY — get everything on the headset + what to check (2026-07-04)
+# 🎮 TEST DAY — get everything on the headset + what to check (2026-07-06 refresh)
 
-One page, three parts: **A. install it** · **B. what's in the build (project checklist)** ·
-**C. what to test (testing checklist)**. Everything below is on `terry-local-wip`.
+One page, four parts: **A. install it** · **B. what's in the build (project checklist)** ·
+**C. what to test (testing checklist)** · **D. two-player setup (start tonight)**.
+Everything below is on `terry-local-wip`.
 
 ---
 
@@ -9,6 +10,16 @@ One page, three parts: **A. install it** · **B. what's in the build (project ch
 
 ### Path 1 — build locally (recommended: also runs the one-time bakes)
 Quest plugged in, developer mode on, Unity closed:
+
+**FIRST, 3 one-time Unity clicks (create-only assets that need a reseed this build):**
+open the project in Unity, in the Project window DELETE these three assets (+ their .meta):
+1. `Assets/Ziptide/Content/Worlds/SkyVistas/W007_SableStation_Vista.asset` *(W007 sky gained a
+   second moon + more stars)*
+2. `Assets/Ziptide/Content/Arenas/Generated/Arena_Cistern_Arena.asset` *(new melee weapon pad)*
+3. `Assets/Ziptide/Content/Arenas/Generated/Arena_Chitinwall_Arena.asset` *(new melee weapon pad)*
+
+Then close Unity — the build script regenerates all three from code (they're build-hooked), and
+you commit the regenerated versions along with everything else the build produces.
 
 ```powershell
 cd C:\Ziptide
@@ -52,6 +63,23 @@ From then on "change a world" = edit its `.spec.json`. (Runbook §2k.)
 ---
 
 ## B. PROJECT CHECKLIST — what's actually in this build
+
+**⚡ NEW since the 07-04 build (the headline items):**
+- [x] **THE ZIPTIDE** — every travel is the namesake gate moment: destination-tinted tide,
+      the world's NAME riding the crest, RILL speaking over the rise, door-anchored torrents,
+      the white-out flash that hides the load, layered synth audio locked to the pillar orbit
+- [x] **Fortnite-class controls** — sprint (hold L3) · autorun (double-L3) · crouch (R3) ·
+      slide (crouch while sprinting) · jump (A) · quick-swap (B) · ping (empty left hand +
+      trigger) · laser sights on every gun · xbox-style +45° grip pose
+- [x] **CREATURES WALK** — swarm bugs are six-legged skitterers, W002 grazers are glowing
+      bells with waving tentacles (real skinned bodies + procedural gait)
+- [x] **Textured guns on device** — all five guns wear baked albedo/normal/metal/emissive maps
+- [x] **Player avatar v1** — salvage gloves on both hands + chest rig (look down!)
+- [x] **The melee pair** — Breaker Blade + Tide Pike (arena pads + blade in story starter racks)
+- [x] **PUNCH IT** — W000 cast-off console: star-streak launch into the story chain
+- [x] **Match-board HOW IT WORKS panels + kiosk 3-step signs; subtitle/HUD text fixed**
+- [x] **Garden harvest timing** — overripe crops decay toward a floor (freshness classified)
+- [x] **W003 "white noise" ground fixed; enemy fire draws visible incoming lines**
 
 **Core loop / campaign**
 - [x] W000 opening (wake on your ship, Cast Off tutorial) → 11 story worlds W002–W012, chain-gated
@@ -130,12 +158,64 @@ From then on "change a world" = edit its `.spec.json`. (Runbook §2k.)
 **9. Multiplayer smoke (5 min, if time)**
 - [ ] One arena vs bots: mode runs, bots fight, round resolves.
 
-**10. Anything from your last ❌ list that I claimed fixed** — re-check it specifically:
+**10. NEW — THE ZIPTIDE (2 min, do several travels)**
+- [ ] Every door/warp/ship travel: tide rises + orbits + contracts, destination NAME above the
+      ring, tide colored toward THAT world's sky, RILL says a line over the rise, white flash =
+      the cut, receding tide on arrival. Doors: streaks pour OUT of the doorway.
+      Verdict: **Stargate-grade every time? What would make it more?**
+
+**11. NEW — Fortnite controls (3 min)**
+- [ ] Hold L3 = sprint · double-tap L3 = autorun · click R3 = crouch · crouch while sprinting =
+      slide burst · A = jump · B = quick-swap with belt gun · empty LEFT hand + trigger = gold
+      ping beacon · every held gun shows a laser sight. Feel notes per verb.
+
+**12. NEW — creatures walk (2 min) — W005 or W009 + W002**
+- [ ] Swarm bugs: six legs actually scuttle, amber eye + antennae face you
+      (`FORGE_CREATURE_APPLIED` in logcat). W002 grazers: glowing bell + waving tentacles.
+- [ ] Feel notes: leg speed vs body speed, size, feet floating above ground?
+
+**13. NEW — melee (2 min) — Arena Cistern or Chitinwall**
+- [ ] Breaker Blade pad (Cistern west) / Tide Pike (Chitinwall catwalk): contact hits register,
+      blade cracks breakwalls, bots dodge your swings up close.
+
+**14. Anything from your last ❌ list that I claimed fixed** — re-check it specifically:
 - [ ] menu re-click · [ ] giant entry text · [ ] dead item drops · [ ] "poor Roblox" ship ·
       [ ] tiny senseless worlds · [ ] no garden · [ ] only 2 guns
 
 **After playing:** run `.\tools\quest_smoke.ps1` (or the adb logcat line) and send me anything that
 looked wrong + the nearest `ZIPTIDE:` tags. Your ❌s re-prioritize every board.
+
+---
+
+## D. TWO-PLAYER — what to do TONIGHT vs what waits on code
+
+**Honest state:** everything network-shaped exists EXCEPT the final wiring (task **A6** on
+`SPRINT_MULTIPLAYER.md`): the transport seam, the Photon adapter, and the room-code launcher are
+all in the repo, dormant. The actual two-headset match becomes playable when A6 lands — and A6 is
+**pure code** once you finish the 20-minute setup below, because the Asset-Store import + wizard
+are the only parts an operator can't do from the cloud.
+
+**Your ~20 minutes tonight (full detail: `docs/TWO_QUEST_SETUP.md`):**
+1. **photonengine.com** → free account → Create app (type **Photon PUN**, name `Ziptide`) → copy
+   the **App ID**. *(Free tier = 20 concurrent users — plenty.)*
+2. Unity → Asset Store → **PUN 2 - FREE** → Package Manager → My Assets → Import (UNCHECK the
+   `Demos` folder). Wait for a clean compile.
+3. PUN Wizard pops up → paste the App ID → **Setup Project**.
+4. **Ziptide → Net → Enable Photon (ZIPTIDE_PHOTON)** → project must still compile clean. If it
+   throws errors, STOP and paste them to the operator (the adapter was written blind against the
+   PUN2 API — a first-compile fix pass was always the plan).
+5. **Commit + push EVERYTHING** the steps produced: the PUN2 folders, `PhotonServerSettings.asset`,
+   and `ProjectSettings/ProjectSettings.asset` (the define lives there — CI needs it).
+   `git add -A; git commit -m "PUN2 imported + ZIPTIDE_PHOTON on"; git push origin terry-local-wip`
+
+**Second headset prerequisites (while PUN2 imports):** the friend's Quest needs developer mode
+(Meta Horizon phone app → the headset → Settings → Developer Mode) and the SAME APK sideloaded —
+either run `tools\dev_build_install.ps1` with that headset plugged in, or drag the CI `ziptide-apk`
+artifact in via SideQuest. Same-Wi-Fi is NOT required (Photon relays over the internet).
+
+**Then:** say "PUN2 is in, go build A6" — the operator wires the launcher into the arena lobby
+board (ONLINE tile + room code `ZIP-001`), streams avatars/hits, and your first cross-headset
+smoke is §5 of `TWO_QUEST_SETUP.md` (watch for `NET_ROOM_JOINED players=2` in logcat).
 
 ---
 *Deeper per-system checklists: `docs/TERRY_RUNBOOK.md` §2b–§2n. Meta-loop architecture:
