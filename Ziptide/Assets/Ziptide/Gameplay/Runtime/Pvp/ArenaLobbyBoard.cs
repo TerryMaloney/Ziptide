@@ -36,6 +36,18 @@ namespace Ziptide.Gameplay
             ("FRAGMENT", PvpModeKind.FragmentRush),
             ("HORDE", PvpModeKind.Horde),
         };
+
+        // "How this mode works", shown beside the board for the SELECTED mode (Test Day 1:
+        // "we need a really good looking menu somewhere that explains how the games work").
+        private static readonly string[] ModeRules =
+        {
+            "Down the bots with any weapon.\nFirst to the score cap wins.",
+            "Every down upgrades your weapon.\nCycle the whole arsenal to win.",
+            "Hold the marked zone to bank time.\nMost zone time when it ends wins.",
+            "Grab the fragment and KEEP it.\nCarrying scores; dropping stops it.",
+            "Drone waves, rising pressure.\nSurvive and clear every wave.",
+        };
+        private TextMesh _rules;
         private static readonly string[] Difficulties = { "rookie", "regular", "veteran", "nightmare" };
         private static readonly string[] BotCounts = { "1 BOT", "2 BOTS", "3 BOTS" };
 
@@ -65,6 +77,18 @@ namespace Ziptide.Gameplay
             BuildRow(1, Row(1), UpperAll(Difficulties));
             BuildRow(2, Row(2), BotCounts);
             BuildStart(new Vector3(0f, Row(3), 0f));
+
+            // The "how this mode works" side panel — live text for the selected mode.
+            var rulesPanel = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            rulesPanel.name = "RulesPanel";
+            rulesPanel.transform.SetParent(transform, false);
+            rulesPanel.transform.localPosition = new Vector3(w * 0.5f + 0.85f, 1.5f, 0.03f);
+            rulesPanel.transform.localScale = new Vector3(1.35f, 1.1f, 0.05f);
+            rulesPanel.GetComponent<Collider>().enabled = false;
+            Paint(rulesPanel, PanelColor);
+            MakeLabel("HOW IT WORKS", new Vector3(w * 0.5f + 0.85f, 1.5f + 0.68f, 0f), 0.014f);
+            var rulesGo = MakeLabel("", new Vector3(w * 0.5f + 0.85f, 1.5f, -0.05f), 0.01f);
+            _rules = rulesGo.GetComponent<TextMesh>();
 
             RefreshTints();
         }
@@ -127,6 +151,8 @@ namespace Ziptide.Gameplay
                         || (t.Row == 2 && t.Col == _selBots);
                 if (t.R != null) Paint(t.R.gameObject, sel ? TileSelected : TileColor);
             }
+            if (_rules != null && _selMode >= 0 && _selMode < ModeRules.Length)
+                _rules.text = ModeRules[_selMode];
         }
 
         // ── Construction helpers (the travel-door idiom) ─────────────────────────────────────────
