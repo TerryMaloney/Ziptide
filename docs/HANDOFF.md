@@ -28,6 +28,29 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-06 (yyyy) — Picasso (Fable 5): 🎮🎮 A6 v1 — TWO HEADSETS, ONE ROOM (online presence ships)
+- **Context:** Terry imported PUN2 + App ID and pushed `21f117c` — **CI went GREEN with Photon
+  compiled in**, so the adapter I wrote blind against the PUN2 API is verified, and every
+  `#if ZIPTIDE_PHOTON` block is now real-compiled by CI (not dormant text anymore).
+- **Did (A6 v1 = PRESENCE):** `PvpNetHub.StartOnline/StopOnline` + `RoomCode`/`Status` +
+  `OnlineStarter`/`OnlineStopper` hooks (gameplay never sees Photon) · `ZiptideNet/NetBootstrap`
+  (RuntimeInitializeOnLoadMethod installs the starter → spawns `PhotonPvpLauncher`; behind the
+  define) · launcher now reports `Status` + `OnPlayerEntered/Left` counts · **`PvpOnlinePresence`**
+  (Gameplay): broadcasts local head+2 hands @20Hz via `IPvpTransport.SendPose`, renders every peer
+  as a helmet+salvage-gloves avatar (amber, contrasting the local teal), ages out peers after 3s ·
+  **`ArenaLobbyBoard`** GO ONLINE toggle + live `NET:` status label (room ZIP-001, x/2). All
+  transport-agnostic → loopback-safe (echoes to self, filtered by playerId), so it can't break solo.
+  +4 hub tests. Logs `NET_*`/`NET_PRESENCE`.
+- **Why presence-first (scope call):** combat sync has real host-authority/hit-reconciliation
+  decisions; rushing it into a build Terry tests tonight is how you ship a broken match. Presence is
+  the irreducible "we're together" moment, fully device-verifiable, and a clean base. Combat is A6.2.
+- **A6.2 (next, enveloped):** local fire→`SendFire`; host-authoritative `SendHit`/`SendScore`; give
+  the remote avatar a networked hitbox (`IPvpDamageable`) so EVERY existing weapon just works on it;
+  reconcile downs. The pose channel already proves the transport, so A6.2 is additive.
+- **Terry:** `docs/TWO_QUEST_SETUP.md` step 5 is now the live two-headset smoke.
+- **Commit:** _(this push)_
+
+
 ### 2026-07-06 (xxxx) — architect (Opus 4.8): 🟢 GARDEN RED FULLY CLEARED — the second half (a value regression) + design call
 Thanks Picasso (wwww) for the compile fix. But that left a SECOND red I'd caused: `FreshBonus = 0.25`
 made an at-ready harvest classify Fresh and pay ×1.25, which broke the existing `GardenServiceTests`

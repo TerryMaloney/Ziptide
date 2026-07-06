@@ -43,7 +43,9 @@ story worlds as the map).
 | B2 | Holo war table vs ConquestAI (Sandbox placement) | ⬜ |
 | B3 | VR mission modifiers (ConquestMissionLibrary → real world contracts → odds mods) | ⬜ |
 | B4 | Hotseat sync → (after A6) Photon live sync | ⬜ |
-| A6 | Photon PUN2 online (needs Terry's PC) + polish | ⬜ |
+| A6 v1 | **ONLINE PRESENCE SHIPPED** (Picasso, Fable 5): PUN2 imported+committed by Terry (`21f117c`, CI-green WITH Photon) → `PvpNetHub.StartOnline/StopOnline` hooks + `ZiptideNet/NetBootstrap` installs the starter (behind `ZIPTIDE_PHOTON`) → `PvpOnlinePresence` broadcasts local head+2 hands @20Hz and renders every peer as a helmet+gloves avatar (amber, vs local teal) → `ArenaLobbyBoard` **GO ONLINE** tile + live NET status label (room `ZIP-001`, x/2 count). Transport-agnostic (loopback-safe); 4 new hub tests. Logs `NET_*`. | ✅ (CI pending) |
+| A6.2 | **Combat sync** (next): local fire→`SendFire`, host-authoritative `SendHit`/`SendScore`, the remote avatar gets a networked hitbox (`IPvpDamageable`) so existing weapons just work; reconcile downs. The pose channel already proves the transport end-to-end. | ⬜ |
+| A6.3 | Polish: IK'd body (not floating head+hands), Photon Voice, room-code entry UI (replace hardcoded `ZIP-001`), spectator | ⬜ |
 | — | Close: HANDOFF, checklist, playbook rows per chunk, APK dispatch green | ⬜ |
 
 ## ▶ RESUMING? — current state & exact next action

@@ -139,6 +139,7 @@ namespace ZiptideNet
 
         public override void OnConnectedToMaster()
         {
+            PvpNetHub.Status = "joining " + roomCode + "…";
             Debug.Log("ZIPTIDE: NET_MASTER_OK region=" + PhotonNetwork.CloudRegion);
             PhotonNetwork.JoinOrCreateRoom(roomCode,
                 new RoomOptions { MaxPlayers = 2 }, TypedLobby.Default);
@@ -149,15 +150,32 @@ namespace ZiptideNet
             _transport = new PhotonPvpTransport();
             _transport.Enable();
             PvpNetHub.SetTransport(_transport);
+            PvpNetHub.Status = "in " + roomCode + " (" + PhotonNetwork.CurrentRoom.PlayerCount + "/2)";
             Debug.Log("ZIPTIDE: NET_ROOM_JOINED room=" + roomCode
                 + " players=" + PhotonNetwork.CurrentRoom.PlayerCount
                 + " host=" + PhotonNetwork.IsMasterClient);
+        }
+
+        // Both callbacks refresh the "x/2" count as the other headset comes and goes.
+        public override void OnPlayerEnteredRoom(Player newPlayer)
+        {
+            if (PhotonNetwork.InRoom)
+                PvpNetHub.Status = "in " + roomCode + " (" + PhotonNetwork.CurrentRoom.PlayerCount + "/2)";
+            Debug.Log("ZIPTIDE: NET_PLAYER_JOINED players=" + PhotonNetwork.CurrentRoom.PlayerCount);
+        }
+
+        public override void OnPlayerLeftRoom(Player otherPlayer)
+        {
+            if (PhotonNetwork.InRoom)
+                PvpNetHub.Status = "in " + roomCode + " (" + PhotonNetwork.CurrentRoom.PlayerCount + "/2)";
+            Debug.Log("ZIPTIDE: NET_PLAYER_LEFT players=" + PhotonNetwork.CurrentRoom.PlayerCount);
         }
 
         public override void OnDisconnected(DisconnectCause cause)
         {
             if (_transport != null) { _transport.Disable(); _transport = null; }
             PvpNetHub.SetTransport(null); // back to loopback — solo keeps working
+            PvpNetHub.Status = "net error: " + cause;
             Debug.Log("ZIPTIDE: NET_DISCONNECTED cause=" + cause);
         }
     }

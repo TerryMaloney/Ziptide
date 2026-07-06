@@ -290,6 +290,10 @@ Each row names its logcat tag — if the tag shows and the feel is right, check 
 - [ ] **CREATURES WALK now:** W005/W009 swarm bugs are six-legged amber chitin skitterers whose legs
   actually scuttle; W002 grazers are pale glowing bells with waving tentacles (`FORGE_CREATURE_APPLIED`
   in logcat). Feel notes: leg speed vs body speed, size, do the feet float above ground?
+- [ ] **TWO HEADSETS (A6 v1 — full guide `docs/TWO_QUEST_SETUP.md` step 5):** both Quests → same arena →
+  **GO ONLINE** on the match board → `NET:` reads `in ZIP-001 (2/2)` → you SEE each other as helmet+amber
+  gloves tracking real head/hands (`NET_PRESENCE remote= joined`). Presence only this build — shooting
+  each other is the next chunk (A6.2). Feel notes: avatar scale/readability, tracking lag, shared-room feel.
 - [ ] **THE ZIPTIDE**: travel through ANY door/ship/warp → teal tide rises + orbits + contracts
   around you, controllers rumble in crescendo, white crest flash = the cut, receding tide on
   arrival + boom (`ZIPTIDE_GATE depart/arrive`). The destination's NAME rides above the ring,

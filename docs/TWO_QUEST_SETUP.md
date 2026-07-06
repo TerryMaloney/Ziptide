@@ -46,17 +46,26 @@ break the build until you flip it on.
   ⚠ CI note: the cloud build does NOT get the define flipped by your local PlayerSettings alone if
   you skip committing `ProjectSettings/ProjectSettings.asset` — commit it too (the menu edits it).
 
-## Step 5 — The first two-headset smoke (after the operator lands A6)
-A6 (the next MP chunk after modes) wires the launcher into the arena + streams avatars. Once it's
-merged and the APK is built:
-1. Sideload the same APK to BOTH Quests (`tools/dev_build_install.ps1` per headset, or drag the CI
-   `ziptide-apk` artifact into SideQuest twice).
+## Step 5 — The first two-headset smoke (A6 v1 IS LIVE — 2026-07-06)
+Steps 1–4 done + the build carries A6 v1 (online **presence**: you SEE each other's head + hands
+moving in the same arena; combat sync is the next chunk, A6.2). To smoke it:
+1. Sideload the same APK to BOTH Quests (`tools/dev_build_install.ps1` per headset — plug one in at
+   a time — or drag the CI `ziptide-apk` artifact into SideQuest twice).
 2. Both headsets on the SAME Wi-Fi is nice but NOT required — Photon relays over the internet.
-3. Both players: enter the same arena → the lobby board's **ONLINE** tile (A6 adds it) → same room
-   code (first smoke uses the built-in `ZIP-001`).
-4. Watch for these in logcat if it misbehaves: `ZIPTIDE: NET_CONNECTING` → `NET_MASTER_OK` →
-   `NET_ROOM_JOINED players=2`. `NET_DISCONNECTED cause=...` is the failure breadcrumb; solo/bot play
-   auto-falls back to loopback, so a net failure never bricks the arena.
+3. Both players: travel into the **same arena** → on the match board press **GO ONLINE** (bottom-right,
+   next to START). The tile turns amber and the **NET:** line reads `connecting…` → `in ZIP-001 (2/2)`
+   once BOTH are in.
+4. You should now see the other player as a **helmet + glowing amber gloves** that track their real
+   head/hands (you're teal to them, they're amber to you). Move around — it should feel like sharing
+   the room.
+5. Logcat breadcrumbs (`adb logcat | findstr ZIPTIDE`): `NET_STARTER_INSTALLED` (at boot) →
+   `LOBBY_ONLINE_START` → `NET_CONNECTING` → `NET_MASTER_OK` → `NET_ROOM_JOINED` →
+   `NET_PLAYER_JOINED players=2` → `NET_PRESENCE remote=1 joined`. `NET_DISCONNECTED cause=...` is the
+   failure breadcrumb; solo/bot play auto-falls back to loopback, so a net failure never bricks the arena.
+6. **Feel notes for the operator:** avatar readability/scale, tracking lag, does the room feel shared?
+   Then the next build adds shooting-each-other (A6.2). If the NET line says
+   `offline (no netcode in build)`, the APK was built without the `ZIPTIDE_PHOTON` define — confirm
+   `ProjectSettings.asset` was committed with the define on and rebuild.
 
 ## What you can do RIGHT NOW vs what waits on A6
 | Now (this page, steps 1–4) | After A6 lands |

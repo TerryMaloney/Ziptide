@@ -48,6 +48,10 @@ namespace Ziptide.Gameplay
             "Drone waves, rising pressure.\nSurvive and clear every wave.",
         };
         private TextMesh _rules;
+        private TextMesh _netLabel;
+        private Renderer _onlineTile;
+        private static readonly Color OnlineColor = new Color(0.20f, 0.30f, 0.55f);
+        private static readonly Color OnlineLive = new Color(0.90f, 0.55f, 0.20f);
         private static readonly string[] Difficulties = { "rookie", "regular", "veteran", "nightmare" };
         private static readonly string[] BotCounts = { "1 BOT", "2 BOTS", "3 BOTS" };
 
@@ -77,6 +81,7 @@ namespace Ziptide.Gameplay
             BuildRow(1, Row(1), UpperAll(Difficulties));
             BuildRow(2, Row(2), BotCounts);
             BuildStart(new Vector3(0f, Row(3), 0f));
+            BuildOnline(new Vector3(1.5f * TileW + TileGap, Row(3), 0f));
 
             // The "how this mode works" side panel — live text for the selected mode.
             var rulesPanel = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -132,6 +137,37 @@ namespace Ziptide.Gameplay
                     + " difficulty=" + ArenaMatchConfig.Difficulty + " bots=" + ArenaMatchConfig.BotCount);
                 PvpModeDirector.Instance?.Restart();
             }, wide: true);
+        }
+
+        // A6 v1 — the ONLINE toggle: connect two headsets into one room and render each other's
+        // presence. Photon-free here (PvpNetHub.StartOnline no-ops gracefully in a build without
+        // netcode). Room code is the shared ZIP-001 for the first smoke.
+        private void BuildOnline(Vector3 pos)
+        {
+            _onlineTile = MakeTile("GO ONLINE", pos, OnlineColor, () =>
+            {
+                if (Ziptide.Multiplayer.PvpNetHub.IsOnline)
+                {
+                    Ziptide.Multiplayer.PvpNetHub.StopOnline();
+                    Debug.Log("ZIPTIDE: LOBBY_ONLINE_STOP");
+                }
+                else
+                {
+                    PvpOnlinePresence.Ensure();
+                    bool ok = Ziptide.Multiplayer.PvpNetHub.StartOnline(Ziptide.Multiplayer.PvpNetHub.RoomCode);
+                    Debug.Log("ZIPTIDE: LOBBY_ONLINE_START room=" + Ziptide.Multiplayer.PvpNetHub.RoomCode + " ok=" + ok);
+                }
+            });
+            var netGo = MakeLabel("", pos + new Vector3(0f, -0.22f, -0.05f), 0.009f);
+            _netLabel = netGo.GetComponent<TextMesh>();
+        }
+
+        private void Update()
+        {
+            if (_netLabel != null)
+                _netLabel.text = "NET: " + Ziptide.Multiplayer.PvpNetHub.Status;
+            if (_onlineTile != null)
+                Paint(_onlineTile.gameObject, Ziptide.Multiplayer.PvpNetHub.IsOnline ? OnlineLive : OnlineColor);
         }
 
         private void OnPick(int row, int col)
