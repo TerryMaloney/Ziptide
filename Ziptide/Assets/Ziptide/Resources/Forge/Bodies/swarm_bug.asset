@@ -1,0 +1,98 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32f74e0f803346e5a914dbe6a9955020, type: 3}
+  m_Name: swarm_bug
+  m_EditorClassIdentifier: 
+  bodyId: swarm_bug
+  coreParts:
+  - name: Carapace
+    op: 4
+    size: {x: 0.34, y: 0.16, z: 0.42}
+    bevel: 1
+    segments: 10
+    wallThickness: 0.01
+    profile: []
+    position: {x: 0, y: 0.18, z: 0}
+    eulerRotation: {x: 0, y: 0, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+    mirrorX: 0
+    paletteSlot: 1
+    smooth: 1
+  - name: Belly
+    op: 4
+    size: {x: 0.26, y: 0.1, z: 0.32}
+    bevel: 1
+    segments: 8
+    wallThickness: 0.01
+    profile: []
+    position: {x: 0, y: 0.12, z: 0}
+    eulerRotation: {x: 0, y: 0, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+    mirrorX: 0
+    paletteSlot: 2
+    smooth: 1
+  - name: Head
+    op: 4
+    size: {x: 0.16, y: 0.12, z: 0.16}
+    bevel: 1
+    segments: 8
+    wallThickness: 0.01
+    profile: []
+    position: {x: 0, y: 0.17, z: 0.22}
+    eulerRotation: {x: 0, y: 0, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+    mirrorX: 0
+    paletteSlot: 1
+    smooth: 1
+  limbs:
+  - name: LegFront
+    attachLocal: {x: 0.13, y: 0.15, z: 0.14}
+    chainDirection: {x: 0.85, y: -1, z: 0.25}
+    role: 1
+    mirrorX: 1
+    segments:
+    - size: {x: 0.025, y: 0.2, z: 0.03}
+      paletteSlot: 0
+  - name: LegMid
+    attachLocal: {x: 0.15, y: 0.15, z: 0}
+    chainDirection: {x: 1, y: -1, z: 0}
+    role: 1
+    mirrorX: 1
+    segments:
+    - size: {x: 0.025, y: 0.2, z: 0.03}
+      paletteSlot: 0
+  - name: LegRear
+    attachLocal: {x: 0.13, y: 0.15, z: -0.14}
+    chainDirection: {x: 0.85, y: -1, z: -0.25}
+    role: 1
+    mirrorX: 1
+    segments:
+    - size: {x: 0.025, y: 0.2, z: 0.03}
+      paletteSlot: 0
+  - name: Antenna
+    attachLocal: {x: 0.05, y: 0.22, z: 0.28}
+    chainDirection: {x: 0.25, y: 0.7, z: 0.65}
+    role: 5
+    mirrorX: 1
+    segments:
+    - size: {x: 0.012, y: 0.15, z: 0.012}
+      paletteSlot: 0
+  palette:
+  - {r: 0.16, g: 0.12, b: 0.08, a: 1}
+  - {r: 0.55, g: 0.38, b: 0.16, a: 1}
+  - {r: 0.35, g: 0.24, b: 0.12, a: 1}
+  - {r: 1, g: 0.55, b: 0.15, a: 1}
+  slotStyles: []
+  budgetTris: 10000
+  eyeLocal: {x: 0, y: 0.19, z: 0.3}
+  eyeRadius: 0.03
+  eyePaletteSlot: 3

@@ -48,7 +48,7 @@ MonoBehaviour:
     accentColor: {r: 0.2, g: 0.75, b: 0.85, a: 1}
     angularSizeDegrees: 30
     distance: 50
-    direction: {x: 0, y: 0.5, z: 0.866}
+    direction: {x: 0, y: 0.500011, z: 0.86601907}
     rotationSpeed: 5
     followPlayer: 1
   skyVista: {fileID: 11400000, guid: 1ece468e41a694248866f5ccc57e889d, type: 2}

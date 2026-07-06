@@ -17,47 +17,73 @@ MonoBehaviour:
     displayName: 'Arena: Chitinwall'
     markerIds:
     - player
+    skyHorizon: {r: 0.45, g: 0.3, b: 0.12, a: 1}
+    skyZenith: {r: 0.18, g: 0.099999994, b: 0.22, a: 1}
   - sceneName: MilestoneA_GrabCube
     displayName: Leave
     markerIds: []
+    skyHorizon: {r: 0, g: 0, b: 0, a: 0}
+    skyZenith: {r: 0, g: 0, b: 0, a: 0}
   - sceneName: Arena_Cistern
     displayName: 'Arena: The Cistern'
     markerIds:
     - player
+    skyHorizon: {r: 0.05, g: 0.05, b: 0.06, a: 1}
+    skyZenith: {r: 0.09, g: 0.09, b: 0.11, a: 1}
   - sceneName: MilestoneA_GrabCube
     displayName: Leave
     markerIds: []
+    skyHorizon: {r: 0, g: 0, b: 0, a: 0}
+    skyZenith: {r: 0, g: 0, b: 0, a: 0}
   - sceneName: Arena_MirrorFlats
     displayName: 'Arena: Mirror Flats'
     markerIds:
     - player
+    skyHorizon: {r: 0.93, g: 0.91, b: 0.86, a: 1}
+    skyZenith: {r: 0.55, g: 0.66, b: 0.78, a: 1}
   - sceneName: MilestoneA_GrabCube
     displayName: Leave
     markerIds: []
+    skyHorizon: {r: 0, g: 0, b: 0, a: 0}
+    skyZenith: {r: 0, g: 0, b: 0, a: 0}
   - sceneName: Arena_Tidal
     displayName: 'Arena: Tidal Array'
     markerIds:
     - player
+    skyHorizon: {r: 0.55, g: 0.58, b: 0.5, a: 1}
+    skyZenith: {r: 0.19999999, g: 0.26, b: 0.34, a: 1}
   - sceneName: MilestoneA_GrabCube
     displayName: Leave
     markerIds: []
+    skyHorizon: {r: 0, g: 0, b: 0, a: 0}
+    skyZenith: {r: 0, g: 0, b: 0, a: 0}
   - sceneName: Arena_Void
     displayName: 'Arena: The Shell Gate'
     markerIds:
     - player
+    skyHorizon: {r: 0.01, g: 0.01, b: 0.03, a: 1}
+    skyZenith: {r: 0.03, g: 0.03, b: 0.06, a: 1}
   - sceneName: MilestoneA_GrabCube
     displayName: Leave
     markerIds: []
+    skyHorizon: {r: 0, g: 0, b: 0, a: 0}
+    skyZenith: {r: 0, g: 0, b: 0, a: 0}
   - sceneName: D0_City
     displayName: D0 City (legacy)
     markerIds: []
+    skyHorizon: {r: 0, g: 0, b: 0, a: 0}
+    skyZenith: {r: 0, g: 0, b: 0, a: 0}
   - sceneName: PvP_Arena01
     displayName: PvP Arena
     markerIds:
     - player
+    skyHorizon: {r: 0, g: 0, b: 0, a: 0}
+    skyZenith: {r: 0, g: 0, b: 0, a: 0}
   - sceneName: MilestoneA_GrabCube
     displayName: Leave
     markerIds: []
+    skyHorizon: {r: 0, g: 0, b: 0, a: 0}
+    skyZenith: {r: 0, g: 0, b: 0, a: 0}
   - sceneName: SandboxTestLab
     displayName: Sandbox Test Lab
     markerIds:
@@ -68,28 +94,42 @@ MonoBehaviour:
     - travel
     - artwall
     - loco
+    skyHorizon: {r: 0, g: 0, b: 0, a: 0}
+    skyZenith: {r: 0, g: 0, b: 0, a: 0}
   - sceneName: StarterWorld
     displayName: Starter World (graybox)
     markerIds:
     - player
+    skyHorizon: {r: 0, g: 0, b: 0, a: 0}
+    skyZenith: {r: 0, g: 0, b: 0, a: 0}
   - sceneName: _Boot
     displayName: Test Room
     markerIds: []
+    skyHorizon: {r: 0, g: 0, b: 0, a: 0}
+    skyZenith: {r: 0, g: 0, b: 0, a: 0}
   - sceneName: ToxicCity
     displayName: Toxic City
     markerIds:
     - player
+    skyHorizon: {r: 0.55, g: 0.42, b: 0.3, a: 1}
+    skyZenith: {r: 0.25, g: 0.28, b: 0.35, a: 1}
   - sceneName: MilestoneA_GrabCube
     displayName: Leave
     markerIds: []
+    skyHorizon: {r: 0, g: 0, b: 0, a: 0}
+    skyZenith: {r: 0, g: 0, b: 0, a: 0}
   - sceneName: W000_DriftIn
     displayName: Your Ship
     markerIds:
     - player
     - helm
+    skyHorizon: {r: 0, g: 0, b: 0, a: 0}
+    skyZenith: {r: 0, g: 0, b: 0, a: 0}
   - sceneName: MilestoneA_GrabCube
     displayName: Leave
     markerIds: []
+    skyHorizon: {r: 0, g: 0, b: 0, a: 0}
+    skyZenith: {r: 0, g: 0, b: 0, a: 0}
   - sceneName: W002_DryCistern
     displayName: The Dry Cistern
     markerIds:
@@ -102,9 +142,13 @@ MonoBehaviour:
     - poi_ruin
     - poi_cave
     - poi_berth
+    skyHorizon: {r: 0.05, g: 0.05, b: 0.06, a: 1}
+    skyZenith: {r: 0.09, g: 0.09, b: 0.11, a: 1}
   - sceneName: MilestoneA_GrabCube
     displayName: Leave
     markerIds: []
+    skyHorizon: {r: 0, g: 0, b: 0, a: 0}
+    skyZenith: {r: 0, g: 0, b: 0, a: 0}
   - sceneName: W003_GlassShelf
     displayName: Glass Shelf
     markerIds:
@@ -117,9 +161,13 @@ MonoBehaviour:
     - poi_ruin
     - poi_cave
     - poi_berth
+    skyHorizon: {r: 0.78, g: 0.88, b: 0.92, a: 1}
+    skyZenith: {r: 0.22000003, g: 0.38, b: 0.62, a: 1}
   - sceneName: MilestoneA_GrabCube
     displayName: Leave
     markerIds: []
+    skyHorizon: {r: 0, g: 0, b: 0, a: 0}
+    skyZenith: {r: 0, g: 0, b: 0, a: 0}
   - sceneName: W004_BroadcastTomb
     displayName: The Broadcast Tomb
     markerIds:
@@ -132,9 +180,13 @@ MonoBehaviour:
     - poi_ruin
     - poi_cave
     - poi_berth
+    skyHorizon: {r: 0.03, g: 0.03, b: 0.04, a: 1}
+    skyZenith: {r: 0.05, g: 0.05, b: 0.07, a: 1}
   - sceneName: MilestoneA_GrabCube
     displayName: Leave
     markerIds: []
+    skyHorizon: {r: 0, g: 0, b: 0, a: 0}
+    skyZenith: {r: 0, g: 0, b: 0, a: 0}
   - sceneName: W005_OxidizedCanopy
     displayName: Oxidized Canopy
     markerIds:
@@ -147,9 +199,13 @@ MonoBehaviour:
     - poi_ruin
     - poi_cave
     - poi_berth
+    skyHorizon: {r: 0.85, g: 0.45, b: 0.2, a: 1}
+    skyZenith: {r: 0.35000002, g: 0.18, b: 0.14, a: 1}
   - sceneName: MilestoneA_GrabCube
     displayName: Leave
     markerIds: []
+    skyHorizon: {r: 0, g: 0, b: 0, a: 0}
+    skyZenith: {r: 0, g: 0, b: 0, a: 0}
   - sceneName: W006_MirrorFlats
     displayName: The Mirror Flats
     markerIds:
@@ -162,9 +218,13 @@ MonoBehaviour:
     - poi_ruin
     - poi_cave
     - poi_berth
+    skyHorizon: {r: 0.93, g: 0.91, b: 0.86, a: 1}
+    skyZenith: {r: 0.55, g: 0.66, b: 0.78, a: 1}
   - sceneName: MilestoneA_GrabCube
     displayName: Leave
     markerIds: []
+    skyHorizon: {r: 0, g: 0, b: 0, a: 0}
+    skyZenith: {r: 0, g: 0, b: 0, a: 0}
   - sceneName: W007_SableStation
     displayName: Sable Station
     markerIds:
@@ -177,9 +237,13 @@ MonoBehaviour:
     - poi_ruin
     - poi_cave
     - poi_berth
+    skyHorizon: {r: 0.02, g: 0.02, b: 0.05, a: 1}
+    skyZenith: {r: 0.01, g: 0.01, b: 0.03, a: 1}
   - sceneName: MilestoneA_GrabCube
     displayName: Leave
     markerIds: []
+    skyHorizon: {r: 0, g: 0, b: 0, a: 0}
+    skyZenith: {r: 0, g: 0, b: 0, a: 0}
   - sceneName: W008_SealedArchive
     displayName: The Sealed Archive
     markerIds:
@@ -192,9 +256,13 @@ MonoBehaviour:
     - poi_ruin
     - poi_cave
     - poi_berth
+    skyHorizon: {r: 0.06, g: 0.05, b: 0.04, a: 1}
+    skyZenith: {r: 0.1, g: 0.08, b: 0.06, a: 1}
   - sceneName: MilestoneA_GrabCube
     displayName: Leave
     markerIds: []
+    skyHorizon: {r: 0, g: 0, b: 0, a: 0}
+    skyZenith: {r: 0, g: 0, b: 0, a: 0}
   - sceneName: W009_Chitinwall
     displayName: Chitinwall
     markerIds:
@@ -207,9 +275,13 @@ MonoBehaviour:
     - poi_ruin
     - poi_cave
     - poi_berth
+    skyHorizon: {r: 0.45, g: 0.3, b: 0.12, a: 1}
+    skyZenith: {r: 0.18, g: 0.099999994, b: 0.22, a: 1}
   - sceneName: MilestoneA_GrabCube
     displayName: Leave
     markerIds: []
+    skyHorizon: {r: 0, g: 0, b: 0, a: 0}
+    skyZenith: {r: 0, g: 0, b: 0, a: 0}
   - sceneName: W010_TidalArray
     displayName: Tidal Array
     markerIds:
@@ -222,9 +294,13 @@ MonoBehaviour:
     - poi_ruin
     - poi_cave
     - poi_berth
+    skyHorizon: {r: 0.55, g: 0.58, b: 0.5, a: 1}
+    skyZenith: {r: 0.19999999, g: 0.26, b: 0.34, a: 1}
   - sceneName: MilestoneA_GrabCube
     displayName: Leave
     markerIds: []
+    skyHorizon: {r: 0, g: 0, b: 0, a: 0}
+    skyZenith: {r: 0, g: 0, b: 0, a: 0}
   - sceneName: W011_TheHum
     displayName: The Hum
     markerIds:
@@ -237,9 +313,13 @@ MonoBehaviour:
     - poi_ruin
     - poi_cave
     - poi_berth
+    skyHorizon: {r: 0.06, g: 0.04, b: 0.05, a: 1}
+    skyZenith: {r: 0.1, g: 0.07, b: 0.09, a: 1}
   - sceneName: MilestoneA_GrabCube
     displayName: Leave
     markerIds: []
+    skyHorizon: {r: 0, g: 0, b: 0, a: 0}
+    skyZenith: {r: 0, g: 0, b: 0, a: 0}
   - sceneName: W012_MarasLastJump
     displayName: Mara's Last Jump
     markerIds:
@@ -252,6 +332,10 @@ MonoBehaviour:
     - poi_ruin
     - poi_cave
     - poi_berth
+    skyHorizon: {r: 0.01, g: 0.01, b: 0.03, a: 1}
+    skyZenith: {r: 0.03, g: 0.03, b: 0.06, a: 1}
   - sceneName: MilestoneA_GrabCube
     displayName: Leave
     markerIds: []
+    skyHorizon: {r: 0, g: 0, b: 0, a: 0}
+    skyZenith: {r: 0, g: 0, b: 0, a: 0}

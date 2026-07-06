@@ -21,7 +21,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d2741554b8478784c8c2a2cc2a167cbb, type: 2}
   spawnMarkers:
   - markerId: player
-    localPosition: {x: 0, y: 0.11000001, z: 0}
+    localPosition: {x: 0, y: 0.030000009, z: 0}
     localEulerAngles: {x: 0, y: 0, z: 0}
   - markerId: poi_story
     localPosition: {x: 0, y: -3.1320574, z: 111.6}
@@ -42,10 +42,10 @@ MonoBehaviour:
     localPosition: {x: -139.5714, y: -1.3178179, z: -65.08322}
     localEulerAngles: {x: 0, y: 0, z: 0}
   - markerId: poi_cave
-    localPosition: {x: 82.83319, y: 0.21724847, z: -177.63632}
+    localPosition: {x: 82.83319, y: 0.080000006, z: -177.63632}
     localEulerAngles: {x: 0, y: 0, z: 0}
   - markerId: poi_berth
-    localPosition: {x: 20, y: 0.16, z: -10}
+    localPosition: {x: 20, y: 0.080000006, z: -10}
     localEulerAngles: {x: 0, y: 0, z: 0}
   collectibles:
   - itemId: transmission_fragment

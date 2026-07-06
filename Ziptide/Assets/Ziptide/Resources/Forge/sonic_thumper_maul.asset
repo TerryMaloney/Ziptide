@@ -1,0 +1,179 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ced9f85ce2c5966e612be06a27474e1, type: 3}
+  m_Name: sonic_thumper_maul
+  m_EditorClassIdentifier: 
+  recipeId: sonic_thumper_maul
+  schemaVersion: 2
+  surfaceFamily: ToxicIndustrial
+  storyTags:
+  - handheld
+  - standard
+  palette:
+  - {r: 0.32, g: 0.3, b: 0.28, a: 1}
+  - {r: 0.72, g: 0.48, b: 0.18, a: 1}
+  - {r: 0.15, g: 0.14, b: 0.14, a: 1}
+  - {r: 1, g: 0.62, b: 0.25, a: 1}
+  slotStyles:
+  - style: 1
+    wear: 0.55
+    grime: 0.45
+    panelDensity: 0
+    cellSize: 0.25
+    emissive: {r: 0, g: 0, b: 0, a: 1}
+    emissiveIntensity: 2
+  - style: 0
+    wear: 0.6
+    grime: 0.35
+    panelDensity: 1.5
+    cellSize: 0.25
+    emissive: {r: 0, g: 0, b: 0, a: 1}
+    emissiveIntensity: 2
+  - style: 3
+    wear: 0.35
+    grime: 0.4
+    panelDensity: 0
+    cellSize: 0.06
+    emissive: {r: 0, g: 0, b: 0, a: 1}
+    emissiveIntensity: 2
+  - style: 8
+    wear: 0.35
+    grime: 0.35
+    panelDensity: 0
+    cellSize: 0.25
+    emissive: {r: 1, g: 0.62, b: 0.25, a: 1}
+    emissiveIntensity: 2.4
+  budgetTris: 2000
+  parts:
+  - name: Haft
+    op: 1
+    size: {x: 0.048, y: 0.26, z: 0.048}
+    bevel: 0
+    segments: 10
+    wallThickness: 0.01
+    profile: []
+    position: {x: 0, y: 0, z: -0.1}
+    eulerRotation: {x: 90, y: 0, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+    mirrorX: 0
+    paletteSlot: 2
+    smooth: 0
+  - name: PommelGlow
+    op: 1
+    size: {x: 0.038, y: 0.016, z: 0.038}
+    bevel: 0
+    segments: 10
+    wallThickness: 0.01
+    profile: []
+    position: {x: 0, y: 0, z: -0.235}
+    eulerRotation: {x: 90, y: 0, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+    mirrorX: 0
+    paletteSlot: 3
+    smooth: 0
+  - name: Head
+    op: 0
+    size: {x: 0.13, y: 0.11, z: 0.12}
+    bevel: 0.01
+    segments: 8
+    wallThickness: 0.01
+    profile: []
+    position: {x: 0, y: 0, z: 0.1}
+    eulerRotation: {x: 0, y: 0, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+    mirrorX: 0
+    paletteSlot: 0
+    smooth: 0
+  - name: FacePlate
+    op: 6
+    size: {x: 0.11, y: 0.02, z: 0.09}
+    bevel: 0
+    segments: 4
+    wallThickness: 0.01
+    profile: []
+    position: {x: 0, y: 0, z: 0.168}
+    eulerRotation: {x: 90, y: 0, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+    mirrorX: 0
+    paletteSlot: 1
+    smooth: 0
+  - name: RingFront
+    op: 2
+    size: {x: 0.15, y: 0.022, z: 0.15}
+    bevel: 0
+    segments: 12
+    wallThickness: 0.01
+    profile: []
+    position: {x: 0, y: 0, z: 0.145}
+    eulerRotation: {x: 90, y: 0, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+    mirrorX: 0
+    paletteSlot: 1
+    smooth: 0
+  - name: RingBack
+    op: 2
+    size: {x: 0.15, y: 0.022, z: 0.15}
+    bevel: 0
+    segments: 12
+    wallThickness: 0.01
+    profile: []
+    position: {x: 0, y: 0, z: 0.055}
+    eulerRotation: {x: 90, y: 0, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+    mirrorX: 0
+    paletteSlot: 1
+    smooth: 0
+  - name: TopFin
+    op: 5
+    size: {x: 0.02, y: 0.05, z: 0.1}
+    bevel: 0
+    segments: 8
+    wallThickness: 0.01
+    profile: []
+    position: {x: 0, y: 0.075, z: 0.1}
+    eulerRotation: {x: 0, y: 0, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+    mirrorX: 0
+    paletteSlot: 1
+    smooth: 0
+  - name: SideCell
+    op: 0
+    size: {x: 0.012, y: 0.03, z: 0.06}
+    bevel: 0.002
+    segments: 8
+    wallThickness: 0.01
+    profile: []
+    position: {x: 0.068, y: 0, z: 0.1}
+    eulerRotation: {x: 0, y: 0, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+    mirrorX: 1
+    paletteSlot: 3
+    smooth: 0
+  sockets:
+  - name: Grip
+    localPosition: {x: 0, y: 0, z: -0.16}
+    localEuler: {x: 45, y: 0, z: 0}
+  - name: Muzzle
+    localPosition: {x: 0, y: 0, z: 0.175}
+    localEuler: {x: 0, y: 0, z: 0}
+  qualityState: 1
+  lockedContentHash: 
+  storyRole: "Sonic thumper \u2014 a dockworker's breaching maul that hits like a
+    subwoofer."
+  storyRefs:
+  - stun_combat
+  - arena
+  worldRuleRefs:
+  - PvP_Arena01
+  tokenRefs:
+  - hazard_amber
+  - iron

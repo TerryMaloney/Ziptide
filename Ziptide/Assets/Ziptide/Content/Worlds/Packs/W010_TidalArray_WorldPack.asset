@@ -21,7 +21,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 71afb73ba290c5a42b8abb97c8407549, type: 2}
   spawnMarkers:
   - markerId: player
-    localPosition: {x: 0, y: 0.11000001, z: 0}
+    localPosition: {x: 0, y: 0.030000009, z: 0}
     localEulerAngles: {x: 0, y: 0, z: 0}
   - markerId: poi_story
     localPosition: {x: -83.29718, y: -2.1666596, z: -83.29718}
@@ -36,7 +36,7 @@ MonoBehaviour:
     localPosition: {x: 123.638504, y: -0.5567116, z: 33.12883}
     localEulerAngles: {x: 0, y: 0, z: 0}
   - markerId: poi_works
-    localPosition: {x: -159.39114, y: 0.2840072, z: -13.9449215}
+    localPosition: {x: -159.39114, y: 0.080000006, z: -13.9449215}
     localEulerAngles: {x: 0, y: 0, z: 0}
   - markerId: poi_ruin
     localPosition: {x: 165.3859, y: -0.37936997, z: -60.19553}
@@ -45,7 +45,7 @@ MonoBehaviour:
     localPosition: {x: 76.612495, y: 0.503747, z: 210.49115}
     localEulerAngles: {x: 0, y: 0, z: 0}
   - markerId: poi_berth
-    localPosition: {x: 0, y: 0.16, z: 0}
+    localPosition: {x: 0, y: 0.080000006, z: 0}
     localEulerAngles: {x: 0, y: 0, z: 0}
   collectibles: []
   choices: []
@@ -76,7 +76,7 @@ MonoBehaviour:
     buildCost: 40
     ratePerSecond: 0.05
     storageCap: 40
-    localPosition: {x: -159.39114, y: 0.9840072, z: -11.344921}
+    localPosition: {x: -159.39114, y: 0.78, z: -11.344921}
   audioProfile: {fileID: 0}
   flagsRequired:
   - W009_COMPLETE

@@ -21,7 +21,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 935a6808d9bc0e246b3aa997dd4d3f8f, type: 2}
   spawnMarkers:
   - markerId: player
-    localPosition: {x: 0, y: 0.11000001, z: 0}
+    localPosition: {x: 0, y: 0.030000009, z: 0}
     localEulerAngles: {x: 0, y: 0, z: 0}
   - markerId: poi_story
     localPosition: {x: 26.723352, y: -0.032113343, z: 89.07784}
@@ -45,7 +45,7 @@ MonoBehaviour:
     localPosition: {x: 26.275215, y: 1.1122357, z: -180.09334}
     localEulerAngles: {x: 0, y: 0, z: 0}
   - markerId: poi_berth
-    localPosition: {x: -20, y: 0.16, z: -8}
+    localPosition: {x: -20, y: 0.080000006, z: -8}
     localEulerAngles: {x: 0, y: 0, z: 0}
   collectibles:
   - itemId: mineral_sample

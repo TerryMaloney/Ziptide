@@ -19,54 +19,72 @@ MonoBehaviour:
     text: Systems nominal. I think.
     once: 1
     voClip: {fileID: 0}
+    speaker: RILL
+    crossingsDelay: 6
   - id: beat02_cargo
     trigger: 1
     key: C1_W004_RILL_ASKED_CARGO
     text: What are you carrying that requires containment?
     once: 1
     voClip: {fileID: 0}
+    speaker: RILL
+    crossingsDelay: 6
   - id: beat03_misidentify
     trigger: 1
     key: C2_W009_RILL_MISIDENTIFIED
     text: "I know this\u2014wait, I do not. That is new."
     once: 1
     voClip: {fileID: 0}
+    speaker: RILL
+    crossingsDelay: 6
   - id: beat04_shard
     trigger: 1
     key: C3_W013_MEMORY_SHARD
     text: I was here. Or something that used to be me was here.
     once: 1
     voClip: {fileID: 0}
+    speaker: RILL
+    crossingsDelay: 6
   - id: beat05_refusal
     trigger: 1
     key: C3_W019_RILL_REFUSED
     text: I cannot help you break this seal. Ask me why.
     once: 1
     voClip: {fileID: 0}
+    speaker: RILL
+    crossingsDelay: 6
   - id: beat06_color
     trigger: 1
     key: C4_W024_COLOR_NAMED
     text: That is the color I have been trying to name for 40,000 years.
     once: 1
     voClip: {fileID: 0}
+    speaker: RILL
+    crossingsDelay: 6
   - id: beat07_unprompted
     trigger: 1
     key: C4_W028_NO_JOB
     text: Some worlds do not want to be completed. This is one of them.
     once: 1
     voClip: {fileID: 0}
+    speaker: RILL
+    crossingsDelay: 6
   - id: beat08_staredown
     trigger: 1
     key: C5_W037_WARDEN_STANDOFF
     text: It recognizes me. Interesting.
     once: 1
     voClip: {fileID: 0}
+    speaker: RILL
+    crossingsDelay: 6
   - id: beat09_pattern
     trigger: 1
     key: C6_W039_PATTERN_WARNING
     text: It is not spreading toward you. It is spreading toward your memories.
     once: 1
     voClip: {fileID: 0}
+    speaker: RILL
+    crossingsDelay: 6
   - id: beat10_name
     trigger: 1
     key: C6_W051_RILL_NAMED
@@ -74,6 +92,8 @@ MonoBehaviour:
       a name.
     once: 1
     voClip: {fileID: 0}
+    speaker: RILL
+    crossingsDelay: 6
   - id: beat11_revelation
     trigger: 1
     key: C8_W062_REVELATION
@@ -81,24 +101,32 @@ MonoBehaviour:
       keep something out.
     once: 1
     voClip: {fileID: 0}
+    speaker: RILL
+    crossingsDelay: 6
   - id: beat12_endA
     trigger: 1
     key: C12_W063_ENDING_A
     text: The network needs a witness. I was built for this. Go home, Cal.
     once: 1
     voClip: {fileID: 0}
+    speaker: RILL
+    crossingsDelay: 6
   - id: beat12_endB
     trigger: 1
     key: C12_W063_ENDING_B
     text: "Wherever you are crossing to \u2014 I am coming with you."
     once: 1
     voClip: {fileID: 0}
+    speaker: RILL
+    crossingsDelay: 6
   - id: beat12_endC
     trigger: 1
     key: C12_W063_ENDING_C
     text: Let me forget. Some memories are heavier than the cage that held them.
     once: 1
     voClip: {fileID: 0}
+    speaker: RILL
+    crossingsDelay: 6
   - id: beat12_endD
     trigger: 1
     key: C12_W063_ENDING_D
@@ -106,6 +134,8 @@ MonoBehaviour:
       of us.
     once: 1
     voClip: {fileID: 0}
+    speaker: RILL
+    crossingsDelay: 6
   - id: enter_w000
     trigger: 0
     key: W000_DriftIn
@@ -113,18 +143,24 @@ MonoBehaviour:
       opinions. The coupler is down; your papers are by the bunk. Shall we?
     once: 1
     voClip: {fileID: 0}
+    speaker: RILL
+    crossingsDelay: 6
   - id: enter_w002
     trigger: 0
     key: W002_DryCistern
     text: Cistern registry says these pumps died forty years ago. Contract says otherwise.
     once: 1
     voClip: {fileID: 0}
+    speaker: RILL
+    crossingsDelay: 6
   - id: enter_w003
     trigger: 0
     key: W003_GlassShelf
     text: Wind advisory. The baffles are down. That is the whole briefing.
     once: 1
     voClip: {fileID: 0}
+    speaker: RILL
+    crossingsDelay: 6
   - id: enter_w004
     trigger: 0
     key: W004_BroadcastTomb
@@ -132,6 +168,8 @@ MonoBehaviour:
       the Guild arrived.
     once: 1
     voClip: {fileID: 0}
+    speaker: RILL
+    crossingsDelay: 6
   - id: enter_w005
     trigger: 0
     key: W005_OxidizedCanopy
@@ -139,12 +177,16 @@ MonoBehaviour:
       them?
     once: 1
     voClip: {fileID: 0}
+    speaker: RILL
+    crossingsDelay: 6
   - id: enter_w006
     trigger: 0
     key: W006_MirrorFlats
     text: No lifesigns. No wind. Why does an empty world need this much light?
     once: 1
     voClip: {fileID: 0}
+    speaker: RILL
+    crossingsDelay: 6
   - id: enter_w007
     trigger: 0
     key: W007_SableStation
@@ -152,6 +194,8 @@ MonoBehaviour:
       way.
     once: 1
     voClip: {fileID: 0}
+    speaker: RILL
+    crossingsDelay: 6
   - id: enter_w008
     trigger: 0
     key: W008_SealedArchive
@@ -159,12 +203,16 @@ MonoBehaviour:
       it has answers.
     once: 1
     voClip: {fileID: 0}
+    speaker: RILL
+    crossingsDelay: 6
   - id: enter_w009
     trigger: 0
     key: W009_Chitinwall
     text: The wall is not architecture. It grew. Stay near the pylons.
     once: 1
     voClip: {fileID: 0}
+    speaker: RILL
+    crossingsDelay: 6
   - id: enter_w010
     trigger: 0
     key: W010_TidalArray
@@ -172,12 +220,16 @@ MonoBehaviour:
       still counting what.
     once: 1
     voClip: {fileID: 0}
+    speaker: RILL
+    crossingsDelay: 6
   - id: enter_w011
     trigger: 0
     key: W011_TheHum
     text: Listen. That sound is in the rock, not the machines. It was here first.
     once: 1
     voClip: {fileID: 0}
+    speaker: RILL
+    crossingsDelay: 6
   - id: enter_w012
     trigger: 0
     key: W012_MarasLastJump
@@ -185,6 +237,8 @@ MonoBehaviour:
       need to watch.
     once: 1
     voClip: {fileID: 0}
+    speaker: RILL
+    crossingsDelay: 6
   - id: react_fragment_t1
     trigger: 1
     key: FRAGMENT_T1_FOUND
@@ -192,24 +246,32 @@ MonoBehaviour:
       it anyway.
     once: 1
     voClip: {fileID: 0}
+    speaker: RILL
+    crossingsDelay: 6
   - id: react_containment
     trigger: 1
     key: C2_CONTAINMENT_REVEALED
     text: "Her ship did not fail. The sky refused it. Cal \u2014 it's a cage."
     once: 1
     voClip: {fileID: 0}
+    speaker: RILL
+    crossingsDelay: 6
   - id: react_signal1
     trigger: 1
     key: SIGNAL_THRESHOLD_1
     text: Did you feel that? Every gate on the network just... inhaled.
     once: 1
     voClip: {fileID: 0}
+    speaker: RILL
+    crossingsDelay: 6
   - id: react_signal2
     trigger: 1
     key: SIGNAL_THRESHOLD_2
     text: "The Signal again. Stronger. It is not random \u2014 it answers you."
     once: 1
     voClip: {fileID: 0}
+    speaker: RILL
+    crossingsDelay: 6
   - id: react_first_release
     trigger: 1
     key: FIRST_RELEASE
@@ -217,15 +279,327 @@ MonoBehaviour:
       The holster on your hip keeps it with us."
     once: 1
     voClip: {fileID: 0}
+    speaker: RILL
+    crossingsDelay: 6
   - id: react_ship_board
     trigger: 1
     key: SHIP_FIRST_BOARD
     text: Home. Or the nearest thing either of us has to one.
     once: 1
     voClip: {fileID: 0}
+    speaker: RILL
+    crossingsDelay: 6
   - id: react_quarters
     trigger: 1
     key: QUARTERS_FIRST_VISIT
     text: Your quarters. The Guild manifest calls this compartment 'storage.' I disagree.
     once: 1
     voClip: {fileID: 0}
+    speaker: RILL
+    crossingsDelay: 6
+  - id: gate_any_brace
+    trigger: 2
+    key: '*'
+    text: Brace. The tide has us.
+    once: 0
+    voClip: {fileID: 0}
+    speaker: RILL
+    crossingsDelay: 6
+  - id: gate_any_hold
+    trigger: 2
+    key: '*'
+    text: Gate is open. Hold on to what you are holding.
+    once: 0
+    voClip: {fileID: 0}
+    speaker: RILL
+    crossingsDelay: 6
+  - id: gate_any_first
+    trigger: 2
+    key: '*'
+    text: Every crossing still feels like the first one. For both of us.
+    once: 0
+    voClip: {fileID: 0}
+    speaker: RILL
+    crossingsDelay: 6
+  - id: gate_any_delight
+    trigger: 2
+    key: '*'
+    text: Forty thousand years, and this part still delights me.
+    once: 0
+    voClip: {fileID: 0}
+    speaker: RILL
+    crossingsDelay: 6
+  - id: gate_any_count
+    trigger: 2
+    key: '*'
+    text: "Crossing. Do not count the pillars \u2014 you will lose track on purpose."
+    once: 0
+    voClip: {fileID: 0}
+    speaker: RILL
+    crossingsDelay: 6
+  - id: gate_w002
+    trigger: 2
+    key: W002_DryCistern
+    text: 'Next stop: a hole in the ground with paperwork.'
+    once: 1
+    voClip: {fileID: 0}
+    speaker: RILL
+    crossingsDelay: 6
+  - id: gate_w005
+    trigger: 2
+    key: W005_OxidizedCanopy
+    text: Green on the other side. Try not to repair anything that is alive.
+    once: 1
+    voClip: {fileID: 0}
+    speaker: RILL
+    crossingsDelay: 6
+  - id: gate_w012
+    trigger: 2
+    key: W012_MarasLastJump
+    text: Mara crossed from here last. Watch the sky when we land.
+    once: 1
+    voClip: {fileID: 0}
+    speaker: RILL
+    crossingsDelay: 6
+  - id: cal_w000
+    trigger: 0
+    key: W000_DriftIn
+    text: Six minutes and you already have opinions. That tracks.
+    once: 1
+    voClip: {fileID: 0}
+    speaker: CAL
+    crossingsDelay: 6
+  - id: cal_w002
+    trigger: 0
+    key: W002_DryCistern
+    text: So the pumps died forty years ago and nobody updated the file. Sounds about
+      right for this job.
+    once: 1
+    voClip: {fileID: 0}
+    speaker: CAL
+    crossingsDelay: 6
+  - id: cal_w004
+    trigger: 0
+    key: W004_BroadcastTomb
+    text: "Long before the Guild got here \u2014 or long before you did?"
+    once: 1
+    voClip: {fileID: 0}
+    speaker: CAL
+    crossingsDelay: 6
+  - id: cal_w005
+    trigger: 0
+    key: W005_OxidizedCanopy
+    text: If it minds, it can file a complaint. We've got a contract.
+    once: 1
+    voClip: {fileID: 0}
+    speaker: CAL
+    crossingsDelay: 6
+  - id: cal_w007
+    trigger: 0
+    key: W007_SableStation
+    text: Good. I prefer people who prefer things.
+    once: 1
+    voClip: {fileID: 0}
+    speaker: CAL
+    crossingsDelay: 6
+  - id: cal_w008
+    trigger: 0
+    key: W008_SealedArchive
+    text: You keep saying that like it's new information about yourself.
+    once: 1
+    voClip: {fileID: 0}
+    speaker: CAL
+    crossingsDelay: 6
+  - id: cal_w009
+    trigger: 0
+    key: W009_Chitinwall
+    text: Everything out here either grew wrong or grew on purpose. I'm losing track
+      of which is worse.
+    once: 1
+    voClip: {fileID: 0}
+    speaker: CAL
+    crossingsDelay: 6
+  - id: cal_w011
+    trigger: 0
+    key: W011_TheHum
+    text: First before what, RILL?
+    once: 1
+    voClip: {fileID: 0}
+    speaker: CAL
+    crossingsDelay: 6
+  - id: cal_w012
+    trigger: 0
+    key: W012_MarasLastJump
+    text: Yeah. Me too.
+    once: 1
+    voClip: {fileID: 0}
+    speaker: CAL
+    crossingsDelay: 6
+  - id: cal_react_shard
+    trigger: 1
+    key: C3_W013_MEMORY_SHARD
+    text: That's not weird at all. RILL, that is not weird even a little.
+    once: 1
+    voClip: {fileID: 0}
+    speaker: CAL
+    crossingsDelay: 6
+  - id: cal_react_refusal
+    trigger: 1
+    key: C3_W019_RILL_REFUSED
+    text: "Okay. I trust you. I'd like to still trust you in an hour, so \u2014 anything
+      you want to tell me first?"
+    once: 1
+    voClip: {fileID: 0}
+    speaker: CAL
+    crossingsDelay: 6
+  - id: cal_react_color
+    trigger: 1
+    key: C4_W024_COLOR_NAMED
+    text: Forty thousand years and you land on a color. I'd have picked a word. You're
+      braver than I gave you credit for.
+    once: 1
+    voClip: {fileID: 0}
+    speaker: CAL
+    crossingsDelay: 6
+  - id: cal_react_standoff
+    trigger: 1
+    key: C5_W037_WARDEN_STANDOFF
+    text: RILL. Do you know why?
+    once: 1
+    voClip: {fileID: 0}
+    speaker: CAL
+    crossingsDelay: 6
+  - id: cal_react_pattern
+    trigger: 1
+    key: C6_W039_PATTERN_WARNING
+    text: My memories, or yours?
+    once: 1
+    voClip: {fileID: 0}
+    speaker: CAL
+    crossingsDelay: 6
+  - id: cal_react_named
+    trigger: 1
+    key: C6_W051_RILL_NAMED
+    text: Then tell me. I've been waiting a while to stop calling you 'the drone.'
+    once: 1
+    voClip: {fileID: 0}
+    speaker: CAL
+    crossingsDelay: 6
+  - id: cal_react_confess
+    trigger: 1
+    key: W053_COMPLETE
+    text: "RILL \u2014 you don't have to finish that. Not tonight."
+    once: 1
+    voClip: {fileID: 0}
+    speaker: CAL
+    crossingsDelay: 6
+  - id: cal_react_revelation
+    trigger: 1
+    key: C8_W062_REVELATION
+    text: Out. Not in. Say that again, slower.
+    once: 1
+    voClip: {fileID: 0}
+    speaker: CAL
+    crossingsDelay: 6
+  - id: cal_react_branch
+    trigger: 1
+    key: C12_W063_BRANCH
+    text: "Whatever I choose in there \u2014 I need you to know I heard everything
+      you didn't say too."
+    once: 1
+    voClip: {fileID: 0}
+    speaker: CAL
+    crossingsDelay: 6
+  - id: cal_end_a
+    trigger: 1
+    key: C12_W063_ENDING_A
+    text: ...Okay. Okay. I'll come back. I don't care what the manifest says about
+      return trips.
+    once: 1
+    voClip: {fileID: 0}
+    speaker: CAL
+    crossingsDelay: 6
+  - id: cal_end_b
+    trigger: 1
+    key: C12_W063_ENDING_B
+    text: Then let's go find out together.
+    once: 1
+    voClip: {fileID: 0}
+    speaker: CAL
+    crossingsDelay: 6
+  - id: cal_end_c
+    trigger: 1
+    key: C12_W063_ENDING_C
+    text: I'll remember for both of us, then. Deal?
+    once: 1
+    voClip: {fileID: 0}
+    speaker: CAL
+    crossingsDelay: 6
+  - id: cal_end_d
+    trigger: 1
+    key: C12_W063_ENDING_D
+    text: The first of us. Yeah. I believe that. I think I always kind of did.
+    once: 1
+    voClip: {fileID: 0}
+    speaker: CAL
+    crossingsDelay: 6
+  - id: cal_gate_any_pillars
+    trigger: 2
+    key: '*'
+    text: Please tell me the pillars have names.
+    once: 0
+    voClip: {fileID: 0}
+    speaker: CAL
+    crossingsDelay: 6
+  - id: cal_gate_any_howdoyou
+    trigger: 2
+    key: '*'
+    text: I still don't know how you make a tide out of light. I've stopped asking.
+    once: 0
+    voClip: {fileID: 0}
+    speaker: CAL
+    crossingsDelay: 6
+  - id: cal_gate_w007
+    trigger: 2
+    key: W007_SableStation
+    text: Sable's turf. Manners, please.
+    once: 1
+    voClip: {fileID: 0}
+    speaker: CAL
+    crossingsDelay: 6
+  - id: followup_cargo
+    trigger: 3
+    key: C1_W004_RILL_ASKED_CARGO
+    text: I never received an answer about the cargo. I have stopped expecting one.
+      That is new, too.
+    once: 1
+    voClip: {fileID: 0}
+    speaker: RILL
+    crossingsDelay: 9
+  - id: followup_cage
+    trigger: 3
+    key: C2_CONTAINMENT_REVEALED
+    text: 'I have had time to think about the cage. I keep arriving at the same word:
+      deliberate. I did not expect to end up there.'
+    once: 1
+    voClip: {fileID: 0}
+    speaker: RILL
+    crossingsDelay: 7
+  - id: cal_followup_cage
+    trigger: 3
+    key: C2_CONTAINMENT_REVEALED
+    text: You've had 'a while' to think about a lot of things. I'm starting to worry
+      you're outpacing me on all of them.
+    once: 1
+    voClip: {fileID: 0}
+    speaker: CAL
+    crossingsDelay: 8
+  - id: followup_refused
+    trigger: 3
+    key: C3_W019_RILL_REFUSED
+    text: You never asked me again why I refused. I have been waiting. I think I
+      am relieved you didn't.
+    once: 1
+    voClip: {fileID: 0}
+    speaker: RILL
+    crossingsDelay: 6

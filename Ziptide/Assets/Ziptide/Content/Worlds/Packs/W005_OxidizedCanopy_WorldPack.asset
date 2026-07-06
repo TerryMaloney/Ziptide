@@ -21,7 +21,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9a22237aada457d49935434a3008d705, type: 2}
   spawnMarkers:
   - markerId: player
-    localPosition: {x: 0, y: 0.11000001, z: 0}
+    localPosition: {x: 0, y: 0.030000009, z: 0}
     localEulerAngles: {x: 0, y: 0, z: 0}
   - markerId: poi_story
     localPosition: {x: 79.36, y: -1.3273265, z: 59.52}
@@ -39,13 +39,13 @@ MonoBehaviour:
     localPosition: {x: 149.77621, y: -1.5289699, z: -8.190508}
     localEulerAngles: {x: 0, y: 0, z: 0}
   - markerId: poi_ruin
-    localPosition: {x: -145.51009, y: 0.28719345, z: 77.79341}
+    localPosition: {x: -145.51009, y: 0.080000006, z: 77.79341}
     localEulerAngles: {x: 0, y: 0, z: 0}
   - markerId: poi_cave
     localPosition: {x: -99.009796, y: -3.6132252, z: -185.19466}
     localEulerAngles: {x: 0, y: 0, z: 0}
   - markerId: poi_berth
-    localPosition: {x: 0, y: 0.16, z: 0}
+    localPosition: {x: 0, y: 0.080000006, z: 0}
     localEulerAngles: {x: 0, y: 0, z: 0}
   collectibles: []
   choices: []

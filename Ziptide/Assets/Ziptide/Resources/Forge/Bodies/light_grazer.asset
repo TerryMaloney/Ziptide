@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32f74e0f803346e5a914dbe6a9955020, type: 3}
+  m_Name: light_grazer
+  m_EditorClassIdentifier: 
+  bodyId: light_grazer
+  coreParts:
+  - name: Bell
+    op: 4
+    size: {x: 0.4, y: 0.34, z: 0.4}
+    bevel: 1
+    segments: 12
+    wallThickness: 0.01
+    profile: []
+    position: {x: 0, y: 0.34, z: 0}
+    eulerRotation: {x: 0, y: 0, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+    mirrorX: 0
+    paletteSlot: 1
+    smooth: 1
+  - name: Underbell
+    op: 4
+    size: {x: 0.3, y: 0.16, z: 0.3}
+    bevel: 1
+    segments: 10
+    wallThickness: 0.01
+    profile: []
+    position: {x: 0, y: 0.2, z: 0}
+    eulerRotation: {x: 0, y: 0, z: 0}
+    scale: {x: 1, y: 1, z: 1}
+    mirrorX: 0
+    paletteSlot: 2
+    smooth: 1
+  limbs:
+  - name: TentacleFront
+    attachLocal: {x: 0.11, y: 0.18, z: 0.09}
+    chainDirection: {x: 0.3, y: -1, z: 0.18}
+    role: 2
+    mirrorX: 1
+    segments:
+    - size: {x: 0.035, y: 0.16, z: 0.035}
+      paletteSlot: 0
+    - size: {x: 0.022, y: 0.14, z: 0.022}
+      paletteSlot: 0
+  - name: TentacleRear
+    attachLocal: {x: 0.11, y: 0.18, z: -0.09}
+    chainDirection: {x: 0.35, y: -1, z: -0.22}
+    role: 2
+    mirrorX: 1
+    segments:
+    - size: {x: 0.035, y: 0.16, z: 0.035}
+      paletteSlot: 0
+    - size: {x: 0.022, y: 0.14, z: 0.022}
+      paletteSlot: 0
+  palette:
+  - {r: 0.3, g: 0.42, b: 0.32, a: 1}
+  - {r: 0.62, g: 0.78, b: 0.58, a: 1}
+  - {r: 0.45, g: 0.6, b: 0.45, a: 1}
+  - {r: 0.55, g: 1, b: 0.6, a: 1}
+  slotStyles: []
+  budgetTris: 10000
+  eyeLocal: {x: 0, y: 0.36, z: 0.19}
+  eyeRadius: 0.045
+  eyePaletteSlot: 3

@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bfaf860a3b5d2241a0d59d1b4780e49, type: 3}
-  m_Name: Sandbox_GravityGun
+  m_Script: {fileID: 11500000, guid: 320e29a7fc554d15b152546f5388da00, type: 3}
+  m_Name: BreakerBlade
   m_EditorClassIdentifier: 
-  itemId: gravity_gun
+  itemId: breaker_blade
   modelPrefab: {fileID: 0}
   forgeRecipeId: 
-  mass: 0.45
+  mass: 0.5
   colliderSizeOverride: {x: 0, y: 0, z: 0}
   visualScale: {x: 0, y: 0, z: 0}
   visualColor: {r: 0, g: 0, b: 0, a: 0}
@@ -23,10 +23,8 @@ MonoBehaviour:
   muzzleLocalPos: {x: 0, y: 0, z: 0}
   gripLocalEuler: {x: 0, y: 0, z: 0}
   laserSightColor: {r: 0, g: 0, b: 0, a: 0}
-  range: 25
-  fireCooldown: 0.6
-  launchForce: 14
-  upwardBias: 4
-  hapticAmplitude: 0.7
-  hapticDuration: 0.12
-  fireClip: {fileID: 0}
+  kind: 3
+  fireCooldown: 1.2
+  netThrowSpeed: 9
+  swingSpeed: 1.6
+  beamThickness: 0.05
