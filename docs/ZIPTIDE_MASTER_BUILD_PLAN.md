@@ -209,6 +209,19 @@ _Boot.unity:
 
 ### 3.1 Required ScriptableObject Fields (WorldPackDefinition)
 
+> ⚠️ **SCHEMA DRIFT NOTE (added 2026-07-06, Story Bible Lock pass):** this is the ORIGINAL aspirational
+> sketch from early planning. The schema that actually shipped is leaner and lives in the real
+> `WorldPackDefinition` class (`Content/Runtime/WorldPacks/WorldPackDefinition.cs`) — it does NOT have
+> `chapter`, `worldType`, `hazardType`, `enemyType`, `keyResource`, `revelationText`,
+> `revelationDelivery`, `rillBehaviorNote`, `microgameSlots`, `voLinesBudgeted`, or most of the fields
+> below. **Do not author against this list.** The real source of truth for a world's data shape is
+> `docs/storyboard/WORLD_DATA.md` §0 (the record schema) plus the live class + `WorldJobLibrary.cs`/
+> `WorldLayoutLibrary.cs` (the actual authoring libraries). §3.2 (scene components) and §3.3 (flag
+> system) below remain accurate and in force. §12's canonical 80-world table (id/chapter/type) is
+> unaffected — this note only concerns the ScriptableObject *field list*, kept below for historical
+> reference (it shows the original design intent some fields like `hazardType`/`skySignature` evolved
+> from).
+
 **Identity**
 - `packId` (string) — unique slug, e.g. "W001"
 - `displayName` (string) — shown in travel UI

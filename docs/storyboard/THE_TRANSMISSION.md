@@ -5,10 +5,13 @@ it at the end. It integrates Terry's "You Are the Scientist" addition (2026-06-2
 nothing here replaces the Ch.1–6 journey; it deepens the reveal and adds the personal engine the cosmic
 endings were missing.
 
-> **Status: PROPOSED — Terry to sign off.** Integration decisions (locked with Terry this session):
-> (1) **deep end-reveal** — Cal plays as the mercenary tech; the truth lands in the endgame; (2) **the two
-> scientists ARE the Architects**; (3) **the partner is the ending's engine**; (4) keep canon vocabulary,
-> fold in only *the Transmission*, the *Ouroboros* motif, and the *ambiguous voice* (no second glossary).
+> **Status: CANON — locked 2026-07-06** (Story Bible Lock pass, HANDOFF gggg). Integration decisions
+> (locked with Terry): (1) **deep end-reveal** — Cal plays as the mercenary tech; the truth lands in the
+> endgame; (2) **the two scientists ARE the Architects**; (3) **the partner is the ending's engine**;
+> (4) keep canon vocabulary, fold in only *the Transmission*, the *Ouroboros* motif, and the *ambiguous
+> voice* (no second glossary). This session also gave the near-confession (§5) a real home (W053,
+> `CHAPTER_7_RILL.md`) and tightened the Earth Approach + the four endings into full scenes — see
+> `CHAPTER_8-12_ENDGAME.md`.
 
 ---
 

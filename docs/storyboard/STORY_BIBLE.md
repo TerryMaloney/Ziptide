@@ -6,10 +6,12 @@ the fiction* so story, map, and gameplay are one thing. It **honors** the existi
 (`ZIPTIDE_MASTER_BUILD_PLAN.md` §4–§14, `design/STORY_AND_HOOKS.md`, `storyboard/W001_ToxicCity/STORY.md`)
 and only resolves what was open.
 
-> ⭐ **Status: PROPOSED — awaiting Terry's review.** Once Terry signs off, this is canon and the per-world
-> docs inherit from it. Tone target (locked with Terry): **all-ages, story-deep** — non-lethal/stun
-> combat, no gore, kid-playable, but with the emotional + philosophical weight a paying-attention player
-> loves. *Halo's awe + Fallout's worldbuilding, minus the mature content.* It should feel like playing a movie.
+> ⭐ **Status: CANON — locked 2026-07-06.** Terry signed off (Story Bible Lock pass, HANDOFF gggg); this
+> is the standing truth and every per-world doc inherits from it. Future changes go through the same
+> gate (a Terry-reviewed edit here), not silent drift in a world doc. Tone target: **all-ages,
+> story-deep** — non-lethal/stun combat, no gore, kid-playable, but with the emotional + philosophical
+> weight a paying-attention player loves. *Halo's awe + Fallout's worldbuilding, minus the mature
+> content.* It should feel like playing a movie.
 >
 > 🔑 **The identity layer sits UNDER this bible — see [`THE_TRANSMISSION.md`](THE_TRANSMISSION.md).** The
 > Ch.1–6 journey below plays exactly as written; the endgame reveals Cal is **the Debugger** — one of the
@@ -183,20 +185,24 @@ emotional**, not graphic. Wonder first (every sky should make you stop), melanch
 RILL's dry glitches. A kid can play it as "fix robots on cool planets"; an adult catches that it's about
 consciousness, captivity, and what we owe the things we make.
 
-## 10. Canon honor list (do not contradict) + what this Bible newly locks
+## 10. Canon honor list (do not contradict) + what this Bible locks
 **Honor (already canon):** RILL's 5 memory states + 12 arc beats (W001/004/009/013/019/024/028/037/039/
 051/062/068); the chapter gates; Wake Guild/Mara/Sable/Wardens/Architects; the Bloom older than the
 Architects; ~100 `ZiptideFlags`; the 4-ending branch W063→W068; **W028 no-job** & **W057 transit-only**.
-**Newly locked here (review me):** the Shell/contained-universe frame; Architects = used builders;
+**Locked here (2026-07-06):** the Shell/contained-universe frame; Architects = used builders;
 Earth = the observers' lab; the Bloom = living memory; the Pattern = the universe waking; RILL = witness
 instrument; the in-fiction reason for every mechanic; the meaning of the four endings.
-**The identity layer (review me — `THE_TRANSMISSION.md`):** Cal = the Debugger (one of two lead
+**The identity layer (locked — `THE_TRANSMISSION.md`):** Cal = the Debugger (one of two lead
 Architects); self-inflicted amnesia; the Transmission self-message + de-garble mechanic; the trapped
 partner as the endings' engine; the Ouroboros recursion; the ambiguous voice.
-**Identity-layer details now DECIDED** (recommended defaults, Terry can override — `THE_TRANSMISSION.md`):
-the partner crossed to pull the Debugger out and was stranded on the far side (*she went in for you*); the
-Observers stay passive except one endgame escalation; the voice resolves to one fixed person (you = the
-Debugger) at the name moment.
+**Identity-layer details locked** (`THE_TRANSMISSION.md`): the partner crossed to pull the Debugger out
+and was stranded on the far side (*she went in for you*); the Observers stay passive except one endgame
+escalation; the voice resolves to one fixed person (you = the Debugger) at the name moment.
+**A light pre-endgame seed added in the Story Bible Lock pass (2026-07-06):** the Ouroboros (Cal has
+done this before) gets one subtle plant before the endgame reveal — see `CHAPTER_7_RILL.md` W053 and
+the tightened `CHAPTER_8-12_ENDGAME.md` — so the twist recontextualizes rather than arriving cold. The
+full Ouroboros truth stays the DLC's exclusive real estate (W075 The Cal Archive); the base-game seed
+is a chill, not an explanation.
 **Still deliberately open** (deepen per-world as we build): exact Architect employer, Sable's leader
 face, the specific W024 color, DLC W069–W080 content.
 
