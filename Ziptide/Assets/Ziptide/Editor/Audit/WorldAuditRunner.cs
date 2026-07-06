@@ -101,6 +101,7 @@ namespace Ziptide.Editor.Audit
                     SkyVistaAuditRules.Run(sceneReport);
                     ExperienceAuditRules.Run(sceneReport); // Quality Bar P1f gates
                     BuildingAuditRules.Run(sceneReport);   // ARCHITECTURE V2.5 H1 gates
+                    WorldContentAuditRules.Run(sceneReport); // nothing-ships-invisible gate (Test Day 1)
                 }
 
                 report.scenes.Add(sceneReport);

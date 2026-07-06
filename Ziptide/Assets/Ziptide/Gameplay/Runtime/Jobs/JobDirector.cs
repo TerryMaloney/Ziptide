@@ -162,6 +162,7 @@ namespace Ziptide.Gameplay
             var root = new GameObject("Gardens");
             root.transform.SetParent(transform);
             string worldId = gameObject.scene.name; // same key WorldRuntime uses for ECON_RESOLVE
+            GameObject first = null;
             foreach (var g in worldPack.gardens)
             {
                 if (g == null) continue;
@@ -169,7 +170,12 @@ namespace Ziptide.Gameplay
                 go.transform.SetParent(root.transform);
                 go.transform.localPosition = g.localPosition;
                 go.AddComponent<GardenPlotRuntime>().Init(g, worldId);
+                if (first == null) first = go;
+                Debug.Log("ZIPTIDE: GARDEN_SPAWNED id=" + g.id + " pos=" + go.transform.position.ToString("F1"));
             }
+            // Test Day 1: gardens existed but were invisible in practice — a soft green beacon
+            // marks the first plot of each world so the system is discoverable.
+            if (first != null) ObjectiveBeacon.Attach(first, new Color(0.4f, 0.9f, 0.45f), 9f);
         }
 
         // Materialize the pack's placed extractors at runtime (bound to this world's idle-economy save).
