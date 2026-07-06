@@ -8,8 +8,10 @@ namespace Ziptide.Content
     /// <summary>How a RILL line is triggered.</summary>
     public enum RillTrigger
     {
-        WorldEnter, // key = scene name; fires when that world loads
-        FlagSet     // key = a ZiptideFlags name; fires when the profile gains that flag
+        WorldEnter,   // key = scene name; fires when that world loads
+        FlagSet,      // key = a ZiptideFlags name; fires when the profile gains that flag
+        GateDeparture // key = DESTINATION scene name (or "*" = any); fires as THE ZIPTIDE rises.
+                      // One line is picked at random from the matches (specific beats wildcard).
     }
 
     /// <summary>One deliverable RILL line (subtitle now; a VO clip slots in at the art/audio pass).</summary>

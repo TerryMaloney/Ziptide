@@ -112,6 +112,25 @@ namespace Ziptide.Editor.Patching
             Flag("react_quarters", "QUARTERS_FIRST_VISIT",
                  "Your quarters. The Guild manifest calls this compartment 'storage.' I disagree.");
 
+            // ── THE ZIPTIDE gate lines — RILL rides the tide with you ───────────────────────────────
+            // Wildcard pool (key "*", NOT once): one is picked at random each crossing, so the gate
+            // keeps a voice without repeating itself every time. Register: dry, 40,000 years old,
+            // still secretly delighted by the crossing.
+            void Gate(string id, string destSceneOrStar, string text, bool once) =>
+                L.Add(new RillLine { id = id, trigger = RillTrigger.GateDeparture,
+                                     key = destSceneOrStar, text = text, once = once });
+
+            Gate("gate_any_brace", "*", "Brace. The tide has us.", once: false);
+            Gate("gate_any_hold", "*", "Gate is open. Hold on to what you are holding.", once: false);
+            Gate("gate_any_first", "*", "Every crossing still feels like the first one. For both of us.", once: false);
+            Gate("gate_any_delight", "*", "Forty thousand years, and this part still delights me.", once: false);
+            Gate("gate_any_count", "*", "Crossing. Do not count the pillars — you will lose track on purpose.", once: false);
+
+            // Destination-specific gate lines (say once, before the generic pool takes over).
+            Gate("gate_w002", "W002_DryCistern", "Next stop: a hole in the ground with paperwork.", once: true);
+            Gate("gate_w005", "W005_OxidizedCanopy", "Green on the other side. Try not to repair anything that is alive.", once: true);
+            Gate("gate_w012", "W012_MarasLastJump", "Mara crossed from here last. Watch the sky when we land.", once: true);
+
             return L;
         }
     }

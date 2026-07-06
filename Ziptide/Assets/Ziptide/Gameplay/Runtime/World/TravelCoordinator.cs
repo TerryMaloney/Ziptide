@@ -104,6 +104,9 @@ namespace Ziptide.Gameplay
             {
                 float lead = ZiptideGateEffect.PlayDeparture(rig.transform.position, destName,
                     destHorizon, destZenith);
+                // RILL rides the tide — her line starts over the rise and carries across the cut
+                // (she lives on the persistent rig).
+                RillCompanion.OnGateDeparture(sceneName);
                 yield return new WaitForSeconds(lead);
             }
 

@@ -71,6 +71,40 @@ namespace Ziptide.Gameplay
 
         // ── Line selection ───────────────────────────────────────────────────
 
+        /// <summary>THE ZIPTIDE is rising — RILL speaks over the tide. Destination-specific lines
+        /// beat the wildcard pool; one match is picked at random so crossings stay fresh. RILL
+        /// lives on the persistent rig, so the subtitle carries across the scene cut.</summary>
+        public static void OnGateDeparture(string destSceneName)
+        {
+            var rill = Object.FindObjectOfType<RillCompanion>();
+            if (rill != null) rill.EnqueueGateLine(destSceneName);
+        }
+
+        private void EnqueueGateLine(string destSceneName)
+        {
+            if (_library == null) return;
+            var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;
+
+            _scratch.Clear();
+            _library.Collect(RillTrigger.GateDeparture, destSceneName, _scratch);
+            // Drop already-said once-lines BEFORE the wildcard fallback, so a spent specific
+            // line doesn't silence the generic pool.
+            for (int i = _scratch.Count - 1; i >= 0; i--)
+                if (_scratch[i].once && profile != null && profile.HasFlag(SaidFlagPrefix + _scratch[i].id))
+                    _scratch.RemoveAt(i);
+            if (_scratch.Count == 0)
+                _library.Collect(RillTrigger.GateDeparture, "*", _scratch);
+            if (_scratch.Count == 0) return;
+
+            var line = _scratch[Random.Range(0, _scratch.Count)];
+            if (line.once && profile != null)
+            {
+                if (profile.HasFlag(SaidFlagPrefix + line.id)) return;
+                profile.SetFlag(SaidFlagPrefix + line.id);
+            }
+            _pending.Enqueue(line);
+        }
+
         private void EnqueueMatching(RillTrigger trigger, string key)
         {
             if (_library == null) return;

@@ -44,7 +44,11 @@
   BECOMES the destination sky as it gathers (wall=horizon, streaks=zenith, brightness-floored
   so cave-black worlds still read as energy); arrival cools from the crest into the new
   world's sky. Manifest regenerates on every build (BuildAndroid hook already existed);
-  (2) RILL gate lines ("brace!") via RillLineAuthor;
+  (2) ~~RILL gate lines~~ **DONE v5**: new `RillTrigger.GateDeparture` (key = destination
+  scene, `"*"` = wildcard pool; one random pick per crossing, specific-once lines beat the
+  pool) + 5 generic "riding the tide" lines + 3 destination-once lines in RillLineAuthor +
+  `RillCompanion.OnGateDeparture` called from the travel coroutine — her subtitle starts over
+  the rise and carries across the cut (state lives on the persistent rig);
   (3) ~~destination name floating in the crest~~ **DONE v3** (`36ed663`+fix): TextMesh label
   (characterSize law: 0.045 × 64) fades in above the ring during the dial-in, billboards to the
   camera, burns away into the crest — names resolved via `DevWorldManifest` displayName;
