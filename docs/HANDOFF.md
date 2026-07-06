@@ -28,6 +28,26 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-06 (vvvv) — architect (Opus 4.8): 🌱 BANK PULL — garden harvest timing (fresh bonus + overripe decay), live + tested
+Terry: "go with whatever makes the most sense." Sensible call = stop hardening infra and deliver
+VISIBLE depth on the part he named first (the garden), the safe way — pure logic + data, no
+device-only risk. Additions Bank GARDEN #4/#5.
+- **Shipped, LIVE on every harvest automatically:** `GardenService.TimingMultiplier`/`TimingOf` +
+  `HarvestTiming{Prime,Fresh,Overripe}` on `HarvestPlantResult` — a fresh pull (≤2 min after ready)
+  pays +25%; a neglected crop decays past the 15-min overripe onset toward a 50% floor and **never
+  dies** (all-ages). Wired into `GardenService.Harvest`, which `GardenPlotRuntime` already calls +
+  logs (`GARDEN_HARVEST mult=` now reflects timing) — so it's active with ZERO runtime edit. Defaults
+  are sensible constants (guaranteed active) and per-plant override-able via two new PlantDefinition
+  fields (0 = use default; robust to existing-asset serialization). **9 EditMode tests.**
+- **Why this shape:** GardenService is the pure, already-tested core; the change is additive
+  (existing plots keep working, tend multiplier still stacks) and CI-provable. The only follow-up is
+  a device-pass VISUAL (an overripe plant slumping / a fresh one glowing) — a GardenPlotRuntime
+  one-liner whoever's on the headset can add; the MECHANIC and its credits are already real.
+- **Bank state:** GARDEN #4/#5 struck in `docs/additions/GARDEN_50.md`. Prior architecture pulls:
+  GamePool (`94f74ac` ✅), POI reachability (`54c9330` ✅). Loop still: idea → tested commit → verify.
+- **Note (cross-lane):** garden is nominally the story lane, but the change is additive-pure and
+  garden hasn't been touched since P3 — low collision. Announced here per the shared-file rule.
+- **Commit:** this push on `terry-local-wip`.
 ### 2026-07-06 (uuuu) — Fable 5 (MP track takeover): ⚔️ MP100 OPENS — the hundred-improvements board + THE MELEE PAIR ships as wave 1
 Terry's directive: "look at our multiplayer mode/arena/pvp... This needs to be tip top. I want a
 hundred improvements" + "find some good places for some melee weapons... instead of replacing

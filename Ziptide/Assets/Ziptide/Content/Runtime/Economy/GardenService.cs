@@ -24,12 +24,17 @@ namespace Ziptide.Content
         ToolCannotWorkPlant, // tool.worksOn restricts to other ids
     }
 
+    /// <summary>How well-timed a harvest was (Additions Bank GARDEN #4/#5) — Fresh pays a bonus,
+    /// Overripe pays less. Surfaced on the result so the scene can colour the plant / log it.</summary>
+    public enum HarvestTiming { Prime, Fresh, Overripe }
+
     /// <summary>Outcome of harvesting a plot.</summary>
     public struct HarvestPlantResult
     {
         public HarvestPlantStatus status;
-        public double yieldMultiplier; // multiplier actually applied
+        public double yieldMultiplier; // multiplier actually applied (tend × timing)
         public int yieldEntries;       // resource lines credited
+        public HarvestTiming timing;   // Fresh / Prime / Overripe at the moment of harvest
         public bool Success => status == HarvestPlantStatus.Success;
 
         public static HarvestPlantResult Fail(HarvestPlantStatus status)
@@ -49,6 +54,15 @@ namespace Ziptide.Content
     {
         private const double TendYieldBonusPerPower = 0.25;   // each tend tool adds 0.25 * power to the yield multiplier
         private const double TendGrowthCreditSeconds = 60.0;  // each tend tool grants 60s * power of growth credit (speed)
+
+        // ── Harvest timing (Additions Bank GARDEN #4/#5) — rewards checking your crops. Applied to
+        // EVERY harvest by default; per-plant overridable via PlantDefinition. Non-lethal/all-ages:
+        // an ignored crop only ever decays toward a floor, it never dies. ──
+        public const double DefaultFreshWindowSeconds = 120.0;    // harvest within 2 min of ready → bonus
+        public const double FreshBonus = 0.25;                    // +25% yield for a fresh pull
+        public const double DefaultOverripeAfterSeconds = 900.0;  // 15 min after ready it starts to spoil
+        public const double OverripeDecaySeconds = 900.0;         // then decays over the next 15 min
+        public const double OverripeFloor = 0.5;                  // never below 50% — you never lose the crop
 
         /// <summary>Plant a seed: appends a fresh <see cref="PlotState"/> to the world and returns it.</summary>
         public static PlotState Plant(WorldState world, PlantDefinition plant, long nowUnix)
@@ -117,7 +131,9 @@ namespace Ziptide.Content
             HarvestPlantStatus gate = CanHarvest(plot, plant, tool, nowUnix);
             if (gate != HarvestPlantStatus.Success) return HarvestPlantResult.Fail(gate);
 
-            double mult = plot.yieldMultiplier > 0 ? plot.yieldMultiplier : 1.0;
+            double tend = plot.yieldMultiplier > 0 ? plot.yieldMultiplier : 1.0;
+            double timingMult = TimingMultiplier(plot, plant, nowUnix);
+            double mult = tend * timingMult;
             int entries = 0;
             if (plant.harvestYield != null)
             {
@@ -131,7 +147,56 @@ namespace Ziptide.Content
                 }
             }
             plot.harvested = true;
-            return new HarvestPlantResult { status = HarvestPlantStatus.Success, yieldMultiplier = mult, yieldEntries = entries };
+            return new HarvestPlantResult
+            {
+                status = HarvestPlantStatus.Success,
+                yieldMultiplier = mult,
+                yieldEntries = entries,
+                timing = TimingOf(plot, plant, nowUnix),
+            };
+        }
+
+        // ── Harvest timing (pure; GARDEN #4/#5) ──────────────────────────────────────────────────
+
+        /// <summary>Unix time this plot becomes harvest-ready.</summary>
+        public static long ReadyAtUnix(PlotState plot)
+            => plot == null ? 0 : plot.plantedAtUnix + (long)plot.growSeconds;
+
+        private static double FreshWindow(PlantDefinition plant)
+            => (plant != null && plant.freshWindowSecondsOverride > 0)
+                ? plant.freshWindowSecondsOverride : DefaultFreshWindowSeconds;
+
+        private static double OverripeAfter(PlantDefinition plant)
+            => (plant != null && plant.overripeAfterSecondsOverride > 0)
+                ? plant.overripeAfterSecondsOverride : DefaultOverripeAfterSeconds;
+
+        /// <summary>Classify how well-timed a harvest at <paramref name="nowUnix"/> is.</summary>
+        public static HarvestTiming TimingOf(PlotState plot, PlantDefinition plant, long nowUnix)
+        {
+            if (plot == null) return HarvestTiming.Prime;
+            double sinceReady = nowUnix - ReadyAtUnix(plot);
+            if (sinceReady < 0) return HarvestTiming.Prime;          // not ready (harvest is gated anyway)
+            if (sinceReady <= FreshWindow(plant)) return HarvestTiming.Fresh;
+            if (sinceReady >= OverripeAfter(plant)) return HarvestTiming.Overripe;
+            return HarvestTiming.Prime;
+        }
+
+        /// <summary>The yield multiplier from harvest timing: fresh pays a bonus, overripe decays toward
+        /// the floor. 1.0 while prime or before ready.</summary>
+        public static double TimingMultiplier(PlotState plot, PlantDefinition plant, long nowUnix)
+        {
+            if (plot == null) return 1.0;
+            double sinceReady = nowUnix - ReadyAtUnix(plot);
+            if (sinceReady < 0) return 1.0;
+            if (sinceReady <= FreshWindow(plant)) return 1.0 + FreshBonus;
+
+            double overAfter = OverripeAfter(plant);
+            if (sinceReady < overAfter) return 1.0;
+
+            double t = (sinceReady - overAfter) / OverripeDecaySeconds; // 0..1 across the decay window
+            if (t < 0) t = 0;
+            if (t > 1) t = 1;
+            return 1.0 - (1.0 - OverripeFloor) * t;
         }
 
         private static bool ToolWorksOnPlant(PlantDefinition plant, ToolDefinition tool)

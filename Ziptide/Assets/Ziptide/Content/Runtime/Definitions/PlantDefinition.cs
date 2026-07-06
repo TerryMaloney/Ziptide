@@ -20,5 +20,14 @@ namespace Ziptide.Content
 
         [Tooltip("Tool function required to harvest.")]
         public ToolFunction harvestWith = ToolFunction.Harvest;
+
+        [Header("Harvest timing (Additions Bank GARDEN #4/#5 — 0 = use the garden default)")]
+        [Tooltip("Fresh-harvest window override in seconds after ready. Harvest within it for a yield " +
+                 "bonus. 0 = use GardenService.DefaultFreshWindowSeconds.")]
+        public double freshWindowSecondsOverride = 0;
+
+        [Tooltip("Overripe onset override in seconds after ready. Past it, yield decays toward a floor " +
+                 "(never dies — all-ages). 0 = use GardenService.DefaultOverripeAfterSeconds.")]
+        public double overripeAfterSecondsOverride = 0;
     }
 }
