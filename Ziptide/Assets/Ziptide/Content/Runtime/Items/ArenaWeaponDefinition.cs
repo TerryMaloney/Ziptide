@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Ziptide.Content
 {
-    public enum ArenaWeaponKind { StaticNet, SonicThumper, PrismBeam }
+    public enum ArenaWeaponKind { StaticNet, SonicThumper, PrismBeam, BreakerBlade, TidePike }
 
     /// <summary>
     /// The A4 arsenal weapons (design docs/design/ABILITIES_AND_ARSENAL.md §1) as one data-driven

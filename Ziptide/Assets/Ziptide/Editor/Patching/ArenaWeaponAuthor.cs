@@ -23,6 +23,9 @@ namespace Ziptide.Editor.Patching
             made += Ensure("static_net", ArenaWeaponKind.StaticNet, cooldown: 1.4f);
             made += Ensure("sonic_thumper", ArenaWeaponKind.SonicThumper, cooldown: 1.2f);
             made += Ensure("prism_beam", ArenaWeaponKind.PrismBeam, cooldown: 0.0f); // prism paces itself (charge+cd)
+            // The melee pair (MP100 wave 1) — timing lives in PvpRules (Blade/Pike debounce), not here.
+            made += Ensure("breaker_blade", ArenaWeaponKind.BreakerBlade, cooldown: 0.0f);
+            made += Ensure("tide_pike", ArenaWeaponKind.TidePike, cooldown: 0.0f);
             if (made > 0) { AssetDatabase.SaveAssets(); AssetDatabase.Refresh(); }
             Debug.Log("[Ziptide] ArenaWeaponAuthor: " + made + " new asset(s); existing left untouched.");
         }

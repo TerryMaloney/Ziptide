@@ -323,6 +323,18 @@ namespace Ziptide.Gameplay
                     grip = new Vector3(0f, -0.02f, -0.10f);
                     muzzle = new Vector3(0f, 0f, 0.18f);
                     break;
+                case ArenaWeaponKind.BreakerBlade:
+                    scale = new Vector3(0.035f, 0.10f, 0.62f);       // flat 1H salvage blade
+                    color = new Color(0.55f, 0.85f, 0.95f);
+                    grip = new Vector3(0f, -0.02f, -0.24f);
+                    muzzle = new Vector3(0f, 0f, 0.31f);             // the tip — the contact point
+                    break;
+                case ArenaWeaponKind.TidePike:
+                    scale = new Vector3(0.045f, 0.045f, 1.15f);      // long two-hand-feel shaft
+                    color = new Color(0.25f, 0.6f, 0.65f);
+                    grip = new Vector3(0f, 0f, -0.38f);
+                    muzzle = new Vector3(0f, 0f, 0.58f);             // the point of the thrust
+                    break;
                 default: // StaticNet
                     scale = new Vector3(0.09f, 0.06f, 0.24f);        // wide-mouth lobber
                     color = new Color(0.3f, 0.85f, 0.5f);
@@ -369,6 +381,8 @@ namespace Ziptide.Gameplay
             {
                 case ArenaWeaponKind.SonicThumper: go.AddComponent<SonicThumperRuntime>(); break;
                 case ArenaWeaponKind.PrismBeam: go.AddComponent<PrismBeamRuntime>(); break;
+                case ArenaWeaponKind.BreakerBlade:
+                case ArenaWeaponKind.TidePike: go.AddComponent<MeleeWeaponRuntime>(); break;
                 default: go.AddComponent<StaticNetGunRuntime>(); break;
             }
 

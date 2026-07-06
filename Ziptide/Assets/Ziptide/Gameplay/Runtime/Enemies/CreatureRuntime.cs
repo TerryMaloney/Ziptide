@@ -89,6 +89,19 @@ namespace Ziptide.Gameplay
                 _health -= TaserDamage;
                 Shock(TaserStunSeconds);
             }
+            else if (weapon == PvpWeapon.BreakerBlade)
+            {
+                // Contact melee: light per-hit (the debounce in MeleeWeaponRuntime paces the DPS),
+                // a small stagger-shove so a landed swing visibly moves the fight.
+                _health -= PvpCombatant.DamageFor(weapon);
+                transform.position += new Vector3(dir.x, 0f, dir.z).normalized * 0.3f;
+            }
+            else if (weapon == PvpWeapon.TidePike)
+            {
+                // A committed thrust: taser-tier damage + a real poke-back along the shaft line.
+                _health -= PvpCombatant.DamageFor(weapon);
+                transform.position += new Vector3(dir.x, 0f, dir.z).normalized * 0.75f;
+            }
             else
             {
                 _health -= GravityDamage;

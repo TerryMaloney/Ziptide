@@ -1,7 +1,8 @@
 namespace Ziptide.Multiplayer
 {
-    /// <summary>Every PvP weapon and the damage each applies (A4 added the arsenal trio).</summary>
-    public enum PvpWeapon { Taser, Gravity, StaticNet, SonicThumper, PrismBeam }
+    /// <summary>Every PvP weapon and the damage each applies (A4 added the arsenal trio; the melee
+    /// pair — BreakerBlade contact swings, TidePike thrusts — joined 2026-07-06, MP100 wave 1).</summary>
+    public enum PvpWeapon { Taser, Gravity, StaticNet, SonicThumper, PrismBeam, BreakerBlade, TidePike }
 
     /// <summary>
     /// Pure per-player combat state: health pool + damage intake + respawn. No Unity, no netcode, so the
@@ -48,6 +49,8 @@ namespace Ziptide.Multiplayer
                 case PvpWeapon.StaticNet: return PvpRules.StaticNetDamage;
                 case PvpWeapon.SonicThumper: return PvpRules.SonicThumperDamage;
                 case PvpWeapon.PrismBeam: return PvpRules.PrismBeamDamage;
+                case PvpWeapon.BreakerBlade: return PvpRules.BreakerBladeDamage;
+                case PvpWeapon.TidePike: return PvpRules.TidePikeDamage;
                 default: return PvpRules.GravityDamage;
             }
         }

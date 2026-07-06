@@ -62,12 +62,13 @@ namespace Ziptide.Tests.EditMode
         }
 
         [Test]
-        public void GunGame_DefaultLadder_RunsAllSixWeapons()
+        public void GunGame_DefaultLadder_RunsTheArsenalAndEndsOnTheBlade()
         {
             var g = new GunGameState(playerCount: 2);
-            Assert.AreEqual(6, g.Ladder.Count);
+            Assert.AreEqual(7, g.Ladder.Count);
             Assert.AreEqual("taser_dart_gun", g.Ladder[0]);
             Assert.AreEqual("prism_beam", g.Ladder[5]);
+            Assert.AreEqual("breaker_blade", g.Ladder[6], "the classic finish — the last kill must be a contact swing");
         }
 
         // ── King of the Hill ─────────────────────────────────────────────────

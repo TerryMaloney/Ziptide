@@ -20,8 +20,10 @@ namespace Ziptide.Multiplayer.Modes
             _rung = new int[Math.Max(2, playerCount)];
         }
 
+        // The classic gun-game finish: the last rung is the melee blade — win the match with a
+        // contact swing or don't win it at all (MP100 wave 1 added the rung).
         public static readonly string[] DefaultLadder =
-            { "taser_dart_gun", "pistol", "gravity_gun", "static_net", "sonic_thumper", "prism_beam" };
+            { "taser_dart_gun", "pistol", "gravity_gun", "static_net", "sonic_thumper", "prism_beam", "breaker_blade" };
 
         public int Rung(int player) => _rung[player];
         public string CurrentWeapon(int player) => Ladder[Math.Min(_rung[player], Ladder.Count - 1)];

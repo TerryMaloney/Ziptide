@@ -171,6 +171,24 @@ namespace Ziptide.Gameplay
             }
 
             bool los = HasLineOfSight();
+
+            // Ears (MP100 wave 1): weapons report noise through PvpNoise; a fresh noise in earshot
+            // finally feeds the HeardFire hook that shipped silent with the A1 brain. A noise INSIDE
+            // melee reach also counts as an incoming threat — a swung blade next to you IS a threat,
+            // even though the dart scan can't see it (no projectile to scan).
+            bool heard = false; Vector3 heardAt = Vector3.zero;
+            bool meleeThreat = false; Vector3 meleeDir = Vector3.zero;
+            if (PvpNoise.TryGetRecent(out Vector3 noisePos, out _))
+            {
+                float noiseDist = Vector3.Distance(transform.position, noisePos);
+                if (noiseDist <= (float)PvpRules.NoiseEarshotMeters) { heard = true; heardAt = noisePos; }
+                if (noiseDist <= (float)PvpRules.BladeReach * 3f)
+                {
+                    meleeThreat = true;
+                    meleeDir = (transform.position - noisePos).normalized; // threat travels toward me
+                }
+            }
+
             var perception = new BotPerception
             {
                 Now = Time.time,
@@ -180,12 +198,13 @@ namespace Ziptide.Gameplay
                 CanSeeTarget = los,
                 TargetPos = ToVec(playerPos),
                 TargetVel = ToVec(_playerVel),
-                IncomingThreat = _cachedThreat,
-                ThreatVel = ToVec(_cachedThreatVel),
+                IncomingThreat = _cachedThreat || meleeThreat,
+                ThreatVel = meleeThreat && !_cachedThreat ? ToVec(-meleeDir) : ToVec(_cachedThreatVel),
                 HasCover = _cachedHasCover,
                 NearestCoverPos = ToVec(_cachedCoverPos),
                 AtMoveTarget = FlatDist(transform.position, _moveTarget) < 1.2f,
-                HeardFire = false, // hook for A3 multi-bot: fire events feed this
+                HeardFire = heard,
+                HeardFireAt = ToVec(heardAt),
                 PatrolPoint = ToVec(NextPatrolPoint()),
             };
 

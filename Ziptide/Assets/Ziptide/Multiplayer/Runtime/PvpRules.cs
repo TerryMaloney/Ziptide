@@ -45,5 +45,23 @@ namespace Ziptide.Multiplayer
         public const double PrismChargeSeconds = 1.2;     // hold-to-charge before the beam fires
         public const double PrismCooldownSeconds = 2.5;
         public const double PrismRange = 30.0;
+
+        // ── The melee pair (MP100 wave 1, 2026-07-06 — Terry: "find good places for melee weapons").
+        // TRUE contact melee, unlike the thumper's positional AoE: the blade/pike only hits what the
+        // swing actually reaches. Counters: both need you INSIDE their reach — range beats them; the
+        // pike's thrust is a straight line — sidestep it.
+        public const int BreakerBladeDamage = 1;          // fast 1H contact swings — DPS through risk
+        public const int TidePikeDamage = 2;              // slow committed thrusts — taser-tier per hit
+        public const double BladeContactDebounce = 0.45;  // per-TARGET re-hit window during a swing
+        public const double BladeReach = 0.9;             // contact sphere radius at the blade tip
+        public const double PikeThrustDebounce = 0.9;     // recovery between thrusts
+        public const double PikeReach = 1.6;              // thrust line length past the shaft tip
+        public const double MeleeSwingSpeed = 2.2;        // m/s of the tip that counts as a real swing
+        public const double PikeThrustSpeed = 2.6;        // m/s along the shaft axis for a thrust
+
+        // Bots hear nearby weapon noise (swings, thumps, net lands) and investigate — the earshot
+        // radius and how long a noise stays "fresh" for the perception tick.
+        public const double NoiseEarshotMeters = 15.0;
+        public const double NoiseFreshSeconds = 0.6;
     }
 }

@@ -49,6 +49,7 @@ namespace Ziptide.Gameplay
 
         private void Thump()
         {
+            PvpNoise.Report(transform.position); // bots hear the thump and investigate (MP100 wave 1)
             float r = (float)PvpRules.ThumperRadius;
             var hits = Physics.OverlapSphere(transform.position, r, ~0, QueryTriggerInteraction.Ignore);
             bool anyWall = false;
