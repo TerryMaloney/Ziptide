@@ -50,6 +50,13 @@
 | SOUL4 | **Sable gets a real voice** W007 (first contact, prickly) to W041 (the last stand, no regrets but slower) to W055 (peace, quieter than winning) | ✅ `7bc23e3` + `fc07d40` |
 | SOUL5 | **Warden defector named** (Aegis-Nine to "Nine") W037 (recognizes RILL, breaks cadence) to W043 (argues Cal's case at personal risk) to W049 (the naming payoff, rhymes with RILL's W051 without duplicating it) to W059 (closing callback to RILL's arc) | ✅ `7bc23e3` + `fc07d40` |
 | SOUL6 | Close: closing HANDOFF (mmmm) for Picasso/Architecture the bible's relationship/voice rules now govern all future dialogue for W013+ | ✅ this commit |
+| — | — **DEPTH PASS 2 — CLOSED 2026-07-06 (HANDOFF mmmm to nnnn).** Terry: Cal (the player) has never spoken a line anywhere; skies should show real "interstellar" space/planets. Real CODE this time (not narrative-only) — `Content`/`Gameplay`/`Editor` C# + docs. — | ✅ |
+| D2-1 | `RillLine.speaker` field (default RILL, zero migration risk) + pure `FormatSubtitle()`; `RillCompanion` uses it; `RillLineTests.cs` (3 tests, first EditMode coverage this system has had) | ✅ `ea00f2c` CI-green |
+| D2-2 | Cal's lines authored in `RillLineAuthor.cs` (`CalEnter`/`CalFlag`/`CalGate`) — ~24 banter/question lines paired with RILL's existing beats, Ch.0 through the four endings, dormant until each world ships | ✅ `ea00f2c` CI-green |
+| D2-3 | `docs/systems/VOICE_PIPELINE.md` (new) — the voClip stub-now/VO-later mechanism explained, exact steps to wire a real clip, casting/tone notes per character; `STORY_BIBLE.md` §3b updated to match | ✅ `ef1b27c` |
+| D2-4 | `WORLD_DATA.md` §4.1 — `Sky:` prose → `SkyVistaDefinition` field mapping table for W013+ authoring; `CHAPTER_7_RILL.md` W057 sharpened into a full-frame deep-space corridor shot | ✅ `f4e57cb` |
+| D2-5 | `SkyVistaLibrary.cs` W007 Sable Station retuned (second moon body + more stars/nebula, additive only); W012 deliberately untouched (already max intensity by design); `TERRY_RUNBOOK.md` delete+reseed step queued (create-only asset mechanism) | ✅ `f4e57cb` |
+| D2-6 | Close: closing HANDOFF (nnnn) for Picasso/Architecture — flags this as the first depth-pass touching real code, not just docs | ✅ this commit |
 
 ## ▶ RESUMING? — current state & exact next action
 - **Current:** **P0–P5 of the Quality Bar Program COMPLETE and CI-green** (menu/subtitle/release
@@ -61,6 +68,11 @@
   quoted at every signature beat, RILL's ambient-line voice guide in `STORY_BIBLE.md` §3b). W013+
   world authoring (M5) can proceed against a locked, emotionally-load-bearing bible. Zero code touched
   by either pass — next story author still needs to read `WORLD_DATA.md` §4 before authoring.
+  **DEPTH PASS 2 (D2-1..6) then closed** — this one DID touch code: Cal now has a `speaker`-tagged
+  line pipeline alongside RILL's (dormant, no VO cast — `docs/systems/VOICE_PIPELINE.md` is the
+  wiring guide for whoever casts either character), and W007 Sable Station's sky got a real second
+  body + more stars/nebula (needs a Unity-side delete+reseed, queued in `TERRY_RUNBOOK.md` §1).
+  Mara/Sable/Nine joining the same voice pipeline is the natural next content batch, not yet done.
 - **Next action:** **finish P4b** — the pure `FlightModel` core SHIPPED (`2bc39e0`, 11 tests;
   comfort laws are in the math). Remaining is routine-shaped: `ScenePatcherSpaceLane`
   (WorldStubGenerator pattern: cockpit deck + `__FLIGHT_WORLD` ring course + starfield) +

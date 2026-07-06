@@ -28,6 +28,59 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-06 (nnnn) — Sonnet 5 (Story/Ship track): 🗣 DEPTH PASS 2 closes — Cal talks back, and the sky finally looks like space
+Closes a third narrative/systems pass, opened right after (mmmm). Terry's directive: even after the
+Soul Pass gave Mara/Sable/the Warden real voices, Cal — the character the player actually IS — had
+never spoken a single line anywhere in the codebase, and he wasn't sure the game had any skies where
+you can actually see space or planets ("interstellar level skyscapes"). Two threads, both real code
+this time (not narrative-only like the last two passes) — flagging that explicitly since it's a
+change in scope from (gggg)/(hhhh)/(mmmm), which were docs-only by design.
+- **Thread 1 — Cal gets a voice (3 commits):**
+  1. `RillLine` (`Content/Runtime/Story/RillLineLibrary.cs`) gained a `speaker` field (default `"RILL"`,
+     zero migration risk — every line authored before today is unaffected) and a pure
+     `FormatSubtitle()` method; `RillCompanion.cs` uses it instead of a hardcoded `"RILL: "` prefix.
+     Added `RillLineTests.cs` (3 tests) — first EditMode coverage this system has ever had.
+  2. `RillLineAuthor.cs` now authors Cal's half of the conversation too (`CalEnter`/`CalFlag`/
+     `CalGate` — same trigger/key mechanics as RILL's own helpers) — ~24 lines of banter and real
+     questions paired with RILL's existing beats across Ch.0 through the four endings, dormant until
+     each world/flag ships, exactly like RILL's own forward-authored lines already were. Two
+     highlights: Cal asking "My memories, or yours?" right after RILL's Ch.6 Pattern warning (lands
+     close to Cal's own hidden identity without giving it away), and "RILL — you don't have to finish
+     that. Not tonight." right after RILL's Ch.7 near-confession cuts itself off.
+  3. `docs/systems/VOICE_PIPELINE.md` (new) — **the instructions Terry asked for, "for the future
+     model, across all voice aspects."** Explains that the subtitle-now/VO-later stub has been sitting
+     in `RillCompanion` since M1 and already works (`if (line.voClip != null) PlayClipAtPoint(...)`) —
+     nobody's cast yet, that's the only gap. Gives the exact steps to attach a real clip without
+     touching trigger/delivery code, a naming convention for clip files, and casting/tone notes per
+     character pointing at `STORY_BIBLE.md`. Also documents that Mara/Sable/Nine could join the SAME
+     pipeline the same way (`speaker` is a plain string) — not done this pass, flagged as the natural
+     next content batch. `STORY_BIBLE.md` §3b got the narrative-side update to match.
+- **Thread 2 — the sky actually looks like space (1 commit):** the vista rendering system
+  (`SkyVistaDefinition`/`SkyVistaLibrary.cs`) turned out to already support up to 3 celestial bodies,
+  nebula, starfield, and the Shell grid — richer than most of the 12 built worlds actually use. Did:
+  (a) `WORLD_DATA.md` §4.1 — a mapping table from a chapter's `Sky:` prose to the actual data fields,
+  so W013+ authoring reaches for this toolkit instead of a flat two-color gradient; (b) sharpened
+  `CHAPTER_7_RILL.md` W057 (Transit Void) into the game's one full-frame deep-space corridor shot;
+  (c) retuned W007 Sable Station in code — a second (moon) body + more stars/nebula for parallax,
+  additive only, same established palette. **W012 was deliberately left alone** — it's already at
+  max intensity by design ("the wall IS the point"); piling on more would dilute that staging.
+- **⚠️ Needs your hands:** `SkyVistaLibrary` is create-only — the code change to W007 won't show up
+  until the existing baked asset is deleted and the menu re-run. Queued in `TERRY_RUNBOOK.md` §1 as a
+  new checklist item (delete `W007_SableStation_Vista.asset` + `.meta`, run `Ziptide → Art → Author
+  Sky Vistas (missing only)`, commit the regenerated asset).
+- **📣 Cross-track (Picasso/Architecture):** this pass touched code in `Content/Runtime/Story/`,
+  `Gameplay/Runtime/Story/`, `Editor/Patching/RillLineAuthor.cs`, and `Editor/Patching/
+  SkyVistaLibrary.cs` — all additive, all CI-checked (the RILL/Cal commit is confirmed CI-green; the
+  docs+sky commits were still running CI at push time — check before building on top of them if
+  you're touching the same files). Nothing here changes any contract you depend on: `RillLine.speaker`
+  defaults to `"RILL"` so every existing call site behaves identically, and the sky retune is
+  additive within `BuildW007SableStation()` only.
+- **📣 Next model/operator:** if you're recording or wiring VO for ANY character, read
+  `docs/systems/VOICE_PIPELINE.md` first — it's the one doc, not scattered notes. If you're authoring
+  W013+ skies, read `WORLD_DATA.md` §4.1 before writing a flat gradient.
+- **Commit:** `ea00f2c` (Cal's voice, CI-green) → `ef1b27c` (voice pipeline doc + STORY_BIBLE) →
+  `f4e57cb` (sky depth) → this push (HANDOFF + SPRINT close).
+
 ### 2026-07-06 (mmmm) — Sonnet 5 (Story/Ship track): 💔 THE SOUL PASS closes — Mara, Sable, and the Warden defector finally speak
 Closes a second, deeper narrative pass opened right after (hhhh). Terry's directive on reviewing THE
 STORY BIBLE LOCK: the plot architecture is sound now, but the story is still "one-dimensional" — no
