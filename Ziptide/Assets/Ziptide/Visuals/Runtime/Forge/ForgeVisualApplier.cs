@@ -29,12 +29,6 @@ namespace Ziptide.Visuals
                 return false;
             }
 
-            if (!MeshCache.TryGetValue(recipeId, out var mesh) || mesh == null)
-            {
-                mesh = ForgeMesh.Build(recipe);
-                MeshCache[recipeId] = mesh;
-            }
-
             // Park the primitive look (root renderer only — children like rails/indicators keep theirs).
             var rootRenderer = item.GetComponent<MeshRenderer>();
             if (rootRenderer != null) rootRenderer.enabled = false;
@@ -46,14 +40,39 @@ namespace Ziptide.Visuals
             vis.transform.localRotation = Quaternion.identity;
             vis.transform.localScale = Vector3.one;
 
-            var mf = vis.GetComponent<MeshFilter>();
-            if (mf == null) mf = vis.AddComponent<MeshFilter>();
-            mf.sharedMesh = mesh;
+            // E1.4: prefer the BAKED look (single textured material, build-time ForgeBaker output).
+            // The runtime flat-color mesh stays as the dev fallback when no bake shipped.
+            var baked = Resources.Load<GameObject>("ForgeBaked/" + recipeId + "/prefab");
+            int tris;
+            if (baked != null)
+            {
+                for (int i = vis.transform.childCount - 1; i >= 0; i--)
+                    Object.Destroy(vis.transform.GetChild(i).gameObject);
+                var oldMf = vis.GetComponent<MeshFilter>();
+                if (oldMf != null) Object.Destroy(oldMf);
+                var oldMr = vis.GetComponent<MeshRenderer>();
+                if (oldMr != null) Object.Destroy(oldMr);
+                var look = Object.Instantiate(baked, vis.transform, false);
+                var lookMf = look.GetComponent<MeshFilter>();
+                tris = lookMf != null && lookMf.sharedMesh != null ? lookMf.sharedMesh.triangles.Length / 3 : 0;
+            }
+            else
+            {
+                if (!MeshCache.TryGetValue(recipeId, out var mesh) || mesh == null)
+                {
+                    mesh = ForgeMesh.Build(recipe);
+                    MeshCache[recipeId] = mesh;
+                }
+                var mf = vis.GetComponent<MeshFilter>();
+                if (mf == null) mf = vis.AddComponent<MeshFilter>();
+                mf.sharedMesh = mesh;
 
-            var mr = vis.GetComponent<MeshRenderer>();
-            if (mr == null) mr = vis.AddComponent<MeshRenderer>();
-            mr.sharedMaterials = ForgeMaterials.ForRecipe(recipe);
-            mr.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off; // Quest budget
+                var mr = vis.GetComponent<MeshRenderer>();
+                if (mr == null) mr = vis.AddComponent<MeshRenderer>();
+                mr.sharedMaterials = ForgeMaterials.ForRecipe(recipe);
+                mr.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off; // Quest budget
+                tris = mesh.triangles.Length / 3;
+            }
 
             // Snap existing socket-named children (Grip = XR attach, Muzzle = ray origin) to the
             // recipe's poses so the generated shape and the interaction points agree.
@@ -68,7 +87,7 @@ namespace Ziptide.Visuals
                 }
 
             Debug.Log("ZIPTIDE: FORGE_APPLIED id=" + recipeId + " item=" + item.name
-                + " tris=" + (mesh.triangles.Length / 3));
+                + " baked=" + (baked != null) + " tris=" + tris);
             return true;
         }
     }

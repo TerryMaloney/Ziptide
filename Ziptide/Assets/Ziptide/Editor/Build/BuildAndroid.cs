@@ -146,6 +146,10 @@ namespace Ziptide.Build
             // at their generated looks. ItemFactory applies them at spawn via ForgeVisualApplier.
             try { Ziptide.Editor.Patching.ForgeRecipeLibrary.EnsureAllAuthored(); Ziptide.Editor.Patching.ForgeAuthor.AssignAll(); }
             catch (Exception ex) { Debug.LogWarning("[Ziptide] Forge author warning: " + ex.Message); }
+            // E1.4: bake mesh+maps+material+prefab per recipe → Resources/ForgeBaked (gitignored,
+            // regenerated every build). The runtime applier prefers these textured looks on device.
+            try { Ziptide.Editor.Patching.ForgeBaker.BakeAll(); }
+            catch (Exception ex) { Debug.LogWarning("[Ziptide] Forge baker warning: " + ex.Message); }
             // R3: deterministic manifest + dependency reports → Builds/Reports (gitignored artifact).
             try { Ziptide.Editor.Patching.ForgeDependencyAuditor.WriteReports(); }
             catch (Exception ex) { Debug.LogWarning("[Ziptide] Forge dependency report warning: " + ex.Message); }
