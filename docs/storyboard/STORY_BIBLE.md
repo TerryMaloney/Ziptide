@@ -179,6 +179,10 @@ still lands (she's the alien standing on Earth). **Build note:** the Earth level
 late/endgame slot or the W064–W067 approach worlds as Earth-set); it needs an Earth art kit — design now,
 art later.
 
+**Full staged version:** this section is the compact summary. `CHAPTER_8-12_ENDGAME.md` (Story Bible Lock
+pass, 2026-07-06) has the complete scene-by-scene treatment of the Earth Approach and all four endings —
+that chapter file is authoritative for building it; keep this section in sync if either changes.
+
 ## 9. Tone charter (apply to every world)
 All-ages, story-deep. Non-lethal stun combat, no gore, no profanity. Stakes are **existential and
 emotional**, not graphic. Wonder first (every sky should make you stop), melancholy underneath, humor via
