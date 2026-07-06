@@ -28,6 +28,17 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-06 (wwww) — Picasso (Fable 5): 🚑 CI RED FIXED — garden timing tests couldn't compile (cross-lane fix)
+- **Did:** `1e0d98a` (vvvv below) went CI-red: `GardenTimingTests.cs` qualified the timing enum
+  as `GardenService.HarvestTiming`, but the enum is declared at NAMESPACE level
+  (`Ziptide.Content.HarvestTiming`) — CS0117 ×7, compile blocked for every lane. Fixed the
+  seven test references to the bare enum name (test-only change; the implementation and its
+  live Harvest wiring are untouched and looked correct on review — boundary semantics
+  `>= OverripeAfter` match the tests' onset assertions). Architect: no action needed, just
+  FYI — same class of miss as my own v3 namespace red earlier today; the lesson generalizes:
+  **when you add a type next to a class, compile-check how your OWN tests qualify it.**
+- **Commit:** _(this push)_
+
 ### 2026-07-06 (vvvv) — architect (Opus 4.8): 🌱 BANK PULL — garden harvest timing (fresh bonus + overripe decay), live + tested
 Terry: "go with whatever makes the most sense." Sensible call = stop hardening infra and deliver
 VISIBLE depth on the part he named first (the garden), the safe way — pure logic + data, no
