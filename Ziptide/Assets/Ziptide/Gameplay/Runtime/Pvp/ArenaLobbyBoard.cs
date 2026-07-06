@@ -57,7 +57,9 @@ namespace Ziptide.Gameplay
             panel.GetComponent<Collider>().enabled = false;
             Paint(panel, PanelColor);
 
-            MakeLabel("MATCH BOARD", new Vector3(0f, 1.5f + h / 2f + 0.12f, 0f), 0.09f);
+            // characterSize multiplies fontSize(64): 0.09/0.045 rendered ~6x oversize, sprawling
+            // every label across its neighbors (Test Day 1: "text that runs on top of other text").
+            MakeLabel("MATCH BOARD", new Vector3(0f, 1.5f + h / 2f + 0.12f, 0f), 0.022f);
 
             BuildRow(0, Row(0), ModeLabels());
             BuildRow(1, Row(1), UpperAll(Difficulties));
@@ -145,7 +147,7 @@ namespace Ziptide.Gameplay
             interactable.hoverEntered.AddListener(_ => Paint(go, TileHover));
             interactable.hoverExited.AddListener(_ => RefreshTintsAndStart(go, color));
 
-            MakeLabel(label, localPos + new Vector3(0f, 0f, -0.05f), 0.045f);
+            MakeLabel(label, localPos + new Vector3(0f, 0f, -0.05f), 0.011f);
             return r;
         }
 
