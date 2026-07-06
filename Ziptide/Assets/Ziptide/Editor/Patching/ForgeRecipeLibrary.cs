@@ -35,6 +35,10 @@ namespace Ziptide.Editor.Patching
             {
                 Spec("taser_gun_mk1", BuildTaserGunMk1),
                 Spec("tox_canal_stalker_01", BuildToxCanalStalker),
+                Spec("pistol_scrap_mk1", BuildPistolScrapMk1),
+                Spec("static_net_lobber", BuildStaticNetLobber),
+                Spec("sonic_thumper_maul", BuildSonicThumperMaul),
+                Spec("prism_beam_rifle", BuildPrismBeamRifle),
             };
         }
 
@@ -258,6 +262,239 @@ namespace Ziptide.Editor.Patching
                 new ForgeSocket { name = "Eye", localPosition = new Vector3(0f, 0.42f, 0.38f) },
             };
 
+            return d;
+        }
+
+        // ── THE ARSENAL (Terry: "everything AAA") — every gun in the game gets a real recipe, so
+        // every gun inherits UVs, the four baked maps, and the E1.4 on-device textured look. ──────
+
+        private static ForgeRecipeDefinition BuildPistolScrapMk1()
+        {
+            var d = NewRecipe("pistol_scrap_mk1", ForgePalettes.FamilyToxicIndustrial,
+                new[] { "handheld", "standard" },
+                new[]
+                {
+                    new Color(0.17f, 0.18f, 0.20f), // 0 gunmetal frame
+                    new Color(0.55f, 0.56f, 0.58f), // 1 bare slide
+                    new Color(0.23f, 0.17f, 0.12f), // 2 stippled grip
+                    new Color(1f, 0.62f, 0.25f),    // 3 amber sight
+                },
+                budgetTris: 2000);
+            d.qualityState = ForgeQualityState.ProxyPlus;
+            d.storyRole = "Standard salvage sidearm — the working stiff's holdout.";
+            d.storyRefs = new[] { "salvage", "stun_combat" };
+            d.worldRuleRefs = new[] { "ToxicCity" };
+            d.tokenRefs = new[] { "gunmetal", "bare_steel" };
+            d.slotStyles = new[]
+            {
+                new ForgeStyleSpec { style = ForgeStyle.PaintedMetal, wear = 0.5f, grime = 0.4f, panelDensity = 2.5f },
+                new ForgeStyleSpec { style = ForgeStyle.BareMetal, wear = 0.7f, grime = 0.25f },
+                new ForgeStyleSpec { style = ForgeStyle.Chitin, cellSize = 0.07f, grime = 0.35f }, // stipple grip
+                new ForgeStyleSpec { style = ForgeStyle.GlowPanel, emissive = new Color(1f, 0.62f, 0.25f), emissiveIntensity = 2f },
+            };
+            d.parts = new[]
+            {
+                new ForgePart { name = "Frame", op = ForgeOp.BeveledBox, bevel = 0.004f,
+                    size = new Vector3(0.034f, 0.05f, 0.16f), position = Vector3.zero, paletteSlot = 0 },
+                new ForgePart { name = "Slide", op = ForgeOp.BeveledBox, bevel = 0.005f,
+                    size = new Vector3(0.037f, 0.03f, 0.17f), position = new Vector3(0f, 0.04f, 0f), paletteSlot = 1 },
+                new ForgePart { name = "SlideSerrations", op = ForgeOp.GreebleStrip, segments = 5,
+                    size = new Vector3(0.036f, 0.012f, 0.05f), position = new Vector3(0f, 0.056f, -0.05f), paletteSlot = 1 },
+                new ForgePart { name = "Barrel", op = ForgeOp.Cylinder, segments = 10,
+                    size = new Vector3(0.026f, 0.05f, 0.026f), position = new Vector3(0f, 0.045f, 0.095f),
+                    eulerRotation = new Vector3(90f, 0f, 0f), paletteSlot = 1 },
+                new ForgePart { name = "MuzzleRing", op = ForgeOp.Tube, segments = 10, wallThickness = 0.004f,
+                    size = new Vector3(0.034f, 0.02f, 0.034f), position = new Vector3(0f, 0.045f, 0.112f),
+                    eulerRotation = new Vector3(90f, 0f, 0f), paletteSlot = 0 },
+                new ForgePart { name = "Grip", op = ForgeOp.BeveledBox, bevel = 0.005f,
+                    size = new Vector3(0.03f, 0.095f, 0.042f), position = new Vector3(0f, -0.062f, -0.055f),
+                    eulerRotation = new Vector3(-18f, 0f, 0f), paletteSlot = 2 },
+                new ForgePart { name = "GripPlate", op = ForgeOp.BeveledBox, bevel = 0.002f,
+                    size = new Vector3(0.005f, 0.08f, 0.034f), position = new Vector3(0.018f, -0.062f, -0.055f),
+                    eulerRotation = new Vector3(-18f, 0f, 0f), mirrorX = true, paletteSlot = 0 },
+                new ForgePart { name = "TriggerGuard", op = ForgeOp.BeveledBox, bevel = 0.002f,
+                    size = new Vector3(0.008f, 0.008f, 0.055f), position = new Vector3(0f, -0.03f, -0.012f), paletteSlot = 0 },
+                new ForgePart { name = "Hammer", op = ForgeOp.BeveledBox, bevel = 0.002f,
+                    size = new Vector3(0.012f, 0.02f, 0.014f), position = new Vector3(0f, 0.052f, -0.09f), paletteSlot = 1 },
+                new ForgePart { name = "SightDot", op = ForgeOp.BeveledBox, bevel = 0.001f,
+                    size = new Vector3(0.006f, 0.008f, 0.01f), position = new Vector3(0f, 0.062f, -0.075f), paletteSlot = 3 },
+            };
+            d.sockets = new[]
+            {
+                new ForgeSocket { name = "Grip", localPosition = new Vector3(0f, -0.05f, -0.05f), localEuler = new Vector3(45f, 0f, 0f) },
+                new ForgeSocket { name = "Muzzle", localPosition = new Vector3(0f, 0.045f, 0.125f), localEuler = Vector3.zero },
+            };
+            return d;
+        }
+
+        private static ForgeRecipeDefinition BuildStaticNetLobber()
+        {
+            var d = NewRecipe("static_net_lobber", ForgePalettes.FamilyToxicIndustrial,
+                new[] { "handheld", "standard" },
+                new[]
+                {
+                    new Color(0.25f, 0.34f, 0.24f), // 0 moss-painted body
+                    new Color(0.36f, 0.28f, 0.20f), // 1 oxidized mouth
+                    new Color(0.30f, 0.45f, 0.30f), // 2 charge tank
+                    new Color(0.3f, 0.85f, 0.5f),   // 3 net-green glow
+                },
+                budgetTris: 2000);
+            d.qualityState = ForgeQualityState.ProxyPlus;
+            d.storyRole = "Wide-mouth static-net lobber — arena crowd control.";
+            d.storyRefs = new[] { "stun_combat", "arena" };
+            d.worldRuleRefs = new[] { "PvP_Arena01" };
+            d.tokenRefs = new[] { "moss_paint", "net_green" };
+            d.slotStyles = new[]
+            {
+                new ForgeStyleSpec { style = ForgeStyle.PaintedMetal, wear = 0.45f, grime = 0.5f, panelDensity = 2f },
+                new ForgeStyleSpec { style = ForgeStyle.RustedMetal, wear = 0.5f, grime = 0.5f },
+                new ForgeStyleSpec { style = ForgeStyle.Slime, grime = 0.3f },
+                new ForgeStyleSpec { style = ForgeStyle.GlowPanel, emissive = new Color(0.3f, 0.85f, 0.5f), emissiveIntensity = 2.2f },
+            };
+            d.parts = new[]
+            {
+                new ForgePart { name = "Body", op = ForgeOp.BeveledBox, bevel = 0.006f,
+                    size = new Vector3(0.09f, 0.075f, 0.2f), position = new Vector3(0f, 0f, -0.01f), paletteSlot = 0 },
+                new ForgePart { name = "TopCoils", op = ForgeOp.GreebleStrip, segments = 5,
+                    size = new Vector3(0.07f, 0.03f, 0.12f), position = new Vector3(0f, 0.055f, -0.02f), paletteSlot = 1 },
+                new ForgePart { name = "Mouth", op = ForgeOp.Tube, segments = 12, wallThickness = 0.009f,
+                    size = new Vector3(0.1f, 0.05f, 0.1f), position = new Vector3(0f, 0.01f, 0.115f),
+                    eulerRotation = new Vector3(90f, 0f, 0f), paletteSlot = 1 },
+                new ForgePart { name = "MouthCore", op = ForgeOp.Cylinder, segments = 12,
+                    size = new Vector3(0.07f, 0.012f, 0.07f), position = new Vector3(0f, 0.01f, 0.1f),
+                    eulerRotation = new Vector3(90f, 0f, 0f), paletteSlot = 3 },
+                new ForgePart { name = "Tank", op = ForgeOp.Cylinder, segments = 10,
+                    size = new Vector3(0.056f, 0.1f, 0.056f), position = new Vector3(0f, -0.055f, -0.05f),
+                    eulerRotation = new Vector3(90f, 0f, 0f), paletteSlot = 2 },
+                new ForgePart { name = "SideVents", op = ForgeOp.GreebleStrip, segments = 4,
+                    size = new Vector3(0.012f, 0.04f, 0.1f), position = new Vector3(0.052f, 0.012f, -0.03f),
+                    eulerRotation = new Vector3(0f, 0f, -90f), mirrorX = true, paletteSlot = 1 },
+                new ForgePart { name = "Grip", op = ForgeOp.BeveledBox, bevel = 0.005f,
+                    size = new Vector3(0.03f, 0.09f, 0.045f), position = new Vector3(0f, -0.072f, -0.1f),
+                    eulerRotation = new Vector3(-18f, 0f, 0f), paletteSlot = 0 },
+                new ForgePart { name = "TriggerGuard", op = ForgeOp.BeveledBox, bevel = 0.002f,
+                    size = new Vector3(0.008f, 0.01f, 0.06f), position = new Vector3(0f, -0.045f, -0.045f), paletteSlot = 0 },
+                new ForgePart { name = "StockPlate", op = ForgeOp.BeveledBox, bevel = 0.005f,
+                    size = new Vector3(0.055f, 0.055f, 0.03f), position = new Vector3(0f, 0f, -0.125f), paletteSlot = 1 },
+            };
+            d.sockets = new[]
+            {
+                new ForgeSocket { name = "Grip", localPosition = new Vector3(0f, -0.06f, -0.095f), localEuler = new Vector3(45f, 0f, 0f) },
+                new ForgeSocket { name = "Muzzle", localPosition = new Vector3(0f, 0.01f, 0.14f), localEuler = Vector3.zero },
+            };
+            return d;
+        }
+
+        private static ForgeRecipeDefinition BuildSonicThumperMaul()
+        {
+            var d = NewRecipe("sonic_thumper_maul", ForgePalettes.FamilyToxicIndustrial,
+                new[] { "handheld", "standard" },
+                new[]
+                {
+                    new Color(0.32f, 0.30f, 0.28f), // 0 iron head
+                    new Color(0.72f, 0.48f, 0.18f), // 1 hazard amber
+                    new Color(0.15f, 0.14f, 0.14f), // 2 wrapped haft
+                    new Color(1f, 0.62f, 0.25f),    // 3 resonator glow
+                },
+                budgetTris: 2000);
+            d.qualityState = ForgeQualityState.ProxyPlus;
+            d.storyRole = "Sonic thumper — a dockworker's breaching maul that hits like a subwoofer.";
+            d.storyRefs = new[] { "stun_combat", "arena" };
+            d.worldRuleRefs = new[] { "PvP_Arena01" };
+            d.tokenRefs = new[] { "hazard_amber", "iron" };
+            d.slotStyles = new[]
+            {
+                new ForgeStyleSpec { style = ForgeStyle.BareMetal, wear = 0.55f, grime = 0.45f },
+                new ForgeStyleSpec { style = ForgeStyle.PaintedMetal, wear = 0.6f, grime = 0.35f, panelDensity = 1.5f },
+                new ForgeStyleSpec { style = ForgeStyle.Chitin, cellSize = 0.06f, grime = 0.4f }, // grip wrap
+                new ForgeStyleSpec { style = ForgeStyle.GlowPanel, emissive = new Color(1f, 0.62f, 0.25f), emissiveIntensity = 2.4f },
+            };
+            d.parts = new[]
+            {
+                new ForgePart { name = "Haft", op = ForgeOp.Cylinder, segments = 10,
+                    size = new Vector3(0.032f, 0.26f, 0.032f), position = new Vector3(0f, 0f, -0.1f),
+                    eulerRotation = new Vector3(90f, 0f, 0f), paletteSlot = 2 },
+                new ForgePart { name = "PommelGlow", op = ForgeOp.Cylinder, segments = 10,
+                    size = new Vector3(0.038f, 0.016f, 0.038f), position = new Vector3(0f, 0f, -0.235f),
+                    eulerRotation = new Vector3(90f, 0f, 0f), paletteSlot = 3 },
+                new ForgePart { name = "Head", op = ForgeOp.BeveledBox, bevel = 0.01f,
+                    size = new Vector3(0.13f, 0.11f, 0.12f), position = new Vector3(0f, 0f, 0.1f), paletteSlot = 0 },
+                new ForgePart { name = "FacePlate", op = ForgeOp.GreebleStrip, segments = 4,
+                    size = new Vector3(0.11f, 0.02f, 0.09f), position = new Vector3(0f, 0f, 0.168f),
+                    eulerRotation = new Vector3(90f, 0f, 0f), paletteSlot = 1 },
+                new ForgePart { name = "RingFront", op = ForgeOp.Tube, segments = 12, wallThickness = 0.01f,
+                    size = new Vector3(0.15f, 0.022f, 0.15f), position = new Vector3(0f, 0f, 0.145f),
+                    eulerRotation = new Vector3(90f, 0f, 0f), paletteSlot = 1 },
+                new ForgePart { name = "RingBack", op = ForgeOp.Tube, segments = 12, wallThickness = 0.01f,
+                    size = new Vector3(0.15f, 0.022f, 0.15f), position = new Vector3(0f, 0f, 0.055f),
+                    eulerRotation = new Vector3(90f, 0f, 0f), paletteSlot = 1 },
+                new ForgePart { name = "TopFin", op = ForgeOp.Wedge,
+                    size = new Vector3(0.02f, 0.05f, 0.1f), position = new Vector3(0f, 0.075f, 0.1f), paletteSlot = 1 },
+                new ForgePart { name = "SideCell", op = ForgeOp.BeveledBox, bevel = 0.002f,
+                    size = new Vector3(0.012f, 0.03f, 0.06f), position = new Vector3(0.068f, 0f, 0.1f),
+                    mirrorX = true, paletteSlot = 3 },
+            };
+            d.sockets = new[]
+            {
+                new ForgeSocket { name = "Grip", localPosition = new Vector3(0f, 0f, -0.16f), localEuler = new Vector3(45f, 0f, 0f) },
+                new ForgeSocket { name = "Muzzle", localPosition = new Vector3(0f, 0f, 0.175f), localEuler = Vector3.zero },
+            };
+            return d;
+        }
+
+        private static ForgeRecipeDefinition BuildPrismBeamRifle()
+        {
+            var d = NewRecipe("prism_beam_rifle", ForgePalettes.FamilyToxicIndustrial,
+                new[] { "handheld", "standard" },
+                new[]
+                {
+                    new Color(0.22f, 0.20f, 0.26f), // 0 violet-gray chassis
+                    new Color(0.50f, 0.50f, 0.55f), // 1 bare fittings
+                    new Color(0.14f, 0.13f, 0.15f), // 2 grip
+                    new Color(0.85f, 0.35f, 0.9f),  // 3 prism magenta
+                },
+                budgetTris: 2000);
+            d.qualityState = ForgeQualityState.ProxyPlus;
+            d.storyRole = "Prism beam rifle — charge, aim, one refracted lance of light.";
+            d.storyRefs = new[] { "stun_combat", "arena" };
+            d.worldRuleRefs = new[] { "PvP_Arena01" };
+            d.tokenRefs = new[] { "prism_magenta" };
+            d.slotStyles = new[]
+            {
+                new ForgeStyleSpec { style = ForgeStyle.PaintedMetal, wear = 0.5f, grime = 0.3f, panelDensity = 3f },
+                new ForgeStyleSpec { style = ForgeStyle.BareMetal, wear = 0.6f, grime = 0.25f },
+                new ForgeStyleSpec { style = ForgeStyle.Chitin, cellSize = 0.07f, grime = 0.3f },
+                new ForgeStyleSpec { style = ForgeStyle.GlowPanel, emissive = new Color(0.85f, 0.35f, 0.9f), emissiveIntensity = 2.6f },
+            };
+            d.parts = new[]
+            {
+                new ForgePart { name = "Receiver", op = ForgeOp.BeveledBox, bevel = 0.005f,
+                    size = new Vector3(0.045f, 0.06f, 0.22f), position = new Vector3(0f, 0f, -0.03f), paletteSlot = 0 },
+                new ForgePart { name = "BarrelShroud", op = ForgeOp.BeveledBox, bevel = 0.005f,
+                    size = new Vector3(0.036f, 0.045f, 0.18f), position = new Vector3(0f, 0.005f, 0.14f), paletteSlot = 0 },
+                new ForgePart { name = "ShroudRibs", op = ForgeOp.GreebleStrip, segments = 6,
+                    size = new Vector3(0.03f, 0.015f, 0.14f), position = new Vector3(0f, 0.035f, 0.14f), paletteSlot = 1 },
+                new ForgePart { name = "ChargeCoil", op = ForgeOp.Tube, segments = 12, wallThickness = 0.006f,
+                    size = new Vector3(0.06f, 0.03f, 0.06f), position = new Vector3(0f, 0.005f, 0.2f),
+                    eulerRotation = new Vector3(90f, 0f, 0f), paletteSlot = 3 },
+                new ForgePart { name = "PrismHousing", op = ForgeOp.SphereSection, bevel = 1f, segments = 10, smooth = true,
+                    size = new Vector3(0.06f, 0.06f, 0.07f), position = new Vector3(0f, 0.005f, 0.245f), paletteSlot = 1 },
+                new ForgePart { name = "Crystal", op = ForgeOp.BeveledBox, bevel = 0.003f,
+                    size = new Vector3(0.02f, 0.02f, 0.05f), position = new Vector3(0f, 0.005f, 0.275f),
+                    eulerRotation = new Vector3(0f, 0f, 45f), paletteSlot = 3 },
+                new ForgePart { name = "Stock", op = ForgeOp.BeveledBox, bevel = 0.005f,
+                    size = new Vector3(0.035f, 0.055f, 0.09f), position = new Vector3(0f, -0.01f, -0.165f), paletteSlot = 1 },
+                new ForgePart { name = "Grip", op = ForgeOp.BeveledBox, bevel = 0.005f,
+                    size = new Vector3(0.028f, 0.09f, 0.04f), position = new Vector3(0f, -0.07f, -0.06f),
+                    eulerRotation = new Vector3(-20f, 0f, 0f), paletteSlot = 2 },
+                new ForgePart { name = "TopRail", op = ForgeOp.GreebleStrip, segments = 7,
+                    size = new Vector3(0.014f, 0.012f, 0.16f), position = new Vector3(0f, 0.052f, -0.01f), paletteSlot = 1 },
+            };
+            d.sockets = new[]
+            {
+                new ForgeSocket { name = "Grip", localPosition = new Vector3(0f, -0.058f, -0.055f), localEuler = new Vector3(45f, 0f, 0f) },
+                new ForgeSocket { name = "Muzzle", localPosition = new Vector3(0f, 0.005f, 0.29f), localEuler = Vector3.zero },
+            };
             return d;
         }
 
