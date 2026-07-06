@@ -25,6 +25,9 @@ namespace Ziptide.Gameplay
             var interactable = GetComponent<XRSimpleInteractable>();
             if (interactable != null)
                 interactable.selectEntered.AddListener(OnSelectEntered);
+
+            // "Use the kiosk to start" is only fair if you can FIND the kiosk (Test Day 1).
+            ObjectiveBeacon.Attach(gameObject, new Color(0.3f, 0.85f, 0.95f));
         }
 
         private void OnDestroy()
