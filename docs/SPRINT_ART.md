@@ -74,7 +74,7 @@ is the confirmed perf floor. The two qqq envelopes fold in as E5.1 (building mod
 | E1.4 | ForgeBaker (build-time bake → ASTC) + gitignore + applier prefers baked → **TEXTURES ON DEVICE** | ✅ `b93839e` — bake hooked in BuildAndroid; FORGE_APPLIED logs baked=true/false |
 | ARSENAL | pistol_scrap_mk1 · static_net_lobber · sonic_thumper_maul · prism_beam_rifle recipes + ForgeAuthor assignments (every gun textured+baked) | ✅ `797b5a3` — all four pass turnarounds (run `28793858850`); niggles boarded: maul haft thin, lobber side vents unclear |
 | AVATAR | PlayerAvatarRig — salvage gloves + chest rig (the player's skin) | ✅ `2d57076` — rig-ensured; QUARTERS recolors later |
-| E5.2 | PERF_BUDGET audit gate (independent — do anytime, 1 commit) | ⬜ |
+| E5.2 | PERF_BUDGET audit gate — tris/materials/renderers/lights per scene, warn at target / block at cap | ✅ `PerfBudgetAuditRules` + runner line (this commit) |
 | P2 | New ops (Capsule/Frustum/Torus/SweepSpline/OrganicBlob) + modifiers + Quest-3 class budgets | ⬜ |
 | P3 | ForgeCreatureBody + ForgeSkinnedBuilder + ⚠ coordination commit (forgeBodyId) + drone/swarmer bodies | ⬜ |
 | P4 | ForgeMotor (velocity-observing gaits/waves/breath/look-at/stun-droop) + booth pose shot | ⬜ |

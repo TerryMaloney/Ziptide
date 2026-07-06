@@ -28,6 +28,21 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-06 (jjjj) — Picasso (Fable 5): 🛡 E5.2 PERF GATE SHIPPED + the creature-skin envelope
+- **Did:** `PerfBudgetAuditRules` (FORGE II E5.2) — per-scene static tris/unique-materials/
+  renderers/lights vs QUEST_ART_AUDIO_PERFORMANCE_BUDGET: WARN over target, BLOCK over hard cap.
+  Runner line appended. Also arsenal photo-niggle tune (maul haft, lobber vents).
+- **TASK ENVELOPE — creature baked visuals (the last flat-on-device class):**
+  GOAL: creatures wear their Forge looks on device (stalker recipe is baked and waiting; drones
+  next). INPUTS: `CreatureBehaviorBase.Awake` (the P3-planned guarded early-out before
+  BuildVisuals), `CreatureDefinition` (+ additive `forgeRecipeId` string), the baked-prefab load
+  idiom from `ForgeVisualApplier` (Resources/ForgeBaked/&lt;id&gt;/prefab), P3 spec in
+  `FORGE_II_QUALITY_LEAP.md` (skinned bodies later; STATIC textured body now, first child so
+  DroneRuntime's single-renderer tint keeps working). ACCEPTANCE: a spawned creature with a
+  recipeId shows the textured body (FORGE_APPLIED-style log), primitives stay the fallback,
+  CI green. BUDGET: 1–2 commits + a drone recipe (~10 parts, rotor ring + emissive eye).
+- **Commit:** _(this one)_
+
 ### 2026-07-06 (iiii) — Picasso (Fable 5): 🎭 AAA PASS — the player's skin, TEXTURES ON DEVICE, the whole arsenal forged
 - **Did:** (1) `2d57076` **PlayerAvatarRig** — salvage gloves (7 parts/hand) + yaw-following chest
   rig; the player finally has a body. (2) `b93839e` **FORGE II E1.4 SHIPPED** — ForgeBaker bakes

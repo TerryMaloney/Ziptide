@@ -102,6 +102,7 @@ namespace Ziptide.Editor.Audit
                     ExperienceAuditRules.Run(sceneReport); // Quality Bar P1f gates
                     BuildingAuditRules.Run(sceneReport);   // ARCHITECTURE V2.5 H1 gates
                     WorldContentAuditRules.Run(sceneReport); // nothing-ships-invisible gate (Test Day 1)
+                    PerfBudgetAuditRules.Run(sceneReport);   // FORGE II E5.2 — Quest perf budgets
                 }
 
                 report.scenes.Add(sceneReport);
