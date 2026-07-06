@@ -181,7 +181,7 @@ namespace Ziptide.Gameplay
             {
                 var go = new GameObject("__RillSubtitle");
                 _text = go.AddComponent<TextMesh>();
-                _text.characterSize = 0.009f; // device pass: 0.012 read as "large and in your face"
+                _text.characterSize = 0.013f; // same apparent size as 0.009 @ 0.9 m, now at 1.3 m
                 _text.fontSize = 64;
                 _text.anchor = TextAnchor.MiddleCenter;
                 _text.alignment = TextAlignment.Center;
@@ -220,7 +220,9 @@ namespace Ziptide.Gameplay
             {
                 // Subtitle low-center (cinema subtitle zone — NOT mid-gaze), billboarded, with a
                 // short alpha fade-in so lines arrive instead of popping "in your face".
-                _text.transform.position = _cam.position + _cam.forward * 0.9f - _cam.up * 0.33f;
+                // Test Day 1: pushed deeper (0.9→1.3 m) and lower (~24° below gaze) so it sits at
+                // the bottom of the view like film subtitles; characterSize compensates the range.
+                _text.transform.position = _cam.position + _cam.forward * 1.3f - _cam.up * 0.58f;
                 _text.transform.rotation = Quaternion.LookRotation(_text.transform.position - _cam.position);
                 float alpha = _lineTimer > 0f ? Mathf.Clamp01((Time.time - _revealStarted) / 0.45f) : 1f;
                 var c = _text.color; c.a = alpha; _text.color = c;

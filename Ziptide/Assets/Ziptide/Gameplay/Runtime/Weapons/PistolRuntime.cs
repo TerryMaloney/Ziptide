@@ -84,12 +84,16 @@ namespace Ziptide.Gameplay
 
             var origin = _muzzle != null ? _muzzle.position : transform.position;
             var dir = _muzzle != null ? _muzzle.forward : transform.forward;
+            Vector3 tracerEnd = origin + dir * def.range;
             if (Physics.Raycast(origin, dir, out var hit, def.range))
             {
+                tracerEnd = hit.point;
                 var target = hit.collider.GetComponentInParent<TargetRuntime>();
                 if (target != null)
                     target.Hit(def.hitForce, hit.point);
             }
+            // Every shot is visible (Test Day 1: "shows nothing shooting out of it").
+            TracerFx.Spawn(origin, tracerEnd, new Color(1f, 0.85f, 0.45f));
 
             if (controllerInteractor != null)
                 controllerInteractor.SendHapticImpulse(def.hapticAmplitude, def.hapticDuration);
