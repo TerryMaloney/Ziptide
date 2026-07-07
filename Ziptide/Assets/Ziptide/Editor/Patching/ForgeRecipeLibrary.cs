@@ -606,11 +606,13 @@ namespace Ziptide.Editor.Patching
             };
             d.parts = new[]
             {
+                // Shaft spans the whole length so the head (front) and butt-cap (back) stay CONNECTED —
+                // v1 shipped exploded because a 0.34 shaft couldn't reach a head at +0.30 / cap at -0.34.
                 new ForgePart { name = "Shaft", op = ForgeOp.Cylinder, segments = 10,
-                    size = new Vector3(0.022f, 0.34f, 0.022f), position = new Vector3(0f, 0f, -0.02f),
+                    size = new Vector3(0.022f, 0.66f, 0.022f), position = new Vector3(0f, 0f, -0.02f),
                     eulerRotation = new Vector3(90f, 0f, 0f), paletteSlot = 0 },
                 new ForgePart { name = "ButtCap", op = ForgeOp.Cylinder, segments = 10,
-                    size = new Vector3(0.028f, 0.018f, 0.028f), position = new Vector3(0f, 0f, -0.35f),
+                    size = new Vector3(0.028f, 0.018f, 0.028f), position = new Vector3(0f, 0f, -0.345f),
                     eulerRotation = new Vector3(90f, 0f, 0f), paletteSlot = 2 },
                 new ForgePart { name = "Collar", op = ForgeOp.Tube, segments = 12, wallThickness = 0.008f,
                     size = new Vector3(0.05f, 0.03f, 0.05f), position = new Vector3(0f, 0f, 0.30f),
