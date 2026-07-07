@@ -60,17 +60,30 @@ sides. All open items are either intentional stubs (🔵, boarded) or low-severi
 
 ---
 
-## RECOMMENDED SAFEGUARDS → Phase 2 (SEPARATE approval; this is where "change without breaking" gets enforced)
-Turn this audit into automatic guards so the one-sided-seam class can't recur:
-1. **Promote the WARN-only gates to BLOCKER** once baselined: `WorldContentAuditRules`, `PerfBudgetAuditRules`,
-   `WorldReachabilityAuditRules`. (Run one clean audit to capture baselines, then flip WARN→BLOCKER.)
-2. **Extend `Editor/Validation/DependencyValidator` into a both-sides `WiringValidator`** that fails CI when:
-   - an `*Author/*Library/*Baker` defining `EnsureAllAuthored/AssignAll/BakeAll` is NOT called in
-     `BuildAndroid.PatchScenesThenAPK` (build-hook orphan);
-   - an `ItemDefinition.forgeRecipeId` / `creatureId` / bot-profile id does not resolve to a shipped asset;
-   - a `ForgeCreatureBody`/recipe/genome has no runtime consumer path;
-   - a `ZiptideFlags` constant has 0 grant or 0 consume (minus the whitelisted W013+ future set).
-3. **PR "both-sides checklist" template** — 4 boxes: producer hooked? consumer by-id? verifier (log/test/
-   gate)? map+HOW_TO row added? (Mirrors `WIRING_MAP` Part 4.)
-4. **Refresh cadence:** re-run this audit at each milestone close; the `WiringValidator` makes most of it
-   continuous, so the manual pass shrinks to reviewing new seams.
+## SAFEGUARDS — Phase 2 (STATUS: ✅ SHIPPED the automatic gate; gate-promotion deferred by design)
+
+**✅ SHIPPED — `Editor/Validation/WiringValidator.cs` + `Tests/EditMode/WiringValidatorTests.cs`** (runs
+every CI push, fails the build on a one-sided seam — the enforcement Terry asked for). It checks the
+deterministic, asset-based seams:
+- **Build-hook completeness** — every Editor type with a public-static `EnsureAllAuthored/EnsureAuthored/
+  AssignAll/BakeAll` is referenced in `BuildAndroid.PatchScenesThenAPK` (reflection + source scan).
+- **Item→recipe** — every `ItemDefinition.forgeRecipeId` resolves to a `Resources/Forge/<id>` recipe.
+- **Genome→creature** — every `ForgeCreatureBody` has a matching `Resources/Enemies/<id>` CreatureDefinition.
+Run manually via menu **Ziptide → Validate wiring**. Extend it with new deterministic checks (add a method,
+call it in `Validate`).
+
+**⏳ DEFERRED (needs a device/Unity baseline — correctly NOT flipped blind):**
+- **Promote WARN gates → BLOCKER** (`WorldContent`, `PerfBudget`, `Reachability`). These need a clean audit
+  on the REAL scenes to capture baselines; flipping them without that risks bricking every build (the exact
+  reason they're WARN). Procedure: Terry runs the world audit once → confirm 0 warnings → flip each gate's
+  severity. The WiringValidator already covers the *asset-wiring* class of check safely in CI, so this
+  deferral loses no wiring coverage — it's a perf/navigation concern, not a one-sided-seam concern.
+
+**NOT NEEDED (this repo pushes direct to `terry-local-wip`, no PR flow):** a PR-template checklist — the
+both-sides law lives in `WIRING_MAP.md` Part 4 instead.
+
+**Queued future checks for the validator** (deterministic, add when useful): `creatureId`/bot-profile id
+resolution; `ZiptideFlags` grant↔consume coverage (minus the whitelisted W013+ future set).
+
+**Refresh cadence:** the validator makes the wiring pass continuous; re-run the full manual audit only at
+milestone closes to catch non-deterministic seams (flags, scene content).

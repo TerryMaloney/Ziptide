@@ -28,6 +28,21 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-06 (bbbb2) - Picasso (Fable 5): PHASE 2 - the both-sides WiringValidator now FAILS CI on a one-sided seam
+- **Did (Terry: "do phase 2"):** `Editor/Validation/WiringValidator.cs` + `Tests/EditMode/WiringValidatorTests.cs`
+  - runs every CI push, hard-fails the build if a wiring seam is one-sided. Deterministic, asset/reflection
+  based (no device): (1) every asset author (EnsureAllAuthored/EnsureAuthored/AssignAll/BakeAll) is called
+  in `BuildAndroid.PatchScenesThenAPK`; (2) every `ItemDefinition.forgeRecipeId` resolves to a
+  `Resources/Forge` recipe; (3) every `ForgeCreatureBody` has a matching `Resources/Enemies` CreatureDefinition.
+  Menu: `Ziptide -> Validate wiring`. This is the guard that makes 'wired on one side' un-mergeable.
+- **Deferred BY DESIGN:** promoting the WARN-only audit gates (WorldContent/PerfBudget/Reachability) to
+  blockers needs a device/Unity baseline - flipping blind risks bricking every build (why they're WARN).
+  The validator already covers the asset-wiring class safely in CI. Promotion procedure is in FINDINGS.
+- **Extending it:** add a deterministic check method + call it in `Validate` (queued: creatureId/bot-profile
+  resolution, ZiptideFlags grant<->consume). Non-deterministic seams stay in the manual milestone-close audit.
+- **Commit:** _(this push - CI now exercises the validator; green = the codebase is wired both sides)._
+
+
 ### 2026-07-06 (aaaa2) — Picasso (Fable 5): 🔌 THE WIRING AUDIT — a both-sides map so parallel models stop shipping one-sided seams
 - **Why:** three models building in parallel kept producing "wired on one side but not the other" bugs
   (an author not build-hooked, an ID with no asset, a mesh with no consumer, the sandbox-boot bypass).

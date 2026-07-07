@@ -117,8 +117,10 @@ and fire when those worlds ship — 🔵 intentional. Not exhaustively both-side
 
 ### G. Audit-gate coverage — `Editor/Audit/WorldAuditRunner` + rules (the automated wiring surface)
 BLOCKER (fails build): world-rig-leak, spawn-safety, singleton-dup, travel-destination, city-geometry,
-Forge-recipe-missing, Sky-vista. **WARN-ONLY (pending promotion): WorldContent, PerfBudget, Reachability**
-— these are the Phase-2 promotion targets (see FINDINGS "Recommended safeguards").
+Forge-recipe-missing, Sky-vista. **WARN-ONLY (pending device baseline): WorldContent, PerfBudget,
+Reachability.** ✅ **`Editor/Validation/WiringValidator` (+ EditMode test) NOW FAILS CI** on the
+deterministic one-sided seams (build-hook orphan · item→recipe · genome→creature) — menu
+`Ziptide → Validate wiring`. See FINDINGS "SAFEGUARDS — Phase 2".
 
 ### H. Scene / Build Settings
 24 enabled scenes; `_Boot` index 0; boot target = `W000_DriftIn` (guarded by `BootConfigTests`). Every
