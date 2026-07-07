@@ -52,14 +52,23 @@ namespace Ziptide.Gameplay
         }
 
         /// <summary>
-        /// The grip pose every gun shares (ASSET_SWAP_PIPELINE §4): +45° X on the attach transform
-        /// so the barrel points where the index finger points, instead of down the controller body
-        /// (Test Day 1: "guns aim at whatever angle you picked them up at"). Definitions can
-        /// override per item via gripLocalEuler; zero means "use the convention".
+        /// The GUN grip tilt (ASSET_SWAP_PIPELINE §4): +45° X on the attach transform so the barrel
+        /// points where the index finger points, instead of down the controller body (Test Day 1:
+        /// "guns aim at whatever angle you picked them up at"). This is an AIM affordance — right for
+        /// anything you point-and-fire, wrong for melee (a sword/pike is an extension of the arm, not
+        /// a sight line), which is why melee passes a different factory default below.
         /// </summary>
-        private static void PoseGrip(Transform grip, Vector3 defEuler)
+        private static readonly Vector3 GunGripTilt = new Vector3(45f, 0f, 0f);
+
+        /// <summary>
+        /// Pose the grip attach transform. Definitions override per item via <c>gripLocalEuler</c>;
+        /// zero on the asset means "use <paramref name="factoryDefault"/>" (guns → the +45° aim tilt,
+        /// melee → straight along the hand). Decoupling melee from the gun tilt is the fix for the
+        /// melee pair being held at a gun's aim angle (Terry: "held differently than guns").
+        /// </summary>
+        private static void PoseGrip(Transform grip, Vector3 defEuler, Vector3 factoryDefault)
         {
-            grip.localRotation = Quaternion.Euler(Vec(defEuler, new Vector3(45f, 0f, 0f)));
+            grip.localRotation = Quaternion.Euler(Vec(defEuler, factoryDefault));
         }
 
         /// <summary>
@@ -183,7 +192,7 @@ namespace Ziptide.Gameplay
             var grip = new GameObject("Grip");
             grip.transform.SetParent(go.transform, false);
             grip.transform.localPosition = Vec(def.gripLocalPos, new Vector3(0f, -0.01f, -0.05f));
-            PoseGrip(grip.transform, def.gripLocalEuler);
+            PoseGrip(grip.transform, def.gripLocalEuler, GunGripTilt);
             grab.attachTransform = grip.transform;
 
             var itemRt = go.AddComponent<ItemRuntime>();
@@ -227,7 +236,7 @@ namespace Ziptide.Gameplay
             var grip = new GameObject("Grip");
             grip.transform.SetParent(go.transform, false);
             grip.transform.localPosition = Vec(def.gripLocalPos, new Vector3(0f, -0.01f, -0.06f));
-            PoseGrip(grip.transform, def.gripLocalEuler);
+            PoseGrip(grip.transform, def.gripLocalEuler, GunGripTilt);
             grab.attachTransform = grip.transform;
 
             var itemRt = go.AddComponent<ItemRuntime>();
@@ -270,7 +279,7 @@ namespace Ziptide.Gameplay
             var grip = new GameObject("Grip");
             grip.transform.SetParent(go.transform, false);
             grip.transform.localPosition = Vec(def.gripLocalPos, new Vector3(0f, -0.01f, -0.06f));
-            PoseGrip(grip.transform, def.gripLocalEuler);
+            PoseGrip(grip.transform, def.gripLocalEuler, GunGripTilt);
             grab.attachTransform = grip.transform;
 
             var itemRt = go.AddComponent<ItemRuntime>();
@@ -308,7 +317,11 @@ namespace Ziptide.Gameplay
         /// silhouettes/colors so each reads at a glance (green net-lobber / amber mallet / magenta prism).</summary>
         private static GameObject CreateArenaWeapon(ArenaWeaponDefinition def, Vector3 position)
         {
-            Vector3 scale; Color color; Vector3 grip; Vector3 muzzle;
+            // gripEuler: ranged arena weapons keep the gun aim-tilt (you point-and-fire them); the melee
+            // pair does NOT — a blade/pike is an extension of the arm, so each gets its own starting hold
+            // (Terry: "the placement and holding is going to be different than guns"). These melee angles
+            // are reasoned STARTING defaults — dial the exact feel on-device via ItemDefinition.gripLocalEuler.
+            Vector3 scale; Color color; Vector3 grip; Vector3 muzzle; Vector3 gripEuler;
             switch (def.kind)
             {
                 case ArenaWeaponKind.SonicThumper:
@@ -316,30 +329,35 @@ namespace Ziptide.Gameplay
                     color = new Color(1f, 0.62f, 0.25f);
                     grip = new Vector3(0f, -0.01f, -0.12f);
                     muzzle = new Vector3(0f, 0f, 0.17f);
+                    gripEuler = GunGripTilt;
                     break;
                 case ArenaWeaponKind.PrismBeam:
                     scale = new Vector3(0.06f, 0.08f, 0.34f);        // long prism rifle
                     color = new Color(0.85f, 0.35f, 0.9f);
                     grip = new Vector3(0f, -0.02f, -0.10f);
                     muzzle = new Vector3(0f, 0f, 0.18f);
+                    gripEuler = GunGripTilt;
                     break;
                 case ArenaWeaponKind.BreakerBlade:
                     scale = new Vector3(0.035f, 0.10f, 0.62f);       // flat 1H salvage blade
                     color = new Color(0.55f, 0.85f, 0.95f);
                     grip = new Vector3(0f, -0.02f, -0.24f);
                     muzzle = new Vector3(0f, 0f, 0.31f);             // the tip — the contact point
+                    gripEuler = new Vector3(70f, 0f, 0f);            // rides ABOVE the fist — a raised blade, not an aimed barrel
                     break;
                 case ArenaWeaponKind.TidePike:
                     scale = new Vector3(0.045f, 0.045f, 1.15f);      // long two-hand-feel shaft
                     color = new Color(0.25f, 0.6f, 0.65f);
                     grip = new Vector3(0f, 0f, -0.38f);
                     muzzle = new Vector3(0f, 0f, 0.58f);             // the point of the thrust
+                    gripEuler = new Vector3(30f, 0f, 0f);            // flatter than a gun — the tip LEADS on a straight thrust
                     break;
                 default: // StaticNet
                     scale = new Vector3(0.09f, 0.06f, 0.24f);        // wide-mouth lobber
                     color = new Color(0.3f, 0.85f, 0.5f);
                     grip = new Vector3(0f, -0.01f, -0.07f);
                     muzzle = new Vector3(0f, 0.01f, 0.13f);
+                    gripEuler = GunGripTilt;
                     break;
             }
 
@@ -367,7 +385,7 @@ namespace Ziptide.Gameplay
             var gripGo = new GameObject("Grip");
             gripGo.transform.SetParent(go.transform, false);
             gripGo.transform.localPosition = Vec(def.gripLocalPos, grip);
-            PoseGrip(gripGo.transform, def.gripLocalEuler);
+            PoseGrip(gripGo.transform, def.gripLocalEuler, gripEuler);
             grab.attachTransform = gripGo.transform;
 
             var itemRt = go.AddComponent<ItemRuntime>();
