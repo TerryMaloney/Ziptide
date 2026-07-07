@@ -27,6 +27,10 @@ namespace Ziptide.Editor.Patching
                 "Assets/Ziptide/Resources/Items/SonicThumper.asset", "sonic_thumper_maul"),
             new KeyValuePair<string, string>(
                 "Assets/Ziptide/Resources/Items/PrismBeam.asset", "prism_beam_rifle"),
+            new KeyValuePair<string, string>(
+                "Assets/Ziptide/Resources/Items/BreakerBlade.asset", "breaker_blade_mk1"),
+            new KeyValuePair<string, string>(
+                "Assets/Ziptide/Resources/Items/TidePike.asset", "tide_pike_mk1"),
         };
 
         /// <summary>R2: LOCK = a human approval action. Bakes the current content hash as the

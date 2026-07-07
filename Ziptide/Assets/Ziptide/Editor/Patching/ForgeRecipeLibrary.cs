@@ -39,6 +39,8 @@ namespace Ziptide.Editor.Patching
                 Spec("static_net_lobber", BuildStaticNetLobber),
                 Spec("sonic_thumper_maul", BuildSonicThumperMaul),
                 Spec("prism_beam_rifle", BuildPrismBeamRifle),
+                Spec("breaker_blade_mk1", BuildBreakerBlade),
+                Spec("tide_pike_mk1", BuildTidePike),
             };
         }
 
@@ -517,6 +519,118 @@ namespace Ziptide.Editor.Patching
                 eulerRotation = Quaternion.FromToRotation(Vector3.up, d / len).eulerAngles,
                 mirrorX = true, paletteSlot = paletteSlot
             };
+        }
+
+        /// <summary>
+        /// Breaker Blade — a salvage energy cleaver (the melee pair, MP lane). Wrapped haft + gunmetal
+        /// crossguard + a broad steel blade with a glowing CYAN energy edge running its length to a
+        /// wedge tip (the runbook's "flat cyan blade"). Blade forward +Z, haft back -Z. ~56 cm.
+        /// </summary>
+        private static ForgeRecipeDefinition BuildBreakerBlade()
+        {
+            var d = NewRecipe("breaker_blade_mk1", ForgePalettes.FamilyToxicIndustrial,
+                new[] { "handheld", "standard", "melee" },
+                new[]
+                {
+                    new Color(0.13f, 0.13f, 0.15f), // 0 wrapped haft (dark)
+                    new Color(0.56f, 0.61f, 0.67f), // 1 blade steel
+                    new Color(0.30f, 0.32f, 0.36f), // 2 gunmetal fittings
+                    new Color(0.35f, 0.85f, 0.95f), // 3 cyan energy edge
+                },
+                budgetTris: 2000);
+            d.qualityState = ForgeQualityState.ProxyPlus;
+            d.storyRole = "Breaker Blade — a scavenged breaching cleaver with a lit energy edge; true contact melee.";
+            d.storyRefs = new[] { "melee_combat", "arena" };
+            d.worldRuleRefs = new[] { "PvP_Arena01" };
+            d.tokenRefs = new[] { "cyan_energy", "salvage" };
+            d.slotStyles = new[]
+            {
+                new ForgeStyleSpec { style = ForgeStyle.Chitin, cellSize = 0.06f, grime = 0.4f },        // grip wrap
+                new ForgeStyleSpec { style = ForgeStyle.BareMetal, wear = 0.5f, grime = 0.35f },          // blade
+                new ForgeStyleSpec { style = ForgeStyle.PaintedMetal, wear = 0.55f, grime = 0.4f, panelDensity = 1.2f },
+                new ForgeStyleSpec { style = ForgeStyle.GlowPanel, emissive = new Color(0.35f, 0.85f, 0.95f), emissiveIntensity = 2.6f },
+            };
+            d.parts = new[]
+            {
+                new ForgePart { name = "Haft", op = ForgeOp.Cylinder, segments = 10,
+                    size = new Vector3(0.03f, 0.13f, 0.03f), position = new Vector3(0f, 0f, -0.14f),
+                    eulerRotation = new Vector3(90f, 0f, 0f), paletteSlot = 0 },
+                new ForgePart { name = "Pommel", op = ForgeOp.Cylinder, segments = 10,
+                    size = new Vector3(0.038f, 0.018f, 0.038f), position = new Vector3(0f, 0f, -0.205f),
+                    eulerRotation = new Vector3(90f, 0f, 0f), paletteSlot = 2 },
+                new ForgePart { name = "Crossguard", op = ForgeOp.BeveledBox, bevel = 0.004f,
+                    size = new Vector3(0.15f, 0.03f, 0.035f), position = new Vector3(0f, 0f, -0.06f), paletteSlot = 2 },
+                new ForgePart { name = "Blade", op = ForgeOp.BeveledBox, bevel = 0.006f,
+                    size = new Vector3(0.014f, 0.085f, 0.40f), position = new Vector3(0f, 0f, 0.17f), paletteSlot = 1 },
+                new ForgePart { name = "Tip", op = ForgeOp.Wedge,
+                    size = new Vector3(0.014f, 0.085f, 0.08f), position = new Vector3(0f, 0f, 0.41f), paletteSlot = 1 },
+                new ForgePart { name = "EdgeGlow", op = ForgeOp.BeveledBox, bevel = 0.004f,
+                    size = new Vector3(0.02f, 0.028f, 0.40f), position = new Vector3(0f, 0.03f, 0.17f), paletteSlot = 3 },
+            };
+            d.sockets = new[]
+            {
+                new ForgeSocket { name = "Grip", localPosition = new Vector3(0f, 0f, -0.14f), localEuler = new Vector3(45f, 0f, 0f) },
+                new ForgeSocket { name = "Muzzle", localPosition = new Vector3(0f, 0f, 0.45f), localEuler = Vector3.zero },
+            };
+            return d;
+        }
+
+        /// <summary>
+        /// Tide Pike — a long tidal thrust pike (the melee pair's REACH identity). Dark wrapped shaft +
+        /// bronze collar + a leaf spearhead with teal energy runnels + swept-back barbs. Head forward +Z.
+        /// ~74 cm (the long one). Grip in the rear third; Muzzle at the point.
+        /// </summary>
+        private static ForgeRecipeDefinition BuildTidePike()
+        {
+            var d = NewRecipe("tide_pike_mk1", ForgePalettes.FamilyToxicIndustrial,
+                new[] { "handheld", "standard", "melee" },
+                new[]
+                {
+                    new Color(0.14f, 0.15f, 0.16f), // 0 dark shaft
+                    new Color(0.50f, 0.56f, 0.60f), // 1 head steel
+                    new Color(0.45f, 0.38f, 0.24f), // 2 bronze fittings
+                    new Color(0.30f, 0.80f, 0.85f), // 3 teal tidal glow
+                },
+                budgetTris: 2000);
+            d.qualityState = ForgeQualityState.ProxyPlus;
+            d.storyRole = "Tide Pike — a long reaching thrust-spear; the tidefront's boarding pike.";
+            d.storyRefs = new[] { "melee_combat", "arena" };
+            d.worldRuleRefs = new[] { "PvP_Arena01" };
+            d.tokenRefs = new[] { "teal_energy", "bronze" };
+            d.slotStyles = new[]
+            {
+                new ForgeStyleSpec { style = ForgeStyle.Chitin, cellSize = 0.05f, grime = 0.45f },        // shaft wrap
+                new ForgeStyleSpec { style = ForgeStyle.BareMetal, wear = 0.5f, grime = 0.3f },            // head
+                new ForgeStyleSpec { style = ForgeStyle.PaintedMetal, wear = 0.6f, grime = 0.4f },         // bronze
+                new ForgeStyleSpec { style = ForgeStyle.GlowPanel, emissive = new Color(0.30f, 0.80f, 0.85f), emissiveIntensity = 2.4f },
+            };
+            d.parts = new[]
+            {
+                new ForgePart { name = "Shaft", op = ForgeOp.Cylinder, segments = 10,
+                    size = new Vector3(0.022f, 0.34f, 0.022f), position = new Vector3(0f, 0f, -0.02f),
+                    eulerRotation = new Vector3(90f, 0f, 0f), paletteSlot = 0 },
+                new ForgePart { name = "ButtCap", op = ForgeOp.Cylinder, segments = 10,
+                    size = new Vector3(0.028f, 0.018f, 0.028f), position = new Vector3(0f, 0f, -0.35f),
+                    eulerRotation = new Vector3(90f, 0f, 0f), paletteSlot = 2 },
+                new ForgePart { name = "Collar", op = ForgeOp.Tube, segments = 12, wallThickness = 0.008f,
+                    size = new Vector3(0.05f, 0.03f, 0.05f), position = new Vector3(0f, 0f, 0.30f),
+                    eulerRotation = new Vector3(90f, 0f, 0f), paletteSlot = 2 },
+                new ForgePart { name = "Head", op = ForgeOp.BeveledBox, bevel = 0.006f,
+                    size = new Vector3(0.014f, 0.062f, 0.18f), position = new Vector3(0f, 0f, 0.42f), paletteSlot = 1 },
+                new ForgePart { name = "HeadTip", op = ForgeOp.Wedge,
+                    size = new Vector3(0.014f, 0.062f, 0.09f), position = new Vector3(0f, 0f, 0.55f), paletteSlot = 1 },
+                new ForgePart { name = "Barb", op = ForgeOp.Wedge,
+                    size = new Vector3(0.012f, 0.028f, 0.06f), position = new Vector3(0.03f, 0f, 0.34f),
+                    eulerRotation = new Vector3(0f, 200f, 0f), mirrorX = true, paletteSlot = 2 },
+                new ForgePart { name = "HeadGlow", op = ForgeOp.BeveledBox, bevel = 0.003f,
+                    size = new Vector3(0.02f, 0.016f, 0.17f), position = new Vector3(0f, 0f, 0.42f), paletteSlot = 3 },
+            };
+            d.sockets = new[]
+            {
+                new ForgeSocket { name = "Grip", localPosition = new Vector3(0f, 0f, -0.12f), localEuler = new Vector3(45f, 0f, 0f) },
+                new ForgeSocket { name = "Muzzle", localPosition = new Vector3(0f, 0f, 0.59f), localEuler = Vector3.zero },
+            };
+            return d;
         }
 
         private static ForgeRecipeDefinition NewRecipe(string id, string family, string[] tags, Color[] palette, int budgetTris)

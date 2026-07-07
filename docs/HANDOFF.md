@@ -28,6 +28,19 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-06 (cccc2) - Picasso (Fable 5): the melee pair gets forged (Breaker Blade + Tide Pike)
+- **Why (autonomous, photo-verifiable, no device):** the wiring audit flagged the melee pair shipping as
+  primitives (a visible stub - the blade is in every story starter rack). Forging them is proven skill
+  (5 guns done), touches no behavior, and the forge booth renders recipes from code so I can iterate solo.
+- **Did:** `breaker_blade_mk1` (salvage energy cleaver: wrapped haft + gunmetal crossguard + broad steel
+  blade with a glowing CYAN energy edge to a wedge tip) + `tide_pike_mk1` (long tidal thrust pike: dark
+  shaft + bronze collar + leaf spearhead + teal runnels + swept barbs, the REACH weapon) in
+  ForgeRecipeLibrary; ForgeAuthor assignments added (BreakerBlade/TidePike item defs -> recipes at build).
+  Committed item assets keep empty forgeRecipeId (ForgeAuthor sets it at build), so the new WiringValidator
+  stays green. forge-photos renders both from Specs() next run - iterating from the turnarounds.
+- **Commit:** _(this push - awaiting the photo turnarounds to tune)._
+
+
 ### 2026-07-06 (bbbb2) - Picasso (Fable 5): PHASE 2 - the both-sides WiringValidator now FAILS CI on a one-sided seam
 - **Did (Terry: "do phase 2"):** `Editor/Validation/WiringValidator.cs` + `Tests/EditMode/WiringValidatorTests.cs`
   - runs every CI push, hard-fails the build if a wiring seam is one-sided. Deterministic, asset/reflection
