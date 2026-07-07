@@ -2,6 +2,10 @@
 
 > ## 📍 STATE OF THE PROJECT — 2026-07-06 (the last Fable session's sign-off)
 > Everything below this box is the standing manual; this box is where things ARE.
+> - **🔌 KNOW HOW IT'S WIRED FIRST:** `docs/WIRING_MAP.md` (how every system connects, both sides) +
+>   `docs/WIRING_AUDIT_FINDINGS.md` (what's wired ✅ / stubbed-on-purpose 🔵 / a gap ⚠) +
+>   `docs/BOARD_INDEX.md` (which board is the truth). Audited 2026-07-06 — the codebase is wiring-healthy,
+>   no one-sided breaks. Adding a data-driven system? WIRING_MAP Part 4 = the both-sides law.
 > - **What just shipped (final Fable sprint):** the full Fortnite-class control set
 >   (`docs/design/CONTROL_SCHEME.md` — sprint/crouch/slide/auto-run/jump/laser-sights/quick-swap/
 >   ping, all data-driven), PUNCH-IT cast-off in W000, how-to-play boards, the WORLD_CONTENT

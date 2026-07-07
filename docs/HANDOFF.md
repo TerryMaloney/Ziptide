@@ -28,6 +28,30 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-06 (aaaa2) — Picasso (Fable 5): 🔌 THE WIRING AUDIT — a both-sides map so parallel models stop shipping one-sided seams
+- **Why:** three models building in parallel kept producing "wired on one side but not the other" bugs
+  (an author not build-hooked, an ID with no asset, a mesh with no consumer, the sandbox-boot bypass).
+  Terry: "no-guess plan to check everything is wired… a wiring map… clear instructions for any model."
+- **Did (READ-ONLY audit, no runtime/scene code touched — docs only):**
+  - `docs/WIRING_MAP.md` (NEW, authoritative) — the runtime spine + assembly DAG + the SEAM TABLE
+    (producer → build-hook → consumer → verifier) across 8 seam categories, each with a both-sides status.
+    Part 4 = THE BOTH-SIDES LAW (producer/consumer/verifier/map-row, all in one change).
+  - `docs/WIRING_AUDIT_FINDINGS.md` (NEW) — the ledger: every seam ✅ wired / 🔵 intentional stub / ⚠ minor
+    gap, with evidence. **Headline: wiring-healthy — no critical one-sided breaks.** All 17 asset authors
+    are build-hooked; rig-ensure chain, item/creature registries, appliers, and A6 transport all both-sided.
+    🔵 stubs (deliberate): 8/10 creatures still primitive, melee/gravity guns primitive, `tox_canal_stalker`
+    proof recipe, W013+ story flags. ⚠ minor: per-flag grant↔consume matrix not exhaustively proven.
+  - `docs/BOARD_INDEX.md` (NEW) — one source of truth per purpose (GAME_PLAN=roadmap, MASTER_CHECKLIST=state,
+    PRIORITIES=order, SPRINT_*=per-lane, HANDOFF=log, WIRING_*=wiring); legacy docs listed + redirected.
+  - Banners/pointers: CONNECTIONS_AND_RECOVERY system-map marked superseded → WIRING_MAP; HOW_TO_CHANGE_ANYTHING
+    + OPERATOR_START_HERE now point at the wiring set.
+- **Phase 2 (queued, SEPARATE approval — the "change without breaking" enforcement):** promote the WARN-only
+  gates (WorldContent/PerfBudget/Reachability) to blockers after baselining, and extend `DependencyValidator`
+  into a both-sides `WiringValidator` (author→build-hooked, id→shipped asset, applier→consumer, flag→grant+consume)
+  that fails CI on a one-sided seam. Spec in FINDINGS "Recommended safeguards".
+- **Commit:** _(this push)_
+
+
 ### 2026-07-06 (zzzz) — Picasso (Fable 5): 🩹 THE STRANDED-BOOT FIX — boot into the real game + a device-reliable warp
 - **Symptom (Terry, on device):** boots into "basically a blank world," the menu "blinks in and out
   super fast," can't reach any level.

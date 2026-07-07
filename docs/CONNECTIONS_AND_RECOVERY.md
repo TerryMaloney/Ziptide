@@ -1,9 +1,14 @@
 # ZIPTIDE — System Connections & Recovery Plan
 
+> ⚠ **The SYSTEM-MAP section of this doc is SUPERSEDED by `docs/WIRING_MAP.md` (audited 2026-07-06).**
+> Use WIRING_MAP for how things connect today (it includes THE ZIPTIDE, creatures, MP/A6, garden, melee,
+> the avatar, the boot fix — none of which are below). The **root-cause table** here is still valid
+> debugging history worth reading.
+
 The "what is supposed to be connected, how, and how we stop it breaking" document.
 Written after a deep debug pass that took the game from fully frozen to a working core loop.
 
-Last updated: 2026-06-15
+Last updated: 2026-06-15 (system map superseded 2026-07-06 → WIRING_MAP.md)
 
 ---
 

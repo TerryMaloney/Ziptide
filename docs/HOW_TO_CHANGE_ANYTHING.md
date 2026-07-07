@@ -8,6 +8,10 @@ contracts — confirm with Terry first).
 
 Legend: **Edit** = the one place to change · **Then** = how it takes effect · **Verify** = the proof.
 
+> 🔌 **Wiring a NEW data-driven system?** Read `docs/WIRING_MAP.md` Part 4 (THE BOTH-SIDES LAW) first —
+> producer (build-hooked) + consumer (by-id) + verifier (log/test/gate) + a map row, all in one change,
+> or you ship a one-sided seam. `docs/WIRING_AUDIT_FINDINGS.md` is the running proof every seam has all four.
+
 ---
 
 ## Worlds
