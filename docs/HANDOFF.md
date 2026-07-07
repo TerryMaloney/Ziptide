@@ -38,7 +38,9 @@
   ForgeRecipeLibrary; ForgeAuthor assignments added (BreakerBlade/TidePike item defs -> recipes at build).
   Committed item assets keep empty forgeRecipeId (ForgeAuthor sets it at build), so the new WiringValidator
   stays green. forge-photos renders both from Specs() next run - iterating from the turnarounds.
-- **Commit:** _(this push - awaiting the photo turnarounds to tune)._
+- **Verified (photo booth):** Breaker Blade PASSED first try (cyan energy cleaver, reads AAA all
+  angles). Tide Pike v1 rendered EXPLODED (0.34 shaft couldn't reach head/butt-cap) -> shaft
+  lengthened to 0.66, re-rendered CONNECTED. Both final. `d420836` (recipes) + `e58524b` (pike fix).
 
 
 ### 2026-07-06 (bbbb2) - Picasso (Fable 5): PHASE 2 - the both-sides WiringValidator now FAILS CI on a one-sided seam
