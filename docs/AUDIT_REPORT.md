@@ -70,7 +70,7 @@ Blockers: 0  Warnings: 3
 
 - [WARNING] TRAVEL_NO_COORDINATOR: No TravelCoordinator in scene. It may arrive as DontDestroyOnLoad from another scene, but verify patcher ran.
 - [WARNING] WORLD_CONTENT_SOCKET_MISSING: Pack 'dry_cistern' defines 1 build socket(s) but the scene contains no BuildSocketRuntime — the mechanic is unreachable in this world.
-- [WARNING] PERF_MATERIALS_OVER_CAP: unique materials = 75 exceeds the HARD CAP 60 (QUEST_ART_AUDIO_PERFORMANCE_BUDGET) — promote this to a blocker after baselining.
+- [WARNING] PERF_MATERIALS_OVER_CAP: unique materials = 73 exceeds the HARD CAP 60 (QUEST_ART_AUDIO_PERFORMANCE_BUDGET) — promote this to a blocker after baselining.
 
 ## Scene: W003_GlassShelf
 Blockers: 0  Warnings: 3
@@ -91,8 +91,8 @@ Blockers: 0  Warnings: 4
 
 - [WARNING] TRAVEL_NO_COORDINATOR: No TravelCoordinator in scene. It may arrive as DontDestroyOnLoad from another scene, but verify patcher ran.
 - [WARNING] WORLD_CONTENT_SOCKET_MISSING: Pack 'oxidized_canopy' defines 1 build socket(s) but the scene contains no BuildSocketRuntime — the mechanic is unreachable in this world.
-- [WARNING] PERF_MATERIALS_OVER_TARGET: unique materials = 35 over the target 25 (cap 60) — budget attention needed.
-- [WARNING] PERF_RENDERERS_OVER_TARGET: renderers = 959 over the target 900 (cap 2500) — budget attention needed.
+- [WARNING] PERF_MATERIALS_OVER_TARGET: unique materials = 33 over the target 25 (cap 60) — budget attention needed.
+- [WARNING] PERF_RENDERERS_OVER_TARGET: renderers = 960 over the target 900 (cap 2500) — budget attention needed.
 
 ## Scene: W006_MirrorFlats
 Blockers: 0  Warnings: 3
@@ -118,7 +118,7 @@ Blockers: 0  Warnings: 3
 
 - [WARNING] TRAVEL_NO_COORDINATOR: No TravelCoordinator in scene. It may arrive as DontDestroyOnLoad from another scene, but verify patcher ran.
 - [WARNING] WORLD_CONTENT_SOCKET_MISSING: Pack 'chitinwall' defines 1 build socket(s) but the scene contains no BuildSocketRuntime — the mechanic is unreachable in this world.
-- [WARNING] PERF_MATERIALS_OVER_TARGET: unique materials = 35 over the target 25 (cap 60) — budget attention needed.
+- [WARNING] PERF_MATERIALS_OVER_TARGET: unique materials = 33 over the target 25 (cap 60) — budget attention needed.
 
 ## Scene: W010_TidalArray
 Blockers: 0  Warnings: 3
