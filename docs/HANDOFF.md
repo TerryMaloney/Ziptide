@@ -28,6 +28,32 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-07 (dddd) - Picasso (Opus 4.8): melee held right + the health/damage system plan
+- **Why:** Terry's brief — (a) "the placement and holding is going to be different than guns, let's make
+  sure they are being held properly," and (b) a health/damage/enemy-variety system ("can't just have
+  characters be invincible forever… fortnite model has shields… weapons do different damage… different
+  aliens different damage… enemies that aren't aliens… multiple aliens per planet for hardness… I need a
+  solid plan"). He's away; melee grip is a safe concrete win, the health system needs his design call.
+- **Did (1 - shipped, `8f93847`):** melee grip fix. `ItemFactory.PoseGrip` forced the gun +45° aim tilt
+  onto EVERY weapon; the Breaker Blade + Tide Pike inherited it silently. Decoupled it — PoseGrip now takes
+  a per-weapon factory default; guns + ranged arena weapons keep +45° (they aim), the blade rides above the
+  fist (+70°), the pike sits flatter (+30°, tip leads a thrust), both overridable via
+  ItemDefinition.gripLocalEuler. Every gun/ranged weapon unchanged. **🎮 device-verify the exact angles.**
+- **Did (2 - plan, no code):** wrote `docs/systems/COMBAT_HEALTH_PLAN.md` — grounded in the real code:
+  the game has TWO disconnected damage economies (campaign CreatureRuntime float-HP w/ hardcoded 10/8 vs
+  PvP PvpCombatant int-HP=6 w/ PvpRules table) and the PLAYER is in neither (PlayerStunReceiver = "NO
+  health, NO death"; CreatureDefinition.damage authored but never applied). Plan unifies to ONE damage
+  scale, generalizes the tested PvpCombatant into a shared HealthPool (+ optional shield), phases it:
+  P0 grip (done) · PhaseA pure-C# damage/health core (CI-provable) · PhaseB player takes damage/dies
+  (device feel) · PhaseC enemy variety (machine line from existing drones) + per-tier difficulty scaling.
+- **Next / needs Terry:** TWO decisions gate Phase B — (1) health model: **Fortnite HP+regen-shield**
+  (recommended) vs regen-HP vs HP+pickups; (2) death consequence: **forgiving checkpoint respawn**
+  (recommended) vs drop-loot vs restart. Then Phase A can land green in CI without a headset.
+- **Heads-up:** Phase A silently re-baselines the PvP damage scale — guard with the existing PvpCombatTests
+  before touching it. A killable player in VR must feel fair (comfort-first respawn). Grip angles are
+  reasoned starting points, NOT device-verified.
+- **Commit:** `8f93847` (melee grip) + this doc/handoff commit.
+
 ### 2026-07-06 (cccc2) - Picasso (Fable 5): the melee pair gets forged (Breaker Blade + Tide Pike)
 - **Why (autonomous, photo-verifiable, no device):** the wiring audit flagged the melee pair shipping as
   primitives (a visible stub - the blade is in every story starter rack). Forging them is proven skill
