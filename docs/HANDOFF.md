@@ -46,13 +46,18 @@
   scale, generalizes the tested PvpCombatant into a shared HealthPool (+ optional shield), phases it:
   P0 grip (done) · PhaseA pure-C# damage/health core (CI-provable) · PhaseB player takes damage/dies
   (device feel) · PhaseC enemy variety (machine line from existing drones) + per-tier difficulty scaling.
-- **Next / needs Terry:** TWO decisions gate Phase B — (1) health model: **Fortnite HP+regen-shield**
-  (recommended) vs regen-HP vs HP+pickups; (2) death consequence: **forgiving checkpoint respawn**
-  (recommended) vs drop-loot vs restart. Then Phase A can land green in CI without a headset.
-- **Heads-up:** Phase A silently re-baselines the PvP damage scale — guard with the existing PvpCombatTests
-  before touching it. A killable player in VR must feel fair (comfort-first respawn). Grip angles are
-  reasoned starting points, NOT device-verified.
-- **Commit:** `8f93847` (melee grip) + this doc/handoff commit.
+- **DECISION (Terry, 07-07):** health model = **ARMOR ONLY, no health bar.** Recharging armor meter;
+  hit while armored just drains it (overkill empties to 0 = "break"); a hit at 0 armor = immediate death.
+  No health packs. Death = **serverless checkpoint respawn** at the scene's `__SPAWN_PLAYER` marker (reuse
+  existing respawn plumbing — no server/metadata). Plan doc updated to match; §2 is now DECIDED.
+- **Next → ARCHITECT** (this thread is near usage cap): `docs/ARCHITECT_HANDOFF_COMBAT.md` is the
+  executable spec. Start **Phase A** (pure C#, CI-provable, no headset): new `ArmorMeter` type +
+  `ItemDefinition.damage` + retire CreatureRuntime's hardcoded 10f/8f + EditMode tests. Green CI = done.
+  Then Phase B (player armor/death/HUD, device feel) → Phase C (machine enemies + tier difficulty).
+- **Heads-up:** Phase A re-baselines the damage scale to ONE truth — **freeze PvP numbers, guard with the
+  existing PvpCombatTests**; `ArmorMeter` is a NEW sibling, do NOT rewrite PvpCombatant. Grip angles
+  (blade +70°, pike +30°) are reasoned starting points, NOT device-verified.
+- **Commit:** `8f93847` (melee grip) + the plan/handoff docs commit.
 
 ### 2026-07-06 (cccc2) - Picasso (Fable 5): the melee pair gets forged (Breaker Blade + Tide Pike)
 - **Why (autonomous, photo-verifiable, no device):** the wiring audit flagged the melee pair shipping as

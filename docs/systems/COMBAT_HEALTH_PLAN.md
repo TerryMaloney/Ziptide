@@ -46,26 +46,31 @@ subtract from. That inconsistency is the "adjusting a lot of stuff" Terry sensed
 
 ---
 
-## 2. TWO DECISIONS I need from Terry before Phase B (everything else is settled)
+## 2. THE MODEL — DECIDED (Terry, 2026-07-07)
 
-**Decision 1 — the health model** (Terry leaned Fortnite):
-- **(A· recommended) HP + regenerating shield.** Shield sits on top of HP and **regenerates after a few
-  seconds out of combat** (the "break contact / get to cover" loop). HP does **not** passively heal — it
-  comes back slowly or via pickups. This gives the exact feel he described: you can't be invincible, but a
-  smart player recovers. Most depth, and it's the model he already likes.
-- (B) Simple regenerating HP, no shield — HP heals after N seconds without being hit. Simplest; less to
-  manage; no shield resource.
-- (C) HP + pickups, no passive regen — most punishing; forces looting; heaviest on level design.
+**Armor-only. No health bar at all.** The player has a single **recharging armor meter** and nothing
+underneath it:
+- **Armor is your only defense.** Taking a hit drains armor by the attacker's damage amount. A hit never
+  kills *while you still have armor* — even an overkill hit just empties the meter to 0 (armor "breaks").
+- **Broken armor = one hit from death.** Once armor is at 0, the **next** hit is **immediate death**.
+  This gives a crystal-clear, comfort-friendly warning state: armor up = trading; armor broken = get to
+  cover NOW. (Tunable: whether the emptying hit itself can kill is a one-line flag; default is NO — you
+  always get the "broken, run" beat.)
+- **Armor recharges** on its own after a short out-of-combat delay (the "break contact and recover" loop).
+  No health packs, no pickups to place, no inventory item to manage — the recharge *is* the economy.
+- Weapon/enemy damage still matters: bigger weapons and harder aliens **drain more armor per hit**, so
+  they break your armor in fewer hits. The per-weapon / per-enemy damage design (Phase A) is what tunes
+  "how many hits until I'm broken."
 
-**Decision 2 — the death consequence** (how punishing):
-- **(A· recommended) Forgiving respawn** at the world entry / last checkpoint, **drop nothing** in
-  campaign, brief spawn-protection (already have `PvpRules.SpawnProtectionSeconds`). Best for solo VR /
-  comfort; escalate punishment later per world tier if it's too soft.
-- (B) Drop-loot-on-death (recover it where you fell) — a stakes bump without a hard reset.
-- (C) Restart-the-encounter / world — most punishing; risky for VR fatigue.
-
-My defaults if he doesn't answer: **1A + 2A** (Fortnite-style shield, forgiving respawn). They're the most
-in line with his words and the least likely to feel bad in a headset.
+**Death consequence — checkpoint respawn, SERVERLESS (no metadata server).** Reuse what every scene
+already has: the **`__SPAWN_PLAYER` marker** (`SpawnMarkerRuntime`) that travel-arrival already teleports
+you to. Death = teleport back to the **current world's spawn marker**, armor refilled, brief
+spawn-protection (`PvpRules.SpawnProtectionSeconds` already exists). Zero server, zero new metadata — the
+checkpoint is the world entry point, which is authored per scene today.
+- **If we want mid-world checkpoints later** (still serverless): drop extra `SpawnMarkerRuntime`-style
+  nodes in a scene and store just the **last-touched checkpoint id (a string)** in the existing local
+  `SaveSystem` profile (local JSON/PlayerPrefs on the headset — no server). Start with "respawn at scene
+  spawn"; add the string-in-local-save only if playtests want finer checkpoints.
 
 ---
 
@@ -78,36 +83,45 @@ rides above the fist (+70°, a raised blade), pike sits flatter (+30°, tip-lead
 overridable via `ItemDefinition.gripLocalEuler`. **Device-verify the exact angles** (art track — the
 forge photo booth shows the mesh, not the hold).
 
-### Phase A — Unify the damage/health core (pure C#, fully CI-testable, no scene/device work)
+### Phase A — Unify the damage core + the armor meter (pure C#, fully CI-testable, no scene/device work)
 The safe foundation. No behavior on device changes until it's wired in B.
-1. **Generalize `PvpCombatant` → a shared `HealthPool`** (keep it Unity-free, in `Multiplayer` or a new
-   `Core` type so `Gameplay` + `Multiplayer` both reference it). Adds an **optional shield layer**
-   (`Shield`, `MaxShield`, damage spills shield→HP, `RegenShield(dt)`), keeps `ApplyDamage → bool killed`
-   and `Respawn`. `PvpCombatant` becomes a thin wrapper (or subclass) so **PvP balance and its existing
-   tests are untouched**.
-2. **One canonical damage scale.** Pick the PvP integer scale (6-HP-ish) as the truth OR a new shared
-   scale, and make `CreatureRuntime` use it instead of its hardcoded `10f/8f`. Re-baseline creature
-   `maxHealth` to the same scale so numbers mean one thing everywhere.
-3. **Add `ItemDefinition.damage` (int)** — the single per-weapon source of truth, replacing both the
-   hardcoded constants in `CreatureRuntime` and (feeding) the `PvpRules` table. Every weapon's damage
-   becomes data on its `ItemDefinition` asset (authored the same way grip/muzzle already are).
-4. **Tests:** extend `PvpCombatTests` for the shield spill + regen math; add a test that every
-   `ItemDefinition.damage` is > 0 and every `CreatureDefinition.damage`/`maxHealth` is on-scale. This is
-   the WiringValidator-style both-sides guard for the new damage seam. **Green CI = Phase A proven.**
+1. **New pure type `ArmorMeter`** (Unity-free; put it beside `PvpCombatant` in `Multiplayer`, or in `Core`
+   if `Gameplay` needs it without a `Multiplayer` ref). Fields: `Charge`, `MaxCharge`, `RegenPerSec`,
+   `RegenDelayAfterHitSec`. Methods: `ApplyDamage(int) → DamageResult` and `Tick(float dt)`.
+   - **The rule (Terry's model):** if `Charge > 0`, drain it (clamp at 0) and return `Absorbed` — never a
+     kill, even on overkill. If `Charge == 0` when the hit lands, return `Killed`. A `bool
+     lethalOnBreak = false` flag covers the "does the emptying hit itself kill" variant (default no).
+   - `Tick` refills toward `MaxCharge` at `RegenPerSec`, but only after `RegenDelayAfterHitSec` has passed
+     since the last hit. `Reset()` refills for respawn.
+2. **One canonical damage scale.** Adopt the PvP integer scale (`PvpRules`, ~6-ish) as the single truth.
+   Make `CreatureRuntime` stop using its hardcoded `TaserDamage=10f/GravityDamage=8f` and read damage from
+   data (step 3). Re-baseline `CreatureDefinition.maxHealth` onto the same integer scale so a number means
+   one thing against a creature, a PvP player, and the campaign player's armor.
+3. **Add `ItemDefinition.damage` (int)** — the single per-weapon source of truth. It replaces the hardcoded
+   constants in `CreatureRuntime` and mirrors/feeds the `PvpRules` table. Damage becomes data on each
+   weapon's `ItemDefinition` asset, authored exactly like `gripLocalEuler`/`muzzleLocalPos` already are.
+4. **Tests (green CI = Phase A proven):** unit-test `ArmorMeter` — absorb while charged, kill only when
+   hit at 0, regen after the delay, `Reset` refills. Add a guard test that every `ItemDefinition.damage`
+   is > 0 and every `CreatureDefinition.damage/maxHealth` is on-scale (WiringValidator-style both-sides
+   guard for the new damage seam). Leave `PvpCombatTests` green — do NOT change PvP numbers.
 
-### Phase B — The player can be hurt, and can die (device-verified feel; needs Decision 1 + 2)
-1. **`PlayerHealth`** — a component `PlayerStunReceiver` ensures/hosts on the rig (it already owns the
-   head, the flash, and the damage-direction tracer). Holds the `HealthPool` from Phase A (HP + shield per
-   Decision 1), regen timers, and spawn-protection. Flips the old *"NO health, NO death"* note.
+### Phase B — The player has armor, breaks, and dies to checkpoint (device-verified feel)
+1. **`PlayerArmor`** — a component `PlayerStunReceiver` ensures/hosts on the rig (it already owns the head,
+   the screen flash, and the damage-direction tracer). Holds the Phase-A `ArmorMeter`, ticks its regen,
+   drives the HUD, and owns spawn-protection. Flips the old *"NO health, NO death"* note — the player is
+   now killable everywhere. Armor-break should read loudly (flash + audio cue: "armor down").
 2. **Wire enemy → player damage.** `CreatureDefinition.damage` finally does something: a creature that
    reaches the player (contact for Swarmers/Bruisers, projectile for Flyers/drones) calls
-   `PlayerHealth.ApplyDamage(def.damage)`. Reuse the existing drone-bolt path — it already homes on
-   `PlayerStunReceiver.HitPoint`.
-3. **Death → respawn.** On HP 0, route through the **existing** respawn plumbing (`FallRespawner` /
-   `WorldRuntime.RespawnPlayer` / `EmergencyRespawn`) per Decision 2. No new scene-load path —
-   `TravelCoordinator` stays the only travel entry.
-4. **Health/shield HUD.** A world-space readout (mirror the `CreditsHud` ensure pattern) — shield bar over
-   HP bar, damage flash reuses the stun flash. Device-verify readability in the headset.
+   `PlayerArmor.ApplyDamage(def.damage)`. Reuse the existing drone-bolt path — it already homes on
+   `PlayerStunReceiver.HitPoint`. Stun (taser/net) stays separate and non-lethal as it is today.
+3. **Death → checkpoint respawn (serverless).** On `Killed`, teleport the rig to the current scene's
+   `__SPAWN_PLAYER` (`SpawnMarkerRuntime`) via the **existing** respawn plumbing (`WorldRuntime.RespawnPlayer`
+   / `FallRespawner` / `EmergencyRespawn`), refill armor, apply `SpawnProtectionSeconds`. No server, no new
+   metadata, no new scene-load path — `TravelCoordinator` stays the only travel entry. (Mid-world
+   checkpoints later = extra spawn nodes + a last-checkpoint-id string in the local `SaveSystem` profile.)
+4. **Armor HUD.** A world-space armor meter (mirror the `CreditsHud` ensure pattern); the break state is
+   the important read (armor up vs broken-one-hit-from-death). Damage flash reuses the stun flash.
+   Device-verify readability in the headset.
 
 ### Phase C — Enemy variety + per-planet difficulty (leans on what's built)
 1. **Non-alien "machine" family** — formalize the existing **drones** into a machine line (drone, turret,
@@ -124,19 +138,21 @@ The safe foundation. No behavior on device changes until it's wired in B.
 ## 4. What already-built systems this touches (the honest blast radius)
 - `PlayerStunReceiver` — biggest behavioral change: the player becomes killable in **every** world.
 - `CreatureRuntime` — drops its hardcoded `10f/8f`; damage + health become the unified scale.
-- `PvpCombatant` / `PvpRules` — become (or feed) the shared `HealthPool`; guard PvP balance with the
-  existing `PvpCombatTests` so nothing silently re-tunes.
+- `PvpCombatant` / `PvpRules` — the damage scale they define becomes the single truth; **PvP numbers stay
+  put**, guarded by the existing `PvpCombatTests`. `ArmorMeter` is a NEW sibling type, not a rewrite of
+  `PvpCombatant` (PvP keeps its int-HP pool; the campaign player uses armor).
 - **Every weapon runtime** (Pistol/Taser/Gravity/Arena/Melee) — damage moves from code to
   `ItemDefinition.damage` data.
-- HUD — new health/shield readout.
-- Respawn plumbing — reused, not rebuilt.
+- HUD — new armor-meter readout (break state is the key read).
+- Respawn plumbing — reused, not rebuilt (checkpoint = the scene's `__SPAWN_PLAYER`, serverless).
 - `CityLayoutDefinition` + city spawn — gains the difficulty multiplier + multi-archetype zones.
 
 ## 5. Guards / risks
 - **Unifying two damage scales can silently rebalance PvP.** Pin every PvP number with `PvpCombatTests`
   before touching the scale; treat a red there as a blocker.
-- **A killable player in VR must feel fair, not punishing** — comfort-first respawn, generous shield
-  regen, clear damage-direction feedback (the tracer already exists). Tune on device.
+- **A killable player in VR must feel fair, not punishing** — comfort-first checkpoint respawn, generous
+  armor regen, a LOUD armor-break tell, clear damage-direction feedback (the tracer already exists). Tune
+  on device.
 - **Circuit breaker applies**: Phase B/C are device-feel; if a change can't be CI-verified, it's Terry's
   on-headset call, and 3 CI-reds on one slice → stop and escalate.
 - Phase A is the de-risker: it's pure C#, so the whole economy unification lands **green in CI** before a
