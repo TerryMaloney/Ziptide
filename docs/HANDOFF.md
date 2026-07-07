@@ -28,6 +28,37 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-06 (zzzz) — Picasso (Fable 5): 🩹 THE STRANDED-BOOT FIX — boot into the real game + a device-reliable warp
+- **Symptom (Terry, on device):** boots into "basically a blank world," the menu "blinks in and out
+  super fast," can't reach any level.
+- **Root cause (not a crash — a stale config):** `ZiptideConstants.FirstWorldScene` was still the
+  **June-18 dev bypass** pointing at the `SandboxTestLab` graybox (commit `e29aca3`, put in *because
+  the in-VR TMP Dev Menu renders as a dead/flickering panel on device*). So boot dropped him into a
+  graybox whose only exit — the broken TMP menu — doesn't work on the headset. Same thing he hit
+  weeks ago ("ended up in the test room, menu didn't work").
+- **Fix (Terry chose: boot W000 + reliable board, leave the TMP menu):**
+  1. **Boot → `W000_DriftIn`** (the real opening: ship bay → PUNCH IT cast-off → the chain). New
+     `SceneW000` constant; bypass reverted. +`BootConfigTests` so the graybox bypass can't silently
+     return (asserts boot ≠ sandbox, ≠ _Boot, == W000).
+  2. **`DevWarpBoard`** (NEW, dev-builds-only) — a device-reliable warp built from the PROVEN idiom
+     (primitive tiles + `TextMesh` + `XRSimpleInteractable`, exactly like the travel doors / match
+     board that DO render+click on device — no TMP, no Canvas). Self-bootstraps, and on every scene
+     with a player spawn it drops a board beside spawn listing every world + arena (from
+     `DevWorldManifest`, which already includes arena packs) → `TravelCoordinator.TravelTo`. So he can
+     hop world↔world↔arena freely for testing. Logs `DEV_WARP_BOARD`/`DEV_WARP_TO`.
+  3. **Hardened the cold-boot ZIPTIDE travel** (this was the first on-device build with THE ZIPTIDE):
+     BootLoader now travels `skipGate:true` (the namesake gate is world↔world, not a cold boot into
+     the first world); the gate call is wrapped in try/catch so a visual/audio hiccup can NEVER strand
+     `_travelling=true` and silently block all travel; and `ZiptideGateEffect` now guards
+     `Shader.Find` with a fallback like `TracerFx` (a stripped URP/Unlit made `new Material(null)` a
+     throw risk on device). Logs `GATE_FAIL` if the gate ever bails — travel proceeds regardless.
+- **Left as-is (Terry's call):** the TMP `DevMenu` (deprecated in favor of the board; not deleted).
+- **Verify:** rebuild from HEAD → sideload → `BOOT_LOAD dest=W000_DriftIn` → `TRAVEL_OK`; wake in the
+  ship bay (not the graybox); Test Warp board beside spawn; tap `Arena_Cistern` → travels; warp again
+  from there. Then resume the two-headset GO ONLINE presence smoke.
+- **Commit:** _(this push)_
+
+
 ### 2026-07-06 (yyyy) — Picasso (Fable 5): 🎮🎮 A6 v1 — TWO HEADSETS, ONE ROOM (online presence ships)
 - **Context:** Terry imported PUN2 + App ID and pushed `21f117c` — **CI went GREEN with Photon
   compiled in**, so the adapter I wrote blind against the PUN2 API is verified, and every

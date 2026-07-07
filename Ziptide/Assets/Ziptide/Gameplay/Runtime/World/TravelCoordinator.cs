@@ -49,11 +49,24 @@ namespace Ziptide.Gameplay
         // static API; cleared on every travel start so a stale anchor can never leak forward.
         private static Vector3? _pendingGatePos;
 
+        // Consumed by the next travel: suppress THE ZIPTIDE for this one hop. Set by the cold-boot
+        // path — the namesake gate is a world↔world moment; playing it in the empty _Boot on a cold
+        // start is wrong UX (there's nothing to leave) and it was the only risky step running before
+        // the first world exists. World-to-world travel always keeps the full gate.
+        private static bool _skipGateNext;
+
         /// <summary>Travel with a gate anchor — THE ZIPTIDE pours out of the doorway at
         /// <paramref name="gatePos"/> instead of only ringing the player.</summary>
         public static void TravelTo(string sceneName, Vector3 gatePos)
         {
             _pendingGatePos = gatePos;
+            TravelTo(sceneName);
+        }
+
+        /// <summary>Travel, optionally suppressing THE ZIPTIDE for this hop (used by the cold boot).</summary>
+        public static void TravelTo(string sceneName, bool skipGate)
+        {
+            _skipGateNext = skipGate;
             TravelTo(sceneName);
         }
 
@@ -89,18 +102,20 @@ namespace Ziptide.Gameplay
 
         private void StartTravelCoroutine(string sceneName)
         {
-            // Consume the anchor even when the request is ignored — never carry a stale one.
+            // Consume the one-shot inputs even when the request is ignored — never carry them forward.
             Vector3? gatePos = _pendingGatePos;
+            bool skipGate = _skipGateNext;
             _pendingGatePos = null;
+            _skipGateNext = false;
             if (_travelling)
             {
                 Debug.LogWarning("ZIPTIDE: TravelCoordinator already travelling – ignoring duplicate request");
                 return;
             }
-            StartCoroutine(TravelCoroutine(sceneName, gatePos));
+            StartCoroutine(TravelCoroutine(sceneName, gatePos, skipGate));
         }
 
-        private IEnumerator TravelCoroutine(string sceneName, Vector3? gatePos)
+        private IEnumerator TravelCoroutine(string sceneName, Vector3? gatePos, bool skipGate)
         {
             _travelling = true;
             Debug.Log("ZIPTIDE: TRAVEL_START dest=" + sceneName);
@@ -117,15 +132,28 @@ namespace Ziptide.Gameplay
                 ? destEntry.displayName : sceneName;
             Color destHorizon = destEntry != null ? destEntry.skyHorizon : default;
             Color destZenith = destEntry != null ? destEntry.skyZenith : default;
-            if (rig != null)
+            // The gate call is wrapped so a visual/audio hiccup can NEVER kill the coroutine before the
+            // scene loads — that would leave _travelling stuck true and silently block ALL future travel
+            // (the boot-strand class of bug). The WaitForSeconds is OUTSIDE the try (C# forbids yield in
+            // try/catch); lead stays 0 on failure/skip so we just proceed straight to the load.
+            float lead = 0f;
+            if (rig != null && !skipGate)
             {
-                float lead = ZiptideGateEffect.PlayDeparture(rig.transform.position, destName,
-                    destHorizon, destZenith, gatePos);
-                // RILL rides the tide — her line starts over the rise and carries across the cut
-                // (she lives on the persistent rig).
-                RillCompanion.OnGateDeparture(sceneName);
-                yield return new WaitForSeconds(lead);
+                try
+                {
+                    lead = ZiptideGateEffect.PlayDeparture(rig.transform.position, destName,
+                        destHorizon, destZenith, gatePos);
+                    // RILL rides the tide — her line starts over the rise and carries across the cut
+                    // (she lives on the persistent rig).
+                    RillCompanion.OnGateDeparture(sceneName);
+                }
+                catch (System.Exception ex)
+                {
+                    Debug.LogWarning("ZIPTIDE: GATE_FAIL depart dest=" + sceneName + " – " + ex.Message);
+                    lead = 0f;
+                }
             }
+            if (lead > 0f) yield return new WaitForSeconds(lead);
 
             // 1. Save inventory before anything is destroyed by scene unload.
             if (rig != null)
@@ -151,8 +179,13 @@ namespace Ziptide.Gameplay
             playerRig.TeleportToSpawnMarker();
             playerRig.EnsureXRIWiring();
 
-            // The receding tide releases you into the new world, colored with ITS sky.
-            ZiptideGateEffect.PlayArrival(playerRig.transform.position, destHorizon, destZenith);
+            // The receding tide releases you into the new world, colored with ITS sky. Skipped on the
+            // cold boot (no departure preceded it), and guarded so an arrival-FX hiccup can't strand travel.
+            if (!skipGate)
+            {
+                try { ZiptideGateEffect.PlayArrival(playerRig.transform.position, destHorizon, destZenith); }
+                catch (System.Exception ex) { Debug.LogWarning("ZIPTIDE: GATE_FAIL arrive dest=" + sceneName + " – " + ex.Message); }
+            }
 
             // 5. Wait for XRI to be ready (up to 5 seconds).
             float elapsed = 0f;

@@ -120,9 +120,19 @@ namespace Ziptide.Gameplay
             _label.color = new Color(Crest.r, Crest.g, Crest.b, 0f);
         }
 
+        /// <summary>URP/Unlit with a hard fallback — a stripped shader on device would make
+        /// `new Material(null)` throw, and the gate runs on the travel path (a throw there could
+        /// strand travel). Same guard TracerFx uses.</summary>
+        private static Material UnlitMaterial()
+        {
+            var shader = Shader.Find("Universal Render Pipeline/Unlit");
+            if (shader == null) shader = Shader.Find("Sprites/Default");
+            return new Material(shader);
+        }
+
         private void Build()
         {
-            _mat = new Material(Shader.Find("Universal Render Pipeline/Unlit"));
+            _mat = UnlitMaterial();
             _mat.SetColor("_BaseColor", Teal);
 
             _pillars = new Transform[Pillars];
@@ -225,7 +235,7 @@ namespace Ziptide.Gameplay
             _flash.transform.localPosition = Vector3.zero;
             _flash.transform.localScale = Vector3.one * 1.2f; // radius 0.6 m — past the near plane, around the head
             var r = _flash.GetComponent<Renderer>();
-            var m = new Material(Shader.Find("Universal Render Pipeline/Unlit"));
+            var m = UnlitMaterial();
             m.SetColor("_BaseColor", Crest);
             m.SetFloat("_Cull", (float)UnityEngine.Rendering.CullMode.Off); // we're INSIDE the sphere
             r.sharedMaterial = m;

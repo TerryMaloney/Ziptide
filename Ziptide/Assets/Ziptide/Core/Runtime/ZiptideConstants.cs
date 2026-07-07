@@ -14,13 +14,15 @@ namespace Ziptide.Core
         public const string ScenePvPArena       = "PvP_Arena01";
         public const string SceneSandbox        = "SandboxTestLab";
         public const string SceneSample         = "SampleScene";
+        public const string SceneW000           = "W000_DriftIn";
 
         /// <summary>Scene loaded by _Boot on Start. Change this to redirect the entry point.</summary>
-        // ⚠ TEMPORARY DEV BYPASS (2026-06-18, T-Dog): boot straight into the Sandbox so the gravity gun +
-        // drones are reachable WITHOUT the in-VR Dev Menu (currently renders as a dead black panel
-        // on-device). REVERT to SceneTestRoom once the Dev Menu renders/clicks on the headset.
-        // See docs/HANDOFF.md entry (t).
-        public const string FirstWorldScene     = SceneSandbox;
+        // 2026-07-06 (Picasso): REVERTED the June-18 Sandbox dev-bypass — booting into the graybox left
+        // Terry stranded (blank world, no way out because the in-VR TMP Dev Menu is unreliable on device).
+        // Boot into the real opening W000_DriftIn (ship bay -> PUNCH IT cast-off -> the world chain). A
+        // device-reliable DevWarpBoard (physical XRSimpleInteractable tiles, NOT the TMP menu) stands
+        // beside spawn in every scene for jumping to any world/arena while testing.
+        public const string FirstWorldScene     = SceneW000;
 
         // ── Asset Paths ────────────────────────────────────────────────────
         public const string PathDefaultWorldProfile   = "Assets/Ziptide/Content/World/DefaultWorldProfile.asset";

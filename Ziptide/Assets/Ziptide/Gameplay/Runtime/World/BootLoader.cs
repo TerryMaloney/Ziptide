@@ -23,7 +23,9 @@ namespace Ziptide.Gameplay
 
             // Use TravelCoordinator for consistency with all mid-game travel.
             // On first boot, inventory is empty so save/restore is a no-op.
-            TravelCoordinator.TravelTo(target);
+            // skipGate: the cold boot has nothing to "leave" — THE ZIPTIDE is a world↔world moment,
+            // and playing it in the empty _Boot was the one risky step running before a world exists.
+            TravelCoordinator.TravelTo(target, skipGate: true);
         }
     }
 }

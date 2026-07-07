@@ -65,6 +65,11 @@ From then on "change a world" = edit its `.spec.json`. (Runbook §2k.)
 ## B. PROJECT CHECKLIST — what's actually in this build
 
 **⚡ NEW since the 07-04 build (the headline items):**
+- [x] **BOOT FIX** — the game now boots into the real opening **W000_DriftIn** (ship bay), NOT the
+      old blank SandboxTestLab graybox. A **Test Warp board** (physical tap-tiles, works on device
+      unlike the old TMP dev menu) stands beside spawn in every scene — tap any world or arena to
+      jump there for testing (`DEV_WARP_TO` in logcat). This fixes "blank world + flickering menu +
+      can't reach levels.
 - [x] **THE ZIPTIDE** — every travel is the namesake gate moment: destination-tinted tide,
       the world's NAME riding the crest, RILL speaking over the rise, door-anchored torrents,
       the white-out flash that hides the load, layered synth audio locked to the pillar orbit
