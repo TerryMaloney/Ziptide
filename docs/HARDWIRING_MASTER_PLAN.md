@@ -385,6 +385,13 @@ tests, audit gate, device pass, HANDOFF at every step.
 
 ---
 
-### Open decisions for Terry (before Phase 0)
-These change the shape of the build; flagged so we lock them before auto-mode runs — see the questions
-asked alongside this plan.
+### Locked decisions (Terry, this session — binding for auto-mode)
+1. **First to build:** **Phase 0 → Phase 1** (foundations, then worlds-feel-real). Do *not* jump to the
+   ship pillar first — it rides on the Phase 0 foundations.
+2. **Home screen:** **diegetic ship hub** (§10) — the menu *is* the ship interior; helm/galaxy world
+   select; hangar / garage / almanac / wardrobe live there. Minimal 2D title only on cold boot.
+3. **Caverns / verticality:** **modular kits, Quest-safe** (§3) — authored tunnel/chamber/shaft + mesa/
+   platform modules + an elevated sub-layer. **No voxel/mesh terrain** (reserve only for rare hero
+   set-pieces if ever justified). Hold 72–90 fps at scale.
+4. **Combat lethality:** **non-lethal disable + salvage** (§6) — EMP/armor-break, salvage the wreck into
+   the economy. Consistent with the whole game's all-ages / non-lethal canon, ground and space.
