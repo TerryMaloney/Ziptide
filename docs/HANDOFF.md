@@ -28,6 +28,38 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-08 (hwr1) - Architect (Opus 4.8): the FINAL HARDWIRING plan + full design-doc scaffold
+- **Why:** Terry — the status survey showed Ziptide's spines are deep but content + last-mile wiring is
+  thin ("too simple / N64 ship / worlds look empty"). He asked for the complete WHAT-list for the final
+  major hardwiring so auto-mode can point **Fable 5** at it (Fable owns the how), plus new asks: building
+  interiors, vertical/cavern/elevated worlds, mass VR map production, next-gen Ship Forge + Fortnite-style
+  customization, Fortnite-smooth 6DOF flight, atmosphere→space transition, space battles, drivable
+  vehicles, best-in-class garden, a genuinely-fun conveyor layer, a home screen, and **consistency**.
+- **Did (docs only — no C#, CI unaffected/green):**
+  - `docs/PROJECT_STATUS.md` — code-surveyed Built/Partial/Not-built map. **Caught doc drift:** FORGE II
+    E1.4, PERF_BUDGET gate, and GamePool are ALREADY shipped despite `PRIORITIES.md` rev 8 listing them open.
+  - `docs/HARDWIRING_MASTER_PLAN.md` — the 14-section WHAT-list + **the consistency spine (§13)** (one
+    Forge / registry / cosmetic / comfort / world / save spine — the answer to "make it all consistent")
+    + phased execution order (§14).
+  - `docs/SPRINT_HARDWIRING.md` — the phased execution BOARD (Phase 0–5) + a pull-list linking every
+    design doc; the entry point for auto-mode.
+  - New design-doc SKELETONS (✍️ — expand the how + research before building) under `docs/design/`:
+    `CONSISTENCY_SPINE`, `WORLD_BUILDING_AT_SCALE`, `BUILDING_INTERIORS`, `VERTICAL_AND_CAVERN_WORLDS`,
+    `SHIP_FORGE_AND_CUSTOMIZATION`, `HOME_HUB`, `SPACE_COMBAT`, `DRIVABLE_VEHICLES`, `AUTOMATION_CONVEYORS`,
+    `GARDEN_AAA`, `CREATURE_ECOLOGY`. Existing docs (`SHIP_SYSTEM`, `SPACEFLIGHT_PHYSICS`,
+    `CONTROLS_AND_FLIGHT`, `ART_REGISTRY`, `ADAPTIVE_AUDIO`, `STORY_AND_HOOKS`, `TIDEFRONT_AAA`,
+    `MP100_BOARD`, `ABILITIES_AND_ARSENAL`) are REFERENCED from the board, not duplicated.
+- **Terry's locked decisions (binding for auto-mode):** Phase 0→1 first · diegetic **ship-hub** home ·
+  **modular-kit** caverns (no voxel) · **non-lethal disable + salvage** combat.
+- **Next (Phase 0, for auto-mode / Fable 5):** wire `SaveSystem` into `_Boot`; **fulfill `ArtModuleRegistry`
+  with the first building kit** (`KIT_FULFILLED` audit — the #1 "worlds look empty" fix); scaffold the
+  shared cosmetic + comfort layers; adopt `GamePool`. Then Phase 1 worlds-feel-real.
+- **Heads-up:** the code/research fan-out (2 code + 1 VR-map-research agents) died on a **shared session
+  limit that resets 4pm UTC** — not a code problem. So every design doc carries a **"Technique research
+  TODO"** to fill with sourced citations before that system's build phase. Docs are skeletons by design:
+  point Fable in the right direction, leave room to expand (each has a "🚀 Room to expand").
+- **Commit:** docs-only hardwiring set (`ee50dd0` PROJECT_STATUS → this entry).
+
 ### 2026-07-07 (dddd) - Picasso (Opus 4.8): melee held right + the health/damage system plan
 - **Why:** Terry's brief — (a) "the placement and holding is going to be different than guns, let's make
   sure they are being held properly," and (b) a health/damage/enemy-variety system ("can't just have

@@ -16,6 +16,9 @@
 > **Read alongside:** `docs/PROJECT_STATUS.md` (current state) · `CLAUDE.md` (locked contracts) ·
 > `docs/D4_BOOT_ADDITIVE_WORLD_ARCHITECTURE.md` (world/rig contract) · `docs/additions/*_50.md`
 > (idea banks to pull from) · `docs/ZIPTIDE_MASTER_BUILD_PLAN.md` (80-world north star).
+>
+> **▶ To EXECUTE this, open `docs/SPRINT_HARDWIRING.md`** — the phased board (Phase 0–5) that turns this
+> WHAT-list into an ordered pull-list and links every per-system design doc under `docs/design/`.
 
 ---
 
