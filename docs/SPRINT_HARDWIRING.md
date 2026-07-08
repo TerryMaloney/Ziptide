@@ -9,6 +9,11 @@
 > **Read first:** `HARDWIRING_MASTER_PLAN.md` §0 (execution contract) + §13 (the consistency spine —
 > build everything *through* it) · `CLAUDE.md` (locked contracts) · your phase's design docs below.
 >
+> **Sourced technique backbone:** `docs/design/VR_TECHNIQUE_RESEARCH.md` — the cited "how studios do it"
+> reference that backfills each design doc's *Technique research TODO* (modular kits, interior mapping,
+> PVS/occlusion, WFC, Quest budgets, VR comfort/customization). Verify+synthesis was cut short by a
+> session limit — 📎 claims are sourced-but-unconfirmed; re-run the harness after the 9pm-UTC reset.
+>
 > **Locked build-shape decisions (Terry):** Phase 0→1 first · diegetic ship-hub home · modular-kit
 > caverns (no voxel) · non-lethal disable+salvage combat.
 
