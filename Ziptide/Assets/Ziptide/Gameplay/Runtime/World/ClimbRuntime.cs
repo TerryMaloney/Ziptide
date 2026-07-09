@@ -159,14 +159,45 @@ namespace Ziptide.Gameplay
             if (!_grip.IsClimbing)
             {
                 SuspendMove(false);
-                // v1: the clamped fling is logged, not applied (needs the ballistic mover).
-                Debug.Log("ZIPTIDE: CLIMB_RELEASE fling=" + new Vector3(fling.X, fling.Y, fling.Z).magnitude.ToString("F1"));
+                var flingV = new Vector3(fling.X, fling.Y, fling.Z);
+                Debug.Log("ZIPTIDE: CLIMB_RELEASE fling=" + flingV.magnitude.ToString("F1"));
+                // A/B gate (1.4f): the comfort-clamped launch-off, OFF by default until Terry's device
+                // pass says it feels good — `adb shell` or the dev menu can flip ziptide_climb_fling=1.
+                if (PlayerPrefs.GetInt("ziptide_climb_fling", 0) == 1 && flingV.sqrMagnitude > 0.25f)
+                {
+                    _flingVel = flingV;
+                    _flingT = 0f;
+                }
             }
+        }
+
+        // ── The release fling (pref-gated ballistic mover) ───────────────────
+        private Vector3 _flingVel;
+        private float _flingT = -1f;          // <0 = idle
+        private const float FlingMaxSeconds = 2.0f;
+
+        private void TickFling(float dt)
+        {
+            if (_flingT < 0f || _rig == null) return;
+            _flingT += dt;
+            _flingVel += Vector3.down * 9.81f * dt;
+            Vector3 next = _rig.position + _flingVel * dt;
+            // Land when a short down-ray finds ground under the next position (or on timeout —
+            // the global fall-safety net owns anything weirder).
+            if (Physics.Raycast(next + Vector3.up * 0.1f, Vector3.down, out var hit, 0.4f,
+                                ~0, QueryTriggerInteraction.Ignore) || _flingT > FlingMaxSeconds)
+            {
+                if (_flingT <= FlingMaxSeconds) next.y = hit.point.y + 0.05f;
+                Debug.Log("ZIPTIDE: CLIMB_FLING_LAND t=" + _flingT.ToString("F2"));
+                _flingT = -1f;
+            }
+            _rig.position = next;
         }
 
         private void Update()
         {
             float dt = Mathf.Max(1e-4f, Time.deltaTime);
+            TickFling(dt);
 
             // Track hand velocities (for the release fling) + drive the rig from the DRIVING hand.
             if (_leftAttach != null)
