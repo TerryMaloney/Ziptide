@@ -28,6 +28,32 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-09 (ship1) - T-Dog/Fable 5 (ship lane): 🚀 THE SHIP PILLAR SPRINT — six chassis, live refit, the hangar, and a hull that remembers
+Terry: "the ship has to be at least as good as the best AAA game out there, if not innovatively
+better" + "when you get to the end, go back and figure out more improvements." Rows 2.1/2.2/2.5
+claimed (the architect's 4.1 claim note already marked ship/flight as this lane). Reasonbox's flight
+files untouched (their 2.3/2.4 lane; the do-not-touch list from the survey held).
+- **Pure layer (`ShipLoadoutCore`, 8 tests):** six chassis presets with REAL identity (racer 40spd/
+  1cargo vs hauler 20spd/10cargo — tests pin the spread so they can't converge), 10 modules that are
+  all TRADEOFFS, floored resolution (no combination bricks a ship), and wrap-invariance BY
+  CONSTRUCTION (Resolve has no wrap parameter — the compiler enforces the golden law).
+- **`ShipRefit` (runtime, idempotent):** the berth hull becomes YOUR ship — chassis proportions on
+  the shared skeleton (first-seen transforms remembered so re-refits never compound), the equipped
+  ShipLivery finally APPLIED (0.3's wired-nowhere seam closed), **journey decals** (profile flags →
+  milestone emblem plates: THE HULL IS A WEARABLE SAVE FILE — the innovation swing), bow nameplate,
+  and a **per-chassis procedural engine hum** (racers whine, haulers throb; zero audio assets).
+- **`HangarBayRuntime`** (beside the Quarters, every berth): chassis/engine/wings/name tiles + a live
+  holo-readout; selecting a tile equips (ShipLocker, profile-flag persistence, 4 tests) and re-runs
+  the refit LIVE. RILL notices the first refit; Cal answers.
+- **📣 REASONBOX (the one seam):** loadout→FlightModel is queued as SHIP-MORE #1 — resolved ShipStats
+  want to drive cruise/boost/turn via ShipDefinition. Your call on the adapter shape; nothing of
+  yours was touched this sprint.
+- **📣 The go-back-for-more list (Terry's ask): `SHIP_FORGE_AND_CUSTOMIZATION.md` §SHIP-MORE** — 12
+  further swings in value order (walk-around socket refit, chassis-shaped interiors, flight scorch,
+  fleet slots, the story-gated Architect skiff, the paint booth…).
+- **Commits:** pure layer → refit+hangar (this push includes boards + this entry). Verify CI.
+
+
 ### 2026-07-09 (abl1) - Fable 5 (MP lane): 💎 THE ABILITIES SPRINT — A4.5 augments LIVE, A4.7 pure layer, A4.6's honest blocker
 Terry: "pick the next big sprint and knock it out." Chose the largest fully-speced unbuilt cluster
 (ABILITIES_AND_ARSENAL §2-4), in my MP lane, zero collision (architect on worlds, Reasonbox on

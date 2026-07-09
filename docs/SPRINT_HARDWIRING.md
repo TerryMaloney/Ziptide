@@ -53,11 +53,11 @@ close the two silent gaps (nothing persists; worlds render primitives).
 
 | # | Row | Design doc | Notes |
 |---|-----|-----------|-------|
-| 2.1 | **Ship Forge (chassis + modules, ≥6 chassis)** | ✍️ `SHIP_FORGE_AND_CUSTOMIZATION.md` + 📄 `SHIP_SYSTEM.md` | Next-gen procedural ship like the creature Forge — kills the N64 look. |
-| 2.2 | **Ship loadout + wraps** | ✍️ `SHIP_FORGE_AND_CUSTOMIZATION.md` | Functional module swaps (stats) + cosmetic wraps (via §0.3 cosmetic layer). |
+| 2.1 | 🟡 **Ship Forge (chassis + modules, ≥6 chassis)** — *CLAIMED T-Dog/Fable (ship pillar sprint 2026-07-09)* | ✍️ `SHIP_FORGE_AND_CUSTOMIZATION.md` + 📄 `SHIP_SYSTEM.md` | **v1 SHIPPED: six chassis presets (pure, tested) + ShipRefit reproportions the berth hull live (silhouette/livery/journey-decals/nameplate/per-chassis hum).** Picasso's baked Forge meshes supersede through the same parent (ShipHullBuilder's invitation). |
+| 2.2 | 🟡 **Ship loadout + wraps** — *CLAIMED T-Dog/Fable* | ✍️ `SHIP_FORGE_AND_CUSTOMIZATION.md` | **v1 SHIPPED: ShipLoadoutCore (10 modules, tradeoffs, floors, wrap-invariance by construction) + ShipLocker persistence + livery apply (the 0.3 wired-nowhere seam CLOSED).** Remaining: loadout→FlightModel feed (coordinate the ShipDefinition seam with Reasonbox). |
 | 2.3 | **`FlightController` — Fortnite-smooth 6DOF + comfort** | 📄 `SPACEFLIGHT_PHYSICS.md` + 📄 `CONTROLS_AND_FLIGHT.md` | Drive `FlightModel` from VR input; cockpit reference frame; never parent rig to hull. |
 | 2.4 | **Atmosphere→space transition + space world scene** | 📄 `SPACEFLIGHT_PHYSICS.md` | Fade cutscene (`ZiptideTransitionEffect`) → `TravelCoordinator` → space = another world scene. |
-| 2.5 | **Diegetic ship-hub home screen + world select** | ✍️ `HOME_HUB.md` | The menu IS the ship interior; helm/galaxy select; hosts hangar/garage/almanac/wardrobe. |
+| 2.5 | 🟡 **Diegetic ship-hub home screen + world select** — *partial, T-Dog/Fable* | ✍️ `HOME_HUB.md` | **HANGAR surface SHIPPED (live refit tiles + holo stat readout, beside the Quarters in every berth).** Helm/world-select already existed (ShipBoardingStation). Remaining: cold-boot title, save slots, galaxy-map visual upgrade, garage/almanac surfaces. |
 
 ---
 

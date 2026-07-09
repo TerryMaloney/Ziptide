@@ -42,3 +42,29 @@ PerfBudget cap for ship prefabs; hardpoint contract test.
 Ship interiors you can walk (ties to §2 interiors — the hub ship is the first); nameable/save-slot
 ships; a shipyard progression; salvaged parts from space combat feeding the loadout; signature "hero"
 chassis tied to story; a paint-booth that uses the Forge texture pipeline live. Make ship-building a loop.
+
+## SHIP-MORE — the go-back-for-more list (Terry's ask, 2026-07-09; post-sprint additions queue)
+The sprint shipped chassis/loadout/refit/hangar/decals/hum. These are the NEXT swings, in rough
+value order — each one small enough to claim individually:
+1. **Loadout → FlightModel feed** — resolved ShipStats drive cruise/boost/turn in Reasonbox's flight
+   (the ShipDefinition seam; coordinate, then a racer FLIES like a racer). The single highest-value next step.
+2. **Walk-around refit** — grab a wing/engine module OFF a rack and SNAP it onto the hull socket by
+   hand (BuildSocket idiom) instead of tiles: the spec's original "grab-and-attach" fantasy.
+3. **Interior grows with the chassis** — hauler gets a cargo hold room, gunship a gun deck (RoomPartitioner
+   is live from 1.3 — the ship is the first customer of walkable interiors).
+4. **Scorch + wear** — hull weathering accrues from FLIGHT (rings flown, boosts used), cleanable at
+   the hangar wash rack; pairs with journey decals (story marks + usage marks = a lived-in ship).
+5. **The ship remembers where it's been** — tiny world-emblem stickers per visited world (the manifest
+   knows), a second decal rail on the starboard flank.
+6. **Landing gear + berth animation** — the ship settles/vents on arrival (world-moves comfort law).
+7. **Ship voice = hum + RILL** — RILL's orb docks at a cockpit perch; her lines duck the hum; the hum
+   pitch-shifts with boost when the FlightModel feed lands.
+8. **Photo-booth pad in the hangar** — the creature photo-loop pattern pointed at YOUR ship (share shots).
+9. **Fleet slots** — own multiple loadouts (profile strings already support it: SHIP_EQUIP:slot2:*),
+   swap at the hangar; the Quarters gets a fleet plaque.
+10. **Hero chassis gated by story** — a seventh silhouette unlocked by C8_W062_REVELATION (the
+    Architect skiff — story-shaped, not stat-better; the no-pay-to-win law extends to no-story-to-win).
+11. **Ship audit rule** — seat present, hull budget, nameplate legible, no gameplay scripts on
+    cosmetics (SHIP_SYSTEM.md §audit — none of it is enforced yet).
+12. **Wrap EDITOR** — pick body/accent from a palette wheel in the hangar instead of preset liveries
+    only (writes a runtime CosmeticDefinition-shaped entry; the paint booth the spec dreamed of).
