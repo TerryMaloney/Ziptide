@@ -28,6 +28,26 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-09 (hwr11) - Fable 5 (traversal lane): 🌑 1.4g — the grapple gets a BODY + THE UNDERCROFT, the first cave that is a place
+Sprint continues; hwr10 verified CI-green first (incl. the audit change — no complaints raised).
+- **`GrappleAnchorRuntime`** (Gameplay/World) — the range verb's translator, on the ANCHOR (the
+  ClimbableSurface pattern): a breathing rose ring selected via ray from a distance; grip fires the
+  tested `GrappleReel` — beyond the 22m leash = a VISIBLE dim miss-pulse (`GRAPPLE_MISS`), never an
+  error; locomotion suspends for the reel; release mid-ride aborts in place (fall net below). The
+  sandbox tower now has FOUR ways up (climb / lift / pad / grapple) + the zipline home.
+- **`ScenePatcherCavern` → THE CAVE FACTORY**: parameterized configs (scene/pack/seed/size/return)
+  instead of one hardcoded lab. **Config 2 ships: `W011_Undercroft`** — The Hum's deep layer (bigger,
+  deeper, loopier; seed 1101), return door travels home to `W011_TheHum`, Dev-Warp reachable. Grapple
+  anchors now auto-place on every above-median-height chamber in ALL caves.
+- **RILL + Cal speak on Undercroft entry** (additive `RillLineAuthor`): *"The Hum is louder down
+  here. It is not an echo. Echoes answer you — this is leading."* / *"Leading where? ...keep that
+  one. I'd rather find out."* (Story-side door FROM W011 down into the Undercroft = queued — needs a
+  cave-mouth door in W011's generated scene; the return path already works.)
+- **📣 Lane state:** ALL five traversal verbs now have pure cores AND live translators. Caves are
+  places (lab + Undercroft). Remaining: W011→Undercroft entry door · story gating/flags for cave
+  worlds · Forge cavern kit (Picasso) · Terry's feel pass (runbook items queued).
+- **Commit:** this push. Verify CI.
+
 ### 2026-07-09 (hwr10) - Fable 5 (traversal lane): 🪝 1.4f — grapple lands, the audit learns to ride, the fling gets its A/B gate
 Big-sprint triple; hwr9's lab verified CI-green first. **⚠️ ARCHITECT note: this pass touches YOUR
 `WorldReachabilityAuditRules.cs`** — additive only, see item 2; flag if you'd rather it lived elsewhere.

@@ -72,11 +72,18 @@ Do these in order after pulling. Each generates committable assets. *(This mirro
   dwell time, pad arc height (apex +2m — comfortable or startling?), landing accuracy.
 - [ ] **NEW (caverns 1.4e, 2026-07-09) — THE FIRST CAVE:** run `Ziptide → Dev → Build Cavern Test
   Lab` once (creates + saves `Cavern_TestLab.unity`, adds itself to Build Settings), commit the scene
-  + `Cavern_WorldPack.asset`. **Headset:** warp in via Y+B ("Cavern Test Lab") — you spawn in a dim
+  + its `_WorldPack.asset`. **Headset:** warp in via Y+B ("Cavern Test Lab") — you spawn in a dim
   crystal-lit chamber network: walk the rock bridges between chambers, climb the stud-faced shaft
   walls (deep shafts also have a lift beside them), ride the zipline from the top chamber back to the
   bottom. Feel notes: chamber scale, bridge width (2.4m — vertigo?), shaft climb height, whether the
   dim light + crystal tips read as "cave" or just "dark".
+- [ ] **NEW (1.4g, 2026-07-09) — GRAPPLE + THE UNDERCROFT:** also run `Ziptide → Worlds → Build W011
+  Undercroft (cave world)` once, commit scene + pack. **Headset:** (a) in the Sandbox corner, point
+  the ray at the breathing **rose ring** high on the tower's south shoulder and GRIP — the reel pulls
+  you up (`ZIPTIDE: GRAPPLE_FIRE/END`; from too far you get a dim miss-pulse, `GRAPPLE_MISS`);
+  release mid-reel to bail. (b) Warp to "The Undercroft" — W011's deep cave layer: RILL speaks on
+  entry, high chambers carry grapple rings, the return door travels home to W011. Feel notes: reel
+  speed (7 m/s), ease-in, stop distance (1.1m short), whether pointing-to-fly feels great or cheap.
 - [ ] **NEW (combat A3, 2026-07-09 — Picasso):** the damage economy was unified onto ONE scale. No manual
   menu needed — **the build auto-migrates the 7 creature assets** (`CreatureVariantAuthor` →
   `CreatureStatRebaseline`, version-guarded/idempotent) from their old health (~8–60) to the new
