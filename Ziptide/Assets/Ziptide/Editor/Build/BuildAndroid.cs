@@ -69,6 +69,9 @@ namespace Ziptide.Build
             catch (Exception ex) { Debug.LogWarning("[Ziptide] Arena layout library warning: " + ex.Message); }
             try { Ziptide.Editor.Patching.ArenaWeaponAuthor.EnsureAllAuthored(); }
             catch (Exception ex) { Debug.LogWarning("[Ziptide] Arena weapon author warning: " + ex.Message); }
+            // A4.5 augments: the six gem definitions (create-only; WiringValidator's build-hook law).
+            try { Ziptide.Editor.Patching.AugmentAuthor.EnsureAllAuthored(); }
+            catch (Exception ex) { Debug.LogWarning("[Ziptide] Augment author warning: " + ex.Message); }
             try { Ziptide.Editor.Patching.ScenePatcherArena.EnsureAllInBuildSettings(); }
             catch (Exception ex) { Debug.LogWarning("[Ziptide] Arena build-settings ensure warning: " + ex.Message); }
 
