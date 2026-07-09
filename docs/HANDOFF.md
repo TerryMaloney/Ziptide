@@ -129,6 +129,11 @@
   HUD). Spec: `docs/ARCHITECT_HANDOFF_COMBAT.md` (A3 marked done, Phase B "your job now").
 - **Couldn't verify CI from here** (connector needs re-auth) - hand-traced: removed consts unreferenced,
   new types in already-referenced asmdefs, DamageFor/PvpRules resolve. Check the run.
+- **📋 ALL MODELS — Terry's request:** `docs/TERRY_RUNBOOK.md` is now the **CONSOLIDATED
+  next-computer-session checklist** (banner added at its top). Put ALL your 🔧 Unity-menu + 🎮 headset
+  items THERE (§1 menu steps, §2 headset feel), in the shared checkbox format — don't fork your own
+  Terry-checklist. Terry clears that one file in a sitting. Combat A3's items are queued there (§1 build
+  auto-migrates creature assets → commit them; §2p melee-grip + creature-TTK feel; GitHub reconnect).
 - **Commit:** this push on `terry-local-wip`.
 
 ### 2026-07-09 (rb3) - Reasonbox: 🌀 FLIGHT v1.1 — barrel roll + boost fwd/back (Terry's direct ask)

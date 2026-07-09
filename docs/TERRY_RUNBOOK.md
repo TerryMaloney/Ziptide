@@ -14,6 +14,12 @@ the device pass.
 > 🎮 **TESTING TODAY? Start with `docs/TEST_DAY.md`** — install PowerShell + the consolidated
 > project & testing checklists for the current build. This file remains the per-system detail.
 
+> ⭐ **THIS IS THE CONSOLIDATED NEXT-COMPUTER-SESSION CHECKLIST.** Every model: queue your 🔧 Unity-menu
+> and 🎮 headset items HERE (§1 = Unity-menu steps, §2 = headset feel passes), in the shared checkbox
+> format — do NOT fork a second
+> checklist. Terry clears this whole file in one sitting. (Last consolidated: 2026-07-09 — combat A3,
+> flight v1.1, worlds.)
+
 ## 1. Pending Unity menu steps (run in the editor, then commit the results)
 Do these in order after pulling. Each generates committable assets. *(This mirrors
 `DEVICE_TEST_CHECKLIST.md` §0 — that doc has the full copy-paste block.)*
@@ -50,6 +56,12 @@ Do these in order after pulling. Each generates committable assets. *(This mirro
   → DOCK to stand up, RETURN HOME to travel back. Feel notes wanted: snap-yaw angle (30°), pitch
   speed, boost strength (1.8×–2.5×), barrel-roll speed (~0.86s — too fast/slow/nauseating?),
   reverse cap (40%), vignette strength, ring size.
+- [ ] **NEW (combat A3, 2026-07-09 — Picasso):** the damage economy was unified onto ONE scale. No manual
+  menu needed — **the build auto-migrates the 7 creature assets** (`CreatureVariantAuthor` →
+  `CreatureStatRebaseline`, version-guarded/idempotent) from their old health (~8–60) to the new
+  integer scale (`swarm_bug` 4 … `warden` 20). After the build, `git status` will show the 7
+  `Resources/Enemies/*.asset` **modified** — that's the migration; **commit them.** (If you'd rather run
+  it explicitly first: `Ziptide → Worlds → Rebaseline Creature Stats (unified scale)`.)
 - [ ] **Commit** the generated `.unity` / `.asset` files (PowerShell: `git add -A; git commit -m "..."; git push origin terry-local-wip`).
 - [ ] Build + install: `powershell -ExecutionPolicy Bypass -File C:\Ziptide\tools\dev_build_install.ps1`
   *(re-runs all patchers, so scene-side fixes apply automatically.)*
@@ -347,6 +359,23 @@ system:
   (audit-guaranteed but confirm the feel), no doors blocked, no floating geometry.
 - [ ] Feel notes → HANDOFF; a ❌ here re-prioritizes the building track before more styles are made.
   (Picasso's building-module kit lands on the same seam next — E5.1 in `FORGE_II_QUALITY_LEAP.md`.)
+
+## 2p. NEW — COMBAT: melee grip + the unified damage scale (2026-07-09, Picasso; all auto after build)
+Two things to *feel* on device; both are pure-data tunes if they're off (no rebuild needed to change the numbers).
+- [ ] **Melee grip** — pick up the **Breaker Blade** and the **Tide Pike** (arena weapon pads, or the
+  blade in the story starter rack). They used to be held at the *gun* aim angle; now the blade rides
+  above the fist (+70°) and the pike sits flatter (+30°, tip-leads-the-thrust). Do they feel like a sword
+  and a spear in the hand, not a pistol? If not, tune `ItemDefinition.gripLocalEuler` on
+  `Resources/Items/BreakerBlade.asset` / `TidePike.asset` (X = pitch). Guns are unchanged — sanity-check
+  one still aims right.
+- [ ] **Creature time-to-kill** — the whole arsenal now does its own per-weapon damage to creatures on
+  the SAME scale as PvP (taser was 10, now 2; net/thumper/prism used to all wrongly do 8). Creature
+  health was re-baselined to match. Quick check: taser a **swarm_bug** (should die ~2 hits), a **warden**
+  (~10 hits, a mini-boss). Do fights feel right, or too spongy / too fragile? Tune numbers in
+  `CreatureBaselines.HealthFor` (one file, one line each). Watch `ZIPTIDE: CREATURE_DOWN`.
+- [ ] **(not Unity) Reconnect the GitHub connector** on claude.ai (Settings → Connectors → GitHub →
+  Reconnect, authorize `terrymaloney/ziptide`) so the operators can see CI status again. Pushing already
+  works without it; this is just so we can watch the runs go green.
 
 ## 3. The two open judgment calls (yours)
 - **"Can you run in Toxic City?"** — was it the input bug (now fixed) or actual walls/narrow streets? If
