@@ -272,7 +272,10 @@ seen, and your `ZiplineRuntime` became the template for this commit's climb tran
 - **Tests:** FlightModelTests +5 (roll transient/no-chain/orientation, boost cap+decay, reverse cap ±
   boost), input tests signed, params tests boost-clamp both ways. Runbook headset notes updated.
 - **Next / still CLAIMED (flight lane):** Terry's bake + feel pass → 2.4 atmosphere→space transition.
-- **Commit / branch:** this push on `terry-local-wip` — check the run's verdict before stacking C#.
+- **Commit / branch:** `5709d5a` went RED on ONE test — my own test flew the ship 2280m in a straight
+  line and hit the 1800m lane soft-wall, which bled the very speed it asserted (model was correct).
+  Fixed in `5133c5c` (re-center between phases) — **CONFIRMED GREEN ✅** via the suite passing on the
+  descendant runs (`176d223` etc., 519+ tests). Flight v1.1 is fully CI-verified.
 
 ### 2026-07-09 (rb2) - Reasonbox: ✈️ FLIGHT SHIPS — arming gate + P4b free-flight v1 (3 commits, first two CI-green)
 - **Did (① fuel-cell arming gate, `94bdf40`, CI ✅):** PUNCH IT now blocks until the tutorial's
