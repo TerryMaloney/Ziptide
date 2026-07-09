@@ -2,7 +2,11 @@
     "name": "Ziptide.Ship",
     "rootNamespace": "Ziptide",
     "references": [
-        "Ziptide.Core"
+        "Ziptide.Core",
+        "Ziptide.Content",
+        "Ziptide.Gameplay",
+        "Unity.XR.Interaction.Toolkit",
+        "Unity.InputSystem"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
