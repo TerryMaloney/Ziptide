@@ -68,6 +68,20 @@ namespace Ziptide.Gameplay
             PlayerPrefs.SetFloat(PrefKey, _strength);
         }
 
+        // World-moves-around-you frames (ship flight per the SPACEFLIGHT_PHYSICS law, vehicles later)
+        // leave the rig STILL, so rig sampling reads zero motion. Those translators report their
+        // apparent motion here each frame; the latch folds into this frame's sample and clears.
+        private float _reportedSpeed01;
+        private float _reportedTurn01;
+
+        /// <summary>Report externally-rendered artificial motion (normalized 0..1) for THIS frame.
+        /// Call every frame while the frame moves; a missed frame simply reopens the iris.</summary>
+        public void ReportExternalMotion(float speed01, float turn01)
+        {
+            if (speed01 > _reportedSpeed01) _reportedSpeed01 = speed01;
+            if (turn01 > _reportedTurn01) _reportedTurn01 = turn01;
+        }
+
         private void LateUpdate()
         {
             if (_rig == null || _mesh == null) return;
@@ -81,6 +95,11 @@ namespace Ziptide.Gameplay
             float turn01 = Mathf.Abs(Mathf.DeltaAngle(_lastRigYaw, yaw)) / dt / FullTurnDegPerSec;
             _lastRigPos = pos;
             _lastRigYaw = yaw;
+
+            if (_reportedSpeed01 > speed01) speed01 = _reportedSpeed01;
+            if (_reportedTurn01 > turn01) turn01 = _reportedTurn01;
+            _reportedSpeed01 = 0f;
+            _reportedTurn01 = 0f;
 
             float target = ComfortCore.TargetAperture(speed01, turn01, _strength);
             _aperture = ComfortCore.Step(_aperture, target, dt);

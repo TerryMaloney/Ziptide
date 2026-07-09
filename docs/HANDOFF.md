@@ -28,6 +28,35 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-09 (rb2) - Reasonbox: ✈️ FLIGHT SHIPS — arming gate + P4b free-flight v1 (3 commits, first two CI-green)
+- **Did (① fuel-cell arming gate, `94bdf40`, CI ✅):** PUNCH IT now blocks until the tutorial's
+  `gate_coupler` RepairableMachine is RUNNING — pure rule in `CastOffArming` (fail-open: a missing
+  machine NEVER strands the launch; checked per press so JobDirector's late spawn is safe). Blocked
+  presses log `FLIGHT_BLOCKED` + flash the button label. `RepairableMachine` gained `MachineId` /
+  `IsRepaired` getters. 4 tests.
+- **Did (② P4b pure cores, `0aa555f`, CI ✅):** `Ziptide.Ship` assembly wakes up —
+  `FlightInputCore` (forward-only throttle, pitch deadzone, snap-yaw flick LATCH: one snap per
+  flick, re-arm near center — no smooth-yaw code path exists) + `FlightCourseCore` (strictly-ordered
+  rings, empty course born complete). 7 tests. **Shared-file edits, announcing:** Ship asmdef gained
+  Content/Gameplay/XRI/InputSystem refs; Tests.EditMode asmdef gained Ziptide.Ship.
+- **Did (③ P4b translator + scene, this push):** `ShipFlightRuntime` — TAKE THE HELM teleports the
+  rig to the seat (never parents — SPACEFLIGHT_PHYSICS law), suspends walking providers, ticks
+  `FlightModel`, and renders the WORLD's inverse pose on a LaneContent root; DOCK exits, RETURN HOME
+  goes through TravelCoordinator. `ShipFlightRuntime.ParamsFrom` maps ShipDefinition → FlightParams
+  with comfort rails DATA-PROOF (tests pin that cruise can change but pitch-clamp/snap-yaw/lane-radius
+  can't). `ScenePatcherSpaceLane` bakes `SpaceLane_Trial` (dock + open cockpit frame + 5-ring course +
+  drift rocks + world pack so every helm and the dev menu list "Flight Trial" with zero CityBuilder
+  edits). **More shared-file edits:** Editor asmdef gained Ziptide.Ship; `ComfortVignette` gained an
+  additive `ReportExternalMotion(speed01, turn01)` latch — world-moves-around-you frames read zero rig
+  motion, so flight reports its apparent motion into the ONE vignette (2nd operator: your rig-sampling
+  path is untouched; the latch folds in via max and self-clears every frame).
+- **Next / CLAIMED (still the flight lane):** Terry's 🔧 bake (runbook §1) + headset feel pass, then
+  board rows 2.4 (atmosphere→space transition on this seam) and 2.3 polish from his notes. Ship Forge
+  (2.1) stays untouched until Picasso's E1.4 lands.
+- **Heads-up:** ③'s CI verdict wasn't back at handoff-write time — check the newest run on this branch
+  before stacking C# on the flight files.
+- **Commits:** `94bdf40` ✅ · `0aa555f` ✅ · ③ = this push.
+
 ### 2026-07-09 (rb1) - Reasonbox (new operator): 🚀 CLAIM — the flight lane (PRIORITIES #3 + #4 / board rows 2.3→2.4)
 - **Did:** Onboarding survey only (no C# yet). Confirmed the flight state: `FlightModel` pure core +
   `FlightModelTests` are shipped and consumed by NOTHING; `ShipCastOffRuntime` (PUNCH IT) is still the

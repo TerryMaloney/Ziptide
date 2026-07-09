@@ -39,6 +39,13 @@ Do these in order after pulling. Each generates committable assets. *(This mirro
 - [ ] `Ziptide → Worlds → Build PvP Arena`
 - [ ] `Ziptide → Dev → Build Starter World (graybox)`  *(regenerates with the safety floor)*
 - [ ] `Ziptide → Dev → Build Sandbox Test Lab`  *(only if you want the sandbox refreshed)*
+- [ ] **NEW (flight, 2026-07-09 — Reasonbox):** `Ziptide → Worlds → Build Space Lane (Flight Trial)` —
+  generates `SpaceLane_Trial.unity` + its world pack/theme and adds it to Build Settings. Commit the
+  generated scene + assets. After the next build, "Flight Trial" appears on every berthed ship's helm
+  and in the Y+B dev menu. **Headset check:** board → TAKE THE HELM (you teleport to the seat, walking
+  is suspended) → left stick = throttle, right stick = pitch + snap-yaw flicks → fly the 5 orange rings
+  (they turn green; watch `ZIPTIDE: FLIGHT_RING` in logcat) → DOCK to stand up, RETURN HOME to travel
+  back. Feel notes wanted: snap-yaw angle (30°), pitch speed, vignette strength during flight, ring size.
 - [ ] **Commit** the generated `.unity` / `.asset` files (PowerShell: `git add -A; git commit -m "..."; git push origin terry-local-wip`).
 - [ ] Build + install: `powershell -ExecutionPolicy Bypass -File C:\Ziptide\tools\dev_build_install.ps1`
   *(re-runs all patchers, so scene-side fixes apply automatically.)*

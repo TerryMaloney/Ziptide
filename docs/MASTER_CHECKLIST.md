@@ -95,6 +95,10 @@ everything already points at it (the shipyard berth + static ship exist in Toxic
 natural upgrade of the travel door).
 - 🔭 **The Ship v1** — board your berthed ship, real **cockpit interior**, and **leave a world by flying
   out** (replacing the placeholder travel door). The moment ToxicCity becomes "the first stop," not "a level."
+  - 🟢 **P4b free-flight v1 shipped (2026-07-09, Reasonbox):** `FlightModel` + `FlightInputCore` +
+    `FlightCourseCore` + `ShipFlightRuntime` (Ziptide.Ship) — helm seat, world-moves-around-you flight,
+    5-ring trial in `SpaceLane_Trial` (patcher in the runbook; every helm + dev menu list "Flight Trial").
+    PUNCH IT now gated on the coupler repair. Awaiting Terry's bake + headset feel pass.
 - 🔭 **Ship = the hub / world-select** — choose your next planet from the cockpit; the ship *is* the menu between worlds.
 - 🔭 **Ship customization / upgrades** — credits sink that ties the economy together ([`design/SHIP_SYSTEM.md`](design/SHIP_SYSTEM.md)).
 
