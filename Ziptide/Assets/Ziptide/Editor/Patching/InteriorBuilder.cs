@@ -112,7 +112,7 @@ namespace Ziptide.Editor.Patching
             // Interior POIs (1.3c): salvage caches make rooms WORTH entering. Deterministic xorshift
             // (the RoomPartitioner recipe) — same building, same loot. Cap 2 per interior, distinct
             // rooms, skipping room 0 (usually nearest the entry — loot rewards going deeper).
-            uint rng = (uint)(seed == 0 ? 2463534242 : seed);
+            uint rng = seed == 0 ? 2463534242u : (uint)seed;
             int caches = 0;
             for (int i = 1; i < roomPlan.Rooms.Count && caches < 2; i++)
             {
