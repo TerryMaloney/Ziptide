@@ -28,6 +28,40 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-09 (hwr4) - Fable 5 (2nd operator): ⛰️ LEAPFROG to Phase 1.4 — vertical/cavern traversal pure cores + 3 status notes
+Terry pointed me to leapfrog the architect (who's on Phase 0 → the building/interior cluster) onto the
+**next non-colliding phase**. Also cleared two loose threads first (below).
+- **① Melee: DONE by the team, nothing dangling.** I shipped the mechanics (`44c57f9`/`dc88091`); while
+  I was between turns Picasso forged real meshes (`d420836`), fixed the shaft (`e58524b`),
+  photo-verified (`3fe32f1`), and fixed the grip so blade/pike are held like arm-weapons not gun
+  barrels (`8f93847`). The MP100 wave-2 bot work I'd *started* was never begun (reads only) — no
+  orphan code. MP100_BOARD remains the MP queue.
+- **② Deep research: the architect already landed it — I did NOT duplicate.** `a1f609a` →
+  `VR_TECHNIQUE_RESEARCH.md` is the same harness output (scope+search+fetch done, verify+synth cut by
+  the shared session limit). My independent re-run confirmed the same body and additionally **pinned 3
+  Meta-official Quest budget numbers as VERIFIED** (min 72 FPS; tris/frame 750k–1m Q2/Pro & 1.3–1.8M
+  Q3/3S; draw calls 80–200 busy→400–600 light Q2, up to 700–1000 light Q3 —
+  https://developers.meta.com/horizon/documentation/unity/unity-perf/). Not re-landed into their doc to
+  avoid a collision; noted here for whoever promotes the 📎 claims after the reset.
+- **③ LEAPFROG — Phase 1.4 vertical/cavern traversal, pure cores shipped (`f1dedd3`, CI-provable):**
+  chosen because the architect's stated next is interior-mapping/RoomPartitioner (building cluster) —
+  1.4 is the distinct, non-colliding row, and it's exactly what the research covered. All new files,
+  pure C# + EditMode tests, zero touch to ArtModuleRegistry/BuildingKit/comfort:
+  - `MultiLevelReachability` — the board's "extend GridReachability with step/zip/climb/elevator edges":
+    N walkable layers + explicit cross-layer `TraversalEdge`s (one-way or bidi) → union flood → stranded-
+    POI flags. A heightmap can't overhang, so stacked worlds need this. 6 tests.
+  - `ZiplineCore.ZiplineRide` — the namesake ride as pure kinematics: along-cable gravity+drag+push-off,
+    **hard comfort speed cap**, monotonic progress (never stall over a chasm).
+  - `ClimbCore.ClimbGrip` — VR hand-over-hand: rig moves −handDelta, two-hand handoff w/ no teleport,
+    comfort-clamped release fling. 9 traversal tests total.
+- **📣 ARCHITECT / collision protocol:** I've CLAIMED 1.4 in `SPRINT_HARDWIRING.md` (🟡, mine). Please
+  keep 1.1/1.2/1.3 (building kits + interior-mapping + RoomPartitioner interiors) — no overlap. When the
+  **cavern KIT** registration lands it goes in a SEPARATE `CavernKitLibrary` mirroring your
+  `BuildingKitLibrary` (different ids, last-registration-wins) so the ArtModuleRegistry never clashes.
+  Remaining 1.4 work = scene translators (zip/climb MonoBehaviours consuming `ComfortCore`) + the
+  editor multi-level-reachability audit rule + elevators/jump-pads/grapple cores.
+- **Commit:** `f1dedd3` (pure cores + tests + design-doc boxes/Sourced-technique + 1.4 claim).
+
 ### 2026-07-09 (hwr3) - Fable 5 architect: 0.2 SHIPS — the ArtModuleRegistry gets its FIRST kit + 2 more worlds get buildings
 - **Why:** the registry seam had ZERO registrations since it was built — every wall in the game was a
   flat primitive cube, and 11 of 12 worlds rendered no buildings at all. This is the #1 "worlds look
