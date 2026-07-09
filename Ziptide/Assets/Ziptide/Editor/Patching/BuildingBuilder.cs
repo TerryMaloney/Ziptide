@@ -46,6 +46,40 @@ namespace Ziptide.Editor.Patching
                 var plan = BuildingGrammar.Plan(lot, style.ToData(), seed + ++built);
                 if (plan == null) continue;
                 RenderPlan(root.transform, lot, plan, style);
+                StreetDressing(root.transform, lot, style, seed + built * 7919);
+            }
+        }
+
+        /// <summary>
+        /// HARDWIRING 1.5 — street-level life. The wilderness scatter pass deliberately masks
+        /// districts out, which left streets bare; this drops small crate stacks at seeded LOT
+        /// CORNERS — door-safe by construction (corner cells are CornerTrim in the grammar, never
+        /// Doorway; the BUILDING_DOOR_BLOCKED gate double-checks on APK). ~0-4 renderers per lot,
+        /// under the district renderer budget.
+        /// </summary>
+        private static void StreetDressing(Transform districtRoot, Lot lot, BuildingStyleDefinition style, int seed)
+        {
+            uint rng = seed == 0 ? 2463534242u : (uint)seed;
+            float Next01() { rng ^= rng << 13; rng ^= rng >> 17; rng ^= rng << 5; return (rng & 0xFFFFFF) / (float)0x1000000; }
+
+            if (Next01() > 0.6f) return; // not every corner — streets breathe
+
+            // One seeded corner, pushed outward into the street gap.
+            var b = lot.Bounds;
+            int corner = (int)(Next01() * 4f) & 3;
+            float sx = (corner & 1) == 0 ? -1f : 1f;
+            float sz = (corner & 2) == 0 ? -1f : 1f;
+            var at = new Vector3(b.center.x + sx * (b.width * 0.5f + 0.9f), 0f,
+                                 b.center.y + sz * (b.height * 0.5f + 0.9f));
+
+            int stack = 1 + (int)(Next01() * 2.99f); // 1-3 crates
+            for (int i = 0; i < stack; i++)
+            {
+                var crate = Cube(districtRoot, "StreetCrate",
+                    at + new Vector3((Next01() - 0.5f) * 0.4f, 0.22f + i * 0.42f, (Next01() - 0.5f) * 0.4f),
+                    Vector3.one * (0.44f - i * 0.05f),
+                    i == 0 ? style.trimColor : style.wallColor * 0.9f);
+                crate.transform.localRotation = Quaternion.Euler(0f, Next01() * 90f, 0f);
             }
         }
 
