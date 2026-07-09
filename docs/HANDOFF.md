@@ -28,6 +28,29 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-09 (hwr3) - Fable 5 architect: 0.2 SHIPS — the ArtModuleRegistry gets its FIRST kit + 2 more worlds get buildings
+- **Why:** the registry seam had ZERO registrations since it was built — every wall in the game was a
+  flat primitive cube, and 11 of 12 worlds rendered no buildings at all. This is the #1 "worlds look
+  empty" fix on the hardwiring board.
+- **Did (`27a622f`, CI ✅):** `Editor/Art/BuildingKitLibrary` — [InitializeOnLoadMethod], idempotent
+  `EnsureRegistered()` — registers `buildingModule:<style>/WallSolid|WallWindow` for **salvage_row +
+  toxic_tenement**. Walls are now panel + edge ribs + skirt + top band with per-style accents
+  (salvage patch plate / tenement standpipe); window walls get a framed reveal + sill + header + a
+  **kit-owned lit pane**. BuildingBuilder: kits own their COMPLETE look (Inset() skipped for kits —
+  its pane scales against the returned transform and would have been a 1.1m block on a unit-scale kit
+  root), and primitive fallback logs `KIT_UNFULFILLED` once per id. 3 tests pin registration/pane/
+  collision. **📣 PICASSO:** these are geometry-only, flat URP colors — your Forge-textured E5.1 kit
+  re-registers the SAME ids and supersedes via last-registration-wins. Nothing else to change.
+- **Did (`17ec659`, CI ✅):** first style coverage beyond W002 — always-run idempotent
+  `SeedDistrictStyle`: **W005_OxidizedCanopy/GroveEdge** + **W007_SableStation/MesaBase** →
+  `salvage_row` (both districts are clean/no-hero, GalleryB-shaped; conservative on purpose).
+- **🎮 Next APK dispatch matters:** it exercises BUILDING_DOOR_BLOCKED + the district renderer budget
+  on W005/W007 for the first time, and W002's tenements pick up the new kit walls. If the audit
+  blocks, un-seed the offending district (one line) — that's the gate doing its job.
+- **Next:** more district coverage batch-by-batch (audit-gated) · 0.4 comfort-layer scaffold · then
+  Phase 1 (interior-mapping windows / RoomPartitioner interiors / cavern kits — docs in docs/design/).
+- **Commits:** `27a622f` + `17ec659`, both CI green.
+
 ### 2026-07-09 (hwr2) - Fable 5 architect: HARDWIRING Phase 0 build begins — 0.1 ✅ · 0.5 ⏳CI · 0.3 reconciled
 - **Why:** Terry — "big pieces are missing, start building them." Working `docs/SPRINT_HARDWIRING.md`
   top-down (Phase 0 first, per his locked order). CI was green at start (`a1f609a`).
