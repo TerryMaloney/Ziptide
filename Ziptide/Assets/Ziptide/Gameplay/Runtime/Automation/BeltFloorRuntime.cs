@@ -43,7 +43,13 @@ namespace Ziptide.Gameplay
         private float _accum;
         private float _nextPayout;
         private readonly Dictionary<BeltItem, GameObject> _pucks = new Dictionary<BeltItem, GameObject>();
+        private readonly Dictionary<int, GameObject> _cellVisuals = new Dictionary<int, GameObject>();
         private static readonly List<BeltItem> _gone = new List<BeltItem>(); // scratch
+
+        /// <summary>Live floors — held BeltTileItems query these for ghost + placement.</summary>
+        public static readonly List<BeltFloorRuntime> Active = new List<BeltFloorRuntime>();
+        private void OnEnable() => Active.Add(this);
+        private void OnDisable() => Active.Remove(this);
 
         // ── Patch-time authoring (serialized; no scene wiring) ─────────────────────────────────
         public void AuthorBelt(int x, int z, BeltDir dir)
@@ -75,41 +81,159 @@ namespace Ziptide.Gameplay
 
         private void BuildTiles()
         {
+            foreach (var c in cells) BuildCellVisual(c);
+        }
+
+        /// <summary>One cell's visual — a per-cell container so runtime removal is one Destroy.
+        /// Hand-placed BELT tiles are grip-pickable (select → the belt returns to your hand).</summary>
+        private void BuildCellVisual(BeltCellSpec c)
+        {
             var tileCol = new Color(0.17f, 0.19f, 0.21f);
             var chevCol = new Color(0.35f, 0.95f, 0.75f); // salvage teal — the automation accent
             var srcCol = new Color(0.30f, 0.45f, 0.60f);
             var sinkCol = new Color(0.55f, 0.40f, 0.20f);
 
-            foreach (var c in cells)
-            {
-                Vector3 at = CellCenter(c.x, c.z);
-                var tile = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                tile.name = "BeltTile";
-                tile.transform.SetParent(transform, true);
-                tile.transform.position = at + Vector3.up * 0.05f;
-                tile.transform.localScale = new Vector3(cellSize * 0.96f, 0.1f,cellSize * 0.96f);
-                ItemFactory.ApplyURPColor(tile,
-                    c.kind == CellKind.Source ? srcCol : c.kind == CellKind.Sink ? sinkCol : tileCol);
+            var cellRoot = new GameObject("Cell_" + c.x + "_" + c.z);
+            cellRoot.transform.SetParent(transform, false);
+            _cellVisuals[c.z * width + c.x] = cellRoot;
 
-                if (c.kind == CellKind.Belt || c.kind == CellKind.Source)
-                {
-                    // Direction chevron: a flat teal bar pointing along flow — readable from above.
-                    // Parented to the UNSCALED floor root (a child of the squashed tile would shear).
-                    var chev = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                    chev.name = "Chevron";
-                    var cc = chev.GetComponent<Collider>();
-                    if (cc != null) Destroy(cc);
-                    chev.transform.SetParent(transform, true);
-                    chev.transform.position = at + Vector3.up * 0.11f;
-                    chev.transform.rotation = transform.rotation * Quaternion.Euler(0f, 90f * (int)c.dir, 0f);
-                    chev.transform.localScale = new Vector3(0.14f, 0.03f, cellSize * 0.5f);
-                    ItemFactory.ApplyURPColor(chev, chevCol);
-                    var cr = chev.GetComponent<Renderer>();
-                    if (cr != null) cr.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
-                }
-                var tr = tile.GetComponent<Renderer>();
-                if (tr != null) tr.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+            Vector3 at = CellCenter(c.x, c.z);
+            var tile = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            tile.name = "BeltTile";
+            tile.transform.SetParent(cellRoot.transform, true);
+            tile.transform.position = at + Vector3.up * 0.05f;
+            tile.transform.localScale = new Vector3(cellSize * 0.96f, 0.1f, cellSize * 0.96f);
+            ItemFactory.ApplyURPColor(tile,
+                c.kind == CellKind.Source ? srcCol : c.kind == CellKind.Sink ? sinkCol : tileCol);
+
+            if (c.kind == CellKind.Belt || c.kind == CellKind.Source)
+            {
+                // Direction chevron: a flat teal bar pointing along flow — readable from above.
+                // Parented to the UNSCALED cell root (a child of the squashed tile would shear).
+                var chev = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                chev.name = "Chevron";
+                var cc = chev.GetComponent<Collider>();
+                if (cc != null) Destroy(cc);
+                chev.transform.SetParent(cellRoot.transform, true);
+                chev.transform.position = at + Vector3.up * 0.11f;
+                chev.transform.rotation = transform.rotation * Quaternion.Euler(0f, 90f * (int)c.dir, 0f);
+                chev.transform.localScale = new Vector3(0.14f, 0.03f, cellSize * 0.5f);
+                ItemFactory.ApplyURPColor(chev, chevCol);
+                var cr = chev.GetComponent<Renderer>();
+                if (cr != null) cr.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
             }
+            var tr = tile.GetComponent<Renderer>();
+            if (tr != null) tr.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+
+            if (c.kind == CellKind.Belt)
+            {
+                // Grip a placed belt to pick it back up (its riding item lifts with it — Clear's law).
+                int cx = c.x, cz = c.z;
+                var pick = tile.AddComponent<UnityEngine.XR.Interaction.Toolkit.XRSimpleInteractable>();
+                pick.selectEntered.AddListener(_ => RemoveBeltAt(cx, cz));
+            }
+        }
+
+        // ── Hand placement (HARDWIRING 4.1c — the VR-unique verb) ───────────────────────────────
+
+        /// <summary>World position → cell coords. False when outside this floor's grid.</summary>
+        public bool TryWorldToCell(Vector3 worldPos, out int x, out int z)
+        {
+            Vector3 local = transform.InverseTransformPoint(worldPos);
+            x = Mathf.FloorToInt(local.x / cellSize);
+            z = Mathf.FloorToInt(local.z / cellSize);
+            return x >= 0 && x < width && z >= 0 && z < depth && Mathf.Abs(local.y) < 2.5f;
+        }
+
+        public bool CanPlaceAt(int x, int z)
+            => _lattice != null && _lattice.KindAt(x, z) == CellKind.Empty;
+
+        /// <summary>Quantize a held tile's facing to the nearest cardinal in floor space.</summary>
+        public BeltDir DirFromForward(Vector3 worldForward)
+        {
+            Vector3 f = transform.InverseTransformDirection(worldForward);
+            if (Mathf.Abs(f.x) >= Mathf.Abs(f.z)) return f.x >= 0f ? BeltDir.East : BeltDir.West;
+            return f.z >= 0f ? BeltDir.North : BeltDir.South;
+        }
+
+        /// <summary>Place a belt from the hand: snaps to the cell under <paramref name="worldPos"/>,
+        /// direction from the hand's facing. False if off-grid or the cell is taken.</summary>
+        public bool PlaceBeltFromHand(Vector3 worldPos, Vector3 worldForward)
+        {
+            if (!TryWorldToCell(worldPos, out int x, out int z) || !CanPlaceAt(x, z)) return false;
+            var dir = DirFromForward(worldForward);
+            _lattice.PlaceBelt(x, z, dir);
+            var spec = new BeltCellSpec { x = x, z = z, kind = CellKind.Belt, dir = dir };
+            cells.Add(spec); // session record (player factories persist to the profile in a later pull)
+            BuildCellVisual(spec);
+            Debug.Log("ZIPTIDE: BELT_PLACE x=" + x + " z=" + z + " dir=" + dir);
+            return true;
+        }
+
+        /// <summary>Pick a placed belt back up: clears the lattice cell (any riding item lifts with
+        /// it), removes the visual, and spawns a grabbable tile just above the cell.</summary>
+        public void RemoveBeltAt(int x, int z)
+        {
+            if (_lattice == null || _lattice.KindAt(x, z) != CellKind.Belt) return;
+            var lifted = _lattice.Clear(x, z);
+            if (lifted != null && _pucks.TryGetValue(lifted, out var puck))
+            {
+                Ziptide.Core.GamePool.Release("belt_puck", puck);
+                _pucks.Remove(lifted);
+            }
+            int idx = z * width + x;
+            if (_cellVisuals.TryGetValue(idx, out var vis) && vis != null) Destroy(vis);
+            _cellVisuals.Remove(idx);
+            for (int i = cells.Count - 1; i >= 0; i--)
+                if (cells[i].x == x && cells[i].z == z) cells.RemoveAt(i);
+
+            BeltTileItem.Spawn(CellCenter(x, z) + Vector3.up * 0.35f);
+            Debug.Log("ZIPTIDE: BELT_PICKUP x=" + x + " z=" + z);
+        }
+
+        // ── Ghost preview (shown by the held tile; hidden on release) ───────────────────────────
+
+        private GameObject _ghost;
+        private Transform _ghostChev;
+        private Renderer _ghostTileR, _ghostChevR;
+
+        public void ShowGhost(Vector3 worldPos, Vector3 worldForward)
+        {
+            if (!TryWorldToCell(worldPos, out int x, out int z)) { HideGhost(); return; }
+            if (_ghost == null) BuildGhost();
+            bool ok = CanPlaceAt(x, z);
+            var dir = DirFromForward(worldForward);
+            Vector3 at = CellCenter(x, z);
+            _ghost.SetActive(true);
+            _ghost.transform.position = at + Vector3.up * 0.06f;
+            _ghostChev.position = at + Vector3.up * 0.14f;
+            _ghostChev.rotation = transform.rotation * Quaternion.Euler(0f, 90f * (int)dir, 0f);
+            var col = ok ? new Color(0.35f, 0.95f, 0.75f) : new Color(0.9f, 0.3f, 0.25f);
+            ItemFactory.ApplyURPColor(_ghostTileR.gameObject, col * 0.9f);
+            ItemFactory.ApplyURPColor(_ghostChevR.gameObject, col);
+        }
+
+        public void HideGhost() { if (_ghost != null) _ghost.SetActive(false); }
+
+        private void BuildGhost()
+        {
+            _ghost = new GameObject("BeltGhost");
+            _ghost.transform.SetParent(transform, false);
+            var tile = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            tile.name = "GhostTile";
+            Destroy(tile.GetComponent<Collider>());
+            tile.transform.SetParent(_ghost.transform, false);
+            tile.transform.localScale = new Vector3(cellSize * 0.9f, 0.02f, cellSize * 0.9f);
+            _ghostTileR = tile.GetComponent<Renderer>();
+            var chev = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            chev.name = "GhostChevron";
+            Destroy(chev.GetComponent<Collider>());
+            chev.transform.SetParent(_ghost.transform, true);
+            chev.transform.localScale = new Vector3(0.14f, 0.03f, cellSize * 0.5f);
+            _ghostChev = chev.transform;
+            _ghostChevR = chev.GetComponent<Renderer>();
+            foreach (var r in _ghost.GetComponentsInChildren<Renderer>())
+                r.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
         }
 
         private void Update()

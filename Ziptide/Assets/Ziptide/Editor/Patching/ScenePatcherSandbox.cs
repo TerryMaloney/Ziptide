@@ -180,6 +180,16 @@ namespace Ziptide.Editor.Patching
             belt.AuthorBelt(4, 2, Ziptide.Content.Automation.BeltDir.East);
             belt.AuthorBelt(5, 2, Ziptide.Content.Automation.BeltDir.East);
             belt.AuthorSink(6, 2, "scrap");
+
+            // 4.1c: the tile dispenser beside the floor — grab a slab, watch the ghost snap to the
+            // grid (direction follows your wrist), release to CLICK it in; grip a placed belt to
+            // take it back. The hand-placement verb, exercisable end-to-end.
+            if (GameObject.Find("SandboxBeltDispenser") == null)
+            {
+                var disp = new GameObject("SandboxBeltDispenser");
+                disp.transform.position = new Vector3(-15.2f, 0f, -10.4f);
+                disp.AddComponent<Ziptide.Gameplay.BeltDispenserRuntime>();
+            }
         }
 
         /// <summary>Hardwiring 1.4b: the traversal test corner by the Locomotion zone — a climbable
