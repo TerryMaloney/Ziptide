@@ -85,6 +85,12 @@ namespace Ziptide.Editor.Patching
                             n++;
                         }
             }
+            // HARDWIRING 0.2 follow-through (ALWAYS-RUN, idempotent): first style coverage beyond
+            // W002 — two clean districts (no hero/POI payload, GalleryB-shaped) get salvage_row, the
+            // style no world exercised yet. Conservative on purpose: BUILDING_DOOR_BLOCKED + the
+            // renderer budget gate audit the result on the next APK before it can reach the headset.
+            n += SeedDistrictStyle("W005_OxidizedCanopy", "GroveEdge", "salvage_row");
+            n += SeedDistrictStyle("W007_SableStation", "MesaBase", "salvage_row");
             n += Experience("W003_GlassShelf", (kit, ex) =>
             {   // Wind-scoured stepped shelf; a shard monolith leans into the gale.
                 ex.enabled = true; ex.biome = BiomePreset.Mesas; ex.worldRadius = 280f; ex.heightAmplitude = 20f;
@@ -190,6 +196,27 @@ namespace Ziptide.Editor.Patching
                       " radius=" + kit.experience.worldRadius + " vista=" + kit.experience.vista +
                       " pois=" + kit.pois.Count);
             return 1;
+        }
+
+        /// <summary>Idempotent style seeding (HARDWIRING 0.2): give one district grammar buildings.
+        /// Only fills an EMPTY buildingStyleId — the generator is the single source of that intent;
+        /// to un-seed a district, remove its seed call. Returns 1 only when it changed something.</summary>
+        private static int SeedDistrictStyle(string sceneName, string districtId, string styleId)
+        {
+            var kit = AssetDatabase.LoadAssetAtPath<CityLayoutDefinition>(
+                LayoutFolder + "/" + sceneName + "_Layout.asset");
+            if (kit == null || kit.districts == null) return 0;
+            foreach (var d in kit.districts)
+            {
+                if (d == null || d.id != districtId) continue;
+                if (!string.IsNullOrEmpty(d.buildingStyleId)) return 0; // already styled — converged
+                d.buildingStyleId = styleId;
+                EditorUtility.SetDirty(kit);
+                Debug.Log("[Ziptide] DISTRICT_STYLED " + sceneName + "/" + districtId + " → " + styleId);
+                return 1;
+            }
+            Debug.LogWarning("[Ziptide] DISTRICT_STYLE_TARGET_MISSING " + sceneName + "/" + districtId);
+            return 0;
         }
 
         /// <summary>
