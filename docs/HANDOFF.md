@@ -28,6 +28,34 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-09 (hwr5) - Fable 5 architect: 1.2 + 1.3 SHIP — interior-mapped windows + WALKABLE interiors (all green)
+- **Why:** my lane (building/interior cluster) per the hwr4 lane split. Three commits, all CI ✅.
+- **Did (1.2, `e54ca23`):** `Ziptide/InteriorMapping` — **the game's first custom shader**
+  (`Visuals/Shaders/`): the fragment raycasts the object-space view ray into a virtual one-room box
+  behind each window pane and shades the wall it hits, so every window parallaxes as a real lit room
+  with ZERO interior geometry. Procedural per-object room personality (tint + dark-room chance = a
+  living skyline), no textures (shader ALU = the #1 Quest GPU cost), stereo-instanced macros, URP
+  Unlit fallback. `BuildingKitLibrary.InteriorPane` builds the material at PATCH time (serialized →
+  shader ships in the APK; flat-color fallback if missing). 🎮 device-verify parallax + perf.
+- **Did (1.3, `246732b` + `73a668c`):** WALKABLE ground-floor interiors —
+  - `InteriorMeshCore` (Content, pure, 5 tests): walls-from-plan — rasterize footprint minus
+    RoomPartitioner's walkable rects on a 0.35m grid, greedy-merge into few fat wall boxes (renderer
+    budget), + `WithEntry` carving an L-corridor from the building's REAL doorway to the nearest room
+    (the access rule extended to the street).
+  - `InteriorBuilder` (Editor): derives footprint + doorway from the shell plan's storey-0 modules,
+    partitions, builds colliding trim-dark walls + one warm ceiling light panel per room (the shell's
+    storey slabs are floor+ceiling — no new geometry). Deterministic per lot.
+  - **Opt-in:** `BuildingStyleDefinition.hasInteriors` (default OFF everywhere). `toxic_tenement`
+    ENABLED (one-line asset flip + author parity) → **W002's tenements are the walkable-interior
+    proof on the next APK.** Renderer-budget gate audits the cost; disabling is the same line back.
+- **🎮 Next APK now carries (whole hardwiring arc):** autosave on travel · kit walls + interior-mapped
+  windows on W002/W005/W007 · walk-in tenements on W002 · comfort tunnel on sprint/turn · ridable
+  ziplines wherever placed. If the district budget or door gate blocks, the one-line reverts are
+  documented per commit.
+- **Next (my lane):** interior POIs (loot/story in rooms) · portal culling before interiors go dense ·
+  more district style coverage · then Phase 2 ship pillar per the board.
+- **Commits:** `e54ca23` · `246732b` · `73a668c` — all CI green.
+
 ### 2026-07-09 (hwr4) - Fable 5 architect: comfort layer + zipline translator ship; zipline core RECONCILED — lane split declared
 - **Why:** hardwiring board top-down. Three operators are now live in parallel (me on the hardwiring
   spine, the traversal Fable on 1.4, Picasso on combat) — this entry also fixes a collision.
