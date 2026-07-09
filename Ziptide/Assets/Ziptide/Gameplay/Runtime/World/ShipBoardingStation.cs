@@ -48,6 +48,16 @@ namespace Ziptide.Gameplay
             BuildBoardingPanel();
             BuildCockpitDeck();
             BuildQuarters();
+
+            // Ship pillar 2.1/2.2 (2026-07-09): the profile's refit lands on this hull (chassis
+            // silhouette + livery + journey decals + nameplate + hum), and the hangar bay stands
+            // beside the quarters — select a tile, watch YOUR ship transform live.
+            ShipRefit.Apply(gameObject);
+            var hangar = new GameObject("HangarBay");
+            hangar.transform.SetParent(transform, false);
+            hangar.transform.localPosition = cockpitLocalPos + new Vector3(3.4f, 0f, -5.4f);
+            hangar.transform.localRotation = Quaternion.Euler(0f, -90f, 0f);
+            hangar.AddComponent<HangarBayRuntime>().shipRoot = gameObject;
         }
 
         // ── The Quarters: your locker/customization cabin, aft of the cockpit (QUARTERS.md) ──────

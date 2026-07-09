@@ -127,6 +127,8 @@ namespace Ziptide.Editor.Patching
                  "Home. Or the nearest thing either of us has to one.");
             Flag("react_quarters", "QUARTERS_FIRST_VISIT",
                  "Your quarters. The Guild manifest calls this compartment 'storage.' I disagree.");
+            Flag("react_ship_refit", "SHIP_REFIT",
+                 "You changed the ship. I noticed before you finished. I notice everything about the ship.");
 
             // ── THE ZIPTIDE gate lines — RILL rides the tide with you ───────────────────────────────
             // Wildcard pool (key "*", NOT once): one is picked at random each crossing, so the gate
@@ -186,6 +188,8 @@ namespace Ziptide.Editor.Patching
                     "RILL — you don't have to finish that. Not tonight.");
             CalFlag("cal_react_revelation", ZiptideFlags.C8_W062_REVELATION,
                     "Out. Not in. Say that again, slower.");
+            CalFlag("cal_react_refit", "SHIP_REFIT",
+                    "New wings, same us. Try to keep up.");
             CalFlag("cal_react_branch", ZiptideFlags.C12_W063_BRANCH,
                     "Whatever I choose in there — I need you to know I heard everything you didn't say too.");
 
