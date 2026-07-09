@@ -79,9 +79,17 @@ namespace Ziptide.Gameplay
 
         private void SpawnSpark()
         {
+            // Pooled (HARDWIRING 0.5): one spark per dart hit, and the factory runs ONCE — the old
+            // path leaked a fresh Material into memory on every single impact.
+            var spark = Ziptide.Core.GamePool.Get("taser_spark", BuildSpark, transform.position);
+            Ziptide.Core.GamePool.ReleaseAfter("taser_spark", spark, 0.15f);
+        }
+
+        /// <summary>Pool factory — runs once; spark visual (and its material) reused per hit.</summary>
+        private static GameObject BuildSpark()
+        {
             var spark = GameObject.CreatePrimitive(PrimitiveType.Sphere);
             spark.name = "Spark";
-            spark.transform.position = transform.position;
             spark.transform.localScale = Vector3.one * 0.04f;
             var col = spark.GetComponent<Collider>();
             if (col != null) col.enabled = false;
@@ -100,8 +108,7 @@ namespace Ziptide.Gameplay
                     r.material = mat;
                 }
             }
-
-            Destroy(spark, 0.15f);
+            return spark;
         }
     }
 }

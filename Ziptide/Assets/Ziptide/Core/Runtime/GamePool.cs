@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -99,6 +100,40 @@ namespace Ziptide.Core
             if (!retained) UnityEngine.Object.Destroy(go);
         }
 
+        /// <summary>
+        /// Pooled equivalent of Destroy(go, seconds): return <paramref name="go"/> to its pool after a
+        /// delay. Runs on a hidden per-scene ticker; if the scene changes first, the pending release
+        /// simply finds a destroyed object / cleared pool and no-ops (Release guards both), so a timed
+        /// release can never resurrect a stale instance across travel.
+        /// </summary>
+        public static void ReleaseAfter(string key, GameObject go, float seconds)
+        {
+            if (go == null) return;
+            if (seconds <= 0f) { Release(key, go); return; }
+            Ticker().StartCoroutine(ReleaseAfterRoutine(key, go, seconds));
+        }
+
+        private static IEnumerator ReleaseAfterRoutine(string key, GameObject go, float seconds)
+        {
+            yield return new WaitForSeconds(seconds);
+            Release(key, go);
+        }
+
+        // Coroutine host for timed releases. Separate from the (inactive) pool root — coroutines only
+        // run on active objects. Per-scene like the pools: dies with its scene, rebuilt on demand.
+        private static GamePoolTicker _ticker;
+
+        private static GamePoolTicker Ticker()
+        {
+            if (_ticker == null)
+            {
+                var go = new GameObject("__GAMEPOOL_TICKER");
+                go.hideFlags = HideFlags.HideInHierarchy;
+                _ticker = go.AddComponent<GamePoolTicker>();
+            }
+            return _ticker;
+        }
+
         /// <summary>Pre-build <paramref name="count"/> instances for <paramref name="key"/> so the first
         /// burst doesn't hitch. Safe to call at scene setup. Uses the normal Acquire→Release cycle so
         /// each instance ends up correctly deactivated + parked on the free list.</summary>
@@ -131,7 +166,12 @@ namespace Ziptide.Core
                 foreach (var go in kv.Value.DrainFree())
                     if (go != null) UnityEngine.Object.Destroy(go);
             _pools.Clear();
-            _root = null; // old root died with the old scene
+            _root = null;   // old root died with the old scene
+            _ticker = null; // ticker (and its pending releases) died with it too
         }
     }
+
+    /// <summary>Empty coroutine host for <see cref="GamePool.ReleaseAfter"/>. Not a singleton — one
+    /// per scene, created on demand by the pool.</summary>
+    public class GamePoolTicker : MonoBehaviour { }
 }

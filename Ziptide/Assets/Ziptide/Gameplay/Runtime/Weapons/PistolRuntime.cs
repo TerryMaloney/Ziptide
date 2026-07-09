@@ -105,11 +105,9 @@ namespace Ziptide.Gameplay
             }
             else
             {
-                var flashGo = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-                flashGo.transform.position = _muzzle.position;
-                flashGo.transform.localScale = Vector3.one * 0.02f;
-                flashGo.GetComponent<Collider>().enabled = false;
-                Destroy(flashGo, 0.08f);
+                // Pooled (HARDWIRING 0.5): a flash per trigger pull is the hottest spawn on the belt.
+                var flashGo = Ziptide.Core.GamePool.Get("pistol_flash", BuildFallbackFlash, _muzzle.position);
+                Ziptide.Core.GamePool.ReleaseAfter("pistol_flash", flashGo, 0.08f);
             }
 
             if (_audioSource != null)
@@ -117,6 +115,17 @@ namespace Ziptide.Gameplay
                 if (def.fireClip != null) _audioSource.PlayOneShot(def.fireClip);
                 else _audioSource.PlayOneShot(GetFallbackClickClip());
             }
+        }
+
+        /// <summary>Pool factory — runs once; the built flash is reused for every later shot.</summary>
+        private static GameObject BuildFallbackFlash()
+        {
+            var go = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            go.name = "PistolFlash";
+            go.transform.localScale = Vector3.one * 0.02f;
+            var col = go.GetComponent<Collider>();
+            if (col != null) col.enabled = false;
+            return go;
         }
 
         private static AudioClip GetFallbackClickClip()
