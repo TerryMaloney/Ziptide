@@ -158,6 +158,28 @@ namespace Ziptide.Editor.Patching
             }
 
             EnsureTraversalCorner();
+            EnsureFactoryCorner();
+        }
+
+        /// <summary>Hardwiring 4.1b: the automation test corner — a source→belts→corner→sink line so
+        /// the conveyor layer is WATCHABLE on device: pucks ride the teal chevrons, jams compress
+        /// when you stand and stare, and the sink pays scrap (ZIPTIDE: BELT_SUNK). Authoring only —
+        /// BeltFloorRuntime builds everything at runtime. Idempotent by name.</summary>
+        private static void EnsureFactoryCorner()
+        {
+            if (GameObject.Find("SandboxBeltFloor") != null) return;
+            var floor = new GameObject("SandboxBeltFloor");
+            floor.transform.position = new Vector3(-14f, 0f, -12f);
+            var belt = floor.AddComponent<Ziptide.Gameplay.BeltFloorRuntime>();
+            belt.width = 8; belt.depth = 4; belt.cellSize = 0.8f;
+            belt.AuthorSource(0, 1, Ziptide.Content.Automation.BeltDir.East, "scrap");
+            belt.AuthorBelt(1, 1, Ziptide.Content.Automation.BeltDir.East);
+            belt.AuthorBelt(2, 1, Ziptide.Content.Automation.BeltDir.East);
+            belt.AuthorBelt(3, 1, Ziptide.Content.Automation.BeltDir.East);
+            belt.AuthorBelt(4, 1, Ziptide.Content.Automation.BeltDir.North); // the corner turn
+            belt.AuthorBelt(4, 2, Ziptide.Content.Automation.BeltDir.East);
+            belt.AuthorBelt(5, 2, Ziptide.Content.Automation.BeltDir.East);
+            belt.AuthorSink(6, 2, "scrap");
         }
 
         /// <summary>Hardwiring 1.4b: the traversal test corner by the Locomotion zone — a climbable
