@@ -23,8 +23,6 @@ namespace Ziptide.Gameplay
         [Tooltip("Seconds before it re-forms after a disable (0 = stays down).")]
         public float respawnDelay = 0f;
 
-        private const float TaserDamage = 10f;
-        private const float GravityDamage = 8f;
         private const float TaserStunSeconds = 1.5f;
 
         private CreatureDefinition _def;
@@ -56,7 +54,7 @@ namespace Ziptide.Gameplay
             _def = Resources.Load<CreatureDefinition>("Enemies/" + creatureId);
             if (_def == null)
                 Debug.LogWarning("ZIPTIDE: CREATURE_DEF_MISSING id=" + creatureId);
-            _health = _def != null ? _def.maxHealth : 10f;
+            _health = _def != null ? _def.maxHealth : CreatureBaselines.DefaultHealth;
             _behavior = GetComponent<CreatureBehaviorBase>();
             _renderers = GetComponentsInChildren<Renderer>(true);
         }
@@ -84,31 +82,26 @@ namespace Ziptide.Gameplay
         public void ReceiveHit(PvpWeapon weapon, Vector3 point, Vector3 dir)
         {
             if (_down) return;
-            if (weapon == PvpWeapon.Taser)
+
+            // ONE damage scale (COMBAT_HEALTH_PLAN A3): every weapon deals its PvpRules value via
+            // DamageFor, so a creature, a PvP player, and (Phase B) the campaign player all take damage
+            // on the same integer scale. This retires the old hardcoded taser=10/gravity=8 that put
+            // creatures on a separate economy AND silently gave the whole arsenal (net/thumper/prism)
+            // gravity's number because they fell through to the `else`.
+            _health -= PvpCombatant.DamageFor(weapon);
+
+            // Per-weapon FEEL (independent of the number): taser stuns; melee/gravity shove the body
+            // along the hit (collision-clean — behaviors re-clamp next frame, never through walls).
+            Vector3 flat = new Vector3(dir.x, 0f, dir.z);
+            flat = flat.sqrMagnitude > 1e-4f ? flat.normalized : Vector3.zero;
+            switch (weapon)
             {
-                _health -= TaserDamage;
-                Shock(TaserStunSeconds);
+                case PvpWeapon.Taser: Shock(TaserStunSeconds); break;
+                case PvpWeapon.TidePike: transform.position += flat * 0.75f; break;   // committed thrust
+                case PvpWeapon.BreakerBlade: transform.position += flat * 0.3f; break; // light stagger
+                default: transform.position += flat * 0.5f; break;                     // gravity/net/etc kick
             }
-            else if (weapon == PvpWeapon.BreakerBlade)
-            {
-                // Contact melee: light per-hit (the debounce in MeleeWeaponRuntime paces the DPS),
-                // a small stagger-shove so a landed swing visibly moves the fight.
-                _health -= PvpCombatant.DamageFor(weapon);
-                transform.position += new Vector3(dir.x, 0f, dir.z).normalized * 0.3f;
-            }
-            else if (weapon == PvpWeapon.TidePike)
-            {
-                // A committed thrust: taser-tier damage + a real poke-back along the shaft line.
-                _health -= PvpCombatant.DamageFor(weapon);
-                transform.position += new Vector3(dir.x, 0f, dir.z).normalized * 0.75f;
-            }
-            else
-            {
-                _health -= GravityDamage;
-                // Gravity kick: shove the body along the beam (collision-clean via the behavior's mover
-                // next frame — we only displace, never through walls, because behaviors re-clamp).
-                transform.position += new Vector3(dir.x, 0f, dir.z).normalized * 0.5f;
-            }
+
             if (_health <= 0f) Disable();
         }
 
@@ -140,7 +133,7 @@ namespace Ziptide.Gameplay
             yield return new WaitForSeconds(respawnDelay);
             _down = false;
             _stunnedUntil = 0f;
-            _health = _def != null ? _def.maxHealth : 10f;
+            _health = _def != null ? _def.maxHealth : CreatureBaselines.DefaultHealth;
             transform.position = _homePos;
             transform.localScale = _homeScale;
             Tint(Color.white, restore: true);

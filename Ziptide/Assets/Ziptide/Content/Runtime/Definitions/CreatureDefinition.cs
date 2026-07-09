@@ -22,5 +22,10 @@ namespace Ziptide.Content
 
         [Tooltip("Can it be disabled by the taser (IShockable)?")]
         public bool shockable = true;
+
+        [Tooltip("Combat-scale version stamp (COMBAT_HEALTH_PLAN A3). 0 = legacy pre-unified scale; " +
+                 "CreatureStatRebaseline migrates maxHealth to CreatureBaselines and stamps the current " +
+                 "version. An asset already at the current version is left alone, so hand-tuning sticks.")]
+        public int statScaleVersion = 0;
     }
 }

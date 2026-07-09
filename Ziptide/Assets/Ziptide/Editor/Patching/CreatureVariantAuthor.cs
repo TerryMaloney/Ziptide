@@ -54,23 +54,28 @@ namespace Ziptide.Editor.Patching
 
             // ── Story-creature catalog (ids match the WORLD_DATA `creatures:` lines; the behavior is
             //    picked by CityBuilder.MakeCreature — special ids override the archetype default) ──
-            made += Creature("swarm_bug", CreatureArchetype.Swarmer, hp: 8f, speed: 4.5f, dmg: 2f,
+            made += Creature("swarm_bug", CreatureArchetype.Swarmer, speed: 4.5f, dmg: 2f,
                 biome: "dry_cistern", loot: ("carapace", 1));
-            made += Creature("tendril", CreatureArchetype.WallCrawler, hp: 20f, speed: 2f, dmg: 4f,
+            made += Creature("tendril", CreatureArchetype.WallCrawler, speed: 2f, dmg: 4f,
                 biome: "glass_shelf", loot: ("spore", 1));
             // M3 novel behaviors + the Warden:
-            made += Creature("light_grazer", CreatureArchetype.Swarmer, hp: 14f, speed: 1.6f, dmg: 2f,
+            made += Creature("light_grazer", CreatureArchetype.Swarmer, speed: 1.6f, dmg: 2f,
                 biome: "dry_cistern", loot: ("spore", 2));
-            made += Creature("witness_mite", CreatureArchetype.Swarmer, hp: 10f, speed: 3.5f, dmg: 2f,
+            made += Creature("witness_mite", CreatureArchetype.Swarmer, speed: 3.5f, dmg: 2f,
                 biome: "mirror_flats", loot: ("prism", 1));
-            made += Creature("tether_swarm", CreatureArchetype.Swarmer, hp: 16f, speed: 2f, dmg: 3f,
+            made += Creature("tether_swarm", CreatureArchetype.Swarmer, speed: 2f, dmg: 3f,
                 biome: "chitinwall", loot: ("carapace", 3));
-            made += Creature("husk_molter", CreatureArchetype.WallCrawler, hp: 18f, speed: 2.4f, dmg: 3f,
+            made += Creature("husk_molter", CreatureArchetype.WallCrawler, speed: 2.4f, dmg: 3f,
                 biome: "chitinwall", loot: ("carapace", 2));
-            made += Creature("warden", CreatureArchetype.Bruiser, hp: 60f, speed: 3.2f, dmg: 0f,
+            made += Creature("warden", CreatureArchetype.Bruiser, speed: 3.2f, dmg: 0f,
                 biome: "", loot: ("data_chip", 1)); // lawful — damage 0; the arrest is a stun
 
             if (made > 0) { AssetDatabase.SaveAssets(); AssetDatabase.Refresh(); }
+
+            // Migrate any already-committed creature assets onto the unified combat scale (A3). Rides
+            // this build-hooked author so the device never ships old-scale (tanky) creatures; idempotent
+            // + version-guarded, so it's a no-op once everything is current.
+            CreatureStatRebaseline.RebaselineAll();
             return made;
         }
 
@@ -86,7 +91,7 @@ namespace Ziptide.Editor.Patching
             return 1;
         }
 
-        private static int Creature(string id, CreatureArchetype archetype, float hp, float speed, float dmg,
+        private static int Creature(string id, CreatureArchetype archetype, float speed, float dmg,
             string biome, (string resourceId, double amount) loot)
         {
             // Creatures MUST live under Resources/Enemies: CreatureRuntime resolves its definition at
@@ -98,7 +103,10 @@ namespace Ziptide.Editor.Patching
             var c = ScriptableObject.CreateInstance<CreatureDefinition>();
             c.id = id; // Definition-registry id (matches WORLD_DATA `creatures:` lines)
             c.archetype = archetype;
-            c.maxHealth = hp; c.moveSpeed = speed; c.damage = dmg;
+            // maxHealth comes from the ONE unified-scale table; born already at the current scale version
+            // so the rebaseline never touches a freshly authored asset. damage/speed stay per-creature.
+            c.maxHealth = CreatureBaselines.HealthFor(id); c.moveSpeed = speed; c.damage = dmg;
+            c.statScaleVersion = CreatureBaselines.StatScaleVersion;
             c.biomeId = biome; c.shockable = true;
             c.loot.Add(new ResourceCost { resourceId = loot.resourceId, amount = loot.amount });
             AssetDatabase.CreateAsset(c, path);

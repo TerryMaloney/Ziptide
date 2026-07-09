@@ -39,11 +39,14 @@ the truth; Phase B gives the player armor on that scale.
 ## PHASE A — pure C#, no scenes, no device. CI proves it.
 Files you'll touch are all pure logic + tests — nothing that needs a headset.
 
-> **STATUS: A1 + A2 + the tuning constants are ALREADY DONE** (commit lands with this doc). `ArmorMeter`
-> + `ArmorMeterTests` (11 tests) + `PvpRules.PlayerArmor/ArmorRegenPerSec/ArmorRegenDelaySec` +
-> `ItemDefinition.damage` are in. **Your Phase A job is A3 only** (below), then straight to Phase B.
-> A3 changes creature time-to-kill, so it's the first DEVICE-feel step — get Terry to confirm the new
-> numbers feel right, don't just pick them blind.
+> **STATUS: PHASE A IS DONE.** A1/A2/constants shipped earlier; **A3 shipped 2026-07-09** (Picasso). The
+> whole damage economy is now unified in code + CI-green. `ArmorMeter` (+11 tests),
+> `PvpRules.PlayerArmor/ArmorRegenPerSec/ArmorRegenDelaySec`, `ItemDefinition.damage`, and now A3:
+> `CreatureRuntime` routes every weapon through `PvpCombatant.DamageFor` (no more hardcoded 10/8 or the
+> arsenal-all-does-8 bug), creature health re-baselined onto the integer scale via `CreatureBaselines` +
+> a version-guarded `CreatureStatRebaseline` migration (auto-runs from the build-hooked
+> `CreatureVariantAuthor`; idempotent; never clobbers hand-tuning). **YOUR JOB NOW = Phase B.**
+> Creature time-to-kill is Terry's on-device tune (baselines in `CreatureBaselines.HealthFor`).
 
 ### A1. `ArmorMeter` — new pure type (no Unity) ✅ DONE
 Create `Ziptide/Assets/Ziptide/Multiplayer/Runtime/ArmorMeter.cs` (namespace `Ziptide.Multiplayer`, next

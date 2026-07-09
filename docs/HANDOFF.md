@@ -28,6 +28,34 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-09 (dddd3) - Picasso (Opus 4.8): COMBAT A3 - the damage economy is now ONE scale
+- **Why:** Terry cleared me to keep going on the combat lane (A3). Before this, campaign creatures lived
+  on a separate damage economy (hardcoded taser=10/gravity=8, hp≈8-60) from PvP (taser=2, hp=6), and the
+  arsenal (net/thumper/prism) silently all did gravity's 8 because they fell through CreatureRuntime's
+  `else`. A3 makes ONE scale true everywhere.
+- **Did (code, CI-provable):**
+  - `CreatureRuntime.ReceiveHit` now routes EVERY weapon through `PvpCombatant.DamageFor(weapon)` and
+    keeps per-weapon FEEL (taser stun, pike big shove, blade light, others medium) in a switch. Deleted
+    the hardcoded 10f/8f. Missing-def fallback -> `CreatureBaselines.DefaultHealth`.
+  - `CreatureBaselines` (pure, Content) = the SINGLE source for creature HP on the unified scale
+    (swarm_bug 4 … warden 20; default 6) + `StatScaleVersion=1`.
+  - `CreatureDefinition.statScaleVersion` (new, default 0=legacy) + `CreatureStatRebaseline` migration:
+    version-guarded + idempotent, migrates the 7 committed creature assets v0->v1, **auto-runs from the
+    already-build-hooked `CreatureVariantAuthor.EnsureAllAuthored`** so the device never ships old tanky
+    creatures, and NEVER clobbers a hand-tuned (current-version) asset. `CreatureVariantAuthor` pulls HP
+    from `CreatureBaselines` (fresh creatures born at v1).
+  - `CreatureBaselinesTests` (4 tests): on-scale sweep, designed-TTK pins, default fallback, version stamp.
+- **Heads-up (device):** the 7 committed `Resources/Enemies/*.asset` still hold OLD hp in the repo — they
+  migrate on the **next Unity build** (or menu `Ziptide/Worlds/Rebaseline Creature Stats`). Until Unity
+  runs once, code is new-scale but that data is old-scale. TTK numbers in `CreatureBaselines.HealthFor`
+  are starting baselines - Terry tunes on device. PvP untouched (frozen; guarded by PvpCombatTests).
+- **Next -> ARCHITECT:** Phase A COMPLETE. Phase B is the job (player `PlayerArmor` on the rig ->
+  enemy->player damage via `CreatureDefinition.damage` -> death-to-`__SPAWN_PLAYER` checkpoint -> armor
+  HUD). Spec: `docs/ARCHITECT_HANDOFF_COMBAT.md` (A3 marked done, Phase B "your job now").
+- **Couldn't verify CI from here** (connector needs re-auth) - hand-traced: removed consts unreferenced,
+  new types in already-referenced asmdefs, DamageFor/PvpRules resolve. Check the run.
+- **Commit:** this push on `terry-local-wip`.
+
 ### 2026-07-09 (rb3) - Reasonbox: 🌀 FLIGHT v1.1 — barrel roll + boost fwd/back (Terry's direct ask)
 - **Why:** Terry: "make sure we either have a roll pitch or a barrel roll… and a boost forward and a
   boost backward, just like the running controls."
