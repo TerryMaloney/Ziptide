@@ -76,6 +76,8 @@ namespace Ziptide.Editor.Patching
 
             var root = new GameObject("Interior");
             root.transform.SetParent(bRoot, false);
+            // 1.3d: interiors only render when the player is near (arms itself at runtime).
+            root.AddComponent<InteriorCullRuntime>();
 
             // Interior walls: full storey height, colliding, trim-dark so they read as structure.
             Color wallCol = style.trimColor * 0.92f;
