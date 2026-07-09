@@ -12,13 +12,22 @@ This doc defines the shared layers so they don't.
 
 ## The spines (build/verify each)
 
-### A · One cosmetic layer — `WrapDefinition` / `SkinDefinition`  *(looks-never-stats)*
-- **Schema:** `CosmeticDefinition : Definition { targetKind (Ship|Vehicle|Weapon|Avatar|Building);
-  targetId or family; material/palette/decal/emissive overrides; unlockRule; previewIcon }`.
-- **Apply seam:** a `CosmeticApplier` that layers overrides onto a base Forge-baked asset at spawn,
-  changing *only* look — never stats (locked law). Registry-driven; primitive fallback if unfulfilled.
-- **Wardrobe:** one shared UI surfaced in the home hub; selections persist in `PlayerProfile`.
-- **Verify:** apply/remove a wrap on a ship and a weapon through the same code path; stats identical.
+### A · One cosmetic layer — ✅ ALREADY BUILT: `CosmeticDefinition` + `CosmeticLocker`  *(looks-never-stats)*
+> **RECONCILED (hardwiring 0.3, do NOT rebuild):** the cosmetic layer already exists — this section
+> originally sketched a hypothetical `WrapDefinition` and an operator nearly built a parallel system.
+> The REAL system: `Content/CosmeticDefinition` (`CosmeticKind { WeaponSkin, ShipLivery, Trail,
+> Emblem }`, body/accent tints, flag-based `ownedFlag` unlocks), pure equip state in
+> `Core/CosmeticLocker` (profile FLAGS — saves/loads for free, `CosmeticLockerTests` green),
+> authored via `Editor/CosmeticAuthor` into `Resources/Cosmetics/` (6 exist: taser/grav skins,
+> `livery_wakeguild`, `emblem_firstcontract`), applied by `ItemFactory` at item creation.
+- **Extending it for the hardwiring (the actual remaining work):**
+  - Ship wraps: `CosmeticKind.ShipLivery` already exists — the Ship Forge (§4) consumes it at hull
+    bake/spawn the way ItemFactory does for weapons.
+  - Vehicles: add `CosmeticKind.VehicleSkin` (one enum value), not a new type.
+  - Full material/decal wraps: route an ArtModuleRegistry id through CosmeticDefinition when authored
+    looks land — palette tint stays the fallback (registry law).
+- **Wardrobe:** one shared UI surfaced in the home hub, reading the locker (Quarters bays already stub this).
+- **Verify:** apply/remove a skin on a ship and a weapon through the same locker path; stats identical.
 
 ### B · One movement + comfort layer
 - **Input map:** a single shared action set + a `ComfortSettings` profile (vignette strength,

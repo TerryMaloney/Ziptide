@@ -30,7 +30,7 @@ close the two silent gaps (nothing persists; worlds render primitives).
 |---|-----|-----------|-------|
 | 0.1 | **Wire `SaveSystem` into `_Boot` + travel-autosave** | 🔗 `SYSTEMS_ARCHITECTURE.md` | Logic is built + tested (`ProfileSerializer`); just not wired. Autosave on travel + on quit. Nothing persists until this lands. |
 | 0.2 | **First building kit → fulfill `ArtModuleRegistry`** | 📄 `ART_REGISTRY.md` + ✍️ `WORLD_BUILDING_AT_SCALE.md` | Register ≥1 real Forge-baked kit so worlds stop falling back to primitive boxes. Add a `KIT_FULFILLED` audit rule. **The #1 visible fix.** |
-| 0.3 | **Cosmetic layer scaffold** (`WrapDefinition`/`SkinDefinition`) | ✍️ `CONSISTENCY_SPINE.md` | One looks-never-stats cosmetic system shared by ship/vehicle/weapon/avatar + a wardrobe seam. Scaffold now; catalogs fill per-system later. |
+| 0.3 | **Cosmetic layer** — ✅ ALREADY BUILT (reconciled): `CosmeticDefinition`+`CosmeticLocker`+`CosmeticAuthor`, 6 authored, ItemFactory applies | ✍️ `CONSISTENCY_SPINE.md` §A | Do NOT rebuild. Remaining: Ship Forge consumes `ShipLivery`; add `VehicleSkin` enum value; wardrobe UI in the hub. |
 | 0.4 | **Movement + comfort layer scaffold** | ✍️ `CONSISTENCY_SPINE.md` + 🔗 `CONTROL_SCHEME.md` | Shared input map + comfort presets (vignette, snap/smooth, assist) + seat/mount + stabilized reference-frame helper. Character/ship/vehicle all consume it. |
 | 0.5 | **`GamePool` adoption** | 🔗 `SYSTEMS_ARCHITECTURE.md` | Swap `Instantiate` at projectile/creature-spawn call-sites onto the tested pool. Belt items (Phase 4) depend on this pattern. |
 | 0.6 | **Audit + PerfBudget caps for new content types** | 🔗 `PerfBudgetAuditRules` | Every new type (kit/interior/ship/vehicle/belt) gets a budget cap + an audit rule as it's introduced. |

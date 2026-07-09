@@ -28,6 +28,37 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-09 (hwr2) - Fable 5 architect: HARDWIRING Phase 0 build begins — 0.1 ✅ · 0.5 ⏳CI · 0.3 reconciled
+- **Why:** Terry — "big pieces are missing, start building them." Working `docs/SPRINT_HARDWIRING.md`
+  top-down (Phase 0 first, per his locked order). CI was green at start (`a1f609a`).
+- **Did (0.1 — travel-autosave, `038ac23`, CI ✅ SUCCESS):** the profile now saves on EVERY scene
+  travel, not just pause/quit. `SaveSystem.AutosaveNow(reason)` (guarded: never throws, no-ops
+  without an instance — can't strand travel) + calls at step 1 of both TravelCoordinator paths,
+  before the departing scene unloads. Fixed SaveSystem's stale "not yet wired" header (it already
+  self-bootstraps via `EnsureExists`). Logs `ZIPTIDE: SAVE_AUTOSAVE reason=travel`. Test pins the
+  no-instance no-throw contract.
+- **Did (0.5 — GamePool adoption, `33e0ad5`, ⏳ CI queued at handoff):** `GamePool.ReleaseAfter(key,
+  go, seconds)` = the pooled `Destroy(go, t)` (hidden per-scene ticker; scene change orphans pending
+  releases into guarded no-ops). Adopted at the two hottest visual spawns: pistol fallback muzzle
+  flash (a sphere per trigger pull) and the taser impact spark — **which also leaked a fresh
+  Material on every hit** (factory now runs once). Tests pin null no-op / zero-second sync release /
+  instance reuse. **If this run comes back red, it's mine — fix or revert `33e0ad5` first.**
+- **Did (0.3 — RECONCILIATION, docs only):** the board said "scaffold a cosmetic layer" — **it
+  already exists** (`CosmeticDefinition` + `CosmeticKind{WeaponSkin,ShipLivery,Trail,Emblem}`, pure
+  `CosmeticLocker` in Core + tests, `CosmeticAuthor`, 6 authored assets in `Resources/Cosmetics/`,
+  ItemFactory applies weapon skins). I had a parallel profile-based system STAGED and killed it
+  before commit (ASSET_FORGE law: reconcile, don't re-invent). `CONSISTENCY_SPINE.md` §A + board
+  row 0.3 now point at the real system; remaining work = Ship Forge consumes `ShipLivery`, vehicles
+  add a `VehicleSkin` enum value, wardrobe UI in the hub.
+- **Next (Phase 0 remainder → Phase 1):** 0.2 first building kit → fulfill `ArtModuleRegistry` +
+  `KIT_FULFILLED` audit (the #1 "worlds look empty" fix — biggest visible win on the board) · 0.4
+  comfort-layer scaffold · 0.6 budget caps ride along per new content type. Then Phase 1
+  (interior-mapping windows, walkable interiors, cavern kits — design docs are in `docs/design/`).
+- **Heads-up:** verify `33e0ad5` CI before stacking more C#. Research doc
+  (`VR_TECHNIQUE_RESEARCH.md`) 📎 claims are sourced-but-unconfirmed (session limit cut the verify
+  pass) — spot-check a URL before hard-coding any number from it.
+- **Commits:** `038ac23` (autosave, green) · `33e0ad5` (pool, in flight) · this docs commit.
+
 ### 2026-07-08 (hwr1) - Architect (Opus 4.8): the FINAL HARDWIRING plan + full design-doc scaffold
 - **Why:** Terry — the status survey showed Ziptide's spines are deep but content + last-mile wiring is
   thin ("too simple / N64 ship / worlds look empty"). He asked for the complete WHAT-list for the final
