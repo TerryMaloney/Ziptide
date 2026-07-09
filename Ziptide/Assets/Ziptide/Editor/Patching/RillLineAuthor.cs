@@ -131,6 +131,8 @@ namespace Ziptide.Editor.Patching
                  "You changed the ship. I noticed before you finished. I notice everything about the ship.");
             Flag("react_conquest", "CONQUEST_ATTACKED",
                  "The Wardens will notice this.");
+            Flag("react_conquest_mission", "CONQUEST_MISSION_FLOWN",
+                 "You could have let the dice decide. You went yourself instead. I'm noting a pattern.");
 
             // ── THE ZIPTIDE gate lines — RILL rides the tide with you ───────────────────────────────
             // Wildcard pool (key "*", NOT once): one is picked at random each crossing, so the gate

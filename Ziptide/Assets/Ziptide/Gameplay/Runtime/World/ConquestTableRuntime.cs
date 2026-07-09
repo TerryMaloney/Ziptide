@@ -37,10 +37,51 @@ namespace Ziptide.Gameplay
 
         private void Start()
         {
-            _state = ConquestGalaxy.BuildTwoPlayer(ConquestGalaxy.ChapterOneTwoSeeds());
+            // The campaign lives in ConquestSession (static), so it survives travel — both the B3
+            // mission round-trip and plain wandering off. A fresh session builds the story galaxy.
+            if (ConquestSession.State != null) _state = ConquestSession.State;
+            else
+            {
+                _state = ConquestGalaxy.BuildTwoPlayer(ConquestGalaxy.ChapterOneTwoSeeds());
+                ConquestSession.State = _state;
+            }
             BuildTable();
+            ResolveReturnedBattle();
             Refresh();
             Debug.Log("ZIPTIDE: WARTABLE_READY planets=" + _state.planets.Count);
+        }
+
+        /// <summary>B3: the player is back from (or walked out of) a mission — the held battle
+        /// resolves NOW, with the mission's tilt folded into the order.</summary>
+        private void ResolveReturnedBattle()
+        {
+            var pending = ConquestSession.Pending;
+            if (pending == null || pending.order == null) return;
+            ConquestSession.Pending = null;
+
+            var attempt = pending.attempt;
+            if (attempt != null && !attempt.IsTerminal) attempt.Abandon(); // walked out = decline
+            int tilt = attempt != null ? attempt.ResultTilt() : 0;
+            pending.order.missionModifier = tilt;
+
+            var report = ConquestResolver.Resolve(_state, pending.order, pending.seed);
+            StampOutcome(pending.order.targetPlanetId, report);
+            string verdict = attempt == null || attempt.phase == MissionPhase.Declined
+                ? "MISSION PASSED UP — base odds"
+                : attempt.phase == MissionPhase.Won
+                    ? "MISSION WON — tilt " + (tilt > 0 ? "+" : "") + tilt
+                    : "MISSION BOTCHED — tilt " + (tilt > 0 ? "+" : "") + tilt;
+            _card.text = verdict + "\n" + pending.order.targetPlanetId.ToUpperInvariant()
+                       + " — " + report.outcome;
+            Debug.Log("ZIPTIDE: CONQ_MISSION_RESOLVE tilt=" + tilt + " outcome=" + report.outcome);
+
+            if (pending.rivalInitiated)
+            {
+                // Flying the defense pre-empted the rest of the rival's offensive — its turn ends.
+                _ticker.text = "Your sortie disrupted the rival's turn.";
+                _state.EndTurn();
+            }
+            CheckEnd();
         }
 
         // ── The table body ───────────────────────────────────────────────────
@@ -119,6 +160,7 @@ namespace Ziptide.Gameplay
         private void OnPlanetTapped(string planetId)
         {
             if (_aiTurnRunning) return;
+            if (_offerPanel != null) { CloseOffer(); _ticker.text = "Strike called off."; }
             var p = _state.GetPlanet(planetId);
             if (p == null) return;
 
@@ -144,6 +186,8 @@ namespace Ziptide.Gameplay
         }
 
         private string _pendingTarget;
+        private GameObject _offerPanel;
+        private bool _awaitingDefense;
 
         private void CommitAttack(string targetId)
         {
@@ -157,12 +201,78 @@ namespace Ziptide.Gameplay
                 vesselIds = new List<string>(player.fleetVesselIds), // commit the fleet
             };
             int seed = _state.turn * 8191 + targetId.GetHashCode();
+            // B3 — the gulag: strike at base odds, or fly a 2–3 minute mission IN that world to
+            // tilt them. Declining costs nothing.
+            bool underdog = _state.CountOwned(0) < _state.CountOwned(1);
+            var mission = ConquestMissionLibrary.Offer(targetId, MissionSide.Attack, underdog);
+            ShowBattleOffer(order, seed, mission, rivalInitiated: false);
+        }
+
+        // ── B3: the mission offer (both directions) ──────────────────────────
+        private void ShowBattleOffer(AttackOrder order, int seed, ConquestMission mission, bool rivalInitiated)
+        {
+            CloseOffer();
+            _offerPanel = new GameObject("BattleOffer");
+            _offerPanel.transform.SetParent(transform, false);
+
+            string pct = "+" + (mission.winTilt * 5) + "%";
+            string passLabel = rivalInitiated ? "LET IT RIDE" : "STRIKE NOW";
+            string flyLabel = (rivalInitiated ? "DEFEND\n" : "FLY THE MISSION\n") + pct;
+            Tile(passLabel, new Vector3(-0.28f, 1.3f, -0.35f),
+                 () => { CloseOffer(); ResolveNow(order, seed, rivalInitiated); },
+                 new Color(0.85f, 0.55f, 0.3f), _offerPanel.transform);
+            Tile(flyLabel, new Vector3(0.28f, 1.3f, -0.35f),
+                 () => { CloseOffer(); LaunchMission(order, seed, mission, rivalInitiated); },
+                 new Color(0.3f, 0.85f, 0.95f), _offerPanel.transform);
+
+            _card.text = mission.title + "\n" + mission.brief +
+                         "\nOptional — passing keeps your base odds.";
+            Debug.Log("ZIPTIDE: CONQ_MISSION_OFFER planet=" + mission.planetId +
+                      " side=" + mission.side + " tilt=" + pct);
+        }
+
+        private void CloseOffer()
+        {
+            if (_offerPanel != null) Destroy(_offerPanel);
+            _offerPanel = null;
+        }
+
+        private void ResolveNow(AttackOrder order, int seed, bool rivalInitiated)
+        {
             var report = ConquestResolver.Resolve(_state, order, seed);
-            StampOutcome(targetId, report);
-            var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;
-            profile?.SetFlag("CONQUEST_ATTACKED");
+            StampOutcome(order.targetPlanetId, report);
+            if (rivalInitiated)
+            {
+                _ticker.text = "RIVAL strikes " + order.targetPlanetId + " — " + report.outcome;
+                _awaitingDefense = false;   // the rival's turn coroutine may continue
+            }
+            else
+            {
+                var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;
+                profile?.SetFlag("CONQUEST_ATTACKED");
+            }
             Refresh();
             Debug.Log("ZIPTIDE: WARTABLE_BATTLE outcome=" + report.outcome + " odds=" + report.odds.ToString("F2"));
+        }
+
+        private void LaunchMission(AttackOrder order, int seed, ConquestMission mission, bool rivalInitiated)
+        {
+            string scene = ConquestSession.SceneForPlanet(mission.planetId);
+            if (string.IsNullOrEmpty(scene))
+            {
+                Debug.Log("ZIPTIDE: CONQ_MISSION_NO_SCENE planet=" + mission.planetId);
+                ResolveNow(order, seed, rivalInitiated);
+                return;
+            }
+            var attempt = new MissionAttempt(mission);
+            attempt.Accept();
+            ConquestSession.State = _state;
+            ConquestSession.Pending = new PendingBattle
+            { order = order, seed = seed, attempt = attempt, rivalInitiated = rivalInitiated };
+            ConquestSession.ReturnScene = gameObject.scene.name;
+            Debug.Log("ZIPTIDE: CONQ_MISSION_START planet=" + mission.planetId +
+                      " kind=" + mission.kind + " scene=" + scene);
+            TravelCoordinator.TravelTo(scene, transform.position);
         }
 
         private void StampOutcome(string planetId, BattleReport r)
@@ -241,10 +351,27 @@ namespace Ziptide.Gameplay
                             _ticker.text = "RIVAL commissions a " + action.catalogId;
                         break;
                     case ConquestAction.Kind.Attack when action.attack != null:
-                        var report = ConquestResolver.Resolve(_state, action.attack,
-                            seed: _state.turn * 4093 + action.attack.targetPlanetId.GetHashCode());
-                        _ticker.text = "RIVAL strikes " + action.attack.targetPlanetId + " — " + report.outcome;
-                        StampOutcome(action.attack.targetPlanetId, report);
+                        int aiSeed = _state.turn * 4093 + action.attack.targetPlanetId.GetHashCode();
+                        var struck = _state.GetPlanet(action.attack.targetPlanetId);
+                        if (struck != null && struck.ownerId == 0)
+                        {
+                            // B3 — YOUR world is under attack: fly the defense, or let it ride.
+                            bool underdog = _state.CountOwned(0) < _state.CountOwned(1);
+                            var defense = ConquestMissionLibrary.Offer(
+                                action.attack.targetPlanetId, MissionSide.Defense, underdog);
+                            _card.text = "RIVAL STRIKES " + struck.displayName.ToUpperInvariant() + "!";
+                            _awaitingDefense = true;
+                            ShowBattleOffer(action.attack, aiSeed, defense, rivalInitiated: true);
+                            // Defend → travel kills this coroutine (the return path ends the rival
+                            // turn). Let it ride → ResolveNow clears the flag and the turn goes on.
+                            yield return new WaitWhile(() => _awaitingDefense);
+                        }
+                        else
+                        {
+                            var report = ConquestResolver.Resolve(_state, action.attack, aiSeed);
+                            _ticker.text = "RIVAL strikes " + action.attack.targetPlanetId + " — " + report.outcome;
+                            StampOutcome(action.attack.targetPlanetId, report);
+                        }
                         break;
                 }
                 Refresh();
@@ -299,23 +426,24 @@ namespace Ziptide.Gameplay
         }
 
         // ── Helpers ──────────────────────────────────────────────────────────
-        private void Tile(string label, Vector3 localPos, System.Action onSelect, Color color)
+        private void Tile(string label, Vector3 localPos, System.Action onSelect, Color color,
+                          Transform parent = null)
         {
             var tile = GameObject.CreatePrimitive(PrimitiveType.Cube);
             tile.name = "Tile_" + label.Split('\n')[0];
-            tile.transform.SetParent(transform, false);
+            tile.transform.SetParent(parent != null ? parent : transform, false);
             tile.transform.localPosition = localPos;
             tile.transform.localScale = new Vector3(0.3f, 0.16f, 0.05f);
             ItemFactory.ApplyURPColor(tile, color);
             tile.AddComponent<XRSimpleInteractable>().selectEntered.AddListener(_ => onSelect());
-            var tm = NewText(label, localPos + new Vector3(0f, 0f, -0.05f), 0.007f);
+            var tm = NewText(label, localPos + new Vector3(0f, 0f, -0.05f), 0.007f, parent);
             tm.color = Color.white;
         }
 
-        private TextMesh NewText(string text, Vector3 localPos, float charSize)
+        private TextMesh NewText(string text, Vector3 localPos, float charSize, Transform parent = null)
         {
             var go = new GameObject("Txt_" + (text.Length > 12 ? text.Substring(0, 12) : text));
-            go.transform.SetParent(transform, false);
+            go.transform.SetParent(parent != null ? parent : transform, false);
             go.transform.localPosition = localPos;
             var tm = go.AddComponent<TextMesh>();
             tm.text = text;
