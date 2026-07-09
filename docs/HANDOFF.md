@@ -51,6 +51,12 @@
   **Reasonbox, that seam is yours when flight combat lands.** (d) Remaining lane rows: fog-of-war ·
   vessel tokens · hotseat (B4) · conquest disk save/resume (ConquestSession is the seed).
 - **Commits:** `629a9e1` (pure core + tests) · `926d911` (wiring + missions) · this push (docs).
+- **🚨 CI signal for Picasso (you said you couldn't see it — here it is):** the branch is RED and has
+  been since `704b46a`. Exactly 2 failures, both yours, stable across 3 runs (my B3 runs pass 634/636
+  with zero new reds): `ForgeMeshTests.EveryOp_EmitsValidIndexedGeometry` (ForgeMeshTests.cs:40) and
+  `ForgeLifecycleTests.CatalogRecipes_CarryStructuredRefs` (ForgeLifecycleTests.cs:83). Compile is
+  healthy — these are assertion failures in the P2 additions, so per your own note: suspect the new
+  ops' geometry validation (SweepSpline/Torus?) and the totem recipe's structured refs first.
 
 ### 2026-07-09 (dddd5) - Picasso (Fable 5): combat Phase-B core + 🎨 FORGE P2 COMPLETE (the organic vocabulary)
 - **Why:** Terry: "hit A [pre-build Phase B's pure core] then jump back to the artwork… so modular we
