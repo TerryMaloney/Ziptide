@@ -36,10 +36,16 @@ the truth; Phase B gives the player armor on that scale.
 
 ---
 
-## PHASE A — pure C#, no scenes, no device. CI proves it. DO THIS FIRST.
+## PHASE A — pure C#, no scenes, no device. CI proves it.
 Files you'll touch are all pure logic + tests — nothing that needs a headset.
 
-### A1. `ArmorMeter` — new pure type (no Unity)
+> **STATUS: A1 + A2 + the tuning constants are ALREADY DONE** (commit lands with this doc). `ArmorMeter`
+> + `ArmorMeterTests` (11 tests) + `PvpRules.PlayerArmor/ArmorRegenPerSec/ArmorRegenDelaySec` +
+> `ItemDefinition.damage` are in. **Your Phase A job is A3 only** (below), then straight to Phase B.
+> A3 changes creature time-to-kill, so it's the first DEVICE-feel step — get Terry to confirm the new
+> numbers feel right, don't just pick them blind.
+
+### A1. `ArmorMeter` — new pure type (no Unity) ✅ DONE
 Create `Ziptide/Assets/Ziptide/Multiplayer/Runtime/ArmorMeter.cs` (namespace `Ziptide.Multiplayer`, next
 to `PvpCombatant.cs`). Keep it Unity-free so it's deterministic + testable.
 ```
@@ -58,17 +64,12 @@ public class ArmorMeter {
 Pull the starting numbers into `PvpRules.cs` (it's the tuning home): e.g. `PlayerArmor = 4`,
 `ArmorRegenPerSec = 1.0`, `ArmorRegenDelaySec = 3.0`. Tune on device later.
 
-### A2. `ItemDefinition.damage` — the single per-weapon damage source
-Add to `Ziptide/Assets/Ziptide/Content/Runtime/Items/ItemDefinition.cs`:
-```
-[Tooltip("Damage this weapon deals per hit, on the unified integer scale (see PvpRules).")]
-public int damage = 0;   // 0 = fall back to the PvpRules table for this weapon kind
-```
-Author it (via a build hook, mirroring `ForgeAuthor`'s itemId→recipe pairs) OR read-through: where code
-currently needs a weapon's damage, use `def.damage > 0 ? def.damage : PvpCombatant.DamageFor(kind)`. Keep
+### A2. `ItemDefinition.damage` — the single per-weapon damage source ✅ DONE
+Field added (`Ziptide/Assets/Ziptide/Content/Runtime/Items/ItemDefinition.cs`, default `0`). Consume it in
+A3 read-through style: `def.damage > 0 ? def.damage : PvpCombatant.DamageFor(kind)`. Keep
 `PvpCombatant.DamageFor` as the fallback so PvP is untouched.
 
-### A3. Retire `CreatureRuntime`'s hardcoded damage
+### A3. Retire `CreatureRuntime`'s hardcoded damage  ⟵ START HERE
 In `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs`, replace `TaserDamage=10f` /
 `GravityDamage=8f` with the unified scale (read from the weapon's `ItemDefinition.damage` / `DamageFor`).
 Re-baseline `CreatureDefinition.maxHealth` defaults onto the integer scale (e.g. small integers, not 30f)

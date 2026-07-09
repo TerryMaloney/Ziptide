@@ -24,6 +24,12 @@ namespace Ziptide.Content
         [Tooltip("Override collider size. 0 = use mesh/bounds.")]
         public Vector3 colliderSizeOverride = Vector3.zero;
 
+        [Header("Combat")]
+        [Tooltip("Damage this weapon deals per hit, on the unified integer scale (see PvpRules). " +
+                 "0 = fall back to the PvpRules table for this weapon kind (COMBAT_HEALTH_PLAN Phase A). " +
+                 "This is the single per-weapon source of truth once wired in Phase A3.")]
+        public int damage = 0;
+
         [Header("Visual/feel tuning (zero/clear = keep ItemFactory's built-in default for this weapon type)")]
         [Tooltip("Body scale. Vector3.zero = use the factory default (need an axis at exactly 0? use 0.0001).")]
         public Vector3 visualScale = Vector3.zero;

@@ -249,6 +249,26 @@ Terry pointed me to leapfrog the architect (who's on Phase 0 → the building/in
   (blade +70°, pike +30°) are reasoned starting points, NOT device-verified.
 - **Commit:** `8f93847` (melee grip) + the plan/handoff docs commit.
 
+### 2026-07-07 (dddd2) - Picasso (Opus 4.8): Phase A core built (ArmorMeter) - pure C#, CI-provable
+- **Why:** Terry said "continue." The safe, CI-provable half of Phase A needs no headset, and I was warm
+  in context - so I built it myself instead of leaving Architect a cold start. Only the ADDITIVE, zero-
+  device-behavior pieces (nothing consumes them yet), so CI is the full proof.
+- **Did:** `ArmorMeter.cs` (Multiplayer, pure/Unity-free like PvpCombatant) - the armor-only rule:
+  ApplyDamage drains while armored (overkill => Broke, never a kill), a hit at 0 => Killed, Tick regens
+  after an out-of-combat delay, Reset for respawn, Fraction/IsBroken for the HUD, LethalOnBreak flag.
+  `ArmorMeterTests.cs` (11 tests, deterministic clock like WeaponCharge). PvpRules gained PlayerArmor=4 /
+  ArmorRegenPerSec=1.0 / ArmorRegenDelaySec=3.0. ItemDefinition gained `damage` (int, default 0 = fall
+  back to the PvpRules table). PvpCombatant/PvP numbers UNTOUCHED (ArmorMeter is a new sibling).
+- **Next -> ARCHITECT:** Phase A is now just **A3** - retire CreatureRuntime's hardcoded 10f/8f, read
+  `ItemDefinition.damage` (fallback DamageFor), re-baseline CreatureDefinition stats onto the integer
+  scale. A3 changes creature time-to-kill => FIRST device-feel step, Terry confirms the numbers. Then
+  Phase B (PlayerArmor on the rig, enemy->player damage, death->__SPAWN_PLAYER checkpoint, armor HUD).
+  `docs/ARCHITECT_HANDOFF_COMBAT.md` updated: A1/A2/constants marked DONE, "START HERE" on A3.
+- **Heads-up:** couldn't run CI from here (GitHub connector needs re-auth). Logic hand-traced all 11
+  tests + the regen accumulator; ArmorMeter references only PvpRules (same asmdef) - should compile
+  clean, but confirm the CI run is green on reconnect before building on it.
+- **Commit:** this one (ArmorMeter + tests + PvpRules consts + ItemDefinition.damage + doc updates).
+
 ### 2026-07-06 (cccc2) - Picasso (Fable 5): the melee pair gets forged (Breaker Blade + Tide Pike)
 - **Why (autonomous, photo-verifiable, no device):** the wiring audit flagged the melee pair shipping as
   primitives (a visible stub - the blade is in every story starter rack). Forging them is proven skill

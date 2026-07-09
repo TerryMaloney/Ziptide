@@ -26,6 +26,14 @@ namespace Ziptide.Multiplayer
 
         public const double SpawnProtectionSeconds = 2.0; // brief invulnerability after respawn
 
+        // ── Campaign player ARMOR model (COMBAT_HEALTH_PLAN, decided 2026-07-07): armor-only, no health.
+        // A hit while armored drains it (overkill just empties the meter = "break"); a hit at 0 armor is
+        // immediate death. Armor recharges after an out-of-combat delay — no health packs. These are
+        // starting framework values; tune on-device. Consumed by ArmorMeter + (Phase B) PlayerArmor.
+        public const int PlayerArmor = 4;              // armor charges (the whole defensive budget)
+        public const double ArmorRegenPerSec = 1.0;    // charges restored per second once regen kicks in
+        public const double ArmorRegenDelaySec = 3.0;  // seconds out-of-combat before armor regenerates
+
         // ── A4 arsenal (design docs/design/PVP_ARENA_AAA.md §A4 + ABILITIES_AND_ARSENAL §1) ──
         // Every weapon = damage entry + a visible counter. Counters: the net is a thrown arc you can
         // sidestep; the thumper needs melee range (keep distance); the prism telegraphs a long charge
