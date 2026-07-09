@@ -62,11 +62,11 @@ namespace Ziptide.Editor.Patching
                 switch (m.Module)
                 {
                     case BuildingModule.WallSolid:
-                        Wall(bRoot.transform, plan, style, m, pos, style.wallColor, "Wall");
+                        Wall(bRoot.transform, plan, style, m, pos, style.wallColor, "Wall", out _);
                         break;
                     case BuildingModule.WallWindow:
-                        var wall = Wall(bRoot.transform, plan, style, m, pos, style.wallColor, "WallW");
-                        Inset(wall.transform, plan, style.windowColor); // the lit pane
+                        var wall = Wall(bRoot.transform, plan, style, m, pos, style.wallColor, "WallW", out bool fromKit);
+                        if (!fromKit) Inset(wall.transform, plan, style.windowColor); // kit modules own their pane
                         break;
                     case BuildingModule.Doorway:
                         Doorway(bRoot.transform, plan, style, m, pos);
@@ -99,17 +99,27 @@ namespace Ziptide.Editor.Patching
             }
         }
 
+        // Styles seen falling back to primitive walls this domain — warn ONCE per id, not per wall.
+        private static readonly System.Collections.Generic.HashSet<string> _unfulfilledWarned =
+            new System.Collections.Generic.HashSet<string>();
+
         private static GameObject Wall(Transform parent, BuildingPlan plan, BuildingStyleDefinition style,
-            ModulePlacement m, Vector3 pos, Color color, string name)
+            ModulePlacement m, Vector3 pos, Color color, string name, out bool fromKit)
         {
             string regId = "buildingModule:" + style.styleId + "/" + m.Module;
             if (Ziptide.Editor.Art.ArtModuleRegistry.TryBuild(regId, out var kit))
             {
+                fromKit = true;
                 kit.transform.SetParent(parent, false);
                 kit.transform.localPosition = pos + Vector3.up * (plan.StoreyHeight * 0.5f);
                 kit.transform.localRotation = Quaternion.Euler(0f, m.Rotation, 0f);
                 return kit;
             }
+            // KIT_UNFULFILLED (HARDWIRING 0.2): this style ships flat primitive walls. Warn-once so
+            // an unfulfilled style is visible in every build log without drowning it.
+            fromKit = false;
+            if (_unfulfilledWarned.Add(regId))
+                Debug.LogWarning("[Ziptide] KIT_UNFULFILLED id=" + regId + " (primitive fallback walls)");
             var wall = Cube(parent, name, pos + Vector3.up * (plan.StoreyHeight * 0.5f),
                 new Vector3(plan.ModuleWidth, plan.StoreyHeight, 0.25f), color);
             wall.transform.localRotation = Quaternion.Euler(0f, m.Rotation, 0f);
