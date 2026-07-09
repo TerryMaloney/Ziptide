@@ -44,7 +44,7 @@ close the two silent gaps (nothing persists; worlds render primitives).
 | 1.1 | **Building kit system (≥4 kits) + biome→kit/palette** | ✍️ `WORLD_BUILDING_AT_SCALE.md` + 📄 `CITY_DESIGN.md` | Modular Forge kits per biome; grammar/WFC assembly already exists. |
 | 1.2 | **Interior-mapping window shader (all buildings)** | ✍️ `BUILDING_INTERIORS.md` | Faked lit rooms behind windows, zero geometry. Cheapest city-readability win. |
 | 1.3 | **Walkable interiors on enterable buildings** | ✍️ `BUILDING_INTERIORS.md` | `RoomPartitioner` → interior mesh + interior kit + portal culling + doors + interior POIs. |
-| 1.4 | **Vertical & cavern kits + traversal** | ✍️ `VERTICAL_AND_CAVERN_WORLDS.md` | Modular tunnel/chamber/shaft + mesa/platform + floating structures; ziplines, elevators, grapple, climb. Multi-level reachability audit. |
+| 1.4 | 🟡 **Vertical & cavern kits + traversal** — *CLAIMED by Fable 5 (2nd), leapfrogging the architect's building/interior cluster (2026-07-09)* | ✍️ `VERTICAL_AND_CAVERN_WORLDS.md` | Modular tunnel/chamber/shaft + mesa/platform + floating structures; ziplines, elevators, grapple, climb. Multi-level reachability audit. **Pure cores shipped first (`MultiLevelReachability` + `ZiplineCore` + `ClimbCore`, EditMode-tested); cavern-KIT registration goes in a separate `CavernKitLibrary` (mirrors the architect's `BuildingKitLibrary`, different ids — no registry collision).** |
 | 1.5 | **POI catalog + density/scatter pass** | ✍️ `WORLD_BUILDING_AT_SCALE.md` + 🔗 `ScatterField` | ≥12 POI types stamped; real prop kits so streets have life. |
 
 ---
