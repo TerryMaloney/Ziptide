@@ -74,7 +74,7 @@ close the two silent gaps (nothing persists; worlds render primitives).
 
 | # | Row | Design doc | Notes |
 |---|-----|-----------|-------|
-| 4.1 | **Automation / conveyor layer** *(get the FUN right — design doc first)* | ✍️ `AUTOMATION_CONVEYORS.md` | Physical hand-built belts; items ride belts (GamePool); conductor mode; the unique feature. |
+| 4.1 | 🟡 **Automation / conveyor layer** — *CLAIMED by Fable 5 architect (2026-07-09, post-rate-limit); ship/flight = T-Dog's, traversal/caves = traversal lane's, art = Picasso's* | ✍️ `AUTOMATION_CONVEYORS.md` | Physical hand-built belts; items ride belts (GamePool); conductor mode; the unique feature. **Pure cores first: BeltLattice (grid placement + item flow + blocking/compression), tested; then the scene translators (snap-place, riding items, machine feeds).** |
 | 4.2 | **Garden AAA (beat Roblox)** | ✍️ `GARDEN_AAA.md` | 20+ plants, genetics, watering-can pour physics, giant crops, hazard tie-ins, automation. |
 | 4.3 | **Creature ecology** | ✍️ `CREATURE_ECOLOGY.md` + 🔗 `CREATURES_50.md` | Nests, packs, territory, predator/prey, population sim on the ~10 behaviors + Forge gaits. |
 | 4.4 | **Weapon depth (ADS / reload / feel)** | 📄 `ABILITIES_AND_ARSENAL.md` + 🔗 `CONTROL_SCHEME.md` | Ground + ship weapon feel kept consistent. |
