@@ -79,8 +79,11 @@ namespace Ziptide.Editor.Art
                 // Sill + header make the window read as BUILT, not painted.
                 Piece(root, "Sill", new Vector3(0f, holeY - holeH * 0.5f - 0.04f, 0.06f), new Vector3(holeW + 0.18f, 0.08f, D + 0.1f), trim, collide: false);
                 Piece(root, "Header", new Vector3(0f, holeY + holeH * 0.5f + 0.05f, 0.03f), new Vector3(holeW + 0.12f, 0.1f, D + 0.04f), trim, collide: false);
-                // The kit-owned lit pane fills the reveal (slightly inset to leave a shadow line).
-                Piece(root, "Pane", new Vector3(0f, holeY, 0f), new Vector3(holeW - 0.06f, holeH - 0.06f, D + 0.02f), window, collide: false);
+                // The kit-owned pane fills the reveal (slightly inset to leave a shadow line) —
+                // INTERIOR-MAPPED (hardwiring 1.2): a fake parallax room behind every window, zero
+                // interior geometry. Falls back to the flat lit color if the shader is missing.
+                InteriorPane(root, new Vector3(0f, holeY, 0f),
+                    new Vector3(holeW - 0.06f, holeH - 0.06f, D + 0.02f), window);
             }
 
             // Shared shell: vertical ribs at the module edges + base skirt + top band — the depth
@@ -105,6 +108,33 @@ namespace Ziptide.Editor.Art
             }
 
             return root;
+        }
+
+        /// <summary>The window pane: interior-mapped when the shader exists (a lit parallax room per
+        /// pane — BUILDING_INTERIORS Tier A), flat lit color otherwise. Built at patch time, so the
+        /// serialized material keeps the shader in the APK (no runtime Shader.Find stripping risk).</summary>
+        private static void InteriorPane(GameObject root, Vector3 pos, Vector3 size, Color window)
+        {
+            var go = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            go.name = "Pane";
+            Object.DestroyImmediate(go.GetComponent<Collider>());
+            go.transform.SetParent(root.transform, false);
+            go.transform.localPosition = pos;
+            go.transform.localScale = size;
+            var r = go.GetComponent<Renderer>();
+            if (r != null) r.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+
+            var interior = Shader.Find("Ziptide/InteriorMapping");
+            if (interior != null && r != null)
+            {
+                var mat = new Material(interior);
+                mat.SetColor("_GlassTint", window);
+                r.sharedMaterial = mat;
+            }
+            else
+            {
+                ItemFactory.ApplyURPColor(go, window); // graceful: the old flat lit pane
+            }
         }
 
         private static void Piece(GameObject root, string name, Vector3 pos, Vector3 size, Color color, bool collide)

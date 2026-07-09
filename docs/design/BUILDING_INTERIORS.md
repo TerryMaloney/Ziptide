@@ -10,9 +10,14 @@ core but is **not wired to any walkable interior**.
 ## What to build — two tiers (do both)
 
 ### Tier A — faked interiors on every building  *(cheap, ships first)*
-- [ ] **Interior-mapping URP shader** — parallax "rooms" behind windows with zero geometry.
-- [ ] Window material variant applied by the building builder; per-biome interior atlas.
-- [ ] Randomized (seeded) room contents so a facade reads as inhabited, not tiled.
+- [x] **Interior-mapping URP shader** — ✅ SHIPPED (hardwiring 1.2): `Ziptide/InteriorMapping`
+  (`Visuals/Shaders/`), the game's first custom shader — object-space room raycast, procedural
+  per-object room tint + lit/dark variation, stereo-instanced macros, no textures (Meta: shader ALU
+  is the #1 Quest GPU cost — kept minimal). 🎮 device-verify the parallax read + perf.
+- [x] Window material applied by the kit — `BuildingKitLibrary.InteriorPane` builds the material at
+  patch time (serialized → shader ships in the APK), flat-color fallback if the shader is missing.
+- [ ] Per-biome interior ATLAS (textured rooms) — Picasso upgrade path via the same material.
+- [x] Seeded room variation — per-object hash drives tint + dark-room chance (a living skyline).
 
 ### Tier B — walkable interiors on "enterable" buildings
 - [ ] `enterable` flag + `interiorKitId` on `BuildingStyle`.
