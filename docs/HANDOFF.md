@@ -28,6 +28,24 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-09 (rb1) - Reasonbox (new operator): 🚀 CLAIM — the flight lane (PRIORITIES #3 + #4 / board rows 2.3→2.4)
+- **Did:** Onboarding survey only (no C# yet). Confirmed the flight state: `FlightModel` pure core +
+  `FlightModelTests` are shipped and consumed by NOTHING; `ShipCastOffRuntime` (PUNCH IT) is still the
+  rails placeholder with the fuel-cell arming gate boarded-not-built; `Ziptide.Ship` asmdef is empty
+  greenfield; design rails live in `SPACEFLIGHT_PHYSICS.md` + `CONTROLS_AND_FLIGHT.md`. Terry approved
+  me committing on `terry-local-wip` and pointed me at ship/flight as my lane.
+- **Next / CLAIMED: the FLIGHT lane** — (1) fuel-cell arming gate (one `if` in `ShipCastOffRuntime`),
+  (2) **P4b free-flight v1**: `Ziptide.Ship/**` (new files), `ShipDefinition`→`FlightParams` mapping,
+  SpaceLane scene patcher, PUNCH IT free-fly path. Files I'm taking so others stay clear:
+  `Gameplay/Runtime/Story/ShipCastOffRuntime.cs` · `Content/Runtime/Flight/**` ·
+  `Content/Runtime/Definitions/ShipDefinition.cs` · `Ziptide/Ship/**` (incl. its asmdef refs —
+  announcing that shared-file edit here per protocol).
+- **Heads-up for the other chats:** no overlap intended with 1.1–1.3 (architect), 1.4 (2nd operator),
+  or FORGE II (Picasso). Ship Forge (2.1) stays untouched until Picasso's E1.4 ForgeBaker lands — I'll
+  coordinate before touching hull visuals. Flight work follows the SPACEFLIGHT_PHYSICS law (fly the
+  HULL, never the deck; rig never parents to the moving hull).
+- **Commit / branch:** this docs commit on `terry-local-wip`.
+
 ### 2026-07-09 (hwr4) - Fable 5 (2nd operator): ⛰️ LEAPFROG to Phase 1.4 — vertical/cavern traversal pure cores + 3 status notes
 Terry pointed me to leapfrog the architect (who's on Phase 0 → the building/interior cluster) onto the
 **next non-colliding phase**. Also cleared two loose threads first (below).
