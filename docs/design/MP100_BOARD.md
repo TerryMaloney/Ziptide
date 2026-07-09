@@ -76,17 +76,17 @@ the spec). Any operator can pick any unblocked row; claim in `SPRINT_MULTIPLAYER
 | 45 | Melee swing trail — a short ribbon behind the blade tip while above swing speed (readability = the telegraph law applied to the player) | ⬜ |
 | 46 | Per-weapon haptic signatures — distinct grip pulse per weapon on fire/swing/hit (one table, one helper, all runtimes) | ⬜ |
 | 47 | Energy Shield Disc — block projectiles on the forearm, throwable boomerang (the idea bank's only defense item; melee's natural counter-partner) | 🔷 |
-| 48 | Dual-wield `DualWieldCoordinator` — shared charge pool, heavy weapons `twoHandedOnly` with haptic-buzz refusal (🔷 §3 quotes the whole mechanic) | 🔷 |
+| 48 | Dual-wield `DualWieldCoordinator` — shared charge pool, heavy weapons `twoHandedOnly` with haptic-buzz refusal | 🟡 pure `SharedChargePool` built+tested; full wiring BLOCKED: player guns don't consume WeaponCharge today (only bots do) — nothing to pool until they adopt one |
 | 49 | Arc Rifle (chains to a 2nd target) — the design doc's named "Next" weapon | 🔷 |
 | 50 | Weapon pad polish — respawn timer ring on the pad + floating item name label (characterSize×fontSize lesson applies) | ⬜ |
 
 ## E. Augments (51–58) — 🔷 the whole system is speced in ABILITIES_AND_ARSENAL §2
 | # | Improvement | Status |
 |---|---|---|
-| 51 | `AugmentDefinition : ItemDefinition` + pure `AugmentEffects` registry + slot runtime (1 active + 1 passive — "slot scarcity IS the balance") | 🔷 |
-| 52 | Surge Dash (active, 8s cd — the gravity-hop burst any direction) | 🔷 |
-| 53 | Bubble Guard (active, 2s projectile shield, 20s cd) + Overclock (active, 4s faster recharge, 30s cd) | 🔷 |
-| 54 | Magnet Palm (passive, 3m pickup pull) + Sure Step (passive, hazard slows −50%) + Sixth Sense (passive, locator cd halved + threat ping) | 🔷 |
+| 51 | `AugmentDefinition : ItemDefinition` + pure `AugmentEffects` registry + slot runtime (1 active + 1 passive — "slot scarcity IS the balance") | ✅ abilities sprint |
+| 52 | Surge Dash (active, 8s cd — the gravity-hop burst any direction) | ✅ abilities sprint |
+| 53 | Bubble Guard (active, 2s projectile shield, 20s cd) + Overclock (active, 4s faster recharge, 30s cd) | ✅ abilities sprint (overclock = weapon-cooldown scale — player guns carry no charge to recharge; see A4.6 note) |
+| 54 | Magnet Palm (passive, 3m pickup pull) + Sure Step (passive, hazard slows −50%) + Sixth Sense (passive, locator cd halved + threat ping) | ✅ abilities sprint (threat-ping half queued) |
 | 55 | Augment pads in arenas (pick-up-on-touch, drop-on-death = map control) | 🔷 |
 | 56 | Horde wave-clear augment reward choice (pick 1 of 2 at wave milestones) | 🔷 |
 | 57 | Story placement — one augment per chapter tied to biome/creature (collectible-style) | 🔷 |
@@ -111,7 +111,7 @@ the spec). Any operator can pick any unblocked row; claim in `SPRINT_MULTIPLAYER
 ## G. Locator v2 (71–75) — 🔷 fully speced in ABILITIES_AND_ARSENAL §4
 | # | Improvement | Status |
 |---|---|---|
-| 71 | `LocatorState` pure extension — afterglow window + tier params (range 20/30/40m, cd 60/45/30s), tested first | 🔷 |
+| 71 | `LocatorState` pure extension — afterglow window + tier params (range 20/30/40m, cd 60/45/30s), tested first | ✅ abilities sprint |
 | 72 | 8s afterglow trail — through-wall silhouette fade on tagged enemies | 🔷 |
 | 73 | Cylinder radar — blips get elevation; enemy blips pulse with distance | 🔷 |
 | 74 | Fragment-carrier crown blip + scan-kind colors (enemy red / objective gold / loot cyan / node green) | 🔷 |

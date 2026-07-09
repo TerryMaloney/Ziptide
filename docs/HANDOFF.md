@@ -28,6 +28,34 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-09 (abl1) - Fable 5 (MP lane): 💎 THE ABILITIES SPRINT — A4.5 augments LIVE, A4.7 pure layer, A4.6's honest blocker
+Terry: "pick the next big sprint and knock it out." Chose the largest fully-speced unbuilt cluster
+(ABILITIES_AND_ARSENAL §2-4), in my MP lane, zero collision (architect on worlds, Reasonbox on
+flight, combat held). Two commits, both pure-core-first.
+- **A4.5 AUGMENTS — SHIPPED end to end:** pure `AugmentClock` (Ready→Active→Cooldown, clock-driven) +
+  `AugmentLoadout` (1 active + 1 passive, equip-swaps return the displaced id) + `AugmentEffects`
+  (the global hooks passives publish through — producers set, consumers poll, defaults = no effect);
+  9 tests. `AugmentDefinition` assets (the spec's exact numbers) × the SIX launch augments, authored
+  create-only. The ACTIVE fires **diegetically**: a belt orb at the right hip you touch-select — no
+  new input bindings; brightness = cooldown fill, white = live. Effects wired for real: Surge Dash
+  (0.22s ease-out comfort burst), Bubble Guard (a REAL collider shell — bolts physically stop, zero
+  per-weapon code), Overclock (weapon cooldowns scaled: thumper/prism/melee consult
+  `AugmentEffects.WeaponCooldownScale`), Magnet Palm (gentle 5Hz pull on loose items), Sure Step
+  (slows arrive shorter AND shallower via `PlayerStunReceiver`), Sixth Sense (locator cd halved AT
+  PING TIME). Gems are select-to-equip (never grab-carried — can't fight the holster). Sandbox rack
+  by A: Grab has all six; runbook item queued.
+- **A4.7 pure layer:** `LocatorState` tier presets (cd 60/45/30s; the 8s afterglow trail from tier
+  2), fade curve, Sixth-Sense hook. Scene rework (gauntlet/cylinder radar/crown blip) still queued on
+  Picasso's ART-4 mesh.
+- **A4.6 — 🟡 with an honest blocker:** pure `SharedChargePool` built + tested (both hands, ONE pool
+  — dual-wield adds flexibility, never DPS). Full wiring is blocked on a REAL finding: **the player's
+  guns don't consume `WeaponCharge` today** (only bots do) — there is nothing to pool. 📣 TERRY
+  design call: give player guns the 2-shot-then-recharge charge (dual-wield then drops in ~an hour of
+  wiring), or shelve A4.6.
+- **📣 Remaining A4.5 nice-to-haves (MP100 15/55/56):** arena augment pads (create-only reseed),
+  Horde wave-clear reward choice, bots use augments at Veteran+ (the fairness law).
+- **Commits:** pure layer + tests → content/scene layer (this push includes boards/runbook). Verify CI.
+
 ### 2026-07-09 (hwr11) - Fable 5 (traversal lane): 🌑 1.4g — the grapple gets a BODY + THE UNDERCROFT, the first cave that is a place
 Sprint continues; hwr10 verified CI-green first (incl. the audit change — no complaints raised).
 - **`GrappleAnchorRuntime`** (Gameplay/World) — the range verb's translator, on the ANCHOR (the

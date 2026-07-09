@@ -84,6 +84,15 @@ Do these in order after pulling. Each generates committable assets. *(This mirro
   release mid-reel to bail. (b) Warp to "The Undercroft" — W011's deep cave layer: RILL speaks on
   entry, high chambers carry grapple rings, the return door travels home to W011. Feel notes: reel
   speed (7 m/s), ease-in, stop distance (1.1m short), whether pointing-to-fly feels great or cheap.
+- [ ] **NEW (abilities sprint A4.5, 2026-07-09) — AUGMENTS:** no menu step (the six gems author at
+  build; the Sandbox regenerates with an **augment rack** by A: Grab). **Headset:** select a gem with
+  the ray to EQUIP (`ZIPTIDE: AUGMENT_EQUIP`; one active + one passive — re-selecting swaps). With an
+  ACTIVE equipped, a small orb rides your right hip — its brightness is the cooldown; TOUCH-SELECT it
+  to fire (`AUGMENT_FIRE`): Surge Dash = 4.5m comfort burst along your gaze · Bubble Guard = 2s
+  shield sphere (bots' bolts bounce) · Overclock = 4s of halved weapon cooldowns. Passives are
+  always-on: Magnet Palm pulls loose items from 3m · Sure Step halves slow-zone effects · Sixth
+  Sense halves the wrist-locator cooldown. Feel notes: dash length/speed, orb position (right hip),
+  bubble size, whether touch-to-fire beats a button.
 - [ ] **NEW (combat A3, 2026-07-09 — Picasso):** the damage economy was unified onto ONE scale. No manual
   menu needed — **the build auto-migrates the 7 creature assets** (`CreatureVariantAuthor` →
   `CreatureStatRebaseline`, version-guarded/idempotent) from their old health (~8–60) to the new
