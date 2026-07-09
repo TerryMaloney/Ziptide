@@ -13,6 +13,7 @@ namespace Ziptide.Multiplayer.Conquest
         public string Biome;
         public ConquestResource Resource;
         public float ProductionRate;
+        public string SceneName;      // the shipped scene this planet IS (B3 missions travel here)
     }
 
     /// <summary>
@@ -68,18 +69,18 @@ namespace Ziptide.Multiplayer.Conquest
         /// list keeps the pure sim testable and is the hotseat default map.</summary>
         public static List<WorldSeed> ChapterOneTwoSeeds() => new List<WorldSeed>
         {
-            new WorldSeed { WorldId = "toxic_city",      DisplayName = "Toxic Venice",     Biome = "city",        Resource = ConquestResource.Alloy, ProductionRate = 3f },
-            new WorldSeed { WorldId = "dry_cistern",     DisplayName = "The Dry Cistern",  Biome = "underground", Resource = ConquestResource.Alloy, ProductionRate = 2f },
-            new WorldSeed { WorldId = "glass_shelf",     DisplayName = "Glass Shelf",      Biome = "exterior",    Resource = ConquestResource.Flux,  ProductionRate = 2f },
-            new WorldSeed { WorldId = "broadcast_tomb",  DisplayName = "The Broadcast Tomb", Biome = "interior",  Resource = ConquestResource.Flux,  ProductionRate = 2f },
-            new WorldSeed { WorldId = "oxidized_canopy", DisplayName = "Oxidized Canopy",  Biome = "forest",      Resource = ConquestResource.Bloommatter, ProductionRate = 2f },
-            new WorldSeed { WorldId = "mirror_flats",    DisplayName = "The Mirror Flats", Biome = "exterior",    Resource = ConquestResource.Flux,  ProductionRate = 2f },
-            new WorldSeed { WorldId = "sable_station",   DisplayName = "Sable Station",    Biome = "station",     Resource = ConquestResource.Flux,  ProductionRate = 3f },
-            new WorldSeed { WorldId = "sealed_archive",  DisplayName = "The Sealed Archive", Biome = "interior",  Resource = ConquestResource.Alloy, ProductionRate = 2f },
-            new WorldSeed { WorldId = "chitinwall",      DisplayName = "Chitinwall",       Biome = "city",        Resource = ConquestResource.Bloommatter, ProductionRate = 3f },
-            new WorldSeed { WorldId = "tidal_array",     DisplayName = "Tidal Array",      Biome = "coastal",     Resource = ConquestResource.Flux,  ProductionRate = 2f },
-            new WorldSeed { WorldId = "the_hum",         DisplayName = "The Hum",          Biome = "underground", Resource = ConquestResource.Alloy, ProductionRate = 2f },
-            new WorldSeed { WorldId = "maras_last_jump", DisplayName = "Mara's Last Jump", Biome = "void",        Resource = ConquestResource.Flux,  ProductionRate = 3f },
+            new WorldSeed { WorldId = "toxic_city",      DisplayName = "Toxic Venice",     Biome = "city",        Resource = ConquestResource.Alloy, ProductionRate = 3f, SceneName = "ToxicCity" },
+            new WorldSeed { WorldId = "dry_cistern",     DisplayName = "The Dry Cistern",  Biome = "underground", Resource = ConquestResource.Alloy, ProductionRate = 2f, SceneName = "W002_DryCistern" },
+            new WorldSeed { WorldId = "glass_shelf",     DisplayName = "Glass Shelf",      Biome = "exterior",    Resource = ConquestResource.Flux,  ProductionRate = 2f, SceneName = "W003_GlassShelf" },
+            new WorldSeed { WorldId = "broadcast_tomb",  DisplayName = "The Broadcast Tomb", Biome = "interior",  Resource = ConquestResource.Flux,  ProductionRate = 2f, SceneName = "W004_BroadcastTomb" },
+            new WorldSeed { WorldId = "oxidized_canopy", DisplayName = "Oxidized Canopy",  Biome = "forest",      Resource = ConquestResource.Bloommatter, ProductionRate = 2f, SceneName = "W005_OxidizedCanopy" },
+            new WorldSeed { WorldId = "mirror_flats",    DisplayName = "The Mirror Flats", Biome = "exterior",    Resource = ConquestResource.Flux,  ProductionRate = 2f, SceneName = "W006_MirrorFlats" },
+            new WorldSeed { WorldId = "sable_station",   DisplayName = "Sable Station",    Biome = "station",     Resource = ConquestResource.Flux,  ProductionRate = 3f, SceneName = "W007_SableStation" },
+            new WorldSeed { WorldId = "sealed_archive",  DisplayName = "The Sealed Archive", Biome = "interior",  Resource = ConquestResource.Alloy, ProductionRate = 2f, SceneName = "W008_SealedArchive" },
+            new WorldSeed { WorldId = "chitinwall",      DisplayName = "Chitinwall",       Biome = "city",        Resource = ConquestResource.Bloommatter, ProductionRate = 3f, SceneName = "W009_Chitinwall" },
+            new WorldSeed { WorldId = "tidal_array",     DisplayName = "Tidal Array",      Biome = "coastal",     Resource = ConquestResource.Flux,  ProductionRate = 2f, SceneName = "W010_TidalArray" },
+            new WorldSeed { WorldId = "the_hum",         DisplayName = "The Hum",          Biome = "underground", Resource = ConquestResource.Alloy, ProductionRate = 2f, SceneName = "W011_TheHum" },
+            new WorldSeed { WorldId = "maras_last_jump", DisplayName = "Mara's Last Jump", Biome = "void",        Resource = ConquestResource.Flux,  ProductionRate = 3f, SceneName = "W012_MarasLastJump" },
         };
     }
 }
