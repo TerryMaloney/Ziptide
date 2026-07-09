@@ -86,7 +86,7 @@ close the two silent gaps (nothing persists; worlds render primitives).
 | # | Row | Design doc | Notes |
 |---|-----|-----------|-------|
 | 5.1 | **Online combat sync (A6.2)** | 🔗 `PVP_1V1_MODE.md` | Host-authoritative fire/hit/score over the live Photon presence transport. |
-| 5.2 | **Tidefront VR war table (B2/B3)** | 📄 `TIDEFRONT_AAA.md` | Holo-table + mission modifiers over the built, tested sim. |
+| 5.2 | 🟡 **Tidefront VR war table (B2/B3)** — *CLAIMED T-Dog/Fable (2026-07-09)* | 📄 `TIDEFRONT_AAA.md` | **B2 v1 SHIPPED: ConquestTableRuntime in the Sandbox — orbs/lanes/build/attack with live odds/resolution stamps/VISIBLE AI turn/win-defeat, zero rules in the component (all from the tested sim).** Remaining: B3 fly-the-mission modifiers · fog-of-war · grab-vessel tokens · hotseat (B4). |
 | 5.3 | **MP progression / augments (MP100)** | 📄 `MP100_BOARD.md` | Stats, credits, unlock ladders, augments, dual-wield. |
 | 5.4 | **Story delivery + endings** | 📄 `STORY_AND_HOOKS.md` + 🔗 Haiku workshop | RILL memory/callbacks; beats for worlds that exist; wire the 4 endings. |
 | 5.5 | **Adaptive audio + RILL VO** | 📄 `ADAPTIVE_AUDIO.md` | Layered stems + ducking; VO into `RillLineLibrary`. |

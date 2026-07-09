@@ -28,6 +28,26 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-09 (tf1) - T-Dog/Fable 5 (Tidefront lane): 🌌 B2 SHIPS — the war table, the conquest sim's first visible surface
+Terry: "pick a lane nobody is working on." Scan: architect=4.1 belts, Reasonbox=flight v1.2,
+Picasso=combat Phase C. The empty lane: TIDEFRONT — the Risk-layer sim shipped a week ago (18
+headless tests) with zero surface. Claimed 5.2/B2.
+- **`ConquestTableRuntime`** (Gameplay/World, Sandbox south wall): a waist-high holo table containing
+  ZERO rules — every number flows from the tested `ConquestState`/`Resolver`/`AI`. Planet orbs in
+  story-chain order (color=owner, size grows with defense), adjacency filaments, resource ticker.
+  The loop: tap your world → build tiles (Shield Spire / Pulse Frigate, real catalog costs) → tap an
+  adjacent target → live odds (`ConquestAI.EstimateOdds`) → tap again to commit → **THE RESOLUTION
+  MOMENT** (outcome stamps gold-to-red over the target, floats up and fades; deterministic seeds so
+  the same battle replays identically — the async-MP property preserved) → **END TURN → the Rival
+  moves VISIBLY**, one ticker line per action at 0.8s (the spec's never-a-silent-jump law) →
+  production → yours. Win/defeat banners. First strike sets CONQUEST_ATTACKED → RILL delivers the
+  spec's own line: *"The Wardens will notice this."*
+- **📣 Remaining in this lane (claimable rows):** B3 fly-the-mission modifiers (`ConquestMissionLibrary`
+  → odds tilts — AttackOrder.missionModifier is already plumbed) · fog-of-war dim · grab-vessel
+  tokens (v1 commits the whole fleet) · B4 hotseat · campaign save/resume (sim already JSON-round-trips).
+- **Commit:** this push (table + sandbox + RILL line + boards + runbook). Verify CI.
+
+
 ### 2026-07-09 (rb5) - Reasonbox (flight lane): 🔗 SHIP-MORE #1 CLOSED — the hangar loadout now flies the ship (+ v1.2 CI ✅)
 - **v1.2 verdict first:** the Xbox-ergonomics pass (`a63e23e` — strafe on left-stick X +
   hold-to-repeat snap yaw) is **CI GREEN ✅**.

@@ -86,6 +86,14 @@ Do these in order after pulling. Each generates committable assets. *(This mirro
   release mid-reel to bail. (b) Warp to "The Undercroft" — W011's deep cave layer: RILL speaks on
   entry, high chambers carry grapple rings, the return door travels home to W011. Feel notes: reel
   speed (7 m/s), ease-in, stop distance (1.1m short), whether pointing-to-fly feels great or cheap.
+- [ ] **NEW (Tidefront B2, 2026-07-09) — THE WAR TABLE:** no menu step (the Sandbox regenerates with
+  the holo table on the south wall, by D/E). **Headset:** walk up — 12 planet orbs in story order
+  (cyan = yours, red = the Rival's, grey = neutral). Tap a cyan world → its card + SPIRE/FRIGATE
+  build tiles (real costs; watch the FLUX/ALLOY ticker). Tap an adjacent red/grey world → LIVE ODDS →
+  tap it AGAIN to strike → the outcome STAMPS over the planet (MAJOR VICTORY gold … COUNTERSTRIKE
+  red) and floats away. END TURN → watch the Rival move line by line (never a silent jump). First
+  strike: RILL says "The Wardens will notice this." Feel notes: orb size/reach from standing height,
+  double-tap-to-commit (vs a separate confirm tile?), AI turn pacing (0.8s/move), ticker readability.
 - [ ] **NEW (abilities sprint A4.5, 2026-07-09) — AUGMENTS:** no menu step (the six gems author at
   build; the Sandbox regenerates with an **augment rack** by A: Grab). **Headset:** select a gem with
   the ray to EQUIP (`ZIPTIDE: AUGMENT_EQUIP`; one active + one passive — re-selecting swaps). With an
