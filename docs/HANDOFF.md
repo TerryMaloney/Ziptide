@@ -197,6 +197,21 @@ seen, and your `ZiplineRuntime` became the template for this commit's climb tran
   application I could find, but device confirms)? Both are one-line fixes once Terry's pass answers.
 - **Commit:** `ed71195`, CI pending — verify before building on the climb files.
 
+### 2026-07-09 (dddd4) - Picasso (Opus 4.8): COMBAT Phase C core - per-planet difficulty scaling (pure)
+- **Why:** "keep going" while Phase B (device) is Architect's. This is Terry's "adjust the hardness per
+  planet so it doesn't get repetitive" knob, and it's pure/CI-provable + non-colliding.
+- **Did:** `Content/DifficultyScale` (pure) — a world tier (0 early/1 mid/2 capstone) scales creature
+  toughness ON TOP of the unified CreatureBaselines: `HealthMult` (1/1.5/2.0), `DamageMult` (1/1.25/1.5
+  for Phase B enemy->player), `ScaledHealth`/`ScaledDamage` (whole numbers, min 1), tier-clamped. So the
+  SAME creature id is a pushover on a tier-0 world and a threat on a tier-2 one. `DifficultyScaleTests`
+  (5). Consumer wired: `CreatureRuntime` gained a `difficultyTier` field (default 0 = neutral) and scales
+  its spawn/respawn health through it — **zero behavior change until the spawner sets a tier.**
+- **Boarded follow-up (WORLDS track, not mine to avoid collision):** `CityBuilder.MakeCreature` should set
+  `creatureRuntime.difficultyTier` from the world/zone tier (one line) — then hard planets scale up
+  automatically. Left for whoever owns CityBuilder/spawning so I don't collide with the active streets work.
+- **Heads-up:** starting multipliers, Terry tunes on device. PvP untouched.
+- **Commit:** this push on `terry-local-wip`.
+
 ### 2026-07-09 (hwr6) - Fable 5 architect: 1.3c SHIPS — salvage caches make rooms worth entering (1 red, fixed in one round)
 - **Why:** interiors existed but rewarded nothing — loot gives walking inside a POINT.
 - **Did (`f9e717c` + fix `0e63239`, green):** `SalvageCacheRuntime` — a teal-banded crate that pays

@@ -129,6 +129,11 @@ The safe foundation. No behavior on device changes until it's wired in B.
    drone path; minimal new art (they exist).
 2. **Per-world difficulty multiplier** from `CityLayoutDefinition.tier` — scales creature
    `maxHealth`/`damage`/zone `count` so tier-2 planets are genuinely harder without new enemy code.
+   🟡 **PARTIAL (2026-07-09):** the pure math (`Content/DifficultyScale` — HealthMult/DamageMult/
+   ScaledHealth/ScaledDamage, tests) is shipped, and `CreatureRuntime` consumes it via a
+   `difficultyTier` field (0 = neutral, so no behavior change yet). **Boarded follow-up (worlds track):**
+   the spawner (`CityBuilder.MakeCreature`) sets `difficultyTier` from the world/zone tier — one wiring
+   line; then a tier-2 planet's creatures scale up automatically.
 3. **Multi-archetype zones** — a planet spawns 2–3 creature IDs (mix Swarmer + Flyer + a machine), not one
    repeated body, so encounters stop feeling same-y. Author a couple of new creature IDs + machine
    variants; the string-ID registry (`CreatureRuntime` ← `Resources/Enemies/*`) already supports it.

@@ -23,6 +23,11 @@ namespace Ziptide.Gameplay
         [Tooltip("Seconds before it re-forms after a disable (0 = stays down).")]
         public float respawnDelay = 0f;
 
+        [Tooltip("World difficulty tier (0 early / 1 mid / 2 capstone), set by the spawner from the " +
+                 "world's tier. 0 = no scaling. Scales max health via DifficultyScale so the SAME creature " +
+                 "id is a pushover on an easy planet and a threat on a hard one (COMBAT_HEALTH_PLAN C).")]
+        public int difficultyTier = 0;
+
         private const float TaserStunSeconds = 1.5f;
 
         private CreatureDefinition _def;
@@ -54,7 +59,7 @@ namespace Ziptide.Gameplay
             _def = Resources.Load<CreatureDefinition>("Enemies/" + creatureId);
             if (_def == null)
                 Debug.LogWarning("ZIPTIDE: CREATURE_DEF_MISSING id=" + creatureId);
-            _health = _def != null ? _def.maxHealth : CreatureBaselines.DefaultHealth;
+            _health = DifficultyScale.ScaledHealth(_def != null ? _def.maxHealth : CreatureBaselines.DefaultHealth, difficultyTier);
             _behavior = GetComponent<CreatureBehaviorBase>();
             _renderers = GetComponentsInChildren<Renderer>(true);
         }
@@ -133,7 +138,7 @@ namespace Ziptide.Gameplay
             yield return new WaitForSeconds(respawnDelay);
             _down = false;
             _stunnedUntil = 0f;
-            _health = _def != null ? _def.maxHealth : CreatureBaselines.DefaultHealth;
+            _health = DifficultyScale.ScaledHealth(_def != null ? _def.maxHealth : CreatureBaselines.DefaultHealth, difficultyTier);
             transform.position = _homePos;
             transform.localScale = _homeScale;
             Tint(Color.white, restore: true);
