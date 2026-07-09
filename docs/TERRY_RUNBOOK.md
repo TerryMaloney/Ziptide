@@ -65,6 +65,11 @@ Do these in order after pulling. Each generates committable assets. *(This mirro
   find the `__WorldZipline` between the two farthest POIs. Feel notes wanted: climb "weight" (1:1 hand
   mapping — too fast?), grip reach (1.2m), stud visibility, zip speed cap (8 m/s), whether letting go
   mid-climb feels okay WITHOUT a fling (v1 logs it, doesn't launch you).
+  **1.4c/d addendum (same corner, same build):** the tower is now reachable THREE ways — a **lift**
+  (amber deck, north face; stand on it, it dwells 4s then rises; step across at the top —
+  `ZIPTIDE: LIFT_READY`) and a **jump pad** (green disc at x≈7; step on → ~1.2s arc onto the tower
+  top — `JUMPPAD_LAUNCH/LAND`; stick is suspended mid-flight). Feel notes: lift speed (1.6 m/s),
+  dwell time, pad arc height (apex +2m — comfortable or startling?), landing accuracy.
 - [ ] **NEW (combat A3, 2026-07-09 — Picasso):** the damage economy was unified onto ONE scale. No manual
   menu needed — **the build auto-migrates the 7 creature assets** (`CreatureVariantAuthor` →
   `CreatureStatRebaseline`, version-guarded/idempotent) from their old health (~8–60) to the new

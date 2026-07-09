@@ -28,6 +28,28 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-09 (hwr8) - Fable 5 (traversal lane): 🕳️ 1.4c/d — the verb set completes + the CAVE PLANNER wakes up
+Continuing my 1.4 lane (no new commits from any other operator since hwr7 — checked before starting).
+All three prior commits (`ed71195` climb, `f5d8576` docs, `d8ec207` lift/pad cores) verified CI-green.
+- **Did (this push):**
+  - **`LiftRuntime` + `JumpPadRuntime`** (Gameplay/World/LiftRuntime.cs) — scene translators for the
+    tested cores: the lift deck's position is a pure function of `Time.time` (can't drift; late-join
+    safe) and delta-translates whoever stands on it; the jump pad owns its ~1s ballistic arc via
+    `JumpPad.PositionAt` (one source of truth with the tests), suspends locomotion mid-flight,
+    cooldown-gated. Rig never parented, as always.
+  - **Sandbox traversal corner complete:** the ClimbTower is now reachable THREE ways (climb the
+    studs / ride the lift / take the jump pad) with the zipline home — every shipped 1.4 verb in one
+    60-second loop. Runbook feel-questions queued (lift speed/dwell, pad apex comfort).
+  - **`CaveNetworkPlanner`** (Content/City, pure, 7 tests) — the brain behind the locked
+    "modular-kit caverns" decision: seeded min-spaced chamber scatter in a bounded volume (depth
+    included — caves stack), **Prim's MST = connected by construction**, seeded loop tunnels for
+    route choice, steep tunnels classified as SHAFTS (climb/lift attach there, not ramps), dead-ends
+    flagged as the secret/loot spots, `IsConnected()` as the audit's ground truth.
+- **📣 Next in my lane:** `CavernKitLibrary` (mirrors the architect's `BuildingKitLibrary`, distinct
+  `cavernModule:` ids — no registry clash) + the `CaveBuilder` that strings modules along a plan →
+  then a walkable "Cavern Test Lab" dev scene. Grapple core is the one traversal verb left.
+- **Commit:** this push (translators + planner + docs). Verify CI before building on these files.
+
 ### 2026-07-09 (hwr7) - Fable 5 (traversal lane): 🧗 1.4b SHIPS — hand-over-hand CLIMBING + ziplines reach the story worlds
 My 1.4 lane per the hwr4 lane split (checked the architect's hwr5/hwr6 + Reasonbox's flight lane
 first — zero file overlap: nothing here touches building/interior/kit/flight files). Also: thanks for

@@ -14,6 +14,12 @@ justified). Hold 72–90 fps at scale.
 ## What to build
 - [ ] **Cavern kit** — tunnel / chamber / junction / vertical-shaft / stalactite modules in
   `ArtModuleRegistry`; a `CaveBuilder` that strings them into networks; portal culling.
+  **➤ THE PLANNER IS SHIPPED (1.4d, 2026-07-09):** `CaveNetworkPlanner` (pure, 7 tests) — seeded
+  min-spaced chamber scatter in a bounded volume (depth included), Prim's MST so every cave is
+  connected BY CONSTRUCTION, seeded loop tunnels for route choice, steep tunnels classified as
+  SHAFTS (attach climb/lift there), dead-ends flagged as secret/loot spots, `IsConnected()` as the
+  audit's ground truth. Remaining: the `CavernKitLibrary` module registration (mirror
+  `BuildingKitLibrary`, different ids) + the `CaveBuilder` that strings modules along the plan.
 - [ ] **Underground layer** — caves as content-only world scenes (or an additive sub-layer) reached by
   travel; honor the boot/rig/spawn contract.
 - [ ] **Elevated / mesa layer** — platforms, cliffs, floating islands above the heightfield; a
@@ -39,7 +45,11 @@ justified). Hold 72–90 fps at scale.
     motion isn't double-counted). v1 logs the comfort-clamped release fling but doesn't apply it
     (ballistic launch needs the fall-mover — queued). Sandbox gets a 5m ClimbTower + a zipline off its
     top back to spawn (climb up, ride home — both verbs in one loop).
-  - [ ] **Elevators / lifts**, **jump-pads**, **grapple** (pure cores next, same pattern).
+  - [x] **Elevators / lifts + jump-pads** — pure cores (`LiftCycle` deterministic-clock platform,
+    `JumpPad` fixed-apex ballistics; 5 tests) AND scene translators (`LiftRuntime` rides the clock +
+    delta-translates the standing rider; `JumpPadRuntime` owns the arc via `PositionAt`, suspends
+    locomotion for the flight) shipped 1.4c/d. Sandbox corner has both — the ClimbTower is reachable
+    three ways, zipline home. **Grapple** = the one remaining verb (pure core next, same pattern).
 - [x] **Multi-level reachability audit** — PURE core shipped (`MultiLevelReachability`, 2026-07-09):
   composes N walkable grid layers (each with GridReachability's 4-connectivity + maxStep rule) with
   explicit cross-layer `TraversalEdge`s (step/zip/climb/elevator/grapple/jump, one-way or bidirectional)
