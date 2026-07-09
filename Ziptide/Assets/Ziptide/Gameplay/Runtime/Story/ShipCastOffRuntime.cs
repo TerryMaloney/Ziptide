@@ -10,16 +10,26 @@ namespace Ziptide.Gameplay
     /// stern with one big button. Pressing it plays a rails take-off: star-streak lines rush past
     /// for a few seconds (the world moves, the rig NEVER parents to the hull — SPACEFLIGHT_PHYSICS
     /// law), then TravelCoordinator carries you to the target scene. Free-flight (FlightModel,
-    /// P4b) replaces the rails later; this ships the fantasy today. The fuel-cell arming gate is
-    /// a boarded follow-up (one `if` on the berth's BuildSocketRuntime completion).
-    /// Logs FLIGHT_LAUNCH / FLIGHT_STREAKS / FLIGHT_DEPART.
+    /// P4b) replaces the rails later; this ships the fantasy today.
+    /// ARMING GATE (the boarded fuel-cell follow-up, PRIORITIES #3): launch is blocked until the
+    /// tutorial's coupler machine is repaired. The pure rule is <see cref="CastOffArming"/> — a
+    /// missing machine never strands the launch. Blocked presses flash the button label as the hint.
+    /// Logs FLIGHT_LAUNCH / FLIGHT_STREAKS / FLIGHT_DEPART / FLIGHT_BLOCKED.
     /// </summary>
     public class ShipCastOffRuntime : MonoBehaviour
     {
+        private const string ArmedLabel = "PUNCH IT";
+        private const float HintSeconds = 2.5f;
+
         [SerializeField] private string targetScene = "ToxicCity";
         [SerializeField] private float streakSeconds = 6f;
+        [Tooltip("RepairableMachine id that must be RUNNING before PUNCH IT arms (empty = no gate).")]
+        [SerializeField] private string armingMachineId = "gate_coupler";
 
         private bool _launching;
+        private RepairableMachine _armingMachine; // cached once found; absence is re-checked per press
+        private TextMesh _buttonLabel;
+        private Coroutine _hintRoutine;
 
         private void Start()
         {
@@ -53,12 +63,13 @@ namespace Ziptide.Gameplay
             // Neutralize the button's non-uniform scale so glyphs don't stretch.
             label.transform.localScale = new Vector3(1f / 0.72f, 1f / 0.22f, 1f / 0.5f) * 0.35f;
             var tm = label.AddComponent<TextMesh>();
-            tm.text = "PUNCH IT";
+            tm.text = ArmedLabel;
             tm.characterSize = 0.03f;
             tm.fontSize = 64;
             tm.anchor = TextAnchor.MiddleCenter;
             tm.alignment = TextAlignment.Center;
             tm.color = new Color(1f, 0.9f, 0.7f);
+            _buttonLabel = tm;
 
             var interactable = button.AddComponent<XRSimpleInteractable>();
             var mgr = FindObjectOfType<XRInteractionManager>();
@@ -71,9 +82,46 @@ namespace Ziptide.Gameplay
         private void TryLaunch()
         {
             if (_launching) return;
+            if (!IsArmed())
+            {
+                Debug.Log("ZIPTIDE: FLIGHT_BLOCKED reason=unarmed machine=" + armingMachineId);
+                ShowHint("COUPLER OFFLINE\nrepair the " + armingMachineId.Replace('_', ' '));
+                return;
+            }
             _launching = true;
             Debug.Log("ZIPTIDE: FLIGHT_LAUNCH scene=" + gameObject.scene.name + " target=" + targetScene);
             StartCoroutine(LaunchSequence());
+        }
+
+        private bool IsArmed()
+        {
+            bool gateConfigured = !string.IsNullOrEmpty(armingMachineId);
+            if (gateConfigured && _armingMachine == null)
+            {
+                // The machine is spawned at runtime by JobDirector, so keep looking until found —
+                // but never cache absence: a truly machine-less scene stays armed (CastOffArming law).
+                foreach (var m in FindObjectsOfType<RepairableMachine>())
+                    if (m.MachineId == armingMachineId) { _armingMachine = m; break; }
+            }
+            return CastOffArming.IsArmed(gateConfigured, _armingMachine != null,
+                _armingMachine != null && _armingMachine.IsRepaired);
+        }
+
+        private void ShowHint(string text)
+        {
+            if (_buttonLabel == null) return;
+            if (_hintRoutine != null) StopCoroutine(_hintRoutine);
+            _hintRoutine = StartCoroutine(HintSequence(text));
+        }
+
+        private IEnumerator HintSequence(string text)
+        {
+            _buttonLabel.text = text;
+            _buttonLabel.characterSize = 0.018f;
+            yield return new WaitForSeconds(HintSeconds);
+            _buttonLabel.text = ArmedLabel;
+            _buttonLabel.characterSize = 0.03f;
+            _hintRoutine = null;
         }
 
         private IEnumerator LaunchSequence()

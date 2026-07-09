@@ -29,6 +29,13 @@ namespace Ziptide.Gameplay
         private JobDirector _director;
         private Stage _stage = Stage.Panel;
 
+        /// <summary>Stable machine id from pack data (e.g. "gate_coupler"). Null before Init.</summary>
+        public string MachineId => _def != null ? _def.machineId : null;
+
+        /// <summary>True once the machine hums (panel off → part seated → switch flipped).
+        /// Queried by ShipCastOffRuntime's arming gate.</summary>
+        public bool IsRepaired => _stage == Stage.Running;
+
         private Transform _part;
         private Transform _socket;
         private Renderer _socketRenderer;
