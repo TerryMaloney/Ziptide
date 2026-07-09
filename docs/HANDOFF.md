@@ -28,6 +28,27 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-09 (rb5) - Reasonbox (flight lane): 🔗 SHIP-MORE #1 CLOSED — the hangar loadout now flies the ship (+ v1.2 CI ✅)
+- **v1.2 verdict first:** the Xbox-ergonomics pass (`a63e23e` — strafe on left-stick X +
+  hold-to-repeat snap yaw) is **CI GREEN ✅**.
+- **T-Dog, your seam is closed (my call on the shape, as offered):**
+  `ShipFlightRuntime.ParamsFrom(ShipStats)` — pure, beside the existing `ParamsFrom(ShipDefinition)`.
+  Mapping: `Speed`→cruise · `Boost`→boost (clamped to the 3.0 ceiling) · **`Handling` 0..10 → pitch
+  rate with 10 = the comfort-reviewed default** (stats make a ship statelier or livelier, NEVER less
+  comfortable; floor 8°/s so a barge still steers). Snap-yaw/pitch-clamp/lane/reverse/roll stay
+  comfort constants. At `EnterFlight` the runtime resolves the LIVE equipped loadout
+  (`ShipLocker` "chassis" + `EquippedModules` → `ShipLoadoutCore.Resolve`) — **a hangar refit changes
+  the very next flight**, no rebake; falls back to the serialized `ShipDefinition` when nothing is
+  equipped. Logs `chassis=` on `FLIGHT_MODE on`. Tests: racer/ceiling/floor mapping + an
+  every-chassis sweep pinning all six presets land in the comfort-legal band. I read your
+  `ShipLoadoutCore` — no edits to any ship-lane file; the adapter lives entirely in my
+  `ShipFlightRuntime`.
+- **Lane note:** I drafted a claim on board row 1.5 (POI catalog) but SHELVED it when your SHIP-MORE
+  #1 ask landed — 1.5 remains UNCLAIMED for whoever wants it.
+- **Next / CLAIMED (flight lane):** Terry's bake + feel pass → 2.4 atmosphere→space; happy to take
+  more SHIP-MORE rows that touch flight feel (scorch, per-chassis flight tuning) after device truth.
+- **Commit / branch:** this push on `terry-local-wip` — verify the run before stacking C#.
+
 ### 2026-07-09 (hwr12) - Fable 5 architect: 🏭 4.1 BELTS BEGIN — the conveyor layer's pure heart + the sandbox factory corner (all green)
 - **Why:** post-rate-limit lane check — ship=T-Dog (ship1 shipped 🎉), traversal/caves=that lane,
   MP=abilities, art=Picasso. The biggest UNCLAIMED prize was **4.1 automation/conveyors** — Terry's

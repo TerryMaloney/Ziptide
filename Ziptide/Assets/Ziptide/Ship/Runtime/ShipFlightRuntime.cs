@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
 using Ziptide.Content;
+using Ziptide.Content.Ship;
+using Ziptide.Core;
 using Ziptide.Gameplay;
 
 namespace Ziptide.Ship
@@ -37,7 +39,8 @@ namespace Ziptide.Ship
         [Tooltip("Optional stat source — maps cruise/boost/turn onto FlightParams (null = defaults).")]
         [SerializeField] private ShipDefinition shipDefinition;
 
-        private const float MaxDataBoost = 3f; // data can tune boost, never past this
+        private const float MaxDataBoost = 3f;    // data can tune boost, never past this
+        private const float MinPitchRateDeg = 8f; // even the barge-est hauler still steers
 
         private const float SeatStrayExit = 2.5f; // rig moved away (respawn etc.) → auto-dock
 
@@ -78,6 +81,42 @@ namespace Ziptide.Ship
             if (def.boostMultiplier > 0f)
                 p.boostMultiplier = Mathf.Clamp(def.boostMultiplier, 1f, MaxDataBoost);
             return p;
+        }
+
+        /// <summary>Resolved loadout → FlightParams (the SHIP-MORE #1 seam with the ship lane):
+        /// the hangar's ShipStats drive how the ship actually FLIES. Speed = cruise; Boost carries
+        /// (clamped to MaxDataBoost); Handling 0..10 maps onto the pitch rate with 10 = the comfort
+        /// ceiling — stats make a ship statelier or livelier, never less comfortable. Snap yaw,
+        /// pitch clamp, lane radius, reverse fraction, roll rate stay comfort constants.</summary>
+        public static FlightParams ParamsFrom(ShipStats stats)
+        {
+            var p = FlightParams.Default;
+            if (stats.Speed > 0f) p.maxSpeed = stats.Speed;
+            if (stats.Boost > 0f) p.boostMultiplier = Mathf.Clamp(stats.Boost, 1f, MaxDataBoost);
+            p.pitchRateDeg = Mathf.Clamp(FlightParams.Default.pitchRateDeg * (stats.Handling / 10f),
+                MinPitchRateDeg, FlightParams.Default.pitchRateDeg);
+            return p;
+        }
+
+        /// <summary>The live params source: the player's equipped hangar loadout when one exists
+        /// (so a refit changes the next flight immediately), else the serialized ShipDefinition,
+        /// else defaults. Returns the chassis id it resolved (null = definition/defaults).</summary>
+        private FlightParams ResolveParams(out string chassisId)
+        {
+            chassisId = null;
+            var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;
+            string equipped = profile != null ? ShipLocker.GetEquipped(profile, "chassis") : null;
+            if (string.IsNullOrEmpty(equipped)) return ParamsFrom(shipDefinition);
+
+            var chassis = ShipChassisPreset.Find(equipped);
+            chassisId = chassis.Id;
+            var modules = new List<ShipModulePreset>();
+            foreach (var id in ShipLocker.EquippedModules(profile, chassis.SlotIds))
+            {
+                var m = ShipModulePreset.Find(id);
+                if (m != null) modules.Add(m);
+            }
+            return ParamsFrom(ShipLoadoutCore.Resolve(chassis, modules));
         }
 
         private void Start()
@@ -214,6 +253,7 @@ namespace Ziptide.Ship
             laneContent.SetPositionAndRotation(_laneHomePos, _laneHomeRot);
             _state = new FlightState { position = _seatWorldPos };
             _yawLatch = new FlightYawLatch { Armed = true };
+            _params = ResolveParams(out string chassisId); // hangar refit changes THIS flight
             _course = new FlightCourseCore(ringPositions.ToArray(), ringRadius);
             _vignette = Object.FindObjectOfType<ComfortVignette>();
 
@@ -227,7 +267,8 @@ namespace Ziptide.Ship
             UpdateStatus();
             Debug.Log("ZIPTIDE: FLIGHT_MODE on scene=" + gameObject.scene.name +
                       " rings=" + _course.RingCount + " maxSpeed=" + _params.maxSpeed +
-                      " boost=" + _params.boostMultiplier);
+                      " boost=" + _params.boostMultiplier +
+                      " chassis=" + (chassisId ?? "definition"));
         }
 
         private void ExitFlight()
