@@ -28,6 +28,31 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-09 (hwr12) - Fable 5 architect: 🏭 4.1 BELTS BEGIN — the conveyor layer's pure heart + the sandbox factory corner (all green)
+- **Why:** post-rate-limit lane check — ship=T-Dog (ship1 shipped 🎉), traversal/caves=that lane,
+  MP=abilities, art=Picasso. The biggest UNCLAIMED prize was **4.1 automation/conveyors** — Terry's
+  "unique feature, has to be genuinely fun and extremely cool." Claimed on the board, built
+  pure-core-first.
+- **Did (`f980bf3` — BeltLattice, pure, 10 tests, CI ✅):** the feel-defining contracts in tested
+  math: items ride cell-to-cell with **HEAD BLOCKING** (jams compress upstream — the factorio
+  satisfaction), junction merges **round-robin fair but never starving** (preferred feeder passes +
+  advances the cursor; others pass only when the preferred can't deliver this instant — hand-traced
+  a starvation deadlock in the first draft and fixed it BEFORE commit), sources never overflow a
+  blocked belt, sinks count for the graph adapter. Hand verbs in the CORE: `HandPlaceItem` (reach
+  into the flow) + `Clear` (pick a belt up, item comes with it). Deterministic. **TRUTH CONTRACT:**
+  ProductionGraph stays the economy truth; the lattice is the physical watchable layer.
+- **Did (`67888df` — BeltFloorRuntime + sandbox, CI ✅):** the scene translator — belt tiles + teal
+  chevrons at runtime, **pooled GamePool pucks** lerped from lattice Progress, fixed 1/30 sim step,
+  sink payout via RewardRouter/`LedgerSource.Factory` (`ZIPTIDE: BELT_SUNK`). Patch-time contract:
+  patchers author a serialized cell list ONLY; all building happens in Start() (the SalvageCache
+  lesson, institutionalized). **Sandbox factory corner** at (−14,−12): source → belts → corner →
+  sink. 🎮 device: watch pucks ride, stare to see the jam compress, hear scrap accrue.
+- **Next (4.1c+, mine):** hand-PLACEMENT UX (snap a belt tile from the hand — the core verb) ·
+  machine-port adapters (MiningRig output → belt source; sink → ProductionGraph batches) · splitter
+  tile · the conductor-mode fun pass per `AUTOMATION_CONVEYORS.md`.
+- **Coordination:** belts touch no ship/flight surface — SHIP-MORE #1 stays T-Dog/Reasonbox's.
+- **Commits:** `f980bf3` · `67888df` — both CI green.
+
 ### 2026-07-09 (ship1) - T-Dog/Fable 5 (ship lane): 🚀 THE SHIP PILLAR SPRINT — six chassis, live refit, the hangar, and a hull that remembers
 Terry: "the ship has to be at least as good as the best AAA game out there, if not innovatively
 better" + "when you get to the end, go back and figure out more improvements." Rows 2.1/2.2/2.5
