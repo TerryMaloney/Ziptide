@@ -28,6 +28,26 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-09 (hwr10) - Fable 5 (traversal lane): 🪝 1.4f — grapple lands, the audit learns to ride, the fling gets its A/B gate
+Big-sprint triple; hwr9's lab verified CI-green first. **⚠️ ARCHITECT note: this pass touches YOUR
+`WorldReachabilityAuditRules.cs`** — additive only, see item 2; flag if you'd rather it lived elsewhere.
+1. **`GrappleReel`** (pure, 4 tests) — the LAST 1.4 traversal verb: range-gated `TryFire` (a long
+   shot returns null = a miss, never an exception), ease-in spool (no yank), comfort-capped monotonic
+   reel, arrival a stop-margin short of the anchor. Deliberately a LINEAR REEL, not a pendulum —
+   swing physics is VR's most nauseating traversal. Scene translator queued (small: fire from an
+   XRI select toward a `GrappleAnchor` marker, delta-translate along `Position`).
+2. **The reachability audit is traversal-aware** (the board's literal 1.4 ask): the POI flood now
+   runs through `MultiLevelReachability` — same per-cell step rule as before, plus a ONE-WAY edge
+   per `ZiplineRuntime` in the scene. POIs fed by ziplines stop false-warning; POIs you can only
+   LEAVE by zipline still warn, correctly. With zero ziplines the behavior is bit-identical.
+3. **The climb release-fling is now applied — behind `ziptide_climb_fling` (PlayerPrefs, default
+   OFF)**: shipped behavior unchanged until Terry's device pass A/Bs the launch feel. Short ballistic,
+   ground-ray landing, 2s timeout, fall-safety net beneath.
+- **Lane state:** every 1.4 traversal verb now has a tested pure core (zip/climb/lift/pad/grapple);
+  zip+climb+lift+pad have live translators; caves have planner+kit+lab. Remaining: grapple translator,
+  cave worlds as story destinations, Forge cavern kit (Picasso's), device feel pass (Terry's).
+- **Commit:** this push. Verify CI before building on the audit change.
+
 ### 2026-07-09 (hwr9) - Fable 5 (traversal lane): ⛏️ 1.4e — THE CAVERN TEST LAB: the first walkable cave
 The 1.4 spine composes end-to-end: planner (pure, tested) → kit (registry) → traversal (shipped
 runtimes) → a place you can stand in. No other operator pushed since hwr8 (checked).
