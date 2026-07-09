@@ -101,7 +101,8 @@ namespace Ziptide.Visuals
             return mesh;
         }
 
-        /// <summary>Indexed local-space geometry for one part (before transform/mirror/shading).</summary>
+        /// <summary>Indexed local-space geometry for one part (before transform/mirror/shading).
+        /// P2 modifiers (taper → bend → noise) apply here, pre-transform, on any op.</summary>
         public static PartGeometry BuildPart(ForgePart part)
         {
             var g = new PartGeometry();
@@ -114,7 +115,14 @@ namespace Ziptide.Visuals
                 case ForgeOp.SphereSection: BuildSphereSection(g, part.size * 0.5f, Mathf.Clamp(part.bevel <= 0f ? 1f : part.bevel, 0.05f, 1f), part.segments); break;
                 case ForgeOp.Wedge: BuildWedge(g, part.size); break;
                 case ForgeOp.GreebleStrip: BuildGreebleStrip(g, part.size, part.segments); break;
+                // P2 geometry richness:
+                case ForgeOp.Capsule: BuildCapsule(g, part.size.x * 0.5f, part.size.y, part.segments); break;
+                case ForgeOp.Frustum: BuildFrustum(g, part.size.x * 0.5f, part.size.z * 0.5f, part.size.y, part.segments); break;
+                case ForgeOp.Torus: BuildTorus(g, part.size.x * 0.5f, part.size.y * 0.5f, part.segments); break;
+                case ForgeOp.SweepSpline: BuildSweepSpline(g, part); break;
+                case ForgeOp.OrganicBlob: BuildUvSphere(g, part.size * 0.5f, part.segments); break;
             }
+            ApplyModifiers(g, part);
             return g;
         }
 
@@ -499,6 +507,362 @@ namespace Ziptide.Visuals
                 Quad(g, c + V(half, -1, -1, 1), c + V(half, 1, -1, 1), c + V(half, 1, 1, 1), c + V(half, -1, 1, 1));
                 Quad(g, c + V(half, 1, -1, -1), c + V(half, -1, -1, -1), c + V(half, -1, 1, -1), c + V(half, 1, 1, -1));
             }
+        }
+
+        // ── P2 ops (FORGE_II_QUALITY_LEAP §P2) ───────────────────────────────
+        // Winding conventions are copied verbatim from the CI-verified ops above:
+        //   strip (hi = upper ring): (hi+i, lo+j, lo+i) + (hi+i, hi+j, lo+j)
+        //   top pole/cap fan:        (pole, ring+j, ring+i)
+        //   bottom pole/cap fan:     (pole, ring+i, ring+j)
+
+        private static int AddYRing(PartGeometry g, float ringRadius, float y, int n)
+        {
+            int start = g.vertices.Count;
+            for (int i = 0; i < n; i++)
+            {
+                float a = i * Mathf.PI * 2f / n;
+                g.vertices.Add(new Vector3(Mathf.Cos(a) * ringRadius, y, Mathf.Sin(a) * ringRadius));
+            }
+            return start;
+        }
+
+        private static void StitchRows(PartGeometry g, List<int> rows, int n)
+        {
+            for (int r = 0; r < rows.Count - 1; r++)
+                for (int i = 0; i < n; i++)
+                {
+                    int j = (i + 1) % n;
+                    int hi = rows[r], lo = rows[r + 1];
+                    g.triangles.Add(hi + i); g.triangles.Add(lo + j); g.triangles.Add(lo + i);
+                    g.triangles.Add(hi + i); g.triangles.Add(hi + j); g.triangles.Add(lo + j);
+                }
+        }
+
+        private static void PoleFanTop(PartGeometry g, int pole, int ring, int n)
+        {
+            for (int i = 0; i < n; i++)
+            { int j = (i + 1) % n; g.triangles.Add(pole); g.triangles.Add(ring + j); g.triangles.Add(ring + i); }
+        }
+
+        private static void PoleFanBottom(PartGeometry g, int pole, int ring, int n)
+        {
+            for (int i = 0; i < n; i++)
+            { int j = (i + 1) % n; g.triangles.Add(pole); g.triangles.Add(ring + i); g.triangles.Add(ring + j); }
+        }
+
+        /// <summary>Capsule: a cylinder wall with hemispherical dome caps. totalHeight includes the caps.</summary>
+        private static void BuildCapsule(PartGeometry g, float radius, float totalHeight, int segments)
+        {
+            int n = Mathf.Clamp(segments, 3, 16);
+            int latRings = Mathf.Max(2, n / 2);
+            float r = Mathf.Min(radius, totalHeight * 0.5f);
+            float cylHalf = Mathf.Max(0f, totalHeight * 0.5f - r);
+
+            int topPole = g.vertices.Count;
+            g.vertices.Add(new Vector3(0f, cylHalf + r, 0f));
+            var rows = new List<int>();
+            for (int rr = 1; rr <= latRings; rr++) // top dome, ending on the +cylHalf equator
+            {
+                float lat = Mathf.PI * 0.5f * rr / latRings;
+                rows.Add(AddYRing(g, Mathf.Sin(lat) * r, cylHalf + Mathf.Cos(lat) * r, n));
+            }
+            // Bottom dome from the -cylHalf equator down. When there is no straight wall
+            // (a pure sphere) skip the duplicate equator ring.
+            int firstBottom = cylHalf > 1e-5f ? 0 : 1;
+            for (int rr = firstBottom; rr <= latRings - 1; rr++)
+            {
+                float lat = Mathf.PI * 0.5f + Mathf.PI * 0.5f * rr / latRings;
+                rows.Add(AddYRing(g, Mathf.Sin(lat) * r, -cylHalf + Mathf.Cos(lat) * r, n));
+            }
+            int botPole = g.vertices.Count;
+            g.vertices.Add(new Vector3(0f, -cylHalf - r, 0f));
+
+            PoleFanTop(g, topPole, rows[0], n);
+            StitchRows(g, rows, n);
+            PoleFanBottom(g, botPole, rows[rows.Count - 1], n);
+        }
+
+        /// <summary>Frustum: truncated cone (topR = 0 → a true cone with an apex vertex).</summary>
+        private static void BuildFrustum(PartGeometry g, float bottomR, float topR, float height, int segments)
+        {
+            int n = Mathf.Clamp(segments, 3, 16);
+            float hy = height * 0.5f;
+            int bot = AddYRing(g, Mathf.Max(0.001f, bottomR), -hy, n);
+            if (topR < 1e-4f)
+            {
+                int apex = g.vertices.Count;
+                g.vertices.Add(new Vector3(0f, hy, 0f));
+                PoleFanTop(g, apex, bot, n); // collapsed side strip = apex fan (cylinder winding)
+            }
+            else
+            {
+                int top = AddYRing(g, topR, hy, n);
+                var rows = new List<int> { top, bot };
+                StitchRows(g, rows, n);
+                int topC = g.vertices.Count; g.vertices.Add(new Vector3(0f, hy, 0f));
+                PoleFanTop(g, topC, top, n);
+            }
+            int botC = g.vertices.Count; g.vertices.Add(new Vector3(0f, -hy, 0f));
+            PoleFanBottom(g, botC, bot, n);
+        }
+
+        /// <summary>Torus lying in the XZ plane. majorR = ring radius (tube centers), minorR = tube radius.</summary>
+        private static void BuildTorus(PartGeometry g, float majorR, float minorR, int segments)
+        {
+            int n = Mathf.Clamp(segments, 3, 16);   // around the ring (theta)
+            int m = Mathf.Max(3, n / 2);            // around the tube (phi)
+            int start = g.vertices.Count;
+            for (int i = 0; i < n; i++)
+            {
+                float th = i * Mathf.PI * 2f / n;
+                for (int j = 0; j < m; j++)
+                {
+                    float ph = j * Mathf.PI * 2f / m;
+                    float rad = majorR + Mathf.Cos(ph) * minorR;
+                    g.vertices.Add(new Vector3(Mathf.Cos(th) * rad, Mathf.Sin(ph) * minorR, Mathf.Sin(th) * rad));
+                }
+            }
+            // Outward winding derived analytically: Cross(T_theta, T_phi) points INWARD on this
+            // parametrization, so quads emit (a,d,c)+(a,c,b) — verified by the analytic-normal test.
+            for (int i = 0; i < n; i++)
+            {
+                int i2 = (i + 1) % n;
+                for (int j = 0; j < m; j++)
+                {
+                    int j2 = (j + 1) % m;
+                    int a = start + i * m + j, b = start + i2 * m + j, c = start + i2 * m + j2, d = start + i * m + j2;
+                    g.triangles.Add(a); g.triangles.Add(d); g.triangles.Add(c);
+                    g.triangles.Add(a); g.triangles.Add(c); g.triangles.Add(b);
+                }
+            }
+        }
+
+        /// <summary>Full UV ellipsoid, pole to pole (OrganicBlob's base; noise makes it organic).</summary>
+        private static void BuildUvSphere(PartGeometry g, Vector3 radii, int segments)
+        {
+            int n = Mathf.Clamp(segments, 3, 16);
+            int latDiv = Mathf.Max(2, n / 2);
+            int topPole = g.vertices.Count;
+            g.vertices.Add(new Vector3(0f, radii.y, 0f));
+            var rows = new List<int>();
+            for (int r = 1; r < latDiv; r++)
+            {
+                float lat = Mathf.PI * r / latDiv;
+                int row = g.vertices.Count;
+                for (int i = 0; i < n; i++)
+                {
+                    float a = i * Mathf.PI * 2f / n;
+                    g.vertices.Add(new Vector3(
+                        Mathf.Cos(a) * Mathf.Sin(lat) * radii.x,
+                        Mathf.Cos(lat) * radii.y,
+                        Mathf.Sin(a) * Mathf.Sin(lat) * radii.z));
+                }
+                rows.Add(row);
+            }
+            int botPole = g.vertices.Count;
+            g.vertices.Add(new Vector3(0f, -radii.y, 0f));
+            PoleFanTop(g, topPole, rows[0], n);
+            StitchRows(g, rows, n);
+            PoleFanBottom(g, botPole, rows[rows.Count - 1], n);
+        }
+
+        /// <summary>Tube swept along a 2..4-point bezier with a parallel-transported frame (no twist
+        /// pops). Radius = size.x/2, or per-control-point via profile[i].x. Tentacles/pipes/branches.</summary>
+        private static void BuildSweepSpline(PartGeometry g, ForgePart part)
+        {
+            var pts = part.spline;
+            if (pts == null || pts.Length < 2 || pts.Length > 4) return;
+            int n = Mathf.Clamp(part.segments, 3, 16);
+            int rings = Mathf.Max(4, n);
+            float baseR = Mathf.Max(0.001f, part.size.x * 0.5f);
+
+            var rows = new List<int>();
+            Vector3 prevN = Vector3.zero;
+            for (int rr = 0; rr <= rings; rr++)
+            {
+                float t = (float)rr / rings;
+                Vector3 c = Bezier(pts, t);
+                Vector3 T = BezierTangent(pts, t);
+                Vector3 N;
+                if (rr == 0)
+                {
+                    // Chosen so a straight -Y sweep reproduces the CI-verified cylinder layout exactly.
+                    Vector3 refv = Mathf.Abs(T.y) > 0.7f ? Vector3.forward : Vector3.up;
+                    N = Vector3.Cross(refv, T);
+                }
+                else N = prevN - T * Vector3.Dot(prevN, T); // parallel transport
+                if (N.sqrMagnitude < 1e-10f) N = Vector3.Cross(Vector3.right, T);
+                N.Normalize();
+                prevN = N;
+                Vector3 B = Vector3.Cross(T, N);
+                float rad = SweepRadiusAt(part, t, baseR, pts.Length);
+
+                int row = g.vertices.Count;
+                for (int i = 0; i < n; i++)
+                {
+                    float a = i * Mathf.PI * 2f / n;
+                    g.vertices.Add(c + (N * Mathf.Cos(a) + B * Mathf.Sin(a)) * rad);
+                }
+                rows.Add(row);
+            }
+            // A reversed sweep flips BOTH the axial order and the frame handedness, so this one strip
+            // pattern stays outward for any curve direction (same cancellation as the cylinder).
+            StitchRows(g, rows, n);
+            int c0 = g.vertices.Count; g.vertices.Add(Bezier(pts, 0f));
+            PoleFanTop(g, c0, rows[0], n);
+            int c1 = g.vertices.Count; g.vertices.Add(Bezier(pts, 1f));
+            PoleFanBottom(g, c1, rows[rows.Count - 1], n);
+        }
+
+        private static Vector3 Bezier(Vector3[] p, float t)
+        {
+            if (p.Length == 2) return Vector3.LerpUnclamped(p[0], p[1], t);
+            if (p.Length == 3)
+            {
+                Vector3 a = Vector3.LerpUnclamped(p[0], p[1], t);
+                Vector3 b = Vector3.LerpUnclamped(p[1], p[2], t);
+                return Vector3.LerpUnclamped(a, b, t);
+            }
+            Vector3 q0 = Vector3.LerpUnclamped(p[0], p[1], t);
+            Vector3 q1 = Vector3.LerpUnclamped(p[1], p[2], t);
+            Vector3 q2 = Vector3.LerpUnclamped(p[2], p[3], t);
+            Vector3 r0 = Vector3.LerpUnclamped(q0, q1, t);
+            Vector3 r1 = Vector3.LerpUnclamped(q1, q2, t);
+            return Vector3.LerpUnclamped(r0, r1, t);
+        }
+
+        private static Vector3 BezierTangent(Vector3[] p, float t)
+        {
+            Vector3 d = Bezier(p, Mathf.Min(1f, t + 0.001f)) - Bezier(p, Mathf.Max(0f, t - 0.001f));
+            return d.sqrMagnitude > 1e-12f ? d.normalized : Vector3.up;
+        }
+
+        private static float SweepRadiusAt(ForgePart part, float t, float baseR, int ctrlCount)
+        {
+            var prof = part.profile;
+            if (prof == null || prof.Length != ctrlCount) return baseR;
+            float f = t * (ctrlCount - 1);
+            int i = Mathf.Clamp(Mathf.FloorToInt(f), 0, ctrlCount - 2);
+            return Mathf.Max(0.001f, Mathf.Lerp(prof[i].x, prof[i + 1].x, f - i));
+        }
+
+        // ── P2 modifiers (taper → bend → noise; local space, pre-transform, any op) ──
+
+        private static void ApplyModifiers(PartGeometry g, ForgePart part)
+        {
+            if (g.vertices.Count == 0) return;
+            bool taper = part.taper > 1e-4f;
+            bool bend = Mathf.Abs(part.bendDegrees) > 0.01f;
+            bool noise = part.noiseAmplitude > 1e-5f;
+            if (!taper && !bend && !noise) return;
+
+            Bounds b = LocalBounds(g);
+            float minY = b.min.y, spanY = Mathf.Max(1e-4f, b.size.y);
+
+            if (taper)
+            {
+                float k = Mathf.Clamp(part.taper, 0f, 0.95f);
+                for (int i = 0; i < g.vertices.Count; i++)
+                {
+                    Vector3 v = g.vertices[i];
+                    float s = 1f - k * Mathf.Clamp01((v.y - minY) / spanY);
+                    v.x *= s; v.z *= s;
+                    g.vertices[i] = v;
+                }
+            }
+            if (bend)
+            {
+                // Arc bend around local X: the base slice (y = minY) stays put, the +Y axis curves
+                // toward ±Z along a circle of radius spanY/bendRadians. Verified: theta=0 is identity.
+                float rad = Mathf.Clamp(part.bendDegrees, -180f, 180f) * Mathf.Deg2Rad;
+                float R = spanY / rad;
+                for (int i = 0; i < g.vertices.Count; i++)
+                {
+                    Vector3 v = g.vertices[i];
+                    float th = (v.y - minY) / R;
+                    float arm = R - v.z;
+                    v.y = minY + Mathf.Sin(th) * arm;
+                    v.z = R - Mathf.Cos(th) * arm;
+                    g.vertices[i] = v;
+                }
+            }
+            if (noise)
+            {
+                // Displace along POSITION-WELDED vertex normals: duplicated corner verts (Quad-built
+                // ops) get one shared normal, so noise can never crack a hard-edged part open.
+                var normals = WeldedNormals(g);
+                float amp = Mathf.Clamp(part.noiseAmplitude, 0f, 0.5f);
+                float freq = Mathf.Max(0.01f, part.noiseFrequency);
+                for (int i = 0; i < g.vertices.Count; i++)
+                    g.vertices[i] += normals[i] * (amp * Fbm(g.vertices[i] * freq, part.noiseSeed));
+            }
+        }
+
+        private static Vector3[] WeldedNormals(PartGeometry g)
+        {
+            var keyOf = new int[g.vertices.Count];
+            var keyMap = new Dictionary<Vector3Int, int>();
+            var acc = new List<Vector3>();
+            for (int i = 0; i < g.vertices.Count; i++)
+            {
+                Vector3 v = g.vertices[i];
+                var q = new Vector3Int(Mathf.RoundToInt(v.x * 10000f), Mathf.RoundToInt(v.y * 10000f),
+                                       Mathf.RoundToInt(v.z * 10000f));
+                if (!keyMap.TryGetValue(q, out int k)) { k = acc.Count; keyMap[q] = k; acc.Add(Vector3.zero); }
+                keyOf[i] = k;
+            }
+            for (int t = 0; t < g.triangles.Count; t += 3)
+            {
+                Vector3 a = g.vertices[g.triangles[t]];
+                Vector3 fn = Vector3.Cross(g.vertices[g.triangles[t + 1]] - a, g.vertices[g.triangles[t + 2]] - a);
+                acc[keyOf[g.triangles[t]]] += fn;      // unnormalized cross = area-weighted
+                acc[keyOf[g.triangles[t + 1]]] += fn;
+                acc[keyOf[g.triangles[t + 2]]] += fn;
+            }
+            var result = new Vector3[g.vertices.Count];
+            for (int i = 0; i < g.vertices.Count; i++)
+            {
+                Vector3 nv = acc[keyOf[i]];
+                result[i] = nv.sqrMagnitude > 1e-12f ? nv.normalized : Vector3.up;
+            }
+            return result;
+        }
+
+        private static float Hash3(int x, int y, int z, int seed)
+        {
+            unchecked
+            {
+                int h = x * 374761393 + y * 668265263 + z * 2147483629 + seed * 1013904223;
+                h = (h ^ (h >> 13)) * 1103515245;
+                h ^= h >> 16;
+                return (h & 0x7FFFFFFF) / 2147483647f;
+            }
+        }
+
+        private static float ValueNoise(Vector3 p, int seed)
+        {
+            int x0 = Mathf.FloorToInt(p.x), y0 = Mathf.FloorToInt(p.y), z0 = Mathf.FloorToInt(p.z);
+            float fx = p.x - x0, fy = p.y - y0, fz = p.z - z0;
+            fx = fx * fx * (3f - 2f * fx); fy = fy * fy * (3f - 2f * fy); fz = fz * fz * (3f - 2f * fz);
+            float x00 = Mathf.Lerp(Hash3(x0, y0, z0, seed), Hash3(x0 + 1, y0, z0, seed), fx);
+            float x10 = Mathf.Lerp(Hash3(x0, y0 + 1, z0, seed), Hash3(x0 + 1, y0 + 1, z0, seed), fx);
+            float x01 = Mathf.Lerp(Hash3(x0, y0, z0 + 1, seed), Hash3(x0 + 1, y0, z0 + 1, seed), fx);
+            float x11 = Mathf.Lerp(Hash3(x0, y0 + 1, z0 + 1, seed), Hash3(x0 + 1, y0 + 1, z0 + 1, seed), fx);
+            return Mathf.Lerp(Mathf.Lerp(x00, x10, fy), Mathf.Lerp(x01, x11, fy), fz);
+        }
+
+        /// <summary>Deterministic 3-octave fBm in [-1, 1] (pure — the modifier and tests share it).</summary>
+        public static float Fbm(Vector3 p, int seed)
+        {
+            float sum = 0f, ampSum = 0f, a = 1f;
+            for (int o = 0; o < 3; o++)
+            {
+                sum += a * ValueNoise(p, seed + o * 101);
+                ampSum += a;
+                a *= 0.5f;
+                p *= 2f;
+            }
+            return (sum / ampSum) * 2f - 1f;
         }
 
         /// <summary>Deterministic integer hash → [0,1) (independent of SkyVistaTexture on purpose).</summary>

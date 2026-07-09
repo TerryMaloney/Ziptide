@@ -130,6 +130,7 @@ namespace Ziptide.Visuals
             {
                 case ForgeOp.Cylinder:
                 case ForgeOp.Tube:
+                case ForgeOp.Frustum: // rim circles too (bottom rim dominant; same normalization)
                 {
                     // Edges = the two cap-rim CIRCLES: distance to the nearer rim combines the
                     // vertical gap to that cap AND the radial gap to the rim radius (a side-wall
@@ -143,6 +144,10 @@ namespace Ziptide.Visuals
                 }
                 case ForgeOp.SphereSection:
                 case ForgeOp.Lathe:
+                case ForgeOp.Capsule:
+                case ForgeOp.Torus:
+                case ForgeOp.SweepSpline:
+                case ForgeOp.OrganicBlob:
                     return 1f; // smooth/organic: no hard edges
                 default: // box family (BeveledBox, Wedge, GreebleStrip)
                 {

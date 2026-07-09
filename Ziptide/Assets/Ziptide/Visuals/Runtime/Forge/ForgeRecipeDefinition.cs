@@ -21,7 +21,13 @@ namespace Ziptide.Visuals
         Lathe,          // profile = (radius, height01) points revolved around local Y; size.x = radius scale, size.y = height
         SphereSection,  // size = full extents of the ellipsoid; bevel = latitude fraction kept from the top (1 = full, 0.5 = dome)
         Wedge,          // right triangular prism: size.x wide, size.y tall (slope from +Z top to -Z bottom), size.z deep
-        GreebleStrip    // segments small deterministic boxes in a row along local Z inside the size envelope
+        GreebleStrip,   // segments small deterministic boxes in a row along local Z inside the size envelope
+        // ── P2 geometry richness (FORGE_II_QUALITY_LEAP §P2) ──
+        Capsule,        // size.x = diameter, size.y = TOTAL height including both dome caps; segments radial
+        Frustum,        // size.x = BOTTOM diameter, size.z = TOP diameter (0 = a true cone), size.y = height
+        Torus,          // size.x = major (ring) diameter, size.y = minor (tube) diameter; size.z unused (keep > 0)
+        SweepSpline,    // tube swept along `spline` (2..4 local bezier pts); size.x = diameter; optional per-point radii via profile[i].x (meters, one per spline pt)
+        OrganicBlob     // full UV ellipsoid (size = extents); pair with the noise* modifiers for organic mass
     }
 
     /// <summary>One placed shape. Class (not struct) so field initializers give LLM-safe defaults.</summary>
@@ -49,6 +55,23 @@ namespace Ziptide.Visuals
         public int paletteSlot = 0;
         [Tooltip("false = flat-shaded (crisp low-poly read, the default); true = smooth normals.")]
         public bool smooth = false;
+
+        // ── P2 modifiers — work on ANY op, applied in local space BEFORE position/rotation/scale,
+        //    in the fixed order taper → bend → noise. Defaults = off (hash-stable for old assets). ──
+        [Tooltip("P2: fBm surface displacement in meters along welded vertex normals. 0 = off. Keep " +
+                 "well under the part's smallest half-extent or the silhouette shreds (max 0.5).")]
+        public float noiseAmplitude = 0f;
+        [Tooltip("P2: fBm spatial frequency (bumps per meter, roughly). Only used when amplitude > 0.")]
+        public float noiseFrequency = 8f;
+        [Tooltip("P2: deterministic noise seed — same seed, same bumps, forever.")]
+        public int noiseSeed = 0;
+        [Tooltip("P2: 0..0.95 — shrinks XZ toward the local +Y top (1 would be a degenerate point).")]
+        public float taper = 0f;
+        [Tooltip("P2: arc-bend around local X, curving the +Y axis toward +Z (negative = toward -Z). " +
+                 "±180 max. Applied after taper, before noise.")]
+        public float bendDegrees = 0f;
+        [Tooltip("SweepSpline only: 2..4 local-space bezier control points the tube follows.")]
+        public Vector3[] spline;
     }
 
     /// <summary>Named attach point (Grip/Muzzle/Seat/Door/...). Consumers snap existing children here —
@@ -141,6 +164,18 @@ namespace Ziptide.Visuals
                     AppendVec(sb, p.position); AppendVec(sb, p.eulerRotation); AppendVec(sb, p.scale);
                     sb.Append(p.mirrorX ? 1 : 0).Append(',').Append(p.paletteSlot).Append(',')
                       .Append(p.smooth ? 1 : 0).Append('|');
+                    // P2 fields append ONLY when used, so every pre-P2 asset (incl. Locked ones)
+                    // keeps its exact hash. Defaults = feature-off = the same look, so no ambiguity.
+                    if (p.taper != 0f || p.bendDegrees != 0f || p.noiseAmplitude != 0f)
+                        sb.Append("M").Append(F(p.taper)).Append(',').Append(F(p.bendDegrees)).Append(',')
+                          .Append(F(p.noiseAmplitude)).Append(',').Append(F(p.noiseFrequency)).Append(',')
+                          .Append(p.noiseSeed).Append('|');
+                    if (p.spline != null && p.spline.Length > 0)
+                    {
+                        sb.Append("S");
+                        foreach (var sp in p.spline) AppendVec(sb, sp);
+                        sb.Append('|');
+                    }
                 }
             if (sockets != null)
                 foreach (var s in sockets)
@@ -193,7 +228,11 @@ namespace Ziptide.Visuals
                     if (palette != null && (p.paletteSlot < 0 || p.paletteSlot >= palette.Length))
                         issues.Add(tag + "paletteSlot " + p.paletteSlot + " out of range");
                     if (p.segments < 3 || p.segments > 16) issues.Add(tag + "segments out of 3..16");
-                    if (p.size.x <= 0f || p.size.y <= 0f || p.size.z <= 0f) issues.Add(tag + "non-positive size");
+                    // Frustum's size.z is the TOP diameter and 0 is legal (a true cone).
+                    if (p.size.x <= 0f || p.size.y <= 0f || (p.size.z <= 0f && p.op != ForgeOp.Frustum))
+                        issues.Add(tag + "non-positive size");
+                    if (p.op == ForgeOp.Frustum && p.size.z < 0f)
+                        issues.Add(tag + "Frustum top diameter (size.z) must be >= 0");
                     if (Mathf.Max(p.size.x, Mathf.Max(p.size.y, p.size.z)) > MaxPartExtent)
                         issues.Add(tag + "size exceeds " + MaxPartExtent + "m");
                     if (p.op == ForgeOp.Lathe && (p.profile == null || p.profile.Length < 2 || p.profile.Length > 8))
@@ -205,6 +244,39 @@ namespace Ziptide.Visuals
                         issues.Add(tag + "SphereSection latitude fraction (bevel) must be in (0,1]");
                     if (p.op == ForgeOp.Tube && (p.wallThickness <= 0f || p.wallThickness * 2f >= p.size.x))
                         issues.Add(tag + "Tube wallThickness must be >0 and < radius");
+
+                    // ── P2 op contracts ──
+                    if (p.op == ForgeOp.Torus && p.size.y >= p.size.x)
+                        issues.Add(tag + "Torus minor diameter (size.y) must be < major diameter (size.x)");
+                    if (p.op == ForgeOp.SweepSpline)
+                    {
+                        if (p.spline == null || p.spline.Length < 2 || p.spline.Length > 4)
+                            issues.Add(tag + "SweepSpline needs 2..4 spline control points");
+                        else
+                        {
+                            foreach (var sp in p.spline)
+                                if (Mathf.Max(Mathf.Abs(sp.x), Mathf.Max(Mathf.Abs(sp.y), Mathf.Abs(sp.z))) > MaxPartExtent)
+                                    issues.Add(tag + "spline point beyond " + MaxPartExtent + "m");
+                            if (p.profile != null && p.profile.Length > 0)
+                            {
+                                if (p.profile.Length != p.spline.Length)
+                                    issues.Add(tag + "SweepSpline per-point radii (profile) must match spline length");
+                                else
+                                    foreach (var pt in p.profile)
+                                        if (pt.x <= 0f) issues.Add(tag + "SweepSpline per-point radius must be > 0");
+                            }
+                        }
+                    }
+                    else if (p.spline != null && p.spline.Length > 0)
+                        issues.Add(tag + "spline is only meaningful on a SweepSpline part");
+
+                    // ── P2 modifier contracts (any op) ──
+                    if (p.taper < 0f || p.taper > 0.95f) issues.Add(tag + "taper must be in 0..0.95");
+                    if (Mathf.Abs(p.bendDegrees) > 180f) issues.Add(tag + "bendDegrees must be within ±180");
+                    if (p.noiseAmplitude < 0f || p.noiseAmplitude > 0.5f)
+                        issues.Add(tag + "noiseAmplitude must be in 0..0.5");
+                    if (p.noiseAmplitude > 0f && (p.noiseFrequency <= 0f || p.noiseFrequency > 64f))
+                        issues.Add(tag + "noiseFrequency must be in (0,64] when noise is on");
                 }
 
             if (sockets != null)

@@ -92,9 +92,15 @@ namespace Ziptide.Visuals
                 case ForgeOp.Cylinder:
                 case ForgeOp.Tube:
                 case ForgeOp.Lathe:
+                case ForgeOp.Capsule:
+                case ForgeOp.Frustum:
+                case ForgeOp.SweepSpline:
                     return Mathf.PI * s.x * s.y + Mathf.PI * 0.5f * s.x * s.x;
                 case ForgeOp.SphereSection:
+                case ForgeOp.OrganicBlob:
                     return Mathf.PI * s.x * s.y; // ellipsoid-ish
+                case ForgeOp.Torus:
+                    return Mathf.PI * Mathf.PI * s.x * s.y * 0.25f; // (2πR)(2πr)
                 default: // box-family
                     return 2f * (s.x * s.y + s.y * s.z + s.x * s.z);
             }
@@ -111,8 +117,13 @@ namespace Ziptide.Visuals
                 case ForgeOp.Cylinder:
                 case ForgeOp.Tube:
                 case ForgeOp.Lathe:
+                case ForgeOp.Capsule:
+                case ForgeOp.Frustum:
+                case ForgeOp.Torus:
+                case ForgeOp.SweepSpline:
                     return Projection.Cylindrical;
                 case ForgeOp.SphereSection:
+                case ForgeOp.OrganicBlob:
                     return Projection.Spherical;
                 default:
                     return Projection.BoxPlanar;
