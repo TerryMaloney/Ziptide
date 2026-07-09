@@ -6,8 +6,9 @@ namespace Ziptide.Tests.EditMode
 {
     /// <summary>
     /// P4b FlightModel contracts (SPACEFLIGHT_PHYSICS rails, enforced in math): determinism, speed
-    /// and pitch caps, snap-only yaw, the un-exitable soft-walled lane, decay to rest, and the
-    /// structural no-roll guarantee. Pure, headless.
+    /// and pitch caps, snap-only yaw, the un-exitable soft-walled lane, decay to rest, boost and
+    /// reverse caps, and the roll-never-rests guarantee (comfort law v2, Terry 2026-07-09: roll
+    /// exists only as a self-completing barrel roll that lands back on exactly level). Pure, headless.
     /// </summary>
     public class FlightModelTests
     {
@@ -105,16 +106,80 @@ namespace Ziptide.Tests.EditMode
         }
 
         [Test]
-        public void NoRoll_ByConstruction()
+        public void Roll_NeverRests_BarrelRollCompletesToExactlyLevel()
         {
-            // The comfort law is structural: FlightState has no roll field at all.
-            Assert.IsNull(typeof(FlightState).GetField("rollDeg"),
-                "someone added roll to FlightState — that is a comfort-law violation");
-            // And Forward never banks: the ship's right vector stays horizontal at any pitch/yaw.
-            var s = new FlightState { yawDeg = 123f, pitchDeg = 30f };
-            Vector3 right = Vector3.Cross(Vector3.up, FlightModel.Forward(s));
-            Assert.AreEqual(0f, Quaternion.Euler(-s.pitchDeg, s.yawDeg, 0f).eulerAngles.z, 0.001f);
-            Assert.Greater(right.magnitude, 0.1f);
+            // Comfort law v2: roll exists ONLY inside a barrel roll. Start one, tick it out, and
+            // the ship must land back on EXACTLY 0 — no code path leaves the ship banked.
+            var s = FlightModel.StartBarrelRoll(default, +1);
+            Assert.AreEqual(1, s.rollDirection);
+
+            bool sawBank = false;
+            for (int i = 0; i < 72 * 3 && s.rollDirection != 0; i++) // 3s ceiling — must finish well inside
+            {
+                s = FlightModel.Tick(s, P, 0.5f, 0f, 1f / 72f);
+                if (Mathf.Abs(s.rollDeg) > 1f) sawBank = true;
+            }
+            Assert.IsTrue(sawBank, "the roll should actually bank mid-maneuver");
+            Assert.AreEqual(0, s.rollDirection, "the barrel roll must self-complete");
+            Assert.AreEqual(0f, s.rollDeg, "and land on EXACTLY level — roll never rests");
+        }
+
+        [Test]
+        public void BarrelRoll_CannotChain_AndNeverSteersTheShip()
+        {
+            var s = FlightModel.StartBarrelRoll(default, +1);
+            var mashed = FlightModel.StartBarrelRoll(s, -1);
+            Assert.AreEqual(1, mashed.rollDirection, "mid-roll requests are ignored — no washing machine");
+            Assert.AreEqual(s.rollDeg, mashed.rollDeg);
+
+            Assert.AreEqual(0, FlightModel.StartBarrelRoll(default, 0).rollDirection, "0 = no roll");
+
+            // Rolling never changes where the ship is going: Forward ignores roll entirely.
+            var banked = new FlightState { yawDeg = 40f, pitchDeg = 20f, rollDeg = 137f, rollDirection = 1 };
+            var level = new FlightState { yawDeg = 40f, pitchDeg = 20f };
+            Assert.Less(Vector3.Distance(FlightModel.Forward(banked), FlightModel.Forward(level)), 1e-5f);
+        }
+
+        [Test]
+        public void Orientation_CarriesRoll_AndMatchesForwardWhenLevel()
+        {
+            var level = new FlightState { yawDeg = 123f, pitchDeg = 30f };
+            Assert.Less(Vector3.Distance(FlightModel.Orientation(level) * Vector3.forward,
+                FlightModel.Forward(level)), 1e-5f);
+
+            var banked = new FlightState { rollDeg = 90f, rollDirection = 1 };
+            float bankY = (FlightModel.Orientation(banked) * Vector3.right).y;
+            Assert.Greater(Mathf.Abs(bankY), 0.9f, "a 90-degree roll should put the wings vertical");
+        }
+
+        [Test]
+        public void Boost_MultipliesTheCap_AndReleasingDecaysBack()
+        {
+            var s = default(FlightState);
+            for (float t = 0f; t < 20f; t += 1f / 72f)
+                s = FlightModel.Tick(s, P, 1f, 0f, true, 1f / 72f);
+            Assert.AreEqual(P.maxSpeed * P.boostMultiplier, s.speed, 0.01f, "boost cap = max × multiplier");
+
+            s = Fly(s, 1f, 0f, 20f); // boost released, throttle still pinned
+            Assert.AreEqual(P.maxSpeed, s.speed, 0.01f, "releasing boost must decay back to the unboosted cap");
+        }
+
+        [Test]
+        public void Reverse_IsCappedToItsFraction_AndBoostScalesIt()
+        {
+            var s = Fly(default, -1f, 0f, 20f);
+            Assert.AreEqual(-P.maxSpeed * P.reverseFraction, s.speed, 0.01f,
+                "full reverse caps at the reverse fraction, never full speed backwards");
+            Vector3 before = s.position;
+            s = FlightModel.Tick(s, P, -1f, 0f, 1f / 72f);
+            Assert.Less(Vector3.Dot(s.position - before, FlightModel.Forward(s)), 0f,
+                "negative speed moves the ship backwards along Forward");
+
+            var b = default(FlightState);
+            for (float t = 0f; t < 20f; t += 1f / 72f)
+                b = FlightModel.Tick(b, P, -1f, 0f, true, 1f / 72f);
+            Assert.AreEqual(-P.maxSpeed * P.reverseFraction * P.boostMultiplier, b.speed, 0.01f,
+                "boost backward mirrors boost forward, on the reverse cap");
         }
 
         [Test]

@@ -28,6 +28,29 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-09 (rb3) - Reasonbox: 🌀 FLIGHT v1.1 — barrel roll + boost fwd/back (Terry's direct ask)
+- **Why:** Terry: "make sure we either have a roll pitch or a barrel roll… and a boost forward and a
+  boost backward, just like the running controls."
+- **⚠️ Comfort-law CHANGE (deliberate, Terry-directed):** FlightModel's "no roll by construction" is
+  now **"roll never RESTS"** — `FlightState` gained `rollDeg`/`rollDirection`, but roll exists ONLY as
+  a discrete self-completing 360° barrel roll (`StartBarrelRoll`): it can't chain (mid-roll requests
+  ignored), never changes `Forward`, and always lands back on **exactly 0**. No input path can hold the
+  ship banked. The old reflection test that forbade the field is replaced by tests pinning the new law.
+- **Did (FlightModel):** signed speed — pull back = reverse, capped at `reverseFraction` (40%) of
+  forward; `boost` param on Tick multiplies target + ramp (default 1.8×), releasing decays back to the
+  unboosted cap; `Orientation(state)` = full visual pose incl. roll (translators invert THIS now);
+  zero-`rollRateDeg` guard so a hand-built params struct can't strand a roll. Old 5-arg Tick kept as an
+  overload — no callers break.
+- **Did (FlightInputCore):** throttle now signed/symmetric past the deadzone (model owns the reverse cap).
+- **Did (ShipFlightRuntime):** bindings mirror on-foot — **L3** (the sprint finger) **or A = boost**,
+  **X/B = barrel roll left/right** (only live while flying; on-foot X/B duties don't apply at the helm).
+  Barrel roll reports a full vignette pulse. `ParamsFrom` maps `ShipDefinition.boostMultiplier`
+  clamped [1, 3]; reverse fraction + roll rate are comfort constants, NOT ship data. Logs `FLIGHT_ROLL`.
+- **Tests:** FlightModelTests +5 (roll transient/no-chain/orientation, boost cap+decay, reverse cap ±
+  boost), input tests signed, params tests boost-clamp both ways. Runbook headset notes updated.
+- **Next / still CLAIMED (flight lane):** Terry's bake + feel pass → 2.4 atmosphere→space transition.
+- **Commit / branch:** this push on `terry-local-wip` — check the run's verdict before stacking C#.
+
 ### 2026-07-09 (rb2) - Reasonbox: ✈️ FLIGHT SHIPS — arming gate + P4b free-flight v1 (3 commits, first two CI-green)
 - **Did (① fuel-cell arming gate, `94bdf40`, CI ✅):** PUNCH IT now blocks until the tutorial's
   `gate_coupler` RepairableMachine is RUNNING — pure rule in `CastOffArming` (fail-open: a missing

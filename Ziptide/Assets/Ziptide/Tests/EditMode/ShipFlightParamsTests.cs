@@ -50,6 +50,26 @@ namespace Ziptide.Tests.EditMode
         }
 
         [Test]
+        public void BoostMultiplier_MapsFromData_ClampedBothWays()
+        {
+            var def = ScriptableObject.CreateInstance<ShipDefinition>();
+            try
+            {
+                def.boostMultiplier = 2.5f;
+                Assert.AreEqual(2.5f, ShipFlightRuntime.ParamsFrom(def).boostMultiplier);
+
+                def.boostMultiplier = 99f;
+                Assert.AreEqual(3f, ShipFlightRuntime.ParamsFrom(def).boostMultiplier,
+                    "Data can tune boost but never past the comfort ceiling.");
+
+                def.boostMultiplier = 0.2f;
+                Assert.AreEqual(1f, ShipFlightRuntime.ParamsFrom(def).boostMultiplier,
+                    "A boost below 1 would make the button slow the ship — clamp to neutral.");
+            }
+            finally { Object.DestroyImmediate(def); }
+        }
+
+        [Test]
         public void ComfortRails_AreDataProof()
         {
             var def = ScriptableObject.CreateInstance<ShipDefinition>();
@@ -57,9 +77,14 @@ namespace Ziptide.Tests.EditMode
             {
                 def.cruiseSpeed = 999f;
                 def.turnRateDegrees = 999f;
+                def.boostMultiplier = 999f;
                 var p = ShipFlightRuntime.ParamsFrom(def);
                 Assert.AreEqual(FlightParams.Default.pitchClampDeg, p.pitchClampDeg);
                 Assert.AreEqual(FlightParams.Default.yawSnapDeg, p.yawSnapDeg);
+                Assert.AreEqual(FlightParams.Default.reverseFraction, p.reverseFraction,
+                    "Reverse stays a fraction of forward no matter the data.");
+                Assert.AreEqual(FlightParams.Default.rollRateDeg, p.rollRateDeg,
+                    "The barrel-roll speed is a comfort constant, not ship data.");
                 Assert.AreEqual(FlightParams.Default.laneRadius, p.laneRadius,
                     "The lane must stay under the 2km floating-origin trigger no matter the data.");
             }

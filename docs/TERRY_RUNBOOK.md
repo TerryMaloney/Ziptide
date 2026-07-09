@@ -43,9 +43,13 @@ Do these in order after pulling. Each generates committable assets. *(This mirro
   generates `SpaceLane_Trial.unity` + its world pack/theme and adds it to Build Settings. Commit the
   generated scene + assets. After the next build, "Flight Trial" appears on every berthed ship's helm
   and in the Y+B dev menu. **Headset check:** board → TAKE THE HELM (you teleport to the seat, walking
-  is suspended) → left stick = throttle, right stick = pitch + snap-yaw flicks → fly the 5 orange rings
-  (they turn green; watch `ZIPTIDE: FLIGHT_RING` in logcat) → DOCK to stand up, RETURN HOME to travel
-  back. Feel notes wanted: snap-yaw angle (30°), pitch speed, vignette strength during flight, ring size.
+  is suspended) → left stick = throttle **(pull back = reverse)**, right stick = pitch + snap-yaw
+  flicks, **L3 or A = boost (works in reverse too, like sprint), X = barrel roll left / B = barrel
+  roll right** (a quick self-completing 360° — the vignette pulses hard during it, watch
+  `ZIPTIDE: FLIGHT_ROLL` in logcat) → fly the 5 orange rings (they turn green; `ZIPTIDE: FLIGHT_RING`)
+  → DOCK to stand up, RETURN HOME to travel back. Feel notes wanted: snap-yaw angle (30°), pitch
+  speed, boost strength (1.8×–2.5×), barrel-roll speed (~0.86s — too fast/slow/nauseating?),
+  reverse cap (40%), vignette strength, ring size.
 - [ ] **Commit** the generated `.unity` / `.asset` files (PowerShell: `git add -A; git commit -m "..."; git push origin terry-local-wip`).
 - [ ] Build + install: `powershell -ExecutionPolicy Bypass -File C:\Ziptide\tools\dev_build_install.ps1`
   *(re-runs all patchers, so scene-side fixes apply automatically.)*

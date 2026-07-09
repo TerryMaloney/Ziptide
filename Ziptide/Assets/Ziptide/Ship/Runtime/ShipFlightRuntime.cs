@@ -12,10 +12,12 @@ namespace Ziptide.Ship
     /// (SPACEFLIGHT_PHYSICS law: fly the HULL, never the deck). The rig NEVER moves in flight:
     /// taking the helm teleports you to the seat, suspends walking locomotion, and every tick
     /// renders the WORLD's inverse pose on the lane-content root — you see space move past the
-    /// static cockpit. Comfort is triple-locked: FlightModel's math (no roll, snap yaw, pitch
-    /// clamp, soft-walled lane), FlightInputCore's flick latch, and apparent motion reported to
-    /// the ONE ComfortVignette. Ring course (FlightCourseCore) → dock or fly on; DOCK exits
-    /// flight; RETURN travels home through TravelCoordinator (the only legal path).
+    /// static cockpit. Comfort is triple-locked: FlightModel's math (roll never rests — barrel
+    /// roll only, snap yaw, pitch clamp, reverse fraction, soft-walled lane), FlightInputCore's
+    /// flick latch, and apparent motion reported to the ONE ComfortVignette. Controls mirror the
+    /// on-foot scheme: stick = fly (back = reverse), L3/A = boost (the sprint finger), X/B =
+    /// barrel roll. Ring course (FlightCourseCore) → dock or fly on; DOCK exits flight; RETURN
+    /// travels home through TravelCoordinator (the only legal path).
     /// All fields are SERIALIZED at edit time by ScenePatcherSpaceLane (gotcha #7).
     /// Logs FLIGHT_MODE / FLIGHT_RING / FLIGHT_COURSE_DONE / FLIGHT_RETURN.
     /// </summary>
@@ -32,8 +34,10 @@ namespace Ziptide.Ship
         [Tooltip("Scene TravelCoordinator returns to from the RETURN panel.")]
         [SerializeField] private string returnScene = "W000_DriftIn";
 
-        [Tooltip("Optional stat source — maps cruise/turn onto FlightParams (null = defaults).")]
+        [Tooltip("Optional stat source — maps cruise/boost/turn onto FlightParams (null = defaults).")]
         [SerializeField] private ShipDefinition shipDefinition;
+
+        private const float MaxDataBoost = 3f; // data can tune boost, never past this
 
         private const float SeatStrayExit = 2.5f; // rig moved away (respawn etc.) → auto-dock
 
@@ -51,14 +55,19 @@ namespace Ziptide.Ship
 
         private InputAction _leftStick;
         private InputAction _rightStick;
+        private InputAction _boostStickClick;  // L3 — same finger as sprint on foot
+        private InputAction _boostButton;      // A — the CONTROLS_AND_FLIGHT boost button
+        private InputAction _rollLeftButton;   // X
+        private InputAction _rollRightButton;  // B
 
         private TextMesh _statusText;
         private GameObject _returnPanel;
         private readonly List<Behaviour> _suspended = new List<Behaviour>();
 
         /// <summary>ShipDefinition → FlightParams (pure; pinned by ShipFlightParamsTests). The
-        /// definition's cruise is the lane max; comfort caps (pitch clamp, snap yaw, lane radius)
-        /// stay at the reviewed defaults — data can slow a ship down, never uncap comfort.</summary>
+        /// definition's cruise is the lane max and its boost multiplier carries over (clamped to
+        /// MaxDataBoost); comfort caps (pitch clamp, snap yaw, lane radius, reverse fraction, roll
+        /// rate) stay at the reviewed defaults — data can slow a ship down, never uncap comfort.</summary>
         public static FlightParams ParamsFrom(ShipDefinition def)
         {
             var p = FlightParams.Default;
@@ -66,6 +75,8 @@ namespace Ziptide.Ship
             if (def.cruiseSpeed > 0f) p.maxSpeed = def.cruiseSpeed;
             if (def.turnRateDegrees > 0f)
                 p.pitchRateDeg = Mathf.Min(def.turnRateDegrees, FlightParams.Default.pitchRateDeg);
+            if (def.boostMultiplier > 0f)
+                p.boostMultiplier = Mathf.Clamp(def.boostMultiplier, 1f, MaxDataBoost);
             return p;
         }
 
@@ -83,6 +94,14 @@ namespace Ziptide.Ship
             _leftStick.AddBinding("<XRController>{LeftHand}/thumbstick");
             _rightStick = new InputAction("ZiptideFlightSteer", InputActionType.Value);
             _rightStick.AddBinding("<XRController>{RightHand}/thumbstick");
+            _boostStickClick = new InputAction("ZiptideFlightBoostL3", InputActionType.Button);
+            _boostStickClick.AddBinding("<XRController>{LeftHand}/thumbstickClicked"); // L3, like sprint
+            _boostButton = new InputAction("ZiptideFlightBoostA", InputActionType.Button);
+            _boostButton.AddBinding("<XRController>{RightHand}/primaryButton");        // A
+            _rollLeftButton = new InputAction("ZiptideFlightRollL", InputActionType.Button);
+            _rollLeftButton.AddBinding("<XRController>{LeftHand}/primaryButton");      // X
+            _rollRightButton = new InputAction("ZiptideFlightRollR", InputActionType.Button);
+            _rollRightButton.AddBinding("<XRController>{RightHand}/secondaryButton");  // B
 
             BuildHelm();
         }
@@ -91,6 +110,10 @@ namespace Ziptide.Ship
         {
             _leftStick?.Dispose();
             _rightStick?.Dispose();
+            _boostStickClick?.Dispose();
+            _boostButton?.Dispose();
+            _rollLeftButton?.Dispose();
+            _rollRightButton?.Dispose();
         }
 
         private void BuildHelm()
@@ -196,10 +219,15 @@ namespace Ziptide.Ship
 
             _leftStick.Enable();
             _rightStick.Enable();
+            _boostStickClick.Enable();
+            _boostButton.Enable();
+            _rollLeftButton.Enable();
+            _rollRightButton.Enable();
             _flying = true;
             UpdateStatus();
             Debug.Log("ZIPTIDE: FLIGHT_MODE on scene=" + gameObject.scene.name +
-                      " rings=" + _course.RingCount + " maxSpeed=" + _params.maxSpeed);
+                      " rings=" + _course.RingCount + " maxSpeed=" + _params.maxSpeed +
+                      " boost=" + _params.boostMultiplier);
         }
 
         private void ExitFlight()
@@ -208,6 +236,10 @@ namespace Ziptide.Ship
             _flying = false;
             _leftStick.Disable();
             _rightStick.Disable();
+            _boostStickClick.Disable();
+            _boostButton.Disable();
+            _rollLeftButton.Disable();
+            _rollRightButton.Disable();
             if (laneContent != null)
                 laneContent.SetPositionAndRotation(_laneHomePos, _laneHomeRot);
             ResumeLocomotion();
@@ -226,20 +258,32 @@ namespace Ziptide.Ship
 
             var frame = FlightInputCore.Shape(
                 _leftStick.ReadValue<Vector2>(), _rightStick.ReadValue<Vector2>(), ref _yawArmed);
+            bool boost = _boostStickClick.IsPressed() || _boostButton.IsPressed();
 
             if (frame.YawSnap != 0)
                 _state = FlightModel.SnapYaw(_state, _params, frame.YawSnap);
-            _state = FlightModel.Tick(_state, _params, frame.Throttle01, frame.Pitch, Time.deltaTime);
+            if (_rollLeftButton.WasPressedThisFrame())
+            {
+                _state = FlightModel.StartBarrelRoll(_state, -1);
+                Debug.Log("ZIPTIDE: FLIGHT_ROLL dir=left");
+            }
+            else if (_rollRightButton.WasPressedThisFrame())
+            {
+                _state = FlightModel.StartBarrelRoll(_state, +1);
+                Debug.Log("ZIPTIDE: FLIGHT_ROLL dir=right");
+            }
+            _state = FlightModel.Tick(_state, _params, frame.Throttle, frame.Pitch, boost, Time.deltaTime);
 
-            // The rig stays still; the WORLD wears the inverse of the ship's pose.
-            Quaternion inv = Quaternion.Inverse(Quaternion.Euler(-_state.pitchDeg, _state.yawDeg, 0f));
+            // The rig stays still; the WORLD wears the inverse of the ship's pose (incl. any roll).
+            Quaternion inv = Quaternion.Inverse(FlightModel.Orientation(_state));
             laneContent.SetPositionAndRotation(
                 _seatWorldPos + inv * (_laneHomePos - _state.position), inv * _laneHomeRot);
 
             if (_vignette != null)
                 _vignette.ReportExternalMotion(
-                    _state.speed / Mathf.Max(1f, _params.maxSpeed),
-                    (frame.YawSnap != 0 ? 1f : 0f) + Mathf.Abs(frame.Pitch) * 0.4f);
+                    Mathf.Abs(_state.speed) / Mathf.Max(1f, _params.maxSpeed),
+                    (frame.YawSnap != 0 ? 1f : 0f) + Mathf.Abs(frame.Pitch) * 0.4f
+                        + (_state.rollDirection != 0 ? 1f : 0f)); // barrel roll = full tunnel pulse
 
             if (_course.Advance(_state.position))
             {
@@ -256,7 +300,9 @@ namespace Ziptide.Ship
             if (_statusText == null) return;
             _statusText.text = _course.IsComplete
                 ? "COURSE COMPLETE\ndock + return home"
-                : "RINGS " + _course.NextRing + "/" + _course.RingCount + "\nleft stick fly - right stick steer";
+                : "RINGS " + _course.NextRing + "/" + _course.RingCount
+                  + "\nleft stick fly (back = reverse) - right stick steer"
+                  + "\nL3/A boost - X/B barrel roll";
         }
 
         private void TintRing(int index)
