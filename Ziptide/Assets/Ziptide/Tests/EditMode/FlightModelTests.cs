@@ -187,6 +187,24 @@ namespace Ziptide.Tests.EditMode
         }
 
         [Test]
+        public void Strafe_SlidesLaterally_CappedAndRotationFree()
+        {
+            // Full-right strafe from rest, no throttle: pure sideways slide at the capped rate.
+            var s = default(FlightState);
+            for (float t = 0f; t < 2f; t += 1f / 72f)
+                s = FlightModel.Tick(s, P, 0f, 0f, 1f, false, 1f / 72f);
+
+            Assert.AreEqual(0f, s.yawDeg, "strafe must never rotate the ship");
+            Assert.AreEqual(0f, s.speed, "strafe is lateral only — it adds no forward speed");
+            Assert.Greater(s.position.x, 0f, "positive strafe slides right");
+            Assert.AreEqual(0f, s.position.z, 0.001f, "…with no forward drift");
+
+            float expected = P.maxSpeed * P.strafeFraction * 2f;
+            Assert.AreEqual(expected, s.position.x, expected * 0.03f,
+                "lateral rate caps at strafeFraction of max speed");
+        }
+
+        [Test]
         public void DegenerateDt_IsANoOp()
         {
             var s = Fly(default, 1f, 0.3f, 2f);

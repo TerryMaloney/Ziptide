@@ -53,9 +53,11 @@ Do these in order after pulling. Each generates committable assets. *(This mirro
   flicks, **L3 or A = boost (works in reverse too, like sprint), X = barrel roll left / B = barrel
   roll right** (a quick self-completing 360° — the vignette pulses hard during it, watch
   `ZIPTIDE: FLIGHT_ROLL` in logcat) → fly the 5 orange rings (they turn green; `ZIPTIDE: FLIGHT_RING`)
-  → DOCK to stand up, RETURN HOME to travel back. Feel notes wanted: snap-yaw angle (30°), pitch
-  speed, boost strength (1.8×–2.5×), barrel-roll speed (~0.86s — too fast/slow/nauseating?),
-  reverse cap (40%), vignette strength, ring size.
+  → DOCK to stand up, RETURN HOME to travel back. **Xbox-parity pass (v1.2):** left stick X now
+  **strafes** (pure sideways slide, no rotation), and **holding** the right stick keeps snap-turning
+  on a 0.4s cadence instead of turning once. Feel notes wanted: snap-yaw angle (30°) + repeat cadence
+  (0.4s), strafe speed (30% of cruise), pitch speed, boost strength (1.8×–2.5×), barrel-roll speed
+  (~0.86s — too fast/slow/nauseating?), reverse cap (40%), vignette strength, ring size.
 - [ ] **NEW (traversal 1.4b, 2026-07-09 — traversal Fable):** climbing + world ziplines are in. No menu
   step (all auto at build: the Sandbox regenerates with a **ClimbTower + a zipline off its top**, and
   every generated world strings ONE zipline between its two farthest POIs). **Headset check (Sandbox,

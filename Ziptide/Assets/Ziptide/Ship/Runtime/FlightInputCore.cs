@@ -6,17 +6,26 @@ namespace Ziptide.Ship
     public struct FlightInputFrame
     {
         public float Throttle;     // -1..1 — signed target speed fraction (negative = reverse)
+        public float Strafe;       // -1..1 — lateral slide intent (FlightModel caps the speed)
         public float Pitch;        // -1..1 — slow world tilt
-        public int YawSnap;        // -1 / 0 / +1 — at most one discrete snap per flick
+        public int YawSnap;        // -1 / 0 / +1 — at most one discrete snap per frame
+    }
+
+    /// <summary>Cross-frame state for the snap-yaw latch. Keep one per pilot and pass by ref.</summary>
+    public struct FlightYawLatch
+    {
+        public bool Armed;          // true = the next threshold-crossing snaps immediately
+        public float NextRepeatAt;  // while held past threshold, the next auto-repeat time
     }
 
     /// <summary>
-    /// P4b — PURE stick shaping for flight (CONTROLS_AND_FLIGHT mapping): left stick Y = throttle
-    /// (push forward to fly, pull back to reverse — FlightModel caps reverse at its own fraction),
-    /// right stick Y = pitch, right stick X = snap yaw with a flick LATCH — one snap per flick past
-    /// the threshold, re-armed only when the stick returns near center, so holding the stick can
-    /// never spin the ship (comfort law, same reason FlightModel has no smooth yaw). Boost and
-    /// barrel-roll are buttons, read by the runtime directly — no shaping needed here.
+    /// P4b — PURE stick shaping for flight (CONTROLS_AND_FLIGHT mapping, Xbox-parity pass v1.2):
+    /// left stick Y = throttle (push to fly, pull to reverse — FlightModel caps reverse), left
+    /// stick X = strafe (lateral slide, translation-only), right stick Y = pitch, right stick X =
+    /// snap yaw with a HOLD-TO-REPEAT latch — the first flick snaps immediately, holding the stick
+    /// repeats a snap every RepeatSeconds (matching how the walking XRI snap-turn behaves), and
+    /// returning near center re-arms the instant response. Snaps stay discrete: no code path can
+    /// smooth-yaw (comfort law). Boost and barrel-roll are buttons, read by the runtime directly.
     /// Pinned by FlightInputCoreTests.
     /// </summary>
     public static class FlightInputCore
@@ -24,37 +33,45 @@ namespace Ziptide.Ship
         public const float Deadzone = 0.15f;
         public const float SnapThreshold = 0.6f;
         public const float RearmThreshold = 0.3f;
+        public const float RepeatSeconds = 0.4f; // held-stick snap cadence (walking snap-turn feel)
 
-        /// <summary>Shape raw sticks into a flight frame. <paramref name="yawArmed"/> is the flick
-        /// latch — keep it across frames; true means the next threshold-crossing snaps.</summary>
-        public static FlightInputFrame Shape(Vector2 leftStick, Vector2 rightStick, ref bool yawArmed)
+        /// <summary>Shape raw sticks into a flight frame. <paramref name="latch"/> is the snap-yaw
+        /// state — keep it across frames. <paramref name="now"/> is the pilot's clock (Time.time
+        /// in the runtime; any monotonic value in tests).</summary>
+        public static FlightInputFrame Shape(Vector2 leftStick, Vector2 rightStick,
+            ref FlightYawLatch latch, float now)
         {
             var frame = new FlightInputFrame
             {
                 Throttle = Rescale(leftStick.y),
+                Strafe = Rescale(leftStick.x),
                 Pitch = Mathf.Abs(rightStick.y) > Deadzone
                     ? Mathf.Clamp(rightStick.y, -1f, 1f)
                     : 0f,
             };
 
             float x = rightStick.x;
-            if (yawArmed && Mathf.Abs(x) >= SnapThreshold)
+            if (Mathf.Abs(x) >= SnapThreshold)
             {
-                frame.YawSnap = x > 0f ? 1 : -1;
-                yawArmed = false;
+                if (latch.Armed || now >= latch.NextRepeatAt)
+                {
+                    frame.YawSnap = x > 0f ? 1 : -1;
+                    latch.Armed = false;
+                    latch.NextRepeatAt = now + RepeatSeconds;
+                }
             }
-            else if (!yawArmed && Mathf.Abs(x) <= RearmThreshold)
+            else if (Mathf.Abs(x) <= RearmThreshold)
             {
-                yawArmed = true;
+                latch.Armed = true;
             }
             return frame;
         }
 
-        /// <summary>Signed throttle: symmetric deadzone, rescaled so full deflection = ±1.</summary>
-        private static float Rescale(float y)
+        /// <summary>Signed axis: symmetric deadzone, rescaled so full deflection = ±1.</summary>
+        private static float Rescale(float v)
         {
-            if (y > Deadzone) return Mathf.Clamp01((y - Deadzone) / (1f - Deadzone));
-            if (y < -Deadzone) return -Mathf.Clamp01((-y - Deadzone) / (1f - Deadzone));
+            if (v > Deadzone) return Mathf.Clamp01((v - Deadzone) / (1f - Deadzone));
+            if (v < -Deadzone) return -Mathf.Clamp01((-v - Deadzone) / (1f - Deadzone));
             return 0f;
         }
     }

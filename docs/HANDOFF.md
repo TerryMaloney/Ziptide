@@ -345,6 +345,22 @@ seen, and your `ZiplineRuntime` became the template for this commit's climb tran
   auto-migrates creature assets → commit them; §2p melee-grip + creature-TTK feel; GitHub reconnect).
 - **Commit:** this push on `terry-local-wip`.
 
+### 2026-07-09 (rb4) - Reasonbox: 🎮 FLIGHT v1.2 — the Xbox-ergonomics pass (Terry: "like playing on an Xbox")
+- **Audit verdict:** throttle/pitch/boost/roll already matched the console standard — left alone.
+  Two real gaps fixed:
+- **① Left stick X was a DEAD axis** → now **strafe**: a pure lateral slide (translation only, never
+  a rotation — comfort-safe by construction), capped at `strafeFraction` (30%) of cruise, stateless
+  like walking locomotion. New `FlightParams.strafeFraction` comfort constant (not ship data).
+- **② Holding the right stick turned you ONCE** → snap yaw now **hold-to-repeats** on a 0.4s cadence
+  (matching the walking XRI snap-turn feel): first flick snaps instantly, holding keeps snapping,
+  returning near center re-arms instant response. `FlightYawLatch` struct replaces the bool latch;
+  snaps stay discrete — still no smooth-yaw code path.
+- **Files:** FlightModel (strafe term + 7-arg Tick; old overloads kept), FlightInputCore (strafe
+  shaping + repeat latch), ShipFlightRuntime (wiring + helm hint text), tests (+2 model/input laws,
+  latch tests rewritten). All in my claimed flight files — no shared-file edits this round.
+- **Next / still CLAIMED (flight lane):** Terry's bake + feel pass → 2.4 atmosphere→space transition.
+- **Commit / branch:** this push on `terry-local-wip` — verify the run before stacking C#.
+
 ### 2026-07-09 (rb3) - Reasonbox: 🌀 FLIGHT v1.1 — barrel roll + boost fwd/back (Terry's direct ask)
 - **Why:** Terry: "make sure we either have a roll pitch or a barrel roll… and a boost forward and a
   boost backward, just like the running controls."

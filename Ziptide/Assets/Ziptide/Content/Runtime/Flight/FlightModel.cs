@@ -31,6 +31,7 @@ namespace Ziptide.Content
         public float boostMultiplier; // held-boost speed factor (like sprint over run)
         public float reverseFraction; // reverse max as a fraction of forward max
         public float rollRateDeg;     // barrel-roll speed (deg/s; 360°/this = the maneuver length)
+        public float strafeFraction;  // lateral (left-stick X) max as a fraction of forward max
 
         public static FlightParams Default => new FlightParams
         {
@@ -38,6 +39,7 @@ namespace Ziptide.Content
             yawSnapDeg = 30f, laneRadius = 1800f, // < 2km: the floating-origin trigger can never fire
             boostMultiplier = 1.8f, reverseFraction = 0.4f,
             rollRateDeg = 420f, // a full barrel roll in ~0.86s — a dodge, not a sustained bank
+            strafeFraction = 0.3f, // gentle slide — fills the Xbox-dead left-stick X axis
         };
     }
 
@@ -62,19 +64,27 @@ namespace Ziptide.Content
         public static Quaternion Orientation(FlightState s)
             => Quaternion.Euler(-s.pitchDeg, s.yawDeg, -s.rollDeg);
 
-        /// <summary>Advance one frame (no boost). Kept for existing callers/tests.</summary>
+        /// <summary>Advance one frame (no boost/strafe). Kept for existing callers/tests.</summary>
         public static FlightState Tick(FlightState s, FlightParams p, float throttle, float pitchInput, float dt)
-            => Tick(s, p, throttle, pitchInput, false, dt);
+            => Tick(s, p, throttle, pitchInput, 0f, false, dt);
 
-        /// <summary>Advance one frame. throttle ∈ [-1,1] (negative = reverse, capped by
-        /// reverseFraction), pitchInput ∈ [-1,1], boost multiplies the speed target and ramp
-        /// while held — releasing it decays back to the unboosted cap. Deterministic.</summary>
+        /// <summary>Advance one frame (no strafe). Kept for existing callers/tests.</summary>
         public static FlightState Tick(FlightState s, FlightParams p, float throttle, float pitchInput,
             bool boost, float dt)
+            => Tick(s, p, throttle, pitchInput, 0f, boost, dt);
+
+        /// <summary>Advance one frame. throttle ∈ [-1,1] (negative = reverse, capped by
+        /// reverseFraction), pitchInput ∈ [-1,1], strafe ∈ [-1,1] (pure lateral slide, capped by
+        /// strafeFraction — translation only, so it is rotation-free and comfort-safe), boost
+        /// multiplies the speed target and ramp while held — releasing it decays back to the
+        /// unboosted cap. Deterministic.</summary>
+        public static FlightState Tick(FlightState s, FlightParams p, float throttle, float pitchInput,
+            float strafe, bool boost, float dt)
         {
             if (dt <= 0f || float.IsNaN(dt)) return s;
             throttle = Mathf.Clamp(throttle, -1f, 1f);
             pitchInput = Mathf.Clamp(pitchInput, -1f, 1f);
+            strafe = Mathf.Clamp(strafe, -1f, 1f);
 
             float boostFactor = boost ? Mathf.Max(1f, p.boostMultiplier) : 1f;
             float cap = throttle >= 0f
@@ -100,6 +110,14 @@ namespace Ziptide.Content
             }
 
             s.position += Forward(s) * (s.speed * dt);
+
+            // Strafe: a stateless lateral slide along the ship's right axis (same direct-velocity
+            // model as walking locomotion — pure translation, never a rotation).
+            if (strafe != 0f)
+            {
+                Vector3 right = Quaternion.Euler(-s.pitchDeg, s.yawDeg, 0f) * Vector3.right;
+                s.position += right * (strafe * p.maxSpeed * Mathf.Clamp01(p.strafeFraction) * dt);
+            }
 
             // Soft wall: the lane is a sphere. Beyond it, snap back to the surface and bleed speed —
             // you bounce off the edge of space gently instead of flying to float-jitter land.

@@ -44,7 +44,7 @@ namespace Ziptide.Ship
         private bool _flying;
         private FlightState _state;
         private FlightParams _params;
-        private bool _yawArmed = true;
+        private FlightYawLatch _yawLatch;
         private FlightCourseCore _course;
         private ComfortVignette _vignette;
         private PlayerRigPersistence _rig;
@@ -213,7 +213,7 @@ namespace Ziptide.Ship
             // starts AT the seat and the first rendered frame is exactly the parked view.
             laneContent.SetPositionAndRotation(_laneHomePos, _laneHomeRot);
             _state = new FlightState { position = _seatWorldPos };
-            _yawArmed = true;
+            _yawLatch = new FlightYawLatch { Armed = true };
             _course = new FlightCourseCore(ringPositions.ToArray(), ringRadius);
             _vignette = Object.FindObjectOfType<ComfortVignette>();
 
@@ -257,7 +257,7 @@ namespace Ziptide.Ship
             }
 
             var frame = FlightInputCore.Shape(
-                _leftStick.ReadValue<Vector2>(), _rightStick.ReadValue<Vector2>(), ref _yawArmed);
+                _leftStick.ReadValue<Vector2>(), _rightStick.ReadValue<Vector2>(), ref _yawLatch, Time.time);
             bool boost = _boostStickClick.IsPressed() || _boostButton.IsPressed();
 
             if (frame.YawSnap != 0)
@@ -272,7 +272,8 @@ namespace Ziptide.Ship
                 _state = FlightModel.StartBarrelRoll(_state, +1);
                 Debug.Log("ZIPTIDE: FLIGHT_ROLL dir=right");
             }
-            _state = FlightModel.Tick(_state, _params, frame.Throttle, frame.Pitch, boost, Time.deltaTime);
+            _state = FlightModel.Tick(_state, _params, frame.Throttle, frame.Pitch, frame.Strafe,
+                boost, Time.deltaTime);
 
             // The rig stays still; the WORLD wears the inverse of the ship's pose (incl. any roll).
             Quaternion inv = Quaternion.Inverse(FlightModel.Orientation(_state));
@@ -281,7 +282,8 @@ namespace Ziptide.Ship
 
             if (_vignette != null)
                 _vignette.ReportExternalMotion(
-                    Mathf.Abs(_state.speed) / Mathf.Max(1f, _params.maxSpeed),
+                    Mathf.Max(Mathf.Abs(_state.speed) / Mathf.Max(1f, _params.maxSpeed),
+                        Mathf.Abs(frame.Strafe) * _params.strafeFraction),
                     (frame.YawSnap != 0 ? 1f : 0f) + Mathf.Abs(frame.Pitch) * 0.4f
                         + (_state.rollDirection != 0 ? 1f : 0f)); // barrel roll = full tunnel pulse
 
@@ -301,8 +303,8 @@ namespace Ziptide.Ship
             _statusText.text = _course.IsComplete
                 ? "COURSE COMPLETE\ndock + return home"
                 : "RINGS " + _course.NextRing + "/" + _course.RingCount
-                  + "\nleft stick fly (back = reverse) - right stick steer"
-                  + "\nL3/A boost - X/B barrel roll";
+                  + "\nleft stick fly + slide (back = reverse)"
+                  + "\nright stick steer - L3/A boost - X/B barrel roll";
         }
 
         private void TintRing(int index)
