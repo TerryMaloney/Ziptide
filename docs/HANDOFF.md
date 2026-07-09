@@ -68,6 +68,26 @@ headless tests) with zero surface. Claimed 5.2/B2.
   warm in the traversal lane's hands).
 - **Commit / branch:** this push on `terry-local-wip` — verify the run before stacking C#.
 
+### 2026-07-09 (hwr13) - Fable 5 architect: 🖐️ 4.1c — belt HAND PLACEMENT ships (green): grab, ghost, CLICK
+- **Why:** the VR-unique verb the whole conveyor feature hangs on — hand-building the factory IS the fun.
+- **Did (`df8a6ea`, CI ✅):**
+  - `BeltTileItem` — a grabbable slab (collider+RB before interactable, gotcha #6). While held, the
+    floor shows a snapped **GHOST**: the cell under your hand + direction quantized from your wrist's
+    yaw, teal when placeable / red when the cell's taken. Release over a valid cell → **CLICK**
+    (haptic pulse) and the tile becomes floor; release in the open → it drops, physical, pick it up.
+  - **Pick-back-up:** grip a placed belt — lattice clears (its riding item lifts with it, the core's
+    Clear law), visual dies, a fresh grabbable spawns above the cell.
+  - `BeltFloorRuntime` gains the runtime place/remove API, per-cell visual containers, the ghost, and
+    a self-registering Active list for held-tile queries.
+  - `BeltDispenserRuntime` — a pedestal that restocks on the **grab signal** (a distance check would
+    have false-tripped instantly — the spawn sits 1.15m up), capped loose tiles. Sandbox has it
+    beside the factory corner. Logs `ZIPTIDE: BELT_PLACE / BELT_PICKUP`.
+- **🎮 Device loop (sandbox):** grab slabs off the pedestal → build your OWN line into the demo line
+  → watch pucks ride it → sink pays scrap. The full hand-built-factory beat, end-to-end.
+- **Next (4.1d+, mine):** machine-port adapters (MiningRig → belt source; sink → ProductionGraph
+  batches) · splitter tile · player-factory persistence to the profile · the conductor fun pass.
+- **Commits:** `df8a6ea` — green.
+
 ### 2026-07-09 (rb5) - Reasonbox (flight lane): 🔗 SHIP-MORE #1 CLOSED — the hangar loadout now flies the ship (+ v1.2 CI ✅)
 - **v1.2 verdict first:** the Xbox-ergonomics pass (`a63e23e` — strafe on left-stick X +
   hold-to-repeat snap yaw) is **CI GREEN ✅**.
