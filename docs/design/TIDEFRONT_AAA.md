@@ -81,6 +81,17 @@ OPTIONAL contract INSIDE the actual target world (they're real, shipped worlds!)
 **Result: the strategy layer makes you REPLAY the campaign worlds with stakes — endless reuse of every
 world we build.**
 
+> **B3 v1 SHIPPED (2026-07-09, T-Dog/Fable).** Terry's framing: "like the gulag on Call of Duty" —
+> optional, quick, decline costs nothing. What's live: every strike offers **STRIKE NOW / FLY THE
+> MISSION** (win +2 tilt ≈ +10%, underdog +3; loss −1 "botched raid"; decline/walk-out 0); rival
+> attacks on YOUR worlds pause on **LET IT RIDE / DEFEND**. Attack contract = sabotage 3 shield
+> pylons in the actual target world (shoot/tase/slap, 2:30); defense = down 5 scout drones. The
+> campaign + held battle ride `ConquestSession` (static) across the travel round-trip; the pure
+> rules live in `ConquestMissionCore` (10 EditMode tests incl. resolve-identity). **v2 seams:**
+> scan/beacon/repair contract variants (the catalog above), and Terry's ideal defender mission —
+> **space flight vs bots** — slots in as a data swap once Phase 3.1 ship weapons exist (Reasonbox's
+> flight lane owns that seam).
+
 ## Multiplayer staging (infra-honest)
 1. **Hotseat** — pass the headset; `LocalHotseat` sync; ships with the table. Zero infra.
 2. **Live match over Photon** — both players seated at their tables in a PUN2 room (A6's import);

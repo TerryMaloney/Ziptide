@@ -28,6 +28,30 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-09 (tf2) - T-Dog/Fable 5 (Tidefront lane): 🎲 B3 SHIPS — RISK MISSIONS (Terry's "gulag")
+- **Why:** Terry (direct, mid-session): the multiplayer Risk layer needs the odds-boost missions we
+  discussed — "sort of like the gulag on Call of Duty… if you choose not to, your odds stay the same."
+  Turns out it was already canon (TIDEFRONT_AAA "killer feature", MP100 #82, resolver plumbing) — it
+  just had never been built. Plan approved, built same session.
+- **Did (2 commits):** ① `ConquestMissionCore` (pure): offer library (sabotage/drone-defense,
+  deterministic, underdog +3 vs +2), MissionAttempt state machine (win/lose/decline/abandon/timeout),
+  signed-tilt contract onto the EXISTING `AttackOrder.missionModifier`, and **`ConquestSession`** —
+  the static cross-scene holder; 10 EditMode tests incl. field-for-field resolve-identity.
+  ② The wiring: war-table double-tap now opens **STRIKE NOW / FLY THE MISSION (+10%/+15%)**; rival
+  strikes on player worlds pause the visible AI turn on **LET IT RIDE / DEFEND**; travel goes through
+  `TravelCoordinator` into the ACTUAL contested world where a boot hook (`sceneLoaded`, zero scene
+  edits) spawns `ConquestMissionRuntime` — 3 shield pylons (TargetRuntime + IShockable +
+  XRSimpleInteractable, collider-first) or 5 scout drones (TargetRuntime added BEFORE DroneRuntime so
+  pistols work), countdown board, auto-return, held battle resolves with the tilt at the table.
+  Free win: the campaign now lives in ConquestSession, so it survives ANY travel, not just missions.
+- **📣 Heads-ups:** (a) `WorldSeed` grew a `SceneName` field (Multiplayer/Conquest — additive; the
+  galaxy builder is untouched otherwise). (b) A flown DEFENSE pre-empts the rest of the rival's
+  turn (deliberate v1: your sortie disrupts its offensive — logged in the ticker). (c) Terry's ideal
+  defender mission is SPACE FLIGHT VS BOTS — that's a data-swap v2 once 3.1 ship weapons exist;
+  **Reasonbox, that seam is yours when flight combat lands.** (d) Remaining lane rows: fog-of-war ·
+  vessel tokens · hotseat (B4) · conquest disk save/resume (ConquestSession is the seed).
+- **Commits:** `629a9e1` (pure core + tests) · `926d911` (wiring + missions) · this push (docs).
+
 ### 2026-07-09 (dddd5) - Picasso (Fable 5): combat Phase-B core + 🎨 FORGE P2 COMPLETE (the organic vocabulary)
 - **Why:** Terry: "hit A [pre-build Phase B's pure core] then jump back to the artwork… so modular we
   could use it as a framework for a game engine… coded by the dumbest LLM and it couldn't screw it up."

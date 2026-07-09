@@ -126,7 +126,7 @@ the spec). Any operator can pick any unblocked row; claim in `SPRINT_MULTIPLAYER
 | 79 | Grab-a-vessel-token → drop on target → live-odds confirm → commit (the core interaction) | 🔷 |
 | 80 | THE RESOLUTION MOMENT — fleets converge, tension pulse, outcome stamp ("MAJOR VICTORY" gold / "COUNTERSTRIKE" red), planet recolors, RILL comments | 🔷 |
 | 81 | Visible AI turn — you watch its fleets move (never a silent state jump) | 🔷 |
-| 82 | `ConquestMissionLibrary` — fly-the-mission VR contracts (attack: sabotage/scan/beacon; defense: repair/clear/shoot-down) writing `ConquestModifier`s (−2 def, +10% odds) | 🔷 |
+| 82 | `ConquestMissionLibrary` — fly-the-mission VR contracts (attack: sabotage/scan/beacon; defense: repair/clear/shoot-down) writing `ConquestModifier`s (−2 def, +10% odds) — ✅ v1 (T-Dog 2026-07-09): sabotage-pylons + scout-shootdown live via ConquestSession; scan/beacon/repair variants + space-flight defense still open | ✅ |
 | 83 | Hotseat pass-the-headset sync (`LocalHotseat`, zero infra) | 🔷 |
 | 84 | Campaign save/resume (JsonUtility round-trip already tested in the sim — needs the save slot + resume flow) | ⬜ |
 | 85 | `ITidefrontSync` seam + Photon action sync (actions-only — the deterministic resolver means nothing else syncs) | 🔷 |

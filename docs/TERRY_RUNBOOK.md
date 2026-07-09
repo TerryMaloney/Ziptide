@@ -90,10 +90,23 @@ Do these in order after pulling. Each generates committable assets. *(This mirro
   the holo table on the south wall, by D/E). **Headset:** walk up — 12 planet orbs in story order
   (cyan = yours, red = the Rival's, grey = neutral). Tap a cyan world → its card + SPIRE/FRIGATE
   build tiles (real costs; watch the FLUX/ALLOY ticker). Tap an adjacent red/grey world → LIVE ODDS →
-  tap it AGAIN to strike → the outcome STAMPS over the planet (MAJOR VICTORY gold … COUNTERSTRIKE
-  red) and floats away. END TURN → watch the Rival move line by line (never a silent jump). First
-  strike: RILL says "The Wardens will notice this." Feel notes: orb size/reach from standing height,
-  double-tap-to-commit (vs a separate confirm tile?), AI turn pacing (0.8s/move), ticker readability.
+  tap it AGAIN to strike → **(B3 changed this: the second tap now opens the STRIKE NOW / FLY THE
+  MISSION offer — see the next item)** → the outcome STAMPS over the planet (MAJOR VICTORY gold …
+  COUNTERSTRIKE red) and floats away. END TURN → watch the Rival move line by line (never a silent
+  jump). First strike: RILL says "The Wardens will notice this." Feel notes: orb size/reach from
+  standing height, AI turn pacing (0.8s/move), ticker readability.
+- [ ] **NEW (Tidefront B3, 2026-07-09) — RISK MISSIONS ("the gulag"):** no menu step. **Headset,
+  at the war table:** double-tap an adjacent target → two tiles pop: **STRIKE NOW** (base odds) /
+  **FLY THE MISSION +10%** (underdog +15%). Fly it → THE ZIPTIDE carries you into that ACTUAL world:
+  three orange **shield pylons** ring the spawn — shoot, tase, or slap each one down before the
+  2:30 clock (floating board shows objectives + time; goes red under 0:30). Win or lose you're
+  auto-returned to the table and the held battle resolves WITH your tilt (card shows "MISSION WON —
+  tilt +2" and the outcome; `ZIPTIDE: CONQ_MISSION_RESOLVE`). Walking out a travel door instead =
+  declined, base odds. **Defense side:** END TURN until the Rival strikes one of YOUR worlds — its
+  turn PAUSES on LET IT RIDE / DEFEND. DEFEND drops you into your world with 5 red **scout drones**
+  fanned overhead — pistol and taser both down them. First flown mission: RILL notes a pattern.
+  Feel notes: pylon ring radius (12m), drone height/spread, 2:30 budget, board readability, and
+  whether the auto-return (2.5s after the verdict) feels right or abrupt.
 - [ ] **NEW (abilities sprint A4.5, 2026-07-09) — AUGMENTS:** no menu step (the six gems author at
   build; the Sandbox regenerates with an **augment rack** by A: Grab). **Headset:** select a gem with
   the ray to EQUIP (`ZIPTIDE: AUGMENT_EQUIP`; one active + one passive — re-selecting swaps). With an
