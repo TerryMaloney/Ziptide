@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using Ziptide.Content;
 using Ziptide.Multiplayer;
+using Ziptide.Multiplayer.Augments;
 
 namespace Ziptide.Gameplay
 {
@@ -89,7 +90,7 @@ namespace Ziptide.Gameplay
                 if (pvp == null || pvp.PlayerIndex == 0) continue;   // never cut yourself
                 Transform key = h.transform.root;
                 if (_nextHitAt.TryGetValue(key, out float nextAt) && Time.time < nextAt) continue;
-                _nextHitAt[key] = Time.time + (float)PvpRules.BladeContactDebounce;
+                _nextHitAt[key] = Time.time + (float)PvpRules.BladeContactDebounce * AugmentEffects.WeaponCooldownScale;
 
                 Vector3 dir = tipVel.sqrMagnitude > 0.01f ? tipVel.normalized : transform.forward;
                 PvpHitSource.Report(0);
@@ -106,7 +107,7 @@ namespace Ziptide.Gameplay
             float forwardSpeed = Vector3.Dot(tipVel, transform.forward);
             if (forwardSpeed < (float)PvpRules.PikeThrustSpeed) return;
 
-            _nextThrustAt = Time.time + (float)PvpRules.PikeThrustDebounce;
+            _nextThrustAt = Time.time + (float)PvpRules.PikeThrustDebounce * AugmentEffects.WeaponCooldownScale;
             PvpNoise.Report(tipPos);
 
             // The thrust is a LINE — that's its counter. First body on the line takes the hit.

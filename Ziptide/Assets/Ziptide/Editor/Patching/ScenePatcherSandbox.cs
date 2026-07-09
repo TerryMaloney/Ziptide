@@ -210,6 +210,18 @@ namespace Ziptide.Editor.Patching
                 pad.AddComponent<Ziptide.Gameplay.JumpPadRuntime>()
                    .Init(new Vector3(12.5f, 5.2f, -9f)); // arcs you onto the tower top
             }
+            // A4.5: the augment rack by the Grab zone — all six gems, select to equip (1 active +
+            // 1 passive; re-selecting swaps). The belt orb appears at your right hip once any active
+            // is equipped — touch it with the ray to FIRE.
+            AugmentAuthor.EnsureAllAuthored();
+            string[] augs = { "augment_surge_dash", "augment_bubble_guard", "augment_overclock",
+                              "augment_magnet_palm", "augment_sure_step", "augment_sixth_sense" };
+            for (int i = 0; i < augs.Length; i++)
+            {
+                if (GameObject.Find(augs[i]) != null) continue;
+                Ziptide.Gameplay.ItemFactory.Create(augs[i], new Vector3(-12f, 1.15f, 6f + i * 0.8f));
+            }
+
             if (GameObject.Find("SandboxGrapple") == null)
             {
                 // 1.4g: the FOURTH way up — point the ray at the rose ring high on the tower's south

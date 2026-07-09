@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using Ziptide.Content;
 using Ziptide.Multiplayer;
+using Ziptide.Multiplayer.Augments;
 
 namespace Ziptide.Gameplay
 {
@@ -43,7 +44,7 @@ namespace Ziptide.Gameplay
             var def = Def;
             float trigger = def != null ? def.swingSpeed : 1.6f;
             if (speed <= trigger) return;
-            _nextThumpAt = Time.time + (def != null ? def.fireCooldown : 1.2f);
+            _nextThumpAt = Time.time + (def != null ? def.fireCooldown : 1.2f) * AugmentEffects.WeaponCooldownScale;
             Thump();
         }
 

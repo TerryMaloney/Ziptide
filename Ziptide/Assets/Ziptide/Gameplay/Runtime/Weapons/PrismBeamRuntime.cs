@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using Ziptide.Content;
 using Ziptide.Multiplayer;
+using Ziptide.Multiplayer.Augments;
 
 namespace Ziptide.Gameplay
 {
@@ -81,7 +82,7 @@ namespace Ziptide.Gameplay
             if (t >= 1f)
             {
                 _chargeStart = -1f;
-                _nextFireTime = Time.time + (float)PvpRules.PrismCooldownSeconds;
+                _nextFireTime = Time.time + (float)PvpRules.PrismCooldownSeconds * AugmentEffects.WeaponCooldownScale;
                 Fire();
             }
         }

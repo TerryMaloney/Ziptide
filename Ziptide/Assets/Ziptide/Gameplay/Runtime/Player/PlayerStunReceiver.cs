@@ -40,6 +40,13 @@ namespace Ziptide.Gameplay
         /// <summary>Apply a non-lethal stun: flash + slow for <paramref name="seconds"/>. Re-stuns refresh.</summary>
         public void ApplyStun(float seconds, float slowFactor)
         {
+            // Sure Step (A4.5): resistance washes the slow toward harmless — shorter AND shallower.
+            float r = Ziptide.Multiplayer.Augments.AugmentEffects.SlowResistance;
+            if (r > 0f)
+            {
+                seconds *= (1f - r);
+                slowFactor = 1f - (1f - slowFactor) * (1f - r);
+            }
             _stun.Apply(seconds, slowFactor);
             _flashTimer = FlashDuration;
             EnsureFlash();

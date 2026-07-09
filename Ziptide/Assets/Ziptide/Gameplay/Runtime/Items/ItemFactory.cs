@@ -30,6 +30,8 @@ namespace Ziptide.Gameplay
                 built = CreateGravityGun(gravDef, position);
             else if (def is ArenaWeaponDefinition arenaDef)
                 built = CreateArenaWeapon(arenaDef, position);
+            else if (def is AugmentDefinition augDef)
+                built = CreateAugment(augDef, position);
             else
                 built = CreateGenericItem(def, position);
 
@@ -405,6 +407,24 @@ namespace Ziptide.Gameplay
             }
 
             RestorePhysicsOnRelease(go, grab);
+            return go;
+        }
+
+        /// <summary>A4.5 — an augment gem: a small diamond-read cube you SELECT (not grab-carry) to
+        /// equip. Trigger collider + XRSimpleInteractable; AugmentPickupRuntime does the equip.</summary>
+        private static GameObject CreateAugment(AugmentDefinition def, Vector3 position)
+        {
+            var go = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            go.name = def.itemId;
+            go.transform.position = position;
+            go.transform.rotation = Quaternion.Euler(45f, 45f, 0f);   // the diamond read
+            go.transform.localScale = Vec(def.visualScale, Vector3.one * 0.16f);
+            ApplyURPColor(go, def.gemColor);
+            var col = go.GetComponent<Collider>();
+            if (col != null) col.isTrigger = true;
+            go.AddComponent<XRSimpleInteractable>();                   // collider exists first (gotcha #6)
+            go.AddComponent<AugmentPickupRuntime>().Init(def);         // no ItemRuntime — a gem is
+                                                                       // selected, never grab-carried
             return go;
         }
 
