@@ -28,6 +28,26 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-09 (hwr6) - Fable 5 architect: 1.3c SHIPS — salvage caches make rooms worth entering (1 red, fixed in one round)
+- **Why:** interiors existed but rewarded nothing — loot gives walking inside a POINT.
+- **Did (`f9e717c` + fix `0e63239`, green):** `SalvageCacheRuntime` — a teal-banded crate that pays
+  scrap through the ONE economy path (`RewardRouter`, new `LedgerSource.Salvage`) on grab, pops,
+  despawns. **Patch-time contract respected:** InteriorBuilder serializes the visual + payload in the
+  editor, but the XRI grab arms itself at RUNTIME in `Start()` — editor-added UnityEvent listeners
+  never survive into play mode (an editor-wired crate would've been silently inert on device).
+  InteriorBuilder seeds 0–2 caches per interior (deterministic xorshift, distinct rooms, skips the
+  entry room — loot rewards going DEEPER), 4–10 scrap. Grants land on the SaveSystem profile →
+  travel-autosave persists them. Tests pin grant + Salvage ledger entry + null safety.
+- **⚠️ Red #1 on this task (owned, cleared in one round):** CS0029 — `2463534242` is a uint literal so
+  the int seed couldn't join the ternary; fixed to RoomPartitioner's own form
+  (`seed == 0 ? 2463534242u : (uint)seed`). Lesson: when copying a pure-core idiom, copy it EXACTLY.
+- **🎮 Device loop now closes end-to-end on W002:** see a lit window from the street → walk in the
+  door → rooms + corridors → grab the glowing cache → `ZIPTIDE: SALVAGE_CACHE` + scrap on the profile
+  → travel → autosaved.
+- **Next (my lane):** portal culling before interiors go dense · more district style coverage
+  (audit-gated) · then Phase 2 ship-hub work per the board (flight lane is claimed — check markers).
+- **Commits:** `f9e717c` (red) · `0e63239` (fix, green).
+
 ### 2026-07-09 (hwr5) - Fable 5 architect: 1.2 + 1.3 SHIP — interior-mapped windows + WALKABLE interiors (all green)
 - **Why:** my lane (building/interior cluster) per the hwr4 lane split. Three commits, all CI ✅.
 - **Did (1.2, `e54ca23`):** `Ziptide/InteriorMapping` — **the game's first custom shader**
