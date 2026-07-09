@@ -156,10 +156,14 @@ namespace Ziptide.Tests.EditMode
         public void Boost_MultipliesTheCap_AndReleasingDecaysBack()
         {
             var s = default(FlightState);
-            for (float t = 0f; t < 20f; t += 1f / 72f)
+            for (float t = 0f; t < 10f; t += 1f / 72f)
                 s = FlightModel.Tick(s, P, 1f, 0f, true, 1f / 72f);
             Assert.AreEqual(P.maxSpeed * P.boostMultiplier, s.speed, 0.01f, "boost cap = max × multiplier");
 
+            // Re-center: this test is about the SPEED cap, not the wall — 40s of straight flight
+            // would cross the lane radius and the soft wall would bleed the very speed we assert
+            // (that behavior has its own Lane_* tests).
+            s.position = Vector3.zero;
             s = Fly(s, 1f, 0f, 20f); // boost released, throttle still pinned
             Assert.AreEqual(P.maxSpeed, s.speed, 0.01f, "releasing boost must decay back to the unboosted cap");
         }
