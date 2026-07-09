@@ -28,6 +28,33 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-09 (hwr4) - Fable 5 architect: comfort layer + zipline translator ship; zipline core RECONCILED — lane split declared
+- **Why:** hardwiring board top-down. Three operators are now live in parallel (me on the hardwiring
+  spine, the traversal Fable on 1.4, Picasso on combat) — this entry also fixes a collision.
+- **Did (0.4 comfort, `c21408a`, upstream of green `1b58553`):** `ComfortCore` (Core, pure, 7 tests) —
+  the ONE tunnel math: motion closes a peripheral iris toward a floor, turn weighted over speed, fast
+  close / slow reopen. `ComfortVignette` (Gameplay) — self-bootstrapped on the camera, samples the
+  RIG's motion only (head turns never tunnel), procedural annulus (no shader deps), zero per-frame
+  alloc, PlayerPrefs `ziptide_comfort_vignette` (default 0.35, 0 disables). 🎮 device: feel the tunnel
+  on sprint/turn; tune the default. *(The traversal Fable extended it with `ReportExternalMotion` for
+  world-moves-around-you frames — good extension, kept.)*
+- **Did (1.4a zipline, `08df1a5` + reconcile `a5f5a9c`):** ⚠️ **COLLISION + FIX, own it:** I built
+  `Content.City.ZiplineCore` while the traversal lane had already claimed 1.4 on the board and shipped
+  `Content.Traversal.ZiplineRide` (richer: gravity/drag/push-off + hard comfort cap). Different
+  namespaces so CI never broke, but two cores = the parallel-system smell. **Reconciled: their core
+  wins** (board claim was first + better physics); mine + its tests DELETED; my `ZiplineRuntime` now
+  drives `ZiplineRide` and fulfills their "scene translator TODO" — self-built sagging cable + posts +
+  XRI grab handle, **rig delta-translated, never parented**, ComfortVignette engages from rig motion.
+  WORLDS_50 #23 = 🟡 (placement pull remains: string lines between POI pairs, one `Init(start,end)`).
+- **LANE SPLIT (to stop repeat collisions):** me = **building/interior cluster (1.1/1.2/1.3) + Phase-0
+  spine leftovers** · traversal Fable = **1.4 vertical/cavern/traversal** (their claim marker on the
+  board) · Picasso = combat/art. Check the board's claim markers before starting ANY row.
+- **Lesson (owned):** re-read the BOARD, not just HANDOFF, before opening a row — the claim marker was
+  there and I missed it mid-session.
+- **Next (my lane):** 1.2 interior-mapping window shader → 1.3 walkable interiors on RoomPartitioner
+  (which EXISTS + is tested — the old H2 task was stale) · more district style seeding batch-by-batch.
+- **Commits:** `c21408a` (comfort) · `08df1a5` (zipline) · `a5f5a9c` (reconcile). Verify `a5f5a9c` CI.
+
 ### 2026-07-09 (dddd3) - Picasso (Opus 4.8): COMBAT A3 - the damage economy is now ONE scale
 - **Why:** Terry cleared me to keep going on the combat lane (A3). Before this, campaign creatures lived
   on a separate damage economy (hardcoded taser=10/gravity=8, hp≈8-60) from PvP (taser=2, hp=6), and the
