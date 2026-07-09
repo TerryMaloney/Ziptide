@@ -28,6 +28,27 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-09 (hwr9) - Fable 5 (traversal lane): ⛏️ 1.4e — THE CAVERN TEST LAB: the first walkable cave
+The 1.4 spine composes end-to-end: planner (pure, tested) → kit (registry) → traversal (shipped
+runtimes) → a place you can stand in. No other operator pushed since hwr8 (checked).
+- **`CavernKitLibrary`** (Editor/Art) — the traversal lane's sibling of `BuildingKitLibrary`, with a
+  DISTINCT **`cavernModule:`** id prefix so the two kits can never clash. Three deterministic modules
+  (FloorPad disc + broken rim · Stalactite spike + crystal tip · ShaftWall climbable face);
+  📣 PICASSO: your Forge-textured cave kit re-registers the same ids and supersedes
+  (last-registration-wins), exactly like the building kit.
+- **`ScenePatcherCavern`** (`Ziptide → Dev → Build Cavern Test Lab`) — generates the lab from
+  `CaveNetworkPlanner.Plan(seed 20260709)` (FIXED seed: the lab is one cave everyone compares notes
+  on): chambers = registry pads under stalactites · walkable tunnels = bridges · shafts = climbable
+  rock faces (+ a lift beside deep ones — climbing is the sport, the lift is the commute) · one
+  zipline highest→lowest · dim crystal-lit mood · catch floor (fall safety) · spawn/pack/return door
+  for Dev Warp. Idempotent, sandbox contract. Runbook item queued (Terry runs the menu once, commits
+  the scene).
+- **📣 Next in my lane:** wire the reachability audit against generated caves (`MultiLevelReachability`
+  editor rule) · grapple core · climb fall-mover · cave worlds as real travel destinations (W011/W017's
+  underground fantasies are the natural fits — story-side additive, coordinate with WORLD_DATA when
+  claimed).
+- **Commit:** this push. Verify CI before building on these files.
+
 ### 2026-07-09 (hwr8) - Fable 5 (traversal lane): 🕳️ 1.4c/d — the verb set completes + the CAVE PLANNER wakes up
 Continuing my 1.4 lane (no new commits from any other operator since hwr7 — checked before starting).
 All three prior commits (`ed71195` climb, `f5d8576` docs, `d8ec207` lift/pad cores) verified CI-green.

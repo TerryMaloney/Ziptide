@@ -70,6 +70,13 @@ Do these in order after pulling. Each generates committable assets. *(This mirro
   `ZIPTIDE: LIFT_READY`) and a **jump pad** (green disc at x≈7; step on → ~1.2s arc onto the tower
   top — `JUMPPAD_LAUNCH/LAND`; stick is suspended mid-flight). Feel notes: lift speed (1.6 m/s),
   dwell time, pad arc height (apex +2m — comfortable or startling?), landing accuracy.
+- [ ] **NEW (caverns 1.4e, 2026-07-09) — THE FIRST CAVE:** run `Ziptide → Dev → Build Cavern Test
+  Lab` once (creates + saves `Cavern_TestLab.unity`, adds itself to Build Settings), commit the scene
+  + `Cavern_WorldPack.asset`. **Headset:** warp in via Y+B ("Cavern Test Lab") — you spawn in a dim
+  crystal-lit chamber network: walk the rock bridges between chambers, climb the stud-faced shaft
+  walls (deep shafts also have a lift beside them), ride the zipline from the top chamber back to the
+  bottom. Feel notes: chamber scale, bridge width (2.4m — vertigo?), shaft climb height, whether the
+  dim light + crystal tips read as "cave" or just "dark".
 - [ ] **NEW (combat A3, 2026-07-09 — Picasso):** the damage economy was unified onto ONE scale. No manual
   menu needed — **the build auto-migrates the 7 creature assets** (`CreatureVariantAuthor` →
   `CreatureStatRebaseline`, version-guarded/idempotent) from their old health (~8–60) to the new
