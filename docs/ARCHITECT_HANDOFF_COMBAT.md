@@ -91,10 +91,20 @@ on-scale. **DO NOT touch `PvpCombatTests` numbers** — PvP stays green as-is.
 
 ## PHASE B — player takes damage / dies (needs Terry on the headset for feel)
 Do NOT start B until A is green. B changes device behavior.
+
+> **UPDATE 2026-07-09 (Picasso): the ENTIRE Phase-B decision core is already built + tested.**
+> `Multiplayer/PlayerCombatState` (pure) = ArmorMeter + spawn-protection + alive/dead + the respawn
+> contract, with `PlayerHitOutcome {Ignored, Absorbed, Broke, Killed}` and 8 tests
+> (`PlayerCombatStateTests`). **Your `PlayerArmor` MonoBehaviour must be a DECISION-FREE translator:**
+> hold ONE `PlayerCombatState`, pass `Time.time` as its clock, forward hits into `ApplyDamage`, tick it
+> in Update, and switch on the outcome — Absorbed→flash · Broke→loud armor-break tell · Killed→teleport
+> to `__SPAWN_PLAYER` then `Respawn(now)` · call `GrantProtection` on world entry. Do NOT re-implement
+> any rule in the MonoBehaviour; if a rule is missing, add it to PlayerCombatState WITH a test first.
+
 1. `PlayerArmor` component, ensured/hosted by `PlayerStunReceiver`
    (`Gameplay/.../Player/PlayerStunReceiver.cs` — it already owns the head, screen flash, damage tracer,
-   and is ensured on the rig by `PlayerRigPersistence`). Holds an `ArmorMeter`, ticks regen, owns
-   spawn-protection, drives the HUD. Loud armor-break tell (flash + audio via `AudioDirector`).
+   and is ensured on the rig by `PlayerRigPersistence`). Wraps `PlayerCombatState` (see box above),
+   drives the HUD. Loud armor-break tell (flash + audio via `AudioDirector`).
 2. Enemy→player damage: a creature reaching the player calls `PlayerArmor.ApplyDamage(def.damage)`. Reuse
    the drone-bolt path (already homes on `PlayerStunReceiver.HitPoint`). Taser/net stun stays separate +
    non-lethal.
