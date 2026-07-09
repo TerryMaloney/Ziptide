@@ -166,6 +166,75 @@ namespace Ziptide.Editor.Patching
             }
 
             EnsureWorldZipline(kit, root);
+            EnsureCaveMouth(kit, root);
+        }
+
+        // 1.4h: worlds with a cave layer get a CAVE MOUTH — a rock-arch walk-through door DOWN into
+        // their underground scene, story-gated on the surface world's completion flag (the same
+        // TRAVEL_LOCKED contract as station doors). Add a row = a new world grows a cave entrance.
+        private static readonly (string surfaceScene, string caveScene, string gateFlag)[] CaveMouths =
+        {
+            ("W011_TheHum", "W011_Undercroft", ZiptideFlags.W011_COMPLETE),
+        };
+
+        private static void EnsureCaveMouth(CityLayoutDefinition kit, Transform root)
+        {
+            foreach (var (surface, cave, gate) in CaveMouths)
+            {
+                if (kit.sceneName != surface) continue;
+                const string MouthName = "__CaveMouth";
+                if (GameObject.Find(MouthName) != null) return;
+
+                // Sit the mouth a short walk from spawn, at terrain height.
+                var spawnGo = GameObject.Find("__SPAWN_PLAYER");
+                Vector3 basePos = spawnGo != null ? spawnGo.transform.position : Vector3.zero;
+                Vector3 mouthPos = basePos + new Vector3(6f, 0f, 6f);
+                mouthPos.y = WorldExperienceBuilder.HeightAt(kit, mouthPos.x, mouthPos.z);
+
+                var mouth = new GameObject(MouthName);
+                mouth.transform.SetParent(root, true);
+                mouth.transform.position = mouthPos;
+
+                // Rock arch: two jambs + a lintel, cave-dark — the doorway READS as a descent.
+                var rock = new Color(0.16f, 0.15f, 0.145f);
+                void Jamb(float x)
+                {
+                    var j = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                    j.name = "Jamb";
+                    j.transform.SetParent(mouth.transform, false);
+                    j.transform.localPosition = new Vector3(x, 1.3f, 0f);
+                    j.transform.localScale = new Vector3(0.55f, 2.6f, 0.9f);
+                    ItemFactory.ApplyURPColor(j, rock);
+                }
+                Jamb(-1.2f); Jamb(1.2f);
+                var lintel = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                lintel.name = "Lintel";
+                lintel.transform.SetParent(mouth.transform, false);
+                lintel.transform.localPosition = new Vector3(0f, 2.75f, 0f);
+                lintel.transform.localScale = new Vector3(3.4f, 0.6f, 1.1f);
+                ItemFactory.ApplyURPColor(lintel, rock);
+
+                var label = new GameObject("MouthLabel");
+                label.transform.SetParent(mouth.transform, false);
+                label.transform.localPosition = new Vector3(0f, 3.35f, 0f);
+                var tm = label.AddComponent<TextMesh>();
+                tm.text = "THE UNDERCROFT";
+                tm.characterSize = 0.012f; tm.fontSize = 64;   // the characterSize×fontSize lesson
+                tm.anchor = TextAnchor.MiddleCenter;
+                tm.color = new Color(0.35f, 0.75f, 0.85f);      // crystal cyan — the cave's light
+
+                var doorway = new GameObject("MouthTrigger");
+                doorway.transform.SetParent(mouth.transform, false);
+                doorway.transform.localPosition = new Vector3(0f, 1.3f, 0f);
+                var box = doorway.AddComponent<BoxCollider>();
+                box.isTrigger = true;
+                box.size = new Vector3(1.8f, 2.4f, 0.8f);
+                var trig = doorway.AddComponent<ProximityTravelTrigger>();
+                trig.SetDestination(cave);
+                trig.SetRequirement(gate); // locked until the surface world's contract is done
+
+                Debug.Log("[Ziptide] cave mouth: " + surface + " -> " + cave + " (gate " + gate + ")");
+            }
         }
 
         /// <summary>
