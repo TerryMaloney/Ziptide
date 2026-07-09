@@ -29,6 +29,8 @@ namespace Ziptide.Core
         public const string RecipeCost = "recipe_cost";
         public const string UpgradeCost = "upgrade_cost";
         public const string Multiplayer = "multiplayer_reward";
+        /// <summary>Hardwiring 1.3c — loot found in the world (interior salvage caches, wrecks).</summary>
+        public const string Salvage = "interior_salvage";
         public const string Debug = "debug";
     }
 

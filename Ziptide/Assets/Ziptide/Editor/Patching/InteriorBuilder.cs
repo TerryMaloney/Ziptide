@@ -109,8 +109,28 @@ namespace Ziptide.Editor.Patching
                 if (r != null) r.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
             }
 
+            // Interior POIs (1.3c): salvage caches make rooms WORTH entering. Deterministic xorshift
+            // (the RoomPartitioner recipe) — same building, same loot. Cap 2 per interior, distinct
+            // rooms, skipping room 0 (usually nearest the entry — loot rewards going deeper).
+            uint rng = (uint)(seed == 0 ? 2463534242 : seed);
+            int caches = 0;
+            for (int i = 1; i < roomPlan.Rooms.Count && caches < 2; i++)
+            {
+                rng ^= rng << 13; rng ^= rng >> 17; rng ^= rng << 5;
+                if ((rng & 0xFFFFFF) / (float)0x1000000 > 0.4f) continue;
+
+                var room = roomPlan.Rooms[i];
+                var cacheGo = new GameObject("SalvageCache");
+                cacheGo.transform.SetParent(root.transform, false);
+                cacheGo.transform.localPosition = new Vector3(room.center.x, 0.15f, room.center.y);
+                rng ^= rng << 13; rng ^= rng >> 17; rng ^= rng << 5;
+                double pay = 4 + System.Math.Floor(((rng & 0xFFFFFF) / (double)0x1000000) * 7); // 4..10
+                cacheGo.AddComponent<SalvageCacheRuntime>().Init("scrap", pay);
+                caches++;
+            }
+
             Debug.Log("[Ziptide] INTERIOR_BUILT rooms=" + roomPlan.Rooms.Count +
-                      " corridors=" + roomPlan.Corridors.Count);
+                      " corridors=" + roomPlan.Corridors.Count + " caches=" + caches);
         }
     }
 }
