@@ -28,6 +28,33 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-09 (dddd5) - Picasso (Fable 5): combat Phase-B core + 🎨 FORGE P2 COMPLETE (the organic vocabulary)
+- **Why:** Terry: "hit A [pre-build Phase B's pure core] then jump back to the artwork… so modular we
+  could use it as a framework for a game engine… coded by the dumbest LLM and it couldn't screw it up."
+- **Did (combat, `2f50b0b`):** `Multiplayer/PlayerCombatState` (pure) = the ENTIRE Phase-B player rule:
+  ArmorMeter + spawn protection + alive/dead + respawn contract, outcomes {Ignored, Absorbed, Broke,
+  Killed}, 8 tests. ARCHITECT_HANDOFF updated: `PlayerArmor` MonoBehaviour must be a DECISION-FREE
+  translator around it (rules go in the core WITH a test first, never in the MonoBehaviour).
+- **Did (art, FORGE II §P2, 2 commits — `704b46a` + this push):** the Forge's shape vocabulary grew its
+  ORGANIC half. ① Five new ops, pure deterministic math: **Capsule** (sphere-degenerate safe),
+  **Frustum** (0 top = true cone), **Torus** (winding proven against the analytic normal),
+  **SweepSpline** (2..4-pt bezier tube, parallel-transported frame, per-point radii — tentacles/pipes/
+  branches), **OrganicBlob** (UV ellipsoid); + modifiers on ANY op (fixed order taper→bend→noise; fBm
+  displaces along POSITION-WELDED normals so hard-edged parts can never crack). Old assets keep their
+  exact content hash (P2 fields append only when used — Locked assets safe). ② storyTag CLASS budgets
+  (hull 15k · creature 10k · handheld 6k · prop 3k · plant 1.5k) enforced in Validate() — an LLM can
+  never declare past its class — + **`p2_tide_totem`** acceptance recipe (every new op + modifiers on a
+  legacy op in one photographable prop). 14 P2 tests + the totem rides all 6 existing library-wide tests.
+- **Next (art lane, still mine):** ⏳ check the totem's turnarounds in the next forge-photos artifact →
+  then P5/E5.1 building modules (the new ops make organic architecture possible) and the 8 remaining
+  creature genomes get tentacles/blobs to work with. The "any-VR-game framework" doc consolidation is
+  queued behind the visual proof.
+- **Heads-up:** CI status unverifiable from this session (GitHub connector needs re-auth — runbook §2p
+  has the reconnect step). Compile hand-traced; the library tests auto-cover the totem (validate/budget/
+  palette/materials). If forge-photos shows the totem exploded/inverted, suspect SweepSpline frame or
+  Torus winding first — both have dedicated tests, so CI-green + bad photo would mean a booth/light issue.
+- **Commits:** `2f50b0b` (combat) · `704b46a` (P2 ①) · this push (P2 ②).
+
 ### 2026-07-09 (tf1) - T-Dog/Fable 5 (Tidefront lane): 🌌 B2 SHIPS — the war table, the conquest sim's first visible surface
 Terry: "pick a lane nobody is working on." Scan: architect=4.1 belts, Reasonbox=flight v1.2,
 Picasso=combat Phase C. The empty lane: TIDEFRONT — the Risk-layer sim shipped a week ago (18

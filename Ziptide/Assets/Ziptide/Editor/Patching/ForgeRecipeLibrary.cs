@@ -41,7 +41,99 @@ namespace Ziptide.Editor.Patching
                 Spec("prism_beam_rifle", BuildPrismBeamRifle),
                 Spec("breaker_blade_mk1", BuildBreakerBlade),
                 Spec("tide_pike_mk1", BuildTidePike),
+                Spec("p2_tide_totem", BuildP2TideTotem),
             };
+        }
+
+        /// <summary>
+        /// P2 ACCEPTANCE ARTIFACT (like tox_canal_stalker was for R4): one prop that exercises every
+        /// P2 op — Frustum pedestal, Capsule stem, Torus collar, mirrored SweepSpline tentacles, a
+        /// noisy OrganicBlob head — plus taper+bend on a LEGACY op (Cylinder spike) to prove the
+        /// modifiers are op-agnostic. If this renders right in the booth, the vocabulary works.
+        /// Not referenced by gameplay; it exists to be photographed (and later, dressed into a world).
+        /// </summary>
+        private static ForgeRecipeDefinition BuildP2TideTotem()
+        {
+            var d = NewRecipe("p2_tide_totem", ForgePalettes.FamilyToxicIndustrial,
+                new[] { "prop", "showcase" },
+                new[]
+                {
+                    new Color(0.22f, 0.23f, 0.25f), // 0 weathered stone base
+                    new Color(0.16f, 0.30f, 0.30f), // 1 dark organic mass
+                    new Color(0.30f, 0.80f, 0.85f), // 2 teal tidal glow
+                    new Color(0.55f, 0.50f, 0.42f), // 3 pale barnacle flesh
+                },
+                budgetTris: 1500);
+            d.qualityState = ForgeQualityState.Proxy;
+            d.storyRole = "Tide totem — a barnacled marker the tide left behind; the P2 op-showcase piece.";
+            d.storyRefs = new[] { "showcase" };
+            d.tokenRefs = new[] { "teal_energy", "organic" };
+            d.slotStyles = new[]
+            {
+                new ForgeStyleSpec { style = ForgeStyle.Stone, wear = 0.5f, grime = 0.55f },
+                new ForgeStyleSpec { style = ForgeStyle.Chitin, cellSize = 0.06f, grime = 0.4f },
+                new ForgeStyleSpec { style = ForgeStyle.GlowPanel, emissive = new Color(0.30f, 0.85f, 0.9f), emissiveIntensity = 1.6f },
+                new ForgeStyleSpec { style = ForgeStyle.Chitin, cellSize = 0.03f, grime = 0.55f },
+            };
+            d.parts = new[]
+            {
+                // Frustum pedestal (truncated cone, wider at the base).
+                new ForgePart
+                {
+                    name = "Pedestal", op = ForgeOp.Frustum, segments = 10,
+                    size = new Vector3(0.34f, 0.14f, 0.22f),
+                    position = new Vector3(0f, 0.07f, 0f), paletteSlot = 0,
+                },
+                // Capsule stem, smooth.
+                new ForgePart
+                {
+                    name = "Stem", op = ForgeOp.Capsule, segments = 10, smooth = true,
+                    size = new Vector3(0.12f, 0.42f, 0.12f),
+                    position = new Vector3(0f, 0.32f, 0f), paletteSlot = 1,
+                },
+                // Torus collar around the stem — the glow ring.
+                new ForgePart
+                {
+                    name = "Collar", op = ForgeOp.Torus, segments = 14, smooth = true,
+                    size = new Vector3(0.22f, 0.045f, 0.01f),
+                    position = new Vector3(0f, 0.34f, 0f), paletteSlot = 2,
+                },
+                // Mirrored sweep tentacles curling up and out — the SweepSpline proof.
+                new ForgePart
+                {
+                    name = "Tentacle", op = ForgeOp.SweepSpline, segments = 9, smooth = true, mirrorX = true,
+                    size = new Vector3(0.06f, 0.1f, 0.1f),
+                    spline = new[]
+                    {
+                        new Vector3(0.05f, 0.16f, 0f),
+                        new Vector3(0.20f, 0.24f, 0.05f),
+                        new Vector3(0.26f, 0.46f, -0.03f),
+                    },
+                    profile = new[] { new Vector2(0.035f, 0f), new Vector2(0.025f, 0f), new Vector2(0.010f, 0f) },
+                    paletteSlot = 1,
+                },
+                // Noisy OrganicBlob head — fBm displacement is THE organic tell.
+                new ForgePart
+                {
+                    name = "Head", op = ForgeOp.OrganicBlob, segments = 12, smooth = true,
+                    size = new Vector3(0.20f, 0.17f, 0.20f),
+                    noiseAmplitude = 0.018f, noiseFrequency = 14f, noiseSeed = 12,
+                    position = new Vector3(0f, 0.56f, 0f), paletteSlot = 3,
+                },
+                // Taper + bend on a LEGACY Cylinder: modifiers must be op-agnostic.
+                new ForgePart
+                {
+                    name = "Spike", op = ForgeOp.Cylinder, segments = 8, smooth = true,
+                    size = new Vector3(0.05f, 0.26f, 0.05f),
+                    taper = 0.8f, bendDegrees = 40f,
+                    position = new Vector3(0f, 0.70f, 0f), paletteSlot = 2,
+                },
+            };
+            d.sockets = new[]
+            {
+                new ForgeSocket { name = "Crown", localPosition = new Vector3(0f, 0.66f, 0f) },
+            };
+            return d;
         }
 
         /// <summary>Create any missing recipe assets (build-hooked later via ForgeAuthor). Returns count.</summary>

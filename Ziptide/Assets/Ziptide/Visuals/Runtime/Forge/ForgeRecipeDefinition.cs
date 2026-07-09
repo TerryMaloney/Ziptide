@@ -203,6 +203,24 @@ namespace Ziptide.Visuals
             }
         }
 
+        /// <summary>
+        /// P2 Quest-3 class budgets (FORGE_II §P2): the hard triangle ceiling an asset CLASS may
+        /// declare, keyed by storyTag. Checked in priority order (a hull tagged handheld is a hull).
+        /// 0 = untagged, no class ceiling (budgetTris alone rules). An LLM can lower budgetTris all it
+        /// wants; it can never raise it past its class — that's the "can't screw it up" rail.
+        /// </summary>
+        public static int ClassBudgetFor(string[] tags)
+        {
+            if (tags == null) return 0;
+            bool Has(string t) => System.Array.IndexOf(tags, t) >= 0;
+            if (Has("hull")) return 15000;
+            if (Has("creature")) return 10000;
+            if (Has("handheld")) return 6000;
+            if (Has("prop")) return 3000;
+            if (Has("plant")) return 1500;
+            return 0;
+        }
+
         /// <summary>Pure validation; empty list = well-formed. Mirrors the SkyVista convention.</summary>
         public List<string> Validate()
         {
@@ -216,6 +234,10 @@ namespace Ziptide.Visuals
             if (parts == null || parts.Length == 0) issues.Add("no parts");
             else if (parts.Length > MaxParts) issues.Add("more than " + MaxParts + " parts");
             if (budgetTris <= 0) issues.Add("budgetTris must be positive");
+            int classCap = ClassBudgetFor(storyTags);
+            if (classCap > 0 && budgetTris > classCap)
+                issues.Add("budgetTris " + budgetTris + " exceeds this asset class's Quest-3 cap of "
+                           + classCap + " (FORGE_II §P2)");
             if (qualityState == ForgeQualityState.Locked && string.IsNullOrEmpty(lockedContentHash))
                 issues.Add("Locked without a lockedContentHash — bake it via Ziptide > Art > Lock Selected Forge Recipe");
 

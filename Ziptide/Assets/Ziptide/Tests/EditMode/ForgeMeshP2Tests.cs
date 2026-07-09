@@ -311,6 +311,22 @@ namespace Ziptide.Tests.EditMode
         }
 
         [Test]
+        public void ClassBudgets_CapWhatAnAssetClassMayDeclare()
+        {
+            Assert.AreEqual(6000, ForgeRecipeDefinition.ClassBudgetFor(new[] { "handheld", "standard" }));
+            Assert.AreEqual(10000, ForgeRecipeDefinition.ClassBudgetFor(new[] { "creature" }));
+            Assert.AreEqual(15000, ForgeRecipeDefinition.ClassBudgetFor(new[] { "hull", "handheld" }), "hull outranks");
+            Assert.AreEqual(3000, ForgeRecipeDefinition.ClassBudgetFor(new[] { "prop" }));
+            Assert.AreEqual(1500, ForgeRecipeDefinition.ClassBudgetFor(new[] { "plant" }));
+            Assert.AreEqual(0, ForgeRecipeDefinition.ClassBudgetFor(new[] { "showcase" }), "untagged class = uncapped");
+
+            var over = Recipe(new ForgePart { op = ForgeOp.BeveledBox, size = Vector3.one * 0.1f });
+            over.storyTags = new[] { "plant" };
+            over.budgetTris = 9000;
+            Assert.IsTrue(over.Validate().Exists(i => i.Contains("class")), "a plant declaring 9k tris must fail");
+        }
+
+        [Test]
         public void ContentHash_IsStableForOldAssets_AndSensitiveToModifiers()
         {
             var plain = Recipe(new ForgePart { op = ForgeOp.BeveledBox, size = Vector3.one * 0.1f });
