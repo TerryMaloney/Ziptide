@@ -254,6 +254,16 @@ namespace Ziptide.Editor.Patching
                 Ziptide.Gameplay.ItemFactory.Create(augs[i], new Vector3(-12f, 1.15f, 6f + i * 0.8f));
             }
 
+            // Tidefront B2: THE WAR TABLE — the conquest sim's first visible surface. Walk up,
+            // tap your cyan worlds, build, strike, END TURN, watch the rival move. Non-lethal Risk.
+            if (GameObject.Find("SandboxWarTable") == null)
+            {
+                var table = new GameObject("SandboxWarTable");
+                table.transform.position = new Vector3(-4.5f, 0f, -12.5f); // south wall, by D/E zones
+                table.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+                table.AddComponent<Ziptide.Gameplay.ConquestTableRuntime>();
+            }
+
             if (GameObject.Find("SandboxGrapple") == null)
             {
                 // 1.4g: the FOURTH way up — point the ray at the rose ring high on the tower's south

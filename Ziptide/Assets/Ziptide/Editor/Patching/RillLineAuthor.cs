@@ -129,6 +129,8 @@ namespace Ziptide.Editor.Patching
                  "Your quarters. The Guild manifest calls this compartment 'storage.' I disagree.");
             Flag("react_ship_refit", "SHIP_REFIT",
                  "You changed the ship. I noticed before you finished. I notice everything about the ship.");
+            Flag("react_conquest", "CONQUEST_ATTACKED",
+                 "The Wardens will notice this.");
 
             // ── THE ZIPTIDE gate lines — RILL rides the tide with you ───────────────────────────────
             // Wildcard pool (key "*", NOT once): one is picked at random each crossing, so the gate
