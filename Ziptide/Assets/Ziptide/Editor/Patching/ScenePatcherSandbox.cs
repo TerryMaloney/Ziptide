@@ -192,6 +192,24 @@ namespace Ziptide.Editor.Patching
                    .Init(new Vector3(12.5f, 5.6f, -9f),   // tower top —
                          new Vector3(0f, 1.6f, 0f));      // — down to spawn: climb up, ride home
             }
+
+            // 1.4c: the other two verbs join the corner — the tower is now reachable THREE ways
+            // (climb the studs, ride the lift, take the jump pad) and the zipline brings you home.
+            if (GameObject.Find("SandboxLift") == null)
+            {
+                var lift = new GameObject("SandboxLift");
+                lift.AddComponent<Ziptide.Gameplay.LiftRuntime>().Init(
+                    new[] { new Vector3(12.5f, 0.25f, -6.4f),   // ground, north of the tower
+                            new Vector3(12.5f, 5.05f, -6.4f) }, // deck meets the tower top — step across
+                    speed: 1.6f, dwell: 4f);
+            }
+            if (GameObject.Find("SandboxJumpPad") == null)
+            {
+                var pad = new GameObject("SandboxJumpPad");
+                pad.transform.position = new Vector3(7f, 0.05f, -9f);
+                pad.AddComponent<Ziptide.Gameplay.JumpPadRuntime>()
+                   .Init(new Vector3(12.5f, 5.2f, -9f)); // arcs you onto the tower top
+            }
         }
 
         private static void EnsureGravityGunDef()
