@@ -210,6 +210,14 @@ namespace Ziptide.Editor.Patching
                 pad.AddComponent<Ziptide.Gameplay.JumpPadRuntime>()
                    .Init(new Vector3(12.5f, 5.2f, -9f)); // arcs you onto the tower top
             }
+            if (GameObject.Find("SandboxGrapple") == null)
+            {
+                // 1.4g: the FOURTH way up — point the ray at the rose ring high on the tower's south
+                // shoulder and grip: the reel pulls you up (in range from the whole corner, ~14m).
+                var anchor = new GameObject("SandboxGrapple");
+                anchor.transform.position = new Vector3(12.5f, 5.4f, -11.2f);
+                anchor.AddComponent<Ziptide.Gameplay.GrappleAnchorRuntime>();
+            }
         }
 
         private static void EnsureGravityGunDef()

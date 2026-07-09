@@ -105,6 +105,9 @@ namespace Ziptide.Editor.Patching
             Enter("enter_w009", "W009_Chitinwall", "The wall is not architecture. It grew. Stay near the pylons.");
             Enter("enter_w010", "W010_TidalArray", "The tide here does not follow the moon. It follows something else. I am still counting what.");
             Enter("enter_w011", "W011_TheHum", "Listen. That sound is in the rock, not the machines. It was here first.");
+            // The Undercroft (1.4g — W011's cave layer; scene by ScenePatcherCavern).
+            Enter("enter_w011b", "W011_Undercroft",
+                  "The Hum is louder down here. It is not an echo. Echoes answer you — this is leading.");
             Enter("enter_w012", "W012_MarasLastJump", "Mara filed a flight plan straight out of the system. I want to watch. I need to watch.");
 
             // ── Key flag reactions inside Ch.1–2 (the fragment + the capstone) ──────────────────────
@@ -163,6 +166,7 @@ namespace Ziptide.Editor.Patching
             CalEnter("cal_w008", "W008_SealedArchive", "You keep saying that like it's new information about yourself.");
             CalEnter("cal_w009", "W009_Chitinwall", "Everything out here either grew wrong or grew on purpose. I'm losing track of which is worse.");
             CalEnter("cal_w011", "W011_TheHum", "First before what, RILL?");
+            CalEnter("cal_w011b", "W011_Undercroft", "Leading where? ...You know what, keep that one. I'd rather find out.");
             CalEnter("cal_w012", "W012_MarasLastJump", "Yeah. Me too.");
 
             // ── Ch.3-7 flag reactions (paired with RILL's canonical beats above; dormant until W013+ ship) ──

@@ -12,44 +12,78 @@ using Ziptide.Gameplay;
 namespace Ziptide.Editor.Patching
 {
     /// <summary>
-    /// HARDWIRING 1.4e — THE CAVERN TEST LAB: the first walkable cave, generated end-to-end from the
-    /// tested pure spine. `CaveNetworkPlanner.Plan(seed)` decides the network (connected by
-    /// construction); `CavernKitLibrary` modules give it a body (registry-driven — the Forge kit
-    /// supersedes the look later without touching this file); the traversal runtimes make it
-    /// crossable: bridges on walkable tunnels, CLIMBABLE shaft walls on steep ones (+ a lift beside
-    /// the deep shafts), and one zipline from the highest chamber back to the lowest. Dim crystal-lit
-    /// mood, catch-floor far below (fall safety), spawn + world pack + return door so Dev Warp can
-    /// jump straight in. Idempotent per the sandbox contract. Menu: Ziptide → Dev → Build Cavern
-    /// Test Lab (adds itself to Build Settings).
+    /// HARDWIRING 1.4e/g — THE CAVE FACTORY: walkable caves generated end-to-end from the tested pure
+    /// spine. `CaveNetworkPlanner.Plan(seed)` decides the network (connected by construction);
+    /// `CavernKitLibrary` modules give it a body (registry-driven — the Forge kit supersedes the look
+    /// later without touching this file); the traversal runtimes make it crossable: bridges on
+    /// walkable tunnels, CLIMBABLE shaft walls (+ a lift beside the deep ones), grapple anchors on
+    /// the high chambers, one zipline highest→lowest. Parameterized (1.4g) so caves are WORLDS, not
+    /// just a lab: each config = scene + pack + return door, Dev-Warp reachable. Two shipped configs:
+    ///  · CAVERN TEST LAB — the fixed-seed dev cave everyone compares notes on.
+    ///  · THE UNDERCROFT (W011's deep layer) — the first cave that is a PLACE: bigger, deeper, story
+    ///    return door to W011_TheHum. RILL speaks on entry (RillLineAuthor, additive).
+    /// Idempotent per the sandbox contract.
     /// </summary>
     public static class ScenePatcherCavern
     {
-        private const string SceneName = "Cavern_TestLab";
-        private const string ScenePath = "Assets/Scenes/" + SceneName + ".unity";
-        private const string WorldPackPath = "Assets/Ziptide/Content/Worlds/Packs/Cavern_WorldPack.asset";
-        private const string DefaultWorldProfilePath = "Assets/Ziptide/Content/World/DefaultWorldProfile.asset";
-        private const int Seed = 20260709;   // fixed: the lab is ONE cave everyone can compare notes on
-
-        [MenuItem("Ziptide/Dev/Build Cavern Test Lab")]
-        public static void BuildFromMenu()
+        private class CaveConfig
         {
-            var scene = OpenOrCreateScene();
-            PopulateActiveCavern();
-            EnsureInBuildSettings();
-            EditorSceneManager.MarkSceneDirty(scene);
-            EditorSceneManager.SaveScene(scene, ScenePath);
-            AssetDatabase.SaveAssets();
-            AssetDatabase.Refresh();
-            EditorUtility.DisplayDialog("Cavern Test Lab",
-                "Built/updated " + SceneName + " (seed " + Seed + ").\nWarp in via Ziptide > Dev > Warp Window.", "OK");
+            public string sceneName, packId, displayName, returnDestination;
+            public int seed;
+            public float extentX, extentZ, depth;
+            public int chambers;
+            public float minSpacing, loopChance;
         }
 
-        /// <summary>Populate the currently-open cavern scene. Idempotent (find-or-create by name).</summary>
-        public static void PopulateActiveCavern()
+        private static readonly CaveConfig TestLab = new CaveConfig
+        {
+            sceneName = "Cavern_TestLab", packId = "cavern_lab", displayName = "Cavern Test Lab",
+            returnDestination = "MilestoneA_GrabCube",
+            seed = 20260709, extentX = 26f, extentZ = 26f, depth = 14f,
+            chambers = 8, minSpacing = 11f, loopChance = 0.3f,
+        };
+
+        // The Undercroft: The Hum's deep layer (W011 — "that sound is in the rock"). Bigger, deeper,
+        // loopier than the lab; its return door goes home to W011 itself.
+        private static readonly CaveConfig Undercroft = new CaveConfig
+        {
+            sceneName = "W011_Undercroft", packId = "w011_undercroft", displayName = "The Undercroft",
+            returnDestination = "W011_TheHum",
+            seed = 1101, extentX = 34f, extentZ = 34f, depth = 22f,
+            chambers = 11, minSpacing = 11f, loopChance = 0.45f,
+        };
+
+        private const string DefaultWorldProfilePath = "Assets/Ziptide/Content/World/DefaultWorldProfile.asset";
+
+        [MenuItem("Ziptide/Dev/Build Cavern Test Lab")]
+        public static void BuildTestLab() => Build(TestLab);
+
+        [MenuItem("Ziptide/Worlds/Build W011 Undercroft (cave world)")]
+        public static void BuildUndercroft() => Build(Undercroft);
+
+        private static void Build(CaveConfig cfg)
+        {
+            var scene = OpenOrCreateScene(ScenePathOf(cfg));
+            Populate(cfg);
+            EnsureInBuildSettings(ScenePathOf(cfg));
+            EditorSceneManager.MarkSceneDirty(scene);
+            EditorSceneManager.SaveScene(scene, ScenePathOf(cfg));
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
+            EditorUtility.DisplayDialog(cfg.displayName,
+                "Built/updated " + cfg.sceneName + " (seed " + cfg.seed + ").\nWarp in via Ziptide > Dev > Warp Window.", "OK");
+        }
+
+        private static string ScenePathOf(CaveConfig cfg) => "Assets/Scenes/" + cfg.sceneName + ".unity";
+        private static string PackPathOf(CaveConfig cfg)
+            => "Assets/Ziptide/Content/Worlds/Packs/" + cfg.sceneName + "_WorldPack.asset";
+
+        /// <summary>Populate the currently-open cave scene from its config. Idempotent by name.</summary>
+        private static void Populate(CaveConfig cfg)
         {
             CavernKitLibrary.EnsureRegistered();
-            var plan = CaveNetworkPlanner.Plan(Seed, extentX: 26f, extentZ: 26f, depth: 14f,
-                                               chamberTarget: 8, minSpacing: 11f, loopChance: 0.3f);
+            var plan = CaveNetworkPlanner.Plan(cfg.seed, cfg.extentX, cfg.extentZ, cfg.depth,
+                                               cfg.chambers, cfg.minSpacing, cfg.loopChance);
 
             EnsureLighting();
             EnsureWorldRuntime();
@@ -88,14 +122,14 @@ namespace Ziptide.Editor.Patching
                 string linkName = "CaveLink_" + t.FromId + "_" + t.ToId;
                 if (GameObject.Find(linkName) != null) continue;
                 var link = new GameObject(linkName);
-
                 if (!t.IsShaft) BuildBridge(link.transform, a, b);
                 else BuildShaft(link.transform, a, b);
             }
 
+            EnsureGrappleAnchors(plan);
             EnsureCaveZipline(plan);
-            EnsureSpawnAndDoor(plan);
-            EnsureWorldPackAsset(plan);
+            EnsureSpawnAndDoor(plan, cfg);
+            EnsureWorldPackAsset(plan, cfg);
         }
 
         // ── Links ────────────────────────────────────────────────────────────
@@ -121,7 +155,6 @@ namespace Ziptide.Editor.Patching
             Vector3 pu = new Vector3(upper.X, upper.Y, upper.Z);
             float height = pu.y - pl.y;
 
-            // The climbable rock face rises from the lower pad's edge toward the upper chamber.
             Vector3 flat = new Vector3(pu.x - pl.x, 0f, pu.z - pl.z);
             Vector3 dir = flat.sqrMagnitude > 0.01f ? flat.normalized : Vector3.forward;
             Vector3 basePos = pl + dir * (lower.Radius * 0.8f);
@@ -132,10 +165,8 @@ namespace Ziptide.Editor.Patching
                 wall.transform.position = basePos + Vector3.up * (height * 0.5f);
                 wall.transform.rotation = Quaternion.LookRotation(dir);
                 wall.transform.localScale = new Vector3(2.2f, height + 1f, 1f);
-                wall.AddComponent<ClimbableSurface>(); // paints its own stud handholds at runtime
+                wall.AddComponent<ClimbableSurface>();
             }
-
-            // Deep shafts also get the lift — climbing is the sport, the lift is the commute.
             if (height > 5f)
             {
                 var lift = new GameObject("ShaftLift");
@@ -144,6 +175,25 @@ namespace Ziptide.Editor.Patching
                     new[] { basePos + dir * 1.6f + Vector3.up * 0.15f,
                             pu - dir * (upper.Radius * 0.5f) + Vector3.up * 0.15f },
                     speed: 1.6f, dwell: 4f);
+            }
+        }
+
+        /// <summary>1.4g: grapple anchors on the HIGH chambers — the range verb earns its keep where
+        /// climbing is slow: point, grip, reel up. One anchor per chamber above the median height.</summary>
+        private static void EnsureGrappleAnchors(CavePlan plan)
+        {
+            var ys = new List<float>();
+            foreach (var c in plan.Chambers) ys.Add(c.Y);
+            ys.Sort();
+            float median = ys[ys.Count / 2];
+            foreach (var ch in plan.Chambers)
+            {
+                if (ch.Y <= median) continue;
+                string name = "CaveGrapple_" + ch.Id;
+                if (GameObject.Find(name) != null) continue;
+                var anchor = new GameObject(name);
+                anchor.transform.position = new Vector3(ch.X, ch.Y + 3.2f, ch.Z); // above the pad
+                anchor.AddComponent<GrappleAnchorRuntime>();
             }
         }
 
@@ -188,8 +238,6 @@ namespace Ziptide.Editor.Patching
             }
         }
 
-        /// <summary>A wide catch floor below the deepest chamber — falling off a bridge lands you
-        /// somewhere walkable (the fall-safety spirit), never into the void.</summary>
         private static void EnsureCatchFloor(CavePlan plan)
         {
             float minY = 0f;
@@ -201,11 +249,11 @@ namespace Ziptide.Editor.Patching
                 floor.name = "CaveCatchFloor";
             }
             floor.transform.position = new Vector3(0f, minY - 3f, 0f);
-            floor.transform.localScale = new Vector3(9f, 1f, 9f); // 90x90 — catches everything
+            floor.transform.localScale = new Vector3(9f, 1f, 9f);
             ItemFactory.ApplyURPColor(floor, new Color(0.12f, 0.115f, 0.11f));
         }
 
-        private static void EnsureSpawnAndDoor(CavePlan plan)
+        private static void EnsureSpawnAndDoor(CavePlan plan, CaveConfig cfg)
         {
             var first = plan.Chambers[0];
             Vector3 spawnPos = new Vector3(first.X, first.Y + 0.25f, first.Z);
@@ -221,21 +269,22 @@ namespace Ziptide.Editor.Patching
             box.isTrigger = true;
             box.size = new Vector3(3f, 2.5f, 1f);
             var trigger = PatcherUtil.EnsureComponent<ProximityTravelTrigger>(door);
-            trigger.SetDestination("MilestoneA_GrabCube");
+            trigger.SetDestination(cfg.returnDestination);
         }
 
-        private static void EnsureWorldPackAsset(CavePlan plan)
+        private static void EnsureWorldPackAsset(CavePlan plan, CaveConfig cfg)
         {
-            var pack = AssetDatabase.LoadAssetAtPath<WorldPackDefinition>(WorldPackPath);
+            string packPath = PackPathOf(cfg);
+            var pack = AssetDatabase.LoadAssetAtPath<WorldPackDefinition>(packPath);
             if (pack == null)
             {
-                Directory.CreateDirectory(Path.GetDirectoryName(WorldPackPath));
+                Directory.CreateDirectory(Path.GetDirectoryName(packPath));
                 pack = ScriptableObject.CreateInstance<WorldPackDefinition>();
-                AssetDatabase.CreateAsset(pack, WorldPackPath);
+                AssetDatabase.CreateAsset(pack, packPath);
             }
-            pack.packId = "cavern_lab";
-            pack.displayName = "Cavern Test Lab";
-            pack.sceneName = SceneName;
+            pack.packId = cfg.packId;
+            pack.displayName = cfg.displayName;
+            pack.sceneName = cfg.sceneName;
             pack.spawnMarkers.Clear();
             var first = plan.Chambers[0];
             pack.spawnMarkers.Add(new SpawnMarkerDefinition
@@ -246,22 +295,22 @@ namespace Ziptide.Editor.Patching
             EditorUtility.SetDirty(pack);
         }
 
-        private static Scene OpenOrCreateScene()
+        private static Scene OpenOrCreateScene(string scenePath)
         {
             if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())
                 return EditorSceneManager.GetActiveScene();
-            if (File.Exists(ScenePath))
-                return EditorSceneManager.OpenScene(ScenePath, OpenSceneMode.Single);
+            if (File.Exists(scenePath))
+                return EditorSceneManager.OpenScene(scenePath, OpenSceneMode.Single);
             var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
-            Directory.CreateDirectory(Path.GetDirectoryName(ScenePath));
-            EditorSceneManager.SaveScene(scene, ScenePath);
+            Directory.CreateDirectory(Path.GetDirectoryName(scenePath));
+            EditorSceneManager.SaveScene(scene, scenePath);
             return scene;
         }
 
-        private static void EnsureInBuildSettings()
+        private static void EnsureInBuildSettings(string scenePath)
         {
-            string normalized = ScenePath.Replace('\\', '/');
-            if (!File.Exists(ScenePath)) return;
+            string normalized = scenePath.Replace('\\', '/');
+            if (!File.Exists(scenePath)) return;
             var scenes = new List<EditorBuildSettingsScene>(EditorBuildSettings.scenes);
             int idx = scenes.FindIndex(s => s.path == normalized);
             if (idx < 0)
