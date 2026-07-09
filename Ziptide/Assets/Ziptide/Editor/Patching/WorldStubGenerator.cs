@@ -164,6 +164,53 @@ namespace Ziptide.Editor.Patching
                 var blade = ItemFactory.Create("breaker_blade", spawnPos + new Vector3(-1.2f, 1.0f, 1.1f));
                 if (blade != null) blade.transform.SetParent(root, true);
             }
+
+            EnsureWorldZipline(kit, root);
+        }
+
+        /// <summary>
+        /// Hardwiring 1.4b / WORLDS #23 placement pull: every generated world with far-apart POIs gets
+        /// ONE zipline strung between the two most distant ones — the namesake traversal appears in the
+        /// regular game, not just the sandbox. The line runs from the higher-terrain POI (start pylon
+        /// +5.5m, so there's a visible climb-to-ride moment) down to the lower one; ZiplineRuntime
+        /// self-builds cable/posts/handle at runtime and its ride is comfort-capped by the pure core.
+        /// Conservative on purpose: one line, only when the span is ≥25m. Idempotent by name.
+        /// </summary>
+        private static void EnsureWorldZipline(CityLayoutDefinition kit, Transform root)
+        {
+            const string ZipName = "__WorldZipline";
+            if (GameObject.Find(ZipName) != null) return;
+            if (kit.pois == null || kit.pois.Count < 2) return;
+
+            PoiDef bestA = null, bestB = null;
+            float bestSpan = 25f; // minimum worthwhile ride
+            for (int i = 0; i < kit.pois.Count; i++)
+            for (int j = i + 1; j < kit.pois.Count; j++)
+            {
+                var a = kit.pois[i]; var b = kit.pois[j];
+                if (a == null || b == null) continue;
+                float span = Vector3.Distance(
+                    new Vector3(a.position.x, 0f, a.position.z),
+                    new Vector3(b.position.x, 0f, b.position.z));
+                if (span > bestSpan) { bestSpan = span; bestA = a; bestB = b; }
+            }
+            if (bestA == null) return;
+
+            float yA = WorldExperienceBuilder.HeightAt(kit, bestA.position.x, bestA.position.z);
+            float yB = WorldExperienceBuilder.HeightAt(kit, bestB.position.x, bestB.position.z);
+            // Ride from the higher ground down (or across, if level — the core's push-off covers flat).
+            var high = yA >= yB ? bestA : bestB;
+            var low = yA >= yB ? bestB : bestA;
+            float yHigh = Mathf.Max(yA, yB);
+            float yLow = Mathf.Min(yA, yB);
+
+            var zipGo = new GameObject(ZipName);
+            zipGo.transform.SetParent(root, true);
+            zipGo.AddComponent<ZiplineRuntime>().Init(
+                new Vector3(high.position.x, yHigh + 5.5f, high.position.z),
+                new Vector3(low.position.x, yLow + 1.6f, low.position.z));
+            Debug.Log("[Ziptide] world zipline strung: " + high.id + " -> " + low.id +
+                      " span=" + bestSpan.ToString("F0") + "m");
         }
 
         // ── Shell pieces (find-or-update; never duplicated) ───────────────────────────────────────

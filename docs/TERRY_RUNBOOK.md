@@ -56,6 +56,15 @@ Do these in order after pulling. Each generates committable assets. *(This mirro
   → DOCK to stand up, RETURN HOME to travel back. Feel notes wanted: snap-yaw angle (30°), pitch
   speed, boost strength (1.8×–2.5×), barrel-roll speed (~0.86s — too fast/slow/nauseating?),
   reverse cap (40%), vignette strength, ring size.
+- [ ] **NEW (traversal 1.4b, 2026-07-09 — traversal Fable):** climbing + world ziplines are in. No menu
+  step (all auto at build: the Sandbox regenerates with a **ClimbTower + a zipline off its top**, and
+  every generated world strings ONE zipline between its two farthest POIs). **Headset check (Sandbox,
+  by F: Locomotion):** grip the stud-covered tower face and hand-over-hand up (`ZIPTIDE: CLIMB_GRIP` in
+  logcat; stick-walk is suspended while gripping, resumes on release — `CLIMB_RELEASE`); at the top,
+  grab the yellow zip handle and ride back to spawn (`ZIPLINE_RIDE_START/END`). In any story world,
+  find the `__WorldZipline` between the two farthest POIs. Feel notes wanted: climb "weight" (1:1 hand
+  mapping — too fast?), grip reach (1.2m), stud visibility, zip speed cap (8 m/s), whether letting go
+  mid-climb feels okay WITHOUT a fling (v1 logs it, doesn't launch you).
 - [ ] **NEW (combat A3, 2026-07-09 — Picasso):** the damage economy was unified onto ONE scale. No manual
   menu needed — **the build auto-migrates the 7 creature assets** (`CreatureVariantAuthor` →
   `CreatureStatRebaseline`, version-guarded/idempotent) from their old health (~8–60) to the new

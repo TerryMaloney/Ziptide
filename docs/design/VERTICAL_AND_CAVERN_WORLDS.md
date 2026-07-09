@@ -25,12 +25,20 @@ justified). Hold 72–90 fps at scale.
     posts + XRI grab handle; rides `ZiplineRide` and **delta-translates the rig** (never parented), so
     the ComfortVignette engages from rig motion (no Speed01 feed needed — that path is for
     world-moves-around-you frames). *(A duplicate `Content.City.ZiplineCore` was built in parallel and
-    reconciled INTO this core — deleted, sag kept as a runtime visual helper.)* TODO: branching lines +
-    world placement (POI-pair stringing).
+    reconciled INTO this core — deleted, sag kept as a runtime visual helper.)* ✅ WORLD PLACEMENT
+    SHIPPED (1.4b): `WorldStubGenerator.EnsureWorldZipline` strings ONE line per generated world
+    between its two farthest POIs (≥25m span, higher-terrain end +5.5m → lower end +1.6m), so the
+    namesake traversal appears in every regular-game world, not just the sandbox. TODO: branching lines.
   - [x] **Climbable surfaces** — PURE hand-over-hand math shipped (`ClimbCore.ClimbGrip`, 2026-07-09):
     rig moves −handDelta, two-hand handoff with no teleport, comfort-clamped release fling, tested.
-    TODO: the scene translator (XRI grab on a `Climbable` collider → apply the returned rig delta to
-    the XR Origin; never parent the rig — SHIPS.md law).
+    ✅ SCENE TRANSLATOR SHIPPED (1.4b, same day): `Gameplay/ClimbRuntime.cs` — `ClimbableSurface`
+    (add to any collider → XRSimpleInteractable + painted stud handholds + arm's-length grip gate, no
+    ray-climbing) + rig-level `ClimbCoordinator` (ONE ClimbGrip for both hands even across two
+    surfaces; suspends `ActionBasedContinuousMoveProvider` while climbing — the stick fighting the
+    climb feels broken; rig delta-translated, never parented; post-move grip resync so the rig's own
+    motion isn't double-counted). v1 logs the comfort-clamped release fling but doesn't apply it
+    (ballistic launch needs the fall-mover — queued). Sandbox gets a 5m ClimbTower + a zipline off its
+    top back to spawn (climb up, ride home — both verbs in one loop).
   - [ ] **Elevators / lifts**, **jump-pads**, **grapple** (pure cores next, same pattern).
 - [x] **Multi-level reachability audit** — PURE core shipped (`MultiLevelReachability`, 2026-07-09):
   composes N walkable grid layers (each with GridReachability's 4-connectivity + maxStep rule) with

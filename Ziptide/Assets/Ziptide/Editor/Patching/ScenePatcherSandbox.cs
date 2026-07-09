@@ -156,6 +156,42 @@ namespace Ziptide.Editor.Patching
                 drone.transform.localScale = Vector3.one * 0.4f;
                 drone.AddComponent<Ziptide.Gameplay.DroneRuntime>().respawnDelay = 8f; // practice: respawn so there's always something to shoot
             }
+
+            EnsureTraversalCorner();
+        }
+
+        /// <summary>Hardwiring 1.4b: the traversal test corner by the Locomotion zone — a climbable
+        /// tower (hand-over-hand up the stud face) with a zipline off its top back toward spawn, so
+        /// both signature traversal verbs are exercisable in one 30-second loop. Idempotent by name.</summary>
+        private static void EnsureTraversalCorner()
+        {
+            if (GameObject.Find("ClimbTower") == null)
+            {
+                var tower = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                tower.name = "ClimbTower";
+                tower.transform.position = new Vector3(12.5f, 2.5f, -9f); // beside F: Locomotion
+                tower.transform.localScale = new Vector3(1.2f, 5f, 3f);   // 5m — a real climb, not a hop
+                var rend = tower.GetComponent<Renderer>();
+                if (rend != null)
+                {
+                    var shader = Shader.Find("Universal Render Pipeline/Lit");
+                    if (shader != null)
+                    {
+                        var mat = new Material(shader);
+                        mat.color = new Color(0.30f, 0.28f, 0.26f);
+                        rend.sharedMaterial = mat;
+                    }
+                }
+                tower.AddComponent<Ziptide.Gameplay.ClimbableSurface>(); // collider exists first (gotcha #6)
+            }
+
+            if (GameObject.Find("SandboxZipline") == null)
+            {
+                var zip = new GameObject("SandboxZipline");
+                zip.AddComponent<Ziptide.Gameplay.ZiplineRuntime>()
+                   .Init(new Vector3(12.5f, 5.6f, -9f),   // tower top —
+                         new Vector3(0f, 1.6f, 0f));      // — down to spawn: climb up, ride home
+            }
         }
 
         private static void EnsureGravityGunDef()
