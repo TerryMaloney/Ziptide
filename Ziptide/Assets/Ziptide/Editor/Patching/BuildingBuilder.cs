@@ -97,6 +97,14 @@ namespace Ziptide.Editor.Patching
                         break;
                 }
             }
+
+            // HARDWIRING 1.3: walkable ground-floor interior (opt-in per style). Deterministic per
+            // lot; the district renderer-budget gate audits the added cost.
+            if (style.hasInteriors)
+            {
+                int interiorSeed = (int)(lot.Bounds.x * 73856093f) ^ (int)(lot.Bounds.y * 19349663f);
+                InteriorBuilder.Build(bRoot.transform, plan, style, interiorSeed);
+            }
         }
 
         // Styles seen falling back to primitive walls this domain — warn ONCE per id, not per wall.

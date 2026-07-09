@@ -35,6 +35,7 @@ namespace Ziptide.Editor.Patching
                 style.maxStoreys = 3;
                 style.windowChance = 0.55f;
                 style.rakedRoofChance = 0.1f;
+                style.hasInteriors = true; // HARDWIRING 1.3 — the tenements are the interior proof
                 style.wallColor = new Color(0.30f, 0.32f, 0.28f);
                 style.windowColor = new Color(0.10f, 0.16f, 0.12f);
                 style.roofColor = new Color(0.18f, 0.20f, 0.17f);

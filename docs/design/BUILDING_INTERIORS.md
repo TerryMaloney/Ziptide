@@ -20,14 +20,18 @@ core but is **not wired to any walkable interior**.
 - [x] Seeded room variation — per-object hash drives tint + dark-room chance (a living skyline).
 
 ### Tier B — walkable interiors on "enterable" buildings
-- [ ] `enterable` flag + `interiorKitId` on `BuildingStyle`.
-- [ ] **Interior kit** (floor/wall/ceiling/doorway/stair/furniture/fixture) in `ArtModuleRegistry`.
-- [ ] `RoomPartitioner` → **interior mesh builder**: rooms → walkable geometry + doorways.
-- [ ] **Portal / occlusion system** — only the current room draws (mandatory on Quest).
-- [ ] **Door + threshold system** — VR grab/push doors; for large buildings the interior is its own
-  additive sub-scene entered via a travel doorway (honor the world contract).
+- [x] Opt-in flag — ✅ `BuildingStyleDefinition.hasInteriors` (default OFF; `toxic_tenement` enabled —
+  W002's tenements are the proof).
+- [ ] **Interior kit** (authored wall/doorway/furniture modules) in `ArtModuleRegistry` — Picasso
+  upgrade path; v1 interiors are primitive trim-dark walls + warm light panels.
+- [x] `RoomPartitioner` → **interior mesh builder** — ✅ SHIPPED (hardwiring 1.3): pure
+  `InteriorMeshCore` (walls-from-plan rasterize+merge, doorway entry-carve, 5 tests) +
+  `InteriorBuilder` (wall cubes w/ colliders, one warm light panel per room; the shell's storey slabs
+  are floor+ceiling). Deterministic per lot; renderer-budget gate audits the cost.
+- [ ] **Portal / occlusion system** — only the current room draws (needed before interiors go dense).
+- [ ] **Door + threshold system** — VR grab/push doors; big-building additive sub-scenes.
 - [ ] **Interior POI pass** — loot, machines, garden plots, NPCs, story nodes placed per room.
-- [ ] Interior audit rule (reachable, spawn-safe, budget).
+- [ ] Interior audit rule (reachable, spawn-safe, budget) — extend the door-blocked gate inward.
 
 ## Consistency-spine hooks
 Same Forge kits + `ArtModuleRegistry` + PerfBudget as exteriors; interior sub-scenes are world scenes

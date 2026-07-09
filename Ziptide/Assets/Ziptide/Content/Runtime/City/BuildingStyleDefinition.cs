@@ -30,6 +30,12 @@ namespace Ziptide.Content
         public float minLotArea = 60f;
         public float maxLotAspect = 3f;
 
+        [Header("Interiors (HARDWIRING 1.3 — walkable ground floors)")]
+        [Tooltip("Build a walkable BSP interior (RoomPartitioner + InteriorMeshCore) on the ground " +
+                 "storey of every building in this style. Renderer cost is real — the district " +
+                 "renderer-budget gate audits it. Default OFF: zero change until a style opts in.")]
+        public bool hasInteriors = false;
+
         [Header("Primitive fallback palette")]
         public Color wallColor = new Color(0.32f, 0.30f, 0.28f);
         public Color windowColor = new Color(0.08f, 0.13f, 0.16f);
