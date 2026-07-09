@@ -6,13 +6,13 @@ namespace Ziptide.Gameplay
 {
     /// <summary>
     /// Owns the live <see cref="PlayerProfile"/> and persists it to disk as JSON in
-    /// Application.persistentDataPath. Intended to live in _Boot as a DontDestroyOnLoad singleton
-    /// alongside TravelCoordinator / AudioDirector.
+    /// Application.persistentDataPath. Lives beside TravelCoordinator / AudioDirector as a
+    /// DontDestroyOnLoad singleton, self-bootstrapped by <see cref="EnsureExists"/> (no scene edit).
     ///
-    /// NOT yet wired into _Boot or travel-autosave — that touches the boot/travel contract and is
-    /// report-only (needs sign-off). The pure serialize/migrate logic lives in
-    /// Ziptide.Core.ProfileSerializer and is covered by EditMode tests, so this layer is verified
-    /// headlessly before it is ever placed in a scene.
+    /// Save points: app pause, app quit, and every scene travel (TravelCoordinator calls
+    /// <see cref="AutosaveNow"/> before the departing scene unloads — HARDWIRING Phase 0.1).
+    /// The pure serialize/migrate logic lives in Ziptide.Core.ProfileSerializer and is covered by
+    /// EditMode tests, so this layer is verified headlessly.
     /// </summary>
     public class SaveSystem : MonoBehaviour
     {
@@ -80,5 +80,23 @@ namespace Ziptide.Gameplay
 
         private void OnApplicationPause(bool paused) { if (paused) Save(); }
         private void OnApplicationQuit() { Save(); }
+
+        /// <summary>
+        /// Guarded autosave for hot paths (scene travel). Never throws and no-ops without a live
+        /// instance, so a save hiccup can never strand the caller (the boot-strand class of bug).
+        /// </summary>
+        public static void AutosaveNow(string reason)
+        {
+            if (Instance == null) return;
+            try
+            {
+                Instance.Save();
+                Debug.Log("ZIPTIDE: SAVE_AUTOSAVE reason=" + reason);
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogWarning("ZIPTIDE: SAVE_FAIL reason=" + reason + " " + e.Message);
+            }
+        }
     }
 }

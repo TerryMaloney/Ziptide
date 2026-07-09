@@ -91,6 +91,7 @@ namespace Ziptide.Gameplay
             {
                 _pendingGatePos = null;
                 Debug.LogWarning("ZIPTIDE: TravelCoordinator not found – falling back to direct load");
+                SaveSystem.AutosaveNow("travel_fallback");
                 var rig = Object.FindObjectOfType<PlayerRigPersistence>();
                 if (rig != null) rig.PrepareForSceneTravel();
                 SceneManager.LoadScene(sceneName);
@@ -155,7 +156,9 @@ namespace Ziptide.Gameplay
             }
             if (lead > 0f) yield return new WaitForSeconds(lead);
 
-            // 1. Save inventory before anything is destroyed by scene unload.
+            // 1. Save the profile + inventory before anything is destroyed by scene unload.
+            //    AutosaveNow is guarded internally — a save hiccup can never strand travel.
+            SaveSystem.AutosaveNow("travel");
             if (rig != null)
                 rig.PrepareForSceneTravel();
             else
