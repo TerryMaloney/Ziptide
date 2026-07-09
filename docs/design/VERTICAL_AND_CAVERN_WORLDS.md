@@ -20,9 +20,13 @@ justified). Hold 72–90 fps at scale.
   `WorldSpec` elevation-layer field; `ScatterField` places vertical props.
 - [ ] **VR-native traversal (make ziplines a signature — the game is *Ziptide*):**
   - [x] **Ziplines** — PURE ride kinematics shipped (`ZiplineCore.ZiplineRide`, 2026-07-09): along-cable
-    gravity + drag + push-off kick + **hard comfort speed cap**, EditMode-tested. TODO: the scene
-    translator (grab a cable via XRI → drive the rig along `Position` → feed `Speed01` to
-    `ComfortCore.TargetAperture` for the vignette) + branching lines + the cable visual.
+    gravity + drag + push-off kick + **hard comfort speed cap**, EditMode-tested. ✅ SCENE TRANSLATOR
+    SHIPPED (hardwiring 1.4a, same day): `Gameplay/ZiplineRuntime` — self-built sagging cable visual +
+    posts + XRI grab handle; rides `ZiplineRide` and **delta-translates the rig** (never parented), so
+    the ComfortVignette engages from rig motion (no Speed01 feed needed — that path is for
+    world-moves-around-you frames). *(A duplicate `Content.City.ZiplineCore` was built in parallel and
+    reconciled INTO this core — deleted, sag kept as a runtime visual helper.)* TODO: branching lines +
+    world placement (POI-pair stringing).
   - [x] **Climbable surfaces** — PURE hand-over-hand math shipped (`ClimbCore.ClimbGrip`, 2026-07-09):
     rig moves −handDelta, two-hand handoff with no teleport, comfort-clamped release fling, tested.
     TODO: the scene translator (XRI grab on a `Climbable` collider → apply the returned rig delta to
