@@ -21,6 +21,12 @@ namespace Ziptide.Editor.Patching
     ///  CaveSecret   — leaning rock shell with one entrance + an inner glow (exploration reward)
     ///  StoryAnchor  — a dais + pylons + light beacon: the world's WORLD_DATA beat gets a STAGE
     ///  TravelBerth  — marker only (the shipyard/travel station is already the pocket)
+    /// Hardwiring 1.5 verbs (catalog grows 7→12; streets get civic life):
+    ///  Market       — stall rows + awnings + crate stacks (future vendor/NPC pocket)
+    ///  Shrine       — kneel ring + monolith + offering glow (quiet story flavor, scannable later)
+    ///  RepairBay    — gantry arch + tool bench + crane (the tool-chest repair fantasy's street home)
+    ///  Transit      — platform + route sign (the future vehicle/transit hookup made visible)
+    ///  Lookout      — raised watch deck + rails (a vantage verb — climb up, read the world)
     /// Deterministic, data-only input; a mid-level LLM authors worlds by filling the POI table
     /// (docs/WORLD_RECIPE.md) — the audit quality gates reject sets that are too small or same-y.
     /// </summary>
@@ -71,6 +77,11 @@ namespace Ziptide.Editor.Patching
                     case PoiType.RuinCache: BuildRuinCache(poiRoot, kit, poi); break;
                     case PoiType.CaveSecret: BuildCaveSecret(poiRoot, kit, poi); break;
                     case PoiType.StoryAnchor: BuildStoryAnchor(poiRoot, kit, poi); break;
+                    case PoiType.Market: BuildMarket(poiRoot, kit, poi); break;
+                    case PoiType.Shrine: BuildShrine(poiRoot, kit, poi); break;
+                    case PoiType.RepairBay: BuildRepairBay(poiRoot, kit, poi); break;
+                    case PoiType.Transit: BuildTransit(poiRoot, kit, poi); break;
+                    case PoiType.Lookout: BuildLookout(poiRoot, kit, poi); break;
                         // TravelBerth: marker only — the berth/travel station is already built.
                 }
             }
@@ -201,6 +212,102 @@ namespace Ziptide.Editor.Patching
             }
             // The beacon — a column of light marking THE story beat from across the world.
             Block(root, "Beacon", new Vector3(0f, 14f, 0f), new Vector3(0.5f, 26f, 0.5f), glow, false);
+        }
+
+        // ── Hardwiring 1.5 pockets (catalog verbs 8–12) ─────────────────────────────────────────────
+
+        private static void BuildMarket(Transform root, CityLayoutDefinition kit, PoiDef poi)
+        {
+            var pal = kit.palette;
+            var awning = new Color(0.75f, 0.45f, 0.25f);
+            int stalls = 3 + Mathf.Clamp(poi.tier, 0, 2);
+            for (int i = 0; i < stalls; i++)
+            {
+                // Two facing rows with a walk lane between — a street you shop down.
+                float x = (i % 2 == 0 ? -1f : 1f) * 3.2f;
+                float z = (i / 2 - 1) * 3.4f;
+                var stall = new GameObject("Stall" + i).transform;
+                stall.SetParent(root, false);
+                stall.localPosition = new Vector3(x, 0f, z);
+                stall.localRotation = Quaternion.Euler(0f, x < 0f ? 90f : -90f, 0f);
+                Block(stall, "Counter", new Vector3(0f, 0.55f, 0f), new Vector3(2.4f, 1.1f, 0.9f), pal.concrete, true);
+                Block(stall, "PostL", new Vector3(-1.05f, 1.5f, -0.35f), new Vector3(0.12f, 3f, 0.12f), pal.metal, true);
+                Block(stall, "PostR", new Vector3(1.05f, 1.5f, -0.35f), new Vector3(0.12f, 3f, 0.12f), pal.metal, true);
+                Block(stall, "Awning", new Vector3(0f, 2.9f, 0.2f), new Vector3(2.8f, 0.12f, 1.8f), awning, false)
+                    .transform.localRotation = Quaternion.Euler(-12f, 0f, 0f);
+                Block(stall, "Wares", new Vector3(0f, 1.25f, 0f), new Vector3(1.6f, 0.3f, 0.5f), pal.accent, false);
+            }
+            Block(root, "CrateStack", new Vector3(0f, 0.5f, 6f), new Vector3(1f, 1f, 1f), pal.metal, true);
+            Block(root, "CrateTop", new Vector3(0.2f, 1.3f, 5.8f), new Vector3(0.7f, 0.7f, 0.7f), pal.metal, true);
+        }
+
+        private static void BuildShrine(Transform root, CityLayoutDefinition kit, PoiDef poi)
+        {
+            var stone = kit.experience != null ? kit.experience.vistaColor : kit.palette.concrete;
+            var glow = kit.experience != null ? kit.experience.vistaAccentColor : kit.palette.accent;
+            Block(root, "KneelRing", new Vector3(0f, 0.15f, 0f), new Vector3(6.5f, 0.3f, 6.5f), stone, true);
+            Block(root, "Monolith", new Vector3(0f, 2.6f, 0f), new Vector3(1.1f, 4.6f, 0.7f), stone, true)
+                .transform.localRotation = Quaternion.Euler(0f, 25f, 2.5f); // aged lean
+            Block(root, "OfferingBowl", new Vector3(0f, 0.5f, 2.1f), new Vector3(0.8f, 0.4f, 0.8f), stone, true);
+            Block(root, "OfferingGlow", new Vector3(0f, 0.75f, 2.1f), new Vector3(0.5f, 0.12f, 0.5f), glow, false);
+            for (int i = 0; i < 4; i++) // low candle posts around the ring
+            {
+                float a = i * 1.571f + 0.785f;
+                Block(root, "Candle" + i, new Vector3(Mathf.Cos(a) * 3f, 0.55f, Mathf.Sin(a) * 3f),
+                    new Vector3(0.18f, 1.1f, 0.18f), stone, true);
+                Block(root, "CandleGlow" + i, new Vector3(Mathf.Cos(a) * 3f, 1.2f, Mathf.Sin(a) * 3f),
+                    new Vector3(0.24f, 0.24f, 0.24f), glow, false);
+            }
+        }
+
+        private static void BuildRepairBay(Transform root, CityLayoutDefinition kit, PoiDef poi)
+        {
+            var pal = kit.palette;
+            // Open gantry arch — drive/walk the broken thing in under it.
+            Block(root, "GantryL", new Vector3(-3f, 2f, 0f), new Vector3(0.5f, 4f, 0.5f), pal.metal, true);
+            Block(root, "GantryR", new Vector3(3f, 2f, 0f), new Vector3(0.5f, 4f, 0.5f), pal.metal, true);
+            Block(root, "GantryBeam", new Vector3(0f, 4.1f, 0f), new Vector3(6.5f, 0.4f, 0.6f), pal.metal, true);
+            Block(root, "HoistArm", new Vector3(1f, 3.6f, 0f), new Vector3(0.25f, 1.2f, 0.25f), pal.rail, true);
+            Block(root, "HoistHook", new Vector3(1f, 2.9f, 0f), new Vector3(0.4f, 0.25f, 0.4f), pal.accent, false);
+            // Tool bench — the tool-chest/righty-tighty fantasy's street-side home.
+            Block(root, "Bench", new Vector3(-1.8f, 0.5f, 3.2f), new Vector3(2.6f, 1f, 1f), pal.concrete, true);
+            Block(root, "BenchTools", new Vector3(-1.8f, 1.1f, 3.2f), new Vector3(2.2f, 0.18f, 0.7f), pal.accent, false);
+            Block(root, "PartsBin", new Vector3(2.4f, 0.45f, 3f), new Vector3(1.2f, 0.9f, 1.2f), pal.metal, true);
+        }
+
+        private static void BuildTransit(Transform root, CityLayoutDefinition kit, PoiDef poi)
+        {
+            var pal = kit.palette;
+            Block(root, "Platform", new Vector3(0f, 0.2f, 0f), new Vector3(7f, 0.4f, 3.5f), pal.concrete, true);
+            Block(root, "Bench", new Vector3(-1.8f, 0.75f, -1f), new Vector3(2.2f, 0.5f, 0.7f), pal.metal, true);
+            Block(root, "SignPost", new Vector3(2.6f, 1.8f, -1.2f), new Vector3(0.15f, 3.2f, 0.15f), pal.metal, true);
+            Block(root, "SignBoard", new Vector3(2.6f, 3.1f, -1.2f), new Vector3(1.6f, 0.9f, 0.12f), pal.accent, false);
+            for (int i = 0; i < 3; i++) // route posts marching off — the line continues somewhere
+                Block(root, "RoutePost" + i, new Vector3(4.5f + i * 2.2f, 0.7f, 0.8f),
+                    new Vector3(0.2f, 1.4f, 0.2f), pal.rail, true);
+        }
+
+        private static void BuildLookout(Transform root, CityLayoutDefinition kit, PoiDef poi)
+        {
+            var pal = kit.palette;
+            var glow = kit.experience != null ? kit.experience.vistaAccentColor : kit.palette.accent;
+            for (int i = 0; i < 4; i++) // deck legs
+            {
+                float x = (i % 2 == 0 ? -1f : 1f) * 1.6f;
+                float z = (i / 2 == 0 ? -1f : 1f) * 1.6f;
+                Block(root, "Leg" + i, new Vector3(x, 1.75f, z), new Vector3(0.35f, 3.5f, 0.35f), pal.metal, true);
+            }
+            Block(root, "Deck", new Vector3(0f, 3.6f, 0f), new Vector3(4.4f, 0.3f, 4.4f), pal.concrete, true);
+            for (int i = 0; i < 4; i++) // rails — a vantage you can lean on, not fall off
+            {
+                float a = i * 1.571f;
+                Block(root, "Rail" + i, new Vector3(Mathf.Cos(a) * 2.1f, 4.35f, Mathf.Sin(a) * 2.1f),
+                    new Vector3(i % 2 == 0 ? 0.15f : 4.4f, 1.1f, i % 2 == 0 ? 4.4f : 0.15f), pal.rail, true);
+            }
+            // Access ramp — walkable up (climb studs can join later via the traversal lane's kit).
+            Block(root, "Ramp", new Vector3(0f, 1.7f, 4.6f), new Vector3(1.8f, 0.25f, 5.6f), pal.concrete, true)
+                .transform.localRotation = Quaternion.Euler(-38f, 0f, 0f);
+            Block(root, "SpotBeacon", new Vector3(0f, 5.6f, 0f), new Vector3(0.35f, 2.2f, 0.35f), glow, false);
         }
 
         // ── Helper ────────────────────────────────────────────────────────────────────────────────

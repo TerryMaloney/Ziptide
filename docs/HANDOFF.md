@@ -47,6 +47,26 @@ headless tests) with zero surface. Claimed 5.2/B2.
   tokens (v1 commits the whole fleet) · B4 hotseat · campaign save/resume (sim already JSON-round-trips).
 - **Commit:** this push (table + sandbox + RILL line + boards + runbook). Verify CI.
 
+### 2026-07-09 (rb6) - Reasonbox: 🏪 CLAIM + first cut — board row 1.5, the POI catalog grows 7→12
+- **v1.3 verdict first:** the loadout→flight adapter (`7b8c699`) is **CI GREEN ✅** — flight lane is
+  fully caught up and waiting on Terry's device pass, so per Terry I'm picking up the next unclaimed
+  row.
+- **CLAIMED: row 1.5 (POI catalog + density/scatter).** Files: `Content/Runtime/City/
+  {CityLayoutDefinition.cs (PoiType — ADDITIVE, new values at the END, pinned by test),
+  PoiQuality.cs}` · `Editor/Patching/WorldPoiBuilder.cs` · a `PropKitLibrary` later (own ids —
+  mirrors BuildingKit/CavernKit, no registry collision). Traversal Fable: not touching stub
+  generation or POI positions, only new TYPE cases — shout if that bites your zipline POI reads.
+- **Did (first cut):** 5 new verbs — **Market** (stall rows + awnings + wares), **Shrine** (kneel
+  ring + leaning monolith + offering/candle glows), **RepairBay** (gantry arch + hoist + tool bench —
+  the righty-tighty fantasy's street home), **Transit** (platform + route sign + marching posts),
+  **Lookout** (railed watch deck + ramp + spot beacon). `PoiMinutes` weights for each;
+  `PoiCatalogTests` pin ≥12 verbs, every-verb-worth-minutes, the original seven's serialized values,
+  and DistinctVerbCount coverage. **Zero change to existing worlds** — new verbs render only when
+  authored into a layout.
+- **Next:** the scatter/density half (prop kits fulfilling ScatterField via `PropKitLibrary`) + an
+  authoring pass so story worlds actually USE the new verbs (will coordinate — WorldStubGenerator is
+  warm in the traversal lane's hands).
+- **Commit / branch:** this push on `terry-local-wip` — verify the run before stacking C#.
 
 ### 2026-07-09 (rb5) - Reasonbox (flight lane): 🔗 SHIP-MORE #1 CLOSED — the hangar loadout now flies the ship (+ v1.2 CI ✅)
 - **v1.2 verdict first:** the Xbox-ergonomics pass (`a63e23e` — strafe on left-stick X +

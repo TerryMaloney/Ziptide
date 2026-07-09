@@ -34,10 +34,14 @@ namespace Ziptide.Content
                 case PoiType.CombatCamp: baseMin = 2.5f; break;
                 case PoiType.HarvestGrove: baseMin = 2.0f; break;
                 case PoiType.MachineSite: baseMin = 2.0f; break;
+                case PoiType.RepairBay: baseMin = 2.0f; break;
                 case PoiType.StoryAnchor: baseMin = 2.0f; break;
                 case PoiType.CaveSecret: baseMin = 1.5f; break;
                 case PoiType.RuinCache: baseMin = 1.5f; break;
-                default: baseMin = 0.5f; break; // TravelBerth is a doorway, not gameplay
+                case PoiType.Market: baseMin = 1.5f; break;
+                case PoiType.Shrine: baseMin = 1.0f; break;
+                case PoiType.Lookout: baseMin = 1.0f; break;
+                default: baseMin = 0.5f; break; // TravelBerth/Transit are doorways, not gameplay
             }
             return baseMin * (1f + 0.25f * Mathf.Clamp(p.tier, 0, 2));
         }

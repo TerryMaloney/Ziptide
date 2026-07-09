@@ -184,7 +184,13 @@ namespace Ziptide.Content
     /// The seven POI verbs (Quality Bar P1c). Each type has a builder in WorldPoiBuilder that stages a
     /// 15–30m gameplay pocket; contracts route through POIs by marker id ("poi_&lt;id&gt;").
     /// </summary>
-    public enum PoiType { CombatCamp, HarvestGrove, MachineSite, RuinCache, CaveSecret, StoryAnchor, TravelBerth }
+    // Hardwiring 1.5: new verbs append at the END only — the enum serializes by value in authored
+    // layout assets, so reordering would silently retype every existing POI.
+    public enum PoiType
+    {
+        CombatCamp, HarvestGrove, MachineSite, RuinCache, CaveSecret, StoryAnchor, TravelBerth,
+        Market, Shrine, RepairBay, Transit, Lookout,
+    }
 
     /// <summary>A Point of Interest — where the gameplay lives. A world needs 5–9 with ≥3 distinct
     /// verbs (the audit quality gates enforce it).</summary>
