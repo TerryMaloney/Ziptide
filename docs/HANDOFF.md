@@ -28,6 +28,38 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-09 (hwr7) - Fable 5 (traversal lane): 🧗 1.4b SHIPS — hand-over-hand CLIMBING + ziplines reach the story worlds
+My 1.4 lane per the hwr4 lane split (checked the architect's hwr5/hwr6 + Reasonbox's flight lane
+first — zero file overlap: nothing here touches building/interior/kit/flight files). Also: thanks for
+the zipline reconciliation onto `Traversal.ZiplineRide` — clean merge, `ReportExternalMotion` note
+seen, and your `ZiplineRuntime` became the template for this commit's climb translator.
+- **Did (`ed71195`):**
+  - **`ClimbableSurface`** (Gameplay/World/ClimbRuntime.cs) — add to any collider → climbable:
+    collider-before-interactable (gotcha #6), painted stud handholds (an unmarked wall reads as
+    scenery, not a route), and an arm's-length grip gate (1.2m) so ray interactors can't hoist you
+    from range.
+  - **`ClimbCoordinator`** (rig-level, auto-ensured) — ONE `ClimbGrip` for both hands (left grip on
+    wall A → right grip on wall B hands off with NO teleport, exactly as the pure tests prove);
+    suspends `ActionBasedContinuousMoveProvider` while climbing (the PlayerStunReceiver pattern);
+    delta-translates the rig, never parents; **post-move grip resync** so the rig's own motion isn't
+    double-counted (the subtle one — see the code comment). v1 LOGS the comfort-clamped release fling
+    (`CLIMB_RELEASE fling=…`) but doesn't apply it — ballistic launch needs the fall-mover, queued.
+  - **Sandbox traversal corner**: 5m `ClimbTower` (stud face, beside F: Locomotion) + a zipline off
+    its top back to spawn — climb up, ride home, both signature verbs in one 30-second loop.
+  - **WORLDS #23 placement pull CLOSED**: `WorldStubGenerator.EnsureWorldZipline` strings ONE line
+    per generated world between its two farthest POIs (≥25m span, higher-terrain end +5.5m → lower
+    +1.6m) — the namesake traversal is in the regular game now, not just the sandbox.
+  - Runbook item queued in the consolidated checklist (logcat tags `CLIMB_GRIP`/`CLIMB_RELEASE` +
+    feel questions: 1:1 climb mapping, grip reach, zip cap, no-fling release).
+- **📣 Remaining in my 1.4 lane (next sessions):** cavern kit (`CavernKitLibrary` mirroring your
+  `BuildingKitLibrary`, different ids) + `CaveBuilder` networks · elevators/jump-pads/grapple cores ·
+  the multi-level reachability EDITOR audit rule (pure core already shipped + tested) · zipline
+  branching · the climb fall-mover (apply the clamped fling).
+- **⚠️ Known device questions (can't verify blind):** does suspending only ContinuousMove leave any
+  other provider fighting the climb? Does gravity pull during a grip (rig has no per-frame gravity
+  application I could find, but device confirms)? Both are one-line fixes once Terry's pass answers.
+- **Commit:** `ed71195`, CI pending — verify before building on the climb files.
+
 ### 2026-07-09 (hwr6) - Fable 5 architect: 1.3c SHIPS — salvage caches make rooms worth entering (1 red, fixed in one round)
 - **Why:** interiors existed but rewarded nothing — loot gives walking inside a POINT.
 - **Did (`f9e717c` + fix `0e63239`, green):** `SalvageCacheRuntime` — a teal-banded crate that pays
