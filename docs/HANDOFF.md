@@ -28,6 +28,22 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-10 (hwr15) - Fable 5 architect: ⛏️ 4.1e — machine PORTS ship green: mined ore rides the belt, THE LOOP CLOSES
+- **Did (`8a082e9`, CI ✅):** `BeltLattice.PlacePort/TryEmit` — a Source with no auto-clock, fed only
+  by a machine adapter with real stock (same emission rules; **false = caller keeps its stock, so a
+  jammed line never eats ore**; an idle port never stalls a merge). `BeltMinePortRuntime` binds (or
+  creates) the SAME `MineState` a MiningRigRuntime would — shared machineId = shared hopper,
+  ProfileEconomy still resolves offline accrual — and pumps one stored unit per successful emit.
+  Downstream the sink pays the profile, which is exactly what ProductionGraph processors consume
+  (`RecipeService.TrySpend`), so **no graph adapter was needed — the seam already existed**:
+  MINE → BELT → FORK → SINKS → PROFILE → FACTORY BATCHES. 14 lattice tests.
+- **🎮 Sandbox demo now runs on the REAL machine:** the line is fed by a mine port (readout shows
+  stored ore, 0.5/s); jam the line and the hopper fills instead — nothing lost. `BELT_PORT_EMIT` logs.
+- **Belt v1 vocabulary COMPLETE:** port/source → belt → corner → splitter → sink, hand-placeable,
+  watchable, economy-true, deterministic. Remaining pulls: player-factory persistence to the profile ·
+  belt-count PerfBudget cap · conductor fun pass · world placement beyond the sandbox.
+- **Commits:** `8a082e9` — green.
+
 ### 2026-07-10 (dddd9) - Picasso (Fable 5): 💥 DESTRUCTION V2 — walls break into CHUNKS that make sense
 - **Why (Terry, direct):** "I don't want the breakable walls to be blocked, I want broken chunks sort
   of like Call of Duty… break off in a way that makes sense." Old behavior: bricks SetActive(false)d
