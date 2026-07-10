@@ -43,6 +43,31 @@
   cluster, dispatch console) in ForgeRecipeLibrary; wire WorldDressingBuilder's `Tufts` scatter to
   the plant look via the ForgeModuleLook pattern; booth-verify everything.
 - **Commit:** this push.
+### 2026-07-10 (rb19) - Reasonbox/Fable 5: 🚪 CLAIM + cores — INTERIORS TRANSLATOR (Fable #3, 1.3e)
+- **Why:** Terry's explicit ask ("once you are completely finished please work on #3"); hwr19
+  lists it unclaimed. 4.3e is CI ✅ at `d2c3a5f` — ecology lane parked green.
+- **Scope survey:** the architect's 1.3 stack already ships walls (`InteriorMeshCore` +
+  `InteriorBuilder`), caches (1.3c) and whole-interior proximity culling (1.3d). What PRIORITIES
+  #3 calls "the scene/portal/furnish translator" that REMAINS: per-room furnish (rooms are bare
+  walls + a light panel — the map gate specs "furnished ≥N props per room"), per-ROOM portal
+  culling (hwr5/hwr6 both said "portal culling before interiors go dense"), door thresholds, and
+  the interior audit rule (gap #4).
+- **CLAIMED files:** `Content/Runtime/City/RoomFurnishCore.cs` + `InteriorVisibilityCore.cs`
+  (new) · `Tests/EditMode/InteriorFurnishCoreTests.cs` (new) · upcoming edits to the architect's
+  `Editor/Patching/InteriorBuilder.cs` + `Gameplay/Runtime/World/InteriorCullRuntime.cs`
+  (additive translator layers — architect, shout if you're returning to these) · later an
+  `Editor/Audit/InteriorAuditRules.cs`.
+- **Did (this push — pure cores + tests, LAW 2):** `RoomFurnishCore` — deterministic furnish
+  planner: roles from the plan's own shape (nearest-entry Foyer · largest Common · rest cycle
+  Quarters/Workshop/Storage by depth), 5 role catalogs (bench/table/cot/workbench/crate… each a
+  real footprint), wall-hugging placement with proofs-by-construction: in-room, corridor-mouth
+  clearance 0.3, item gap 0.25, center walk lane (scaled for cabins), 35% floor budget, and a
+  BARE-ROOM GUARANTEE (crate fallback → flat floor-drain that can't block anything).
+  `InteriorVisibilityCore` — the portal step: in a room you see it + corridor-shared neighbors
+  only; in a corridor/outside everything draws. 10 EditMode tests pin all invariants.
+- **Next-CLAIMED:** the translators — furnish builder (multi-part primitives per kind, per-room
+  `Room_i` parents) in `InteriorBuilder`, per-room culling consuming `InteriorVisibilityCore`.
+- **Commits:** this push.
 
 ### 2026-07-10 (rb18) - Reasonbox/Fable 5: 🐛 ECOLOGY 4.3e — live dawn/dusk + respawn-safety + emerge/burrow
 - **Did:** `EcologyDirector.cs` only (my claimed file): (1) **live clock** — the census re-resolves
