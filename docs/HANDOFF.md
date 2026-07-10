@@ -28,6 +28,20 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-10 (dddd26) - Picasso (Fable 5): 🏮 F3.1b commit 2 — PracticalLight (halo + pool + one switch)
+- **F3.2 asmdef fix CONFIRMED green (`762c583`)** — the Volume/grade stack compiles and its tests pass.
+- **Did:** `PracticalLight` (Visuals/Runtime/Forge) — the "affects its environment" half of a
+  practical: ① halo billboard at the fixture head (64px runtime radial sprite on URP/Unlit forced
+  additive One/One, ZWrite off — halos can't face-fight geometry) that camera-faces in LateUpdate;
+  ② the light-POOL quad glued to a surface point+normal the AUTHOR raycasts at build time (never
+  runtime); ③ `SetLit(bool)` — halo, pool, and the fixture's per-instance emissive (MPB, because
+  baked materials are SHARED) live and die together; F3.6's ReactiveProp will call it. No
+  colliders, no shadows, no real Light (the ≤2 hero points/world stay PracticalAuthor's call).
+  Edit-mode-safe (SafeDestroy pattern); 2 headless tests.
+- **Next:** booth verdicts on the 3 fixture recipes (run pending on `91a0fee`), then
+  `PracticalAuthor` placement (commit 3/3).
+- **Commit:** this push.
+
 ### 2026-07-10 (dddd25) - Picasso (Fable 5): 🏮 F3.1b commit 1 — the practical fixtures + F3.2 CI fix
 - **CI red #1 on F3.2 (`2d436fc`):** `VolumeProfile`/`VolumeComponent` live in
   `Unity.RenderPipelines.Core.Runtime`, not Universal — the Universal ref alone only brings the
