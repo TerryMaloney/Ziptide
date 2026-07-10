@@ -89,7 +89,7 @@ namespace Ziptide.Gameplay
         {
             if (_grab == null || !_grab.isSelected)
             {
-                if (_hoverFloor != null) { _hoverFloor.HideGhost(); _hoverFloor = null; }
+                if (_hoverFloor != null) { HideGhosts(_hoverFloor); _hoverFloor = null; }
                 return;
             }
             BeltFloorRuntime over = null;
@@ -98,19 +98,31 @@ namespace Ziptide.Gameplay
                 var f = BeltFloorRuntime.Active[i];
                 if (f != null && f.TryWorldToCell(transform.position, out _, out _)) { over = f; break; }
             }
-            if (over != _hoverFloor && _hoverFloor != null) _hoverFloor.HideGhost();
+            if (over != _hoverFloor && _hoverFloor != null) HideGhosts(_hoverFloor);
             _hoverFloor = over;
-            if (_hoverFloor != null) _hoverFloor.ShowGhost(transform.position, transform.forward);
+            if (_hoverFloor != null)
+            {
+                // 4.1l: loaded = the WHOLE footprint previews (teal fits / red refuses);
+                // empty = the single-cell cursor.
+                if (_held != null) _hoverFloor.ShowBlueprintGhost(_held, transform.position);
+                else _hoverFloor.ShowGhost(transform.position, transform.forward);
+            }
 
             // The head slowly spins while loaded — "I'm holding your line."
             if (_held != null && _headR != null)
                 _headR.transform.Rotate(0f, 90f * Time.deltaTime, 0f, Space.Self);
         }
 
+        private static void HideGhosts(BeltFloorRuntime floor)
+        {
+            floor.HideGhost();
+            floor.HideBlueprintGhost();
+        }
+
         private void OnReleased(SelectExitEventArgs args)
         {
             var floor = _hoverFloor;
-            if (_hoverFloor != null) { _hoverFloor.HideGhost(); _hoverFloor = null; }
+            if (_hoverFloor != null) { HideGhosts(_hoverFloor); _hoverFloor = null; }
             if (floor == null || floor.Lattice == null) return; // dropped in the open — stays physical
             if (!floor.TryWorldToCell(transform.position, out int x, out int z)) return;
 
@@ -145,7 +157,7 @@ namespace Ziptide.Gameplay
 
         private void OnDestroy()
         {
-            if (_hoverFloor != null) _hoverFloor.HideGhost();
+            if (_hoverFloor != null) HideGhosts(_hoverFloor);
         }
     }
 

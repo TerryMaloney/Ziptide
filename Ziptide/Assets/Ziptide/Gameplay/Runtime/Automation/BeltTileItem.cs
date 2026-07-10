@@ -15,15 +15,21 @@ namespace Ziptide.Gameplay
         private XRGrabInteractable _grab;
         private BeltFloorRuntime _hoverFloor;
 
+        /// <summary>What this tile places (4.1l): Belt or Splitter — a picked-up splitter comes
+        /// back as a splitter tile, nothing degrades on the round trip.</summary>
+        public Ziptide.Content.Automation.CellKind kind = Ziptide.Content.Automation.CellKind.Belt;
+
         /// <summary>True once a hand has taken this tile — the dispenser's restock signal.</summary>
         public bool WasGrabbed { get; private set; }
 
         /// <summary>Spawn a ready-to-grab tile (dispenser + belt-pickup both use this).</summary>
-        public static BeltTileItem Spawn(Vector3 at)
+        public static BeltTileItem Spawn(Vector3 at,
+            Ziptide.Content.Automation.CellKind kind = Ziptide.Content.Automation.CellKind.Belt)
         {
             var go = new GameObject("BeltTileItem");
             go.transform.position = at;
             var item = go.AddComponent<BeltTileItem>();
+            item.kind = kind;
             item.Build();
             return item;
         }
@@ -44,6 +50,18 @@ namespace Ziptide.Gameplay
             stripe.transform.localPosition = new Vector3(0f, 0.035f, 0f);
             stripe.transform.localScale = new Vector3(0.08f, 0.02f, 0.22f);
             ItemFactory.ApplyURPColor(stripe, new Color(0.35f, 0.95f, 0.75f)); // points along +z = flow
+            if (kind == Ziptide.Content.Automation.CellKind.Splitter)
+            {
+                // The fork stripe — a splitter tile reads as a splitter in the hand.
+                var fork = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                fork.name = "ForkStripe";
+                Object.Destroy(fork.GetComponent<Collider>());
+                fork.transform.SetParent(transform, false);
+                fork.transform.localPosition = new Vector3(0.06f, 0.035f, 0f);
+                fork.transform.localRotation = Quaternion.Euler(0f, 90f, 0f);
+                fork.transform.localScale = new Vector3(0.08f, 0.02f, 0.16f);
+                ItemFactory.ApplyURPColor(fork, new Color(0.35f, 0.95f, 0.75f));
+            }
             foreach (var r in GetComponentsInChildren<Renderer>())
                 r.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
 
@@ -83,7 +101,7 @@ namespace Ziptide.Gameplay
             if (_hoverFloor != null) { _hoverFloor.HideGhost(); _hoverFloor = null; }
             if (floor == null) return; // dropped in the open — stays physical
 
-            if (floor.PlaceBeltFromHand(transform.position, transform.forward))
+            if (floor.PlaceCellFromHand(transform.position, transform.forward, kind))
             {
                 var hand = args.interactorObject as XRBaseControllerInteractor;
                 if (hand != null) hand.SendHapticImpulse(0.55f, 0.06f); // the CLICK

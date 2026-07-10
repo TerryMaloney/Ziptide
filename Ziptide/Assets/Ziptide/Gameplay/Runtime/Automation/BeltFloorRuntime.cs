@@ -103,7 +103,7 @@ namespace Ziptide.Gameplay
 
         // ── Persistence (HARDWIRING 4.1f — player factories survive quit/reload) ────────────────
 
-        private readonly HashSet<long> _authoredBeltCells = new HashSet<long>(); // pre-overlay Belt coords
+        private readonly HashSet<long> _authoredRemovable = new HashSet<long>(); // pre-overlay Belt/Splitter coords
         private BeltFloorState _saveState; // lazy — created on the first player edit
 
         private long CellKey(int x, int z) => ((long)z << 32) | (uint)x;
@@ -127,9 +127,10 @@ namespace Ziptide.Gameplay
         /// (remember it as removed) from a player-placed one (just drop it from the overlay).</summary>
         private void RestoreFromProfile()
         {
-            _authoredBeltCells.Clear();
+            _authoredRemovable.Clear();
             foreach (var c in cells)
-                if (c.kind == CellKind.Belt) _authoredBeltCells.Add(CellKey(c.x, c.z));
+                if (c.kind == CellKind.Belt || c.kind == CellKind.Splitter)
+                    _authoredRemovable.Add(CellKey(c.x, c.z));
 
             var state = SaveState(createIfMissing: false);
             if (state == null || (state.placed.Count == 0 && state.removedAuthored.Count == 0))
@@ -199,7 +200,7 @@ namespace Ziptide.Gameplay
 
         private void PersistRemove(int x, int z)
         {
-            bool wasAuthored = _authoredBeltCells.Contains(CellKey(x, z));
+            bool wasAuthored = _authoredRemovable.Contains(CellKey(x, z));
             var state = SaveState(createIfMissing: wasAuthored);
             if (state == null) return;
             BeltFloorSave.RecordRemove(state, x, z, wasAuthored);
@@ -302,9 +303,10 @@ namespace Ziptide.Gameplay
                 _agitators.Add(agitator.transform);
             }
 
-            if (c.kind == CellKind.Belt)
+            if (c.kind == CellKind.Belt || c.kind == CellKind.Splitter)
             {
-                // Grip a placed belt to pick it back up (its riding item lifts with it — Clear's law).
+                // Grip a placed belt/splitter to pick it back up (its riding item lifts with it —
+                // Clear's law). 4.1l: splitters are first-class — they round-trip like belts.
                 int cx = c.x, cz = c.z;
                 var pick = tile.AddComponent<UnityEngine.XR.Interaction.Toolkit.XRSimpleInteractable>();
                 pick.selectEntered.AddListener(_ => RemoveBeltAt(cx, cz));
@@ -351,26 +353,36 @@ namespace Ziptide.Gameplay
             return f.z >= 0f ? BeltDir.North : BeltDir.South;
         }
 
-        /// <summary>Place a belt from the hand: snaps to the cell under <paramref name="worldPos"/>,
-        /// direction from the hand's facing. False if off-grid or the cell is taken.</summary>
+        /// <summary>Place a belt from the hand (kept for callers/back-compat — delegates).</summary>
         public bool PlaceBeltFromHand(Vector3 worldPos, Vector3 worldForward)
+            => PlaceCellFromHand(worldPos, worldForward, CellKind.Belt);
+
+        /// <summary>4.1l: place a player-buildable cell (Belt or Splitter) from the hand: snaps to
+        /// the cell under <paramref name="worldPos"/>, direction from the hand's facing. False if
+        /// off-grid, the cell is taken, or the kind isn't hand-buildable.</summary>
+        public bool PlaceCellFromHand(Vector3 worldPos, Vector3 worldForward, CellKind kind)
         {
+            if (kind != CellKind.Belt && kind != CellKind.Splitter) return false;
             if (!TryWorldToCell(worldPos, out int x, out int z) || !CanPlaceAt(x, z)) return false;
             var dir = DirFromForward(worldForward);
-            _lattice.PlaceBelt(x, z, dir);
-            var spec = new BeltCellSpec { x = x, z = z, kind = CellKind.Belt, dir = dir };
+            if (kind == CellKind.Splitter) _lattice.PlaceSplitter(x, z, dir);
+            else _lattice.PlaceBelt(x, z, dir);
+            var spec = new BeltCellSpec { x = x, z = z, kind = kind, dir = dir };
             cells.Add(spec);
             BuildCellVisual(spec);
             PersistPlace(spec); // 4.1f: player factories survive quit/reload
-            Debug.Log("ZIPTIDE: BELT_PLACE x=" + x + " z=" + z + " dir=" + dir);
+            Debug.Log("ZIPTIDE: BELT_PLACE x=" + x + " z=" + z + " dir=" + dir + " kind=" + kind);
             return true;
         }
 
-        /// <summary>Pick a placed belt back up: clears the lattice cell (any riding item lifts with
-        /// it), removes the visual, and spawns a grabbable tile just above the cell.</summary>
+        /// <summary>Pick a placed belt/splitter back up: clears the lattice cell (any riding item
+        /// lifts with it), removes the visual, and spawns a grabbable tile of the SAME kind just
+        /// above the cell — nothing degrades on the round trip (4.1l).</summary>
         public void RemoveBeltAt(int x, int z)
         {
-            if (_lattice == null || _lattice.KindAt(x, z) != CellKind.Belt) return;
+            if (_lattice == null) return;
+            var kind = _lattice.KindAt(x, z);
+            if (kind != CellKind.Belt && kind != CellKind.Splitter) return;
             var lifted = _lattice.Clear(x, z);
             if (lifted != null && _pucks.TryGetValue(lifted, out var puck))
                 ReleasePuck(puck, lifted);
@@ -381,8 +393,8 @@ namespace Ziptide.Gameplay
                 if (cells[i].x == x && cells[i].z == z) cells.RemoveAt(i);
             PersistRemove(x, z); // 4.1f: an authored cell is remembered as removed; a placed one just leaves
 
-            BeltTileItem.Spawn(CellCenter(x, z) + Vector3.up * 0.35f);
-            Debug.Log("ZIPTIDE: BELT_PICKUP x=" + x + " z=" + z);
+            BeltTileItem.Spawn(CellCenter(x, z) + Vector3.up * 0.35f, kind);
+            Debug.Log("ZIPTIDE: BELT_PICKUP x=" + x + " z=" + z + " kind=" + kind);
         }
 
         // ── Ghost preview (shown by the held tile; hidden on release) ───────────────────────────
@@ -408,6 +420,66 @@ namespace Ziptide.Gameplay
         }
 
         public void HideGhost() { if (_ghost != null) _ghost.SetActive(false); }
+
+        // ── Blueprint footprint ghost (4.1l — the wand's whole-stamp preview) ───────────────────
+
+        private readonly List<GameObject> _bpGhost = new List<GameObject>();
+        private GameObject _bpGhostRoot;
+        private int _bpGhostFitsState = -1; // -1 unknown / 0 refuses / 1 fits — recolor only on change
+
+        /// <summary>Show the FULL footprint of a held blueprint, seed-anchored under the hand:
+        /// teal when the whole stamp fits, red when it refuses (including out-of-grid overhang, so
+        /// the player sees WHY). Pooled quads — no per-frame allocation once grown.</summary>
+        public void ShowBlueprintGhost(BeltBlueprint bp, Vector3 worldPos)
+        {
+            if (bp == null || !TryWorldToCell(worldPos, out int ax, out int az))
+            {
+                HideBlueprintGhost();
+                return;
+            }
+            if (_bpGhostRoot == null)
+            {
+                _bpGhostRoot = new GameObject("BlueprintGhost");
+                _bpGhostRoot.transform.SetParent(transform, false);
+            }
+            while (_bpGhost.Count < bp.Cells.Count)
+            {
+                var quad = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                quad.name = "BpGhostCell";
+                var qc = quad.GetComponent<Collider>();
+                if (qc != null) Destroy(qc);
+                quad.transform.SetParent(_bpGhostRoot.transform, false);
+                quad.transform.localScale = new Vector3(cellSize * 0.85f, 0.02f, cellSize * 0.85f);
+                var qr = quad.GetComponent<Renderer>();
+                if (qr != null) qr.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+                _bpGhost.Add(quad);
+            }
+
+            bool fits = CanStampBlueprint(bp, ax, az);
+            int fitsState = fits ? 1 : 0;
+            bool recolor = fitsState != _bpGhostFitsState;
+            _bpGhostFitsState = fitsState;
+            var col = fits ? new Color(0.35f, 0.95f, 0.75f) : new Color(0.9f, 0.3f, 0.25f);
+
+            int ox = ax - bp.SeedDx, oz = az - bp.SeedDz;
+            for (int i = 0; i < _bpGhost.Count; i++)
+            {
+                var g = _bpGhost[i];
+                if (i >= bp.Cells.Count) { if (g != null) g.SetActive(false); continue; }
+                if (g == null) continue;
+                var c = bp.Cells[i];
+                g.SetActive(true);
+                g.transform.position = CellCenter(ox + c.Dx, oz + c.Dz) + Vector3.up * 0.16f;
+                if (recolor) ItemFactory.ApplyURPColor(g, col);
+            }
+            _bpGhostRoot.SetActive(true);
+        }
+
+        public void HideBlueprintGhost()
+        {
+            if (_bpGhostRoot != null) _bpGhostRoot.SetActive(false);
+            _bpGhostFitsState = -1;
+        }
 
         private void BuildGhost()
         {

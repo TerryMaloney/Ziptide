@@ -552,6 +552,10 @@ Nothing to run in Unity — the patchers do it all at build; these are headset f
   STAMPS there (`BELT_STAMP`; heavy click = landed, sharp buzz = doesn't fit — it never half-lands).
   Stamp as many copies as you like; capture again to swap. Stamped belts persist like hand-placed
   ones. Feel notes: capture/stamp haptics, the xN label size, wand grip size.
+  **(4.1l addendum, same build):** while the wand is LOADED you now see the whole footprint under
+  your hand — teal = fits, red = refuses (even the part hanging off the grid). And splitters
+  round-trip: grip a placed splitter to pick it up, the tile in your hand shows a fork stripe, and
+  it places back as a splitter. Feel notes: footprint ghost readability at 8+ cells.
 
 ## 3. The two open judgment calls (yours)
 - **"Can you run in Toxic City?"** — was it the input bug (now fixed) or actual walls/narrow streets? If

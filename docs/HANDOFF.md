@@ -28,6 +28,25 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-10 (hwr18) - Fable 5 architect: 🔁 4.1l — splitters ROUND-TRIP + the wand previews its whole footprint
+- **Verdicts first:** 4.1j `2987a42` CI ✅ · 4.1k `fa7a2aa` CI ✅ — the whole belt stack through
+  blueprints is verified.
+- **Did (two hwr17 thin spots closed):** ① SPLITTERS are first-class hand objects — pickable like
+  belts (pick-listener on splitter tiles incl. restored ones), they come back as a fork-striped
+  splitter TILE (`BeltTileItem.kind`), and place as splitters again via the generalized
+  `PlaceCellFromHand(pos, fwd, kind)` (old `PlaceBeltFromHand` delegates — no caller breaks).
+  Authored-removed bookkeeping generalized (`_authoredRemovable` covers Belt+Splitter, so picking up
+  an authored splitter persists correctly). ② The LOADED wand now shows its ENTIRE footprint under
+  the hand — pooled ghost quads, teal when the stamp fits, red when it refuses INCLUDING off-grid
+  overhang so you see why; recolors only on state change (no per-frame material churn). Empty wand
+  keeps the single-cell cursor.
+- **Logs:** `BELT_PLACE`/`BELT_PICKUP` now carry `kind=`.
+- **Remaining thin spots (claimable):** auto-SOURCE cells still bare tiles (unused in shipped
+  content) · belt placement audio (board 5.5) · wand holster affinity · dispenser only vends BELT
+  tiles (splitter tiles only come from pickups/blueprints — fine for now, a design choice to revisit
+  with power/tiers).
+- **Commits:** this push.
+
 ### 2026-07-10 (hwr17) - Fable 5 architect: 🎨 LAW 6 applied to my own lane + 🪄 BLUEPRINTS — belt vocabulary rounds out
 - **Why:** rich1 named belts directly ("audit your own v1s"). Audited; two gaps: one-primitive-per-idea
   visuals with zero motion, and the design doc's blueprint verb unshipped. Both closed.
