@@ -42,7 +42,157 @@ namespace Ziptide.Editor.Patching
                 Spec("breaker_blade_mk1", BuildBreakerBlade),
                 Spec("tide_pike_mk1", BuildTidePike),
                 Spec("p2_tide_totem", BuildP2TideTotem),
+                // E5.1 building kit — the TEXTURED wall modules (consumed via ForgeBuildingKit →
+                // ArtModuleRegistry; runtime swap by ForgeModuleLook, the item-applier pattern).
+                Spec("bldg_salvage_wall_solid", () => BuildWallModule("salvage_row", window: false)),
+                Spec("bldg_salvage_wall_window", () => BuildWallModule("salvage_row", window: true)),
+                Spec("bldg_tenement_wall_solid", () => BuildWallModule("toxic_tenement", window: false)),
+                Spec("bldg_tenement_wall_window", () => BuildWallModule("toxic_tenement", window: true)),
             };
+        }
+
+        /// <summary>Registry id → the recipe that skins it (ForgeBuildingKit + tests share this).</summary>
+        public static string WallRecipeId(string styleId, bool window)
+            => (styleId == "salvage_row" ? "bldg_salvage_wall_" : "bldg_tenement_wall_")
+               + (window ? "window" : "solid");
+
+        /// <summary>
+        /// E5.1: one TEXTURED wall module (FORGE_II §P5/E5.1). Matches the primitive kit's canonical
+        /// envelope EXACTLY (BuildingKitLibrary: 3.0m wide × 3.2m storey × 0.25m deep, origin at wall
+        /// center; window reveal 0.8×0.62 at local y=0.08) so the runtime swap is invisible to layout,
+        /// colliders, and the interior-mapped pane. Same silhouette grammar as the primitive kit
+        /// (panel + edge ribs + skirt + top band + per-style accent) but as ONE textured mesh:
+        /// wear at the ribs, grime settling on the skirt, panel seams on the face — plus P2 ops for
+        /// the tenement's plumbing (Capsule standpipe, Frustum vent hood).
+        /// </summary>
+        private static ForgeRecipeDefinition BuildWallModule(string styleId, bool window)
+        {
+            bool salvage = styleId == "salvage_row";
+            var d = NewRecipe(WallRecipeId(styleId, window), ForgePalettes.FamilyToxicIndustrial,
+                new[] { "prop", "buildingModule" },
+                salvage
+                    ? new[]
+                    {
+                        new Color(0.34f, 0.30f, 0.26f), // 0 scrap-brown wall
+                        new Color(0.24f, 0.23f, 0.22f), // 1 trim
+                        new Color(0.42f, 0.34f, 0.24f), // 2 patch-plate accent
+                    }
+                    : new[]
+                    {
+                        new Color(0.30f, 0.32f, 0.28f), // 0 mossy grey-green wall
+                        new Color(0.24f, 0.23f, 0.22f), // 1 trim
+                        new Color(0.20f, 0.26f, 0.20f), // 2 industrial accent
+                    },
+                budgetTris: 1200);
+            d.qualityState = ForgeQualityState.Proxy;
+            d.storyRole = (salvage ? "Salvage-row" : "Toxic-tenement") + " wall module ("
+                + (window ? "window" : "solid") + ") — the E5.1 textured building kit.";
+            d.storyRefs = new[] { "building_kit" };
+            d.worldRuleRefs = new[] { "W002_DryCistern", "ToxicCity" };
+            d.tokenRefs = new[] { salvage ? "rusted_metal" : "mossy_industrial" };
+            d.slotStyles = salvage
+                ? new[]
+                {
+                    new ForgeStyleSpec { style = ForgeStyle.RustedMetal, wear = 0.55f, grime = 0.5f, panelDensity = 3f },
+                    new ForgeStyleSpec { style = ForgeStyle.PaintedMetal, wear = 0.45f, grime = 0.4f },
+                    new ForgeStyleSpec { style = ForgeStyle.BareMetal, wear = 0.7f, grime = 0.3f },
+                }
+                : new[]
+                {
+                    new ForgeStyleSpec { style = ForgeStyle.PaintedMetal, wear = 0.5f, grime = 0.6f, panelDensity = 2f },
+                    new ForgeStyleSpec { style = ForgeStyle.PaintedMetal, wear = 0.4f, grime = 0.5f },
+                    new ForgeStyleSpec { style = ForgeStyle.RustedMetal, wear = 0.5f, grime = 0.65f },
+                };
+
+            var parts = new List<ForgePart>();
+            const float W = 3.0f, H = 3.2f, D = 0.25f;
+
+            if (!window)
+            {
+                parts.Add(new ForgePart
+                {
+                    name = "Panel", op = ForgeOp.BeveledBox, bevel = 0.02f,
+                    size = new Vector3(W - 0.36f, H - 0.5f, D - 0.06f), paletteSlot = 0,
+                });
+            }
+            else
+            {
+                // Reveal 0.8 × 0.62 at y = 0.08 — the primitive kit's exact hole, so the
+                // interior-mapped pane child lands inside it untouched.
+                const float holeW = 0.8f, holeH = 0.62f, holeY = 0.08f;
+                float panelH = H - 0.5f;                       // 2.7, spans -1.35..1.35
+                float sideW = (W - 0.36f - holeW) * 0.5f;      // 0.92
+                float below = panelH * 0.5f + (holeY - holeH * 0.5f); // 1.12
+                float above = panelH * 0.5f - (holeY + holeH * 0.5f); // 0.96
+                parts.Add(new ForgePart { name = "PanelL", op = ForgeOp.BeveledBox, bevel = 0.02f,
+                    size = new Vector3(sideW, panelH, D - 0.06f),
+                    position = new Vector3(-(holeW + sideW) * 0.5f, 0f, 0f), paletteSlot = 0 });
+                parts.Add(new ForgePart { name = "PanelR", op = ForgeOp.BeveledBox, bevel = 0.02f,
+                    size = new Vector3(sideW, panelH, D - 0.06f),
+                    position = new Vector3((holeW + sideW) * 0.5f, 0f, 0f), paletteSlot = 0 });
+                parts.Add(new ForgePart { name = "PanelB", op = ForgeOp.BeveledBox, bevel = 0.02f,
+                    size = new Vector3(holeW, below, D - 0.06f),
+                    position = new Vector3(0f, holeY - holeH * 0.5f - below * 0.5f, 0f), paletteSlot = 0 });
+                parts.Add(new ForgePart { name = "PanelT", op = ForgeOp.BeveledBox, bevel = 0.02f,
+                    size = new Vector3(holeW, above, D - 0.06f),
+                    position = new Vector3(0f, holeY + holeH * 0.5f + above * 0.5f, 0f), paletteSlot = 0 });
+                parts.Add(new ForgePart { name = "Sill", op = ForgeOp.BeveledBox, bevel = 0.01f,
+                    size = new Vector3(holeW + 0.18f, 0.08f, D + 0.1f),
+                    position = new Vector3(0f, holeY - holeH * 0.5f - 0.04f, 0.06f), paletteSlot = 1 });
+                parts.Add(new ForgePart { name = "Header", op = ForgeOp.BeveledBox, bevel = 0.01f,
+                    size = new Vector3(holeW + 0.12f, 0.1f, D + 0.04f),
+                    position = new Vector3(0f, holeY + holeH * 0.5f + 0.05f, 0.03f), paletteSlot = 1 });
+            }
+
+            // Shared shell — ribs (mirrored), skirt, top band: the depth silhouette.
+            parts.Add(new ForgePart { name = "Rib", op = ForgeOp.BeveledBox, bevel = 0.015f,
+                size = new Vector3(0.18f, H, D + 0.08f),
+                position = new Vector3(W * 0.5f - 0.09f, 0f, 0f), mirrorX = true, paletteSlot = 1 });
+            parts.Add(new ForgePart { name = "Skirt", op = ForgeOp.BeveledBox, bevel = 0.01f,
+                size = new Vector3(W, 0.4f, D + 0.06f),
+                position = new Vector3(0f, -(H * 0.5f - 0.2f), 0f), paletteSlot = 1 });
+            parts.Add(new ForgePart { name = "Band", op = ForgeOp.BeveledBox, bevel = 0.01f,
+                size = new Vector3(W, 0.22f, D + 0.05f),
+                position = new Vector3(0f, H * 0.5f - 0.11f, 0f), paletteSlot = 1 });
+
+            if (salvage)
+            {
+                // Bolted patch plate, slightly skewed — the salvage tell (solid face only).
+                if (!window)
+                {
+                    parts.Add(new ForgePart { name = "PatchPlate", op = ForgeOp.BeveledBox, bevel = 0.008f,
+                        size = new Vector3(0.9f, 0.7f, 0.04f),
+                        position = new Vector3(0.62f, 0.32f, (D - 0.06f) * 0.5f + 0.02f),
+                        eulerRotation = new Vector3(0f, 0f, 4f), paletteSlot = 2 });
+                    parts.Add(new ForgePart { name = "BoltRow", op = ForgeOp.GreebleStrip, segments = 5,
+                        size = new Vector3(0.05f, 0.05f, 0.8f),
+                        position = new Vector3(0.62f, 0.66f, (D - 0.06f) * 0.5f + 0.03f),
+                        eulerRotation = new Vector3(0f, 90f, 0f), paletteSlot = 2 });
+                }
+            }
+            else
+            {
+                // Tenement plumbing — P2 ops earning their keep in architecture:
+                // a capsule standpipe up the module edge + a frustum vent hood breathing out.
+                parts.Add(new ForgePart { name = "Standpipe", op = ForgeOp.Capsule, segments = 8, smooth = true,
+                    size = new Vector3(0.11f, H - 0.15f, 0.11f),
+                    position = new Vector3(1.15f, 0f, (D + 0.16f) * 0.5f), paletteSlot = 2 });
+                parts.Add(new ForgePart { name = "PipeBracket", op = ForgeOp.BeveledBox, bevel = 0.005f,
+                    size = new Vector3(0.2f, 0.06f, 0.2f),
+                    position = new Vector3(1.15f, 0.8f, D * 0.5f + 0.02f), paletteSlot = 1 });
+                if (!window)
+                {
+                    parts.Add(new ForgePart { name = "VentHood", op = ForgeOp.Frustum, segments = 8, smooth = true,
+                        size = new Vector3(0.32f, 0.22f, 0.14f),
+                        position = new Vector3(-0.85f, 0.95f, (D - 0.06f) * 0.5f + 0.1f),
+                        // +90°X maps the frustum's +Y axis to +Z: wide mouth against the wall,
+                        // narrowing OUTWARD (Euler(-90) would point it into the wall).
+                        eulerRotation = new Vector3(90f, 0f, 0f), paletteSlot = 1 });
+                }
+            }
+
+            d.parts = parts.ToArray();
+            return d;
         }
 
         /// <summary>
