@@ -28,6 +28,30 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-10 (dddd21) - Picasso (Fable 5): 🏁 FORGE II COMPLETE + 🔮 FORGE III authored for Opus/Sonnet
+- **E5.3 CLOSED (run `29119947334`, CI green `e30f8af`):** frond v2 ✅ (fern read — arcing blades,
+  twisted stem, spore nub at the crown) · pipes v2 ✅ (iron + rust streaks; gauge on +Z). With that,
+  **FORGE II is envelope-complete**: atlas/styles/bake engine, on-device ASTC, the full arsenal,
+  6 skinned+articulated+textured+BREATHING creatures, wall kit, flora, class budgets, photo loop.
+  (P4 look-at/stun-droop remainder moved into FORGE III §F3.10.)
+- **Terry's directive (last/second-to-last Fable session):** "big sprint — FORGE III for Opus 4.8/
+  Sonnet 5; consistently better across the board; what didn't we think of, looks-wise?"
+- **Did: `docs/project_art_plan/FORGE_III_PLAN.md`** — THE COHESION LEAP, 10 decision-free
+  envelopes ordered by visual leverage: **F3.1 Light Script** (per-world key/ambient/fog DERIVED
+  from the SkyVista by formula — the derivation law means a smaller model can't mismatch sky and
+  scene) · **F3.2 per-world Grade** (ACES + range-clamped color filter) · **F3.3 WATER** (the
+  namesake element — we never built it; scrolling-normal canal/tide planes + foam, Quest-cheap) ·
+  **F3.4 Grounding decals** (drip streaks/moss skirts/contact rings — kills the floating-kit tell) ·
+  **F3.5 VFX Forge** (closed particle vocabulary + budgets) · **F3.6 Reactive World** (shootable
+  lamps/vents/signs — presence mechanics) · **F3.7 Signage/glyphs + wayfinding color law** ·
+  **F3.8 Macro variation** (kills tiling) · **F3.9 ART CONFORMANCE RATCHET** — every renderer must
+  trace to a known provenance, per-world warning count ratchets to a blocker at 0: Terry's
+  "evenness across the board," enforced · **F3.10 creature P4 close-out**. Every envelope: exact
+  files, stated knob ranges, checkpoint, "do not" rails. ~21 commits.
+- **Takeover prompt for the next model:** *"Read docs/project_art_plan/FORGE_III_PLAN.md §0 and
+  execute the next open envelope."*
+- **Commit:** this push.
+
 ### 2026-07-10 (dddd20) - Picasso (Fable 5): 🌿 E5.3 verdicts + fix — CI red #1 (worldRuleRefs) + frond v2
 - **CI red #1 on `a413557`** (circuit-breaker count: 1/3): `ForgeLifecycleTests.CatalogRecipes_
   CarryStructuredRefs` — every catalog recipe must carry `worldRuleRefs`; crate + console shipped

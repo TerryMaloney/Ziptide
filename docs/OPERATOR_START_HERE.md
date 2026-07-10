@@ -25,7 +25,7 @@ clever around it. *(This supersedes `FABLE5_START_HERE.md`, kept as a pointer st
 |---|---|---|---|
 | 📖 Story/Ship "T-Dog" | "Read docs/SPRINT.md and continue" | `SPRINT.md` | worlds/CityBuilder/experience builders, RILL/story, creatures, ship+Quarters, jobs |
 | 🎮 Multiplayer "Architect-MP" | "Read docs/SPRINT_MULTIPLAYER.md and continue" | `SPRINT_MULTIPLAYER.md` | `Multiplayer/**`, `Gameplay/Runtime/Pvp/**`, arenas, bots, netcode |
-| 🎨 Art "Picasso" | "Read docs/SPRINT_ART.md and continue" | `SPRINT_ART.md` | `Visuals/**`, Forge, SkyVistas, art authors/audits, audio |
+| 🎨 Art "Picasso" | "Read docs/SPRINT_ART.md and continue" — **FORGE III era (Opus/Sonnet): "Read docs/project_art_plan/FORGE_III_PLAN.md §0 and execute the next open envelope"** | `SPRINT_ART.md` | `Visuals/**`, Forge, SkyVistas, art authors/audits, audio |
 | 🏗 Architecture | "Read docs/SPRINT_ARCHITECTURE.md and continue" | `SPRINT_ARCHITECTURE.md` | WorldSpec, pure generation cores, gates, `GamePool`, cross-track laws |
 
 **Cross-track order = `docs/PRIORITIES.md`** (the tiebreaker). Game vision = `docs/GAME_PLAN.md`.
