@@ -46,7 +46,7 @@ noted; EditMode tests are gates too. *(Last full audit of this table: 2026-07-10
 | Creature behavior | 🦴 (~10 base behaviors) | Each species has a movement vocabulary (≥3 states: idle/alert/hunt or flee), reacts to player AND to hazards; ecology (nests/packs/territory) per `CREATURE_ECOLOGY.md` | Behavior tests exist per behavior; 🕳️ GAP — per-species behavior-count check |
 | Gardens | 🧱 v1 (24 species, genetics, watering can) | Genetics affect visible outcomes; every interaction is a HAND verb (pour/tend/prune/harvest); giants/breeding playable | Garden core tests; 🕳️ GAP — plant-catalog breadth audit (all species reachable in shipped worlds) |
 | Automation/belts | 💎 (place/ride/persist/feed/clone; LAW-6 richness pass 2026-07-10) | Belts buildable in any world with a pad; item flow deterministic; conductor mode; blueprint copy/stamp; machinery moves only while ore does | `AutomationAuditRules` (area caps, save identity) + 40 tests |
-| Ambient audio | ⬜ | Every biome has a bed (wind/insects/hum) + hazard stingers; sky tiers get matching air-tone; ducking under VO | 🕳️ GAP — no audio system audit; `ADAPTIVE_AUDIO.md` unbuilt (board 5.5) |
+| Ambient audio | 🧱 v1 (2026-07-10: procedural biome beds — wind/hum/rumble loops + drip/chirp one-shots, 10 biomes, crossfade on travel) | Every biome has a bed (wind/insects/hum) + hazard stingers; sky tiers get matching air-tone; ducking under VO | `AmbienceTests` incl. **never-silent coverage gate over every shipped scene**; remaining: hazard stingers · music stems (5.5) · VO ducking (post-VO) |
 
 ## 3 · THE PLAYER
 

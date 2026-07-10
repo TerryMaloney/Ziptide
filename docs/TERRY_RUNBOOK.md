@@ -179,6 +179,14 @@ Do these in order after pulling. Each generates committable assets. *(This mirro
   (Scan), W002 (Beacon), W004 (Sabotage) attacks + defend W001 (Repair). Feel notes: scan ring radius
   (3.4m) + fill time (3s), beacon weight (4kg) + carry distance (~17m), conduit slap feedback, whether
   16 tiles crowd the table's left side.
+- [ ] **NEW (ambient audio 5.5, 2026-07-10) — EVERY WORLD BREATHES:** no menu step, no assets — the
+  air is synthesized at load (`ZIPTIDE: AMBIENCE` in logcat shows the biome + levels). **Headset,
+  ears only — visit three contrasts:** W005 Oxidized Canopy (wind through the canopy + alien chirps
+  trilling ~11/min), W002/W011 underground (near-still air, a deep hum, water dripping in the dark),
+  W010 Tidal Array (strong gusty wind over a slow surf rumble), and Mara's Last Jump (almost nothing
+  — a thin 30Hz dread; that's deliberate). Cross a travel gate and listen for the 2.5s crossfade.
+  Feel notes: overall bed volume (0.5 master — too loud under music? too quiet?), chirp/drip rates,
+  whether the station hum (92Hz) reads as 'the drive below deck' or as noise.
 - [ ] **NEW (abilities sprint A4.5, 2026-07-09) — AUGMENTS:** no menu step (the six gems author at
   build; the Sandbox regenerates with an **augment rack** by A: Grab). **Headset:** select a gem with
   the ray to EQUIP (`ZIPTIDE: AUGMENT_EQUIP`; one active + one passive — re-selecting swaps). With an

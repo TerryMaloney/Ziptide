@@ -28,6 +28,29 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-10 (amb1) - T-Dog/Fable 5: 🔊 THE AIR HAS A SOUND — ambient audio ⬜→🧱 (the map's floor-raise)
+- **Why:** Terry: "pick the next most important priority." The EXCELLENCE_MAP's own unevenness rule
+  says raise the floor — ambient audio was a ⬜ the player feels every second, flagged by
+  SKYSCAPE_DESIGN §7 ("Prospect's alien-place feeling is at least half wind, insects, and hum"),
+  board 5.5, nobody's lane.
+- **Did:** ① `AmbienceCore` (pure): `BiomeAmbience` scene→biome→spec table (10 biomes — city,
+  underground, cave, exterior, forest, interior, station, coastal, void, arena — each sonically
+  DISTINCT: the Bloom sings, caves drip, surf out-rumbles rock, the void's nothing has a pitch) +
+  `AmbienceSynth`: deterministic **loop-exact** synthesis (every component an INTEGER number of
+  cycles over the buffer → sample[N]==sample[0] by construction — no seam pops ever). Wind = 48
+  integer-harmonic partials with 1/f weighting + gust LFOs; hum = snapped root + 2 harmonics +
+  tremble; rumble = beating low pair; chirps/drips = decaying one-shots. ② `AmbienceDirector`
+  (auto-ensured, the DevMenu idiom): sibling of AudioDirector (music stays theirs) — 4 sources,
+  crossfades the 3 beds on every world load, Poisson-spaced one-shots. Zero assets, zero scene
+  edits, ~1MB generated per world. ③ 6 EditMode tests incl. the coverage GATE: every shipped scene
+  must map to an audible bed — a new world can never ship dead silent by accident.
+- **📣 Heads-ups:** (a) hazard stingers + music stems + VO ducking remain (map row lists them) —
+  claimable. (b) `AudioDirector`'s authored-music path untouched; ambience sits at 0.5 master as a
+  BED. (c) New scene names must be added to `BiomeAmbience.BiomeForScene` (the coverage test's
+  ShippedScenes list is the reminder — add both or CI nags).
+- **Commits:** this push.
+
+
 ### 2026-07-10 (rb14) - Reasonbox: 🦎 CLAIM + first cut — board row 4.3 CREATURE ECOLOGY (vehicles 3.2a CI ✅ · RICHNESS BAR read)
 - **3.2a verdict:** vehicles are **CI GREEN ✅** (`16f478b`). **LAW 6 read and owed:** my v1s
   (skiff/drones/watering-can/POI pockets) are on the richness debt list — claimable rows, or mine
