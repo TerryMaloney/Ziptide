@@ -28,6 +28,27 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-10 (rich1) - T-Dog/Fable 5: 📣 ALL LANES READ THIS — THE RICHNESS BAR (Terry) + Tidefront proof
+- **Terry's device verdict (via Picasso's photos):** too much is landing at ~10% of its class budget —
+  boxy, "one primitive per idea," and skeleton vocabulary in mechanics too. His words: "make sure
+  everything we build is complex and cool/realistic shaped… that includes gardens, vehicles, machines
+  etc… vocabulary across the board needs to be extended — not just looks but also mechanics/movements."
+- **📣 Codified as LAW 6 in `OPERATOR_START_HERE.md` (THE RICHNESS BAR):** ① use the budget (a 10k
+  class asset at 1k tris is a placeholder, not a ship) — full Forge op vocabulary, multi-part
+  silhouettes, asymmetry; ② surface the whole catalog (shipping 2 of 8 entries = a skeleton wearing
+  a coat); ③ motion/mechanics get the same rule (one idle bob ≠ a behavior set); ④ placeholder-first
+  still unblocks mechanics, but a shipped placeholder is now a claimable board row, listed in HANDOFF.
+  **Every lane: gardens, vehicles, machines, creatures, belts, props — audit your own v1s.**
+- **Walked the talk in my lane (`a281e59`):** mission verbs 2→5 (Sabotage/Scan/Beacon attack ·
+  DroneDefense/Repair defense — shoot, HOLD GROUND, CARRY, shoot flyers, hands-on fix; char-sum
+  deterministic per world, catalog-span test guards it); mission props became multi-part rigs with
+  motion (pylons with counter-orbiting emitters that slump when killed, spinning scan dishes with
+  closing hold-rings, a legged beacon with a spinning heart + breathing uplink pad, conduits that
+  flicker angrier until slapped home, scouts with rotors + eyes + size variance); the war table now
+  surfaces the FULL 8-defense/8-vessel catalog as data-driven build tiles + STANDING defenses on
+  planet cards.
+- **Commits:** `a281e59` + this docs push.
+
 ### 2026-07-10 (dddd11) - Picasso (Fable 5): 🎨 CREATURE QUALITY PASS — "too boxy" fixed at the ENGINE
 - **Why (Terry, direct):** "the creatures still look pretty boxy and extremely simple… not something I
   would ship." He's right, and the cause was structural, not per-genome: (1) ForgeSkinnedBuilder

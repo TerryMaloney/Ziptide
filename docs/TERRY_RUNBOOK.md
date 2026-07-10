@@ -166,6 +166,19 @@ Do these in order after pulling. Each generates committable assets. *(This mirro
   mode survives quitting mid-war (rides the same save). NEW WAR keeps hotseat on for the rematch;
   toggling HOTSEAT off hands control back to the AI. Feel notes: is the handover card clear enough,
   should the pass moment black out the view for fairness, per-side fog surprise factor.
+- [ ] **NEW (richness pass, 2026-07-10) — 5 MISSION VERBS + THE FULL BUILD CATALOG:** your "everything's
+  too simple" directive is now LAW 6 in OPERATOR_START_HERE (all lanes must build to budget + surface
+  full catalogs + extend movement vocabularies). First proof, at the war table: the two build tiles are
+  now **16** — all 8 defenses (Gate Jammer, Decoy Beacon, Repair Swarm, Gravity Minefield, Resource
+  Vault, Bloom Barrier…) and all 8 vessels (Scout Skiff → Null Ark), costs on every tile, and planet
+  cards list STANDING defenses. **Missions:** each world now offers its own contract verb — attack =
+  Sabotage (pylons now have plinth/column/hot crown + orbiting emitters that die and SLUMP), **Scan**
+  (stand inside the ring while it closes on you — no gun), or **Beacon** (carry a heavy humming tripod
+  to the pulsing uplink pad); defense = scout shootdown (drones now have spinning rotors + red eyes) or
+  **Repair** (slap arcing conduit junctions home, 3 hits — they flicker angrier as you work). Try W001
+  (Scan), W002 (Beacon), W004 (Sabotage) attacks + defend W001 (Repair). Feel notes: scan ring radius
+  (3.4m) + fill time (3s), beacon weight (4kg) + carry distance (~17m), conduit slap feedback, whether
+  16 tiles crowd the table's left side.
 - [ ] **NEW (abilities sprint A4.5, 2026-07-09) — AUGMENTS:** no menu step (the six gems author at
   build; the Sandbox regenerates with an **augment rack** by A: Grab). **Headset:** select a gem with
   the ray to EQUIP (`ZIPTIDE: AUGMENT_EQUIP`; one active + one passive — re-selecting swaps). With an
