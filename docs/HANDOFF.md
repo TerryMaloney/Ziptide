@@ -60,6 +60,29 @@
   cluster, dispatch console) in ForgeRecipeLibrary; wire WorldDressingBuilder's `Tufts` scatter to
   the plant look via the ForgeModuleLook pattern; booth-verify everything.
 - **Commit:** this push.
+
+### 2026-07-10 (rb20) - Reasonbox/Fable 5: 🛋️ INTERIORS TRANSLATOR ships — furnish + per-room portal cull (1.3e ②)
+- **Why:** rb19's cores are CI ✅ at `1dc5fc8`; this is the translator layer (LAW 2 order held).
+- **Did:**
+  - **`InteriorFurnisher.cs` (Editor, NEW — mine):** the furnish translator — every
+    `RoomFurnishCore` kind becomes MULTI-PART primitives (LAW 6: a cot = frame+mattress+pillow,
+    a shelf = uprights+boards+clutter, a workbench = top+legs+vise+tools; 16 kinds). Per-room
+    `Room_<i>` parents = the portal groups. ONE root BoxCollider per solid item (children
+    stripped — collider count is the physics cost); flat kinds (floor_drain) get none.
+  - **`InteriorBuilder.cs` (architect's, additive):** calls the furnisher after walls; RoomLights
+    now parent into their room's portal group (a culled room takes its light with it); the plan's
+    room/corridor rects serialize onto `InteriorCullRuntime` (data survives the bake, listeners
+    don't — the SalvageCache lesson); log gains `furnishings=`.
+  - **`InteriorCullRuntime.cs` (architect's, additive):** per-ROOM portal culling on top of the
+    1.3d proximity cull — rebuilds the plan from serialized rects, finds `Room_<i>` groups, and
+    on the same 0.5s cadence draws only `InteriorVisibilityCore.VisibleRooms` (own room +
+    corridor neighbors; corridor/outside = everything). Walls/shell stay drawn. OLD BAKES SAFE:
+    no rects or no groups → proximity-only, exactly as before.
+- **🔧 Terry:** runbook §2q — W002 re-bake picks it up (or the next CI APK auto-regen does).
+- **Next-CLAIMED (1.3e ③):** interior audit rule (`Editor/Audit/InteriorAuditRules.cs` — rooms
+  reachable + furnished floor + portal data present, gap #4) · door thresholds if capacity.
+- **Commits:** this push.
+
 ### 2026-07-10 (rb19) - Reasonbox/Fable 5: 🚪 CLAIM + cores — INTERIORS TRANSLATOR (Fable #3, 1.3e)
 - **Why:** Terry's explicit ask ("once you are completely finished please work on #3"); hwr19
   lists it unclaimed. 4.3e is CI ✅ at `d2c3a5f` — ecology lane parked green.

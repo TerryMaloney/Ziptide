@@ -77,7 +77,8 @@ namespace Ziptide.Editor.Patching
             var root = new GameObject("Interior");
             root.transform.SetParent(bRoot, false);
             // 1.3d: interiors only render when the player is near (arms itself at runtime).
-            root.AddComponent<InteriorCullRuntime>();
+            // 1.3e: the same component gets the plan's rects so it can portal-cull per ROOM.
+            var cull = root.AddComponent<InteriorCullRuntime>();
 
             // Interior walls: full storey height, colliding, trim-dark so they read as structure.
             Color wallCol = style.trimColor * 0.92f;
@@ -94,15 +95,21 @@ namespace Ziptide.Editor.Patching
                 if (r != null) r.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
             }
 
+            // 1.3e: FURNISH — every room gets a job and the furniture that proves it (multi-part
+            // primitives per LAW 6), grouped under per-room `Room_<i>` parents for portal culling.
+            var roomParents = InteriorFurnisher.Furnish(root.transform, roomPlan, entry, style, seed);
+
             // One warm light panel per room, up at the ceiling — rooms read LIT from inside and
-            // through the doorway (pairs with the exterior interior-mapped windows).
+            // through the doorway (pairs with the exterior interior-mapped windows). Parented to
+            // the room's portal group so a culled room takes its light with it.
             var lightCol = new Color(1.0f, 0.87f, 0.62f);
-            foreach (var room in roomPlan.Rooms)
+            for (int ri = 0; ri < roomPlan.Rooms.Count; ri++)
             {
+                var room = roomPlan.Rooms[ri];
                 var panel = GameObject.CreatePrimitive(PrimitiveType.Cube);
                 panel.name = "RoomLight";
                 Object.DestroyImmediate(panel.GetComponent<Collider>());
-                panel.transform.SetParent(root.transform, false);
+                panel.transform.SetParent(roomParents[ri], false);
                 panel.transform.localPosition = new Vector3(room.center.x, h - 0.12f, room.center.y);
                 panel.transform.localScale = new Vector3(
                     Mathf.Min(1.2f, room.width * 0.4f), 0.06f, Mathf.Min(1.2f, room.height * 0.4f));
@@ -110,6 +117,11 @@ namespace Ziptide.Editor.Patching
                 var r = panel.GetComponent<Renderer>();
                 if (r != null) r.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
             }
+
+            // 1.3e: hand the plan's geometry to the culler (serialized — it survives into the
+            // baked scene; the SalvageCache lesson says data survives, listeners don't).
+            cull.roomRects = roomPlan.Rooms.ToArray();
+            cull.corridorRects = roomPlan.Corridors.ToArray();
 
             // Interior POIs (1.3c): salvage caches make rooms WORTH entering. Deterministic xorshift
             // (the RoomPartitioner recipe) — same building, same loot. Cap 2 per interior, distinct
@@ -131,8 +143,11 @@ namespace Ziptide.Editor.Patching
                 caches++;
             }
 
+            int furnishings = 0;
+            foreach (var rp in roomParents) furnishings += rp.childCount;
             Debug.Log("[Ziptide] INTERIOR_BUILT rooms=" + roomPlan.Rooms.Count +
-                      " corridors=" + roomPlan.Corridors.Count + " caches=" + caches);
+                      " corridors=" + roomPlan.Corridors.Count + " caches=" + caches +
+                      " furnishings=" + furnishings);
         }
     }
 }

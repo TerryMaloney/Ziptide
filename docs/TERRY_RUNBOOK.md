@@ -583,6 +583,19 @@ Nothing to run in Unity — the patchers do it all at build; these are headset f
   round-trip: grip a placed splitter to pick it up, the tile in your hand shows a fork stripe, and
   it places back as a splitter. Feel notes: footprint ghost readability at 8+ cells.
 
+## 2q. NEW — FURNISHED INTERIORS + portal culling (2026-07-10, Reasonbox 1.3e; needs a W002 re-bake)
+The walk-in tenements now furnish themselves: every room gets a JOB (foyer/common/quarters/
+workshop/storage) and the furniture that proves it — benches, cots, workbenches, crates, shelves
+with clutter — plus per-room portal culling (standing in a room, only it + its corridor
+neighbors draw).
+- [ ] **Re-bake W002** (`Worlds → Generate World From Selected Layout` on W002's layout, or just
+  take the next CI APK — the build regenerates layout worlds automatically). Old bakes keep
+  working untouched (bare rooms, proximity-cull only).
+- [ ] Walk a tenement: do rooms read as LIVED-IN — a quarters with its cot, a workshop with its
+  bench — or as prop soup? Is any doorway blocked (should be impossible — say so LOUDLY if so)?
+- [ ] Perf sanity while inside: any hitching when crossing rooms (portal toggles on a 0.5s
+  cadence)? Feel notes → HANDOFF.
+
 ## 3. The two open judgment calls (yours)
 - **"Can you run in Toxic City?"** — was it the input bug (now fixed) or actual walls/narrow streets? If
   still wall-blocked, say so and the streets get widened.
