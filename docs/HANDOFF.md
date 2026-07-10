@@ -28,6 +28,30 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-10 (health1) - T-Dog/Fable 5: 🩺 RUNTIME HEALTH — the forgotten architecture (frames, memory, THE JANITOR)
+- **Why:** Terry: "find the next big thing that isn't set up… the hardest stuff or something we
+  completely forgot." Found it: the game measures NOTHING about its own runtime — and 57 files
+  create runtime Materials/Textures/AudioClips while `Resources.UnloadUnusedAssets` was called
+  NOWHERE. Unity never auto-destroys runtime-created resources ⇒ every travel leaked orphans ⇒ long
+  VR sessions marched toward OOM, and the richness bar was ACCELERATING it. Invisible until it
+  crashes a headset.
+- **Did:** ① `FrameStats` (Core, pure): sliding-window frame vitals — avg, worst, percentiles,
+  1%-low FPS, dropped-vs-72Hz-budget; headless-tested. ② `RuntimeHealthMonitor` (Core,
+  auto-ensured): 30s vitals line + memory census (`ZIPTIDE: HEALTH …`), `HEALTH_SLOW` when 1%-low
+  dips under 60, and **THE TRAVEL JANITOR** — after every world load, `UnloadUnusedAssets()` sweeps
+  orphans and logs exactly what it freed (`HEALTH_SWEEP`). Deliberately OUTSIDE TravelCoordinator
+  (travel stays report-only; this is an additive observer on sceneLoaded). ③ **The leak ratchet**
+  (`ResourceDisciplineTests`): every runtime resource-creator file must show Destroy discipline or
+  sit on a VISIBLE 10-file exemption ledger with a reason — new offenders turn CI red; stale ledger
+  entries turn CI red too, so the debt can only shrink. ④ Map: new "Runtime health" row (🧱, gated)
+  + a "Localization readiness" ⬜ row — the OTHER forgotten thing: all player-facing text is
+  hardcoded literals; Terry decides English-only vs a TextTable seam BEFORE M5 scales to 80 worlds.
+- **📣 Every lane:** your files are on the ledger if they create resources without cleanup (ItemFactory,
+  ForgeMaterials, BeltRig, PvpBot + 6 more) — the janitor covers today's behavior, but if you touch
+  those files, add cleanup and DELETE your ledger line. Runbook has Terry's 5-minute soak test.
+- **Commits:** this push.
+
+
 ### 2026-07-10 (dddd17) - Picasso (Fable 5): 🧬 v5.2 VERIFIED + v5.3 BREATH — "moving and breathing"
 - **v5.2 verdict (run `29102529936`, CI green `34f7e35`):** the segments raise reads — bug carapace
   and warden torso/dome are smooth, grazer bell rim far cleaner. Silhouette tell closed.

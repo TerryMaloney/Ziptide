@@ -187,6 +187,15 @@ Do these in order after pulling. Each generates committable assets. *(This mirro
   — a thin 30Hz dread; that's deliberate). Cross a travel gate and listen for the 2.5s crossfade.
   Feel notes: overall bed volume (0.5 master — too loud under music? too quiet?), chirp/drip rates,
   whether the station hum (92Hz) reads as 'the drive below deck' or as noise.
+- [ ] **NEW (runtime health, 2026-07-10) — THE SOAK TEST (5 minutes, logcat only):** the game now
+  measures its own vitals and cleans up after itself (we were leaking materials on EVERY travel —
+  57 files create them, nothing ever swept). In logcat, filter `ZIPTIDE: HEALTH`. ① Stand in any
+  world 30s: a `HEALTH fps=… low1=… mats=… memMB=…` line appears — note low1 (the comfort number;
+  under 60 auto-flags `HEALTH_SLOW`). ② THE SOAK: travel back and forth between two worlds ~8
+  times; each arrival logs `HEALTH_SWEEP … freed mats=N`. Healthy = freed counts stay similar and
+  `mats=`/`memMB=` in the periodic lines stay FLAT across the run. Climbing numbers = a leak the
+  janitor can't reach — paste the lines in chat and we'll hunt it. ③ Note the worst `low1` per
+  world you visit — that's our first real per-world perf ranking.
 - [ ] **NEW (abilities sprint A4.5, 2026-07-09) — AUGMENTS:** no menu step (the six gems author at
   build; the Sandbox regenerates with an **augment rack** by A: Grab). **Headset:** select a gem with
   the ray to EQUIP (`ZIPTIDE: AUGMENT_EQUIP`; one active + one passive — re-selecting swaps). With an
