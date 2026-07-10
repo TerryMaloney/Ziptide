@@ -20,8 +20,11 @@ namespace Ziptide.Ship
     /// on-foot scheme: stick = fly (back = reverse), L3/A = boost (the sprint finger), X/B =
     /// barrel roll. Ring course (FlightCourseCore) → dock or fly on; DOCK exits flight; RETURN
     /// travels home through TravelCoordinator (the only legal path).
+    /// SPACE COMBAT 3.1 rides along: RT fires a stun bolt (SpaceCombatCore aim cone — fly to aim,
+    /// don't pixel-hunt), drones DISABLE non-lethally and become salvage you fly close to claim.
     /// All fields are SERIALIZED at edit time by ScenePatcherSpaceLane (gotcha #7).
-    /// Logs FLIGHT_MODE / FLIGHT_RING / FLIGHT_COURSE_DONE / FLIGHT_RETURN.
+    /// Logs FLIGHT_MODE / FLIGHT_RING / FLIGHT_COURSE_DONE / FLIGHT_RETURN / FLIGHT_FIRE /
+    /// FLIGHT_DISABLE / FLIGHT_SALVAGE.
     /// </summary>
     public class ShipFlightRuntime : MonoBehaviour
     {
@@ -62,6 +65,10 @@ namespace Ziptide.Ship
         private InputAction _boostButton;      // A — the CONTROLS_AND_FLIGHT boost button
         private InputAction _rollLeftButton;   // X
         private InputAction _rollRightButton;  // B
+        private InputAction _fireAction;       // RT — fire ship weapon (CONTROLS_AND_FLIGHT)
+
+        private SpaceTargetRuntime[] _targets = System.Array.Empty<SpaceTargetRuntime>();
+        private float _lastFireTime = float.NegativeInfinity;
 
         private TextMesh _statusText;
         private GameObject _returnPanel;
@@ -141,6 +148,8 @@ namespace Ziptide.Ship
             _rollLeftButton.AddBinding("<XRController>{LeftHand}/primaryButton");      // X
             _rollRightButton = new InputAction("ZiptideFlightRollR", InputActionType.Button);
             _rollRightButton.AddBinding("<XRController>{RightHand}/secondaryButton");  // B
+            _fireAction = new InputAction("ZiptideFlightFire", InputActionType.Button);
+            _fireAction.AddBinding("<XRController>{RightHand}/trigger");               // RT
 
             BuildHelm();
         }
@@ -153,6 +162,7 @@ namespace Ziptide.Ship
             _boostButton?.Dispose();
             _rollLeftButton?.Dispose();
             _rollRightButton?.Dispose();
+            _fireAction?.Dispose();
         }
 
         private void BuildHelm()
@@ -263,6 +273,9 @@ namespace Ziptide.Ship
             _boostButton.Enable();
             _rollLeftButton.Enable();
             _rollRightButton.Enable();
+            _fireAction.Enable();
+            _targets = laneContent.GetComponentsInChildren<SpaceTargetRuntime>(true);
+            _lastFireTime = float.NegativeInfinity;
             _flying = true;
             UpdateStatus();
             Debug.Log("ZIPTIDE: FLIGHT_MODE on scene=" + gameObject.scene.name +
@@ -281,6 +294,7 @@ namespace Ziptide.Ship
             _boostButton.Disable();
             _rollLeftButton.Disable();
             _rollRightButton.Disable();
+            _fireAction.Disable();
             if (laneContent != null)
                 laneContent.SetPositionAndRotation(_laneHomePos, _laneHomeRot);
             ResumeLocomotion();
@@ -336,16 +350,78 @@ namespace Ziptide.Ship
                 if (_course.IsComplete)
                     Debug.Log("ZIPTIDE: FLIGHT_COURSE_DONE rings=" + _course.RingCount);
             }
+
+            TickCombat();
+        }
+
+        // ── Space combat 3.1: fire on RT, hits resolve in lane space, wrecks salvage on approach ──
+
+        private void TickCombat()
+        {
+            if (_targets.Length == 0) return;
+            float now = Time.time;
+
+            if (_fireAction.IsPressed() && SpaceCombatCore.CanFire(_lastFireTime, now))
+            {
+                _lastFireTime = now;
+                Vector3 forward = FlightModel.Forward(_state);
+                SpaceTargetRuntime hit = null;
+                float best = float.MaxValue;
+                foreach (var t in _targets)
+                {
+                    if (t == null || !t.gameObject.activeSelf || t.Disabled) continue;
+                    Vector3 lanePos = laneContent.InverseTransformPoint(t.transform.position);
+                    float d = (lanePos - _state.position).sqrMagnitude;
+                    if (d < best && SpaceCombatCore.InAimCone(_state.position, forward, lanePos))
+                    {
+                        best = d;
+                        hit = t;
+                    }
+                }
+
+                // The cockpit never rotates (the WORLD does), so the bolt always streaks straight
+                // out the front window in world space — from the helm, along its facing.
+                Vector3 from = transform.position + Vector3.up * 1.1f + transform.forward * 1.4f;
+                float len = hit != null ? Mathf.Sqrt(best) : SpaceCombatCore.BoltRange;
+                TracerFx.Spawn(from, from + transform.forward * Mathf.Min(len, SpaceCombatCore.BoltRange),
+                    new Color(0.4f, 0.9f, 1f, 0.9f), 0.03f, 0.1f);
+                Debug.Log("ZIPTIDE: FLIGHT_FIRE hit=" + (hit != null ? hit.name : "none"));
+
+                if (hit != null && hit.TakeHit(SpaceCombatCore.BoltDamage, now))
+                {
+                    Debug.Log("ZIPTIDE: FLIGHT_DISABLE target=" + hit.name);
+                    UpdateStatus();
+                }
+            }
+
+            foreach (var t in _targets)
+            {
+                if (t == null || !t.gameObject.activeSelf || !t.Disabled || t.Salvaged) continue;
+                Vector3 lanePos = laneContent.InverseTransformPoint(t.transform.position);
+                if (SpaceCombatCore.InSalvageRange(_state.position, lanePos))
+                {
+                    double granted = t.Salvage();
+                    Debug.Log("ZIPTIDE: FLIGHT_SALVAGE target=" + t.name + " granted=" + granted.ToString("F0"));
+                    UpdateStatus();
+                }
+            }
         }
 
         private void UpdateStatus()
         {
             if (_statusText == null) return;
+            string targets = "";
+            if (_targets.Length > 0)
+            {
+                int down = 0;
+                foreach (var t in _targets) if (t != null && (t.Salvaged || t.Disabled)) down++;
+                targets = "\nRT fire - drones down " + down + "/" + _targets.Length + " (fly close to salvage)";
+            }
             _statusText.text = _course.IsComplete
-                ? "COURSE COMPLETE\ndock + return home"
+                ? "COURSE COMPLETE\ndock + return home" + targets
                 : "RINGS " + _course.NextRing + "/" + _course.RingCount
                   + "\nleft stick fly + slide (back = reverse)"
-                  + "\nright stick steer - L3/A boost - X/B barrel roll";
+                  + "\nright stick steer - L3/A boost - X/B barrel roll" + targets;
         }
 
         private void TintRing(int index)

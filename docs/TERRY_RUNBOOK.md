@@ -58,6 +58,12 @@ Do these in order after pulling. Each generates committable assets. *(This mirro
   on a 0.4s cadence instead of turning once. Feel notes wanted: snap-yaw angle (30°) + repeat cadence
   (0.4s), strafe speed (30% of cruise), pitch speed, boost strength (1.8×–2.5×), barrel-roll speed
   (~0.86s — too fast/slow/nauseating?), reverse cap (40%), vignette strength, ring size.
+  **Space-combat addendum (3.1, same scene, re-run the Build Space Lane menu to pick it up):** three
+  orange drones flank rings 2–4 — **RT fires a stun bolt** (generous aim cone: point the nose near
+  them and shoot; `ZIPTIDE: FLIGHT_FIRE/FLIGHT_DISABLE` in logcat). Disabled drones dim and list
+  over (nothing explodes — non-lethal law), then **fly within ~14m to salvage** them
+  (`FLIGHT_SALVAGE`, pays scrap through the economy; the helm readout counts drones down). Feel
+  notes: aim-cone size (6°), bolt cadence (0.55s), drone armor (3 hits), salvage fly-close radius.
 - [ ] **NEW (traversal 1.4b, 2026-07-09 — traversal Fable):** climbing + world ziplines are in. No menu
   step (all auto at build: the Sandbox regenerates with a **ClimbTower + a zipline off its top**, and
   every generated world strings ONE zipline between its two farthest POIs). **Headset check (Sandbox,

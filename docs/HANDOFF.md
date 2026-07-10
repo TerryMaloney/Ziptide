@@ -99,6 +99,28 @@
   palette/materials). If forge-photos shows the totem exploded/inverted, suspect SweepSpline frame or
   Torus winding first — both have dedicated tests, so CI-green + bad photo would mean a booth/light issue.
 - **Commits:** `2f50b0b` (combat) · `704b46a` (P2 ①) · this push (P2 ②).
+### 2026-07-09 (rb7) - Reasonbox: 🛰️ CLAIM + first cut — board row 3.1 SPACE COMBAT (disable + salvage in the lane)
+- **Why:** 1.5a went green; both remaining 1.5 halves are flagged for cross-lane coordination, so per
+  Terry ("find another lane") I took the next unclaimed row that extends my flight lane: **3.1 space
+  combat**. Scan at claim time: architect=4.1 belts · traversal=1.4 caves · T-Dog=Tidefront B2 ·
+  Picasso=combat Phase C. No overlap — this all lives in my flight files + new Ziptide.Ship files.
+- **CLAIMED: row 3.1.** Files: `Ship/Runtime/{SpaceCombatCore,SpaceTargetRuntime}.cs` (new) +
+  combat wiring inside my `ShipFlightRuntime` + drone cluster in my `ScenePatcherSpaceLane`.
+- **Did (v1, the locked non-lethal loop):** pure `SpaceCombatCore` — armor-only damage that floors
+  at 0 and DISABLES (a wreck never recharges — pinned by test, the salvage loop depends on it),
+  live-armor recharge after a quiet delay, fire cooldown, a **6° comfort aim cone** (fly to aim, no
+  pixel-hunting), proximity salvage. `SpaceTargetRuntime` drones live under LaneContent (world-moves
+  frame carries them), power DOWN on disable (dim + list over — nothing explodes), and pay salvage
+  through the one economy via the traversal lane's tested `SalvageCacheRuntime.GrantTo` (ride the
+  machine — no new grant path). **RT fires** (CONTROLS_AND_FLIGHT's flight row): hits resolve in
+  lane space; the tracer streaks straight out the windshield because the cockpit never rotates.
+  3 drones flank rings 2–4 in the Space Lane, off the racing line. 6 EditMode tests. Logs
+  `FLIGHT_FIRE/FLIGHT_DISABLE/FLIGHT_SALVAGE`.
+- **Next in this row (unstarted, still mine):** `ShipWeaponDefinition` data layer (hardpoint-mounted,
+  T-Dog's module slots feed it) · enemy AI (BotBrain→3D pursue/evade) · encounter POIs in the space
+  world · ship abilities (EMP/tractor). v1 is deliberately the smallest honest loop: see → fire →
+  disable → fly close → paid.
+- **Commit / branch:** this push on `terry-local-wip` — verify the run before stacking C#.
 
 ### 2026-07-09 (tf1) - T-Dog/Fable 5 (Tidefront lane): 🌌 B2 SHIPS — the war table, the conquest sim's first visible surface
 Terry: "pick a lane nobody is working on." Scan: architect=4.1 belts, Reasonbox=flight v1.2,

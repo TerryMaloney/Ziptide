@@ -104,6 +104,15 @@ namespace Ziptide.Editor.Patching
         }
 
         // ── The lane: everything that moves past the pilot lives under this one root ───────────────
+        // Drone targets flank the course between rings 2 and 4 — off the racing line, so pacifists
+        // still finish the rings; hunters detour, disable, and fly in for the salvage.
+        private static readonly Vector3[] Drones =
+        {
+            new Vector3(26f, 9f, 170f),
+            new Vector3(-22f, 14f, 250f),
+            new Vector3(-38f, 8f, 330f),
+        };
+
         private static Transform BuildLaneContent(Transform root)
         {
             var lane = new GameObject("LaneContent").transform;
@@ -111,6 +120,9 @@ namespace Ziptide.Editor.Patching
 
             for (int i = 0; i < Rings.Length; i++)
                 BuildRing(lane, i, Rings[i]);
+
+            for (int i = 0; i < Drones.Length; i++)
+                BuildDroneTarget(lane, i, Drones[i]);
 
             // Sparse drift rocks flanking the course — parallax so speed reads.
             var rng = new System.Random(777);
@@ -133,6 +145,42 @@ namespace Ziptide.Editor.Patching
                 Paint(rock, new Color(0.20f, 0.22f, 0.27f));
             }
             return lane;
+        }
+
+        private static void BuildDroneTarget(Transform lane, int index, Vector3 center)
+        {
+            // Direct child of LaneContent — SpaceTargetRuntime's lane math assumes this frame.
+            var drone = new GameObject("Drone_" + index);
+            drone.transform.SetParent(lane, false);
+            drone.transform.localPosition = center;
+
+            var hull = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            hull.name = "Hull";
+            hull.transform.SetParent(drone.transform, false);
+            hull.transform.localScale = new Vector3(1.6f, 0.9f, 2.2f);
+            Object.DestroyImmediate(hull.GetComponent<Collider>()); // hits resolve in the aim cone, not physics
+            Paint(hull, new Color(0.9f, 0.6f, 0.2f));
+
+            for (int s = -1; s <= 1; s += 2)
+            {
+                var wing = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                wing.name = s < 0 ? "Wing_L" : "Wing_R";
+                wing.transform.SetParent(drone.transform, false);
+                wing.transform.localPosition = new Vector3(s * 1.5f, 0f, -0.3f);
+                wing.transform.localScale = new Vector3(1.4f, 0.12f, 1.1f);
+                Object.DestroyImmediate(wing.GetComponent<Collider>());
+                Paint(wing, new Color(0.55f, 0.35f, 0.15f));
+            }
+
+            var eye = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            eye.name = "Eye";
+            eye.transform.SetParent(drone.transform, false);
+            eye.transform.localPosition = new Vector3(0f, 0.2f, 1.2f);
+            eye.transform.localScale = Vector3.one * 0.5f;
+            Object.DestroyImmediate(eye.GetComponent<Collider>());
+            Paint(eye, new Color(1f, 0.3f, 0.2f));
+
+            drone.AddComponent<SpaceTargetRuntime>(); // serialized defaults: 6 armor, "scrap" ×6
         }
 
         private static void BuildRing(Transform lane, int index, Vector3 center)
