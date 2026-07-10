@@ -51,8 +51,9 @@ Examples:
 What the LLM turns that into (the recipe vocabulary — `ForgeRecipeDefinition.cs`):
 | Piece | Means |
 |---|---|
-| `ForgeOp` (7, closed) | BeveledBox · Cylinder · Tube · Lathe (profile revolve) · SphereSection (domes) · Wedge · GreebleStrip (mechanical detail row) |
+| `ForgeOp` (12, closed) | **Mechanical:** BeveledBox · Cylinder · Tube · Lathe (profile revolve) · SphereSection (domes) · Wedge · GreebleStrip (detail row). **Organic (P2, 2026-07-09):** Capsule (dome-capped column) · Frustum (truncated cone; `size.z`=top diameter, 0 = true cone) · Torus (`size.x`=major ⌀, `size.y`=minor ⌀) · SweepSpline (tube along a 2..4-pt bezier in `spline`, per-point radii via `profile[i].x` — **tentacles/pipes/branches/horns**) · OrganicBlob (UV ellipsoid — pair with noise) |
 | `ForgePart` | one placed shape: size/position/rotation/scale, `mirrorX` (symmetry for free), `paletteSlot`, `smooth` |
+| **P2 modifiers** (any op) | applied local-space pre-transform in fixed order **taper → bend → noise**: `taper` 0..0.95 shrinks XZ toward the top · `bendDegrees` ±180 arc-bends the +Y axis toward ±Z (base slice stays put) · `noiseAmplitude/Frequency/Seed` = deterministic fBm bump displacement (weld-safe — can't crack a part). A bent tapered cylinder = a horn; a noisy blob = a barnacled rock. **Reference piece: `p2_tide_totem`** (photo-verified — every organic op in one prop) |
 | `palette` | ≤6 colors → ≤6 draw calls; colors shared across recipes collapse into shared materials |
 | `sockets` | named attach points; **Grip must bake +45° X** (Quest controller tilt) and implies a Muzzle |
 | `budgetTris` | hard cap — over it, tests AND the build audit fail |
@@ -63,7 +64,10 @@ What the LLM turns that into (the recipe vocabulary — `ForgeRecipeDefinition.c
 - `ForgeAuditRules` (build blocker): an item pointing at a missing recipe, or a recipe over budget, fails the APK.
 - Recipes are **create-only** seeds: the `.asset` under `Resources/Forge/` is the live truth once created
   (delete it to reseed from code). Same contract as every other authoring library in the repo.
-- Budgets by type: handheld ≤3k tris · drone/creature ≤2k · large prop ≤5k · ship hull ≤8k.
+- **Class budgets (P2, enforced in `Validate()` by storyTag):** hull ≤15k · creature ≤10k ·
+  handheld ≤6k · prop ≤3k · plant ≤1.5k. A recipe may declare LESS than its class cap, never more —
+  `budgetTris` past the cap fails EditMode before anything renders. (Most shipped recipes sit at 2–3k;
+  the caps are ceilings, not targets.)
 - **Forbidden aesthetics = photo-critique FAIL conditions** (reconciliation 2026-07-04): N64-flat
   untextured output, clean chrome in lived-in families, functionless detail, franchise lookalikes,
   generic creature fallbacks. Per-family bans: `ART_DIRECTION_MASTER_PLAN.md`; contracts per asset
