@@ -95,10 +95,18 @@ namespace Ziptide.Multiplayer.Conquest
         public static float EstimateOdds(ConquestState state, int playerId, string targetId)
         {
             var me = state.GetPlayer(playerId);
+            if (me == null) return 0f;
+            return EstimateOdds(state, me.fleetVesselIds, targetId);
+        }
+
+        /// <summary>Wave variant: odds for exactly these vessels — the fleet-rack picker shows what
+        /// the wave you actually committed would do, not what the whole fleet could.</summary>
+        public static float EstimateOdds(ConquestState state, List<string> vesselIds, string targetId)
+        {
             var target = state.GetPlanet(targetId);
-            if (me == null || target == null) return 0f;
+            if (target == null || vesselIds == null) return 0f;
             int attack = 0;
-            foreach (var id in me.fleetVesselIds)
+            foreach (var id in vesselIds)
             {
                 var v = ConquestCatalog.Vessel(id);
                 if (v != null) attack += v.Value.AttackPower;

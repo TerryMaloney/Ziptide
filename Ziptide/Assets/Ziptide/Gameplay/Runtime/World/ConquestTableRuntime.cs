@@ -218,11 +218,78 @@ namespace Ziptide.Gameplay
                 ShowCard(p, "Can't strike from " + _selected + " — not adjacent, or out of attacks.");
                 return;
             }
-            float odds = ConquestAI.EstimateOdds(_state, 0, planetId);
+            var wave = CommittedWave();
+            float odds = ConquestAI.EstimateOdds(_state, wave, planetId);
             _card.text = p.displayName.ToUpperInvariant() + "  —  ODDS " + Mathf.RoundToInt(odds * 100f)
-                       + "%\nTap it AGAIN to commit the strike.";
+                       + "%  (WAVE " + wave.Count + "/" + _state.GetPlayer(0).fleetVesselIds.Count + ")"
+                       + "\nTap it AGAIN to commit the strike.";
             if (_pendingTarget == planetId) CommitAttack(planetId);
             else _pendingTarget = planetId;
+        }
+
+        // ── The fleet rack: tap tokens to hold vessels back from the wave ────
+        private GameObject _rackRoot;
+        private readonly HashSet<int> _heldBack = new HashSet<int>();
+        private string _rackSignature;
+
+        /// <summary>The vessels actually going into the next strike (losses only bite the wave).</summary>
+        private List<string> CommittedWave()
+        {
+            var fleet = _state.GetPlayer(0).fleetVesselIds;
+            var wave = new List<string>();
+            for (int i = 0; i < fleet.Count; i++)
+                if (!_heldBack.Contains(i)) wave.Add(fleet[i]);
+            return wave;
+        }
+
+        private void RebuildRack()
+        {
+            if (_rackRoot != null) Destroy(_rackRoot);
+            _rackRoot = new GameObject("FleetRack");
+            _rackRoot.transform.SetParent(transform, false);
+            var fleet = _state.GetPlayer(0).fleetVesselIds;
+            for (int i = 0; i < fleet.Count && i < 12; i++)
+            {
+                int idx = i;   // closure copy
+                bool held = _heldBack.Contains(i);
+                var tok = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                tok.name = "Token_" + i + "_" + fleet[i];
+                tok.transform.SetParent(_rackRoot.transform, false);
+                tok.transform.localPosition = new Vector3(-0.66f + i * 0.12f, held ? 0.93f : 0.98f, -0.52f);
+                tok.transform.localScale = Vector3.one * (held ? 0.05f : 0.075f);
+                Color c = TokenColor(fleet[i]);
+                ItemFactory.ApplyURPColor(tok, held ? Color.Lerp(c, Color.black, 0.65f) : c);
+                tok.AddComponent<XRSimpleInteractable>().selectEntered.AddListener(_ => ToggleToken(idx));
+            }
+            if (fleet.Count > 0)
+            {
+                var lbl = NewText("YOUR FLEET — tap a token to hold it back from the wave",
+                                  new Vector3(0f, 0.88f, -0.6f), 0.005f, _rackRoot.transform);
+                lbl.color = new Color(0.6f, 0.7f, 0.8f);
+            }
+        }
+
+        private void ToggleToken(int idx)
+        {
+            if (_aiTurnRunning) return;
+            if (!_heldBack.Remove(idx)) _heldBack.Add(idx);
+            RebuildRack();
+            // Re-show live odds if a target is mid-confirm, so the number tracks the wave.
+            if (_pendingTarget != null && _state.GetPlanet(_pendingTarget) != null && _selected != null)
+            {
+                var wave = CommittedWave();
+                float odds = ConquestAI.EstimateOdds(_state, wave, _pendingTarget);
+                _card.text = _state.GetPlanet(_pendingTarget).displayName.ToUpperInvariant() +
+                             "  —  ODDS " + Mathf.RoundToInt(odds * 100f) + "%  (WAVE " + wave.Count +
+                             "/" + _state.GetPlayer(0).fleetVesselIds.Count + ")\nTap it AGAIN to commit the strike.";
+            }
+        }
+
+        /// <summary>Stable per-vessel-type colour (the decal hash-to-hue idiom).</summary>
+        private static Color TokenColor(string vesselId)
+        {
+            float h = Mathf.Abs(vesselId.GetHashCode() % 360) / 360f;
+            return Color.HSVToRGB(h, 0.55f, 0.9f);
         }
 
         private string _pendingTarget;
@@ -231,14 +298,19 @@ namespace Ziptide.Gameplay
 
         private void CommitAttack(string targetId)
         {
+            var wave = CommittedWave();
+            if (wave.Count == 0)
+            {
+                _ticker.text = "Your whole fleet is held back — free some tokens to strike.";
+                return;
+            }
             _pendingTarget = null;
-            var player = _state.GetPlayer(0);
             var order = new AttackOrder
             {
                 attackerId = 0,
                 fromPlanetId = _selected,
                 targetPlanetId = targetId,
-                vesselIds = new List<string>(player.fleetVesselIds), // commit the fleet
+                vesselIds = wave,   // only the committed tokens ride — losses only bite the wave
             };
             int seed = _state.turn * 8191 + targetId.GetHashCode();
             // B3 — the gulag: strike at base odds, or fly a 2–3 minute mission IN that world to
@@ -450,6 +522,9 @@ namespace Ziptide.Gameplay
                 orb.localScale = Vector3.one * (scouted ? 0.055f + 0.008f * p.defenseLevel : 0.045f);
             }
             var you = _state.GetPlayer(0);
+            // The rack mirrors the fleet; composition changes (builds/losses) reset the hold-backs.
+            string sig = string.Join("+", you.fleetVesselIds);
+            if (sig != _rackSignature) { _rackSignature = sig; _heldBack.Clear(); RebuildRack(); }
             _card.text = _card.text ?? "";
             string tickerBase = "TURN " + _state.turn +
                 "   FLUX " + you.flux + " · ALLOY " + you.alloy + " · BLOOM " + you.bloommatter +
@@ -515,6 +590,7 @@ namespace Ziptide.Gameplay
             for (int i = transform.childCount - 1; i >= 0; i--)
                 Destroy(transform.GetChild(i).gameObject);
             _orbs.Clear(); _stamps.Clear();
+            _rackRoot = null; _heldBack.Clear(); _rackSignature = null;   // swept with the children
             _selected = null; _pendingTarget = null; _offerPanel = null;
             _aiTurnRunning = false; _gameOver = false; _newWarArmed = false; _awaitingDefense = false;
 

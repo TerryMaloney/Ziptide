@@ -44,6 +44,17 @@ namespace Ziptide.Tests.EditMode
             Assert.AreEqual(0.55f, ConquestRules.ComputeOdds(6, 5), 1e-5f, "each point ≈ +5%");
         }
 
+        [Test]
+        public void WaveOdds_DropWhenVesselsAreHeldBack()
+        {
+            var s = SkirmishState(out _, fleetPower: 8);   // 4 frigates
+            float full = ConquestAI.EstimateOdds(s, 0, "b");
+            float half = ConquestAI.EstimateOdds(s, new List<string> { "pulse_frigate" }, "b");
+            Assert.Less(half, full, "a partial wave must show weaker odds");
+            Assert.AreEqual(full, ConquestAI.EstimateOdds(s, s.GetPlayer(0).fleetVesselIds, "b"), 1e-6f,
+                "the full-fleet overload equals the wave overload fed the whole fleet");
+        }
+
         // ── Legality ────────────────────────────────────────────────────────
         [Test]
         public void Attacks_AreAdjacentOnly_FromOwnedPlanets()
