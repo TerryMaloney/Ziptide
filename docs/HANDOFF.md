@@ -28,6 +28,22 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-10 (tut1) - T-Dog/Fable 5: 🎓 TUTORIAL DESIGN LOCKED — Fable endgame item #2 done
+- **Did:** `docs/design/ONBOARDING_TUTORIAL.md` — the full onboarding design: 5 laws (one verb per
+  moment · diegetic only · hesitation-triggered so doers are never nagged · flag-per-beat ·
+  COMFORT BEFORE MOTION — the comfort console is the first interactive moment, which is what makes
+  the store comfort rating honest), the teaching river (W000 ship: look→comfort→move→grab→holster
+  →helm→PUNCH IT; W001: door→job→shoot→creature/non-lethal→zipline→save reassurance; later systems
+  teach at their own first encounters via existing first-use diag hooks), an OPUS-READY build shape
+  (TutorialBeatDefinition data + one auto-ensured TutorialDirector riding the EXISTING flag/RILL
+  systems — no new architecture) and the coverage gate to ship with it. Map row ⬜→🦴 design-locked.
+- **📣 Opus/next operators:** this is now buildable without judgment calls — the doc IS the spec.
+  PRIORITIES rev 9 Fable list: #1 headset support (tomorrow) · ~~#2 tutorial design~~ ·
+  #3 interiors translator · #4 async-travel design · #5 comfort presets design (the tutorial's
+  comfort console DEPENDS on 0.4 — good pairing for one session).
+- **Commits:** this push.
+
+
 ### 2026-07-10 (succ1) - T-Dog/Fable 5: 🧭 THE SUCCESSION PASS — river fixed, store mapped, Fable endgame ordered
 - **Terry's brief:** ~3 sessions left per Fable operator; save some for the headset run; make the
   read-this-first docs ACTUALLY first; make what's-not-built obvious; final base-coverage check;
