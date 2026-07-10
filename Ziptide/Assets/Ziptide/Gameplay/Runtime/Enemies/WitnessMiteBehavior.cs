@@ -43,11 +43,11 @@ namespace Ziptide.Gameplay
             if (observed)
             {
                 // Fixed by the gaze — dead still, stone-grey. (Also its vulnerable window.)
-                SetColor(FrozenColor);
+                SetFrozen(true);
                 return;
             }
 
-            SetColor(MoveColor);
+            SetFrozen(false);
             if (Player != null && dist <= detectRange)
             {
                 // Unwatched: skitter straight at you, fast enough to feel it gained ground.
@@ -59,7 +59,17 @@ namespace Ziptide.Gameplay
             }
         }
 
-        public override void RestoreVisuals() => SetColor(MoveColor);
+        public override void RestoreVisuals() => SetFrozen(false);
+
+        /// <summary>The stone-freeze tell. Forged body: tint/clear through the ForgeBodyTell bridge
+        /// (clearing restores the genome's OWN palette). Unforged: recolor the primitive as before.</summary>
+        private void SetFrozen(bool frozen)
+        {
+            bool bridged = frozen
+                ? Ziptide.Visuals.ForgeBodyTell.TrySetBodyTint(gameObject, FrozenColor)
+                : Ziptide.Visuals.ForgeBodyTell.TryClearBodyTint(gameObject);
+            if (!bridged) SetColor(frozen ? FrozenColor : MoveColor);
+        }
 
         private void SetColor(Color c)
         {

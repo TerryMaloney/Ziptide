@@ -41,17 +41,24 @@ namespace Ziptide.Visuals
             smr.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off; // Quest budget
 
             var mats = new Material[r.paletteSlots.Length];
+            var baseColors = new Color[r.paletteSlots.Length];
+            int eyeIndex = -1;
             for (int i = 0; i < r.paletteSlots.Length; i++)
             {
                 int slot = r.paletteSlots[i];
                 Color c = body.palette != null && slot < body.palette.Length
                     ? body.palette[slot]
                     : Color.magenta; // loud fallback — Validate() should have caught this
-                mats[i] = slot == body.eyePaletteSlot ? Emissive(c) : ForgeMaterials.Mat(c);
+                baseColors[i] = c;
+                if (slot == body.eyePaletteSlot) { eyeIndex = i; mats[i] = Emissive(c); }
+                else mats[i] = ForgeMaterials.Mat(c);
             }
             smr.sharedMaterials = mats;
 
             vis.AddComponent<ForgeCreatureAnimator>().Bind(body, r.bones);
+            // The tell bridge: behaviors drive gameplay reads (eye states, freeze tints, husk clones)
+            // through this instead of their now-hidden primitive parts.
+            vis.AddComponent<ForgeBodyTell>().Init(smr, eyeIndex, baseColors);
 
             Debug.Log("ZIPTIDE: FORGE_CREATURE_APPLIED id=" + creatureId
                 + " bones=" + r.bones.Length + " tris=" + r.mesh.triangles.Length / 3);

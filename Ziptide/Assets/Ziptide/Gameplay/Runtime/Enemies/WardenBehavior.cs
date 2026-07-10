@@ -100,6 +100,9 @@ namespace Ziptide.Gameplay
 
         private void SetEye(Color c)
         {
+            // Forged body: the genome's emissive eye IS the tell (ForgeBodyTell bridge). Unforged:
+            // the primitive eye sphere carries it exactly as before.
+            if (Ziptide.Visuals.ForgeBodyTell.TrySetEye(gameObject, c)) return;
             if (_eye == null || _eye.material == null) return;
             if (_eye.material.HasProperty("_BaseColor")) _eye.material.SetColor("_BaseColor", c);
             else _eye.material.color = c;

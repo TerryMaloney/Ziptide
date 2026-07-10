@@ -46,28 +46,34 @@ namespace Ziptide.Gameplay
             if (Time.time < _nextMoltAllowed) return; // the stun sticks this time — the counter window
             _nextMoltAllowed = Time.time + moltCooldown;
 
-            // Shed the decoy where it stood…
-            var husk = GameObject.CreatePrimitive(PrimitiveType.Capsule);
-            husk.name = "__Husk";
-            var col = husk.GetComponent<Collider>();
-            if (col != null) Destroy(col);
-            husk.transform.position = transform.position;
-            husk.transform.rotation = transform.rotation;
-            husk.transform.localScale = new Vector3(0.32f, 0.22f, 0.32f);
-            var r = husk.GetComponent<Renderer>();
-            if (r != null)
+            // Shed the decoy where it stood. Forged body: the husk is a FROZEN grey clone of the
+            // actual creature (the trick only works if the shed skin looks like you). Unforged:
+            // the primitive capsule decoy, exactly as before.
+            var husk = Ziptide.Visuals.ForgeBodyTell.TryCloneStatue(gameObject, HuskColor);
+            if (husk == null)
             {
-                var shader = Shader.Find("Universal Render Pipeline/Lit");
-                if (shader == null) shader = Shader.Find("Standard");
-                if (shader != null)
+                husk = GameObject.CreatePrimitive(PrimitiveType.Capsule);
+                var col = husk.GetComponent<Collider>();
+                if (col != null) Destroy(col);
+                husk.transform.localScale = new Vector3(0.32f, 0.22f, 0.32f);
+                var r = husk.GetComponent<Renderer>();
+                if (r != null)
                 {
-                    var mat = new Material(shader);
-                    if (mat.HasProperty("_BaseColor")) mat.SetColor("_BaseColor", HuskColor);
-                    else mat.color = HuskColor;
-                    r.sharedMaterial = mat;
-                    r.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+                    var shader = Shader.Find("Universal Render Pipeline/Lit");
+                    if (shader == null) shader = Shader.Find("Standard");
+                    if (shader != null)
+                    {
+                        var mat = new Material(shader);
+                        if (mat.HasProperty("_BaseColor")) mat.SetColor("_BaseColor", HuskColor);
+                        else mat.color = HuskColor;
+                        r.sharedMaterial = mat;
+                        r.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+                    }
                 }
             }
+            husk.name = "__Husk";
+            husk.transform.position = transform.position;
+            husk.transform.rotation = transform.rotation;
             Destroy(husk, huskLifeSeconds); // husks crumble on their own
 
             // …and skitter out the back, wall-clamped (never through solids).
