@@ -28,6 +28,22 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-10 (dddd25) - Picasso (Fable 5): 🏮 F3.1b commit 1 — the practical fixtures + F3.2 CI fix
+- **CI red #1 on F3.2 (`2d436fc`):** `VolumeProfile`/`VolumeComponent` live in
+  `Unity.RenderPipelines.Core.Runtime`, not Universal — the Universal ref alone only brings the
+  overrides. Fixed (`762c583`): asmdef now references BOTH. Law: URP Volume framework = Core RP
+  assembly; URP post overrides = Universal assembly.
+- **F3.1b commit 1:** the three practical fixture recipes — `light_lantern_hang` (SweepSpline hook
+  arm, hanging ring, caged amber glass) · `light_sconce_wall` (plate + bracket + half-dome; +Z face
+  goes against the wall) · `light_street_pole` (3m tapered pole, out-arm, downward head, glowing
+  disc underneath). Shared practical palette via `NewPractical` (dark iron / worn steel / warm
+  amber glass — "lamplight is warm, never neon-pure"), 400-tri budget, `practical` tag, structured
+  refs per the lifecycle law. Auto-swept by the library gates.
+- **Next:** booth verdicts on the 3 fixtures → `PracticalLight` (halo billboard + light-pool decal,
+  one on/off state) → `PracticalAuthor` placement (sconce per doorway, poles every ~14m on the
+  route, lanterns at POI approaches; ≤14/world).
+- **Commit:** this push.
+
 ### 2026-07-10 (dddd24) - Picasso (Fable 5): 🎨 F3.2 THE GRADE — per-world ACES + clamped color, derived
 - **Did:** ① `SkyGrade.Derive(vista)` (pure, URP-free): post-exposure = f(zenith luminance) ±0.3 ·
   saturation 5 − 15×hazard-haze (clamped −10..+15) · color filter = 8% toward the half-desaturated

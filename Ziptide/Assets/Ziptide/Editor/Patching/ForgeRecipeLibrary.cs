@@ -55,6 +55,11 @@ namespace Ziptide.Editor.Patching
                 Spec("prop_patched_crate", BuildPatchedCrate),
                 Spec("prop_pipe_cluster", BuildPipeCluster),
                 Spec("prop_dispatch_console", BuildDispatchConsole),
+                // FORGE III F3.1b — the practical light fixtures (PracticalLight adds the halo +
+                // light-pool decal at placement; these are the shootable, glowing hardware).
+                Spec("light_lantern_hang", BuildLanternHang),
+                Spec("light_sconce_wall", BuildSconceWall),
+                Spec("light_street_pole", BuildStreetPole),
             };
         }
 
@@ -441,6 +446,114 @@ namespace Ziptide.Editor.Patching
                 new ForgePart { name = "Collar", op = ForgeOp.Torus, segments = 12, smooth = true,
                     size = new Vector3(0.5f, 0.05f, 0.01f), position = new Vector3(0f, 0.12f, 0f),
                     paletteSlot = 1 },
+            };
+            return d;
+        }
+
+        // ── FORGE III F3.1b PRACTICALS ──────────────────────────────────────
+
+        /// <summary>Shared practical-light palette/styles: dark iron hardware, bare-steel trim,
+        /// and the warm amber lamp glass (lamplight is warm, never neon-pure — F3.1b law).</summary>
+        private static ForgeRecipeDefinition NewPractical(string id, string role)
+        {
+            var d = NewRecipe(id, ForgePalettes.FamilyToxicIndustrial,
+                new[] { "prop", "practical" },
+                new[]
+                {
+                    new Color(0.22f, 0.21f, 0.24f), // 0 hardware — dark iron
+                    new Color(0.45f, 0.45f, 0.50f), // 1 trim — worn steel
+                    new Color(1.00f, 0.76f, 0.44f), // 2 lamp glass — warm amber
+                },
+                budgetTris: 400);
+            d.qualityState = ForgeQualityState.Proxy;
+            d.storyRole = role;
+            d.storyRefs = new[] { "practical_lights" };
+            d.worldRuleRefs = new[] { "W002_DryCistern", "ToxicCity" };
+            d.tokenRefs = new[] { "lamplight_amber" };
+            d.slotStyles = new[]
+            {
+                new ForgeStyleSpec { style = ForgeStyle.RustedMetal, wear = 0.45f, grime = 0.5f },
+                new ForgeStyleSpec { style = ForgeStyle.BareMetal, wear = 0.6f, grime = 0.3f },
+                new ForgeStyleSpec { style = ForgeStyle.GlowPanel, emissive = new Color(1f, 0.76f, 0.44f), emissiveIntensity = 1.6f },
+            };
+            return d;
+        }
+
+        /// <summary>light_lantern_hang — canal lantern: hook arm, hanging ring, capped cage with
+        /// the amber glass burning inside. Hangs at POI approaches and canal edges.</summary>
+        private static ForgeRecipeDefinition BuildLanternHang()
+        {
+            var d = NewPractical("light_lantern_hang",
+                "Hanging canal lantern — F3.1b practical fixture.");
+            d.parts = new[]
+            {
+                new ForgePart { name = "HookArm", op = ForgeOp.SweepSpline, segments = 8, smooth = true,
+                    size = new Vector3(0.035f, 0.1f, 0.1f),
+                    spline = new[] { new Vector3(0f, 0.62f, -0.16f), new Vector3(0f, 0.66f, -0.02f), new Vector3(0f, 0.6f, 0.04f) },
+                    paletteSlot = 0 },
+                new ForgePart { name = "Ring", op = ForgeOp.Torus, segments = 10, smooth = true,
+                    size = new Vector3(0.06f, 0.015f, 0.01f), position = new Vector3(0f, 0.56f, 0.04f),
+                    paletteSlot = 1 },
+                new ForgePart { name = "Cap", op = ForgeOp.Frustum, segments = 10, smooth = true,
+                    size = new Vector3(0.20f, 0.07f, 0.06f), position = new Vector3(0f, 0.50f, 0.04f),
+                    paletteSlot = 0 },
+                new ForgePart { name = "Glass", op = ForgeOp.Cylinder, segments = 10, smooth = true,
+                    size = new Vector3(0.13f, 0.18f, 0.13f), position = new Vector3(0f, 0.38f, 0.04f),
+                    paletteSlot = 2 },
+                new ForgePart { name = "Base", op = ForgeOp.Frustum, segments = 10, smooth = true,
+                    size = new Vector3(0.16f, 0.05f, 0.10f), position = new Vector3(0f, 0.27f, 0.04f),
+                    eulerRotation = new Vector3(180f, 0f, 0f), paletteSlot = 0 },
+            };
+            return d;
+        }
+
+        /// <summary>light_sconce_wall — doorway sconce: wall plate, bracket, half-dome glass with
+        /// a drip guard. Mounts beside every generated doorway (the +Z face goes against the wall).</summary>
+        private static ForgeRecipeDefinition BuildSconceWall()
+        {
+            var d = NewPractical("light_sconce_wall",
+                "Doorway wall sconce — F3.1b practical fixture.");
+            d.parts = new[]
+            {
+                new ForgePart { name = "Plate", op = ForgeOp.BeveledBox, bevel = 0.01f,
+                    size = new Vector3(0.16f, 0.30f, 0.03f), position = new Vector3(0f, 0.30f, 0.015f),
+                    paletteSlot = 0 },
+                new ForgePart { name = "Bracket", op = ForgeOp.BeveledBox, bevel = 0.008f,
+                    size = new Vector3(0.05f, 0.05f, 0.14f), position = new Vector3(0f, 0.38f, -0.07f),
+                    paletteSlot = 1 },
+                new ForgePart { name = "Glass", op = ForgeOp.SphereSection, bevel = 0.75f, segments = 12,
+                    smooth = true, size = new Vector3(0.15f, 0.13f, 0.15f),
+                    position = new Vector3(0f, 0.33f, -0.14f), paletteSlot = 2 },
+                new ForgePart { name = "DripGuard", op = ForgeOp.Frustum, segments = 10, smooth = true,
+                    size = new Vector3(0.19f, 0.04f, 0.10f), position = new Vector3(0f, 0.43f, -0.14f),
+                    paletteSlot = 0 },
+            };
+            return d;
+        }
+
+        /// <summary>light_street_pole — street lamp: tapered pole, out-reaching arm, downward
+        /// head housing with the amber disc glowing underneath. Street rhythm along the route.</summary>
+        private static ForgeRecipeDefinition BuildStreetPole()
+        {
+            var d = NewPractical("light_street_pole",
+                "Street lamp pole — F3.1b practical fixture.");
+            d.parts = new[]
+            {
+                new ForgePart { name = "Pole", op = ForgeOp.Frustum, segments = 10, smooth = true,
+                    size = new Vector3(0.11f, 3.0f, 0.07f), position = new Vector3(0f, 1.5f, 0f),
+                    paletteSlot = 0 },
+                new ForgePart { name = "BaseCollar", op = ForgeOp.Frustum, segments = 10, smooth = true,
+                    size = new Vector3(0.22f, 0.18f, 0.11f), position = new Vector3(0f, 0.09f, 0f),
+                    paletteSlot = 1 },
+                new ForgePart { name = "Arm", op = ForgeOp.Capsule, segments = 8, smooth = true,
+                    size = new Vector3(0.06f, 0.62f, 0.06f), position = new Vector3(0f, 2.96f, 0.26f),
+                    eulerRotation = new Vector3(90f, 0f, 0f), paletteSlot = 0 },
+                new ForgePart { name = "Head", op = ForgeOp.Frustum, segments = 10, smooth = true,
+                    size = new Vector3(0.30f, 0.14f, 0.16f), position = new Vector3(0f, 2.92f, 0.52f),
+                    eulerRotation = new Vector3(180f, 0f, 0f), paletteSlot = 0 },
+                new ForgePart { name = "GlassDisc", op = ForgeOp.Cylinder, segments = 10, smooth = true,
+                    size = new Vector3(0.20f, 0.03f, 0.20f), position = new Vector3(0f, 2.84f, 0.52f),
+                    paletteSlot = 2 },
             };
             return d;
         }
