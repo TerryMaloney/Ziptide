@@ -28,6 +28,20 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-10 (dddd15) - Picasso (Fable 5): 🧬 WARDEN ✅ AT LAST (v5 verdict) + v5.1 polish
+- **v5 verdict (run `29101201206`, CI green `a0396d4`):** the arms killed the bin — the warden now
+  reads as an armored bipedal sentinel (split pauldrons, elbows + fists, knees, eye burning between
+  the shoulder plates). Grazer's mottle v1 was invisible: 15% darkening dies under the Slime
+  specular sheen. Tendril's Slime bulb unaffected — no regressions.
+- **Did (v5.1, small):** warden fists slate not bright-steel (read as WHITE GLOVES) + chest seam
+  narrowed 0.10→0.06 (read as a door gasket); grazer underbell+skirt switched Slime→GlowPanel soft
+  green — the LANTERN under the bell the name always promised; Slime mottle deepened (×0.58) and
+  widened (0.5–0.8 coverage) so it survives the highlight.
+- **Next:** verify v5.1 turnarounds (grazer is the open item; warden expected ✅✅). Then the roster
+  is judged shippable at this engine tier — next dials are segments-cap raise (silhouette rounding)
+  and E5.3 flora, in that order per SPRINT_ART.
+- **Commit:** this push.
+
 ### 2026-07-10 (dddd14) - Picasso (Fable 5): 🧬 v4 SKIN VERDICTS + warden v5 (it gets ARMS) + slime depth
 - **The checkpoint (run `29089183510`, CI green `fad9898`):** the texture bake WORKS —
   **swarm_bug ✅✅** (glossy amber chitin, dark inset plates, speckled legs) · **husk_molter ✅✅**

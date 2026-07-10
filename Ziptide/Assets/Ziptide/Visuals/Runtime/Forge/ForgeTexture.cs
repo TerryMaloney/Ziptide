@@ -235,7 +235,9 @@ namespace Ziptide.Visuals
                     // pale hide) — a finer darker pass that reads as organs/veins under the skin;
                     // grime scales its strength so the knob stays meaningful for wet hides.
                     float mottle = SkyVistaTexture.Fbm(tx.u * 14f, tx.v * 14f, 89, 2);
-                    c = Color.Lerp(c, c * 0.72f, Mathf.SmoothStep(0.6f, 0.85f, mottle) * (0.3f + 0.7f * spec.grime));
+                    // (v5 photo tune: 0.72@0.6-0.85 vanished under the wet-sheen specular — wider
+                    // coverage + deeper darkening so the pattern survives the highlight.)
+                    c = Color.Lerp(c, c * 0.58f, Mathf.SmoothStep(0.5f, 0.8f, mottle) * (0.3f + 0.7f * spec.grime));
                     break;
                 }
                 case ForgeStyle.Leaf:

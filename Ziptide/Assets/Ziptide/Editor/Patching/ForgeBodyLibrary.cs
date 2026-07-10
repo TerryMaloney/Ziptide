@@ -224,7 +224,9 @@ namespace Ziptide.Editor.Patching
                 // reads as a body with something INSIDE it, not a smooth balloon.
                 new ForgeStyleSpec { style = ForgeStyle.Slime, grime = 0.45f, wear = 0.15f },
                 new ForgeStyleSpec { style = ForgeStyle.Slime, grime = 0.35f, wear = 0.1f },
-                new ForgeStyleSpec { style = ForgeStyle.Slime, grime = 0.5f },
+                // v5 loop: it's called a LIGHT grazer — the underbell + skirt become the LANTERN
+                // (soft green glow under the bell; the eye stays the brighter point above it).
+                new ForgeStyleSpec { style = ForgeStyle.GlowPanel, emissive = new Color(0.5f, 0.9f, 0.55f), emissiveIntensity = 0.9f },
                 new ForgeStyleSpec { style = ForgeStyle.GlowPanel, emissive = new Color(0.55f, 1f, 0.6f), emissiveIntensity = 1.3f },
             };
             b.coreParts = new[]
@@ -463,7 +465,8 @@ namespace Ziptide.Editor.Patching
                     size = new Vector3(0.08f, 0.42f, 0.50f), position = new Vector3(-0.28f, 0.95f, 0f),
                     eulerRotation = new Vector3(0f, 0f, 8f), paletteSlot = 1 },
                 new ForgePart { name = "ChestSeam", op = ForgeOp.BeveledBox, bevel = 0.01f,
-                    size = new Vector3(0.10f, 0.80f, 0.06f), position = new Vector3(0f, 1.35f, 0.32f),
+                    // v5 photo niggle: at 0.10 wide the bright seam read as a door GASKET — a thin line.
+                    size = new Vector3(0.06f, 0.80f, 0.06f), position = new Vector3(0f, 1.35f, 0.32f),
                     paletteSlot = 2 },
             };
             b.limbs = new[]
@@ -488,7 +491,8 @@ namespace Ziptide.Editor.Patching
                     {
                         new ForgeLimbSegment { size = new Vector3(0.15f, 0.42f, 0.15f), paletteSlot = 1, rounded = true, taper = 0.08f, bendDegrees = -6f },
                         new ForgeLimbSegment { size = new Vector3(0.12f, 0.36f, 0.12f), paletteSlot = 0, rounded = true, taper = 0.12f, bendDegrees = 22f },
-                        new ForgeLimbSegment { size = new Vector3(0.17f, 0.16f, 0.17f), paletteSlot = 2, rounded = true, taper = 0.05f, bendDegrees = 8f },
+                        // v5 photo niggle: bright-steel fists read as WHITE GLOVES — slate like the torso.
+                        new ForgeLimbSegment { size = new Vector3(0.17f, 0.16f, 0.17f), paletteSlot = 0, rounded = true, taper = 0.05f, bendDegrees = 8f },
                     }
                 },
             };
