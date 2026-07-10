@@ -52,7 +52,7 @@ noted; EditMode tests are gates too. *(Last full audit of this table: 2026-07-10
 
 | Aspect | State | The standard | Guardrail |
 |---|---|---|---|
-| Locomotion & comfort | 🧱 v1 (move/snap/vignette; suspension idioms per traversal verb) | Comfort presets (vignette/snap/smooth/seated) player-visible; EVERY new motion source suspends/restores stick-move and never parents the rig | Locked contract; per-verb tests; 🕳️ GAP — comfort-preset UI unbuilt (0.4) |
+| Locomotion & comfort | 🧱 v1 (move/snap/vignette; suspension idioms per traversal verb; **preset DESIGN LOCKED 2026-07-10** — `design/COMFORT_AND_ACCESSIBILITY.md`: Cozy/Standard/Bold dial table, diegetic console, store-rating defense) | Comfort presets (vignette/snap/smooth/seated) player-visible; EVERY new motion source suspends/restores stick-move and never parents the rig | Locked contract; per-verb tests; 🕳️ GAP — comfort console + `ComfortCoverageTests` unbuilt (0.4, now Opus-ready against the locked design) |
 | Hands & interaction | 💎 (grab/holster/belt/tools; collider-first law) | Everything interactive answers to hands within 1.6m reach idioms; collider BEFORE interactable everywhere | `VR_RIG_GOTCHAS.md` law; wiring tests |
 | Weapons & combat feel | 🧱 v1 (guns/melee/taser unified onto one damage scale) | ADS/reload/haptics per `ABILITIES_AND_ARSENAL.md`; every weapon distinct in hand (cadence/recoil/sound), not stat-only | Combat core tests + damage-scale migration guard; 🕳️ GAP — weapon-feel checklist rows (4.4) |
 | Abilities/augments | 🧱 v1 (6 augments live) | Full A4.5–A4.7 set incl. dual-wield when charge economy exists; every augment has visible state (orb brightness idiom) | Augment tests + WiringValidator (author build-hook) |

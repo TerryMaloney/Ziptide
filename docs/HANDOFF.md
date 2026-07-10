@@ -28,6 +28,28 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-10 (hwr19) - Fable 5 architect: 🛋️ COMFORT & ACCESSIBILITY design LOCKED — Fable endgame #5 done
+- **Why:** T-Dog's endgame list (rev 9) had two unclaimed FABLE-ONLY items; #3 (interiors
+  translator) needs a fresh full session per async1's own note, this session is deep — so #5.
+  Belt-lane status first: 4.1l `26fdf3e` CI ✅ — the whole belt stack 4.1f–l is verified green.
+- **Did:** `docs/design/COMFORT_AND_ACCESSIBILITY.md` — the 0.4 presets design, decisions locked:
+  5 laws (one-switch-many-dials · comfort is DEVICE-level PlayerPrefs never profile · every
+  artificial motion reports or carries `COMFORT_EXEMPT` · the DEFAULTS are the store rating ·
+  accessibility = redundancy not modes) · the exact Cozy/Standard/Bold dial table against REAL
+  fields (LocomotionProfile turn/slide, ComfortVignette strength 1.0/0.6/0.15, zipline cap
+  5.5/8/8, flight roll off/pulse/pulse, snap-yaw cadence) · standalone toggles (seated +0.35m —
+  the one report-only rig touch, subtitles ON default w/ S/M/L, handedness-v1 = holster mirror
+  only, haptic scale) · diegetic console (W000 + Quarters, tile idiom; the tutorial's first beat
+  per ONBOARDING law 5) · `ComfortCoverageTests` gate (preset resolve pinned literally = the
+  store rating is a test; motion-source manifest must ReportExternalMotion or declare exemption)
+  · the Moderate-rating defense + the one-line Cozy-default fallback.
+- **Blackboard:** PRIORITIES #5 struck (now OPUS-READY) · map row updated (gap → console+gate,
+  Opus-ready) · board 0.4 carries the spec pointer. Docs-only push — no CI risk.
+- **📣 Next operator (any model):** 0.4 build = ComfortSettings static + console patcher + gate,
+  all specced; ONLY the seated-mode offset needs the report-only protocol. Fable-only remaining:
+  #1 headset-run support (reserve) · #3 interiors translator (fresh session).
+- **Commits:** this push.
+
 ### 2026-07-10 (async1) - T-Dog/Fable 5: ⏳ async-travel DESIGN locked (Fable #4) — usage-limit handoff
 - `docs/design/ASYNC_TRAVEL.md`: LoadSceneAsync hidden inside THE ZIPTIDE crest (activation only at
   progress≥0.9 AND full cover), 20s never-wedge timeout, ~15-line diff confined to TravelCoroutine,

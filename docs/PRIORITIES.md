@@ -15,7 +15,9 @@
    translator is the hardest unbuilt system in the game.
 4. **Async travel investigation (report-only writeup)** — big worlds will hitch on synchronous
    loads; DESIGN the async path + comfort story, Opus implements against the writeup.
-5. **Accessibility + comfort-presets design (0.4)** — store-facing; decisions > code.
+5. ~~**Accessibility + comfort-presets design (0.4)**~~ — ✅ DESIGN LOCKED 2026-07-10
+   (`docs/design/COMFORT_AND_ACCESSIBILITY.md` — preset dial table, console, coverage gate,
+   store-rating defense; now OPUS-READY to build).
 
 ## OPUS-READY (specced + gated; the boards + map rows carry them)
 Skyscape rollout to 11 worlds (after Terry's W005 verdict, per tiers) · hazard stingers + music
