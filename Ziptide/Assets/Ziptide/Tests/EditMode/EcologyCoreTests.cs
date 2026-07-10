@@ -99,6 +99,18 @@ namespace Ziptide.Tests.EditMode
         }
 
         [Test]
+        public void AbroadCount_ThinsByActivity_AndALivingSpeciesAlwaysShowsAFace()
+        {
+            var grazer = EcologySpecies.Find("light_grazer");
+            int noon = EcologyCore.AbroadCount(grazer, 10f, hour01: 0.5f);
+            int midnight = EcologyCore.AbroadCount(grazer, 10f, hour01: 0f);
+            Assert.Greater(noon, midnight, "more grazers abroad at noon than midnight");
+            Assert.GreaterOrEqual(midnight, 1, "a living species always shows at least one face");
+            Assert.AreEqual(0, EcologyCore.AbroadCount(grazer, 0.5f, 0.5f),
+                "below the extinction floor nothing is abroad");
+        }
+
+        [Test]
         public void Packs_PartitionTheAbroadPopulation_Deterministically()
         {
             var bug = EcologySpecies.Find("swarm_bug");

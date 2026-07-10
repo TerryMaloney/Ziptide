@@ -50,6 +50,24 @@
   ShippedScenes list is the reminder — add both or CI nags).
 - **Commits:** this push.
 
+### 2026-07-10 (rb15) - Reasonbox (ecology lane): 🌗 4.3b — the ecology becomes FELT: who is abroad (4.3a CI ✅)
+- **4.3a verdict:** the population engine is **CI GREEN ✅** (`fcc5c8c` run, code `107df2a`).
+- **Did:** `EcologyDirector` (Gameplay/Enemies, self-bootstrapped on scene load — zero scene edits,
+  zero patcher steps): takes a CENSUS of a world's baked creatures, resolves the engine, and wakes
+  each species' **abroad count** — population thinned by the hour's activity, hard budget-capped,
+  deterministic order (the same world wakes the same individuals). **The clock is real UTC** (the
+  idle economy's real-time ethos): visit W005 at your noon and the grazers are out; come back after
+  dark and the stalker is. Worlds with no baked fauna are untouched; species the ecology doesn't
+  know keep their authored state — never breaks a scene. `EcologyCore.AbroadCount` added (pure,
+  floored: a living species always shows at least one face). Logs `ZIPTIDE: ECOLOGY_RESOLVE
+  world=… hour=… species=awake/total…`. +1 test (9 ecology tests total).
+- **🎮 Terry (no menu step):** warp any story world and read the `ECOLOGY_RESOLVE` line in logcat —
+  then the same world ~12h later; the cast changes. Feel notes: does a thinned world read as
+  "quiet" or "broken"? (The floor guarantees ≥1 of every living species.)
+- **Next in this row (mine):** disable-pressure persistence (EcologyPressure → world save, additive
+  Core edit — will announce) so hunting a zone genuinely thins it across sessions · physical
+  multi-part NESTS (LAW 6) with territorial response · pack-spawn placement at nests.
+- **Commit / branch:** this push on `terry-local-wip` — verify the run before stacking C#.
 
 ### 2026-07-10 (rb14) - Reasonbox: 🦎 CLAIM + first cut — board row 4.3 CREATURE ECOLOGY (vehicles 3.2a CI ✅ · RICHNESS BAR read)
 - **3.2a verdict:** vehicles are **CI GREEN ✅** (`16f478b`). **LAW 6 read and owed:** my v1s

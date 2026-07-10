@@ -154,6 +154,15 @@ namespace Ziptide.Content.Ecology
             return s.NightActivity01 + (s.DayActivity01 - s.NightActivity01) * day;
         }
 
+        /// <summary>How many of a species are ABROAD right now: population thinned by the hour's
+        /// activity, floored so a living species always shows at least one face to the world.</summary>
+        public static int AbroadCount(EcologySpecies s, float population, float hour01)
+        {
+            if (s == null || population < ExtinctionFloor) return 0;
+            int abroad = (int)Math.Round(population * ActivityAt(s, hour01));
+            return Math.Max(1, abroad);
+        }
+
         /// <summary>Split an abroad population into packs (deterministic): full bands first, a
         /// remainder band last, solitary species one by one. The encounter grammar of the world.</summary>
         public static List<int> PacksFor(EcologySpecies s, float population, int seed)
