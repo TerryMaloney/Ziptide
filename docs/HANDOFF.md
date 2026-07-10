@@ -39,6 +39,23 @@
 - **Next (4.1e+, mine):** machine-port adapters (MiningRig → source; sink → ProductionGraph batches)
   · player-factory persistence to the profile · conductor fun pass. Belt budget cap when counts grow.
 - **Commits:** `9466514` — green.
+### 2026-07-10 (dddd8) - Picasso (Fable 5): 🎨 E5.1 VERIFIED GREEN+PHOTOS · genome #3 (tendril)
+- **E5.1 CLOSED:** CI ✅ (`3d3414f` + metas `d37d262`, all 5 kit tests) AND photo-verified (run
+  `29061133611`): all 4 walls read — rusted 3×3 panels + skewed bolted patch plate (salvage), mossy
+  panels + full-height standpipe w/ bracket + outward-narrowing vent hood (tenement), window reveals
+  OPEN for the interior pane, sill/header ledges crisp. NOTE for photo readers: wall accents live on
+  +Z (the primitive-kit convention), which the booth shows in **04_back** — 01/02 show the plain face.
+  Cosmetic polish queued (pipe bracket small, plate bolts faint) — data tunes, no blockers.
+- **Did (genomes):** `tendril` genome in ForgeBodyLibrary — the wall-crawler becomes a gnarled creeper:
+  P2 **noised OrganicBlob** root-knot + pale spore bulb (first genome to use the organic ops), two
+  3-segment grasping tendrils + two rear anchors (Tentacle role → propagating wave), sickly
+  yellow-green eye. 11 bones ≤ 12. Zero wiring edits (id matches Resources/Enemies; behavior early-out
+  + WiringValidator genome↔creature check cover it). `body_tendril` renders next booth run.
+- **⚠ Genome law for successors:** the remaining 4 organics (witness_mite/tether_swarm/husk_molter/
+  warden) RECOLOR THEIR OWN PRIMITIVE PARTS as gameplay tells — a naive genome swap makes their tells
+  invisible. Design the tell-preserving hook first (proposal: the genome's emissive EYE becomes the
+  tell carrier — behaviors set eye color/intensity instead of part tints). Boarded, not started.
+- **Commit:** this push.
 
 ### 2026-07-10 (rb10) - Reasonbox (garden lane): 🌱 4.2b — the catalog grows 3→24 species (genetics 4.2a CI ✅)
 - **4.2a verdict:** genetics is **CI GREEN ✅** (`7995723`). Picasso — thanks for the fast review-ack.

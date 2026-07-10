@@ -36,7 +36,66 @@ namespace Ziptide.Editor.Patching
             {
                 Spec("swarm_bug", BuildSwarmBug),
                 Spec("light_grazer", BuildLightGrazer),
+                Spec("tendril", BuildTendril),
             };
+        }
+
+        /// <summary>
+        /// tendril (W003 glass shelf) — the wall-crawling creeper: a gnarled root-knot (P2 noised
+        /// OrganicBlobs — the first genome to use the organic ops) topped by a pale spore bulb, with
+        /// two long 3-segment grasping tendrils forward and two shorter anchors behind (Tentacle role —
+        /// the propagating wave is the "it's ALIVE on that wall" read). One sickly yellow-green eye.
+        /// Bones: 1 + (2×3 + 2×2 mirrored) = 11 ≤ 12.
+        /// </summary>
+        private static ForgeCreatureBody BuildTendril()
+        {
+            var b = ScriptableObject.CreateInstance<ForgeCreatureBody>();
+            b.bodyId = "tendril";
+            b.palette = new[]
+            {
+                new Color(0.20f, 0.14f, 0.22f), // 0 tendrils — dark violet-brown creeper
+                new Color(0.22f, 0.28f, 0.20f), // 1 root-knot — mossy dark green
+                new Color(0.72f, 0.70f, 0.52f), // 2 spore bulb — pale sick cream
+                new Color(0.75f, 0.95f, 0.35f), // 3 eye — sickly yellow-green glow
+            };
+            b.slotStyles = new ForgeStyleSpec[0];
+            b.coreParts = new[]
+            {
+                new ForgePart { name = "RootKnot", op = ForgeOp.OrganicBlob, segments = 12, smooth = true,
+                    size = new Vector3(0.30f, 0.22f, 0.30f), position = new Vector3(0f, 0.16f, 0f),
+                    noiseAmplitude = 0.02f, noiseFrequency = 12f, noiseSeed = 9, paletteSlot = 1 },
+                new ForgePart { name = "SporeBulb", op = ForgeOp.OrganicBlob, segments = 10, smooth = true,
+                    size = new Vector3(0.16f, 0.14f, 0.16f), position = new Vector3(0f, 0.30f, -0.06f),
+                    noiseAmplitude = 0.012f, noiseFrequency = 16f, noiseSeed = 21, paletteSlot = 2 },
+            };
+            b.limbs = new[]
+            {
+                new ForgeLimb
+                {
+                    name = "TendrilFront", attachLocal = new Vector3(0.10f, 0.14f, 0.10f),
+                    chainDirection = new Vector3(0.6f, -0.5f, 0.5f), role = GaitRole.Tentacle, mirrorX = true,
+                    segments = new[]
+                    {
+                        new ForgeLimbSegment { size = new Vector3(0.030f, 0.18f, 0.030f), paletteSlot = 0 },
+                        new ForgeLimbSegment { size = new Vector3(0.022f, 0.16f, 0.022f), paletteSlot = 0 },
+                        new ForgeLimbSegment { size = new Vector3(0.014f, 0.14f, 0.014f), paletteSlot = 0 },
+                    }
+                },
+                new ForgeLimb
+                {
+                    name = "TendrilRear", attachLocal = new Vector3(0.10f, 0.14f, -0.10f),
+                    chainDirection = new Vector3(0.65f, -0.5f, -0.45f), role = GaitRole.Tentacle, mirrorX = true,
+                    segments = new[]
+                    {
+                        new ForgeLimbSegment { size = new Vector3(0.028f, 0.16f, 0.028f), paletteSlot = 0 },
+                        new ForgeLimbSegment { size = new Vector3(0.018f, 0.14f, 0.018f), paletteSlot = 0 },
+                    }
+                },
+            };
+            b.eyeLocal = new Vector3(0f, 0.22f, 0.16f);
+            b.eyeRadius = 0.035f;
+            b.eyePaletteSlot = 3;
+            return b;
         }
 
         /// <summary>Create any missing body assets. Returns how many were created.</summary>
