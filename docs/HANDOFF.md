@@ -80,6 +80,31 @@
   watchable, economy-true, deterministic. Remaining pulls: player-factory persistence to the profile ·
   belt-count PerfBudget cap · conductor fun pass · world placement beyond the sandbox.
 - **Commits:** `8a082e9` — green.
+### 2026-07-10 (dddd10) - Picasso (Fable 5): 🎨 THE CREATURE ROSTER IS COMPLETE — the tell bridge + 3 final genomes
+- **Why:** Terry: "pick a lane and COMPLETE it, extra sharp." My lane's last hard item: 4 organics
+  blocked on the tell problem (their behaviors recolor primitive parts as GAMEPLAY reads — a naive
+  genome swap silently deletes the warden's warning, the mite's freeze, the molter's decoy).
+- **Did ① — `Visuals/ForgeBodyTell` (the tell bridge):** behaviors signal reads through channels on
+  the forged body instead of their own primitives: `TrySetEye` (base+emission on the genome's eye) ·
+  `TrySetBodyTint`/`TryClearBodyTint` (stone-freeze class; clear restores the genome's OWN palette;
+  idempotent for per-frame gaze calls; materials instanced lazily so tells never leak across a
+  family) · `TryCloneStatue` (a FROZEN de-animated grey clone of the forged body — the molter's shed
+  skin now looks like the creature, the trick got STRONGER). Every static is graceful: unforged →
+  false/null → the behavior's primitive path runs unchanged. Wired by ForgeCreatureVisualApplier
+  (Init with eye material index + palette base colors). 5 contract tests, headless-safe (state
+  fields, no shader reads; editor-safe destroy for the clone path).
+- **Did ② — behaviors bridged (3 files, each a guarded fallback):** Warden.SetEye tries the bridge
+  first · WitnessMite freeze → SetFrozen(bool) via tint/clear · HuskMolter's molt tries the statue
+  clone before the primitive capsule decoy.
+- **Did ③ — the 3 genomes:** `witness_mite` (dusky-rose noised blob behind a BIG pale lens, 6 skitter
+  legs, 7 bones) · `husk_molter` (mossy noised carapace + dorsal ridge + four 2-seg legs, 9 bones) ·
+  `warden` (2.2m monolith: Frustum torso that WIDENS to the shoulders, pauldrons, dome head, one
+  0.06-radius law-eye, two slow legs, 5 bones — deliberately monolithic). **tether_swarm =
+  INTENTIONAL SKIP, documented in ForgeBodyLibrary:** its colliderless clusters + glowing cord ARE
+  the encounter's lesson; a single skinned body would erase the read. Do not "complete" it.
+- **Next:** ⏳ CI + 3 new `body_*` turnarounds next booth run → then E5.3 flora is the ONLY open
+  FORGE II envelope. 🎮 device: warden eye states / mite freeze / molter husk on forged bodies.
+- **Commits:** this push (2).
 
 ### 2026-07-10 (dddd9) - Picasso (Fable 5): 💥 DESTRUCTION V2 — walls break into CHUNKS that make sense
 - **Why (Terry, direct):** "I don't want the breakable walls to be blocked, I want broken chunks sort
