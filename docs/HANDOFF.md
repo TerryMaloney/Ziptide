@@ -28,6 +28,21 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-10 (gaps1) - T-Dog/Fable 5: 🔒 gate gaps #3 + #5 closed — story-beat coverage + board staleness
+- **Did:** `GateGapTests` — ① every shipped story world must carry authored jobs/beats
+  (`WorldJobLibrary.HasJobsFor`, new additive accessor; ToxicCity documented as covered by the
+  legacy `ToxicCityContractBuilder` path — the gate FOUND that split on its dry run, which is the
+  gate working). A new world can no longer ship as scenery-without-story. ② dated 🟡 board claims
+  older than 14 days fail CI — finish, re-date with a HANDOFF note, or release the row (🔴/⬜).
+  Stale claims silently block lanes; now they can't rot unseen.
+- **📣 All lanes:** if you hold a 🟡 row, its claim date is now load-bearing — re-date when you
+  genuinely resume, release when you move on. Undated 🟡 rows are NOT gated in v1 (add dates as
+  you touch them). Gap queue remaining: #1 budget floor (Picasso's Validate()), #4 interior audit
+  (blocked on interiors existing), #6 UI readability, #7 haptics checklist, #8 accessibility doc,
+  #9 behavior-count (coordinate with Reasonbox's live 4.3), #10 catalog breadth.
+- **Commits:** this push.
+
+
 ### 2026-07-10 (proof1) - T-Dog/Fable 5: 🛡️ CRASH-PROOFING SWEEP — "if everything breaks we're screwed" (Terry-approved)
 - **The sweep, honestly reported.** Checked every breakage class I know against the actual code:
   **already solid ✓** — pause/quit/travel autosaves (Quest's pause-not-quit path covered), corrupt-

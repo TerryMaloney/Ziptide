@@ -111,6 +111,11 @@ namespace Ziptide.Editor.Patching
             public Spec Reward(string id, double amt) { reward.Add((id, amt)); return this; }
         }
 
+        /// <summary>Coverage gate hook (EXCELLENCE_MAP gap #3): does this scene carry authored
+        /// jobs/beats? Additive — the story-beat coverage test asserts every shipped story world
+        /// answers true, so a new world can't ship beat-less by accident.</summary>
+        public static bool HasJobsFor(string sceneName) => SpecFor(sceneName) != null;
+
         private static Spec SpecFor(string sceneName)
         {
             switch (sceneName)

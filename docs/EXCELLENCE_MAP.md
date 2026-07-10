@@ -110,9 +110,9 @@ Each 🕳️ above, as one board-row-sized task. Claiming one = add the audit/ch
    class budget) — the direct enforcement of Terry's "10k budget, built with 1k" complaint. *(Picasso's
    file — coordinate.)*
 2. ~~Skyscape §5-rubric audit~~ — **CLOSED 2026-07-10** (Signature tier gated in `SkyAtmosphereTests`; extend to Standard tier when the rollout lands).
-3. **Story-beat coverage** — every shipped world's storyboard beats present as jobs/lines (data check).
+3. ~~Story-beat coverage~~ — **CLOSED 2026-07-10** (`GateGap3_EveryStoryWorld_CarriesAuthoredBeats`; ToxicCity documented as legacy-builder-covered; extend to RILL-line coverage when the line registry grows a per-world query).
 4. **Interior audit** — rooms reachable + furnished floor (≥N registry props per room).
-5. **Board-staleness flag** — CI warning when a 🟡 row is untouched >7 days (parse the boards in a test).
+5. ~~Board-staleness flag~~ — **CLOSED 2026-07-10** (`GateGap5_NoBoardClaim_RotsSilently`: dated 🟡 claims older than 14 days fail CI — finish, re-date, or release the row).
 6. **UI readability audit** — TextMesh sizing law + reach distances on interactive tiles.
 7. **Haptic coverage checklist** — doc-level first; audit when a haptic registry exists.
 8. **Accessibility doc** — decisions Terry must make once, cheaply, now (doc, then rules).
