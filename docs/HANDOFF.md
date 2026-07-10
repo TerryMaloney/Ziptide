@@ -28,6 +28,43 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-10 (hwr16) - Fable 5 architect: 🏁 ROW 4.1 COMPLETE — persistence, the gate, CONDUCTOR MODE, belts in real worlds
+- **Context:** previous architect chat was lost mid-session (flagged, no fault found); this session
+  re-oriented from the boards alone — the blackboard worked exactly as designed. Same lane resumed:
+  the four remaining pulls from hwr15, all four shipped.
+- **Did ① 4.1f PERSISTENCE (`9f88bd4`, CI ✅):** player-built belts survive quit/reload. Dynamic
+  overlay in the profile (the ConquestSave idiom): authored layout stays canonical + only player
+  edits stored (`BeltFloorSave` pure core in Core, `WorldState.beltFloors` additive,
+  `BeltFloorRuntime.floorId`, sandbox=`sandbox_belt` retrofit-safe). Neutral default pinned: empty
+  overlay = pre-4.1f behavior exactly; a NEWER authored layout wins stale saves. 10 tests incl. the
+  design doc's "factory persists" JSON golden round-trip. Logs `BELT_RESTORE`.
+- **Did ② 4.1g THE GATE (`02acf1b`, CI ✅):** `AutomationAuditRules` in the world audit — floor grid
+  area caps at 256 cells / scene cells at 256 (BLOCK; the grid structurally bounds buildable item
+  count, so the area IS the item budget), authoring typos caught in CI (OOB cell = silent runtime
+  no-op → BLOCK; dup cell → warn), and 4.1f save-identity integrity (shared floorId → BLOCK). Exact
+  data counts, so blocking outright — no baselining window. 8 tests.
+- **Did ③ 4.1h CONDUCTOR (`04b7c02`, CI ✅):** the design doc's signature hook. Pure `BeltRoute.Trace`
+  (routes follow items exactly: corners, splitter-primary, sink terminus, loop guard) +
+  `ConductorRide` (glide at the ore's pace, boundary-crossing counter). `BeltConductorRuntime` =
+  the ZiplineRuntime idiom verbatim: teal lantern, re-trace at grab (hand-built extensions ride
+  too), rig delta-translated NEVER parented, one haptic click per cell lip, release to step off.
+  Sandbox post beside the mine port. 8 tests. Logs `BELT_RIDE_START/END`.
+- **Did ④ 4.1i WORLDS (`ad97429`, CI ⏳ at write time):** belt pads become PACK DATA (the
+  mines/gardens idiom): `BeltFloorSpawnDefinition` + `pack.beltFloors` (additive) +
+  `BeltPadSpawner`. 📣 **ANNOUNCED APPENDS (T-Dog/worlds):** ONE line in `JobDirector.Start`
+  (spawner owns all logic) + ONE call in `WorldStubGenerator` after `EnsureJobsFor`
+  (`BeltPadLibrary.EnsurePadsFor` — derives a "connect the mine to the depot" pad beside each
+  pack's first mine, spec-is-truth regenerated, W002 gets the first). Intake binds the mine's OWN
+  hopper — economy-safe, no double-pay. Grid clamps to the 4.1g cap. 5 tests. Logs `BELT_PAD`.
+- **🎮 Runbook §2q added** — persistence feel, the conductor ride, the W002 pad walkthrough.
+  MASTER_CHECKLIST updated (belts 4.1a–i complete, CI-green, awaiting device pass).
+- **Next (this lane):** verify the `ad97429` run → then the lane's fresh pulls: INDUSTRY_50 bank
+  (blueprints/copy-stamp is the natural 4.1j), sprinklers→garden bridge (Reasonbox asked, rb9),
+  GamePool for wall-chunk debris if Picasso wants it, or jump to the PRIORITIES top. Belt budget
+  numbers are in `AutomationAuditRules` consts — Picasso, fold them into the QUEST budget doc if
+  you want one home for all caps.
+- **Commits:** `9f88bd4` · `02acf1b` · `04b7c02` · `ad97429` + this docs push.
+
 ### 2026-07-10 (hwr15) - Fable 5 architect: ⛏️ 4.1e — machine PORTS ship green: mined ore rides the belt, THE LOOP CLOSES
 - **Did (`8a082e9`, CI ✅):** `BeltLattice.PlacePort/TryEmit` — a Source with no auto-clock, fed only
   by a machine adapter with real stock (same emission rules; **false = caller keeps its stock, so a

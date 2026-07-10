@@ -32,6 +32,11 @@ Skim this first; the deep docs are linked per item.
 - 🟢 Generic `DefinitionRegistry<T>` + definitions: Resource / Tool / Machine / Plant / Creature / Biome / Recipe / BalanceConfig.
 - 🟢 `IdleEngine` (offline accrual), `EconomyState` (Mine/Plot), `ProfileEconomy` (resolve-on-entry math).
 - 🟢 **Harvest v1**, **Mining/conveyor v1 + idle**, **Garden v1** (plant→tend→grow→harvest) — backend loops, tested.
+- 🟢 **PHYSICAL BELTS complete (hardwiring 4.1a–i, CI-green, awaiting device pass):** hand-placeable
+  lattice (port/source→belt→corner→splitter→sink, deterministic, head-blocking), machine ports (mine
+  ore rides the belt, sink pays the profile), **player factories persist** (`BeltFloorSave` overlay in
+  the profile), **conductor mode** (ride your own line), belt audit gates + budgets, and **belt pads in
+  story worlds** (pack data, auto-derived beside every mine — W002 first).
 
 ### Gameplay / VR (🟡 on-device, varying verification)
 - 🟢 VR locomotion (smooth/snap turn, dash/jump), play-area bounds (now opt-in), fall safety + EmergencyRespawn.

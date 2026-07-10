@@ -474,6 +474,25 @@ Two things to *feel* on device; both are pure-data tunes if they're off (no rebu
   Reconnect, authorize `terrymaloney/ziptide`) so the operators can see CI status again. Pushing already
   works without it; this is just so we can watch the runs go green.
 
+## 2q. NEW — AUTOMATION: the belt loop grows up (4.1f–4.1i, 2026-07-10, architect; all auto after build)
+Four ships in one wave: persistence, the perf gate, CONDUCTOR MODE, and belts in a real story world.
+Nothing to run in Unity — the patchers do it all at build; these are headset feels.
+- [ ] **Your factory survives (4.1f)** — Sandbox Test Lab: hand-place a few belts off the demo line
+  (dispenser slabs), then quit the app fully and relaunch. Your placed belts are still there; pick one
+  of the DEMO line's belts up, relaunch — still gone. Watch `ZIPTIDE: BELT_RESTORE placed= removed=`.
+- [ ] **Ride your line (4.1h)** — the teal lantern on a post beside the sandbox mine port: GRAB it and
+  you glide down the line at the ore's pace, one soft click in your hand per cell lip (track joints).
+  Release anywhere to step off; the lantern floats home. Extend the line by hand first and the ride
+  follows your extension (it re-traces at grab time). Feel notes: glide speed (currently the belt's
+  1.28 m/s), click strength, comfort. Watch `ZIPTIDE: BELT_RIDE_START cells=`.
+- [ ] **The W002 belt pad (4.1i)** — W002_DryCistern, at the works POI beside the cistern_extractor
+  rig: a new 8×4 pad with an INTAKE (bound to that same mine's hopper), a depot SINK at the far end,
+  a dispenser, and a conductor post. Build the line between port and sink with your hands, watch
+  mineral ride and pay out (`ZIPTIDE: BELT_PAD`, `BELT_PORT_EMIT`, `BELT_SUNK`), quit/reload — your
+  line persists. Every future world with a mine gets one of these automatically.
+- [ ] *(CI, not headset)* the world audit gained belt gates (4.1g): grid/cell budgets + authoring-typo
+  blockers + floorId integrity. Nothing to do — just know over-budget belt content now fails the build.
+
 ## 3. The two open judgment calls (yours)
 - **"Can you run in Toxic City?"** — was it the input bug (now fixed) or actual walls/narrow streets? If
   still wall-blocked, say so and the streets get widened.
