@@ -158,11 +158,11 @@ namespace Ziptide.Editor.Patching
                     size = new Vector3(0.16f, 0.12f, 0.16f), position = new Vector3(0f, 0.17f, 0.22f),
                     noiseAmplitude = 0.006f, noiseFrequency = 18f, noiseSeed = 4, paletteSlot = 1 },
                 new ForgePart { name = "RidgeL", op = ForgeOp.Wedge,
-                    size = new Vector3(0.03f, 0.05f, 0.30f), position = new Vector3(0.07f, 0.27f, -0.02f),
-                    eulerRotation = new Vector3(0f, 0f, -12f), paletteSlot = 0 },
+                    size = new Vector3(0.025f, 0.035f, 0.26f), position = new Vector3(0.06f, 0.245f, -0.02f),
+                    eulerRotation = new Vector3(-6f, 0f, -14f), paletteSlot = 0 },
                 new ForgePart { name = "RidgeR", op = ForgeOp.Wedge,
-                    size = new Vector3(0.03f, 0.05f, 0.30f), position = new Vector3(-0.07f, 0.27f, -0.02f),
-                    eulerRotation = new Vector3(0f, 0f, 12f), paletteSlot = 0 },
+                    size = new Vector3(0.025f, 0.035f, 0.26f), position = new Vector3(-0.06f, 0.245f, -0.02f),
+                    eulerRotation = new Vector3(-6f, 0f, 14f), paletteSlot = 0 },
             };
             b.limbs = new[]
             {
@@ -391,37 +391,46 @@ namespace Ziptide.Editor.Patching
             b.slotStyles = new ForgeStyleSpec[0];
             b.coreParts = new[]
             {
-                // Photo-loop v2 (run 29083744395 read as "dark chess pawn"): head grown into a real
-                // helm seated ON the pauldrons, the eye moved onto the HEAD's face and enlarged, legs
-                // lengthened + widened so the stride reads instead of hiding inside the torso.
-                new ForgePart { name = "Torso", op = ForgeOp.Frustum, segments = 10, smooth = true,
-                    size = new Vector3(0.44f, 1.45f, 0.70f), position = new Vector3(0f, 1.10f, 0f),
+                // Photo-loop v3 (v2 still read "bin with a lid"): SENTINEL proportions — a shorter
+                // torso riding on a visible two-legged STANCE, a wide helm half-sunk into the
+                // pauldrons with a dark visor slot, the eye burning INSIDE the visor, hip armor.
+                new ForgePart { name = "Torso", op = ForgeOp.Frustum, segments = 12, smooth = true,
+                    size = new Vector3(0.50f, 1.05f, 0.66f), position = new Vector3(0f, 1.30f, 0f),
                     paletteSlot = 0 },
                 new ForgePart { name = "Pauldrons", op = ForgeOp.BeveledBox, bevel = 0.04f,
-                    size = new Vector3(0.95f, 0.22f, 0.58f), position = new Vector3(0f, 1.92f, 0f),
+                    size = new Vector3(1.02f, 0.20f, 0.55f), position = new Vector3(0f, 1.90f, 0f),
                     paletteSlot = 1 },
-                new ForgePart { name = "Head", op = ForgeOp.SphereSection, bevel = 0.62f, segments = 10,
-                    smooth = true, size = new Vector3(0.46f, 0.36f, 0.46f),
-                    position = new Vector3(0f, 2.06f, 0f), paletteSlot = 1 },
+                new ForgePart { name = "Head", op = ForgeOp.SphereSection, bevel = 0.55f, segments = 12,
+                    smooth = true, size = new Vector3(0.50f, 0.34f, 0.50f),
+                    position = new Vector3(0f, 2.00f, 0f), paletteSlot = 1 },
+                new ForgePart { name = "Visor", op = ForgeOp.BeveledBox, bevel = 0.015f,
+                    size = new Vector3(0.36f, 0.10f, 0.10f), position = new Vector3(0f, 2.02f, 0.20f),
+                    paletteSlot = 0 },
+                new ForgePart { name = "SkirtL", op = ForgeOp.BeveledBox, bevel = 0.015f,
+                    size = new Vector3(0.08f, 0.42f, 0.50f), position = new Vector3(0.28f, 0.95f, 0f),
+                    eulerRotation = new Vector3(0f, 0f, -8f), paletteSlot = 1 },
+                new ForgePart { name = "SkirtR", op = ForgeOp.BeveledBox, bevel = 0.015f,
+                    size = new Vector3(0.08f, 0.42f, 0.50f), position = new Vector3(-0.28f, 0.95f, 0f),
+                    eulerRotation = new Vector3(0f, 0f, 8f), paletteSlot = 1 },
                 new ForgePart { name = "ChestSeam", op = ForgeOp.BeveledBox, bevel = 0.01f,
-                    size = new Vector3(0.10f, 1.20f, 0.06f), position = new Vector3(0f, 1.12f, 0.33f),
+                    size = new Vector3(0.10f, 0.80f, 0.06f), position = new Vector3(0f, 1.35f, 0.32f),
                     paletteSlot = 2 },
             };
             b.limbs = new[]
             {
                 new ForgeLimb
                 {
-                    name = "Leg", attachLocal = new Vector3(0.17f, 0.52f, 0f),
-                    chainDirection = new Vector3(0.10f, -1f, 0f), role = GaitRole.Leg, mirrorX = true,
+                    name = "Leg", attachLocal = new Vector3(0.20f, 0.80f, 0f),
+                    chainDirection = new Vector3(0.06f, -1f, 0f), role = GaitRole.Leg, mirrorX = true,
                     segments = new[]
                     {
-                        new ForgeLimbSegment { size = new Vector3(0.13f, 0.28f, 0.15f), paletteSlot = 0, rounded = true, taper = 0.12f },
-                        new ForgeLimbSegment { size = new Vector3(0.11f, 0.24f, 0.13f), paletteSlot = 1, rounded = true, taper = 0.2f },
+                        new ForgeLimbSegment { size = new Vector3(0.16f, 0.42f, 0.17f), paletteSlot = 0, rounded = true, taper = 0.10f },
+                        new ForgeLimbSegment { size = new Vector3(0.13f, 0.38f, 0.14f), paletteSlot = 1, rounded = true, taper = 0.18f },
                     }
                 },
             };
-            b.eyeLocal = new Vector3(0f, 2.10f, 0.24f); // on the helm's FACE — the law reads first
-            b.eyeRadius = 0.075f;
+            b.eyeLocal = new Vector3(0f, 2.02f, 0.27f); // burning INSIDE the visor slot
+            b.eyeRadius = 0.085f;
             b.eyePaletteSlot = 3;
             return b;
         }
