@@ -37,18 +37,54 @@ namespace Ziptide.Gameplay
 
         private void Start()
         {
-            // The campaign lives in ConquestSession (static), so it survives travel — both the B3
-            // mission round-trip and plain wandering off. A fresh session builds the story galaxy.
+            // Campaign continuity, freshest first: the live session (survives travel) → the profile
+            // save (survives quitting the game entirely) → a fresh war.
+            bool resumedFromDisk = false;
             if (ConquestSession.State != null) _state = ConquestSession.State;
             else
             {
-                _state = ConquestGalaxy.BuildTwoPlayer(ConquestGalaxy.ChapterOneTwoSeeds());
+                _state = TryLoadCampaign();
+                resumedFromDisk = _state != null;
+                if (_state == null)
+                    _state = ConquestGalaxy.BuildTwoPlayer(ConquestGalaxy.ChapterOneTwoSeeds());
                 ConquestSession.State = _state;
             }
             BuildTable();
             ResolveReturnedBattle();
             Refresh();
+            if (resumedFromDisk)
+            {
+                _ticker.text = "CAMPAIGN RESUMED — TURN " + _state.turn;
+                Debug.Log("ZIPTIDE: CONQ_SAVE_RESUMED turn=" + _state.turn);
+            }
+            CheckEnd();   // a finished saved war shows its banner instead of a dead board
             Debug.Log("ZIPTIDE: WARTABLE_READY planets=" + _state.planets.Count);
+        }
+
+        // ── Campaign persistence (ConquestSave overlay in one profile flag) ──
+        private void Autosave()
+        {
+            var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;
+            if (profile == null || _state == null) return;
+            profile.flags.RemoveAll(f => f.StartsWith(ConquestSave.FlagPrefix, System.StringComparison.Ordinal));
+            profile.flags.Add(ConquestSave.FlagPrefix + ConquestSave.Serialize(_state));
+        }
+
+        private ConquestState TryLoadCampaign()
+        {
+            var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;
+            if (profile == null) return null;
+            foreach (var f in profile.flags)
+                if (f.StartsWith(ConquestSave.FlagPrefix, System.StringComparison.Ordinal))
+                    return ConquestSave.Deserialize(f.Substring(ConquestSave.FlagPrefix.Length),
+                                                    ConquestGalaxy.ChapterOneTwoSeeds());
+            return null;
+        }
+
+        private void ClearCampaignSave()
+        {
+            var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;
+            profile?.flags.RemoveAll(f => f.StartsWith(ConquestSave.FlagPrefix, System.StringComparison.Ordinal));
         }
 
         /// <summary>B3: the player is back from (or walked out of) a mission — the held battle
@@ -81,6 +117,7 @@ namespace Ziptide.Gameplay
                 _ticker.text = "Your sortie disrupted the rival's turn.";
                 _state.EndTurn();
             }
+            Autosave();
             CheckEnd();
         }
 
@@ -150,6 +187,8 @@ namespace Ziptide.Gameplay
 
             Tile("END TURN", new Vector3(0.95f, 0.95f, -0.45f), EndTurnPressed,
                  new Color(0.85f, 0.7f, 0.25f));
+            Tile("NEW WAR", new Vector3(0.95f, 0.95f, 0.35f), NewWarPressed,
+                 new Color(0.45f, 0.3f, 0.35f));
             Tile("SPIRE +3DEF\n(1F 3A)", new Vector3(-0.98f, 0.98f, -0.3f), BuildSpire,
                  new Color(0.35f, 0.55f, 0.8f));
             Tile("FRIGATE +2ATK\n(2F 2A)", new Vector3(-0.98f, 0.98f, 0.1f), BuildFrigate,
@@ -160,6 +199,7 @@ namespace Ziptide.Gameplay
         private void OnPlanetTapped(string planetId)
         {
             if (_aiTurnRunning) return;
+            _newWarArmed = false;   // any other tap disarms the reset
             if (_offerPanel != null) { CloseOffer(); _ticker.text = "Strike called off."; }
             var p = _state.GetPlanet(planetId);
             if (p == null) return;
@@ -251,7 +291,9 @@ namespace Ziptide.Gameplay
                 var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;
                 profile?.SetFlag("CONQUEST_ATTACKED");
             }
+            Autosave();
             Refresh();
+            CheckEnd();
             Debug.Log("ZIPTIDE: WARTABLE_BATTLE outcome=" + report.outcome + " odds=" + report.odds.ToString("F2"));
         }
 
@@ -313,6 +355,7 @@ namespace Ziptide.Gameplay
             bool ok = _state.BuildDefense(0, _selected, "shield_spire");
             _ticker.text = ok ? "Shield Spire raised at " + _selected
                               : "Can't afford a Spire (1 flux, 3 alloy).";
+            if (ok) Autosave();
             Refresh();
         }
 
@@ -322,6 +365,7 @@ namespace Ziptide.Gameplay
             bool ok = _state.BuildVessel(0, "pulse_frigate");
             _ticker.text = ok ? "Pulse Frigate joins your fleet (" + _state.GetPlayer(0).fleetVesselIds.Count + " vessels)"
                               : "Can't afford a Frigate (2 flux, 2 alloy).";
+            if (ok) Autosave();
             Refresh();
         }
 
@@ -339,6 +383,7 @@ namespace Ziptide.Gameplay
             var plan = ConquestAI.PlanTurn(_state, 1, ConquestAiProfile.Balanced, seed: _state.turn);
             foreach (var action in plan)
             {
+                if (_gameOver) break;   // a mid-turn capture can end the war
                 yield return new WaitForSeconds(0.8f); // never a silent state jump — you WATCH it move
                 switch (action.kind)
                 {
@@ -377,7 +422,8 @@ namespace Ziptide.Gameplay
                 Refresh();
             }
             _state.EndTurn(); // production for everyone, upkeep, attack counters reset
-            _aiTurnRunning = false;
+            Autosave();
+            _aiTurnRunning = _gameOver;   // a finished war stays frozen (NEW WAR still works)
             _selected = null;
             Refresh();
             CheckEnd();
@@ -389,7 +435,9 @@ namespace Ziptide.Gameplay
             foreach (var p in _state.planets)
             {
                 if (!_orbs.TryGetValue(p.planetId, out var orb)) continue;
+                bool scouted = Scouted(p);
                 Color c = p.ownerId == 0 ? PlayerColor : p.ownerId == 1 ? RivalColor : NeutralColor;
+                if (!scouted) c = Color.Lerp(c, Color.black, 0.72f);   // fog of war
                 if (p.planetId == _selected) c = Color.Lerp(c, Color.white, 0.35f);
                 var r = orb.GetComponent<Renderer>();
                 if (r != null)
@@ -398,7 +446,8 @@ namespace Ziptide.Gameplay
                     if (mat.HasProperty("_BaseColor")) mat.SetColor("_BaseColor", c);
                     else mat.color = c;
                 }
-                orb.localScale = Vector3.one * (0.055f + 0.008f * p.defenseLevel);
+                // Unscouted worlds hide their development — a flat dim dot, no intel.
+                orb.localScale = Vector3.one * (scouted ? 0.055f + 0.008f * p.defenseLevel : 0.045f);
             }
             var you = _state.GetPlayer(0);
             _card.text = _card.text ?? "";
@@ -410,8 +459,25 @@ namespace Ziptide.Gameplay
                 _ticker.text = tickerBase;
         }
 
+        /// <summary>Fog of war: you can see what you hold, and what borders what you hold.</summary>
+        private bool Scouted(PlanetNode p)
+        {
+            if (p.ownerId == 0) return true;
+            foreach (var adjId in p.adjacentPlanetIds)
+            {
+                var n = _state.GetPlanet(adjId);
+                if (n != null && n.ownerId == 0) return true;
+            }
+            return false;
+        }
+
         private void ShowCard(PlanetNode p, string hint)
         {
+            if (!Scouted(p))
+            {
+                _card.text = p.displayName.ToUpperInvariant() + "\nUNSCOUTED SPACE — take an adjacent world to reveal it.";
+                return;
+            }
             string owner = p.ownerId == 0 ? "YOURS" : p.ownerId == 1 ? "RIVAL" : "NEUTRAL";
             _card.text = p.displayName.ToUpperInvariant() + " (" + owner + ")  DEF " + p.defenseLevel +
                          "  PROD " + p.resourceProductionRate.ToString("F0") + " " + p.resourceType +
@@ -421,8 +487,43 @@ namespace Ziptide.Gameplay
         private void CheckEnd()
         {
             int mine = _state.CountOwned(0), theirs = _state.CountOwned(1);
-            if (theirs == 0) { _card.text = "THE NETWORK IS YOURS.\nEvery gate answers to you now."; _aiTurnRunning = true; }
-            else if (mine == 0) { _card.text = "THE RIVAL HOLDS THE NETWORK.\nWalk away from the table… and come back stronger."; _aiTurnRunning = true; }
+            if (theirs == 0) _card.text = "THE NETWORK IS YOURS.\nEvery gate answers to you now.\nNEW WAR starts another.";
+            else if (mine == 0) _card.text = "THE RIVAL HOLDS THE NETWORK.\nNEW WAR — come back stronger.";
+            else return;
+            _gameOver = true;
+            _aiTurnRunning = true;          // freezes normal input; NEW WAR bypasses it
+            ClearCampaignSave();            // a finished war never resumes
+            ConquestSession.State = null;
+            Debug.Log("ZIPTIDE: WARTABLE_END mine=" + mine + " theirs=" + theirs);
+        }
+
+        // ── NEW WAR (arm-then-confirm reset) ─────────────────────────────────
+        private bool _gameOver, _newWarArmed;
+
+        private void NewWarPressed()
+        {
+            if (_aiTurnRunning && !_gameOver) return;   // never mid-AI-turn
+            if (!_newWarArmed)
+            {
+                _newWarArmed = true;
+                _ticker.text = "Abandon this campaign? Tap NEW WAR again.";
+                return;
+            }
+            StopAllCoroutines();
+            ClearCampaignSave();
+            ConquestSession.Clear();
+            for (int i = transform.childCount - 1; i >= 0; i--)
+                Destroy(transform.GetChild(i).gameObject);
+            _orbs.Clear(); _stamps.Clear();
+            _selected = null; _pendingTarget = null; _offerPanel = null;
+            _aiTurnRunning = false; _gameOver = false; _newWarArmed = false; _awaitingDefense = false;
+
+            _state = ConquestGalaxy.BuildTwoPlayer(ConquestGalaxy.ChapterOneTwoSeeds());
+            ConquestSession.State = _state;
+            BuildTable();
+            Refresh();
+            _ticker.text = "A NEW WAR BEGINS.";
+            Debug.Log("ZIPTIDE: WARTABLE_NEW_WAR");
         }
 
         // ── Helpers ──────────────────────────────────────────────────────────
