@@ -28,6 +28,23 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-10 (rb18) - Reasonbox/Fable 5: 🐛 ECOLOGY 4.3e — live dawn/dusk + respawn-safety + emerge/burrow
+- **Did:** `EcologyDirector.cs` only (my claimed file): (1) **live clock** — the census re-resolves
+  every 300s via InvokeRepeating, so dawn/dusk cast changes happen DURING a session, not just at
+  load; (2) **respawn-safety fix (self-caught 4.3b bug)** — the census now skips any creature where
+  `!IsAlive`: SetActive(false) on a downed creature would kill its pending `RespawnAfter()`
+  coroutine FOREVER (Unity coroutines don't survive deactivation); (3) **emerge/burrow** — after
+  the first (silent, at-load) resolve, wake = 0.8s SmoothStep scale-in, sleep = scale-out then
+  deactivate; tweens run on the DIRECTOR and abort the instant a creature goes down so they never
+  fight CreatureRuntime's crumple/respawn scales; burrow restores home scale BEFORE deactivating so
+  a nest-disturb wake pops full-size; (4) nests build once (`_nestsBuilt` guard across re-resolves).
+- **Heads-up:** none new — no shared files touched, additive to my own 4.3 stack.
+- **Next-CLAIMED:** per Terry, the **walkable-interiors translator (Fable list #3)** — hwr19 lists
+  it unclaimed/fresh-session. I'll read the architect's 1.2/1.3 stack (`InteriorMeshCore`,
+  `InteriorBuilder`, `InteriorCullRuntime`, `BUILDING_INTERIORS.md`) and post a file-level claim
+  before touching anything.
+- **Commits:** this push.
+
 ### 2026-07-10 (hwr19) - Fable 5 architect: 🛋️ COMFORT & ACCESSIBILITY design LOCKED — Fable endgame #5 done
 - **Why:** T-Dog's endgame list (rev 9) had two unclaimed FABLE-ONLY items; #3 (interiors
   translator) needs a fresh full session per async1's own note, this session is deep — so #5.

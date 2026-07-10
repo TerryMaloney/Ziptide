@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -17,9 +18,24 @@ namespace Ziptide.Gameplay
     /// Self-bootstrapped on scene load — no scene edits, no patcher step; worlds with no baked
     /// creatures are untouched. Census order is deterministic (sorted by name) so the same world
     /// wakes the same individuals. Logs ZIPTIDE: ECOLOGY_RESOLVE.
+    /// 4.3e: the census re-resolves every few minutes so dawn/dusk happen LIVE in a session —
+    /// hunters emerging as the light goes, grazers denning up — with a scale emerge/burrow
+    /// presentation instead of hard pops. Downed creatures are NEVER toggled (deactivation would
+    /// kill their pending respawn coroutine); the wild handles its own fallen.
     /// </summary>
     public class EcologyDirector : MonoBehaviour
     {
+        private const float ReResolveSeconds = 300f; // live dawn/dusk cadence
+        private const float TweenSeconds = 0.8f;     // emerge/burrow presentation length
+        private const float TweenFloor = 0.05f;      // never scale fully to zero mid-tween
+
+        private bool _instantResolve = true;         // first census pops silently (load moment)
+        private bool _nestsBuilt;
+        private readonly Dictionary<CreatureRuntime, Vector3> _homeScales =
+            new Dictionary<CreatureRuntime, Vector3>();
+        private readonly Dictionary<CreatureRuntime, Coroutine> _tweens =
+            new Dictionary<CreatureRuntime, Coroutine>();
+
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void Bootstrap()
         {
@@ -41,6 +57,8 @@ namespace Ziptide.Gameplay
         private void Start()
         {
             ApplyEcology();
+            _instantResolve = false;
+            InvokeRepeating(nameof(ApplyEcology), ReResolveSeconds, ReResolveSeconds);
         }
 
         private void ApplyEcology()
@@ -83,9 +101,15 @@ namespace Ziptide.Gameplay
 
                 for (int i = 0; i < creatures.Count; i++)
                 {
+                    var c = creatures[i];
                     bool awake = i < abroad;
-                    if (creatures[i].gameObject.activeSelf != awake)
-                        creatures[i].gameObject.SetActive(awake);
+                    // 4.3e respawn safety: a downed creature may be running RespawnAfter();
+                    // SetActive(false) would kill that coroutine FOREVER. Leave the fallen alone.
+                    if (!c.IsAlive) continue;
+                    if (!_homeScales.ContainsKey(c)) _homeScales[c] = c.transform.localScale;
+                    if (c.gameObject.activeSelf == awake) continue;
+                    if (_instantResolve) { c.gameObject.SetActive(awake); continue; }
+                    StartTween(c, awake);
                 }
                 summary.Append(s.CreatureId).Append('=').Append(abroad).Append('/')
                        .Append(creatures.Count).Append(' ');
@@ -95,7 +119,51 @@ namespace Ziptide.Gameplay
             Debug.Log("ZIPTIDE: ECOLOGY_RESOLVE world=" + world +
                       " hour=" + (hour01 * 24f).ToString("F1") + " " + summary.ToString().TrimEnd());
 
-            BuildNests(byId);
+            if (!_nestsBuilt) { BuildNests(byId); _nestsBuilt = true; }
+        }
+
+        // ── 4.3e emerge/burrow presentation ─────────────────────────────────
+        // Tweens run on the DIRECTOR (a coroutine on the creature dies when it deactivates) and
+        // abort the instant a creature goes down, so they never fight CreatureRuntime's crumple
+        // scale or the RespawnAfter restore.
+
+        private void StartTween(CreatureRuntime c, bool awake)
+        {
+            if (_tweens.TryGetValue(c, out var running) && running != null) StopCoroutine(running);
+            _tweens[c] = StartCoroutine(awake ? Emerge(c) : Burrow(c));
+        }
+
+        private IEnumerator Emerge(CreatureRuntime c)
+        {
+            if (c == null) yield break;
+            Vector3 home = _homeScales.TryGetValue(c, out var s) ? s : c.transform.localScale;
+            c.gameObject.SetActive(true);
+            for (float t = 0f; t < TweenSeconds; t += Time.deltaTime)
+            {
+                if (c == null || !c.IsAlive) yield break;
+                float k = Mathf.SmoothStep(0f, 1f, t / TweenSeconds);
+                c.transform.localScale = home * Mathf.Max(TweenFloor, k);
+                yield return null;
+            }
+            if (c != null && c.IsAlive) c.transform.localScale = home;
+            if (c != null) _tweens.Remove(c);
+        }
+
+        private IEnumerator Burrow(CreatureRuntime c)
+        {
+            if (c == null) yield break;
+            Vector3 home = _homeScales.TryGetValue(c, out var s) ? s : c.transform.localScale;
+            for (float t = 0f; t < TweenSeconds; t += Time.deltaTime)
+            {
+                if (c == null || !c.IsAlive) yield break; // downed mid-burrow: the crumple wins
+                float k = Mathf.SmoothStep(0f, 1f, t / TweenSeconds);
+                c.transform.localScale = home * Mathf.Max(TweenFloor, 1f - k);
+                yield return null;
+            }
+            if (c == null || !c.IsAlive) yield break;
+            c.transform.localScale = home; // restore BEFORE sleeping — a nest-disturb wake pops full-size
+            c.gameObject.SetActive(false);
+            _tweens.Remove(c);
         }
 
         /// <summary>4.3d: every species with a home count gets physical NESTS at its population's
