@@ -5,13 +5,19 @@ namespace Ziptide.Visuals
     /// <summary>Which motion program (FORGE II P4 ForgeMotor) drives a limb's bones.</summary>
     public enum GaitRole { None, Leg, Tentacle, Wing, Tail, Antenna }
 
-    /// <summary>One rigid segment of a limb chain — a beveled box between two joints.</summary>
+    /// <summary>One rigid segment of a limb chain between two joints — a beveled box by default,
+    /// or (QUALITY pass, 2026-07-10) a smooth tapered capsule for organic limbs.</summary>
     [System.Serializable]
     public class ForgeLimbSegment
     {
-        [Tooltip("x = width, y = LENGTH along the chain, z = depth.")]
+        [Tooltip("x = width, y = LENGTH along the chain, z = depth (capsules use max(x,z) as diameter).")]
         public Vector3 size = new Vector3(0.06f, 0.3f, 0.07f);
         public int paletteSlot;
+        [Tooltip("Smooth capsule instead of a beveled box — organic limbs; the dome caps overlap at " +
+                 "joints, so knees/elbows read for free.")]
+        public bool rounded;
+        [Tooltip("0..0.95 thins the segment toward its tip (down the chain) — claws, tentacle tips.")]
+        public float taper;
     }
 
     /// <summary>

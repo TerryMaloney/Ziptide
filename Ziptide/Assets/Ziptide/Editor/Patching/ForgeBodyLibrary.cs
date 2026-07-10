@@ -83,9 +83,9 @@ namespace Ziptide.Editor.Patching
                     chainDirection = new Vector3(0.6f, -0.5f, 0.5f), role = GaitRole.Tentacle, mirrorX = true,
                     segments = new[]
                     {
-                        new ForgeLimbSegment { size = new Vector3(0.030f, 0.18f, 0.030f), paletteSlot = 0 },
-                        new ForgeLimbSegment { size = new Vector3(0.022f, 0.16f, 0.022f), paletteSlot = 0 },
-                        new ForgeLimbSegment { size = new Vector3(0.014f, 0.14f, 0.014f), paletteSlot = 0 },
+                        new ForgeLimbSegment { size = new Vector3(0.032f, 0.18f, 0.032f), paletteSlot = 0, rounded = true, taper = 0.2f },
+                        new ForgeLimbSegment { size = new Vector3(0.024f, 0.16f, 0.024f), paletteSlot = 0, rounded = true, taper = 0.25f },
+                        new ForgeLimbSegment { size = new Vector3(0.016f, 0.14f, 0.016f), paletteSlot = 0, rounded = true, taper = 0.6f },
                     }
                 },
                 new ForgeLimb
@@ -94,8 +94,8 @@ namespace Ziptide.Editor.Patching
                     chainDirection = new Vector3(0.65f, -0.5f, -0.45f), role = GaitRole.Tentacle, mirrorX = true,
                     segments = new[]
                     {
-                        new ForgeLimbSegment { size = new Vector3(0.028f, 0.16f, 0.028f), paletteSlot = 0 },
-                        new ForgeLimbSegment { size = new Vector3(0.018f, 0.14f, 0.018f), paletteSlot = 0 },
+                        new ForgeLimbSegment { size = new Vector3(0.030f, 0.16f, 0.030f), paletteSlot = 0, rounded = true, taper = 0.25f },
+                        new ForgeLimbSegment { size = new Vector3(0.020f, 0.14f, 0.020f), paletteSlot = 0, rounded = true, taper = 0.55f },
                     }
                 },
             };
@@ -149,12 +149,20 @@ namespace Ziptide.Editor.Patching
             b.slotStyles = new ForgeStyleSpec[0];
             b.coreParts = new[]
             {
-                new ForgePart { name = "Carapace", op = ForgeOp.SphereSection, bevel = 1f, segments = 10,
-                    smooth = true, size = new Vector3(0.34f, 0.16f, 0.42f), position = new Vector3(0f, 0.18f, 0f), paletteSlot = 1 },
-                new ForgePart { name = "Belly", op = ForgeOp.SphereSection, bevel = 1f, segments = 8,
+                new ForgePart { name = "Carapace", op = ForgeOp.OrganicBlob, segments = 14, smooth = true,
+                    size = new Vector3(0.34f, 0.16f, 0.42f), position = new Vector3(0f, 0.18f, 0f),
+                    noiseAmplitude = 0.010f, noiseFrequency = 13f, noiseSeed = 2, paletteSlot = 1 },
+                new ForgePart { name = "Belly", op = ForgeOp.SphereSection, bevel = 1f, segments = 10,
                     smooth = true, size = new Vector3(0.26f, 0.10f, 0.32f), position = new Vector3(0f, 0.12f, 0f), paletteSlot = 2 },
-                new ForgePart { name = "Head", op = ForgeOp.SphereSection, bevel = 1f, segments = 8,
-                    smooth = true, size = new Vector3(0.16f, 0.12f, 0.16f), position = new Vector3(0f, 0.17f, 0.22f), paletteSlot = 1 },
+                new ForgePart { name = "Head", op = ForgeOp.OrganicBlob, segments = 10, smooth = true,
+                    size = new Vector3(0.16f, 0.12f, 0.16f), position = new Vector3(0f, 0.17f, 0.22f),
+                    noiseAmplitude = 0.006f, noiseFrequency = 18f, noiseSeed = 4, paletteSlot = 1 },
+                new ForgePart { name = "RidgeL", op = ForgeOp.Wedge,
+                    size = new Vector3(0.03f, 0.05f, 0.30f), position = new Vector3(0.07f, 0.27f, -0.02f),
+                    eulerRotation = new Vector3(0f, 0f, -12f), paletteSlot = 0 },
+                new ForgePart { name = "RidgeR", op = ForgeOp.Wedge,
+                    size = new Vector3(0.03f, 0.05f, 0.30f), position = new Vector3(-0.07f, 0.27f, -0.02f),
+                    eulerRotation = new Vector3(0f, 0f, 12f), paletteSlot = 0 },
             };
             b.limbs = new[]
             {
@@ -165,7 +173,8 @@ namespace Ziptide.Editor.Patching
                 {
                     name = "Antenna", attachLocal = new Vector3(0.05f, 0.22f, 0.28f),
                     chainDirection = new Vector3(0.25f, 0.7f, 0.65f), role = GaitRole.Antenna, mirrorX = true,
-                    segments = new[] { new ForgeLimbSegment { size = new Vector3(0.012f, 0.15f, 0.012f), paletteSlot = 0 } }
+                    segments = new[] { new ForgeLimbSegment { size = new Vector3(0.014f, 0.15f, 0.014f),
+                        paletteSlot = 0, rounded = true, taper = 0.55f } }
                 },
             };
             b.eyeLocal = new Vector3(0f, 0.19f, 0.30f);
@@ -177,7 +186,8 @@ namespace Ziptide.Editor.Patching
         private static ForgeLimb Leg(string name, Vector3 attach, Vector3 dir) => new ForgeLimb
         {
             name = name, attachLocal = attach, chainDirection = dir, role = GaitRole.Leg, mirrorX = true,
-            segments = new[] { new ForgeLimbSegment { size = new Vector3(0.025f, 0.20f, 0.03f), paletteSlot = 0 } }
+            segments = new[] { new ForgeLimbSegment { size = new Vector3(0.028f, 0.20f, 0.032f),
+                paletteSlot = 0, rounded = true, taper = 0.35f } }
         };
 
         /// <summary>
@@ -199,10 +209,13 @@ namespace Ziptide.Editor.Patching
             b.slotStyles = new ForgeStyleSpec[0];
             b.coreParts = new[]
             {
-                new ForgePart { name = "Bell", op = ForgeOp.SphereSection, bevel = 1f, segments = 12,
-                    smooth = true, size = new Vector3(0.40f, 0.34f, 0.40f), position = new Vector3(0f, 0.34f, 0f), paletteSlot = 1 },
-                new ForgePart { name = "Underbell", op = ForgeOp.SphereSection, bevel = 1f, segments = 10,
+                new ForgePart { name = "Bell", op = ForgeOp.OrganicBlob, segments = 16, smooth = true,
+                    size = new Vector3(0.40f, 0.34f, 0.40f), position = new Vector3(0f, 0.34f, 0f),
+                    noiseAmplitude = 0.010f, noiseFrequency = 9f, noiseSeed = 7, paletteSlot = 1 },
+                new ForgePart { name = "Underbell", op = ForgeOp.SphereSection, bevel = 1f, segments = 12,
                     smooth = true, size = new Vector3(0.30f, 0.16f, 0.30f), position = new Vector3(0f, 0.20f, 0f), paletteSlot = 2 },
+                new ForgePart { name = "Skirt", op = ForgeOp.Torus, segments = 14, smooth = true,
+                    size = new Vector3(0.36f, 0.05f, 0.01f), position = new Vector3(0f, 0.23f, 0f), paletteSlot = 2 },
             };
             b.limbs = new[]
             {
@@ -212,8 +225,8 @@ namespace Ziptide.Editor.Patching
                     chainDirection = new Vector3(0.3f, -1f, 0.18f), role = GaitRole.Tentacle, mirrorX = true,
                     segments = new[]
                     {
-                        new ForgeLimbSegment { size = new Vector3(0.035f, 0.16f, 0.035f), paletteSlot = 0 },
-                        new ForgeLimbSegment { size = new Vector3(0.022f, 0.14f, 0.022f), paletteSlot = 0 },
+                        new ForgeLimbSegment { size = new Vector3(0.038f, 0.16f, 0.038f), paletteSlot = 0, rounded = true, taper = 0.25f },
+                        new ForgeLimbSegment { size = new Vector3(0.024f, 0.14f, 0.024f), paletteSlot = 0, rounded = true, taper = 0.5f },
                     }
                 },
                 new ForgeLimb
@@ -222,8 +235,8 @@ namespace Ziptide.Editor.Patching
                     chainDirection = new Vector3(0.35f, -1f, -0.22f), role = GaitRole.Tentacle, mirrorX = true,
                     segments = new[]
                     {
-                        new ForgeLimbSegment { size = new Vector3(0.035f, 0.16f, 0.035f), paletteSlot = 0 },
-                        new ForgeLimbSegment { size = new Vector3(0.022f, 0.14f, 0.022f), paletteSlot = 0 },
+                        new ForgeLimbSegment { size = new Vector3(0.038f, 0.16f, 0.038f), paletteSlot = 0, rounded = true, taper = 0.25f },
+                        new ForgeLimbSegment { size = new Vector3(0.024f, 0.14f, 0.024f), paletteSlot = 0, rounded = true, taper = 0.5f },
                     }
                 },
             };
@@ -256,9 +269,18 @@ namespace Ziptide.Editor.Patching
                 new ForgePart { name = "Body", op = ForgeOp.OrganicBlob, segments = 10, smooth = true,
                     size = new Vector3(0.30f, 0.20f, 0.36f), position = new Vector3(0f, 0.16f, 0f),
                     noiseAmplitude = 0.012f, noiseFrequency = 14f, noiseSeed = 5, paletteSlot = 1 },
-                new ForgePart { name = "LensHousing", op = ForgeOp.SphereSection, bevel = 1f, segments = 8,
+                new ForgePart { name = "LensHousing", op = ForgeOp.SphereSection, bevel = 1f, segments = 10,
                     smooth = true, size = new Vector3(0.15f, 0.13f, 0.15f),
                     position = new Vector3(0f, 0.20f, 0.16f), paletteSlot = 2 },
+                new ForgePart { name = "Spine1", op = ForgeOp.Capsule, segments = 8, smooth = true, taper = 0.7f,
+                    size = new Vector3(0.030f, 0.12f, 0.030f), position = new Vector3(0f, 0.27f, -0.04f),
+                    eulerRotation = new Vector3(-20f, 0f, 0f), paletteSlot = 0 },
+                new ForgePart { name = "Spine2", op = ForgeOp.Capsule, segments = 8, smooth = true, taper = 0.7f,
+                    size = new Vector3(0.024f, 0.10f, 0.024f), position = new Vector3(0.06f, 0.24f, -0.09f),
+                    eulerRotation = new Vector3(-30f, 0f, 12f), paletteSlot = 0 },
+                new ForgePart { name = "Spine3", op = ForgeOp.Capsule, segments = 8, smooth = true, taper = 0.7f,
+                    size = new Vector3(0.024f, 0.10f, 0.024f), position = new Vector3(-0.06f, 0.24f, -0.09f),
+                    eulerRotation = new Vector3(-30f, 0f, -12f), paletteSlot = 0 },
             };
             b.limbs = new[]
             {
@@ -275,7 +297,8 @@ namespace Ziptide.Editor.Patching
         private static ForgeLimb MiteLeg(string name, Vector3 attach, Vector3 dir) => new ForgeLimb
         {
             name = name, attachLocal = attach, chainDirection = dir, role = GaitRole.Leg, mirrorX = true,
-            segments = new[] { new ForgeLimbSegment { size = new Vector3(0.02f, 0.16f, 0.025f), paletteSlot = 0 } }
+            segments = new[] { new ForgeLimbSegment { size = new Vector3(0.024f, 0.16f, 0.028f),
+                paletteSlot = 0, rounded = true, taper = 0.3f } }
         };
 
         /// <summary>
@@ -307,6 +330,15 @@ namespace Ziptide.Editor.Patching
                 new ForgePart { name = "RidgeFin", op = ForgeOp.Wedge, segments = 4,
                     size = new Vector3(0.05f, 0.13f, 0.34f), position = new Vector3(0f, 0.32f, -0.02f),
                     paletteSlot = 0 },
+                new ForgePart { name = "RidgeFin2", op = ForgeOp.Wedge, segments = 4,
+                    size = new Vector3(0.04f, 0.08f, 0.20f), position = new Vector3(0f, 0.30f, -0.16f),
+                    eulerRotation = new Vector3(-15f, 0f, 0f), paletteSlot = 0 },
+                new ForgePart { name = "PlateL", op = ForgeOp.BeveledBox, bevel = 0.01f,
+                    size = new Vector3(0.05f, 0.10f, 0.26f), position = new Vector3(0.15f, 0.18f, 0f),
+                    eulerRotation = new Vector3(0f, 0f, -25f), paletteSlot = 2 },
+                new ForgePart { name = "PlateR", op = ForgeOp.BeveledBox, bevel = 0.01f,
+                    size = new Vector3(0.05f, 0.10f, 0.26f), position = new Vector3(-0.15f, 0.18f, 0f),
+                    eulerRotation = new Vector3(0f, 0f, 25f), paletteSlot = 2 },
             };
             b.limbs = new[]
             {
@@ -316,8 +348,8 @@ namespace Ziptide.Editor.Patching
                     chainDirection = new Vector3(0.9f, -1f, 0.25f), role = GaitRole.Leg, mirrorX = true,
                     segments = new[]
                     {
-                        new ForgeLimbSegment { size = new Vector3(0.03f, 0.14f, 0.035f), paletteSlot = 0 },
-                        new ForgeLimbSegment { size = new Vector3(0.022f, 0.12f, 0.026f), paletteSlot = 0 },
+                        new ForgeLimbSegment { size = new Vector3(0.034f, 0.14f, 0.038f), paletteSlot = 0, rounded = true, taper = 0.2f },
+                        new ForgeLimbSegment { size = new Vector3(0.024f, 0.12f, 0.028f), paletteSlot = 0, rounded = true, taper = 0.5f },
                     }
                 },
                 new ForgeLimb
@@ -326,8 +358,8 @@ namespace Ziptide.Editor.Patching
                     chainDirection = new Vector3(0.9f, -1f, -0.25f), role = GaitRole.Leg, mirrorX = true,
                     segments = new[]
                     {
-                        new ForgeLimbSegment { size = new Vector3(0.03f, 0.14f, 0.035f), paletteSlot = 0 },
-                        new ForgeLimbSegment { size = new Vector3(0.022f, 0.12f, 0.026f), paletteSlot = 0 },
+                        new ForgeLimbSegment { size = new Vector3(0.034f, 0.14f, 0.038f), paletteSlot = 0, rounded = true, taper = 0.2f },
+                        new ForgeLimbSegment { size = new Vector3(0.024f, 0.12f, 0.028f), paletteSlot = 0, rounded = true, taper = 0.5f },
                     }
                 },
             };
@@ -383,8 +415,8 @@ namespace Ziptide.Editor.Patching
                     chainDirection = new Vector3(0.10f, -1f, 0f), role = GaitRole.Leg, mirrorX = true,
                     segments = new[]
                     {
-                        new ForgeLimbSegment { size = new Vector3(0.12f, 0.28f, 0.15f), paletteSlot = 0 },
-                        new ForgeLimbSegment { size = new Vector3(0.10f, 0.24f, 0.13f), paletteSlot = 1 },
+                        new ForgeLimbSegment { size = new Vector3(0.13f, 0.28f, 0.15f), paletteSlot = 0, rounded = true, taper = 0.12f },
+                        new ForgeLimbSegment { size = new Vector3(0.11f, 0.24f, 0.13f), paletteSlot = 1, rounded = true, taper = 0.2f },
                     }
                 },
             };

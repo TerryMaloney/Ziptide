@@ -500,6 +500,13 @@ Two things to *feel* on device; both are pure-data tunes if they're off (no rebu
   never hurt you, shrink away after ~4.5s, hard-capped at 24 live (Quest). Watch
   `ZIPTIDE: PVP_WALL_HIT ... collapsed=N`. Feel notes: fragment kick strength, chunk lifetime,
   collapse read (does the avalanche feel earned?), debris clatter volume on Quest.
+- [ ] **NEW (creature quality pass, 2026-07-10 — Picasso, YOUR "too boxy" note):** creature bodies went
+  from boxes to organic — smooth shading is now honored (blobs stop being faceted lumps) and every limb
+  is a tapered CAPSULE with natural joint bulges. Four newer creatures pick it up automatically at
+  build, but `swarm_bug` + `light_grazer` have COMMITTED body assets (create-only law): delete
+  `Assets/Ziptide/Resources/Forge/Bodies/swarm_bug.asset` and `light_grazer.asset` (+ `.meta`s), then
+  run `Ziptide → Art → Author Forge Creature Bodies (missing only)` (or just build) and commit the
+  reseeded pair. **Headset:** creatures in W002/W005/W009 should read rounded and alive, not boxy.
 - [ ] **(not Unity) Reconnect the GitHub connector** on claude.ai (Settings → Connectors → GitHub →
   Reconnect, authorize `terrymaloney/ziptide`) so the operators can see CI status again. Pushing already
   works without it; this is just so we can watch the runs go green.

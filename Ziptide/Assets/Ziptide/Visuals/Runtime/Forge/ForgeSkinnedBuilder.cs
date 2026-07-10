@@ -88,7 +88,10 @@ namespace Ziptide.Visuals
             var islandByPart = new Dictionary<int, Rect>();
             foreach (var isl in islands) islandByPart[isl.partIndex] = isl.rect;
 
-            // ── Geometry: exploded flat shading (crisp chitin read), rigid weight per part ──
+            // ── Geometry, honoring each part's shading (QUALITY pass, 2026-07-10): flat parts stay
+            // exploded (crisp chitin plates), but parts marked SMOOTH get indexed verts with
+            // accumulated normals — the difference between a faceted lump and an organic body.
+            // The old builder flat-shaded everything, which is why creatures read "boxy". ──
             for (int pi = 0; pi < parts.Count; pi++)
             {
                 var part = parts[pi];
@@ -100,6 +103,33 @@ namespace Ziptide.Visuals
                 var bw = new BoneWeight { boneIndex0 = partBone[pi], weight0 = 1f };
                 if (!trisBySlot.TryGetValue(part.paletteSlot, out var tris))
                     trisBySlot[part.paletteSlot] = tris = new List<int>();
+
+                if (part.smooth)
+                {
+                    // Indexed: shared verts, area-weighted accumulated normals (ForgeMesh's smooth
+                    // idiom), per-VERTEX UVs, one rigid weight per vertex.
+                    int baseIndex = verts.Count;
+                    var acc = new Vector3[local.vertices.Count];
+                    for (int i = 0; i < local.vertices.Count; i++)
+                    {
+                        Vector3 lv = local.vertices[i];
+                        verts.Add(pose.MultiplyPoint3x4(lv));
+                        ForgeUV.ProjectTriangle(proj, lv, lv, lv, lv, lb, out var uv, out _, out _);
+                        uvs.Add(ForgeUV.ToAtlas(uv, island));
+                        weights.Add(bw);
+                    }
+                    for (int t = 0; t < local.triangles.Count; t += 3)
+                    {
+                        int a = local.triangles[t], b = local.triangles[t + 1], c = local.triangles[t + 2];
+                        Vector3 fn = Vector3.Cross(verts[baseIndex + b] - verts[baseIndex + a],
+                                                   verts[baseIndex + c] - verts[baseIndex + a]);
+                        acc[a] += fn; acc[b] += fn; acc[c] += fn;
+                        tris.Add(baseIndex + a); tris.Add(baseIndex + b); tris.Add(baseIndex + c);
+                    }
+                    foreach (var n in acc)
+                        normals.Add(n.sqrMagnitude > 1e-12f ? n.normalized : Vector3.up);
+                    continue;
+                }
 
                 for (int t = 0; t < local.triangles.Count; t += 3)
                 {
@@ -180,12 +210,24 @@ namespace Ziptide.Visuals
                 parent = boneGo.transform;
 
                 Vector3 center = joint + dir * (len * 0.5f);
-                parts.Add(new ForgePart
-                {
-                    name = tag + "_Seg" + s, op = ForgeOp.BeveledBox, bevel = 0.004f,
-                    size = seg.size, paletteSlot = seg.paletteSlot
-                    // position/rotation live in partPose, not the part (the part is LOCAL geometry)
-                });
+                // QUALITY pass: rounded segments become smooth tapered capsules — the dome caps
+                // overlap at each joint, so knees/elbows/tentacle bends read organically for free.
+                float dia = Mathf.Max(seg.size.x, seg.size.z);
+                parts.Add(seg.rounded
+                    ? new ForgePart
+                    {
+                        name = tag + "_Seg" + s, op = ForgeOp.Capsule, segments = 8, smooth = true,
+                        taper = Mathf.Clamp(seg.taper, 0f, 0.95f),
+                        size = new Vector3(dia, len + dia * 0.6f, dia), // caps reach past the joints
+                        paletteSlot = seg.paletteSlot
+                    }
+                    : new ForgePart
+                    {
+                        name = tag + "_Seg" + s, op = ForgeOp.BeveledBox, bevel = 0.004f,
+                        taper = Mathf.Clamp(seg.taper, 0f, 0.95f),
+                        size = seg.size, paletteSlot = seg.paletteSlot
+                        // position/rotation live in partPose, not the part (LOCAL geometry)
+                    });
                 partBone.Add(bones.Count - 1);
                 partPose.Add(Matrix4x4.TRS(center, chainRot, Vector3.one));
 

@@ -28,6 +28,28 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-10 (dddd11) - Picasso (Fable 5): 🎨 CREATURE QUALITY PASS — "too boxy" fixed at the ENGINE
+- **Why (Terry, direct):** "the creatures still look pretty boxy and extremely simple… not something I
+  would ship." He's right, and the cause was structural, not per-genome: (1) ForgeSkinnedBuilder
+  FLAT-SHADED everything — it ignored `part.smooth`, so even OrganicBlobs rendered as faceted lumps;
+  (2) every limb segment was a hardcoded BeveledBox (line 185); (3) genomes used ~5% of the 10k
+  creature tri budget.
+- **Did (engine):** the skinned builder now HONORS `smooth` (indexed verts + area-weighted accumulated
+  normals — the ForgeMesh idiom, with rigid weights per vertex); `ForgeLimbSegment` gained
+  `rounded` (smooth tapered CAPSULE whose dome caps overlap the joints — knees/elbows read for free)
+  + `taper` (claw/tentacle tips). Back-compat: default false/0 = the old box.
+- **Did (genomes, all 6):** every limb rounded+tapered (18 segments); blobs upped to 14–16 segments;
+  detail parts added — swarm_bug shell ridges + noised carapace/head, light_grazer Torus skirt +
+  noised bell, witness_mite back-spike cluster (tapered capsules), husk_molter second ridge fin +
+  angled side plates, warden rounded armor-column legs, tendril fully organic tendrils.
+- **🔧 Runbook:** swarm_bug + light_grazer assets are COMMITTED (create-only) — delete + reseed step
+  queued so their limbs pick up the capsules (the smooth-shading fix reaches them regardless).
+- **Next:** booth verdicts on the whole roster next run (incl. warden v2). If blobs still read too
+  faceted at segments 16, the cap is `ForgePart.segments ≤ 16` in Validate — raising it for
+  creature-class parts is the next dial. Textured (styled) creature skins = the dial after that
+  (slotStyles are authored-empty today; the bake path needs skinned-mesh support — boarded).
+- **Commit:** this push.
+
 ### 2026-07-10 (tf4) - T-Dog/Fable 5 (Tidefront lane): 🎭 B4 HOTSEAT — two admirals, one headset
 - **Why:** the last unclaimed row in my lane, and the spec's own build order (B1 sim → B2 table →
   B3 missions → **B4 hotseat** → Photon).
