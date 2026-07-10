@@ -125,12 +125,26 @@ namespace Ziptide.Gameplay
 
             if (plot == null)
             {
-                var planted = GardenService.Plant(world, _plant, Now());
+                // 4.2d: hazard gardens mutation-kick every seed at plant time. The seed is stable
+                // per plot-per-planting (plot id + timestamp), so a save replays the same genes.
+                var genes = PlantGenes.Baseline;
+                if (_def.hazardStrength01 > 0f)
+                {
+                    int kickSeed = (_def.id + "|" + _worldId).GetHashCode() ^ (int)Now();
+                    genes = PlantGenetics.HazardKick(genes, _def.hazardStrength01, kickSeed);
+                }
+                var planted = GardenService.Plant(world, _plant, genes, Now());
                 if (planted != null)
                 {
                     planted.plotId = _def.id;
                     Debug.Log("ZIPTIDE: GARDEN_PLANT plot=" + _def.id + " plant=" + _plant.id +
-                              " grow=" + _plant.growSeconds + "s");
+                              " grow=" + planted.growSeconds.ToString("F0") + "s" +
+                              (_def.hazardStrength01 > 0f
+                                  ? " hazard=" + _def.hazardStrength01.ToString("F2") +
+                                    " rarity=" + PlantGenetics.Rarity(genes)
+                                  : ""));
+                    if (PlantGenetics.IsGiant(genes))
+                        Debug.Log("ZIPTIDE: GARDEN_GIANT plot=" + _def.id + " plant=" + _plant.id);
                 }
                 return;
             }
@@ -144,7 +158,8 @@ namespace Ziptide.Gameplay
                     // doesn't accumulate dead entries across sessions.
                     world.plots.Remove(plot);
                     Debug.Log("ZIPTIDE: GARDEN_HARVEST plot=" + _def.id + " plant=" + _plant.id +
-                              " mult=" + result.yieldMultiplier.ToString("F2") + " entries=" + result.yieldEntries);
+                              " mult=" + result.yieldMultiplier.ToString("F2") + " entries=" + result.yieldEntries +
+                              (result.giant ? " GIANT" : ""));
                 }
                 else
                 {
@@ -173,15 +188,16 @@ namespace Ziptide.Gameplay
             else if (!plot.IsReady(now))
             {
                 float t = (float)plot.GrowthProgress(now);
-                ShowPlant(t, false);
+                ShowPlant(t, false, GiantScale(plot));
                 long remain = (long)plot.growSeconds - (now - plot.plantedAtUnix);
                 if (remain < 0) remain = 0;
                 SetReadout(plantName + "  " + Mathf.RoundToInt(t * 100f) + "%\n" + FormatTime(remain) + " to harvest");
             }
             else
             {
-                ShowPlant(1f, true);
-                SetReadout(plantName + "  READY\n< select soil to harvest >");
+                bool giant = PlantGenetics.IsGiant(plot.genes);
+                ShowPlant(1f, true, GiantScale(plot));
+                SetReadout((giant ? "★ GIANT " : "") + plantName + "  READY\n< select soil to harvest >");
             }
 
             var cam = Camera.main;
@@ -189,12 +205,19 @@ namespace Ziptide.Gameplay
                 _readout.transform.rotation = Quaternion.LookRotation(_readout.transform.position - cam.transform.position);
         }
 
-        private void ShowPlant(float growth, bool ready)
+        /// <summary>4.2d: giants grow toward 2.2× as their size gene passes the threshold — the
+        /// prize should read from across the garden.</summary>
+        private static float GiantScale(PlotState plot)
+            => PlantGenetics.IsGiant(plot.genes)
+                ? Mathf.Lerp(1.6f, 2.2f, Mathf.InverseLerp(PlantGenetics.GiantThreshold, 1f, plot.genes.size))
+                : 1f;
+
+        private void ShowPlant(float growth, bool ready, float giantScale = 1f)
         {
             if (_plantVisual == null) return;
             _plantVisual.SetActive(true);
-            float h = Mathf.Lerp(0.08f, 0.65f, growth);
-            float w = Mathf.Lerp(0.06f, 0.22f, growth);
+            float h = Mathf.Lerp(0.08f, 0.65f, growth) * giantScale;
+            float w = Mathf.Lerp(0.06f, 0.22f, growth) * giantScale;
             _plantVisual.transform.localScale = new Vector3(w, h, w);
             _plantVisual.transform.localPosition = new Vector3(0f, 0.06f + h * 0.5f, 0f);
             if (_plantRenderer != null && _plantRenderer.material != null)

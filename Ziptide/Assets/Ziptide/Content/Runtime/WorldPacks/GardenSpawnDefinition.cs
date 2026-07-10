@@ -20,5 +20,10 @@ namespace Ziptide.Content
 
         [Tooltip("Local position relative to world origin (same space as spawnMarkers).")]
         public Vector3 localPosition = Vector3.zero;
+
+        [Tooltip("GARDEN AAA 4.2d: world-hazard exposure 0..1 (radiation, static bloom). Non-zero " +
+                 "planters mutation-kick every seed at plant time — hazard gardens are where giants " +
+                 "come from. 0 (default) = a safe garden, genes untouched.")]
+        [Range(0f, 1f)] public float hazardStrength01 = 0f;
     }
 }

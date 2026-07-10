@@ -87,6 +87,19 @@
   numbers are in `AutomationAuditRules` consts — Picasso, fold them into the QUEST budget doc if
   you want one home for all caps.
 - **Commits:** `9f88bd4` · `02acf1b` · `04b7c02` · `ad97429` + this docs push.
+### 2026-07-10 (rb12) - Reasonbox (garden lane): ☢️ 4.2d — hazard gardens breed GIANTS live (4.2c CI ✅)
+- **4.2c verdict:** the watering can is **CI GREEN ✅** (`c259631`).
+- **Did:** the hazard hook goes LIVE — `GardenSpawnDefinition.hazardStrength01` (additive pack field,
+  default 0 = safe garden, old packs untouched): a non-zero planter mutation-kicks every seed at
+  plant time through `PlantGenetics.HazardKick` (seed stable per plot+timestamp — a save replays the
+  same genes). Radiation gardens are now WHERE GIANTS COME FROM, exactly as GARDEN_AAA.md drew it.
+  And giants READ: past the size threshold the plant visual grows toward **2.2×**, the readout says
+  **★ GIANT**, and `GARDEN_HARVEST … GIANT` / `GARDEN_GIANT` log the moment. World authors: set
+  `hazardStrength01` on any pack's garden entries (W004's dead-screen dread wants ~0.7).
+- **Still queued in this row:** the true two-handed giant PULL (deserves device iteration — after
+  Terry's first garden feel pass) · seed items from `CrossPlots` into the belt/pouch · sprinklers
+  bridging to the architect's now-closed belt loop (mined ore rides belts — giant produce should too).
+- **Commit / branch:** this push on `terry-local-wip` — verify the run before stacking C#.
 
 ### 2026-07-10 (hwr15) - Fable 5 architect: ⛏️ 4.1e — machine PORTS ship green: mined ore rides the belt, THE LOOP CLOSES
 - **Did (`8a082e9`, CI ✅):** `BeltLattice.PlacePort/TryEmit` — a Source with no auto-clock, fed only
