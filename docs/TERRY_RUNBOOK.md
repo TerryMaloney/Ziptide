@@ -78,6 +78,16 @@ Do these in order after pulling. Each generates committable assets. *(This mirro
   `ZIPTIDE: LIFT_READY`) and a **jump pad** (green disc at x≈7; step on → ~1.2s arc onto the tower
   top — `JUMPPAD_LAUNCH/LAND`; stick is suspended mid-flight). Feel notes: lift speed (1.6 m/s),
   dwell time, pad arc height (apex +2m — comfortable or startling?), landing accuracy.
+- [ ] **NEW (garden 4.2, 2026-07-10 — Reasonbox) — GENETICS + 24 PLANTS + THE WATERING CAN:** no menu
+  step (the build seeds the new plant/tool assets itself). **Headset (any garden — Sandbox garden zone
+  or W002 groves):** a blue **watering can** now sits beside the first plot — grab it and **TILT it
+  past ~55°**: a stream falls and the visible water level sinks (`ZIPTIDE: GARDEN_POUR`). A
+  quarter-can near a planted plot **TENDS it** (`GARDEN_TEND`, readout yieldMult ticks up); hold it
+  upright on the soil to refill. Long crops (>10 min) accept a second tend from **prune snips**
+  (authored; holsterable tool spawn comes with the tool-chest pass). Under the hood every plant now
+  carries **genes** — 24 species, cross-pollination, giant crops at 3× — backend-only this pass;
+  giants/breeding get their hands-on moment in 4.2d. Feel notes: pour angle (55°),
+  quarter-can-per-tend, reach (1.6m), can size/weight, stream visibility.
 - [ ] **NEW (caverns 1.4e, 2026-07-09) — THE FIRST CAVE:** run `Ziptide → Dev → Build Cavern Test
   Lab` once (creates + saves `Cavern_TestLab.unity`, adds itself to Build Settings), commit the scene
   + its `_WorldPack.asset`. **Headset:** warp in via Y+B ("Cavern Test Lab") — you spawn in a dim
