@@ -38,6 +38,9 @@ namespace Ziptide.Visuals
         [Header("Dome — zenith shimmer (the Pattern seed, W003+)")]
         public ZenithShimmerLayer zenithShimmer = new ZenithShimmerLayer();
 
+        [Header("Atmosphere — SKYSCAPE_DESIGN.md layers (haze card + particulate drift + body glow)")]
+        public AtmosphereLayer atmosphere = new AtmosphereLayer();
+
         [Header("Celestial bodies (max 3)")]
         public List<CelestialBodyDef> bodies = new List<CelestialBodyDef>();
 
@@ -85,6 +88,23 @@ namespace Ziptide.Visuals
             public bool enabled = false;
             public Color color = new Color(0.75f, 0.9f, 1f, 1f);
             [Range(0f, 1f)] public float intensity = 0.25f;
+        }
+
+        /// <summary>The "air is real" layers (SKYSCAPE_DESIGN.md): authored as a hazard tag +
+        /// intensity — SkyAtmosphere.ForHazard derives the actual spec, so the §4.1 defaults table
+        /// stays the single source of truth. Optional tint override for worlds that subvert their
+        /// hazard's expected palette.</summary>
+        [System.Serializable]
+        public class AtmosphereLayer
+        {
+            public bool enabled = false;
+            [Tooltip("Hazard tag from the chapter docs (Bloom/fire/acid/radiation/flood/wind/…). Drives every default.")]
+            public string hazardTag = "";
+            [Range(0f, 1f)] public float intensity = 0.7f;
+            [Tooltip("If alpha > 0, replaces the hazard default haze tint (for palette-subverting worlds).")]
+            public Color hazeTintOverride = new Color(0f, 0f, 0f, 0f);
+            [Tooltip("Signature-tier only: soft scatter glow behind body 0 so its edge reads as lit air, not cardboard.")]
+            public bool bodyGlow = false;
         }
 
         [System.Serializable]

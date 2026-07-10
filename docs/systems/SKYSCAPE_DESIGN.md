@@ -1,6 +1,15 @@
 # Skyscape Design — the Prospect bar (added 2026-07-06)
 
-**Status:** design plan only — nothing in this doc is built yet. Existing code (`SkyVistaDefinition`/
+**Status: §6 STEP 1 IS BUILT (2026-07-10, T-Dog/Fable).** The atmosphere layer system exists and W005
+carries the full Signature stack, awaiting Terry's on-device gut check (runbook has the reseed step +
+the test script). What shipped: `SkyAtmosphereCore` (the §4.1 hazard→atmosphere table as code, ALL 16
+tags, + deterministic drift math, 8 EditMode tests) · `SkyAtmosphereRig` (haze ring at 40m + a
+single-mesh mote field at 8–15m whose positions ARE the tested pure function + body edge glow — 3
+renderers, 0 lights, real stereo depths per §1) · `SkyVistaDefinition.atmosphere` block (authored as
+hazardTag + intensity so the §4.1 table stays the single source of truth) · W005 Signature authoring
+incl. the pillar-4 light coupling. §6 steps 2–4 (rollout to the other worlds, occlusion hook,
+color-grade volume) remain gated on the W005 verdict, as planned. *(Original status of this doc:
+design plan only — nothing built yet.)* Existing code (`SkyVistaDefinition`/
 `SkyVistaRig`/`SkyPlanetRig`, `Editor/Patching/SkyVistaLibrary.cs`) is the *current* system and is
 referenced throughout as the foundation this plan extends, not replaces. Terry's brief: the sky is one
 of the most important things in the game — the thing that has to make VR feel like *"you are standing

@@ -51,9 +51,24 @@ namespace Ziptide.Visuals
             {
                 BakeDome(vista);
                 RebuildBodies(vista);
+                ApplyAtmosphere(vista);
             }
             PositionAll();
             ApplySceneTieIns(vista);
+        }
+
+        /// <summary>SKYSCAPE layers (haze/motes/glow) ride a child rig; it drives itself per-frame.</summary>
+        private SkyAtmosphereRig _atmosphere;
+
+        private void ApplyAtmosphere(SkyVistaDefinition vista)
+        {
+            if (_atmosphere == null)
+            {
+                var go = new GameObject("SkyAtmosphere");
+                go.transform.SetParent(transform, false);
+                _atmosphere = go.AddComponent<SkyAtmosphereRig>();
+            }
+            _atmosphere.Apply(vista, _playerTransform);
         }
 
         private void Update()

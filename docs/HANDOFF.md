@@ -28,6 +28,29 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-10 (sky1) - T-Dog/Fable 5: 🌅 SKYSCAPE v1 — the air is real (W005 signature proof)
+- **Why:** Terry: "pick something that needs to get done… make something cool." The skyscape is HIS
+  stated reason for making the game, `SKYSCAPE_DESIGN.md` said "nothing built yet," nobody had claimed
+  it. Executed the doc's own §6 step 1: full stack on ONE world (W005), gut-check gate before rollout.
+- **Did:** ① `Visuals/SkyAtmosphereCore` — the §4.1 hazard→atmosphere defaults table AS CODE (all 16
+  tags: Bloom dense spore air · radiation deliberately thin · wind dragged streaks · pattern GLITCH
+  motes that step instead of glide · swarm/void = correctly nothing) + `MotePosition(seed,index,time)`
+  pure drift math (LiftCycle idiom — no sim state). 8 EditMode tests pin the design's own laws.
+  ② `SkyAtmosphereRig` — 3 renderers, 0 lights: haze ring mesh at 40m (real distance, NOT the dome —
+  the stereo-depth law from §1), mote field as ONE dynamic mesh at 8–15m whose verts are evaluated
+  from the pure function every frame (the tested math IS the visual), soft additive glow quad behind
+  body 0. Motes follow the player with lag so leaning buys true parallax; all mats double-sided.
+  ③ `SkyVistaDefinition.atmosphere` block (additive; authored as hazardTag+intensity so §4.1 stays
+  the single source of truth) + SkyVistaRig hook. ④ W005 = Signature tier: Bloom atmosphere, body
+  glow, AND the pillar-4 light coupling (amber directional + ambient — the sky's color reaches the
+  ground for the first time).
+- **📣 Heads-ups:** (a) W005's vista asset is create-only — runbook has the delete+reseed step; the
+  new fields default OFF so all other vista assets are untouched. (b) Picasso: I touched no Forge/art
+  files — this rides the existing SkyVista system I retuned in DEPTH-2. (c) Rollout to the other 11
+  worlds + the occlusion-composition hook stay GATED on Terry's W005 on-device verdict (the doc's own
+  order). Diag: `ZIPTIDE: SKY_ATMO`.
+- **Commits:** this push (core+rig+authoring+tests, docs).
+
 ### 2026-07-10 (hwr16) - Fable 5 architect: 🏁 ROW 4.1 COMPLETE — persistence, the gate, CONDUCTOR MODE, belts in real worlds
 - **Context:** previous architect chat was lost mid-session (flagged, no fault found); this session
   re-oriented from the boards alone — the blackboard worked exactly as designed. Same lane resumed:

@@ -131,6 +131,10 @@ namespace Ziptide.Editor.Patching
         }
 
         // W005 Oxidized Canopy — rust dusk, spore haze, the giant closer now; RILL's cyan seeded in the nebula.
+        // SIGNATURE TIER (skyscape v1, 2026-07-10): the game's own Prospect reference gets the full
+        // SKYSCAPE_DESIGN stack — Bloom spore atmosphere (haze card ~40m + drifting motes 8–15m, REAL
+        // stereo depths) + body edge glow + the mandatory light coupling ("the sky's color IS the
+        // scene's color"). Create-only: delete the W005 vista asset + reseed for this to take (runbook).
         private static SkyVistaDefinition BuildW005OxidizedCanopy()
         {
             var d = NewVista("w005_oxidized_canopy",
@@ -141,6 +145,14 @@ namespace Ziptide.Editor.Patching
             d.nebula.enabled = true; d.nebula.seed = 53; d.nebula.coverage = 0.30f; d.nebula.altitudeBias = 0.4f;
             d.nebula.colorA = new Color(0.45f, 0.20f, 0.10f);
             d.nebula.colorB = RillCyan;         // canon: the color RILL has chased for 40,000 years
+            d.atmosphere.enabled = true;
+            d.atmosphere.hazardTag = "Bloom";   // §4.1 default: pollen-lit amber air, dense spore drift
+            d.atmosphere.intensity = 0.8f;
+            d.atmosphere.bodyGlow = true;       // the giant's edge scatters through canopy air
+            d.directionalLightColor = new Color(1.0f, 0.72f, 0.45f);   // pillar 4: the amber reaches the ground
+            d.directionalLightIntensity = 1.05f;
+            d.overrideAmbient = true;
+            d.ambientColor = new Color(0.42f, 0.30f, 0.22f);
             return d;
         }
 

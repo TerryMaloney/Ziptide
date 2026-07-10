@@ -136,6 +136,19 @@ Do these in order after pulling. Each generates committable assets. *(This mirro
   as you toggle, and battle losses only hit vessels you actually sent. Holding everything back
   refuses the strike. Hold-backs reset when the fleet changes. Feel notes: token size/spacing for
   fingertip taps, whether toggle beats the spec's original grab-and-drop, label readability.
+- [ ] **NEW (SKYSCAPE v1, 2026-07-10) — W005 GETS THE PROSPECT TREATMENT.** This is the one you said
+  drove you to make the game — the first world where the sky is WEATHER, not a backdrop. 🔧 Unity:
+  delete `Assets/Ziptide/Content/Worlds/SkyVistas/W005_OxidizedCanopy_Vista.asset` (+ `.meta`), run
+  `Ziptide → Art → Author Sky Vistas (missing only)`, commit the reseeded asset (create-only library,
+  same dance as the W007 retune). 🎮 Headset, W005 Oxidized Canopy: amber **spore motes drift 8–15m
+  around you** (lean your head — they parallax against the sky because they're really there, not
+  painted on the dome), a **haze band sits at the horizon** so the far edge looks seen through air,
+  the banded giant's edge **glows** like light scattering through atmosphere, and the amber now
+  reaches the GROUND (directional + ambient light coupling). Watch `ZIPTIDE: SKY_ATMO` in logcat.
+  THE test: stand still 10 seconds, then lean side to side — does it feel like standing on a different
+  planet? Feel notes: mote density (96 at 0.8 intensity)/size (6cm)/drift speed, haze band height +
+  strength, glow size (1.9× body), whether the amber ground-light is too strong. This is the gut-check
+  gate before the same treatment rolls out to the other 11 worlds.
 - [ ] **NEW (abilities sprint A4.5, 2026-07-09) — AUGMENTS:** no menu step (the six gems author at
   build; the Sandbox regenerates with an **augment rack** by A: Grab). **Headset:** select a gem with
   the ray to EQUIP (`ZIPTIDE: AUGMENT_EQUIP`; one active + one passive — re-selecting swaps). With an
