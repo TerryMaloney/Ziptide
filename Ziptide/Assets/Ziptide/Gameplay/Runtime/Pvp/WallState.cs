@@ -73,6 +73,54 @@ namespace Ziptide.Gameplay
             return _hits[idx] >= BrickHits;
         }
 
+        /// <summary>
+        /// DESTRUCTION V2 (Terry: "chunks that break off in a way that makes sense"): after a break,
+        /// any brick with no 4-connected path of INTACT bricks down to the BOTTOM ROW has lost its
+        /// support and breaks too. So an arch over a hole HOLDS (the load path goes around), but sever
+        /// a full band and the slab above avalanches, and a hanging island crumbles. Pure flood fill
+        /// from the bottom row; deterministic. Returns exactly the bricks that collapsed on THIS call
+        /// (the view spawns falling debris for those), already marked broken and counted for regen.
+        /// </summary>
+        public System.Collections.Generic.List<(int col, int row)> CollapseUnsupported(double now)
+        {
+            var supported = new bool[_hits.Length];
+            var stack = new System.Collections.Generic.Stack<int>();
+
+            void Consider(int c, int r)
+            {
+                if (!InBounds(c, r)) return;
+                int j = Index(c, r);
+                if (supported[j] || _hits[j] >= BrickHits) return;
+                supported[j] = true;
+                stack.Push(j);
+            }
+
+            for (int c = 0; c < Cols; c++) Consider(c, 0); // the floor is the anchor
+            while (stack.Count > 0)
+            {
+                int i = stack.Pop();
+                int col = i % Cols, row = i / Cols;
+                Consider(col - 1, row);
+                Consider(col + 1, row);
+                Consider(col, row - 1);
+                Consider(col, row + 1);
+            }
+
+            var fell = new System.Collections.Generic.List<(int col, int row)>();
+            for (int r = 0; r < Rows; r++)
+                for (int c = 0; c < Cols; c++)
+                {
+                    int i = Index(c, r);
+                    if (_hits[i] < BrickHits && !supported[i])
+                    {
+                        _hits[i] = BrickHits;
+                        fell.Add((c, r));
+                    }
+                }
+            if (fell.Count > 0) { _lastHitAt = now; _anyDamaged = true; } // a collapse resets regen too
+            return fell;
+        }
+
         /// <summary>Advance the clock; once the regen window elapses from the last hit, restore ALL bricks.</summary>
         public void Tick(double now)
         {

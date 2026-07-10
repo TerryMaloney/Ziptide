@@ -28,6 +28,26 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-10 (dddd9) - Picasso (Fable 5): 💥 DESTRUCTION V2 — walls break into CHUNKS that make sense
+- **Why (Terry, direct):** "I don't want the breakable walls to be blocked, I want broken chunks sort
+  of like Call of Duty… break off in a way that makes sense." Old behavior: bricks SetActive(false)d
+  out of existence after N hits. This was the parked destruction-v2 envelope; his ask defined it.
+- **Did (pure — `WallState.CollapseUnsupported`):** structural support = a 4-connected path of INTACT
+  bricks to the BOTTOM row (pure flood fill, deterministic). After every break, unsupported bricks
+  break too and are returned as this call's collapse set. Consequences that read: an arch over a hole
+  HOLDS · sever a full band → the slab above avalanches · a hanging island falls · cut the bottom row
+  → the wall comes down. A collapse refreshes the regen clock; collapsed bricks heal with the wall.
+  `WallCollapseTests` (6) pin all of it.
+- **Did (view — BreakableWall):** a hit-broken brick BURSTS into 3 uneven tumbling fragments (seeded
+  jitter, kicked out of the plane + down); support-loss bricks drop as whole chunks with shear.
+  Rigidbody chunks clatter (colliders on), NEVER damage (non-lethal law), shrink out after ~4.5s,
+  hard cap 24 live chunks (Quest budget; oldest culled first). New `WallChunkDebris` in the same file.
+  Log: `PVP_WALL_HIT … collapsed=N`. Callers (HammerTool/Thumper/melee) untouched.
+- **🎮 Runbook §2p updated** — feel notes wanted: fragment kick, chunk lifetime, avalanche read.
+- **Heads-up:** brickHits (4 swings/brick) unchanged; only what BREAKING looks like changed. If Terry
+  wants CoD-fast walls, drop `brickHits` on the wall (data). CI verdict pending on this push.
+- **Commit:** this push.
+
 ### 2026-07-10 (hwr14) - Fable 5 architect: 🔀 4.1d — the SPLITTER ships green: one line becomes two
 - **Did (`9466514`, CI ✅):** `CellKind.Splitter` — items exit alternating between the primary
   direction and its right-hand neighbor; a blocked side reroutes EVERYTHING to the free side (the

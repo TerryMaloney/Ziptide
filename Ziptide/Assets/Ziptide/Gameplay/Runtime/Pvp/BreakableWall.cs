@@ -42,15 +42,114 @@ namespace Ziptide.Gameplay
             if (_state.BrokenCount != before || (wasDamaged && !_state.AnyDamaged)) ApplyState();
         }
 
-        /// <summary>Called by the hammer with the world-space impact point — damages the nearest brick.</summary>
+        /// <summary>Called by the hammer with the world-space impact point — damages the nearest brick.
+        /// DESTRUCTION V2: a breaking brick bursts into tumbling chunks (not a blink-out), and any
+        /// bricks that lose their support path to the floor collapse as falling chunks right after.</summary>
         public void HitFromHammer(Vector3 worldHitPoint)
         {
             if (_state == null) return;
             NearestBrick(worldHitPoint, out int col, out int row);
             bool broke = _state.HitBrick(col, row, Time.time);
+            if (broke) SpawnBrickDebris(col, row, burst: true);
+
+            var fell = _state.CollapseUnsupported(Time.time);
+            foreach (var (fc, fr) in fell) SpawnBrickDebris(fc, fr, burst: false);
+
             ApplyState();
             Debug.Log("ZIPTIDE: PVP_WALL_HIT col=" + col + " row=" + row + " broke=" + broke
+                      + " collapsed=" + fell.Count
                       + " broken=" + _state.BrokenCount + "/" + _state.BrickCount);
+        }
+
+        // ── Debris (destruction v2) — chunks, pooled-cap'd for Quest, never lethal ────────────────
+
+        private const int MaxLiveDebris = 24;      // hard cap on simultaneous rigidbody chunks
+        private const float DebrisLifetime = 4.5f; // seconds before a chunk shrinks away
+        private static readonly System.Collections.Generic.Queue<GameObject> _liveDebris =
+            new System.Collections.Generic.Queue<GameObject>();
+
+        /// <summary>Chunks for one broken brick. burst = hit directly (3 fragments kicked outward);
+        /// otherwise it lost support and drops as one whole chunk with a little shear.</summary>
+        private void SpawnBrickDebris(int col, int row, bool burst)
+        {
+            float sx = wallSize.x / cols, sy = wallSize.y / rows;
+            Vector3 local = new Vector3(-wallSize.x * 0.5f + sx * (col + 0.5f),
+                                        -wallSize.y * 0.5f + sy * (row + 0.5f), 0f);
+            Vector3 world = transform.TransformPoint(local);
+            Vector3 brickScale = new Vector3(sx * 0.96f, sy * 0.96f, wallSize.z);
+            int seed = col * 73 + row * 131;
+
+            if (burst)
+            {
+                // Three uneven fragments, kicked slightly out of the wall plane both ways + down —
+                // reads as the brick SHATTERING where you hit it.
+                for (int f = 0; f < 3; f++)
+                {
+                    Vector3 fragScale = Vector3.Scale(brickScale,
+                        new Vector3(0.5f + 0.2f * Hash01(seed + f), 0.55f, 0.9f));
+                    Vector3 jitter = new Vector3((Hash01(seed + f + 7) - 0.5f) * sx * 0.5f,
+                                                 (Hash01(seed + f + 13) - 0.5f) * sy * 0.5f, 0f);
+                    Vector3 kick = transform.forward * ((Hash01(seed + f + 29) - 0.5f) * 2.2f)
+                                 + transform.up * (-0.4f - Hash01(seed + f + 41) * 0.6f)
+                                 + transform.right * ((Hash01(seed + f + 53) - 0.5f) * 0.8f);
+                    Chunk(world + transform.TransformVector(jitter), fragScale, kick, seed + f);
+                }
+            }
+            else
+            {
+                // A support-loss chunk: the whole brick drops, shearing slightly sideways — the
+                // avalanche read when a slab lets go.
+                Vector3 kick = Vector3.down * (0.2f + Hash01(seed + 3) * 0.4f)
+                             + transform.right * ((Hash01(seed + 17) - 0.5f) * 0.6f);
+                Chunk(world, brickScale, kick, seed);
+            }
+        }
+
+        private void Chunk(Vector3 worldPos, Vector3 scale, Vector3 velocity, int seed)
+        {
+            var go = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            go.name = "WallChunk";
+            go.transform.position = worldPos;
+            go.transform.rotation = transform.rotation;
+            go.transform.localScale = scale;
+            var r = go.GetComponent<Renderer>();
+            if (r != null)
+            {
+                var shader = Shader.Find("Universal Render Pipeline/Lit");
+                if (shader == null) shader = Shader.Find("Standard");
+                if (shader != null)
+                {
+                    var mat = new Material(shader);
+                    SetMatColor(mat, Color.Lerp(color, CrackedColor, 0.35f)); // broken faces read darker
+                    r.sharedMaterial = mat;
+                }
+                r.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+            }
+            var rb = go.AddComponent<Rigidbody>();
+            rb.mass = 2f;
+            rb.velocity = velocity;
+            rb.angularVelocity = new Vector3(Hash01(seed + 61) - 0.5f, Hash01(seed + 67) - 0.5f,
+                                             Hash01(seed + 71) - 0.5f) * 4f;
+            go.AddComponent<WallChunkDebris>().lifetime = DebrisLifetime;
+
+            _liveDebris.Enqueue(go);
+            while (_liveDebris.Count > MaxLiveDebris)
+            {
+                var oldest = _liveDebris.Dequeue();
+                if (oldest != null) Destroy(oldest);
+            }
+        }
+
+        /// <summary>Deterministic int hash → [0,1) (the ForgeMesh idiom, local — Gameplay can't ref Visuals).</summary>
+        private static float Hash01(int i)
+        {
+            unchecked
+            {
+                int h = i * 374761393 + 1013904223;
+                h = (h ^ (h >> 13)) * 1103515245;
+                h ^= h >> 16;
+                return (h & 0x7FFFFFFF) / 2147483647f;
+            }
         }
 
         /// <summary>Back-compat overload (no impact point) — damages the brick at the wall's center.</summary>
@@ -130,6 +229,28 @@ namespace Ziptide.Gameplay
             if (mat == null) return;
             if (mat.HasProperty("_BaseColor")) mat.SetColor("_BaseColor", c);
             else if (mat.HasProperty("_Color")) mat.SetColor("_Color", c);
+        }
+    }
+
+    /// <summary>A tumbling wall chunk: lives briefly, shrinks out over its last moments, then goes —
+    /// debris is a READ, never litter (Quest budget) and never a weapon (non-lethal law: it damages
+    /// nothing; it only clatters).</summary>
+    public class WallChunkDebris : MonoBehaviour
+    {
+        public float lifetime = 4.5f;
+        private const float ShrinkWindow = 0.8f;
+        private float _age;
+        private Vector3 _baseScale;
+
+        private void Start() { _baseScale = transform.localScale; }
+
+        private void Update()
+        {
+            _age += Time.deltaTime;
+            float left = lifetime - _age;
+            if (left <= 0f) { Destroy(gameObject); return; }
+            if (left < ShrinkWindow)
+                transform.localScale = _baseScale * (left / ShrinkWindow);
         }
     }
 }

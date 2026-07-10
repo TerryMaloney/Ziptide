@@ -452,6 +452,14 @@ Two things to *feel* on device; both are pure-data tunes if they're off (no rebu
   health was re-baselined to match. Quick check: taser a **swarm_bug** (should die ~2 hits), a **warden**
   (~10 hits, a mini-boss). Do fights feel right, or too spongy / too fragile? Tune numbers in
   `CreatureBaselines.HealthFor` (one file, one line each). Watch `ZIPTIDE: CREATURE_DOWN`.
+- [ ] **NEW (destruction v2, 2026-07-10 — Picasso, YOUR direct ask):** breakable walls now break into
+  CHUNKS instead of bricks blinking out. Arena/PvP wall: hammer or Breaker Blade it — the hit brick
+  **shatters into 3 tumbling fragments**; and the structure is REAL: bricks that lose their path to
+  the floor collapse too (cut a full band across → the whole slab above avalanches; a hole in the
+  middle leaves a standing arch; knock out the bottom row → the wall comes down). Chunks clatter,
+  never hurt you, shrink away after ~4.5s, hard-capped at 24 live (Quest). Watch
+  `ZIPTIDE: PVP_WALL_HIT ... collapsed=N`. Feel notes: fragment kick strength, chunk lifetime,
+  collapse read (does the avalanche feel earned?), debris clatter volume on Quest.
 - [ ] **(not Unity) Reconnect the GitHub connector** on claude.ai (Settings → Connectors → GitHub →
   Reconnect, authorize `terrymaloney/ziptide`) so the operators can see CI status again. Pushing already
   works without it; this is just so we can watch the runs go green.
