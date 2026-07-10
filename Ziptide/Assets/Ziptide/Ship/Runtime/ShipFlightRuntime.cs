@@ -390,6 +390,7 @@ namespace Ziptide.Ship
                 if (hit != null && hit.TakeHit(SpaceCombatCore.BoltDamage, now))
                 {
                     Debug.Log("ZIPTIDE: FLIGHT_DISABLE target=" + hit.name);
+                    Ziptide.Core.FlightSignals.TargetDisabled?.Invoke(hit.name);   // announced append (tf-space1): Tidefront space-defense counts these
                     UpdateStatus();
                 }
             }

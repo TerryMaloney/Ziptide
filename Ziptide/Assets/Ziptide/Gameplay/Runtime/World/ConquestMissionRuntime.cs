@@ -86,7 +86,15 @@ namespace Ziptide.Gameplay
                       " limit=" + _attempt.mission.timeLimitSeconds);
         }
 
-        private void OnDestroy() => DroneRuntime.OnDroneDisabled -= OnDroneDown;
+        private bool _flightHooked;
+
+        private void OnDestroy()
+        {
+            DroneRuntime.OnDroneDisabled -= OnDroneDown;
+            if (_flightHooked) Ziptide.Core.FlightSignals.TargetDisabled -= OnFlightTargetDisabled;
+        }
+
+        private void OnFlightTargetDisabled(string targetName) => ObjectiveDown();
 
         private Vector3 FindAnchor()
         {

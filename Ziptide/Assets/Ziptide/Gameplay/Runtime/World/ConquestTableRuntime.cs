@@ -422,7 +422,14 @@ namespace Ziptide.Gameplay
 
         private void LaunchMission(AttackOrder order, int seed, ConquestMission mission, bool rivalInitiated)
         {
-            string scene = ConquestSession.SceneForPlanet(mission.planetId);
+            string scene = ConquestSession.SceneForMission(mission);
+            // A mission scene not yet baked into Build Settings (e.g. the space lane before its
+            // first bake) falls back to a base-odds resolve instead of stranding a pending battle.
+            if (!string.IsNullOrEmpty(scene) && !Application.CanStreamedLevelBeLoaded(scene))
+            {
+                Debug.Log("ZIPTIDE: CONQ_MISSION_SCENE_UNBAKED scene=" + scene);
+                scene = "";
+            }
             if (string.IsNullOrEmpty(scene))
             {
                 Debug.Log("ZIPTIDE: CONQ_MISSION_NO_SCENE planet=" + mission.planetId);

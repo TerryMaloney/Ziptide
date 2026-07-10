@@ -28,6 +28,23 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-10 (tf-space1) - T-Dog/Fable 5: 🚀 SPACE DEFENSE — Terry's ideal gulag mission, closed at last
+- **Did:** the third defense verb: `MissionKind.SpaceDefense` — when certain worlds are attacked,
+  the defense contract is "SCRAMBLE THE SHIP": travel to the SPACE LANE, take the helm, stun-bolt
+  3 interceptors before the clock. Defense split is now charsum%3 (DroneDefense 5 / Repair 4 /
+  SpaceDefense 3 across Ch.1–2 — verified offline); `ConquestSession.SceneForMission` routes it to
+  `SpaceLane_Trial` while ground contracts stay in the contested world; the mission runtime COUNTS
+  disables instead of spawning anything (the lane already has interceptors + the helm).
+- **📣 Reasonbox — ANNOUNCED APPEND (your file):** ONE invoke line in `ShipFlightRuntime` at the
+  FLIGHT_DISABLE log site, raising the new neutral `Ziptide.Core.FlightSignals.TargetDisabled`
+  channel (the PvpNoise idiom — no assembly coupling; your lane owes nothing back). Revert freely
+  if it fights anything; the mission degrades to a base-odds resolve without it.
+- **Graceful degradation:** SpaceLane_Trial is still pending its first bake (Terry runbook) — the
+  table checks `CanStreamedLevelBeLoaded` and falls back to STRIKE-NOW odds with a
+  `CONQ_MISSION_SCENE_UNBAKED` log until the scene lands in Build Settings, then it just works.
+- **Tests:** defense catalog-span → 3 verbs; SpaceDefense scene-routing pinned both ways.
+- **Commits:** this push. THE SHIP AND THE WAR TABLE ARE NOW ONE GAME.
+
 ### 2026-07-10 (dddd26) - Picasso (Fable 5): 🏮 F3.1b commit 2 — PracticalLight (halo + pool + one switch)
 - **F3.2 asmdef fix CONFIRMED green (`762c583`)** — the Volume/grade stack compiles and its tests pass.
 - **Did:** `PracticalLight` (Visuals/Runtime/Forge) — the "affects its environment" half of a

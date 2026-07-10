@@ -8,7 +8,7 @@ namespace Ziptide.Multiplayer.Conquest
     /// <summary>The contract vocabulary (the spec's full catalog, not just two): attackers draw
     /// Sabotage / Scan / Beacon, defenders draw DroneDefense / Repair — each a different VERB
     /// (shoot · hold ground · carry · shoot flyers · hands-on fix).</summary>
-    public enum MissionKind { Sabotage, DroneDefense, Scan, Beacon, Repair }
+    public enum MissionKind { Sabotage, DroneDefense, Scan, Beacon, Repair, SpaceDefense }
 
     public enum MissionPhase { Offered, Accepted, Won, Lost, Declined }
 
@@ -24,6 +24,7 @@ namespace Ziptide.Multiplayer.Conquest
         public const int ScanObjectives = 3;          // grid nodes to hold position at
         public const int BeaconObjectives = 1;        // one beacon, carried to the uplink pad
         public const int RepairObjectives = 4;        // arcing conduits to fix by hand
+        public const int SpaceDefenseObjectives = 3;  // interceptors to disable FROM THE HELM
     }
 
     /// <summary>One offered contract: what you'd play, where, and what winning/losing is worth.</summary>
@@ -57,7 +58,8 @@ namespace Ziptide.Multiplayer.Conquest
             MissionKind kind = side == MissionSide.Attack
                 ? (charsum % 3 == 0 ? MissionKind.Sabotage
                  : charsum % 3 == 1 ? MissionKind.Scan : MissionKind.Beacon)
-                : (charsum % 2 == 0 ? MissionKind.DroneDefense : MissionKind.Repair);
+                : (charsum % 3 == 0 ? MissionKind.DroneDefense
+                 : charsum % 3 == 1 ? MissionKind.Repair : MissionKind.SpaceDefense);
 
             var m = new ConquestMission
             {
@@ -89,6 +91,11 @@ namespace Ziptide.Multiplayer.Conquest
                     m.objectiveCount = ConquestMissionRules.RepairObjectives;
                     m.title = "PATCH THE CONDUITS";
                     m.brief = "Their probes cut your shield conduits. Slap each arcing junction back into its socket — three good hits each.";
+                    break;
+                case MissionKind.SpaceDefense:
+                    m.objectiveCount = ConquestMissionRules.SpaceDefenseObjectives;
+                    m.title = "SCRAMBLE THE SHIP";
+                    m.brief = "Their strike wing is inbound. Take the helm - stun bolts, three interceptors, before the clock.";
                     break;
                 default: // DroneDefense
                     m.objectiveCount = ConquestMissionRules.DroneDefenseObjectives;
@@ -183,8 +190,13 @@ namespace Ziptide.Multiplayer.Conquest
         {
             if (Pending == null || Pending.attempt == null) return false;
             if (Pending.attempt.phase != MissionPhase.Accepted) return false;
-            return SceneForPlanet(Pending.attempt.mission.planetId) == sceneName;
+            return SceneForMission(Pending.attempt.mission) == sceneName;
         }
+
+        /// <summary>Where a mission is PLAYED: space-defense flies the space lane; everything else
+        /// happens in the contested world itself.</summary>
+        public static string SceneForMission(ConquestMission m) =>
+            m != null && m.kind == MissionKind.SpaceDefense ? "SpaceLane_Trial" : SceneForPlanet(m == null ? "" : m.planetId);
 
         /// <summary>planetId → scene name via the canonical seed list (single source of truth).</summary>
         public static string SceneForPlanet(string planetId)

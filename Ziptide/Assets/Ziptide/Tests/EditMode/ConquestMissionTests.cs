@@ -31,8 +31,8 @@ namespace Ziptide.Tests.EditMode
             Assert.Contains(a1.kind, new[] { MissionKind.Sabotage, MissionKind.Scan, MissionKind.Beacon },
                 "attackers strike/scan/carry");
             var d = ConquestMissionLibrary.Offer("glass_shelf", MissionSide.Defense, false);
-            Assert.Contains(d.kind, new[] { MissionKind.DroneDefense, MissionKind.Repair },
-                "defenders shoot down or fix");
+            Assert.Contains(d.kind, new[] { MissionKind.DroneDefense, MissionKind.Repair, MissionKind.SpaceDefense },
+                "defenders shoot down, fix, or FLY");
         }
 
         [Test]
@@ -48,12 +48,20 @@ namespace Ziptide.Tests.EditMode
                 defense.Add(ConquestMissionLibrary.Offer(w.WorldId, MissionSide.Defense, false).kind);
             }
             Assert.AreEqual(3, attack.Count, "all three attack verbs appear in Ch.1–2");
-            Assert.AreEqual(2, defense.Count, "both defense verbs appear in Ch.1–2");
+            Assert.AreEqual(3, defense.Count, "all three defense verbs appear in Ch.1–2 (incl. the helm)");
             // Pinned samples (char-sum picks, verified offline).
             Assert.AreEqual(MissionKind.Scan, ConquestMissionLibrary.Offer("toxic_city", MissionSide.Attack, false).kind);
             Assert.AreEqual(MissionKind.Beacon, ConquestMissionLibrary.Offer("dry_cistern", MissionSide.Attack, false).kind);
             Assert.AreEqual(MissionKind.Sabotage, ConquestMissionLibrary.Offer("broadcast_tomb", MissionSide.Attack, false).kind);
             Assert.AreEqual(MissionKind.Repair, ConquestMissionLibrary.Offer("toxic_city", MissionSide.Defense, false).kind);
+            // Terry's original ideal, finally real: defend some worlds FROM THE HELM.
+            Assert.AreEqual(MissionKind.SpaceDefense, ConquestMissionLibrary.Offer("dry_cistern", MissionSide.Defense, false).kind);
+            Assert.AreEqual("SpaceLane_Trial", ConquestSession.SceneForMission(
+                ConquestMissionLibrary.Offer("dry_cistern", MissionSide.Defense, false)),
+                "space-defense plays in the space lane, not the planet");
+            Assert.AreEqual("W002_DryCistern", ConquestSession.SceneForMission(
+                ConquestMissionLibrary.Offer("dry_cistern", MissionSide.Attack, false)),
+                "ground contracts still play in the contested world");
         }
 
         [Test]
