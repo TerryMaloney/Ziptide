@@ -60,6 +60,13 @@ namespace Ziptide.Gameplay
             => cells.Add(new BeltCellSpec { x = x, z = z, kind = CellKind.Sink, resourceId = payoutResourceId });
         public void AuthorSplitter(int x, int z, BeltDir dir)
             => cells.Add(new BeltCellSpec { x = x, z = z, kind = CellKind.Splitter, dir = dir });
+        /// <summary>A machine port: emits only when an adapter feeds it (empty resourceId = port).</summary>
+        public void AuthorPort(int x, int z, BeltDir dir)
+            => cells.Add(new BeltCellSpec { x = x, z = z, kind = CellKind.Source, dir = dir, resourceId = "" });
+
+        /// <summary>Machine adapters (mine ports etc.) emit through here. False = blocked, keep stock.</summary>
+        public bool TryEmitPort(int x, int z, string resourceId)
+            => _lattice != null && _lattice.TryEmit(x, z, resourceId);
 
         private void Start()
         {

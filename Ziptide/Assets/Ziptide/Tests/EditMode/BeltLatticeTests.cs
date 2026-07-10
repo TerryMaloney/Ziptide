@@ -180,6 +180,24 @@ namespace Ziptide.Tests.EditMode
         }
 
         [Test]
+        public void Port_NeverAutoEmits_OnlyTryEmitFeedsIt()
+        {
+            var b = new BeltLattice(4, 1);
+            b.PlacePort(0, 0, BeltDir.East);
+            b.PlaceBelt(1, 0, BeltDir.East);
+            b.PlaceBelt(2, 0, BeltDir.East);
+            b.PlaceSink(3, 0);
+            Run(b, 10f);
+            Assert.AreEqual(0, b.Items.Count, "a port with no machine feed stays silent");
+            Assert.AreEqual(0, b.SunkCount("ore"));
+
+            Assert.IsTrue(b.TryEmit(0, 0, "ore"), "machine feed emits");
+            Assert.IsFalse(b.TryEmit(0, 0, "ore"), "target occupied — caller keeps its stock");
+            Run(b, 5f);
+            Assert.AreEqual(1, b.SunkCount("ore"), "the fed item flowed to the sink");
+        }
+
+        [Test]
         public void Deterministic_SameBuildSameTicks_SameWorld()
         {
             BeltLattice Build()

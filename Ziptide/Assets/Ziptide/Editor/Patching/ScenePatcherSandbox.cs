@@ -172,7 +172,9 @@ namespace Ziptide.Editor.Patching
             floor.transform.position = new Vector3(-14f, 0f, -12f);
             var belt = floor.AddComponent<Ziptide.Gameplay.BeltFloorRuntime>();
             belt.width = 8; belt.depth = 4; belt.cellSize = 0.8f;
-            belt.AuthorSource(0, 1, Ziptide.Content.Automation.BeltDir.East, "scrap");
+            // 4.1e: the line is fed by a REAL machine, not thin air — a mine port whose stored ore
+            // becomes riding items (jam the line and the hopper fills instead; nothing is lost).
+            belt.AuthorPort(0, 1, Ziptide.Content.Automation.BeltDir.East);
             belt.AuthorBelt(1, 1, Ziptide.Content.Automation.BeltDir.East);
             belt.AuthorBelt(2, 1, Ziptide.Content.Automation.BeltDir.East);
             // 4.1d: the FORK — a splitter alternates the flow between two lines (watch it deal
@@ -186,6 +188,17 @@ namespace Ziptide.Editor.Patching
             belt.AuthorBelt(4, 0, Ziptide.Content.Automation.BeltDir.East);
             belt.AuthorBelt(5, 0, Ziptide.Content.Automation.BeltDir.East);
             belt.AuthorSink(6, 0, "scrap");
+
+            // 4.1e: the mine-port adapter standing over the port cell — accrues 0.5/s into a shared
+            // MineState (worldId=scene, so ProfileEconomy resolves it offline) and pumps stored ore
+            // onto the belt one unit per emit. Mine → belt → fork → sinks → profile → factory.
+            var mine = new GameObject("SandboxBeltMine");
+            mine.transform.position = new Vector3(-14f, 0f, -12f) + new Vector3(0.4f, 0f, 1.2f)
+                + new Vector3(-0.9f, 0f, 0f); // just behind the port cell (0,1)
+            var port = mine.AddComponent<Ziptide.Gameplay.BeltMinePortRuntime>();
+            port.floor = belt; port.portX = 0; port.portZ = 1;
+            port.worldId = "SandboxTestLab"; port.machineId = "sandbox_belt_mine";
+            port.resourceId = "scrap"; port.ratePerSecond = 0.5f; port.storageCap = 50f;
 
             // 4.1c: the tile dispenser beside the floor — grab a slab, watch the ghost snap to the
             // grid (direction follows your wrist), release to CLICK it in; grip a placed belt to

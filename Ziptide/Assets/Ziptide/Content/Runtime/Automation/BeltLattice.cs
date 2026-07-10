@@ -100,6 +100,41 @@ namespace Ziptide.Content.Automation
             return true;
         }
 
+        /// <summary>A machine PORT: a Source with no auto-clock — it emits only when a machine
+        /// adapter calls <see cref="TryEmit"/> with real stock (4.1e: mined ore rides the belt).</summary>
+        public bool PlacePort(int x, int z, BeltDir dir)
+        {
+            if (!InBounds(x, z)) return false;
+            int i = Idx(x, z);
+            _kind[i] = CellKind.Source;
+            _dir[i] = dir;
+            _sourceResource[i] = null; // null resource = the auto-emitter skips this cell
+            return true;
+        }
+
+        /// <summary>Manually emit one item from a Source/port cell onto its facing target. Same rules
+        /// as auto-emission (bounds, carrier free, junction fairness). False = try again later —
+        /// the caller must NOT decrement its stock on false.</summary>
+        public bool TryEmit(int x, int z, string resourceId)
+        {
+            if (!InBounds(x, z) || string.IsNullOrEmpty(resourceId)) return false;
+            int i = Idx(x, z);
+            if (_kind[i] != CellKind.Source) return false;
+
+            Step(_dir[i], out int dx, out int dz);
+            int tx = x + dx, tz = z + dz;
+            if (!InBounds(tx, tz)) return false;
+            int ti = Idx(tx, tz);
+            if ((_kind[ti] != CellKind.Belt && _kind[ti] != CellKind.Splitter)
+                || _occupant[ti] != null) return false;
+            if (!MergeTurn(ti, x, z)) return false;
+
+            var item = new BeltItem { ResourceId = resourceId, X = tx, Z = tz, Progress = 0f };
+            _occupant[ti] = item;
+            _items.Add(item);
+            return true;
+        }
+
         public bool PlaceSink(int x, int z)
         {
             if (!InBounds(x, z)) return false;
@@ -236,6 +271,7 @@ namespace Ziptide.Content.Automation
             {
                 int i = Idx(x, z);
                 if (_kind[i] != CellKind.Source) continue;
+                if (string.IsNullOrEmpty(_sourceResource[i])) continue; // a PORT — machine-fed only
                 _sourceClock[i] += dt;
                 if (_sourceClock[i] < SourcePeriod) continue;
 
