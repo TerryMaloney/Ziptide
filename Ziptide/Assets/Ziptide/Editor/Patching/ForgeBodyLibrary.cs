@@ -220,16 +220,18 @@ namespace Ziptide.Editor.Patching
             };
             b.slotStyles = new[]
             {
-                new ForgeStyleSpec { style = ForgeStyle.Slime, grime = 0.3f, wear = 0.15f },
-                new ForgeStyleSpec { style = ForgeStyle.Slime, grime = 0.2f, wear = 0.1f },
-                new ForgeStyleSpec { style = ForgeStyle.Slime, grime = 0.35f },
+                // v4 loop: grime drives the new Slime subdermal mottle — lifted so the pale hide
+                // reads as a body with something INSIDE it, not a smooth balloon.
+                new ForgeStyleSpec { style = ForgeStyle.Slime, grime = 0.45f, wear = 0.15f },
+                new ForgeStyleSpec { style = ForgeStyle.Slime, grime = 0.35f, wear = 0.1f },
+                new ForgeStyleSpec { style = ForgeStyle.Slime, grime = 0.5f },
                 new ForgeStyleSpec { style = ForgeStyle.GlowPanel, emissive = new Color(0.55f, 1f, 0.6f), emissiveIntensity = 1.3f },
             };
             b.coreParts = new[]
             {
                 new ForgePart { name = "Bell", op = ForgeOp.OrganicBlob, segments = 16, smooth = true,
                     size = new Vector3(0.40f, 0.34f, 0.40f), position = new Vector3(0f, 0.34f, 0f),
-                    noiseAmplitude = 0.010f, noiseFrequency = 9f, noiseSeed = 7, paletteSlot = 1 },
+                    noiseAmplitude = 0.016f, noiseFrequency = 9f, noiseSeed = 7, paletteSlot = 1 },
                 new ForgePart { name = "Underbell", op = ForgeOp.SphereSection, bevel = 1f, segments = 12,
                     smooth = true, size = new Vector3(0.30f, 0.16f, 0.30f), position = new Vector3(0f, 0.20f, 0f), paletteSlot = 2 },
                 new ForgePart { name = "Skirt", op = ForgeOp.Torus, segments = 14, smooth = true,
@@ -400,11 +402,13 @@ namespace Ziptide.Editor.Patching
         }
 
         /// <summary>
-        /// warden (all worlds, Signal-gated) — the Shell's lawful enforcer: a 2.2m monolith that
-        /// WIDENS toward the shoulders (Frustum torso — authority you read across a plaza), beveled
-        /// pauldrons, dome head, and one BIG front eye whose color IS the law (WardenState tells ride
-        /// ForgeBodyTell.TrySetEye: dormant slate → watch cyan → warn orange → pursue red → ally
-        /// green). Two slow 2-segment legs. 1 + 4 = 5 bones — a deliberate monolith, not a bug.
+        /// warden (all worlds, Signal-gated) — the Shell's lawful enforcer: a 2.2m sentinel that
+        /// WIDENS toward the shoulders (Frustum torso — authority you read across a plaza), split
+        /// angled pauldrons, dome head over a near-black visor slot, and one BIG eye whose color IS
+        /// the law (WardenState tells ride ForgeBodyTell.TrySetEye: dormant slate → watch cyan →
+        /// warn orange → pursue red → ally green). Two 2-segment legs + two 3-segment ARMS on
+        /// GaitRole.Leg — the leg-ordinal phase offset makes them swing contralateral to the legs
+        /// for free. 1 + 4 + 6 = 11 bones.
         /// </summary>
         private static ForgeCreatureBody BuildWarden()
         {
@@ -412,36 +416,46 @@ namespace Ziptide.Editor.Patching
             b.bodyId = "warden";
             b.palette = new[]
             {
-                new Color(0.20f, 0.21f, 0.25f), // 0 torso + legs — slate (the behavior's pillar color)
-                new Color(0.16f, 0.17f, 0.21f), // 1 pauldrons + head — darker gunmetal
-                new Color(0.32f, 0.34f, 0.40f), // 2 trim seams
-                new Color(0.36f, 0.42f, 0.50f), // 3 eye — dormant slate, bright enough to READ as a lens
+                // Photo-loop v4: the v3 palette baked NEAR-BLACK under booth light (PaintedMetal
+                // grime multiplies down) — every slot lifted so panels/wear actually read.
+                new Color(0.34f, 0.37f, 0.44f), // 0 torso + legs — slate (the behavior's pillar color)
+                new Color(0.25f, 0.27f, 0.33f), // 1 pauldrons + head — darker gunmetal
+                new Color(0.58f, 0.62f, 0.70f), // 2 trim seams + collar + fists — bright steel
+                new Color(0.45f, 0.55f, 0.68f), // 3 eye — dormant slate, bright enough to READ as a lens
                                                 //   (WardenBehavior drives the live colors via TrySetEye)
+                new Color(0.04f, 0.04f, 0.06f), // 4 visor slot — near-black so the eye burns in a void
             };
             b.slotStyles = new[]
             {
-                new ForgeStyleSpec { style = ForgeStyle.PaintedMetal, wear = 0.45f, grime = 0.35f, panelDensity = 2f },
-                new ForgeStyleSpec { style = ForgeStyle.PaintedMetal, wear = 0.35f, grime = 0.3f, panelDensity = 1f },
-                new ForgeStyleSpec { style = ForgeStyle.BareMetal, wear = 0.6f, grime = 0.25f },
-                new ForgeStyleSpec { style = ForgeStyle.GlowPanel, emissive = new Color(0.36f, 0.42f, 0.5f), emissiveIntensity = 1.2f },
+                new ForgeStyleSpec { style = ForgeStyle.PaintedMetal, wear = 0.45f, grime = 0.22f, panelDensity = 2f },
+                new ForgeStyleSpec { style = ForgeStyle.PaintedMetal, wear = 0.35f, grime = 0.18f, panelDensity = 1f },
+                new ForgeStyleSpec { style = ForgeStyle.BareMetal, wear = 0.6f, grime = 0.2f },
+                new ForgeStyleSpec { style = ForgeStyle.GlowPanel, emissive = new Color(0.45f, 0.55f, 0.68f), emissiveIntensity = 1.2f },
+                new ForgeStyleSpec { style = ForgeStyle.BareMetal, wear = 0.2f, grime = 0.5f },
             };
             b.coreParts = new[]
             {
-                // Photo-loop v3 (v2 still read "bin with a lid"): SENTINEL proportions — a shorter
-                // torso riding on a visible two-legged STANCE, a wide helm half-sunk into the
-                // pauldrons with a dark visor slot, the eye burning INSIDE the visor, hip armor.
+                // Photo-loop v4 (v3 still read "dark monolith with a lid"): the full-width pauldron
+                // slab is SPLIT into two angled shoulder plates with a bright collar between them,
+                // and the body finally gets ARMS — nothing says "not a bin" like hands.
                 new ForgePart { name = "Torso", op = ForgeOp.Frustum, segments = 12, smooth = true,
                     size = new Vector3(0.50f, 1.05f, 0.66f), position = new Vector3(0f, 1.30f, 0f),
                     paletteSlot = 0 },
-                new ForgePart { name = "Pauldrons", op = ForgeOp.BeveledBox, bevel = 0.04f,
-                    size = new Vector3(1.02f, 0.20f, 0.55f), position = new Vector3(0f, 1.90f, 0f),
-                    paletteSlot = 1 },
+                new ForgePart { name = "PauldronL", op = ForgeOp.BeveledBox, bevel = 0.05f,
+                    size = new Vector3(0.44f, 0.20f, 0.56f), position = new Vector3(0.33f, 1.92f, 0f),
+                    eulerRotation = new Vector3(0f, 0f, -10f), paletteSlot = 1 },
+                new ForgePart { name = "PauldronR", op = ForgeOp.BeveledBox, bevel = 0.05f,
+                    size = new Vector3(0.44f, 0.20f, 0.56f), position = new Vector3(-0.33f, 1.92f, 0f),
+                    eulerRotation = new Vector3(0f, 0f, 10f), paletteSlot = 1 },
+                new ForgePart { name = "Collar", op = ForgeOp.BeveledBox, bevel = 0.02f,
+                    size = new Vector3(0.34f, 0.10f, 0.36f), position = new Vector3(0f, 1.90f, 0f),
+                    paletteSlot = 2 },
                 new ForgePart { name = "Head", op = ForgeOp.SphereSection, bevel = 0.55f, segments = 12,
                     smooth = true, size = new Vector3(0.50f, 0.34f, 0.50f),
                     position = new Vector3(0f, 2.00f, 0f), paletteSlot = 1 },
                 new ForgePart { name = "Visor", op = ForgeOp.BeveledBox, bevel = 0.015f,
-                    size = new Vector3(0.36f, 0.10f, 0.10f), position = new Vector3(0f, 2.02f, 0.20f),
-                    paletteSlot = 0 },
+                    size = new Vector3(0.40f, 0.11f, 0.12f), position = new Vector3(0f, 2.02f, 0.20f),
+                    paletteSlot = 4 },
                 new ForgePart { name = "SkirtL", op = ForgeOp.BeveledBox, bevel = 0.015f,
                     size = new Vector3(0.08f, 0.42f, 0.50f), position = new Vector3(0.28f, 0.95f, 0f),
                     eulerRotation = new Vector3(0f, 0f, -8f), paletteSlot = 1 },
@@ -462,6 +476,19 @@ namespace Ziptide.Editor.Patching
                     {
                         new ForgeLimbSegment { size = new Vector3(0.16f, 0.42f, 0.17f), paletteSlot = 0, rounded = true, taper = 0.10f, bendDegrees = -10f },
                         new ForgeLimbSegment { size = new Vector3(0.13f, 0.38f, 0.14f), paletteSlot = 1, rounded = true, taper = 0.18f, bendDegrees = 18f },
+                    }
+                },
+                new ForgeLimb
+                {
+                    // Leg role ON PURPOSE: the motor's per-limb ordinal offsets this chain half a
+                    // cycle from the legs — left arm swings with right leg, a contralateral walk.
+                    name = "Arm", attachLocal = new Vector3(0.40f, 1.82f, 0f),
+                    chainDirection = new Vector3(0.12f, -1f, 0.02f), role = GaitRole.Leg, mirrorX = true,
+                    segments = new[]
+                    {
+                        new ForgeLimbSegment { size = new Vector3(0.15f, 0.42f, 0.15f), paletteSlot = 1, rounded = true, taper = 0.08f, bendDegrees = -6f },
+                        new ForgeLimbSegment { size = new Vector3(0.12f, 0.36f, 0.12f), paletteSlot = 0, rounded = true, taper = 0.12f, bendDegrees = 22f },
+                        new ForgeLimbSegment { size = new Vector3(0.17f, 0.16f, 0.17f), paletteSlot = 2, rounded = true, taper = 0.05f, bendDegrees = 8f },
                     }
                 },
             };

@@ -231,6 +231,11 @@ namespace Ziptide.Visuals
                 {
                     float blotch = SkyVistaTexture.Fbm(tx.u * 6f, tx.v * 6f, 83, 2);
                     c = Color.Lerp(c, c * 1.25f, Mathf.SmoothStep(0.5f, 0.75f, blotch) * 0.6f);
+                    // Subdermal mottle (creature v4 loop: one bright blotch layer baked PLAIN on a
+                    // pale hide) — a finer darker pass that reads as organs/veins under the skin;
+                    // grime scales its strength so the knob stays meaningful for wet hides.
+                    float mottle = SkyVistaTexture.Fbm(tx.u * 14f, tx.v * 14f, 89, 2);
+                    c = Color.Lerp(c, c * 0.72f, Mathf.SmoothStep(0.6f, 0.85f, mottle) * (0.3f + 0.7f * spec.grime));
                     break;
                 }
                 case ForgeStyle.Leaf:
@@ -318,6 +323,8 @@ namespace Ziptide.Visuals
                 {
                     float blotch = SkyVistaTexture.Fbm(tx.u * 6f, tx.v * 6f, 83, 2);
                     h += Mathf.SmoothStep(0.5f, 0.75f, blotch) * 0.12f;    // wet bumps
+                    float mottle = SkyVistaTexture.Fbm(tx.u * 14f, tx.v * 14f, 89, 2);
+                    h -= Mathf.SmoothStep(0.6f, 0.85f, mottle) * 0.07f;    // subdermal dimples
                     break;
                 }
                 case ForgeStyle.Leaf:

@@ -28,6 +28,29 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-10 (dddd14) - Picasso (Fable 5): 🧬 v4 SKIN VERDICTS + warden v5 (it gets ARMS) + slime depth
+- **The checkpoint (run `29089183510`, CI green `fad9898`):** the texture bake WORKS —
+  **swarm_bug ✅✅** (glossy amber chitin, dark inset plates, speckled legs) · **husk_molter ✅✅**
+  (wet mossy carapace, pale side armor) · **tendril ✅** (bark-speckled vines, ribbed root-knot) ·
+  **witness_mite ✅** · **light_grazer ⚠** (clean but PLAIN — single-layer slime blotch is too subtle
+  on a pale hide) · **warden ❌** (baked NEAR-BLACK — PaintedMetal grime crushed the already-dark
+  palette — and the silhouette is still a bin: it has NO ARMS).
+- **Did ① warden v4 genome:** two mirrored 3-segment ARMS on `GaitRole.Leg` — the motor's per-limb
+  leg ordinal offsets them half a cycle, so they swing CONTRALATERAL to the legs for free (11/12
+  bones); pauldron slab split into two angled plates + bright collar; near-black visor slot (new
+  palette slot 4) so the eye burns in a void; every palette slot lifted + grime dropped so panels
+  and wear actually read under light.
+- **Did ② Slime style depth (ForgeTexture):** second grime-scaled SUBDERMAL MOTTLE layer (finer,
+  darker fBm in albedo + matching height dimples) — a wet hide now reads as a body with something
+  inside it. Grazer genome: grime lifted to drive it + bell noise up. Only the grazer family uses
+  Slime, so blast radius is one creature. (No pinned albedo tests; smoothness test untouched.)
+- **Heads-up (booth gotcha, again):** the warden faces +Z — its visor/eye/chest-seam are in the
+  `04_back` view, not `01_front`.
+- **Next:** verify v5 turnarounds next forge-photos run (warden is the gate; grazer mottle second).
+  If silhouettes still read low-poly, the next dial is the creature-class segments cap. E5.3 flora
+  is the last unstarted FORGE II envelope.
+- **Commit:** this push.
+
 ### 2026-07-10 (amb1) - T-Dog/Fable 5: 🔊 THE AIR HAS A SOUND — ambient audio ⬜→🧱 (the map's floor-raise)
 - **Why:** Terry: "pick the next most important priority." The EXCELLENCE_MAP's own unevenness rule
   says raise the floor — ambient audio was a ⬜ the player feels every second, flagged by
