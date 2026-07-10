@@ -150,6 +150,10 @@ namespace Ziptide.Editor.Patching
             // Story contract + gating from the WorldJobLibrary spec (jobs, steps, rewards, flags,
             // GoToMarker targets as pack data). No-op for worlds without a spec.
             WorldJobLibrary.EnsureJobsFor(kit, pack);
+            // HARDWIRING 4.1i (automation lane, announced append): derives a buildable belt pad
+            // from the pack's own mines — no-op for worlds without one. Runs AFTER EnsureJobsFor
+            // so the mine list it reads is this build's truth.
+            BeltPadLibrary.EnsurePadsFor(pack);
 
             if (kit.spawnStarterWeapons)
             {

@@ -63,6 +63,11 @@ namespace Ziptide.Content
                  "built machine persists in this world's save (same path as mines).")]
         public List<BuildSocketSpawnDefinition> sockets = new List<BuildSocketSpawnDefinition>();
 
+        [Header("Belt pads")]
+        [Tooltip("Buildable belt pads spawned at scene start (HARDWIRING 4.1i) — BeltPadSpawner " +
+                 "materializes each; player-built cells persist per pad id (4.1f).")]
+        public List<BeltFloorSpawnDefinition> beltFloors = new List<BeltFloorSpawnDefinition>();
+
         [Header("Audio")]
         [Tooltip("Background music for this world. Null = silence.")]
         public AudioProfile audioProfile;

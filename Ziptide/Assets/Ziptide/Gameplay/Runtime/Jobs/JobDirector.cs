@@ -52,6 +52,9 @@ namespace Ziptide.Gameplay
             CreateMines();
             CreateGardens();
             CreateBuildSockets();
+            // HARDWIRING 4.1i (automation lane, announced append): belt pads are pack data like
+            // mines/gardens — the spawner owns all logic, this stays a one-line seam.
+            BeltPadSpawner.CreateAll(worldPack, transform, gameObject.scene.name);
             EnsureBoardAndKiosk();
             _runtime.StepChanged += OnStepChanged;
             _runtime.JobCompleted += OnJobCompleted;
