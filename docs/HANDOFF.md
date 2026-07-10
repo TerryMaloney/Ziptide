@@ -28,6 +28,25 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-10 (dddd22) - Picasso (Fable 5): 💡 F3.1 commit 1 — THE LIGHT SCRIPT lands + practicals envelope added
+- **Terry additions to FORGE III:** ① F3.1b **PRACTICALS** — lanterns/sconces/street lamps as
+  fixture recipes + the three-part trick (emissive head · glow halo billboard · a light-POOL decal
+  on the surrounding surface — "how they affect the environment" without real lights; hero budget
+  ≤2 real points/world) with placement rules + reactive flicker-out. ② Blob shadows under
+  creatures/player folded into F3.4 grounding. ③ FORGE IV candidate named: DIEGETIC UI ART
+  (belt/HUD/helm skins — needs a Terry coordination window, deliberately out of FORGE III).
+- **F3.1 commit 1 (this push):** `SkyLightScript.Derive(vista)` — pure derivation: fog = horizon
+  color, ambient trilight = the sky gradient (ground 0.55×), key light FROM the brightest
+  non-black-hole body (SunDisc wins) with elevation clamped into the 20–55° sculpting band and
+  azimuth preserved; bodiless skies get a deterministic per-vistaId azimuth so sibling worlds
+  don't all shadow alike; hazard atmosphere thickens fog (cap 0.02). `SkyVistaRig.ApplySceneTieIns`
+  applies derived values ONLY where the vista is silent — authored tie-ins override, and
+  layout-baked fog is respected (derived fog fills a fogless scene only).
+  `ZIPTIDE: LIGHT_SCRIPT vista=… sun=authored|derived ambient=… fog=…` says which path won.
+  5 contract tests incl. a full SkyVistaLibrary sweep.
+- **Next:** F3.1 commit 2 — `LIGHT_SCRIPT` audit rule + runbook before/after item; then F3.2 grade.
+- **Commit:** this push.
+
 ### 2026-07-10 (dddd21) - Picasso (Fable 5): 🏁 FORGE II COMPLETE + 🔮 FORGE III authored for Opus/Sonnet
 - **E5.3 CLOSED (run `29119947334`, CI green `e30f8af`):** frond v2 ✅ (fern read — arcing blades,
   twisted stem, spore nub at the crown) · pipes v2 ✅ (iron + rust streaks; gauge on +Z). With that,

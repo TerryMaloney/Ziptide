@@ -216,20 +216,41 @@ namespace Ziptide.Visuals
 
         private void ApplySceneTieIns(SkyVistaDefinition vista)
         {
+            // FORGE III F3.1 — the LIGHT SCRIPT: wherever the vista is silent, the atmosphere is
+            // DERIVED from the sky itself (fog = horizon, ambient = the gradient, key light from
+            // the brightest body) so scene and sky can never disagree. Authored tie-ins stay the
+            // override; layout-baked fog is respected (derived fog only fills a fogless scene).
+            var derived = SkyLightScript.Derive(vista);
+            bool derivedSun = false, derivedFog = false;
+
+            Light sun = FindDirectionalLight();
             if (vista.directionalLightIntensity > 0f)
             {
-                Light sun = FindDirectionalLight();
                 if (sun != null)
                 {
                     sun.color = vista.directionalLightColor;
                     sun.intensity = vista.directionalLightIntensity;
                 }
             }
+            else if (sun != null)
+            {
+                sun.color = derived.keyColor;
+                sun.intensity = derived.keyIntensity;
+                sun.transform.rotation = Quaternion.LookRotation(derived.keyDirection);
+                derivedSun = true;
+            }
 
             if (vista.overrideAmbient)
             {
                 RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Flat;
                 RenderSettings.ambientLight = vista.ambientColor;
+            }
+            else
+            {
+                RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Trilight;
+                RenderSettings.ambientSkyColor = derived.ambientSky;
+                RenderSettings.ambientEquatorColor = derived.ambientEquator;
+                RenderSettings.ambientGroundColor = derived.ambientGround;
             }
 
             if (vista.overrideFog)
@@ -239,6 +260,19 @@ namespace Ziptide.Visuals
                 RenderSettings.fogColor = vista.fogColor;
                 RenderSettings.fogDensity = vista.fogDensity;
             }
+            else if (!RenderSettings.fog)
+            {
+                RenderSettings.fog = true;
+                RenderSettings.fogMode = FogMode.Exponential;
+                RenderSettings.fogColor = derived.fogColor;
+                RenderSettings.fogDensity = derived.fogDensity;
+                derivedFog = true;
+            }
+
+            Debug.Log("ZIPTIDE: LIGHT_SCRIPT vista=" + vista.vistaId
+                + " sun=" + (vista.directionalLightIntensity > 0f ? "authored" : derivedSun ? "derived" : "none")
+                + " ambient=" + (vista.overrideAmbient ? "authored" : "derived")
+                + " fog=" + (vista.overrideFog ? "authored" : derivedFog ? "derived" : "layout"));
         }
 
         private static Light FindDirectionalLight()

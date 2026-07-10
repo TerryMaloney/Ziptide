@@ -60,6 +60,36 @@ color; every world theme carries a non-default LightScript after AssignAll. Audi
 **Budget:** 2 commits. **Do not:** add real-time shadows beyond the one directional (Quest),
 touch URP asset settings, or invent per-object lights (PerfBudget gate counts lights).
 
+## F3.1b — PRACTICALS (Terry's direct ask 2026-07-10: "lights around on buildings, lanterns,
+## different types that fit the situation, and how they affect the environment around them")
+
+**Why:** the light SCRIPT is the sun; PRACTICALS are the human-scale lights that make streets feel
+inhabited at night-ish worlds — and on Quest you fake their influence, you don't compute it.
+
+**What — the three-part practical trick (all three parts or it reads fake):**
+① **Fixture recipes** (Forge, `prop` tag, ≤400 tris each): `light_lantern_hang` (canal lantern),
+`light_sconce_wall` (building doorway sconce), `light_street_pole` (street lamp) — GlowPanel focal
+in the fixture head, per-world emissive color = theme accent warm-shifted (a `PracticalColor(theme)`
+helper: accent lerped 35% toward amber — lamplight is warm, never neon-pure).
+② **The glow halo:** a `PracticalLight` component (Visuals/Runtime) that spawns one soft additive
+billboard quad (radial-falloff sprite baked by ForgeTexture, 64px) scaled 2.5× the fixture head —
+the "air glow." ③ **The light POOL — how it affects the environment:** the same component lays a
+grounding-style decal quad on the nearest surface below/behind (raycast at build time via the
+author, not runtime): warm elliptical pool on the ground under lanterns/poles, wall wash above
+sconces. Pool tint = the fixture's emissive at 20% alpha. NO real Unity light by default; the
+world's `LightScript` may grant a **hero budget of ≤2 real point lights per world** (range ≤8m,
+no shadows) that the author assigns to the two most story-important fixtures only.
+**Placement:** `PracticalAuthor` (editor, dressing hook): sconce beside every generated doorway,
+poles on street rhythm every ~14m along the cairn route, lanterns at POI approaches and canal
+edges (≤14 practicals per world — PerfBudget counts the quads). Every practical auto-registers
+with F3.6's ReactiveProp (shoot it → flicker out: halo + pool + emissive all die together — that
+unified death is what sells it).
+**Acceptance:** booth turnarounds for the 3 fixtures (rubric: emissive focal reads); placement
+determinism + budget tests; halo/pool/emissive share one on/off state (test). Runbook: W002 street
+at the darkest grade — pools of lamplight down the street. **Budget:** 3 commits.
+**Do not:** exceed the 2-real-light hero budget, add shadowed lights, or let halos face-fight
+(billboards write no depth).
+
 ## F3.2 — THE GRADE (per-world color grading)
 
 **Why:** filmic unification. One tonemapper + a per-world color filter is what makes screenshots
@@ -113,6 +143,11 @@ multiply look via low-alpha black-brown).
 **Acceptance:** tests — placement determinism from kit.seed, budget cap, no colliders. Runbook
 look: W002 street "objects belong" check. **Budget:** 2 commits.
 **Do not:** use URP decal projectors (cost), or place decals on dynamic objects.
+**Addendum — BLOB SHADOWS (same envelope, same decal tech):** creatures and the player cast NO
+shadow today — they float. A soft radial dark decal quad that follows each creature (spawned by
+`ForgeCreatureVisualApplier`, scaled to body bounds, alpha 0.35, y+0.01, fades out above 1.5m of
+ground clearance) and one under the player rig. This is the cheapest 20%-more-grounded dial in
+the whole plan.
 
 ## F3.5 — THE VFX FORGE (a particle vocabulary with rails)
 
@@ -215,10 +250,20 @@ pattern. **Budget:** 2 commits.
 
 ## Execution order & why
 F3.1 light → F3.2 grade (both derive from vistas; together they transform every existing world
-for ~4 commits of work) → F3.3 water (namesake; W001/tidefront identity) → F3.4 grounding →
-F3.5 VFX → F3.6 reactive → F3.8 macro variation (1 commit, slot it anywhere) → F3.7 signage →
+for ~4 commits of work) → F3.1b practicals (needs the light script's darkness to matter) →
+F3.3 water (namesake; W001/tidefront identity) → F3.4 grounding+blob shadows → F3.5 VFX →
+F3.6 reactive → F3.8 macro variation (1 commit, slot it anywhere) → F3.7 signage →
 F3.9 conformance gate (turn on early at WARN — ideally right after F3.2 — ratchet as worlds
-finish) → F3.10 creature close-out. Estimated 21 commits total; every one independently green.
+finish) → F3.10 creature close-out. Estimated 24 commits total; every one independently green.
+
+## FORGE IV candidate (named, NOT started — the one remaining packet)
+**DIEGETIC UI ART.** The belt, credits HUD, helm readouts, lobby board, and dev menus all WORK but
+none has had an art pass — they are the last "programmer surface" the player touches constantly in
+VR. A FORGE IV would give them the same treatment: one `UiSkin` data asset (panel nine-slice baked
+by ForgeTexture, the wayfinding color law, one display typeface baked as a glyph atlas), applied
+by a `UiSkinApplier` at the existing ensure seams. Scoped OUT of FORGE III because touching the
+belt/HUD crosses into every gameplay lane's files — it needs a Terry-approved coordination window,
+not a background envelope.
 
 ## What is deliberately NOT in FORGE III
 Real-time shadows beyond the key light · reflections/refraction · post bloom/DoF · texture

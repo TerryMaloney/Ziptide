@@ -92,6 +92,11 @@ vocabulary · the reactive world · signage/glyphs · macro variation · the ART
 every envelope with a checkpoint. Takeover prompt: **"Read docs/project_art_plan/FORGE_III_PLAN.md
 §0 and execute the next open envelope."**
 
+| # | FORGE III envelope | Status |
+|---|------|--------|
+| F3.1 | THE LIGHT SCRIPT — light rig DERIVED from the vista (fog=horizon, ambient=gradient, key from the brightest body, elevation clamped 20–55°) | 🟡 **commit 1 landed:** `SkyLightScript.Derive` (pure) + `SkyVistaRig` applies derived values wherever the vista is silent (authored tie-ins override; layout-baked fog respected; `ZIPTIDE: LIGHT_SCRIPT` log) + 5 contract tests incl. full library sweep. Next: audit rule + runbook before/after |
+| F3.1b–F3.10 | practicals · grade · water · grounding+blob shadows · VFX · reactive · signage · macro · conformance ratchet · creature close-out | ⬜ per the plan |
+
 ## ▶ RESUMING? — current state & exact next action
 - **Current:** ART-1 + ART-2 shipped APK-green (skies `28616598718`; Forge+taser `28630103333`).
   ART-3 opened; no code landed yet. Open Terry loops: §2h/§2i headset passes.
