@@ -167,11 +167,19 @@ namespace Ziptide.Editor.Patching
         /// BeltFloorRuntime builds everything at runtime. Idempotent by name.</summary>
         private static void EnsureFactoryCorner()
         {
-            if (GameObject.Find("SandboxBeltFloor") != null) return;
+            var existing = GameObject.Find("SandboxBeltFloor");
+            if (existing != null)
+            {
+                // 4.1f retrofit: floors patched before persistence existed get their save identity.
+                var b = existing.GetComponent<Ziptide.Gameplay.BeltFloorRuntime>();
+                if (b != null && string.IsNullOrEmpty(b.floorId)) b.floorId = "sandbox_belt";
+                return;
+            }
             var floor = new GameObject("SandboxBeltFloor");
             floor.transform.position = new Vector3(-14f, 0f, -12f);
             var belt = floor.AddComponent<Ziptide.Gameplay.BeltFloorRuntime>();
             belt.width = 8; belt.depth = 4; belt.cellSize = 0.8f;
+            belt.floorId = "sandbox_belt"; // 4.1f: player edits to this floor persist per profile
             // 4.1e: the line is fed by a REAL machine, not thin air — a mine port whose stored ore
             // becomes riding items (jam the line and the hopper fills instead; nothing is lost).
             belt.AuthorPort(0, 1, Ziptide.Content.Automation.BeltDir.East);

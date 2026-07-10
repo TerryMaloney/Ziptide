@@ -35,6 +35,9 @@ namespace Ziptide.Gameplay
         public float cellSize = 0.8f;
         [Tooltip("Authored layout — the serialized truth (patchers write via Author*).")]
         public List<BeltCellSpec> cells = new List<BeltCellSpec>();
+        [Tooltip("Save identity (4.1f) — player edits persist under scene+floorId. Empty = this " +
+                 "floor never persists (throwaway rigs).")]
+        public string floorId = "";
 
         private const float FixedStep = 1f / 30f;  // fixed sim cadence — reproducible factories
         private const float PayoutInterval = 1.0f;
@@ -70,6 +73,8 @@ namespace Ziptide.Gameplay
 
         private void Start()
         {
+            RestoreFromProfile(); // 4.1f: cells becomes authored ⊕ the player's saved overlay
+
             _lattice = new BeltLattice(width, depth);
             foreach (var c in cells)
             {
@@ -84,6 +89,82 @@ namespace Ziptide.Gameplay
             BuildTiles();
             Debug.Log("ZIPTIDE: BELT_FLOOR ready cells=" + cells.Count +
                       " size=" + width + "x" + depth);
+        }
+
+        // ── Persistence (HARDWIRING 4.1f — player factories survive quit/reload) ────────────────
+
+        private readonly HashSet<long> _authoredBeltCells = new HashSet<long>(); // pre-overlay Belt coords
+        private BeltFloorState _saveState; // lazy — created on the first player edit
+
+        private long CellKey(int x, int z) => ((long)z << 32) | (uint)x;
+
+        /// <summary>The overlay's home: this scene's WorldState (worldId = scene name, the
+        /// BeltMinePortRuntime convention).</summary>
+        private BeltFloorState SaveState(bool createIfMissing)
+        {
+            if (_saveState != null) return _saveState;
+            if (string.IsNullOrEmpty(floorId)) return null;
+            var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;
+            if (profile == null) return null;
+            var world = profile.GetWorld(gameObject.scene.name, createIfMissing);
+            if (world == null) return null;
+            _saveState = BeltFloorSave.GetFloor(world, floorId, createIfMissing);
+            return _saveState;
+        }
+
+        /// <summary>Rebuild <see cref="cells"/> as canonical-authored + saved player overlay. The
+        /// authored Belt coords are snapshotted first so RemoveBeltAt can tell an authored pick-up
+        /// (remember it as removed) from a player-placed one (just drop it from the overlay).</summary>
+        private void RestoreFromProfile()
+        {
+            _authoredBeltCells.Clear();
+            foreach (var c in cells)
+                if (c.kind == CellKind.Belt) _authoredBeltCells.Add(CellKey(c.x, c.z));
+
+            var state = SaveState(createIfMissing: false);
+            if (state == null || (state.placed.Count == 0 && state.removedAuthored.Count == 0))
+                return; // neutral default — authored layout untouched
+
+            var authored = new List<BeltCellRecord>(cells.Count);
+            foreach (var c in cells)
+                authored.Add(new BeltCellRecord
+                {
+                    x = c.x, z = c.z, kind = (int)c.kind, dir = (int)c.dir,
+                    resourceId = c.resourceId ?? ""
+                });
+            var effective = BeltFloorSave.Apply(authored, state);
+
+            cells = new List<BeltCellSpec>(effective.Count);
+            foreach (var r in effective)
+                cells.Add(new BeltCellSpec
+                {
+                    x = r.x, z = r.z, kind = (CellKind)r.kind, dir = (BeltDir)r.dir,
+                    resourceId = r.resourceId
+                });
+            Debug.Log("ZIPTIDE: BELT_RESTORE floor=" + floorId +
+                      " placed=" + state.placed.Count +
+                      " removed=" + state.removedAuthored.Count);
+        }
+
+        private void PersistPlace(BeltCellSpec spec)
+        {
+            var state = SaveState(createIfMissing: true);
+            if (state == null) return;
+            BeltFloorSave.RecordPlace(state, new BeltCellRecord
+            {
+                x = spec.x, z = spec.z, kind = (int)spec.kind, dir = (int)spec.dir,
+                resourceId = spec.resourceId ?? ""
+            });
+            SaveSystem.AutosaveNow("belt_edit");
+        }
+
+        private void PersistRemove(int x, int z)
+        {
+            bool wasAuthored = _authoredBeltCells.Contains(CellKey(x, z));
+            var state = SaveState(createIfMissing: wasAuthored);
+            if (state == null) return;
+            BeltFloorSave.RecordRemove(state, x, z, wasAuthored);
+            SaveSystem.AutosaveNow("belt_edit");
         }
 
         private Vector3 CellCenter(int x, int z)
@@ -180,8 +261,9 @@ namespace Ziptide.Gameplay
             var dir = DirFromForward(worldForward);
             _lattice.PlaceBelt(x, z, dir);
             var spec = new BeltCellSpec { x = x, z = z, kind = CellKind.Belt, dir = dir };
-            cells.Add(spec); // session record (player factories persist to the profile in a later pull)
+            cells.Add(spec);
             BuildCellVisual(spec);
+            PersistPlace(spec); // 4.1f: player factories survive quit/reload
             Debug.Log("ZIPTIDE: BELT_PLACE x=" + x + " z=" + z + " dir=" + dir);
             return true;
         }
@@ -202,6 +284,7 @@ namespace Ziptide.Gameplay
             _cellVisuals.Remove(idx);
             for (int i = cells.Count - 1; i >= 0; i--)
                 if (cells[i].x == x && cells[i].z == z) cells.RemoveAt(i);
+            PersistRemove(x, z); // 4.1f: an authored cell is remembered as removed; a placed one just leaves
 
             BeltTileItem.Spawn(CellCenter(x, z) + Vector3.up * 0.35f);
             Debug.Log("ZIPTIDE: BELT_PICKUP x=" + x + " z=" + z);

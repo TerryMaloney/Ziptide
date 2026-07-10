@@ -103,5 +103,9 @@ namespace Ziptide.Core
         /// <summary>Meta-Loop v2: this world's factory layout + batch progress. The graph LAYOUT is
         /// the save-truth (visuals are a skin); ProductionGraph (Content) simulates it.</summary>
         public List<MachineNodeState> factory = new List<MachineNodeState>();
+        /// <summary>HARDWIRING 4.1f: player edits to this world's belt floors — a dynamic overlay
+        /// per floor (patchers stay the canonical layout; see BeltFloorSave). Additive with a
+        /// neutral default: empty = pre-persistence behavior exactly, old saves untouched.</summary>
+        public List<BeltFloorState> beltFloors = new List<BeltFloorState>();
     }
 }
