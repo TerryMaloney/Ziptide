@@ -528,6 +528,15 @@ Two things to *feel* on device; both are pure-data tunes if they're off (no rebu
   `Assets/Ziptide/Resources/Forge/Bodies/swarm_bug.asset` and `light_grazer.asset` (+ `.meta`s), then
   run `Ziptide → Art → Author Forge Creature Bodies (missing only)` (or just build) and commit the
   reseeded pair. **Headset:** creatures in W002/W005/W009 should read rounded and alive, not boxy.
+- [ ] **NEW (creature skin + warden v5, 2026-07-10 — Picasso):** creatures now carry BAKED texture
+  atlases (chitin/slime/bark/metal skins, same pipeline as the guns) and the warden was redesigned —
+  it has ARMS now and reads as an armored sentinel, not a bin. 🎮 Two looks: **①** the **light_grazer**
+  in the DARK cistern (W002) — its underbell/skirt is now an emissive green LANTERN; in the dark it
+  should glow like a drifting lamp (the booth can't show real darkness, this is the one check CI
+  can't do). **②** a **warden** at plaza distance — armored biped, eye burning in a black visor slot,
+  arms swinging opposite the legs when it walks. Watch `ZIPTIDE: FORGE_CREATURE_APPLIED ... baked=true`
+  (baked=false means the ForgeBaker didn't run — rebuild). The swarm_bug/light_grazer reseed step
+  above also picks all of this up for those two.
 - [ ] **(not Unity) Reconnect the GitHub connector** on claude.ai (Settings → Connectors → GitHub →
   Reconnect, authorize `terrymaloney/ziptide`) so the operators can see CI status again. Pushing already
   works without it; this is just so we can watch the runs go green.

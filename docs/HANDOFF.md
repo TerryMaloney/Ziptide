@@ -37,9 +37,11 @@
   narrowed 0.10→0.06 (read as a door gasket); grazer underbell+skirt switched Slime→GlowPanel soft
   green — the LANTERN under the bell the name always promised; Slime mottle deepened (×0.58) and
   widened (0.5–0.8 coverage) so it survives the highlight.
-- **Next:** verify v5.1 turnarounds (grazer is the open item; warden expected ✅✅). Then the roster
-  is judged shippable at this engine tier — next dials are segments-cap raise (silhouette rounding)
-  and E5.3 flora, in that order per SPRINT_ART.
+- **v5.1 VERIFIED (run `29101754484`, CI green `171e87c`):** warden ✅✅ (slate fists, thin seam —
+  clean sentinel, ladder CLOSED for it) · grazer ✅ (the lantern ring reads as a luminous band; the
+  mottle is subtle under booth light — the true test is emission in the DARK cistern, queued 🎮).
+  **All 6 forged creatures now pass at this engine tier.**
+- **Next:** segments-cap raise + E5.3 flora are the remaining dials, per SPRINT_ART P3.5/E5.3.
 - **Commit:** this push.
 ### 2026-07-10 (rb17) - Reasonbox (ecology lane): 🥚 4.3d — NESTS: the species get HOMES you can find and regret (4.3c CI ✅)
 - **4.3c verdict:** pressure persistence is **CI GREEN ✅** (`a5cae95`) — the ecology stack
