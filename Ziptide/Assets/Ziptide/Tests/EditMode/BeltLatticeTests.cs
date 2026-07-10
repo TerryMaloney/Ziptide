@@ -139,6 +139,47 @@ namespace Ziptide.Tests.EditMode
         }
 
         [Test]
+        public void Splitter_FeedsBothOutputs()
+        {
+            // source → belt → splitter(E): primary exit East to (3,1), alternate exit South to (2,0).
+            var b = new BeltLattice(4, 2);
+            b.PlaceSource(0, 1, BeltDir.East, "ore");
+            b.PlaceBelt(1, 1, BeltDir.East);
+            b.PlaceSplitter(2, 1, BeltDir.East);
+            b.PlaceBelt(3, 1, BeltDir.East);  // parks at the lattice edge
+            b.PlaceBelt(2, 0, BeltDir.South); // parks at the lattice edge
+            Run(b, 10f);
+            Assert.IsNotNull(b.OccupantAt(3, 1), "primary side received an item");
+            Assert.IsNotNull(b.OccupantAt(2, 0), "alternate side received an item");
+        }
+
+        [Test]
+        public void Splitter_BlockedSide_EverythingTakesTheFreeSide()
+        {
+            // The south side is EMPTY ground (never accepts) — all throughput goes east.
+            var b = new BeltLattice(5, 2);
+            b.PlaceSource(0, 1, BeltDir.East, "ore");
+            b.PlaceBelt(1, 1, BeltDir.East);
+            b.PlaceSplitter(2, 1, BeltDir.East);
+            b.PlaceBelt(3, 1, BeltDir.East);
+            b.PlaceSink(4, 1);
+            Run(b, 20f);
+            Assert.Greater(b.SunkCount("ore"), 5, "one dead side must not halve (or halt) the line");
+        }
+
+        [Test]
+        public void Splitter_BothOutputsBlocked_Compresses()
+        {
+            var b = new BeltLattice(4, 2);
+            b.PlaceSource(0, 1, BeltDir.East, "ore");
+            b.PlaceBelt(1, 1, BeltDir.East);
+            b.PlaceSplitter(2, 1, BeltDir.East); // East → (3,1) empty; South → (2,0) empty
+            Run(b, 15f);
+            Assert.AreEqual(2, b.Items.Count, "splitter + feed belt hold one each; source waits");
+            Assert.IsNotNull(b.OccupantAt(2, 1), "an item parks ON the splitter");
+        }
+
+        [Test]
         public void Deterministic_SameBuildSameTicks_SameWorld()
         {
             BeltLattice Build()

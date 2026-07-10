@@ -175,11 +175,17 @@ namespace Ziptide.Editor.Patching
             belt.AuthorSource(0, 1, Ziptide.Content.Automation.BeltDir.East, "scrap");
             belt.AuthorBelt(1, 1, Ziptide.Content.Automation.BeltDir.East);
             belt.AuthorBelt(2, 1, Ziptide.Content.Automation.BeltDir.East);
-            belt.AuthorBelt(3, 1, Ziptide.Content.Automation.BeltDir.East);
-            belt.AuthorBelt(4, 1, Ziptide.Content.Automation.BeltDir.North); // the corner turn
+            // 4.1d: the FORK — a splitter alternates the flow between two lines (watch it deal
+            // items left-right; jam one side and everything reroutes to the other).
+            belt.AuthorSplitter(3, 1, Ziptide.Content.Automation.BeltDir.East);
+            belt.AuthorBelt(4, 1, Ziptide.Content.Automation.BeltDir.North); // upper path: the corner
             belt.AuthorBelt(4, 2, Ziptide.Content.Automation.BeltDir.East);
             belt.AuthorBelt(5, 2, Ziptide.Content.Automation.BeltDir.East);
             belt.AuthorSink(6, 2, "scrap");
+            belt.AuthorBelt(3, 0, Ziptide.Content.Automation.BeltDir.East);  // lower path: the side exit
+            belt.AuthorBelt(4, 0, Ziptide.Content.Automation.BeltDir.East);
+            belt.AuthorBelt(5, 0, Ziptide.Content.Automation.BeltDir.East);
+            belt.AuthorSink(6, 0, "scrap");
 
             // 4.1c: the tile dispenser beside the floor — grab a slab, watch the ghost snap to the
             // grid (direction follows your wrist), release to CLICK it in; grip a placed belt to

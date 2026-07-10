@@ -58,6 +58,8 @@ namespace Ziptide.Gameplay
             => cells.Add(new BeltCellSpec { x = x, z = z, kind = CellKind.Source, dir = dir, resourceId = resourceId });
         public void AuthorSink(int x, int z, string payoutResourceId)
             => cells.Add(new BeltCellSpec { x = x, z = z, kind = CellKind.Sink, resourceId = payoutResourceId });
+        public void AuthorSplitter(int x, int z, BeltDir dir)
+            => cells.Add(new BeltCellSpec { x = x, z = z, kind = CellKind.Splitter, dir = dir });
 
         private void Start()
         {
@@ -69,6 +71,7 @@ namespace Ziptide.Gameplay
                     case CellKind.Belt: _lattice.PlaceBelt(c.x, c.z, c.dir); break;
                     case CellKind.Source: _lattice.PlaceSource(c.x, c.z, c.dir, c.resourceId); break;
                     case CellKind.Sink: _lattice.PlaceSink(c.x, c.z); break;
+                    case CellKind.Splitter: _lattice.PlaceSplitter(c.x, c.z, c.dir); break;
                 }
             }
             BuildTiles();
@@ -106,21 +109,27 @@ namespace Ziptide.Gameplay
             ItemFactory.ApplyURPColor(tile,
                 c.kind == CellKind.Source ? srcCol : c.kind == CellKind.Sink ? sinkCol : tileCol);
 
-            if (c.kind == CellKind.Belt || c.kind == CellKind.Source)
+            if (c.kind == CellKind.Belt || c.kind == CellKind.Source || c.kind == CellKind.Splitter)
             {
                 // Direction chevron: a flat teal bar pointing along flow — readable from above.
                 // Parented to the UNSCALED cell root (a child of the squashed tile would shear).
-                var chev = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                chev.name = "Chevron";
-                var cc = chev.GetComponent<Collider>();
-                if (cc != null) Destroy(cc);
-                chev.transform.SetParent(cellRoot.transform, true);
-                chev.transform.position = at + Vector3.up * 0.11f;
-                chev.transform.rotation = transform.rotation * Quaternion.Euler(0f, 90f * (int)c.dir, 0f);
-                chev.transform.localScale = new Vector3(0.14f, 0.03f, cellSize * 0.5f);
-                ItemFactory.ApplyURPColor(chev, chevCol);
-                var cr = chev.GetComponent<Renderer>();
-                if (cr != null) cr.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+                // Splitters get a SECOND bar on the right-hand exit — the fork reads at a glance.
+                int bars = c.kind == CellKind.Splitter ? 2 : 1;
+                for (int b = 0; b < bars; b++)
+                {
+                    var chev = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                    chev.name = b == 0 ? "Chevron" : "ChevronAlt";
+                    var cc = chev.GetComponent<Collider>();
+                    if (cc != null) Destroy(cc);
+                    chev.transform.SetParent(cellRoot.transform, true);
+                    chev.transform.position = at + Vector3.up * 0.11f;
+                    chev.transform.rotation = transform.rotation
+                        * Quaternion.Euler(0f, 90f * ((int)c.dir + b), 0f);
+                    chev.transform.localScale = new Vector3(0.14f, 0.03f, cellSize * (b == 0 ? 0.5f : 0.38f));
+                    ItemFactory.ApplyURPColor(chev, chevCol);
+                    var cr = chev.GetComponent<Renderer>();
+                    if (cr != null) cr.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+                }
             }
             var tr = tile.GetComponent<Renderer>();
             if (tr != null) tr.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;

@@ -13,6 +13,7 @@ namespace Ziptide.Content.Automation
         Belt = 1,     // moves items along its direction
         Source = 2,   // emits items (a machine's output port)
         Sink = 3,     // consumes items (a machine's input port)
+        Splitter = 4, // 1→2: exits alternate between dir and its right-hand neighbor
     }
 
     /// <summary>One item riding the lattice. <see cref="Progress"/> runs 0→1 across its cell; the
@@ -50,6 +51,8 @@ namespace Ziptide.Content.Automation
         private readonly string[] _sourceResource;   // per-cell resource a Source emits
         private readonly float[] _sourceClock;
         private readonly int[] _mergePick;           // round-robin cursor per cell (fair junctions)
+        private readonly int[] _outPick;             // splitter output toggle (separate from merges —
+                                                     // a splitter can also BE a contested merge target)
         private readonly BeltItem[] _occupant;       // one item per cell — belts are single-file
 
         private readonly List<BeltItem> _items = new List<BeltItem>();
@@ -68,6 +71,7 @@ namespace Ziptide.Content.Automation
             _sourceResource = new string[n];
             _sourceClock = new float[n];
             _mergePick = new int[n];
+            _outPick = new int[n];
             _occupant = new BeltItem[n];
         }
 
@@ -100,6 +104,18 @@ namespace Ziptide.Content.Automation
         {
             if (!InBounds(x, z)) return false;
             _kind[Idx(x, z)] = CellKind.Sink;
+            return true;
+        }
+
+        /// <summary>A 1→2 splitter: exits alternate between <paramref name="dir"/> and its
+        /// right-hand neighbor; if one side is blocked, everything takes the free side.</summary>
+        public bool PlaceSplitter(int x, int z, BeltDir dir)
+        {
+            if (!InBounds(x, z)) return false;
+            int i = Idx(x, z);
+            _kind[i] = CellKind.Splitter;
+            _dir[i] = dir;
+            _outPick[i] = 0;
             return true;
         }
 
@@ -142,7 +158,8 @@ namespace Ziptide.Content.Automation
         {
             if (!InBounds(x, z) || string.IsNullOrEmpty(resourceId)) return false;
             int i = Idx(x, z);
-            if (_kind[i] != CellKind.Belt && _kind[i] != CellKind.Sink) return false;
+            if (_kind[i] != CellKind.Belt && _kind[i] != CellKind.Sink && _kind[i] != CellKind.Splitter)
+                return false;
             if (_occupant[i] != null) return false;
             if (_kind[i] == CellKind.Sink) { Consume(resourceId); return true; }
             var item = new BeltItem { ResourceId = resourceId, X = x, Z = z, Progress = 0.5f };
@@ -171,12 +188,22 @@ namespace Ziptide.Content.Automation
             {
                 var item = _items[n];
                 int i = Idx(item.X, item.Z);
-                if (_kind[i] != CellKind.Belt) continue; // stranded (belt removed) — holds in place
+                bool onSplit = _kind[i] == CellKind.Splitter;
+                if (_kind[i] != CellKind.Belt && !onSplit) continue; // stranded (carrier removed) — holds
 
                 float next = item.Progress + Speed * dt;
                 if (next < 1f) { item.Progress = next; continue; }
 
-                Step(_dir[i], out int dx, out int dz);
+                // Splitters pick their exit per item (alternating, blocked-side fallback);
+                // belts always exit along their direction.
+                BeltDir outDir = _dir[i];
+                if (onSplit && !PickSplitterExit(i, out outDir))
+                {
+                    item.Progress = 1f;   // both outputs blocked — park; upstream compresses
+                    continue;
+                }
+
+                Step(outDir, out int dx, out int dz);
                 int tx = item.X + dx, tz = item.Z + dz;
                 if (!InBounds(tx, tz)) { item.Progress = 1f; continue; }        // end of the line
                 int ti = Idx(tx, tz);
@@ -188,7 +215,7 @@ namespace Ziptide.Content.Automation
                     _items.RemoveAt(n); n--;
                     continue;
                 }
-                if (_kind[ti] != CellKind.Belt || _occupant[ti] != null)
+                if ((_kind[ti] != CellKind.Belt && _kind[ti] != CellKind.Splitter) || _occupant[ti] != null)
                 {
                     item.Progress = 1f;   // HEAD BLOCKING — wait at the lip; upstream compresses
                     continue;
@@ -216,7 +243,8 @@ namespace Ziptide.Content.Automation
                 int tx = x + dx, tz = z + dz;
                 if (!InBounds(tx, tz)) continue;
                 int ti = Idx(tx, tz);
-                if (_kind[ti] != CellKind.Belt || _occupant[ti] != null) continue; // blocked: hold, no overflow
+                if ((_kind[ti] != CellKind.Belt && _kind[ti] != CellKind.Splitter)
+                    || _occupant[ti] != null) continue; // blocked: hold, no overflow
                 if (!MergeTurn(ti, x, z)) continue; // sources queue at junctions like everyone else
 
                 _sourceClock[i] -= SourcePeriod;
@@ -268,6 +296,39 @@ namespace Ziptide.Content.Automation
             if (_kind[feederIdx] == CellKind.Source) return _sourceClock[feederIdx] >= SourcePeriod;
             var occ = _occupant[feederIdx];
             return occ != null && occ.Progress >= 1f - 1e-4f;
+        }
+
+        /// <summary>The right-hand neighbor of a direction (N→E→S→W→N).</summary>
+        public static BeltDir RotateRight(BeltDir d) => (BeltDir)(((int)d + 1) & 3);
+
+        /// <summary>
+        /// Choose a splitter's exit for the item leaving cell <paramref name="i"/>: alternate
+        /// between the primary direction and its right-hand neighbor; when the preferred side can't
+        /// accept, everything takes the free side (the toggle only advances on a PREFERRED pass, so
+        /// balance resumes the moment the jammed side clears). False = both blocked.
+        /// </summary>
+        private bool PickSplitterExit(int i, out BeltDir outDir)
+        {
+            BeltDir primary = _dir[i];
+            BeltDir alt = RotateRight(primary);
+            BeltDir preferred = (_outPick[i] & 1) == 0 ? primary : alt;
+            BeltDir other = preferred == primary ? alt : primary;
+
+            int x = i % Width, z = i / Width;
+            if (ExitAccepts(x, z, preferred)) { _outPick[i]++; outDir = preferred; return true; }
+            if (ExitAccepts(x, z, other)) { outDir = other; return true; }
+            outDir = primary;
+            return false;
+        }
+
+        private bool ExitAccepts(int x, int z, BeltDir d)
+        {
+            Step(d, out int dx, out int dz);
+            int tx = x + dx, tz = z + dz;
+            if (!InBounds(tx, tz)) return false;
+            int ti = Idx(tx, tz);
+            if (_kind[ti] == CellKind.Sink) return true;
+            return (_kind[ti] == CellKind.Belt || _kind[ti] == CellKind.Splitter) && _occupant[ti] == null;
         }
 
         private void Consume(string resourceId)
