@@ -4,7 +4,12 @@ using System.Collections.Generic;
 namespace Ziptide.Multiplayer.Conquest
 {
     public enum MissionSide { Attack, Defense }
-    public enum MissionKind { Sabotage, DroneDefense }
+
+    /// <summary>The contract vocabulary (the spec's full catalog, not just two): attackers draw
+    /// Sabotage / Scan / Beacon, defenders draw DroneDefense / Repair — each a different VERB
+    /// (shoot · hold ground · carry · shoot flyers · hands-on fix).</summary>
+    public enum MissionKind { Sabotage, DroneDefense, Scan, Beacon, Repair }
+
     public enum MissionPhase { Offered, Accepted, Won, Lost, Declined }
 
     /// <summary>All the risk-mission knobs in one place (the ConquestRules idiom).</summary>
@@ -16,6 +21,9 @@ namespace Ziptide.Multiplayer.Conquest
         public const float TimeLimitSeconds = 150f;   // "a couple minutes of gameplay"
         public const int SabotageObjectives = 3;      // shield pylons to disable
         public const int DroneDefenseObjectives = 5;  // scout drones to shoot down
+        public const int ScanObjectives = 3;          // grid nodes to hold position at
+        public const int BeaconObjectives = 1;        // one beacon, carried to the uplink pad
+        public const int RepairObjectives = 4;        // arcing conduits to fix by hand
     }
 
     /// <summary>One offered contract: what you'd play, where, and what winning/losing is worth.</summary>
@@ -42,22 +50,53 @@ namespace Ziptide.Multiplayer.Conquest
     {
         public static ConquestMission Offer(string planetId, MissionSide side, bool isUnderdog)
         {
-            bool attack = side == MissionSide.Attack;
-            return new ConquestMission
+            // Deterministic per world+side (a char-sum, so the pick is reasoned about offline):
+            // every planet always offers the same contract, and the catalog varies ACROSS planets.
+            int charsum = 0;
+            if (!string.IsNullOrEmpty(planetId)) foreach (char c in planetId) charsum += c;
+            MissionKind kind = side == MissionSide.Attack
+                ? (charsum % 3 == 0 ? MissionKind.Sabotage
+                 : charsum % 3 == 1 ? MissionKind.Scan : MissionKind.Beacon)
+                : (charsum % 2 == 0 ? MissionKind.DroneDefense : MissionKind.Repair);
+
+            var m = new ConquestMission
             {
                 planetId = planetId,
                 side = side,
-                kind = attack ? MissionKind.Sabotage : MissionKind.DroneDefense,
-                objectiveCount = attack ? ConquestMissionRules.SabotageObjectives
-                                        : ConquestMissionRules.DroneDefenseObjectives,
+                kind = kind,
                 timeLimitSeconds = ConquestMissionRules.TimeLimitSeconds,
                 winTilt = isUnderdog ? ConquestMissionRules.UnderdogWinTilt : ConquestMissionRules.WinTilt,
                 loseTilt = ConquestMissionRules.LoseTilt,
-                title = attack ? "SABOTAGE THE SHIELD" : "REPEL THE SCOUTS",
-                brief = attack
-                    ? "Disable the shield pylons on the surface before the garrison locks down."
-                    : "Their scout drones are mapping your defenses. Shoot every one of them down.",
             };
+            switch (kind)
+            {
+                case MissionKind.Sabotage:
+                    m.objectiveCount = ConquestMissionRules.SabotageObjectives;
+                    m.title = "SABOTAGE THE SHIELD";
+                    m.brief = "Disable the shield pylons on the surface before the garrison locks down.";
+                    break;
+                case MissionKind.Scan:
+                    m.objectiveCount = ConquestMissionRules.ScanObjectives;
+                    m.title = "SCAN THE DEFENSE GRID";
+                    m.brief = "Hold position at each grid node until the sweep completes. Stay close — the lock drops if you drift.";
+                    break;
+                case MissionKind.Beacon:
+                    m.objectiveCount = ConquestMissionRules.BeaconObjectives;
+                    m.title = "PLANT THE BEACON";
+                    m.brief = "Grab the strike beacon and carry it to the uplink pad. It's heavy, it hums, and they'll know.";
+                    break;
+                case MissionKind.Repair:
+                    m.objectiveCount = ConquestMissionRules.RepairObjectives;
+                    m.title = "PATCH THE CONDUITS";
+                    m.brief = "Their probes cut your shield conduits. Slap each arcing junction back into its socket — three good hits each.";
+                    break;
+                default: // DroneDefense
+                    m.objectiveCount = ConquestMissionRules.DroneDefenseObjectives;
+                    m.title = "REPEL THE SCOUTS";
+                    m.brief = "Their scout drones are mapping your defenses. Shoot every one of them down.";
+                    break;
+            }
+            return m;
         }
     }
 

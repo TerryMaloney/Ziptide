@@ -209,11 +209,42 @@ namespace Ziptide.Gameplay
                  new Color(0.45f, 0.3f, 0.35f));
             Tile("HOTSEAT", new Vector3(0.95f, 0.75f, 0.35f), HotseatPressed,
                  new Color(0.3f, 0.5f, 0.45f));
-            Tile("SPIRE +3DEF\n(1F 3A)", new Vector3(-0.98f, 0.98f, -0.3f), BuildSpire,
-                 new Color(0.35f, 0.55f, 0.8f));
-            Tile("FRIGATE +2ATK\n(2F 2A)", new Vector3(-0.98f, 0.98f, 0.1f), BuildFrigate,
-                 new Color(0.6f, 0.4f, 0.75f));
+            // THE FULL CATALOG (the richness bar: 8 defenses + 8 vessels, not two tiles) — every
+            // label and cost is pulled straight from ConquestCatalog, zero rules in this component.
+            var defs = ConquestCatalog.Defenses;
+            for (int i = 0; i < defs.Length; i++)
+            {
+                var d = defs[i];
+                string id = d.Id;   // closure copy
+                Tile(TitleCase(d.Id) + "\n+" + d.DefenseBonus + "DEF " + Cost(d.CostFlux, d.CostAlloy, d.CostBloom),
+                     new Vector3(-1.02f, 1.62f - i * 0.19f, -0.1f), () => BuildDefenseTile(id),
+                     new Color(0.3f, 0.45f + 0.04f * (i % 3), 0.7f));
+            }
+            var ves = ConquestCatalog.Vessels;
+            for (int i = 0; i < ves.Length; i++)
+            {
+                var v = ves[i];
+                string id = v.Id;   // closure copy
+                Tile(TitleCase(v.Id) + "\n+" + v.AttackPower + "ATK " + Cost(v.CostFlux, v.CostAlloy, v.CostBloom),
+                     new Vector3(-1.38f, 1.62f - i * 0.19f, -0.1f), () => BuildVesselTile(id),
+                     new Color(0.5f + 0.04f * (i % 3), 0.35f, 0.65f));
+            }
+            var defHdr = NewText("DEFENSES — on the selected world", new Vector3(-1.02f, 1.78f, -0.1f), 0.006f);
+            defHdr.color = new Color(0.6f, 0.75f, 0.95f);
+            var vesHdr = NewText("FLEET — commission vessels", new Vector3(-1.38f, 1.78f, -0.1f), 0.006f);
+            vesHdr.color = new Color(0.8f, 0.6f, 0.9f);
         }
+
+        private static string TitleCase(string id)
+        {
+            var parts = id.Split('_');
+            for (int i = 0; i < parts.Length; i++)
+                if (parts[i].Length > 0) parts[i] = char.ToUpperInvariant(parts[i][0]) + parts[i].Substring(1);
+            return string.Join(" ", parts);
+        }
+
+        private static string Cost(int f, int a, int b) =>
+            "(" + f + "F " + a + "A" + (b > 0 ? " " + b + "B" : "") + ")";
 
         // ── Interaction FSM ──────────────────────────────────────────────────
         private void OnPlanetTapped(string planetId)
@@ -441,22 +472,23 @@ namespace Ziptide.Gameplay
         }
 
         // ── Builds ───────────────────────────────────────────────────────────
-        private void BuildSpire()
+        private void BuildDefenseTile(string defenseId)
         {
-            if (_aiTurnRunning || _selected == null) return;
-            bool ok = _state.BuildDefense(_activeSide, _selected, "shield_spire");
-            _ticker.text = ok ? "Shield Spire raised at " + _selected
-                              : "Can't afford a Spire (1 flux, 3 alloy).";
+            if (_aiTurnRunning) return;
+            if (_selected == null) { _ticker.text = "Select one of YOUR worlds first, then build there."; return; }
+            bool ok = _state.BuildDefense(_activeSide, _selected, defenseId);
+            _ticker.text = ok ? TitleCase(defenseId) + " raised at " + _selected
+                              : "Can't build " + TitleCase(defenseId) + " — cost, or one already stands there.";
             if (ok) Autosave();
             Refresh();
         }
 
-        private void BuildFrigate()
+        private void BuildVesselTile(string vesselId)
         {
             if (_aiTurnRunning) return;
-            bool ok = _state.BuildVessel(_activeSide, "pulse_frigate");
-            _ticker.text = ok ? "Pulse Frigate joins your fleet (" + _state.GetPlayer(_activeSide).fleetVesselIds.Count + " vessels)"
-                              : "Can't afford a Frigate (2 flux, 2 alloy).";
+            bool ok = _state.BuildVessel(_activeSide, vesselId);
+            _ticker.text = ok ? TitleCase(vesselId) + " joins your fleet (" + _state.GetPlayer(_activeSide).fleetVesselIds.Count + " vessels)"
+                              : "Can't afford a " + TitleCase(vesselId) + ".";
             if (ok) Autosave();
             Refresh();
         }
@@ -613,9 +645,11 @@ namespace Ziptide.Gameplay
                 return;
             }
             string owner = p.ownerId == _activeSide ? "YOURS" : p.ownerId >= 0 ? "ENEMY" : "NEUTRAL";
+            string built = p.builtDefenseIds.Count > 0
+                ? "\nSTANDING: " + string.Join(" · ", p.builtDefenseIds.ConvertAll(TitleCase)) : "";
             _card.text = p.displayName.ToUpperInvariant() + " (" + owner + ")  DEF " + p.defenseLevel +
                          "  PROD " + p.resourceProductionRate.ToString("F0") + " " + p.resourceType +
-                         "\n" + hint;
+                         built + "\n" + hint;
         }
 
         private void CheckEnd()

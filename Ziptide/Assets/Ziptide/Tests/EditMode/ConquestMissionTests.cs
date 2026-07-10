@@ -12,8 +12,10 @@ namespace Ziptide.Tests.EditMode
     /// </summary>
     public class ConquestMissionTests
     {
+        // toxic_city: attack = Scan (3 objectives), defense = Repair (4) — multi-objective on both
+        // sides, which the abandon/overshoot tests below rely on.
         private static MissionAttempt Attempt(MissionSide side, bool underdog = false) =>
-            new MissionAttempt(ConquestMissionLibrary.Offer("dry_cistern", side, underdog));
+            new MissionAttempt(ConquestMissionLibrary.Offer("toxic_city", side, underdog));
 
         // ── Offers ──────────────────────────────────────────────────────────
         [Test]
@@ -25,9 +27,33 @@ namespace Ziptide.Tests.EditMode
             Assert.AreEqual(a1.winTilt, a2.winTilt);
             Assert.AreEqual(a1.objectiveCount, a2.objectiveCount);
 
-            Assert.AreEqual(MissionKind.Sabotage, a1.kind, "attacker flies sabotage");
+            // Sides draw from disjoint verb sets.
+            Assert.Contains(a1.kind, new[] { MissionKind.Sabotage, MissionKind.Scan, MissionKind.Beacon },
+                "attackers strike/scan/carry");
             var d = ConquestMissionLibrary.Offer("glass_shelf", MissionSide.Defense, false);
-            Assert.AreEqual(MissionKind.DroneDefense, d.kind, "defender repels the scouts");
+            Assert.Contains(d.kind, new[] { MissionKind.DroneDefense, MissionKind.Repair },
+                "defenders shoot down or fix");
+        }
+
+        [Test]
+        public void Kinds_SpanTheWholeCatalog_AcrossTheGalaxy()
+        {
+            // The richness bar: shipping 2 of 5 contract kinds is a skeleton. Across the canonical
+            // 12 worlds, every kind must actually be reachable by a player.
+            var attack = new System.Collections.Generic.HashSet<MissionKind>();
+            var defense = new System.Collections.Generic.HashSet<MissionKind>();
+            foreach (var w in ConquestGalaxy.ChapterOneTwoSeeds())
+            {
+                attack.Add(ConquestMissionLibrary.Offer(w.WorldId, MissionSide.Attack, false).kind);
+                defense.Add(ConquestMissionLibrary.Offer(w.WorldId, MissionSide.Defense, false).kind);
+            }
+            Assert.AreEqual(3, attack.Count, "all three attack verbs appear in Ch.1–2");
+            Assert.AreEqual(2, defense.Count, "both defense verbs appear in Ch.1–2");
+            // Pinned samples (char-sum picks, verified offline).
+            Assert.AreEqual(MissionKind.Scan, ConquestMissionLibrary.Offer("toxic_city", MissionSide.Attack, false).kind);
+            Assert.AreEqual(MissionKind.Beacon, ConquestMissionLibrary.Offer("dry_cistern", MissionSide.Attack, false).kind);
+            Assert.AreEqual(MissionKind.Sabotage, ConquestMissionLibrary.Offer("broadcast_tomb", MissionSide.Attack, false).kind);
+            Assert.AreEqual(MissionKind.Repair, ConquestMissionLibrary.Offer("toxic_city", MissionSide.Defense, false).kind);
         }
 
         [Test]

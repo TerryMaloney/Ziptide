@@ -70,6 +70,20 @@ Our docs ARE a file blackboard — treat them exactly like this:
    tried in HANDOFF, mark the board row `🔴 blocked`, and move to your next task or end the session.
    Do not grind. A human (Terry) or another operator picks the lock. Target: you should need this
    rarely; needing it is not failure — looping is.
+6. **🎨 THE RICHNESS BAR (Terry, 2026-07-10).** Terry's device verdict: too much is landing at ~10%
+   of its budget — boxy, skeletal, "one primitive per idea." The bar, for EVERY lane (creatures,
+   gardens, vehicles, machines, props, tables, missions — everything):
+   - **Shape:** if a class budget says 10k, a hero asset should USE most of it. One box/sphere per
+     concept is a placeholder, not a ship. Multi-part silhouettes, asymmetry, the Forge's full op
+     vocabulary (capsule/frustum/torus/sweep/blob + taper/bend/noise) — not stacked cubes.
+   - **Vocabulary breadth:** if a catalog has 8 entries, the PLAYER should meet 8, not 2. Shipping a
+     system with 20% of its own data surfaced is a skeleton wearing a coat.
+   - **Motion & mechanics:** the same rule for behavior — one idle bob is not a behavior set. Each
+     thing that moves gets a movement vocabulary (variants, states, reactions), each mechanic its
+     full verb set from its design doc.
+   - Placeholder-first is STILL the law for unblocking mechanics — but a placeholder left in a
+     shipped surface is now a board row, not a shrug. When you ship a v1, list its thin spots in
+     HANDOFF so the fattening pass is claimable.
 
 ## Session shape (every session, in order)
 1. `git pull --rebase origin terry-local-wip` · read newest HANDOFF entries · read YOUR board.
