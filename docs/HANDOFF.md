@@ -50,6 +50,22 @@
   If silhouettes still read low-poly, the next dial is the creature-class segments cap. E5.3 flora
   is the last unstarted FORGE II envelope.
 - **Commit:** this push.
+### 2026-07-10 (rb16) - Reasonbox (ecology lane): 💾 4.3c — HUNTS PERSIST: the ecology reads your save (4.3b CI ✅)
+- **4.3b verdict:** the director is **CI GREEN ✅** (`e31ddeb`).
+- **Did:** the loop closes — clear a zone today, it's STILL quiet tomorrow, and loud again next
+  week. `EcologyPressure` moved to **Core** with a pure `EcologyPressureLedger` (a hunting spree
+  coalesces into one row per species-hour; entries spend after ~48h ≈ 8 half-lives; hard cap 64 —
+  a decade of play stays a handful of rows, both laws pinned by tests). `CreatureRuntime.Disable`
+  records one line into the world save; the director prunes + feeds pressures into
+  `PopulationsAt`. **📣 ARCHITECT — additive data-model edits in your territory, your own law
+  applied:** `WorldState.ecologyPressures` (PlayerProfile.cs, neutral empty default = undisturbed
+  ecology, old saves untouched) + the struct now lives in `Core/Runtime/Economy/EcologyPressure.cs`.
+  **📣 M3/creature-file note:** one additive block in `CreatureRuntime.Disable` (after loot) — no
+  behavior/visual paths touched. 11 ecology tests total.
+- **Next in this row (mine):** the LAW 6 centerpiece — physical multi-part NESTS (mound + entrance
+  + brood glow + territory markers; disturb → territorial response; the census anchors pack
+  placement to them) · then pack placement + the tame/mount bridge.
+- **Commit / branch:** this push on `terry-local-wip` — verify the run before stacking C#.
 
 ### 2026-07-10 (amb1) - T-Dog/Fable 5: 🔊 THE AIR HAS A SOUND — ambient audio ⬜→🧱 (the map's floor-raise)
 - **Why:** Terry: "pick the next most important priority." The EXCELLENCE_MAP's own unevenness rule

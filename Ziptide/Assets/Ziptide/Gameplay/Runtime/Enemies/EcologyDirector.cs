@@ -48,10 +48,16 @@ namespace Ziptide.Gameplay
             string world = gameObject.scene.name;
             int seed = world.GetHashCode();
             float hour01 = (float)System.DateTime.UtcNow.TimeOfDay.TotalHours / 24f;
+            long nowUnix = System.DateTimeOffset.UtcNow.ToUnixTimeSeconds();
 
-            // Steady-state populations (the engine converges; disturbance pressure joins in 4.3c
-            // when disables persist into the world save).
-            var pops = EcologyCore.PopulationsAt(seed, EcologyCore.MaxResolveHours);
+            // Steady-state populations, thinned by THIS SAVE's recorded hunts (4.3c): a zone you
+            // cleared yesterday is still quiet today, and loud again next week — the wild heals.
+            var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;
+            var pressures = profile != null
+                ? profile.GetWorld(world, createIfMissing: true).ecologyPressures
+                : null;
+            if (pressures != null) Ziptide.Core.EcologyPressureLedger.Prune(pressures, nowUnix);
+            var pops = EcologyCore.PopulationsAt(seed, EcologyCore.MaxResolveHours, pressures, nowUnix);
 
             // Census: every baked creature, grouped by species, deterministic order.
             var byId = new Dictionary<string, List<CreatureRuntime>>();

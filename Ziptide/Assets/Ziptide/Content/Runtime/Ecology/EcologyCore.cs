@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Ziptide.Core;
 
 namespace Ziptide.Content.Ecology
 {
@@ -54,15 +55,7 @@ namespace Ziptide.Content.Ecology
         }
     }
 
-    /// <summary>A recorded player disturbance: creatures DISABLED (never killed — non-lethal canon)
-    /// suppress the local population until it recovers.</summary>
-    [Serializable]
-    public struct EcologyPressure
-    {
-        public string creatureId;
-        public int disabled;
-        public long atUnix;
-    }
+    // (EcologyPressure moved to Ziptide.Core in 4.3c so WorldState can carry it in the save.)
 
     /// <summary>
     /// CREATURE ECOLOGY 4.3 — the PURE population engine. Deterministic per (seed, elapsed,

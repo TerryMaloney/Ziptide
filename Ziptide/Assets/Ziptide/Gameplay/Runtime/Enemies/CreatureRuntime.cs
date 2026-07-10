@@ -129,6 +129,12 @@ namespace Ziptide.Gameplay
                         RewardRouter.Grant(profile, LedgerSource.Campaign, l.resourceId, l.amount,
                             reason: "creature_" + creatureId, worldId: gameObject.scene.name);
 
+            // ECOLOGY 4.3c: the disturbance persists — a hunted zone stays thin until the wild heals.
+            if (profile != null)
+                EcologyPressureLedger.Record(
+                    profile.GetWorld(gameObject.scene.name, createIfMissing: true).ecologyPressures,
+                    creatureId, System.DateTimeOffset.UtcNow.ToUnixTimeSeconds());
+
             Debug.Log("ZIPTIDE: CREATURE_DOWN id=" + creatureId + " name=" + gameObject.name);
             if (respawnDelay > 0f) StartCoroutine(RespawnAfter());
         }

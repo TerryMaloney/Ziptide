@@ -107,5 +107,10 @@ namespace Ziptide.Core
         /// per floor (patchers stay the canonical layout; see BeltFloorSave). Additive with a
         /// neutral default: empty = pre-persistence behavior exactly, old saves untouched.</summary>
         public List<BeltFloorState> beltFloors = new List<BeltFloorState>();
+        /// <summary>ECOLOGY 4.3c: this world's recorded disturbances (creature disables) — the
+        /// population engine reads these so a hunted zone stays thin ACROSS SESSIONS until the wild
+        /// heals. Pruned by EcologyPressureLedger (spent after ~48h, hard-capped). Additive with a
+        /// neutral default: empty = the undisturbed ecology, old saves untouched.</summary>
+        public List<EcologyPressure> ecologyPressures = new List<EcologyPressure>();
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using NUnit.Framework;
 using Ziptide.Content.Ecology;
+using Ziptide.Core;
 
 namespace Ziptide.Tests.EditMode
 {
@@ -124,6 +125,38 @@ namespace Ziptide.Tests.EditMode
 
             var solitary = EcologyCore.PacksFor(EcologySpecies.Find("stalker"), 3f, seed: 4);
             foreach (var p in solitary) Assert.AreEqual(1, p, "solitary species roam alone");
+        }
+
+        [Test]
+        public void PressureLedger_CoalescesASpree_AndStartsFreshAfterAnHour()
+        {
+            var ledger = new List<EcologyPressure>();
+            long t = 500_000;
+            for (int i = 0; i < 5; i++)
+                EcologyPressureLedger.Record(ledger, "swarm_bug", t + i * 60);
+            Assert.AreEqual(1, ledger.Count, "a hunting spree is one event, not five rows");
+            Assert.AreEqual(5, ledger[0].disabled);
+
+            EcologyPressureLedger.Record(ledger, "swarm_bug", t + 2 * 3600);
+            Assert.AreEqual(2, ledger.Count, "an hour later is a new event");
+        }
+
+        [Test]
+        public void PressureLedger_PrunesSpentEntries_AndHardCapsTheList()
+        {
+            var ledger = new List<EcologyPressure>();
+            long now = 1_000_000;
+            long spent = now - (long)((EcologyPressureLedger.SpentAfterHours + 1f) * 3600f);
+            ledger.Add(new EcologyPressure { creatureId = "old", disabled = 3, atUnix = spent });
+            EcologyPressureLedger.Record(ledger, "swarm_bug", now);
+            Assert.AreEqual(1, ledger.Count, "spent pressure is pruned on record");
+            Assert.AreEqual("swarm_bug", ledger[0].creatureId);
+
+            for (int i = 0; i < EcologyPressureLedger.MaxEntries + 20; i++)
+                ledger.Add(new EcologyPressure { creatureId = "c" + i, disabled = 1, atUnix = now });
+            EcologyPressureLedger.Prune(ledger, now);
+            Assert.LessOrEqual(ledger.Count, EcologyPressureLedger.MaxEntries,
+                "the ledger is hard-capped — a decade of play stays a handful of rows");
         }
 
         [Test]
