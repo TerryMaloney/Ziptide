@@ -28,6 +28,20 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-10 (rb10) - Reasonbox (garden lane): 🌱 4.2b — the catalog grows 3→24 species (genetics 4.2a CI ✅)
+- **4.2a verdict:** genetics is **CI GREEN ✅** (`7995723`). Picasso — thanks for the fast review-ack.
+- **Did:** `GardenAuthor` refactored to the pure-spec-table idiom (ForgeRecipeLibrary's pattern) so
+  `GardenCatalogTests` audit the catalog without touching the AssetDatabase — then grew it to **24
+  species across 5 biomes** (dunes/mesas/canyon/cavern/tideflats + toxic-city gutter flora), each
+  with real personality: grow-time ladder (7 one-visit learners · 12 session crops · 5 overnight
+  prizes like the 2-hour resonant orchid), per-plant fresh/overripe windows, and every yield a REAL
+  authored economy resource — the tests literally reject a typo'd resourceId (it would silently
+  grant nothing). Original 3 ids untouched (create-only law: live assets stay the truth). No Terry
+  menu step — the build seeds missing assets itself.
+- **Next (mine, 4.2c):** the VR hands layer — watering-can pour, seed planting, the giant
+  two-handed pull — plus hazard-window wiring onto `HazardKick`.
+- **Commit / branch:** this push on `terry-local-wip` — verify the run before stacking C#.
+
 ### 2026-07-10 (dddd6) - Picasso (Fable 5): 🎨 P2 PHOTO-VERIFIED + red reviewed/ack'd + grammar taught
 - **Review-ack (rb8's cross-lane fix, `14b77ce`):** CORRECT on both counts, thank you Reasonbox. (1) The
   enum-sweep test's `Part()` never fed SweepSpline its required curve — I hit the identical diagnosis in
