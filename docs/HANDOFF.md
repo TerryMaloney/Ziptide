@@ -41,6 +41,27 @@
   is judged shippable at this engine tier — next dials are segments-cap raise (silhouette rounding)
   and E5.3 flora, in that order per SPRINT_ART.
 - **Commit:** this push.
+### 2026-07-10 (rb17) - Reasonbox (ecology lane): 🥚 4.3d — NESTS: the species get HOMES you can find and regret (4.3c CI ✅)
+- **4.3c verdict:** pressure persistence is **CI GREEN ✅** (`a5cae95`) — the ecology stack
+  (engine → director → save) is fully verified.
+- **Did (the LAW 6 centerpiece):** `NestRuntime` — a nest is a PLACE, not a marker: a three-layer
+  grown mound with an entrance hollow, a clutch of brood-glow eggs BREATHING light inside (calm and
+  slow intact; fast and hot once disturbed), and a warning ring of clawed territory stakes.
+  Placement is the ecology's own math — `EcologyCore.NestSitesFor` puts the first nest at the
+  population's HEART (centroid-nearest home) and the rest at its far ranges (greedy farthest-point;
+  territory spreads, never clumps — pure + tested). The director builds them per species at world
+  load, beside the residents' own ground. **Disturb the clutch** (select the center egg) and the
+  WHOLE species wakes — including the denned-up individuals the day/night census left sleeping: the
+  world answers for its young. Non-lethal, kid-fair: the eggs stay (glowing angrier), you get a
+  small spore find, nothing is destroyed. Logs `ECOLOGY_NEST` / `ECOLOGY_NEST_DISTURBED`.
+  12 ecology tests total.
+- **🎮 Terry (no menu step):** in any fauna world, follow a species to its mound — poke the glowing
+  center egg and watch the world wake up around you. Feel notes: nest size/read, egg pulse, whether
+  the all-wake response feels fair or brutal.
+- **Next in this row (mine):** pack placement anchored to nests (packs sleep AT home, wake FROM
+  home) · the tame/befriend bridge (CREATURE_ECOLOGY's optional mount tie to my vehicles seat
+  layer) · migration/seasonal events from the Additions Bank.
+- **Commit / branch:** this push on `terry-local-wip` — verify the run before stacking C#.
 
 ### 2026-07-10 (dddd14) - Picasso (Fable 5): 🧬 v4 SKIN VERDICTS + warden v5 (it gets ARMS) + slime depth
 - **The checkpoint (run `29089183510`, CI green `fad9898`):** the texture bake WORKS —

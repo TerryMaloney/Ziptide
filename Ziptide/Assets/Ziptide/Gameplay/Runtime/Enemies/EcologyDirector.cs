@@ -94,6 +94,48 @@ namespace Ziptide.Gameplay
             // Species the ecology doesn't know keep their baked state — never break an authored scene.
             Debug.Log("ZIPTIDE: ECOLOGY_RESOLVE world=" + world +
                       " hour=" + (hour01 * 24f).ToString("F1") + " " + summary.ToString().TrimEnd());
+
+            BuildNests(byId);
+        }
+
+        /// <summary>4.3d: every species with a home count gets physical NESTS at its population's
+        /// heart and far ranges (EcologyCore.NestSitesFor over the creatures' own positions) —
+        /// places to find, and to regret disturbing.</summary>
+        private void BuildNests(Dictionary<string, List<CreatureRuntime>> byId)
+        {
+            foreach (var s in EcologySpecies.All)
+            {
+                if (s.NestsPerZone <= 0) continue;
+                if (!byId.TryGetValue(s.CreatureId, out var creatures) || creatures.Count == 0) continue;
+
+                var homes = new List<Vector3>(creatures.Count);
+                foreach (var c in creatures) homes.Add(c.transform.position);
+                var sites = EcologyCore.NestSitesFor(homes, s.NestsPerZone);
+
+                Color accent = NestAccent(s.CreatureId);
+                for (int i = 0; i < sites.Count; i++)
+                {
+                    var go = new GameObject("Nest_" + s.CreatureId + "_" + i);
+                    go.transform.SetParent(transform, false);
+                    // Beside the home, not on it — the resident stands guard at its own door.
+                    go.transform.position = sites[i] + new Vector3(1.6f, 0f, 1.1f);
+                    go.AddComponent<NestRuntime>().Init(s.CreatureId, accent);
+                }
+            }
+        }
+
+        private static Color NestAccent(string creatureId)
+        {
+            switch (creatureId)
+            {
+                case "swarm_bug": return new Color(0.95f, 0.6f, 0.25f);   // ember clutch
+                case "light_grazer": return new Color(0.55f, 0.9f, 0.5f); // soft green
+                case "tether_swarm": return new Color(0.4f, 0.7f, 0.95f); // pale tether-blue
+                case "witness_mite": return new Color(0.8f, 0.5f, 0.9f);  // watchful violet
+                case "husk_molter": return new Color(0.75f, 0.7f, 0.5f);  // molt-wax amber
+                case "stalker": return new Color(0.9f, 0.3f, 0.3f);       // apex red
+                default: return new Color(0.6f, 0.8f, 0.8f);
+            }
         }
     }
 }

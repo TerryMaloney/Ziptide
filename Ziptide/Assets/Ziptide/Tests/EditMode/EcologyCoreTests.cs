@@ -128,6 +128,27 @@ namespace Ziptide.Tests.EditMode
         }
 
         [Test]
+        public void NestSites_StartAtTheHeart_ThenSpreadToTheFarRanges()
+        {
+            var homes = new List<UnityEngine.Vector3>
+            {
+                new UnityEngine.Vector3(0f, 0f, 0f),
+                new UnityEngine.Vector3(2f, 0f, 0f),
+                new UnityEngine.Vector3(-2f, 0f, 0f),
+                new UnityEngine.Vector3(40f, 0f, 40f),   // the far range
+            };
+            var sites = EcologyCore.NestSitesFor(homes, 2);
+            Assert.AreEqual(2, sites.Count);
+            Assert.Less(sites[0].magnitude, 15f, "the first nest sits at the population's heart");
+            Assert.Greater((sites[1] - sites[0]).magnitude, 30f,
+                "the second nest claims the far range — territory spreads, never clumps");
+
+            Assert.AreEqual(0, EcologyCore.NestSitesFor(null, 3).Count, "no homes, no nests");
+            Assert.LessOrEqual(EcologyCore.NestSitesFor(homes, 99).Count, homes.Count,
+                "never more nests than homes");
+        }
+
+        [Test]
         public void PressureLedger_CoalescesASpree_AndStartsFreshAfterAnHour()
         {
             var ledger = new List<EcologyPressure>();

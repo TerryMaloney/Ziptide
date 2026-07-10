@@ -174,6 +174,45 @@ namespace Ziptide.Content.Ecology
             return packs;
         }
 
+        /// <summary>Pick nest sites from a species' home positions: the first site is the
+        /// population's heart (centroid-nearest home), each further site is the home FARTHEST from
+        /// every chosen site (greedy farthest-point) — nests spread across the territory instead of
+        /// clumping. Deterministic; returns at most <paramref name="nestCount"/> sites.</summary>
+        public static List<UnityEngine.Vector3> NestSitesFor(IList<UnityEngine.Vector3> homes, int nestCount)
+        {
+            var sites = new List<UnityEngine.Vector3>();
+            if (homes == null || homes.Count == 0 || nestCount <= 0) return sites;
+
+            // Centroid-nearest home = the heart of the population.
+            UnityEngine.Vector3 centroid = UnityEngine.Vector3.zero;
+            foreach (var h in homes) centroid += h;
+            centroid /= homes.Count;
+            int heart = 0;
+            float best = float.MaxValue;
+            for (int i = 0; i < homes.Count; i++)
+            {
+                float d = (homes[i] - centroid).sqrMagnitude;
+                if (d < best) { best = d; heart = i; }
+            }
+            sites.Add(homes[heart]);
+
+            while (sites.Count < nestCount && sites.Count < homes.Count)
+            {
+                int farthest = -1;
+                float farDist = -1f;
+                for (int i = 0; i < homes.Count; i++)
+                {
+                    float nearest = float.MaxValue;
+                    foreach (var s in sites)
+                        nearest = Math.Min(nearest, (homes[i] - s).sqrMagnitude);
+                    if (nearest > farDist) { farDist = nearest; farthest = i; }
+                }
+                if (farthest < 0 || farDist <= 0.01f) break; // every home already hosts a nest
+                sites.Add(homes[farthest]);
+            }
+            return sites;
+        }
+
         /// <summary>Cap the live-spawn total at the perf budget: larger packs first (they ARE the
         /// encounter), then fill with smaller ones; a pack never partially spawns.</summary>
         public static List<int> CapToBudget(List<int> packs, int budget = DefaultActiveBudget)
