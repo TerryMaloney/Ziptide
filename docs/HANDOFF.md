@@ -28,6 +28,21 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-10 (tf3) - T-Dog/Fable 5 (Tidefront lane): 💾 campaigns survive quitting + fog of war + NEW WAR
+- **Why:** Terry: "I love it, keep going." Next gaps in the lane: a campaign died with the app
+  (ConquestSession is in-memory), and the spec's fog-of-war dimming was still unbuilt.
+- **Did (`cf7cb91`):** `ConquestSave` (pure) — the save is a DYNAMIC OVERLAY in one profile flag
+  (`CONQ_SAVE:` — the CosmeticLocker idiom): galaxy rebuilds from the canonical seeds, only
+  owners/defenses/stockpiles/fleets/turn are stored, unknown planet records skip (campaigns survive
+  the galaxy growing). 4 tests incl. loaded-war-resolves-identically. Table: resume-from-disk on
+  Start, autosave at EVERY state change, fog of war (unscouted = dim flat dot, no defense intel),
+  NEW WAR tile (arm-then-confirm; any other tap disarms), finished wars clear their save + offer
+  the rematch, `_gameOver` freeze that NEW WAR bypasses.
+- **📣 Heads-up:** the save deliberately does NOT serialize a mid-mission PendingBattle — quit
+  mid-mission and the resume is the pre-attack state (attack uncommitted). Lane remaining:
+  grab-vessel tokens · hotseat B4 · space-flight defense variant (Reasonbox seam, post-3.1).
+- **Commits:** `cf7cb91` + this docs push.
+
 ### 2026-07-09 (tf2) - T-Dog/Fable 5 (Tidefront lane): 🎲 B3 SHIPS — RISK MISSIONS (Terry's "gulag")
 - **Why:** Terry (direct, mid-session): the multiplayer Risk layer needs the odds-boost missions we
   discussed — "sort of like the gulag on Call of Duty… if you choose not to, your odds stay the same."

@@ -107,6 +107,13 @@ Do these in order after pulling. Each generates committable assets. *(This mirro
   fanned overhead — pistol and taser both down them. First flown mission: RILL notes a pattern.
   Feel notes: pylon ring radius (12m), drone height/spread, 2:30 budget, board readability, and
   whether the auto-return (2.5s after the verdict) feels right or abrupt.
+- [ ] **NEW (Tidefront save/fog, 2026-07-10):** the war now SURVIVES QUITTING — play a few turns,
+  quit the app entirely, come back to the table: ticker says "CAMPAIGN RESUMED — TURN N" with your
+  exact owners/fleets/stockpiles. Fog of war: worlds not bordering your territory are dim flat dots
+  (no defense intel; card says UNSCOUTED) and light up as your border grows. A dark **NEW WAR** tile
+  (right side, near END TURN) resets — it asks "tap again" before abandoning, and any other tap
+  disarms it. Win/lose a campaign → the save clears itself and NEW WAR is the rematch. Feel notes:
+  fog dimming amount (72%), whether resume-on-entry should announce louder, NEW WAR tile placement.
 - [ ] **NEW (abilities sprint A4.5, 2026-07-09) — AUGMENTS:** no menu step (the six gems author at
   build; the Sandbox regenerates with an **augment rack** by A: Grab). **Headset:** select a gem with
   the ray to EQUIP (`ZIPTIDE: AUGMENT_EQUIP`; one active + one passive — re-selecting swaps). With an
