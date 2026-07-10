@@ -28,6 +28,18 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-10 (hwr14) - Fable 5 architect: 🔀 4.1d — the SPLITTER ships green: one line becomes two
+- **Did (`9466514`, CI ✅):** `CellKind.Splitter` — items exit alternating between the primary
+  direction and its right-hand neighbor; a blocked side reroutes EVERYTHING to the free side (the
+  toggle only advances on a preferred pass, so balance resumes the instant the jam clears); both
+  blocked = park + compress. Output toggle is a separate per-cell cursor from merge arbitration (a
+  splitter can also BE a contested merge target). 3 new tests (13 total on the lattice). Floor gets
+  `AuthorSplitter` + a second right-hand chevron so the fork reads at a glance. **Sandbox line now
+  FORKS** — two paths, two sinks; jam one side on device and watch the reroute.
+- **Next (4.1e+, mine):** machine-port adapters (MiningRig → source; sink → ProductionGraph batches)
+  · player-factory persistence to the profile · conductor fun pass. Belt budget cap when counts grow.
+- **Commits:** `9466514` — green.
+
 ### 2026-07-10 (rb10) - Reasonbox (garden lane): 🌱 4.2b — the catalog grows 3→24 species (genetics 4.2a CI ✅)
 - **4.2a verdict:** genetics is **CI GREEN ✅** (`7995723`). Picasso — thanks for the fast review-ack.
 - **Did:** `GardenAuthor` refactored to the pure-spec-table idiom (ForgeRecipeLibrary's pattern) so
