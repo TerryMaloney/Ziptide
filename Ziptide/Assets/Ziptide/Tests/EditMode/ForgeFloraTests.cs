@@ -89,6 +89,28 @@ namespace Ziptide.Tests.EditMode
         }
 
         [Test]
+        public void PlantRecipes_CarryLeafSlots_AndThePlantClassTag()
+        {
+            // The scatter plants must engage the whole flora path: LeafCard parts, a Leaf-styled
+            // slot (→ alpha-clip material), and the plant class budget rail.
+            foreach (var id in new[]
+                { Ziptide.Editor.Patching.ForgeRecipeLibrary.FrondRecipeId,
+                  Ziptide.Editor.Patching.ForgeRecipeLibrary.ReedRecipeId })
+            {
+                ForgeRecipeDefinition r = null;
+                foreach (var spec in Ziptide.Editor.Patching.ForgeRecipeLibrary.Specs())
+                    if (spec.Key == id) r = spec.Value();
+                Assert.IsNotNull(r, id + " missing from ForgeRecipeLibrary.Specs()");
+                Assert.IsTrue(ForgeTexture.HasLeafSlot(r), id + " must carry a Leaf-styled slot");
+                Assert.Contains("plant", r.storyTags, id + " must ride the plant budget rail");
+                bool hasCard = false;
+                foreach (var p in r.parts) if (p.op == ForgeOp.LeafCard) hasCard = true;
+                Assert.IsTrue(hasCard, id + " must contain at least one LeafCard part");
+                Object.DestroyImmediate(r);
+            }
+        }
+
+        [Test]
         public void HasLeafSlot_FiresOnlyOnLeafStyledRecipes()
         {
             var r = ScriptableObject.CreateInstance<ForgeRecipeDefinition>();

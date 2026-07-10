@@ -48,8 +48,19 @@ namespace Ziptide.Editor.Patching
                 Spec("bldg_salvage_wall_window", () => BuildWallModule("salvage_row", window: true)),
                 Spec("bldg_tenement_wall_solid", () => BuildWallModule("toxic_tenement", window: false)),
                 Spec("bldg_tenement_wall_window", () => BuildWallModule("toxic_tenement", window: true)),
+                // E5.3 flora + props (LeafCard/Leaf-alpha assets; scatter consumes the plants via
+                // WorldDressingBuilder's tuft holders + ForgeModuleLook).
+                Spec(FrondRecipeId, BuildFrondW005),
+                Spec(ReedRecipeId, BuildReedW001),
+                Spec("prop_patched_crate", BuildPatchedCrate),
+                Spec("prop_pipe_cluster", BuildPipeCluster),
+                Spec("prop_dispatch_console", BuildDispatchConsole),
             };
         }
+
+        /// <summary>Scatter-consumed plant ids (WorldDressingBuilder + tests share these).</summary>
+        public const string FrondRecipeId = "flora_frond_w005";
+        public const string ReedRecipeId = "flora_reed_w001";
 
         /// <summary>Registry id → the recipe that skins it (ForgeBuildingKit + tests share this).</summary>
         public static string WallRecipeId(string styleId, bool window)
@@ -192,6 +203,235 @@ namespace Ziptide.Editor.Patching
             }
 
             d.parts = parts.ToArray();
+            return d;
+        }
+
+        // ── E5.3 FLORA + PROPS ──────────────────────────────────────────────
+
+        /// <summary>
+        /// flora_frond_w005 — the W005 Oxidized Canopy frond: three drooping LeafCards (the P2 bend
+        /// modifier arcs them like real fronds) around a bark stem, topped by a small glowing spore
+        /// nub (the rubric's emissive focal). Scattered by the dressing pass in Canyon biomes.
+        /// </summary>
+        private static ForgeRecipeDefinition BuildFrondW005()
+        {
+            var d = NewRecipe(FrondRecipeId, ForgePalettes.FamilySalvage,
+                new[] { "plant" },
+                new[]
+                {
+                    new Color(0.30f, 0.22f, 0.14f), // 0 stem — dry bark
+                    new Color(0.55f, 0.52f, 0.20f), // 1 fronds — oxidized amber-green
+                    new Color(0.95f, 0.65f, 0.25f), // 2 spore nub — amber glow
+                },
+                budgetTris: 900);
+            d.qualityState = ForgeQualityState.Proxy;
+            d.storyRole = "W005 canopy frond — the dressing pass's Canyon-biome flora.";
+            d.storyRefs = new[] { "dressing_scatter" };
+            d.worldRuleRefs = new[] { "W005_OxidizedCanopy" };
+            d.tokenRefs = new[] { "oxidized_flora" };
+            d.slotStyles = new[]
+            {
+                new ForgeStyleSpec { style = ForgeStyle.Bark, wear = 0.3f, grime = 0.35f },
+                new ForgeStyleSpec { style = ForgeStyle.Leaf, grime = 0.3f },
+                new ForgeStyleSpec { style = ForgeStyle.GlowPanel, emissive = new Color(0.95f, 0.6f, 0.2f), emissiveIntensity = 1.2f },
+            };
+            d.parts = new[]
+            {
+                new ForgePart { name = "Stem", op = ForgeOp.Capsule, segments = 8, smooth = true,
+                    size = new Vector3(0.06f, 0.52f, 0.06f), position = new Vector3(0f, 0.24f, 0f),
+                    paletteSlot = 0 },
+                new ForgePart { name = "FrondA", op = ForgeOp.LeafCard,
+                    size = new Vector3(0.55f, 0.95f, 0f), position = new Vector3(0f, 0.04f, 0f),
+                    bendDegrees = 26f, paletteSlot = 1 },
+                new ForgePart { name = "FrondB", op = ForgeOp.LeafCard,
+                    size = new Vector3(0.46f, 0.78f, 0f), position = new Vector3(0.02f, 0.05f, 0.02f),
+                    eulerRotation = new Vector3(0f, 48f, 0f), bendDegrees = -22f, paletteSlot = 1 },
+                new ForgePart { name = "FrondC", op = ForgeOp.LeafCard,
+                    size = new Vector3(0.38f, 0.62f, 0f), position = new Vector3(-0.02f, 0.06f, -0.01f),
+                    eulerRotation = new Vector3(0f, 105f, -7f), bendDegrees = 18f, paletteSlot = 1 },
+                new ForgePart { name = "SporeNub", op = ForgeOp.OrganicBlob, segments = 10, smooth = true,
+                    size = new Vector3(0.09f, 0.12f, 0.09f), position = new Vector3(0f, 0.6f, 0f),
+                    noiseAmplitude = 0.006f, noiseFrequency = 11f, noiseSeed = 17, paletteSlot = 2 },
+            };
+            return d;
+        }
+
+        /// <summary>
+        /// flora_reed_w001 — the toxic-canal reed: three tall narrow LeafCards leaning out of a
+        /// noised mud clump. No emissive — reeds are background texture, not focal points; the
+        /// dressing pass scatters them in TideFlats biomes.
+        /// </summary>
+        private static ForgeRecipeDefinition BuildReedW001()
+        {
+            var d = NewRecipe(ReedRecipeId, ForgePalettes.FamilyToxicIndustrial,
+                new[] { "plant" },
+                new[]
+                {
+                    new Color(0.22f, 0.20f, 0.16f), // 0 mud clump
+                    new Color(0.35f, 0.52f, 0.42f), // 1 reeds — sickly canal teal-green
+                },
+                budgetTris: 900);
+            d.qualityState = ForgeQualityState.Proxy;
+            d.storyRole = "Toxic-canal reed — the dressing pass's TideFlats-biome flora.";
+            d.storyRefs = new[] { "dressing_scatter" };
+            d.worldRuleRefs = new[] { "ToxicCity" };
+            d.tokenRefs = new[] { "canal_flora" };
+            d.slotStyles = new[]
+            {
+                new ForgeStyleSpec { style = ForgeStyle.Stone, grime = 0.5f },
+                new ForgeStyleSpec { style = ForgeStyle.Leaf, grime = 0.45f },
+            };
+            d.parts = new[]
+            {
+                new ForgePart { name = "MudClump", op = ForgeOp.OrganicBlob, segments = 10, smooth = true,
+                    size = new Vector3(0.46f, 0.16f, 0.46f), position = new Vector3(0f, 0.05f, 0f),
+                    noiseAmplitude = 0.012f, noiseFrequency = 8f, noiseSeed = 23, paletteSlot = 0 },
+                new ForgePart { name = "ReedA", op = ForgeOp.LeafCard,
+                    size = new Vector3(0.14f, 1.3f, 0f), position = new Vector3(0f, 0.06f, 0f),
+                    eulerRotation = new Vector3(0f, 0f, 4f), bendDegrees = 10f, paletteSlot = 1 },
+                new ForgePart { name = "ReedB", op = ForgeOp.LeafCard,
+                    size = new Vector3(0.12f, 1.05f, 0f), position = new Vector3(0.12f, 0.06f, 0.05f),
+                    eulerRotation = new Vector3(0f, 55f, -6f), bendDegrees = -14f, paletteSlot = 1 },
+                new ForgePart { name = "ReedC", op = ForgeOp.LeafCard,
+                    size = new Vector3(0.13f, 1.18f, 0f), position = new Vector3(-0.1f, 0.06f, -0.07f),
+                    eulerRotation = new Vector3(0f, 115f, 5f), bendDegrees = 8f, paletteSlot = 1 },
+            };
+            return d;
+        }
+
+        /// <summary>prop_patched_crate — the salvage crate: banded, patch-plated, bolted.</summary>
+        private static ForgeRecipeDefinition BuildPatchedCrate()
+        {
+            var d = NewRecipe("prop_patched_crate", ForgePalettes.FamilySalvage,
+                new[] { "prop" },
+                new[]
+                {
+                    new Color(0.38f, 0.30f, 0.20f), // 0 crate body
+                    new Color(0.22f, 0.22f, 0.24f), // 1 straps
+                    new Color(0.45f, 0.28f, 0.16f), // 2 patch plate
+                },
+                budgetTris: 800);
+            d.qualityState = ForgeQualityState.Proxy;
+            d.storyRole = "Patched salvage crate — the E5.3 dressing prop set.";
+            d.storyRefs = new[] { "dressing_scatter" };
+            d.tokenRefs = new[] { "rusted_metal" };
+            d.slotStyles = new[]
+            {
+                new ForgeStyleSpec { style = ForgeStyle.PaintedMetal, wear = 0.5f, grime = 0.45f, panelDensity = 2f },
+                new ForgeStyleSpec { style = ForgeStyle.BareMetal, wear = 0.6f, grime = 0.35f },
+                new ForgeStyleSpec { style = ForgeStyle.RustedMetal, wear = 0.5f, grime = 0.5f },
+            };
+            d.parts = new[]
+            {
+                new ForgePart { name = "Body", op = ForgeOp.BeveledBox, bevel = 0.03f,
+                    size = new Vector3(0.7f, 0.62f, 0.7f), position = new Vector3(0f, 0.31f, 0f),
+                    paletteSlot = 0 },
+                new ForgePart { name = "BandLow", op = ForgeOp.BeveledBox, bevel = 0.01f,
+                    size = new Vector3(0.74f, 0.07f, 0.74f), position = new Vector3(0f, 0.16f, 0f),
+                    paletteSlot = 1 },
+                new ForgePart { name = "BandHigh", op = ForgeOp.BeveledBox, bevel = 0.01f,
+                    size = new Vector3(0.74f, 0.07f, 0.74f), position = new Vector3(0f, 0.48f, 0f),
+                    paletteSlot = 1 },
+                new ForgePart { name = "PatchPlate", op = ForgeOp.BeveledBox, bevel = 0.008f,
+                    size = new Vector3(0.26f, 0.2f, 0.03f), position = new Vector3(0.14f, 0.34f, 0.36f),
+                    eulerRotation = new Vector3(0f, 0f, 5f), paletteSlot = 2 },
+                new ForgePart { name = "BoltRow", op = ForgeOp.GreebleStrip, segments = 4,
+                    size = new Vector3(0.04f, 0.04f, 0.24f), position = new Vector3(0.14f, 0.45f, 0.375f),
+                    eulerRotation = new Vector3(0f, 90f, 0f), paletteSlot = 1 },
+            };
+            return d;
+        }
+
+        /// <summary>prop_pipe_cluster — three staggered standpipes with torus flanges and one
+        /// glowing gauge (the emissive focal). The tenement wall's plumbing language, freestanding.</summary>
+        private static ForgeRecipeDefinition BuildPipeCluster()
+        {
+            var d = NewRecipe("prop_pipe_cluster", ForgePalettes.FamilyToxicIndustrial,
+                new[] { "prop" },
+                new[]
+                {
+                    new Color(0.35f, 0.24f, 0.18f), // 0 pipes — rusted
+                    new Color(0.50f, 0.50f, 0.55f), // 1 flanges — bare steel
+                    new Color(0.30f, 0.90f, 0.80f), // 2 gauge — toxic teal glow
+                },
+                budgetTris: 1400);
+            d.qualityState = ForgeQualityState.Proxy;
+            d.storyRole = "Freestanding pipe cluster — the E5.3 dressing prop set.";
+            d.storyRefs = new[] { "dressing_scatter" };
+            d.worldRuleRefs = new[] { "ToxicCity" };
+            d.tokenRefs = new[] { "rusted_metal" };
+            d.slotStyles = new[]
+            {
+                new ForgeStyleSpec { style = ForgeStyle.RustedMetal, wear = 0.5f, grime = 0.5f },
+                new ForgeStyleSpec { style = ForgeStyle.BareMetal, wear = 0.65f, grime = 0.3f },
+                new ForgeStyleSpec { style = ForgeStyle.GlowPanel, emissive = new Color(0.3f, 0.9f, 0.8f), emissiveIntensity = 1.4f },
+            };
+            d.parts = new[]
+            {
+                new ForgePart { name = "PipeA", op = ForgeOp.Cylinder, segments = 10, smooth = true,
+                    size = new Vector3(0.14f, 1.5f, 0.14f), position = new Vector3(0f, 0.75f, 0f),
+                    paletteSlot = 0 },
+                new ForgePart { name = "PipeB", op = ForgeOp.Cylinder, segments = 10, smooth = true,
+                    size = new Vector3(0.10f, 1.1f, 0.10f), position = new Vector3(0.16f, 0.55f, 0.03f),
+                    paletteSlot = 0 },
+                new ForgePart { name = "PipeC", op = ForgeOp.Cylinder, segments = 10, smooth = true,
+                    size = new Vector3(0.08f, 0.85f, 0.08f), position = new Vector3(-0.14f, 0.42f, -0.04f),
+                    paletteSlot = 0 },
+                new ForgePart { name = "FlangeA", op = ForgeOp.Torus, segments = 12, smooth = true,
+                    size = new Vector3(0.2f, 0.05f, 0.01f), position = new Vector3(0f, 0.5f, 0f),
+                    paletteSlot = 1 },
+                new ForgePart { name = "FlangeB", op = ForgeOp.Torus, segments = 12, smooth = true,
+                    size = new Vector3(0.15f, 0.04f, 0.01f), position = new Vector3(0.16f, 0.85f, 0.03f),
+                    paletteSlot = 1 },
+                new ForgePart { name = "Gauge", op = ForgeOp.SphereSection, bevel = 0.55f, segments = 10,
+                    smooth = true, size = new Vector3(0.12f, 0.07f, 0.12f),
+                    position = new Vector3(0f, 1.12f, 0.08f), eulerRotation = new Vector3(90f, 0f, 0f),
+                    paletteSlot = 2 },
+            };
+            return d;
+        }
+
+        /// <summary>prop_dispatch_console — the pedestal console: frustum base, raked deck, glowing
+        /// teal screen (strong emissive focal), greeble key row. Dock/dispatch dressing.</summary>
+        private static ForgeRecipeDefinition BuildDispatchConsole()
+        {
+            var d = NewRecipe("prop_dispatch_console", ForgePalettes.FamilyToxicIndustrial,
+                new[] { "prop" },
+                new[]
+                {
+                    new Color(0.26f, 0.28f, 0.32f), // 0 chassis — gunmetal
+                    new Color(0.40f, 0.42f, 0.48f), // 1 trim
+                    new Color(0.35f, 0.85f, 0.75f), // 2 screen — teal glow
+                },
+                budgetTris: 1100);
+            d.qualityState = ForgeQualityState.Proxy;
+            d.storyRole = "Dispatch console — dock/berth dressing, the E5.3 prop set.";
+            d.storyRefs = new[] { "dressing_scatter" };
+            d.tokenRefs = new[] { "glow_teal" };
+            d.slotStyles = new[]
+            {
+                new ForgeStyleSpec { style = ForgeStyle.PaintedMetal, wear = 0.45f, grime = 0.4f, panelDensity = 1.5f },
+                new ForgeStyleSpec { style = ForgeStyle.BareMetal, wear = 0.55f, grime = 0.3f },
+                new ForgeStyleSpec { style = ForgeStyle.GlowPanel, emissive = new Color(0.35f, 0.85f, 0.75f), emissiveIntensity = 1.4f },
+            };
+            d.parts = new[]
+            {
+                new ForgePart { name = "Base", op = ForgeOp.Frustum, segments = 10, smooth = true,
+                    size = new Vector3(0.55f, 0.8f, 0.40f), position = new Vector3(0f, 0.4f, 0f),
+                    paletteSlot = 0 },
+                new ForgePart { name = "Deck", op = ForgeOp.Wedge,
+                    size = new Vector3(0.6f, 0.2f, 0.45f), position = new Vector3(0f, 0.9f, 0f),
+                    eulerRotation = new Vector3(0f, 180f, 0f), paletteSlot = 0 },
+                new ForgePart { name = "Screen", op = ForgeOp.BeveledBox, bevel = 0.01f,
+                    size = new Vector3(0.42f, 0.26f, 0.03f), position = new Vector3(0f, 0.98f, 0.1f),
+                    eulerRotation = new Vector3(-28f, 0f, 0f), paletteSlot = 2 },
+                new ForgePart { name = "KeyRow", op = ForgeOp.GreebleStrip, segments = 6,
+                    size = new Vector3(0.05f, 0.03f, 0.38f), position = new Vector3(0f, 0.87f, 0.16f),
+                    eulerRotation = new Vector3(-28f, 90f, 0f), paletteSlot = 1 },
+                new ForgePart { name = "Collar", op = ForgeOp.Torus, segments = 12, smooth = true,
+                    size = new Vector3(0.5f, 0.05f, 0.01f), position = new Vector3(0f, 0.12f, 0f),
+                    paletteSlot = 1 },
+            };
             return d;
         }
 

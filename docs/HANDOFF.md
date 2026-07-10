@@ -28,6 +28,23 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-10 (dddd19) - Picasso (Fable 5): 🌿 E5.3 CONTENT — 2 plants + 3 props + scatter wiring (2/2) ⚠ coordination
+- **CI green on the engine half (`16ab9b2`).** This lands the content: `flora_frond_w005`
+  (bend-drooped LeafCards + bark stem + amber spore-nub focal) · `flora_reed_w001` (3 tall reeds
+  from a noised mud clump, no emissive by design — background texture) · `prop_patched_crate` ·
+  `prop_pipe_cluster` (teal gauge focal) · `prop_dispatch_console` (teal screen focal). All under
+  the plant/prop class-budget rails; auto-swept by the library validate/budget tests + a new
+  flora-path test (Leaf slot + LeafCard + plant tag on both plants).
+- **⚠ Coordination touch (dressing lane, WorldDressingBuilder.Tufts):** tufts now build an
+  UNSCALED holder per plant carrying `ForgeModuleLook` (Canyon→frond, TideFlats→reed; primitive
+  block stays the editor/fallback look exactly like the E5.1 walls) + `ForgeSway`; the block is
+  de-static'd so the sway can't go batched-stale. Same holder positions ride the existing hash
+  streams — layouts stay deterministic.
+- **Next:** booth-verify the 5 new turnarounds against the rubric (LeafCard alpha cutout is the
+  headline check — serrated blades, not green rectangles); then FORGE II is envelope-complete
+  (P4 look-at/stun-droop remain as polish).
+- **Commit:** this push.
+
 ### 2026-07-10 (dddd18) - Picasso (Fable 5): 🌿 E5.3 FLORA opens — LeafCard + Leaf alpha + ForgeSway (engine, 1/2)
 - **Why:** last unstarted FORGE II envelope; creature ladder closed (dddd17).
 - **Did:** ① `ForgeOp.LeafCard` — two crossed vertical quads, EACH double-sided (8 tris, ≤2 overdraw

@@ -171,7 +171,7 @@ namespace Ziptide.Editor.Patching
                 case BiomePreset.Canyon:
                     if (kind == 0) Debris(at, new Color(0.35f, 0.30f, 0.28f), seed, salt);
                     else if (kind == 1) Rocks(at, ground * 0.75f, seed, salt, 3, 1.1f);
-                    else Tufts(at, new Color(0.35f, 0.55f, 0.30f), seed, salt);
+                    else Tufts(at, new Color(0.35f, 0.55f, 0.30f), seed, salt, ForgeRecipeLibrary.FrondRecipeId);
                     break;
                 case BiomePreset.CavernFloor:
                     if (kind == 0) Shards(at, glow, seed, salt, 1.6f); // the big glow crystal
@@ -181,7 +181,7 @@ namespace Ziptide.Editor.Patching
                 case BiomePreset.TideFlats:
                     if (kind == 0) Shards(at, glow, seed, salt, 0.6f);
                     else if (kind == 1) Debris(at, ground * 0.7f, seed, salt);
-                    else Tufts(at, new Color(0.30f, 0.55f, 0.50f), seed, salt);
+                    else Tufts(at, new Color(0.30f, 0.55f, 0.50f), seed, salt, ForgeRecipeLibrary.ReedRecipeId);
                     break;
                 default:
                     Rocks(at, ground * 0.8f, seed, salt, 2, 0.9f);
@@ -202,14 +202,27 @@ namespace Ziptide.Editor.Patching
             }
         }
 
-        private static void Tufts(Transform at, Color c, int seed, int salt)
+        private static void Tufts(Transform at, Color c, int seed, int salt, string plantRecipeId)
         {
             for (int i = 0; i < 4; i++)
             {
                 float h = 0.4f + Hash01(salt, 90 + i, seed) * 0.7f;
-                Block(at, "Tuft" + i,
-                    new Vector3((Hash01(salt, 100 + i, seed) - 0.5f) * 2.4f, h * 0.5f, (Hash01(salt, 110 + i, seed) - 0.5f) * 2.4f),
+                // E5.3 FLORA (art-lane coordination, HANDOFF dddd19): each tuft rides an UNSCALED
+                // holder that carries ForgeModuleLook (swaps in the baked LeafCard plant on device;
+                // the primitive block stays the editor/fallback look) + ForgeSway (wind). The block
+                // must not be static: the holder sways, and a batched child would render stale.
+                var holder = new GameObject("TuftPlant" + i);
+                holder.transform.SetParent(at, false);
+                holder.transform.localPosition = new Vector3(
+                    (Hash01(salt, 100 + i, seed) - 0.5f) * 2.4f, 0f, (Hash01(salt, 110 + i, seed) - 0.5f) * 2.4f);
+                holder.transform.localRotation = Quaternion.Euler(0f, Hash01(salt, 115 + i, seed) * 360f, 0f);
+                var block = Block(holder.transform, "Tuft" + i, new Vector3(0f, h * 0.5f, 0f),
                     new Vector3(0.1f, h, 0.1f), c, salt + i);
+                block.isStatic = false;
+                var look = holder.AddComponent<Ziptide.Visuals.ForgeModuleLook>();
+                look.recipeId = plantRecipeId;
+                look.keepChildren = new string[0];
+                holder.AddComponent<Ziptide.Visuals.ForgeSway>();
             }
         }
 
