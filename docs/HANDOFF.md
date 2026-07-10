@@ -28,6 +28,27 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-10 (succ1) - T-Dog/Fable 5: 🧭 THE SUCCESSION PASS — river fixed, store mapped, Fable endgame ordered
+- **Terry's brief:** ~3 sessions left per Fable operator; save some for the headset run; make the
+  read-this-first docs ACTUALLY first; make what's-not-built obvious; final base-coverage check;
+  and figure out Meta Store requirements ("I don't know what all goes into that").
+- **Did:** ① `PRIORITIES.md` rev 9 — the succession order, split FABLE-ONLY (headset-run support ·
+  tutorial design · interiors translator · async-travel design · comfort presets) / OPUS-READY
+  (everything specced+gated) / TERRY (store paperwork, startable NOW). ② THE RIVER: START_HERE's
+  state box refreshed to 2026-07-10 and now walks the exact chain CLAUDE.md → START_HERE → MAP
+  (⬜/🦴/🕳️ = what's left) → PRIORITIES → board → HANDOFF. ③ **`META_STORE_READINESS.md`** (new):
+  the full store checklist — VRC-class technical checks (72Hz, ARM64, entitlement check REQUIRED,
+  release keystore, minimal permissions, DevMenu must be build-flagged off), Terry's paperwork
+  (privacy URL, Data Use Checkup, IARC rating — non-lethal combat is a ratings ASSET), in-game
+  store-facing gaps (title/save slots, comfort presets, tutorial, credits), comfort-rating honesty,
+  and the App Lab dry-run path. Every claim flagged for re-verification against live Meta docs at
+  submission. ④ Map §8 SHIP & STORE added (6 rows) — the base-coverage sweep found the last
+  uncovered aspects: entitlement/Platform SDK, release-build hygiene, store assets.
+- **📣 Every operator:** PRIORITIES rev 9 is the burn order. Fable sessions: hardest-only. Opus
+  sessions: map + boards carry everything you need.
+- **Commits:** this push.
+
+
 ### 2026-07-10 (gaps1) - T-Dog/Fable 5: 🔒 gate gaps #3 + #5 closed — story-beat coverage + board staleness
 - **Did:** `GateGapTests` — ① every shipped story world must carry authored jobs/beats
   (`WorldJobLibrary.HasJobsFor`, new additive accessor; ToxicCity documented as covered by the

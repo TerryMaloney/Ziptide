@@ -104,6 +104,17 @@ noted; EditMode tests are gates too. *(Last full audit of this table: 2026-07-10
 
 ---
 
+## 8 · SHIP & STORE (the last mile — see `META_STORE_READINESS.md` for the full checklist)
+
+| Aspect | State | The standard | Guardrail |
+|---|---|---|---|
+| Meta Store readiness | 🦴 (checklist doc'd 2026-07-10; nothing submitted) | Every box in `META_STORE_READINESS.md` checked; App Lab VRC pre-scan clean | 🕳️ GAP — the doc IS the gate for now; §2 paperwork is Terry's, startable NOW |
+| Entitlement + Platform SDK | ⬜ | Entitlement check in first seconds of boot (Meta rejects without it) | 🕳️ GAP — needs App ID from dashboard first |
+| Release build hygiene | ⬜ | Release keystore (owned + backed up); DevMenu/diagnostics build-flagged OFF; minimal manifest permissions | 🕳️ GAP — build-flag audit is board-row sized |
+| Onboarding/tutorial | ⬜ | A cold player learns move/grab/holster/travel in W000–W001, taught by moments not text | 🕳️ GAP — needs the design doc first (Fable-priority: it shapes W000) |
+| Comfort rating | 🦴 (mechanics comfortable-by-design; no presets UI) | Presets ship + default sensibly → honest "Moderate" rating | 0.4 row; store-facing, not optional |
+| Store assets (icon/trailer/screens) | ⬜ | Meta's exact sizes; in-headset captures | Picasso's lane when visuals land |
+
 ## THE GATE-GAP QUEUE (claimable, in rough value order)
 Each 🕳️ above, as one board-row-sized task. Claiming one = add the audit/checklist + a HANDOFF note.
 1. **Budget-utilization floor** (Forge `Validate()` WARN when a Signature-tier asset uses <30% of its

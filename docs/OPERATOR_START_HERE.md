@@ -1,30 +1,18 @@
 # ▶ OPERATOR START HERE — the model-agnostic manual (read this first, then stop reading)
 
-> ## 📍 STATE OF THE PROJECT — 2026-07-06 (the last Fable session's sign-off)
-> Everything below this box is the standing manual; this box is where things ARE.
-> - **🔌 KNOW HOW IT'S WIRED FIRST:** `docs/WIRING_MAP.md` (how every system connects, both sides) +
->   `docs/WIRING_AUDIT_FINDINGS.md` (what's wired ✅ / stubbed-on-purpose 🔵 / a gap ⚠) +
->   `docs/BOARD_INDEX.md` (which board is the truth). Audited 2026-07-06 — the codebase is wiring-healthy,
->   no one-sided breaks. Adding a data-driven system? WIRING_MAP Part 4 = the both-sides law.
-> - **What just shipped (final Fable sprint):** the full Fortnite-class control set
->   (`docs/design/CONTROL_SCHEME.md` — sprint/crouch/slide/auto-run/jump/laser-sights/quick-swap/
->   ping, all data-driven), PUNCH-IT cast-off in W000, how-to-play boards, the WORLD_CONTENT
->   nothing-ships-invisible audit, plus the whole Test-Day-1 fix wave before it
->   (`docs/TEST_DAY_1_RESPONSE.md` status block).
-> - **Take the top item:** (1) any Terry ❌ from his latest logcat/test → it outranks everything;
->   (2) `TEST_DAY_1_RESPONSE.md` open rows (1.1 tiny guns / 1.4 spawn — both close from
->   `ITEM_SPAWN`/`SPAWN_AT` log lines; destruction v2); (3) `PRIORITIES.md` order — art resumes at
->   FORGE II **E1.4** (`project_art_plan/FORGE_II_QUALITY_LEAP.md`), story at flight arming +
->   free-flight (`ShipCastOffRuntime` + tested `FlightModel`), architecture at Q4a.
-> - **The laws that keep this safe:** CI-green per commit, one issue-sized change; boards stamped
->   in the SAME commit as every push; circuit breaker (3 CI-reds on one task → stop + HANDOFF);
->   never hand-edit scene YAML — patchers only; verify through the gates, not through hope;
->   when a photo/device defect survives a world-space change, suspect atlas/sampling space;
->   when a gate fails uniformly, suspect the CHECK before the content.
-> - **Debug vocabulary you inherit:** `TracerFx.Spawn` (any visible line), `ObjectiveBeacon.Attach`
->   (any "go here"), `ApplyStun(sec,slow,sourcePos)` (any player damage), rig `Ensure*` chain in
->   `PlayerRigPersistence` (any new player-side tool), `Limb(from,to)` (any multi-segment limb),
->   the booth atlas x-ray (any texture question).
+> ## 📍 STATE OF THE PROJECT — 2026-07-10 (the Fable-5 endgame sign-off)
+> **THE RIVER (follow it, in order):** this file (laws + DoD) → **`docs/EXCELLENCE_MAP.md`** =
+> every aspect's honest state (⬜/🦴 = not built, 🕳️ = missing gate — that IS the "what's left"
+> list) → **`docs/PRIORITIES.md` rev 9** = the order, split FABLE-ONLY / OPUS-READY / TERRY →
+> your lane's SPRINT board → `docs/HANDOFF.md` newest entries. Ship path: `META_STORE_READINESS.md`.
+> - **Where things stand:** ~3 sessions left per Fable operator (reserve some for Terry's headset
+>   run). The meta layer is DONE and CI-enforced: richness law, DoD, 13+ gates (leaks, events,
+>   saves-atomic, travel pre-flight, scene coverage, never-silent audio, Prospect rubric, story
+>   beats, board staleness). Tidefront complete pre-Photon; skyscape W005 awaits device verdict;
+>   runtime vitals + the travel janitor watch everything.
+> - **Hardest unbuilt (Fable-only):** tutorial design · interiors translator (1.3) · async-travel
+>   design · comfort presets 0.4. Everything else is OPUS-READY against the map + boards.
+> - 🔌 Wiring truth: `docs/WIRING_MAP.md` + `BOARD_INDEX.md` (audited 2026-07-06, still holds).
 
 **You are THE OPERATOR of one of Ziptide's four tracks. You might be Fable 5, Opus 4.8, or any
 capable model — this project is built so that does not matter.** The architecture is explicitly

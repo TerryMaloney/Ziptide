@@ -1,49 +1,36 @@
-# 🎯 PRIORITIES — the whole project, one ordered list (2026-07-06, rev 8 — POST-FINAL-SPRINT)
+# 🎯 PRIORITIES — the whole project, one ordered list (2026-07-10, rev 9 — THE FABLE-5 ENDGAME)
 
-> **rev 8 change (the Fable sign-off):** Test-Day-1 Wave 1 + the FINAL SPRINT are SHIPPED
-> (HANDOFF eeee/ffff): full control scheme (`design/CONTROL_SCHEME.md`), PUNCH IT, how-to boards,
-> WORLD_CONTENT gate. The order now: **#1 Terry's next test pass** (runbook §2o; his ❌s +
-> `ITEM_SPAWN`/`SPAWN_AT` lines close 1.1/1.4) · **#2 FORGE II E1.4** (textures on device — biggest
-> visible win) · **#3 flight follow-through** (fuel-cell arming `if` → free-flight on the tested
-> FlightModel) · **#4 destruction v2** (MP lane) · **#5 remaining CONTROL_SCHEME rows** (ADS,
-> reload, player menu) · then the standing list below (Q4a, P5, E5.x, A6…). Start protocol:
-> the STATE OF THE PROJECT box atop `OPERATOR_START_HERE.md`.
+> **rev 9 (succession order):** ~3 sessions remain per Fable 5 operator, and some MUST be saved for
+> Terry's headset-run support. So this list is now split by WHO: **FABLE-ONLY** = hardest, most
+> judgment-heavy, do these first with the strong model · **OPUS-READY** = fully specced + gated,
+> any operator can execute against the EXCELLENCE_MAP + boards · **TERRY** = hands/accounts.
+> The river for any new session: `CLAUDE.md` → `OPERATOR_START_HERE.md` → `EXCELLENCE_MAP.md`
+> (what's not built = the ⬜/🦴 rows + 🕳️ gaps) → your board → this list for cross-track order.
 
-**The single answer to "what matters next, project-wide."** Updated at every track's chunk close.
-Tracks: 📖 story (`SPRINT.md`) · 🎮 MP (`SPRINT_MULTIPLAYER.md`) · 🎨 Picasso (`SPRINT_ART.md`) ·
-🏗 architecture (`SPRINT_ARCHITECTURE.md`) · 🧑 Terry.
-**Context: Fable 5 access ends within days. This revision is the SUCCESSION ORDER for Opus/Sonnet
-operators: every row is either fully specced in a doc or a boarded envelope. Start protocol:
-`docs/OPERATOR_START_HERE.md` → your track's board → this list.**
+## FABLE-ONLY (burn the remaining strong sessions here, in order)
+1. **Terry's headset run support** — RESERVE sessions for this: react to his ❌s/feel notes live
+   (W005 sky verdict gates the 11-world rollout; soak test may surface leaks to hunt).
+2. **Onboarding/tutorial DESIGN DOC** — shapes W000/W001; every later world assumes it. Judgment-heavy.
+3. **Walkable interiors translator (1.3)** — RoomPartitioner core exists; the scene/portal/furnish
+   translator is the hardest unbuilt system in the game.
+4. **Async travel investigation (report-only writeup)** — big worlds will hitch on synchronous
+   loads; DESIGN the async path + comfort story, Opus implements against the writeup.
+5. **Accessibility + comfort-presets design (0.4)** — store-facing; decisions > code.
 
-| # | Priority | Track | Why | State |
-|---|----------|-------|-----|-------|
-| 1 | **TERRY HEADSET PASS on APK run `28752341766`** (sha `6681a7f`) — §2h skies · §2i forged taser · §2n W002 tenements · §2b 11 worlds · §2c/§2d story/jobs · economy `ECON_*` logs. His ❌s become #2. Plus §2k spec export + TWO_QUEST steps 1–4 | 🧑 | every track's next gate waits on device truth; APK dispatched and downloadable — zero Unity steps needed | ⏳ building |
-| 2 | **FORGE II E1.4 — ForgeBaker (bake→ASTC prefabs)** per `FORGE_II_QUALITY_LEAP.md` §E1.4: puts the E1.3 TEXTURED look ON DEVICE (today's runtime is still flat-color fallback) | 🎨 | the single biggest visible win per commit left on the board; E1.1–E1.3 shipped + photo-proven | ⬜ next art |
-| 3 | **E5.2 PERF_BUDGET audit gate** (1 commit, zero dependencies, fully specced) | 🎨 | ideal FIRST commit for any fresh operator to learn the loop safely | ⬜ unowned |
-| 4 | **P4b free-flight v1** — `design/SPACEFLIGHT_PHYSICS.md` rails (pure FlightModel + tests first; never parent the rig to the hull) | 📖 | the Star Wars pillar; design rails written | ⬜ unowned |
-| 5 | **Architecture: Q4a GamePool + SPEC v2 fields** (`scatterSpec`/`storyBeats`) | 🏗 | routine, fully specced — right-sized for any operator | board-ready |
-| 6 | **META-LOOP economy follow-through** — the one-economy spine landed (`54f75ba`+`9b890f1` dup fix); wire the flow report into Terry-facing balance passes | 📖/🏗 | keep the new spine honest before content scales on it | 🟡 fresh |
-| 7 | **P5 `WORLD_RECIPE.md`** as the "edit the spec" handbook (post-§2k) | 📖 | locks LLM-operability for every future operator | after #1 |
-| 8 | **FORGE II P2 geometry ops → P3 skinned creatures → P4 motion** (envelopes in the FORGE_II doc; stalker's WeakPoint contract already law) | 🎨 | creatures+movement are Terry's second quality wave | after #2 |
-| 9 | **E5.1 building modules + ART-4 W001 Toxic Venice via Forge+registry** | 🎨 | the world-scale art proof; pairs with shipped Q2d buildings | after #2 |
-| 10 | **A6 two-Quest online** (avatar sync on the shipped seam) | 🎮🧑 | unparks when Terry's steps 1–4 land | parked |
-| 11 | **A4.5–A4.7 Augments/dual-wield/locator** (`ABILITIES_AND_ARSENAL.md`) | 🎮 | designed, buildable by any operator | parked |
-| 12 | **B2/B3 Tidefront table + mission modifiers** | 🎮 | engine proven | parked |
-| 13 | **M5 content at scale via WorldSpec** | 📖 | scale on the NEW recipe | after #1/#7 |
-| 14 | **RILL VO / adaptive audio (ART-5)** | 🎨📖 | after worlds feel right | — |
-| 15 | **M8 cert/store/UX** | all | ship it | — |
+## OPUS-READY (specced + gated; the boards + map rows carry them)
+Skyscape rollout to 11 worlds (after Terry's W005 verdict, per tiers) · hazard stingers + music
+stems (5.5) · weapon feel 4.4 rows · HOME_HUB 2.5 (title/save slots) · space-combat variety 3.1 ·
+vehicles/garage 3.2 · gardens 4.2d-on · ecology 4.3-on · M5 world authoring at scale (the locked
+story bible + WORLD_RECIPE are the rails) · store checklist §1/§3 items · remaining gate gaps
+(#1 budget floor w/ Picasso, #6 UI readability, #7 haptics, #9 behavior count, #10 catalog breadth)
+· Photon live sync (gated on two-headset hardware anyway).
 
-**Recently CLOSED (don't redo):** Q2d building proof (shipped, APK `28684427359` + ChamberA fix
-`9d30dd8`) · ASSET FORGE reconciliation R1–R4 (`ASSET_FORGE_MAP.md` is the law against re-invention) ·
-FORGE II E1.1–E1.3 (UVs, textures, normal/MSA/emissive, ONE material, booth env pinned, atlas x-ray
-in every photo artifact) · stalker proxy through 4 photo-critique cycles (`Limb()` joint-point law).
+## TERRY (start NOW, parallel to everything)
+Meta dev org + app ID + privacy URL + Data Use Checkup + IARC rating (`META_STORE_READINESS.md`
+§2) · the big runbook headset pass · the localization one-liner (English-only vs string table).
 
-**Standing rules:** CI-red jumps to #0 · Terry ❌s slot at #2 · a track never blocks on another's
-queue · circuit breaker: 3 CI-reds on one task → stop + HANDOFF write-up · ≤15 rows, re-ordered not appended.
+**Standing rules unchanged:** CI-red jumps to #0 · circuit breaker at 3 reds · ≤15 rows per
+section · the EXCELLENCE_MAP is the what/standard/gate; this file is only the ORDER.
 
-**💡 THE ADDITIONS BANK** (`docs/additions/`, opened 2026-07-06 for Terry's AAA push): 550 ideas,
-one `*_50.md` per part (garden/industry/spaceflight/story/worlds/combat/multiplayer/tidefront/
-creatures/**art-audio**/economy-meta). Ideas, NOT directives — pull from your part's file when you
-have capacity (a pull becomes a board row). Doesn't reorder this list. Story ideas come from the
-Haiku workshop (`docs/storyboard/HAIKU_STORY_WORKSHOP.md`).
+*(rev 8 and earlier history: git. The ADDITIONS BANK note still stands: `docs/additions/` = ideas,
+not directives.)*
