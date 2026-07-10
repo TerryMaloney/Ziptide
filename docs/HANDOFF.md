@@ -28,6 +28,16 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-10 (int-dup) - T-Dog/Fable 5: 🤝 furnishing collision — architect's 1.3e WINS, mine dropped
+- Built a FurnishPlanner furnishing pass in parallel with the architect's `RoomFurnishCore`/
+  `InteriorFurnisher` (16 kinds by room role + portal cull + `InteriorAuditRules`, gap #4 closed) —
+  theirs is richer and landed first; mine is DROPPED at rebase, not merged. One system per concern.
+- **The lesson, on the record:** I skipped the claim-before-build step in the rush of a last sprint
+  — exactly what the boards exist to prevent. The blackboard caught it at push time (cost: one
+  duplicate sprint, zero code damage). Every operator: POST THE CLAIM FIRST, even on a hot streak.
+- Fable-endgame status at my window close: #2 tutorial design ✅ · #4 async-travel design ✅ ·
+  #5 comfort presets design ✅ (claimed+locked by a parallel Fable session) · #3 interiors — the
+  architect has it moving (needs the W002 re-bake 🔧, already queued). Headset day tomorrow.
 ### 2026-07-10 (dddd23) - Picasso (Fable 5): 💡 F3.1 commit 2 — audit + runbook; F3.1 CODE-COMPLETE
 - CI green on commit 1 (`c17245f`). This adds `LIGHT_SCRIPT_NO_SUN` (warn, v1 graduation path like
   the sun-count rule) to SkyVistaAuditRules and the 🎮 runbook before/after item (W002→W005, with
