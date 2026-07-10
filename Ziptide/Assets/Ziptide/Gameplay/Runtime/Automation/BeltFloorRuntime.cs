@@ -46,7 +46,10 @@ namespace Ziptide.Gameplay
         private float _accum;
         private float _nextPayout;
         private readonly Dictionary<BeltItem, GameObject> _pucks = new Dictionary<BeltItem, GameObject>();
+        private readonly Dictionary<GameObject, string> _puckPoolKeys = new Dictionary<GameObject, string>();
         private readonly Dictionary<int, GameObject> _cellVisuals = new Dictionary<int, GameObject>();
+        private readonly List<Transform> _rollers = new List<Transform>();   // spin while ore flows (4.1j)
+        private readonly List<Transform> _agitators = new List<Transform>(); // sink churn (4.1j)
         private static readonly List<BeltItem> _gone = new List<BeltItem>(); // scratch
 
         /// <summary>Live floors — held BeltTileItems query these for ghost + placement.</summary>
@@ -229,6 +232,47 @@ namespace Ziptide.Gameplay
             var tr = tile.GetComponent<Renderer>();
             if (tr != null) tr.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
 
+            // 4.1j (LAW 6 — richness): cells are little machines, not painted squares.
+            if (c.kind == CellKind.Belt || c.kind == CellKind.Splitter)
+            {
+                // Side rails along flow + a roller ACROSS it that spins while ore moves.
+                for (int side = -1; side <= 1; side += 2)
+                {
+                    var rail = Deco(cellRoot.transform, PrimitiveType.Cube, "Rail",
+                        at + Vector3.up * 0.12f, new Vector3(0.05f, 0.05f, cellSize * 0.9f),
+                        Quaternion.Euler(0f, 90f * (int)c.dir, 0f), new Color(0.28f, 0.30f, 0.33f));
+                    rail.transform.position += rail.transform.right * (cellSize * 0.44f * side);
+                }
+                var roller = Deco(cellRoot.transform, PrimitiveType.Cylinder, "Roller",
+                    at + Vector3.up * 0.115f, new Vector3(0.055f, cellSize * 0.38f, 0.055f),
+                    Quaternion.Euler(0f, 90f * (int)c.dir, 90f), new Color(0.45f, 0.48f, 0.52f));
+                _rollers.Add(roller.transform);
+            }
+            if (c.kind == CellKind.Splitter)
+            {
+                // The fork housing: a diamond hub where the line splits.
+                Deco(cellRoot.transform, PrimitiveType.Cube, "SplitHub",
+                    at + Vector3.up * 0.16f, new Vector3(0.16f, 0.06f, 0.16f),
+                    Quaternion.Euler(0f, 45f, 0f), chevCol * 0.7f);
+            }
+            if (c.kind == CellKind.Sink)
+            {
+                // The depot: four leaning funnel plates + an agitator that churns while ore flows.
+                for (int side = 0; side < 4; side++)
+                {
+                    var q = Quaternion.Euler(0f, 90f * side, 0f);
+                    var plate = Deco(cellRoot.transform, PrimitiveType.Cube, "FunnelPlate",
+                        at + Vector3.up * 0.26f, new Vector3(cellSize * 0.8f, 0.34f, 0.03f), q,
+                        new Color(0.42f, 0.32f, 0.18f));
+                    plate.transform.position += q * new Vector3(0f, 0f, cellSize * 0.36f);
+                    plate.transform.rotation = q * Quaternion.Euler(-24f, 0f, 0f);
+                }
+                var agitator = Deco(cellRoot.transform, PrimitiveType.Cube, "Agitator",
+                    at + Vector3.up * 0.20f, new Vector3(0.30f, 0.04f, 0.06f),
+                    Quaternion.identity, new Color(0.75f, 0.58f, 0.30f));
+                _agitators.Add(agitator.transform);
+            }
+
             if (c.kind == CellKind.Belt)
             {
                 // Grip a placed belt to pick it back up (its riding item lifts with it — Clear's law).
@@ -236,6 +280,24 @@ namespace Ziptide.Gameplay
                 var pick = tile.AddComponent<UnityEngine.XR.Interaction.Toolkit.XRSimpleInteractable>();
                 pick.selectEntered.AddListener(_ => RemoveBeltAt(cx, cz));
             }
+        }
+
+        /// <summary>A colliderless, shadowless decorative part — the cell-machine building block.</summary>
+        private static GameObject Deco(Transform parent, PrimitiveType prim, string name,
+            Vector3 pos, Vector3 scale, Quaternion rot, Color color)
+        {
+            var go = GameObject.CreatePrimitive(prim);
+            go.name = name;
+            var col = go.GetComponent<Collider>();
+            if (col != null) Destroy(col);
+            go.transform.SetParent(parent, true);
+            go.transform.position = pos;
+            go.transform.rotation = parent.rotation * rot;
+            go.transform.localScale = scale;
+            ItemFactory.ApplyURPColor(go, color);
+            var r = go.GetComponent<Renderer>();
+            if (r != null) r.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+            return go;
         }
 
         // ── Hand placement (HARDWIRING 4.1c — the VR-unique verb) ───────────────────────────────
@@ -282,10 +344,7 @@ namespace Ziptide.Gameplay
             if (_lattice == null || _lattice.KindAt(x, z) != CellKind.Belt) return;
             var lifted = _lattice.Clear(x, z);
             if (lifted != null && _pucks.TryGetValue(lifted, out var puck))
-            {
-                Ziptide.Core.GamePool.Release("belt_puck", puck);
-                _pucks.Remove(lifted);
-            }
+                ReleasePuck(puck, lifted);
             int idx = z * width + x;
             if (_cellVisuals.TryGetValue(idx, out var vis) && vis != null) Destroy(vis);
             _cellVisuals.Remove(idx);
@@ -354,6 +413,7 @@ namespace Ziptide.Gameplay
             }
 
             SyncPucks();
+            AnimateMachinery();
 
             if (Time.time >= _nextPayout)
             {
@@ -364,15 +424,22 @@ namespace Ziptide.Gameplay
 
         private void SyncPucks()
         {
-            // New/moved items → pooled pucks lerped between cell centers by Progress.
+            // New/moved items → pooled pucks lerped between cell centers by Progress. 4.1j: every
+            // resource id rides as its OWN deterministic shape + color (BeltPuckStyle, pure), with a
+            // soft bob + slow yaw so the cargo reads alive at a glance.
             var items = _lattice.Items;
             for (int i = 0; i < items.Count; i++)
             {
                 var it = items[i];
                 if (!_pucks.TryGetValue(it, out var go) || go == null)
                 {
-                    go = Ziptide.Core.GamePool.Get("belt_puck", BuildPuck, Vector3.zero);
+                    int shape = BeltPuckStyle.ShapeIndex(it.ResourceId);
+                    string key = "belt_puck_" + shape;
+                    go = Ziptide.Core.GamePool.Get(key, () => BuildPuck(shape), Vector3.zero);
+                    BeltPuckStyle.ColorOf(it.ResourceId, out float hue, out float sat, out float val);
+                    ItemFactory.ApplyURPColor(go, Color.HSVToRGB(hue, sat, val));
                     _pucks[it] = go;
+                    _puckPoolKeys[go] = key;
                 }
                 Vector3 a = CellCenter(it.X, it.Z);
                 var dir = _lattice.DirAt(it.X, it.Z);
@@ -380,11 +447,14 @@ namespace Ziptide.Gameplay
                              : dir == BeltDir.North ? Vector3.forward : Vector3.back;
                 // Progress 0..0.5 rides into the cell center; 0.5..1 rides toward the lip.
                 Vector3 pos = a + transform.TransformDirection(step) * ((it.Progress - 0.5f) * cellSize);
-                pos.y = CellCenter(it.X, it.Z).y + 0.22f;
+                float wob = (it.X * 7 + it.Z * 13) % 6.28f;
+                pos.y = CellCenter(it.X, it.Z).y + 0.22f + Mathf.Sin(Time.time * 2.2f + wob) * 0.012f;
                 go.transform.position = pos;
+                go.transform.rotation = transform.rotation
+                    * Quaternion.Euler(0f, Time.time * 35f + wob * 57f, 0f);
             }
 
-            // Consumed items → release their pucks.
+            // Consumed items → release their pucks back to their shape's pool.
             _gone.Clear();
             foreach (var kv in _pucks)
             {
@@ -392,24 +462,54 @@ namespace Ziptide.Gameplay
                 for (int i = 0; i < items.Count; i++) if (ReferenceEquals(items[i], kv.Key)) { alive = true; break; }
                 if (!alive) _gone.Add(kv.Key);
             }
-            foreach (var dead in _gone)
-            {
-                Ziptide.Core.GamePool.Release("belt_puck", _pucks[dead]);
-                _pucks.Remove(dead);
-            }
+            foreach (var dead in _gone) ReleasePuck(_pucks[dead], dead);
         }
 
-        private static GameObject BuildPuck()
+        private void ReleasePuck(GameObject go, BeltItem item)
         {
-            var go = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            go.name = "BeltPuck";
+            if (go != null)
+            {
+                string key = _puckPoolKeys.TryGetValue(go, out string k) ? k : "belt_puck_0";
+                _puckPoolKeys.Remove(go);
+                Ziptide.Core.GamePool.Release(key, go);
+            }
+            if (item != null) _pucks.Remove(item);
+        }
+
+        private static GameObject BuildPuck(int shape)
+        {
+            var prim = shape == 1 ? PrimitiveType.Cylinder
+                     : shape == 2 ? PrimitiveType.Capsule : PrimitiveType.Cube;
+            var go = GameObject.CreatePrimitive(prim);
+            go.name = "BeltPuck_" + shape;
             var col = go.GetComponent<Collider>();
             if (col != null) Destroy(col);
-            go.transform.localScale = Vector3.one * 0.24f;
-            ItemFactory.ApplyURPColor(go, new Color(0.75f, 0.62f, 0.35f)); // scrap gold
+            go.transform.localScale = shape == 0 ? Vector3.one * 0.24f
+                : new Vector3(0.20f, 0.11f, 0.20f); // drums/pods sit squat on the roller
             var r = go.GetComponent<Renderer>();
             if (r != null) r.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
             return go;
+        }
+
+        /// <summary>4.1j: the machinery only moves while ore does — rollers spin, depot agitators
+        /// churn. A still line reads as jammed/idle at a glance, which is exactly the truth.</summary>
+        private void AnimateMachinery()
+        {
+            if (_lattice.Items.Count == 0) return;
+            float rollerDeg = 240f * Time.deltaTime;
+            for (int i = _rollers.Count - 1; i >= 0; i--)
+            {
+                var t = _rollers[i];
+                if (t == null) { _rollers.RemoveAt(i); continue; }
+                t.Rotate(0f, rollerDeg, 0f, Space.Self);
+            }
+            float churnDeg = 150f * Time.deltaTime;
+            for (int i = _agitators.Count - 1; i >= 0; i--)
+            {
+                var t = _agitators[i];
+                if (t == null) { _agitators.RemoveAt(i); continue; }
+                t.Rotate(0f, churnDeg, 0f, Space.Self);
+            }
         }
 
         private void PaySunk()

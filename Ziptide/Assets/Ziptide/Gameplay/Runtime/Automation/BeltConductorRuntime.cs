@@ -45,15 +45,42 @@ namespace Ziptide.Gameplay
             post.transform.localScale = new Vector3(0.12f, 1.0f, 0.12f);
             ItemFactory.ApplyURPColor(post, new Color(0.22f, 0.24f, 0.26f));
 
+            // 4.1j: an actual LANTERN — cage cylinder, cap, hanging loop, and a bright core that
+            // reads "grab me" from across the floor. One trigger collider on the cage; the deco
+            // parts are colliderless children so the whole lantern travels as one.
             var handleGo = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
             handleGo.name = "ConductorHandle";
             handleGo.transform.SetParent(transform, true);
             handleGo.transform.position = HomePosition();
-            handleGo.transform.localScale = new Vector3(0.09f, 0.16f, 0.09f);
+            handleGo.transform.localScale = new Vector3(0.10f, 0.11f, 0.10f);
             var col = handleGo.GetComponent<Collider>();
             if (col != null) col.isTrigger = true;
-            ItemFactory.ApplyURPColor(handleGo, new Color(0.35f, 0.95f, 0.75f)); // the automation accent
+            ItemFactory.ApplyURPColor(handleGo, new Color(0.20f, 0.30f, 0.28f)); // dark cage
             _handle = handleGo.transform;
+
+            var core = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            core.name = "LanternCore";
+            Destroy(core.GetComponent<Collider>());
+            core.transform.SetParent(_handle, false);
+            core.transform.localScale = new Vector3(0.75f, 0.68f, 0.75f);
+            ItemFactory.ApplyURPColor(core, new Color(0.45f, 1.0f, 0.85f)); // the automation accent, lit
+
+            var cap = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            cap.name = "LanternCap";
+            Destroy(cap.GetComponent<Collider>());
+            cap.transform.SetParent(_handle, false);
+            cap.transform.localPosition = new Vector3(0f, 1.15f, 0f);
+            cap.transform.localScale = new Vector3(1.2f, 0.18f, 1.2f);
+            ItemFactory.ApplyURPColor(cap, new Color(0.16f, 0.18f, 0.20f));
+
+            var loop = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+            loop.name = "LanternLoop";
+            Destroy(loop.GetComponent<Collider>());
+            loop.transform.SetParent(_handle, false);
+            loop.transform.localPosition = new Vector3(0f, 1.55f, 0f);
+            loop.transform.localRotation = Quaternion.Euler(90f, 0f, 0f);
+            loop.transform.localScale = new Vector3(0.45f, 0.06f, 0.45f);
+            ItemFactory.ApplyURPColor(loop, new Color(0.35f, 0.95f, 0.75f));
 
             foreach (var r in GetComponentsInChildren<Renderer>())
                 r.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;

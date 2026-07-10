@@ -37,6 +37,9 @@ namespace Ziptide.Gameplay
         private MineState _mine;
         private TextMesh _readout;
         private float _nextPump;
+        private Transform _drill;    // 4.1j (LAW 6): the rig visibly WORKS while it mines
+        private Transform _piston;
+        private float _lastEmitAt = -10f;
 
         private void Start()
         {
@@ -90,6 +93,18 @@ namespace Ziptide.Gameplay
             drill.transform.localRotation = Quaternion.Euler(60f, 0f, 0f);
             drill.transform.localScale = new Vector3(0.12f, 0.4f, 0.12f);
             ItemFactory.ApplyURPColor(drill, new Color(0.30f, 0.55f, 0.45f));
+            _drill = drill.transform;
+
+            // 4.1j: a counterweight piston riding the body — the rig breathes while it accrues.
+            var piston = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            piston.name = "PortPiston";
+            var pc = piston.GetComponent<Collider>();
+            if (pc != null) Destroy(pc);
+            piston.transform.SetParent(transform, false);
+            piston.transform.localPosition = new Vector3(0f, 0.85f, -0.22f);
+            piston.transform.localScale = new Vector3(0.16f, 0.28f, 0.10f);
+            ItemFactory.ApplyURPColor(piston, new Color(0.55f, 0.60f, 0.65f));
+            _piston = piston.transform;
 
             var readoutGo = new GameObject("PortReadout");
             _readout = readoutGo.AddComponent<TextMesh>();
@@ -121,9 +136,21 @@ namespace Ziptide.Gameplay
                 if (floor.TryEmitPort(portX, portZ, _mine.resourceId))
                 {
                     _mine.stored -= 1.0;
+                    _lastEmitAt = Time.time;
                     Debug.Log("ZIPTIDE: BELT_PORT_EMIT resource=" + _mine.resourceId +
                               " stored=" + System.Math.Floor(_mine.stored));
                 }
+            }
+
+            // 4.1j: the rig works on camera — drill spins (frantic while actually feeding the
+            // line, lazy while just accruing) and the piston breathes with it.
+            bool pumping = Time.time - _lastEmitAt < 1.2f;
+            if (_drill != null)
+                _drill.Rotate(0f, (pumping ? 540f : 120f) * Time.deltaTime, 0f, Space.Self);
+            if (_piston != null)
+            {
+                float stroke = Mathf.Sin(Time.time * (pumping ? 9f : 2.5f)) * 0.06f;
+                _piston.localPosition = new Vector3(0f, 0.85f + stroke, -0.22f);
             }
 
             if (_readout != null)
