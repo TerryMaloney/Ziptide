@@ -41,9 +41,13 @@
   stability touch this session; minimal, before any side effect); ③ nothing gated Build-Settings
   drift → `EveryTravelTarget_IsInBuildSettings` (conquest's 12 mission targets + core scenes;
   PendingFirstBake ledger for Terry's unbaked runbook scenes).
-- **📣 Remaining risk classes, named not buried:** (a) static-event unsubscribe hygiene — no ratchet
-  yet (claimable row); (b) `LoadScene` is synchronous — a HITCH on big worlds, not a crash (async
-  travel = a future travel-lane task, report-only); (c) localization decision still open (Terry).
+- **📣 Remaining risk classes, named not buried:** (a) ~~static-event unsubscribe hygiene~~ —
+  **RATCHET SHIPPED (follow-up push): `EventHygieneTests`** — static events are DISCOVERED from the
+  source (no stale hand-list); every subscriber must unsubscribe or sit on a justified ledger (3
+  static boot hooks, incl. Reasonbox's EcologyDirector + GamePool — verified safe: a static method
+  hooked once can never dangle). Codebase verified CLEAN today; the gate keeps it that way.
+  (b) `LoadScene` is synchronous — a HITCH on big worlds, not a crash (async travel = a future
+  travel-lane task, report-only); (c) localization decision still open (Terry).
 - **Commits:** this push.
 
 
