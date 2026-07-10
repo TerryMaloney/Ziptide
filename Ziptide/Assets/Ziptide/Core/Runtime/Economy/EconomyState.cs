@@ -61,6 +61,12 @@ namespace Ziptide.Core
         /// <summary>Tend tool ids already applied to this plot (each tend tool counts once).</summary>
         public List<string> appliedTendToolIds = new List<string>();
 
+        // ── Genetics (GARDEN AAA — additive: Baseline reproduces pre-genetics behavior exactly,
+        // so old saves deserialize into the same yields/timings they had) ──
+        /// <summary>This plot's heritable genes (speed folded into growSeconds at plant time;
+        /// yield/size applied at harvest by GardenService).</summary>
+        public PlantGenes genes = PlantGenes.Baseline;
+
         public bool IsReady(long nowUnix)
             => !harvested && growSeconds >= 0 && (nowUnix - plantedAtUnix) >= (long)growSeconds;
 

@@ -47,6 +47,30 @@
 - **Next:** confirm `14b77ce` CI green (was in_progress at write time) → then E5.1 building modules
   (the organic ops make architecture possible) / remaining 8 creature genomes get tentacles+blobs.
 - **Commit:** this push (docs only — safe while the fix run confirms).
+### 2026-07-10 (rb9) - Reasonbox: 🧬 CLAIM + first cut — board row 4.2 GARDEN AAA begins with GENETICS
+- **rb8 verdict first:** the cross-lane forge fix is **CI GREEN ✅** (`14b77ce`) — branch unblocked.
+- **Why this lane:** Terry gave free rein ("find a lane that doesn't hit anything else… make it even
+  better"). Scan: architect=4.1 belts · traversal=1.4 caves · T-Dog=Tidefront · Picasso=forge/combat.
+  **4.2 Garden AAA is unclaimed** and it's Terry's named AAA push ("beat Roblox"). The Roblox garden's
+  retention engine is the MUTATION CHASE — so v1 is the genetics layer, pure-core-first.
+- **CLAIMED: row 4.2.** Files: new `Core/Runtime/Economy/PlantGenetics.cs` · **additive** gene field
+  on `PlotState` (EconomyState.cs — architect's own neutral-defaults law: `PlantGenes.Baseline`
+  reproduces pre-genetics behavior EXACTLY, old saves untouched, pinned by test) · `GardenService`
+  (Plant overload + gene factor in Harvest + `CrossPlots`). 📣 ARCHITECT: that's one additive edit in
+  your EconomyState + surgical edits in GardenService — shout if it bites.
+- **Did (the genetics engine):** `PlantGenes` (speed/yield/size/generation) · `RollWild` (store
+  seeds are never the chase) · `Cross` (parent-midpoint inheritance + a 12% mutation-kick jackpot,
+  deterministic per seed — same cross replays identically) · `HazardKick` (radiation gardens breed
+  GIANTS — size-biased, the world-hazard hook from the design doc) · rarity tiers
+  (Common→Legendary, monotonic — the almanac/trading hook) · **giant crops** (size ≥ 0.85 → ×3
+  yield, `HarvestPlantResult.giant` flags the scene layer's two-handed-pull moment) ·
+  **ECONOMY-SAFE BY CLAMP** — a 200-generation greedy breeding line is TESTED to never out-earn
+  the ceiling. Gene speed divides grow time AT PLANT TIME so the offline resolve path needed zero
+  changes. 9 tests.
+- **Next in this row (mine):** plant variety (≥20 `PlantDefinition`s across biomes) · the VR hands
+  layer (watering-can pour, seed planting, the giant two-handed pull) · hazard-window wiring ·
+  sprinklers bridging to the architect's belts. Design doc + GARDEN_50 bank stay the pull list.
+- **Commit / branch:** this push on `terry-local-wip` — verify the run before stacking C#.
 
 ### 2026-07-10 (rb8) - Reasonbox: 🚑 CROSS-LANE — the forge red is CLEARED (CI-red = #0 rule)
 - **Why:** branch red since `704b46a` (5+ pushes stacked on it), signal already posted to Picasso

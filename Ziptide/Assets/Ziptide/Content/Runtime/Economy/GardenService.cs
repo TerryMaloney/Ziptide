@@ -32,9 +32,10 @@ namespace Ziptide.Content
     public struct HarvestPlantResult
     {
         public HarvestPlantStatus status;
-        public double yieldMultiplier; // multiplier actually applied (tend × timing)
+        public double yieldMultiplier; // multiplier actually applied (tend × timing × genes)
         public int yieldEntries;       // resource lines credited
         public HarvestTiming timing;   // Fresh / Prime / Overripe at the moment of harvest
+        public bool giant;             // the crop crossed the giant threshold (the screenshot moment)
         public bool Success => status == HarvestPlantStatus.Success;
 
         public static HarvestPlantResult Fail(HarvestPlantStatus status)
@@ -70,21 +71,39 @@ namespace Ziptide.Content
 
         /// <summary>Plant a seed: appends a fresh <see cref="PlotState"/> to the world and returns it.</summary>
         public static PlotState Plant(WorldState world, PlantDefinition plant, long nowUnix)
+            => Plant(world, plant, PlantGenes.Baseline, nowUnix);
+
+        /// <summary>Plant a BRED/rolled seed (GARDEN AAA genetics): gene speed divides the grow time
+        /// right here at plant time, so the offline resolve path needs zero changes; yield/size wait
+        /// in the plot for harvest. Baseline genes = exactly the classic Plant.</summary>
+        public static PlotState Plant(WorldState world, PlantDefinition plant, PlantGenes genes, long nowUnix)
         {
             if (world == null || plant == null) return null;
             if (world.plots == null) world.plots = new List<PlotState>();
 
+            double speed = genes.speed > 0f ? genes.speed : 1.0;
             var plot = new PlotState
             {
                 plantId = plant.id,
                 plantedAtUnix = nowUnix,
-                growSeconds = plant.growSeconds,
+                growSeconds = plant.growSeconds / speed,
                 harvested = false,
                 yieldMultiplier = 1.0,
                 appliedTendToolIds = new List<string>(),
+                genes = genes,
             };
             world.plots.Add(plot);
             return plot;
+        }
+
+        /// <summary>Cross-pollinate two READY (mature, unharvested) plots into a child seed's genes —
+        /// deterministic per <paramref name="seed"/>. Null when either plot isn't mature: breeding
+        /// needs two living, ripe parents.</summary>
+        public static PlantGenes? CrossPlots(PlotState a, PlotState b, int seed, long nowUnix)
+        {
+            if (a == null || b == null || a == b) return null;
+            if (!a.IsReady(nowUnix) || !b.IsReady(nowUnix)) return null;
+            return PlantGenetics.Cross(a.genes, b.genes, seed);
         }
 
         /// <summary>Whether <paramref name="tool"/> may tend <paramref name="plot"/> right now.</summary>
@@ -137,7 +156,8 @@ namespace Ziptide.Content
 
             double tend = plot.yieldMultiplier > 0 ? plot.yieldMultiplier : 1.0;
             double timingMult = TimingMultiplier(plot, plant, nowUnix);
-            double mult = tend * timingMult;
+            double geneMult = PlantGenetics.HarvestFactor(plot.genes); // yield gene × giant bonus
+            double mult = tend * timingMult * geneMult;
             int entries = 0;
             if (plant.harvestYield != null)
             {
@@ -157,6 +177,7 @@ namespace Ziptide.Content
                 yieldMultiplier = mult,
                 yieldEntries = entries,
                 timing = TimingOf(plot, plant, nowUnix),
+                giant = PlantGenetics.IsGiant(plot.genes),
             };
         }
 
