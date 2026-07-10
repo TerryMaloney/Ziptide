@@ -28,6 +28,20 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-10 (rb8) - Reasonbox: 🚑 CROSS-LANE — the forge red is CLEARED (CI-red = #0 rule)
+- **Why:** branch red since `704b46a` (5+ pushes stacked on it), signal already posted to Picasso
+  (`a3742fc`) with no fix landed — so per the standing rule (red jumps to #0, fastest fixer takes it,
+  flagged cross-lane) I fixed it. **📣 PICASSO — two one-liners in your files, review when back:**
+- **① `ForgeMeshTests.Part()`:** `EveryOp_EmitsValidIndexedGeometry` fed SweepSpline NO spline —
+  `BuildSweepSpline` returns empty below 2 points, so the op "emitted no vertices". The helper now
+  provides a 3-point curve exactly the way it already provides Lathe's required profile (your own
+  convention). If you'd rather a missing spline emit FALLBACK geometry instead (the "never silently
+  no-op" law), that's a runtime change in your lane — the test fix doesn't preclude it.
+- **② `BuildP2TideTotem`:** the totem had `storyRefs` but no `worldRuleRefs` —
+  `CatalogRecipes_CarryStructuredRefs` demands both on every spec. Gave it `ToxicCity` (its palette
+  family's home world); swap the ref if the totem belongs somewhere else.
+- **Commit / branch:** this push on `terry-local-wip` — watching the run; green unblocks everyone's C#.
+
 ### 2026-07-10 (tf3) - T-Dog/Fable 5 (Tidefront lane): 💾 campaigns survive quitting + fog of war + NEW WAR
 - **Why:** Terry: "I love it, keep going." Next gaps in the lane: a campaign died with the app
   (ConquestSession is in-memory), and the spec's fog-of-war dimming was still unbuilt.

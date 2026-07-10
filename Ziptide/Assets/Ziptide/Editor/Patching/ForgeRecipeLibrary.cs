@@ -67,6 +67,7 @@ namespace Ziptide.Editor.Patching
             d.qualityState = ForgeQualityState.Proxy;
             d.storyRole = "Tide totem — a barnacled marker the tide left behind; the P2 op-showcase piece.";
             d.storyRefs = new[] { "showcase" };
+            d.worldRuleRefs = new[] { "ToxicCity" }; // its palette family's home world
             d.tokenRefs = new[] { "teal_energy", "organic" };
             d.slotStyles = new[]
             {

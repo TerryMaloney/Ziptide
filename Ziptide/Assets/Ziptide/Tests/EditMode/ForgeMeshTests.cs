@@ -19,6 +19,9 @@ namespace Ziptide.Tests.EditMode
             if (op == ForgeOp.SphereSection) p.bevel = 1f;
             if (op == ForgeOp.Tube) p.wallThickness = 0.03f;
             if (op == ForgeOp.Lathe) p.profile = new[] { new Vector2(0.4f, 0f), new Vector2(1f, 0.4f), new Vector2(0.2f, 1f) };
+            // SweepSpline requires its curve the same way Lathe requires its profile (2..4 pts).
+            if (op == ForgeOp.SweepSpline) p.spline = new[]
+                { Vector3.zero, new Vector3(0.03f, 0.06f, 0f), new Vector3(0f, 0.12f, 0.02f) };
             return p;
         }
 
