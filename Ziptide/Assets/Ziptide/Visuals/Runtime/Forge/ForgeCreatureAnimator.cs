@@ -19,6 +19,8 @@ namespace Ziptide.Visuals
         private Transform[] _bones;
         private Quaternion[] _baseLocal;
         private Quaternion[] _delta;
+        private Vector3 _baseRootScale;
+        private int _breathSeed;
         private Vector3 _lastPos;
         private float _speed01;
         private bool _bound;
@@ -32,6 +34,10 @@ namespace Ziptide.Visuals
             _delta = new Quaternion[bones.Length];
             for (int i = 0; i < bones.Length; i++)
                 if (bones[i] != null) _baseLocal[i] = bones[i].localRotation;
+            _baseRootScale = bones.Length > 0 && bones[0] != null ? bones[0].localScale : Vector3.one;
+            // Stable per-INSTANCE phase (not per-species): a pack of the same body must not
+            // breathe in lockstep, so hash the instance id, not the bodyId.
+            _breathSeed = GetInstanceID();
             _lastPos = transform.position;
             _bound = true;
         }
@@ -52,6 +58,12 @@ namespace Ziptide.Visuals
             for (int i = 1; i < _bones.Length && i < _delta.Length; i++)
                 if (_bones[i] != null)
                     _bones[i].localRotation = _baseLocal[i] * _delta[i];
+
+            // The breath channel: root-bone scale only (rotations stay the motor's; bind poses
+            // untouched). The whole body swells with the root, limbs included — alive, not idle.
+            if (_bones.Length > 0 && _bones[0] != null)
+                _bones[0].localScale = Vector3.Scale(_baseRootScale,
+                    ForgeGaitMotor.BreathScale(_breathSeed, Time.time, _speed01));
         }
     }
 }

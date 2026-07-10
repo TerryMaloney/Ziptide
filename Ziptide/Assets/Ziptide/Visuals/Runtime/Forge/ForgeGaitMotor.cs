@@ -27,11 +27,27 @@ namespace Ziptide.Visuals
     ///  Wing     — fast flap about root Z, mirrored wings beat in opposition.
     ///  Antenna  — small incommensurate two-axis sway (reads as air, not metronome).
     ///  None     — identity.
-    /// Deterministic: same (body, time, speed) → identical quaternions. Root stays identity
-    /// (body bob/lean is the behavior mover's job, not the skeleton's).
+    /// Deterministic: same (body, time, speed) → identical quaternions. Root ROTATION stays
+    /// identity (body bob/lean is the behavior mover's job, not the skeleton's); the root gets
+    /// its life from the separate <see cref="BreathScale"/> channel the animator composes.
     /// </summary>
     public static class ForgeGaitMotor
     {
+        /// <summary>
+        /// BREATH (creature v5.3 — "moving and BREATHING"): a slow chest oscillation as a root-bone
+        /// local-scale multiplier — XZ swell with a slight counter-Y so volume roughly holds.
+        /// Deepest at idle, fades to 40% at full run (a sprinting body reads through its gait, not
+        /// its chest). <paramref name="seed"/> offsets the phase so a pack never breathes in sync.
+        /// Pure and deterministic like everything else here.
+        /// </summary>
+        public static Vector3 BreathScale(int seed, float time, float speed01)
+        {
+            float amp = 1f - 0.6f * Mathf.Clamp01(speed01);
+            float phase = (seed & 1023) * 0.006135f; // ~[0, 2π) spread across pack members
+            float e = 0.012f * amp * Mathf.Sin(2f * Mathf.PI * 0.27f * time + phase);
+            return new Vector3(1f + e, 1f - 0.35f * e, 1f + e);
+        }
+
         /// <summary>Fill <paramref name="into"/> (length = body.BoneCount()) with per-bone local
         /// rotation deltas at <paramref name="time"/> seconds, <paramref name="speed01"/> ∈ [0,1].</summary>
         public static void Evaluate(ForgeCreatureBody body, float time, float speed01, Quaternion[] into)

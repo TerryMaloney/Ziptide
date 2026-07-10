@@ -28,6 +28,21 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-10 (dddd17) - Picasso (Fable 5): 🧬 v5.2 VERIFIED + v5.3 BREATH — "moving and breathing"
+- **v5.2 verdict (run `29102529936`, CI green `34f7e35`):** the segments raise reads — bug carapace
+  and warden torso/dome are smooth, grazer bell rim far cleaner. Silhouette tell closed.
+- **Did (v5.3):** the literal other half of Terry's bar was BREATHING. New pure
+  `ForgeGaitMotor.BreathScale(seed, time, speed01)` — slow chest oscillation as a root-bone scale
+  multiplier (XZ swell + counter-Y so volume holds, ~1.2% amplitude, 0.27 Hz), deepest at idle and
+  fading 60% at full run; `ForgeCreatureAnimator` composes it onto the root bone every LateUpdate
+  (rotations stay the motor's; bind poses untouched; per-INSTANCE phase seed so a pack never
+  breathes in lockstep). 2 new contract tests in ForgeGaitMotorTests. The motor's root-rotation
+  law is unchanged — breath is a separate scale channel.
+- **Heads-up:** the booth can't photograph motion — breath is verified by the pure tests; the feel
+  check rides the existing runbook creature item (watch a still creature's chest).
+- **Next:** E5.3 flora (last unstarted FORGE II envelope); look-at + stun-droop remain on P4.
+- **Commit:** this push.
+
 ### 2026-07-10 (dddd16) - Picasso (Fable 5): 🧬 v5.2 — the last "simple" tell: faceted silhouettes
 - **Why:** the roster passes, but every hero blob (grazer bell rim, bug carapace, warden dome) still
   shows polygon edges in silhouette — the one remaining "low-poly proxy" read.

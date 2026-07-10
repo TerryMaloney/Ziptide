@@ -147,6 +147,46 @@ namespace Ziptide.Tests.EditMode
         }
 
         [Test]
+        public void Breath_OscillatesAtIdle_BoundedAndDeterministic()
+        {
+            // The chest must MOVE at idle ("moving and breathing"), stay within its tiny
+            // amplitude, hold volume roughly (XZ swell against slight counter-Y), and be
+            // reproducible for identical inputs.
+            float min = float.MaxValue, max = float.MinValue;
+            for (float t = 0f; t < 5f; t += 0.23f)
+            {
+                Vector3 s = ForgeGaitMotor.BreathScale(7, t, 0f);
+                Assert.AreEqual(s.x, s.z, 1e-5f, "breath swells the chest evenly in XZ");
+                Assert.AreEqual(1f - 0.35f * (s.x - 1f), s.y, 1e-5f, "counter-Y holds volume");
+                min = Mathf.Min(min, s.x); max = Mathf.Max(max, s.x);
+                Assert.LessOrEqual(Mathf.Abs(s.x - 1f), 0.0121f, "breath amplitude bounded");
+            }
+            Assert.Greater(max - min, 0.005f, "the chest must actually move at idle");
+            Assert.AreEqual(ForgeGaitMotor.BreathScale(7, 1.7f, 0f),
+                ForgeGaitMotor.BreathScale(7, 1.7f, 0f), "breath must be deterministic");
+        }
+
+        [Test]
+        public void Breath_FadesWithSpeed_AndSeedsDesync()
+        {
+            // A sprinting body reads through its gait, not its chest — amplitude at full speed
+            // is well under idle. And two pack members must not breathe in lockstep.
+            float idleAmp = 0f, runAmp = 0f;
+            for (float t = 0f; t < 5f; t += 0.19f)
+            {
+                idleAmp = Mathf.Max(idleAmp, Mathf.Abs(ForgeGaitMotor.BreathScale(3, t, 0f).x - 1f));
+                runAmp = Mathf.Max(runAmp, Mathf.Abs(ForgeGaitMotor.BreathScale(3, t, 1f).x - 1f));
+            }
+            Assert.Less(runAmp, idleAmp * 0.6f, "breath must fade as the gait takes over");
+
+            bool diverged = false;
+            for (float t = 0f; t < 3f && !diverged; t += 0.31f)
+                diverged = Mathf.Abs(ForgeGaitMotor.BreathScale(11, t, 0f).x
+                    - ForgeGaitMotor.BreathScale(500, t, 0f).x) > 1e-4f;
+            Assert.IsTrue(diverged, "different seeds must desync the pack's breathing");
+        }
+
+        [Test]
         public void BoneOrder_MatchesTheBuilder_EveryLimbBoneDriven()
         {
             var body = SampleBody();
