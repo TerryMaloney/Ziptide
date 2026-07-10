@@ -188,11 +188,18 @@ namespace Ziptide.Visuals
         private static void BuildLimbChain(ForgeLimb limb, bool mirrored, Transform root,
             List<Transform> bones, List<ForgePart> parts, List<int> partBone, List<Matrix4x4> partPose)
         {
-            Vector3 dir = limb.chainDirection.sqrMagnitude > 1e-6f ? limb.chainDirection.normalized : Vector3.down;
+            Vector3 dir0 = limb.chainDirection.sqrMagnitude > 1e-6f ? limb.chainDirection.normalized : Vector3.down;
             Vector3 attach = limb.attachLocal;
-            if (mirrored) { dir.x = -dir.x; attach.x = -attach.x; }
-            // Bone +Y points ALONG dir (down the chain) — the P4 motor's contract.
-            Quaternion chainRot = Quaternion.FromToRotation(Vector3.up, dir);
+            if (mirrored) { dir0.x = -dir0.x; attach.x = -attach.x; }
+            // Bone +Y points ALONG the chain — the P4 motor's contract. ARTICULATION (v3): each
+            // segment may pitch relative to the previous around the limb's SIDE axis, so the rest
+            // pose has real knees/elbows instead of a straight stick. The side axis is the horizontal
+            // perpendicular of the chain direction (mirrored limbs get the mirrored axis for free
+            // because dir0.x flipped), so a bend folds the limb in its own swing plane.
+            Quaternion segRot = Quaternion.FromToRotation(Vector3.up, dir0);
+            Vector3 side = Vector3.Cross(Vector3.up, dir0);
+            if (side.sqrMagnitude < 1e-6f) side = Vector3.right; // vertical chains bend around X
+            side.Normalize();
 
             Vector3 joint = attach;
             Transform parent = root;
@@ -201,11 +208,14 @@ namespace Ziptide.Visuals
             {
                 var seg = limb.segments[s];
                 float len = Mathf.Max(0.01f, seg.size.y);
+                if (Mathf.Abs(seg.bendDegrees) > 0.01f)
+                    segRot = Quaternion.AngleAxis(seg.bendDegrees, side) * segRot;
+                Vector3 dir = segRot * Vector3.up;
 
                 var boneGo = new GameObject("Bone_" + tag + "_" + s);
                 boneGo.transform.SetParent(parent, false);
                 boneGo.transform.position = joint;          // world == root-local (root at identity)
-                boneGo.transform.rotation = chainRot;
+                boneGo.transform.rotation = segRot;
                 bones.Add(boneGo.transform);
                 parent = boneGo.transform;
 
@@ -229,7 +239,7 @@ namespace Ziptide.Visuals
                         // position/rotation live in partPose, not the part (LOCAL geometry)
                     });
                 partBone.Add(bones.Count - 1);
-                partPose.Add(Matrix4x4.TRS(center, chainRot, Vector3.one));
+                partPose.Add(Matrix4x4.TRS(center, segRot, Vector3.one));
 
                 joint += dir * len;
             }

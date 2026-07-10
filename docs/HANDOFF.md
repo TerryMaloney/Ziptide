@@ -48,6 +48,29 @@
   the story track.
 - **Commits:** this push.
 
+### 2026-07-10 (dddd12) - Picasso (Fable 5): 🦴 ARTICULATION — limbs get REAL JOINTS at rest
+- **Warden v3 verdict (run `29087827535`):** the stance works — visible legs with knees, hip plates,
+  wide shoulders. (Face/visor is on +Z = booth's 04_back, same as the walls.) Good enough to leave
+  while the bigger dials land.
+- **Terry's bar:** "from fox-with-a-trash-can-lid to a moving, breathing xenomorph." Two dials left
+  and this push lands the first: **bind-pose articulation.** Limbs were dead-straight lines because
+  the chain had ONE direction. `ForgeLimbSegment.bendDegrees` = pitch vs the previous segment around
+  the limb's side axis (mirror-safe by construction — the side axis flips with the mirrored chain).
+  The builder accumulates the rotation per segment (bones + geometry + bind poses all follow; the P4
+  motor animates ON TOP of the articulated rest pose). Insect recurves, tentacle curls, braced
+  stances — anatomy, not sticks.
+- **Applied:** tendril tendrils now reach-then-CURL (35°/45°); grazer tentacles S-curl under the
+  bell (28°); husk_molter gets the insect recurve (thigh -18°, shin +55°); warden braces (-10°/+18°).
+- **⭐ NEXT-SESSION HEADLINE — CREATURE TEXTURE BAKE (the last big dial, spec'd):** bodies are still
+  flat-colored; weapons carry baked albedo/normal/wear atlases. The skinned path ALREADY allocates UV
+  islands via a synthetic recipe (ForgeSkinnedBuilder builds one for ForgeUV). The slice: (1) extract
+  `SyntheticRecipe(body)` as a shared public static (parts+palette+slotStyles) so builder and baker
+  agree on UVs BY CONSTRUCTION; (2) ForgeBaker also bakes each ForgeCreatureBody's maps + ONE material
+  to ForgeBaked/body_<id>/; (3) ForgeCreatureVisualApplier prefers the baked material (collapse
+  submeshes to one at apply time) with flat-mats fallback; (4) author slotStyles per genome (Chitin
+  cells for bugs, Slime sheen for the grazer/tendril, PaintedMetal wear for the warden). Then
+  segments-cap raise (16 → 24 for creature-class parts) if silhouettes still read low-poly.
+- **Commit:** this push.
 
 ### 2026-07-10 (rich1) - T-Dog/Fable 5: 📣 ALL LANES READ THIS — THE RICHNESS BAR (Terry) + Tidefront proof
 - **Terry's device verdict (via Picasso's photos):** too much is landing at ~10% of its class budget —

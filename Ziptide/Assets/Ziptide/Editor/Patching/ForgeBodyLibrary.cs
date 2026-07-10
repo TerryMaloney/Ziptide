@@ -84,8 +84,8 @@ namespace Ziptide.Editor.Patching
                     segments = new[]
                     {
                         new ForgeLimbSegment { size = new Vector3(0.032f, 0.18f, 0.032f), paletteSlot = 0, rounded = true, taper = 0.2f },
-                        new ForgeLimbSegment { size = new Vector3(0.024f, 0.16f, 0.024f), paletteSlot = 0, rounded = true, taper = 0.25f },
-                        new ForgeLimbSegment { size = new Vector3(0.016f, 0.14f, 0.016f), paletteSlot = 0, rounded = true, taper = 0.6f },
+                        new ForgeLimbSegment { size = new Vector3(0.024f, 0.16f, 0.024f), paletteSlot = 0, rounded = true, taper = 0.25f, bendDegrees = 35f },
+                        new ForgeLimbSegment { size = new Vector3(0.016f, 0.14f, 0.016f), paletteSlot = 0, rounded = true, taper = 0.6f, bendDegrees = 45f },
                     }
                 },
                 new ForgeLimb
@@ -95,7 +95,7 @@ namespace Ziptide.Editor.Patching
                     segments = new[]
                     {
                         new ForgeLimbSegment { size = new Vector3(0.030f, 0.16f, 0.030f), paletteSlot = 0, rounded = true, taper = 0.25f },
-                        new ForgeLimbSegment { size = new Vector3(0.020f, 0.14f, 0.020f), paletteSlot = 0, rounded = true, taper = 0.55f },
+                        new ForgeLimbSegment { size = new Vector3(0.020f, 0.14f, 0.020f), paletteSlot = 0, rounded = true, taper = 0.55f, bendDegrees = 40f },
                     }
                 },
             };
@@ -226,7 +226,7 @@ namespace Ziptide.Editor.Patching
                     segments = new[]
                     {
                         new ForgeLimbSegment { size = new Vector3(0.038f, 0.16f, 0.038f), paletteSlot = 0, rounded = true, taper = 0.25f },
-                        new ForgeLimbSegment { size = new Vector3(0.024f, 0.14f, 0.024f), paletteSlot = 0, rounded = true, taper = 0.5f },
+                        new ForgeLimbSegment { size = new Vector3(0.024f, 0.14f, 0.024f), paletteSlot = 0, rounded = true, taper = 0.5f, bendDegrees = 28f },
                     }
                 },
                 new ForgeLimb
@@ -236,7 +236,7 @@ namespace Ziptide.Editor.Patching
                     segments = new[]
                     {
                         new ForgeLimbSegment { size = new Vector3(0.038f, 0.16f, 0.038f), paletteSlot = 0, rounded = true, taper = 0.25f },
-                        new ForgeLimbSegment { size = new Vector3(0.024f, 0.14f, 0.024f), paletteSlot = 0, rounded = true, taper = 0.5f },
+                        new ForgeLimbSegment { size = new Vector3(0.024f, 0.14f, 0.024f), paletteSlot = 0, rounded = true, taper = 0.5f, bendDegrees = 28f },
                     }
                 },
             };
@@ -348,8 +348,8 @@ namespace Ziptide.Editor.Patching
                     chainDirection = new Vector3(0.9f, -1f, 0.25f), role = GaitRole.Leg, mirrorX = true,
                     segments = new[]
                     {
-                        new ForgeLimbSegment { size = new Vector3(0.034f, 0.14f, 0.038f), paletteSlot = 0, rounded = true, taper = 0.2f },
-                        new ForgeLimbSegment { size = new Vector3(0.024f, 0.12f, 0.028f), paletteSlot = 0, rounded = true, taper = 0.5f },
+                        new ForgeLimbSegment { size = new Vector3(0.034f, 0.14f, 0.038f), paletteSlot = 0, rounded = true, taper = 0.2f, bendDegrees = -18f },
+                        new ForgeLimbSegment { size = new Vector3(0.024f, 0.12f, 0.028f), paletteSlot = 0, rounded = true, taper = 0.5f, bendDegrees = 55f },
                     }
                 },
                 new ForgeLimb
@@ -358,8 +358,8 @@ namespace Ziptide.Editor.Patching
                     chainDirection = new Vector3(0.9f, -1f, -0.25f), role = GaitRole.Leg, mirrorX = true,
                     segments = new[]
                     {
-                        new ForgeLimbSegment { size = new Vector3(0.034f, 0.14f, 0.038f), paletteSlot = 0, rounded = true, taper = 0.2f },
-                        new ForgeLimbSegment { size = new Vector3(0.024f, 0.12f, 0.028f), paletteSlot = 0, rounded = true, taper = 0.5f },
+                        new ForgeLimbSegment { size = new Vector3(0.034f, 0.14f, 0.038f), paletteSlot = 0, rounded = true, taper = 0.2f, bendDegrees = -18f },
+                        new ForgeLimbSegment { size = new Vector3(0.024f, 0.12f, 0.028f), paletteSlot = 0, rounded = true, taper = 0.5f, bendDegrees = 55f },
                     }
                 },
             };
@@ -424,8 +424,8 @@ namespace Ziptide.Editor.Patching
                     chainDirection = new Vector3(0.06f, -1f, 0f), role = GaitRole.Leg, mirrorX = true,
                     segments = new[]
                     {
-                        new ForgeLimbSegment { size = new Vector3(0.16f, 0.42f, 0.17f), paletteSlot = 0, rounded = true, taper = 0.10f },
-                        new ForgeLimbSegment { size = new Vector3(0.13f, 0.38f, 0.14f), paletteSlot = 1, rounded = true, taper = 0.18f },
+                        new ForgeLimbSegment { size = new Vector3(0.16f, 0.42f, 0.17f), paletteSlot = 0, rounded = true, taper = 0.10f, bendDegrees = -10f },
+                        new ForgeLimbSegment { size = new Vector3(0.13f, 0.38f, 0.14f), paletteSlot = 1, rounded = true, taper = 0.18f, bendDegrees = 18f },
                     }
                 },
             };

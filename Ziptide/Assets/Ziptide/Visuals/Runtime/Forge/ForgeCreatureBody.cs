@@ -18,6 +18,10 @@ namespace Ziptide.Visuals
         public bool rounded;
         [Tooltip("0..0.95 thins the segment toward its tip (down the chain) — claws, tentacle tips.")]
         public float taper;
+        [Tooltip("ARTICULATION (v3 engine): pitch of THIS segment relative to the previous one, " +
+                 "around the limb's side axis. An insect leg is +50 up then -95 down; a straight " +
+                 "chain (0) is a stick, and sticks read dead. The gait motor animates on top.")]
+        public float bendDegrees;
     }
 
     /// <summary>
