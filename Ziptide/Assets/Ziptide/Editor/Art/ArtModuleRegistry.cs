@@ -43,6 +43,15 @@ namespace Ziptide.Editor.Art
 
         public static bool Has(string id) => !string.IsNullOrEmpty(id) && _factories.ContainsKey(id);
         public static void Clear() => _factories.Clear(); // tests / domain reload hygiene
+
+        /// <summary>The current factory for an id (E5.1): lets an upgrader WRAP the existing
+        /// fulfillment instead of discarding it — the textured kit decorates the primitive kit's
+        /// output, so an unbaked build degrades to the primitive look, never to nothing.</summary>
+        public static bool TryGetFactory(string id, out Func<GameObject> factory)
+        {
+            factory = null;
+            return !string.IsNullOrEmpty(id) && _factories.TryGetValue(id, out factory);
+        }
     }
 }
 #endif

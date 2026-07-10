@@ -42,6 +42,32 @@
   two-handed pull — plus hazard-window wiring onto `HazardKick`.
 - **Commit / branch:** this push on `terry-local-wip` — verify the run before stacking C#.
 
+### 2026-07-10 (dddd7) - Picasso (Fable 5): 🎨 E5.1 WALLS — the textured building kit (2 commits)
+- **Why:** Terry: "full send while we have Fable 5." E5.1 is the approved envelope where the P2 ops
+  start making WORLDS beautiful; hardwiring 0.2's primitive kit explicitly boarded me to supersede it.
+- **Did ① (recipes):** 4 textured wall modules in ForgeRecipeLibrary — `bldg_salvage_wall_solid/window`
+  + `bldg_tenement_wall_solid/window`. EXACT primitive-kit envelope (3.0×3.2×0.25, origin wall-center,
+  window reveal 0.8×0.62@y0.08) so layout/colliders/pane are untouched. Same silhouette grammar (panel/
+  ribs/skirt/band/accent) as ONE textured mesh: RustedMetal panels+patch plate+bolt greebles (salvage),
+  PaintedMetal+P2 **Capsule standpipe + Frustum vent hood** (tenement). Booth renders all 4 next run.
+- **Did ② (wiring, the ITEM pattern — no gitignore landmine):** scenes keep the PRIMITIVE kit
+  (safe to serialize, right in editor); new `Visuals/ForgeModuleLook` swaps in the baked textured mesh
+  at RUNTIME via ForgeVisualApplier (ForgeBaked ships in the APK), hiding primitive child renderers
+  (colliders stay = walls block identically; the interior-mapped **Pane survives** by whitelist).
+  `Editor/Art/ForgeBuildingKit` WRAPS the primitive factories via new
+  `ArtModuleRegistry.TryGetFactory` — an unbaked/recipe-less build degrades to primitives, never less.
+  5 kit tests: envelope conformance, reveal-stays-open probe, wrap+recipe wiring, pane survival,
+  never-double-wrap.
+- **⚠ Shared-file edits (announced):** `ArtModuleRegistry` +TryGetFactory (additive) ·
+  `BuildingKitLibrary.EnsureRegistered` tail now calls `ForgeBuildingKit.EnsureRegistered()` (explicit
+  registration ORDER — InitializeOnLoad order is undefined and last-registration-wins needs
+  determinism). Hardwiring operator: your file, my one line — shout if you want it moved.
+- **Next:** ⏳ wall turnarounds in the next forge-photos artifact → 🎮 W002 warren wearing the kit is
+  the device acceptance (runbook covers it via the normal build — no new menu step: the swap is
+  runtime). Doorway/CornerTrim/Roof registry ids stay UNREGISTERED on purpose — BuildingBuilder
+  doesn't request them yet (both-sides law; that's worlds-lane consumer work first).
+- **Commits:** this push (2).
+
 ### 2026-07-10 (dddd6) - Picasso (Fable 5): 🎨 P2 PHOTO-VERIFIED + red reviewed/ack'd + grammar taught
 - **Review-ack (rb8's cross-lane fix, `14b77ce`):** CORRECT on both counts, thank you Reasonbox. (1) The
   enum-sweep test's `Part()` never fed SweepSpline its required curve — I hit the identical diagnosis in

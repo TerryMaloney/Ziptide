@@ -40,6 +40,10 @@ namespace Ziptide.Editor.Art
             RegisterStyle("toxic_tenement",
                 wall: new Color(0.30f, 0.32f, 0.28f), trim: new Color(0.24f, 0.23f, 0.22f),
                 accent: new Color(0.20f, 0.26f, 0.20f), window: new Color(0.10f, 0.16f, 0.12f));
+
+            // E5.1 (art lane): the TEXTURED kit wraps these primitive factories — called HERE, last,
+            // because last-registration-wins needs deterministic order and InitializeOnLoad has none.
+            ForgeBuildingKit.EnsureRegistered();
         }
 
         private static void RegisterStyle(string styleId, Color wall, Color trim, Color accent, Color window)
