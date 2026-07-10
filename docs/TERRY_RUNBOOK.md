@@ -554,7 +554,11 @@ Two things to *feel* on device; both are pure-data tunes if they're off (no rebu
   Do shadows fall away from the big body in the sky? Watch `ZIPTIDE: LIGHT_SCRIPT vista=… sun=…
   ambient=… fog=…` in logcat — it says which channel is derived vs authored vs layout-owned.
   If a world got WORSE, tell the operator which one — its vista then gets authored tie-in
-  overrides (that's the designed escape hatch, not a code change).
+  overrides (that's the designed escape hatch, not a code change). **Same pass, F3.2 GRADE:** every
+  vista world now renders through ACES tonemapping + a subtle per-world color grade (`ZIPTIDE:
+  GRADE` in logcat). TWO things to check: ① does each world feel more filmic/unified, and ② **did
+  72fps hold?** URP post costs real fill-rate on Quest — if frames drop, say so FIRST; the kill
+  switch is one line and no art should be tuned before that's ruled out.
 - [ ] **(not Unity) Reconnect the GitHub connector** on claude.ai (Settings → Connectors → GitHub →
   Reconnect, authorize `terrymaloney/ziptide`) so the operators can see CI status again. Pushing already
   works without it; this is just so we can watch the runs go green.

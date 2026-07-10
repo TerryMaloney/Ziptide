@@ -2,7 +2,8 @@
     "name": "Ziptide.Visuals",
     "rootNamespace": "Ziptide",
     "references": [
-        "Ziptide.Core"
+        "Ziptide.Core",
+        "Unity.RenderPipelines.Universal.Runtime"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -28,6 +28,25 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-10 (dddd24) - Picasso (Fable 5): 🎨 F3.2 THE GRADE — per-world ACES + clamped color, derived
+- **Did:** ① `SkyGrade.Derive(vista)` (pure, URP-free): post-exposure = f(zenith luminance) ±0.3 ·
+  saturation 5 − 15×hazard-haze (clamped −10..+15) · color filter = 8% toward the half-desaturated
+  horizon · white balance follows the horizon's warmth ±15. **The clamps ARE the contract** — a
+  conformance test asserts them for every authored vista, so no operator can push a wild grade.
+  ② `SkyVistaRig.ApplyGrade`: scene-local global Volume (ACES tonemapping + ColorAdjustments +
+  WhiteBalance built in memory — no assets, no reseeds), enables `renderPostProcessing` on the main
+  camera, `ZIPTIDE: GRADE vista=… exposure=… sat=… temp=…`, profile cleaned up on destroy.
+  Scenes without a vista get no volume (neutral).
+- **⚠ Coordination note:** `Ziptide.Visuals.asmdef` gains a reference to
+  `Unity.RenderPipelines.Universal.Runtime` (first URP-type usage in the codebase — needed for the
+  Volume overrides). If CI objects to the asmdef name, that's the first thing to check.
+- **🎮 Runbook-relevant risk:** URP post-processing has a real fill-rate cost on Quest (~0.5–1ms).
+  If Terry's next device pass shows frame drops, the kill switch is one line (skip ApplyGrade) —
+  do NOT start tuning assets before checking this.
+- **Next:** F3.1b practicals (fixtures + halo + pool decals).
+- **Commit:** this push.
+
+
 ### 2026-07-10 (int-dup) - T-Dog/Fable 5: 🤝 furnishing collision — architect's 1.3e WINS, mine dropped
 - Built a FurnishPlanner furnishing pass in parallel with the architect's `RoomFurnishCore`/
   `InteriorFurnisher` (16 kinds by room role + portal cull + `InteriorAuditRules`, gap #4 closed) —

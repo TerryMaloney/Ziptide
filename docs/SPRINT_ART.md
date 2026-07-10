@@ -95,7 +95,8 @@ every envelope with a checkpoint. Takeover prompt: **"Read docs/project_art_plan
 | # | FORGE III envelope | Status |
 |---|------|--------|
 | F3.1 | THE LIGHT SCRIPT — light rig DERIVED from the vista (fog=horizon, ambient=gradient, key from the brightest body, elevation clamped 20–55°) | 🟡 **commit 1 landed:** `SkyLightScript.Derive` (pure) + `SkyVistaRig` applies derived values wherever the vista is silent (authored tie-ins override; layout-baked fog respected; `ZIPTIDE: LIGHT_SCRIPT` log) + 5 contract tests incl. full library sweep. **commit 2:** `LIGHT_SCRIPT_NO_SUN` warn in SkyVistaAuditRules + runbook 🎮 W002/W005 before/after. **F3.1 CODE-COMPLETE** (device verdict = Terry's runbook pass) |
-| F3.1b–F3.10 | practicals · grade · water · grounding+blob shadows · VFX · reactive · signage · macro · conformance ratchet · creature close-out | ⬜ per the plan |
+| F3.2 | THE GRADE — per-world ACES + range-clamped color adjustments, DERIVED (filter = 8% toward the desaturated horizon; haze desaturates; warmth follows the horizon; exposure lifts dark skies) | 🟡 **landed:** pure `SkyGrade.Derive` (the clamps ARE the contract, tested) + rig builds a scene-local global Volume (ACES + ColorAdjustments + WhiteBalance) and enables camera post; ⚠ Visuals asmdef gains `Unity.RenderPipelines.Universal.Runtime` ref; `ZIPTIDE: GRADE` log; 4 tests incl. library sweep. ⏳ CI + Terry device look (post cost on Quest!) |
+| F3.1b–F3.10 | practicals · water · grounding+blob shadows · VFX · reactive · signage · macro · conformance ratchet · creature close-out | ⬜ per the plan |
 
 ## ▶ RESUMING? — current state & exact next action
 - **Current:** ART-1 + ART-2 shipped APK-green (skies `28616598718`; Forge+taser `28630103333`).

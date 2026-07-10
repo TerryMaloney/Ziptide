@@ -55,6 +55,66 @@ namespace Ziptide.Visuals
             }
             PositionAll();
             ApplySceneTieIns(vista);
+            ApplyGrade(vista);
+        }
+
+        // ── FORGE III F3.2: the grade — a scene-local global Volume from derived values ──
+
+        private GameObject _gradeVolume;
+        private UnityEngine.Rendering.VolumeProfile _gradeProfile;
+
+        private void ApplyGrade(SkyVistaDefinition vista)
+        {
+            var g = SkyGrade.Derive(vista);
+
+            if (_gradeVolume == null)
+            {
+                _gradeVolume = new GameObject("SkyGradeVolume");
+                _gradeVolume.transform.SetParent(transform, false);
+            }
+            if (_gradeProfile == null)
+                _gradeProfile = ScriptableObject.CreateInstance<UnityEngine.Rendering.VolumeProfile>();
+
+            var tone = GetOrAdd<UnityEngine.Rendering.Universal.Tonemapping>(_gradeProfile);
+            tone.active = true;
+            tone.mode.Override(UnityEngine.Rendering.Universal.TonemappingMode.ACES);
+
+            var ca = GetOrAdd<UnityEngine.Rendering.Universal.ColorAdjustments>(_gradeProfile);
+            ca.active = true;
+            ca.postExposure.Override(g.postExposure);
+            ca.saturation.Override(g.saturation);
+            ca.colorFilter.Override(g.colorFilter);
+
+            var wb = GetOrAdd<UnityEngine.Rendering.Universal.WhiteBalance>(_gradeProfile);
+            wb.active = true;
+            wb.temperature.Override(g.temperature);
+
+            var vol = _gradeVolume.GetComponent<UnityEngine.Rendering.Volume>();
+            if (vol == null) vol = _gradeVolume.AddComponent<UnityEngine.Rendering.Volume>();
+            vol.isGlobal = true;
+            vol.priority = 10f;
+            vol.sharedProfile = _gradeProfile;
+
+            // The volume only matters if the camera renders post. The rig camera persists in
+            // _Boot; scenes without a vista simply have no volume (neutral pass-through).
+            var cam = Camera.main;
+            if (cam != null)
+            {
+                var camData = cam.GetComponent<UnityEngine.Rendering.Universal.UniversalAdditionalCameraData>();
+                if (camData != null) camData.renderPostProcessing = true;
+            }
+
+            Debug.Log("ZIPTIDE: GRADE vista=" + vista.vistaId
+                + " exposure=" + g.postExposure.ToString("F2")
+                + " sat=" + g.saturation.ToString("F1")
+                + " temp=" + g.temperature.ToString("F1"));
+        }
+
+        private static T GetOrAdd<T>(UnityEngine.Rendering.VolumeProfile profile)
+            where T : UnityEngine.Rendering.VolumeComponent
+        {
+            if (profile.TryGet<T>(out var existing)) return existing;
+            return profile.Add<T>(true);
         }
 
         /// <summary>SKYSCAPE layers (haze/motes/glow) ride a child rig; it drives itself per-frame.</summary>
@@ -284,6 +344,7 @@ namespace Ziptide.Visuals
 
         private void OnDestroy()
         {
+            if (_gradeProfile != null) Destroy(_gradeProfile);
             if (_domeMaterial != null) Destroy(_domeMaterial);
             if (_domeTexture != null) Destroy(_domeTexture);
             foreach (var b in _bodies)
