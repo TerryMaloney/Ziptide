@@ -28,6 +28,25 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-10 (proof1) - T-Dog/Fable 5: 🛡️ CRASH-PROOFING SWEEP — "if everything breaks we're screwed" (Terry-approved)
+- **The sweep, honestly reported.** Checked every breakage class I know against the actual code:
+  **already solid ✓** — pause/quit/travel autosaves (Quest's pause-not-quit path covered), corrupt-
+  tolerant profile parse, dup-singleton guards, no-reflection law, travel-wedge `_travelling` guard.
+  **FIXED this push 🔧** — ① saves were NON-ATOMIC with no backup (`File.WriteAllText` over the only
+  copy: a battery death mid-write = silent total wipe) → `SaveFileStore` atomic tmp→swap→.bak +
+  `TryDeserialize` (knows corrupt from fine, incl. the hollow-`{}` trap) + load falls back to .bak
+  (`SAVE_RECOVERED_FROM_BACKUP`); ② `LoadScene` on a scene missing from Build Settings silently
+  no-ops AFTER travel's side effects → pre-flight `CanStreamedLevelBeLoaded` abort in
+  TravelCoordinator (📣 travel is report-only per CLAUDE.md — Terry explicitly authorized this
+  stability touch this session; minimal, before any side effect); ③ nothing gated Build-Settings
+  drift → `EveryTravelTarget_IsInBuildSettings` (conquest's 12 mission targets + core scenes;
+  PendingFirstBake ledger for Terry's unbaked runbook scenes).
+- **📣 Remaining risk classes, named not buried:** (a) static-event unsubscribe hygiene — no ratchet
+  yet (claimable row); (b) `LoadScene` is synchronous — a HITCH on big worlds, not a crash (async
+  travel = a future travel-lane task, report-only); (c) localization decision still open (Terry).
+- **Commits:** this push.
+
+
 ### 2026-07-10 (health1) - T-Dog/Fable 5: 🩺 RUNTIME HEALTH — the forgotten architecture (frames, memory, THE JANITOR)
 - **Why:** Terry: "find the next big thing that isn't set up… the hardest stuff or something we
   completely forgot." Found it: the game measures NOTHING about its own runtime — and 57 files

@@ -87,6 +87,20 @@ namespace Ziptide.Gameplay
                 sceneName = Ziptide.Core.ZiptideConstants.FirstWorldScene;
             }
 
+            // PRE-FLIGHT (crash-proofing 2026-07-10): LoadScene on a scene missing from Build
+            // Settings does NOT throw — it silently loads nothing, stranding the player mid-tide
+            // AFTER the autosave and rig state changes already fired. Abort here, before any side
+            // effect, and the player just stays where they are with a clear log to act on.
+            if (!Application.CanStreamedLevelBeLoaded(sceneName))
+            {
+                Debug.LogError("ZIPTIDE: TRAVEL_FAIL dest=" + sceneName +
+                               " reason=scene_not_in_build — aborting before any state changes " +
+                               "(bake the scene / add it to Build Settings)");
+                _pendingGatePos = null;
+                _skipGateNext = false;
+                return;
+            }
+
             if (_instance == null)
             {
                 _pendingGatePos = null;

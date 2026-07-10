@@ -36,7 +36,7 @@ noted; EditMode tests are gates too. *(Last full audit of this table: 2026-07-10
 | Interiors | 🦴 (RoomPartitioner core only) | Enterable buildings have partitioned, furnished, portal-culled interiors; windows read lit (interior mapping) | 🕳️ GAP — no interior audit yet (rooms reachable, furnished ≥N props, portal budget) |
 | Vertical/caverns/traversal | 💎 (zip/climb/lift/pad/grapple + 2 cave worlds) | Every traversal verb usable in ≥1 shipped world; multi-level reachability proven | `WorldReachabilityAuditRules` (one-way edges) + 5 core test suites |
 | Skyscape & atmosphere | 🧱 v1 (layers built, W005 signature, 11 worlds pending verdict) | THE PROSPECT BAR (`systems/SKYSCAPE_DESIGN.md` §5 rubric): something drifting, hazy horizon, occluded body, sky color reaches the ground; tiered (Signature/Standard/Interior) | `SkyVistaAuditRules` + SkyAtmosphere tests + **§5 Signature-rubric gate (`GateGap2_SignatureRubric…` — gap #2 CLOSED 2026-07-10)** |
-| Travel & gates | 💎 (TravelCoordinator law, gated doors, THE ZIPTIDE) | One travel path, always; story-gated where flagged; no `SceneManager.LoadScene` in gameplay | Locked contract in `CLAUDE.md`; grep-able; travel tests |
+| Travel & gates | 💎 (TravelCoordinator law, gated doors, THE ZIPTIDE; **pre-flight guard 2026-07-10** — a missing scene aborts BEFORE side effects instead of silently stranding) | One travel path, always; story-gated where flagged; every travel target in Build Settings | Locked contract in `CLAUDE.md`; `CrashProofingTests.EveryTravelTarget_IsInBuildSettings` gate; travel tests |
 
 ## 2 · THE LIVING WORLD
 
@@ -56,7 +56,7 @@ noted; EditMode tests are gates too. *(Last full audit of this table: 2026-07-10
 | Hands & interaction | 💎 (grab/holster/belt/tools; collider-first law) | Everything interactive answers to hands within 1.6m reach idioms; collider BEFORE interactable everywhere | `VR_RIG_GOTCHAS.md` law; wiring tests |
 | Weapons & combat feel | 🧱 v1 (guns/melee/taser unified onto one damage scale) | ADS/reload/haptics per `ABILITIES_AND_ARSENAL.md`; every weapon distinct in hand (cadence/recoil/sound), not stat-only | Combat core tests + damage-scale migration guard; 🕳️ GAP — weapon-feel checklist rows (4.4) |
 | Abilities/augments | 🧱 v1 (6 augments live) | Full A4.5–A4.7 set incl. dual-wield when charge economy exists; every augment has visible state (orb brightness idiom) | Augment tests + WiringValidator (author build-hook) |
-| Player progression/saves | 💎 (profile, autosave, ledger economy, conquest/belt overlays) | NOTHING the player builds/earns is lost on quit — every new system ships WITH its save story (the overlay idiom) | `ProfileSerializer` tests + save round-trip tests per system; `EconomyAuditRules` |
+| Player progression/saves | 💎 (profile, autosave, ledger economy, conquest/belt overlays; **ATOMIC writes + .bak recovery 2026-07-10** — a mid-write battery death can no longer wipe progress) | NOTHING the player builds/earns is lost on quit OR on a crash mid-save — every new system ships WITH its save story (the overlay idiom) | `ProfileSerializer` tests + save round-trips + `CrashProofingTests` corrupt-and-recover gate; `EconomyAuditRules` |
 | UI/UX & menus | 🦴 (dev menu, boards, diegetic surfaces) | Diegetic-first (ship hub law); cold-boot title + save slots; readable at arm's length (characterSize×fontSize lesson) | 🕳️ GAP — no UI readability/reach audit; HOME_HUB rows open (2.5) |
 
 ## 4 · THE SHIP & VEHICLES

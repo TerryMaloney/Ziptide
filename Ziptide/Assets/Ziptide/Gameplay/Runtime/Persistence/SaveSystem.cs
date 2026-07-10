@@ -53,26 +53,33 @@ namespace Ziptide.Gameplay
             Load();
         }
 
-        /// <summary>Load the profile from disk (or create a fresh one if absent/corrupt).</summary>
+        /// <summary>Load the newest COMPLETE profile version: main file, else the .bak the atomic
+        /// writer keeps (a mid-write battery death can no longer wipe progress), else fresh.</summary>
         public void Load()
         {
-            string json = null;
-            try { if (File.Exists(SavePath)) json = File.ReadAllText(SavePath); }
-            catch (System.Exception e) { Debug.LogWarning("ZIPTIDE: SAVE_LOAD_FAIL " + e.Message); }
+            string json = SaveFileStore.ReadBestVersion(SavePath,
+                text => ProfileSerializer.TryDeserialize(text, out _), out bool fromBackup);
+
+            if (fromBackup)
+                Debug.LogWarning("ZIPTIDE: SAVE_RECOVERED_FROM_BACKUP — main profile was corrupt, " +
+                                 "the previous good version was restored");
+            else if (json == null && File.Exists(SavePath))
+                Debug.LogWarning("ZIPTIDE: SAVE_CORRUPT — profile and backup both unreadable, starting fresh");
 
             Profile = ProfileSerializer.Deserialize(json);
             Debug.Log("ZIPTIDE: SAVE_LOAD playerId=" + Profile.playerId +
                       " resources=" + Profile.resources.Count + " flags=" + Profile.flags.Count);
         }
 
-        /// <summary>Stamp the save time and write the profile to disk.</summary>
+        /// <summary>Stamp the save time and write the profile ATOMICALLY (tmp → swap, previous
+        /// version demoted to .bak) — the main file is never half-written, at any instant.</summary>
         public void Save()
         {
             if (Profile == null) Profile = ProfileSerializer.NewProfile();
             Profile.lastSavedAtUnix = System.DateTimeOffset.UtcNow.ToUnixTimeSeconds();
             try
             {
-                File.WriteAllText(SavePath, ProfileSerializer.Serialize(Profile));
+                SaveFileStore.WriteAtomic(SavePath, ProfileSerializer.Serialize(Profile));
                 Debug.Log("ZIPTIDE: SAVE_OK path=" + SavePath);
             }
             catch (System.Exception e) { Debug.LogWarning("ZIPTIDE: SAVE_FAIL " + e.Message); }

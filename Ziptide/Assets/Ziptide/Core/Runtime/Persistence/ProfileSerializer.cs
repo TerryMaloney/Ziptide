@@ -21,15 +21,23 @@ namespace Ziptide.Core
         /// </summary>
         public static PlayerProfile Deserialize(string json)
         {
-            if (string.IsNullOrWhiteSpace(json)) return NewProfile();
+            return TryDeserialize(json, out var p) ? p : NewProfile();
+        }
 
-            PlayerProfile p;
-            try { p = JsonUtility.FromJson<PlayerProfile>(json); }
-            catch { p = null; }
-
-            if (p == null) return NewProfile();
-            Migrate(p);
-            return p;
+        /// <summary>Like Deserialize, but tells the caller whether the input actually parsed —
+        /// the crash-proof load path needs to know "corrupt" from "fine" so it can reach for the
+        /// .bak instead of silently handing the player a fresh profile (a total progress wipe).</summary>
+        public static bool TryDeserialize(string json, out PlayerProfile profile)
+        {
+            profile = null;
+            if (string.IsNullOrWhiteSpace(json)) return false;
+            try { profile = JsonUtility.FromJson<PlayerProfile>(json); }
+            catch { profile = null; }
+            if (profile == null) return false;
+            // A truncated JSON can "parse" into a hollow object — a real profile always has an id.
+            if (string.IsNullOrEmpty(profile.playerId)) { profile = null; return false; }
+            Migrate(profile);
+            return true;
         }
 
         public static PlayerProfile NewProfile()
