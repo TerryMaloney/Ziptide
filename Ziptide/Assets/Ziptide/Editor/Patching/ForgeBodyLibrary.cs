@@ -353,39 +353,43 @@ namespace Ziptide.Editor.Patching
                 new Color(0.20f, 0.21f, 0.25f), // 0 torso + legs — slate (the behavior's pillar color)
                 new Color(0.16f, 0.17f, 0.21f), // 1 pauldrons + head — darker gunmetal
                 new Color(0.32f, 0.34f, 0.40f), // 2 trim seams
-                new Color(0.25f, 0.28f, 0.33f), // 3 eye — dormant slate (the behavior drives it live)
+                new Color(0.36f, 0.42f, 0.50f), // 3 eye — dormant slate, bright enough to READ as a lens
+                                                //   (WardenBehavior drives the live colors via TrySetEye)
             };
             b.slotStyles = new ForgeStyleSpec[0];
             b.coreParts = new[]
             {
+                // Photo-loop v2 (run 29083744395 read as "dark chess pawn"): head grown into a real
+                // helm seated ON the pauldrons, the eye moved onto the HEAD's face and enlarged, legs
+                // lengthened + widened so the stride reads instead of hiding inside the torso.
                 new ForgePart { name = "Torso", op = ForgeOp.Frustum, segments = 10, smooth = true,
-                    size = new Vector3(0.48f, 1.55f, 0.72f), position = new Vector3(0f, 1.08f, 0f),
+                    size = new Vector3(0.44f, 1.45f, 0.70f), position = new Vector3(0f, 1.10f, 0f),
                     paletteSlot = 0 },
                 new ForgePart { name = "Pauldrons", op = ForgeOp.BeveledBox, bevel = 0.04f,
-                    size = new Vector3(0.95f, 0.24f, 0.58f), position = new Vector3(0f, 1.96f, 0f),
+                    size = new Vector3(0.95f, 0.22f, 0.58f), position = new Vector3(0f, 1.92f, 0f),
                     paletteSlot = 1 },
                 new ForgePart { name = "Head", op = ForgeOp.SphereSection, bevel = 0.62f, segments = 10,
-                    smooth = true, size = new Vector3(0.34f, 0.30f, 0.34f),
+                    smooth = true, size = new Vector3(0.46f, 0.36f, 0.46f),
                     position = new Vector3(0f, 2.06f, 0f), paletteSlot = 1 },
                 new ForgePart { name = "ChestSeam", op = ForgeOp.BeveledBox, bevel = 0.01f,
-                    size = new Vector3(0.10f, 1.30f, 0.06f), position = new Vector3(0f, 1.15f, 0.33f),
+                    size = new Vector3(0.10f, 1.20f, 0.06f), position = new Vector3(0f, 1.12f, 0.33f),
                     paletteSlot = 2 },
             };
             b.limbs = new[]
             {
                 new ForgeLimb
                 {
-                    name = "Leg", attachLocal = new Vector3(0.15f, 0.62f, 0f),
-                    chainDirection = new Vector3(0.08f, -1f, 0f), role = GaitRole.Leg, mirrorX = true,
+                    name = "Leg", attachLocal = new Vector3(0.17f, 0.52f, 0f),
+                    chainDirection = new Vector3(0.10f, -1f, 0f), role = GaitRole.Leg, mirrorX = true,
                     segments = new[]
                     {
-                        new ForgeLimbSegment { size = new Vector3(0.11f, 0.34f, 0.13f), paletteSlot = 0 },
-                        new ForgeLimbSegment { size = new Vector3(0.09f, 0.30f, 0.11f), paletteSlot = 1 },
+                        new ForgeLimbSegment { size = new Vector3(0.12f, 0.28f, 0.15f), paletteSlot = 0 },
+                        new ForgeLimbSegment { size = new Vector3(0.10f, 0.24f, 0.13f), paletteSlot = 1 },
                     }
                 },
             };
-            b.eyeLocal = new Vector3(0f, 1.86f, 0.30f);
-            b.eyeRadius = 0.06f; // the law must be legible across a plaza
+            b.eyeLocal = new Vector3(0f, 2.10f, 0.24f); // on the helm's FACE — the law reads first
+            b.eyeRadius = 0.075f;
             b.eyePaletteSlot = 3;
             return b;
         }
