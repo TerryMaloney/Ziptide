@@ -285,6 +285,28 @@ namespace Ziptide.Editor.Patching
             for (int i = 0; i < 3; i++) // route posts marching off — the line continues somewhere
                 Block(root, "RoutePost" + i, new Vector3(4.5f + i * 2.2f, 0.7f, 0.8f),
                     new Vector3(0.2f, 1.4f, 0.2f), pal.rail, true);
+
+            // 3.2: the Transit stop parks the biome's signature RIDE (VehicleRuntime resolves the
+            // definition by id at runtime — no hard refs). The verb finally has its vehicle.
+            var ride = new GameObject("Vehicle_" + poi.id);
+            ride.transform.SetParent(root, false);
+            ride.transform.localPosition = new Vector3(0f, 0.45f, 2.6f);
+            var vr = ride.AddComponent<Ziptide.Ship.VehicleRuntime>();
+            var so = new SerializedObject(vr);
+            PatcherUtil.SetString(so, "vehicleId", RideForBiome(kit));
+            so.ApplyModifiedPropertiesWithoutUndo();
+        }
+
+        private static string RideForBiome(CityLayoutDefinition kit)
+        {
+            var biome = kit.experience != null ? kit.experience.biome : BiomePreset.TideFlats;
+            switch (biome)
+            {
+                case BiomePreset.Dunes:
+                case BiomePreset.Mesas: return "dune_hoverbike";
+                case BiomePreset.CavernFloor: return "cavern_crawler";
+                default: return "tide_skiff";
+            }
         }
 
         private static void BuildLookout(Transform root, CityLayoutDefinition kit, PoiDef poi)

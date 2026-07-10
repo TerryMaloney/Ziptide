@@ -46,6 +46,30 @@
   space-flight defender mission (3.1 ship weapons EXIST now — Reasonbox's seam, or claimable with a
   loud HANDOFF if their flight lane stays parked in gardens).
 - **Commits:** this push.
+### 2026-07-10 (rb13) - Reasonbox: 🛺 CLAIM + first cut — board row 3.2 DRIVABLE VEHICLES (4.2d CI ✅)
+- **4.2d verdict:** hazard gardens are **CI GREEN ✅** (`df612a6`) — the whole garden stack is green.
+- **Why this lane:** Terry — "next most important." By the board's own phase order the earliest
+  unclaimed row is **3.2 vehicles** (Terry's explicit hardwiring ask; "a vehicle is a ship for the
+  ground"). Scan: architect closed 4.1 · traversal in caves · T-Dog on skyscape/Tidefront · Picasso
+  finished the creature roster. Zero overlap — new files + my claimed POI/flight territory.
+- **CLAIMED: row 3.2.** Files: `Content/Runtime/Definitions/VehicleDefinition.cs` (new) ·
+  `Ship/Runtime/VehicleRuntime.cs` (new) · `Editor/Patching/VehicleAuthor.cs` (new) · Transit-POI
+  spawn inside my `WorldPoiBuilder` · **one additive hook in `BuildAndroid`** (VehicleAuthor beside
+  GardenAuthor — announcing the shared-file edit).
+- **Did (v1 — mount, ride, dismount):** the ride reuses the ship's comfort-clamped `FlightModel`
+  with a **GROUND PROFILE: pitch rate AND clamp are ZERO by construction** — no data, no input, no
+  bug can tilt a seated rider's horizon (pinned by a 10-simulated-second full-input test). One
+  control language with the helm: stick drive (back = reverse), hold-to-repeat snap turn, L3/A
+  boost. Unlike flight's world-moves render, the ride moves THROUGH the world: terrain-hugged by
+  raycast + hoverHeight, the rig teleport-follows the seat (never parented), locomotion suspended,
+  and the ONE ComfortVignette covers it through its normal rig sampling — zero new comfort wiring.
+  Roam is soft-walled per vehicle (can never exceed the flight lane bound). **Starter fleet of 3**
+  (tide skiff · dune hoverbike · cavern crawler — each biome family gets a signature ride,
+  create-only under Resources/Vehicles) and **every Transit POI now parks its biome's ride** — my
+  1.5 verb grew its vehicle. Logs `VEHICLE_MOUNT/VEHICLE_DISMOUNT`. 4 tests.
+- **Next in this row:** per-archetype feel (drift/suspension/buoyancy) after Terry's first ride ·
+  vehicle wraps via the cosmetic layer · garage/persistence · races as world events.
+- **Commit / branch:** this push on `terry-local-wip` — verify the run before stacking C#.
 
 ### 2026-07-10 (sky1) - T-Dog/Fable 5: 🌅 SKYSCAPE v1 — the air is real (W005 signature proof)
 - **Why:** Terry: "pick something that needs to get done… make something cool." The skyscape is HIS

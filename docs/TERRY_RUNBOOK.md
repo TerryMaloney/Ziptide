@@ -88,6 +88,15 @@ Do these in order after pulling. Each generates committable assets. *(This mirro
   carries **genes** — 24 species, cross-pollination, giant crops at 3× — backend-only this pass;
   giants/breeding get their hands-on moment in 4.2d. Feel notes: pour angle (55°),
   quarter-can-per-tend, reach (1.6m), can size/weight, stream visibility.
+- [ ] **NEW (vehicles 3.2, 2026-07-10 — Reasonbox) — THE FIRST RIDES:** no menu step (the build
+  authors the 3-ride starter fleet and every world rebuild parks a ride at its **Transit stop**
+  POI). **Headset (any world with a Transit POI after the next world rebuild):** find the orange
+  skiff/hoverbike by the platform → select **RIDE** (you sit; walking suspends) → same controls as
+  the ship: left stick drive (pull back = reverse), right stick hold-to-repeat snap turn, L3/A
+  boost → it hugs the terrain at hover height, soft-walls at its roam radius → **STEP OFF** to
+  dismount beside it (`ZIPTIDE: VEHICLE_MOUNT/DISMOUNT` in logcat). The horizon can never tilt —
+  ground profile locks pitch at zero. Feel notes: cruise speeds (skiff 12 / bike 18 / crawler 7),
+  hover height, snap-turn-while-driving comfort, mount/dismount placement.
 - [ ] **NEW (caverns 1.4e, 2026-07-09) — THE FIRST CAVE:** run `Ziptide → Dev → Build Cavern Test
   Lab` once (creates + saves `Cavern_TestLab.unity`, adds itself to Build Settings), commit the scene
   + its `_WorldPack.asset`. **Headset:** warp in via Y+B ("Cavern Test Lab") — you spawn in a dim
