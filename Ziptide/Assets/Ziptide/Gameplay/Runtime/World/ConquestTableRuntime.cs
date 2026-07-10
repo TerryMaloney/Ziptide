@@ -27,9 +27,16 @@ namespace Ziptide.Gameplay
         private ConquestState _state;
         private readonly Dictionary<string, Transform> _orbs = new Dictionary<string, Transform>();
         private readonly Dictionary<string, TextMesh> _stamps = new Dictionary<string, TextMesh>();
-        private string _selected;          // the player's selected OWN planet
+        private string _selected;          // the active admiral's selected OWN planet
         private TextMesh _ticker, _card;
         private bool _aiTurnRunning;
+
+        // B4 HOTSEAT: both admirals human, pass the headset. _activeSide is whose half-turn the
+        // table shows — every build/attack/odds/fog read goes through it (solo keeps it at 0).
+        private bool _hotseat;
+        private int _activeSide;
+
+        private string SideName(int side) => side == 0 ? "TIDE (CYAN)" : "RIVAL (RED)";
 
         private static readonly Color PlayerColor = new Color(0.3f, 0.85f, 0.95f);  // tide cyan
         private static readonly Color RivalColor = new Color(0.95f, 0.35f, 0.3f);   // rival red
@@ -43,12 +50,14 @@ namespace Ziptide.Gameplay
             if (ConquestSession.State != null) _state = ConquestSession.State;
             else
             {
-                _state = TryLoadCampaign();
+                _state = TryLoadCampaign();     // also restores hotseat mode into the session
                 resumedFromDisk = _state != null;
                 if (_state == null)
                     _state = ConquestGalaxy.BuildTwoPlayer(ConquestGalaxy.ChapterOneTwoSeeds());
                 ConquestSession.State = _state;
             }
+            _hotseat = ConquestSession.Hotseat;      // statics survive travel AND the save round-trip
+            _activeSide = ConquestSession.ActiveSide;
             BuildTable();
             ResolveReturnedBattle();
             Refresh();
@@ -67,7 +76,7 @@ namespace Ziptide.Gameplay
             var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;
             if (profile == null || _state == null) return;
             profile.flags.RemoveAll(f => f.StartsWith(ConquestSave.FlagPrefix, System.StringComparison.Ordinal));
-            profile.flags.Add(ConquestSave.FlagPrefix + ConquestSave.Serialize(_state));
+            profile.flags.Add(ConquestSave.FlagPrefix + ConquestSave.Serialize(_state, _hotseat, _activeSide));
         }
 
         private ConquestState TryLoadCampaign()
@@ -76,8 +85,17 @@ namespace Ziptide.Gameplay
             if (profile == null) return null;
             foreach (var f in profile.flags)
                 if (f.StartsWith(ConquestSave.FlagPrefix, System.StringComparison.Ordinal))
-                    return ConquestSave.Deserialize(f.Substring(ConquestSave.FlagPrefix.Length),
-                                                    ConquestGalaxy.ChapterOneTwoSeeds());
+                {
+                    string data = f.Substring(ConquestSave.FlagPrefix.Length);
+                    var loaded = ConquestSave.Deserialize(data, ConquestGalaxy.ChapterOneTwoSeeds());
+                    if (loaded != null)
+                    {
+                        ConquestSave.ReadMode(data, out bool hs, out int side);
+                        ConquestSession.Hotseat = hs;
+                        ConquestSession.ActiveSide = side;
+                    }
+                    return loaded;
+                }
             return null;
         }
 
@@ -189,6 +207,8 @@ namespace Ziptide.Gameplay
                  new Color(0.85f, 0.7f, 0.25f));
             Tile("NEW WAR", new Vector3(0.95f, 0.95f, 0.35f), NewWarPressed,
                  new Color(0.45f, 0.3f, 0.35f));
+            Tile("HOTSEAT", new Vector3(0.95f, 0.75f, 0.35f), HotseatPressed,
+                 new Color(0.3f, 0.5f, 0.45f));
             Tile("SPIRE +3DEF\n(1F 3A)", new Vector3(-0.98f, 0.98f, -0.3f), BuildSpire,
                  new Color(0.35f, 0.55f, 0.8f));
             Tile("FRIGATE +2ATK\n(2F 2A)", new Vector3(-0.98f, 0.98f, 0.1f), BuildFrigate,
@@ -204,7 +224,7 @@ namespace Ziptide.Gameplay
             var p = _state.GetPlanet(planetId);
             if (p == null) return;
 
-            if (p.ownerId == 0)
+            if (p.ownerId == _activeSide)
             {
                 _selected = planetId;
                 ShowCard(p, "YOUR WORLD — select an adjacent target to attack, or build here.");
@@ -213,7 +233,7 @@ namespace Ziptide.Gameplay
 
             // Non-owned tap: an attack attempt from the selected world.
             if (_selected == null) { ShowCard(p, "Select one of YOUR worlds first."); return; }
-            if (!_state.CanAttack(0, _selected, planetId))
+            if (!_state.CanAttack(_activeSide, _selected, planetId))
             {
                 ShowCard(p, "Can't strike from " + _selected + " — not adjacent, or out of attacks.");
                 return;
@@ -221,7 +241,7 @@ namespace Ziptide.Gameplay
             var wave = CommittedWave();
             float odds = ConquestAI.EstimateOdds(_state, wave, planetId);
             _card.text = p.displayName.ToUpperInvariant() + "  —  ODDS " + Mathf.RoundToInt(odds * 100f)
-                       + "%  (WAVE " + wave.Count + "/" + _state.GetPlayer(0).fleetVesselIds.Count + ")"
+                       + "%  (WAVE " + wave.Count + "/" + _state.GetPlayer(_activeSide).fleetVesselIds.Count + ")"
                        + "\nTap it AGAIN to commit the strike.";
             if (_pendingTarget == planetId) CommitAttack(planetId);
             else _pendingTarget = planetId;
@@ -235,7 +255,7 @@ namespace Ziptide.Gameplay
         /// <summary>The vessels actually going into the next strike (losses only bite the wave).</summary>
         private List<string> CommittedWave()
         {
-            var fleet = _state.GetPlayer(0).fleetVesselIds;
+            var fleet = _state.GetPlayer(_activeSide).fleetVesselIds;
             var wave = new List<string>();
             for (int i = 0; i < fleet.Count; i++)
                 if (!_heldBack.Contains(i)) wave.Add(fleet[i]);
@@ -247,7 +267,7 @@ namespace Ziptide.Gameplay
             if (_rackRoot != null) Destroy(_rackRoot);
             _rackRoot = new GameObject("FleetRack");
             _rackRoot.transform.SetParent(transform, false);
-            var fleet = _state.GetPlayer(0).fleetVesselIds;
+            var fleet = _state.GetPlayer(_activeSide).fleetVesselIds;
             for (int i = 0; i < fleet.Count && i < 12; i++)
             {
                 int idx = i;   // closure copy
@@ -281,7 +301,7 @@ namespace Ziptide.Gameplay
                 float odds = ConquestAI.EstimateOdds(_state, wave, _pendingTarget);
                 _card.text = _state.GetPlanet(_pendingTarget).displayName.ToUpperInvariant() +
                              "  —  ODDS " + Mathf.RoundToInt(odds * 100f) + "%  (WAVE " + wave.Count +
-                             "/" + _state.GetPlayer(0).fleetVesselIds.Count + ")\nTap it AGAIN to commit the strike.";
+                             "/" + _state.GetPlayer(_activeSide).fleetVesselIds.Count + ")\nTap it AGAIN to commit the strike.";
             }
         }
 
@@ -307,7 +327,7 @@ namespace Ziptide.Gameplay
             _pendingTarget = null;
             var order = new AttackOrder
             {
-                attackerId = 0,
+                attackerId = _activeSide,
                 fromPlanetId = _selected,
                 targetPlanetId = targetId,
                 vesselIds = wave,   // only the committed tokens ride — losses only bite the wave
@@ -315,7 +335,7 @@ namespace Ziptide.Gameplay
             int seed = _state.turn * 8191 + targetId.GetHashCode();
             // B3 — the gulag: strike at base odds, or fly a 2–3 minute mission IN that world to
             // tilt them. Declining costs nothing.
-            bool underdog = _state.CountOwned(0) < _state.CountOwned(1);
+            bool underdog = _state.CountOwned(_activeSide) < _state.CountOwned(1 - _activeSide);
             var mission = ConquestMissionLibrary.Offer(targetId, MissionSide.Attack, underdog);
             ShowBattleOffer(order, seed, mission, rivalInitiated: false);
         }
@@ -424,7 +444,7 @@ namespace Ziptide.Gameplay
         private void BuildSpire()
         {
             if (_aiTurnRunning || _selected == null) return;
-            bool ok = _state.BuildDefense(0, _selected, "shield_spire");
+            bool ok = _state.BuildDefense(_activeSide, _selected, "shield_spire");
             _ticker.text = ok ? "Shield Spire raised at " + _selected
                               : "Can't afford a Spire (1 flux, 3 alloy).";
             if (ok) Autosave();
@@ -434,18 +454,56 @@ namespace Ziptide.Gameplay
         private void BuildFrigate()
         {
             if (_aiTurnRunning) return;
-            bool ok = _state.BuildVessel(0, "pulse_frigate");
-            _ticker.text = ok ? "Pulse Frigate joins your fleet (" + _state.GetPlayer(0).fleetVesselIds.Count + " vessels)"
+            bool ok = _state.BuildVessel(_activeSide, "pulse_frigate");
+            _ticker.text = ok ? "Pulse Frigate joins your fleet (" + _state.GetPlayer(_activeSide).fleetVesselIds.Count + " vessels)"
                               : "Can't afford a Frigate (2 flux, 2 alloy).";
             if (ok) Autosave();
             Refresh();
         }
 
-        // ── The visible AI turn ──────────────────────────────────────────────
+        // ── End turn: AI in solo, the HANDOVER in hotseat ────────────────────
         private void EndTurnPressed()
         {
             if (_aiTurnRunning) return;
+            if (_hotseat) { HandOver(); return; }
             StartCoroutine(RunRivalTurn());
+        }
+
+        /// <summary>B4: pass the headset. A full round = both admirals move, THEN the economy turn.</summary>
+        private void HandOver()
+        {
+            if (_activeSide == 1) _state.EndTurn();   // red closed the round — produce, upkeep, reset
+            _activeSide = 1 - _activeSide;
+            ConquestSession.ActiveSide = _activeSide;
+            _selected = null; _pendingTarget = null;
+            CloseOffer();
+            _heldBack.Clear(); _rackSignature = null;   // the rack re-deals to the new admiral
+            Autosave();
+            Refresh();                                   // fog re-fogs to the new side here
+            _card.text = "PASS THE HEADSET\n" + SideName(_activeSide) + " ADMIRAL — your move.";
+            Debug.Log("ZIPTIDE: WARTABLE_HANDOVER side=" + _activeSide + " turn=" + _state.turn);
+            CheckEnd();
+        }
+
+        private void HotseatPressed()
+        {
+            if (_aiTurnRunning) return;
+            _hotseat = !_hotseat;
+            ConquestSession.Hotseat = _hotseat;
+            if (!_hotseat && _activeSide == 1)
+            {
+                // Back to solo: the AI owns red — hand the table to cyan so a human isn't stranded.
+                _activeSide = 0;
+                ConquestSession.ActiveSide = 0;
+                _selected = null;
+                _heldBack.Clear(); _rackSignature = null;
+            }
+            Autosave();
+            Refresh();
+            _ticker.text = _hotseat
+                ? "HOTSEAT ON — two admirals, one headset. END TURN passes it."
+                : "HOTSEAT OFF — the RIVAL is machine again.";
+            Debug.Log("ZIPTIDE: WARTABLE_HOTSEAT on=" + (_hotseat ? 1 : 0));
         }
 
         private IEnumerator RunRivalTurn()
@@ -521,27 +579,28 @@ namespace Ziptide.Gameplay
                 // Unscouted worlds hide their development — a flat dim dot, no intel.
                 orb.localScale = Vector3.one * (scouted ? 0.055f + 0.008f * p.defenseLevel : 0.045f);
             }
-            var you = _state.GetPlayer(0);
-            // The rack mirrors the fleet; composition changes (builds/losses) reset the hold-backs.
-            string sig = string.Join("+", you.fleetVesselIds);
+            var you = _state.GetPlayer(_activeSide);
+            // The rack mirrors the ACTIVE side's fleet; composition/side changes reset the hold-backs.
+            string sig = _activeSide + ":" + string.Join("+", you.fleetVesselIds);
             if (sig != _rackSignature) { _rackSignature = sig; _heldBack.Clear(); RebuildRack(); }
             _card.text = _card.text ?? "";
-            string tickerBase = "TURN " + _state.turn +
+            string tickerBase = "TURN " + _state.turn + (_hotseat ? "  [" + SideName(_activeSide) + "]" : "") +
                 "   FLUX " + you.flux + " · ALLOY " + you.alloy + " · BLOOM " + you.bloommatter +
                 "   FLEET " + you.fleetVesselIds.Count +
-                "   WORLDS " + _state.CountOwned(0) + "/" + _state.planets.Count;
+                "   WORLDS " + _state.CountOwned(_activeSide) + "/" + _state.planets.Count;
             if (string.IsNullOrEmpty(_ticker.text) || _ticker.text.StartsWith("TURN "))
                 _ticker.text = tickerBase;
         }
 
-        /// <summary>Fog of war: you can see what you hold, and what borders what you hold.</summary>
+        /// <summary>Fog of war for the ACTIVE admiral: you see what you hold and what borders it —
+        /// in hotseat the map re-fogs to the other side's knowledge at every handover.</summary>
         private bool Scouted(PlanetNode p)
         {
-            if (p.ownerId == 0) return true;
+            if (p.ownerId == _activeSide) return true;
             foreach (var adjId in p.adjacentPlanetIds)
             {
                 var n = _state.GetPlanet(adjId);
-                if (n != null && n.ownerId == 0) return true;
+                if (n != null && n.ownerId == _activeSide) return true;
             }
             return false;
         }
@@ -553,7 +612,7 @@ namespace Ziptide.Gameplay
                 _card.text = p.displayName.ToUpperInvariant() + "\nUNSCOUTED SPACE — take an adjacent world to reveal it.";
                 return;
             }
-            string owner = p.ownerId == 0 ? "YOURS" : p.ownerId == 1 ? "RIVAL" : "NEUTRAL";
+            string owner = p.ownerId == _activeSide ? "YOURS" : p.ownerId >= 0 ? "ENEMY" : "NEUTRAL";
             _card.text = p.displayName.ToUpperInvariant() + " (" + owner + ")  DEF " + p.defenseLevel +
                          "  PROD " + p.resourceProductionRate.ToString("F0") + " " + p.resourceType +
                          "\n" + hint;
@@ -562,8 +621,12 @@ namespace Ziptide.Gameplay
         private void CheckEnd()
         {
             int mine = _state.CountOwned(0), theirs = _state.CountOwned(1);
-            if (theirs == 0) _card.text = "THE NETWORK IS YOURS.\nEvery gate answers to you now.\nNEW WAR starts another.";
-            else if (mine == 0) _card.text = "THE RIVAL HOLDS THE NETWORK.\nNEW WAR — come back stronger.";
+            if (theirs == 0) _card.text = _hotseat
+                ? SideName(0) + " HOLDS THE NETWORK.\nNEW WAR for the rematch."
+                : "THE NETWORK IS YOURS.\nEvery gate answers to you now.\nNEW WAR starts another.";
+            else if (mine == 0) _card.text = _hotseat
+                ? SideName(1) + " HOLDS THE NETWORK.\nNEW WAR for the rematch."
+                : "THE RIVAL HOLDS THE NETWORK.\nNEW WAR — come back stronger.";
             else return;
             _gameOver = true;
             _aiTurnRunning = true;          // freezes normal input; NEW WAR bypasses it
@@ -587,6 +650,8 @@ namespace Ziptide.Gameplay
             StopAllCoroutines();
             ClearCampaignSave();
             ConquestSession.Clear();
+            ConquestSession.Hotseat = _hotseat;   // a rematch keeps the mode; the fresh war starts on cyan
+            _activeSide = 0;
             for (int i = transform.childCount - 1; i >= 0; i--)
                 Destroy(transform.GetChild(i).gameObject);
             _orbs.Clear(); _stamps.Clear();

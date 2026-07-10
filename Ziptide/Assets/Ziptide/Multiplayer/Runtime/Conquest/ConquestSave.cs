@@ -21,11 +21,17 @@ namespace Ziptide.Multiplayer.Conquest
         public const string FlagPrefix = "CONQ_SAVE:";
         private const string Header = "CONQ1";
 
-        public static string Serialize(ConquestState s)
+        public static string Serialize(ConquestState s) => Serialize(s, false, 0);
+
+        /// <summary>B4 hotseat: the mode + whose half-turn it is ride the save as an H record.
+        /// Deserialize skips unknown record keys, so pre-B4 saves (no H) read as solo — and this
+        /// record is invisible to older parsers.</summary>
+        public static string Serialize(ConquestState s, bool hotseat, int activeSide)
         {
             if (s == null) return "";
             var sb = new StringBuilder(Header);
             sb.Append("|t=").Append(s.turn);
+            if (hotseat) sb.Append("|H=1,").Append(activeSide);
 
             foreach (var p in s.players)
             {
@@ -110,6 +116,23 @@ namespace Ziptide.Multiplayer.Conquest
             }
             catch (Exception) { return null; }   // any malformed field → treat the save as unreadable
             return state;
+        }
+
+        /// <summary>Read the H record without parsing the whole save. Absent (pre-B4) = solo.</summary>
+        public static void ReadMode(string data, out bool hotseat, out int activeSide)
+        {
+            hotseat = false; activeSide = 0;
+            if (string.IsNullOrEmpty(data)) return;
+            foreach (var rec in data.Split('|'))
+                if (rec.StartsWith("H=", StringComparison.Ordinal))
+                {
+                    var f = rec.Substring(2).Split(',');
+                    hotseat = f.Length > 0 && f[0] == "1";
+                    if (f.Length > 1) int.TryParse(f[1], NumberStyles.Integer,
+                        CultureInfo.InvariantCulture, out activeSide);
+                    if (activeSide != 0 && activeSide != 1) activeSide = 0;
+                    return;
+                }
         }
     }
 }

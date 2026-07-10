@@ -96,6 +96,32 @@ namespace Ziptide.Tests.EditMode
         }
 
         [Test]
+        public void HotseatMode_RidesTheSave_AndOldSavesReadAsSolo()
+        {
+            var s = ConquestGalaxy.BuildTwoPlayer(ConquestGalaxy.ChapterOneTwoSeeds());
+            string line = ConquestSave.Serialize(s, hotseat: true, activeSide: 1);
+
+            ConquestSave.ReadMode(line, out bool hs, out int side);
+            Assert.IsTrue(hs); Assert.AreEqual(1, side);
+
+            // The H record must not disturb the state parse itself.
+            var loaded = ConquestSave.Deserialize(line, ConquestGalaxy.ChapterOneTwoSeeds());
+            Assert.IsNotNull(loaded);
+            Assert.AreEqual(s.turn, loaded.turn);
+
+            // A pre-B4 save (no H record) reads as solo, side 0 — never a crash.
+            string old = ConquestSave.Serialize(s);
+            ConquestSave.ReadMode(old, out hs, out side);
+            Assert.IsFalse(hs); Assert.AreEqual(0, side);
+            ConquestSave.ReadMode(null, out hs, out side);
+            Assert.IsFalse(hs);
+
+            // A mangled H record clamps rather than poisons.
+            ConquestSave.ReadMode("CONQ1|H=1,7|t=2", out hs, out side);
+            Assert.IsTrue(hs); Assert.AreEqual(0, side, "an invalid side clamps to 0");
+        }
+
+        [Test]
         public void UnknownPlanet_IsSkipped_NotFatal()
         {
             var s = ConquestGalaxy.BuildTwoPlayer(ConquestGalaxy.ChapterOneTwoSeeds());

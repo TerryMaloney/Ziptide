@@ -136,6 +136,8 @@ namespace Ziptide.Multiplayer.Conquest
         public static ConquestState State;
         public static PendingBattle Pending;
         public static string ReturnScene = "";
+        public static bool Hotseat;       // B4: both admirals human, pass the headset
+        public static int ActiveSide;     // whose half-turn the table is showing (0 or 1)
 
         /// <summary>True when the given scene should spawn a mission (accepted, not yet finished).</summary>
         public static bool MissionActiveFor(string sceneName)
@@ -153,6 +155,7 @@ namespace Ziptide.Multiplayer.Conquest
             return "";
         }
 
-        public static void Clear() { State = null; Pending = null; ReturnScene = ""; }
+        public static void Clear()
+        { State = null; Pending = null; ReturnScene = ""; Hotseat = false; ActiveSide = 0; }
     }
 }

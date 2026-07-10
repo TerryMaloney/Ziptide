@@ -149,6 +149,14 @@ Do these in order after pulling. Each generates committable assets. *(This mirro
   planet? Feel notes: mote density (96 at 0.8 intensity)/size (6cm)/drift speed, haze band height +
   strength, glow size (1.9× body), whether the amber ground-light is too strong. This is the gut-check
   gate before the same treatment rolls out to the other 11 worlds.
+- [ ] **NEW (Tidefront B4, 2026-07-10) — HOTSEAT:** grab a friend (or play both sides). At the war
+  table, tap the teal **HOTSEAT** tile (`ZIPTIDE: WARTABLE_HOTSEAT`) — now END TURN doesn't run the
+  AI: it says "PASS THE HEADSET — RIVAL (RED) ADMIRAL" and the whole table flips perspective
+  (`WARTABLE_HANDOVER`): the fog re-fogs to what RED knows, the fleet rack re-deals RED's tokens,
+  builds/strikes/missions all act for RED. A full round = both admirals move, then production. The
+  mode survives quitting mid-war (rides the same save). NEW WAR keeps hotseat on for the rematch;
+  toggling HOTSEAT off hands control back to the AI. Feel notes: is the handover card clear enough,
+  should the pass moment black out the view for fairness, per-side fog surprise factor.
 - [ ] **NEW (abilities sprint A4.5, 2026-07-09) — AUGMENTS:** no menu step (the six gems author at
   build; the Sandbox regenerates with an **augment rack** by A: Grab). **Headset:** select a gem with
   the ray to EQUIP (`ZIPTIDE: AUGMENT_EQUIP`; one active + one passive — re-selecting swaps). With an

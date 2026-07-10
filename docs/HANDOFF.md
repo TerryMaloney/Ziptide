@@ -28,6 +28,25 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-10 (tf4) - T-Dog/Fable 5 (Tidefront lane): 🎭 B4 HOTSEAT — two admirals, one headset
+- **Why:** the last unclaimed row in my lane, and the spec's own build order (B1 sim → B2 table →
+  B3 missions → **B4 hotseat** → Photon).
+- **Did:** HOTSEAT tile on the war table. When on: END TURN doesn't run the AI — it's the HANDOVER
+  ("PASS THE HEADSET — RIVAL (RED) ADMIRAL"): the table flips perspective through a single
+  `_activeSide` (every build/attack/odds/fog/rack read goes through it; solo keeps it 0 so the old
+  path is byte-identical), fog re-fogs to the new side's knowledge, the rack re-deals their fleet.
+  Full round = both halves then `EndTurn()`. Mode + active side ride `ConquestSession` (travel-safe)
+  AND the save — a new tolerant `H=` record (`ConquestSave.ReadMode`; unknown keys were already
+  skipped, so old saves read solo and old parsers never see it). NEW WAR keeps hotseat for the
+  rematch; toggling off mid-game hands red back to the AI safely. B3 missions work for whichever
+  admiral attacks (defense offers stay solo-only v1 — pass-the-headset mid-battle is a decision, not
+  an accident). Tests: the H-record round-trip incl. clamping. Diag: `WARTABLE_HOTSEAT/HANDOVER`.
+- **📣 Heads-up:** the Tidefront pillar is now sim→table→missions→save→fog→rack→hotseat COMPLETE
+  through the spec's pre-Photon scope. Remaining seams: Photon live sync (gated on A6) · the
+  space-flight defender mission (3.1 ship weapons EXIST now — Reasonbox's seam, or claimable with a
+  loud HANDOFF if their flight lane stays parked in gardens).
+- **Commits:** this push.
+
 ### 2026-07-10 (sky1) - T-Dog/Fable 5: 🌅 SKYSCAPE v1 — the air is real (W005 signature proof)
 - **Why:** Terry: "pick something that needs to get done… make something cool." The skyscape is HIS
   stated reason for making the game, `SKYSCAPE_DESIGN.md` said "nothing built yet," nobody had claimed
