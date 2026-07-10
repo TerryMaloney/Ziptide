@@ -71,6 +71,13 @@ namespace Ziptide.Gameplay
         public bool TryEmitPort(int x, int z, string resourceId)
             => _lattice != null && _lattice.TryEmit(x, z, resourceId);
 
+        /// <summary>The live sim — read-only consumers (4.1h conductor route tracing). Null before Start.</summary>
+        public BeltLattice Lattice => _lattice;
+
+        /// <summary>Interpolated grid coordinates → world (cell CENTER is x.0, the BeltRoute convention).</summary>
+        public Vector3 GridToWorld(float gx, float gz)
+            => transform.TransformPoint(new Vector3((gx + 0.5f) * cellSize, 0f, (gz + 0.5f) * cellSize));
+
         private void Start()
         {
             RestoreFromProfile(); // 4.1f: cells becomes authored ⊕ the player's saved overlay

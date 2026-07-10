@@ -173,6 +173,7 @@ namespace Ziptide.Editor.Patching
                 // 4.1f retrofit: floors patched before persistence existed get their save identity.
                 var b = existing.GetComponent<Ziptide.Gameplay.BeltFloorRuntime>();
                 if (b != null && string.IsNullOrEmpty(b.floorId)) b.floorId = "sandbox_belt";
+                if (b != null) EnsureConductor(b);
                 return;
             }
             var floor = new GameObject("SandboxBeltFloor");
@@ -217,6 +218,21 @@ namespace Ziptide.Editor.Patching
                 disp.transform.position = new Vector3(-15.2f, 0f, -10.4f);
                 disp.AddComponent<Ziptide.Gameplay.BeltDispenserRuntime>();
             }
+
+            EnsureConductor(belt);
+        }
+
+        /// <summary>4.1h: the conductor post beside the line's start — grab the teal lantern and
+        /// RIDE the line at the ore's pace (release anywhere to step off; per-cell haptic ticks).
+        /// Route re-traces at grab time, so hand-placed extensions ride too. Idempotent by name.</summary>
+        private static void EnsureConductor(Ziptide.Gameplay.BeltFloorRuntime belt)
+        {
+            if (GameObject.Find("SandboxBeltConductor") != null) return;
+            var go = new GameObject("SandboxBeltConductor");
+            // Just south of the port cell (0,1) — beside the mine, facing down the line.
+            go.transform.position = belt.transform.position + new Vector3(0.4f, 0f, 0.4f);
+            var conductor = go.AddComponent<Ziptide.Gameplay.BeltConductorRuntime>();
+            conductor.floor = belt; conductor.startX = 0; conductor.startZ = 1;
         }
 
         /// <summary>Hardwiring 1.4b: the traversal test corner by the Locomotion zone — a climbable
