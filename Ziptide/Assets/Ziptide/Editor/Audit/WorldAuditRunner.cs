@@ -104,6 +104,7 @@ namespace Ziptide.Editor.Audit
                     WorldContentAuditRules.Run(sceneReport); // nothing-ships-invisible gate (Test Day 1)
                     PerfBudgetAuditRules.Run(sceneReport);   // FORGE II E5.2 — Quest perf budgets
                     WorldReachabilityAuditRules.Run(sceneReport); // WORLDS #13 — POI reachability (WARN-only)
+                    AutomationAuditRules.Run(sceneReport);   // HARDWIRING 4.1g — belt budgets + save identity
                 }
 
                 report.scenes.Add(sceneReport);
