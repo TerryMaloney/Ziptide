@@ -28,10 +28,19 @@ core but is **not wired to any walkable interior**.
   `InteriorMeshCore` (walls-from-plan rasterize+merge, doorway entry-carve, 5 tests) +
   `InteriorBuilder` (wall cubes w/ colliders, one warm light panel per room; the shell's storey slabs
   are floor+ceiling). Deterministic per lot; renderer-budget gate audits the cost.
-- [ ] **Portal / occlusion system** — only the current room draws (needed before interiors go dense).
+- [x] **Portal / occlusion system** — ✅ SHIPPED (1.3e, 2026-07-10): pure `InteriorVisibilityCore`
+  (in a room → it + corridor-shared neighbors; corridor/outside → everything) + per-room
+  `Room_<i>` groups from `InteriorFurnisher`, culled by `InteriorCullRuntime` on the 1.3d cadence
+  from rects `InteriorBuilder` serializes at patch time. Old bakes fall back to proximity-only.
+- [x] **Furnish pass** — ✅ SHIPPED (1.3e): `RoomFurnishCore` (pure: roles from the plan's shape —
+  foyer/common/quarters/workshop/storage — wall-hugging placement, corridor-mouth clearance,
+  walk lane, floor budget, bare-room guarantee; 10 tests) + `InteriorFurnisher` (16 multi-part
+  primitive kinds, one root collider per item). Picasso upgrade path: swap kinds for kit modules.
 - [ ] **Door + threshold system** — VR grab/push doors; big-building additive sub-scenes.
-- [ ] **Interior POI pass** — loot, machines, garden plots, NPCs, story nodes placed per room.
-- [ ] Interior audit rule (reachable, spawn-safe, budget) — extend the door-blocked gate inward.
+- [ ] **Interior POI pass beyond caches** — machines, garden plots, NPCs, story nodes per room
+  (salvage caches shipped 1.3c; room ROLES from `RoomFurnishCore` are the natural placement hook).
+- [x] Interior audit rule — ✅ SHIPPED (1.3e): `InteriorAuditRules` (disconnected-plan + bare-room
+  blockers; corridor-blocked / portal-half-armed / renderer-budget warns; pre-1.3e bakes exempt).
 
 ## Consistency-spine hooks
 Same Forge kits + `ArtModuleRegistry` + PerfBudget as exteriors; interior sub-scenes are world scenes
