@@ -26,12 +26,18 @@ namespace Ziptide.Editor.Patching
             public double GrowSeconds;
             public double FreshOverride, OverripeOverride; // 0 = garden defaults
             public (string resourceId, double amount)[] Yield;
+            public string[] TendTools; // tool ids that may tend this plant (4.2c hands layer)
         }
+
+        // 4.2c: every plant answers to the watering can; longer crops also reward pruning.
+        private static readonly string[] TendWater = { "watering_can" };
+        private static readonly string[] TendWaterPrune = { "watering_can", "prune_snips" };
 
         private static PlantSpec Spec(string id, string display, string biome, double grow,
             (string, double)[] yield, double fresh = 0, double overripe = 0)
             => new PlantSpec { Id = id, Display = display, Biome = biome, GrowSeconds = grow,
-                Yield = yield, FreshOverride = fresh, OverripeOverride = overripe };
+                Yield = yield, FreshOverride = fresh, OverripeOverride = overripe,
+                TendTools = grow > 600 ? TendWaterPrune : TendWater };
 
         /// <summary>The whole catalog as pure data — tests audit THIS; EnsureAuthored bakes it.</summary>
         public static PlantSpec[] PlantSpecs() => new[]
@@ -116,6 +122,8 @@ namespace Ziptide.Editor.Patching
             foreach (var spec in PlantSpecs())
                 made += Plant(spec);
             made += Gloves();
+            made += Tool("watering_can", "watering can", ToolFunction.Water, 1, 1f);
+            made += Tool("prune_snips", "prune snips", ToolFunction.Prune, 1, 1f);
             if (made > 0) { AssetDatabase.SaveAssets(); AssetDatabase.Refresh(); }
             return made;
         }
@@ -132,10 +140,27 @@ namespace Ziptide.Editor.Patching
             p.freshWindowSecondsOverride = spec.FreshOverride;
             p.overripeAfterSecondsOverride = spec.OverripeOverride;
             p.harvestWith = ToolFunction.Harvest;
+            if (spec.TendTools != null)
+                p.tendToolIds.AddRange(spec.TendTools);
             foreach (var (resourceId, amount) in spec.Yield)
                 p.harvestYield.Add(new ResourceCost { resourceId = resourceId, amount = amount });
             AssetDatabase.CreateAsset(p, path);
             Debug.Log("[Ziptide] GardenAuthor authored plant " + path);
+            return 1;
+        }
+
+        private static int Tool(string id, string display, ToolFunction function, int tier, float power)
+        {
+            string path = Folder + "/" + id + ".asset";
+            if (AssetDatabase.LoadAssetAtPath<ToolDefinition>(path) != null) return 0;
+            var t = ScriptableObject.CreateInstance<ToolDefinition>();
+            t.id = id;
+            t.displayName = display;
+            t.function = function;
+            t.tier = tier;
+            t.power = power;
+            AssetDatabase.CreateAsset(t, path);
+            Debug.Log("[Ziptide] GardenAuthor authored tool " + path);
             return 1;
         }
 

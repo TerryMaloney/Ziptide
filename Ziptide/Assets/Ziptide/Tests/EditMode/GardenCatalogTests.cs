@@ -75,6 +75,16 @@ namespace Ziptide.Tests.EditMode
         }
 
         [Test]
+        public void EveryPlant_AnswersToTheWateringCan()
+        {
+            foreach (var s in GardenAuthor.PlantSpecs())
+            {
+                Assert.IsTrue(s.TendTools != null && System.Array.IndexOf(s.TendTools, "watering_can") >= 0,
+                    s.Id + " must be tendable by the watering can — the hands-on loop covers the whole catalog");
+            }
+        }
+
+        [Test]
         public void Biomes_AreActuallyCovered()
         {
             var biomes = new HashSet<string>();

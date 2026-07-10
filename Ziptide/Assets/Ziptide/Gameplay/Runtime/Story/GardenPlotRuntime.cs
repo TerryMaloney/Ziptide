@@ -47,6 +47,7 @@ namespace Ziptide.Gameplay
             if (_plant == null)
                 Debug.LogWarning("ZIPTIDE: GARDEN_PLANT_DEF_MISSING id=" + _def.plantId);
             Build();
+            WateringCanRuntime.EnsureNear(transform.position); // 4.2c: one can per garden scene
         }
 
         private void Build()
@@ -93,6 +94,27 @@ namespace Ziptide.Gameplay
         }
 
         private static long Now() => System.DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+
+        /// <summary>4.2c hands layer: a physical tool (watering can, prune snips) tends this plot.
+        /// Wraps GardenService.Tend (once per tool, gated by the plant's tendToolIds) and refreshes
+        /// the readout. Logs GARDEN_TEND / GARDEN_TEND_BLOCKED.</summary>
+        public TendStatus TryTend(ToolDefinition tool)
+        {
+            var plot = Plot();
+            if (plot == null || _plant == null) return TendStatus.InvalidArgs;
+            var status = GardenService.Tend(plot, _plant, tool, Now());
+            if (status == TendStatus.Success)
+            {
+                Debug.Log("ZIPTIDE: GARDEN_TEND plot=" + _def.id + " tool=" + (tool != null ? tool.id : "?") +
+                          " yieldMult=" + plot.yieldMultiplier.ToString("F2"));
+                _refreshTimer = 0f; // readout updates next frame
+            }
+            else if (status != TendStatus.AlreadyTended)
+            {
+                Debug.Log("ZIPTIDE: GARDEN_TEND_BLOCKED plot=" + _def.id + " reason=" + status);
+            }
+            return status;
+        }
 
         private void OnSelected()
         {

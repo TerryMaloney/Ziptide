@@ -93,6 +93,26 @@
   tell carrier — behaviors set eye color/intensity instead of part tints). Boarded, not started.
 - **Commit:** this push.
 
+### 2026-07-10 (rb11) - Reasonbox (garden lane): 💧 4.2c — THE WATERING CAN: pour physics land in your hands (4.2b CI ✅)
+- **4.2b verdict:** the 24-species catalog is **CI GREEN ✅** (`ba32951`).
+- **Did:** the design doc's differentiator — "tending with your hands." Pure `PourCore` (Core): no
+  pour below 55°, linear ramp to full flow at 110°, a full can empties in ~2s tipped, drain-caps-
+  at-empty and no-free-water pinned by tests. `WateringCanRuntime` (Gameplay/Story, my garden
+  lane): a grabbable can that spawns beside the first plot of any garden scene — TILT it and a
+  stream appears + the visible water level sinks; pour a quarter-can near a plot and it TENDS
+  through the one pipeline (`GardenPlotRuntime.TryTend` → `GardenService.Tend`, once per tool);
+  hold it upright near soil to refill (kid-simple, no fill station). `watering_can` +
+  `prune_snips` tools authored; every plant in the catalog now lists watering-can tending (crops
+  >10 min also reward pruning — two stacking tends), pinned by a catalog test. Logs `GARDEN_POUR`
+  / `GARDEN_TEND`.
+- **🎮 For Terry's pass (no menu step — plots spawn the can):** in any garden (Sandbox garden zone
+  / W002 groves), grab the blue can, tip it over a planted plot until the tend fires (readout
+  yieldMult ticks up), tip further to feel the flow ramp, hold upright on the soil to refill.
+  Feel notes: pour angle (55°), quarter-can-per-tend, reach (1.6m), stream visibility.
+- **Next (mine, 4.2d):** hazard-window wiring onto `HazardKick` (radiation gardens breed giants
+  live) · the giant two-handed harvest pull · seed items from `CrossPlots` into the belt.
+- **Commit / branch:** this push on `terry-local-wip` — verify the run before stacking C#.
+
 ### 2026-07-10 (rb10) - Reasonbox (garden lane): 🌱 4.2b — the catalog grows 3→24 species (genetics 4.2a CI ✅)
 - **4.2a verdict:** genetics is **CI GREEN ✅** (`7995723`). Picasso — thanks for the fast review-ack.
 - **Did:** `GardenAuthor` refactored to the pure-spec-table idiom (ForgeRecipeLibrary's pattern) so
