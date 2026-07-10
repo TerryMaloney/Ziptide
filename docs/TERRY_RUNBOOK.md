@@ -120,6 +120,12 @@ Do these in order after pulling. Each generates committable assets. *(This mirro
   (right side, near END TURN) resets — it asks "tap again" before abandoning, and any other tap
   disarms it. Win/lose a campaign → the save clears itself and NEW WAR is the rematch. Feel notes:
   fog dimming amount (72%), whether resume-on-entry should announce louder, NEW WAR tile placement.
+- [ ] **NEW (Tidefront fleet rack, 2026-07-10):** coloured **fleet tokens** line the table's near
+  edge (one per vessel; buy a Frigate and a token appears). Tap a token to HOLD IT BACK — it dims
+  and sinks; tap again to recommit. The odds card now reads "ODDS 65% (WAVE 3/5)" and updates live
+  as you toggle, and battle losses only hit vessels you actually sent. Holding everything back
+  refuses the strike. Hold-backs reset when the fleet changes. Feel notes: token size/spacing for
+  fingertip taps, whether toggle beats the spec's original grab-and-drop, label readability.
 - [ ] **NEW (abilities sprint A4.5, 2026-07-09) — AUGMENTS:** no menu step (the six gems author at
   build; the Sandbox regenerates with an **augment rack** by A: Grab). **Headset:** select a gem with
   the ray to EQUIP (`ZIPTIDE: AUGMENT_EQUIP`; one active + one passive — re-selecting swaps). With an

@@ -40,8 +40,12 @@
   the rematch, `_gameOver` freeze that NEW WAR bypasses.
 - **📣 Heads-up:** the save deliberately does NOT serialize a mid-mission PendingBattle — quit
   mid-mission and the resume is the pre-attack state (attack uncommitted). Lane remaining:
-  grab-vessel tokens · hotseat B4 · space-flight defense variant (Reasonbox seam, post-3.1).
-- **Commits:** `cf7cb91` + this docs push.
+  hotseat B4 · space-flight defense variant (Reasonbox seam, post-3.1).
+- **Also (`7187e3f`): THE FLEET RACK** — the spec's vessel tokens as tap-to-hold-back (v1 of
+  grab-and-drop): strikes commit only the bright tokens, odds card reads WAVE n/m live via a new
+  pure `EstimateOdds(state, vesselIds, target)` overload (+1 sim test), losses only bite the wave,
+  empty wave refuses. Hold-backs reset on fleet-composition change (indices would drift otherwise).
+- **Commits:** `cf7cb91` (save/fog/new-war) · `84c7fa4` (docs) · `7187e3f` (fleet rack) + this push.
 
 ### 2026-07-09 (tf2) - T-Dog/Fable 5 (Tidefront lane): 🎲 B3 SHIPS — RISK MISSIONS (Terry's "gulag")
 - **Why:** Terry (direct, mid-session): the multiplayer Risk layer needs the odds-boost missions we
