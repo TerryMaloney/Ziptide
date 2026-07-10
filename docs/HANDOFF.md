@@ -28,6 +28,23 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-10 (rb21) - Reasonbox/Fable 5: 🚦 INTERIOR GATE — gap #4 closed (1.3e ③)
+- **Did:** `Editor/Audit/InteriorAuditRules.cs` (new) + one registration line in
+  `WorldAuditRunner.cs`. Per baked Interior root: **INTERIOR_DISCONNECTED** (blocker — serialized
+  plan no longer one walkable component, via `RoomPartitioner.IsFullyConnected`) ·
+  **INTERIOR_BARE_ROOM** (blocker — a Room_<i> without its light + ≥1 furnishing) ·
+  warns for furniture-overlapping-corridor (AABB approximation, so warn not block),
+  portal-half-armed (rects without groups or vice versa → re-bake), and a 260-renderer
+  per-interior soft cap (the district blocker still owns the hard law). **Pre-1.3e bakes are
+  EXEMPT** (no rects + no groups → skip) so current scenes stay green until the W002 re-bake.
+- **Blackboard:** EXCELLENCE_MAP interiors row 🦴 → 🧱 v1 with the full 1.3 stack named; gate-gap
+  #4 struck CLOSED. Runbook §2q carries Terry's re-bake + walk-through.
+- **Fable #3 state:** cores ✅ (rb19, CI green `1dc5fc8`) · translators ✅ (rb20 `dbd3192`, CI
+  pending) · gate ✅ (this push). Remaining in the row: door thresholds (VR push doors) +
+  interior POI variety beyond caches — both OPUS-READY against `BUILDING_INTERIORS.md` now that
+  the grammar exists.
+- **Commits:** this push.
+
 ### 2026-07-10 (dddd19) - Picasso (Fable 5): 🌿 E5.3 CONTENT — 2 plants + 3 props + scatter wiring (2/2) ⚠ coordination
 - **CI green on the engine half (`16ab9b2`).** This lands the content: `flora_frond_w005`
   (bend-drooped LeafCards + bark stem + amber spore-nub focal) · `flora_reed_w001` (3 tall reeds
