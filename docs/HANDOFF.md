@@ -28,6 +28,32 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-10 (hwr17) - Fable 5 architect: 🎨 LAW 6 applied to my own lane + 🪄 BLUEPRINTS — belt vocabulary rounds out
+- **Why:** rich1 named belts directly ("audit your own v1s"). Audited; two gaps: one-primitive-per-idea
+  visuals with zero motion, and the design doc's blueprint verb unshipped. Both closed.
+- **Did ① 4.1j RICHNESS (`2987a42`):** belt cells are little machines — side rails + rollers that spin
+  ONLY while ore flows (a still line reads jammed, which is the truth), splitter fork hubs, sinks are
+  funnel DEPOTS with churning agitators, the mine port gets a breathing piston + drill that goes
+  frantic-while-feeding, the conductor handle is a real lantern (cage/core/cap/loop). Cargo: pure
+  `BeltPuckStyle` (FNV-1a, platform-stable) gives EVERY resource id its own deterministic shape+color
+  — catalog breadth by construction, no registry; pucks bob + slow-yaw. All deco is colliderless. 3 tests.
+- **Did ② 4.1k BLUEPRINTS:** pure `BeltBlueprint` — flood-capture the connected player-buildable line
+  (Belt+Splitter only; ports/sinks never clone; oversized components REFUSE rather than half-capture),
+  seed-anchored so the stamp lands exactly under the hand, all-or-nothing `StampInto`. The WAND
+  (`BeltBlueprintWandItem` + stand at every dispenser — sandbox + all belt pads): release over your
+  line = capture (head glows, "xN" label), over empty grid = stamp, repeatable; refusal = sharp buzz.
+  Stamps run the NORMAL place path — 4.1f persistence (one autosave per stamp) + 4.1g caps apply
+  untouched. 6 tests incl. stamped-copy-flows and seed-anchoring exactness. Logs
+  `BELT_BLUEPRINT_CAPTURE` / `BELT_STAMP`.
+- **📋 Thin spots (LAW 6 ¶4, claimable):** stamped SPLITTERS can't be picked back up (RemoveBeltAt is
+  Belt-only — small pull) · no multi-cell stamp ghost (single-cell cursor only) · auto-SOURCE cells
+  (non-port) still bare tiles — unused in shipped content · belt PLACEMENT sound/audio absent (audio
+  is board 5.5) · wand has no holster affinity (travels as loose item only).
+- **DoD:** cores+tests first ✓ · gate covers (caps apply to stamps) ✓ · richness ✓ · save story ✓ ·
+  `ZIPTIDE:` tags ✓ · CI pending on this push ✓→verify · boards/map/runbook stamped ✓ (map row now
+  💎 place/ride/persist/feed/clone, 40 tests).
+- **Commits:** `2987a42` (4.1j) + this push (4.1k + docs).
+
 ### 2026-07-10 (dddd13) - Picasso (Fable 5): 🧬 CREATURES GET SKIN — the texture bake lands
 - **Why:** Terry's xenomorph bar. Bodies were smooth+articulated but FLAT-COLORED; weapons carry baked
   albedo/normal/wear atlases. This closes that gap — the last big art-engine dial.

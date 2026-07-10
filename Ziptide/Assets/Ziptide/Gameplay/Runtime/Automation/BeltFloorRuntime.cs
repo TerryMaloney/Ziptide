@@ -156,7 +156,7 @@ namespace Ziptide.Gameplay
                       " removed=" + state.removedAuthored.Count);
         }
 
-        private void PersistPlace(BeltCellSpec spec)
+        private void PersistPlace(BeltCellSpec spec, bool autosave = true)
         {
             var state = SaveState(createIfMissing: true);
             if (state == null) return;
@@ -165,7 +165,36 @@ namespace Ziptide.Gameplay
                 x = spec.x, z = spec.z, kind = (int)spec.kind, dir = (int)spec.dir,
                 resourceId = spec.resourceId ?? ""
             });
-            SaveSystem.AutosaveNow("belt_edit");
+            if (autosave) SaveSystem.AutosaveNow("belt_edit");
+        }
+
+        // ── Blueprints (HARDWIRING 4.1k — capture a line, stamp it again) ───────────────────────
+
+        /// <summary>Whether the blueprint fits with its seed cell anchored at (x,z).</summary>
+        public bool CanStampBlueprint(BeltBlueprint bp, int anchorX, int anchorZ)
+            => _lattice != null && bp != null
+               && bp.CanStampAt(_lattice, anchorX - bp.SeedDx, anchorZ - bp.SeedDz);
+
+        /// <summary>Stamp a captured line with its seed anchored at (x,z): lattice + visuals +
+        /// persistence (one autosave for the whole stamp), all-or-nothing. Returns cells placed.</summary>
+        public int StampBlueprint(BeltBlueprint bp, int anchorX, int anchorZ)
+        {
+            if (_lattice == null || bp == null) return 0;
+            int ox = anchorX - bp.SeedDx, oz = anchorZ - bp.SeedDz;
+            var placed = bp.StampInto(_lattice, ox, oz); // Dx/Dz carry WORLD grid coords here
+            foreach (var c in placed)
+            {
+                var spec = new BeltCellSpec { x = c.Dx, z = c.Dz, kind = c.Kind, dir = c.Dir };
+                cells.Add(spec);
+                BuildCellVisual(spec);
+                PersistPlace(spec, autosave: false);
+            }
+            if (placed.Count > 0)
+            {
+                SaveSystem.AutosaveNow("belt_stamp");
+                Debug.Log("ZIPTIDE: BELT_STAMP cells=" + placed.Count + " origin=" + ox + "," + oz);
+            }
+            return placed.Count;
         }
 
         private void PersistRemove(int x, int z)

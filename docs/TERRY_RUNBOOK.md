@@ -542,6 +542,16 @@ Nothing to run in Unity — the patchers do it all at build; these are headset f
   line persists. Every future world with a mine gets one of these automatically.
 - [ ] *(CI, not headset)* the world audit gained belt gates (4.1g): grid/cell budgets + authoring-typo
   blockers + floorId integrity. Nothing to do — just know over-budget belt content now fails the build.
+- [ ] **RICHNESS PASS (4.1j, your Law-6 call) + THE BLUEPRINT WAND (4.1k) — same build, same corner:**
+  the line is MACHINERY now — rails + rollers that spin only while ore moves, splitter fork hubs, the
+  sink is a funnel depot with a churning agitator, the mine rig's drill goes frantic while feeding
+  (lazy while idle) with a breathing piston, and every resource rides as its own shape+color (bobbing,
+  slowly turning). Feel notes: roller spin speed (240°/s), puck bob (1.2cm), do the depot funnels read?
+  Then the **wand on the small stand by the dispenser**: hold it over YOUR line and release → the head
+  glows + shows "xN" (`BELT_BLUEPRINT_CAPTURE`); hold over empty grid and release → the whole line
+  STAMPS there (`BELT_STAMP`; heavy click = landed, sharp buzz = doesn't fit — it never half-lands).
+  Stamp as many copies as you like; capture again to swap. Stamped belts persist like hand-placed
+  ones. Feel notes: capture/stamp haptics, the xN label size, wand grip size.
 
 ## 3. The two open judgment calls (yours)
 - **"Can you run in Toxic City?"** — was it the input bug (now fixed) or actual walls/narrow streets? If

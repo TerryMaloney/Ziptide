@@ -76,6 +76,11 @@ namespace Ziptide.Gameplay
                 disp.transform.SetParent(go.transform);
                 disp.transform.position = floor.GridToWorld(-1.2f, floor.depth - 0.5f);
                 disp.AddComponent<BeltDispenserRuntime>();
+                // 4.1k: the blueprint wand stands beside every dispenser — build once, clone it.
+                var stand = new GameObject("BeltPadWandStand_" + def.id);
+                stand.transform.SetParent(go.transform);
+                stand.transform.position = floor.GridToWorld(-1.2f, floor.depth - 1.5f);
+                stand.AddComponent<BeltWandStandRuntime>();
             }
             if (def.conductor)
             {

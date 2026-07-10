@@ -173,7 +173,7 @@ namespace Ziptide.Editor.Patching
                 // 4.1f retrofit: floors patched before persistence existed get their save identity.
                 var b = existing.GetComponent<Ziptide.Gameplay.BeltFloorRuntime>();
                 if (b != null && string.IsNullOrEmpty(b.floorId)) b.floorId = "sandbox_belt";
-                if (b != null) EnsureConductor(b);
+                if (b != null) { EnsureConductor(b); EnsureWandStand(); }
                 return;
             }
             var floor = new GameObject("SandboxBeltFloor");
@@ -220,6 +220,17 @@ namespace Ziptide.Editor.Patching
             }
 
             EnsureConductor(belt);
+            EnsureWandStand();
+        }
+
+        /// <summary>4.1k: the blueprint wand's stand beside the dispenser — copy a line you built
+        /// (release the wand over it), stamp it on empty grid. Idempotent by name.</summary>
+        private static void EnsureWandStand()
+        {
+            if (GameObject.Find("SandboxBeltWandStand") != null) return;
+            var stand = new GameObject("SandboxBeltWandStand");
+            stand.transform.position = new Vector3(-15.2f, 0f, -9.6f);
+            stand.AddComponent<Ziptide.Gameplay.BeltWandStandRuntime>();
         }
 
         /// <summary>4.1h: the conductor post beside the line's start — grab the teal lantern and
