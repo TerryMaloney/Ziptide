@@ -132,6 +132,28 @@ namespace Ziptide.Tests.EditMode
         }
 
         [Test]
+        public void GateGap2_SignatureRubric_HoldsForEveryAuthoredVista()
+        {
+            // EXCELLENCE_MAP gate-gap #2, closed: the SKYSCAPE_DESIGN §5 rubric as a gate. Any vista
+            // that claims the Signature tier (atmosphere enabled) must actually deliver it — air that
+            // does something, and a sky whose colour reaches the ground (pillar 4). A future model
+            // can't flip `atmosphere.enabled` on a world and ship a hollow signature.
+            int signatures = 0;
+            foreach (var spec in Ziptide.Editor.Patching.SkyVistaLibrary.Specs())
+            {
+                var v = spec.Value();
+                if (v.atmosphere == null || !v.atmosphere.enabled) continue;
+                signatures++;
+                var derived = SkyAtmosphere.ForHazard(v.atmosphere.hazardTag, v.atmosphere.intensity);
+                Assert.IsTrue(derived.HazeEnabled || derived.MoteCount > 0,
+                    spec.Key + ": Signature tier claimed but the atmosphere is empty (bad hazardTag or zero intensity)");
+                Assert.IsTrue(v.directionalLightIntensity > 0f || v.overrideAmbient,
+                    spec.Key + ": pillar 4 — a Signature sky's colour must reach the ground (light coupling unset)");
+            }
+            Assert.GreaterOrEqual(signatures, 1, "at least one Signature sky exists (W005)");
+        }
+
+        [Test]
         public void Glitch_Steps_WhileSteadyFlows()
         {
             var pattern = SkyAtmosphere.ForHazard("pattern", 1f);

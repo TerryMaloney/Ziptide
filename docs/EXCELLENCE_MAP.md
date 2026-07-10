@@ -35,7 +35,7 @@ noted; EditMode tests are gates too. *(Last full audit of this table: 2026-07-10
 | Buildings & city | 🧱 v1 (grammar/WFC, kits registering) | Biome→kit/palette mapping for ≥4 kits; no primitive-box fallbacks in shipped worlds (`KIT_FULFILLED`) | `BuildingAuditRules`; registry fallback logs |
 | Interiors | 🦴 (RoomPartitioner core only) | Enterable buildings have partitioned, furnished, portal-culled interiors; windows read lit (interior mapping) | 🕳️ GAP — no interior audit yet (rooms reachable, furnished ≥N props, portal budget) |
 | Vertical/caverns/traversal | 💎 (zip/climb/lift/pad/grapple + 2 cave worlds) | Every traversal verb usable in ≥1 shipped world; multi-level reachability proven | `WorldReachabilityAuditRules` (one-way edges) + 5 core test suites |
-| Skyscape & atmosphere | 🧱 v1 (layers built, W005 signature, 11 worlds pending verdict) | THE PROSPECT BAR (`systems/SKYSCAPE_DESIGN.md` §5 rubric): something drifting, hazy horizon, occluded body, sky color reaches the ground; tiered (Signature/Standard/Interior) | `SkyVistaAuditRules` + SkyAtmosphere tests; 🕳️ GAP — no §5-rubric audit (drift+coupling present per tier) |
+| Skyscape & atmosphere | 🧱 v1 (layers built, W005 signature, 11 worlds pending verdict) | THE PROSPECT BAR (`systems/SKYSCAPE_DESIGN.md` §5 rubric): something drifting, hazy horizon, occluded body, sky color reaches the ground; tiered (Signature/Standard/Interior) | `SkyVistaAuditRules` + SkyAtmosphere tests + **§5 Signature-rubric gate (`GateGap2_SignatureRubric…` — gap #2 CLOSED 2026-07-10)** |
 | Travel & gates | 💎 (TravelCoordinator law, gated doors, THE ZIPTIDE) | One travel path, always; story-gated where flagged; no `SceneManager.LoadScene` in gameplay | Locked contract in `CLAUDE.md`; grep-able; travel tests |
 
 ## 2 · THE LIVING WORLD
@@ -107,8 +107,7 @@ Each 🕳️ above, as one board-row-sized task. Claiming one = add the audit/ch
 1. **Budget-utilization floor** (Forge `Validate()` WARN when a Signature-tier asset uses <30% of its
    class budget) — the direct enforcement of Terry's "10k budget, built with 1k" complaint. *(Picasso's
    file — coordinate.)*
-2. **Skyscape §5-rubric audit** — per-tier: Signature worlds must have drift + coupling + glow fields
-   set; Standard must have haze + coupling. Pure data check on the vista assets.
+2. ~~Skyscape §5-rubric audit~~ — **CLOSED 2026-07-10** (Signature tier gated in `SkyAtmosphereTests`; extend to Standard tier when the rollout lands).
 3. **Story-beat coverage** — every shipped world's storyboard beats present as jobs/lines (data check).
 4. **Interior audit** — rooms reachable + furnished floor (≥N registry props per room).
 5. **Board-staleness flag** — CI warning when a 🟡 row is untouched >7 days (parse the boards in a test).
