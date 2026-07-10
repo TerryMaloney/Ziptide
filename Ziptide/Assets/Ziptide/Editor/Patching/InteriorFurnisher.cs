@@ -1,6 +1,7 @@
 #if UNITY_EDITOR
 using UnityEngine;
 using Ziptide.Content;
+using Ziptide.Gameplay;
 
 namespace Ziptide.Editor.Patching
 {

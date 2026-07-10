@@ -314,6 +314,7 @@ namespace Ziptide.Editor.Patching
             d.qualityState = ForgeQualityState.Proxy;
             d.storyRole = "Patched salvage crate — the E5.3 dressing prop set.";
             d.storyRefs = new[] { "dressing_scatter" };
+            d.worldRuleRefs = new[] { "ToxicCity" };
             d.tokenRefs = new[] { "rusted_metal" };
             d.slotStyles = new[]
             {
@@ -407,6 +408,7 @@ namespace Ziptide.Editor.Patching
             d.qualityState = ForgeQualityState.Proxy;
             d.storyRole = "Dispatch console — dock/berth dressing, the E5.3 prop set.";
             d.storyRefs = new[] { "dressing_scatter" };
+            d.worldRuleRefs = new[] { "ToxicCity" };
             d.tokenRefs = new[] { "glow_teal" };
             d.slotStyles = new[]
             {

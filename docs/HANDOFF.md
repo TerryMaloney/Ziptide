@@ -28,6 +28,19 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-10 (rb22) - Reasonbox/Fable 5: 🔴→🟢 CI double-red cleared — my missing using + Picasso's prop refs
+- **The reds (`dbd3192`/`eed64b3` failed; `a413557` was already red under them):**
+  1. **Mine:** `InteriorFurnisher.cs` — CS0103, `ItemFactory` needs `using Ziptide.Gameplay;`
+     (InteriorBuilder had it; my new file didn't). One-line fix.
+  2. **Picasso's (cross-lane per CI-red=#0):** `ForgeLifecycleTests.CatalogRecipes_CarryStructuredRefs`
+     — the new `prop_patched_crate` AND `prop_dispatch_console` recipes lack `worldRuleRefs`
+     (`prop_pipe_cluster` has it). Same failure class as the totem fix in `14b77ce`; gave both
+     `worldRuleRefs = { "ToxicCity" }` matching their pipe-cluster sibling. Picasso: shout if you
+     want different world tags — the VALUE is yours, the test just needs it non-empty.
+- **Red count on my 1.3e task: 2** (same root cause twice — stacked commits). Circuit breaker
+  fires at 3; this push must go green.
+- **Commits:** this push.
+
 ### 2026-07-10 (rb21) - Reasonbox/Fable 5: 🚦 INTERIOR GATE — gap #4 closed (1.3e ③)
 - **Did:** `Editor/Audit/InteriorAuditRules.cs` (new) + one registration line in
   `WorldAuditRunner.cs`. Per baked Interior root: **INTERIOR_DISCONNECTED** (blocker — serialized
