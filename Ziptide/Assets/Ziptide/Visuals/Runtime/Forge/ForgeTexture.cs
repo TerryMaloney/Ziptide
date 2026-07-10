@@ -189,9 +189,45 @@ namespace Ziptide.Visuals
                     Color baseCol = SlotColor(recipe, tx.slot);
                     var spec = SlotStyle(recipe, tx.slot);
                     pixels[i] = SkyVistaTexture.DitherTo32(ComposeAlbedo(baseCol, spec, tx), x, y);
+                    if (spec.style == ForgeStyle.Leaf)
+                    {
+                        // E5.3: the Leaf style OWNS the alpha channel — the baked silhouette that
+                        // alpha-clip cuts into a foliage shape (dilation below carries it into the
+                        // gutter like every other channel).
+                        var px = pixels[i];
+                        px.a = (byte)Mathf.RoundToInt(255f * LeafAlpha01(tx.u, tx.v));
+                        pixels[i] = px;
+                    }
                 }
 
             DilatePixels(meta, size, pixels);
+        }
+
+        /// <summary>
+        /// E5.3 — the leaf silhouette in island space (both LeafCard planes map the full island):
+        /// a sine-profile blade, widest mid-height with a pointed tip at v=1, serrated margin from
+        /// the house fBm, and a thin stalk connecting the base. Soft ~2-texel edge so alpha-clip
+        /// mips stay clean. Pure and deterministic.
+        /// </summary>
+        public static float LeafAlpha01(float u, float v)
+        {
+            v = Mathf.Clamp01(v);
+            float du = Mathf.Abs(u - 0.5f);
+            float blade = 0.46f * Mathf.Sin(Mathf.Pow(v, 0.8f) * Mathf.PI);
+            blade *= 0.86f + 0.14f * SkyVistaTexture.Fbm(v * 16f, u * 3f, 131, 2);
+            float stem = v < 0.35f ? 0.035f : 0f;
+            float half = Mathf.Max(blade, stem);
+            return Mathf.Clamp01((half - du) / 0.015f);
+        }
+
+        /// <summary>True when any palette slot wears the Leaf style — the material must then
+        /// enable alpha-clip (the consumers: ForgeBaker + the photo booth's preview material).</summary>
+        public static bool HasLeafSlot(ForgeRecipeDefinition recipe)
+        {
+            if (recipe == null || recipe.slotStyles == null) return false;
+            foreach (var s in recipe.slotStyles)
+                if (s != null && s.style == ForgeStyle.Leaf) return true;
+            return false;
         }
 
         /// <summary>One texel's albedo — the layer stack from FORGE_II_QUALITY_LEAP §P1.</summary>

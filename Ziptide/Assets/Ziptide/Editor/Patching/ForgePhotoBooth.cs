@@ -240,6 +240,13 @@ namespace Ziptide.Editor.Patching
             m.SetTexture("_MetallicGlossMap", msa);
             m.SetFloat("_Smoothness", 1f); // the baked A channel is the truth — don't halve it
             m.EnableKeyword("_METALLICGLOSSMAP");
+            if (Ziptide.Visuals.ForgeTexture.HasLeafSlot(recipe))
+            {
+                // E5.3 flora: preview the same alpha-clip cutout the baked material ships with.
+                m.SetFloat("_AlphaClip", 1f);
+                m.SetFloat("_Cutoff", 0.5f);
+                m.EnableKeyword("_ALPHATEST_ON");
+            }
 
             float maxI = Ziptide.Visuals.ForgeTexture.MaxEmissiveIntensity(recipe);
             if (maxI > 0f)

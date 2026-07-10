@@ -27,7 +27,9 @@ namespace Ziptide.Visuals
         Frustum,        // size.x = BOTTOM diameter, size.z = TOP diameter (0 = a true cone), size.y = height
         Torus,          // size.x = major (ring) diameter, size.y = minor (tube) diameter; size.z unused (keep > 0)
         SweepSpline,    // tube swept along `spline` (2..4 local bezier pts); size.x = diameter; optional per-point radii via profile[i].x (meters, one per spline pt)
-        OrganicBlob     // full UV ellipsoid (size = extents); pair with the noise* modifiers for organic mass
+        OrganicBlob,    // full UV ellipsoid (size = extents); pair with the noise* modifiers for organic mass
+        // ── E5.3 flora ──
+        LeafCard        // two crossed vertical quads, double-sided, base at y=0 (size.x wide, size.y tall, size.z unused); pair with the Leaf style — its baked alpha cuts the foliage silhouette
     }
 
     /// <summary>One placed shape. Class (not struct) so field initializers give LLM-safe defaults.</summary>
@@ -251,8 +253,10 @@ namespace Ziptide.Visuals
                     if (palette != null && (p.paletteSlot < 0 || p.paletteSlot >= palette.Length))
                         issues.Add(tag + "paletteSlot " + p.paletteSlot + " out of range");
                     if (p.segments < 3 || p.segments > 32) issues.Add(tag + "segments out of 3..32");
-                    // Frustum's size.z is the TOP diameter and 0 is legal (a true cone).
-                    if (p.size.x <= 0f || p.size.y <= 0f || (p.size.z <= 0f && p.op != ForgeOp.Frustum))
+                    // Frustum's size.z is the TOP diameter and 0 is legal (a true cone);
+                    // LeafCard doesn't use size.z at all.
+                    if (p.size.x <= 0f || p.size.y <= 0f
+                        || (p.size.z <= 0f && p.op != ForgeOp.Frustum && p.op != ForgeOp.LeafCard))
                         issues.Add(tag + "non-positive size");
                     if (p.op == ForgeOp.Frustum && p.size.z < 0f)
                         issues.Add(tag + "Frustum top diameter (size.z) must be >= 0");

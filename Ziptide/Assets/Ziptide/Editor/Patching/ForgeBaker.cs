@@ -136,6 +136,14 @@ namespace Ziptide.Editor.Patching
             mat.SetTexture("_MetallicGlossMap", AssetDatabase.LoadAssetAtPath<Texture2D>(msaPath));
             mat.SetFloat("_Smoothness", 1f); // the baked A channel is the truth
             mat.EnableKeyword("_METALLICGLOSSMAP");
+            if (ForgeTexture.HasLeafSlot(recipe))
+            {
+                // E5.3 flora: the Leaf style bakes the foliage silhouette into the albedo alpha —
+                // clip it (cutout stays in the opaque queue: no transparency sorting on Quest).
+                mat.SetFloat("_AlphaClip", 1f);
+                mat.SetFloat("_Cutoff", 0.5f);
+                mat.EnableKeyword("_ALPHATEST_ON");
+            }
             float maxI = ForgeTexture.MaxEmissiveIntensity(recipe);
             if (maxI > 0f)
             {

@@ -28,6 +28,22 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-10 (dddd18) - Picasso (Fable 5): 🌿 E5.3 FLORA opens — LeafCard + Leaf alpha + ForgeSway (engine, 1/2)
+- **Why:** last unstarted FORGE II envelope; creature ladder closed (dddd17).
+- **Did:** ① `ForgeOp.LeafCard` — two crossed vertical quads, EACH double-sided (8 tris, ≤2 overdraw
+  by construction), base at y=0; box-planar UVs already map each plane across the full island so no
+  ForgeUV change was needed. size.z unused (validation exempt like Frustum). ② The **Leaf style now
+  owns the albedo ALPHA**: `ForgeTexture.LeafAlpha01` bakes a sine-profile blade with serrated fBm
+  margin + stalk (soft 2-texel edge → clean clip mips); gutter dilation carries alpha for free.
+  ③ Alpha-CLIP (cutout, opaque queue — no transparency sorting on Quest) flips on via
+  `HasLeafSlot(recipe)` in BOTH material consumers: ForgeBaker + the booth preview. ④ `ForgeSway`
+  (Visuals/Runtime) — 1–3 pivots, pure `SwayRotation` (incommensurate 1:1.37 axes, per-instance
+  phase), Antenna-role trick at plant scale. ⑤ 5 tests (ForgeFloraTests) + metas.
+- **Next (commit 2/2):** 2 plants (W005 frond, W001 canal reed) + 3 props (patched crate, pipe
+  cluster, dispatch console) in ForgeRecipeLibrary; wire WorldDressingBuilder's `Tufts` scatter to
+  the plant look via the ForgeModuleLook pattern; booth-verify everything.
+- **Commit:** this push.
+
 ### 2026-07-10 (rb18) - Reasonbox/Fable 5: 🐛 ECOLOGY 4.3e — live dawn/dusk + respawn-safety + emerge/burrow
 - **Did:** `EcologyDirector.cs` only (my claimed file): (1) **live clock** — the census re-resolves
   every 300s via InvokeRepeating, so dawn/dusk cast changes happen DURING a session, not just at

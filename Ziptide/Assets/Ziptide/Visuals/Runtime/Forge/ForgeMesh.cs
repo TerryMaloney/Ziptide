@@ -121,6 +121,8 @@ namespace Ziptide.Visuals
                 case ForgeOp.Torus: BuildTorus(g, part.size.x * 0.5f, part.size.y * 0.5f, part.segments); break;
                 case ForgeOp.SweepSpline: BuildSweepSpline(g, part); break;
                 case ForgeOp.OrganicBlob: BuildUvSphere(g, part.size * 0.5f, part.segments); break;
+                // E5.3 flora:
+                case ForgeOp.LeafCard: BuildLeafCard(g, part.size); break;
             }
             ApplyModifiers(g, part);
             return g;
@@ -228,6 +230,23 @@ namespace Ziptide.Visuals
             int i = g.vertices.Count;
             g.vertices.Add(a); g.vertices.Add(b); g.vertices.Add(c);
             g.triangles.Add(i); g.triangles.Add(i + 1); g.triangles.Add(i + 2);
+        }
+
+        /// <summary>
+        /// E5.3 FLORA — the crossed foliage card: two vertical quads at 90°, EACH emitted twice
+        /// with opposite winding (double-sided without a two-sided shader), base at y=0 so plants
+        /// grow from the ground. ≤2 overdraw layers by construction. Box-planar UVs map each plane
+        /// across the full island in (x-or-z, y) — both planes share the Leaf style's baked alpha
+        /// silhouette. 8 tris total.
+        /// </summary>
+        private static void BuildLeafCard(PartGeometry g, Vector3 size)
+        {
+            float hw = size.x * 0.5f, h = size.y;
+            // Plane A in XY (faces −Z, then +Z), plane B in ZY (faces +X, then −X).
+            Quad(g, new Vector3(-hw, 0f, 0f), new Vector3(-hw, h, 0f), new Vector3(hw, h, 0f), new Vector3(hw, 0f, 0f));
+            Quad(g, new Vector3(hw, 0f, 0f), new Vector3(hw, h, 0f), new Vector3(-hw, h, 0f), new Vector3(-hw, 0f, 0f));
+            Quad(g, new Vector3(0f, 0f, -hw), new Vector3(0f, h, -hw), new Vector3(0f, h, hw), new Vector3(0f, 0f, hw));
+            Quad(g, new Vector3(0f, 0f, hw), new Vector3(0f, h, hw), new Vector3(0f, h, -hw), new Vector3(0f, 0f, -hw));
         }
 
         private static void BuildBeveledBox(PartGeometry g, Vector3 size, float bevel)

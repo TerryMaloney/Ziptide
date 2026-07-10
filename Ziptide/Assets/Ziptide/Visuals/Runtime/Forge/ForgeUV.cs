@@ -101,6 +101,8 @@ namespace Ziptide.Visuals
                     return Mathf.PI * s.x * s.y; // ellipsoid-ish
                 case ForgeOp.Torus:
                     return Mathf.PI * Mathf.PI * s.x * s.y * 0.25f; // (2πR)(2πr)
+                case ForgeOp.LeafCard:
+                    return 2f * s.x * s.y; // two crossed quads (double-siding shares texels)
                 default: // box-family
                     return 2f * (s.x * s.y + s.y * s.z + s.x * s.z);
             }
