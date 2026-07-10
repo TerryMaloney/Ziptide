@@ -28,6 +28,14 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-10 (async1) - T-Dog/Fable 5: ⏳ async-travel DESIGN locked (Fable #4) — usage-limit handoff
+- `docs/design/ASYNC_TRAVEL.md`: LoadSceneAsync hidden inside THE ZIPTIDE crest (activation only at
+  progress≥0.9 AND full cover), 20s never-wedge timeout, ~15-line diff confined to TravelCoroutine,
+  report-only protocol spelled out. Terry pre-approved the direction; implementer still announces the
+  exact diff. Fable list now: #1 headset support (tomorrow) · #3 interiors translator (needs a full
+  fresh session) · #5 comfort presets design. I hit the usage window here — boards are clean, CI was
+  green at `e62c1a6`, this push is docs-only.
+
 ### 2026-07-10 (tut1) - T-Dog/Fable 5: 🎓 TUTORIAL DESIGN LOCKED — Fable endgame item #2 done
 - **Did:** `docs/design/ONBOARDING_TUTORIAL.md` — the full onboarding design: 5 laws (one verb per
   moment · diegetic only · hesitation-triggered so doers are never nagged · flag-per-beat ·
