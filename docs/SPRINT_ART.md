@@ -94,7 +94,7 @@ every envelope with a checkpoint. Takeover prompt: **"Read docs/project_art_plan
 
 | # | FORGE III envelope | Status |
 |---|------|--------|
-| F3.1 | THE LIGHT SCRIPT — light rig DERIVED from the vista (fog=horizon, ambient=gradient, key from the brightest body, elevation clamped 20–55°) | 🟡 **commit 1 landed:** `SkyLightScript.Derive` (pure) + `SkyVistaRig` applies derived values wherever the vista is silent (authored tie-ins override; layout-baked fog respected; `ZIPTIDE: LIGHT_SCRIPT` log) + 5 contract tests incl. full library sweep. Next: audit rule + runbook before/after |
+| F3.1 | THE LIGHT SCRIPT — light rig DERIVED from the vista (fog=horizon, ambient=gradient, key from the brightest body, elevation clamped 20–55°) | 🟡 **commit 1 landed:** `SkyLightScript.Derive` (pure) + `SkyVistaRig` applies derived values wherever the vista is silent (authored tie-ins override; layout-baked fog respected; `ZIPTIDE: LIGHT_SCRIPT` log) + 5 contract tests incl. full library sweep. **commit 2:** `LIGHT_SCRIPT_NO_SUN` warn in SkyVistaAuditRules + runbook 🎮 W002/W005 before/after. **F3.1 CODE-COMPLETE** (device verdict = Terry's runbook pass) |
 | F3.1b–F3.10 | practicals · grade · water · grounding+blob shadows · VFX · reactive · signage · macro · conformance ratchet · creature close-out | ⬜ per the plan |
 
 ## ▶ RESUMING? — current state & exact next action

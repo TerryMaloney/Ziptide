@@ -28,6 +28,14 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-10 (dddd23) - Picasso (Fable 5): 💡 F3.1 commit 2 — audit + runbook; F3.1 CODE-COMPLETE
+- CI green on commit 1 (`c17245f`). This adds `LIGHT_SCRIPT_NO_SUN` (warn, v1 graduation path like
+  the sun-count rule) to SkyVistaAuditRules and the 🎮 runbook before/after item (W002→W005, with
+  the authored-override escape hatch spelled out for Terry). **F3.1 is code-complete** — device
+  verdict rides Terry's runbook pass. Next open envelope: **F3.2 THE GRADE** (per-world ACES +
+  range-clamped color filter, derived defaults), then F3.1b practicals.
+- **Commit:** this push.
+
 ### 2026-07-10 (dddd22) - Picasso (Fable 5): 💡 F3.1 commit 1 — THE LIGHT SCRIPT lands + practicals envelope added
 - **Terry additions to FORGE III:** ① F3.1b **PRACTICALS** — lanterns/sconces/street lamps as
   fixture recipes + the three-part trick (emissive head · glow halo billboard · a light-POOL decal

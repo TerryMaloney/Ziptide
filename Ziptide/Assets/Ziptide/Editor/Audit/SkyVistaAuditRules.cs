@@ -55,6 +55,14 @@ namespace Ziptide.Editor.Audit
             if (directional > 1)
                 report.Warning("MULTIPLE_DIRECTIONAL_LIGHTS",
                     directional + " directional lights in scene — the Quest budget allows exactly 1.");
+            // FORGE III F3.1: the LIGHT SCRIPT derives the key light FROM the vista, but it can
+            // only drive a sun that exists — a covered scene with zero directional lights ships
+            // ambient-only (flat, unsculpted). WARN in v1 (same graduation path as the count rule).
+            if (directional == 0)
+                report.Warning("LIGHT_SCRIPT_NO_SUN",
+                    "Scene has a canon vista but no directional light — SkyLightScript has nothing "
+                    + "to drive, so the world ships ambient-only. Add one directional light to the "
+                    + "scene's patcher.");
         }
     }
 }

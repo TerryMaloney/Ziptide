@@ -546,6 +546,15 @@ Two things to *feel* on device; both are pure-data tunes if they're off (no rebu
   arms swinging opposite the legs when it walks. Watch `ZIPTIDE: FORGE_CREATURE_APPLIED ... baked=true`
   (baked=false means the ForgeBaker didn't run — rebuild). The swarm_bug/light_grazer reseed step
   above also picks all of this up for those two.
+- [ ] **NEW (FORGE III F3.1 light script, 2026-07-10 — Picasso):** every world's fog, ambient and
+  sun are now DERIVED from its sky at load — fog is literally the horizon color, ambient is the
+  sky gradient, the sun comes from the brightest celestial body (worlds that authored explicit
+  values keep them; layout fog is respected). No menu step. 🎮 **Before/after feel check, W002 then
+  W005:** does the ground/ambient light now MATCH the sky instead of feeling like stage lighting?
+  Do shadows fall away from the big body in the sky? Watch `ZIPTIDE: LIGHT_SCRIPT vista=… sun=…
+  ambient=… fog=…` in logcat — it says which channel is derived vs authored vs layout-owned.
+  If a world got WORSE, tell the operator which one — its vista then gets authored tie-in
+  overrides (that's the designed escape hatch, not a code change).
 - [ ] **(not Unity) Reconnect the GitHub connector** on claude.ai (Settings → Connectors → GitHub →
   Reconnect, authorize `terrymaloney/ziptide`) so the operators can see CI status again. Pushing already
   works without it; this is just so we can watch the runs go green.
