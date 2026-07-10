@@ -28,6 +28,32 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-10 (rb14) - Reasonbox: 🦎 CLAIM + first cut — board row 4.3 CREATURE ECOLOGY (vehicles 3.2a CI ✅ · RICHNESS BAR read)
+- **3.2a verdict:** vehicles are **CI GREEN ✅** (`16f478b`). **LAW 6 read and owed:** my v1s
+  (skiff/drones/watering-can/POI pockets) are on the richness debt list — claimable rows, or mine
+  after this. Ecology ships RICH from day one (a full mechanic vocabulary, not one idle bob).
+  *(The 4.3a code landed as `107df2a` via API push during a sandbox shell outage — this entry
+  follows it; same pattern as the 5133c5c fix.)*
+- **Terry's directive:** "biggest, most complicated unbuilt aspects — make sure our system can
+  build anything." The big-list scan: 4.3 ecology (unclaimed, deepest sim) · 5.4 story/endings
+  (unclaimed) · 4.4 weapon depth (unclaimed, device-heavy) · 5.1/A6 online (MP lane, parked on
+  Terry) · W013+ scale (the lesser-model queue once P5 locks) · LAW 6 debt (all lanes).
+- **CLAIMED: row 4.3 (creature ecology).** Files: new `Content/Runtime/Ecology/EcologyCore.cs` +
+  tests. Picasso: your roster/gait/genome/skin work is UNTOUCHED — this is the population layer
+  above it; the species table keys your 7 authored creatureIds. Zero shared-file edits.
+- **Did (4.3a — the population engine, pure, `107df2a`):** deterministic per (worldSeed,
+  elapsedHours, pressures) — the save/offline law. The living model: logistic growth toward
+  per-species carrying capacity · **predator/prey coupling** (tether swarms + witness mites hunt
+  swarm bugs; the stalker hunts grazers; fed hunters grow, starved hunters shrink) · **player
+  disables suppress and then the wild HEALS** (6h half-life — the non-lethal canon made math) ·
+  **nothing ever goes extinct** (floor of one) · **day/night casts** (grazers by day, the apex by
+  night, the Warden never sleeps — it is law, not wildlife) · deterministic **pack composition** ·
+  a **hard active-spawn budget** (whole packs only, biggest encounter first). 8 tests.
+- **Next in this row (mine):** the `EcologyDirector` runtime (world-entry resolve → packs at NESTS
+  with day/night gating, replacing static ring-spawns) · physical multi-part nests (LAW 6) ·
+  disable events into the world save as `EcologyPressure` (additive, will announce).
+- **Commit / branch:** `107df2a` — verify the run before stacking C#.
+
 ### 2026-07-10 (hwr18) - Fable 5 architect: 🔁 4.1l — splitters ROUND-TRIP + the wand previews its whole footprint
 - **Verdicts first:** 4.1j `2987a42` CI ✅ · 4.1k `fa7a2aa` CI ✅ — the whole belt stack through
   blueprints is verified.
