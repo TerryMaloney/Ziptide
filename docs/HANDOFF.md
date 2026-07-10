@@ -28,6 +28,21 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-10 (dddd20) - Picasso (Fable 5): 🌿 E5.3 verdicts + fix — CI red #1 (worldRuleRefs) + frond v2
+- **CI red #1 on `a413557`** (circuit-breaker count: 1/3): `ForgeLifecycleTests.CatalogRecipes_
+  CarryStructuredRefs` — every catalog recipe must carry `worldRuleRefs`; crate + console shipped
+  without. Fixed (crate→W002_DryCistern, console→ToxicCity). Law for the next recipe author:
+  storyRefs AND worldRuleRefs are mandatory on every Specs() entry — the dependency auditor never
+  parses prose. *(Race note: Reasonbox landed the same two-prop fix first (`fef1a74`, rb22) while
+  this commit was in flight — merged; the crate now carries both W002_DryCistern + ToxicCity.)*
+- **Booth verdicts (run `29119297998`) — THE ALPHA CUTOUT WORKS:** reed ✅ (pointed blades out of a
+  glossy mud clump — genuinely good) · crate ✅ (banded, paneled, worn) · console ✅ (glowing raked
+  screen) · **frond ❌** (wide cards curled into an avocado clump, spore nub buried) → **v2**: fern
+  read — 4 narrow blades (0.22–0.26 w) arcing outward at ±30–38°, tapered stem, nub ABOVE the crown ·
+  **pipes ⚠** (glossy chocolate) → greyed toward iron + grime up + gauge pushed clear of the pipe rim.
+- **Next:** verify frond v2 + pipes v2 turnarounds; then FORGE II is envelope-complete.
+- **Commit:** this push.
+
 ### 2026-07-10 (rb22) - Reasonbox/Fable 5: 🔴→🟢 CI double-red cleared — my missing using + Picasso's prop refs
 - **The reds (`dbd3192`/`eed64b3` failed; `a413557` was already red under them):**
   1. **Mine:** `InteriorFurnisher.cs` — CS0103, `ItemFactory` needs `using Ziptide.Gameplay;`

@@ -237,20 +237,26 @@ namespace Ziptide.Editor.Patching
             };
             d.parts = new[]
             {
+                // Photo-loop v2: v1's wide cards curled into an avocado-shaped CLUMP and buried the
+                // spore nub. Now a fern read: narrow blades arcing OUTWARD from a visible stem,
+                // the glowing nub riding above the crown where a focal belongs.
                 new ForgePart { name = "Stem", op = ForgeOp.Capsule, segments = 8, smooth = true,
-                    size = new Vector3(0.06f, 0.52f, 0.06f), position = new Vector3(0f, 0.24f, 0f),
-                    paletteSlot = 0 },
+                    size = new Vector3(0.05f, 0.85f, 0.05f), position = new Vector3(0f, 0.4f, 0f),
+                    taper = 0.15f, paletteSlot = 0 },
                 new ForgePart { name = "FrondA", op = ForgeOp.LeafCard,
-                    size = new Vector3(0.55f, 0.95f, 0f), position = new Vector3(0f, 0.04f, 0f),
-                    bendDegrees = 26f, paletteSlot = 1 },
+                    size = new Vector3(0.26f, 1.05f, 0f), position = new Vector3(0f, 0.1f, 0f),
+                    bendDegrees = 38f, paletteSlot = 1 },
                 new ForgePart { name = "FrondB", op = ForgeOp.LeafCard,
-                    size = new Vector3(0.46f, 0.78f, 0f), position = new Vector3(0.02f, 0.05f, 0.02f),
-                    eulerRotation = new Vector3(0f, 48f, 0f), bendDegrees = -22f, paletteSlot = 1 },
+                    size = new Vector3(0.24f, 0.95f, 0f), position = new Vector3(0.02f, 0.11f, 0.02f),
+                    eulerRotation = new Vector3(0f, 90f, 0f), bendDegrees = 34f, paletteSlot = 1 },
                 new ForgePart { name = "FrondC", op = ForgeOp.LeafCard,
-                    size = new Vector3(0.38f, 0.62f, 0f), position = new Vector3(-0.02f, 0.06f, -0.01f),
-                    eulerRotation = new Vector3(0f, 105f, -7f), bendDegrees = 18f, paletteSlot = 1 },
+                    size = new Vector3(0.22f, 0.88f, 0f), position = new Vector3(-0.02f, 0.12f, -0.01f),
+                    eulerRotation = new Vector3(0f, 45f, 0f), bendDegrees = -36f, paletteSlot = 1 },
+                new ForgePart { name = "FrondD", op = ForgeOp.LeafCard,
+                    size = new Vector3(0.22f, 0.8f, 0f), position = new Vector3(0.01f, 0.12f, -0.02f),
+                    eulerRotation = new Vector3(0f, 135f, 0f), bendDegrees = -30f, paletteSlot = 1 },
                 new ForgePart { name = "SporeNub", op = ForgeOp.OrganicBlob, segments = 10, smooth = true,
-                    size = new Vector3(0.09f, 0.12f, 0.09f), position = new Vector3(0f, 0.6f, 0f),
+                    size = new Vector3(0.1f, 0.13f, 0.1f), position = new Vector3(0f, 0.88f, 0f),
                     noiseAmplitude = 0.006f, noiseFrequency = 11f, noiseSeed = 17, paletteSlot = 2 },
             };
             return d;
@@ -314,7 +320,7 @@ namespace Ziptide.Editor.Patching
             d.qualityState = ForgeQualityState.Proxy;
             d.storyRole = "Patched salvage crate — the E5.3 dressing prop set.";
             d.storyRefs = new[] { "dressing_scatter" };
-            d.worldRuleRefs = new[] { "ToxicCity" };
+            d.worldRuleRefs = new[] { "W002_DryCistern", "ToxicCity" };
             d.tokenRefs = new[] { "rusted_metal" };
             d.slotStyles = new[]
             {
@@ -351,7 +357,8 @@ namespace Ziptide.Editor.Patching
                 new[] { "prop" },
                 new[]
                 {
-                    new Color(0.35f, 0.24f, 0.18f), // 0 pipes — rusted
+                    // (photo v2: 0.35/0.24/0.18 read as glossy chocolate — greyed toward iron)
+                    new Color(0.32f, 0.27f, 0.23f), // 0 pipes — rusted iron
                     new Color(0.50f, 0.50f, 0.55f), // 1 flanges — bare steel
                     new Color(0.30f, 0.90f, 0.80f), // 2 gauge — toxic teal glow
                 },
@@ -363,7 +370,7 @@ namespace Ziptide.Editor.Patching
             d.tokenRefs = new[] { "rusted_metal" };
             d.slotStyles = new[]
             {
-                new ForgeStyleSpec { style = ForgeStyle.RustedMetal, wear = 0.5f, grime = 0.5f },
+                new ForgeStyleSpec { style = ForgeStyle.RustedMetal, wear = 0.5f, grime = 0.6f },
                 new ForgeStyleSpec { style = ForgeStyle.BareMetal, wear = 0.65f, grime = 0.3f },
                 new ForgeStyleSpec { style = ForgeStyle.GlowPanel, emissive = new Color(0.3f, 0.9f, 0.8f), emissiveIntensity = 1.4f },
             };
@@ -384,9 +391,10 @@ namespace Ziptide.Editor.Patching
                 new ForgePart { name = "FlangeB", op = ForgeOp.Torus, segments = 12, smooth = true,
                     size = new Vector3(0.15f, 0.04f, 0.01f), position = new Vector3(0.16f, 0.85f, 0.03f),
                     paletteSlot = 1 },
+                // (photo v2: at z=0.08 the gauge sat half-buried in PipeA — pushed clear of the rim)
                 new ForgePart { name = "Gauge", op = ForgeOp.SphereSection, bevel = 0.55f, segments = 10,
                     smooth = true, size = new Vector3(0.12f, 0.07f, 0.12f),
-                    position = new Vector3(0f, 1.12f, 0.08f), eulerRotation = new Vector3(90f, 0f, 0f),
+                    position = new Vector3(0f, 1.12f, 0.115f), eulerRotation = new Vector3(90f, 0f, 0f),
                     paletteSlot = 2 },
             };
             return d;
