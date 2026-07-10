@@ -3,6 +3,7 @@
     "rootNamespace": "Ziptide",
     "references": [
         "Ziptide.Core",
+        "Unity.RenderPipelines.Core.Runtime",
         "Unity.RenderPipelines.Universal.Runtime"
     ],
     "includePlatforms": [],
