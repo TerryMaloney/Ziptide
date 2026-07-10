@@ -65,7 +65,13 @@ namespace Ziptide.Editor.Patching
                 new Color(0.72f, 0.70f, 0.52f), // 2 spore bulb — pale sick cream
                 new Color(0.75f, 0.95f, 0.35f), // 3 eye — sickly yellow-green glow
             };
-            b.slotStyles = new ForgeStyleSpec[0];
+            b.slotStyles = new[]
+            {
+                new ForgeStyleSpec { style = ForgeStyle.Bark, grime = 0.55f, wear = 0.2f },
+                new ForgeStyleSpec { style = ForgeStyle.Bark, grime = 0.6f, wear = 0.25f },
+                new ForgeStyleSpec { style = ForgeStyle.Slime, grime = 0.3f },
+                new ForgeStyleSpec { style = ForgeStyle.GlowPanel, emissive = new Color(0.75f, 0.95f, 0.35f), emissiveIntensity = 1.3f },
+            };
             b.coreParts = new[]
             {
                 new ForgePart { name = "RootKnot", op = ForgeOp.OrganicBlob, segments = 12, smooth = true,
@@ -146,7 +152,13 @@ namespace Ziptide.Editor.Patching
                 new Color(0.35f, 0.24f, 0.12f), // 2 underside — worn amber-brown
                 new Color(1.00f, 0.55f, 0.15f), // 3 eye — hot amber glow
             };
-            b.slotStyles = new ForgeStyleSpec[0];
+            b.slotStyles = new[]
+            {
+                new ForgeStyleSpec { style = ForgeStyle.Chitin, cellSize = 0.035f, grime = 0.55f, wear = 0.25f },
+                new ForgeStyleSpec { style = ForgeStyle.Chitin, cellSize = 0.06f, grime = 0.4f, wear = 0.35f },
+                new ForgeStyleSpec { style = ForgeStyle.Chitin, cellSize = 0.045f, grime = 0.6f },
+                new ForgeStyleSpec { style = ForgeStyle.GlowPanel, emissive = new Color(1f, 0.55f, 0.15f), emissiveIntensity = 1.4f },
+            };
             b.coreParts = new[]
             {
                 new ForgePart { name = "Carapace", op = ForgeOp.OrganicBlob, segments = 14, smooth = true,
@@ -206,7 +218,13 @@ namespace Ziptide.Editor.Patching
                 new Color(0.45f, 0.60f, 0.45f), // 2 underbell
                 new Color(0.55f, 1.00f, 0.60f), // 3 eye — soft green glow
             };
-            b.slotStyles = new ForgeStyleSpec[0];
+            b.slotStyles = new[]
+            {
+                new ForgeStyleSpec { style = ForgeStyle.Slime, grime = 0.3f, wear = 0.15f },
+                new ForgeStyleSpec { style = ForgeStyle.Slime, grime = 0.2f, wear = 0.1f },
+                new ForgeStyleSpec { style = ForgeStyle.Slime, grime = 0.35f },
+                new ForgeStyleSpec { style = ForgeStyle.GlowPanel, emissive = new Color(0.55f, 1f, 0.6f), emissiveIntensity = 1.3f },
+            };
             b.coreParts = new[]
             {
                 new ForgePart { name = "Bell", op = ForgeOp.OrganicBlob, segments = 16, smooth = true,
@@ -263,7 +281,13 @@ namespace Ziptide.Editor.Patching
                 new Color(0.45f, 0.22f, 0.33f), // 2 lens housing
                 new Color(0.88f, 0.84f, 0.95f), // 3 eye — pale watching white
             };
-            b.slotStyles = new ForgeStyleSpec[0];
+            b.slotStyles = new[]
+            {
+                new ForgeStyleSpec { style = ForgeStyle.Chitin, cellSize = 0.03f, grime = 0.45f, wear = 0.2f },
+                new ForgeStyleSpec { style = ForgeStyle.Slime, grime = 0.3f, wear = 0.15f },
+                new ForgeStyleSpec { style = ForgeStyle.Slime, grime = 0.35f },
+                new ForgeStyleSpec { style = ForgeStyle.GlowPanel, emissive = new Color(0.88f, 0.84f, 0.95f), emissiveIntensity = 1.5f },
+            };
             b.coreParts = new[]
             {
                 new ForgePart { name = "Body", op = ForgeOp.OrganicBlob, segments = 10, smooth = true,
@@ -318,7 +342,13 @@ namespace Ziptide.Editor.Patching
                 new Color(0.55f, 0.58f, 0.45f), // 2 belly — pale shed-ready lining
                 new Color(1.00f, 0.60f, 0.20f), // 3 eye — amber
             };
-            b.slotStyles = new ForgeStyleSpec[0];
+            b.slotStyles = new[]
+            {
+                new ForgeStyleSpec { style = ForgeStyle.Chitin, cellSize = 0.05f, grime = 0.55f, wear = 0.3f },
+                new ForgeStyleSpec { style = ForgeStyle.Chitin, cellSize = 0.07f, grime = 0.65f, wear = 0.2f },
+                new ForgeStyleSpec { style = ForgeStyle.Slime, grime = 0.4f },
+                new ForgeStyleSpec { style = ForgeStyle.GlowPanel, emissive = new Color(1f, 0.6f, 0.2f), emissiveIntensity = 1.4f },
+            };
             b.coreParts = new[]
             {
                 new ForgePart { name = "Carapace", op = ForgeOp.OrganicBlob, segments = 10, smooth = true,
@@ -388,7 +418,13 @@ namespace Ziptide.Editor.Patching
                 new Color(0.36f, 0.42f, 0.50f), // 3 eye — dormant slate, bright enough to READ as a lens
                                                 //   (WardenBehavior drives the live colors via TrySetEye)
             };
-            b.slotStyles = new ForgeStyleSpec[0];
+            b.slotStyles = new[]
+            {
+                new ForgeStyleSpec { style = ForgeStyle.PaintedMetal, wear = 0.45f, grime = 0.35f, panelDensity = 2f },
+                new ForgeStyleSpec { style = ForgeStyle.PaintedMetal, wear = 0.35f, grime = 0.3f, panelDensity = 1f },
+                new ForgeStyleSpec { style = ForgeStyle.BareMetal, wear = 0.6f, grime = 0.25f },
+                new ForgeStyleSpec { style = ForgeStyle.GlowPanel, emissive = new Color(0.36f, 0.42f, 0.5f), emissiveIntensity = 1.2f },
+            };
             b.coreParts = new[]
             {
                 // Photo-loop v3 (v2 still read "bin with a lid"): SENTINEL proportions — a shorter

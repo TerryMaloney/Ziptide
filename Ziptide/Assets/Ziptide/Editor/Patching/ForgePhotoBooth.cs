@@ -127,6 +127,21 @@ namespace Ziptide.Editor.Patching
                 }
                 mats[i] = m;
             }
+
+            // CREATURE TEXTURE BAKE: a body with authored slotStyles gets the same baked-surface
+            // treatment recipes get — one textured material across the body submeshes (the SAME
+            // synthetic recipe the mesh's UVs came from), while the eye keeps its live emissive.
+            if (body.slotStyles != null && body.slotStyles.Length > 0)
+            {
+                var synth = Ziptide.Visuals.ForgeSkinnedBuilder.SyntheticRecipe(body);
+                try
+                {
+                    var texturedMat = BuildSingleTexturedMaterial(synth);
+                    for (int i = 0; i < mats.Length; i++)
+                        if (r.paletteSlots[i] != body.eyePaletteSlot) mats[i] = texturedMat;
+                }
+                finally { Object.DestroyImmediate(synth); }
+            }
             smr.sharedMaterials = mats;
 
             // Freeze one full-speed gait frame (t chosen mid-swing; same math the device runs).

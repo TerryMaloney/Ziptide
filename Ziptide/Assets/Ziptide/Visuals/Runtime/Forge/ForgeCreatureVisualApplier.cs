@@ -40,6 +40,10 @@ namespace Ziptide.Visuals
             smr.rootBone = r.bones[0];
             smr.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off; // Quest budget
 
+            // CREATURE TEXTURE BAKE: prefer the build-time skin (albedo/normal/wear atlas baked from
+            // the SAME synthetic recipe the mesh's UVs came from). The EYE keeps its live emissive
+            // material so the ForgeBodyTell channels keep working. Missing bake = flat palette look.
+            var baked = Resources.Load<Material>("ForgeBaked/body_" + creatureId + "/material");
             var mats = new Material[r.paletteSlots.Length];
             var baseColors = new Color[r.paletteSlots.Length];
             int eyeIndex = -1;
@@ -49,9 +53,9 @@ namespace Ziptide.Visuals
                 Color c = body.palette != null && slot < body.palette.Length
                     ? body.palette[slot]
                     : Color.magenta; // loud fallback — Validate() should have caught this
-                baseColors[i] = c;
-                if (slot == body.eyePaletteSlot) { eyeIndex = i; mats[i] = Emissive(c); }
-                else mats[i] = ForgeMaterials.Mat(c);
+                if (slot == body.eyePaletteSlot) { eyeIndex = i; baseColors[i] = c; mats[i] = Emissive(c); }
+                else if (baked != null) { baseColors[i] = Color.white; mats[i] = baked; } // tint base = white over the atlas
+                else { baseColors[i] = c; mats[i] = ForgeMaterials.Mat(c); }
             }
             smr.sharedMaterials = mats;
 
@@ -61,7 +65,8 @@ namespace Ziptide.Visuals
             vis.AddComponent<ForgeBodyTell>().Init(smr, eyeIndex, baseColors);
 
             Debug.Log("ZIPTIDE: FORGE_CREATURE_APPLIED id=" + creatureId
-                + " bones=" + r.bones.Length + " tris=" + r.mesh.triangles.Length / 3);
+                + " bones=" + r.bones.Length + " tris=" + r.mesh.triangles.Length / 3
+                + " baked=" + (baked != null));
             return true;
         }
 

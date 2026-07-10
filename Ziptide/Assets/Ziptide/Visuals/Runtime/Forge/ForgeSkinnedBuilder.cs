@@ -42,48 +42,14 @@ namespace Ziptide.Visuals
             var rootGo = new GameObject("Skeleton_" + (body != null ? body.bodyId : "null"));
             var bones = new List<Transform> { rootGo.transform };
 
-            // ── Synthetic recipe = every part, so ForgeUV can allocate islands the normal way ──
             var parts = new List<ForgePart>();
             var partBone = new List<int>();   // parallel: which bone owns each part
             var partPose = new List<Matrix4x4>(); // world (=root-local) pose per part
+            CollectParts(body, rootGo.transform, bones, parts, partBone, partPose);
 
-            if (body != null && body.coreParts != null)
-                foreach (var p in body.coreParts)
-                {
-                    if (p == null) continue;
-                    parts.Add(p);
-                    partBone.Add(0);
-                    partPose.Add(Matrix4x4.TRS(p.position, Quaternion.Euler(p.eulerRotation),
-                        p.scale == Vector3.zero ? Vector3.one : p.scale));
-                }
-
-            if (body != null && body.limbs != null)
-                foreach (var limb in body.limbs)
-                {
-                    if (limb == null || limb.segments == null) continue;
-                    BuildLimbChain(limb, mirrored: false, rootGo.transform, bones, parts, partBone, partPose);
-                    if (limb.mirrorX)
-                        BuildLimbChain(limb, mirrored: true, rootGo.transform, bones, parts, partBone, partPose);
-                }
-
-            // The eye: a small emissive dome on the core (bone 0).
-            if (body != null && body.eyeRadius > 0.001f)
-            {
-                var eye = new ForgePart
-                {
-                    name = "Eye", op = ForgeOp.SphereSection, bevel = 1f, segments = 8, smooth = true,
-                    size = Vector3.one * (body.eyeRadius * 2f), position = body.eyeLocal,
-                    paletteSlot = body.eyePaletteSlot
-                };
-                parts.Add(eye);
-                partBone.Add(0);
-                partPose.Add(Matrix4x4.TRS(eye.position, Quaternion.identity, Vector3.one));
-            }
-
-            // Island allocation reuses the proven E1.1 packer via a synthetic recipe.
-            var synthetic = ScriptableObject.CreateInstance<ForgeRecipeDefinition>();
-            synthetic.recipeId = body != null ? body.bodyId : "body";
-            synthetic.parts = parts.ToArray();
+            // Island allocation reuses the proven E1.1 packer via the synthetic recipe. The SAME
+            // synthetic (via SyntheticRecipe) feeds the texture bake, so UVs agree by construction.
+            var synthetic = MakeSynthetic(body, parts);
             var islands = ForgeUV.ComputeIslands(synthetic);
             var islandByPart = new Dictionary<int, Rect>();
             foreach (var isl in islands) islandByPart[isl.partIndex] = isl.rect;
@@ -182,6 +148,76 @@ namespace Ziptide.Visuals
 
             return new Result { mesh = mesh, bones = bones.ToArray(), skeletonRoot = rootGo,
                 paletteSlots = paletteSlots };
+        }
+
+        /// <summary>Every part the body is made of (core + limb segments + eye), in build order.</summary>
+        private static void CollectParts(ForgeCreatureBody body, Transform root, List<Transform> bones,
+            List<ForgePart> parts, List<int> partBone, List<Matrix4x4> partPose)
+        {
+            if (body != null && body.coreParts != null)
+                foreach (var p in body.coreParts)
+                {
+                    if (p == null) continue;
+                    parts.Add(p);
+                    partBone.Add(0);
+                    partPose.Add(Matrix4x4.TRS(p.position, Quaternion.Euler(p.eulerRotation),
+                        p.scale == Vector3.zero ? Vector3.one : p.scale));
+                }
+
+            if (body != null && body.limbs != null)
+                foreach (var limb in body.limbs)
+                {
+                    if (limb == null || limb.segments == null) continue;
+                    BuildLimbChain(limb, mirrored: false, root, bones, parts, partBone, partPose);
+                    if (limb.mirrorX)
+                        BuildLimbChain(limb, mirrored: true, root, bones, parts, partBone, partPose);
+                }
+
+            // The eye: a small emissive dome on the core (bone 0).
+            if (body != null && body.eyeRadius > 0.001f)
+            {
+                var eye = new ForgePart
+                {
+                    name = "Eye", op = ForgeOp.SphereSection, bevel = 1f, segments = 8, smooth = true,
+                    size = Vector3.one * (body.eyeRadius * 2f), position = body.eyeLocal,
+                    paletteSlot = body.eyePaletteSlot
+                };
+                parts.Add(eye);
+                partBone.Add(0);
+                partPose.Add(Matrix4x4.TRS(eye.position, Quaternion.identity, Vector3.one));
+            }
+        }
+
+        private static ForgeRecipeDefinition MakeSynthetic(ForgeCreatureBody body, List<ForgePart> parts)
+        {
+            var synthetic = ScriptableObject.CreateInstance<ForgeRecipeDefinition>();
+            synthetic.recipeId = "body_" + (body != null ? body.bodyId : "null");
+            synthetic.parts = parts.ToArray();
+            synthetic.palette = body != null ? body.palette : null;
+            synthetic.slotStyles = body != null ? body.slotStyles : null;
+            synthetic.budgetTris = body != null ? body.budgetTris : 10000;
+            return synthetic;
+        }
+
+        /// <summary>
+        /// The body as a bake-able recipe (CREATURE TEXTURE BAKE seam): the exact part list the
+        /// skinned mesh was built from — including limb segments and the eye — with the body's
+        /// palette and slot styles, so ForgeTexture's maps land on the SAME UV islands the mesh
+        /// carries, by construction. Caller owns (and should destroy) the returned instance.
+        /// </summary>
+        public static ForgeRecipeDefinition SyntheticRecipe(ForgeCreatureBody body)
+        {
+            var tmp = new GameObject("__synthParts");
+            try
+            {
+                var bones = new List<Transform> { tmp.transform };
+                var parts = new List<ForgePart>();
+                var partBone = new List<int>();
+                var partPose = new List<Matrix4x4>();
+                CollectParts(body, tmp.transform, bones, parts, partBone, partPose);
+                return MakeSynthetic(body, parts);
+            }
+            finally { Object.DestroyImmediate(tmp); }
         }
 
         /// <summary>One chain: bones at each joint (+Y along the chain), a box segment per bone.</summary>

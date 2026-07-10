@@ -28,6 +28,28 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-10 (dddd13) - Picasso (Fable 5): 🧬 CREATURES GET SKIN — the texture bake lands
+- **Why:** Terry's xenomorph bar. Bodies were smooth+articulated but FLAT-COLORED; weapons carry baked
+  albedo/normal/wear atlases. This closes that gap — the last big art-engine dial.
+- **Did (one seam, four consumers):** `ForgeSkinnedBuilder.SyntheticRecipe(body)` — the EXACT part
+  list the skinned mesh was built from (core + limb segments + eye) as a bake-able recipe with the
+  body's palette/slotStyles, so ForgeTexture's maps land on the SAME UV islands the mesh carries BY
+  CONSTRUCTION (Build() itself now uses the shared CollectParts/MakeSynthetic).
+  · **ForgeBaker**: BakeAll also bakes every STYLED ForgeCreatureBody (maps + ONE material →
+  `ForgeBaked/body_<id>/`; no mesh/prefab — the runtime builds the skinned mesh). Unstyled bodies
+  skip = flat by design. `BakeMapsAndMaterial` extracted, recipe path unchanged.
+  · **ForgeCreatureVisualApplier**: prefers the baked material for every non-eye submesh (the EYE
+  keeps its live emissive so the ForgeBodyTell channels keep working untouched; baseColors=white so
+  ClearBodyTint restores the atlas). `FORGE_CREATURE_APPLIED … baked=true/false`.
+  · **ForgePhotoBooth**: styled bodies photograph with the SAME BuildSingleTexturedMaterial the
+  recipes use → next run's body_* turnarounds show SKIN, and atlas x-rays co-locate in the artifact.
+  · **Genomes**: all 6 styled — chitin cells (bug/mite/molter), slime sheen (grazer/tendril bulb),
+  bark (tendril body), worn PaintedMetal+panels (warden), GlowPanel eye slots.
+- **Runbook (already queued):** the swarm_bug/light_grazer reseed step also picks up their styles.
+- **Next:** booth verdicts on the SKINNED+ARTICULATED+TEXTURED roster next run — the fox→xenomorph
+  checkpoint. Then segments-cap raise if silhouettes still read low-poly; E5.3 flora remains.
+- **Commit:** this push.
+
 ### 2026-07-10 (meta1) - T-Dog/Fable 5: 🗺️ THE EXCELLENCE MAP — the meta layer gets its guardrails
 - **Terry's directive:** "look at the meta aspects… much harder with a lesser model… basically no
   room for a model to half-ass it… the map of everything the game is going to need… standards and

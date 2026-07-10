@@ -26,7 +26,9 @@ namespace Ziptide.Editor.Patching
             EditorUtility.DisplayDialog("Forge Baker", n + " recipe(s) baked to " + BakedRoot, "OK");
         }
 
-        /// <summary>Build-hooked: bake every recipe asset. Returns the count baked.</summary>
+        /// <summary>Build-hooked: bake every recipe asset AND every styled creature body (the
+        /// CREATURE TEXTURE BAKE — bodies with authored slotStyles get the same albedo/normal/wear
+        /// atlas treatment as weapons; unstyled bodies stay flat by design). Returns the count.</summary>
         public static int BakeAll()
         {
             Directory.CreateDirectory(BakedRoot);
@@ -43,8 +45,33 @@ namespace Ziptide.Editor.Patching
                     Debug.LogWarning("[Ziptide] ForgeBaker: bake failed for '" + recipe.recipeId + "': " + e.Message);
                 }
             }
+
+            // Creature bodies: maps + ONE material only (the runtime builds the skinned mesh itself;
+            // ForgeCreatureVisualApplier prefers this material for every non-eye submesh).
+            foreach (string guid in AssetDatabase.FindAssets("t:ForgeCreatureBody",
+                         new[] { "Assets/Ziptide/Resources/Forge/Bodies" }))
+            {
+                var body = AssetDatabase.LoadAssetAtPath<ForgeCreatureBody>(
+                    AssetDatabase.GUIDToAssetPath(guid));
+                if (body == null || string.IsNullOrEmpty(body.bodyId)) continue;
+                if (body.slotStyles == null || body.slotStyles.Length == 0) continue; // flat by design
+                var synth = ForgeSkinnedBuilder.SyntheticRecipe(body);
+                try
+                {
+                    string dir = BakedRoot + "/body_" + body.bodyId;
+                    Directory.CreateDirectory(dir);
+                    BakeMapsAndMaterial(synth, dir);
+                    baked++;
+                }
+                catch (System.Exception e)
+                {
+                    Debug.LogWarning("[Ziptide] ForgeBaker: body bake failed for '" + body.bodyId + "': " + e.Message);
+                }
+                finally { Object.DestroyImmediate(synth); }
+            }
+
             AssetDatabase.SaveAssets();
-            Debug.Log("[Ziptide] ForgeBaker: baked " + baked + " recipe(s) → " + BakedRoot);
+            Debug.Log("[Ziptide] ForgeBaker: baked " + baked + " asset(s) → " + BakedRoot);
             return baked;
         }
 
@@ -60,7 +87,23 @@ namespace Ziptide.Editor.Patching
             if (existingMesh != null) { EditorUtility.CopySerialized(mesh, existingMesh); mesh = existingMesh; }
             else AssetDatabase.CreateAsset(mesh, meshPath);
 
-            // ── The four maps ────────────────────────────────────────────────
+            var mat = BakeMapsAndMaterial(recipe, dir);
+
+            // ── Prefab (what ForgeVisualApplier instantiates) ────────────────
+            var go = new GameObject("ForgeBaked_" + recipe.recipeId);
+            var mf = go.AddComponent<MeshFilter>();
+            mf.sharedMesh = mesh;
+            var mr = go.AddComponent<MeshRenderer>();
+            mr.sharedMaterial = mat;
+            mr.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off; // Quest budget
+            PrefabUtility.SaveAsPrefabAsset(go, dir + "/prefab.prefab");
+            Object.DestroyImmediate(go);
+        }
+
+        /// <summary>The four maps + ONE URP/Lit material into <paramref name="dir"/> — shared by the
+        /// recipe path (which adds mesh + prefab) and the creature-body path (maps + material only).</summary>
+        private static Material BakeMapsAndMaterial(ForgeRecipeDefinition recipe, string dir)
+        {
             var meta = ForgeTexture.BakeMeta(recipe, AtlasSize);
             var px = new Color32[AtlasSize * AtlasSize];
 
@@ -79,7 +122,6 @@ namespace Ziptide.Editor.Patching
             ConfigureImporter(msaPath, TextureImporterType.Default, srgb: false);
             ConfigureImporter(emissivePath, TextureImporterType.Default, srgb: true);
 
-            // ── ONE material ─────────────────────────────────────────────────
             string matPath = dir + "/material.mat";
             var mat = AssetDatabase.LoadAssetAtPath<Material>(matPath);
             if (mat == null)
@@ -103,16 +145,7 @@ namespace Ziptide.Editor.Patching
                 mat.globalIlluminationFlags = MaterialGlobalIlluminationFlags.RealtimeEmissive;
             }
             EditorUtility.SetDirty(mat);
-
-            // ── Prefab (what ForgeVisualApplier instantiates) ────────────────
-            var go = new GameObject("ForgeBaked_" + recipe.recipeId);
-            var mf = go.AddComponent<MeshFilter>();
-            mf.sharedMesh = mesh;
-            var mr = go.AddComponent<MeshRenderer>();
-            mr.sharedMaterial = mat;
-            mr.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off; // Quest budget
-            PrefabUtility.SaveAsPrefabAsset(go, dir + "/prefab.prefab");
-            Object.DestroyImmediate(go);
+            return mat;
         }
 
         private static string WritePng(string path, Color32[] px)
