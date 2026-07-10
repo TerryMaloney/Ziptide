@@ -83,6 +83,9 @@ Interaction Toolkit **2.5.4**. The Unity project lives in the **`Ziptide/`** sub
   scenes before. Prefer runtime ensures or editor patchers, and have the user verify in Unity.
 
 ## Key docs
+- `docs/EXCELLENCE_MAP.md` — **every aspect of the game: its state, its standard, its guardrail.**
+  Check your aspect's row before building in it; the Definition of Done (`OPERATOR_START_HERE.md`)
+  requires it. This is how quality stays EVEN across lanes and model generations.
 - `docs/CONNECTIONS_AND_RECOVERY.md` — system map + every root cause + prevention plan (read this).
 - `docs/D4_BOOT_ADDITIVE_WORLD_ARCHITECTURE.md` — boot/world contract.
 - `docs/FABLE5_BACKLOG.md` — the live task queue (tagged ⚙CI/🔧UNITY/🎮DEVICE) · `docs/MASTER_CHECKLIST.md` — build state. *(The old `WORKLIST.md`/`04_TASK_QUEUE.md` are retired.)*

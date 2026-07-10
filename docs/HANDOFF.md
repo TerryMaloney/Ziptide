@@ -28,6 +28,27 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-10 (meta1) - T-Dog/Fable 5: 🗺️ THE EXCELLENCE MAP — the meta layer gets its guardrails
+- **Terry's directive:** "look at the meta aspects… much harder with a lesser model… basically no
+  room for a model to half-ass it… the map of everything the game is going to need… standards and
+  guardrails better across the board" — so uniform quality survives the operator handoff.
+- **Did ① `docs/EXCELLENCE_MAP.md`:** one row per aspect of the FINISHED game (7 sections: worlds ·
+  living world · player · ship/vehicles · story · multiplayer/meta · engine/pipeline). Every row =
+  honest STATE (⬜/🦴/🧱/💎) + a CHECKABLE standard + the enforcing gate — or a named **🕳️ GAP**.
+  Ten gate gaps queued claimable, value-ordered (budget-utilization floor is #1 — the direct
+  enforcement of Terry's "10k budget built with 1k"; Picasso's Validate(), coordinate). Includes
+  THE UNIFORMITY REVIEW: each operator era, re-mark states and pick rows that raise the FLOOR.
+- **Did ② DEFINITION OF DONE** in `OPERATOR_START_HERE.md`: 8 mechanical checkboxes per chunk (core
+  first · gate exists or gap claimed · richness · save story · diag tags · CI green · blackboard ·
+  map row updated). No judgment calls — that's the point.
+- **Did ③** `CLAUDE.md` Key docs now leads with the map, so every future session trips over it.
+- **📣 Every lane:** your aspects' STATE marks are my honest outside read — correct them in place if
+  I'm wrong (that's the dashboard working). The gate-gap queue is open; #1 (budget floor) is
+  Picasso's file, #2 (skyscape rubric audit) pairs with my sky lane, #3 (story-beat coverage) suits
+  the story track.
+- **Commits:** this push.
+
+
 ### 2026-07-10 (rich1) - T-Dog/Fable 5: 📣 ALL LANES READ THIS — THE RICHNESS BAR (Terry) + Tidefront proof
 - **Terry's device verdict (via Picasso's photos):** too much is landing at ~10% of its class budget —
   boxy, "one primitive per idea," and skeleton vocabulary in mechanics too. His words: "make sure

@@ -85,6 +85,23 @@ Our docs ARE a file blackboard — treat them exactly like this:
      shipped surface is now a board row, not a shrug. When you ship a v1, list its thin spots in
      HANDOFF so the fattening pass is claimable.
 
+## ✅ DEFINITION OF DONE (mechanical — check EVERY box or the chunk is not done)
+No judgment calls here; that's the point. A chunk ships when ALL of these are true:
+1. **Core:** pure C# + EditMode tests pushed BEFORE/WITH the MonoBehaviour translator (LAW 2).
+2. **Gate:** the aspect's guardrail exists and covers the change — check the aspect's row in
+   **`docs/EXCELLENCE_MAP.md`**. If the row says 🕳️ GAP, either close the gap in this chunk or
+   claim it as a named board row. Never ship into an ungated aspect silently.
+3. **Richness (LAW 6):** shape uses its budget · the catalog the change touches is surfaced, not
+   sampled · anything that moves has a movement vocabulary. Thin spots listed in HANDOFF as
+   claimable rows.
+4. **Save story:** if the player can change/earn it, it survives quit (overlay idiom) — or the
+   HANDOFF says explicitly why not.
+5. **Diagnostics:** `ZIPTIDE: <TAG>` logs on every new runtime behavior (the logcat contract).
+6. **CI green** on the push that contains the change (LAWS 4–5).
+7. **Blackboard:** board row updated · HANDOFF entry (Did/Next/Heads-up/Commits) · Terry's runbook
+   gets the 🔧 menu step + 🎮 feel pass with CONCRETE knob values to react to.
+8. **Map:** if the aspect's STATE changed, its EXCELLENCE_MAP row is updated in the same push.
+
 ## Session shape (every session, in order)
 1. `git pull --rebase origin terry-local-wip` · read newest HANDOFF entries · read YOUR board.
 2. **Session-zero test:** you must be able to state your next commit from the board alone. If you
