@@ -28,6 +28,17 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-10 (dddd16) - Picasso (Fable 5): 🧬 v5.2 — the last "simple" tell: faceted silhouettes
+- **Why:** the roster passes, but every hero blob (grazer bell rim, bug carapace, warden dome) still
+  shows polygon edges in silhouette — the one remaining "low-poly proxy" read.
+- **Did:** ForgePart segments cap 16→32 (`Validate()` + tooltip; the CLASS TRI BUDGET remains the
+  real perf gate — a part can spend segments only inside its class's triangles) + rounded the hero
+  parts of all 6 genomes (bell 24 · bug carapace 22 · warden torso/head 18 · knot 18 · mite body 16 ·
+  molter carapace 16; limbs untouched — capsules already read smooth). Committed recipe assets are
+  untouched (hash-stable); the two committed body assets pick it up via the queued reseed.
+- **Next:** verify v5.2 turnarounds, then E5.3 flora (last unstarted FORGE II envelope).
+- **Commit:** this push.
+
 ### 2026-07-10 (dddd15) - Picasso (Fable 5): 🧬 WARDEN ✅ AT LAST (v5 verdict) + v5.1 polish
 - **v5 verdict (run `29101201206`, CI green `a0396d4`):** the arms killed the bin — the warden now
   reads as an armored bipedal sentinel (split pauldrons, elbows + fists, knees, eye burning between

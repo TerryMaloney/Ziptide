@@ -40,7 +40,8 @@ namespace Ziptide.Visuals
         public Vector3 size = new Vector3(0.1f, 0.1f, 0.1f);
         [Tooltip("BeveledBox: chamfer width. SphereSection: latitude fraction from top (0..1].")]
         public float bevel = 0f;
-        [Tooltip("Radial segments (Cylinder/Tube/Lathe/SphereSection) or box count (GreebleStrip). 3..16.")]
+        [Tooltip("Radial segments (Cylinder/Tube/Lathe/SphereSection) or box count (GreebleStrip). 3..32 " +
+                 "(creature v5.2: 16 left hero blobs visibly faceted; the class tri budget is the real gate).")]
         public int segments = 8;
         [Tooltip("Tube only: wall thickness in meters.")]
         public float wallThickness = 0.01f;
@@ -249,7 +250,7 @@ namespace Ziptide.Visuals
                     if (p == null) { issues.Add(tag + "null"); continue; }
                     if (palette != null && (p.paletteSlot < 0 || p.paletteSlot >= palette.Length))
                         issues.Add(tag + "paletteSlot " + p.paletteSlot + " out of range");
-                    if (p.segments < 3 || p.segments > 16) issues.Add(tag + "segments out of 3..16");
+                    if (p.segments < 3 || p.segments > 32) issues.Add(tag + "segments out of 3..32");
                     // Frustum's size.z is the TOP diameter and 0 is legal (a true cone).
                     if (p.size.x <= 0f || p.size.y <= 0f || (p.size.z <= 0f && p.op != ForgeOp.Frustum))
                         issues.Add(tag + "non-positive size");

@@ -74,10 +74,10 @@ namespace Ziptide.Editor.Patching
             };
             b.coreParts = new[]
             {
-                new ForgePart { name = "RootKnot", op = ForgeOp.OrganicBlob, segments = 12, smooth = true,
+                new ForgePart { name = "RootKnot", op = ForgeOp.OrganicBlob, segments = 18, smooth = true,
                     size = new Vector3(0.30f, 0.22f, 0.30f), position = new Vector3(0f, 0.16f, 0f),
                     noiseAmplitude = 0.02f, noiseFrequency = 12f, noiseSeed = 9, paletteSlot = 1 },
-                new ForgePart { name = "SporeBulb", op = ForgeOp.OrganicBlob, segments = 10, smooth = true,
+                new ForgePart { name = "SporeBulb", op = ForgeOp.OrganicBlob, segments = 14, smooth = true,
                     size = new Vector3(0.16f, 0.14f, 0.16f), position = new Vector3(0f, 0.30f, -0.06f),
                     noiseAmplitude = 0.012f, noiseFrequency = 16f, noiseSeed = 21, paletteSlot = 2 },
             };
@@ -161,12 +161,12 @@ namespace Ziptide.Editor.Patching
             };
             b.coreParts = new[]
             {
-                new ForgePart { name = "Carapace", op = ForgeOp.OrganicBlob, segments = 14, smooth = true,
+                new ForgePart { name = "Carapace", op = ForgeOp.OrganicBlob, segments = 22, smooth = true,
                     size = new Vector3(0.34f, 0.16f, 0.42f), position = new Vector3(0f, 0.18f, 0f),
                     noiseAmplitude = 0.010f, noiseFrequency = 13f, noiseSeed = 2, paletteSlot = 1 },
-                new ForgePart { name = "Belly", op = ForgeOp.SphereSection, bevel = 1f, segments = 10,
+                new ForgePart { name = "Belly", op = ForgeOp.SphereSection, bevel = 1f, segments = 14,
                     smooth = true, size = new Vector3(0.26f, 0.10f, 0.32f), position = new Vector3(0f, 0.12f, 0f), paletteSlot = 2 },
-                new ForgePart { name = "Head", op = ForgeOp.OrganicBlob, segments = 10, smooth = true,
+                new ForgePart { name = "Head", op = ForgeOp.OrganicBlob, segments = 14, smooth = true,
                     size = new Vector3(0.16f, 0.12f, 0.16f), position = new Vector3(0f, 0.17f, 0.22f),
                     noiseAmplitude = 0.006f, noiseFrequency = 18f, noiseSeed = 4, paletteSlot = 1 },
                 new ForgePart { name = "RidgeL", op = ForgeOp.Wedge,
@@ -231,12 +231,12 @@ namespace Ziptide.Editor.Patching
             };
             b.coreParts = new[]
             {
-                new ForgePart { name = "Bell", op = ForgeOp.OrganicBlob, segments = 16, smooth = true,
+                new ForgePart { name = "Bell", op = ForgeOp.OrganicBlob, segments = 24, smooth = true,
                     size = new Vector3(0.40f, 0.34f, 0.40f), position = new Vector3(0f, 0.34f, 0f),
                     noiseAmplitude = 0.016f, noiseFrequency = 9f, noiseSeed = 7, paletteSlot = 1 },
-                new ForgePart { name = "Underbell", op = ForgeOp.SphereSection, bevel = 1f, segments = 12,
+                new ForgePart { name = "Underbell", op = ForgeOp.SphereSection, bevel = 1f, segments = 16,
                     smooth = true, size = new Vector3(0.30f, 0.16f, 0.30f), position = new Vector3(0f, 0.20f, 0f), paletteSlot = 2 },
-                new ForgePart { name = "Skirt", op = ForgeOp.Torus, segments = 14, smooth = true,
+                new ForgePart { name = "Skirt", op = ForgeOp.Torus, segments = 20, smooth = true,
                     size = new Vector3(0.36f, 0.05f, 0.01f), position = new Vector3(0f, 0.23f, 0f), paletteSlot = 2 },
             };
             b.limbs = new[]
@@ -294,10 +294,10 @@ namespace Ziptide.Editor.Patching
             };
             b.coreParts = new[]
             {
-                new ForgePart { name = "Body", op = ForgeOp.OrganicBlob, segments = 10, smooth = true,
+                new ForgePart { name = "Body", op = ForgeOp.OrganicBlob, segments = 16, smooth = true,
                     size = new Vector3(0.30f, 0.20f, 0.36f), position = new Vector3(0f, 0.16f, 0f),
                     noiseAmplitude = 0.012f, noiseFrequency = 14f, noiseSeed = 5, paletteSlot = 1 },
-                new ForgePart { name = "LensHousing", op = ForgeOp.SphereSection, bevel = 1f, segments = 10,
+                new ForgePart { name = "LensHousing", op = ForgeOp.SphereSection, bevel = 1f, segments = 14,
                     smooth = true, size = new Vector3(0.15f, 0.13f, 0.15f),
                     position = new Vector3(0f, 0.20f, 0.16f), paletteSlot = 2 },
                 new ForgePart { name = "Spine1", op = ForgeOp.Capsule, segments = 8, smooth = true, taper = 0.7f,
@@ -355,10 +355,10 @@ namespace Ziptide.Editor.Patching
             };
             b.coreParts = new[]
             {
-                new ForgePart { name = "Carapace", op = ForgeOp.OrganicBlob, segments = 10, smooth = true,
+                new ForgePart { name = "Carapace", op = ForgeOp.OrganicBlob, segments = 16, smooth = true,
                     size = new Vector3(0.34f, 0.24f, 0.40f), position = new Vector3(0f, 0.18f, 0f),
                     noiseAmplitude = 0.015f, noiseFrequency = 10f, noiseSeed = 3, paletteSlot = 1 },
-                new ForgePart { name = "Belly", op = ForgeOp.SphereSection, bevel = 1f, segments = 8,
+                new ForgePart { name = "Belly", op = ForgeOp.SphereSection, bevel = 1f, segments = 12,
                     smooth = true, size = new Vector3(0.26f, 0.12f, 0.32f),
                     position = new Vector3(0f, 0.12f, 0f), paletteSlot = 2 },
                 new ForgePart { name = "RidgeFin", op = ForgeOp.Wedge, segments = 4,
@@ -440,7 +440,7 @@ namespace Ziptide.Editor.Patching
                 // Photo-loop v4 (v3 still read "dark monolith with a lid"): the full-width pauldron
                 // slab is SPLIT into two angled shoulder plates with a bright collar between them,
                 // and the body finally gets ARMS — nothing says "not a bin" like hands.
-                new ForgePart { name = "Torso", op = ForgeOp.Frustum, segments = 12, smooth = true,
+                new ForgePart { name = "Torso", op = ForgeOp.Frustum, segments = 18, smooth = true,
                     size = new Vector3(0.50f, 1.05f, 0.66f), position = new Vector3(0f, 1.30f, 0f),
                     paletteSlot = 0 },
                 new ForgePart { name = "PauldronL", op = ForgeOp.BeveledBox, bevel = 0.05f,
@@ -452,7 +452,7 @@ namespace Ziptide.Editor.Patching
                 new ForgePart { name = "Collar", op = ForgeOp.BeveledBox, bevel = 0.02f,
                     size = new Vector3(0.34f, 0.10f, 0.36f), position = new Vector3(0f, 1.90f, 0f),
                     paletteSlot = 2 },
-                new ForgePart { name = "Head", op = ForgeOp.SphereSection, bevel = 0.55f, segments = 12,
+                new ForgePart { name = "Head", op = ForgeOp.SphereSection, bevel = 0.55f, segments = 18,
                     smooth = true, size = new Vector3(0.50f, 0.34f, 0.50f),
                     position = new Vector3(0f, 2.00f, 0f), paletteSlot = 1 },
                 new ForgePart { name = "Visor", op = ForgeOp.BeveledBox, bevel = 0.015f,
