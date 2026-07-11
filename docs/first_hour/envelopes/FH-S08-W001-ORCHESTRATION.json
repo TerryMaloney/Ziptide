@@ -1,0 +1,168 @@
+{
+  "id": "FH-S08-W001-ORCHESTRATION",
+  "owner": "story-ship",
+  "kind": "orchestration",
+  "risk": "device-sensitive",
+  "covers": [
+    "FH_OBSERVE_SIGNATURE_CREATURE",
+    "FH_CHANGED_SHIP_PAYOFF"
+  ],
+  "signals": [
+    "SIGNATURE_CREATURE_OBSERVED",
+    "FIRST_HOUR_PAYOFF_OBSERVED"
+  ],
+  "lines": [
+    {
+      "beat": "FH_LOOK_AT_RILL",
+      "id": "TUT_LOOK_RILL"
+    },
+    {
+      "beat": "FH_COMFORT_CONSOLE",
+      "id": "TUT_COMFORT_CONSOLE"
+    },
+    {
+      "beat": "FH_MOVE_IN_QUARTERS",
+      "id": "TUT_MOVE_QUARTERS"
+    },
+    {
+      "beat": "FH_GRAB_BUNK_OBJECT",
+      "id": "TUT_GRAB_BUNK_OBJECT"
+    },
+    {
+      "beat": "FH_HOLSTER_FIRST_ITEM",
+      "id": "TUT_HOLSTER_ITEM"
+    },
+    {
+      "beat": "FH_INTERACT_HELM",
+      "id": "TUT_INTERACT_HELM"
+    },
+    {
+      "beat": "FH_FIRST_ZIPTIDE",
+      "id": "TUT_PUNCH_IT"
+    },
+    {
+      "beat": "FH_ACCEPT_FIRST_JOB",
+      "id": "TUT_ACCEPT_FIRST_JOB"
+    },
+    {
+      "beat": "FH_SCAN_FAULT",
+      "id": "TUT_SCAN_FAULT"
+    },
+    {
+      "beat": "FH_REPAIR_ACCESS",
+      "id": "TUT_REPAIR_ACCESS"
+    },
+    {
+      "beat": "FH_SHOOT_PRACTICE_TARGET",
+      "id": "TUT_SHOOT_PRACTICE"
+    },
+    {
+      "beat": "FH_OBSERVE_SIGNATURE_CREATURE",
+      "id": "TUT_OBSERVE_CREATURE"
+    },
+    {
+      "beat": "FH_COUNTER_SIGNATURE_CREATURE",
+      "id": "TUT_COUNTER_CREATURE"
+    },
+    {
+      "beat": "FH_USE_JOB_ZIPLINE",
+      "id": "TUT_ZIPLINE"
+    },
+    {
+      "beat": "FH_RETURN_TO_SHIP",
+      "id": "TUT_RETURN_HOME"
+    }
+  ],
+  "dependencies": [
+    "FH-X01-CONTRACT-ASSET",
+    "FH-X02-PROGRESSION-CORE",
+    "FH-S01-OBSERVATION",
+    "FH-S02-HOLSTER",
+    "FH-S03-TRAVEL",
+    "FH-M01-SCANNER-RESULT",
+    "FH-S04-REPAIR-SCAN",
+    "FH-S05-CREATURE-RESOLUTION",
+    "FH-S06-ZIPLINE",
+    "FH-S07-HOME-W000-SURFACES",
+    "FH-A01-SIGNATURE-CREATURE-PRESENTATION"
+  ],
+  "commits": 3,
+  "newFiles": [
+    "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+    "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourW001Orchestrator.cs",
+    "Ziptide/Assets/Ziptide/Editor/Patching/FirstHourW001Author.cs",
+    "Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourDirectorTests.cs"
+  ],
+  "touchFiles": [
+    "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs",
+    "Ziptide/Assets/Ziptide/Content/Runtime/Story/RillLineLibrary.cs",
+    "Ziptide/Assets/Ziptide/Editor/Patching/RillLineAuthor.cs",
+    "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipRefit.cs",
+    "Ziptide/Assets/Ziptide/Content/Runtime/Ship/ShipLoadoutCore.cs"
+  ],
+  "touchPatterns": [
+    "docs/worldspecs/*.spec.json"
+  ],
+  "reuse": [
+    "FirstHourProgressCore",
+    "RillCompanion",
+    "JobRuntime",
+    "TravelCoordinator",
+    "RepairableMachine",
+    "CreatureRuntime",
+    "ZiplineRuntime",
+    "ShipJourneyDecals",
+    "ShipRefit"
+  ],
+  "api": [
+    "Only director subscribes to owner events, feeds pure core, grants returned flags, unsubscribes cleanly.",
+    "RillLineLibrary TryGetById + RillCompanion enqueue-by-ID preserve once latch/subtitle/VO.",
+    "Hints only after hesitation; immediate players hear nothing.",
+    "Stable markers identify machine/target/zipline/creature; safe observation precedes activation.",
+    "Return reuses W001_COMPLETE -> decal_first_contract; completes only when ShipRefit confirms visible result.",
+    "Map TUTORIAL_DONE to existing TUTORIAL_COMPLETE; grant FIRST_HOUR_COMPLETE."
+  ],
+  "tests": [
+    "fake-owner full 22 sequence",
+    "all 15 lines resolve/once latch",
+    "out-of-order ignored",
+    "subscriptions not duplicated",
+    "reload resumes",
+    "wrong instance events ignored",
+    "payoff requires saved flag + visible decal"
+  ],
+  "diagnostics": [
+    "ZIPTIDE: FIRST_HOUR_OPEN beat=<id>",
+    "ZIPTIDE: FIRST_HOUR_SIGNAL signal=<id> result=<...>",
+    "ZIPTIDE: FIRST_HOUR_HINT beat=<id> line=<id>",
+    "ZIPTIDE: FIRST_HOUR_COMPLETE",
+    "ZIPTIDE: FIRST_HOUR_PAYOFF decal=decal_first_contract present=<bool>"
+  ],
+  "fallback": [
+    "Missing asset disables director only.",
+    "Missing adapter leaves dependent beat open/logs once.",
+    "Missing line does not block completion.",
+    "Proxy can prove mechanics but cannot close art/device.",
+    "Missing decal keeps saved progress and payoff open."
+  ],
+  "acceptance": {
+    "CI": [
+      "Director tests green",
+      "15 line IDs resolve",
+      "Unity compile green",
+      "No replacement state"
+    ],
+    "BAKE": [
+      "W000/W001 patchers idempotent; audit pass"
+    ],
+    "DEVICE": [
+      "Cold player finishes unaided; hints only on hesitation; creature readable; return persists after reload"
+    ]
+  },
+  "integrationOwners": [
+    "architecture",
+    "multiplayer",
+    "art"
+  ],
+  "supports": []
+}
