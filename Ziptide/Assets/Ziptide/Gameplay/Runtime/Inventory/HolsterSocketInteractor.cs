@@ -67,7 +67,7 @@ namespace Ziptide.Gameplay
 
             PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;
             string itemId = item.Definition.itemId;
-            if (!TryReportFirstHolster(
+            if (!FirstHourHolsterSignal.TryReport(
                 itemId,
                 profile,
                 ref _firstHolsterReported,
@@ -82,31 +82,6 @@ namespace Ziptide.Gameplay
         private static void PublishItemHolstered(string itemId)
         {
             ItemHolstered?.Invoke(itemId);
-        }
-
-        /// <summary>
-        /// Pure first-holster decision used by the runtime callback and EditMode tests. A missing
-        /// profile still publishes safely; an existing FIRST_HOLSTER flag or duplicate callback is
-        /// silent. This method does not persist the profile.
-        /// </summary>
-        public static bool TryReportFirstHolster(
-            string itemId,
-            PlayerProfile profile,
-            ref bool alreadyReported,
-            Action<string> publish)
-        {
-            if (alreadyReported || string.IsNullOrEmpty(itemId)) return false;
-
-            if (profile != null && profile.HasFlag(ZiptideFlags.FIRST_HOLSTER))
-            {
-                alreadyReported = true;
-                return false;
-            }
-
-            alreadyReported = true;
-            profile?.SetFlag(ZiptideFlags.FIRST_HOLSTER);
-            publish?.Invoke(itemId);
-            return true;
         }
     }
 }
