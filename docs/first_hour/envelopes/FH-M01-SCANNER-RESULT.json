@@ -1,0 +1,60 @@
+{
+  "id": "FH-M01-SCANNER-RESULT",
+  "owner": "multiplayer",
+  "kind": "adapter",
+  "risk": "cross-lane",
+  "covers": [
+    "FH_SCAN_FAULT"
+  ],
+  "signals": [
+    "FIRST_MACHINE_FAULT_SCANNED"
+  ],
+  "lines": [],
+  "dependencies": [],
+  "commits": 1,
+  "newFiles": [
+    "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/WristScanResult.cs",
+    "Ziptide/Assets/Ziptide/Tests/EditMode/WristScannerResultTests.cs"
+  ],
+  "touchFiles": [
+    "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/WristScanner.cs",
+    "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/IScannable.cs"
+  ],
+  "touchPatterns": [],
+  "reuse": [
+    "WristScanner",
+    "IScannable",
+    "LocatorState"
+  ],
+  "api": [
+    "Publish immutable exact IScannable snapshot once per real pulse, including empty.",
+    "No campaign fields or Story reference; radar/tags/haptics/audio/cooldown/filter unchanged."
+  ],
+  "tests": [
+    "active in-range only",
+    "snapshot immutable",
+    "empty pulse publishes",
+    "no campaign reference"
+  ],
+  "diagnostics": [
+    "ZIPTIDE: WRIST_SCAN_RESULT count=<n> kinds=<summary>"
+  ],
+  "fallback": [
+    "No subscribers = zero change; subscriber failure cannot abort scanner visuals."
+  ],
+  "acceptance": {
+    "CI": [
+      "MP tests green",
+      "Unity compile green",
+      "No Story reference"
+    ],
+    "BAKE": [],
+    "DEVICE": [
+      "Gesture, haptics, cooldown and PvP behavior unchanged"
+    ]
+  },
+  "integrationOwners": [
+    "story-ship"
+  ],
+  "supports": []
+}
