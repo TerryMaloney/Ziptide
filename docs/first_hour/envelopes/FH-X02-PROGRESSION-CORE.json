@@ -1,0 +1,79 @@
+{
+  "id": "FH-X02-PROGRESSION-CORE",
+  "owner": "architecture",
+  "kind": "pure-core",
+  "risk": "owner-local",
+  "covers": [],
+  "signals": [],
+  "lines": [],
+  "dependencies": [
+    "FH-X01-CONTRACT-ASSET"
+  ],
+  "commits": 1,
+  "newFiles": [
+    "Ziptide/Assets/Ziptide/Core/Runtime/Tutorial/FirstHourProgressCore.cs",
+    "Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourProgressCoreTests.cs"
+  ],
+  "touchFiles": [],
+  "touchPatterns": [],
+  "reuse": [
+    "FirstHourContractDefinition",
+    "PlayerProfile.flags"
+  ],
+  "api": [
+    "Pure constructor receives beat data + completed IDs; no I/O/Unity/wall clock.",
+    "CurrentBeatId is first reachable incomplete required beat.",
+    "AcceptSignal advances only matching current signal and returns flags/result code.",
+    "ShouldOfferHint(now) fires once after delay; MarkHintDelivered latches."
+  ],
+  "tests": [
+    "full 22-beat sequence",
+    "early/unknown/duplicate no-op",
+    "hint once/reset",
+    "reload resumes",
+    "final flags"
+  ],
+  "diagnostics": [
+    "Pure core logs nothing; translator logs result."
+  ],
+  "fallback": [
+    "Invalid input yields disabled evaluator.",
+    "Missing completed set means empty."
+  ],
+  "acceptance": {
+    "CI": [
+      "Pure EditMode tests green",
+      "No UnityEngine reference",
+      "Generated sequence fixture passes"
+    ],
+    "BAKE": [],
+    "DEVICE": []
+  },
+  "integrationOwners": [
+    "story-ship"
+  ],
+  "supports": [
+    "FH_BOOT_READY",
+    "FH_NEW_GAME_SELECTED",
+    "FH_LOOK_AT_RILL",
+    "FH_COMFORT_CONSOLE",
+    "FH_MOVE_IN_QUARTERS",
+    "FH_GRAB_BUNK_OBJECT",
+    "FH_HOLSTER_FIRST_ITEM",
+    "FH_INTERACT_HELM",
+    "FH_FIRST_ZIPTIDE",
+    "FH_W001_ARRIVAL",
+    "FH_ACCEPT_FIRST_JOB",
+    "FH_SCAN_FAULT",
+    "FH_REPAIR_ACCESS",
+    "FH_REPAIR_PART_SEATED",
+    "FH_MACHINE_POWER_CYCLE",
+    "FH_SHOOT_PRACTICE_TARGET",
+    "FH_OBSERVE_SIGNATURE_CREATURE",
+    "FH_COUNTER_SIGNATURE_CREATURE",
+    "FH_USE_JOB_ZIPLINE",
+    "FH_FIRST_JOB_REWARD",
+    "FH_RETURN_TO_SHIP",
+    "FH_CHANGED_SHIP_PAYOFF"
+  ]
+}
