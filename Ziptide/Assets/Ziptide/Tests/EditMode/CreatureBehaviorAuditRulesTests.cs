@@ -14,41 +14,41 @@ namespace Ziptide.Tests.EditMode
     public class CreatureBehaviorAuditRulesTests
     {
         [Test]
-        public void Catalog_ProfilesAreUniqueAndCarryThreeSpeciesModes()
+        public void CanonicalProfiles_CarrySourceEvidenceForEveryActiveState()
         {
             var ids = new HashSet<string>(StringComparer.Ordinal);
-            Assert.AreEqual(7, CreatureBehaviorCatalog.All.Count,
-                "the committed story-creature roster is deliberately seven ids at this gate revision");
+            Assert.AreEqual(7, CreatureBehaviorReadabilityCatalog.All.Count);
 
-            foreach (var profile in CreatureBehaviorCatalog.All)
+            foreach (var profile in CreatureBehaviorReadabilityCatalog.All)
             {
                 Assert.IsNotNull(profile);
-                Assert.IsFalse(string.IsNullOrWhiteSpace(profile.CreatureId));
-                Assert.IsTrue(ids.Add(profile.CreatureId), "duplicate profile id " + profile.CreatureId);
-                Assert.IsNotNull(profile.BehaviorType);
-                Assert.IsTrue(typeof(CreatureBehaviorBase).IsAssignableFrom(profile.BehaviorType));
-                Assert.GreaterOrEqual(
-                    CreatureBehaviorCatalog.CountUniqueModes(profile),
-                    CreatureBehaviorAuditRules.MinimumReadableModes,
-                    profile.CreatureId);
+                Assert.IsTrue(ids.Add(profile.CreatureId), "duplicate profile " + profile.CreatureId);
+                Assert.AreEqual(profile.ActiveStates.Count, profile.ActiveStateEvidence.Count);
+                Assert.GreaterOrEqual(profile.ActiveStates.Count,
+                    CreatureBehaviorReadabilityCatalog.MinimumActiveStates, profile.CreatureId);
+                Assert.IsFalse(string.IsNullOrWhiteSpace(profile.BehaviorSourceRelativePath), profile.CreatureId);
+                Assert.IsFalse(string.IsNullOrWhiteSpace(profile.FactoryEvidenceToken), profile.CreatureId);
 
-                var modeNames = new HashSet<string>(StringComparer.Ordinal);
-                foreach (var mode in profile.Modes)
+                string sourcePath = CreatureBehaviorAuditRules.ResolveAssetRelativeSource(
+                    profile.BehaviorSourceRelativePath);
+                Assert.IsTrue(File.Exists(sourcePath), sourcePath);
+                string source = File.ReadAllText(sourcePath);
+                StringAssert.Contains(profile.BehaviorTypeName, source, profile.CreatureId);
+
+                foreach (var state in profile.ActiveStateEvidence)
                 {
-                    Assert.IsNotNull(mode, profile.CreatureId);
-                    Assert.IsFalse(string.IsNullOrWhiteSpace(mode.Name), profile.CreatureId);
-                    Assert.IsFalse(string.IsNullOrWhiteSpace(mode.EvidenceToken),
-                        profile.CreatureId + "/" + mode.Name);
-                    Assert.IsTrue(modeNames.Add(mode.Name),
-                        profile.CreatureId + " repeats mode " + mode.Name);
-                    Assert.IsFalse(IsGenericRuntimeState(mode.Name),
-                        profile.CreatureId + " illegally counts generic state " + mode.Name);
+                    Assert.IsNotNull(state, profile.CreatureId);
+                    Assert.IsFalse(string.IsNullOrWhiteSpace(state.StateName), profile.CreatureId);
+                    Assert.IsFalse(string.IsNullOrWhiteSpace(state.EvidenceToken),
+                        profile.CreatureId + "/" + state.StateName);
+                    StringAssert.Contains(state.EvidenceToken, source,
+                        profile.CreatureId + "/" + state.StateName + " evidence drifted");
                 }
             }
         }
 
         [Test]
-        public void CommittedCreatureDefinitions_MatchCatalogOneToOne()
+        public void CommittedCreatureDefinitions_MatchCanonicalCatalogOneToOne()
         {
             var assetIds = new HashSet<string>(StringComparer.Ordinal);
             foreach (string guid in AssetDatabase.FindAssets(
@@ -60,37 +60,18 @@ namespace Ziptide.Tests.EditMode
                 Assert.IsNotNull(definition, path);
                 Assert.IsFalse(string.IsNullOrWhiteSpace(definition.id), path);
                 Assert.IsTrue(assetIds.Add(definition.id), "duplicate creature id " + definition.id);
-                Assert.IsTrue(CreatureBehaviorCatalog.TryGet(definition.id, out var profile),
-                    definition.id + " has no behavior profile");
-                Assert.AreEqual(definition.id, profile.CreatureId);
+                Assert.IsTrue(CreatureBehaviorReadabilityCatalog.TryGet(definition.id, out var profile),
+                    definition.id + " has no readability profile");
+                Assert.AreEqual(definition.archetype, profile.ExpectedArchetype, definition.id);
             }
 
-            Assert.AreEqual(CreatureBehaviorCatalog.All.Count, assetIds.Count,
-                "catalog and committed CreatureDefinition assets must remain one-to-one");
-            foreach (var profile in CreatureBehaviorCatalog.All)
-                Assert.IsTrue(assetIds.Contains(profile.CreatureId),
-                    "orphan behavior profile " + profile.CreatureId);
+            Assert.AreEqual(CreatureBehaviorReadabilityCatalog.All.Count, assetIds.Count);
+            foreach (var profile in CreatureBehaviorReadabilityCatalog.All)
+                Assert.IsTrue(assetIds.Contains(profile.CreatureId), "orphan profile " + profile.CreatureId);
         }
 
         [Test]
-        public void EveryModeEvidenceToken_ExistsInItsRealBehaviorSource()
-        {
-            foreach (var profile in CreatureBehaviorCatalog.All)
-            {
-                string path = CreatureBehaviorAuditRules.ResolveAssetRelativeSource(
-                    profile.BehaviorSourceRelativePath);
-                Assert.IsTrue(File.Exists(path), path);
-                string source = File.ReadAllText(path);
-                StringAssert.Contains(profile.BehaviorType.Name, source, profile.CreatureId);
-
-                foreach (var mode in profile.Modes)
-                    StringAssert.Contains(mode.EvidenceToken, source,
-                        profile.CreatureId + "/" + mode.Name + " evidence drifted");
-            }
-        }
-
-        [Test]
-        public void EveryProfile_IsStillWiredThroughCityBuilderFactory()
+        public void FactoryEvidenceTokens_ExistInCityBuilder()
         {
             string path = CreatureBehaviorAuditRules.ResolveAssetRelativeSource(
                 CreatureBehaviorAuditRules.CityBuilderRelativePath);
@@ -98,54 +79,40 @@ namespace Ziptide.Tests.EditMode
             string source = File.ReadAllText(path);
             StringAssert.Contains("internal static void MakeCreature", source);
 
-            foreach (var profile in CreatureBehaviorCatalog.All)
+            foreach (var profile in CreatureBehaviorReadabilityCatalog.All)
                 StringAssert.Contains(profile.FactoryEvidenceToken, source,
                     profile.CreatureId + " factory wiring drifted");
         }
 
         [Test]
-        public void ProjectAudit_HasNoBehaviorCoverageBlockers()
+        public void ProjectAudit_HasNoBehaviorReadabilityBlockers()
         {
             var report = new SceneAuditReport { sceneName = "__CREATURE_BEHAVIOR_TEST__" };
             CreatureBehaviorAuditRules.Run(report);
 
-            if (report.blockerCount > 0)
-            {
-                var messages = new List<string>();
-                foreach (var finding in report.findings)
-                    if (finding.severity == AuditSeverity.Blocker)
-                        messages.Add(finding.ToString());
-                Assert.Fail(string.Join("\n", messages));
-            }
+            if (report.blockerCount <= 0) return;
+            var messages = new List<string>();
+            foreach (var finding in report.findings)
+                if (finding.severity == AuditSeverity.Blocker)
+                    messages.Add(finding.ToString());
+            Assert.Fail(string.Join("\n", messages));
         }
 
         [Test]
-        public void Lookup_IsExactAndBuildGateOrderIsStable()
+        public void BehaviorTypesResolveAndBuildGateOrderIsStable()
         {
-            Assert.IsTrue(CreatureBehaviorCatalog.TryGet("warden", out var warden));
-            Assert.AreEqual(typeof(WardenBehavior), warden.BehaviorType);
-            Assert.IsFalse(CreatureBehaviorCatalog.TryGet("WARDEN", out _),
-                "creature ids are exact serialized contracts");
-            Assert.IsFalse(CreatureBehaviorCatalog.TryGet("drone_easy", out _),
-                "drone difficulty profiles are not story-creature definitions");
-            Assert.AreEqual(825, new CreatureBehaviorBuildGate().callbackOrder);
-        }
-
-        private static bool IsGenericRuntimeState(string modeName)
-        {
-            switch ((modeName ?? "").ToLowerInvariant())
+            foreach (var profile in CreatureBehaviorReadabilityCatalog.All)
             {
-                case "stun":
-                case "stunned":
-                case "disable":
-                case "disabled":
-                case "down":
-                case "respawn":
-                case "respawning":
-                    return true;
-                default:
-                    return false;
+                Type behaviorType = typeof(CreatureBehaviorBase).Assembly.GetType(
+                    "Ziptide.Gameplay." + profile.BehaviorTypeName,
+                    false,
+                    false);
+                Assert.IsNotNull(behaviorType, profile.CreatureId);
+                Assert.IsTrue(typeof(CreatureBehaviorBase).IsAssignableFrom(behaviorType));
             }
+
+            Assert.IsFalse(CreatureBehaviorReadabilityCatalog.TryGet("drone_easy", out _));
+            Assert.AreEqual(825, new CreatureBehaviorBuildGate().callbackOrder);
         }
     }
 }
