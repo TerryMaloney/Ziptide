@@ -44,7 +44,7 @@ noted; EditMode tests are gates too. *(Last status reconciliation: 2026-07-11.)*
 |---|---|---|---|
 | Creatures (bodies) | 🧱→💎 in flight (Forge genomes, roster complete) | Hero creatures use their class budget; no primitive stand-ins; tells hold | `ForgeAuditRules` + class budgets; 🕳️ budget-utilization floor |
 | Creature behavior | 🧱 structural v1 (7 shipped ids; ≥3 active states each; device readability/polish pending) | Every shipped species has readable active vocabulary, a fair telegraph, a counter and separate non-lethal resolution; actual Quest timing/readability still matters | `CreatureBehaviorReadabilityCatalog` + both readability/audit test suites + `CreatureBehaviorBuildGate`; headset quality check remains |
-| Gardens | 🧱 v1 (24 species, genetics, watering) | Genetics visibly matter; interactions are hand verbs; giants/breeding playable | garden tests; 🕳️ plant-catalog breadth audit |
+| Gardens | 🧱 structural v1 (24 authored specs, genetics/watering; most seed surfacing and starter-asset reconciliation remain) | Genetics visibly matter; interactions are hand verbs; every authored species is deliberately reachable; giants/breeding playable | garden tests + **`CatalogBreadthAuditRules`/tests/APK gate**; warnings name unsurfaced ids and create-only asset drift |
 | Automation/belts | 💎 | Place/ride/persist/feed/clone; deterministic flow; machinery motion follows work | `AutomationAuditRules` + tests |
 | Ambient audio | 🧱 v1 (procedural biome beds) | Every biome has bed + stingers; VO ducking | `AmbienceTests`; remaining stingers/stems/ducking |
 
@@ -66,7 +66,7 @@ noted; EditMode tests are gates too. *(Last status reconciliation: 2026-07-11.)*
 | Ship customization | 💎 (chassis/modules/refit/liveries/decals/hums) | Loadout visibly changes ship and flight | ShipLoadout/Locker tests |
 | Flight | 💎 v1.3 | Cockpit reference; full arcade vocabulary; never parent rig | flight tests + comfort law |
 | Space combat | 🧱 v1 (stun, disable, salvage) | Non-lethal; varied enemy ships; economy payout | combat/economy tests; 🕳️ enemy variety |
-| Vehicles | 🧱 v1 (3 rides) | Shares Forge/comfort/mount patterns; garage surface | vehicle tests; 🕳️ catalog breadth + garage |
+| Vehicles | 🧱 structural v1 (3 biome-surfaced rides; 3/6 archetypes, no garage) | Shares Forge/comfort/mount patterns; every authored ride reaches a world; distinct missing families and a usable garage/catalog surface complete the vocabulary | vehicle tests + **`CatalogBreadthAuditRules`/tests/APK gate**; warnings name Rover/GravSled/Walker and missing garage |
 
 ## 5 · STORY & CHARACTERS
 
@@ -126,7 +126,7 @@ noted; EditMode tests are gates too. *(Last status reconciliation: 2026-07-11.)*
 7. ~~Haptic coverage checklist~~ — **CLOSED at documentation level 2026-07-11** (`design/HAPTIC_COVERAGE.md`); runtime owner rows remain individually open.
 8. ~~Accessibility design doc~~ — CLOSED 2026-07-10; non-preset controls remain implementation rows.
 9. ~~Creature behavior-count/readability check~~ — **CLOSED at structural code/CI maturity 2026-07-11** (one canonical catalog, source/factory evidence, EditMode suites and APK pre-build blocker; headset readability remains a quality/device row).
-10. **Plant/vehicle catalog breadth** — same shape as existing catalog-span tests.
+10. ~~Plant/vehicle catalog breadth audit~~ — **CLOSED at structural audit maturity 2026-07-11** (`CatalogBreadthAuditRules` + tests/APK gate); actual seed surfacing, starter asset reconciliation, three missing ride families and garage remain content rows.
 
 ## THE UNIFORMITY REVIEW
 
