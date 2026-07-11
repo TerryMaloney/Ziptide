@@ -1,0 +1,84 @@
+{
+  "id": "FH-X01-CONTRACT-ASSET",
+  "owner": "architecture",
+  "kind": "contract-compiler",
+  "risk": "shared-protected",
+  "covers": [],
+  "signals": [],
+  "lines": [],
+  "dependencies": [],
+  "commits": 2,
+  "newFiles": [
+    "Ziptide/Assets/Ziptide/Content/Runtime/Tutorial/FirstHourContractDefinition.cs",
+    "Ziptide/Assets/Ziptide/Editor/Patching/FirstHourContractAuthor.cs",
+    "Ziptide/Assets/Ziptide/Editor/Audit/FirstHourContractAuditRules.cs",
+    "Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourContractAuthorTests.cs"
+  ],
+  "touchFiles": [
+    "Ziptide/Assets/Ziptide/Editor/Build/BuildAndroid.cs",
+    "Ziptide/Assets/Ziptide/Editor/Audit/WorldAuditRunner.cs"
+  ],
+  "touchPatterns": [],
+  "reuse": [
+    "docs/first_hour/first_hour_beats.json",
+    "BuildAndroid",
+    "WorldAuditRunner"
+  ],
+  "api": [
+    "Generate one deterministic Resources asset from the approved JSON; no runtime JSON parser or second beat list.",
+    "Preserve IDs/order/prereqs/signals/hints/lines/flags/persistence/evidence.",
+    "WARN-only codes: FIRST_HOUR_CONTRACT_ASSET_MISSING, _DRIFT, _INVALID."
+  ],
+  "tests": [
+    "22 beats/15 teaching lines import",
+    "repeat import identical",
+    "invalid input stable codes",
+    "source hash stable"
+  ],
+  "diagnostics": [
+    "ZIPTIDE: FIRST_HOUR_CONTRACT beats=22 teaching=15 hash=<hash>"
+  ],
+  "fallback": [
+    "Missing asset disables tutorial only; base game remains playable.",
+    "Never hard-code a fallback beat list."
+  ],
+  "acceptance": {
+    "CI": [
+      "Importer tests green",
+      "Android compile green",
+      "source hash matches"
+    ],
+    "BAKE": [
+      "Idempotent author; no audit findings"
+    ],
+    "DEVICE": []
+  },
+  "integrationOwners": [
+    "story-ship"
+  ],
+  "supports": [
+    "FH_BOOT_READY",
+    "FH_NEW_GAME_SELECTED",
+    "FH_LOOK_AT_RILL",
+    "FH_COMFORT_CONSOLE",
+    "FH_MOVE_IN_QUARTERS",
+    "FH_GRAB_BUNK_OBJECT",
+    "FH_HOLSTER_FIRST_ITEM",
+    "FH_INTERACT_HELM",
+    "FH_FIRST_ZIPTIDE",
+    "FH_W001_ARRIVAL",
+    "FH_ACCEPT_FIRST_JOB",
+    "FH_SCAN_FAULT",
+    "FH_REPAIR_ACCESS",
+    "FH_REPAIR_PART_SEATED",
+    "FH_MACHINE_POWER_CYCLE",
+    "FH_SHOOT_PRACTICE_TARGET",
+    "FH_OBSERVE_SIGNATURE_CREATURE",
+    "FH_COUNTER_SIGNATURE_CREATURE",
+    "FH_USE_JOB_ZIPLINE",
+    "FH_FIRST_JOB_REWARD",
+    "FH_RETURN_TO_SHIP",
+    "FH_CHANGED_SHIP_PAYOFF"
+  ],
+  "sharedProtocol": "Announce append-only BuildAndroid/WorldAuditRunner lines before commit; reread current SHAs."
+}
