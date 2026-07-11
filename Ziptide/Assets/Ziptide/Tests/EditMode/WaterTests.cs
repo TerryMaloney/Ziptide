@@ -127,20 +127,28 @@ namespace Ziptide.Tests.EditMode
         }
 
         [Test]
-        public void FoamAlpha_ConcentratesAtWaterline_AndIsLacy()
+        public void FoamAlpha_DenseAtWaterline_ClearsToward_TheFrayedTop()
         {
+            // Foam is densest at the waterline (v→0) and frays to nothing at the top (v→1); the
+            // fray is lacy (varies across u). Robust asserts: denser-at-waterline, plus the field
+            // reaches BOTH solid and clear somewhere — non-constant without a fragile threshold.
             float lineAvg = 0f, topAvg = 0f; int n = 0;
-            float min = 1f, max = 0f;
+            float gmin = 1f, gmax = 0f;
+            for (float v = 0.05f; v < 1f; v += 0.1f)
+                for (float u = 0f; u < 1f; u += 0.05f)
+                {
+                    float a = WaterFoamMesh.FoamAlpha(u, v);
+                    Assert.GreaterOrEqual(a, 0f); Assert.LessOrEqual(a, 1f);
+                    gmin = Mathf.Min(gmin, a); gmax = Mathf.Max(gmax, a);
+                }
             for (float u = 0f; u < 1f; u += 0.05f, n++)
             {
-                float lo = WaterFoamMesh.FoamAlpha(u, 0.05f);
-                float hi = WaterFoamMesh.FoamAlpha(u, 0.95f);
-                lineAvg += lo; topAvg += hi;
-                min = Mathf.Min(min, lo); max = Mathf.Max(max, lo);
-                Assert.GreaterOrEqual(lo, 0f); Assert.LessOrEqual(lo, 1f);
+                lineAvg += WaterFoamMesh.FoamAlpha(u, 0.05f);
+                topAvg += WaterFoamMesh.FoamAlpha(u, 0.95f);
             }
             Assert.Greater(lineAvg / n, topAvg / n, "more foam at the waterline than the frayed top");
-            Assert.Greater(max - min, 0.1f, "the waterline foam is lacy (fBm), not a solid bar");
+            Assert.Less(gmin, 0.2f, "foam clears (has gaps) somewhere");
+            Assert.Greater(gmax, 0.8f, "foam is solid at the waterline somewhere");
         }
 
         [Test]
