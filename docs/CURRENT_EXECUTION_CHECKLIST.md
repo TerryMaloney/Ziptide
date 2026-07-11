@@ -8,7 +8,7 @@
 ## 1. Operating truth
 
 - Branch: `terry-local-wip`.
-- Latest gameplay-code proof at creation: `e51dce54b984184139812c89ac344c86f2b6f39a`, CI run `29165306485`, Unity EditMode green, 910/910 tests.
+- Latest gameplay-code proof: `c7b5d524b710b767a071264d6a1c552136bf08a0`, CI run `29167548682`, Unity EditMode green.
 - Picasso is the active independent Art/Forge track and owns `Visuals/**`, Forge, water, art authors/audits, and `SPRINT_ART.md`.
 - Architect, T-Dog, and Reasonbox are useful historical workstream names, not exclusive permanent accounts. The official model is one non-art operator plus Terry, while active concurrent claims still control file ownership.
 - Never hand-edit `.unity` or `.prefab` YAML. Write an idempotent author/patcher; Terry runs it and commits generated artifacts.
@@ -37,9 +37,9 @@
 ### A. Work that can proceed without Terry or Picasso
 
 - [ ] Keep this checklist and the active board synchronized whenever a row changes.
-- [ ] Implement the locked asynchronous-travel design in `docs/design/ASYNC_TRAVEL.md`, preserving `TravelCoordinator` as the sole owner and using the report-only/protected-file protocol.
+- [x] Implement the locked asynchronous-travel design in `docs/design/ASYNC_TRAVEL.md`, preserving `TravelCoordinator` as the sole owner. **Code/CI green `c7b5d52`, run `29167548682`; device frame-pacing comparison pending.**
 - [ ] After each code push, wait for/read `docs/CI_VERDICT.md`; do not stack unverified code.
-- [ ] If async travel closes early, take another independent CI-only gate/quality task from §7 rather than entering Picasso files or blocked first-hour orchestration.
+- [ ] Take another independent CI-only gate/quality task from §7 rather than entering Picasso files or blocked first-hour orchestration.
 
 ### B. Picasso’s next work when usage returns
 
@@ -52,6 +52,7 @@
 
 - [ ] Run `Ziptide → First Hour → Author W000 Surfaces`; commit generated `W000_DriftIn.unity`.
 - [ ] Run `docs/GPT_ADDITIONS/2026-07-11_GPT56_FIRST_HOUR/FHS07_TERRY_CHECKLIST.md`.
+- [ ] Async travel: run five representative world-to-world trips; compare crest/frame hitch, verify spawn/XRI/holstered inventory, and check for `TRAVEL_TIMEOUT`. Details: `docs/GPT_ADDITIONS/2026-07-11_GPT56_ASYNC_TRAVEL/ASYNC_TRAVEL_IMPLEMENTATION_LOG.md`.
 - [ ] Clear queued one-time authors/rebakes in `docs/TERRY_RUNBOOK.md`, including W002 interiors/WorldSpecs/SpaceLane as applicable.
 - [ ] Build/install the consolidated APK and perform the device checklist; blocker findings reorder all model work.
 - [ ] Start Meta paperwork that does not depend on code: developer app ID, privacy URL, Data Use Checkup, IARC.
@@ -124,13 +125,13 @@
 
 ### Architect-associated systems
 
-**Done:** WorldSpec/validator/compiler, lot/building grammar, enterable building builder, GamePool core, art registry, reachability gates, first-hour contract/progression core, durable CI verdict.
+**Done:** WorldSpec/validator/compiler, lot/building grammar, enterable building builder, GamePool core, art registry, reachability gates, first-hour contract/progression core, durable CI verdict, **async travel code/CI**.
 
 **Remaining:**
 - [ ] Terry exports/commits `docs/worldspecs/*.spec.json`.
 - [ ] W002 building/interior proof and re-bake.
 - [ ] Adopt GamePool at named gameplay/MP hot-spawn sites with device verification.
-- [ ] Async travel implementation from the locked design.
+- [ ] Async-travel device frame-pacing and restoration verification.
 - [ ] UI readability, haptic coverage, behavior-count, and catalog-breadth gates.
 - [ ] Localization architecture decision before large content scaling.
 
@@ -149,7 +150,7 @@
 
 Take in order unless a live claim or CI result changes it:
 
-1. [ ] Async travel implementation (`docs/design/ASYNC_TRAVEL.md`).
+1. [x] Async travel implementation (`docs/design/ASYNC_TRAVEL.md`) — code/CI green; device comparison pending.
 2. [ ] Reconcile stale current-state rows in `SPRINT.md`, `MASTER_CHECKLIST.md`, and `EXCELLENCE_MAP.md` using implementation logs—not guesses.
 3. [ ] UI readability/reach audit for TextMesh and interactive tiles.
 4. [ ] Haptic coverage checklist document; do not invent a registry unless separately approved.
@@ -169,7 +170,7 @@ Do not take:
 ## 8. Midterm project checklist
 
 - [ ] W001/Chapter 1 art and sound at shipped quality.
-- [ ] Complete asynchronous/comfortable travel.
+- [x] Asynchronous travel code/CI; **device comfort/frame-pacing gate remains open**.
 - [ ] Make credits meaningfully spendable across ship, tools, vehicles, garden/factory systems.
 - [ ] Expand ship/space-combat enemy and mission variety.
 - [ ] Finish vehicle garage/catalog and garden/ecology breadth.
