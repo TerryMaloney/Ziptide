@@ -8,7 +8,7 @@
 ## 1. Operating truth
 
 - Branch: `terry-local-wip`.
-- Latest gameplay/quality-code proof: `d9b6cafbdb0c3663fb20771ee4bc0ece6d145bd8`, CI run `29169591530`, Unity EditMode green.
+- Latest gameplay/quality-code proof: `b7a6cfa945759de828b973f993df47ed0071b3ae`, CI run `29170323869`, Unity EditMode green.
 - Picasso is the active independent Art/Forge track and owns `Visuals/**`, Forge, water, art authors/audits, and `SPRINT_ART.md`.
 - Architect, T-Dog, and Reasonbox are useful historical workstream names, not exclusive permanent accounts. The official model is one non-art operator plus Terry, while active concurrent claims still control file ownership.
 - Never hand-edit `.unity` or `.prefab` YAML. Write an idempotent author/patcher; Terry runs it and commits generated artifacts.
@@ -42,7 +42,7 @@
 - [x] Add the WARN-only UI readability/reach build audit. **Code/CI green `a6803ab`, run `29168358234`; generated-scene/device calibration pending.**
 - [x] Write `docs/design/HAPTIC_COVERAGE.md` from inspected existing owners. **Documentation-level gap closed; runtime/device coverage remains deliberately open.**
 - [x] Build the canonical creature behavior-readability gate. **Seven shipped IDs, ≥3 active states each, telegraph/counter/resolution, source/factory evidence and APK pre-build blocker; code/CI green `d9b6caf`, run `29169591530`.**
-- [ ] Build plant and vehicle catalog-breadth audits without touching Picasso visual assets.
+- [x] Build plant and vehicle catalog-breadth audits without touching Picasso visual assets. **Structural CI/APK gate green `b7a6cfa`, run `29170323869`; content warnings remain for unsurfaced plants, three missing vehicle families and no garage.**
 - [ ] After each code push, wait for/read `docs/CI_VERDICT.md`; do not stack unverified code.
 - [ ] Continue only with independent CI-quality rows from §7 rather than entering Picasso files or blocked first-hour orchestration.
 
@@ -61,6 +61,7 @@
 - [ ] Inspect the next build log for `ZIPTIDE: UI_AUDIT`; verify W000/Home/comfort/helm labels and targets in-headset before any audit warning is promoted to a blocker.
 - [ ] Use `docs/design/HAPTIC_COVERAGE.md` during the same pass: note whether XRI already pulses on grab/select and which silent P0 verb is most noticeable—holster, release, UI select, repair or zipline.
 - [ ] Sample the seven entries in `docs/design/CREATURE_BEHAVIOR_READABILITY.md`; confirm their state changes are actually recognizable and fairly timed in-headset.
+- [ ] Inspect `ZIPTIDE: CATALOG_BREADTH_AUDIT` after the authored build. Confirm the three starter rides are present by biome; treat plant/vehicle breadth warnings as named content debt, not build failure.
 - [ ] Clear queued one-time authors/rebakes in `docs/TERRY_RUNBOOK.md`, including W002 interiors/WorldSpecs/SpaceLane as applicable.
 - [ ] Build/install the consolidated APK and perform the device checklist; blocker findings reorder all model work.
 - [ ] Start Meta paperwork that does not depend on code: developer app ID, privacy URL, Data Use Checkup, IARC.
@@ -127,13 +128,14 @@
 **Remaining:**
 - [ ] Device proof and tuning for flight, SpaceLane, vehicles, gardens, ecology, and interiors.
 - [ ] Space-enemy variety.
-- [ ] Vehicle catalog breadth + garage.
+- [ ] Vehicle catalog content: Rover, GravSled, Walker and a garage/catalog surface.
+- [ ] Plant catalog surfacing beyond the original three-seed world-pack ladder; reconcile starter asset tending drift.
 - [ ] Giant crops/breeding visibly playable.
 - [ ] Richer habitat/species behavior and world-state transformation.
 
 ### Architect-associated systems
 
-**Done:** WorldSpec/validator/compiler, lot/building grammar, enterable building builder, GamePool core, art registry, reachability gates, first-hour contract/progression core, durable CI verdict, async travel code/CI, synchronized project dashboards, WARN-only UI readability/reach build audit, documentation-level haptic coverage inventory, and canonical creature behavior-readability CI/APK gate.
+**Done:** WorldSpec/validator/compiler, lot/building grammar, enterable building builder, GamePool core, art registry, reachability gates, first-hour contract/progression core, durable CI verdict, async travel code/CI, synchronized project dashboards, WARN-only UI readability/reach build audit, documentation-level haptic coverage inventory, canonical creature behavior-readability CI/APK gate, and plant/vehicle catalog structural CI/APK audit.
 
 **Remaining:**
 - [ ] Terry exports/commits `docs/worldspecs/*.spec.json`.
@@ -142,7 +144,7 @@
 - [ ] Async-travel device frame-pacing and restoration verification.
 - [ ] UI audit generated-scene/device calibration; then decide whether any warning can graduate to blocker.
 - [ ] Haptic source/device audit for remaining `❓` owners, then one owner-scoped P0 runtime task—not a broad new system.
-- [ ] Plant and vehicle catalog-breadth gates.
+- [ ] Catalog breadth content closures: seed-dispenser/almanac/world-pack surfacing plan, deliberate starter-plant migration/reseed, missing vehicle families and garage.
 - [ ] Localization architecture decision before large content scaling.
 
 ### T-Dog-associated integration work
@@ -165,7 +167,7 @@ Take in order unless a live claim or CI result changes it:
 3. [x] UI readability/reach audit — WARN-only build-scene processor + tests green; real-scene/device calibration pending.
 4. [x] Haptic coverage checklist — evidence inventory and implementation order documented; runtime/device rows remain open.
 5. [x] Creature behavior-count/readability gate — one canonical catalog, source/factory evidence, CI tests and APK blocker green.
-6. [ ] Plant/vehicle catalog breadth audits.
+6. [x] Plant/vehicle catalog breadth audit — structural CI/APK blockers green; exact surfacing/asset/garage debt remains warning-level content work.
 7. [ ] `AudioDirector` unload/disposal leak hardening if still open after rechecking live code.
 8. [ ] PlayMode scaffold/TravelCoordinator round-trip test only if stable in the existing CI environment.
 
