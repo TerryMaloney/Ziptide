@@ -3,41 +3,73 @@
 **Owner:** GPT-5.6 Thinking, quality/architecture workstream  
 **Authorized by:** Terry, 2026-07-11 (“what’s next”)  
 **Branch:** `terry-local-wip`  
-**Status:** 🟡 CLAIMED — evidence-backed behavior vocabulary gate in progress
+**Status:** 🟡 MERGED TO ONE CANONICAL GATE — FINAL UNITY CI VERIFICATION PENDING; CLAIM HELD
 
-## Why this is next
+## Why this was next
 
-`docs/CURRENT_EXECUTION_CHECKLIST.md` §7 places the creature behavior-count gate immediately after the completed UI and haptic documentation rows. `docs/EXCELLENCE_MAP.md` requires every shipped creature id to carry at least three readable behavior states/modes instead of existing as one repeated chase loop.
+`docs/CURRENT_EXECUTION_CHECKLIST.md` §7 places the creature behavior-count gate immediately after the completed UI and haptic rows. `docs/EXCELLENCE_MAP.md` requires every shipped creature id to carry at least three readable active states instead of one repeated chase loop.
 
-## Protected scope
+## Collision and resolution
 
-New files only:
+Two implementations began concurrently despite this claim:
 
-- `docs/design/CREATURE_BEHAVIOR_COVERAGE.md`
-- `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureBehaviorCatalog.cs` + `.meta`
-- `Ziptide/Assets/Ziptide/Editor/Audit/CreatureBehaviorAuditRules.cs` + `.meta`
-- `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs` + `.meta`
-- this log
+- the original claimed implementation added source-evidence tokens, exact factory tokens and an APK pre-build blocker;
+- the concurrent implementation added a cleaner Content-layer catalog with expected archetype, explicit telegraph/counter states and a separate disabled/resolved state.
 
-Closure-only docs after green:
+They were deliberately merged instead of leaving two sources of truth.
 
-- `docs/CURRENT_EXECUTION_CHECKLIST.md`
-- `docs/EXCELLENCE_MAP.md`
+**Canonical source:**
 
-## Contract
+- `Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs`
+- `docs/design/CREATURE_BEHAVIOR_READABILITY.md`
 
-- Every committed `CreatureDefinition` under `Resources/Enemies` must map to a behavior profile.
-- Every profile must expose at least three unique, non-empty readable modes.
-- Generic stun/down states do not satisfy the vocabulary by themselves.
-- Every listed mode carries an evidence token that must remain present in its real behavior source.
-- Every profile carries a factory-wiring token that must remain present in `CityBuilder.MakeCreature`.
-- Catalog ids and committed creature assets must be one-to-one; no silent orphan entries in either direction.
-- A pre-build gate blocks APK generation on missing/low/drifted catalog coverage.
-- EditMode tests enforce the same contract in ordinary branch CI.
+The duplicate Gameplay catalog and duplicate design page were deleted.
 
-## Collision rules
+## Final scope
 
-- Do not edit Picasso `Visuals/**`, Forge bodies/recipes, water, art audits, or `SPRINT_ART.md`.
-- Do not alter creature stats, movement, damage, rewards, visual presentation, scene instances, or authored assets in this task.
-- Do not count drone difficulty profiles as story creatures.
-- Three CI reds triggers the circuit breaker.
+- canonical Content catalog + metadata;
+- `Ziptide/Assets/Ziptide/Editor/Audit/CreatureBehaviorAuditRules.cs` + metadata;
+- `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorReadabilityTests.cs` + metadata;
+- `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs` + metadata;
+- canonical design contract;
+- this implementation log.
+
+No creature behavior, stats, rewards, damage, movement, visual, Forge, scene, prefab or art-author files changed.
+
+## Final contract
+
+Every committed `CreatureDefinition` under `Resources/Enemies` must have exactly one canonical profile with:
+
+- at least three unique active readable states;
+- a telegraph state drawn from the active vocabulary;
+- a counter/vulnerability state drawn from the active vocabulary;
+- a separate non-lethal disabled/resolved state;
+- expected archetype and resolvable `CreatureBehaviorBase` type;
+- behavior-source path and one exact source token per active state;
+- exact `CityBuilder.MakeCreature` factory evidence.
+
+The catalog and committed assets are one-to-one. Drone difficulty profiles are excluded because they are not `CreatureDefinition` assets.
+
+## Enforcement
+
+1. `CreatureBehaviorReadabilityTests` verifies profile structure, assets, filename/id parity, archetype, type and factory routes.
+2. `CreatureBehaviorAuditRulesTests` verifies source evidence, one-to-one coverage and the complete project audit.
+3. `CreatureBehaviorBuildGate` runs before APK generation and throws when any blocker exists.
+
+Audit prefix: `ZIPTIDE: CREATURE_BEHAVIOR_AUDIT`.
+
+## Current roster
+
+- `swarm_bug`: patrol/orbit · gather · dart
+- `tendril`: wall patrol · ripple telegraph · lunge · return
+- `light_grazer`: dark growth · dark approach · lit recoil
+- `witness_mite`: unobserved idle · unobserved stalk · observed freeze
+- `tether_swarm`: cluster weave · engaged standoff · exposed tether node
+- `husk_molter`: stalk · molt escape · cooldown vulnerability
+- `warden`: watch · warn · arrest/disengage · ally calm
+
+## Verification state
+
+A final ordinary CI run is intentionally being triggered by this commit after the merged head stabilized. Do not close the checklist row or release the claim until `docs/CI_VERDICT.md` records this exact head green, or its direct generated verdict-only child.
+
+Circuit breaker reds for the merged creature-gate task: `0/3` at this stamp.
