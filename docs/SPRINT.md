@@ -13,6 +13,7 @@
 ## Task board
 | # | Task | Status |
 |---|------|--------|
+| FH-01D | **Opus lane launch kit** — log: `docs/GPT_ADDITIONS/2026-07-10_GPT56_FIRST_HOUR/FH01D_IMPLEMENTATION_LOG.md`. Four validated copy-paste takeover prompts assign all 12 FH-01C envelopes exactly once, name first claims/blockers, and enforce ownership/stop conditions. No runtime changes. | 🟡 IMPLEMENTED — exact GitHub-blob tests PASS; first Actions artifact pending; FILE CLAIM RELEASED |
 | FH-01C | **Owner-specific first-hour adapter envelopes** — log: `docs/GPT_ADDITIONS/2026-07-10_GPT56_FIRST_HOUR/FH01C_IMPLEMENTATION_LOG.md`. Twelve machine-readable lane envelopes cover 18 non-direct beats and all 15 teaching lines with exact file scopes, APIs, tests, fallbacks, dependencies and evidence. No runtime changes. | 🟡 IMPLEMENTED — exact GitHub-blob tests PASS; first Actions artifact pending; FILE CLAIM RELEASED |
 | FH-01B | **First-hour binding inventory** — log: `docs/GPT_ADDITIONS/2026-07-10_GPT56_FIRST_HOUR/FH01B_IMPLEMENTATION_LOG.md`. Evidence-map all 22 completion signals + all teaching lines to existing files/tokens; classify verified/adapter/content/new-surface/composite. No runtime changes. | 🟡 IMPLEMENTED — exact GitHub-blob tests PASS; first Actions artifact pending; FILE CLAIM RELEASED |
 | FH-01A | **First-hour beat contract** — log: `docs/GPT_ADDITIONS/2026-07-10_GPT56_FIRST_HOUR/FH01A_IMPLEMENTATION_LOG.md`. `docs/first_hour/*` + report-only Python validator/tests; 22 beats, 15 verbs exactly once, no input lock/rig motion. No runtime bindings in this slice. | 🟡 IMPLEMENTED — local exact-blob tests PASS; first Actions artifact pending; FILE CLAIM RELEASED |
@@ -62,6 +63,7 @@
 | D2-6 | Close: closing HANDOFF (nnnn) for Picasso/Architecture — flags this as the first depth-pass touching real code, not just docs | ✅ this commit |
 
 ## ▶ RESUMING? — current state & exact next action
+- **FH-01D (2026-07-11): IMPLEMENTED, FILE CLAIM RELEASED** — `OPUS_LAUNCH_KIT.md` and its validated manifest assign all twelve envelopes exactly once. Architecture, Multiplayer and Picasso can start independently; Story/Ship is blocked until Architecture `FH-X02` is green. Exact committed blobs pass 7 tests with 4 lanes/12 assignments/0 findings.
 - **FH-01C (2026-07-11): IMPLEMENTED, FILE CLAIM RELEASED** — twelve owner-specific envelopes, guide, validator and tests are in the branch. Exact committed blobs pass: 10 tests, 12 envelopes, 18 non-direct beats, 15 lines, 0 findings. Runtime code was not added; see `FH01C_IMPLEMENTATION_LOG.md`.
 - **FH-01B (2026-07-11): IMPLEMENTED, FILE CLAIM RELEASED** — evidence-backed inventory/validator/tests are in the branch; exact committed blobs pass locally. The non-blocking project-contract Actions artifact remains pending. No runtime adapters were added; see `FH01B_IMPLEMENTATION_LOG.md`.
 - **FH-01A (2026-07-10): IMPLEMENTED, FILE CLAIM RELEASED** — first-hour contract/validator/tests are in the branch and exact committed blobs pass locally. The non-blocking project-contract Actions artifact remains pending. Runtime bindings are not part of this row; see `FH01A_IMPLEMENTATION_LOG.md`.
