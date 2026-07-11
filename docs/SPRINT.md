@@ -13,7 +13,8 @@
 ## Task board
 | # | Task | Status |
 |---|------|--------|
-| P0.6 | **Controller-free DevMenu access** — removed Y+B summon; F2 in Editor, ADB marker-file login/open on Quest development builds, zero controller buttons reserved, release builds still compile it out. Log: `docs/GPT_ADDITIONS/2026-07-11_GPT56_DEV_MENU/DEV_MENU_ACCESS_LOG.md`. | ✅ UNITY CI GREEN run `29153664078`; headset check pending; FILE CLAIM RELEASED |
+| FH-S01 | **First-hour observation adapter** — read-only LOOK/MOVE/W001-arrival observation; no rig mutation, profile writes, travel or presentation ownership. Log: `docs/GPT_ADDITIONS/2026-07-11_GPT56_FIRST_HOUR/FHS01_IMPLEMENTATION_LOG.md`. | 🟡 GPT-5.6 CLAIMED 2026-07-11 |
+| P0.6 | **Controller-free DevMenu access** — Y+B removed; F2 in Editor, headset-native two-controller forehead gesture in development builds, ADB optional backup, zero gameplay buttons reserved. Log: `docs/GPT_ADDITIONS/2026-07-11_GPT56_DEV_MENU/DEV_MENU_ACCESS_LOG.md`. | ✅ UNITY CI GREEN run `29154553182`; headset feel check pending; FILE CLAIM RELEASED |
 | FH-01D | **Opus lane launch kit** — log: `docs/GPT_ADDITIONS/2026-07-10_GPT56_FIRST_HOUR/FH01D_IMPLEMENTATION_LOG.md`. Four validated copy-paste takeover prompts assign all 12 FH-01C envelopes exactly once, name first claims/blockers, and enforce ownership/stop conditions. No runtime changes. | 🟡 IMPLEMENTED — exact GitHub-blob tests PASS; first Actions artifact pending; FILE CLAIM RELEASED |
 | FH-01C | **Owner-specific first-hour adapter envelopes** — log: `docs/GPT_ADDITIONS/2026-07-10_GPT56_FIRST_HOUR/FH01C_IMPLEMENTATION_LOG.md`. Twelve machine-readable lane envelopes cover 18 non-direct beats and all 15 teaching lines with exact file scopes, APIs, tests, fallbacks, dependencies and evidence. No runtime changes. | 🟡 IMPLEMENTED — exact GitHub-blob tests PASS; first Actions artifact pending; FILE CLAIM RELEASED |
 | FH-01B | **First-hour binding inventory** — log: `docs/GPT_ADDITIONS/2026-07-10_GPT56_FIRST_HOUR/FH01B_IMPLEMENTATION_LOG.md`. Evidence-map all 22 completion signals + all teaching lines to existing files/tokens; classify verified/adapter/content/new-surface/composite. No runtime changes. | 🟡 IMPLEMENTED — exact GitHub-blob tests PASS; first Actions artifact pending; FILE CLAIM RELEASED |
@@ -64,39 +65,19 @@
 | D2-6 | Close: closing HANDOFF (nnnn) for Picasso/Architecture — flags this as the first depth-pass touching real code, not just docs | ✅ this commit |
 
 ## ▶ RESUMING? — current state & exact next action
-- **P0.6 (2026-07-11): IMPLEMENTED, UNITY CI GREEN, FILE CLAIM RELEASED** — Y+B no longer summons DevMenu. F2 remains in Editor; authorized ADB marker files open it on Quest development builds. Headset verification is queued in `docs/DEV_MENU_ACCESS.md`.
-- **FH-01D (2026-07-11): IMPLEMENTED, FILE CLAIM RELEASED** — `OPUS_LAUNCH_KIT.md` and its validated manifest assign all twelve envelopes exactly once. Architecture, Multiplayer and Picasso can start independently; Story/Ship is blocked until Architecture `FH-X02` is green. Exact committed blobs pass 7 tests with 4 lanes/12 assignments/0 findings.
-- **FH-01C (2026-07-11): IMPLEMENTED, FILE CLAIM RELEASED** — twelve owner-specific envelopes, guide, validator and tests are in the branch. Exact committed blobs pass: 10 tests, 12 envelopes, 18 non-direct beats, 15 lines, 0 findings. Runtime code was not added; see `FH01C_IMPLEMENTATION_LOG.md`.
-- **FH-01B (2026-07-11): IMPLEMENTED, FILE CLAIM RELEASED** — evidence-backed inventory/validator/tests are in the branch; exact committed blobs pass locally. The non-blocking project-contract Actions artifact remains pending. No runtime adapters were added; see `FH01B_IMPLEMENTATION_LOG.md`.
-- **FH-01A (2026-07-10): IMPLEMENTED, FILE CLAIM RELEASED** — first-hour contract/validator/tests are in the branch and exact committed blobs pass locally. The non-blocking project-contract Actions artifact remains pending. Runtime bindings are not part of this row; see `FH01A_IMPLEMENTATION_LOG.md`.
+- **ACTIVE CLAIM (2026-07-11): FH-S01** — GPT-5.6 owns only the files listed in `FHS01_IMPLEMENTATION_LOG.md`. Do not edit them until the claim releases.
+- **Architecture gate cleared:** FH-X01 and FH-X02 are both green; Story/Ship first-hour adapters are unblocked.
+- **P0.6 (2026-07-11): IMPLEMENTED, UNITY CI GREEN, FILE CLAIM RELEASED** — Y+B no longer summons DevMenu. The headset-native two-controller forehead gesture is primary; F2 and ADB remain backups. Headset feel verification is queued in `docs/DEV_MENU_ACCESS.md`.
+- **FH-01D (2026-07-11): IMPLEMENTED, FILE CLAIM RELEASED** — `OPUS_LAUNCH_KIT.md` and its validated manifest assign all twelve envelopes exactly once. Exact committed blobs pass 7 tests with 4 lanes/12 assignments/0 findings.
+- **FH-01C (2026-07-11): IMPLEMENTED, FILE CLAIM RELEASED** — twelve owner-specific envelopes, guide, validator and tests are in the branch. Exact committed blobs pass: 10 tests, 12 envelopes, 18 non-direct beats, 15 lines, 0 findings.
+- **FH-01B (2026-07-11): IMPLEMENTED, FILE CLAIM RELEASED** — evidence-backed inventory/validator/tests are in the branch; exact committed blobs pass locally.
+- **FH-01A (2026-07-10): IMPLEMENTED, FILE CLAIM RELEASED** — first-hour contract/validator/tests are in the branch and exact committed blobs pass locally.
 - **Current:** **P0–P5 of the Quality Bar Program COMPLETE and CI-green** (menu/subtitle/release
   fixes · terrain+vista · POIs+gates · route+dressing · contracts-through-POIs · garden+sockets ·
-  interim hull · handbook). Rebased onto architect's takeover kit `a21fffb`; read
-  **`docs/OPERATOR_START_HERE.md`** — its laws (incl. THE CIRCUIT BREAKER) govern this board too.
-- **Narrative track (2026-07-06):** THE STORY BIBLE LOCK (SBL1-5) then THE SOUL PASS (SOUL1-6) both
-  closed — `docs/storyboard/*` is now canon AND has real character voices (Mara/Sable/Aegis-Nine
-  quoted at every signature beat, RILL's ambient-line voice guide in `STORY_BIBLE.md` §3b). W013+
-  world authoring (M5) can proceed against a locked, emotionally-load-bearing bible. Zero code touched
-  by either pass — next story author still needs to read `WORLD_DATA.md` §4 before authoring.
-  **DEPTH PASS 2 (D2-1..6) then closed** — this one DID touch code: Cal now has a `speaker`-tagged
-  line pipeline alongside RILL's (dormant, no VO cast — `docs/systems/VOICE_PIPELINE.md` is the
-  wiring guide for whoever casts either character), and W007 Sable Station's sky got a real second
-  body + more stars/nebula (needs a Unity-side delete+reseed, queued in `TERRY_RUNBOOK.md` §1).
-  Mara/Sable/Nine joining the same voice pipeline is the natural next content batch, not yet done.
-- **Next action:** **finish P4b** — the pure `FlightModel` core SHIPPED (`2bc39e0`, 11 tests;
-  comfort laws are in the math). Remaining is routine-shaped: `ScenePatcherSpaceLane`
-  (WorldStubGenerator pattern: cockpit deck + `__FLIGHT_WORLD` ring course + starfield) +
-  `FlightSceneController` translator (world moves inversely, rig static — copy the S2 fly-out
-  pattern; stick inputs via the InputActionManager idiom) + helm destination pack + runbook 🎮 row.
-  Then a full APK dispatch. Session-zero check: this row + the P4b board row are the whole spec.
-  **Meta-loop follow-ups live in `docs/design/ZIPTIDE_META_LOOP.md`** (conquest command
-  model → architecture track; proxy kits → Picasso; ecology/mutation content → next wave).
-- **Device gate:** Terry §2j/§2k runbook rows still open — his ❌s re-prioritize everything.
-  §2n (NEW) = the Q2d "does it read as a place?" gate on W002 GalleryB.
-- **Lane note (2026-07-04):** T-Dog's Fable ended; Picasso (art, last Fable session) covered Q2d
-  and owns cross-track triage until their window ends too — after that ANY capable model resumes
-  any track per `OPERATOR_START_HERE.md`.
-- **Branch:** `terry-local-wip`. Q2d head: this commit.
+  interim hull · handbook). Read **`docs/OPERATOR_START_HERE.md`**; its laws and circuit breaker govern this board.
+- **Next after FH-S01 green:** claim the next Story/Ship envelope in launch order; do not overlap adapters.
+- **Device gates:** Terry's queued headset checks remain authoritative and any failure re-prioritizes implementation.
+- **Branch:** `terry-local-wip`; other tracks push often—verify live head before every write.
 
 ## Working rules (unchanged)
 CI green per push; SHIPS.md guardrails are law (no rig parenting, no TravelCoordinator bypass, comfort
