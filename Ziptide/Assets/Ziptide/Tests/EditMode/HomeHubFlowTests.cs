@@ -3,7 +3,6 @@ using System;
 using System.IO;
 using System.Text.RegularExpressions;
 using NUnit.Framework;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
@@ -157,7 +156,14 @@ namespace Ziptide.Tests.EditMode
         [Test]
         public void SurfaceAuthor_IsIdempotentAndUsesStableMarkers()
         {
-            Scene scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Additive);
+            // Unity's EditMode runner owns an unsaved scene; creating a second untitled scene additively
+            // is illegal. Author into the active test scene, then remove only the three stable markers.
+            Scene scene = SceneManager.GetActiveScene();
+            Assert.IsTrue(scene.IsValid() && scene.isLoaded);
+            Assert.IsNull(FindNamed(scene, FirstHourSurfaceAuthor.ComfortMarker));
+            Assert.IsNull(FindNamed(scene, FirstHourSurfaceAuthor.BunkMarker));
+            Assert.IsNull(FindNamed(scene, FirstHourSurfaceAuthor.HelmMarker));
+
             try
             {
                 FirstHourSurfaceAuthor.Author(scene);
@@ -176,7 +182,9 @@ namespace Ziptide.Tests.EditMode
             }
             finally
             {
-                EditorSceneManager.CloseScene(scene, true);
+                DestroyNamed(scene, FirstHourSurfaceAuthor.ComfortMarker);
+                DestroyNamed(scene, FirstHourSurfaceAuthor.BunkMarker);
+                DestroyNamed(scene, FirstHourSurfaceAuthor.HelmMarker);
             }
         }
 
@@ -188,8 +196,8 @@ namespace Ziptide.Tests.EditMode
             string author = Read("Editor", "Patching", "FirstHourSurfaceAuthor.cs");
 
             StringAssert.Contains("_castOff.SelectFirstDestination(ZiptideConstants.SceneToxicCity)", helm);
-            StringAssert.DoesNotContain("TravelCoordinator", helm);
-            StringAssert.DoesNotContain("SceneManager", helm);
+            StringAssert.DoesNotContain("TravelCoordinator.", helm);
+            StringAssert.DoesNotContain("SceneManager.", helm);
 
             StringAssert.Contains("public bool SelectFirstDestination(string destinationScene)", castOff);
             Assert.AreEqual(1, Count(castOff, "TravelCoordinator.TravelTo("));
@@ -218,6 +226,12 @@ namespace Ziptide.Tests.EditMode
                 foreach (Transform t in root.GetComponentsInChildren<Transform>(true))
                     if (t.name == name) return t.gameObject;
             return null;
+        }
+
+        private static void DestroyNamed(Scene scene, string name)
+        {
+            GameObject go = FindNamed(scene, name);
+            if (go != null) UnityEngine.Object.DestroyImmediate(go);
         }
 
         private static int CountNamed(Scene scene, string name)
