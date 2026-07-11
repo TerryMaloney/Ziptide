@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "branchOfTruth": "terry-local-wip",
+  "operatorManual": "docs/OPERATOR_START_HERE.md",
+  "priorityBoard": "docs/PRIORITIES.md",
+  "excellenceMap": "docs/EXCELLENCE_MAP.md",
+  "handoff": "docs/HANDOFF.md",
+  "runbook": "docs/TERRY_RUNBOOK.md",
+  "gamePlan": "docs/GAME_PLAN.md",
+  "requiredDocuments": [
+    "CLAUDE.md",
+    "docs/OPERATOR_START_HERE.md",
+    "docs/EXCELLENCE_MAP.md",
+    "docs/PRIORITIES.md",
+    "docs/HANDOFF.md",
+    "docs/TERRY_RUNBOOK.md",
+    "docs/GAME_PLAN.md",
+    "docs/HOW_TO_CHANGE_ANYTHING.md",
+    "docs/BOARD_INDEX.md",
+    "docs/WIRING_MAP.md",
+    "docs/SPRINT.md",
+    "docs/SPRINT_MULTIPLAYER.md",
+    "docs/SPRINT_ART.md",
+    "docs/SPRINT_ARCHITECTURE.md",
+    "docs/META_STORE_READINESS.md",
+    "docs/GPT_ADDITIONS/2026-07-10_GPT56_FIRST_HOUR/FIRST_HOUR_VERTICAL_SLICE_MASTER_PLAN.md"
+  ],
+  "sharedPaths": [
+    ".github/workflows/ci.yml",
+    "docs/PRIORITIES.md",
+    "docs/HANDOFF.md",
+    "docs/TERRY_RUNBOOK.md",
+    "docs/EXCELLENCE_MAP.md",
+    "Ziptide/Assets/Ziptide/Editor/Build/BuildAndroid.cs",
+    "Ziptide/Assets/Ziptide/Editor/Audit/WorldAuditRunner.cs"
+  ],
+  "lanes": [
+    {
+      "id": "story-ship",
+      "displayName": "Story/Ship — T-Dog",
+      "board": "docs/SPRINT.md",
+      "ownedPathPatterns": [],
+      "ownershipNotes": "World and experience builders, RILL/story, campaign creatures, ship/Quarters, jobs. Exact ownership remains governed by OPERATOR_START_HERE and the active board."
+    },
+    {
+      "id": "multiplayer",
+      "displayName": "Multiplayer — Architect-MP",
+      "board": "docs/SPRINT_MULTIPLAYER.md",
+      "ownedPathPatterns": [
+        "Ziptide/Assets/Ziptide/Multiplayer/**",
+        "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/**"
+      ],
+      "ownershipNotes": "Multiplayer, PvP runtime, arenas, bots, transport and netcode."
+    },
+    {
+      "id": "art",
+      "displayName": "Art — Picasso",
+      "board": "docs/SPRINT_ART.md",
+      "ownedPathPatterns": [
+        "Ziptide/Assets/Ziptide/Visuals/**"
+      ],
+      "ownershipNotes": "Visuals, Forge, SkyVistas, art authors/audits and audio."
+    },
+    {
+      "id": "architecture",
+      "displayName": "Architecture",
+      "board": "docs/SPRINT_ARCHITECTURE.md",
+      "ownedPathPatterns": [],
+      "ownershipNotes": "WorldSpec, pure generation cores, gates, GamePool and cross-track contracts. Exact new-file ownership is claimed on the active board before implementation."
+    }
+  ],
+  "protectedContracts": [
+    {
+      "id": "travel-single-entry",
+      "version": 1,
+      "decisionDoc": "CLAUDE.md",
+      "paths": [
+        "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs"
+      ],
+      "notes": "TravelCoordinator remains the only scene-change path; _Boot is never a travel target. This first manifest records the contract but does not fingerprint or block changes yet."
+    }
+  ]
+}
