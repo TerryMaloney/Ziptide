@@ -1,0 +1,71 @@
+{
+  "id": "FH-S04-REPAIR-SCAN",
+  "owner": "story-ship",
+  "kind": "adapter",
+  "risk": "cross-lane",
+  "covers": [
+    "FH_SCAN_FAULT",
+    "FH_REPAIR_ACCESS",
+    "FH_REPAIR_PART_SEATED"
+  ],
+  "signals": [
+    "FIRST_MACHINE_FAULT_SCANNED",
+    "FIRST_MACHINE_ACCESS_OPENED",
+    "FIRST_REPAIR_PART_SEATED"
+  ],
+  "lines": [],
+  "dependencies": [
+    "FH-X02-PROGRESSION-CORE",
+    "FH-M01-SCANNER-RESULT"
+  ],
+  "commits": 2,
+  "newFiles": [
+    "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairStage.cs",
+    "Ziptide/Assets/Ziptide/Tests/EditMode/RepairableMachineSignalTests.cs"
+  ],
+  "touchFiles": [
+    "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs"
+  ],
+  "touchPatterns": [],
+  "reuse": [
+    "RepairableMachine",
+    "JobDirector.ReportRepair",
+    "WristScanner",
+    "IScannable"
+  ],
+  "api": [
+    "One public RepairStage CurrentStage source of truth; StageChanged after existing transitions.",
+    "Implement IScannable: transform=this, kind Objective, active until Running.",
+    "Scan completes only when pulse contains designated machine; no tutorial fields in machine."
+  ],
+  "tests": [
+    "Panel-Part-Power-Running order",
+    "scannable inactive at Running",
+    "IsRepaired unchanged",
+    "identity match required"
+  ],
+  "diagnostics": [
+    "ZIPTIDE: FIRST_HOUR_MACHINE_SCAN id=<id> matched=<bool>"
+  ],
+  "fallback": [
+    "Without scanner result, physical repair remains playable; no subscriber = no effect."
+  ],
+  "acceptance": {
+    "CI": [
+      "Repair/scannable tests green",
+      "Unity compile green",
+      "No second repair state"
+    ],
+    "BAKE": [
+      "Stable first-hour machine ID"
+    ],
+    "DEVICE": [
+      "Pulse reveals fault; physical stages advance exactly"
+    ]
+  },
+  "integrationOwners": [
+    "multiplayer",
+    "architecture"
+  ],
+  "supports": []
+}
