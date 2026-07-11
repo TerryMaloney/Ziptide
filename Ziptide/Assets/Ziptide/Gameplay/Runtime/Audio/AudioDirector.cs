@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Ziptide.Content;
@@ -16,9 +17,7 @@ namespace Ziptide.Gameplay
         private AudioSource _sourceB;
         private AudioSource _active;
         private AudioClip _currentClip;
-        private float _fadeTimer;
-        private float _fadeDuration;
-        private bool _fading;
+        private Coroutine _transitionRoutine;
 
         public static AudioDirector Instance => _instance;
 
@@ -43,11 +42,13 @@ namespace Ziptide.Gameplay
 
         private void OnDestroy()
         {
-            if (_instance == this)
-            {
-                SceneManager.sceneLoaded -= OnSceneLoaded;
-                _instance = null;
-            }
+            if (_instance != this) return;
+
+            SceneManager.sceneLoaded -= OnSceneLoaded;
+            CancelTransition();
+            StopAndClear(_sourceA);
+            StopAndClear(_sourceB);
+            _instance = null;
         }
 
         private static void ConfigureSource(AudioSource src)
@@ -81,66 +82,96 @@ namespace Ziptide.Gameplay
                 return;
             }
 
-            if (profile.clip == _currentClip && _active.isPlaying)
+            if (profile.clip == _currentClip && _active != null && _active.isPlaying)
                 return;
 
             _currentClip = profile.clip;
+            CancelTransition();
 
-            var next = _active == _sourceA ? _sourceB : _sourceA;
+            AudioSource fadeOut = _active != null ? _active : _sourceA;
+            AudioSource next = fadeOut == _sourceA ? _sourceB : _sourceA;
+            StopAndClear(next);
+
             next.clip = profile.clip;
             next.loop = profile.loop;
             next.volume = 0f;
             next.Play();
 
-            _fadeDuration = profile.crossfadeSeconds;
-            _fadeTimer = 0f;
-            _fading = true;
-
             _active = next;
-            var targetVol = profile.volume;
-
-            StartCoroutine(Crossfade(_active == _sourceA ? _sourceB : _sourceA, _active, targetVol));
+            _transitionRoutine = StartCoroutine(Crossfade(
+                fadeOut,
+                next,
+                profile.volume,
+                Mathf.Max(0f, profile.crossfadeSeconds)));
         }
 
-        private System.Collections.IEnumerator Crossfade(AudioSource fadeOut, AudioSource fadeIn, float targetVol)
+        private IEnumerator Crossfade(
+            AudioSource fadeOut,
+            AudioSource fadeIn,
+            float targetVolume,
+            float duration)
         {
+            float startOut = fadeOut != null ? fadeOut.volume : 0f;
             float t = 0f;
-            float startOut = fadeOut.volume;
-            while (t < _fadeDuration)
+
+            while (t < duration)
             {
                 t += Time.unscaledDeltaTime;
-                float ratio = Mathf.Clamp01(t / _fadeDuration);
-                fadeOut.volume = Mathf.Lerp(startOut, 0f, ratio);
-                fadeIn.volume = Mathf.Lerp(0f, targetVol, ratio);
+                float ratio = duration > 0f ? Mathf.Clamp01(t / duration) : 1f;
+                if (fadeOut != null) fadeOut.volume = Mathf.Lerp(startOut, 0f, ratio);
+                if (fadeIn != null) fadeIn.volume = Mathf.Lerp(0f, targetVolume, ratio);
                 yield return null;
             }
-            fadeOut.Stop();
-            fadeOut.volume = 0f;
-            fadeIn.volume = targetVol;
-            _fading = false;
+
+            StopAndClear(fadeOut);
+            if (fadeIn != null) fadeIn.volume = targetVolume;
+            _transitionRoutine = null;
         }
 
         private void FadeOut()
         {
             _currentClip = null;
-            if (_active != null && _active.isPlaying)
-            {
-                StartCoroutine(FadeOutCoroutine(_active, 1f));
-            }
+            CancelTransition();
+
+            AudioSource fadeOut = _active;
+            AudioSource inactive = fadeOut == _sourceA ? _sourceB : _sourceA;
+            StopAndClear(inactive);
+
+            if (fadeOut != null && fadeOut.isPlaying)
+                _transitionRoutine = StartCoroutine(FadeOutCoroutine(fadeOut, 1f));
+            else
+                StopAndClear(fadeOut);
         }
 
-        private static System.Collections.IEnumerator FadeOutCoroutine(AudioSource src, float duration)
+        private IEnumerator FadeOutCoroutine(AudioSource source, float duration)
         {
-            float start = src.volume;
+            float start = source != null ? source.volume : 0f;
             float t = 0f;
-            while (t < duration)
+            while (source != null && t < duration)
             {
                 t += Time.unscaledDeltaTime;
-                src.volume = Mathf.Lerp(start, 0f, Mathf.Clamp01(t / duration));
+                source.volume = Mathf.Lerp(start, 0f,
+                    duration > 0f ? Mathf.Clamp01(t / duration) : 1f);
                 yield return null;
             }
-            src.Stop();
-            src.volume = 0f;
+
+            StopAndClear(source);
+            _transitionRoutine = null;
+        }
+
+        private void CancelTransition()
+        {
+            if (_transitionRoutine == null) return;
+            StopCoroutine(_transitionRoutine);
+            _transitionRoutine = null;
+        }
+
+        private static void StopAndClear(AudioSource source)
+        {
+            if (source == null) return;
+            source.Stop();
+            source.volume = 0f;
+            source.clip = null;
         }
     }
 }
