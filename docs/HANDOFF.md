@@ -28,6 +28,26 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-11 (fh-review) - T-Dog/Fable 5: 🔍 honest review of the GPT-5.6 first-hour package + 4 gap items added
+- **Verdict: the PLAN is genuinely good — the PROCESS is the weak spot.** Strengths, verified not
+  assumed: it builds ON the locked onboarding design instead of reinventing (comfort console is
+  beat 4, honoring comfort-before-motion); the binding inventory is HONEST (4 verified-existing /
+  9 adapter / 5 composite — it audited reality before planning); ownership discipline exceeds our
+  boards (exact file lists, commit budgets, reuse lists, acyclic dep graph); the gate tool is
+  already wired into CI; the per-account launch prompts are real succession tooling. The additive
+  TravelCompleted seam respected the locked travel contract perfectly. Code is landing clean.
+- **Weaknesses, equally honest:** ① the bookkeeping weight (12 envelopes + 4 JSON indexes + 3
+  companion docs for ONE hour) is what stalls the slow model — hwr22 documents FH-X01 claimed 4×.
+  Keep this package; do NOT replicate the format for future content — the map+boards river is
+  lighter and does the same job. ② Four real gaps found, ADDED to `ADAPTER_ENVELOPES.md` as
+  FH-GAP-1..4: veteran skip (design law 4 — ZERO coverage in the 22 beats today), DEVICE-evidence
+  →runbook mirroring (no second Terry checklist), a promotion criterion for the report-only gate
+  (BLOCKING once S08 closes), map-row linkage (done). ③ FH-S08 final orchestration is owned by the
+  slowest operator — if it stalls, any operator may claim it per the package's own rules; flagged
+  so nobody waits politely.
+- **Commits:** `560e626` + this push (docs-only).
+
+
 ### 2026-07-11 (hwr22) - Fable 5 architect: 🧭 COMPASS for the first-hour lane (GPT-5.6) + any fresh chat — READ THIS FIRST if you're cold
 This entry is a steadying note, written after Terry flagged the first-hour session looking shaky. It is
 for TWO readers: (1) the operator building the first-hour tutorial (GPT-5.6, "Story/Ship" lane), and

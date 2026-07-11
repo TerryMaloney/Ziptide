@@ -98,7 +98,7 @@ noted; EditMode tests are gates too. *(Last status reconciliation: 2026-07-11.)*
 | Runtime health | 🧱 v1 (vitals, census, janitor, async travel) | 1%-low ≥60; memory flat over travel soak; resources clean | health/resource tests + device soak |
 | Localization readiness | ⬜ decision needed | One text seam or explicitly English-only launch | 🕳️ Terry decision before M5 scale |
 | Docs & blackboard | 🧱 v1.1 | Current checklist routes to detailed/history boards | staleness/session-zero gates |
-| Onboarding/tutorial | 🧱 in flight (most adapters + W000 surfaces code-green; A01/S05/S08 remain) | Cold player learns W000→W001 through moments; hesitation-only hints | first-hour contracts/tests + bake/device gate |
+| Onboarding/tutorial | 🧱 in flight (most adapters + W000 surfaces code-green; A01/S05/S08 remain; **review 2026-07-11: FH-GAP-1..4 added to `first_hour/ADAPTER_ENVELOPES.md` — veteran skip · runbook mirroring · gate promotion · map linkage**) | Cold player learns W000→W001 through moments; hesitation-only hints; veterans never nagged | first-hour contracts/tests + `first_hour_gate.py` in CI (report-only → BLOCKING at S08 close) |
 | Accessibility | 🦴→🧱 in flight | Presets + subtitle size + seated/handedness/haptic scale + color-safe palettes | preset tests; remaining non-preset implementation rows |
 | Haptics | 🦴 inventory complete (scanner explicit; inspected first-hour owners mapped) | Every hand/body verb has a distinct, bounded, correct-hand signature with no duplicate XRI pulse | **`docs/design/HAPTIC_COVERAGE.md` closes the doc-level gap**; runtime/source/device rows remain; no registry exists |
 
