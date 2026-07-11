@@ -22,7 +22,7 @@ mid-level model can act on without judgment calls:
   "some parts really good and other parts not that great."
 
 Legend: gates live in `Ziptide/Assets/Ziptide/Editor/Audit/*AuditRules.cs` (BLOCK = CI-red) unless
-noted; EditMode tests are gates too. *(Last full audit of this table: 2026-07-10.)*
+noted; EditMode tests are gates too. *(Last status reconciliation: 2026-07-11; current task order lives in `CURRENT_EXECUTION_CHECKLIST.md`.)*
 
 ---
 
@@ -36,7 +36,7 @@ noted; EditMode tests are gates too. *(Last full audit of this table: 2026-07-10
 | Interiors | 🧱 v1 (walls+entry `InteriorMeshCore` · furnish `RoomFurnishCore`/`InteriorFurnisher` 16 kinds by room role · per-room portal cull `InteriorVisibilityCore` · caches — 1.3e, needs W002 re-bake 🔧) | Enterable buildings have partitioned, furnished, portal-culled interiors; windows read lit (interior mapping) | `InteriorAuditRules` (gap #4 CLOSED 2026-07-10: connectivity blocker, bare-room blocker, corridor-blocked + portal-half-armed + budget warns) + `InteriorFurnishCoreTests` (10) |
 | Vertical/caverns/traversal | 💎 (zip/climb/lift/pad/grapple + 2 cave worlds) | Every traversal verb usable in ≥1 shipped world; multi-level reachability proven | `WorldReachabilityAuditRules` (one-way edges) + 5 core test suites |
 | Skyscape & atmosphere | 🧱 v1 (layers built, W005 signature, 11 worlds pending verdict) | THE PROSPECT BAR (`systems/SKYSCAPE_DESIGN.md` §5 rubric): something drifting, hazy horizon, occluded body, sky color reaches the ground; tiered (Signature/Standard/Interior) | `SkyVistaAuditRules` + SkyAtmosphere tests + **§5 Signature-rubric gate (`GateGap2_SignatureRubric…` — gap #2 CLOSED 2026-07-10)** |
-| Travel & gates | 💎 (TravelCoordinator law, gated doors, THE ZIPTIDE; **pre-flight guard 2026-07-10** — a missing scene aborts BEFORE side effects instead of silently stranding) | One travel path, always; story-gated where flagged; every travel target in Build Settings | Locked contract in `CLAUDE.md`; `CrashProofingTests.EveryTravelTarget_IsInBuildSettings` gate; travel tests |
+| Travel & gates | 💎 code (one `TravelCoordinator`, gated doors, THE ZIPTIDE, missing-scene pre-flight, **async destination load behind the crest**; CI green `c7b5d52`; device frame-pacing check pending) | One travel path, always; story-gated where flagged; every travel target in Build Settings; no frozen-world hitch inside the crest | Locked contract in `CLAUDE.md`; `CrashProofingTests`; `FirstHourTravelSignalTests` pin one fallback sync load + one owned async load, activation hold and timeout |
 
 ## 2 · THE LIVING WORLD
 
@@ -52,12 +52,12 @@ noted; EditMode tests are gates too. *(Last full audit of this table: 2026-07-10
 
 | Aspect | State | The standard | Guardrail |
 |---|---|---|---|
-| Locomotion & comfort | 🧱 v1 (move/snap/vignette; suspension idioms per traversal verb; **preset DESIGN LOCKED 2026-07-10** — `design/COMFORT_AND_ACCESSIBILITY.md`: Cozy/Standard/Bold dial table, diegetic console, store-rating defense) | Comfort presets (vignette/snap/smooth/seated) player-visible; EVERY new motion source suspends/restores stick-move and never parents the rig | Locked contract; per-verb tests; 🕳️ GAP — comfort console + `ComfortCoverageTests` unbuilt (0.4, now Opus-ready against the locked design) |
+| Locomotion & comfort | 🧱 v1.1 (move/snap/vignette + traversal suspension; device-level Cozy/Standard/Bold table and diegetic console code/CI green; W000 bake/device check pending) | Comfort presets player-visible; EVERY artificial motion reports/suspends correctly and never parents the rig; remaining accessibility dials add seated/subtitle-size/handedness/haptic scale without a second locomotion owner | Locked contract; per-verb tests; `ComfortSettingsTests` + `ComfortCoverageTests`; device gate remains open |
 | Hands & interaction | 💎 (grab/holster/belt/tools; collider-first law) | Everything interactive answers to hands within 1.6m reach idioms; collider BEFORE interactable everywhere | `VR_RIG_GOTCHAS.md` law; wiring tests |
 | Weapons & combat feel | 🧱 v1 (guns/melee/taser unified onto one damage scale) | ADS/reload/haptics per `ABILITIES_AND_ARSENAL.md`; every weapon distinct in hand (cadence/recoil/sound), not stat-only | Combat core tests + damage-scale migration guard; 🕳️ GAP — weapon-feel checklist rows (4.4) |
 | Abilities/augments | 🧱 v1 (6 augments live) | Full A4.5–A4.7 set incl. dual-wield when charge economy exists; every augment has visible state (orb brightness idiom) | Augment tests + WiringValidator (author build-hook) |
 | Player progression/saves | 💎 (profile, autosave, ledger economy, conquest/belt overlays; **ATOMIC writes + .bak recovery 2026-07-10** — a mid-write battery death can no longer wipe progress) | NOTHING the player builds/earns is lost on quit OR on a crash mid-save — every new system ships WITH its save story (the overlay idiom) | `ProfileSerializer` tests + save round-trips + `CrashProofingTests` corrupt-and-recover gate; `EconomyAuditRules` |
-| UI/UX & menus | 🦴 (dev menu, boards, diegetic surfaces) | Diegetic-first (ship hub law); cold-boot title + save slots; readable at arm's length (characterSize×fontSize lesson) | 🕳️ GAP — no UI readability/reach audit; HOME_HUB rows open (2.5) |
+| UI/UX & menus | 🧱 v1 code (dev menu/boards + cold-boot Home Hub with New/valid-Continue/Settings and comfort surface; W000 bake/device check pending) | Diegetic-first ship-hub law; readable at arm's length; save-slot richness and all interactive reach distances consistent | `HomeHubFlowTests`; 🕳️ GAP — UI readability/reach audit and richer save-slot presentation |
 
 ## 4 · THE SHIP & VEHICLES
 
@@ -95,11 +95,11 @@ noted; EditMode tests are gates too. *(Last full audit of this table: 2026-07-10
 | Wiring integrity | 💎 | Every author/ensure system is build-hooked (both sides or CI-red) | `WiringValidatorTests` (the gate that caught AugmentAuthor) |
 | Save integrity | 💎 | Overlay idiom everywhere; neutral default = pre-feature behavior exactly; unknown records skip | Per-system round-trip tests (belt/conquest/profile) |
 | CI & verification | 💎 (compile+tests+audits per push; circuit breaker) | CI green per push; red = warn Terry loudly + stop C#; 3 reds = stop | THE LAWS 4–5 |
-| Runtime health (frames & memory) | 🧱 v1 (2026-07-10: FrameStats vitals + memory census + THE TRAVEL JANITOR — the game finally sweeps its own orphans) | 1%-low ≥ 60fps in every world (`HEALTH_SLOW` flags misses); memory census FLAT across a 10-travel soak; every runtime resource creator destroys what it makes or sits on the visible ledger | `ResourceDisciplineTests` leak ratchet (ledger can only shrink) + `HEALTH/HEALTH_SWEEP` logcat contract + runbook soak test |
-| Localization readiness | ⬜ **FORGOTTEN — decision needed** | Every player-facing string reaches the eye through ONE seam (a string table / text provider), so a language can be added without touching 200 files. Today ALL text is hardcoded literals — cheap to fix per-file now, brutal to retrofit at 80 worlds | 🕳️ GAP — Terry decides: English-only launch (document it, close the row) or adopt a TextTable seam before M5 scales content. No code moves until he calls it |
-| Docs & blackboard | 🧱 | Boards current at chunk close; HANDOFF entry per session; runbook is THE single Terry list; this map current | Session-zero test (LAWS); 🕳️ GAP — no staleness check (a board row marked 🟡 >7 days = flag) |
-| Onboarding/tutorial | ⬜ | A new player learns move/grab/holster/travel inside W000–W001 without a menu; every verb taught by a moment, not text | 🕳️ GAP — no tutorial design doc yet — needs authoring before M8 |
-| Accessibility | ⬜ | Comfort presets + subtitle size + one-handed mode decision + colorblind-safe palettes (the war table is color-coded!) | 🕳️ GAP — no doc, no audit. Cheap early, expensive late |
+| Runtime health (frames & memory) | 🧱 v1 (FrameStats, memory census, travel janitor; async travel now code-green) | 1%-low ≥60fps in every world; memory census flat across 10 travels; crest hides preparation without a frozen-world hitch; runtime resources clean up | `ResourceDisciplineTests` + `HEALTH/HEALTH_SWEEP`; async travel device comparison pending |
+| Localization readiness | ⬜ **DECISION NEEDED** | Every player-facing string reaches the eye through ONE seam, or launch is explicitly English-only | 🕳️ GAP — Terry decides before M5 scales content; no code moves until he calls it |
+| Docs & blackboard | 🧱 v1.1 (`CURRENT_EXECUTION_CHECKLIST.md` added 2026-07-11) | Current checklist points to historical boards; HANDOFF/runbook evidence stays honest | `GateGap5_NoBoardClaim_RotsSilently`; session-zero law |
+| Onboarding/tutorial | 🧱 in flight (design locked; FH-X01/X02, S01–S04, S06 and S07 code/CI green; FH-A01/S05/S08 remain) | A cold player learns the complete W000→W001 river through moments; hints only on hesitation; veterans never nagged | first-hour envelope/contract gates + implementation tests; final bake/device gate remains open |
+| Accessibility | 🦴→🧱 in flight (`COMFORT_AND_ACCESSIBILITY.md` locked; device-level presets and console built) | Comfort presets + subtitle size + seated/handedness/haptic scale + colorblind-safe palettes | `ComfortSettingsTests`/`ComfortCoverageTests`; 🕳️ remaining implementation/coverage for non-preset dials |
 | Haptics | 🦴 (belt clicks, scattered) | Every hand verb has a haptic signature (grab/fire/climb-grip/zip/belt-lip) | 🕳️ GAP — no haptic coverage checklist |
 
 ---
@@ -111,8 +111,8 @@ noted; EditMode tests are gates too. *(Last full audit of this table: 2026-07-10
 | Meta Store readiness | 🦴 (checklist doc'd 2026-07-10; nothing submitted) | Every box in `META_STORE_READINESS.md` checked; App Lab VRC pre-scan clean | 🕳️ GAP — the doc IS the gate for now; §2 paperwork is Terry's, startable NOW |
 | Entitlement + Platform SDK | ⬜ | Entitlement check in first seconds of boot (Meta rejects without it) | 🕳️ GAP — needs App ID from dashboard first |
 | Release build hygiene | ⬜ | Release keystore (owned + backed up); DevMenu/diagnostics build-flagged OFF; minimal manifest permissions | 🕳️ GAP — build-flag audit is board-row sized |
-| Onboarding/tutorial | 🦴 (DESIGN LOCKED 2026-07-10: `design/ONBOARDING_TUTORIAL.md` — teaching river W000→W001, hesitation-triggered RILL beats, comfort-first law, OPUS-READY build shape) | A cold player learns every core verb in W000–W001, taught by moments not text; veterans never nagged | 🕳️ GAP — the beat-coverage test ships WITH the TutorialDirector build (spec'd in the doc) |
-| Comfort rating | 🦴 (mechanics comfortable-by-design; no presets UI) | Presets ship + default sensibly → honest "Moderate" rating | 0.4 row; store-facing, not optional |
+| Onboarding/tutorial | 🧱 in flight (design + contract/progression + most owner adapters green; W000 surfaces code-green) | Cold player completes W000–W001 unaided; hints only on hesitation; return payoff persists | first-hour contract/envelope tests; FH-A01→S05→S08 and Terry bake/device evidence remain |
+| Comfort rating | 🧱 code (Cozy/Standard/Bold console; Standard default; device-level persistence) | Presets ship, apply honestly, and support the claimed rating | literal preset tests green; W000 bake/headset comfort gate pending |
 | Store assets (icon/trailer/screens) | ⬜ | Meta's exact sizes; in-headset captures | Picasso's lane when visuals land |
 
 ## THE GATE-GAP QUEUE (claimable, in rough value order)
@@ -126,7 +126,7 @@ Each 🕳️ above, as one board-row-sized task. Claiming one = add the audit/ch
 5. ~~Board-staleness flag~~ — **CLOSED 2026-07-10** (`GateGap5_NoBoardClaim_RotsSilently`: dated 🟡 claims older than 14 days fail CI — finish, re-date, or release the row).
 6. **UI readability audit** — TextMesh sizing law + reach distances on interactive tiles.
 7. **Haptic coverage checklist** — doc-level first; audit when a haptic registry exists.
-8. **Accessibility doc** — decisions Terry must make once, cheaply, now (doc, then rules).
+8. ~~Accessibility design doc~~ — **CLOSED 2026-07-10**; remaining non-preset controls are implementation rows.
 9. **Behavior-count check** — every shipped creature id maps to ≥3 behavior states.
 10. **Plant/vehicle catalog breadth** — same shape as the mission catalog-span test that already exists.
 
