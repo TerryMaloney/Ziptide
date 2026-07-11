@@ -60,6 +60,8 @@ class CiVerdictTests(unittest.TestCase):
         self.assertEqual("GREEN", payload["overall"])
         self.assertEqual("a" * 40, payload["testedSha"])
         self.assertEqual("skipped", payload["results"]["androidApk"])
+        self.assertIn("direct generated verdict-only child", payload["interpretation"]["currentWhen"])
+        self.assertIn("direct verdict-only child", content)
 
     def test_cli_rejects_wrong_branch(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
