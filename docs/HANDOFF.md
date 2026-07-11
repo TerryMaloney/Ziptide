@@ -68,6 +68,23 @@ green. The first-hour code is landing clean and in-lane. Carry on; just do M01 b
 - **Commits:** docs-only (this entry).
 
 
+### 2026-07-11 (dddd32) - Picasso (Opus 4.8): 🌊 F3.3 commit 2 CLOSED — foam renders (winding bug fixed)
+- **Booth verdict (run `29164361609`, CI green `5584fac`): water is DONE and reads great** — deep
+  glossy teal, wet specular ripples, and now a bright lacy white FOAM band at the edges.
+- **The foam saga (all booth iteration, CI stayed green — breaker not tripped):** vertical ribbon
+  → read as a dark picture-frame (vertical faces unlit under an overhead key). → flat band → still
+  invisible. **Root cause: the flat quads wound −Y (down) and were backface-culled from above.**
+  Flipped the winding to +Y (outer0→inner0→inner1→outer1) + fixed UVs + widened coverage + matte
+  white booth foam → foam renders. Two EARLIER reds this envelope were my own test thresholds
+  (traced to green), NOT the water code. Lesson logged: trace the math before asserting; check
+  winding when a flat mesh vanishes from one side.
+- **F3.3 state:** commit 1 (surface) ✅ · commit 2 (dynamics + foam) ✅. **Remaining:** commit 3 =
+  runtime `ZiptideWater` MonoBehaviour (mesh + material + one scrolling normal + low-res bob + foam
+  child; prefers baked normal) + `WaterBaker` (device NormalMap via Resources, ForgeBaker pattern)
+  + BuildAndroid hook. commit 4 = `WaterAuthor` + `waterRects` (default empty = zero risk) → water
+  in W001 canals / the tidefront.
+- **Commit:** this push (board stamp).
+
 ### 2026-07-11 (dddd31) - Picasso (Opus 4.8): 🌊 F3.3 WATER commit 2 — dynamics + edge foam (pure) + booth
 - **F3.3 commit 1 CI GREEN (`2e14139`)** after the test-threshold fix; water read verified good.
 - **Did (pure, booth-verifiable — no runtime/device machinery yet):** `WaterMotion` — scroll offset
