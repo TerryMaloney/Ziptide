@@ -3,11 +3,11 @@
 **Owner:** GPT-5.6 Thinking, Story/Ship DevTools slice  
 **Authorized by:** Terry, 2026-07-11 (“I still need to use the menu from the headset without a computer”)  
 **Branch:** `terry-local-wip`  
-**Status:** 🟡 REOPENED — HEADSET-NATIVE GESTURE ACTIVE
+**Status:** ✅ IMPLEMENTED — UNITY CI GREEN; HEADSET FEEL CHECK PENDING
 
 ## Problem
 
-The original Y+B summon stole gameplay buttons. The first replacement removed that conflict but made ADB/computer access the only Quest summon path, which does not satisfy headset-only testing.
+The original Y+B summon stole gameplay buttons. The first replacement removed that conflict but made ADB/computer access the only Quest summon path, which did not satisfy headset-only testing.
 
 ## Final access model
 
@@ -20,7 +20,7 @@ Reserve **zero controller buttons** while keeping the menu available from any wo
 
 The gesture uses controller **pose only**, not buttons, triggers, grips, sticks or gameplay actions. It latches after one activation and must be released before it can toggle again.
 
-## Current claimed files
+## Delivered files
 
 New:
 
@@ -35,8 +35,6 @@ Updated:
 - `docs/design/CONTROL_SCHEME.md`
 - this log
 
-Do not edit those files until this claim releases.
-
 ## Gesture contract
 
 The pose is active only when:
@@ -48,6 +46,15 @@ The pose is active only when:
 5. the pose is held continuously for two seconds.
 
 Breaking the pose resets progress. After activation, the gesture stays latched until the pose is released, preventing rapid menu flicker.
+
+Current tuning constants:
+
+- hold: `2.0 s`
+- minimum above head: `0.05 m`
+- maximum controller-to-head distance: `0.55 m`
+- maximum controller separation: `0.35 m`
+
+These are deliberately broad for easy headset use and may be tuned after Terry's feel check without changing gameplay controls.
 
 ## Preserved behavior
 
@@ -66,23 +73,34 @@ Breaking the pose resets progress. After activation, the gesture stays latched u
 3. No controller button feature is read.
 4. The detector is omitted from non-development builds.
 5. Release builds cannot open the DevMenu.
-6. Repository regression tests reject face-button/stick-click polling in DevMenu access code.
+6. Repository regression tests reject face-button, trigger, grip, menu-button and stick-click polling in DevMenu access code.
 
-## Previous verification
+## Verification
 
-The ADB-only foundation compiled green:
+Exact headset-gesture implementation:
 
-- tested SHA: `b070c968f250a5c0cb49cd70c64ba7d65eb0504f`
-- run ID: `29153664078`
+- tested SHA: `ab37cb6ea665dcd2fe4a407287da2bc7bdbdfa84`
+- run ID: `29154553182`
 - Unity EditMode: `success`
 - project-contract reports: `success`
+- Android: `skipped` as expected for a normal branch push
 - overall: `GREEN`
 
-## Acceptance for this addendum
+The tests cover pose geometry, continuous hold timing, release-to-rearm latching, non-retrigger while held, inclusive thresholds and negative delta time.
 
-1. Unity EditMode CI is green with the pose detector and tests.
-2. Y+B never affects DevMenu.
-3. Holding both controllers above the forehead for two seconds toggles the menu from any world.
-4. Keeping the pose held does not retrigger; releasing and repeating toggles again.
-5. ADB remains a backup only.
-6. Headset feel/range is verified during Terry's next device session.
+## Remaining device check
+
+During Terry's next headset session:
+
+1. Press Y and B separately and together — DevMenu must not react.
+2. Hold both controllers close together above the forehead for two seconds — DevMenu should open.
+3. Keep holding — it must not repeatedly toggle.
+4. Release and repeat — it should toggle again.
+5. Warp to another world and repeat — menu must still work and remain clickable.
+6. Confirm a non-development build contains no DevMenu behavior.
+
+Full usage instructions are in `docs/DEV_MENU_ACCESS.md`.
+
+## Closure
+
+The implementation claim is released. Only headset feel/range tuning remains; no computer is required to summon the menu during normal development testing.
