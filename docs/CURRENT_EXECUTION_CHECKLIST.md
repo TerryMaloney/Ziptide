@@ -44,8 +44,9 @@
 - [x] Build the canonical creature behavior-readability gate. **Seven shipped IDs, ≥3 active states each, telegraph/counter/resolution, source/factory evidence and APK pre-build blocker; code/CI green `d9b6caf`, run `29169591530`.**
 - [x] Build plant and vehicle catalog-breadth audits without touching Picasso visual assets. **Structural CI/APK gate green `b7a6cfa`, run `29170323869`; content warnings remain for unsurfaced plants, three missing vehicle families and no garage.**
 - [x] Harden `AudioDirector` transition/disposal ownership. **Retired persistent sources now release clips; overlapping fades are serialized; code/CI green `e8d18d6`, run `29170675599`; long-session Quest memory soak remains device evidence.**
+- [x] Exhaust the independent CI-only queue. **PlayMode/travel round-trip work was correctly deferred because the existing workflow proves EditMode only; no unproven second CI lane was introduced.**
 - [ ] After each code push, wait for/read `docs/CI_VERDICT.md`; do not stack unverified code.
-- [ ] Continue only with independent CI-quality rows from §7 rather than entering Picasso files or blocked first-hour orchestration.
+- [ ] Continue only with explicitly claimed gameplay/content rows or Terry/Picasso-dependent work; the §7 independent queue is complete.
 
 ### B. Picasso’s next work when usage returns
 
@@ -162,7 +163,7 @@
 
 ## 7. Independent CI-only queue while Terry is away
 
-Take in order unless a live claim or CI result changes it:
+The ordered queue is complete. Item 8 was a conditional feasibility check and correctly stopped because the current workflow has no proven PlayMode lane.
 
 1. [x] Async travel implementation — code/CI green; device comparison pending.
 2. [x] Reconcile `SPRINT.md`, `MASTER_CHECKLIST.md`, and `EXCELLENCE_MAP.md` against implementation logs.
@@ -171,7 +172,7 @@ Take in order unless a live claim or CI result changes it:
 5. [x] Creature behavior-count/readability gate — one canonical catalog, source/factory evidence, CI tests and APK blocker green.
 6. [x] Plant/vehicle catalog breadth audit — structural CI/APK blockers green; exact surfacing/asset/garage debt remains warning-level content work.
 7. [x] `AudioDirector` unload/disposal leak hardening — stopped sources release clips, one transition owner, lifecycle tests green `e8d18d6`, run `29170675599`; device memory soak remains.
-8. [ ] PlayMode scaffold/TravelCoordinator round-trip test only if stable in the existing CI environment.
+8. [x] PlayMode scaffold/TravelCoordinator feasibility — **deferred by contract**: existing CI runs `testMode: editmode` only, with no proven PlayMode assembly/job/history. See `GPT_ADDITIONS/2026-07-11_GPT56_PLAYMODE_FEASIBILITY/PLAYMODE_FEASIBILITY_LOG.md`.
 
 Do not take:
 
