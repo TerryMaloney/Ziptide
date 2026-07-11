@@ -1,0 +1,57 @@
+{
+  "id": "FH-S02-HOLSTER",
+  "owner": "story-ship",
+  "kind": "adapter",
+  "risk": "owner-local",
+  "covers": [
+    "FH_HOLSTER_FIRST_ITEM"
+  ],
+  "signals": [
+    "ITEM_HOLSTERED"
+  ],
+  "lines": [],
+  "dependencies": [
+    "FH-X02-PROGRESSION-CORE"
+  ],
+  "commits": 1,
+  "newFiles": [
+    "Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourHolsterAdapterTests.cs"
+  ],
+  "touchFiles": [
+    "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs"
+  ],
+  "touchPatterns": [],
+  "reuse": [
+    "HolsterSocketInteractor",
+    "ZiptideFlags.FIRST_HOLSTER",
+    "PlayerProfile.flags"
+  ],
+  "api": [
+    "After valid existing socket selection, publish item ID and set FIRST_HOLSTER once.",
+    "No event for rejected/non-item/duplicate callback; no autosave or rule change."
+  ],
+  "tests": [
+    "valid publishes once/sets flag",
+    "invalid no event",
+    "missing SaveSystem safe",
+    "flag idempotent"
+  ],
+  "diagnostics": [
+    "ZIPTIDE: FIRST_HOLSTER item=<id> socket=<name>"
+  ],
+  "fallback": [
+    "Without profile, publish semantic event and do not throw."
+  ],
+  "acceptance": {
+    "CI": [
+      "Adapter tests green",
+      "Unity compile green"
+    ],
+    "BAKE": [],
+    "DEVICE": [
+      "Holster/retrieval unchanged; first success advances once"
+    ]
+  },
+  "integrationOwners": [],
+  "supports": []
+}
