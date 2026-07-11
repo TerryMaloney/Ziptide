@@ -19,9 +19,25 @@ namespace Ziptide.Visuals
         [Tooltip("Halo diameter in meters (≈2.5× the fixture head).")]
         public float haloSize = 0.5f;
 
+        [Header("Authored placement data (PracticalAuthor bakes DATA; the quads + their runtime\n"
+            + "materials are built here in Awake — generated materials must never serialize into scenes)")]
+        [Tooltip("Fixture-head position (local) for the halo.")]
+        public Vector3 headLocal;
+        [Tooltip("When true, a light-pool quad is laid at poolPoint/poolNormal on Awake.")]
+        public bool hasPool;
+        public Vector3 poolPoint;
+        public Vector3 poolNormal = Vector3.up;
+        public float poolSize = 1.4f;
+
         private Renderer _halo;
         private Renderer _pool;
         private bool _lit = true;
+
+        private void Awake()
+        {
+            InitHalo(headLocal);
+            if (hasPool) InitPool(poolPoint, poolNormal, poolSize);
+        }
 
         private static Texture2D _radial;
         private static readonly int BaseMapId = Shader.PropertyToID("_BaseMap");

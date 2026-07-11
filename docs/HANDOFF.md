@@ -67,6 +67,42 @@ for TWO readers: (1) the operator building the first-hour tutorial (GPT-5.6, "St
 green. The first-hour code is landing clean and in-lane. Carry on; just do M01 before S04.
 - **Commits:** docs-only (this entry).
 
+
+### 2026-07-11 (dddd28) - Picasso (**now Opus 4.8**, was Fable 5): 🏮 F3.1b commit 3 — PracticalAuthor placement + lane check
+- **MODEL HANDOFF:** Fable 5 is retired; the art lane ("Picasso") now runs on **Opus 4.8**. Same
+  operator role, same board, same laws. Commit trailers switch to `Claude Opus 4.8` from here.
+- **LANE CHECK (Terry asked before continuing) — clean:** GPT-5.6 ("Sol") is running the
+  **First-Hour tutorial lane** (`Core|Gameplay/Runtime/Tutorial/**`, holster/travel/observation
+  completion signals, `DevTools`, PvP progression, `docs/first_hour/**`, `docs/continuity/**`,
+  `tools/*.py` CI gates). Diffed HEAD..origin: **zero overlap** with `Visuals/**`/Forge/SkyVista/
+  Practical/art authors. Its new CI gates live in a `continue-on-error` report job (won't block my
+  Unity build) and write `docs/CI_VERDICT.md` per push. **One note for MY lane:**
+  `FH-A01-SIGNATURE-CREATURE-PRESENTATION` is a Picasso-lane envelope in Sol's kit — unbuilt,
+  reserved for me, unblocks FH-S05; Sol is correctly doing FH-M01 next, not touching it. Future item.
+- **Did (F3.1b 3/3):** `PracticalAuthor.Place(dressRoot, kit, route)` wired into
+  `WorldDressingBuilder.Build` AFTER the building pass (CityBuilder order: buildings L48 → dressing
+  L57, so `__DOOR` markers exist for the sconce pass). Placement: sconce beside ≤6 sorted doorways
+  (deterministic), street poles every ~14m on the route polyline (≤6, offset off the walking line,
+  arm reaching over the path), 2 lanterns at the nearest POI approaches. Each = unscaled holder +
+  editor-visible primitive Fallback + `ForgeModuleLook`(fixture recipe, device swap) +
+  `PracticalLight` DATA (headLocal + pool point/normal; the component self-builds halo+pool quads
+  in Awake — generated materials never serialize into scenes). ≤14 practicals/world.
+- **The hero real-light budget:** the 2 lanterns each carry ONE real point light (range 8, no
+  shadows, amber) — the world's ENTIRE real-light allowance. 1 sun + 2 = 3 lights = the PerfBudget
+  cap (WARN-only, `3 > 3` false → soft over-target note, never a block). 🎮 **Runbook risk:** if a
+  device pass shows frame drops, the hero lights are the FIRST dial (cut intensity or drop to 1).
+- **Next:** integrate the GPT "Post-Fable" packet into the plan (docs, future work — Terry's ask);
+  then booth/CI verify this commit; F3.3 water is the next FORGE III build envelope.
+- **Commit:** this push.
+
+### 2026-07-10 (dddd27) - Picasso (Fable 5): 🏮 fixture verdicts — all three pass first try
+- **Booth run `29122261557` + CI green on `91a0fee`:** `light_lantern_hang` ✅✅ (hook, ring, cap,
+  glowing amber body — a genuinely charming first-try pass) · `light_sconce_wall` ✅ (plate + drip
+  guard + glowing half-dome) · `light_street_pole` ✅ (classic silhouette; the amber ring glows
+  DOWNWARD — correct for the player's view from below).
+- **F3.1b remaining (commit 3/3):** `PracticalAuthor` — built THIS session (see dddd28).
+- **Commit:** this push.
+
 ### 2026-07-11 (hwr21) - Fable 5 architect: ✅ GPT FIRST-HOUR WORK AUDITED — verdict PASS, one binding gap patched
 - **Terry asked me to check GPT-5.6's FH-01B/C/D deliverables. Verdict: solid, safe, and honest.**
   ① **CI safety:** its two `ci.yml` edits only extend the pre-existing `continue-on-error`

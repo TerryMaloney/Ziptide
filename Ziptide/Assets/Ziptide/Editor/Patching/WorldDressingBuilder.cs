@@ -40,6 +40,10 @@ namespace Ziptide.Editor.Patching
             var route = BuildRoute(kit);
             BuildCairns(dressRoot, kit, ex, route);
             ScatterBiomeProps(dressRoot, kit, ex, route);
+            // FORGE III F3.1b — practical lights. Runs AFTER BuildingBuilder (CityBuilder order:
+            // buildings line 48, dressing line 57), so the __DOOR markers the sconce pass reads
+            // already exist. Parented to dressRoot → cleared+rebuilt with the rest of the dressing.
+            PracticalAuthor.Place(dressRoot, kit, route);
         }
 
         // ── P1d: the route + cairns ───────────────────────────────────────────────────────────────
