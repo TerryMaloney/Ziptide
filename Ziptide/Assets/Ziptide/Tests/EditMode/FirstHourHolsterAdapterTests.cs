@@ -17,12 +17,12 @@ namespace Ziptide.Tests.EditMode
             var published = new List<string>();
             bool alreadyReported = false;
 
-            bool first = HolsterSocketInteractor.TryReportFirstHolster(
+            bool first = FirstHourHolsterSignal.TryReport(
                 "pistol",
                 profile,
                 ref alreadyReported,
                 published.Add);
-            bool duplicate = HolsterSocketInteractor.TryReportFirstHolster(
+            bool duplicate = FirstHourHolsterSignal.TryReport(
                 "pistol",
                 profile,
                 ref alreadyReported,
@@ -43,7 +43,7 @@ namespace Ziptide.Tests.EditMode
             int publishCount = 0;
             bool alreadyReported = false;
 
-            bool result = HolsterSocketInteractor.TryReportFirstHolster(
+            bool result = FirstHourHolsterSignal.TryReport(
                 itemId,
                 profile,
                 ref alreadyReported,
@@ -63,12 +63,12 @@ namespace Ziptide.Tests.EditMode
 
             Assert.DoesNotThrow(() =>
             {
-                bool first = HolsterSocketInteractor.TryReportFirstHolster(
+                bool first = FirstHourHolsterSignal.TryReport(
                     "taser_dart_gun",
                     null,
                     ref alreadyReported,
                     published.Add);
-                bool duplicate = HolsterSocketInteractor.TryReportFirstHolster(
+                bool duplicate = FirstHourHolsterSignal.TryReport(
                     "taser_dart_gun",
                     null,
                     ref alreadyReported,
@@ -89,7 +89,7 @@ namespace Ziptide.Tests.EditMode
             int publishCount = 0;
             bool alreadyReported = false;
 
-            bool result = HolsterSocketInteractor.TryReportFirstHolster(
+            bool result = FirstHourHolsterSignal.TryReport(
                 "gravity_gun",
                 profile,
                 ref alreadyReported,
@@ -109,7 +109,7 @@ namespace Ziptide.Tests.EditMode
 
             Assert.DoesNotThrow(() =>
             {
-                Assert.IsTrue(HolsterSocketInteractor.TryReportFirstHolster(
+                Assert.IsTrue(FirstHourHolsterSignal.TryReport(
                     "pistol",
                     profile,
                     ref alreadyReported,
@@ -122,26 +122,38 @@ namespace Ziptide.Tests.EditMode
         [Test]
         public void RuntimeSource_PreservesSocketRulesAndDoesNotAutosave()
         {
-            string path = Path.Combine(
+            string socketPath = Path.Combine(
                 Application.dataPath,
                 "Ziptide",
                 "Gameplay",
                 "Runtime",
                 "Inventory",
                 "HolsterSocketInteractor.cs");
-            Assert.IsTrue(File.Exists(path), path);
+            string helperPath = Path.Combine(
+                Application.dataPath,
+                "Ziptide",
+                "Gameplay",
+                "Runtime",
+                "Inventory",
+                "FirstHourHolsterSignal.cs");
+            Assert.IsTrue(File.Exists(socketPath), socketPath);
+            Assert.IsTrue(File.Exists(helperPath), helperPath);
 
-            string source = File.ReadAllText(path);
-            StringAssert.Contains("selectEntered.AddListener(OnSelectEnteredCallback)", source);
-            StringAssert.Contains("base.CanHover(interactable)", source);
-            StringAssert.Contains("base.CanSelect(interactable)", source);
-            StringAssert.Contains("\"pistol\", \"taser_dart_gun\", \"gravity_gun\"", source);
-            StringAssert.Contains("public static event Action<string> ItemHolstered", source);
-            StringAssert.Contains("ZIPTIDE: FIRST_HOLSTER item=", source);
-            StringAssert.DoesNotContain("AutosaveNow", source);
-            StringAssert.DoesNotContain(".Save()", source);
-            StringAssert.DoesNotContain("TravelCoordinator", source);
-            StringAssert.DoesNotContain("InputAction", source);
+            string socketSource = File.ReadAllText(socketPath);
+            string helperSource = File.ReadAllText(helperPath);
+            StringAssert.Contains("selectEntered.AddListener(OnSelectEnteredCallback)", socketSource);
+            StringAssert.Contains("base.CanHover(interactable)", socketSource);
+            StringAssert.Contains("base.CanSelect(interactable)", socketSource);
+            StringAssert.Contains("\"pistol\", \"taser_dart_gun\", \"gravity_gun\"", socketSource);
+            StringAssert.Contains("public static event Action<string> ItemHolstered", socketSource);
+            StringAssert.Contains("FirstHourHolsterSignal.TryReport", socketSource);
+            StringAssert.Contains("ZIPTIDE: FIRST_HOLSTER item=", socketSource);
+            StringAssert.DoesNotContain("AutosaveNow", socketSource + helperSource);
+            StringAssert.DoesNotContain(".Save()", socketSource + helperSource);
+            StringAssert.DoesNotContain("TravelCoordinator", socketSource + helperSource);
+            StringAssert.DoesNotContain("InputAction", socketSource + helperSource);
+            StringAssert.DoesNotContain("UnityEngine", helperSource);
+            StringAssert.DoesNotContain("XRSocketInteractor", helperSource);
         }
     }
 }
