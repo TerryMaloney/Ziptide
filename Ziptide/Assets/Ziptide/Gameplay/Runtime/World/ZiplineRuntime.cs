@@ -24,6 +24,12 @@ namespace Ziptide.Gameplay
         [Tooltip("Comfort speed cap m/s (0 = the ride's default cap).")]
         public float maxSpeed = 0f;
 
+        /// <summary>Neutral notification after the existing ride owner successfully starts a ride.</summary>
+        public event System.Action RideStarted;
+
+        /// <summary>Neutral notification after the existing ride owner ends and records its progress.</summary>
+        public event System.Action<string, float> RideEnded;
+
         private const int CableSegments = 14;
         private const float SagFraction = 0.04f; // visual dip: 4% of span at mid-cable
 
@@ -41,6 +47,21 @@ namespace Ziptide.Gameplay
             startAnchor = start;
             endAnchor = end;
             maxSpeed = comfortCap;
+        }
+
+        /// <summary>
+        /// True only for the exact designated zipline instance and the owner's canonical arrival reason.
+        /// A release, another line, or a missing designated line never completes the semantic ride.
+        /// </summary>
+        public static bool IsDesignatedArrival(
+            ZiplineRuntime reportedLine,
+            ZiplineRuntime designatedLine,
+            string reason)
+        {
+            return reportedLine != null &&
+                   designatedLine != null &&
+                   object.ReferenceEquals(reportedLine, designatedLine) &&
+                   string.Equals(reason, "arrived", System.StringComparison.Ordinal);
         }
 
         private void Start()
@@ -133,15 +154,54 @@ namespace Ziptide.Gameplay
                 ? new ZiplineRide(ToT(startAnchor), ToT(endAnchor), maxSpeed)
                 : new ZiplineRide(ToT(startAnchor), ToT(endAnchor));
             Debug.Log("ZIPTIDE: ZIPLINE_RIDE_START");
+            PublishRideStarted();
         }
 
         private void EndRide(string reason)
         {
             if (_ride == null) return;
-            _idleT = _ride.Progress; // handle glides home from wherever the ride ended
+            float progress = _ride.Progress;
+            _idleT = progress; // handle glides home from wherever the ride ended
             Debug.Log("ZIPTIDE: ZIPLINE_RIDE_END reason=" + reason +
-                " t=" + _ride.Progress.ToString("F2"));
+                " t=" + progress.ToString("F2"));
             _ride = null;
+            PublishRideEnded(reason, progress);
+        }
+
+        private void PublishRideStarted()
+        {
+            System.Action subscribers = RideStarted;
+            if (subscribers == null) return;
+
+            foreach (System.Action subscriber in subscribers.GetInvocationList())
+            {
+                try
+                {
+                    subscriber();
+                }
+                catch (System.Exception ex)
+                {
+                    Debug.LogWarning("ZIPTIDE: ZIPLINE_SUBSCRIBER_FAIL phase=start reason=" + ex.Message);
+                }
+            }
+        }
+
+        private void PublishRideEnded(string reason, float progress)
+        {
+            System.Action<string, float> subscribers = RideEnded;
+            if (subscribers == null) return;
+
+            foreach (System.Action<string, float> subscriber in subscribers.GetInvocationList())
+            {
+                try
+                {
+                    subscriber(reason, progress);
+                }
+                catch (System.Exception ex)
+                {
+                    Debug.LogWarning("ZIPTIDE: ZIPLINE_SUBSCRIBER_FAIL phase=end reason=" + ex.Message);
+                }
+            }
         }
 
         private void Update()
