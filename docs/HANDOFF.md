@@ -68,6 +68,24 @@ green. The first-hour code is landing clean and in-lane. Carry on; just do M01 b
 - **Commits:** docs-only (this entry).
 
 
+### 2026-07-11 (dddd33) - Picasso (Opus 4.8): 🌊 F3.3 commit 3 — the runtime ZiptideWater body
+- **Did:** `ZiptideWater` (Visuals/Runtime/Water) — the runtime water body. Awake→`Assemble()`
+  (public so it's EditMode-testable): builds the ripple plane, a URP/Lit water material (deep tint +
+  smoothness 0.85 + the tileable ripple normal), ONE scrolling normal offset (`WaterMotion`), a
+  low-res per-frame vertex bob (cells default 16 → cheap), and a flat foam-band child. Data in
+  (WaterAuthor sets sizeX/Z), look built at runtime → nothing generated serializes into a scene.
+  No collider (swimming is out of scope). 1 headless test (assembles mesh + foam child, no collider,
+  shadows off).
+- **Device normal path (no Sol collision):** the shared water normal is baked by **`ForgeBaker`**
+  (my lane, already build-hooked + gitignored) → `ForgeBaked/water_normal.png` imported as a
+  NormalMap (platform-correct on Quest, which a runtime texture can't guarantee). `ZiptideWater`
+  prefers it via `Resources.Load`, falls back to a runtime DXT5nm-swizzled bake in-editor. **No
+  `BuildAndroid.cs` edit** — deliberately kept out of the file Sol is actively editing.
+- **Next (commit 4, closes F3.3):** `WaterAuthor` + an optional `waterRects` field on the layout
+  (default empty = zero risk to existing worlds) → water fills W001 canals + the tidefront. Then a
+  runbook 🎮 item (does the canal read as water on device; 72fps with the per-frame bob).
+- **Commit:** this push.
+
 ### 2026-07-11 (dddd32) - Picasso (Opus 4.8): 🌊 F3.3 commit 2 CLOSED — foam renders (winding bug fixed)
 - **Booth verdict (run `29164361609`, CI green `5584fac`): water is DONE and reads great** — deep
   glossy teal, wet specular ripples, and now a bright lacy white FOAM band at the edges.

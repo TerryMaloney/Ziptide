@@ -70,9 +70,32 @@ namespace Ziptide.Editor.Patching
                 finally { Object.DestroyImmediate(synth); }
             }
 
+            // FORGE III F3.3 — the shared WATER normal (imported NormalMap → platform-correct on
+            // Quest, which a runtime-generated texture can't guarantee). ZiptideWater prefers it;
+            // it lives in the same gitignored ForgeBaked root, so no BuildAndroid hook is needed.
+            try { BakeWaterNormal(); baked++; }
+            catch (System.Exception e) { Debug.LogWarning("[Ziptide] ForgeBaker: water normal bake failed: " + e.Message); }
+
             AssetDatabase.SaveAssets();
             Debug.Log("[Ziptide] ForgeBaker: baked " + baked + " asset(s) → " + BakedRoot);
             return baked;
+        }
+
+        private const int WaterNormalSize = 512;
+
+        /// <summary>Bake the tileable water ripple normal to ForgeBaked/water_normal.png, imported
+        /// as a NormalMap so the platform gets the correct normal encoding.</summary>
+        private static void BakeWaterNormal()
+        {
+            Directory.CreateDirectory(BakedRoot);
+            var px = WaterSurface.BakeNormalMap(WaterNormalSize, 1.4f); // canonical RGB; importer swizzles
+            string path = BakedRoot + "/water_normal.png";
+            var tex = new Texture2D(WaterNormalSize, WaterNormalSize, TextureFormat.RGBA32, false);
+            tex.SetPixels32(px);
+            File.WriteAllBytes(path, tex.EncodeToPNG());
+            Object.DestroyImmediate(tex);
+            AssetDatabase.Refresh();
+            ConfigureImporter(path, TextureImporterType.NormalMap, srgb: false);
         }
 
         private static void Bake(ForgeRecipeDefinition recipe)

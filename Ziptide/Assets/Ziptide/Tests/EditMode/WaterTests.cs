@@ -167,5 +167,28 @@ namespace Ziptide.Tests.EditMode
             }
             finally { Object.DestroyImmediate(m); }
         }
+
+        [Test]
+        public void ZiptideWater_Assembles_MeshFoamNoCollider()
+        {
+            var go = new GameObject("Water");
+            var w = go.AddComponent<ZiptideWater>();
+            w.sizeX = 6f; w.sizeZ = 4f; w.cells = 12; w.foam = true;
+            try
+            {
+                w.Assemble();
+                var mf = go.GetComponent<MeshFilter>();
+                Assert.IsNotNull(mf, "water builds a MeshFilter");
+                Assert.IsNotNull(mf.sharedMesh, "water builds its plane mesh");
+                Assert.LessOrEqual(mf.sharedMesh.triangles.Length / 3, ZiptideWaterMesh.MaxTris);
+                Assert.IsNotNull(go.transform.Find("Foam"), "foam child is built when foam=true");
+                Assert.AreEqual(0, go.GetComponentsInChildren<Collider>(true).Length,
+                    "water is a look, never a stat — no collider");
+                foreach (var r in go.GetComponentsInChildren<Renderer>(true))
+                    Assert.AreEqual(UnityEngine.Rendering.ShadowCastingMode.Off, r.shadowCastingMode,
+                        r.name + " must not cast shadows (Quest budget)");
+            }
+            finally { Object.DestroyImmediate(go); }
+        }
     }
 }
