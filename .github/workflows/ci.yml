@@ -1,7 +1,7 @@
 name: CI
 
 # Compiles the Unity project and runs EditMode tests on every push/PR.
-# Also produces a report-only continuity artifact. That job is deliberately
+# Also produces report-only project-contract artifacts. That job is deliberately
 # non-blocking until its rules have proven low-noise against the real repo.
 #
 # REQUIRED repository secrets (Settings > Secrets and variables > Actions):
@@ -34,20 +34,20 @@ env:
 
 jobs:
   continuity-report:
-    name: Continuity report (non-blocking)
+    name: Project contract reports (non-blocking)
     runs-on: ubuntu-latest
-    # FH-02A is observation-only. Findings and even job failure remain visible
-    # without blocking Unity tests, Android builds, or another operator's push.
+    # FH-02A/FH-01A are observation-only. Findings and even job failure remain
+    # visible without blocking Unity tests, Android builds, or another operator's push.
     continue-on-error: true
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Run continuity unit tests
+      - name: Run project contract unit tests
         run: |
           python3 -m unittest discover \
             -s tools/tests \
-            -p 'test_continuity_gate.py' \
+            -p 'test_*_gate.py' \
             -v
 
       - name: Generate repository continuity report
@@ -56,12 +56,20 @@ jobs:
           python3 tools/continuity_gate.py \
             --json-report Builds/Reports/continuity_report.json
 
-      - name: Upload continuity report
+      - name: Generate first-hour contract report
+        if: always()
+        run: |
+          python3 tools/first_hour_gate.py \
+            --json-report Builds/Reports/first_hour_contract_report.json
+
+      - name: Upload project contract reports
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: continuity-report
-          path: Builds/Reports/continuity_report.json
+          name: project-contract-reports
+          path: |
+            Builds/Reports/continuity_report.json
+            Builds/Reports/first_hour_contract_report.json
           if-no-files-found: warn
 
   test:
