@@ -83,6 +83,16 @@ Audit prefix: `ZIPTIDE: CREATURE_BEHAVIOR_AUDIT`.
 
 This gate proves structural vocabulary and wiring. Terry’s consolidated headset pass still judges whether each state is visually obvious, fairly timed, comfortable and fun. Actual readability problems become behavior/art polish rows; they do not reopen the catalog architecture.
 
+## Handoff — Did / Next / Heads-up / Commits
+
+**Did:** closed the creature behavior-count/readability gap with one canonical catalog, merged the concurrent implementations, deleted the duplicate source of truth, and added CI plus APK pre-build enforcement. Updated `CURRENT_EXECUTION_CHECKLIST.md` and `EXCELLENCE_MAP.md` to match.
+
+**Next:** build the plant and vehicle catalog-breadth audits. First map the actual committed definitions, catalogs, factory routes and world/garage reachability; then add low-noise one-to-one/span gates without touching Picasso visual assets.
+
+**Heads-up:** this is structural proof, not device proof. Terry still needs to judge creature state readability and timing in the consolidated headset pass. The central `HANDOFF.md` was not replaced through the connector because it is too large for a safe full-file rewrite; this task log is the durable handoff record linked by the current checklist and implementation history.
+
+**Commits:** tested implementation head `d9b6caf`; durable green verdict `2c9f0b3`; log close `611c0e7`; current checklist `30b39d4`; Excellence Map `fe9cca5`; this handoff stamp.
+
 ## Closure
 
 The creature behavior-count gap is closed at code/CI maturity and the protected-file claim is released. The next independent queue item is plant and vehicle catalog-breadth auditing.
