@@ -3,7 +3,7 @@
 **Owner:** GPT-5.6 Thinking, Story/Ship lane  
 **Authorized by:** Terry, 2026-07-11 (“please continue”)  
 **Branch:** `terry-local-wip`  
-**Status:** 🟡 ACTIVE — CI RETRY PENDING  
+**Status:** ✅ IMPLEMENTED — UNITY CI GREEN; FILE CLAIM RELEASED  
 **Envelope:** `docs/first_hour/envelopes/FH-S02-HOLSTER.json`
 
 ## Goal
@@ -14,23 +14,21 @@ Bind the already-valid holster socket selection to the first-hour semantic signa
 
 The socket's accepted item list and XR selection behavior remain unchanged.
 
-## Claimed files
+## Delivered files
 
 - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs`
 - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/FirstHourHolsterSignal.cs` + `.meta`
 - `Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourHolsterAdapterTests.cs` + `.meta`
-- `docs/SPRINT.md` for coordination
-- this log
 
-## Locked behavior
+## Shipped behavior
 
-- Subscribe to the existing `selectEntered` event after normal socket validation.
-- Resolve the accepted `ItemRuntime` and publish its definition `itemId`.
-- Set `ZiptideFlags.FIRST_HOLSTER` once when a live profile exists.
-- Without `SaveSystem`/profile, publish the semantic event and do not throw.
-- Reject empty/non-item callbacks.
-- Suppress duplicate callbacks and already-completed profiles.
-- Do not call `Save`, `AutosaveNow`, travel, dialogue, input, or rig APIs.
+- Subscribes to the existing accepted `selectEntered` callback.
+- Resolves the accepted `ItemRuntime` and publishes its definition `itemId`.
+- Sets `ZiptideFlags.FIRST_HOLSTER` once when a live profile exists.
+- Without `SaveSystem`/profile, publishes safely and does not throw.
+- Rejects empty/non-item callbacks.
+- Suppresses duplicate callbacks and already-completed profiles.
+- Does not call `Save`, `AutosaveNow`, travel, dialogue, input, or rig APIs.
 - Diagnostic: `ZIPTIDE: FIRST_HOLSTER item=<id> socket=<name>`.
 
 ## Implementation shape
@@ -63,6 +61,15 @@ The socket's accepted item list and XR selection behavior remain unchanged.
 
 Moved the testable first-holster decision into `FirstHourHolsterSignal`, retained the socket callback and semantic event in `HolsterSocketInteractor`, and changed tests to exercise the XR-free seam. No assembly definition or socket-rule change was made.
 
-## Collision rule
+### Attempt 2 — GREEN
 
-Do not edit the claimed files until this log is closed. Other lanes may continue outside this scope.
+- tested SHA: `85ea5433860eea7fd9bb031ac295978d9758addb`
+- run ID: `29160898205`
+- Unity EditMode: `success`
+- project-contract reports: `success`
+- Android: `skipped` as expected for an ordinary branch push
+- overall: `GREEN`
+
+## Closure
+
+FH-S02 is complete and the file claim is released. The next Story/Ship launch-order envelope is `FH-S03-TRAVEL`.
