@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.XR.Interaction.Toolkit;
 using Ziptide.Editor.Audit;
 
 namespace Ziptide.Tests.EditMode
@@ -77,7 +76,7 @@ namespace Ziptide.Tests.EditMode
         {
             Scene scene = SceneManager.GetActiveScene();
             var tile = NewObject("UI_TEST_NO_COLLIDER");
-            tile.AddComponent<XRSimpleInteractable>();
+            AddSimpleInteractable(tile);
             AddReadableLabel(tile.transform, Vector3.zero);
 
             var report = new SceneAuditReport { sceneName = scene.name };
@@ -94,7 +93,7 @@ namespace Ziptide.Tests.EditMode
             var tile = NewObject("UI_TEST_NEEDLE");
             var box = tile.AddComponent<BoxCollider>();
             box.size = new Vector3(2f, 0.05f, 0.04f);
-            tile.AddComponent<XRSimpleInteractable>();
+            AddSimpleInteractable(tile);
             AddReadableLabel(tile.transform, Vector3.right * 1.5f);
 
             var report = new SceneAuditReport { sceneName = scene.name };
@@ -112,7 +111,7 @@ namespace Ziptide.Tests.EditMode
             var tile = NewObject("UI_TEST_GOOD_TILE");
             var box = tile.AddComponent<BoxCollider>();
             box.size = new Vector3(0.58f, 0.28f, 0.12f);
-            tile.AddComponent<XRSimpleInteractable>();
+            AddSimpleInteractable(tile);
             AddReadableLabel(tile.transform, new Vector3(0f, 0f, -0.07f));
 
             var report = new SceneAuditReport { sceneName = scene.name };
@@ -139,6 +138,17 @@ namespace Ziptide.Tests.EditMode
             var go = new GameObject(name);
             _created.Add(go);
             return go;
+        }
+
+        private static void AddSimpleInteractable(GameObject go)
+        {
+            // Tests intentionally avoid a direct XRI asmdef dependency; production Editor already owns
+            // the package reference. Reflection here verifies the installed package type and creates the
+            // same component without widening the entire test assembly's reference surface.
+            System.Type type = System.Type.GetType(
+                "UnityEngine.XR.Interaction.Toolkit.XRSimpleInteractable, Unity.XR.Interaction.Toolkit");
+            Assert.IsNotNull(type, "XRI 2.5.4 XRSimpleInteractable type must be installed");
+            go.AddComponent(type);
         }
 
         private void AddReadableLabel(Transform parent, Vector3 localPosition)
