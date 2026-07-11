@@ -77,6 +77,12 @@ namespace Ziptide.Editor.Audit
             catch (System.Exception ex) { econReport.Warning("ECONOMY_AUDIT_ERROR", ex.Message); }
             report.scenes.Add(econReport);
 
+            // FH-X01 first-hour contract integrity — project-wide and deliberately WARN-only.
+            var firstHourReport = new SceneAuditReport { sceneName = "__FIRST_HOUR__" };
+            try { FirstHourContractAuditRules.Run(firstHourReport); }
+            catch (System.Exception ex) { firstHourReport.Warning("FIRST_HOUR_CONTRACT_AUDIT_ERROR", ex.Message); }
+            report.scenes.Add(firstHourReport);
+
             foreach (var sceneBuildEntry in scenes)
             {
                 if (!sceneBuildEntry.enabled) continue;
