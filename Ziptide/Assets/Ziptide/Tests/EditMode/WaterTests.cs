@@ -92,5 +92,73 @@ namespace Ziptide.Tests.EditMode
             }
             finally { Object.DestroyImmediate(huge); }
         }
+
+        // ── commit 2: dynamics + foam ────────────────────────────────────────
+
+        [Test]
+        public void Scroll_FlowsInDirection_AndIsDeterministic()
+        {
+            var e = WaterMotion.ScrollOffset(0f, 0.02f, 5f);
+            Assert.Greater(e.x, 0f, "0° flows +U");
+            Assert.AreEqual(0f, e.y, 1e-4f);
+            var n = WaterMotion.ScrollOffset(90f, 0.02f, 5f);
+            Assert.Greater(n.y, 0f, "90° flows +V");
+            Assert.Greater(WaterMotion.ScrollOffset(0f, 0.02f, 10f).x,
+                WaterMotion.ScrollOffset(0f, 0.02f, 5f).x, "scroll advances with time");
+            Assert.AreEqual(WaterMotion.ScrollOffset(37f, 0.02f, 3f),
+                WaterMotion.ScrollOffset(37f, 0.02f, 3f), "deterministic");
+        }
+
+        [Test]
+        public void Bob_StaysWithinAmplitude_AndMoves()
+        {
+            float amp = 0.03f;
+            bool moved = false;
+            float prev = WaterMotion.BobHeight(1f, 2f, 0f, amp, 0.6f);
+            for (float t = 0f; t < 6f; t += 0.2f)
+                for (float x = -4f; x <= 4f; x += 2f)
+                {
+                    float h = WaterMotion.BobHeight(x, 1.5f, t, amp, 0.6f);
+                    Assert.LessOrEqual(Mathf.Abs(h), amp + 1e-4f, "swell must stay within amplitude");
+                    if (Mathf.Abs(h - prev) > 1e-4f) moved = true;
+                    prev = h;
+                }
+            Assert.IsTrue(moved, "the surface must actually swell over time/space");
+        }
+
+        [Test]
+        public void FoamAlpha_ConcentratesAtWaterline_AndIsLacy()
+        {
+            float lineAvg = 0f, topAvg = 0f; int n = 0;
+            float min = 1f, max = 0f;
+            for (float u = 0f; u < 1f; u += 0.05f, n++)
+            {
+                float lo = WaterFoamMesh.FoamAlpha(u, 0.05f);
+                float hi = WaterFoamMesh.FoamAlpha(u, 0.95f);
+                lineAvg += lo; topAvg += hi;
+                min = Mathf.Min(min, lo); max = Mathf.Max(max, lo);
+                Assert.GreaterOrEqual(lo, 0f); Assert.LessOrEqual(lo, 1f);
+            }
+            Assert.Greater(lineAvg / n, topAvg / n, "more foam at the waterline than the frayed top");
+            Assert.Greater(max - min, 0.1f, "the waterline foam is lacy (fBm), not a solid bar");
+        }
+
+        [Test]
+        public void FoamMesh_HugsThePerimeter_AndRises()
+        {
+            var m = WaterFoamMesh.BuildPerimeter(6f, 4f, 0.12f, 2f);
+            try
+            {
+                Assert.Greater(m.triangles.Length, 0);
+                foreach (var v in m.vertices)
+                {
+                    Assert.LessOrEqual(Mathf.Abs(v.x), 3f + 1e-3f, "foam stays on the X border");
+                    Assert.LessOrEqual(Mathf.Abs(v.z), 2f + 1e-3f, "foam stays on the Z border");
+                    Assert.GreaterOrEqual(v.y, -1e-4f, "foam rises from the waterline");
+                    Assert.LessOrEqual(v.y, 0.12f + 1e-4f, "foam does not exceed its height");
+                }
+            }
+            finally { Object.DestroyImmediate(m); }
+        }
     }
 }

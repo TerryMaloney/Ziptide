@@ -127,6 +127,29 @@ namespace Ziptide.Editor.Patching
             m.SetFloat("_Smoothness", 0.85f); // wet specular is most of the water read
             m.SetFloat("_Metallic", 0f);
             mr.sharedMaterial = m;
+
+            // Edge foam ribbon (F3.3 commit 2) — a lacy white line where water laps the canal wall.
+            var foam = new GameObject("Foam");
+            foam.transform.SetParent(root.transform, false);
+            var fmf = foam.AddComponent<MeshFilter>();
+            fmf.sharedMesh = Ziptide.Visuals.WaterFoamMesh.BuildPerimeter(4f, 4f, 0.14f, 3f);
+            var fmr = foam.AddComponent<MeshRenderer>();
+            int fs = 128;
+            var fpx = new Color32[fs * fs];
+            for (int y = 0; y < fs; y++)
+                for (int x = 0; x < fs; x++)
+                {
+                    float a = Ziptide.Visuals.WaterFoamMesh.FoamAlpha((x + 0.5f) / fs, (y + 0.5f) / fs);
+                    fpx[y * fs + x] = new Color32(255, 255, 255, (byte)Mathf.RoundToInt(a * 255f));
+                }
+            var ftex = new Texture2D(fs, fs, TextureFormat.RGBA32, false) { wrapMode = TextureWrapMode.Repeat };
+            ftex.SetPixels32(fpx); ftex.Apply(false, false);
+            var fm = new Material(Shader.Find("Universal Render Pipeline/Lit")) { name = "BoothWaterFoam" };
+            fm.SetColor("_BaseColor", new Color(0.92f, 0.96f, 0.97f, 1f));
+            fm.SetTexture("_BaseMap", ftex);
+            fm.SetFloat("_AlphaClip", 1f); fm.SetFloat("_Cutoff", 0.5f); fm.EnableKeyword("_ALPHATEST_ON");
+            fm.SetFloat("_Smoothness", 0.2f);
+            fmr.sharedMaterial = fm;
             return root;
         }
 

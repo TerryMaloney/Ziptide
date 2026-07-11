@@ -68,6 +68,24 @@ green. The first-hour code is landing clean and in-lane. Carry on; just do M01 b
 - **Commits:** docs-only (this entry).
 
 
+### 2026-07-11 (dddd31) - Picasso (Opus 4.8): 🌊 F3.3 WATER commit 2 — dynamics + edge foam (pure) + booth
+- **F3.3 commit 1 CI GREEN (`2e14139`)** after the test-threshold fix; water read verified good.
+- **Did (pure, booth-verifiable — no runtime/device machinery yet):** `WaterMotion` — scroll offset
+  (dir/speed/time) + a bounded two-sine swell (`BobHeight`, strictly ≤amp, Sway family). `WaterFoamMesh`
+  — a double-sided perimeter foam ribbon + `FoamAlpha` (lacy fBm cutout concentrated at the waterline,
+  fraying up). Booth `water_tile` now renders the foam ribbon (white alpha-clip) so the foam read is
+  verifiable. 4 tests (scroll direction/determinism, bob amplitude bound, foam waterline-vs-top + lacy,
+  foam mesh hugs the perimeter).
+- **Commit-split rationale + honest deviation:** the plan's "two scrolling normal layers 25° apart"
+  needs URP/Lit DETAIL-map keyword setup that's device-unverifiable (or a custom shader). So the
+  runtime (next commit) will use ONE scrolling normal + the vertex bob — the bob supplies the
+  cross-axis motion that breaks the commit-1 banding, so one layer + bob reads as living water without
+  a shader. Two true layers = a hand-written water shader, deferred like the fresnel depth-tint.
+- **Next (commit 3):** runtime `ZiptideWater` MonoBehaviour (assembles mesh + material + scroll + bob
+  + foam child) + `WaterBaker` (device NormalMap via Resources, ForgeBaker pattern) + BuildAndroid
+  hook. Then commit 4: `WaterAuthor` + `waterRects` places water in W001 canals / the tidefront.
+- **Commit:** this push.
+
 ### 2026-07-11 (dddd30) - Picasso (Opus 4.8): 🌊 F3.3 WATER commit 1 — the ripple field + booth spike (F3.1b green)
 - **F3.1b confirmed CI green (`8eccbe9`)** — the whole lighting cluster (F3.1 light script + F3.2
   grade + F3.1b practicals) is done and compiling; device pass is Terry's (runbook queued).
