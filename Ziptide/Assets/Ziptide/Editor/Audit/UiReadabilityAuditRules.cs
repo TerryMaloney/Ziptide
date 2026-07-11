@@ -1,7 +1,10 @@
 #if UNITY_EDITOR
 using System;
 using System.Collections.Generic;
+using UnityEditor.Build;
+using UnityEditor.Build.Reporting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.XR.Interaction.Toolkit;
 
 namespace Ziptide.Editor.Audit
@@ -19,11 +22,18 @@ namespace Ziptide.Editor.Audit
 
         public static void Run(SceneAuditReport report)
         {
+            Run(report, SceneManager.GetActiveScene());
+        }
+
+        public static void Run(SceneAuditReport report, Scene scene)
+        {
             if (report == null) throw new ArgumentNullException(nameof(report));
+            if (!scene.IsValid() || !scene.isLoaded) return;
 
             foreach (var label in UnityEngine.Object.FindObjectsOfType<TextMesh>(true))
             {
-                if (label == null || string.IsNullOrWhiteSpace(label.text)) continue;
+                if (label == null || label.gameObject.scene != scene ||
+                    string.IsNullOrWhiteSpace(label.text)) continue;
 
                 float effective = EffectiveTextScale(label.characterSize, label.fontSize);
                 if (effective < MinimumEffectiveTextScale)
@@ -41,7 +51,7 @@ namespace Ziptide.Editor.Audit
 
             foreach (var interactable in UnityEngine.Object.FindObjectsOfType<XRBaseInteractable>(true))
             {
-                if (interactable == null) continue;
+                if (interactable == null || interactable.gameObject.scene != scene) continue;
 
                 TextMesh[] labels = interactable.GetComponentsInChildren<TextMesh>(true);
                 if (labels == null || labels.Length == 0) continue; // physical prop, not a UI surface
@@ -50,7 +60,8 @@ namespace Ziptide.Editor.Audit
                 if (colliders == null || colliders.Length == 0)
                 {
                     Collider parentCollider = interactable.GetComponentInParent<Collider>();
-                    if (parentCollider != null) colliders = new[] { parentCollider };
+                    if (parentCollider != null && parentCollider.gameObject.scene == scene)
+                        colliders = new[] { parentCollider };
                 }
 
                 string where = Path(interactable.transform);
@@ -149,6 +160,31 @@ namespace Ziptide.Editor.Audit
                 path = transform.name + "/" + path;
             }
             return path;
+        }
+    }
+
+    /// <summary>
+    /// Independent build-scene hook. It keeps this first WARN-only rollout out of the shared
+    /// WorldAuditRunner call chain while still evaluating every scene Unity actually processes.
+    /// Findings remain visible in build logs and never mutate or fail content in v1.
+    /// </summary>
+    public sealed class UiReadabilityBuildProcessor : IProcessSceneWithReport
+    {
+        public int callbackOrder => 850;
+
+        public void OnProcessScene(Scene scene, BuildReport report)
+        {
+            if (!scene.IsValid() || !scene.isLoaded) return;
+
+            var audit = new SceneAuditReport { sceneName = scene.name };
+            UiReadabilityAuditRules.Run(audit, scene);
+            foreach (var finding in audit.findings)
+            {
+                Debug.LogWarning("ZIPTIDE: UI_AUDIT scene=" + scene.name +
+                                 " code=" + finding.code +
+                                 " path=" + finding.objectPath +
+                                 " message=" + finding.message);
+            }
         }
     }
 }
