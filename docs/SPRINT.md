@@ -16,8 +16,9 @@
 | FH-S01 | **First-hour observation adapter** — read-only LOOK/MOVE/W001-arrival observation; no rig mutation, profile writes, travel or presentation ownership. Log: `docs/GPT_ADDITIONS/2026-07-11_GPT56_FIRST_HOUR/FHS01_IMPLEMENTATION_LOG.md`. | ✅ UNITY CI GREEN run `29160235239`; device evidence pending; FILE CLAIM RELEASED |
 | FH-S02 | **First-hour holster adapter** — existing accepted holster selection to semantic completion and canonical flag; no socket-rule, travel, input or autosave ownership. Log: `docs/GPT_ADDITIONS/2026-07-11_GPT56_FIRST_HOUR/FHS02_IMPLEMENTATION_LOG.md`. | ✅ UNITY CI GREEN run `29160898205`; device evidence pending; FILE CLAIM RELEASED |
 | FH-S03 | **First-hour travel adapter** — existing canonical `TRAVEL_OK` after XRI readiness + inventory restoration to first/return signals; no load/order changes. Log: `docs/GPT_ADDITIONS/2026-07-11_GPT56_FIRST_HOUR/FHS03_IMPLEMENTATION_LOG.md`. | ✅ UNITY CI GREEN run `29161731580`; device evidence pending; FILE CLAIM RELEASED |
-| FH-S04 | **First-hour repair/scan adapter** — existing repair stages + scannable identity; no second scanner or repair state. Envelope: `FH-S04-REPAIR-SCAN`. | ⛔ BLOCKED on multiplayer-owned `FH-M01-SCANNER-RESULT`; do not counterfeit the scanner seam |
-| FH-S05 | **First-hour creature-resolution adapter** — existing non-lethal disable to neutral owner event; no damage/reward/ecology/respawn/visual changes. Log: `docs/GPT_ADDITIONS/2026-07-11_GPT56_FIRST_HOUR/FHS05_IMPLEMENTATION_LOG.md`. | 🟡 GPT-5.6 CLAIMED 2026-07-11 |
+| FH-M01 | **Wrist-scanner result adapter** — immutable exact `IScannable` snapshot once per real pulse, including empty; no scanner feel/filter/presentation changes. Log: `docs/GPT_ADDITIONS/2026-07-11_GPT56_FIRST_HOUR/FHM01_IMPLEMENTATION_LOG.md`. | 🟡 GPT-5.6 CLAIMED 2026-07-11; Multiplayer file scope only |
+| FH-S04 | **First-hour repair/scan adapter** — existing repair stages + scannable identity; no second scanner or repair state. Envelope: `FH-S04-REPAIR-SCAN`. | ⛔ BLOCKED on active `FH-M01-SCANNER-RESULT` |
+| FH-S05 | **First-hour creature-resolution adapter** — existing non-lethal disable to neutral owner event; no damage/reward/ecology/respawn/visual changes. Log: `docs/GPT_ADDITIONS/2026-07-11_GPT56_FIRST_HOUR/FHS05_IMPLEMENTATION_LOG.md`. | ⏸ RELEASED UNBUILT; BLOCKED on Picasso-owned `FH-A01-SIGNATURE-CREATURE` |
 | P0.6 | **Controller-free DevMenu access** — Y+B removed; F2 in Editor, headset-native two-controller forehead gesture in development builds, ADB optional backup, zero gameplay buttons reserved. Log: `docs/GPT_ADDITIONS/2026-07-11_GPT56_DEV_MENU/DEV_MENU_ACCESS_LOG.md`. | ✅ UNITY CI GREEN run `29154553182`; headset feel check pending; FILE CLAIM RELEASED |
 | FH-01D | **Opus lane launch kit** — log: `docs/GPT_ADDITIONS/2026-07-10_GPT56_FIRST_HOUR/FH01D_IMPLEMENTATION_LOG.md`. Four validated copy-paste takeover prompts assign all 12 FH-01C envelopes exactly once, name first claims/blockers, and enforce ownership/stop conditions. No runtime changes. | 🟡 IMPLEMENTED — exact GitHub-blob tests PASS; first Actions artifact pending; FILE CLAIM RELEASED |
 | FH-01C | **Owner-specific first-hour adapter envelopes** — log: `docs/GPT_ADDITIONS/2026-07-10_GPT56_FIRST_HOUR/FH01C_IMPLEMENTATION_LOG.md`. Twelve machine-readable lane envelopes cover 18 non-direct beats and all 15 teaching lines with exact file scopes, APIs, tests, fallbacks, dependencies and evidence. No runtime changes. | 🟡 IMPLEMENTED — exact GitHub-blob tests PASS; first Actions artifact pending; FILE CLAIM RELEASED |
@@ -69,8 +70,9 @@
 | D2-6 | Close: closing HANDOFF (nnnn) for Picasso/Architecture — flags this as the first depth-pass touching real code, not just docs | ✅ this commit |
 
 ## ▶ RESUMING? — current state & exact next action
-- **ACTIVE CLAIM (2026-07-11): FH-S05-CREATURE-RESOLUTION** — GPT-5.6 owns only `CreatureRuntime.cs`, `CreatureDisabledSignalTests.cs` + `.meta`, and `FHS05_IMPLEMENTATION_LOG.md`. Do not edit them until the claim releases.
-- **First-hour Story/Ship state:** FH-S01, FH-S02 and FH-S03 are Unity-CI green; their device evidence remains pending. FH-S04 is blocked on multiplayer-owned `FH-M01-SCANNER-RESULT`, so the lane advances to the next dependency-clear envelope rather than creating a second scanner seam.
+- **ACTIVE CLAIM (2026-07-11): FH-M01-SCANNER-RESULT** — GPT-5.6 owns only `WristScanner.cs`, `IScannable.cs`, `WristScanResult.cs` + `.meta`, `WristScannerResultTests.cs` + `.meta`, and `FHM01_IMPLEMENTATION_LOG.md`. Do not edit them until the claim releases.
+- **Concurrent art lane:** Picasso/Opus 4.8 is active. GPT-5.6 must not touch `Visuals/**`, Forge/art authoring, materials, meshes, shaders, art scenes/patchers, or `SPRINT_ART.md`.
+- **First-hour state:** FH-X01, FH-X02, FH-S01, FH-S02 and FH-S03 are Unity-CI green. FH-M01 is the next dependency-clear envelope. FH-S04 waits for M01. FH-S05 waits for Picasso-owned FH-A01.
 - **Architecture gate cleared:** FH-X01 and FH-X02 are both green; Story/Ship first-hour adapters are unblocked.
 - **P0.6 (2026-07-11): IMPLEMENTED, UNITY CI GREEN, FILE CLAIM RELEASED** — Y+B no longer summons DevMenu. The headset-native two-controller forehead gesture is primary; F2 and ADB remain backups. Headset feel verification is queued in `docs/DEV_MENU_ACCESS.md`.
 - **FH-01D (2026-07-11): IMPLEMENTED, FILE CLAIM RELEASED** — `OPUS_LAUNCH_KIT.md` and its validated manifest assign all twelve envelopes exactly once. Architecture, Multiplayer and Picasso can start independently; Story/Ship was blocked until Architecture `FH-X02` became green. Exact committed blobs pass 7 tests with 4 lanes/12 assignments/0 findings.
@@ -99,7 +101,7 @@
   Then a full APK dispatch. Session-zero check: this row + the P4b board row are the whole spec.
   **Meta-loop follow-ups live in `docs/design/ZIPTIDE_META_LOOP.md`** (conquest command
   model → architecture track; proxy kits → Picasso; ecology/mutation content → next wave).
-- **Next first-hour action:** implement FH-S05 inside its exact envelope; after green, FH-S06 is next. FH-S04 waits for multiplayer FH-M01.
+- **Next first-hour action:** implement FH-M01 inside its exact Multiplayer envelope; after green, return to FH-S04. Do not start FH-S05 until Picasso's FH-A01 is green.
 - **Device gate:** Terry §2j/§2k runbook rows still open — his ❌s re-prioritize everything.
   §2n (NEW) = the Q2d "does it read as a place?" gate on W002 GalleryB.
 - **Lane note (2026-07-04):** T-Dog's Fable ended; Picasso (art, last Fable session) covered Q2d
