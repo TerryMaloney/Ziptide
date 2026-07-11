@@ -5,9 +5,11 @@ Read this first every session. It is the contract for how to work in this repo w
 > 🆕 **New here / fresh model (Fable, Opus 4.8, anyone)?** Read **`docs/OPERATOR_START_HERE.md`**
 > first — the MODEL-AGNOSTIC manual: the four tracks + takeover prompts, the doc blackboard, THE LAWS
 > (spec-is-truth · pure-core-first · gate-per-quality-dimension · **the circuit breaker: 3 CI-reds on
-> one task → stop and escalate**), and honest Opus calibration. Then the spine: `docs/HANDOFF.md`
-> (cross-track log) · `docs/PRIORITIES.md` (cross-track order) · your track's `docs/SPRINT_*.md` ·
-> `docs/TERRY_RUNBOOK.md` (what Terry runs). *(Legacy detail: `docs/FABLE5_START_HERE.md`.)*
+> one task → stop and escalate**), and honest Opus calibration. Then read
+> **`docs/CURRENT_EXECUTION_CHECKLIST.md`** for the current done/next/blocked picture and links back to
+> the older checklists. Continue through `docs/CI_VERDICT.md` · your track's `docs/SPRINT_*.md` ·
+> `docs/HANDOFF.md` newest entries · `docs/TERRY_RUNBOOK.md` (what Terry runs).
+> *(Legacy detail: `docs/FABLE5_START_HERE.md`.)*
 
 ## ⛔ WORKFLOW INTEGRITY — CHECK THIS FIRST, EVERY SESSION
 If the verification workflow is broken, **STOP and warn Terry LOUDLY at the top of your reply**
@@ -83,12 +85,16 @@ Interaction Toolkit **2.5.4**. The Unity project lives in the **`Ziptide/`** sub
   scenes before. Prefer runtime ensures or editor patchers, and have the user verify in Unity.
 
 ## Key docs
+- `docs/CURRENT_EXECUTION_CHECKLIST.md` — **current cross-project done/next/blocked checklist.** It
+  points back to the previous broad checklists and must be updated when meaningful status changes.
 - `docs/EXCELLENCE_MAP.md` — **every aspect of the game: its state, its standard, its guardrail.**
   Check your aspect's row before building in it; the Definition of Done (`OPERATOR_START_HERE.md`)
   requires it. This is how quality stays EVEN across lanes and model generations.
 - `docs/CONNECTIONS_AND_RECOVERY.md` — system map + every root cause + prevention plan (read this).
 - `docs/D4_BOOT_ADDITIVE_WORLD_ARCHITECTURE.md` — boot/world contract.
-- `docs/FABLE5_BACKLOG.md` — the live task queue (tagged ⚙CI/🔧UNITY/🎮DEVICE) · `docs/MASTER_CHECKLIST.md` — build state. *(The old `WORKLIST.md`/`04_TASK_QUEUE.md` are retired.)*
+- `docs/FABLE5_BACKLOG.md` — older expanded task queue · `docs/MASTER_CHECKLIST.md` — older broad
+  build-state page. Use them for history/details; prefer the current checklist plus newest logs for state.
+  *(The old `WORKLIST.md`/`04_TASK_QUEUE.md` are retired.)*
 - `docs/project_art_plan/` — art/audio/prompt-to-world pipeline.
 - `docs/ZIPTIDE_MASTER_BUILD_PLAN.md` — long-term 80-world vision.
 - `docs/systems/SKYSCAPE_DESIGN.md` — **the Prospect bar.** Terry named the skyscape as one of the
