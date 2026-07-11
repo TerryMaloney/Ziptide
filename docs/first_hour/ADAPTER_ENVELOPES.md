@@ -235,3 +235,22 @@ The validator rejects:
 FH-01C is complete when the index, twelve envelopes, guide, validator and tests are committed; continuity and non-blocking report wiring include them; HANDOFF exposes the four owner queues; exact committed files pass the validator; and the temporary cross-lane documentation claim is released.
 
 FH-01C completion means **implementation decisions are closed**. It does not mean the runtime first hour is built, CI-compiled, baked or device-approved.
+
+
+## Review additions (T-Dog/Fable 5, 2026-07-11) — gaps found by cross-check, added as checklist items
+Reviewed against the locked onboarding design, the EXCELLENCE_MAP/DoD, and the runbook law. The
+envelope package is sound; these four items were MISSING and are now part of the package's
+definition of done (they are checklist items, not new envelopes):
+- [ ] **FH-GAP-1 · VETERAN SKIP (design law 4, unimplemented anywhere in the 22 beats):** existing
+      profiles with prior playtime get `TUTORIAL_DONE` pre-set at load (one migration line in the
+      progression core, FH-X02's owner) — a returning player must NEVER meet a teaching beat.
+      Zero hits for veteran/skip in `first_hour_beats.json` today.
+- [ ] **FH-GAP-2 · DEVICE EVIDENCE FLOWS TO THE RUNBOOK:** every envelope's `acceptance.DEVICE`
+      list must be mirrored into `TERRY_RUNBOOK.md` at envelope close — the runbook is THE single
+      Terry checklist (its own header law); the DEVICE fields are a second checklist until mirrored.
+- [ ] **FH-GAP-3 · GATE PROMOTION CRITERION:** `first_hour_gate.py` runs in CI but report-only,
+      forever. Set the ratchet: the moment FH-S08 closes green, the gate flips to BLOCKING (a
+      standard without an enforcing gate is a wish — LAW 3 / map doctrine).
+- [ ] **FH-GAP-4 · MAP LINKAGE (DoD item 8):** the EXCELLENCE_MAP onboarding row must name this
+      package as the build vehicle and track its state; envelope closers update the row in the
+      same push. Done for the current state in this commit.
