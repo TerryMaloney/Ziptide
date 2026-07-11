@@ -36,7 +36,7 @@ jobs:
   continuity-report:
     name: Project contract reports (non-blocking)
     runs-on: ubuntu-latest
-    # FH-02A/FH-01A are observation-only. Findings and even job failure remain
+    # FH-02A/FH-01A/FH-01B are observation-only. Findings and even job failure remain
     # visible without blocking Unity tests, Android builds, or another operator's push.
     continue-on-error: true
     steps:
@@ -62,6 +62,12 @@ jobs:
           python3 tools/first_hour_gate.py \
             --json-report Builds/Reports/first_hour_contract_report.json
 
+      - name: Generate first-hour binding report
+        if: always()
+        run: |
+          python3 tools/first_hour_binding_gate.py \
+            --json-report Builds/Reports/first_hour_binding_report.json
+
       - name: Upload project contract reports
         uses: actions/upload-artifact@v4
         if: always()
@@ -70,6 +76,7 @@ jobs:
           path: |
             Builds/Reports/continuity_report.json
             Builds/Reports/first_hour_contract_report.json
+            Builds/Reports/first_hour_binding_report.json
           if-no-files-found: warn
 
   test:
