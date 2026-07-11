@@ -1,0 +1,100 @@
+{
+  "id": "FH-S07-HOME-W000-SURFACES",
+  "owner": "story-ship",
+  "kind": "surface",
+  "risk": "shared-protected",
+  "covers": [
+    "FH_BOOT_READY",
+    "FH_NEW_GAME_SELECTED",
+    "FH_COMFORT_CONSOLE",
+    "FH_GRAB_BUNK_OBJECT",
+    "FH_INTERACT_HELM"
+  ],
+  "signals": [
+    "BOOT_PRESENTATION_READY",
+    "NEW_GAME_PROFILE_CREATED",
+    "COMFORT_PRESET_CONFIRMED",
+    "NAMED_BUNK_OBJECT_GRABBED",
+    "HELM_FIRST_DESTINATION_SELECTED"
+  ],
+  "lines": [],
+  "dependencies": [
+    "FH-X01-CONTRACT-ASSET",
+    "FH-X02-PROGRESSION-CORE",
+    "FH-S01-OBSERVATION",
+    "FH-S02-HOLSTER"
+  ],
+  "commits": 3,
+  "newFiles": [
+    "Ziptide/Assets/Ziptide/Core/Runtime/ComfortSettings.cs",
+    "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
+    "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/ComfortConsoleRuntime.cs",
+    "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs",
+    "Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs",
+    "Ziptide/Assets/Ziptide/Tests/EditMode/ComfortSettingsTests.cs",
+    "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs"
+  ],
+  "touchFiles": [
+    "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/BootLoader.cs",
+    "Ziptide/Assets/Ziptide/Gameplay/Runtime/Persistence/SaveSystem.cs",
+    "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs"
+  ],
+  "touchPatterns": [
+    "Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/*Comfort*.cs",
+    "Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/LocomotionDirector.cs"
+  ],
+  "reuse": [
+    "BootLoader",
+    "SaveSystem",
+    "TravelCoordinator",
+    "ComfortCore",
+    "LocomotionDirector",
+    "ShipCastOffRuntime"
+  ],
+  "api": [
+    "Cold boot shows New/Continue/Settings before W000 travel.",
+    "Explicit HasExistingProfile/StartNewProfile; device comfort PlayerPrefs survive profile wipe.",
+    "ComfortSettings exactly resolves locked Cozy/Standard/Bold table; console is first W000 interaction.",
+    "One named grabbable bunk object; first helm exposes W001 only and delegates launch/travel.",
+    "Patcher is idempotent with stable __FIRST_HOUR_* markers; no full galaxy map."
+  ],
+  "tests": [
+    "preset table exact",
+    "comfort survives new profile",
+    "Continue hidden without save",
+    "boot travels once after choice",
+    "surface author idempotent"
+  ],
+  "diagnostics": [
+    "ZIPTIDE: HOME_HUB_READY continue=<bool>",
+    "ZIPTIDE: HOME_HUB_CHOICE choice=<...>",
+    "ZIPTIDE: COMFORT_PRESET preset=<...>",
+    "ZIPTIDE: FIRST_HOUR_BUNK_GRAB id=<id>",
+    "ZIPTIDE: FIRST_HELM_SELECTED dest=W001_ToxicCity"
+  ],
+  "fallback": [
+    "Minimal safe shell if art fails; never auto-delete save.",
+    "Missing comfort owner persists setting/logs; never moves rig.",
+    "Missing prop/helm leaves beat open; dev menu stays dev-only."
+  ],
+  "acceptance": {
+    "CI": [
+      "Comfort/profile/boot tests green",
+      "Unity compile green",
+      "No direct scene load",
+      "No profile comfort fields"
+    ],
+    "BAKE": [
+      "Stable surface markers/audit pass"
+    ],
+    "DEVICE": [
+      "Finished cold boot; safe New/Continue; comfort first; prop/helm obvious"
+    ]
+  },
+  "integrationOwners": [
+    "architecture",
+    "art"
+  ],
+  "supports": [],
+  "sharedProtocol": "BootLoader/SaveSystem protected: claim exact methods and reread latest files before each commit."
+}
