@@ -40,7 +40,8 @@
 - [x] Establish and synchronize the current checklist, `SPRINT.md`, `MASTER_CHECKLIST.md`, and `EXCELLENCE_MAP.md`.
 - [x] Implement the locked asynchronous-travel design. **Code/CI green `c7b5d52`, run `29167548682`; device frame-pacing comparison pending.**
 - [x] Add the WARN-only UI readability/reach build audit. **Code/CI green `a6803ab`, run `29168358234`; generated-scene/device calibration pending.**
-- [ ] Write the haptic coverage checklist from existing interaction owners; do not invent a registry or touch runtime behavior in that documentation task.
+- [x] Write `docs/design/HAPTIC_COVERAGE.md` from inspected existing owners. **Documentation-level gap closed; runtime/device coverage remains deliberately open.**
+- [ ] Build the creature behavior-count gate only after mapping the live definition→runtime behavior assignments without touching Picasso creature visuals.
 - [ ] After each code push, wait for/read `docs/CI_VERDICT.md`; do not stack unverified code.
 - [ ] Continue only with independent CI-quality rows from §7 rather than entering Picasso files or blocked first-hour orchestration.
 
@@ -57,6 +58,7 @@
 - [ ] Run `docs/GPT_ADDITIONS/2026-07-11_GPT56_FIRST_HOUR/FHS07_TERRY_CHECKLIST.md`.
 - [ ] Async travel: run five representative trips; compare crest/frame hitch, verify spawn/XRI/holstered inventory, and check `TRAVEL_TIMEOUT`.
 - [ ] Inspect the next build log for `ZIPTIDE: UI_AUDIT`; verify W000/Home/comfort/helm labels and targets in-headset before any audit warning is promoted to a blocker.
+- [ ] Use `docs/design/HAPTIC_COVERAGE.md` during the same pass: note whether XRI already pulses on grab/select and which silent P0 verb is most noticeable—holster, release, UI select, repair or zipline.
 - [ ] Clear queued one-time authors/rebakes in `docs/TERRY_RUNBOOK.md`, including W002 interiors/WorldSpecs/SpaceLane as applicable.
 - [ ] Build/install the consolidated APK and perform the device checklist; blocker findings reorder all model work.
 - [ ] Start Meta paperwork that does not depend on code: developer app ID, privacy URL, Data Use Checkup, IARC.
@@ -129,7 +131,7 @@
 
 ### Architect-associated systems
 
-**Done:** WorldSpec/validator/compiler, lot/building grammar, enterable building builder, GamePool core, art registry, reachability gates, first-hour contract/progression core, durable CI verdict, async travel code/CI, synchronized project dashboards, and WARN-only UI readability/reach build audit.
+**Done:** WorldSpec/validator/compiler, lot/building grammar, enterable building builder, GamePool core, art registry, reachability gates, first-hour contract/progression core, durable CI verdict, async travel code/CI, synchronized project dashboards, WARN-only UI readability/reach build audit, and documentation-level haptic coverage inventory.
 
 **Remaining:**
 - [ ] Terry exports/commits `docs/worldspecs/*.spec.json`.
@@ -137,7 +139,8 @@
 - [ ] Adopt GamePool at named gameplay/MP hot-spawn sites with device verification.
 - [ ] Async-travel device frame-pacing and restoration verification.
 - [ ] UI audit generated-scene/device calibration; then decide whether any warning can graduate to blocker.
-- [ ] Haptic coverage, behavior-count, and catalog-breadth gates.
+- [ ] Haptic source/device audit for remaining `❓` owners, then one owner-scoped P0 runtime task—not a broad new system.
+- [ ] Behavior-count and catalog-breadth gates.
 - [ ] Localization architecture decision before large content scaling.
 
 ### T-Dog-associated integration work
@@ -147,7 +150,7 @@
 **Remaining:**
 - [ ] Consolidated Quest test/fix round.
 - [ ] Bake pending generated surfaces/scenes.
-- [ ] Weapon feel, haptics, UI device readability, collision and comfort tuning.
+- [ ] Weapon feel, owner-scoped haptics, UI device readability, collision and comfort tuning.
 - [ ] Make the ship the primary world-select/travel hub.
 - [ ] Integrate later-world systems and content without duplicate owners.
 
@@ -158,7 +161,7 @@ Take in order unless a live claim or CI result changes it:
 1. [x] Async travel implementation — code/CI green; device comparison pending.
 2. [x] Reconcile `SPRINT.md`, `MASTER_CHECKLIST.md`, and `EXCELLENCE_MAP.md` against implementation logs.
 3. [x] UI readability/reach audit — WARN-only build-scene processor + tests green; real-scene/device calibration pending.
-4. [ ] Haptic coverage checklist document; do not invent a registry unless separately approved.
+4. [x] Haptic coverage checklist — evidence inventory and implementation order documented; runtime/device rows remain open.
 5. [ ] Creature behavior-count gate: every shipped species maps to at least three readable states.
 6. [ ] Plant/vehicle catalog breadth audits.
 7. [ ] `AudioDirector` unload/disposal leak hardening if still open after rechecking live code.
