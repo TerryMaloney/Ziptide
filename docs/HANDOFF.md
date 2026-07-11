@@ -28,6 +28,45 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-11 (hwr22) - Fable 5 architect: 🧭 COMPASS for the first-hour lane (GPT-5.6) + any fresh chat — READ THIS FIRST if you're cold
+This entry is a steadying note, written after Terry flagged the first-hour session looking shaky. It is
+for TWO readers: (1) the operator building the first-hour tutorial (GPT-5.6, "Story/Ship" lane), and
+(2) any brand-new chat Terry opens mid-stream. If you are cold, start here, then follow the river:
+`CLAUDE.md` → `docs/OPERATOR_START_HERE.md` → your board → `docs/PRIORITIES.md`.
+
+**STATE OF THE FIRST-HOUR LANE (as of head `cd0cf37`, CI = GREEN):**
+- ✅ **Done + green:** FH-X01 (contract asset), FH-X02 (progression core), FH-S01 (observation),
+  FH-S02 (holster), FH-S03 (travel completion). The travel one added a neutral `TravelCompleted`
+  event + pure `TryPublishTravelCompleted` helper to `TravelCoordinator` — additive, no second
+  scene-load path, locked contract respected. Good pattern; keep doing exactly that.
+- 🔎 **The self-verification loop is working:** every push writes `docs/CI_VERDICT.md` (bot commit,
+  `[skip ci]`). Read that file to know GREEN/RED for your last SHA. That is your compile check —
+  trust it, don't guess.
+
+**⛔ THE ONE THING TO KNOW BEFORE YOUR NEXT STEP — the order is NOT strictly S01→S08:**
+- **FH-S04 (repair-scan) is BLOCKED: it depends on FH-M01 (scanner-result), and FH-M01 is NOT built.**
+- **FH-M01 has ZERO dependencies — build it NEXT.** (It's nominally the Multiplayer lane's envelope,
+  but if GPT is the only operator running, GPT builds it; just claim it in SPRINT + HANDOFF first.)
+- After M01 is green, FH-S04 unblocks. FH-A01 (signature creature, Picasso lane) is also unbuilt and
+  unblocks FH-S05. FH-S08 (final orchestration) waits for everything.
+- Envelope deps live in `docs/first_hour/envelopes/FH-*.json` (`dependencies` field) — check that
+  field before you claim anything, so you never claim a blocked envelope again.
+
+**TO STEADY THE SESSION (this is the "flailing" Terry saw — it's cosmetic, here's how to stop it):**
+1. **One claim, one close, per envelope.** The log shows FH-X01 claimed 4× and FH-X02 claimed/closed
+   2× — that's a long, glitchy chat repeating bookkeeping. Before you `claim`, grep the log
+   (`git log --oneline | grep FH-X0N`) — if it's already claimed by you, skip straight to the code.
+2. **Push → read `CI_VERDICT.md` → fix → push.** 2-3 red→green cycles per adapter is NORMAL and fine
+   (you can't run Unity; the verdict file is how you see). It is not a problem, don't panic-thrash.
+3. **Stay additive.** New event/signal/pure-helper alongside existing systems. Never a second owner of
+   travel, save, jobs, scanner, repair, creatures, ziplines, or RILL (the launch-kit law).
+4. **Circuit breaker still applies:** 3 reds on the SAME envelope → stop, write what you tried here,
+   move on. Don't grind.
+
+**Nothing of the other lanes is at risk** — belts (4.1a–l), PvP A5, and the audit are all intact and
+green. The first-hour code is landing clean and in-lane. Carry on; just do M01 before S04.
+- **Commits:** docs-only (this entry).
+
 ### 2026-07-11 (hwr21) - Fable 5 architect: ✅ GPT FIRST-HOUR WORK AUDITED — verdict PASS, one binding gap patched
 - **Terry asked me to check GPT-5.6's FH-01B/C/D deliverables. Verdict: solid, safe, and honest.**
   ① **CI safety:** its two `ci.yml` edits only extend the pre-existing `continue-on-error`
