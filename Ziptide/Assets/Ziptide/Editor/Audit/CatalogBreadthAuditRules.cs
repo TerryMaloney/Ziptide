@@ -319,8 +319,8 @@ namespace Ziptide.Editor.Audit
         {
             if (asset == null || asset.growSeconds <= 0 || asset.harvestYield == null ||
                 asset.harvestYield.Count == 0) return false;
-            foreach (var yield in asset.harvestYield)
-                if (yield == null || string.IsNullOrWhiteSpace(yield.resourceId) || yield.amount <= 0)
+            foreach (var entry in asset.harvestYield)
+                if (entry == null || string.IsNullOrWhiteSpace(entry.resourceId) || entry.amount <= 0)
                     return false;
             return true;
         }
