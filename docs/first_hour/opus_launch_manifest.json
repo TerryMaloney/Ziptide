@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "packageId": "first-hour-opus-launch-v1",
+  "status": "dispatch-ready-docs",
+  "envelopeIndexPath": "docs/first_hour/adapter_envelopes.json",
+  "requiredGlobalReads": [
+    "CLAUDE.md",
+    "docs/OPERATOR_START_HERE.md",
+    "docs/PRIORITIES.md",
+    "docs/first_hour/ADAPTER_ENVELOPES.md"
+  ],
+  "lanes": [
+    {
+      "id": "architecture",
+      "displayName": "Architecture Opus",
+      "board": "docs/SPRINT_ARCHITECTURE.md",
+      "takeoverPromptId": "OPUS_ARCH_FIRST_HOUR",
+      "startEnvelope": "FH-X01-CONTRACT-ASSET",
+      "blockedBy": [],
+      "allowedEnvelopes": [
+        "FH-X01-CONTRACT-ASSET",
+        "FH-X02-PROGRESSION-CORE"
+      ],
+      "stopConditions": [
+        "Any CI red",
+        "Three consecutive reds on one task",
+        "Need to redesign travel, save, rig, input, or presentation ownership"
+      ],
+      "prompt": "Read CLAUDE.md, docs/OPERATOR_START_HERE.md, docs/SPRINT_ARCHITECTURE.md, docs/first_hour/ADAPTER_ENVELOPES.md, and docs/first_hour/envelopes/FH-X01-CONTRACT-ASSET.json. Recheck the branch and newest HANDOFF entries, then claim FH-X01 before editing. Implement only that envelope in its stated commit budget. Do not begin FH-X02 until FH-X01 is CI-green. Do not change beat order or create a runtime JSON parser."
+    },
+    {
+      "id": "multiplayer",
+      "displayName": "Multiplayer Opus",
+      "board": "docs/SPRINT_MULTIPLAYER.md",
+      "takeoverPromptId": "OPUS_MP_FIRST_HOUR",
+      "startEnvelope": "FH-M01-SCANNER-RESULT",
+      "blockedBy": [],
+      "allowedEnvelopes": [
+        "FH-M01-SCANNER-RESULT"
+      ],
+      "stopConditions": [
+        "Any CI red",
+        "Three consecutive reds on one task",
+        "Any proposed Story/Ship reference from Multiplayer code"
+      ],
+      "prompt": "Read CLAUDE.md, docs/OPERATOR_START_HERE.md, docs/SPRINT_MULTIPLAYER.md, docs/first_hour/ADAPTER_ENVELOPES.md, and docs/first_hour/envelopes/FH-M01-SCANNER-RESULT.json. Recheck the branch and newest HANDOFF entries, then claim FH-M01 before editing. Expose only the neutral immutable WristScanner pulse result. Preserve scanner gesture, cooldown, visuals, haptics, filtering, and PvP behavior. Do not reference Story/Ship classes or add campaign state to Multiplayer files."
+    },
+    {
+      "id": "art",
+      "displayName": "Picasso Opus",
+      "board": "docs/SPRINT_ART.md",
+      "takeoverPromptId": "OPUS_ART_FIRST_HOUR",
+      "startEnvelope": "FH-A01-SIGNATURE-CREATURE-PRESENTATION",
+      "blockedBy": [],
+      "allowedEnvelopes": [
+        "FH-A01-SIGNATURE-CREATURE-PRESENTATION"
+      ],
+      "stopConditions": [
+        "Any CI red",
+        "Three consecutive reds on one task",
+        "Need to change gameplay IDs, colliders, stats, AI, rewards, or encounter outcomes"
+      ],
+      "prompt": "Read CLAUDE.md, docs/OPERATOR_START_HERE.md, docs/SPRINT_ART.md, docs/project_art_plan/FORGE_III_PLAN.md section 0, docs/first_hour/ADAPTER_ENVELOPES.md, and docs/first_hour/envelopes/FH-A01-SIGNATURE-CREATURE-PRESENTATION.json. Recheck the branch and newest HANDOFF entries, then claim FH-A01 before editing. Continue FORGE III; do not replace it. Deliver the W001 species passport and review artifacts while preserving gameplay IDs, colliders, sockets, stats, AI, rewards, and encounter outcome ownership."
+    },
+    {
+      "id": "story-ship",
+      "displayName": "Story/Ship Opus",
+      "board": "docs/SPRINT.md",
+      "takeoverPromptId": "OPUS_STORY_FIRST_HOUR",
+      "startEnvelope": "FH-S01-OBSERVATION",
+      "blockedBy": [
+        "FH-X02-PROGRESSION-CORE"
+      ],
+      "allowedEnvelopes": [
+        "FH-S01-OBSERVATION",
+        "FH-S02-HOLSTER",
+        "FH-S03-TRAVEL",
+        "FH-S04-REPAIR-SCAN",
+        "FH-S05-CREATURE-RESOLUTION",
+        "FH-S06-ZIPLINE",
+        "FH-S07-HOME-W000-SURFACES",
+        "FH-S08-W001-ORCHESTRATION"
+      ],
+      "stopConditions": [
+        "Architecture FH-X02 is not CI-green",
+        "Any CI red",
+        "Three consecutive reds on one task",
+        "Need to create a second event, save, travel, job, scanner, repair, creature, zipline, or RILL owner"
+      ],
+      "prompt": "Read CLAUDE.md, docs/OPERATOR_START_HERE.md, docs/SPRINT.md, docs/first_hour/ADAPTER_ENVELOPES.md, and docs/first_hour/envelopes/FH-S01-OBSERVATION.json. Recheck the branch and newest HANDOFF entries. Do not implement first-hour runtime code until Architecture has shipped FH-X01 and FH-X02 with green CI. Then claim exactly one Story/Ship envelope, starting with FH-S01, and stay inside its file scope and commit budget. Final orchestration FH-S08 waits for every dependency and required device evidence."
+    }
+  ],
+  "integrationReview": {
+    "id": "GPT56_FIRST_HOUR_REVIEW",
+    "prompt": "Review the claimed envelope against its JSON before implementation, after the first green commit, and before closure. Check ownership, file scope, duplicate-system risk, tests, diagnostics, fallback, dependency evidence, and whether device-sensitive work remains yellow until Terry verifies it. Do not absorb the lane's implementation work."
+  }
+}
