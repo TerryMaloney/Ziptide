@@ -8,7 +8,7 @@
 ## 1. Operating truth
 
 - Branch: `terry-local-wip`.
-- Latest gameplay-code proof: `c7b5d524b710b767a071264d6a1c552136bf08a0`, CI run `29167548682`, Unity EditMode green.
+- Latest gameplay/quality-code proof: `a6803aba92c8f2e27c3f7f6982be4d5656adab96`, CI run `29168358234`, Unity EditMode green.
 - Picasso is the active independent Art/Forge track and owns `Visuals/**`, Forge, water, art authors/audits, and `SPRINT_ART.md`.
 - Architect, T-Dog, and Reasonbox are useful historical workstream names, not exclusive permanent accounts. The official model is one non-art operator plus Terry, while active concurrent claims still control file ownership.
 - Never hand-edit `.unity` or `.prefab` YAML. Write an idempotent author/patcher; Terry runs it and commits generated artifacts.
@@ -29,17 +29,20 @@
    - `docs/GAME_PLAN.md` — milestone roadmap M0–M8.
    - `docs/EXCELLENCE_MAP.md` — quality state and missing gates.
    - `docs/PRIORITIES.md` — prior cross-track ordering.
-   - `docs/MASTER_CHECKLIST.md` and `docs/FABLE5_BACKLOG.md` — older broad checklists; useful history, but some rows lag newer implementation logs.
+   - `docs/MASTER_CHECKLIST.md` — reconciled broad inventory.
+   - `docs/FABLE5_BACKLOG.md` — older expanded queue/history; use newer logs for current state.
    - `docs/first_hour/OPUS_LAUNCH_KIT.md` and `docs/first_hour/envelopes/*.json` — exact first-hour ownership/contracts.
 
 ## 3. Immediate work order — now through the next PC/headset session
 
 ### A. Work that can proceed without Terry or Picasso
 
-- [ ] Keep this checklist and the active board synchronized whenever a row changes.
-- [x] Implement the locked asynchronous-travel design in `docs/design/ASYNC_TRAVEL.md`, preserving `TravelCoordinator` as the sole owner. **Code/CI green `c7b5d52`, run `29167548682`; device frame-pacing comparison pending.**
+- [x] Establish and synchronize the current checklist, `SPRINT.md`, `MASTER_CHECKLIST.md`, and `EXCELLENCE_MAP.md`.
+- [x] Implement the locked asynchronous-travel design. **Code/CI green `c7b5d52`, run `29167548682`; device frame-pacing comparison pending.**
+- [x] Add the WARN-only UI readability/reach build audit. **Code/CI green `a6803ab`, run `29168358234`; generated-scene/device calibration pending.**
+- [ ] Write the haptic coverage checklist from existing interaction owners; do not invent a registry or touch runtime behavior in that documentation task.
 - [ ] After each code push, wait for/read `docs/CI_VERDICT.md`; do not stack unverified code.
-- [ ] Take another independent CI-only gate/quality task from §7 rather than entering Picasso files or blocked first-hour orchestration.
+- [ ] Continue only with independent CI-quality rows from §7 rather than entering Picasso files or blocked first-hour orchestration.
 
 ### B. Picasso’s next work when usage returns
 
@@ -52,7 +55,8 @@
 
 - [ ] Run `Ziptide → First Hour → Author W000 Surfaces`; commit generated `W000_DriftIn.unity`.
 - [ ] Run `docs/GPT_ADDITIONS/2026-07-11_GPT56_FIRST_HOUR/FHS07_TERRY_CHECKLIST.md`.
-- [ ] Async travel: run five representative world-to-world trips; compare crest/frame hitch, verify spawn/XRI/holstered inventory, and check for `TRAVEL_TIMEOUT`. Details: `docs/GPT_ADDITIONS/2026-07-11_GPT56_ASYNC_TRAVEL/ASYNC_TRAVEL_IMPLEMENTATION_LOG.md`.
+- [ ] Async travel: run five representative trips; compare crest/frame hitch, verify spawn/XRI/holstered inventory, and check `TRAVEL_TIMEOUT`.
+- [ ] Inspect the next build log for `ZIPTIDE: UI_AUDIT`; verify W000/Home/comfort/helm labels and targets in-headset before any audit warning is promoted to a blocker.
 - [ ] Clear queued one-time authors/rebakes in `docs/TERRY_RUNBOOK.md`, including W002 interiors/WorldSpecs/SpaceLane as applicable.
 - [ ] Build/install the consolidated APK and perform the device checklist; blocker findings reorder all model work.
 - [ ] Start Meta paperwork that does not depend on code: developer app ID, privacy URL, Data Use Checkup, IARC.
@@ -125,14 +129,15 @@
 
 ### Architect-associated systems
 
-**Done:** WorldSpec/validator/compiler, lot/building grammar, enterable building builder, GamePool core, art registry, reachability gates, first-hour contract/progression core, durable CI verdict, **async travel code/CI**.
+**Done:** WorldSpec/validator/compiler, lot/building grammar, enterable building builder, GamePool core, art registry, reachability gates, first-hour contract/progression core, durable CI verdict, async travel code/CI, synchronized project dashboards, and WARN-only UI readability/reach build audit.
 
 **Remaining:**
 - [ ] Terry exports/commits `docs/worldspecs/*.spec.json`.
 - [ ] W002 building/interior proof and re-bake.
 - [ ] Adopt GamePool at named gameplay/MP hot-spawn sites with device verification.
 - [ ] Async-travel device frame-pacing and restoration verification.
-- [ ] UI readability, haptic coverage, behavior-count, and catalog-breadth gates.
+- [ ] UI audit generated-scene/device calibration; then decide whether any warning can graduate to blocker.
+- [ ] Haptic coverage, behavior-count, and catalog-breadth gates.
 - [ ] Localization architecture decision before large content scaling.
 
 ### T-Dog-associated integration work
@@ -142,7 +147,7 @@
 **Remaining:**
 - [ ] Consolidated Quest test/fix round.
 - [ ] Bake pending generated surfaces/scenes.
-- [ ] Weapon feel, haptics, UI reach/readability, collision and comfort tuning.
+- [ ] Weapon feel, haptics, UI device readability, collision and comfort tuning.
 - [ ] Make the ship the primary world-select/travel hub.
 - [ ] Integrate later-world systems and content without duplicate owners.
 
@@ -150,9 +155,9 @@
 
 Take in order unless a live claim or CI result changes it:
 
-1. [x] Async travel implementation (`docs/design/ASYNC_TRAVEL.md`) — code/CI green; device comparison pending.
-2. [ ] Reconcile stale current-state rows in `SPRINT.md`, `MASTER_CHECKLIST.md`, and `EXCELLENCE_MAP.md` using implementation logs—not guesses.
-3. [ ] UI readability/reach audit for TextMesh and interactive tiles.
+1. [x] Async travel implementation — code/CI green; device comparison pending.
+2. [x] Reconcile `SPRINT.md`, `MASTER_CHECKLIST.md`, and `EXCELLENCE_MAP.md` against implementation logs.
+3. [x] UI readability/reach audit — WARN-only build-scene processor + tests green; real-scene/device calibration pending.
 4. [ ] Haptic coverage checklist document; do not invent a registry unless separately approved.
 5. [ ] Creature behavior-count gate: every shipped species maps to at least three readable states.
 6. [ ] Plant/vehicle catalog breadth audits.
