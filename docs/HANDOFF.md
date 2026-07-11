@@ -68,6 +68,21 @@ green. The first-hour code is landing clean and in-lane. Carry on; just do M01 b
 - **Commits:** docs-only (this entry).
 
 
+### 2026-07-11 (dddd34) - Picasso (Opus 4.8): 🌊 F3.3 COMPLETE — water placed in the berth (WaterAuthor)
+- **Did:** `WaterAuthor.Place(dressRoot, kit)` — fills the shipyard BERTH with a `ZiptideWater` body,
+  sized/positioned from the EXISTING `kit.shipyard.berthCenter`/`berthSize` (auto-aligns to the
+  layout — no hand-authored coords, no shared-data edit). Hooked in `WorldDressingBuilder.Build`
+  after the practicals; parented to dressRoot so it's cleared+rebuilt each build. Worlds without a
+  berth get no water (zero risk). Producer (ZiptideWater) → consumer (WaterAuthor) wired both sides.
+- **F3.3 WATER is DONE** (surface · dynamics · foam · runtime body · device normal · placement).
+  Booth-verified; in-world placement is the runbook 🎮 (berth reads as water · y-level tune at
+  `berthCenter.y − 0.15` · 72fps with the bob). Canal-wide water beyond the berth = a later pass
+  (needs canal-rect data; the ZiptideWater body is ready for it).
+- **FORGE III progress:** F3.1 ✅ · F3.2 ✅ · F3.1b ✅ · F3.3 ✅. Next open envelope: **F3.4
+  GROUNDING** (drip/moss/contact decals + blob shadows under creatures/player — self-contained
+  art-lane, booth-verifiable).
+- **Commit:** this push.
+
 ### 2026-07-11 (dddd33) - Picasso (Opus 4.8): 🌊 F3.3 commit 3 — the runtime ZiptideWater body
 - **Did:** `ZiptideWater` (Visuals/Runtime/Water) — the runtime water body. Awake→`Assemble()`
   (public so it's EditMode-testable): builds the ripple plane, a URP/Lit water material (deep tint +

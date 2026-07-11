@@ -559,6 +559,16 @@ Two things to *feel* on device; both are pure-data tunes if they're off (no rebu
   GRADE` in logcat). TWO things to check: ① does each world feel more filmic/unified, and ② **did
   72fps hold?** URP post costs real fill-rate on Quest — if frames drop, say so FIRST; the kill
   switch is one line and no art should be tuned before that's ruled out.
+- [ ] **NEW (FORGE III F3.3 WATER, 2026-07-11 — Picasso) — THE NAMESAKE ELEMENT:** no menu step
+  (the build bakes the water normal via ForgeBaker + the dressing pass fills the shipyard berth with
+  water). 🎮 **Any world with a ship berth (W000/ToxicCity), after the next world rebuild:** the berth
+  should now hold **moving water** — deep glossy teal, a scrolling ripple normal + a gentle swell,
+  and a lacy white foam line at the edges. Watch for: ① does it read as water? ② **is the surface
+  at the right height** relative to the dock lip (WaterAuthor sits it at `berthCenter.y − 0.15`; if
+  it floats above or sinks below the dock, tell the operator the offset to change — one line) ③
+  **72fps held?** (the surface does a small per-frame vertex bob on a 17×17 grid — cheap, but confirm).
+  Booth-verified already: the water tile reads great; this is the in-world placement check. Canal-wide
+  water (beyond the berth) is a later pass — needs canal-rect data.
 - [ ] **(not Unity) Reconnect the GitHub connector** on claude.ai (Settings → Connectors → GitHub →
   Reconnect, authorize `terrymaloney/ziptide`) so the operators can see CI status again. Pushing already
   works without it; this is just so we can watch the runs go green.

@@ -44,6 +44,8 @@ namespace Ziptide.Editor.Patching
             // buildings line 48, dressing line 57), so the __DOOR markers the sconce pass reads
             // already exist. Parented to dressRoot → cleared+rebuilt with the rest of the dressing.
             PracticalAuthor.Place(dressRoot, kit, route);
+            // FORGE III F3.3 — water fills the shipyard berth (the tidefront read), if the world has one.
+            WaterAuthor.Place(dressRoot, kit);
         }
 
         // ── P1d: the route + cairns ───────────────────────────────────────────────────────────────
