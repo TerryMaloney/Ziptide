@@ -3,7 +3,7 @@
 **Owner:** GPT-5.6 Thinking, Story/Ship lane  
 **Authorized by:** Terry, 2026-07-11 (“please continue”)  
 **Branch:** `terry-local-wip`  
-**Status:** 🟡 ACTIVE  
+**Status:** ✅ IMPLEMENTED — UNITY CI GREEN; FILE CLAIM RELEASED  
 **Envelope:** `docs/first_hour/envelopes/FH-S01-OBSERVATION.json`
 
 ## Goal
@@ -16,29 +16,22 @@ Add a read-only first-hour observer for three natural player actions:
 
 The adapter observes only. It never moves or locks the rig, changes locomotion, writes profiles, loads scenes, presents subtitles, or owns RILL.
 
-## Claimed files
+## Delivered files
 
-New files plus Unity `.meta` files:
-
-- `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationCore.cs`
-- `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs`
-- `Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourObservationCoreTests.cs`
+- `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationCore.cs` + `.meta`
+- `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs` + `.meta`
+- `Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourObservationCoreTests.cs` + `.meta`
 - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial.meta`
 
-Coordination only:
+No existing gameplay/runtime implementation file was touched.
 
-- `docs/SPRINT.md`
-- this log
-
-No existing gameplay/runtime implementation file is touched.
-
-## Locked behavior
+## Shipped behavior
 
 ### LOOK
 
 - Existing target name: `__RillOrb`.
-- Resettable gaze-cone dwell.
-- Missing camera or target is a logged one-time no-op and leaves the beat open.
+- `18°` gaze cone and `0.75 s` continuous dwell.
+- Missing camera or target logs once and leaves the beat open.
 - Looking outside the cone resets dwell.
 
 ### MOVE
@@ -59,30 +52,41 @@ No existing gameplay/runtime implementation file is touched.
 - Self-bootstraps exactly one `DontDestroyOnLoad` adapter.
 - Remains dormant until a recognized beat is activated.
 - Exposes `BeginBeat`, `CancelBeat`, active state and `SignalCompleted` event.
-- Emits each activated beat once; release/next-beat activation resets its state.
+- Emits each activated beat once; next-beat activation resets its state.
 - Logs:
   - `ZIPTIDE: FIRST_HOUR_OBSERVE beat=<id> result=waiting value=<n>`
   - `ZIPTIDE: FIRST_HOUR_OBSERVE beat=<id> result=complete value=<n>`
 - The later TutorialDirector owns sequencing and profile writes.
 
-## Planned tests
+## Test coverage
 
-- gaze cone and dwell reset;
+- gaze cone and continuous-dwell reset;
 - invalid/missing target vector no-op;
-- movement thresholds and frame-rate/path-sampling independence;
-- vertical movement ignored;
+- movement thresholds, vertical exclusion and straight-path sampling independence;
 - arrival requires both dwell and natural head-direction change;
 - arrival uses no forced target;
-- completion latches once;
-- source-level no rig mutation/profile/travel ownership.
+- completion latches until explicit reset;
+- exact three owned beat/signal mappings;
+- source-level guards against rig mutation, travel, profile, input and clock ownership.
 
-## Acceptance
+## CI proof
 
-- Pure tests green.
-- Unity compile green.
-- No rig mutation or input lock.
-- Device tuning remains required for cone/dwell feel.
+- tested SHA: `05cd00fde8fef3e983da14669b9a3b474dd303e3`
+- run ID: `29160235239`
+- Unity EditMode: `success`
+- project-contract reports: `success`
+- Android: `skipped` as expected for an ordinary branch push
+- overall: `GREEN`
 
-## Collision rule
+## Device evidence pending
 
-Do not edit the claimed files until this log is closed. Other lanes may continue outside this scope.
+During Terry's next headset session:
+
+1. LOOK completes naturally without requiring exact pixel-perfect aim.
+2. MOVE completes after a short natural movement and does not count vertical head bob.
+3. W001 arrival completes after looking around naturally; no target, yank or lock appears.
+4. Missing-target diagnostics identify any scene-wiring problem.
+
+## Closure
+
+FH-S01 is complete and the Story/Ship file claim is released. The next launch-order envelope is `FH-S02-HOLSTER`.
