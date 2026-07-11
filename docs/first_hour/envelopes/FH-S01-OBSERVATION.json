@@ -1,0 +1,68 @@
+{
+  "id": "FH-S01-OBSERVATION",
+  "owner": "story-ship",
+  "kind": "adapter",
+  "risk": "device-sensitive",
+  "covers": [
+    "FH_LOOK_AT_RILL",
+    "FH_MOVE_IN_QUARTERS",
+    "FH_W001_ARRIVAL"
+  ],
+  "signals": [
+    "PLAYER_LOOKED_AT_RILL",
+    "PLAYER_MOVED_SAFE_DISTANCE",
+    "W001_ARRIVAL_ORIENTATION_COMPLETE"
+  ],
+  "lines": [],
+  "dependencies": [
+    "FH-X02-PROGRESSION-CORE"
+  ],
+  "commits": 2,
+  "newFiles": [
+    "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationCore.cs",
+    "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs",
+    "Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourObservationCoreTests.cs"
+  ],
+  "touchFiles": [],
+  "touchPatterns": [],
+  "reuse": [
+    "RillCompanion.__RillOrb",
+    "PlayerRigPersistence",
+    "TravelCoordinator"
+  ],
+  "api": [
+    "Pure gaze/dwell, planar-distance and free-look-arrival math from caller samples.",
+    "LOOK uses existing __RillOrb; MOVE = 1.5m cumulative or 1.0m net planar.",
+    "Arrival = 3s unrestricted dwell plus >=25deg natural head-direction change.",
+    "Read-only adapter emits semantic signals; never moves/locks rig or changes locomotion."
+  ],
+  "tests": [
+    "gaze resets outside cone",
+    "frame-rate independent movement",
+    "arrival needs no forced target",
+    "missing target no-op"
+  ],
+  "diagnostics": [
+    "ZIPTIDE: FIRST_HOUR_OBSERVE beat=<id> result=<waiting|complete> value=<n>"
+  ],
+  "fallback": [
+    "Missing target/rig/camera logs once and keeps beat open."
+  ],
+  "acceptance": {
+    "CI": [
+      "Pure tests green",
+      "Unity compile green",
+      "No rig mutation"
+    ],
+    "BAKE": [
+      "One adapter in W000/W001"
+    ],
+    "DEVICE": [
+      "LOOK/MOVE/arrival work naturally without yank or lock"
+    ]
+  },
+  "integrationOwners": [
+    "architecture"
+  ],
+  "supports": []
+}
