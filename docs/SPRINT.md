@@ -13,6 +13,7 @@
 ## Task board
 | # | Task | Status |
 |---|------|--------|
+| FH-01A | **First-hour beat contract** — GPT-5.6 claim/log: `docs/GPT_ADDITIONS/2026-07-10_GPT56_FIRST_HOUR/FH01A_IMPLEMENTATION_LOG.md`. New `docs/first_hour/*` + report-only Python validator/tests; 22 beats, 15 verbs exactly once, no input lock/rig motion. No runtime bindings in this slice. | 🟡 GPT-5.6 CLAIMED 2026-07-10 |
 | P0.1 | **DevMenu click-once fix** — UI-session rebind on Show + `MENU_CLICK`/`MENU_UI` diags | ✅ `e17eff9` CI-green |
 | P0.2 | **DevMenu pager** — 6 worlds/page + PREV/NEXT | ✅ with P0.1 |
 | P0.3 | **RILL subtitle readable** — `SubtitleText.Wrap` (5 tests), smaller, lower, fade-in | ✅ `c186afa` |
@@ -59,6 +60,7 @@
 | D2-6 | Close: closing HANDOFF (nnnn) for Picasso/Architecture — flags this as the first depth-pass touching real code, not just docs | ✅ this commit |
 
 ## ▶ RESUMING? — current state & exact next action
+- **ACTIVE CLAIM (2026-07-10): FH-01A** — GPT-5.6 owns only the new first-hour contract/validator/test files and the announced non-blocking report expansion. Resume from `FH01A_IMPLEMENTATION_LOG.md`; do not add runtime bindings under this row.
 - **Current:** **P0–P5 of the Quality Bar Program COMPLETE and CI-green** (menu/subtitle/release
   fixes · terrain+vista · POIs+gates · route+dressing · contracts-through-POIs · garden+sockets ·
   interim hull · handbook). Rebased onto architect's takeover kit `a21fffb`; read
