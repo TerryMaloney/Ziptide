@@ -105,16 +105,7 @@ namespace Ziptide.Tests.EditMode
         [Test]
         public void RuntimeSource_PublishesOnlyAfterRestoreAndTravelOk()
         {
-            string path = Path.Combine(
-                Application.dataPath,
-                "Ziptide",
-                "Gameplay",
-                "Runtime",
-                "World",
-                "TravelCoordinator.cs");
-            Assert.IsTrue(File.Exists(path), path);
-
-            string source = File.ReadAllText(path);
+            string source = ReadTravelSource();
             int restore = source.IndexOf("yield return InventoryState.RestoreAfterTravel(playerRig.transform);");
             int travelOk = source.IndexOf("Debug.Log(\"ZIPTIDE: TRAVEL_OK dest=\" + sceneName);");
             int publish = source.IndexOf("TryPublishTravelCompleted(", travelOk);
@@ -124,12 +115,55 @@ namespace Ziptide.Tests.EditMode
             Assert.Greater(publish, travelOk);
             StringAssert.Contains("public static event Action<string> TravelCompleted", source);
             StringAssert.Contains("ZIPTIDE: FIRST_HOUR_TRAVEL dest=", source);
-            Assert.AreEqual(2, Count(source, "SceneManager.LoadScene(sceneName);"),
-                "FH-S03 must not add or remove scene-load calls");
+            Assert.AreEqual(1, Count(source, "SceneManager.LoadScene(sceneName);"),
+                "the no-coordinator fallback remains the only synchronous load");
+            Assert.AreEqual(1, Count(source,
+                "SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);"),
+                "TravelCoroutine owns exactly one async destination load");
             Assert.AreEqual(1, Count(source, "yield return InventoryState.RestoreAfterTravel(playerRig.transform);"));
             StringAssert.DoesNotContain("TravelCompleted?.Invoke(sceneName)",
                 source.Substring(0, restore),
                 "travel completion must never emit before inventory restoration");
+        }
+
+        [Test]
+        public void RuntimeSource_HoldsAsyncActivationUntilReadyAndHasTimeoutEscape()
+        {
+            string source = ReadTravelSource();
+            int leadWait = source.IndexOf("if (lead > 0f) yield return new WaitForSeconds(lead);");
+            int asyncLoad = source.IndexOf("SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);");
+            int hold = source.IndexOf("loadOperation.allowSceneActivation = false;", asyncLoad);
+            int threshold = source.IndexOf("loadOperation.progress < 0.9f", hold);
+            int timeout = source.IndexOf("const float loadTimeout = 20f;", hold);
+            int timeoutLog = source.IndexOf("ZIPTIDE: TRAVEL_TIMEOUT dest=", hold);
+            int activate = source.IndexOf("loadOperation.allowSceneActivation = true;", hold);
+            int doneWait = source.IndexOf("while (!loadOperation.isDone) yield return null;", activate);
+            int postLoadFrame = source.IndexOf("// 3. Wait one frame for the new scene to initialise.", doneWait);
+
+            Assert.GreaterOrEqual(leadWait, 0);
+            Assert.Greater(asyncLoad, leadWait, "async loading starts only after the existing crest-cover wait");
+            Assert.Greater(hold, asyncLoad);
+            Assert.Greater(threshold, hold);
+            Assert.Greater(timeout, hold);
+            Assert.Greater(timeoutLog, threshold);
+            Assert.Greater(activate, timeoutLog);
+            Assert.Greater(doneWait, activate);
+            Assert.Greater(postLoadFrame, doneWait);
+            StringAssert.Contains("loadElapsed += Time.unscaledDeltaTime;", source);
+            StringAssert.Contains("reason=async_load_not_started", source);
+        }
+
+        private static string ReadTravelSource()
+        {
+            string path = Path.Combine(
+                Application.dataPath,
+                "Ziptide",
+                "Gameplay",
+                "Runtime",
+                "World",
+                "TravelCoordinator.cs");
+            Assert.IsTrue(File.Exists(path), path);
+            return File.ReadAllText(path);
         }
 
         private static int Count(string source, string token)
