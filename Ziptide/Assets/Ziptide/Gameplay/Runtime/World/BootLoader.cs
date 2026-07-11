@@ -4,9 +4,10 @@ using Ziptide.Core;
 namespace Ziptide.Gameplay
 {
     /// <summary>
-    /// Placed in the _Boot scene. On Start, loads the first world scene via TravelCoordinator.
-    /// _Boot is always the first scene in the build (index 0) and is never unloaded.
-    /// All singletons (PlayerRigPersistence, TravelCoordinator, AudioDirector, etc.) live here.
+    /// Placed in the _Boot scene. Presents the cold-boot Home Hub, then loads the selected first
+    /// world via TravelCoordinator. _Boot is always the first scene in the build (index 0) and is
+    /// never unloaded. All singletons (PlayerRigPersistence, TravelCoordinator, AudioDirector, etc.)
+    /// live here.
     /// </summary>
     public class BootLoader : MonoBehaviour
     {
@@ -19,13 +20,17 @@ namespace Ziptide.Gameplay
                 ? ZiptideConstants.FirstWorldScene
                 : overrideFirstScene;
 
-            Debug.Log("ZIPTIDE: BOOT_LOAD dest=" + target);
-
-            // Use TravelCoordinator for consistency with all mid-game travel.
-            // On first boot, inventory is empty so save/restore is a no-op.
-            // skipGate: the cold boot has nothing to "leave" — THE ZIPTIDE is a world↔world moment,
-            // and playing it in the empty _Boot was the one risky step running before a world exists.
-            TravelCoordinator.TravelTo(target, skipGate: true);
+            // The Home Hub is the one cold-boot gate. It never loads scenes itself: the callback keeps
+            // TravelCoordinator as the sole travel path and preserves skipGate for the empty _Boot.
+            var existing = FindObjectOfType<HomeHubRuntime>();
+            var home = existing != null
+                ? existing
+                : new GameObject("__HOME_HUB_RUNTIME").AddComponent<HomeHubRuntime>();
+            home.Configure(target, destination =>
+            {
+                Debug.Log("ZIPTIDE: BOOT_LOAD dest=" + destination);
+                TravelCoordinator.TravelTo(destination, skipGate: true);
+            });
         }
     }
 }

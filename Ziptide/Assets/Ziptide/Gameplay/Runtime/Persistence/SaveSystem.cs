@@ -26,6 +26,22 @@ namespace Ziptide.Gameplay
         public static string SavePath => Path.Combine(Application.persistentDataPath, FileName);
 
         /// <summary>
+        /// True only when the atomic save store can supply a valid main or backup profile. Merely
+        /// finding a corrupt file is not enough to expose Continue on the cold-boot surface.
+        /// </summary>
+        public static bool HasExistingProfile
+        {
+            get
+            {
+                string json = SaveFileStore.ReadBestVersion(
+                    SavePath,
+                    text => ProfileSerializer.TryDeserialize(text, out _),
+                    out _);
+                return json != null;
+            }
+        }
+
+        /// <summary>
         /// Self-bootstrap: guarantee a live profile exists at runtime without editing the _Boot scene.
         /// Creates the DontDestroyOnLoad singleton on first scene load if one wasn't placed manually.
         /// The Awake dup-guard makes this safe even if SaveSystem is later added to _Boot. Lets the
@@ -69,6 +85,18 @@ namespace Ziptide.Gameplay
             Profile = ProfileSerializer.Deserialize(json);
             Debug.Log("ZIPTIDE: SAVE_LOAD playerId=" + Profile.playerId +
                       " resources=" + Profile.resources.Count + " flags=" + Profile.flags.Count);
+        }
+
+        /// <summary>
+        /// Explicit player-facing New Game command. It replaces the live profile through the existing
+        /// serializer/atomic writer and intentionally leaves device-level PlayerPrefs untouched.
+        /// </summary>
+        public PlayerProfile StartNewProfile()
+        {
+            Profile = ProfileSerializer.NewProfile();
+            Save();
+            Debug.Log("ZIPTIDE: SAVE_NEW_PROFILE playerId=" + Profile.playerId);
+            return Profile;
         }
 
         /// <summary>Stamp the save time and write the profile ATOMICALLY (tmp → swap, previous
