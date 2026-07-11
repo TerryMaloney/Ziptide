@@ -1,0 +1,66 @@
+{
+  "id": "FH-A01-SIGNATURE-CREATURE-PRESENTATION",
+  "owner": "art",
+  "kind": "art-content",
+  "risk": "device-sensitive",
+  "covers": [],
+  "signals": [],
+  "lines": [],
+  "dependencies": [],
+  "commits": 3,
+  "newFiles": [
+    "docs/first_hour/W001_SIGNATURE_CREATURE_PASSPORT.md",
+    "Ziptide/Assets/Ziptide/Visuals/Editor/Forge/FirstHourCreatureReviewAuthor.cs"
+  ],
+  "touchFiles": [
+    "docs/project_art_plan/FORGE_III_PLAN.md",
+    "docs/SPRINT_ART.md"
+  ],
+  "touchPatterns": [
+    "Ziptide/Assets/Ziptide/Visuals/**"
+  ],
+  "reuse": [
+    "FORGE III",
+    "Forge/imported visual provider",
+    "CreatureRuntime contract"
+  ],
+  "api": [
+    "Write passport: world reason, silhouette, locomotion source, tell, counter, audio, habitat trace, six states.",
+    "Keep gameplay ID/sockets/colliders/runtime unchanged; declare Quest budget/LOD first.",
+    "Provide front/side/back and alert/action/recovery/disable contact sheets; tell not HUD/color/audio-only."
+  ],
+  "tests": [
+    "Forge conformance",
+    "gameplay ID/socket contract",
+    "all review views/states",
+    "budget under envelope"
+  ],
+  "diagnostics": [
+    "ZIPTIDE: CREATURE_VISUAL_PROVIDER id=<id> provider=<...>",
+    "ZIPTIDE: CREATURE_STATE id=<id> state=<...>"
+  ],
+  "fallback": [
+    "Current proxy preserves mechanics but remains an explicit unfinished board row.",
+    "Missing audio never hides visual tell."
+  ],
+  "acceptance": {
+    "CI": [
+      "Forge/conformance green",
+      "Budget report pass"
+    ],
+    "BAKE": [
+      "All review artifacts generated"
+    ],
+    "DEVICE": [
+      "Species/tell/counter/disable readable; no obvious sliding"
+    ]
+  },
+  "integrationOwners": [
+    "story-ship"
+  ],
+  "supports": [
+    "FH_OBSERVE_SIGNATURE_CREATURE",
+    "FH_COUNTER_SIGNATURE_CREATURE",
+    "FH_CHANGED_SHIP_PAYOFF"
+  ]
+}
