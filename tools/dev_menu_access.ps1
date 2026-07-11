@@ -34,7 +34,7 @@ function Push-Marker {
     $temp = Join-Path ([System.IO.Path]::GetTempPath()) ("ziptide-" + [Guid]::NewGuid().ToString("N") + ".txt")
     try {
         Set-Content -Path $temp -Value ("$Label " + [DateTime]::UtcNow.ToString("o")) -Encoding ascii -NoNewline
-        Invoke-AdbChecked @("push", $temp, $RemotePath)
+        Invoke-AdbChecked -Arguments @("push", $temp, $RemotePath)
     }
     finally {
         Remove-Item $temp -Force -ErrorAction SilentlyContinue
@@ -45,14 +45,14 @@ Assert-DeviceConnected
 
 switch ($Action) {
     "Unlock" {
-        Invoke-AdbChecked @("shell", "mkdir", "-p", $remoteRoot)
+        Invoke-AdbChecked -Arguments @("shell", "mkdir", "-p", $remoteRoot)
         Push-Marker -RemotePath $accessMarker -Label "developer-access"
         Write-Host "ZIPTIDE developer access unlocked." -ForegroundColor Green
         Write-Host "Use -Action Open whenever you want the in-headset warp menu."
     }
 
     "Open" {
-        Invoke-AdbChecked @("shell", "mkdir", "-p", $remoteRoot)
+        Invoke-AdbChecked -Arguments @("shell", "mkdir", "-p", $remoteRoot)
         Push-Marker -RemotePath $accessMarker -Label "developer-access"
         Push-Marker -RemotePath $openMarker -Label "open-request"
 
@@ -68,7 +68,7 @@ switch ($Action) {
     }
 
     "Lock" {
-        Invoke-AdbChecked @("shell", "rm", "-f", $accessMarker, $openMarker)
+        Invoke-AdbChecked -Arguments @("shell", "rm", "-f", $accessMarker, $openMarker)
         Write-Host "ZIPTIDE developer access locked. A visible dev menu will close on its next poll." -ForegroundColor Yellow
     }
 
