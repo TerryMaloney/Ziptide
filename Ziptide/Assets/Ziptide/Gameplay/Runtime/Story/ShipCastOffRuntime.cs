@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+using Ziptide.Core;
 
 namespace Ziptide.Gameplay
 {
@@ -30,6 +32,30 @@ namespace Ziptide.Gameplay
         private RepairableMachine _armingMachine; // cached once found; absence is re-checked per press
         private TextMesh _buttonLabel;
         private Coroutine _hintRoutine;
+
+        /// <summary>The destination currently consumed by the existing PUNCH IT launch sequence.</summary>
+        public string SelectedDestination => targetScene;
+
+        /// <summary>Neutral selection notification; it does not launch or travel.</summary>
+        public event Action<string> DestinationSelected;
+
+        /// <summary>
+        /// The first-hour helm may select only W001/ToxicCity. This changes the existing serialized
+        /// destination truth; TryLaunch and LaunchSequence remain the sole launch/travel owners.
+        /// </summary>
+        public bool SelectFirstDestination(string destinationScene)
+        {
+            if (!string.Equals(destinationScene, ZiptideConstants.SceneToxicCity, StringComparison.Ordinal))
+            {
+                Debug.LogWarning("ZIPTIDE: FLIGHT_DESTINATION_REJECTED target=" + destinationScene);
+                return false;
+            }
+
+            targetScene = destinationScene;
+            Debug.Log("ZIPTIDE: FLIGHT_DESTINATION_SELECTED target=" + targetScene);
+            PublishDestinationSelected(targetScene);
+            return true;
+        }
 
         private void Start()
         {
@@ -152,6 +178,20 @@ namespace Ziptide.Gameplay
             }
             Debug.Log("ZIPTIDE: FLIGHT_DEPART target=" + targetScene);
             TravelCoordinator.TravelTo(targetScene);
+        }
+
+        private void PublishDestinationSelected(string destination)
+        {
+            Action<string> subscribers = DestinationSelected;
+            if (subscribers == null) return;
+            foreach (Action<string> subscriber in subscribers.GetInvocationList())
+            {
+                try { subscriber(destination); }
+                catch (Exception ex)
+                {
+                    Debug.LogWarning("ZIPTIDE: FLIGHT_DESTINATION_SUBSCRIBER_FAIL reason=" + ex.Message);
+                }
+            }
         }
     }
 }

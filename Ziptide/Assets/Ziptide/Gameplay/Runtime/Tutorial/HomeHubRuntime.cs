@@ -55,6 +55,7 @@ namespace Ziptide.Gameplay
         private string _targetScene;
         private Action<string> _travel;
         private HomeHubFlowState _flow;
+        private ComfortConsoleRuntime _settingsConsole;
         private bool _configured;
 
         public void Configure(string targetScene, Action<string> travel)
@@ -100,6 +101,7 @@ namespace Ziptide.Gameplay
 
             if (choice == HomeHubChoice.Settings)
             {
+                ShowSettingsConsole();
                 PublishSafely(SettingsRequested, "settings");
                 return;
             }
@@ -120,6 +122,16 @@ namespace Ziptide.Gameplay
                 if (_travel != null) _travel(_targetScene);
                 else Debug.LogWarning("ZIPTIDE: HOME_HUB_TRAVEL_MISSING dest=" + _targetScene);
             }
+        }
+
+        private void ShowSettingsConsole()
+        {
+            if (_settingsConsole != null) return;
+            var go = new GameObject("__HOME_HUB_COMFORT_SETTINGS");
+            go.transform.SetParent(transform, false);
+            go.transform.localPosition = new Vector3(0f, -1.05f, 0.15f);
+            _settingsConsole = go.AddComponent<ComfortConsoleRuntime>();
+            _settingsConsole.Configure(false); // boot settings do not complete the W000 tutorial beat
         }
 
         private void BuildSurface(bool canContinue)
