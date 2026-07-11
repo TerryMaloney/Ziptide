@@ -8,7 +8,7 @@
 ## 1. Operating truth
 
 - Branch: `terry-local-wip`.
-- Latest gameplay/quality-code proof: `b7a6cfa945759de828b973f993df47ed0071b3ae`, CI run `29170323869`, Unity EditMode green.
+- Latest gameplay/quality-code proof: `e8d18d67732032d79a2806f1e517d19d1aa9330d`, CI run `29170675599`, Unity EditMode green. Later branch commits are unrelated descendants and preserve this cleanup.
 - Picasso is the active independent Art/Forge track and owns `Visuals/**`, Forge, water, art authors/audits, and `SPRINT_ART.md`.
 - Architect, T-Dog, and Reasonbox are useful historical workstream names, not exclusive permanent accounts. The official model is one non-art operator plus Terry, while active concurrent claims still control file ownership.
 - Never hand-edit `.unity` or `.prefab` YAML. Write an idempotent author/patcher; Terry runs it and commits generated artifacts.
@@ -43,6 +43,7 @@
 - [x] Write `docs/design/HAPTIC_COVERAGE.md` from inspected existing owners. **Documentation-level gap closed; runtime/device coverage remains deliberately open.**
 - [x] Build the canonical creature behavior-readability gate. **Seven shipped IDs, ≥3 active states each, telegraph/counter/resolution, source/factory evidence and APK pre-build blocker; code/CI green `d9b6caf`, run `29169591530`.**
 - [x] Build plant and vehicle catalog-breadth audits without touching Picasso visual assets. **Structural CI/APK gate green `b7a6cfa`, run `29170323869`; content warnings remain for unsurfaced plants, three missing vehicle families and no garage.**
+- [x] Harden `AudioDirector` transition/disposal ownership. **Retired persistent sources now release clips; overlapping fades are serialized; code/CI green `e8d18d6`, run `29170675599`; long-session Quest memory soak remains device evidence.**
 - [ ] After each code push, wait for/read `docs/CI_VERDICT.md`; do not stack unverified code.
 - [ ] Continue only with independent CI-quality rows from §7 rather than entering Picasso files or blocked first-hour orchestration.
 
@@ -62,6 +63,7 @@
 - [ ] Use `docs/design/HAPTIC_COVERAGE.md` during the same pass: note whether XRI already pulses on grab/select and which silent P0 verb is most noticeable—holster, release, UI select, repair or zipline.
 - [ ] Sample the seven entries in `docs/design/CREATURE_BEHAVIOR_READABILITY.md`; confirm their state changes are actually recognizable and fairly timed in-headset.
 - [ ] Inspect `ZIPTIDE: CATALOG_BREADTH_AUDIT` after the authored build. Confirm the three starter rides are present by biome; treat plant/vehicle breadth warnings as named content debt, not build failure.
+- [ ] During repeated world travel, inspect `ZIPTIDE: HEALTH_SWEEP ... clips=` and total memory; retired world music should no longer remain pinned by `AudioDirector`.
 - [ ] Clear queued one-time authors/rebakes in `docs/TERRY_RUNBOOK.md`, including W002 interiors/WorldSpecs/SpaceLane as applicable.
 - [ ] Build/install the consolidated APK and perform the device checklist; blocker findings reorder all model work.
 - [ ] Start Meta paperwork that does not depend on code: developer app ID, privacy URL, Data Use Checkup, IARC.
@@ -135,7 +137,7 @@
 
 ### Architect-associated systems
 
-**Done:** WorldSpec/validator/compiler, lot/building grammar, enterable building builder, GamePool core, art registry, reachability gates, first-hour contract/progression core, durable CI verdict, async travel code/CI, synchronized project dashboards, WARN-only UI readability/reach build audit, documentation-level haptic coverage inventory, canonical creature behavior-readability CI/APK gate, and plant/vehicle catalog structural CI/APK audit.
+**Done:** WorldSpec/validator/compiler, lot/building grammar, enterable building builder, GamePool core, art registry, reachability gates, first-hour contract/progression core, durable CI verdict, async travel code/CI, synchronized project dashboards, WARN-only UI readability/reach build audit, documentation-level haptic coverage inventory, canonical creature behavior-readability CI/APK gate, plant/vehicle catalog structural CI/APK audit, and `AudioDirector` transition/resource cleanup.
 
 **Remaining:**
 - [ ] Terry exports/commits `docs/worldspecs/*.spec.json`.
@@ -168,7 +170,7 @@ Take in order unless a live claim or CI result changes it:
 4. [x] Haptic coverage checklist — evidence inventory and implementation order documented; runtime/device rows remain open.
 5. [x] Creature behavior-count/readability gate — one canonical catalog, source/factory evidence, CI tests and APK blocker green.
 6. [x] Plant/vehicle catalog breadth audit — structural CI/APK blockers green; exact surfacing/asset/garage debt remains warning-level content work.
-7. [ ] `AudioDirector` unload/disposal leak hardening if still open after rechecking live code.
+7. [x] `AudioDirector` unload/disposal leak hardening — stopped sources release clips, one transition owner, lifecycle tests green `e8d18d6`, run `29170675599`; device memory soak remains.
 8. [ ] PlayMode scaffold/TravelCoordinator round-trip test only if stable in the existing CI environment.
 
 Do not take:
