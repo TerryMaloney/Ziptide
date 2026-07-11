@@ -3,7 +3,7 @@
 **Owner:** GPT-5.6 Thinking, Story/Ship lane  
 **Authorized by:** Terry, 2026-07-11; dependency cleared by FH-M01 green run `29162763650`  
 **Branch:** `terry-local-wip`  
-**Status:** 🟡 ACTIVE — FILE CLAIM POSTED  
+**Status:** ✅ IMPLEMENTED — UNITY CI GREEN; FILE CLAIM RELEASED  
 **Envelope:** `docs/first_hour/envelopes/FH-S04-REPAIR-SCAN.json`
 
 ## Dependencies
@@ -11,63 +11,73 @@
 - ✅ `FH-X02-PROGRESSION-CORE`
 - ✅ `FH-M01-SCANNER-RESULT` — implementation `5685dc8`, combined tested head `002e20b`, CI green
 
-## Claimed files
+## Delivered files
 
 - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs`
 - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairStage.cs` + `.meta`
 - `Ziptide/Assets/Ziptide/Tests/EditMode/RepairableMachineSignalTests.cs` + `.meta`
 - this log
 
-## Concurrent-lane boundary
+## Shipped behavior
 
-Picasso/Opus 4.8 is active on art/Forge work. FH-S04 claims no `Visuals/**`, Forge, art-authoring, material, mesh, shader, scene, patcher, creature-art, `SPRINT_ART.md`, or Picasso planning file. Live head must be checked before every write; no force-pushes.
-
-## Goal
-
-Expose the existing physical repair progression and exact scanner identity without adding a second repair state machine or scanner:
-
-- `FH_SCAN_FAULT` → `FIRST_MACHINE_FAULT_SCANNED`
-- `FH_REPAIR_ACCESS` → `FIRST_MACHINE_ACCESS_OPENED`
-- `FH_REPAIR_PART_SEATED` → `FIRST_REPAIR_PART_SEATED`
-
-## Planned additive seam
-
-- Replace only the private enum type with public `RepairStage`; keep the same four values and the same `_stage` field as the single source of truth.
-- Add read-only `CurrentStage` and neutral `StageChanged` notification after each established physical transition.
-- Keep `IsRepaired` as the same comparison against the same `_stage` field.
-- Implement existing `IScannable` directly on `RepairableMachine`:
-  - transform = this transform;
+- Replaced only the private enum type with public `RepairStage`; the existing `_stage` field remains the single repair source of truth.
+- Added read-only `CurrentStage` and neutral `StageChanged` notification after each established physical transition.
+- Kept `IsRepaired` as the same comparison against the same `_stage` field.
+- Implemented existing `IScannable` directly on `RepairableMachine`:
+  - transform = the machine transform;
   - kind = `Objective`;
-  - active until `Running`.
-- Add pure identity-match helper in `RepairStage.cs`: a scan matches only when the immutable `WristScanResult` contains the exact designated `RepairableMachine` instance.
-- No tutorial fields, completed flags, progression writes, scanner ownership or repair orchestration inside the machine.
-- Diagnostic belongs to the adapter consumer: `ZIPTIDE: FIRST_HOUR_MACHINE_SCAN id=<id> matched=<bool>`.
+  - active during Panel, Part and Power;
+  - inactive at Running.
+- Added exact identity matching against immutable `WristScanResult` targets. Matching ID, name or kind alone is insufficient.
+- Stage and scan subscribers are optional and isolated; failures cannot interrupt the physical repair.
+- No tutorial fields, completed flags, progression writes, scanner ownership, save/profile writes or second repair state were added.
 
-## Locked exclusions
+## Preserved physical owner
 
-- no second repair stage/state field;
-- no changes to panel grab, part distance/socket seating, power switch, `JobDirector.ReportRepair`, labels, visuals, colliders, XR wiring or reward/job behavior;
-- no scanner pulse/filter/radar/tag/haptic/audio/cooldown changes;
-- no profile or save writes;
-- no TutorialDirector implementation in this envelope;
-- no Picasso/art files.
+Unchanged:
 
-## Planned tests
+- panel grab interaction;
+- part distance and socket seating;
+- switch interaction;
+- labels, colliders and visuals;
+- `JobDirector.ReportRepair`;
+- existing machine diagnostics;
+- scanner pulse, range, filtering, radar, tags, haptics, audio and cooldown.
+
+## Test coverage
 
 - exact `Panel → Part → Power → Running` ordering;
-- public stage values remain stable;
-- `CurrentStage` and `IsRepaired` derive from the same `_stage` source;
-- scannable active for Panel/Part/Power and inactive at Running;
-- scan identity requires the exact designated machine, not matching ID/name/kind alone;
-- empty/unrelated scanner results do not match;
-- stage subscriber failure cannot break physical repair transitions;
-- source guard preserves panel, seat, power, report-repair and existing diagnostic order;
+- public stage values stable;
+- `CurrentStage`, `IsRepaired` and `ScanActive` derive from the same `_stage` field;
+- scannable active until Running;
+- exact designated-machine instance required;
+- empty and unrelated scan results do not match;
+- subscriber exception isolation;
+- physical transition and job-report chokepoints remain singular and ordered;
 - no second repair state, tutorial field, profile write or scanner implementation.
 
-## Fallback
+## CI proof
 
-Without a scanner subscriber, the full physical repair remains playable. Without a stage subscriber, repair behavior is unchanged. Subscriber exceptions are isolated from the physical owner.
+- implementation SHA: `9cd45e1b8129690fc3bd6c3796165a97d2b179c7`
+- combined tested SHA: `2e141398e13c19e8ffe18e2851854154b61e1ec5`
+- run ID: `29163421229`
+- Unity EditMode: `success`
+- project-contract reports: `success`
+- Android: `skipped` as expected for an ordinary branch push
+- overall: `GREEN`
+- all FH-S04 tests passed; the prior combined red was isolated to Picasso's water test and fixed in Picasso's lane
+- circuit-breaker reds attributable to FH-S04: `0/3`
 
-## Collision rule
+## Device evidence pending
 
-Do not edit the claimed files until this log is closed or explicitly released.
+During Terry's next headset repair check:
+
+1. scanning the designated broken machine reveals it normally;
+2. scanning another objective does not count as the machine scan;
+3. panel removal, part seating and power switch behave exactly as before;
+4. machine becomes scanner-inactive only after it is running;
+5. only a full physical repair advances the existing job repair count.
+
+## Closure
+
+FH-S04 is complete and its Story/Ship file claim is released. FH-S06-ZIPLINE is dependency-clear and is the next small Story/Ship adapter. Picasso's art lane remains independent and untouched.
