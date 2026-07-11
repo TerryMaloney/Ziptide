@@ -25,8 +25,12 @@ Item verbs: `Gameplay/Runtime/Items/ItemFactory.cs` + per-weapon runtimes.
 | Ping / marker | LEFT trigger (empty hand): point + release | ✅ S5 | drops a 20 s `ObjectiveBeacon`; logs `PING_AT`; co-op ready |
 | Interact / pickup | grab (grip) / poke-select | ✅ | XRI grab + `XRSimpleInteractable` seams |
 | Build (Fortnite build mode) | — deliberately N/A | 🚫 | Ziptide's build verb is BuildSockets (M2 repair/build), not free-building |
-| Inventory / map | Y+B dev menu today; player menu later | ⬜ envelope | reuse DevMenu canvas idiom at player scope |
+| Inventory / map | Y reserved for the future player menu | ⬜ envelope | DevMenu is F2/ADB-only in development builds; it consumes zero controller buttons |
 | Emote | — | ⬜ later | after A6 multiplayer avatars |
+
+**Developer access law:** the world-warp DevMenu is never summoned by Quest controller input. Use F2
+in the Editor or `tools/dev_menu_access.ps1 -Action Open` on an authorized ADB-connected development
+headset. See `docs/DEV_MENU_ACCESS.md`.
 
 **Comfort rules (non-negotiable):** all camera motion is player-initiated; slides are short; ADS
 zoom (when built) must be vignetted; nothing ever rotates the camera except the turn provider.
