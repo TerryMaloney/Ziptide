@@ -92,6 +92,13 @@ vocabulary · the reactive world · signage/glyphs · macro variation · the ART
 every envelope with a checkpoint. Takeover prompt: **"Read docs/project_art_plan/FORGE_III_PLAN.md
 §0 and execute the next open envelope."**
 
+> **After FORGE III (art-lane follow-on): `docs/project_art_plan/CREATURE_QUALITY_V2_LIFE_LEAP.md`**
+> — the creature-life leap from GPT-5.6's Post-Fable packet (species passport, MotionIntent, contact
+> rig, tells+voice, imported-hero hatch, the **Tidal Carillon** non-biped pilot). PLANNED, gated
+> behind device-testing FORGE II+III first. FORGE III's F3.10 creature remainder migrates into it.
+> The packet's cross-cutting (non-art) layers are routed to Terry for lane assignment in the FORGE
+> III plan's "AFTER FORGE III" section — the art track does NOT silently absorb them.
+
 | # | FORGE III envelope | Status |
 |---|------|--------|
 | F3.1 | THE LIGHT SCRIPT — light rig DERIVED from the vista (fog=horizon, ambient=gradient, key from the brightest body, elevation clamped 20–55°) | 🟡 **commit 1 landed:** `SkyLightScript.Derive` (pure) + `SkyVistaRig` applies derived values wherever the vista is silent (authored tie-ins override; layout-baked fog respected; `ZIPTIDE: LIGHT_SCRIPT` log) + 5 contract tests incl. full library sweep. **commit 2:** `LIGHT_SCRIPT_NO_SUN` warn in SkyVistaAuditRules + runbook 🎮 W002/W005 before/after. **F3.1 CODE-COMPLETE** (device verdict = Terry's runbook pass) |

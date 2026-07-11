@@ -68,6 +68,24 @@ green. The first-hour code is landing clean and in-lane. Carry on; just do M01 b
 - **Commits:** docs-only (this entry).
 
 
+### 2026-07-11 (dddd29) - Picasso (Opus 4.8): 📦 GPT-5.6 Post-Fable packet INTEGRATED into the plan (not built)
+- **Terry's ask:** fold GPT's packet (`docs/GPT_ADDITIONS/2026-07-10_Post_Fable_Handoff/…PICASSO_PACKET.md`,
+  `c0161e6`) into the plan for AFTER we device-test what's built. Read it end-to-end — it's strong,
+  and it explicitly endorses "continue FORGE III first" + forbids a second roadmap-of-record.
+- **Did (docs only, zero code):** ① new **`docs/project_art_plan/CREATURE_QUALITY_V2_LIFE_LEAP.md`**
+  — the packet's creature §3–§4 as 12 art-lane envelopes (review contact sheet → species passport →
+  MotionIntent → contact rig → motion profiles → secondary motion → tell+voice → affordances →
+  imported-hero hatch → families/morphs → the **Tidal Carillon** non-biped pilot + gate promotion).
+  PLANNED, NOT STARTED, gated behind device-testing FORGE II+III. It absorbs FORGE III's F3.10.
+  ② `FORGE_III_PLAN.md` gains an "AFTER FORGE III" section: creature work → CREATURE_QUALITY_V2
+  (mine); the packet's **cross-cutting §1–§2 layers routed to TERRY for lane assignment**, NOT
+  auto-claimed by art (continuity gate = infra, World Moment = presentation/story-overlaps-Sol,
+  Surface Response = shared, Encounter pacing = gameplay). ③ SPRINT_ART pointer added.
+- **Why route, not claim:** the packet's own §7 says don't let art silently absorb gameplay/infra —
+  and Sol is ALREADY building the §1 continuity gate. Flagging avoids a lane collision.
+- **Next:** verify F3.1b commit-3 CI (dddd28), then FORGE III **F3.3 WATER** — the namesake, next build.
+- **Commit:** this push.
+
 ### 2026-07-11 (dddd28) - Picasso (**now Opus 4.8**, was Fable 5): 🏮 F3.1b commit 3 — PracticalAuthor placement + lane check
 - **MODEL HANDOFF:** Fable 5 is retired; the art lane ("Picasso") now runs on **Opus 4.8**. Same
   operator role, same board, same laws. Commit trailers switch to `Claude Opus 4.8` from here.

@@ -265,6 +265,44 @@ by a `UiSkinApplier` at the existing ensure seams. Scoped OUT of FORGE III becau
 belt/HUD crosses into every gameplay lane's files — it needs a Terry-approved coordination window,
 not a background envelope.
 
+## AFTER FORGE III — folding in GPT-5.6's Post-Fable packet (integrated 2026-07-11, Opus 4.8)
+Source: `docs/GPT_ADDITIONS/2026-07-10_Post_Fable_Handoff/POST_FABLE_ARCHITECTURE_AND_PICASSO_PACKET.md`
+(commit `c0161e6`). It endorses this plan explicitly ("Continue FORGE III first," same order) and
+forbids a second roadmap-of-record — so the packet is folded in as pointers, NOT a rewrite. Nothing
+here starts until **FORGE III is done and Terry has device-tested the current build.**
+
+- **Creature material (packet §3–§4) → its own art-lane program:**
+  **`docs/project_art_plan/CREATURE_QUALITY_V2_LIFE_LEAP.md`** (written 2026-07-11). Species
+  passport · MotionIntent seam · contact rig · motion profiles · secondary motion · tell+voice ·
+  habitat affordances · imported-hero escape hatch · families/planet-morphs · the **Tidal Carillon**
+  non-biped pilot + gate promotion. This is MINE (Picasso). It ABSORBS FORGE III's F3.10 creature
+  remainder (look-at/stun-droop/LOD land there once MotionIntent exists to drive them).
+- **Cross-cutting architecture (packet §1–§2) → NOT auto-claimed by the art lane. Terry assigns:**
+  - §1 **Continuity manifest + `ContinuityGate`** — infra/architecture lane. *(Sol/GPT-5.6 has
+    already begun this: `docs/continuity/`, `tools/continuity_gate.py`, `docs/CI_VERDICT.md`.)*
+  - §2.1 **World Moment / Presentation Sequence system** — presentation/story lane (tutorials,
+    reveals, set pieces). Overlaps Sol's First-Hour work — coordinate before anyone claims.
+  - §2.2 **Surface Response + Feedback/Haptic registry** — cross-lane (touches weapons, footsteps,
+    VFX, audio, decals). Art OWNS the decal/VFX half (see F3.4/F3.5); the registry spine is shared.
+  - §2.3 **World Presence profile** (ambient motion, distant silhouettes, occupancy) — mostly ART
+    (extends F3.5/F3.7); the distance-silhouette layer pairs with SkyVista.
+  - §2.4 **Encounter/pacing definitions** — gameplay/story lane.
+  - §2.5 **Canonical world + creature REVIEW artifacts** — ART. The creature contact-sheet is
+    CREATURE_QUALITY_V2's first envelope (V2.1); a world review-view artifact extends forge-photos.
+  - §2.6 **World-state transformation overlays** — cross-lane (art surfaces + world/save state).
+  > **Rule for whoever picks these up:** they are decision-captured in the packet, but each needs a
+  > lane owner + a decision-complete board row before implementation. Do NOT let the art track
+  > silently absorb the gameplay/infra ones — that's how lanes collide.
+
+## FORGE IV candidate (named, NOT started — the one remaining packet)
+**DIEGETIC UI ART.** The belt, credits HUD, helm readouts, lobby board, and dev menus all WORK but
+none has had an art pass — they are the last "programmer surface" the player touches constantly in
+VR. A FORGE IV would give them the same treatment: one `UiSkin` data asset (panel nine-slice baked
+by ForgeTexture, the wayfinding color law, one display typeface baked as a glyph atlas), applied
+by a `UiSkinApplier` at the existing ensure seams. Scoped OUT of FORGE III because touching the
+belt/HUD crosses into every gameplay lane's files — it needs a Terry-approved coordination window,
+not a background envelope. *(Packet §5 P3 agrees: diegetic UI is a late polish pass.)*
+
 ## What is deliberately NOT in FORGE III
 Real-time shadows beyond the key light · reflections/refraction · post bloom/DoF · texture
 arrays/streaming · real text · GPU particles/VFX Graph · terrain systems · any networking of
