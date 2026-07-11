@@ -27,7 +27,7 @@ namespace Ziptide.Tests.EditMode
             Assert.AreEqual(2, s.Downs(2));
             s.RecordKill(1, 1); // self-kill guard: no credit
             Assert.AreEqual(0, s.Kills(1));
-            Assert.AreEqual(1, s.Downs(1), "the down still counts");
+            Assert.AreEqual(2, s.Downs(1), "the prior down plus the self-down both count");
             s.RecordKill(-1, 9); // out of range never throws
         }
 
