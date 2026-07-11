@@ -1,0 +1,60 @@
+{
+  "id": "FH-S06-ZIPLINE",
+  "owner": "story-ship",
+  "kind": "adapter",
+  "risk": "device-sensitive",
+  "covers": [
+    "FH_USE_JOB_ZIPLINE"
+  ],
+  "signals": [
+    "FIRST_JOB_ZIPLINE_USED"
+  ],
+  "lines": [],
+  "dependencies": [
+    "FH-X02-PROGRESSION-CORE"
+  ],
+  "commits": 1,
+  "newFiles": [
+    "Ziptide/Assets/Ziptide/Tests/EditMode/ZiplineSignalTests.cs"
+  ],
+  "touchFiles": [
+    "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ZiplineRuntime.cs"
+  ],
+  "touchPatterns": [],
+  "reuse": [
+    "ZiplineRuntime",
+    "ZiplineRide",
+    "PlayerRigPersistence"
+  ],
+  "api": [
+    "Instance RideStarted and RideEnded(reason,progress) adjacent to current logs.",
+    "Completion requires designated line and reason=arrived; release is not success.",
+    "No ride math/speed/rig delta/comfort change."
+  ],
+  "tests": [
+    "start once",
+    "arrival complete",
+    "release not success",
+    "missing rig safe",
+    "no parenting"
+  ],
+  "diagnostics": [
+    "ZIPTIDE: FIRST_HOUR_ZIPLINE matched=<bool> result=<arrived|released>"
+  ],
+  "fallback": [
+    "No subscriber = unchanged; missing designated line logs and leaves beat open."
+  ],
+  "acceptance": {
+    "CI": [
+      "Signal tests green",
+      "Unity compile green",
+      "No ride-math diff"
+    ],
+    "BAKE": [],
+    "DEVICE": [
+      "Comfort unchanged; only full arrival completes"
+    ]
+  },
+  "integrationOwners": [],
+  "supports": []
+}
