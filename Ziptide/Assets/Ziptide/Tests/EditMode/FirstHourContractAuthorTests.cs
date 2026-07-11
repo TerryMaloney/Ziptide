@@ -4,6 +4,7 @@ using System.IO;
 using NUnit.Framework;
 using UnityEngine;
 using Ziptide.Content;
+using Ziptide.Editor.Audit;
 using Ziptide.Editor.Patching;
 
 namespace Ziptide.Tests.EditMode
@@ -151,6 +152,70 @@ namespace Ziptide.Tests.EditMode
                     FirstHourContractAuthor.CanonicalJson(roundTrip));
                 Assert.AreEqual("TRAVEL_W000_TO_W001_COMPLETE", roundTrip.beats[8].completionSignal.id);
                 Assert.AreEqual("TUT_PUNCH_IT", roundTrip.beats[8].rillLine.id);
+            }
+            finally
+            {
+                Object.DestroyImmediate(asset);
+            }
+        }
+
+        [Test]
+        public void Audit_MissingAsset_IsWarningOnlyWithStableCode()
+        {
+            var report = new SceneAuditReport { sceneName = "__FIRST_HOUR__" };
+            FirstHourContractAuditRules.Run(report, null, _valid);
+
+            Assert.AreEqual(0, report.blockerCount);
+            Assert.AreEqual(1, report.warningCount);
+            Assert.AreEqual(FirstHourContractAuditRules.MissingCode, report.findings[0].code);
+        }
+
+        [Test]
+        public void Audit_InvalidSource_IsWarningOnlyWithStableCode()
+        {
+            var report = new SceneAuditReport { sceneName = "__FIRST_HOUR__" };
+            FirstHourContractImportResult invalid = FirstHourContractImportResult.Fail(
+                FirstHourContractAuthor.CodeJsonParse,
+                "test invalid source");
+            FirstHourContractAuditRules.Run(report, null, invalid);
+
+            Assert.AreEqual(0, report.blockerCount);
+            Assert.AreEqual(1, report.warningCount);
+            Assert.AreEqual(FirstHourContractAuditRules.InvalidCode, report.findings[0].code);
+        }
+
+        [Test]
+        public void Audit_DriftedAsset_IsWarningOnlyWithStableCode()
+        {
+            FirstHourContractDefinition asset = ScriptableObject.CreateInstance<FirstHourContractDefinition>();
+            try
+            {
+                asset.ReplaceWith(_valid.data, new string('0', 64));
+                var report = new SceneAuditReport { sceneName = "__FIRST_HOUR__" };
+                FirstHourContractAuditRules.Run(report, asset, _valid);
+
+                Assert.AreEqual(0, report.blockerCount);
+                Assert.AreEqual(1, report.warningCount);
+                Assert.AreEqual(FirstHourContractAuditRules.DriftCode, report.findings[0].code);
+            }
+            finally
+            {
+                Object.DestroyImmediate(asset);
+            }
+        }
+
+        [Test]
+        public void Audit_CurrentAsset_HasNoFindings()
+        {
+            FirstHourContractDefinition asset = ScriptableObject.CreateInstance<FirstHourContractDefinition>();
+            try
+            {
+                asset.ReplaceWith(_valid.data, _sourceHash);
+                var report = new SceneAuditReport { sceneName = "__FIRST_HOUR__" };
+                FirstHourContractAuditRules.Run(report, asset, _valid);
+
+                Assert.AreEqual(0, report.blockerCount);
+                Assert.AreEqual(0, report.warningCount);
             }
             finally
             {
