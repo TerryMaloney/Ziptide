@@ -13,10 +13,8 @@ namespace Ziptide.Gameplay
     /// <see cref="MachineSpawnDefinition"/> pack data — never in scene YAML.
     /// Logs: ZIPTIDE: MACHINE_STAGE id=… stage=… · ZIPTIDE: MACHINE_REPAIRED id=…
     /// </summary>
-    public class RepairableMachine : MonoBehaviour
+    public class RepairableMachine : MonoBehaviour, IScannable
     {
-        private enum Stage { Panel, Part, Power, Running }
-
         private static readonly Color BodyColor = new Color(0.16f, 0.17f, 0.20f);
         private static readonly Color PanelColor = new Color(0.32f, 0.20f, 0.14f); // rusted plate
         private static readonly Color SocketEmpty = new Color(0.55f, 0.25f, 0.20f); // exposed fault
@@ -27,14 +25,25 @@ namespace Ziptide.Gameplay
 
         private MachineSpawnDefinition _def;
         private JobDirector _director;
-        private Stage _stage = Stage.Panel;
+        private RepairStage _stage = RepairStage.Panel;
 
         /// <summary>Stable machine id from pack data (e.g. "gate_coupler"). Null before Init.</summary>
         public string MachineId => _def != null ? _def.machineId : null;
 
+        /// <summary>The single public view of the existing physical repair state.</summary>
+        public RepairStage CurrentStage => _stage;
+
+        /// <summary>Neutral notification emitted after an established physical stage transition.</summary>
+        public event System.Action<RepairStage> StageChanged;
+
         /// <summary>True once the machine hums (panel off → part seated → switch flipped).
         /// Queried by ShipCastOffRuntime's arming gate.</summary>
-        public bool IsRepaired => _stage == Stage.Running;
+        public bool IsRepaired => _stage == RepairStage.Running;
+
+        // IScannable — the same physical machine is the objective; no proxy or second scanner state.
+        public Transform ScanTransform => transform;
+        public ScanKind ScanKind => Ziptide.Gameplay.ScanKind.Objective;
+        public bool ScanActive => _stage != RepairStage.Running;
 
         private Transform _part;
         private Transform _socket;
@@ -155,7 +164,7 @@ namespace Ziptide.Gameplay
         private void Update()
         {
             // Stage 2: seat the part — snaps when it comes near the exposed socket (held or tossed).
-            if (_stage == Stage.Part && _part != null && _socket != null &&
+            if (_stage == RepairStage.Part && _part != null && _socket != null &&
                 Vector3.Distance(_part.position, _socket.position) <= SeatDistance)
             {
                 SeatPart();
@@ -169,8 +178,8 @@ namespace Ziptide.Gameplay
 
         private void OnPanelPulled(GameObject panel, Rigidbody rb)
         {
-            if (_stage != Stage.Panel) return;
-            _stage = Stage.Part;
+            if (_stage != RepairStage.Panel) return;
+            _stage = RepairStage.Part;
             // The plate comes free in the hand; once dropped it's junk with physics.
             rb.isKinematic = false;
             rb.useGravity = true;
@@ -178,11 +187,12 @@ namespace Ziptide.Gameplay
             if (_socket != null) _socket.gameObject.SetActive(true);
             Debug.Log("ZIPTIDE: MACHINE_STAGE id=" + _def.machineId + " stage=panel_off");
             UpdateLabel();
+            PublishStageChanged();
         }
 
         private void SeatPart()
         {
-            _stage = Stage.Power;
+            _stage = RepairStage.Power;
             // Consume the part into the socket. Destroying a selected interactable is the established
             // pattern here (CollectibleRuntime does the same) — XRI unregisters it on destroy.
             Destroy(_part.gameObject);
@@ -190,18 +200,29 @@ namespace Ziptide.Gameplay
             if (_socketRenderer != null) Tint(_socketRenderer, PartColor);
             Debug.Log("ZIPTIDE: MACHINE_STAGE id=" + _def.machineId + " stage=part_seated");
             UpdateLabel();
+            PublishStageChanged();
         }
 
         private void OnSwitchFlipped()
         {
-            if (_stage != Stage.Power) return;
-            _stage = Stage.Running;
+            if (_stage != RepairStage.Power) return;
+            _stage = RepairStage.Running;
             if (_switchRenderer != null) Tint(_switchRenderer, RunningColor);
             if (_statusLamp != null) Tint(_statusLamp, RunningColor);
             if (_director == null) _director = FindObjectOfType<JobDirector>();
             if (_director != null) _director.ReportRepair(_def.machineId);
             Debug.Log("ZIPTIDE: MACHINE_REPAIRED id=" + _def.machineId);
             UpdateLabel();
+            PublishStageChanged();
+        }
+
+        private void PublishStageChanged()
+        {
+            RepairStageSignals.PublishStageSafely(
+                StageChanged,
+                _stage,
+                ex => Debug.LogWarning("ZIPTIDE: REPAIR_STAGE_SUBSCRIBER_FAIL id=" + MachineId +
+                                       " stage=" + _stage + " reason=" + ex.Message));
         }
 
         private void UpdateLabel()
@@ -212,9 +233,9 @@ namespace Ziptide.Gameplay
                 : _def.displayName;
             switch (_stage)
             {
-                case Stage.Panel: _label.text = name + "\n< pull the access panel >"; break;
-                case Stage.Part: _label.text = name + "\n< seat the " + (_def.partItemId ?? "part").Replace('_', ' ') + " >"; break;
-                case Stage.Power: _label.text = name + "\n< flip the power switch >"; break;
+                case RepairStage.Panel: _label.text = name + "\n< pull the access panel >"; break;
+                case RepairStage.Part: _label.text = name + "\n< seat the " + (_def.partItemId ?? "part").Replace('_', ' ') + " >"; break;
+                case RepairStage.Power: _label.text = name + "\n< flip the power switch >"; break;
                 default: _label.text = name + "\nRUNNING"; _label.color = RunningColor; break;
             }
         }
