@@ -3,7 +3,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.UI;
 
@@ -15,16 +14,18 @@ namespace Ziptide.Gameplay.DevTools
     /// jump around on the headset, not just in the editor. Dev-only (compiled out of shipping builds);
     /// self-bootstraps, so no scene setup needed.
     ///
-    /// Summon: both controllers' secondary buttons (Y + B) together, or F2 in the editor.
+    /// Access reserves zero gameplay buttons: F2 in the editor, or the ADB marker-file helper
+    /// (`tools/dev_menu_access.ps1 -Action Open`) on a Quest development build.
     /// v1 is world-level (default spawn); per-marker jumps are in the editor Warp Window already.
     /// </summary>
     public class DevMenu : MonoBehaviour
     {
         private const int PageSize = 6;
+        private const float AccessPollSeconds = 0.25f;
 
         private GameObject _canvasGo;
         private bool _visible;
-        private bool _comboWasDown;
+        private float _nextAccessPollAt;
         private int _page;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
@@ -34,28 +35,30 @@ namespace Ziptide.Gameplay.DevTools
             var go = new GameObject("__DevMenu");
             DontDestroyOnLoad(go);
             go.AddComponent<DevMenu>();
-            Debug.Log("ZIPTIDE: DEV_MENU ready (summon: hold both secondary buttons Y+B, or F2 in editor)");
+#if UNITY_EDITOR
+            Debug.Log("ZIPTIDE: DEV_MENU ready (summon: F2 in editor)");
+#else
+            Debug.Log("ZIPTIDE: DEV_MENU ready (controller-free; use tools/dev_menu_access.ps1 -Action Open)");
+#endif
         }
 
         private void Update()
         {
-            if (SummonEdge()) Toggle();
-        }
-
-        // True on the frame the summon combo is first pressed.
-        private bool SummonEdge()
-        {
 #if UNITY_EDITOR
             var kb = UnityEngine.InputSystem.Keyboard.current;
-            if (kb != null && kb.f2Key.wasPressedThisFrame) return true;
+            if (kb != null && kb.f2Key.wasPressedThisFrame) Toggle();
+#else
+            if (Time.unscaledTime < _nextAccessPollAt) return;
+            _nextAccessPollAt = Time.unscaledTime + AccessPollSeconds;
+
+            if (!DevAccessGate.IsUnlocked)
+            {
+                if (_visible) Hide();
+                return;
+            }
+
+            if (DevAccessGate.TryConsumeOpenRequest()) Show();
 #endif
-            bool ly = false, ry = false;
-            InputDevices.GetDeviceAtXRNode(XRNode.LeftHand).TryGetFeatureValue(CommonUsages.secondaryButton, out ly);
-            InputDevices.GetDeviceAtXRNode(XRNode.RightHand).TryGetFeatureValue(CommonUsages.secondaryButton, out ry);
-            bool combo = ly && ry;
-            bool edge = combo && !_comboWasDown;
-            _comboWasDown = combo;
-            return edge;
         }
 
         public void Toggle()
