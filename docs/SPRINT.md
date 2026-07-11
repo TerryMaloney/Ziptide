@@ -13,7 +13,7 @@
 ## Task board
 | # | Task | Status |
 |---|------|--------|
-| FH-01B | **First-hour binding inventory** — GPT-5.6 claim/log: `docs/GPT_ADDITIONS/2026-07-10_GPT56_FIRST_HOUR/FH01B_IMPLEMENTATION_LOG.md`. Evidence-map all 22 completion signals + all teaching lines to existing files/tokens; classify verified/adapter/content/new-surface/composite. No runtime changes. | 🟡 GPT-5.6 CLAIMED 2026-07-11 |
+| FH-01B | **First-hour binding inventory** — log: `docs/GPT_ADDITIONS/2026-07-10_GPT56_FIRST_HOUR/FH01B_IMPLEMENTATION_LOG.md`. Evidence-map all 22 completion signals + all teaching lines to existing files/tokens; classify verified/adapter/content/new-surface/composite. No runtime changes. | 🟡 IMPLEMENTED — exact GitHub-blob tests PASS; first Actions artifact pending; FILE CLAIM RELEASED |
 | FH-01A | **First-hour beat contract** — log: `docs/GPT_ADDITIONS/2026-07-10_GPT56_FIRST_HOUR/FH01A_IMPLEMENTATION_LOG.md`. `docs/first_hour/*` + report-only Python validator/tests; 22 beats, 15 verbs exactly once, no input lock/rig motion. No runtime bindings in this slice. | 🟡 IMPLEMENTED — local exact-blob tests PASS; first Actions artifact pending; FILE CLAIM RELEASED |
 | P0.1 | **DevMenu click-once fix** — UI-session rebind on Show + `MENU_CLICK`/`MENU_UI` diags | ✅ `e17eff9` CI-green |
 | P0.2 | **DevMenu pager** — 6 worlds/page + PREV/NEXT | ✅ with P0.1 |
@@ -61,7 +61,7 @@
 | D2-6 | Close: closing HANDOFF (nnnn) for Picasso/Architecture — flags this as the first depth-pass touching real code, not just docs | ✅ this commit |
 
 ## ▶ RESUMING? — current state & exact next action
-- **ACTIVE CLAIM (2026-07-11): FH-01B** — GPT-5.6 owns only the new binding inventory/validator/test files and the announced non-blocking report expansion. Resume from `FH01B_IMPLEMENTATION_LOG.md`; do not implement adapters or runtime code under this row.
+- **FH-01B (2026-07-11): IMPLEMENTED, FILE CLAIM RELEASED** — evidence-backed inventory/validator/tests are in the branch; exact committed blobs pass locally. The non-blocking project-contract Actions artifact remains pending. No runtime adapters were added; see `FH01B_IMPLEMENTATION_LOG.md`.
 - **FH-01A (2026-07-10): IMPLEMENTED, FILE CLAIM RELEASED** — first-hour contract/validator/tests are in the branch and exact committed blobs pass locally. The non-blocking project-contract Actions artifact remains pending. Runtime bindings are not part of this row; see `FH01A_IMPLEMENTATION_LOG.md`.
 - **Current:** **P0–P5 of the Quality Bar Program COMPLETE and CI-green** (menu/subtitle/release
   fixes · terrain+vista · POIs+gates · route+dressing · contracts-through-POIs · garden+sockets ·
