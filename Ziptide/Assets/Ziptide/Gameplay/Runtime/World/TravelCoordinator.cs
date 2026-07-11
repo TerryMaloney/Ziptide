@@ -190,8 +190,33 @@ namespace Ziptide.Gameplay
             else
                 InventoryState.SaveBeforeTravel();
 
-            // 2. Load destination scene.
-            SceneManager.LoadScene(sceneName);
+            // 2. Load asynchronously while the existing crest covers vision. Activation stays held
+            //    until Unity has prepared the scene; a 20-second timeout releases the hold so travel
+            //    can never remain wedged behind a load that does not report the normal 0.9 threshold.
+            AsyncOperation loadOperation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
+            if (loadOperation == null)
+            {
+                Debug.LogWarning("ZIPTIDE: TRAVEL_FAIL dest=" + sceneName + " reason=async_load_not_started");
+                _travelling = false;
+                yield break;
+            }
+
+            loadOperation.allowSceneActivation = false;
+            float loadElapsed = 0f;
+            const float loadTimeout = 20f;
+            while (loadOperation.progress < 0.9f && loadElapsed < loadTimeout)
+            {
+                loadElapsed += Time.unscaledDeltaTime;
+                yield return null;
+            }
+
+            if (loadOperation.progress < 0.9f)
+                Debug.LogWarning("ZIPTIDE: TRAVEL_TIMEOUT dest=" + sceneName +
+                                 " elapsed=" + loadElapsed.ToString("F1") +
+                                 " progress=" + loadOperation.progress.ToString("F2"));
+
+            loadOperation.allowSceneActivation = true;
+            while (!loadOperation.isDone) yield return null;
 
             // 3. Wait one frame for the new scene to initialise.
             yield return null;
