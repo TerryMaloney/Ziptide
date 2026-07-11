@@ -1,0 +1,65 @@
+{
+  "id": "FH-S03-TRAVEL",
+  "owner": "story-ship",
+  "kind": "adapter",
+  "risk": "shared-protected",
+  "covers": [
+    "FH_FIRST_ZIPTIDE",
+    "FH_RETURN_TO_SHIP"
+  ],
+  "signals": [
+    "TRAVEL_W000_TO_W001_COMPLETE",
+    "TRAVEL_W001_TO_W000_COMPLETE"
+  ],
+  "lines": [],
+  "dependencies": [
+    "FH-X02-PROGRESSION-CORE"
+  ],
+  "commits": 1,
+  "newFiles": [
+    "Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourTravelSignalTests.cs"
+  ],
+  "touchFiles": [
+    "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs"
+  ],
+  "touchPatterns": [],
+  "reuse": [
+    "TravelCoordinator",
+    "SaveSystem",
+    "InventoryState",
+    "PlayerRigPersistence"
+  ],
+  "api": [
+    "Add TravelCompleted(destination) on the existing owner.",
+    "Invoke once only after existing TRAVEL_OK, XRI readiness and inventory restoration.",
+    "Never emit on duplicate/fallback/failure; no coroutine-order or scene-load change."
+  ],
+  "tests": [
+    "success once",
+    "fail/duplicate none",
+    "W001/W000 exact mapping",
+    "log/order unchanged"
+  ],
+  "diagnostics": [
+    "ZIPTIDE: FIRST_HOUR_TRAVEL dest=<scene> mapped=<first|return|none>"
+  ],
+  "fallback": [
+    "No subscriber = unchanged travel; tutorial waits rather than parsing logs."
+  ],
+  "acceptance": {
+    "CI": [
+      "Signal tests green",
+      "Unity compile green",
+      "No new SceneManager.LoadScene"
+    ],
+    "BAKE": [],
+    "DEVICE": [
+      "Both directions advance after restore and recover from interruption"
+    ]
+  },
+  "integrationOwners": [
+    "architecture"
+  ],
+  "supports": [],
+  "sharedProtocol": "TravelCoordinator protected: announce exact additive callback location and reread latest file."
+}
