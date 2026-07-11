@@ -15,6 +15,7 @@ any LLM: request a change as data, build, gates catch mistakes.
 ## Task board
 | # | Task | Status |
 |---|------|--------|
+| FH-02A | **Continuity manifest + report-only validator** — GPT-5.6 claim/log: `docs/GPT_ADDITIONS/2026-07-10_GPT56_FIRST_HOUR/FH02A_IMPLEMENTATION_LOG.md`. New `docs/continuity/*` + `tools/continuity_gate.py` + stdlib tests; isolated non-blocking CI report job announced. No Unity/runtime behavior and no blocker promotion. | 🟡 GPT-5.6 CLAIMED 2026-07-10 |
 | Q0 | Program docs: ARCHITECTURE_V2 design + this board + HANDOFF (ppp) + PRIORITIES rewrite + tools/*.ps1 ASCII fix (Terry's PS 5.1 parse error) | ✅ `5b5b1b6` |
 | Q1a | **`WorldSpec`** SHIPPED: one serializable class = the whole world (identity/seed · sky/fog/planet · experience terrain+vista · POIs · palette/districts/connections/canals/shipyard · drones/creatures/hazards · collectibles/machines/mines/gardens/sockets · flags · advisory skyVistaId). REUSES the layout/pack [Serializable] classes verbatim — zero mapping drift; JSON round-trip via JsonUtility (enums as ints, tables in WORLD_RECIPE) | ✅ this commit |
 | Q1b | **`WorldSpecValidator`** SHIPPED (pure): stable CODE-token errors — identity/seed, experience bounds, POI count/verbs/spacing/bounds/dup + StoryAnchor-when-flags predicate, district/connection/spawn refs, registry checks (creatures/plants/items; null set = permissive), mine/socket economy sanity. **14 tests** | ✅ this commit |
@@ -35,6 +36,7 @@ any LLM: request a change as data, build, gates catch mistakes.
 | — | Close per phase: CI green → APK dispatch → audit green → runbook rows → HANDOFF | recurring |
 
 ## ▶ RESUMING? — current state & exact next action
+- **ACTIVE CLAIM (2026-07-10): FH-02A** — GPT-5.6 owns only the new continuity manifest/validator/test files and the announced isolated non-blocking CI report job. Resume from `FH02A_IMPLEMENTATION_LOG.md`; do not duplicate this slice.
 - **State (2026-07-03, the LAST Fable architect session):** Q1 + Q2a + H1 buildings + H4 registry +
   H6 takeover kit all shipped; H2/H3/H5 enveloped to T-Dog, Q4b to Picasso (HANDOFF qqq). This
   track's operator is **Opus 4.8 from here** — that is fine by design; read `OPERATOR_START_HERE.md`.
