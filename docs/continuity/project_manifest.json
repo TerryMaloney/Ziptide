@@ -23,7 +23,9 @@
     "docs/SPRINT_ART.md",
     "docs/SPRINT_ARCHITECTURE.md",
     "docs/META_STORE_READINESS.md",
-    "docs/GPT_ADDITIONS/2026-07-10_GPT56_FIRST_HOUR/FIRST_HOUR_VERTICAL_SLICE_MASTER_PLAN.md"
+    "docs/GPT_ADDITIONS/2026-07-10_GPT56_FIRST_HOUR/FIRST_HOUR_VERTICAL_SLICE_MASTER_PLAN.md",
+    "docs/first_hour/first_hour_beats.json",
+    "docs/first_hour/README.md"
   ],
   "sharedPaths": [
     ".github/workflows/ci.yml",
