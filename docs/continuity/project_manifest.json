@@ -29,7 +29,9 @@
     "docs/first_hour/first_hour_bindings.json",
     "docs/first_hour/BINDING_INVENTORY.md",
     "docs/first_hour/adapter_envelopes.json",
-    "docs/first_hour/ADAPTER_ENVELOPES.md"
+    "docs/first_hour/ADAPTER_ENVELOPES.md",
+    "docs/first_hour/opus_launch_manifest.json",
+    "docs/first_hour/OPUS_LAUNCH_KIT.md"
   ],
   "sharedPaths": [
     ".github/workflows/ci.yml",
