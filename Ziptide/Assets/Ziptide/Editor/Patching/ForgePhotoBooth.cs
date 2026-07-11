@@ -93,6 +93,41 @@ namespace Ziptide.Editor.Patching
             }
             foreach (var spec in bodies)
                 yield return (BuildBodySubject(spec.Key, spec.Value()), "body_" + spec.Key);
+
+            // FORGE III F3.3 — WATER: a lit water tile so the ripple normal + specular read is
+            // verifiable before any runtime/device machinery exists (booth-first, like Forge was).
+            yield return (BuildWaterSubject(), "water_tile");
+        }
+
+        /// <summary>A 4×4m water plane under the booth light: the baked ripple normal (swizzled for
+        /// the desktop URP/Lit _BumpMap like the creature-normal path) + high smoothness + a deep
+        /// canal tint. Static frame — it proves the surface SHAPE and gloss; motion/foam land in
+        /// commit 2.</summary>
+        private static GameObject BuildWaterSubject()
+        {
+            const int size = 512;
+            var root = new GameObject("ZiptideWater");
+            var mf = root.AddComponent<MeshFilter>();
+            mf.sharedMesh = Ziptide.Visuals.ZiptideWaterMesh.Build(4f, 4f, 32);
+            var mr = root.AddComponent<MeshRenderer>();
+
+            var px = Ziptide.Visuals.WaterSurface.BakeNormalMap(size, 1.4f);
+            // Desktop URP/Lit unpacks _BumpMap DXT5nm-style (x in A, y in G) — same swizzle the
+            // recipe/creature booth path uses for its canonical RGB normal bake.
+            for (int i = 0; i < px.Length; i++) px[i] = new Color32(255, px[i].g, 255, px[i].r);
+            var normalTex = new Texture2D(size, size, TextureFormat.RGBA32, false, true) { wrapMode = TextureWrapMode.Repeat };
+            normalTex.SetPixels32(px);
+            normalTex.Apply(false, false);
+
+            var m = new Material(Shader.Find("Universal Render Pipeline/Lit")) { name = "BoothWater" };
+            m.SetColor("_BaseColor", new Color(0.06f, 0.16f, 0.18f, 1f)); // deep canal teal
+            m.SetTexture("_BumpMap", normalTex);
+            m.SetFloat("_BumpScale", 1f);
+            m.EnableKeyword("_NORMALMAP");
+            m.SetFloat("_Smoothness", 0.85f); // wet specular is most of the water read
+            m.SetFloat("_Metallic", 0f);
+            mr.sharedMaterial = m;
+            return root;
         }
 
         /// <summary>

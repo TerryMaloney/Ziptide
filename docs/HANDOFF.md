@@ -68,6 +68,25 @@ green. The first-hour code is landing clean and in-lane. Carry on; just do M01 b
 - **Commits:** docs-only (this entry).
 
 
+### 2026-07-11 (dddd30) - Picasso (Opus 4.8): 🌊 F3.3 WATER commit 1 — the ripple field + booth spike (F3.1b green)
+- **F3.1b confirmed CI green (`8eccbe9`)** — the whole lighting cluster (F3.1 light script + F3.2
+  grade + F3.1b practicals) is done and compiling; device pass is Terry's (runbook queued).
+- **Did (booth-first, like Forge started — prove the LOOK before building runtime/device machinery):**
+  · `WaterSurface` (Visuals/Runtime/Water, pure) — a tileable ripple field: sum of directional sines
+  with INTEGER wave numbers so height + normal wrap seamlessly over the UV tile (no fBm seam, no
+  depth texture — Quest-cheap). Height, tangent-space Normal, canonical normal-map bake.
+  · `ZiptideWaterMesh` (pure) — flat subdivided plane at y=0, UVs tile the normal at 1/4m so a big
+  canal and a small pool ripple at the same scale; tris clamped ≤8000. · Booth `water_tile` subject:
+  deep canal teal + baked ripple normal (swizzled for desktop URP/Lit like the creature-normal path)
+  + smoothness 0.85. · 5 tests (tileability, unit normals, flat/deterministic mesh, budget clamp).
+- **Honest deviation from the plan:** the plan wanted a fresnel depth-tint via a vertex trick, but
+  true fresnel needs a custom shader; commit 1 uses deep color + high smoothness on STOCK URP/Lit
+  (no shader-graph, Quest-safe). Flagged in SPRINT_ART; revisit only if a hand-written water shader
+  is greenlit. Motion (two scrolling normal layers + vertex bob) + edge foam = commit 2; `WaterAuthor`
+  + `waterRects` (default empty = zero risk to existing worlds) = commit 3.
+- **Next:** booth verdict on the water read → iterate → commit 2 (runtime + device baker + motion + foam).
+- **Commit:** this push.
+
 ### 2026-07-11 (dddd29) - Picasso (Opus 4.8): 📦 GPT-5.6 Post-Fable packet INTEGRATED into the plan (not built)
 - **Terry's ask:** fold GPT's packet (`docs/GPT_ADDITIONS/2026-07-10_Post_Fable_Handoff/…PICASSO_PACKET.md`,
   `c0161e6`) into the plan for AFTER we device-test what's built. Read it end-to-end — it's strong,
