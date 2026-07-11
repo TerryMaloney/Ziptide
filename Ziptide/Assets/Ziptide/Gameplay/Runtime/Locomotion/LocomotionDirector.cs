@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using Ziptide.Content;
+using Ziptide.Core;
 
 namespace Ziptide.Gameplay
 {
@@ -20,6 +21,7 @@ namespace Ziptide.Gameplay
                 return;
             }
             ApplyProfile(profile);
+            ApplyComfortSettings(ComfortSettings.Resolve(ComfortSettings.CurrentPreset));
         }
 
         public void ApplyProfile(LocomotionProfile p)
@@ -64,6 +66,40 @@ namespace Ziptide.Gameplay
                 dash.ConfigureSprint(p.sprintMultiplier);
                 dash.ConfigureBody(p.crouchSpeedFactor, p.slideBoost, p.slideSeconds, p.autoRunDoubleTapWindow);
                 dash.enabled = p.dashEnabled;
+            }
+        }
+
+        /// <summary>
+        /// Additive device-comfort application. The profile remains the owner of ordinary movement;
+        /// these dials alter only the fields named by the locked preset table. No rig transform moves.
+        /// </summary>
+        public void ApplyComfortSettings(ComfortDialSet settings)
+        {
+            var smoothTurn = GetComponentInChildren<ActionBasedContinuousTurnProvider>(true);
+            var snapTurn = GetComponentInChildren<ActionBasedSnapTurnProvider>(true);
+
+            if (smoothTurn != null)
+            {
+                smoothTurn.turnSpeed = settings.smoothTurnSpeed;
+                smoothTurn.gameObject.SetActive(settings.smoothTurn);
+            }
+            if (snapTurn != null)
+            {
+                snapTurn.turnAmount = settings.snapTurnAngle;
+                snapTurn.gameObject.SetActive(!settings.smoothTurn);
+            }
+
+            var dash = GetComponentInChildren<DashLocomotion>(true);
+            if (dash != null)
+            {
+                // DashLocomotion's compatibility API treats old-asset zero/one values as "missing".
+                // Translate Cozy's semantic OFF to the smallest accepted, effectively neutral slide.
+                float translatedBoost = settings.slideBoost <= 1f ? 1.011f : settings.slideBoost;
+                float translatedSeconds = settings.slideSeconds <= 0f ? 0.051f : settings.slideSeconds;
+                float crouch = profile != null ? profile.crouchSpeedFactor : 0.55f;
+                float tapWindow = profile != null ? profile.autoRunDoubleTapWindow : 0.35f;
+                dash.ConfigureBody(crouch, translatedBoost, translatedSeconds, tapWindow);
+                dash.enabled = settings.dashEnabled;
             }
         }
     }
