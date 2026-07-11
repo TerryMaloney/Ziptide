@@ -130,7 +130,7 @@ namespace Ziptide.Tests.EditMode
             Assert.AreEqual(0d, core.ArrivalElapsedSeconds);
 
             Assert.IsFalse(core.SampleArrival(Forward, 1.5d));
-            Assert.IsFalse(core.SampleArrival(YawForward(-30d), 1.5d));
+            Assert.IsTrue(core.SampleArrival(YawForward(-30d), 1.5d));
             Assert.IsTrue(core.ArrivalComplete);
         }
 
