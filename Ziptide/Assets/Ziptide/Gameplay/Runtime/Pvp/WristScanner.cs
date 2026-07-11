@@ -36,6 +36,12 @@ namespace Ziptide.Gameplay
         private static readonly Color CooldownColor = new Color(1f, 0.55f, 0.15f);
         private static readonly Color EnemyColor = new Color(1f, 0.35f, 0.30f);
 
+        /// <summary>
+        /// Neutral immutable result from each real pulse. Empty pulses publish too. Subscribers cannot
+        /// alter scanner filtering or presentation and are isolated from the pulse path on failure.
+        /// </summary>
+        public static event System.Action<WristScanResult> ScanResultPublished;
+
         private readonly LocatorState _state = new LocatorState();
 
         private Transform _cam;
@@ -181,7 +187,7 @@ namespace Ziptide.Gameplay
 
         private void Pulse()
         {
-            GatherTargets();
+            WristScanResult result = GatherTargets();
 
             // Haptic thump + sonar audio.
             if (_leftInteractor != null) _leftInteractor.SendHapticImpulse(pulseHapticAmp, pulseHapticDur);
@@ -208,21 +214,28 @@ namespace Ziptide.Gameplay
 
             _scanActiveUntil = Time.time + scanDuration;
             Debug.Log("ZIPTIDE: WRIST_SCAN_PULSE targets=" + _targets.Count);
+            Debug.Log("ZIPTIDE: WRIST_SCAN_RESULT count=" + result.Count + " kinds=" + result.KindSummary());
+            WristScanResult.PublishSafely(
+                ScanResultPublished,
+                result,
+                ex => Debug.LogWarning("ZIPTIDE: WRIST_SCAN_SUBSCRIBER_FAIL reason=" + ex.Message));
         }
 
-        private void GatherTargets()
+        private WristScanResult GatherTargets()
         {
             _targets.Clear();
-            if (_cam == null) return;
+            if (_cam == null) return WristScanResult.Empty;
+
+            var candidates = new List<IScannable>();
             var scannables = FindObjectsOfType<MonoBehaviour>();
             foreach (var mb in scannables)
-            {
-                if (mb is IScannable s && s.ScanActive && s.ScanTransform != null)
-                {
-                    if (Vector3.Distance(s.ScanTransform.position, _cam.position) <= scanRange)
-                        _targets.Add(s.ScanTransform);
-                }
-            }
+                if (mb is IScannable scannable)
+                    candidates.Add(scannable);
+
+            WristScanResult result = WristScanResult.Capture(candidates, _cam.position, scanRange);
+            for (int i = 0; i < result.Targets.Count; i++)
+                _targets.Add(result.Targets[i].ScanTransform);
+            return result;
         }
 
         private void UpdateActiveScan()
