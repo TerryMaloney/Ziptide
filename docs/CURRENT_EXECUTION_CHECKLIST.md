@@ -8,7 +8,7 @@
 ## 1. Operating truth
 
 - Branch: `terry-local-wip`.
-- Latest gameplay/quality-code proof: `a6803aba92c8f2e27c3f7f6982be4d5656adab96`, CI run `29168358234`, Unity EditMode green.
+- Latest gameplay/quality-code proof: `d9b6cafbdb0c3663fb20771ee4bc0ece6d145bd8`, CI run `29169591530`, Unity EditMode green.
 - Picasso is the active independent Art/Forge track and owns `Visuals/**`, Forge, water, art authors/audits, and `SPRINT_ART.md`.
 - Architect, T-Dog, and Reasonbox are useful historical workstream names, not exclusive permanent accounts. The official model is one non-art operator plus Terry, while active concurrent claims still control file ownership.
 - Never hand-edit `.unity` or `.prefab` YAML. Write an idempotent author/patcher; Terry runs it and commits generated artifacts.
@@ -41,7 +41,8 @@
 - [x] Implement the locked asynchronous-travel design. **Code/CI green `c7b5d52`, run `29167548682`; device frame-pacing comparison pending.**
 - [x] Add the WARN-only UI readability/reach build audit. **Code/CI green `a6803ab`, run `29168358234`; generated-scene/device calibration pending.**
 - [x] Write `docs/design/HAPTIC_COVERAGE.md` from inspected existing owners. **Documentation-level gap closed; runtime/device coverage remains deliberately open.**
-- [ ] Build the creature behavior-count gate only after mapping the live definition→runtime behavior assignments without touching Picasso creature visuals.
+- [x] Build the canonical creature behavior-readability gate. **Seven shipped IDs, ≥3 active states each, telegraph/counter/resolution, source/factory evidence and APK pre-build blocker; code/CI green `d9b6caf`, run `29169591530`.**
+- [ ] Build plant and vehicle catalog-breadth audits without touching Picasso visual assets.
 - [ ] After each code push, wait for/read `docs/CI_VERDICT.md`; do not stack unverified code.
 - [ ] Continue only with independent CI-quality rows from §7 rather than entering Picasso files or blocked first-hour orchestration.
 
@@ -59,6 +60,7 @@
 - [ ] Async travel: run five representative trips; compare crest/frame hitch, verify spawn/XRI/holstered inventory, and check `TRAVEL_TIMEOUT`.
 - [ ] Inspect the next build log for `ZIPTIDE: UI_AUDIT`; verify W000/Home/comfort/helm labels and targets in-headset before any audit warning is promoted to a blocker.
 - [ ] Use `docs/design/HAPTIC_COVERAGE.md` during the same pass: note whether XRI already pulses on grab/select and which silent P0 verb is most noticeable—holster, release, UI select, repair or zipline.
+- [ ] Sample the seven entries in `docs/design/CREATURE_BEHAVIOR_READABILITY.md`; confirm their state changes are actually recognizable and fairly timed in-headset.
 - [ ] Clear queued one-time authors/rebakes in `docs/TERRY_RUNBOOK.md`, including W002 interiors/WorldSpecs/SpaceLane as applicable.
 - [ ] Build/install the consolidated APK and perform the device checklist; blocker findings reorder all model work.
 - [ ] Start Meta paperwork that does not depend on code: developer app ID, privacy URL, Data Use Checkup, IARC.
@@ -131,7 +133,7 @@
 
 ### Architect-associated systems
 
-**Done:** WorldSpec/validator/compiler, lot/building grammar, enterable building builder, GamePool core, art registry, reachability gates, first-hour contract/progression core, durable CI verdict, async travel code/CI, synchronized project dashboards, WARN-only UI readability/reach build audit, and documentation-level haptic coverage inventory.
+**Done:** WorldSpec/validator/compiler, lot/building grammar, enterable building builder, GamePool core, art registry, reachability gates, first-hour contract/progression core, durable CI verdict, async travel code/CI, synchronized project dashboards, WARN-only UI readability/reach build audit, documentation-level haptic coverage inventory, and canonical creature behavior-readability CI/APK gate.
 
 **Remaining:**
 - [ ] Terry exports/commits `docs/worldspecs/*.spec.json`.
@@ -140,7 +142,7 @@
 - [ ] Async-travel device frame-pacing and restoration verification.
 - [ ] UI audit generated-scene/device calibration; then decide whether any warning can graduate to blocker.
 - [ ] Haptic source/device audit for remaining `❓` owners, then one owner-scoped P0 runtime task—not a broad new system.
-- [ ] Behavior-count and catalog-breadth gates.
+- [ ] Plant and vehicle catalog-breadth gates.
 - [ ] Localization architecture decision before large content scaling.
 
 ### T-Dog-associated integration work
@@ -162,7 +164,7 @@ Take in order unless a live claim or CI result changes it:
 2. [x] Reconcile `SPRINT.md`, `MASTER_CHECKLIST.md`, and `EXCELLENCE_MAP.md` against implementation logs.
 3. [x] UI readability/reach audit — WARN-only build-scene processor + tests green; real-scene/device calibration pending.
 4. [x] Haptic coverage checklist — evidence inventory and implementation order documented; runtime/device rows remain open.
-5. [ ] Creature behavior-count gate: every shipped species maps to at least three readable states.
+5. [x] Creature behavior-count/readability gate — one canonical catalog, source/factory evidence, CI tests and APK blocker green.
 6. [ ] Plant/vehicle catalog breadth audits.
 7. [ ] `AudioDirector` unload/disposal leak hardening if still open after rechecking live code.
 8. [ ] PlayMode scaffold/TravelCoordinator round-trip test only if stable in the existing CI environment.
