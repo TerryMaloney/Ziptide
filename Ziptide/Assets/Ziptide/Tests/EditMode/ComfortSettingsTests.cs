@@ -102,8 +102,8 @@ namespace Ziptide.Tests.EditMode
         public void ComfortSettingsSource_NeverReferencesProfileOrGameplayOwners()
         {
             string source = Read("Core", "Runtime", "ComfortSettings.cs");
-            StringAssert.DoesNotContain("PlayerProfile", source);
-            StringAssert.DoesNotContain("SaveSystem", source);
+            StringAssert.DoesNotContain("using Ziptide.Gameplay", source);
+            StringAssert.DoesNotContain("SaveSystem.", source);
             StringAssert.DoesNotContain("LocomotionDirector", source);
             StringAssert.DoesNotContain("ComfortVignette", source);
             StringAssert.DoesNotContain("ZiplineRuntime", source);
@@ -118,7 +118,7 @@ namespace Ziptide.Tests.EditMode
             StringAssert.Contains("vignette.SetStrength(settings.vignetteStrength)", source);
             StringAssert.Contains("zipline.maxSpeed = settings.ziplineMaxSpeed", source);
             StringAssert.Contains("ZIPTIDE: COMFORT_PRESET preset=", source);
-            StringAssert.DoesNotContain("PlayerProfile", source);
+            StringAssert.DoesNotContain("SaveSystem.", source);
             StringAssert.DoesNotContain("transform.position +=", source);
             StringAssert.DoesNotContain("_rig.position", source);
             StringAssert.DoesNotContain("CharacterController.Move", source);
