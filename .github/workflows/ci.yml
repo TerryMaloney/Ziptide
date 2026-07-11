@@ -15,6 +15,10 @@ on:
       - main
       - 'claude/**'
       - terry-local-wip
+    # The final recorder changes only this file. Excluding it is a second guard
+    # against a write-back loop in addition to GITHUB_TOKEN and [skip ci].
+    paths-ignore:
+      - docs/CI_VERDICT.md
   pull_request:
     branches:
       - main
@@ -203,3 +207,81 @@ jobs:
             docs/AUDIT_REPORT.*
             ${{ env.PROJECT_PATH }}/Builds/Reports/*
           if-no-files-found: warn
+
+  record-verdict:
+    name: Record durable CI verdict (non-blocking)
+    needs:
+      - continuity-report
+      - test
+      - build-android
+    if: >-
+      always() &&
+      (github.event_name == 'push' || github.event_name == 'workflow_dispatch') &&
+      github.ref == 'refs/heads/terry-local-wip'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    continue-on-error: true
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout current branch head
+        uses: actions/checkout@v4
+        with:
+          ref: terry-local-wip
+          fetch-depth: 0
+          lfs: false
+
+      - name: Refuse stale verdict writes
+        id: freshness
+        shell: bash
+        run: |
+          set -euo pipefail
+          tested="${{ github.sha }}"
+          current="$(git rev-parse HEAD)"
+          echo "tested=$tested"
+          echo "current=$current"
+          if [[ "$current" != "$tested" ]]; then
+            echo "write=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::Branch advanced; the newer run owns the durable verdict."
+          else
+            echo "write=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Render verdict file
+        if: steps.freshness.outputs.write == 'true'
+        env:
+          EDITMODE_RESULT: ${{ needs.test.result }}
+          ANDROID_RESULT: ${{ needs.build-android.result }}
+          CONTRACT_RESULT: ${{ needs.continuity-report.result }}
+        run: |
+          python3 tools/ci_verdict.py \
+            --output docs/CI_VERDICT.md \
+            --repository "${{ github.repository }}" \
+            --branch terry-local-wip \
+            --sha "${{ github.sha }}" \
+            --run-id "${{ github.run_id }}" \
+            --run-attempt "${{ github.run_attempt }}" \
+            --run-url "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" \
+            --event-name "${{ github.event_name }}" \
+            --workflow-name "${{ github.workflow }}" \
+            --editmode-result "$EDITMODE_RESULT" \
+            --android-result "$ANDROID_RESULT" \
+            --contract-result "$CONTRACT_RESULT"
+
+      - name: Commit current verdict without forcing
+        if: steps.freshness.outputs.write == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- docs/CI_VERDICT.md; then
+            echo "::notice::Verdict file already matches this run."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/CI_VERDICT.md
+          git commit -m "ci: record verdict for ${GITHUB_SHA:0:7} [skip ci]"
+          if ! git push origin HEAD:terry-local-wip; then
+            echo "::warning::Branch advanced during verdict write; newer CI will record the current head."
+            exit 0
+          fi
