@@ -251,8 +251,8 @@ jobs:
         if: steps.freshness.outputs.write == 'true'
         env:
           EDITMODE_RESULT: ${{ needs.test.result }}
-          ANDROID_RESULT: ${{ needs.build-android.result }}
-          CONTRACT_RESULT: ${{ needs.continuity-report.result }}
+          ANDROID_RESULT: ${{ needs['build-android'].result }}
+          CONTRACT_RESULT: ${{ needs['continuity-report'].result }}
         run: |
           python3 tools/ci_verdict.py \
             --output docs/CI_VERDICT.md \
