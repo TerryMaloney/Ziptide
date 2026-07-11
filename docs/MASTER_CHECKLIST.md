@@ -1,158 +1,156 @@
 # ZIPTIDE — MASTER CHECKLIST
 
-**The one scannable "state of the build" page: what's BUILT, what's NEXT, and where we're HEADED.**
-Skim this first; the deep docs are linked per item.
+**Broad inventory of what exists and where the project is headed.**  
+**Status reconciled:** 2026-07-11
 
-- **How to read status:** ✅ done · 🟢 backend built + CI-green (not yet device-verified / mostly
-  stubbed) · 🟡 in progress · 🔲 planned/stubbed · 🔭 vision.
-- **Most gameplay is "scaffold" quality** — it exists and compiles, but is rough and not all
-  on-device-verified. That's expected; this list tracks reality, not polish.
-- **Related docs:** [`FABLE5_BACKLOG.md`](FABLE5_BACKLOG.md) (the live task queue) ·
-  [`TERRY_RUNBOOK.md`](TERRY_RUNBOOK.md) (what Terry bakes/tests) ·
-  [`ZIPTIDE_MASTER_BUILD_PLAN.md`](ZIPTIDE_MASTER_BUILD_PLAN.md) (deep long-term vision/architecture) ·
-  [`docs/design/SYSTEMS_ARCHITECTURE.md`](design/SYSTEMS_ARCHITECTURE.md) (build order) ·
-  [`docs/systems/`](systems/README.md) (per-system specs).
+> **Current execution truth:** start with [`CURRENT_EXECUTION_CHECKLIST.md`](CURRENT_EXECUTION_CHECKLIST.md).
+> That file carries the live done/next/blocked order and must be updated after meaningful work. This
+> Master Checklist is the broader system inventory. For historical detail, use
+> [`FABLE5_BACKLOG.md`](FABLE5_BACKLOG.md), the four `SPRINT*.md` boards, and `HANDOFF.md`.
 
-> Last updated: 2026-07-01. **🚀 North star: the Ship** (hub + fly-between-worlds) — see LONG-TERM.
-> **🆕 Single-operator setup live:** [`FABLE5_START_HERE.md`](FABLE5_START_HERE.md) (primer) · [`CODE_SCORE.md`](CODE_SCORE.md) (3.5/5) · [`ROLES.md`](ROLES.md) · [`FABLE5_BACKLOG.md`](FABLE5_BACKLOG.md) · [`TERRY_RUNBOOK.md`](TERRY_RUNBOOK.md).
-> **🎮 3 rounds of device-test fixes shipped + CI-green, awaiting headset** (rig anchor/turn/rays/force-grab, stuck-slow, gravity self-hit, bot wall-collision, HUD/wrist/walls, drone feel, legacy-gun snap) — see `HANDOFF.md` uu/vv. Don't re-do; verify on-device.
+- **Status:** ✅ complete/verified · 🟢 code/CI built, device or bake evidence pending · 🟡 actively incomplete · 🔲 planned · 🔭 long-term.
+- **Reality:** much of the game is mechanically substantial but still graybox or awaiting consolidated Quest testing.
+- **North star:** the Ship becomes the persistent home, world selector, travel presentation, progression sink, and bridge between every mode.
+- **Latest gameplay-code proof at reconciliation:** async travel tested green at `c7b5d52`, CI run `29167548682`.
 
----
+## Sources of truth
 
-## ✅ BUILT SO FAR (the foundation)
-
-### Workflow / infrastructure
-- ✅ CI: compiles + runs EditMode tests on every push (`terry-local-wip` green).
-- ✅ **Cloud APK build** — CI builds the real APK (patch + audit) and uploads `ziptide-apk`; sideload, no Unity PC needed.
-- ✅ **Sandbox auto-adds to Build Settings** during the build (no manual step).
-- ✅ Single-operator continuity log ([`HANDOFF.md`](HANDOFF.md)); world-integrity audit (blockers fail the build).
-
-### Core / data / economy (🟢 backend, CI-green, not yet wired into live boot)
-- 🟢 `PlayerProfile` + `ProfileSerializer` + `SaveSystem` (built, **not yet wired** into `_Boot`/world-entry).
-- 🟢 Generic `DefinitionRegistry<T>` + definitions: Resource / Tool / Machine / Plant / Creature / Biome / Recipe / BalanceConfig.
-- 🟢 `IdleEngine` (offline accrual), `EconomyState` (Mine/Plot), `ProfileEconomy` (resolve-on-entry math).
-- 🟢 **Harvest v1**, **Mining/conveyor v1 + idle**, **Garden v1** (plant→tend→grow→harvest) — backend loops, tested.
-- 🟢 **PHYSICAL BELTS complete (hardwiring 4.1a–i, CI-green, awaiting device pass):** hand-placeable
-  lattice (port/source→belt→corner→splitter→sink, deterministic, head-blocking), machine ports (mine
-  ore rides the belt, sink pays the profile), **player factories persist** (`BeltFloorSave` overlay in
-  the profile), **conductor mode** (ride your own line), belt audit gates + budgets, and **belt pads in
-  story worlds** (pack data, auto-derived beside every mine — W002 first).
-
-### Gameplay / VR (🟡 on-device, varying verification)
-- 🟢 VR locomotion (smooth/snap turn, dash/jump), play-area bounds (now opt-in), fall safety + EmergencyRespawn.
-- 🟢 Belt + holsters; **Pistol** (C0); **Taser dart gun**; **Gravity gun** (new, in Sandbox).
-- 🟢 **Drones** (`DroneRuntime` + `IShockable` + `HitZones`): taser shock→zone-based death reactions.
-- 🟢 Scene **travel** (`TravelCoordinator` + `ProximityTravelTrigger`); `PlayerRigPersistence` + inventory across travel.
-- 🟢 **Job system** (JobDirector, DispatchKiosk, ObjectiveBoard, DeliveryCradle); audio system (AudioDirector).
-
-### Worlds & dev tools
-- 🟢 Scenes: `_Boot`, `MilestoneA_GrabCube`, `D0_City` (legacy blockout), `SandboxTestLab`, **`StarterWorld`** (10-zone onboarding graybox), **`ToxicCity`** (new blueprint city), **`PvP_Arena01`**.
-- 🟢 **ToxicCity WORLD BLUEPRINT** — `CityLayoutDefinition` + `CityBuilder` + `ScenePatcherToxicCity`: a data-driven, reusable "clone-a-world" recipe (districts/canals/hero interiors/shipyard). *(T-Dog)*
-- 🟢 **WORLD FACTORY (`WorldStubGenerator` + `WorldLayoutLibrary` + `WorldJobLibrary`)** — any `CityLayoutDefinition` with a `sceneName` auto-becomes a full world (scene + WorldPack + per-world SKY/theme + exit door + spawn + story contract + gating flags + Build Settings), regenerated on **every build** with zero manual steps. *(Fable 5)*
-- 🟢 **ELEVEN STORY WORLDS AUTHORED (W002–W012)** — Chapters 1–2 as a gated, playable graybox arc: distinct biome skies/palettes, walkable loops, contracts+rewards, chapter gating chain live (W004 grants the **first Transmission fragment**; W012 = the Shell reveal). Adding a world = one ~30-line spec. Awaiting APK-audit + device pass. *(Fable 5)*
-- 🟢 **Modularity layer** — `HOW_TO_CHANGE_ANYTHING.md` playbook · per-asset weapon visual tuning · drone difficulty bands (`Resources/Enemies`) · `ShipDefinition` + `SHIPS.md` (ship = mobile travel station, S0–S4 plan) · `SPRINT.md` crash-resume protocol. *(Fable 5)*
-- 🟢 **M1 "THE STORY SPEAKS"** (GAME_PLAN milestone, CI-green) — **RILL companion** on the rig (orb + subtitles; 12 canonical arc beats + Ch.1–2 entry lines, build-authored data) · `SignalState`/`RillState` pure derivations · **physical collectibles** (W002 minerals; **W004's first Transmission fragment is a grabbable object**) with the anti-soft-lock collect bank · **ChoiceStation** branch set-piece + pack validator guards · **de-garble playback console** (tier text through the name moment). Awaiting device pass (runbook §2c). *(Fable 5)*
-- 🟢 **M3 "LIVING WORLDS"** (GAME_PLAN milestone, CI-green) — `CreatureBehavior` framework (creatures hittable by existing weapons via `IPvpDamageable`, non-lethal disables, collision-clean LAW) · all 4 archetypes (Swarmer/Bruiser/WallCrawler/Flyer, telegraphed) · the **Signal-reactive Warden** (lawful warn→pursue, pure-FSM-tested) · 4 novel behaviors (Witness-mite gaze-freeze, Light-grazer, Tether-swarm, Husk-molter) · authored into W002/W005/W009/W012. Awaiting device pass (runbook §2e). *(Fable 5)*
-- 🟢 **M2 "THE JOB IS REAL"** (GAME_PLAN milestone, CI-green) — **hands-on machine repair** (panel → part → power; W002's pump is the first) with the anti-soft-lock repair bank · **biome hazards as layout data** (W003 wind / W005 spore / W010 flood; non-lethal, self-clearing slows) · **visible idle economy** (`MiningRigRuntime` bound to the world's `MineState`; select the hopper to collect). Gear-trio onboarding deferred to W000/M4. Awaiting device pass (runbook §2d). *(Fable 5)*
-- 🟢 **Developer Warp** + **in-VR Dev Menu** (Y+B → warp any world, TMP fixed); Sandbox; scene-dump exporter.
-- 🟢 **W001 story + first contract:** STORY.md beats + `ToxicCity_Contract` job (4 steps) with bounty **reward** (`JobDefinition.reward` + `JobRewards.Grant`, tested) → passage credits. *(Architect)* Runtime grant-hook + ObjectiveBoard/RILL text pending.
+- Current order/status: [`CURRENT_EXECUTION_CHECKLIST.md`](CURRENT_EXECUTION_CHECKLIST.md)
+- Quality state and missing gates: [`EXCELLENCE_MAP.md`](EXCELLENCE_MAP.md)
+- Milestone roadmap M0–M8: [`GAME_PLAN.md`](GAME_PLAN.md)
+- Terry’s batched Unity/headset work: [`TERRY_RUNBOOK.md`](TERRY_RUNBOOK.md)
+- General gameplay/Story/Ship board: [`SPRINT.md`](SPRINT.md)
+- Art/Picasso: [`SPRINT_ART.md`](SPRINT_ART.md)
+- Multiplayer: [`SPRINT_MULTIPLAYER.md`](SPRINT_MULTIPLAYER.md)
+- Architecture history: [`SPRINT_ARCHITECTURE.md`](SPRINT_ARCHITECTURE.md)
+- Deep 80-world vision: [`ZIPTIDE_MASTER_BUILD_PLAN.md`](ZIPTIDE_MASTER_BUILD_PLAN.md)
 
 ---
 
-## ⚔️ PARALLEL TRACK — 1v1 PvP Mode (APPROVED, separate module)
-A brand-new real-time **1v1 PvP** mode, fully separate from single-player. Plan:
-[`design/PVP_1V1_MODE.md`](design/PVP_1V1_MODE.md). Decisions locked: **Photon PUN2** (sideload-friendly,
-room-code invites), **solo-playable first**, **comfort-first gravity gun**. Distinct from Tidefront
-(that's *async* strategy MP; this is *real-time* PvP).
-- 🟢 **Phase 1 backbone BUILT** — `Ziptide.Multiplayer` pure-C# core (`PvpRules`/`PvpMatch`/`PvpCombatant`/
-  `WeaponCharge`) + 14 EditMode tests *(Architect)*.
-- 🟢 **Phase 2 BUILT (solo + bot)** *(T-Dog)* — `PvP_Arena01` + `ScenePatcherPvP`, `PvpPlayer`/`PvpBot`/
-  `PvpMatchDirector`/`PvpHud`, `IPvpDamageable` weapon hits, **all 4 mechanics**: breakable walls +
-  hammer (auto-return), wrist locator (hold→ping/cooldown), comfort gravity hop. Bot = the seam a remote
-  player replaces. *Needs Terry to run `Build PvP Arena` once + on-device feel tuning.*
-- 🔲 **Phase 3 (shared, Terry's PC):** import **Photon PUN2** + `Net/` adapter → 2-headset room-code match (swap bot for remote behind `IPvpDamageable`).
-- 🔲 **Phase 4:** spawn-protection/disconnect/anti-cheat polish + 2nd arena.
+## ✅ FOUNDATION BUILT
+
+### Workflow, safety, and continuity
+
+- ✅ CI compiles and runs Unity EditMode tests on pushes; durable [`CI_VERDICT.md`](CI_VERDICT.md) records the tested SHA.
+- ✅ Cloud APK pipeline, build-time authors/patchers, world audits, performance budgets, wiring guards, and circuit breaker.
+- ✅ Current execution checklist, sprint boards, cross-track handoffs, and Terry runbook preserve continuity across context/model resets.
+- ✅ Atomic profile writes with backup recovery; travel-target pre-flight; runtime frame/memory health logs and cleanup discipline.
+- ✅ No direct scene/prefab YAML workflow: deterministic patchers/authors generate assets and scenes.
+
+### Core data, saves, economy, and factories
+
+- ✅ `PlayerProfile`, serializer, `SaveSystem`, autosave, backup recovery, and explicit New/Continue boot behavior.
+- ✅ Definition registries/factories for resources, tools, machines, plants, creatures, recipes, balance, weapons, ships, and art modules.
+- ✅ One-economy ledger + `RewardRouter`; job, PvP, conquest, salvage, belt, and progression rewards route through common chokepoints.
+- ✅ Offline/world-entry economy resolution, mining, gardens, build sockets, factories, physical belts, blueprint/stamp, conductor riding, and persisted overlays.
+- ✅ WorldSpec/compiler/validator, World Factory, deterministic terrain/POI/scatter/building/interior generation, and audit gates.
+
+### VR player and interaction
+
+- 🟢 Locomotion, snap/smooth turning, dash/jump, climbing, zipline, lift, jump pad, grapple, emergency respawn, and movement-owner suspension patterns; device tuning remains.
+- 🟢 Hands, rays, grab/release rescue, belt/holsters, starter tools/weapons, scanner, haptics in several interactions, and persistent holstered inventory.
+- 🟢 Device-level Cozy/Standard/Bold comfort presets, comfort console, vignette and traversal dials; W000 bake/headset evidence remains.
+- 🟢 Cold-boot Home Hub with New Game, valid-save Continue, and Settings; code/CI green, device evidence pending.
+
+### Travel and ship
+
+- ✅ One travel owner: `TravelCoordinator`; `_Boot` remains persistent and never a destination.
+- ✅ Missing-scene pre-flight aborts before save/rig side effects.
+- ✅ Destination loading is asynchronous behind THE ZIPTIDE crest, activation held until ready, with a 20-second never-wedge escape; code/CI green, device frame-pacing comparison pending.
+- 🟢 Boardable ship, quarters/refit/customization systems, multiple chassis/modules/liveries/journey decals, PUNCH IT presentation and repair gate.
+- 🟢 SpaceLane free flight, reverse/strafe/boost/roll/snap-yaw, ring course, non-lethal ship combat and salvage; first bake/headset tuning pending.
+- 🔲 Ship still needs to become the primary world-select/travel hub across shipped worlds.
+
+### Worlds and story
+
+- ✅ Data-driven terrain, vistas, POIs, routes, dressing, building grammar, furnished/portal-culled interiors, biome hazards, story packs, and gates.
+- 🟢 W000/W001 foundation plus W002–W012 Chapter 1–2 graybox arc generate and audit; consolidated device walk remains.
+- ✅ Story Bible and Transmission canon locked; full 12-chapter/80-world seed catalog and four endings designed.
+- 🟢 RILL/Cal line system, named voices, physical collectibles/fragments, choices, de-garble presentation, repair jobs, visible mining, Signal state, and world story hooks; VO and broader device proof remain.
+- 🟢 Creature framework, four archetypes, Warden, novel behaviors, ecology scheduling, non-lethal combat, forged bodies; species depth/device readability remain uneven.
+
+### Art and audio
+
+- ✅ SkyVista system and canonical sky progression.
+- ✅ Asset Forge pipeline: recipes → meshes/textures/bakes → CI turnarounds → device-ready assignments, with budgets and wiring gates.
+- ✅ FORGE II arsenal, avatar pieces, building kit, flora, and six articulated/textured/breathing creature bodies.
+- 🟢 FORGE III light script, per-world grade, practical fixtures/halos/pools, and water surface/motion/foam proof.
+- 🟡 Picasso’s immediate work: finish runtime/placement water, then the W001 signature-creature passport/review artifacts.
+- 🟢 Procedural biome ambience exists; hazard stingers, adaptive music stems, VO, fuller SFX/VFX, and ducking remain.
+
+### Multiplayer and meta-game
+
+- ✅ PvP pure rules, N-combatant/mode cores, smart bot brain, five data-driven arenas, Gun Game/KotH/Fragment Rush/Horde, arsenal/melee/augments, rewards/unlocks/daily seed.
+- 🟢 Photon presence path and head/hands avatars exist; combat/score sync, proper room-code UX, body/voice and two-headset proof remain.
+- ✅ Tidefront conquest simulation, holo table, AI, builds/attacks, mission modifiers, ground/space defense, saves, fog, hotseat.
+- 🟡 Photon live Tidefront sync remains after the online transport/hardware gate.
 
 ---
 
-## 🔜 SHORT-TERM (now → this device session) — *prove it plays well on the headset*
-- 🟡 **Device test pass (Terry, at the Quest):** run the one-time Unity menus (`Build Toxic City`,
-  `Build Toxic City Contract`, `Build PvP Arena`) → **`Dev → Rebuild Dev World Manifest`** (else new
-  worlds won't show in the Y+B menu) → commit → build & verify: ToxicCity walkable + drones + **bounty pays**,
-  PvP vs bot (4 mechanics), spawn/locomotion fixes.
-- 🟡 **On-device feel tuning** — wrist scanner, hammer swing, gravity hop, gun grip, combat pacing.
-- 🔲 **PvP Phase 3** — import **Photon PUN2** → real 2-player over room code (the `IPvpTransport` seam is ready). *The "play with a friend/the kids" payoff.*
-- 🔲 **W001 polish** — ObjectiveBoard/RILL text so the first contract reads as story, not just steps.
-- 🟢 **Done:** Drone Combat v1 *(T-Dog)*; bounty payout wired (`JobDirector → JobRewards.Grant`, *T-Dog* on my reward system).
+## 🔜 IMMEDIATE — BEFORE / DURING THE NEXT PC AND HEADSET SESSION
 
-## 🟡 MEDIUM-TERM (next few weeks) — *a complete, repeatable single-world loop + tools to scale*
-- 🔲 **Economy live & meaningful** — idle/welcome-back on world entry; make credits matter (spend/upgrade) ([`ProfileEconomy`]).
-- 🔲 **Creatures v1** + **Tools & Repair** + finish the **gear set** (gravity glove, expanded stun dart — scan pulse done).
-- 🔲 **World scaling pipeline** (`WorldStubGenerator`) — worlds become data, not hand-built (ToxicCity blueprint already proves the pattern).
-- 🔲 **Real art swap** — Tripo models replacing graybox (gun, drones, key props) ([`systems/ASSET_SWAP_PIPELINE.md`](systems/ASSET_SWAP_PIPELINE.md)); travel fade + **Alien Origami** kit. **→ M6 now runs as its own parallel track ("Picasso", [`SPRINT_ART.md`](SPRINT_ART.md)) — skyscapes first.**
-- 🔲 **Cloud save / cross-headset progress** (saves are per-headset today).
+### Models can do without Terry
 
-## 🔭 LONG-TERM — 🚀 **THE SHIP IS THE NORTH STAR**
-**Headline goal:** the spaceship is the keystone that turns a set of separate worlds into one connected
-game — the hub, the travel system, the progression sink, and the on-ramp to the whole vision. Almost
-everything already points at it (the shipyard berth + static ship exist in ToxicCity; the bounty earns
-"passage credits" to *undock*; travel/persistence/economy/save are in place; "fly between worlds" is the
-natural upgrade of the travel door).
-- 🔭 **The Ship v1** — board your berthed ship, real **cockpit interior**, and **leave a world by flying
-  out** (replacing the placeholder travel door). The moment ToxicCity becomes "the first stop," not "a level."
-  - 🟢 **P4b free-flight v1 shipped (2026-07-09, Reasonbox):** `FlightModel` + `FlightInputCore` +
-    `FlightCourseCore` + `ShipFlightRuntime` (Ziptide.Ship) — helm seat, world-moves-around-you flight,
-    5-ring trial in `SpaceLane_Trial` (patcher in the runbook; every helm + dev menu list "Flight Trial").
-    PUNCH IT now gated on the coupler repair. Awaiting Terry's bake + headset feel pass.
-- 🔭 **Ship = the hub / world-select** — choose your next planet from the cockpit; the ship *is* the menu between worlds.
-- 🔭 **Ship customization / upgrades** — credits sink that ties the economy together ([`design/SHIP_SYSTEM.md`](design/SHIP_SYSTEM.md)).
+- ✅ Async travel code/CI closed; device comparison queued.
+- ✅ Reconcile current checklist, sprint, Excellence Map, and this Master Checklist.
+- 🔲 Build the UI readability/reach audit.
+- 🔲 Write the haptic coverage checklist, then later add a registry/audit only through an approved task.
+- 🔲 Add behavior-count and plant/vehicle catalog-breadth gates.
+- 🔲 Recheck and harden `AudioDirector` unload/disposal only if live code still shows the leak risk.
 
-Then the ship unlocks the rest of the vision:
-- 🔭 **80-world / 12-chapter campaign** — RILL waking, the Bloom, the Earth/containment reveal. **Story
-  fully designed:** [`storyboard/STORY_BIBLE.md`](storyboard/STORY_BIBLE.md) (locked meta, ⭐ Terry review)
-  + the **identity layer** [`storyboard/THE_TRANSMISSION.md`](storyboard/THE_TRANSMISSION.md) (Cal = the
-  Debugger; the self-message; the trapped partner; ⭐ Terry review)
-  + per-world template + **all-80 seed catalog** (`storyboard/CHAPTER_*.md`) + deep Ch.1 READMEs (W001–W004).
-  Each world ties story → real buildable data (biome/machines/crops/enemies/sky). Canon table:
-  [`ZIPTIDE_MASTER_BUILD_PLAN.md`](ZIPTIDE_MASTER_BUILD_PLAN.md) §12.
-- 🔭 **Tidefront** — the ship's holo-table commanding planets; Risk-style galaxy strategy + MP ([`10_TIDEFRONT.md`](10_TIDEFRONT.md)).
-- 🔭 **Gear/tools idea bank** — non-bullet explorer tech ([`09_GEAR_AND_TOOLS.md`](09_GEAR_AND_TOOLS.md)).
-- 🔭 **Adaptive Audio Layer** — stem-mixing dynamic music (global `ThreatLevel 0→1`, "Halo → Beastie
-  Boys") + Quest **Audio-LOD** diegetic SFX + per-world `PlanetAudioProfile` + stem auto-importer.
-  Evolution of `AudioDirector`; one audio asset per world (fits the World Blueprint). **PLANNED —
-  architecture only, not started** ([`design/ADAPTIVE_AUDIO.md`](design/ADAPTIVE_AUDIO.md)).
+### Picasso when usage returns
+
+- 🔲 Finish FORGE III F3.3 runtime `ZiptideWater` and device normal baker.
+- 🔲 Add `WaterAuthor`/`waterRects`, first in W001 canals and Tidefront.
+- 🔲 Build `FH-A01-SIGNATURE-CREATURE-PRESENTATION`; this unblocks first-hour creature resolution.
+- 🔲 Continue grounding → VFX → reactive props → macro variation/signage → art-conformance ratchet.
+
+### Terry at the PC/headset
+
+- 🔲 Pull `terry-local-wip` and clear the pending block in [`TERRY_RUNBOOK.md`](TERRY_RUNBOOK.md).
+- 🔲 Run `Ziptide → First Hour → Author W000 Surfaces` and commit generated W000.
+- 🔲 Bake/commit SpaceLane, W002 interior/world-spec changes, and other queued authors.
+- 🔲 Install the consolidated APK and run the first-hour, travel, world, flight, vehicle, garden, ecology, PvP and Tidefront device passes.
+- 🔲 Treat blocker findings as the new priority zero.
+- 🔲 Begin Meta app ID/privacy/Data Use/IARC work and decide English-only versus localization seam.
 
 ---
 
-## ⭐ NEXT BIG MILESTONE — Starter World Blockout (onboarding planet)
-*Planned, not started — Terry wants a few short-term items done first.* GPT's 6/18 brief: graybox the
-first real world as a **compact onboarding planet** (10 named regions: Hub → Spaceport/Vehicle Port →
-Toxic City spine → Canals/Slum → Outskirts → Open Badlands → Mission Pocket → Dormant Ziptide gate),
-walkable end-to-end, ~25–35 min, gateway to the multi-world premise. **Don't overbuild** — scale,
-pathing, landmarks, placeholders over final art. Plan: [`design/STARTER_WORLD_BLOCKOUT.md`](design/STARTER_WORLD_BLOCKOUT.md);
-full brief in [`GPT_ADDITIONS/2026-06-18_Starter_World_Blockout/`](GPT_ADDITIONS/2026-06-18_Starter_World_Blockout/01_architect_starter_world_blockout_brief.md).
-- ⚠️ **Lane to reconcile:** the brief says "Architect = blockout," but in our repo scene/blockout is
-  T-Dog's lane (Architect = backend/data, can't Unity-verify). Confirm owner before building.
-- This is the first real user of the **world-scaling pipeline** (mid-term) and refines **Level 1 — Toxic Venice**.
+## 🟡 SHORT TERM — NEXT FEW WEEKS
+
+- 🔲 Picasso FH-A01 → Story/Ship FH-S05 → accumulated bake/device evidence → FH-S08 final W001 orchestration.
+- 🔲 Make W001 and the Chapter 1 band read as a cohesive shipped game: art, water, lighting, VFX, signage, creature identity, story delivery and audio.
+- 🔲 Close UI readability/reach, haptic coverage, weapon feel, space-enemy variety, vehicle garage/catalog, garden breeding/giants, creature behavior breadth.
+- 🔲 Make credits visibly useful across ship upgrades, tools, factories, vehicles and gardens.
+- 🔲 Complete Photon arena combat/score synchronization and two-headset room-code play.
+- 🔲 Run repeated travel/performance/memory soak tests and fix all blocker regressions.
+
+## 🟡 MIDTERM — SYSTEMS AT SCALE
+
+- 🔲 Make the Ship the real hub/world selector and retire placeholder door-first travel on the Chapter 1 worlds.
+- 🔲 Finish VO pipeline, RILL/Transmission recordings, adaptive stems, hazard stingers, SFX/VFX and world-presence layers.
+- 🔲 Expand interiors, creature passports/behaviors, ecology, vehicles, gardens, factory loops, hazards and missions across world archetypes.
+- 🔲 Author W013+ through WorldSpecs only after all required hooks/gates are stable.
+- 🔲 Complete multiplayer polish, avatars/voice, additional arena variety and Tidefront live synchronization.
+
+## 🔭 LONG TERM — COMPLETE AND SHIP
+
+- 🔭 Generate, audit, and device-walk W013–W080 against the locked canon.
+- 🔭 Place all Transmission fragments, branches and four endings; complete full VO/audio/presentation.
+- 🔭 Ship the persistent customizable Ship as home, world selector and progression sink.
+- 🔭 Complete Arena, Photon online and Tidefront programs.
+- 🔭 Performance/accessibility/localization/release-build hardening across all content.
+- 🔭 Meta entitlement/Platform SDK, release keystore, minimal permissions, store captures/trailer/assets, QA matrix and accepted submission.
 
 ---
 
-## 🧪 PARKED IDEAS — explore *after* the full game ships (don't build now)
-Captured so we don't lose them; both depend on the architecture staying clean (data-driven worlds +
-swappable content), which is exactly what we've been building toward.
-- 🧪 **Community World-Builder + World-vs-World tournaments.** Get our world-authoring pipeline
-  (`CityLayoutDefinition`/`WorldPackDefinition`/definitions) into a **player-facing builder**, then let
-  people **battle their world against someone else's, tournament-style**. Big replay loop. *(Leans on the
-  same data pipeline + the PvP/netcode work; post-launch.)*
-- 🧪 **"Adult" content variant (swappable).** Once the base (all-ages, non-lethal) game is complete, a
-  mature variant that swaps the stun/non-lethal layer for brutal/violent content. **Design intent: make
-  it a content swap, not a rewrite** — keep combat effects/gore behind a data/profile layer so it can be
-  dropped in later without touching core systems. *(Validates our "content is data" architecture; post-launch, gated.)*
-- 🧪 **Optical-illusion mechanics** — anamorphic reveals / impossible geometry / illusion-camo enemies for
-  the **Pattern** worlds; the meta payoff = a world only coherent from the Observers' viewpoint. Plan:
-  [`design/OPTICAL_ILLUSIONS.md`](design/OPTICAL_ILLUSIONS.md). *(Comfort-gated, visual-not-vestibular; explore later.)*
+## 🧪 PARKED UNTIL AFTER THE BASE GAME SHIPS
+
+- Community player-facing world builder and world-vs-world tournaments.
+- Mature/adult content variant as a swappable content layer, not a core rewrite.
+- Optical-illusion/Pattern-world mechanics after comfort and visual systems are proven.
+- Ranked seasons/live-ops/cloud economy features that require a backend.
 
 ---
 
-*Keep this current: when something ships, move it up to BUILT with its real verification level. This is
-the quick map; detailed tasks live in WORKLIST/TASK_QUEUE, deep vision in MASTER_BUILD_PLAN.*
+*Update contract: meaningful status changes must update `CURRENT_EXECUTION_CHECKLIST.md`; update this broad inventory when a major system changes state. Preserve older plans and handoffs for evidence rather than deleting history.*
