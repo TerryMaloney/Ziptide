@@ -92,6 +92,10 @@ def render(
             "greenRequires": "Unity EditMode success and Android success when Android ran.",
             "androidSkipped": "Expected for ordinary terry-local-wip push runs.",
             "contractReports": "Informational and non-blocking.",
+            "currentWhen": (
+                "The live branch head is testedSha, or is the direct generated verdict-only "
+                "child of testedSha."
+            ),
         },
     }
     short_sha = sha[:12]
@@ -113,9 +117,10 @@ def render(
         "",
         f"Workflow run: {run_url}",
         "",
-        "This file is written only when the tested SHA is still the current "
-        "`terry-local-wip` head. A stale or racing run is not allowed to overwrite "
-        "a newer verdict.",
+        "The recorder writes only when the tested SHA is the live branch head immediately "
+        "before the generated verdict commit. After a successful write, the live head is the "
+        "direct verdict-only child of `testedSha`. Any later normal commit makes this verdict "
+        "stale until that commit's CI run records its own verdict.",
         "",
     ]
     return "\n".join(lines)
