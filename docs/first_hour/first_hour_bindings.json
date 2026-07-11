@@ -1,0 +1,963 @@
+{
+  "schemaVersion": 1,
+  "inventoryId": "first-hour-bindings-v1",
+  "status": "evidence-audit",
+  "contractPath": "docs/first_hour/first_hour_beats.json",
+  "allowedBindingStatuses": [
+    "verified-existing",
+    "adapter-required",
+    "content-required",
+    "new-surface-required",
+    "composite-required"
+  ],
+  "allowedLineStatuses": [
+    "verified-existing",
+    "reuse-candidate",
+    "content-required"
+  ],
+  "allowedOwners": [
+    "story-ship",
+    "multiplayer",
+    "art",
+    "architecture"
+  ],
+  "bindings": [
+    {
+      "beatId": "FH_BOOT_READY",
+      "signalId": "BOOT_PRESENTATION_READY",
+      "status": "new-surface-required",
+      "owner": "story-ship",
+      "evidence": [
+        {
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/BootLoader.cs",
+          "tokens": [
+            "Debug.Log(\"ZIPTIDE: BOOT_LOAD dest=\" + target);",
+            "TravelCoordinator.TravelTo(target, skipGate: true);"
+          ]
+        }
+      ],
+      "recommendedBinding": "Add the Home Hub/title surface in _Boot and gate BootLoader until title/save selection completes; retain TravelCoordinator as the only scene-change path.",
+      "reuseOwners": [
+        "TravelCoordinator",
+        "BootLoader"
+      ],
+      "doNotDuplicate": [
+        "travel coordinator",
+        "scene loader",
+        "persistent boot singleton"
+      ],
+      "notes": "Current boot immediately travels to W000; there is no finished title-ready state to observe."
+    },
+    {
+      "beatId": "FH_NEW_GAME_SELECTED",
+      "signalId": "NEW_GAME_PROFILE_CREATED",
+      "status": "new-surface-required",
+      "owner": "story-ship",
+      "evidence": [
+        {
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Persistence/SaveSystem.cs",
+          "tokens": [
+            "public PlayerProfile Profile { get; private set; }",
+            "Profile = ProfileSerializer.Deserialize(json);"
+          ]
+        }
+      ],
+      "recommendedBinding": "Add an explicit New Game/profile-reset command at the Home Hub boundary that delegates persistence to SaveSystem/ProfileSerializer.",
+      "reuseOwners": [
+        "SaveSystem",
+        "ProfileSerializer"
+      ],
+      "doNotDuplicate": [
+        "save file writer",
+        "profile serializer",
+        "second profile singleton"
+      ],
+      "notes": "SaveSystem can load/freshen a profile, but no player-facing New Game selection/reset completion surface is present."
+    },
+    {
+      "beatId": "FH_LOOK_AT_RILL",
+      "signalId": "PLAYER_LOOKED_AT_RILL",
+      "status": "adapter-required",
+      "owner": "story-ship",
+      "evidence": [
+        {
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs",
+          "tokens": [
+            "_orb.name = \"__RillOrb\";",
+            "Debug.Log(\"ZIPTIDE: RILL_LINE id=\" + line.id);"
+          ]
+        }
+      ],
+      "recommendedBinding": "A TutorialDirector-owned gaze/dwell observer should target RILL's existing orb and grant the semantic completion; do not move RILL presentation ownership.",
+      "reuseOwners": [
+        "RillCompanion"
+      ],
+      "doNotDuplicate": [
+        "RILL presenter",
+        "subtitle queue",
+        "companion orb"
+      ],
+      "notes": "The visual target exists, but no public looked-at/dwell completion is exposed."
+    },
+    {
+      "beatId": "FH_COMFORT_CONSOLE",
+      "signalId": "COMFORT_PRESET_CONFIRMED",
+      "status": "new-surface-required",
+      "owner": "story-ship",
+      "evidence": [
+        {
+          "path": "Ziptide/Assets/Ziptide/Core/Runtime/ComfortCore.cs",
+          "tokens": [
+            "public static float TargetAperture(float speed01, float turn01, float strength)",
+            "public static float Step(float current, float target, float dt)"
+          ]
+        }
+      ],
+      "recommendedBinding": "Build the diegetic W000 comfort console on top of the locked comfort preset/profile architecture; keep ComfortCore as the one motion-vignette math.",
+      "reuseOwners": [
+        "ComfortCore",
+        "LocomotionDirector"
+      ],
+      "doNotDuplicate": [
+        "comfort math",
+        "locomotion provider",
+        "vignette algorithm"
+      ],
+      "notes": "Comfort mechanics exist, but the first-hour confirmation surface does not."
+    },
+    {
+      "beatId": "FH_MOVE_IN_QUARTERS",
+      "signalId": "PLAYER_MOVED_SAFE_DISTANCE",
+      "status": "adapter-required",
+      "owner": "story-ship",
+      "evidence": [
+        {
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/LocomotionDirector.cs",
+          "tokens": [
+            "public void ApplyProfile(LocomotionProfile p)",
+            "moveProvider.moveSpeed = p.moveSpeed;"
+          ]
+        }
+      ],
+      "recommendedBinding": "Measure XR rig displacement from the beat-open pose inside TutorialDirector; observe only and do not modify LocomotionDirector.",
+      "reuseOwners": [
+        "LocomotionDirector",
+        "PlayerRigPersistence"
+      ],
+      "doNotDuplicate": [
+        "locomotion provider",
+        "rig owner",
+        "movement input"
+      ],
+      "notes": "Movement exists; only a tutorial-safe distance observer is missing."
+    },
+    {
+      "beatId": "FH_GRAB_BUNK_OBJECT",
+      "signalId": "NAMED_BUNK_OBJECT_GRABBED",
+      "status": "composite-required",
+      "owner": "story-ship",
+      "evidence": [
+        {
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/QuartersRoom.cs",
+          "tokens": [
+            "private void BuildGearDisplays()",
+            "grab.enabled = false; // a showcase, not an armory"
+          ]
+        }
+      ],
+      "recommendedBinding": "Author one named grabbable personal object near the bunk and observe its existing XR select event through TutorialDirector.",
+      "reuseOwners": [
+        "XRGrabInteractable",
+        "ItemFactory"
+      ],
+      "doNotDuplicate": [
+        "grab system",
+        "inventory item runtime",
+        "quarters room owner"
+      ],
+      "notes": "Current quarters display gear is deliberately non-grabbable; the named tutorial prop is new content plus a thin observer."
+    },
+    {
+      "beatId": "FH_HOLSTER_FIRST_ITEM",
+      "signalId": "ITEM_HOLSTERED",
+      "status": "adapter-required",
+      "owner": "story-ship",
+      "evidence": [
+        {
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
+          "tokens": [
+            "public class HolsterSocketInteractor : XRSocketInteractor",
+            "public override bool CanSelect(IXRSelectInteractable interactable)"
+          ]
+        },
+        {
+          "path": "Ziptide/Assets/Ziptide/Core/Runtime/ZiptideFlags.cs",
+          "tokens": [
+            "public const string FIRST_HOLSTER           = \"FIRST_HOLSTER\";"
+          ]
+        }
+      ],
+      "recommendedBinding": "Observe HolsterSocketInteractor.selectEntered, set the existing FIRST_HOLSTER flag once, and publish the semantic completion.",
+      "reuseOwners": [
+        "HolsterSocketInteractor",
+        "PlayerProfile",
+        "ZiptideFlags.FIRST_HOLSTER"
+      ],
+      "doNotDuplicate": [
+        "holster socket",
+        "inventory state",
+        "new holster save field"
+      ],
+      "notes": "The accepted-item socket and canonical flag exist, but nothing currently writes or exposes first holster completion."
+    },
+    {
+      "beatId": "FH_INTERACT_HELM",
+      "signalId": "HELM_FIRST_DESTINATION_SELECTED",
+      "status": "new-surface-required",
+      "owner": "story-ship",
+      "evidence": [
+        {
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
+          "tokens": [
+            "[SerializeField] private string targetScene = \"ToxicCity\";",
+            "interactable.selectEntered.AddListener(_ => TryLaunch());"
+          ]
+        }
+      ],
+      "recommendedBinding": "Add the minimal first-destination helm selection surface, then feed its result into the existing cast-off/travel path.",
+      "reuseOwners": [
+        "ShipCastOffRuntime",
+        "TravelCoordinator"
+      ],
+      "doNotDuplicate": [
+        "ship launch sequence",
+        "travel path",
+        "helm destination truth"
+      ],
+      "notes": "The current PUNCH IT console launches a serialized destination directly; it does not expose destination selection."
+    },
+    {
+      "beatId": "FH_FIRST_ZIPTIDE",
+      "signalId": "TRAVEL_W000_TO_W001_COMPLETE",
+      "status": "composite-required",
+      "owner": "story-ship",
+      "evidence": [
+        {
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
+          "tokens": [
+            "Debug.Log(\"ZIPTIDE: FLIGHT_LAUNCH scene=\" + gameObject.scene.name + \" target=\" + targetScene);",
+            "TravelCoordinator.TravelTo(targetScene);"
+          ]
+        },
+        {
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs",
+          "tokens": [
+            "Debug.Log(\"ZIPTIDE: TRAVEL_OK dest=\" + sceneName);"
+          ]
+        }
+      ],
+      "recommendedBinding": "Combine ShipCastOff launch intent with TravelCoordinator's successful W001 completion; set the existing FIRST_TRAVEL flag through the tutorial coordinator.",
+      "reuseOwners": [
+        "ShipCastOffRuntime",
+        "TravelCoordinator",
+        "ZiptideFlags.FIRST_TRAVEL"
+      ],
+      "doNotDuplicate": [
+        "travel coroutine",
+        "gate effect",
+        "launch presentation"
+      ],
+      "notes": "Both halves exist, but no single first-trip semantic completion currently combines them."
+    },
+    {
+      "beatId": "FH_W001_ARRIVAL",
+      "signalId": "W001_ARRIVAL_ORIENTATION_COMPLETE",
+      "status": "adapter-required",
+      "owner": "story-ship",
+      "evidence": [
+        {
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs",
+          "tokens": [
+            "playerRig.TeleportToSpawnMarker();",
+            "Debug.Log(\"ZIPTIDE: TRAVEL_OK dest=\" + sceneName);"
+          ]
+        }
+      ],
+      "recommendedBinding": "Open an orientation dwell after TravelCoordinator reports W001 ready; complete after a short unrestricted observation/proximity condition.",
+      "reuseOwners": [
+        "TravelCoordinator",
+        "PlayerRigPersistence"
+      ],
+      "doNotDuplicate": [
+        "spawn teleport",
+        "scene-ready test",
+        "travel completion"
+      ],
+      "notes": "Arrival is reliable, but the authored quiet-orientation moment needs a thin observer."
+    },
+    {
+      "beatId": "FH_ACCEPT_FIRST_JOB",
+      "signalId": "FIRST_JOB_ACCEPTED",
+      "status": "verified-existing",
+      "owner": "story-ship",
+      "evidence": [
+        {
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
+          "tokens": [
+            "public void StartJobByIndex(int index)",
+            "_runtime.StartJob(worldPack.jobs[index]);"
+          ]
+        },
+        {
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobRuntime.cs",
+          "tokens": [
+            "public event Action StepChanged;",
+            "public JobDefinition Definition { get; private set; }",
+            "StepChanged?.Invoke();"
+          ]
+        }
+      ],
+      "recommendedBinding": "Observe the existing JobRuntime Definition transition/StepChanged after DispatchKiosk calls StartJobByIndex.",
+      "reuseOwners": [
+        "DispatchKiosk",
+        "JobDirector",
+        "JobRuntime"
+      ],
+      "doNotDuplicate": [
+        "job acceptance state",
+        "job runtime",
+        "objective board"
+      ],
+      "notes": "The semantic state is directly observable through current public job state/events."
+    },
+    {
+      "beatId": "FH_SCAN_FAULT",
+      "signalId": "FIRST_MACHINE_FAULT_SCANNED",
+      "status": "composite-required",
+      "owner": "story-ship",
+      "integrationOwners": [
+        "multiplayer"
+      ],
+      "evidence": [
+        {
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/WristScanner.cs",
+          "tokens": [
+            "public class WristScanner : MonoBehaviour",
+            "Debug.Log(\"ZIPTIDE: WRIST_SCAN_PULSE targets=\" + _targets.Count);"
+          ]
+        },
+        {
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
+          "tokens": [
+            "public class RepairableMachine : MonoBehaviour",
+            "public string MachineId => _def != null ? _def.machineId : null;"
+          ]
+        }
+      ],
+      "recommendedBinding": "Reuse WristScanner/IScannable; expose the first repair machine as a scannable objective and publish which target was included in the pulse.",
+      "reuseOwners": [
+        "WristScanner",
+        "IScannable",
+        "RepairableMachine"
+      ],
+      "doNotDuplicate": [
+        "scanner",
+        "radar",
+        "repair machine"
+      ],
+      "notes": "The generalized scanner exists, but current evidence does not show RepairableMachine as scannable or identify which machine a pulse revealed."
+    },
+    {
+      "beatId": "FH_REPAIR_ACCESS",
+      "signalId": "FIRST_MACHINE_ACCESS_OPENED",
+      "status": "adapter-required",
+      "owner": "story-ship",
+      "evidence": [
+        {
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
+          "tokens": [
+            "Debug.Log(\"ZIPTIDE: MACHINE_STAGE id=\" + _def.machineId + \" stage=panel_off\");"
+          ]
+        }
+      ],
+      "recommendedBinding": "Expose a neutral stage-changed event/property from RepairableMachine or attach a small observer to the existing panel select transition.",
+      "reuseOwners": [
+        "RepairableMachine"
+      ],
+      "doNotDuplicate": [
+        "repair state machine",
+        "panel interaction",
+        "machine stage ownership"
+      ],
+      "notes": "The stage exists and is logged, but there is no public stage event."
+    },
+    {
+      "beatId": "FH_REPAIR_PART_SEATED",
+      "signalId": "FIRST_REPAIR_PART_SEATED",
+      "status": "adapter-required",
+      "owner": "story-ship",
+      "evidence": [
+        {
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
+          "tokens": [
+            "Debug.Log(\"ZIPTIDE: MACHINE_STAGE id=\" + _def.machineId + \" stage=part_seated\");"
+          ]
+        }
+      ],
+      "recommendedBinding": "Use the same neutral RepairableMachine stage notification for part-seated completion.",
+      "reuseOwners": [
+        "RepairableMachine"
+      ],
+      "doNotDuplicate": [
+        "part seating logic",
+        "repair state machine",
+        "socket distance check"
+      ],
+      "notes": "The transition exists and is logged, but no public stage event is exposed."
+    },
+    {
+      "beatId": "FH_MACHINE_POWER_CYCLE",
+      "signalId": "FIRST_MACHINE_POWERED",
+      "status": "verified-existing",
+      "owner": "story-ship",
+      "evidence": [
+        {
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
+          "tokens": [
+            "public bool IsRepaired => _stage == Stage.Running;",
+            "if (_director != null) _director.ReportRepair(_def.machineId);",
+            "Debug.Log(\"ZIPTIDE: MACHINE_REPAIRED id=\" + _def.machineId);"
+          ]
+        }
+      ],
+      "recommendedBinding": "Observe IsRepaired or JobRuntime repair progress after the existing switch transition; do not add another powered state.",
+      "reuseOwners": [
+        "RepairableMachine",
+        "JobDirector",
+        "JobRuntime"
+      ],
+      "doNotDuplicate": [
+        "machine running state",
+        "repair completion",
+        "job repair counter"
+      ],
+      "notes": "The completed state is already public and reported to the one job runtime."
+    },
+    {
+      "beatId": "FH_SHOOT_PRACTICE_TARGET",
+      "signalId": "FIRST_PRACTICE_TARGET_HIT",
+      "status": "verified-existing",
+      "owner": "story-ship",
+      "evidence": [
+        {
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Targets/TargetRuntime.cs",
+          "tokens": [
+            "public UnityEvent OnHit = new UnityEvent();",
+            "OnHit?.Invoke();"
+          ]
+        }
+      ],
+      "recommendedBinding": "Bind the designated practice target's existing OnHit event to the first-hour semantic completion.",
+      "reuseOwners": [
+        "TargetRuntime.OnHit"
+      ],
+      "doNotDuplicate": [
+        "target hit detection",
+        "weapon impact path",
+        "practice target state"
+      ],
+      "notes": "A direct public event already exists."
+    },
+    {
+      "beatId": "FH_OBSERVE_SIGNATURE_CREATURE",
+      "signalId": "SIGNATURE_CREATURE_OBSERVED",
+      "status": "composite-required",
+      "owner": "story-ship",
+      "integrationOwners": [
+        "art"
+      ],
+      "evidence": [
+        {
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs",
+          "tokens": [
+            "public class CreatureRuntime : MonoBehaviour",
+            "private void Disable()"
+          ]
+        }
+      ],
+      "recommendedBinding": "Select the signature species/encounter content, then use a TutorialDirector gaze/proximity dwell on the existing CreatureRuntime instance before engagement.",
+      "reuseOwners": [
+        "CreatureRuntime",
+        "campaign creature behavior",
+        "Picasso creature visual"
+      ],
+      "doNotDuplicate": [
+        "creature runtime",
+        "AI target selection",
+        "creature visual owner"
+      ],
+      "notes": "Creature runtime exists, but the signature encounter and safe observation semantic are new authored orchestration."
+    },
+    {
+      "beatId": "FH_COUNTER_SIGNATURE_CREATURE",
+      "signalId": "SIGNATURE_CREATURE_REDIRECTED_OR_DISABLED",
+      "status": "adapter-required",
+      "owner": "story-ship",
+      "evidence": [
+        {
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs",
+          "tokens": [
+            "if (_health <= 0f) Disable();",
+            "Debug.Log(\"ZIPTIDE: CREATURE_DOWN id=\" + creatureId + \" name=\" + gameObject.name);"
+          ]
+        }
+      ],
+      "recommendedBinding": "Expose a neutral non-lethal disabled event from CreatureRuntime and let the encounter coordinator decide whether redirect or disable satisfies the beat.",
+      "reuseOwners": [
+        "CreatureRuntime",
+        "RewardRouter",
+        "EcologyPressureLedger"
+      ],
+      "doNotDuplicate": [
+        "creature health",
+        "disable logic",
+        "loot/ecology consequences"
+      ],
+      "notes": "Disable exists, but it is private and has no public completion event."
+    },
+    {
+      "beatId": "FH_USE_JOB_ZIPLINE",
+      "signalId": "FIRST_JOB_ZIPLINE_USED",
+      "status": "adapter-required",
+      "owner": "story-ship",
+      "evidence": [
+        {
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ZiplineRuntime.cs",
+          "tokens": [
+            "Debug.Log(\"ZIPTIDE: ZIPLINE_RIDE_START\");",
+            "if (_ride.Arrived) EndRide(\"arrived\");"
+          ]
+        }
+      ],
+      "recommendedBinding": "Expose a ride-start/arrived event or attach a thin observer to the designated job zipline.",
+      "reuseOwners": [
+        "ZiplineRuntime",
+        "ZiplineRide"
+      ],
+      "doNotDuplicate": [
+        "zipline movement",
+        "rig delta translation",
+        "ride physics"
+      ],
+      "notes": "Ride semantics exist and are logged, but no public event identifies first successful use."
+    },
+    {
+      "beatId": "FH_FIRST_JOB_REWARD",
+      "signalId": "FIRST_JOB_REWARD_ROUTED",
+      "status": "verified-existing",
+      "owner": "story-ship",
+      "evidence": [
+        {
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobRuntime.cs",
+          "tokens": [
+            "public event Action JobCompleted;"
+          ]
+        },
+        {
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
+          "tokens": [
+            "JobRewards.Grant(_runtime.Definition, profile);",
+            "Debug.Log(\"ZIPTIDE: JOB_REWARD_GRANTED job=\" + _runtime.Definition.jobId);",
+            "int worldFlags = WorldGating.GrantWorldFlags(worldPack, profile);"
+          ]
+        }
+      ],
+      "recommendedBinding": "Observe the existing JobCompleted/OnJobCompleted chokepoint after JobRewards and world flags are granted.",
+      "reuseOwners": [
+        "JobRuntime.JobCompleted",
+        "JobDirector",
+        "JobRewards",
+        "WorldGating"
+      ],
+      "doNotDuplicate": [
+        "reward grant",
+        "job completion",
+        "world flag grant"
+      ],
+      "notes": "The one reward and persistence chokepoint already exists."
+    },
+    {
+      "beatId": "FH_RETURN_TO_SHIP",
+      "signalId": "TRAVEL_W001_TO_W000_COMPLETE",
+      "status": "adapter-required",
+      "owner": "story-ship",
+      "evidence": [
+        {
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs",
+          "tokens": [
+            "Debug.Log(\"ZIPTIDE: TRAVEL_OK dest=\" + sceneName);"
+          ]
+        }
+      ],
+      "recommendedBinding": "Observe TravelCoordinator success with destination W000_DriftIn and set the existing first-return/tutorial progression flags.",
+      "reuseOwners": [
+        "TravelCoordinator",
+        "SaveSystem"
+      ],
+      "doNotDuplicate": [
+        "return travel",
+        "autosave",
+        "inventory restore"
+      ],
+      "notes": "Travel completion exists; a destination-specific semantic adapter is needed."
+    },
+    {
+      "beatId": "FH_CHANGED_SHIP_PAYOFF",
+      "signalId": "FIRST_HOUR_PAYOFF_OBSERVED",
+      "status": "composite-required",
+      "owner": "story-ship",
+      "integrationOwners": [
+        "art"
+      ],
+      "evidence": [
+        {
+          "path": "Ziptide/Assets/Ziptide/Content/Runtime/Ship/ShipLoadoutCore.cs",
+          "tokens": [
+            "(\"W001_COMPLETE\", \"decal_first_contract\")",
+            "public static List<string> FromFlags(ICollection<string> flags)"
+          ]
+        },
+        {
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipRefit.cs",
+          "tokens": [
+            "var earned = ShipJourneyDecals.FromFlags(profile.flags);",
+            "Debug.Log(\"ZIPTIDE: SHIP_DECALS count=\" + earned.Count);"
+          ]
+        }
+      ],
+      "recommendedBinding": "Grant/reuse W001_COMPLETE at job close, reapply ShipRefit on return, then complete after the first-contract decal or another approved visible ship change is present and acknowledged.",
+      "reuseOwners": [
+        "WorldGating",
+        "ShipJourneyDecals",
+        "ShipRefit",
+        "RillCompanion"
+      ],
+      "doNotDuplicate": [
+        "ship progression state",
+        "journey decal mapping",
+        "ship refit"
+      ],
+      "notes": "The saved visible payoff path exists; final observation/presentation still needs coordination."
+    }
+  ],
+  "rillLines": [
+    {
+      "beatId": "FH_LOOK_AT_RILL",
+      "contractLineId": "TUT_LOOK_RILL",
+      "status": "reuse-candidate",
+      "owner": "story-ship",
+      "existingLineId": "enter_w000",
+      "evidence": [
+        {
+          "path": "Ziptide/Assets/Ziptide/Editor/Patching/RillLineAuthor.cs",
+          "tokens": [
+            "Enter(\"enter_w000\", \"W000_DriftIn\","
+          ]
+        },
+        {
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs",
+          "tokens": [
+            "private void EnqueueMatching(RillTrigger trigger, string key)"
+          ]
+        }
+      ],
+      "recommendedBinding": "Reuse or lightly revise enter_w000, but change its opening condition from automatic world-enter to the LOOK beat without creating a second RILL presenter.",
+      "notes": "The text is a strong opening greeting; only trigger timing is wrong for the tutorial contract."
+    },
+    {
+      "beatId": "FH_COMFORT_CONSOLE",
+      "contractLineId": "TUT_COMFORT_CONSOLE",
+      "status": "content-required",
+      "owner": "story-ship",
+      "evidence": [
+        {
+          "path": "Ziptide/Assets/Ziptide/Editor/Patching/RillLineAuthor.cs",
+          "tokens": [
+            "private static List<RillLine> BuildLines()"
+          ]
+        },
+        {
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs",
+          "tokens": [
+            "Debug.Log(\"ZIPTIDE: RILL_LINE id=\" + line.id);"
+          ]
+        }
+      ],
+      "recommendedBinding": "Author one hesitation-only comfort-console line in RillLineAuthor and deliver it through RillCompanion.",
+      "notes": "No matching authored line is currently evidenced."
+    },
+    {
+      "beatId": "FH_MOVE_IN_QUARTERS",
+      "contractLineId": "TUT_MOVE_QUARTERS",
+      "status": "content-required",
+      "owner": "story-ship",
+      "evidence": [
+        {
+          "path": "Ziptide/Assets/Ziptide/Editor/Patching/RillLineAuthor.cs",
+          "tokens": [
+            "private static List<RillLine> BuildLines()"
+          ]
+        }
+      ],
+      "recommendedBinding": "Author one concise movement hesitation line; silent for players who move immediately.",
+      "notes": "No matching authored line is currently evidenced."
+    },
+    {
+      "beatId": "FH_GRAB_BUNK_OBJECT",
+      "contractLineId": "TUT_GRAB_BUNK_OBJECT",
+      "status": "content-required",
+      "owner": "story-ship",
+      "evidence": [
+        {
+          "path": "Ziptide/Assets/Ziptide/Editor/Patching/RillLineAuthor.cs",
+          "tokens": [
+            "private static List<RillLine> BuildLines()"
+          ]
+        }
+      ],
+      "recommendedBinding": "Author a line specific to the named personal object, after the object itself is selected.",
+      "notes": "Content depends on the final bunk object identity."
+    },
+    {
+      "beatId": "FH_HOLSTER_FIRST_ITEM",
+      "contractLineId": "TUT_HOLSTER_ITEM",
+      "status": "reuse-candidate",
+      "owner": "story-ship",
+      "existingLineId": "react_first_release",
+      "evidence": [
+        {
+          "path": "Ziptide/Assets/Ziptide/Editor/Patching/RillLineAuthor.cs",
+          "tokens": [
+            "Flag(\"react_first_release\", ZiptideFlags.FIRST_RELEASE,",
+            "The holster on your hip keeps it with us."
+          ]
+        }
+      ],
+      "recommendedBinding": "Split or reuse react_first_release so the first release can hint at holstering and the actual holster completion does not replay redundant instruction.",
+      "notes": "Existing line explicitly teaches the holster but is triggered by FIRST_RELEASE rather than hesitation."
+    },
+    {
+      "beatId": "FH_INTERACT_HELM",
+      "contractLineId": "TUT_INTERACT_HELM",
+      "status": "content-required",
+      "owner": "story-ship",
+      "evidence": [
+        {
+          "path": "Ziptide/Assets/Ziptide/Editor/Patching/RillLineAuthor.cs",
+          "tokens": [
+            "private static List<RillLine> BuildLines()"
+          ]
+        }
+      ],
+      "recommendedBinding": "Author one hesitation line tied to the first destination tile/helm surface.",
+      "notes": "No matching authored line is currently evidenced."
+    },
+    {
+      "beatId": "FH_FIRST_ZIPTIDE",
+      "contractLineId": "TUT_PUNCH_IT",
+      "status": "reuse-candidate",
+      "owner": "story-ship",
+      "existingLineId": "gate_any_first",
+      "evidence": [
+        {
+          "path": "Ziptide/Assets/Ziptide/Editor/Patching/RillLineAuthor.cs",
+          "tokens": [
+            "Gate(\"gate_any_first\", \"*\", \"Every crossing still feels like the first one. For both of us.\", once: false);"
+          ]
+        },
+        {
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs",
+          "tokens": [
+            "public static void OnGateDeparture(string destSceneName)"
+          ]
+        }
+      ],
+      "recommendedBinding": "Use the existing first-crossing gate line or author a one-shot destination-specific variant; keep RillCompanion.OnGateDeparture.",
+      "notes": "The delivery path and suitable line already exist, but it is currently in a random repeatable pool."
+    },
+    {
+      "beatId": "FH_ACCEPT_FIRST_JOB",
+      "contractLineId": "TUT_ACCEPT_FIRST_JOB",
+      "status": "content-required",
+      "owner": "story-ship",
+      "evidence": [
+        {
+          "path": "Ziptide/Assets/Ziptide/Editor/Patching/RillLineAuthor.cs",
+          "tokens": [
+            "private static List<RillLine> BuildLines()"
+          ]
+        }
+      ],
+      "recommendedBinding": "Author one hesitation line that points to the job board without explaining the whole job system.",
+      "notes": "No matching authored line is currently evidenced."
+    },
+    {
+      "beatId": "FH_SCAN_FAULT",
+      "contractLineId": "TUT_SCAN_FAULT",
+      "status": "content-required",
+      "owner": "story-ship",
+      "evidence": [
+        {
+          "path": "Ziptide/Assets/Ziptide/Editor/Patching/RillLineAuthor.cs",
+          "tokens": [
+            "private static List<RillLine> BuildLines()"
+          ]
+        }
+      ],
+      "recommendedBinding": "Author one scanner-gesture/fault line after the repair machine becomes scannable.",
+      "notes": "No matching authored line is currently evidenced."
+    },
+    {
+      "beatId": "FH_REPAIR_ACCESS",
+      "contractLineId": "TUT_REPAIR_ACCESS",
+      "status": "content-required",
+      "owner": "story-ship",
+      "evidence": [
+        {
+          "path": "Ziptide/Assets/Ziptide/Editor/Patching/RillLineAuthor.cs",
+          "tokens": [
+            "private static List<RillLine> BuildLines()"
+          ]
+        }
+      ],
+      "recommendedBinding": "Author one line that points at the access panel, not a multi-step repair explanation.",
+      "notes": "No matching authored line is currently evidenced."
+    },
+    {
+      "beatId": "FH_SHOOT_PRACTICE_TARGET",
+      "contractLineId": "TUT_SHOOT_PRACTICE",
+      "status": "content-required",
+      "owner": "story-ship",
+      "evidence": [
+        {
+          "path": "Ziptide/Assets/Ziptide/Editor/Patching/RillLineAuthor.cs",
+          "tokens": [
+            "private static List<RillLine> BuildLines()"
+          ]
+        }
+      ],
+      "recommendedBinding": "Author one safe-practice line keyed to the designated target.",
+      "notes": "No matching authored line is currently evidenced."
+    },
+    {
+      "beatId": "FH_OBSERVE_SIGNATURE_CREATURE",
+      "contractLineId": "TUT_OBSERVE_CREATURE",
+      "status": "content-required",
+      "owner": "story-ship",
+      "integrationOwners": [
+        "art"
+      ],
+      "evidence": [
+        {
+          "path": "Ziptide/Assets/Ziptide/Editor/Patching/RillLineAuthor.cs",
+          "tokens": [
+            "private static List<RillLine> BuildLines()"
+          ]
+        }
+      ],
+      "recommendedBinding": "Author after the signature species and tell are locked; the line should encourage observation without naming the solution.",
+      "notes": "Creature-specific content cannot be final before the pilot species/encounter is selected."
+    },
+    {
+      "beatId": "FH_COUNTER_SIGNATURE_CREATURE",
+      "contractLineId": "TUT_COUNTER_CREATURE",
+      "status": "content-required",
+      "owner": "story-ship",
+      "integrationOwners": [
+        "art"
+      ],
+      "evidence": [
+        {
+          "path": "Ziptide/Assets/Ziptide/Editor/Patching/RillLineAuthor.cs",
+          "tokens": [
+            "private static List<RillLine> BuildLines()"
+          ]
+        }
+      ],
+      "recommendedBinding": "Author a hesitation line that reinforces the readable environmental/tool counter without giving a generic combat command.",
+      "notes": "Depends on the approved signature creature counter."
+    },
+    {
+      "beatId": "FH_USE_JOB_ZIPLINE",
+      "contractLineId": "TUT_ZIPLINE",
+      "status": "content-required",
+      "owner": "story-ship",
+      "evidence": [
+        {
+          "path": "Ziptide/Assets/Ziptide/Editor/Patching/RillLineAuthor.cs",
+          "tokens": [
+            "private static List<RillLine> BuildLines()"
+          ]
+        }
+      ],
+      "recommendedBinding": "Author one line for the job-path handle only if the player hesitates.",
+      "notes": "No matching authored line is currently evidenced."
+    },
+    {
+      "beatId": "FH_RETURN_TO_SHIP",
+      "contractLineId": "TUT_RETURN_HOME",
+      "status": "content-required",
+      "owner": "story-ship",
+      "evidence": [
+        {
+          "path": "Ziptide/Assets/Ziptide/Editor/Patching/RillLineAuthor.cs",
+          "tokens": [
+            "private static List<RillLine> BuildLines()"
+          ]
+        }
+      ],
+      "recommendedBinding": "Author the locked save-reassurance line for the first return; deliver via the existing gate/flag line system.",
+      "notes": "Generic crossing lines exist, but the intended first-return reassurance does not."
+    }
+  ],
+  "globalDecisions": [
+    {
+      "id": "tutorial-flag-alias",
+      "decision": "Map FH-01A TUTORIAL_DONE to existing ZiptideFlags.TUTORIAL_COMPLETE unless a deliberate migration changes the canonical constant.",
+      "evidence": [
+        {
+          "path": "Ziptide/Assets/Ziptide/Core/Runtime/ZiptideFlags.cs",
+          "tokens": [
+            "public const string TUTORIAL_COMPLETE       = \"TUTORIAL_COMPLETE\";"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "profile-flags-extension",
+      "decision": "Store tutorial completion/progression in PlayerProfile.flags through SetFlag/HasFlag; do not add a tutorial save schema.",
+      "evidence": [
+        {
+          "path": "Ziptide/Assets/Ziptide/Core/Runtime/Persistence/PlayerProfile.cs",
+          "tokens": [
+            "public void SetFlag(string flag)",
+            "public bool HasFlag(string flag)"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rill-single-owner",
+      "decision": "RillCompanion/RillLineLibrary remain the one line selection, subtitle, once-latch, and VO-fallback path.",
+      "evidence": [
+        {
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs",
+          "tokens": [
+            "private const string SaidFlagPrefix = \"RILL_SAID_\";",
+            "Debug.Log(\"ZIPTIDE: RILL_LINE id=\" + line.id);"
+          ]
+        }
+      ]
+    }
+  ]
+}
