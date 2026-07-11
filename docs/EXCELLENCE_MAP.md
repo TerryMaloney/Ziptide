@@ -14,7 +14,7 @@ mid-level model can act on without judgment calls:
 
 **How to use it (any model, any session):**
 - Before building in an aspect: read its row → its doc → build to the STANDARD → your DoD (below in
-  `OPERATOR_START_HERE.md`) requires the GUARDRAIL to exist or a 🕳️ row to be claimed.
+  `OPERATOR_START_HERE.md`) requires it. The current work order lives in `CURRENT_EXECUTION_CHECKLIST.md`.
 - At chunk close: if you changed an aspect's STATE, update its row. This file is a dashboard, not
   an archive — stale rows are bugs.
 - **The unevenness rule:** if your lane's rows are all 💎 while a neighboring aspect you depend on
@@ -22,7 +22,7 @@ mid-level model can act on without judgment calls:
   "some parts really good and other parts not that great."
 
 Legend: gates live in `Ziptide/Assets/Ziptide/Editor/Audit/*AuditRules.cs` (BLOCK = CI-red) unless
-noted; EditMode tests are gates too. *(Last status reconciliation: 2026-07-11; current task order lives in `CURRENT_EXECUTION_CHECKLIST.md`.)*
+noted; EditMode tests are gates too. *(Last status reconciliation: 2026-07-11.)*
 
 ---
 
@@ -30,107 +30,105 @@ noted; EditMode tests are gates too. *(Last status reconciliation: 2026-07-11; c
 
 | Aspect | State | The standard (checkable) | Guardrail |
 |---|---|---|---|
-| Terrain & biomes | 🧱 v1 (fBM+warp heightfields, biome matrix, 12 worlds) | Every world's ground is distinct at a glance (biome matrix row per world, no two identical seeds); walkable slopes gated; "No Man's Sky bar" = no repeated-feeling worlds | `WorldAuditRunner` + `WorldContentAuditRules`; terrain tests |
-| POIs & world dressing | 🧱 v1 (12 POI verbs, scatter, paths) | ≥12 POI types stamped per the catalog; every POI reachable; streets/interiors carry prop kits, not emptiness | `WorldReachabilityAuditRules` (flood + traversal edges) |
-| Buildings & city | 🧱 v1 (grammar/WFC, kits registering) | Biome→kit/palette mapping for ≥4 kits; no primitive-box fallbacks in shipped worlds (`KIT_FULFILLED`) | `BuildingAuditRules`; registry fallback logs |
-| Interiors | 🧱 v1 (walls+entry `InteriorMeshCore` · furnish `RoomFurnishCore`/`InteriorFurnisher` 16 kinds by room role · per-room portal cull `InteriorVisibilityCore` · caches — 1.3e, needs W002 re-bake 🔧) | Enterable buildings have partitioned, furnished, portal-culled interiors; windows read lit (interior mapping) | `InteriorAuditRules` (gap #4 CLOSED 2026-07-10: connectivity blocker, bare-room blocker, corridor-blocked + portal-half-armed + budget warns) + `InteriorFurnishCoreTests` (10) |
-| Vertical/caverns/traversal | 💎 (zip/climb/lift/pad/grapple + 2 cave worlds) | Every traversal verb usable in ≥1 shipped world; multi-level reachability proven | `WorldReachabilityAuditRules` (one-way edges) + 5 core test suites |
-| Skyscape & atmosphere | 🧱 v1 (layers built, W005 signature, 11 worlds pending verdict) | THE PROSPECT BAR (`systems/SKYSCAPE_DESIGN.md` §5 rubric): something drifting, hazy horizon, occluded body, sky color reaches the ground; tiered (Signature/Standard/Interior) | `SkyVistaAuditRules` + SkyAtmosphere tests + **§5 Signature-rubric gate (`GateGap2_SignatureRubric…` — gap #2 CLOSED 2026-07-10)** |
-| Travel & gates | 💎 code (one `TravelCoordinator`, gated doors, THE ZIPTIDE, missing-scene pre-flight, **async destination load behind the crest**; CI green `c7b5d52`; device frame-pacing check pending) | One travel path, always; story-gated where flagged; every travel target in Build Settings; no frozen-world hitch inside the crest | Locked contract in `CLAUDE.md`; `CrashProofingTests`; `FirstHourTravelSignalTests` pin one fallback sync load + one owned async load, activation hold and timeout |
+| Terrain & biomes | 🧱 v1 (fBM+warp heightfields, biome matrix, 12 worlds) | Every world's ground is distinct at a glance; walkable slopes gated; no repeated-feeling worlds | `WorldAuditRunner` + `WorldContentAuditRules`; terrain tests |
+| POIs & world dressing | 🧱 v1 (POI verbs, scatter, paths) | Every POI reachable; streets/interiors carry prop kits, not emptiness | `WorldReachabilityAuditRules` |
+| Buildings & city | 🧱 v1 (grammar/WFC, kits registering) | Biome→kit/palette mapping; no primitive-box fallbacks in shipped worlds | `BuildingAuditRules`; registry fallback logs |
+| Interiors | 🧱 v1 (partitioned/furnished/per-room portal cull; W002 re-bake pending) | Enterable buildings have connected, furnished, portal-culled interiors | `InteriorAuditRules` + `InteriorFurnishCoreTests` |
+| Vertical/caverns/traversal | 💎 (zip/climb/lift/pad/grapple + cave worlds) | Every traversal verb usable; multi-level reachability proven | reachability one-way edges + traversal test suites |
+| Skyscape & atmosphere | 🧱 v1 (canonical layers, signature worlds pending device verdict) | Prospect bar: drift, hazy horizon, occluded body, sky color reaches ground | `SkyVistaAuditRules` + signature-rubric tests |
+| Travel & gates | 💎 code (one `TravelCoordinator`, gated doors, THE ZIPTIDE, pre-flight, async load behind crest; device frame check pending) | One travel path; all targets valid; no frozen-world hitch inside crest | locked contract; `CrashProofingTests`; `FirstHourTravelSignalTests` |
 
 ## 2 · THE LIVING WORLD
 
 | Aspect | State | The standard | Guardrail |
 |---|---|---|---|
-| Creatures (bodies) | 🧱→💎 in flight (Forge genomes, roster complete, smooth shading landing) | RICHNESS BAR: hero creatures USE their 10k class budget; every creature ≥Forge-genome quality (no primitive stand-ins in shipped worlds); WeakPoint/tell contracts hold | `ForgeAuditRules` + class budgets in `Validate()`; 🕳️ GAP — budget-UTILIZATION floor (warn <30% of class budget on Signature assets) |
-| Creature behavior | 🦴 (~10 base behaviors) | Each species has a movement vocabulary (≥3 states: idle/alert/hunt or flee), reacts to player AND to hazards; ecology (nests/packs/territory) per `CREATURE_ECOLOGY.md` | Behavior tests exist per behavior; 🕳️ GAP — per-species behavior-count check |
-| Gardens | 🧱 v1 (24 species, genetics, watering can) | Genetics affect visible outcomes; every interaction is a HAND verb (pour/tend/prune/harvest); giants/breeding playable | Garden core tests; 🕳️ GAP — plant-catalog breadth audit (all species reachable in shipped worlds) |
-| Automation/belts | 💎 (place/ride/persist/feed/clone; LAW-6 richness pass 2026-07-10) | Belts buildable in any world with a pad; item flow deterministic; conductor mode; blueprint copy/stamp; machinery moves only while ore does | `AutomationAuditRules` (area caps, save identity) + 40 tests |
-| Ambient audio | 🧱 v1 (2026-07-10: procedural biome beds — wind/hum/rumble loops + drip/chirp one-shots, 10 biomes, crossfade on travel) | Every biome has a bed (wind/insects/hum) + hazard stingers; sky tiers get matching air-tone; ducking under VO | `AmbienceTests` incl. **never-silent coverage gate over every shipped scene**; remaining: hazard stingers · music stems (5.5) · VO ducking (post-VO) |
+| Creatures (bodies) | 🧱→💎 in flight (Forge genomes, roster complete) | Hero creatures use their class budget; no primitive stand-ins; tells hold | `ForgeAuditRules` + class budgets; 🕳️ budget-utilization floor |
+| Creature behavior | 🦴 (~10 base behaviors) | Each shipped species has ≥3 readable states and reacts to player/hazards | behavior tests; 🕳️ per-species behavior-count check |
+| Gardens | 🧱 v1 (24 species, genetics, watering) | Genetics visibly matter; interactions are hand verbs; giants/breeding playable | garden tests; 🕳️ plant-catalog breadth audit |
+| Automation/belts | 💎 | Place/ride/persist/feed/clone; deterministic flow; machinery motion follows work | `AutomationAuditRules` + tests |
+| Ambient audio | 🧱 v1 (procedural biome beds) | Every biome has bed + stingers; VO ducking | `AmbienceTests`; remaining stingers/stems/ducking |
 
 ## 3 · THE PLAYER
 
 | Aspect | State | The standard | Guardrail |
 |---|---|---|---|
-| Locomotion & comfort | 🧱 v1.1 (move/snap/vignette + traversal suspension; device-level Cozy/Standard/Bold table and diegetic console code/CI green; W000 bake/device check pending) | Comfort presets player-visible; EVERY artificial motion reports/suspends correctly and never parents the rig; remaining accessibility dials add seated/subtitle-size/handedness/haptic scale without a second locomotion owner | Locked contract; per-verb tests; `ComfortSettingsTests` + `ComfortCoverageTests`; device gate remains open |
-| Hands & interaction | 💎 (grab/holster/belt/tools; collider-first law) | Everything interactive answers to hands within 1.6m reach idioms; collider BEFORE interactable everywhere | `VR_RIG_GOTCHAS.md` law; wiring tests |
-| Weapons & combat feel | 🧱 v1 (guns/melee/taser unified onto one damage scale) | ADS/reload/haptics per `ABILITIES_AND_ARSENAL.md`; every weapon distinct in hand (cadence/recoil/sound), not stat-only | Combat core tests + damage-scale migration guard; 🕳️ GAP — weapon-feel checklist rows (4.4) |
-| Abilities/augments | 🧱 v1 (6 augments live) | Full A4.5–A4.7 set incl. dual-wield when charge economy exists; every augment has visible state (orb brightness idiom) | Augment tests + WiringValidator (author build-hook) |
-| Player progression/saves | 💎 (profile, autosave, ledger economy, conquest/belt overlays; **ATOMIC writes + .bak recovery 2026-07-10** — a mid-write battery death can no longer wipe progress) | NOTHING the player builds/earns is lost on quit OR on a crash mid-save — every new system ships WITH its save story (the overlay idiom) | `ProfileSerializer` tests + save round-trips + `CrashProofingTests` corrupt-and-recover gate; `EconomyAuditRules` |
-| UI/UX & menus | 🧱 v1 code (dev menu/boards + cold-boot Home Hub with New/valid-Continue/Settings and comfort surface; W000 bake/device check pending) | Diegetic-first ship-hub law; readable at arm's length; save-slot richness and all interactive reach distances consistent | `HomeHubFlowTests`; 🕳️ GAP — UI readability/reach audit and richer save-slot presentation |
+| Locomotion & comfort | 🧱 v1.1 (move/snap/vignette; Cozy/Standard/Bold and console code-green; device pending) | Player-visible presets; every artificial motion reports/suspends correctly and never parents rig | locked contract; traversal tests; `ComfortSettingsTests` + `ComfortCoverageTests` |
+| Hands & interaction | 💎 (grab/holster/belt/tools; collider-first) | Everything interactive answers within reach; collider before interactable | `VR_RIG_GOTCHAS.md`; wiring tests |
+| Weapons & combat feel | 🧱 v1 (unified non-lethal scale) | Every weapon distinct in hand, cadence, recoil, sound and tactile response | combat tests; 🕳️ weapon-feel/device rows |
+| Abilities/augments | 🧱 v1 (6 live) | Full set; visible state; bot/human symmetry where applicable | augment tests + WiringValidator |
+| Player progression/saves | 💎 (atomic profile + backups, overlays, one economy) | Nothing earned/built lost on quit or interrupted save | serializer/round-trip/crash recovery/economy gates |
+| UI/UX & menus | 🧱 v1 code (Home Hub, boards, comfort, diegetic surfaces; bake/device pending) | Diegetic-first; readable at arm's length; usable target faces; consistent save presentation | `HomeHubFlowTests`; **`UiReadabilityAuditRules` + tests/build WARN processor**; device calibration pending; richer save slots remain |
 
 ## 4 · THE SHIP & VEHICLES
 
 | Aspect | State | The standard | Guardrail |
 |---|---|---|---|
-| Ship customization | 💎 (6 chassis, 10 modules, refit, liveries, journey decals, hums) | Loadout visibly changes the SHIP (silhouette/sound) and the FLIGHT (FlightModel feed — landed rb v1.3) | ShipLoadout/Locker tests; wrap-invariance by construction |
-| Flight | 💎 v1.3 (6DOF, comfort, Xbox parity, loadout feed) | Fortnite-smooth bar; cockpit reference frame; reverse/boost/roll vocabulary; never parent the rig | Flight core tests; comfort law |
-| Space combat | 🧱 v1 (stun bolts, disable+salvage) | Non-lethal law absolute (nothing explodes); enemy VARIETY (bot profiles in 3D); salvage pays through the one economy | Space combat tests; `EconomyAuditRules`; 🕳️ GAP — enemy-ship variety row (3.1 continues) |
-| Vehicles | 🧱 v1 (3 rides, mount/drive/dismount) | Ground sibling of the ship: shares Forge, wraps, comfort, seat/mount; a garage surface | Vehicle tests (rb 3.2a); 🕳️ GAP — vehicle catalog breadth + garage |
+| Ship customization | 💎 (chassis/modules/refit/liveries/decals/hums) | Loadout visibly changes ship and flight | ShipLoadout/Locker tests |
+| Flight | 💎 v1.3 | Cockpit reference; full arcade vocabulary; never parent rig | flight tests + comfort law |
+| Space combat | 🧱 v1 (stun, disable, salvage) | Non-lethal; varied enemy ships; economy payout | combat/economy tests; 🕳️ enemy variety |
+| Vehicles | 🧱 v1 (3 rides) | Shares Forge/comfort/mount patterns; garage surface | vehicle tests; 🕳️ catalog breadth + garage |
 
 ## 5 · STORY & CHARACTERS
 
 | Aspect | State | The standard | Guardrail |
 |---|---|---|---|
-| Narrative spine | 💎 (bible locked, 12 chapters tightened, continuity audited) | Movie-tight: every beat set up + paid off; subtext rule (surface topic ≠ real thing said); the 4 endings distinct | Continuity-audit appendix; canon tests (`SkyVistaTests` pin canon arcs; RILL line tests) |
-| Character voices | 💎 (RILL/Cal/Mara/Sable/Nine voiced, speaker field) | No faction mouthpieces; every named character passes the "could you tell who said it with the name removed" test | Voice-guide in STORY_BIBLE §3b; `VOICE_PIPELINE.md`; line tests |
-| Story delivery in-game | 🦴 (flag lines + gate lines wired; beats for built worlds only) | Every shipped world carries its storyboard beats (jobs, RILL lines, choice stations); endings wired | 🕳️ GAP — per-world story-beat coverage audit (board 5.4) |
-| VO & subtitles | 🦴 (subtitle system solid; no VO) | VO pipeline per `VOICE_PIPELINE.md`; subtitles readable law | Subtitle tests; VO unbuilt (5.5) |
+| Narrative spine | 💎 | Movie-tight setup/payoff; four distinct endings | canon/continuity tests |
+| Character voices | 💎 (RILL/Cal/Mara/Sable/Nine) | No faction mouthpieces; identifiable without names | voice guide + line tests |
+| Story delivery in-game | 🦴 (built-world beats) | Every shipped world carries jobs/lines/choices; endings wired | story-beat coverage baseline; extend with per-world line query |
+| VO & subtitles | 🦴 (subtitle system, no VO) | Full voice pipeline; readable subtitles | subtitle tests; VO unbuilt |
 
 ## 6 · MULTIPLAYER & META-GAME
 
 | Aspect | State | The standard | Guardrail |
 |---|---|---|---|
-| PvP arena | 🧱 v1 (1v1, bots, melee pack, locator) | Full MP100 ladder items; bot/human symmetry (bots use what players use) | PvP rules tests; MP100 board |
-| Tidefront conquest | 💎 (sim→table→5 mission verbs→save→fog→rack→hotseat) | Deterministic resolve law (seed = replay); full catalog surfaced; every remaining seam named on boards | 18+ sim tests + mission catalog-span test + save round-trips |
-| Online sync | 🦴 (Photon presence seam; A6 parked on hardware) | Actions-only sync over the deterministic resolver; host-authoritative combat | Transport seam tests; A6 gate = two headsets |
-| Economy (one economy) | 💎 (ledger, RewardRouter, flow reports) | EVERY payout routes through RewardRouter — no side-channel grants, ever | `EconomyAuditRules` (BLOCK on side-channel) |
+| PvP arena | 🧱 v1 | Full MP100 ladder; bot/human symmetry | PvP tests + MP100 board |
+| Tidefront conquest | 💎 | Deterministic complete war, missions affect outcomes | sim/catalog/save tests |
+| Online sync | 🦴 (Photon presence) | Host-authoritative combat/actions; two-headset proof | transport tests; hardware gate |
+| Economy | 💎 | Every payout through RewardRouter | `EconomyAuditRules` |
 
-## 7 · ENGINE, PIPELINE & QUALITY (the meta of the meta)
+## 7 · ENGINE, PIPELINE & QUALITY
 
 | Aspect | State | The standard | Guardrail |
 |---|---|---|---|
-| Performance budgets | 🧱 (budgets + caps for lights/renderers/tris per class) | Every NEW content type gets a cap + audit rule the same commit it's introduced (law) | `PerfBudgetAuditRules`; 0.6 standing rule |
-| Art pipeline (Forge) | 💎 (ops, modifiers, budgets, photo loop, tell bridge) | All shipped look comes through Forge/registry ids (no ad-hoc meshes); photo-critique loop for hero assets | `ForgeAuditRules` + library tests + WiringValidator |
-| Wiring integrity | 💎 | Every author/ensure system is build-hooked (both sides or CI-red) | `WiringValidatorTests` (the gate that caught AugmentAuthor) |
-| Save integrity | 💎 | Overlay idiom everywhere; neutral default = pre-feature behavior exactly; unknown records skip | Per-system round-trip tests (belt/conquest/profile) |
-| CI & verification | 💎 (compile+tests+audits per push; circuit breaker) | CI green per push; red = warn Terry loudly + stop C#; 3 reds = stop | THE LAWS 4–5 |
-| Runtime health (frames & memory) | 🧱 v1 (FrameStats, memory census, travel janitor; async travel now code-green) | 1%-low ≥60fps in every world; memory census flat across 10 travels; crest hides preparation without a frozen-world hitch; runtime resources clean up | `ResourceDisciplineTests` + `HEALTH/HEALTH_SWEEP`; async travel device comparison pending |
-| Localization readiness | ⬜ **DECISION NEEDED** | Every player-facing string reaches the eye through ONE seam, or launch is explicitly English-only | 🕳️ GAP — Terry decides before M5 scales content; no code moves until he calls it |
-| Docs & blackboard | 🧱 v1.1 (`CURRENT_EXECUTION_CHECKLIST.md` added 2026-07-11) | Current checklist points to historical boards; HANDOFF/runbook evidence stays honest | `GateGap5_NoBoardClaim_RotsSilently`; session-zero law |
-| Onboarding/tutorial | 🧱 in flight (design locked; FH-X01/X02, S01–S04, S06 and S07 code/CI green; FH-A01/S05/S08 remain) | A cold player learns the complete W000→W001 river through moments; hints only on hesitation; veterans never nagged | first-hour envelope/contract gates + implementation tests; final bake/device gate remains open |
-| Accessibility | 🦴→🧱 in flight (`COMFORT_AND_ACCESSIBILITY.md` locked; device-level presets and console built) | Comfort presets + subtitle size + seated/handedness/haptic scale + colorblind-safe palettes | `ComfortSettingsTests`/`ComfortCoverageTests`; 🕳️ remaining implementation/coverage for non-preset dials |
-| Haptics | 🦴 (belt clicks, scattered) | Every hand verb has a haptic signature (grab/fire/climb-grip/zip/belt-lip) | 🕳️ GAP — no haptic coverage checklist |
+| Performance budgets | 🧱 | Every new content type gets cap + audit | `PerfBudgetAuditRules` |
+| Art pipeline (Forge) | 💎 | All shipped look traced to Forge/registry; hero photo loop | Forge/audit/library/wiring tests |
+| Wiring integrity | 💎 | Producer + consumer + verifier + map row | `WiringValidatorTests` |
+| Save integrity | 💎 | Overlay idiom; neutral old-save defaults | per-system round trips |
+| CI & verification | 💎 | Green per push; red stops code; 3-red breaker | operating laws + durable verdict |
+| Runtime health | 🧱 v1 (vitals, census, janitor, async travel) | 1%-low ≥60; memory flat over travel soak; resources clean | health/resource tests + device soak |
+| Localization readiness | ⬜ decision needed | One text seam or explicitly English-only launch | 🕳️ Terry decision before M5 scale |
+| Docs & blackboard | 🧱 v1.1 | Current checklist routes to detailed/history boards | staleness/session-zero gates |
+| Onboarding/tutorial | 🧱 in flight (most adapters + W000 surfaces code-green; A01/S05/S08 remain) | Cold player learns W000→W001 through moments; hesitation-only hints | first-hour contracts/tests + bake/device gate |
+| Accessibility | 🦴→🧱 in flight | Presets + subtitle size + seated/handedness/haptic scale + color-safe palettes | preset tests; remaining non-preset implementation rows |
+| Haptics | 🦴 inventory complete (scanner explicit; inspected first-hour owners mapped) | Every hand/body verb has a distinct, bounded, correct-hand signature with no duplicate XRI pulse | **`docs/design/HAPTIC_COVERAGE.md` closes the doc-level gap**; runtime/source/device rows remain; no registry exists |
 
 ---
 
-## 8 · SHIP & STORE (the last mile — see `META_STORE_READINESS.md` for the full checklist)
+## 8 · SHIP & STORE
 
 | Aspect | State | The standard | Guardrail |
 |---|---|---|---|
-| Meta Store readiness | 🦴 (checklist doc'd 2026-07-10; nothing submitted) | Every box in `META_STORE_READINESS.md` checked; App Lab VRC pre-scan clean | 🕳️ GAP — the doc IS the gate for now; §2 paperwork is Terry's, startable NOW |
-| Entitlement + Platform SDK | ⬜ | Entitlement check in first seconds of boot (Meta rejects without it) | 🕳️ GAP — needs App ID from dashboard first |
-| Release build hygiene | ⬜ | Release keystore (owned + backed up); DevMenu/diagnostics build-flagged OFF; minimal manifest permissions | 🕳️ GAP — build-flag audit is board-row sized |
-| Onboarding/tutorial | 🧱 in flight (design + contract/progression + most owner adapters green; W000 surfaces code-green) | Cold player completes W000–W001 unaided; hints only on hesitation; return payoff persists | first-hour contract/envelope tests; FH-A01→S05→S08 and Terry bake/device evidence remain |
-| Comfort rating | 🧱 code (Cozy/Standard/Bold console; Standard default; device-level persistence) | Presets ship, apply honestly, and support the claimed rating | literal preset tests green; W000 bake/headset comfort gate pending |
-| Store assets (icon/trailer/screens) | ⬜ | Meta's exact sizes; in-headset captures | Picasso's lane when visuals land |
+| Meta Store readiness | 🦴 (checklist; nothing submitted) | Every store box checked; dry-run clean | store checklist; Terry paperwork |
+| Entitlement + Platform SDK | ⬜ | Entitlement check at boot | 🕳️ requires App ID |
+| Release build hygiene | ⬜ | Keystore backed up; DevMenu/diagnostics off; minimal permissions | 🕳️ build-flag audit |
+| Onboarding/tutorial | 🧱 in flight | Cold player completes W000–W001 unaided; return payoff persists | first-hour gates; A01→S05→S08 + device evidence |
+| Comfort rating | 🧱 code | Presets honestly support rating | literal tests + headset check |
+| Store assets | ⬜ | Correct icon/trailer/screens | Picasso after visuals land |
 
-## THE GATE-GAP QUEUE (claimable, in rough value order)
-Each 🕳️ above, as one board-row-sized task. Claiming one = add the audit/checklist + a HANDOFF note.
-1. **Budget-utilization floor** (Forge `Validate()` WARN when a Signature-tier asset uses <30% of its
-   class budget) — the direct enforcement of Terry's "10k budget, built with 1k" complaint. *(Picasso's
-   file — coordinate.)*
-2. ~~Skyscape §5-rubric audit~~ — **CLOSED 2026-07-10** (Signature tier gated in `SkyAtmosphereTests`; extend to Standard tier when the rollout lands).
-3. ~~Story-beat coverage~~ — **CLOSED 2026-07-10** (`GateGap3_EveryStoryWorld_CarriesAuthoredBeats`; ToxicCity documented as legacy-builder-covered; extend to RILL-line coverage when the line registry grows a per-world query).
-4. ~~Interior audit~~ — **CLOSED 2026-07-10** (`InteriorAuditRules`: plan-connectivity + bare-room blockers, corridor-blocked/portal-half-armed/renderer-budget warns; pre-1.3e bakes exempt until the W002 re-bake).
-5. ~~Board-staleness flag~~ — **CLOSED 2026-07-10** (`GateGap5_NoBoardClaim_RotsSilently`: dated 🟡 claims older than 14 days fail CI — finish, re-date, or release the row).
-6. **UI readability audit** — TextMesh sizing law + reach distances on interactive tiles.
-7. **Haptic coverage checklist** — doc-level first; audit when a haptic registry exists.
-8. ~~Accessibility design doc~~ — **CLOSED 2026-07-10**; remaining non-preset controls are implementation rows.
+## THE GATE-GAP QUEUE
+
+1. **Budget-utilization floor** — Picasso coordination.
+2. ~~Skyscape signature rubric~~ — CLOSED 2026-07-10.
+3. ~~Story-beat coverage baseline~~ — CLOSED 2026-07-10.
+4. ~~Interior audit~~ — CLOSED 2026-07-10.
+5. ~~Board-staleness flag~~ — CLOSED 2026-07-10.
+6. ~~UI readability/reach audit~~ — **CLOSED at WARN-only maturity 2026-07-11** (`UiReadabilityAuditRules` + tests/build processor); generated-scene/device calibration precedes any blocker promotion.
+7. ~~Haptic coverage checklist~~ — **CLOSED at documentation level 2026-07-11** (`design/HAPTIC_COVERAGE.md`); runtime owner rows remain individually open.
+8. ~~Accessibility design doc~~ — CLOSED 2026-07-10; non-preset controls remain implementation rows.
 9. **Behavior-count check** — every shipped creature id maps to ≥3 behavior states.
-10. **Plant/vehicle catalog breadth** — same shape as the mission catalog-span test that already exists.
+10. **Plant/vehicle catalog breadth** — same shape as existing catalog-span tests.
 
-## THE UNIFORMITY REVIEW (standing, once per operator "era")
-When a new model takes over (or monthly): walk this map top to bottom and re-mark every STATE
-honestly. The output is not a report — it's the next 3 board rows per lane, picked to RAISE THE
-FLOOR (the worst rows), not the ceiling. Excellence here means *even*, then *high*.
+## THE UNIFORMITY REVIEW
+
+When a new model takes over—or monthly—walk this map top to bottom and honestly re-mark every state.
+Choose the next three rows per lane to raise the floor, not merely polish the strongest system.
