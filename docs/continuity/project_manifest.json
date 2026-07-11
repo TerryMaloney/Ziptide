@@ -27,7 +27,9 @@
     "docs/first_hour/first_hour_beats.json",
     "docs/first_hour/README.md",
     "docs/first_hour/first_hour_bindings.json",
-    "docs/first_hour/BINDING_INVENTORY.md"
+    "docs/first_hour/BINDING_INVENTORY.md",
+    "docs/first_hour/adapter_envelopes.json",
+    "docs/first_hour/ADAPTER_ENVELOPES.md"
   ],
   "sharedPaths": [
     ".github/workflows/ci.yml",
