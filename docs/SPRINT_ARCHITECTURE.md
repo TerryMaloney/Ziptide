@@ -15,6 +15,7 @@ any LLM: request a change as data, build, gates catch mistakes.
 ## Task board
 | # | Task | Status |
 |---|------|--------|
+| FH-X01 | **First-hour contract asset** — envelope: `docs/first_hour/envelopes/FH-X01-CONTRACT-ASSET.json`; log: `docs/GPT_ADDITIONS/2026-07-11_GPT56_FIRST_HOUR/FHX01_IMPLEMENTATION_LOG.md`. Deterministic Editor import from approved JSON to one Resources asset; WARN-only drift/invalid/missing audit; no runtime JSON parser. | 🟡 GPT-5.6 CLAIMED 2026-07-11 |
 | CI-V1 | **Durable branch CI verdict** — log: `docs/GPT_ADDITIONS/2026-07-11_GPT56_CI_VERDICT/CI_VERDICT_IMPLEMENTATION_LOG.md`. Final isolated CI job writes tested SHA + GREEN/RED to `docs/CI_VERDICT.md`; stale-head/race safe, no Unity job changes, no recursion. | ✅ PROVEN — caught a real red, then recorded GREEN run `29151953887`; FILE CLAIM RELEASED |
 | FH-02A | **Continuity manifest + report-only validator** — log: `docs/GPT_ADDITIONS/2026-07-10_GPT56_FIRST_HOUR/FH02A_IMPLEMENTATION_LOG.md`. `docs/continuity/*` + `tools/continuity_gate.py` + stdlib tests + isolated non-blocking report job shipped. No Unity/runtime behavior and no blocker promotion. | 🟡 IMPLEMENTED — first real Actions artifact pending; FILE CLAIM RELEASED |
 | Q0 | Program docs: ARCHITECTURE_V2 design + this board + HANDOFF (ppp) + PRIORITIES rewrite + tools/*.ps1 ASCII fix (Terry's PS 5.1 parse error) | ✅ `5b5b1b6` |
@@ -32,11 +33,12 @@ any LLM: request a change as data, build, gates catch mistakes.
 | Q4a | **`GamePool` TOOL SHIPPED** (Opus 4.8): pure `Core/Runtime/PoolCore.cs` (generic free-list, Created/Reused/Live/Free bookkeeping, retained cap, get/release hooks) + **10 EditMode tests** + `Core/Runtime/GamePool.cs` (GameObject wrapper: keyed pools, park-under-inactive-root, per-scene reset, `Prewarm`, `LogStats`). Adds files, changes NO existing behaviour. **Scope split (deliberate):** the ~8 live call-site swaps (PvpBolt/darts/arcs/rings/nets) are device-sensitive combat/VR files in the MP/Gameplay lanes — enveloped to those lanes (HANDOFF, exact sites) rather than swapped from the architecture chair. This is the dependency the bank's pooled-mover ideas name (INDUSTRY #2/#19/#25, COMBAT #42, CREATURES #20). | ✅ this commit; adoption 📨 |
 | Q4b | **`PERF_BUDGET` audit rule** → **ENVELOPE TO PICASSO** (their budget doc; ExperienceAuditRules is the pattern): tris/materials/renderers/lights per scene, WARN 80% / BLOCK over, exempt `_Boot` | 📨 Picasso |
 | H4 | **Art Registry** SHIPPED: `Editor/Art/ArtModuleRegistry.cs` (resolve-through, primitive fallback) + **`docs/design/ART_REGISTRY.md`** (id families + laws + deferral triggers). Picasso fulfills `buildingModule:*` ids (envelope in qqq) | ✅ `cd79dac`+ |
-| H6 | **TAKEOVER KIT** SHIPPED: `docs/OPERATOR_START_HERE.md` (model-agnostic manual: blackboard, envelopes, circuit breaker, Opus calibration) + CLAUDE.md pointer swap + FABLE5_START_HERE legacy banner + `design/SPACEFLIGHT_PHYSICS.md` (P4b rails) + PRIORITIES rev 4 + HANDOFF (qqq) briefings | ✅ this commit |
+| H6 | **TAKEOVER KIT SHIPPED**: `docs/OPERATOR_START_HERE.md` (model-agnostic manual: blackboard, envelopes, circuit breaker, Opus calibration) + CLAUDE.md pointer swap + FABLE5_START_HERE legacy banner + `design/SPACEFLIGHT_PHYSICS.md` (P4b rails) + PRIORITIES rev 4 + HANDOFF (qqq) briefings | ✅ this commit |
 | Q5 | LFS-ready commented `.gitattributes` stanzas (only remaining Q5 sliver — laws landed via OPERATOR_START_HERE) | ✅ by T-Dog (HANDOFF rrr): pseudo-binary guards + binaries + LFS stanzas; runbook §2l driver setup |
 | — | Close per phase: CI green → APK dispatch → audit green → runbook rows → HANDOFF | recurring |
 
 ## ▶ RESUMING? — current state & exact next action
+- **ACTIVE CLAIM (2026-07-11): FH-X01** — GPT-5.6 owns only the exact files in `FHX01_IMPLEMENTATION_LOG.md`, including announced append-only BuildAndroid/WorldAuditRunner hooks. Do not edit those files until the claim releases.
 - **CI-V1 (2026-07-11): PROVEN, FILE CLAIM RELEASED** — durable verdict caught a real Unity red, then recorded GREEN for `b388f1b` in run `29151953887`. Read `docs/CI_VERDICT.md`; a later normal commit makes the verdict stale until its own run completes.
 - **FH-02A (2026-07-10): IMPLEMENTED, FILE CLAIM RELEASED** — report-only continuity manifest/validator/tests and the non-blocking project-contract job are in the branch. First real Actions artifact is still pending; warnings must be reviewed, not fixed blindly. See `FH02A_IMPLEMENTATION_LOG.md`.
 - **State (2026-07-03, the LAST Fable architect session):** Q1 + Q2a + H1 buildings + H4 registry +
@@ -47,7 +49,7 @@ any LLM: request a change as data, build, gates catch mistakes.
   (WARN-only: coarse raycast grid → flood from spawn → warn on disconnected POIs; deliberately a
   WARN not a blocker so a coarse-grid false positive can't fail a good build) + one WorldAuditRunner
   line. Complements the H3 TERRAIN_SLOPE_UNWALKABLE blocker (area vs connectivity).
-- **Next architecture action:** claim and implement `docs/first_hour/envelopes/FH-X01-CONTRACT-ASSET.json`, then `FH-X02-PROGRESSION-CORE` only after X01 is green.
+- **Next architecture action after FH-X01 green:** claim `FH-X02-PROGRESSION-CORE`; do not start it early.
 - **GamePool adoption (envelope, MP/Gameplay lanes):** swap the CreatePrimitive+Destroy hot spawns to
   `GamePool.Get(key, factory, pos)` / `GamePool.Release(key, go)`. Exact sites: `PvpBolt`,
   `TaserDartProjectile`, creature stun-arc bursts, `ThumpRingVisual`, `StaticNetProjectile`. Each is
