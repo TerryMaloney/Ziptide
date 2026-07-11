@@ -7,6 +7,18 @@
 > The river for any new session: `CLAUDE.md` → `OPERATOR_START_HERE.md` → `EXCELLENCE_MAP.md`
 > (what's not built = the ⬜/🦴 rows + 🕳️ gaps) → your board → this list for cross-track order.
 
+## 📣 ACTIVE CROSS-LANE COORDINATION CLAIM — GPT-5.6
+
+GPT-5.6 is preparing a **documentation-only First-Hour Vertical Slice Master Plan** for Terry. Claim,
+scope, collision rules, and live work log:
+`docs/GPT_ADDITIONS/2026-07-10_GPT56_FIRST_HOUR/ACTIVE_COORDINATION_CLAIM.md`.
+
+- Existing Story/Ship, Multiplayer, Picasso, and Architecture operators continue from their own boards.
+- Do **not** start a new cross-lane “first hour,” feedback-router, presentation-sequence, creature-life,
+  or continuity-plan sprint until the master plan is posted and Terry assigns a named packet.
+- This claim owns no runtime code and does not supersede FORGE III or tomorrow's headset support.
+- Terry's headset findings remain priority zero and may reorder every proposed implementation slice.
+
 ## FABLE-ONLY (burn the remaining strong sessions here, in order)
 1. **Terry's headset run support** — RESERVE sessions for this: react to his ❌s/feel notes live
    (W005 sky verdict gates the 11-world rollout; soak test may surface leaks to hunt).
