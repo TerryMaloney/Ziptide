@@ -95,13 +95,13 @@ the spec). Any operator can pick any unblocked row; claim in `SPRINT_MULTIPLAYER
 ## F. Progression & session (59–70) — 🔷 A5 speced, zero built
 | # | Improvement | Status |
 |---|---|---|
-| 59 | Match stats — accuracy / best streak / K-D tracked per match (pure `MatchStats` core first, tested) | 🔷 |
-| 60 | Credits payout into the live `PlayerProfile` — single-wallet economy with story mode (the RewardRouter chokepoint pattern already exists) | 🔷 |
-| 61 | Unlock ladder via flags — arenas → Veteran → Nightmare → mutators | 🔷 |
-| 62 | **Daily challenge seed** — deterministic arena/mode/mutator/bot combo, same for everyone, bonus payout | 🔷 |
+| 59 | Match stats — best streak / K-D per match (pure `MatchStatsCore`, tested). *Accuracy deferred: no per-shot fire report exists yet — claim WITH a weapon fire-count seam* | ✅ |
+| 60 | Credits payout into the live `PlayerProfile` — RewardRouter / `LedgerSource.Multiplayer`, itemized breakdown, capped 150 | ✅ |
+| 61 | Unlock ladder via flags — Veteran/Nightmare lobby tiles gate + darken until earned (3 Regular+ / 3 Veteran+ wins); MUTATORS flag set, consumer pending | ✅ |
+| 62 | **Daily challenge seed** — deterministic mode/difficulty per UTC day (FNV), the gold DAILY RUN tile, +15 on the win once per day. *Arena rotation deferred — the tile runs in the arena you're standing in* | ✅ |
 | 63 | Scoreboard hologram — live K-D board at the lobby + end-of-match summary | ⬜ |
 | 64 | Career stats board in Quarters (total kills, favorite weapon, nemesis difficulty) | ⬜ |
-| 65 | First-win-of-the-day bonus (pairs with #62) | ⬜ |
+| 65 | First-win-of-the-day bonus (+10, day-stamped in `PvpCareerState`) | ✅ |
 | 66 | Per-mode personal-best board ("your best Horde wave: 12") | ⬜ |
 | 67 | Cosmetic drops from matches — feed the existing `CosmeticLocker` (string-pure, already shipped) | ⬜ |
 | 68 | **A5.5 pre-round locker** — `QuartersRoom` at arena spawn, round-timer exit gate, cosmetic strings in the handshake (the fff crossover, frozen API) | 🔷 |

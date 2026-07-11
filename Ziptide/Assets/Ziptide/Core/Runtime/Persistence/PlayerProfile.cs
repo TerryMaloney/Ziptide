@@ -27,6 +27,10 @@ namespace Ziptide.Core
         /// <summary>Meta-Loop v2: the transaction ledger (ring-capped; see ResourceLedger).
         /// Mutate ONLY through RewardRouter — the mode contract's single economy path.</summary>
         public List<LedgerEntry> ledger = new List<LedgerEntry>();
+        /// <summary>MP100 §F / A5: arena career (wins per difficulty, streaks, day stamps for the
+        /// first-win/daily bonuses). Additive with a neutral default: a fresh block = zero career,
+        /// old saves untouched. Pure rules live in Ziptide.Multiplayer.PvpProgression.</summary>
+        public PvpCareerState pvpCareer = new PvpCareerState();
 
         // ── Flags ───────────────────────────────────────────────────────────
         public bool HasFlag(string flag) => !string.IsNullOrEmpty(flag) && flags.Contains(flag);
@@ -86,6 +90,19 @@ namespace Ziptide.Core
     {
         public string id;
         public double amount;
+    }
+
+    /// <summary>MP100 §F / A5 — the arena career: what the unlock ladder and the daily/first-win
+    /// bonuses are computed FROM. JsonUtility-friendly flat ints; day stamps are UTC day numbers
+    /// (unix/86400). Mutated only by the progression runtime at match end.</summary>
+    [Serializable]
+    public class PvpCareerState
+    {
+        public int matches;
+        public int winsRookie, winsRegular, winsVeteran, winsNightmare;
+        public int bestStreakEver;
+        public int lastFirstWinDay;   // last UTC day a first-win bonus was paid
+        public int lastDailyWinDay;   // last UTC day the daily challenge was beaten
     }
 
     /// <summary>Per-world save state: discovery, ownership (future conquest), and the idle anchor.</summary>

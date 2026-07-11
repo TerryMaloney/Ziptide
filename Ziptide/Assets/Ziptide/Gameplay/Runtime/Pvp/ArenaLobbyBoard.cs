@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+using Ziptide.Multiplayer;
 using Ziptide.Multiplayer.Modes;
 
 namespace Ziptide.Gameplay
@@ -82,6 +83,7 @@ namespace Ziptide.Gameplay
             BuildRow(2, Row(2), BotCounts);
             BuildStart(new Vector3(0f, Row(3), 0f));
             BuildOnline(new Vector3(1.5f * TileW + TileGap, Row(3), 0f));
+            BuildDaily(new Vector3(-1.5f * TileW - TileGap, Row(3), 0f));
 
             // The "how this mode works" side panel — live text for the selected mode.
             var rulesPanel = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -133,10 +135,36 @@ namespace Ziptide.Gameplay
                 ArenaMatchConfig.Mode = Modes[_selMode].kind;
                 ArenaMatchConfig.Difficulty = Difficulties[_selDiff];
                 ArenaMatchConfig.BotCount = _selBots + 1;
+                ArenaMatchConfig.DailyChallenge = false; // a normal match — the daily is its own tile
                 Debug.Log("ZIPTIDE: LOBBY_START mode=" + ArenaMatchConfig.Mode
                     + " difficulty=" + ArenaMatchConfig.Difficulty + " bots=" + ArenaMatchConfig.BotCount);
                 PvpModeDirector.Instance?.Restart();
             }, wide: true);
+        }
+
+        /// <summary>A5 (MP100 #62): today's challenge — a deterministic mode/difficulty combo,
+        /// identical for every player on the same UTC day; winning it pays a bonus once per day
+        /// (the progression runtime enforces the once). Locked difficulties fall back to Regular
+        /// so a fresh player always has a daily they can actually run.</summary>
+        private void BuildDaily(Vector3 pos)
+        {
+            MakeTile("DAILY RUN", pos, new Color(0.85f, 0.68f, 0.22f), () =>
+            {
+                int day = PvpProgression.UtcDayNumber(System.DateTimeOffset.UtcNow.ToUnixTimeSeconds());
+                PvpProgression.PickDaily(day, 1, Modes.Length, out _, out int modeIdx, out string diff);
+                int diffIdx = System.Array.IndexOf(Difficulties, diff);
+                if (diffIdx < 0 || DiffLocked(diffIdx)) { diff = PvpProgression.Regular; diffIdx = 1; }
+                _selMode = modeIdx;
+                _selDiff = diffIdx;
+                RefreshTints();
+                ArenaMatchConfig.Mode = Modes[modeIdx].kind;
+                ArenaMatchConfig.Difficulty = diff;
+                ArenaMatchConfig.BotCount = _selBots + 1;
+                ArenaMatchConfig.DailyChallenge = true;
+                Debug.Log("ZIPTIDE: LOBBY_DAILY day=" + day + " mode=" + ArenaMatchConfig.Mode
+                    + " difficulty=" + diff);
+                PvpModeDirector.Instance?.Restart();
+            });
         }
 
         // A6 v1 — the ONLINE toggle: connect two headsets into one room and render each other's
@@ -170,10 +198,30 @@ namespace Ziptide.Gameplay
                 Paint(_onlineTile.gameObject, Ziptide.Multiplayer.PvpNetHub.IsOnline ? OnlineLive : OnlineColor);
         }
 
+        /// <summary>A5 (MP100 #61): the unlock ladder — Veteran and Nightmare rows are earned.
+        /// Rookie/Regular are always open (col 0/1).</summary>
+        private static bool DiffLocked(int col)
+        {
+            if (col < 2) return false;
+            var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;
+            if (profile == null) return false; // no profile = dev context — never wall the tester
+            return !profile.HasFlag(col == 2 ? PvpProgression.FlagVeteranUnlocked
+                                             : PvpProgression.FlagNightmareUnlocked);
+        }
+
         private void OnPick(int row, int col)
         {
             if (row == 0) _selMode = col;
-            else if (row == 1) _selDiff = col;
+            else if (row == 1)
+            {
+                if (DiffLocked(col))
+                {
+                    Debug.Log("ZIPTIDE: PVP_DIFF_LOCKED difficulty=" + Difficulties[col]
+                        + " (win " + (col == 2 ? "3 Regular+" : "3 Veteran+") + " matches)");
+                    return; // the tile stays dark — the ladder is the message
+                }
+                _selDiff = col;
+            }
             else if (row == 2) _selBots = col;
             RefreshTints();
         }
@@ -185,7 +233,9 @@ namespace Ziptide.Gameplay
                 bool sel = (t.Row == 0 && t.Col == _selMode)
                         || (t.Row == 1 && t.Col == _selDiff)
                         || (t.Row == 2 && t.Col == _selBots);
-                if (t.R != null) Paint(t.R.gameObject, sel ? TileSelected : TileColor);
+                bool locked = t.Row == 1 && DiffLocked(t.Col);
+                if (t.R != null)
+                    Paint(t.R.gameObject, locked ? TileColor * 0.35f : sel ? TileSelected : TileColor);
             }
             if (_rules != null && _selMode >= 0 && _selMode < ModeRules.Length)
                 _rules.text = ModeRules[_selMode];

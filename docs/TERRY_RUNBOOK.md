@@ -595,6 +595,15 @@ Nothing to run in Unity — the patchers do it all at build; these are headset f
   your hand — teal = fits, red = refuses (even the part hanging off the grid). And splitters
   round-trip: grip a placed splitter to pick it up, the tile in your hand shows a fork stripe, and
   it places back as a splitter. Feel notes: footprint ghost readability at 8+ cells.
+- [ ] **PVP PROGRESSION (A5, 2026-07-10 — architect; all auto):** every arena match now PAYS.
+  Fight any match and check the credits HUD after — `ZIPTIDE: PVP_PAYOUT credits=…` itemizes it
+  (kills ×2, streak bonus at 3/5, win +10, difficulty multiplier up to ×2.2 at nightmare, capped
+  150). The lobby's **VETERAN and NIGHTMARE tiles start DARK/locked** — win 3 Regular+ matches to
+  open Veteran (`PVP_UNLOCK` in logcat), 3 Veteran+ for Nightmare. The gold **DAILY RUN** tile
+  starts today's fixed mode/difficulty combo (same for every player on Earth today) — winning it
+  pays +15 once per day, and your first win of any day pays +10. Feel notes: payout sizes vs story
+  jobs (knobs are constants in `PvpProgression`), 3-win unlock pacing, whether locked tiles read
+  as "earn me" or "broken".
 
 ## 2q. NEW — FURNISHED INTERIORS + portal culling (2026-07-10, Reasonbox 1.3e; needs a W002 re-bake)
 The walk-in tenements now furnish themselves: every room gets a JOB (foyer/common/quarters/

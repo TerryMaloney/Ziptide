@@ -28,6 +28,30 @@
 
 ## ENTRIES (newest first)
 
+
+### 2026-07-10 (hwr20) - Fable 5 architect: 🏆 A5 PROGRESSION — every arena match now PAYS (MP100 59-62+65)
+- **Why:** Fable-only list cleared for this session (Terry assigned #3 interiors to Reasonbox), so
+  back to MY track's board — A5 was the top ⬜ on SPRINT_MULTIPLAYER, fully specced, zero hardware
+  dependency, and it makes PvP feed the one-wallet economy.
+- **Did (pure, `Multiplayer/PvpProgression.cs`):** `MatchStatsCore` (kills/downs/streaks per index,
+  self-kill guard) · itemized `ComputePayout` (base 5 + 2/kill + streak 3@3/6@5 + win 10, ×difficulty
+  1.0→2.2, daily +15 / first-win +10 — both WIN-gated so there's no idle farming — capped 150,
+  unknown-difficulty pays the floor never the ceiling) · unlock ladder (`MP_VETERAN_UNLOCKED` after
+  3 Regular+ wins → `MP_NIGHTMARE_UNLOCKED` after 3 Veteran+ → `MP_MUTATORS_UNLOCKED` after 1
+  Nightmare; harder wins ladder down) · FNV daily pick per UTC day (same combo for everyone, never
+  rookie). 7 tests incl. career JSON round-trip + pre-A5-save neutral default.
+- **Did (wiring):** `PvpCareerState` additive on PlayerProfile · self-bootstrapped
+  `PvpProgressionRuntime` (SaveSystem idiom — every COMMITTED arena scene gets it with zero menu
+  steps): binds the scene's PvpMatchDirector, KillScored→stats, MatchEnded→RewardRouter
+  (`LedgerSource.Multiplayer`, "credits") + career + flags + `AutosaveNow("pvp_match")` · lobby
+  board: Veteran/Nightmare tiles LOCKED-dark until earned (pick refused + logged) + the gold
+  DAILY RUN tile (falls back to Regular if today's pick is locked). Local player = combatant 0,
+  the standing law. Logs `PVP_PAYOUT` / `PVP_UNLOCK` / `LOBBY_DAILY` / `PVP_DIFF_LOCKED`.
+- **📋 Thin spots (claimable):** accuracy stat needs a per-shot fire-report seam (weapons don't
+  count shots) · daily ARENA rotation (tile runs in-place today) · rows 63/64/66/67/69/70
+  (scoreboard/career boards, cosmetic drops, history, rival) · mutators flag has no consumer yet.
+- **Boards:** SPRINT_MULTIPLAYER A5 ✅ · MP100 59-62+65 stamped · runbook §2q addendum.
+
 ### 2026-07-10 (tf-space1) - T-Dog/Fable 5: 🚀 SPACE DEFENSE — Terry's ideal gulag mission, closed at last
 - **Did:** the third defense verb: `MissionKind.SpaceDefense` — when certain worlds are attacked,
   the defense contract is "SCRAMBLE THE SHIP": travel to the SPACE LANE, take the helm, stun-bolt

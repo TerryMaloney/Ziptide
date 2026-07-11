@@ -18,11 +18,16 @@ namespace Ziptide.Gameplay
         /// <summary>Opponent bots for lobby-bot modes (clamped 1–3; combatants cap at 4).</summary>
         public static int BotCount = 1;
 
+        /// <summary>A5 (MP100 #62): this match is today's daily challenge — the progression runtime
+        /// pays the bonus on a win (once per UTC day). Set by the DAILY tile, cleared by START.</summary>
+        public static bool DailyChallenge;
+
         public static void Reset()
         {
             Mode = PvpModeKind.Deathmatch;
             Difficulty = "";
             BotCount = 1;
+            DailyChallenge = false;
         }
     }
 }
