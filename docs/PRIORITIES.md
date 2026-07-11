@@ -7,16 +7,17 @@
 > The river for any new session: `CLAUDE.md` → `OPERATOR_START_HERE.md` → `EXCELLENCE_MAP.md`
 > (what's not built = the ⬜/🦴 rows + 🕳️ gaps) → your board → this list for cross-track order.
 
-## 📣 ACTIVE CROSS-LANE COORDINATION CLAIM — GPT-5.6
+## 📣 CROSS-LANE FIRST-HOUR PLAN — GPT-5.6 (PLANNING COMPLETE)
 
-GPT-5.6 is preparing a **documentation-only First-Hour Vertical Slice Master Plan** for Terry. Claim,
-scope, collision rules, and live work log:
+The documentation-only **First-Hour Vertical Slice Master Plan** is complete:
+`docs/GPT_ADDITIONS/2026-07-10_GPT56_FIRST_HOUR/FIRST_HOUR_VERTICAL_SLICE_MASTER_PLAN.md`.
+Claim, scope, collision rules, commits, and work log:
 `docs/GPT_ADDITIONS/2026-07-10_GPT56_FIRST_HOUR/ACTIVE_COORDINATION_CLAIM.md`.
 
 - Existing Story/Ship, Multiplayer, Picasso, and Architecture operators continue from their own boards.
-- Do **not** start a new cross-lane “first hour,” feedback-router, presentation-sequence, creature-life,
-  or continuity-plan sprint until the master plan is posted and Terry assigns a named packet.
-- This claim owns no runtime code and does not supersede FORGE III or tomorrow's headset support.
+- Do **not** implement directly from the GPT additions folder. Terry must assign a named packet, such as
+  `FH-02A`, and that packet must then be copied into the owning lane's normal board/HANDOFF/runbook flow.
+- This planning work owns no runtime code and does not supersede FORGE III or tomorrow's headset support.
 - Terry's headset findings remain priority zero and may reorder every proposed implementation slice.
 
 ## FABLE-ONLY (burn the remaining strong sessions here, in order)
