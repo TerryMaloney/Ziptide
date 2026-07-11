@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -19,12 +20,21 @@ namespace Ziptide.Gameplay
     /// </summary>
     public class TravelCoordinator : MonoBehaviour
     {
+        public const string FirstHourOutboundSignal = "TRAVEL_W000_TO_W001_COMPLETE";
+        public const string FirstHourReturnSignal = "TRAVEL_W001_TO_W000_COMPLETE";
+
         private static TravelCoordinator _instance;
 
         private bool _travelling;
 
         /// <summary>True while TravelCoroutine is running. PlayerRigPersistence skips wiring/restore in OnSceneLoaded when true.</summary>
         public static bool IsTravelling => _instance != null && _instance._travelling;
+
+        /// <summary>
+        /// Neutral successful-travel notification. Payload is the destination scene name. Emitted
+        /// only after XRI readiness, inventory restoration and the existing TRAVEL_OK point.
+        /// </summary>
+        public static event Action<string> TravelCompleted;
 
         private void Awake()
         {
@@ -133,6 +143,7 @@ namespace Ziptide.Gameplay
         private IEnumerator TravelCoroutine(string sceneName, Vector3? gatePos, bool skipGate)
         {
             _travelling = true;
+            bool travelCompletionEmitted = false;
             Debug.Log("ZIPTIDE: TRAVEL_START dest=" + sceneName);
 
             var rig = Object.FindObjectOfType<PlayerRigPersistence>();
@@ -239,9 +250,58 @@ namespace Ziptide.Gameplay
                 Debug.LogWarning("ZIPTIDE: AUDIT_FAIL multiple_managers_after_travel count=" + (managers?.Length ?? 0));
 
             if (xriReady)
+            {
                 Debug.Log("ZIPTIDE: TRAVEL_OK dest=" + sceneName);
+                if (TryPublishTravelCompleted(
+                    sceneName,
+                    successful: true,
+                    ref travelCompletionEmitted,
+                    PublishTravelCompleted))
+                {
+                    Debug.Log("ZIPTIDE: FIRST_HOUR_TRAVEL dest=" + sceneName +
+                              " mapped=" + FirstHourTravelMapLabel(sceneName));
+                }
+            }
 
             _travelling = false;
+        }
+
+        /// <summary>
+        /// Pure one-shot publication seam. Failed, duplicate and empty destinations are no-ops.
+        /// </summary>
+        public static bool TryPublishTravelCompleted(
+            string destination,
+            bool successful,
+            ref bool alreadyEmitted,
+            Action<string> publish)
+        {
+            if (!successful || alreadyEmitted || string.IsNullOrEmpty(destination)) return false;
+            alreadyEmitted = true;
+            publish?.Invoke(destination);
+            return true;
+        }
+
+        /// <summary>Maps canonical first-hour destinations to their approved completion signal.</summary>
+        public static string MapFirstHourTravelSignal(string destination)
+        {
+            if (string.Equals(destination, Ziptide.Core.ZiptideConstants.SceneToxicCity, StringComparison.Ordinal))
+                return FirstHourOutboundSignal;
+            if (string.Equals(destination, Ziptide.Core.ZiptideConstants.SceneW000, StringComparison.Ordinal))
+                return FirstHourReturnSignal;
+            return null;
+        }
+
+        private static string FirstHourTravelMapLabel(string destination)
+        {
+            string mapped = MapFirstHourTravelSignal(destination);
+            if (mapped == FirstHourOutboundSignal) return "first";
+            if (mapped == FirstHourReturnSignal) return "return";
+            return "none";
+        }
+
+        private static void PublishTravelCompleted(string destination)
+        {
+            TravelCompleted?.Invoke(destination);
         }
 
         /// <summary>The manifest entry for a scene — the tide's display name + sky tint. Null if
