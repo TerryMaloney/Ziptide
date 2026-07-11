@@ -152,18 +152,17 @@ namespace Ziptide.Tests.EditMode
         }
 
         [Test]
-        public void FoamMesh_HugsThePerimeter_AndRises()
+        public void FoamBand_IsFlat_AndHugsThePerimeter()
         {
-            var m = WaterFoamMesh.BuildPerimeter(6f, 4f, 0.12f, 2f);
+            var m = WaterFoamMesh.BuildBand(6f, 4f, 0.5f, 2f, 0.02f);
             try
             {
                 Assert.Greater(m.triangles.Length, 0);
                 foreach (var v in m.vertices)
                 {
-                    Assert.LessOrEqual(Mathf.Abs(v.x), 3f + 1e-3f, "foam stays on the X border");
-                    Assert.LessOrEqual(Mathf.Abs(v.z), 2f + 1e-3f, "foam stays on the Z border");
-                    Assert.GreaterOrEqual(v.y, -1e-4f, "foam rises from the waterline");
-                    Assert.LessOrEqual(v.y, 0.12f + 1e-4f, "foam does not exceed its height");
+                    Assert.LessOrEqual(Mathf.Abs(v.x), 3f + 1e-3f, "foam stays within the X border");
+                    Assert.LessOrEqual(Mathf.Abs(v.z), 2f + 1e-3f, "foam stays within the Z border");
+                    Assert.AreEqual(0.02f, v.y, 1e-4f, "the foam band lies flat on the water");
                 }
             }
             finally { Object.DestroyImmediate(m); }

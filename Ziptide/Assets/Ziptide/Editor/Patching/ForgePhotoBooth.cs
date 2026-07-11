@@ -132,7 +132,7 @@ namespace Ziptide.Editor.Patching
             var foam = new GameObject("Foam");
             foam.transform.SetParent(root.transform, false);
             var fmf = foam.AddComponent<MeshFilter>();
-            fmf.sharedMesh = Ziptide.Visuals.WaterFoamMesh.BuildPerimeter(4f, 4f, 0.14f, 3f);
+            fmf.sharedMesh = Ziptide.Visuals.WaterFoamMesh.BuildBand(4f, 4f, 0.5f, 3f, 0.02f);
             var fmr = foam.AddComponent<MeshRenderer>();
             int fs = 128;
             var fpx = new Color32[fs * fs];
