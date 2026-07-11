@@ -97,6 +97,65 @@ namespace Ziptide.Editor.Patching
             // FORGE III F3.3 — WATER: a lit water tile so the ripple normal + specular read is
             // verifiable before any runtime/device machinery exists (booth-first, like Forge was).
             yield return (BuildWaterSubject(), "water_tile");
+
+            // FORGE III F3.4 — GROUNDING: a grey ground with a blob shadow + a grime stain, so the
+            // decal shapes read before the placement pass exists.
+            yield return (BuildGroundDecalSubject(), "ground_decals");
+        }
+
+        /// <summary>A grey ground quad with a dark radial blob shadow and an irregular grime stain
+        /// laid flat on it — verifies the F3.4 decal coverage fields.</summary>
+        private static GameObject BuildGroundDecalSubject()
+        {
+            var root = new GameObject("GroundDecals");
+            var ground = GameObject.CreatePrimitive(PrimitiveType.Quad);
+            DestroyIfCollider(ground);
+            ground.name = "Ground";
+            ground.transform.SetParent(root.transform, false);
+            ground.transform.localRotation = Quaternion.Euler(90f, 0f, 0f); // face +Y
+            ground.transform.localScale = new Vector3(4f, 4f, 1f);
+            var gm = new Material(Shader.Find("Universal Render Pipeline/Lit")) { name = "BoothGround" };
+            gm.SetColor("_BaseColor", new Color(0.32f, 0.31f, 0.29f, 1f));
+            gm.SetFloat("_Smoothness", 0.1f);
+            ground.GetComponent<MeshRenderer>().sharedMaterial = gm;
+
+            AddDecalQuad(root.transform, "Blob", stain: false, new Vector3(-1f, 0.01f, 0f), 1.6f);
+            AddDecalQuad(root.transform, "Stain", stain: true, new Vector3(1f, 0.01f, 0f), 1.6f);
+            return root;
+        }
+
+        private static void AddDecalQuad(Transform parent, string name, bool stain, Vector3 pos, float size)
+        {
+            var q = GameObject.CreatePrimitive(PrimitiveType.Quad);
+            DestroyIfCollider(q);
+            q.name = name;
+            q.transform.SetParent(parent, false);
+            q.transform.localPosition = pos;
+            q.transform.localRotation = Quaternion.Euler(90f, 0f, 0f);
+            q.transform.localScale = new Vector3(size, size, 1f);
+
+            const int s = 256;
+            var px = Ziptide.Visuals.GroundDecal.BakeAlpha(s, stain);
+            var tex = new Texture2D(s, s, TextureFormat.RGBA32, false) { wrapMode = TextureWrapMode.Clamp };
+            tex.SetPixels32(px); tex.Apply(false, false);
+
+            var m = new Material(Shader.Find("Universal Render Pipeline/Lit")) { name = "BoothDecal_" + name };
+            m.SetColor("_BaseColor", stain ? new Color(0.10f, 0.09f, 0.06f, 1f) : new Color(0f, 0f, 0f, 1f));
+            m.SetTexture("_BaseMap", tex);
+            m.SetFloat("_Surface", 1f); // transparent
+            m.SetOverrideTag("RenderType", "Transparent");
+            m.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+            m.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+            m.SetInt("_ZWrite", 0);
+            m.EnableKeyword("_SURFACE_TYPE_TRANSPARENT");
+            m.renderQueue = (int)UnityEngine.Rendering.RenderQueue.Transparent;
+            q.GetComponent<MeshRenderer>().sharedMaterial = m;
+        }
+
+        private static void DestroyIfCollider(GameObject go)
+        {
+            var c = go.GetComponent<Collider>();
+            if (c != null) Object.DestroyImmediate(c);
         }
 
         /// <summary>A 4×4m water plane under the booth light: the baked ripple normal (swizzled for

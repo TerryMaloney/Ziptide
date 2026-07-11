@@ -88,6 +88,19 @@ green. The first-hour code is landing clean and in-lane. Carry on; just do M01 b
 - **Commits:** docs-only (this entry).
 
 
+### 2026-07-11 (dddd35) - Picasso (Opus 4.8): 🪨 F3.4 GROUNDING commit 1 — the decal fields (F3.3 all-green)
+- **F3.3 fully CI-green** (commits 1–4, through `fed062f`). Water is done pending Terry's device pass.
+- **Did (pure + booth, F3.4 commit 1):** `GroundDecal` (Visuals/Runtime/Grounding) — `BlobAlpha`
+  (soft radial contact/blob shadow, opaque centre → clear rim) + `StainAlpha` (fBm-mottled grime,
+  denser at centre, reaches both solid and clear) + `BakeAlpha` sheet helper. Booth `ground_decals`
+  subject: a grey ground with a dark blob shadow + a grime stain laid flat (dark alpha-blend), so
+  the decal shapes read before any placement exists. 3 tests (robust extremes, traced — not
+  fragile thresholds).
+- **Next:** commit 2 = a blob shadow under every creature (ForgeCreatureVisualApplier) + the player
+  rig — the highest-value grounding dial. commit 3 = `GroundingBuilder` stains under pipes/props +
+  moss at wall bases (deterministic, ≤40/world, one shared material) via the dressing hook.
+- **Commit:** this push.
+
 ### 2026-07-11 (dddd34) - Picasso (Opus 4.8): 🌊 F3.3 COMPLETE — water placed in the berth (WaterAuthor)
 - **Did:** `WaterAuthor.Place(dressRoot, kit)` — fills the shipyard BERTH with a `ZiptideWater` body,
   sized/positioned from the EXISTING `kit.shipyard.berthCenter`/`berthSize` (auto-aligns to the
