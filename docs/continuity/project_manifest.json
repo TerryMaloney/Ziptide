@@ -25,7 +25,9 @@
     "docs/META_STORE_READINESS.md",
     "docs/GPT_ADDITIONS/2026-07-10_GPT56_FIRST_HOUR/FIRST_HOUR_VERTICAL_SLICE_MASTER_PLAN.md",
     "docs/first_hour/first_hour_beats.json",
-    "docs/first_hour/README.md"
+    "docs/first_hour/README.md",
+    "docs/first_hour/first_hour_bindings.json",
+    "docs/first_hour/BINDING_INVENTORY.md"
   ],
   "sharedPaths": [
     ".github/workflows/ci.yml",
