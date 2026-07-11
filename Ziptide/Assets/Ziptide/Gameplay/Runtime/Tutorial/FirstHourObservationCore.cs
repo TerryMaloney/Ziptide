@@ -166,19 +166,26 @@ namespace Ziptide.Gameplay.Tutorial
                 headForward.X,
                 0d,
                 headForward.Z);
-            if (!TryNormalize(planar, out planar)) return false;
+            FirstHourObservationVector normalizedPlanar;
+            if (!TryNormalize(planar, out normalizedPlanar)) return false;
 
             if (!_arrivalStarted)
             {
                 _arrivalStarted = true;
-                _arrivalInitialForward = planar;
+                _arrivalInitialForward = normalizedPlanar;
             }
 
             _arrivalElapsed += SafeDelta(deltaSeconds);
 
             double angle;
-            if (TryPlanarOrSpatialAngle(_arrivalInitialForward, planar, planar: true, out angle))
+            if (TryPlanarOrSpatialAngle(
+                _arrivalInitialForward,
+                normalizedPlanar,
+                planar: true,
+                out angle))
+            {
                 _arrivalMaxDirectionChange = Math.Max(_arrivalMaxDirectionChange, angle);
+            }
 
             if (_arrivalElapsed < ArrivalDwellSeconds ||
                 _arrivalMaxDirectionChange < ArrivalDirectionDegrees)
