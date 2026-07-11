@@ -1,6 +1,6 @@
 # ZIPTIDE Durable CI Verdict Contract
 
-`docs/CI_VERDICT.md` is a generated, repository-visible record of the most recent eligible CI run for the live `terry-local-wip` head.
+`docs/CI_VERDICT.md` is a generated, repository-visible record of the most recent eligible CI run for `terry-local-wip`.
 
 It exists so connector-only operators can verify the tested SHA and outcome without requiring GitHub Actions API permissions.
 
@@ -34,6 +34,17 @@ If the branch advanced, the job exits successfully without writing. The newer wo
 
 If a push races after the freshness check and the bot push is rejected, the job emits a warning and exits successfully. It never force-pushes.
 
+## What counts as current
+
+The recorder necessarily creates one generated commit after the tested commit. Therefore a verdict is current when either:
+
+1. the live branch head equals `testedSha` before the recorder writes; or
+2. the live branch head is the direct generated verdict-only child of `testedSha`, with only `docs/CI_VERDICT.md` changed.
+
+Any later normal commit makes the verdict stale until that commit's CI run records a new verdict.
+
+Operators must not require `testedSha == live head` after a successful recorder write. They must allow the direct verdict-only child relationship.
+
 ## Loop prevention
 
 The generated commit:
@@ -59,9 +70,7 @@ The file contains one JSON block with:
 - workflow run ID, attempt and URL;
 - event and UTC record time;
 - Unity EditMode, Android and project-contract job results;
-- interpretation notes.
-
-Operators must compare `testedSha` to the live branch head before treating the verdict as current.
+- interpretation notes, including the direct verdict-only child rule.
 
 ## Failure behavior
 
