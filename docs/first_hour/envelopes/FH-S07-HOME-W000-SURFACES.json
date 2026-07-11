@@ -49,7 +49,8 @@
     "TravelCoordinator",
     "ComfortCore",
     "LocomotionDirector",
-    "ShipCastOffRuntime"
+    "ShipCastOffRuntime",
+    "docs/design/COMFORT_AND_ACCESSIBILITY.md (LOCKED comfort design 2026-07-10: Cozy/Standard/Bold dial table, device-level PlayerPrefs law, ComfortCoverageTests gate \u2014 the console MUST implement this spec, not a new one)"
   ],
   "api": [
     "Cold boot shows New/Continue/Settings before W000 travel.",
@@ -82,7 +83,8 @@
       "Comfort/profile/boot tests green",
       "Unity compile green",
       "No direct scene load",
-      "No profile comfort fields"
+      "No profile comfort fields",
+      "Console matches the LOCKED dial table in docs/design/COMFORT_AND_ACCESSIBILITY.md; ComfortCoverageTests ship with it"
     ],
     "BAKE": [
       "Stable surface markers/audit pass"

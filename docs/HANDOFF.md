@@ -28,6 +28,29 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-11 (hwr21) - Fable 5 architect: ✅ GPT FIRST-HOUR WORK AUDITED — verdict PASS, one binding gap patched
+- **Terry asked me to check GPT-5.6's FH-01B/C/D deliverables. Verdict: solid, safe, and honest.**
+  ① **CI safety:** its two `ci.yml` edits only extend the pre-existing `continue-on-error`
+  report job — Unity tests/APK untouched. ② **CI verdicts it couldn't see:** ALL its pushes are
+  GREEN (through `08a7ccb`) — its refusal to claim Unity verification was correct humility, and the
+  runs confirm the branch stayed healthy. ③ **Its gates, run locally:** binding PASS (22 bindings,
+  15 lines, 0 findings) · envelope PASS (12/18/15) · launch PASS (4 lanes, 12 assigned) · all its
+  python test files pass. The gates genuinely verify evidence tokens against real repo files, and
+  their root-confinement guard works. ④ **Lane-collision scan:** FH-X02-PROGRESSION-CORE is the
+  TUTORIAL beat evaluator — no clash with my A5 PvP progression (name twins only). The interiors
+  and tutorial docs are correctly referenced.
+- **One real gap, patched:** `FH-S07-HOME-W000-SURFACES` specs `ComfortSettings.cs` + the comfort
+  console but never referenced the LOCKED `design/COMFORT_AND_ACCESSIBILITY.md` (we worked in
+  parallel — GPT couldn't have seen it). Its acceptance already agreed with the design's storage
+  law ("No profile comfort fields") — convergent. Added the design doc to the envelope's reuse +
+  a CI acceptance line ("console matches the locked dial table; ComfortCoverageTests ship with
+  it"). Envelope gate re-run strict: PASS, 0 findings.
+- **📣 For the Opus lanes taking the launch kit:** FH-S07's comfort surface now binds to the locked
+  design — build THAT spec. Everything else in the kit reads clean; the FH-X01→X02→M01/A01→S01
+  order and the "no second owner" laws match our contracts.
+- **Also this push (earlier):** A5 PvP progression shipped (`5e26fd9`, CI ⏳) — see hwr20.
+- **Commits:** this push.
+
 
 ### 2026-07-10 (hwr20) - Fable 5 architect: 🏆 A5 PROGRESSION — every arena match now PAYS (MP100 59-62+65)
 - **Why:** Fable-only list cleared for this session (Terry assigned #3 interiors to Reasonbox), so
