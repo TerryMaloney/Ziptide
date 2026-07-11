@@ -14,8 +14,8 @@ namespace Ziptide.Gameplay.DevTools
     /// jump around on the headset, not just in the editor. Dev-only (compiled out of shipping builds);
     /// self-bootstraps, so no scene setup needed.
     ///
-    /// Access reserves zero gameplay buttons: F2 in the editor, or the ADB marker-file helper
-    /// (`tools/dev_menu_access.ps1 -Action Open`) on a Quest development build.
+    /// Access reserves zero gameplay buttons: F2 in the editor; on Quest, hold both controllers
+    /// close together above the forehead for two seconds. ADB marker access remains a backup.
     /// v1 is world-level (default spawn); per-marker jumps are in the editor Warp Window already.
     /// </summary>
     public class DevMenu : MonoBehaviour
@@ -23,6 +23,7 @@ namespace Ziptide.Gameplay.DevTools
         private const int PageSize = 6;
         private const float AccessPollSeconds = 0.25f;
 
+        private readonly DevMenuGesture _headsetGesture = new DevMenuGesture();
         private GameObject _canvasGo;
         private bool _visible;
         private float _nextAccessPollAt;
@@ -38,7 +39,7 @@ namespace Ziptide.Gameplay.DevTools
 #if UNITY_EDITOR
             Debug.Log("ZIPTIDE: DEV_MENU ready (summon: F2 in editor)");
 #else
-            Debug.Log("ZIPTIDE: DEV_MENU ready (controller-free; use tools/dev_menu_access.ps1 -Action Open)");
+            Debug.Log("ZIPTIDE: DEV_MENU ready (summon: hold both controllers above forehead for 2s)");
 #endif
         }
 
@@ -48,15 +49,16 @@ namespace Ziptide.Gameplay.DevTools
             var kb = UnityEngine.InputSystem.Keyboard.current;
             if (kb != null && kb.f2Key.wasPressedThisFrame) Toggle();
 #else
+            if (_headsetGesture.Tick(Time.unscaledDeltaTime))
+            {
+                Toggle();
+                Debug.Log("ZIPTIDE: DEV_MENU gesture_toggle visible=" + _visible);
+            }
+
             if (Time.unscaledTime < _nextAccessPollAt) return;
             _nextAccessPollAt = Time.unscaledTime + AccessPollSeconds;
 
-            if (!DevAccessGate.IsUnlocked)
-            {
-                if (_visible) Hide();
-                return;
-            }
-
+            // Optional computer-side backup. The headset gesture above does not require ADB unlock.
             if (DevAccessGate.TryConsumeOpenRequest()) Show();
 #endif
         }
