@@ -132,7 +132,7 @@ namespace Ziptide.Editor.Patching
             var foam = new GameObject("Foam");
             foam.transform.SetParent(root.transform, false);
             var fmf = foam.AddComponent<MeshFilter>();
-            fmf.sharedMesh = Ziptide.Visuals.WaterFoamMesh.BuildBand(4f, 4f, 0.5f, 3f, 0.02f);
+            fmf.sharedMesh = Ziptide.Visuals.WaterFoamMesh.BuildBand(4f, 4f, 0.7f, 3f, 0.02f);
             var fmr = foam.AddComponent<MeshRenderer>();
             int fs = 128;
             var fpx = new Color32[fs * fs];
@@ -145,10 +145,10 @@ namespace Ziptide.Editor.Patching
             var ftex = new Texture2D(fs, fs, TextureFormat.RGBA32, false) { wrapMode = TextureWrapMode.Repeat };
             ftex.SetPixels32(fpx); ftex.Apply(false, false);
             var fm = new Material(Shader.Find("Universal Render Pipeline/Lit")) { name = "BoothWaterFoam" };
-            fm.SetColor("_BaseColor", new Color(0.92f, 0.96f, 0.97f, 1f));
+            fm.SetColor("_BaseColor", Color.white);
             fm.SetTexture("_BaseMap", ftex);
             fm.SetFloat("_AlphaClip", 1f); fm.SetFloat("_Cutoff", 0.5f); fm.EnableKeyword("_ALPHATEST_ON");
-            fm.SetFloat("_Smoothness", 0.2f);
+            fm.SetFloat("_Smoothness", 0f); fm.SetFloat("_Metallic", 0f); // matte foam catches the key light
             fmr.sharedMaterial = fm;
             return root;
         }

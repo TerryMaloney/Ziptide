@@ -42,10 +42,11 @@ namespace Ziptide.Visuals
                     Vector2 o1 = Vector2.Lerp(a, b, (s + 1) / (float)segs);
                     Vector2 i0 = o0 + inw * w, i1 = o1 + inw * w;
                     float u0 = len * s / segs, u1 = len * (s + 1) / segs; // ~1 tile/meter
-                    // Up-facing quad: outer edge (v=0) → inner edge (v=1). Winding CCW from +Y.
+                    // UP-FACING quad (outer0→inner0→inner1→outer1 winds +Y so it isn't culled from
+                    // above — the v1 ring wound -Y and vanished). v=0 outer edge → v=1 inner.
                     AddQuad(verts, uvs, tris,
-                        new Vector3(o0.x, y, o0.y), new Vector3(o1.x, y, o1.y),
-                        new Vector3(i1.x, y, i1.y), new Vector3(i0.x, y, i0.y),
+                        new Vector3(o0.x, y, o0.y), new Vector3(i0.x, y, i0.y),
+                        new Vector3(i1.x, y, i1.y), new Vector3(o1.x, y, o1.y),
                         u0, u1);
                 }
             }
@@ -66,17 +67,19 @@ namespace Ziptide.Visuals
             v = Mathf.Clamp01(v);
             float band = 1f - v;                                         // 1 at the wall → 0 inward
             float lace = SkyVistaTexture.Fbm(u * 9f, v * 4f, 151, 2);    // 0..1 texture
-            float mask = band * (0.7f + 0.6f * lace) - 0.35f;
+            float mask = band * (0.7f + 0.6f * lace) - 0.25f;            // coverage reaches ~2/3 inward
             return Mathf.Clamp01(mask / 0.2f);                           // soft ~edge for clean clip
         }
 
+        // Corners: a=outer0(u0,v0) b=inner0(u0,v1) c=inner1(u1,v1) d=outer1(u1,v0). Tris (a,b,c)(a,c,d)
+        // give a +Y normal (up-facing).
         private static void AddQuad(List<Vector3> v, List<Vector2> uv, List<int> t,
             Vector3 a, Vector3 b, Vector3 c, Vector3 d, float u0, float u1)
         {
             int i = v.Count;
             v.Add(a); v.Add(b); v.Add(c); v.Add(d);
-            uv.Add(new Vector2(u0, 0f)); uv.Add(new Vector2(u1, 0f));
-            uv.Add(new Vector2(u1, 1f)); uv.Add(new Vector2(u0, 1f));
+            uv.Add(new Vector2(u0, 0f)); uv.Add(new Vector2(u0, 1f));
+            uv.Add(new Vector2(u1, 1f)); uv.Add(new Vector2(u1, 0f));
             t.Add(i); t.Add(i + 1); t.Add(i + 2); t.Add(i); t.Add(i + 2); t.Add(i + 3);
         }
     }
