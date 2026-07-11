@@ -3,20 +3,20 @@
 **Owner:** GPT-5.6 Thinking, quality/architecture workstream  
 **Authorized by:** Terry, 2026-07-11 (“what’s next”)  
 **Branch:** `terry-local-wip`  
-**Status:** 🟡 MERGED TO ONE CANONICAL GATE — FINAL UNITY CI VERIFICATION PENDING; CLAIM HELD
+**Status:** ✅ ONE CANONICAL GATE · UNITY CI GREEN · FILE CLAIM RELEASED
 
 ## Why this was next
 
-`docs/CURRENT_EXECUTION_CHECKLIST.md` §7 places the creature behavior-count gate immediately after the completed UI and haptic rows. `docs/EXCELLENCE_MAP.md` requires every shipped creature id to carry at least three readable active states instead of one repeated chase loop.
+`docs/CURRENT_EXECUTION_CHECKLIST.md` §7 placed the creature behavior-count gate immediately after the completed UI and haptic rows. `docs/EXCELLENCE_MAP.md` required every shipped creature id to carry at least three readable active states instead of one repeated chase loop.
 
 ## Collision and resolution
 
-Two implementations began concurrently despite this claim:
+Two implementations began concurrently despite the original claim:
 
-- the original claimed implementation added source-evidence tokens, exact factory tokens and an APK pre-build blocker;
+- the first added source-evidence tokens, exact factory tokens and an APK pre-build blocker;
 - the concurrent implementation added a cleaner Content-layer catalog with expected archetype, explicit telegraph/counter states and a separate disabled/resolved state.
 
-They were deliberately merged instead of leaving two sources of truth.
+They were merged instead of leaving two sources of truth.
 
 **Canonical source:**
 
@@ -68,8 +68,21 @@ Audit prefix: `ZIPTIDE: CREATURE_BEHAVIOR_AUDIT`.
 - `husk_molter`: stalk · molt escape · cooldown vulnerability
 - `warden`: watch · warn · arrest/disengage · ally calm
 
-## Verification state
+## Verification proof
 
-A final ordinary CI run is intentionally being triggered by this commit after the merged head stabilized. Do not close the checklist row or release the claim until `docs/CI_VERDICT.md` records this exact head green, or its direct generated verdict-only child.
+- tested SHA: `d9b6cafbdb0c3663fb20771ee4bc0ece6d145bd8`
+- durable verdict commit: `2c9f0b3cb7b5e9edb17f0050d6e35789cab4e0cd`
+- CI run: `29169591530`
+- Unity EditMode: `success`
+- project-contract reports: `success`
+- Android: skipped as expected for ordinary branch CI
+- overall: `GREEN`
+- circuit-breaker reds: `0/3`
 
-Circuit breaker reds for the merged creature-gate task: `0/3` at this stamp.
+## Remaining evidence
+
+This gate proves structural vocabulary and wiring. Terry’s consolidated headset pass still judges whether each state is visually obvious, fairly timed, comfortable and fun. Actual readability problems become behavior/art polish rows; they do not reopen the catalog architecture.
+
+## Closure
+
+The creature behavior-count gap is closed at code/CI maturity and the protected-file claim is released. The next independent queue item is plant and vehicle catalog-breadth auditing.
