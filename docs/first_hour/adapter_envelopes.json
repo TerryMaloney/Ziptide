@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "packageId": "first-hour-adapter-envelopes-v1",
+  "status": "implementation-ready-docs",
+  "contractPath": "docs/first_hour/first_hour_beats.json",
+  "bindingInventoryPath": "docs/first_hour/first_hour_bindings.json",
+  "owners": [
+    "story-ship",
+    "multiplayer",
+    "art",
+    "architecture"
+  ],
+  "directReuse": [
+    "FH_ACCEPT_FIRST_JOB",
+    "FH_MACHINE_POWER_CYCLE",
+    "FH_SHOOT_PRACTICE_TARGET",
+    "FH_FIRST_JOB_REWARD"
+  ],
+  "rules": [
+    "One owner per concern; cross-lane work is separate.",
+    "No second event bus, save schema, travel path, job state, scanner, repair state, creature health owner, zipline mover, or RILL presenter.",
+    "No .unity/.prefab YAML edits; generated surfaces use patchers.",
+    "Pure logic is tested before/with translators.",
+    "Shared/protected files require HANDOFF announcement and latest-SHA reread.",
+    "Device-sensitive work stays yellow until Terry passes DEVICE acceptance."
+  ],
+  "envelopeFiles": [
+    "docs/first_hour/envelopes/FH-X01-CONTRACT-ASSET.json",
+    "docs/first_hour/envelopes/FH-X02-PROGRESSION-CORE.json",
+    "docs/first_hour/envelopes/FH-S01-OBSERVATION.json",
+    "docs/first_hour/envelopes/FH-S02-HOLSTER.json",
+    "docs/first_hour/envelopes/FH-S03-TRAVEL.json",
+    "docs/first_hour/envelopes/FH-M01-SCANNER-RESULT.json",
+    "docs/first_hour/envelopes/FH-S04-REPAIR-SCAN.json",
+    "docs/first_hour/envelopes/FH-S05-CREATURE-RESOLUTION.json",
+    "docs/first_hour/envelopes/FH-S06-ZIPLINE.json",
+    "docs/first_hour/envelopes/FH-S07-HOME-W000-SURFACES.json",
+    "docs/first_hour/envelopes/FH-A01-SIGNATURE-CREATURE-PRESENTATION.json",
+    "docs/first_hour/envelopes/FH-S08-W001-ORCHESTRATION.json"
+  ]
+}
