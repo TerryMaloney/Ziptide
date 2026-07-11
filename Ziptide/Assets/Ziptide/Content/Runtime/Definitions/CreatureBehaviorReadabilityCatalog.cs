@@ -3,21 +3,38 @@ using System.Collections.Generic;
 
 namespace Ziptide.Content
 {
+    /// <summary>One active readable state and the exact behavior-source token that proves it exists.</summary>
+    public sealed class CreatureBehaviorStateEvidence
+    {
+        public string StateName { get; }
+        public string EvidenceToken { get; }
+
+        public CreatureBehaviorStateEvidence(string stateName, string evidenceToken)
+        {
+            StateName = stateName ?? string.Empty;
+            EvidenceToken = evidenceToken ?? string.Empty;
+        }
+    }
+
     /// <summary>
     /// Machine-readable quality metadata for one shipped creature behavior. This is not a runtime
     /// behavior owner: CityBuilder and CreatureBehaviorBase subclasses still instantiate and execute
-    /// every creature. The profile exists so CI can enforce a minimum readable behavior vocabulary.
+    /// every creature. The profile exists so CI/build gates can enforce a readable behavior vocabulary.
     /// </summary>
     public sealed class CreatureBehaviorReadabilityProfile
     {
         public string CreatureId { get; }
         public CreatureArchetype ExpectedArchetype { get; }
         public string BehaviorTypeName { get; }
+        public string BehaviorSourceRelativePath { get; }
+        public string FactoryEvidenceToken { get; }
+        public IReadOnlyList<CreatureBehaviorStateEvidence> ActiveStateEvidence { get; }
         public IReadOnlyList<string> ActiveStates { get; }
         public string TelegraphState { get; }
         public string CounterState { get; }
         public string DisabledState { get; }
 
+        /// <summary>Compatibility constructor for validation fixtures and lightweight future callers.</summary>
         public CreatureBehaviorReadabilityProfile(
             string creatureId,
             CreatureArchetype expectedArchetype,
@@ -26,89 +43,175 @@ namespace Ziptide.Content
             string telegraphState,
             string counterState,
             string disabledState)
+            : this(
+                creatureId,
+                expectedArchetype,
+                behaviorTypeName,
+                string.Empty,
+                string.Empty,
+                ToEvidence(activeStates),
+                telegraphState,
+                counterState,
+                disabledState)
+        {
+        }
+
+        public CreatureBehaviorReadabilityProfile(
+            string creatureId,
+            CreatureArchetype expectedArchetype,
+            string behaviorTypeName,
+            string behaviorSourceRelativePath,
+            string factoryEvidenceToken,
+            CreatureBehaviorStateEvidence[] activeStateEvidence,
+            string telegraphState,
+            string counterState,
+            string disabledState)
         {
             CreatureId = creatureId ?? string.Empty;
             ExpectedArchetype = expectedArchetype;
             BehaviorTypeName = behaviorTypeName ?? string.Empty;
-            ActiveStates = Array.AsReadOnly(activeStates != null
-                ? (string[])activeStates.Clone()
-                : Array.Empty<string>());
+            BehaviorSourceRelativePath = behaviorSourceRelativePath ?? string.Empty;
+            FactoryEvidenceToken = factoryEvidenceToken ?? string.Empty;
+
+            var evidence = activeStateEvidence != null
+                ? (CreatureBehaviorStateEvidence[])activeStateEvidence.Clone()
+                : Array.Empty<CreatureBehaviorStateEvidence>();
+            ActiveStateEvidence = Array.AsReadOnly(evidence);
+
+            var names = new string[evidence.Length];
+            for (int i = 0; i < evidence.Length; i++)
+                names[i] = evidence[i] != null ? evidence[i].StateName : string.Empty;
+            ActiveStates = Array.AsReadOnly(names);
+
             TelegraphState = telegraphState ?? string.Empty;
             CounterState = counterState ?? string.Empty;
             DisabledState = disabledState ?? string.Empty;
         }
+
+        private static CreatureBehaviorStateEvidence[] ToEvidence(string[] states)
+        {
+            if (states == null) return Array.Empty<CreatureBehaviorStateEvidence>();
+            var evidence = new CreatureBehaviorStateEvidence[states.Length];
+            for (int i = 0; i < states.Length; i++)
+                evidence[i] = new CreatureBehaviorStateEvidence(states[i], string.Empty);
+            return evidence;
+        }
     }
 
     /// <summary>
-    /// The shipped creature roster's readable behavior vocabulary. Adding a CreatureDefinition without
-    /// adding an honest profile here fails EditMode CI. State names summarize existing M3 behavior and
-    /// deliberately do not drive motion, damage, rewards, visuals or respawn.
+    /// The shipped creature roster's single readable-behavior source of truth. State names summarize
+    /// existing M3 behavior and do not drive motion, damage, rewards, visuals or respawn.
     /// </summary>
     public static class CreatureBehaviorReadabilityCatalog
     {
         public const int MinimumActiveStates = 3;
+        private const string EnemySourceRoot = "Ziptide/Gameplay/Runtime/Enemies/";
 
         private static readonly CreatureBehaviorReadabilityProfile[] Profiles =
         {
-            new CreatureBehaviorReadabilityProfile(
+            Profile(
                 "swarm_bug",
                 CreatureArchetype.Swarmer,
                 "SwarmerBehavior",
-                new[] { "patrol_orbit", "gather_telegraph", "dart_attack" },
+                "go.AddComponent<SwarmerBehavior>();",
+                new[]
+                {
+                    State("patrol_orbit", "_orbitAngle += 40f"),
+                    State("gather_telegraph", "_dartUntil = Time.time + 0.7f"),
+                    State("dart_attack", "if (darting)"),
+                },
                 "gather_telegraph",
                 "gather_telegraph",
                 "stunned_down"),
 
-            new CreatureBehaviorReadabilityProfile(
+            Profile(
                 "tendril",
                 CreatureArchetype.WallCrawler,
                 "WallCrawlerBehavior",
-                new[] { "surface_patrol", "ripple_telegraph", "drop_lunge" },
+                "go.AddComponent<WallCrawlerBehavior>();",
+                new[]
+                {
+                    State("surface_patrol", "case Mode.OnWall:"),
+                    State("ripple_telegraph", "case Mode.Telegraph:"),
+                    State("drop_lunge", "case Mode.Lunge:"),
+                    State("return_to_wall", "case Mode.Return:"),
+                },
                 "ripple_telegraph",
                 "ripple_telegraph",
                 "stunned_grounded"),
 
-            new CreatureBehaviorReadabilityProfile(
+            Profile(
                 "light_grazer",
                 CreatureArchetype.Swarmer,
                 "LightGrazerBehavior",
-                new[] { "dark_idle_grow", "dark_approach", "lit_shrink_recoil" },
+                "case \"light_grazer\": go.AddComponent<LightGrazerBehavior>(); return;",
+                new[]
+                {
+                    State("dark_idle_grow", "lit ? -shrinkPerSecond : growPerSecond"),
+                    State("dark_approach", "if (!lit && Player != null && dist <= detectRange)"),
+                    State("lit_shrink_recoil", "else if (lit)"),
+                },
                 "lit_shrink_recoil",
                 "lit_shrink_recoil",
                 "stunned_down"),
 
-            new CreatureBehaviorReadabilityProfile(
+            Profile(
                 "witness_mite",
                 CreatureArchetype.Swarmer,
                 "WitnessMiteBehavior",
-                new[] { "unobserved_idle", "unobserved_stalk", "observed_freeze" },
+                "case \"witness_mite\": go.AddComponent<WitnessMiteBehavior>(); return;",
+                new[]
+                {
+                    State("unobserved_idle", "SetFrozen(false);"),
+                    State("unobserved_stalk", "if (Player != null && dist <= detectRange)"),
+                    State("observed_freeze", "if (observed)"),
+                },
                 "observed_freeze",
                 "observed_freeze",
                 "stunned_down"),
 
-            new CreatureBehaviorReadabilityProfile(
+            Profile(
                 "tether_swarm",
                 CreatureArchetype.Swarmer,
                 "TetherSwarmBehavior",
-                new[] { "cluster_weave", "tether_node_exposed", "tether_severed" },
+                "case \"tether_swarm\": go.AddComponent<TetherSwarmBehavior>(); return;",
+                new[]
+                {
+                    State("cluster_weave", "_clusterA.localPosition = new Vector3"),
+                    State("engaged_standoff_weave", "if (Player != null && dist <= detectRange)"),
+                    State("tether_node_exposed", "_node.localPosition = new Vector3"),
+                },
                 "tether_node_exposed",
                 "tether_node_exposed",
                 "colony_disabled"),
 
-            new CreatureBehaviorReadabilityProfile(
+            Profile(
                 "husk_molter",
                 CreatureArchetype.WallCrawler,
                 "HuskMolterBehavior",
-                new[] { "stalk", "molt_escape", "cooldown_vulnerable" },
+                "case \"husk_molter\": go.AddComponent<HuskMolterBehavior>(); return;",
+                new[]
+                {
+                    State("stalk", "if (Player != null && dist <= detectRange)"),
+                    State("molt_escape", "Debug.Log(\"ZIPTIDE: HUSK_MOLT\");"),
+                    State("cooldown_vulnerable", "Time.time < _nextMoltAllowed"),
+                },
                 "molt_escape",
                 "cooldown_vulnerable",
                 "stunned_down"),
 
-            new CreatureBehaviorReadabilityProfile(
+            Profile(
                 "warden",
                 CreatureArchetype.Bruiser,
                 "WardenBehavior",
-                new[] { "watch", "warn", "arrest_disengage", "ally_calm" },
+                "case \"warden\": go.AddComponent<WardenBehavior>(); return;",
+                new[]
+                {
+                    State("watch", "case WardenMode.Watch:"),
+                    State("warn", "case WardenMode.Warn:"),
+                    State("arrest_disengage", "Debug.Log(\"ZIPTIDE: WARDEN_ARREST\");"),
+                    State("ally_calm", "case WardenMode.Ally:"),
+                },
                 "warn",
                 "ally_calm",
                 "stunned_stand_down"),
@@ -166,6 +269,33 @@ namespace Ziptide.Content
                 errors.Add("DISABLED_STATE_DUPLICATES_ACTIVE:" + profile.DisabledState);
 
             return errors;
+        }
+
+        private static CreatureBehaviorReadabilityProfile Profile(
+            string creatureId,
+            CreatureArchetype expectedArchetype,
+            string behaviorTypeName,
+            string factoryEvidenceToken,
+            CreatureBehaviorStateEvidence[] states,
+            string telegraphState,
+            string counterState,
+            string disabledState)
+        {
+            return new CreatureBehaviorReadabilityProfile(
+                creatureId,
+                expectedArchetype,
+                behaviorTypeName,
+                EnemySourceRoot + behaviorTypeName + ".cs",
+                factoryEvidenceToken,
+                states,
+                telegraphState,
+                counterState,
+                disabledState);
+        }
+
+        private static CreatureBehaviorStateEvidence State(string name, string evidenceToken)
+        {
+            return new CreatureBehaviorStateEvidence(name, evidenceToken);
         }
 
         private static Dictionary<string, CreatureBehaviorReadabilityProfile> BuildLookup()
