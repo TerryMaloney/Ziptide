@@ -43,7 +43,7 @@ noted; EditMode tests are gates too. *(Last status reconciliation: 2026-07-11.)*
 | Aspect | State | The standard | Guardrail |
 |---|---|---|---|
 | Creatures (bodies) | 🧱→💎 in flight (Forge genomes, roster complete) | Hero creatures use their class budget; no primitive stand-ins; tells hold | `ForgeAuditRules` + class budgets; 🕳️ budget-utilization floor |
-| Creature behavior | 🦴 (~10 base behaviors) | Each shipped species has ≥3 readable states and reacts to player/hazards | behavior tests; 🕳️ per-species behavior-count check |
+| Creature behavior | 🧱 structural v1 (7 shipped ids; ≥3 active states each; device readability/polish pending) | Every shipped species has readable active vocabulary, a fair telegraph, a counter and separate non-lethal resolution; actual Quest timing/readability still matters | `CreatureBehaviorReadabilityCatalog` + both readability/audit test suites + `CreatureBehaviorBuildGate`; headset quality check remains |
 | Gardens | 🧱 v1 (24 species, genetics, watering) | Genetics visibly matter; interactions are hand verbs; giants/breeding playable | garden tests; 🕳️ plant-catalog breadth audit |
 | Automation/belts | 💎 | Place/ride/persist/feed/clone; deterministic flow; machinery motion follows work | `AutomationAuditRules` + tests |
 | Ambient audio | 🧱 v1 (procedural biome beds) | Every biome has bed + stingers; VO ducking | `AmbienceTests`; remaining stingers/stems/ducking |
@@ -125,7 +125,7 @@ noted; EditMode tests are gates too. *(Last status reconciliation: 2026-07-11.)*
 6. ~~UI readability/reach audit~~ — **CLOSED at WARN-only maturity 2026-07-11** (`UiReadabilityAuditRules` + tests/build processor); generated-scene/device calibration precedes any blocker promotion.
 7. ~~Haptic coverage checklist~~ — **CLOSED at documentation level 2026-07-11** (`design/HAPTIC_COVERAGE.md`); runtime owner rows remain individually open.
 8. ~~Accessibility design doc~~ — CLOSED 2026-07-10; non-preset controls remain implementation rows.
-9. **Behavior-count check** — every shipped creature id maps to ≥3 behavior states.
+9. ~~Creature behavior-count/readability check~~ — **CLOSED at structural code/CI maturity 2026-07-11** (one canonical catalog, source/factory evidence, EditMode suites and APK pre-build blocker; headset readability remains a quality/device row).
 10. **Plant/vehicle catalog breadth** — same shape as existing catalog-span tests.
 
 ## THE UNIFORMITY REVIEW
