@@ -1,0 +1,61 @@
+{
+  "id": "FH-S05-CREATURE-RESOLUTION",
+  "owner": "story-ship",
+  "kind": "adapter",
+  "risk": "device-sensitive",
+  "covers": [
+    "FH_COUNTER_SIGNATURE_CREATURE"
+  ],
+  "signals": [
+    "SIGNATURE_CREATURE_REDIRECTED_OR_DISABLED"
+  ],
+  "lines": [],
+  "dependencies": [
+    "FH-X02-PROGRESSION-CORE"
+  ],
+  "commits": 1,
+  "newFiles": [
+    "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureDisabledSignalTests.cs"
+  ],
+  "touchFiles": [
+    "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs"
+  ],
+  "touchPatterns": [],
+  "reuse": [
+    "CreatureRuntime",
+    "RewardRouter",
+    "EcologyPressureLedger"
+  ],
+  "api": [
+    "Expose IsDisabled from existing _down and publish once per down cycle after _down=true.",
+    "Identify existing runtime/species; orchestrator filters signature instance.",
+    "Do not change damage/health/reward/ecology/respawn/visuals."
+  ],
+  "tests": [
+    "first disable once",
+    "damage while down no repeat",
+    "respawn permits later owner event",
+    "reward/ecology order unchanged"
+  ],
+  "diagnostics": [
+    "ZIPTIDE: FIRST_HOUR_CREATURE id=<id> matched=<bool> outcome=disabled"
+  ],
+  "fallback": [
+    "No subscriber = unchanged; non-signature disables never advance."
+  ],
+  "acceptance": {
+    "CI": [
+      "Signal tests green",
+      "Unity compile green",
+      "Combat baselines unchanged"
+    ],
+    "BAKE": [],
+    "DEVICE": [
+      "Non-lethal signature resolution advances once"
+    ]
+  },
+  "integrationOwners": [
+    "art"
+  ],
+  "supports": []
+}
