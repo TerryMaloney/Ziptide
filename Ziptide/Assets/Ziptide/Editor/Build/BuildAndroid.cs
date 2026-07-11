@@ -51,6 +51,10 @@ namespace Ziptide.Build
             catch (Exception ex) { Debug.LogWarning("[Ziptide] Cosmetics author warning: " + ex.Message); }
             try { Ziptide.Editor.Patching.RillLineAuthor.EnsureAuthored(); }
             catch (Exception ex) { Debug.LogWarning("[Ziptide] RILL line author warning: " + ex.Message); }
+            // FH-X01: compile the approved first-hour JSON into one runtime Resources asset before
+            // audit/build. Invalid source fails closed inside the author and leaves base gameplay intact.
+            try { Ziptide.Editor.Patching.FirstHourContractAuthor.EnsureAuthored(); }
+            catch (Exception ex) { Debug.LogWarning("[Ziptide] First-hour contract author warning: " + ex.Message); }
             try { Ziptide.Editor.Patching.GardenAuthor.EnsureAuthored(); }
             catch (Exception ex) { Debug.LogWarning("[Ziptide] Garden author warning: " + ex.Message); }
             try { Ziptide.Editor.Patching.VehicleAuthor.EnsureAuthored(); }
