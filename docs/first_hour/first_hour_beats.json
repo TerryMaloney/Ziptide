@@ -1,0 +1,731 @@
+{
+  "schemaVersion": 1,
+  "contractId": "first-hour-v1",
+  "title": "ZIPTIDE First-Hour Beat Contract",
+  "status": "proposed-data-contract",
+  "sourceDocuments": [
+    "docs/design/ONBOARDING_TUTORIAL.md",
+    "docs/design/COMFORT_AND_ACCESSIBILITY.md",
+    "docs/design/HOME_HUB.md",
+    "docs/GPT_ADDITIONS/2026-07-10_GPT56_FIRST_HOUR/FIRST_HOUR_VERTICAL_SLICE_MASTER_PLAN.md"
+  ],
+  "completionFlags": [
+    "TUTORIAL_DONE",
+    "FIRST_HOUR_COMPLETE"
+  ],
+  "coreVerbs": [
+    "LOOK",
+    "COMFORT",
+    "MOVE",
+    "GRAB",
+    "HOLSTER",
+    "INTERACT",
+    "TRAVEL",
+    "ACCEPT_JOB",
+    "SCAN",
+    "REPAIR",
+    "SHOOT",
+    "OBSERVE_CREATURE",
+    "COUNTER_CREATURE",
+    "ZIPLINE",
+    "RETURN_HOME"
+  ],
+  "allowedEvidence": [
+    "CI",
+    "BAKE",
+    "DEVICE"
+  ],
+  "bindingStatuses": [
+    "proposed",
+    "proposed-adapter",
+    "verified-existing"
+  ],
+  "beats": [
+    {
+      "sequence": 1,
+      "id": "FH_BOOT_READY",
+      "phase": "COLD_BOOT",
+      "world": "_Boot",
+      "required": true,
+      "prerequisites": [],
+      "openCondition": "All prerequisites for FH_BOOT_READY are satisfied.",
+      "completionSignal": {
+        "id": "BOOT_PRESENTATION_READY",
+        "status": "proposed-adapter"
+      },
+      "setsFlags": [
+        "FIRST_HOUR_STARTED"
+      ],
+      "persistence": "profile",
+      "evidence": [
+        "CI",
+        "BAKE"
+      ],
+      "allowsInputLock": false,
+      "movesPlayerRig": false,
+      "autoComplete": false,
+      "notes": "Finished title surface is visible; no developer-first presentation."
+    },
+    {
+      "sequence": 2,
+      "id": "FH_NEW_GAME_SELECTED",
+      "phase": "COLD_BOOT",
+      "world": "_Boot",
+      "required": true,
+      "prerequisites": [
+        "FH_BOOT_READY"
+      ],
+      "openCondition": "All prerequisites for FH_NEW_GAME_SELECTED are satisfied.",
+      "completionSignal": {
+        "id": "NEW_GAME_PROFILE_CREATED",
+        "status": "proposed-adapter"
+      },
+      "setsFlags": [],
+      "persistence": "profile",
+      "evidence": [
+        "CI",
+        "DEVICE"
+      ],
+      "allowsInputLock": false,
+      "movesPlayerRig": false,
+      "autoComplete": false,
+      "notes": "New Game creates or resets the profile and enters W000."
+    },
+    {
+      "sequence": 3,
+      "id": "FH_LOOK_AT_RILL",
+      "phase": "W000_WAKE",
+      "world": "W000_DriftIn",
+      "required": true,
+      "prerequisites": [
+        "FH_NEW_GAME_SELECTED"
+      ],
+      "openCondition": "All prerequisites for FH_LOOK_AT_RILL are satisfied.",
+      "completionSignal": {
+        "id": "PLAYER_LOOKED_AT_RILL",
+        "status": "proposed-adapter"
+      },
+      "setsFlags": [
+        "TUT_LOOK"
+      ],
+      "persistence": "profile",
+      "evidence": [
+        "CI",
+        "DEVICE"
+      ],
+      "allowsInputLock": false,
+      "movesPlayerRig": false,
+      "autoComplete": false,
+      "notes": "RILL greets only after the player meets its light.",
+      "teachesVerb": "LOOK",
+      "hesitationSeconds": 8,
+      "rillLine": {
+        "id": "TUT_LOOK_RILL",
+        "status": "proposed"
+      }
+    },
+    {
+      "sequence": 4,
+      "id": "FH_COMFORT_CONSOLE",
+      "phase": "W000_WAKE",
+      "world": "W000_DriftIn",
+      "required": true,
+      "prerequisites": [
+        "FH_LOOK_AT_RILL"
+      ],
+      "openCondition": "All prerequisites for FH_COMFORT_CONSOLE are satisfied.",
+      "completionSignal": {
+        "id": "COMFORT_PRESET_CONFIRMED",
+        "status": "proposed-adapter"
+      },
+      "setsFlags": [
+        "TUT_COMFORT"
+      ],
+      "persistence": "profile",
+      "evidence": [
+        "CI",
+        "DEVICE"
+      ],
+      "allowsInputLock": false,
+      "movesPlayerRig": false,
+      "autoComplete": false,
+      "notes": "First interactive moment after LOOK; seated/standing and comfort preset.",
+      "teachesVerb": "COMFORT",
+      "hesitationSeconds": 10,
+      "rillLine": {
+        "id": "TUT_COMFORT_CONSOLE",
+        "status": "proposed"
+      }
+    },
+    {
+      "sequence": 5,
+      "id": "FH_MOVE_IN_QUARTERS",
+      "phase": "W000_BODY",
+      "world": "W000_DriftIn",
+      "required": true,
+      "prerequisites": [
+        "FH_COMFORT_CONSOLE"
+      ],
+      "openCondition": "All prerequisites for FH_MOVE_IN_QUARTERS are satisfied.",
+      "completionSignal": {
+        "id": "PLAYER_MOVED_SAFE_DISTANCE",
+        "status": "proposed-adapter"
+      },
+      "setsFlags": [
+        "TUT_MOVE"
+      ],
+      "persistence": "profile",
+      "evidence": [
+        "CI",
+        "DEVICE"
+      ],
+      "allowsInputLock": false,
+      "movesPlayerRig": false,
+      "autoComplete": false,
+      "notes": "Short safe movement inside the quarters.",
+      "teachesVerb": "MOVE",
+      "hesitationSeconds": 8,
+      "rillLine": {
+        "id": "TUT_MOVE_QUARTERS",
+        "status": "proposed"
+      }
+    },
+    {
+      "sequence": 6,
+      "id": "FH_GRAB_BUNK_OBJECT",
+      "phase": "W000_BODY",
+      "world": "W000_DriftIn",
+      "required": true,
+      "prerequisites": [
+        "FH_MOVE_IN_QUARTERS"
+      ],
+      "openCondition": "All prerequisites for FH_GRAB_BUNK_OBJECT are satisfied.",
+      "completionSignal": {
+        "id": "NAMED_BUNK_OBJECT_GRABBED",
+        "status": "proposed-adapter"
+      },
+      "setsFlags": [
+        "TUT_GRAB"
+      ],
+      "persistence": "profile",
+      "evidence": [
+        "CI",
+        "BAKE",
+        "DEVICE"
+      ],
+      "allowsInputLock": false,
+      "movesPlayerRig": false,
+      "autoComplete": false,
+      "notes": "One named personal object makes the grab affordance obvious.",
+      "teachesVerb": "GRAB",
+      "hesitationSeconds": 8,
+      "rillLine": {
+        "id": "TUT_GRAB_BUNK_OBJECT",
+        "status": "proposed"
+      }
+    },
+    {
+      "sequence": 7,
+      "id": "FH_HOLSTER_FIRST_ITEM",
+      "phase": "W000_BODY",
+      "world": "W000_DriftIn",
+      "required": true,
+      "prerequisites": [
+        "FH_GRAB_BUNK_OBJECT"
+      ],
+      "openCondition": "All prerequisites for FH_HOLSTER_FIRST_ITEM are satisfied.",
+      "completionSignal": {
+        "id": "ITEM_HOLSTERED",
+        "status": "proposed-adapter"
+      },
+      "setsFlags": [
+        "TUT_HOLSTER"
+      ],
+      "persistence": "profile",
+      "evidence": [
+        "CI",
+        "DEVICE"
+      ],
+      "allowsInputLock": false,
+      "movesPlayerRig": false,
+      "autoComplete": false,
+      "notes": "Uses existing first-release/holster teaching seam where possible.",
+      "teachesVerb": "HOLSTER",
+      "hesitationSeconds": 10,
+      "rillLine": {
+        "id": "TUT_HOLSTER_ITEM",
+        "status": "proposed"
+      }
+    },
+    {
+      "sequence": 8,
+      "id": "FH_INTERACT_HELM",
+      "phase": "W000_SHIP",
+      "world": "W000_DriftIn",
+      "required": true,
+      "prerequisites": [
+        "FH_HOLSTER_FIRST_ITEM"
+      ],
+      "openCondition": "All prerequisites for FH_INTERACT_HELM are satisfied.",
+      "completionSignal": {
+        "id": "HELM_FIRST_DESTINATION_SELECTED",
+        "status": "proposed-adapter"
+      },
+      "setsFlags": [
+        "TUT_INTERACT"
+      ],
+      "persistence": "profile",
+      "evidence": [
+        "CI",
+        "BAKE",
+        "DEVICE"
+      ],
+      "allowsInputLock": false,
+      "movesPlayerRig": false,
+      "autoComplete": false,
+      "notes": "The first destination tile is the obvious interaction.",
+      "teachesVerb": "INTERACT",
+      "hesitationSeconds": 10,
+      "rillLine": {
+        "id": "TUT_INTERACT_HELM",
+        "status": "proposed"
+      }
+    },
+    {
+      "sequence": 9,
+      "id": "FH_FIRST_ZIPTIDE",
+      "phase": "W000_SHIP",
+      "world": "W000_DriftIn",
+      "required": true,
+      "prerequisites": [
+        "FH_INTERACT_HELM"
+      ],
+      "openCondition": "All prerequisites for FH_FIRST_ZIPTIDE are satisfied.",
+      "completionSignal": {
+        "id": "TRAVEL_W000_TO_W001_COMPLETE",
+        "status": "proposed-adapter"
+      },
+      "setsFlags": [
+        "TUT_TRAVEL"
+      ],
+      "persistence": "profile",
+      "evidence": [
+        "CI",
+        "BAKE",
+        "DEVICE"
+      ],
+      "allowsInputLock": false,
+      "movesPlayerRig": false,
+      "autoComplete": false,
+      "notes": "No forced camera motion; world/ship presentation earns the title.",
+      "teachesVerb": "TRAVEL",
+      "hesitationSeconds": 12,
+      "rillLine": {
+        "id": "TUT_PUNCH_IT",
+        "status": "proposed"
+      }
+    },
+    {
+      "sequence": 10,
+      "id": "FH_W001_ARRIVAL",
+      "phase": "W001_ARRIVAL",
+      "world": "W001_ToxicCity",
+      "required": true,
+      "prerequisites": [
+        "FH_FIRST_ZIPTIDE"
+      ],
+      "openCondition": "All prerequisites for FH_W001_ARRIVAL are satisfied.",
+      "completionSignal": {
+        "id": "W001_ARRIVAL_ORIENTATION_COMPLETE",
+        "status": "proposed-adapter"
+      },
+      "setsFlags": [],
+      "persistence": "profile",
+      "evidence": [
+        "BAKE",
+        "DEVICE"
+      ],
+      "allowsInputLock": false,
+      "movesPlayerRig": false,
+      "autoComplete": false,
+      "notes": "Quiet vista beat, return path visible first, ambient life establishes place."
+    },
+    {
+      "sequence": 11,
+      "id": "FH_ACCEPT_FIRST_JOB",
+      "phase": "W001_JOB",
+      "world": "W001_ToxicCity",
+      "required": true,
+      "prerequisites": [
+        "FH_W001_ARRIVAL"
+      ],
+      "openCondition": "All prerequisites for FH_ACCEPT_FIRST_JOB are satisfied.",
+      "completionSignal": {
+        "id": "FIRST_JOB_ACCEPTED",
+        "status": "proposed-adapter"
+      },
+      "setsFlags": [
+        "TUT_ACCEPT_JOB"
+      ],
+      "persistence": "profile",
+      "evidence": [
+        "CI",
+        "DEVICE"
+      ],
+      "allowsInputLock": false,
+      "movesPlayerRig": false,
+      "autoComplete": false,
+      "notes": "Job source is legible through world logic rather than a modal instruction.",
+      "teachesVerb": "ACCEPT_JOB",
+      "hesitationSeconds": 12,
+      "rillLine": {
+        "id": "TUT_ACCEPT_FIRST_JOB",
+        "status": "proposed"
+      }
+    },
+    {
+      "sequence": 12,
+      "id": "FH_SCAN_FAULT",
+      "phase": "W001_JOB",
+      "world": "W001_ToxicCity",
+      "required": true,
+      "prerequisites": [
+        "FH_ACCEPT_FIRST_JOB"
+      ],
+      "openCondition": "All prerequisites for FH_SCAN_FAULT are satisfied.",
+      "completionSignal": {
+        "id": "FIRST_MACHINE_FAULT_SCANNED",
+        "status": "proposed-adapter"
+      },
+      "setsFlags": [
+        "TUT_SCAN"
+      ],
+      "persistence": "profile",
+      "evidence": [
+        "CI",
+        "DEVICE"
+      ],
+      "allowsInputLock": false,
+      "movesPlayerRig": false,
+      "autoComplete": false,
+      "notes": "Scanning identifies the problem and exposes the next physical step.",
+      "teachesVerb": "SCAN",
+      "hesitationSeconds": 10,
+      "rillLine": {
+        "id": "TUT_SCAN_FAULT",
+        "status": "proposed"
+      }
+    },
+    {
+      "sequence": 13,
+      "id": "FH_REPAIR_ACCESS",
+      "phase": "W001_JOB",
+      "world": "W001_ToxicCity",
+      "required": true,
+      "prerequisites": [
+        "FH_SCAN_FAULT"
+      ],
+      "openCondition": "All prerequisites for FH_REPAIR_ACCESS are satisfied.",
+      "completionSignal": {
+        "id": "FIRST_MACHINE_ACCESS_OPENED",
+        "status": "proposed-adapter"
+      },
+      "setsFlags": [
+        "TUT_REPAIR"
+      ],
+      "persistence": "profile",
+      "evidence": [
+        "CI",
+        "BAKE",
+        "DEVICE"
+      ],
+      "allowsInputLock": false,
+      "movesPlayerRig": false,
+      "autoComplete": false,
+      "notes": "The repair verb is taught through opening/exposing the service point.",
+      "teachesVerb": "REPAIR",
+      "hesitationSeconds": 12,
+      "rillLine": {
+        "id": "TUT_REPAIR_ACCESS",
+        "status": "proposed"
+      }
+    },
+    {
+      "sequence": 14,
+      "id": "FH_REPAIR_PART_SEATED",
+      "phase": "W001_JOB",
+      "world": "W001_ToxicCity",
+      "required": true,
+      "prerequisites": [
+        "FH_REPAIR_ACCESS"
+      ],
+      "openCondition": "All prerequisites for FH_REPAIR_PART_SEATED are satisfied.",
+      "completionSignal": {
+        "id": "FIRST_REPAIR_PART_SEATED",
+        "status": "proposed-adapter"
+      },
+      "setsFlags": [],
+      "persistence": "profile",
+      "evidence": [
+        "CI",
+        "DEVICE"
+      ],
+      "allowsInputLock": false,
+      "movesPlayerRig": false,
+      "autoComplete": false,
+      "notes": "Reinforces repair without teaching the verb twice; feedback must confirm seating."
+    },
+    {
+      "sequence": 15,
+      "id": "FH_MACHINE_POWER_CYCLE",
+      "phase": "W001_JOB",
+      "world": "W001_ToxicCity",
+      "required": true,
+      "prerequisites": [
+        "FH_REPAIR_PART_SEATED"
+      ],
+      "openCondition": "All prerequisites for FH_MACHINE_POWER_CYCLE are satisfied.",
+      "completionSignal": {
+        "id": "FIRST_MACHINE_POWERED",
+        "status": "proposed-adapter"
+      },
+      "setsFlags": [
+        "FIRST_MACHINE_REPAIRED"
+      ],
+      "persistence": "world",
+      "evidence": [
+        "CI",
+        "BAKE",
+        "DEVICE"
+      ],
+      "allowsInputLock": false,
+      "movesPlayerRig": false,
+      "autoComplete": false,
+      "notes": "Power-cycle produces visible/audio world consequence."
+    },
+    {
+      "sequence": 16,
+      "id": "FH_SHOOT_PRACTICE_TARGET",
+      "phase": "W001_TOOLS",
+      "world": "W001_ToxicCity",
+      "required": true,
+      "prerequisites": [
+        "FH_MACHINE_POWER_CYCLE"
+      ],
+      "openCondition": "All prerequisites for FH_SHOOT_PRACTICE_TARGET are satisfied.",
+      "completionSignal": {
+        "id": "FIRST_PRACTICE_TARGET_HIT",
+        "status": "proposed-adapter"
+      },
+      "setsFlags": [
+        "TUT_SHOOT"
+      ],
+      "persistence": "profile",
+      "evidence": [
+        "CI",
+        "DEVICE"
+      ],
+      "allowsInputLock": false,
+      "movesPlayerRig": false,
+      "autoComplete": false,
+      "notes": "Safe practice target teaches tool discharge before the creature encounter.",
+      "teachesVerb": "SHOOT",
+      "hesitationSeconds": 10,
+      "rillLine": {
+        "id": "TUT_SHOOT_PRACTICE",
+        "status": "proposed"
+      }
+    },
+    {
+      "sequence": 17,
+      "id": "FH_OBSERVE_SIGNATURE_CREATURE",
+      "phase": "W001_CREATURE",
+      "world": "W001_ToxicCity",
+      "required": true,
+      "prerequisites": [
+        "FH_SHOOT_PRACTICE_TARGET"
+      ],
+      "openCondition": "All prerequisites for FH_OBSERVE_SIGNATURE_CREATURE are satisfied.",
+      "completionSignal": {
+        "id": "SIGNATURE_CREATURE_OBSERVED",
+        "status": "proposed-adapter"
+      },
+      "setsFlags": [
+        "TUT_OBSERVE_CREATURE"
+      ],
+      "persistence": "profile",
+      "evidence": [
+        "BAKE",
+        "DEVICE"
+      ],
+      "allowsInputLock": false,
+      "movesPlayerRig": false,
+      "autoComplete": false,
+      "notes": "Foreshadow and safe read window; no immediate attack.",
+      "teachesVerb": "OBSERVE_CREATURE",
+      "hesitationSeconds": 14,
+      "rillLine": {
+        "id": "TUT_OBSERVE_CREATURE",
+        "status": "proposed"
+      }
+    },
+    {
+      "sequence": 18,
+      "id": "FH_COUNTER_SIGNATURE_CREATURE",
+      "phase": "W001_CREATURE",
+      "world": "W001_ToxicCity",
+      "required": true,
+      "prerequisites": [
+        "FH_OBSERVE_SIGNATURE_CREATURE"
+      ],
+      "openCondition": "All prerequisites for FH_COUNTER_SIGNATURE_CREATURE are satisfied.",
+      "completionSignal": {
+        "id": "SIGNATURE_CREATURE_REDIRECTED_OR_DISABLED",
+        "status": "proposed-adapter"
+      },
+      "setsFlags": [
+        "TUT_COUNTER_CREATURE",
+        "FIRST_CREATURE_RESOLVED"
+      ],
+      "persistence": "world",
+      "evidence": [
+        "CI",
+        "BAKE",
+        "DEVICE"
+      ],
+      "allowsInputLock": false,
+      "movesPlayerRig": false,
+      "autoComplete": false,
+      "notes": "Uses a readable tool/environment counter and non-lethal resolution.",
+      "teachesVerb": "COUNTER_CREATURE",
+      "hesitationSeconds": 15,
+      "rillLine": {
+        "id": "TUT_COUNTER_CREATURE",
+        "status": "proposed"
+      }
+    },
+    {
+      "sequence": 19,
+      "id": "FH_USE_JOB_ZIPLINE",
+      "phase": "W001_TRAVERSAL",
+      "world": "W001_ToxicCity",
+      "required": true,
+      "prerequisites": [
+        "FH_COUNTER_SIGNATURE_CREATURE"
+      ],
+      "openCondition": "All prerequisites for FH_USE_JOB_ZIPLINE are satisfied.",
+      "completionSignal": {
+        "id": "FIRST_JOB_ZIPLINE_USED",
+        "status": "proposed-adapter"
+      },
+      "setsFlags": [
+        "TUT_ZIPLINE"
+      ],
+      "persistence": "profile",
+      "evidence": [
+        "CI",
+        "BAKE",
+        "DEVICE"
+      ],
+      "allowsInputLock": false,
+      "movesPlayerRig": false,
+      "autoComplete": false,
+      "notes": "Zipline sits on the job path and does not require a floating arrow.",
+      "teachesVerb": "ZIPLINE",
+      "hesitationSeconds": 12,
+      "rillLine": {
+        "id": "TUT_ZIPLINE",
+        "status": "proposed"
+      }
+    },
+    {
+      "sequence": 20,
+      "id": "FH_FIRST_JOB_REWARD",
+      "phase": "W001_REWARD",
+      "world": "W001_ToxicCity",
+      "required": true,
+      "prerequisites": [
+        "FH_USE_JOB_ZIPLINE"
+      ],
+      "openCondition": "All prerequisites for FH_FIRST_JOB_REWARD are satisfied.",
+      "completionSignal": {
+        "id": "FIRST_JOB_REWARD_ROUTED",
+        "status": "proposed-adapter"
+      },
+      "setsFlags": [
+        "FIRST_JOB_COMPLETE"
+      ],
+      "persistence": "profile",
+      "evidence": [
+        "CI",
+        "DEVICE"
+      ],
+      "allowsInputLock": false,
+      "movesPlayerRig": false,
+      "autoComplete": false,
+      "notes": "Reward uses visual, audio, haptic, and persistent world confirmation."
+    },
+    {
+      "sequence": 21,
+      "id": "FH_RETURN_TO_SHIP",
+      "phase": "RETURN",
+      "world": "W001_ToxicCity",
+      "required": true,
+      "prerequisites": [
+        "FH_FIRST_JOB_REWARD"
+      ],
+      "openCondition": "All prerequisites for FH_RETURN_TO_SHIP are satisfied.",
+      "completionSignal": {
+        "id": "TRAVEL_W001_TO_W000_COMPLETE",
+        "status": "proposed-adapter"
+      },
+      "setsFlags": [
+        "TUT_RETURN_HOME"
+      ],
+      "persistence": "profile",
+      "evidence": [
+        "CI",
+        "DEVICE"
+      ],
+      "allowsInputLock": false,
+      "movesPlayerRig": false,
+      "autoComplete": false,
+      "notes": "Return path was shown at arrival and remains dependable.",
+      "teachesVerb": "RETURN_HOME",
+      "hesitationSeconds": 15,
+      "rillLine": {
+        "id": "TUT_RETURN_HOME",
+        "status": "proposed"
+      }
+    },
+    {
+      "sequence": 22,
+      "id": "FH_CHANGED_SHIP_PAYOFF",
+      "phase": "RETURN",
+      "world": "W000_DriftIn",
+      "required": true,
+      "prerequisites": [
+        "FH_RETURN_TO_SHIP"
+      ],
+      "openCondition": "All prerequisites for FH_CHANGED_SHIP_PAYOFF are satisfied.",
+      "completionSignal": {
+        "id": "FIRST_HOUR_PAYOFF_OBSERVED",
+        "status": "proposed-adapter"
+      },
+      "setsFlags": [
+        "TUTORIAL_DONE",
+        "FIRST_HOUR_COMPLETE"
+      ],
+      "persistence": "ship",
+      "evidence": [
+        "CI",
+        "BAKE",
+        "DEVICE"
+      ],
+      "allowsInputLock": false,
+      "movesPlayerRig": false,
+      "autoComplete": false,
+      "notes": "Changed ship/RILL state is visible, save reassurance lands, and the next mystery is teased."
+    }
+  ]
+}
