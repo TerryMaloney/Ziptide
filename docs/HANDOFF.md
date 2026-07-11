@@ -88,6 +88,20 @@ green. The first-hour code is landing clean and in-lane. Carry on; just do M01 b
 - **Commits:** docs-only (this entry).
 
 
+### 2026-07-11 (dddd36) - Picasso (Opus 4.8): 🪨 F3.4 commit 2 — BLOB SHADOWS under every creature
+- **Did:** `GroundShadow` (Visuals/Runtime/Grounding) — one shared dark radial-blob material + quad
+  across all shadows; `Attach(host, radius)` drops a flat blob decal at a body's base. Wired into
+  `ForgeCreatureVisualApplier.TryApply` (parented to the HOST, not the animated visual, so it stays
+  put as the body bobs; radius from the skinned mesh XZ footprint ×0.9) AND the booth's
+  `BuildBodySubject` so the next creature render shows the shadow. 1 headless test.
+- **F3.3 commit 4 (WaterAuthor) confirmed CI green** (`fed062f`).
+- **Heads-up:** the shadow sits at host-local y=0.02 — correct when the creature root is at its
+  feet/ground (the spawn convention). Flyers/hoverers (light_grazer) may want the shadow projected
+  to true ground later; v1 rides the host base. Runbook device check will confirm.
+- **Next:** commit 3 = `GroundingBuilder` (stains under pipes/props + wall-base moss, deterministic
+  ≤40/world, one shared material) + the player-rig blob shadow.
+- **Commit:** this push.
+
 ### 2026-07-11 (dddd35) - Picasso (Opus 4.8): 🪨 F3.4 GROUNDING commit 1 — the decal fields (F3.3 all-green)
 - **F3.3 fully CI-green** (commits 1–4, through `fed062f`). Water is done pending Terry's device pass.
 - **Did (pure + booth, F3.4 commit 1):** `GroundDecal` (Visuals/Runtime/Grounding) — `BlobAlpha`

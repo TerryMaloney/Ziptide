@@ -267,6 +267,10 @@ namespace Ziptide.Editor.Patching
             for (int i = 1; i < r.bones.Length && i < q.Length; i++)
                 r.bones[i].localRotation = r.bones[i].localRotation * q[i];
 
+            // FORGE III F3.4 — the blob shadow the runtime applier adds, so it's booth-verified.
+            float footprint = Mathf.Max(r.mesh.bounds.extents.x, r.mesh.bounds.extents.z);
+            Ziptide.Visuals.GroundShadow.Attach(root, footprint * 0.9f);
+
             return root;
         }
 

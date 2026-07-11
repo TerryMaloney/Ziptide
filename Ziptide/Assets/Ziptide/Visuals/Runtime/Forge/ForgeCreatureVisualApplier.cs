@@ -64,6 +64,12 @@ namespace Ziptide.Visuals
             // through this instead of their now-hidden primitive parts.
             vis.AddComponent<ForgeBodyTell>().Init(smr, eyeIndex, baseColors);
 
+            // FORGE III F3.4 — a blob shadow at the creature's base so it reads as standing on the
+            // ground, not floating. Parented to the HOST (not the animated visual) so it stays put
+            // as the body bobs/walks.
+            float footprint = Mathf.Max(r.mesh.bounds.extents.x, r.mesh.bounds.extents.z);
+            GroundShadow.Attach(host, footprint * 0.9f);
+
             Debug.Log("ZIPTIDE: FORGE_CREATURE_APPLIED id=" + creatureId
                 + " bones=" + r.bones.Length + " tris=" + r.mesh.triangles.Length / 3
                 + " baked=" + (baked != null));

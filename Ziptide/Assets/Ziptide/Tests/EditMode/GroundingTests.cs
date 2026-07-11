@@ -55,5 +55,23 @@ namespace Ziptide.Tests.EditMode
             Assert.Greater(px[c].a, 200, "blob centre texel is nearly opaque");
             Assert.AreEqual(0, px[0].a, "blob corner texel is clear");
         }
+
+        [Test]
+        public void GroundShadow_Attaches_QuadChild_NoCollider()
+        {
+            var host = new GameObject("Host");
+            try
+            {
+                GroundShadow.Attach(host, 0.5f);
+                var sh = host.transform.Find(GroundShadow.ChildName);
+                Assert.IsNotNull(sh, "a shadow child is attached");
+                Assert.IsNotNull(sh.GetComponent<MeshFilter>().sharedMesh, "the shadow has its quad mesh");
+                Assert.AreEqual(0, host.GetComponentsInChildren<Collider>(true).Length,
+                    "a look, never a stat — no collider");
+                Assert.AreEqual(UnityEngine.Rendering.ShadowCastingMode.Off,
+                    sh.GetComponent<MeshRenderer>().shadowCastingMode, "the blob never casts a real shadow");
+            }
+            finally { Object.DestroyImmediate(host); }
+        }
     }
 }
