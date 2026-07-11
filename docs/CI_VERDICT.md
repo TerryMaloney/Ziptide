@@ -24,4 +24,4 @@
 }
 ```
 
-The final CI job replaces this file only when the tested SHA is still the live branch head. A stale or racing run may not overwrite a newer verdict.
+The final CI job writes only when the tested SHA is the live branch head immediately before recording. After a successful write, the live head is the direct verdict-only child of `testedSha`. A later normal commit makes the verdict stale until its own CI run completes.
