@@ -13,6 +13,7 @@ namespace Ziptide.Visuals
     /// <summary>
     /// FORGE III F3.7 — pure procedural Shell-script glyph strips. The result is abstract angular
     /// writing, not a font and not localized text. The same seed/class always produces the same mask.
+    /// Texture/material creation belongs to the cleanup-owning sign surface, not this pure baker.
     /// </summary>
     public static class ShellGlyphBaker
     {
@@ -32,7 +33,7 @@ namespace Ziptide.Visuals
             return pixels;
         }
 
-        /// <summary>Pure alpha channel used by tests and runtime texture creation.</summary>
+        /// <summary>Pure alpha channel used by tests and the cleanup-owning runtime sign surface.</summary>
         public static byte[] BakeAlpha(int size, int seed, SignDestinationClass destination)
         {
             size = Mathf.Clamp(size, MinimumSize, MaximumSize);
@@ -75,21 +76,6 @@ namespace Ziptide.Visuals
 
             DrawDestinationMark(alpha, size, destination, margin + GlyphCount * cell, baseline, top, width);
             return alpha;
-        }
-
-        public static Texture2D CreateTexture(int size, int seed, SignDestinationClass destination)
-        {
-            size = Mathf.Clamp(size, MinimumSize, MaximumSize);
-            var texture = new Texture2D(size, size, TextureFormat.RGBA32, true, true)
-            {
-                name = "ShellGlyph_" + destination + "_" + seed,
-                wrapMode = TextureWrapMode.Clamp,
-                filterMode = FilterMode.Bilinear,
-                hideFlags = HideFlags.HideAndDontSave
-            };
-            texture.SetPixels32(Bake(size, seed, destination));
-            texture.Apply(true, true);
-            return texture;
         }
 
         public static float Coverage01(byte[] alpha)
