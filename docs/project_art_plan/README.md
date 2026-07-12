@@ -9,6 +9,7 @@ This directory is the art/audio/presentation plan of record. Read the active spr
 3. `CREATURE_QUALITY_V2_LIFE_LEAP.md` — creature-specific life/presentation follow-on.
 4. `FORGE_IV_CINEMATIC_PRESENCE.md` — Terry-approved canonical next-generation program for cinematic realism, depth, awe and soundtrack.
 5. `CINEMATIC_PRESENCE_CONSTITUTION.md` — CP-0 decision contract; **complete** and binding before FORGE IV implementation.
+6. `../GPT_ADDITIONS/2026-07-11_GPT56_CINEMATIC_PRESENCE/CINEMATIC_PRESENCE_HANDOFF.md` — Did/Next/Heads-up/Commits and the preserved Picasso queue.
 
 ## Canonical program sequence
 
