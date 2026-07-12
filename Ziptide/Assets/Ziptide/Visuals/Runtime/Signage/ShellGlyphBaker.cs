@@ -44,7 +44,7 @@ namespace Ziptide.Visuals
             float top = size * 0.78f;
             float usable = size - margin * 2f;
             float cell = usable / (GlyphCount + 1.1f); // final cell is the destination mark
-            float width = Mathf.Max(1.2f, size * 0.025f);
+            float width = Mathf.Max(1.2f, size * 0.020f);
 
             for (int glyph = 0; glyph < GlyphCount; glyph++)
             {
