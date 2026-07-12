@@ -136,14 +136,21 @@ namespace Ziptide.Tests.EditMode
             Assert.IsTrue(File.Exists(glyphPath), glyphPath);
             Assert.IsTrue(File.Exists(recipePath), recipePath);
 
-            string source = File.ReadAllText(glyphPath) + File.ReadAllText(recipePath);
-            StringAssert.DoesNotContain("TextMesh", source);
-            StringAssert.DoesNotContain("TMP_", source);
-            StringAssert.DoesNotContain("Font", source);
-            StringAssert.DoesNotContain("XRBaseInteractable", source);
-            StringAssert.DoesNotContain("XRSimpleInteractable", source);
-            StringAssert.DoesNotContain("new Texture2D", source,
-                "commit 1 stays resource-pure; the cleanup-owning surface creates textures later");
+            string glyphSource = File.ReadAllText(glyphPath);
+            string recipeSource = File.ReadAllText(recipePath);
+            string allSource = glyphSource + recipeSource;
+            StringAssert.DoesNotContain("TextMesh", allSource);
+            StringAssert.DoesNotContain("TMP_", allSource);
+            StringAssert.DoesNotContain("Font", allSource);
+            StringAssert.DoesNotContain("XRBaseInteractable", allSource);
+            StringAssert.DoesNotContain("XRSimpleInteractable", allSource);
+
+            // Runtime remains pure: the baker only returns pixel arrays. Commit 2 deliberately moved
+            // persistent texture/material creation into the create-only Editor asset author.
+            StringAssert.DoesNotContain("new Texture2D", glyphSource);
+            StringAssert.Contains("new Texture2D", recipeSource);
+            StringAssert.Contains("AssetDatabase.CreateAsset(texture, texturePath);", recipeSource);
+            StringAssert.Contains("AssetDatabase.CreateAsset(material, materialPath);", recipeSource);
         }
 
         [Test]
