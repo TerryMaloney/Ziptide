@@ -3,7 +3,7 @@
 **Owner:** GPT-5.6 Thinking, temporarily authorized Picasso/Art lane  
 **Authorized by:** Terry, 2026-07-11 (“take over Picasso’s lane… knock out whatever you can”)  
 **Branch:** `terry-local-wip`  
-**Status:** 🟡 CLAIMED — art-owned world-mote half in progress  
+**Status:** 🟡 CLAIMED — runtime marker authored; Unity verification requested before world authoring  
 **Parent plan:** `docs/project_art_plan/FORGE_III_PLAN.md` §F3.5
 
 ## Dependency proof
@@ -47,6 +47,13 @@ Closure docs:
 - `Dunes`, `Mesas`, `Canyon` and fallback use `motes_amber`;
 - runtime volume delegates entirely to the existing `VfxFactory`, stops its looping system on disable/destroy and performs no edit-mode spawning;
 - author is idempotent by replacing only its own `AmbientMotes` child under the rebuilt `Dressing` root.
+
+## Runtime checkpoint
+
+- runtime marker commit: `b7033208e15ecb4d88e5fce28568c947efb56d80`;
+- metadata child: `0a1d37327d5235f7778a3c19510837ce4255a5fd`;
+- this documentation-only commit intentionally triggers Unity CI because the immediate metadata child used `[skip ci]`;
+- no editor author or shared-file hook will land until this checkpoint is green.
 
 ## Acceptance
 
