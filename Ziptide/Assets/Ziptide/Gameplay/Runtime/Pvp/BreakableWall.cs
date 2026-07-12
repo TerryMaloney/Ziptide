@@ -61,12 +61,9 @@ namespace Ziptide.Gameplay
                       + " broken=" + _state.BrokenCount + "/" + _state.BrickCount);
         }
 
-        // ── Debris (destruction v2) — chunks, pooled-cap'd for Quest, never lethal ────────────────
+        // ── Debris (destruction v2) — chunks, shared-cap'd for Quest, never lethal ─────────────────
 
-        private const int MaxLiveDebris = 24;      // hard cap on simultaneous rigidbody chunks
-        private const float DebrisLifetime = 4.5f; // seconds before a chunk shrinks away
-        private static readonly System.Collections.Generic.Queue<GameObject> _liveDebris =
-            new System.Collections.Generic.Queue<GameObject>();
+        private const float DebrisLifetime = WorldDebrisBudget.DefaultLifetime;
 
         /// <summary>Chunks for one broken brick. burst = hit directly (3 fragments kicked outward);
         /// otherwise it lost support and drops as one whole chunk with a little shear.</summary>
@@ -132,12 +129,8 @@ namespace Ziptide.Gameplay
                                              Hash01(seed + 71) - 0.5f) * 4f;
             go.AddComponent<WallChunkDebris>().lifetime = DebrisLifetime;
 
-            _liveDebris.Enqueue(go);
-            while (_liveDebris.Count > MaxLiveDebris)
-            {
-                var oldest = _liveDebris.Dequeue();
-                if (oldest != null) Destroy(oldest);
-            }
+            // F3.6: walls and shootable dressing now share ONE hard 24-object physics rail.
+            WorldDebrisBudget.Register(go);
         }
 
         /// <summary>Deterministic int hash → [0,1) (the ForgeMesh idiom, local — Gameplay can't ref Visuals).</summary>
