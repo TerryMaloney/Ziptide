@@ -7,7 +7,7 @@ using Ziptide.Core;
 namespace Ziptide.Gameplay
 {
     /// <summary>
-    /// FIELD CAMERA — six newest captured photos on the Quarters back wall. Files are device-local;
+    /// FIELD CAMERA — six newest captured photos on a Quarters wall host. Files are device-local;
     /// missing/corrupt files degrade to a neutral panel. Every loaded Texture2D/Material is owned and
     /// destroyed by this scene-local wall.
     /// </summary>
@@ -15,7 +15,7 @@ namespace Ziptide.Gameplay
     {
         public const int MaxDisplayedPhotos = 6;
         public const string RootName = "CapturedPhotoWall";
-        private const float WallZ = 2.225f;
+        private const float SurfaceZ = 0.025f;
 
         private readonly List<Texture2D> _textures = new List<Texture2D>();
         private readonly List<Material> _materials = new List<Material>();
@@ -62,7 +62,7 @@ namespace Ziptide.Gameplay
             slot = Mathf.Clamp(slot, 0, MaxDisplayedPhotos - 1);
             int column = slot % 3;
             int row = slot / 3;
-            return new Vector3(-1.30f + column * 1.30f, 1.62f - row * 0.76f, WallZ);
+            return new Vector3(-1.30f + column * 1.30f, 1.62f - row * 0.76f, SurfaceZ);
         }
 
         public static Color FrameColorForRating(int rating)
@@ -77,7 +77,6 @@ namespace Ziptide.Gameplay
             var holder = new GameObject("Photo_" + slot);
             holder.transform.SetParent(parent, false);
             holder.transform.localPosition = SlotLocalPosition(slot);
-            holder.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
 
             GameObject frame = GameObject.CreatePrimitive(PrimitiveType.Cube);
             frame.name = "Frame";
@@ -92,6 +91,7 @@ namespace Ziptide.Gameplay
             image.name = "Image";
             image.transform.SetParent(holder.transform, false);
             image.transform.localPosition = new Vector3(0f, 0f, -0.021f);
+            image.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
             image.transform.localScale = new Vector3(0.98f, 0.54f, 1f);
             DisablePhysical(image);
 
@@ -186,8 +186,7 @@ namespace Ziptide.Gameplay
         {
             var title = new GameObject("Title");
             title.transform.SetParent(parent, false);
-            title.transform.localPosition = new Vector3(0f, 2.08f, WallZ - 0.03f);
-            title.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
+            title.transform.localPosition = new Vector3(0f, 2.08f, SurfaceZ - 0.03f);
             TextMesh text = title.AddComponent<TextMesh>();
             text.text = "FIELD NOTES";
             text.anchor = TextAnchor.MiddleCenter;
@@ -201,8 +200,7 @@ namespace Ziptide.Gameplay
         {
             var notice = new GameObject("EmptyNotice");
             notice.transform.SetParent(parent, false);
-            notice.transform.localPosition = new Vector3(0f, 1.25f, WallZ - 0.03f);
-            notice.transform.localRotation = Quaternion.Euler(0f, 180f, 0f);
+            notice.transform.localPosition = new Vector3(0f, 1.25f, SurfaceZ - 0.03f);
             TextMesh text = notice.AddComponent<TextMesh>();
             text.text = "NO CAPTURES YET\n\nTAKE THE FIELD CAMERA\nAND BRING A WORLD HOME";
             text.anchor = TextAnchor.MiddleCenter;
