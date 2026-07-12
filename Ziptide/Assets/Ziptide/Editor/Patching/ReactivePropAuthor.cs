@@ -14,6 +14,8 @@ namespace Ziptide.Editor.Patching
     public static class ReactivePropAuthor
     {
         public const string HitProxyName = "__REACTIVE_HIT";
+        public const string PracticalHaloName = "PracticalHalo";
+        public const string PracticalPoolName = "PracticalPool";
 
         public struct Profile
         {
@@ -48,6 +50,16 @@ namespace Ziptide.Editor.Patching
 
                 BoxCollider proxy = EnsureProxy(look.transform, profile);
                 EnsureKeepChild(look, HitProxyName);
+
+                // Sconces and street poles keep their ForgeModuleLook on the practical root. If
+                // PracticalLight.Awake happens first, the swap must not disable its halo/pool renderers.
+                // Lantern looks live on a lifted child and cannot touch the root's sibling glow children.
+                if (profile.kind == ReactionKind.LightFlickerOut &&
+                    look.GetComponent<PracticalLight>() != null)
+                {
+                    EnsureKeepChild(look, PracticalHaloName);
+                    EnsureKeepChild(look, PracticalPoolName);
+                }
 
                 ReactiveProp reactive = owner.GetComponent<ReactiveProp>();
                 if (reactive == null) reactive = owner.AddComponent<ReactiveProp>();
