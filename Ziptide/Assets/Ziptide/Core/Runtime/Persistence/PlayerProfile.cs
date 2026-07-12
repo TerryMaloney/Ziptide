@@ -13,7 +13,7 @@ namespace Ziptide.Core
     public class PlayerProfile
     {
         /// <summary>Bump when the shape changes; ProfileSerializer migrates older saves forward.</summary>
-        public const int CurrentSchemaVersion = 2; // v2: META-LOOP — transaction ledger (additive)
+        public const int CurrentSchemaVersion = 3; // v3: FIELD CAMERA — captured-photo album (additive)
 
         public int schemaVersion = CurrentSchemaVersion;
         public string playerId = "";
@@ -31,6 +31,10 @@ namespace Ziptide.Core
         /// first-win/daily bonuses). Additive with a neutral default: a fresh block = zero career,
         /// old saves untouched. Pure rules live in Ziptide.Multiplayer.PvpProgression.</summary>
         public PvpCareerState pvpCareer = new PvpCareerState();
+        /// <summary>FIELD CAMERA (v3): photos the player captured, newest appended (ring-capped by
+        /// PhotoAlbum). Additive with a neutral default: empty = pre-camera behavior, old saves
+        /// untouched. Global (photos span worlds); the Quarters wall reads this list.</summary>
+        public List<CapturedPhoto> photos = new List<CapturedPhoto>();
 
         // ── Flags ───────────────────────────────────────────────────────────
         public bool HasFlag(string flag) => !string.IsNullOrEmpty(flag) && flags.Contains(flag);
@@ -90,6 +94,21 @@ namespace Ziptide.Core
     {
         public string id;
         public double amount;
+    }
+
+    /// <summary>FIELD CAMERA (v3) — one captured photo. JsonUtility-friendly flat fields. `rating`
+    /// is the int value of Content.Photo.PhotoRating (Core can't see Content's enum — the same
+    /// enum-as-int idiom as BeltCellRecord.kind). `file` is the PNG's name under
+    /// persistentDataPath/Photos; the framing fields let a future re-render reproduce the shot.</summary>
+    [Serializable]
+    public class CapturedPhoto
+    {
+        public string worldId = "";
+        public long atUnix;
+        public float yaw, pitch, fov;
+        public int rating;            // Content.Photo.PhotoRating as int
+        public string subjectId = ""; // optional: the hero subject framed (vista/landmark/creature id)
+        public string file = "";      // PNG filename under persistentDataPath/Photos
     }
 
     /// <summary>MP100 §F / A5 — the arena career: what the unlock ladder and the daily/first-win

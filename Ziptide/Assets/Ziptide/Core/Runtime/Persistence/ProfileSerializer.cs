@@ -68,6 +68,14 @@ namespace Ziptide.Core
             }
             if (p.ledger == null) p.ledger = new System.Collections.Generic.List<LedgerEntry>();
 
+            // v2 → v3 (FIELD CAMERA): the captured-photo album arrived; older saves start empty.
+            if (p.schemaVersion < 3)
+            {
+                if (p.photos == null) p.photos = new System.Collections.Generic.List<CapturedPhoto>();
+                p.schemaVersion = 3;
+            }
+            if (p.photos == null) p.photos = new System.Collections.Generic.List<CapturedPhoto>();
+
             if (p.schemaVersion < PlayerProfile.CurrentSchemaVersion)
                 p.schemaVersion = PlayerProfile.CurrentSchemaVersion;
         }
