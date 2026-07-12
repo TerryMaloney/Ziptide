@@ -48,6 +48,8 @@ namespace Ziptide.Editor.Patching
             WaterAuthor.Place(dressRoot, kit);
             // FORGE III F3.5 — fixed biome-keyed air volumes along the route; no rig/player following.
             AmbientMoteAuthor.Place(dressRoot, kit, route);
+            // FORGE III F3.7 — non-interactive Shell-script signs at deterministic POI approaches.
+            SignAuthor.Place(dressRoot, kit, route);
         }
 
         // ── P1d: the route + cairns ───────────────────────────────────────────────────────────────
