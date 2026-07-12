@@ -1,6 +1,8 @@
 #if UNITY_EDITOR
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using NUnit.Framework;
 using UnityEngine;
 using Ziptide.Visuals;
@@ -95,15 +97,32 @@ namespace Ziptide.Tests.EditMode
         }
 
         [Test]
-        public void InactiveSystem_CanBeReconfiguredAcrossKindsWithoutGrowingPool()
+        public void FullPool_RecyclesInactiveSystemAcrossKindsWithoutGrowing()
         {
-            ParticleSystem steam = VfxFactory.Spawn("steam_vent", Vector3.zero, Vector3.up);
-            Assert.IsTrue(VfxFactory.Stop(steam));
+            var systems = new List<ParticleSystem>();
+            for (int i = 0; i < VfxRecipeDefinition.MaxLiveSystems; i++)
+            {
+                ParticleSystem system = VfxFactory.Spawn(
+                    "steam_vent",
+                    new Vector3(i, 0f, 0f),
+                    Vector3.up);
+                Assert.IsNotNull(system);
+                systems.Add(system);
+            }
+
+            ParticleSystem retired = systems[0];
+            Assert.IsTrue(VfxFactory.Stop(retired));
+            Assert.AreEqual(VfxRecipeDefinition.MaxLiveSystems - 1, VfxFactory.ActiveCount);
 
             ParticleSystem impact = VfxFactory.Spawn("impact_stone", Vector3.zero, Vector3.forward);
-            Assert.AreSame(steam, impact);
+            Assert.AreSame(retired, impact);
             Assert.IsFalse(impact.main.loop);
-            Assert.AreEqual(1, VfxFactory.PooledCount);
+            Assert.AreEqual(VfxRecipeDefinition.MaxLiveSystems, VfxFactory.PooledCount);
+            Assert.AreEqual(VfxRecipeDefinition.MaxLiveSystems, VfxFactory.ActiveCount);
+
+            Assert.IsTrue(VfxFactory.Stop(impact));
+            for (int i = 1; i < systems.Count; i++)
+                Assert.IsTrue(VfxFactory.Stop(systems[i]));
         }
 
         [Test]
@@ -112,7 +131,13 @@ namespace Ziptide.Tests.EditMode
             ParticleSystem impact = VfxFactory.Spawn("impact_metal", Vector3.zero, Vector3.up);
             Assert.AreEqual(1, VfxFactory.ActiveCount);
 
-            impact.SendMessage("OnParticleSystemStopped", SendMessageOptions.DontRequireReceiver);
+            Component pooled = impact.GetComponent("VfxPooledInstance");
+            Assert.IsNotNull(pooled);
+            MethodInfo callback = pooled.GetType().GetMethod(
+                "OnParticleSystemStopped",
+                BindingFlags.Instance | BindingFlags.NonPublic);
+            Assert.IsNotNull(callback);
+            callback.Invoke(pooled, null);
 
             Assert.AreEqual(0, VfxFactory.ActiveCount);
             Assert.IsFalse(impact.gameObject.activeSelf);
@@ -146,21 +171,31 @@ namespace Ziptide.Tests.EditMode
         }
 
         [Test]
-        public void DestroyingSceneLocalFactory_ReleasesSharedMaterialTextureAndStaticState()
+        public void DestroyingSceneLocalFactory_ResetsStateAndSourceOwnsSharedCleanup()
         {
             ParticleSystem system = VfxFactory.Spawn("motes_spore", Vector3.zero, Vector3.up);
             Assert.IsNotNull(system);
+            Assert.IsNotNull(system.GetComponent<ParticleSystemRenderer>().sharedMaterial);
 
-            Material material = system.GetComponent<ParticleSystemRenderer>().sharedMaterial;
-            Texture texture = material.mainTexture;
             VfxFactory factory = Resources.FindObjectsOfTypeAll<VfxFactory>().Single();
-
             Object.DestroyImmediate(factory.gameObject);
 
-            Assert.IsTrue(material == null, "shared runtime material must be destroyed with the factory");
-            Assert.IsTrue(texture == null, "shared runtime texture must be destroyed with the factory");
             Assert.AreEqual(0, VfxFactory.ActiveCount);
             Assert.AreEqual(0, VfxFactory.PooledCount);
+
+            string path = Path.Combine(
+                Application.dataPath,
+                "Ziptide",
+                "Visuals",
+                "Runtime",
+                "Vfx",
+                "VfxFactory.cs");
+            Assert.IsTrue(File.Exists(path), path);
+            string source = File.ReadAllText(path);
+            StringAssert.Contains("DestroyObject(_sharedMaterial);", source);
+            StringAssert.Contains("DestroyObject(_sharedTexture);", source);
+            StringAssert.Contains("if (Application.isPlaying) Destroy(value);", source);
+            StringAssert.Contains("else DestroyImmediate(value);", source);
         }
     }
 }
