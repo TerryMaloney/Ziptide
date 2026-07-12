@@ -1,67 +1,138 @@
-# 📦 GET IT ON THE HEADSETS — Terry's install + two-player readiness page (2026-07-02)
+# 📦 GET ZIPTIDE ON THE HEADSETS — current home-test path
 
-**What this build contains (all CI-green, audit-clean):** the 5 arenas with the **MATCH BOARD**
-(Deathmatch/Gun Game/KotH/Fragment/Horde × difficulty × 1–3 bots) + doors between every arena · the
-**A4 arsenal** (Static Net / Sonic Thumper / Prism Beam on respawning pads, full 6-weapon Gun Game) ·
-the smart bot (4 difficulties) · story worlds W000–W012 with canon skyscapes · ship + Quarters +
-cosmetics. Smoke lists: `TERRY_RUNBOOK.md` §2b–§2i.
+**Status date:** 2026-07-12  
+**Branch:** `terry-local-wip`  
+**Unity:** `2022.3.62f3`
 
----
+This is the short operational page. The detailed one-system checks remain in `TERRY_RUNBOOK.md`; Photon detail is in `TWO_QUEST_SETUP.md`.
 
-## A. Get the APK (pick ONE)
+## 1. Wait for the final branch push, then pull exactly once
 
-### Option 1 — download it (no PC build; recommended)
-1. github.com → **TerryMaloney/Ziptide → Actions → CI**.
-2. Open the **newest green run** on `terry-local-wip` (kind `workflow_dispatch` — the dispatched runs
-   are the ones that build the APK; plain pushes only compile+test).
-3. Scroll to **Artifacts** → download **`ziptide-apk`** → unzip → you have `Ziptide.apk`.
+After Architect says its current work is pushed:
 
-### Option 2 — build it yourself (PowerShell, ~10 min)
 ```powershell
 cd C:\Ziptide
 git checkout terry-local-wip
-git pull
-# sanity: branch/commit/scenes/last logs
-powershell -ExecutionPolicy Bypass -File C:\Ziptide\tools\ziptide_snapshot.ps1
-# build AND install to the connected Quest in one shot:
-powershell -ExecutionPolicy Bypass -File C:\Ziptide\tools\dev_build_install.ps1
+git pull --rebase origin terry-local-wip
+git status --short
+git rev-parse --short HEAD
 ```
-- Quest not plugged in? The script still builds — APK lands at `Ziptide\Builds\Android\Ziptide.apk`;
-  plug in and run it again to install.
-- Want the full checked pass (build + install + logcat scan for exceptions/audit fails):
-  `powershell -ExecutionPolicy Bypass -File C:\Ziptide\tools\quest_smoke.ps1`
 
-## B. Install on ONE headset
-Headset in **developer mode**, USB cable, "Allow USB debugging" inside the headset, then either
-Option 2 above (it installs), or by hand:
+Do not build from `main`. If `git status --short` prints local changes you do not recognize, stop before pulling or building and preserve them.
+
+## 2. Connect and authorize the Quest hardware
+
+For each headset:
+
+1. Developer Mode enabled.
+2. Connect USB.
+3. Put on the headset.
+4. Approve **Allow USB debugging** and select **Always allow from this computer**.
+5. Verify from PowerShell:
+
 ```powershell
-adb devices                                   # headset shows as "device" (not "unauthorized")
-adb install -r C:\path\to\Ziptide.apk
+adb devices
 ```
-Launch from **Library → Unknown Sources → Ziptide**.
 
-## C. Install on BOTH headsets (same APK — one build, two installs)
+Every connected headset must show `device`, not `unauthorized` or `offline`.
+
+## 3. Preferred path for tonight — one build, every connected Quest
+
 ```powershell
-adb devices          # both plugged in: two serials listed (or do them one at a time)
-adb -s <SERIAL_1> install -r C:\path\to\Ziptide.apk
-adb -s <SERIAL_2> install -r C:\path\to\Ziptide.apk
+powershell -ExecutionPolicy Bypass -File C:\Ziptide\tools\two_quest_test.ps1
 ```
-(SideQuest works too: drag the same `Ziptide.apk` onto each connected headset.)
-Both headsets can now play EVERYTHING solo — story, all five arena modes vs bots, Horde together in
-the same room taking turns. Two people, two headsets, one game each.
 
-## D. Two-player ACROSS the headsets — exact state, no fluff
-Two halves. **Yours is ready to do today; mine needs one more code sprint.**
-- **✅ YOUR HALF, do anytime (~20 min, `docs/TWO_QUEST_SETUP.md` steps 1–4):** Photon account →
-  App ID → import PUN2 into Unity → `Ziptide → Net → Enable Photon` menu → commit. Everything it
-  needs is already in the repo (the network seam, the room-code launcher, the enable menu) and it
-  cannot break the build — the adapter is inert until your menu click.
-- **⬜ MY HALF (A6 — the FIRST task when usage resets):** stream the other player's head/hands +
-  route hits over the wire (the seam is built and tested; this is the last mile). One sprint, one
-  new APK, then: both headsets → same arena → same room code → real PvP.
-Doing your half now means A6 ships as pure code with zero waiting on accounts/imports.
+This performs the full canonical path:
 
-## E. If something's wrong on device
-`adb logcat -s Unity` and look for `ZIPTIDE:` lines — every system logs its own tags
-(`PVP_KILL`, `LOBBY_START`, `HORDE_WAVE`, `NET_ROOM_JOINED`…). Paste anything weird into the chat;
-the tags are exactly what I diagnose from.
+- validates branch and Photon configuration;
+- runs the scene patchers/authors;
+- executes the world audit;
+- builds one development APK;
+- installs the identical APK to all authorized Quests;
+- launches both;
+- captures separate Photon logs after the in-headset test.
+
+APK output:
+
+```text
+C:\Ziptide\Ziptide\Builds\Android\Ziptide.apk
+```
+
+Build log:
+
+```text
+C:\Ziptide\Ziptide\Builds\android_build.log
+```
+
+## 4. One cable instead of two
+
+First headset, including the build:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File C:\Ziptide\tools\two_quest_test.ps1 -InstallOnly
+```
+
+Swap cable to headset two, then install the same APK without rebuilding:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File C:\Ziptide\tools\two_quest_test.ps1 -SkipBuild -InstallOnly
+```
+
+After both are installed, launch from **Library → Unknown Sources → ZIPTIDE**.
+
+## 5. Single-headset fallback
+
+For a normal one-device build/install/log smoke:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File C:\Ziptide\tools\quest_smoke.ps1
+```
+
+The older `dev_build_install.ps1` remains appropriate when exactly one Quest is connected. Use `two_quest_test.ps1` when multiple ADB devices are present.
+
+## 6. Tonight's priority checks
+
+### A. Boot and core stability
+
+- clean boot without black screen or crash;
+- XR hands/controllers active;
+- locomotion and rays work;
+- headset-native developer menu opens with the two-controller forehead gesture;
+- travel completes without `TRAVEL_FAIL`, `TRAVEL_TIMEOUT`, duplicate rig or inventory restore errors.
+
+### B. Field Camera — final feature verification
+
+The old “shutter-only” state is obsolete. The current green build includes real capture and the Quarters photo wall.
+
+1. Take the Field Camera from the Quarters or Sandbox.
+2. Confirm the back screen shows a live view and does not recursively film itself.
+3. Capture a sky, landmark and creature.
+4. Confirm haptic shutter plus `PHOTO_CAPTURED` logs.
+5. Return to Quarters and confirm the newest six photos appear, newest first.
+6. Verify frame colors change with rating.
+7. Holster the camera, travel, and retrieve it.
+8. Watch performance while the viewfinder is active.
+9. Long check later: exceed 24 captures and confirm old files are evicted.
+
+### C. Two-Quest Photon presence
+
+1. Both players enter the same arena.
+2. Both press **GO ONLINE**.
+3. Both boards reach `NET: in ZIP-001 (2/2)`.
+4. Each player sees the other's helmet and amber gloves tracking head/hands.
+5. Record avatar scale, latency and any disconnect.
+
+The current A6 v1 build proves connection and presence. Human-vs-human shooting/hit authority remains A6.2 and should not be mistaken for a setup failure.
+
+## 7. What to send back after the run
+
+Paste or attach:
+
+- the final pulled commit from `git rev-parse --short HEAD`;
+- whether the build completed and APK installed on one or both Quests;
+- `Builds\android_build.log` if the build fails;
+- `Builds\quest_<serial>_photon.log` if Photon fails;
+- exact visible behavior and the last relevant `ZIPTIDE:` lines;
+- camera, travel, controls, frame-rate and two-player feel notes.
+
+Do not reimport Photon, hand-edit scenes, or make speculative Unity changes after a failure. The logs identify the owner and preserve a clean recovery path.
