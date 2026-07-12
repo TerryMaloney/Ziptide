@@ -1,0 +1,16 @@
+# FORGE III F3.9 — ART CONFORMANCE WHITELIST
+#
+# Format:  <sceneName>:<objectName>   # WHY this renderer ships without a Forge/kit provenance
+#
+# Rules (enforced by ArtConformanceAuditRules.ParseWhitelistKeys):
+#   - One entry per line. The key is "<sceneName>:<objectName>" where objectName is the Renderer's
+#     GameObject name OR any ancestor's name (whitelisting a named group covers its whole subtree).
+#   - Every entry line MUST carry a "# WHY" comment after the key, or it is REJECTED and logged
+#     (ZIPTIDE: ART_CONFORMANCE_WHITELIST_REJECTED). No unexplained exemptions.
+#   - Do NOT whitelist wholesale to force a world to zero — each line earns its place. The intended
+#     path to 0 is giving renderers REAL provenance (a Forge recipe / kit module), not exempting them.
+#   - Lines starting with # are comments. Blank lines are ignored.
+#
+# (No entries yet. Pilot: drive W002 (DryCistern) to 0 unconformed by provenance first, then lock it
+#  in ArtConformanceAuditRules.ConformanceLockedWorlds. Only genuine exceptions — e.g. a debug gizmo
+#  that must ship — belong here.)

@@ -112,6 +112,9 @@ namespace Ziptide.Editor.Audit
                     WorldReachabilityAuditRules.Run(sceneReport); // WORLDS #13 — POI reachability (WARN-only)
                     AutomationAuditRules.Run(sceneReport);   // HARDWIRING 4.1g — belt budgets + save identity
                     InteriorAuditRules.Run(sceneReport);     // HARDWIRING 1.3e — interior gate (gap #4)
+                    // FORGE III F3.9 — art conformance ratchet (WARN-only until a world locks at 0).
+                    try { ArtConformanceAuditRules.Run(sceneReport); }
+                    catch (System.Exception ex) { sceneReport.Warning("ART_CONFORMANCE_AUDIT_ERROR", ex.Message); }
                 }
 
                 report.scenes.Add(sceneReport);

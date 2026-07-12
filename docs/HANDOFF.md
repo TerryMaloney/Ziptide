@@ -28,6 +28,32 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-12 (dddd39) - Picasso (Opus 4.8): 🔒 F3.9 THE CONFORMANCE GATE + wiring self-audit + runbook batch
+**Did:**
+- **Wiring self-audit of ALL 7 delivered FORGE III systems — every one is wired BOTH SIDES** (producer
+  build-hooked + runtime consumer present), so tonight's device test will actually exercise them:
+  F3.1/F3.2 (SkyVistaRig calls `ApplySceneTieIns`+`ApplyGrade` at load) · F3.1b practicals + F3.3 water
+  (`PracticalAuthor.Place`/`WaterAuthor.Place` in `WorldDressingBuilder.Build` ← `CityBuilder.Build` ←
+  `ScenePatcherToxicCity` in `PatchScenesThenAPK`; water normal via `ForgeBaker.BakeWaterNormal` in
+  `BakeAll`) · F3.4 (`GroundShadow.Attach` in `ForgeCreatureVisualApplier`) · F3.8 (`ForgeModuleLook`
+  attached by dressing/kit builders + `ForgeTexture` bake path). No one-sided seams.
+- **Consolidated the evening device-test batch** — added a runbook item covering the 3 systems that had
+  no explicit 🎮 check yet (F3.1b lamplight pools, F3.4 blob-shadow grounding, F3.8 macro variation).
+- **BUILT F3.9 — THE CONFORMANCE GATE** (Terry's EVENNESS ask, the machine that keeps quality even across
+  lesser-model lanes): `ArtConformanceAuditRules` classifies every scene Renderer's provenance; anything
+  untraceable = `ART_UNCONFORMED`, reported as a WARN with a per-world COUNT. **The ratchet:** a world
+  proven at 0 gets added to `ConformanceLockedWorlds`, where regression becomes a BLOCKER — so a polished
+  world can't quietly ship unfinished visuals again. Whitelist file requires a `# WHY` per entry (rejected
+  + logged otherwise). All pure logic unit-tested (10 tests). Own try/catch in the runner → WARN-only,
+  can never over-block. Starts fully open (locked list empty).
+**Next:** F3.9 commit 2 (the pilot) needs the editor — drive **W002 to 0 unconformed** by giving bare
+renderers real provenance (Forge recipe / kit module), then add W002 to `ConformanceLockedWorlds`. Then
+the remaining FORGE III envelopes F3.5 (VFX) · F3.6 (reactive) · F3.7 (signage).
+**Heads-up:** F3.9 is WARN-only for EVERY world today, so it adds an `ART_UNCONFORMED count=N` line per
+world to the audit and CANNOT block any build. Watching that number shrink is the point. Lane clean vs
+Sol (first-hour lane) — F3.9 touches only `Editor/Audit/**` + `Tests/EditMode/**`.
+**Commit:** (this commit) — `ArtConformanceAuditRules` + whitelist + tests + runner hook + runbook batch.
+
 ### 2026-07-11 (fh-review) - T-Dog/Fable 5: 🔍 honest review of the GPT-5.6 first-hour package + 4 gap items added
 - **Verdict: the PLAN is genuinely good — the PROCESS is the weak spot.** Strengths, verified not
   assumed: it builds ON the locked onboarding design instead of reinventing (comfort console is
