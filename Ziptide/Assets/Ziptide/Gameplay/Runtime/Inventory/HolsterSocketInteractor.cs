@@ -14,7 +14,7 @@ namespace Ziptide.Gameplay
     public class HolsterSocketInteractor : XRSocketInteractor
     {
         [Tooltip("Item IDs this socket accepts (e.g. pistol).")]
-        [SerializeField] private List<string> allowedItemIds = new List<string> { "pistol", "taser_dart_gun", "gravity_gun" };
+        [SerializeField] private List<string> allowedItemIds = new List<string> { "pistol", "taser_dart_gun", "gravity_gun", "handheld_camera" };
 
         private bool _firstHolsterReported;
 

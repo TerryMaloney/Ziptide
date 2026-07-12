@@ -144,6 +144,11 @@ namespace Ziptide.Editor.Patching
                 Ziptide.Gameplay.ItemFactory.Create("gravity_gun", new Vector3(-9f, 1.1f, 8f));
             if (GameObject.Find("TaserDartGun") == null)
                 Ziptide.Gameplay.ItemFactory.Create("taser_dart_gun", new Vector3(-9f, 1.1f, 9.5f));
+            // FIELD CAMERA — a handheld camera by the Grab zone: pull it, hold it up, holster it,
+            // and it travels between worlds (allowlisted). Shutter clicks (PHOTO_SHUTTER); the live
+            // viewfinder + saved image land in the next commit.
+            if (GameObject.Find("FieldCamera") == null)
+                Ziptide.Gameplay.ItemFactory.Create("handheld_camera", new Vector3(-9f, 1.1f, 11f));
 
             // Test drones in the Enemy zone to shoot at.
             for (int i = 0; i < 3; i++)

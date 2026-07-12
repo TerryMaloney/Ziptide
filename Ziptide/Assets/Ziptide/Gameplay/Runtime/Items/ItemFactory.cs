@@ -32,6 +32,8 @@ namespace Ziptide.Gameplay
                 built = CreateArenaWeapon(arenaDef, position);
             else if (def is AugmentDefinition augDef)
                 built = CreateAugment(augDef, position);
+            else if (def is CameraDefinition camDef)
+                built = CreateCamera(camDef, position);
             else
                 built = CreateGenericItem(def, position);
 
@@ -249,6 +251,53 @@ namespace Ziptide.Gameplay
             var muzzle = new GameObject("Muzzle");
             muzzle.transform.SetParent(go.transform, false);
             muzzle.transform.localPosition = Vec(def.muzzleLocalPos, new Vector3(0f, 0f, 0.14f));
+
+            RestorePhysicsOnRelease(go, grab);
+            return go;
+        }
+
+        /// <summary>FIELD CAMERA — the handheld vista camera. A compact grabbable body with a
+        /// forward "Lens" child (NOT "Muzzle", so no laser sight is attached) and a level grip (you
+        /// hold a camera up and point it, not gun-tilted). CameraRuntime builds the lens ring +
+        /// viewfinder and owns the shutter.</summary>
+        private static GameObject CreateCamera(CameraDefinition def, Vector3 position)
+        {
+            var go = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            go.name = "FieldCamera";
+            go.transform.position = position;
+            go.transform.localScale = Vec(def.visualScale, new Vector3(0.10f, 0.07f, 0.05f));
+
+            ApplyURPColor(go, Col(def.visualColor, new Color(0.16f, 0.17f, 0.19f))); // dark camera body
+
+            var rb = go.AddComponent<Rigidbody>();
+            rb.mass = def.mass > 0 ? def.mass : 0.4f;
+            rb.useGravity = true;
+            rb.isKinematic = false;
+            rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+            rb.interpolation = RigidbodyInterpolation.Interpolate;
+
+            var grab = go.AddComponent<XRGrabInteractable>();
+            grab.movementType = XRBaseInteractable.MovementType.VelocityTracking;
+            grab.useDynamicAttach = false;
+            grab.attachEaseInTime = 0f;
+            grab.trackPosition = true;
+            grab.trackRotation = true;
+            grab.retainTransformParent = false;
+
+            var grip = new GameObject("Grip");
+            grip.transform.SetParent(go.transform, false);
+            grip.transform.localPosition = Vec(def.gripLocalPos, new Vector3(0f, -0.03f, -0.01f));
+            PoseGrip(grip.transform, def.gripLocalEuler, Vector3.zero); // held level — tune on device
+            grab.attachTransform = grip.transform;
+
+            var itemRt = go.AddComponent<ItemRuntime>();
+            itemRt.Init(def);
+
+            var lens = new GameObject("Lens");
+            lens.transform.SetParent(go.transform, false);
+            lens.transform.localPosition = new Vector3(0f, 0f, 0.03f); // front face — the shot points +Z
+
+            go.AddComponent<CameraRuntime>();
 
             RestorePhysicsOnRelease(go, grab);
             return go;

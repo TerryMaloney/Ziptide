@@ -647,6 +647,18 @@ neighbors draw).
 - [ ] Perf sanity while inside: any hitching when crossing rooms (portal toggles on a 0.5s
   cadence)? Feel notes → HANDOFF.
 
+## 2r. NEW — THE FIELD CAMERA, commit 2 (2026-07-12, architect; 🔧 sandbox rebake then 🎮)
+The handheld vista camera arrives as a grabbable item. **🔧 One bake:** rebuild the Sandbox Test Lab
+(`Ziptide → Dev → Build Sandbox Test Lab`) so it spawns the camera (the build also auto-seeds the
+`HandheldCamera` definition via CameraAuthor — no manual asset step). **🎮 Headset:** by the Grab zone
+you'll find a small dark **FieldCamera** — pull it, hold it up (it has a lens ring + a little
+viewfinder screen on the back), pull the trigger: it clicks (haptic) and the screen flashes
+(`ZIPTIDE: PHOTO_SHUTTER` in logcat). Holster it on your hip and travel — it should ride between
+worlds like the guns do. Feel notes: does it sit right in the hand (level, not gun-tilted — tune via
+`HandheldCamera.gripLocalEuler`), grab/holster/travel all clean? **Note:** it doesn't take a real
+picture YET — the live viewfinder feed + the saved photo + the Quarters photo wall are the next
+commits; this pass is just the physical camera + the shutter wiring.
+
 ## 3. The two open judgment calls (yours)
 - **"Can you run in Toxic City?"** — was it the input bug (now fixed) or actual walls/narrow streets? If
   still wall-blocked, say so and the streets get widened.

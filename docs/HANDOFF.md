@@ -28,6 +28,28 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-12 (hwr24) - Fable 5 architect: 📷 FIELD CAMERA commit 2 — the physical camera on your belt
+- **The feature (Terry-picked NEW aspect):** a handheld vista camera → capture → keep on the Quarters
+  wall. Serves the skyscape (the game's emotional core). 5-commit arc; commit 1 (pure scoring +
+  album save, schema v3) shipped `44208c7` CI-green.
+- **Did (commit 2 — the item):** `CameraDefinition : ItemDefinition` (Content) + a `CreateCamera`
+  branch in `ItemFactory` (compact body, level grip, forward child named **"Lens" not "Muzzle"** so
+  no laser sight) + `CameraRuntime` (Gameplay/Runtime/Photo): builds the lens ring + a back
+  viewfinder screen, wires `_grab.activated` → `Capture()` = haptic click + screen flash +
+  `ZIPTIDE: PHOTO_SHUTTER`. `Capture()` is the SEAM the next commit fills with the real render.
+  `CameraAuthor` create-only seeds `HandheldCamera.asset` (build-hooked in BuildAndroid, ArenaWeapon
+  idiom). `handheld_camera` added to `HolsterSocketInteractor.allowedItemIds` → holsters + travels
+  free. Sandbox spawns one by the Grab zone (🔧 rebake, runbook §2r).
+- **Why the split:** commit 2 is fully CI-compilable and device-testable on its own ("does the camera
+  feel/holster/travel + does the shutter click"); the render (real image), live viewfinder, save,
+  reward, and Quarters wall are device-heavy → commit 3+ for a batched headset pass.
+- **Next (commit 3):** `PhotoCaptureCamera` on the rig — port `ForgePhotoBooth.RenderTarget` to
+  runtime (RT→Render→ReadPixels→PNG, Destroy in finally), parent UNDER XR Origin (else
+  `EnsureXRCameraActive` disables it), far-clip ≥520 + post-processing on for the graded sky, HUD
+  layer culled; low-res throttled live viewfinder, full render on shutter. Wire `CameraRuntime.Capture`
+  → render + `PhotoComposition` + `PhotoAlbum` + optional `LedgerSource.Discovery` reward.
+- **Commits:** this push (commit 2). CI verify pending.
+
 ### 2026-07-12 (dddd40) - Picasso (Opus 4.8): ✨ F3.5 THE VFX FORGE commit 1 — the rails (data + budgets)
 **Did:** Built the DATA + RAILS half of the VFX forge (F3.9 CI green `fed047c` first). `VfxRecipeDefinition`
 (closed `VfxKind` enum; `Validate()` clamps every field into hard caps; `PeakParticles()` = worst-case

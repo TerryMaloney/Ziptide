@@ -49,6 +49,8 @@ namespace Ziptide.Build
             catch (Exception ex) { Debug.LogWarning("[Ziptide] Building style author warning: " + ex.Message); }
             try { Ziptide.Editor.Patching.CosmeticAuthor.EnsureAuthored(); }
             catch (Exception ex) { Debug.LogWarning("[Ziptide] Cosmetics author warning: " + ex.Message); }
+            try { Ziptide.Editor.Patching.CameraAuthor.EnsureAuthored(); }
+            catch (Exception ex) { Debug.LogWarning("[Ziptide] Field camera author warning: " + ex.Message); }
             try { Ziptide.Editor.Patching.RillLineAuthor.EnsureAuthored(); }
             catch (Exception ex) { Debug.LogWarning("[Ziptide] RILL line author warning: " + ex.Message); }
             // FH-X01: compile the approved first-hour JSON into one runtime Resources asset before
