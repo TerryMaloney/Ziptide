@@ -221,6 +221,45 @@ namespace Ziptide.Tests.EditMode
         }
 
         [Test]
+        public void MacroVary_IsOffByDefault_AndWashesAcrossTheIsland()
+        {
+            var spec = new ForgeStyleSpec { style = ForgeStyle.PaintedMetal, wear = 0f, grime = 0f };
+            var baseCol = new Color(0.5f, 0.5f, 0.55f);
+            var tx = new ForgeTexture.Texel { covered = true, u = 0.3f, v = 0.4f, edge01 = 1f, up01 = 1f };
+
+            // Backward-compatible: the default overload equals macroVary:false exactly.
+            Assert.AreEqual(ForgeTexture.ComposeAlbedo(baseCol, spec, tx),
+                ForgeTexture.ComposeAlbedo(baseCol, spec, tx, false), "default keeps the old albedo");
+
+            // The macro wash VARIES spatially (the whole point — no flat multiply, so the atlas
+            // stops visibly repeating). Isolate its contribution and prove it spans a range.
+            float dmin = 1e9f, dmax = -1e9f;
+            for (float u = 0.1f; u < 1f; u += 0.2f)
+                for (float v = 0.1f; v < 1f; v += 0.2f)
+                {
+                    var t = new ForgeTexture.Texel { covered = true, u = u, v = v, edge01 = 1f, up01 = 1f };
+                    float d = ForgeTexture.ComposeAlbedo(baseCol, spec, t, true).grayscale
+                            - ForgeTexture.ComposeAlbedo(baseCol, spec, t, false).grayscale;
+                    dmin = Mathf.Min(dmin, d); dmax = Mathf.Max(dmax, d);
+                }
+            Assert.Greater(dmax - dmin, 0.005f, "the macro wash must vary across the island");
+        }
+
+        [Test]
+        public void HasStoryTag_MatchesTags()
+        {
+            var r = ScriptableObject.CreateInstance<ForgeRecipeDefinition>();
+            r.storyTags = new[] { "prop", "buildingModule" };
+            try
+            {
+                Assert.IsTrue(ForgeTexture.HasStoryTag(r, "buildingModule"));
+                Assert.IsFalse(ForgeTexture.HasStoryTag(r, "handheld"));
+                Assert.IsFalse(ForgeTexture.HasStoryTag(null, "prop"));
+            }
+            finally { Object.DestroyImmediate(r); }
+        }
+
+        [Test]
         public void Voronoi_IsDeterministic_AndBounded()
         {
             for (int i = 0; i < 20; i++)

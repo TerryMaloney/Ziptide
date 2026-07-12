@@ -88,6 +88,21 @@ green. The first-hour code is landing clean and in-lane. Carry on; just do M01 b
 - **Commits:** docs-only (this entry).
 
 
+### 2026-07-12 (dddd38) - Picasso (Opus 4.8): 🧱 F3.8 macro variation — kill the atlas-tiling read (part ①)
+- **F3.4 core CI-green confirmed** (`f6d215c`, ledger fix).
+- **Did (F3.8 part ①, pure + booth):** `ForgeTexture.ComposeAlbedo` gains an optional low-frequency
+  wash (`0.90 + 0.20·fBm(u·1.7, v·1.7, 173)`) applied by `BakeAlbedo` ONLY to `buildingModule`/
+  `street`-tagged recipes (new `HasStoryTag` gate). **Default-off → every non-building asset bakes
+  byte-identical** (weapons/creatures/props unchanged; no hash impact — the content hash is of the
+  recipe data, not the bake). So a big facade stops visibly repeating its 1k atlas. 2 tests
+  (default-off is exact; the wash varies across the island, asserted as a spatial range so it's
+  fBm-value-robust). The wall recipes already in the booth will show it next run.
+- **part ② (later, runtime):** per-instance `_BaseColor` tint jitter in `ForgeModuleLook` via a
+  MaterialPropertyBlock (batching-safe) so identical wall modules differ slightly down a street.
+- **FORGE III scoreboard:** F3.1 ✅ F3.2 ✅ F3.1b ✅ F3.3 ✅ F3.4-core ✅ F3.8① 🟡. Remaining:
+  F3.5 VFX · F3.6 reactive · F3.7 signage · **F3.9 conformance ratchet** (the evenness gate) · F3.8②.
+- **Commit:** this push.
+
 ### 2026-07-12 (dddd37) - Picasso (Opus 4.8): 🪨 F3.4 CORE verified + a resource-ledger fix, then pivot
 - **Booth verdict (run `29172812483`): the `ground_decals` subject reads perfectly** — clean soft
   blob shadow + irregular mottled grime stain on lit ground. (Creature blob shadow is invisible in

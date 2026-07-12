@@ -176,6 +176,11 @@ namespace Ziptide.Visuals
         {
             if (pixels == null || pixels.Length != size * size) return;
 
+            // FORGE III F3.8 — big surfaces (building modules / streets) get a low-frequency macro
+            // variation so their atlas doesn't visibly repeat across a facade. Small props/weapons
+            // don't need it. Gated by tag so nothing else changes.
+            bool macroVary = HasStoryTag(recipe, "buildingModule") || HasStoryTag(recipe, "street");
+
             for (int y = 0; y < size; y++)
                 for (int x = 0; x < size; x++)
                 {
@@ -188,7 +193,7 @@ namespace Ziptide.Visuals
                     }
                     Color baseCol = SlotColor(recipe, tx.slot);
                     var spec = SlotStyle(recipe, tx.slot);
-                    pixels[i] = SkyVistaTexture.DitherTo32(ComposeAlbedo(baseCol, spec, tx), x, y);
+                    pixels[i] = SkyVistaTexture.DitherTo32(ComposeAlbedo(baseCol, spec, tx, macroVary), x, y);
                     if (spec.style == ForgeStyle.Leaf)
                     {
                         // E5.3: the Leaf style OWNS the alpha channel — the baked silhouette that
@@ -230,11 +235,23 @@ namespace Ziptide.Visuals
             return false;
         }
 
-        /// <summary>One texel's albedo — the layer stack from FORGE_II_QUALITY_LEAP §P1.</summary>
-        public static Color ComposeAlbedo(Color baseCol, ForgeStyleSpec spec, Texel tx)
+        /// <summary>True when the recipe carries a story tag (F3.8 gate + general use).</summary>
+        public static bool HasStoryTag(ForgeRecipeDefinition recipe, string tag)
+        {
+            if (recipe == null || recipe.storyTags == null) return false;
+            foreach (var t in recipe.storyTags) if (t == tag) return true;
+            return false;
+        }
+
+        /// <summary>One texel's albedo — the layer stack from FORGE_II_QUALITY_LEAP §P1.
+        /// <paramref name="macroVary"/> adds a low-frequency multiply (F3.8) so big surfaces don't
+        /// visibly repeat their atlas.</summary>
+        public static Color ComposeAlbedo(Color baseCol, ForgeStyleSpec spec, Texel tx, bool macroVary = false)
         {
             float n = SkyVistaTexture.Fbm(tx.u * 14f, tx.v * 14f, 31, 3);
             Color c = baseCol * (0.92f + 0.16f * n); // base value noise
+            if (macroVary) // F3.8: low-freq wash across the whole island — kills the tiling read
+                c *= 0.90f + 0.20f * SkyVistaTexture.Fbm(tx.u * 1.7f, tx.v * 1.7f, 173, 2);
 
             switch (spec.style)
             {
