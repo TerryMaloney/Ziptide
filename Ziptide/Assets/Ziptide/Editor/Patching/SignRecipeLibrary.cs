@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
+using Ziptide.Core;
 using Ziptide.Visuals;
 
 namespace Ziptide.Editor.Patching
 {
     /// <summary>
-    /// FORGE III F3.7 create-only recipe book for the three physical sign bodies. Glyphs are a
-    /// separate shared emissive surface so destination hue/seed can vary without material instances
-    /// or duplicate body recipes.
+    /// FORGE III F3.7 create-only catalog for three physical sign bodies plus three shared glyph
+    /// texture/material pairs. The bodies remain Forge assets; the glyph surfaces are opaque unlit
+    /// panels, so signs need no runtime Texture2D/Material allocation and no material instance per sign.
     /// </summary>
     public static class SignRecipeLibrary
     {
@@ -18,6 +19,9 @@ namespace Ziptide.Editor.Patching
         public const string WallPlateRecipeId = "sign_shell_wall_plate";
         public const string ChevronRecipeId = "sign_shell_route_chevron";
         public const int SignTriangleBudget = 400;
+
+        public const string GlyphFolder = "Assets/Ziptide/Resources/Signage";
+        public const int GlyphTextureSize = 64;
 
         public static List<KeyValuePair<string, System.Func<ForgeRecipeDefinition>>> Specs()
         {
@@ -29,14 +33,13 @@ namespace Ziptide.Editor.Patching
             };
         }
 
-        [MenuItem("Ziptide/Art/Author Shell Sign Recipes (missing only)")]
+        [MenuItem("Ziptide/Art/Author Shell Sign Assets (missing only)")]
         public static void AuthorFromMenu()
         {
             int made = EnsureAllAuthored();
             EditorUtility.DisplayDialog(
-                "Shell Sign Recipes",
-                made + " recipe asset(s) created under " + ForgeRecipeLibrary.RecipeFolder +
-                " (existing assets untouched).",
+                "Shell Sign Assets",
+                made + " create-only recipe/glyph asset(s) authored. Existing assets were untouched.",
                 "OK");
         }
 
@@ -44,6 +47,8 @@ namespace Ziptide.Editor.Patching
         {
             int made = 0;
             Directory.CreateDirectory(ForgeRecipeLibrary.RecipeFolder);
+            Directory.CreateDirectory(GlyphFolder);
+
             foreach (var spec in Specs())
             {
                 string path = ForgeRecipeLibrary.RecipeFolder + "/" + spec.Key + ".asset";
@@ -52,12 +57,125 @@ namespace Ziptide.Editor.Patching
                 Debug.Log("[Ziptide] SignRecipeLibrary authored " + path);
                 made++;
             }
+
+            foreach (SignDestinationClass destination in System.Enum.GetValues(typeof(SignDestinationClass)))
+                made += EnsureGlyphAssets(destination);
+
             if (made > 0)
             {
                 AssetDatabase.SaveAssets();
                 AssetDatabase.Refresh();
             }
             return made;
+        }
+
+        public static string GlyphTexturePath(SignDestinationClass destination)
+        {
+            return GlyphFolder + "/shell_glyph_" + destination.ToString().ToLowerInvariant() + ".asset";
+        }
+
+        public static string GlyphMaterialPath(SignDestinationClass destination)
+        {
+            return GlyphFolder + "/shell_glyph_" + destination.ToString().ToLowerInvariant() + ".mat";
+        }
+
+        /// <summary>Opaque dark panel with the destination-class hue baked into the Shell script.</summary>
+        public static Color32[] BuildPanelPixels(SignDestinationClass destination)
+        {
+            byte[] alpha = ShellGlyphBaker.BakeAlpha(
+                GlyphTextureSize,
+                SeedFor(destination),
+                destination);
+            Color hue = HueFor(destination);
+            var pixels = new Color32[alpha.Length];
+            Color dark = new Color(0.018f, 0.026f, 0.024f, 1f);
+            for (int i = 0; i < alpha.Length; i++)
+            {
+                float t = alpha[i] / 255f;
+                Color color = Color.Lerp(dark, hue, Mathf.SmoothStep(0f, 1f, t));
+                color.a = 1f;
+                pixels[i] = color;
+            }
+            return pixels;
+        }
+
+        public static Color HueFor(SignDestinationClass destination)
+        {
+            string hex;
+            switch (destination)
+            {
+                case SignDestinationClass.Travel:
+                    hex = ZiptideConstants.SignHueTravelHex;
+                    break;
+                case SignDestinationClass.Job:
+                    hex = ZiptideConstants.SignHueJobHex;
+                    break;
+                default:
+                    hex = ZiptideConstants.SignHueVendorHex;
+                    break;
+            }
+
+            if (ColorUtility.TryParseHtmlString("#" + hex, out Color color)) return color;
+            return Color.magenta;
+        }
+
+        private static int EnsureGlyphAssets(SignDestinationClass destination)
+        {
+            int made = 0;
+            string texturePath = GlyphTexturePath(destination);
+            Texture2D texture = AssetDatabase.LoadAssetAtPath<Texture2D>(texturePath);
+            if (texture == null)
+            {
+                texture = new Texture2D(
+                    GlyphTextureSize,
+                    GlyphTextureSize,
+                    TextureFormat.RGBA32,
+                    true,
+                    true)
+                {
+                    name = "ShellGlyph_" + destination,
+                    wrapMode = TextureWrapMode.Clamp,
+                    filterMode = FilterMode.Bilinear
+                };
+                texture.SetPixels32(BuildPanelPixels(destination));
+                texture.Apply(true, false);
+                AssetDatabase.CreateAsset(texture, texturePath);
+                Debug.Log("[Ziptide] SignRecipeLibrary authored " + texturePath);
+                made++;
+            }
+
+            string materialPath = GlyphMaterialPath(destination);
+            if (AssetDatabase.LoadAssetAtPath<Material>(materialPath) == null)
+            {
+                Shader shader = Shader.Find("Universal Render Pipeline/Unlit");
+                if (shader == null) shader = Shader.Find("Unlit/Texture");
+                if (shader == null) shader = Shader.Find("Sprites/Default");
+                if (shader == null)
+                {
+                    Debug.LogWarning("[Ziptide] Shell sign material skipped: no supported unlit shader.");
+                    return made;
+                }
+
+                var material = new Material(shader)
+                {
+                    name = "ShellGlyph_" + destination,
+                    enableInstancing = true
+                };
+                if (material.HasProperty("_BaseMap")) material.SetTexture("_BaseMap", texture);
+                if (material.HasProperty("_MainTex")) material.SetTexture("_MainTex", texture);
+                if (material.HasProperty("_BaseColor")) material.SetColor("_BaseColor", Color.white);
+                if (material.HasProperty("_Color")) material.SetColor("_Color", Color.white);
+                AssetDatabase.CreateAsset(material, materialPath);
+                Debug.Log("[Ziptide] SignRecipeLibrary authored " + materialPath);
+                made++;
+            }
+
+            return made;
+        }
+
+        private static int SeedFor(SignDestinationClass destination)
+        {
+            return 7103 + (int)destination * 977;
         }
 
         private static KeyValuePair<string, System.Func<ForgeRecipeDefinition>> Spec(
