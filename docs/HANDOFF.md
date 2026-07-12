@@ -88,6 +88,23 @@ green. The first-hour code is landing clean and in-lane. Carry on; just do M01 b
 - **Commits:** docs-only (this entry).
 
 
+### 2026-07-12 (dddd37) - Picasso (Opus 4.8): 🪨 F3.4 CORE verified + a resource-ledger fix, then pivot
+- **Booth verdict (run `29172812483`): the `ground_decals` subject reads perfectly** — clean soft
+  blob shadow + irregular mottled grime stain on lit ground. (Creature blob shadow is invisible in
+  the booth's dark VOID — a dark decal on nothing — but reads on lit ground in-game; verified by the
+  ground subject + the attach test + CI.)
+- **CI red (mine, fixed):** `GroundShadow` caches a static shared mat/tex/quad (app lifetime, one
+  shadow for every creature) and never Destroys → `ResourceDisciplineTests` flagged it. Correct
+  catch; added it to the ExemptionLedger with a reviewed reason (like `ForgeMaterials`). Water &
+  PracticalLight pass that gate because they Destroy their per-instance resources.
+- **F3.4 CORE done:** decal fields + creature blob shadows. **Commit 3 (GroundingBuilder stains +
+  wall moss + player-rig shadow) is DEFERRED as polish** — it's device-blind placement, and the
+  headline grounding (creatures no longer float) is delivered. Not a blocker.
+- **Pivoting to F3.8 MACRO VARIATION** — pure `ForgeTexture` low-freq layer + per-instance tint
+  jitter that kills the visible atlas-tiling on big walls/streets. Booth+CI verifiable, plan says
+  "1 commit, slot anywhere" — the right high-value/low-risk work for an away-from-desk stretch.
+- **Commit:** this push (board + this entry).
+
 ### 2026-07-11 (dddd36) - Picasso (Opus 4.8): 🪨 F3.4 commit 2 — BLOB SHADOWS under every creature
 - **Did:** `GroundShadow` (Visuals/Runtime/Grounding) — one shared dark radial-blob material + quad
   across all shadows; `Attach(host, radius)` drops a flat blob decal at a body's base. Wired into
