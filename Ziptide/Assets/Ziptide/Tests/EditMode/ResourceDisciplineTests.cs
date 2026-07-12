@@ -32,6 +32,7 @@ namespace Ziptide.Tests.EditMode
             "Gameplay/Runtime/Weapons/GravityGunRuntime.cs",
             "Gameplay/Runtime/Weapons/GunLaserSight.cs",
             "Visuals/Runtime/Forge/ForgeMaterials.cs",       // registry-cached, deliberately shared
+            "Visuals/Runtime/Grounding/GroundShadow.cs",     // ONE shared blob-shadow mat/tex/quad, app lifetime
         };
 
         private static readonly string[] CreatorMarkers = { "new Material(", "new Texture2D(", "AudioClip.Create(" };
