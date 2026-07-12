@@ -28,6 +28,57 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-12 (hwr25) - Fable 5 architect: 📷➡️🎮 FIELD CAMERA — HEADSET-NIGHT HANDOFF for GPT (session limit; read this to help Terry test)
+**GPT: this is everything you need to help Terry get the Field Camera onto the headset and know what
+he's looking at. Both commits are CI-GREEN (verdict at head; `44208c7` + `a52d5fc`, EditMode success).
+The working tree is clean and pushed. I'm out of session — nothing is half-done.**
+
+**WHAT'S ON THE BRANCH (2 of 5 commits):**
+- Commit 1 `44208c7`: pure photo-scoring core + the saved-photo album. **Save format bumped to schema
+  v3** (added `PlayerProfile.photos`). This is ADDITIVE + safe: old saves auto-migrate to an empty
+  album, nothing lost. If you see `schemaVersion: 3`, that's expected and correct.
+- Commit 2 `a52d5fc`: the handheld camera ITEM — grabbable, holsterable, travels between worlds.
+
+**HOW TERRY GETS IT ON THE HEADSET (the deploy path):**
+1. 🔧 In Unity: `Ziptide → Dev → Build Sandbox Test Lab`, commit the regenerated
+   `SandboxTestLab.unity`. (This is what makes the camera SPAWN in-world — the build also
+   auto-seeds the `HandheldCamera` definition asset via `CameraAuthor`, no manual asset step.)
+2. Build the APK (normal `dev_build_install.ps1` / the cloud APK) and sideload.
+3. In-headset: warp to the **Sandbox Test Lab**, walk to the **Grab zone** — a small dark
+   **FieldCamera** sits by the gravity gun / taser.
+
+**WHAT TERRY SHOULD SEE / TEST (🎮) — and set expectations, because this is DELIBERATELY partial:**
+- ✅ Grab it: it has a lens ring on the front + a little viewfinder screen on the back; held level
+  (not gun-tilted).
+- ✅ Pull the trigger: it **clicks** (haptic) and the back screen **flashes white**. Logcat prints
+  `ZIPTIDE: PHOTO_SHUTTER`. Spawn logs `ZIPTIDE: ITEM_SPAWN id=handheld_camera`.
+- ✅ Holster it on a hip socket and **travel to another world** — it should ride along like the guns.
+- ❌ **IT DOES NOT TAKE A REAL PICTURE YET.** No live viewfinder feed, no saved image, no Quarters
+  photo wall. That is commits 3–4 (the GPU-heavy part, saved for a batched device pass). The click +
+  flash + log is the ONLY capture feedback right now. **This is expected, not a bug** — please make
+  sure Terry knows so a "the screen is just dark / it didn't save a photo" isn't logged as broken.
+- **Feel notes worth capturing for the next operator:** does it sit right in the hand? (tune
+  `HandheldCamera.gripLocalEuler` — it's data). Grab / holster / travel all clean? Shutter cadence ok?
+
+**EXACT NEXT STEP (commit 3, for whoever picks it up — fully scoped, no judgment calls):**
+`PhotoCaptureCamera` on the rig. Port `Editor/Patching/ForgePhotoBooth.RenderTarget` (lines ~303-351)
+to a RUNTIME class (RT → `cam.Render()` → `ReadPixels` → `EncodeToPNG` →
+`File.WriteAllBytes(persistentDataPath/Photos/<guid>.png)`; **`Destroy()` the RT+Texture2D+cam in a
+`finally`** — `RuntimeHealthMonitor` audits leaked textures). Hard Quest rules the exploration
+pinned: (a) **parent the capture camera UNDER the XR Origin hierarchy** (drive its world pose to
+`CameraRuntime.Lens` each frame) — else `Core/Runtime/EnsureXRCameraActive.cs` auto-disables it;
+(b) **far-clip ≥ 520** (sky dome radius 500) + **`renderPostProcessing = true`** so the graded sky is
+in shot; (c) **cull the HUD layer** so `CreditsHud` isn't in photos; (d) live viewfinder = small RT
+(~256×192) at throttled cadence (~10fps, held-only), **full-res render only on the shutter press**.
+Then fill `CameraRuntime.Capture(hand)` (the seam is already there): build `PhotoSubjects`, score via
+`PhotoComposition.Evaluate` (done/tested), append via `PhotoAlbum.Add` (done/tested; delete the
+evicted PNG it returns), write the `CapturedPhoto` record, optional `LedgerSource.Discovery` reward
+on Postcard+. Commit 4 = `QuartersRoom.BuildPhotoWall()` (mirror `BuildGearDisplays`, read
+`Profile.photos` onto `WallBack`). Full plan lived in the architect's plan file; the reuse map is in
+hwr24 + the design is straightforward from here.
+
+- **Commits:** docs-only (this handoff). Branch clean at push.
+
 ### 2026-07-12 (hwr24) - Fable 5 architect: 📷 FIELD CAMERA commit 2 — the physical camera on your belt
 - **The feature (Terry-picked NEW aspect):** a handheld vista camera → capture → keep on the Quarters
   wall. Serves the skyscape (the game's emotional core). 5-commit arc; commit 1 (pure scoring +
