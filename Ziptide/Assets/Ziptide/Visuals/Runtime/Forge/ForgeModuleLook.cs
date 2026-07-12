@@ -20,15 +20,57 @@ namespace Ziptide.Visuals
         [Tooltip("Child names whose renderers SURVIVE the swap (e.g. the interior-mapped Pane).")]
         public string[] keepChildren = { "Pane" };
 
+        [Tooltip("FORGE III F3.8 part 2: per-instance brightness jitter (±this, from a position hash) " +
+                 "so identical modules differ slightly down a street. MaterialPropertyBlock — batching-safe. " +
+                 "0 = off.")]
+        [Range(0f, 0.2f)] public float tintJitter = 0.05f;
+
+        private static readonly int BaseColorId = Shader.PropertyToID("_BaseColor");
+
         private void Awake()
         {
             if (!ForgeVisualApplier.TryApply(gameObject, recipeId)) return;
+
+            // Per-instance tint: a slightly-off-white _BaseColor via property block, so a row of the
+            // SAME wall module isn't a copy-paste. MPB keeps the shared baked material batchable.
+            if (tintJitter > 0f)
+            {
+                float j = 1f + (Hash01(transform.position) * 2f - 1f) * tintJitter;
+                var tint = new Color(j, j, j, 1f);
+                var mpb = new MaterialPropertyBlock();
+                foreach (var r in GetComponentsInChildren<Renderer>(true))
+                {
+                    if (!IsUnderForgeVisual(r.transform)) continue; // only the swapped-in look
+                    r.GetPropertyBlock(mpb);
+                    mpb.SetColor(BaseColorId, tint);
+                    r.SetPropertyBlock(mpb);
+                }
+            }
 
             foreach (var r in GetComponentsInChildren<Renderer>(true))
             {
                 if (r.transform == transform) continue;
                 if (IsKept(r.transform)) continue;
                 r.enabled = false; // renderer only — colliders on primitive pieces keep working
+            }
+        }
+
+        private static bool IsUnderForgeVisual(Transform t)
+        {
+            for (var p = t; p != null; p = p.parent)
+                if (p.name == ForgeVisualApplier.VisualChildName) return true;
+            return false;
+        }
+
+        /// <summary>Deterministic 0..1 from a world position (quantised so tiny drifts don't flicker).</summary>
+        private static float Hash01(Vector3 p)
+        {
+            unchecked
+            {
+                int x = Mathf.RoundToInt(p.x * 4f), y = Mathf.RoundToInt(p.y * 4f), z = Mathf.RoundToInt(p.z * 4f);
+                uint h = (uint)(x * 374761393 + y * 668265263 + z * 1274126177);
+                h = (h ^ (h >> 13)) * 1274126177u;
+                return ((h ^ (h >> 16)) & 0xFFFFFF) / (float)0x1000000;
             }
         }
 
