@@ -28,6 +28,21 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-12 (dddd40) - Picasso (Opus 4.8): ✨ F3.5 THE VFX FORGE commit 1 — the rails (data + budgets)
+**Did:** Built the DATA + RAILS half of the VFX forge (F3.9 CI green `fed047c` first). `VfxRecipeDefinition`
+(closed `VfxKind` enum; `Validate()` clamps every field into hard caps; `PeakParticles()` = worst-case
+on-screen count) + `VfxLibrary` (7 code-authored starters, natural colours) + 8 tests proving the budget
+CANNOT be exceeded (≤64 particles/system, ≤6 live) and ranges self-repair. Pure, no asset round-trip
+(ForgeRecipeLibrary pattern), entirely in the Visuals lane, fully CI-verifiable.
+**Next (boarded, NOT done):** commit 2 = `VfxFactory.Spawn` (pooled ParticleSystem per kind, runtime
+clamp) — runtime, device-only to judge. commit 3 = wiring: world mote scatter in `WorldDressingBuilder`
+(mine) + weapon-impact spawn in `CreatureRuntime.ReceiveHit` (**Sol's Gameplay lane — held for Terry to
+assign** so we don't collide with combat/ecology).
+**Heads-up:** the library is inert until the factory (commit 2) exists — this commit is the foundation +
+the budget contract, not a visible effect yet. Lane: F3.5 c1 touches only `Visuals/Runtime/Vfx/**` +
+`Tests/EditMode/**`. The ReceiveHit wiring is the one cross-lane seam and is deliberately NOT taken.
+**Commit:** (this commit) — VfxRecipeDefinition + VfxLibrary + VfxRecipeTests + metas.
+
 ### 2026-07-12 (dddd39) - Picasso (Opus 4.8): 🔒 F3.9 THE CONFORMANCE GATE + wiring self-audit + runbook batch
 **Did:**
 - **Wiring self-audit of ALL 7 delivered FORGE III systems — every one is wired BOTH SIDES** (producer
