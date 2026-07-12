@@ -46,6 +46,8 @@ namespace Ziptide.Editor.Patching
             PracticalAuthor.Place(dressRoot, kit, route);
             // FORGE III F3.3 — water fills the shipyard berth (the tidefront read), if the world has one.
             WaterAuthor.Place(dressRoot, kit);
+            // FORGE III F3.5 — fixed biome-keyed air volumes along the route; no rig/player following.
+            AmbientMoteAuthor.Place(dressRoot, kit, route);
         }
 
         // ── P1d: the route + cairns ───────────────────────────────────────────────────────────────
