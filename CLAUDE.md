@@ -9,6 +9,8 @@ Read this first every session. It is the contract for how to work in this repo w
 > **`docs/CURRENT_EXECUTION_CHECKLIST.md`** for the current done/next/blocked picture and links back to
 > the older checklists. Continue through `docs/CI_VERDICT.md` · your track's `docs/SPRINT_*.md` ·
 > `docs/HANDOFF.md` newest entries · `docs/TERRY_RUNBOOK.md` (what Terry runs).
+> Art/Forge operators must also read **`docs/project_art_plan/README.md`**, which routes the current
+> Forge III work and the Terry-approved FORGE IV Cinematic Presence canon without skipping dependencies.
 > *(Legacy detail: `docs/FABLE5_START_HERE.md`.)*
 
 ## ⛔ WORKFLOW INTEGRITY — CHECK THIS FIRST, EVERY SESSION
@@ -95,7 +97,9 @@ Interaction Toolkit **2.5.4**. The Unity project lives in the **`Ziptide/`** sub
 - `docs/FABLE5_BACKLOG.md` — older expanded task queue · `docs/MASTER_CHECKLIST.md` — older broad
   build-state page. Use them for history/details; prefer the current checklist plus newest logs for state.
   *(The old `WORKLIST.md`/`04_TASK_QUEUE.md` are retired.)*
-- `docs/project_art_plan/` — art/audio/prompt-to-world pipeline.
+- `docs/project_art_plan/README.md` — **canonical art-plan index and execution order.** FORGE IV is
+  `FORGE_IV_CINEMATIC_PRESENCE.md`; its completed CP-0 rules are in
+  `CINEMATIC_PRESENCE_CONSTITUTION.md`. Do not skip unfinished Forge III/device gates.
 - `docs/ZIPTIDE_MASTER_BUILD_PLAN.md` — long-term 80-world vision.
 - `docs/systems/SKYSCAPE_DESIGN.md` — **the Prospect bar.** Terry named the skyscape as one of the
   biggest things that drove him to make this game — read before touching any sky/vista/atmosphere work.
