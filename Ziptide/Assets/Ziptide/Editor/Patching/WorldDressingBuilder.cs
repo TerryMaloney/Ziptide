@@ -50,6 +50,8 @@ namespace Ziptide.Editor.Patching
             AmbientMoteAuthor.Place(dressRoot, kit, route);
             // FORGE III F3.7 — non-interactive Shell-script signs at deterministic POI approaches.
             SignAuthor.Place(dressRoot, kit, route);
+            // FORGE III F3.6 — after every visual author, attach the closed reactive-prop vocabulary.
+            ReactivePropAuthor.Place(dressRoot);
         }
 
         // ── P1d: the route + cairns ───────────────────────────────────────────────────────────────
