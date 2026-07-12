@@ -569,6 +569,25 @@ Two things to *feel* on device; both are pure-data tunes if they're off (no rebu
   **72fps held?** (the surface does a small per-frame vertex bob on a 17×17 grid — cheap, but confirm).
   Booth-verified already: the water tile reads great; this is the in-world placement check. Canal-wide
   water (beyond the berth) is a later pass — needs canal-rect data.
+- [ ] **NEW (FORGE III batch: F3.1b PRACTICALS + F3.4 GROUNDING + F3.8 MACRO VARIATION, 2026-07-11 —
+  Picasso):** three "world cohesion" passes, all automatic at build (no menu step), all booth-verified —
+  this is the in-world confirmation for the evening. Check them together in any dressed street world
+  (W002/W005) after the next rebuild:
+  ① **Practical lights (F3.1b)** — doorways now carry wall sconces, streets get lamp poles every ~14m,
+  and a couple of hero lanterns cast a REAL warm point light. 🎮 Walk a street at the world's darker
+  time: do you see **warm pools of light on the ground under the lamps**, halos on the fixtures, and does
+  the street feel lit-by-the-world instead of flat-ambient? (Shootable/reactive lamps are a later pass —
+  right now they're look-only.) Confirm **72fps held** — only 2 fixtures per world spawn real lights; the
+  rest are unlit halo/pool billboards, so it should be free, but verify.
+  ② **Grounding / blob shadows (F3.4)** — creatures and forge props now drop a **soft blob shadow**
+  beneath them. 🎮 The old "everything floats" feeling should be gone — do creatures read as **planted on
+  the ground**? Look straight down at a standing creature: soft dark oval under the feet, scaled to its
+  footprint. If any shadow is way too big/small or visibly offset from the body, name the creature.
+  ③ **Macro variation (F3.8)** — a low-frequency wash + per-instance brightness jitter breaks up the
+  copy-paste look on repeated wall/street modules. 🎮 Look down a long wall or street of identical
+  modules: does it now read with **subtle large-scale variation** (some areas warmer/darker) instead of a
+  perfect tiling grid? This is meant to be subtle — if you can't tell, that's acceptable; if it looks
+  BLOTCHY or dirty, say so and the amplitude comes down (one constant).
 - [ ] **(not Unity) Reconnect the GitHub connector** on claude.ai (Settings → Connectors → GitHub →
   Reconnect, authorize `terrymaloney/ziptide`) so the operators can see CI status again. Pushing already
   works without it; this is just so we can watch the runs go green.
