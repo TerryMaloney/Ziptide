@@ -155,6 +155,10 @@ namespace Ziptide.Build
             // at their generated looks. ItemFactory applies them at spawn via ForgeVisualApplier.
             try { Ziptide.Editor.Patching.ForgeRecipeLibrary.EnsureAllAuthored(); Ziptide.Editor.Patching.ForgeAuthor.AssignAll(); }
             catch (Exception ex) { Debug.LogWarning("[Ziptide] Forge author warning: " + ex.Message); }
+            // F3.7: Shell-sign bodies are a separate create-only recipe catalog; the placement author
+            // consumes these ids during generated-world dressing and the baker picks them up below.
+            try { Ziptide.Editor.Patching.SignRecipeLibrary.EnsureAllAuthored(); }
+            catch (Exception ex) { Debug.LogWarning("[Ziptide] Shell sign recipe author warning: " + ex.Message); }
             // P3+P4: seed missing creature GENOME assets (create-only, ids match CreatureDefinitions).
             // CreatureBehaviorBase applies the skinned walking body at spawn via ForgeCreatureVisualApplier.
             try { Ziptide.Editor.Patching.ForgeBodyLibrary.EnsureAllAuthored(); }
