@@ -62,6 +62,12 @@ namespace Ziptide.Core
         public const string DiagDupSingleton   = "ZIPTIDE: DUP_SINGLETON";
         public const string DiagProximityTravel = "ZIPTIDE: PROXIMITY_TRAVEL";
 
+        // ── Signage / Wayfinding ───────────────────────────────────────────
+        // Hex strings keep Core UnityEngine-free; Visuals resolves them into emissive colors.
+        public const string SignHueTravelHex   = "35D9E6"; // existing travel-door teal family
+        public const string SignHueJobHex      = "E6A13A"; // objective/job amber
+        public const string SignHueVendorHex   = "55C879"; // resource/vendor green
+
         // ── Singleton GameObject Names ─────────────────────────────────────
         public const string GoXROrigin          = "XR Origin";
         public const string GoTravelCoordinator = "TravelCoordinator";
