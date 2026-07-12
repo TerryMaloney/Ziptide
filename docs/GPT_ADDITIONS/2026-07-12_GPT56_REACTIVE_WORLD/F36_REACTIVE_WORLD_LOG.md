@@ -2,123 +2,133 @@
 
 **Owner:** GPT-5.6 Thinking, Terry-authorized next-best sprint  
 **Branch:** `terry-local-wip`  
-**Status:** 🟡 FULL ENVELOPE STAGED — final Unity verification requested  
+**Status:** ✅ CODE + UNITY CI GREEN — GENERATED-SCENE/DEVICE VERDICT PENDING; FILE CLAIM RELEASED  
 **Parent plan:** `docs/project_art_plan/FORGE_III_PLAN.md` §F3.6
 
 ## Dependency proof
 
 - pooled VFX factory: green run `29180768058`;
 - ambient world VFX: green run `29181420996`;
-- practical-light unified `SetLit`: already green;
+- practical-light unified `SetLit`: green and reused rather than replaced;
 - Shell signage: final green run `29199691568`;
-- Gameplay asmdef already references Visuals + Multiplayer, so no assembly-cycle change is required.
+- Gameplay asmdef already referenced Visuals + Multiplayer, so no assembly-cycle change was required.
 
-## Commit 1 — core reaction contract ✅ GREEN
+## Delivered
 
-### Runtime
+### Reactive runtime
 
 - `ReactiveProp.cs` + `.meta`
-  - implements existing `IPvpDamageable` (`PlayerIndex=-1`);
-  - closed `ReactionKind { LightFlickerOut, SteamBurst, SparkShower, Shatter }`;
-  - pure `ReactivePropState`: one-shot or 30-second cooldown, injected-clock tests;
-  - closed rule table mapping every kind to an existing VFX id;
-  - lamp shutdown delegates to `PracticalLight.SetLit(false)` and disables only its authored hero Light;
-  - sign spark/dim uses `MaterialPropertyBlock`, never material instances;
-  - steam uses the existing looping `steam_vent` but returns it to the six-system pool after a short bounded burst;
-  - shatter hides the prop look and emits three non-lethal chunks.
+- implements the existing `IPvpDamageable` interface with `PlayerIndex = -1`;
+- closed reaction vocabulary:
+  - `LightFlickerOut`;
+  - `SteamBurst`;
+  - `SparkShower`;
+  - `Shatter`;
+- pure `ReactivePropState` controls one-shot behavior or a 30-second cooldown;
+- every reaction resolves to an existing bounded `VfxLibrary` recipe;
+- no new damage interface, scoring participant, reward, inventory, save state or navigation state.
+
+### Reaction behavior
+
+- **Lights:** short sparks, then `PracticalLight.SetLit(false)` kills halo, pool and fixture emission together; any existing authored hero `Light` is disabled, never created by this sprint.
+- **Signs:** short sparks and a per-instance dim using `MaterialPropertyBlock`; shared sign materials remain untouched.
+- **Pipes:** bounded `steam_vent` loop for under one second, explicitly returned to the six-system VFX pool; reaction reopens after 30 seconds.
+- **Crates:** visual hides and exactly three non-lethal debris chunks appear; no loot or reward is generated.
 
 ### Shared debris rail
 
 - `WorldDebrisBudget.cs` + `.meta`
-  - one 24-object budget shared by existing breakable-wall chunks and reactive-prop chunks;
-  - EditMode-safe cleanup; no new physics budget.
-- `BreakableWall` additive refactor:
-  - existing wall chunks now call `WorldDebrisBudget.Register(go)`;
-  - private duplicate queue/cap removed;
-  - hit mapping, collapse, regeneration, visuals and chunk motion unchanged.
+- one global 24-object rail now covers reactive props and existing breakable-wall chunks;
+- oldest live debris retires first;
+- chunks remain short-lived, non-lethal and shadow-free;
+- `BreakableWall` retained its existing hit mapping, collapse, regeneration, colors and chunk motion while replacing its private duplicate queue with `WorldDebrisBudget.Register(go)`.
 
-### Verification
-
-`ReactivePropTests` pin:
-
-- one-shot/cooldown/reset timing;
-- every ReactionKind resolves to a real `VfxLibrary` recipe;
-- practical halo/pool/emission/hero-light shutdown;
-- bounded steam reservation and pool return;
-- three-chunk shatter behavior;
-- wall and prop debris sharing the same 24-live rail;
-- no loot, navigation, persistence or material-instance ownership.
-
-Commit-1 proof:
-
-- tested SHA `22567a824b41a2cba14230b1d0b08c69f9fbbc39`;
-- green run `29200317996`;
-- circuit breaker `0/3` reds.
-
-## Commit 2 — deterministic wiring staged
-
-### Editor author
+### Deterministic world author
 
 - `ReactivePropAuthor.cs` + `.meta`
-  - scans authored `ForgeModuleLook.recipeId` under the rebuilt Dressing root;
+- scans only authored `ForgeModuleLook.recipeId` values after all other world visual authors finish;
+- closed recipe map:
   - `light_sconce_wall`, `light_street_pole`, `light_lantern_hang` → `LightFlickerOut`;
-  - three Shell sign recipes → `SparkShower`;
+  - the three Shell sign recipes → `SparkShower`;
   - `prop_pipe_cluster` → `SteamBurst`;
   - `prop_patched_crate` → `Shatter`;
-  - adds exactly one existing-interface component per owning prop and a tightly bounded projectile hit proxy;
-  - lantern child looks resolve to the parent `PracticalLight` owner;
-  - root practical looks preserve `PracticalHalo`, `PracticalPool`, and `__REACTIVE_HIT` through the Forge swap;
-  - future/current pipe and crate placements inherit the reaction automatically by recipe id.
+- adds exactly one `ReactiveProp` per owning prop;
+- adds one tightly bounded non-trigger `__REACTIVE_HIT` BoxCollider and no Rigidbody;
+- lantern child looks resolve upward to their parent `PracticalLight` owner;
+- root practical looks preserve `PracticalHalo`, `PracticalPool` and `__REACTIVE_HIT` through the Forge runtime swap;
+- sign looks preserve both `ShellGlyph` and `__REACTIVE_HIT`;
+- author is idempotent.
 
-### World hook
+### World wiring
 
-`WorldDressingBuilder` gains exactly one additive call after every visual author:
+`WorldDressingBuilder` gained exactly one additive call after signage and all other visual authors:
 
 ```csharp
 ReactivePropAuthor.Place(dressRoot);
 ```
 
-### Current visibility truth
+Generated worlds therefore always receive reactive practical lights and Shell signs. Pipe clusters and patched crates receive their reactions wherever those Forge recipes are present. This sprint did not invent arbitrary prop placements merely to manufacture demo targets.
 
-- generated worlds currently guarantee reactive practical lights and Shell signs because those authors always run;
-- pipe clusters and patched crates react wherever those Forge recipes are present;
-- this sprint does not invent arbitrary new prop placement merely to manufacture a demo target.
+## Verification
 
-### Verification staged
+Added focused EditMode coverage for:
 
-- closed eight-row recipe vocabulary covers all four ReactionKinds;
+- one-shot, cooldown and reset timing;
+- all four reaction kinds and their real VFX recipes;
+- practical halo/pool/emission/hero-light shutdown;
+- timed steam reservation and pool return;
+- three-piece shatter behavior;
+- one shared 24-object wall/prop debris rail;
+- closed eight-row Forge recipe vocabulary;
 - practical/sign/pipe/crate ownership and collider dimensions;
-- lantern reaction resolves to practical root;
+- lantern owner resolution;
 - idempotent one-component/one-proxy behavior;
-- no Rigidbody, loot, XRI, real-Light creation or damage-interface fork;
-- practical glow children survive Forge swap regardless of Awake order;
-- exact one-call author order after signage.
+- practical glow preservation through Forge swap;
+- exact one-call author order after signage;
+- absence of loot, save, navigation, XRI, new Light creation, Rigidbody creation, material instances or damage-interface forks.
 
-### Atomic final checkpoint
+## CI proof
 
-- staging branch: `gpt56-staging/f36-wiring`;
-- staged code/test head before this trigger: `1dd9cb20382013d8f2e44f01b73e992dc61165e6` plus subsequent glow-preservation and wiring-test commits;
-- diff remains limited to one new editor author, one two-line builder hook, and focused EditMode tests;
-- no scene/prefab YAML, UI, travel, rewards, jobs, saves or unrelated Gameplay changes.
+### Commit 1 — core
 
-## Locked rails
+- tested SHA: `22567a824b41a2cba14230b1d0b08c69f9fbbc39`;
+- green run: `29200317996`;
+- Unity EditMode: `success`;
+- project-contract reports: `success`;
+- Android: skipped as expected for an ordinary branch push.
 
-- no new damage interface;
-- no drops/rewards/save state;
-- reaction never changes traversal or authored structural colliders;
-- only the dedicated projectile hit proxy may disable when a one-shot prop disappears;
-- no particle collision/lights/sub-emitters;
-- VFX remains ≤6 live, ≤64 particles/system;
-- debris remains ≤24 live globally and non-lethal;
-- no scene/prefab YAML edits;
-- three CI reds stops the envelope.
+### Commit 2 — deterministic wiring
 
-## Device evidence after green
+- tested SHA: `c8563bf085e27d245d17c7cc6cb56da967b7656e`;
+- green run: `29200715702`;
+- Unity EditMode: `success`;
+- project-contract reports: `success`;
+- Android: skipped as expected for an ordinary branch push;
+- durable verdict-only child: `994a6dec556deffbbc7b293e32803fde92290aa3`;
+- circuit breaker: `0/3` reds.
 
-1. shoot one street/sconce/lantern fixture and confirm halo, pool, emissive, and hero light die together;
-2. shoot a Shell sign and confirm a short spark shower plus dimmed face, with no menu/UI behavior;
+## Device evidence still required
+
+After generated-world re-authoring and the next Quest build:
+
+1. shoot one street pole, sconce or lantern and confirm halo, pool, emissive and hero light die together;
+2. shoot a Shell sign and confirm a short spark shower plus a dimmed face, with no menu/UI behavior;
 3. where a pipe cluster exists, confirm steam lasts under one second and reopens after 30 seconds;
 4. where a patched crate exists, confirm exactly three non-lethal chunks and no reward/drop;
-5. stress wall + prop debris together and confirm the oldest chunks retire at 24 live;
-6. verify dedicated hit proxies do not create route blockers or unexpected hand collisions;
+5. stress wall and prop debris together and confirm oldest chunks retire at 24 live;
+6. verify dedicated hit proxies do not create route blockers or uncomfortable hand collisions;
 7. confirm repeated reactions do not exceed six live VFX systems or destabilize 72 Hz.
+
+## Handoff — Did / Next / Heads-up / Commits
+
+**Did:** completed F3.6 end-to-end: existing weapons can now drive bounded reactions on generated-world practical lights, Shell signs and recipe-tagged pipes/crates without adding a parallel damage, reward or physics system.
+
+**Next:** regenerate worlds, build/install to Quest and execute the device checklist above. The next code sprint should be selected only after those visual/collision/performance observations are recorded.
+
+**Heads-up:** Unity CI proves contracts, lifecycle and budgets; it does not prove that the hit proxies feel comfortable in VR or that the VFX density reads correctly through the headset. Pipe/crate behavior is wired by recipe ID but visible examples depend on those recipes actually being placed in a generated world.
+
+**Commits:** core checkpoint `22567a8`; final wiring checkpoint `c8563bf`; final durable verdict `994a6de`; final run `29200715702`.
+
+## Closure
+
+F3.6 is code/CI green, its file claim is released, and the sprint is complete. It remains device-yellow until regenerated-world and headset verification pass.
