@@ -2,7 +2,7 @@
 
 **Owner:** GPT-5.6 Thinking, Terry-authorized next-best sprint  
 **Branch:** `terry-local-wip`  
-**Status:** 🟡 CLAIMED — commit 1 core/state/debris work in progress  
+**Status:** 🟡 COMMIT 1 STAGED — Unity verification requested before world wiring  
 **Parent plan:** `docs/project_art_plan/FORGE_III_PLAN.md` §F3.6
 
 ## Dependency proof
@@ -13,11 +13,9 @@
 - Shell signage: final green run `29199691568`;
 - Gameplay asmdef already references Visuals + Multiplayer, so no assembly-cycle change is required.
 
-## Two-commit envelope
+## Commit 1 — core reaction contract
 
-### Commit 1 — core reaction contract
-
-New Gameplay runtime:
+### Runtime staged
 
 - `ReactiveProp.cs` + `.meta`
   - implements existing `IPvpDamageable` (`PlayerIndex=-1`);
@@ -29,25 +27,39 @@ New Gameplay runtime:
   - steam uses the existing looping `steam_vent` but returns it to the six-system pool after a short bounded burst;
   - shatter hides the prop look and emits three non-lethal chunks.
 
-Shared debris rail:
+### Shared debris rail staged
 
 - `WorldDebrisBudget.cs` + `.meta`
   - one 24-object budget shared by existing breakable-wall chunks and reactive-prop chunks;
   - EditMode-safe cleanup; no new physics budget.
-- additive `BreakableWall` refactor: register existing chunks through the shared budget; wall behavior/math unchanged.
+- `BreakableWall` additive refactor:
+  - existing wall chunks now call `WorldDebrisBudget.Register(go)`;
+  - private duplicate queue/cap removed;
+  - hit mapping, collapse, regeneration, visuals and chunk motion unchanged.
 
-Tests:
+### Tests staged
 
-- one-shot/cooldown/reset/determinism;
-- every ReactionKind has a real VfxLibrary recipe;
-- practical shutdown is unified;
-- shatter emits at most three chunks through the shared cap;
-- wall and prop debris share the same 24-live rail;
-- no loot, navigation, persistence, or material-instance ownership.
+`ReactivePropTests` pin:
 
-### Commit 2 — deterministic wiring
+- one-shot/cooldown/reset timing;
+- every ReactionKind resolves to a real `VfxLibrary` recipe;
+- practical halo/pool/emission/hero-light shutdown;
+- bounded steam reservation and pool return;
+- three-chunk shatter behavior;
+- wall and prop debris sharing the same 24-live rail;
+- no loot, navigation, persistence or material-instance ownership.
 
-New editor pass:
+### Atomic checkpoint
+
+- staging branch: `gpt56-staging/f36-core`;
+- staged head before this trigger: `964bbbb891d9b5f39a825b266e9aa198ae1ff3e2`;
+- diff: two new runtime files + metadata, one 15-line wall refactor, one test file + metadata;
+- no editor author, generated-world hook, scene or prefab changes are included in commit 1;
+- commit 2 remains blocked until a durable green verdict.
+
+## Commit 2 — deterministic wiring (held)
+
+New editor pass after commit 1 is green:
 
 - `ReactivePropAuthor.cs` + `.meta`
   - scans authored `ForgeModuleLook.recipeId` under the rebuilt Dressing root;
@@ -62,13 +74,6 @@ New editor pass:
 One additive hook:
 
 - `WorldDressingBuilder`: `ReactivePropAuthor.Place(dressRoot)` after all visual authors.
-
-Tests:
-
-- all four recipe families map;
-- exact component/collider ownership, no Rigidbody/loot/XRI;
-- idempotent scan and one author call;
-- every ReactionKind has at least one recipe caller row.
 
 ## Locked rails
 
