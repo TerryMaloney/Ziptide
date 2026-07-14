@@ -21,6 +21,42 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-14 (rb26) — Fable 5: Phase 1 stabilization implemented + DS-09/10/12 evidence probes
+
+- **Did (plan):** converted the rb25 forensic map into an approved fix plan with Terry's two decisions
+  locked: the **physical board idiom owns DS-02** (device-proven rendering; the TMP canvas carries the
+  recorded 2026-07-06 dead/flicker failure) and **instrumentation is included** alongside Phase 1.
+- **Did (DS-01, `fix(boot)`):** the cold-boot HOLD contract. BootLoader arms it before the Home Hub;
+  while held: move/turn/snap/dash providers suspended, the global fall net disarmed, rig pinned to its
+  boot pose. Released ONLY in `TeleportToMarker` after a content spawn settles (re-arms the net from the
+  fresh spawn); marker-less content scenes release too, so nobody arrives frozen. Pure `BootHoldState`
+  seam + `BootHoldTests`. Logs `ZIPTIDE: BOOT_HOLD on/off`.
+- **Did (DS-02/03, `fix(devtools)`):** ONE dev menu. `DevWarpBoard` is now summoned (forehead gesture /
+  F2 / ADB gate), dismissible (gesture toggle + red CLOSE tile), fixed-pose at summon (the orbiting
+  billboard is deleted), labels un-mirrored via the facing contract, and any open board closes on scene
+  load. `DevMenu` retired from runtime (no bootstrap, no gesture; kept only as a manually-mounted
+  diagnostic with the reason in its header). `DevToolsSingletonTests` source-scans DevTools: exactly one
+  `RuntimeInitializeOnLoadMethod`, and it must be the board.
+- **Did (DS-14/DS-03, `fix(ui)`):** `WorldLabelFacing` — THE facing contract in one pure helper
+  (TextMesh reads from −Z; facing a viewer = +Z points AWAY). Travel doors now carry a label per FACE
+  (readable from both approach sides, static, no per-frame cost). Tests pin the convention, pin the old
+  buggy `LookRotation(toViewer)` as unreadable forever, and prove HomeHub's board math was already
+  correct (why Terry could read the hub but not the doors).
+- **Did (DS-09/10/12, `diag`):** log-only probes, zero behavior change — `ZIPTIDE: BOARD_PROBE`
+  (hover/select + 1 Hz aim probe: actual ray hit path/layer, bound manager instance, facing dot),
+  `ZIPTIDE: REPAIR_TRACE` (every hop: machine → director → runtime consumed/banked → bank-drain →
+  objective board rendered text → cast-off observed instance), `ZIPTIDE: FLIGHT_TRACE` (per emitted yaw
+  snap: raw stick, latch, yaw, frame ms). The forensic plan forbids behavior edits on these three until
+  a capture picks the branch.
+- **Next:** Terry runs **TERRY_RUNBOOK §0** (the Phase-1 device checklist + the logcat capture). Then:
+  Phase 2 (DS-06/07/08 item/holster/hammer pose contract) with the captured evidence feeding DS-09/10/12
+  fixes; DS-04/05 in Phase 3.
+- **Heads-up:** DS-05's tracked-head fix is one line in `TravelCoordinator` but is deliberately parked
+  for Phase 3 with its test, per the plan ordering. DevMenu's TMP canvas path still exists for manual
+  diagnosis only — the singleton test turns CI red if anyone re-bootstraps it. All Phase-5 art items
+  stay parked for Picasso.
+- **Commit:** `a0dfdc7` (DS-01) · `5774182` (DS-14/03) · `aa59e7c` (DS-02/03) · diag + docs follow.
+
 ### 2026-07-14 (rb25) — GPT forensic device-stabilization map
 
 - **Did:** Terry’s first successful Quest build installed and launched, then exposed failures across boot/spawn, developer UI, traversal, item poses, interactions, tutorial continuity, ship controls, and visual finish.

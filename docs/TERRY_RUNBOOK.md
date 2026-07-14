@@ -20,6 +20,38 @@ the device pass.
 > checklist. Terry clears this whole file in one sitting. (Last consolidated: 2026-07-09 — combat A3,
 > flight v1.1, worlds.)
 
+## 0. ⛑ STABILIZATION PHASE 1 — the ONLY device pass that matters right now (2026-07-14, Fable 5)
+
+Per `docs/DEVICE_STABILIZATION_FORENSIC_PLAN.md` (rb25/rb26): multiplayer is paused and Phase 2
+(weapon poses etc.) does not start until this checklist passes. Build + install the new APK, then:
+
+- [ ] **Boot survival (DS-01):** put the headset on at cold boot and just WAIT 60 seconds at the
+  destination menu. You must not sink, fall, or see a single respawn flash. Logcat shows
+  `ZIPTIDE: BOOT_HOLD on` at menu-up.
+- [ ] **Stick is dead while the menu owns boot (DS-01):** push the thumbsticks hard in every
+  direction at the menu. The rig must not move or turn at all.
+- [ ] **One load, one spawn (DS-01):** pick a world. Exactly one travel, you land on the spawn,
+  and logcat shows `ZIPTIDE: BOOT_HOLD off safe=…` right after `SPAWN_AT`. Then walk off
+  something high — normal fall recovery must still work in-world (the net re-armed).
+- [ ] **ONE dev menu (DS-02):** after landing, confirm NO warp board is standing anywhere by
+  itself. Hold both controllers together above your forehead ~2s → the ONE board appears in
+  front of you, standing still (walk around it — it must NOT rotate to follow you). Gesture
+  again → it closes. Do this 3×. Also tap the red **CLOSE** tile once. Warp somewhere from it —
+  any open board must be gone after arrival.
+- [ ] **Board text readable (DS-03):** the TEST WARP header + every tile label reads correctly —
+  zero mirrored text.
+- [ ] **Door text readable from BOTH sides (DS-14):** walk to any travel door, read its label from
+  the side you naturally approach — then walk around and read it from the other side. Both must
+  be readable (labels are now per-face).
+- [ ] **Evidence capture for the next fix wave (DS-09/10/12)** — while playing, keep
+  `adb logcat -s Unity` running and: ① aim at + try to select the arena **Match Board** tiles
+  (~30s of attempts) → `ZIPTIDE: BOARD_PROBE` lines; ② run the W000 tutorial **gate coupler**
+  repair start-to-finish → `ZIPTIDE: REPAIR_TRACE` lines; ③ fly **Your Ship** and turn a lot →
+  `ZIPTIDE: FLIGHT_TRACE` lines. Save the log and hand it to the operator — these three bugs are
+  deliberately NOT behavior-fixed until this capture says which branch is at fault.
+
+If ALL of the above pass, Phase 2 (item/holster/hammer poses + self-hit) begins next session.
+
 ## 1. Pending Unity menu steps (run in the editor, then commit the results)
 Do these in order after pulling. Each generates committable assets. *(This mirrors
 `DEVICE_TEST_CHECKLIST.md` §0 — that doc has the full copy-paste block.)*
