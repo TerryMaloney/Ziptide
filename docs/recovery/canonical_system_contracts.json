@@ -156,8 +156,8 @@
       "canonicalCandidate": "SaveSystem",
       "sourceFiles": [
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Persistence/SaveSystem.cs",
-        "Ziptide/Assets/Ziptide/Core/Runtime/PlayerProfile.cs",
-        "Ziptide/Assets/Ziptide/Core/Runtime/ProfileSerializer.cs"
+        "Ziptide/Assets/Ziptide/Core/Runtime/Persistence/PlayerProfile.cs",
+        "Ziptide/Assets/Ziptide/Core/Runtime/Persistence/ProfileSerializer.cs"
       ],
       "startup": "RuntimeInitializeOnLoadMethod creates persistent SaveSystem.",
       "persistence": "DontDestroyOnLoad singleton plus disk profile and backup.",
@@ -189,7 +189,7 @@
       "sourceFiles": [
         "docs/recovery/canonical_owner_decisions.json",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-        "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldTravelStation.cs",
+        "Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/QuartersRoom.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestTableRuntime.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs"
