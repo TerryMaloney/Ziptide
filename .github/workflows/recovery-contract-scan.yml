@@ -13,18 +13,21 @@ on:
       - 'docs/EXCELLENCE_MAP.md'
       - 'docs/SPRINT*.md'
       - 'docs/recovery/system_contracts.json'
+      - 'docs/recovery/automatic_runtime_owners.json'
       - 'tools/recovery_contract_scan.py'
       - 'tools/recovery_inventory_gate.py'
       - 'tools/recovery_contract_map.py'
       - 'tools/recovery_scene_exposure.py'
       - 'tools/recovery_claim_audit.py'
       - 'tools/recovery_input_contract_scan.py'
+      - 'tools/recovery_source_resolver.py'
       - 'tools/tests/test_recovery_contract_scan.py'
       - 'tools/tests/test_recovery_inventory_gate.py'
       - 'tools/tests/test_recovery_contract_map.py'
       - 'tools/tests/test_recovery_scene_exposure.py'
       - 'tools/tests/test_recovery_claim_audit.py'
       - 'tools/tests/test_recovery_input_contract_scan.py'
+      - 'tools/tests/test_recovery_source_resolver.py'
       - '.github/workflows/recovery-contract-scan.yml'
   workflow_dispatch:
 
@@ -45,30 +48,13 @@ jobs:
 
       - name: Test recovery tooling
         run: |
-          python3 -m unittest discover \
-            -s tools/tests \
-            -p 'test_recovery_contract_scan.py' \
-            -v
-          python3 -m unittest discover \
-            -s tools/tests \
-            -p 'test_recovery_inventory_gate.py' \
-            -v
-          python3 -m unittest discover \
-            -s tools/tests \
-            -p 'test_recovery_contract_map.py' \
-            -v
-          python3 -m unittest discover \
-            -s tools/tests \
-            -p 'test_recovery_scene_exposure.py' \
-            -v
-          python3 -m unittest discover \
-            -s tools/tests \
-            -p 'test_recovery_claim_audit.py' \
-            -v
-          python3 -m unittest discover \
-            -s tools/tests \
-            -p 'test_recovery_input_contract_scan.py' \
-            -v
+          python3 -m unittest discover -s tools/tests -p 'test_recovery_contract_scan.py' -v
+          python3 -m unittest discover -s tools/tests -p 'test_recovery_inventory_gate.py' -v
+          python3 -m unittest discover -s tools/tests -p 'test_recovery_contract_map.py' -v
+          python3 -m unittest discover -s tools/tests -p 'test_recovery_scene_exposure.py' -v
+          python3 -m unittest discover -s tools/tests -p 'test_recovery_claim_audit.py' -v
+          python3 -m unittest discover -s tools/tests -p 'test_recovery_input_contract_scan.py' -v
+          python3 -m unittest discover -s tools/tests -p 'test_recovery_source_resolver.py' -v
 
       - name: Generate recovery truth reports
         run: |
@@ -91,6 +77,9 @@ jobs:
           python3 tools/recovery_input_contract_scan.py \
             --json-report docs/recovery/generated/recovery_input_contract_scan.json \
             --markdown-report docs/recovery/generated/recovery_input_contract_scan.md
+          python3 tools/recovery_source_resolver.py \
+            --json-report docs/recovery/generated/recovery_source_resolver.json \
+            --markdown-report docs/recovery/generated/recovery_source_resolver.md
           cp docs/recovery/generated/* Builds/Reports/
 
       - name: Upload recovery reports
