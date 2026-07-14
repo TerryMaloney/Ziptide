@@ -19,11 +19,17 @@ class RecoverySourceResolverTests(unittest.TestCase):
             source = root / "src"
             source.mkdir()
             (source / "One.cs").write_text(
-                "namespace Test { public sealed class CreditsHud {} internal struct SaveState {} }",
+                """namespace Test
+{
+    public sealed class CreditsHud { }
+    internal struct SaveState { }
+}
+""",
                 encoding="utf-8",
             )
             index = build_type_index(root, ("src",))
             self.assertEqual(["src/One.cs"], index["CreditsHud"])
+            self.assertEqual(["src/One.cs"], index["SaveState"])
 
     def test_resolver_marks_missing_and_unique_types(self) -> None:
         index = {
