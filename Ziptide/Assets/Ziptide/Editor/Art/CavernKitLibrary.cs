@@ -38,6 +38,14 @@ namespace Ziptide.Editor.Art
 
             var disc = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
             disc.name = "Floor";
+            // The cylinder primitive ships a CapsuleCollider, and a capsule cannot flatten below its
+            // own radius: squashed to this 0.12-thick disc and scaled to a chamber, it degenerates to
+            // an invisible SPHERE the radius of the whole chamber — a phantom dome that swallowed the
+            // W011 spawn (SPAWN_OVERLAP_SOLID, the headset-build blocker) and would have the player
+            // standing on air. A thin box is the disc's real envelope.
+            var capsule = disc.GetComponent<Collider>();
+            if (capsule != null) Object.DestroyImmediate(capsule);
+            disc.AddComponent<BoxCollider>(); // auto-sizes to the cylinder mesh bounds → the disc's box
             disc.transform.SetParent(root.transform, false);
             disc.transform.localScale = new Vector3(2f, 0.12f, 2f); // unit radius = 1 at root scale 1
             ItemFactory.ApplyURPColor(disc, Rock);

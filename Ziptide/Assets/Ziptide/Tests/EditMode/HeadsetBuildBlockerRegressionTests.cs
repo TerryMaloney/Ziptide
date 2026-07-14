@@ -74,6 +74,55 @@ namespace Ziptide.Tests.EditMode
             StringAssert.DoesNotContain("var go = PatcherUtil.EnsureRootObject(SpawnMarkerName, spawnPos);", d2);
         }
 
+        [Test]
+        public void CavernFloorPad_ColliderIsThin_NeverAPhantomDome()
+        {
+            // THE ROOT CAUSE of the W011 SPAWN_OVERLAP_SOLID headset-build blocker: the FloorPad's
+            // cylinder primitive shipped a CapsuleCollider, and a capsule squashed to a 0.12-thick
+            // disc then scaled to a chamber degenerates into a SPHERE the radius of the chamber —
+            // an invisible dome the spawn sat inside. This builds the REAL pad at chamber scale and
+            // runs the audit's own physics probes against it.
+            Ziptide.Editor.Art.CavernKitLibrary.EnsureRegistered();
+            Assert.IsTrue(Ziptide.Editor.Art.ArtModuleRegistry.TryBuild("cavernModule:rock/FloorPad", out var pad),
+                "FloorPad module must build from the registry");
+            try
+            {
+                // Far from anything another test might leave in the scene.
+                pad.transform.position = new Vector3(500f, -400f, 500f);
+                pad.transform.localScale = new Vector3(6f, 1f, 6f); // a real chamber radius
+                Physics.SyncTransforms();
+
+                foreach (var col in pad.GetComponentsInChildren<Collider>(true))
+                {
+                    Assert.IsFalse(col is CapsuleCollider,
+                        col.name + ": a squashed capsule degenerates to a chamber-radius sphere");
+                    Assert.LessOrEqual(col.bounds.max.y, pad.transform.position.y + 0.3f,
+                        col.name + " bulges above the walk surface — the phantom dome is back");
+                }
+
+                // The audit's exact probes at the spawn ScenePatcherCavern authors (chamber Y + 0.25):
+                Vector3 spawn = pad.transform.position + Vector3.up * 0.25f;
+                foreach (var hit in Physics.OverlapSphere(spawn + Vector3.up * 0.9f, 0.3f))
+                    Assert.Fail("'" + hit.name + "' overlaps the spawn torso — SPAWN_OVERLAP_SOLID");
+                Assert.IsTrue(Physics.Raycast(spawn + Vector3.up * 0.2f, Vector3.down, out _, 6f),
+                    "no floor under the cave spawn — SPAWN_NO_FLOOR");
+            }
+            finally
+            {
+                Object.DestroyImmediate(pad);
+            }
+        }
+
+        [Test]
+        public void CavernPatcher_HealsPreFixFloorPadCapsules()
+        {
+            string cavern = Read("Editor", "Patching", "ScenePatcherCavern.cs");
+            StringAssert.Contains("HealFloorPadColliders();", cavern);
+            StringAssert.Contains("parent.name.StartsWith(\"CavePad_\")", cavern);
+            string kit = Read("Editor", "Art", "CavernKitLibrary.cs");
+            StringAssert.Contains("disc.AddComponent<BoxCollider>();", kit);
+        }
+
         private static string Read(params string[] parts)
         {
             string path = Path.Combine(Application.dataPath, "Ziptide");

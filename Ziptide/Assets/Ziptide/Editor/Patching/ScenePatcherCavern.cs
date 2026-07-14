@@ -110,6 +110,7 @@ namespace Ziptide.Editor.Patching
         private static void Populate(CaveConfig cfg)
         {
             CavernKitLibrary.EnsureRegistered();
+            HealFloorPadColliders();
             var plan = CaveNetworkPlanner.Plan(cfg.seed, cfg.extentX, cfg.extentZ, cfg.depth,
                                                cfg.chambers, cfg.minSpacing, cfg.loopChance);
 
@@ -158,6 +159,25 @@ namespace Ziptide.Editor.Patching
             EnsureCaveZipline(plan);
             EnsureSpawnAndDoor(plan, cfg);
             EnsureWorldPackAsset(plan, cfg);
+        }
+
+        /// <summary>Retro-heal pads baked BEFORE the FloorPad collider fix: the cylinder primitive's
+        /// CapsuleCollider, squashed to the disc and scaled to a chamber, degenerates to a chamber-
+        /// sized SPHERE — the invisible dome behind W011's SPAWN_OVERLAP_SOLID headset-build blocker.
+        /// Populate is idempotent-by-name, so an existing scene would otherwise keep the bad collider
+        /// forever. Idempotent: fixed pads carry a BoxCollider and are skipped.</summary>
+        private static void HealFloorPadColliders()
+        {
+            foreach (var capsule in Object.FindObjectsOfType<CapsuleCollider>())
+            {
+                if (capsule == null || capsule.gameObject.name != "Floor") continue;
+                Transform parent = capsule.transform.parent;
+                if (parent == null || !parent.name.StartsWith("CavePad_")) continue;
+                var go = capsule.gameObject;
+                Object.DestroyImmediate(capsule);
+                go.AddComponent<BoxCollider>();
+                Debug.Log("[Ziptide] healed degenerate FloorPad capsule under " + parent.name);
+            }
         }
 
         private static void BuildBridge(Transform parent, CaveChamber a, CaveChamber b)

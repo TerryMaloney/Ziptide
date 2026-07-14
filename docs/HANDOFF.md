@@ -28,6 +28,53 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-14 (rb23) - Reasonbox/Fable 5: 🎯 THE HEADSET-BUILD BLOCKER FOUND — the phantom dome under W011's spawn
+- **Terry's ask:** local `quest_smoke.ps1` kept dying at `BuildAndroid.PatchScenesThenAPK threw
+  exception` while GPT chased it fix-by-fix. Find it, fix it, explain here.
+- **How I found it (the method matters more than the bug):** CI has been "GREEN" all week, but
+  `docs/CI_VERDICT.md` says it plainly — **`androidApk: skipped`**. The Android job is the ONLY
+  thing that runs `PatchScenesThenAPK` (the exact path the PC build takes) and it only fires on
+  workflow_dispatch or push to main. **Last real Android green: `6681a7f`, July 5.** Every blocker
+  since has been invisible to CI and discovered one-per-headset-attempt from Terry's local log. So
+  I **dispatched the Android job on terry-local-wip** (run 29352177767): it reproduced Terry's
+  failure EXACTLY and uploaded `docs/AUDIT_REPORT.json` as an artifact — the full blocker list in
+  one shot. It contained **exactly one blocker**: `W011_Undercroft — SPAWN_OVERLAP_SOLID: Solid
+  collider 'Floor' overlaps spawn position.`
+- **THE ROOT CAUSE (`CavernKitLibrary.BuildFloorPad`):** the cave chamber floor disc is a
+  **Cylinder primitive**, which ships a **CapsuleCollider**. A capsule cannot flatten below its
+  own radius: squashed to the 0.12-thick disc and scaled to a chamber (radius ~5-8m), it
+  degenerates into an invisible **SPHERE the radius of the whole chamber** — a phantom dome
+  centered at the chamber floor, bulging up through the entire play space. This ONE collider
+  explains the whole two-day cascade GPT fought: the original SPAWN_NO_FLOOR (the audit's
+  down-ray starts INSIDE the dome; rays never hit a collider they start in) which the
+  `__SPAWN_FLOOR` slab band-aided, and today's SPAWN_OVERLAP_SOLID (the torso probe finds the
+  dome). On device it would also have broken walking — the player would stand on the invisible
+  dome, not the rock.
+- **The fixes (3 pieces):**
+  1. `CavernKitLibrary.BuildFloorPad` — capsule destroyed, **thin BoxCollider** (the disc's true
+     envelope) added. Root cause dead.
+  2. `ScenePatcherCavern.HealFloorPadColliders()` (called from `Populate`) — Populate is
+     idempotent-BY-NAME, so an already-baked W011 scene would keep its bad capsule forever;
+     this retro-heals any `CavePad_*/Floor` capsule → box on every build. Terry's
+     reset+clean ritual regenerates fresh anyway, but now a stale bake can't resurrect it.
+  3. `HeadsetBuildBlockerRegressionTests.CavernFloorPad_ColliderIsThin_NeverAPhantomDome` — a
+     BEHAVIORAL test (not a string check): builds the real pad at chamber scale and runs the
+     audit's own physics probes (torso OverlapSphere + floor ray). If anyone reintroduces a
+     degenerate collider on the walk surface, EditMode goes red — no headset needed.
+- **GPT's fixes kept:** all of them (undercroft generation, `__SPAWN_FLOOR`, AuditPhysicsSync,
+  D2 spawn preservation, W005 facade removal) are correct and stay — they fixed real
+  symptoms/adjacent bugs; the dome was underneath them.
+- **⚠️ THE SYSTEMIC HOLE (for whoever owns CI next):** per CLAUDE.md, a workflow that can't
+  compile-verify is BROKEN — and for the patch+audit+APK path we've been flying blind since
+  July 5 because the Android job skips on branch pushes. Recommendation: a fast `PatchScenes +
+  RunAll audit, no APK` executeMethod job on every push (~catches every blocker class above
+  without the 12GB Android image), or at minimum: **any operator touching patchers/audit/scene
+  generation must workflow_dispatch the Android job and read the audit artifact before calling
+  the lane done.** I've re-dispatched it after this fix as the proof gate.
+- **Verify:** this push = EditMode (incl. the new regression test) + a fresh workflow_dispatch
+  Android run. Green Android run = Terry's next `quest_smoke.ps1` should reach the APK.
+- **Commits:** this push.
+
 ### 2026-07-12 (hwr25) - Fable 5 architect: 📷➡️🎮 FIELD CAMERA — HEADSET-NIGHT HANDOFF for GPT (session limit; read this to help Terry test)
 **GPT: this is everything you need to help Terry get the Field Camera onto the headset and know what
 he's looking at. Both commits are CI-GREEN (verdict at head; `44208c7` + `a52d5fc`, EditMode success).
