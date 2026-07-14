@@ -13,6 +13,7 @@ on:
       - 'docs/EXCELLENCE_MAP.md'
       - 'docs/SPRINT*.md'
       - 'docs/recovery/system_contracts.json'
+      - 'docs/recovery/canonical_system_contracts.json'
       - 'docs/recovery/automatic_runtime_owners.json'
       - 'tools/recovery_*.py'
       - 'tools/tests/test_recovery_*.py'
@@ -128,10 +129,12 @@ jobs:
               --markdown-report docs/recovery/generated/recovery_contract_scan.md
           run_report recovery_inventory_validation \
             python3 tools/recovery_inventory_gate.py \
+              --inventory docs/recovery/canonical_system_contracts.json \
               --json-report docs/recovery/generated/recovery_inventory_validation.json \
               --markdown-report docs/recovery/generated/recovery_inventory_validation.md
           run_report recovery_contract_map \
             python3 tools/recovery_contract_map.py \
+              --inventory docs/recovery/canonical_system_contracts.json \
               --json-report docs/recovery/generated/recovery_contract_map.json \
               --markdown-report docs/recovery/generated/recovery_contract_map.md
           run_report recovery_scene_exposure \
