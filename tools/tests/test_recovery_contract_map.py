@@ -1,6 +1,12 @@
 from __future__ import annotations
 
+import sys
 import unittest
+from pathlib import Path
+
+TOOLS = Path(__file__).resolve().parents[1]
+if str(TOOLS) not in sys.path:
+    sys.path.insert(0, str(TOOLS))
 
 from recovery_contract_map import build_maps
 
