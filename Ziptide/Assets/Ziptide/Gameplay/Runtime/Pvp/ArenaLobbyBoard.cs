@@ -190,12 +190,54 @@ namespace Ziptide.Gameplay
             _netLabel = netGo.GetComponent<TextMesh>();
         }
 
+        private float _nextProbeAt;
+
         private void Update()
         {
             if (_netLabel != null)
                 _netLabel.text = "NET: " + Ziptide.Multiplayer.PvpNetHub.Status;
             if (_onlineTile != null)
                 Paint(_onlineTile.gameObject, Ziptide.Multiplayer.PvpNetHub.IsOnline ? OnlineLive : OnlineColor);
+
+            // DS-09 evidence (log-only, 1 Hz, only while a ray points near the board): what the ray
+            // ACTUALLY hits + board facing. Distinguishes facing/occlusion/layer/manager faults —
+            // the forensic-required capture before any behavior change.
+            if (Time.unscaledTime >= _nextProbeAt)
+            {
+                _nextProbeAt = Time.unscaledTime + 1f;
+                ProbeAim();
+            }
+        }
+
+        private void ProbeAim()
+        {
+            var cam = Camera.main;
+            foreach (var ray in FindObjectsOfType<UnityEngine.XR.Interaction.Toolkit.XRRayInteractor>())
+            {
+                if (ray == null || !ray.isActiveAndEnabled) continue;
+                Vector3 toBoard = transform.position - ray.transform.position;
+                if (toBoard.sqrMagnitude > 36f) continue;                       // > 6 m away — not us
+                if (Vector3.Angle(ray.transform.forward, toBoard) > 35f) continue; // not aiming near the board
+
+                bool hit3d = ray.TryGetCurrent3DRaycastHit(out var hit);
+                float facingDot = cam != null
+                    ? Vector3.Dot(transform.forward, (cam.transform.position - transform.position).normalized)
+                    : 0f;
+                Debug.Log("ZIPTIDE: BOARD_PROBE evt=aim ray=" + ray.gameObject.name
+                    + " hit=" + (hit3d ? PathOf(hit.collider) : "none")
+                    + " layer=" + (hit3d && hit.collider != null ? hit.collider.gameObject.layer.ToString() : "-")
+                    + " dist=" + (hit3d ? hit.distance.ToString("F2") : "-")
+                    + " boardFacingDot=" + facingDot.ToString("F2"));
+            }
+        }
+
+        private static string PathOf(Component c)
+        {
+            if (c == null) return "null";
+            var sb = new System.Text.StringBuilder(c.name);
+            for (var p = c.transform.parent; p != null; p = p.parent)
+                sb.Insert(0, p.name + "/");
+            return sb.ToString();
         }
 
         /// <summary>A5 (MP100 #61): the unlock ladder — Veteran and Nightmare rows are earned.
@@ -255,8 +297,23 @@ namespace Ziptide.Gameplay
             var mgr = FindObjectOfType<XRInteractionManager>();
             if (mgr != null) interactable.interactionManager = mgr;
             var r = go.GetComponent<Renderer>();
-            interactable.selectEntered.AddListener(_ => onSelect());
-            interactable.hoverEntered.AddListener(_ => Paint(go, TileHover));
+            // DS-09 evidence (log-only): hover/select with the BOUND manager instance — a tile bound
+            // to a stale/duplicate XRInteractionManager is one candidate for "can't select".
+            interactable.selectEntered.AddListener(_ =>
+            {
+                Debug.Log("ZIPTIDE: BOARD_PROBE evt=select tile=" + go.name
+                    + " mgr=" + (interactable.interactionManager != null
+                        ? interactable.interactionManager.GetInstanceID().ToString() : "NONE")
+                    + " layer=" + go.layer);
+                onSelect();
+            });
+            interactable.hoverEntered.AddListener(_ =>
+            {
+                Debug.Log("ZIPTIDE: BOARD_PROBE evt=hover tile=" + go.name
+                    + " mgr=" + (interactable.interactionManager != null
+                        ? interactable.interactionManager.GetInstanceID().ToString() : "NONE"));
+                Paint(go, TileHover);
+            });
             interactable.hoverExited.AddListener(_ => RefreshTintsAndStart(go, color));
 
             MakeLabel(label, localPos + new Vector3(0f, 0f, -0.05f), 0.011f);

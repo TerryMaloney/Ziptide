@@ -211,7 +211,11 @@ namespace Ziptide.Gameplay
             if (_statusLamp != null) Tint(_statusLamp, RunningColor);
             if (_director == null) _director = FindObjectOfType<JobDirector>();
             if (_director != null) _director.ReportRepair(_def.machineId);
-            Debug.Log("ZIPTIDE: MACHINE_REPAIRED id=" + _def.machineId);
+            // DS-10 evidence: instance id + whether a director existed to receive the report —
+            // a repair that never reaches a director is a different fault than a rejected one.
+            Debug.Log("ZIPTIDE: MACHINE_REPAIRED id=" + _def.machineId
+                + " instance=" + GetInstanceID()
+                + " director=" + (_director != null ? _director.GetInstanceID().ToString() : "NONE"));
             UpdateLabel();
             PublishStageChanged();
         }

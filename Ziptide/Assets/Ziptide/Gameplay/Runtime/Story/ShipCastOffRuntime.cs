@@ -119,6 +119,9 @@ namespace Ziptide.Gameplay
             StartCoroutine(LaunchSequence());
         }
 
+        private bool _lastArmedLogged = true; // logs the first evaluation too (starts opposite-able)
+        private bool _armedLogPrimed;
+
         private bool IsArmed()
         {
             bool gateConfigured = !string.IsNullOrEmpty(armingMachineId);
@@ -129,8 +132,22 @@ namespace Ziptide.Gameplay
                 foreach (var m in FindObjectsOfType<RepairableMachine>())
                     if (m.MachineId == armingMachineId) { _armingMachine = m; break; }
             }
-            return CastOffArming.IsArmed(gateConfigured, _armingMachine != null,
+            bool armed = CastOffArming.IsArmed(gateConfigured, _armingMachine != null,
                 _armingMachine != null && _armingMachine.IsRepaired);
+
+            // DS-10 evidence (log-only, transitions only): WHICH machine instance the cast-off
+            // observes and its repaired state — divergence from the JobDirector-spawned machine
+            // (a duplicate) would show here as mismatched instance ids.
+            if (!_armedLogPrimed || armed != _lastArmedLogged)
+            {
+                _armedLogPrimed = true;
+                _lastArmedLogged = armed;
+                Debug.Log("ZIPTIDE: REPAIR_TRACE hop=castoff armed=" + armed
+                    + " gate=" + (gateConfigured ? armingMachineId : "none")
+                    + " machineInstance=" + (_armingMachine != null ? _armingMachine.GetInstanceID().ToString() : "NONE")
+                    + " repaired=" + (_armingMachine != null && _armingMachine.IsRepaired));
+            }
+            return armed;
         }
 
         private void ShowHint(string text)

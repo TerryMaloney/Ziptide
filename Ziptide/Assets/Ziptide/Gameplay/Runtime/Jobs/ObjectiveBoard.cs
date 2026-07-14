@@ -61,6 +61,12 @@ namespace Ziptide.Gameplay
                 _tmp.text = title + "\n\nComplete!";
             else
                 _tmp.text = title + "\n\n" + step;
+
+            // DS-10 evidence (log-only): what the board actually RENDERED and from which director —
+            // stale presentation vs stale state becomes distinguishable in one capture.
+            Debug.Log("ZIPTIDE: REPAIR_TRACE hop=board director=" + jobDirector.GetInstanceID()
+                + " step=" + r.CurrentStepIndex + " complete=" + r.IsComplete
+                + " text=\"" + step + "\"");
         }
 
         private void OnStepChanged()

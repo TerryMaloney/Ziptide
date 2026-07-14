@@ -118,6 +118,10 @@ namespace Ziptide.Gameplay
         /// </summary>
         public void ReportRepair(string machineId)
         {
+            // DS-10 evidence (log-only): pins WHICH director instance forwarded the repair — a
+            // duplicate director/runtime pair is one of the candidate divergence causes.
+            Debug.Log("ZIPTIDE: REPAIR_TRACE hop=director id=" + GetInstanceID()
+                + " machine=" + machineId + " scene=" + gameObject.scene.name);
             _runtime.ReportRepair(machineId);
         }
 

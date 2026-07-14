@@ -311,12 +311,23 @@ namespace Ziptide.Ship
                 return;
             }
 
+            Vector2 rawRight = _rightStick.ReadValue<Vector2>();
             var frame = FlightInputCore.Shape(
-                _leftStick.ReadValue<Vector2>(), _rightStick.ReadValue<Vector2>(), ref _yawLatch, Time.time);
+                _leftStick.ReadValue<Vector2>(), rawRight, ref _yawLatch, Time.time);
             bool boost = _boostStickClick.IsPressed() || _boostButton.IsPressed();
 
             if (frame.YawSnap != 0)
+            {
                 _state = FlightModel.SnapYaw(_state, _params, frame.YawSnap);
+                // DS-12 evidence (log-only): one line per emitted snap so a device capture can
+                // separate repeat-cadence, duplicate-input, and transform faults. dtMs flags frame
+                // spikes coinciding with a visual jump.
+                Debug.Log("ZIPTIDE: FLIGHT_TRACE snap=" + frame.YawSnap
+                    + " rawX=" + rawRight.x.ToString("F2")
+                    + " latchArmed=" + _yawLatch.Armed
+                    + " yaw=" + _state.yawDeg.ToString("F1")
+                    + " dtMs=" + (Time.deltaTime * 1000f).ToString("F1"));
+            }
             if (_rollLeftButton.WasPressedThisFrame())
             {
                 _state = FlightModel.StartBarrelRoll(_state, -1);

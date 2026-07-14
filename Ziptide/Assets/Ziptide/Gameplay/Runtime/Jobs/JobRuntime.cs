@@ -83,13 +83,25 @@ namespace Ziptide.Gameplay
         /// <summary>A machine finished its hands-on repair (RepairableMachine's final stage).</summary>
         public void ReportRepair(string machineId)
         {
-            if (IsComplete) return;
+            // DS-10 evidence (log-only): this is the divergence point where "machine looks repaired
+            // but the objective still asks" must show its cause — every branch logs REPAIR_TRACE.
+            if (IsComplete)
+            {
+                Debug.Log("ZIPTIDE: REPAIR_TRACE hop=runtime machine=" + machineId
+                    + " result=job_already_complete job=" + (Definition != null ? Definition.name : "none"));
+                return;
+            }
             var step = Definition != null ? GetCurrentStep() : null;
             if (step is RepairMachineCountStepDefinition repair &&
                 (string.IsNullOrEmpty(repair.machineId) || repair.machineId == machineId))
             {
                 RepairProgress++;
-                if (RepairProgress >= repair.count)
+                bool advanced = RepairProgress >= repair.count;
+                Debug.Log("ZIPTIDE: REPAIR_TRACE hop=runtime machine=" + machineId
+                    + " result=consumed job=" + Definition.name
+                    + " step=" + CurrentStepIndex + " progress=" + RepairProgress + "/" + repair.count
+                    + " advanced=" + advanced);
+                if (advanced)
                     AdvanceStep();
                 else
                     StepChanged?.Invoke();
@@ -99,6 +111,11 @@ namespace Ziptide.Gameplay
                 string key = machineId ?? "";
                 _repairBank.TryGetValue(key, out int n);
                 _repairBank[key] = n + 1;
+                Debug.Log("ZIPTIDE: REPAIR_TRACE hop=runtime machine=" + machineId
+                    + " result=banked bank=" + _repairBank[key]
+                    + " job=" + (Definition != null ? Definition.name : "none")
+                    + " step=" + CurrentStepIndex
+                    + " stepType=" + (step != null ? step.GetType().Name : "none"));
             }
         }
 
@@ -201,6 +218,11 @@ namespace Ziptide.Gameplay
                 if (banked > 0) _repairBank[step.machineId] = banked;
                 else _repairBank.Remove(step.machineId);
             }
+
+            // DS-10 evidence: a banked early repair being credited is a distinct hop.
+            Debug.Log("ZIPTIDE: REPAIR_TRACE hop=bank_drain step=" + CurrentStepIndex
+                + " progress=" + RepairProgress + "/" + step.count
+                + " advanced=" + (RepairProgress >= step.count));
 
             if (RepairProgress >= step.count)
             {
