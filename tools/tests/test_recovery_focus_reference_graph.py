@@ -14,7 +14,14 @@ from recovery_focus_reference_graph import scan_repository, scan_text
 
 class RecoveryFocusReferenceGraphTests(unittest.TestCase):
     def test_marks_declaration_and_reference_lines(self) -> None:
-        declaration = "namespace X { public class HammerTool { void A(){ HitFromHammer(); } } }"
+        declaration = """namespace X
+{
+    public class HammerTool
+    {
+        void A() { HitFromHammer(); }
+    }
+}
+"""
         refs = scan_text("HammerTool.cs", declaration)
         hammer = [item for item in refs if item.token == "HammerTool"]
         self.assertTrue(hammer)
