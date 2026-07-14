@@ -60,6 +60,15 @@
 - **Verify:** this push itself exercises the new job end-to-end (its cold-cache first run is the
   slow one, ~15-25 min). The rb23 proof-gate Android dispatch is also still in flight — both
   must be green before Terry's next smoke attempt.
+- **✅ VERIFIED GREEN (2026-07-14, same day):** the proof-gate **Android dispatch on `8ef0c9c`
+  succeeded** — the dome fix clears the full device pipeline (patch + audit + APK), so Terry's
+  next `quest_smoke.ps1` should reach the headset. The **new patch-audit job also ran green** at
+  the branch head (after re-running a `packages.unity.com ECONNRESET` infra flake — not code).
+  That flake exposed one recorder flaw, fixed in this follow-up: a successful RERUN could never
+  overwrite the stale RED verdict its flaked first attempt had committed (the freshness check
+  refused because head had "advanced" — by the verdict commit itself). The recorder now also
+  writes when head differs from the tested SHA only by `docs/CI_VERDICT.md`. If you read a RED
+  verdict, cross-check the run link inside it before assuming code is broken.
 - **Commits:** this push.
 
 ### 2026-07-14 (rb23) - Reasonbox/Fable 5: 🎯 THE HEADSET-BUILD BLOCKER FOUND — the phantom dome under W011's spawn

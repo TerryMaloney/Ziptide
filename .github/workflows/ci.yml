@@ -290,11 +290,17 @@ jobs:
           current="$(git rev-parse HEAD)"
           echo "tested=$tested"
           echo "current=$current"
-          if [[ "$current" != "$tested" ]]; then
+          if [[ "$current" == "$tested" ]]; then
+            echo "write=true" >> "$GITHUB_OUTPUT"
+          elif [[ "$(git diff --name-only "$tested" HEAD | tr -d '\n')" == "docs/CI_VERDICT.md" ]]; then
+            # HEAD differs from the tested SHA only by verdict write(s): a RERUN of this SHA may
+            # refresh its own verdict. Without this branch, a flaked first attempt wrote RED and
+            # the successful rerun could never overwrite it (found 2026-07-14).
+            echo "write=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::Rerun refreshing the verdict for the same tested SHA."
+          else
             echo "write=false" >> "$GITHUB_OUTPUT"
             echo "::notice::Branch advanced; the newer run owns the durable verdict."
-          else
-            echo "write=true" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Render verdict file
