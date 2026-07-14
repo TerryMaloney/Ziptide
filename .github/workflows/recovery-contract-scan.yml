@@ -7,13 +7,22 @@ on:
     paths:
       - 'Ziptide/Assets/Ziptide/**/*.cs'
       - 'Ziptide/Assets/ZiptideNet/**/*.cs'
+      - 'Ziptide/ProjectSettings/EditorBuildSettings.asset'
+      - 'docs/CURRENT_EXECUTION_CHECKLIST.md'
+      - 'docs/MASTER_CHECKLIST.md'
+      - 'docs/EXCELLENCE_MAP.md'
+      - 'docs/SPRINT*.md'
       - 'docs/recovery/system_contracts.json'
       - 'tools/recovery_contract_scan.py'
       - 'tools/recovery_inventory_gate.py'
       - 'tools/recovery_contract_map.py'
+      - 'tools/recovery_scene_exposure.py'
+      - 'tools/recovery_claim_audit.py'
       - 'tools/tests/test_recovery_contract_scan.py'
       - 'tools/tests/test_recovery_inventory_gate.py'
       - 'tools/tests/test_recovery_contract_map.py'
+      - 'tools/tests/test_recovery_scene_exposure.py'
+      - 'tools/tests/test_recovery_claim_audit.py'
       - '.github/workflows/recovery-contract-scan.yml'
   workflow_dispatch:
 
@@ -46,8 +55,16 @@ jobs:
             -s tools/tests \
             -p 'test_recovery_contract_map.py' \
             -v
+          python3 -m unittest discover \
+            -s tools/tests \
+            -p 'test_recovery_scene_exposure.py' \
+            -v
+          python3 -m unittest discover \
+            -s tools/tests \
+            -p 'test_recovery_claim_audit.py' \
+            -v
 
-      - name: Scan repository contracts
+      - name: Generate recovery truth reports
         run: |
           mkdir -p docs/recovery/generated Builds/Reports
           python3 tools/recovery_contract_scan.py \
@@ -59,25 +76,20 @@ jobs:
           python3 tools/recovery_contract_map.py \
             --json-report docs/recovery/generated/recovery_contract_map.json \
             --markdown-report docs/recovery/generated/recovery_contract_map.md
-          cp docs/recovery/generated/recovery_contract_scan.json Builds/Reports/recovery_contract_scan.json
-          cp docs/recovery/generated/recovery_contract_scan.md Builds/Reports/recovery_contract_scan.md
-          cp docs/recovery/generated/recovery_inventory_validation.json Builds/Reports/recovery_inventory_validation.json
-          cp docs/recovery/generated/recovery_inventory_validation.md Builds/Reports/recovery_inventory_validation.md
-          cp docs/recovery/generated/recovery_contract_map.json Builds/Reports/recovery_contract_map.json
-          cp docs/recovery/generated/recovery_contract_map.md Builds/Reports/recovery_contract_map.md
+          python3 tools/recovery_scene_exposure.py \
+            --json-report docs/recovery/generated/recovery_scene_exposure.json \
+            --markdown-report docs/recovery/generated/recovery_scene_exposure.md
+          python3 tools/recovery_claim_audit.py \
+            --json-report docs/recovery/generated/recovery_claim_audit.json \
+            --markdown-report docs/recovery/generated/recovery_claim_audit.md
+          cp docs/recovery/generated/* Builds/Reports/
 
       - name: Upload recovery reports
         uses: actions/upload-artifact@v4
         if: always()
         with:
           name: recovery-contract-scan
-          path: |
-            Builds/Reports/recovery_contract_scan.json
-            Builds/Reports/recovery_contract_scan.md
-            Builds/Reports/recovery_inventory_validation.json
-            Builds/Reports/recovery_inventory_validation.md
-            Builds/Reports/recovery_contract_map.json
-            Builds/Reports/recovery_contract_map.md
+          path: Builds/Reports/*
           if-no-files-found: error
 
       - name: Commit current generated reports
