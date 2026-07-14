@@ -2,7 +2,7 @@
   "tool": "recovery_input_contract_scan",
   "scannedFiles": 598,
   "bindingCount": 19,
-  "chordReferenceCount": 4,
+  "chordReferenceCount": 2,
   "collisionControlCount": 5,
   "bindings": [
     {
@@ -179,12 +179,6 @@
   ],
   "chordReferences": [
     {
-      "path": "Ziptide/Assets/Ziptide/Content/Runtime/Traversal/ZiplineCore.cs",
-      "symbol": "Ziptide.Content.Traversal.TVec3",
-      "line": 12,
-      "text": "public static TVec3 operator +(TVec3 a, TVec3 b) => new TVec3(a.X + b.X, a.Y + b.Y, a.Z + b.Z);"
-    },
-    {
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs",
       "symbol": "Ziptide.Gameplay.QuickSwap",
       "line": 48,
@@ -195,12 +189,6 @@
       "symbol": "Ziptide.Gameplay.DashLocomotion",
       "line": 94,
       "text": "Debug.Log(\"ZIPTIDE: CONTROLS move=left-stick turn=right-stick sprint=hold-L3 autorun=double-L3 crouch=R3 slide=crouch-while-sprinting jump=A menu=hold-Y+B\");"
-    },
-    {
-      "path": "Ziptide/Assets/Ziptide/Multiplayer/Runtime/Bots/BotMath.cs",
-      "symbol": "Ziptide.Multiplayer.Bots.Vec3",
-      "line": 17,
-      "text": "public static Vec3 operator +(Vec3 a, Vec3 b) => new Vec3(a.X + b.X, a.Y + b.Y, a.Z + b.Z);"
     }
   ],
   "controlCollisions": {

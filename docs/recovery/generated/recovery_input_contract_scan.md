@@ -2,15 +2,13 @@
 
 - Scanned C# files: **598**
 - Runtime-created bindings: **19**
-- Legacy menu-chord references: **4**
+- Legacy menu-chord references: **2**
 - Controls bound by more than one owner: **5**
 
 ## Legacy menu-chord references
 
-- `Ziptide/Assets/Ziptide/Content/Runtime/Traversal/ZiplineCore.cs:12` · `Ziptide.Content.Traversal.TVec3` — `public static TVec3 operator +(TVec3 a, TVec3 b) => new TVec3(a.X + b.X, a.Y + b.Y, a.Z + b.Z);`
 - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs:48` · `Ziptide.Gameplay.QuickSwap` — `if (_menuGuard != null && _menuGuard.IsPressed()) return; // Y+B = dev menu chord`
 - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs:94` · `Ziptide.Gameplay.DashLocomotion` — `Debug.Log("ZIPTIDE: CONTROLS move=left-stick turn=right-stick sprint=hold-L3 autorun=double-L3 crouch=R3 slide=crouch-while-sprinting jump=A menu=hold-Y+B");`
-- `Ziptide/Assets/Ziptide/Multiplayer/Runtime/Bots/BotMath.cs:17` · `Ziptide.Multiplayer.Bots.Vec3` — `public static Vec3 operator +(Vec3 a, Vec3 b) => new Vec3(a.X + b.X, a.Y + b.Y, a.Z + b.Z);`
 
 ## Runtime-created bindings
 
