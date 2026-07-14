@@ -14,22 +14,8 @@ on:
       - 'docs/SPRINT*.md'
       - 'docs/recovery/system_contracts.json'
       - 'docs/recovery/automatic_runtime_owners.json'
-      - 'tools/recovery_contract_scan.py'
-      - 'tools/recovery_inventory_gate.py'
-      - 'tools/recovery_contract_map.py'
-      - 'tools/recovery_scene_exposure.py'
-      - 'tools/recovery_claim_audit.py'
-      - 'tools/recovery_input_contract_scan.py'
-      - 'tools/recovery_source_resolver.py'
-      - 'tools/recovery_event_save_graph.py'
-      - 'tools/tests/test_recovery_contract_scan.py'
-      - 'tools/tests/test_recovery_inventory_gate.py'
-      - 'tools/tests/test_recovery_contract_map.py'
-      - 'tools/tests/test_recovery_scene_exposure.py'
-      - 'tools/tests/test_recovery_claim_audit.py'
-      - 'tools/tests/test_recovery_input_contract_scan.py'
-      - 'tools/tests/test_recovery_source_resolver.py'
-      - 'tools/tests/test_recovery_event_save_graph.py'
+      - 'tools/recovery_*.py'
+      - 'tools/tests/test_recovery_*.py'
       - '.github/workflows/recovery-contract-scan.yml'
   workflow_dispatch:
 
@@ -40,7 +26,7 @@ jobs:
   scan:
     name: Report runtime ownership signals
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -48,47 +34,130 @@ jobs:
           ref: terry-local-wip
           fetch-depth: 0
 
-      - name: Test recovery tooling
+      - name: Run recovery tool tests with durable diagnostics
+        shell: bash
         run: |
-          python3 -m unittest discover -s tools/tests -p 'test_recovery_contract_scan.py' -v
-          python3 -m unittest discover -s tools/tests -p 'test_recovery_inventory_gate.py' -v
-          python3 -m unittest discover -s tools/tests -p 'test_recovery_contract_map.py' -v
-          python3 -m unittest discover -s tools/tests -p 'test_recovery_scene_exposure.py' -v
-          python3 -m unittest discover -s tools/tests -p 'test_recovery_claim_audit.py' -v
-          python3 -m unittest discover -s tools/tests -p 'test_recovery_input_contract_scan.py' -v
-          python3 -m unittest discover -s tools/tests -p 'test_recovery_source_resolver.py' -v
-          python3 -m unittest discover -s tools/tests -p 'test_recovery_event_save_graph.py' -v
+          set +e
+          mkdir -p docs/recovery/generated Builds/Reports/test-logs
+          status_file="docs/recovery/generated/recovery_workflow_status.md"
+          fail_file="Builds/Reports/recovery_workflow_failed"
+          rm -f "$fail_file"
+          {
+            echo "# Recovery Static Workflow Status"
+            echo
+            echo "Commit: \`${GITHUB_SHA}\`"
+            echo
+            echo "## Tool tests"
+            echo
+            echo "| Test file | Result |"
+            echo "|---|---|"
+          } > "$status_file"
 
-      - name: Generate recovery truth reports
+          run_test() {
+            pattern="$1"
+            name="${pattern%.py}"
+            log="Builds/Reports/test-logs/${name}.log"
+            python3 -m unittest discover -s tools/tests -p "$pattern" -v >"$log" 2>&1
+            rc=$?
+            if [[ $rc -eq 0 ]]; then
+              echo "| \`$pattern\` | PASS |" >> "$status_file"
+            else
+              echo "| \`$pattern\` | **FAIL ($rc)** |" >> "$status_file"
+              touch "$fail_file"
+              {
+                echo
+                echo "### $pattern failure tail"
+                echo
+                echo '```text'
+                tail -80 "$log"
+                echo '```'
+              } >> "$status_file"
+            fi
+          }
+
+          run_test test_recovery_contract_scan.py
+          run_test test_recovery_inventory_gate.py
+          run_test test_recovery_contract_map.py
+          run_test test_recovery_scene_exposure.py
+          run_test test_recovery_claim_audit.py
+          run_test test_recovery_input_contract_scan.py
+          run_test test_recovery_source_resolver.py
+          run_test test_recovery_event_save_graph.py
+          exit 0
+
+      - name: Generate recovery reports with durable diagnostics
+        shell: bash
         run: |
-          mkdir -p docs/recovery/generated Builds/Reports
-          python3 tools/recovery_contract_scan.py \
-            --json-report docs/recovery/generated/recovery_contract_scan.json \
-            --markdown-report docs/recovery/generated/recovery_contract_scan.md
-          python3 tools/recovery_inventory_gate.py \
-            --json-report docs/recovery/generated/recovery_inventory_validation.json \
-            --markdown-report docs/recovery/generated/recovery_inventory_validation.md
-          python3 tools/recovery_contract_map.py \
-            --json-report docs/recovery/generated/recovery_contract_map.json \
-            --markdown-report docs/recovery/generated/recovery_contract_map.md
-          python3 tools/recovery_scene_exposure.py \
-            --json-report docs/recovery/generated/recovery_scene_exposure.json \
-            --markdown-report docs/recovery/generated/recovery_scene_exposure.md
-          python3 tools/recovery_claim_audit.py \
-            --json-report docs/recovery/generated/recovery_claim_audit.json \
-            --markdown-report docs/recovery/generated/recovery_claim_audit.md
-          python3 tools/recovery_input_contract_scan.py \
-            --json-report docs/recovery/generated/recovery_input_contract_scan.json \
-            --markdown-report docs/recovery/generated/recovery_input_contract_scan.md
-          python3 tools/recovery_source_resolver.py \
-            --json-report docs/recovery/generated/recovery_source_resolver.json \
-            --markdown-report docs/recovery/generated/recovery_source_resolver.md
-          python3 tools/recovery_event_save_graph.py \
-            --json-report docs/recovery/generated/recovery_event_save_graph.json \
-            --markdown-report docs/recovery/generated/recovery_event_save_graph.md
-          cp docs/recovery/generated/* Builds/Reports/
+          set +e
+          status_file="docs/recovery/generated/recovery_workflow_status.md"
+          fail_file="Builds/Reports/recovery_workflow_failed"
+          {
+            echo
+            echo "## Report generators"
+            echo
+            echo "| Generator | Result |"
+            echo "|---|---|"
+          } >> "$status_file"
 
-      - name: Upload recovery reports
+          run_report() {
+            name="$1"
+            shift
+            log="Builds/Reports/${name}.log"
+            "$@" >"$log" 2>&1
+            rc=$?
+            if [[ $rc -eq 0 ]]; then
+              echo "| \`$name\` | PASS |" >> "$status_file"
+            else
+              echo "| \`$name\` | **FAIL ($rc)** |" >> "$status_file"
+              touch "$fail_file"
+              {
+                echo
+                echo "### $name failure tail"
+                echo
+                echo '```text'
+                tail -80 "$log"
+                echo '```'
+              } >> "$status_file"
+            fi
+          }
+
+          run_report recovery_contract_scan \
+            python3 tools/recovery_contract_scan.py \
+              --json-report docs/recovery/generated/recovery_contract_scan.json \
+              --markdown-report docs/recovery/generated/recovery_contract_scan.md
+          run_report recovery_inventory_validation \
+            python3 tools/recovery_inventory_gate.py \
+              --json-report docs/recovery/generated/recovery_inventory_validation.json \
+              --markdown-report docs/recovery/generated/recovery_inventory_validation.md
+          run_report recovery_contract_map \
+            python3 tools/recovery_contract_map.py \
+              --json-report docs/recovery/generated/recovery_contract_map.json \
+              --markdown-report docs/recovery/generated/recovery_contract_map.md
+          run_report recovery_scene_exposure \
+            python3 tools/recovery_scene_exposure.py \
+              --json-report docs/recovery/generated/recovery_scene_exposure.json \
+              --markdown-report docs/recovery/generated/recovery_scene_exposure.md
+          run_report recovery_claim_audit \
+            python3 tools/recovery_claim_audit.py \
+              --json-report docs/recovery/generated/recovery_claim_audit.json \
+              --markdown-report docs/recovery/generated/recovery_claim_audit.md
+          run_report recovery_input_contract_scan \
+            python3 tools/recovery_input_contract_scan.py \
+              --json-report docs/recovery/generated/recovery_input_contract_scan.json \
+              --markdown-report docs/recovery/generated/recovery_input_contract_scan.md
+          run_report recovery_source_resolver \
+            python3 tools/recovery_source_resolver.py \
+              --json-report docs/recovery/generated/recovery_source_resolver.json \
+              --markdown-report docs/recovery/generated/recovery_source_resolver.md
+          run_report recovery_event_save_graph \
+            python3 tools/recovery_event_save_graph.py \
+              --json-report docs/recovery/generated/recovery_event_save_graph.json \
+              --markdown-report docs/recovery/generated/recovery_event_save_graph.md
+
+          cp docs/recovery/generated/* Builds/Reports/ 2>/dev/null || true
+          exit 0
+
+      - name: Upload recovery reports and diagnostics
         uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -96,7 +165,7 @@ jobs:
           path: Builds/Reports/*
           if-no-files-found: error
 
-      - name: Commit current generated reports
+      - name: Commit current generated reports and diagnostic status
         shell: bash
         run: |
           set -euo pipefail
@@ -110,4 +179,12 @@ jobs:
           git commit -m "docs(recovery): refresh generated audit reports [skip ci]"
           if ! git push origin HEAD:terry-local-wip; then
             echo "::warning::Branch advanced during report write; the newer push will regenerate the reports."
+          fi
+
+      - name: Fail after diagnostics are preserved
+        shell: bash
+        run: |
+          if [[ -f Builds/Reports/recovery_workflow_failed ]]; then
+            echo "One or more recovery tests/report generators failed. See recovery_workflow_status.md."
+            exit 1
           fi
