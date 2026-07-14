@@ -55,6 +55,16 @@ namespace Ziptide.Tests.EditMode
             StringAssert.Contains("EditorSceneManager.SaveScene(scene, UndercroftScenePath);", safety);
         }
 
+        [Test]
+        public void WorldAudit_SynchronizesPhysicsAfterEverySceneOpen()
+        {
+            string sync = Read("Editor", "Audit", "AuditPhysicsSync.cs");
+            StringAssert.Contains("[InitializeOnLoad]", sync);
+            StringAssert.Contains("EditorSceneManager.sceneOpened += OnSceneOpened;", sync);
+            StringAssert.Contains("Physics.autoSyncTransforms = true;", sync);
+            StringAssert.Contains("Physics.SyncTransforms();", sync);
+        }
+
         private static string Read(params string[] parts)
         {
             string path = Path.Combine(Application.dataPath, "Ziptide");
