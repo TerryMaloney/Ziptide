@@ -40,6 +40,12 @@ namespace Ziptide.Editor.Patching
                 floor.name = FloorName;
             }
 
+            if (floor.scene != scene)
+                SceneManager.MoveGameObjectToScene(floor, scene);
+
+            floor.SetActive(true);
+            floor.layer = 0; // Default layer: included by Physics.DefaultRaycastLayers.
+
             // Spawn is authored 0.25m above chamber Y. A 0.2m slab centered 0.35m below the marker
             // puts its top exactly 0.25m below the marker and safely inside the audit's 6m ray.
             Vector3 spawnPos = spawn.transform.position;
@@ -51,7 +57,24 @@ namespace Ziptide.Editor.Patching
             if (collider == null) collider = floor.AddComponent<BoxCollider>();
             collider.enabled = true;
             collider.isTrigger = false;
+            collider.center = Vector3.zero;
+            collider.size = Vector3.one;
             ItemFactory.ApplyURPColor(floor, new Color(0.18f, 0.17f, 0.16f));
+
+            // Batchmode opens, patches, and immediately audits scenes without an Editor update tick.
+            // Keep transform auto-sync enabled for the remainder of this build and force one sync now,
+            // otherwise a newly saved collider can exist in scene YAML but be absent from raycasts.
+            Physics.autoSyncTransforms = true;
+            Physics.SyncTransforms();
+
+            RaycastHit hit;
+            bool detected = Physics.Raycast(spawnPos + Vector3.up * 0.2f, Vector3.down, out hit, 6f,
+                Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore);
+            if (!detected)
+                Debug.LogError("[Ziptide] cave spawn safety created a collider but physics could not raycast it");
+            else
+                Debug.Log("[Ziptide] cave spawn safety raycast hit " + hit.collider.name +
+                          " distance=" + hit.distance.ToString("F3"));
 
             EditorSceneManager.MarkSceneDirty(scene);
             EditorSceneManager.SaveScene(scene, UndercroftScenePath);
