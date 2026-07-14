@@ -17046,428 +17046,137 @@
     ]
   },
   "inventory": {
-    "systemCount": 26,
+    "systemCount": 22,
     "exposures": {
       "DIAGNOSTIC": [
-        "DEV_MENU"
+        "DEV_DIAGNOSTICS"
       ],
       "GOLDEN_PATH": [
         "BOOT_FLOW",
-        "CREATURE_PRESENTATION_AND_GROUNDING",
-        "HOLSTER",
-        "HOME_HUB_UI",
-        "TRAVEL",
-        "WEAPON_FIRE",
-        "XR_RIG"
+        "JOB_REPAIR_OBJECTIVE",
+        "SHIP_PRESENTATION_ROOT",
+        "TRAVEL"
       ],
       "PROTOTYPE_HIDDEN": [
-        "CONQUEST_TABLE_UI",
         "MELEE",
-        "PRACTICAL_LIGHTING",
-        "PVP_AND_PHOTON",
-        "QUARTERS_UI",
-        "SHIP_FLIGHT",
-        "ZIPLINE"
+        "MULTIPLAYER_TIDEFRONT"
       ],
       "REPLACE_OR_MERGE": [
+        "CAMERA_POLICY",
+        "CREATURE_CONTACT",
+        "HUD_POLICY",
+        "INPUT_CONTRACT",
         "ITEM_PRESENTATION",
-        "PERSISTENT_CREDITS_HUD",
-        "REPAIR_OBJECTIVE",
-        "SHIP_PRESENTATION_AND_REFIT",
-        "SKY_AND_GRADE",
-        "TRAVEL_STATION_UI"
+        "MATERIAL_FALLBACK_POLICY",
+        "RUNTIME_UI",
+        "SCENE_PRESENTATION",
+        "WEAPON_OWNER_COLLISION",
+        "XR_RIG_INPUT_SESSION"
       ],
       "SUPPORT": [
-        "ART_FORGE",
-        "AUDIO",
-        "CI_AND_AUDIT",
+        "AUDIO_COMPOSITION",
+        "CI_INTEGRATION_HARNESS",
+        "RECOVERY_EXPOSURE",
         "SAVE_PROFILE",
         "WORLD_FACTORY"
       ]
     },
     "proofs": {
       "APK": [
-        "ART_FORGE",
-        "AUDIO",
+        "AUDIO_COMPOSITION",
         "BOOT_FLOW",
-        "CONQUEST_TABLE_UI",
-        "CREATURE_PRESENTATION_AND_GROUNDING",
-        "DEV_MENU",
-        "HOLSTER",
-        "HOME_HUB_UI",
+        "CREATURE_CONTACT",
+        "DEV_DIAGNOSTICS",
+        "HUD_POLICY",
         "ITEM_PRESENTATION",
+        "JOB_REPAIR_OBJECTIVE",
         "MELEE",
-        "PERSISTENT_CREDITS_HUD",
-        "PRACTICAL_LIGHTING",
-        "PVP_AND_PHOTON",
-        "QUARTERS_UI",
-        "REPAIR_OBJECTIVE",
+        "MULTIPLAYER_TIDEFRONT",
+        "RUNTIME_UI",
         "SAVE_PROFILE",
-        "SHIP_FLIGHT",
-        "SHIP_PRESENTATION_AND_REFIT",
-        "SKY_AND_GRADE",
+        "SCENE_PRESENTATION",
+        "SHIP_PRESENTATION_ROOT",
         "TRAVEL",
-        "TRAVEL_STATION_UI",
-        "WEAPON_FIRE",
         "WORLD_FACTORY",
-        "XR_RIG",
-        "ZIPLINE"
+        "XR_RIG_INPUT_SESSION"
       ],
       "CORE": [
-        "ART_FORGE",
-        "AUDIO",
+        "AUDIO_COMPOSITION",
         "BOOT_FLOW",
-        "CI_AND_AUDIT",
-        "CONQUEST_TABLE_UI",
-        "CREATURE_PRESENTATION_AND_GROUNDING",
-        "DEV_MENU",
-        "HOLSTER",
-        "HOME_HUB_UI",
+        "CI_INTEGRATION_HARNESS",
+        "CREATURE_CONTACT",
+        "DEV_DIAGNOSTICS",
         "ITEM_PRESENTATION",
+        "JOB_REPAIR_OBJECTIVE",
         "MELEE",
-        "PRACTICAL_LIGHTING",
-        "PVP_AND_PHOTON",
-        "QUARTERS_UI",
-        "REPAIR_OBJECTIVE",
+        "MULTIPLAYER_TIDEFRONT",
         "SAVE_PROFILE",
-        "SHIP_FLIGHT",
-        "SHIP_PRESENTATION_AND_REFIT",
-        "SKY_AND_GRADE",
+        "SCENE_PRESENTATION",
+        "SHIP_PRESENTATION_ROOT",
         "TRAVEL",
-        "TRAVEL_STATION_UI",
-        "WEAPON_FIRE",
         "WORLD_FACTORY",
-        "XR_RIG",
-        "ZIPLINE"
+        "XR_RIG_INPUT_SESSION"
       ],
       "PATCHED": [
-        "ART_FORGE",
-        "AUDIO",
         "BOOT_FLOW",
-        "CI_AND_AUDIT",
-        "CONQUEST_TABLE_UI",
-        "CREATURE_PRESENTATION_AND_GROUNDING",
-        "DEV_MENU",
-        "HOLSTER",
-        "HOME_HUB_UI",
-        "ITEM_PRESENTATION",
-        "MELEE",
-        "PERSISTENT_CREDITS_HUD",
-        "PRACTICAL_LIGHTING",
-        "PVP_AND_PHOTON",
-        "QUARTERS_UI",
-        "REPAIR_OBJECTIVE",
-        "SAVE_PROFILE",
-        "SHIP_FLIGHT",
-        "SHIP_PRESENTATION_AND_REFIT",
-        "SKY_AND_GRADE",
+        "CREATURE_CONTACT",
+        "JOB_REPAIR_OBJECTIVE",
+        "MATERIAL_FALLBACK_POLICY",
+        "MULTIPLAYER_TIDEFRONT",
+        "RUNTIME_UI",
+        "SCENE_PRESENTATION",
+        "SHIP_PRESENTATION_ROOT",
         "TRAVEL",
-        "TRAVEL_STATION_UI",
-        "WEAPON_FIRE",
         "WORLD_FACTORY",
-        "XR_RIG",
-        "ZIPLINE"
-      ],
-      "QUEST": [
-        "ART_FORGE",
-        "CONQUEST_TABLE_UI",
-        "CREATURE_PRESENTATION_AND_GROUNDING",
-        "HOLSTER",
-        "ITEM_PRESENTATION",
-        "MELEE",
-        "PERSISTENT_CREDITS_HUD",
-        "PRACTICAL_LIGHTING",
-        "QUARTERS_UI",
-        "REPAIR_OBJECTIVE",
-        "SHIP_FLIGHT",
-        "SHIP_PRESENTATION_AND_REFIT",
-        "SKY_AND_GRADE",
-        "WEAPON_FIRE",
-        "ZIPLINE"
+        "XR_RIG_INPUT_SESSION"
       ],
       "SOURCE": [
-        "PERSISTENT_CREDITS_HUD"
-      ],
-      "VISUAL": [
-        "ART_FORGE",
-        "CREATURE_PRESENTATION_AND_GROUNDING",
-        "PRACTICAL_LIGHTING",
-        "SKY_AND_GRADE"
+        "AUDIO_COMPOSITION",
+        "BOOT_FLOW",
+        "CAMERA_POLICY",
+        "CI_INTEGRATION_HARNESS",
+        "CREATURE_CONTACT",
+        "DEV_DIAGNOSTICS",
+        "HUD_POLICY",
+        "INPUT_CONTRACT",
+        "ITEM_PRESENTATION",
+        "JOB_REPAIR_OBJECTIVE",
+        "MATERIAL_FALLBACK_POLICY",
+        "MELEE",
+        "MULTIPLAYER_TIDEFRONT",
+        "RECOVERY_EXPOSURE",
+        "RUNTIME_UI",
+        "SAVE_PROFILE",
+        "SCENE_PRESENTATION",
+        "SHIP_PRESENTATION_ROOT",
+        "TRAVEL",
+        "WEAPON_OWNER_COLLISION",
+        "WORLD_FACTORY",
+        "XR_RIG_INPUT_SESSION"
       ]
     },
-    "unresolvedCanonicalOwners": [
-      {
-        "systemId": "DEV_MENU",
-        "candidate": "Undecided during R0; DevWarpBoard is current runtime owner"
-      },
-      {
-        "systemId": "MELEE",
-        "candidate": "Undecided: consolidate SonicThumper and PvpHammer/HammerTool"
-      },
-      {
-        "systemId": "REPAIR_OBJECTIVE",
-        "candidate": "Undecided; currently split across machine, director, runtime, bank, board and ship observers"
-      }
-    ]
+    "unresolvedCanonicalOwners": []
   },
   "validationFindings": [
     {
-      "code": "CANONICAL_OWNER_UNRESOLVED",
-      "message": "Canonical ownership is explicitly unresolved; R0 cannot close this system yet.",
-      "system_id": "DEV_MENU",
-      "path": "",
-      "severity": "warning"
-    },
-    {
-      "code": "SOURCE_PATH_UNRESOLVED",
-      "message": "Source entry is descriptive prose rather than a repository path.",
-      "system_id": "PERSISTENT_CREDITS_HUD",
-      "path": "CreditsHud.cs (exact repository path to be resolved in R0 scan)",
-      "severity": "warning"
-    },
-    {
-      "code": "PROOF_QUEST_CONTRADICTION",
-      "message": "QUEST is recorded as accepted proof but questStatus is 'VISIBLE_AND_INTRUSIVE'.",
-      "system_id": "PERSISTENT_CREDITS_HUD",
-      "path": "",
-      "severity": "warning"
-    },
-    {
-      "code": "SOURCE_PATH_UNRESOLVED",
-      "message": "Source entry is descriptive prose rather than a repository path.",
-      "system_id": "QUARTERS_UI",
-      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Ship/QuartersRoom.cs (path to verify)",
-      "severity": "warning"
-    },
-    {
-      "code": "PROOF_QUEST_CONTRADICTION",
-      "message": "QUEST is recorded as accepted proof but questStatus is 'FAILED_VISUAL_LAYOUT'.",
-      "system_id": "QUARTERS_UI",
-      "path": "",
-      "severity": "warning"
-    },
-    {
-      "code": "SOURCE_PATH_UNRESOLVED",
-      "message": "Source entry is descriptive prose rather than a repository path.",
-      "system_id": "CONQUEST_TABLE_UI",
-      "path": "ConquestTableRuntime.cs (exact repository path to be resolved in R0 scan)",
-      "severity": "warning"
-    },
-    {
-      "code": "PROOF_QUEST_CONTRADICTION",
-      "message": "QUEST is recorded as accepted proof but questStatus is 'FAILED_VISUAL_LAYOUT'.",
-      "system_id": "CONQUEST_TABLE_UI",
-      "path": "",
+      "code": "SOURCE_PATH_MISSING",
+      "message": "Source path did not resolve in the repository.",
+      "system_id": "SAVE_PROFILE",
+      "path": "Ziptide/Assets/Ziptide/Core/Runtime/PlayerProfile.cs",
       "severity": "warning"
     },
     {
       "code": "SOURCE_PATH_MISSING",
       "message": "Source path did not resolve in the repository.",
-      "system_id": "ITEM_PRESENTATION",
-      "path": "Ziptide/Assets/Ziptide/Content/Runtime/Definitions/ItemDefinition.cs",
-      "severity": "warning"
-    },
-    {
-      "code": "PROOF_QUEST_CONTRADICTION",
-      "message": "QUEST is recorded as accepted proof but questStatus is 'FAILED_POSE_AND_SCALE'.",
-      "system_id": "ITEM_PRESENTATION",
-      "path": "",
-      "severity": "warning"
-    },
-    {
-      "code": "PROOF_QUEST_CONTRADICTION",
-      "message": "QUEST is recorded as accepted proof but questStatus is 'FAILED_ORIENTATION'.",
-      "system_id": "HOLSTER",
-      "path": "",
-      "severity": "warning"
-    },
-    {
-      "code": "PROOF_QUEST_CONTRADICTION",
-      "message": "QUEST is recorded as accepted proof but questStatus is 'FAILED_AIM_AND_SELF_HIT_RISK'.",
-      "system_id": "WEAPON_FIRE",
-      "path": "",
-      "severity": "warning"
-    },
-    {
-      "code": "CANONICAL_OWNER_UNRESOLVED",
-      "message": "Canonical ownership is explicitly unresolved; R0 cannot close this system yet.",
-      "system_id": "MELEE",
-      "path": "",
-      "severity": "warning"
-    },
-    {
-      "code": "SOURCE_PATH_UNRESOLVED",
-      "message": "Source entry is descriptive prose rather than a repository path.",
-      "system_id": "MELEE",
-      "path": "SonicThumper item/runtime files (exact paths to resolve in R0 scan)",
-      "severity": "warning"
-    },
-    {
-      "code": "PROOF_QUEST_CONTRADICTION",
-      "message": "QUEST is recorded as accepted proof but questStatus is 'FAILED_SIDEWAYS_POSE'.",
-      "system_id": "MELEE",
-      "path": "",
-      "severity": "warning"
-    },
-    {
-      "code": "PROOF_QUEST_CONTRADICTION",
-      "message": "QUEST is recorded as accepted proof but questStatus is 'FAILED_GEOMETRY_AND_RIDE'.",
-      "system_id": "ZIPLINE",
-      "path": "",
+      "system_id": "SAVE_PROFILE",
+      "path": "Ziptide/Assets/Ziptide/Core/Runtime/ProfileSerializer.cs",
       "severity": "warning"
     },
     {
       "code": "SOURCE_PATH_MISSING",
       "message": "Source path did not resolve in the repository.",
-      "system_id": "WORLD_FACTORY",
-      "path": "Ziptide/Assets/Ziptide/Content/Runtime/WorldSpecs/WorldSpec.cs",
-      "severity": "warning"
-    },
-    {
-      "code": "SOURCE_PATH_MISSING",
-      "message": "Source path did not resolve in the repository.",
-      "system_id": "WORLD_FACTORY",
-      "path": "Ziptide/Assets/Ziptide/Editor/WorldSpecs/WorldSpecCompiler.cs",
-      "severity": "warning"
-    },
-    {
-      "code": "SOURCE_PATH_MISSING",
-      "message": "Source path did not resolve in the repository.",
-      "system_id": "SKY_AND_GRADE",
-      "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistaRig.cs",
-      "severity": "warning"
-    },
-    {
-      "code": "SOURCE_PATH_MISSING",
-      "message": "Source path did not resolve in the repository.",
-      "system_id": "SKY_AND_GRADE",
-      "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/SkyGrade.cs",
-      "severity": "warning"
-    },
-    {
-      "code": "PROOF_QUEST_CONTRADICTION",
-      "message": "QUEST is recorded as accepted proof but questStatus is 'FAILED_INTEGRATED_PRESENTATION'.",
-      "system_id": "SKY_AND_GRADE",
-      "path": "",
-      "severity": "warning"
-    },
-    {
-      "code": "SOURCE_PATH_MISSING",
-      "message": "Source path did not resolve in the repository.",
-      "system_id": "PRACTICAL_LIGHTING",
-      "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/PracticalLight.cs",
-      "severity": "warning"
-    },
-    {
-      "code": "SOURCE_PATH_MISSING",
-      "message": "Source path did not resolve in the repository.",
-      "system_id": "PRACTICAL_LIGHTING",
-      "path": "Ziptide/Assets/Ziptide/Editor/Art/PracticalAuthor.cs",
-      "severity": "warning"
-    },
-    {
-      "code": "PROOF_QUEST_CONTRADICTION",
-      "message": "QUEST is recorded as accepted proof but questStatus is 'OPAQUE_SQUARE_FAILURE'.",
-      "system_id": "PRACTICAL_LIGHTING",
-      "path": "",
-      "severity": "warning"
-    },
-    {
-      "code": "PROOF_QUEST_CONTRADICTION",
-      "message": "QUEST is recorded as accepted proof but questStatus is 'MIXED_ASSETS_GOOD_WORLDS_BAD'.",
-      "system_id": "ART_FORGE",
-      "path": "",
-      "severity": "warning"
-    },
-    {
-      "code": "SOURCE_PATH_MISSING",
-      "message": "Source path did not resolve in the repository.",
-      "system_id": "CREATURE_PRESENTATION_AND_GROUNDING",
-      "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/GroundShadow.cs",
-      "severity": "warning"
-    },
-    {
-      "code": "PROOF_QUEST_CONTRADICTION",
-      "message": "QUEST is recorded as accepted proof but questStatus is 'FLOATING_CREATURE_OBSERVED'.",
-      "system_id": "CREATURE_PRESENTATION_AND_GROUNDING",
-      "path": "",
-      "severity": "warning"
-    },
-    {
-      "code": "SOURCE_PATH_MISSING",
-      "message": "Source path did not resolve in the repository.",
-      "system_id": "SHIP_PRESENTATION_AND_REFIT",
-      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Ship/ShipHullBuilder.cs",
-      "severity": "warning"
-    },
-    {
-      "code": "SOURCE_PATH_MISSING",
-      "message": "Source path did not resolve in the repository.",
-      "system_id": "SHIP_PRESENTATION_AND_REFIT",
-      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Ship/ShipRefit.cs",
-      "severity": "warning"
-    },
-    {
-      "code": "PROOF_QUEST_CONTRADICTION",
-      "message": "QUEST is recorded as accepted proof but questStatus is 'INTERIM_AND_INCONSISTENT_PRESENTATION'.",
-      "system_id": "SHIP_PRESENTATION_AND_REFIT",
-      "path": "",
-      "severity": "warning"
-    },
-    {
-      "code": "SOURCE_PATH_MISSING",
-      "message": "Source path did not resolve in the repository.",
-      "system_id": "SHIP_FLIGHT",
-      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Ship/ShipFlightRuntime.cs",
-      "severity": "warning"
-    },
-    {
-      "code": "PROOF_QUEST_CONTRADICTION",
-      "message": "QUEST is recorded as accepted proof but questStatus is 'GLITCHY_TURNING_UNRESOLVED'.",
-      "system_id": "SHIP_FLIGHT",
-      "path": "",
-      "severity": "warning"
-    },
-    {
-      "code": "CANONICAL_OWNER_UNRESOLVED",
-      "message": "Canonical ownership is explicitly unresolved; R0 cannot close this system yet.",
-      "system_id": "REPAIR_OBJECTIVE",
-      "path": "",
-      "severity": "warning"
-    },
-    {
-      "code": "SOURCE_PATH_UNRESOLVED",
-      "message": "Source entry is descriptive prose rather than a repository path.",
-      "system_id": "REPAIR_OBJECTIVE",
-      "path": "repair machine/runtime files",
-      "severity": "warning"
-    },
-    {
-      "code": "SOURCE_PATH_MISSING",
-      "message": "Source path did not resolve in the repository.",
-      "system_id": "REPAIR_OBJECTIVE",
-      "path": "JobDirector.cs",
-      "severity": "warning"
-    },
-    {
-      "code": "SOURCE_PATH_UNRESOLVED",
-      "message": "Source entry is descriptive prose rather than a repository path.",
-      "system_id": "REPAIR_OBJECTIVE",
-      "path": "objective board runtime",
-      "severity": "warning"
-    },
-    {
-      "code": "SOURCE_PATH_UNRESOLVED",
-      "message": "Source entry is descriptive prose rather than a repository path.",
-      "system_id": "REPAIR_OBJECTIVE",
-      "path": "resource bank",
-      "severity": "warning"
-    },
-    {
-      "code": "SOURCE_PATH_UNRESOLVED",
-      "message": "Source entry is descriptive prose rather than a repository path.",
-      "system_id": "REPAIR_OBJECTIVE",
-      "path": "ship cast-off observer",
+      "system_id": "RUNTIME_UI",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldTravelStation.cs",
       "severity": "warning"
     }
   ]

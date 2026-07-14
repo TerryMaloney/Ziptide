@@ -1,270 +1,32 @@
 {
   "tool": "recovery_inventory_gate",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-14T23:11:30.038313+00:00",
+  "generatedAtUtc": "2026-07-14T23:16:04.007478+00:00",
   "status": "warning",
   "root": "/home/runner/work/Ziptide/Ziptide",
-  "inventoryPath": "/home/runner/work/Ziptide/Ziptide/docs/recovery/system_contracts.json",
-  "systemCount": 26,
-  "findingCount": 37,
+  "inventoryPath": "/home/runner/work/Ziptide/Ziptide/docs/recovery/canonical_system_contracts.json",
+  "systemCount": 22,
+  "findingCount": 3,
   "findings": [
     {
-      "code": "CANONICAL_OWNER_UNRESOLVED",
-      "message": "Canonical ownership is explicitly unresolved; R0 cannot close this system yet.",
-      "system_id": "DEV_MENU",
-      "path": "",
-      "severity": "warning"
-    },
-    {
-      "code": "SOURCE_PATH_UNRESOLVED",
-      "message": "Source entry is descriptive prose rather than a repository path.",
-      "system_id": "PERSISTENT_CREDITS_HUD",
-      "path": "CreditsHud.cs (exact repository path to be resolved in R0 scan)",
-      "severity": "warning"
-    },
-    {
-      "code": "PROOF_QUEST_CONTRADICTION",
-      "message": "QUEST is recorded as accepted proof but questStatus is 'VISIBLE_AND_INTRUSIVE'.",
-      "system_id": "PERSISTENT_CREDITS_HUD",
-      "path": "",
-      "severity": "warning"
-    },
-    {
-      "code": "SOURCE_PATH_UNRESOLVED",
-      "message": "Source entry is descriptive prose rather than a repository path.",
-      "system_id": "QUARTERS_UI",
-      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Ship/QuartersRoom.cs (path to verify)",
-      "severity": "warning"
-    },
-    {
-      "code": "PROOF_QUEST_CONTRADICTION",
-      "message": "QUEST is recorded as accepted proof but questStatus is 'FAILED_VISUAL_LAYOUT'.",
-      "system_id": "QUARTERS_UI",
-      "path": "",
-      "severity": "warning"
-    },
-    {
-      "code": "SOURCE_PATH_UNRESOLVED",
-      "message": "Source entry is descriptive prose rather than a repository path.",
-      "system_id": "CONQUEST_TABLE_UI",
-      "path": "ConquestTableRuntime.cs (exact repository path to be resolved in R0 scan)",
-      "severity": "warning"
-    },
-    {
-      "code": "PROOF_QUEST_CONTRADICTION",
-      "message": "QUEST is recorded as accepted proof but questStatus is 'FAILED_VISUAL_LAYOUT'.",
-      "system_id": "CONQUEST_TABLE_UI",
-      "path": "",
+      "code": "SOURCE_PATH_MISSING",
+      "message": "Source path did not resolve in the repository.",
+      "system_id": "SAVE_PROFILE",
+      "path": "Ziptide/Assets/Ziptide/Core/Runtime/PlayerProfile.cs",
       "severity": "warning"
     },
     {
       "code": "SOURCE_PATH_MISSING",
       "message": "Source path did not resolve in the repository.",
-      "system_id": "ITEM_PRESENTATION",
-      "path": "Ziptide/Assets/Ziptide/Content/Runtime/Definitions/ItemDefinition.cs",
-      "severity": "warning"
-    },
-    {
-      "code": "PROOF_QUEST_CONTRADICTION",
-      "message": "QUEST is recorded as accepted proof but questStatus is 'FAILED_POSE_AND_SCALE'.",
-      "system_id": "ITEM_PRESENTATION",
-      "path": "",
-      "severity": "warning"
-    },
-    {
-      "code": "PROOF_QUEST_CONTRADICTION",
-      "message": "QUEST is recorded as accepted proof but questStatus is 'FAILED_ORIENTATION'.",
-      "system_id": "HOLSTER",
-      "path": "",
-      "severity": "warning"
-    },
-    {
-      "code": "PROOF_QUEST_CONTRADICTION",
-      "message": "QUEST is recorded as accepted proof but questStatus is 'FAILED_AIM_AND_SELF_HIT_RISK'.",
-      "system_id": "WEAPON_FIRE",
-      "path": "",
-      "severity": "warning"
-    },
-    {
-      "code": "CANONICAL_OWNER_UNRESOLVED",
-      "message": "Canonical ownership is explicitly unresolved; R0 cannot close this system yet.",
-      "system_id": "MELEE",
-      "path": "",
-      "severity": "warning"
-    },
-    {
-      "code": "SOURCE_PATH_UNRESOLVED",
-      "message": "Source entry is descriptive prose rather than a repository path.",
-      "system_id": "MELEE",
-      "path": "SonicThumper item/runtime files (exact paths to resolve in R0 scan)",
-      "severity": "warning"
-    },
-    {
-      "code": "PROOF_QUEST_CONTRADICTION",
-      "message": "QUEST is recorded as accepted proof but questStatus is 'FAILED_SIDEWAYS_POSE'.",
-      "system_id": "MELEE",
-      "path": "",
-      "severity": "warning"
-    },
-    {
-      "code": "PROOF_QUEST_CONTRADICTION",
-      "message": "QUEST is recorded as accepted proof but questStatus is 'FAILED_GEOMETRY_AND_RIDE'.",
-      "system_id": "ZIPLINE",
-      "path": "",
+      "system_id": "SAVE_PROFILE",
+      "path": "Ziptide/Assets/Ziptide/Core/Runtime/ProfileSerializer.cs",
       "severity": "warning"
     },
     {
       "code": "SOURCE_PATH_MISSING",
       "message": "Source path did not resolve in the repository.",
-      "system_id": "WORLD_FACTORY",
-      "path": "Ziptide/Assets/Ziptide/Content/Runtime/WorldSpecs/WorldSpec.cs",
-      "severity": "warning"
-    },
-    {
-      "code": "SOURCE_PATH_MISSING",
-      "message": "Source path did not resolve in the repository.",
-      "system_id": "WORLD_FACTORY",
-      "path": "Ziptide/Assets/Ziptide/Editor/WorldSpecs/WorldSpecCompiler.cs",
-      "severity": "warning"
-    },
-    {
-      "code": "SOURCE_PATH_MISSING",
-      "message": "Source path did not resolve in the repository.",
-      "system_id": "SKY_AND_GRADE",
-      "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistaRig.cs",
-      "severity": "warning"
-    },
-    {
-      "code": "SOURCE_PATH_MISSING",
-      "message": "Source path did not resolve in the repository.",
-      "system_id": "SKY_AND_GRADE",
-      "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/SkyGrade.cs",
-      "severity": "warning"
-    },
-    {
-      "code": "PROOF_QUEST_CONTRADICTION",
-      "message": "QUEST is recorded as accepted proof but questStatus is 'FAILED_INTEGRATED_PRESENTATION'.",
-      "system_id": "SKY_AND_GRADE",
-      "path": "",
-      "severity": "warning"
-    },
-    {
-      "code": "SOURCE_PATH_MISSING",
-      "message": "Source path did not resolve in the repository.",
-      "system_id": "PRACTICAL_LIGHTING",
-      "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/PracticalLight.cs",
-      "severity": "warning"
-    },
-    {
-      "code": "SOURCE_PATH_MISSING",
-      "message": "Source path did not resolve in the repository.",
-      "system_id": "PRACTICAL_LIGHTING",
-      "path": "Ziptide/Assets/Ziptide/Editor/Art/PracticalAuthor.cs",
-      "severity": "warning"
-    },
-    {
-      "code": "PROOF_QUEST_CONTRADICTION",
-      "message": "QUEST is recorded as accepted proof but questStatus is 'OPAQUE_SQUARE_FAILURE'.",
-      "system_id": "PRACTICAL_LIGHTING",
-      "path": "",
-      "severity": "warning"
-    },
-    {
-      "code": "PROOF_QUEST_CONTRADICTION",
-      "message": "QUEST is recorded as accepted proof but questStatus is 'MIXED_ASSETS_GOOD_WORLDS_BAD'.",
-      "system_id": "ART_FORGE",
-      "path": "",
-      "severity": "warning"
-    },
-    {
-      "code": "SOURCE_PATH_MISSING",
-      "message": "Source path did not resolve in the repository.",
-      "system_id": "CREATURE_PRESENTATION_AND_GROUNDING",
-      "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/GroundShadow.cs",
-      "severity": "warning"
-    },
-    {
-      "code": "PROOF_QUEST_CONTRADICTION",
-      "message": "QUEST is recorded as accepted proof but questStatus is 'FLOATING_CREATURE_OBSERVED'.",
-      "system_id": "CREATURE_PRESENTATION_AND_GROUNDING",
-      "path": "",
-      "severity": "warning"
-    },
-    {
-      "code": "SOURCE_PATH_MISSING",
-      "message": "Source path did not resolve in the repository.",
-      "system_id": "SHIP_PRESENTATION_AND_REFIT",
-      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Ship/ShipHullBuilder.cs",
-      "severity": "warning"
-    },
-    {
-      "code": "SOURCE_PATH_MISSING",
-      "message": "Source path did not resolve in the repository.",
-      "system_id": "SHIP_PRESENTATION_AND_REFIT",
-      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Ship/ShipRefit.cs",
-      "severity": "warning"
-    },
-    {
-      "code": "PROOF_QUEST_CONTRADICTION",
-      "message": "QUEST is recorded as accepted proof but questStatus is 'INTERIM_AND_INCONSISTENT_PRESENTATION'.",
-      "system_id": "SHIP_PRESENTATION_AND_REFIT",
-      "path": "",
-      "severity": "warning"
-    },
-    {
-      "code": "SOURCE_PATH_MISSING",
-      "message": "Source path did not resolve in the repository.",
-      "system_id": "SHIP_FLIGHT",
-      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Ship/ShipFlightRuntime.cs",
-      "severity": "warning"
-    },
-    {
-      "code": "PROOF_QUEST_CONTRADICTION",
-      "message": "QUEST is recorded as accepted proof but questStatus is 'GLITCHY_TURNING_UNRESOLVED'.",
-      "system_id": "SHIP_FLIGHT",
-      "path": "",
-      "severity": "warning"
-    },
-    {
-      "code": "CANONICAL_OWNER_UNRESOLVED",
-      "message": "Canonical ownership is explicitly unresolved; R0 cannot close this system yet.",
-      "system_id": "REPAIR_OBJECTIVE",
-      "path": "",
-      "severity": "warning"
-    },
-    {
-      "code": "SOURCE_PATH_UNRESOLVED",
-      "message": "Source entry is descriptive prose rather than a repository path.",
-      "system_id": "REPAIR_OBJECTIVE",
-      "path": "repair machine/runtime files",
-      "severity": "warning"
-    },
-    {
-      "code": "SOURCE_PATH_MISSING",
-      "message": "Source path did not resolve in the repository.",
-      "system_id": "REPAIR_OBJECTIVE",
-      "path": "JobDirector.cs",
-      "severity": "warning"
-    },
-    {
-      "code": "SOURCE_PATH_UNRESOLVED",
-      "message": "Source entry is descriptive prose rather than a repository path.",
-      "system_id": "REPAIR_OBJECTIVE",
-      "path": "objective board runtime",
-      "severity": "warning"
-    },
-    {
-      "code": "SOURCE_PATH_UNRESOLVED",
-      "message": "Source entry is descriptive prose rather than a repository path.",
-      "system_id": "REPAIR_OBJECTIVE",
-      "path": "resource bank",
-      "severity": "warning"
-    },
-    {
-      "code": "SOURCE_PATH_UNRESOLVED",
-      "message": "Source entry is descriptive prose rather than a repository path.",
-      "system_id": "REPAIR_OBJECTIVE",
-      "path": "ship cast-off observer",
+      "system_id": "RUNTIME_UI",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldTravelStation.cs",
       "severity": "warning"
     }
   ]

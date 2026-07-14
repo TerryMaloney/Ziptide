@@ -2,23 +2,21 @@
 
 - Scanned files: **598**
 - Scanner findings: **2013**
-- Inventory systems: **26**
+- Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
 
 ## Exposure ledger
 
-- **DIAGNOSTIC:** `DEV_MENU`
-- **GOLDEN_PATH:** `BOOT_FLOW`, `CREATURE_PRESENTATION_AND_GROUNDING`, `HOLSTER`, `HOME_HUB_UI`, `TRAVEL`, `WEAPON_FIRE`, `XR_RIG`
-- **PROTOTYPE_HIDDEN:** `CONQUEST_TABLE_UI`, `MELEE`, `PRACTICAL_LIGHTING`, `PVP_AND_PHOTON`, `QUARTERS_UI`, `SHIP_FLIGHT`, `ZIPLINE`
-- **REPLACE_OR_MERGE:** `ITEM_PRESENTATION`, `PERSISTENT_CREDITS_HUD`, `REPAIR_OBJECTIVE`, `SHIP_PRESENTATION_AND_REFIT`, `SKY_AND_GRADE`, `TRAVEL_STATION_UI`
-- **SUPPORT:** `ART_FORGE`, `AUDIO`, `CI_AND_AUDIT`, `SAVE_PROFILE`, `WORLD_FACTORY`
+- **DIAGNOSTIC:** `DEV_DIAGNOSTICS`
+- **GOLDEN_PATH:** `BOOT_FLOW`, `JOB_REPAIR_OBJECTIVE`, `SHIP_PRESENTATION_ROOT`, `TRAVEL`
+- **PROTOTYPE_HIDDEN:** `MELEE`, `MULTIPLAYER_TIDEFRONT`
+- **REPLACE_OR_MERGE:** `CAMERA_POLICY`, `CREATURE_CONTACT`, `HUD_POLICY`, `INPUT_CONTRACT`, `ITEM_PRESENTATION`, `MATERIAL_FALLBACK_POLICY`, `RUNTIME_UI`, `SCENE_PRESENTATION`, `WEAPON_OWNER_COLLISION`, `XR_RIG_INPUT_SESSION`
+- **SUPPORT:** `AUDIO_COMPOSITION`, `CI_INTEGRATION_HARNESS`, `RECOVERY_EXPOSURE`, `SAVE_PROFILE`, `WORLD_FACTORY`
 
 ## Unresolved canonical owners
 
-- `DEV_MENU` — Undecided during R0; DevWarpBoard is current runtime owner
-- `MELEE` — Undecided: consolidate SonicThumper and PvpHammer/HammerTool
-- `REPAIR_OBJECTIVE` — Undecided; currently split across machine, director, runtime, bank, board and ship observers
+None.
 
 ## Bootstrap & persistence
 
@@ -3926,40 +3924,6 @@ This report groups exact lexical evidence. A row means the source contains the n
 
 ## Inventory validation findings
 
-- `DEV_MENU` **CANONICAL_OWNER_UNRESOLVED** — Canonical ownership is explicitly unresolved; R0 cannot close this system yet.
-- `PERSISTENT_CREDITS_HUD` **SOURCE_PATH_UNRESOLVED** · `CreditsHud.cs (exact repository path to be resolved in R0 scan)` — Source entry is descriptive prose rather than a repository path.
-- `PERSISTENT_CREDITS_HUD` **PROOF_QUEST_CONTRADICTION** — QUEST is recorded as accepted proof but questStatus is 'VISIBLE_AND_INTRUSIVE'.
-- `QUARTERS_UI` **SOURCE_PATH_UNRESOLVED** · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Ship/QuartersRoom.cs (path to verify)` — Source entry is descriptive prose rather than a repository path.
-- `QUARTERS_UI` **PROOF_QUEST_CONTRADICTION** — QUEST is recorded as accepted proof but questStatus is 'FAILED_VISUAL_LAYOUT'.
-- `CONQUEST_TABLE_UI` **SOURCE_PATH_UNRESOLVED** · `ConquestTableRuntime.cs (exact repository path to be resolved in R0 scan)` — Source entry is descriptive prose rather than a repository path.
-- `CONQUEST_TABLE_UI` **PROOF_QUEST_CONTRADICTION** — QUEST is recorded as accepted proof but questStatus is 'FAILED_VISUAL_LAYOUT'.
-- `ITEM_PRESENTATION` **SOURCE_PATH_MISSING** · `Ziptide/Assets/Ziptide/Content/Runtime/Definitions/ItemDefinition.cs` — Source path did not resolve in the repository.
-- `ITEM_PRESENTATION` **PROOF_QUEST_CONTRADICTION** — QUEST is recorded as accepted proof but questStatus is 'FAILED_POSE_AND_SCALE'.
-- `HOLSTER` **PROOF_QUEST_CONTRADICTION** — QUEST is recorded as accepted proof but questStatus is 'FAILED_ORIENTATION'.
-- `WEAPON_FIRE` **PROOF_QUEST_CONTRADICTION** — QUEST is recorded as accepted proof but questStatus is 'FAILED_AIM_AND_SELF_HIT_RISK'.
-- `MELEE` **CANONICAL_OWNER_UNRESOLVED** — Canonical ownership is explicitly unresolved; R0 cannot close this system yet.
-- `MELEE` **SOURCE_PATH_UNRESOLVED** · `SonicThumper item/runtime files (exact paths to resolve in R0 scan)` — Source entry is descriptive prose rather than a repository path.
-- `MELEE` **PROOF_QUEST_CONTRADICTION** — QUEST is recorded as accepted proof but questStatus is 'FAILED_SIDEWAYS_POSE'.
-- `ZIPLINE` **PROOF_QUEST_CONTRADICTION** — QUEST is recorded as accepted proof but questStatus is 'FAILED_GEOMETRY_AND_RIDE'.
-- `WORLD_FACTORY` **SOURCE_PATH_MISSING** · `Ziptide/Assets/Ziptide/Content/Runtime/WorldSpecs/WorldSpec.cs` — Source path did not resolve in the repository.
-- `WORLD_FACTORY` **SOURCE_PATH_MISSING** · `Ziptide/Assets/Ziptide/Editor/WorldSpecs/WorldSpecCompiler.cs` — Source path did not resolve in the repository.
-- `SKY_AND_GRADE` **SOURCE_PATH_MISSING** · `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistaRig.cs` — Source path did not resolve in the repository.
-- `SKY_AND_GRADE` **SOURCE_PATH_MISSING** · `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyGrade.cs` — Source path did not resolve in the repository.
-- `SKY_AND_GRADE` **PROOF_QUEST_CONTRADICTION** — QUEST is recorded as accepted proof but questStatus is 'FAILED_INTEGRATED_PRESENTATION'.
-- `PRACTICAL_LIGHTING` **SOURCE_PATH_MISSING** · `Ziptide/Assets/Ziptide/Visuals/Runtime/PracticalLight.cs` — Source path did not resolve in the repository.
-- `PRACTICAL_LIGHTING` **SOURCE_PATH_MISSING** · `Ziptide/Assets/Ziptide/Editor/Art/PracticalAuthor.cs` — Source path did not resolve in the repository.
-- `PRACTICAL_LIGHTING` **PROOF_QUEST_CONTRADICTION** — QUEST is recorded as accepted proof but questStatus is 'OPAQUE_SQUARE_FAILURE'.
-- `ART_FORGE` **PROOF_QUEST_CONTRADICTION** — QUEST is recorded as accepted proof but questStatus is 'MIXED_ASSETS_GOOD_WORLDS_BAD'.
-- `CREATURE_PRESENTATION_AND_GROUNDING` **SOURCE_PATH_MISSING** · `Ziptide/Assets/Ziptide/Visuals/Runtime/GroundShadow.cs` — Source path did not resolve in the repository.
-- `CREATURE_PRESENTATION_AND_GROUNDING` **PROOF_QUEST_CONTRADICTION** — QUEST is recorded as accepted proof but questStatus is 'FLOATING_CREATURE_OBSERVED'.
-- `SHIP_PRESENTATION_AND_REFIT` **SOURCE_PATH_MISSING** · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Ship/ShipHullBuilder.cs` — Source path did not resolve in the repository.
-- `SHIP_PRESENTATION_AND_REFIT` **SOURCE_PATH_MISSING** · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Ship/ShipRefit.cs` — Source path did not resolve in the repository.
-- `SHIP_PRESENTATION_AND_REFIT` **PROOF_QUEST_CONTRADICTION** — QUEST is recorded as accepted proof but questStatus is 'INTERIM_AND_INCONSISTENT_PRESENTATION'.
-- `SHIP_FLIGHT` **SOURCE_PATH_MISSING** · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Ship/ShipFlightRuntime.cs` — Source path did not resolve in the repository.
-- `SHIP_FLIGHT` **PROOF_QUEST_CONTRADICTION** — QUEST is recorded as accepted proof but questStatus is 'GLITCHY_TURNING_UNRESOLVED'.
-- `REPAIR_OBJECTIVE` **CANONICAL_OWNER_UNRESOLVED** — Canonical ownership is explicitly unresolved; R0 cannot close this system yet.
-- `REPAIR_OBJECTIVE` **SOURCE_PATH_UNRESOLVED** · `repair machine/runtime files` — Source entry is descriptive prose rather than a repository path.
-- `REPAIR_OBJECTIVE` **SOURCE_PATH_MISSING** · `JobDirector.cs` — Source path did not resolve in the repository.
-- `REPAIR_OBJECTIVE` **SOURCE_PATH_UNRESOLVED** · `objective board runtime` — Source entry is descriptive prose rather than a repository path.
-- `REPAIR_OBJECTIVE` **SOURCE_PATH_UNRESOLVED** · `resource bank` — Source entry is descriptive prose rather than a repository path.
-- `REPAIR_OBJECTIVE` **SOURCE_PATH_UNRESOLVED** · `ship cast-off observer` — Source entry is descriptive prose rather than a repository path.
+- `SAVE_PROFILE` **SOURCE_PATH_MISSING** · `Ziptide/Assets/Ziptide/Core/Runtime/PlayerProfile.cs` — Source path did not resolve in the repository.
+- `SAVE_PROFILE` **SOURCE_PATH_MISSING** · `Ziptide/Assets/Ziptide/Core/Runtime/ProfileSerializer.cs` — Source path did not resolve in the repository.
+- `RUNTIME_UI` **SOURCE_PATH_MISSING** · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldTravelStation.cs` — Source path did not resolve in the repository.
