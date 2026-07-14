@@ -72,6 +72,11 @@ namespace Ziptide.Build
             try { Ziptide.Editor.Patching.WorldStubGenerator.EnsureGeneratedInBuildSettings(); }
             catch (Exception ex) { Debug.LogWarning("[Ziptide] Generated-worlds build-settings ensure warning: " + ex.Message); }
 
+            // W011's generated surface always owns a cave-mouth trigger. Generate and enable its
+            // destination before the scene list is captured and before the travel-destination audit.
+            try { Ziptide.Editor.Patching.ScenePatcherCavern.EnsureUndercroftInBuildSettings(); }
+            catch (Exception ex) { Debug.LogWarning("[Ziptide] W011 undercroft build-settings ensure warning: " + ex.Message); }
+
             // PvP arenas: seed missing layout assets (create-only), then ensure their scenes ship.
             try { Ziptide.Editor.Patching.ArenaLayoutLibrary.EnsureAllAuthored(); }
             catch (Exception ex) { Debug.LogWarning("[Ziptide] Arena layout library warning: " + ex.Message); }
