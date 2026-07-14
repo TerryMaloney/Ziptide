@@ -34,15 +34,4 @@ namespace Ziptide.Tests.PlayMode
             Assert.IsTrue(host == null, "The tests-only object leaked past teardown.");
         }
     }
-
-    internal sealed class PlayModeFrameProbe : MonoBehaviour
-    {
-        public bool AwakeObserved { get; private set; }
-        public bool StartObserved { get; private set; }
-        public int UpdateCount { get; private set; }
-
-        private void Awake() => AwakeObserved = true;
-        private void Start() => StartObserved = true;
-        private void Update() => UpdateCount++;
-    }
 }
