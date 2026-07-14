@@ -30,8 +30,8 @@ BINDING_RE = re.compile(
     r"(?P<field>_[A-Za-z_]\w*)\s*\.\s*AddBinding\s*\(\s*\"(?P<binding>[^\"]+)\"\s*\)"
 )
 CHORD_RE = re.compile(
-    r"(?:\bY\s*\+\s*B\b|\bB\s*\+\s*Y\b|dev\s+menu\s+chord|menu\s+chord)",
-    re.IGNORECASE,
+    r"(?<![\w.])(?:Y\s*\+\s*B|B\s*\+\s*Y)(?![\w.])"
+    r"|(?i:dev\s+menu\s+chord|menu\s+chord)"
 )
 TYPE_RE = re.compile(
     r"^\s*(?:(?:public|internal|private|protected|static|sealed|abstract|partial)\s+)*"
