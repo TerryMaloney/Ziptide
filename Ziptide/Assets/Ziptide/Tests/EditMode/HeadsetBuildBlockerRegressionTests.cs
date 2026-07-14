@@ -37,6 +37,19 @@ namespace Ziptide.Tests.EditMode
             StringAssert.Contains("EnsureInBuildSettings(scenePath);", cavern);
         }
 
+        [Test]
+        public void W011Undercroft_SpawnHasNonTriggerLandingColliderBeforeAudit()
+        {
+            string build = Read("Editor", "Build", "BuildAndroid.cs");
+            string safety = Read("Editor", "Patching", "CaveSpawnSafety.cs");
+            StringAssert.Contains("CaveSpawnSafety.EnsureUndercroftSpawnFloor();", build);
+            StringAssert.Contains("FloorName = \"__SPAWN_FLOOR\"", safety);
+            StringAssert.Contains("GameObject.CreatePrimitive(PrimitiveType.Cube)", safety);
+            StringAssert.Contains("BoxCollider collider", safety);
+            StringAssert.Contains("collider.isTrigger = false;", safety);
+            StringAssert.Contains("EditorSceneManager.SaveScene(scene, UndercroftScenePath);", safety);
+        }
+
         private static string Read(params string[] parts)
         {
             string path = Path.Combine(Application.dataPath, "Ziptide");
