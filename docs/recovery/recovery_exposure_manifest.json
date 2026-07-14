@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "status": "R0_LOCKED_FOR_R1_IMPLEMENTATION",
+  "goldenDestinationDecision": {
+    "scene": "ToxicCity",
+    "storyIdentity": "W001 first real destination after W000",
+    "reason": "The recovery slice must prove the intended first-hour path. Selecting W002 would bypass the actual W000-to-W001 integration and could hide the architecture failures the recovery exists to catch.",
+    "knownDebt": [
+      "canon SkyVista currently unwired in audit report",
+      "no courtyard warning",
+      "primitive and runtime-fallback presentation",
+      "first-hour orchestration incomplete",
+      "visual/device acceptance failed"
+    ]
+  },
+  "profiles": {
+    "GoldenSlice": {
+      "enabledScenes": [
+        "_Boot",
+        "W000_DriftIn",
+        "ToxicCity"
+      ],
+      "allowedAutomaticOwners": [
+        "SAVE_SYSTEM_BOOTSTRAP",
+        "PLAYER_RIG_PERSISTENCE",
+        "TRAVEL_COORDINATOR",
+        "AUDIO_DIRECTOR",
+        "AMBIENCE_DIRECTOR",
+        "COMFORT_VIGNETTE",
+        "RUNTIME_HEALTH_MONITOR",
+        "FIRST_HOUR_OBSERVATION_BOOTSTRAP"
+      ],
+      "conditionallyAllowedAutomaticOwners": [
+        {
+          "id": "ECOLOGY_INJECTOR",
+          "condition": "Only after one named golden creature is selected and contact/grounding PlayMode proof exists"
+        }
+      ],
+      "forbiddenAutomaticOwners": [
+        "DEBUG_HUD_BOOTSTRAP",
+        "XR_CAMERA_ENFORCER",
+        "RUNTIME_INPUT_ENABLER",
+        "RUNTIME_MATERIAL_FIXER",
+        "VR_BOOT_DIAGNOSTICS",
+        "CONQUEST_MISSION_INJECTOR",
+        "DEV_WARP_BOARD_BOOTSTRAP",
+        "PVP_PROGRESSION_BOOTSTRAP",
+        "QUARTERS_CAMERA_INJECTOR",
+        "NET_BOOTSTRAP"
+      ],
+      "allowedPlayerFacingSurfaces": [
+        "Home Hub",
+        "W000 first-hour surface required by golden path",
+        "one bounded W001 arrival/job area",
+        "one tool and one holster path",
+        "one creature and non-lethal resolution",
+        "one job/reward/spend surface",
+        "one ship boarding/use surface",
+        "minimal contextual status needed to complete the loop"
+      ],
+      "forbiddenPlayerFacingSurfaces": [
+        "always-on CreditsHud",
+        "DebugHUD",
+        "broad world travel door wall",
+        "Quarters customization room",
+        "Conquest/Tidefront table",
+        "PvP arena lobby and Match Board",
+        "Photon online controls",
+        "zipline",
+        "ship free-flight",
+        "hammer/melee pair",
+        "unverified practical-light halo/pool quads",
+        "legacy striped planet path",
+        "visible runtime material fallback",
+        "all non-golden worlds and arenas"
+      ]
+    },
+    "Diagnostic": {
+      "base": "GoldenSlice",
+      "optionalAutomaticOwners": [
+        "DEV_WARP_BOARD_BOOTSTRAP",
+        "DEBUG_HUD_BOOTSTRAP",
+        "VR_BOOT_DIAGNOSTICS"
+      ],
+      "rules": [
+        "Each diagnostic owner is explicitly enabled by ID",
+        "No diagnostic is automatically visible merely because the APK is a development build",
+        "Diagnostic screenshots and logs record the enabled IDs",
+        "Diagnostics may not alter the GoldenSlice input, camera, material or save owner contracts"
+      ]
+    },
+    "FullDevelopment": {
+      "purpose": "Temporary compatibility profile while systems are migrated",
+      "rules": [
+        "Preserves current development access only where not explicitly recovery-blocked",
+        "Cannot be used for R3 candidate acceptance",
+        "Must log every automatic owner that starts",
+        "Does not restore RuntimeMaterialFixer, RuntimeInputEnabler or name-based camera mutation after they are retired"
+      ]
+    }
+  },
+  "sceneBuildPolicy": {
+    "currentState": "24 of 24 Build Settings scenes enabled",
+    "r1Requirement": "Generate a recovery scene list for PlayMode and recovery APK builds without hand-editing scene YAML",
+    "r3Requirement": "GoldenSlice APK contains only _Boot, W000_DriftIn and ToxicCity unless a test-only dependency is explicitly recorded",
+    "sourcePreservation": "Other scenes remain committed and buildable through FullDevelopment; they are not deleted"
+  }
+}
