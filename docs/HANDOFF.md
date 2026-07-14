@@ -6,6 +6,8 @@
 - `docs/HANDOFF.md` — current entries
 - `docs/HANDOFF_HISTORY_THROUGH_RB24.md` — exact prior history through rb24
 - `docs/DEVICE_STABILIZATION_FORENSIC_PLAN.md` — Quest device recovery plan
+- `docs/recovery/RECOVERY_PROGRAM.md` — active recovery authority, freeze, proof levels and R0–R4 path
+- `docs/recovery/SYSTEM_CONTRACT_INVENTORY.md` — current critical-system ownership map
 - `docs/MASTER_CHECKLIST.md`
 - `docs/FABLE5_BACKLOG.md`
 - `docs/TERRY_RUNBOOK.md`
@@ -20,6 +22,16 @@
 ---
 
 ## ENTRIES — newest first
+
+### 2026-07-14 (rb28) — GPT Recovery/Integration lane assigned; R0 contract inventory started
+
+- **Authority:** Terry explicitly assigned GPT-5.6 Thinking ownership of ZIPTIDE recovery/integration and said to begin. Normal feature/world/mode/art/multiplayer expansion is now frozen under [`docs/recovery/RECOVERY_PROGRAM.md`](recovery/RECOVERY_PROGRAM.md). Emergency CI-red repair remains allowed; all other implementation requires a bounded recovery packet.
+- **Did (control plane):** established recovery phases R0 repository truth → R1 integration harness → R2 contract consolidation → R3 golden vertical slice → R4 template expansion. Added explicit proof levels `SOURCE / CORE / PATCHED / PLAYMODE / VISUAL / APK / QUEST`; “CI green” is no longer a completion state.
+- **Did (inventory):** added [`docs/recovery/system_contracts.json`](recovery/system_contracts.json), a machine-readable initial map of 26 critical systems: responsibility, candidate owner, source files, startup, persistence, runtime-created objects, state, actual proof, Quest status, exposure class, conflicts and next evidence. Added the human summary [`docs/recovery/SYSTEM_CONTRACT_INVENTORY.md`](recovery/SYSTEM_CONTRACT_INVENTORY.md).
+- **Initial decisions:** preserve valuable pure cores/data/generators; hide Quarters, Tidefront table, PvP/Photon, broad world selection, melee, zipline, flight and unverified practical-light surfaces from the first recovery candidate; consolidate boot/rig/travel/UI/item/visual ownership before exposing them.
+- **Next (R0 only):** complete repository-wide bootstrap/persistence/input/travel-bypass/runtime-object/event/save/global-render/fallback scans; reconcile old board claims against proof levels; produce canonical-owner, duplicate-owner, feature-exposure and R1 harness specifications. No broad runtime fixes before the R0 exit report.
+- **Heads-up:** no gameplay, scene, prefab, asset, art or system behavior changed in these commits. The repository still contains all prior systems; the freeze controls what may be worked on and what will be exposed in the recovery candidate.
+- **Commits:** `3c38dc2` recovery program · `b676507` machine inventory · `336bdaa` inventory summary · this HANDOFF claim.
 
 ### 2026-07-14 (rb27) — GPT read-only Quest screenshot forensics: Phase 1 failed on device; audit gates miss visible breakage
 
