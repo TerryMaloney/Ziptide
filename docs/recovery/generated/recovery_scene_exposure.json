@@ -1,0 +1,391 @@
+{
+  "tool": "recovery_scene_exposure",
+  "sceneCount": 24,
+  "enabledCount": 24,
+  "exposureCounts": {
+    "GOLDEN_DESTINATION_CANDIDATE": 2,
+    "GOLDEN_PATH": 1,
+    "GOLDEN_PATH_SUPPORT": 1,
+    "LEGACY_TEST_EXPOSED": 4,
+    "PROTOTYPE_MULTIPLAYER_EXPOSED": 6,
+    "PROTOTYPE_WORLD_EXPOSED": 10
+  },
+  "hiddenButEnabledCount": 20,
+  "goldenDestinationCandidateCount": 2,
+  "findings": {
+    "hiddenButEnabled": [
+      {
+        "index": 1,
+        "enabled": true,
+        "path": "Assets/Ziptide/Scenes/MilestoneA_GrabCube.unity",
+        "scene_name": "MilestoneA_GrabCube",
+        "exposure": "LEGACY_TEST_EXPOSED",
+        "reason": "Legacy/test scene remains enabled in the APK."
+      },
+      {
+        "index": 2,
+        "enabled": true,
+        "path": "Assets/Ziptide/Scenes/D0_City.unity",
+        "scene_name": "D0_City",
+        "exposure": "LEGACY_TEST_EXPOSED",
+        "reason": "Legacy/test scene remains enabled in the APK."
+      },
+      {
+        "index": 3,
+        "enabled": true,
+        "path": "Assets/Ziptide/Scenes/SandboxTestLab.unity",
+        "scene_name": "SandboxTestLab",
+        "exposure": "LEGACY_TEST_EXPOSED",
+        "reason": "Legacy/test scene remains enabled in the APK."
+      },
+      {
+        "index": 4,
+        "enabled": true,
+        "path": "Assets/Ziptide/Scenes/StarterWorld.unity",
+        "scene_name": "StarterWorld",
+        "exposure": "LEGACY_TEST_EXPOSED",
+        "reason": "Legacy/test scene remains enabled in the APK."
+      },
+      {
+        "index": 6,
+        "enabled": true,
+        "path": "Assets/Ziptide/Scenes/PvP_Arena01.unity",
+        "scene_name": "PvP_Arena01",
+        "exposure": "PROTOTYPE_MULTIPLAYER_EXPOSED",
+        "reason": "Multiplayer is frozen and should be hidden from recovery candidates."
+      },
+      {
+        "index": 9,
+        "enabled": true,
+        "path": "Assets/Ziptide/Scenes/Generated/W003_GlassShelf.unity",
+        "scene_name": "W003_GlassShelf",
+        "exposure": "PROTOTYPE_WORLD_EXPOSED",
+        "reason": "Non-golden story world remains enabled before integration proof."
+      },
+      {
+        "index": 10,
+        "enabled": true,
+        "path": "Assets/Ziptide/Scenes/Generated/W004_BroadcastTomb.unity",
+        "scene_name": "W004_BroadcastTomb",
+        "exposure": "PROTOTYPE_WORLD_EXPOSED",
+        "reason": "Non-golden story world remains enabled before integration proof."
+      },
+      {
+        "index": 11,
+        "enabled": true,
+        "path": "Assets/Ziptide/Scenes/Generated/W005_OxidizedCanopy.unity",
+        "scene_name": "W005_OxidizedCanopy",
+        "exposure": "PROTOTYPE_WORLD_EXPOSED",
+        "reason": "Non-golden story world remains enabled before integration proof."
+      },
+      {
+        "index": 12,
+        "enabled": true,
+        "path": "Assets/Ziptide/Scenes/Generated/W006_MirrorFlats.unity",
+        "scene_name": "W006_MirrorFlats",
+        "exposure": "PROTOTYPE_WORLD_EXPOSED",
+        "reason": "Non-golden story world remains enabled before integration proof."
+      },
+      {
+        "index": 13,
+        "enabled": true,
+        "path": "Assets/Ziptide/Scenes/Generated/W007_SableStation.unity",
+        "scene_name": "W007_SableStation",
+        "exposure": "PROTOTYPE_WORLD_EXPOSED",
+        "reason": "Non-golden story world remains enabled before integration proof."
+      },
+      {
+        "index": 14,
+        "enabled": true,
+        "path": "Assets/Ziptide/Scenes/Generated/W008_SealedArchive.unity",
+        "scene_name": "W008_SealedArchive",
+        "exposure": "PROTOTYPE_WORLD_EXPOSED",
+        "reason": "Non-golden story world remains enabled before integration proof."
+      },
+      {
+        "index": 15,
+        "enabled": true,
+        "path": "Assets/Ziptide/Scenes/Generated/W009_Chitinwall.unity",
+        "scene_name": "W009_Chitinwall",
+        "exposure": "PROTOTYPE_WORLD_EXPOSED",
+        "reason": "Non-golden story world remains enabled before integration proof."
+      },
+      {
+        "index": 16,
+        "enabled": true,
+        "path": "Assets/Ziptide/Scenes/Generated/W010_TidalArray.unity",
+        "scene_name": "W010_TidalArray",
+        "exposure": "PROTOTYPE_WORLD_EXPOSED",
+        "reason": "Non-golden story world remains enabled before integration proof."
+      },
+      {
+        "index": 17,
+        "enabled": true,
+        "path": "Assets/Ziptide/Scenes/Generated/W011_TheHum.unity",
+        "scene_name": "W011_TheHum",
+        "exposure": "PROTOTYPE_WORLD_EXPOSED",
+        "reason": "Non-golden story world remains enabled before integration proof."
+      },
+      {
+        "index": 18,
+        "enabled": true,
+        "path": "Assets/Ziptide/Scenes/Generated/W012_MarasLastJump.unity",
+        "scene_name": "W012_MarasLastJump",
+        "exposure": "PROTOTYPE_WORLD_EXPOSED",
+        "reason": "Non-golden story world remains enabled before integration proof."
+      },
+      {
+        "index": 19,
+        "enabled": true,
+        "path": "Assets/Ziptide/Scenes/Arenas/Arena_Chitinwall.unity",
+        "scene_name": "Arena_Chitinwall",
+        "exposure": "PROTOTYPE_MULTIPLAYER_EXPOSED",
+        "reason": "Multiplayer is frozen and should be hidden from recovery candidates."
+      },
+      {
+        "index": 20,
+        "enabled": true,
+        "path": "Assets/Ziptide/Scenes/Arenas/Arena_Cistern.unity",
+        "scene_name": "Arena_Cistern",
+        "exposure": "PROTOTYPE_MULTIPLAYER_EXPOSED",
+        "reason": "Multiplayer is frozen and should be hidden from recovery candidates."
+      },
+      {
+        "index": 21,
+        "enabled": true,
+        "path": "Assets/Ziptide/Scenes/Arenas/Arena_MirrorFlats.unity",
+        "scene_name": "Arena_MirrorFlats",
+        "exposure": "PROTOTYPE_MULTIPLAYER_EXPOSED",
+        "reason": "Multiplayer is frozen and should be hidden from recovery candidates."
+      },
+      {
+        "index": 22,
+        "enabled": true,
+        "path": "Assets/Ziptide/Scenes/Arenas/Arena_Tidal.unity",
+        "scene_name": "Arena_Tidal",
+        "exposure": "PROTOTYPE_MULTIPLAYER_EXPOSED",
+        "reason": "Multiplayer is frozen and should be hidden from recovery candidates."
+      },
+      {
+        "index": 23,
+        "enabled": true,
+        "path": "Assets/Ziptide/Scenes/Arenas/Arena_Void.unity",
+        "scene_name": "Arena_Void",
+        "exposure": "PROTOTYPE_MULTIPLAYER_EXPOSED",
+        "reason": "Multiplayer is frozen and should be hidden from recovery candidates."
+      }
+    ],
+    "goldenDestinationCandidates": [
+      {
+        "index": 5,
+        "enabled": true,
+        "path": "Assets/Ziptide/Scenes/ToxicCity.unity",
+        "scene_name": "ToxicCity",
+        "exposure": "GOLDEN_DESTINATION_CANDIDATE",
+        "reason": "Potential single destination; R0 must select exactly one."
+      },
+      {
+        "index": 8,
+        "enabled": true,
+        "path": "Assets/Ziptide/Scenes/Generated/W002_DryCistern.unity",
+        "scene_name": "W002_DryCistern",
+        "exposure": "GOLDEN_DESTINATION_CANDIDATE",
+        "reason": "Potential single destination; R0 must select exactly one."
+      }
+    ]
+  },
+  "scenes": [
+    {
+      "index": 0,
+      "enabled": true,
+      "path": "Assets/Ziptide/Scenes/_Boot.unity",
+      "scene_name": "_Boot",
+      "exposure": "GOLDEN_PATH_SUPPORT",
+      "reason": "Persistent bootstrap scene."
+    },
+    {
+      "index": 1,
+      "enabled": true,
+      "path": "Assets/Ziptide/Scenes/MilestoneA_GrabCube.unity",
+      "scene_name": "MilestoneA_GrabCube",
+      "exposure": "LEGACY_TEST_EXPOSED",
+      "reason": "Legacy/test scene remains enabled in the APK."
+    },
+    {
+      "index": 2,
+      "enabled": true,
+      "path": "Assets/Ziptide/Scenes/D0_City.unity",
+      "scene_name": "D0_City",
+      "exposure": "LEGACY_TEST_EXPOSED",
+      "reason": "Legacy/test scene remains enabled in the APK."
+    },
+    {
+      "index": 3,
+      "enabled": true,
+      "path": "Assets/Ziptide/Scenes/SandboxTestLab.unity",
+      "scene_name": "SandboxTestLab",
+      "exposure": "LEGACY_TEST_EXPOSED",
+      "reason": "Legacy/test scene remains enabled in the APK."
+    },
+    {
+      "index": 4,
+      "enabled": true,
+      "path": "Assets/Ziptide/Scenes/StarterWorld.unity",
+      "scene_name": "StarterWorld",
+      "exposure": "LEGACY_TEST_EXPOSED",
+      "reason": "Legacy/test scene remains enabled in the APK."
+    },
+    {
+      "index": 5,
+      "enabled": true,
+      "path": "Assets/Ziptide/Scenes/ToxicCity.unity",
+      "scene_name": "ToxicCity",
+      "exposure": "GOLDEN_DESTINATION_CANDIDATE",
+      "reason": "Potential single destination; R0 must select exactly one."
+    },
+    {
+      "index": 6,
+      "enabled": true,
+      "path": "Assets/Ziptide/Scenes/PvP_Arena01.unity",
+      "scene_name": "PvP_Arena01",
+      "exposure": "PROTOTYPE_MULTIPLAYER_EXPOSED",
+      "reason": "Multiplayer is frozen and should be hidden from recovery candidates."
+    },
+    {
+      "index": 7,
+      "enabled": true,
+      "path": "Assets/Ziptide/Scenes/Generated/W000_DriftIn.unity",
+      "scene_name": "W000_DriftIn",
+      "exposure": "GOLDEN_PATH",
+      "reason": "Required first world in the recovery slice."
+    },
+    {
+      "index": 8,
+      "enabled": true,
+      "path": "Assets/Ziptide/Scenes/Generated/W002_DryCistern.unity",
+      "scene_name": "W002_DryCistern",
+      "exposure": "GOLDEN_DESTINATION_CANDIDATE",
+      "reason": "Potential single destination; R0 must select exactly one."
+    },
+    {
+      "index": 9,
+      "enabled": true,
+      "path": "Assets/Ziptide/Scenes/Generated/W003_GlassShelf.unity",
+      "scene_name": "W003_GlassShelf",
+      "exposure": "PROTOTYPE_WORLD_EXPOSED",
+      "reason": "Non-golden story world remains enabled before integration proof."
+    },
+    {
+      "index": 10,
+      "enabled": true,
+      "path": "Assets/Ziptide/Scenes/Generated/W004_BroadcastTomb.unity",
+      "scene_name": "W004_BroadcastTomb",
+      "exposure": "PROTOTYPE_WORLD_EXPOSED",
+      "reason": "Non-golden story world remains enabled before integration proof."
+    },
+    {
+      "index": 11,
+      "enabled": true,
+      "path": "Assets/Ziptide/Scenes/Generated/W005_OxidizedCanopy.unity",
+      "scene_name": "W005_OxidizedCanopy",
+      "exposure": "PROTOTYPE_WORLD_EXPOSED",
+      "reason": "Non-golden story world remains enabled before integration proof."
+    },
+    {
+      "index": 12,
+      "enabled": true,
+      "path": "Assets/Ziptide/Scenes/Generated/W006_MirrorFlats.unity",
+      "scene_name": "W006_MirrorFlats",
+      "exposure": "PROTOTYPE_WORLD_EXPOSED",
+      "reason": "Non-golden story world remains enabled before integration proof."
+    },
+    {
+      "index": 13,
+      "enabled": true,
+      "path": "Assets/Ziptide/Scenes/Generated/W007_SableStation.unity",
+      "scene_name": "W007_SableStation",
+      "exposure": "PROTOTYPE_WORLD_EXPOSED",
+      "reason": "Non-golden story world remains enabled before integration proof."
+    },
+    {
+      "index": 14,
+      "enabled": true,
+      "path": "Assets/Ziptide/Scenes/Generated/W008_SealedArchive.unity",
+      "scene_name": "W008_SealedArchive",
+      "exposure": "PROTOTYPE_WORLD_EXPOSED",
+      "reason": "Non-golden story world remains enabled before integration proof."
+    },
+    {
+      "index": 15,
+      "enabled": true,
+      "path": "Assets/Ziptide/Scenes/Generated/W009_Chitinwall.unity",
+      "scene_name": "W009_Chitinwall",
+      "exposure": "PROTOTYPE_WORLD_EXPOSED",
+      "reason": "Non-golden story world remains enabled before integration proof."
+    },
+    {
+      "index": 16,
+      "enabled": true,
+      "path": "Assets/Ziptide/Scenes/Generated/W010_TidalArray.unity",
+      "scene_name": "W010_TidalArray",
+      "exposure": "PROTOTYPE_WORLD_EXPOSED",
+      "reason": "Non-golden story world remains enabled before integration proof."
+    },
+    {
+      "index": 17,
+      "enabled": true,
+      "path": "Assets/Ziptide/Scenes/Generated/W011_TheHum.unity",
+      "scene_name": "W011_TheHum",
+      "exposure": "PROTOTYPE_WORLD_EXPOSED",
+      "reason": "Non-golden story world remains enabled before integration proof."
+    },
+    {
+      "index": 18,
+      "enabled": true,
+      "path": "Assets/Ziptide/Scenes/Generated/W012_MarasLastJump.unity",
+      "scene_name": "W012_MarasLastJump",
+      "exposure": "PROTOTYPE_WORLD_EXPOSED",
+      "reason": "Non-golden story world remains enabled before integration proof."
+    },
+    {
+      "index": 19,
+      "enabled": true,
+      "path": "Assets/Ziptide/Scenes/Arenas/Arena_Chitinwall.unity",
+      "scene_name": "Arena_Chitinwall",
+      "exposure": "PROTOTYPE_MULTIPLAYER_EXPOSED",
+      "reason": "Multiplayer is frozen and should be hidden from recovery candidates."
+    },
+    {
+      "index": 20,
+      "enabled": true,
+      "path": "Assets/Ziptide/Scenes/Arenas/Arena_Cistern.unity",
+      "scene_name": "Arena_Cistern",
+      "exposure": "PROTOTYPE_MULTIPLAYER_EXPOSED",
+      "reason": "Multiplayer is frozen and should be hidden from recovery candidates."
+    },
+    {
+      "index": 21,
+      "enabled": true,
+      "path": "Assets/Ziptide/Scenes/Arenas/Arena_MirrorFlats.unity",
+      "scene_name": "Arena_MirrorFlats",
+      "exposure": "PROTOTYPE_MULTIPLAYER_EXPOSED",
+      "reason": "Multiplayer is frozen and should be hidden from recovery candidates."
+    },
+    {
+      "index": 22,
+      "enabled": true,
+      "path": "Assets/Ziptide/Scenes/Arenas/Arena_Tidal.unity",
+      "scene_name": "Arena_Tidal",
+      "exposure": "PROTOTYPE_MULTIPLAYER_EXPOSED",
+      "reason": "Multiplayer is frozen and should be hidden from recovery candidates."
+    },
+    {
+      "index": 23,
+      "enabled": true,
+      "path": "Assets/Ziptide/Scenes/Arenas/Arena_Void.unity",
+      "scene_name": "Arena_Void",
+      "exposure": "PROTOTYPE_MULTIPLAYER_EXPOSED",
+      "reason": "Multiplayer is frozen and should be hidden from recovery candidates."
+    }
+  ]
+}

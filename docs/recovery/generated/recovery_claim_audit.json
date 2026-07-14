@@ -1,0 +1,3054 @@
+{
+  "tool": "recovery_claim_audit",
+  "claimCount": 260,
+  "unqualifiedCount": 138,
+  "missingDocuments": [],
+  "fileCounts": {
+    "docs/CURRENT_EXECUTION_CHECKLIST.md": 39,
+    "docs/EXCELLENCE_MAP.md": 34,
+    "docs/MASTER_CHECKLIST.md": 34,
+    "docs/SPRINT.md": 60,
+    "docs/SPRINT_ARCHITECTURE.md": 23,
+    "docs/SPRINT_ART.md": 37,
+    "docs/SPRINT_MULTIPLAYER.md": 33
+  },
+  "qualifierCounts": {
+    "APK": 22,
+    "CI": 79,
+    "EDITMODE": 7,
+    "PATCHED_AUDIT": 23,
+    "PLAYMODE": 1,
+    "QUEST": 52,
+    "UNQUALIFIED": 138,
+    "VISUAL": 8
+  },
+  "claims": [
+    {
+      "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
+      "line": 4,
+      "text": "**Purpose:** the current cross-project checklist for any future operator. Read this after `docs/OPERATOR_START_HERE.md`. It records what is actually complete, what is waiting on Terry, what is blocked by another track, and the next safe work.",
+      "markers": [
+        "complete"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
+      "line": 11,
+      "text": "- Latest gameplay/quality-code proof: `e8d18d67732032d79a2806f1e517d19d1aa9330d`, CI run `29170675599`, Unity EditMode green. Later branch commits are unrelated descendants and preserve this cleanup.",
+      "markers": [
+        "green"
+      ],
+      "qualifiers": [
+        "EDITMODE",
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
+      "line": 19,
+      "text": "1. `docs/OPERATOR_START_HERE.md` \u2014 laws, verification, ownership, definition of done.",
+      "markers": [
+        "done"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
+      "line": 21,
+      "text": "3. `docs/CI_VERDICT.md` \u2014 whether the latest tested gameplay head is green.",
+      "markers": [
+        "green"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
+      "line": 41,
+      "text": "- [x] Implement the locked asynchronous-travel design. **Code/CI green `c7b5d52`, run `29167548682`; device frame-pacing comparison pending.**",
+      "markers": [
+        "green"
+      ],
+      "qualifiers": [
+        "QUEST",
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
+      "line": 42,
+      "text": "- [x] Add the WARN-only UI readability/reach build audit. **Code/CI green `a6803ab`, run `29168358234`; generated-scene/device calibration pending.**",
+      "markers": [
+        "green"
+      ],
+      "qualifiers": [
+        "PATCHED_AUDIT",
+        "QUEST",
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
+      "line": 43,
+      "text": "- [x] Write `docs/design/HAPTIC_COVERAGE.md` from inspected existing owners. **Documentation-level gap closed; runtime/device coverage remains deliberately open.**",
+      "markers": [
+        "closed"
+      ],
+      "qualifiers": [
+        "QUEST"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
+      "line": 44,
+      "text": "- [x] Build the canonical creature behavior-readability gate. **Seven shipped IDs, \u22653 active states each, telegraph/counter/resolution, source/factory evidence and APK pre-build blocker; code/CI green `d9b6caf`, run `29169591530`.**",
+      "markers": [
+        "green",
+        "shipped"
+      ],
+      "qualifiers": [
+        "APK",
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
+      "line": 45,
+      "text": "- [x] Build plant and vehicle catalog-breadth audits without touching Picasso visual assets. **Structural CI/APK gate green `b7a6cfa`, run `29170323869`; content warnings remain for unsurfaced plants, three missing vehicle families and no garage.**",
+      "markers": [
+        "green"
+      ],
+      "qualifiers": [
+        "APK",
+        "VISUAL",
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
+      "line": 46,
+      "text": "- [x] Harden `AudioDirector` transition/disposal ownership. **Retired persistent sources now release clips; overlapping fades are serialized; code/CI green `e8d18d6`, run `29170675599`; long-session Quest memory soak remains device evidence.**",
+      "markers": [
+        "green"
+      ],
+      "qualifiers": [
+        "QUEST",
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
+      "line": 49,
+      "text": "- [ ] Continue only with explicitly claimed gameplay/content rows or Terry/Picasso-dependent work; the \u00a77 independent queue is complete.",
+      "markers": [
+        "complete"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
+      "line": 55,
+      "text": "- [ ] `FH-A01-SIGNATURE-CREATURE-PRESENTATION`: W001 species passport and complete review artifacts.",
+      "markers": [
+        "complete"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
+      "line": 56,
+      "text": "- [ ] Do not jump to later FORGE III envelopes before the current water envelope is closed and verified.",
+      "markers": [
+        "closed",
+        "verified"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
+      "line": 77,
+      "text": "| FH-X01 contract asset | \u2705 CI green | none |",
+      "markers": [
+        "green",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
+      "line": 78,
+      "text": "| FH-X02 progression core | \u2705 CI green | none |",
+      "markers": [
+        "green",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
+      "line": 79,
+      "text": "| FH-S01 observation | \u2705 CI green | headset evidence |",
+      "markers": [
+        "green",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "QUEST",
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
+      "line": 80,
+      "text": "| FH-S02 holster | \u2705 CI green | headset evidence |",
+      "markers": [
+        "green",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "QUEST",
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
+      "line": 81,
+      "text": "| FH-S03 travel | \u2705 CI green | headset evidence |",
+      "markers": [
+        "green",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "QUEST",
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
+      "line": 82,
+      "text": "| FH-M01 scanner result | \u2705 CI green | normal scanner device check |",
+      "markers": [
+        "green",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "QUEST",
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
+      "line": 83,
+      "text": "| FH-S04 repair/scan | \u2705 CI green | headset repair/identity check |",
+      "markers": [
+        "green",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "QUEST",
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
+      "line": 85,
+      "text": "| FH-S06 zipline | \u2705 CI green | headset arrival/release check |",
+      "markers": [
+        "green",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "QUEST",
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
+      "line": 86,
+      "text": "| FH-S07 Home/W000 surfaces | \ud83d\udfe1 code + CI green | Terry author bake + headset check |",
+      "markers": [
+        "green"
+      ],
+      "qualifiers": [
+        "QUEST",
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
+      "line": 94,
+      "text": "### Complete or substantially complete",
+      "markers": [
+        "Complete",
+        "complete"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
+      "line": 121,
+      "text": "- [ ] W001 and Chapter 1 shipped-quality at 72 FPS.",
+      "markers": [
+        "shipped"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
+      "line": 125,
+      "text": "## 6. Historical workstreams \u2014 done and remaining",
+      "markers": [
+        "done"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
+      "line": 129,
+      "text": "**Done:** free-flight/ship handling, space combat v1, ground vehicles v1, garden genetics/plant systems, ecology scheduling/emerge-burrow, furnished interiors and per-room culling.",
+      "markers": [
+        "Done"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
+      "line": 141,
+      "text": "**Done:** WorldSpec/validator/compiler, lot/building grammar, enterable building builder, GamePool core, art registry, reachability gates, first-hour contract/progression core, durable CI verdict, async travel code/CI, synchronized project dashboards, WARN-only UI readability/reach build audit, documentation-level haptic coverage inventory, canonical creature behavior-readability CI/APK gate, plant/vehicle catalog structural CI/APK audit, and `AudioDirector` transition/resource cleanup.",
+      "markers": [
+        "Done"
+      ],
+      "qualifiers": [
+        "PATCHED_AUDIT",
+        "APK",
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
+      "line": 155,
+      "text": "**Done:** Quality Bar P0\u2013P5, terrain/vistas/POIs/routes/dressing, gardens/build sockets, improved ship hull, tutorial design, async-travel design, broad scene/gameplay integration and device fixes.",
+      "markers": [
+        "Done"
+      ],
+      "qualifiers": [
+        "QUEST"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
+      "line": 166,
+      "text": "The ordered queue is complete. Item 8 was a conditional feasibility check and correctly stopped because the current workflow has no proven PlayMode lane.",
+      "markers": [
+        "complete"
+      ],
+      "qualifiers": [
+        "PLAYMODE"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
+      "line": 168,
+      "text": "1. [x] Async travel implementation \u2014 code/CI green; device comparison pending.",
+      "markers": [
+        "green"
+      ],
+      "qualifiers": [
+        "QUEST",
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
+      "line": 170,
+      "text": "3. [x] UI readability/reach audit \u2014 WARN-only build-scene processor + tests green; real-scene/device calibration pending.",
+      "markers": [
+        "green"
+      ],
+      "qualifiers": [
+        "PATCHED_AUDIT",
+        "QUEST"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
+      "line": 172,
+      "text": "5. [x] Creature behavior-count/readability gate \u2014 one canonical catalog, source/factory evidence, CI tests and APK blocker green.",
+      "markers": [
+        "green"
+      ],
+      "qualifiers": [
+        "APK",
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
+      "line": 173,
+      "text": "6. [x] Plant/vehicle catalog breadth audit \u2014 structural CI/APK blockers green; exact surfacing/asset/garage debt remains warning-level content work.",
+      "markers": [
+        "green"
+      ],
+      "qualifiers": [
+        "PATCHED_AUDIT",
+        "APK",
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
+      "line": 174,
+      "text": "7. [x] `AudioDirector` unload/disposal leak hardening \u2014 stopped sources release clips, one transition owner, lifecycle tests green `e8d18d6`, run `29170675599`; device memory soak remains.",
+      "markers": [
+        "green"
+      ],
+      "qualifiers": [
+        "QUEST"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
+      "line": 187,
+      "text": "- [ ] W001/Chapter 1 art and sound at shipped quality.",
+      "markers": [
+        "shipped"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
+      "line": 192,
+      "text": "- [ ] Complete Photon combat sync, room-code UX, avatars/voice when hardware is available.",
+      "markers": [
+        "Complete"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
+      "line": 199,
+      "text": "- [ ] Complete all campaign branches, Transmission fragments, and four endings.",
+      "markers": [
+        "Complete"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
+      "line": 201,
+      "text": "- [ ] Complete multiplayer Arena, Photon online, and Tidefront program.",
+      "markers": [
+        "Complete"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
+      "line": 215,
+      "text": "6. Record CI/test/device evidence honestly: code-green is not device-green.",
+      "markers": [
+        "green"
+      ],
+      "qualifiers": [
+        "QUEST",
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/EXCELLENCE_MAP.md",
+      "line": 9,
+      "text": "1. **STATE** \u2014 what actually exists (\u2b1c nothing \u00b7 \ud83e\uddb4 skeleton \u00b7 \ud83e\uddf1 v1 solid \u00b7 \ud83d\udc8e rich \u00b7 numbers, not vibes).",
+      "markers": [
+        "\ud83d\udc8e"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/EXCELLENCE_MAP.md",
+      "line": 20,
+      "text": "- **The unevenness rule:** if your lane's rows are all \ud83d\udc8e while a neighboring aspect you depend on",
+      "markers": [
+        "\ud83d\udc8e"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/EXCELLENCE_MAP.md",
+      "line": 35,
+      "text": "| Buildings & city | \ud83e\uddf1 v1 (grammar/WFC, kits registering) | Biome\u2192kit/palette mapping; no primitive-box fallbacks in shipped worlds | `BuildingAuditRules`; registry fallback logs |",
+      "markers": [
+        "shipped"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/EXCELLENCE_MAP.md",
+      "line": 37,
+      "text": "| Vertical/caverns/traversal | \ud83d\udc8e (zip/climb/lift/pad/grapple + cave worlds) | Every traversal verb usable; multi-level reachability proven | reachability one-way edges + traversal test suites |",
+      "markers": [
+        "\ud83d\udc8e"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/EXCELLENCE_MAP.md",
+      "line": 39,
+      "text": "| Travel & gates | \ud83d\udc8e code (one `TravelCoordinator`, gated doors, THE ZIPTIDE, pre-flight, async load behind crest; device frame check pending) | One travel path; all targets valid; no frozen-world hitch inside crest | locked contract; `CrashProofingTests`; `FirstHourTravelSignalTests` |",
+      "markers": [
+        "\ud83d\udc8e"
+      ],
+      "qualifiers": [
+        "QUEST"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/EXCELLENCE_MAP.md",
+      "line": 45,
+      "text": "| Creatures (bodies) | \ud83e\uddf1\u2192\ud83d\udc8e in flight (Forge genomes, roster complete) | Hero creatures use their class budget; no primitive stand-ins; tells hold | `ForgeAuditRules` + class budgets; \ud83d\udd73\ufe0f budget-utilization floor |",
+      "markers": [
+        "complete",
+        "\ud83d\udc8e"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/EXCELLENCE_MAP.md",
+      "line": 46,
+      "text": "| Creature behavior | \ud83e\uddf1 structural v1 (7 shipped ids; \u22653 active states each; device readability/polish pending) | Every shipped species has readable active vocabulary, a fair telegraph, a counter and separate non-lethal resolution; actual Quest timing/readability still matters | `CreatureBehaviorReadabilityCatalog` + both readability/audit test suites + `CreatureBehaviorBuildGate`; headset quality check remains |",
+      "markers": [
+        "shipped"
+      ],
+      "qualifiers": [
+        "PATCHED_AUDIT",
+        "QUEST"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/EXCELLENCE_MAP.md",
+      "line": 48,
+      "text": "| Automation/belts | \ud83d\udc8e | Place/ride/persist/feed/clone; deterministic flow; machinery motion follows work | `AutomationAuditRules` + tests |",
+      "markers": [
+        "\ud83d\udc8e"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/EXCELLENCE_MAP.md",
+      "line": 55,
+      "text": "| Locomotion & comfort | \ud83e\uddf1 v1.1 (move/snap/vignette; Cozy/Standard/Bold and console code-green; device pending) | Player-visible presets; every artificial motion reports/suspends correctly and never parents rig | locked contract; traversal tests; `ComfortSettingsTests` + `ComfortCoverageTests` |",
+      "markers": [
+        "green"
+      ],
+      "qualifiers": [
+        "QUEST"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/EXCELLENCE_MAP.md",
+      "line": 56,
+      "text": "| Hands & interaction | \ud83d\udc8e (grab/holster/belt/tools; collider-first) | Everything interactive answers within reach; collider before interactable | `VR_RIG_GOTCHAS.md`; wiring tests |",
+      "markers": [
+        "\ud83d\udc8e"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/EXCELLENCE_MAP.md",
+      "line": 59,
+      "text": "| Player progression/saves | \ud83d\udc8e (atomic profile + backups, overlays, one economy) | Nothing earned/built lost on quit or interrupted save | serializer/round-trip/crash recovery/economy gates |",
+      "markers": [
+        "built",
+        "\ud83d\udc8e"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/EXCELLENCE_MAP.md",
+      "line": 66,
+      "text": "| Ship customization | \ud83d\udc8e (chassis/modules/refit/liveries/decals/hums) | Loadout visibly changes ship and flight | ShipLoadout/Locker tests |",
+      "markers": [
+        "\ud83d\udc8e"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/EXCELLENCE_MAP.md",
+      "line": 67,
+      "text": "| Flight | \ud83d\udc8e v1.3 | Cockpit reference; full arcade vocabulary; never parent rig | flight tests + comfort law |",
+      "markers": [
+        "\ud83d\udc8e"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/EXCELLENCE_MAP.md",
+      "line": 69,
+      "text": "| Vehicles | \ud83e\uddf1 structural v1 (3 biome-surfaced rides; 3/6 archetypes, no garage) | Shares Forge/comfort/mount patterns; every authored ride reaches a world; distinct missing families and a usable garage/catalog surface complete the vocabulary | vehicle tests + **`CatalogBreadthAuditRules`/tests/APK gate**; warnings name Rover/GravSled/Walker and missing garage |",
+      "markers": [
+        "complete"
+      ],
+      "qualifiers": [
+        "APK"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/EXCELLENCE_MAP.md",
+      "line": 75,
+      "text": "| Narrative spine | \ud83d\udc8e | Movie-tight setup/payoff; four distinct endings | canon/continuity tests |",
+      "markers": [
+        "\ud83d\udc8e"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/EXCELLENCE_MAP.md",
+      "line": 76,
+      "text": "| Character voices | \ud83d\udc8e (RILL/Cal/Mara/Sable/Nine) | No faction mouthpieces; identifiable without names | voice guide + line tests |",
+      "markers": [
+        "\ud83d\udc8e"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/EXCELLENCE_MAP.md",
+      "line": 77,
+      "text": "| Story delivery in-game | \ud83e\uddb4 (built-world beats) | Every shipped world carries jobs/lines/choices; endings wired | story-beat coverage baseline; extend with per-world line query |",
+      "markers": [
+        "built",
+        "shipped"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/EXCELLENCE_MAP.md",
+      "line": 85,
+      "text": "| Tidefront conquest | \ud83d\udc8e | Deterministic complete war, missions affect outcomes | sim/catalog/save tests |",
+      "markers": [
+        "complete",
+        "\ud83d\udc8e"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/EXCELLENCE_MAP.md",
+      "line": 87,
+      "text": "| Economy | \ud83d\udc8e | Every payout through RewardRouter | `EconomyAuditRules` |",
+      "markers": [
+        "\ud83d\udc8e"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/EXCELLENCE_MAP.md",
+      "line": 94,
+      "text": "| Art pipeline (Forge) | \ud83d\udc8e | All shipped look traced to Forge/registry; hero photo loop | Forge/audit/library/wiring tests |",
+      "markers": [
+        "shipped",
+        "\ud83d\udc8e"
+      ],
+      "qualifiers": [
+        "PATCHED_AUDIT",
+        "VISUAL"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/EXCELLENCE_MAP.md",
+      "line": 95,
+      "text": "| Wiring integrity | \ud83d\udc8e | Producer + consumer + verifier + map row | `WiringValidatorTests` |",
+      "markers": [
+        "\ud83d\udc8e"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/EXCELLENCE_MAP.md",
+      "line": 96,
+      "text": "| Save integrity | \ud83d\udc8e | Overlay idiom; neutral old-save defaults | per-system round trips |",
+      "markers": [
+        "\ud83d\udc8e"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/EXCELLENCE_MAP.md",
+      "line": 97,
+      "text": "| CI & verification | \ud83d\udc8e | Green per push; red stops code; 3-red breaker | operating laws + durable verdict |",
+      "markers": [
+        "Green",
+        "\ud83d\udc8e"
+      ],
+      "qualifiers": [
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/EXCELLENCE_MAP.md",
+      "line": 101,
+      "text": "| Onboarding/tutorial | \ud83e\uddf1 in flight (most adapters + W000 surfaces code-green; A01/S05/S08 remain; **review 2026-07-11: FH-GAP-1..4 added to `first_hour/ADAPTER_ENVELOPES.md` \u2014 veteran skip \u00b7 runbook mirroring \u00b7 gate promotion \u00b7 map linkage**) | Cold player learns W000\u2192W001 through moments; hesitation-only hints; veterans never nagged | first-hour contracts/tests + `first_hour_gate.py` in CI (report-only \u2192 BLOCKING at S08 close) |",
+      "markers": [
+        "green"
+      ],
+      "qualifiers": [
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/EXCELLENCE_MAP.md",
+      "line": 103,
+      "text": "| Haptics | \ud83e\uddb4 inventory complete (scanner explicit; inspected first-hour owners mapped) | Every hand/body verb has a distinct, bounded, correct-hand signature with no duplicate XRI pulse | **`docs/design/HAPTIC_COVERAGE.md` closes the doc-level gap**; runtime/source/device rows remain; no registry exists |",
+      "markers": [
+        "complete"
+      ],
+      "qualifiers": [
+        "QUEST"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/EXCELLENCE_MAP.md",
+      "line": 121,
+      "text": "2. ~~Skyscape signature rubric~~ \u2014 CLOSED 2026-07-10.",
+      "markers": [
+        "CLOSED"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/EXCELLENCE_MAP.md",
+      "line": 122,
+      "text": "3. ~~Story-beat coverage baseline~~ \u2014 CLOSED 2026-07-10.",
+      "markers": [
+        "CLOSED"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/EXCELLENCE_MAP.md",
+      "line": 123,
+      "text": "4. ~~Interior audit~~ \u2014 CLOSED 2026-07-10.",
+      "markers": [
+        "CLOSED"
+      ],
+      "qualifiers": [
+        "PATCHED_AUDIT"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/EXCELLENCE_MAP.md",
+      "line": 124,
+      "text": "5. ~~Board-staleness flag~~ \u2014 CLOSED 2026-07-10.",
+      "markers": [
+        "CLOSED"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/EXCELLENCE_MAP.md",
+      "line": 125,
+      "text": "6. ~~UI readability/reach audit~~ \u2014 **CLOSED at WARN-only maturity 2026-07-11** (`UiReadabilityAuditRules` + tests/build processor); generated-scene/device calibration precedes any blocker promotion.",
+      "markers": [
+        "CLOSED"
+      ],
+      "qualifiers": [
+        "PATCHED_AUDIT",
+        "QUEST"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/EXCELLENCE_MAP.md",
+      "line": 126,
+      "text": "7. ~~Haptic coverage checklist~~ \u2014 **CLOSED at documentation level 2026-07-11** (`design/HAPTIC_COVERAGE.md`); runtime owner rows remain individually open.",
+      "markers": [
+        "CLOSED"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/EXCELLENCE_MAP.md",
+      "line": 127,
+      "text": "8. ~~Accessibility design doc~~ \u2014 CLOSED 2026-07-10; non-preset controls remain implementation rows.",
+      "markers": [
+        "CLOSED"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/EXCELLENCE_MAP.md",
+      "line": 128,
+      "text": "9. ~~Creature behavior-count/readability check~~ \u2014 **CLOSED at structural code/CI maturity 2026-07-11** (one canonical catalog, source/factory evidence, EditMode suites and APK pre-build blocker; headset readability remains a quality/device row).",
+      "markers": [
+        "CLOSED"
+      ],
+      "qualifiers": [
+        "EDITMODE",
+        "APK",
+        "QUEST",
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/EXCELLENCE_MAP.md",
+      "line": 129,
+      "text": "10. ~~Plant/vehicle catalog breadth audit~~ \u2014 **CLOSED at structural audit maturity 2026-07-11** (`CatalogBreadthAuditRules` + tests/APK gate); actual seed surfacing, starter asset reconciliation, three missing ride families and garage remain content rows.",
+      "markers": [
+        "CLOSED"
+      ],
+      "qualifiers": [
+        "PATCHED_AUDIT",
+        "APK"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/MASTER_CHECKLIST.md",
+      "line": 7,
+      "text": "> That file carries the live done/next/blocked order and must be updated after meaningful work. This",
+      "markers": [
+        "done"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/MASTER_CHECKLIST.md",
+      "line": 11,
+      "text": "- **Status:** \u2705 complete/verified \u00b7 \ud83d\udfe2 code/CI built, device or bake evidence pending \u00b7 \ud83d\udfe1 actively incomplete \u00b7 \ud83d\udd32 planned \u00b7 \ud83d\udd2d long-term.",
+      "markers": [
+        "built",
+        "complete",
+        "verified",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "QUEST",
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/MASTER_CHECKLIST.md",
+      "line": 14,
+      "text": "- **Latest gameplay-code proof at reconciliation:** async travel tested green at `c7b5d52`, CI run `29167548682`.",
+      "markers": [
+        "green"
+      ],
+      "qualifiers": [
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/MASTER_CHECKLIST.md",
+      "line": 30,
+      "text": "## \u2705 FOUNDATION BUILT",
+      "markers": [
+        "BUILT",
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/MASTER_CHECKLIST.md",
+      "line": 34,
+      "text": "- \u2705 CI compiles and runs Unity EditMode tests on pushes; durable [`CI_VERDICT.md`](CI_VERDICT.md) records the tested SHA.",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [
+        "EDITMODE",
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/MASTER_CHECKLIST.md",
+      "line": 35,
+      "text": "- \u2705 Cloud APK pipeline, build-time authors/patchers, world audits, performance budgets, wiring guards, and circuit breaker.",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [
+        "APK"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/MASTER_CHECKLIST.md",
+      "line": 36,
+      "text": "- \u2705 Current execution checklist, sprint boards, cross-track handoffs, and Terry runbook preserve continuity across context/model resets.",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/MASTER_CHECKLIST.md",
+      "line": 37,
+      "text": "- \u2705 Atomic profile writes with backup recovery; travel-target pre-flight; runtime frame/memory health logs and cleanup discipline.",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/MASTER_CHECKLIST.md",
+      "line": 38,
+      "text": "- \u2705 No direct scene/prefab YAML workflow: deterministic patchers/authors generate assets and scenes.",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/MASTER_CHECKLIST.md",
+      "line": 42,
+      "text": "- \u2705 `PlayerProfile`, serializer, `SaveSystem`, autosave, backup recovery, and explicit New/Continue boot behavior.",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/MASTER_CHECKLIST.md",
+      "line": 43,
+      "text": "- \u2705 Definition registries/factories for resources, tools, machines, plants, creatures, recipes, balance, weapons, ships, and art modules.",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/MASTER_CHECKLIST.md",
+      "line": 44,
+      "text": "- \u2705 One-economy ledger + `RewardRouter`; job, PvP, conquest, salvage, belt, and progression rewards route through common chokepoints.",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/MASTER_CHECKLIST.md",
+      "line": 45,
+      "text": "- \u2705 Offline/world-entry economy resolution, mining, gardens, build sockets, factories, physical belts, blueprint/stamp, conductor riding, and persisted overlays.",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/MASTER_CHECKLIST.md",
+      "line": 46,
+      "text": "- \u2705 WorldSpec/compiler/validator, World Factory, deterministic terrain/POI/scatter/building/interior generation, and audit gates.",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [
+        "PATCHED_AUDIT"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/MASTER_CHECKLIST.md",
+      "line": 53,
+      "text": "- \ud83d\udfe2 Cold-boot Home Hub with New Game, valid-save Continue, and Settings; code/CI green, device evidence pending.",
+      "markers": [
+        "green"
+      ],
+      "qualifiers": [
+        "QUEST",
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/MASTER_CHECKLIST.md",
+      "line": 57,
+      "text": "- \u2705 One travel owner: `TravelCoordinator`; `_Boot` remains persistent and never a destination.",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/MASTER_CHECKLIST.md",
+      "line": 58,
+      "text": "- \u2705 Missing-scene pre-flight aborts before save/rig side effects.",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/MASTER_CHECKLIST.md",
+      "line": 59,
+      "text": "- \u2705 Destination loading is asynchronous behind THE ZIPTIDE crest, activation held until ready, with a 20-second never-wedge escape; code/CI green, device frame-pacing comparison pending.",
+      "markers": [
+        "green",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "QUEST",
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/MASTER_CHECKLIST.md",
+      "line": 62,
+      "text": "- \ud83d\udd32 Ship still needs to become the primary world-select/travel hub across shipped worlds.",
+      "markers": [
+        "shipped"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/MASTER_CHECKLIST.md",
+      "line": 66,
+      "text": "- \u2705 Data-driven terrain, vistas, POIs, routes, dressing, building grammar, furnished/portal-culled interiors, biome hazards, story packs, and gates.",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/MASTER_CHECKLIST.md",
+      "line": 68,
+      "text": "- \u2705 Story Bible and Transmission canon locked; full 12-chapter/80-world seed catalog and four endings designed.",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/MASTER_CHECKLIST.md",
+      "line": 74,
+      "text": "- \u2705 SkyVista system and canonical sky progression.",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/MASTER_CHECKLIST.md",
+      "line": 75,
+      "text": "- \u2705 Asset Forge pipeline: recipes \u2192 meshes/textures/bakes \u2192 CI turnarounds \u2192 device-ready assignments, with budgets and wiring gates.",
+      "markers": [
+        "device-ready",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "QUEST",
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/MASTER_CHECKLIST.md",
+      "line": 76,
+      "text": "- \u2705 FORGE II arsenal, avatar pieces, building kit, flora, and six articulated/textured/breathing creature bodies.",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/MASTER_CHECKLIST.md",
+      "line": 83,
+      "text": "- \u2705 PvP pure rules, N-combatant/mode cores, smart bot brain, five data-driven arenas, Gun Game/KotH/Fragment Rush/Horde, arsenal/melee/augments, rewards/unlocks/daily seed.",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/MASTER_CHECKLIST.md",
+      "line": 85,
+      "text": "- \u2705 Tidefront conquest simulation, holo table, AI, builds/attacks, mission modifiers, ground/space defense, saves, fog, hotseat.",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/MASTER_CHECKLIST.md",
+      "line": 94,
+      "text": "- \u2705 Async travel code/CI closed; device comparison queued.",
+      "markers": [
+        "closed",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "QUEST",
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/MASTER_CHECKLIST.md",
+      "line": 95,
+      "text": "- \u2705 Reconcile current checklist, sprint, Excellence Map, and this Master Checklist.",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/MASTER_CHECKLIST.md",
+      "line": 122,
+      "text": "- \ud83d\udd32 Make W001 and the Chapter 1 band read as a cohesive shipped game: art, water, lighting, VFX, signage, creature identity, story delivery and audio.",
+      "markers": [
+        "shipped"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/MASTER_CHECKLIST.md",
+      "line": 125,
+      "text": "- \ud83d\udd32 Complete Photon arena combat/score synchronization and two-headset room-code play.",
+      "markers": [
+        "Complete"
+      ],
+      "qualifiers": [
+        "QUEST"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/MASTER_CHECKLIST.md",
+      "line": 134,
+      "text": "- \ud83d\udd32 Complete multiplayer polish, avatars/voice, additional arena variety and Tidefront live synchronization.",
+      "markers": [
+        "Complete"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/MASTER_CHECKLIST.md",
+      "line": 136,
+      "text": "## \ud83d\udd2d LONG TERM \u2014 COMPLETE AND SHIP",
+      "markers": [
+        "COMPLETE"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/MASTER_CHECKLIST.md",
+      "line": 139,
+      "text": "- \ud83d\udd2d Place all Transmission fragments, branches and four endings; complete full VO/audio/presentation.",
+      "markers": [
+        "complete"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/MASTER_CHECKLIST.md",
+      "line": 141,
+      "text": "- \ud83d\udd2d Complete Arena, Photon online and Tidefront programs.",
+      "markers": [
+        "Complete"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 18,
+      "text": "| FH-S01 | **First-hour observation adapter** \u2014 read-only LOOK/MOVE/W001-arrival observation; no rig mutation, profile writes, travel or presentation ownership. Log: `docs/GPT_ADDITIONS/2026-07-11_GPT56_FIRST_HOUR/FHS01_IMPLEMENTATION_LOG.md`. | \u2705 UNITY CI GREEN run `29160235239`; device evidence pending; FILE CLAIM RELEASED |",
+      "markers": [
+        "GREEN",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "QUEST",
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 19,
+      "text": "| FH-S02 | **First-hour holster adapter** \u2014 existing accepted holster selection to semantic completion and canonical flag; no socket-rule, travel, input or autosave ownership. Log: `docs/GPT_ADDITIONS/2026-07-11_GPT56_FIRST_HOUR/FHS02_IMPLEMENTATION_LOG.md`. | \u2705 UNITY CI GREEN run `29160898205`; device evidence pending; FILE CLAIM RELEASED |",
+      "markers": [
+        "GREEN",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "QUEST",
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 20,
+      "text": "| FH-S03 | **First-hour travel adapter** \u2014 existing canonical `TRAVEL_OK` after XRI readiness + inventory restoration to first/return signals. Log: `docs/GPT_ADDITIONS/2026-07-11_GPT56_FIRST_HOUR/FHS03_IMPLEMENTATION_LOG.md`. | \u2705 UNITY CI GREEN run `29161731580`; device evidence pending; FILE CLAIM RELEASED |",
+      "markers": [
+        "GREEN",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "QUEST",
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 21,
+      "text": "| FH-M01 | **Wrist-scanner result adapter** \u2014 immutable exact `IScannable` snapshot once per real pulse, including empty; no scanner feel/filter/presentation changes. Log: `docs/GPT_ADDITIONS/2026-07-11_GPT56_FIRST_HOUR/FHM01_IMPLEMENTATION_LOG.md`. | \u2705 UNITY CI GREEN run `29162763650`; FILE CLAIM RELEASED |",
+      "markers": [
+        "GREEN",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 22,
+      "text": "| FH-S04 | **First-hour repair/scan adapter** \u2014 existing repair stages + exact scannable identity; no second scanner or repair state. Log: `docs/GPT_ADDITIONS/2026-07-11_GPT56_FIRST_HOUR/FHS04_IMPLEMENTATION_LOG.md`. | \u2705 UNITY CI GREEN run `29163421229`; device evidence pending; FILE CLAIM RELEASED |",
+      "markers": [
+        "GREEN",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "QUEST",
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 24,
+      "text": "| FH-S06 | **First-hour zipline adapter** \u2014 exact designated-line arrival; release/wrong line do not count; existing ride owner unchanged. Log: `docs/GPT_ADDITIONS/2026-07-11_GPT56_FIRST_HOUR/FHS06_IMPLEMENTATION_LOG.md`. | \u2705 UNITY CI GREEN run `29164079292`; device evidence pending; FILE CLAIM RELEASED |",
+      "markers": [
+        "GREEN",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "QUEST",
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 25,
+      "text": "| FH-S07 | **Home/W000 surfaces** \u2014 New/Continue/Settings, device comfort presets, W000 console/bunk/first helm; existing save/travel/locomotion/PUNCH IT owners preserved. Log: `docs/GPT_ADDITIONS/2026-07-11_GPT56_FIRST_HOUR/FHS07_IMPLEMENTATION_LOG.md`. | \ud83d\udfe1 CODE + UNITY CI GREEN run `29165306485`; Terry author bake + headset evidence pending; FILE CLAIM RELEASED |",
+      "markers": [
+        "GREEN"
+      ],
+      "qualifiers": [
+        "QUEST",
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 28,
+      "text": "| ASYNC | **Async destination loading behind THE ZIPTIDE crest** \u2014 one TravelCoordinator owner, 0.9 activation hold, 20s timeout escape. Log: `docs/GPT_ADDITIONS/2026-07-11_GPT56_ASYNC_TRAVEL/ASYNC_TRAVEL_IMPLEMENTATION_LOG.md`. | \u2705 UNITY CI GREEN run `29167548682`; device frame-pacing comparison pending; FILE CLAIM RELEASED |",
+      "markers": [
+        "GREEN",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "QUEST",
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 29,
+      "text": "| P0.6 | **Controller-free DevMenu access** \u2014 Y+B removed; F2 in Editor, headset-native two-controller forehead gesture in development builds, ADB optional backup, zero gameplay buttons reserved. Log: `docs/GPT_ADDITIONS/2026-07-11_GPT56_DEV_MENU/DEV_MENU_ACCESS_LOG.md`. | \u2705 UNITY CI GREEN run `29154553182`; headset feel check pending; FILE CLAIM RELEASED |",
+      "markers": [
+        "GREEN",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "QUEST",
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 30,
+      "text": "| FH-01D | **Opus lane launch kit** \u2014 log: `docs/GPT_ADDITIONS/2026-07-10_GPT56_FIRST_HOUR/FH01D_IMPLEMENTATION_LOG.md`. Four validated copy-paste takeover prompts assign all 12 FH-01C envelopes exactly once, name first claims/blockers, and enforce ownership/stop conditions. No runtime changes. | \u2705 IMPLEMENTED; launch-kit contract reports green on later runs; FILE CLAIM RELEASED |",
+      "markers": [
+        "green",
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 31,
+      "text": "| FH-01C | **Owner-specific first-hour adapter envelopes** \u2014 log: `docs/GPT_ADDITIONS/2026-07-10_GPT56_FIRST_HOUR/FH01C_IMPLEMENTATION_LOG.md`. Twelve machine-readable lane envelopes cover 18 non-direct beats and all 15 teaching lines. | \u2705 IMPLEMENTED; contract reports green; FILE CLAIM RELEASED |",
+      "markers": [
+        "green",
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 32,
+      "text": "| FH-01B | **First-hour binding inventory** \u2014 evidence-map all 22 completion signals + all teaching lines to existing files/tokens. | \u2705 IMPLEMENTED; contract reports green; FILE CLAIM RELEASED |",
+      "markers": [
+        "green",
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 33,
+      "text": "| FH-01A | **First-hour beat contract** \u2014 `docs/first_hour/*` + validator/tests; 22 beats, 15 verbs exactly once. | \u2705 IMPLEMENTED; contract reports green; FILE CLAIM RELEASED |",
+      "markers": [
+        "green",
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 34,
+      "text": "| P0.1 | **DevMenu click-once fix** \u2014 UI-session rebind on Show + `MENU_CLICK`/`MENU_UI` diags | \u2705 `e17eff9` CI-green |",
+      "markers": [
+        "green",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 35,
+      "text": "| P0.2 | **DevMenu pager** \u2014 6 worlds/page + PREV/NEXT | \u2705 with P0.1 |",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 36,
+      "text": "| P0.3 | **RILL subtitle readable** \u2014 `SubtitleText.Wrap` (5 tests), smaller, lower, fade-in | \u2705 `c186afa` |",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 37,
+      "text": "| P0.4 | **Release feel** \u2014 `ReleaseFeel` throw rescue + pulse + FIRST_RELEASE RILL hint | \u2705 `749f370` |",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 38,
+      "text": "| P0.5 | **Pistol visible** \u2014 joins starter spawns (3 guns) | \u2705 with P0.4 |",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 39,
+      "text": "| P1a | **Terrain, not slabs** \u2014 heightfield 240\u2013320m, 5 biome presets, cliff bowl, slope clamp, pads/corridors graded in | \u2705 `27f3ef9` CI-green |",
+      "markers": [
+        "green",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 40,
+      "text": "| P1b | **Arrival vista** \u2014 5 hero-landmark kits + midground + spawn faces it + fog auto-thin | \u2705 with P1a |",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 41,
+      "text": "| P1f | **QUALITY GATES** \u2014 WORLD_TOO_SMALL / TERRAIN_MISSING / NO_VISTA_LANDMARK + POI_COUNT_LOW / VERB_VARIETY_LOW / STORY_ANCHOR_MISSING / EST_PLAY_MINUTES_LOW \u2014 all build-failing | \u2705 |",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 42,
+      "text": "| P1c | **POI system** \u2014 PoiDef + 7 pocket builders + poi_ markers + standard 8-POI ring + pure PoiQuality | \u2705 `4c04320` |",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 43,
+      "text": "| P1d | **Breadcrumb route** \u2014 cairns every 20m along spawn\u2192POIs route | \u2705 `45f5bf5` |",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 44,
+      "text": "| P1e | **Dressing/scatter** \u2014 biome-keyed prop clusters, masked, static-batched | \u2705 `45f5bf5` |",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 45,
+      "text": "| P1g | **Re-recipe W002\u2013W012** \u2014 contracts route through POIs; W000 stays interior | \u2705 |",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 46,
+      "text": "| P3 | **Garden** + **BuildSocket** pay-to-build extractors persisted in WorldState | \u2705 `a17d44a` CI-green |",
+      "markers": [
+        "green",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 47,
+      "text": "| P4a | **Interim ship hull** \u2014 19-part silhouette replaces 4-cube hull | \u2705 `954b969` CI-green |",
+      "markers": [
+        "green",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 48,
+      "text": "| P5 | **WORLD_RECIPE handbook** \u2014 worked W005 example + spec-first chapter | \u2705 |",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 49,
+      "text": "| H3 | **TerrainField** fBM+warp+climate + builder swap + slope gate | \u2705 |",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 50,
+      "text": "| H2 | **RoomPartitioner** BSP + access corridors | \u2705 |",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 51,
+      "text": "| H5 | **ScatterField** Poisson + masks + dressing swap | \u2705 |",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 52,
+      "text": "| Q2d | **Building proof** W002 GalleryB wears real buildings | \u2705 APK green; Terry visual gate open |",
+      "markers": [
+        "green",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "APK",
+        "VISUAL"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 53,
+      "text": "| SPWN | **Spawn wave fixes** \u2014 correct marker + torso-height overlap checks | \u2705 |",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 54,
+      "text": "| P4b | **Flight/SpaceLane program** \u2014 core, translator, controls, combat and mission integration | \u2705 CODE SHIPPED; Terry first bake/device pass open |",
+      "markers": [
+        "SHIPPED",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "QUEST"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 55,
+      "text": "| ML | **Meta-loop architecture** \u2014 registries, ledger, RewardRouter, production graph, economy reports/gates | \u2705 |",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 56,
+      "text": "| A1 | **Succession gap closures** \u2014 git attributes, deferrals, MCP runbook | \u2705 |",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 57,
+      "text": "| \u2014 | \u2014 **STORY BIBLE LOCK \u2014 CLOSED 2026-07-06.** \u2014 | \u2705 |",
+      "markers": [
+        "CLOSED",
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 58,
+      "text": "| SBL1 | Canon lock: `STORY_BIBLE.md` + `THE_TRANSMISSION.md` | \u2705 `9d59f84` |",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 59,
+      "text": "| SBL2 | Continuity fixes | \u2705 `169d36c` |",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 60,
+      "text": "| SBL3 | Ch.8\u201312 endgame rewrite | \u2705 `cfe1564` |",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 61,
+      "text": "| SBL4 | DLC consistency + continuity audit | \u2705 `de717ca` |",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [
+        "PATCHED_AUDIT"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 62,
+      "text": "| SBL5 | M5 prerequisite and close | \u2705 `de717ca` |",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 63,
+      "text": "| \u2014 | \u2014 **THE SOUL PASS \u2014 CLOSED 2026-07-06.** \u2014 | \u2705 |",
+      "markers": [
+        "CLOSED",
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 64,
+      "text": "| SOUL1 | Cal/RILL relationship and ambient-line voice guide | \u2705 `8bb00a2` |",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 65,
+      "text": "| SOUL2 | Named-secondary-voices / no-faction-mouthpieces laws | \u2705 `8bb00a2` |",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 66,
+      "text": "| SOUL3 | Mara quoted arc | \u2705 `7bc23e3` + `fc07d40` |",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 67,
+      "text": "| SOUL4 | Sable quoted arc | \u2705 `7bc23e3` + `fc07d40` |",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 68,
+      "text": "| SOUL5 | Aegis-Nine/Nine arc | \u2705 `7bc23e3` + `fc07d40` |",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 69,
+      "text": "| SOUL6 | Close | \u2705 |",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 70,
+      "text": "| \u2014 | \u2014 **DEPTH PASS 2 \u2014 CLOSED 2026-07-06.** \u2014 | \u2705 |",
+      "markers": [
+        "CLOSED",
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 71,
+      "text": "| D2-1 | `RillLine.speaker` + subtitle formatting/tests | \u2705 `ea00f2c` |",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 72,
+      "text": "| D2-2 | Cal authored lines | \u2705 `ea00f2c` |",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 73,
+      "text": "| D2-3 | Voice pipeline guide | \u2705 `ef1b27c` |",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 74,
+      "text": "| D2-4 | Sky mapping + W057 staging | \u2705 `f4e57cb` |",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 75,
+      "text": "| D2-5 | W007 sky retune; Terry reseed queued | \u2705 `f4e57cb` |",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 76,
+      "text": "| D2-6 | Close | \u2705 |",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 81,
+      "text": "- **No active GPT protected-file claim at this reconciliation commit.** Async travel is closed and its claim released.",
+      "markers": [
+        "closed"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 83,
+      "text": "- **First hour:** X01/X02, S01/S02/S03, M01, S04, S06 and S07 are code/CI green. S07 awaits Terry bake/device. Picasso FH-A01 is next on the art lane; it unblocks S05. S08 is last and waits for all dependency/device evidence.",
+      "markers": [
+        "green"
+      ],
+      "qualifiers": [
+        "QUEST",
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 84,
+      "text": "- **General latest completed item:** async travel is code/CI green (`c7b5d52`, run `29167548682`); Terry compares five travels and checks `TRAVEL_TIMEOUT`, restoration, and frame pacing.",
+      "markers": [
+        "green"
+      ],
+      "qualifiers": [
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT.md",
+      "line": 90,
+      "text": "CI green per push; SHIPS.md guardrails are law (no rig parenting, no TravelCoordinator bypass, comfort",
+      "markers": [
+        "green"
+      ],
+      "qualifiers": [
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_ARCHITECTURE.md",
+      "line": 5,
+      "text": "> small CI-green commits, update THIS file in the same commit as every push, HANDOFF entry per session.",
+      "markers": [
+        "green"
+      ],
+      "qualifiers": [
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_ARCHITECTURE.md",
+      "line": 18,
+      "text": "| FH-X02 | **First-hour progression core** \u2014 pure C# ordered-beat evaluator; current beat, signal acceptance, granted flags, hint latch and reload resume. Log: `docs/GPT_ADDITIONS/2026-07-11_GPT56_FIRST_HOUR/FHX02_IMPLEMENTATION_LOG.md`. | \u2705 GREEN run `29157947325`; FILE CLAIM RELEASED |",
+      "markers": [
+        "GREEN",
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT_ARCHITECTURE.md",
+      "line": 19,
+      "text": "| FH-X01 | **First-hour contract asset** \u2014 deterministic Editor import from approved JSON into one Resources asset; runtime never parses JSON; WARN-only missing/drift/invalid audit. Log: `docs/GPT_ADDITIONS/2026-07-11_GPT56_FIRST_HOUR/FHX01_IMPLEMENTATION_LOG.md`. | \u2705 GREEN run `29155472303`; FILE CLAIM RELEASED |",
+      "markers": [
+        "GREEN",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "PATCHED_AUDIT"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_ARCHITECTURE.md",
+      "line": 20,
+      "text": "| CI-V1 | **Durable branch CI verdict** \u2014 log: `docs/GPT_ADDITIONS/2026-07-11_GPT56_CI_VERDICT/CI_VERDICT_IMPLEMENTATION_LOG.md`. Final isolated CI job writes tested SHA + GREEN/RED to `docs/CI_VERDICT.md`; stale-head/race safe, no Unity job changes, no recursion. | \u2705 PROVEN \u2014 caught a real red, then recorded GREEN run `29151953887`; FILE CLAIM RELEASED |",
+      "markers": [
+        "GREEN",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_ARCHITECTURE.md",
+      "line": 21,
+      "text": "| FH-02A | **Continuity manifest + report-only validator** \u2014 log: `docs/GPT_ADDITIONS/2026-07-10_GPT56_FIRST_HOUR/FH02A_IMPLEMENTATION_LOG.md`. `docs/continuity/*` + `tools/continuity_gate.py` + stdlib tests + isolated non-blocking report job shipped. No Unity/runtime behavior and no blocker promotion. | \ud83d\udfe1 IMPLEMENTED \u2014 first real Actions artifact pending; FILE CLAIM RELEASED |",
+      "markers": [
+        "shipped"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT_ARCHITECTURE.md",
+      "line": 22,
+      "text": "| Q0 | Program docs: ARCHITECTURE_V2 design + this board + HANDOFF (ppp) + PRIORITIES rewrite + tools/*.ps1 ASCII fix (Terry's PS 5.1 parse error) | \u2705 `5b5b1b6` |",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT_ARCHITECTURE.md",
+      "line": 23,
+      "text": "| Q1a | **`WorldSpec`** SHIPPED: one serializable class = the whole world (identity/seed \u00b7 sky/fog/planet \u00b7 experience terrain+vista \u00b7 POIs \u00b7 palette/districts/connections/canals/shipyard \u00b7 drones/creatures/hazards \u00b7 collectibles/machines/mines/gardens/sockets \u00b7 flags \u00b7 advisory skyVistaId). REUSES the layout/pack [Serializable] classes verbatim \u2014 zero mapping drift; JSON round-trip via JsonUtility (enums as ints, tables in WORLD_RECIPE) | \u2705 this commit |",
+      "markers": [
+        "SHIPPED",
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT_ARCHITECTURE.md",
+      "line": 24,
+      "text": "| Q1b | **`WorldSpecValidator`** SHIPPED (pure): stable CODE-token errors \u2014 identity/seed, POI count/verbs/spacing/bounds/dup + StoryAnchor-when-flags predicate, district/connection/spawn refs, registry checks (creatures/plants/items; null set = permissive), mine/socket economy sanity. **14 tests** | \u2705 this commit |",
+      "markers": [
+        "SHIPPED",
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT_ARCHITECTURE.md",
+      "line": 25,
+      "text": "| Q1c | **`WorldSpecCompiler`** SHIPPED (Editor): `CompileAll()` reads `docs/worldspecs/*.spec.json` \u2192 validate vs REAL registries \u2192 fan out to `<scene>_Layout.asset` + `<scene>_WorldPack.asset` (create-or-update, WorldStubGenerator enriches at build) \u00b7 `ExportAllFromMenu()` reverse-generates a spec per existing world \u00b7 `SPEC_DRIFT` WARN on round-trip divergence \u00b7 BuildAndroid hook (announced append) | \u2705 this commit |",
+      "markers": [
+        "SHIPPED",
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT_ARCHITECTURE.md",
+      "line": 27,
+      "text": "| Q2a | **`LotPartitioner`** SHIPPED (pure, seeded xorshift): recursive subdivision of district rects \u2192 lots + right-of-ways (perimeter ring + internal avenues); base cases min-area (child-length bound `req`), MinSide, aspect law (violations only when no legal cut existed \u2014 provable), **frontage GUARANTEE** (a cut that would landlock a child becomes a street both children front). **11 tests** incl. 25-seed frontage sweep + area conservation | \u2705 this commit |",
+      "markers": [
+        "SHIPPED",
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT_ARCHITECTURE.md",
+      "line": 28,
+      "text": "| Q2b/H1 | **`BuildingGrammar` SHIPPED** (pure, seeded): WFC-lite \u2014 the DOOR collapses first onto a street-fronted `Lot.Front*` edge (LotPartitioner guarantees one), windows/solids fill seeded, contradiction-free socket set = no backtracking ever. `BuildingStyleDefinition` (SO + `ToData()` mirror, `styleId`/`surfaceFamily` = Art Registry keys) + `BuildingStyleAuthor` (create-only: salvage_row + toxic_tenement \u2192 Resources/BuildingStyles, build-hooked). **11 tests** incl. end-to-end partition\u2192plan",
+      "markers": [
+        "SHIPPED",
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT_ARCHITECTURE.md",
+      "line": 29,
+      "text": "| Q2c/H1 | **`BuildingBuilder` SHIPPED** (Editor): plans \u2192 multi-storey shells w/ ENTERABLE doorways (+`__DOOR` audit markers); modules resolve via **`ArtModuleRegistry`** (`buildingModule:<styleId>/<Module>`, primitive fallback \u2014 Picasso's seam). DORMANT wire in CityBuilder's district pass (announced): opts in via new `DistrictDef.buildingStyleId` \u2014 zero change to existing worlds until a layout/spec sets it. Gates live: `BUILDING_DOOR_BLOCKED` (raycast from markers) + `BUILDING_OVER_BUDGET` (re",
+      "markers": [
+        "SHIPPED",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "PATCHED_AUDIT"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_ARCHITECTURE.md",
+      "line": 34,
+      "text": "| Q4a | **`GamePool` TOOL SHIPPED** (Opus 4.8): pure `Core/Runtime/PoolCore.cs` (generic free-list, Created/Reused/Live/Free bookkeeping, retained cap, get/release hooks) + **10 EditMode tests** + `Core/Runtime/GamePool.cs` (GameObject wrapper: keyed pools, park-under-inactive-root, per-scene reset, `Prewarm`, `LogStats`). Adds files, changes NO existing behaviour. **Scope split (deliberate):** the ~8 live call-site swaps (PvpBolt/darts/arcs/rings/nets) are device-sensitive combat/VR files in th",
+      "markers": [
+        "SHIPPED",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "EDITMODE",
+        "QUEST"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_ARCHITECTURE.md",
+      "line": 36,
+      "text": "| H4 | **Art Registry** SHIPPED: `Editor/Art/ArtModuleRegistry.cs` (resolve-through, primitive fallback) + **`docs/design/ART_REGISTRY.md`** (id families + laws + deferral triggers). Picasso fulfills `buildingModule:*` ids (envelope in qqq) | \u2705 `cd79dac`+ |",
+      "markers": [
+        "SHIPPED",
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT_ARCHITECTURE.md",
+      "line": 37,
+      "text": "| H6 | **TAKEOVER KIT SHIPPED**: `docs/OPERATOR_START_HERE.md` (model-agnostic manual: blackboard, envelopes, circuit breaker, Opus calibration) + CLAUDE.md pointer swap + FABLE5_START_HERE legacy banner + `design/SPACEFLIGHT_PHYSICS.md` (P4b rails) + PRIORITIES rev 4 + HANDOFF (qqq) briefings | \u2705 this commit |",
+      "markers": [
+        "SHIPPED",
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT_ARCHITECTURE.md",
+      "line": 38,
+      "text": "| Q5 | LFS-ready commented `.gitattributes` stanzas (only remaining Q5 sliver \u2014 laws landed via OPERATOR_START_HERE) | \u2705 by T-Dog (HANDOFF rrr): pseudo-binary guards + binaries + LFS stanzas; runbook \u00a72l driver setup |",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT_ARCHITECTURE.md",
+      "line": 39,
+      "text": "| \u2014 | Close per phase: CI green \u2192 APK dispatch \u2192 audit green \u2192 runbook rows \u2192 HANDOFF | recurring |",
+      "markers": [
+        "green"
+      ],
+      "qualifiers": [
+        "PATCHED_AUDIT",
+        "APK",
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_ARCHITECTURE.md",
+      "line": 42,
+      "text": "- **FH-X02 (2026-07-11): COMPLETE, GREEN, FILE CLAIM RELEASED** \u2014 exact tested SHA `d61a5277a75f`, run `29157947325`. Pure ordered evaluator and generated-contract tests shipped. Story/Ship first-hour runtime work is unblocked.",
+      "markers": [
+        "COMPLETE",
+        "GREEN",
+        "shipped"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT_ARCHITECTURE.md",
+      "line": 43,
+      "text": "- **FH-X01 (2026-07-11): COMPLETE, GREEN, FILE CLAIM RELEASED** \u2014 exact tested SHA `be97cf8c678c`, run `29155472303`. Contract asset/importer/tests/audit/build hook shipped. See `FHX01_IMPLEMENTATION_LOG.md`.",
+      "markers": [
+        "COMPLETE",
+        "GREEN",
+        "shipped"
+      ],
+      "qualifiers": [
+        "PATCHED_AUDIT"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_ARCHITECTURE.md",
+      "line": 45,
+      "text": "- **CI-V1 (2026-07-11): PROVEN, FILE CLAIM RELEASED** \u2014 durable verdict caught a real Unity red, then recorded GREEN for `b388f1b` in run `29151953887`. Read `docs/CI_VERDICT.md`; a later normal commit makes the verdict stale until its own run completes.",
+      "markers": [
+        "GREEN"
+      ],
+      "qualifiers": [
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_ARCHITECTURE.md",
+      "line": 48,
+      "text": "H6 takeover kit all shipped; H2/H3/H5 enveloped to T-Dog, Q4b to Picasso (HANDOFF qqq). This",
+      "markers": [
+        "shipped"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT_ARCHITECTURE.md",
+      "line": 50,
+      "text": "- **Bank pulls shipped (architecture lane):** GamePool (Q4a, `94f74ac` \u2705). **WORLDS_50 #13 POI",
+      "markers": [
+        "shipped",
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT_ARCHITECTURE.md",
+      "line": 62,
+      "text": "- **Verified facts (don't re-derive):** world factory chain = `WorldLayoutLibrary` (create-only",
+      "markers": [
+        "Verified"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT_ART.md",
+      "line": 7,
+      "text": "> | 1 | SPIKE: PhotoBooth + forge-photos workflow; verify a session can view CI-rendered PNGs | \u2705 `394ed14`/`ceb3df3` \u2014 photos viewed by this session |",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_ART.md",
+      "line": 8,
+      "text": "> | 2 | ForgeRecipeDefinition + ForgeMesh + ForgeMaterials + 13 mesh tests | \u2705 `1daa597` (+winding fix `7d6f031` \u2014 CI's outwardness tests caught it) |",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_ART.md",
+      "line": 9,
+      "text": "> | 3 | ForgeRecipeLibrary + `taser_gun_mk1` + 7 catalog tests + booth renders recipes | \u2705 `602587c` |",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT_ART.md",
+      "line": 10,
+      "text": "> | 4 | Coordination: ItemDefinition.forgeRecipeId + ItemFactory hook + ForgeVisualApplier + ForgeAuthor + BuildAndroid/audit hooks + studio guide + playbook rows | \u2705 `1e69879` (HANDOFF mmm) |",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [
+        "PATCHED_AUDIT"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_ART.md",
+      "line": 11,
+      "text": "> | 5 | Iterate the taser via turnarounds (v2 verified in photos: solid barrel, seated back cap, raked grip \u2014 reads as a salvage stun pistol) | \u2705 `e88e70e` |",
+      "markers": [
+        "verified",
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT_ART.md",
+      "line": 12,
+      "text": "> | 6 | Close: CI+photos green on head \u00b7 APK dispatch \u00b7 runbook \u00a72i \u00b7 HANDOFF wrap | \u2705 **APK run `28630103333` green \u2014 the forged taser is in the sideloadable artifact; FORGE_* audit rules live** |",
+      "markers": [
+        "green",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "PATCHED_AUDIT",
+        "APK",
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_ART.md",
+      "line": 14,
+      "text": "> **ART-2 SHIPPED 2026-07-03.** The studio loop is proven twice over (calibration + taser v1\u2192v2 critique",
+      "markers": [
+        "SHIPPED"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT_ART.md",
+      "line": 15,
+      "text": "> cycle). Next: **ART-3 \u2014 W001 Toxic Venice pass built WITH the Forge** (buildings/props as recipes +",
+      "markers": [
+        "built"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT_ART.md",
+      "line": 53,
+      "text": "| 0 | Claim: this sprint file + HANDOFF entry + GAME_PLAN/CHECKLIST notes | \u2705 `ce051fd` (CI green) |",
+      "markers": [
+        "green",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_ART.md",
+      "line": 54,
+      "text": "| 1 | `SkyVistaDefinition` (SO: gradient/stars/nebula/\u22643 celestial bodies/shell grid/shimmer/light+ambient+fog) + `SkyVistaTexture` (pure Color32 bake: value-noise stars+nebula, hex-grid layer, 4\u00d74 Bayer dither) + 14 EditMode tests + Tests-asmdef `Ziptide.Visuals` ref \u26a0 | \u2705 `0166d8a` (CI green) |",
+      "markers": [
+        "green",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "EDITMODE",
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_ART.md",
+      "line": 55,
+      "text": "| 2 | `SkyVistaRig` (runtime: 1024\u00d7512 composited dome + 0\u20133 body spheres, URP/Unlit, no shadows; scene tie-ins after theme base pass) + `VisualThemeProfile.skyVista` field + `SkyPlanetRig` delegation (null = legacy path, zero visual change) | \u2705 `c009795` (CI green) |",
+      "markers": [
+        "green",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "VISUAL",
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_ART.md",
+      "line": 56,
+      "text": "| 3 | `SkyVistaLibrary` (create-only, WorldLayoutLibrary pattern): 17 canon vistas as data (ToxicCity reserved + W002\u2013W012 + 5 arenas) + `Specs()` + 8 progression tests (grid 0\u21921 monotonic, giant growth, W003 moons+shimmer, RILL cyan, arena distinctness) | \u2705 `5c63eae` |",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT_ART.md",
+      "line": 57,
+      "text": "| 4 | `SkyVistaAuthor.AssignAll()` (sets `skyVista` on each `Content/Worlds/Themes/<Scene>_Theme.asset` \u2014 worlds AND arenas \u2014 after the build's per-scene loop) + BuildAndroid hook \u26a0 | \u2705 `dc84f82` |",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT_ART.md",
+      "line": 58,
+      "text": "| 5 | `SkyVistaAuditRules` (`SKY_VISTA_MISSING`/`SKY_VISTA_INVALID` blockers; `SKY_VISTA_UNWIRED`/light-count warnings) + WorldAuditRunner call line \u26a0 + `HOW_TO_CHANGE_ANYTHING.md` sky rows | \u2705 `48ee4b4` |",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT_ART.md",
+      "line": 59,
+      "text": "| 6 | Close: APK dispatch green \u00b7 runbook \u00a72h \ud83c\udfae items (canon progression reads, 72fps, banding check) \u00b7 HANDOFF wrap | \u2705 **APK run `28616598718` green (70 MB artifact, audit-clean incl. SKY_VISTA rules)** |",
+      "markers": [
+        "audit-clean",
+        "green",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "PATCHED_AUDIT",
+        "APK"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_ART.md",
+      "line": 70,
+      "text": "| E1.1 | UV atlas in ForgeMesh + tangents + tests (visuals unchanged) | \u2705 `241f2c4`+fix `f6415f5` (CI green) |",
+      "markers": [
+        "green",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_ART.md",
+      "line": 71,
+      "text": "| E1.2 | ForgeTexture rasterizer + albedo styles + schemaVersion 2 \u2192 textured taser in booth (\"not flat\" checkpoint) | \u2705 `ba6f869`+tune `6e0509c` \u2014 CI green, checkpoint photos verified |",
+      "markers": [
+        "green",
+        "verified",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_ART.md",
+      "line": 72,
+      "text": "| R1\u2013R4 | **ASSET FORGE RECONCILIATION** (Terry-approved 2026-07-04, map in `ASSET_FORGE_MAP.md`): R1 docs `3929246` \u00b7 R2 lifecycle/lock/refs `541c6a3` \u00b7 R3 staleness buckets + manifest `6cfabfc` \u00b7 R4 stalker `215e110`\u2192v3 `196f57d` (photo loop \u00d73: `Limb()` joint-point legs; turnarounds pass, run `28692323345`) | \u2705 **ALL CLOSED** \u2014 E1.3 active |",
+      "markers": [
+        "CLOSED",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "VISUAL"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_ART.md",
+      "line": 73,
+      "text": "| E1.3 | Normal/MSA/emissive maps + ONE material per asset | \u2705 `8a086f7`+`15bdae9`+booth env `1e64c68`+x-ray `e0211c3` \u2014 taser checkpoint passes; atlas x-ray now in every photo artifact (HANDOFF bbbb) |",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [
+        "VISUAL"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_ART.md",
+      "line": 74,
+      "text": "| E1.4 | ForgeBaker (build-time bake \u2192 ASTC) + gitignore + applier prefers baked \u2192 **TEXTURES ON DEVICE** | \u2705 `b93839e` \u2014 bake hooked in BuildAndroid; FORGE_APPLIED logs baked=true/false |",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [
+        "QUEST"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_ART.md",
+      "line": 75,
+      "text": "| ARSENAL | pistol_scrap_mk1 \u00b7 static_net_lobber \u00b7 sonic_thumper_maul \u00b7 prism_beam_rifle recipes + ForgeAuthor assignments (every gun textured+baked) | \u2705 `797b5a3` \u2014 all four pass turnarounds (run `28793858850`); niggles boarded: maul haft thin, lobber side vents unclear |",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT_ART.md",
+      "line": 76,
+      "text": "| AVATAR | PlayerAvatarRig \u2014 salvage gloves + chest rig (the player's skin) | \u2705 `2d57076` \u2014 rig-ensured; QUARTERS recolors later |",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT_ART.md",
+      "line": 77,
+      "text": "| E5.2 | PERF_BUDGET audit gate \u2014 tris/materials/renderers/lights per scene, warn at target / block at cap | \u2705 `PerfBudgetAuditRules` + runner line (this commit) |",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [
+        "PATCHED_AUDIT"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_ART.md",
+      "line": 78,
+      "text": "| P2 | New ops (Capsule/Frustum/Torus/SweepSpline/OrganicBlob) + modifiers + Quest-3 class budgets | \u2705 **SHIPPED (2026-07-09, 2 commits)** \u2014 \u2460 all 5 ops + taper/bend/noise modifiers (weld-safe fBm, pre-transform, fixed order taper\u2192bend\u2192noise) + validation contracts + old-asset hash stability + 13 P2 tests. \u2461 storyTag class budgets (hull 15k \u00b7 creature 10k \u00b7 handheld 6k \u00b7 prop 3k \u00b7 plant 1.5k) enforced in Validate() + **`p2_tide_totem`** booth showcase (every new op + modifiers-on-a-legacy-op in ",
+      "markers": [
+        "SHIPPED",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "QUEST"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_ART.md",
+      "line": 79,
+      "text": "| P3 | ForgeCreatureBody + ForgeSkinnedBuilder + \u26a0 coordination commit (forgeBodyId) + drone/swarmer bodies | \u2705 **ORGANIC ROSTER COMPLETE (2026-07-10)** \u2014 genomes: swarm_bug \u00b7 light_grazer \u00b7 tendril \u00b7 **witness_mite \u00b7 husk_molter \u00b7 warden** (the last three via the NEW `ForgeBodyTell` tell bridge: warden eye-states drive the genome's emissive eye, mite's stone-freeze = body-tint channel, molter's decoy = a frozen grey CLONE of the forged body). **tether_swarm = documented intentional skip** (its ",
+      "markers": [
+        "COMPLETE",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "VISUAL"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_ART.md",
+      "line": 80,
+      "text": "| P3.5 | **CREATURE QUALITY LADDER** (Terry's bar: \"fox with a trash can lid \u2192 moving breathing xenomorph\") | \ud83d\udfe1 **v4 SHIPPED + JUDGED (2026-07-10)** \u2014 the ladder so far: v2 smooth shading honored + capsule limbs (builder fix) \u2192 v3 bind-pose articulation (`bendDegrees`) \u2192 **v4 TEXTURE BAKE** (`fad9898`, CI green): `SyntheticRecipe` seam bakes each styled genome's albedo/normal/MSA/emissive atlas; applier + booth agree by construction; eye submesh stays live-emissive so ForgeBodyTell is untouched.",
+      "markers": [
+        "done",
+        "green",
+        "SHIPPED",
+        "VERIFIED",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_ART.md",
+      "line": 82,
+      "text": "| E5.1 | Building-module family for `salvage_row`+`toxic_tenement` via ArtModuleRegistry (pairs with story Q2d) | \ud83d\udfe1 **WALLS SHIPPED (2026-07-10, 2 commits)** \u2014 4 textured wall recipes (solid+window \u00d7 both styles, canonical 3.0\u00d73.2\u00d70.25 envelope, tenement gets P2 Capsule standpipe + Frustum vent) + `ForgeBuildingKit` WRAPS the primitive kit's registry factories with a runtime `ForgeModuleLook` swap (ItemFactory pattern: scene ships primitives, device shows baked textures; interior Pane survives).",
+      "markers": [
+        "green",
+        "SHIPPED",
+        "VERIFIED",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "PATCHED_AUDIT",
+        "VISUAL",
+        "QUEST",
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_ART.md",
+      "line": 83,
+      "text": "| E5.3 | Flora (LeafCard+ForgeSway, 2 plants) + 3 W001 props | \ud83d\udfe1 **ENGINE LANDED (commit 1/2):** `ForgeOp.LeafCard` (two crossed quads, double-sided, base y=0, 8 tris \u2014 \u22642 overdraw by construction; box-planar UVs already map each plane across the island) \u00b7 Leaf style now OWNS the albedo alpha (`LeafAlpha01` sine-blade + serrated margin + stalk; ~2-texel soft edge for clean clip mips) \u00b7 alpha-clip material trigger (`HasLeafSlot`) in ForgeBaker + booth preview \u00b7 `ForgeSway` (1\u20133 pivots, pure `Sway",
+      "markers": [
+        "CLOSED",
+        "COMPLETE",
+        "green",
+        "shipped",
+        "VERIFIED",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_ART.md",
+      "line": 104,
+      "text": "| F3.1 | THE LIGHT SCRIPT \u2014 light rig DERIVED from the vista (fog=horizon, ambient=gradient, key from the brightest body, elevation clamped 20\u201355\u00b0) | \ud83d\udfe1 **commit 1 landed:** `SkyLightScript.Derive` (pure) + `SkyVistaRig` applies derived values wherever the vista is silent (authored tie-ins override; layout-baked fog respected; `ZIPTIDE: LIGHT_SCRIPT` log) + 5 contract tests incl. full library sweep. **commit 2:** `LIGHT_SCRIPT_NO_SUN` warn in SkyVistaAuditRules + runbook \ud83c\udfae W002/W005 before/after.",
+      "markers": [
+        "COMPLETE"
+      ],
+      "qualifiers": [
+        "QUEST"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_ART.md",
+      "line": 106,
+      "text": "| F3.1b | PRACTICALS \u2014 lanterns/sconces/street lamps + halo + light-pool decals (Terry's direct ask) | \ud83d\udfe1 **commit 1: the 3 fixture recipes** (`light_lantern_hang` hook+ring+caged amber glass \u00b7 `light_sconce_wall` plate+bracket+half-dome (+Z against the wall) \u00b7 `light_street_pole` 3m tapered pole, arm, downward head + glowing disc) \u2014 shared warm-amber practical palette (`lamplight is warm, never neon-pure`), 400-tri budget, auto-swept by library gates. **commit 2: `PracticalLight`** \u2014 halo billbo",
+      "markers": [
+        "COMPLETE",
+        "green",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "QUEST",
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_ART.md",
+      "line": 107,
+      "text": "| F3.3 | WATER \u2014 the namesake element we never had | \ud83d\udfe1 **commit 1 (booth-first spike):** pure `WaterSurface` (tileable ripple field \u2014 integer-wavenumber directional sines, no fBm seam; height + tangent-space normal + canonical normal-map bake) + `ZiptideWaterMesh` (flat subdivided plane, UVs tile 1/4m, tris clamped \u22648000) + booth `water_tile` subject (deep canal teal, baked ripple normal, smoothness 0.85) + 5 tests. **\u2705 WATER READS (run `29163148584`): deep glossy teal + directional specular rip",
+      "markers": [
+        "COMPLETE",
+        "green",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "QUEST",
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_ART.md",
+      "line": 108,
+      "text": "| F3.4 | GROUNDING \u2014 kill the \"everything floats\" tell (decals + blob shadows) | \ud83d\udfe1 **commit 1 (pure + booth):** `GroundDecal` \u2014 `BlobAlpha` (soft radial contact/blob shadow) + `StainAlpha` (fBm-mottled grime) + `BakeAlpha` sheet + booth `ground_decals` subject (grey ground + a blob + a stain) + 3 tests. **commit 2 \u2705 (blob shadows):** `GroundShadow` (one shared dark radial decal + quad across all shadows) attached at each creature's base in `ForgeCreatureVisualApplier` + booth. **Booth verdict (r",
+      "markers": [
+        "verified",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "QUEST",
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_ART.md",
+      "line": 109,
+      "text": "| F3.8 | MACRO VARIATION \u2014 kill the visible atlas-tiling on big surfaces | \ud83d\udfe1 **part \u2460 landed:** `ForgeTexture.ComposeAlbedo` gains an optional low-freq wash (`0.90 + 0.20\u00b7fBm(u\u00b71.7,v\u00b71.7)`), applied in `BakeAlbedo` ONLY to `buildingModule`/`street`-tagged recipes (gated by `HasStoryTag`); default-off keeps every other asset byte-identical. 2 tests (default-off exact + wash-varies-across-island). **\u2705 CI+booth green (`079b9a0`).** **part \u2461 \u2705:** `ForgeModuleLook` gains `tintJitter` (\u00b10.05, from a q",
+      "markers": [
+        "COMPLETE",
+        "green",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "QUEST",
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_ART.md",
+      "line": 110,
+      "text": "| F3.9 | THE CONFORMANCE GATE \u2014 the \"quality stays EVEN across lanes\" ratchet | \ud83d\udfe1 **commit 1 \u2705 (Opus 4.8):** `ArtConformanceAuditRules` in `WorldAuditRunner` (own try/catch \u2014 a classifier miss can never block a build). Every scene Renderer must trace to a KNOWN art provenance \u2014 a `ForgeVisual` child (all Forge meshes + creatures), a marker MonoBehaviour (`ForgeModuleLook`/`SkyVistaRig`/`ZiptideWater`/`PracticalLight`), an author-named object (`GroundShadow`/`Foam`), or a whitelist line \u2014 else `A",
+      "markers": [
+        "green",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "PATCHED_AUDIT",
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_ART.md",
+      "line": 111,
+      "text": "| F3.5 | THE VFX FORGE \u2014 a particle vocabulary WITH RAILS (the air stops being empty) | \ud83d\udfe1 **commit 1 \u2705 (Opus 4.8) \u2014 the DATA + RAILS half:** `VfxRecipeDefinition` (closed `VfxKind` enum + count/size/speed/lifetime/colour, `Validate()` clamps into hard caps, `PeakParticles()` = the budget CI asserts: \u226464/system, \u22646 live systems) + `VfxLibrary` (7 code-authored starters: `impact_metal`/`impact_stone`/`muzzle_taser`/`steam_vent`/`motes_amber`/`motes_spore`/`sparks_short`, natural colours) + 8 tests",
+      "markers": [
+        "closed",
+        "green",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "QUEST",
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_ART.md",
+      "line": 115,
+      "text": "- **Current:** ART-1 + ART-2 shipped APK-green (skies `28616598718`; Forge+taser `28630103333`).",
+      "markers": [
+        "green",
+        "shipped"
+      ],
+      "qualifiers": [
+        "APK"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_ART.md",
+      "line": 122,
+      "text": "- **Branch:** `terry-local-wip`, house rules (pull --rebase, small CI-green commits, .meta per new",
+      "markers": [
+        "green"
+      ],
+      "qualifiers": [
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_MULTIPLAYER.md",
+      "line": 13,
+      "text": "> a NEW crossover task for this track: the **PvP pre-round locker** (spawn the shipped `QuartersRoom`,",
+      "markers": [
+        "shipped"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT_MULTIPLAYER.md",
+      "line": 26,
+      "text": "| 0 | Designs + GAME_PLAN M7 + this sprint file + HANDOFF claim | \u2705 `f005caf` |",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT_MULTIPLAYER.md",
+      "line": 27,
+      "text": "| A1a | **BotBrain pure core** (`Multiplayer/Runtime/Bots/`): Vec3/BotRng (deterministic), BotPerception/BotDecision, the 8-state machine (reaction-time model, LKP hunting, cover hide/peek cycle, band-holding strafe, flank reposition, sticky retreat, dodge-\u22a5-threat, lead + bounded aim-error cone), `BotProfileData` Rookie\u2192Nightmare presets + 14 EditMode tests | \u2705 this commit (CI pending) |",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [
+        "EDITMODE",
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_MULTIPLAYER.md",
+      "line": 28,
+      "text": "| A1b | `BotProfileDefinition` SO (Content, +Multiplayer asmdef ref \u2014 acyclic) + `BotProfileAuthor` (create-only, build-wired: rookie/regular/veteran/nightmare into `Resources/Bots`) | \u2705 this commit (CI pending) |",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_MULTIPLAYER.md",
+      "line": 29,
+      "text": "| A1c | **PvpBot rewrite: the brain is in the arena.** Perceive (LOS, player velocity, incoming-dart scan @5Hz, baked cover/waypoints) \u2192 `BotBrain.Tick` \u2192 execute (CollideMove kept, dodge burst-steps, strafe, telegraph LAW kept, `WeaponCharge`-gated visible `PvpBolt` at the brain's led+erred aim). `ScenePatcherPvP.BuildBotNav` bakes Way_1-8 patrol ring (incl. platform top) + Cover_P1-8 shadow spots. Brain+charge reset on revive. *(Deliberate re-scope: `IPvpTransport` threading of the whole match",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [
+        "QUEST",
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_MULTIPLAYER.md",
+      "line": 30,
+      "text": "| B1a+b | **Conquest sim core COMPLETE** (`Multiplayer/Runtime/Conquest/`): PlanetNode (14-field spec) \u00b7 ConquestState (players/stockpiles/turn economy: instability-penalized production, decay, fleet upkeep, attack limits) \u00b7 ConquestRules (odds clamp 10\u201390, +5%/pt, anti-snowball constants) \u00b7 ConquestResolver (seeded, 5 outcomes, vessel/defense specials: gate jammer/piercer, shieldbreaker, minefield, null-ark consumed, repair swarm, dogpile bonus, mission modifiers \u00b1 ) \u00b7 ConquestCatalog (8 defens",
+      "markers": [
+        "COMPLETE",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "EDITMODE",
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_MULTIPLAYER.md",
+      "line": 31,
+      "text": "| A2 | **Arena Factory BUILT**: `ArenaLayoutDefinition` (geometry/nav/spawns/objectiveZones/weaponPads/hazards/sky + Validate) + `ScenePatcherArena` (generic shell: data geometry, per-arena sky via ThemeAuthor overloads, Way_/Cover_P nav, difficulty-tagged bot, pads, breakwalls, hazards via HazardZoneRuntime, pack+exit, Build Settings; build-hooked like generated worlds) + `ArenaLayoutLibrary` (**5 launch arenas**: Cistern dark hill-fight \u00b7 Chitinwall catwalk alleys \u00b7 MirrorFlats marksman lanes ",
+      "markers": [
+        "BUILT",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_MULTIPLAYER.md",
+      "line": 32,
+      "text": "| A3-core | **Mode engines (pure) BUILT**: `PvpMatch` generalized to N combatants (2\u20134) + teams (team score = summed members; default ctor stays 1v1 \u2014 zero consumer changes) + `EndByRule` \u00b7 `Modes/PvpModes.cs`: **GunGameState** (6-weapon default ladder), **KothState** (sole-king accrual, contested=nobody, zone rotation), **FragmentRushState** (single carrier, drop-resets-to-mid, bank-to-win), **HordeState** (deterministic escalating waves of bots+creatures, capped for Quest perf, clear bonuses) ",
+      "markers": [
+        "BUILT",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "QUEST",
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_MULTIPLAYER.md",
+      "line": 33,
+      "text": "| A3-scene | **MODES ARE PLAYABLE**: `PvpModeDirector` (scene body for all four engines: GunGame racks the player's next ladder weapon \u00b7 KotH ticks patcher-baked `__PVP_ZONES` hills with bots CONTESTING via the new objective-magnet \u00b7 FragmentRush v1 you-carry-bots-hunt \u00b7 Horde waves spawn bots + runtime creatures w/ death-polling per the PlayerIndex law) + `ArenaLobbyBoard` (mode \u00d7 difficulty \u00d7 bot-count tiles at every arena spawn; arena select = the travel station now doors to EVERY sibling are",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_MULTIPLAYER.md",
+      "line": 34,
+      "text": "| A4 | **THE ARSENAL SHIPPED**: `ArenaWeaponDefinition` (kind\u2192runtime via ItemFactory) + **Static Net** (lobbed arc \u2192 `SlowZoneRuntime`; slows player via StunReceiver + bots via new `PvpBot.ApplySlow`) + **Sonic Thumper** (swing-triggered shockwave: damage+shove+breaks walls, HammerTool idiom) + **Prism Beam** (hold-to-charge with growing guide-line telegraph \u2192 heavy lane beam, cancel-free) + `PvpRules` damage table (net 1 / thumper 2 / prism 3, tested: lethal-eventually, never one-shot) + **pad",
+      "markers": [
+        "SHIPPED",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_MULTIPLAYER.md",
+      "line": 35,
+      "text": "| A4.5 | **Augments** \u2014 \u2705 SHIPPED (abilities sprint, 2026-07-09): pure cores (AugmentClock/Loadout/Effects, 9 tests) + AugmentDefinition + the SIX launch augments live (dash/bubble/overclock/magnet/sure-step/sixth-sense, spec numbers) + belt-orb diegetic trigger + sandbox rack. Remaining: arena pads (create-only reseed) + Horde reward + bot symmetry at Veteran+ (MP100 15/55/56). | \u2705 |",
+      "markers": [
+        "SHIPPED",
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT_MULTIPLAYER.md",
+      "line": 36,
+      "text": "| A4.6 | **Dual-wield** (\u00a73): \ud83d\udfe1 pure `SharedChargePool` BUILT+TESTED (both hands, one pool). Full wiring **BLOCKED on a real finding:** the PLAYER's guns don't consume `WeaponCharge` today (only bots do) \u2014 nothing to pool until player weapons adopt a charge. Design call for Terry: give player guns the 2-shot charge (then dual-wield drops in), or shelve. | \ud83d\udfe1 |",
+      "markers": [
+        "BUILT"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT_MULTIPLAYER.md",
+      "line": 37,
+      "text": "| A4.7 | **Locator v2** (\u00a74): \ud83d\udfe1 pure layer SHIPPED (abilities sprint): tier presets (cd 60/45/30s, 8s afterglow from tier 2), afterglow fade curve, Sixth-Sense cd scale at ping time \u2014 tested. Remaining: gauntlet form + cylinder radar + crown blip scene work (Picasso's mesh, ART-4). | \ud83d\udfe1 |",
+      "markers": [
+        "SHIPPED"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT_MULTIPLAYER.md",
+      "line": 38,
+      "text": "| A6-prep | **Two-Quest online setup SHIPPED**: `docs/TWO_QUEST_SETUP.md` (Terry's steps 1\u20134 doable TODAY; step 5 = first smoke after A6) + `PvpNetHub` transport registry (loopback default) + the full Photon adapter/room-code launcher in `Assets/ZiptideNet/` (Assembly-CSharp, NO asmdef \u2014 sidesteps PUN2 asmdef surgery; 100% inert behind `ZIPTIDE_PHOTON`) + `Ziptide \u2192 Net \u2192 Enable/Disable Photon` menu | \u2705 this commit (CI pending) |",
+      "markers": [
+        "SHIPPED",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "QUEST",
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_MULTIPLAYER.md",
+      "line": 39,
+      "text": "| \u2014 | \u2014 **MP100 (2026-07-06): Terry ordered \"a hundred improvements\" \u2014 the full numbered board is `docs/design/MP100_BOARD.md`.** Wave 1 SHIPPED (rows below); waves 2\u20138 are the queue, each item claim-able individually. The rows A4.5/A4.6/A4.7/A5/A5.5/B2-B4/A6 below are now ALSO board items (51-58/48/71-75/59-70/68/76-85/86-92) \u2014 the board is the finer-grained view, this table stays the coarse one. \u2014 | \u2014 |",
+      "markers": [
+        "SHIPPED"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT_MULTIPLAYER.md",
+      "line": 40,
+      "text": "| MP100-W1 | **THE MELEE PAIR** \u2014 Breaker Blade (true contact melee, per-target debounce, cracks walls, the new 7th Gun Game rung) + Tide Pike (thrust line, reach identity) + PvpRules balance (6 new tests) + explicit CreatureRuntime melee cases + **bots get ears** (PvpNoise feeds the A1 brain's silent HeardFire hook; swings inside reach = dodge-triggering threat) + pads (Cistern/Chitinwall \u2014 runbook reseed queued) + starter-lineup blade in every story world + storyboard homes (W009/W010/W048, ad",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT_MULTIPLAYER.md",
+      "line": 41,
+      "text": "| A5 | **PROGRESSION v1 SHIPPED (2026-07-10, MP100 59-62+65):** pure `PvpProgression` (MatchStatsCore kills/downs/streaks \u00b7 itemized payout w/ difficulty mult, cap 150, win-gated bonuses \u00b7 unlock ladder Regular\u2192Veteran\u2192Nightmare\u2192mutators via profile flags \u00b7 FNV daily pick, same combo for everyone per UTC day) + `PvpCareerState` additive on the profile + self-bootstrapped `PvpProgressionRuntime` (KillScored\u2192stats; MatchEnded\u2192RewardRouter credits + flags + career + autosave; zero patcher steps) + ",
+      "markers": [
+        "SHIPPED",
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT_MULTIPLAYER.md",
+      "line": 43,
+      "text": "| B2 | Holo war table vs ConquestAI (Sandbox placement) \u2014 \u2705 v1 SHIPPED (T-Dog, 2026-07-09): tap-build-strike loop, live odds, resolution stamps, visible AI turn, RILL's \"The Wardens will notice this.\" | \u2705 |",
+      "markers": [
+        "SHIPPED",
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT_MULTIPLAYER.md",
+      "line": 44,
+      "text": "| B3 | VR mission modifiers \u2014 \u2705 v1 SHIPPED (T-Dog, 2026-07-09, Terry's \"gulag\"): STRIKE NOW / FLY THE MISSION on every strike (+10%, underdog +15%), sabotage pylons in the actual target world, LET IT RIDE / DEFEND when the rival hits yours (scout-drone shootdown), ConquestSession travel round-trip, walked-out = declined. v2 seam: space-flight defense variant once 3.1 ship weapons exist. | \u2705 |",
+      "markers": [
+        "SHIPPED",
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT_MULTIPLAYER.md",
+      "line": 45,
+      "text": "| B4 | Hotseat sync \u2192 (after A6) Photon live sync \u2014 \u2705 HOTSEAT v1 SHIPPED (T-Dog, 2026-07-10): HOTSEAT tile on the table, END TURN passes the headset (full round = both halves then the economy turn), per-side fog re-fogs at handover, side-aware rack/builds/odds/missions, mode rides the save (tolerant H record \u2014 old saves read solo). Photon live sync still \u2b1c (after A6). | \ud83d\udfe1 |",
+      "markers": [
+        "SHIPPED",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "QUEST"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_MULTIPLAYER.md",
+      "line": 46,
+      "text": "| A6 v1 | **ONLINE PRESENCE SHIPPED** (Picasso, Fable 5): PUN2 imported+committed by Terry (`21f117c`, CI-green WITH Photon) \u2192 `PvpNetHub.StartOnline/StopOnline` hooks + `ZiptideNet/NetBootstrap` installs the starter (behind `ZIPTIDE_PHOTON`) \u2192 `PvpOnlinePresence` broadcasts local head+2 hands @20Hz and renders every peer as a helmet+gloves avatar (amber, vs local teal) \u2192 `ArenaLobbyBoard` **GO ONLINE** tile + live NET status label (room `ZIP-001`, x/2 count). Transport-agnostic (loopback-safe);",
+      "markers": [
+        "green",
+        "SHIPPED",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_MULTIPLAYER.md",
+      "line": 49,
+      "text": "| \u2014 | Close: HANDOFF, checklist, playbook rows per chunk, APK dispatch green | \u2b1c |",
+      "markers": [
+        "green"
+      ],
+      "qualifiers": [
+        "APK"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_MULTIPLAYER.md",
+      "line": 63,
+      "text": "- **Earlier state:** A2 arenas + A1 smart bot APK-green (runs `28610940371` / `28608110578`).",
+      "markers": [
+        "green"
+      ],
+      "qualifiers": [
+        "APK"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_MULTIPLAYER.md",
+      "line": 64,
+      "text": "- **\u2705 THE ARENA APK IS GREEN** (run `28610940371` on `800ff25`): all five arenas authored, generated,",
+      "markers": [
+        "GREEN",
+        "\u2705"
+      ],
+      "qualifiers": [
+        "APK"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_MULTIPLAYER.md",
+      "line": 65,
+      "text": "**audit-clean**, and in the `ziptide-apk` artifact \u2014 after one failed dispatch whose blockers",
+      "markers": [
+        "audit-clean"
+      ],
+      "qualifiers": [
+        "PATCHED_AUDIT",
+        "APK"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_MULTIPLAYER.md",
+      "line": 67,
+      "text": "pure layout data. **Everything shipped this session is now APK-verified end to end:** the smart bot",
+      "markers": [
+        "shipped",
+        "verified"
+      ],
+      "qualifiers": [
+        "APK"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_MULTIPLAYER.md",
+      "line": 69,
+      "text": "Tidefront conquest sim. 248 tests green.",
+      "markers": [
+        "green"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT_MULTIPLAYER.md",
+      "line": 70,
+      "text": "- **Next action after arena APK green:** **A3-scene** (mode director + lobby board + attacker",
+      "markers": [
+        "green"
+      ],
+      "qualifiers": [
+        "APK"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_MULTIPLAYER.md",
+      "line": 81,
+      "text": "- **\ud83c\udfa8 The art track is LIVE** (`SPRINT_ART.md`, operator \"Picasso\"): ART-1 skyscapes shipped APK-green \u2014",
+      "markers": [
+        "green",
+        "shipped"
+      ],
+      "qualifiers": [
+        "APK"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_MULTIPLAYER.md",
+      "line": 84,
+      "text": "authoring/audit files; the verified seam map is `docs/ART_PLUG_POINTS.md`. The Locator-v2 gauntlet mesh",
+      "markers": [
+        "verified"
+      ],
+      "qualifiers": [
+        "PATCHED_AUDIT"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/SPRINT_MULTIPLAYER.md",
+      "line": 86,
+      "text": "- **\u2705 fff BRIEFING ABSORBED (constraints for all remaining A-tasks):**",
+      "markers": [
+        "\u2705"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT_MULTIPLAYER.md",
+      "line": 104,
+      "text": "- **Verified facts (don't re-derive):** PvP live loop currently BYPASSES `IPvpTransport` and never uses",
+      "markers": [
+        "Verified"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/SPRINT_MULTIPLAYER.md",
+      "line": 113,
+      "text": "CI green per push; SPRINT_MULTIPLAYER updated in the same commit as every push; APK dispatch at chunk",
+      "markers": [
+        "green"
+      ],
+      "qualifiers": [
+        "APK",
+        "CI"
+      ],
+      "unqualified": false
+    }
+  ]
+}
