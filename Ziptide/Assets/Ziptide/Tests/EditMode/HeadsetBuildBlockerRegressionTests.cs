@@ -65,6 +65,15 @@ namespace Ziptide.Tests.EditMode
             StringAssert.Contains("Physics.SyncTransforms();", sync);
         }
 
+        [Test]
+        public void D2_PreservesAuthoredWorldSpawnInsteadOfMovingItToOrigin()
+        {
+            string d2 = Read("Editor", "Patching", "ScenePatcherD2.cs");
+            StringAssert.Contains("GameObject go = GameObject.Find(SpawnMarkerName);", d2);
+            StringAssert.Contains("if (go == null)", d2);
+            StringAssert.DoesNotContain("var go = PatcherUtil.EnsureRootObject(SpawnMarkerName, spawnPos);", d2);
+        }
+
         private static string Read(params string[] parts)
         {
             string path = Path.Combine(Application.dataPath, "Ziptide");
