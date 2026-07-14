@@ -1,0 +1,48 @@
+name: Recovery Contract Scan
+
+on:
+  push:
+    branches:
+      - terry-local-wip
+    paths:
+      - 'Ziptide/Assets/Ziptide/**/*.cs'
+      - 'Ziptide/Assets/ZiptideNet/**/*.cs'
+      - 'tools/recovery_contract_scan.py'
+      - 'tools/tests/test_recovery_contract_scan.py'
+      - '.github/workflows/recovery-contract-scan.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  scan:
+    name: Report runtime ownership signals
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Test recovery scanner
+        run: |
+          python3 -m unittest discover \
+            -s tools/tests \
+            -p 'test_recovery_contract_scan.py' \
+            -v
+
+      - name: Scan repository contracts
+        run: |
+          python3 tools/recovery_contract_scan.py \
+            --json-report Builds/Reports/recovery_contract_scan.json \
+            --markdown-report Builds/Reports/recovery_contract_scan.md
+
+      - name: Upload recovery scan
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: recovery-contract-scan
+          path: |
+            Builds/Reports/recovery_contract_scan.json
+            Builds/Reports/recovery_contract_scan.md
+          if-no-files-found: error
