@@ -146,8 +146,16 @@ namespace Ziptide.Editor.Patching
 
         public static void EnsureSpawnMarker(string sceneName)
         {
-            Vector3 spawnPos = GetSceneSpawnPosition(sceneName);
-            var go = PatcherUtil.EnsureRootObject(SpawnMarkerName, spawnPos);
+            // Preserve authored spawn positions. Generated worlds and cave worlds place their marker
+            // from world data before D2 runs; blindly calling EnsureRootObject with a default position
+            // moved W011_Undercroft from its first chamber to world origin after its floor check.
+            GameObject go = GameObject.Find(SpawnMarkerName);
+            if (go == null)
+            {
+                Vector3 spawnPos = GetSceneSpawnPosition(sceneName);
+                go = PatcherUtil.EnsureRootObject(SpawnMarkerName, spawnPos);
+            }
+
             PatcherUtil.EnsureComponent<SpawnMarkerRuntime>(go);
 
             var so = new SerializedObject(go.GetComponent<SpawnMarkerRuntime>());
