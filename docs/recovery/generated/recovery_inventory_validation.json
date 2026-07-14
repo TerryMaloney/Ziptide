@@ -1,7 +1,7 @@
 {
   "tool": "recovery_inventory_gate",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-14T23:05:54.638578+00:00",
+  "generatedAtUtc": "2026-07-14T23:10:50.685754+00:00",
   "status": "warning",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "inventoryPath": "/home/runner/work/Ziptide/Ziptide/docs/recovery/system_contracts.json",
