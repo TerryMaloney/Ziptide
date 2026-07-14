@@ -21,6 +21,7 @@ on:
       - 'tools/recovery_claim_audit.py'
       - 'tools/recovery_input_contract_scan.py'
       - 'tools/recovery_source_resolver.py'
+      - 'tools/recovery_event_save_graph.py'
       - 'tools/tests/test_recovery_contract_scan.py'
       - 'tools/tests/test_recovery_inventory_gate.py'
       - 'tools/tests/test_recovery_contract_map.py'
@@ -28,6 +29,7 @@ on:
       - 'tools/tests/test_recovery_claim_audit.py'
       - 'tools/tests/test_recovery_input_contract_scan.py'
       - 'tools/tests/test_recovery_source_resolver.py'
+      - 'tools/tests/test_recovery_event_save_graph.py'
       - '.github/workflows/recovery-contract-scan.yml'
   workflow_dispatch:
 
@@ -55,6 +57,7 @@ jobs:
           python3 -m unittest discover -s tools/tests -p 'test_recovery_claim_audit.py' -v
           python3 -m unittest discover -s tools/tests -p 'test_recovery_input_contract_scan.py' -v
           python3 -m unittest discover -s tools/tests -p 'test_recovery_source_resolver.py' -v
+          python3 -m unittest discover -s tools/tests -p 'test_recovery_event_save_graph.py' -v
 
       - name: Generate recovery truth reports
         run: |
@@ -80,6 +83,9 @@ jobs:
           python3 tools/recovery_source_resolver.py \
             --json-report docs/recovery/generated/recovery_source_resolver.json \
             --markdown-report docs/recovery/generated/recovery_source_resolver.md
+          python3 tools/recovery_event_save_graph.py \
+            --json-report docs/recovery/generated/recovery_event_save_graph.json \
+            --markdown-report docs/recovery/generated/recovery_event_save_graph.md
           cp docs/recovery/generated/* Builds/Reports/
 
       - name: Upload recovery reports
