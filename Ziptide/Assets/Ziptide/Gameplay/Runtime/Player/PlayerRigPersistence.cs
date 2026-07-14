@@ -11,6 +11,46 @@ using UnityEngine.XR.Interaction.Toolkit.Inputs;
 namespace Ziptide.Gameplay
 {
     /// <summary>
+    /// DS-01 (DEVICE_STABILIZATION_FORENSIC_PLAN) — the cold-boot hold contract, pure state seam.
+    /// While the Home Hub owns `_Boot`, the rig is HELD: locomotion is suspended, the fall net is
+    /// disarmed, and the rig is pinned to its boot pose. The hold releases only after a content
+    /// scene's spawn has settled, which re-arms the fall net from the fresh spawn. This is the fix
+    /// for the boot fall/respawn loop: the new wait-in-boot menu ran inside the old assumption that
+    /// `_Boot` is transient, leaving gravity + fall recovery live in a scene with no floor.
+    /// </summary>
+    public sealed class BootHoldState
+    {
+        public bool Held { get; private set; }
+        public Vector3 HoldPose { get; private set; }
+
+        /// <summary>Enter the hold at the given pose. False if already held (idempotent).</summary>
+        public bool Begin(Vector3 pose)
+        {
+            if (Held) return false;
+            Held = true;
+            HoldPose = pose;
+            return true;
+        }
+
+        /// <summary>Leave the hold. False if not held (idempotent).</summary>
+        public bool End()
+        {
+            if (!Held) return false;
+            Held = false;
+            return true;
+        }
+
+        /// <summary>The fall-safety net must not evaluate while the boot hold owns the rig.</summary>
+        public bool SuppressesFallCheck => Held;
+
+        /// <summary>While held, any drift beyond tolerance (residual gravity/physics) gets re-pinned.</summary>
+        public bool NeedsRepin(Vector3 current, float tolerance)
+        {
+            return Held && (current - HoldPose).sqrMagnitude > tolerance * tolerance;
+        }
+    }
+
+    /// <summary>
     /// Singleton on XR Origin root. Persists the player rig across scene loads.
     ///
     /// Key invariant: exactly ONE XRInteractionManager is alive at any time.
@@ -31,6 +71,12 @@ namespace Ziptide.Gameplay
         [SerializeField] private float absoluteFloorY = -500f;
         private Vector3 _lastSafePosition;
         private bool _hasSafePosition;
+
+        // DS-01 cold-boot hold: while the Home Hub owns _Boot, locomotion is suspended, the fall
+        // net is disarmed and the rig is pinned. Released by TeleportToMarker after spawn settles.
+        private readonly BootHoldState _bootHold = new BootHoldState();
+        private readonly System.Collections.Generic.List<Behaviour> _bootSuspended =
+            new System.Collections.Generic.List<Behaviour>();
 
         // #region agent log
         // NOTE: Application.persistentDataPath must NOT be called in static initializers
@@ -143,6 +189,20 @@ namespace Ziptide.Gameplay
         /// </summary>
         private void Update()
         {
+            // DS-01: while the boot hold owns the rig, the fall net is disarmed and any residual
+            // drift (e.g. a physics tick before suspension landed) is pinned back to the boot pose.
+            if (_bootHold.SuppressesFallCheck)
+            {
+                if (_bootHold.NeedsRepin(transform.position, 0.05f))
+                {
+                    var cc = GetComponent<CharacterController>();
+                    if (cc != null) cc.enabled = false;
+                    transform.position = _bootHold.HoldPose;
+                    if (cc != null) cc.enabled = true;
+                }
+                return;
+            }
+
             if (!_hasSafePosition) return;
 
             float relativeFloor = _lastSafePosition.y - hardFallLimit;
@@ -677,6 +737,62 @@ namespace Ziptide.Gameplay
             // #endregion agent log
         }
 
+        /// <summary>
+        /// DS-01 — enter/leave the cold-boot hold. BootLoader arms it before presenting the Home
+        /// Hub; TeleportToMarker releases it after a content spawn settles. While held: locomotion
+        /// providers (move/turn/snap/dash) are suspended and restored on release with the
+        /// ShipFlightRuntime idiom, the fall net is disarmed, and the rig is pinned to its boot pose.
+        /// </summary>
+        public static void SetBootHold(bool held)
+        {
+            if (_instance == null)
+            {
+                Debug.LogWarning("ZIPTIDE: BOOT_HOLD no_rig held=" + held);
+                return;
+            }
+            _instance.ApplyBootHold(held);
+        }
+
+        private void ApplyBootHold(bool held)
+        {
+            if (held)
+            {
+                if (!_bootHold.Begin(transform.position)) return;
+                _bootSuspended.Clear();
+                CollectForBootHold(GetComponentsInChildren<ActionBasedContinuousMoveProvider>(true));
+                CollectForBootHold(GetComponentsInChildren<ActionBasedContinuousTurnProvider>(true));
+                CollectForBootHold(GetComponentsInChildren<ActionBasedSnapTurnProvider>(true));
+                CollectForBootHold(GetComponentsInChildren<DashLocomotion>(true));
+                Debug.Log("ZIPTIDE: BOOT_HOLD on pose=" + transform.position.ToString("F2")
+                    + " suspended=" + _bootSuspended.Count);
+            }
+            else
+            {
+                if (!_bootHold.End()) return;
+                foreach (var b in _bootSuspended)
+                    if (b != null) b.enabled = true;
+                int restored = _bootSuspended.Count;
+                _bootSuspended.Clear();
+
+                // Re-arm the fall net from wherever the rig settled — this is the ONLY place fall
+                // recovery arms after boot, per the forensic contract.
+                _lastSafePosition = transform.position;
+                _hasSafePosition = true;
+                Debug.Log("ZIPTIDE: BOOT_HOLD off safe=" + transform.position.ToString("F2")
+                    + " restored=" + restored);
+            }
+        }
+
+        private void CollectForBootHold(Behaviour[] providers)
+        {
+            foreach (var b in providers)
+            {
+                if (b == null || !b.enabled) continue;
+                b.enabled = false;
+                _bootSuspended.Add(b);
+            }
+        }
+
         public void TeleportToSpawnMarker()
         {
             TeleportToMarker(null);
@@ -695,6 +811,10 @@ namespace Ziptide.Gameplay
                 Debug.Log("[Ziptide] No SpawnMarkerRuntime"
                     + (string.IsNullOrEmpty(markerId) ? "" : " id='" + markerId + "'")
                     + " found, keeping position.");
+                // DS-01: a marker-less CONTENT scene still releases the boot hold — the player must
+                // never arrive in a world frozen. (_Boot itself keeps the hold: menu still owns it.)
+                if (SceneManager.GetActiveScene().name != Ziptide.Core.ZiptideConstants.SceneBoot)
+                    ApplyBootHold(false);
                 return;
             }
             var cc = GetComponent<CharacterController>();
@@ -742,6 +862,10 @@ namespace Ziptide.Gameplay
             // Record this as the safe spot for the global fall-safety net.
             _lastSafePosition = transform.position;
             _hasSafePosition = true;
+
+            // DS-01: the spawn has settled — release the cold-boot hold (restores locomotion and
+            // re-arms the fall net from this fresh spawn). No-op when the hold isn't active.
+            ApplyBootHold(false);
 
             Debug.Log("ZIPTIDE: SPAWN_AT marker='" + marker.markerId + "' rig=" + transform.position.ToString("F2")
                 + " markerGround=" + target.ToString("F2"));

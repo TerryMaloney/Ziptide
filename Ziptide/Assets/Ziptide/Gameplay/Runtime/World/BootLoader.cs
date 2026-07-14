@@ -20,6 +20,12 @@ namespace Ziptide.Gameplay
                 ? ZiptideConstants.FirstWorldScene
                 : overrideFirstScene;
 
+            // DS-01 cold-boot hold: _Boot has no floor, but the D2-patched rig arrives with gravity
+            // locomotion + the fall net live — that combination is the boot fall/respawn loop. Hold
+            // the rig (suspend locomotion, disarm the net, pin the pose) while the Home Hub owns the
+            // scene; PlayerRigPersistence releases the hold after the chosen world's spawn settles.
+            PlayerRigPersistence.SetBootHold(true);
+
             // The Home Hub is the one cold-boot gate. It never loads scenes itself: the callback keeps
             // TravelCoordinator as the sole travel path and preserves skipGate for the empty _Boot.
             var existing = FindObjectOfType<HomeHubRuntime>();
