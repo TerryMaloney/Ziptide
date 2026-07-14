@@ -15,7 +15,7 @@ namespace Ziptide.Gameplay
         private PhotoCaptureCamera _captureCamera;
         private float _nextShutter;
         private float _flashUntil = -1f;
-        private readonly MaterialPropertyBlock _screenBlock = new MaterialPropertyBlock();
+        private MaterialPropertyBlock _screenBlock;
         private static readonly int BaseColorId = Shader.PropertyToID("_BaseColor");
         private static readonly int ColorId = Shader.PropertyToID("_Color");
 
@@ -29,6 +29,7 @@ namespace Ziptide.Gameplay
 
         private void Awake()
         {
+            _screenBlock = new MaterialPropertyBlock();
             _grab = GetComponent<XRGrabInteractable>();
             _lens = transform.Find("Lens");
             BuildBody();
@@ -88,7 +89,7 @@ namespace Ziptide.Gameplay
 
         private void Update()
         {
-            if (_screen == null) return;
+            if (_screen == null || _screenBlock == null) return;
             Color tint = _flashUntil > Time.time ? new Color(1.7f, 1.7f, 1.7f, 1f) : Color.white;
             _screen.GetPropertyBlock(_screenBlock);
             if (_screen.sharedMaterial != null && _screen.sharedMaterial.HasProperty(BaseColorId)) _screenBlock.SetColor(BaseColorId, tint);
