@@ -7,7 +7,11 @@
 - `docs/HANDOFF_HISTORY_THROUGH_RB24.md` — exact prior history through rb24
 - `docs/DEVICE_STABILIZATION_FORENSIC_PLAN.md` — Quest device recovery plan
 - `docs/recovery/RECOVERY_PROGRAM.md` — active recovery authority, freeze, proof levels and R0–R4 path
-- `docs/recovery/SYSTEM_CONTRACT_INVENTORY.md` — current critical-system ownership map
+- `docs/recovery/SYSTEM_CONTRACT_INVENTORY.md` — initial critical-system ownership map
+- `docs/recovery/AUTOMATIC_RUNTIME_OWNERS.md` — automatic bootstraps, persistent mutators and feature injectors
+- `docs/recovery/CANONICAL_OWNER_DECISIONS.md` — proposed surviving owners and displaced paths
+- `docs/recovery/R1_INTEGRATION_HARNESS_SPEC.md` — locked next-phase verification design
+- `docs/recovery/generated/` — generated source, scene, claim and ownership reports
 - `docs/MASTER_CHECKLIST.md`
 - `docs/FABLE5_BACKLOG.md`
 - `docs/TERRY_RUNBOOK.md`
@@ -22,6 +26,23 @@
 ---
 
 ## ENTRIES — newest first
+
+### 2026-07-14 (rb29) — R0 automated repository cartography: hidden features are still globally active
+
+- **Did (report infrastructure):** added a separate report-only recovery workflow and tooling for repository-wide runtime ownership scanning, inventory validation, ownership maps, build-scene exposure, current-board completion claims, runtime input bindings/chords, exact C# type-to-path resolution, and event/save ownership. Reports are generated into `docs/recovery/generated/` and uploaded as workflow artifacts. No gameplay, scene, prefab, art or runtime behavior changed.
+- **Scale of current evidence:** the broad scan covers 598 C# files and records 2,013 exact ownership signals. The initial 26-system inventory contains 37 truth defects: failed/unverified Quest observations recorded as accepted `QUEST` proof, guessed/descriptive source paths, and unresolved canonical owners. The claim audit found 260 strong completion lines in current boards, 138 without a proof qualifier on the same line. These are review targets, not automatic accusations of falsehood.
+- **Scene exposure finding:** all 24 Build Settings scenes are enabled. Only `_Boot` and `W000` are already golden-path/support; ToxicCity and W002 are unresolved destination candidates; 20 enabled scenes are legacy tests, non-golden worlds or multiplayer prototypes. Documentation saying a feature is hidden does not make it unreachable in the APK.
+- **Automatic-owner finding:** far more global owners run than the original inventory recorded. Confirmed automatic/persistent owners include DebugHUD, XR camera enforcer, runtime health monitor, runtime input enabler, runtime material fixer, VR boot diagnostics, ambience, comfort vignette, conquest mission injection, dev warp board, ecology, PvP progression, Quarters camera injection, SaveSystem, first-hour observation, player rig, audio, travel and singleton validation. Catalog: `docs/recovery/automatic_runtime_owners.json`.
+- **Priority-zero visual collision:** `RuntimeMaterialFixer` runs after every scene load, scans every Renderer, and replaces null or non-URP materials with newly allocated URP/Lit materials colored green/blue/gray from object names. Therefore the headset can render something materially different from authored scenes, Forge assignments and build-time art audits. Recovery direction: build-time material validation plus explicit development fallback policy; retire the unconditional runtime rewrite after R1 proves the replacement.
+- **Input ownership collision:** `RuntimeInputEnabler` globally reflects across controllers and every MonoBehaviour `InputActionReference`, enabling entire action assets after every load. `PlayerRigPersistence` separately adopts the XRI manager and moves/clears input-action ownership. Recovery decision: `PlayerRigPersistence`/one central input session survives; the reflection fallback is retired or gated after PlayMode proof.
+- **Camera ownership collision:** `EnsureXRCameraActive` disables every active Camera not under a name containing `XR Origin` or `Camera Offset`. This can collide with field/photo/snapshot/spectator cameras. Recovery decision: replace it with explicit camera roles and one player-view owner.
+- **Y+B finding:** the current `DevWarpBoard` only owns forehead gesture/F2/ADB access. The surviving Y+B contract is in persistent `QuickSwap`: B is quick-swap; Y is a guard that suppresses B because its source still says `Y+B = dev menu chord`. It does not itself open the current board. The control architecture still encodes a retired chord; the generated input report will locate every remaining chord and cross-owner control collision.
+- **Travel finding:** runtime scene loading is centralized in `TravelCoordinator`; the only direct synchronous load is its own fallback when no coordinator exists. The main problem is lifecycle/input/UI ownership around travel, not many independent scene loaders.
+- **Canonical decisions:** committed machine/human owner tables. TravelCoordinator, SaveSystem and PlayerRigPersistence remain core owners. New recovery contracts are required for exposure gating, diegetic panels, input meanings, camera roles, material/fallback policy, scene presentation, item poses, shooter exclusion and creature contact. Job/repair semantic ownership, the surviving melee implementation and the ship presentation root remain explicitly unresolved pending generated event/source reports.
+- **R1 design locked:** `R1_INTEGRATION_HARNESS_SPEC.md` specifies the one-frame PlayMode spike, repeat-green promotion rule, tests-only fake tracked rig, automatic-owner exposure profile, runtime census, Home Hub ray smoke, one-world travel/save round trip, renderer-capable snapshots, UI spatial checks, prototype/fallback visibility gate and checkpoint-only Quest testing.
+- **Next (R0):** consume the generated input/source/event reports; replace guessed inventory paths; remove invalid Quest proof labels; select one golden destination; identify the repair/objective semantic owner, melee survivor and ship root; produce the R0 exit report and bounded R1 implementation packet. Do not begin broad runtime consolidation before that exit report.
+- **Heads-up:** `docs/CI_VERDICT.md` is still green only for older head `6b9d800`; later R0 tooling/docs commits are not called CI-green until a fresh durable verdict records them. The recovery workflow is report-only and independent of the Unity verdict.
+- **Commits (this tranche):** recovery report tools/workflow and generated artifacts · `73b3857` automatic-owner catalog · `f049631` owner summary · `bc910b4` R1 harness spec · `fc9cdaa` canonical owner decisions · `1b919d0` canonical summary · this HANDOFF entry.
 
 ### 2026-07-14 (rb28) — GPT Recovery/Integration lane assigned; R0 contract inventory started
 
