@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "status": "R1_1_OBSERVATION",
+  "status": "R1_1_PROMOTED",
   "requirements": {
     "minimumSuccessfulRuns": 2,
     "requiresDistinctShas": true,
@@ -51,6 +51,22 @@
       "changeClass": "workflow_concurrency",
       "unrelatedDescendant": false,
       "artifact": null
+    },
+    {
+      "testedSha": "cb9aa762ebf6f9b8ce7936d3cccc48711be32ae8",
+      "workflowRunId": 29376951547,
+      "attempt": 1,
+      "outcome": "success",
+      "scope": "R1.1 one-frame lifecycle infrastructure",
+      "unityVersion": "2022.3.62f3",
+      "changeClass": "documentation_only_repeat_probe",
+      "unrelatedDescendant": true,
+      "artifact": {
+        "id": 8328292871,
+        "name": "recovery-playmode-r1-results",
+        "sizeBytes": 28282,
+        "expired": false
+      }
     }
   ]
 }
