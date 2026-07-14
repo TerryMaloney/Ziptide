@@ -9,59 +9,25 @@ using UnityEngine.XR.Interaction.Toolkit.UI;
 namespace Ziptide.Gameplay.DevTools
 {
     /// <summary>
-    /// In-VR developer menu — a summonable world-space panel listing every world (from
-    /// <see cref="DevWorldManifest"/>) with a button to warp there via <see cref="DevWarp"/>. Lets us
-    /// jump around on the headset, not just in the editor. Dev-only (compiled out of shipping builds);
-    /// self-bootstraps, so no scene setup needed.
+    /// ⚠ RETIRED FROM RUNTIME (DS-02, DEVICE_STABILIZATION_FORENSIC_PLAN, 2026-07-14). This TMP
+    /// world-space canvas rendered dead/flickering on the Quest (2026-07-06 device pass) — which is
+    /// why the primitive-tile <see cref="DevWarpBoard"/> exists — and having BOTH self-bootstrap
+    /// produced the duplicate competing menus Terry hit on-device. The board is now the ONE
+    /// authoritative dev warp interface and owns the summon gesture, F2, and the ADB gate.
     ///
-    /// Access reserves zero gameplay buttons: F2 in the editor; on Quest, hold both controllers
-    /// close together above the forehead for two seconds. ADB marker access remains a backup.
-    /// v1 is world-level (default spawn); per-marker jumps are in the editor Warp Window already.
+    /// This class keeps NO self-bootstrap and NO summon path. It is retained only as a manual
+    /// diagnostic: add the component to a GameObject yourself and call <see cref="Show"/> — useful
+    /// if the TMP-canvas rendering path itself ever needs testing on-device. Do not re-add a
+    /// RuntimeInitializeOnLoadMethod here: the DevTools singleton source-scan test forbids a second
+    /// self-bootstrapping dev interface.
     /// </summary>
     public class DevMenu : MonoBehaviour
     {
         private const int PageSize = 6;
-        private const float AccessPollSeconds = 0.25f;
 
-        private readonly DevMenuGesture _headsetGesture = new DevMenuGesture();
         private GameObject _canvasGo;
         private bool _visible;
-        private float _nextAccessPollAt;
         private int _page;
-
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
-        private static void EnsureExists()
-        {
-            if (FindObjectOfType<DevMenu>() != null) return;
-            var go = new GameObject("__DevMenu");
-            DontDestroyOnLoad(go);
-            go.AddComponent<DevMenu>();
-#if UNITY_EDITOR
-            Debug.Log("ZIPTIDE: DEV_MENU ready (summon: F2 in editor)");
-#else
-            Debug.Log("ZIPTIDE: DEV_MENU ready (summon: hold both controllers above forehead for 2s)");
-#endif
-        }
-
-        private void Update()
-        {
-#if UNITY_EDITOR
-            var kb = UnityEngine.InputSystem.Keyboard.current;
-            if (kb != null && kb.f2Key.wasPressedThisFrame) Toggle();
-#else
-            if (_headsetGesture.Tick(Time.unscaledDeltaTime))
-            {
-                Toggle();
-                Debug.Log("ZIPTIDE: DEV_MENU gesture_toggle visible=" + _visible);
-            }
-
-            if (Time.unscaledTime < _nextAccessPollAt) return;
-            _nextAccessPollAt = Time.unscaledTime + AccessPollSeconds;
-
-            // Optional computer-side backup. The headset gesture above does not require ADB unlock.
-            if (DevAccessGate.TryConsumeOpenRequest()) Show();
-#endif
-        }
 
         public void Toggle()
         {
