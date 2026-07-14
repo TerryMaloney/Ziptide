@@ -30,6 +30,10 @@ namespace Ziptide.Editor.Patching
                 return;
             }
 
+            // Styled districts replace the old decorative facade ring. Leaving both systems alive puts
+            // real doorways directly into legacy facade colliders (BUILDING_DOOR_BLOCKED on W005).
+            RemoveLegacyFacadeRing(cityRoot, district.id);
+
             var root = new GameObject("__BUILDINGS_" + district.id);
             root.transform.SetParent(cityRoot, false);
             root.transform.position = new Vector3(district.anchor.x, walkwayHeight, district.anchor.z);
@@ -47,6 +51,20 @@ namespace Ziptide.Editor.Patching
                 if (plan == null) continue;
                 RenderPlan(root.transform, lot, plan, style);
                 StreetDressing(root.transform, lot, style, seed + built * 7919);
+            }
+        }
+
+        private static void RemoveLegacyFacadeRing(Transform cityRoot, string districtId)
+        {
+            if (cityRoot == null || string.IsNullOrEmpty(districtId)) return;
+            Transform districtRoot = cityRoot.Find("District_" + districtId);
+            if (districtRoot == null) return;
+
+            for (int i = districtRoot.childCount - 1; i >= 0; i--)
+            {
+                Transform child = districtRoot.GetChild(i);
+                if (child != null && child.name.StartsWith("Facade_"))
+                    Object.DestroyImmediate(child.gameObject);
             }
         }
 
