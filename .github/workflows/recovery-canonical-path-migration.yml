@@ -1,0 +1,60 @@
+name: Recovery Canonical Path Migration
+
+on:
+  push:
+    branches:
+      - terry-local-wip
+    paths:
+      - '.github/workflows/recovery-canonical-path-migration.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: terry-local-wip
+          fetch-depth: 0
+
+      - name: Replace the three resolver-proven stale paths
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path('docs/recovery/canonical_system_contracts.json')
+          text = path.read_text(encoding='utf-8')
+          replacements = {
+              'Ziptide/Assets/Ziptide/Core/Runtime/PlayerProfile.cs':
+                  'Ziptide/Assets/Ziptide/Core/Runtime/Persistence/PlayerProfile.cs',
+              'Ziptide/Assets/Ziptide/Core/Runtime/ProfileSerializer.cs':
+                  'Ziptide/Assets/Ziptide/Core/Runtime/Persistence/ProfileSerializer.cs',
+              'Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldTravelStation.cs':
+                  'Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs',
+          }
+          for old, new in replacements.items():
+              count = text.count(old)
+              if count != 1:
+                  raise SystemExit(f'Expected exactly one occurrence of {old!r}; found {count}')
+              text = text.replace(old, new)
+          path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Commit corrected ledger
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- docs/recovery/canonical_system_contracts.json; then
+            echo "Canonical paths already migrated."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/recovery/canonical_system_contracts.json
+          git commit -m "docs(recovery): correct canonical source paths [skip ci]"
+          git push origin HEAD:terry-local-wip
