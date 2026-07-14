@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "status": "R0_DECISIONS_CLOSED",
+  "decisions": [
+    {
+      "id": "REPAIR_OBJECTIVE_OWNER",
+      "canonicalSemanticOwner": "Ziptide.Gameplay.JobRuntime",
+      "sceneAdapter": "Ziptide.Gameplay.JobDirector",
+      "readOnlyProjections": [
+        "Ziptide.Gameplay.ObjectiveBoard",
+        "future DiegeticPanel objective presentation"
+      ],
+      "displacedIndependentStateRead": "Ziptide.Gameplay.ShipCastOffRuntime.IsArmed directly locating RepairableMachine and reading IsRepaired",
+      "requiredMigration": "Ship cast-off arming consumes an explicit semantic completion/arming signal derived from JobRuntime/JobDirector rather than independently rediscovering machine visual state.",
+      "evidence": [
+        "JobRuntime owns current step, repair progress, early repair bank, AdvanceStep and JobCompleted.",
+        "JobDirector owns one JobRuntime instance, translates RepairableMachine.ReportRepair into it, refreshes projections and grants rewards/world flags.",
+        "ObjectiveBoard only reads JobDirector.Runtime and renders StepText/IsComplete.",
+        "ShipCastOffRuntime separately finds a RepairableMachine by id and reads IsRepaired, creating the observed divergence surface."
+      ],
+      "proofPacket": [
+        "CORE semantic arming rule",
+        "PLAYMODE repair before job acceptance",
+        "PLAYMODE repair during current step",
+        "PLAYMODE board and cast-off consume same state transition",
+        "PLAYMODE duplicate machine/director census"
+      ]
+    },
+    {
+      "id": "MELEE_SURVIVOR",
+      "canonicalRuntimeFoundation": "Ziptide.Gameplay.MeleeWeaponRuntime",
+      "contentOwner": "ArenaWeaponDefinition/ItemFactory item path",
+      "sonicThumperDisposition": "Migrate SonicThumperRuntime effect into the shared tracked-tip/contact seam as a configured melee effect; do not retain root-speed positional AoE as a separate pose contract.",
+      "hammerToolDisposition": "Retire standalone primitive HammerTool from runtime after arena patchers migrate to item definitions; preserve any useful auto-return/contact behavior as adapters/tests.",
+      "goldenSliceExposure": "PROTOTYPE_HIDDEN",
+      "evidence": [
+        "MeleeWeaponRuntime already uses a named Muzzle/tip, tracked-tip velocity, contact filtering, item definitions and self exclusion.",
+        "SonicThumperRuntime is item-integrated but measures root speed and applies radius effects from the root.",
+        "HammerTool tracks its physical head but self-builds a separate primitive item and is injected directly by two arena patchers.",
+        "ItemFactory already routes Breaker Blade/Tide Pike through MeleeWeaponRuntime and Sonic Thumper through SonicThumperRuntime."
+      ],
+      "proofPacket": [
+        "CORE effect/config contract",
+        "PLAYMODE tip/head contact and impact axis",
+        "PLAYMODE self exclusion and per-target debounce",
+        "VISUAL grip/impact snapshot",
+        "later Quest swing-feel checkpoint"
+      ]
+    },
+    {
+      "id": "SHIP_PRESENTATION_ROOT",
+      "canonicalAuthoringOwner": "Ziptide.Editor.Patching.CityBuilder using ShipHullBuilder.Build",
+      "canonicalRuntimeRoot": "The CityBuilder-authored GameObject carrying ShipBoardingStation",
+      "canonicalRuntimeAdapter": "Ziptide.Gameplay.ShipRefit.Apply",
+      "stateOwner": "Ziptide.Core.ShipLocker plus ShipChassisPreset/ShipLoadoutCore",
+      "castOffOwner": "Ziptide.Gameplay.ShipCastOffRuntime on W000 root, subordinate to semantic repair arming and TravelCoordinator",
+      "flightDisposition": "ShipFlightRuntime/SpaceLane remains PROTOTYPE_HIDDEN and is not treated as a second golden ship root.",
+      "visualDisposition": "ShipHullBuilder is explicitly an interim skeleton. A later approved visual replaces children under the same canonical root; it does not introduce another ship object contract.",
+      "evidence": [
+        "CityBuilder is the sole source caller of ShipHullBuilder.Build.",
+        "ShipBoardingStation calls ShipRefit.Apply(gameObject).",
+        "HangarBayRuntime re-applies ShipRefit to its assigned shipRoot after loadout changes.",
+        "ShipRefit assumes the named ShipHullBuilder skeleton and applies chassis, livery, decals, nameplate and hum from profile data.",
+        "CityBuilder attaches ShipCastOffRuntime only to the W000 ship root."
+      ],
+      "proofPacket": [
+        "PATCHED one canonical ship root in W000 and W001",
+        "PLAYMODE root/refit identity and no duplicate hull roots",
+        "PLAYMODE boarding/cast-off subordinate state",
+        "VISUAL same ship identity across W000 and W001",
+        "Quest boarding/use checkpoint; free flight excluded"
+      ]
+    }
+  ]
+}
