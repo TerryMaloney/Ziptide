@@ -14,7 +14,7 @@ on:
 
 permissions:
   checks: write
-  contents: read
+  contents: write
 
 env:
   PROJECT_PATH: Ziptide
@@ -29,6 +29,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
+          ref: terry-local-wip
+          fetch-depth: 0
           lfs: true
 
       - name: Cache isolated PlayMode Library
@@ -41,6 +43,7 @@ jobs:
             Library-
 
       - name: Run PlayMode infrastructure test
+        id: playmode
         uses: game-ci/unity-test-runner@v4
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
@@ -53,10 +56,47 @@ jobs:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
           artifactsPath: playmode-test-results
 
+      - name: Render durable PlayMode observation
+        if: always()
+        shell: bash
+        run: |
+          mkdir -p docs/recovery/generated
+          cat > docs/recovery/generated/recovery_playmode_observation.md <<EOF
+          # Recovery PlayMode Observation
+
+          - Tested SHA: \`${GITHUB_SHA}\`
+          - Workflow run: \`${GITHUB_RUN_ID}\`
+          - Attempt: \`${GITHUB_RUN_ATTEMPT}\`
+          - Test step outcome: **${{ steps.playmode.outcome }}**
+          - Scope: R1.1 one-frame lifecycle infrastructure only
+          - Unity: ${UNITY_VERSION}
+          - Promotion state: observation; requires two green runs before becoming a recovery-required lane
+          EOF
+
       - name: Upload PlayMode results
         uses: actions/upload-artifact@v4
         if: always()
         with:
           name: recovery-playmode-r1-results
-          path: playmode-test-results
+          path: |
+            playmode-test-results
+            docs/recovery/generated/recovery_playmode_observation.md
           if-no-files-found: warn
+
+      - name: Commit durable observation without forcing
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- docs/recovery/generated/recovery_playmode_observation.md && \
+             [[ -z "$(git status --porcelain -- docs/recovery/generated/recovery_playmode_observation.md)" ]]; then
+            echo "PlayMode observation already matches this run."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/recovery/generated/recovery_playmode_observation.md
+          git commit -m "ci(playmode): record observation for ${GITHUB_SHA:0:7} [skip ci]"
+          if ! git push origin HEAD:terry-local-wip; then
+            echo "::warning::Branch advanced during PlayMode observation write; artifact still preserves this run."
+          fi
