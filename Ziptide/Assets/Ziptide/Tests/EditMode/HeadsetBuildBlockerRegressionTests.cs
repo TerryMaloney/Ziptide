@@ -38,15 +38,20 @@ namespace Ziptide.Tests.EditMode
         }
 
         [Test]
-        public void W011Undercroft_SpawnHasNonTriggerLandingColliderBeforeAudit()
+        public void W011Undercroft_SpawnHasSynchronizedNonTriggerLandingColliderBeforeAudit()
         {
             string build = Read("Editor", "Build", "BuildAndroid.cs");
             string safety = Read("Editor", "Patching", "CaveSpawnSafety.cs");
             StringAssert.Contains("CaveSpawnSafety.EnsureUndercroftSpawnFloor();", build);
             StringAssert.Contains("FloorName = \"__SPAWN_FLOOR\"", safety);
             StringAssert.Contains("GameObject.CreatePrimitive(PrimitiveType.Cube)", safety);
+            StringAssert.Contains("floor.layer = 0;", safety);
             StringAssert.Contains("BoxCollider collider", safety);
             StringAssert.Contains("collider.isTrigger = false;", safety);
+            StringAssert.Contains("Physics.autoSyncTransforms = true;", safety);
+            StringAssert.Contains("Physics.SyncTransforms();", safety);
+            StringAssert.Contains("Physics.DefaultRaycastLayers", safety);
+            StringAssert.Contains("QueryTriggerInteraction.Ignore", safety);
             StringAssert.Contains("EditorSceneManager.SaveScene(scene, UndercroftScenePath);", safety);
         }
 
