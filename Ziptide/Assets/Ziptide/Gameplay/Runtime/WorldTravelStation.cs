@@ -150,17 +150,15 @@ namespace Ziptide.Gameplay
                     + " missing=" + (WorldGating.FirstMissingRequirement(pack, SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null) ?? "?"));
             }
 
-            var labelGo = CreateTextMesh("To " + label, 0.06f, LabelColor);
-            labelGo.transform.SetParent(doorRoot.transform, false);
-            labelGo.transform.localPosition = new Vector3(0f, DoorHeight + FrameThickness + 0.15f, 0f);
-            NeutralizeScale(labelGo.transform);
-            _owned.Add(labelGo);
-
-            var doorLabel = CreateTextMesh(label, 0.05f, new Color(0.85f, 0.9f, 1f));
-            doorLabel.transform.SetParent(door.transform, false);
-            doorLabel.transform.localPosition = new Vector3(0f, 0.2f, -(DoorDepth * 0.5f + 0.005f));
-            NeutralizeScale(doorLabel.transform);
-            _owned.Add(doorLabel);
+            // DS-14: labels ship on BOTH faces, each rotated by THE ONE facing contract
+            // (WorldLabelFacing) so the text reads correctly from whichever side the player
+            // approaches. The old single identity-rotation label read mirrored on-device because
+            // players approach these stations from the label's +Z side (TextMesh is readable from
+            // its −Z side only) — duplicating per face removes the approach-side guess entirely.
+            AddFaceLabels(doorRoot.transform, "To " + label, 0.06f, LabelColor,
+                new Vector3(0f, DoorHeight + FrameThickness + 0.15f, 0f), 0.02f);
+            AddFaceLabels(door.transform, label, 0.05f, new Color(0.85f, 0.9f, 1f),
+                new Vector3(0f, 0.2f, 0f), DoorDepth * 0.5f + 0.005f);
 
             _owned.Add(doorRoot);
         }
@@ -197,6 +195,34 @@ namespace Ziptide.Gameplay
                 Mathf.Approximately(ls.x, 0f) ? 1f : 1f / ls.x,
                 Mathf.Approximately(ls.y, 0f) ? 1f : 1f / ls.y,
                 Mathf.Approximately(ls.z, 0f) ? 1f : 1f / ls.z);
+        }
+
+        /// <summary>
+        /// DS-14: one readable label per face. The rotations come from WorldLabelFacing evaluated in
+        /// LOCAL space — a synthetic viewer on each side of the face — so the readable-side
+        /// convention lives in exactly one place and both labels stay correct however the station
+        /// itself is rotated in the world.
+        /// </summary>
+        private void AddFaceLabels(Transform parent, string text, float charSize, Color color,
+            Vector3 localCenter, float faceOffset)
+        {
+            // Face whose viewer stands on the parent's −Z side…
+            var back = CreateTextMesh(text, charSize, color);
+            back.transform.SetParent(parent, false);
+            back.transform.localPosition = localCenter + new Vector3(0f, 0f, -faceOffset);
+            back.transform.localRotation = WorldLabelFacing.FaceViewer(
+                localCenter, localCenter + Vector3.back, yawOnly: false);
+            NeutralizeScale(back.transform);
+            _owned.Add(back);
+
+            // …and the face whose viewer stands on the +Z side (the mirrored one Terry hit).
+            var front = CreateTextMesh(text, charSize, color);
+            front.transform.SetParent(parent, false);
+            front.transform.localPosition = localCenter + new Vector3(0f, 0f, faceOffset);
+            front.transform.localRotation = WorldLabelFacing.FaceViewer(
+                localCenter, localCenter + Vector3.forward, yawOnly: false);
+            NeutralizeScale(front.transform);
+            _owned.Add(front);
         }
 
         private static GameObject CreateTextMesh(string text, float charSize, Color color)
