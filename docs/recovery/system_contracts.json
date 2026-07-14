@@ -1,0 +1,497 @@
+{
+  "schemaVersion": 1,
+  "status": "R0_IN_PROGRESS",
+  "generatedFromBranch": "terry-local-wip",
+  "asOfDate": "2026-07-14",
+  "proofLevels": ["SOURCE", "CORE", "PATCHED", "PLAYMODE", "VISUAL", "APK", "QUEST"],
+  "exposureClasses": ["GOLDEN_PATH", "SUPPORT", "PROTOTYPE_HIDDEN", "DIAGNOSTIC", "REPLACE_OR_MERGE", "UNCLASSIFIED"],
+  "systems": [
+    {
+      "id": "BOOT_FLOW",
+      "responsibility": "Cold-start choice, boot hold, and first travel request",
+      "canonicalCandidate": "BootLoader + HomeHubRuntime + explicit boot state owned with PlayerRigPersistence",
+      "sourceFiles": [
+        "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/BootLoader.cs",
+        "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
+        "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs"
+      ],
+      "startup": "BootLoader.Start in persistent _Boot scene; creates HomeHubRuntime when absent",
+      "persistence": "_Boot remains loaded; PlayerRigPersistence persists; HomeHub surface is runtime-created",
+      "runtimeCreates": ["__HOME_HUB_RUNTIME", "__HOME_HUB_BOARD", "Tile_*", "TextMesh labels", "optional comfort settings console"],
+      "state": ["SaveSystem.HasExistingProfile", "HomeHubFlowState", "PlayerRigPersistence.BootHoldState"],
+      "currentProof": ["CORE", "PATCHED", "APK"],
+      "questStatus": "FAILED_DEVICE_ACCEPTANCE",
+      "exposure": "GOLDEN_PATH",
+      "conflicts": [
+        "HomeHubRuntime binds XRInteractionManager once during tile creation and has no delayed retry",
+        "Boot/rig behavior is split across three owners",
+        "Headset observed menu pointing failure and inconsistent menu input"
+      ],
+      "nextAction": "PlayMode boot lifecycle test plus delayed/explicit interaction-manager binding contract"
+    },
+    {
+      "id": "XR_RIG",
+      "responsibility": "Persistent XR Origin, XRI wiring, fall safety, belt, HUD, companion and player-attached services",
+      "canonicalCandidate": "PlayerRigPersistence",
+      "sourceFiles": ["Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs"],
+      "startup": "Scene-authored component in _Boot; singleton in Awake",
+      "persistence": "DontDestroyOnLoad",
+      "runtimeCreates": ["belt/holsters", "credits HUD", "RILL companion", "ping/quick-swap", "avatar rig", "stun receiver"],
+      "state": ["last safe position", "boot hold", "XRI manager ownership", "inventory restoration coordination"],
+      "currentProof": ["CORE", "PATCHED", "APK"],
+      "questStatus": "PARTIAL_FAILURE",
+      "exposure": "GOLDEN_PATH",
+      "conflicts": [
+        "One class owns many unrelated player-attached responsibilities",
+        "Per-world managers may appear and be adopted/destroyed",
+        "Recovered log showed locomotion provider enabled while grounded=false for an extended period"
+      ],
+      "nextAction": "Runtime census test for exactly one rig, manager, camera, belt, HUD and service set after repeated travel"
+    },
+    {
+      "id": "TRAVEL",
+      "responsibility": "All scene travel, save-before-load, asynchronous load, spawn settle, XRI restore and travel events",
+      "canonicalCandidate": "TravelCoordinator",
+      "sourceFiles": ["Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs"],
+      "startup": "Singleton authored in _Boot",
+      "persistence": "DontDestroyOnLoad",
+      "runtimeCreates": ["departure/arrival Ziptide effect", "async scene load coroutine"],
+      "state": ["travelling latch", "pending gate position", "skip-gate flag", "TravelCompleted event"],
+      "currentProof": ["CORE", "PATCHED", "APK"],
+      "questStatus": "UNVERIFIED_ASYNC_AND_VISUAL",
+      "exposure": "GOLDEN_PATH",
+      "conflicts": [
+        "Fallback direct SceneManager.LoadScene path still exists when coordinator is absent",
+        "Player-centered VFX uses rig root rather than tracked-head center",
+        "No automated PlayMode round-trip proof"
+      ],
+      "nextAction": "PlayMode round-trip with fake head offset, save/inventory restore, object census and timeout branch"
+    },
+    {
+      "id": "DEV_MENU",
+      "responsibility": "Development-only world selection and warp access",
+      "canonicalCandidate": "Undecided during R0; DevWarpBoard is current runtime owner",
+      "sourceFiles": [
+        "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
+        "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs",
+        "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenuGesture.cs",
+        "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevAccessGate.cs"
+      ],
+      "startup": "DevWarpBoard RuntimeInitializeOnLoadMethod in editor/development builds",
+      "persistence": "DontDestroyOnLoad host; visible board rebuilt per summon and destroyed on scene load",
+      "runtimeCreates": ["primitive panel", "primitive tiles", "TextMesh labels", "XRSimpleInteractables"],
+      "state": ["gesture latch", "ADB open request", "visibility"],
+      "currentProof": ["CORE", "PATCHED", "APK"],
+      "questStatus": "FAILED_DEVICE_ACCEPTANCE",
+      "exposure": "DIAGNOSTIC",
+      "conflicts": [
+        "Headset still showed mixed Y+B and forehead access",
+        "Retired TMP menu remains in source and can create fallback EventSystem/XRUIInputModule when manually mounted",
+        "Current singleton test checks source bootstrap count, not all runtime input/open paths"
+      ],
+      "nextAction": "Repository-wide input-binding and menu-open call graph; PlayMode assertion that only one interface can appear"
+    },
+    {
+      "id": "HOME_HUB_UI",
+      "responsibility": "Cold-boot New/Continue/Settings diegetic surface",
+      "canonicalCandidate": "Migrate to shared DiegeticPanel contract",
+      "sourceFiles": ["Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs"],
+      "startup": "Created/configured by BootLoader; builds surface in Start",
+      "persistence": "Lives under runtime HomeHub object in persistent _Boot",
+      "runtimeCreates": ["primitive board", "2-3 primitive tiles", "TextMesh labels", "XRSimpleInteractables"],
+      "state": ["one-shot HomeHubFlowState", "SaveSystem profile state"],
+      "currentProof": ["CORE", "PATCHED", "APK"],
+      "questStatus": "POINTING_FAILED",
+      "exposure": "GOLDEN_PATH",
+      "conflicts": ["One-frame interaction-manager lookup", "Independent facing/layout/material code", "No hover/hit diagnostics retained"],
+      "nextAction": "Shared panel migration after R1 reproduces the failure"
+    },
+    {
+      "id": "TRAVEL_STATION_UI",
+      "responsibility": "World destination doors and labels",
+      "canonicalCandidate": "Migrate to shared DiegeticPanel/door-label contract",
+      "sourceFiles": ["Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs"],
+      "startup": "Runtime or scene-attached station builds destination surfaces",
+      "persistence": "Scene-local",
+      "runtimeCreates": ["door geometry", "front/back TextMesh labels", "interactables"],
+      "state": ["world manifest/gating", "travel target"],
+      "currentProof": ["CORE", "PATCHED", "APK"],
+      "questStatus": "FAILED_VISUAL_LAYOUT",
+      "exposure": "REPLACE_OR_MERGE",
+      "conflicts": ["Both label faces visible through open air", "Fixed spacing with no width/wrap budget", "Corrected facing did not solve layout"],
+      "nextAction": "Hide from golden path until shared panel/door contract and snapshot overlap gate exist"
+    },
+    {
+      "id": "PERSISTENT_CREDITS_HUD",
+      "responsibility": "Always-visible player credit count",
+      "canonicalCandidate": "No always-on HUD during recovery; expose credits only at deliberate economy surfaces",
+      "sourceFiles": ["CreditsHud.cs (exact repository path to be resolved in R0 scan)"],
+      "startup": "Ensured by PlayerRigPersistence.Awake",
+      "persistence": "Attached to persistent rig/camera-relative",
+      "runtimeCreates": ["yellow TextMesh CR value"],
+      "state": ["profile/economy credits"],
+      "currentProof": ["SOURCE", "PATCHED", "APK", "QUEST"],
+      "questStatus": "VISIBLE_AND_INTRUSIVE",
+      "exposure": "REPLACE_OR_MERGE",
+      "conflicts": ["Contaminates every world and screenshot", "Independent HUD placement has no global presentation policy"],
+      "nextAction": "Locate source, disable from recovery candidate, replace with context-owned economy display"
+    },
+    {
+      "id": "QUARTERS_UI",
+      "responsibility": "Ship customization, locker, livery, trails and emblem browsing",
+      "canonicalCandidate": "Preserve data/customization core; hide current room presentation until shared UI contract",
+      "sourceFiles": ["Ziptide/Assets/Ziptide/Gameplay/Runtime/Ship/QuartersRoom.cs (path to verify)"],
+      "startup": "Scene/runtime component builds all bays during Awake",
+      "persistence": "Scene-local presentation; profile-backed choices persist",
+      "runtimeCreates": ["three bays", "headers", "browse controls", "empty-state text", "locker board", "primitive room surfaces"],
+      "state": ["CosmeticLocker", "ShipLocker", "PlayerProfile"],
+      "currentProof": ["CORE", "PATCHED", "APK", "QUEST"],
+      "questStatus": "FAILED_VISUAL_LAYOUT",
+      "exposure": "PROTOTYPE_HIDDEN",
+      "conflicts": ["All bays exposed simultaneously", "Hard-coded rotations/positions", "Mirrored and intersecting text/surfaces"],
+      "nextAction": "Keep customization data; exclude Quarters presentation from R3"
+    },
+    {
+      "id": "CONQUEST_TABLE_UI",
+      "responsibility": "Tidefront planet map, builds, fleets, controls, missions and hotseat presentation",
+      "canonicalCandidate": "Preserve pure conquest simulation; hide current table presentation",
+      "sourceFiles": ["ConquestTableRuntime.cs (exact repository path to be resolved in R0 scan)"],
+      "startup": "Runtime table component builds all controls/labels",
+      "persistence": "Scene-local presentation; conquest state persists",
+      "runtimeCreates": ["12 planet labels", "ticker", "info card", "control buttons", "8 defense tiles", "8 vessel tiles"],
+      "state": ["ConquestState", "ConquestSession", "profile save"],
+      "currentProof": ["CORE", "PATCHED", "APK", "QUEST"],
+      "questStatus": "FAILED_VISUAL_LAYOUT",
+      "exposure": "PROTOTYPE_HIDDEN",
+      "conflicts": ["Unbounded simultaneous text", "No paging/clipping/layout framework", "Pure simulation quality masks unusable runtime presentation"],
+      "nextAction": "Keep pure conquest core; exclude table from R3 and later rebuild through shared UI contract"
+    },
+    {
+      "id": "SAVE_PROFILE",
+      "responsibility": "Profile lifecycle, autosave, backup recovery and cross-scene persistence",
+      "canonicalCandidate": "SaveSystem + PlayerProfile serializer",
+      "sourceFiles": [
+        "Ziptide/Assets/Ziptide/Gameplay/Runtime/Persistence/SaveSystem.cs",
+        "Ziptide/Assets/Ziptide/Core/Runtime/Persistence/PlayerProfile.cs"
+      ],
+      "startup": "Persistent _Boot singleton",
+      "persistence": "DontDestroyOnLoad plus disk profile and backup",
+      "runtimeCreates": ["profile state and save files"],
+      "state": ["all player progression", "world overlays", "economy", "cosmetics", "PvP/conquest state"],
+      "currentProof": ["CORE", "PATCHED", "APK"],
+      "questStatus": "PARTIAL_DEVICE_USE_ONLY",
+      "exposure": "SUPPORT",
+      "conflicts": ["Many systems write profile fields/events independently", "No full golden-path quit/resume PlayMode proof"],
+      "nextAction": "Build save-writer ownership map and golden-path round-trip fixture"
+    },
+    {
+      "id": "ITEM_PRESENTATION",
+      "responsibility": "Item construction, visual assignment, physical scale and hand attach pose",
+      "canonicalCandidate": "New explicit ItemPresentationContract consumed by ItemFactory",
+      "sourceFiles": [
+        "Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs",
+        "Ziptide/Assets/Ziptide/Content/Runtime/Definitions/ItemDefinition.cs"
+      ],
+      "startup": "Invoked by world/arena/starter spawns and inventory restoration",
+      "persistence": "Definitions persist as assets; runtime instances are scene/inventory-owned",
+      "runtimeCreates": ["fallback primitive item", "Forge visual child", "grab interactable", "weapon runtime"],
+      "state": ["grip rotation", "scale", "forge recipe id", "item id"],
+      "currentProof": ["CORE", "PATCHED", "APK", "QUEST"],
+      "questStatus": "FAILED_POSE_AND_SCALE",
+      "exposure": "REPLACE_OR_MERGE",
+      "conflicts": ["Universal 45-degree gun fallback", "Zero-valued definitions select ambiguous defaults", "Visual envelope and interaction pose are separate"],
+      "nextAction": "Inventory every item attach/scale/muzzle/impact axis and define one schema before fixes"
+    },
+    {
+      "id": "HOLSTER",
+      "responsibility": "Persistent belt sockets, accepted item categories and holstered presentation",
+      "canonicalCandidate": "BeltRig + HolsterSocketInteractor consuming explicit left/right holster poses",
+      "sourceFiles": [
+        "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs",
+        "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs"
+      ],
+      "startup": "Ensured by PlayerRigPersistence",
+      "persistence": "Belt persists with rig; inventory state restores across travel",
+      "runtimeCreates": ["left/right sockets", "socket visuals/interactors"],
+      "state": ["accepted item", "InventoryState", "socket selection"],
+      "currentProof": ["CORE", "PATCHED", "APK", "QUEST"],
+      "questStatus": "FAILED_ORIENTATION",
+      "exposure": "GOLDEN_PATH",
+      "conflicts": ["No independent per-item holster pose", "In-hand fallback orientation leaks into socket presentation"],
+      "nextAction": "Unify with ItemPresentationContract and prove both sockets in fake-XR snapshots"
+    },
+    {
+      "id": "WEAPON_FIRE",
+      "responsibility": "Muzzle direction, hitscan/projectile creation, collision and non-lethal hit reporting",
+      "canonicalCandidate": "Existing weapon runtimes behind shared muzzle and shooter-ignore contracts",
+      "sourceFiles": [
+        "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/PistolRuntime.cs",
+        "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/TaserDartGunRuntime.cs",
+        "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/TaserDartProjectile.cs"
+      ],
+      "startup": "Added by ItemFactory for matching definitions",
+      "persistence": "Runtime item-owned",
+      "runtimeCreates": ["aim/muzzle line", "hitscan ray", "dart projectile"],
+      "state": ["weapon charge/ammo where applicable", "hit source", "target state"],
+      "currentProof": ["CORE", "PATCHED", "APK", "QUEST"],
+      "questStatus": "FAILED_AIM_AND_SELF_HIT_RISK",
+      "exposure": "GOLDEN_PATH",
+      "conflicts": ["Muzzle axis not tied to grip contract", "Incomplete shooter/self collider exclusion", "Projectile accepts first collision"],
+      "nextAction": "One golden-path tool only; add deterministic owner-ignore and muzzle-axis tests"
+    },
+    {
+      "id": "MELEE",
+      "responsibility": "Hammer/thumper construction, grip, impact axis and hit behavior",
+      "canonicalCandidate": "Undecided: consolidate SonicThumper and PvpHammer/HammerTool",
+      "sourceFiles": [
+        "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/HammerTool.cs",
+        "SonicThumper item/runtime files (exact paths to resolve in R0 scan)"
+      ],
+      "startup": "Spawned from arena pads/starter content",
+      "persistence": "Runtime item-owned",
+      "runtimeCreates": ["primitive or Forge mallet", "impact/shockwave behavior"],
+      "state": ["swing state", "hit debounce", "damage/shove"],
+      "currentProof": ["CORE", "PATCHED", "APK", "QUEST"],
+      "questStatus": "FAILED_SIDEWAYS_POSE",
+      "exposure": "PROTOTYPE_HIDDEN",
+      "conflicts": ["Two unrelated implementations", "Gun fallback applied to one mallet", "No shared impact axis"],
+      "nextAction": "Hide from R3; choose one canonical melee contract after item inventory"
+    },
+    {
+      "id": "ZIPLINE",
+      "responsibility": "Authored cable route, grab/ride progression, collision clearance and exit",
+      "canonicalCandidate": "ZiplineRuntime using one sampled path generated with clearance",
+      "sourceFiles": [
+        "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherCavern.cs",
+        "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ZiplineRuntime.cs",
+        "Ziptide/Assets/Ziptide/Content/Runtime/Traversal/ZiplineCore.cs"
+      ],
+      "startup": "Authored by world patchers; scene-local runtime",
+      "persistence": "Scene-local",
+      "runtimeCreates": ["visible cable", "ride interaction/path"],
+      "state": ["ride progress", "entry/exit"],
+      "currentProof": ["CORE", "PATCHED", "APK", "QUEST"],
+      "questStatus": "FAILED_GEOMETRY_AND_RIDE",
+      "exposure": "PROTOTYPE_HIDDEN",
+      "conflicts": ["Direct endpoint chord ignores generated cave solids", "Visible sag path differs from straight rider path"],
+      "nextAction": "Defer from R3; later add sampled capsule-clearance author gate and shared visual/ride path"
+    },
+    {
+      "id": "WORLD_FACTORY",
+      "responsibility": "Compile world specification into layout/pack, generate terrain, POIs, buildings, dressing and authored scene",
+      "canonicalCandidate": "WorldSpec -> WorldSpecCompiler -> WorldStubGenerator/CityBuilder pipeline",
+      "sourceFiles": [
+        "Ziptide/Assets/Ziptide/Content/Runtime/WorldSpecs/WorldSpec.cs",
+        "Ziptide/Assets/Ziptide/Editor/WorldSpecs/WorldSpecCompiler.cs",
+        "Ziptide/Assets/Ziptide/Editor/Patching/WorldStubGenerator.cs",
+        "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs"
+      ],
+      "startup": "Editor/build authoring pipeline",
+      "persistence": "Generated assets/scenes",
+      "runtimeCreates": ["world scene content plus runtime builder components"],
+      "state": ["world spec", "layout", "world pack", "theme", "generated scene"],
+      "currentProof": ["CORE", "PATCHED", "APK"],
+      "questStatus": "BROAD_VISUAL_AND_INTERACTION_FAILURE",
+      "exposure": "SUPPORT",
+      "conflicts": ["Canonical worldspec export was not completed", "Generator gates prove structure more than experience", "Many runtime-created systems are absent from authored-scene audit"],
+      "nextAction": "Resolve actual spec paths/export state and define one golden destination world"
+    },
+    {
+      "id": "SKY_AND_GRADE",
+      "responsibility": "Sky dome, celestial bodies, ambient/fog/light derivation and global color grade",
+      "canonicalCandidate": "One active SkyVista path per scene; legacy SkyPlanet path hidden in recovery candidate",
+      "sourceFiles": [
+        "Ziptide/Assets/Ziptide/Visuals/Runtime/SkyPlanetRig.cs",
+        "Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistaRig.cs",
+        "Ziptide/Assets/Ziptide/Visuals/Runtime/SkyGrade.cs",
+        "Ziptide/Assets/Ziptide/Content/Worlds/SkyVistas/*"
+      ],
+      "startup": "WorldDirector/theme applies profile on scene entry",
+      "persistence": "Scene-local runtime roots; modifies global RenderSettings and camera post-processing",
+      "runtimeCreates": ["inverted sky sphere", "0-3 body spheres", "global Volume", "atmosphere rig"],
+      "state": ["VisualThemeProfile", "SkyVistaDefinition", "RenderSettings", "camera post-processing"],
+      "currentProof": ["CORE", "PATCHED", "VISUAL", "APK", "QUEST"],
+      "questStatus": "FAILED_INTEGRATED_PRESENTATION",
+      "exposure": "REPLACE_OR_MERGE",
+      "conflicts": ["Legacy striped sphere remains possible", "New path can apply scene-global fog/grade", "Dark/cyan worlds lack scene-owner trace"],
+      "nextAction": "Add scene-entry log/census of active sky owner and neutralize unverified grade in R3"
+    },
+    {
+      "id": "PRACTICAL_LIGHTING",
+      "responsibility": "Fixture visuals, emissive state, camera-facing halo and surface light pool",
+      "canonicalCandidate": "Keep fixture recipes; disable halo/pool path until device-safe material contract is proven",
+      "sourceFiles": [
+        "Ziptide/Assets/Ziptide/Visuals/Runtime/PracticalLight.cs",
+        "Ziptide/Assets/Ziptide/Editor/Art/PracticalAuthor.cs"
+      ],
+      "startup": "Authored into worlds; builds halo/pool in Awake",
+      "persistence": "Scene-local",
+      "runtimeCreates": ["PracticalHalo quad", "PracticalPool quad", "runtime additive material/texture"],
+      "state": ["lit/dead state", "fixture emission"],
+      "currentProof": ["CORE", "PATCHED", "VISUAL", "APK", "QUEST"],
+      "questStatus": "OPAQUE_SQUARE_FAILURE",
+      "exposure": "PROTOTYPE_HIDDEN",
+      "conflicts": ["Photo-booth success did not predict Quest material behavior", "Art provenance gate marks entire subtree conformed regardless of rendered result"],
+      "nextAction": "Disable runtime quads in recovery candidate; later build Android visual fixture test"
+    },
+    {
+      "id": "ART_FORGE",
+      "responsibility": "Recipe-driven mesh/texture generation, baking, visual assignment and provenance",
+      "canonicalCandidate": "Preserve Forge as asset production pipeline",
+      "sourceFiles": [
+        "Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/*",
+        "Ziptide/Assets/Ziptide/Editor/Art/*",
+        "Ziptide/Assets/Ziptide/Editor/Audit/ArtConformanceAuditRules.cs"
+      ],
+      "startup": "Editor/build authoring; ForgeVisualApplier at runtime",
+      "persistence": "Generated assets plus runtime visual child",
+      "runtimeCreates": ["ForgeVisual child", "runtime fallback when recipe/bake missing"],
+      "state": ["recipe id", "baked material/texture", "fallback visibility"],
+      "currentProof": ["CORE", "PATCHED", "VISUAL", "APK", "QUEST"],
+      "questStatus": "MIXED_ASSETS_GOOD_WORLDS_BAD",
+      "exposure": "SUPPORT",
+      "conflicts": ["Isolated turnarounds are not integrated-world proof", "Conformance checks provenance, not appearance", "Fallback can be player-visible"],
+      "nextAction": "Add shipping exposure marker and block visible prototype fallback in golden slice"
+    },
+    {
+      "id": "CREATURE_PRESENTATION_AND_GROUNDING",
+      "responsibility": "Creature runtime body, motion, contact/ground placement, shadow and non-lethal state",
+      "canonicalCandidate": "Existing CreatureRuntime plus explicit ground-contact contract",
+      "sourceFiles": [
+        "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs",
+        "Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeCreatureVisualApplier.cs",
+        "Ziptide/Assets/Ziptide/Visuals/Runtime/GroundShadow.cs"
+      ],
+      "startup": "World content spawn/factory",
+      "persistence": "Scene-local runtime; ecology/world state may persist",
+      "runtimeCreates": ["forged body", "animation/motor components", "blob shadow", "tell visuals"],
+      "state": ["species definition", "behavior state", "disable/resolution state", "ground transform"],
+      "currentProof": ["CORE", "PATCHED", "VISUAL", "APK", "QUEST"],
+      "questStatus": "FLOATING_CREATURE_OBSERVED",
+      "exposure": "GOLDEN_PATH",
+      "conflicts": ["No retained scene/species identity from failure", "Blob shadow can visually mask but not correct transform", "Structural behavior gate does not prove contact"],
+      "nextAction": "Choose one golden creature and add spawn ray, collider bounds and post-settle ground-contact telemetry/test"
+    },
+    {
+      "id": "SHIP_PRESENTATION_AND_REFIT",
+      "responsibility": "Ship hull skeleton, chassis proportions, livery, decals, nameplate and hum",
+      "canonicalCandidate": "Preserve data/refit core; one canonical ship root/hull for golden path",
+      "sourceFiles": [
+        "Ziptide/Assets/Ziptide/Gameplay/Runtime/Ship/ShipHullBuilder.cs",
+        "Ziptide/Assets/Ziptide/Gameplay/Runtime/Ship/ShipRefit.cs"
+      ],
+      "startup": "World/ship builder creates root; ShipRefit applies profile",
+      "persistence": "Scene-local hull reading persistent profile choices",
+      "runtimeCreates": ["19-part/interim hull", "livery materials", "journey decal quads", "TextMesh nameplate", "procedural hum"],
+      "state": ["ShipLocker", "CosmeticLocker", "profile flags", "chassis preset"],
+      "currentProof": ["CORE", "PATCHED", "APK", "QUEST"],
+      "questStatus": "INTERIM_AND_INCONSISTENT_PRESENTATION",
+      "exposure": "REPLACE_OR_MERGE",
+      "conflicts": ["Interim skeleton exposed as final", "Different scenes may present same root under different surroundings/state", "Runtime refit mutates hierarchy and materials"],
+      "nextAction": "Identify one canonical ship prefab/root and hide all other ship presentations from R3"
+    },
+    {
+      "id": "SHIP_FLIGHT",
+      "responsibility": "Arcade ship movement, turning, comfort suspension and flight telemetry",
+      "canonicalCandidate": "ShipFlightRuntime after evidence-based correction",
+      "sourceFiles": ["Ziptide/Assets/Ziptide/Gameplay/Runtime/Ship/ShipFlightRuntime.cs"],
+      "startup": "Ship/SpaceLane scene component",
+      "persistence": "Scene-local runtime; settings/profile may persist",
+      "runtimeCreates": ["flight movement and effects"],
+      "state": ["stick input", "snap latch", "yaw", "comfort state"],
+      "currentProof": ["CORE", "PATCHED", "APK", "QUEST"],
+      "questStatus": "GLITCHY_TURNING_UNRESOLVED",
+      "exposure": "PROTOTYPE_HIDDEN",
+      "conflicts": ["Instrumentation was added but useful trace was not retained", "No PlayMode/device input replay"],
+      "nextAction": "Exclude flight from initial R3 unless ship use can be stationary; later capture deterministic input trace"
+    },
+    {
+      "id": "REPAIR_OBJECTIVE",
+      "responsibility": "Physical repair, job progress, objective board, resource bank and cast-off gate",
+      "canonicalCandidate": "Undecided; currently split across machine, director, runtime, bank, board and ship observers",
+      "sourceFiles": [
+        "repair machine/runtime files",
+        "JobDirector.cs",
+        "objective board runtime",
+        "resource bank",
+        "ship cast-off observer"
+      ],
+      "startup": "World-specific runtime objects",
+      "persistence": "Mixed scene state and profile/world state",
+      "runtimeCreates": ["repair interactions", "objective text", "cast-off presentation"],
+      "state": ["repair completion", "resource consumption/bank", "job progress", "objective text", "cast-off unlock"],
+      "currentProof": ["CORE", "PATCHED", "APK", "QUEST"],
+      "questStatus": "REPAIR_VISIBLE_BUT_OBJECTIVE_NOT_ADVANCING",
+      "exposure": "REPLACE_OR_MERGE",
+      "conflicts": ["Related state consumed by separate owners", "PUNCH IT uses select rather than physical punch", "REPAIR_TRACE capture missing"],
+      "nextAction": "Event/state ownership graph before selecting golden job"
+    },
+    {
+      "id": "PVP_AND_PHOTON",
+      "responsibility": "Arena modes, bots, progression, Photon room presence and remote avatar",
+      "canonicalCandidate": "Preserve pure cores and transport adapter; hide all runtime multiplayer surfaces during recovery",
+      "sourceFiles": [
+        "Ziptide/Assets/Ziptide/Multiplayer/**",
+        "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/**",
+        "Ziptide/Assets/ZiptideNet/**"
+      ],
+      "startup": "Arena runtime and optional ZIPTIDE_PHOTON bootstrap",
+      "persistence": "Scene-local match; profile progression persists; network room state external",
+      "runtimeCreates": ["lobby board", "bots", "mode surfaces", "helmet/glove remote presence"],
+      "state": ["PvpMatch", "mode cores", "career", "Photon room/presence"],
+      "currentProof": ["CORE", "PATCHED", "APK"],
+      "questStatus": "TWO_PLAYER_PAUSED_BEFORE_PROOF",
+      "exposure": "PROTOTYPE_HIDDEN",
+      "conflicts": ["Runtime arena UI failed readability/selection", "Combat sync unbuilt", "Single-player baseline unstable"],
+      "nextAction": "No recovery implementation until R3 golden slice passes"
+    },
+    {
+      "id": "AUDIO",
+      "responsibility": "Persistent music/ambience, transitions, RILL and runtime clip ownership",
+      "canonicalCandidate": "AudioDirector plus explicit scene/audio lifecycle contract",
+      "sourceFiles": ["Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs"],
+      "startup": "Persistent _Boot service",
+      "persistence": "DontDestroyOnLoad",
+      "runtimeCreates": ["AudioSources", "procedural clips", "transition coroutines"],
+      "state": ["current/retiring source", "scene ambience", "RILL ducking/voice"],
+      "currentProof": ["CORE", "PATCHED", "APK"],
+      "questStatus": "SOAK_UNVERIFIED",
+      "exposure": "SUPPORT",
+      "conflicts": ["Recent cleanup is code-green but long travel soak not device-proven", "Multiple systems create procedural audio clips"],
+      "nextAction": "Include source/clip count in R1 travel census and performance artifact"
+    },
+    {
+      "id": "CI_AND_AUDIT",
+      "responsibility": "Compile, tests, scene patching, audits, APK and durable verdict",
+      "canonicalCandidate": "Existing CI plus new PlayMode, snapshot and performance lanes",
+      "sourceFiles": [
+        ".github/workflows/ci.yml",
+        "Ziptide/Assets/Ziptide/Editor/Build/BuildAndroid.cs",
+        "Ziptide/Assets/Ziptide/Editor/Audit/WorldAuditRunner.cs",
+        "docs/CI_VERDICT.md"
+      ],
+      "startup": "GitHub Actions push/PR/dispatch",
+      "persistence": "Artifacts and generated verdict commit",
+      "runtimeCreates": ["test reports", "patch/audit report", "optional APK", "contract reports"],
+      "state": ["tested SHA", "required job results", "warning/blocker reports"],
+      "currentProof": ["CORE", "PATCHED"],
+      "questStatus": "STRUCTURAL_ONLY",
+      "exposure": "SUPPORT",
+      "conflicts": ["No PlayMode lane", "Android skipped on ordinary branch pushes", "Contract reports non-blocking", "55 current warnings coexist with green verdict", "Runtime-created composition largely untested"],
+      "nextAction": "R1 minimal PlayMode lane as a dedicated reviewed infrastructure task"
+    }
+  ],
+  "knownInventoryGaps": [
+    "Exact repository paths for CreditsHud, ConquestTableRuntime, QuartersRoom and several repair/weapon files",
+    "Complete RuntimeInitializeOnLoadMethod/bootstrap census",
+    "Complete DontDestroyOnLoad/persistent-object census",
+    "Input action and button-binding call graph, including remaining Y+B path",
+    "Event producer/consumer graph",
+    "Save writer/reader field ownership graph",
+    "All runtime-created TextMesh/TMP/primitive surfaces",
+    "All direct SceneManager load calls outside TravelCoordinator",
+    "All visible fallback/prototype renderers",
+    "All global RenderSettings/camera/Volume owners",
+    "All feature exposure points and scene/build-settings reachability"
+  ]
+}
