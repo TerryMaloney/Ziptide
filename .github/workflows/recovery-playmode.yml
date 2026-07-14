@@ -21,6 +21,10 @@ env:
   PROJECT_PATH: Ziptide
   UNITY_VERSION: 2022.3.62f3
 
+concurrency:
+  group: recovery-playmode-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   playmode-smoke:
     name: PlayMode one-frame smoke
