@@ -9,3 +9,7 @@ Promotion requires this marker SHA to produce:
 - a successful `Recovery PlayMode Observation`;
 - a test-result artifact;
 - a durable observation recording this exact tested SHA.
+
+## Isolated repeat
+
+This revision was committed after branch-level PlayMode workflow cancellation was enabled, so it is the sole active unrelated repeat-green probe.
