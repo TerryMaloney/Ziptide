@@ -76,6 +76,8 @@ namespace Ziptide.Build
             // destination before the scene list is captured and before the travel-destination audit.
             try { Ziptide.Editor.Patching.ScenePatcherCavern.EnsureUndercroftInBuildSettings(); }
             catch (Exception ex) { Debug.LogWarning("[Ziptide] W011 undercroft build-settings ensure warning: " + ex.Message); }
+            try { Ziptide.Editor.Patching.CaveSpawnSafety.EnsureUndercroftSpawnFloor(); }
+            catch (Exception ex) { Debug.LogWarning("[Ziptide] W011 undercroft spawn-floor warning: " + ex.Message); }
 
             // PvP arenas: seed missing layout assets (create-only), then ensure their scenes ship.
             try { Ziptide.Editor.Patching.ArenaLayoutLibrary.EnsureAllAuthored(); }
@@ -147,7 +149,7 @@ namespace Ziptide.Build
 
                 // Generated arenas: same contract for ArenaLayoutDefinitions.
                 try { Ziptide.Editor.Patching.ScenePatcherArena.PatchActiveSceneIfArena(); }
-                catch (Exception ex) { Debug.LogWarning("[Ziptide] Arena patcher warning for " + path + ": " + ex.Message); }
+                catch (Exception ex) { Debug.LogWarning("[Ziptide] Generated-world patcher warning for " + path + ": " + ex.Message); }
 
                 EditorSceneManager.MarkSceneDirty(scene);
                 EditorSceneManager.SaveOpenScenes();
