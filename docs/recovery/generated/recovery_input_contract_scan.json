@@ -2,7 +2,7 @@
   "tool": "recovery_input_contract_scan",
   "scannedFiles": 598,
   "bindingCount": 19,
-  "chordReferenceCount": 5,
+  "chordReferenceCount": 4,
   "collisionControlCount": 5,
   "bindings": [
     {
@@ -183,12 +183,6 @@
       "symbol": "Ziptide.Content.Traversal.TVec3",
       "line": 12,
       "text": "public static TVec3 operator +(TVec3 a, TVec3 b) => new TVec3(a.X + b.X, a.Y + b.Y, a.Z + b.Z);"
-    },
-    {
-      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs",
-      "symbol": "Ziptide.Gameplay.QuickSwap",
-      "line": 48,
-      "text": "if (_menuGuard != null && _menuGuard.IsPressed()) return; // Y+B = dev menu chord"
     },
     {
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs",
