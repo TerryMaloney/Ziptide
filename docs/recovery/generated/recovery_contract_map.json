@@ -1,8 +1,8 @@
 {
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
-  "scannedFiles": 598,
-  "findingCount": 2013,
+  "scannedFiles": 600,
+  "findingCount": 2014,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -9795,6 +9795,25 @@
             "line": 160,
             "symbol": "Ziptide.Tests.EditMode.ZiplineSignalTests",
             "snippet": "var go = new GameObject(name);"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Tests.PlayMode.PlayModeInfrastructureTests",
+        "evidenceCount": 1,
+        "codes": [
+          "NEW_GAME_OBJECT"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/PlayMode/PlayModeInfrastructureTests.cs"
+        ],
+        "evidence": [
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/PlayModeInfrastructureTests.cs",
+            "line": 20,
+            "symbol": "Ziptide.Tests.PlayMode.PlayModeInfrastructureTests",
+            "snippet": "var host = new GameObject(\"__RECOVERY_PLAYMODE_FRAME_PROBE\");"
           }
         ]
       },

@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
-- Scanned files: **598**
-- Scanner findings: **2013**
+- Scanned files: **600**
+- Scanner findings: **2014**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -2075,6 +2075,12 @@ None.
 - Codes: `NEW_GAME_OBJECT`
 - Paths: `Ziptide/Assets/Ziptide/Tests/EditMode/ZiplineSignalTests.cs`
   - `Ziptide/Assets/Ziptide/Tests/EditMode/ZiplineSignalTests.cs:160` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
+
+### `Ziptide.Tests.PlayMode.PlayModeInfrastructureTests` — 1 signal(s)
+
+- Codes: `NEW_GAME_OBJECT`
+- Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/PlayModeInfrastructureTests.cs`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/PlayModeInfrastructureTests.cs:20` **NEW_GAME_OBJECT** — `var host = new GameObject("__RECOVERY_PLAYMODE_FRAME_PROBE");`
 
 ### `Ziptide.Visuals.ForgeCreatureVisualApplier` — 2 signal(s)
 

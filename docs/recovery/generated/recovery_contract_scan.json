@@ -1,15 +1,15 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-14T23:19:50.129770+00:00",
+  "generatedAtUtc": "2026-07-14T23:48:35.707573+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
     "Ziptide/Assets/Ziptide",
     "Ziptide/Assets/ZiptideNet"
   ],
-  "scannedFiles": 598,
-  "findingCount": 2013,
+  "scannedFiles": 600,
+  "findingCount": 2014,
   "categoryCounts": {
     "bootstrap": 24,
     "diagnostics": 417,
@@ -19,7 +19,7 @@
     "input": 111,
     "materials": 223,
     "persistence": 17,
-    "runtime_creation": 548,
+    "runtime_creation": 549,
     "runtime_ui": 113,
     "save_state": 231,
     "scene_loading": 5,
@@ -41,7 +41,7 @@
     "FRAME_BUTTON_POLL": 1,
     "INPUT_ACTION_REFERENCE": 103,
     "INPUT_BUTTON_REFERENCE": 7,
-    "NEW_GAME_OBJECT": 323,
+    "NEW_GAME_OBJECT": 324,
     "PLAYER_PROFILE_REFERENCE": 133,
     "RENDER_SETTINGS_MUTATION": 36,
     "RUNTIME_BOOTSTRAP": 18,
@@ -14315,6 +14315,15 @@
       "line": 160,
       "symbol": "Ziptide.Tests.EditMode.ZiplineSignalTests",
       "snippet": "var go = new GameObject(name);"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/PlayModeInfrastructureTests.cs",
+      "line": 20,
+      "symbol": "Ziptide.Tests.PlayMode.PlayModeInfrastructureTests",
+      "snippet": "var host = new GameObject(\"__RECOVERY_PLAYMODE_FRAME_PROBE\");"
     },
     {
       "category": "runtime_creation",

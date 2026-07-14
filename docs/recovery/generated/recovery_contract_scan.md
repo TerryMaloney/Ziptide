@@ -1,7 +1,7 @@
 # ZIPTIDE Recovery Contract Scan
 
-- Scanned files: **598**
-- Findings: **2013**
+- Scanned files: **600**
+- Findings: **2014**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
@@ -16,7 +16,7 @@
 | `input` | 111 |
 | `materials` | 223 |
 | `persistence` | 17 |
-| `runtime_creation` | 548 |
+| `runtime_creation` | 549 |
 | `runtime_ui` | 113 |
 | `save_state` | 231 |
 | `scene_loading` | 5 |
@@ -1626,6 +1626,7 @@
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/WaterTests.cs:174` · `Ziptide.Tests.EditMode.WaterTests` — Runtime GameObject construction. `var go = new GameObject("Water");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/WristScannerResultTests.cs:212` · `Ziptide.Tests.EditMode.WristScannerResultTests` — Runtime GameObject construction. `var go = new GameObject(name);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/ZiplineSignalTests.cs:160` · `Ziptide.Tests.EditMode.ZiplineSignalTests` — Runtime GameObject construction. `var go = new GameObject(name);`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/PlayModeInfrastructureTests.cs:20` · `Ziptide.Tests.PlayMode.PlayModeInfrastructureTests` — Runtime GameObject construction. `var host = new GameObject("__RECOVERY_PLAYMODE_FRAME_PROBE");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeCreatureVisualApplier.cs:31` · `Ziptide.Visuals.ForgeCreatureVisualApplier` — Runtime GameObject construction. `var vis = new GameObject(VisualChildName);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeSkinnedBuilder.cs:42` · `Ziptide.Visuals.ForgeSkinnedBuilder` — Runtime GameObject construction. `var rootGo = new GameObject("Skeleton_" + (body != null ? body.bodyId : "null"));`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeSkinnedBuilder.cs:210` · `Ziptide.Visuals.ForgeSkinnedBuilder` — Runtime GameObject construction. `var tmp = new GameObject("__synthParts");`
