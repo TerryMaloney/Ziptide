@@ -18,11 +18,13 @@ on:
       - 'tools/recovery_contract_map.py'
       - 'tools/recovery_scene_exposure.py'
       - 'tools/recovery_claim_audit.py'
+      - 'tools/recovery_input_contract_scan.py'
       - 'tools/tests/test_recovery_contract_scan.py'
       - 'tools/tests/test_recovery_inventory_gate.py'
       - 'tools/tests/test_recovery_contract_map.py'
       - 'tools/tests/test_recovery_scene_exposure.py'
       - 'tools/tests/test_recovery_claim_audit.py'
+      - 'tools/tests/test_recovery_input_contract_scan.py'
       - '.github/workflows/recovery-contract-scan.yml'
   workflow_dispatch:
 
@@ -63,6 +65,10 @@ jobs:
             -s tools/tests \
             -p 'test_recovery_claim_audit.py' \
             -v
+          python3 -m unittest discover \
+            -s tools/tests \
+            -p 'test_recovery_input_contract_scan.py' \
+            -v
 
       - name: Generate recovery truth reports
         run: |
@@ -82,6 +88,9 @@ jobs:
           python3 tools/recovery_claim_audit.py \
             --json-report docs/recovery/generated/recovery_claim_audit.json \
             --markdown-report docs/recovery/generated/recovery_claim_audit.md
+          python3 tools/recovery_input_contract_scan.py \
+            --json-report docs/recovery/generated/recovery_input_contract_scan.json \
+            --markdown-report docs/recovery/generated/recovery_input_contract_scan.md
           cp docs/recovery/generated/* Builds/Reports/
 
       - name: Upload recovery reports
