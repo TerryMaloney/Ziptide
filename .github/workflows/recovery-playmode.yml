@@ -9,6 +9,7 @@ on:
       - terry-local-wip
     paths:
       - 'Ziptide/Assets/Ziptide/Tests/PlayMode/**'
+      - 'docs/recovery/playmode_repeat_probe.md'
       - '.github/workflows/recovery-playmode.yml'
   workflow_dispatch:
 
