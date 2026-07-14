@@ -2,7 +2,9 @@
     "name": "Ziptide.Tests.PlayMode",
     "rootNamespace": "Ziptide.Tests.PlayMode",
     "references": [
-        "UnityEngine.TestRunner"
+        "UnityEngine.TestRunner",
+        "Unity.XR.Interaction.Toolkit",
+        "Unity.InputSystem"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
