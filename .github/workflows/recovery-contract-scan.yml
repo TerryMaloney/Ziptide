@@ -83,6 +83,7 @@ jobs:
           run_test test_recovery_input_contract_scan.py
           run_test test_recovery_source_resolver.py
           run_test test_recovery_event_save_graph.py
+          run_test test_recovery_focus_reference_graph.py
           exit 0
 
       - name: Generate recovery reports with durable diagnostics
@@ -153,6 +154,10 @@ jobs:
             python3 tools/recovery_event_save_graph.py \
               --json-report docs/recovery/generated/recovery_event_save_graph.json \
               --markdown-report docs/recovery/generated/recovery_event_save_graph.md
+          run_report recovery_focus_reference_graph \
+            python3 tools/recovery_focus_reference_graph.py \
+              --json-report docs/recovery/generated/recovery_focus_reference_graph.json \
+              --markdown-report docs/recovery/generated/recovery_focus_reference_graph.md
 
           cp docs/recovery/generated/* Builds/Reports/ 2>/dev/null || true
           exit 0
