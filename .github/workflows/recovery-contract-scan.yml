@@ -13,7 +13,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   scan:
@@ -23,6 +23,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: terry-local-wip
+          fetch-depth: 0
 
       - name: Test recovery scanner
         run: |
@@ -33,9 +36,12 @@ jobs:
 
       - name: Scan repository contracts
         run: |
+          mkdir -p docs/recovery/generated Builds/Reports
           python3 tools/recovery_contract_scan.py \
-            --json-report Builds/Reports/recovery_contract_scan.json \
-            --markdown-report Builds/Reports/recovery_contract_scan.md
+            --json-report docs/recovery/generated/recovery_contract_scan.json \
+            --markdown-report docs/recovery/generated/recovery_contract_scan.md
+          cp docs/recovery/generated/recovery_contract_scan.json Builds/Reports/recovery_contract_scan.json
+          cp docs/recovery/generated/recovery_contract_scan.md Builds/Reports/recovery_contract_scan.md
 
       - name: Upload recovery scan
         uses: actions/upload-artifact@v4
@@ -46,3 +52,19 @@ jobs:
             Builds/Reports/recovery_contract_scan.json
             Builds/Reports/recovery_contract_scan.md
           if-no-files-found: error
+
+      - name: Commit current generated report
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- docs/recovery/generated/recovery_contract_scan.json docs/recovery/generated/recovery_contract_scan.md; then
+            echo "Generated recovery report is already current."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/recovery/generated/recovery_contract_scan.json docs/recovery/generated/recovery_contract_scan.md
+          git commit -m "docs(recovery): refresh generated contract scan [skip ci]"
+          if ! git push origin HEAD:terry-local-wip; then
+            echo "::warning::Branch advanced during report write; the newer push will regenerate the report."
+          fi
