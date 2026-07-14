@@ -135,6 +135,55 @@ jobs:
           name: test-results
           path: test-results
 
+  patch-audit:
+    # THE PER-PUSH BUILD GATE (2026-07-14). The Android job below runs the real device pipeline but
+    # only on dispatch/main — that blind spot let scene-patcher/audit blockers pile up invisibly
+    # from July 5 to July 14 (the W011 phantom-dome SPAWN blocker) while the branch read "GREEN".
+    # This job runs the SAME patch + author + audit pipeline (BuildAndroid.PatchScenesAndAudit) on
+    # EVERY push, minus the APK — an audit BLOCKER fails this job exactly like it aborts Terry's
+    # PC build. Uses the small standalone editor image, not the 12 GB Android one.
+    name: Patch scenes + world audit (no APK)
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Cache Library
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.PROJECT_PATH }}/Library
+          key: Library-audit-${{ hashFiles(format('{0}/Assets/**', env.PROJECT_PATH), format('{0}/Packages/**', env.PROJECT_PATH), format('{0}/ProjectSettings/**', env.PROJECT_PATH)) }}
+          restore-keys: |
+            Library-audit-
+            Library-
+
+      - name: Patch scenes + run world audit
+        uses: game-ci/unity-builder@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          projectPath: ${{ env.PROJECT_PATH }}
+          unityVersion: ${{ env.UNITY_VERSION }}
+          targetPlatform: StandaloneLinux64
+          buildMethod: Ziptide.Build.BuildAndroid.PatchScenesAndAudit
+          allowDirtyBuild: true
+
+      # On a red run this report IS the diagnosis — the full blocker list, every scene, one shot.
+      - name: Upload audit report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: patch-audit-report
+          path: |
+            docs/AUDIT_REPORT.*
+            ${{ env.PROJECT_PATH }}/Builds/Reports/*
+          if-no-files-found: warn
+
   build-android:
     name: Build Android APK
     needs: test
@@ -213,6 +262,7 @@ jobs:
     needs:
       - continuity-report
       - test
+      - patch-audit
       - build-android
     if: >-
       always() &&
@@ -251,6 +301,7 @@ jobs:
         if: steps.freshness.outputs.write == 'true'
         env:
           EDITMODE_RESULT: ${{ needs.test.result }}
+          PATCH_AUDIT_RESULT: ${{ needs['patch-audit'].result }}
           ANDROID_RESULT: ${{ needs['build-android'].result }}
           CONTRACT_RESULT: ${{ needs['continuity-report'].result }}
         run: |
@@ -265,6 +316,7 @@ jobs:
             --event-name "${{ github.event_name }}" \
             --workflow-name "${{ github.workflow }}" \
             --editmode-result "$EDITMODE_RESULT" \
+            --patch-audit-result "$PATCH_AUDIT_RESULT" \
             --android-result "$ANDROID_RESULT" \
             --contract-result "$CONTRACT_RESULT"
 

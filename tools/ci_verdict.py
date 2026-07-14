@@ -30,6 +30,7 @@ EXIT_INVALID = 2
 class Verdict:
     overall: str
     editmode: str
+    patch_audit: str
     android: str
     contract_reports: str
 
@@ -43,16 +44,24 @@ def normalize_result(value: str) -> str:
     return normalized if normalized in ALLOWED_RESULTS else "unknown"
 
 
-def calculate_verdict(editmode: str, android: str, contract_reports: str) -> Verdict:
+def calculate_verdict(
+    editmode: str, patch_audit: str, android: str, contract_reports: str
+) -> Verdict:
     editmode = normalize_result(editmode)
+    patch_audit = normalize_result(patch_audit)
     android = normalize_result(android)
     contract_reports = normalize_result(contract_reports)
+    # patch_audit is REQUIRED — never green while merely "skipped". A skipped-but-green required
+    # check is exactly the hole that hid nine days of headset-build blockers behind a GREEN
+    # verdict (androidApk: skipped, July 5-14, the W011 phantom dome).
     overall = (
         "GREEN"
-        if editmode == "success" and android in {"success", "skipped"}
+        if editmode == "success"
+        and patch_audit == "success"
+        and android in {"success", "skipped"}
         else "RED"
     )
-    return Verdict(overall, editmode, android, contract_reports)
+    return Verdict(overall, editmode, patch_audit, android, contract_reports)
 
 
 def render(
@@ -66,13 +75,14 @@ def render(
     event_name: str,
     workflow_name: str,
     editmode: str,
+    patch_audit: str,
     android: str,
     contract_reports: str,
     recorded_at_utc: str,
 ) -> str:
-    verdict = calculate_verdict(editmode, android, contract_reports)
+    verdict = calculate_verdict(editmode, patch_audit, android, contract_reports)
     payload = {
-        "schemaVersion": 1,
+        "schemaVersion": 2,
         "overall": verdict.overall,
         "repository": repository,
         "branch": branch,
@@ -85,11 +95,16 @@ def render(
         "recordedAtUtc": recorded_at_utc,
         "results": {
             "unityEditMode": verdict.editmode,
+            "patchScenesAudit": verdict.patch_audit,
             "androidApk": verdict.android,
             "projectContractReports": verdict.contract_reports,
         },
         "interpretation": {
-            "greenRequires": "Unity EditMode success and Android success when Android ran.",
+            "greenRequires": (
+                "Unity EditMode success AND patch-scenes+audit success AND Android success "
+                "when Android ran. The patch+audit job runs on every push; a skipped result "
+                "is never green."
+            ),
             "androidSkipped": "Expected for ordinary terry-local-wip push runs.",
             "contractReports": "Informational and non-blocking.",
             "currentWhen": (
@@ -112,6 +127,7 @@ def render(
         "| Check | Result | Verdict role |",
         "|---|---|---|",
         f"| Unity EditMode tests | `{verdict.editmode}` | Required |",
+        f"| Patch scenes + world audit (no APK) | `{verdict.patch_audit}` | Required on every push; skipped is never green |",
         f"| Android APK | `{verdict.android}` | Required when run; normally skipped on branch pushes |",
         f"| Project contract reports | `{verdict.contract_reports}` | Informational, non-blocking |",
         "",
@@ -138,6 +154,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--event-name", required=True)
     parser.add_argument("--workflow-name", default="CI")
     parser.add_argument("--editmode-result", required=True)
+    parser.add_argument("--patch-audit-result", required=True)
     parser.add_argument("--android-result", required=True)
     parser.add_argument("--contract-result", required=True)
     parser.add_argument("--recorded-at-utc")
@@ -161,6 +178,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         event_name=args.event_name,
         workflow_name=args.workflow_name,
         editmode=args.editmode_result,
+        patch_audit=args.patch_audit_result,
         android=args.android_result,
         contract_reports=args.contract_result,
         recorded_at_utc=recorded,
@@ -169,7 +187,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     args.output.write_text(content, encoding="utf-8")
     print(
         "CI_VERDICT_WRITTEN "
-        f"overall={calculate_verdict(args.editmode_result, args.android_result, args.contract_result).overall} "
+        f"overall={calculate_verdict(args.editmode_result, args.patch_audit_result, args.android_result, args.contract_result).overall} "
         f"sha={args.sha.strip()} output={args.output}"
     )
     return EXIT_OK

@@ -8,7 +8,9 @@ namespace Ziptide.Build
 {
     /// <summary>
     /// Canonical build entrypoint for Android (Quest).
-    /// -executeMethod: Ziptide.Build.BuildAndroid.PatchScenesThenAPK (patch then build) or Ziptide.Build.BuildAndroid.APK (build only).
+    /// -executeMethod: Ziptide.Build.BuildAndroid.PatchScenesThenAPK (patch then build),
+    /// Ziptide.Build.BuildAndroid.PatchScenesAndAudit (the CI gate: everything except the APK), or
+    /// Ziptide.Build.BuildAndroid.APK (build only).
     /// </summary>
     public static class BuildAndroid
     {
@@ -16,6 +18,28 @@ namespace Ziptide.Build
         /// Opens each enabled build scene, runs ScenePatcherC0/D0/D1/D2 per scene, saves, then builds APK. Idempotent; safe for batchmode.
         /// </summary>
         public static void PatchScenesThenAPK()
+        {
+            PatchAndAudit();
+            Ziptide.Editor.Setup.ApplyQuestPlayerDefaults.EnsureSplashDisabled();
+            APK();
+        }
+
+        /// <summary>
+        /// THE PER-PUSH CI GATE (2026-07-14): the FULL patch + author + audit pipeline with NO APK.
+        /// Every audit-blocker class that aborts the PC/Quest build is caught on every push in
+        /// minutes, instead of hiding until someone runs the (dispatch-only) Android job — the hole
+        /// that let the W011 phantom-dome blocker sit invisible from July 5 to July 14. An audit
+        /// BLOCKER throws, so the CI job goes red exactly like the device build would.
+        /// </summary>
+        public static void PatchScenesAndAudit()
+        {
+            PatchAndAudit();
+            Debug.Log("ZIPTIDE: PATCH_AUDIT_OK scenes patched + audit green (no APK)");
+        }
+
+        /// <summary>The shared pipeline: patch/author every enabled scene, then run the world audit
+        /// (a BLOCKER throws). Exactly what the device build runs before BuildPlayer.</summary>
+        private static void PatchAndAudit()
         {
             // Step 1: Patch _Boot scene first (creates file if missing, inserts as first build scene).
             try { Ziptide.Editor.Patching.ScenePatcherBoot.PatchBootScene(); }
@@ -199,9 +223,6 @@ namespace Ziptide.Build
             // manifest being rebuilt by hand BEFORE the rename patcher ran.
             try { Ziptide.Editor.DevTools.DevWorldManifestBuilder.Rebuild(); }
             catch (Exception ex) { Debug.LogWarning("[Ziptide] Dev world manifest rebuild warning: " + ex.Message); }
-
-            Ziptide.Editor.Setup.ApplyQuestPlayerDefaults.EnsureSplashDisabled();
-            APK();
         }
 
         /// <summary>

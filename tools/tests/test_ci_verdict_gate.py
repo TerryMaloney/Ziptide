@@ -14,29 +14,39 @@ import ci_verdict
 
 
 class CiVerdictTests(unittest.TestCase):
-    def test_green_for_editmode_success_and_android_skipped(self) -> None:
-        verdict = ci_verdict.calculate_verdict("success", "skipped", "success")
+    def test_green_for_editmode_and_audit_success_android_skipped(self) -> None:
+        verdict = ci_verdict.calculate_verdict("success", "success", "skipped", "success")
         self.assertEqual("GREEN", verdict.overall)
 
     def test_green_for_full_success(self) -> None:
-        verdict = ci_verdict.calculate_verdict("success", "success", "success")
+        verdict = ci_verdict.calculate_verdict("success", "success", "success", "success")
         self.assertEqual("GREEN", verdict.overall)
 
     def test_red_for_editmode_failure(self) -> None:
-        verdict = ci_verdict.calculate_verdict("failure", "skipped", "success")
+        verdict = ci_verdict.calculate_verdict("failure", "skipped", "skipped", "success")
+        self.assertEqual("RED", verdict.overall)
+
+    def test_red_for_patch_audit_failure(self) -> None:
+        verdict = ci_verdict.calculate_verdict("success", "failure", "skipped", "success")
+        self.assertEqual("RED", verdict.overall)
+
+    def test_red_for_patch_audit_skipped_even_when_editmode_passes(self) -> None:
+        # THE HOLE THIS SCHEMA CLOSES: a required check that skips must never read green —
+        # androidApk:skipped hid nine days of headset-build blockers (July 5-14).
+        verdict = ci_verdict.calculate_verdict("success", "skipped", "skipped", "success")
         self.assertEqual("RED", verdict.overall)
 
     def test_red_for_android_failure_when_run(self) -> None:
-        verdict = ci_verdict.calculate_verdict("success", "failure", "success")
+        verdict = ci_verdict.calculate_verdict("success", "success", "failure", "success")
         self.assertEqual("RED", verdict.overall)
 
     def test_contract_report_is_non_blocking(self) -> None:
-        verdict = ci_verdict.calculate_verdict("success", "skipped", "failure")
+        verdict = ci_verdict.calculate_verdict("success", "success", "skipped", "failure")
         self.assertEqual("GREEN", verdict.overall)
         self.assertEqual("failure", verdict.contract_reports)
 
     def test_unknown_result_fails_closed(self) -> None:
-        verdict = ci_verdict.calculate_verdict("banana", "skipped", "success")
+        verdict = ci_verdict.calculate_verdict("banana", "success", "skipped", "success")
         self.assertEqual("RED", verdict.overall)
         self.assertEqual("unknown", verdict.editmode)
 
@@ -51,6 +61,7 @@ class CiVerdictTests(unittest.TestCase):
             event_name="push",
             workflow_name="CI",
             editmode="success",
+            patch_audit="success",
             android="skipped",
             contract_reports="success",
             recorded_at_utc="2026-07-11T12:00:00+00:00",
@@ -60,6 +71,7 @@ class CiVerdictTests(unittest.TestCase):
         self.assertEqual("GREEN", payload["overall"])
         self.assertEqual("a" * 40, payload["testedSha"])
         self.assertEqual("skipped", payload["results"]["androidApk"])
+        self.assertEqual("success", payload["results"]["patchScenesAudit"])
         self.assertIn("direct generated verdict-only child", payload["interpretation"]["currentWhen"])
         self.assertIn("direct verdict-only child", content)
 
@@ -75,6 +87,7 @@ class CiVerdictTests(unittest.TestCase):
                 "--run-url", "https://example.invalid/run",
                 "--event-name", "push",
                 "--editmode-result", "success",
+                "--patch-audit-result", "success",
                 "--android-result", "skipped",
                 "--contract-result", "success",
             ])
@@ -94,6 +107,7 @@ class CiVerdictTests(unittest.TestCase):
                 "--run-url", "https://github.com/TerryMaloney/Ziptide/actions/runs/456",
                 "--event-name", "push",
                 "--editmode-result", "success",
+                "--patch-audit-result", "success",
                 "--android-result", "skipped",
                 "--contract-result", "success",
                 "--recorded-at-utc", "2026-07-11T12:00:00+00:00",

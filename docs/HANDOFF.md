@@ -28,6 +28,40 @@
 
 ## ENTRIES (newest first)
 
+### 2026-07-14 (rb24) - Reasonbox/Fable 5: 🚧 NEW REQUIRED CI GATE — patch+audit now runs on EVERY push. **GPT, T-DOG, ARCHITECT, PICASSO: READ THIS**
+- **Terry approved closing the systemic hole from rb23.** The blind spot is gone: the full
+  scene-patcher/author/audit pipeline now runs on every push, not just when someone remembers to
+  dispatch the Android job.
+- **What changed (all operators, this affects YOUR loop):**
+  1. **New CI job: "Patch scenes + world audit (no APK)"** — runs `BuildAndroid.PatchScenesAndAudit`
+     (new entrypoint = `PatchScenesThenAPK` minus the APK, same shared body) after EditMode on
+     every push to `terry-local-wip`/`claude/**`/`main`. An audit BLOCKER = red job, exactly like
+     it aborts Terry's PC build. Small standalone editor image, not the 12 GB Android one.
+  2. **On a red patch-audit job:** download its **`patch-audit-report` artifact** —
+     `docs/AUDIT_REPORT.json` lists every blocker in every scene in one shot. NO MORE
+     one-blocker-per-headset-attempt archaeology (that loop cost GPT a full day on W011).
+  3. **`docs/CI_VERDICT.md` schema v2:** GREEN now REQUIRES `patchScenesAudit: success`.
+     A skipped required check is NEVER green — the exact hole that hid nine days of headset-build
+     blockers behind `androidApk: skipped` is now impossible by construction (pinned by
+     `test_red_for_patch_audit_skipped_even_when_editmode_passes`).
+  4. **Your definition of done changes:** "EditMode green" is no longer enough for anything that
+     touches patchers, authors, audit rules, scenes, or Build Settings — wait for BOTH required
+     jobs (or read the verdict file, it does the AND for you). `docs/CI_VERIFY.md` is updated.
+  5. The Android APK job is unchanged (dispatch or push-to-main) — it's for producing real device
+     builds now, not for discovering blockers.
+- **GPT specifically:** your band-aids from the W011 hunt (undercroft generation, `__SPAWN_FLOOR`,
+  AuditPhysicsSync, D2 spawn preservation, W005 facade removal) are all kept — they were correct.
+  The root cause underneath them (FloorPad's squashed CapsuleCollider = an invisible chamber-radius
+  dome) is fixed in rb23/`8ef0c9c`. When you help Terry tonight: pull, then his normal
+  reset+clean+smoke ritual; the cave regenerates with real colliders.
+- **Files:** `BuildAndroid.cs` (PatchAndAudit extraction + PatchScenesAndAudit) · `.github/workflows/ci.yml`
+  (patch-audit job + verdict wiring) · `tools/ci_verdict.py` + `tools/tests/test_ci_verdict_gate.py`
+  (schema v2, 11 tests green locally) · `docs/CI_VERIFY.md`.
+- **Verify:** this push itself exercises the new job end-to-end (its cold-cache first run is the
+  slow one, ~15-25 min). The rb23 proof-gate Android dispatch is also still in flight — both
+  must be green before Terry's next smoke attempt.
+- **Commits:** this push.
+
 ### 2026-07-14 (rb23) - Reasonbox/Fable 5: 🎯 THE HEADSET-BUILD BLOCKER FOUND — the phantom dome under W011's spawn
 - **Terry's ask:** local `quest_smoke.ps1` kept dying at `BuildAndroid.PatchScenesThenAPK threw
   exception` while GPT chased it fix-by-fix. Find it, fix it, explain here.

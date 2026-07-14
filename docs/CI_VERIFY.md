@@ -9,9 +9,22 @@ Do not try to install/provision Unity. The verification net is **CI (GameCI on G
 1. Write/edit C# on `terry-local-wip`. Keep new logic **pure + EditMode-testable** (tests live in
    `Ziptide/Assets/Ziptide/Tests/EditMode/Ziptide.Tests.EditMode.asmdef` — add tests there).
 2. Commit + push to `terry-local-wip`. The push triggers `.github/workflows/ci.yml`, which spins up
-   Unity `2022.3.62f3` in Docker, **compiles all assemblies + runs the EditMode suite**.
-3. Wait ~5 min (a cold cache run can take ~9), then **read the run's conclusion**.
-4. `success` = everything compiled and all tests passed. `failure` = read the log, fix, re-push.
+   Unity `2022.3.62f3` in Docker and runs **TWO required jobs**:
+   - **EditMode tests** — compiles all assemblies + runs the test suite (~5 min).
+   - **Patch scenes + world audit (no APK)** (added 2026-07-14) — runs
+     `BuildAndroid.PatchScenesAndAudit`: the FULL scene-patcher/author pipeline + the world audit,
+     i.e. everything Terry's PC build does short of the APK. **An audit BLOCKER fails this job
+     exactly like it aborts the device build.** On a red run, download its `patch-audit-report`
+     artifact — `docs/AUDIT_REPORT.json` names every blocker in every scene, one shot.
+3. Wait (~5 min for tests; the audit job follows, ~10-15 more, longer on a cold cache), then
+   **read the run's conclusion** — or `docs/CI_VERDICT.md` at the branch head, whose GREEN now
+   REQUIRES the patch+audit job (a skipped required check is never green; that exact hole hid the
+   July 5-14 headset-build blockers behind `androidApk: skipped`).
+4. `success` = compiled, tests passed, AND the device-build pipeline audits clean. `failure` =
+   read the log/artifact, fix, re-push.
+5. The full **Android APK job** still exists for real device builds: it runs on
+   `workflow_dispatch` (trigger via `mcp__github__actions_run_trigger`) and on pushes to `main`.
+   You rarely need it now — the patch+audit job catches the blocker classes on every push.
 
 ## How to read CI (use whichever your env has)
 **A) GitHub MCP tools** (what T-Dog uses):
