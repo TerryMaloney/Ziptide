@@ -1,0 +1,153 @@
+{
+  "schemaVersion": 1,
+  "status": "R0_PROPOSED_CANONICAL_OWNERS",
+  "decisions": [
+    {
+      "responsibility": "Recovery exposure and automatic bootstrap policy",
+      "canonicalOwner": "RecoveryRuntimeGate (new R1 contract)",
+      "preserve": ["automatic feature implementations behind explicit feature IDs"],
+      "retireOrSubordinate": ["implicit Debug.isDebugBuild exposure", "feature-specific global hooks with no gate"],
+      "proofRequired": ["PLAYMODE owner census", "recovery profile artifact"]
+    },
+    {
+      "responsibility": "Cold boot state",
+      "canonicalOwner": "BootLoader coordinating PlayerRigPersistence boot hold",
+      "preserve": ["BootLoader", "BootHoldState", "HomeHubRuntime callback seam"],
+      "retireOrSubordinate": ["any menu that independently changes boot locomotion or loads scenes"],
+      "proofRequired": ["PLAYMODE idle boot", "PLAYMODE one-selection-one-travel", "QUEST bounded boot check"]
+    },
+    {
+      "responsibility": "Persistent player rig and XR interaction session",
+      "canonicalOwner": "PlayerRigPersistence",
+      "preserve": ["rig persistence", "single XRInteractionManager adoption", "spawn teleport", "inventory restoration seam"],
+      "retireOrSubordinate": ["RuntimeInputEnabler global reflection fallback", "scene-local input owners after adoption"],
+      "proofRequired": ["PLAYMODE fake-XR census", "PLAYMODE travel round trip"]
+    },
+    {
+      "responsibility": "Scene travel",
+      "canonicalOwner": "TravelCoordinator",
+      "preserve": ["preflight", "async load", "save-before-travel", "post-load rig and inventory restore"],
+      "retireOrSubordinate": ["direct synchronous fallback after _Boot contract is proven", "feature-specific direct loaders"],
+      "proofRequired": ["PLAYMODE W000 round trip", "APK checkpoint", "QUEST frame-pacing check"]
+    },
+    {
+      "responsibility": "Profile persistence",
+      "canonicalOwner": "SaveSystem",
+      "preserve": ["atomic profile path", "backup recovery", "explicit autosave reasons"],
+      "retireOrSubordinate": ["independent disk writers", "feature-specific save serialization outside profile contracts"],
+      "proofRequired": ["CORE serialization tests", "PLAYMODE golden-path save trace", "quit/resume checkpoint"]
+    },
+    {
+      "responsibility": "Development warp access",
+      "canonicalOwner": "DevWarpBoard presentation plus central input registry",
+      "preserve": ["primitive board until replacement panel is proven", "F2 and explicit ADB diagnostic access"],
+      "retireOrSubordinate": ["DevMenu runtime bootstrap", "Y+B legacy chord", "QuickSwap menu-guard assumption", "ambient automatic visibility"],
+      "proofRequired": ["input contract report has no retired chord", "PLAYMODE one diagnostic owner", "VISUAL readable board"]
+    },
+    {
+      "responsibility": "Runtime world-space UI",
+      "canonicalOwner": "DiegeticPanel contract (new R2 framework)",
+      "preserve": ["feature data and callbacks from HomeHub, travel station, Quarters, Conquest and objective boards"],
+      "retireOrSubordinate": ["independent raw TextMesh placement", "independent facing formulas", "unbounded all-at-once layouts", "feature-created EventSystems"],
+      "proofRequired": ["PLAYMODE interaction binding", "VISUAL panel bounds and overlap", "QUEST angular readability"]
+    },
+    {
+      "responsibility": "Persistent HUD policy",
+      "canonicalOwner": "Recovery HUD policy through DiegeticPanel/diagnostic profile",
+      "preserve": ["credit balance data"],
+      "retireOrSubordinate": ["always-on camera-relative CreditsHud", "default-on DebugHUD overlay"],
+      "proofRequired": ["PLAYMODE no forbidden overlay", "VISUAL screen occupancy"]
+    },
+    {
+      "responsibility": "Runtime input bindings",
+      "canonicalOwner": "Central InputContract registry consumed by player/ship/vehicle/dev systems",
+      "preserve": ["approved actions after collision review"],
+      "retireOrSubordinate": ["ad hoc new InputAction in feature Update loops", "stale chord guards", "duplicate control meanings without mode ownership"],
+      "proofRequired": ["static input collision report", "PLAYMODE active-mode binding census", "QUEST ergonomics checkpoint"]
+    },
+    {
+      "responsibility": "Camera roles",
+      "canonicalOwner": "CameraRoleRegistry/PlayerViewOwner (new R2 contract)",
+      "preserve": ["tracked player camera", "explicit field/photo/snapshot cameras by role"],
+      "retireOrSubordinate": ["EnsureXRCameraActive name-based global disabling"],
+      "proofRequired": ["PLAYMODE camera census", "VISUAL snapshot camera coexistence", "QUEST player-view ownership"]
+    },
+    {
+      "responsibility": "Material and fallback policy",
+      "canonicalOwner": "Build-time material validation plus RecoveryFallbackPolicy",
+      "preserve": ["Forge assignments", "registered development fallback assets"],
+      "retireOrSubordinate": ["RuntimeMaterialFixer global renderer rewrite", "unclassified runtime materials"],
+      "proofRequired": ["PATCHED material audit", "PLAYMODE runtime material census", "VISUAL no forbidden fallback"]
+    },
+    {
+      "responsibility": "Scene-global sky, grade, fog and key lighting",
+      "canonicalOwner": "ScenePresentationCoordinator (new R2 composition owner)",
+      "preserve": ["SkyVista data", "SkyGrade derivation", "approved practical fixture data"],
+      "retireOrSubordinate": ["simultaneous legacy planet and new vista ownership", "uncoordinated global RenderSettings mutation", "unverified practical halo/pool quads"],
+      "proofRequired": ["PLAYMODE one global owner", "VISUAL named scene snapshots", "QUEST shader/grade checkpoint"]
+    },
+    {
+      "responsibility": "Item physical presentation",
+      "canonicalOwner": "ItemPresentationDefinition (new R2 schema) interpreted by ItemFactory",
+      "preserve": ["ItemDefinition gameplay identity", "Forge visual child", "ItemRuntime mechanics"],
+      "retireOrSubordinate": ["universal 45-degree gun fallback", "zero-value implicit scale", "hand pose reused as holster pose"],
+      "proofRequired": ["CORE schema validation", "PLAYMODE attach/holster/muzzle axes", "VISUAL pose snapshots", "QUEST feel checkpoint"]
+    },
+    {
+      "responsibility": "Weapon owner/self collision",
+      "canonicalOwner": "WeaponOwnerCollisionPolicy shared by hitscan and projectiles",
+      "preserve": ["PistolRuntime and Taser runtimes after adapter migration"],
+      "retireOrSubordinate": ["first-hit-anything projectile behavior", "general raycast with no owner exclusion"],
+      "proofRequired": ["PLAYMODE self-collider exclusion", "QUEST close-wall fire"]
+    },
+    {
+      "responsibility": "Melee and impact-axis presentation",
+      "canonicalOwner": "One canonical melee item contract; exact implementation selected in R2 packet",
+      "preserve": ["Sonic Thumper gameplay concept", "HammerTool behavior only if migrated"],
+      "retireOrSubordinate": ["duplicate unrelated hammer construction and pose paths", "gun grip fallback on mallets"],
+      "proofRequired": ["source resolver", "PLAYMODE impact-axis test", "VISUAL hand pose", "QUEST swing feel"]
+    },
+    {
+      "responsibility": "Creature spawn, contact and grounding",
+      "canonicalOwner": "CreatureContactContract shared by authoring and runtime presentation",
+      "preserve": ["CreatureRuntime behavior", "Forge body and animation", "EcologyCore"],
+      "retireOrSubordinate": ["visual-only blob shadow treated as grounding proof", "spawn without ground/collider/post-settle evidence"],
+      "proofRequired": ["PATCHED ground sample", "PLAYMODE collider/contact/post-settle", "VISUAL contact snapshot", "QUEST movement readability"]
+    },
+    {
+      "responsibility": "Job progress, repair consumption and objective presentation",
+      "canonicalOwner": "UNRESOLVED — R0 event/save graph must select one semantic progress owner",
+      "preserve": ["existing machine interactions, reward core and ship state after tracing"],
+      "retireOrSubordinate": ["independent visual/objective consumers deriving state separately"],
+      "proofRequired": ["event/save graph", "one semantic state transition test", "PLAYMODE repair-to-castoff loop"]
+    },
+    {
+      "responsibility": "Ship presentation root",
+      "canonicalOwner": "One ShipPresentationRoot assembled from loadout data",
+      "preserve": ["ship loadout/refit data", "one selected hull implementation"],
+      "retireOrSubordinate": ["multiple scene-specific hull roots", "interim primitive hull exposed as accepted art"],
+      "proofRequired": ["source resolver", "PLAYMODE one ship root", "VISUAL W000/destination identity"]
+    },
+    {
+      "responsibility": "Audio composition and lifecycle",
+      "canonicalOwner": "AudioDirector as composition owner; AmbienceDirector as subordinate biome provider",
+      "preserve": ["music transitions", "procedural ambience", "runtime health resource census"],
+      "retireOrSubordinate": ["independent source lifetime without composition/census", "unbounded generated clip retention"],
+      "proofRequired": ["PLAYMODE source/clip census", "travel resource delta", "QUEST mix checkpoint"]
+    },
+    {
+      "responsibility": "Runtime diagnostics",
+      "canonicalOwner": "Diagnostic exposure profile",
+      "preserve": ["DebugHUD", "VRBootDiagnostics", "DevWarpBoard", "targeted log tags"],
+      "retireOrSubordinate": ["default-on overlays", "full renderer dump after every scene", "diagnostics competing with player UI"],
+      "proofRequired": ["PLAYMODE diagnostics off in GoldenSlice", "explicit Diagnostic profile test"]
+    },
+    {
+      "responsibility": "Multiplayer and Tidefront runtime exposure",
+      "canonicalOwner": "RecoveryRuntimeGate while frozen; existing domain owners after R3",
+      "preserve": ["pure PvP/conquest cores", "Photon presence source", "arena data"],
+      "retireOrSubordinate": ["NetBootstrap, PvpProgression and Conquest mission hooks in GoldenSlice"],
+      "proofRequired": ["PLAYMODE forbidden-owner census", "later dedicated multiplayer checkpoint"]
+    }
+  ]
+}
