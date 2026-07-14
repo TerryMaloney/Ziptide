@@ -61,6 +61,33 @@ namespace Ziptide.Editor.Patching
         [MenuItem("Ziptide/Worlds/Build W011 Undercroft (cave world)")]
         public static void BuildUndercroft() => Build(Undercroft);
 
+        /// <summary>
+        /// Batchmode-safe build hook. W011's surface cave mouth is generated automatically, so its
+        /// destination must be generated and enabled before the world audit reads Build Settings.
+        /// </summary>
+        public static void EnsureUndercroftInBuildSettings()
+        {
+            EditorSceneManager.SaveOpenScenes();
+            string scenePath = ScenePathOf(Undercroft);
+            Scene scene;
+            if (File.Exists(scenePath))
+            {
+                scene = EditorSceneManager.OpenScene(scenePath, OpenSceneMode.Single);
+            }
+            else
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(scenePath));
+                scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
+            }
+
+            Populate(Undercroft);
+            EnsureInBuildSettings(scenePath);
+            EditorSceneManager.MarkSceneDirty(scene);
+            EditorSceneManager.SaveScene(scene, scenePath);
+            AssetDatabase.SaveAssets();
+            Debug.Log("[Ziptide] ensured batch cave world " + Undercroft.sceneName + " in Build Settings");
+        }
+
         private static void Build(CaveConfig cfg)
         {
             var scene = OpenOrCreateScene(ScenePathOf(cfg));
@@ -106,7 +133,7 @@ namespace Ziptide.Editor.Patching
                     if (GameObject.Find(stName) != null) continue;
                     if (!ArtModuleRegistry.TryBuild("cavernModule:rock/Stalactite", out var stal)) continue;
                     stal.name = stName;
-                    float a = (ch.Id * 2.4f) + s * 2.1f; // deterministic scatter angle
+                    float a = (ch.Id * 2.4f) + s * 2.1f;
                     stal.transform.position = new Vector3(
                         ch.X + Mathf.Cos(a) * ch.Radius * 0.5f,
                         ch.Y + 6.5f,
@@ -131,8 +158,6 @@ namespace Ziptide.Editor.Patching
             EnsureSpawnAndDoor(plan, cfg);
             EnsureWorldPackAsset(plan, cfg);
         }
-
-        // ── Links ────────────────────────────────────────────────────────────
 
         private static void BuildBridge(Transform parent, CaveChamber a, CaveChamber b)
         {
@@ -178,8 +203,6 @@ namespace Ziptide.Editor.Patching
             }
         }
 
-        /// <summary>1.4g: grapple anchors on the HIGH chambers — the range verb earns its keep where
-        /// climbing is slow: point, grip, reel up. One anchor per chamber above the median height.</summary>
         private static void EnsureGrappleAnchors(CavePlan plan)
         {
             var ys = new List<float>();
@@ -192,7 +215,7 @@ namespace Ziptide.Editor.Patching
                 string name = "CaveGrapple_" + ch.Id;
                 if (GameObject.Find(name) != null) continue;
                 var anchor = new GameObject(name);
-                anchor.transform.position = new Vector3(ch.X, ch.Y + 3.2f, ch.Z); // above the pad
+                anchor.transform.position = new Vector3(ch.X, ch.Y + 3.2f, ch.Z);
                 anchor.AddComponent<GrappleAnchorRuntime>();
             }
         }
@@ -213,14 +236,12 @@ namespace Ziptide.Editor.Patching
                 new Vector3(lo.X, lo.Y + 1.6f, lo.Z));
         }
 
-        // ── Shell (sandbox idiom, cave mood) ─────────────────────────────────
-
         private static void EnsureLighting()
         {
             var go = PatcherUtil.EnsureRootObject("Directional Light", new Vector3(0f, 6f, 0f));
             var light = PatcherUtil.EnsureComponent<Light>(go);
             light.type = LightType.Directional;
-            light.intensity = 0.35f;                       // caves are DIM — the crystal tips carry it
+            light.intensity = 0.35f;
             light.color = new Color(0.7f, 0.8f, 0.9f);
             go.transform.rotation = Quaternion.Euler(75f, -20f, 0f);
         }
