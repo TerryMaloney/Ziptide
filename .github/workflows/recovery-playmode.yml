@@ -1,0 +1,62 @@
+name: Recovery PlayMode Observation
+
+# R1.1 infrastructure spike. This workflow is intentionally separate from the durable
+# Unity verdict until it proves two green runs. A red result remains visible and honest;
+# it does not weaken or replace the required EditMode + patch/audit jobs.
+on:
+  push:
+    branches:
+      - terry-local-wip
+    paths:
+      - 'Ziptide/Assets/Ziptide/Tests/PlayMode/**'
+      - '.github/workflows/recovery-playmode.yml'
+  workflow_dispatch:
+
+permissions:
+  checks: write
+  contents: read
+
+env:
+  PROJECT_PATH: Ziptide
+  UNITY_VERSION: 2022.3.62f3
+
+jobs:
+  playmode-smoke:
+    name: PlayMode one-frame smoke
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Cache isolated PlayMode Library
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.PROJECT_PATH }}/Library
+          key: Library-playmode-r1-${{ hashFiles(format('{0}/Assets/**', env.PROJECT_PATH), format('{0}/Packages/**', env.PROJECT_PATH), format('{0}/ProjectSettings/**', env.PROJECT_PATH)) }}
+          restore-keys: |
+            Library-playmode-r1-
+            Library-
+
+      - name: Run PlayMode infrastructure test
+        uses: game-ci/unity-test-runner@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          projectPath: ${{ env.PROJECT_PATH }}
+          unityVersion: ${{ env.UNITY_VERSION }}
+          testMode: playmode
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          artifactsPath: playmode-test-results
+
+      - name: Upload PlayMode results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: recovery-playmode-r1-results
+          path: playmode-test-results
+          if-no-files-found: warn
