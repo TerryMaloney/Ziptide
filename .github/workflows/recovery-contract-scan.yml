@@ -7,8 +7,11 @@ on:
     paths:
       - 'Ziptide/Assets/Ziptide/**/*.cs'
       - 'Ziptide/Assets/ZiptideNet/**/*.cs'
+      - 'docs/recovery/system_contracts.json'
       - 'tools/recovery_contract_scan.py'
+      - 'tools/recovery_inventory_gate.py'
       - 'tools/tests/test_recovery_contract_scan.py'
+      - 'tools/tests/test_recovery_inventory_gate.py'
       - '.github/workflows/recovery-contract-scan.yml'
   workflow_dispatch:
 
@@ -27,11 +30,15 @@ jobs:
           ref: terry-local-wip
           fetch-depth: 0
 
-      - name: Test recovery scanner
+      - name: Test recovery tooling
         run: |
           python3 -m unittest discover \
             -s tools/tests \
             -p 'test_recovery_contract_scan.py' \
+            -v
+          python3 -m unittest discover \
+            -s tools/tests \
+            -p 'test_recovery_inventory_gate.py' \
             -v
 
       - name: Scan repository contracts
@@ -40,10 +47,15 @@ jobs:
           python3 tools/recovery_contract_scan.py \
             --json-report docs/recovery/generated/recovery_contract_scan.json \
             --markdown-report docs/recovery/generated/recovery_contract_scan.md
+          python3 tools/recovery_inventory_gate.py \
+            --json-report docs/recovery/generated/recovery_inventory_validation.json \
+            --markdown-report docs/recovery/generated/recovery_inventory_validation.md
           cp docs/recovery/generated/recovery_contract_scan.json Builds/Reports/recovery_contract_scan.json
           cp docs/recovery/generated/recovery_contract_scan.md Builds/Reports/recovery_contract_scan.md
+          cp docs/recovery/generated/recovery_inventory_validation.json Builds/Reports/recovery_inventory_validation.json
+          cp docs/recovery/generated/recovery_inventory_validation.md Builds/Reports/recovery_inventory_validation.md
 
-      - name: Upload recovery scan
+      - name: Upload recovery reports
         uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -51,20 +63,22 @@ jobs:
           path: |
             Builds/Reports/recovery_contract_scan.json
             Builds/Reports/recovery_contract_scan.md
+            Builds/Reports/recovery_inventory_validation.json
+            Builds/Reports/recovery_inventory_validation.md
           if-no-files-found: error
 
-      - name: Commit current generated report
+      - name: Commit current generated reports
         shell: bash
         run: |
           set -euo pipefail
-          if git diff --quiet -- docs/recovery/generated/recovery_contract_scan.json docs/recovery/generated/recovery_contract_scan.md; then
-            echo "Generated recovery report is already current."
+          if git diff --quiet -- docs/recovery/generated; then
+            echo "Generated recovery reports are already current."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/recovery/generated/recovery_contract_scan.json docs/recovery/generated/recovery_contract_scan.md
-          git commit -m "docs(recovery): refresh generated contract scan [skip ci]"
+          git add docs/recovery/generated
+          git commit -m "docs(recovery): refresh generated audit reports [skip ci]"
           if ! git push origin HEAD:terry-local-wip; then
-            echo "::warning::Branch advanced during report write; the newer push will regenerate the report."
+            echo "::warning::Branch advanced during report write; the newer push will regenerate the reports."
           fi
