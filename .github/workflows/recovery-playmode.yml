@@ -83,11 +83,16 @@ jobs:
             docs/recovery/generated/recovery_playmode_observation.md
           if-no-files-found: warn
 
-      - name: Commit durable observation without forcing
+      - name: Commit durable observation on current branch head
         if: always()
         shell: bash
         run: |
           set -euo pipefail
+          cp docs/recovery/generated/recovery_playmode_observation.md /tmp/recovery_playmode_observation.md
+          git fetch origin terry-local-wip
+          git checkout -B terry-local-wip origin/terry-local-wip
+          mkdir -p docs/recovery/generated
+          cp /tmp/recovery_playmode_observation.md docs/recovery/generated/recovery_playmode_observation.md
           if git diff --quiet -- docs/recovery/generated/recovery_playmode_observation.md && \
              [[ -z "$(git status --porcelain -- docs/recovery/generated/recovery_playmode_observation.md)" ]]; then
             echo "PlayMode observation already matches this run."
