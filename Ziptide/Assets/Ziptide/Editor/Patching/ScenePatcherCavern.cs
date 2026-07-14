@@ -78,12 +78,13 @@ namespace Ziptide.Editor.Patching
             {
                 Directory.CreateDirectory(Path.GetDirectoryName(scenePath));
                 scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
+                EditorSceneManager.SaveScene(scene, scenePath);
             }
 
             Populate(Undercroft);
-            EnsureInBuildSettings(scenePath);
             EditorSceneManager.MarkSceneDirty(scene);
             EditorSceneManager.SaveScene(scene, scenePath);
+            EnsureInBuildSettings(scenePath);
             AssetDatabase.SaveAssets();
             Debug.Log("[Ziptide] ensured batch cave world " + Undercroft.sceneName + " in Build Settings");
         }
