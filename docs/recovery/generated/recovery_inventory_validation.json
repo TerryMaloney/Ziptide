@@ -1,33 +1,11 @@
 {
   "tool": "recovery_inventory_gate",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-14T23:16:53.132782+00:00",
-  "status": "warning",
+  "generatedAtUtc": "2026-07-14T23:19:50.216460+00:00",
+  "status": "pass",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "inventoryPath": "/home/runner/work/Ziptide/Ziptide/docs/recovery/canonical_system_contracts.json",
   "systemCount": 22,
-  "findingCount": 3,
-  "findings": [
-    {
-      "code": "SOURCE_PATH_MISSING",
-      "message": "Source path did not resolve in the repository.",
-      "system_id": "SAVE_PROFILE",
-      "path": "Ziptide/Assets/Ziptide/Core/Runtime/PlayerProfile.cs",
-      "severity": "warning"
-    },
-    {
-      "code": "SOURCE_PATH_MISSING",
-      "message": "Source path did not resolve in the repository.",
-      "system_id": "SAVE_PROFILE",
-      "path": "Ziptide/Assets/Ziptide/Core/Runtime/ProfileSerializer.cs",
-      "severity": "warning"
-    },
-    {
-      "code": "SOURCE_PATH_MISSING",
-      "message": "Source path did not resolve in the repository.",
-      "system_id": "RUNTIME_UI",
-      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldTravelStation.cs",
-      "severity": "warning"
-    }
-  ]
+  "findingCount": 0,
+  "findings": []
 }

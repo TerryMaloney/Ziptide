@@ -17157,27 +17157,5 @@
     },
     "unresolvedCanonicalOwners": []
   },
-  "validationFindings": [
-    {
-      "code": "SOURCE_PATH_MISSING",
-      "message": "Source path did not resolve in the repository.",
-      "system_id": "SAVE_PROFILE",
-      "path": "Ziptide/Assets/Ziptide/Core/Runtime/PlayerProfile.cs",
-      "severity": "warning"
-    },
-    {
-      "code": "SOURCE_PATH_MISSING",
-      "message": "Source path did not resolve in the repository.",
-      "system_id": "SAVE_PROFILE",
-      "path": "Ziptide/Assets/Ziptide/Core/Runtime/ProfileSerializer.cs",
-      "severity": "warning"
-    },
-    {
-      "code": "SOURCE_PATH_MISSING",
-      "message": "Source path did not resolve in the repository.",
-      "system_id": "RUNTIME_UI",
-      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldTravelStation.cs",
-      "severity": "warning"
-    }
-  ]
+  "validationFindings": []
 }
