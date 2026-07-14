@@ -96,7 +96,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if git diff --quiet -- docs/recovery/generated; then
+          if [[ -z "$(git status --porcelain -- docs/recovery/generated)" ]]; then
             echo "Generated recovery reports are already current."
             exit 0
           fi
