@@ -1,0 +1,671 @@
+{
+  "tool": "recovery_source_resolver",
+  "indexedTypeCount": 858,
+  "targetCount": 78,
+  "statusCounts": {
+    "MISSING": 8,
+    "RESOLVED": 70
+  },
+  "systems": {
+    "ART_FORGE": [
+      {
+        "system_id": "ART_FORGE",
+        "target_type": "ForgeVisualApplier",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs"
+        ]
+      },
+      {
+        "system_id": "ART_FORGE",
+        "target_type": "ForgeRecipeLibrary",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Editor/Patching/ForgeRecipeLibrary.cs"
+        ]
+      },
+      {
+        "system_id": "ART_FORGE",
+        "target_type": "ArtConformanceAuditRules",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Editor/Audit/ArtConformanceAuditRules.cs"
+        ]
+      }
+    ],
+    "AUDIO": [
+      {
+        "system_id": "AUDIO",
+        "target_type": "AudioDirector",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs"
+        ]
+      },
+      {
+        "system_id": "AUDIO",
+        "target_type": "AmbienceDirector",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs"
+        ]
+      }
+    ],
+    "BOOT_FLOW": [
+      {
+        "system_id": "BOOT_FLOW",
+        "target_type": "BootLoader",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/BootLoader.cs"
+        ]
+      }
+    ],
+    "CI_AND_AUDIT": [
+      {
+        "system_id": "CI_AND_AUDIT",
+        "target_type": "BuildAndroid",
+        "status": "MISSING",
+        "paths": []
+      },
+      {
+        "system_id": "CI_AND_AUDIT",
+        "target_type": "WorldAuditRunner",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Editor/Audit/WorldAuditRunner.cs"
+        ]
+      },
+      {
+        "system_id": "CI_AND_AUDIT",
+        "target_type": "UiReadabilityAuditRules",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Editor/Audit/UiReadabilityAuditRules.cs"
+        ]
+      }
+    ],
+    "CONQUEST_TABLE_UI": [
+      {
+        "system_id": "CONQUEST_TABLE_UI",
+        "target_type": "ConquestTableRuntime",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestTableRuntime.cs"
+        ]
+      },
+      {
+        "system_id": "CONQUEST_TABLE_UI",
+        "target_type": "ConquestSession",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Multiplayer/Runtime/Conquest/ConquestMissionCore.cs"
+        ]
+      }
+    ],
+    "CREATURE_PRESENTATION_AND_GROUNDING": [
+      {
+        "system_id": "CREATURE_PRESENTATION_AND_GROUNDING",
+        "target_type": "CreatureRuntime",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs"
+        ]
+      },
+      {
+        "system_id": "CREATURE_PRESENTATION_AND_GROUNDING",
+        "target_type": "ForgeCreatureVisualApplier",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeCreatureVisualApplier.cs"
+        ]
+      },
+      {
+        "system_id": "CREATURE_PRESENTATION_AND_GROUNDING",
+        "target_type": "GroundShadow",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Visuals/Runtime/Grounding/GroundShadow.cs"
+        ]
+      },
+      {
+        "system_id": "CREATURE_PRESENTATION_AND_GROUNDING",
+        "target_type": "EcologyDirector",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs"
+        ]
+      }
+    ],
+    "DEV_MENU": [
+      {
+        "system_id": "DEV_MENU",
+        "target_type": "DevWarpBoard",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs"
+        ]
+      },
+      {
+        "system_id": "DEV_MENU",
+        "target_type": "DevMenu",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs"
+        ]
+      },
+      {
+        "system_id": "DEV_MENU",
+        "target_type": "DevMenuGesture",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenuGesture.cs"
+        ]
+      },
+      {
+        "system_id": "DEV_MENU",
+        "target_type": "DevAccessGate",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevAccessGate.cs"
+        ]
+      },
+      {
+        "system_id": "DEV_MENU",
+        "target_type": "QuickSwap",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs"
+        ]
+      }
+    ],
+    "HOLSTER": [
+      {
+        "system_id": "HOLSTER",
+        "target_type": "BeltRig",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs"
+        ]
+      },
+      {
+        "system_id": "HOLSTER",
+        "target_type": "HolsterSocketInteractor",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs"
+        ]
+      },
+      {
+        "system_id": "HOLSTER",
+        "target_type": "InventoryState",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/InventoryState.cs"
+        ]
+      }
+    ],
+    "HOME_HUB_UI": [
+      {
+        "system_id": "HOME_HUB_UI",
+        "target_type": "HomeHubRuntime",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs"
+        ]
+      },
+      {
+        "system_id": "HOME_HUB_UI",
+        "target_type": "HomeHubFlowState",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs"
+        ]
+      }
+    ],
+    "ITEM_PRESENTATION": [
+      {
+        "system_id": "ITEM_PRESENTATION",
+        "target_type": "ItemDefinition",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Content/Runtime/Items/ItemDefinition.cs"
+        ]
+      },
+      {
+        "system_id": "ITEM_PRESENTATION",
+        "target_type": "ItemFactory",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs"
+        ]
+      },
+      {
+        "system_id": "ITEM_PRESENTATION",
+        "target_type": "ItemRuntime",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemRuntime.cs"
+        ]
+      },
+      {
+        "system_id": "ITEM_PRESENTATION",
+        "target_type": "ForgeVisualApplier",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs"
+        ]
+      }
+    ],
+    "MELEE": [
+      {
+        "system_id": "MELEE",
+        "target_type": "HammerTool",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/HammerTool.cs"
+        ]
+      },
+      {
+        "system_id": "MELEE",
+        "target_type": "SonicThumperRuntime",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/SonicThumperRuntime.cs"
+        ]
+      },
+      {
+        "system_id": "MELEE",
+        "target_type": "SonicThumper",
+        "status": "MISSING",
+        "paths": []
+      },
+      {
+        "system_id": "MELEE",
+        "target_type": "PvpHammer",
+        "status": "MISSING",
+        "paths": []
+      }
+    ],
+    "PERSISTENT_CREDITS_HUD": [
+      {
+        "system_id": "PERSISTENT_CREDITS_HUD",
+        "target_type": "CreditsHud",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/CreditsHud.cs"
+        ]
+      }
+    ],
+    "PRACTICAL_LIGHTING": [
+      {
+        "system_id": "PRACTICAL_LIGHTING",
+        "target_type": "PracticalLight",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/PracticalLight.cs"
+        ]
+      },
+      {
+        "system_id": "PRACTICAL_LIGHTING",
+        "target_type": "PracticalAuthor",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Editor/Patching/PracticalAuthor.cs"
+        ]
+      }
+    ],
+    "PVP_AND_PHOTON": [
+      {
+        "system_id": "PVP_AND_PHOTON",
+        "target_type": "PvpMatchDirector",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpMatchDirector.cs"
+        ]
+      },
+      {
+        "system_id": "PVP_AND_PHOTON",
+        "target_type": "PvpNetHub",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Multiplayer/Runtime/Net/PvpNetHub.cs"
+        ]
+      },
+      {
+        "system_id": "PVP_AND_PHOTON",
+        "target_type": "NetBootstrap",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/ZiptideNet/NetBootstrap.cs"
+        ]
+      },
+      {
+        "system_id": "PVP_AND_PHOTON",
+        "target_type": "PvpOnlinePresence",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpOnlinePresence.cs"
+        ]
+      }
+    ],
+    "QUARTERS_UI": [
+      {
+        "system_id": "QUARTERS_UI",
+        "target_type": "QuartersRoom",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/QuartersRoom.cs"
+        ]
+      },
+      {
+        "system_id": "QUARTERS_UI",
+        "target_type": "QuartersCameraFeature",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs"
+        ]
+      },
+      {
+        "system_id": "QUARTERS_UI",
+        "target_type": "QuartersPhotoWall",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/QuartersPhotoWall.cs"
+        ]
+      }
+    ],
+    "REPAIR_OBJECTIVE": [
+      {
+        "system_id": "REPAIR_OBJECTIVE",
+        "target_type": "JobDirector",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs"
+        ]
+      },
+      {
+        "system_id": "REPAIR_OBJECTIVE",
+        "target_type": "JobRuntime",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobRuntime.cs"
+        ]
+      },
+      {
+        "system_id": "REPAIR_OBJECTIVE",
+        "target_type": "ResourceBank",
+        "status": "MISSING",
+        "paths": []
+      },
+      {
+        "system_id": "REPAIR_OBJECTIVE",
+        "target_type": "WorldObjectiveBoard",
+        "status": "MISSING",
+        "paths": []
+      },
+      {
+        "system_id": "REPAIR_OBJECTIVE",
+        "target_type": "GateCoupler",
+        "status": "MISSING",
+        "paths": []
+      },
+      {
+        "system_id": "REPAIR_OBJECTIVE",
+        "target_type": "ShipCastOff",
+        "status": "MISSING",
+        "paths": []
+      }
+    ],
+    "SAVE_PROFILE": [
+      {
+        "system_id": "SAVE_PROFILE",
+        "target_type": "SaveSystem",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Persistence/SaveSystem.cs"
+        ]
+      },
+      {
+        "system_id": "SAVE_PROFILE",
+        "target_type": "PlayerProfile",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Core/Runtime/Persistence/PlayerProfile.cs"
+        ]
+      },
+      {
+        "system_id": "SAVE_PROFILE",
+        "target_type": "ProfileSerializer",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Core/Runtime/Persistence/ProfileSerializer.cs"
+        ]
+      }
+    ],
+    "SHIP_FLIGHT": [
+      {
+        "system_id": "SHIP_FLIGHT",
+        "target_type": "ShipFlightRuntime",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs"
+        ]
+      }
+    ],
+    "SHIP_PRESENTATION_AND_REFIT": [
+      {
+        "system_id": "SHIP_PRESENTATION_AND_REFIT",
+        "target_type": "ShipHullBuilder",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Editor/Patching/ShipHullBuilder.cs"
+        ]
+      },
+      {
+        "system_id": "SHIP_PRESENTATION_AND_REFIT",
+        "target_type": "ShipRefit",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipRefit.cs"
+        ]
+      },
+      {
+        "system_id": "SHIP_PRESENTATION_AND_REFIT",
+        "target_type": "ShipLocker",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Core/Runtime/ShipLocker.cs"
+        ]
+      }
+    ],
+    "SKY_AND_GRADE": [
+      {
+        "system_id": "SKY_AND_GRADE",
+        "target_type": "SkyPlanetRig",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Visuals/Runtime/SkyPlanetRig.cs"
+        ]
+      },
+      {
+        "system_id": "SKY_AND_GRADE",
+        "target_type": "SkyVistaRig",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyVistaRig.cs"
+        ]
+      },
+      {
+        "system_id": "SKY_AND_GRADE",
+        "target_type": "SkyGrade",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyGrade.cs"
+        ]
+      },
+      {
+        "system_id": "SKY_AND_GRADE",
+        "target_type": "SkyVistaDefinition",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyVistaDefinition.cs"
+        ]
+      }
+    ],
+    "TRAVEL": [
+      {
+        "system_id": "TRAVEL",
+        "target_type": "TravelCoordinator",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs"
+        ]
+      },
+      {
+        "system_id": "TRAVEL",
+        "target_type": "ZiptideGateEffect",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ZiptideGateEffect.cs"
+        ]
+      },
+      {
+        "system_id": "TRAVEL",
+        "target_type": "WorldTravelStation",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs"
+        ]
+      }
+    ],
+    "TRAVEL_STATION_UI": [
+      {
+        "system_id": "TRAVEL_STATION_UI",
+        "target_type": "WorldTravelStation",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs"
+        ]
+      },
+      {
+        "system_id": "TRAVEL_STATION_UI",
+        "target_type": "WorldLabelFacing",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldLabelFacing.cs"
+        ]
+      }
+    ],
+    "WEAPON_FIRE": [
+      {
+        "system_id": "WEAPON_FIRE",
+        "target_type": "PistolRuntime",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/PistolRuntime.cs"
+        ]
+      },
+      {
+        "system_id": "WEAPON_FIRE",
+        "target_type": "TaserDartGunRuntime",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/TaserDartGunRuntime.cs"
+        ]
+      },
+      {
+        "system_id": "WEAPON_FIRE",
+        "target_type": "TaserDartProjectile",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/TaserDartProjectile.cs"
+        ]
+      }
+    ],
+    "WORLD_FACTORY": [
+      {
+        "system_id": "WORLD_FACTORY",
+        "target_type": "WorldSpec",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Content/Runtime/Spec/WorldSpec.cs"
+        ]
+      },
+      {
+        "system_id": "WORLD_FACTORY",
+        "target_type": "WorldSpecCompiler",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Editor/Spec/WorldSpecCompiler.cs"
+        ]
+      },
+      {
+        "system_id": "WORLD_FACTORY",
+        "target_type": "WorldStubGenerator",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Editor/Patching/WorldStubGenerator.cs"
+        ]
+      },
+      {
+        "system_id": "WORLD_FACTORY",
+        "target_type": "CityBuilder",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs"
+        ]
+      }
+    ],
+    "XR_RIG": [
+      {
+        "system_id": "XR_RIG",
+        "target_type": "PlayerRigPersistence",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs"
+        ]
+      },
+      {
+        "system_id": "XR_RIG",
+        "target_type": "LocomotionDirector",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/LocomotionDirector.cs"
+        ]
+      },
+      {
+        "system_id": "XR_RIG",
+        "target_type": "EmergencyRespawn",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/EmergencyRespawn.cs"
+        ]
+      }
+    ],
+    "ZIPLINE": [
+      {
+        "system_id": "ZIPLINE",
+        "target_type": "ScenePatcherCavern",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherCavern.cs"
+        ]
+      },
+      {
+        "system_id": "ZIPLINE",
+        "target_type": "ZiplineRuntime",
+        "status": "RESOLVED",
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ZiplineRuntime.cs"
+        ]
+      },
+      {
+        "system_id": "ZIPLINE",
+        "target_type": "ZiplineCore",
+        "status": "MISSING",
+        "paths": []
+      }
+    ]
+  }
+}

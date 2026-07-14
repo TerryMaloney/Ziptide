@@ -1,0 +1,332 @@
+{
+  "tool": "recovery_input_contract_scan",
+  "scannedFiles": 598,
+  "bindingCount": 19,
+  "chordReferenceCount": 5,
+  "collisionControlCount": 5,
+  "bindings": [
+    {
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs",
+      "symbol": "Ziptide.Gameplay.QuickSwap",
+      "field": "_swap",
+      "action_name": "ZiptideQuickSwap",
+      "binding": "<XRController>{RightHand}/secondaryButton",
+      "action_line": 27,
+      "binding_line": 28
+    },
+    {
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs",
+      "symbol": "Ziptide.Gameplay.QuickSwap",
+      "field": "_menuGuard",
+      "action_name": "ZiptideQuickSwapMenuGuard",
+      "binding": "<XRController>{LeftHand}/secondaryButton",
+      "action_line": 32,
+      "binding_line": 33
+    },
+    {
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs",
+      "symbol": "Ziptide.Gameplay.DashLocomotion",
+      "field": "_jumpAction",
+      "action_name": "ZiptideJump",
+      "binding": "<XRController>{RightHand}/primaryButton",
+      "action_line": 98,
+      "binding_line": 99
+    },
+    {
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs",
+      "symbol": "Ziptide.Gameplay.DashLocomotion",
+      "field": "_sprintAction",
+      "action_name": "ZiptideSprint",
+      "binding": "<XRController>{LeftHand}/thumbstickClicked",
+      "action_line": 103,
+      "binding_line": 104
+    },
+    {
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs",
+      "symbol": "Ziptide.Gameplay.DashLocomotion",
+      "field": "_crouchAction",
+      "action_name": "ZiptideCrouch",
+      "binding": "<XRController>{RightHand}/thumbstickClicked",
+      "action_line": 108,
+      "binding_line": 109
+    },
+    {
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/EmergencyRespawn.cs",
+      "symbol": "Ziptide.Gameplay.EmergencyRespawn",
+      "field": "_leftGrip",
+      "action_name": "EmergencyLeft",
+      "binding": "<XRController>{LeftHand}/grip",
+      "action_line": 23,
+      "binding_line": 24
+    },
+    {
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/EmergencyRespawn.cs",
+      "symbol": "Ziptide.Gameplay.EmergencyRespawn",
+      "field": "_rightGrip",
+      "action_name": "EmergencyRight",
+      "binding": "<XRController>{RightHand}/grip",
+      "action_line": 27,
+      "binding_line": 28
+    },
+    {
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PingTool.cs",
+      "symbol": "Ziptide.Gameplay.PingTool",
+      "field": "_ping",
+      "action_name": "ZiptidePing",
+      "binding": "<XRController>{LeftHand}/triggerPressed",
+      "action_line": 27,
+      "binding_line": 28
+    },
+    {
+      "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
+      "symbol": "Ziptide.Ship.ShipFlightRuntime",
+      "field": "_leftStick",
+      "action_name": "ZiptideFlightThrottle",
+      "binding": "<XRController>{LeftHand}/thumbstick",
+      "action_line": 139,
+      "binding_line": 140
+    },
+    {
+      "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
+      "symbol": "Ziptide.Ship.ShipFlightRuntime",
+      "field": "_rightStick",
+      "action_name": "ZiptideFlightSteer",
+      "binding": "<XRController>{RightHand}/thumbstick",
+      "action_line": 141,
+      "binding_line": 142
+    },
+    {
+      "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
+      "symbol": "Ziptide.Ship.ShipFlightRuntime",
+      "field": "_boostStickClick",
+      "action_name": "ZiptideFlightBoostL3",
+      "binding": "<XRController>{LeftHand}/thumbstickClicked",
+      "action_line": 143,
+      "binding_line": 144
+    },
+    {
+      "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
+      "symbol": "Ziptide.Ship.ShipFlightRuntime",
+      "field": "_boostButton",
+      "action_name": "ZiptideFlightBoostA",
+      "binding": "<XRController>{RightHand}/primaryButton",
+      "action_line": 145,
+      "binding_line": 146
+    },
+    {
+      "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
+      "symbol": "Ziptide.Ship.ShipFlightRuntime",
+      "field": "_rollLeftButton",
+      "action_name": "ZiptideFlightRollL",
+      "binding": "<XRController>{LeftHand}/primaryButton",
+      "action_line": 147,
+      "binding_line": 148
+    },
+    {
+      "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
+      "symbol": "Ziptide.Ship.ShipFlightRuntime",
+      "field": "_rollRightButton",
+      "action_name": "ZiptideFlightRollR",
+      "binding": "<XRController>{RightHand}/secondaryButton",
+      "action_line": 149,
+      "binding_line": 150
+    },
+    {
+      "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
+      "symbol": "Ziptide.Ship.ShipFlightRuntime",
+      "field": "_fireAction",
+      "action_name": "ZiptideFlightFire",
+      "binding": "<XRController>{RightHand}/trigger",
+      "action_line": 151,
+      "binding_line": 152
+    },
+    {
+      "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
+      "symbol": "Ziptide.Ship.VehicleRuntime",
+      "field": "_leftStick",
+      "action_name": "ZiptideRideThrottle",
+      "binding": "<XRController>{LeftHand}/thumbstick",
+      "action_line": 68,
+      "binding_line": 69
+    },
+    {
+      "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
+      "symbol": "Ziptide.Ship.VehicleRuntime",
+      "field": "_rightStick",
+      "action_name": "ZiptideRideSteer",
+      "binding": "<XRController>{RightHand}/thumbstick",
+      "action_line": 70,
+      "binding_line": 71
+    },
+    {
+      "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
+      "symbol": "Ziptide.Ship.VehicleRuntime",
+      "field": "_boostL3",
+      "action_name": "ZiptideRideBoostL3",
+      "binding": "<XRController>{LeftHand}/thumbstickClicked",
+      "action_line": 72,
+      "binding_line": 73
+    },
+    {
+      "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
+      "symbol": "Ziptide.Ship.VehicleRuntime",
+      "field": "_boostA",
+      "action_name": "ZiptideRideBoostA",
+      "binding": "<XRController>{RightHand}/primaryButton",
+      "action_line": 74,
+      "binding_line": 75
+    }
+  ],
+  "chordReferences": [
+    {
+      "path": "Ziptide/Assets/Ziptide/Content/Runtime/Traversal/ZiplineCore.cs",
+      "symbol": "Ziptide.Content.Traversal.TVec3",
+      "line": 12,
+      "text": "public static TVec3 operator +(TVec3 a, TVec3 b) => new TVec3(a.X + b.X, a.Y + b.Y, a.Z + b.Z);"
+    },
+    {
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs",
+      "symbol": "Ziptide.Gameplay.QuickSwap",
+      "line": 48,
+      "text": "if (_menuGuard != null && _menuGuard.IsPressed()) return; // Y+B = dev menu chord"
+    },
+    {
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs",
+      "symbol": "Ziptide.Gameplay.QuickSwap",
+      "line": 48,
+      "text": "if (_menuGuard != null && _menuGuard.IsPressed()) return; // Y+B = dev menu chord"
+    },
+    {
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs",
+      "symbol": "Ziptide.Gameplay.DashLocomotion",
+      "line": 94,
+      "text": "Debug.Log(\"ZIPTIDE: CONTROLS move=left-stick turn=right-stick sprint=hold-L3 autorun=double-L3 crouch=R3 slide=crouch-while-sprinting jump=A menu=hold-Y+B\");"
+    },
+    {
+      "path": "Ziptide/Assets/Ziptide/Multiplayer/Runtime/Bots/BotMath.cs",
+      "symbol": "Ziptide.Multiplayer.Bots.Vec3",
+      "line": 17,
+      "text": "public static Vec3 operator +(Vec3 a, Vec3 b) => new Vec3(a.X + b.X, a.Y + b.Y, a.Z + b.Z);"
+    }
+  ],
+  "controlCollisions": {
+    "<XRController>{LeftHand}/thumbstick": [
+      {
+        "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
+        "symbol": "Ziptide.Ship.ShipFlightRuntime",
+        "field": "_leftStick",
+        "action_name": "ZiptideFlightThrottle",
+        "binding": "<XRController>{LeftHand}/thumbstick",
+        "action_line": 139,
+        "binding_line": 140
+      },
+      {
+        "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
+        "symbol": "Ziptide.Ship.VehicleRuntime",
+        "field": "_leftStick",
+        "action_name": "ZiptideRideThrottle",
+        "binding": "<XRController>{LeftHand}/thumbstick",
+        "action_line": 68,
+        "binding_line": 69
+      }
+    ],
+    "<XRController>{LeftHand}/thumbstickClicked": [
+      {
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs",
+        "symbol": "Ziptide.Gameplay.DashLocomotion",
+        "field": "_sprintAction",
+        "action_name": "ZiptideSprint",
+        "binding": "<XRController>{LeftHand}/thumbstickClicked",
+        "action_line": 103,
+        "binding_line": 104
+      },
+      {
+        "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
+        "symbol": "Ziptide.Ship.ShipFlightRuntime",
+        "field": "_boostStickClick",
+        "action_name": "ZiptideFlightBoostL3",
+        "binding": "<XRController>{LeftHand}/thumbstickClicked",
+        "action_line": 143,
+        "binding_line": 144
+      },
+      {
+        "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
+        "symbol": "Ziptide.Ship.VehicleRuntime",
+        "field": "_boostL3",
+        "action_name": "ZiptideRideBoostL3",
+        "binding": "<XRController>{LeftHand}/thumbstickClicked",
+        "action_line": 72,
+        "binding_line": 73
+      }
+    ],
+    "<XRController>{RightHand}/primaryButton": [
+      {
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs",
+        "symbol": "Ziptide.Gameplay.DashLocomotion",
+        "field": "_jumpAction",
+        "action_name": "ZiptideJump",
+        "binding": "<XRController>{RightHand}/primaryButton",
+        "action_line": 98,
+        "binding_line": 99
+      },
+      {
+        "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
+        "symbol": "Ziptide.Ship.ShipFlightRuntime",
+        "field": "_boostButton",
+        "action_name": "ZiptideFlightBoostA",
+        "binding": "<XRController>{RightHand}/primaryButton",
+        "action_line": 145,
+        "binding_line": 146
+      },
+      {
+        "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
+        "symbol": "Ziptide.Ship.VehicleRuntime",
+        "field": "_boostA",
+        "action_name": "ZiptideRideBoostA",
+        "binding": "<XRController>{RightHand}/primaryButton",
+        "action_line": 74,
+        "binding_line": 75
+      }
+    ],
+    "<XRController>{RightHand}/secondaryButton": [
+      {
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs",
+        "symbol": "Ziptide.Gameplay.QuickSwap",
+        "field": "_swap",
+        "action_name": "ZiptideQuickSwap",
+        "binding": "<XRController>{RightHand}/secondaryButton",
+        "action_line": 27,
+        "binding_line": 28
+      },
+      {
+        "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
+        "symbol": "Ziptide.Ship.ShipFlightRuntime",
+        "field": "_rollRightButton",
+        "action_name": "ZiptideFlightRollR",
+        "binding": "<XRController>{RightHand}/secondaryButton",
+        "action_line": 149,
+        "binding_line": 150
+      }
+    ],
+    "<XRController>{RightHand}/thumbstick": [
+      {
+        "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
+        "symbol": "Ziptide.Ship.ShipFlightRuntime",
+        "field": "_rightStick",
+        "action_name": "ZiptideFlightSteer",
+        "binding": "<XRController>{RightHand}/thumbstick",
+        "action_line": 141,
+        "binding_line": 142
+      },
+      {
+        "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
+        "symbol": "Ziptide.Ship.VehicleRuntime",
+        "field": "_rightStick",
+        "action_name": "ZiptideRideSteer",
+        "binding": "<XRController>{RightHand}/thumbstick",
+        "action_line": 70,
+        "binding_line": 71
+      }
+    ]
+  }
+}
