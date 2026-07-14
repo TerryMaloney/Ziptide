@@ -102,15 +102,23 @@ def scan_text(path: str, text: str) -> tuple[list[Binding], list[ChordReference]
             )
         )
 
-    chords = [
-        ChordReference(
-            path=path,
-            symbol=symbol,
-            line=_line(text, match.start()),
-            text=_snippet(text, match.start()),
+    # One source line can contain both the literal chord and explanatory prose
+    # (for example "Y+B = dev menu chord"). That is one contract reference,
+    # not two independent owners. Deduplicate by path/line while preserving text.
+    chord_by_line: dict[int, ChordReference] = {}
+    for match in CHORD_RE.finditer(text):
+        line = _line(text, match.start())
+        chord_by_line.setdefault(
+            line,
+            ChordReference(
+                path=path,
+                symbol=symbol,
+                line=line,
+                text=_snippet(text, match.start()),
+            ),
         )
-        for match in CHORD_RE.finditer(text)
-    ]
+    chords = list(chord_by_line.values())
+
     bindings.sort(key=lambda item: (item.path, item.binding_line, item.field))
     chords.sort(key=lambda item: (item.path, item.line))
     return bindings, chords
