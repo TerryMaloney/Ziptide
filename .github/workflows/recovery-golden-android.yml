@@ -9,8 +9,15 @@ on:
       - '.github/workflows/recovery-playmode.yml'
       - 'Ziptide/Assets/Ziptide/Core/Runtime/Recovery/**'
       - 'Ziptide/Assets/Ziptide/Editor/Build/**'
-      - 'Ziptide/Assets/Ziptide/Editor/Art/ForgeBaker.cs'
+      - 'Ziptide/Assets/Ziptide/Editor/Patching/ForgeBaker.cs'
       - 'Ziptide/Assets/Ziptide/Editor/Art/ForgeDependencyAuditor.cs'
+      - 'Ziptide/Assets/Ziptide/Resources/ZiptideTransparentAlphaUnlit.shader'
+      - 'Ziptide/Assets/Ziptide/Resources/ZiptideTransparentAlphaUnlit.shader.meta'
+      - 'Ziptide/Assets/Ziptide/Resources/ZiptideAdditiveUnlit.shader'
+      - 'Ziptide/Assets/Ziptide/Resources/ZiptideAdditiveUnlit.shader.meta'
+      - 'Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/PracticalLight.cs'
+      - 'Ziptide/Assets/Ziptide/Visuals/Runtime/Grounding/GroundShadow.cs'
+      - 'Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs'
       - 'Ziptide/Assets/Ziptide/Scenes/_Boot.unity'
       - 'Ziptide/Assets/Ziptide/Scenes/Generated/W000_DriftIn.unity'
       - 'Ziptide/Assets/Ziptide/Scenes/ToxicCity.unity'
@@ -270,7 +277,7 @@ jobs:
             exit 0
           fi
           git config user.name "github-actions[bot]"
-          git config user.email "4189822+github-actions[bot]@users.noreply.github.com"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add "$path"
           git commit -m "ci(recovery): record Golden Android observation for ${GITHUB_SHA:0:7} [skip ci]"
           if ! git push origin HEAD:terry-local-wip; then
