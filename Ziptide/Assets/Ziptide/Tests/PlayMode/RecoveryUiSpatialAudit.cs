@@ -67,6 +67,8 @@ namespace Ziptide.Tests.PlayMode
     /// Test-owned camera-space audit for actual runtime world text. It records hierarchy-grounded
     /// facing, clipping, target ownership and screen overlap evidence. It intentionally does not
     /// judge prose or aesthetics; it catches composition failures visible to a real player camera.
+    /// TMP is detected by walking the concrete component's base types to TMPro.TMP_Text, avoiding a
+    /// compile-time dependency from the test assembly while still covering TextMeshPro subclasses.
     /// </summary>
     public static class RecoveryUiSpatialAudit
     {
@@ -89,43 +91,8 @@ namespace Ziptide.Tests.PlayMode
                 activeScene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name
             };
 
-            TextMesh[] textMeshes = UnityEngine.Object.FindObjectsOfType<TextMesh>();
-            for (int i = 0; i < textMeshes.Length; i++)
-            {
-                TextMesh text = textMeshes[i];
-                if (text == null || !text.gameObject.activeInHierarchy) continue;
-                Renderer textRenderer = text.GetComponent<Renderer>();
-                if (textRenderer == null || !textRenderer.enabled) continue;
-                report.records.Add(BuildRecord(
-                    camera,
-                    text.transform,
-                    textRenderer,
-                    "UnityEngine.TextMesh",
-                    text.text,
-                    true));
-            }
-
-            MonoBehaviour[] behaviours = UnityEngine.Object.FindObjectsOfType<MonoBehaviour>();
-            for (int i = 0; i < behaviours.Length; i++)
-            {
-                MonoBehaviour behaviour = behaviours[i];
-                if (behaviour == null || !behaviour.gameObject.activeInHierarchy || !behaviour.enabled)
-                    continue;
-                Type type = behaviour.GetType();
-                string fullName = type.FullName ?? string.Empty;
-                if (!fullName.StartsWith("TMPro.", StringComparison.Ordinal) ||
-                    fullName.IndexOf("TMP_Text", StringComparison.Ordinal) < 0)
-                    continue;
-
-                string textValue = ReadStringProperty(behaviour, "text");
-                report.records.Add(BuildRecord(
-                    camera,
-                    behaviour.transform,
-                    behaviour.GetComponent<Renderer>(),
-                    fullName,
-                    textValue,
-                    false));
-            }
+            CaptureTextMeshes(camera, report);
+            CaptureTmpText(camera, report);
 
             report.records.Sort((a, b) => string.CompareOrdinal(a.hierarchyPath, b.hierarchyPath));
             AddPerRecordFindings(report);
@@ -163,6 +130,59 @@ namespace Ziptide.Tests.PlayMode
             return new RecoveryUiSpatialArtifactPaths(jsonPath, markdownPath);
         }
 
+        private static void CaptureTextMeshes(Camera camera, RecoveryUiSpatialReport report)
+        {
+            TextMesh[] textMeshes = UnityEngine.Object.FindObjectsOfType<TextMesh>();
+            for (int i = 0; i < textMeshes.Length; i++)
+            {
+                TextMesh text = textMeshes[i];
+                if (text == null || !text.gameObject.activeInHierarchy) continue;
+                Renderer renderer = text.GetComponent<Renderer>();
+                if (renderer == null || !renderer.enabled) continue;
+                report.records.Add(BuildRecord(
+                    camera,
+                    text.transform,
+                    renderer,
+                    "UnityEngine.TextMesh",
+                    text.text,
+                    readsFromNegativeZ: true));
+            }
+        }
+
+        private static void CaptureTmpText(Camera camera, RecoveryUiSpatialReport report)
+        {
+            MonoBehaviour[] behaviours = UnityEngine.Object.FindObjectsOfType<MonoBehaviour>();
+            for (int i = 0; i < behaviours.Length; i++)
+            {
+                MonoBehaviour behaviour = behaviours[i];
+                if (behaviour == null ||
+                    !behaviour.gameObject.activeInHierarchy ||
+                    !behaviour.enabled ||
+                    !IsTmpTextType(behaviour.GetType()))
+                    continue;
+
+                report.records.Add(BuildRecord(
+                    camera,
+                    behaviour.transform,
+                    behaviour.GetComponent<Renderer>(),
+                    behaviour.GetType().FullName ?? "TMPro.TMP_Text",
+                    ReadStringProperty(behaviour, "text"),
+                    readsFromNegativeZ: false));
+            }
+        }
+
+        internal static bool IsTmpTextType(Type type)
+        {
+            Type current = type;
+            while (current != null)
+            {
+                if (string.Equals(current.FullName, "TMPro.TMP_Text", StringComparison.Ordinal))
+                    return true;
+                current = current.BaseType;
+            }
+            return false;
+        }
+
         private static RecoveryUiSpatialRecord BuildRecord(
             Camera camera,
             Transform transform,
@@ -192,7 +212,7 @@ namespace Ziptide.Tests.PlayMode
                 facingDot = facingDot
             };
 
-            if (renderer == null) return record;
+            if (renderer == null || !renderer.enabled) return record;
             Bounds bounds = renderer.bounds;
             record.worldWidth = bounds.size.x;
             record.worldHeight = bounds.size.y;
@@ -252,7 +272,7 @@ namespace Ziptide.Tests.PlayMode
                 if (string.IsNullOrEmpty(record.rendererPath))
                 {
                     AddFinding(report, "WARNING", "TEXT_RENDERER_MISSING", record.hierarchyPath, "",
-                        "Runtime text has no Renderer and cannot be evaluated visually.");
+                        "Runtime text has no enabled Renderer and cannot be evaluated visually.");
                     continue;
                 }
                 if (!record.visibleInFrustum || !record.hasViewportBounds) continue;
@@ -304,8 +324,10 @@ namespace Ziptide.Tests.PlayMode
 
         private static bool EligibleForOverlap(RecoveryUiSpatialRecord record)
         {
-            return record.visibleInFrustum && record.hasViewportBounds &&
-                   record.viewportVisibleFraction > 0f && record.facingDot >= FacingBlockerThreshold;
+            return record.visibleInFrustum &&
+                   record.hasViewportBounds &&
+                   record.viewportVisibleFraction > 0f &&
+                   record.facingDot >= FacingBlockerThreshold;
         }
 
         private static float IntersectionArea(
@@ -429,7 +451,10 @@ namespace Ziptide.Tests.PlayMode
 
         private static string Escape(string value)
         {
-            return (value ?? string.Empty).Replace("|", "\\|").Replace("\r", " ").Replace("\n", " ");
+            return (value ?? string.Empty)
+                .Replace("|", "\\|")
+                .Replace("\r", " ")
+                .Replace("\n", " ");
         }
 
         private static string SanitizeStem(string stem)
