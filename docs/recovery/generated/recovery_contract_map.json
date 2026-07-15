@@ -2,7 +2,7 @@
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
   "scannedFiles": 613,
-  "findingCount": 2062,
+  "findingCount": 2064,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -2278,23 +2278,23 @@
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ForgeBaker.cs",
-            "line": 116,
+            "line": 164,
             "symbol": "Ziptide.Editor.Patching.ForgeBaker",
             "snippet": "var go = new GameObject(\"ForgeBaked_\" + recipe.recipeId);"
           },
           {
-            "code": "RUNTIME_MATERIAL_CREATE",
-            "path": "Ziptide/Assets/Ziptide/Editor/Patching/ForgeBaker.cs",
-            "line": 152,
-            "symbol": "Ziptide.Editor.Patching.ForgeBaker",
-            "snippet": "mat = new Material(Shader.Find(\"Universal Render Pipeline/Lit\"));"
-          },
-          {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ForgeBaker.cs",
-            "line": 152,
+            "line": 211,
             "symbol": "Ziptide.Editor.Patching.ForgeBaker",
-            "snippet": "mat = new Material(Shader.Find(\"Universal Render Pipeline/Lit\"));"
+            "snippet": "Shader shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
+          },
+          {
+            "code": "RUNTIME_MATERIAL_CREATE",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/ForgeBaker.cs",
+            "line": 215,
+            "symbol": "Ziptide.Editor.Patching.ForgeBaker",
+            "snippet": "material = new Material(shader);"
           }
         ]
       },
@@ -16262,6 +16262,25 @@
             "line": 58,
             "symbol": "Ziptide.Editor.Patching.FirstHourContractImportResult",
             "snippet": "/// Runtime code never parses JSON and no fallback beat list exists."
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Editor.Patching.ForgeBaker",
+        "evidenceCount": 1,
+        "codes": [
+          "FALLBACK_MARKER"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Editor/Patching/ForgeBaker.cs"
+        ],
+        "evidence": [
+          {
+            "code": "FALLBACK_MARKER",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/ForgeBaker.cs",
+            "line": 14,
+            "symbol": "Ziptide.Editor.Patching.ForgeBaker",
+            "snippet": "/// build so stale/primitive fallback content cannot hide behind a successful APK result."
           }
         ]
       },

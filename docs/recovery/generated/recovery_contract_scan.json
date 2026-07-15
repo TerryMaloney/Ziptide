@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-15T14:43:14.441974+00:00",
+  "generatedAtUtc": "2026-07-15T14:44:12.939048+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -9,12 +9,12 @@
     "Ziptide/Assets/ZiptideNet"
   ],
   "scannedFiles": 613,
-  "findingCount": 2062,
+  "findingCount": 2064,
   "categoryCounts": {
     "bootstrap": 27,
-    "diagnostics": 428,
+    "diagnostics": 429,
     "events": 64,
-    "fallback_debt": 118,
+    "fallback_debt": 119,
     "global_render": 76,
     "input": 115,
     "materials": 222,
@@ -37,7 +37,7 @@
     "EDITOR_BOOTSTRAP": 6,
     "EVENT_DECLARATION": 48,
     "EVENT_SYSTEM_COMPONENT": 2,
-    "FALLBACK_MARKER": 118,
+    "FALLBACK_MARKER": 119,
     "FRAME_BUTTON_POLL": 1,
     "INPUT_ACTION_REFERENCE": 108,
     "INPUT_BUTTON_REFERENCE": 6,
@@ -57,7 +57,7 @@
     "XRI_MANAGER_LOOKUP": 38,
     "XR_INTERACTABLE_COMPONENT": 61,
     "XR_UI_INPUT_MODULE": 2,
-    "ZIPTIDE_LOG_TAG": 428
+    "ZIPTIDE_LOG_TAG": 429
   },
   "findings": [
     {
@@ -662,6 +662,15 @@
       "line": 66,
       "symbol": "Ziptide.Editor.FirstHourSurfaceAuthor",
       "snippet": "Debug.Log(\"ZIPTIDE: FIRST_HOUR_SURFACES_AUTHORED scene=\" + scene.name +"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/ForgeBaker.cs",
+      "line": 95,
+      "symbol": "Ziptide.Editor.Patching.ForgeBaker",
+      "snippet": "Debug.Log(\"ZIPTIDE: FORGE_BAKE_VERIFIED expected=\" + expected +"
     },
     {
       "category": "diagnostics",
@@ -4987,6 +4996,15 @@
       "category": "fallback_debt",
       "code": "FALLBACK_MARKER",
       "description": "Source text marks fallback/prototype debt",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/ForgeBaker.cs",
+      "line": 14,
+      "symbol": "Ziptide.Editor.Patching.ForgeBaker",
+      "snippet": "/// build so stale/primitive fallback content cannot hide behind a successful APK result."
+    },
+    {
+      "category": "fallback_debt",
+      "code": "FALLBACK_MARKER",
+      "description": "Source text marks fallback/prototype debt",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ForgeDependencyAuditor.cs",
       "line": 25,
       "symbol": "Ziptide.Editor.Patching.IForgeDependencySource",
@@ -7544,9 +7562,9 @@
       "code": "RUNTIME_MATERIAL_CREATE",
       "description": "Runtime Material allocation",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ForgeBaker.cs",
-      "line": 152,
+      "line": 215,
       "symbol": "Ziptide.Editor.Patching.ForgeBaker",
-      "snippet": "mat = new Material(Shader.Find(\"Universal Render Pipeline/Lit\"));"
+      "snippet": "material = new Material(shader);"
     },
     {
       "category": "materials",
@@ -8336,9 +8354,9 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ForgeBaker.cs",
-      "line": 152,
+      "line": 211,
       "symbol": "Ziptide.Editor.Patching.ForgeBaker",
-      "snippet": "mat = new Material(Shader.Find(\"Universal Render Pipeline/Lit\"));"
+      "snippet": "Shader shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
     },
     {
       "category": "materials",
@@ -11900,7 +11918,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ForgeBaker.cs",
-      "line": 116,
+      "line": 164,
       "symbol": "Ziptide.Editor.Patching.ForgeBaker",
       "snippet": "var go = new GameObject(\"ForgeBaked_\" + recipe.recipeId);"
     },

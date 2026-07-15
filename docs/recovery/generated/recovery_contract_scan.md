@@ -1,7 +1,7 @@
 # ZIPTIDE Recovery Contract Scan
 
 - Scanned files: **613**
-- Findings: **2062**
+- Findings: **2064**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
@@ -9,9 +9,9 @@
 | Category | Count |
 |---|---:|
 | `bootstrap` | 27 |
-| `diagnostics` | 428 |
+| `diagnostics` | 429 |
 | `events` | 64 |
-| `fallback_debt` | 118 |
+| `fallback_debt` | 119 |
 | `global_render` | 76 |
 | `input` | 115 |
 | `materials` | 222 |
@@ -95,6 +95,7 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Patching/FirstHourContractAuthor.cs:140` · `Ziptide.Editor.Patching.FirstHourContractImportResult` — ZIPTIDE diagnostic tag. `"ZIPTIDE: FIRST_HOUR_CONTRACT beats=" + asset.beats.Count +`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs:28` · `Ziptide.Editor.FirstHourSurfaceAuthor` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FIRST_HOUR_SURFACES_SAVED scene=" + scene.name);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs:66` · `Ziptide.Editor.FirstHourSurfaceAuthor` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FIRST_HOUR_SURFACES_AUTHORED scene=" + scene.name +`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Patching/ForgeBaker.cs:95` · `Ziptide.Editor.Patching.ForgeBaker` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FORGE_BAKE_VERIFIED expected=" + expected +`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Patching/ForgePhotoBooth.cs:49` · `Ziptide.Editor.Patching.ForgePhotoBooth` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FORGE_PHOTO_OK shots=" + shots);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Patching/ForgePhotoBooth.cs:457` · `Ziptide.Editor.Patching.ForgePhotoBooth` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FORGE_PHOTO id=" + id + " shot=" + shot.name);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Patching/ReactivePropAuthor.cs:70` · `Ziptide.Editor.Patching.ReactivePropAuthor` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: REACTIVE_PROPS_AUTHORED count=" + placed);`
@@ -579,6 +580,7 @@
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Editor/Patching/BuildingBuilder.cs:11` · `Ziptide.Editor.Patching.BuildingBuilder` — Source text marks fallback/prototype debt. `/// ArtModuleRegistry ("buildingModule:&lt;styleId&gt;/&lt;Module&gt;") with primitive fallback, so Picasso's`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Editor/Patching/BuildingBuilder.cs:182` · `Ziptide.Editor.Patching.BuildingBuilder` — Source text marks fallback/prototype debt. `Debug.LogWarning("[Ziptide] KIT_UNFULFILLED id=" + regId + " (primitive fallback walls)");`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Editor/Patching/FirstHourContractAuthor.cs:58` · `Ziptide.Editor.Patching.FirstHourContractImportResult` — Source text marks fallback/prototype debt. `/// Runtime code never parses JSON and no fallback beat list exists.`
+- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Editor/Patching/ForgeBaker.cs:14` · `Ziptide.Editor.Patching.ForgeBaker` — Source text marks fallback/prototype debt. `/// build so stale/primitive fallback content cannot hide behind a successful APK result.`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Editor/Patching/ForgeDependencyAuditor.cs:25` · `Ziptide.Editor.Patching.IForgeDependencySource` — Source text marks fallback/prototype debt. `/// FORGE_MANIFEST.json answers "what exists / what's playable / what's placeholder / what`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Editor/Patching/ForgeRecipeLibrary.cs:82` · `Ziptide.Editor.Patching.ForgeRecipeLibrary` — Source text marks fallback/prototype debt. `/// the tenement's plumbing (Capsule standpipe, Frustum vent hood).`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Editor/Patching/ForgeRecipeLibrary.cs:191` · `Ziptide.Editor.Patching.ForgeRecipeLibrary` — Source text marks fallback/prototype debt. `// Tenement plumbing — P2 ops earning their keep in architecture:`
@@ -869,7 +871,7 @@
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeMaterialFixer.cs:51` · `Ziptide.Core.RuntimeMaterialFixer` — Runtime Material allocation. `Material fallback = new Material(urpLit);`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Editor/Art/BuildingKitLibrary.cs:134` · `Ziptide.Editor.Art.BuildingKitLibrary` — Runtime Material allocation. `var mat = new Material(interior);`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:71` · `Ziptide.Editor.Patching.CityBuilder` — Runtime Material allocation. `m = new Material(shader) { name = "CityMat_" + ColorUtility.ToHtmlStringRGB(c) };`
-- **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Editor/Patching/ForgeBaker.cs:152` · `Ziptide.Editor.Patching.ForgeBaker` — Runtime Material allocation. `mat = new Material(Shader.Find("Universal Render Pipeline/Lit"));`
+- **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Editor/Patching/ForgeBaker.cs:215` · `Ziptide.Editor.Patching.ForgeBaker` — Runtime Material allocation. `material = new Material(shader);`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Editor/Patching/ForgePhotoBooth.cs:117` · `Ziptide.Editor.Patching.ForgePhotoBooth` — Runtime Material allocation. `var gm = new Material(Shader.Find("Universal Render Pipeline/Lit")) { name = "BoothGround" };`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Editor/Patching/ForgePhotoBooth.cs:142` · `Ziptide.Editor.Patching.ForgePhotoBooth` — Runtime Material allocation. `var m = new Material(Shader.Find("Universal Render Pipeline/Lit")) { name = "BoothDecal_" + name };`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Editor/Patching/ForgePhotoBooth.cs:181` · `Ziptide.Editor.Patching.ForgePhotoBooth` — Runtime Material allocation. `var m = new Material(Shader.Find("Universal Render Pipeline/Lit")) { name = "BoothWater" };`
@@ -957,7 +959,7 @@
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Editor/Art/BuildingKitLibrary.cs:131` · `Ziptide.Editor.Art.BuildingKitLibrary` — Runtime shader lookup. `var interior = Shader.Find("Ziptide/InteriorMapping");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:69` · `Ziptide.Editor.Patching.CityBuilder` — Runtime shader lookup. `var shader = Shader.Find("Universal Render Pipeline/Lit");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:70` · `Ziptide.Editor.Patching.CityBuilder` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Standard");`
-- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Editor/Patching/ForgeBaker.cs:152` · `Ziptide.Editor.Patching.ForgeBaker` — Runtime shader lookup. `mat = new Material(Shader.Find("Universal Render Pipeline/Lit"));`
+- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Editor/Patching/ForgeBaker.cs:211` · `Ziptide.Editor.Patching.ForgeBaker` — Runtime shader lookup. `Shader shader = Shader.Find("Universal Render Pipeline/Lit");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Editor/Patching/ForgePhotoBooth.cs:117` · `Ziptide.Editor.Patching.ForgePhotoBooth` — Runtime shader lookup. `var gm = new Material(Shader.Find("Universal Render Pipeline/Lit")) { name = "BoothGround" };`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Editor/Patching/ForgePhotoBooth.cs:142` · `Ziptide.Editor.Patching.ForgePhotoBooth` — Runtime shader lookup. `var m = new Material(Shader.Find("Universal Render Pipeline/Lit")) { name = "BoothDecal_" + name };`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Editor/Patching/ForgePhotoBooth.cs:181` · `Ziptide.Editor.Patching.ForgePhotoBooth` — Runtime shader lookup. `var m = new Material(Shader.Find("Universal Render Pipeline/Lit")) { name = "BoothWater" };`
@@ -1357,7 +1359,7 @@
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:483` · `Ziptide.Editor.Patching.CityBuilder` — Runtime GameObject construction. `var go = new GameObject("Hazard_" + h.id);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:536` · `Ziptide.Editor.Patching.CityBuilder` — Runtime GameObject construction. `var go = new GameObject(name);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs:79` · `Ziptide.Editor.FirstHourSurfaceAuthor` — Runtime GameObject construction. `var marker = new GameObject(markerName);`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ForgeBaker.cs:116` · `Ziptide.Editor.Patching.ForgeBaker` — Runtime GameObject construction. `var go = new GameObject("ForgeBaked_" + recipe.recipeId);`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ForgeBaker.cs:164` · `Ziptide.Editor.Patching.ForgeBaker` — Runtime GameObject construction. `var go = new GameObject("ForgeBaked_" + recipe.recipeId);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ForgePhotoBooth.cs:87` · `Ziptide.Editor.Patching.ForgePhotoBooth` — Runtime GameObject construction. `var root = new GameObject("Forge_" + spec.Key);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ForgePhotoBooth.cs:110` · `Ziptide.Editor.Patching.ForgePhotoBooth` — Runtime GameObject construction. `var root = new GameObject("GroundDecals");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ForgePhotoBooth.cs:168` · `Ziptide.Editor.Patching.ForgePhotoBooth` — Runtime GameObject construction. `var root = new GameObject("ZiptideWater");`
