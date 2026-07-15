@@ -1,10 +1,10 @@
 # Recovery PlayMode Observation
 
-- Tested SHA: `bb6cb71f70259ecf8e4ba57f39c371b9048ccd36`
-- Workflow run: `29418815856`
+- Tested SHA: `e30b20a0b57875cac23f378d1412c436a5457e2b`
+- Workflow run: `29423421781`
 - Attempt: `1`
-- Test step outcome: **success**
-- NUnit totals: total=21 passed=21 failed=0 skipped=0 inconclusive=0
+- Test step outcome: **failure**
+- NUnit totals: total=0 passed=0 failed=0 skipped=0 inconclusive=0
 - Scope: R1 recovery PlayMode suite
 - Unity: 2022.3.62f3
 - Promotion state: R1.1 promoted; later harness layers remain observational until separately proven
