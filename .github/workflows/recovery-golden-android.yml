@@ -22,6 +22,9 @@ on:
       - 'Ziptide/Assets/Ziptide/Scenes/Generated/W000_DriftIn.unity'
       - 'Ziptide/Assets/Ziptide/Scenes/ToxicCity.unity'
       - 'Ziptide/Assets/Ziptide/Tests/PlayMode/Recovery*.cs'
+      - 'Ziptide/Assets/Ziptide/Tests/EditMode/FieldCameraCompletionTests.cs'
+      - 'Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs'
+      - 'Ziptide/Assets/Ziptide/Tests/EditMode/ShellSignVocabularyTests.cs'
       - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs'
       - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/ComfortVignette.cs'
       - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs'
@@ -243,7 +246,7 @@ jobs:
 
           tested_sha = os.environ["TESTED_SHA"]
           run_id = os.environ["WORKFLOW_RUN_ID"]
-          attempt = os.environ["WORKFLOW_RUN_ATTEMPT"]
+          attempt = os.environ["GITHUB_RUN_ATTEMPT"]
           result = os.environ["BUILD_RESULT"]
           unity = os.environ["UNITY_VERSION"]
 
