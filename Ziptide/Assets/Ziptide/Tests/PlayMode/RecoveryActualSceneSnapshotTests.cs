@@ -112,7 +112,8 @@ namespace Ziptide.Tests.PlayMode
             Assert.IsNotNull(profile);
 
             TravelCoordinator.TravelTo(ZiptideConstants.SceneW000);
-            yield return WaitForDestination(1, ZiptideConstants.SceneW000);
+            IEnumerator w000Wait = WaitForDestination(1, ZiptideConstants.SceneW000);
+            while (w000Wait.MoveNext()) yield return w000Wait.Current;
             yield return new WaitForEndOfFrame();
             AssertFrameRendered(RecoveryRenderSnapshot.Capture(
                 camera,
@@ -124,7 +125,8 @@ namespace Ziptide.Tests.PlayMode
                 "r1_8_actual_w000_spawn");
 
             TravelCoordinator.TravelTo(ZiptideConstants.SceneToxicCity);
-            yield return WaitForDestination(2, ZiptideConstants.SceneToxicCity);
+            IEnumerator toxicCityWait = WaitForDestination(2, ZiptideConstants.SceneToxicCity);
+            while (toxicCityWait.MoveNext()) yield return toxicCityWait.Current;
             yield return new WaitForEndOfFrame();
             AssertFrameRendered(RecoveryRenderSnapshot.Capture(
                 camera,
