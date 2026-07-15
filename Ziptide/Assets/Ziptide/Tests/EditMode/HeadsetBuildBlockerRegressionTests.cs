@@ -110,7 +110,7 @@ namespace Ziptide.Tests.EditMode
             }
             finally
             {
-                Object.DestroyImmediate(pad);
+                UnityEngine.Object.DestroyImmediate(pad);
             }
         }
 
