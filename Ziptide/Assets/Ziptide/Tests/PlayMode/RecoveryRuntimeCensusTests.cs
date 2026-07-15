@@ -64,6 +64,21 @@ namespace Ziptide.Tests.PlayMode
                 "R1_4_CONTROLLED_FIXTURE",
                 _fixture.Root.transform);
 
+            int retainedGpuObjects = RecoveryRenderSnapshot.BatchModeRetainedGpuObjectCount;
+            Assert.LessOrEqual(
+                retainedGpuObjects,
+                RecoveryRenderSnapshot.BatchModeRetainedGpuObjectLimit,
+                "Recovery snapshot GPU retention exceeded its explicit batch-mode cap.");
+            snapshot.findings.Add(new RecoveryCensusFinding
+            {
+                code = "TEST_GPU_RETENTION_COUNT",
+                severity = "INFO",
+                owner = "RecoveryRenderSnapshot",
+                hierarchyPath = "TEST_PROCESS",
+                message = "Batch-mode retained GPU objects=" + retainedGpuObjects
+                    + " limit=" + RecoveryRenderSnapshot.BatchModeRetainedGpuObjectLimit
+            });
+
             Assert.AreEqual("GoldenSlice", snapshot.activeProfile);
             Assert.AreEqual(1, Count(snapshot.managers, "XRInteractionManager", true));
             Assert.AreEqual(1, Count(snapshot.managers, "InputActionManager", true));
@@ -82,6 +97,7 @@ namespace Ziptide.Tests.PlayMode
             Assert.IsTrue(File.Exists(artifacts.JsonPath), "Census JSON artifact was not written.");
             Assert.IsTrue(File.Exists(artifacts.MarkdownPath), "Census Markdown artifact was not written.");
             StringAssert.Contains("R1_4_CONTROLLED_FIXTURE", File.ReadAllText(artifacts.JsonPath));
+            StringAssert.Contains("TEST_GPU_RETENTION_COUNT", File.ReadAllText(artifacts.JsonPath));
             StringAssert.Contains("Findings", File.ReadAllText(artifacts.MarkdownPath));
         }
 
