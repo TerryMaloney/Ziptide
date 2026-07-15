@@ -8,8 +8,9 @@ on:
       - '.github/workflows/recovery-golden-android.yml'
       - '.github/workflows/recovery-playmode.yml'
       - 'Ziptide/Assets/Ziptide/Core/Runtime/Recovery/**'
-      - 'Ziptide/Assets/Ziptide/Editor/Build/RecoveryBuildAndroid.cs'
-      - 'Ziptide/Assets/Ziptide/Editor/Build/BuildAndroid.cs'
+      - 'Ziptide/Assets/Ziptide/Editor/Build/**'
+      - 'Ziptide/Assets/Ziptide/Editor/Art/ForgeBaker.cs'
+      - 'Ziptide/Assets/Ziptide/Editor/Art/ForgeDependencyAuditor.cs'
       - 'Ziptide/Assets/Ziptide/Scenes/_Boot.unity'
       - 'Ziptide/Assets/Ziptide/Scenes/Generated/W000_DriftIn.unity'
       - 'Ziptide/Assets/Ziptide/Scenes/ToxicCity.unity'
@@ -205,18 +206,18 @@ jobs:
           while IFS= read -r path; do
             [[ -z "$path" ]] && continue
             case "$path" in
-              docs/recovery/generated/*|docs/CI_VERDICT.md)
+              docs/recovery/generated/*|docs/CI_VERDICT.md|docs/HANDOFF.md)
                 ;;
               *)
                 echo "write=false" >> "$GITHUB_OUTPUT"
-                echo "::notice::Branch advanced through non-generated path '$path'; newer source owns the observation."
+                echo "::notice::Branch advanced through proof-relevant path '$path'; newer source owns the observation."
                 exit 0
                 ;;
             esac
           done <<< "$changed"
 
           echo "write=true" >> "$GITHUB_OUTPUT"
-          echo "::notice::Only generated evidence commits advanced the branch; recording the tested SHA is safe."
+          echo "::notice::Only generated evidence, the verdict, or docs/HANDOFF.md advanced; recording the tested SHA is safe."
 
       - name: Render observation
         if: steps.freshness.outputs.write == 'true'
@@ -235,7 +236,7 @@ jobs:
 
           tested_sha = os.environ["TESTED_SHA"]
           run_id = os.environ["WORKFLOW_RUN_ID"]
-          attempt = os.environ["WORKFLOW_ATTEMPT"]
+          attempt = os.environ["WORKFLOW_RUN_ATTEMPT"]
           result = os.environ["BUILD_RESULT"]
           unity = os.environ["UNITY_VERSION"]
 
@@ -269,7 +270,7 @@ jobs:
             exit 0
           fi
           git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.email "4189822+github-actions[bot]@users.noreply.github.com"
           git add "$path"
           git commit -m "ci(recovery): record Golden Android observation for ${GITHUB_SHA:0:7} [skip ci]"
           if ! git push origin HEAD:terry-local-wip; then
