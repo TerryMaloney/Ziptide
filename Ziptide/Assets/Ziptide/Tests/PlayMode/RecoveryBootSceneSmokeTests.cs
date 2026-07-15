@@ -104,6 +104,7 @@ namespace Ziptide.Tests.PlayMode
                 "R1_5_ACTUAL_BOOT_HOME_SETTLED");
             RecoveryRuntimeCensus.WriteArtifacts(settled, "r1_5_actual_boot_home_settled");
             AssertNoBlockers(settled);
+            AssertNoForbiddenRuntimeArtifacts("r1_5_actual_boot_home_settled");
             Assert.AreEqual(1, ActiveManagerCount(settled, "XRInteractionManager"));
             Assert.AreEqual(1, ActiveManagerCount(settled, "InputActionManager"));
             Assert.AreEqual(1, ActiveCameraRoleCount(settled, "CANONICAL_PLAYER_VIEW"));
@@ -200,6 +201,7 @@ namespace Ziptide.Tests.PlayMode
                 "R1_5_ACTUAL_BOOT_AFTER_SETTINGS");
             RecoveryRuntimeCensus.WriteArtifacts(afterSettings, "r1_5_actual_boot_after_settings");
             AssertNoBlockers(afterSettings);
+            AssertNoForbiddenRuntimeArtifacts("r1_5_actual_boot_after_settings");
         }
 
         private void OnBootReady(bool canContinue) => _bootReady = true;
@@ -288,6 +290,22 @@ namespace Ziptide.Tests.PlayMode
             }
             Assert.AreEqual(0, count,
                 "Actual Golden _Boot census produced blocker findings:\n" + text);
+        }
+
+        private static void AssertNoForbiddenRuntimeArtifacts(string stem)
+        {
+            RecoveryRuntimeArtifactReport report = RecoveryRuntimeArtifactGuard.Capture(stem);
+            string path = RecoveryRuntimeArtifactGuard.WriteArtifact(report, stem);
+            var text = new StringBuilder();
+            for (int i = 0; i < report.findings.Count; i++)
+            {
+                RecoveryRuntimeArtifactFinding finding = report.findings[i];
+                text.AppendLine(finding.code + " feature=" + finding.featureId +
+                    " path=" + finding.hierarchyPath + " message=" + finding.message);
+            }
+            Assert.AreEqual(0, report.findings.Count,
+                "Forbidden runtime artifacts were active after Golden boot. Artifact=" + path +
+                "\n" + text);
         }
     }
 }
