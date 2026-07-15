@@ -19,7 +19,7 @@ namespace Ziptide.Core
                 case RecoveryPlayerSurfaceId.CreditsHud:
                     // The legacy always-on balance readout is useful only in the compatibility
                     // profile. GoldenSlice and Diagnostic inherit the clean player-view contract.
-                    return ReferenceEquals(
+                    return object.ReferenceEquals(
                         RecoveryRuntimeGate.ActiveProfile,
                         RecoveryExposureProfiles.FullDevelopment);
                 default:
