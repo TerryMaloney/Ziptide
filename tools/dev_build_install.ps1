@@ -1,6 +1,8 @@
 param(
     [string]$UnityExe = "C:\Program Files\Unity\Hub\Editor\2022.3.62f3\Editor\Unity.exe",
     [string]$ProjectRoot = "",
+    [ValidateSet("GoldenSlice", "FullDevelopment")]
+    [string]$BuildProfile = "GoldenSlice",
     [switch]$Logcat,
     [switch]$BuildOnly
 )
@@ -14,8 +16,16 @@ if ($ProjectRoot -eq "") {
     }
 }
 
+$buildMethod = if ($BuildProfile -eq "GoldenSlice") {
+    "Ziptide.Build.RecoveryBuildAndroid.PatchScenesThenGoldenAPK"
+} else {
+    "Ziptide.Build.BuildAndroid.PatchScenesThenAPK"
+}
+
 Write-Host "ProjectRoot: $ProjectRoot"
 Write-Host "UnityExe: $UnityExe"
+Write-Host "BuildProfile: $BuildProfile"
+Write-Host "BuildMethod: $buildMethod"
 
 # --- Preflight: ensure no Unity instance holds the project so batch mode can open it ---
 $libraryEditorInstance = Join-Path $ProjectRoot "Library\EditorInstance.json"
@@ -56,7 +66,7 @@ $null = New-Item -ItemType Directory -Force -Path $buildLogDir
 $logFile = Join-Path $buildLogDir "android_build.log"
 
 Write-Host "Starting Unity batch build (this takes 1-5 minutes)..."
-$unityArgs = "-batchmode -nographics -quit -projectPath `"$ProjectRoot`" -executeMethod Ziptide.Build.BuildAndroid.PatchScenesThenAPK -logFile `"$logFile`""
+$unityArgs = "-batchmode -nographics -quit -projectPath `"$ProjectRoot`" -executeMethod $buildMethod -logFile `"$logFile`""
 $proc = Start-Process -FilePath $UnityExe -ArgumentList $unityArgs -Wait -PassThru -NoNewWindow
 $unityExit = $proc.ExitCode
 Write-Host "Unity exited with code: $unityExit"
@@ -72,7 +82,7 @@ if (-not (Test-Path $apk)) {
 }
 
 if ($BuildOnly) {
-    Write-Host "BuildOnly: APK built successfully. Skipping install and logcat. Output: $apk"
+    Write-Host "BuildOnly: $BuildProfile APK built successfully. Skipping install and logcat. Output: $apk"
     exit 0
 }
 
