@@ -1,8 +1,8 @@
 {
   "tool": "recovery_input_contract_scan",
   "scannedFiles": 611,
-  "bindingCount": 19,
-  "chordReferenceCount": 2,
+  "bindingCount": 18,
+  "chordReferenceCount": 1,
   "collisionControlCount": 5,
   "bindings": [
     {
@@ -11,17 +11,8 @@
       "field": "_swap",
       "action_name": "ZiptideQuickSwap",
       "binding": "<XRController>{RightHand}/secondaryButton",
-      "action_line": 27,
-      "binding_line": 28
-    },
-    {
-      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs",
-      "symbol": "Ziptide.Gameplay.QuickSwap",
-      "field": "_menuGuard",
-      "action_name": "ZiptideQuickSwapMenuGuard",
-      "binding": "<XRController>{LeftHand}/secondaryButton",
-      "action_line": 32,
-      "binding_line": 33
+      "action_line": 26,
+      "binding_line": 27
     },
     {
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs",
@@ -179,12 +170,6 @@
   ],
   "chordReferences": [
     {
-      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs",
-      "symbol": "Ziptide.Gameplay.QuickSwap",
-      "line": 48,
-      "text": "if (_menuGuard != null && _menuGuard.IsPressed()) return; // Y+B = dev menu chord"
-    },
-    {
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs",
       "symbol": "Ziptide.Gameplay.DashLocomotion",
       "line": 94,
@@ -277,8 +262,8 @@
         "field": "_swap",
         "action_name": "ZiptideQuickSwap",
         "binding": "<XRController>{RightHand}/secondaryButton",
-        "action_line": 27,
-        "binding_line": 28
+        "action_line": 26,
+        "binding_line": 27
       },
       {
         "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",

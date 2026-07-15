@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-15T10:51:36.799514+00:00",
+  "generatedAtUtc": "2026-07-15T10:52:10.924923+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -9,14 +9,14 @@
     "Ziptide/Assets/ZiptideNet"
   ],
   "scannedFiles": 611,
-  "findingCount": 2048,
+  "findingCount": 2045,
   "categoryCounts": {
     "bootstrap": 26,
     "diagnostics": 421,
     "events": 64,
     "fallback_debt": 120,
     "global_render": 76,
-    "input": 118,
+    "input": 115,
     "materials": 223,
     "persistence": 17,
     "runtime_creation": 561,
@@ -39,8 +39,8 @@
     "EVENT_SYSTEM_COMPONENT": 2,
     "FALLBACK_MARKER": 120,
     "FRAME_BUTTON_POLL": 1,
-    "INPUT_ACTION_REFERENCE": 110,
-    "INPUT_BUTTON_REFERENCE": 7,
+    "INPUT_ACTION_REFERENCE": 108,
+    "INPUT_BUTTON_REFERENCE": 6,
     "NEW_GAME_OBJECT": 333,
     "PLAYER_PROFILE_REFERENCE": 133,
     "RENDER_SETTINGS_MUTATION": 36,
@@ -1226,7 +1226,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs",
-      "line": 62,
+      "line": 53,
       "symbol": "Ziptide.Gameplay.QuickSwap",
       "snippet": "Debug.Log(\"ZIPTIDE: QUICK_SWAP action=swap in=\" + holstered.name + \" out=\" + held.name);"
     },
@@ -1235,7 +1235,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs",
-      "line": 70,
+      "line": 61,
       "symbol": "Ziptide.Gameplay.QuickSwap",
       "snippet": "Debug.Log(\"ZIPTIDE: QUICK_SWAP action=holster item=\" + held.name);"
     },
@@ -1244,7 +1244,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs",
-      "line": 78,
+      "line": 69,
       "symbol": "Ziptide.Gameplay.QuickSwap",
       "snippet": "Debug.Log(\"ZIPTIDE: QUICK_SWAP action=draw item=\" + holstered.name);"
     },
@@ -6797,27 +6797,9 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs",
-      "line": 19,
-      "symbol": "Ziptide.Gameplay.QuickSwap",
-      "snippet": "private InputAction _menuGuard;"
-    },
-    {
-      "category": "input",
-      "code": "INPUT_ACTION_REFERENCE",
-      "description": "Input System action reference",
-      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs",
-      "line": 27,
+      "line": 26,
       "symbol": "Ziptide.Gameplay.QuickSwap",
       "snippet": "_swap = new InputAction(\"ZiptideQuickSwap\", InputActionType.Button);"
-    },
-    {
-      "category": "input",
-      "code": "INPUT_ACTION_REFERENCE",
-      "description": "Input System action reference",
-      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs",
-      "line": 32,
-      "symbol": "Ziptide.Gameplay.QuickSwap",
-      "snippet": "_menuGuard = new InputAction(\"ZiptideQuickSwapMenuGuard\", InputActionType.Button);"
     },
     {
       "category": "input",
@@ -7427,18 +7409,9 @@
       "code": "INPUT_BUTTON_REFERENCE",
       "description": "Controller/button reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs",
-      "line": 28,
+      "line": 27,
       "symbol": "Ziptide.Gameplay.QuickSwap",
       "snippet": "_swap.AddBinding(\"<XRController>{RightHand}/secondaryButton\"); // B"
-    },
-    {
-      "category": "input",
-      "code": "INPUT_BUTTON_REFERENCE",
-      "description": "Controller/button reference",
-      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs",
-      "line": 33,
-      "symbol": "Ziptide.Gameplay.QuickSwap",
-      "snippet": "_menuGuard.AddBinding(\"<XRController>{LeftHand}/secondaryButton\"); // Y"
     },
     {
       "category": "input",
@@ -18245,7 +18218,7 @@
       "code": "XRI_MANAGER_LOOKUP",
       "description": "XRInteractionManager lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs",
-      "line": 84,
+      "line": 75,
       "symbol": "Ziptide.Gameplay.QuickSwap",
       "snippet": "if (_mgr == null) _mgr = FindObjectOfType<XRInteractionManager>();"
     },

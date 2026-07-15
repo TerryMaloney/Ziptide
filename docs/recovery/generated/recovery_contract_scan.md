@@ -1,7 +1,7 @@
 # ZIPTIDE Recovery Contract Scan
 
 - Scanned files: **611**
-- Findings: **2048**
+- Findings: **2045**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
@@ -13,7 +13,7 @@
 | `events` | 64 |
 | `fallback_debt` | 120 |
 | `global_render` | 76 |
-| `input` | 118 |
+| `input` | 115 |
 | `materials` | 223 |
 | `persistence` | 17 |
 | `runtime_creation` | 561 |
@@ -157,9 +157,9 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/InventoryState.cs:160` · `Ziptide.Gameplay.InventoryState` — ZIPTIDE diagnostic tag. `catch (System.Exception ex) { Debug.LogWarning("ZIPTIDE: SelectExit error: " + ex.Message); }`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/InventoryState.cs:183` · `Ziptide.Gameplay.InventoryState` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: HOLSTER_DOCK_FAIL item=" + item.name + " reason=no_socket slot=" + slotId);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/InventoryState.cs:203` · `Ziptide.Gameplay.InventoryState` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: HOLSTER_DOCKED item=" + item.name + " slot=" + slotId);`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs:62` · `Ziptide.Gameplay.QuickSwap` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: QUICK_SWAP action=swap in=" + holstered.name + " out=" + held.name);`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs:70` · `Ziptide.Gameplay.QuickSwap` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: QUICK_SWAP action=holster item=" + held.name);`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs:78` · `Ziptide.Gameplay.QuickSwap` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: QUICK_SWAP action=draw item=" + holstered.name);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs:53` · `Ziptide.Gameplay.QuickSwap` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: QUICK_SWAP action=swap in=" + holstered.name + " out=" + held.name);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs:61` · `Ziptide.Gameplay.QuickSwap` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: QUICK_SWAP action=holster item=" + held.name);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs:69` · `Ziptide.Gameplay.QuickSwap` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: QUICK_SWAP action=draw item=" + holstered.name);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:20` · `Ziptide.Gameplay.ItemFactory` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: ITEM_DEF_NOT_FOUND id=" + itemId + " known=[" + KnownIds() + "]");`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:54` · `Ziptide.Gameplay.ItemFactory` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: ITEM_SPAWN id=" + itemId + " scale=" + built.transform.localScale.ToString("F3"));`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:103` · `Ziptide.Gameplay.ItemFactory` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: COSMETIC_APPLIED id=" + equippedId + " item=" + itemId);`
@@ -784,9 +784,7 @@
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Editor/Validation/XRGrabReadiness.cs:68` · `Ziptide.Editor.Validation.XRGrabReadiness` — Input System action reference. `results.Add("FAIL: InputActionManager has no action assets assigned. Assign XRI Default Input Actions.");`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Editor/Validation/XRGrabReadiness.cs:72` · `Ziptide.Editor.Validation.XRGrabReadiness` — Input System action reference. `results.Add("PASS: InputActionManager has " + count + " action asset(s) assigned.");`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs:18` · `Ziptide.Gameplay.QuickSwap` — Input System action reference. `private InputAction _swap;`
-- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs:19` · `Ziptide.Gameplay.QuickSwap` — Input System action reference. `private InputAction _menuGuard;`
-- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs:27` · `Ziptide.Gameplay.QuickSwap` — Input System action reference. `_swap = new InputAction("ZiptideQuickSwap", InputActionType.Button);`
-- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs:32` · `Ziptide.Gameplay.QuickSwap` — Input System action reference. `_menuGuard = new InputAction("ZiptideQuickSwapMenuGuard", InputActionType.Button);`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs:26` · `Ziptide.Gameplay.QuickSwap` — Input System action reference. `_swap = new InputAction("ZiptideQuickSwap", InputActionType.Button);`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs:36` · `Ziptide.Gameplay.DashLocomotion` — Input System action reference. `private InputAction _jumpAction;`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs:37` · `Ziptide.Gameplay.DashLocomotion` — Input System action reference. `private InputAction _sprintAction;`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs:38` · `Ziptide.Gameplay.DashLocomotion` — Input System action reference. `private InputAction _crouchAction;`
@@ -854,8 +852,7 @@
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:66` · `Ziptide.Tests.PlayMode.RecoveryTestRig` — Input System action reference. `InputManager.actionAssets = new List<InputActionAsset> { ActionAsset };`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRigTests.cs:54` · `Ziptide.Tests.PlayMode.RecoveryTestRigTests` — Input System action reference. `Assert.AreEqual(1, _fixture.Root.GetComponentsInChildren<InputActionManager>(true).Length);`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRigTests.cs:56` · `Ziptide.Tests.PlayMode.RecoveryTestRigTests` — Input System action reference. `Assert.IsTrue(_fixture.ActionMap.enabled, "InputActionManager did not enable the tests-only action asset.");`
-- **INPUT_BUTTON_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs:28` · `Ziptide.Gameplay.QuickSwap` — Controller/button reference. `_swap.AddBinding("<XRController>{RightHand}/secondaryButton"); // B`
-- **INPUT_BUTTON_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs:33` · `Ziptide.Gameplay.QuickSwap` — Controller/button reference. `_menuGuard.AddBinding("<XRController>{LeftHand}/secondaryButton"); // Y`
+- **INPUT_BUTTON_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs:27` · `Ziptide.Gameplay.QuickSwap` — Controller/button reference. `_swap.AddBinding("<XRController>{RightHand}/secondaryButton"); // B`
 - **INPUT_BUTTON_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs:99` · `Ziptide.Gameplay.DashLocomotion` — Controller/button reference. `_jumpAction.AddBinding("<XRController>{RightHand}/primaryButton"); // A`
 - **INPUT_BUTTON_REFERENCE** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:146` · `Ziptide.Ship.ShipFlightRuntime` — Controller/button reference. `_boostButton.AddBinding("<XRController>{RightHand}/primaryButton"); // A`
 - **INPUT_BUTTON_REFERENCE** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:148` · `Ziptide.Ship.ShipFlightRuntime` — Controller/button reference. `_rollLeftButton.AddBinding("<XRController>{LeftHand}/primaryButton"); // X`
@@ -2070,7 +2067,7 @@
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:223` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — XRInteractionManager lookup. `var mgr = FindObjectOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:239` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — XRInteractionManager lookup. `var mgr = FindObjectOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/NestRuntime.cs:72` · `Ziptide.Gameplay.NestRuntime` — XRInteractionManager lookup. `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
-- **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs:84` · `Ziptide.Gameplay.QuickSwap` — XRInteractionManager lookup. `if (_mgr == null) _mgr = FindObjectOfType<XRInteractionManager>();`
+- **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs:75` · `Ziptide.Gameplay.QuickSwap` — XRInteractionManager lookup. `if (_mgr == null) _mgr = FindObjectOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:140` · `Ziptide.Gameplay.BootHoldState` — XRInteractionManager lookup. `foreach (var m in FindObjectsOfType<XRInteractionManager>(true))`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:374` · `Ziptide.Gameplay.BootHoldState` — XRInteractionManager lookup. `var allManagers = FindObjectsOfType<XRInteractionManager>(true);`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/ArenaLobbyBoard.cs:297` · `Ziptide.Gameplay.ArenaLobbyBoard` — XRInteractionManager lookup. `var mgr = FindObjectOfType<XRInteractionManager>();`

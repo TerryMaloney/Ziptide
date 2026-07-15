@@ -1,21 +1,19 @@
 # ZIPTIDE Runtime Input Contract Scan
 
 - Scanned C# files: **611**
-- Runtime-created bindings: **19**
-- Legacy menu-chord references: **2**
+- Runtime-created bindings: **18**
+- Legacy menu-chord references: **1**
 - Controls bound by more than one owner: **5**
 
 ## Legacy menu-chord references
 
-- `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs:48` · `Ziptide.Gameplay.QuickSwap` — `if (_menuGuard != null && _menuGuard.IsPressed()) return; // Y+B = dev menu chord`
 - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs:94` · `Ziptide.Gameplay.DashLocomotion` — `Debug.Log("ZIPTIDE: CONTROLS move=left-stick turn=right-stick sprint=hold-L3 autorun=double-L3 crouch=R3 slide=crouch-while-sprinting jump=A menu=hold-Y+B");`
 
 ## Runtime-created bindings
 
 | Owner | Action | Field | Binding | Source |
 |---|---|---|---|---|
-| `Ziptide.Gameplay.QuickSwap` | `ZiptideQuickSwap` | `_swap` | `<XRController>{RightHand}/secondaryButton` | `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs:28` |
-| `Ziptide.Gameplay.QuickSwap` | `ZiptideQuickSwapMenuGuard` | `_menuGuard` | `<XRController>{LeftHand}/secondaryButton` | `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs:33` |
+| `Ziptide.Gameplay.QuickSwap` | `ZiptideQuickSwap` | `_swap` | `<XRController>{RightHand}/secondaryButton` | `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs:27` |
 | `Ziptide.Gameplay.DashLocomotion` | `ZiptideJump` | `_jumpAction` | `<XRController>{RightHand}/primaryButton` | `Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs:99` |
 | `Ziptide.Gameplay.DashLocomotion` | `ZiptideSprint` | `_sprintAction` | `<XRController>{LeftHand}/thumbstickClicked` | `Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs:104` |
 | `Ziptide.Gameplay.DashLocomotion` | `ZiptideCrouch` | `_crouchAction` | `<XRController>{RightHand}/thumbstickClicked` | `Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs:109` |
@@ -55,7 +53,7 @@
 
 ### `<XRController>{RightHand}/secondaryButton`
 
-- `Ziptide.Gameplay.QuickSwap` → `ZiptideQuickSwap` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs:28`
+- `Ziptide.Gameplay.QuickSwap` → `ZiptideQuickSwap` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs:27`
 - `Ziptide.Ship.ShipFlightRuntime` → `ZiptideFlightRollR` at `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:150`
 
 ### `<XRController>{RightHand}/thumbstick`

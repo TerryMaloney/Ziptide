@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
 - Scanned files: **611**
-- Scanner findings: **2048**
+- Scanner findings: **2045**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -366,16 +366,13 @@ None.
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PingTool.cs:19` **INPUT_ACTION_REFERENCE** — `private InputAction _ping;`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PingTool.cs:27` **INPUT_ACTION_REFERENCE** — `_ping = new InputAction("ZiptidePing", InputActionType.Button);`
 
-### `Ziptide.Gameplay.QuickSwap` — 6 signal(s)
+### `Ziptide.Gameplay.QuickSwap` — 3 signal(s)
 
 - Codes: `INPUT_ACTION_REFERENCE`, `INPUT_BUTTON_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs:18` **INPUT_ACTION_REFERENCE** — `private InputAction _swap;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs:19` **INPUT_ACTION_REFERENCE** — `private InputAction _menuGuard;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs:27` **INPUT_ACTION_REFERENCE** — `_swap = new InputAction("ZiptideQuickSwap", InputActionType.Button);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs:28` **INPUT_BUTTON_REFERENCE** — `_swap.AddBinding("<XRController>{RightHand}/secondaryButton"); // B`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs:32` **INPUT_ACTION_REFERENCE** — `_menuGuard = new InputAction("ZiptideQuickSwapMenuGuard", InputActionType.Button);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs:33` **INPUT_BUTTON_REFERENCE** — `_menuGuard.AddBinding("<XRController>{LeftHand}/secondaryButton"); // Y`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs:26` **INPUT_ACTION_REFERENCE** — `_swap = new InputAction("ZiptideQuickSwap", InputActionType.Button);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs:27` **INPUT_BUTTON_REFERENCE** — `_swap.AddBinding("<XRController>{RightHand}/secondaryButton"); // B`
 
 ### `Ziptide.Gameplay.TravelCoordinator` — 2 signal(s)
 
@@ -2378,7 +2375,7 @@ None.
 
 - Codes: `XRI_MANAGER_LOOKUP`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs:84` **XRI_MANAGER_LOOKUP** — `if (_mgr == null) _mgr = FindObjectOfType<XRInteractionManager>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs:75` **XRI_MANAGER_LOOKUP** — `if (_mgr == null) _mgr = FindObjectOfType<XRInteractionManager>();`
 
 ### `Ziptide.Gameplay.RepairableMachine` — 2 signal(s)
 

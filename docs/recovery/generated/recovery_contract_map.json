@@ -2,7 +2,7 @@
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
   "scannedFiles": 611,
-  "findingCount": 2048,
+  "findingCount": 2045,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -1413,7 +1413,7 @@
       },
       {
         "owner": "Ziptide.Gameplay.QuickSwap",
-        "evidenceCount": 6,
+        "evidenceCount": 3,
         "codes": [
           "INPUT_ACTION_REFERENCE",
           "INPUT_BUTTON_REFERENCE"
@@ -1432,37 +1432,16 @@
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs",
-            "line": 19,
-            "symbol": "Ziptide.Gameplay.QuickSwap",
-            "snippet": "private InputAction _menuGuard;"
-          },
-          {
-            "code": "INPUT_ACTION_REFERENCE",
-            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs",
-            "line": 27,
+            "line": 26,
             "symbol": "Ziptide.Gameplay.QuickSwap",
             "snippet": "_swap = new InputAction(\"ZiptideQuickSwap\", InputActionType.Button);"
           },
           {
             "code": "INPUT_BUTTON_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs",
-            "line": 28,
+            "line": 27,
             "symbol": "Ziptide.Gameplay.QuickSwap",
             "snippet": "_swap.AddBinding(\"<XRController>{RightHand}/secondaryButton\"); // B"
-          },
-          {
-            "code": "INPUT_ACTION_REFERENCE",
-            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs",
-            "line": 32,
-            "symbol": "Ziptide.Gameplay.QuickSwap",
-            "snippet": "_menuGuard = new InputAction(\"ZiptideQuickSwapMenuGuard\", InputActionType.Button);"
-          },
-          {
-            "code": "INPUT_BUTTON_REFERENCE",
-            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs",
-            "line": 33,
-            "symbol": "Ziptide.Gameplay.QuickSwap",
-            "snippet": "_menuGuard.AddBinding(\"<XRController>{LeftHand}/secondaryButton\"); // Y"
           }
         ]
       },
@@ -11064,7 +11043,7 @@
           {
             "code": "XRI_MANAGER_LOOKUP",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs",
-            "line": 84,
+            "line": 75,
             "symbol": "Ziptide.Gameplay.QuickSwap",
             "snippet": "if (_mgr == null) _mgr = FindObjectOfType<XRInteractionManager>();"
           }
