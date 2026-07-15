@@ -91,7 +91,7 @@ namespace Ziptide.Gameplay
             Debug.Log("ZIPTIDE: LOCO_STATE moveProvider=" + (_moveProvider != null)
                 + " moveSpeed=" + (_moveProvider != null ? _moveProvider.moveSpeed : 0f)
                 + " cc=" + (_cc != null) + " ccEnabled=" + (_cc != null && _cc.enabled));
-            Debug.Log("ZIPTIDE: CONTROLS move=left-stick turn=right-stick sprint=hold-L3 autorun=double-L3 crouch=R3 slide=crouch-while-sprinting jump=A menu=hold-Y+B");
+            Debug.Log("ZIPTIDE: CONTROLS move=left-stick turn=right-stick sprint=hold-L3 autorun=double-L3 crouch=R3 slide=crouch-while-sprinting jump=A dev-menu=diagnostic-profile-forehead-gesture");
 
             if (_jumpAction == null)
             {
