@@ -22,7 +22,7 @@ namespace Ziptide.Core
     public class RuntimeHealthMonitor : MonoBehaviour
     {
         private const float ReportEverySeconds = 30f;
-        private const float BudgetMs = 1000f / 72f;   // Quest refresh
+        private const float BudgetMs = 1000f / 72f;
         private const float SlowOnePercentLowFps = 60f;
 
         private static RuntimeHealthMonitor _instance;
@@ -33,6 +33,7 @@ namespace Ziptide.Core
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void EnsureExists()
         {
+            if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.RuntimeHealthMonitor)) return;
             if (_instance != null) return;
             var go = new GameObject("__RuntimeHealth");
             DontDestroyOnLoad(go);
@@ -80,13 +81,10 @@ namespace Ziptide.Core
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
             if (scene.name == ZiptideConstants.SceneBoot) return;
-            _stats.Reset();   // a new world gets a clean vitals window
+            _stats.Reset();
             StartCoroutine(SweepAfterLoad(scene.name));
         }
 
-        /// <summary>The janitor: give the world a moment to finish building, snapshot, sweep the
-        /// unreferenced orphans, log the delta. Runs OUTSIDE TravelCoordinator on purpose — travel
-        /// stays report-only per CLAUDE.md; this is an additive observer.</summary>
         private IEnumerator SweepAfterLoad(string sceneName)
         {
             yield return new WaitForSecondsRealtime(1.5f);
@@ -102,8 +100,6 @@ namespace Ziptide.Core
                       " memMB=" + after.AllocatedMB);
         }
 
-        /// <summary>Object counts by resource class + total allocation. FindObjectsOfTypeAll walks
-        /// everything — called only at report/sweep cadence, never per frame.</summary>
         private struct Census
         {
             public int Materials, Textures, Meshes, Clips;
