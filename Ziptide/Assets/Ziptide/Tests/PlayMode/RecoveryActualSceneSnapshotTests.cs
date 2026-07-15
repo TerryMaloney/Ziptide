@@ -14,10 +14,10 @@ using Ziptide.Gameplay;
 namespace Ziptide.Tests.PlayMode
 {
     /// <summary>
-    /// R1.7 actual-scene renderer spike. A sceneLoaded hook establishes the test-owned tracked-head
-    /// and bilateral-controller pose before BootLoader/HomeHub Start, so the captured Home Hub is
-    /// laid out from a realistic head height. W000 and ToxicCity are reached through the production
-    /// TravelCoordinator and captured from the same persistent tracked-head camera.
+    /// R1.7/R1.8 actual-scene renderer and UI-spatial proof. A sceneLoaded hook establishes the
+    /// test-owned tracked-head and bilateral-controller pose before BootLoader/HomeHub Start, so the
+    /// captured Home Hub is laid out from a realistic head height. W000 and ToxicCity are reached
+    /// through the production TravelCoordinator and captured/audited from the same persistent camera.
     /// </summary>
     public sealed class RecoveryActualSceneSnapshotTests
     {
@@ -55,7 +55,7 @@ namespace Ziptide.Tests.PlayMode
         }
 
         [UnityTest]
-        public IEnumerator GoldenBootW000AndToxicCity_WriteInspectablePngArtifacts()
+        public IEnumerator GoldenBootW000AndToxicCity_WriteInspectableVisualAndUiArtifacts()
         {
             Assert.IsTrue(Application.CanStreamedLevelBeLoaded(ZiptideConstants.SceneBoot));
             Assert.IsTrue(Application.CanStreamedLevelBeLoaded(ZiptideConstants.SceneW000));
@@ -87,6 +87,10 @@ namespace Ziptide.Tests.PlayMode
                 camera,
                 "R1_7_ACTUAL_HOME_HUB",
                 "r1_7_actual_home_hub"));
+            AssertUiSpatial(
+                camera,
+                "R1_8_ACTUAL_HOME_HUB",
+                "r1_8_actual_home_hub");
 
             SaveSystem save = SaveSystem.Instance;
             Assert.IsNotNull(save, "SaveSystem is missing before actual scene snapshots.");
@@ -100,6 +104,10 @@ namespace Ziptide.Tests.PlayMode
                 camera,
                 "R1_7_ACTUAL_W000_SPAWN",
                 "r1_7_actual_w000_spawn"));
+            AssertUiSpatial(
+                camera,
+                "R1_8_ACTUAL_W000_SPAWN",
+                "r1_8_actual_w000_spawn");
 
             TravelCoordinator.TravelTo(ZiptideConstants.SceneToxicCity);
             yield return WaitForDestination(2, ZiptideConstants.SceneToxicCity);
@@ -108,6 +116,10 @@ namespace Ziptide.Tests.PlayMode
                 camera,
                 "R1_7_ACTUAL_TOXIC_CITY_SPAWN",
                 "r1_7_actual_toxic_city_spawn"));
+            AssertUiSpatial(
+                camera,
+                "R1_8_ACTUAL_TOXIC_CITY_SPAWN",
+                "r1_8_actual_toxic_city_spawn");
 
             CollectionAssert.AreEqual(
                 new[] { ZiptideConstants.SceneW000, ZiptideConstants.SceneToxicCity },
@@ -155,7 +167,7 @@ namespace Ziptide.Tests.PlayMode
                 "r1_7_" + expectedScene.ToLowerInvariant() + "_snapshot");
             Assert.AreEqual(0, artifactReport.findings.Count,
                 "Snapshot scene has runtime/spawn findings. Artifact=" + artifactPath +
-                "\n" + FormatFindings(artifactReport));
+                "\n" + FormatRuntimeFindings(artifactReport));
         }
 
         private static void AssertFrameRendered(RecoveryRenderSnapshotPaths paths)
@@ -178,10 +190,35 @@ namespace Ziptide.Tests.PlayMode
                 metrics.label + " contains excessive transparent output.");
         }
 
+        private static void AssertUiSpatial(Camera camera, string label, string stem)
+        {
+            RecoveryUiSpatialReport report = RecoveryUiSpatialAudit.Capture(camera, label);
+            RecoveryUiSpatialArtifactPaths paths = RecoveryUiSpatialAudit.WriteArtifacts(report, stem);
+            Assert.IsTrue(File.Exists(paths.JsonPath), label + " UI JSON was not written.");
+            Assert.IsTrue(File.Exists(paths.MarkdownPath), label + " UI Markdown was not written.");
+
+            int blockers = 0;
+            var details = new StringBuilder();
+            for (int i = 0; i < report.findings.Count; i++)
+            {
+                RecoveryUiSpatialFinding finding = report.findings[i];
+                if (!string.Equals(finding.severity, "BLOCKER", StringComparison.Ordinal)) continue;
+                blockers++;
+                details.AppendLine(
+                    finding.code + " path=" + finding.hierarchyPath +
+                    " related=" + finding.relatedPath +
+                    " message=" + finding.message);
+            }
+
+            Assert.AreEqual(0, blockers,
+                label + " produced camera-space UI blockers. JSON=" + paths.JsonPath +
+                " Markdown=" + paths.MarkdownPath + "\n" + details);
+        }
+
         private void OnBootReady(bool canContinue) => _bootReady = true;
         private void OnTravelCompleted(string destination) => _travelCompleted.Add(destination);
 
-        private static string FormatFindings(RecoveryRuntimeArtifactReport report)
+        private static string FormatRuntimeFindings(RecoveryRuntimeArtifactReport report)
         {
             var text = new StringBuilder();
             for (int i = 0; i < report.findings.Count; i++)
