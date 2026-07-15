@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
 - Scanned files: **613**
-- Scanner findings: **2059**
+- Scanner findings: **2062**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -2123,12 +2123,13 @@ None.
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs:108` **NEW_GAME_OBJECT** — `int launcherCreate = netSource.IndexOf("new GameObject(\"__PhotonPvpLauncher\")", startOnline, StringComparison.Ordinal);`
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs:152` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
 
-### `Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests` — 2 signal(s)
+### `Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests` — 3 signal(s)
 
 - Codes: `NEW_GAME_OBJECT`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs`
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:66` **NEW_GAME_OBJECT** — `var hubHost = new GameObject("__RECOVERY_HOME_HUB_BIND_TEST");`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:91` **NEW_GAME_OBJECT** — `var managerHost = new GameObject("__RECOVERY_LATE_XRI_MANAGER");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:92` **NEW_GAME_OBJECT** — `var earlyHost = new GameObject("__RECOVERY_EARLY_XRI_MANAGER");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:110` **NEW_GAME_OBJECT** — `var replacementHost = new GameObject("__RECOVERY_REPLACEMENT_XRI_MANAGER");`
 
 ### `Ziptide.Tests.PlayMode.RecoveryTestRig` — 9 signal(s)
 
@@ -2466,13 +2467,15 @@ None.
   - `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:150` **XRI_MANAGER_LOOKUP** — `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
   - `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:151` **XRI_MANAGER_ASSIGN** — `if (mgr != null) interactable.interactionManager = mgr;`
 
-### `Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests` — 3 signal(s)
+### `Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests` — 5 signal(s)
 
 - Codes: `XRI_MANAGER_ASSIGN`, `XRI_MANAGER_CREATE`, `XRI_MANAGER_LOOKUP`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs`
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:43` **XRI_MANAGER_LOOKUP** — `Assert.IsNull(UnityEngine.Object.FindObjectOfType<XRInteractionManager>(),`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:93` **XRI_MANAGER_CREATE** — `var manager = managerHost.AddComponent<XRInteractionManager>();`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:98` **XRI_MANAGER_ASSIGN** — `for (int frame = 0; frame < 10 && interactable.interactionManager == null; frame++)`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:90` **XRI_MANAGER_ASSIGN** — `if (interactable.interactionManager == null)`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:94` **XRI_MANAGER_CREATE** — `earlyHost.AddComponent<XRInteractionManager>();`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:95` **XRI_MANAGER_ASSIGN** — `for (int frame = 0; frame < 10 && interactable.interactionManager == null; frame++)`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:112` **XRI_MANAGER_CREATE** — `var replacement = replacementHost.AddComponent<XRInteractionManager>();`
 
 ### `Ziptide.Tests.PlayMode.RecoveryTestRig` — 2 signal(s)
 

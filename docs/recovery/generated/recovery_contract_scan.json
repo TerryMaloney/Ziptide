@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-15T12:51:48.809682+00:00",
+  "generatedAtUtc": "2026-07-15T12:52:44.421538+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -9,7 +9,7 @@
     "Ziptide/Assets/ZiptideNet"
   ],
   "scannedFiles": 613,
-  "findingCount": 2059,
+  "findingCount": 2062,
   "categoryCounts": {
     "bootstrap": 27,
     "diagnostics": 425,
@@ -19,11 +19,11 @@
     "input": 115,
     "materials": 223,
     "persistence": 17,
-    "runtime_creation": 565,
+    "runtime_creation": 566,
     "runtime_ui": 114,
     "save_state": 234,
     "scene_loading": 5,
-    "xri_ownership": 74
+    "xri_ownership": 76
   },
   "codeCounts": {
     "AUTOSAVE_CALL": 8,
@@ -41,7 +41,7 @@
     "FRAME_BUTTON_POLL": 1,
     "INPUT_ACTION_REFERENCE": 108,
     "INPUT_BUTTON_REFERENCE": 6,
-    "NEW_GAME_OBJECT": 337,
+    "NEW_GAME_OBJECT": 338,
     "PLAYER_PROFILE_REFERENCE": 133,
     "RENDER_SETTINGS_MUTATION": 36,
     "RUNTIME_BOOTSTRAP": 21,
@@ -52,8 +52,8 @@
     "TEXTMESH_COMPONENT": 43,
     "TMP_COMPONENT": 3,
     "VOLUME_COMPONENT": 1,
-    "XRI_MANAGER_ASSIGN": 32,
-    "XRI_MANAGER_CREATE": 4,
+    "XRI_MANAGER_ASSIGN": 33,
+    "XRI_MANAGER_CREATE": 5,
     "XRI_MANAGER_LOOKUP": 38,
     "XR_INTERACTABLE_COMPONENT": 61,
     "XR_UI_INPUT_MODULE": 2,
@@ -3944,9 +3944,9 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs",
-      "line": 96,
+      "line": 108,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests",
-      "snippet": "new Regex(\"ZIPTIDE: HOME_HUB_TILE_BOUND tile=Tile_LATE_BIND mode=delayed\"));"
+      "snippet": "new Regex(\"ZIPTIDE: HOME_HUB_TILE_BOUND tile=Tile_MANAGER_REPLACE mode=rebound\"));"
     },
     {
       "category": "diagnostics",
@@ -14546,9 +14546,18 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs",
-      "line": 91,
+      "line": 92,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests",
-      "snippet": "var managerHost = new GameObject(\"__RECOVERY_LATE_XRI_MANAGER\");"
+      "snippet": "var earlyHost = new GameObject(\"__RECOVERY_EARLY_XRI_MANAGER\");"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs",
+      "line": 110,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests",
+      "snippet": "var replacementHost = new GameObject(\"__RECOVERY_REPLACEMENT_XRI_MANAGER\");"
     },
     {
       "category": "runtime_creation",
@@ -18191,7 +18200,16 @@
       "code": "XRI_MANAGER_ASSIGN",
       "description": "Explicit interactable interactionManager assignment",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs",
-      "line": 98,
+      "line": 90,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests",
+      "snippet": "if (interactable.interactionManager == null)"
+    },
+    {
+      "category": "xri_ownership",
+      "code": "XRI_MANAGER_ASSIGN",
+      "description": "Explicit interactable interactionManager assignment",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs",
+      "line": 95,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests",
       "snippet": "for (int frame = 0; frame < 10 && interactable.interactionManager == null; frame++)"
     },
@@ -18236,9 +18254,18 @@
       "code": "XRI_MANAGER_CREATE",
       "description": "XRInteractionManager creation",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs",
-      "line": 93,
+      "line": 94,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests",
-      "snippet": "var manager = managerHost.AddComponent<XRInteractionManager>();"
+      "snippet": "earlyHost.AddComponent<XRInteractionManager>();"
+    },
+    {
+      "category": "xri_ownership",
+      "code": "XRI_MANAGER_CREATE",
+      "description": "XRInteractionManager creation",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs",
+      "line": 112,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests",
+      "snippet": "var replacement = replacementHost.AddComponent<XRInteractionManager>();"
     },
     {
       "category": "xri_ownership",

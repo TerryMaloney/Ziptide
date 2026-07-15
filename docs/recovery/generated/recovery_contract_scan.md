@@ -1,7 +1,7 @@
 # ZIPTIDE Recovery Contract Scan
 
 - Scanned files: **613**
-- Findings: **2059**
+- Findings: **2062**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
@@ -16,11 +16,11 @@
 | `input` | 115 |
 | `materials` | 223 |
 | `persistence` | 17 |
-| `runtime_creation` | 565 |
+| `runtime_creation` | 566 |
 | `runtime_ui` | 114 |
 | `save_state` | 234 |
 | `scene_loading` | 5 |
-| `xri_ownership` | 74 |
+| `xri_ownership` | 76 |
 
 ## Findings
 
@@ -459,7 +459,7 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBuildProfileTests.cs:65` · `Ziptide.Tests.PlayMode.RecoveryBuildProfileTests` — ZIPTIDE diagnostic tag. `StringAssert.Contains("ZIPTIDE: BUILD_PROFILE profile=GoldenSlice", builder);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBuildProfileTests.cs:91` · `Ziptide.Tests.PlayMode.RecoveryBuildProfileTests` — ZIPTIDE diagnostic tag. `StringAssert.Contains("ZIPTIDE: BUILD_PROFILE profile=GoldenSlice", smokeScript);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBuildProfileTests.cs:92` · `Ziptide.Tests.PlayMode.RecoveryBuildProfileTests` — ZIPTIDE diagnostic tag. `StringAssert.Contains("ZIPTIDE: RECOVERY_EXPOSURE buildProfile=GoldenSlice profile=GoldenSlice", smokeScript);`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:96` · `Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests` — ZIPTIDE diagnostic tag. `new Regex("ZIPTIDE: HOME_HUB_TILE_BOUND tile=Tile_LATE_BIND mode=delayed"));`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:108` · `Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests` — ZIPTIDE diagnostic tag. `new Regex("ZIPTIDE: HOME_HUB_TILE_BOUND tile=Tile_MANAGER_REPLACE mode=rebound"));`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeCreatureVisualApplier.cs:73` · `Ziptide.Visuals.ForgeCreatureVisualApplier` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FORGE_CREATURE_APPLIED id=" + creatureId`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs:28` · `Ziptide.Visuals.ForgeVisualApplier` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: FORGE_RECIPE_NOT_FOUND id=" + recipeId + " item=" + item.name);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs:89` · `Ziptide.Visuals.ForgeVisualApplier` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FORGE_APPLIED id=" + recipeId + " item=" + item.name`
@@ -1651,7 +1651,8 @@
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs:108` · `Ziptide.Tests.PlayMode.RecoveryGateBypassTests` — Runtime GameObject construction. `int launcherCreate = netSource.IndexOf("new GameObject(\"__PhotonPvpLauncher\")", startOnline, StringComparison.Ordinal);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs:152` · `Ziptide.Tests.PlayMode.RecoveryGateBypassTests` — Runtime GameObject construction. `var go = new GameObject(name);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:66` · `Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests` — Runtime GameObject construction. `var hubHost = new GameObject("__RECOVERY_HOME_HUB_BIND_TEST");`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:91` · `Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests` — Runtime GameObject construction. `var managerHost = new GameObject("__RECOVERY_LATE_XRI_MANAGER");`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:92` · `Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests` — Runtime GameObject construction. `var earlyHost = new GameObject("__RECOVERY_EARLY_XRI_MANAGER");`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:110` · `Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests` — Runtime GameObject construction. `var replacementHost = new GameObject("__RECOVERY_REPLACEMENT_XRI_MANAGER");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:42` · `Ziptide.Tests.PlayMode.RecoveryTestRig` — Runtime GameObject construction. `Root = new GameObject(RootName);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:49` · `Ziptide.Tests.PlayMode.RecoveryTestRig` — Runtime GameObject construction. `var managerHost = new GameObject("InteractionManager");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:62` · `Ziptide.Tests.PlayMode.RecoveryTestRig` — Runtime GameObject construction. `var inputHost = new GameObject("InputActionManager");`
@@ -2064,12 +2065,14 @@
 - **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:271` · `Ziptide.Gameplay.WorldTravelStation` — Explicit interactable interactionManager assignment. `interactable.interactionManager = mgr;`
 - **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:246` · `Ziptide.Ship.ShipFlightRuntime` — Explicit interactable interactionManager assignment. `if (mgr != null) interactable.interactionManager = mgr;`
 - **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:151` · `Ziptide.Ship.VehicleRuntime` — Explicit interactable interactionManager assignment. `if (mgr != null) interactable.interactionManager = mgr;`
-- **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:98` · `Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests` — Explicit interactable interactionManager assignment. `for (int frame = 0; frame < 10 && interactable.interactionManager == null; frame++)`
+- **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:90` · `Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests` — Explicit interactable interactionManager assignment. `if (interactable.interactionManager == null)`
+- **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:95` · `Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests` — Explicit interactable interactionManager assignment. `for (int frame = 0; frame < 10 && interactable.interactionManager == null; frame++)`
 - **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:141` · `Ziptide.Tests.PlayMode.RecoveryTestRig` — Explicit interactable interactionManager assignment. `ray.interactionManager = InteractionManager;`
 - **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRigTests.cs:86` · `Ziptide.Tests.PlayMode.RecoveryTestRigTests` — Explicit interactable interactionManager assignment. `interactable.interactionManager = _fixture.InteractionManager;`
 - **XRI_MANAGER_CREATE** — `Ziptide/Assets/Ziptide/Editor/Setup/SetupMilestoneAScene.cs:72` · `Ziptide.Editor.Setup.SetupMilestoneAScene` — XRInteractionManager creation. `managerGo.AddComponent<XRInteractionManager>();`
 - **XRI_MANAGER_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:423` · `Ziptide.Gameplay.BootHoldState` — XRInteractionManager creation. `_xriManager = go.AddComponent<XRInteractionManager>();`
-- **XRI_MANAGER_CREATE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:93` · `Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests` — XRInteractionManager creation. `var manager = managerHost.AddComponent<XRInteractionManager>();`
+- **XRI_MANAGER_CREATE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:94` · `Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests` — XRInteractionManager creation. `earlyHost.AddComponent<XRInteractionManager>();`
+- **XRI_MANAGER_CREATE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:112` · `Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests` — XRInteractionManager creation. `var replacement = replacementHost.AddComponent<XRInteractionManager>();`
 - **XRI_MANAGER_CREATE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:51` · `Ziptide.Tests.PlayMode.RecoveryTestRig` — XRInteractionManager creation. `InteractionManager = managerHost.AddComponent<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Editor/Audit/WorldAuditRunner.cs:161` · `Ziptide.Editor.Audit.WorldAuditRunner` — XRInteractionManager lookup. `var managers = Object.FindObjectsOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Editor/Setup/EnsureLocomotionRig.cs:248` · `Ziptide.Editor.Setup.EnsureLocomotionRig` — XRInteractionManager lookup. `var interactionManager = Object.FindObjectOfType<XRInteractionManager>();`
