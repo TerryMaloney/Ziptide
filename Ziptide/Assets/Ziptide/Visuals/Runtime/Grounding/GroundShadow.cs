@@ -3,72 +3,96 @@ using UnityEngine;
 namespace Ziptide.Visuals
 {
     /// <summary>
-    /// FORGE III F3.4 — the BLOB SHADOW: a soft dark radial decal parented at a body's base so a
-    /// creature (or the player) reads as standing ON the ground, not floating above it. The plan's
-    /// cheapest "20% more grounded" dial. One shared material + quad across all shadows (1 texture,
-    /// alpha-blended, no depth write, no real shadow). A LOOK, never a stat: no collider.
+    /// FORGE III F3.4 — a soft contact shadow at a body's base. The shared material uses the
+    /// committed <c>Ziptide/TransparentAlphaUnlit</c> shader, so Android never has to retain a
+    /// runtime-created URP transparent variant.
     /// </summary>
     public static class GroundShadow
     {
         public const string ChildName = "GroundShadow";
-        private static Material _mat;
+        private const string AlphaShaderName = "Ziptide/TransparentAlphaUnlit";
+
+        private static Material _material;
+        private static Texture2D _texture;
         private static Mesh _quad;
 
         /// <summary>Attach a blob shadow of the given XZ <paramref name="radius"/> to
-        /// <paramref name="host"/>, sitting at local y=<paramref name="y"/> (just above the ground).
-        /// Idempotent-ish: adds one child named <see cref="ChildName"/>.</summary>
+        /// <paramref name="host"/>, sitting just above the ground.</summary>
         public static void Attach(GameObject host, float radius, float y = 0.02f)
         {
             if (host == null || radius <= 0f) return;
-            var mat = SharedMat();
-            if (mat == null) return;
+            Material material = SharedMaterial();
+            if (material == null) return;
 
             var go = new GameObject(ChildName);
             go.transform.SetParent(host.transform, false);
             go.transform.localPosition = new Vector3(0f, y, 0f);
             go.transform.localScale = new Vector3(radius * 2f, 1f, radius * 2f);
-            var mf = go.AddComponent<MeshFilter>();
-            mf.sharedMesh = QuadMesh();
-            var mr = go.AddComponent<MeshRenderer>();
-            mr.sharedMaterial = mat;
-            mr.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+
+            var filter = go.AddComponent<MeshFilter>();
+            filter.sharedMesh = QuadMesh();
+            var renderer = go.AddComponent<MeshRenderer>();
+            renderer.sharedMaterial = material;
+            renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+            renderer.receiveShadows = false;
         }
 
-        private static Material SharedMat()
+        private static Material SharedMaterial()
         {
-            if (_mat != null) return _mat;
-            var lit = Shader.Find("Universal Render Pipeline/Lit");
-            if (lit == null) return null;
+            if (_material != null) return _material;
 
-            const int s = 128;
-            var px = GroundDecal.BakeAlpha(s, stain: false);
-            var tex = new Texture2D(s, s, TextureFormat.RGBA32, false) { wrapMode = TextureWrapMode.Clamp };
-            tex.SetPixels32(px); tex.Apply(false, false);
+            Shader shader = Shader.Find(AlphaShaderName);
+            if (shader == null)
+            {
+                Debug.LogError("ZIPTIDE: SHADER_MISSING name=" + AlphaShaderName +
+                               " effect=GroundShadow");
+                return null;
+            }
 
-            _mat = new Material(lit) { name = "GroundShadow" };
-            _mat.SetColor("_BaseColor", new Color(0f, 0f, 0f, 0.55f)); // dark, ≤55% opacity at the core
-            _mat.SetTexture("_BaseMap", tex);
-            _mat.SetFloat("_Surface", 1f); // transparent
-            _mat.SetOverrideTag("RenderType", "Transparent");
-            _mat.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
-            _mat.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
-            _mat.SetInt("_ZWrite", 0);
-            _mat.EnableKeyword("_SURFACE_TYPE_TRANSPARENT");
-            _mat.renderQueue = (int)UnityEngine.Rendering.RenderQueue.Transparent;
-            return _mat;
+            const int size = 128;
+            var pixels = GroundDecal.BakeAlpha(size, stain: false);
+            _texture = new Texture2D(size, size, TextureFormat.RGBA32, false)
+            {
+                name = "GroundShadowRadial",
+                wrapMode = TextureWrapMode.Clamp,
+                hideFlags = HideFlags.HideAndDontSave
+            };
+            _texture.SetPixels32(pixels);
+            _texture.Apply(false, false);
+
+            _material = new Material(shader)
+            {
+                name = "GroundShadow",
+                hideFlags = HideFlags.HideAndDontSave
+            };
+            _material.SetColor("_BaseColor", new Color(0f, 0f, 0f, 0.55f));
+            _material.SetTexture("_BaseMap", _texture);
+            return _material;
         }
 
         private static Mesh QuadMesh()
         {
             if (_quad != null) return _quad;
-            _quad = new Mesh { name = "GroundShadowQuad" };
+            _quad = new Mesh
+            {
+                name = "GroundShadowQuad",
+                hideFlags = HideFlags.HideAndDontSave
+            };
             _quad.vertices = new[]
             {
-                new Vector3(-0.5f, 0f, -0.5f), new Vector3(0.5f, 0f, -0.5f),
-                new Vector3(0.5f, 0f, 0.5f), new Vector3(-0.5f, 0f, 0.5f),
+                new Vector3(-0.5f, 0f, -0.5f),
+                new Vector3(0.5f, 0f, -0.5f),
+                new Vector3(0.5f, 0f, 0.5f),
+                new Vector3(-0.5f, 0f, 0.5f),
             };
-            _quad.uv = new[] { new Vector2(0f, 0f), new Vector2(1f, 0f), new Vector2(1f, 1f), new Vector2(0f, 1f) };
-            _quad.triangles = new[] { 0, 2, 1, 0, 3, 2 }; // +Y up-facing
+            _quad.uv = new[]
+            {
+                new Vector2(0f, 0f),
+                new Vector2(1f, 0f),
+                new Vector2(1f, 1f),
+                new Vector2(0f, 1f)
+            };
+            _quad.triangles = new[] { 0, 2, 1, 0, 3, 2 };
             _quad.normals = new[] { Vector3.up, Vector3.up, Vector3.up, Vector3.up };
             _quad.RecalculateBounds();
             return _quad;
