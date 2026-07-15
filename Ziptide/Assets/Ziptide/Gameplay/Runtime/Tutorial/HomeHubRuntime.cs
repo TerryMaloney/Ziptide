@@ -48,7 +48,8 @@ namespace Ziptide.Gameplay
     /// </summary>
     public sealed class HomeHubRuntime : MonoBehaviour
     {
-        private const int ManagerBindFrameLimit = 300;
+        private const int ManagerFastPollFrames = 300;
+        private const float ManagerSteadyPollSeconds = 0.25f;
 
         public static event Action<bool> BootPresentationReady;
         public static event Action<PlayerProfile> NewGameProfileCreated;
@@ -187,41 +188,68 @@ namespace Ziptide.Gameplay
             Paint(tile, color);
 
             var interactable = tile.AddComponent<XRSimpleInteractable>();
-            var manager = FindObjectOfType<XRInteractionManager>();
-            if (manager != null)
+            XRInteractionManager manager = interactable.interactionManager;
+            if (manager == null) manager = FindObjectOfType<XRInteractionManager>();
+
+            bool initiallyBound = manager != null;
+            if (initiallyBound)
             {
-                interactable.interactionManager = manager;
+                if (interactable.interactionManager != manager)
+                    interactable.interactionManager = manager;
                 Debug.Log("ZIPTIDE: HOME_HUB_TILE_BOUND tile=" + tile.name +
                           " mode=immediate manager=" + manager.name);
             }
-            else
-            {
-                StartCoroutine(BindManagerLater(interactable, tile.name));
-            }
+
+            // XRI may provide an early manager during interactable OnEnable, while
+            // PlayerRigPersistence can adopt another manager and destroy the early one later in
+            // startup. Monitor the tile for its lifetime so either a missing manager or a replaced
+            // manager is repaired without rebuilding the Home Hub.
+            StartCoroutine(MaintainManagerBinding(interactable, tile.name, initiallyBound));
             interactable.selectEntered.AddListener(_ => selected());
 
             AddLabel(tile.transform, text, new Vector3(0f, 0f, -0.56f), 0.025f);
         }
 
-        private IEnumerator BindManagerLater(XRSimpleInteractable interactable, string tileName)
+        private IEnumerator MaintainManagerBinding(
+            XRSimpleInteractable interactable,
+            string tileName,
+            bool everBound)
         {
-            for (int frame = 1; frame <= ManagerBindFrameLimit; frame++)
+            int frame = 0;
+            bool timeoutLogged = false;
+            var steadyPoll = new WaitForSecondsRealtime(ManagerSteadyPollSeconds);
+
+            while (interactable != null)
             {
-                yield return null;
+                if (frame < ManagerFastPollFrames) yield return null;
+                else yield return steadyPoll;
+                frame++;
+
                 if (interactable == null) yield break;
 
-                var manager = FindObjectOfType<XRInteractionManager>();
-                if (manager == null) continue;
+                XRInteractionManager manager = FindObjectOfType<XRInteractionManager>();
+                if (manager != null && interactable.interactionManager != manager)
+                {
+                    string mode = everBound ? "rebound" : "delayed";
+                    interactable.interactionManager = manager;
+                    everBound = true;
+                    Debug.Log("ZIPTIDE: HOME_HUB_TILE_BOUND tile=" + tileName +
+                              " mode=" + mode + " frames=" + frame +
+                              " manager=" + manager.name);
+                }
+                else if (manager != null)
+                {
+                    everBound = true;
+                }
 
-                interactable.interactionManager = manager;
-                Debug.Log("ZIPTIDE: HOME_HUB_TILE_BOUND tile=" + tileName +
-                          " mode=delayed frames=" + frame + " manager=" + manager.name);
-                yield break;
+                if (!everBound && !timeoutLogged && frame >= ManagerFastPollFrames)
+                {
+                    timeoutLogged = true;
+                    Debug.LogWarning("ZIPTIDE: HOME_HUB_TILE_BIND_TIMEOUT tile=" + tileName +
+                                     " frames=" + ManagerFastPollFrames +
+                                     " monitoring=continued");
+                }
             }
-
-            if (interactable != null)
-                Debug.LogWarning("ZIPTIDE: HOME_HUB_TILE_BIND_TIMEOUT tile=" + tileName +
-                                 " frames=" + ManagerBindFrameLimit);
         }
 
         private static void AddLabel(Transform parent, string text, Vector3 localPosition, float size)
