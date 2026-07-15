@@ -62,10 +62,14 @@ namespace Ziptide.Tests.PlayMode
         public const string ArtifactDirectoryName = "recovery-snapshots";
         public const int DefaultWidth = 960;
         public const int DefaultHeight = 960;
+        public const int BatchModeRetainedGpuObjectLimit = 16;
 
-        private const int MaxBatchModeRetainedGpuObjects = 16;
+        // Linux batch-mode Unity hangs after a valid PNG when temporary GPU objects are destroyed.
+        // Retention is test-process-only, explicitly bounded, named in logs, and exposed to census.
         private static readonly List<UnityEngine.Object> BatchModeRetainedGpuObjects =
             new List<UnityEngine.Object>();
+
+        public static int BatchModeRetainedGpuObjectCount => BatchModeRetainedGpuObjects.Count;
 
         public static RecoveryRenderSnapshotPaths Capture(
             Camera camera,
@@ -187,18 +191,18 @@ namespace Ziptide.Tests.PlayMode
             RenderTexture renderTarget,
             string label)
         {
-            if (BatchModeRetainedGpuObjects.Count + 2 > MaxBatchModeRetainedGpuObjects)
+            if (BatchModeRetainedGpuObjects.Count + 2 > BatchModeRetainedGpuObjectLimit)
             {
                 throw new InvalidOperationException(
                     "Recovery snapshot batch-mode GPU retention exceeded the bounded limit of "
-                    + MaxBatchModeRetainedGpuObjects + " objects.");
+                    + BatchModeRetainedGpuObjectLimit + " objects.");
             }
 
             BatchModeRetainedGpuObjects.Add(texture);
             BatchModeRetainedGpuObjects.Add(renderTarget);
             Debug.Log("ZIPTIDE: RECOVERY_SNAPSHOT_GPU_RETAINED label=" + label
                 + " retained=" + BatchModeRetainedGpuObjects.Count
-                + " limit=" + MaxBatchModeRetainedGpuObjects);
+                + " limit=" + BatchModeRetainedGpuObjectLimit);
         }
 
         private static RecoveryRenderSnapshotMetrics BuildMetrics(
