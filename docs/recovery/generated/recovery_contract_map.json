@@ -11824,7 +11824,7 @@
           {
             "code": "SAVE_SYSTEM_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryAutomaticOwnerCatalog.cs",
-            "line": 50,
+            "line": 52,
             "symbol": "Ziptide.Core.RecoveryAutomaticOwnerRegistration",
             "snippet": "Required(\"SAVE_SYSTEM_BOOTSTRAP\", \"Ziptide/Assets/Ziptide/Gameplay/Runtime/Persistence/SaveSystem.cs\", \"Ziptide.Gameplay.SaveSystem\", RecoveryFeatureId.SaveSystem),"
           }
