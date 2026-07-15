@@ -1618,10 +1618,10 @@ None.
 
 - Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs:39` **NEW_GAME_OBJECT** — `Transform root = new GameObject(FeatureRootName).transform; root.SetParent(transform, false);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs:41` **NEW_GAME_OBJECT** — `Transform dock = new GameObject("FieldCameraDock").transform;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs:43` **CREATE_PRIMITIVE** — `GameObject pedestal = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs:53` **NEW_GAME_OBJECT** — `Transform wall = new GameObject("PhotoWallHost").transform;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs:54` **NEW_GAME_OBJECT** — `Transform root = new GameObject(FeatureRootName).transform; root.SetParent(transform, false);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs:56` **NEW_GAME_OBJECT** — `Transform dock = new GameObject("FieldCameraDock").transform;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs:58` **CREATE_PRIMITIVE** — `GameObject pedestal = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs:68` **NEW_GAME_OBJECT** — `Transform wall = new GameObject("PhotoWallHost").transform;`
 
 ### `Ziptide.Gameplay.QuartersPhotoWall` — 7 signal(s)
 

@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-15T10:50:04.057783+00:00",
+  "generatedAtUtc": "2026-07-15T10:50:30.125642+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -1640,7 +1640,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs",
-      "line": 51,
+      "line": 66,
       "symbol": "Ziptide.Gameplay.QuartersCameraFeature",
       "snippet": "else Debug.LogWarning(\"ZIPTIDE: FIELD_CAMERA_DOCK_EMPTY\");"
     },
@@ -1649,7 +1649,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs",
-      "line": 57,
+      "line": 72,
       "symbol": "Ziptide.Gameplay.QuartersCameraFeature",
       "snippet": "Debug.Log(\"ZIPTIDE: FIELD_CAMERA_QUARTERS_READY\");"
     },
@@ -10640,7 +10640,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs",
-      "line": 43,
+      "line": 58,
       "symbol": "Ziptide.Gameplay.QuartersCameraFeature",
       "snippet": "GameObject pedestal = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -13358,7 +13358,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs",
-      "line": 39,
+      "line": 54,
       "symbol": "Ziptide.Gameplay.QuartersCameraFeature",
       "snippet": "Transform root = new GameObject(FeatureRootName).transform; root.SetParent(transform, false);"
     },
@@ -13367,7 +13367,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs",
-      "line": 41,
+      "line": 56,
       "symbol": "Ziptide.Gameplay.QuartersCameraFeature",
       "snippet": "Transform dock = new GameObject(\"FieldCameraDock\").transform;"
     },
@@ -13376,7 +13376,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs",
-      "line": 53,
+      "line": 68,
       "symbol": "Ziptide.Gameplay.QuartersCameraFeature",
       "snippet": "Transform wall = new GameObject(\"PhotoWallHost\").transform;"
     },
