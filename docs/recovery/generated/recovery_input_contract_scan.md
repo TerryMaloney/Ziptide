@@ -1,6 +1,6 @@
 # ZIPTIDE Runtime Input Contract Scan
 
-- Scanned C# files: **610**
+- Scanned C# files: **611**
 - Runtime-created bindings: **19**
 - Legacy menu-chord references: **2**
 - Controls bound by more than one owner: **5**

@@ -1,18 +1,18 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-15T01:23:44.410867+00:00",
+  "generatedAtUtc": "2026-07-15T01:25:44.676348+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
     "Ziptide/Assets/Ziptide",
     "Ziptide/Assets/ZiptideNet"
   ],
-  "scannedFiles": 610,
-  "findingCount": 2045,
+  "scannedFiles": 611,
+  "findingCount": 2048,
   "categoryCounts": {
     "bootstrap": 26,
-    "diagnostics": 418,
+    "diagnostics": 421,
     "events": 64,
     "fallback_debt": 120,
     "global_render": 76,
@@ -57,7 +57,7 @@
     "XRI_MANAGER_LOOKUP": 36,
     "XR_INTERACTABLE_COMPONENT": 61,
     "XR_UI_INPUT_MODULE": 2,
-    "ZIPTIDE_LOG_TAG": 418
+    "ZIPTIDE_LOG_TAG": 421
   },
   "findings": [
     {
@@ -3875,6 +3875,33 @@
       "line": 142,
       "symbol": "Ziptide.Tests.EditMode.ZiplineSignalTests",
       "snippet": "int endLog = source.IndexOf(\"ZIPTIDE: ZIPLINE_RIDE_END reason=\", StringComparison.Ordinal);"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBuildProfileTests.cs",
+      "line": 61,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryBuildProfileTests",
+      "snippet": "StringAssert.Contains(\"ZIPTIDE: BUILD_PROFILE profile=GoldenSlice\", builder);"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBuildProfileTests.cs",
+      "line": 77,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryBuildProfileTests",
+      "snippet": "StringAssert.Contains(\"ZIPTIDE: BUILD_PROFILE profile=GoldenSlice\", smokeScript);"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBuildProfileTests.cs",
+      "line": 78,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryBuildProfileTests",
+      "snippet": "StringAssert.Contains(\"ZIPTIDE: RECOVERY_EXPOSURE buildProfile=GoldenSlice profile=GoldenSlice\", smokeScript);"
     },
     {
       "category": "diagnostics",
