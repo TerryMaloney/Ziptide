@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-15T14:20:49.102669+00:00",
+  "generatedAtUtc": "2026-07-15T14:36:37.329478+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -9,12 +9,12 @@
     "Ziptide/Assets/ZiptideNet"
   ],
   "scannedFiles": 614,
-  "findingCount": 2067,
+  "findingCount": 2068,
   "categoryCounts": {
     "bootstrap": 27,
-    "diagnostics": 426,
+    "diagnostics": 428,
     "events": 64,
-    "fallback_debt": 121,
+    "fallback_debt": 120,
     "global_render": 76,
     "input": 115,
     "materials": 225,
@@ -37,7 +37,7 @@
     "EDITOR_BOOTSTRAP": 6,
     "EVENT_DECLARATION": 48,
     "EVENT_SYSTEM_COMPONENT": 2,
-    "FALLBACK_MARKER": 121,
+    "FALLBACK_MARKER": 120,
     "FRAME_BUTTON_POLL": 1,
     "INPUT_ACTION_REFERENCE": 108,
     "INPUT_BUTTON_REFERENCE": 6,
@@ -57,7 +57,7 @@
     "XRI_MANAGER_LOOKUP": 38,
     "XR_INTERACTABLE_COMPONENT": 61,
     "XR_UI_INPUT_MODULE": 2,
-    "ZIPTIDE_LOG_TAG": 426
+    "ZIPTIDE_LOG_TAG": 428
   },
   "findings": [
     {
@@ -3988,6 +3988,24 @@
       "category": "diagnostics",
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/PracticalLight.cs",
+      "line": 137,
+      "symbol": "Ziptide.Visuals.PracticalLight",
+      "snippet": "Debug.LogError(\"ZIPTIDE: SHADER_MISSING name=\" + AdditiveShaderName +"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/Grounding/GroundShadow.cs",
+      "line": 47,
+      "symbol": "Ziptide.Visuals.GroundShadow",
+      "snippet": "Debug.LogError(\"ZIPTIDE: SHADER_MISSING name=\" + AlphaShaderName +"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs",
       "line": 60,
       "symbol": "Ziptide.Visuals.SkyAtmosphereRig",
@@ -5779,15 +5797,6 @@
       "category": "fallback_debt",
       "code": "FALLBACK_MARKER",
       "description": "Source text marks fallback/prototype debt",
-      "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/PracticalLight.cs",
-      "line": 101,
-      "symbol": "Ziptide.Visuals.PracticalLight",
-      "snippet": "// \u2500\u2500 quad + additive material plumbing \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500"
-    },
-    {
-      "category": "fallback_debt",
-      "code": "FALLBACK_MARKER",
-      "description": "Source text marks fallback/prototype debt",
       "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs",
       "line": 254,
       "symbol": "Ziptide.Visuals.SkyAtmosphereRig",
@@ -6122,7 +6131,7 @@
       "code": "CAMERA_MAIN_REFERENCE",
       "description": "Camera.main dependency",
       "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/PracticalLight.cs",
-      "line": 96,
+      "line": 91,
       "symbol": "Ziptide.Visuals.PracticalLight",
       "snippet": "var cam = Camera.main;"
     },
@@ -8228,18 +8237,18 @@
       "code": "RUNTIME_MATERIAL_CREATE",
       "description": "Runtime Material allocation",
       "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/PracticalLight.cs",
-      "line": 145,
+      "line": 166,
       "symbol": "Ziptide.Visuals.PracticalLight",
-      "snippet": "var mat = new Material(Shader.Find(\"Universal Render Pipeline/Unlit\"));"
+      "snippet": "var material = new Material(shader)"
     },
     {
       "category": "materials",
       "code": "RUNTIME_MATERIAL_CREATE",
       "description": "Runtime Material allocation",
       "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/Grounding/GroundShadow.cs",
-      "line": 48,
+      "line": 63,
       "symbol": "Ziptide.Visuals.GroundShadow",
-      "snippet": "_mat = new Material(lit) { name = \"GroundShadow\" };"
+      "snippet": "_material = new Material(shader)"
     },
     {
       "category": "materials",
@@ -9443,18 +9452,18 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/PracticalLight.cs",
-      "line": 145,
+      "line": 134,
       "symbol": "Ziptide.Visuals.PracticalLight",
-      "snippet": "var mat = new Material(Shader.Find(\"Universal Render Pipeline/Unlit\"));"
+      "snippet": "Shader shader = Shader.Find(AdditiveShaderName);"
     },
     {
       "category": "materials",
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/Grounding/GroundShadow.cs",
-      "line": 40,
+      "line": 44,
       "symbol": "Ziptide.Visuals.GroundShadow",
-      "snippet": "var lit = Shader.Find(\"Universal Render Pipeline/Lit\");"
+      "snippet": "Shader shader = Shader.Find(AlphaShaderName);"
     },
     {
       "category": "materials",
@@ -11711,7 +11720,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/PracticalLight.cs",
-      "line": 106,
+      "line": 108,
       "symbol": "Ziptide.Visuals.PracticalLight",
       "snippet": "var go = GameObject.CreatePrimitive(PrimitiveType.Quad);"
     },
@@ -14726,7 +14735,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/Grounding/GroundShadow.cs",
-      "line": 26,
+      "line": 27,
       "symbol": "Ziptide.Visuals.GroundShadow",
       "snippet": "var go = new GameObject(ChildName);"
     },

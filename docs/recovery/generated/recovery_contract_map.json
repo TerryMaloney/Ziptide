@@ -2,7 +2,7 @@
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
   "scannedFiles": 614,
-  "findingCount": 2067,
+  "findingCount": 2068,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -10246,23 +10246,23 @@
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/Grounding/GroundShadow.cs",
-            "line": 26,
+            "line": 27,
             "symbol": "Ziptide.Visuals.GroundShadow",
             "snippet": "var go = new GameObject(ChildName);"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/Grounding/GroundShadow.cs",
-            "line": 40,
+            "line": 44,
             "symbol": "Ziptide.Visuals.GroundShadow",
-            "snippet": "var lit = Shader.Find(\"Universal Render Pipeline/Lit\");"
+            "snippet": "Shader shader = Shader.Find(AlphaShaderName);"
           },
           {
             "code": "RUNTIME_MATERIAL_CREATE",
             "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/Grounding/GroundShadow.cs",
-            "line": 48,
+            "line": 63,
             "symbol": "Ziptide.Visuals.GroundShadow",
-            "snippet": "_mat = new Material(lit) { name = \"GroundShadow\" };"
+            "snippet": "_material = new Material(shader)"
           }
         ]
       },
@@ -10281,23 +10281,23 @@
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/PracticalLight.cs",
-            "line": 106,
+            "line": 108,
             "symbol": "Ziptide.Visuals.PracticalLight",
             "snippet": "var go = GameObject.CreatePrimitive(PrimitiveType.Quad);"
           },
           {
-            "code": "RUNTIME_MATERIAL_CREATE",
-            "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/PracticalLight.cs",
-            "line": 145,
-            "symbol": "Ziptide.Visuals.PracticalLight",
-            "snippet": "var mat = new Material(Shader.Find(\"Universal Render Pipeline/Unlit\"));"
-          },
-          {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/PracticalLight.cs",
-            "line": 145,
+            "line": 134,
             "symbol": "Ziptide.Visuals.PracticalLight",
-            "snippet": "var mat = new Material(Shader.Find(\"Universal Render Pipeline/Unlit\"));"
+            "snippet": "Shader shader = Shader.Find(AdditiveShaderName);"
+          },
+          {
+            "code": "RUNTIME_MATERIAL_CREATE",
+            "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/PracticalLight.cs",
+            "line": 166,
+            "symbol": "Ziptide.Visuals.PracticalLight",
+            "snippet": "var material = new Material(shader)"
           }
         ]
       },
@@ -15659,7 +15659,7 @@
           {
             "code": "CAMERA_MAIN_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/PracticalLight.cs",
-            "line": 96,
+            "line": 91,
             "symbol": "Ziptide.Visuals.PracticalLight",
             "snippet": "var cam = Camera.main;"
           }
@@ -17533,25 +17533,6 @@
             "line": 44,
             "symbol": "Ziptide.Visuals.ForgeVisualApplier",
             "snippet": "// The runtime flat-color mesh stays as the dev fallback when no bake shipped."
-          }
-        ]
-      },
-      {
-        "owner": "Ziptide.Visuals.PracticalLight",
-        "evidenceCount": 1,
-        "codes": [
-          "FALLBACK_MARKER"
-        ],
-        "paths": [
-          "Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/PracticalLight.cs"
-        ],
-        "evidence": [
-          {
-            "code": "FALLBACK_MARKER",
-            "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/PracticalLight.cs",
-            "line": 101,
-            "symbol": "Ziptide.Visuals.PracticalLight",
-            "snippet": "// \u2500\u2500 quad + additive material plumbing \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500"
           }
         ]
       },

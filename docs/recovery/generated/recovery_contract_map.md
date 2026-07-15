@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
 - Scanned files: **614**
-- Scanner findings: **2067**
+- Scanner findings: **2068**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -2187,17 +2187,17 @@ None.
 
 - Codes: `NEW_GAME_OBJECT`, `RUNTIME_MATERIAL_CREATE`, `SHADER_FIND`
 - Paths: `Ziptide/Assets/Ziptide/Visuals/Runtime/Grounding/GroundShadow.cs`
-  - `Ziptide/Assets/Ziptide/Visuals/Runtime/Grounding/GroundShadow.cs:26` **NEW_GAME_OBJECT** — `var go = new GameObject(ChildName);`
-  - `Ziptide/Assets/Ziptide/Visuals/Runtime/Grounding/GroundShadow.cs:40` **SHADER_FIND** — `var lit = Shader.Find("Universal Render Pipeline/Lit");`
-  - `Ziptide/Assets/Ziptide/Visuals/Runtime/Grounding/GroundShadow.cs:48` **RUNTIME_MATERIAL_CREATE** — `_mat = new Material(lit) { name = "GroundShadow" };`
+  - `Ziptide/Assets/Ziptide/Visuals/Runtime/Grounding/GroundShadow.cs:27` **NEW_GAME_OBJECT** — `var go = new GameObject(ChildName);`
+  - `Ziptide/Assets/Ziptide/Visuals/Runtime/Grounding/GroundShadow.cs:44` **SHADER_FIND** — `Shader shader = Shader.Find(AlphaShaderName);`
+  - `Ziptide/Assets/Ziptide/Visuals/Runtime/Grounding/GroundShadow.cs:63` **RUNTIME_MATERIAL_CREATE** — `_material = new Material(shader)`
 
 ### `Ziptide.Visuals.PracticalLight` — 3 signal(s)
 
 - Codes: `CREATE_PRIMITIVE`, `RUNTIME_MATERIAL_CREATE`, `SHADER_FIND`
 - Paths: `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/PracticalLight.cs`
-  - `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/PracticalLight.cs:106` **CREATE_PRIMITIVE** — `var go = GameObject.CreatePrimitive(PrimitiveType.Quad);`
-  - `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/PracticalLight.cs:145` **RUNTIME_MATERIAL_CREATE** — `var mat = new Material(Shader.Find("Universal Render Pipeline/Unlit"));`
-  - `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/PracticalLight.cs:145` **SHADER_FIND** — `var mat = new Material(Shader.Find("Universal Render Pipeline/Unlit"));`
+  - `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/PracticalLight.cs:108` **CREATE_PRIMITIVE** — `var go = GameObject.CreatePrimitive(PrimitiveType.Quad);`
+  - `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/PracticalLight.cs:134` **SHADER_FIND** — `Shader shader = Shader.Find(AdditiveShaderName);`
+  - `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/PracticalLight.cs:166` **RUNTIME_MATERIAL_CREATE** — `var material = new Material(shader)`
 
 ### `Ziptide.Visuals.SkyAtmosphereRig` — 4 signal(s)
 
@@ -3526,7 +3526,7 @@ None.
 
 - Codes: `CAMERA_MAIN_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/PracticalLight.cs`
-  - `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/PracticalLight.cs:96` **CAMERA_MAIN_REFERENCE** — `var cam = Camera.main;`
+  - `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/PracticalLight.cs:91` **CAMERA_MAIN_REFERENCE** — `var cam = Camera.main;`
 
 ### `Ziptide.Visuals.SkyAtmosphereRig` — 1 signal(s)
 
@@ -4043,12 +4043,6 @@ None.
 - Codes: `FALLBACK_MARKER`
 - Paths: `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs`
   - `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs:44` **FALLBACK_MARKER** — `// The runtime flat-color mesh stays as the dev fallback when no bake shipped.`
-
-### `Ziptide.Visuals.PracticalLight` — 1 signal(s)
-
-- Codes: `FALLBACK_MARKER`
-- Paths: `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/PracticalLight.cs`
-  - `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/PracticalLight.cs:101` **FALLBACK_MARKER** — `// ── quad + additive material plumbing ─────────────────────────────────`
 
 ### `Ziptide.Visuals.SkyAtmosphereRig` — 1 signal(s)
 
