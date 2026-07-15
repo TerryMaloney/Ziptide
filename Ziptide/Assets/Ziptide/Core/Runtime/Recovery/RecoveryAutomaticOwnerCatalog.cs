@@ -29,6 +29,8 @@ namespace Ziptide.Core
     /// <summary>
     /// Code-side mirror of docs/recovery/automatic_runtime_owners.json.
     /// The PlayMode contract test fails when the R0 evidence catalog and this gate catalog drift.
+    /// A separate source-discovery test scans real RuntimeInitializeOnLoadMethod attributes so
+    /// agreement between two curated lists cannot hide an omitted bootstrap.
     /// </summary>
     public static class RecoveryAutomaticOwnerCatalog
     {
@@ -52,7 +54,8 @@ namespace Ziptide.Core
             Required("PLAYER_RIG_PERSISTENCE", "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs", "Ziptide.Gameplay.PlayerRigPersistence", RecoveryFeatureId.PlayerRigPersistence),
             Required("AUDIO_DIRECTOR", "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs", "Ziptide.Gameplay.AudioDirector", RecoveryFeatureId.AudioDirector),
             Required("TRAVEL_COORDINATOR", "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs", "Ziptide.Gameplay.TravelCoordinator", RecoveryFeatureId.TravelCoordinator),
-            Gated("SINGLETON_VALIDATOR", "Ziptide/Assets/Ziptide/Gameplay/Runtime/Diagnostics/SingletonValidator.cs", "Ziptide.Gameplay.SingletonValidator", RecoveryFeatureId.SingletonValidator)
+            Gated("SINGLETON_VALIDATOR", "Ziptide/Assets/Ziptide/Gameplay/Runtime/Diagnostics/SingletonValidator.cs", "Ziptide.Gameplay.SingletonValidator", RecoveryFeatureId.SingletonValidator),
+            Gated("NET_BOOTSTRAP", "Ziptide/Assets/ZiptideNet/NetBootstrap.cs", "ZiptideNet.NetBootstrap", RecoveryFeatureId.NetBootstrap)
         };
 
         private static readonly IReadOnlyList<RecoveryAutomaticOwnerRegistration> ReadOnlyRegistrations =
