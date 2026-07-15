@@ -57,8 +57,19 @@ namespace Ziptide.Gameplay
             go.AddComponent<EcologyDirector>();
         }
 
+        private void Awake()
+        {
+            if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.EcologyInjector))
+                enabled = false;
+        }
+
         private void Start()
         {
+            if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.EcologyInjector))
+            {
+                enabled = false;
+                return;
+            }
             ApplyEcology();
             _instantResolve = false;
             InvokeRepeating(nameof(ApplyEcology), ReResolveSeconds, ReResolveSeconds);
@@ -66,6 +77,12 @@ namespace Ziptide.Gameplay
 
         private void ApplyEcology()
         {
+            if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.EcologyInjector))
+            {
+                CancelInvoke(nameof(ApplyEcology));
+                return;
+            }
+
             string world = gameObject.scene.name;
             int seed = world.GetHashCode();
             float hour01 = (float)System.DateTime.UtcNow.TimeOfDay.TotalHours / 24f;
