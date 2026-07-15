@@ -153,9 +153,13 @@ namespace Ziptide.Tests.PlayMode
                 camera.stereoTargetEye = previousStereo;
                 camera.aspect = previousAspect;
                 RenderTexture.active = previousActive;
-                renderTarget.Release();
-                UnityEngine.Object.DestroyImmediate(texture);
-                UnityEngine.Object.DestroyImmediate(renderTarget);
+
+                // Immediate GPU-object destruction hangs the Linux headless renderer after a valid
+                // PNG is written. PlayMode owns a normal frame lifecycle, so queue both temporary
+                // objects for deferred destruction after all render references have been restored.
+                UnityEngine.Object.Destroy(texture);
+                UnityEngine.Object.Destroy(renderTarget);
+                Debug.Log("ZIPTIDE: RECOVERY_SNAPSHOT_CLEANUP_QUEUED label=" + label);
             }
         }
 
