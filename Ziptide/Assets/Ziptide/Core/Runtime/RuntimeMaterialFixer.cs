@@ -14,6 +14,8 @@ namespace Ziptide.Core
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void OnLoad()
         {
+            if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.RuntimeMaterialFixer)) return;
+
             Shader urpLit = Shader.Find(URPShaderName);
             if (urpLit == null)
             {
