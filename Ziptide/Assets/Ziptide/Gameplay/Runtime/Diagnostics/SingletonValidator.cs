@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.XR.Interaction.Toolkit;
+using Ziptide.Core;
 
 namespace Ziptide.Gameplay
 {
@@ -14,6 +15,12 @@ namespace Ziptide.Gameplay
 
         private void Awake()
         {
+            if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.SingletonValidator))
+            {
+                Destroy(gameObject);
+                return;
+            }
+
             if (_instance != null && _instance != this)
             {
                 Destroy(gameObject);

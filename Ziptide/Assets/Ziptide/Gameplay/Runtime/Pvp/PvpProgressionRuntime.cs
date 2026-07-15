@@ -26,6 +26,7 @@ namespace Ziptide.Gameplay
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void EnsureExists()
         {
+            if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.PvpProgression)) return;
             if (_instance != null) return;
             var go = new GameObject("PvpProgression");
             _instance = go.AddComponent<PvpProgressionRuntime>();

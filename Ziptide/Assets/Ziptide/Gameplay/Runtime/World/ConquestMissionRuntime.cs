@@ -39,6 +39,7 @@ namespace Ziptide.Gameplay
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void Hook()
         {
+            if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.ConquestMissionInjector)) return;
             if (_hooked) return;
             _hooked = true;
             SceneManager.sceneLoaded += OnSceneLoaded;
@@ -46,6 +47,7 @@ namespace Ziptide.Gameplay
 
         private static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
+            if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.ConquestMissionInjector)) return;
             if (!ConquestSession.MissionActiveFor(scene.name)) return;
             if (FindObjectOfType<ConquestMissionRuntime>() != null) return;
             var go = new GameObject("__ConquestMission");

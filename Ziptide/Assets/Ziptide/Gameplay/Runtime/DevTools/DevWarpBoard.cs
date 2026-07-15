@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.XR.Interaction.Toolkit;
+using Ziptide.Core;
 
 namespace Ziptide.Gameplay.DevTools
 {
@@ -54,6 +55,7 @@ namespace Ziptide.Gameplay.DevTools
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void Bootstrap()
         {
+            if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.DevWarpBoard)) return;
             if (FindObjectOfType<DevWarpBoard>() != null) return;
             var go = new GameObject("__DevWarpBoard");
             DontDestroyOnLoad(go);

@@ -1,6 +1,7 @@
 using System;
 using System.Globalization;
 using UnityEngine;
+using Ziptide.Core;
 
 namespace Ziptide.Gameplay.Tutorial
 {
@@ -44,6 +45,7 @@ namespace Ziptide.Gameplay.Tutorial
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void EnsureExists()
         {
+            if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.FirstHourObservation)) return;
             if (Instance != null || FindObjectOfType<FirstHourObservationAdapter>() != null) return;
             var go = new GameObject("__FirstHourObservationAdapter");
             DontDestroyOnLoad(go);

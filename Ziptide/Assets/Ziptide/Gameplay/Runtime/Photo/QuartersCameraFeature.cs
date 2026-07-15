@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Ziptide.Core;
 
 namespace Ziptide.Gameplay
 {
@@ -11,17 +12,20 @@ namespace Ziptide.Gameplay
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         private static void InstallSceneHook()
         {
+            if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.QuartersCameraInjector)) return;
             SceneManager.sceneLoaded -= OnSceneLoaded;
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
 
         private static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
+            if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.QuartersCameraInjector)) return;
             foreach (QuartersRoom room in Object.FindObjectsOfType<QuartersRoom>()) EnsureOn(room);
         }
 
         public static QuartersCameraFeature EnsureOn(QuartersRoom room)
         {
+            if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.QuartersCameraInjector)) return null;
             if (room == null) return null;
             QuartersCameraFeature existing = room.GetComponent<QuartersCameraFeature>();
             return existing != null ? existing : room.gameObject.AddComponent<QuartersCameraFeature>();

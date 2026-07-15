@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Ziptide.Core;
 
 namespace Ziptide.Gameplay
 {
@@ -34,6 +35,7 @@ namespace Ziptide.Gameplay
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void EnsureExists()
         {
+            if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.AmbienceDirector)) return;
             if (_instance != null) return;
             var go = new GameObject("__AmbienceDirector");
             DontDestroyOnLoad(go);

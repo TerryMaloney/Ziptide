@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Ziptide.Content.Ecology;
+using Ziptide.Core;
 
 namespace Ziptide.Gameplay
 {
@@ -39,12 +40,14 @@ namespace Ziptide.Gameplay
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void Bootstrap()
         {
+            if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.EcologyInjector)) return;
             SceneManager.sceneLoaded += (scene, mode) => Ensure(scene);
             Ensure(SceneManager.GetActiveScene());
         }
 
         private static void Ensure(Scene scene)
         {
+            if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.EcologyInjector)) return;
             if (!scene.IsValid() || !scene.isLoaded) return;
             if (Object.FindObjectOfType<EcologyDirector>() != null) return;
             // Only worlds with baked fauna get a director — menus/boot/space stay untouched.

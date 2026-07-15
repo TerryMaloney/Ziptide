@@ -31,6 +31,7 @@ namespace Ziptide.Gameplay
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void EnsureExists()
         {
+            if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.ComfortVignette)) return;
             if (Object.FindObjectOfType<ComfortVignette>() != null) return;
             var rig = Object.FindObjectOfType<PlayerRigPersistence>();
             if (rig == null) return; // no rig (e.g. bare test scene) — nothing to comfort
