@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "status": "R1_1_PROMOTED",
+  "status": "R1_2_PROMOTED",
   "requirements": {
     "minimumSuccessfulRuns": 2,
     "requiresDistinctShas": true,
@@ -10,7 +10,7 @@
   },
   "observations": [
     {
-      "testedSha": "bc7098687b928c8dc3f3c5d37bf000f047503db4",
+      "testedSha": "bc7098687b928c8dc3f5d37bf000f047503db4",
       "workflowRunId": 29376158101,
       "attempt": 1,
       "outcome": "success",
@@ -65,6 +65,66 @@
         "id": 8328292871,
         "name": "recovery-playmode-r1-results",
         "sizeBytes": 28282,
+        "expired": false
+      }
+    },
+    {
+      "testedSha": "eaf6ec7920aeeda44b6456363bbc9096bd61a6e8",
+      "workflowRunId": 29377383745,
+      "attempt": 1,
+      "outcome": "failure",
+      "scope": "R1.2 initial fake tracked-rig fixture",
+      "unityVersion": "2022.3.62f3",
+      "changeClass": "fake_xr_initial",
+      "unrelatedDescendant": false,
+      "artifact": {
+        "id": 8328437283,
+        "name": "recovery-playmode-r1-results",
+        "sizeBytes": 30516,
+        "expired": false
+      }
+    },
+    {
+      "testedSha": "abe23adb11dbebd7f46af72b740d6df39e2b9dc3",
+      "workflowRunId": 29378493064,
+      "attempt": 1,
+      "outcome": "success",
+      "scope": "R1.2 transactional fake tracked-rig fixture",
+      "unityVersion": "2022.3.62f3",
+      "changeClass": "fake_xr_baseline",
+      "unrelatedDescendant": false,
+      "tests": {
+        "total": 3,
+        "passed": 3,
+        "failed": 0,
+        "skipped": 0
+      },
+      "artifact": {
+        "id": 8328816689,
+        "name": "recovery-playmode-r1-results",
+        "sizeBytes": 30816,
+        "expired": false
+      }
+    },
+    {
+      "testedSha": "e2d55ecb3e762ab6167b49713791aa1b44f93117",
+      "workflowRunId": 29378733205,
+      "attempt": 1,
+      "outcome": "success",
+      "scope": "R1.2 fake tracked-rig unrelated repeat",
+      "unityVersion": "2022.3.62f3",
+      "changeClass": "documentation_only_repeat_probe",
+      "unrelatedDescendant": true,
+      "tests": {
+        "total": 3,
+        "passed": 3,
+        "failed": 0,
+        "skipped": 0
+      },
+      "artifact": {
+        "id": 8328899835,
+        "name": "recovery-playmode-r1-results",
+        "sizeBytes": 30160,
         "expired": false
       }
     }
