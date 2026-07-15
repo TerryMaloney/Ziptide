@@ -33,7 +33,6 @@ namespace Ziptide.Build
 
         private static void PatchAndAudit()
         {
-            // Run before any scene mutation. The same gate protects local and cloud Quest builds.
             RunRequired("RuntimeShaderVariantGate.Validate", RuntimeShaderVariantGate.Validate);
 
             RunRequired("ScenePatcherBoot.PatchBootScene",
@@ -59,7 +58,10 @@ namespace Ziptide.Build
             RunRequired("CosmeticAuthor.EnsureAuthored",
                 Ziptide.Editor.Patching.CosmeticAuthor.EnsureAuthored);
             RunRequired("CameraAuthor.EnsureAuthored",
-                () => Ziptide.Editor.Patching.CameraAuthor.EnsureAuthored());
+                () =>
+                {
+                    Ziptide.Editor.Patching.CameraAuthor.EnsureAuthored();
+                });
             RunRequired("RillLineAuthor.EnsureAuthored",
                 Ziptide.Editor.Patching.RillLineAuthor.EnsureAuthored);
             RunRequired("FirstHourContractAuthor.EnsureAuthored",
@@ -78,9 +80,15 @@ namespace Ziptide.Build
                 Ziptide.Editor.Patching.WorldStubGenerator.EnsureGeneratedInBuildSettings);
 
             RunRequired("ScenePatcherCavern.EnsureUndercroftInBuildSettings",
-                () => Ziptide.Editor.Patching.ScenePatcherCavern.EnsureUndercroftInBuildSettings());
+                () =>
+                {
+                    Ziptide.Editor.Patching.ScenePatcherCavern.EnsureUndercroftInBuildSettings();
+                });
             RunRequired("CaveSpawnSafety.EnsureUndercroftSpawnFloor",
-                () => Ziptide.Editor.Patching.CaveSpawnSafety.EnsureUndercroftSpawnFloor());
+                () =>
+                {
+                    Ziptide.Editor.Patching.CaveSpawnSafety.EnsureUndercroftSpawnFloor();
+                });
 
             RunRequired("ArenaLayoutLibrary.EnsureAllAuthored",
                 Ziptide.Editor.Patching.ArenaLayoutLibrary.EnsureAllAuthored);
@@ -151,7 +159,10 @@ namespace Ziptide.Build
                     Ziptide.Editor.Patching.ForgeAuthor.AssignAll();
                 });
             RunRequired("SignRecipeLibrary.EnsureAllAuthored",
-                () => Ziptide.Editor.Patching.SignRecipeLibrary.EnsureAllAuthored());
+                () =>
+                {
+                    Ziptide.Editor.Patching.SignRecipeLibrary.EnsureAllAuthored();
+                });
             RunRequired("ForgeBodyLibrary.EnsureAllAuthored",
                 Ziptide.Editor.Patching.ForgeBodyLibrary.EnsureAllAuthored);
 
