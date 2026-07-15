@@ -1,0 +1,138 @@
+name: Recovery Proof Freshness Patch
+
+on:
+  push:
+    branches:
+      - terry-local-wip
+    paths:
+      - '.github/workflows/recovery-proof-freshness-patch.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: recovery-proof-freshness-patch
+  cancel-in-progress: false
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout live recovery branch
+        uses: actions/checkout@v4
+        with:
+          ref: terry-local-wip
+          fetch-depth: 0
+          lfs: false
+
+      - name: Apply exact source-aware freshness changes
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          def replace_once(path: str, old: str, new: str) -> None:
+              p = Path(path)
+              text = p.read_text(encoding="utf-8")
+              count = text.count(old)
+              if count != 1:
+                  raise RuntimeError(f"{path}: expected one exact match, found {count}")
+              p.write_text(text.replace(old, new), encoding="utf-8")
+
+          for workflow in (
+              ".github/workflows/recovery-playmode.yml",
+              ".github/workflows/recovery-golden-android.yml",
+          ):
+              replace_once(
+                  workflow,
+                  "docs/recovery/generated/*|docs/CI_VERDICT.md)",
+                  "docs/recovery/generated/*|docs/CI_VERDICT.md|docs/HANDOFF.md)",
+              )
+              replace_once(
+                  workflow,
+                  "Only generated evidence commits advanced the branch; recording the tested SHA is safe.",
+                  "Only generated evidence or docs/HANDOFF.md advanced the branch; recording the tested SHA is safe.",
+              )
+
+          replace_once(
+              ".github/workflows/ci.yml",
+              '''          if [[ "$current" == "$tested" ]]; then
+            echo "write=true" >> "$GITHUB_OUTPUT"
+          elif [[ "$(git diff --name-only "$tested" HEAD | tr -d '\\n')" == "docs/CI_VERDICT.md" ]]; then
+            # HEAD differs from the tested SHA only by verdict write(s): a RERUN of this SHA may
+            # refresh its own verdict. Without this branch, a flaked first attempt wrote RED and
+            # the successful rerun could never overwrite it (found 2026-07-14).
+            echo "write=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::Rerun refreshing the verdict for the same tested SHA."
+          else
+            echo "write=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::Branch advanced; the newer run owns the durable verdict."
+          fi
+''',
+              '''          if [[ "$current" == "$tested" ]]; then
+            echo "write=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          git cat-file -e "${tested}^{commit}"
+          changed="$(git diff --name-only "$tested" HEAD)"
+          echo "$changed"
+          while IFS= read -r path; do
+            [[ -z "$path" ]] && continue
+            case "$path" in
+              docs/recovery/generated/*|docs/CI_VERDICT.md|docs/HANDOFF.md)
+                ;;
+              *)
+                echo "write=false" >> "$GITHUB_OUTPUT"
+                echo "::notice::Branch advanced through proof-relevant path '$path'; newer source owns the verdict."
+                exit 0
+                ;;
+            esac
+          done <<< "$changed"
+
+          echo "write=true" >> "$GITHUB_OUTPUT"
+          echo "::notice::Only generated evidence, the verdict, or docs/HANDOFF.md advanced; recording the tested SHA is safe."
+''')
+
+          replace_once(
+              "tools/ci_verdict.py",
+              '''            "currentWhen": (
+                "The live branch head is testedSha, or is the direct generated verdict-only "
+                "child of testedSha."
+            ),
+''',
+              '''            "currentWhen": (
+                "The live branch head is testedSha, or differs only through generated recovery "
+                "evidence, the durable verdict file, or docs/HANDOFF.md."
+            ),
+''')
+
+          replace_once(
+              "tools/ci_verdict.py",
+              '''        "The recorder writes only when the tested SHA is the live branch head immediately "
+        "before the generated verdict commit. After a successful write, the live head is the "
+        "direct verdict-only child of `testedSha`. Any later normal commit makes this verdict "
+        "stale until that commit's CI run records its own verdict.",
+''',
+              '''        "The recorder writes only when the tested SHA is current at the source level. "
+        "Generated recovery evidence, `docs/CI_VERDICT.md`, and `docs/HANDOFF.md` may follow it "
+        "without invalidating the result; any other later path makes the verdict stale until "
+        "that source's CI run records its own result.",
+''')
+
+          Path(".github/workflows/recovery-proof-freshness-patch.yml").unlink()
+          PY
+
+          git diff --check
+
+      - name: Commit final proof candidate
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "ci(recovery): make proof freshness source-aware"
+          git push origin HEAD:terry-local-wip
