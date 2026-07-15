@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
 - Scanned files: **614**
-- Scanner findings: **2068**
+- Scanner findings: **2067**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -2199,14 +2199,13 @@ None.
   - `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/PracticalLight.cs:134` **SHADER_FIND** — `Shader shader = Shader.Find(AdditiveShaderName);`
   - `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/PracticalLight.cs:166` **RUNTIME_MATERIAL_CREATE** — `var material = new Material(shader)`
 
-### `Ziptide.Visuals.SkyAtmosphereRig` — 4 signal(s)
+### `Ziptide.Visuals.SkyAtmosphereRig` — 3 signal(s)
 
 - Codes: `NEW_GAME_OBJECT`, `RUNTIME_MATERIAL_CREATE`, `SHADER_FIND`
 - Paths: `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs`
-  - `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs:257` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
-  - `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs:270` **SHADER_FIND** — `Shader unlit = Shader.Find(URPUnlitShaderName);`
-  - `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs:271` **SHADER_FIND** — `if (unlit == null) unlit = Shader.Find("Unlit/Transparent");`
-  - `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs:272` **RUNTIME_MATERIAL_CREATE** — `var mat = new Material(unlit) { name = name, hideFlags = HideFlags.HideAndDontSave };`
+  - `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs:362` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
+  - `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs:380` **SHADER_FIND** — `Shader shader = Shader.Find(shaderName);`
+  - `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs:388` **RUNTIME_MATERIAL_CREATE** — `var material = new Material(shader)`
 
 ### `Ziptide.Visuals.SkyPlanetRig` — 7 signal(s)
 
@@ -3532,7 +3531,7 @@ None.
 
 - Codes: `CAMERA_MAIN_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs`
-  - `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs:165` **CAMERA_MAIN_REFERENCE** — `var cam = Camera.main;`
+  - `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs:221` **CAMERA_MAIN_REFERENCE** — `var camera = Camera.main;`
 
 ### `Ziptide.Visuals.SkyVistaDefinition` — 1 signal(s)
 
@@ -4043,12 +4042,6 @@ None.
 - Codes: `FALLBACK_MARKER`
 - Paths: `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs`
   - `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs:44` **FALLBACK_MARKER** — `// The runtime flat-color mesh stays as the dev fallback when no bake shipped.`
-
-### `Ziptide.Visuals.SkyAtmosphereRig` — 1 signal(s)
-
-- Codes: `FALLBACK_MARKER`
-- Paths: `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs`
-  - `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs:254` **FALLBACK_MARKER** — `// ── Plumbing ─────────────────────────────────────────────────────────`
 
 ### `Ziptide.Visuals.ZiptideWater` — 1 signal(s)
 

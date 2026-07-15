@@ -1,7 +1,7 @@
 # ZIPTIDE Recovery Contract Scan
 
 - Scanned files: **614**
-- Findings: **2068**
+- Findings: **2067**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
@@ -9,12 +9,12 @@
 | Category | Count |
 |---|---:|
 | `bootstrap` | 27 |
-| `diagnostics` | 428 |
+| `diagnostics` | 429 |
 | `events` | 64 |
-| `fallback_debt` | 120 |
+| `fallback_debt` | 119 |
 | `global_render` | 76 |
 | `input` | 115 |
-| `materials` | 225 |
+| `materials` | 224 |
 | `persistence` | 17 |
 | `runtime_creation` | 567 |
 | `runtime_ui` | 114 |
@@ -466,7 +466,8 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs:89` · `Ziptide.Visuals.ForgeVisualApplier` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FORGE_APPLIED id=" + recipeId + " item=" + item.name`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/PracticalLight.cs:137` · `Ziptide.Visuals.PracticalLight` — ZIPTIDE diagnostic tag. `Debug.LogError("ZIPTIDE: SHADER_MISSING name=" + AdditiveShaderName +`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Grounding/GroundShadow.cs:47` · `Ziptide.Visuals.GroundShadow` — ZIPTIDE diagnostic tag. `Debug.LogError("ZIPTIDE: SHADER_MISSING name=" + AlphaShaderName +`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs:60` · `Ziptide.Visuals.SkyAtmosphereRig` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: SKY_ATMO hazard=" + atmo.hazardTag + " motes=" + _spec.MoteCount +`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs:58` · `Ziptide.Visuals.SkyAtmosphereRig` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: SKY_ATMO hazard=" + atmosphere.hazardTag +`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs:383` · `Ziptide.Visuals.SkyAtmosphereRig` — ZIPTIDE diagnostic tag. `Debug.LogError("ZIPTIDE: SHADER_MISSING name=" + shaderName +`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyVistaRig.cs:107` · `Ziptide.Visuals.SkyVistaRig` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: GRADE vista=" + vista.vistaId`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyVistaRig.cs:332` · `Ziptide.Visuals.SkyVistaRig` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: LIGHT_SCRIPT vista=" + vista.vistaId`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Vfx/AmbientMoteVolume.cs:37` · `Ziptide.Visuals.AmbientMoteVolume` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: AMBIENT_MOTES_REJECTED id=" +`
@@ -669,7 +670,6 @@
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeSkinnedBuilder.cs:30` · `Ziptide.Visuals.ForgeSkinnedBuilder` — Source text marks fallback/prototype debt. `/// <summary>Build mesh + skeleton. Caller owns the returned skeletonRoot GameObject.</summary>`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeSkinnedBuilder.cs:41` · `Ziptide.Visuals.ForgeSkinnedBuilder` — Source text marks fallback/prototype debt. `// ── Skeleton ────────────────────────────────────────────────────`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs:44` · `Ziptide.Visuals.ForgeVisualApplier` — Source text marks fallback/prototype debt. `// The runtime flat-color mesh stays as the dev fallback when no bake shipped.`
-- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs:254` · `Ziptide.Visuals.SkyAtmosphereRig` — Source text marks fallback/prototype debt. `// ── Plumbing ─────────────────────────────────────────────────────────`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Water/ZiptideWater.cs:9` · `Ziptide.Visuals.ZiptideWater` — Source text marks fallback/prototype debt. `/// fallback), a scrolling normal offset (<see cref="WaterMotion"/>), a gentle low-res vertex`
 ### global_render
 
@@ -709,7 +709,7 @@
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldDirector.cs:47` · `Ziptide.Gameplay.WorldDirector` — Camera.main dependency. `Camera cam = Camera.main;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRigTests.cs:55` · `Ziptide.Tests.PlayMode.RecoveryTestRigTests` — Camera.main dependency. `Assert.AreEqual(_fixture.HeadCamera, Camera.main);`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/PracticalLight.cs:91` · `Ziptide.Visuals.PracticalLight` — Camera.main dependency. `var cam = Camera.main;`
-- **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs:165` · `Ziptide.Visuals.SkyAtmosphereRig` — Camera.main dependency. `var cam = Camera.main;`
+- **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs:221` · `Ziptide.Visuals.SkyAtmosphereRig` — Camera.main dependency. `var camera = Camera.main;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyVistaRig.cs:100` · `Ziptide.Visuals.SkyVistaRig` — Camera.main dependency. `var cam = Camera.main;`
 - **CAMERA_POST_PROCESSING** — `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyVistaRig.cs:104` · `Ziptide.Visuals.SkyVistaRig` — Camera post-processing mutation. `if (camData != null) camData.renderPostProcessing = true;`
 - **RENDER_SETTINGS_MUTATION** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:106` · `Ziptide.Editor.Patching.CityBuilder` — Global RenderSettings access. `RenderSettings.fog = kit.fogEnabled;`
@@ -950,7 +950,7 @@
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Grounding/GroundShadow.cs:63` · `Ziptide.Visuals.GroundShadow` — Runtime Material allocation. `_material = new Material(shader)`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyPlanetRig.cs:106` · `Ziptide.Visuals.SkyPlanetRig` — Runtime Material allocation. `_skyMaterial = new Material(unlit);`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyPlanetRig.cs:131` · `Ziptide.Visuals.SkyPlanetRig` — Runtime Material allocation. `_planetMaterial = new Material(unlit);`
-- **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs:272` · `Ziptide.Visuals.SkyAtmosphereRig` — Runtime Material allocation. `var mat = new Material(unlit) { name = name, hideFlags = HideFlags.HideAndDontSave };`
+- **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs:388` · `Ziptide.Visuals.SkyAtmosphereRig` — Runtime Material allocation. `var material = new Material(shader)`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyVistaRig.cs:160` · `Ziptide.Visuals.SkyVistaRig` — Runtime Material allocation. `_domeMaterial = new Material(unlit)`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyVistaRig.cs:236` · `Ziptide.Visuals.SkyVistaRig` — Runtime Material allocation. `inst.material = new Material(unlit)`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Vfx/VfxFactory.cs:347` · `Ziptide.Visuals.VfxFactory` — Runtime Material allocation. `_sharedMaterial = new Material(shader)`
@@ -1085,8 +1085,7 @@
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Grounding/GroundShadow.cs:44` · `Ziptide.Visuals.GroundShadow` — Runtime shader lookup. `Shader shader = Shader.Find(AlphaShaderName);`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyPlanetRig.cs:104` · `Ziptide.Visuals.SkyPlanetRig` — Runtime shader lookup. `Shader unlit = Shader.Find(URPUnlitShaderName);`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyPlanetRig.cs:129` · `Ziptide.Visuals.SkyPlanetRig` — Runtime shader lookup. `Shader unlit = Shader.Find(URPUnlitShaderName);`
-- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs:270` · `Ziptide.Visuals.SkyAtmosphereRig` — Runtime shader lookup. `Shader unlit = Shader.Find(URPUnlitShaderName);`
-- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs:271` · `Ziptide.Visuals.SkyAtmosphereRig` — Runtime shader lookup. `if (unlit == null) unlit = Shader.Find("Unlit/Transparent");`
+- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs:380` · `Ziptide.Visuals.SkyAtmosphereRig` — Runtime shader lookup. `Shader shader = Shader.Find(shaderName);`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyVistaRig.cs:158` · `Ziptide.Visuals.SkyVistaRig` — Runtime shader lookup. `Shader unlit = Shader.Find(URPUnlitShaderName);`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyVistaRig.cs:211` · `Ziptide.Visuals.SkyVistaRig` — Runtime shader lookup. `Shader unlit = Shader.Find(URPUnlitShaderName);`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Vfx/VfxFactory.cs:337` · `Ziptide.Visuals.VfxFactory` — Runtime shader lookup. `Shader shader = Shader.Find("Universal Render Pipeline/Particles/Unlit");`
@@ -1674,7 +1673,7 @@
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs:37` · `Ziptide.Visuals.ForgeVisualApplier` — Runtime GameObject construction. `GameObject vis = existing != null ? existing.gameObject : new GameObject(VisualChildName);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Grounding/GroundShadow.cs:27` · `Ziptide.Visuals.GroundShadow` — Runtime GameObject construction. `var go = new GameObject(ChildName);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyPlanetRig.cs:68` · `Ziptide.Visuals.SkyPlanetRig` — Runtime GameObject construction. `var go = new GameObject("SkyVistaRig");`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs:257` · `Ziptide.Visuals.SkyAtmosphereRig` — Runtime GameObject construction. `var go = new GameObject(name);`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs:362` · `Ziptide.Visuals.SkyAtmosphereRig` — Runtime GameObject construction. `var go = new GameObject(name);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyVistaRig.cs:72` · `Ziptide.Visuals.SkyVistaRig` — Runtime GameObject construction. `_gradeVolume = new GameObject("SkyGradeVolume");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyVistaRig.cs:127` · `Ziptide.Visuals.SkyVistaRig` — Runtime GameObject construction. `var go = new GameObject("SkyAtmosphere");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Vfx/VfxFactory.cs:68` · `Ziptide.Visuals.VfxFactory` — Runtime GameObject construction. `var root = new GameObject(FactoryObjectName)`

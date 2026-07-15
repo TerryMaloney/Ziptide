@@ -65,7 +65,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - `Ziptide.Tests.EditMode.PvpNetTests` subscribes `t.OnPose` → `m` at `Ziptide/Assets/Ziptide/Tests/EditMode/PvpNetTests.cs:90`
 - `Ziptide.Tests.EditMode.ZiplineSignalTests` subscribes `_rig.position` → `delta` at `Ziptide/Assets/Ziptide/Tests/EditMode/ZiplineSignalTests.cs:132`
 - `Ziptide.Tests.PlayMode.RecoveryTestRig` subscribes `Root.transform.position` → `delta` at `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:121`
-- `Ziptide.Visuals.SkyAtmosphereRig` subscribes `p.y` → `eyeY` at `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs:176`
+- `Ziptide.Visuals.SkyAtmosphereRig` subscribes `position.y` → `eyeY` at `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs:235`
 
 ## Targets
 
@@ -1014,7 +1014,6 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 ### `p.y`
 
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.ZiplineRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ZiplineRuntime.cs:83` · `Mathf` — `p.y -= Mathf.Max(0f, sagMeters) * 4f * t * (1f - t);`
-- **EVENT_SUBSCRIBE** · `Ziptide.Visuals.SkyAtmosphereRig` · `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs:176` · `eyeY` — `p.y += eyeY; // the shell rides at eye height, whatever the terrain does`
 
 ### `patrolRadius`
 
@@ -1065,6 +1064,10 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 ### `plot.yieldMultiplier`
 
 - **EVENT_SUBSCRIBE** · `Ziptide.Content.HarvestPlantResult` · `Ziptide/Assets/Ziptide/Content/Runtime/Economy/GardenService.cs:127` · `TendYieldBonusPerPower` — `plot.yieldMultiplier += TendYieldBonusPerPower * power;`
+
+### `position.y`
+
+- **EVENT_SUBSCRIBE** · `Ziptide.Visuals.SkyAtmosphereRig` · `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs:235` · `eyeY` — `position.y += eyeY;`
 
 ### `proxyCenter`
 

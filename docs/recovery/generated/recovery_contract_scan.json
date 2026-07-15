@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-15T14:36:37.329478+00:00",
+  "generatedAtUtc": "2026-07-15T14:38:23.347706+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -9,15 +9,15 @@
     "Ziptide/Assets/ZiptideNet"
   ],
   "scannedFiles": 614,
-  "findingCount": 2068,
+  "findingCount": 2067,
   "categoryCounts": {
     "bootstrap": 27,
-    "diagnostics": 428,
+    "diagnostics": 429,
     "events": 64,
-    "fallback_debt": 120,
+    "fallback_debt": 119,
     "global_render": 76,
     "input": 115,
-    "materials": 225,
+    "materials": 224,
     "persistence": 17,
     "runtime_creation": 567,
     "runtime_ui": 114,
@@ -37,7 +37,7 @@
     "EDITOR_BOOTSTRAP": 6,
     "EVENT_DECLARATION": 48,
     "EVENT_SYSTEM_COMPONENT": 2,
-    "FALLBACK_MARKER": 120,
+    "FALLBACK_MARKER": 119,
     "FRAME_BUTTON_POLL": 1,
     "INPUT_ACTION_REFERENCE": 108,
     "INPUT_BUTTON_REFERENCE": 6,
@@ -47,7 +47,7 @@
     "RUNTIME_BOOTSTRAP": 21,
     "RUNTIME_MATERIAL_CREATE": 88,
     "SAVE_SYSTEM_REFERENCE": 93,
-    "SHADER_FIND": 137,
+    "SHADER_FIND": 136,
     "STATIC_EVENT_DECLARATION": 16,
     "TEXTMESH_COMPONENT": 43,
     "TMP_COMPONENT": 3,
@@ -57,7 +57,7 @@
     "XRI_MANAGER_LOOKUP": 38,
     "XR_INTERACTABLE_COMPONENT": 61,
     "XR_UI_INPUT_MODULE": 2,
-    "ZIPTIDE_LOG_TAG": 428
+    "ZIPTIDE_LOG_TAG": 429
   },
   "findings": [
     {
@@ -4007,9 +4007,18 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs",
-      "line": 60,
+      "line": 58,
       "symbol": "Ziptide.Visuals.SkyAtmosphereRig",
-      "snippet": "Debug.Log(\"ZIPTIDE: SKY_ATMO hazard=\" + atmo.hazardTag + \" motes=\" + _spec.MoteCount +"
+      "snippet": "Debug.Log(\"ZIPTIDE: SKY_ATMO hazard=\" + atmosphere.hazardTag +"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs",
+      "line": 383,
+      "symbol": "Ziptide.Visuals.SkyAtmosphereRig",
+      "snippet": "Debug.LogError(\"ZIPTIDE: SHADER_MISSING name=\" + shaderName +"
     },
     {
       "category": "diagnostics",
@@ -5797,15 +5806,6 @@
       "category": "fallback_debt",
       "code": "FALLBACK_MARKER",
       "description": "Source text marks fallback/prototype debt",
-      "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs",
-      "line": 254,
-      "symbol": "Ziptide.Visuals.SkyAtmosphereRig",
-      "snippet": "// \u2500\u2500 Plumbing \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500"
-    },
-    {
-      "category": "fallback_debt",
-      "code": "FALLBACK_MARKER",
-      "description": "Source text marks fallback/prototype debt",
       "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/Water/ZiptideWater.cs",
       "line": 9,
       "symbol": "Ziptide.Visuals.ZiptideWater",
@@ -6140,9 +6140,9 @@
       "code": "CAMERA_MAIN_REFERENCE",
       "description": "Camera.main dependency",
       "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs",
-      "line": 165,
+      "line": 221,
       "symbol": "Ziptide.Visuals.SkyAtmosphereRig",
-      "snippet": "var cam = Camera.main;"
+      "snippet": "var camera = Camera.main;"
     },
     {
       "category": "global_render",
@@ -8273,9 +8273,9 @@
       "code": "RUNTIME_MATERIAL_CREATE",
       "description": "Runtime Material allocation",
       "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs",
-      "line": 272,
+      "line": 388,
       "symbol": "Ziptide.Visuals.SkyAtmosphereRig",
-      "snippet": "var mat = new Material(unlit) { name = name, hideFlags = HideFlags.HideAndDontSave };"
+      "snippet": "var material = new Material(shader)"
     },
     {
       "category": "materials",
@@ -9488,18 +9488,9 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs",
-      "line": 270,
+      "line": 380,
       "symbol": "Ziptide.Visuals.SkyAtmosphereRig",
-      "snippet": "Shader unlit = Shader.Find(URPUnlitShaderName);"
-    },
-    {
-      "category": "materials",
-      "code": "SHADER_FIND",
-      "description": "Runtime shader lookup",
-      "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs",
-      "line": 271,
-      "symbol": "Ziptide.Visuals.SkyAtmosphereRig",
-      "snippet": "if (unlit == null) unlit = Shader.Find(\"Unlit/Transparent\");"
+      "snippet": "Shader shader = Shader.Find(shaderName);"
     },
     {
       "category": "materials",
@@ -14753,7 +14744,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs",
-      "line": 257,
+      "line": 362,
       "symbol": "Ziptide.Visuals.SkyAtmosphereRig",
       "snippet": "var go = new GameObject(name);"
     },

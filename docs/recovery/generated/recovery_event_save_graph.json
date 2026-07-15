@@ -431,11 +431,11 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs",
-      "line": 176,
+      "line": 235,
       "owner": "Ziptide.Visuals.SkyAtmosphereRig",
-      "target": "p.y",
+      "target": "position.y",
       "detail": "eyeY",
-      "snippet": "p.y += eyeY; // the shell rides at eye height, whatever the terrain does"
+      "snippet": "position.y += eyeY;"
     }
   ],
   "targets": {
@@ -5751,15 +5751,6 @@
         "target": "p.y",
         "detail": "Mathf",
         "snippet": "p.y -= Mathf.Max(0f, sagMeters) * 4f * t * (1f - t);"
-      },
-      {
-        "kind": "EVENT_SUBSCRIBE",
-        "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs",
-        "line": 176,
-        "owner": "Ziptide.Visuals.SkyAtmosphereRig",
-        "target": "p.y",
-        "detail": "eyeY",
-        "snippet": "p.y += eyeY; // the shell rides at eye height, whatever the terrain does"
       }
     ],
     "patrolRadius": [
@@ -5960,6 +5951,17 @@
         "target": "plot.yieldMultiplier",
         "detail": "TendYieldBonusPerPower",
         "snippet": "plot.yieldMultiplier += TendYieldBonusPerPower * power;"
+      }
+    ],
+    "position.y": [
+      {
+        "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs",
+        "line": 235,
+        "owner": "Ziptide.Visuals.SkyAtmosphereRig",
+        "target": "position.y",
+        "detail": "eyeY",
+        "snippet": "position.y += eyeY;"
       }
     ],
     "proxyCenter": [
@@ -12197,11 +12199,11 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs",
-      "line": 176,
+      "line": 235,
       "owner": "Ziptide.Visuals.SkyAtmosphereRig",
-      "target": "p.y",
+      "target": "position.y",
       "detail": "eyeY",
-      "snippet": "p.y += eyeY; // the shell rides at eye height, whatever the terrain does"
+      "snippet": "position.y += eyeY;"
     },
     {
       "kind": "PROFILE_FIELD_ACCESS",

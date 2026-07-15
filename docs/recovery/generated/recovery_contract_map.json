@@ -2,7 +2,7 @@
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
   "scannedFiles": 614,
-  "findingCount": 2068,
+  "findingCount": 2067,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -10303,7 +10303,7 @@
       },
       {
         "owner": "Ziptide.Visuals.SkyAtmosphereRig",
-        "evidenceCount": 4,
+        "evidenceCount": 3,
         "codes": [
           "NEW_GAME_OBJECT",
           "RUNTIME_MATERIAL_CREATE",
@@ -10316,30 +10316,23 @@
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs",
-            "line": 257,
+            "line": 362,
             "symbol": "Ziptide.Visuals.SkyAtmosphereRig",
             "snippet": "var go = new GameObject(name);"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs",
-            "line": 270,
+            "line": 380,
             "symbol": "Ziptide.Visuals.SkyAtmosphereRig",
-            "snippet": "Shader unlit = Shader.Find(URPUnlitShaderName);"
-          },
-          {
-            "code": "SHADER_FIND",
-            "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs",
-            "line": 271,
-            "symbol": "Ziptide.Visuals.SkyAtmosphereRig",
-            "snippet": "if (unlit == null) unlit = Shader.Find(\"Unlit/Transparent\");"
+            "snippet": "Shader shader = Shader.Find(shaderName);"
           },
           {
             "code": "RUNTIME_MATERIAL_CREATE",
             "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs",
-            "line": 272,
+            "line": 388,
             "symbol": "Ziptide.Visuals.SkyAtmosphereRig",
-            "snippet": "var mat = new Material(unlit) { name = name, hideFlags = HideFlags.HideAndDontSave };"
+            "snippet": "var material = new Material(shader)"
           }
         ]
       },
@@ -15678,9 +15671,9 @@
           {
             "code": "CAMERA_MAIN_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs",
-            "line": 165,
+            "line": 221,
             "symbol": "Ziptide.Visuals.SkyAtmosphereRig",
-            "snippet": "var cam = Camera.main;"
+            "snippet": "var camera = Camera.main;"
           }
         ]
       },
@@ -17533,25 +17526,6 @@
             "line": 44,
             "symbol": "Ziptide.Visuals.ForgeVisualApplier",
             "snippet": "// The runtime flat-color mesh stays as the dev fallback when no bake shipped."
-          }
-        ]
-      },
-      {
-        "owner": "Ziptide.Visuals.SkyAtmosphereRig",
-        "evidenceCount": 1,
-        "codes": [
-          "FALLBACK_MARKER"
-        ],
-        "paths": [
-          "Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs"
-        ],
-        "evidence": [
-          {
-            "code": "FALLBACK_MARKER",
-            "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs",
-            "line": 254,
-            "symbol": "Ziptide.Visuals.SkyAtmosphereRig",
-            "snippet": "// \u2500\u2500 Plumbing \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500"
           }
         ]
       },
