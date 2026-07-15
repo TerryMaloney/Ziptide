@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
 - Scanned files: **637**
-- Scanner findings: **2212**
+- Scanner findings: **2213**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -1460,13 +1460,13 @@ None.
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:146` **NEW_GAME_OBJECT** — `var go = new GameObject("__HOME_HUB_COMFORT_SETTINGS");`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:166` **CREATE_PRIMITIVE** — `var board = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:195` **CREATE_PRIMITIVE** — `var tile = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:202` **XR_INTERACTABLE_COMPONENT** — `var interactable = tile.AddComponent<XRSimpleInteractable>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:346` **NEW_GAME_OBJECT** — `var go = new GameObject("Label_" + text.Replace(' ', '_').Replace('\n', '_'));`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:349` **TEXTMESH_COMPONENT** — `var tm = go.AddComponent<TextMesh>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:368` **SHADER_FIND** — `Shader shader = Shader.Find("Universal Render Pipeline/Lit");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:369` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:371` **RUNTIME_MATERIAL_CREATE** — `var material = new Material(shader);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:198` **CREATE_PRIMITIVE** — `var tile = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:205` **XR_INTERACTABLE_COMPONENT** — `var interactable = tile.AddComponent<XRSimpleInteractable>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:349` **NEW_GAME_OBJECT** — `var go = new GameObject("Label_" + text.Replace(' ', '_').Replace('\n', '_'));`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:352` **TEXTMESH_COMPONENT** — `var tm = go.AddComponent<TextMesh>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:371` **SHADER_FIND** — `Shader shader = Shader.Find("Universal Render Pipeline/Lit");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:372` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:374` **RUNTIME_MATERIAL_CREATE** — `var material = new Material(shader);`
 
 ### `Ziptide.Gameplay.HuskMolterBehavior` — 4 signal(s)
 
@@ -2256,12 +2256,12 @@ None.
 
 - Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`, `RUNTIME_MATERIAL_CREATE`, `SHADER_FIND`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs:30` **NEW_GAME_OBJECT** — `var cameraHost = new GameObject("__RECOVERY_SNAPSHOT_CAMERA");`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs:109` **CREATE_PRIMITIVE** — `GameObject go = GameObject.CreatePrimitive(type);`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs:117` **SHADER_FIND** — `Shader shader = Shader.Find("Universal Render Pipeline/Unlit");`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs:118` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Unlit/Color");`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs:119` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs:121` **RUNTIME_MATERIAL_CREATE** — `var material = new Material(shader) { name = name + "_Material" };`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs:33` **NEW_GAME_OBJECT** — `var cameraHost = new GameObject("__RECOVERY_SNAPSHOT_CAMERA");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs:112` **CREATE_PRIMITIVE** — `GameObject go = GameObject.CreatePrimitive(type);`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs:120` **SHADER_FIND** — `Shader shader = Shader.Find("Universal Render Pipeline/Unlit");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs:121` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Unlit/Color");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs:122` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs:124` **RUNTIME_MATERIAL_CREATE** — `var material = new Material(shader) { name = name + "_Material" };`
 
 ### `Ziptide.Tests.PlayMode.RecoveryRuntimeArtifactGuardTests` — 3 signal(s)
 
@@ -2534,10 +2534,10 @@ None.
 
 - Codes: `XRI_MANAGER_ASSIGN`, `XRI_MANAGER_LOOKUP`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:204` **XRI_MANAGER_LOOKUP** — `if (manager == null) manager = FindObjectOfType<XRInteractionManager>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:210` **XRI_MANAGER_ASSIGN** — `interactable.interactionManager = manager;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:248` **XRI_MANAGER_LOOKUP** — `XRInteractionManager manager = FindObjectOfType<XRInteractionManager>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:252` **XRI_MANAGER_ASSIGN** — `interactable.interactionManager = manager;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:207` **XRI_MANAGER_LOOKUP** — `if (manager == null) manager = FindObjectOfType<XRInteractionManager>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:213` **XRI_MANAGER_ASSIGN** — `interactable.interactionManager = manager;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:251` **XRI_MANAGER_LOOKUP** — `XRInteractionManager manager = FindObjectOfType<XRInteractionManager>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:255` **XRI_MANAGER_ASSIGN** — `interactable.interactionManager = manager;`
 
 ### `Ziptide.Gameplay.MiningRigRuntime` — 2 signal(s)
 
@@ -2643,7 +2643,7 @@ None.
 
 - Codes: `XRI_MANAGER_ASSIGN`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:208` **XRI_MANAGER_ASSIGN** — `ray.interactionManager = canonicalManager;`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:243` **XRI_MANAGER_ASSIGN** — `ray.interactionManager = canonicalManager;`
 
 ### `Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests` — 1 signal(s)
 
@@ -3661,7 +3661,7 @@ None.
 - Codes: `CAMERA_MAIN_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:155` **CAMERA_MAIN_REFERENCE** — `Transform cam = Camera.main != null ? Camera.main.transform : null;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:278` **CAMERA_MAIN_REFERENCE** — `Camera cam = Camera.main;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:281` **CAMERA_MAIN_REFERENCE** — `Camera cam = Camera.main;`
 
 ### `Ziptide.Gameplay.JobDirector` — 1 signal(s)
 
@@ -4240,9 +4240,9 @@ None.
 
 - Codes: `FALLBACK_MARKER`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:282` **FALLBACK_MARKER** — `XRRayInteractor fallback = null;`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:291` **FALLBACK_MARKER** — `if (fallback == null) fallback = ray;`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:295` **FALLBACK_MARKER** — `return fallback;`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:317` **FALLBACK_MARKER** — `XRRayInteractor fallback = null;`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:326` **FALLBACK_MARKER** — `if (fallback == null) fallback = ray;`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:330` **FALLBACK_MARKER** — `return fallback;`
 
 ### `Ziptide.Tests.PlayMode.RecoveryExposureProfileTests` — 1 signal(s)
 

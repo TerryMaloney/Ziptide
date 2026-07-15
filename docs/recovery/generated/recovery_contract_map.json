@@ -2,7 +2,7 @@
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
   "scannedFiles": 637,
-  "findingCount": 2212,
+  "findingCount": 2213,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -6827,49 +6827,49 @@
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 195,
+            "line": 198,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "var tile = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "XR_INTERACTABLE_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 202,
+            "line": 205,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "var interactable = tile.AddComponent<XRSimpleInteractable>();"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 346,
+            "line": 349,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "var go = new GameObject(\"Label_\" + text.Replace(' ', '_').Replace('\\n', '_'));"
           },
           {
             "code": "TEXTMESH_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 349,
+            "line": 352,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "var tm = go.AddComponent<TextMesh>();"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 368,
+            "line": 371,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "Shader shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 369,
+            "line": 372,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
           },
           {
             "code": "RUNTIME_MATERIAL_CREATE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 371,
+            "line": 374,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "var material = new Material(shader);"
           }
@@ -10564,42 +10564,42 @@
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs",
-            "line": 30,
+            "line": 33,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryRenderSnapshotTests",
             "snippet": "var cameraHost = new GameObject(\"__RECOVERY_SNAPSHOT_CAMERA\");"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs",
-            "line": 109,
+            "line": 112,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryRenderSnapshotTests",
             "snippet": "GameObject go = GameObject.CreatePrimitive(type);"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs",
-            "line": 117,
+            "line": 120,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryRenderSnapshotTests",
             "snippet": "Shader shader = Shader.Find(\"Universal Render Pipeline/Unlit\");"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs",
-            "line": 118,
+            "line": 121,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryRenderSnapshotTests",
             "snippet": "if (shader == null) shader = Shader.Find(\"Unlit/Color\");"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs",
-            "line": 119,
+            "line": 122,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryRenderSnapshotTests",
             "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
           },
           {
             "code": "RUNTIME_MATERIAL_CREATE",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs",
-            "line": 121,
+            "line": 124,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryRenderSnapshotTests",
             "snippet": "var material = new Material(shader) { name = name + \"_Material\" };"
           }
@@ -11771,28 +11771,28 @@
           {
             "code": "XRI_MANAGER_LOOKUP",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 204,
+            "line": 207,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "if (manager == null) manager = FindObjectOfType<XRInteractionManager>();"
           },
           {
             "code": "XRI_MANAGER_ASSIGN",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 210,
+            "line": 213,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "interactable.interactionManager = manager;"
           },
           {
             "code": "XRI_MANAGER_LOOKUP",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 248,
+            "line": 251,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "XRInteractionManager manager = FindObjectOfType<XRInteractionManager>();"
           },
           {
             "code": "XRI_MANAGER_ASSIGN",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 252,
+            "line": 255,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "interactable.interactionManager = manager;"
           }
@@ -12200,7 +12200,7 @@
           {
             "code": "XRI_MANAGER_ASSIGN",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
-            "line": 208,
+            "line": 243,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
             "snippet": "ray.interactionManager = canonicalManager;"
           }
@@ -16385,7 +16385,7 @@
           {
             "code": "CAMERA_MAIN_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 278,
+            "line": 281,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "Camera cam = Camera.main;"
           }
@@ -18444,21 +18444,21 @@
           {
             "code": "FALLBACK_MARKER",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
-            "line": 282,
+            "line": 317,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
             "snippet": "XRRayInteractor fallback = null;"
           },
           {
             "code": "FALLBACK_MARKER",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
-            "line": 291,
+            "line": 326,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
             "snippet": "if (fallback == null) fallback = ray;"
           },
           {
             "code": "FALLBACK_MARKER",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
-            "line": 295,
+            "line": 330,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
             "snippet": "return fallback;"
           }
