@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.UI;
+using Ziptide.Core;
 
 namespace Ziptide.Gameplay.DevTools
 {
@@ -16,10 +17,8 @@ namespace Ziptide.Gameplay.DevTools
     /// authoritative dev warp interface and owns the summon gesture, F2, and the ADB gate.
     ///
     /// This class keeps NO self-bootstrap and NO summon path. It is retained only as a manual
-    /// diagnostic: add the component to a GameObject yourself and call <see cref="Show"/> — useful
-    /// if the TMP-canvas rendering path itself ever needs testing on-device. Do not re-add a
-    /// RuntimeInitializeOnLoadMethod here: the DevTools singleton source-scan test forbids a second
-    /// self-bootstrapping dev interface.
+    /// diagnostic, and even manual/scene-authored use requires the explicit DevWarpBoard diagnostic
+    /// exposure. Do not re-add a RuntimeInitializeOnLoadMethod here.
     /// </summary>
     public class DevMenu : MonoBehaviour
     {
@@ -29,13 +28,23 @@ namespace Ziptide.Gameplay.DevTools
         private bool _visible;
         private int _page;
 
+        private static bool ExposureAllowed =>
+            RecoveryRuntimeGate.Allows(RecoveryFeatureId.DevWarpBoard);
+
+        private void Awake()
+        {
+            if (!ExposureAllowed) enabled = false;
+        }
+
         public void Toggle()
         {
+            if (!ExposureAllowed) { Hide(); return; }
             if (_visible) Hide(); else Show();
         }
 
         public void Show()
         {
+            if (!ExposureAllowed) { Hide(); return; }
             // Rebuild fresh each time so the canvas re-registers with the CURRENT scene's EventSystem
             // after a warp (fixes "clickable only once" — the post-travel UI raycast went stale).
             if (_canvasGo != null) Destroy(_canvasGo);
@@ -114,7 +123,7 @@ namespace Ziptide.Gameplay.DevTools
             const float width = 700f;
             const float rowH = 90f;
             const float headerH = 90f;
-            float height = headerH + Mathf.Max(1, onPage) * rowH + rowH * 2f + 40f; // + pager + close rows
+            float height = headerH + Mathf.Max(1, onPage) * rowH + rowH * 2f + 40f;
 
             _canvasGo = new GameObject("DevMenuCanvas");
             _canvasGo.transform.SetParent(transform, false);
@@ -148,7 +157,6 @@ namespace Ziptide.Gameplay.DevTools
                 }
             }
 
-            // Pager row — a page flip rebuilds the canvas in place (Show also re-asserts UI session).
             AddButton(canvasRt, "< PREV", y, rowH - 14f, new Color(0.1f, 0.14f, 0.24f),
                 () => { _page = (_page - 1 + pages) % pages; Show(); }, 0f, 0.48f);
             AddButton(canvasRt, "NEXT >", y, rowH - 14f, new Color(0.1f, 0.14f, 0.24f),
@@ -206,8 +214,6 @@ namespace Ziptide.Gameplay.DevTools
             t.alignment = TextAlignmentOptions.Center;
         }
 
-        // Anchors a rect to the top at a downward offset yTop with height h; xMin/xMax split rows
-        // into side-by-side buttons (pager).
         private static void TopRow(RectTransform rt, float yTop, float h, float xMin = 0f, float xMax = 1f)
         {
             rt.anchorMin = new Vector2(xMin, 1f);
