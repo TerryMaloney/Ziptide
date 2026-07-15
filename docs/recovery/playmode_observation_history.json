@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "status": "R1_2_PROMOTED",
+  "status": "R1_3_AUTOMATIC_OWNER_GATES_PROMOTED",
   "requirements": {
     "minimumSuccessfulRuns": 2,
     "requiresDistinctShas": true,
@@ -125,6 +125,160 @@
         "id": 8328899835,
         "name": "recovery-playmode-r1-results",
         "sizeBytes": 30160,
+        "expired": false
+      }
+    },
+    {
+      "testedSha": "c13d2a285862efdf0e3b91a8ea03c847f968e8cc",
+      "workflowRunId": 29379167186,
+      "attempt": 1,
+      "outcome": "success",
+      "scope": "R1.3 exposure-contract foundation",
+      "unityVersion": "2022.3.62f3",
+      "changeClass": "exposure_contract_baseline",
+      "unrelatedDescendant": false,
+      "tests": {
+        "total": 8,
+        "passed": 8,
+        "failed": 0,
+        "skipped": 0
+      },
+      "artifact": {
+        "id": 8329060881,
+        "name": "recovery-playmode-r1-results",
+        "sizeBytes": 34139,
+        "expired": false
+      }
+    },
+    {
+      "testedSha": "6c06c58fd8d1fc7b3a9cb09d21395d0fb49eec8e",
+      "workflowRunId": 29379395209,
+      "attempt": 1,
+      "outcome": "success",
+      "scope": "R1.3 exposure-contract unrelated repeat",
+      "unityVersion": "2022.3.62f3",
+      "changeClass": "documentation_only_repeat_probe",
+      "unrelatedDescendant": true,
+      "tests": {
+        "total": 8,
+        "passed": 8,
+        "failed": 0,
+        "skipped": 0
+      },
+      "artifact": {
+        "id": 8329150535,
+        "name": "recovery-playmode-r1-results",
+        "sizeBytes": 32209,
+        "expired": false
+      }
+    },
+    {
+      "testedSha": "84ce2dee5b6d01d9dd30939569209d12f8b94579",
+      "workflowRunId": 29379926938,
+      "attempt": 1,
+      "outcome": "failure",
+      "scope": "R1.3 Core bootstrap gate initial policy assertion",
+      "unityVersion": "2022.3.62f3",
+      "changeClass": "core_gate_initial",
+      "unrelatedDescendant": false,
+      "tests": {
+        "total": 10,
+        "passed": 9,
+        "failed": 1,
+        "skipped": 0
+      },
+      "artifact": {
+        "id": 8329354783,
+        "name": "recovery-playmode-r1-results",
+        "sizeBytes": 35555,
+        "expired": false
+      }
+    },
+    {
+      "testedSha": "162659761dcbf92ac05eebdb7d48ce8bb0e8cdb4",
+      "workflowRunId": 29380197213,
+      "attempt": 1,
+      "outcome": "success",
+      "scope": "R1.3 Core automatic-owner gates",
+      "unityVersion": "2022.3.62f3",
+      "changeClass": "core_gate_baseline",
+      "unrelatedDescendant": false,
+      "tests": {
+        "total": 10,
+        "passed": 10,
+        "failed": 0,
+        "skipped": 0
+      },
+      "artifact": {
+        "id": 8329454741,
+        "name": "recovery-playmode-r1-results",
+        "sizeBytes": 35135,
+        "expired": false
+      }
+    },
+    {
+      "testedSha": "93095ba458e7d9bf71405279e80a46d0fec0c302",
+      "workflowRunId": 29380439257,
+      "attempt": 1,
+      "outcome": "success",
+      "scope": "R1.3 Core automatic-owner gates unrelated repeat",
+      "unityVersion": "2022.3.62f3",
+      "changeClass": "documentation_only_repeat_probe",
+      "unrelatedDescendant": true,
+      "tests": {
+        "total": 10,
+        "passed": 10,
+        "failed": 0,
+        "skipped": 0
+      },
+      "artifact": {
+        "id": 8329543140,
+        "name": "recovery-playmode-r1-results",
+        "sizeBytes": 33005,
+        "expired": false
+      }
+    },
+    {
+      "testedSha": "d64187ae0453f12f0e72086d90172b8ba3589584",
+      "workflowRunId": 29380853811,
+      "attempt": 1,
+      "outcome": "success",
+      "scope": "R1.3 Gameplay automatic-owner gates",
+      "unityVersion": "2022.3.62f3",
+      "changeClass": "gameplay_gate_baseline",
+      "unrelatedDescendant": false,
+      "tests": {
+        "total": 12,
+        "passed": 12,
+        "failed": 0,
+        "skipped": 0
+      },
+      "artifact": {
+        "id": 8329691551,
+        "name": "recovery-playmode-r1-results",
+        "sizeBytes": 36036,
+        "expired": false
+      }
+    },
+    {
+      "testedSha": "348609907c176206934fb31b740d7196a7fa105e",
+      "workflowRunId": 29381100997,
+      "attempt": 1,
+      "outcome": "success",
+      "scope": "R1.3 Gameplay automatic-owner gates unrelated repeat",
+      "unityVersion": "2022.3.62f3",
+      "changeClass": "documentation_only_repeat_probe",
+      "unrelatedDescendant": true,
+      "tests": {
+        "total": 12,
+        "passed": 12,
+        "failed": 0,
+        "skipped": 0
+      },
+      "artifact": {
+        "id": 8329774069,
+        "name": "recovery-playmode-r1-results",
+        "sizeBytes": 33971,
         "expired": false
       }
     }
