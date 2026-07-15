@@ -1,7 +1,7 @@
 # ZIPTIDE Recovery Contract Scan
 
-- Scanned files: **630**
-- Findings: **2188**
+- Scanned files: **632**
+- Findings: **2195**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
@@ -9,14 +9,14 @@
 | Category | Count |
 |---|---:|
 | `bootstrap` | 29 |
-| `diagnostics` | 466 |
+| `diagnostics` | 467 |
 | `events` | 64 |
 | `fallback_debt` | 119 |
 | `global_render` | 78 |
 | `input` | 160 |
-| `materials` | 222 |
+| `materials` | 226 |
 | `persistence` | 17 |
-| `runtime_creation` | 576 |
+| `runtime_creation` | 578 |
 | `runtime_ui` | 117 |
 | `save_state` | 251 |
 | `scene_loading` | 7 |
@@ -491,6 +491,7 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBuildProfileTests.cs:92` · `Ziptide.Tests.PlayMode.RecoveryBuildProfileTests` — ZIPTIDE diagnostic tag. `StringAssert.Contains("ZIPTIDE: RECOVERY_EXPOSURE buildProfile=GoldenSlice profile=GoldenSlice", smokeScript);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:110` · `Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests` — ZIPTIDE diagnostic tag. `new Regex("ZIPTIDE: HOME_HUB_TILE_BOUND tile=Tile_MANAGER_REPLACE mode=rebound"));`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPersistentDiagnosticRingTests.cs:18` · `Ziptide.Tests.PlayMode.RecoveryPersistentDiagnosticRingTests` — ZIPTIDE diagnostic tag. `string token = "ZIPTIDE: DIAG_RING_TEST frame=" + Time.frameCount;`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshot.cs:141` · `Ziptide.Tests.PlayMode.RecoveryRenderSnapshotMetrics` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RECOVERY_SNAPSHOT label=" + label`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeArtifactGuard.cs:116` · `Ziptide.Tests.PlayMode.RecoveryRuntimeArtifactFinding` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RECOVERY_STALE_ARTIFACT_REMOVED path="`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:160` · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` — ZIPTIDE diagnostic tag. `Assert.AreEqual(2, CountLogs("ZIPTIDE: TRAVEL_START dest=" + ZiptideConstants.SceneW000));`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:161` · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` — ZIPTIDE diagnostic tag. `Assert.AreEqual(2, CountLogs("ZIPTIDE: TRAVEL_OK dest=" + ZiptideConstants.SceneW000));`
@@ -1029,6 +1030,7 @@
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Tests/EditMode/ReactivePropTests.cs:188` · `Ziptide.Tests.EditMode.ReactivePropTests` — Runtime Material allocation. `StringAssert.DoesNotContain("new Material(", source);`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Tests/EditMode/ResourceDisciplineTests.cs:38` · `Ziptide.Tests.EditMode.ResourceDisciplineTests` — Runtime Material allocation. `private static readonly string[] CreatorMarkers = { "new Material(", "new Texture2D(", "AudioClip.Create(" };`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Tests/EditMode/ShellSignPlacementTests.cs:205` · `Ziptide.Tests.EditMode.ShellSignPlacementTests` — Runtime Material allocation. `var material = new Material(shader) { name = name };`
+- **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs:121` · `Ziptide.Tests.PlayMode.RecoveryRenderSnapshotTests` — Runtime Material allocation. `var material = new Material(shader) { name = name + "_Material" };`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeCreatureVisualApplier.cs:86` · `Ziptide.Visuals.ForgeCreatureVisualApplier` — Runtime Material allocation. `var mat = new Material(baseMat) { name = baseMat.name + "_Eye" };`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeMaterials.cs:22` · `Ziptide.Visuals.ForgeMaterials` — Runtime Material allocation. `var mat = new Material(shader) { name = "ForgeMat_" + ColorUtility.ToHtmlStringRGB(color) };`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/PracticalLight.cs:166` · `Ziptide.Visuals.PracticalLight` — Runtime Material allocation. `var material = new Material(shader)`
@@ -1164,6 +1166,9 @@
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Tests/EditMode/ShellSignPlacementTests.cs:201` · `Ziptide.Tests.EditMode.ShellSignPlacementTests` — Runtime shader lookup. `Shader shader = Shader.Find("Universal Render Pipeline/Unlit");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Tests/EditMode/ShellSignPlacementTests.cs:202` · `Ziptide.Tests.EditMode.ShellSignPlacementTests` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Unlit/Color");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Tests/EditMode/ShellSignPlacementTests.cs:203` · `Ziptide.Tests.EditMode.ShellSignPlacementTests` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Sprites/Default");`
+- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs:117` · `Ziptide.Tests.PlayMode.RecoveryRenderSnapshotTests` — Runtime shader lookup. `Shader shader = Shader.Find("Universal Render Pipeline/Unlit");`
+- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs:118` · `Ziptide.Tests.PlayMode.RecoveryRenderSnapshotTests` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Unlit/Color");`
+- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs:119` · `Ziptide.Tests.PlayMode.RecoveryRenderSnapshotTests` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Standard");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeMaterials.cs:20` · `Ziptide.Visuals.ForgeMaterials` — Runtime shader lookup. `var shader = Shader.Find(URPLitShaderName);`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/PracticalLight.cs:134` · `Ziptide.Visuals.PracticalLight` — Runtime shader lookup. `Shader shader = Shader.Find(AdditiveShaderName);`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Grounding/GroundShadow.cs:44` · `Ziptide.Visuals.GroundShadow` — Runtime shader lookup. `Shader shader = Shader.Find(AlphaShaderName);`
@@ -1418,6 +1423,7 @@
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs:51` · `Ziptide.Tests.EditMode.HeadsetBuildBlockerRegressionTests` — Runtime primitive construction. `StringAssert.Contains("GameObject.CreatePrimitive(PrimitiveType.Cube)", safety);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/EditMode/ReactivePropTests.cs:119` · `Ziptide.Tests.EditMode.ReactivePropTests` — Runtime primitive construction. `var host = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryCoreBootstrapGateTests.cs:88` · `Ziptide.Tests.PlayMode.RecoveryCoreBootstrapGateTests` — Runtime primitive construction. `var rendererHost = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs:109` · `Ziptide.Tests.PlayMode.RecoveryRenderSnapshotTests` — Runtime primitive construction. `GameObject go = GameObject.CreatePrimitive(type);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs:57` · `Ziptide.Tests.PlayMode.RecoveryRuntimeCensusTests` — Runtime primitive construction. `GameObject primitive = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:92` · `Ziptide.Tests.PlayMode.RecoveryTestRig` — Runtime primitive construction. `Floor = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRigTests.cs:78` · `Ziptide.Tests.PlayMode.RecoveryTestRigTests` — Runtime primitive construction. `var target = GameObject.CreatePrimitive(PrimitiveType.Cube);`
@@ -1748,6 +1754,7 @@
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:94` · `Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests` — Runtime GameObject construction. `var earlyHost = new GameObject("__RECOVERY_EARLY_XRI_MANAGER");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:112` · `Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests` — Runtime GameObject construction. `var replacementHost = new GameObject("__RECOVERY_REPLACEMENT_XRI_MANAGER");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:98` · `Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests` — Runtime GameObject construction. `var host = new GameObject(name);`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs:30` · `Ziptide.Tests.PlayMode.RecoveryRenderSnapshotTests` — Runtime GameObject construction. `var cameraHost = new GameObject("__RECOVERY_SNAPSHOT_CAMERA");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeArtifactGuardTests.cs:33` · `Ziptide.Tests.PlayMode.RecoveryRuntimeArtifactGuardTests` — Runtime GameObject construction. `var debug = new GameObject("Ziptide_DebugHUD");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeArtifactGuardTests.cs:35` · `Ziptide.Tests.PlayMode.RecoveryRuntimeArtifactGuardTests` — Runtime GameObject construction. `var photon = new GameObject("PhotonMono");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs:127` · `Ziptide.Tests.PlayMode.RecoveryRuntimeCensusTests` — Runtime GameObject construction. `var go = new GameObject(name);`

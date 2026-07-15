@@ -1,25 +1,25 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-15T19:31:45.555876+00:00",
+  "generatedAtUtc": "2026-07-15T19:44:13.618392+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
     "Ziptide/Assets/Ziptide",
     "Ziptide/Assets/ZiptideNet"
   ],
-  "scannedFiles": 630,
-  "findingCount": 2188,
+  "scannedFiles": 632,
+  "findingCount": 2195,
   "categoryCounts": {
     "bootstrap": 29,
-    "diagnostics": 466,
+    "diagnostics": 467,
     "events": 64,
     "fallback_debt": 119,
     "global_render": 78,
     "input": 160,
-    "materials": 222,
+    "materials": 226,
     "persistence": 17,
-    "runtime_creation": 576,
+    "runtime_creation": 578,
     "runtime_ui": 117,
     "save_state": 251,
     "scene_loading": 7,
@@ -30,7 +30,7 @@
     "CAMERA_MAIN_REFERENCE": 40,
     "CAMERA_POST_PROCESSING": 1,
     "CANVAS_COMPONENT": 5,
-    "CREATE_PRIMITIVE": 229,
+    "CREATE_PRIMITIVE": 230,
     "DIRECT_SCENE_LOAD": 2,
     "DIRECT_SCENE_LOAD_ASYNC": 5,
     "DONT_DESTROY_ON_LOAD": 17,
@@ -41,13 +41,13 @@
     "FRAME_BUTTON_POLL": 1,
     "INPUT_ACTION_REFERENCE": 153,
     "INPUT_BUTTON_REFERENCE": 6,
-    "NEW_GAME_OBJECT": 347,
+    "NEW_GAME_OBJECT": 348,
     "PLAYER_PROFILE_REFERENCE": 138,
     "RENDER_SETTINGS_MUTATION": 36,
     "RUNTIME_BOOTSTRAP": 23,
-    "RUNTIME_MATERIAL_CREATE": 87,
+    "RUNTIME_MATERIAL_CREATE": 88,
     "SAVE_SYSTEM_REFERENCE": 105,
-    "SHADER_FIND": 135,
+    "SHADER_FIND": 138,
     "STATIC_EVENT_DECLARATION": 16,
     "TEXTMESH_COMPONENT": 44,
     "TMP_COMPONENT": 3,
@@ -57,7 +57,7 @@
     "XRI_MANAGER_LOOKUP": 40,
     "XR_INTERACTABLE_COMPONENT": 61,
     "XR_UI_INPUT_MODULE": 2,
-    "ZIPTIDE_LOG_TAG": 466
+    "ZIPTIDE_LOG_TAG": 467
   },
   "findings": [
     {
@@ -4226,6 +4226,15 @@
       "line": 18,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryPersistentDiagnosticRingTests",
       "snippet": "string token = \"ZIPTIDE: DIAG_RING_TEST frame=\" + Time.frameCount;"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshot.cs",
+      "line": 141,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryRenderSnapshotMetrics",
+      "snippet": "Debug.Log(\"ZIPTIDE: RECOVERY_SNAPSHOT label=\" + label"
     },
     {
       "category": "diagnostics",
@@ -8983,6 +8992,15 @@
       "category": "materials",
       "code": "RUNTIME_MATERIAL_CREATE",
       "description": "Runtime Material allocation",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs",
+      "line": 121,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryRenderSnapshotTests",
+      "snippet": "var material = new Material(shader) { name = name + \"_Material\" };"
+    },
+    {
+      "category": "materials",
+      "code": "RUNTIME_MATERIAL_CREATE",
+      "description": "Runtime Material allocation",
       "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeCreatureVisualApplier.cs",
       "line": 86,
       "symbol": "Ziptide.Visuals.ForgeCreatureVisualApplier",
@@ -10193,6 +10211,33 @@
       "line": 203,
       "symbol": "Ziptide.Tests.EditMode.ShellSignPlacementTests",
       "snippet": "if (shader == null) shader = Shader.Find(\"Sprites/Default\");"
+    },
+    {
+      "category": "materials",
+      "code": "SHADER_FIND",
+      "description": "Runtime shader lookup",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs",
+      "line": 117,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryRenderSnapshotTests",
+      "snippet": "Shader shader = Shader.Find(\"Universal Render Pipeline/Unlit\");"
+    },
+    {
+      "category": "materials",
+      "code": "SHADER_FIND",
+      "description": "Runtime shader lookup",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs",
+      "line": 118,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryRenderSnapshotTests",
+      "snippet": "if (shader == null) shader = Shader.Find(\"Unlit/Color\");"
+    },
+    {
+      "category": "materials",
+      "code": "SHADER_FIND",
+      "description": "Runtime shader lookup",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs",
+      "line": 119,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryRenderSnapshotTests",
+      "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
     },
     {
       "category": "materials",
@@ -12443,6 +12488,15 @@
       "line": 88,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryCoreBootstrapGateTests",
       "snippet": "var rendererHost = GameObject.CreatePrimitive(PrimitiveType.Cube);"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "CREATE_PRIMITIVE",
+      "description": "Runtime primitive construction",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs",
+      "line": 109,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryRenderSnapshotTests",
+      "snippet": "GameObject go = GameObject.CreatePrimitive(type);"
     },
     {
       "category": "runtime_creation",
@@ -15413,6 +15467,15 @@
       "line": 98,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests",
       "snippet": "var host = new GameObject(name);"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs",
+      "line": 30,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryRenderSnapshotTests",
+      "snippet": "var cameraHost = new GameObject(\"__RECOVERY_SNAPSHOT_CAMERA\");"
     },
     {
       "category": "runtime_creation",
