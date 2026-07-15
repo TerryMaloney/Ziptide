@@ -1,0 +1,102 @@
+name: Recovery Gameplay Gate Migration
+
+on:
+  push:
+    branches:
+      - terry-local-wip
+    paths:
+      - '.github/workflows/recovery-gameplay-gate-migration.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: terry-local-wip
+          fetch-depth: 0
+
+      - name: Apply exact Gameplay bootstrap gates
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          edits = {
+              'Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs': [
+                  ('using UnityEngine.SceneManagement;\n', 'using UnityEngine.SceneManagement;\nusing Ziptide.Core;\n'),
+                  ('        private static void EnsureExists()\n        {\n            if (_instance != null) return;',
+                   '        private static void EnsureExists()\n        {\n            if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.AmbienceDirector)) return;\n            if (_instance != null) return;'),
+              ],
+              'Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/ComfortVignette.cs': [
+                  ('        private static void EnsureExists()\n        {\n            if (Object.FindObjectOfType<ComfortVignette>() != null) return;',
+                   '        private static void EnsureExists()\n        {\n            if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.ComfortVignette)) return;\n            if (Object.FindObjectOfType<ComfortVignette>() != null) return;'),
+              ],
+              'Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs': [
+                  ('        private static void Hook()\n        {\n            if (_hooked) return;',
+                   '        private static void Hook()\n        {\n            if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.ConquestMissionInjector)) return;\n            if (_hooked) return;'),
+                  ('        private static void OnSceneLoaded(Scene scene, LoadSceneMode mode)\n        {\n            if (!ConquestSession.MissionActiveFor(scene.name)) return;',
+                   '        private static void OnSceneLoaded(Scene scene, LoadSceneMode mode)\n        {\n            if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.ConquestMissionInjector)) return;\n            if (!ConquestSession.MissionActiveFor(scene.name)) return;'),
+              ],
+              'Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs': [
+                  ('using UnityEngine.XR.Interaction.Toolkit;\n', 'using UnityEngine.XR.Interaction.Toolkit;\nusing Ziptide.Core;\n'),
+                  ('        private static void Bootstrap()\n        {\n            if (FindObjectOfType<DevWarpBoard>() != null) return;',
+                   '        private static void Bootstrap()\n        {\n            if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.DevWarpBoard)) return;\n            if (FindObjectOfType<DevWarpBoard>() != null) return;'),
+              ],
+              'Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs': [
+                  ('using Ziptide.Content.Ecology;\n', 'using Ziptide.Content.Ecology;\nusing Ziptide.Core;\n'),
+                  ('        private static void Bootstrap()\n        {\n            SceneManager.sceneLoaded += (scene, mode) => Ensure(scene);',
+                   '        private static void Bootstrap()\n        {\n            if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.EcologyInjector)) return;\n            SceneManager.sceneLoaded += (scene, mode) => Ensure(scene);'),
+                  ('        private static void Ensure(Scene scene)\n        {\n            if (!scene.IsValid() || !scene.isLoaded) return;',
+                   '        private static void Ensure(Scene scene)\n        {\n            if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.EcologyInjector)) return;\n            if (!scene.IsValid() || !scene.isLoaded) return;'),
+              ],
+              'Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs': [
+                  ('        private static void EnsureExists()\n        {\n            if (_instance != null) return;',
+                   '        private static void EnsureExists()\n        {\n            if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.PvpProgression)) return;\n            if (_instance != null) return;'),
+              ],
+              'Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs': [
+                  ('using UnityEngine.SceneManagement;\n', 'using UnityEngine.SceneManagement;\nusing Ziptide.Core;\n'),
+                  ('        private static void InstallSceneHook()\n        {\n            SceneManager.sceneLoaded -= OnSceneLoaded;',
+                   '        private static void InstallSceneHook()\n        {\n            if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.QuartersCameraInjector)) return;\n            SceneManager.sceneLoaded -= OnSceneLoaded;'),
+                  ('        private static void OnSceneLoaded(Scene scene, LoadSceneMode mode)\n        {\n            foreach (QuartersRoom room in Object.FindObjectsOfType<QuartersRoom>()) EnsureOn(room);',
+                   '        private static void OnSceneLoaded(Scene scene, LoadSceneMode mode)\n        {\n            if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.QuartersCameraInjector)) return;\n            foreach (QuartersRoom room in Object.FindObjectsOfType<QuartersRoom>()) EnsureOn(room);'),
+                  ('        public static QuartersCameraFeature EnsureOn(QuartersRoom room)\n        {\n            if (room == null) return null;',
+                   '        public static QuartersCameraFeature EnsureOn(QuartersRoom room)\n        {\n            if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.QuartersCameraInjector)) return null;\n            if (room == null) return null;'),
+              ],
+              'Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs': [
+                  ('using UnityEngine;\n', 'using UnityEngine;\nusing Ziptide.Core;\n'),
+                  ('        private static void EnsureExists()\n        {\n            if (Instance != null || FindObjectOfType<FirstHourObservationAdapter>() != null) return;',
+                   '        private static void EnsureExists()\n        {\n            if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.FirstHourObservation)) return;\n            if (Instance != null || FindObjectOfType<FirstHourObservationAdapter>() != null) return;'),
+              ],
+              'Ziptide/Assets/Ziptide/Gameplay/Runtime/Diagnostics/SingletonValidator.cs': [
+                  ('using UnityEngine.XR.Interaction.Toolkit;\n', 'using UnityEngine.XR.Interaction.Toolkit;\nusing Ziptide.Core;\n'),
+                  ('        private void Awake()\n        {\n            if (_instance != null && _instance != this)',
+                   '        private void Awake()\n        {\n            if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.SingletonValidator))\n            {\n                Destroy(gameObject);\n                return;\n            }\n\n            if (_instance != null && _instance != this)'),
+              ],
+          }
+
+          for raw_path, replacements in edits.items():
+              path = Path(raw_path)
+              text = path.read_text(encoding='utf-8')
+              for old, new in replacements:
+                  count = text.count(old)
+                  if count != 1:
+                      raise SystemExit(f'{raw_path}: expected one exact match, found {count}: {old!r}')
+                  text = text.replace(old, new)
+              path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Commit Gameplay gates
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Ziptide/Assets/Ziptide/Gameplay/Runtime
+          git commit -m "feat(recovery): gate Gameplay automatic owners"
+          git push origin HEAD:terry-local-wip
