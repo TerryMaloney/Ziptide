@@ -57,8 +57,12 @@ namespace Ziptide.Tests.PlayMode
                 "The camera-space audit did not catch backward TextMesh orientation.");
             Assert.IsTrue(HasCode(report, "TEXT_SCREEN_OVERLAP"),
                 "The camera-space audit did not catch overlapping visible labels.");
-            Assert.IsTrue(HasText(report, "TMP PROBE"),
+
+            RecoveryUiSpatialRecord tmpRecord = FindText(report, "TMP PROBE");
+            Assert.IsNotNull(tmpRecord,
                 "The audit did not recognize a concrete TextMeshPro component through TMP_Text inheritance.");
+            Assert.Greater(tmpRecord.facingDot, 0.9f,
+                "A default world-space TextMeshPro surface must read from local -Z toward the camera.");
         }
 
         private void AddText(
@@ -117,11 +121,13 @@ namespace Ziptide.Tests.PlayMode
             return false;
         }
 
-        private static bool HasText(RecoveryUiSpatialReport report, string text)
+        private static RecoveryUiSpatialRecord FindText(
+            RecoveryUiSpatialReport report,
+            string text)
         {
             for (int i = 0; i < report.records.Count; i++)
-                if (report.records[i].text == text) return true;
-            return false;
+                if (report.records[i].text == text) return report.records[i];
+            return null;
         }
     }
 }
