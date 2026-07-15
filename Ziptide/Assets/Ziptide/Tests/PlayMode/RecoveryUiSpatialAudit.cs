@@ -93,11 +93,13 @@ namespace Ziptide.Tests.PlayMode
             for (int i = 0; i < textMeshes.Length; i++)
             {
                 TextMesh text = textMeshes[i];
-                if (text == null || !text.gameObject.activeInHierarchy || !text.enabled) continue;
+                if (text == null || !text.gameObject.activeInHierarchy) continue;
+                Renderer textRenderer = text.GetComponent<Renderer>();
+                if (textRenderer == null || !textRenderer.enabled) continue;
                 report.records.Add(BuildRecord(
                     camera,
                     text.transform,
-                    text.GetComponent<Renderer>(),
+                    textRenderer,
                     "UnityEngine.TextMesh",
                     text.text,
                     true));
