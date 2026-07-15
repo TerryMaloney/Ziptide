@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
 - Scanned files: **638**
-- Scanner findings: **2233**
+- Scanner findings: **2235**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -2283,12 +2283,12 @@ None.
 
 - Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`, `RUNTIME_MATERIAL_CREATE`, `SHADER_FIND`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs:33` **NEW_GAME_OBJECT** — `var cameraHost = new GameObject("__RECOVERY_SNAPSHOT_CAMERA");`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs:112` **CREATE_PRIMITIVE** — `GameObject go = GameObject.CreatePrimitive(type);`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs:120` **SHADER_FIND** — `Shader shader = Shader.Find("Universal Render Pipeline/Unlit");`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs:121` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Unlit/Color");`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs:122` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs:124` **RUNTIME_MATERIAL_CREATE** — `var material = new Material(shader) { name = name + "_Material" };`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs:63` **NEW_GAME_OBJECT** — `var cameraHost = new GameObject("__RECOVERY_SNAPSHOT_CAMERA");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs:148` **CREATE_PRIMITIVE** — `GameObject go = GameObject.CreatePrimitive(type);`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs:156` **SHADER_FIND** — `Shader shader = Shader.Find("Universal Render Pipeline/Unlit");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs:157` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Unlit/Color");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs:158` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs:160` **RUNTIME_MATERIAL_CREATE** — `var material = new Material(shader) { name = name + "_Material" };`
 
 ### `Ziptide.Tests.PlayMode.RecoveryRuntimeArtifactGuardTests` — 3 signal(s)
 

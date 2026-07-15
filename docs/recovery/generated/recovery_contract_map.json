@@ -2,7 +2,7 @@
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
   "scannedFiles": 638,
-  "findingCount": 2233,
+  "findingCount": 2235,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -10684,42 +10684,42 @@
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs",
-            "line": 33,
+            "line": 63,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryRenderSnapshotTests",
             "snippet": "var cameraHost = new GameObject(\"__RECOVERY_SNAPSHOT_CAMERA\");"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs",
-            "line": 112,
+            "line": 148,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryRenderSnapshotTests",
             "snippet": "GameObject go = GameObject.CreatePrimitive(type);"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs",
-            "line": 120,
+            "line": 156,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryRenderSnapshotTests",
             "snippet": "Shader shader = Shader.Find(\"Universal Render Pipeline/Unlit\");"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs",
-            "line": 121,
+            "line": 157,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryRenderSnapshotTests",
             "snippet": "if (shader == null) shader = Shader.Find(\"Unlit/Color\");"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs",
-            "line": 122,
+            "line": 158,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryRenderSnapshotTests",
             "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
           },
           {
             "code": "RUNTIME_MATERIAL_CREATE",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs",
-            "line": 124,
+            "line": 160,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryRenderSnapshotTests",
             "snippet": "var material = new Material(shader) { name = name + \"_Material\" };"
           }
