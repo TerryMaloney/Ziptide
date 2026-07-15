@@ -8,17 +8,25 @@ using Ziptide.Gameplay;
 namespace Ziptide.Tests.PlayMode
 {
     /// <summary>
-    /// Test-only tracked-controller stand-in for actual-scene PlayMode tests. The real Quest rig is
-    /// loaded unchanged, including its actual controller ray. A headless CI runner has no tracked
-    /// controller devices, so XRInputModalityManager correctly deactivates every controller/hand
-    /// group. This helper temporarily disables modality switching and activates only the existing
-    /// right direct ray hierarchy so the real XRI components can be exercised deterministically.
-    /// It does not create an alternate ray, action map, manager, camera, or production bootstrap.
+    /// Test-only tracked-rig stand-in for actual-scene PlayMode tests. The real Quest rig is loaded
+    /// unchanged, including its actual head camera and left/right direct controller rays. A headless
+    /// CI runner has no tracked XR devices, so XRInputModalityManager correctly deactivates all
+    /// controller groups and the camera remains at an untracked origin. This helper temporarily:
+    /// - disables modality switching and camera pose drivers only inside the test,
+    /// - places the real tracked-head camera at an adult standing pose,
+    /// - activates both existing non-teleport controller-ray hierarchies,
+    /// - binds those rays to the already-proven canonical XRInteractionManager.
+    ///
+    /// It creates no alternate rig, ray, camera, action map, interaction manager, UI or production
+    /// bootstrap, and restores every touched state in Dispose.
     /// </summary>
     public sealed class RecoveryActualRigControllerSimulation : IDisposable
     {
+        public const float DefaultTrackedHeadHeight = 1.65f;
+
         private readonly List<GameObjectState> _gameObjectStates = new List<GameObjectState>();
         private readonly List<BehaviourState> _behaviourStates = new List<BehaviourState>();
+        private readonly List<TransformState> _transformStates = new List<TransformState>();
         private bool _disposed;
 
         private readonly struct GameObjectState
@@ -45,39 +53,76 @@ namespace Ziptide.Tests.PlayMode
             }
         }
 
+        private readonly struct TransformState
+        {
+            public readonly Transform Transform;
+            public readonly Vector3 LocalPosition;
+            public readonly Quaternion LocalRotation;
+            public readonly Vector3 LocalScale;
+
+            public TransformState(Transform value)
+            {
+                Transform = value;
+                LocalPosition = value != null ? value.localPosition : Vector3.zero;
+                LocalRotation = value != null ? value.localRotation : Quaternion.identity;
+                LocalScale = value != null ? value.localScale : Vector3.one;
+            }
+        }
+
+        public Camera HeadCamera { get; }
+        public XRRayInteractor LeftRay { get; }
         public XRRayInteractor RightRay { get; }
+        public string LeftRayPath => RecoveryRuntimeCensus.HierarchyPath(LeftRay.transform);
         public string RightRayPath => RecoveryRuntimeCensus.HierarchyPath(RightRay.transform);
 
-        private RecoveryActualRigControllerSimulation(XRRayInteractor rightRay)
+        private RecoveryActualRigControllerSimulation(
+            Camera headCamera,
+            XRRayInteractor leftRay,
+            XRRayInteractor rightRay)
         {
+            HeadCamera = headCamera;
+            LeftRay = leftRay;
             RightRay = rightRay;
         }
 
         public static RecoveryActualRigControllerSimulation Activate(
             PlayerRigPersistence rig,
-            XRInteractionManager canonicalManager)
+            XRInteractionManager canonicalManager,
+            float trackedHeadHeight = DefaultTrackedHeadHeight)
         {
             if (rig == null) throw new ArgumentNullException(nameof(rig));
             if (canonicalManager == null) throw new ArgumentNullException(nameof(canonicalManager));
+            if (trackedHeadHeight < 0.5f || trackedHeadHeight > 2.5f)
+                throw new ArgumentOutOfRangeException(nameof(trackedHeadHeight));
+
+            Camera headCamera = rig.GetComponentInChildren<Camera>(true);
+            if (headCamera == null)
+                throw new InvalidOperationException("The actual persistent rig contains no head camera.");
 
             XRRayInteractor[] rays = rig.GetComponentsInChildren<XRRayInteractor>(true);
-            XRRayInteractor rightRay = SelectRightDirectRay(rays);
-            if (rightRay == null)
+            XRRayInteractor leftRay = SelectDirectRay(rays, "Left");
+            XRRayInteractor rightRay = SelectDirectRay(rays, "Right");
+            if (leftRay == null || rightRay == null || leftRay == rightRay)
             {
                 throw new InvalidOperationException(
-                    "The actual persistent rig contains no right non-teleport XRRayInteractor. " +
+                    "The actual persistent rig does not contain distinct left/right direct rays. " +
                     DescribeRays(rays));
             }
 
-            var simulation = new RecoveryActualRigControllerSimulation(rightRay);
+            var simulation = new RecoveryActualRigControllerSimulation(
+                headCamera,
+                leftRay,
+                rightRay);
             simulation.DisableModalityManagers(rig);
-            simulation.ActivateHierarchy(rig.transform, rightRay.transform);
-            simulation.EnableControllerBehaviours(rightRay.transform, rig.transform);
-            simulation.TrackBehaviour(rightRay);
-            rightRay.enabled = true;
-            rightRay.interactionManager = canonicalManager;
+            simulation.SetTrackedHeadPose(rig, trackedHeadHeight);
+            simulation.ActivateControllerRay(rig, leftRay, canonicalManager);
+            simulation.ActivateControllerRay(rig, rightRay, canonicalManager);
 
-            Debug.Log("ZIPTIDE: RECOVERY_TRACKED_CONTROLLER_SIM ray=" + simulation.RightRayPath
+            Debug.Log("ZIPTIDE: RECOVERY_TRACKED_RIG_SIM head="
+                + RecoveryRuntimeCensus.HierarchyPath(headCamera.transform)
+                + " headHeight=" + trackedHeadHeight.ToString("F2")
+                + " leftRay=" + simulation.LeftRayPath
+                + " rightRay=" + simulation.RightRayPath
                 + " manager=" + canonicalManager.GetInstanceID()
                 + " sourceRays=" + rays.Length);
             return simulation;
@@ -88,6 +133,14 @@ namespace Ziptide.Tests.PlayMode
             if (_disposed) return;
             _disposed = true;
 
+            for (int i = _transformStates.Count - 1; i >= 0; i--)
+            {
+                TransformState state = _transformStates[i];
+                if (state.Transform == null) continue;
+                state.Transform.localPosition = state.LocalPosition;
+                state.Transform.localRotation = state.LocalRotation;
+                state.Transform.localScale = state.LocalScale;
+            }
             for (int i = _behaviourStates.Count - 1; i >= 0; i--)
             {
                 BehaviourState state = _behaviourStates[i];
@@ -98,6 +151,7 @@ namespace Ziptide.Tests.PlayMode
                 GameObjectState state = _gameObjectStates[i];
                 if (state.Object != null) state.Object.SetActive(state.ActiveSelf);
             }
+            _transformStates.Clear();
             _behaviourStates.Clear();
             _gameObjectStates.Clear();
         }
@@ -114,6 +168,46 @@ namespace Ziptide.Tests.PlayMode
             }
         }
 
+        private void SetTrackedHeadPose(PlayerRigPersistence rig, float trackedHeadHeight)
+        {
+            Transform head = HeadCamera.transform;
+            Transform current = head;
+            while (current != null)
+            {
+                Behaviour[] behaviours = current.GetComponents<Behaviour>();
+                for (int i = 0; i < behaviours.Length; i++)
+                {
+                    Behaviour behaviour = behaviours[i];
+                    if (behaviour == null) continue;
+                    string typeName = behaviour.GetType().FullName ?? string.Empty;
+                    if (typeName.IndexOf("TrackedPoseDriver", StringComparison.OrdinalIgnoreCase) >= 0 ||
+                        typeName.IndexOf("PoseDriver", StringComparison.OrdinalIgnoreCase) >= 0)
+                    {
+                        TrackBehaviour(behaviour);
+                        behaviour.enabled = false;
+                    }
+                }
+                if (current == rig.transform) break;
+                current = current.parent;
+            }
+
+            TrackTransform(head);
+            head.position = rig.transform.position + rig.transform.up * trackedHeadHeight;
+            head.rotation = rig.transform.rotation;
+        }
+
+        private void ActivateControllerRay(
+            PlayerRigPersistence rig,
+            XRRayInteractor ray,
+            XRInteractionManager canonicalManager)
+        {
+            ActivateHierarchy(rig.transform, ray.transform);
+            EnableControllerBehaviours(ray.transform, rig.transform);
+            TrackBehaviour(ray);
+            ray.enabled = true;
+            ray.interactionManager = canonicalManager;
+        }
+
         private void ActivateHierarchy(Transform rigRoot, Transform leaf)
         {
             var chain = new List<GameObject>();
@@ -125,7 +219,7 @@ namespace Ziptide.Tests.PlayMode
                 current = current.parent;
             }
             if (chain.Count == 0 || chain[chain.Count - 1] != rigRoot.gameObject)
-                throw new InvalidOperationException("Selected right ray is not under the persistent rig.");
+                throw new InvalidOperationException("Selected controller ray is not under the persistent rig.");
 
             for (int i = chain.Count - 1; i >= 0; i--)
             {
@@ -148,8 +242,8 @@ namespace Ziptide.Tests.PlayMode
                     string typeName = behaviour.GetType().FullName ?? string.Empty;
                     if (behaviour is XRBaseController ||
                         behaviour is XRBaseControllerInteractor ||
-                        typeName.Contains("Controller") ||
-                        typeName.Contains("InteractorLineVisual"))
+                        typeName.IndexOf("Controller", StringComparison.OrdinalIgnoreCase) >= 0 ||
+                        typeName.IndexOf("InteractorLineVisual", StringComparison.OrdinalIgnoreCase) >= 0)
                     {
                         TrackBehaviour(behaviour);
                         behaviour.enabled = true;
@@ -175,22 +269,30 @@ namespace Ziptide.Tests.PlayMode
             _behaviourStates.Add(new BehaviourState(behaviour));
         }
 
-        private static XRRayInteractor SelectRightDirectRay(XRRayInteractor[] rays)
+        private void TrackTransform(Transform value)
         {
-            XRRayInteractor rightFallback = null;
+            if (value == null) return;
+            for (int i = 0; i < _transformStates.Count; i++)
+                if (_transformStates[i].Transform == value) return;
+            _transformStates.Add(new TransformState(value));
+        }
+
+        private static XRRayInteractor SelectDirectRay(XRRayInteractor[] rays, string handName)
+        {
+            XRRayInteractor fallback = null;
             for (int i = 0; i < rays.Length; i++)
             {
                 XRRayInteractor ray = rays[i];
                 if (ray == null) continue;
                 string path = RecoveryRuntimeCensus.HierarchyPath(ray.transform);
-                if (path.IndexOf("Right", StringComparison.OrdinalIgnoreCase) < 0) continue;
+                if (path.IndexOf(handName, StringComparison.OrdinalIgnoreCase) < 0) continue;
                 if (path.IndexOf("Teleport", StringComparison.OrdinalIgnoreCase) >= 0) continue;
                 if (path.IndexOf("Gaze", StringComparison.OrdinalIgnoreCase) >= 0) continue;
-                if (rightFallback == null) rightFallback = ray;
+                if (fallback == null) fallback = ray;
                 if (ray.name.IndexOf("Ray", StringComparison.OrdinalIgnoreCase) >= 0)
                     return ray;
             }
-            return rightFallback;
+            return fallback;
         }
 
         private static string DescribeRays(XRRayInteractor[] rays)
