@@ -204,24 +204,41 @@ jobs:
         if: steps.freshness.outputs.write == 'true'
         shell: bash
         env:
+          TESTED_SHA: ${{ github.sha }}
+          WORKFLOW_RUN_ID: ${{ github.run_id }}
+          WORKFLOW_ATTEMPT: ${{ github.run_attempt }}
           BUILD_RESULT: ${{ needs.build-golden-apk.result }}
         run: |
           set -euo pipefail
           mkdir -p docs/recovery/generated
-          cat > docs/recovery/generated/recovery_golden_android_observation.md <<EOF
-          # Recovery Golden Android Observation
+          python3 - <<'PY'
+          import os
+          from pathlib import Path
 
-          - Tested SHA: `${{ github.sha }}`
-          - Workflow run: `${{ github.run_id }}`
-          - Attempt: `${{ github.run_attempt }}`
-          - Build/verification result: **${BUILD_RESULT}**
-          - Unity: ${UNITY_VERSION}
+          tested_sha = os.environ["TESTED_SHA"]
+          run_id = os.environ["WORKFLOW_RUN_ID"]
+          attempt = os.environ["WORKFLOW_ATTEMPT"]
+          result = os.environ["BUILD_RESULT"]
+          unity = os.environ["UNITY_VERSION"]
+
+          text = f"""# Recovery Golden Android Observation
+
+          - Tested SHA: `{tested_sha}`
+          - Workflow run: `{run_id}`
+          - Attempt: `{attempt}`
+          - Build/verification result: **{result}**
+          - Unity: {unity}
           - Build method: `Ziptide.Build.RecoveryBuildAndroid.PatchScenesThenGoldenAPK`
           - Compile define: `ZIPTIDE_RECOVERY_GOLDEN`
           - Locked scenes: `_Boot`, `W000_DriftIn`, `ToxicCity`
-          - Candidate artifact: `recovery-golden-apk-${{ github.sha }}`
-          - Audit artifact: `recovery-golden-audit-${{ github.sha }}`
-          EOF
+          - Candidate artifact: `recovery-golden-apk-{tested_sha}`
+          - Audit artifact: `recovery-golden-audit-{tested_sha}`
+          """
+
+          Path("docs/recovery/generated/recovery_golden_android_observation.md").write_text(
+              text, encoding="utf-8"
+          )
+          PY
 
       - name: Commit observation without forcing
         if: steps.freshness.outputs.write == 'true'
