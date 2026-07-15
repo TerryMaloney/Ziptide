@@ -2,10 +2,10 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Inputs;
 using Ziptide.Gameplay;
+using InputSystemXRController = UnityEngine.InputSystem.XR.XRController;
 
 namespace Ziptide.Tests.PlayMode
 {
@@ -182,11 +182,11 @@ namespace Ziptide.Tests.PlayMode
 
         private void InstallVirtualControllerDevices()
         {
-            XRController left = InputSystem.AddDevice<XRController>();
+            InputSystemXRController left = InputSystem.AddDevice<InputSystemXRController>();
             InputSystem.SetDeviceUsage(left, CommonUsages.LeftHand);
             _virtualDevices.Add(left);
 
-            XRController right = InputSystem.AddDevice<XRController>();
+            InputSystemXRController right = InputSystem.AddDevice<InputSystemXRController>();
             InputSystem.SetDeviceUsage(right, CommonUsages.RightHand);
             _virtualDevices.Add(right);
         }
