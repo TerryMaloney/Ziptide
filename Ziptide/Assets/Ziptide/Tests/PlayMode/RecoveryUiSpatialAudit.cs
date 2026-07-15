@@ -69,6 +69,7 @@ namespace Ziptide.Tests.PlayMode
     /// judge prose or aesthetics; it catches composition failures visible to a real player camera.
     /// TMP is detected by walking the concrete component's base types to TMPro.TMP_Text, avoiding a
     /// compile-time dependency from the test assembly while still covering TextMeshPro subclasses.
+    /// Legacy TextMesh and world-space TMP mesh text both read from local -Z.
     /// </summary>
     public static class RecoveryUiSpatialAudit
     {
@@ -167,7 +168,7 @@ namespace Ziptide.Tests.PlayMode
                     behaviour.GetComponent<Renderer>(),
                     behaviour.GetType().FullName ?? "TMPro.TMP_Text",
                     ReadStringProperty(behaviour, "text"),
-                    readsFromNegativeZ: false));
+                    readsFromNegativeZ: true));
             }
         }
 
