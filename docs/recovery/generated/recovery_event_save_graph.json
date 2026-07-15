@@ -1,13 +1,13 @@
 {
   "tool": "recovery_event_save_graph",
-  "scannedFiles": 623,
-  "evidenceCount": 655,
+  "scannedFiles": 625,
+  "evidenceCount": 658,
   "kindCounts": {
     "AUTOSAVE": 7,
     "EVENT_DECLARE": 45,
     "EVENT_INVOKE": 56,
-    "EVENT_SUBSCRIBE": 84,
-    "EVENT_UNSUBSCRIBE": 37,
+    "EVENT_SUBSCRIBE": 85,
+    "EVENT_UNSUBSCRIBE": 39,
     "PLAYER_PREFS_ACCESS": 11,
     "PROFILE_FIELD_ACCESS": 352,
     "SAVE_ACCESS": 63
@@ -4135,6 +4135,33 @@
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs",
         "line": 17,
         "owner": "Ziptide.Gameplay.QuartersCameraFeature",
+        "target": "SceneManager.sceneLoaded",
+        "detail": "OnSceneLoaded",
+        "snippet": "SceneManager.sceneLoaded += OnSceneLoaded;"
+      },
+      {
+        "kind": "EVENT_UNSUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
+        "line": 28,
+        "owner": "Ziptide.Gameplay.PlayerInputSessionGuard",
+        "target": "SceneManager.sceneLoaded",
+        "detail": "OnSceneLoaded",
+        "snippet": "SceneManager.sceneLoaded -= OnSceneLoaded;"
+      },
+      {
+        "kind": "EVENT_UNSUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
+        "line": 35,
+        "owner": "Ziptide.Gameplay.PlayerInputSessionGuard",
+        "target": "SceneManager.sceneLoaded",
+        "detail": "OnSceneLoaded",
+        "snippet": "SceneManager.sceneLoaded -= OnSceneLoaded;"
+      },
+      {
+        "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
+        "line": 36,
+        "owner": "Ziptide.Gameplay.PlayerInputSessionGuard",
         "target": "SceneManager.sceneLoaded",
         "detail": "OnSceneLoaded",
         "snippet": "SceneManager.sceneLoaded += OnSceneLoaded;"
@@ -9030,6 +9057,33 @@
       "target": "GetResource",
       "detail": "Profile",
       "snippet": "credits = (long)System.Math.Floor(save.Profile.GetResource(CreditsResourceId));"
+    },
+    {
+      "kind": "EVENT_UNSUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
+      "line": 28,
+      "owner": "Ziptide.Gameplay.PlayerInputSessionGuard",
+      "target": "SceneManager.sceneLoaded",
+      "detail": "OnSceneLoaded",
+      "snippet": "SceneManager.sceneLoaded -= OnSceneLoaded;"
+    },
+    {
+      "kind": "EVENT_UNSUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
+      "line": 35,
+      "owner": "Ziptide.Gameplay.PlayerInputSessionGuard",
+      "target": "SceneManager.sceneLoaded",
+      "detail": "OnSceneLoaded",
+      "snippet": "SceneManager.sceneLoaded -= OnSceneLoaded;"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
+      "line": 36,
+      "owner": "Ziptide.Gameplay.PlayerInputSessionGuard",
+      "target": "SceneManager.sceneLoaded",
+      "detail": "OnSceneLoaded",
+      "snippet": "SceneManager.sceneLoaded += OnSceneLoaded;"
     },
     {
       "kind": "EVENT_SUBSCRIBE",

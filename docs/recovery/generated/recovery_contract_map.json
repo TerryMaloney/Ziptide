@@ -1,8 +1,8 @@
 {
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
-  "scannedFiles": 623,
-  "findingCount": 2115,
+  "scannedFiles": 625,
+  "findingCount": 2148,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -441,6 +441,32 @@
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs",
             "line": 40,
             "symbol": "Ziptide.Gameplay.EcologyDirector",
+            "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Gameplay.PlayerInputSessionGuard",
+        "evidenceCount": 2,
+        "codes": [
+          "RUNTIME_BOOTSTRAP"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs"
+        ],
+        "evidence": [
+          {
+            "code": "RUNTIME_BOOTSTRAP",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
+            "line": 25,
+            "symbol": "Ziptide.Gameplay.PlayerInputSessionGuard",
+            "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]"
+          },
+          {
+            "code": "RUNTIME_BOOTSTRAP",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
+            "line": 31,
+            "symbol": "Ziptide.Gameplay.PlayerInputSessionGuard",
             "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]"
           }
         ]
@@ -1450,6 +1476,88 @@
         ]
       },
       {
+        "owner": "Ziptide.Gameplay.PlayerInputSessionGuard",
+        "evidenceCount": 10,
+        "codes": [
+          "INPUT_ACTION_REFERENCE"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs"
+        ],
+        "evidence": [
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
+            "line": 15,
+            "symbol": "Ziptide.Gameplay.PlayerInputSessionGuard",
+            "snippet": "/// asset to the InputActionManager beside it. Scene-authored InputActionManagers must then be"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
+            "line": 21,
+            "symbol": "Ziptide.Gameplay.PlayerInputSessionGuard",
+            "snippet": "/// InputActionManager the only enabled manager."
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
+            "line": 47,
+            "symbol": "Ziptide.Gameplay.PlayerInputSessionGuard",
+            "snippet": "/// Transfer the union of all action assets to the InputActionManager attached to the sole"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
+            "line": 60,
+            "symbol": "Ziptide.Gameplay.PlayerInputSessionGuard",
+            "snippet": "InputActionManager primary = canonicalXri.GetComponent<InputActionManager>();"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
+            "line": 68,
+            "symbol": "Ziptide.Gameplay.PlayerInputSessionGuard",
+            "snippet": "InputActionManager[] managers = UnityEngine.Object.FindObjectsOfType<InputActionManager>(true);"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
+            "line": 69,
+            "symbol": "Ziptide.Gameplay.PlayerInputSessionGuard",
+            "snippet": "var assets = new List<InputActionAsset>();"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
+            "line": 82,
+            "symbol": "Ziptide.Gameplay.PlayerInputSessionGuard",
+            "snippet": "InputActionManager manager = managers[i];"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
+            "line": 86,
+            "symbol": "Ziptide.Gameplay.PlayerInputSessionGuard",
+            "snippet": "manager.actionAssets = new List<InputActionAsset>();"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
+            "line": 118,
+            "symbol": "Ziptide.Gameplay.PlayerInputSessionGuard",
+            "snippet": "private static void AddAssets(InputActionManager manager, List<InputActionAsset> assets)"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
+            "line": 121,
+            "symbol": "Ziptide.Gameplay.PlayerInputSessionGuard",
+            "snippet": "foreach (InputActionAsset asset in manager.actionAssets)"
+          }
+        ]
+      },
+      {
         "owner": "Ziptide.Gameplay.QuickSwap",
         "evidenceCount": 3,
         "codes": [
@@ -1771,6 +1879,116 @@
             "line": 104,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
             "snippet": "Assert.AreEqual(1, ActiveManagerCount(settled, \"InputActionManager\"));"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests",
+        "evidenceCount": 14,
+        "codes": [
+          "INPUT_ACTION_REFERENCE"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs"
+        ],
+        "evidence": [
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs",
+            "line": 17,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests",
+            "snippet": "private readonly List<InputActionAsset> _assets = new List<InputActionAsset>();"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs",
+            "line": 51,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests",
+            "snippet": "InputActionManager primary = primaryHost.AddComponent<InputActionManager>();"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs",
+            "line": 52,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests",
+            "snippet": "InputActionAsset primaryAsset = CreateAsset(\"PrimaryAsset\", \"PrimaryAction\");"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs",
+            "line": 53,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests",
+            "snippet": "primary.actionAssets = new List<InputActionAsset> { primaryAsset };"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs",
+            "line": 57,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests",
+            "snippet": "InputActionManager duplicate = duplicateHost.AddComponent<InputActionManager>();"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs",
+            "line": 58,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests",
+            "snippet": "InputActionAsset duplicateAsset = CreateAsset(\"SceneAsset\", \"SceneAction\");"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs",
+            "line": 59,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests",
+            "snippet": "duplicate.actionAssets = new List<InputActionAsset> { duplicateAsset };"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs",
+            "line": 67,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests",
+            "snippet": "Assert.IsTrue(primary.enabled, \"The canonical InputActionManager was disabled.\");"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs",
+            "line": 68,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests",
+            "snippet": "Assert.IsFalse(duplicate.enabled, \"The scene duplicate InputActionManager stayed enabled.\");"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs",
+            "line": 89,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests",
+            "snippet": "if (record.category == \"InputActionManager\" && record.active && record.enabled)"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs",
+            "line": 93,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests",
+            "snippet": "\"The runtime census still sees more than one enabled InputActionManager.\");"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs",
+            "line": 103,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests",
+            "snippet": "private InputActionAsset CreateAsset(string assetName, string actionName)"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs",
+            "line": 105,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests",
+            "snippet": "InputActionAsset asset = ScriptableObject.CreateInstance<InputActionAsset>();"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs",
+            "line": 119,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests",
+            "snippet": "InputActionManager[] input = Resources.FindObjectsOfTypeAll<InputActionManager>();"
           }
         ]
       },
@@ -10185,6 +10403,25 @@
         ]
       },
       {
+        "owner": "Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests",
+        "evidenceCount": 1,
+        "codes": [
+          "NEW_GAME_OBJECT"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs"
+        ],
+        "evidence": [
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs",
+            "line": 98,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests",
+            "snippet": "var host = new GameObject(name);"
+          }
+        ]
+      },
+      {
         "owner": "Ziptide.Tests.PlayMode.RecoveryRuntimeCensusTests",
         "evidenceCount": 4,
         "codes": [
@@ -11316,6 +11553,25 @@
         ]
       },
       {
+        "owner": "Ziptide.Gameplay.PlayerInputSessionGuard",
+        "evidenceCount": 1,
+        "codes": [
+          "XRI_MANAGER_LOOKUP"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs"
+        ],
+        "evidence": [
+          {
+            "code": "XRI_MANAGER_LOOKUP",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
+            "line": 105,
+            "symbol": "Ziptide.Gameplay.PlayerInputSessionGuard",
+            "snippet": "UnityEngine.Object.FindObjectsOfType<XRInteractionManager>(true);"
+          }
+        ]
+      },
+      {
         "owner": "Ziptide.Gameplay.QuartersRoom",
         "evidenceCount": 2,
         "codes": [
@@ -11704,6 +11960,25 @@
             "line": 114,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests",
             "snippet": "var replacement = replacementHost.AddComponent<XRInteractionManager>();"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests",
+        "evidenceCount": 1,
+        "codes": [
+          "XRI_MANAGER_CREATE"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs"
+        ],
+        "evidence": [
+          {
+            "code": "XRI_MANAGER_CREATE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs",
+            "line": 50,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests",
+            "snippet": "primaryHost.AddComponent<XRInteractionManager>();"
           }
         ]
       },
