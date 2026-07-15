@@ -20,6 +20,7 @@ on:
       - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs'
       - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs'
       - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs'
+      - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs'
       - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Diagnostics/SingletonValidator.cs'
       - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs'
       - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs'
