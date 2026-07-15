@@ -12,8 +12,12 @@ namespace Ziptide.Tests.PlayMode
         private readonly List<GameObject> _objects = new List<GameObject>();
         private readonly List<Material> _materials = new List<Material>();
 
-        [UnityTearDown]
-        public IEnumerator TearDown()
+        // This cleanup is entirely synchronous. Using a coroutine UnityTearDown here caused the
+        // headless runner to wait for the global 180-second coroutine timeout even though the test
+        // body had already written and validated its PNG. Keep the same destruction work, but do it
+        // as a normal NUnit teardown so cleanup cannot become the result under test.
+        [TearDown]
+        public void TearDown()
         {
             for (int i = 0; i < _objects.Count; i++)
                 if (_objects[i] != null) Object.DestroyImmediate(_objects[i]);
@@ -21,7 +25,6 @@ namespace Ziptide.Tests.PlayMode
             for (int i = 0; i < _materials.Count; i++)
                 if (_materials[i] != null) Object.DestroyImmediate(_materials[i]);
             _materials.Clear();
-            yield return null;
         }
 
         [UnityTest]

@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Inputs;
 using Ziptide.Gameplay;
@@ -12,10 +14,16 @@ namespace Ziptide.Tests.PlayMode
     /// unchanged, including its actual head camera and left/right direct controller rays. A headless
     /// CI runner has no tracked XR devices, so XRInputModalityManager correctly deactivates all
     /// controller groups and the camera remains at an untracked origin. This helper temporarily:
+    /// - installs left/right generic XR controller devices with zeroed state,
     /// - disables modality switching and camera pose drivers only inside the test,
     /// - places the real tracked-head camera at an adult standing pose,
     /// - activates both existing non-teleport controller-ray hierarchies,
     /// - binds those rays to the already-proven canonical XRInteractionManager.
+    ///
+    /// The virtual devices are required because actual locomotion providers resume when BOOT_HOLD
+    /// releases. Without bound XR controls, Input System 1.7 can enter its processor path with no
+    /// control and throw before a round-trip assertion is reached. Zeroed generic XR devices preserve
+    /// the real action asset/provider path while supplying the hardware presence that CI lacks.
     ///
     /// It creates no alternate rig, ray, camera, action map, interaction manager, UI or production
     /// bootstrap, and restores every touched state in Dispose.
@@ -27,6 +35,7 @@ namespace Ziptide.Tests.PlayMode
         private readonly List<GameObjectState> _gameObjectStates = new List<GameObjectState>();
         private readonly List<BehaviourState> _behaviourStates = new List<BehaviourState>();
         private readonly List<TransformState> _transformStates = new List<TransformState>();
+        private readonly List<InputDevice> _virtualDevices = new List<InputDevice>();
         private bool _disposed;
 
         private readonly struct GameObjectState
@@ -113,6 +122,7 @@ namespace Ziptide.Tests.PlayMode
                 headCamera,
                 leftRay,
                 rightRay);
+            simulation.InstallVirtualControllerDevices();
             simulation.DisableModalityManagers(rig);
             simulation.SetTrackedHeadPose(rig, trackedHeadHeight);
             simulation.ActivateControllerRay(rig, leftRay, canonicalManager);
@@ -124,7 +134,8 @@ namespace Ziptide.Tests.PlayMode
                 + " leftRay=" + simulation.LeftRayPath
                 + " rightRay=" + simulation.RightRayPath
                 + " manager=" + canonicalManager.GetInstanceID()
-                + " sourceRays=" + rays.Length);
+                + " sourceRays=" + rays.Length
+                + " virtualDevices=" + simulation._virtualDevices.Count);
             return simulation;
         }
 
@@ -151,9 +162,33 @@ namespace Ziptide.Tests.PlayMode
                 GameObjectState state = _gameObjectStates[i];
                 if (state.Object != null) state.Object.SetActive(state.ActiveSelf);
             }
+            for (int i = _virtualDevices.Count - 1; i >= 0; i--)
+            {
+                InputDevice device = _virtualDevices[i];
+                if (device == null) continue;
+                try { InputSystem.RemoveDevice(device); }
+                catch (Exception ex)
+                {
+                    Debug.LogWarning("ZIPTIDE: RECOVERY_VIRTUAL_XR_REMOVE_FAIL device="
+                        + device.displayName + " reason=" + ex.Message);
+                }
+            }
+
             _transformStates.Clear();
             _behaviourStates.Clear();
             _gameObjectStates.Clear();
+            _virtualDevices.Clear();
+        }
+
+        private void InstallVirtualControllerDevices()
+        {
+            XRController left = InputSystem.AddDevice<XRController>();
+            InputSystem.SetDeviceUsage(left, CommonUsages.LeftHand);
+            _virtualDevices.Add(left);
+
+            XRController right = InputSystem.AddDevice<XRController>();
+            InputSystem.SetDeviceUsage(right, CommonUsages.RightHand);
+            _virtualDevices.Add(right);
         }
 
         private void DisableModalityManagers(PlayerRigPersistence rig)
