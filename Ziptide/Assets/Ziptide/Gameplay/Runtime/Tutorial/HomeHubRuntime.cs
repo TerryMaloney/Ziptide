@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using Ziptide.Core;
@@ -47,6 +48,8 @@ namespace Ziptide.Gameplay
     /// </summary>
     public sealed class HomeHubRuntime : MonoBehaviour
     {
+        private const int ManagerBindFrameLimit = 300;
+
         public static event Action<bool> BootPresentationReady;
         public static event Action<PlayerProfile> NewGameProfileCreated;
         public static event Action<HomeHubChoice> ChoiceSelected;
@@ -185,10 +188,40 @@ namespace Ziptide.Gameplay
 
             var interactable = tile.AddComponent<XRSimpleInteractable>();
             var manager = FindObjectOfType<XRInteractionManager>();
-            if (manager != null) interactable.interactionManager = manager;
+            if (manager != null)
+            {
+                interactable.interactionManager = manager;
+                Debug.Log("ZIPTIDE: HOME_HUB_TILE_BOUND tile=" + tile.name +
+                          " mode=immediate manager=" + manager.name);
+            }
+            else
+            {
+                StartCoroutine(BindManagerLater(interactable, tile.name));
+            }
             interactable.selectEntered.AddListener(_ => selected());
 
             AddLabel(tile.transform, text, new Vector3(0f, 0f, -0.56f), 0.025f);
+        }
+
+        private IEnumerator BindManagerLater(XRSimpleInteractable interactable, string tileName)
+        {
+            for (int frame = 1; frame <= ManagerBindFrameLimit; frame++)
+            {
+                yield return null;
+                if (interactable == null) yield break;
+
+                var manager = FindObjectOfType<XRInteractionManager>();
+                if (manager == null) continue;
+
+                interactable.interactionManager = manager;
+                Debug.Log("ZIPTIDE: HOME_HUB_TILE_BOUND tile=" + tileName +
+                          " mode=delayed frames=" + frame + " manager=" + manager.name);
+                yield break;
+            }
+
+            if (interactable != null)
+                Debug.LogWarning("ZIPTIDE: HOME_HUB_TILE_BIND_TIMEOUT tile=" + tileName +
+                                 " frames=" + ManagerBindFrameLimit);
         }
 
         private static void AddLabel(Transform parent, string text, Vector3 localPosition, float size)
