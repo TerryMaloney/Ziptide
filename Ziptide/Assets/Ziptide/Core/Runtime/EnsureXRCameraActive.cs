@@ -11,6 +11,8 @@ namespace Ziptide.Core
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void OnLoad()
         {
+            if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.XrCameraEnforcer)) return;
+
             Camera[] all = Object.FindObjectsOfType<Camera>(true);
             int disabled = 0;
             int kept = 0;
