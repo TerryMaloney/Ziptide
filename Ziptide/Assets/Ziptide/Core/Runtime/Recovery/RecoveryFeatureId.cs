@@ -25,7 +25,8 @@ namespace Ziptide.Core
         AudioDirector = 16,
         TravelCoordinator = 17,
         SingletonValidator = 18,
-        NetBootstrap = 19
+        NetBootstrap = 19,
+        PlayerInputSessionGuard = 20
     }
 
     public enum RecoveryOwnerClassification
