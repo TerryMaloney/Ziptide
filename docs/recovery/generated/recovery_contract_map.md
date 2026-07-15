@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
 - Scanned files: **637**
-- Scanner findings: **2213**
+- Scanner findings: **2222**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -248,7 +248,7 @@ None.
 
 - Codes: `DIRECT_SCENE_LOAD_ASYNC`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:65` **DIRECT_SCENE_LOAD_ASYNC** — `AsyncOperation bootLoad = SceneManager.LoadSceneAsync(`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:66` **DIRECT_SCENE_LOAD_ASYNC** — `AsyncOperation bootLoad = SceneManager.LoadSceneAsync(`
 
 ### `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` — 1 signal(s)
 
@@ -471,6 +471,18 @@ None.
 - Codes: `INPUT_ACTION_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourObservationCoreTests.cs`
   - `Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourObservationCoreTests.cs:189` **INPUT_ACTION_REFERENCE** — `StringAssert.DoesNotContain("InputAction", source);`
+
+### `Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation` — 7 signal(s)
+
+- Codes: `INPUT_ACTION_REFERENCE`
+- Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:199` **INPUT_ACTION_REFERENCE** — `InputActionManager inputManager = canonicalManager.GetComponent<InputActionManager>();`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:202` **INPUT_ACTION_REFERENCE** — `"The canonical XRInteractionManager has no InputActionManager to refresh.");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:205` **INPUT_ACTION_REFERENCE** — `foreach (InputActionAsset asset in inputManager.actionAssets)`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:213` **INPUT_ACTION_REFERENCE** — `"The canonical InputActionManager owns no action assets for tracked-rig simulation.");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:216` **INPUT_ACTION_REFERENCE** — `foreach (InputActionAsset asset in inputManager.actionAssets)`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:222` **INPUT_ACTION_REFERENCE** — `foreach (InputActionAsset asset in inputManager.actionAssets)`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:227` **INPUT_ACTION_REFERENCE** — `foreach (InputAction action in map.actions)`
 
 ### `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` — 4 signal(s)
 
@@ -2643,13 +2655,13 @@ None.
 
 - Codes: `XRI_MANAGER_ASSIGN`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:243` **XRI_MANAGER_ASSIGN** — `ray.interactionManager = canonicalManager;`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:297` **XRI_MANAGER_ASSIGN** — `ray.interactionManager = canonicalManager;`
 
 ### `Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests` — 1 signal(s)
 
 - Codes: `XRI_MANAGER_LOOKUP`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:136` **XRI_MANAGER_LOOKUP** — `XRInteractionManager manager = UnityEngine.Object.FindObjectOfType<XRInteractionManager>();`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:150` **XRI_MANAGER_LOOKUP** — `XRInteractionManager manager = UnityEngine.Object.FindObjectOfType<XRInteractionManager>();`
 
 ### `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` — 2 signal(s)
 
@@ -3493,10 +3505,10 @@ None.
 
 - Codes: `PLAYER_PROFILE_REFERENCE`, `SAVE_SYSTEM_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:35` **SAVE_SYSTEM_REFERENCE** — `_saveBackup = RecoverySaveFileBackup.CaptureAndClear(SaveSystem.SavePath);`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:95` **SAVE_SYSTEM_REFERENCE** — `SaveSystem save = SaveSystem.Instance;`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:96` **SAVE_SYSTEM_REFERENCE** — `Assert.IsNotNull(save, "SaveSystem is missing before actual scene snapshots.");`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:97` **PLAYER_PROFILE_REFERENCE** — `PlayerProfile profile = save.StartNewProfile();`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:36` **SAVE_SYSTEM_REFERENCE** — `_saveBackup = RecoverySaveFileBackup.CaptureAndClear(SaveSystem.SavePath);`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:109` **SAVE_SYSTEM_REFERENCE** — `SaveSystem save = SaveSystem.Instance;`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:110` **SAVE_SYSTEM_REFERENCE** — `Assert.IsNotNull(save, "SaveSystem is missing before actual scene snapshots.");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:111` **PLAYER_PROFILE_REFERENCE** — `PlayerProfile profile = save.StartNewProfile();`
 
 ### `Ziptide.Tests.PlayMode.RecoverySaveFileBackup` — 1 signal(s)
 
@@ -4240,9 +4252,9 @@ None.
 
 - Codes: `FALLBACK_MARKER`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:317` **FALLBACK_MARKER** — `XRRayInteractor fallback = null;`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:326` **FALLBACK_MARKER** — `if (fallback == null) fallback = ray;`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:330` **FALLBACK_MARKER** — `return fallback;`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:371` **FALLBACK_MARKER** — `XRRayInteractor fallback = null;`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:380` **FALLBACK_MARKER** — `if (fallback == null) fallback = ray;`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:384` **FALLBACK_MARKER** — `return fallback;`
 
 ### `Ziptide.Tests.PlayMode.RecoveryExposureProfileTests` — 1 signal(s)
 

@@ -1,7 +1,7 @@
 # ZIPTIDE Recovery Contract Scan
 
 - Scanned files: **637**
-- Findings: **2213**
+- Findings: **2222**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
@@ -9,11 +9,11 @@
 | Category | Count |
 |---|---:|
 | `bootstrap` | 29 |
-| `diagnostics` | 468 |
+| `diagnostics` | 470 |
 | `events` | 64 |
 | `fallback_debt` | 122 |
 | `global_render` | 78 |
-| `input` | 160 |
+| `input` | 167 |
 | `materials` | 226 |
 | `persistence` | 17 |
 | `runtime_creation` | 585 |
@@ -477,8 +477,9 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/EditMode/ZiplineSignalTests.cs:105` · `Ziptide.Tests.EditMode.ZiplineSignalTests` — ZIPTIDE diagnostic tag. `new Regex("ZIPTIDE: ZIPLINE_SUBSCRIBER_FAIL phase=end reason=end expected"));`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/EditMode/ZiplineSignalTests.cs:137` · `Ziptide.Tests.EditMode.ZiplineSignalTests` — ZIPTIDE diagnostic tag. `int startLog = source.IndexOf("ZIPTIDE: ZIPLINE_RIDE_START", StringComparison.Ordinal);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/EditMode/ZiplineSignalTests.cs:142` · `Ziptide.Tests.EditMode.ZiplineSignalTests` — ZIPTIDE diagnostic tag. `int endLog = source.IndexOf("ZIPTIDE: ZIPLINE_RIDE_END reason=", StringComparison.Ordinal);`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:131` · `Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RECOVERY_TRACKED_RIG_SIM head="`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:172` · `Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: RECOVERY_VIRTUAL_XR_REMOVE_FAIL device="`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:133` · `Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RECOVERY_TRACKED_RIG_SIM head="`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:174` · `Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: RECOVERY_VIRTUAL_XR_REMOVE_FAIL device="`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:238` · `Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RECOVERY_VIRTUAL_XR_BINDINGS assets=" + assetCount`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootHoldOrderingTests.cs:83` · `Ziptide.Tests.PlayMode.RecoveryBootHoldOrderingTests` — ZIPTIDE diagnostic tag. `int armedIndex = FindLog("ZIPTIDE: BOOT_HOLD on");`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootHoldOrderingTests.cs:84` · `Ziptide.Tests.PlayMode.RecoveryBootHoldOrderingTests` — ZIPTIDE diagnostic tag. `int readyIndex = FindLog("ZIPTIDE: HOME_HUB_READY");`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootHoldOrderingTests.cs:85` · `Ziptide.Tests.PlayMode.RecoveryBootHoldOrderingTests` — ZIPTIDE diagnostic tag. `int probeIndex = FindLog("ZIPTIDE: BOARD_PROBE surface=HomeHub phase=aim");`
@@ -493,6 +494,7 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:110` · `Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests` — ZIPTIDE diagnostic tag. `new Regex("ZIPTIDE: HOME_HUB_TILE_BOUND tile=Tile_MANAGER_REPLACE mode=rebound"));`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPersistentDiagnosticRingTests.cs:18` · `Ziptide.Tests.PlayMode.RecoveryPersistentDiagnosticRingTests` — ZIPTIDE diagnostic tag. `string token = "ZIPTIDE: DIAG_RING_TEST frame=" + Time.frameCount;`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshot.cs:141` · `Ziptide.Tests.PlayMode.RecoveryRenderSnapshotMetrics` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RECOVERY_SNAPSHOT label=" + label`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshot.cs:162` · `Ziptide.Tests.PlayMode.RecoveryRenderSnapshotMetrics` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RECOVERY_SNAPSHOT_CLEANUP_QUEUED label=" + label);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeArtifactGuard.cs:122` · `Ziptide.Tests.PlayMode.RecoveryRuntimeArtifactFinding` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RECOVERY_STALE_ARTIFACT_REMOVED path="`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:160` · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` — ZIPTIDE diagnostic tag. `Assert.AreEqual(2, CountLogs("ZIPTIDE: TRAVEL_START dest=" + ZiptideConstants.SceneW000));`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:161` · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` — ZIPTIDE diagnostic tag. `Assert.AreEqual(2, CountLogs("ZIPTIDE: TRAVEL_OK dest=" + ZiptideConstants.SceneW000));`
@@ -700,9 +702,9 @@
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/EditMode/ForgeBuildingKitTests.cs:93` · `Ziptide.Tests.EditMode.ForgeBuildingKitTests` — Source text marks fallback/prototype debt. `id + " lost the structured primitive fallback (editor/no-bake look)");`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/EditMode/ForgeGaitMotorTests.cs:9` · `Ziptide.Tests.EditMode.ForgeGaitMotorTests` — Source text marks fallback/prototype debt. `/// the real skeleton, applies a motor pose the way ForgeCreatureAnimator does, and proves the`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/EditMode/ItemRegistryConventionTests.cs:11` · `Ziptide.Tests.EditMode.ItemRegistryConventionTests` — Source text marks fallback/prototype debt. `/// device (the loaded-objects fallback only sees assets a loaded scene happens to reference — a`
-- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:317` · `Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation` — Source text marks fallback/prototype debt. `XRRayInteractor fallback = null;`
-- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:326` · `Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation` — Source text marks fallback/prototype debt. `if (fallback == null) fallback = ray;`
-- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:330` · `Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation` — Source text marks fallback/prototype debt. `return fallback;`
+- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:371` · `Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation` — Source text marks fallback/prototype debt. `XRRayInteractor fallback = null;`
+- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:380` · `Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation` — Source text marks fallback/prototype debt. `if (fallback == null) fallback = ray;`
+- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:384` · `Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation` — Source text marks fallback/prototype debt. `return fallback;`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs:125` · `Ziptide.Tests.PlayMode.RecoveryExposureProfileTests` — Source text marks fallback/prototype debt. `"Global fallback mutators are not diagnostic surfaces.");`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeCreatureAnimator.cs:7` · `Ziptide.Visuals.ForgeCreatureAnimator` — Source text marks fallback/prototype debt. `/// built skeleton once; every LateUpdate it measures its OWN world speed (no Gameplay`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeCreatureAnimator.cs:28` · `Ziptide.Visuals.ForgeCreatureAnimator` — Source text marks fallback/prototype debt. `/// <summary>Wire the animator to a built skeleton (ForgeSkinnedBuilder.Result.bones).</summary>`
@@ -908,6 +910,13 @@
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:74` · `Ziptide.Ship.VehicleRuntime` — Input System action reference. `_boostA = new InputAction("ZiptideRideBoostA", InputActionType.Button);`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourHolsterAdapterTests.cs:154` · `Ziptide.Tests.EditMode.FirstHourHolsterAdapterTests` — Input System action reference. `StringAssert.DoesNotContain("InputAction", socketSource + helperSource);`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourObservationCoreTests.cs:189` · `Ziptide.Tests.EditMode.FirstHourObservationCoreTests` — Input System action reference. `StringAssert.DoesNotContain("InputAction", source);`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:199` · `Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation` — Input System action reference. `InputActionManager inputManager = canonicalManager.GetComponent<InputActionManager>();`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:202` · `Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation` — Input System action reference. `"The canonical XRInteractionManager has no InputActionManager to refresh.");`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:205` · `Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation` — Input System action reference. `foreach (InputActionAsset asset in inputManager.actionAssets)`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:213` · `Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation` — Input System action reference. `"The canonical InputActionManager owns no action assets for tracked-rig simulation.");`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:216` · `Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation` — Input System action reference. `foreach (InputActionAsset asset in inputManager.actionAssets)`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:222` · `Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation` — Input System action reference. `foreach (InputActionAsset asset in inputManager.actionAssets)`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:227` · `Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation` — Input System action reference. `foreach (InputAction action in map.actions)`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:79` · `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` — Input System action reference. `InputActionManager inputManager = null;`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:85` · `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` — Input System action reference. `inputManager = UnityEngine.Object.FindObjectOfType<InputActionManager>();`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:95` · `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` — Input System action reference. `Assert.IsNotNull(inputManager, "The actual _Boot scene has no InputActionManager.");`
@@ -2054,7 +2063,7 @@
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/EditMode/WorldGatingTests.cs:95` · `Ziptide.Tests.EditMode.WorldGatingTests` — PlayerProfile reference. `var profile = new PlayerProfile();`
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/EditMode/WorldGatingTests.cs:107` · `Ziptide.Tests.EditMode.WorldGatingTests` — PlayerProfile reference. `var profile = new PlayerProfile();`
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/EditMode/ZiplineSignalTests.cs:152` · `Ziptide.Tests.EditMode.ZiplineSignalTests` — PlayerProfile reference. `StringAssert.DoesNotContain("PlayerProfile", source);`
-- **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:97` · `Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests` — PlayerProfile reference. `PlayerProfile profile = save.StartNewProfile();`
+- **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:111` · `Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests` — PlayerProfile reference. `PlayerProfile profile = save.StartNewProfile();`
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:40` · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` — PlayerProfile reference. `private PlayerProfile _newGameProfile;`
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:128` · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` — PlayerProfile reference. `PlayerProfile live = SaveSystem.Instance.Profile;`
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:355` · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` — PlayerProfile reference. `PlayerProfile profile = SaveSystem.Instance.Profile;`
@@ -2153,9 +2162,9 @@
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/EditMode/SaveAutosaveTests.cs:17` · `Ziptide.Tests.EditMode.SaveAutosaveTests` — SaveSystem reference. `Assert.DoesNotThrow(() => SaveSystem.AutosaveNow("travel"));`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/EditMode/WristScannerResultTests.cs:205` · `Ziptide.Tests.EditMode.WristScannerResultTests` — SaveSystem reference. `StringAssert.DoesNotContain("SaveSystem", source);`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/EditMode/ZiplineSignalTests.cs:153` · `Ziptide.Tests.EditMode.ZiplineSignalTests` — SaveSystem reference. `StringAssert.DoesNotContain("SaveSystem", source);`
-- **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:35` · `Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests` — SaveSystem reference. `_saveBackup = RecoverySaveFileBackup.CaptureAndClear(SaveSystem.SavePath);`
-- **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:95` · `Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests` — SaveSystem reference. `SaveSystem save = SaveSystem.Instance;`
-- **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:96` · `Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests` — SaveSystem reference. `Assert.IsNotNull(save, "SaveSystem is missing before actual scene snapshots.");`
+- **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:36` · `Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests` — SaveSystem reference. `_saveBackup = RecoverySaveFileBackup.CaptureAndClear(SaveSystem.SavePath);`
+- **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:109` · `Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests` — SaveSystem reference. `SaveSystem save = SaveSystem.Instance;`
+- **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:110` · `Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests` — SaveSystem reference. `Assert.IsNotNull(save, "SaveSystem is missing before actual scene snapshots.");`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoverySaveFileBackup.cs:10` · `Ziptide.Tests.PlayMode.RecoverySaveFileBackup` — SaveSystem reference. `/// must be allowed to exercise SaveSystem's real persistentDataPath without destroying a local`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:57` · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` — SaveSystem reference. `_saveBackup = RecoverySaveFileBackup.CaptureAndClear(SaveSystem.SavePath);`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:95` · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` — SaveSystem reference. `Assert.IsFalse(SaveSystem.HasExistingProfile,`
@@ -2175,7 +2184,7 @@
 - **DIRECT_SCENE_LOAD_ASYNC** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:196` · `Ziptide.Gameplay.TravelCoordinator` — Direct asynchronous scene load. `AsyncOperation loadOperation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);`
 - **DIRECT_SCENE_LOAD_ASYNC** — `Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourTravelSignalTests.cs:121` · `Ziptide.Tests.EditMode.FirstHourTravelSignalTests` — Direct asynchronous scene load. `"SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);"),`
 - **DIRECT_SCENE_LOAD_ASYNC** — `Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourTravelSignalTests.cs:134` · `Ziptide.Tests.EditMode.FirstHourTravelSignalTests` — Direct asynchronous scene load. `int asyncLoad = source.IndexOf("SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);");`
-- **DIRECT_SCENE_LOAD_ASYNC** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:65` · `Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests` — Direct asynchronous scene load. `AsyncOperation bootLoad = SceneManager.LoadSceneAsync(`
+- **DIRECT_SCENE_LOAD_ASYNC** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:66` · `Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests` — Direct asynchronous scene load. `AsyncOperation bootLoad = SceneManager.LoadSceneAsync(`
 - **DIRECT_SCENE_LOAD_ASYNC** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:67` · `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` — Direct asynchronous scene load. `AsyncOperation load = SceneManager.LoadSceneAsync(`
 - **DIRECT_SCENE_LOAD_ASYNC** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:174` · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` — Direct asynchronous scene load. `AsyncOperation load = SceneManager.LoadSceneAsync(`
 ### xri_ownership
@@ -2209,7 +2218,7 @@
 - **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:271` · `Ziptide.Gameplay.WorldTravelStation` — Explicit interactable interactionManager assignment. `interactable.interactionManager = mgr;`
 - **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:246` · `Ziptide.Ship.ShipFlightRuntime` — Explicit interactable interactionManager assignment. `if (mgr != null) interactable.interactionManager = mgr;`
 - **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:151` · `Ziptide.Ship.VehicleRuntime` — Explicit interactable interactionManager assignment. `if (mgr != null) interactable.interactionManager = mgr;`
-- **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:243` · `Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation` — Explicit interactable interactionManager assignment. `ray.interactionManager = canonicalManager;`
+- **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:297` · `Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation` — Explicit interactable interactionManager assignment. `ray.interactionManager = canonicalManager;`
 - **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:127` · `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` — Explicit interactable interactionManager assignment. `(settings.interactionManager == null || newGame.interactionManager == null); frame++)`
 - **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:92` · `Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests` — Explicit interactable interactionManager assignment. `if (interactable.interactionManager == null)`
 - **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:97` · `Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests` — Explicit interactable interactionManager assignment. `for (int frame = 0; frame < 10 && interactable.interactionManager == null; frame++)`
@@ -2260,6 +2269,6 @@
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:268` · `Ziptide.Gameplay.WorldTravelStation` — XRInteractionManager lookup. `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:245` · `Ziptide.Ship.ShipFlightRuntime` — XRInteractionManager lookup. `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:150` · `Ziptide.Ship.VehicleRuntime` — XRInteractionManager lookup. `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
-- **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:136` · `Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests` — XRInteractionManager lookup. `XRInteractionManager manager = UnityEngine.Object.FindObjectOfType<XRInteractionManager>();`
+- **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:150` · `Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests` — XRInteractionManager lookup. `XRInteractionManager manager = UnityEngine.Object.FindObjectOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:84` · `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` — XRInteractionManager lookup. `manager = UnityEngine.Object.FindObjectOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:45` · `Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests` — XRInteractionManager lookup. `Assert.IsNull(UnityEngine.Object.FindObjectOfType<XRInteractionManager>(),`
