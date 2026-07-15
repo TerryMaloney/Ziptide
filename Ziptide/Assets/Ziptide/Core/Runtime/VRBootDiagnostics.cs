@@ -14,6 +14,8 @@ namespace Ziptide.Core
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void OnLoad()
         {
+            if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.VrBootDiagnostics)) return;
+
             Debug.Log("[Ziptide] VRBootDiagnostics: --- start ---");
 
             try
