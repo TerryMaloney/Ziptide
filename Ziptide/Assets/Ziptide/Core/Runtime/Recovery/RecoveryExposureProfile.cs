@@ -46,7 +46,8 @@ namespace Ziptide.Core
             RecoveryFeatureId.RuntimeHealthMonitor,
             RecoveryFeatureId.AmbienceDirector,
             RecoveryFeatureId.ComfortVignette,
-            RecoveryFeatureId.EcologyInjector,
+            // Ecology remains compiled and available in FullDevelopment, but the R0 manifest
+            // requires named-creature contact/grounding proof before it can enter GoldenSlice.
             RecoveryFeatureId.SaveSystem,
             RecoveryFeatureId.FirstHourObservation,
             RecoveryFeatureId.PlayerRigPersistence,
