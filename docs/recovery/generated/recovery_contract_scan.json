@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-15T11:08:40.671836+00:00",
+  "generatedAtUtc": "2026-07-15T11:13:07.555150+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -1082,7 +1082,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs",
-      "line": 122,
+      "line": 139,
       "symbol": "Ziptide.Gameplay.EcologyDirector",
       "snippet": "Debug.Log(\"ZIPTIDE: ECOLOGY_RESOLVE world=\" + world +"
     },
@@ -13016,7 +13016,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs",
-      "line": 189,
+      "line": 206,
       "symbol": "Ziptide.Gameplay.EcologyDirector",
       "snippet": "var go = new GameObject(\"Nest_\" + s.CreatureId + \"_\" + i);"
     },
@@ -17093,7 +17093,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs",
-      "line": 76,
+      "line": 93,
       "symbol": "Ziptide.Gameplay.EcologyDirector",
       "snippet": "var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
     },

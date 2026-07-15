@@ -5874,7 +5874,7 @@
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs",
-            "line": 189,
+            "line": 206,
             "symbol": "Ziptide.Gameplay.EcologyDirector",
             "snippet": "var go = new GameObject(\"Nest_\" + s.CreatureId + \"_\" + i);"
           }
@@ -12412,7 +12412,7 @@
           {
             "code": "SAVE_SYSTEM_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs",
-            "line": 76,
+            "line": 93,
             "symbol": "Ziptide.Gameplay.EcologyDirector",
             "snippet": "var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
           }

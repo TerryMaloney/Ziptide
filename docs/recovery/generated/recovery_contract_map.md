@@ -1262,7 +1262,7 @@ None.
 - Codes: `NEW_GAME_OBJECT`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs:56` **NEW_GAME_OBJECT** — `var go = new GameObject("EcologyDirector");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs:189` **NEW_GAME_OBJECT** — `var go = new GameObject("Nest_" + s.CreatureId + "_" + i);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs:206` **NEW_GAME_OBJECT** — `var go = new GameObject("Nest_" + s.CreatureId + "_" + i);`
 
 ### `Ziptide.Gameplay.FirstDestinationHelmRuntime` — 8 signal(s)
 
@@ -2729,7 +2729,7 @@ None.
 
 - Codes: `SAVE_SYSTEM_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs:76` **SAVE_SYSTEM_REFERENCE** — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs:93` **SAVE_SYSTEM_REFERENCE** — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 
 ### `Ziptide.Gameplay.FirstDestinationHelmRuntime` — 4 signal(s)
 

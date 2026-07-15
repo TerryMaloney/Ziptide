@@ -1785,7 +1785,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs",
-        "line": 78,
+        "line": 95,
         "owner": "Ziptide.Gameplay.EcologyDirector",
         "target": "GetWorld",
         "detail": "profile",
@@ -3411,7 +3411,7 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs",
-        "line": 76,
+        "line": 93,
         "owner": "Ziptide.Gameplay.EcologyDirector",
         "target": "SaveSystem.Profile",
         "detail": "",
@@ -8334,7 +8334,7 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs",
-      "line": 76,
+      "line": 93,
       "owner": "Ziptide.Gameplay.EcologyDirector",
       "target": "SaveSystem.Profile",
       "detail": "",
@@ -8343,7 +8343,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs",
-      "line": 78,
+      "line": 95,
       "owner": "Ziptide.Gameplay.EcologyDirector",
       "target": "GetWorld",
       "detail": "profile",
