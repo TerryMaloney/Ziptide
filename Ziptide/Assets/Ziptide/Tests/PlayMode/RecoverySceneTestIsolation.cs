@@ -35,6 +35,12 @@ namespace Ziptide.Tests.PlayMode
 
         public static IEnumerator ResetToEmptyFullDevelopment()
         {
+            // Stop persistent coroutines first. In particular, a failed test may leave
+            // TravelCoordinator mid-load; unloading scenes before destroying it could allow a late
+            // autosave or destination activation to race profile restoration in teardown.
+            DestroyProductionRuntimeImmediate();
+            yield return null;
+
             Scene empty = SceneManager.GetSceneByName(EmptySceneName);
             if (!empty.IsValid()) empty = SceneManager.CreateScene(EmptySceneName);
             SceneManager.SetActiveScene(empty);
