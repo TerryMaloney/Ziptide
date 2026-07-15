@@ -31,8 +31,6 @@ class CiVerdictTests(unittest.TestCase):
         self.assertEqual("RED", verdict.overall)
 
     def test_red_for_patch_audit_skipped_even_when_editmode_passes(self) -> None:
-        # THE HOLE THIS SCHEMA CLOSES: a required check that skips must never read green —
-        # androidApk:skipped hid nine days of headset-build blockers (July 5-14).
         verdict = ci_verdict.calculate_verdict("success", "skipped", "skipped", "success")
         self.assertEqual("RED", verdict.overall)
 
@@ -72,8 +70,10 @@ class CiVerdictTests(unittest.TestCase):
         self.assertEqual("a" * 40, payload["testedSha"])
         self.assertEqual("skipped", payload["results"]["androidApk"])
         self.assertEqual("success", payload["results"]["patchScenesAudit"])
-        self.assertIn("direct generated verdict-only child", payload["interpretation"]["currentWhen"])
-        self.assertIn("direct verdict-only child", content)
+        self.assertIn("generated recovery evidence", payload["interpretation"]["currentWhen"])
+        self.assertIn("docs/HANDOFF.md", payload["interpretation"]["currentWhen"])
+        self.assertIn("current at the source level", content)
+        self.assertIn("any other later path", content)
 
     def test_cli_rejects_wrong_branch(self) -> None:
         with tempfile.TemporaryDirectory() as tmp:
