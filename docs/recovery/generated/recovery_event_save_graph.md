@@ -1,7 +1,7 @@
 # ZIPTIDE Event and Save Ownership Graph
 
-- Scanned C# files: **632**
-- Evidence edges: **676**
+- Scanned C# files: **633**
+- Evidence edges: **683**
 - Named subscriptions without matching unsubscribe in the same owner: **47**
 
 This is a static ownership graph. An unmatched row is a review target, not automatic proof of a leak; process-lifetime static hooks may be intentional.
@@ -11,8 +11,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **AUTOSAVE:** 7
 - **EVENT_DECLARE:** 45
 - **EVENT_INVOKE:** 56
-- **EVENT_SUBSCRIBE:** 89
-- **EVENT_UNSUBSCRIBE:** 43
+- **EVENT_SUBSCRIBE:** 92
+- **EVENT_UNSUBSCRIBE:** 47
 - **PLAYER_PREFS_ACCESS:** 11
 - **PROFILE_FIELD_ACCESS:** 358
 - **SAVE_ACCESS:** 67
@@ -380,6 +380,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `HomeHubRuntime.BootPresentationReady`
 
+- **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:40` · `OnBootReady` — `HomeHubRuntime.BootPresentationReady += OnBootReady;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:48` · `OnBootReady` — `HomeHubRuntime.BootPresentationReady -= OnBootReady;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:43` · `OnBootReady` — `HomeHubRuntime.BootPresentationReady += OnBootReady;`
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:55` · `OnBootReady` — `HomeHubRuntime.BootPresentationReady -= OnBootReady;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:66` · `OnBootReady` — `HomeHubRuntime.BootPresentationReady += OnBootReady;`
@@ -712,6 +714,9 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **EVENT_SUBSCRIBE** · `Ziptide.Tests.EditMode.AudioDirectorLifecycleTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/AudioDirectorLifecycleTests.cs:58` · `OnSceneLoaded` — `Assert.AreEqual(1, Count(source, "SceneManager.sceneLoaded += OnSceneLoaded;"));`
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.EditMode.AudioDirectorLifecycleTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/AudioDirectorLifecycleTests.cs:59` · `OnSceneLoaded` — `Assert.AreEqual(1, Count(source, "SceneManager.sceneLoaded -= OnSceneLoaded;"));`
 - **EVENT_SUBSCRIBE** · `Ziptide.Tests.EditMode.FieldCameraCompletionTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/FieldCameraCompletionTests.cs:82` · `OnSceneLoaded` — `StringAssert.Contains("SceneManager.sceneLoaded += OnSceneLoaded", feature);`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:47` · `OnBootSceneLoadedBeforeStart` — `SceneManager.sceneLoaded -= OnBootSceneLoadedBeforeStart;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:64` · `OnBootSceneLoadedBeforeStart` — `SceneManager.sceneLoaded += OnBootSceneLoadedBeforeStart;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:71` · `OnBootSceneLoadedBeforeStart` — `SceneManager.sceneLoaded -= OnBootSceneLoadedBeforeStart;`
 
 ### `SetFlag`
 
@@ -786,6 +791,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `TravelCoordinator.TravelCompleted`
 
+- **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:41` · `OnTravelCompleted` — `TravelCoordinator.TravelCompleted += OnTravelCompleted;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:49` · `OnTravelCompleted` — `TravelCoordinator.TravelCompleted -= OnTravelCompleted;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:68` · `OnTravelCompleted` — `TravelCoordinator.TravelCompleted += OnTravelCompleted;`
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:80` · `OnTravelCompleted` — `TravelCoordinator.TravelCompleted -= OnTravelCompleted;`
 

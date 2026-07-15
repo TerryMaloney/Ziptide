@@ -1,7 +1,7 @@
 # ZIPTIDE Recovery Contract Scan
 
-- Scanned files: **632**
-- Findings: **2195**
+- Scanned files: **633**
+- Findings: **2201**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
@@ -18,9 +18,9 @@
 | `persistence` | 17 |
 | `runtime_creation` | 578 |
 | `runtime_ui` | 117 |
-| `save_state` | 251 |
-| `scene_loading` | 7 |
-| `xri_ownership` | 82 |
+| `save_state` | 255 |
+| `scene_loading` | 8 |
+| `xri_ownership` | 83 |
 
 ## Findings
 
@@ -2042,6 +2042,7 @@
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/EditMode/WorldGatingTests.cs:95` · `Ziptide.Tests.EditMode.WorldGatingTests` — PlayerProfile reference. `var profile = new PlayerProfile();`
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/EditMode/WorldGatingTests.cs:107` · `Ziptide.Tests.EditMode.WorldGatingTests` — PlayerProfile reference. `var profile = new PlayerProfile();`
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/EditMode/ZiplineSignalTests.cs:152` · `Ziptide.Tests.EditMode.ZiplineSignalTests` — PlayerProfile reference. `StringAssert.DoesNotContain("PlayerProfile", source);`
+- **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:93` · `Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests` — PlayerProfile reference. `PlayerProfile profile = save.StartNewProfile();`
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:40` · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` — PlayerProfile reference. `private PlayerProfile _newGameProfile;`
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:128` · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` — PlayerProfile reference. `PlayerProfile live = SaveSystem.Instance.Profile;`
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:355` · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` — PlayerProfile reference. `PlayerProfile profile = SaveSystem.Instance.Profile;`
@@ -2140,6 +2141,9 @@
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/EditMode/SaveAutosaveTests.cs:17` · `Ziptide.Tests.EditMode.SaveAutosaveTests` — SaveSystem reference. `Assert.DoesNotThrow(() => SaveSystem.AutosaveNow("travel"));`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/EditMode/WristScannerResultTests.cs:205` · `Ziptide.Tests.EditMode.WristScannerResultTests` — SaveSystem reference. `StringAssert.DoesNotContain("SaveSystem", source);`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/EditMode/ZiplineSignalTests.cs:153` · `Ziptide.Tests.EditMode.ZiplineSignalTests` — SaveSystem reference. `StringAssert.DoesNotContain("SaveSystem", source);`
+- **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:35` · `Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests` — SaveSystem reference. `_saveBackup = RecoverySaveFileBackup.CaptureAndClear(SaveSystem.SavePath);`
+- **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:91` · `Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests` — SaveSystem reference. `SaveSystem save = SaveSystem.Instance;`
+- **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:92` · `Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests` — SaveSystem reference. `Assert.IsNotNull(save, "SaveSystem is missing before actual scene snapshots.");`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoverySaveFileBackup.cs:10` · `Ziptide.Tests.PlayMode.RecoverySaveFileBackup` — SaveSystem reference. `/// must be allowed to exercise SaveSystem's real persistentDataPath without destroying a local`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:57` · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` — SaveSystem reference. `_saveBackup = RecoverySaveFileBackup.CaptureAndClear(SaveSystem.SavePath);`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:95` · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` — SaveSystem reference. `Assert.IsFalse(SaveSystem.HasExistingProfile,`
@@ -2159,6 +2163,7 @@
 - **DIRECT_SCENE_LOAD_ASYNC** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:196` · `Ziptide.Gameplay.TravelCoordinator` — Direct asynchronous scene load. `AsyncOperation loadOperation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);`
 - **DIRECT_SCENE_LOAD_ASYNC** — `Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourTravelSignalTests.cs:121` · `Ziptide.Tests.EditMode.FirstHourTravelSignalTests` — Direct asynchronous scene load. `"SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);"),`
 - **DIRECT_SCENE_LOAD_ASYNC** — `Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourTravelSignalTests.cs:134` · `Ziptide.Tests.EditMode.FirstHourTravelSignalTests` — Direct asynchronous scene load. `int asyncLoad = source.IndexOf("SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);");`
+- **DIRECT_SCENE_LOAD_ASYNC** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:65` · `Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests` — Direct asynchronous scene load. `AsyncOperation bootLoad = SceneManager.LoadSceneAsync(`
 - **DIRECT_SCENE_LOAD_ASYNC** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:67` · `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` — Direct asynchronous scene load. `AsyncOperation load = SceneManager.LoadSceneAsync(`
 - **DIRECT_SCENE_LOAD_ASYNC** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:174` · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` — Direct asynchronous scene load. `AsyncOperation load = SceneManager.LoadSceneAsync(`
 ### xri_ownership
@@ -2243,5 +2248,6 @@
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:268` · `Ziptide.Gameplay.WorldTravelStation` — XRInteractionManager lookup. `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:245` · `Ziptide.Ship.ShipFlightRuntime` — XRInteractionManager lookup. `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:150` · `Ziptide.Ship.VehicleRuntime` — XRInteractionManager lookup. `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
+- **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:124` · `Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests` — XRInteractionManager lookup. `XRInteractionManager manager = UnityEngine.Object.FindObjectOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:84` · `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` — XRInteractionManager lookup. `manager = UnityEngine.Object.FindObjectOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:45` · `Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests` — XRInteractionManager lookup. `Assert.IsNull(UnityEngine.Object.FindObjectOfType<XRInteractionManager>(),`

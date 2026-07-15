@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
-- Scanned files: **632**
-- Scanner findings: **2195**
+- Scanned files: **633**
+- Scanner findings: **2201**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -243,6 +243,12 @@ None.
   - `Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourTravelSignalTests.cs:118` **DIRECT_SCENE_LOAD** — `Assert.AreEqual(1, Count(source, "SceneManager.LoadScene(sceneName);"),`
   - `Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourTravelSignalTests.cs:121` **DIRECT_SCENE_LOAD_ASYNC** — `"SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);"),`
   - `Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourTravelSignalTests.cs:134` **DIRECT_SCENE_LOAD_ASYNC** — `int asyncLoad = source.IndexOf("SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);");`
+
+### `Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests` — 1 signal(s)
+
+- Codes: `DIRECT_SCENE_LOAD_ASYNC`
+- Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:65` **DIRECT_SCENE_LOAD_ASYNC** — `AsyncOperation bootLoad = SceneManager.LoadSceneAsync(`
 
 ### `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` — 1 signal(s)
 
@@ -2621,6 +2627,12 @@ None.
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs`
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:78` **XRI_MANAGER_ASSIGN** — `rightRay.interactionManager = canonicalManager;`
 
+### `Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests` — 1 signal(s)
+
+- Codes: `XRI_MANAGER_LOOKUP`
+- Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:124` **XRI_MANAGER_LOOKUP** — `XRInteractionManager manager = UnityEngine.Object.FindObjectOfType<XRInteractionManager>();`
+
 ### `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` — 2 signal(s)
 
 - Codes: `XRI_MANAGER_ASSIGN`, `XRI_MANAGER_LOOKUP`
@@ -3458,6 +3470,15 @@ None.
   - `Ziptide/Assets/Ziptide/Tests/EditMode/ZiplineSignalTests.cs:126` **EVENT_DECLARATION** — `StringAssert.Contains("public event System.Action<string, float> RideEnded;", source);`
   - `Ziptide/Assets/Ziptide/Tests/EditMode/ZiplineSignalTests.cs:152` **PLAYER_PROFILE_REFERENCE** — `StringAssert.DoesNotContain("PlayerProfile", source);`
   - `Ziptide/Assets/Ziptide/Tests/EditMode/ZiplineSignalTests.cs:153` **SAVE_SYSTEM_REFERENCE** — `StringAssert.DoesNotContain("SaveSystem", source);`
+
+### `Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests` — 4 signal(s)
+
+- Codes: `PLAYER_PROFILE_REFERENCE`, `SAVE_SYSTEM_REFERENCE`
+- Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:35` **SAVE_SYSTEM_REFERENCE** — `_saveBackup = RecoverySaveFileBackup.CaptureAndClear(SaveSystem.SavePath);`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:91` **SAVE_SYSTEM_REFERENCE** — `SaveSystem save = SaveSystem.Instance;`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:92` **SAVE_SYSTEM_REFERENCE** — `Assert.IsNotNull(save, "SaveSystem is missing before actual scene snapshots.");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:93` **PLAYER_PROFILE_REFERENCE** — `PlayerProfile profile = save.StartNewProfile();`
 
 ### `Ziptide.Tests.PlayMode.RecoverySaveFileBackup` — 1 signal(s)
 

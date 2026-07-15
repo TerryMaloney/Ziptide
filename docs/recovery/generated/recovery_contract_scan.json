@@ -1,15 +1,15 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-15T19:44:13.618392+00:00",
+  "generatedAtUtc": "2026-07-15T19:45:55.233033+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
     "Ziptide/Assets/Ziptide",
     "Ziptide/Assets/ZiptideNet"
   ],
-  "scannedFiles": 632,
-  "findingCount": 2195,
+  "scannedFiles": 633,
+  "findingCount": 2201,
   "categoryCounts": {
     "bootstrap": 29,
     "diagnostics": 467,
@@ -21,9 +21,9 @@
     "persistence": 17,
     "runtime_creation": 578,
     "runtime_ui": 117,
-    "save_state": 251,
-    "scene_loading": 7,
-    "xri_ownership": 82
+    "save_state": 255,
+    "scene_loading": 8,
+    "xri_ownership": 83
   },
   "codeCounts": {
     "AUTOSAVE_CALL": 8,
@@ -32,7 +32,7 @@
     "CANVAS_COMPONENT": 5,
     "CREATE_PRIMITIVE": 230,
     "DIRECT_SCENE_LOAD": 2,
-    "DIRECT_SCENE_LOAD_ASYNC": 5,
+    "DIRECT_SCENE_LOAD_ASYNC": 6,
     "DONT_DESTROY_ON_LOAD": 17,
     "EDITOR_BOOTSTRAP": 6,
     "EVENT_DECLARATION": 48,
@@ -42,11 +42,11 @@
     "INPUT_ACTION_REFERENCE": 153,
     "INPUT_BUTTON_REFERENCE": 6,
     "NEW_GAME_OBJECT": 348,
-    "PLAYER_PROFILE_REFERENCE": 138,
+    "PLAYER_PROFILE_REFERENCE": 139,
     "RENDER_SETTINGS_MUTATION": 36,
     "RUNTIME_BOOTSTRAP": 23,
     "RUNTIME_MATERIAL_CREATE": 88,
-    "SAVE_SYSTEM_REFERENCE": 105,
+    "SAVE_SYSTEM_REFERENCE": 108,
     "SHADER_FIND": 138,
     "STATIC_EVENT_DECLARATION": 16,
     "TEXTMESH_COMPONENT": 44,
@@ -54,7 +54,7 @@
     "VOLUME_COMPONENT": 1,
     "XRI_MANAGER_ASSIGN": 35,
     "XRI_MANAGER_CREATE": 7,
-    "XRI_MANAGER_LOOKUP": 40,
+    "XRI_MANAGER_LOOKUP": 41,
     "XR_INTERACTABLE_COMPONENT": 61,
     "XR_UI_INPUT_MODULE": 2,
     "ZIPTIDE_LOG_TAG": 467
@@ -18028,6 +18028,15 @@
       "category": "save_state",
       "code": "PLAYER_PROFILE_REFERENCE",
       "description": "PlayerProfile reference",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
+      "line": 93,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
+      "snippet": "PlayerProfile profile = save.StartNewProfile();"
+    },
+    {
+      "category": "save_state",
+      "code": "PLAYER_PROFILE_REFERENCE",
+      "description": "PlayerProfile reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
       "line": 40,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
@@ -18910,6 +18919,33 @@
       "category": "save_state",
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
+      "line": 35,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
+      "snippet": "_saveBackup = RecoverySaveFileBackup.CaptureAndClear(SaveSystem.SavePath);"
+    },
+    {
+      "category": "save_state",
+      "code": "SAVE_SYSTEM_REFERENCE",
+      "description": "SaveSystem reference",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
+      "line": 91,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
+      "snippet": "SaveSystem save = SaveSystem.Instance;"
+    },
+    {
+      "category": "save_state",
+      "code": "SAVE_SYSTEM_REFERENCE",
+      "description": "SaveSystem reference",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
+      "line": 92,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
+      "snippet": "Assert.IsNotNull(save, \"SaveSystem is missing before actual scene snapshots.\");"
+    },
+    {
+      "category": "save_state",
+      "code": "SAVE_SYSTEM_REFERENCE",
+      "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoverySaveFileBackup.cs",
       "line": 10,
       "symbol": "Ziptide.Tests.PlayMode.RecoverySaveFileBackup",
@@ -19058,6 +19094,15 @@
       "line": 134,
       "symbol": "Ziptide.Tests.EditMode.FirstHourTravelSignalTests",
       "snippet": "int asyncLoad = source.IndexOf(\"SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);\");"
+    },
+    {
+      "category": "scene_loading",
+      "code": "DIRECT_SCENE_LOAD_ASYNC",
+      "description": "Direct asynchronous scene load",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
+      "line": 65,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
+      "snippet": "AsyncOperation bootLoad = SceneManager.LoadSceneAsync("
     },
     {
       "category": "scene_loading",
@@ -19796,6 +19841,15 @@
       "line": 150,
       "symbol": "Ziptide.Ship.VehicleRuntime",
       "snippet": "var mgr = Object.FindObjectOfType<XRInteractionManager>();"
+    },
+    {
+      "category": "xri_ownership",
+      "code": "XRI_MANAGER_LOOKUP",
+      "description": "XRInteractionManager lookup",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
+      "line": 124,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
+      "snippet": "XRInteractionManager manager = UnityEngine.Object.FindObjectOfType<XRInteractionManager>();"
     },
     {
       "category": "xri_ownership",

@@ -1,13 +1,13 @@
 {
   "tool": "recovery_event_save_graph",
-  "scannedFiles": 632,
-  "evidenceCount": 676,
+  "scannedFiles": 633,
+  "evidenceCount": 683,
   "kindCounts": {
     "AUTOSAVE": 7,
     "EVENT_DECLARE": 45,
     "EVENT_INVOKE": 56,
-    "EVENT_SUBSCRIBE": 89,
-    "EVENT_UNSUBSCRIBE": 43,
+    "EVENT_SUBSCRIBE": 92,
+    "EVENT_UNSUBSCRIBE": 47,
     "PLAYER_PREFS_ACCESS": 11,
     "PROFILE_FIELD_ACCESS": 358,
     "SAVE_ACCESS": 67
@@ -2523,6 +2523,24 @@
     "HomeHubRuntime.BootPresentationReady": [
       {
         "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
+        "line": 40,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
+        "target": "HomeHubRuntime.BootPresentationReady",
+        "detail": "OnBootReady",
+        "snippet": "HomeHubRuntime.BootPresentationReady += OnBootReady;"
+      },
+      {
+        "kind": "EVENT_UNSUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
+        "line": 48,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
+        "target": "HomeHubRuntime.BootPresentationReady",
+        "detail": "OnBootReady",
+        "snippet": "HomeHubRuntime.BootPresentationReady -= OnBootReady;"
+      },
+      {
+        "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
         "line": 43,
         "owner": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
@@ -4383,6 +4401,33 @@
         "target": "SceneManager.sceneLoaded",
         "detail": "OnSceneLoaded",
         "snippet": "StringAssert.Contains(\"SceneManager.sceneLoaded += OnSceneLoaded\", feature);"
+      },
+      {
+        "kind": "EVENT_UNSUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
+        "line": 47,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
+        "target": "SceneManager.sceneLoaded",
+        "detail": "OnBootSceneLoadedBeforeStart",
+        "snippet": "SceneManager.sceneLoaded -= OnBootSceneLoadedBeforeStart;"
+      },
+      {
+        "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
+        "line": 64,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
+        "target": "SceneManager.sceneLoaded",
+        "detail": "OnBootSceneLoadedBeforeStart",
+        "snippet": "SceneManager.sceneLoaded += OnBootSceneLoadedBeforeStart;"
+      },
+      {
+        "kind": "EVENT_UNSUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
+        "line": 71,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
+        "target": "SceneManager.sceneLoaded",
+        "detail": "OnBootSceneLoadedBeforeStart",
+        "snippet": "SceneManager.sceneLoaded -= OnBootSceneLoadedBeforeStart;"
       }
     ],
     "SetFlag": [
@@ -4775,6 +4820,24 @@
       }
     ],
     "TravelCoordinator.TravelCompleted": [
+      {
+        "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
+        "line": 41,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
+        "target": "TravelCoordinator.TravelCompleted",
+        "detail": "OnTravelCompleted",
+        "snippet": "TravelCoordinator.TravelCompleted += OnTravelCompleted;"
+      },
+      {
+        "kind": "EVENT_UNSUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
+        "line": 49,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
+        "target": "TravelCoordinator.TravelCompleted",
+        "detail": "OnTravelCompleted",
+        "snippet": "TravelCoordinator.TravelCompleted -= OnTravelCompleted;"
+      },
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
@@ -12292,6 +12355,69 @@
       "target": "method",
       "detail": "",
       "snippet": "method.Invoke(line, args);"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
+      "line": 40,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
+      "target": "HomeHubRuntime.BootPresentationReady",
+      "detail": "OnBootReady",
+      "snippet": "HomeHubRuntime.BootPresentationReady += OnBootReady;"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
+      "line": 41,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
+      "target": "TravelCoordinator.TravelCompleted",
+      "detail": "OnTravelCompleted",
+      "snippet": "TravelCoordinator.TravelCompleted += OnTravelCompleted;"
+    },
+    {
+      "kind": "EVENT_UNSUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
+      "line": 47,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
+      "target": "SceneManager.sceneLoaded",
+      "detail": "OnBootSceneLoadedBeforeStart",
+      "snippet": "SceneManager.sceneLoaded -= OnBootSceneLoadedBeforeStart;"
+    },
+    {
+      "kind": "EVENT_UNSUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
+      "line": 48,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
+      "target": "HomeHubRuntime.BootPresentationReady",
+      "detail": "OnBootReady",
+      "snippet": "HomeHubRuntime.BootPresentationReady -= OnBootReady;"
+    },
+    {
+      "kind": "EVENT_UNSUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
+      "line": 49,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
+      "target": "TravelCoordinator.TravelCompleted",
+      "detail": "OnTravelCompleted",
+      "snippet": "TravelCoordinator.TravelCompleted -= OnTravelCompleted;"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
+      "line": 64,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
+      "target": "SceneManager.sceneLoaded",
+      "detail": "OnBootSceneLoadedBeforeStart",
+      "snippet": "SceneManager.sceneLoaded += OnBootSceneLoadedBeforeStart;"
+    },
+    {
+      "kind": "EVENT_UNSUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
+      "line": 71,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
+      "target": "SceneManager.sceneLoaded",
+      "detail": "OnBootSceneLoadedBeforeStart",
+      "snippet": "SceneManager.sceneLoaded -= OnBootSceneLoadedBeforeStart;"
     },
     {
       "kind": "EVENT_SUBSCRIBE",

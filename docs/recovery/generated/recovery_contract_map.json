@@ -1,8 +1,8 @@
 {
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
-  "scannedFiles": 632,
-  "findingCount": 2195,
+  "scannedFiles": 633,
+  "findingCount": 2201,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -779,6 +779,25 @@
             "line": 134,
             "symbol": "Ziptide.Tests.EditMode.FirstHourTravelSignalTests",
             "snippet": "int asyncLoad = source.IndexOf(\"SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);\");"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
+        "evidenceCount": 1,
+        "codes": [
+          "DIRECT_SCENE_LOAD_ASYNC"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs"
+        ],
+        "evidence": [
+          {
+            "code": "DIRECT_SCENE_LOAD_ASYNC",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
+            "line": 65,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
+            "snippet": "AsyncOperation bootLoad = SceneManager.LoadSceneAsync("
           }
         ]
       },
@@ -12106,6 +12125,25 @@
         ]
       },
       {
+        "owner": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
+        "evidenceCount": 1,
+        "codes": [
+          "XRI_MANAGER_LOOKUP"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs"
+        ],
+        "evidence": [
+          {
+            "code": "XRI_MANAGER_LOOKUP",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
+            "line": 124,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
+            "snippet": "XRInteractionManager manager = UnityEngine.Object.FindObjectOfType<XRInteractionManager>();"
+          }
+        ]
+      },
+      {
         "owner": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
         "evidenceCount": 2,
         "codes": [
@@ -15550,6 +15588,47 @@
             "line": 153,
             "symbol": "Ziptide.Tests.EditMode.ZiplineSignalTests",
             "snippet": "StringAssert.DoesNotContain(\"SaveSystem\", source);"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
+        "evidenceCount": 4,
+        "codes": [
+          "PLAYER_PROFILE_REFERENCE",
+          "SAVE_SYSTEM_REFERENCE"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs"
+        ],
+        "evidence": [
+          {
+            "code": "SAVE_SYSTEM_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
+            "line": 35,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
+            "snippet": "_saveBackup = RecoverySaveFileBackup.CaptureAndClear(SaveSystem.SavePath);"
+          },
+          {
+            "code": "SAVE_SYSTEM_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
+            "line": 91,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
+            "snippet": "SaveSystem save = SaveSystem.Instance;"
+          },
+          {
+            "code": "SAVE_SYSTEM_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
+            "line": 92,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
+            "snippet": "Assert.IsNotNull(save, \"SaveSystem is missing before actual scene snapshots.\");"
+          },
+          {
+            "code": "PLAYER_PROFILE_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
+            "line": 93,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
+            "snippet": "PlayerProfile profile = save.StartNewProfile();"
           }
         ]
       },
