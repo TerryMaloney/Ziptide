@@ -210,8 +210,8 @@ None.
 
 - Codes: `DONT_DESTROY_ON_LOAD`, `RUNTIME_BOOTSTRAP`
 - Paths: `Ziptide/Assets/ZiptideNet/NetBootstrap.cs`
-  - `Ziptide/Assets/ZiptideNet/NetBootstrap.cs:19` **RUNTIME_BOOTSTRAP** — `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]`
-  - `Ziptide/Assets/ZiptideNet/NetBootstrap.cs:32` **DONT_DESTROY_ON_LOAD** — `Object.DontDestroyOnLoad(_launcherGo);`
+  - `Ziptide/Assets/ZiptideNet/NetBootstrap.cs:20` **RUNTIME_BOOTSTRAP** — `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]`
+  - `Ziptide/Assets/ZiptideNet/NetBootstrap.cs:42` **DONT_DESTROY_ON_LOAD** — `Object.DontDestroyOnLoad(_launcherGo);`
 
 
 ## Scene loading
@@ -2236,7 +2236,7 @@ None.
 
 - Codes: `NEW_GAME_OBJECT`
 - Paths: `Ziptide/Assets/ZiptideNet/NetBootstrap.cs`
-  - `Ziptide/Assets/ZiptideNet/NetBootstrap.cs:31` **NEW_GAME_OBJECT** — `_launcherGo = new GameObject("__PhotonPvpLauncher");`
+  - `Ziptide/Assets/ZiptideNet/NetBootstrap.cs:41` **NEW_GAME_OBJECT** — `_launcherGo = new GameObject("__PhotonPvpLauncher");`
 
 
 ## XRI ownership

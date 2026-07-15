@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-15T10:41:35.048206+00:00",
+  "generatedAtUtc": "2026-07-15T10:43:15.904141+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -290,7 +290,7 @@
       "code": "RUNTIME_BOOTSTRAP",
       "description": "RuntimeInitializeOnLoadMethod bootstrap",
       "path": "Ziptide/Assets/ZiptideNet/NetBootstrap.cs",
-      "line": 19,
+      "line": 20,
       "symbol": "ZiptideNet.NetBootstrap",
       "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]"
     },
@@ -4025,7 +4025,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/ZiptideNet/NetBootstrap.cs",
-      "line": 24,
+      "line": 32,
       "symbol": "ZiptideNet.NetBootstrap",
       "snippet": "Debug.Log(\"ZIPTIDE: NET_STARTER_INSTALLED (Photon)\");"
     },
@@ -9641,7 +9641,7 @@
       "code": "DONT_DESTROY_ON_LOAD",
       "description": "Object promoted across scene loads",
       "path": "Ziptide/Assets/ZiptideNet/NetBootstrap.cs",
-      "line": 32,
+      "line": 42,
       "symbol": "ZiptideNet.NetBootstrap",
       "snippet": "Object.DontDestroyOnLoad(_launcherGo);"
     },
@@ -14690,7 +14690,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/ZiptideNet/NetBootstrap.cs",
-      "line": 31,
+      "line": 41,
       "symbol": "ZiptideNet.NetBootstrap",
       "snippet": "_launcherGo = new GameObject(\"__PhotonPvpLauncher\");"
     },

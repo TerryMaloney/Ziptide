@@ -51,7 +51,7 @@
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:39` · `Ziptide.Gameplay.ConquestMissionRuntime` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Tests/EditMode/DevToolsSingletonTests.cs:17` · `Ziptide.Tests.EditMode.DevToolsSingletonTests` — RuntimeInitializeOnLoadMethod bootstrap. `private const string BootstrapMarker = "[RuntimeInitializeOnLoadMethod";`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Tests/EditMode/EventHygieneTests.cs:26` · `Ziptide.Tests.EditMode.EventHygieneTests` — RuntimeInitializeOnLoadMethod bootstrap. `"Gameplay/Runtime/World/ConquestMissionRuntime.cs", // [RuntimeInitializeOnLoadMethod] static hook`
-- **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/ZiptideNet/NetBootstrap.cs:19` · `ZiptideNet.NetBootstrap` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]`
+- **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/ZiptideNet/NetBootstrap.cs:20` · `ZiptideNet.NetBootstrap` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]`
 ### diagnostics
 
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Content/Runtime/DefinitionRegistry.cs:30` · `Ziptide.Content.DefinitionRegistry` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: DEF_NO_ID type=" + typeof(TDef).Name + " name=" + def.name);`
@@ -468,7 +468,7 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Vfx/VfxFactory.cs:124` · `Ziptide.Visuals.VfxFactory` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: VFX_DROPPED reason=pool_unavailable id=" + recipe.id);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Vfx/VfxFactory.cs:138` · `Ziptide.Visuals.VfxFactory` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: VFX_SPAWN id=" + recipe.id +`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Vfx/VfxFactory.cs:342` · `Ziptide.Visuals.VfxFactory` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: VFX_MATERIAL_MISSING reason=no_supported_shader");`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/ZiptideNet/NetBootstrap.cs:24` · `ZiptideNet.NetBootstrap` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: NET_STARTER_INSTALLED (Photon)");`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/ZiptideNet/NetBootstrap.cs:32` · `ZiptideNet.NetBootstrap` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: NET_STARTER_INSTALLED (Photon)");`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/ZiptideNet/PhotonPvpTransport.cs:136` · `ZiptideNet.PhotonPvpTransport` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: NET_CONNECTING");`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/ZiptideNet/PhotonPvpTransport.cs:143` · `ZiptideNet.PhotonPvpTransport` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: NET_MASTER_OK region=" + PhotonNetwork.CloudRegion);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/ZiptideNet/PhotonPvpTransport.cs:154` · `ZiptideNet.PhotonPvpTransport` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: NET_ROOM_JOINED room=" + roomCode`
@@ -1104,7 +1104,7 @@
 - **DONT_DESTROY_ON_LOAD** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs:51` · `Ziptide.Gameplay.Tutorial.FirstHourObservationAdapter` — Object promoted across scene loads. `DontDestroyOnLoad(go);`
 - **DONT_DESTROY_ON_LOAD** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs:64` · `Ziptide.Gameplay.Tutorial.FirstHourObservationAdapter` — Object promoted across scene loads. `DontDestroyOnLoad(gameObject);`
 - **DONT_DESTROY_ON_LOAD** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:49` · `Ziptide.Gameplay.TravelCoordinator` — Object promoted across scene loads. `DontDestroyOnLoad(gameObject);`
-- **DONT_DESTROY_ON_LOAD** — `Ziptide/Assets/ZiptideNet/NetBootstrap.cs:32` · `ZiptideNet.NetBootstrap` — Object promoted across scene loads. `Object.DontDestroyOnLoad(_launcherGo);`
+- **DONT_DESTROY_ON_LOAD** — `Ziptide/Assets/ZiptideNet/NetBootstrap.cs:42` · `ZiptideNet.NetBootstrap` — Object promoted across scene loads. `Object.DontDestroyOnLoad(_launcherGo);`
 ### runtime_creation
 
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Core/Runtime/GamePool.cs:21` · `Ziptide.Core.GamePool` — Runtime primitive construction. `/// var go = GameObject.CreatePrimitive(...); ... Destroy(go, life);`
@@ -1667,7 +1667,7 @@
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Vfx/VfxFactory.cs:68` · `Ziptide.Visuals.VfxFactory` — Runtime GameObject construction. `var root = new GameObject(FactoryObjectName)`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Vfx/VfxFactory.cs:181` · `Ziptide.Visuals.VfxFactory` — Runtime GameObject construction. `var go = new GameObject("VFX_POOL_" + kind + "_" + _all.Count);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Water/ZiptideWater.cs:95` · `Ziptide.Visuals.ZiptideWater` — Runtime GameObject construction. `var go = new GameObject("Foam");`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/ZiptideNet/NetBootstrap.cs:31` · `ZiptideNet.NetBootstrap` — Runtime GameObject construction. `_launcherGo = new GameObject("__PhotonPvpLauncher");`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/ZiptideNet/NetBootstrap.cs:41` · `ZiptideNet.NetBootstrap` — Runtime GameObject construction. `_launcherGo = new GameObject("__PhotonPvpLauncher");`
 ### runtime_ui
 
 - **CANVAS_COMPONENT** — `Ziptide/Assets/Ziptide/Core/Runtime/DebugHUD.cs:31` · `Ziptide.Core.DebugHUD` — Canvas creation/reference. `var canvas = s_Root.AddComponent<Canvas>();`
