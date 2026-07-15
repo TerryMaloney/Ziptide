@@ -45,11 +45,14 @@ namespace Ziptide.Gameplay
     /// Minimal diegetic cold-boot Home Hub. It presents New Game / Continue / Settings and delegates
     /// all persistence to SaveSystem and all scene change to the callback supplied by BootLoader.
     /// It owns no save file, profile serializer, scene loader, input map or menu framework.
+    /// BOARD_PROBE remains on this actual Golden surface: hover/select plus a one-second ray census
+    /// records hit path, layer, interaction-manager binding and readable-face alignment.
     /// </summary>
     public sealed class HomeHubRuntime : MonoBehaviour
     {
         private const int ManagerFastPollFrames = 300;
         private const float ManagerSteadyPollSeconds = 0.25f;
+        private const float ProbeIntervalSeconds = 1f;
 
         public static event Action<bool> BootPresentationReady;
         public static event Action<PlayerProfile> NewGameProfileCreated;
@@ -61,6 +64,7 @@ namespace Ziptide.Gameplay
         private HomeHubFlowState _flow;
         private ComfortConsoleRuntime _settingsConsole;
         private bool _configured;
+        private float _nextProbeAt;
 
         public void Configure(string targetScene, Action<string> travel)
         {
@@ -80,8 +84,16 @@ namespace Ziptide.Gameplay
             bool canContinue = SaveSystem.HasExistingProfile;
             _flow = new HomeHubFlowState(canContinue);
             BuildSurface(canContinue);
+            _nextProbeAt = 0f;
             Debug.Log("ZIPTIDE: HOME_HUB_READY continue=" + canContinue.ToString().ToLowerInvariant());
             PublishSafely(BootPresentationReady, canContinue, "boot_ready");
+        }
+
+        private void Update()
+        {
+            if (!_configured || _flow == null || Time.unscaledTime < _nextProbeAt) return;
+            _nextProbeAt = Time.unscaledTime + ProbeIntervalSeconds;
+            LogAimProbe();
         }
 
         private void Choose(HomeHubChoice choice)
@@ -205,7 +217,13 @@ namespace Ziptide.Gameplay
             // startup. Monitor the tile for its lifetime so either a missing manager or a replaced
             // manager is repaired without rebuilding the Home Hub.
             StartCoroutine(MaintainManagerBinding(interactable, tile.name, initiallyBound));
-            interactable.selectEntered.AddListener(_ => selected());
+            interactable.hoverEntered.AddListener(_ => LogTileProbe("hover_enter", tile, interactable));
+            interactable.hoverExited.AddListener(_ => LogTileProbe("hover_exit", tile, interactable));
+            interactable.selectEntered.AddListener(_ =>
+            {
+                LogTileProbe("select", tile, interactable);
+                selected();
+            });
 
             AddLabel(tile.transform, text, new Vector3(0f, 0f, -0.56f), 0.025f);
         }
@@ -250,6 +268,77 @@ namespace Ziptide.Gameplay
                                      " monitoring=continued");
                 }
             }
+        }
+
+        private void LogTileProbe(string phase, GameObject tile, XRSimpleInteractable interactable)
+        {
+            int managerId = interactable != null && interactable.interactionManager != null
+                ? interactable.interactionManager.GetInstanceID()
+                : 0;
+            Camera cam = Camera.main;
+            float facingDot = cam != null ? ReadableFacingDot(cam.transform.position) : 0f;
+            Debug.Log("ZIPTIDE: BOARD_PROBE surface=HomeHub phase=" + phase
+                + " tile=" + GetHierarchyPath(tile != null ? tile.transform : null)
+                + " layer=" + (tile != null ? tile.layer : -1)
+                + " manager=" + managerId
+                + " facingDot=" + facingDot.ToString("F3"));
+        }
+
+        private void LogAimProbe()
+        {
+            XRRayInteractor[] rays = FindObjectsOfType<XRRayInteractor>();
+            int active = 0;
+            for (int i = 0; i < rays.Length; i++)
+            {
+                XRRayInteractor ray = rays[i];
+                if (ray == null || !ray.isActiveAndEnabled || !ray.gameObject.activeInHierarchy)
+                    continue;
+
+                active++;
+                bool hasHit = ray.TryGetCurrent3DRaycastHit(out RaycastHit hit);
+                string hitPath = hasHit && hit.transform != null
+                    ? GetHierarchyPath(hit.transform)
+                    : "none";
+                int hitLayer = hasHit && hit.collider != null ? hit.collider.gameObject.layer : -1;
+                int managerId = ray.interactionManager != null
+                    ? ray.interactionManager.GetInstanceID()
+                    : 0;
+
+                Debug.Log("ZIPTIDE: BOARD_PROBE surface=HomeHub phase=aim"
+                    + " ray=" + GetHierarchyPath(ray.transform)
+                    + " hit=" + hitPath
+                    + " layer=" + hitLayer
+                    + " manager=" + managerId
+                    + " facingDot=" + ReadableFacingDot(ray.transform.position).ToString("F3"));
+            }
+
+            if (active == 0)
+            {
+                Debug.Log("ZIPTIDE: BOARD_PROBE surface=HomeHub phase=aim"
+                    + " ray=none hit=none layer=-1 manager=0"
+                    + " facingDot=0.000");
+            }
+        }
+
+        private float ReadableFacingDot(Vector3 viewerWorldPosition)
+        {
+            Vector3 towardViewer = viewerWorldPosition - transform.position;
+            if (towardViewer.sqrMagnitude < 0.0001f) return 0f;
+            // TextMesh reads from local -Z; the Home Hub transform +Z points away from the viewer.
+            return Vector3.Dot(-transform.forward, towardViewer.normalized);
+        }
+
+        private static string GetHierarchyPath(Transform value)
+        {
+            if (value == null) return "none";
+            string path = value.name;
+            Transform parent = value.parent;
+            while (parent != null)
+            {
+                path = parent.name + "/" + path;
+                parent = parent.parent;
+            }
+            return path;
         }
 
         private static void AddLabel(Transform parent, string text, Vector3 localPosition, float size)
