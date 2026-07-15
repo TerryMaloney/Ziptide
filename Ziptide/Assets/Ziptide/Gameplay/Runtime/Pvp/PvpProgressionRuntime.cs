@@ -33,8 +33,19 @@ namespace Ziptide.Gameplay
             DontDestroyOnLoad(go);
         }
 
+        private void Awake()
+        {
+            if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.PvpProgression))
+                enabled = false;
+        }
+
         private void OnEnable()
         {
+            if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.PvpProgression))
+            {
+                enabled = false;
+                return;
+            }
             SceneManager.sceneLoaded += OnSceneLoaded;
             Bind();
         }
@@ -45,11 +56,21 @@ namespace Ziptide.Gameplay
             Unbind();
         }
 
-        private void OnSceneLoaded(Scene s, LoadSceneMode m) => Bind();
+        private void OnSceneLoaded(Scene s, LoadSceneMode m)
+        {
+            if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.PvpProgression))
+            {
+                Unbind();
+                enabled = false;
+                return;
+            }
+            Bind();
+        }
 
         private void Bind()
         {
             Unbind();
+            if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.PvpProgression)) return;
             _director = FindObjectOfType<PvpMatchDirector>();
             if (_director == null) return;
             _director.KillScored += OnKill;
