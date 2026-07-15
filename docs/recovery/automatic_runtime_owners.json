@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "status": "R0_LOCKED_FOR_R1_IMPLEMENTATION",
+  "status": "R1_INPUT_SESSION_GUARD_ADDED_2026-07-15",
   "purpose": "Catalog every confirmed automatic or persistent runtime owner that can affect the recovery candidate without an explicit player action.",
   "owners": [
     {
@@ -178,6 +178,17 @@
       "recoveryExposure": "GOLDEN_PATH",
       "canonicalDisposition": "Canonical persistent rig/input-session owner, but split ensured services behind exposure policy during R2",
       "priority": "R1_RUNTIME_CENSUS"
+    },
+    {
+      "id": "PLAYER_INPUT_SESSION_GUARD",
+      "source": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
+      "symbol": "Ziptide.Gameplay.PlayerInputSessionGuard",
+      "startup": "RuntimeInitializeOnLoadMethod AfterSceneLoad plus sceneLoaded subscription",
+      "persistence": "Static support hook; creates no GameObject",
+      "sideEffects": ["Transfers the union of scene action assets to the persistent XRI manager", "Enables the canonical InputActionManager", "Clears and disables every duplicate scene InputActionManager"],
+      "recoveryExposure": "SUPPORT",
+      "canonicalDisposition": "Subordinate enforcement for PlayerRigPersistence; owns no input meanings and exists only to guarantee one enabled lifecycle owner",
+      "priority": "R1_INPUT_SESSION"
     },
     {
       "id": "AUDIO_DIRECTOR",

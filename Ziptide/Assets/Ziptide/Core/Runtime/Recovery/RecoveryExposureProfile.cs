@@ -51,6 +51,7 @@ namespace Ziptide.Core
             RecoveryFeatureId.SaveSystem,
             RecoveryFeatureId.FirstHourObservation,
             RecoveryFeatureId.PlayerRigPersistence,
+            RecoveryFeatureId.PlayerInputSessionGuard,
             RecoveryFeatureId.AudioDirector,
             RecoveryFeatureId.TravelCoordinator,
             RecoveryFeatureId.SingletonValidator

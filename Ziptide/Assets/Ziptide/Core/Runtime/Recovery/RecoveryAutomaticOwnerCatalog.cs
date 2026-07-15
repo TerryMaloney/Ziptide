@@ -52,6 +52,7 @@ namespace Ziptide.Core
             Required("SAVE_SYSTEM_BOOTSTRAP", "Ziptide/Assets/Ziptide/Gameplay/Runtime/Persistence/SaveSystem.cs", "Ziptide.Gameplay.SaveSystem", RecoveryFeatureId.SaveSystem),
             Gated("FIRST_HOUR_OBSERVATION_BOOTSTRAP", "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs", "Ziptide.Gameplay.Tutorial.FirstHourObservationAdapter", RecoveryFeatureId.FirstHourObservation),
             Required("PLAYER_RIG_PERSISTENCE", "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs", "Ziptide.Gameplay.PlayerRigPersistence", RecoveryFeatureId.PlayerRigPersistence),
+            Gated("PLAYER_INPUT_SESSION_GUARD", "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs", "Ziptide.Gameplay.PlayerInputSessionGuard", RecoveryFeatureId.PlayerInputSessionGuard),
             Required("AUDIO_DIRECTOR", "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs", "Ziptide.Gameplay.AudioDirector", RecoveryFeatureId.AudioDirector),
             Required("TRAVEL_COORDINATOR", "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs", "Ziptide.Gameplay.TravelCoordinator", RecoveryFeatureId.TravelCoordinator),
             Gated("SINGLETON_VALIDATOR", "Ziptide/Assets/Ziptide/Gameplay/Runtime/Diagnostics/SingletonValidator.cs", "Ziptide.Gameplay.SingletonValidator", RecoveryFeatureId.SingletonValidator),
