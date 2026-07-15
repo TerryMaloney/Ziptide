@@ -5528,77 +5528,77 @@
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs",
-            "line": 73,
+            "line": 82,
             "symbol": "Ziptide.Gameplay.DevTools.DevMenu",
             "snippet": "host = new GameObject(\"__DevMenuEventSystem\");"
           },
           {
             "code": "EVENT_SYSTEM_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs",
-            "line": 75,
+            "line": 84,
             "symbol": "Ziptide.Gameplay.DevTools.DevMenu",
             "snippet": "host.AddComponent<EventSystem>();"
           },
           {
             "code": "XR_UI_INPUT_MODULE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs",
-            "line": 77,
+            "line": 86,
             "symbol": "Ziptide.Gameplay.DevTools.DevMenu",
             "snippet": "module = host.AddComponent<XRUIInputModule>();"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs",
-            "line": 119,
+            "line": 128,
             "symbol": "Ziptide.Gameplay.DevTools.DevMenu",
             "snippet": "_canvasGo = new GameObject(\"DevMenuCanvas\");"
           },
           {
             "code": "CANVAS_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs",
-            "line": 121,
+            "line": 130,
             "symbol": "Ziptide.Gameplay.DevTools.DevMenu",
             "snippet": "var canvas = _canvasGo.AddComponent<Canvas>();"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs",
-            "line": 163,
+            "line": 171,
             "symbol": "Ziptide.Gameplay.DevTools.DevMenu",
             "snippet": "var go = new GameObject(\"Panel\", typeof(Image));"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs",
-            "line": 172,
+            "line": 180,
             "symbol": "Ziptide.Gameplay.DevTools.DevMenu",
             "snippet": "var go = new GameObject(\"Label\", typeof(TextMeshProUGUI));"
           },
           {
             "code": "TMP_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs",
-            "line": 172,
+            "line": 180,
             "symbol": "Ziptide.Gameplay.DevTools.DevMenu",
             "snippet": "var go = new GameObject(\"Label\", typeof(TextMeshProUGUI));"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs",
-            "line": 187,
+            "line": 195,
             "symbol": "Ziptide.Gameplay.DevTools.DevMenu",
             "snippet": "var go = new GameObject(\"Btn_\" + label, typeof(Image), typeof(Button));"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs",
-            "line": 198,
+            "line": 206,
             "symbol": "Ziptide.Gameplay.DevTools.DevMenu",
             "snippet": "var labelGo = new GameObject(\"Text\", typeof(TextMeshProUGUI));"
           },
           {
             "code": "TMP_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs",
-            "line": 198,
+            "line": 206,
             "symbol": "Ziptide.Gameplay.DevTools.DevMenu",
             "snippet": "var labelGo = new GameObject(\"Text\", typeof(TextMeshProUGUI));"
           }
@@ -15083,14 +15083,14 @@
           {
             "code": "CAMERA_MAIN_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs",
-            "line": 94,
+            "line": 103,
             "symbol": "Ziptide.Gameplay.DevTools.DevMenu",
             "snippet": "var cam = Camera.main;"
           },
           {
             "code": "CAMERA_MAIN_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs",
-            "line": 123,
+            "line": 132,
             "symbol": "Ziptide.Gameplay.DevTools.DevMenu",
             "snippet": "canvas.worldCamera = Camera.main;"
           }
@@ -16644,7 +16644,7 @@
           {
             "code": "FALLBACK_MARKER",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs",
-            "line": 61,
+            "line": 70,
             "symbol": "Ziptide.Gameplay.DevTools.DevMenu",
             "snippet": "/// fallback if a scene forgot one) and force every UI-enabled ray interactor to re-register"
           }

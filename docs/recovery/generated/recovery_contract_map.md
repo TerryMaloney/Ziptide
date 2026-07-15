@@ -1191,17 +1191,17 @@ None.
 
 - Codes: `CANVAS_COMPONENT`, `EVENT_SYSTEM_COMPONENT`, `NEW_GAME_OBJECT`, `TMP_COMPONENT`, `XR_UI_INPUT_MODULE`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:73` **NEW_GAME_OBJECT** — `host = new GameObject("__DevMenuEventSystem");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:75` **EVENT_SYSTEM_COMPONENT** — `host.AddComponent<EventSystem>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:77` **XR_UI_INPUT_MODULE** — `module = host.AddComponent<XRUIInputModule>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:119` **NEW_GAME_OBJECT** — `_canvasGo = new GameObject("DevMenuCanvas");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:121` **CANVAS_COMPONENT** — `var canvas = _canvasGo.AddComponent<Canvas>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:163` **NEW_GAME_OBJECT** — `var go = new GameObject("Panel", typeof(Image));`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:172` **NEW_GAME_OBJECT** — `var go = new GameObject("Label", typeof(TextMeshProUGUI));`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:172` **TMP_COMPONENT** — `var go = new GameObject("Label", typeof(TextMeshProUGUI));`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:187` **NEW_GAME_OBJECT** — `var go = new GameObject("Btn_" + label, typeof(Image), typeof(Button));`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:198` **NEW_GAME_OBJECT** — `var labelGo = new GameObject("Text", typeof(TextMeshProUGUI));`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:198` **TMP_COMPONENT** — `var labelGo = new GameObject("Text", typeof(TextMeshProUGUI));`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:82` **NEW_GAME_OBJECT** — `host = new GameObject("__DevMenuEventSystem");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:84` **EVENT_SYSTEM_COMPONENT** — `host.AddComponent<EventSystem>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:86` **XR_UI_INPUT_MODULE** — `module = host.AddComponent<XRUIInputModule>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:128` **NEW_GAME_OBJECT** — `_canvasGo = new GameObject("DevMenuCanvas");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:130` **CANVAS_COMPONENT** — `var canvas = _canvasGo.AddComponent<Canvas>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:171` **NEW_GAME_OBJECT** — `var go = new GameObject("Panel", typeof(Image));`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:180` **NEW_GAME_OBJECT** — `var go = new GameObject("Label", typeof(TextMeshProUGUI));`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:180` **TMP_COMPONENT** — `var go = new GameObject("Label", typeof(TextMeshProUGUI));`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:195` **NEW_GAME_OBJECT** — `var go = new GameObject("Btn_" + label, typeof(Image), typeof(Button));`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:206` **NEW_GAME_OBJECT** — `var labelGo = new GameObject("Text", typeof(TextMeshProUGUI));`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:206` **TMP_COMPONENT** — `var labelGo = new GameObject("Text", typeof(TextMeshProUGUI));`
 
 ### `Ziptide.Gameplay.DevTools.DevWarp` — 1 signal(s)
 
@@ -3362,8 +3362,8 @@ None.
 
 - Codes: `CAMERA_MAIN_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:94` **CAMERA_MAIN_REFERENCE** — `var cam = Camera.main;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:123` **CAMERA_MAIN_REFERENCE** — `canvas.worldCamera = Camera.main;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:103` **CAMERA_MAIN_REFERENCE** — `var cam = Camera.main;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:132` **CAMERA_MAIN_REFERENCE** — `canvas.worldCamera = Camera.main;`
 
 ### `Ziptide.Gameplay.DevTools.DevWarpBoard` — 1 signal(s)
 
@@ -3791,7 +3791,7 @@ None.
 
 - Codes: `FALLBACK_MARKER`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:61` **FALLBACK_MARKER** — `/// fallback if a scene forgot one) and force every UI-enabled ray interactor to re-register`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:70` **FALLBACK_MARKER** — `/// fallback if a scene forgot one) and force every UI-enabled ray interactor to re-register`
 
 ### `Ziptide.Gameplay.EmergencyRespawn` — 1 signal(s)
 

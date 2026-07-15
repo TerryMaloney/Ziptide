@@ -115,10 +115,10 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltMinePortRuntime.cs:140` · `Ziptide.Gameplay.BeltMinePortRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: BELT_PORT_EMIT resource=" + _mine.resourceId +`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltPadSpawner.cs:94` · `Ziptide.Gameplay.BeltPadSpawner` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: BELT_PAD id=" + def.id + " feed=" + def.feedMineId +`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevAccessGate.cs:97` · `Ziptide.Gameplay.DevTools.DevAccessGate` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: DEV_ACCESS storage_unavailable type=" + ex.GetType().Name);`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:47` · `Ziptide.Gameplay.DevTools.DevMenu` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: DEV_MENU shown");`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:78` · `Ziptide.Gameplay.DevTools.DevMenu` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: MENU_UI fallback_module host=" + host.name);`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:89` · `Ziptide.Gameplay.DevTools.DevMenu` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: MENU_UI module=" + module.gameObject.name + " raysRebound=" + rebound);`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:194` · `Ziptide.Gameplay.DevTools.DevMenu` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: MENU_CLICK btn=" + label);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:56` · `Ziptide.Gameplay.DevTools.DevMenu` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: DEV_MENU shown");`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:87` · `Ziptide.Gameplay.DevTools.DevMenu` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: MENU_UI fallback_module host=" + host.name);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:98` · `Ziptide.Gameplay.DevTools.DevMenu` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: MENU_UI module=" + module.gameObject.name + " raysRebound=" + rebound);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:202` · `Ziptide.Gameplay.DevTools.DevMenu` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: MENU_CLICK btn=" + label);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarp.cs:38` · `Ziptide.Gameplay.DevTools.DevWarp` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: DEV_WARP ignored (profile blocked) scene=" + sceneName);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarp.cs:43` · `Ziptide.Gameplay.DevTools.DevWarp` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: DEV_WARP no scene name");`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarp.cs:47` · `Ziptide.Gameplay.DevTools.DevWarp` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: DEV_WARP scene=" + sceneName + " marker=" + (markerId ?? "(default)"));`
@@ -612,7 +612,7 @@
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Editor/Patching/WorldStubGenerator.cs:50` · `Ziptide.Editor.Patching.WorldStubGenerator` — Source text marks fallback/prototype debt. `EditorUtility.DisplayDialog("World Stub Generator",`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Editor/Setup/SetupMilestoneAScene.cs:63` · `Ziptide.Editor.Setup.SetupMilestoneAScene` — Source text marks fallback/prototype debt. `Debug.LogWarning("[Ziptide] XR Origin prefab not found. Add it manually: GameObject > XR > XR Origin (VR). Creating empty placeholder.");`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltMinePortRuntime.cs:79` · `Ziptide.Gameplay.BeltMinePortRuntime` — Source text marks fallback/prototype debt. `// A stub drill over the port — enough to read "this is where the ore comes from".`
-- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:61` · `Ziptide.Gameplay.DevTools.DevMenu` — Source text marks fallback/prototype debt. `/// fallback if a scene forgot one) and force every UI-enabled ray interactor to re-register`
+- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:70` · `Ziptide.Gameplay.DevTools.DevMenu` — Source text marks fallback/prototype debt. `/// fallback if a scene forgot one) and force every UI-enabled ray interactor to re-register`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:77` · `Ziptide.Gameplay.CreatureRuntime` — Source text marks fallback/prototype debt. `// ── Hit entry points (existing weapon plumbing) ─────────────────────`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/GazeMath.cs:7` · `Ziptide.Gameplay.GazeMath` — Source text marks fallback/prototype debt. `/// "Observed" = inside the viewer's forward cone AND within range — the graybox stand-in for`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/LightGrazerBehavior.cs:8` · `Ziptide.Gameplay.LightGrazerBehavior` — Source text marks fallback/prototype debt. `/// (W002's cistern). Graybox light source = the player's ATTENTION: facing it up close "shines your`
@@ -667,8 +667,8 @@
 
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Editor/Setup/EnsureLocomotionRig.cs:215` · `Ziptide.Editor.Setup.EnsureLocomotionRig` — Camera.main dependency. `var cam = Camera.main;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltMinePortRuntime.cs:161` · `Ziptide.Gameplay.BeltMinePortRuntime` — Camera.main dependency. `var cam = Camera.main;`
-- **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:94` · `Ziptide.Gameplay.DevTools.DevMenu` — Camera.main dependency. `var cam = Camera.main;`
-- **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:123` · `Ziptide.Gameplay.DevTools.DevMenu` — Camera.main dependency. `canvas.worldCamera = Camera.main;`
+- **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:103` · `Ziptide.Gameplay.DevTools.DevMenu` — Camera.main dependency. `var cam = Camera.main;`
+- **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:132` · `Ziptide.Gameplay.DevTools.DevMenu` — Camera.main dependency. `canvas.worldCamera = Camera.main;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:127` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — Camera.main dependency. `var cam = Camera.main;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureBehaviorBase.cs:84` · `Ziptide.Gameplay.CreatureBehaviorBase` — Camera.main dependency. `if (Camera.main != null) Player = Camera.main.transform;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:171` · `Ziptide.Gameplay.DroneCombatBehavior` — Camera.main dependency. `if (Camera.main != null) _player = Camera.main.transform;`
@@ -1467,12 +1467,12 @@
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltPadSpawner.cs:80` · `Ziptide.Gameplay.BeltPadSpawner` — Runtime GameObject construction. `var stand = new GameObject("BeltPadWandStand_" + def.id);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltPadSpawner.cs:87` · `Ziptide.Gameplay.BeltPadSpawner` — Runtime GameObject construction. `var cond = new GameObject("BeltPadConductor_" + def.id);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltTileItem.cs:29` · `Ziptide.Gameplay.BeltTileItem` — Runtime GameObject construction. `var go = new GameObject("BeltTileItem");`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:73` · `Ziptide.Gameplay.DevTools.DevMenu` — Runtime GameObject construction. `host = new GameObject("__DevMenuEventSystem");`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:119` · `Ziptide.Gameplay.DevTools.DevMenu` — Runtime GameObject construction. `_canvasGo = new GameObject("DevMenuCanvas");`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:163` · `Ziptide.Gameplay.DevTools.DevMenu` — Runtime GameObject construction. `var go = new GameObject("Panel", typeof(Image));`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:172` · `Ziptide.Gameplay.DevTools.DevMenu` — Runtime GameObject construction. `var go = new GameObject("Label", typeof(TextMeshProUGUI));`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:187` · `Ziptide.Gameplay.DevTools.DevMenu` — Runtime GameObject construction. `var go = new GameObject("Btn_" + label, typeof(Image), typeof(Button));`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:198` · `Ziptide.Gameplay.DevTools.DevMenu` — Runtime GameObject construction. `var labelGo = new GameObject("Text", typeof(TextMeshProUGUI));`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:82` · `Ziptide.Gameplay.DevTools.DevMenu` — Runtime GameObject construction. `host = new GameObject("__DevMenuEventSystem");`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:128` · `Ziptide.Gameplay.DevTools.DevMenu` — Runtime GameObject construction. `_canvasGo = new GameObject("DevMenuCanvas");`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:171` · `Ziptide.Gameplay.DevTools.DevMenu` — Runtime GameObject construction. `var go = new GameObject("Panel", typeof(Image));`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:180` · `Ziptide.Gameplay.DevTools.DevMenu` — Runtime GameObject construction. `var go = new GameObject("Label", typeof(TextMeshProUGUI));`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:195` · `Ziptide.Gameplay.DevTools.DevMenu` — Runtime GameObject construction. `var go = new GameObject("Btn_" + label, typeof(Image), typeof(Button));`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:206` · `Ziptide.Gameplay.DevTools.DevMenu` — Runtime GameObject construction. `var labelGo = new GameObject("Text", typeof(TextMeshProUGUI));`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarp.cs:77` · `Ziptide.Gameplay.DevTools.DevWarp` — Runtime GameObject construction. `var go = new GameObject("__DevWarpRunner");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:63` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — Runtime GameObject construction. `var go = new GameObject("__DevWarpBoard");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:151` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — Runtime GameObject construction. `_board = new GameObject("DevWarpBoard");`
@@ -1668,10 +1668,10 @@
 ### runtime_ui
 
 - **CANVAS_COMPONENT** — `Ziptide/Assets/Ziptide/Core/Runtime/DebugHUD.cs:31` · `Ziptide.Core.DebugHUD` — Canvas creation/reference. `var canvas = s_Root.AddComponent<Canvas>();`
-- **CANVAS_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:121` · `Ziptide.Gameplay.DevTools.DevMenu` — Canvas creation/reference. `var canvas = _canvasGo.AddComponent<Canvas>();`
+- **CANVAS_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:130` · `Ziptide.Gameplay.DevTools.DevMenu` — Canvas creation/reference. `var canvas = _canvasGo.AddComponent<Canvas>();`
 - **CANVAS_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:87` · `Ziptide.Gameplay.ObjectiveBoard` — Canvas creation/reference. `var canvas = canvasGo.AddComponent<Canvas>();`
 - **EVENT_SYSTEM_COMPONENT** — `Ziptide/Assets/Ziptide/Editor/Setup/SetupMilestoneAScene.cs:97` · `Ziptide.Editor.Setup.SetupMilestoneAScene` — EventSystem creation/reference. `eventSystemGo.AddComponent<EventSystem>();`
-- **EVENT_SYSTEM_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:75` · `Ziptide.Gameplay.DevTools.DevMenu` — EventSystem creation/reference. `host.AddComponent<EventSystem>();`
+- **EVENT_SYSTEM_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:84` · `Ziptide.Gameplay.DevTools.DevMenu` — EventSystem creation/reference. `host.AddComponent<EventSystem>();`
 - **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Editor/Patching/WorldStubGenerator.cs:224` · `Ziptide.Editor.Patching.WorldStubGenerator` — Legacy TextMesh creation/reference. `var tm = label.AddComponent<TextMesh>();`
 - **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltBlueprintWandItem.cs:63` · `Ziptide.Gameplay.BeltBlueprintWandItem` — Legacy TextMesh creation/reference. `_countLabel = labelGo.AddComponent<TextMesh>();`
 - **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltMinePortRuntime.cs:110` · `Ziptide.Gameplay.BeltMinePortRuntime` — Legacy TextMesh creation/reference. `_readout = readoutGo.AddComponent<TextMesh>();`
@@ -1715,8 +1715,8 @@
 - **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Tests/EditMode/UiReadabilityAuditRulesTests.cs:55` · `Ziptide.Tests.EditMode.UiReadabilityAuditRulesTests` — Legacy TextMesh creation/reference. `var smallText = small.AddComponent<TextMesh>();`
 - **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Tests/EditMode/UiReadabilityAuditRulesTests.cs:61` · `Ziptide.Tests.EditMode.UiReadabilityAuditRulesTests` — Legacy TextMesh creation/reference. `var emptyText = empty.AddComponent<TextMesh>();`
 - **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Tests/EditMode/UiReadabilityAuditRulesTests.cs:159` · `Ziptide.Tests.EditMode.UiReadabilityAuditRulesTests` — Legacy TextMesh creation/reference. `var text = label.AddComponent<TextMesh>();`
-- **TMP_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:172` · `Ziptide.Gameplay.DevTools.DevMenu` — TextMeshPro creation/reference. `var go = new GameObject("Label", typeof(TextMeshProUGUI));`
-- **TMP_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:198` · `Ziptide.Gameplay.DevTools.DevMenu` — TextMeshPro creation/reference. `var labelGo = new GameObject("Text", typeof(TextMeshProUGUI));`
+- **TMP_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:180` · `Ziptide.Gameplay.DevTools.DevMenu` — TextMeshPro creation/reference. `var go = new GameObject("Label", typeof(TextMeshProUGUI));`
+- **TMP_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:206` · `Ziptide.Gameplay.DevTools.DevMenu` — TextMeshPro creation/reference. `var labelGo = new GameObject("Text", typeof(TextMeshProUGUI));`
 - **TMP_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:105` · `Ziptide.Gameplay.ObjectiveBoard` — TextMeshPro creation/reference. `var tmp = textGo.AddComponent<TextMeshProUGUI>();`
 - **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Editor/Setup/SetupMilestoneAScene.cs:123` · `Ziptide.Editor.Setup.SetupMilestoneAScene` — XR interactable creation/reference. `var grab = cube.AddComponent<XRGrabInteractable>();`
 - **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltBlueprintWandItem.cs:79` · `Ziptide.Gameplay.BeltBlueprintWandItem` — XR interactable creation/reference. `_grab = gameObject.AddComponent<XRGrabInteractable>();`
@@ -1780,7 +1780,7 @@
 - **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:149` · `Ziptide.Ship.VehicleRuntime` — XR interactable creation/reference. `var interactable = tile.AddComponent<XRSimpleInteractable>();`
 - **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRigTests.cs:85` · `Ziptide.Tests.PlayMode.RecoveryTestRigTests` — XR interactable creation/reference. `var interactable = target.AddComponent<XRSimpleInteractable>();`
 - **XR_UI_INPUT_MODULE** — `Ziptide/Assets/Ziptide/Editor/Setup/SetupMilestoneAScene.cs:100` · `Ziptide.Editor.Setup.SetupMilestoneAScene` — XR UI input module creation/reference. `eventSystemGo.AddComponent<XRUIInputModule>();`
-- **XR_UI_INPUT_MODULE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:77` · `Ziptide.Gameplay.DevTools.DevMenu` — XR UI input module creation/reference. `module = host.AddComponent<XRUIInputModule>();`
+- **XR_UI_INPUT_MODULE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:86` · `Ziptide.Gameplay.DevTools.DevMenu` — XR UI input module creation/reference. `module = host.AddComponent<XRUIInputModule>();`
 ### save_state
 
 - **AUTOSAVE_CALL** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltFloorRuntime.cs:169` · `Ziptide.Gameplay.BeltCellSpec` — Autosave request. `if (autosave) SaveSystem.AutosaveNow("belt_edit");`

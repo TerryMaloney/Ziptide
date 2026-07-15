@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-15T10:52:10.924923+00:00",
+  "generatedAtUtc": "2026-07-15T10:53:56.526857+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -848,7 +848,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs",
-      "line": 47,
+      "line": 56,
       "symbol": "Ziptide.Gameplay.DevTools.DevMenu",
       "snippet": "Debug.Log(\"ZIPTIDE: DEV_MENU shown\");"
     },
@@ -857,7 +857,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs",
-      "line": 78,
+      "line": 87,
       "symbol": "Ziptide.Gameplay.DevTools.DevMenu",
       "snippet": "Debug.Log(\"ZIPTIDE: MENU_UI fallback_module host=\" + host.name);"
     },
@@ -866,7 +866,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs",
-      "line": 89,
+      "line": 98,
       "symbol": "Ziptide.Gameplay.DevTools.DevMenu",
       "snippet": "Debug.Log(\"ZIPTIDE: MENU_UI module=\" + module.gameObject.name + \" raysRebound=\" + rebound);"
     },
@@ -875,7 +875,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs",
-      "line": 194,
+      "line": 202,
       "symbol": "Ziptide.Gameplay.DevTools.DevMenu",
       "snippet": "Debug.Log(\"ZIPTIDE: MENU_CLICK btn=\" + label);"
     },
@@ -5285,7 +5285,7 @@
       "code": "FALLBACK_MARKER",
       "description": "Source text marks fallback/prototype debt",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs",
-      "line": 61,
+      "line": 70,
       "symbol": "Ziptide.Gameplay.DevTools.DevMenu",
       "snippet": "/// fallback if a scene forgot one) and force every UI-enabled ray interactor to re-register"
     },
@@ -5762,7 +5762,7 @@
       "code": "CAMERA_MAIN_REFERENCE",
       "description": "Camera.main dependency",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs",
-      "line": 94,
+      "line": 103,
       "symbol": "Ziptide.Gameplay.DevTools.DevMenu",
       "snippet": "var cam = Camera.main;"
     },
@@ -5771,7 +5771,7 @@
       "code": "CAMERA_MAIN_REFERENCE",
       "description": "Camera.main dependency",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs",
-      "line": 123,
+      "line": 132,
       "symbol": "Ziptide.Gameplay.DevTools.DevMenu",
       "snippet": "canvas.worldCamera = Camera.main;"
     },
@@ -12890,7 +12890,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs",
-      "line": 73,
+      "line": 82,
       "symbol": "Ziptide.Gameplay.DevTools.DevMenu",
       "snippet": "host = new GameObject(\"__DevMenuEventSystem\");"
     },
@@ -12899,7 +12899,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs",
-      "line": 119,
+      "line": 128,
       "symbol": "Ziptide.Gameplay.DevTools.DevMenu",
       "snippet": "_canvasGo = new GameObject(\"DevMenuCanvas\");"
     },
@@ -12908,7 +12908,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs",
-      "line": 163,
+      "line": 171,
       "symbol": "Ziptide.Gameplay.DevTools.DevMenu",
       "snippet": "var go = new GameObject(\"Panel\", typeof(Image));"
     },
@@ -12917,7 +12917,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs",
-      "line": 172,
+      "line": 180,
       "symbol": "Ziptide.Gameplay.DevTools.DevMenu",
       "snippet": "var go = new GameObject(\"Label\", typeof(TextMeshProUGUI));"
     },
@@ -12926,7 +12926,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs",
-      "line": 187,
+      "line": 195,
       "symbol": "Ziptide.Gameplay.DevTools.DevMenu",
       "snippet": "var go = new GameObject(\"Btn_\" + label, typeof(Image), typeof(Button));"
     },
@@ -12935,7 +12935,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs",
-      "line": 198,
+      "line": 206,
       "symbol": "Ziptide.Gameplay.DevTools.DevMenu",
       "snippet": "var labelGo = new GameObject(\"Text\", typeof(TextMeshProUGUI));"
     },
@@ -14681,7 +14681,7 @@
       "code": "CANVAS_COMPONENT",
       "description": "Canvas creation/reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs",
-      "line": 121,
+      "line": 130,
       "symbol": "Ziptide.Gameplay.DevTools.DevMenu",
       "snippet": "var canvas = _canvasGo.AddComponent<Canvas>();"
     },
@@ -14708,7 +14708,7 @@
       "code": "EVENT_SYSTEM_COMPONENT",
       "description": "EventSystem creation/reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs",
-      "line": 75,
+      "line": 84,
       "symbol": "Ziptide.Gameplay.DevTools.DevMenu",
       "snippet": "host.AddComponent<EventSystem>();"
     },
@@ -15104,7 +15104,7 @@
       "code": "TMP_COMPONENT",
       "description": "TextMeshPro creation/reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs",
-      "line": 172,
+      "line": 180,
       "symbol": "Ziptide.Gameplay.DevTools.DevMenu",
       "snippet": "var go = new GameObject(\"Label\", typeof(TextMeshProUGUI));"
     },
@@ -15113,7 +15113,7 @@
       "code": "TMP_COMPONENT",
       "description": "TextMeshPro creation/reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs",
-      "line": 198,
+      "line": 206,
       "symbol": "Ziptide.Gameplay.DevTools.DevMenu",
       "snippet": "var labelGo = new GameObject(\"Text\", typeof(TextMeshProUGUI));"
     },
@@ -15689,7 +15689,7 @@
       "code": "XR_UI_INPUT_MODULE",
       "description": "XR UI input module creation/reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs",
-      "line": 77,
+      "line": 86,
       "symbol": "Ziptide.Gameplay.DevTools.DevMenu",
       "snippet": "module = host.AddComponent<XRUIInputModule>();"
     },
