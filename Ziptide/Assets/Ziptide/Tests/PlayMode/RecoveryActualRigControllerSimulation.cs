@@ -124,7 +124,7 @@ namespace Ziptide.Tests.PlayMode
                 leftRay,
                 rightRay);
             simulation.InstallVirtualControllerDevices();
-            simulation.RefreshCanonicalInputAssets(canonicalManager);
+            RefreshCanonicalInputAssets(canonicalManager);
             simulation.DisableModalityManagers(rig);
             simulation.SetTrackedHeadPose(rig, trackedHeadHeight);
             simulation.ActivateControllerRay(rig, leftRay, canonicalManager);
