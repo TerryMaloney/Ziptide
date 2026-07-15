@@ -98,6 +98,8 @@ namespace Ziptide.Tests.EditMode
             StringAssert.Contains("\"handheld_camera\"", holster);
             string build = Read("Editor", "Build", "BuildAndroid.cs");
             Assert.AreEqual(1, Count(build, "CameraAuthor.EnsureAuthored();"));
+            StringAssert.Contains("RunRequired(\"CameraAuthor.EnsureAuthored\"", build,
+                "the one camera author hook must remain fail-closed");
         }
 
         private static string Read(params string[] parts)
