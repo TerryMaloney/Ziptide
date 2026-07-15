@@ -64,7 +64,7 @@ namespace Ziptide.Gameplay
             {
                 var freeHand = FirstRightHand();
                 if (freeHand == null) return;
-                _mgr.SelectExit((IXRSelectInteractor)socket, (IXRSelectable)holstered);
+                _mgr.SelectExit((IXRSelectInteractor)socket, (IXRSelectInteractable)holstered);
                 _mgr.SelectEnter((IXRSelectInteractor)freeHand, (IXRSelectInteractable)holstered);
                 Debug.Log("ZIPTIDE: QUICK_SWAP action=draw item=" + holstered.name);
             }
