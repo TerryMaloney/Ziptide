@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
-- Scanned files: **613**
-- Scanner findings: **2062**
+- Scanned files: **614**
+- Scanner findings: **2067**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -554,10 +554,13 @@ None.
   - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:512` **CREATE_PRIMITIVE** — `var drone = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
   - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:536` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
 
-### `Ziptide.Editor.Patching.ForgeBaker` — 3 signal(s)
+### `Ziptide.Editor.Patching.ForgeBaker` — 6 signal(s)
 
 - Codes: `NEW_GAME_OBJECT`, `RUNTIME_MATERIAL_CREATE`, `SHADER_FIND`
-- Paths: `Ziptide/Assets/Ziptide/Editor/Patching/ForgeBaker.cs`
+- Paths: `Ziptide/Assets/Ziptide/Editor/Art/ForgeBaker.cs`, `Ziptide/Assets/Ziptide/Editor/Patching/ForgeBaker.cs`
+  - `Ziptide/Assets/Ziptide/Editor/Art/ForgeBaker.cs:157` **NEW_GAME_OBJECT** — `var go = new GameObject("ForgeBaked_" + recipe.recipeId);`
+  - `Ziptide/Assets/Ziptide/Editor/Art/ForgeBaker.cs:202` **SHADER_FIND** — `Shader shader = Shader.Find("Universal Render Pipeline/Lit");`
+  - `Ziptide/Assets/Ziptide/Editor/Art/ForgeBaker.cs:206` **RUNTIME_MATERIAL_CREATE** — `mat = new Material(shader);`
   - `Ziptide/Assets/Ziptide/Editor/Patching/ForgeBaker.cs:116` **NEW_GAME_OBJECT** — `var go = new GameObject("ForgeBaked_" + recipe.recipeId);`
   - `Ziptide/Assets/Ziptide/Editor/Patching/ForgeBaker.cs:152` **RUNTIME_MATERIAL_CREATE** — `mat = new Material(Shader.Find("Universal Render Pipeline/Lit"));`
   - `Ziptide/Assets/Ziptide/Editor/Patching/ForgeBaker.cs:152` **SHADER_FIND** — `mat = new Material(Shader.Find("Universal Render Pipeline/Lit"));`
@@ -3695,6 +3698,12 @@ None.
 - Codes: `FALLBACK_MARKER`
 - Paths: `Ziptide/Assets/Ziptide/Editor/Patching/FirstHourContractAuthor.cs`
   - `Ziptide/Assets/Ziptide/Editor/Patching/FirstHourContractAuthor.cs:58` **FALLBACK_MARKER** — `/// Runtime code never parses JSON and no fallback beat list exists.`
+
+### `Ziptide.Editor.Patching.ForgeBaker` — 1 signal(s)
+
+- Codes: `FALLBACK_MARKER`
+- Paths: `Ziptide/Assets/Ziptide/Editor/Art/ForgeBaker.cs`
+  - `Ziptide/Assets/Ziptide/Editor/Art/ForgeBaker.cs:14` **FALLBACK_MARKER** — `/// build so stale/primitive fallback content cannot hide behind a successful APK result.`
 
 ### `Ziptide.Editor.Patching.ForgeRecipeLibrary` — 3 signal(s)
 
