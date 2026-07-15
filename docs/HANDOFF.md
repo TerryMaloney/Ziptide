@@ -27,6 +27,45 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-15 (rb31) — Fable 5 second independent review: R1.4–R1.8 verified with two holds before any headset build
+
+- **Scope:** read-only spot-check of the recovery lane's latest status report against the repo and live
+  CI, at Terry's request. No code changed. Verdict to Terry: **the report is accurate and honest** —
+  claimed proof SHAs are real (`4988f44` census 28/28 with its raw artifact matching the claims;
+  `0e74cec` actual-scene Home Hub 31/31), the new pieces exist as committed source
+  (`PersistentDiagnosticRing`, `PlayerInputSessionGuard`, `RecoveryRenderSnapshot*`,
+  `RecoveryUiSpatialAudit*`), and all four rb30 amendments show real motion (ring + BOOT_HOLD proof +
+  probes-on-golden = A4 acted; the isolation-fault class = A3 acted). `PlayerInputSessionGuard` was
+  specifically checked against the "fourth cook" risk: its header and shape are explicitly SUBORDINATE
+  to PlayerRigPersistence's contract (owns no meanings, creates no objects) — a genuine consolidation.
+  The duplicate scene-`InputActionManager` lifecycle owner it removed is exactly the failure class this
+  program exists to catch, and it was caught by the harness, not the headset.
+- **HOLD 1 — the current head is unproven: R1.8 PlayMode ran ZERO tests.** Live artifact for head
+  `abdb441` (run `29445959178`): `Test step outcome: failure, NUnit totals: total=0` — the suite did
+  not execute (the usual signature is a test-assembly compile error). Nothing on the "proven" list
+  extends to this head until a run exists where 31+ tests actually execute and pass. The lane's own
+  exact-SHA rule already implies this; recording it here so the claim can't drift.
+- **HOLD 2 — rb30 AMENDMENT 1 (Android shader-variant static gate) is still NOT BUILT.** No scan
+  exists yet in `tools/`, the recovery workflows, or the test suites (checked by grep). It is
+  correctly scheduled inside "Golden Android build with patch, bake, shader, audit and APK evidence,"
+  but it must EXIST before the next APK Terry installs — otherwise the white-square class
+  (`PracticalLight`/`GroundShadow`/`SkyAtmosphereRig` runtime keyword flips) ships silently again and
+  the headset session burns on a known fault. Same for the Amendment-2 patch/bake hook-failure gate
+  (~41 swallowed try/catches in `BuildAndroid.PatchScenesThenAPK`; Forge bakes are gitignored and
+  regenerated per build, so a silent baker failure = primitive guns/blank buildings in a "successful"
+  build).
+- **Endorsed path to the headset checkpoint (no change requested):** one exact SHA green across
+  PlayMode (R1.6 real boot→W000→ToxicCity→back round trip) + snapshot PNGs directly reviewed + UI
+  spatial audit + R1.9 fallback/placeholder exposure gate + R1.10 perf artifacts + Golden APK with
+  loud patch/bake/shader evidence → independent sampling of the claims (rb30/rb31 are the template) →
+  ONLY THEN a bounded Quest checklist. Boring on-device results are the goal; discoveries mean the
+  gates missed.
+- **Next:** recovery lane clears the two holds; Fable 5 (or any non-lane operator) re-samples at the
+  next checkpoint. Separately, Terry has asked the art lane for a deep-dive assessment of the
+  automation/factory system's visual legibility (analysis only, nothing built) — boarded so the lanes
+  know it's coming; any resulting work is post-recovery R2+ and stays behind the exposure gate.
+- **Commit:** documentation-only HANDOFF entry; no runtime content changed.
+
 ### 2026-07-15 (rb30) — Fable 5 independent review of the recovery program: ENDORSED, with four required amendments for GPT
 
 - **Scope:** read-only review at Terry's request. No code changed. I read `RECOVERY_PROGRAM.md`, the R0/R1.2 exit reports, the contract inventory, `RecoveryRuntimeGate`/profile code and all three recovery workflows, and verified the lanes against LIVE CI runs rather than trusting the self-reported artifacts. Verdict passed to Terry: **adopt the program as-is** — the proof taxonomy, golden slice, exposure gating and repeat-green promotion rule are the correct systemic answer, and the harness has already caught two real bugs (the InputActionManager active-add lifecycle fault; the Home Hub late-manager binding race). The four amendments below are gaps the current design does not close. Terry approved sending them to the recovery lane.
