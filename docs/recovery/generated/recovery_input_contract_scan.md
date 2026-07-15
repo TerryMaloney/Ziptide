@@ -2,12 +2,12 @@
 
 - Scanned C# files: **612**
 - Runtime-created bindings: **18**
-- Legacy menu-chord references: **1**
+- Legacy menu-chord references: **0**
 - Controls bound by more than one owner: **5**
 
 ## Legacy menu-chord references
 
-- `Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs:94` · `Ziptide.Gameplay.DashLocomotion` — `Debug.Log("ZIPTIDE: CONTROLS move=left-stick turn=right-stick sprint=hold-L3 autorun=double-L3 crouch=R3 slide=crouch-while-sprinting jump=A menu=hold-Y+B");`
+None.
 
 ## Runtime-created bindings
 

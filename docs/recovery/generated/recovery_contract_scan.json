@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-15T11:15:42.236590+00:00",
+  "generatedAtUtc": "2026-07-15T11:50:23.120477+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -1435,7 +1435,7 @@
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs",
       "line": 94,
       "symbol": "Ziptide.Gameplay.DashLocomotion",
-      "snippet": "Debug.Log(\"ZIPTIDE: CONTROLS move=left-stick turn=right-stick sprint=hold-L3 autorun=double-L3 crouch=R3 slide=crouch-while-sprinting jump=A menu=hold-Y+B\");"
+      "snippet": "Debug.Log(\"ZIPTIDE: CONTROLS move=left-stick turn=right-stick sprint=hold-L3 autorun=double-L3 crouch=R3 slide=crouch-while-sprinting jump=A dev-menu=diagnostic-profile-forehead-gesture\");"
     },
     {
       "category": "diagnostics",

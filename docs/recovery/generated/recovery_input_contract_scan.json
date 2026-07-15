@@ -2,7 +2,7 @@
   "tool": "recovery_input_contract_scan",
   "scannedFiles": 612,
   "bindingCount": 18,
-  "chordReferenceCount": 1,
+  "chordReferenceCount": 0,
   "collisionControlCount": 5,
   "bindings": [
     {
@@ -168,14 +168,7 @@
       "binding_line": 75
     }
   ],
-  "chordReferences": [
-    {
-      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs",
-      "symbol": "Ziptide.Gameplay.DashLocomotion",
-      "line": 94,
-      "text": "Debug.Log(\"ZIPTIDE: CONTROLS move=left-stick turn=right-stick sprint=hold-L3 autorun=double-L3 crouch=R3 slide=crouch-while-sprinting jump=A menu=hold-Y+B\");"
-    }
-  ],
+  "chordReferences": [],
   "controlCollisions": {
     "<XRController>{LeftHand}/thumbstick": [
       {
