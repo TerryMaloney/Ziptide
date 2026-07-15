@@ -11,6 +11,8 @@ using Ziptide.Gameplay;
 
 namespace Ziptide.Tests.PlayMode
 {
+    // Checkpoint probe: this source-only comment intentionally starts PlayMode and Golden Android
+    // from one immutable SHA after all runtime and documentation review changes have settled.
     public sealed class RecoveryHomeHubBindingTests
     {
         private readonly List<GameObject> _created = new List<GameObject>();
