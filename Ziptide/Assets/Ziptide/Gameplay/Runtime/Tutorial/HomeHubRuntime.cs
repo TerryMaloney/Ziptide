@@ -170,7 +170,10 @@ namespace Ziptide.Gameplay
             Paint(board, new Color(0.06f, 0.09f, 0.13f));
             StripCollider(board);
 
-            AddLabel(board.transform, "ZIPTIDE\nCHOOSE YOUR START", new Vector3(0f, 0.27f, -0.56f), 0.052f);
+            // The old 0.052 character size produced an 8.75 m title on a 2.4 m board and cropped
+            // most of both lines in the actual tracked-head capture. This size keeps the same wording,
+            // anchor and board layout while fitting the measured title bounds inside the panel.
+            AddLabel(board.transform, "ZIPTIDE\nCHOOSE YOUR START", new Vector3(0f, 0.27f, -0.56f), 0.0125f);
 
             if (canContinue)
             {
