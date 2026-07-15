@@ -1,13 +1,13 @@
 {
   "tool": "recovery_event_save_graph",
   "scannedFiles": 638,
-  "evidenceCount": 688,
+  "evidenceCount": 690,
   "kindCounts": {
     "AUTOSAVE": 7,
     "EVENT_DECLARE": 45,
     "EVENT_INVOKE": 57,
-    "EVENT_SUBSCRIBE": 93,
-    "EVENT_UNSUBSCRIBE": 50,
+    "EVENT_SUBSCRIBE": 94,
+    "EVENT_UNSUBSCRIBE": 51,
     "PLAYER_PREFS_ACCESS": 11,
     "PROFILE_FIELD_ACCESS": 358,
     "SAVE_ACCESS": 67
@@ -2524,7 +2524,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
-        "line": 41,
+        "line": 44,
         "owner": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
         "target": "HomeHubRuntime.BootPresentationReady",
         "detail": "OnBootReady",
@@ -2533,7 +2533,7 @@
       {
         "kind": "EVENT_UNSUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
-        "line": 49,
+        "line": 53,
         "owner": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
         "target": "HomeHubRuntime.BootPresentationReady",
         "detail": "OnBootReady",
@@ -2597,6 +2597,24 @@
       }
     ],
     "HomeHubRuntime.NewGameProfileCreated": [
+      {
+        "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
+        "line": 45,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
+        "target": "HomeHubRuntime.NewGameProfileCreated",
+        "detail": "OnNewGameProfileCreated",
+        "snippet": "HomeHubRuntime.NewGameProfileCreated += OnNewGameProfileCreated;"
+      },
+      {
+        "kind": "EVENT_UNSUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
+        "line": 54,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
+        "target": "HomeHubRuntime.NewGameProfileCreated",
+        "detail": "OnNewGameProfileCreated",
+        "snippet": "HomeHubRuntime.NewGameProfileCreated -= OnNewGameProfileCreated;"
+      },
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
@@ -4443,7 +4461,7 @@
       {
         "kind": "EVENT_UNSUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
-        "line": 48,
+        "line": 52,
         "owner": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
         "target": "SceneManager.sceneLoaded",
         "detail": "OnBootSceneLoadedBeforeStart",
@@ -4452,7 +4470,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
-        "line": 65,
+        "line": 70,
         "owner": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
         "target": "SceneManager.sceneLoaded",
         "detail": "OnBootSceneLoadedBeforeStart",
@@ -4461,7 +4479,7 @@
       {
         "kind": "EVENT_UNSUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
-        "line": 81,
+        "line": 86,
         "owner": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
         "target": "SceneManager.sceneLoaded",
         "detail": "OnBootSceneLoadedBeforeStart",
@@ -4861,7 +4879,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
-        "line": 42,
+        "line": 46,
         "owner": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
         "target": "TravelCoordinator.TravelCompleted",
         "detail": "OnTravelCompleted",
@@ -4870,7 +4888,7 @@
       {
         "kind": "EVENT_UNSUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
-        "line": 50,
+        "line": 55,
         "owner": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
         "target": "TravelCoordinator.TravelCompleted",
         "detail": "OnTravelCompleted",
@@ -12415,7 +12433,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
-      "line": 41,
+      "line": 44,
       "owner": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
       "target": "HomeHubRuntime.BootPresentationReady",
       "detail": "OnBootReady",
@@ -12424,7 +12442,16 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
-      "line": 42,
+      "line": 45,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
+      "target": "HomeHubRuntime.NewGameProfileCreated",
+      "detail": "OnNewGameProfileCreated",
+      "snippet": "HomeHubRuntime.NewGameProfileCreated += OnNewGameProfileCreated;"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
+      "line": 46,
       "owner": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
       "target": "TravelCoordinator.TravelCompleted",
       "detail": "OnTravelCompleted",
@@ -12433,7 +12460,7 @@
     {
       "kind": "EVENT_UNSUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
-      "line": 48,
+      "line": 52,
       "owner": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
       "target": "SceneManager.sceneLoaded",
       "detail": "OnBootSceneLoadedBeforeStart",
@@ -12442,7 +12469,7 @@
     {
       "kind": "EVENT_UNSUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
-      "line": 49,
+      "line": 53,
       "owner": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
       "target": "HomeHubRuntime.BootPresentationReady",
       "detail": "OnBootReady",
@@ -12451,7 +12478,16 @@
     {
       "kind": "EVENT_UNSUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
-      "line": 50,
+      "line": 54,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
+      "target": "HomeHubRuntime.NewGameProfileCreated",
+      "detail": "OnNewGameProfileCreated",
+      "snippet": "HomeHubRuntime.NewGameProfileCreated -= OnNewGameProfileCreated;"
+    },
+    {
+      "kind": "EVENT_UNSUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
+      "line": 55,
       "owner": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
       "target": "TravelCoordinator.TravelCompleted",
       "detail": "OnTravelCompleted",
@@ -12460,7 +12496,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
-      "line": 65,
+      "line": 70,
       "owner": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
       "target": "SceneManager.sceneLoaded",
       "detail": "OnBootSceneLoadedBeforeStart",
@@ -12469,7 +12505,7 @@
     {
       "kind": "EVENT_UNSUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
-      "line": 81,
+      "line": 86,
       "owner": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
       "target": "SceneManager.sceneLoaded",
       "detail": "OnBootSceneLoadedBeforeStart",

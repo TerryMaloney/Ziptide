@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
 - Scanned files: **638**
-- Scanner findings: **2235**
+- Scanner findings: **2237**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -219,6 +219,12 @@ None.
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs`
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs:61` **RUNTIME_BOOTSTRAP** — `var marker = new Regex(@"(?m)^\s*\[RuntimeInitializeOnLoadMethod(?:\s*\(|\s*\])");`
 
+### `Ziptide.Tests.PlayMode.RecoveryRenderSnapshotTests` — 1 signal(s)
+
+- Codes: `DONT_DESTROY_ON_LOAD`
+- Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs:171` **DONT_DESTROY_ON_LOAD** — `Object.DontDestroyOnLoad(go);`
+
 ### `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` — 1 signal(s)
 
 - Codes: `RUNTIME_BOOTSTRAP`
@@ -254,7 +260,7 @@ None.
 
 - Codes: `DIRECT_SCENE_LOAD_ASYNC`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:66` **DIRECT_SCENE_LOAD_ASYNC** — `AsyncOperation bootLoad = SceneManager.LoadSceneAsync(`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:71` **DIRECT_SCENE_LOAD_ASYNC** — `AsyncOperation bootLoad = SceneManager.LoadSceneAsync(`
 
 ### `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` — 1 signal(s)
 
@@ -2283,12 +2289,12 @@ None.
 
 - Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`, `RUNTIME_MATERIAL_CREATE`, `SHADER_FIND`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs:63` **NEW_GAME_OBJECT** — `var cameraHost = new GameObject("__RECOVERY_SNAPSHOT_CAMERA");`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs:148` **CREATE_PRIMITIVE** — `GameObject go = GameObject.CreatePrimitive(type);`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs:156` **SHADER_FIND** — `Shader shader = Shader.Find("Universal Render Pipeline/Unlit");`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs:157` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Unlit/Color");`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs:158` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs:160` **RUNTIME_MATERIAL_CREATE** — `var material = new Material(shader) { name = name + "_Material" };`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs:70` **NEW_GAME_OBJECT** — `var cameraHost = new GameObject("__RECOVERY_SNAPSHOT_CAMERA");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs:220` **CREATE_PRIMITIVE** — `GameObject go = GameObject.CreatePrimitive(type);`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs:228` **SHADER_FIND** — `Shader shader = Shader.Find("Universal Render Pipeline/Unlit");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs:229` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Unlit/Color");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs:230` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs:232` **RUNTIME_MATERIAL_CREATE** — `var material = new Material(shader) { name = name + "_Material" };`
 
 ### `Ziptide.Tests.PlayMode.RecoveryRuntimeArtifactGuardTests` — 3 signal(s)
 
@@ -2672,11 +2678,12 @@ None.
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs`
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:297` **XRI_MANAGER_ASSIGN** — `ray.interactionManager = canonicalManager;`
 
-### `Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests` — 1 signal(s)
+### `Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests` — 2 signal(s)
 
 - Codes: `XRI_MANAGER_LOOKUP`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:152` **XRI_MANAGER_LOOKUP** — `XRInteractionManager manager = UnityEngine.Object.FindObjectOfType<XRInteractionManager>();`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:118` **XRI_MANAGER_LOOKUP** — `XRInteractionManager manager = UnityEngine.Object.FindObjectOfType<XRInteractionManager>();`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:162` **XRI_MANAGER_LOOKUP** — `XRInteractionManager manager = UnityEngine.Object.FindObjectOfType<XRInteractionManager>();`
 
 ### `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` — 2 signal(s)
 
@@ -3516,14 +3523,13 @@ None.
   - `Ziptide/Assets/Ziptide/Tests/EditMode/ZiplineSignalTests.cs:152` **PLAYER_PROFILE_REFERENCE** — `StringAssert.DoesNotContain("PlayerProfile", source);`
   - `Ziptide/Assets/Ziptide/Tests/EditMode/ZiplineSignalTests.cs:153` **SAVE_SYSTEM_REFERENCE** — `StringAssert.DoesNotContain("SaveSystem", source);`
 
-### `Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests` — 4 signal(s)
+### `Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests` — 3 signal(s)
 
 - Codes: `PLAYER_PROFILE_REFERENCE`, `SAVE_SYSTEM_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:36` **SAVE_SYSTEM_REFERENCE** — `_saveBackup = RecoverySaveFileBackup.CaptureAndClear(SaveSystem.SavePath);`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:109` **SAVE_SYSTEM_REFERENCE** — `SaveSystem save = SaveSystem.Instance;`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:110` **SAVE_SYSTEM_REFERENCE** — `Assert.IsNotNull(save, "SaveSystem is missing before actual scene snapshots.");`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:111` **PLAYER_PROFILE_REFERENCE** — `PlayerProfile profile = save.StartNewProfile();`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:32` **PLAYER_PROFILE_REFERENCE** — `private PlayerProfile _newGameProfile;`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:38` **SAVE_SYSTEM_REFERENCE** — `_saveBackup = RecoverySaveFileBackup.CaptureAndClear(SaveSystem.SavePath);`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:296` **PLAYER_PROFILE_REFERENCE** — `private void OnNewGameProfileCreated(PlayerProfile profile) => _newGameProfile = profile;`
 
 ### `Ziptide.Tests.PlayMode.RecoverySaveFileBackup` — 1 signal(s)
 
