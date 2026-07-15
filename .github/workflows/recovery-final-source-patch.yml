@@ -1,0 +1,194 @@
+name: Recovery Final Source Patch
+
+on:
+  push:
+    branches:
+      - terry-local-wip
+    paths:
+      - '.github/workflows/recovery-final-source-patch.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: recovery-final-source-patch
+  cancel-in-progress: false
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout staging SHA
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          lfs: false
+
+      - name: Align to branch if only generated evidence advanced
+        id: align
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin terry-local-wip
+          event="${GITHUB_SHA}"
+          remote="$(git rev-parse origin/terry-local-wip)"
+          if [[ "$event" != "$remote" ]]; then
+            changed="$(git diff --name-only "$event" "$remote")"
+            while IFS= read -r path; do
+              [[ -z "$path" ]] && continue
+              case "$path" in
+                docs/recovery/generated/*|docs/CI_VERDICT.md) ;;
+                *) echo "Concurrent non-generated change: $path"; exit 1 ;;
+              esac
+            done <<< "$changed"
+          fi
+          git reset --hard "$remote"
+
+      - name: Apply four exact edits
+        id: apply
+        shell: bash
+        run: |
+          set +e
+          python3 - <<'PY' > /tmp/recovery-final-source-patch.log 2>&1
+          from pathlib import Path
+
+          def replace_once(path: str, old: str, new: str) -> None:
+              p = Path(path)
+              text = p.read_text(encoding="utf-8")
+              count = text.count(old)
+              if count != 1:
+                  raise RuntimeError(f"{path}: expected exactly one match, found {count}")
+              p.write_text(text.replace(old, new), encoding="utf-8")
+
+          replace_once(
+              "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
+              """        // ── Build ────────────────────────────────────────────────────────────
+          private void Start()
+          {
+              _attempt = ConquestSession.Pending != null ? ConquestSession.Pending.attempt : null;
+          """,
+              """        // ── Build ────────────────────────────────────────────────────────────
+          private void Awake()
+          {
+              if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.ConquestMissionInjector))
+                  enabled = false;
+          }
+
+          private void Start()
+          {
+              if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.ConquestMissionInjector))
+              {
+                  enabled = false;
+                  return;
+              }
+              _attempt = ConquestSession.Pending != null ? ConquestSession.Pending.attempt : null;
+          """)
+
+          replace_once(
+              "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs",
+              """        private void Start()
+          {
+              ApplyEcology();
+              _instantResolve = false;
+              InvokeRepeating(nameof(ApplyEcology), ReResolveSeconds, ReResolveSeconds);
+          }
+
+          private void ApplyEcology()
+          {
+              string world = gameObject.scene.name;
+          """,
+              """        private void Awake()
+          {
+              if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.EcologyInjector))
+                  enabled = false;
+          }
+
+          private void Start()
+          {
+              if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.EcologyInjector))
+              {
+                  enabled = false;
+                  return;
+              }
+              ApplyEcology();
+              _instantResolve = false;
+              InvokeRepeating(nameof(ApplyEcology), ReResolveSeconds, ReResolveSeconds);
+          }
+
+          private void ApplyEcology()
+          {
+              if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.EcologyInjector))
+              {
+                  CancelInvoke(nameof(ApplyEcology));
+                  return;
+              }
+              string world = gameObject.scene.name;
+          """)
+
+          replace_once(
+              "Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs",
+              '            Debug.Log("ZIPTIDE: CONTROLS move=left-stick turn=right-stick sprint=hold-L3 autorun=double-L3 crouch=R3 slide=crouch-while-sprinting jump=A menu=hold-Y+B");\n',
+              '            Debug.Log("ZIPTIDE: CONTROLS move=left-stick turn=right-stick sprint=hold-L3 autorun=double-L3 crouch=R3 slide=crouch-while-sprinting jump=A dev-menu=diagnostic-profile-forehead-gesture");\n')
+
+          replace_once(
+              ".github/workflows/recovery-golden-android.yml",
+              """      - 'Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBuildProfileTests.cs'
+              - 'tools/dev_build_install.ps1'
+          """,
+              """      - 'Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBuildProfileTests.cs'
+              - 'Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs'
+              - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs'
+              - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs'
+              - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarp.cs'
+              - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs'
+              - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs'
+              - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs'
+              - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs'
+              - 'Ziptide/Assets/ZiptideNet/NetBootstrap.cs'
+              - 'docs/recovery/automatic_runtime_owners.json'
+              - 'tools/dev_build_install.ps1'
+          """)
+
+          Path(".github/workflows/recovery-final-source-patch.yml").unlink()
+          print("all exact replacements applied")
+          PY
+          code=$?
+          cat /tmp/recovery-final-source-patch.log
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Commit successful patch
+        if: steps.apply.outputs.exit_code == '0'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --check
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "fix(recovery): close remaining lifecycle bypasses"
+          git push origin HEAD:terry-local-wip
+
+      - name: Record exact patch failure
+        if: steps.apply.outputs.exit_code != '0'
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p docs/recovery/generated
+          {
+            echo '# Recovery Final Source Patch Failure'
+            echo
+            echo "- Staging SHA: \`${GITHUB_SHA}\`"
+            echo "- Exit code: \`${{ steps.apply.outputs.exit_code }}\`"
+            echo
+            echo '```text'
+            sed -n '1,120p' /tmp/recovery-final-source-patch.log
+            echo '```'
+          } > docs/recovery/generated/recovery_final_source_patch_failure.md
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/recovery/generated/recovery_final_source_patch_failure.md
+          git commit -m "ci(recovery): record final source patch failure [skip ci]"
+          git push origin HEAD:terry-local-wip
