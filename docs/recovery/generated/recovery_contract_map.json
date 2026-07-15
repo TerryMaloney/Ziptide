@@ -10806,21 +10806,21 @@
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryUiSpatialAuditTests.cs",
-            "line": 70,
+            "line": 74,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryUiSpatialAuditTests",
             "snippet": "var go = new GameObject(\"__RECOVERY_UI_\" + value.Replace(' ', '_'));"
           },
           {
             "code": "TEXTMESH_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryUiSpatialAuditTests.cs",
-            "line": 74,
+            "line": 78,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryUiSpatialAuditTests",
             "snippet": "TextMesh text = go.AddComponent<TextMesh>();"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryUiSpatialAuditTests.cs",
-            "line": 92,
+            "line": 96,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryUiSpatialAuditTests",
             "snippet": "var go = new GameObject(\"__RECOVERY_UI_TMP_PROBE\");"
           }

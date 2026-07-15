@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-15T20:37:43.010424+00:00",
+  "generatedAtUtc": "2026-07-15T20:46:24.083607+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -15617,7 +15617,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryUiSpatialAuditTests.cs",
-      "line": 70,
+      "line": 74,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryUiSpatialAuditTests",
       "snippet": "var go = new GameObject(\"__RECOVERY_UI_\" + value.Replace(' ', '_'));"
     },
@@ -15626,7 +15626,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryUiSpatialAuditTests.cs",
-      "line": 92,
+      "line": 96,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryUiSpatialAuditTests",
       "snippet": "var go = new GameObject(\"__RECOVERY_UI_TMP_PROBE\");"
     },
@@ -16220,7 +16220,7 @@
       "code": "TEXTMESH_COMPONENT",
       "description": "Legacy TextMesh creation/reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryUiSpatialAuditTests.cs",
-      "line": 74,
+      "line": 78,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryUiSpatialAuditTests",
       "snippet": "TextMesh text = go.AddComponent<TextMesh>();"
     },

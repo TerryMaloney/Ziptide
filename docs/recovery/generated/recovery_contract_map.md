@@ -2306,9 +2306,9 @@ None.
 - Codes: `NEW_GAME_OBJECT`, `TEXTMESH_COMPONENT`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryUiSpatialAuditTests.cs`
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryUiSpatialAuditTests.cs:27` **NEW_GAME_OBJECT** — `var cameraHost = new GameObject("__RECOVERY_UI_CAMERA");`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryUiSpatialAuditTests.cs:70` **NEW_GAME_OBJECT** — `var go = new GameObject("__RECOVERY_UI_" + value.Replace(' ', '_'));`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryUiSpatialAuditTests.cs:74` **TEXTMESH_COMPONENT** — `TextMesh text = go.AddComponent<TextMesh>();`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryUiSpatialAuditTests.cs:92` **NEW_GAME_OBJECT** — `var go = new GameObject("__RECOVERY_UI_TMP_PROBE");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryUiSpatialAuditTests.cs:74` **NEW_GAME_OBJECT** — `var go = new GameObject("__RECOVERY_UI_" + value.Replace(' ', '_'));`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryUiSpatialAuditTests.cs:78` **TEXTMESH_COMPONENT** — `TextMesh text = go.AddComponent<TextMesh>();`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryUiSpatialAuditTests.cs:96` **NEW_GAME_OBJECT** — `var go = new GameObject("__RECOVERY_UI_TMP_PROBE");`
 
 ### `Ziptide.Visuals.ForgeCreatureVisualApplier` — 2 signal(s)
 
