@@ -210,7 +210,7 @@ None.
 
 - Codes: `RUNTIME_BOOTSTRAP`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs:60` **RUNTIME_BOOTSTRAP** — `var marker = new Regex(@"(?m)^\s*\[RuntimeInitializeOnLoadMethod(?:\s*\(|\s*\])");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs:59` **RUNTIME_BOOTSTRAP** — `var marker = new Regex(@"(?m)^\s*\[RuntimeInitializeOnLoadMethod(?:\s*\(|\s*\])");`
 
 ### `ZiptideNet.NetBootstrap` — 2 signal(s)
 
@@ -2120,7 +2120,7 @@ None.
 
 - Codes: `NEW_GAME_OBJECT`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs:122` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs:123` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
 
 ### `Ziptide.Tests.PlayMode.RecoveryTestRig` — 9 signal(s)
 

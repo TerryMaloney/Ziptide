@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-15T11:50:23.120477+00:00",
+  "generatedAtUtc": "2026-07-15T11:54:32.098662+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -290,7 +290,7 @@
       "code": "RUNTIME_BOOTSTRAP",
       "description": "RuntimeInitializeOnLoadMethod bootstrap",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs",
-      "line": 60,
+      "line": 59,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryGateBypassTests",
       "snippet": "var marker = new Regex(@\"(?m)^\\s*\\[RuntimeInitializeOnLoadMethod(?:\\s*\\(|\\s*\\])\");"
     },
@@ -14483,7 +14483,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs",
-      "line": 122,
+      "line": 123,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryGateBypassTests",
       "snippet": "var go = new GameObject(name);"
     },

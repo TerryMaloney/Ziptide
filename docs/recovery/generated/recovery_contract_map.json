@@ -660,7 +660,7 @@
           {
             "code": "RUNTIME_BOOTSTRAP",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs",
-            "line": 60,
+            "line": 59,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryGateBypassTests",
             "snippet": "var marker = new Regex(@\"(?m)^\\s*\\[RuntimeInitializeOnLoadMethod(?:\\s*\\(|\\s*\\])\");"
           }
@@ -9954,7 +9954,7 @@
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs",
-            "line": 122,
+            "line": 123,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryGateBypassTests",
             "snippet": "var go = new GameObject(name);"
           }

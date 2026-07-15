@@ -51,7 +51,7 @@
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:39` · `Ziptide.Gameplay.ConquestMissionRuntime` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Tests/EditMode/DevToolsSingletonTests.cs:17` · `Ziptide.Tests.EditMode.DevToolsSingletonTests` — RuntimeInitializeOnLoadMethod bootstrap. `private const string BootstrapMarker = "[RuntimeInitializeOnLoadMethod";`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Tests/EditMode/EventHygieneTests.cs:26` · `Ziptide.Tests.EditMode.EventHygieneTests` — RuntimeInitializeOnLoadMethod bootstrap. `"Gameplay/Runtime/World/ConquestMissionRuntime.cs", // [RuntimeInitializeOnLoadMethod] static hook`
-- **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs:60` · `Ziptide.Tests.PlayMode.RecoveryGateBypassTests` — RuntimeInitializeOnLoadMethod bootstrap. `var marker = new Regex(@"(?m)^\s*\[RuntimeInitializeOnLoadMethod(?:\s*\(|\s*\])");`
+- **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs:59` · `Ziptide.Tests.PlayMode.RecoveryGateBypassTests` — RuntimeInitializeOnLoadMethod bootstrap. `var marker = new Regex(@"(?m)^\s*\[RuntimeInitializeOnLoadMethod(?:\s*\(|\s*\])");`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/ZiptideNet/NetBootstrap.cs:20` · `ZiptideNet.NetBootstrap` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]`
 ### diagnostics
 
@@ -1644,7 +1644,7 @@
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/ZiplineSignalTests.cs:160` · `Ziptide.Tests.EditMode.ZiplineSignalTests` — Runtime GameObject construction. `var go = new GameObject(name);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/PlayModeInfrastructureTests.cs:20` · `Ziptide.Tests.PlayMode.PlayModeInfrastructureTests` — Runtime GameObject construction. `var host = new GameObject("__RECOVERY_PLAYMODE_FRAME_PROBE");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryCoreBootstrapGateTests.cs:84` · `Ziptide.Tests.PlayMode.RecoveryCoreBootstrapGateTests` — Runtime GameObject construction. `var cameraHost = new GameObject("__RECOVERY_CORE_GATE_CAMERA");`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs:122` · `Ziptide.Tests.PlayMode.RecoveryGateBypassTests` — Runtime GameObject construction. `var go = new GameObject(name);`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs:123` · `Ziptide.Tests.PlayMode.RecoveryGateBypassTests` — Runtime GameObject construction. `var go = new GameObject(name);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:42` · `Ziptide.Tests.PlayMode.RecoveryTestRig` — Runtime GameObject construction. `Root = new GameObject(RootName);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:49` · `Ziptide.Tests.PlayMode.RecoveryTestRig` — Runtime GameObject construction. `var managerHost = new GameObject("InteractionManager");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:62` · `Ziptide.Tests.PlayMode.RecoveryTestRig` — Runtime GameObject construction. `var inputHost = new GameObject("InputActionManager");`
