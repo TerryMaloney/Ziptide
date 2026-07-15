@@ -7,22 +7,23 @@ namespace Ziptide.Core
 {
     /// <summary>
     /// Sole decision seam for automatic bootstrap exposure.
-    /// The explicit default is FullDevelopment; it is never inferred from Debug.isDebugBuild.
-    /// Automatic owners are migrated to Allows(featureId) in bounded follow-up commits.
+    /// The explicit default is FullDevelopment; the Golden profile is selected only by the
+    /// ZIPTIDE_RECOVERY_GOLDEN player define. It is never inferred from Debug.isDebugBuild.
     /// </summary>
     public static class RecoveryRuntimeGate
     {
-        private static RecoveryExposureProfile _activeProfile = RecoveryExposureProfiles.FullDevelopment;
+        private static RecoveryExposureProfile _activeProfile = RecoveryBuildProfile.CompiledProfile;
         private static bool _bootProfileLogged;
 
         public static RecoveryExposureProfile ActiveProfile => _activeProfile;
         public static string ActiveProfileName => _activeProfile.Name;
+        public static RecoveryBuildProfileKind CompiledBuildProfile => RecoveryBuildProfile.CompiledKind;
         public static IReadOnlyList<RecoveryFeatureId> ActiveFeatureIds => _activeProfile.EnabledFeatures;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         private static void ResetStatics()
         {
-            _activeProfile = RecoveryExposureProfiles.FullDevelopment;
+            _activeProfile = RecoveryBuildProfile.CompiledProfile;
             _bootProfileLogged = false;
         }
 
@@ -47,8 +48,9 @@ namespace Ziptide.Core
 
         private static string BuildLogLine(string tag)
         {
-            var builder = new StringBuilder(192);
+            var builder = new StringBuilder(224);
             builder.Append("ZIPTIDE: ").Append(tag)
+                .Append(" buildProfile=").Append(RecoveryBuildProfile.CompiledKind)
                 .Append(" profile=").Append(_activeProfile.Name)
                 .Append(" features=");
 
