@@ -1086,7 +1086,7 @@
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Water/ZiptideWater.cs:50` · `Ziptide.Visuals.ZiptideWater` — Runtime shader lookup. `var lit = Shader.Find("Universal Render Pipeline/Lit");`
 ### persistence
 
-- **DONT_DESTROY_ON_LOAD** — `Ziptide/Assets/Ziptide/Core/Runtime/DebugHUD.cs:28` · `Ziptide.Core.DebugHUD` — Object promoted across scene loads. `Object.DontDestroyOnLoad(s_Root);`
+- **DONT_DESTROY_ON_LOAD** — `Ziptide/Assets/Ziptide/Core/Runtime/DebugHUD.cs:29` · `Ziptide.Core.DebugHUD` — Object promoted across scene loads. `Object.DontDestroyOnLoad(s_Root);`
 - **DONT_DESTROY_ON_LOAD** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs:38` · `Ziptide.Core.RuntimeHealthMonitor` — Object promoted across scene loads. `DontDestroyOnLoad(go);`
 - **DONT_DESTROY_ON_LOAD** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs:39` · `Ziptide.Gameplay.AmbienceDirector` — Object promoted across scene loads. `DontDestroyOnLoad(go);`
 - **DONT_DESTROY_ON_LOAD** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs:32` · `Ziptide.Gameplay.AudioDirector` — Object promoted across scene loads. `DontDestroyOnLoad(gameObject);`
@@ -1332,8 +1332,8 @@
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyPlanetRig.cs:124` · `Ziptide.Visuals.SkyPlanetRig` — Runtime primitive construction. `_planetRoot = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyVistaRig.cs:149` · `Ziptide.Visuals.SkyVistaRig` — Runtime primitive construction. `_domeRoot = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyVistaRig.cs:221` · `Ziptide.Visuals.SkyVistaRig` — Runtime primitive construction. `inst.go = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Core/Runtime/DebugHUD.cs:27` · `Ziptide.Core.DebugHUD` — Runtime GameObject construction. `s_Root = new GameObject("Ziptide_DebugHUD");`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Core/Runtime/DebugHUD.cs:36` · `Ziptide.Core.DebugHUD` — Runtime GameObject construction. `var go = new GameObject("Text");`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Core/Runtime/DebugHUD.cs:28` · `Ziptide.Core.DebugHUD` — Runtime GameObject construction. `s_Root = new GameObject("Ziptide_DebugHUD");`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Core/Runtime/DebugHUD.cs:37` · `Ziptide.Core.DebugHUD` — Runtime GameObject construction. `var go = new GameObject("Text");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Core/Runtime/GamePool.cs:39` · `Ziptide.Core.GamePool` — Runtime GameObject construction. `var go = new GameObject("__GAMEPOOL");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Core/Runtime/GamePool.cs:130` · `Ziptide.Core.GamePool` — Runtime GameObject construction. `var go = new GameObject("__GAMEPOOL_TICKER");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs:37` · `Ziptide.Core.RuntimeHealthMonitor` — Runtime GameObject construction. `var go = new GameObject("__RuntimeHealth");`
@@ -1666,7 +1666,7 @@
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/ZiptideNet/NetBootstrap.cs:31` · `ZiptideNet.NetBootstrap` — Runtime GameObject construction. `_launcherGo = new GameObject("__PhotonPvpLauncher");`
 ### runtime_ui
 
-- **CANVAS_COMPONENT** — `Ziptide/Assets/Ziptide/Core/Runtime/DebugHUD.cs:30` · `Ziptide.Core.DebugHUD` — Canvas creation/reference. `var canvas = s_Root.AddComponent<Canvas>();`
+- **CANVAS_COMPONENT** — `Ziptide/Assets/Ziptide/Core/Runtime/DebugHUD.cs:31` · `Ziptide.Core.DebugHUD` — Canvas creation/reference. `var canvas = s_Root.AddComponent<Canvas>();`
 - **CANVAS_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:121` · `Ziptide.Gameplay.DevTools.DevMenu` — Canvas creation/reference. `var canvas = _canvasGo.AddComponent<Canvas>();`
 - **CANVAS_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:87` · `Ziptide.Gameplay.ObjectiveBoard` — Canvas creation/reference. `var canvas = canvasGo.AddComponent<Canvas>();`
 - **EVENT_SYSTEM_COMPONENT** — `Ziptide/Assets/Ziptide/Editor/Setup/SetupMilestoneAScene.cs:97` · `Ziptide.Editor.Setup.SetupMilestoneAScene` — EventSystem creation/reference. `eventSystemGo.AddComponent<EventSystem>();`

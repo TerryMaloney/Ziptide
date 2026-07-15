@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-15T00:29:20.155069+00:00",
+  "generatedAtUtc": "2026-07-15T00:40:55.214962+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -9479,7 +9479,7 @@
       "code": "DONT_DESTROY_ON_LOAD",
       "description": "Object promoted across scene loads",
       "path": "Ziptide/Assets/Ziptide/Core/Runtime/DebugHUD.cs",
-      "line": 28,
+      "line": 29,
       "symbol": "Ziptide.Core.DebugHUD",
       "snippet": "Object.DontDestroyOnLoad(s_Root);"
     },
@@ -11675,7 +11675,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Core/Runtime/DebugHUD.cs",
-      "line": 27,
+      "line": 28,
       "symbol": "Ziptide.Core.DebugHUD",
       "snippet": "s_Root = new GameObject(\"Ziptide_DebugHUD\");"
     },
@@ -11684,7 +11684,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Core/Runtime/DebugHUD.cs",
-      "line": 36,
+      "line": 37,
       "symbol": "Ziptide.Core.DebugHUD",
       "snippet": "var go = new GameObject(\"Text\");"
     },
@@ -14663,7 +14663,7 @@
       "code": "CANVAS_COMPONENT",
       "description": "Canvas creation/reference",
       "path": "Ziptide/Assets/Ziptide/Core/Runtime/DebugHUD.cs",
-      "line": 30,
+      "line": 31,
       "symbol": "Ziptide.Core.DebugHUD",
       "snippet": "var canvas = s_Root.AddComponent<Canvas>();"
     },

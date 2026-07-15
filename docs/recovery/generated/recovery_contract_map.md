@@ -25,7 +25,7 @@ None.
 - Codes: `DONT_DESTROY_ON_LOAD`, `RUNTIME_BOOTSTRAP`
 - Paths: `Ziptide/Assets/Ziptide/Core/Runtime/DebugHUD.cs`
   - `Ziptide/Assets/Ziptide/Core/Runtime/DebugHUD.cs:22` **RUNTIME_BOOTSTRAP** — `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
-  - `Ziptide/Assets/Ziptide/Core/Runtime/DebugHUD.cs:28` **DONT_DESTROY_ON_LOAD** — `Object.DontDestroyOnLoad(s_Root);`
+  - `Ziptide/Assets/Ziptide/Core/Runtime/DebugHUD.cs:29` **DONT_DESTROY_ON_LOAD** — `Object.DontDestroyOnLoad(s_Root);`
 
 ### `Ziptide.Core.EnsureXRCameraActive` — 1 signal(s)
 
@@ -455,9 +455,9 @@ None.
 
 - Codes: `CANVAS_COMPONENT`, `NEW_GAME_OBJECT`
 - Paths: `Ziptide/Assets/Ziptide/Core/Runtime/DebugHUD.cs`
-  - `Ziptide/Assets/Ziptide/Core/Runtime/DebugHUD.cs:27` **NEW_GAME_OBJECT** — `s_Root = new GameObject("Ziptide_DebugHUD");`
-  - `Ziptide/Assets/Ziptide/Core/Runtime/DebugHUD.cs:30` **CANVAS_COMPONENT** — `var canvas = s_Root.AddComponent<Canvas>();`
-  - `Ziptide/Assets/Ziptide/Core/Runtime/DebugHUD.cs:36` **NEW_GAME_OBJECT** — `var go = new GameObject("Text");`
+  - `Ziptide/Assets/Ziptide/Core/Runtime/DebugHUD.cs:28` **NEW_GAME_OBJECT** — `s_Root = new GameObject("Ziptide_DebugHUD");`
+  - `Ziptide/Assets/Ziptide/Core/Runtime/DebugHUD.cs:31` **CANVAS_COMPONENT** — `var canvas = s_Root.AddComponent<Canvas>();`
+  - `Ziptide/Assets/Ziptide/Core/Runtime/DebugHUD.cs:37` **NEW_GAME_OBJECT** — `var go = new GameObject("Text");`
 
 ### `Ziptide.Core.GamePool` — 3 signal(s)
 
