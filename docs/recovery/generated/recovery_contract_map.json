@@ -413,14 +413,14 @@
           {
             "code": "RUNTIME_BOOTSTRAP",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-            "line": 55,
+            "line": 58,
             "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
             "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]"
           },
           {
             "code": "DONT_DESTROY_ON_LOAD",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-            "line": 61,
+            "line": 64,
             "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
             "snippet": "DontDestroyOnLoad(go);"
           }
@@ -1339,7 +1339,7 @@
           {
             "code": "FRAME_BUTTON_POLL",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-            "line": 77,
+            "line": 91,
             "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
             "snippet": "if (kb != null && kb.f2Key.wasPressedThisFrame) Toggle();"
           }
@@ -5660,49 +5660,49 @@
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-            "line": 60,
+            "line": 63,
             "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
             "snippet": "var go = new GameObject(\"__DevWarpBoard\");"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-            "line": 135,
+            "line": 151,
             "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
             "snippet": "_board = new GameObject(\"DevWarpBoard\");"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-            "line": 162,
+            "line": 178,
             "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
             "snippet": "var panel = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-            "line": 199,
+            "line": 215,
             "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
             "snippet": "var go = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "XR_INTERACTABLE_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-            "line": 206,
+            "line": 222,
             "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
             "snippet": "var interactable = go.AddComponent<XRSimpleInteractable>();"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-            "line": 230,
+            "line": 246,
             "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
             "snippet": "var go = new GameObject(\"Label_\" + text.Replace(' ', '_'));"
           },
           {
             "code": "TEXTMESH_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-            "line": 238,
+            "line": 254,
             "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
             "snippet": "var tm = go.AddComponent<TextMesh>();"
           }
@@ -10814,20 +10814,6 @@
           {
             "code": "XRI_MANAGER_LOOKUP",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-            "line": 207,
-            "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
-            "snippet": "var mgr = FindObjectOfType<XRInteractionManager>();"
-          },
-          {
-            "code": "XRI_MANAGER_ASSIGN",
-            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-            "line": 208,
-            "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
-            "snippet": "if (mgr != null) interactable.interactionManager = mgr;"
-          },
-          {
-            "code": "XRI_MANAGER_LOOKUP",
-            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
             "line": 223,
             "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
             "snippet": "var mgr = FindObjectOfType<XRInteractionManager>();"
@@ -10836,6 +10822,20 @@
             "code": "XRI_MANAGER_ASSIGN",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
             "line": 224,
+            "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
+            "snippet": "if (mgr != null) interactable.interactionManager = mgr;"
+          },
+          {
+            "code": "XRI_MANAGER_LOOKUP",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
+            "line": 239,
+            "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
+            "snippet": "var mgr = FindObjectOfType<XRInteractionManager>();"
+          },
+          {
+            "code": "XRI_MANAGER_ASSIGN",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
+            "line": 240,
             "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
             "snippet": "if (mgr != null) { interactable.interactionManager = mgr; yield break; }"
           }
@@ -15130,7 +15130,7 @@
           {
             "code": "CAMERA_MAIN_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-            "line": 111,
+            "line": 127,
             "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
             "snippet": "var cam = Camera.main;"
           }

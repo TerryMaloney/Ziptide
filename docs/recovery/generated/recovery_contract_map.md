@@ -139,8 +139,8 @@ None.
 
 - Codes: `DONT_DESTROY_ON_LOAD`, `RUNTIME_BOOTSTRAP`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:55` **RUNTIME_BOOTSTRAP** — `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:61` **DONT_DESTROY_ON_LOAD** — `DontDestroyOnLoad(go);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:58` **RUNTIME_BOOTSTRAP** — `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:64` **DONT_DESTROY_ON_LOAD** — `DontDestroyOnLoad(go);`
 
 ### `Ziptide.Gameplay.EcologyDirector` — 1 signal(s)
 
@@ -348,7 +348,7 @@ None.
 
 - Codes: `FRAME_BUTTON_POLL`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:77` **FRAME_BUTTON_POLL** — `if (kb != null && kb.f2Key.wasPressedThisFrame) Toggle();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:91` **FRAME_BUTTON_POLL** — `if (kb != null && kb.f2Key.wasPressedThisFrame) Toggle();`
 
 ### `Ziptide.Gameplay.EmergencyRespawn` — 4 signal(s)
 
@@ -1216,13 +1216,13 @@ None.
 
 - Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`, `TEXTMESH_COMPONENT`, `XR_INTERACTABLE_COMPONENT`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:60` **NEW_GAME_OBJECT** — `var go = new GameObject("__DevWarpBoard");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:135` **NEW_GAME_OBJECT** — `_board = new GameObject("DevWarpBoard");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:162` **CREATE_PRIMITIVE** — `var panel = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:199` **CREATE_PRIMITIVE** — `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:206` **XR_INTERACTABLE_COMPONENT** — `var interactable = go.AddComponent<XRSimpleInteractable>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:230` **NEW_GAME_OBJECT** — `var go = new GameObject("Label_" + text.Replace(' ', '_'));`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:238` **TEXTMESH_COMPONENT** — `var tm = go.AddComponent<TextMesh>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:63` **NEW_GAME_OBJECT** — `var go = new GameObject("__DevWarpBoard");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:151` **NEW_GAME_OBJECT** — `_board = new GameObject("DevWarpBoard");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:178` **CREATE_PRIMITIVE** — `var panel = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:215` **CREATE_PRIMITIVE** — `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:222` **XR_INTERACTABLE_COMPONENT** — `var interactable = go.AddComponent<XRSimpleInteractable>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:246` **NEW_GAME_OBJECT** — `var go = new GameObject("Label_" + text.Replace(' ', '_'));`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:254` **TEXTMESH_COMPONENT** — `var tm = go.AddComponent<TextMesh>();`
 
 ### `Ziptide.Gameplay.DispatchKiosk` — 2 signal(s)
 
@@ -2317,10 +2317,10 @@ None.
 
 - Codes: `XRI_MANAGER_ASSIGN`, `XRI_MANAGER_LOOKUP`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:207` **XRI_MANAGER_LOOKUP** — `var mgr = FindObjectOfType<XRInteractionManager>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:208` **XRI_MANAGER_ASSIGN** — `if (mgr != null) interactable.interactionManager = mgr;`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:223` **XRI_MANAGER_LOOKUP** — `var mgr = FindObjectOfType<XRInteractionManager>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:224` **XRI_MANAGER_ASSIGN** — `if (mgr != null) { interactable.interactionManager = mgr; yield break; }`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:224` **XRI_MANAGER_ASSIGN** — `if (mgr != null) interactable.interactionManager = mgr;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:239` **XRI_MANAGER_LOOKUP** — `var mgr = FindObjectOfType<XRInteractionManager>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:240` **XRI_MANAGER_ASSIGN** — `if (mgr != null) { interactable.interactionManager = mgr; yield break; }`
 
 ### `Ziptide.Gameplay.FirstDestinationHelmRuntime` — 4 signal(s)
 
@@ -3372,7 +3372,7 @@ None.
 
 - Codes: `CAMERA_MAIN_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:111` **CAMERA_MAIN_REFERENCE** — `var cam = Camera.main;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:127` **CAMERA_MAIN_REFERENCE** — `var cam = Camera.main;`
 
 ### `Ziptide.Gameplay.DroneCombatBehavior` — 1 signal(s)
 

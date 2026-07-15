@@ -3921,16 +3921,16 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-        "line": 66,
+        "line": 77,
         "owner": "Ziptide.Gameplay.DevTools.DevWarpBoard",
         "target": "SceneManager.sceneLoaded",
         "detail": "OnSceneLoaded",
-        "snippet": "private void OnEnable() => SceneManager.sceneLoaded += OnSceneLoaded;"
+        "snippet": "SceneManager.sceneLoaded += OnSceneLoaded;"
       },
       {
         "kind": "EVENT_UNSUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-        "line": 67,
+        "line": 80,
         "owner": "Ziptide.Gameplay.DevTools.DevWarpBoard",
         "target": "SceneManager.sceneLoaded",
         "detail": "OnSceneLoaded",
@@ -8080,16 +8080,16 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-      "line": 66,
+      "line": 77,
       "owner": "Ziptide.Gameplay.DevTools.DevWarpBoard",
       "target": "SceneManager.sceneLoaded",
       "detail": "OnSceneLoaded",
-      "snippet": "private void OnEnable() => SceneManager.sceneLoaded += OnSceneLoaded;"
+      "snippet": "SceneManager.sceneLoaded += OnSceneLoaded;"
     },
     {
       "kind": "EVENT_UNSUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-      "line": 67,
+      "line": 80,
       "owner": "Ziptide.Gameplay.DevTools.DevWarpBoard",
       "target": "SceneManager.sceneLoaded",
       "detail": "OnSceneLoaded",
