@@ -987,7 +987,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **EVENT_INVOKE** · `Ziptide.Tests.EditMode.AudioDirectorLifecycleTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/AudioDirectorLifecycleTests.cs:50` — `Assert.DoesNotThrow(() => method.Invoke(null, new object[] { null }));`
 - **EVENT_INVOKE** · `Ziptide.Tests.EditMode.ZiplineSignalTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/ZiplineSignalTests.cs:184` — `method.Invoke(line, args);`
 - **EVENT_INVOKE** · `Ziptide.Tests.PlayMode.RecoveryCoreBootstrapGateTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryCoreBootstrapGateTests.cs:123` — `method.Invoke(null, null);`
-- **EVENT_INVOKE** · `Ziptide.Tests.PlayMode.RecoveryGameplayBootstrapGateTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGameplayBootstrapGateTests.cs:111` — `method.Invoke(null, null);`
+- **EVENT_INVOKE** · `Ziptide.Tests.PlayMode.RecoveryGameplayBootstrapGateTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGameplayBootstrapGateTests.cs:112` — `method.Invoke(null, null);`
 
 ### `name`
 
