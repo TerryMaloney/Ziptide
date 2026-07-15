@@ -1,15 +1,15 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-15T00:42:24.920784+00:00",
+  "generatedAtUtc": "2026-07-15T00:43:05.688878+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
     "Ziptide/Assets/Ziptide",
     "Ziptide/Assets/ZiptideNet"
   ],
-  "scannedFiles": 607,
-  "findingCount": 2043,
+  "scannedFiles": 608,
+  "findingCount": 2045,
   "categoryCounts": {
     "bootstrap": 26,
     "diagnostics": 418,
@@ -19,7 +19,7 @@
     "input": 118,
     "materials": 223,
     "persistence": 17,
-    "runtime_creation": 559,
+    "runtime_creation": 561,
     "runtime_ui": 114,
     "save_state": 234,
     "scene_loading": 5,
@@ -30,7 +30,7 @@
     "CAMERA_MAIN_REFERENCE": 38,
     "CAMERA_POST_PROCESSING": 1,
     "CANVAS_COMPONENT": 3,
-    "CREATE_PRIMITIVE": 227,
+    "CREATE_PRIMITIVE": 228,
     "DIRECT_SCENE_LOAD": 2,
     "DIRECT_SCENE_LOAD_ASYNC": 3,
     "DONT_DESTROY_ON_LOAD": 17,
@@ -41,7 +41,7 @@
     "FRAME_BUTTON_POLL": 1,
     "INPUT_ACTION_REFERENCE": 110,
     "INPUT_BUTTON_REFERENCE": 7,
-    "NEW_GAME_OBJECT": 332,
+    "NEW_GAME_OBJECT": 333,
     "PLAYER_PROFILE_REFERENCE": 133,
     "RENDER_SETTINGS_MUTATION": 36,
     "RUNTIME_BOOTSTRAP": 20,
@@ -11602,6 +11602,15 @@
       "category": "runtime_creation",
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryCoreBootstrapGateTests.cs",
+      "line": 88,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryCoreBootstrapGateTests",
+      "snippet": "var rendererHost = GameObject.CreatePrimitive(PrimitiveType.Cube);"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "CREATE_PRIMITIVE",
+      "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs",
       "line": 92,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryTestRig",
@@ -14450,6 +14459,15 @@
       "line": 20,
       "symbol": "Ziptide.Tests.PlayMode.PlayModeInfrastructureTests",
       "snippet": "var host = new GameObject(\"__RECOVERY_PLAYMODE_FRAME_PROBE\");"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryCoreBootstrapGateTests.cs",
+      "line": 84,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryCoreBootstrapGateTests",
+      "snippet": "var cameraHost = new GameObject(\"__RECOVERY_CORE_GATE_CAMERA\");"
     },
     {
       "category": "runtime_creation",

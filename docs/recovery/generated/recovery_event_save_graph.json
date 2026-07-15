@@ -1,11 +1,11 @@
 {
   "tool": "recovery_event_save_graph",
-  "scannedFiles": 607,
-  "evidenceCount": 635,
+  "scannedFiles": 608,
+  "evidenceCount": 636,
   "kindCounts": {
     "AUTOSAVE": 7,
     "EVENT_DECLARE": 45,
-    "EVENT_INVOKE": 52,
+    "EVENT_INVOKE": 53,
     "EVENT_SUBSCRIBE": 78,
     "EVENT_UNSUBSCRIBE": 30,
     "PLAYER_PREFS_ACCESS": 11,
@@ -5629,6 +5629,15 @@
         "target": "method",
         "detail": "",
         "snippet": "method.Invoke(line, args);"
+      },
+      {
+        "kind": "EVENT_INVOKE",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryCoreBootstrapGateTests.cs",
+        "line": 119,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryCoreBootstrapGateTests",
+        "target": "method",
+        "detail": "",
+        "snippet": "method.Invoke(null, null);"
       }
     ],
     "name": [
@@ -11829,6 +11838,15 @@
       "target": "method",
       "detail": "",
       "snippet": "method.Invoke(line, args);"
+    },
+    {
+      "kind": "EVENT_INVOKE",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryCoreBootstrapGateTests.cs",
+      "line": 119,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryCoreBootstrapGateTests",
+      "target": "method",
+      "detail": "",
+      "snippet": "method.Invoke(null, null);"
     },
     {
       "kind": "PROFILE_FIELD_ACCESS",

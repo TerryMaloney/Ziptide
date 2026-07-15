@@ -1,8 +1,8 @@
 {
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
-  "scannedFiles": 607,
-  "findingCount": 2043,
+  "scannedFiles": 608,
+  "findingCount": 2045,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -9913,6 +9913,33 @@
             "line": 20,
             "symbol": "Ziptide.Tests.PlayMode.PlayModeInfrastructureTests",
             "snippet": "var host = new GameObject(\"__RECOVERY_PLAYMODE_FRAME_PROBE\");"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Tests.PlayMode.RecoveryCoreBootstrapGateTests",
+        "evidenceCount": 2,
+        "codes": [
+          "CREATE_PRIMITIVE",
+          "NEW_GAME_OBJECT"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryCoreBootstrapGateTests.cs"
+        ],
+        "evidence": [
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryCoreBootstrapGateTests.cs",
+            "line": 84,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryCoreBootstrapGateTests",
+            "snippet": "var cameraHost = new GameObject(\"__RECOVERY_CORE_GATE_CAMERA\");"
+          },
+          {
+            "code": "CREATE_PRIMITIVE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryCoreBootstrapGateTests.cs",
+            "line": 88,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryCoreBootstrapGateTests",
+            "snippet": "var rendererHost = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           }
         ]
       },

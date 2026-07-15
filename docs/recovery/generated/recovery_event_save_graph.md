@@ -1,7 +1,7 @@
 # ZIPTIDE Event and Save Ownership Graph
 
-- Scanned C# files: **607**
-- Evidence edges: **635**
+- Scanned C# files: **608**
+- Evidence edges: **636**
 - Named subscriptions without matching unsubscribe in the same owner: **47**
 
 This is a static ownership graph. An unmatched row is a review target, not automatic proof of a leak; process-lifetime static hooks may be intentional.
@@ -10,7 +10,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 - **AUTOSAVE:** 7
 - **EVENT_DECLARE:** 45
-- **EVENT_INVOKE:** 52
+- **EVENT_INVOKE:** 53
 - **EVENT_SUBSCRIBE:** 78
 - **EVENT_UNSUBSCRIBE:** 30
 - **PLAYER_PREFS_ACCESS:** 11
@@ -981,6 +981,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **EVENT_INVOKE** · `Ziptide.Tests.EditMode.AudioDirectorLifecycleTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/AudioDirectorLifecycleTests.cs:37` — `Assert.DoesNotThrow(() => method.Invoke(null, new object[] { source }));`
 - **EVENT_INVOKE** · `Ziptide.Tests.EditMode.AudioDirectorLifecycleTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/AudioDirectorLifecycleTests.cs:50` — `Assert.DoesNotThrow(() => method.Invoke(null, new object[] { null }));`
 - **EVENT_INVOKE** · `Ziptide.Tests.EditMode.ZiplineSignalTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/ZiplineSignalTests.cs:184` — `method.Invoke(line, args);`
+- **EVENT_INVOKE** · `Ziptide.Tests.PlayMode.RecoveryCoreBootstrapGateTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryCoreBootstrapGateTests.cs:119` — `method.Invoke(null, null);`
 
 ### `name`
 
