@@ -16,14 +16,16 @@ namespace Ziptide.Tests.PlayMode
 {
     /// <summary>
     /// R1.5 actual-scene proof. Loads the authored/patched _Boot scene under a fresh Golden profile,
-    /// verifies the real persistent composition, then selects SETTINGS through an actual rig ray and
-    /// XRInteractionManager. No private Home Hub method is invoked.
+    /// verifies the real persistent composition, then selects SETTINGS through the actual rig's
+    /// existing right controller ray and XRInteractionManager. CI supplies only tracked-device
+    /// presence through RecoveryActualRigControllerSimulation; no private Home Hub method is invoked.
     /// </summary>
     public sealed class RecoveryBootSceneSmokeTests
     {
         private readonly List<string> _logs = new List<string>();
         private readonly List<HomeHubChoice> _choices = new List<HomeHubChoice>();
         private Application.LogCallback _logCallback;
+        private RecoveryActualRigControllerSimulation _controllerSimulation;
         private bool _bootReady;
         private int _settingsRequested;
 
@@ -46,6 +48,8 @@ namespace Ziptide.Tests.PlayMode
         [UnityTearDown]
         public IEnumerator TearDown()
         {
+            _controllerSimulation?.Dispose();
+            _controllerSimulation = null;
             if (_logCallback != null) Application.logMessageReceived -= _logCallback;
             _logCallback = null;
             HomeHubRuntime.BootPresentationReady -= OnBootReady;
@@ -127,8 +131,19 @@ namespace Ziptide.Tests.PlayMode
             Assert.AreSame(manager, newGame.interactionManager,
                 "NEW GAME did not bind to the canonical XRInteractionManager.");
 
-            XRRayInteractor ray = FindActiveRightRay();
-            Assert.IsNotNull(ray, "The actual persistent rig has no active right XR ray.");
+            // Headless CI has no tracked XR devices, so the production modality manager correctly
+            // keeps controller groups inactive. Activate the actual rig's existing right ray only;
+            // no alternate ray, action map, interaction manager or UI path is created.
+            _controllerSimulation = RecoveryActualRigControllerSimulation.Activate(rig, manager);
+            yield return null;
+            yield return null;
+            XRRayInteractor ray = _controllerSimulation.RightRay;
+            Assert.IsNotNull(ray, "The actual persistent rig has no right controller ray component.");
+            Assert.IsTrue(ray.isActiveAndEnabled && ray.gameObject.activeInHierarchy,
+                "The test-owned tracked-controller simulation did not activate the actual right ray: " +
+                _controllerSimulation.RightRayPath);
+            StringAssert.Contains("Right", _controllerSimulation.RightRayPath);
+            StringAssert.DoesNotContain("Teleport", _controllerSimulation.RightRayPath);
             Assert.AreSame(manager, ray.interactionManager,
                 "The actual right ray is bound to a different interaction manager.");
 
@@ -216,23 +231,6 @@ namespace Ziptide.Tests.PlayMode
                 if (go != null && go.scene.IsValid() && go.name == name) return go.transform;
             }
             return null;
-        }
-
-        private static XRRayInteractor FindActiveRightRay()
-        {
-            XRRayInteractor[] rays = Resources.FindObjectsOfTypeAll<XRRayInteractor>();
-            XRRayInteractor fallback = null;
-            for (int i = 0; i < rays.Length; i++)
-            {
-                XRRayInteractor ray = rays[i];
-                if (ray == null || !ray.gameObject.scene.IsValid() ||
-                    !ray.isActiveAndEnabled || !ray.gameObject.activeInHierarchy) continue;
-                if (fallback == null) fallback = ray;
-                if (RecoveryRuntimeCensus.HierarchyPath(ray.transform)
-                    .IndexOf("Right", StringComparison.OrdinalIgnoreCase) >= 0)
-                    return ray;
-            }
-            return fallback;
         }
 
         private static int ActiveManagerCount(
