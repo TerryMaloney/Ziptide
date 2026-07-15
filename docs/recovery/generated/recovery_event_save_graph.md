@@ -1,7 +1,7 @@
 # ZIPTIDE Event and Save Ownership Graph
 
 - Scanned C# files: **611**
-- Evidence edges: **638**
+- Evidence edges: **639**
 - Named subscriptions without matching unsubscribe in the same owner: **47**
 
 This is a static ownership graph. An unmatched row is a review target, not automatic proof of a leak; process-lifetime static hooks may be intentional.
@@ -14,7 +14,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **EVENT_SUBSCRIBE:** 78
 - **EVENT_UNSUBSCRIBE:** 30
 - **PLAYER_PREFS_ACCESS:** 11
-- **PROFILE_FIELD_ACCESS:** 350
+- **PROFILE_FIELD_ACCESS:** 351
 - **SAVE_ACCESS:** 63
 
 ## Named subscriptions without matching unsubscribe
@@ -115,10 +115,11 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.PlayMode.RecoveryExposureProfileTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs:107` · `profile` — `Assert.IsFalse(profile.Allows(RecoveryFeatureId.ConquestMissionInjector));`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.PlayMode.RecoveryExposureProfileTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs:108` · `profile` — `Assert.IsFalse(profile.Allows(RecoveryFeatureId.PvpProgression));`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.PlayMode.RecoveryExposureProfileTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs:109` · `profile` — `Assert.IsFalse(profile.Allows(RecoveryFeatureId.QuartersCameraInjector));`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.PlayMode.RecoveryExposureProfileTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs:119` · `profile` — `Assert.IsTrue(profile.Allows(RecoveryFeatureId.DebugHud));`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.PlayMode.RecoveryExposureProfileTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs:120` · `profile` — `Assert.IsTrue(profile.Allows(RecoveryFeatureId.DevWarpBoard));`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.PlayMode.RecoveryExposureProfileTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs:121` · `profile` — `Assert.IsFalse(profile.Allows(RecoveryFeatureId.VrBootDiagnostics),`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.PlayMode.RecoveryExposureProfileTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs:123` · `profile` — `Assert.IsFalse(profile.Allows(RecoveryFeatureId.RuntimeMaterialFixer),`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.PlayMode.RecoveryExposureProfileTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs:110` · `profile` — `Assert.IsFalse(profile.Allows(RecoveryFeatureId.NetBootstrap));`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.PlayMode.RecoveryExposureProfileTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs:120` · `profile` — `Assert.IsTrue(profile.Allows(RecoveryFeatureId.DebugHud));`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.PlayMode.RecoveryExposureProfileTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs:121` · `profile` — `Assert.IsTrue(profile.Allows(RecoveryFeatureId.DevWarpBoard));`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.PlayMode.RecoveryExposureProfileTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs:122` · `profile` — `Assert.IsFalse(profile.Allows(RecoveryFeatureId.VrBootDiagnostics),`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.PlayMode.RecoveryExposureProfileTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs:124` · `profile` — `Assert.IsFalse(profile.Allows(RecoveryFeatureId.RuntimeMaterialFixer),`
 
 ### `Assert`
 
