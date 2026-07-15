@@ -13,6 +13,13 @@ namespace Ziptide.Tests.PlayMode
         private RecoveryTestRig _fixture;
         private readonly List<GameObject> _created = new List<GameObject>();
 
+        [UnitySetUp]
+        public IEnumerator SetUp()
+        {
+            DestroyNamedTestObjectsImmediate();
+            yield return null;
+        }
+
         [UnityTearDown]
         public IEnumerator TearDown()
         {
@@ -24,9 +31,14 @@ namespace Ziptide.Tests.PlayMode
             _fixture = null;
             yield return null;
 
-            Assert.IsNull(GameObject.Find(RecoveryTestRig.RootName), "Tests-only rig leaked after teardown.");
-            Assert.IsNull(GameObject.Find(RecoveryTestRig.FloorName), "Tests-only floor leaked after teardown.");
-            Assert.IsNull(GameObject.Find(RecoveryTestRig.SpawnName), "Tests-only spawn leaked after teardown.");
+            // A constructor failure can occur before the assignment to _fixture completes.
+            // Remove any inactive or partial test objects by their unique recovery names.
+            DestroyNamedTestObjectsImmediate();
+            yield return null;
+
+            Assert.IsNull(FindSceneObject(RecoveryTestRig.RootName), "Tests-only rig leaked after teardown.");
+            Assert.IsNull(FindSceneObject(RecoveryTestRig.FloorName), "Tests-only floor leaked after teardown.");
+            Assert.IsNull(FindSceneObject(RecoveryTestRig.SpawnName), "Tests-only spawn leaked after teardown.");
         }
 
         [UnityTest]
@@ -36,6 +48,7 @@ namespace Ziptide.Tests.PlayMode
             _fixture = new RecoveryTestRig(headOffset);
             yield return null;
 
+            Assert.AreEqual("activate_composition", _fixture.CompletedConstructionStage);
             Assert.AreEqual(1, _fixture.Root.GetComponentsInChildren<Camera>(true).Length);
             Assert.AreEqual(1, _fixture.Root.GetComponentsInChildren<XRInteractionManager>(true).Length);
             Assert.AreEqual(1, _fixture.Root.GetComponentsInChildren<InputActionManager>(true).Length);
@@ -102,6 +115,35 @@ namespace Ziptide.Tests.PlayMode
             _fixture.InteractionManager.HoverExit(hoverInteractor, hoverInteractable);
             Assert.IsFalse(interactable.isSelected);
             Assert.IsFalse(interactable.isHovered);
+        }
+
+        private static void DestroyNamedTestObjectsImmediate()
+        {
+            var all = Resources.FindObjectsOfTypeAll<GameObject>();
+            for (int i = 0; i < all.Length; i++)
+            {
+                var go = all[i];
+                if (go == null || !go.scene.IsValid()) continue;
+                if (go.name == RecoveryTestRig.RootName ||
+                    go.name == RecoveryTestRig.FloorName ||
+                    go.name == RecoveryTestRig.SpawnName ||
+                    go.name == "__RECOVERY_RAY_TARGET")
+                {
+                    Object.DestroyImmediate(go);
+                }
+            }
+        }
+
+        private static GameObject FindSceneObject(string objectName)
+        {
+            var all = Resources.FindObjectsOfTypeAll<GameObject>();
+            for (int i = 0; i < all.Length; i++)
+            {
+                var go = all[i];
+                if (go != null && go.scene.IsValid() && go.name == objectName)
+                    return go;
+            }
+            return null;
         }
     }
 }
