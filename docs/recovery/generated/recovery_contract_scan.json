@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-15T01:38:59.490303+00:00",
+  "generatedAtUtc": "2026-07-15T01:39:38.056511+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -5618,7 +5618,7 @@
       "code": "FALLBACK_MARKER",
       "description": "Source text marks fallback/prototype debt",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs",
-      "line": 123,
+      "line": 124,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryExposureProfileTests",
       "snippet": "\"Global fallback mutators are not diagnostic surfaces.\");"
     },

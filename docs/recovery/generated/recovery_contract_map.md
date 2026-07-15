@@ -3963,7 +3963,7 @@ None.
 
 - Codes: `FALLBACK_MARKER`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs:123` **FALLBACK_MARKER** — `"Global fallback mutators are not diagnostic surfaces.");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs:124` **FALLBACK_MARKER** — `"Global fallback mutators are not diagnostic surfaces.");`
 
 ### `Ziptide.Visuals.ForgeCreatureAnimator` — 2 signal(s)
 

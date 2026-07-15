@@ -17227,7 +17227,7 @@
           {
             "code": "FALLBACK_MARKER",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs",
-            "line": 123,
+            "line": 124,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryExposureProfileTests",
             "snippet": "\"Global fallback mutators are not diagnostic surfaces.\");"
           }
