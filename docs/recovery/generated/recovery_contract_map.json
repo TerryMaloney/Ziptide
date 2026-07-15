@@ -1,8 +1,8 @@
 {
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
-  "scannedFiles": 602,
-  "findingCount": 2037,
+  "scannedFiles": 607,
+  "findingCount": 2044,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -48,6 +48,32 @@
             "line": 11,
             "symbol": "Ziptide.Core.EnsureXRCameraActive",
             "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Core.RecoveryRuntimeGate",
+        "evidenceCount": 2,
+        "codes": [
+          "RUNTIME_BOOTSTRAP"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryRuntimeGate.cs"
+        ],
+        "evidence": [
+          {
+            "code": "RUNTIME_BOOTSTRAP",
+            "path": "Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryRuntimeGate.cs",
+            "line": 22,
+            "symbol": "Ziptide.Core.RecoveryRuntimeGate",
+            "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]"
+          },
+          {
+            "code": "RUNTIME_BOOTSTRAP",
+            "path": "Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryRuntimeGate.cs",
+            "line": 29,
+            "symbol": "Ziptide.Core.RecoveryRuntimeGate",
+            "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]"
           }
         ]
       },
@@ -11766,6 +11792,63 @@
         ]
       },
       {
+        "owner": "Ziptide.Core.RecoveryAutomaticOwnerRegistration",
+        "evidenceCount": 1,
+        "codes": [
+          "SAVE_SYSTEM_REFERENCE"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryAutomaticOwnerCatalog.cs"
+        ],
+        "evidence": [
+          {
+            "code": "SAVE_SYSTEM_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryAutomaticOwnerCatalog.cs",
+            "line": 50,
+            "symbol": "Ziptide.Core.RecoveryAutomaticOwnerRegistration",
+            "snippet": "Required(\"SAVE_SYSTEM_BOOTSTRAP\", \"Ziptide/Assets/Ziptide/Gameplay/Runtime/Persistence/SaveSystem.cs\", \"Ziptide.Gameplay.SaveSystem\", RecoveryFeatureId.SaveSystem),"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Core.RecoveryExposureProfile",
+        "evidenceCount": 1,
+        "codes": [
+          "SAVE_SYSTEM_REFERENCE"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryExposureProfile.cs"
+        ],
+        "evidence": [
+          {
+            "code": "SAVE_SYSTEM_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryExposureProfile.cs",
+            "line": 50,
+            "symbol": "Ziptide.Core.RecoveryExposureProfile",
+            "snippet": "RecoveryFeatureId.SaveSystem,"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Core.RecoveryFeatureId",
+        "evidenceCount": 1,
+        "codes": [
+          "SAVE_SYSTEM_REFERENCE"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryFeatureId.cs"
+        ],
+        "evidence": [
+          {
+            "code": "SAVE_SYSTEM_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryFeatureId.cs",
+            "line": 22,
+            "symbol": "Ziptide.Core.RecoveryFeatureId",
+            "snippet": "SaveSystem = 13,"
+          }
+        ]
+      },
+      {
         "owner": "Ziptide.Core.RillMemoryState",
         "evidenceCount": 1,
         "codes": [
@@ -17108,6 +17191,25 @@
             "line": 11,
             "symbol": "Ziptide.Tests.EditMode.ItemRegistryConventionTests",
             "snippet": "/// device (the loaded-objects fallback only sees assets a loaded scene happens to reference \u2014 a"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Tests.PlayMode.RecoveryExposureProfileTests",
+        "evidenceCount": 1,
+        "codes": [
+          "FALLBACK_MARKER"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs"
+        ],
+        "evidence": [
+          {
+            "code": "FALLBACK_MARKER",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs",
+            "line": 123,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryExposureProfileTests",
+            "snippet": "\"Global fallback mutators are not diagnostic surfaces.\");"
           }
         ]
       },

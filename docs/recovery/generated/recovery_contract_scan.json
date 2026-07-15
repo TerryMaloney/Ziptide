@@ -1,27 +1,27 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-15T00:11:10.572517+00:00",
+  "generatedAtUtc": "2026-07-15T00:29:20.155069+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
     "Ziptide/Assets/Ziptide",
     "Ziptide/Assets/ZiptideNet"
   ],
-  "scannedFiles": 602,
-  "findingCount": 2037,
+  "scannedFiles": 607,
+  "findingCount": 2044,
   "categoryCounts": {
-    "bootstrap": 24,
-    "diagnostics": 417,
+    "bootstrap": 26,
+    "diagnostics": 418,
     "events": 64,
-    "fallback_debt": 119,
+    "fallback_debt": 120,
     "global_render": 76,
     "input": 119,
     "materials": 223,
     "persistence": 17,
     "runtime_creation": 559,
     "runtime_ui": 114,
-    "save_state": 231,
+    "save_state": 234,
     "scene_loading": 5,
     "xri_ownership": 69
   },
@@ -37,16 +37,16 @@
     "EDITOR_BOOTSTRAP": 6,
     "EVENT_DECLARATION": 48,
     "EVENT_SYSTEM_COMPONENT": 2,
-    "FALLBACK_MARKER": 119,
+    "FALLBACK_MARKER": 120,
     "FRAME_BUTTON_POLL": 1,
     "INPUT_ACTION_REFERENCE": 111,
     "INPUT_BUTTON_REFERENCE": 7,
     "NEW_GAME_OBJECT": 332,
     "PLAYER_PROFILE_REFERENCE": 133,
     "RENDER_SETTINGS_MUTATION": 36,
-    "RUNTIME_BOOTSTRAP": 18,
+    "RUNTIME_BOOTSTRAP": 20,
     "RUNTIME_MATERIAL_CREATE": 87,
-    "SAVE_SYSTEM_REFERENCE": 90,
+    "SAVE_SYSTEM_REFERENCE": 93,
     "SHADER_FIND": 136,
     "STATIC_EVENT_DECLARATION": 16,
     "TEXTMESH_COMPONENT": 43,
@@ -57,7 +57,7 @@
     "XRI_MANAGER_LOOKUP": 36,
     "XR_INTERACTABLE_COMPONENT": 61,
     "XR_UI_INPUT_MODULE": 2,
-    "ZIPTIDE_LOG_TAG": 417
+    "ZIPTIDE_LOG_TAG": 418
   },
   "findings": [
     {
@@ -131,6 +131,24 @@
       "line": 11,
       "symbol": "Ziptide.Core.EnsureXRCameraActive",
       "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]"
+    },
+    {
+      "category": "bootstrap",
+      "code": "RUNTIME_BOOTSTRAP",
+      "description": "RuntimeInitializeOnLoadMethod bootstrap",
+      "path": "Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryRuntimeGate.cs",
+      "line": 22,
+      "symbol": "Ziptide.Core.RecoveryRuntimeGate",
+      "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]"
+    },
+    {
+      "category": "bootstrap",
+      "code": "RUNTIME_BOOTSTRAP",
+      "description": "RuntimeInitializeOnLoadMethod bootstrap",
+      "path": "Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryRuntimeGate.cs",
+      "line": 29,
+      "symbol": "Ziptide.Core.RecoveryRuntimeGate",
+      "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]"
     },
     {
       "category": "bootstrap",
@@ -338,6 +356,15 @@
       "line": 158,
       "symbol": "Ziptide.Core.GamePool",
       "snippet": "Debug.Log(\"ZIPTIDE: POOL_STAT key=\" + kv.Key + \" created=\" + p.Created +"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryRuntimeGate.cs",
+      "line": 51,
+      "symbol": "Ziptide.Core.RecoveryRuntimeGate",
+      "snippet": "builder.Append(\"ZIPTIDE: \").Append(tag)"
     },
     {
       "category": "diagnostics",
@@ -5558,6 +5585,15 @@
       "line": 11,
       "symbol": "Ziptide.Tests.EditMode.ItemRegistryConventionTests",
       "snippet": "/// device (the loaded-objects fallback only sees assets a loaded scene happens to reference \u2014 a"
+    },
+    {
+      "category": "fallback_debt",
+      "code": "FALLBACK_MARKER",
+      "description": "Source text marks fallback/prototype debt",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs",
+      "line": 123,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryExposureProfileTests",
+      "snippet": "\"Global fallback mutators are not diagnostic surfaces.\");"
     },
     {
       "category": "fallback_debt",
@@ -16925,6 +16961,33 @@
       "line": 7,
       "symbol": "Ziptide.Core.ProfileSerializer",
       "snippet": "/// Kept separate from SaveSystem so it is fully unit-testable in EditMode \u2014 no headset, no disk."
+    },
+    {
+      "category": "save_state",
+      "code": "SAVE_SYSTEM_REFERENCE",
+      "description": "SaveSystem reference",
+      "path": "Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryAutomaticOwnerCatalog.cs",
+      "line": 50,
+      "symbol": "Ziptide.Core.RecoveryAutomaticOwnerRegistration",
+      "snippet": "Required(\"SAVE_SYSTEM_BOOTSTRAP\", \"Ziptide/Assets/Ziptide/Gameplay/Runtime/Persistence/SaveSystem.cs\", \"Ziptide.Gameplay.SaveSystem\", RecoveryFeatureId.SaveSystem),"
+    },
+    {
+      "category": "save_state",
+      "code": "SAVE_SYSTEM_REFERENCE",
+      "description": "SaveSystem reference",
+      "path": "Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryExposureProfile.cs",
+      "line": 50,
+      "symbol": "Ziptide.Core.RecoveryExposureProfile",
+      "snippet": "RecoveryFeatureId.SaveSystem,"
+    },
+    {
+      "category": "save_state",
+      "code": "SAVE_SYSTEM_REFERENCE",
+      "description": "SaveSystem reference",
+      "path": "Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryFeatureId.cs",
+      "line": 22,
+      "symbol": "Ziptide.Core.RecoveryFeatureId",
+      "snippet": "SaveSystem = 13,"
     },
     {
       "category": "save_state",

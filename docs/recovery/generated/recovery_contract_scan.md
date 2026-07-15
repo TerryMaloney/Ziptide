@@ -1,24 +1,24 @@
 # ZIPTIDE Recovery Contract Scan
 
-- Scanned files: **602**
-- Findings: **2037**
+- Scanned files: **607**
+- Findings: **2044**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
 
 | Category | Count |
 |---|---:|
-| `bootstrap` | 24 |
-| `diagnostics` | 417 |
+| `bootstrap` | 26 |
+| `diagnostics` | 418 |
 | `events` | 64 |
-| `fallback_debt` | 119 |
+| `fallback_debt` | 120 |
 | `global_render` | 76 |
 | `input` | 119 |
 | `materials` | 223 |
 | `persistence` | 17 |
 | `runtime_creation` | 559 |
 | `runtime_ui` | 114 |
-| `save_state` | 231 |
+| `save_state` | 234 |
 | `scene_loading` | 5 |
 | `xri_ownership` | 69 |
 
@@ -34,6 +34,8 @@
 - **EDITOR_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs:62` · `Ziptide.Tests.EditMode.HeadsetBuildBlockerRegressionTests` — Unity editor-load bootstrap. `StringAssert.Contains("[InitializeOnLoad]", sync);`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Core/Runtime/DebugHUD.cs:22` · `Ziptide.Core.DebugHUD` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Core/Runtime/EnsureXRCameraActive.cs:11` · `Ziptide.Core.EnsureXRCameraActive` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
+- **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryRuntimeGate.cs:22` · `Ziptide.Core.RecoveryRuntimeGate` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]`
+- **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryRuntimeGate.cs:29` · `Ziptide.Core.RecoveryRuntimeGate` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs:33` · `Ziptide.Core.RuntimeHealthMonitor` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeInputEnabler.cs:15` · `Ziptide.Core.RuntimeInputEnabler` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeMaterialFixer.cs:14` · `Ziptide.Core.RuntimeMaterialFixer` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
@@ -59,6 +61,7 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs:212` · `Ziptide.Content.CreatureBehaviorStateEvidence` — ZIPTIDE diagnostic tag. `State("arrest_disengage", "Debug.Log(\"ZIPTIDE: WARDEN_ARREST\");"),`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Content/Runtime/WorldPacks/WorldPackValidator.cs:8` · `Ziptide.Content.WorldPackValidator` — ZIPTIDE diagnostic tag. `/// pack data fails LOUD at world entry (`ZIPTIDE: PACK_VALIDATION_FAIL`) instead of silently`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Core/Runtime/GamePool.cs:158` · `Ziptide.Core.GamePool` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: POOL_STAT key=" + kv.Key + " created=" + p.Created +`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryRuntimeGate.cs:51` · `Ziptide.Core.RecoveryRuntimeGate` — ZIPTIDE diagnostic tag. `builder.Append("ZIPTIDE: ").Append(tag)`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs:18` · `Ziptide.Core.RuntimeHealthMonitor` — ZIPTIDE diagnostic tag. `/// ZIPTIDE: HEALTH fps=71.8 low1=63.2 dropped=4/720 mats=412 tex=189 mesh=143 clips=9 memMB=612`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs:19` · `Ziptide.Core.RuntimeHealthMonitor` — ZIPTIDE diagnostic tag. `/// ZIPTIDE: HEALTH_SWEEP scene=W005_OxidizedCanopy freed mats=37 tex=12 mesh=8 clips=3`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs:20` · `Ziptide.Core.RuntimeHealthMonitor` — ZIPTIDE diagnostic tag. `/// ZIPTIDE: HEALTH_SLOW low1=54.1 — sustained budget misses (investigate the current world)`
@@ -643,6 +646,7 @@
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/EditMode/ForgeBuildingKitTests.cs:93` · `Ziptide.Tests.EditMode.ForgeBuildingKitTests` — Source text marks fallback/prototype debt. `id + " lost the structured primitive fallback (editor/no-bake look)");`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/EditMode/ForgeGaitMotorTests.cs:9` · `Ziptide.Tests.EditMode.ForgeGaitMotorTests` — Source text marks fallback/prototype debt. `/// the real skeleton, applies a motor pose the way ForgeCreatureAnimator does, and proves the`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/EditMode/ItemRegistryConventionTests.cs:11` · `Ziptide.Tests.EditMode.ItemRegistryConventionTests` — Source text marks fallback/prototype debt. `/// device (the loaded-objects fallback only sees assets a loaded scene happens to reference — a`
+- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs:123` · `Ziptide.Tests.PlayMode.RecoveryExposureProfileTests` — Source text marks fallback/prototype debt. `"Global fallback mutators are not diagnostic surfaces.");`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeCreatureAnimator.cs:7` · `Ziptide.Visuals.ForgeCreatureAnimator` — Source text marks fallback/prototype debt. `/// built skeleton once; every LateUpdate it measures its OWN world speed (no Gameplay`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeCreatureAnimator.cs:28` · `Ziptide.Visuals.ForgeCreatureAnimator` — Source text marks fallback/prototype debt. `/// <summary>Wire the animator to a built skeleton (ForgeSkinnedBuilder.Result.bones).</summary>`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeCreatureVisualApplier.cs:9` · `Ziptide.Visuals.ForgeCreatureVisualApplier` — Source text marks fallback/prototype debt. `/// this builds the skinned walking body under a "ForgeVisual" child (skeleton + one`
@@ -1920,6 +1924,9 @@
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/EditMode/WorldGatingTests.cs:107` · `Ziptide.Tests.EditMode.WorldGatingTests` — PlayerProfile reference. `var profile = new PlayerProfile();`
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/EditMode/ZiplineSignalTests.cs:152` · `Ziptide.Tests.EditMode.ZiplineSignalTests` — PlayerProfile reference. `StringAssert.DoesNotContain("PlayerProfile", source);`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Core/Runtime/Persistence/ProfileSerializer.cs:7` · `Ziptide.Core.ProfileSerializer` — SaveSystem reference. `/// Kept separate from SaveSystem so it is fully unit-testable in EditMode — no headset, no disk.`
+- **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryAutomaticOwnerCatalog.cs:50` · `Ziptide.Core.RecoveryAutomaticOwnerRegistration` — SaveSystem reference. `Required("SAVE_SYSTEM_BOOTSTRAP", "Ziptide/Assets/Ziptide/Gameplay/Runtime/Persistence/SaveSystem.cs", "Ziptide.Gameplay.SaveSystem", RecoveryFeatureId.SaveSystem),`
+- **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryExposureProfile.cs:50` · `Ziptide.Core.RecoveryExposureProfile` — SaveSystem reference. `RecoveryFeatureId.SaveSystem,`
+- **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryFeatureId.cs:22` · `Ziptide.Core.RecoveryFeatureId` — SaveSystem reference. `SaveSystem = 13,`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltFloorRuntime.cs:24` · `Ziptide.Gameplay.BeltCellSpec` — SaveSystem reference. `/// <see cref="LedgerSource.Factory"/>) onto the live SaveSystem profile.`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltFloorRuntime.cs:117` · `Ziptide.Gameplay.BeltCellSpec` — SaveSystem reference. `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltFloorRuntime.cs:169` · `Ziptide.Gameplay.BeltCellSpec` — SaveSystem reference. `if (autosave) SaveSystem.AutosaveNow("belt_edit");`

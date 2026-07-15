@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
-- Scanned files: **602**
-- Scanner findings: **2037**
+- Scanned files: **607**
+- Scanner findings: **2044**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -32,6 +32,13 @@ None.
 - Codes: `RUNTIME_BOOTSTRAP`
 - Paths: `Ziptide/Assets/Ziptide/Core/Runtime/EnsureXRCameraActive.cs`
   - `Ziptide/Assets/Ziptide/Core/Runtime/EnsureXRCameraActive.cs:11` **RUNTIME_BOOTSTRAP** — `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
+
+### `Ziptide.Core.RecoveryRuntimeGate` — 2 signal(s)
+
+- Codes: `RUNTIME_BOOTSTRAP`
+- Paths: `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryRuntimeGate.cs`
+  - `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryRuntimeGate.cs:22` **RUNTIME_BOOTSTRAP** — `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]`
+  - `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryRuntimeGate.cs:29` **RUNTIME_BOOTSTRAP** — `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]`
 
 ### `Ziptide.Core.RuntimeHealthMonitor` — 2 signal(s)
 
@@ -2553,6 +2560,24 @@ None.
   - `Ziptide/Assets/Ziptide/Core/Runtime/Persistence/ProfileSerializer.cs:79` **PLAYER_PROFILE_REFERENCE** — `if (p.schemaVersion < PlayerProfile.CurrentSchemaVersion)`
   - `Ziptide/Assets/Ziptide/Core/Runtime/Persistence/ProfileSerializer.cs:80` **PLAYER_PROFILE_REFERENCE** — `p.schemaVersion = PlayerProfile.CurrentSchemaVersion;`
 
+### `Ziptide.Core.RecoveryAutomaticOwnerRegistration` — 1 signal(s)
+
+- Codes: `SAVE_SYSTEM_REFERENCE`
+- Paths: `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryAutomaticOwnerCatalog.cs`
+  - `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryAutomaticOwnerCatalog.cs:50` **SAVE_SYSTEM_REFERENCE** — `Required("SAVE_SYSTEM_BOOTSTRAP", "Ziptide/Assets/Ziptide/Gameplay/Runtime/Persistence/SaveSystem.cs", "Ziptide.Gameplay.SaveSystem", RecoveryFeatureId.SaveSystem),`
+
+### `Ziptide.Core.RecoveryExposureProfile` — 1 signal(s)
+
+- Codes: `SAVE_SYSTEM_REFERENCE`
+- Paths: `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryExposureProfile.cs`
+  - `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryExposureProfile.cs:50` **SAVE_SYSTEM_REFERENCE** — `RecoveryFeatureId.SaveSystem,`
+
+### `Ziptide.Core.RecoveryFeatureId` — 1 signal(s)
+
+- Codes: `SAVE_SYSTEM_REFERENCE`
+- Paths: `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryFeatureId.cs`
+  - `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryFeatureId.cs:22` **SAVE_SYSTEM_REFERENCE** — `SaveSystem = 13,`
+
 ### `Ziptide.Core.RillMemoryState` — 1 signal(s)
 
 - Codes: `PLAYER_PROFILE_REFERENCE`
@@ -3927,6 +3952,12 @@ None.
 - Codes: `FALLBACK_MARKER`
 - Paths: `Ziptide/Assets/Ziptide/Tests/EditMode/ItemRegistryConventionTests.cs`
   - `Ziptide/Assets/Ziptide/Tests/EditMode/ItemRegistryConventionTests.cs:11` **FALLBACK_MARKER** — `/// device (the loaded-objects fallback only sees assets a loaded scene happens to reference — a`
+
+### `Ziptide.Tests.PlayMode.RecoveryExposureProfileTests` — 1 signal(s)
+
+- Codes: `FALLBACK_MARKER`
+- Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs:123` **FALLBACK_MARKER** — `"Global fallback mutators are not diagnostic surfaces.");`
 
 ### `Ziptide.Visuals.ForgeCreatureAnimator` — 2 signal(s)
 

@@ -1,7 +1,7 @@
 {
   "tool": "recovery_event_save_graph",
-  "scannedFiles": 602,
-  "evidenceCount": 615,
+  "scannedFiles": 607,
+  "evidenceCount": 635,
   "kindCounts": {
     "AUTOSAVE": 7,
     "EVENT_DECLARE": 45,
@@ -9,7 +9,7 @@
     "EVENT_SUBSCRIBE": 78,
     "EVENT_UNSUBSCRIBE": 30,
     "PLAYER_PREFS_ACCESS": 11,
-    "PROFILE_FIELD_ACCESS": 329,
+    "PROFILE_FIELD_ACCESS": 349,
     "SAVE_ACCESS": 63
   },
   "unmatchedNamedSubscriptionCount": 47,
@@ -589,6 +589,188 @@
         "target": "AddResource",
         "detail": "profile",
         "snippet": "profile.AddResource(\"scrap\", 2); // not enough"
+      }
+    ],
+    "Allows": [
+      {
+        "kind": "PROFILE_FIELD_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs",
+        "line": 90,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryExposureProfileTests",
+        "target": "Allows",
+        "detail": "profile",
+        "snippet": "Assert.IsTrue(profile.Allows(registration.FeatureId), registration.OwnerId);"
+      },
+      {
+        "kind": "PROFILE_FIELD_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs",
+        "line": 93,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryExposureProfileTests",
+        "target": "Allows",
+        "detail": "profile",
+        "snippet": "Assert.IsTrue(profile.Allows(RecoveryFeatureId.RuntimeHealthMonitor));"
+      },
+      {
+        "kind": "PROFILE_FIELD_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs",
+        "line": 94,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryExposureProfileTests",
+        "target": "Allows",
+        "detail": "profile",
+        "snippet": "Assert.IsTrue(profile.Allows(RecoveryFeatureId.AmbienceDirector));"
+      },
+      {
+        "kind": "PROFILE_FIELD_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs",
+        "line": 95,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryExposureProfileTests",
+        "target": "Allows",
+        "detail": "profile",
+        "snippet": "Assert.IsTrue(profile.Allows(RecoveryFeatureId.ComfortVignette));"
+      },
+      {
+        "kind": "PROFILE_FIELD_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs",
+        "line": 96,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryExposureProfileTests",
+        "target": "Allows",
+        "detail": "profile",
+        "snippet": "Assert.IsTrue(profile.Allows(RecoveryFeatureId.EcologyInjector));"
+      },
+      {
+        "kind": "PROFILE_FIELD_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs",
+        "line": 97,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryExposureProfileTests",
+        "target": "Allows",
+        "detail": "profile",
+        "snippet": "Assert.IsTrue(profile.Allows(RecoveryFeatureId.FirstHourObservation));"
+      },
+      {
+        "kind": "PROFILE_FIELD_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs",
+        "line": 98,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryExposureProfileTests",
+        "target": "Allows",
+        "detail": "profile",
+        "snippet": "Assert.IsTrue(profile.Allows(RecoveryFeatureId.SingletonValidator));"
+      },
+      {
+        "kind": "PROFILE_FIELD_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs",
+        "line": 100,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryExposureProfileTests",
+        "target": "Allows",
+        "detail": "profile",
+        "snippet": "Assert.IsFalse(profile.Allows(RecoveryFeatureId.DebugHud));"
+      },
+      {
+        "kind": "PROFILE_FIELD_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs",
+        "line": 101,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryExposureProfileTests",
+        "target": "Allows",
+        "detail": "profile",
+        "snippet": "Assert.IsFalse(profile.Allows(RecoveryFeatureId.XrCameraEnforcer));"
+      },
+      {
+        "kind": "PROFILE_FIELD_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs",
+        "line": 102,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryExposureProfileTests",
+        "target": "Allows",
+        "detail": "profile",
+        "snippet": "Assert.IsFalse(profile.Allows(RecoveryFeatureId.RuntimeInputEnabler));"
+      },
+      {
+        "kind": "PROFILE_FIELD_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs",
+        "line": 103,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryExposureProfileTests",
+        "target": "Allows",
+        "detail": "profile",
+        "snippet": "Assert.IsFalse(profile.Allows(RecoveryFeatureId.RuntimeMaterialFixer));"
+      },
+      {
+        "kind": "PROFILE_FIELD_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs",
+        "line": 104,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryExposureProfileTests",
+        "target": "Allows",
+        "detail": "profile",
+        "snippet": "Assert.IsFalse(profile.Allows(RecoveryFeatureId.VrBootDiagnostics));"
+      },
+      {
+        "kind": "PROFILE_FIELD_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs",
+        "line": 105,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryExposureProfileTests",
+        "target": "Allows",
+        "detail": "profile",
+        "snippet": "Assert.IsFalse(profile.Allows(RecoveryFeatureId.DevWarpBoard));"
+      },
+      {
+        "kind": "PROFILE_FIELD_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs",
+        "line": 106,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryExposureProfileTests",
+        "target": "Allows",
+        "detail": "profile",
+        "snippet": "Assert.IsFalse(profile.Allows(RecoveryFeatureId.ConquestMissionInjector));"
+      },
+      {
+        "kind": "PROFILE_FIELD_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs",
+        "line": 107,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryExposureProfileTests",
+        "target": "Allows",
+        "detail": "profile",
+        "snippet": "Assert.IsFalse(profile.Allows(RecoveryFeatureId.PvpProgression));"
+      },
+      {
+        "kind": "PROFILE_FIELD_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs",
+        "line": 108,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryExposureProfileTests",
+        "target": "Allows",
+        "detail": "profile",
+        "snippet": "Assert.IsFalse(profile.Allows(RecoveryFeatureId.QuartersCameraInjector));"
+      },
+      {
+        "kind": "PROFILE_FIELD_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs",
+        "line": 118,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryExposureProfileTests",
+        "target": "Allows",
+        "detail": "profile",
+        "snippet": "Assert.IsTrue(profile.Allows(RecoveryFeatureId.DebugHud));"
+      },
+      {
+        "kind": "PROFILE_FIELD_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs",
+        "line": 119,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryExposureProfileTests",
+        "target": "Allows",
+        "detail": "profile",
+        "snippet": "Assert.IsTrue(profile.Allows(RecoveryFeatureId.DevWarpBoard));"
+      },
+      {
+        "kind": "PROFILE_FIELD_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs",
+        "line": 120,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryExposureProfileTests",
+        "target": "Allows",
+        "detail": "profile",
+        "snippet": "Assert.IsFalse(profile.Allows(RecoveryFeatureId.VrBootDiagnostics),"
+      },
+      {
+        "kind": "PROFILE_FIELD_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs",
+        "line": 122,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryExposureProfileTests",
+        "target": "Allows",
+        "detail": "profile",
+        "snippet": "Assert.IsFalse(profile.Allows(RecoveryFeatureId.RuntimeMaterialFixer),"
       }
     ],
     "Assert": [
@@ -11647,6 +11829,186 @@
       "target": "method",
       "detail": "",
       "snippet": "method.Invoke(line, args);"
+    },
+    {
+      "kind": "PROFILE_FIELD_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs",
+      "line": 90,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryExposureProfileTests",
+      "target": "Allows",
+      "detail": "profile",
+      "snippet": "Assert.IsTrue(profile.Allows(registration.FeatureId), registration.OwnerId);"
+    },
+    {
+      "kind": "PROFILE_FIELD_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs",
+      "line": 93,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryExposureProfileTests",
+      "target": "Allows",
+      "detail": "profile",
+      "snippet": "Assert.IsTrue(profile.Allows(RecoveryFeatureId.RuntimeHealthMonitor));"
+    },
+    {
+      "kind": "PROFILE_FIELD_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs",
+      "line": 94,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryExposureProfileTests",
+      "target": "Allows",
+      "detail": "profile",
+      "snippet": "Assert.IsTrue(profile.Allows(RecoveryFeatureId.AmbienceDirector));"
+    },
+    {
+      "kind": "PROFILE_FIELD_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs",
+      "line": 95,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryExposureProfileTests",
+      "target": "Allows",
+      "detail": "profile",
+      "snippet": "Assert.IsTrue(profile.Allows(RecoveryFeatureId.ComfortVignette));"
+    },
+    {
+      "kind": "PROFILE_FIELD_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs",
+      "line": 96,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryExposureProfileTests",
+      "target": "Allows",
+      "detail": "profile",
+      "snippet": "Assert.IsTrue(profile.Allows(RecoveryFeatureId.EcologyInjector));"
+    },
+    {
+      "kind": "PROFILE_FIELD_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs",
+      "line": 97,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryExposureProfileTests",
+      "target": "Allows",
+      "detail": "profile",
+      "snippet": "Assert.IsTrue(profile.Allows(RecoveryFeatureId.FirstHourObservation));"
+    },
+    {
+      "kind": "PROFILE_FIELD_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs",
+      "line": 98,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryExposureProfileTests",
+      "target": "Allows",
+      "detail": "profile",
+      "snippet": "Assert.IsTrue(profile.Allows(RecoveryFeatureId.SingletonValidator));"
+    },
+    {
+      "kind": "PROFILE_FIELD_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs",
+      "line": 100,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryExposureProfileTests",
+      "target": "Allows",
+      "detail": "profile",
+      "snippet": "Assert.IsFalse(profile.Allows(RecoveryFeatureId.DebugHud));"
+    },
+    {
+      "kind": "PROFILE_FIELD_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs",
+      "line": 101,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryExposureProfileTests",
+      "target": "Allows",
+      "detail": "profile",
+      "snippet": "Assert.IsFalse(profile.Allows(RecoveryFeatureId.XrCameraEnforcer));"
+    },
+    {
+      "kind": "PROFILE_FIELD_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs",
+      "line": 102,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryExposureProfileTests",
+      "target": "Allows",
+      "detail": "profile",
+      "snippet": "Assert.IsFalse(profile.Allows(RecoveryFeatureId.RuntimeInputEnabler));"
+    },
+    {
+      "kind": "PROFILE_FIELD_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs",
+      "line": 103,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryExposureProfileTests",
+      "target": "Allows",
+      "detail": "profile",
+      "snippet": "Assert.IsFalse(profile.Allows(RecoveryFeatureId.RuntimeMaterialFixer));"
+    },
+    {
+      "kind": "PROFILE_FIELD_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs",
+      "line": 104,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryExposureProfileTests",
+      "target": "Allows",
+      "detail": "profile",
+      "snippet": "Assert.IsFalse(profile.Allows(RecoveryFeatureId.VrBootDiagnostics));"
+    },
+    {
+      "kind": "PROFILE_FIELD_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs",
+      "line": 105,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryExposureProfileTests",
+      "target": "Allows",
+      "detail": "profile",
+      "snippet": "Assert.IsFalse(profile.Allows(RecoveryFeatureId.DevWarpBoard));"
+    },
+    {
+      "kind": "PROFILE_FIELD_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs",
+      "line": 106,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryExposureProfileTests",
+      "target": "Allows",
+      "detail": "profile",
+      "snippet": "Assert.IsFalse(profile.Allows(RecoveryFeatureId.ConquestMissionInjector));"
+    },
+    {
+      "kind": "PROFILE_FIELD_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs",
+      "line": 107,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryExposureProfileTests",
+      "target": "Allows",
+      "detail": "profile",
+      "snippet": "Assert.IsFalse(profile.Allows(RecoveryFeatureId.PvpProgression));"
+    },
+    {
+      "kind": "PROFILE_FIELD_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs",
+      "line": 108,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryExposureProfileTests",
+      "target": "Allows",
+      "detail": "profile",
+      "snippet": "Assert.IsFalse(profile.Allows(RecoveryFeatureId.QuartersCameraInjector));"
+    },
+    {
+      "kind": "PROFILE_FIELD_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs",
+      "line": 118,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryExposureProfileTests",
+      "target": "Allows",
+      "detail": "profile",
+      "snippet": "Assert.IsTrue(profile.Allows(RecoveryFeatureId.DebugHud));"
+    },
+    {
+      "kind": "PROFILE_FIELD_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs",
+      "line": 119,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryExposureProfileTests",
+      "target": "Allows",
+      "detail": "profile",
+      "snippet": "Assert.IsTrue(profile.Allows(RecoveryFeatureId.DevWarpBoard));"
+    },
+    {
+      "kind": "PROFILE_FIELD_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs",
+      "line": 120,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryExposureProfileTests",
+      "target": "Allows",
+      "detail": "profile",
+      "snippet": "Assert.IsFalse(profile.Allows(RecoveryFeatureId.VrBootDiagnostics),"
+    },
+    {
+      "kind": "PROFILE_FIELD_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs",
+      "line": 122,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryExposureProfileTests",
+      "target": "Allows",
+      "detail": "profile",
+      "snippet": "Assert.IsFalse(profile.Allows(RecoveryFeatureId.RuntimeMaterialFixer),"
     },
     {
       "kind": "EVENT_SUBSCRIBE",
