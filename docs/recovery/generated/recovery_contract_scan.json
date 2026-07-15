@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-15T20:21:15.663426+00:00",
+  "generatedAtUtc": "2026-07-15T20:37:43.010424+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -9,7 +9,7 @@
     "Ziptide/Assets/ZiptideNet"
   ],
   "scannedFiles": 635,
-  "findingCount": 2207,
+  "findingCount": 2208,
   "categoryCounts": {
     "bootstrap": 29,
     "diagnostics": 467,
@@ -19,7 +19,7 @@
     "input": 160,
     "materials": 226,
     "persistence": 17,
-    "runtime_creation": 580,
+    "runtime_creation": 581,
     "runtime_ui": 118,
     "save_state": 255,
     "scene_loading": 8,
@@ -41,7 +41,7 @@
     "FRAME_BUTTON_POLL": 1,
     "INPUT_ACTION_REFERENCE": 153,
     "INPUT_BUTTON_REFERENCE": 6,
-    "NEW_GAME_OBJECT": 350,
+    "NEW_GAME_OBJECT": 351,
     "PLAYER_PROFILE_REFERENCE": 139,
     "RENDER_SETTINGS_MUTATION": 36,
     "RUNTIME_BOOTSTRAP": 23,
@@ -15608,7 +15608,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryUiSpatialAuditTests.cs",
-      "line": 26,
+      "line": 27,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryUiSpatialAuditTests",
       "snippet": "var cameraHost = new GameObject(\"__RECOVERY_UI_CAMERA\");"
     },
@@ -15617,9 +15617,18 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryUiSpatialAuditTests.cs",
-      "line": 66,
+      "line": 70,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryUiSpatialAuditTests",
       "snippet": "var go = new GameObject(\"__RECOVERY_UI_\" + value.Replace(' ', '_'));"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryUiSpatialAuditTests.cs",
+      "line": 92,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryUiSpatialAuditTests",
+      "snippet": "var go = new GameObject(\"__RECOVERY_UI_TMP_PROBE\");"
     },
     {
       "category": "runtime_creation",
@@ -16211,7 +16220,7 @@
       "code": "TEXTMESH_COMPONENT",
       "description": "Legacy TextMesh creation/reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryUiSpatialAuditTests.cs",
-      "line": 70,
+      "line": 74,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryUiSpatialAuditTests",
       "snippet": "TextMesh text = go.AddComponent<TextMesh>();"
     },
@@ -18083,7 +18092,7 @@
       "code": "PLAYER_PROFILE_REFERENCE",
       "description": "PlayerProfile reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
-      "line": 93,
+      "line": 97,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
       "snippet": "PlayerProfile profile = save.StartNewProfile();"
     },
@@ -18983,7 +18992,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
-      "line": 91,
+      "line": 95,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
       "snippet": "SaveSystem save = SaveSystem.Instance;"
     },
@@ -18992,7 +19001,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
-      "line": 92,
+      "line": 96,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
       "snippet": "Assert.IsNotNull(save, \"SaveSystem is missing before actual scene snapshots.\");"
     },
@@ -19901,7 +19910,7 @@
       "code": "XRI_MANAGER_LOOKUP",
       "description": "XRInteractionManager lookup",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
-      "line": 124,
+      "line": 136,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
       "snippet": "XRInteractionManager manager = UnityEngine.Object.FindObjectOfType<XRInteractionManager>();"
     },

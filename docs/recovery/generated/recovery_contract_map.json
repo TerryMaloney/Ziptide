@@ -2,7 +2,7 @@
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
   "scannedFiles": 635,
-  "findingCount": 2207,
+  "findingCount": 2208,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -10787,7 +10787,7 @@
       },
       {
         "owner": "Ziptide.Tests.PlayMode.RecoveryUiSpatialAuditTests",
-        "evidenceCount": 3,
+        "evidenceCount": 4,
         "codes": [
           "NEW_GAME_OBJECT",
           "TEXTMESH_COMPONENT"
@@ -10799,23 +10799,30 @@
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryUiSpatialAuditTests.cs",
-            "line": 26,
+            "line": 27,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryUiSpatialAuditTests",
             "snippet": "var cameraHost = new GameObject(\"__RECOVERY_UI_CAMERA\");"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryUiSpatialAuditTests.cs",
-            "line": 66,
+            "line": 70,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryUiSpatialAuditTests",
             "snippet": "var go = new GameObject(\"__RECOVERY_UI_\" + value.Replace(' ', '_'));"
           },
           {
             "code": "TEXTMESH_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryUiSpatialAuditTests.cs",
-            "line": 70,
+            "line": 74,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryUiSpatialAuditTests",
             "snippet": "TextMesh text = go.AddComponent<TextMesh>();"
+          },
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryUiSpatialAuditTests.cs",
+            "line": 92,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryUiSpatialAuditTests",
+            "snippet": "var go = new GameObject(\"__RECOVERY_UI_TMP_PROBE\");"
           }
         ]
       },
@@ -12171,7 +12178,7 @@
           {
             "code": "XRI_MANAGER_LOOKUP",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
-            "line": 124,
+            "line": 136,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
             "snippet": "XRInteractionManager manager = UnityEngine.Object.FindObjectOfType<XRInteractionManager>();"
           }
@@ -15646,21 +15653,21 @@
           {
             "code": "SAVE_SYSTEM_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
-            "line": 91,
+            "line": 95,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
             "snippet": "SaveSystem save = SaveSystem.Instance;"
           },
           {
             "code": "SAVE_SYSTEM_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
-            "line": 92,
+            "line": 96,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
             "snippet": "Assert.IsNotNull(save, \"SaveSystem is missing before actual scene snapshots.\");"
           },
           {
             "code": "PLAYER_PROFILE_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
-            "line": 93,
+            "line": 97,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
             "snippet": "PlayerProfile profile = save.StartNewProfile();"
           }

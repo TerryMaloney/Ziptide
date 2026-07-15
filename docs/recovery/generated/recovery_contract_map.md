@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
 - Scanned files: **635**
-- Scanner findings: **2207**
+- Scanner findings: **2208**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -2301,13 +2301,14 @@ None.
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRigTests.cs:78` **CREATE_PRIMITIVE** — `var target = GameObject.CreatePrimitive(PrimitiveType.Cube);`
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRigTests.cs:85` **XR_INTERACTABLE_COMPONENT** — `var interactable = target.AddComponent<XRSimpleInteractable>();`
 
-### `Ziptide.Tests.PlayMode.RecoveryUiSpatialAuditTests` — 3 signal(s)
+### `Ziptide.Tests.PlayMode.RecoveryUiSpatialAuditTests` — 4 signal(s)
 
 - Codes: `NEW_GAME_OBJECT`, `TEXTMESH_COMPONENT`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryUiSpatialAuditTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryUiSpatialAuditTests.cs:26` **NEW_GAME_OBJECT** — `var cameraHost = new GameObject("__RECOVERY_UI_CAMERA");`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryUiSpatialAuditTests.cs:66` **NEW_GAME_OBJECT** — `var go = new GameObject("__RECOVERY_UI_" + value.Replace(' ', '_'));`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryUiSpatialAuditTests.cs:70` **TEXTMESH_COMPONENT** — `TextMesh text = go.AddComponent<TextMesh>();`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryUiSpatialAuditTests.cs:27` **NEW_GAME_OBJECT** — `var cameraHost = new GameObject("__RECOVERY_UI_CAMERA");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryUiSpatialAuditTests.cs:70` **NEW_GAME_OBJECT** — `var go = new GameObject("__RECOVERY_UI_" + value.Replace(' ', '_'));`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryUiSpatialAuditTests.cs:74` **TEXTMESH_COMPONENT** — `TextMesh text = go.AddComponent<TextMesh>();`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryUiSpatialAuditTests.cs:92` **NEW_GAME_OBJECT** — `var go = new GameObject("__RECOVERY_UI_TMP_PROBE");`
 
 ### `Ziptide.Visuals.ForgeCreatureVisualApplier` — 2 signal(s)
 
@@ -2639,7 +2640,7 @@ None.
 
 - Codes: `XRI_MANAGER_LOOKUP`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:124` **XRI_MANAGER_LOOKUP** — `XRInteractionManager manager = UnityEngine.Object.FindObjectOfType<XRInteractionManager>();`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:136` **XRI_MANAGER_LOOKUP** — `XRInteractionManager manager = UnityEngine.Object.FindObjectOfType<XRInteractionManager>();`
 
 ### `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` — 2 signal(s)
 
@@ -3484,9 +3485,9 @@ None.
 - Codes: `PLAYER_PROFILE_REFERENCE`, `SAVE_SYSTEM_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs`
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:35` **SAVE_SYSTEM_REFERENCE** — `_saveBackup = RecoverySaveFileBackup.CaptureAndClear(SaveSystem.SavePath);`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:91` **SAVE_SYSTEM_REFERENCE** — `SaveSystem save = SaveSystem.Instance;`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:92` **SAVE_SYSTEM_REFERENCE** — `Assert.IsNotNull(save, "SaveSystem is missing before actual scene snapshots.");`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:93` **PLAYER_PROFILE_REFERENCE** — `PlayerProfile profile = save.StartNewProfile();`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:95` **SAVE_SYSTEM_REFERENCE** — `SaveSystem save = SaveSystem.Instance;`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:96` **SAVE_SYSTEM_REFERENCE** — `Assert.IsNotNull(save, "SaveSystem is missing before actual scene snapshots.");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:97` **PLAYER_PROFILE_REFERENCE** — `PlayerProfile profile = save.StartNewProfile();`
 
 ### `Ziptide.Tests.PlayMode.RecoverySaveFileBackup` — 1 signal(s)
 
