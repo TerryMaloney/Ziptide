@@ -2,6 +2,15 @@
   "schemaVersion": 1,
   "status": "R1_AMENDED_BY_INDEPENDENT_REVIEW_2026-07-15",
   "checkpointDiagnosticAmendment": "The actual Golden Home Hub emits BOARD_PROBE hover/select and one-second ray evidence into the bounded persistent ZIPTIDE ring. DevWarpBoard remains an explicit Diagnostic-only owner and cannot bootstrap or render in GoldenSlice.",
+  "playerSurfacePolicy": {
+    "CreditsHud": {
+      "owner": "PlayerRigPersistence -> CreditsHud",
+      "GoldenSlice": "BLOCKED",
+      "Diagnostic": "BLOCKED",
+      "FullDevelopment": "ALLOWED_COMPATIBILITY_ONLY",
+      "evidence": "RecoveryGoldenSurfacePolicyTests proves direct component injection remains disabled and creates no CreditsHudText in GoldenSlice."
+    }
+  },
   "goldenDestinationDecision": {
     "scene": "ToxicCity",
     "storyIdentity": "W001 first real destination after W000",
