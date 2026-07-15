@@ -64,7 +64,7 @@ namespace Ziptide.Gameplay
             {
                 var freeHand = FirstRightHand();
                 if (freeHand == null) return;
-                _mgr.SelectExit((IXRSelectInteractor)socket, (IXRSelectInteractable)holstered);
+                _mgr.SelectExit((IXRSelectInteractor)socket, (IXRSelectable)holstered);
                 _mgr.SelectEnter((IXRSelectInteractor)freeHand, (IXRSelectInteractable)holstered);
                 Debug.Log("ZIPTIDE: QUICK_SWAP action=draw item=" + holstered.name);
             }
@@ -99,32 +99,31 @@ namespace Ziptide.Gameplay
 
         private XRBaseControllerInteractor FirstRightHand()
         {
-            foreach (var h in _rightHands) if (h != null && !h.hasSelection) return h;
+            foreach (var h in _rightHands)
+                if (h != null && !h.hasSelection) return h;
             return null;
         }
 
-        private XRSocketInteractor EmptySocket()
+        private XRGrabInteractable HolsteredGun(out HolsterSocketInteractor socket)
         {
-            var belt = GetComponentInChildren<BeltInventory>(true);
-            if (belt == null) return null;
-            foreach (var s in belt.Sockets)
-                if (s != null && !s.hasSelection) return s;
-            return null;
-        }
-
-        private XRGrabInteractable HolsteredGun(out XRSocketInteractor socket)
-        {
-            var belt = GetComponentInChildren<BeltInventory>(true);
-            if (belt != null)
-                foreach (var s in belt.Sockets)
-                    if (s != null && s.hasSelection)
-                        foreach (var sel in s.interactablesSelected)
-                        {
-                            var grab = sel as XRGrabInteractable;
-                            if (grab != null && grab.GetComponent<ItemRuntime>() != null)
-                            { socket = s; return grab; }
-                        }
+            foreach (var s in GetComponentsInChildren<HolsterSocketInteractor>(true))
+            {
+                if (s == null || !s.hasSelection) continue;
+                var grab = s.interactablesSelected[0] as XRGrabInteractable;
+                if (grab != null)
+                {
+                    socket = s;
+                    return grab;
+                }
+            }
             socket = null;
+            return null;
+        }
+
+        private HolsterSocketInteractor EmptySocket()
+        {
+            foreach (var s in GetComponentsInChildren<HolsterSocketInteractor>(true))
+                if (s != null && !s.hasSelection) return s;
             return null;
         }
     }
