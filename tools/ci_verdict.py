@@ -51,9 +51,6 @@ def calculate_verdict(
     patch_audit = normalize_result(patch_audit)
     android = normalize_result(android)
     contract_reports = normalize_result(contract_reports)
-    # patch_audit is REQUIRED — never green while merely "skipped". A skipped-but-green required
-    # check is exactly the hole that hid nine days of headset-build blockers behind a GREEN
-    # verdict (androidApk: skipped, July 5-14, the W011 phantom dome).
     overall = (
         "GREEN"
         if editmode == "success"
@@ -102,14 +99,15 @@ def render(
         "interpretation": {
             "greenRequires": (
                 "Unity EditMode success AND patch-scenes+audit success AND Android success "
-                "when Android ran. The patch+audit job runs on every push; a skipped result "
-                "is never green."
+                "when Android ran. The patch+audit job runs on every source push; a skipped "
+                "result is never green."
             ),
-            "androidSkipped": "Expected for ordinary terry-local-wip push runs.",
+            "androidSkipped": "Expected for ordinary terry-local-wip source pushes.",
             "contractReports": "Informational and non-blocking.",
             "currentWhen": (
-                "The live branch head is testedSha, or is the direct generated verdict-only "
-                "child of testedSha."
+                "The live branch head is testedSha, or differs only through generated recovery "
+                "evidence, docs/CI_VERDICT.md, or docs/HANDOFF.md. Any other later path makes "
+                "the result stale."
             ),
         },
     }
@@ -127,16 +125,16 @@ def render(
         "| Check | Result | Verdict role |",
         "|---|---|---|",
         f"| Unity EditMode tests | `{verdict.editmode}` | Required |",
-        f"| Patch scenes + world audit (no APK) | `{verdict.patch_audit}` | Required on every push; skipped is never green |",
-        f"| Android APK | `{verdict.android}` | Required when run; normally skipped on branch pushes |",
+        f"| Patch scenes + world audit (no APK) | `{verdict.patch_audit}` | Required on every source push; skipped is never green |",
+        f"| Android APK | `{verdict.android}` | Required when run; normally skipped on branch source pushes |",
         f"| Project contract reports | `{verdict.contract_reports}` | Informational, non-blocking |",
         "",
         f"Workflow run: {run_url}",
         "",
-        "The recorder writes only when the tested SHA is the live branch head immediately "
-        "before the generated verdict commit. After a successful write, the live head is the "
-        "direct verdict-only child of `testedSha`. Any later normal commit makes this verdict "
-        "stale until that commit's CI run records its own verdict.",
+        "The recorder writes only when the tested SHA is current at the source level. "
+        "Generated recovery evidence, `docs/CI_VERDICT.md`, and `docs/HANDOFF.md` may follow "
+        "without invalidating it; any other later path makes this verdict stale until that "
+        "source's CI run records its own result.",
         "",
     ]
     return "\n".join(lines)
