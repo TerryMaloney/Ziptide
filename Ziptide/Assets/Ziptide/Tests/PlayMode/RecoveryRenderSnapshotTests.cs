@@ -1,9 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using NUnit.Framework;
 using UnityEngine;
-using UnityEngine.TestTools;
 
 namespace Ziptide.Tests.PlayMode
 {
@@ -28,8 +26,8 @@ namespace Ziptide.Tests.PlayMode
         // The Linux headless runner hangs after a valid PNG whenever these test-owned renderer
         // objects or materials are destroyed, whether immediate or queued. Batch mode therefore
         // detaches, deactivates, moves the bounded fixture to DontDestroyOnLoad and retains it until
-        // process exit. Interactive PlayMode keeps normal deferred cleanup. Counts are exposed to the
-        // recovery census so this workaround cannot silently grow into an unbounded test-process leak.
+        // process exit. Interactive PlayMode keeps normal deferred cleanup. Public counters and the
+        // RECOVERY_CONTROLLED_RENDERER_RETAINED log make the bounded test-process cost inspectable.
         [TearDown]
         public void TearDown()
         {
@@ -64,8 +62,8 @@ namespace Ziptide.Tests.PlayMode
                 + objectCount + " materials=" + materialCount);
         }
 
-        [UnityTest]
-        public IEnumerator ControlledRenderer_WritesNonBlankPngAndObjectiveMetrics()
+        [Test]
+        public void ControlledRenderer_WritesNonBlankPngAndObjectiveMetrics()
         {
             var cameraHost = new GameObject("__RECOVERY_SNAPSHOT_CAMERA");
             _objects.Add(cameraHost);
@@ -102,9 +100,6 @@ namespace Ziptide.Tests.PlayMode
                 new Vector3(0f, 0f, 2f),
                 new Vector3(0.5f, 1f, 0.5f),
                 new Color(0.18f, 0.20f, 0.24f, 1f));
-
-            yield return null;
-            yield return new WaitForEndOfFrame();
 
             RecoveryRenderSnapshotPaths paths = RecoveryRenderSnapshot.Capture(
                 camera,
