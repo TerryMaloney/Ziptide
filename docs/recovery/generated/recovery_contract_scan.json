@@ -1,14 +1,14 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-15T01:07:41.254908+00:00",
+  "generatedAtUtc": "2026-07-15T01:23:44.410867+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
     "Ziptide/Assets/Ziptide",
     "Ziptide/Assets/ZiptideNet"
   ],
-  "scannedFiles": 609,
+  "scannedFiles": 610,
   "findingCount": 2045,
   "categoryCounts": {
     "bootstrap": 26,
@@ -137,7 +137,7 @@
       "code": "RUNTIME_BOOTSTRAP",
       "description": "RuntimeInitializeOnLoadMethod bootstrap",
       "path": "Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryRuntimeGate.cs",
-      "line": 22,
+      "line": 23,
       "symbol": "Ziptide.Core.RecoveryRuntimeGate",
       "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]"
     },
@@ -146,7 +146,7 @@
       "code": "RUNTIME_BOOTSTRAP",
       "description": "RuntimeInitializeOnLoadMethod bootstrap",
       "path": "Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryRuntimeGate.cs",
-      "line": 29,
+      "line": 30,
       "symbol": "Ziptide.Core.RecoveryRuntimeGate",
       "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]"
     },
@@ -362,7 +362,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryRuntimeGate.cs",
-      "line": 51,
+      "line": 52,
       "symbol": "Ziptide.Core.RecoveryRuntimeGate",
       "snippet": "builder.Append(\"ZIPTIDE: \").Append(tag)"
     },

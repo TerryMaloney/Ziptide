@@ -1,6 +1,6 @@
 # ZIPTIDE Recovery Contract Scan
 
-- Scanned files: **609**
+- Scanned files: **610**
 - Findings: **2045**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
@@ -34,8 +34,8 @@
 - **EDITOR_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs:62` · `Ziptide.Tests.EditMode.HeadsetBuildBlockerRegressionTests` — Unity editor-load bootstrap. `StringAssert.Contains("[InitializeOnLoad]", sync);`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Core/Runtime/DebugHUD.cs:22` · `Ziptide.Core.DebugHUD` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Core/Runtime/EnsureXRCameraActive.cs:11` · `Ziptide.Core.EnsureXRCameraActive` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
-- **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryRuntimeGate.cs:22` · `Ziptide.Core.RecoveryRuntimeGate` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]`
-- **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryRuntimeGate.cs:29` · `Ziptide.Core.RecoveryRuntimeGate` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]`
+- **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryRuntimeGate.cs:23` · `Ziptide.Core.RecoveryRuntimeGate` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]`
+- **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryRuntimeGate.cs:30` · `Ziptide.Core.RecoveryRuntimeGate` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs:33` · `Ziptide.Core.RuntimeHealthMonitor` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeInputEnabler.cs:15` · `Ziptide.Core.RuntimeInputEnabler` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeMaterialFixer.cs:14` · `Ziptide.Core.RuntimeMaterialFixer` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
@@ -61,7 +61,7 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs:212` · `Ziptide.Content.CreatureBehaviorStateEvidence` — ZIPTIDE diagnostic tag. `State("arrest_disengage", "Debug.Log(\"ZIPTIDE: WARDEN_ARREST\");"),`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Content/Runtime/WorldPacks/WorldPackValidator.cs:8` · `Ziptide.Content.WorldPackValidator` — ZIPTIDE diagnostic tag. `/// pack data fails LOUD at world entry (`ZIPTIDE: PACK_VALIDATION_FAIL`) instead of silently`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Core/Runtime/GamePool.cs:158` · `Ziptide.Core.GamePool` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: POOL_STAT key=" + kv.Key + " created=" + p.Created +`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryRuntimeGate.cs:51` · `Ziptide.Core.RecoveryRuntimeGate` — ZIPTIDE diagnostic tag. `builder.Append("ZIPTIDE: ").Append(tag)`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryRuntimeGate.cs:52` · `Ziptide.Core.RecoveryRuntimeGate` — ZIPTIDE diagnostic tag. `builder.Append("ZIPTIDE: ").Append(tag)`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs:18` · `Ziptide.Core.RuntimeHealthMonitor` — ZIPTIDE diagnostic tag. `/// ZIPTIDE: HEALTH fps=71.8 low1=63.2 dropped=4/720 mats=412 tex=189 mesh=143 clips=9 memMB=612`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs:19` · `Ziptide.Core.RuntimeHealthMonitor` — ZIPTIDE diagnostic tag. `/// ZIPTIDE: HEALTH_SWEEP scene=W005_OxidizedCanopy freed mats=37 tex=12 mesh=8 clips=3`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs:20` · `Ziptide.Core.RuntimeHealthMonitor` — ZIPTIDE diagnostic tag. `/// ZIPTIDE: HEALTH_SLOW low1=54.1 — sustained budget misses (investigate the current world)`

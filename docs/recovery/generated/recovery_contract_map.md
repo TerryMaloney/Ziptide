@@ -1,6 +1,6 @@
 # ZIPTIDE R0 Ownership Maps
 
-- Scanned files: **609**
+- Scanned files: **610**
 - Scanner findings: **2045**
 - Inventory systems: **22**
 
@@ -37,8 +37,8 @@ None.
 
 - Codes: `RUNTIME_BOOTSTRAP`
 - Paths: `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryRuntimeGate.cs`
-  - `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryRuntimeGate.cs:22` **RUNTIME_BOOTSTRAP** — `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]`
-  - `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryRuntimeGate.cs:29` **RUNTIME_BOOTSTRAP** — `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]`
+  - `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryRuntimeGate.cs:23` **RUNTIME_BOOTSTRAP** — `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]`
+  - `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryRuntimeGate.cs:30` **RUNTIME_BOOTSTRAP** — `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]`
 
 ### `Ziptide.Core.RuntimeHealthMonitor` — 2 signal(s)
 

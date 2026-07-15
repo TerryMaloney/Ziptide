@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
-  "scannedFiles": 609,
+  "scannedFiles": 610,
   "findingCount": 2045,
   "maps": {
     "bootstrapPersistence": [
@@ -64,14 +64,14 @@
           {
             "code": "RUNTIME_BOOTSTRAP",
             "path": "Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryRuntimeGate.cs",
-            "line": 22,
+            "line": 23,
             "symbol": "Ziptide.Core.RecoveryRuntimeGate",
             "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]"
           },
           {
             "code": "RUNTIME_BOOTSTRAP",
             "path": "Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryRuntimeGate.cs",
-            "line": 29,
+            "line": 30,
             "symbol": "Ziptide.Core.RecoveryRuntimeGate",
             "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]"
           }
