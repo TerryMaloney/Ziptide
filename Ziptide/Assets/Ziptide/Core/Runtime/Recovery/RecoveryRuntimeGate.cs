@@ -23,6 +23,7 @@ namespace Ziptide.Core
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         private static void ResetStatics()
         {
+            PersistentDiagnosticRing.ResetSubscription();
             _activeProfile = RecoveryBuildProfile.CompiledProfile;
             _bootProfileLogged = false;
         }
@@ -32,6 +33,19 @@ namespace Ziptide.Core
         {
             if (_bootProfileLogged) return;
             _bootProfileLogged = true;
+
+            // Install before the first recovery log. This makes the persistent file independent of
+            // Android logcat rotation and proves exactly which exposure profile booted on-device.
+            try
+            {
+                PersistentDiagnosticRing.Install();
+            }
+            catch (Exception ex)
+            {
+                Debug.LogError("ZIPTIDE: DIAG_RING_INSTALL_FAIL exception=" + ex.GetType().Name
+                    + " message=" + ex.Message);
+            }
+
             Debug.Log(BuildLogLine("RECOVERY_EXPOSURE"));
         }
 
