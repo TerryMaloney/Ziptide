@@ -22,6 +22,7 @@ namespace Ziptide.Tests.PlayMode
     public sealed class RecoveryActualSceneSnapshotTests
     {
         private const float TravelTimeoutSeconds = 120f;
+        private const float BootReadyTimeoutSeconds = 30f;
 
         private readonly List<string> _travelCompleted = new List<string>();
         private RecoverySaveFileBackup _saveBackup;
@@ -66,8 +67,17 @@ namespace Ziptide.Tests.PlayMode
                 ZiptideConstants.SceneBoot,
                 LoadSceneMode.Single);
             Assert.IsNotNull(bootLoad);
-            for (int frame = 0; frame < 600 && !bootLoad.isDone; frame++) yield return null;
-            Assert.IsTrue(bootLoad.isDone, "Actual _Boot scene did not finish loading.");
+
+            // A frame-count budget is not a time budget on the fast headless runner: 600 frames can
+            // elapse in about one second while Unity is still completing a legitimate first scene load.
+            // Use the same real-time budget as the production travel proof and preserve the hard fail.
+            float bootDeadline = Time.realtimeSinceStartup + TravelTimeoutSeconds;
+            while (!bootLoad.isDone && Time.realtimeSinceStartup < bootDeadline)
+                yield return null;
+            Assert.IsTrue(bootLoad.isDone,
+                "Actual _Boot scene did not finish loading within " +
+                TravelTimeoutSeconds + " seconds. progress=" + bootLoad.progress.ToString("F3"));
+
             SceneManager.sceneLoaded -= OnBootSceneLoadedBeforeStart;
             if (_earlySimulationFailure != null)
                 throw new AssertionException(
@@ -76,8 +86,12 @@ namespace Ziptide.Tests.PlayMode
                 "The actual rig was not placed into a tracked pose before Home Hub Start.");
 
             RecoverySceneTestIsolation.InvokeAllowedAfterSceneLoadBootstraps();
-            for (int frame = 0; frame < 300 && !_bootReady; frame++) yield return null;
-            Assert.IsTrue(_bootReady, "Actual Home Hub never reached ready state.");
+            float readyDeadline = Time.realtimeSinceStartup + BootReadyTimeoutSeconds;
+            while (!_bootReady && Time.realtimeSinceStartup < readyDeadline)
+                yield return null;
+            Assert.IsTrue(_bootReady,
+                "Actual Home Hub never reached ready state within " +
+                BootReadyTimeoutSeconds + " seconds.");
             yield return null;
             yield return new WaitForEndOfFrame();
 
