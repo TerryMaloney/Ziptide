@@ -1,7 +1,7 @@
 # ZIPTIDE Recovery Contract Scan
 
 - Scanned files: **612**
-- Findings: **2048**
+- Findings: **2053**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
@@ -9,7 +9,7 @@
 | Category | Count |
 |---|---:|
 | `bootstrap` | 27 |
-| `diagnostics` | 421 |
+| `diagnostics` | 424 |
 | `events` | 64 |
 | `fallback_debt` | 120 |
 | `global_render` | 76 |
@@ -20,7 +20,7 @@
 | `runtime_ui` | 114 |
 | `save_state` | 234 |
 | `scene_loading` | 5 |
-| `xri_ownership` | 69 |
+| `xri_ownership` | 71 |
 
 ## Findings
 
@@ -326,13 +326,16 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:160` · `Ziptide.Gameplay.FirstDestinationHelmRuntime` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: FIRST_HOUR_SURFACE_SUBSCRIBER_FAIL phase=bunk reason=" +`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs:190` · `Ziptide.Gameplay.Tutorial.FirstHourObservationAdapter` — ZIPTIDE diagnostic tag. `"ZIPTIDE: FIRST_HOUR_OBSERVE beat=" + _activeBeatId +`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs:200` · `Ziptide.Gameplay.Tutorial.FirstHourObservationAdapter` — ZIPTIDE diagnostic tag. `"ZIPTIDE: FIRST_HOUR_OBSERVE beat=" + _activeBeatId +`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:72` · `Ziptide.Gameplay.HomeHubChoice` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: HOME_HUB_MISSING_CONFIG");`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:79` · `Ziptide.Gameplay.HomeHubChoice` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: HOME_HUB_READY continue=" + canContinue.ToString().ToLowerInvariant());`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:91` · `Ziptide.Gameplay.HomeHubChoice` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: HOME_HUB_CHOICE_BLOCKED reason=save_unavailable");`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:99` · `Ziptide.Gameplay.HomeHubChoice` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: HOME_HUB_CHOICE choice=" + choiceName);`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:123` · `Ziptide.Gameplay.HomeHubChoice` — ZIPTIDE diagnostic tag. `else Debug.LogWarning("ZIPTIDE: HOME_HUB_TRAVEL_MISSING dest=" + _targetScene);`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:236` · `Ziptide.Gameplay.HomeHubChoice` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: HOME_HUB_SUBSCRIBER_FAIL phase=" + phase + " reason=" + ex.Message);`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:249` · `Ziptide.Gameplay.HomeHubChoice` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: HOME_HUB_SUBSCRIBER_FAIL phase=" + phase + " reason=" + ex.Message);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:75` · `Ziptide.Gameplay.HomeHubChoice` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: HOME_HUB_MISSING_CONFIG");`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:82` · `Ziptide.Gameplay.HomeHubChoice` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: HOME_HUB_READY continue=" + canContinue.ToString().ToLowerInvariant());`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:94` · `Ziptide.Gameplay.HomeHubChoice` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: HOME_HUB_CHOICE_BLOCKED reason=save_unavailable");`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:102` · `Ziptide.Gameplay.HomeHubChoice` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: HOME_HUB_CHOICE choice=" + choiceName);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:126` · `Ziptide.Gameplay.HomeHubChoice` — ZIPTIDE diagnostic tag. `else Debug.LogWarning("ZIPTIDE: HOME_HUB_TRAVEL_MISSING dest=" + _targetScene);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:194` · `Ziptide.Gameplay.HomeHubChoice` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: HOME_HUB_TILE_BOUND tile=" + tile.name +`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:217` · `Ziptide.Gameplay.HomeHubChoice` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: HOME_HUB_TILE_BOUND tile=" + tileName +`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:223` · `Ziptide.Gameplay.HomeHubChoice` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: HOME_HUB_TILE_BIND_TIMEOUT tile=" + tileName +`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:269` · `Ziptide.Gameplay.HomeHubChoice` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: HOME_HUB_SUBSCRIBER_FAIL phase=" + phase + " reason=" + ex.Message);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:282` · `Ziptide.Gameplay.HomeHubChoice` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: HOME_HUB_SUBSCRIBER_FAIL phase=" + phase + " reason=" + ex.Message);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:99` · `Ziptide.Gameplay.MeleeWeaponRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: MELEE_HIT weapon=breaker_blade");`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:131` · `Ziptide.Gameplay.MeleeWeaponRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: MELEE_HIT weapon=tide_pike dist=" + best.ToString("0.0"));`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/PrismBeamRuntime.cs:61` · `Ziptide.Gameplay.PrismBeamRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: PRISM_CHARGE_START");`
@@ -493,10 +496,10 @@
 - **EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:14` · `Ziptide.Gameplay.FirstDestinationHelmRuntime` — Event declaration. `public static event Action<string> FirstDestinationSelected;`
 - **EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:111` · `Ziptide.Gameplay.FirstDestinationHelmRuntime` — Event declaration. `public static event Action<string> NamedBunkObjectGrabbed;`
 - **EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs:38` · `Ziptide.Gameplay.Tutorial.FirstHourObservationAdapter` — Event declaration. `public event Action<string> SignalCompleted;`
-- **EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:50` · `Ziptide.Gameplay.HomeHubChoice` — Event declaration. `public static event Action<bool> BootPresentationReady;`
-- **EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:51` · `Ziptide.Gameplay.HomeHubChoice` — Event declaration. `public static event Action<PlayerProfile> NewGameProfileCreated;`
-- **EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:52` · `Ziptide.Gameplay.HomeHubChoice` — Event declaration. `public static event Action<HomeHubChoice> ChoiceSelected;`
-- **EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:53` · `Ziptide.Gameplay.HomeHubChoice` — Event declaration. `public static event Action SettingsRequested;`
+- **EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:53` · `Ziptide.Gameplay.HomeHubChoice` — Event declaration. `public static event Action<bool> BootPresentationReady;`
+- **EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:54` · `Ziptide.Gameplay.HomeHubChoice` — Event declaration. `public static event Action<PlayerProfile> NewGameProfileCreated;`
+- **EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:55` · `Ziptide.Gameplay.HomeHubChoice` — Event declaration. `public static event Action<HomeHubChoice> ChoiceSelected;`
+- **EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:56` · `Ziptide.Gameplay.HomeHubChoice` — Event declaration. `public static event Action SettingsRequested;`
 - **EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:38` · `Ziptide.Gameplay.TravelCoordinator` — Event declaration. `public static event Action<string> TravelCompleted;`
 - **EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ZiplineRuntime.cs:28` · `Ziptide.Gameplay.ZiplineRuntime` — Event declaration. `public event System.Action RideStarted;`
 - **EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ZiplineRuntime.cs:31` · `Ziptide.Gameplay.ZiplineRuntime` — Event declaration. `public event System.Action<string, float> RideEnded;`
@@ -533,10 +536,10 @@
 - **STATIC_EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/ComfortConsoleRuntime.cs:15` · `Ziptide.Gameplay.ComfortConsoleRuntime` — Static event declaration. `public static event Action<ComfortPreset> PresetConfirmed;`
 - **STATIC_EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:14` · `Ziptide.Gameplay.FirstDestinationHelmRuntime` — Static event declaration. `public static event Action<string> FirstDestinationSelected;`
 - **STATIC_EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:111` · `Ziptide.Gameplay.FirstDestinationHelmRuntime` — Static event declaration. `public static event Action<string> NamedBunkObjectGrabbed;`
-- **STATIC_EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:50` · `Ziptide.Gameplay.HomeHubChoice` — Static event declaration. `public static event Action<bool> BootPresentationReady;`
-- **STATIC_EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:51` · `Ziptide.Gameplay.HomeHubChoice` — Static event declaration. `public static event Action<PlayerProfile> NewGameProfileCreated;`
-- **STATIC_EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:52` · `Ziptide.Gameplay.HomeHubChoice` — Static event declaration. `public static event Action<HomeHubChoice> ChoiceSelected;`
-- **STATIC_EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:53` · `Ziptide.Gameplay.HomeHubChoice` — Static event declaration. `public static event Action SettingsRequested;`
+- **STATIC_EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:53` · `Ziptide.Gameplay.HomeHubChoice` — Static event declaration. `public static event Action<bool> BootPresentationReady;`
+- **STATIC_EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:54` · `Ziptide.Gameplay.HomeHubChoice` — Static event declaration. `public static event Action<PlayerProfile> NewGameProfileCreated;`
+- **STATIC_EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:55` · `Ziptide.Gameplay.HomeHubChoice` — Static event declaration. `public static event Action<HomeHubChoice> ChoiceSelected;`
+- **STATIC_EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:56` · `Ziptide.Gameplay.HomeHubChoice` — Static event declaration. `public static event Action SettingsRequested;`
 - **STATIC_EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:38` · `Ziptide.Gameplay.TravelCoordinator` — Static event declaration. `public static event Action<string> TravelCompleted;`
 - **STATIC_EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Multiplayer/Runtime/Net/PvpNetHub.cs:25` · `Ziptide.Multiplayer.PvpNetHub` — Static event declaration. `public static event Action<IPvpTransport> TransportChanged;`
 - **STATIC_EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourHolsterAdapterTests.cs:148` · `Ziptide.Tests.EditMode.FirstHourHolsterAdapterTests` — Static event declaration. `StringAssert.Contains("public static event Action<string> ItemHolstered", socketSource);`
@@ -692,7 +695,7 @@
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs:210` · `Ziptide.Gameplay.RillCompanion` — Camera.main dependency. `if (cam == null) cam = Camera.main;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:172` · `Ziptide.Gameplay.ShipCastOffRuntime` — Camera.main dependency. `var cam = Camera.main;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs:111` · `Ziptide.Gameplay.Tutorial.FirstHourObservationAdapter` — Camera.main dependency. `Camera camera = Camera.main;`
-- **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:139` · `Ziptide.Gameplay.HomeHubChoice` — Camera.main dependency. `Transform cam = Camera.main != null ? Camera.main.transform : null;`
+- **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:142` · `Ziptide.Gameplay.HomeHubChoice` — Camera.main dependency. `Transform cam = Camera.main != null ? Camera.main.transform : null;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/StaticNetWeapon.cs:124` · `Ziptide.Gameplay.StaticNetGunRuntime` — Camera.main dependency. `if (_playerHead == null && Camera.main != null) _playerHead = Camera.main.transform;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:117` · `Ziptide.Gameplay.ConquestMissionRuntime` — Camera.main dependency. `var cam = Camera.main;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:309` · `Ziptide.Gameplay.ConquestMissionRuntime` — Camera.main dependency. `var cam = Camera.main;`
@@ -918,7 +921,7 @@
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/WateringCanRuntime.cs:158` · `Ziptide.Gameplay.WateringCanRuntime` — Runtime Material allocation. `var mat = new Material(shader);`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/ThemeSwitchStation.cs:64` · `Ziptide.Gameplay.ThemeSwitchStation` — Runtime Material allocation. `var mat = new Material(shader);`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/ComfortConsoleRuntime.cs:124` · `Ziptide.Gameplay.ComfortConsoleRuntime` — Runtime Material allocation. `var material = new Material(shader);`
-- **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:221` · `Ziptide.Gameplay.HomeHubChoice` — Runtime Material allocation. `var material = new Material(shader);`
+- **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:254` · `Ziptide.Gameplay.HomeHubChoice` — Runtime Material allocation. `var material = new Material(shader);`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GravityGunRuntime.cs:154` · `Ziptide.Gameplay.GravityGunRuntime` — Runtime Material allocation. `var mat = new Material(shader);`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:64` · `Ziptide.Gameplay.GunLaserSight` — Runtime Material allocation. `var mat = new Material(shader);`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/TaserDartProjectile.cs:104` · `Ziptide.Gameplay.TaserDartProjectile` — Runtime Material allocation. `var mat = new Material(shader);`
@@ -1043,8 +1046,8 @@
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/ThemeSwitchStation.cs:61` · `Ziptide.Gameplay.ThemeSwitchStation` — Runtime shader lookup. `var shader = Shader.Find("Universal Render Pipeline/Lit");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/ComfortConsoleRuntime.cs:121` · `Ziptide.Gameplay.ComfortConsoleRuntime` — Runtime shader lookup. `Shader shader = Shader.Find("Universal Render Pipeline/Lit");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/ComfortConsoleRuntime.cs:122` · `Ziptide.Gameplay.ComfortConsoleRuntime` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Standard");`
-- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:218` · `Ziptide.Gameplay.HomeHubChoice` — Runtime shader lookup. `Shader shader = Shader.Find("Universal Render Pipeline/Lit");`
-- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:219` · `Ziptide.Gameplay.HomeHubChoice` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Standard");`
+- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:251` · `Ziptide.Gameplay.HomeHubChoice` — Runtime shader lookup. `Shader shader = Shader.Find("Universal Render Pipeline/Lit");`
+- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:252` · `Ziptide.Gameplay.HomeHubChoice` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Standard");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GravityGunRuntime.cs:150` · `Ziptide.Gameplay.GravityGunRuntime` — Runtime shader lookup. `var shader = Shader.Find("Universal Render Pipeline/Unlit");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GravityGunRuntime.cs:151` · `Ziptide.Gameplay.GravityGunRuntime` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Sprites/Default");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:61` · `Ziptide.Gameplay.GunLaserSight` — Runtime shader lookup. `var shader = Shader.Find("Universal Render Pipeline/Unlit");`
@@ -1273,8 +1276,8 @@
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/ComfortConsoleRuntime.cs:83` · `Ziptide.Gameplay.ComfortConsoleRuntime` — Runtime primitive construction. `var tile = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:52` · `Ziptide.Gameplay.FirstDestinationHelmRuntime` — Runtime primitive construction. `var pedestal = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:59` · `Ziptide.Gameplay.FirstDestinationHelmRuntime` — Runtime primitive construction. `var tile = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:150` · `Ziptide.Gameplay.HomeHubChoice` — Runtime primitive construction. `var board = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:179` · `Ziptide.Gameplay.HomeHubChoice` — Runtime primitive construction. `var tile = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:153` · `Ziptide.Gameplay.HomeHubChoice` — Runtime primitive construction. `var board = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:182` · `Ziptide.Gameplay.HomeHubChoice` — Runtime primitive construction. `var tile = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:137` · `Ziptide.Gameplay.MeleeWeaponRuntime` — Runtime primitive construction. `var s = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/PistolRuntime.cs:123` · `Ziptide.Gameplay.PistolRuntime` — Runtime primitive construction. `var go = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/PrismBeamRuntime.cs:99` · `Ziptide.Gameplay.PrismBeamRuntime` — Runtime primitive construction. `_guide = GameObject.CreatePrimitive(PrimitiveType.Cube);`
@@ -1559,8 +1562,8 @@
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:76` · `Ziptide.Gameplay.FirstDestinationHelmRuntime` — Runtime GameObject construction. `var go = new GameObject("Label_W001");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:131` · `Ziptide.Gameplay.FirstDestinationHelmRuntime` — Runtime GameObject construction. `var label = new GameObject("Label_BUNK_KEEPSAKE");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs:50` · `Ziptide.Gameplay.Tutorial.FirstHourObservationAdapter` — Runtime GameObject construction. `var go = new GameObject("__FirstHourObservationAdapter");`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:130` · `Ziptide.Gameplay.HomeHubChoice` — Runtime GameObject construction. `var go = new GameObject("__HOME_HUB_COMFORT_SETTINGS");`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:196` · `Ziptide.Gameplay.HomeHubChoice` — Runtime GameObject construction. `var go = new GameObject("Label_" + text.Replace(' ', '_').Replace('\n', '_'));`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:133` · `Ziptide.Gameplay.HomeHubChoice` — Runtime GameObject construction. `var go = new GameObject("__HOME_HUB_COMFORT_SETTINGS");`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:229` · `Ziptide.Gameplay.HomeHubChoice` — Runtime GameObject construction. `var go = new GameObject("Label_" + text.Replace(' ', '_').Replace('\n', '_'));`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GravityGunRuntime.cs:39` · `Ziptide.Gameplay.GravityGunRuntime` — Runtime GameObject construction. `var m = new GameObject("Muzzle");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:53` · `Ziptide.Gameplay.GunLaserSight` — Runtime GameObject construction. `var go = new GameObject("__LaserSight");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/PistolRuntime.cs:34` · `Ziptide.Gameplay.PistolRuntime` — Runtime GameObject construction. `var m = new GameObject("Muzzle");`
@@ -1697,7 +1700,7 @@
 - **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/ComfortConsoleRuntime.cs:102` · `Ziptide.Gameplay.ComfortConsoleRuntime` — Legacy TextMesh creation/reference. `var tm = go.AddComponent<TextMesh>();`
 - **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:79` · `Ziptide.Gameplay.FirstDestinationHelmRuntime` — Legacy TextMesh creation/reference. `var tm = go.AddComponent<TextMesh>();`
 - **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:134` · `Ziptide.Gameplay.FirstDestinationHelmRuntime` — Legacy TextMesh creation/reference. `var tm = label.AddComponent<TextMesh>();`
-- **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:199` · `Ziptide.Gameplay.HomeHubChoice` — Legacy TextMesh creation/reference. `var tm = go.AddComponent<TextMesh>();`
+- **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:232` · `Ziptide.Gameplay.HomeHubChoice` — Legacy TextMesh creation/reference. `var tm = go.AddComponent<TextMesh>();`
 - **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:82` · `Ziptide.Gameplay.ConquestMissionRuntime` — Legacy TextMesh creation/reference. `_board = _boardRoot.gameObject.AddComponent<TextMesh>();`
 - **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestTableRuntime.cs:731` · `Ziptide.Gameplay.ConquestTableRuntime` — Legacy TextMesh creation/reference. `var tm = go.AddComponent<TextMesh>();`
 - **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs:134` · `Ziptide.Gameplay.HangarBayRuntime` — Legacy TextMesh creation/reference. `var tm = go.AddComponent<TextMesh>();`
@@ -1756,7 +1759,7 @@
 - **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/ComfortConsoleRuntime.cs:90` · `Ziptide.Gameplay.ComfortConsoleRuntime` — XR interactable creation/reference. `var interactable = tile.AddComponent<XRSimpleInteractable>();`
 - **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:66` · `Ziptide.Gameplay.FirstDestinationHelmRuntime` — XR interactable creation/reference. `var interactable = tile.AddComponent<XRSimpleInteractable>();`
 - **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:124` · `Ziptide.Gameplay.FirstDestinationHelmRuntime` — XR interactable creation/reference. `if (grab == null) grab = gameObject.AddComponent<XRGrabInteractable>();`
-- **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:186` · `Ziptide.Gameplay.HomeHubChoice` — XR interactable creation/reference. `var interactable = tile.AddComponent<XRSimpleInteractable>();`
+- **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:189` · `Ziptide.Gameplay.HomeHubChoice` — XR interactable creation/reference. `var interactable = tile.AddComponent<XRSimpleInteractable>();`
 - **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GravityGunRuntime.cs:14` · `Ziptide.Gameplay.GravityGunRuntime` — XR interactable creation/reference. `[RequireComponent(typeof(XRGrabInteractable))]`
 - **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:27` · `Ziptide.Gameplay.MeleeWeaponRuntime` — XR interactable creation/reference. `[RequireComponent(typeof(XRGrabInteractable))]`
 - **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/PistolRuntime.cs:11` · `Ziptide.Gameplay.PistolRuntime` — XR interactable creation/reference. `[RequireComponent(typeof(XRGrabInteractable))]`
@@ -1850,8 +1853,8 @@
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Persistence/SaveSystem.cs:24` · `Ziptide.Gameplay.SaveSystem` — PlayerProfile reference. `public PlayerProfile Profile { get; private set; }`
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Persistence/SaveSystem.cs:94` · `Ziptide.Gameplay.SaveSystem` — PlayerProfile reference. `public PlayerProfile StartNewProfile()`
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/ComfortConsoleRuntime.cs:11` · `Ziptide.Gameplay.ComfortConsoleRuntime` — PlayerProfile reference. `/// the rig, writes PlayerProfile, creates a second vignette, or owns traversal physics.`
-- **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:51` · `Ziptide.Gameplay.HomeHubChoice` — PlayerProfile reference. `public static event Action<PlayerProfile> NewGameProfileCreated;`
-- **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:111` · `Ziptide.Gameplay.HomeHubChoice` — PlayerProfile reference. `PlayerProfile profile = SaveSystem.Instance.StartNewProfile();`
+- **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:54` · `Ziptide.Gameplay.HomeHubChoice` — PlayerProfile reference. `public static event Action<PlayerProfile> NewGameProfileCreated;`
+- **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:114` · `Ziptide.Gameplay.HomeHubChoice` — PlayerProfile reference. `PlayerProfile profile = SaveSystem.Instance.StartNewProfile();`
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/QuartersPhotoWall.cs:25` · `Ziptide.Gameplay.QuartersPhotoWall` — PlayerProfile reference. `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/SalvageCacheRuntime.cs:93` · `Ziptide.Gameplay.SalvageCacheRuntime` — PlayerProfile reference. `public static double GrantTo(PlayerProfile profile, string resource, double pay)`
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipRefit.cs:120` · `Ziptide.Gameplay.ShipRefit` — PlayerProfile reference. `private static void ApplyLivery(GameObject shipRoot, PlayerProfile profile)`
@@ -1975,12 +1978,12 @@
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs:151` · `Ziptide.Gameplay.RillCompanion` — SaveSystem reference. `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs:266` · `Ziptide.Gameplay.RillCompanion` — SaveSystem reference. `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/TransmissionConsole.cs:69` · `Ziptide.Gameplay.TransmissionConsole` — SaveSystem reference. `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
-- **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:45` · `Ziptide.Gameplay.HomeHubChoice` — SaveSystem reference. `/// all persistence to SaveSystem and all scene change to the callback supplied by BootLoader.`
-- **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:76` · `Ziptide.Gameplay.HomeHubChoice` — SaveSystem reference. `bool canContinue = SaveSystem.HasExistingProfile;`
-- **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:89` · `Ziptide.Gameplay.HomeHubChoice` — SaveSystem reference. `SaveSystem.Instance == null)`
-- **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:111` · `Ziptide.Gameplay.HomeHubChoice` — SaveSystem reference. `PlayerProfile profile = SaveSystem.Instance.StartNewProfile();`
-- **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:116` · `Ziptide.Gameplay.HomeHubChoice` — SaveSystem reference. `// Load remains SaveSystem's sole profile recovery/migration path.`
-- **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:117` · `Ziptide.Gameplay.HomeHubChoice` — SaveSystem reference. `SaveSystem.Instance.Load();`
+- **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:46` · `Ziptide.Gameplay.HomeHubChoice` — SaveSystem reference. `/// all persistence to SaveSystem and all scene change to the callback supplied by BootLoader.`
+- **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:79` · `Ziptide.Gameplay.HomeHubChoice` — SaveSystem reference. `bool canContinue = SaveSystem.HasExistingProfile;`
+- **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:92` · `Ziptide.Gameplay.HomeHubChoice` — SaveSystem reference. `SaveSystem.Instance == null)`
+- **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:114` · `Ziptide.Gameplay.HomeHubChoice` — SaveSystem reference. `PlayerProfile profile = SaveSystem.Instance.StartNewProfile();`
+- **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:119` · `Ziptide.Gameplay.HomeHubChoice` — SaveSystem reference. `// Load remains SaveSystem's sole profile recovery/migration path.`
+- **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:120` · `Ziptide.Gameplay.HomeHubChoice` — SaveSystem reference. `SaveSystem.Instance.Load();`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:361` · `Ziptide.Gameplay.ConquestMissionRuntime` — SaveSystem reference. `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestTableRuntime.cs:76` · `Ziptide.Gameplay.ConquestTableRuntime` — SaveSystem reference. `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestTableRuntime.cs:84` · `Ziptide.Gameplay.ConquestTableRuntime` — SaveSystem reference. `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
@@ -2050,7 +2053,8 @@
 - **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/ComfortConsoleRuntime.cs:92` · `Ziptide.Gameplay.ComfortConsoleRuntime` — Explicit interactable interactionManager assignment. `if (manager != null) interactable.interactionManager = manager;`
 - **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:68` · `Ziptide.Gameplay.FirstDestinationHelmRuntime` — Explicit interactable interactionManager assignment. `if (manager != null) interactable.interactionManager = manager;`
 - **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:126` · `Ziptide.Gameplay.FirstDestinationHelmRuntime` — Explicit interactable interactionManager assignment. `if (manager != null) grab.interactionManager = manager;`
-- **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:188` · `Ziptide.Gameplay.HomeHubChoice` — Explicit interactable interactionManager assignment. `if (manager != null) interactable.interactionManager = manager;`
+- **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:193` · `Ziptide.Gameplay.HomeHubChoice` — Explicit interactable interactionManager assignment. `interactable.interactionManager = manager;`
+- **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:216` · `Ziptide.Gameplay.HomeHubChoice` — Explicit interactable interactionManager assignment. `interactable.interactionManager = manager;`
 - **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/QuartersRoom.cs:261` · `Ziptide.Gameplay.QuartersRoom` — Explicit interactable interactionManager assignment. `if (mgr != null) interactable.interactionManager = mgr;`
 - **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:333` · `Ziptide.Gameplay.ShipBoardingStation` — Explicit interactable interactionManager assignment. `if (mgr != null) interactable.interactionManager = mgr;`
 - **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:123` · `Ziptide.Gameplay.WorldTravelStation` — Explicit interactable interactionManager assignment. `interactable.interactionManager = mgr;`
@@ -2089,7 +2093,8 @@
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/ComfortConsoleRuntime.cs:91` · `Ziptide.Gameplay.ComfortConsoleRuntime` — XRInteractionManager lookup. `var manager = FindObjectOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:67` · `Ziptide.Gameplay.FirstDestinationHelmRuntime` — XRInteractionManager lookup. `var manager = FindObjectOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:125` · `Ziptide.Gameplay.FirstDestinationHelmRuntime` — XRInteractionManager lookup. `var manager = FindObjectOfType<XRInteractionManager>();`
-- **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:187` · `Ziptide.Gameplay.HomeHubChoice` — XRInteractionManager lookup. `var manager = FindObjectOfType<XRInteractionManager>();`
+- **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:190` · `Ziptide.Gameplay.HomeHubChoice` — XRInteractionManager lookup. `var manager = FindObjectOfType<XRInteractionManager>();`
+- **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:213` · `Ziptide.Gameplay.HomeHubChoice` — XRInteractionManager lookup. `var manager = FindObjectOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/QuartersRoom.cs:260` · `Ziptide.Gameplay.QuartersRoom` — XRInteractionManager lookup. `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:332` · `Ziptide.Gameplay.ShipBoardingStation` — XRInteractionManager lookup. `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:274` · `Ziptide.Gameplay.TravelCoordinator` — XRInteractionManager lookup. `var managers = Object.FindObjectsOfType<XRInteractionManager>();`
