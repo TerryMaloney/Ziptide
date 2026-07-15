@@ -1,7 +1,7 @@
 # Recovery PlayMode Observation
 
-- Tested SHA: `c13d2a285862efdf0e3b91a8ea03c847f968e8cc`
-- Workflow run: `29379167186`
+- Tested SHA: `6c06c58fd8d1fc7b3a9cb09d21395d0fb49eec8e`
+- Workflow run: `29379395209`
 - Attempt: `1`
 - Test step outcome: **success**
 - Scope: R1 recovery PlayMode suite
