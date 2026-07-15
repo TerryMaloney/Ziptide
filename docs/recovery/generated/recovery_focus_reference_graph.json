@@ -1,6 +1,6 @@
 {
   "tool": "recovery_focus_reference_graph",
-  "scannedFiles": 617,
+  "scannedFiles": 619,
   "referenceCount": 368,
   "summaries": {
     "melee": {
@@ -2107,7 +2107,7 @@
           "focus": "repairObjective",
           "token": "REPAIR_TRACE",
           "path": "Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryCheckpointEvidenceTests.cs",
-          "line": 71,
+          "line": 72,
           "symbol": "Ziptide.Tests.EditMode.RecoveryCheckpointEvidenceTests",
           "snippet": "int repair = CountRuntimeLogCalls(root, \"REPAIR_TRACE\");",
           "declaration_file": false
@@ -2116,7 +2116,7 @@
           "focus": "repairObjective",
           "token": "REPAIR_TRACE",
           "path": "Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryCheckpointEvidenceTests.cs",
-          "line": 77,
+          "line": 78,
           "symbol": "Ziptide.Tests.EditMode.RecoveryCheckpointEvidenceTests",
           "snippet": "\"REPAIR_TRACE no longer covers enough hops to distinguish state from presentation.\");",
           "declaration_file": false
@@ -6378,7 +6378,7 @@
       "focus": "repairObjective",
       "token": "REPAIR_TRACE",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryCheckpointEvidenceTests.cs",
-      "line": 71,
+      "line": 72,
       "symbol": "Ziptide.Tests.EditMode.RecoveryCheckpointEvidenceTests",
       "snippet": "int repair = CountRuntimeLogCalls(root, \"REPAIR_TRACE\");",
       "declaration_file": false
@@ -6387,7 +6387,7 @@
       "focus": "repairObjective",
       "token": "REPAIR_TRACE",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryCheckpointEvidenceTests.cs",
-      "line": 77,
+      "line": 78,
       "symbol": "Ziptide.Tests.EditMode.RecoveryCheckpointEvidenceTests",
       "snippet": "\"REPAIR_TRACE no longer covers enough hops to distinguish state from presentation.\");",
       "declaration_file": false

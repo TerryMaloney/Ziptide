@@ -1,6 +1,6 @@
 # ZIPTIDE Focused Recovery Reference Graph
 
-- Scanned C# files: **617**
+- Scanned C# files: **619**
 - Focused references: **368**
 
 ## melee
@@ -260,8 +260,8 @@
 - **reference** · `Ziptide.Gameplay.JobRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobRuntime.cs:223` — `Debug.Log("ZIPTIDE: REPAIR_TRACE hop=bank_drain step=" + CurrentStepIndex`
 - **reference** · `Ziptide.Gameplay.ObjectiveBoard` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:67` — `Debug.Log("ZIPTIDE: REPAIR_TRACE hop=board director=" + jobDirector.GetInstanceID()`
 - **reference** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:145` — `Debug.Log("ZIPTIDE: REPAIR_TRACE hop=castoff armed=" + armed`
-- **reference** · `Ziptide.Tests.EditMode.RecoveryCheckpointEvidenceTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryCheckpointEvidenceTests.cs:71` — `int repair = CountRuntimeLogCalls(root, "REPAIR_TRACE");`
-- **reference** · `Ziptide.Tests.EditMode.RecoveryCheckpointEvidenceTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryCheckpointEvidenceTests.cs:77` — `"REPAIR_TRACE no longer covers enough hops to distinguish state from presentation.");`
+- **reference** · `Ziptide.Tests.EditMode.RecoveryCheckpointEvidenceTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryCheckpointEvidenceTests.cs:72` — `int repair = CountRuntimeLogCalls(root, "REPAIR_TRACE");`
+- **reference** · `Ziptide.Tests.EditMode.RecoveryCheckpointEvidenceTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryCheckpointEvidenceTests.cs:78` — `"REPAIR_TRACE no longer covers enough hops to distinguish state from presentation.");`
 
 ### `RepairMachineCountStepDefinition`
 

@@ -1,7 +1,7 @@
 # ZIPTIDE Event and Save Ownership Graph
 
-- Scanned C# files: **617**
-- Evidence edges: **645**
+- Scanned C# files: **619**
+- Evidence edges: **646**
 - Named subscriptions without matching unsubscribe in the same owner: **47**
 
 This is a static ownership graph. An unmatched row is a review target, not automatic proof of a leak; process-lifetime static hooks may be intentional.
@@ -14,7 +14,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **EVENT_SUBSCRIBE:** 80
 - **EVENT_UNSUBSCRIBE:** 33
 - **PLAYER_PREFS_ACCESS:** 11
-- **PROFILE_FIELD_ACCESS:** 351
+- **PROFILE_FIELD_ACCESS:** 352
 - **SAVE_ACCESS:** 63
 
 ## Named subscriptions without matching unsubscribe
@@ -123,8 +123,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `Application.logMessageReceived`
 
-- **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryBootHoldOrderingTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootHoldOrderingTests.cs:36` · `_capture` — `Application.logMessageReceived += _capture;`
-- **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryBootHoldOrderingTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootHoldOrderingTests.cs:43` · `_capture` — `Application.logMessageReceived -= _capture;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryBootHoldOrderingTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootHoldOrderingTests.cs:37` · `_capture` — `Application.logMessageReceived += _capture;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryBootHoldOrderingTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootHoldOrderingTests.cs:44` · `_capture` — `Application.logMessageReceived -= _capture;`
 
 ### `Application.logMessageReceivedThreaded`
 
@@ -157,11 +157,11 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `BootPresentationReady`
 
-- **EVENT_DECLARE** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:54` · `static Action<bool>` — `public static event Action<bool> BootPresentationReady;`
+- **EVENT_DECLARE** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:57` · `static Action<bool>` — `public static event Action<bool> BootPresentationReady;`
 
 ### `ChoiceSelected`
 
-- **EVENT_DECLARE** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:56` · `static Action<HomeHubChoice>` — `public static event Action<HomeHubChoice> ChoiceSelected;`
+- **EVENT_DECLARE** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:59` · `static Action<HomeHubChoice>` — `public static event Action<HomeHubChoice> ChoiceSelected;`
 
 ### `CounterState`
 
@@ -260,7 +260,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Content.RecipeService` · `Ziptide/Assets/Ziptide/Content/Runtime/Economy/RecipeService.cs:21` · `profile` — `if (profile.GetResource(c.resourceId) < c.amount) return false;`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Core.LedgerEntry` · `Ziptide/Assets/Ziptide/Core/Runtime/Economy/ResourceLedger.cs:109` · `profile` — `if (profile.GetResource(resourceId) < amount) return false;`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.CreditsHud` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/CreditsHud.cs:63` · `Profile` — `credits = (long)System.Math.Floor(save.Profile.GetResource(CreditsResourceId));`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.CreditsHud` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/CreditsHud.cs:84` · `Profile` — `credits = (long)System.Math.Floor(save.Profile.GetResource(CreditsResourceId));`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.BuildSocketRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/BuildSocketRuntime.cs:92` · `profile` — `if (profile.GetResource("credits") < _def.buildCost)`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.GardenServiceTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/GardenServiceTests.cs:88` · `profile` — `Assert.AreEqual(10.0, profile.GetResource("glowfruit_fruit"), 1e-9);`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.GardenServiceTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/GardenServiceTests.cs:94` · `profile` — `Assert.AreEqual(10.0, profile.GetResource("glowfruit_fruit"), 1e-9);`
@@ -318,6 +318,10 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.ProfileEconomyTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/ProfileEconomyTests.cs:80` · `profile` — `Assert.AreEqual(1100L, profile.GetWorld("ToxicCity").lastResolvedAtUnix);`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.ProfileEconomyTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/ProfileEconomyTests.cs:87` · `profile` — `Assert.IsNull(profile.GetWorld("NewWorld")); // not present yet`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.ProfileEconomyTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/ProfileEconomyTests.cs:92` · `profile` — `var ws = profile.GetWorld("NewWorld");`
+
+### `GoldenSlice`
+
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Core.RecoveryPlayerSurfacePolicy` · `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryPlayerSurfacePolicy.cs:21` · `profile` — `// profile. GoldenSlice and Diagnostic inherit the clean player-view contract.`
 
 ### `HasFlag`
 
@@ -421,7 +425,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `NewGameProfileCreated`
 
-- **EVENT_DECLARE** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:55` · `static Action<PlayerProfile>` — `public static event Action<PlayerProfile> NewGameProfileCreated;`
+- **EVENT_DECLARE** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:58` · `static Action<PlayerProfile>` — `public static event Action<PlayerProfile> NewGameProfileCreated;`
 
 ### `Null`
 
@@ -571,11 +575,11 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `SaveSystem.HasExistingProfile`
 
-- **SAVE_ACCESS** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:80` — `bool canContinue = SaveSystem.HasExistingProfile;`
+- **SAVE_ACCESS** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:84` — `bool canContinue = SaveSystem.HasExistingProfile;`
 
 ### `SaveSystem.Load`
 
-- **SAVE_ACCESS** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:121` — `SaveSystem.Instance.Load();`
+- **SAVE_ACCESS** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:133` — `SaveSystem.Instance.Load();`
 - **SAVE_ACCESS** · `Ziptide.Tests.EditMode.HomeHubFlowTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:95` — `StringAssert.Contains("SaveSystem.Instance.Load();", source);`
 
 ### `SaveSystem.Profile`
@@ -634,7 +638,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `SaveSystem.StartNewProfile`
 
-- **SAVE_ACCESS** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:115` — `PlayerProfile profile = SaveSystem.Instance.StartNewProfile();`
+- **SAVE_ACCESS** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:127` — `PlayerProfile profile = SaveSystem.Instance.StartNewProfile();`
 - **SAVE_ACCESS** · `Ziptide.Tests.EditMode.HomeHubFlowTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:94` — `StringAssert.Contains("SaveSystem.Instance.StartNewProfile()", source);`
 
 ### `SavesForBigShips`
@@ -695,7 +699,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `SettingsRequested`
 
-- **EVENT_DECLARE** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:57` · `static Action` — `public static event Action SettingsRequested;`
+- **EVENT_DECLARE** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:60` · `static Action` — `public static event Action SettingsRequested;`
 
 ### `SignalCompleted`
 

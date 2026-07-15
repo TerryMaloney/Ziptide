@@ -1,7 +1,7 @@
 {
   "tool": "recovery_event_save_graph",
-  "scannedFiles": 617,
-  "evidenceCount": 645,
+  "scannedFiles": 619,
+  "evidenceCount": 646,
   "kindCounts": {
     "AUTOSAVE": 7,
     "EVENT_DECLARE": 45,
@@ -9,7 +9,7 @@
     "EVENT_SUBSCRIBE": 80,
     "EVENT_UNSUBSCRIBE": 33,
     "PLAYER_PREFS_ACCESS": 11,
-    "PROFILE_FIELD_ACCESS": 351,
+    "PROFILE_FIELD_ACCESS": 352,
     "SAVE_ACCESS": 63
   },
   "unmatchedNamedSubscriptionCount": 47,
@@ -786,7 +786,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootHoldOrderingTests.cs",
-        "line": 36,
+        "line": 37,
         "owner": "Ziptide.Tests.PlayMode.RecoveryBootHoldOrderingTests",
         "target": "Application.logMessageReceived",
         "detail": "_capture",
@@ -795,7 +795,7 @@
       {
         "kind": "EVENT_UNSUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootHoldOrderingTests.cs",
-        "line": 43,
+        "line": 44,
         "owner": "Ziptide.Tests.PlayMode.RecoveryBootHoldOrderingTests",
         "target": "Application.logMessageReceived",
         "detail": "_capture",
@@ -967,7 +967,7 @@
       {
         "kind": "EVENT_DECLARE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-        "line": 54,
+        "line": 57,
         "owner": "Ziptide.Gameplay.HomeHubFlowState",
         "target": "BootPresentationReady",
         "detail": "static Action<bool>",
@@ -978,7 +978,7 @@
       {
         "kind": "EVENT_DECLARE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-        "line": 56,
+        "line": 59,
         "owner": "Ziptide.Gameplay.HomeHubFlowState",
         "target": "ChoiceSelected",
         "detail": "static Action<HomeHubChoice>",
@@ -1544,7 +1544,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/CreditsHud.cs",
-        "line": 63,
+        "line": 84,
         "owner": "Ziptide.Gameplay.CreditsHud",
         "target": "GetResource",
         "detail": "Profile",
@@ -2037,6 +2037,17 @@
         "target": "GetWorld",
         "detail": "profile",
         "snippet": "var ws = profile.GetWorld(\"NewWorld\");"
+      }
+    ],
+    "GoldenSlice": [
+      {
+        "kind": "PROFILE_FIELD_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryPlayerSurfacePolicy.cs",
+        "line": 21,
+        "owner": "Ziptide.Core.RecoveryPlayerSurfacePolicy",
+        "target": "GoldenSlice",
+        "detail": "profile",
+        "snippet": "// profile. GoldenSlice and Diagnostic inherit the clean player-view contract."
       }
     ],
     "HasFlag": [
@@ -2643,7 +2654,7 @@
       {
         "kind": "EVENT_DECLARE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-        "line": 55,
+        "line": 58,
         "owner": "Ziptide.Gameplay.HomeHubFlowState",
         "target": "NewGameProfileCreated",
         "detail": "static Action<PlayerProfile>",
@@ -3393,7 +3404,7 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-        "line": 80,
+        "line": 84,
         "owner": "Ziptide.Gameplay.HomeHubFlowState",
         "target": "SaveSystem.HasExistingProfile",
         "detail": "",
@@ -3404,7 +3415,7 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-        "line": 121,
+        "line": 133,
         "owner": "Ziptide.Gameplay.HomeHubFlowState",
         "target": "SaveSystem.Load",
         "detail": "",
@@ -3885,7 +3896,7 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-        "line": 115,
+        "line": 127,
         "owner": "Ziptide.Gameplay.HomeHubFlowState",
         "target": "SaveSystem.StartNewProfile",
         "detail": "",
@@ -4309,7 +4320,7 @@
       {
         "kind": "EVENT_DECLARE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-        "line": 57,
+        "line": 60,
         "owner": "Ziptide.Gameplay.HomeHubFlowState",
         "target": "SettingsRequested",
         "detail": "static Action",
@@ -7162,6 +7173,15 @@
     },
     {
       "kind": "PROFILE_FIELD_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryPlayerSurfacePolicy.cs",
+      "line": 21,
+      "owner": "Ziptide.Core.RecoveryPlayerSurfacePolicy",
+      "target": "GoldenSlice",
+      "detail": "profile",
+      "snippet": "// profile. GoldenSlice and Diagnostic inherit the clean player-view contract."
+    },
+    {
+      "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Core/Runtime/RillState.cs",
       "line": 35,
       "owner": "Ziptide.Core.RillState",
@@ -8918,7 +8938,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/CreditsHud.cs",
-      "line": 63,
+      "line": 84,
       "owner": "Ziptide.Gameplay.CreditsHud",
       "target": "GetResource",
       "detail": "Profile",
@@ -9674,7 +9694,7 @@
     {
       "kind": "EVENT_DECLARE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 54,
+      "line": 57,
       "owner": "Ziptide.Gameplay.HomeHubFlowState",
       "target": "BootPresentationReady",
       "detail": "static Action<bool>",
@@ -9683,7 +9703,7 @@
     {
       "kind": "EVENT_DECLARE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 55,
+      "line": 58,
       "owner": "Ziptide.Gameplay.HomeHubFlowState",
       "target": "NewGameProfileCreated",
       "detail": "static Action<PlayerProfile>",
@@ -9692,7 +9712,7 @@
     {
       "kind": "EVENT_DECLARE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 56,
+      "line": 59,
       "owner": "Ziptide.Gameplay.HomeHubFlowState",
       "target": "ChoiceSelected",
       "detail": "static Action<HomeHubChoice>",
@@ -9701,7 +9721,7 @@
     {
       "kind": "EVENT_DECLARE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 57,
+      "line": 60,
       "owner": "Ziptide.Gameplay.HomeHubFlowState",
       "target": "SettingsRequested",
       "detail": "static Action",
@@ -9710,7 +9730,7 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 80,
+      "line": 84,
       "owner": "Ziptide.Gameplay.HomeHubFlowState",
       "target": "SaveSystem.HasExistingProfile",
       "detail": "",
@@ -9719,7 +9739,7 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 115,
+      "line": 127,
       "owner": "Ziptide.Gameplay.HomeHubFlowState",
       "target": "SaveSystem.StartNewProfile",
       "detail": "",
@@ -9728,7 +9748,7 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 121,
+      "line": 133,
       "owner": "Ziptide.Gameplay.HomeHubFlowState",
       "target": "SaveSystem.Load",
       "detail": "",
@@ -11969,7 +11989,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootHoldOrderingTests.cs",
-      "line": 36,
+      "line": 37,
       "owner": "Ziptide.Tests.PlayMode.RecoveryBootHoldOrderingTests",
       "target": "Application.logMessageReceived",
       "detail": "_capture",
@@ -11978,7 +11998,7 @@
     {
       "kind": "EVENT_UNSUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootHoldOrderingTests.cs",
-      "line": 43,
+      "line": 44,
       "owner": "Ziptide.Tests.PlayMode.RecoveryBootHoldOrderingTests",
       "target": "Application.logMessageReceived",
       "detail": "_capture",
