@@ -10,6 +10,8 @@ namespace Ziptide.Tests.EditMode
     /// <summary>
     /// Independent-review amendment gates: device evidence must survive logcat rotation, and the
     /// three rb26 probes must remain executable in the exact Golden checkpoint candidate.
+    /// This source is the immutable candidate trigger for ordinary CI, Recovery PlayMode, and the
+    /// locked Golden Android build on one SHA.
     /// </summary>
     public sealed class RecoveryCheckpointEvidenceTests
     {
