@@ -1,26 +1,26 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-15T19:21:19.441799+00:00",
+  "generatedAtUtc": "2026-07-15T19:27:03.595336+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
     "Ziptide/Assets/Ziptide",
     "Ziptide/Assets/ZiptideNet"
   ],
-  "scannedFiles": 626,
-  "findingCount": 2147,
+  "scannedFiles": 628,
+  "findingCount": 2151,
   "categoryCounts": {
     "bootstrap": 29,
-    "diagnostics": 457,
+    "diagnostics": 458,
     "events": 64,
     "fallback_debt": 119,
     "global_render": 78,
     "input": 149,
     "materials": 222,
     "persistence": 17,
-    "runtime_creation": 574,
-    "runtime_ui": 116,
+    "runtime_creation": 576,
+    "runtime_ui": 117,
     "save_state": 234,
     "scene_loading": 6,
     "xri_ownership": 82
@@ -29,7 +29,7 @@
     "AUTOSAVE_CALL": 8,
     "CAMERA_MAIN_REFERENCE": 40,
     "CAMERA_POST_PROCESSING": 1,
-    "CANVAS_COMPONENT": 4,
+    "CANVAS_COMPONENT": 5,
     "CREATE_PRIMITIVE": 229,
     "DIRECT_SCENE_LOAD": 2,
     "DIRECT_SCENE_LOAD_ASYNC": 4,
@@ -41,7 +41,7 @@
     "FRAME_BUTTON_POLL": 1,
     "INPUT_ACTION_REFERENCE": 142,
     "INPUT_BUTTON_REFERENCE": 6,
-    "NEW_GAME_OBJECT": 345,
+    "NEW_GAME_OBJECT": 347,
     "PLAYER_PROFILE_REFERENCE": 133,
     "RENDER_SETTINGS_MUTATION": 36,
     "RUNTIME_BOOTSTRAP": 23,
@@ -57,7 +57,7 @@
     "XRI_MANAGER_LOOKUP": 40,
     "XR_INTERACTABLE_COMPONENT": 61,
     "XR_UI_INPUT_MODULE": 2,
-    "ZIPTIDE_LOG_TAG": 457
+    "ZIPTIDE_LOG_TAG": 458
   },
   "findings": [
     {
@@ -4160,7 +4160,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
-      "line": 169,
+      "line": 170,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
       "snippet": "int travelStartsBefore = CountLogs(\"ZIPTIDE: TRAVEL_START\");"
     },
@@ -4169,7 +4169,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
-      "line": 188,
+      "line": 189,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
       "snippet": "Assert.AreEqual(travelStartsBefore, CountLogs(\"ZIPTIDE: TRAVEL_START\"),"
     },
@@ -4178,7 +4178,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
-      "line": 196,
+      "line": 197,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
       "snippet": "Assert.GreaterOrEqual(CountLogs(\"ZIPTIDE: BOARD_PROBE surface=HomeHub phase=select\"), 1,"
     },
@@ -4226,6 +4226,15 @@
       "line": 18,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryPersistentDiagnosticRingTests",
       "snippet": "string token = \"ZIPTIDE: DIAG_RING_TEST frame=\" + Time.frameCount;"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeArtifactGuard.cs",
+      "line": 116,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryRuntimeArtifactFinding",
+      "snippet": "Debug.Log(\"ZIPTIDE: RECOVERY_STALE_ARTIFACT_REMOVED path=\""
     },
     {
       "category": "diagnostics",
@@ -7814,7 +7823,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
-      "line": 108,
+      "line": 109,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
       "snippet": "Assert.AreEqual(1, ActiveManagerCount(settled, \"InputActionManager\"));"
     },
@@ -15238,6 +15247,24 @@
       "category": "runtime_creation",
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeArtifactGuardTests.cs",
+      "line": 33,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryRuntimeArtifactGuardTests",
+      "snippet": "var debug = new GameObject(\"Ziptide_DebugHUD\");"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeArtifactGuardTests.cs",
+      "line": 35,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryRuntimeArtifactGuardTests",
+      "snippet": "var photon = new GameObject(\"PhotonMono\");"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs",
       "line": 127,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryRuntimeCensusTests",
@@ -15467,6 +15494,15 @@
       "line": 87,
       "symbol": "Ziptide.Gameplay.ObjectiveBoard",
       "snippet": "var canvas = canvasGo.AddComponent<Canvas>();"
+    },
+    {
+      "category": "runtime_ui",
+      "code": "CANVAS_COMPONENT",
+      "description": "Canvas creation/reference",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeArtifactGuardTests.cs",
+      "line": 34,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryRuntimeArtifactGuardTests",
+      "snippet": "debug.AddComponent<Canvas>();"
     },
     {
       "category": "runtime_ui",
@@ -18920,7 +18956,7 @@
       "code": "XRI_MANAGER_ASSIGN",
       "description": "Explicit interactable interactionManager assignment",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
-      "line": 126,
+      "line": 127,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
       "snippet": "(settings.interactionManager == null || newGame.interactionManager == null); frame++)"
     },

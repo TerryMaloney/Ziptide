@@ -1,6 +1,6 @@
 {
   "tool": "recovery_event_save_graph",
-  "scannedFiles": 626,
+  "scannedFiles": 628,
   "evidenceCount": 658,
   "kindCounts": {
     "AUTOSAVE": 7,
@@ -5847,7 +5847,7 @@
       {
         "kind": "EVENT_INVOKE",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoverySceneTestIsolation.cs",
-        "line": 130,
+        "line": 141,
         "owner": "Ziptide.Tests.PlayMode.RecoverySceneTestIsolation",
         "target": "method",
         "detail": "",
@@ -12436,7 +12436,7 @@
     {
       "kind": "EVENT_INVOKE",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoverySceneTestIsolation.cs",
-      "line": 130,
+      "line": 141,
       "owner": "Ziptide.Tests.PlayMode.RecoverySceneTestIsolation",
       "target": "method",
       "detail": "",

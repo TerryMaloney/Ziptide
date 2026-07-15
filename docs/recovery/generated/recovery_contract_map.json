@@ -1,8 +1,8 @@
 {
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
-  "scannedFiles": 626,
-  "findingCount": 2147,
+  "scannedFiles": 628,
+  "findingCount": 2151,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -1876,7 +1876,7 @@
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
-            "line": 108,
+            "line": 109,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
             "snippet": "Assert.AreEqual(1, ActiveManagerCount(settled, \"InputActionManager\"));"
           }
@@ -10422,6 +10422,40 @@
         ]
       },
       {
+        "owner": "Ziptide.Tests.PlayMode.RecoveryRuntimeArtifactGuardTests",
+        "evidenceCount": 3,
+        "codes": [
+          "CANVAS_COMPONENT",
+          "NEW_GAME_OBJECT"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeArtifactGuardTests.cs"
+        ],
+        "evidence": [
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeArtifactGuardTests.cs",
+            "line": 33,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryRuntimeArtifactGuardTests",
+            "snippet": "var debug = new GameObject(\"Ziptide_DebugHUD\");"
+          },
+          {
+            "code": "CANVAS_COMPONENT",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeArtifactGuardTests.cs",
+            "line": 34,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryRuntimeArtifactGuardTests",
+            "snippet": "debug.AddComponent<Canvas>();"
+          },
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeArtifactGuardTests.cs",
+            "line": 35,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryRuntimeArtifactGuardTests",
+            "snippet": "var photon = new GameObject(\"PhotonMono\");"
+          }
+        ]
+      },
+      {
         "owner": "Ziptide.Tests.PlayMode.RecoveryRuntimeCensusTests",
         "evidenceCount": 4,
         "codes": [
@@ -11927,7 +11961,7 @@
           {
             "code": "XRI_MANAGER_ASSIGN",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
-            "line": 126,
+            "line": 127,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
             "snippet": "(settings.interactionManager == null || newGame.interactionManager == null); frame++)"
           }

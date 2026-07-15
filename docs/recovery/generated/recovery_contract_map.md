@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
-- Scanned files: **626**
-- Scanner findings: **2147**
+- Scanned files: **628**
+- Scanner findings: **2151**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -467,7 +467,7 @@ None.
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:79` **INPUT_ACTION_REFERENCE** — `InputActionManager inputManager = null;`
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:85` **INPUT_ACTION_REFERENCE** — `inputManager = UnityEngine.Object.FindObjectOfType<InputActionManager>();`
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:95` **INPUT_ACTION_REFERENCE** — `Assert.IsNotNull(inputManager, "The actual _Boot scene has no InputActionManager.");`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:108` **INPUT_ACTION_REFERENCE** — `Assert.AreEqual(1, ActiveManagerCount(settled, "InputActionManager"));`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:109` **INPUT_ACTION_REFERENCE** — `Assert.AreEqual(1, ActiveManagerCount(settled, "InputActionManager"));`
 
 ### `Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests` — 14 signal(s)
 
@@ -2224,6 +2224,14 @@ None.
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs`
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:98` **NEW_GAME_OBJECT** — `var host = new GameObject(name);`
 
+### `Ziptide.Tests.PlayMode.RecoveryRuntimeArtifactGuardTests` — 3 signal(s)
+
+- Codes: `CANVAS_COMPONENT`, `NEW_GAME_OBJECT`
+- Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeArtifactGuardTests.cs`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeArtifactGuardTests.cs:33` **NEW_GAME_OBJECT** — `var debug = new GameObject("Ziptide_DebugHUD");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeArtifactGuardTests.cs:34` **CANVAS_COMPONENT** — `debug.AddComponent<Canvas>();`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeArtifactGuardTests.cs:35` **NEW_GAME_OBJECT** — `var photon = new GameObject("PhotonMono");`
+
 ### `Ziptide.Tests.PlayMode.RecoveryRuntimeCensusTests` — 4 signal(s)
 
 - Codes: `CANVAS_COMPONENT`, `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`, `TEXTMESH_COMPONENT`
@@ -2585,7 +2593,7 @@ None.
 - Codes: `XRI_MANAGER_ASSIGN`, `XRI_MANAGER_LOOKUP`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs`
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:84` **XRI_MANAGER_LOOKUP** — `manager = UnityEngine.Object.FindObjectOfType<XRInteractionManager>();`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:126` **XRI_MANAGER_ASSIGN** — `(settings.interactionManager == null || newGame.interactionManager == null); frame++)`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:127` **XRI_MANAGER_ASSIGN** — `(settings.interactionManager == null || newGame.interactionManager == null); frame++)`
 
 ### `Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests` — 5 signal(s)
 
