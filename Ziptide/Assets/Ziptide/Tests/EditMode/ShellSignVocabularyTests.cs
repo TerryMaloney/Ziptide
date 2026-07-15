@@ -145,8 +145,6 @@ namespace Ziptide.Tests.EditMode
             StringAssert.DoesNotContain("XRBaseInteractable", allSource);
             StringAssert.DoesNotContain("XRSimpleInteractable", allSource);
 
-            // Runtime remains pure: the baker only returns pixel arrays. Commit 2 deliberately moved
-            // persistent texture/material creation into the create-only Editor asset author.
             StringAssert.DoesNotContain("new Texture2D", glyphSource);
             StringAssert.Contains("new Texture2D", recipeSource);
             StringAssert.Contains("AssetDatabase.CreateAsset(texture, texturePath);", recipeSource);
@@ -166,6 +164,8 @@ namespace Ziptide.Tests.EditMode
             string source = File.ReadAllText(path);
             const string token = "SignRecipeLibrary.EnsureAllAuthored();";
             Assert.AreEqual(1, Count(source, token));
+            StringAssert.Contains("RunRequired(\"SignRecipeLibrary.EnsureAllAuthored\"", source,
+                "the one sign recipe producer must remain fail-closed");
         }
 
         private static int Count(string source, string token)
