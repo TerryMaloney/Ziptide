@@ -12,19 +12,49 @@ namespace Ziptide.Tests.PlayMode
         private readonly List<GameObject> _objects = new List<GameObject>();
         private readonly List<Material> _materials = new List<Material>();
 
-        // This cleanup is entirely synchronous. Using a coroutine UnityTearDown here caused the
-        // headless runner to wait for the global 180-second coroutine timeout even though the test
-        // body had already written and validated its PNG. Keep the same destruction work, but do it
-        // as a normal NUnit teardown so cleanup cannot become the result under test.
+        // Immediate destruction of the controlled camera/primitives consistently stalls the Linux
+        // headless runner after a valid PNG. Detach render state, deactivate the test scene objects,
+        // then queue ordinary PlayMode destruction. The next runner frame owns disposal rather than
+        // making cleanup itself the timed result under test.
         [TearDown]
         public void TearDown()
         {
+            int objectCount = 0;
+            int materialCount = 0;
             for (int i = 0; i < _objects.Count; i++)
-                if (_objects[i] != null) Object.DestroyImmediate(_objects[i]);
+            {
+                GameObject go = _objects[i];
+                if (go == null) continue;
+
+                Camera camera = go.GetComponent<Camera>();
+                if (camera != null)
+                {
+                    camera.enabled = false;
+                    camera.targetTexture = null;
+                }
+
+                Renderer[] renderers = go.GetComponentsInChildren<Renderer>(true);
+                for (int rendererIndex = 0; rendererIndex < renderers.Length; rendererIndex++)
+                    if (renderers[rendererIndex] != null)
+                        renderers[rendererIndex].sharedMaterial = null;
+
+                go.SetActive(false);
+                Object.Destroy(go);
+                objectCount++;
+            }
             _objects.Clear();
+
             for (int i = 0; i < _materials.Count; i++)
-                if (_materials[i] != null) Object.DestroyImmediate(_materials[i]);
+            {
+                Material material = _materials[i];
+                if (material == null) continue;
+                Object.Destroy(material);
+                materialCount++;
+            }
             _materials.Clear();
+
+            Debug.Log("ZIPTIDE: RECOVERY_CONTROLLED_RENDERER_CLEANUP_QUEUED objects="
+                + objectCount + " materials=" + materialCount);
         }
 
         [UnityTest]
@@ -97,9 +127,15 @@ namespace Ziptide.Tests.PlayMode
             Assert.Less(metrics.nearBlackRatio, 0.98d,
                 "Controlled frame is almost entirely black.");
             Assert.Less(metrics.nearWhiteRatio, 0.98d,
-                "Controlled frame is almost entirely white.");
+                "Controlled frame is almost entirely white/clipped.");
             Assert.Less(metrics.transparentRatio, 0.01d,
                 "Controlled camera capture unexpectedly produced transparent pixels.");
+
+            Debug.Log("ZIPTIDE: RECOVERY_CONTROLLED_RENDERER_ASSERTIONS_OK colors="
+                + metrics.quantizedColorCount
+                + " dynamicRange=" + metrics.dynamicRange.ToString("F4")
+                + " pngBytes=" + metrics.pngBytes);
+            yield return null;
         }
 
         private void MakePrimitive(
