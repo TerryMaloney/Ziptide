@@ -69,9 +69,9 @@ jobs:
           cat > docs/recovery/generated/recovery_playmode_observation.md <<EOF
           # Recovery PlayMode Observation
 
-          - Tested SHA: `${GITHUB_SHA}`
-          - Workflow run: `${GITHUB_RUN_ID}`
-          - Attempt: `${GITHUB_RUN_ATTEMPT}`
+          - Tested SHA: \`${GITHUB_SHA}\`
+          - Workflow run: \`${GITHUB_RUN_ID}\`
+          - Attempt: \`${GITHUB_RUN_ATTEMPT}\`
           - Test step outcome: **${{ steps.playmode.outcome }}**
           - Scope: R1 recovery PlayMode suite
           - Unity: ${UNITY_VERSION}
