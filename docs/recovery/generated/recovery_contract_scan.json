@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-15T10:50:58.492562+00:00",
+  "generatedAtUtc": "2026-07-15T10:51:36.799514+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -2252,7 +2252,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-      "line": 115,
+      "line": 136,
       "symbol": "Ziptide.Gameplay.PvpProgressionRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: PVP_UNLOCK flag=\" + flag);"
     },
@@ -2261,7 +2261,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-      "line": 118,
+      "line": 139,
       "symbol": "Ziptide.Gameplay.PvpProgressionRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: PVP_PAYOUT credits=\" + pay.Total + \" won=\" + won"
     },
@@ -15761,7 +15761,7 @@
       "code": "AUTOSAVE_CALL",
       "description": "Autosave request",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-      "line": 122,
+      "line": 143,
       "symbol": "Ziptide.Gameplay.PvpProgressionRuntime",
       "snippet": "SaveSystem.AutosaveNow(\"pvp_match\");"
     },
@@ -17282,7 +17282,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-      "line": 72,
+      "line": 93,
       "symbol": "Ziptide.Gameplay.PvpProgressionRuntime",
       "snippet": "var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
     },
@@ -17291,7 +17291,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-      "line": 122,
+      "line": 143,
       "symbol": "Ziptide.Gameplay.PvpProgressionRuntime",
       "snippet": "SaveSystem.AutosaveNow(\"pvp_match\");"
     },

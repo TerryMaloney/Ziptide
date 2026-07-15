@@ -2246,7 +2246,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-        "line": 113,
+        "line": 134,
         "owner": "Ziptide.Gameplay.PvpProgressionRuntime",
         "target": "HasFlag",
         "detail": "profile",
@@ -3261,7 +3261,7 @@
       {
         "kind": "AUTOSAVE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-        "line": 122,
+        "line": 143,
         "owner": "Ziptide.Gameplay.PvpProgressionRuntime",
         "target": "SaveSystem.AutosaveNow",
         "detail": "pvp_match",
@@ -3270,7 +3270,7 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-        "line": 122,
+        "line": 143,
         "owner": "Ziptide.Gameplay.PvpProgressionRuntime",
         "target": "SaveSystem.AutosaveNow",
         "detail": "",
@@ -3492,7 +3492,7 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-        "line": 72,
+        "line": 93,
         "owner": "Ziptide.Gameplay.PvpProgressionRuntime",
         "target": "SaveSystem.Profile",
         "detail": "",
@@ -4013,7 +4013,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-        "line": 38,
+        "line": 49,
         "owner": "Ziptide.Gameplay.PvpProgressionRuntime",
         "target": "SceneManager.sceneLoaded",
         "detail": "OnSceneLoaded",
@@ -4022,7 +4022,7 @@
       {
         "kind": "EVENT_UNSUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-        "line": 44,
+        "line": 55,
         "owner": "Ziptide.Gameplay.PvpProgressionRuntime",
         "target": "SceneManager.sceneLoaded",
         "detail": "OnSceneLoaded",
@@ -4141,7 +4141,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-        "line": 114,
+        "line": 135,
         "owner": "Ziptide.Gameplay.PvpProgressionRuntime",
         "target": "SetFlag",
         "detail": "profile",
@@ -4578,7 +4578,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-        "line": 55,
+        "line": 76,
         "owner": "Ziptide.Gameplay.PvpProgressionRuntime",
         "target": "_director.KillScored",
         "detail": "OnKill",
@@ -4587,7 +4587,7 @@
       {
         "kind": "EVENT_UNSUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-        "line": 63,
+        "line": 84,
         "owner": "Ziptide.Gameplay.PvpProgressionRuntime",
         "target": "_director.KillScored",
         "detail": "OnKill",
@@ -4598,7 +4598,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-        "line": 56,
+        "line": 77,
         "owner": "Ziptide.Gameplay.PvpProgressionRuntime",
         "target": "_director.MatchEnded",
         "detail": "OnMatchEnded",
@@ -4607,7 +4607,7 @@
       {
         "kind": "EVENT_UNSUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-        "line": 64,
+        "line": 85,
         "owner": "Ziptide.Gameplay.PvpProgressionRuntime",
         "target": "_director.MatchEnded",
         "detail": "OnMatchEnded",
@@ -6024,7 +6024,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-        "line": 81,
+        "line": 102,
         "owner": "Ziptide.Gameplay.PvpProgressionRuntime",
         "target": "pvpCareer",
         "detail": "profile",
@@ -9045,7 +9045,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-      "line": 38,
+      "line": 49,
       "owner": "Ziptide.Gameplay.PvpProgressionRuntime",
       "target": "SceneManager.sceneLoaded",
       "detail": "OnSceneLoaded",
@@ -9054,7 +9054,7 @@
     {
       "kind": "EVENT_UNSUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-      "line": 44,
+      "line": 55,
       "owner": "Ziptide.Gameplay.PvpProgressionRuntime",
       "target": "SceneManager.sceneLoaded",
       "detail": "OnSceneLoaded",
@@ -9063,7 +9063,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-      "line": 55,
+      "line": 76,
       "owner": "Ziptide.Gameplay.PvpProgressionRuntime",
       "target": "_director.KillScored",
       "detail": "OnKill",
@@ -9072,7 +9072,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-      "line": 56,
+      "line": 77,
       "owner": "Ziptide.Gameplay.PvpProgressionRuntime",
       "target": "_director.MatchEnded",
       "detail": "OnMatchEnded",
@@ -9081,7 +9081,7 @@
     {
       "kind": "EVENT_UNSUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-      "line": 63,
+      "line": 84,
       "owner": "Ziptide.Gameplay.PvpProgressionRuntime",
       "target": "_director.KillScored",
       "detail": "OnKill",
@@ -9090,7 +9090,7 @@
     {
       "kind": "EVENT_UNSUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-      "line": 64,
+      "line": 85,
       "owner": "Ziptide.Gameplay.PvpProgressionRuntime",
       "target": "_director.MatchEnded",
       "detail": "OnMatchEnded",
@@ -9099,7 +9099,7 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-      "line": 72,
+      "line": 93,
       "owner": "Ziptide.Gameplay.PvpProgressionRuntime",
       "target": "SaveSystem.Profile",
       "detail": "",
@@ -9108,7 +9108,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-      "line": 81,
+      "line": 102,
       "owner": "Ziptide.Gameplay.PvpProgressionRuntime",
       "target": "pvpCareer",
       "detail": "profile",
@@ -9117,7 +9117,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-      "line": 113,
+      "line": 134,
       "owner": "Ziptide.Gameplay.PvpProgressionRuntime",
       "target": "HasFlag",
       "detail": "profile",
@@ -9126,7 +9126,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-      "line": 114,
+      "line": 135,
       "owner": "Ziptide.Gameplay.PvpProgressionRuntime",
       "target": "SetFlag",
       "detail": "profile",
@@ -9135,7 +9135,7 @@
     {
       "kind": "AUTOSAVE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-      "line": 122,
+      "line": 143,
       "owner": "Ziptide.Gameplay.PvpProgressionRuntime",
       "target": "SaveSystem.AutosaveNow",
       "detail": "pvp_match",
@@ -9144,7 +9144,7 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-      "line": 122,
+      "line": 143,
       "owner": "Ziptide.Gameplay.PvpProgressionRuntime",
       "target": "SaveSystem.AutosaveNow",
       "detail": "",

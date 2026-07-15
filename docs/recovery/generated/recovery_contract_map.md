@@ -2847,9 +2847,9 @@ None.
 - Codes: `AUTOSAVE_CALL`, `SAVE_SYSTEM_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:10` **SAVE_SYSTEM_REFERENCE** — `/// like SaveSystem (no scene edit, so every already-committed arena gets it): on each scene`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:72` **SAVE_SYSTEM_REFERENCE** — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:122` **AUTOSAVE_CALL** — `SaveSystem.AutosaveNow("pvp_match");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:122` **SAVE_SYSTEM_REFERENCE** — `SaveSystem.AutosaveNow("pvp_match");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:93` **SAVE_SYSTEM_REFERENCE** — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:143` **AUTOSAVE_CALL** — `SaveSystem.AutosaveNow("pvp_match");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:143` **SAVE_SYSTEM_REFERENCE** — `SaveSystem.AutosaveNow("pvp_match");`
 
 ### `Ziptide.Gameplay.QuartersPhotoWall` — 2 signal(s)
 

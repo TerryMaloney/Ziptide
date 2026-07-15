@@ -12925,21 +12925,21 @@
           {
             "code": "SAVE_SYSTEM_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-            "line": 72,
+            "line": 93,
             "symbol": "Ziptide.Gameplay.PvpProgressionRuntime",
             "snippet": "var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
           },
           {
             "code": "AUTOSAVE_CALL",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-            "line": 122,
+            "line": 143,
             "symbol": "Ziptide.Gameplay.PvpProgressionRuntime",
             "snippet": "SaveSystem.AutosaveNow(\"pvp_match\");"
           },
           {
             "code": "SAVE_SYSTEM_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-            "line": 122,
+            "line": 143,
             "symbol": "Ziptide.Gameplay.PvpProgressionRuntime",
             "snippet": "SaveSystem.AutosaveNow(\"pvp_match\");"
           }
