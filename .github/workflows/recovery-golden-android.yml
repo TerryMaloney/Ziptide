@@ -6,6 +6,7 @@ on:
       - terry-local-wip
     paths:
       - '.github/workflows/recovery-golden-android.yml'
+      - '.github/workflows/recovery-playmode.yml'
       - 'Ziptide/Assets/Ziptide/Core/Runtime/Recovery/**'
       - 'Ziptide/Assets/Ziptide/Editor/Build/RecoveryBuildAndroid.cs'
       - 'Ziptide/Assets/Ziptide/Editor/Build/BuildAndroid.cs'
