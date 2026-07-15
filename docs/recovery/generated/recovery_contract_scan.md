@@ -1,7 +1,7 @@
 # ZIPTIDE Recovery Contract Scan
 
 - Scanned files: **612**
-- Findings: **2047**
+- Findings: **2048**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
@@ -16,7 +16,7 @@
 | `input` | 115 |
 | `materials` | 223 |
 | `persistence` | 17 |
-| `runtime_creation` | 562 |
+| `runtime_creation` | 563 |
 | `runtime_ui` | 114 |
 | `save_state` | 234 |
 | `scene_loading` | 5 |
@@ -1644,7 +1644,8 @@
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/ZiplineSignalTests.cs:160` · `Ziptide.Tests.EditMode.ZiplineSignalTests` — Runtime GameObject construction. `var go = new GameObject(name);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/PlayModeInfrastructureTests.cs:20` · `Ziptide.Tests.PlayMode.PlayModeInfrastructureTests` — Runtime GameObject construction. `var host = new GameObject("__RECOVERY_PLAYMODE_FRAME_PROBE");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryCoreBootstrapGateTests.cs:84` · `Ziptide.Tests.PlayMode.RecoveryCoreBootstrapGateTests` — Runtime GameObject construction. `var cameraHost = new GameObject("__RECOVERY_CORE_GATE_CAMERA");`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs:123` · `Ziptide.Tests.PlayMode.RecoveryGateBypassTests` — Runtime GameObject construction. `var go = new GameObject(name);`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs:108` · `Ziptide.Tests.PlayMode.RecoveryGateBypassTests` — Runtime GameObject construction. `int launcherCreate = netSource.IndexOf("new GameObject(\"__PhotonPvpLauncher\")", startOnline, StringComparison.Ordinal);`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs:152` · `Ziptide.Tests.PlayMode.RecoveryGateBypassTests` — Runtime GameObject construction. `var go = new GameObject(name);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:42` · `Ziptide.Tests.PlayMode.RecoveryTestRig` — Runtime GameObject construction. `Root = new GameObject(RootName);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:49` · `Ziptide.Tests.PlayMode.RecoveryTestRig` — Runtime GameObject construction. `var managerHost = new GameObject("InteractionManager");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:62` · `Ziptide.Tests.PlayMode.RecoveryTestRig` — Runtime GameObject construction. `var inputHost = new GameObject("InputActionManager");`

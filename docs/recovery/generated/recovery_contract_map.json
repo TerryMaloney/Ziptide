@@ -2,7 +2,7 @@
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
   "scannedFiles": 612,
-  "findingCount": 2047,
+  "findingCount": 2048,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -9943,7 +9943,7 @@
       },
       {
         "owner": "Ziptide.Tests.PlayMode.RecoveryGateBypassTests",
-        "evidenceCount": 1,
+        "evidenceCount": 2,
         "codes": [
           "NEW_GAME_OBJECT"
         ],
@@ -9954,7 +9954,14 @@
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs",
-            "line": 123,
+            "line": 108,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryGateBypassTests",
+            "snippet": "int launcherCreate = netSource.IndexOf(\"new GameObject(\\\"__PhotonPvpLauncher\\\")\", startOnline, StringComparison.Ordinal);"
+          },
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs",
+            "line": 152,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryGateBypassTests",
             "snippet": "var go = new GameObject(name);"
           }

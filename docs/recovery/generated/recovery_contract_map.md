@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
 - Scanned files: **612**
-- Scanner findings: **2047**
+- Scanner findings: **2048**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -2116,11 +2116,12 @@ None.
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryCoreBootstrapGateTests.cs:84` **NEW_GAME_OBJECT** — `var cameraHost = new GameObject("__RECOVERY_CORE_GATE_CAMERA");`
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryCoreBootstrapGateTests.cs:88` **CREATE_PRIMITIVE** — `var rendererHost = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 
-### `Ziptide.Tests.PlayMode.RecoveryGateBypassTests` — 1 signal(s)
+### `Ziptide.Tests.PlayMode.RecoveryGateBypassTests` — 2 signal(s)
 
 - Codes: `NEW_GAME_OBJECT`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs:123` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs:108` **NEW_GAME_OBJECT** — `int launcherCreate = netSource.IndexOf("new GameObject(\"__PhotonPvpLauncher\")", startOnline, StringComparison.Ordinal);`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs:152` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
 
 ### `Ziptide.Tests.PlayMode.RecoveryTestRig` — 9 signal(s)
 

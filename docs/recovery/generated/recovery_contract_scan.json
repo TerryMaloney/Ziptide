@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-15T11:54:32.098662+00:00",
+  "generatedAtUtc": "2026-07-15T11:58:48.696360+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -9,7 +9,7 @@
     "Ziptide/Assets/ZiptideNet"
   ],
   "scannedFiles": 612,
-  "findingCount": 2047,
+  "findingCount": 2048,
   "categoryCounts": {
     "bootstrap": 27,
     "diagnostics": 421,
@@ -19,7 +19,7 @@
     "input": 115,
     "materials": 223,
     "persistence": 17,
-    "runtime_creation": 562,
+    "runtime_creation": 563,
     "runtime_ui": 114,
     "save_state": 234,
     "scene_loading": 5,
@@ -41,7 +41,7 @@
     "FRAME_BUTTON_POLL": 1,
     "INPUT_ACTION_REFERENCE": 108,
     "INPUT_BUTTON_REFERENCE": 6,
-    "NEW_GAME_OBJECT": 334,
+    "NEW_GAME_OBJECT": 335,
     "PLAYER_PROFILE_REFERENCE": 133,
     "RENDER_SETTINGS_MUTATION": 36,
     "RUNTIME_BOOTSTRAP": 21,
@@ -14483,7 +14483,16 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs",
-      "line": 123,
+      "line": 108,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryGateBypassTests",
+      "snippet": "int launcherCreate = netSource.IndexOf(\"new GameObject(\\\"__PhotonPvpLauncher\\\")\", startOnline, StringComparison.Ordinal);"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs",
+      "line": 152,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryGateBypassTests",
       "snippet": "var go = new GameObject(name);"
     },
