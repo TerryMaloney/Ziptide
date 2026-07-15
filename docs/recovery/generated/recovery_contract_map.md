@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
 - Scanned files: **635**
-- Scanner findings: **2204**
+- Scanner findings: **2207**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -2633,7 +2633,7 @@ None.
 
 - Codes: `XRI_MANAGER_ASSIGN`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:78` **XRI_MANAGER_ASSIGN** — `rightRay.interactionManager = canonicalManager;`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:208` **XRI_MANAGER_ASSIGN** — `ray.interactionManager = canonicalManager;`
 
 ### `Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests` — 1 signal(s)
 
@@ -4225,6 +4225,14 @@ None.
 - Codes: `FALLBACK_MARKER`
 - Paths: `Ziptide/Assets/Ziptide/Tests/EditMode/ItemRegistryConventionTests.cs`
   - `Ziptide/Assets/Ziptide/Tests/EditMode/ItemRegistryConventionTests.cs:11` **FALLBACK_MARKER** — `/// device (the loaded-objects fallback only sees assets a loaded scene happens to reference — a`
+
+### `Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation` — 3 signal(s)
+
+- Codes: `FALLBACK_MARKER`
+- Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:282` **FALLBACK_MARKER** — `XRRayInteractor fallback = null;`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:291` **FALLBACK_MARKER** — `if (fallback == null) fallback = ray;`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:295` **FALLBACK_MARKER** — `return fallback;`
 
 ### `Ziptide.Tests.PlayMode.RecoveryExposureProfileTests` — 1 signal(s)
 

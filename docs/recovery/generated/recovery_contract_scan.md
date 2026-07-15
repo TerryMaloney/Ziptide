@@ -1,7 +1,7 @@
 # ZIPTIDE Recovery Contract Scan
 
 - Scanned files: **635**
-- Findings: **2204**
+- Findings: **2207**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
@@ -11,7 +11,7 @@
 | `bootstrap` | 29 |
 | `diagnostics` | 467 |
 | `events` | 64 |
-| `fallback_debt` | 119 |
+| `fallback_debt` | 122 |
 | `global_render` | 78 |
 | `input` | 160 |
 | `materials` | 226 |
@@ -477,7 +477,7 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/EditMode/ZiplineSignalTests.cs:105` · `Ziptide.Tests.EditMode.ZiplineSignalTests` — ZIPTIDE diagnostic tag. `new Regex("ZIPTIDE: ZIPLINE_SUBSCRIBER_FAIL phase=end reason=end expected"));`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/EditMode/ZiplineSignalTests.cs:137` · `Ziptide.Tests.EditMode.ZiplineSignalTests` — ZIPTIDE diagnostic tag. `int startLog = source.IndexOf("ZIPTIDE: ZIPLINE_RIDE_START", StringComparison.Ordinal);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/EditMode/ZiplineSignalTests.cs:142` · `Ziptide.Tests.EditMode.ZiplineSignalTests` — ZIPTIDE diagnostic tag. `int endLog = source.IndexOf("ZIPTIDE: ZIPLINE_RIDE_END reason=", StringComparison.Ordinal);`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:80` · `Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RECOVERY_TRACKED_CONTROLLER_SIM ray=" + simulation.RightRayPath`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:121` · `Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RECOVERY_TRACKED_RIG_SIM head="`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootHoldOrderingTests.cs:83` · `Ziptide.Tests.PlayMode.RecoveryBootHoldOrderingTests` — ZIPTIDE diagnostic tag. `int armedIndex = FindLog("ZIPTIDE: BOOT_HOLD on");`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootHoldOrderingTests.cs:84` · `Ziptide.Tests.PlayMode.RecoveryBootHoldOrderingTests` — ZIPTIDE diagnostic tag. `int readyIndex = FindLog("ZIPTIDE: HOME_HUB_READY");`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootHoldOrderingTests.cs:85` · `Ziptide.Tests.PlayMode.RecoveryBootHoldOrderingTests` — ZIPTIDE diagnostic tag. `int probeIndex = FindLog("ZIPTIDE: BOARD_PROBE surface=HomeHub phase=aim");`
@@ -699,6 +699,9 @@
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/EditMode/ForgeBuildingKitTests.cs:93` · `Ziptide.Tests.EditMode.ForgeBuildingKitTests` — Source text marks fallback/prototype debt. `id + " lost the structured primitive fallback (editor/no-bake look)");`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/EditMode/ForgeGaitMotorTests.cs:9` · `Ziptide.Tests.EditMode.ForgeGaitMotorTests` — Source text marks fallback/prototype debt. `/// the real skeleton, applies a motor pose the way ForgeCreatureAnimator does, and proves the`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/EditMode/ItemRegistryConventionTests.cs:11` · `Ziptide.Tests.EditMode.ItemRegistryConventionTests` — Source text marks fallback/prototype debt. `/// device (the loaded-objects fallback only sees assets a loaded scene happens to reference — a`
+- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:282` · `Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation` — Source text marks fallback/prototype debt. `XRRayInteractor fallback = null;`
+- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:291` · `Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation` — Source text marks fallback/prototype debt. `if (fallback == null) fallback = ray;`
+- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:295` · `Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation` — Source text marks fallback/prototype debt. `return fallback;`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs:125` · `Ziptide.Tests.PlayMode.RecoveryExposureProfileTests` — Source text marks fallback/prototype debt. `"Global fallback mutators are not diagnostic surfaces.");`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeCreatureAnimator.cs:7` · `Ziptide.Visuals.ForgeCreatureAnimator` — Source text marks fallback/prototype debt. `/// built skeleton once; every LateUpdate it measures its OWN world speed (no Gameplay`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeCreatureAnimator.cs:28` · `Ziptide.Visuals.ForgeCreatureAnimator` — Source text marks fallback/prototype debt. `/// <summary>Wire the animator to a built skeleton (ForgeSkinnedBuilder.Result.bones).</summary>`
@@ -2200,7 +2203,7 @@
 - **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:271` · `Ziptide.Gameplay.WorldTravelStation` — Explicit interactable interactionManager assignment. `interactable.interactionManager = mgr;`
 - **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:246` · `Ziptide.Ship.ShipFlightRuntime` — Explicit interactable interactionManager assignment. `if (mgr != null) interactable.interactionManager = mgr;`
 - **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:151` · `Ziptide.Ship.VehicleRuntime` — Explicit interactable interactionManager assignment. `if (mgr != null) interactable.interactionManager = mgr;`
-- **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:78` · `Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation` — Explicit interactable interactionManager assignment. `rightRay.interactionManager = canonicalManager;`
+- **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:208` · `Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation` — Explicit interactable interactionManager assignment. `ray.interactionManager = canonicalManager;`
 - **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:127` · `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` — Explicit interactable interactionManager assignment. `(settings.interactionManager == null || newGame.interactionManager == null); frame++)`
 - **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:92` · `Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests` — Explicit interactable interactionManager assignment. `if (interactable.interactionManager == null)`
 - **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:97` · `Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests` — Explicit interactable interactionManager assignment. `for (int frame = 0; frame < 10 && interactable.interactionManager == null; frame++)`
