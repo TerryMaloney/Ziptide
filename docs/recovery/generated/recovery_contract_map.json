@@ -393,7 +393,7 @@
           {
             "code": "DONT_DESTROY_ON_LOAD",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarp.cs",
-            "line": 76,
+            "line": 78,
             "symbol": "Ziptide.Gameplay.DevTools.DevWarp",
             "snippet": "Object.DontDestroyOnLoad(go);"
           }
@@ -5638,7 +5638,7 @@
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarp.cs",
-            "line": 75,
+            "line": 77,
             "symbol": "Ziptide.Gameplay.DevTools.DevWarp",
             "snippet": "var go = new GameObject(\"__DevWarpRunner\");"
           }

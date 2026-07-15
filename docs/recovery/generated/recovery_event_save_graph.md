@@ -1,7 +1,7 @@
 # ZIPTIDE Event and Save Ownership Graph
 
 - Scanned C# files: **611**
-- Evidence edges: **637**
+- Evidence edges: **638**
 - Named subscriptions without matching unsubscribe in the same owner: **47**
 
 This is a static ownership graph. An unmatched row is a review target, not automatic proof of a leak; process-lifetime static hooks may be intentional.
@@ -14,7 +14,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **EVENT_SUBSCRIBE:** 78
 - **EVENT_UNSUBSCRIBE:** 30
 - **PLAYER_PREFS_ACCESS:** 11
-- **PROFILE_FIELD_ACCESS:** 349
+- **PROFILE_FIELD_ACCESS:** 350
 - **SAVE_ACCESS:** 63
 
 ## Named subscriptions without matching unsubscribe
@@ -380,6 +380,10 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Visuals.ForgePart` · `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeRecipeDefinition.cs:265` · `profile` — `if (p.op == ForgeOp.Lathe && (p.profile == null || p.profile.Length < 2 || p.profile.Length > 8))`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Visuals.ForgePart` · `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeRecipeDefinition.cs:287` · `profile` — `if (p.profile != null && p.profile.Length > 0)`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Visuals.ForgePart` · `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeRecipeDefinition.cs:289` · `profile` — `if (p.profile.Length != p.spline.Length)`
+
+### `Lets`
+
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.DevTools.DevWarp` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarp.cs:10` · `profile` — `/// the explicit diagnostic exposure profile. Lets us jump straight to any world (and a named spawn`
 
 ### `MatchEnded`
 

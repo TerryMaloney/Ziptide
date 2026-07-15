@@ -133,7 +133,7 @@ None.
 
 - Codes: `DONT_DESTROY_ON_LOAD`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarp.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarp.cs:76` **DONT_DESTROY_ON_LOAD** — `Object.DontDestroyOnLoad(go);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarp.cs:78` **DONT_DESTROY_ON_LOAD** — `Object.DontDestroyOnLoad(go);`
 
 ### `Ziptide.Gameplay.DevTools.DevWarpBoard` — 2 signal(s)
 
@@ -1210,7 +1210,7 @@ None.
 
 - Codes: `NEW_GAME_OBJECT`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarp.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarp.cs:75` **NEW_GAME_OBJECT** — `var go = new GameObject("__DevWarpRunner");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarp.cs:77` **NEW_GAME_OBJECT** — `var go = new GameObject("__DevWarpRunner");`
 
 ### `Ziptide.Gameplay.DevTools.DevWarpBoard` — 7 signal(s)
 

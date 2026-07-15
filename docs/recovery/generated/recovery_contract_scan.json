@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-15T10:50:30.125642+00:00",
+  "generatedAtUtc": "2026-07-15T10:50:58.492562+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -884,16 +884,16 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarp.cs",
-      "line": 37,
+      "line": 38,
       "symbol": "Ziptide.Gameplay.DevTools.DevWarp",
-      "snippet": "Debug.LogWarning(\"ZIPTIDE: DEV_WARP ignored (not a dev build) scene=\" + sceneName);"
+      "snippet": "Debug.LogWarning(\"ZIPTIDE: DEV_WARP ignored (profile blocked) scene=\" + sceneName);"
     },
     {
       "category": "diagnostics",
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarp.cs",
-      "line": 42,
+      "line": 43,
       "symbol": "Ziptide.Gameplay.DevTools.DevWarp",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: DEV_WARP no scene name\");"
     },
@@ -902,7 +902,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarp.cs",
-      "line": 46,
+      "line": 47,
       "symbol": "Ziptide.Gameplay.DevTools.DevWarp",
       "snippet": "Debug.Log(\"ZIPTIDE: DEV_WARP scene=\" + sceneName + \" marker=\" + (markerId ?? \"(default)\"));"
     },
@@ -911,7 +911,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarp.cs",
-      "line": 57,
+      "line": 58,
       "symbol": "Ziptide.Gameplay.DevTools.DevWarp",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: DEV_WARP no PlayerRigPersistence in scene\");"
     },
@@ -920,7 +920,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarp.cs",
-      "line": 99,
+      "line": 101,
       "symbol": "Ziptide.Gameplay.DevTools.DevWarp",
       "snippet": "Debug.Log(\"ZIPTIDE: DEV_WARP_DONE scene=\" + sceneName + \" marker=\" + (markerId ?? \"(default)\"));"
     },
@@ -9533,7 +9533,7 @@
       "code": "DONT_DESTROY_ON_LOAD",
       "description": "Object promoted across scene loads",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarp.cs",
-      "line": 76,
+      "line": 78,
       "symbol": "Ziptide.Gameplay.DevTools.DevWarp",
       "snippet": "Object.DontDestroyOnLoad(go);"
     },
@@ -12971,7 +12971,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarp.cs",
-      "line": 75,
+      "line": 77,
       "symbol": "Ziptide.Gameplay.DevTools.DevWarp",
       "snippet": "var go = new GameObject(\"__DevWarpRunner\");"
     },
