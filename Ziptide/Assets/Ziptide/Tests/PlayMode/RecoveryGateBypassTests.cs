@@ -21,6 +21,7 @@ namespace Ziptide.Tests.PlayMode
         {
             RecoveryRuntimeGate.SetActiveProfile(RecoveryExposureProfiles.GoldenSlice);
             DestroyNamedImmediate("DevWarpBoard");
+            DestroyNamedImmediate("__DevWarpBoard");
             DestroyNamedImmediate("DevMenuCanvas");
             DestroyNamedImmediate("__DevWarpRunner");
             yield return null;
@@ -33,6 +34,7 @@ namespace Ziptide.Tests.PlayMode
                 if (_created[i] != null) UnityEngine.Object.DestroyImmediate(_created[i]);
             _created.Clear();
             DestroyNamedImmediate("DevWarpBoard");
+            DestroyNamedImmediate("__DevWarpBoard");
             DestroyNamedImmediate("DevMenuCanvas");
             DestroyNamedImmediate("__DevWarpRunner");
             RecoveryRuntimeGate.SetActiveProfile(RecoveryExposureProfiles.FullDevelopment);
@@ -112,42 +114,46 @@ namespace Ziptide.Tests.PlayMode
         }
 
         [UnityTest]
-        public IEnumerator GoldenSlice_BlocksSceneAuthoredAndPublicBypassPaths()
+        public IEnumerator GoldenSlice_AllowsSummonedCheckpointBoard_AndBlocksOtherBypasses()
         {
-            var board = AddBlocked<DevWarpBoard>("Bypass_DevWarpBoard");
-            var legacyMenu = AddBlocked<DevMenu>("Bypass_DevMenu");
-            var conquest = AddBlocked<ConquestMissionRuntime>("Bypass_Conquest");
-            var ecology = AddBlocked<EcologyDirector>("Bypass_Ecology");
-            var pvp = AddBlocked<PvpProgressionRuntime>("Bypass_Pvp");
-            var quarters = AddBlocked<QuartersCameraFeature>("Bypass_Quarters");
+            var board = AddCreated<DevWarpBoard>("Allowed_DevWarpBoard");
+            var legacyMenu = AddCreated<DevMenu>("Bypass_DevMenu");
+            var conquest = AddCreated<ConquestMissionRuntime>("Bypass_Conquest");
+            var ecology = AddCreated<EcologyDirector>("Bypass_Ecology");
+            var pvp = AddCreated<PvpProgressionRuntime>("Bypass_Pvp");
+            var quarters = AddCreated<QuartersCameraFeature>("Bypass_Quarters");
             yield return null;
 
-            Assert.IsFalse(board.enabled, "Scene-authored DevWarpBoard remained active in GoldenSlice.");
+            Assert.IsTrue(RecoveryExposureProfiles.GoldenSlice.Allows(RecoveryFeatureId.DevWarpBoard),
+                "The exact Golden checkpoint profile dropped the required BOARD_PROBE surface.");
+            Assert.IsTrue(board.enabled,
+                "The summoned-only checkpoint board is not reachable in GoldenSlice.");
+            Assert.IsFalse(board.Visible,
+                "The checkpoint board became ambient instead of waiting for explicit summon.");
+            Assert.IsTrue(DevWarp.Enabled,
+                "The bounded developer warp path is unavailable in the Golden checkpoint.");
+
             Assert.IsFalse(legacyMenu.enabled, "Scene-authored legacy DevMenu remained active in GoldenSlice.");
             Assert.IsFalse(conquest.enabled, "Scene-authored ConquestMissionRuntime remained active in GoldenSlice.");
             Assert.IsFalse(ecology.enabled, "Scene-authored EcologyDirector remained active in GoldenSlice.");
             Assert.IsFalse(pvp.enabled, "Scene-authored PvpProgressionRuntime remained active in GoldenSlice.");
             Assert.IsFalse(quarters.enabled, "Scene-authored QuartersCameraFeature remained active in GoldenSlice.");
 
-            board.Show();
-            board.Toggle();
             legacyMenu.Show();
             legacyMenu.Toggle();
             quarters.BuildFeature();
-            DevWarp.WarpToScene("W000_DriftIn");
-            DevWarp.WarpToMarker("Spawn_Player");
             yield return null;
 
-            Assert.IsNull(FindSceneObject("DevWarpBoard"), "Blocked board public API created a menu.");
+            Assert.IsNull(FindSceneObject("DevWarpBoard"),
+                "The allowed board rendered without an explicit summon.");
             Assert.IsNull(FindSceneObject("DevMenuCanvas"), "Blocked legacy menu public API created a canvas.");
             Assert.IsNull(quarters.transform.Find(QuartersCameraFeature.FeatureRootName),
                 "Blocked Quarters public builder created its feature root.");
             Assert.IsNull(FindSceneObject("__DevWarpRunner"),
-                "Blocked developer scene-warp API created a persistent runner.");
-            Assert.IsFalse(DevWarp.Enabled, "Developer warp API reports enabled in GoldenSlice.");
+                "A developer warp runner appeared without an explicit warp request.");
         }
 
-        private T AddBlocked<T>(string name) where T : MonoBehaviour
+        private T AddCreated<T>(string name) where T : MonoBehaviour
         {
             var go = new GameObject(name);
             _created.Add(go);
