@@ -10,6 +10,10 @@ on:
     paths:
       - 'Ziptide/Assets/Ziptide/Tests/PlayMode/**'
       - 'Ziptide/Assets/Ziptide/Core/Runtime/Recovery/**'
+      - 'Ziptide/Assets/Ziptide/Editor/Build/BuildAndroid.cs'
+      - 'Ziptide/Assets/Ziptide/Tests/EditMode/FieldCameraCompletionTests.cs'
+      - 'Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs'
+      - 'Ziptide/Assets/Ziptide/Tests/EditMode/ShellSignVocabularyTests.cs'
       - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs'
       - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/ComfortVignette.cs'
       - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs'
@@ -53,8 +57,6 @@ jobs:
       - name: Checkout exact tested commit
         uses: actions/checkout@v4
         with:
-          # The durable observation records GITHUB_SHA. Test that immutable tree rather than
-          # the moving branch, which may advance while a run is queued.
           ref: ${{ github.sha }}
           fetch-depth: 0
           lfs: true
@@ -178,8 +180,6 @@ jobs:
           if-no-files-found: warn
 
       - name: Commit completed observation only when current
-        # A run may publish its immutable artifact even after the branch moves, but it may not
-        # write a stale success/failure onto a newer source head.
         if: always() && (steps.playmode.outcome == 'success' || steps.playmode.outcome == 'failure')
         shell: bash
         run: |
