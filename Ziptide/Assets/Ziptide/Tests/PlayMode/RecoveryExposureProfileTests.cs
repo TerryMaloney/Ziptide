@@ -79,7 +79,7 @@ namespace Ziptide.Tests.PlayMode
         }
 
         [Test]
-        public void GoldenSlice_IncludesRequiredSupportAndExcludesPrototypeMutators()
+        public void GoldenSlice_IncludesRequiredSupportAndExcludesUnprovenOrPrototypeOwners()
         {
             var profile = RecoveryExposureProfiles.GoldenSlice;
             var registrations = RecoveryAutomaticOwnerCatalog.All;
@@ -93,10 +93,11 @@ namespace Ziptide.Tests.PlayMode
             Assert.IsTrue(profile.Allows(RecoveryFeatureId.RuntimeHealthMonitor));
             Assert.IsTrue(profile.Allows(RecoveryFeatureId.AmbienceDirector));
             Assert.IsTrue(profile.Allows(RecoveryFeatureId.ComfortVignette));
-            Assert.IsTrue(profile.Allows(RecoveryFeatureId.EcologyInjector));
             Assert.IsTrue(profile.Allows(RecoveryFeatureId.FirstHourObservation));
             Assert.IsTrue(profile.Allows(RecoveryFeatureId.SingletonValidator));
 
+            Assert.IsFalse(profile.Allows(RecoveryFeatureId.EcologyInjector),
+                "Ecology requires named-creature contact/grounding proof before Golden promotion.");
             Assert.IsFalse(profile.Allows(RecoveryFeatureId.DebugHud));
             Assert.IsFalse(profile.Allows(RecoveryFeatureId.XrCameraEnforcer));
             Assert.IsFalse(profile.Allows(RecoveryFeatureId.RuntimeInputEnabler));
@@ -132,6 +133,7 @@ namespace Ziptide.Tests.PlayMode
             Assert.AreEqual("GoldenSlice", RecoveryRuntimeGate.ActiveProfileName);
             Assert.IsTrue(RecoveryRuntimeGate.Allows(RecoveryFeatureId.TravelCoordinator));
             Assert.IsFalse(RecoveryRuntimeGate.Allows(RecoveryFeatureId.ConquestMissionInjector));
+            Assert.IsFalse(RecoveryRuntimeGate.Allows(RecoveryFeatureId.EcologyInjector));
 
             var diagnostic = RecoveryExposureProfiles.Diagnostic(RecoveryFeatureId.VrBootDiagnostics);
             RecoveryRuntimeGate.SetActiveProfile(diagnostic);
