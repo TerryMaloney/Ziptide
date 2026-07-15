@@ -9,36 +9,43 @@ namespace Ziptide.Tests.PlayMode
 {
     public sealed class RecoveryRenderSnapshotTests
     {
+        public const int BatchModeRetainedSceneObjectLimit = 8;
+        public const int BatchModeRetainedMaterialLimit = 8;
+
+        private static readonly List<GameObject> BatchModeRetainedSceneObjects =
+            new List<GameObject>();
+        private static readonly List<Material> BatchModeRetainedMaterials =
+            new List<Material>();
+
         private readonly List<GameObject> _objects = new List<GameObject>();
         private readonly List<Material> _materials = new List<Material>();
 
-        // Immediate destruction of the controlled camera/primitives consistently stalls the Linux
-        // headless runner after a valid PNG. Detach render state, deactivate the test scene objects,
-        // then queue ordinary PlayMode destruction. The next runner frame owns disposal rather than
-        // making cleanup itself the timed result under test.
+        public static int BatchModeRetainedSceneObjectCount =>
+            BatchModeRetainedSceneObjects.Count;
+        public static int BatchModeRetainedMaterialCount =>
+            BatchModeRetainedMaterials.Count;
+
+        // The Linux headless runner hangs after a valid PNG whenever these test-owned renderer
+        // objects or materials are destroyed, whether immediate or queued. Batch mode therefore
+        // detaches, deactivates, moves the bounded fixture to DontDestroyOnLoad and retains it until
+        // process exit. Interactive PlayMode keeps normal deferred cleanup. Counts are exposed to the
+        // recovery census so this workaround cannot silently grow into an unbounded test-process leak.
         [TearDown]
         public void TearDown()
         {
+            if (Application.isBatchMode)
+            {
+                RetainBatchModeFixture();
+                return;
+            }
+
             int objectCount = 0;
             int materialCount = 0;
             for (int i = 0; i < _objects.Count; i++)
             {
                 GameObject go = _objects[i];
                 if (go == null) continue;
-
-                Camera camera = go.GetComponent<Camera>();
-                if (camera != null)
-                {
-                    camera.enabled = false;
-                    camera.targetTexture = null;
-                }
-
-                Renderer[] renderers = go.GetComponentsInChildren<Renderer>(true);
-                for (int rendererIndex = 0; rendererIndex < renderers.Length; rendererIndex++)
-                    if (renderers[rendererIndex] != null)
-                        renderers[rendererIndex].sharedMaterial = null;
-
-                go.SetActive(false);
+                DetachAndDeactivate(go);
                 Object.Destroy(go);
                 objectCount++;
             }
@@ -127,7 +134,7 @@ namespace Ziptide.Tests.PlayMode
             Assert.Less(metrics.nearBlackRatio, 0.98d,
                 "Controlled frame is almost entirely black.");
             Assert.Less(metrics.nearWhiteRatio, 0.98d,
-                "Controlled frame is almost entirely white/clipped.");
+                "Controlled frame is effectively white/clipped.");
             Assert.Less(metrics.transparentRatio, 0.01d,
                 "Controlled camera capture unexpectedly produced transparent pixels.");
 
@@ -135,7 +142,72 @@ namespace Ziptide.Tests.PlayMode
                 + metrics.quantizedColorCount
                 + " dynamicRange=" + metrics.dynamicRange.ToString("F4")
                 + " pngBytes=" + metrics.pngBytes);
-            yield return null;
+        }
+
+        private void RetainBatchModeFixture()
+        {
+            int incomingObjects = 0;
+            int incomingMaterials = 0;
+            for (int i = 0; i < _objects.Count; i++)
+                if (_objects[i] != null) incomingObjects++;
+            for (int i = 0; i < _materials.Count; i++)
+                if (_materials[i] != null) incomingMaterials++;
+
+            Assert.LessOrEqual(
+                BatchModeRetainedSceneObjects.Count + incomingObjects,
+                BatchModeRetainedSceneObjectLimit,
+                "Controlled renderer scene-object retention exceeded its explicit batch-mode cap.");
+            Assert.LessOrEqual(
+                BatchModeRetainedMaterials.Count + incomingMaterials,
+                BatchModeRetainedMaterialLimit,
+                "Controlled renderer material retention exceeded its explicit batch-mode cap.");
+
+            for (int i = 0; i < _objects.Count; i++)
+            {
+                GameObject go = _objects[i];
+                if (go == null) continue;
+                DetachRenderState(go);
+                go.hideFlags = HideFlags.HideAndDontSave;
+                Object.DontDestroyOnLoad(go);
+                go.SetActive(false);
+                BatchModeRetainedSceneObjects.Add(go);
+            }
+            _objects.Clear();
+
+            for (int i = 0; i < _materials.Count; i++)
+            {
+                Material material = _materials[i];
+                if (material == null) continue;
+                material.hideFlags = HideFlags.HideAndDontSave;
+                BatchModeRetainedMaterials.Add(material);
+            }
+            _materials.Clear();
+
+            Debug.Log("ZIPTIDE: RECOVERY_CONTROLLED_RENDERER_RETAINED objects="
+                + BatchModeRetainedSceneObjects.Count + "/" + BatchModeRetainedSceneObjectLimit
+                + " materials=" + BatchModeRetainedMaterials.Count + "/"
+                + BatchModeRetainedMaterialLimit);
+        }
+
+        private static void DetachAndDeactivate(GameObject go)
+        {
+            DetachRenderState(go);
+            go.SetActive(false);
+        }
+
+        private static void DetachRenderState(GameObject go)
+        {
+            Camera camera = go.GetComponent<Camera>();
+            if (camera != null)
+            {
+                camera.enabled = false;
+                camera.targetTexture = null;
+            }
+
+            Renderer[] renderers = go.GetComponentsInChildren<Renderer>(true);
+            for (int rendererIndex = 0; rendererIndex < renderers.Length; rendererIndex++)
+                if (renderers[rendererIndex] != null)
+                    renderers[rendererIndex].sharedMaterial = null;
         }
 
         private void MakePrimitive(
