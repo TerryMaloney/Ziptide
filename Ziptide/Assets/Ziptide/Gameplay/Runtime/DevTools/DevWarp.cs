@@ -1,13 +1,14 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Ziptide.Core;
 
 namespace Ziptide.Gameplay.DevTools
 {
     /// <summary>
-    /// Developer-only world warp. NOT a player feature — gated to the editor / development builds so
-    /// it can never be triggered in a shipping build. Lets us jump straight to any world (and a named
-    /// spawn marker within it) while building, instead of walking through travel doors.
+    /// Developer-only world warp. NOT a player feature — gated to the editor / development builds and
+    /// the explicit diagnostic exposure profile. Lets us jump straight to any world (and a named spawn
+    /// marker within it) while building, instead of walking through travel doors.
     ///
     /// Routes through <see cref="TravelCoordinator"/> so the normal load + inventory-restore path is
     /// still exercised, then repositions the rig to the requested marker once travel settles. A tiny
@@ -16,13 +17,13 @@ namespace Ziptide.Gameplay.DevTools
     /// </summary>
     public static class DevWarp
     {
-        /// <summary>True only in the editor or a development build — warps are no-ops when shipped.</summary>
+        /// <summary>True only in an editor/development build with the developer surface explicitly exposed.</summary>
         public static bool Enabled
         {
             get
             {
 #if UNITY_EDITOR || DEVELOPMENT_BUILD
-                return true;
+                return RecoveryRuntimeGate.Allows(RecoveryFeatureId.DevWarpBoard);
 #else
                 return false;
 #endif
@@ -34,7 +35,7 @@ namespace Ziptide.Gameplay.DevTools
         {
             if (!Enabled)
             {
-                Debug.LogWarning("ZIPTIDE: DEV_WARP ignored (not a dev build) scene=" + sceneName);
+                Debug.LogWarning("ZIPTIDE: DEV_WARP ignored (profile blocked) scene=" + sceneName);
                 return;
             }
             if (string.IsNullOrEmpty(sceneName))
@@ -72,6 +73,7 @@ namespace Ziptide.Gameplay.DevTools
 
         public static void Begin(string sceneName, string markerId)
         {
+            if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.DevWarpBoard)) return;
             var go = new GameObject("__DevWarpRunner");
             Object.DontDestroyOnLoad(go);
             var runner = go.AddComponent<DevWarpRunner>();
