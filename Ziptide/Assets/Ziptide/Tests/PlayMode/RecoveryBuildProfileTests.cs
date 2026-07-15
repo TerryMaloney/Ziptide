@@ -31,6 +31,9 @@ namespace Ziptide.Tests.PlayMode
                 RecoveryBuildProfile.ResolveProfile(true).Allows(RecoveryFeatureId.RuntimeMaterialFixer));
             Assert.IsFalse(
                 RecoveryBuildProfile.ResolveProfile(true).Allows(RecoveryFeatureId.PvpProgression));
+            Assert.IsFalse(
+                RecoveryBuildProfile.ResolveProfile(true).Allows(RecoveryFeatureId.EcologyInjector),
+                "Ecology remains conditional until creature contact/grounding proof is promoted.");
             Assert.IsTrue(
                 RecoveryBuildProfile.ResolveProfile(true).Allows(RecoveryFeatureId.TravelCoordinator));
         }
@@ -45,7 +48,7 @@ namespace Ziptide.Tests.PlayMode
         }
 
         [Test]
-        public void GoldenBuilder_UsesPerBuildDefineWithoutProjectSymbolMutation()
+        public void GoldenBuilder_UsesPerBuildDefineAndOnlyLockedScenes()
         {
             string root = RepositoryRoot();
             string builder = File.ReadAllText(Path.Combine(
@@ -58,7 +61,18 @@ namespace Ziptide.Tests.PlayMode
                 "Ziptide.Build.RecoveryBuildAndroid.PatchScenesThenGoldenAPK",
                 builder);
             StringAssert.DoesNotContain("SetScriptingDefineSymbols", builder);
+            StringAssert.DoesNotContain("EditorBuildSettingsScene.GetActiveSceneList", builder);
             StringAssert.Contains("ZIPTIDE: BUILD_PROFILE profile=GoldenSlice", builder);
+            StringAssert.Contains("recovery_golden_build_profile.json", builder);
+
+            StringAssert.Contains("Assets/Ziptide/Scenes/_Boot.unity", builder);
+            StringAssert.Contains("Assets/Ziptide/Scenes/Generated/W000_DriftIn.unity", builder);
+            StringAssert.Contains("Assets/Ziptide/Scenes/ToxicCity.unity", builder);
+
+            StringAssert.DoesNotContain("MilestoneA_GrabCube.unity", builder);
+            StringAssert.DoesNotContain("PvP_Arena01.unity", builder);
+            StringAssert.DoesNotContain("W002_DryCistern.unity", builder);
+            StringAssert.DoesNotContain("Arena_Void.unity", builder);
         }
 
         [Test]
