@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "status": "R0_IN_PROGRESS",
+  "status": "R0_LOCKED_FOR_R1_IMPLEMENTATION",
   "purpose": "Catalog every confirmed automatic or persistent runtime owner that can affect the recovery candidate without an explicit player action.",
   "owners": [
     {
@@ -99,7 +99,7 @@
       "persistence": "Static hook; injected mission object is scene-local",
       "sideEffects": ["Can inject mission boards, TextMesh, primitives, interactables, drones and objectives into any matching world", "Can auto-travel back to the table"],
       "recoveryExposure": "PROTOTYPE_HIDDEN",
-      "canonicalDisposition": "Feature-gate the hook out of recovery candidates; preserve conquest mission source",
+      "canonicalDisposition": "Feature-gate every bootstrap, component lifecycle, and public construction path out of recovery candidates; preserve mission source",
       "priority": "R1_EXPOSURE_PROFILE"
     },
     {
@@ -110,7 +110,7 @@
       "persistence": "DontDestroyOnLoad host; visible board is temporary",
       "sideEffects": ["Polls forehead gesture/F2/ADB", "Creates primitive world-space menu and travel requests"],
       "recoveryExposure": "DIAGNOSTIC",
-      "canonicalDisposition": "Keep one explicit development interface only after input report proves all old menu chords are retired",
+      "canonicalDisposition": "Keep one explicit diagnostic interface only; gate bootstrap, scene-authored lifecycle, legacy menu, and underlying warp API",
       "priority": "R2_INPUT_POLICY"
     },
     {
@@ -120,8 +120,8 @@
       "startup": "RuntimeInitializeOnLoadMethod AfterSceneLoad installs sceneLoaded hook",
       "persistence": "Static hook; one scene-local director when creatures exist",
       "sideEffects": ["Activates/deactivates baked creature population by UTC and save pressure", "Runs live ecology every five minutes"],
-      "recoveryExposure": "GOLDEN_PATH",
-      "canonicalDisposition": "Allow only for the selected golden creature/world; R1 must prove it does not hide, float or duplicate that creature",
+      "recoveryExposure": "CONDITIONAL_GOLDEN_PATH",
+      "canonicalDisposition": "Blocked until the selected golden creature has contact and grounding proof; all lifecycle paths must fail closed meanwhile",
       "priority": "R1_CREATURE_CONTACT"
     },
     {
@@ -132,7 +132,7 @@
       "persistence": "DontDestroyOnLoad singleton",
       "sideEffects": ["Binds arena directors", "Writes profile career and rewards", "Autosaves after matches"],
       "recoveryExposure": "PROTOTYPE_HIDDEN",
-      "canonicalDisposition": "Feature-gate out of recovery candidates while preserving pure progression core",
+      "canonicalDisposition": "Feature-gate bootstrap and scene-authored lifecycle out of recovery candidates while preserving pure progression core",
       "priority": "R1_EXPOSURE_PROFILE"
     },
     {
@@ -143,7 +143,7 @@
       "persistence": "Static hook; injected feature is attached to each QuartersRoom",
       "sideEffects": ["Adds FieldCameraFeature", "Builds primitive dock and photo wall", "Spawns handheld camera item"],
       "recoveryExposure": "PROTOTYPE_HIDDEN",
-      "canonicalDisposition": "Feature-gate hook out of recovery candidates with the rest of Quarters presentation",
+      "canonicalDisposition": "Feature-gate hook, scene-authored lifecycle, and public builder out of recovery candidates",
       "priority": "R1_EXPOSURE_PROFILE"
     },
     {
@@ -211,6 +211,17 @@
       "recoveryExposure": "SUPPORT",
       "canonicalDisposition": "Replace narrow warning-only list with R1 runtime census over all canonical owners",
       "priority": "R1_RUNTIME_CENSUS"
+    },
+    {
+      "id": "NET_BOOTSTRAP",
+      "source": "Ziptide/Assets/ZiptideNet/NetBootstrap.cs",
+      "symbol": "ZiptideNet.NetBootstrap",
+      "startup": "RuntimeInitializeOnLoadMethod BeforeSceneLoad when ZIPTIDE_PHOTON is compiled",
+      "persistence": "Installs static online delegates and can create a DontDestroyOnLoad Photon launcher",
+      "sideEffects": ["Mutates PvpNetHub online delegates", "Creates PhotonPvpLauncher", "Can connect or disconnect Photon"],
+      "recoveryExposure": "PROTOTYPE_HIDDEN",
+      "canonicalDisposition": "Compile may remain available for FullDevelopment, but bootstrap and online-start path must fail closed in GoldenSlice",
+      "priority": "R1_EXPOSURE_PROFILE"
     }
   ]
 }
