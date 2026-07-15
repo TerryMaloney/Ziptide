@@ -10,13 +10,12 @@ namespace Ziptide.Gameplay
     /// to swap the gun in your right hand with the one on your belt — or holster a held gun /
     /// draw a holstered one when only one side has something. The belt IS the inventory state
     /// (no new bookkeeping); transfers go through the XRInteractionManager so grab/socket rules
-    /// stay authoritative. B is ignored while Y is held (that chord is the dev menu). Logs
+    /// stay authoritative. No controller-button chord is reserved for developer UI. Logs
     /// QUICK_SWAP action=swap|holster|draw.
     /// </summary>
     public class QuickSwap : MonoBehaviour
     {
         private InputAction _swap;
-        private InputAction _menuGuard;
         private XRInteractionManager _mgr;
         private readonly List<XRBaseControllerInteractor> _rightHands = new List<XRBaseControllerInteractor>();
 
@@ -27,25 +26,17 @@ namespace Ziptide.Gameplay
                 _swap = new InputAction("ZiptideQuickSwap", InputActionType.Button);
                 _swap.AddBinding("<XRController>{RightHand}/secondaryButton"); // B
             }
-            if (_menuGuard == null)
-            {
-                _menuGuard = new InputAction("ZiptideQuickSwapMenuGuard", InputActionType.Button);
-                _menuGuard.AddBinding("<XRController>{LeftHand}/secondaryButton"); // Y
-            }
             _swap.Enable();
-            _menuGuard.Enable();
         }
 
         private void OnDisable()
         {
             _swap?.Disable();
-            _menuGuard?.Disable();
         }
 
         private void Update()
         {
             if (_swap == null || !_swap.WasPressedThisFrame()) return;
-            if (_menuGuard != null && _menuGuard.IsPressed()) return; // Y+B = dev menu chord
 
             Resolve();
             if (_mgr == null) return;
@@ -108,31 +99,32 @@ namespace Ziptide.Gameplay
 
         private XRBaseControllerInteractor FirstRightHand()
         {
-            foreach (var h in _rightHands)
-                if (h != null && !h.hasSelection) return h;
+            foreach (var h in _rightHands) if (h != null && !h.hasSelection) return h;
             return null;
         }
 
-        private XRGrabInteractable HolsteredGun(out HolsterSocketInteractor socket)
+        private XRSocketInteractor EmptySocket()
         {
-            foreach (var s in GetComponentsInChildren<HolsterSocketInteractor>(true))
-            {
-                if (s == null || !s.hasSelection) continue;
-                var grab = s.interactablesSelected[0] as XRGrabInteractable;
-                if (grab != null)
-                {
-                    socket = s;
-                    return grab;
-                }
-            }
-            socket = null;
-            return null;
-        }
-
-        private HolsterSocketInteractor EmptySocket()
-        {
-            foreach (var s in GetComponentsInChildren<HolsterSocketInteractor>(true))
+            var belt = GetComponentInChildren<BeltInventory>(true);
+            if (belt == null) return null;
+            foreach (var s in belt.Sockets)
                 if (s != null && !s.hasSelection) return s;
+            return null;
+        }
+
+        private XRGrabInteractable HolsteredGun(out XRSocketInteractor socket)
+        {
+            var belt = GetComponentInChildren<BeltInventory>(true);
+            if (belt != null)
+                foreach (var s in belt.Sockets)
+                    if (s != null && s.hasSelection)
+                        foreach (var sel in s.interactablesSelected)
+                        {
+                            var grab = sel as XRGrabInteractable;
+                            if (grab != null && grab.GetComponent<ItemRuntime>() != null)
+                            { socket = s; return grab; }
+                        }
+            socket = null;
             return null;
         }
     }
