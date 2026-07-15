@@ -40,7 +40,20 @@ namespace Ziptide.Build
             ValidateShader(AdditiveShaderPath, AdditiveShaderName);
 
             string firstPartyRoot = Path.Combine(Application.dataPath, "Ziptide");
-            if (!Directory.Exists(firstPartyRoot))
+            int scanned = ValidateRuntimeSourceRoot(firstPartyRoot);
+
+            Debug.Log("ZIPTIDE: SHADER_VARIANT_GATE_OK scanned=" + scanned +
+                      " shaders=" + AlphaShaderName + "," + AdditiveShaderName);
+        }
+
+        /// <summary>
+        /// Runs the runtime-source portion of the gate against an explicit root. The production build
+        /// passes Assets/Ziptide; EditMode canaries pass an isolated temporary fixture so a deliberate
+        /// violation proves the gate turns red without modifying or compiling live project assets.
+        /// </summary>
+        public static int ValidateRuntimeSourceRoot(string firstPartyRoot)
+        {
+            if (string.IsNullOrWhiteSpace(firstPartyRoot) || !Directory.Exists(firstPartyRoot))
                 throw new DirectoryNotFoundException(
                     "First-party source root is missing: " + firstPartyRoot);
 
@@ -75,8 +88,7 @@ namespace Ziptide.Build
                         for (int i = 0; i < index; i++)
                             if (source[i] == '\n') line++;
 
-                        string relative = "Assets" + normalized.Substring(
-                            Application.dataPath.Replace('\\', '/').Length);
+                        string relative = RelativeEvidencePath(firstPartyRoot, normalized);
                         findings.Add(relative + ":" + line + " token=" + token);
                         searchFrom = index + token.Length;
                     }
@@ -95,8 +107,15 @@ namespace Ziptide.Build
                     "Ziptide shader instead." + Environment.NewLine + evidence);
             }
 
-            Debug.Log("ZIPTIDE: SHADER_VARIANT_GATE_OK scanned=" + scanned +
-                      " shaders=" + AlphaShaderName + "," + AdditiveShaderName);
+            return scanned;
+        }
+
+        private static string RelativeEvidencePath(string root, string normalizedPath)
+        {
+            string normalizedRoot = Path.GetFullPath(root).Replace('\\', '/').TrimEnd('/');
+            if (normalizedPath.StartsWith(normalizedRoot + "/", StringComparison.OrdinalIgnoreCase))
+                return normalizedPath.Substring(normalizedRoot.Length + 1);
+            return normalizedPath;
         }
 
         private static void ValidateShader(string assetPath, string expectedName)

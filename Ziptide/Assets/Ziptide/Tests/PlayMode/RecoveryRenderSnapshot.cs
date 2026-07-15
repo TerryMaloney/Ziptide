@@ -62,6 +62,14 @@ namespace Ziptide.Tests.PlayMode
         public const string ArtifactDirectoryName = "recovery-snapshots";
         public const int DefaultWidth = 960;
         public const int DefaultHeight = 960;
+        public const int BatchModeRetainedGpuObjectLimit = 16;
+
+        // Linux batch-mode Unity hangs after a valid PNG when temporary GPU objects are destroyed.
+        // Retention is test-process-only, explicitly bounded, named in logs, and exposed to census.
+        private static readonly List<UnityEngine.Object> BatchModeRetainedGpuObjects =
+            new List<UnityEngine.Object>();
+
+        public static int BatchModeRetainedGpuObjectCount => BatchModeRetainedGpuObjects.Count;
 
         public static RecoveryRenderSnapshotPaths Capture(
             Camera camera,
@@ -154,12 +162,16 @@ namespace Ziptide.Tests.PlayMode
                 camera.aspect = previousAspect;
                 RenderTexture.active = previousActive;
 
-                // Immediate GPU-object destruction hangs the Linux headless renderer after a valid
-                // PNG is written. PlayMode owns a normal frame lifecycle, so queue both temporary
-                // objects for deferred destruction after all render references have been restored.
-                UnityEngine.Object.Destroy(texture);
-                UnityEngine.Object.Destroy(renderTarget);
-                Debug.Log("ZIPTIDE: RECOVERY_SNAPSHOT_CLEANUP_QUEUED label=" + label);
+                if (Application.isBatchMode)
+                {
+                    RetainBatchModeGpuObjects(texture, renderTarget, label);
+                }
+                else
+                {
+                    UnityEngine.Object.Destroy(texture);
+                    UnityEngine.Object.Destroy(renderTarget);
+                    Debug.Log("ZIPTIDE: RECOVERY_SNAPSHOT_CLEANUP_QUEUED label=" + label);
+                }
             }
         }
 
@@ -172,6 +184,25 @@ namespace Ziptide.Tests.PlayMode
             if (metrics == null)
                 throw new InvalidDataException("Recovery snapshot metadata did not deserialize: " + jsonPath);
             return metrics;
+        }
+
+        private static void RetainBatchModeGpuObjects(
+            Texture2D texture,
+            RenderTexture renderTarget,
+            string label)
+        {
+            if (BatchModeRetainedGpuObjects.Count + 2 > BatchModeRetainedGpuObjectLimit)
+            {
+                throw new InvalidOperationException(
+                    "Recovery snapshot batch-mode GPU retention exceeded the bounded limit of "
+                    + BatchModeRetainedGpuObjectLimit + " objects.");
+            }
+
+            BatchModeRetainedGpuObjects.Add(texture);
+            BatchModeRetainedGpuObjects.Add(renderTarget);
+            Debug.Log("ZIPTIDE: RECOVERY_SNAPSHOT_GPU_RETAINED label=" + label
+                + " retained=" + BatchModeRetainedGpuObjects.Count
+                + " limit=" + BatchModeRetainedGpuObjectLimit);
         }
 
         private static RecoveryRenderSnapshotMetrics BuildMetrics(

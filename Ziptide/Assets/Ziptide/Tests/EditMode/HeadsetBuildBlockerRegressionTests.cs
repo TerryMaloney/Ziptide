@@ -1,7 +1,11 @@
 #if UNITY_EDITOR
+using System;
 using System.IO;
+using System.Reflection;
+using System.Text.RegularExpressions;
 using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.TestTools;
 
 namespace Ziptide.Tests.EditMode
 {
@@ -118,6 +122,64 @@ namespace Ziptide.Tests.EditMode
             StringAssert.Contains("parent.name.StartsWith(\"CavePad_\")", cavern);
             string kit = Read("Editor", "Art", "CavernKitLibrary.cs");
             StringAssert.Contains("disc.AddComponent<BoxCollider>();", kit);
+        }
+
+        [Test]
+        public void RuntimeShaderVariantGate_CanaryRejectsTransparentKeywordMutation()
+        {
+            string root = Path.Combine(
+                Path.GetTempPath(),
+                "ziptide_shader_gate_canary_" + Guid.NewGuid().ToString("N"));
+            string runtime = Path.Combine(root, "Runtime");
+            Directory.CreateDirectory(runtime);
+            try
+            {
+                File.WriteAllText(
+                    Path.Combine(runtime, "ShaderMutationCanary.cs"),
+                    "using UnityEngine; class ShaderMutationCanary { " +
+                    "void Violate(Material material) { " +
+                    "material.EnableKeyword(\"_SURFACE_TYPE_TRANSPARENT\"); } }",
+                    System.Text.Encoding.UTF8);
+
+                LogAssert.Expect(
+                    LogType.Error,
+                    new Regex("ZIPTIDE: SHADER_VARIANT_GATE_FAIL findings=1"));
+                InvalidOperationException exception = Assert.Throws<InvalidOperationException>(
+                    () => Ziptide.Build.RuntimeShaderVariantGate.ValidateRuntimeSourceRoot(root));
+                StringAssert.Contains("_SURFACE_TYPE_TRANSPARENT", exception.Message);
+            }
+            finally
+            {
+                if (Directory.Exists(root)) Directory.Delete(root, true);
+            }
+        }
+
+        [Test]
+        public void BuildAndroidRequiredHook_CanaryLogsAndRethrows()
+        {
+            MethodInfo method = typeof(Ziptide.Build.BuildAndroid).GetMethod(
+                "RunRequired",
+                BindingFlags.NonPublic | BindingFlags.Static,
+                null,
+                new[] { typeof(string), typeof(Action) },
+                null);
+            Assert.IsNotNull(method, "BuildAndroid non-generic RunRequired hook is missing.");
+
+            Action throwingHook = () => throw new InvalidOperationException("RECOVERY_CANARY_THROW");
+            LogAssert.Expect(
+                LogType.Error,
+                new Regex("ZIPTIDE: BUILD_HOOK_FAIL step=RECOVERY_CANARY"));
+            TargetInvocationException invocation = Assert.Throws<TargetInvocationException>(
+                () => method.Invoke(null, new object[] { "RECOVERY_CANARY", throwingHook }));
+
+            Assert.IsNotNull(invocation.InnerException);
+            StringAssert.Contains(
+                "Required build step failed: RECOVERY_CANARY",
+                invocation.InnerException.Message);
+            Assert.IsInstanceOf<InvalidOperationException>(invocation.InnerException.InnerException);
+            StringAssert.Contains(
+                "RECOVERY_CANARY_THROW",
+                invocation.InnerException.InnerException.Message);
         }
 
         private static string Read(params string[] parts)
