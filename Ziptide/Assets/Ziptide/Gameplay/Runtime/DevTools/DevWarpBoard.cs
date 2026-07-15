@@ -29,7 +29,7 @@ namespace Ziptide.Gameplay.DevTools
     /// Persists via a self-bootstrapped manager (dev builds only) — the ONLY
     /// RuntimeInitializeOnLoadMethod bootstrap in DevTools (a source-scan test enforces the
     /// singleton). Tiles call <see cref="TravelCoordinator.TravelTo"/>.
-    /// Logs ZIPTIDE: DEV_WARP_BOARD / DEV_WARP_TO.
+    /// Logs ZIPTIDE: DEV_WARP_BOARD / DEV_WARP_TO / BOARD_PROBE.
     /// </summary>
     public class DevWarpBoard : MonoBehaviour
     {
@@ -37,6 +37,7 @@ namespace Ziptide.Gameplay.DevTools
         private const float TileW = 0.62f, TileH = 0.17f, GapX = 0.06f, GapY = 0.06f;
         private const float SummonDistance = 1.6f;
         private const float AccessPollSeconds = 0.25f;
+        private const float ProbeIntervalSeconds = 1f;
 
         private static readonly Color PanelColor = new Color(0.08f, 0.10f, 0.13f);
         private static readonly Color TileColor = new Color(0.16f, 0.30f, 0.38f);
@@ -49,6 +50,7 @@ namespace Ziptide.Gameplay.DevTools
         private readonly DevMenuGesture _gesture = new DevMenuGesture();
         private GameObject _board;
         private float _nextAccessPollAt;
+        private float _nextProbeAt;
 
         public bool Visible => _board != null;
 
@@ -103,6 +105,13 @@ namespace Ziptide.Gameplay.DevTools
                 if (DevAccessGate.TryConsumeOpenRequest()) Show();
             }
 #endif
+            // DS-09 evidence: while the board is visible, record what every active XR ray actually
+            // hits. This survives logcat rotation through PersistentDiagnosticRing.
+            if (Visible && Time.unscaledTime >= _nextProbeAt)
+            {
+                _nextProbeAt = Time.unscaledTime + ProbeIntervalSeconds;
+                LogAimProbe();
+            }
         }
 
         public void Toggle()
@@ -155,6 +164,7 @@ namespace Ziptide.Gameplay.DevTools
             _board.transform.rotation = Quaternion.LookRotation(-fwd, Vector3.up);
 
             Build(_board.transform, entries);
+            _nextProbeAt = 0f;
             Debug.Log("ZIPTIDE: DEV_WARP_BOARD shown tiles=" + entries.Count);
         }
 
@@ -223,9 +233,21 @@ namespace Ziptide.Gameplay.DevTools
             var mgr = FindObjectOfType<XRInteractionManager>();
             if (mgr != null) interactable.interactionManager = mgr;
             else StartCoroutine(BindManagerLater(interactable));
-            interactable.selectEntered.AddListener(_ => onSelect());
-            interactable.hoverEntered.AddListener(_ => Paint(go, hover));
-            interactable.hoverExited.AddListener(_ => Paint(go, color));
+            interactable.selectEntered.AddListener(_ =>
+            {
+                LogTileProbe("select", go, interactable);
+                onSelect();
+            });
+            interactable.hoverEntered.AddListener(_ =>
+            {
+                LogTileProbe("hover_enter", go, interactable);
+                Paint(go, hover);
+            });
+            interactable.hoverExited.AddListener(_ =>
+            {
+                LogTileProbe("hover_exit", go, interactable);
+                Paint(go, color);
+            });
 
             MakeLabel(label, localPos + new Vector3(0f, 0f, 0.05f), 0.009f, LabelColor, root); // on the +Z (viewer) side
         }
@@ -239,6 +261,76 @@ namespace Ziptide.Gameplay.DevTools
                 var mgr = FindObjectOfType<XRInteractionManager>();
                 if (mgr != null) { interactable.interactionManager = mgr; yield break; }
             }
+        }
+
+        private void LogTileProbe(string phase, GameObject tile, XRSimpleInteractable interactable)
+        {
+            int managerId = interactable != null && interactable.interactionManager != null
+                ? interactable.interactionManager.GetInstanceID()
+                : 0;
+            Camera cam = Camera.main;
+            float facingDot = cam != null ? FacingDot(cam.transform.position) : 0f;
+            Debug.Log("ZIPTIDE: BOARD_PROBE phase=" + phase
+                + " tile=" + GetHierarchyPath(tile != null ? tile.transform : null)
+                + " layer=" + (tile != null ? tile.layer : -1)
+                + " manager=" + managerId
+                + " facingDot=" + facingDot.ToString("F3"));
+        }
+
+        private void LogAimProbe()
+        {
+            var rays = FindObjectsOfType<XRRayInteractor>();
+            int active = 0;
+            for (int i = 0; i < rays.Length; i++)
+            {
+                XRRayInteractor ray = rays[i];
+                if (ray == null || !ray.isActiveAndEnabled || !ray.gameObject.activeInHierarchy)
+                    continue;
+
+                active++;
+                bool hasHit = ray.TryGetCurrent3DRaycastHit(out RaycastHit hit);
+                string hitPath = hasHit && hit.transform != null
+                    ? GetHierarchyPath(hit.transform)
+                    : "none";
+                int hitLayer = hasHit && hit.collider != null ? hit.collider.gameObject.layer : -1;
+                int managerId = ray.interactionManager != null
+                    ? ray.interactionManager.GetInstanceID()
+                    : 0;
+
+                Debug.Log("ZIPTIDE: BOARD_PROBE phase=aim"
+                    + " ray=" + GetHierarchyPath(ray.transform)
+                    + " hit=" + hitPath
+                    + " layer=" + hitLayer
+                    + " manager=" + managerId
+                    + " facingDot=" + FacingDot(ray.transform.position).ToString("F3"));
+            }
+
+            if (active == 0)
+            {
+                Debug.Log("ZIPTIDE: BOARD_PROBE phase=aim ray=none hit=none layer=-1 manager=0"
+                    + " facingDot=0.000");
+            }
+        }
+
+        private float FacingDot(Vector3 viewerWorldPosition)
+        {
+            if (_board == null) return 0f;
+            Vector3 towardViewer = viewerWorldPosition - _board.transform.position;
+            if (towardViewer.sqrMagnitude < 0.0001f) return 0f;
+            return Vector3.Dot(_board.transform.forward, towardViewer.normalized);
+        }
+
+        private static string GetHierarchyPath(Transform value)
+        {
+            if (value == null) return "none";
+            string path = value.name;
+            Transform parent = value.parent;
+            while (parent != null)
+            {
+                path = parent.name + "/" + path;
+                parent = parent.parent;
+            }
+            return path;
         }
 
         private void MakeLabel(string text, Vector3 localPos, float size, Color color, Transform root)
