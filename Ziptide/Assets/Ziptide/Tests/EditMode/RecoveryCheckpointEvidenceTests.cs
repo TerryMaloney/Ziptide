@@ -63,16 +63,17 @@ namespace Ziptide.Tests.EditMode
         [Test]
         public void GoldenCheckpoint_KeepsBoardRepairAndFlightEvidenceProbesAlive()
         {
-            Assert.IsTrue(RecoveryExposureProfiles.GoldenSlice.Allows(RecoveryFeatureId.DevWarpBoard),
-                "BOARD_PROBE is unreachable in the exact Golden checkpoint profile.");
+            Assert.IsFalse(RecoveryExposureProfiles.GoldenSlice.Allows(RecoveryFeatureId.DevWarpBoard),
+                "Developer warp ownership leaked into the Golden checkpoint profile.");
 
             string root = Path.Combine(Application.dataPath, "Ziptide");
-            int board = CountRuntimeLogCalls(root, "BOARD_PROBE");
+            string homeHub = Path.Combine(root, "Gameplay/Runtime/Tutorial/HomeHubRuntime.cs");
+            int board = CountLogCalls(File.ReadAllText(homeHub), "BOARD_PROBE");
             int repair = CountRuntimeLogCalls(root, "REPAIR_TRACE");
             int flight = CountRuntimeLogCalls(root, "FLIGHT_TRACE");
 
             Assert.GreaterOrEqual(board, 3,
-                "BOARD_PROBE must retain hover/select plus periodic actual-ray evidence.");
+                "The actual Golden Home Hub must retain hover/select plus periodic ray evidence.");
             Assert.GreaterOrEqual(repair, 4,
                 "REPAIR_TRACE no longer covers enough hops to distinguish state from presentation.");
             Assert.GreaterOrEqual(flight, 1,
@@ -81,17 +82,22 @@ namespace Ziptide.Tests.EditMode
 
         private static int CountRuntimeLogCalls(string root, string tag)
         {
-            var pattern = new Regex(
-                "Debug\\.Log(?:Warning|Error)?\\(\\s*\\\"ZIPTIDE: " + Regex.Escape(tag),
-                RegexOptions.CultureInvariant);
             int count = 0;
             foreach (string file in Directory.GetFiles(root, "*.cs", SearchOption.AllDirectories))
             {
                 string normalized = file.Replace('\\', '/');
                 if (normalized.Contains("/Editor/") || normalized.Contains("/Tests/")) continue;
-                count += pattern.Matches(File.ReadAllText(file)).Count;
+                count += CountLogCalls(File.ReadAllText(file), tag);
             }
             return count;
+        }
+
+        private static int CountLogCalls(string source, string tag)
+        {
+            var pattern = new Regex(
+                "Debug\\.Log(?:Warning|Error)?\\(\\s*\\\"ZIPTIDE: " + Regex.Escape(tag),
+                RegexOptions.CultureInvariant);
+            return pattern.Matches(source).Count;
         }
     }
 }
