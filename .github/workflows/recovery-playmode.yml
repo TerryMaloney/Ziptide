@@ -28,6 +28,7 @@ on:
       - 'docs/recovery/automatic_runtime_owners.json'
       - 'docs/recovery/golden_slice_manifest.json'
       - 'docs/recovery/playmode_repeat_probe.md'
+      - '.github/workflows/recovery-golden-android.yml'
       - '.github/workflows/recovery-playmode.yml'
   workflow_dispatch:
 
