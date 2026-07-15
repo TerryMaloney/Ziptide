@@ -146,11 +146,11 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `BootPresentationReady`
 
-- **EVENT_DECLARE** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:53` · `static Action<bool>` — `public static event Action<bool> BootPresentationReady;`
+- **EVENT_DECLARE** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:54` · `static Action<bool>` — `public static event Action<bool> BootPresentationReady;`
 
 ### `ChoiceSelected`
 
-- **EVENT_DECLARE** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:55` · `static Action<HomeHubChoice>` — `public static event Action<HomeHubChoice> ChoiceSelected;`
+- **EVENT_DECLARE** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:56` · `static Action<HomeHubChoice>` — `public static event Action<HomeHubChoice> ChoiceSelected;`
 
 ### `CounterState`
 
@@ -410,7 +410,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `NewGameProfileCreated`
 
-- **EVENT_DECLARE** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:54` · `static Action<PlayerProfile>` — `public static event Action<PlayerProfile> NewGameProfileCreated;`
+- **EVENT_DECLARE** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:55` · `static Action<PlayerProfile>` — `public static event Action<PlayerProfile> NewGameProfileCreated;`
 
 ### `Null`
 
@@ -560,11 +560,11 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `SaveSystem.HasExistingProfile`
 
-- **SAVE_ACCESS** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:79` — `bool canContinue = SaveSystem.HasExistingProfile;`
+- **SAVE_ACCESS** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:80` — `bool canContinue = SaveSystem.HasExistingProfile;`
 
 ### `SaveSystem.Load`
 
-- **SAVE_ACCESS** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:120` — `SaveSystem.Instance.Load();`
+- **SAVE_ACCESS** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:121` — `SaveSystem.Instance.Load();`
 - **SAVE_ACCESS** · `Ziptide.Tests.EditMode.HomeHubFlowTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:95` — `StringAssert.Contains("SaveSystem.Instance.Load();", source);`
 
 ### `SaveSystem.Profile`
@@ -623,7 +623,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `SaveSystem.StartNewProfile`
 
-- **SAVE_ACCESS** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:114` — `PlayerProfile profile = SaveSystem.Instance.StartNewProfile();`
+- **SAVE_ACCESS** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:115` — `PlayerProfile profile = SaveSystem.Instance.StartNewProfile();`
 - **SAVE_ACCESS** · `Ziptide.Tests.EditMode.HomeHubFlowTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:94` — `StringAssert.Contains("SaveSystem.Instance.StartNewProfile()", source);`
 
 ### `SavesForBigShips`
@@ -684,7 +684,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `SettingsRequested`
 
-- **EVENT_DECLARE** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:56` · `static Action` — `public static event Action SettingsRequested;`
+- **EVENT_DECLARE** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:57` · `static Action` — `public static event Action SettingsRequested;`
 
 ### `SignalCompleted`
 

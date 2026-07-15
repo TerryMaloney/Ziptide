@@ -918,7 +918,7 @@
       {
         "kind": "EVENT_DECLARE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-        "line": 53,
+        "line": 54,
         "owner": "Ziptide.Gameplay.HomeHubFlowState",
         "target": "BootPresentationReady",
         "detail": "static Action<bool>",
@@ -929,7 +929,7 @@
       {
         "kind": "EVENT_DECLARE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-        "line": 55,
+        "line": 56,
         "owner": "Ziptide.Gameplay.HomeHubFlowState",
         "target": "ChoiceSelected",
         "detail": "static Action<HomeHubChoice>",
@@ -2594,7 +2594,7 @@
       {
         "kind": "EVENT_DECLARE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-        "line": 54,
+        "line": 55,
         "owner": "Ziptide.Gameplay.HomeHubFlowState",
         "target": "NewGameProfileCreated",
         "detail": "static Action<PlayerProfile>",
@@ -3344,7 +3344,7 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-        "line": 79,
+        "line": 80,
         "owner": "Ziptide.Gameplay.HomeHubFlowState",
         "target": "SaveSystem.HasExistingProfile",
         "detail": "",
@@ -3355,7 +3355,7 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-        "line": 120,
+        "line": 121,
         "owner": "Ziptide.Gameplay.HomeHubFlowState",
         "target": "SaveSystem.Load",
         "detail": "",
@@ -3836,7 +3836,7 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-        "line": 114,
+        "line": 115,
         "owner": "Ziptide.Gameplay.HomeHubFlowState",
         "target": "SaveSystem.StartNewProfile",
         "detail": "",
@@ -4260,7 +4260,7 @@
       {
         "kind": "EVENT_DECLARE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-        "line": 56,
+        "line": 57,
         "owner": "Ziptide.Gameplay.HomeHubFlowState",
         "target": "SettingsRequested",
         "detail": "static Action",
@@ -9596,7 +9596,7 @@
     {
       "kind": "EVENT_DECLARE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 53,
+      "line": 54,
       "owner": "Ziptide.Gameplay.HomeHubFlowState",
       "target": "BootPresentationReady",
       "detail": "static Action<bool>",
@@ -9605,7 +9605,7 @@
     {
       "kind": "EVENT_DECLARE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 54,
+      "line": 55,
       "owner": "Ziptide.Gameplay.HomeHubFlowState",
       "target": "NewGameProfileCreated",
       "detail": "static Action<PlayerProfile>",
@@ -9614,7 +9614,7 @@
     {
       "kind": "EVENT_DECLARE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 55,
+      "line": 56,
       "owner": "Ziptide.Gameplay.HomeHubFlowState",
       "target": "ChoiceSelected",
       "detail": "static Action<HomeHubChoice>",
@@ -9623,7 +9623,7 @@
     {
       "kind": "EVENT_DECLARE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 56,
+      "line": 57,
       "owner": "Ziptide.Gameplay.HomeHubFlowState",
       "target": "SettingsRequested",
       "detail": "static Action",
@@ -9632,7 +9632,7 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 79,
+      "line": 80,
       "owner": "Ziptide.Gameplay.HomeHubFlowState",
       "target": "SaveSystem.HasExistingProfile",
       "detail": "",
@@ -9641,7 +9641,7 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 114,
+      "line": 115,
       "owner": "Ziptide.Gameplay.HomeHubFlowState",
       "target": "SaveSystem.StartNewProfile",
       "detail": "",
@@ -9650,7 +9650,7 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 120,
+      "line": 121,
       "owner": "Ziptide.Gameplay.HomeHubFlowState",
       "target": "SaveSystem.Load",
       "detail": "",
