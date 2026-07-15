@@ -1,8 +1,8 @@
 {
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
-  "scannedFiles": 633,
-  "findingCount": 2201,
+  "scannedFiles": 635,
+  "findingCount": 2204,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -10782,6 +10782,40 @@
             "line": 85,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryTestRigTests",
             "snippet": "var interactable = target.AddComponent<XRSimpleInteractable>();"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Tests.PlayMode.RecoveryUiSpatialAuditTests",
+        "evidenceCount": 3,
+        "codes": [
+          "NEW_GAME_OBJECT",
+          "TEXTMESH_COMPONENT"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryUiSpatialAuditTests.cs"
+        ],
+        "evidence": [
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryUiSpatialAuditTests.cs",
+            "line": 26,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryUiSpatialAuditTests",
+            "snippet": "var cameraHost = new GameObject(\"__RECOVERY_UI_CAMERA\");"
+          },
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryUiSpatialAuditTests.cs",
+            "line": 66,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryUiSpatialAuditTests",
+            "snippet": "var go = new GameObject(\"__RECOVERY_UI_\" + value.Replace(' ', '_'));"
+          },
+          {
+            "code": "TEXTMESH_COMPONENT",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryUiSpatialAuditTests.cs",
+            "line": 70,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryUiSpatialAuditTests",
+            "snippet": "TextMesh text = go.AddComponent<TextMesh>();"
           }
         ]
       },

@@ -1,7 +1,7 @@
 # ZIPTIDE Recovery Contract Scan
 
-- Scanned files: **633**
-- Findings: **2201**
+- Scanned files: **635**
+- Findings: **2204**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
@@ -16,8 +16,8 @@
 | `input` | 160 |
 | `materials` | 226 |
 | `persistence` | 17 |
-| `runtime_creation` | 578 |
-| `runtime_ui` | 117 |
+| `runtime_creation` | 580 |
+| `runtime_ui` | 118 |
 | `save_state` | 255 |
 | `scene_loading` | 8 |
 | `xri_ownership` | 83 |
@@ -1766,6 +1766,8 @@
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:99` · `Ziptide.Tests.PlayMode.RecoveryTestRig` — Runtime GameObject construction. `var spawn = new GameObject(SpawnName);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:126` · `Ziptide.Tests.PlayMode.RecoveryTestRig` — Runtime GameObject construction. `var controller = new GameObject(name);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:135` · `Ziptide.Tests.PlayMode.RecoveryTestRig` — Runtime GameObject construction. `var rayHost = new GameObject(name);`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryUiSpatialAuditTests.cs:26` · `Ziptide.Tests.PlayMode.RecoveryUiSpatialAuditTests` — Runtime GameObject construction. `var cameraHost = new GameObject("__RECOVERY_UI_CAMERA");`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryUiSpatialAuditTests.cs:66` · `Ziptide.Tests.PlayMode.RecoveryUiSpatialAuditTests` — Runtime GameObject construction. `var go = new GameObject("__RECOVERY_UI_" + value.Replace(' ', '_'));`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeCreatureVisualApplier.cs:31` · `Ziptide.Visuals.ForgeCreatureVisualApplier` — Runtime GameObject construction. `var vis = new GameObject(VisualChildName);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeSkinnedBuilder.cs:42` · `Ziptide.Visuals.ForgeSkinnedBuilder` — Runtime GameObject construction. `var rootGo = new GameObject("Skeleton_" + (body != null ? body.bodyId : "null"));`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeSkinnedBuilder.cs:210` · `Ziptide.Visuals.ForgeSkinnedBuilder` — Runtime GameObject construction. `var tmp = new GameObject("__synthParts");`
@@ -1833,6 +1835,7 @@
 - **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Tests/EditMode/UiReadabilityAuditRulesTests.cs:61` · `Ziptide.Tests.EditMode.UiReadabilityAuditRulesTests` — Legacy TextMesh creation/reference. `var emptyText = empty.AddComponent<TextMesh>();`
 - **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Tests/EditMode/UiReadabilityAuditRulesTests.cs:159` · `Ziptide.Tests.EditMode.UiReadabilityAuditRulesTests` — Legacy TextMesh creation/reference. `var text = label.AddComponent<TextMesh>();`
 - **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs:52` · `Ziptide.Tests.PlayMode.RecoveryRuntimeCensusTests` — Legacy TextMesh creation/reference. `textHost.AddComponent<TextMesh>().text = "CENSUS";`
+- **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryUiSpatialAuditTests.cs:70` · `Ziptide.Tests.PlayMode.RecoveryUiSpatialAuditTests` — Legacy TextMesh creation/reference. `TextMesh text = go.AddComponent<TextMesh>();`
 - **TMP_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:180` · `Ziptide.Gameplay.DevTools.DevMenu` — TextMeshPro creation/reference. `var go = new GameObject("Label", typeof(TextMeshProUGUI));`
 - **TMP_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:206` · `Ziptide.Gameplay.DevTools.DevMenu` — TextMeshPro creation/reference. `var labelGo = new GameObject("Text", typeof(TextMeshProUGUI));`
 - **TMP_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:105` · `Ziptide.Gameplay.ObjectiveBoard` — TextMeshPro creation/reference. `var tmp = textGo.AddComponent<TextMeshProUGUI>();`

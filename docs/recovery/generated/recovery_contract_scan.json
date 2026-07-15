@@ -1,15 +1,15 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-15T19:45:55.233033+00:00",
+  "generatedAtUtc": "2026-07-15T19:49:48.392248+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
     "Ziptide/Assets/Ziptide",
     "Ziptide/Assets/ZiptideNet"
   ],
-  "scannedFiles": 633,
-  "findingCount": 2201,
+  "scannedFiles": 635,
+  "findingCount": 2204,
   "categoryCounts": {
     "bootstrap": 29,
     "diagnostics": 467,
@@ -19,8 +19,8 @@
     "input": 160,
     "materials": 226,
     "persistence": 17,
-    "runtime_creation": 578,
-    "runtime_ui": 117,
+    "runtime_creation": 580,
+    "runtime_ui": 118,
     "save_state": 255,
     "scene_loading": 8,
     "xri_ownership": 83
@@ -41,7 +41,7 @@
     "FRAME_BUTTON_POLL": 1,
     "INPUT_ACTION_REFERENCE": 153,
     "INPUT_BUTTON_REFERENCE": 6,
-    "NEW_GAME_OBJECT": 348,
+    "NEW_GAME_OBJECT": 350,
     "PLAYER_PROFILE_REFERENCE": 139,
     "RENDER_SETTINGS_MUTATION": 36,
     "RUNTIME_BOOTSTRAP": 23,
@@ -49,7 +49,7 @@
     "SAVE_SYSTEM_REFERENCE": 108,
     "SHADER_FIND": 138,
     "STATIC_EVENT_DECLARATION": 16,
-    "TEXTMESH_COMPONENT": 44,
+    "TEXTMESH_COMPONENT": 45,
     "TMP_COMPONENT": 3,
     "VOLUME_COMPONENT": 1,
     "XRI_MANAGER_ASSIGN": 35,
@@ -15580,6 +15580,24 @@
       "category": "runtime_creation",
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryUiSpatialAuditTests.cs",
+      "line": 26,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryUiSpatialAuditTests",
+      "snippet": "var cameraHost = new GameObject(\"__RECOVERY_UI_CAMERA\");"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryUiSpatialAuditTests.cs",
+      "line": 66,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryUiSpatialAuditTests",
+      "snippet": "var go = new GameObject(\"__RECOVERY_UI_\" + value.Replace(' ', '_'));"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeCreatureVisualApplier.cs",
       "line": 31,
       "symbol": "Ziptide.Visuals.ForgeCreatureVisualApplier",
@@ -16160,6 +16178,15 @@
       "line": 52,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryRuntimeCensusTests",
       "snippet": "textHost.AddComponent<TextMesh>().text = \"CENSUS\";"
+    },
+    {
+      "category": "runtime_ui",
+      "code": "TEXTMESH_COMPONENT",
+      "description": "Legacy TextMesh creation/reference",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryUiSpatialAuditTests.cs",
+      "line": 70,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryUiSpatialAuditTests",
+      "snippet": "TextMesh text = go.AddComponent<TextMesh>();"
     },
     {
       "category": "runtime_ui",

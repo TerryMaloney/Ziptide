@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
-- Scanned files: **633**
-- Scanner findings: **2201**
+- Scanned files: **635**
+- Scanner findings: **2204**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -2300,6 +2300,14 @@ None.
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRigTests.cs`
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRigTests.cs:78` **CREATE_PRIMITIVE** — `var target = GameObject.CreatePrimitive(PrimitiveType.Cube);`
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRigTests.cs:85` **XR_INTERACTABLE_COMPONENT** — `var interactable = target.AddComponent<XRSimpleInteractable>();`
+
+### `Ziptide.Tests.PlayMode.RecoveryUiSpatialAuditTests` — 3 signal(s)
+
+- Codes: `NEW_GAME_OBJECT`, `TEXTMESH_COMPONENT`
+- Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryUiSpatialAuditTests.cs`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryUiSpatialAuditTests.cs:26` **NEW_GAME_OBJECT** — `var cameraHost = new GameObject("__RECOVERY_UI_CAMERA");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryUiSpatialAuditTests.cs:66` **NEW_GAME_OBJECT** — `var go = new GameObject("__RECOVERY_UI_" + value.Replace(' ', '_'));`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryUiSpatialAuditTests.cs:70` **TEXTMESH_COMPONENT** — `TextMesh text = go.AddComponent<TextMesh>();`
 
 ### `Ziptide.Visuals.ForgeCreatureVisualApplier` — 2 signal(s)
 
