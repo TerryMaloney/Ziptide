@@ -12,9 +12,9 @@ namespace Ziptide.Tests.PlayMode
     /// <summary>
     /// Test-only fresh-process approximation for actual-scene recovery tests. Unity's PlayMode test
     /// player starts once, so RuntimeInitializeOnLoadMethod hooks have already executed before a
-    /// test switches to GoldenSlice. This helper removes all cataloged production owners, selects
-    /// GoldenSlice, then invokes only the allowed bootstraps at their real Before/AfterSceneLoad
-    /// phases. The scene and production code remain unchanged.
+    /// test switches to GoldenSlice. This helper removes all cataloged production owners and known
+    /// static/vendor runtime artifacts, selects GoldenSlice, then invokes only the allowed
+    /// bootstraps at their real Before/AfterSceneLoad phases. Production scenes/code remain unchanged.
     /// </summary>
     public static class RecoverySceneTestIsolation
     {
@@ -35,6 +35,12 @@ namespace Ziptide.Tests.PlayMode
 
         public static IEnumerator ResetToEmptyFullDevelopment()
         {
+            // Stop persistent coroutines before unloading. A failed actual-scene test can leave
+            // TravelCoordinator mid-hop; unloading first could permit a late autosave or activation
+            // to race the test's profile restoration.
+            DestroyProductionRuntimeImmediate();
+            yield return null;
+
             Scene empty = SceneManager.GetSceneByName(EmptySceneName);
             if (!empty.IsValid()) empty = SceneManager.CreateScene(EmptySceneName);
             SceneManager.SetActiveScene(empty);
@@ -58,6 +64,11 @@ namespace Ziptide.Tests.PlayMode
 
         public static void DestroyProductionRuntimeImmediate()
         {
+            // Static classes and vendor singletons do not necessarily expose their bootstrap symbol
+            // as the MonoBehaviour on the created object. Remove those artifacts through the same
+            // policy that later proves they did not reappear during Golden boot.
+            RecoveryRuntimeArtifactGuard.DestroyForbiddenArtifactsImmediate();
+
             var ownerSymbols = new HashSet<string>(StringComparer.Ordinal);
             IReadOnlyList<RecoveryAutomaticOwnerRegistration> catalog = RecoveryAutomaticOwnerCatalog.All;
             for (int i = 0; i < catalog.Count; i++) ownerSymbols.Add(catalog[i].Symbol);
