@@ -1,0 +1,146 @@
+name: Recovery Golden Android
+
+on:
+  push:
+    branches:
+      - terry-local-wip
+    paths:
+      - '.github/workflows/recovery-golden-android.yml'
+      - 'Ziptide/Assets/Ziptide/Core/Runtime/Recovery/**'
+      - 'Ziptide/Assets/Ziptide/Editor/Build/RecoveryBuildAndroid.cs'
+      - 'Ziptide/Assets/Ziptide/Editor/Build/BuildAndroid.cs'
+      - 'Ziptide/Assets/Ziptide/Scenes/_Boot.unity'
+      - 'Ziptide/Assets/Ziptide/Scenes/Generated/W000_DriftIn.unity'
+      - 'Ziptide/Assets/Ziptide/Scenes/ToxicCity.unity'
+      - 'Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBuildProfileTests.cs'
+      - 'tools/dev_build_install.ps1'
+      - 'tools/quest_smoke.ps1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: recovery-golden-android-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  PROJECT_PATH: Ziptide
+  UNITY_VERSION: 2022.3.62f3
+
+jobs:
+  build-golden-apk:
+    name: Build locked Golden APK
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    steps:
+      - name: Free disk space for Unity Android image
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL /usr/local/.ghcup
+          sudo docker image prune --all --force || true
+          df -h /
+
+      - name: Checkout exact event SHA
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 1
+          lfs: true
+
+      - name: Verify immutable checkout
+        shell: bash
+        run: |
+          set -euo pipefail
+          actual="$(git rev-parse HEAD)"
+          echo "event_sha=${GITHUB_SHA}"
+          echo "checkout_sha=${actual}"
+          test "$actual" = "$GITHUB_SHA"
+
+      - name: Cache Unity Library
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.PROJECT_PATH }}/Library
+          key: Library-recovery-golden-android-${{ hashFiles(format('{0}/Assets/**', env.PROJECT_PATH), format('{0}/Packages/**', env.PROJECT_PATH), format('{0}/ProjectSettings/**', env.PROJECT_PATH)) }}
+          restore-keys: |
+            Library-recovery-golden-android-
+            Library-android-
+            Library-
+
+      - name: Build exact Golden Android player
+        uses: game-ci/unity-builder@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          projectPath: ${{ env.PROJECT_PATH }}
+          unityVersion: ${{ env.UNITY_VERSION }}
+          targetPlatform: Android
+          buildMethod: Ziptide.Build.RecoveryBuildAndroid.PatchScenesThenGoldenAPK
+          allowDirtyBuild: true
+
+      - name: Verify Golden build artifacts independently
+        shell: bash
+        run: |
+          set -euo pipefail
+          apk="${PROJECT_PATH}/Builds/Android/Ziptide.apk"
+          report="${PROJECT_PATH}/Builds/Reports/recovery_golden_build_profile.json"
+
+          test -s "$apk"
+          test -s "$report"
+
+          python3 - "$report" "$apk" <<'PY'
+          import json
+          import os
+          import sys
+
+          report_path, apk_path = sys.argv[1], sys.argv[2]
+          with open(report_path, "r", encoding="utf-8") as handle:
+              payload = json.load(handle)
+
+          expected_scenes = [
+              "Assets/Ziptide/Scenes/_Boot.unity",
+              "Assets/Ziptide/Scenes/Generated/W000_DriftIn.unity",
+              "Assets/Ziptide/Scenes/ToxicCity.unity",
+          ]
+
+          assert payload.get("profile") == "GoldenSlice", payload
+          assert payload.get("define") == "ZIPTIDE_RECOVERY_GOLDEN", payload
+          assert payload.get("result") == "Succeeded", payload
+          assert payload.get("scenes") == expected_scenes, payload
+          assert int(payload.get("totalBytes", 0)) > 0, payload
+          assert os.path.getsize(apk_path) > 0, apk_path
+
+          print(json.dumps({
+              "verified": True,
+              "profile": payload["profile"],
+              "define": payload["define"],
+              "scenes": payload["scenes"],
+              "reportedBytes": payload["totalBytes"],
+              "apkBytes": os.path.getsize(apk_path),
+          }, indent=2))
+          PY
+
+          sha256sum "$apk" "$report"
+
+      - name: Upload Golden candidate
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: recovery-golden-apk-${{ github.sha }}
+          path: |
+            ${{ env.PROJECT_PATH }}/Builds/Android/Ziptide.apk
+            ${{ env.PROJECT_PATH }}/Builds/Reports/recovery_golden_build_profile.json
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Upload patch and world-audit evidence
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: recovery-golden-audit-${{ github.sha }}
+          path: |
+            docs/AUDIT_REPORT.*
+            ${{ env.PROJECT_PATH }}/Builds/Reports/*
+          if-no-files-found: warn
+          retention-days: 90
