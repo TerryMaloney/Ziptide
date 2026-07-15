@@ -31,7 +31,7 @@ namespace Ziptide.Gameplay
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void Bootstrap()
         {
-            if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.PlayerRigPersistence)) return;
+            if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.PlayerInputSessionGuard)) return;
             SceneManager.sceneLoaded -= OnSceneLoaded;
             SceneManager.sceneLoaded += OnSceneLoaded;
             Consolidate("initial_scene");
@@ -39,7 +39,7 @@ namespace Ziptide.Gameplay
 
         private static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-            if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.PlayerRigPersistence)) return;
+            if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.PlayerInputSessionGuard)) return;
             Consolidate("scene_loaded:" + scene.name);
         }
 
