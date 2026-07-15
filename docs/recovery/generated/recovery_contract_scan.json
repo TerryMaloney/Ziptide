@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-15T01:40:14.343421+00:00",
+  "generatedAtUtc": "2026-07-15T01:40:55.307173+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -3881,7 +3881,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBuildProfileTests.cs",
-      "line": 61,
+      "line": 65,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryBuildProfileTests",
       "snippet": "StringAssert.Contains(\"ZIPTIDE: BUILD_PROFILE profile=GoldenSlice\", builder);"
     },
@@ -3890,7 +3890,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBuildProfileTests.cs",
-      "line": 77,
+      "line": 91,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryBuildProfileTests",
       "snippet": "StringAssert.Contains(\"ZIPTIDE: BUILD_PROFILE profile=GoldenSlice\", smokeScript);"
     },
@@ -3899,7 +3899,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBuildProfileTests.cs",
-      "line": 78,
+      "line": 92,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryBuildProfileTests",
       "snippet": "StringAssert.Contains(\"ZIPTIDE: RECOVERY_EXPOSURE buildProfile=GoldenSlice profile=GoldenSlice\", smokeScript);"
     },
