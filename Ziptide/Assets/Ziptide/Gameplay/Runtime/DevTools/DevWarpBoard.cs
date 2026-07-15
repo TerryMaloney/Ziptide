@@ -52,10 +52,13 @@ namespace Ziptide.Gameplay.DevTools
 
         public bool Visible => _board != null;
 
+        private static bool ExposureAllowed =>
+            RecoveryRuntimeGate.Allows(RecoveryFeatureId.DevWarpBoard);
+
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void Bootstrap()
         {
-            if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.DevWarpBoard)) return;
+            if (!ExposureAllowed) return;
             if (FindObjectOfType<DevWarpBoard>() != null) return;
             var go = new GameObject("__DevWarpBoard");
             DontDestroyOnLoad(go);
@@ -63,7 +66,17 @@ namespace Ziptide.Gameplay.DevTools
             Debug.Log("ZIPTIDE: DEV_WARP_BOARD ready (summon: both controllers above forehead 2s; F2 in editor)");
         }
 
-        private void OnEnable() => SceneManager.sceneLoaded += OnSceneLoaded;
+        private void Awake()
+        {
+            if (!ExposureAllowed) enabled = false;
+        }
+
+        private void OnEnable()
+        {
+            if (!ExposureAllowed) { enabled = false; return; }
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+
         private void OnDisable() => SceneManager.sceneLoaded -= OnSceneLoaded;
 
         // A scene change invalidates an open board (it belongs to the outgoing scene's space) —
@@ -72,6 +85,7 @@ namespace Ziptide.Gameplay.DevTools
 
         private void Update()
         {
+            if (!ExposureAllowed) { Hide(); enabled = false; return; }
 #if UNITY_EDITOR
             var kb = UnityEngine.InputSystem.Keyboard.current;
             if (kb != null && kb.f2Key.wasPressedThisFrame) Toggle();
@@ -93,6 +107,7 @@ namespace Ziptide.Gameplay.DevTools
 
         public void Toggle()
         {
+            if (!ExposureAllowed) { Hide(); return; }
             if (Visible) Hide(); else Show();
         }
 
@@ -107,6 +122,7 @@ namespace Ziptide.Gameplay.DevTools
         public void Show()
         {
             Hide();
+            if (!ExposureAllowed) return;
 
             var cam = Camera.main;
             if (cam == null && Camera.allCamerasCount > 0) cam = Camera.allCameras[0];
