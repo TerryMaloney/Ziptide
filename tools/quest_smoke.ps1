@@ -2,12 +2,17 @@
 .SYNOPSIS
     Optional smoke test: build, install, capture logcat, then scan for exceptions/fatals. Exits non-zero if found.
 .DESCRIPTION
-    Calls dev_build_install.ps1 -Logcat, then scans Builds/quest_logcat.log for Exception, NullReferenceException, AndroidRuntime fatal.
+    Calls dev_build_install.ps1 -Logcat with an explicit recovery build profile, then scans
+    Builds/quest_logcat.log for Exception, NullReferenceException, AndroidRuntime fatal.
 .EXAMPLE
     powershell -ExecutionPolicy Bypass -File C:\Ziptide\tools\quest_smoke.ps1
+.EXAMPLE
+    powershell -ExecutionPolicy Bypass -File C:\Ziptide\tools\quest_smoke.ps1 -BuildProfile FullDevelopment
 #>
 param(
-    [string]$ProjectRoot = ""
+    [string]$ProjectRoot = "",
+    [ValidateSet("GoldenSlice", "FullDevelopment")]
+    [string]$BuildProfile = "GoldenSlice"
 )
 
 $ErrorActionPreference = "Stop"
@@ -22,7 +27,7 @@ if ($ProjectRoot -eq "") {
 }
 
 $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
-& "$scriptDir\dev_build_install.ps1" -Logcat -ProjectRoot $ProjectRoot
+& "$scriptDir\dev_build_install.ps1" -Logcat -ProjectRoot $ProjectRoot -BuildProfile $BuildProfile
 $installExit = $LASTEXITCODE
 if ($installExit -ne 0) {
     exit $installExit
@@ -41,11 +46,15 @@ if (Test-Path $buildLogFile) {
         Write-Host "quest_smoke: found 'World audit FAILED' in build log ($buildLogFile)"
         $buildBad = $true
     }
+    if ($BuildProfile -eq "GoldenSlice" -and $buildContent -notmatch "ZIPTIDE: BUILD_PROFILE profile=GoldenSlice") {
+        Write-Host "quest_smoke: GoldenSlice was requested but the build-profile proof line is missing."
+        $buildBad = $true
+    }
 } else {
     Write-Host "quest_smoke: build log not found at $buildLogFile (skipping audit check)"
 }
 if ($buildBad) {
-    Write-Host "quest_smoke: FAILED - world audit blockers detected. See docs/AUDIT_REPORT.md."
+    Write-Host "quest_smoke: FAILED - build/audit/profile proof failed. See $buildLogFile and docs/AUDIT_REPORT.md."
     exit 1
 }
 
@@ -74,10 +83,25 @@ if ($content -match "ZIPTIDE: ITEM_DEF_NOT_FOUND") { Write-Host "quest_smoke: fo
 if ($content -match "ZIPTIDE: TRAVEL_FAIL") { Write-Host "quest_smoke: found 'ZIPTIDE: TRAVEL_FAIL' in logcat"; $bad = $true }
 if ($content -match "ZIPTIDE: XRI_NOT_READY") { Write-Host "quest_smoke: found 'ZIPTIDE: XRI_NOT_READY' in logcat"; $bad = $true }
 
+if ($BuildProfile -eq "GoldenSlice") {
+    if ($content -notmatch "ZIPTIDE: RECOVERY_EXPOSURE buildProfile=GoldenSlice profile=GoldenSlice") {
+        Write-Host "quest_smoke: GoldenSlice runtime exposure proof line is missing from logcat"
+        $bad = $true
+    }
+    if ($content -match "ZIPTIDE: RECOVERY_EXPOSURE .*ConquestMissionInjector") {
+        Write-Host "quest_smoke: GoldenSlice exposure unexpectedly includes ConquestMissionInjector"
+        $bad = $true
+    }
+    if ($content -match "ZIPTIDE: RECOVERY_EXPOSURE .*PvpProgression") {
+        Write-Host "quest_smoke: GoldenSlice exposure unexpectedly includes PvpProgression"
+        $bad = $true
+    }
+}
+
 if ($bad) {
-    Write-Host "quest_smoke: FAILED - exceptions/fatals detected. Inspect: $logcatFile"
+    Write-Host "quest_smoke: FAILED - exceptions/fatals/profile violations detected. Inspect: $logcatFile"
     exit 1
 }
 
-Write-Host "quest_smoke: PASSED - no Exception/NullReferenceException/FATAL in logcat"
+Write-Host "quest_smoke: PASSED - $BuildProfile build has no detected exception/fatal/profile violation"
 exit 0
