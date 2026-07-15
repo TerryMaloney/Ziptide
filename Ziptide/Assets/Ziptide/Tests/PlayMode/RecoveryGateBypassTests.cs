@@ -80,6 +80,35 @@ namespace Ziptide.Tests.PlayMode
 
             Assert.Contains("Ziptide/Assets/ZiptideNet/NetBootstrap.cs", discovered,
                 "The source-driven scan did not inspect the conditional Photon bootstrap.");
+
+            foreach (var registration in RecoveryAutomaticOwnerCatalog.All)
+            {
+                if (registration.Classification != RecoveryOwnerClassification.FeatureGated) continue;
+                string sourcePath = Path.Combine(repositoryRoot, registration.SourceRelativePath);
+                string source = File.ReadAllText(sourcePath);
+                string token = "RecoveryRuntimeGate.Allows(RecoveryFeatureId." + registration.FeatureId + ")";
+                StringAssert.Contains(token, source,
+                    registration.OwnerId + " is cataloged as gated but its source has no exact gate call.");
+            }
+
+            string netPath = Path.Combine(repositoryRoot, "Ziptide/Assets/ZiptideNet/NetBootstrap.cs");
+            string netSource = File.ReadAllText(netPath);
+            const string netGate = "RecoveryRuntimeGate.Allows(RecoveryFeatureId.NetBootstrap)";
+            Assert.GreaterOrEqual(Regex.Matches(netSource, Regex.Escape(netGate)).Count, 2,
+                "Photon install and launcher entry paths must each re-check the Golden gate.");
+
+            int installGate = netSource.IndexOf(netGate, StringComparison.Ordinal);
+            int installDelegates = netSource.IndexOf("PvpNetHub.OnlineStarter = StartOnline;", StringComparison.Ordinal);
+            Assert.GreaterOrEqual(installGate, 0, "Photon install gate was not found.");
+            Assert.Greater(installDelegates, installGate,
+                "Photon delegates are installed before the exposure gate.");
+
+            int startOnline = netSource.IndexOf("private static bool StartOnline", StringComparison.Ordinal);
+            int launcherGate = netSource.IndexOf(netGate, startOnline, StringComparison.Ordinal);
+            int launcherCreate = netSource.IndexOf("new GameObject(\"__PhotonPvpLauncher\")", startOnline, StringComparison.Ordinal);
+            Assert.GreaterOrEqual(launcherGate, startOnline, "Photon launcher entry gate was not found.");
+            Assert.Greater(launcherCreate, launcherGate,
+                "Photon launcher can be created before its exposure gate.");
         }
 
         [UnityTest]
