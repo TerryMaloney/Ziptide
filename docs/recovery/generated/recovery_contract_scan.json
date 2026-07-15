@@ -1,14 +1,14 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-15T00:52:30.075046+00:00",
+  "generatedAtUtc": "2026-07-15T01:07:41.254908+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
     "Ziptide/Assets/Ziptide",
     "Ziptide/Assets/ZiptideNet"
   ],
-  "scannedFiles": 608,
+  "scannedFiles": 609,
   "findingCount": 2045,
   "categoryCounts": {
     "bootstrap": 26,
@@ -191,7 +191,7 @@
       "code": "RUNTIME_BOOTSTRAP",
       "description": "RuntimeInitializeOnLoadMethod bootstrap",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs",
-      "line": 34,
+      "line": 35,
       "symbol": "Ziptide.Gameplay.AmbienceDirector",
       "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]"
     },
@@ -200,7 +200,7 @@
       "code": "RUNTIME_BOOTSTRAP",
       "description": "RuntimeInitializeOnLoadMethod bootstrap",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-      "line": 54,
+      "line": 55,
       "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
       "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]"
     },
@@ -209,7 +209,7 @@
       "code": "RUNTIME_BOOTSTRAP",
       "description": "RuntimeInitializeOnLoadMethod bootstrap",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs",
-      "line": 39,
+      "line": 40,
       "symbol": "Ziptide.Gameplay.EcologyDirector",
       "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]"
     },
@@ -227,7 +227,7 @@
       "code": "RUNTIME_BOOTSTRAP",
       "description": "RuntimeInitializeOnLoadMethod bootstrap",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs",
-      "line": 11,
+      "line": 12,
       "symbol": "Ziptide.Gameplay.QuartersCameraFeature",
       "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]"
     },
@@ -254,7 +254,7 @@
       "code": "RUNTIME_BOOTSTRAP",
       "description": "RuntimeInitializeOnLoadMethod bootstrap",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs",
-      "line": 44,
+      "line": 45,
       "symbol": "Ziptide.Gameplay.Tutorial.FirstHourObservationAdapter",
       "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]"
     },
@@ -704,7 +704,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs",
-      "line": 93,
+      "line": 95,
       "symbol": "Ziptide.Gameplay.AmbienceDirector",
       "snippet": "Debug.Log(\"ZIPTIDE: AMBIENCE biome=\" + biome + \" wind=\" + _spec.WindLevel.ToString(\"F2\") +"
     },
@@ -929,7 +929,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-      "line": 31,
+      "line": 32,
       "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
       "snippet": "/// Logs ZIPTIDE: DEV_WARP_BOARD / DEV_WARP_TO."
     },
@@ -938,7 +938,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-      "line": 61,
+      "line": 63,
       "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
       "snippet": "Debug.Log(\"ZIPTIDE: DEV_WARP_BOARD ready (summon: both controllers above forehead 2s; F2 in editor)\");"
     },
@@ -947,7 +947,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-      "line": 80,
+      "line": 82,
       "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
       "snippet": "Debug.Log(\"ZIPTIDE: DEV_WARP_BOARD gesture_toggle visible=\" + Visible);"
     },
@@ -956,7 +956,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-      "line": 102,
+      "line": 104,
       "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
       "snippet": "Debug.Log(\"ZIPTIDE: DEV_WARP_BOARD hidden\");"
     },
@@ -965,7 +965,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-      "line": 113,
+      "line": 115,
       "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: DEV_WARP_BOARD no_camera\");"
     },
@@ -974,7 +974,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-      "line": 121,
+      "line": 123,
       "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: DEV_WARP_BOARD no_manifest_worlds\");"
     },
@@ -983,7 +983,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-      "line": 140,
+      "line": 142,
       "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
       "snippet": "Debug.Log(\"ZIPTIDE: DEV_WARP_BOARD shown tiles=\" + entries.Count);"
     },
@@ -992,7 +992,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-      "line": 181,
+      "line": 183,
       "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
       "snippet": "Debug.Log(\"ZIPTIDE: DEV_WARP_TO dest=\" + scene);"
     },
@@ -1001,7 +1001,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Diagnostics/SingletonValidator.cs",
-      "line": 47,
+      "line": 54,
       "symbol": "Ziptide.Gameplay.SingletonValidator",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: DUP_SINGLETON \" + label + \" count=\" + all.Length);"
     },
@@ -1064,7 +1064,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs",
-      "line": 20,
+      "line": 21,
       "symbol": "Ziptide.Gameplay.EcologyDirector",
       "snippet": "/// wakes the same individuals. Logs ZIPTIDE: ECOLOGY_RESOLVE."
     },
@@ -1073,7 +1073,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs",
-      "line": 119,
+      "line": 122,
       "symbol": "Ziptide.Gameplay.EcologyDirector",
       "snippet": "Debug.Log(\"ZIPTIDE: ECOLOGY_RESOLVE world=\" + world +"
     },
@@ -1640,7 +1640,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs",
-      "line": 47,
+      "line": 51,
       "symbol": "Ziptide.Gameplay.QuartersCameraFeature",
       "snippet": "else Debug.LogWarning(\"ZIPTIDE: FIELD_CAMERA_DOCK_EMPTY\");"
     },
@@ -1649,7 +1649,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs",
-      "line": 53,
+      "line": 57,
       "symbol": "Ziptide.Gameplay.QuartersCameraFeature",
       "snippet": "Debug.Log(\"ZIPTIDE: FIELD_CAMERA_QUARTERS_READY\");"
     },
@@ -1685,7 +1685,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/ComfortVignette.cs",
-      "line": 45,
+      "line": 46,
       "symbol": "Ziptide.Gameplay.ComfortVignette",
       "snippet": "Debug.Log(\"ZIPTIDE: COMFORT_VIGNETTE ready strength=\" + v._strength.ToString(\"F2\"));"
     },
@@ -2252,7 +2252,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-      "line": 114,
+      "line": 115,
       "symbol": "Ziptide.Gameplay.PvpProgressionRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: PVP_UNLOCK flag=\" + flag);"
     },
@@ -2261,7 +2261,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-      "line": 117,
+      "line": 118,
       "symbol": "Ziptide.Gameplay.PvpProgressionRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: PVP_PAYOUT credits=\" + pay.Total + \" won=\" + won"
     },
@@ -2720,7 +2720,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs",
-      "line": 188,
+      "line": 190,
       "symbol": "Ziptide.Gameplay.Tutorial.FirstHourObservationAdapter",
       "snippet": "\"ZIPTIDE: FIRST_HOUR_OBSERVE beat=\" + _activeBeatId +"
     },
@@ -2729,7 +2729,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs",
-      "line": 198,
+      "line": 200,
       "symbol": "Ziptide.Gameplay.Tutorial.FirstHourObservationAdapter",
       "snippet": "\"ZIPTIDE: FIRST_HOUR_OBSERVE beat=\" + _activeBeatId +"
     },
@@ -2909,7 +2909,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 84,
+      "line": 86,
       "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: CONQ_MISSION_SPAWNED kind=\" + _attempt.mission.kind +"
     },
@@ -2918,7 +2918,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 328,
+      "line": 330,
       "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: CONQ_MISSION_OBJECTIVE done=\" + _attempt.objectivesDone +"
     },
@@ -2927,7 +2927,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 344,
+      "line": 346,
       "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: CONQ_MISSION_\" + (won ? \"WIN\" : \"LOSE\") +"
     },
@@ -2936,7 +2936,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 402,
+      "line": 404,
       "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: CONQ_PYLON_DOWN name=\" + gameObject.name);"
     },
@@ -2945,7 +2945,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 441,
+      "line": 443,
       "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: CONQ_SCAN_LOCK name=\" + gameObject.name);"
     },
@@ -2954,7 +2954,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 485,
+      "line": 487,
       "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: CONQ_CONDUIT_HIT hits=\" + _hits + \"/\" + HitsToFix);"
     },
@@ -4187,7 +4187,7 @@
       "code": "EVENT_DECLARATION",
       "description": "Event declaration",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs",
-      "line": 37,
+      "line": 38,
       "symbol": "Ziptide.Gameplay.Tutorial.FirstHourObservationAdapter",
       "snippet": "public event Action<string> SignalCompleted;"
     },
@@ -5753,7 +5753,7 @@
       "code": "CAMERA_MAIN_REFERENCE",
       "description": "Camera.main dependency",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-      "line": 109,
+      "line": 111,
       "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
       "snippet": "var cam = Camera.main;"
     },
@@ -5942,7 +5942,7 @@
       "code": "CAMERA_MAIN_REFERENCE",
       "description": "Camera.main dependency",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs",
-      "line": 109,
+      "line": 111,
       "symbol": "Ziptide.Gameplay.Tutorial.FirstHourObservationAdapter",
       "snippet": "Camera camera = Camera.main;"
     },
@@ -5969,7 +5969,7 @@
       "code": "CAMERA_MAIN_REFERENCE",
       "description": "Camera.main dependency",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 103,
+      "line": 105,
       "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
       "snippet": "var cam = Camera.main;"
     },
@@ -5978,7 +5978,7 @@
       "code": "CAMERA_MAIN_REFERENCE",
       "description": "Camera.main dependency",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 295,
+      "line": 297,
       "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
       "snippet": "var cam = Camera.main;"
     },
@@ -5987,7 +5987,7 @@
       "code": "CAMERA_MAIN_REFERENCE",
       "description": "Camera.main dependency",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 425,
+      "line": 427,
       "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
       "snippet": "var cam = Camera.main;"
     },
@@ -6401,7 +6401,7 @@
       "code": "FRAME_BUTTON_POLL",
       "description": "Frame-polled input state",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-      "line": 75,
+      "line": 77,
       "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
       "snippet": "if (kb != null && kb.f2Key.wasPressedThisFrame) Toggle();"
     },
@@ -7805,7 +7805,7 @@
       "code": "RUNTIME_MATERIAL_CREATE",
       "description": "Runtime Material allocation",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/ComfortVignette.cs",
-      "line": 126,
+      "line": 127,
       "symbol": "Ziptide.Gameplay.ComfortVignette",
       "snippet": "var mat = new Material(shader) { color = Color.black };"
     },
@@ -8768,7 +8768,7 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/ComfortVignette.cs",
-      "line": 124,
+      "line": 125,
       "symbol": "Ziptide.Gameplay.ComfortVignette",
       "snippet": "var shader = Shader.Find(\"Universal Render Pipeline/Unlit\");"
     },
@@ -8777,7 +8777,7 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/ComfortVignette.cs",
-      "line": 125,
+      "line": 126,
       "symbol": "Ziptide.Gameplay.ComfortVignette",
       "snippet": "if (shader == null) shader = Shader.Find(\"Unlit/Color\");"
     },
@@ -9488,7 +9488,7 @@
       "code": "DONT_DESTROY_ON_LOAD",
       "description": "Object promoted across scene loads",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs",
-      "line": 39,
+      "line": 41,
       "symbol": "Ziptide.Gameplay.AmbienceDirector",
       "snippet": "DontDestroyOnLoad(go);"
     },
@@ -9515,7 +9515,7 @@
       "code": "DONT_DESTROY_ON_LOAD",
       "description": "Object promoted across scene loads",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-      "line": 59,
+      "line": 61,
       "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
       "snippet": "DontDestroyOnLoad(go);"
     },
@@ -9524,7 +9524,7 @@
       "code": "DONT_DESTROY_ON_LOAD",
       "description": "Object promoted across scene loads",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Diagnostics/SingletonValidator.cs",
-      "line": 23,
+      "line": 30,
       "symbol": "Ziptide.Gameplay.SingletonValidator",
       "snippet": "DontDestroyOnLoad(gameObject);"
     },
@@ -9578,7 +9578,7 @@
       "code": "DONT_DESTROY_ON_LOAD",
       "description": "Object promoted across scene loads",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-      "line": 32,
+      "line": 33,
       "symbol": "Ziptide.Gameplay.PvpProgressionRuntime",
       "snippet": "DontDestroyOnLoad(go);"
     },
@@ -9587,7 +9587,7 @@
       "code": "DONT_DESTROY_ON_LOAD",
       "description": "Object promoted across scene loads",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs",
-      "line": 49,
+      "line": 51,
       "symbol": "Ziptide.Gameplay.Tutorial.FirstHourObservationAdapter",
       "snippet": "DontDestroyOnLoad(go);"
     },
@@ -9596,7 +9596,7 @@
       "code": "DONT_DESTROY_ON_LOAD",
       "description": "Object promoted across scene loads",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs",
-      "line": 62,
+      "line": 64,
       "symbol": "Ziptide.Gameplay.Tutorial.FirstHourObservationAdapter",
       "snippet": "DontDestroyOnLoad(gameObject);"
     },
@@ -10415,7 +10415,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-      "line": 160,
+      "line": 162,
       "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
       "snippet": "var panel = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -10424,7 +10424,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-      "line": 197,
+      "line": 199,
       "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
       "snippet": "var go = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -10613,7 +10613,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs",
-      "line": 39,
+      "line": 43,
       "symbol": "Ziptide.Gameplay.QuartersCameraFeature",
       "snippet": "GameObject pedestal = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -11243,7 +11243,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 243,
+      "line": 245,
       "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
       "snippet": "var body = GameObject.CreatePrimitive(PrimitiveType.Sphere);"
     },
@@ -11252,7 +11252,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 265,
+      "line": 267,
       "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
       "snippet": "var p = GameObject.CreatePrimitive(type);"
     },
@@ -11261,7 +11261,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 280,
+      "line": 282,
       "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
       "snippet": "var chip = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -12764,7 +12764,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs",
-      "line": 38,
+      "line": 40,
       "symbol": "Ziptide.Gameplay.AmbienceDirector",
       "snippet": "var go = new GameObject(\"__AmbienceDirector\");"
     },
@@ -12953,7 +12953,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-      "line": 58,
+      "line": 60,
       "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
       "snippet": "var go = new GameObject(\"__DevWarpBoard\");"
     },
@@ -12962,7 +12962,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-      "line": 133,
+      "line": 135,
       "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
       "snippet": "_board = new GameObject(\"DevWarpBoard\");"
     },
@@ -12971,7 +12971,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-      "line": 228,
+      "line": 230,
       "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
       "snippet": "var go = new GameObject(\"Label_\" + text.Replace(' ', '_'));"
     },
@@ -12998,7 +12998,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs",
-      "line": 53,
+      "line": 56,
       "symbol": "Ziptide.Gameplay.EcologyDirector",
       "snippet": "var go = new GameObject(\"EcologyDirector\");"
     },
@@ -13007,7 +13007,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs",
-      "line": 186,
+      "line": 189,
       "symbol": "Ziptide.Gameplay.EcologyDirector",
       "snippet": "var go = new GameObject(\"Nest_\" + s.CreatureId + \"_\" + i);"
     },
@@ -13331,7 +13331,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs",
-      "line": 35,
+      "line": 39,
       "symbol": "Ziptide.Gameplay.QuartersCameraFeature",
       "snippet": "Transform root = new GameObject(FeatureRootName).transform; root.SetParent(transform, false);"
     },
@@ -13340,7 +13340,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs",
-      "line": 37,
+      "line": 41,
       "symbol": "Ziptide.Gameplay.QuartersCameraFeature",
       "snippet": "Transform dock = new GameObject(\"FieldCameraDock\").transform;"
     },
@@ -13349,7 +13349,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs",
-      "line": 49,
+      "line": 53,
       "symbol": "Ziptide.Gameplay.QuartersCameraFeature",
       "snippet": "Transform wall = new GameObject(\"PhotoWallHost\").transform;"
     },
@@ -13376,7 +13376,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/ComfortVignette.cs",
-      "line": 40,
+      "line": 41,
       "symbol": "Ziptide.Gameplay.ComfortVignette",
       "snippet": "var go = new GameObject(\"ComfortVignette\");"
     },
@@ -13511,7 +13511,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-      "line": 30,
+      "line": 31,
       "symbol": "Ziptide.Gameplay.PvpProgressionRuntime",
       "snippet": "var go = new GameObject(\"PvpProgression\");"
     },
@@ -13700,7 +13700,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs",
-      "line": 48,
+      "line": 50,
       "symbol": "Ziptide.Gameplay.Tutorial.FirstHourObservationAdapter",
       "snippet": "var go = new GameObject(\"__FirstHourObservationAdapter\");"
     },
@@ -13799,7 +13799,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 51,
+      "line": 53,
       "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
       "snippet": "var go = new GameObject(\"__ConquestMission\");"
     },
@@ -13808,7 +13808,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 65,
+      "line": 67,
       "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
       "snippet": "_boardRoot = new GameObject(\"MissionBoard\").transform;"
     },
@@ -13817,7 +13817,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 122,
+      "line": 124,
       "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
       "snippet": "var root = new GameObject(\"ShieldPylon_\" + i);"
     },
@@ -13826,7 +13826,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 150,
+      "line": 152,
       "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
       "snippet": "var root = new GameObject(\"ScanNode_\" + i);"
     },
@@ -13835,7 +13835,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 172,
+      "line": 174,
       "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
       "snippet": "var beaconRoot = new GameObject(\"StrikeBeacon\");"
     },
@@ -13844,7 +13844,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 196,
+      "line": 198,
       "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
       "snippet": "var pad = new GameObject(\"UplinkPad\");"
     },
@@ -13853,7 +13853,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 213,
+      "line": 215,
       "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
       "snippet": "var root = new GameObject(\"Conduit_\" + i);"
     },
@@ -13862,7 +13862,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 276,
+      "line": 278,
       "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
       "snippet": "var pivot = new GameObject(\"OrbiterPivot\").transform;"
     },
@@ -14744,7 +14744,7 @@
       "code": "TEXTMESH_COMPONENT",
       "description": "Legacy TextMesh creation/reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-      "line": 236,
+      "line": 238,
       "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
       "snippet": "var tm = go.AddComponent<TextMesh>();"
     },
@@ -14924,7 +14924,7 @@
       "code": "TEXTMESH_COMPONENT",
       "description": "Legacy TextMesh creation/reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 68,
+      "line": 70,
       "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
       "snippet": "_board = _boardRoot.gameObject.AddComponent<TextMesh>();"
     },
@@ -15167,7 +15167,7 @@
       "code": "XR_INTERACTABLE_COMPONENT",
       "description": "XR interactable creation/reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-      "line": 204,
+      "line": 206,
       "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
       "snippet": "var interactable = go.AddComponent<XRSimpleInteractable>();"
     },
@@ -15527,7 +15527,7 @@
       "code": "XR_INTERACTABLE_COMPONENT",
       "description": "XR interactable creation/reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 193,
+      "line": 195,
       "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
       "snippet": "beaconRoot.AddComponent<XRGrabInteractable>();"
     },
@@ -15536,7 +15536,7 @@
       "code": "XR_INTERACTABLE_COMPONENT",
       "description": "XR interactable creation/reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 384,
+      "line": 386,
       "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
       "snippet": "gameObject.AddComponent<XRSimpleInteractable>().selectEntered"
     },
@@ -15545,7 +15545,7 @@
       "code": "XR_INTERACTABLE_COMPONENT",
       "description": "XR interactable creation/reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 463,
+      "line": 465,
       "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
       "snippet": "gameObject.AddComponent<XRSimpleInteractable>().selectEntered.AddListener(_ => Hit());"
     },
@@ -15734,7 +15734,7 @@
       "code": "AUTOSAVE_CALL",
       "description": "Autosave request",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-      "line": 121,
+      "line": 122,
       "symbol": "Ziptide.Gameplay.PvpProgressionRuntime",
       "snippet": "SaveSystem.AutosaveNow(\"pvp_match\");"
     },
@@ -17075,7 +17075,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs",
-      "line": 73,
+      "line": 76,
       "symbol": "Ziptide.Gameplay.EcologyDirector",
       "snippet": "var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
     },
@@ -17255,7 +17255,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-      "line": 71,
+      "line": 72,
       "symbol": "Ziptide.Gameplay.PvpProgressionRuntime",
       "snippet": "var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
     },
@@ -17264,7 +17264,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-      "line": 121,
+      "line": 122,
       "symbol": "Ziptide.Gameplay.PvpProgressionRuntime",
       "snippet": "SaveSystem.AutosaveNow(\"pvp_match\");"
     },
@@ -17453,7 +17453,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 347,
+      "line": 349,
       "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
       "snippet": "var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
     },
@@ -17849,7 +17849,7 @@
       "code": "XRI_MANAGER_ASSIGN",
       "description": "Explicit interactable interactionManager assignment",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-      "line": 206,
+      "line": 208,
       "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
       "snippet": "if (mgr != null) interactable.interactionManager = mgr;"
     },
@@ -17858,7 +17858,7 @@
       "code": "XRI_MANAGER_ASSIGN",
       "description": "Explicit interactable interactionManager assignment",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-      "line": 222,
+      "line": 224,
       "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
       "snippet": "if (mgr != null) { interactable.interactionManager = mgr; yield break; }"
     },
@@ -18191,7 +18191,7 @@
       "code": "XRI_MANAGER_LOOKUP",
       "description": "XRInteractionManager lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-      "line": 205,
+      "line": 207,
       "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
       "snippet": "var mgr = FindObjectOfType<XRInteractionManager>();"
     },
@@ -18200,7 +18200,7 @@
       "code": "XRI_MANAGER_LOOKUP",
       "description": "XRInteractionManager lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-      "line": 221,
+      "line": 223,
       "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
       "snippet": "var mgr = FindObjectOfType<XRInteractionManager>();"
     },

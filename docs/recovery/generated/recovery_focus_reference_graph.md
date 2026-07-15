@@ -1,6 +1,6 @@
 # ZIPTIDE Focused Recovery Reference Graph
 
-- Scanned C# files: **608**
+- Scanned C# files: **609**
 - Focused references: **366**
 
 ## melee
@@ -449,7 +449,7 @@
 
 ### `ShipRefit`
 
-- **reference** · `Ziptide.Gameplay.ConquestMissionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:358` — `/// Public sibling, never a nested MonoBehaviour (the ShipRefitBaseXf lesson).</summary>`
+- **reference** · `Ziptide.Gameplay.ConquestMissionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:360` — `/// Public sibling, never a nested MonoBehaviour (the ShipRefitBaseXf lesson).</summary>`
 - **reference** · `Ziptide.Gameplay.HangarBayRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs:13` — `/// equips via ShipLocker (profile-flag persistence) and re-runs ShipRefit LIVE on the berth hull —`
 - **reference** · `Ziptide.Gameplay.HangarBayRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs:19` — `[Tooltip("The hull root ShipRefit applies to (the boarding station's ship).")]`
 - **reference** · `Ziptide.Gameplay.HangarBayRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs:88` — `if (shipRoot != null) ShipRefit.Apply(shipRoot);`

@@ -1,11 +1,11 @@
 {
   "tool": "recovery_event_save_graph",
-  "scannedFiles": 608,
-  "evidenceCount": 636,
+  "scannedFiles": 609,
+  "evidenceCount": 637,
   "kindCounts": {
     "AUTOSAVE": 7,
     "EVENT_DECLARE": 45,
-    "EVENT_INVOKE": 53,
+    "EVENT_INVOKE": 54,
     "EVENT_SUBSCRIBE": 78,
     "EVENT_UNSUBSCRIBE": 30,
     "PLAYER_PREFS_ACCESS": 11,
@@ -260,7 +260,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 44,
+      "line": 45,
       "owner": "Ziptide.Gameplay.ConquestMissionRuntime",
       "target": "SceneManager.sceneLoaded",
       "detail": "OnSceneLoaded",
@@ -269,7 +269,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 400,
+      "line": 402,
       "owner": "Ziptide.Gameplay.ConquestMissionRuntime",
       "target": "_rigRoot.transform.position",
       "detail": "Vector3",
@@ -278,7 +278,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 484,
+      "line": 486,
       "owner": "Ziptide.Gameplay.ConquestMissionRuntime",
       "target": "transform.localPosition",
       "detail": "Vector3",
@@ -1301,7 +1301,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-        "line": 83,
+        "line": 85,
         "owner": "Ziptide.Gameplay.ConquestMissionRuntime",
         "target": "DroneRuntime.OnDroneDisabled",
         "detail": "OnDroneDown",
@@ -1310,7 +1310,7 @@
       {
         "kind": "EVENT_UNSUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-        "line": 93,
+        "line": 95,
         "owner": "Ziptide.Gameplay.ConquestMissionRuntime",
         "target": "DroneRuntime.OnDroneDisabled",
         "detail": "OnDroneDown",
@@ -1776,7 +1776,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs",
-        "line": 75,
+        "line": 78,
         "owner": "Ziptide.Gameplay.EcologyDirector",
         "target": "GetWorld",
         "detail": "profile",
@@ -2246,7 +2246,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-        "line": 112,
+        "line": 113,
         "owner": "Ziptide.Gameplay.PvpProgressionRuntime",
         "target": "HasFlag",
         "detail": "profile",
@@ -3019,7 +3019,7 @@
       {
         "kind": "PLAYER_PREFS_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/ComfortVignette.cs",
-        "line": 50,
+        "line": 51,
         "owner": "Ziptide.Gameplay.ComfortVignette",
         "target": "PlayerPrefs.GetFloat",
         "detail": "",
@@ -3061,7 +3061,7 @@
       {
         "kind": "PLAYER_PREFS_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/ComfortVignette.cs",
-        "line": 68,
+        "line": 69,
         "owner": "Ziptide.Gameplay.ComfortVignette",
         "target": "PlayerPrefs.SetFloat",
         "detail": "",
@@ -3250,7 +3250,7 @@
       {
         "kind": "AUTOSAVE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-        "line": 121,
+        "line": 122,
         "owner": "Ziptide.Gameplay.PvpProgressionRuntime",
         "target": "SaveSystem.AutosaveNow",
         "detail": "pvp_match",
@@ -3259,7 +3259,7 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-        "line": 121,
+        "line": 122,
         "owner": "Ziptide.Gameplay.PvpProgressionRuntime",
         "target": "SaveSystem.AutosaveNow",
         "detail": "",
@@ -3391,7 +3391,7 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs",
-        "line": 73,
+        "line": 76,
         "owner": "Ziptide.Gameplay.EcologyDirector",
         "target": "SaveSystem.Profile",
         "detail": "",
@@ -3481,7 +3481,7 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-        "line": 71,
+        "line": 72,
         "owner": "Ziptide.Gameplay.PvpProgressionRuntime",
         "target": "SaveSystem.Profile",
         "detail": "",
@@ -3616,7 +3616,7 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-        "line": 347,
+        "line": 349,
         "owner": "Ziptide.Gameplay.ConquestMissionRuntime",
         "target": "SaveSystem.Profile",
         "detail": "",
@@ -3885,7 +3885,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs",
-        "line": 49,
+        "line": 51,
         "owner": "Ziptide.Gameplay.AmbienceDirector",
         "target": "SceneManager.sceneLoaded",
         "detail": "OnSceneLoaded",
@@ -3894,7 +3894,7 @@
       {
         "kind": "EVENT_UNSUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs",
-        "line": 55,
+        "line": 57,
         "owner": "Ziptide.Gameplay.AmbienceDirector",
         "target": "SceneManager.sceneLoaded",
         "detail": "OnSceneLoaded",
@@ -3921,7 +3921,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-        "line": 64,
+        "line": 66,
         "owner": "Ziptide.Gameplay.DevTools.DevWarpBoard",
         "target": "SceneManager.sceneLoaded",
         "detail": "OnSceneLoaded",
@@ -3930,7 +3930,7 @@
       {
         "kind": "EVENT_UNSUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-        "line": 65,
+        "line": 67,
         "owner": "Ziptide.Gameplay.DevTools.DevWarpBoard",
         "target": "SceneManager.sceneLoaded",
         "detail": "OnSceneLoaded",
@@ -3939,7 +3939,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Diagnostics/SingletonValidator.cs",
-        "line": 24,
+        "line": 31,
         "owner": "Ziptide.Gameplay.SingletonValidator",
         "target": "SceneManager.sceneLoaded",
         "detail": "OnSceneLoaded",
@@ -3948,7 +3948,7 @@
       {
         "kind": "EVENT_UNSUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Diagnostics/SingletonValidator.cs",
-        "line": 31,
+        "line": 38,
         "owner": "Ziptide.Gameplay.SingletonValidator",
         "target": "SceneManager.sceneLoaded",
         "detail": "OnSceneLoaded",
@@ -3957,7 +3957,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs",
-        "line": 42,
+        "line": 44,
         "owner": "Ziptide.Gameplay.EcologyDirector",
         "target": "SceneManager.sceneLoaded",
         "detail": "(scene, mode) =>",
@@ -3966,7 +3966,7 @@
       {
         "kind": "EVENT_UNSUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs",
-        "line": 14,
+        "line": 16,
         "owner": "Ziptide.Gameplay.QuartersCameraFeature",
         "target": "SceneManager.sceneLoaded",
         "detail": "OnSceneLoaded",
@@ -3975,7 +3975,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs",
-        "line": 15,
+        "line": 17,
         "owner": "Ziptide.Gameplay.QuartersCameraFeature",
         "target": "SceneManager.sceneLoaded",
         "detail": "OnSceneLoaded",
@@ -4002,7 +4002,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-        "line": 37,
+        "line": 38,
         "owner": "Ziptide.Gameplay.PvpProgressionRuntime",
         "target": "SceneManager.sceneLoaded",
         "detail": "OnSceneLoaded",
@@ -4011,7 +4011,7 @@
       {
         "kind": "EVENT_UNSUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-        "line": 43,
+        "line": 44,
         "owner": "Ziptide.Gameplay.PvpProgressionRuntime",
         "target": "SceneManager.sceneLoaded",
         "detail": "OnSceneLoaded",
@@ -4038,7 +4038,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-        "line": 44,
+        "line": 45,
         "owner": "Ziptide.Gameplay.ConquestMissionRuntime",
         "target": "SceneManager.sceneLoaded",
         "detail": "OnSceneLoaded",
@@ -4130,7 +4130,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-        "line": 113,
+        "line": 114,
         "owner": "Ziptide.Gameplay.PvpProgressionRuntime",
         "target": "SetFlag",
         "detail": "profile",
@@ -4251,7 +4251,7 @@
       {
         "kind": "EVENT_DECLARE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs",
-        "line": 37,
+        "line": 38,
         "owner": "Ziptide.Gameplay.Tutorial.FirstHourObservationAdapter",
         "target": "SignalCompleted",
         "detail": "Action<string>",
@@ -4260,7 +4260,7 @@
       {
         "kind": "EVENT_INVOKE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs",
-        "line": 191,
+        "line": 193,
         "owner": "Ziptide.Gameplay.Tutorial.FirstHourObservationAdapter",
         "target": "SignalCompleted",
         "detail": "",
@@ -4487,7 +4487,7 @@
       {
         "kind": "EVENT_UNSUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-        "line": 94,
+        "line": 96,
         "owner": "Ziptide.Gameplay.ConquestMissionRuntime",
         "target": "Ziptide.Core.FlightSignals.TargetDisabled",
         "detail": "OnFlightTargetDisabled",
@@ -4567,7 +4567,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-        "line": 54,
+        "line": 55,
         "owner": "Ziptide.Gameplay.PvpProgressionRuntime",
         "target": "_director.KillScored",
         "detail": "OnKill",
@@ -4576,7 +4576,7 @@
       {
         "kind": "EVENT_UNSUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-        "line": 62,
+        "line": 63,
         "owner": "Ziptide.Gameplay.PvpProgressionRuntime",
         "target": "_director.KillScored",
         "detail": "OnKill",
@@ -4587,7 +4587,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-        "line": 55,
+        "line": 56,
         "owner": "Ziptide.Gameplay.PvpProgressionRuntime",
         "target": "_director.MatchEnded",
         "detail": "OnMatchEnded",
@@ -4596,7 +4596,7 @@
       {
         "kind": "EVENT_UNSUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-        "line": 63,
+        "line": 64,
         "owner": "Ziptide.Gameplay.PvpProgressionRuntime",
         "target": "_director.MatchEnded",
         "detail": "OnMatchEnded",
@@ -4716,7 +4716,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-        "line": 400,
+        "line": 402,
         "owner": "Ziptide.Gameplay.ConquestMissionRuntime",
         "target": "_rigRoot.transform.position",
         "detail": "Vector3",
@@ -5638,6 +5638,15 @@
         "target": "method",
         "detail": "",
         "snippet": "method.Invoke(null, null);"
+      },
+      {
+        "kind": "EVENT_INVOKE",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGameplayBootstrapGateTests.cs",
+        "line": 111,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryGameplayBootstrapGateTests",
+        "target": "method",
+        "detail": "",
+        "snippet": "method.Invoke(null, null);"
       }
     ],
     "name": [
@@ -6004,7 +6013,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-        "line": 80,
+        "line": 81,
         "owner": "Ziptide.Gameplay.PvpProgressionRuntime",
         "target": "pvpCareer",
         "detail": "profile",
@@ -6386,7 +6395,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-        "line": 484,
+        "line": 486,
         "owner": "Ziptide.Gameplay.ConquestMissionRuntime",
         "target": "transform.localPosition",
         "detail": "Vector3",
@@ -7828,7 +7837,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs",
-      "line": 49,
+      "line": 51,
       "owner": "Ziptide.Gameplay.AmbienceDirector",
       "target": "SceneManager.sceneLoaded",
       "detail": "OnSceneLoaded",
@@ -7837,7 +7846,7 @@
     {
       "kind": "EVENT_UNSUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs",
-      "line": 55,
+      "line": 57,
       "owner": "Ziptide.Gameplay.AmbienceDirector",
       "target": "SceneManager.sceneLoaded",
       "detail": "OnSceneLoaded",
@@ -8071,7 +8080,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-      "line": 64,
+      "line": 66,
       "owner": "Ziptide.Gameplay.DevTools.DevWarpBoard",
       "target": "SceneManager.sceneLoaded",
       "detail": "OnSceneLoaded",
@@ -8080,7 +8089,7 @@
     {
       "kind": "EVENT_UNSUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-      "line": 65,
+      "line": 67,
       "owner": "Ziptide.Gameplay.DevTools.DevWarpBoard",
       "target": "SceneManager.sceneLoaded",
       "detail": "OnSceneLoaded",
@@ -8089,7 +8098,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Diagnostics/SingletonValidator.cs",
-      "line": 24,
+      "line": 31,
       "owner": "Ziptide.Gameplay.SingletonValidator",
       "target": "SceneManager.sceneLoaded",
       "detail": "OnSceneLoaded",
@@ -8098,7 +8107,7 @@
     {
       "kind": "EVENT_UNSUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Diagnostics/SingletonValidator.cs",
-      "line": 31,
+      "line": 38,
       "owner": "Ziptide.Gameplay.SingletonValidator",
       "target": "SceneManager.sceneLoaded",
       "detail": "OnSceneLoaded",
@@ -8287,7 +8296,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs",
-      "line": 42,
+      "line": 44,
       "owner": "Ziptide.Gameplay.EcologyDirector",
       "target": "SceneManager.sceneLoaded",
       "detail": "(scene, mode) =>",
@@ -8296,7 +8305,7 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs",
-      "line": 73,
+      "line": 76,
       "owner": "Ziptide.Gameplay.EcologyDirector",
       "target": "SaveSystem.Profile",
       "detail": "",
@@ -8305,7 +8314,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs",
-      "line": 75,
+      "line": 78,
       "owner": "Ziptide.Gameplay.EcologyDirector",
       "target": "GetWorld",
       "detail": "profile",
@@ -8755,7 +8764,7 @@
     {
       "kind": "EVENT_UNSUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs",
-      "line": 14,
+      "line": 16,
       "owner": "Ziptide.Gameplay.QuartersCameraFeature",
       "target": "SceneManager.sceneLoaded",
       "detail": "OnSceneLoaded",
@@ -8764,7 +8773,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs",
-      "line": 15,
+      "line": 17,
       "owner": "Ziptide.Gameplay.QuartersCameraFeature",
       "target": "SceneManager.sceneLoaded",
       "detail": "OnSceneLoaded",
@@ -8773,7 +8782,7 @@
     {
       "kind": "PLAYER_PREFS_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/ComfortVignette.cs",
-      "line": 50,
+      "line": 51,
       "owner": "Ziptide.Gameplay.ComfortVignette",
       "target": "PlayerPrefs.GetFloat",
       "detail": "",
@@ -8782,7 +8791,7 @@
     {
       "kind": "PLAYER_PREFS_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/ComfortVignette.cs",
-      "line": 68,
+      "line": 69,
       "owner": "Ziptide.Gameplay.ComfortVignette",
       "target": "PlayerPrefs.SetFloat",
       "detail": "",
@@ -9016,7 +9025,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-      "line": 37,
+      "line": 38,
       "owner": "Ziptide.Gameplay.PvpProgressionRuntime",
       "target": "SceneManager.sceneLoaded",
       "detail": "OnSceneLoaded",
@@ -9025,7 +9034,7 @@
     {
       "kind": "EVENT_UNSUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-      "line": 43,
+      "line": 44,
       "owner": "Ziptide.Gameplay.PvpProgressionRuntime",
       "target": "SceneManager.sceneLoaded",
       "detail": "OnSceneLoaded",
@@ -9034,7 +9043,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-      "line": 54,
+      "line": 55,
       "owner": "Ziptide.Gameplay.PvpProgressionRuntime",
       "target": "_director.KillScored",
       "detail": "OnKill",
@@ -9043,7 +9052,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-      "line": 55,
+      "line": 56,
       "owner": "Ziptide.Gameplay.PvpProgressionRuntime",
       "target": "_director.MatchEnded",
       "detail": "OnMatchEnded",
@@ -9052,7 +9061,7 @@
     {
       "kind": "EVENT_UNSUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-      "line": 62,
+      "line": 63,
       "owner": "Ziptide.Gameplay.PvpProgressionRuntime",
       "target": "_director.KillScored",
       "detail": "OnKill",
@@ -9061,7 +9070,7 @@
     {
       "kind": "EVENT_UNSUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-      "line": 63,
+      "line": 64,
       "owner": "Ziptide.Gameplay.PvpProgressionRuntime",
       "target": "_director.MatchEnded",
       "detail": "OnMatchEnded",
@@ -9070,7 +9079,7 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-      "line": 71,
+      "line": 72,
       "owner": "Ziptide.Gameplay.PvpProgressionRuntime",
       "target": "SaveSystem.Profile",
       "detail": "",
@@ -9079,7 +9088,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-      "line": 80,
+      "line": 81,
       "owner": "Ziptide.Gameplay.PvpProgressionRuntime",
       "target": "pvpCareer",
       "detail": "profile",
@@ -9088,7 +9097,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-      "line": 112,
+      "line": 113,
       "owner": "Ziptide.Gameplay.PvpProgressionRuntime",
       "target": "HasFlag",
       "detail": "profile",
@@ -9097,7 +9106,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-      "line": 113,
+      "line": 114,
       "owner": "Ziptide.Gameplay.PvpProgressionRuntime",
       "target": "SetFlag",
       "detail": "profile",
@@ -9106,7 +9115,7 @@
     {
       "kind": "AUTOSAVE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-      "line": 121,
+      "line": 122,
       "owner": "Ziptide.Gameplay.PvpProgressionRuntime",
       "target": "SaveSystem.AutosaveNow",
       "detail": "pvp_match",
@@ -9115,7 +9124,7 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-      "line": 121,
+      "line": 122,
       "owner": "Ziptide.Gameplay.PvpProgressionRuntime",
       "target": "SaveSystem.AutosaveNow",
       "detail": "",
@@ -9529,7 +9538,7 @@
     {
       "kind": "EVENT_DECLARE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs",
-      "line": 37,
+      "line": 38,
       "owner": "Ziptide.Gameplay.Tutorial.FirstHourObservationAdapter",
       "target": "SignalCompleted",
       "detail": "Action<string>",
@@ -9538,7 +9547,7 @@
     {
       "kind": "EVENT_INVOKE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs",
-      "line": 191,
+      "line": 193,
       "owner": "Ziptide.Gameplay.Tutorial.FirstHourObservationAdapter",
       "target": "SignalCompleted",
       "detail": "",
@@ -9646,7 +9655,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 44,
+      "line": 45,
       "owner": "Ziptide.Gameplay.ConquestMissionRuntime",
       "target": "SceneManager.sceneLoaded",
       "detail": "OnSceneLoaded",
@@ -9655,7 +9664,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 83,
+      "line": 85,
       "owner": "Ziptide.Gameplay.ConquestMissionRuntime",
       "target": "DroneRuntime.OnDroneDisabled",
       "detail": "OnDroneDown",
@@ -9664,7 +9673,7 @@
     {
       "kind": "EVENT_UNSUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 93,
+      "line": 95,
       "owner": "Ziptide.Gameplay.ConquestMissionRuntime",
       "target": "DroneRuntime.OnDroneDisabled",
       "detail": "OnDroneDown",
@@ -9673,7 +9682,7 @@
     {
       "kind": "EVENT_UNSUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 94,
+      "line": 96,
       "owner": "Ziptide.Gameplay.ConquestMissionRuntime",
       "target": "Ziptide.Core.FlightSignals.TargetDisabled",
       "detail": "OnFlightTargetDisabled",
@@ -9682,7 +9691,7 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 347,
+      "line": 349,
       "owner": "Ziptide.Gameplay.ConquestMissionRuntime",
       "target": "SaveSystem.Profile",
       "detail": "",
@@ -9691,7 +9700,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 400,
+      "line": 402,
       "owner": "Ziptide.Gameplay.ConquestMissionRuntime",
       "target": "_rigRoot.transform.position",
       "detail": "Vector3",
@@ -9700,7 +9709,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 484,
+      "line": 486,
       "owner": "Ziptide.Gameplay.ConquestMissionRuntime",
       "target": "transform.localPosition",
       "detail": "Vector3",
@@ -12027,6 +12036,15 @@
       "target": "Allows",
       "detail": "profile",
       "snippet": "Assert.IsFalse(profile.Allows(RecoveryFeatureId.RuntimeMaterialFixer),"
+    },
+    {
+      "kind": "EVENT_INVOKE",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGameplayBootstrapGateTests.cs",
+      "line": 111,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryGameplayBootstrapGateTests",
+      "target": "method",
+      "detail": "",
+      "snippet": "method.Invoke(null, null);"
     },
     {
       "kind": "EVENT_SUBSCRIBE",

@@ -1,6 +1,6 @@
 # ZIPTIDE R0 Ownership Maps
 
-- Scanned files: **608**
+- Scanned files: **609**
 - Scanner findings: **2045**
 - Inventory systems: **22**
 
@@ -99,8 +99,8 @@ None.
 
 - Codes: `DONT_DESTROY_ON_LOAD`, `RUNTIME_BOOTSTRAP`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs:34` **RUNTIME_BOOTSTRAP** — `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs:39` **DONT_DESTROY_ON_LOAD** — `DontDestroyOnLoad(go);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs:35` **RUNTIME_BOOTSTRAP** — `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs:41` **DONT_DESTROY_ON_LOAD** — `DontDestroyOnLoad(go);`
 
 ### `Ziptide.Gameplay.AudioDirector` — 1 signal(s)
 
@@ -139,27 +139,27 @@ None.
 
 - Codes: `DONT_DESTROY_ON_LOAD`, `RUNTIME_BOOTSTRAP`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:54` **RUNTIME_BOOTSTRAP** — `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:59` **DONT_DESTROY_ON_LOAD** — `DontDestroyOnLoad(go);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:55` **RUNTIME_BOOTSTRAP** — `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:61` **DONT_DESTROY_ON_LOAD** — `DontDestroyOnLoad(go);`
 
 ### `Ziptide.Gameplay.EcologyDirector` — 1 signal(s)
 
 - Codes: `RUNTIME_BOOTSTRAP`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs:39` **RUNTIME_BOOTSTRAP** — `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs:40` **RUNTIME_BOOTSTRAP** — `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
 
 ### `Ziptide.Gameplay.PvpProgressionRuntime` — 2 signal(s)
 
 - Codes: `DONT_DESTROY_ON_LOAD`, `RUNTIME_BOOTSTRAP`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:26` **RUNTIME_BOOTSTRAP** — `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:32` **DONT_DESTROY_ON_LOAD** — `DontDestroyOnLoad(go);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:33` **DONT_DESTROY_ON_LOAD** — `DontDestroyOnLoad(go);`
 
 ### `Ziptide.Gameplay.QuartersCameraFeature` — 1 signal(s)
 
 - Codes: `RUNTIME_BOOTSTRAP`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs:11` **RUNTIME_BOOTSTRAP** — `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs:12` **RUNTIME_BOOTSTRAP** — `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]`
 
 ### `Ziptide.Gameplay.SaveSystem` — 2 signal(s)
 
@@ -172,7 +172,7 @@ None.
 
 - Codes: `DONT_DESTROY_ON_LOAD`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Diagnostics/SingletonValidator.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Diagnostics/SingletonValidator.cs:23` **DONT_DESTROY_ON_LOAD** — `DontDestroyOnLoad(gameObject);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Diagnostics/SingletonValidator.cs:30` **DONT_DESTROY_ON_LOAD** — `DontDestroyOnLoad(gameObject);`
 
 ### `Ziptide.Gameplay.TravelCoordinator` — 1 signal(s)
 
@@ -184,9 +184,9 @@ None.
 
 - Codes: `DONT_DESTROY_ON_LOAD`, `RUNTIME_BOOTSTRAP`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs:44` **RUNTIME_BOOTSTRAP** — `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs:49` **DONT_DESTROY_ON_LOAD** — `DontDestroyOnLoad(go);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs:62` **DONT_DESTROY_ON_LOAD** — `DontDestroyOnLoad(gameObject);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs:45` **RUNTIME_BOOTSTRAP** — `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs:51` **DONT_DESTROY_ON_LOAD** — `DontDestroyOnLoad(go);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs:64` **DONT_DESTROY_ON_LOAD** — `DontDestroyOnLoad(gameObject);`
 
 ### `Ziptide.Tests.EditMode.DevToolsSingletonTests` — 1 signal(s)
 
@@ -348,7 +348,7 @@ None.
 
 - Codes: `FRAME_BUTTON_POLL`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:75` **FRAME_BUTTON_POLL** — `if (kb != null && kb.f2Key.wasPressedThisFrame) Toggle();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:77` **FRAME_BUTTON_POLL** — `if (kb != null && kb.f2Key.wasPressedThisFrame) Toggle();`
 
 ### `Ziptide.Gameplay.EmergencyRespawn` — 4 signal(s)
 
@@ -905,7 +905,7 @@ None.
 
 - Codes: `NEW_GAME_OBJECT`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs:38` **NEW_GAME_OBJECT** — `var go = new GameObject("__AmbienceDirector");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs:40` **NEW_GAME_OBJECT** — `var go = new GameObject("__AmbienceDirector");`
 
 ### `Ziptide.Gameplay.ArenaLobbyBoard` — 6 signal(s)
 
@@ -1123,30 +1123,30 @@ None.
 
 - Codes: `NEW_GAME_OBJECT`, `RUNTIME_MATERIAL_CREATE`, `SHADER_FIND`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/ComfortVignette.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/ComfortVignette.cs:40` **NEW_GAME_OBJECT** — `var go = new GameObject("ComfortVignette");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/ComfortVignette.cs:124` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Unlit");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/ComfortVignette.cs:125` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Unlit/Color");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/ComfortVignette.cs:126` **RUNTIME_MATERIAL_CREATE** — `var mat = new Material(shader) { color = Color.black };`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/ComfortVignette.cs:41` **NEW_GAME_OBJECT** — `var go = new GameObject("ComfortVignette");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/ComfortVignette.cs:125` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Unlit");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/ComfortVignette.cs:126` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Unlit/Color");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/ComfortVignette.cs:127` **RUNTIME_MATERIAL_CREATE** — `var mat = new Material(shader) { color = Color.black };`
 
 ### `Ziptide.Gameplay.ConquestMissionRuntime` — 15 signal(s)
 
 - Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`, `TEXTMESH_COMPONENT`, `XR_INTERACTABLE_COMPONENT`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:51` **NEW_GAME_OBJECT** — `var go = new GameObject("__ConquestMission");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:65` **NEW_GAME_OBJECT** — `_boardRoot = new GameObject("MissionBoard").transform;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:68` **TEXTMESH_COMPONENT** — `_board = _boardRoot.gameObject.AddComponent<TextMesh>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:122` **NEW_GAME_OBJECT** — `var root = new GameObject("ShieldPylon_" + i);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:150` **NEW_GAME_OBJECT** — `var root = new GameObject("ScanNode_" + i);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:172` **NEW_GAME_OBJECT** — `var beaconRoot = new GameObject("StrikeBeacon");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:193` **XR_INTERACTABLE_COMPONENT** — `beaconRoot.AddComponent<XRGrabInteractable>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:196` **NEW_GAME_OBJECT** — `var pad = new GameObject("UplinkPad");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:213` **NEW_GAME_OBJECT** — `var root = new GameObject("Conduit_" + i);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:243` **CREATE_PRIMITIVE** — `var body = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:265` **CREATE_PRIMITIVE** — `var p = GameObject.CreatePrimitive(type);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:276` **NEW_GAME_OBJECT** — `var pivot = new GameObject("OrbiterPivot").transform;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:280` **CREATE_PRIMITIVE** — `var chip = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:384` **XR_INTERACTABLE_COMPONENT** — `gameObject.AddComponent<XRSimpleInteractable>().selectEntered`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:463` **XR_INTERACTABLE_COMPONENT** — `gameObject.AddComponent<XRSimpleInteractable>().selectEntered.AddListener(_ => Hit());`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:53` **NEW_GAME_OBJECT** — `var go = new GameObject("__ConquestMission");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:67` **NEW_GAME_OBJECT** — `_boardRoot = new GameObject("MissionBoard").transform;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:70` **TEXTMESH_COMPONENT** — `_board = _boardRoot.gameObject.AddComponent<TextMesh>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:124` **NEW_GAME_OBJECT** — `var root = new GameObject("ShieldPylon_" + i);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:152` **NEW_GAME_OBJECT** — `var root = new GameObject("ScanNode_" + i);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:174` **NEW_GAME_OBJECT** — `var beaconRoot = new GameObject("StrikeBeacon");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:195` **XR_INTERACTABLE_COMPONENT** — `beaconRoot.AddComponent<XRGrabInteractable>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:198` **NEW_GAME_OBJECT** — `var pad = new GameObject("UplinkPad");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:215` **NEW_GAME_OBJECT** — `var root = new GameObject("Conduit_" + i);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:245` **CREATE_PRIMITIVE** — `var body = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:267` **CREATE_PRIMITIVE** — `var p = GameObject.CreatePrimitive(type);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:278` **NEW_GAME_OBJECT** — `var pivot = new GameObject("OrbiterPivot").transform;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:282` **CREATE_PRIMITIVE** — `var chip = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:386` **XR_INTERACTABLE_COMPONENT** — `gameObject.AddComponent<XRSimpleInteractable>().selectEntered`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:465` **XR_INTERACTABLE_COMPONENT** — `gameObject.AddComponent<XRSimpleInteractable>().selectEntered.AddListener(_ => Hit());`
 
 ### `Ziptide.Gameplay.ConquestTableRuntime` — 12 signal(s)
 
@@ -1216,13 +1216,13 @@ None.
 
 - Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`, `TEXTMESH_COMPONENT`, `XR_INTERACTABLE_COMPONENT`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:58` **NEW_GAME_OBJECT** — `var go = new GameObject("__DevWarpBoard");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:133` **NEW_GAME_OBJECT** — `_board = new GameObject("DevWarpBoard");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:160` **CREATE_PRIMITIVE** — `var panel = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:197` **CREATE_PRIMITIVE** — `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:204` **XR_INTERACTABLE_COMPONENT** — `var interactable = go.AddComponent<XRSimpleInteractable>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:228` **NEW_GAME_OBJECT** — `var go = new GameObject("Label_" + text.Replace(' ', '_'));`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:236` **TEXTMESH_COMPONENT** — `var tm = go.AddComponent<TextMesh>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:60` **NEW_GAME_OBJECT** — `var go = new GameObject("__DevWarpBoard");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:135` **NEW_GAME_OBJECT** — `_board = new GameObject("DevWarpBoard");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:162` **CREATE_PRIMITIVE** — `var panel = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:199` **CREATE_PRIMITIVE** — `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:206` **XR_INTERACTABLE_COMPONENT** — `var interactable = go.AddComponent<XRSimpleInteractable>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:230` **NEW_GAME_OBJECT** — `var go = new GameObject("Label_" + text.Replace(' ', '_'));`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:238` **TEXTMESH_COMPONENT** — `var tm = go.AddComponent<TextMesh>();`
 
 ### `Ziptide.Gameplay.DispatchKiosk` — 2 signal(s)
 
@@ -1258,8 +1258,8 @@ None.
 
 - Codes: `NEW_GAME_OBJECT`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs:53` **NEW_GAME_OBJECT** — `var go = new GameObject("EcologyDirector");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs:186` **NEW_GAME_OBJECT** — `var go = new GameObject("Nest_" + s.CreatureId + "_" + i);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs:56` **NEW_GAME_OBJECT** — `var go = new GameObject("EcologyDirector");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs:189` **NEW_GAME_OBJECT** — `var go = new GameObject("Nest_" + s.CreatureId + "_" + i);`
 
 ### `Ziptide.Gameplay.FirstDestinationHelmRuntime` — 8 signal(s)
 
@@ -1612,16 +1612,16 @@ None.
 
 - Codes: `NEW_GAME_OBJECT`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:30` **NEW_GAME_OBJECT** — `var go = new GameObject("PvpProgression");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:31` **NEW_GAME_OBJECT** — `var go = new GameObject("PvpProgression");`
 
 ### `Ziptide.Gameplay.QuartersCameraFeature` — 4 signal(s)
 
 - Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs:35` **NEW_GAME_OBJECT** — `Transform root = new GameObject(FeatureRootName).transform; root.SetParent(transform, false);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs:37` **NEW_GAME_OBJECT** — `Transform dock = new GameObject("FieldCameraDock").transform;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs:39` **CREATE_PRIMITIVE** — `GameObject pedestal = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs:49` **NEW_GAME_OBJECT** — `Transform wall = new GameObject("PhotoWallHost").transform;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs:39` **NEW_GAME_OBJECT** — `Transform root = new GameObject(FeatureRootName).transform; root.SetParent(transform, false);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs:41` **NEW_GAME_OBJECT** — `Transform dock = new GameObject("FieldCameraDock").transform;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs:43` **CREATE_PRIMITIVE** — `GameObject pedestal = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs:53` **NEW_GAME_OBJECT** — `Transform wall = new GameObject("PhotoWallHost").transform;`
 
 ### `Ziptide.Gameplay.QuartersPhotoWall` — 7 signal(s)
 
@@ -1834,7 +1834,7 @@ None.
 
 - Codes: `NEW_GAME_OBJECT`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs:48` **NEW_GAME_OBJECT** — `var go = new GameObject("__FirstHourObservationAdapter");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs:50` **NEW_GAME_OBJECT** — `var go = new GameObject("__FirstHourObservationAdapter");`
 
 ### `Ziptide.Gameplay.WateringCanRuntime` — 9 signal(s)
 
@@ -2317,10 +2317,10 @@ None.
 
 - Codes: `XRI_MANAGER_ASSIGN`, `XRI_MANAGER_LOOKUP`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:205` **XRI_MANAGER_LOOKUP** — `var mgr = FindObjectOfType<XRInteractionManager>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:206` **XRI_MANAGER_ASSIGN** — `if (mgr != null) interactable.interactionManager = mgr;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:221` **XRI_MANAGER_LOOKUP** — `var mgr = FindObjectOfType<XRInteractionManager>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:222` **XRI_MANAGER_ASSIGN** — `if (mgr != null) { interactable.interactionManager = mgr; yield break; }`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:207` **XRI_MANAGER_LOOKUP** — `var mgr = FindObjectOfType<XRInteractionManager>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:208` **XRI_MANAGER_ASSIGN** — `if (mgr != null) interactable.interactionManager = mgr;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:223` **XRI_MANAGER_LOOKUP** — `var mgr = FindObjectOfType<XRInteractionManager>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:224` **XRI_MANAGER_ASSIGN** — `if (mgr != null) { interactable.interactionManager = mgr; yield break; }`
 
 ### `Ziptide.Gameplay.FirstDestinationHelmRuntime` — 4 signal(s)
 
@@ -2686,7 +2686,7 @@ None.
 
 - Codes: `SAVE_SYSTEM_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:347` **SAVE_SYSTEM_REFERENCE** — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:349` **SAVE_SYSTEM_REFERENCE** — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 
 ### `Ziptide.Gameplay.ConquestTableRuntime` — 4 signal(s)
 
@@ -2720,7 +2720,7 @@ None.
 
 - Codes: `SAVE_SYSTEM_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs:73` **SAVE_SYSTEM_REFERENCE** — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs:76` **SAVE_SYSTEM_REFERENCE** — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 
 ### `Ziptide.Gameplay.FirstDestinationHelmRuntime` — 4 signal(s)
 
@@ -2847,9 +2847,9 @@ None.
 - Codes: `AUTOSAVE_CALL`, `SAVE_SYSTEM_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:10` **SAVE_SYSTEM_REFERENCE** — `/// like SaveSystem (no scene edit, so every already-committed arena gets it): on each scene`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:71` **SAVE_SYSTEM_REFERENCE** — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:121` **AUTOSAVE_CALL** — `SaveSystem.AutosaveNow("pvp_match");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:121` **SAVE_SYSTEM_REFERENCE** — `SaveSystem.AutosaveNow("pvp_match");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:72` **SAVE_SYSTEM_REFERENCE** — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:122` **AUTOSAVE_CALL** — `SaveSystem.AutosaveNow("pvp_match");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:122` **SAVE_SYSTEM_REFERENCE** — `SaveSystem.AutosaveNow("pvp_match");`
 
 ### `Ziptide.Gameplay.QuartersPhotoWall` — 2 signal(s)
 
@@ -2955,7 +2955,7 @@ None.
 
 - Codes: `EVENT_DECLARATION`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs:37` **EVENT_DECLARATION** — `public event Action<string> SignalCompleted;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs:38` **EVENT_DECLARATION** — `public event Action<string> SignalCompleted;`
 
 ### `Ziptide.Gameplay.WardenBehavior` — 1 signal(s)
 
@@ -3344,9 +3344,9 @@ None.
 
 - Codes: `CAMERA_MAIN_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:103` **CAMERA_MAIN_REFERENCE** — `var cam = Camera.main;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:295` **CAMERA_MAIN_REFERENCE** — `var cam = Camera.main;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:425` **CAMERA_MAIN_REFERENCE** — `var cam = Camera.main;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:105` **CAMERA_MAIN_REFERENCE** — `var cam = Camera.main;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:297` **CAMERA_MAIN_REFERENCE** — `var cam = Camera.main;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:427` **CAMERA_MAIN_REFERENCE** — `var cam = Camera.main;`
 
 ### `Ziptide.Gameplay.CreatureBehaviorBase` — 1 signal(s)
 
@@ -3372,7 +3372,7 @@ None.
 
 - Codes: `CAMERA_MAIN_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:109` **CAMERA_MAIN_REFERENCE** — `var cam = Camera.main;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:111` **CAMERA_MAIN_REFERENCE** — `var cam = Camera.main;`
 
 ### `Ziptide.Gameplay.DroneCombatBehavior` — 1 signal(s)
 
@@ -3462,7 +3462,7 @@ None.
 
 - Codes: `CAMERA_MAIN_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs:109` **CAMERA_MAIN_REFERENCE** — `Camera camera = Camera.main;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs:111` **CAMERA_MAIN_REFERENCE** — `Camera camera = Camera.main;`
 
 ### `Ziptide.Gameplay.WorldDirector` — 1 signal(s)
 

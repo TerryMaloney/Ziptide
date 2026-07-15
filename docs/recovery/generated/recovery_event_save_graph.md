@@ -1,7 +1,7 @@
 # ZIPTIDE Event and Save Ownership Graph
 
-- Scanned C# files: **608**
-- Evidence edges: **636**
+- Scanned C# files: **609**
+- Evidence edges: **637**
 - Named subscriptions without matching unsubscribe in the same owner: **47**
 
 This is a static ownership graph. An unmatched row is a review target, not automatic proof of a leak; process-lifetime static hooks may be intentional.
@@ -10,7 +10,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 - **AUTOSAVE:** 7
 - **EVENT_DECLARE:** 45
-- **EVENT_INVOKE:** 53
+- **EVENT_INVOKE:** 54
 - **EVENT_SUBSCRIBE:** 78
 - **EVENT_UNSUBSCRIBE:** 30
 - **PLAYER_PREFS_ACCESS:** 11
@@ -46,9 +46,9 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - `Ziptide.Gameplay.MeleeWeaponRuntime` subscribes `bot.transform.position` → `transform` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:129`
 - `Ziptide.Gameplay.SonicThumperRuntime` subscribes `bot.transform.position` → `shoveDir` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/SonicThumperRuntime.cs:78`
 - `Ziptide.Gameplay.ClimbableSurface` subscribes `_rig.position` → `new` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ClimbRuntime.cs:218`
-- `Ziptide.Gameplay.ConquestMissionRuntime` subscribes `SceneManager.sceneLoaded` → `OnSceneLoaded` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:44`
-- `Ziptide.Gameplay.ConquestMissionRuntime` subscribes `_rigRoot.transform.position` → `Vector3` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:400`
-- `Ziptide.Gameplay.ConquestMissionRuntime` subscribes `transform.localPosition` → `Vector3` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:484`
+- `Ziptide.Gameplay.ConquestMissionRuntime` subscribes `SceneManager.sceneLoaded` → `OnSceneLoaded` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:45`
+- `Ziptide.Gameplay.ConquestMissionRuntime` subscribes `_rigRoot.transform.position` → `Vector3` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:402`
+- `Ziptide.Gameplay.ConquestMissionRuntime` subscribes `transform.localPosition` → `Vector3` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:486`
 - `Ziptide.Gameplay.HazardZoneRuntime` subscribes `_rig.transform.position` → `dir` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HazardZoneRuntime.cs:111`
 - `Ziptide.Gameplay.HazardZoneRuntime` subscribes `_rig.transform.position` → `outDir` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HazardZoneRuntime.cs:134`
 - `Ziptide.Gameplay.LiftRuntime` subscribes `_rig.position` → `delta` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/LiftRuntime.cs:88`
@@ -208,8 +208,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.JobDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs:61` · `OnDroneDisabled` — `DroneRuntime.OnDroneDisabled += OnDroneDisabled;`
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.JobDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs:69` · `OnDroneDisabled` — `DroneRuntime.OnDroneDisabled -= OnDroneDisabled;`
-- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.ConquestMissionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:83` · `OnDroneDown` — `DroneRuntime.OnDroneDisabled += OnDroneDown;`
-- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.ConquestMissionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:93` · `OnDroneDown` — `DroneRuntime.OnDroneDisabled -= OnDroneDown;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.ConquestMissionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:85` · `OnDroneDown` — `DroneRuntime.OnDroneDisabled += OnDroneDown;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.ConquestMissionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:95` · `OnDroneDown` — `DroneRuntime.OnDroneDisabled -= OnDroneDown;`
 
 ### `EditorApplication.playModeStateChanged`
 
@@ -283,7 +283,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.BeltCellSpec` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltFloorRuntime.cs:119` · `profile` — `var world = profile.GetWorld(gameObject.scene.name, createIfMissing);`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.BeltMinePortRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltMinePortRuntime.cs:54` · `profile` — `var world = profile.GetWorld(worldId, createIfMissing: true);`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.CreatureRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:135` · `profile` — `profile.GetWorld(gameObject.scene.name, createIfMissing: true).ecologyPressures,`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.EcologyDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs:75` · `profile` — `? profile.GetWorld(world, createIfMissing: true).ecologyPressures`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.EcologyDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs:78` · `profile` — `? profile.GetWorld(world, createIfMissing: true).ecologyPressures`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.BuildSocketRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/BuildSocketRuntime.cs:47` · `profile` — `return profile != null ? profile.GetWorld(_worldId, createIfMissing: true) : null;`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.GardenPlotRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/GardenPlotRuntime.cs:91` · `profile` — `var world = profile.GetWorld(_worldId, createIfMissing: true);`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.GardenPlotRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/GardenPlotRuntime.cs:123` · `profile` — `var world = profile.GetWorld(_worldId, createIfMissing: true);`
@@ -338,7 +338,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.FirstHourHolsterSignal` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/FirstHourHolsterSignal.cs:21` · `profile` — `if (profile != null && profile.HasFlag(ZiptideFlags.FIRST_HOLSTER))`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.ReleaseFeel` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ReleaseFeel.cs:129` · `profile` — `if (profile == null || profile.HasFlag(ZiptideFlags.FIRST_RELEASE)) return;`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.ArenaLobbyBoard` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/ArenaLobbyBoard.cs:250` · `profile` — `return !profile.HasFlag(col == 2 ? PvpProgression.FlagVeteranUnlocked`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.PvpProgressionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:112` · `profile` — `if (profile.HasFlag(flag)) continue;`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.PvpProgressionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:113` · `profile` — `if (profile.HasFlag(flag)) continue;`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.ChoiceStation` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ChoiceStation.cs:35` · `profile` — `bool aTaken = profile != null && !string.IsNullOrEmpty(_def.flagA) && profile.HasFlag(_def.flagA);`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.ChoiceStation` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ChoiceStation.cs:36` · `profile` — `bool bTaken = profile != null && !string.IsNullOrEmpty(_def.flagB) && profile.HasFlag(_def.flagB);`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.RillCompanion` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs:104` · `profile` — `if (_scratch[i].once && profile != null && profile.HasFlag(SaidFlagPrefix + _scratch[i].id))`
@@ -485,7 +485,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `PlayerPrefs.GetFloat`
 
-- **PLAYER_PREFS_ACCESS** · `Ziptide.Gameplay.ComfortVignette` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/ComfortVignette.cs:50` — `_strength = Mathf.Clamp01(PlayerPrefs.GetFloat(PrefKey, DefaultStrength));`
+- **PLAYER_PREFS_ACCESS** · `Ziptide.Gameplay.ComfortVignette` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/ComfortVignette.cs:51` — `_strength = Mathf.Clamp01(PlayerPrefs.GetFloat(PrefKey, DefaultStrength));`
 
 ### `PlayerPrefs.GetInt`
 
@@ -498,7 +498,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `PlayerPrefs.SetFloat`
 
-- **PLAYER_PREFS_ACCESS** · `Ziptide.Gameplay.ComfortVignette` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/ComfortVignette.cs:68` — `PlayerPrefs.SetFloat(PrefKey, _strength);`
+- **PLAYER_PREFS_ACCESS** · `Ziptide.Gameplay.ComfortVignette` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/ComfortVignette.cs:69` — `PlayerPrefs.SetFloat(PrefKey, _strength);`
 
 ### `PlayerPrefs.SetInt`
 
@@ -544,8 +544,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **SAVE_ACCESS** · `Ziptide.Gameplay.BeltCellSpec` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltFloorRuntime.cs:195` — `SaveSystem.AutosaveNow("belt_stamp");`
 - **AUTOSAVE** · `Ziptide.Gameplay.BeltCellSpec` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltFloorRuntime.cs:207` · `belt_edit` — `SaveSystem.AutosaveNow("belt_edit");`
 - **SAVE_ACCESS** · `Ziptide.Gameplay.BeltCellSpec` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltFloorRuntime.cs:207` — `SaveSystem.AutosaveNow("belt_edit");`
-- **AUTOSAVE** · `Ziptide.Gameplay.PvpProgressionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:121` · `pvp_match` — `SaveSystem.AutosaveNow("pvp_match");`
-- **SAVE_ACCESS** · `Ziptide.Gameplay.PvpProgressionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:121` — `SaveSystem.AutosaveNow("pvp_match");`
+- **AUTOSAVE** · `Ziptide.Gameplay.PvpProgressionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:122` · `pvp_match` — `SaveSystem.AutosaveNow("pvp_match");`
+- **SAVE_ACCESS** · `Ziptide.Gameplay.PvpProgressionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:122` — `SaveSystem.AutosaveNow("pvp_match");`
 - **AUTOSAVE** · `Ziptide.Gameplay.TravelCoordinator` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:119` · `travel_fallback` — `SaveSystem.AutosaveNow("travel_fallback");`
 - **SAVE_ACCESS** · `Ziptide.Gameplay.TravelCoordinator` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:119` — `SaveSystem.AutosaveNow("travel_fallback");`
 - **AUTOSAVE** · `Ziptide.Gameplay.TravelCoordinator` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:187` · `travel` — `SaveSystem.AutosaveNow("travel");`
@@ -568,7 +568,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **SAVE_ACCESS** · `Ziptide.Gameplay.BeltCellSpec` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltFloorRuntime.cs:618` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_ACCESS** · `Ziptide.Gameplay.BeltMinePortRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltMinePortRuntime.cs:52` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_ACCESS** · `Ziptide.Gameplay.CreatureRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:125` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
-- **SAVE_ACCESS** · `Ziptide.Gameplay.EcologyDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs:73` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
+- **SAVE_ACCESS** · `Ziptide.Gameplay.EcologyDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs:76` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_ACCESS** · `Ziptide.Gameplay.NestRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/NestRuntime.cs:125` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_ACCESS** · `Ziptide.Gameplay.WardenBehavior` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/WardenBehavior.cs:43` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_ACCESS** · `Ziptide.Gameplay.HolsterSocketInteractor` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:68` — `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
@@ -578,7 +578,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **SAVE_ACCESS** · `Ziptide.Gameplay.JobDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs:308` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_ACCESS** · `Ziptide.Gameplay.SaveSystem` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Persistence/SaveSystem.cs:48` — `/// economy/bounty payout use SaveSystem.Instance.Profile from anywhere.`
 - **SAVE_ACCESS** · `Ziptide.Gameplay.ArenaLobbyBoard` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/ArenaLobbyBoard.cs:248` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
-- **SAVE_ACCESS** · `Ziptide.Gameplay.PvpProgressionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:71` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
+- **SAVE_ACCESS** · `Ziptide.Gameplay.PvpProgressionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:72` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_ACCESS** · `Ziptide.Gameplay.BuildSocketRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/BuildSocketRuntime.cs:46` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_ACCESS** · `Ziptide.Gameplay.BuildSocketRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/BuildSocketRuntime.cs:88` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_ACCESS** · `Ziptide.Gameplay.ChoiceStation` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ChoiceStation.cs:34` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
@@ -593,7 +593,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **SAVE_ACCESS** · `Ziptide.Gameplay.RillCompanion` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs:151` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_ACCESS** · `Ziptide.Gameplay.RillCompanion` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs:266` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_ACCESS** · `Ziptide.Gameplay.TransmissionConsole` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/TransmissionConsole.cs:69` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
-- **SAVE_ACCESS** · `Ziptide.Gameplay.ConquestMissionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:347` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
+- **SAVE_ACCESS** · `Ziptide.Gameplay.ConquestMissionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:349` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_ACCESS** · `Ziptide.Gameplay.ConquestTableRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestTableRuntime.cs:76` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_ACCESS** · `Ziptide.Gameplay.ConquestTableRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestTableRuntime.cs:84` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_ACCESS** · `Ziptide.Gameplay.ConquestTableRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestTableRuntime.cs:104` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
@@ -634,24 +634,24 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **EVENT_SUBSCRIBE** · `Ziptide.Core.GamePool` · `Ziptide/Assets/Ziptide/Core/Runtime/GamePool.cs:50` · `(_, __) =>` — `SceneManager.sceneLoaded += (_, __) => ResetForNewScene();`
 - **EVENT_SUBSCRIBE** · `Ziptide.Core.RuntimeHealthMonitor` · `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs:49` · `OnSceneLoaded` — `SceneManager.sceneLoaded += OnSceneLoaded;`
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Core.RuntimeHealthMonitor` · `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs:55` · `OnSceneLoaded` — `if (_instance == this) { SceneManager.sceneLoaded -= OnSceneLoaded; _instance = null; }`
-- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.AmbienceDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs:49` · `OnSceneLoaded` — `SceneManager.sceneLoaded += OnSceneLoaded;`
-- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.AmbienceDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs:55` · `OnSceneLoaded` — `if (_instance == this) { SceneManager.sceneLoaded -= OnSceneLoaded; _instance = null; }`
+- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.AmbienceDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs:51` · `OnSceneLoaded` — `SceneManager.sceneLoaded += OnSceneLoaded;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.AmbienceDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs:57` · `OnSceneLoaded` — `if (_instance == this) { SceneManager.sceneLoaded -= OnSceneLoaded; _instance = null; }`
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.AudioDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs:40` · `OnSceneLoaded` — `SceneManager.sceneLoaded += OnSceneLoaded;`
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.AudioDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs:47` · `OnSceneLoaded` — `SceneManager.sceneLoaded -= OnSceneLoaded;`
-- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.DevTools.DevWarpBoard` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:64` · `OnSceneLoaded` — `private void OnEnable() => SceneManager.sceneLoaded += OnSceneLoaded;`
-- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.DevTools.DevWarpBoard` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:65` · `OnSceneLoaded` — `private void OnDisable() => SceneManager.sceneLoaded -= OnSceneLoaded;`
-- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.SingletonValidator` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Diagnostics/SingletonValidator.cs:24` · `OnSceneLoaded` — `SceneManager.sceneLoaded += OnSceneLoaded;`
-- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.SingletonValidator` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Diagnostics/SingletonValidator.cs:31` · `OnSceneLoaded` — `SceneManager.sceneLoaded -= OnSceneLoaded;`
-- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.EcologyDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs:42` · `(scene, mode) =>` — `SceneManager.sceneLoaded += (scene, mode) => Ensure(scene);`
-- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.QuartersCameraFeature` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs:14` · `OnSceneLoaded` — `SceneManager.sceneLoaded -= OnSceneLoaded;`
-- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.QuartersCameraFeature` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs:15` · `OnSceneLoaded` — `SceneManager.sceneLoaded += OnSceneLoaded;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.DevTools.DevWarpBoard` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:66` · `OnSceneLoaded` — `private void OnEnable() => SceneManager.sceneLoaded += OnSceneLoaded;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.DevTools.DevWarpBoard` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:67` · `OnSceneLoaded` — `private void OnDisable() => SceneManager.sceneLoaded -= OnSceneLoaded;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.SingletonValidator` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Diagnostics/SingletonValidator.cs:31` · `OnSceneLoaded` — `SceneManager.sceneLoaded += OnSceneLoaded;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.SingletonValidator` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Diagnostics/SingletonValidator.cs:38` · `OnSceneLoaded` — `SceneManager.sceneLoaded -= OnSceneLoaded;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.EcologyDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs:44` · `(scene, mode) =>` — `SceneManager.sceneLoaded += (scene, mode) => Ensure(scene);`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.QuartersCameraFeature` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs:16` · `OnSceneLoaded` — `SceneManager.sceneLoaded -= OnSceneLoaded;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.QuartersCameraFeature` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs:17` · `OnSceneLoaded` — `SceneManager.sceneLoaded += OnSceneLoaded;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.BootHoldState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:159` · `OnSceneLoaded` — `SceneManager.sceneLoaded += OnSceneLoaded;`
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.BootHoldState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:317` · `OnSceneLoaded` — `SceneManager.sceneLoaded -= OnSceneLoaded;`
-- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.PvpProgressionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:37` · `OnSceneLoaded` — `SceneManager.sceneLoaded += OnSceneLoaded;`
-- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.PvpProgressionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:43` · `OnSceneLoaded` — `SceneManager.sceneLoaded -= OnSceneLoaded;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.PvpProgressionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:38` · `OnSceneLoaded` — `SceneManager.sceneLoaded += OnSceneLoaded;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.PvpProgressionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:44` · `OnSceneLoaded` — `SceneManager.sceneLoaded -= OnSceneLoaded;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.RillCompanion` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs:56` · `OnSceneLoaded` — `SceneManager.sceneLoaded += OnSceneLoaded;`
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.RillCompanion` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs:61` · `OnSceneLoaded` — `SceneManager.sceneLoaded -= OnSceneLoaded;`
-- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.ConquestMissionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:44` · `OnSceneLoaded` — `SceneManager.sceneLoaded += OnSceneLoaded;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.ConquestMissionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:45` · `OnSceneLoaded` — `SceneManager.sceneLoaded += OnSceneLoaded;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Tests.EditMode.AudioDirectorLifecycleTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/AudioDirectorLifecycleTests.cs:58` · `OnSceneLoaded` — `Assert.AreEqual(1, Count(source, "SceneManager.sceneLoaded += OnSceneLoaded;"));`
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.EditMode.AudioDirectorLifecycleTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/AudioDirectorLifecycleTests.cs:59` · `OnSceneLoaded` — `Assert.AreEqual(1, Count(source, "SceneManager.sceneLoaded -= OnSceneLoaded;"));`
 - **EVENT_SUBSCRIBE** · `Ziptide.Tests.EditMode.FieldCameraCompletionTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/FieldCameraCompletionTests.cs:82` · `OnSceneLoaded` — `StringAssert.Contains("SceneManager.sceneLoaded += OnSceneLoaded", feature);`
@@ -664,7 +664,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Core.ShipLocker` · `Ziptide/Assets/Ziptide/Core/Runtime/ShipLocker.cs:21` · `profile` — `if (!string.IsNullOrEmpty(id)) profile.SetFlag(key + id);`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Core.TransmissionProgress` · `Ziptide/Assets/Ziptide/Core/Runtime/TransmissionProgress.cs:63` · `profile` — `profile.SetFlag(flag);`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.ReleaseFeel` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ReleaseFeel.cs:130` · `profile` — `profile.SetFlag(ZiptideFlags.FIRST_RELEASE);`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.PvpProgressionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:113` · `profile` — `profile.SetFlag(flag);`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.PvpProgressionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:114` · `profile` — `profile.SetFlag(flag);`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.ChoiceStation` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ChoiceStation.cs:113` · `profile` — `if (profile != null) profile.SetFlag(flag);`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.CollectibleRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/CollectibleRuntime.cs:121` · `profile` — `profile.SetFlag(_flagOnCollect);`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.RillCompanion` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs:114` · `profile` — `profile.SetFlag(SaidFlagPrefix + line.id);`
@@ -683,8 +683,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `SignalCompleted`
 
-- **EVENT_DECLARE** · `Ziptide.Gameplay.Tutorial.FirstHourObservationAdapter` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs:37` · `Action<string>` — `public event Action<string> SignalCompleted;`
-- **EVENT_INVOKE** · `Ziptide.Gameplay.Tutorial.FirstHourObservationAdapter` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs:191` — `SignalCompleted?.Invoke(_activeSignalId);`
+- **EVENT_DECLARE** · `Ziptide.Gameplay.Tutorial.FirstHourObservationAdapter` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs:38` · `Action<string>` — `public event Action<string> SignalCompleted;`
+- **EVENT_INVOKE** · `Ziptide.Gameplay.Tutorial.FirstHourObservationAdapter` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs:193` — `SignalCompleted?.Invoke(_activeSignalId);`
 
 ### `StageChanged`
 
@@ -737,7 +737,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `Ziptide.Core.FlightSignals.TargetDisabled`
 
-- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.ConquestMissionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:94` · `OnFlightTargetDisabled` — `if (_flightHooked) Ziptide.Core.FlightSignals.TargetDisabled -= OnFlightTargetDisabled;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.ConquestMissionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:96` · `OnFlightTargetDisabled` — `if (_flightHooked) Ziptide.Core.FlightSignals.TargetDisabled -= OnFlightTargetDisabled;`
 
 ### `_bound.OnPose`
 
@@ -757,13 +757,13 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `_director.KillScored`
 
-- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.PvpProgressionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:54` · `OnKill` — `_director.KillScored += OnKill;`
-- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.PvpProgressionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:62` · `OnKill` — `_director.KillScored -= OnKill;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.PvpProgressionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:55` · `OnKill` — `_director.KillScored += OnKill;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.PvpProgressionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:63` · `OnKill` — `_director.KillScored -= OnKill;`
 
 ### `_director.MatchEnded`
 
-- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.PvpProgressionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:55` · `OnMatchEnded` — `_director.MatchEnded += OnMatchEnded;`
-- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.PvpProgressionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:63` · `OnMatchEnded` — `_director.MatchEnded -= OnMatchEnded;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.PvpProgressionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:56` · `OnMatchEnded` — `_director.MatchEnded += OnMatchEnded;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.PvpProgressionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:64` · `OnMatchEnded` — `_director.MatchEnded -= OnMatchEnded;`
 
 ### `_mine.stored`
 
@@ -793,7 +793,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `_rigRoot.transform.position`
 
-- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.ConquestMissionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:400` · `Vector3` — `_rigRoot.transform.position += Vector3.down * 0.25f;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.ConquestMissionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:402` · `Vector3` — `_rigRoot.transform.position += Vector3.down * 0.25f;`
 
 ### `_runtime.JobCompleted`
 
@@ -982,6 +982,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **EVENT_INVOKE** · `Ziptide.Tests.EditMode.AudioDirectorLifecycleTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/AudioDirectorLifecycleTests.cs:50` — `Assert.DoesNotThrow(() => method.Invoke(null, new object[] { null }));`
 - **EVENT_INVOKE** · `Ziptide.Tests.EditMode.ZiplineSignalTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/ZiplineSignalTests.cs:184` — `method.Invoke(line, args);`
 - **EVENT_INVOKE** · `Ziptide.Tests.PlayMode.RecoveryCoreBootstrapGateTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryCoreBootstrapGateTests.cs:123` — `method.Invoke(null, null);`
+- **EVENT_INVOKE** · `Ziptide.Tests.PlayMode.RecoveryGameplayBootstrapGateTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGameplayBootstrapGateTests.cs:111` — `method.Invoke(null, null);`
 
 ### `name`
 
@@ -1075,7 +1076,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `pvpCareer`
 
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.PvpProgressionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:80` · `profile` — `var career = profile.pvpCareer;`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.PvpProgressionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:81` · `profile` — `var career = profile.pvpCareer;`
 
 ### `rail.transform.position`
 
@@ -1198,7 +1199,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `transform.localPosition`
 
-- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.ConquestMissionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:484` · `Vector3` — `transform.localPosition += Vector3.down * 0.02f; // each slap seats it deeper`
+- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.ConquestMissionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:486` · `Vector3` — `transform.localPosition += Vector3.down * 0.02f; // each slap seats it deeper`
 
 ### `transform.position`
 
