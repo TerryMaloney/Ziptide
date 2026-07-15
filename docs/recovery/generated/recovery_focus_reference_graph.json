@@ -1,7 +1,7 @@
 {
   "tool": "recovery_focus_reference_graph",
-  "scannedFiles": 613,
-  "referenceCount": 366,
+  "scannedFiles": 617,
+  "referenceCount": 368,
   "summaries": {
     "melee": {
       "referenceCount": 84,
@@ -69,9 +69,9 @@
       ]
     },
     "repairObjective": {
-      "referenceCount": 193,
-      "fileCount": 46,
-      "callerFileCount": 45,
+      "referenceCount": 195,
+      "fileCount": 47,
+      "callerFileCount": 46,
       "paths": [
         "Ziptide/Assets/Ziptide/Content/Runtime/Jobs/JobRewards.cs",
         "Ziptide/Assets/Ziptide/Content/Runtime/Jobs/RepairMachineCountStepDefinition.cs",
@@ -117,6 +117,7 @@
         "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/JobRuntimeCollectTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/JobRuntimeRepairTests.cs",
+        "Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryCheckpointEvidenceTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/RepairableMachineSignalTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/WorldPackValidatorTests.cs"
       ],
@@ -164,6 +165,7 @@
         "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/JobRuntimeCollectTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/JobRuntimeRepairTests.cs",
+        "Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryCheckpointEvidenceTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/RepairableMachineSignalTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/WorldPackValidatorTests.cs"
       ]
@@ -2099,6 +2101,24 @@
           "line": 145,
           "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
           "snippet": "Debug.Log(\"ZIPTIDE: REPAIR_TRACE hop=castoff armed=\" + armed",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "REPAIR_TRACE",
+          "path": "Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryCheckpointEvidenceTests.cs",
+          "line": 71,
+          "symbol": "Ziptide.Tests.EditMode.RecoveryCheckpointEvidenceTests",
+          "snippet": "int repair = CountRuntimeLogCalls(root, \"REPAIR_TRACE\");",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "REPAIR_TRACE",
+          "path": "Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryCheckpointEvidenceTests.cs",
+          "line": 77,
+          "symbol": "Ziptide.Tests.EditMode.RecoveryCheckpointEvidenceTests",
+          "snippet": "\"REPAIR_TRACE no longer covers enough hops to distinguish state from presentation.\");",
           "declaration_file": false
         }
       ],
@@ -6352,6 +6372,24 @@
       "line": 94,
       "symbol": "Ziptide.Tests.EditMode.JobRuntimeRepairTests",
       "snippet": "rt.ReportRepair(\"cistern_pump\");",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
+      "token": "REPAIR_TRACE",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryCheckpointEvidenceTests.cs",
+      "line": 71,
+      "symbol": "Ziptide.Tests.EditMode.RecoveryCheckpointEvidenceTests",
+      "snippet": "int repair = CountRuntimeLogCalls(root, \"REPAIR_TRACE\");",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
+      "token": "REPAIR_TRACE",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryCheckpointEvidenceTests.cs",
+      "line": 77,
+      "symbol": "Ziptide.Tests.EditMode.RecoveryCheckpointEvidenceTests",
+      "snippet": "\"REPAIR_TRACE no longer covers enough hops to distinguish state from presentation.\");",
       "declaration_file": false
     },
     {

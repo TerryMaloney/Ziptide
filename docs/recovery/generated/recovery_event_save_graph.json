@@ -1,13 +1,13 @@
 {
   "tool": "recovery_event_save_graph",
-  "scannedFiles": 613,
-  "evidenceCount": 640,
+  "scannedFiles": 617,
+  "evidenceCount": 645,
   "kindCounts": {
     "AUTOSAVE": 7,
     "EVENT_DECLARE": 45,
     "EVENT_INVOKE": 55,
-    "EVENT_SUBSCRIBE": 78,
-    "EVENT_UNSUBSCRIBE": 30,
+    "EVENT_SUBSCRIBE": 80,
+    "EVENT_UNSUBSCRIBE": 33,
     "PLAYER_PREFS_ACCESS": 11,
     "PROFILE_FIELD_ACCESS": 351,
     "SAVE_ACCESS": 63
@@ -780,6 +780,55 @@
         "target": "Allows",
         "detail": "profile",
         "snippet": "Assert.IsFalse(profile.Allows(RecoveryFeatureId.RuntimeMaterialFixer),"
+      }
+    ],
+    "Application.logMessageReceived": [
+      {
+        "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootHoldOrderingTests.cs",
+        "line": 36,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryBootHoldOrderingTests",
+        "target": "Application.logMessageReceived",
+        "detail": "_capture",
+        "snippet": "Application.logMessageReceived += _capture;"
+      },
+      {
+        "kind": "EVENT_UNSUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootHoldOrderingTests.cs",
+        "line": 43,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryBootHoldOrderingTests",
+        "target": "Application.logMessageReceived",
+        "detail": "_capture",
+        "snippet": "Application.logMessageReceived -= _capture;"
+      }
+    ],
+    "Application.logMessageReceivedThreaded": [
+      {
+        "kind": "EVENT_UNSUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Core/Runtime/Recovery/PersistentDiagnosticRing.cs",
+        "line": 41,
+        "owner": "Ziptide.Core.PersistentDiagnosticRing",
+        "target": "Application.logMessageReceivedThreaded",
+        "detail": "Capture",
+        "snippet": "Application.logMessageReceivedThreaded -= Capture;"
+      },
+      {
+        "kind": "EVENT_UNSUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Core/Runtime/Recovery/PersistentDiagnosticRing.cs",
+        "line": 62,
+        "owner": "Ziptide.Core.PersistentDiagnosticRing",
+        "target": "Application.logMessageReceivedThreaded",
+        "detail": "Capture",
+        "snippet": "Application.logMessageReceivedThreaded -= Capture;"
+      },
+      {
+        "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Core/Runtime/Recovery/PersistentDiagnosticRing.cs",
+        "line": 63,
+        "owner": "Ziptide.Core.PersistentDiagnosticRing",
+        "target": "Application.logMessageReceivedThreaded",
+        "detail": "Capture",
+        "snippet": "Application.logMessageReceivedThreaded += Capture;"
       }
     ],
     "Assert": [
@@ -3941,7 +3990,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-        "line": 77,
+        "line": 79,
         "owner": "Ziptide.Gameplay.DevTools.DevWarpBoard",
         "target": "SceneManager.sceneLoaded",
         "detail": "OnSceneLoaded",
@@ -3950,7 +3999,7 @@
       {
         "kind": "EVENT_UNSUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-        "line": 80,
+        "line": 82,
         "owner": "Ziptide.Gameplay.DevTools.DevWarpBoard",
         "target": "SceneManager.sceneLoaded",
         "detail": "OnSceneLoaded",
@@ -7085,6 +7134,33 @@
       "snippet": "s.fill01 -= poured;"
     },
     {
+      "kind": "EVENT_UNSUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Core/Runtime/Recovery/PersistentDiagnosticRing.cs",
+      "line": 41,
+      "owner": "Ziptide.Core.PersistentDiagnosticRing",
+      "target": "Application.logMessageReceivedThreaded",
+      "detail": "Capture",
+      "snippet": "Application.logMessageReceivedThreaded -= Capture;"
+    },
+    {
+      "kind": "EVENT_UNSUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Core/Runtime/Recovery/PersistentDiagnosticRing.cs",
+      "line": 62,
+      "owner": "Ziptide.Core.PersistentDiagnosticRing",
+      "target": "Application.logMessageReceivedThreaded",
+      "detail": "Capture",
+      "snippet": "Application.logMessageReceivedThreaded -= Capture;"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Core/Runtime/Recovery/PersistentDiagnosticRing.cs",
+      "line": 63,
+      "owner": "Ziptide.Core.PersistentDiagnosticRing",
+      "target": "Application.logMessageReceivedThreaded",
+      "detail": "Capture",
+      "snippet": "Application.logMessageReceivedThreaded += Capture;"
+    },
+    {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Core/Runtime/RillState.cs",
       "line": 35,
@@ -8122,7 +8198,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-      "line": 77,
+      "line": 79,
       "owner": "Ziptide.Gameplay.DevTools.DevWarpBoard",
       "target": "SceneManager.sceneLoaded",
       "detail": "OnSceneLoaded",
@@ -8131,7 +8207,7 @@
     {
       "kind": "EVENT_UNSUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-      "line": 80,
+      "line": 82,
       "owner": "Ziptide.Gameplay.DevTools.DevWarpBoard",
       "target": "SceneManager.sceneLoaded",
       "detail": "OnSceneLoaded",
@@ -11889,6 +11965,24 @@
       "target": "method",
       "detail": "",
       "snippet": "method.Invoke(line, args);"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootHoldOrderingTests.cs",
+      "line": 36,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryBootHoldOrderingTests",
+      "target": "Application.logMessageReceived",
+      "detail": "_capture",
+      "snippet": "Application.logMessageReceived += _capture;"
+    },
+    {
+      "kind": "EVENT_UNSUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootHoldOrderingTests.cs",
+      "line": 43,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryBootHoldOrderingTests",
+      "target": "Application.logMessageReceived",
+      "detail": "_capture",
+      "snippet": "Application.logMessageReceived -= _capture;"
     },
     {
       "kind": "EVENT_INVOKE",

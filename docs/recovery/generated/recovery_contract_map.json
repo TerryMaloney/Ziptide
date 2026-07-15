@@ -1,8 +1,8 @@
 {
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
-  "scannedFiles": 613,
-  "findingCount": 2064,
+  "scannedFiles": 617,
+  "findingCount": 2083,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -71,7 +71,7 @@
           {
             "code": "RUNTIME_BOOTSTRAP",
             "path": "Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryRuntimeGate.cs",
-            "line": 30,
+            "line": 31,
             "symbol": "Ziptide.Core.RecoveryRuntimeGate",
             "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]"
           }
@@ -413,14 +413,14 @@
           {
             "code": "RUNTIME_BOOTSTRAP",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-            "line": 58,
+            "line": 60,
             "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
             "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]"
           },
           {
             "code": "DONT_DESTROY_ON_LOAD",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-            "line": 64,
+            "line": 66,
             "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
             "snippet": "DontDestroyOnLoad(go);"
           }
@@ -660,7 +660,7 @@
           {
             "code": "RUNTIME_BOOTSTRAP",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs",
-            "line": 59,
+            "line": 61,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryGateBypassTests",
             "snippet": "var marker = new Regex(@\"(?m)^\\s*\\[RuntimeInitializeOnLoadMethod(?:\\s*\\(|\\s*\\])\");"
           }
@@ -1358,7 +1358,7 @@
           {
             "code": "FRAME_BUTTON_POLL",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-            "line": 91,
+            "line": 93,
             "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
             "snippet": "if (kb != null && kb.f2Key.wasPressedThisFrame) Toggle();"
           }
@@ -5658,49 +5658,49 @@
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-            "line": 63,
+            "line": 65,
             "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
             "snippet": "var go = new GameObject(\"__DevWarpBoard\");"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-            "line": 151,
+            "line": 160,
             "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
             "snippet": "_board = new GameObject(\"DevWarpBoard\");"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-            "line": 178,
+            "line": 188,
             "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
             "snippet": "var panel = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-            "line": 215,
+            "line": 225,
             "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
             "snippet": "var go = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "XR_INTERACTABLE_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-            "line": 222,
+            "line": 232,
             "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
             "snippet": "var interactable = go.AddComponent<XRSimpleInteractable>();"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-            "line": 246,
+            "line": 338,
             "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
             "snippet": "var go = new GameObject(\"Label_\" + text.Replace(' ', '_'));"
           },
           {
             "code": "TEXTMESH_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-            "line": 254,
+            "line": 346,
             "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
             "snippet": "var tm = go.AddComponent<TextMesh>();"
           }
@@ -9915,6 +9915,39 @@
         ]
       },
       {
+        "owner": "Ziptide.Tests.PlayMode.RecoveryBootHoldOrderingTests",
+        "evidenceCount": 3,
+        "codes": [
+          "NEW_GAME_OBJECT"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootHoldOrderingTests.cs"
+        ],
+        "evidence": [
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootHoldOrderingTests.cs",
+            "line": 61,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryBootHoldOrderingTests",
+            "snippet": "var rigHost = new GameObject(\"__RECOVERY_BOOT_ORDER_RIG\");"
+          },
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootHoldOrderingTests.cs",
+            "line": 65,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryBootHoldOrderingTests",
+            "snippet": "var bootHost = new GameObject(\"__RECOVERY_BOOT_ORDER_LOADER\");"
+          },
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootHoldOrderingTests.cs",
+            "line": 88,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryBootHoldOrderingTests",
+            "snippet": "var markerHost = new GameObject(\"__RECOVERY_BOOT_ORDER_MARKER\");"
+          }
+        ]
+      },
+      {
         "owner": "Ziptide.Tests.PlayMode.RecoveryCoreBootstrapGateTests",
         "evidenceCount": 2,
         "codes": [
@@ -9954,14 +9987,14 @@
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs",
-            "line": 108,
+            "line": 110,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryGateBypassTests",
             "snippet": "int launcherCreate = netSource.IndexOf(\"new GameObject(\\\"__PhotonPvpLauncher\\\")\", startOnline, StringComparison.Ordinal);"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs",
-            "line": 152,
+            "line": 158,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryGateBypassTests",
             "snippet": "var go = new GameObject(name);"
           }
@@ -10864,28 +10897,28 @@
           {
             "code": "XRI_MANAGER_LOOKUP",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-            "line": 223,
+            "line": 233,
             "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
             "snippet": "var mgr = FindObjectOfType<XRInteractionManager>();"
           },
           {
             "code": "XRI_MANAGER_ASSIGN",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-            "line": 224,
+            "line": 234,
             "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
             "snippet": "if (mgr != null) interactable.interactionManager = mgr;"
           },
           {
             "code": "XRI_MANAGER_LOOKUP",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-            "line": 239,
+            "line": 261,
             "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
             "snippet": "var mgr = FindObjectOfType<XRInteractionManager>();"
           },
           {
             "code": "XRI_MANAGER_ASSIGN",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-            "line": 240,
+            "line": 262,
             "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
             "snippet": "if (mgr != null) { interactable.interactionManager = mgr; yield break; }"
           }
@@ -11956,7 +11989,7 @@
           {
             "code": "SAVE_SYSTEM_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryExposureProfile.cs",
-            "line": 51,
+            "line": 55,
             "symbol": "Ziptide.Core.RecoveryExposureProfile",
             "snippet": "RecoveryFeatureId.SaveSystem,"
           }
@@ -15232,7 +15265,7 @@
       },
       {
         "owner": "Ziptide.Gameplay.DevTools.DevWarpBoard",
-        "evidenceCount": 1,
+        "evidenceCount": 2,
         "codes": [
           "CAMERA_MAIN_REFERENCE"
         ],
@@ -15243,9 +15276,16 @@
           {
             "code": "CAMERA_MAIN_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-            "line": 127,
+            "line": 136,
             "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
             "snippet": "var cam = Camera.main;"
+          },
+          {
+            "code": "CAMERA_MAIN_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
+            "line": 271,
+            "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
+            "snippet": "Camera cam = Camera.main;"
           }
         ]
       },

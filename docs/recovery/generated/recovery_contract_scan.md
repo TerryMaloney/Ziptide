@@ -1,7 +1,7 @@
 # ZIPTIDE Recovery Contract Scan
 
-- Scanned files: **613**
-- Findings: **2064**
+- Scanned files: **617**
+- Findings: **2083**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
@@ -9,14 +9,14 @@
 | Category | Count |
 |---|---:|
 | `bootstrap` | 27 |
-| `diagnostics` | 429 |
+| `diagnostics` | 444 |
 | `events` | 64 |
 | `fallback_debt` | 119 |
-| `global_render` | 76 |
+| `global_render` | 77 |
 | `input` | 115 |
 | `materials` | 222 |
 | `persistence` | 17 |
-| `runtime_creation` | 566 |
+| `runtime_creation` | 569 |
 | `runtime_ui` | 114 |
 | `save_state` | 234 |
 | `scene_loading` | 5 |
@@ -35,13 +35,13 @@
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Core/Runtime/DebugHUD.cs:22` · `Ziptide.Core.DebugHUD` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Core/Runtime/EnsureXRCameraActive.cs:11` · `Ziptide.Core.EnsureXRCameraActive` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryRuntimeGate.cs:23` · `Ziptide.Core.RecoveryRuntimeGate` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]`
-- **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryRuntimeGate.cs:30` · `Ziptide.Core.RecoveryRuntimeGate` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]`
+- **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryRuntimeGate.cs:31` · `Ziptide.Core.RecoveryRuntimeGate` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs:33` · `Ziptide.Core.RuntimeHealthMonitor` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeInputEnabler.cs:15` · `Ziptide.Core.RuntimeInputEnabler` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeMaterialFixer.cs:14` · `Ziptide.Core.RuntimeMaterialFixer` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Core/Runtime/VRBootDiagnostics.cs:14` · `Ziptide.Core.VRBootDiagnostics` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs:35` · `Ziptide.Gameplay.AmbienceDirector` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
-- **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:58` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
+- **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:60` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs:40` · `Ziptide.Gameplay.EcologyDirector` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Persistence/SaveSystem.cs:50` · `Ziptide.Gameplay.SaveSystem` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs:12` · `Ziptide.Gameplay.QuartersCameraFeature` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]`
@@ -51,7 +51,7 @@
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:39` · `Ziptide.Gameplay.ConquestMissionRuntime` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Tests/EditMode/DevToolsSingletonTests.cs:17` · `Ziptide.Tests.EditMode.DevToolsSingletonTests` — RuntimeInitializeOnLoadMethod bootstrap. `private const string BootstrapMarker = "[RuntimeInitializeOnLoadMethod";`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Tests/EditMode/EventHygieneTests.cs:26` · `Ziptide.Tests.EditMode.EventHygieneTests` — RuntimeInitializeOnLoadMethod bootstrap. `"Gameplay/Runtime/World/ConquestMissionRuntime.cs", // [RuntimeInitializeOnLoadMethod] static hook`
-- **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs:59` · `Ziptide.Tests.PlayMode.RecoveryGateBypassTests` — RuntimeInitializeOnLoadMethod bootstrap. `var marker = new Regex(@"(?m)^\s*\[RuntimeInitializeOnLoadMethod(?:\s*\(|\s*\])");`
+- **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs:61` · `Ziptide.Tests.PlayMode.RecoveryGateBypassTests` — RuntimeInitializeOnLoadMethod bootstrap. `var marker = new Regex(@"(?m)^\s*\[RuntimeInitializeOnLoadMethod(?:\s*\(|\s*\])");`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/ZiptideNet/NetBootstrap.cs:20` · `ZiptideNet.NetBootstrap` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]`
 ### diagnostics
 
@@ -62,7 +62,10 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs:212` · `Ziptide.Content.CreatureBehaviorStateEvidence` — ZIPTIDE diagnostic tag. `State("arrest_disengage", "Debug.Log(\"ZIPTIDE: WARDEN_ARREST\");"),`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Content/Runtime/WorldPacks/WorldPackValidator.cs:8` · `Ziptide.Content.WorldPackValidator` — ZIPTIDE diagnostic tag. `/// pack data fails LOUD at world entry (`ZIPTIDE: PACK_VALIDATION_FAIL`) instead of silently`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Core/Runtime/GamePool.cs:158` · `Ziptide.Core.GamePool` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: POOL_STAT key=" + kv.Key + " created=" + p.Created +`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryRuntimeGate.cs:52` · `Ziptide.Core.RecoveryRuntimeGate` — ZIPTIDE diagnostic tag. `builder.Append("ZIPTIDE: ").Append(tag)`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/PersistentDiagnosticRing.cs:68` · `Ziptide.Core.PersistentDiagnosticRing` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: DIAG_RING_READY file=" + CurrentFileName`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/PersistentDiagnosticRing.cs:75` · `Ziptide.Core.PersistentDiagnosticRing` — ZIPTIDE diagnostic tag. `return message.StartsWith("ZIPTIDE:", StringComparison.Ordinal)`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryRuntimeGate.cs:45` · `Ziptide.Core.RecoveryRuntimeGate` — ZIPTIDE diagnostic tag. `Debug.LogError("ZIPTIDE: DIAG_RING_INSTALL_FAIL exception=" + ex.GetType().Name`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryRuntimeGate.cs:66` · `Ziptide.Core.RecoveryRuntimeGate` — ZIPTIDE diagnostic tag. `builder.Append("ZIPTIDE: ").Append(tag)`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs:18` · `Ziptide.Core.RuntimeHealthMonitor` — ZIPTIDE diagnostic tag. `/// ZIPTIDE: HEALTH fps=71.8 low1=63.2 dropped=4/720 mats=412 tex=189 mesh=143 clips=9 memMB=612`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs:19` · `Ziptide.Core.RuntimeHealthMonitor` — ZIPTIDE diagnostic tag. `/// ZIPTIDE: HEALTH_SWEEP scene=W005_OxidizedCanopy freed mats=37 tex=12 mesh=8 clips=3`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs:20` · `Ziptide.Core.RuntimeHealthMonitor` — ZIPTIDE diagnostic tag. `/// ZIPTIDE: HEALTH_SLOW low1=54.1 — sustained budget misses (investigate the current world)`
@@ -126,14 +129,17 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarp.cs:47` · `Ziptide.Gameplay.DevTools.DevWarp` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: DEV_WARP scene=" + sceneName + " marker=" + (markerId ?? "(default)"));`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarp.cs:58` · `Ziptide.Gameplay.DevTools.DevWarp` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: DEV_WARP no PlayerRigPersistence in scene");`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarp.cs:101` · `Ziptide.Gameplay.DevTools.DevWarp` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: DEV_WARP_DONE scene=" + sceneName + " marker=" + (markerId ?? "(default)"));`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:32` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — ZIPTIDE diagnostic tag. `/// Logs ZIPTIDE: DEV_WARP_BOARD / DEV_WARP_TO.`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:66` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: DEV_WARP_BOARD ready (summon: both controllers above forehead 2s; F2 in editor)");`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:96` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: DEV_WARP_BOARD gesture_toggle visible=" + Visible);`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:119` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: DEV_WARP_BOARD hidden");`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:131` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: DEV_WARP_BOARD no_camera");`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:139` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: DEV_WARP_BOARD no_manifest_worlds");`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:158` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: DEV_WARP_BOARD shown tiles=" + entries.Count);`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:199` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: DEV_WARP_TO dest=" + scene);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:32` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — ZIPTIDE diagnostic tag. `/// Logs ZIPTIDE: DEV_WARP_BOARD / DEV_WARP_TO / BOARD_PROBE.`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:68` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: DEV_WARP_BOARD ready (summon: both controllers above forehead 2s; F2 in editor)");`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:98` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: DEV_WARP_BOARD gesture_toggle visible=" + Visible);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:128` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: DEV_WARP_BOARD hidden");`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:140` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: DEV_WARP_BOARD no_camera");`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:148` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: DEV_WARP_BOARD no_manifest_worlds");`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:168` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: DEV_WARP_BOARD shown tiles=" + entries.Count);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:209` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: DEV_WARP_TO dest=" + scene);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:273` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: BOARD_PROBE phase=" + phase`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:300` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: BOARD_PROBE phase=aim"`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:310` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: BOARD_PROBE phase=aim ray=none hit=none layer=-1 manager=0"`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Diagnostics/SingletonValidator.cs:54` · `Ziptide.Gameplay.SingletonValidator` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: DUP_SINGLETON " + label + " count=" + all.Length);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:16` · `Ziptide.Gameplay.CreatureRuntime` — ZIPTIDE diagnostic tag. `/// disable. Loot pays the profile on disable. Logs ZIPTIDE: CREATURE_DOWN id=… / CREATURE_RESPAWN.`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:61` · `Ziptide.Gameplay.CreatureRuntime` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: CREATURE_DEF_MISSING id=" + creatureId);`
@@ -450,6 +456,10 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:99` · `Ziptide.Tests.EditMode.HomeHubFlowTests` — ZIPTIDE diagnostic tag. `StringAssert.Contains("ZIPTIDE: HOME_HUB_READY continue=", source);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:100` · `Ziptide.Tests.EditMode.HomeHubFlowTests` — ZIPTIDE diagnostic tag. `StringAssert.Contains("ZIPTIDE: HOME_HUB_CHOICE choice=", source);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:119` · `Ziptide.Tests.EditMode.HomeHubFlowTests` — ZIPTIDE diagnostic tag. `new Regex("ZIPTIDE: FLIGHT_DESTINATION_REJECTED target=PvP_Arena01"));`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryCheckpointEvidenceTests.cs:21` · `Ziptide.Tests.EditMode.RecoveryCheckpointEvidenceTests` — ZIPTIDE diagnostic tag. `Assert.IsTrue(PersistentDiagnosticRing.ShouldCapture("ZIPTIDE: BOOT_HOLD on"));`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryCheckpointEvidenceTests.cs:39` · `Ziptide.Tests.EditMode.RecoveryCheckpointEvidenceTests` — ZIPTIDE diagnostic tag. `timestamp, LogType.Warning, "ZIPTIDE: alpha\r\nbeta");`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryCheckpointEvidenceTests.cs:42` · `Ziptide.Tests.EditMode.RecoveryCheckpointEvidenceTests` — ZIPTIDE diagnostic tag. `StringAssert.Contains("ZIPTIDE: alpha\\r\\nbeta", line);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryCheckpointEvidenceTests.cs:85` · `Ziptide.Tests.EditMode.RecoveryCheckpointEvidenceTests` — ZIPTIDE diagnostic tag. `"Debug\\.Log(?:Warning|Error)?\\(\\s*\\\"ZIPTIDE: " + Regex.Escape(tag),`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/EditMode/RepairableMachineSignalTests.cs:179` · `Ziptide.Tests.EditMode.RepairableMachineSignalTests` — ZIPTIDE diagnostic tag. `int repairedLog = source.IndexOf("ZIPTIDE: MACHINE_REPAIRED id=", reportRepair, StringComparison.Ordinal);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/EditMode/WristScannerResultTests.cs:166` · `Ziptide.Tests.EditMode.WristScannerResultTests` — ZIPTIDE diagnostic tag. `int existingLog = pulse.IndexOf("ZIPTIDE: WRIST_SCAN_PULSE targets=", StringComparison.Ordinal);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/EditMode/WristScannerResultTests.cs:167` · `Ziptide.Tests.EditMode.WristScannerResultTests` — ZIPTIDE diagnostic tag. `int resultLog = pulse.IndexOf("ZIPTIDE: WRIST_SCAN_RESULT count=", StringComparison.Ordinal);`
@@ -457,10 +467,15 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/EditMode/ZiplineSignalTests.cs:105` · `Ziptide.Tests.EditMode.ZiplineSignalTests` — ZIPTIDE diagnostic tag. `new Regex("ZIPTIDE: ZIPLINE_SUBSCRIBER_FAIL phase=end reason=end expected"));`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/EditMode/ZiplineSignalTests.cs:137` · `Ziptide.Tests.EditMode.ZiplineSignalTests` — ZIPTIDE diagnostic tag. `int startLog = source.IndexOf("ZIPTIDE: ZIPLINE_RIDE_START", StringComparison.Ordinal);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/EditMode/ZiplineSignalTests.cs:142` · `Ziptide.Tests.EditMode.ZiplineSignalTests` — ZIPTIDE diagnostic tag. `int endLog = source.IndexOf("ZIPTIDE: ZIPLINE_RIDE_END reason=", StringComparison.Ordinal);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootHoldOrderingTests.cs:82` · `Ziptide.Tests.PlayMode.RecoveryBootHoldOrderingTests` — ZIPTIDE diagnostic tag. `int armedIndex = FindLog("ZIPTIDE: BOOT_HOLD on");`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootHoldOrderingTests.cs:83` · `Ziptide.Tests.PlayMode.RecoveryBootHoldOrderingTests` — ZIPTIDE diagnostic tag. `int readyIndex = FindLog("ZIPTIDE: HOME_HUB_READY");`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootHoldOrderingTests.cs:97` · `Ziptide.Tests.PlayMode.RecoveryBootHoldOrderingTests` — ZIPTIDE diagnostic tag. `int releasedIndex = FindLog("ZIPTIDE: BOOT_HOLD off");`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootHoldOrderingTests.cs:98` · `Ziptide.Tests.PlayMode.RecoveryBootHoldOrderingTests` — ZIPTIDE diagnostic tag. `int spawnIndex = FindLog("ZIPTIDE: SPAWN_AT marker='player'");`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBuildProfileTests.cs:65` · `Ziptide.Tests.PlayMode.RecoveryBuildProfileTests` — ZIPTIDE diagnostic tag. `StringAssert.Contains("ZIPTIDE: BUILD_PROFILE profile=GoldenSlice", builder);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBuildProfileTests.cs:91` · `Ziptide.Tests.PlayMode.RecoveryBuildProfileTests` — ZIPTIDE diagnostic tag. `StringAssert.Contains("ZIPTIDE: BUILD_PROFILE profile=GoldenSlice", smokeScript);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBuildProfileTests.cs:92` · `Ziptide.Tests.PlayMode.RecoveryBuildProfileTests` — ZIPTIDE diagnostic tag. `StringAssert.Contains("ZIPTIDE: RECOVERY_EXPOSURE buildProfile=GoldenSlice profile=GoldenSlice", smokeScript);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:110` · `Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests` — ZIPTIDE diagnostic tag. `new Regex("ZIPTIDE: HOME_HUB_TILE_BOUND tile=Tile_MANAGER_REPLACE mode=rebound"));`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPersistentDiagnosticRingTests.cs:18` · `Ziptide.Tests.PlayMode.RecoveryPersistentDiagnosticRingTests` — ZIPTIDE diagnostic tag. `string token = "ZIPTIDE: DIAG_RING_TEST frame=" + Time.frameCount;`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeCreatureVisualApplier.cs:73` · `Ziptide.Visuals.ForgeCreatureVisualApplier` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FORGE_CREATURE_APPLIED id=" + creatureId`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs:28` · `Ziptide.Visuals.ForgeVisualApplier` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: FORGE_RECIPE_NOT_FOUND id=" + recipeId + " item=" + item.name);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs:89` · `Ziptide.Visuals.ForgeVisualApplier` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FORGE_APPLIED id=" + recipeId + " item=" + item.name`
@@ -677,7 +692,8 @@
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltMinePortRuntime.cs:161` · `Ziptide.Gameplay.BeltMinePortRuntime` — Camera.main dependency. `var cam = Camera.main;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:103` · `Ziptide.Gameplay.DevTools.DevMenu` — Camera.main dependency. `var cam = Camera.main;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:132` · `Ziptide.Gameplay.DevTools.DevMenu` — Camera.main dependency. `canvas.worldCamera = Camera.main;`
-- **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:127` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — Camera.main dependency. `var cam = Camera.main;`
+- **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:136` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — Camera.main dependency. `var cam = Camera.main;`
+- **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:271` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — Camera.main dependency. `Camera cam = Camera.main;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureBehaviorBase.cs:84` · `Ziptide.Gameplay.CreatureBehaviorBase` — Camera.main dependency. `if (Camera.main != null) Player = Camera.main.transform;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:171` · `Ziptide.Gameplay.DroneCombatBehavior` — Camera.main dependency. `if (Camera.main != null) _player = Camera.main.transform;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:32` · `Ziptide.Gameplay.BeltRig` — Camera.main dependency. `if (cam == null) cam = Camera.main;`
@@ -751,7 +767,7 @@
 - **VOLUME_COMPONENT** — `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyVistaRig.cs:93` · `Ziptide.Visuals.SkyVistaRig` — Global/local Volume creation/reference. `if (vol == null) vol = _gradeVolume.AddComponent<UnityEngine.Rendering.Volume>();`
 ### input
 
-- **FRAME_BUTTON_POLL** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:91` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — Frame-polled input state. `if (kb != null && kb.f2Key.wasPressedThisFrame) Toggle();`
+- **FRAME_BUTTON_POLL** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:93` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — Frame-polled input state. `if (kb != null && kb.f2Key.wasPressedThisFrame) Toggle();`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeInputEnabler.cs:20` · `Ziptide.Core.RuntimeInputEnabler` — Input System action reference. `var assetsEnabled = new HashSet<InputActionAsset>();`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeInputEnabler.cs:28` · `Ziptide.Core.RuntimeInputEnabler` — Input System action reference. `InputActionAsset asset = GetAssetFromController(c);`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeInputEnabler.cs:40` · `Ziptide.Core.RuntimeInputEnabler` — Input System action reference. `InputActionAsset asset = GetAssetFromInputActionReferences(mb);`
@@ -1097,7 +1113,7 @@
 - **DONT_DESTROY_ON_LOAD** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs:41` · `Ziptide.Gameplay.AmbienceDirector` — Object promoted across scene loads. `DontDestroyOnLoad(go);`
 - **DONT_DESTROY_ON_LOAD** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs:32` · `Ziptide.Gameplay.AudioDirector` — Object promoted across scene loads. `DontDestroyOnLoad(gameObject);`
 - **DONT_DESTROY_ON_LOAD** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarp.cs:78` · `Ziptide.Gameplay.DevTools.DevWarp` — Object promoted across scene loads. `Object.DontDestroyOnLoad(go);`
-- **DONT_DESTROY_ON_LOAD** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:64` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — Object promoted across scene loads. `DontDestroyOnLoad(go);`
+- **DONT_DESTROY_ON_LOAD** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:66` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — Object promoted across scene loads. `DontDestroyOnLoad(go);`
 - **DONT_DESTROY_ON_LOAD** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Diagnostics/SingletonValidator.cs:30` · `Ziptide.Gameplay.SingletonValidator` — Object promoted across scene loads. `DontDestroyOnLoad(gameObject);`
 - **DONT_DESTROY_ON_LOAD** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Persistence/SaveSystem.cs:68` · `Ziptide.Gameplay.SaveSystem` — Object promoted across scene loads. `DontDestroyOnLoad(gameObject);`
 - **DONT_DESTROY_ON_LOAD** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:158` · `Ziptide.Gameplay.BootHoldState` — Object promoted across scene loads. `DontDestroyOnLoad(gameObject);`
@@ -1199,8 +1215,8 @@
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltTileItem.cs:40` · `Ziptide.Gameplay.BeltTileItem` — Runtime primitive construction. `var slab = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltTileItem.cs:46` · `Ziptide.Gameplay.BeltTileItem` — Runtime primitive construction. `var stripe = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltTileItem.cs:56` · `Ziptide.Gameplay.BeltTileItem` — Runtime primitive construction. `var fork = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:178` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — Runtime primitive construction. `var panel = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:215` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — Runtime primitive construction. `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:188` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — Runtime primitive construction. `var panel = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:225` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — Runtime primitive construction. `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureBehaviorBase.cs:146` · `Ziptide.Gameplay.CreatureBehaviorBase` — Runtime primitive construction. `var go = GameObject.CreatePrimitive(type);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:158` · `Ziptide.Gameplay.CreatureRuntime` — Runtime primitive construction. `var arc = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:215` · `Ziptide.Gameplay.DroneCombatBehavior` — Runtime primitive construction. `_telegraphFx = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
@@ -1481,9 +1497,9 @@
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:195` · `Ziptide.Gameplay.DevTools.DevMenu` — Runtime GameObject construction. `var go = new GameObject("Btn_" + label, typeof(Image), typeof(Button));`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:206` · `Ziptide.Gameplay.DevTools.DevMenu` — Runtime GameObject construction. `var labelGo = new GameObject("Text", typeof(TextMeshProUGUI));`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarp.cs:77` · `Ziptide.Gameplay.DevTools.DevWarp` — Runtime GameObject construction. `var go = new GameObject("__DevWarpRunner");`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:63` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — Runtime GameObject construction. `var go = new GameObject("__DevWarpBoard");`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:151` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — Runtime GameObject construction. `_board = new GameObject("DevWarpBoard");`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:246` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — Runtime GameObject construction. `var go = new GameObject("Label_" + text.Replace(' ', '_'));`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:65` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — Runtime GameObject construction. `var go = new GameObject("__DevWarpBoard");`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:160` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — Runtime GameObject construction. `_board = new GameObject("DevWarpBoard");`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:338` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — Runtime GameObject construction. `var go = new GameObject("Label_" + text.Replace(' ', '_'));`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:202` · `Ziptide.Gameplay.DroneCombatBehavior` — Runtime GameObject construction. `var go = new GameObject("StunBolt");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneRuntime.cs:127` · `Ziptide.Gameplay.DroneRuntime` — Runtime GameObject construction. `var fxGo = new GameObject("ShockFX");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs:56` · `Ziptide.Gameplay.EcologyDirector` — Runtime GameObject construction. `var go = new GameObject("EcologyDirector");`
@@ -1649,9 +1665,12 @@
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/WristScannerResultTests.cs:212` · `Ziptide.Tests.EditMode.WristScannerResultTests` — Runtime GameObject construction. `var go = new GameObject(name);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/ZiplineSignalTests.cs:160` · `Ziptide.Tests.EditMode.ZiplineSignalTests` — Runtime GameObject construction. `var go = new GameObject(name);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/PlayModeInfrastructureTests.cs:20` · `Ziptide.Tests.PlayMode.PlayModeInfrastructureTests` — Runtime GameObject construction. `var host = new GameObject("__RECOVERY_PLAYMODE_FRAME_PROBE");`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootHoldOrderingTests.cs:61` · `Ziptide.Tests.PlayMode.RecoveryBootHoldOrderingTests` — Runtime GameObject construction. `var rigHost = new GameObject("__RECOVERY_BOOT_ORDER_RIG");`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootHoldOrderingTests.cs:65` · `Ziptide.Tests.PlayMode.RecoveryBootHoldOrderingTests` — Runtime GameObject construction. `var bootHost = new GameObject("__RECOVERY_BOOT_ORDER_LOADER");`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootHoldOrderingTests.cs:88` · `Ziptide.Tests.PlayMode.RecoveryBootHoldOrderingTests` — Runtime GameObject construction. `var markerHost = new GameObject("__RECOVERY_BOOT_ORDER_MARKER");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryCoreBootstrapGateTests.cs:84` · `Ziptide.Tests.PlayMode.RecoveryCoreBootstrapGateTests` — Runtime GameObject construction. `var cameraHost = new GameObject("__RECOVERY_CORE_GATE_CAMERA");`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs:108` · `Ziptide.Tests.PlayMode.RecoveryGateBypassTests` — Runtime GameObject construction. `int launcherCreate = netSource.IndexOf("new GameObject(\"__PhotonPvpLauncher\")", startOnline, StringComparison.Ordinal);`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs:152` · `Ziptide.Tests.PlayMode.RecoveryGateBypassTests` — Runtime GameObject construction. `var go = new GameObject(name);`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs:110` · `Ziptide.Tests.PlayMode.RecoveryGateBypassTests` — Runtime GameObject construction. `int launcherCreate = netSource.IndexOf("new GameObject(\"__PhotonPvpLauncher\")", startOnline, StringComparison.Ordinal);`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs:158` · `Ziptide.Tests.PlayMode.RecoveryGateBypassTests` — Runtime GameObject construction. `var go = new GameObject(name);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:68` · `Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests` — Runtime GameObject construction. `var hubHost = new GameObject("__RECOVERY_HOME_HUB_BIND_TEST");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:94` · `Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests` — Runtime GameObject construction. `var earlyHost = new GameObject("__RECOVERY_EARLY_XRI_MANAGER");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:112` · `Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests` — Runtime GameObject construction. `var replacementHost = new GameObject("__RECOVERY_REPLACEMENT_XRI_MANAGER");`
@@ -1687,7 +1706,7 @@
 - **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Editor/Patching/WorldStubGenerator.cs:224` · `Ziptide.Editor.Patching.WorldStubGenerator` — Legacy TextMesh creation/reference. `var tm = label.AddComponent<TextMesh>();`
 - **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltBlueprintWandItem.cs:63` · `Ziptide.Gameplay.BeltBlueprintWandItem` — Legacy TextMesh creation/reference. `_countLabel = labelGo.AddComponent<TextMesh>();`
 - **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltMinePortRuntime.cs:110` · `Ziptide.Gameplay.BeltMinePortRuntime` — Legacy TextMesh creation/reference. `_readout = readoutGo.AddComponent<TextMesh>();`
-- **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:254` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — Legacy TextMesh creation/reference. `var tm = go.AddComponent<TextMesh>();`
+- **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:346` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — Legacy TextMesh creation/reference. `var tm = go.AddComponent<TextMesh>();`
 - **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/DispatchKiosk.cs:41` · `Ziptide.Gameplay.DispatchKiosk` — Legacy TextMesh creation/reference. `var tm = go.AddComponent<TextMesh>();`
 - **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/CreditsHud.cs:35` · `Ziptide.Gameplay.CreditsHud` — Legacy TextMesh creation/reference. `_text = go.AddComponent<TextMesh>();`
 - **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/ArenaLobbyBoard.cs:336` · `Ziptide.Gameplay.ArenaLobbyBoard` — Legacy TextMesh creation/reference. `var tm = go.AddComponent<TextMesh>();`
@@ -1734,7 +1753,7 @@
 - **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltBlueprintWandItem.cs:79` · `Ziptide.Gameplay.BeltBlueprintWandItem` — XR interactable creation/reference. `_grab = gameObject.AddComponent<XRGrabInteractable>();`
 - **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltConductorRuntime.cs:88` · `Ziptide.Gameplay.BeltConductorRuntime` — XR interactable creation/reference. `var grab = handleGo.AddComponent<XRSimpleInteractable>();`
 - **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltTileItem.cs:73` · `Ziptide.Gameplay.BeltTileItem` — XR interactable creation/reference. `_grab = gameObject.AddComponent<XRGrabInteractable>();`
-- **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:222` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — XR interactable creation/reference. `var interactable = go.AddComponent<XRSimpleInteractable>();`
+- **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:232` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — XR interactable creation/reference. `var interactable = go.AddComponent<XRSimpleInteractable>();`
 - **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/NestRuntime.cs:71` · `Ziptide.Gameplay.NestRuntime` — XR interactable creation/reference. `var interactable = egg.AddComponent<XRSimpleInteractable>();`
 - **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/AugmentPickupRuntime.cs:13` · `Ziptide.Gameplay.AugmentPickupRuntime` — XR interactable creation/reference. `[RequireComponent(typeof(XRSimpleInteractable))]`
 - **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:188` · `Ziptide.Gameplay.ItemFactory` — XR interactable creation/reference. `var grab = go.AddComponent<XRGrabInteractable>();`
@@ -1938,7 +1957,7 @@
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/EditMode/ZiplineSignalTests.cs:152` · `Ziptide.Tests.EditMode.ZiplineSignalTests` — PlayerProfile reference. `StringAssert.DoesNotContain("PlayerProfile", source);`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Core/Runtime/Persistence/ProfileSerializer.cs:7` · `Ziptide.Core.ProfileSerializer` — SaveSystem reference. `/// Kept separate from SaveSystem so it is fully unit-testable in EditMode — no headset, no disk.`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryAutomaticOwnerCatalog.cs:52` · `Ziptide.Core.RecoveryAutomaticOwnerRegistration` — SaveSystem reference. `Required("SAVE_SYSTEM_BOOTSTRAP", "Ziptide/Assets/Ziptide/Gameplay/Runtime/Persistence/SaveSystem.cs", "Ziptide.Gameplay.SaveSystem", RecoveryFeatureId.SaveSystem),`
-- **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryExposureProfile.cs:51` · `Ziptide.Core.RecoveryExposureProfile` — SaveSystem reference. `RecoveryFeatureId.SaveSystem,`
+- **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryExposureProfile.cs:55` · `Ziptide.Core.RecoveryExposureProfile` — SaveSystem reference. `RecoveryFeatureId.SaveSystem,`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryFeatureId.cs:22` · `Ziptide.Core.RecoveryFeatureId` — SaveSystem reference. `SaveSystem = 13,`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltFloorRuntime.cs:24` · `Ziptide.Gameplay.BeltCellSpec` — SaveSystem reference. `/// <see cref="LedgerSource.Factory"/>) onto the live SaveSystem profile.`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltFloorRuntime.cs:117` · `Ziptide.Gameplay.BeltCellSpec` — SaveSystem reference. `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
@@ -2038,8 +2057,8 @@
 - **DIRECT_SCENE_LOAD_ASYNC** — `Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourTravelSignalTests.cs:134` · `Ziptide.Tests.EditMode.FirstHourTravelSignalTests` — Direct asynchronous scene load. `int asyncLoad = source.IndexOf("SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);");`
 ### xri_ownership
 
-- **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:224` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — Explicit interactable interactionManager assignment. `if (mgr != null) interactable.interactionManager = mgr;`
-- **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:240` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — Explicit interactable interactionManager assignment. `if (mgr != null) { interactable.interactionManager = mgr; yield break; }`
+- **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:234` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — Explicit interactable interactionManager assignment. `if (mgr != null) interactable.interactionManager = mgr;`
+- **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:262` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — Explicit interactable interactionManager assignment. `if (mgr != null) { interactable.interactionManager = mgr; yield break; }`
 - **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/NestRuntime.cs:73` · `Ziptide.Gameplay.NestRuntime` — Explicit interactable interactionManager assignment. `if (mgr != null) interactable.interactionManager = mgr;`
 - **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:450` · `Ziptide.Gameplay.BootHoldState` — Explicit interactable interactionManager assignment. `i.interactionManager = _xriManager;`
 - **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/ArenaLobbyBoard.cs:298` · `Ziptide.Gameplay.ArenaLobbyBoard` — Explicit interactable interactionManager assignment. `if (mgr != null) interactable.interactionManager = mgr;`
@@ -2081,8 +2100,8 @@
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Editor/Setup/SetupMilestoneAScene.cs:69` · `Ziptide.Editor.Setup.SetupMilestoneAScene` — XRInteractionManager lookup. `if (Object.FindObjectOfType<XRInteractionManager>() == null)`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Editor/Setup/SetupMilestoneAScene.cs:75` · `Ziptide.Editor.Setup.SetupMilestoneAScene` — XRInteractionManager lookup. `managerGo = Object.FindObjectOfType<XRInteractionManager>().gameObject;`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Editor/Validation/XRGrabReadiness.cs:48` · `Ziptide.Editor.Validation.XRGrabReadiness` — XRInteractionManager lookup. `var interactionManager = Object.FindObjectOfType<XRInteractionManager>();`
-- **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:223` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — XRInteractionManager lookup. `var mgr = FindObjectOfType<XRInteractionManager>();`
-- **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:239` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — XRInteractionManager lookup. `var mgr = FindObjectOfType<XRInteractionManager>();`
+- **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:233` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — XRInteractionManager lookup. `var mgr = FindObjectOfType<XRInteractionManager>();`
+- **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:261` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — XRInteractionManager lookup. `var mgr = FindObjectOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/NestRuntime.cs:72` · `Ziptide.Gameplay.NestRuntime` — XRInteractionManager lookup. `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs:75` · `Ziptide.Gameplay.QuickSwap` — XRInteractionManager lookup. `if (_mgr == null) _mgr = FindObjectOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:140` · `Ziptide.Gameplay.BootHoldState` — XRInteractionManager lookup. `foreach (var m in FindObjectsOfType<XRInteractionManager>(true))`

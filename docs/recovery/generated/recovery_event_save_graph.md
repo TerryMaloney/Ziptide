@@ -1,7 +1,7 @@
 # ZIPTIDE Event and Save Ownership Graph
 
-- Scanned C# files: **613**
-- Evidence edges: **640**
+- Scanned C# files: **617**
+- Evidence edges: **645**
 - Named subscriptions without matching unsubscribe in the same owner: **47**
 
 This is a static ownership graph. An unmatched row is a review target, not automatic proof of a leak; process-lifetime static hooks may be intentional.
@@ -11,8 +11,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **AUTOSAVE:** 7
 - **EVENT_DECLARE:** 45
 - **EVENT_INVOKE:** 55
-- **EVENT_SUBSCRIBE:** 78
-- **EVENT_UNSUBSCRIBE:** 30
+- **EVENT_SUBSCRIBE:** 80
+- **EVENT_UNSUBSCRIBE:** 33
 - **PLAYER_PREFS_ACCESS:** 11
 - **PROFILE_FIELD_ACCESS:** 351
 - **SAVE_ACCESS:** 63
@@ -120,6 +120,17 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.PlayMode.RecoveryExposureProfileTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs:121` · `profile` — `Assert.IsTrue(profile.Allows(RecoveryFeatureId.DevWarpBoard));`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.PlayMode.RecoveryExposureProfileTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs:122` · `profile` — `Assert.IsFalse(profile.Allows(RecoveryFeatureId.VrBootDiagnostics),`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.PlayMode.RecoveryExposureProfileTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs:124` · `profile` — `Assert.IsFalse(profile.Allows(RecoveryFeatureId.RuntimeMaterialFixer),`
+
+### `Application.logMessageReceived`
+
+- **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryBootHoldOrderingTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootHoldOrderingTests.cs:36` · `_capture` — `Application.logMessageReceived += _capture;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryBootHoldOrderingTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootHoldOrderingTests.cs:43` · `_capture` — `Application.logMessageReceived -= _capture;`
+
+### `Application.logMessageReceivedThreaded`
+
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Core.PersistentDiagnosticRing` · `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/PersistentDiagnosticRing.cs:41` · `Capture` — `Application.logMessageReceivedThreaded -= Capture;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Core.PersistentDiagnosticRing` · `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/PersistentDiagnosticRing.cs:62` · `Capture` — `Application.logMessageReceivedThreaded -= Capture;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Core.PersistentDiagnosticRing` · `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/PersistentDiagnosticRing.cs:63` · `Capture` — `Application.logMessageReceivedThreaded += Capture;`
 
 ### `Assert`
 
@@ -643,8 +654,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.AmbienceDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs:57` · `OnSceneLoaded` — `if (_instance == this) { SceneManager.sceneLoaded -= OnSceneLoaded; _instance = null; }`
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.AudioDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs:40` · `OnSceneLoaded` — `SceneManager.sceneLoaded += OnSceneLoaded;`
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.AudioDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs:47` · `OnSceneLoaded` — `SceneManager.sceneLoaded -= OnSceneLoaded;`
-- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.DevTools.DevWarpBoard` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:77` · `OnSceneLoaded` — `SceneManager.sceneLoaded += OnSceneLoaded;`
-- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.DevTools.DevWarpBoard` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:80` · `OnSceneLoaded` — `private void OnDisable() => SceneManager.sceneLoaded -= OnSceneLoaded;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.DevTools.DevWarpBoard` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:79` · `OnSceneLoaded` — `SceneManager.sceneLoaded += OnSceneLoaded;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.DevTools.DevWarpBoard` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:82` · `OnSceneLoaded` — `private void OnDisable() => SceneManager.sceneLoaded -= OnSceneLoaded;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.SingletonValidator` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Diagnostics/SingletonValidator.cs:31` · `OnSceneLoaded` — `SceneManager.sceneLoaded += OnSceneLoaded;`
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.SingletonValidator` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Diagnostics/SingletonValidator.cs:38` · `OnSceneLoaded` — `SceneManager.sceneLoaded -= OnSceneLoaded;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.EcologyDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs:44` · `(scene, mode) =>` — `SceneManager.sceneLoaded += (scene, mode) => Ensure(scene);`
