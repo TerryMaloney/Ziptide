@@ -15,11 +15,12 @@ namespace Ziptide.Core
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void OnLoad()
         {
+            if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.RuntimeInputEnabler)) return;
+
             var assetsEnabled = new HashSet<InputActionAsset>();
             int controllersProcessed = 0;
             int otherProcessed = 0;
 
-            // ActionBasedController: get asset from selectAction and enable the whole asset
             var controllers = Object.FindObjectsOfType<ActionBasedController>(true);
             foreach (var c in controllers)
             {
@@ -32,7 +33,6 @@ namespace Ziptide.Core
                 }
             }
 
-            // Any other MonoBehaviour with InputActionReference fields (e.g. ActionBasedControllerManager)
             var allMono = Object.FindObjectsOfType<MonoBehaviour>(true);
             foreach (var mb in allMono)
             {
