@@ -3,6 +3,7 @@
     "rootNamespace": "Ziptide.Tests.PlayMode",
     "references": [
         "Ziptide.Core",
+        "Ziptide.Gameplay",
         "UnityEngine.TestRunner",
         "Unity.XR.Interaction.Toolkit",
         "Unity.InputSystem"
