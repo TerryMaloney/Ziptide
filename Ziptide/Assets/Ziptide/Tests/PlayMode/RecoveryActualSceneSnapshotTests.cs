@@ -17,7 +17,8 @@ namespace Ziptide.Tests.PlayMode
     /// R1.7/R1.8 actual-scene renderer and UI-spatial proof. A sceneLoaded hook establishes the
     /// test-owned tracked-head and bilateral-controller pose before BootLoader/HomeHub Start, so the
     /// captured Home Hub is laid out from a realistic head height. W000 and ToxicCity are reached
-    /// through the production TravelCoordinator and captured/audited from the same persistent camera.
+    /// through the production Home Hub and TravelCoordinator path and captured/audited from the same
+    /// persistent camera.
     /// </summary>
     public sealed class RecoveryActualSceneSnapshotTests
     {
@@ -28,6 +29,7 @@ namespace Ziptide.Tests.PlayMode
         private RecoverySaveFileBackup _saveBackup;
         private RecoveryActualRigControllerSimulation _simulation;
         private Exception _earlySimulationFailure;
+        private PlayerProfile _newGameProfile;
         private bool _bootReady;
 
         [UnitySetUp]
@@ -37,8 +39,10 @@ namespace Ziptide.Tests.PlayMode
             yield return RecoverySceneTestIsolation.PrepareFreshGoldenBoot();
             _travelCompleted.Clear();
             _earlySimulationFailure = null;
+            _newGameProfile = null;
             _bootReady = false;
             HomeHubRuntime.BootPresentationReady += OnBootReady;
+            HomeHubRuntime.NewGameProfileCreated += OnNewGameProfileCreated;
             TravelCoordinator.TravelCompleted += OnTravelCompleted;
         }
 
@@ -47,6 +51,7 @@ namespace Ziptide.Tests.PlayMode
         {
             SceneManager.sceneLoaded -= OnBootSceneLoadedBeforeStart;
             HomeHubRuntime.BootPresentationReady -= OnBootReady;
+            HomeHubRuntime.NewGameProfileCreated -= OnNewGameProfileCreated;
             TravelCoordinator.TravelCompleted -= OnTravelCompleted;
             _simulation?.Dispose();
             _simulation = null;
@@ -106,12 +111,17 @@ namespace Ziptide.Tests.PlayMode
                 "R1_8_ACTUAL_HOME_HUB",
                 "r1_8_actual_home_hub");
 
-            SaveSystem save = SaveSystem.Instance;
-            Assert.IsNotNull(save, "SaveSystem is missing before actual scene snapshots.");
-            PlayerProfile profile = save.StartNewProfile();
-            Assert.IsNotNull(profile);
+            // Use the real diegetic NEW GAME interactable. BootLoader owns its callback and passes
+            // skipGate=true for the empty _Boot scene; bypassing this choice incorrectly enables a
+            // departure-gate wait while BOOT_HOLD is still armed and does not represent production.
+            HomeHubRuntime home = UnityEngine.Object.FindObjectOfType<HomeHubRuntime>();
+            XRInteractionManager manager = UnityEngine.Object.FindObjectOfType<XRInteractionManager>();
+            Assert.IsNotNull(home, "Actual Home Hub disappeared before NEW GAME selection.");
+            Assert.IsNotNull(manager, "Canonical XRInteractionManager is missing at Home Hub selection.");
+            SelectHomeHubTileThroughXri(home, "Tile_NEW_GAME", manager, _simulation.RightRay);
+            Assert.IsNotNull(_newGameProfile,
+                "The actual NEW GAME selection did not create a profile before travel.");
 
-            TravelCoordinator.TravelTo(ZiptideConstants.SceneW000);
             IEnumerator w000Wait = WaitForDestination(1, ZiptideConstants.SceneW000);
             while (w000Wait.MoveNext()) yield return w000Wait.Current;
             yield return new WaitForEndOfFrame();
@@ -159,6 +169,57 @@ namespace Ziptide.Tests.PlayMode
             {
                 _earlySimulationFailure = ex;
             }
+        }
+
+        private static void SelectHomeHubTileThroughXri(
+            HomeHubRuntime home,
+            string tileName,
+            XRInteractionManager manager,
+            XRRayInteractor ray)
+        {
+            Assert.IsNotNull(home);
+            Assert.IsNotNull(manager);
+            Assert.IsNotNull(ray);
+
+            Transform tileTransform = home.transform.Find(tileName);
+            Assert.IsNotNull(tileTransform, "Actual Home Hub tile was not found: " + tileName);
+            XRSimpleInteractable tile = tileTransform.GetComponent<XRSimpleInteractable>();
+            Assert.IsNotNull(tile, tileName + " is not an XRSimpleInteractable.");
+            Assert.AreSame(manager, tile.interactionManager,
+                tileName + " is not bound to the canonical interaction manager.");
+            Assert.AreSame(manager, ray.interactionManager,
+                "The actual right ray is not bound to the canonical interaction manager.");
+
+            Vector3 approach = home.transform.forward;
+            Vector3 rayPosition = tileTransform.position - approach * 1.1f;
+            ray.transform.position = rayPosition;
+            ray.transform.rotation = Quaternion.LookRotation(
+                (tileTransform.position - rayPosition).normalized,
+                Vector3.up);
+            Physics.SyncTransforms();
+
+            Assert.IsTrue(Physics.Raycast(
+                ray.transform.position,
+                ray.transform.forward,
+                out RaycastHit hit,
+                3f,
+                Physics.DefaultRaycastLayers,
+                QueryTriggerInteraction.Collide),
+                "The actual rig ray did not hit " + tileName + ".");
+            Assert.AreSame(tileTransform.gameObject, hit.collider.gameObject,
+                "The actual rig ray hit another object before " + tileName + ": " +
+                RecoveryRuntimeCensus.HierarchyPath(hit.transform));
+
+            var hoverInteractor = (IXRHoverInteractor)ray;
+            var selectInteractor = (IXRSelectInteractor)ray;
+            var hoverInteractable = (IXRHoverInteractable)tile;
+            var selectInteractable = (IXRSelectInteractable)tile;
+            if (!tile.isHovered) manager.HoverEnter(hoverInteractor, hoverInteractable);
+            Assert.IsTrue(tile.isHovered, tileName + " did not enter hover state.");
+            manager.SelectEnter(selectInteractor, selectInteractable);
+            Assert.IsTrue(tile.isSelected, tileName + " did not enter selected state.");
+            manager.SelectExit(selectInteractor, selectInteractable);
+            if (tile.isHovered) manager.HoverExit(hoverInteractor, hoverInteractable);
         }
 
         private IEnumerator WaitForDestination(int expectedCount, string expectedScene)
@@ -232,6 +293,7 @@ namespace Ziptide.Tests.PlayMode
         }
 
         private void OnBootReady(bool canContinue) => _bootReady = true;
+        private void OnNewGameProfileCreated(PlayerProfile profile) => _newGameProfile = profile;
         private void OnTravelCompleted(string destination) => _travelCompleted.Add(destination);
 
         private static string FormatRuntimeFindings(RecoveryRuntimeArtifactReport report)
