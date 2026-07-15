@@ -1,8 +1,8 @@
 {
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
-  "scannedFiles": 611,
-  "findingCount": 2045,
+  "scannedFiles": 612,
+  "findingCount": 2047,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -644,6 +644,25 @@
             "line": 62,
             "symbol": "Ziptide.Tests.EditMode.HeadsetBuildBlockerRegressionTests",
             "snippet": "StringAssert.Contains(\"[InitializeOnLoad]\", sync);"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Tests.PlayMode.RecoveryGateBypassTests",
+        "evidenceCount": 1,
+        "codes": [
+          "RUNTIME_BOOTSTRAP"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs"
+        ],
+        "evidence": [
+          {
+            "code": "RUNTIME_BOOTSTRAP",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs",
+            "line": 60,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryGateBypassTests",
+            "snippet": "var marker = new Regex(@\"(?m)^\\s*\\[RuntimeInitializeOnLoadMethod(?:\\s*\\(|\\s*\\])\");"
           }
         ]
       },
@@ -9919,6 +9938,25 @@
             "line": 88,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryCoreBootstrapGateTests",
             "snippet": "var rendererHost = GameObject.CreatePrimitive(PrimitiveType.Cube);"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Tests.PlayMode.RecoveryGateBypassTests",
+        "evidenceCount": 1,
+        "codes": [
+          "NEW_GAME_OBJECT"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs"
+        ],
+        "evidence": [
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs",
+            "line": 122,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryGateBypassTests",
+            "snippet": "var go = new GameObject(name);"
           }
         ]
       },

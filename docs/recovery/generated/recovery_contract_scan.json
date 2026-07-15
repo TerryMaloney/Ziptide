@@ -1,17 +1,17 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-15T10:56:21.340350+00:00",
+  "generatedAtUtc": "2026-07-15T11:07:55.751048+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
     "Ziptide/Assets/Ziptide",
     "Ziptide/Assets/ZiptideNet"
   ],
-  "scannedFiles": 611,
-  "findingCount": 2045,
+  "scannedFiles": 612,
+  "findingCount": 2047,
   "categoryCounts": {
-    "bootstrap": 26,
+    "bootstrap": 27,
     "diagnostics": 421,
     "events": 64,
     "fallback_debt": 120,
@@ -19,7 +19,7 @@
     "input": 115,
     "materials": 223,
     "persistence": 17,
-    "runtime_creation": 561,
+    "runtime_creation": 562,
     "runtime_ui": 114,
     "save_state": 234,
     "scene_loading": 5,
@@ -41,10 +41,10 @@
     "FRAME_BUTTON_POLL": 1,
     "INPUT_ACTION_REFERENCE": 108,
     "INPUT_BUTTON_REFERENCE": 6,
-    "NEW_GAME_OBJECT": 333,
+    "NEW_GAME_OBJECT": 334,
     "PLAYER_PROFILE_REFERENCE": 133,
     "RENDER_SETTINGS_MUTATION": 36,
-    "RUNTIME_BOOTSTRAP": 20,
+    "RUNTIME_BOOTSTRAP": 21,
     "RUNTIME_MATERIAL_CREATE": 87,
     "SAVE_SYSTEM_REFERENCE": 93,
     "SHADER_FIND": 136,
@@ -284,6 +284,15 @@
       "line": 26,
       "symbol": "Ziptide.Tests.EditMode.EventHygieneTests",
       "snippet": "\"Gameplay/Runtime/World/ConquestMissionRuntime.cs\", // [RuntimeInitializeOnLoadMethod] static hook"
+    },
+    {
+      "category": "bootstrap",
+      "code": "RUNTIME_BOOTSTRAP",
+      "description": "RuntimeInitializeOnLoadMethod bootstrap",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs",
+      "line": 60,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryGateBypassTests",
+      "snippet": "var marker = new Regex(@\"(?m)^\\s*\\[RuntimeInitializeOnLoadMethod(?:\\s*\\(|\\s*\\])\");"
     },
     {
       "category": "bootstrap",
@@ -14468,6 +14477,15 @@
       "line": 84,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryCoreBootstrapGateTests",
       "snippet": "var cameraHost = new GameObject(\"__RECOVERY_CORE_GATE_CAMERA\");"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs",
+      "line": 122,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryGateBypassTests",
+      "snippet": "var go = new GameObject(name);"
     },
     {
       "category": "runtime_creation",

@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
-- Scanned files: **611**
-- Scanner findings: **2045**
+- Scanned files: **612**
+- Scanner findings: **2047**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -205,6 +205,12 @@ None.
 - Codes: `EDITOR_BOOTSTRAP`
 - Paths: `Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs`
   - `Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs:62` **EDITOR_BOOTSTRAP** — `StringAssert.Contains("[InitializeOnLoad]", sync);`
+
+### `Ziptide.Tests.PlayMode.RecoveryGateBypassTests` — 1 signal(s)
+
+- Codes: `RUNTIME_BOOTSTRAP`
+- Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs:60` **RUNTIME_BOOTSTRAP** — `var marker = new Regex(@"(?m)^\s*\[RuntimeInitializeOnLoadMethod(?:\s*\(|\s*\])");`
 
 ### `ZiptideNet.NetBootstrap` — 2 signal(s)
 
@@ -2109,6 +2115,12 @@ None.
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryCoreBootstrapGateTests.cs`
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryCoreBootstrapGateTests.cs:84` **NEW_GAME_OBJECT** — `var cameraHost = new GameObject("__RECOVERY_CORE_GATE_CAMERA");`
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryCoreBootstrapGateTests.cs:88` **CREATE_PRIMITIVE** — `var rendererHost = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+
+### `Ziptide.Tests.PlayMode.RecoveryGateBypassTests` — 1 signal(s)
+
+- Codes: `NEW_GAME_OBJECT`
+- Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs:122` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
 
 ### `Ziptide.Tests.PlayMode.RecoveryTestRig` — 9 signal(s)
 
