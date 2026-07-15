@@ -1,8 +1,8 @@
 {
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
-  "scannedFiles": 637,
-  "findingCount": 2222,
+  "scannedFiles": 638,
+  "findingCount": 2233,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -667,7 +667,7 @@
           {
             "code": "EDITOR_BOOTSTRAP",
             "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs",
-            "line": 66,
+            "line": 70,
             "symbol": "Ziptide.Tests.EditMode.HeadsetBuildBlockerRegressionTests",
             "snippet": "StringAssert.Contains(\"[InitializeOnLoad]\", sync);"
           }
@@ -689,6 +689,25 @@
             "line": 61,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryGateBypassTests",
             "snippet": "var marker = new Regex(@\"(?m)^\\s*\\[RuntimeInitializeOnLoadMethod(?:\\s*\\(|\\s*\\])\");"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
+        "evidenceCount": 1,
+        "codes": [
+          "RUNTIME_BOOTSTRAP"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs"
+        ],
+        "evidence": [
+          {
+            "code": "RUNTIME_BOOTSTRAP",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
+            "line": 48,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
+            "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]"
           }
         ]
       },
@@ -2151,7 +2170,7 @@
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs",
-            "line": 69,
+            "line": 84,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryRuntimeCensusTests",
             "snippet": "Assert.AreEqual(1, Count(snapshot.managers, \"InputActionManager\", true));"
           }
@@ -2323,6 +2342,46 @@
             "line": 391,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
             "snippet": "foreach (InputActionAsset asset in manager.actionAssets)"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
+        "evidenceCount": 4,
+        "codes": [
+          "INPUT_ACTION_REFERENCE"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs"
+        ],
+        "evidence": [
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
+            "line": 76,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
+            "snippet": "InputActionManager[] managers = UnityEngine.Object.FindObjectsOfType<InputActionManager>(true);"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
+            "line": 79,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
+            "snippet": "InputActionManager manager = managers[managerIndex];"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
+            "line": 81,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
+            "snippet": "foreach (InputActionAsset asset in manager.actionAssets)"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
+            "line": 86,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
+            "snippet": "foreach (InputAction action in map.actions)"
           }
         ]
       }
@@ -10089,7 +10148,7 @@
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs",
-            "line": 51,
+            "line": 55,
             "symbol": "Ziptide.Tests.EditMode.HeadsetBuildBlockerRegressionTests",
             "snippet": "StringAssert.Contains(\"GameObject.CreatePrimitive(PrimitiveType.Cube)\", safety);"
           }
@@ -10737,7 +10796,7 @@
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs",
-            "line": 127,
+            "line": 143,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryRuntimeCensusTests",
             "snippet": "var go = new GameObject(name);"
           }
@@ -12394,7 +12453,7 @@
           {
             "code": "XRI_MANAGER_CREATE",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs",
-            "line": 93,
+            "line": 109,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryRuntimeCensusTests",
             "snippet": "extra.AddComponent<XRInteractionManager>();"
           }

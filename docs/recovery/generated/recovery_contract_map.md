@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
-- Scanned files: **637**
-- Scanner findings: **2222**
+- Scanned files: **638**
+- Scanner findings: **2233**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -211,13 +211,19 @@ None.
 
 - Codes: `EDITOR_BOOTSTRAP`
 - Paths: `Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs:66` **EDITOR_BOOTSTRAP** — `StringAssert.Contains("[InitializeOnLoad]", sync);`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs:70` **EDITOR_BOOTSTRAP** — `StringAssert.Contains("[InitializeOnLoad]", sync);`
 
 ### `Ziptide.Tests.PlayMode.RecoveryGateBypassTests` — 1 signal(s)
 
 - Codes: `RUNTIME_BOOTSTRAP`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs`
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs:61` **RUNTIME_BOOTSTRAP** — `var marker = new Regex(@"(?m)^\s*\[RuntimeInitializeOnLoadMethod(?:\s*\(|\s*\])");`
+
+### `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` — 1 signal(s)
+
+- Codes: `RUNTIME_BOOTSTRAP`
+- Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:48` **RUNTIME_BOOTSTRAP** — `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]`
 
 ### `ZiptideNet.NetBootstrap` — 2 signal(s)
 
@@ -526,7 +532,7 @@ None.
 
 - Codes: `INPUT_ACTION_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs:69` **INPUT_ACTION_REFERENCE** — `Assert.AreEqual(1, Count(snapshot.managers, "InputActionManager", true));`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs:84` **INPUT_ACTION_REFERENCE** — `Assert.AreEqual(1, Count(snapshot.managers, "InputActionManager", true));`
 
 ### `Ziptide.Tests.PlayMode.RecoveryTestRig` — 6 signal(s)
 
@@ -561,6 +567,15 @@ None.
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:382` **INPUT_ACTION_REFERENCE** — `Assert.IsTrue(input.enabled, "The canonical InputActionManager is disabled.");`
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:386` **INPUT_ACTION_REFERENCE** — `private static int[] InputAssetIds(InputActionManager manager, bool assertEnabled)`
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:391` **INPUT_ACTION_REFERENCE** — `foreach (InputActionAsset asset in manager.actionAssets)`
+
+### `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` — 4 signal(s)
+
+- Codes: `INPUT_ACTION_REFERENCE`
+- Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:76` **INPUT_ACTION_REFERENCE** — `InputActionManager[] managers = UnityEngine.Object.FindObjectsOfType<InputActionManager>(true);`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:79` **INPUT_ACTION_REFERENCE** — `InputActionManager manager = managers[managerIndex];`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:81` **INPUT_ACTION_REFERENCE** — `foreach (InputActionAsset asset in manager.actionAssets)`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:86` **INPUT_ACTION_REFERENCE** — `foreach (InputAction action in map.actions)`
 
 
 ## Runtime surfaces
@@ -2127,7 +2142,7 @@ None.
 
 - Codes: `CREATE_PRIMITIVE`
 - Paths: `Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs:51` **CREATE_PRIMITIVE** — `StringAssert.Contains("GameObject.CreatePrimitive(PrimitiveType.Cube)", safety);`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs:55` **CREATE_PRIMITIVE** — `StringAssert.Contains("GameObject.CreatePrimitive(PrimitiveType.Cube)", safety);`
 
 ### `Ziptide.Tests.EditMode.HomeHubFlowTests` — 4 signal(s)
 
@@ -2290,7 +2305,7 @@ None.
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs:49` **CANVAS_COMPONENT** — `canvasHost.AddComponent<Canvas>();`
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs:52` **TEXTMESH_COMPONENT** — `textHost.AddComponent<TextMesh>().text = "CENSUS";`
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs:57` **CREATE_PRIMITIVE** — `GameObject primitive = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs:127` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs:143` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
 
 ### `Ziptide.Tests.PlayMode.RecoverySpawnClearanceAuditTests` — 4 signal(s)
 
@@ -2690,7 +2705,7 @@ None.
 
 - Codes: `XRI_MANAGER_CREATE`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs:93` **XRI_MANAGER_CREATE** — `extra.AddComponent<XRInteractionManager>();`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs:109` **XRI_MANAGER_CREATE** — `extra.AddComponent<XRInteractionManager>();`
 
 ### `Ziptide.Tests.PlayMode.RecoveryTestRig` — 2 signal(s)
 

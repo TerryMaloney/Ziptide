@@ -1,13 +1,13 @@
 {
   "tool": "recovery_event_save_graph",
-  "scannedFiles": 637,
-  "evidenceCount": 683,
+  "scannedFiles": 638,
+  "evidenceCount": 688,
   "kindCounts": {
     "AUTOSAVE": 7,
     "EVENT_DECLARE": 45,
-    "EVENT_INVOKE": 56,
-    "EVENT_SUBSCRIBE": 92,
-    "EVENT_UNSUBSCRIBE": 47,
+    "EVENT_INVOKE": 57,
+    "EVENT_SUBSCRIBE": 93,
+    "EVENT_UNSUBSCRIBE": 50,
     "PLAYER_PREFS_ACCESS": 11,
     "PROFILE_FIELD_ACCESS": 358,
     "SAVE_ACCESS": 67
@@ -350,7 +350,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs",
-      "line": 67,
+      "line": 71,
       "owner": "Ziptide.Tests.EditMode.HeadsetBuildBlockerRegressionTests",
       "target": "EditorSceneManager.sceneOpened",
       "detail": "OnSceneOpened",
@@ -1444,7 +1444,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs",
-        "line": 67,
+        "line": 71,
         "owner": "Ziptide.Tests.EditMode.HeadsetBuildBlockerRegressionTests",
         "target": "EditorSceneManager.sceneOpened",
         "detail": "OnSceneOpened",
@@ -2645,6 +2645,44 @@
         "target": "Idempotent",
         "detail": "profile",
         "snippet": "/// runtime, from the profile. Idempotent + re-runnable (the hangar calls it live on every equip):"
+      }
+    ],
+    "InputSystem.onAfterUpdate": [
+      {
+        "kind": "EVENT_UNSUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
+        "line": 54,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
+        "target": "InputSystem.onAfterUpdate",
+        "detail": "AuditBilateralBindings",
+        "snippet": "InputSystem.onAfterUpdate -= AuditBilateralBindings;"
+      },
+      {
+        "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
+        "line": 55,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
+        "target": "InputSystem.onAfterUpdate",
+        "detail": "AuditBilateralBindings",
+        "snippet": "InputSystem.onAfterUpdate += AuditBilateralBindings;"
+      },
+      {
+        "kind": "EVENT_UNSUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
+        "line": 110,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
+        "target": "InputSystem.onAfterUpdate",
+        "detail": "AuditBilateralBindings",
+        "snippet": "InputSystem.onAfterUpdate -= AuditBilateralBindings;"
+      },
+      {
+        "kind": "EVENT_UNSUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
+        "line": 120,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
+        "target": "InputSystem.onAfterUpdate",
+        "detail": "AuditBilateralBindings",
+        "snippet": "InputSystem.onAfterUpdate -= AuditBilateralBindings;"
       }
     ],
     "ItemHolstered": [
@@ -6027,6 +6065,15 @@
         "target": "method",
         "detail": "",
         "snippet": "Assert.DoesNotThrow(() => method.Invoke(null, new object[] { null }));"
+      },
+      {
+        "kind": "EVENT_INVOKE",
+        "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs",
+        "line": 173,
+        "owner": "Ziptide.Tests.EditMode.HeadsetBuildBlockerRegressionTests",
+        "target": "method",
+        "detail": "",
+        "snippet": "() => method.Invoke(null, new object[] { \"RECOVERY_CANARY\", throwingHook }));"
       },
       {
         "kind": "EVENT_INVOKE",
@@ -11621,11 +11668,20 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs",
-      "line": 67,
+      "line": 71,
       "owner": "Ziptide.Tests.EditMode.HeadsetBuildBlockerRegressionTests",
       "target": "EditorSceneManager.sceneOpened",
       "detail": "OnSceneOpened",
       "snippet": "StringAssert.Contains(\"EditorSceneManager.sceneOpened += OnSceneOpened;\", sync);"
+    },
+    {
+      "kind": "EVENT_INVOKE",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs",
+      "line": 173,
+      "owner": "Ziptide.Tests.EditMode.HeadsetBuildBlockerRegressionTests",
+      "target": "method",
+      "detail": "",
+      "snippet": "() => method.Invoke(null, new object[] { \"RECOVERY_CANARY\", throwingHook }));"
     },
     {
       "kind": "SAVE_ACCESS",
@@ -12904,6 +12960,42 @@
       "target": "GetResource",
       "detail": "profile",
       "snippet": "Assert.AreEqual(ProbeAmount, profile.GetResource(ProbeResource),"
+    },
+    {
+      "kind": "EVENT_UNSUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
+      "line": 54,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
+      "target": "InputSystem.onAfterUpdate",
+      "detail": "AuditBilateralBindings",
+      "snippet": "InputSystem.onAfterUpdate -= AuditBilateralBindings;"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
+      "line": 55,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
+      "target": "InputSystem.onAfterUpdate",
+      "detail": "AuditBilateralBindings",
+      "snippet": "InputSystem.onAfterUpdate += AuditBilateralBindings;"
+    },
+    {
+      "kind": "EVENT_UNSUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
+      "line": 110,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
+      "target": "InputSystem.onAfterUpdate",
+      "detail": "AuditBilateralBindings",
+      "snippet": "InputSystem.onAfterUpdate -= AuditBilateralBindings;"
+    },
+    {
+      "kind": "EVENT_UNSUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
+      "line": 120,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
+      "target": "InputSystem.onAfterUpdate",
+      "detail": "AuditBilateralBindings",
+      "snippet": "InputSystem.onAfterUpdate -= AuditBilateralBindings;"
     },
     {
       "kind": "PROFILE_FIELD_ACCESS",

@@ -1,19 +1,19 @@
 # ZIPTIDE Recovery Contract Scan
 
-- Scanned files: **637**
-- Findings: **2222**
+- Scanned files: **638**
+- Findings: **2233**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
 
 | Category | Count |
 |---|---:|
-| `bootstrap` | 29 |
-| `diagnostics` | 470 |
+| `bootstrap` | 30 |
+| `diagnostics` | 476 |
 | `events` | 64 |
 | `fallback_debt` | 122 |
 | `global_render` | 78 |
-| `input` | 167 |
+| `input` | 171 |
 | `materials` | 226 |
 | `persistence` | 17 |
 | `runtime_creation` | 585 |
@@ -31,7 +31,7 @@
 - **EDITOR_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Editor/Art/ForgeBuildingKit.cs:16` · `Ziptide.Editor.Art.ForgeBuildingKit` — Unity editor-load bootstrap. `/// (last-registration-wins needs deterministic order, and [InitializeOnLoadMethod] order isn't).`
 - **EDITOR_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Editor/Audit/AuditPhysicsSync.cs:14` · `Ziptide.Editor.Audit.AuditPhysicsSync` — Unity editor-load bootstrap. `[InitializeOnLoad]`
 - **EDITOR_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Editor/DevTools/DevWarpPlayHook.cs:14` · `Ziptide.Editor.DevTools.DevWarpPlayHook` — Unity editor-load bootstrap. `[InitializeOnLoad]`
-- **EDITOR_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs:66` · `Ziptide.Tests.EditMode.HeadsetBuildBlockerRegressionTests` — Unity editor-load bootstrap. `StringAssert.Contains("[InitializeOnLoad]", sync);`
+- **EDITOR_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs:70` · `Ziptide.Tests.EditMode.HeadsetBuildBlockerRegressionTests` — Unity editor-load bootstrap. `StringAssert.Contains("[InitializeOnLoad]", sync);`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Core/Runtime/DebugHUD.cs:22` · `Ziptide.Core.DebugHUD` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Core/Runtime/EnsureXRCameraActive.cs:11` · `Ziptide.Core.EnsureXRCameraActive` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryRuntimeGate.cs:23` · `Ziptide.Core.RecoveryRuntimeGate` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]`
@@ -54,6 +54,7 @@
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Tests/EditMode/DevToolsSingletonTests.cs:17` · `Ziptide.Tests.EditMode.DevToolsSingletonTests` — RuntimeInitializeOnLoadMethod bootstrap. `private const string BootstrapMarker = "[RuntimeInitializeOnLoadMethod";`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Tests/EditMode/EventHygieneTests.cs:26` · `Ziptide.Tests.EditMode.EventHygieneTests` — RuntimeInitializeOnLoadMethod bootstrap. `"Gameplay/Runtime/World/ConquestMissionRuntime.cs", // [RuntimeInitializeOnLoadMethod] static hook`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs:61` · `Ziptide.Tests.PlayMode.RecoveryGateBypassTests` — RuntimeInitializeOnLoadMethod bootstrap. `var marker = new Regex(@"(?m)^\s*\[RuntimeInitializeOnLoadMethod(?:\s*\(|\s*\])");`
+- **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:48` · `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/ZiptideNet/NetBootstrap.cs:20` · `ZiptideNet.NetBootstrap` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]`
 ### diagnostics
 
@@ -463,6 +464,8 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourTravelSignalTests.cs:110` · `Ziptide.Tests.EditMode.FirstHourTravelSignalTests` — ZIPTIDE diagnostic tag. `int travelOk = source.IndexOf("Debug.Log(\"ZIPTIDE: TRAVEL_OK dest=\" + sceneName);");`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourTravelSignalTests.cs:117` · `Ziptide.Tests.EditMode.FirstHourTravelSignalTests` — ZIPTIDE diagnostic tag. `StringAssert.Contains("ZIPTIDE: FIRST_HOUR_TRAVEL dest=", source);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourTravelSignalTests.cs:138` · `Ziptide.Tests.EditMode.FirstHourTravelSignalTests` — ZIPTIDE diagnostic tag. `int timeoutLog = source.IndexOf("ZIPTIDE: TRAVEL_TIMEOUT dest=", hold);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs:146` · `Ziptide.Tests.EditMode.HeadsetBuildBlockerRegressionTests` — ZIPTIDE diagnostic tag. `new Regex("ZIPTIDE: SHADER_VARIANT_GATE_FAIL findings=1"));`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs:171` · `Ziptide.Tests.EditMode.HeadsetBuildBlockerRegressionTests` — ZIPTIDE diagnostic tag. `new Regex("ZIPTIDE: BUILD_HOOK_FAIL step=RECOVERY_CANARY"));`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:99` · `Ziptide.Tests.EditMode.HomeHubFlowTests` — ZIPTIDE diagnostic tag. `StringAssert.Contains("ZIPTIDE: HOME_HUB_READY continue=", source);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:100` · `Ziptide.Tests.EditMode.HomeHubFlowTests` — ZIPTIDE diagnostic tag. `StringAssert.Contains("ZIPTIDE: HOME_HUB_CHOICE choice=", source);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:119` · `Ziptide.Tests.EditMode.HomeHubFlowTests` — ZIPTIDE diagnostic tag. `new Regex("ZIPTIDE: FLIGHT_DESTINATION_REJECTED target=PvP_Arena01"));`
@@ -493,8 +496,9 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBuildProfileTests.cs:92` · `Ziptide.Tests.PlayMode.RecoveryBuildProfileTests` — ZIPTIDE diagnostic tag. `StringAssert.Contains("ZIPTIDE: RECOVERY_EXPOSURE buildProfile=GoldenSlice profile=GoldenSlice", smokeScript);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:110` · `Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests` — ZIPTIDE diagnostic tag. `new Regex("ZIPTIDE: HOME_HUB_TILE_BOUND tile=Tile_MANAGER_REPLACE mode=rebound"));`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPersistentDiagnosticRingTests.cs:18` · `Ziptide.Tests.PlayMode.RecoveryPersistentDiagnosticRingTests` — ZIPTIDE diagnostic tag. `string token = "ZIPTIDE: DIAG_RING_TEST frame=" + Time.frameCount;`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshot.cs:141` · `Ziptide.Tests.PlayMode.RecoveryRenderSnapshotMetrics` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RECOVERY_SNAPSHOT label=" + label`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshot.cs:162` · `Ziptide.Tests.PlayMode.RecoveryRenderSnapshotMetrics` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RECOVERY_SNAPSHOT_CLEANUP_QUEUED label=" + label);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshot.cs:149` · `Ziptide.Tests.PlayMode.RecoveryRenderSnapshotMetrics` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RECOVERY_SNAPSHOT label=" + label`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshot.cs:173` · `Ziptide.Tests.PlayMode.RecoveryRenderSnapshotMetrics` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RECOVERY_SNAPSHOT_CLEANUP_QUEUED label=" + label);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshot.cs:203` · `Ziptide.Tests.PlayMode.RecoveryRenderSnapshotMetrics` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RECOVERY_SNAPSHOT_GPU_RETAINED label=" + label`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeArtifactGuard.cs:122` · `Ziptide.Tests.PlayMode.RecoveryRuntimeArtifactFinding` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RECOVERY_STALE_ARTIFACT_REMOVED path="`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:160` · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` — ZIPTIDE diagnostic tag. `Assert.AreEqual(2, CountLogs("ZIPTIDE: TRAVEL_START dest=" + ZiptideConstants.SceneW000));`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:161` · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` — ZIPTIDE diagnostic tag. `Assert.AreEqual(2, CountLogs("ZIPTIDE: TRAVEL_OK dest=" + ZiptideConstants.SceneW000));`
@@ -504,6 +508,9 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:166` · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` — ZIPTIDE diagnostic tag. `Assert.AreEqual(0, CountLogs("ZIPTIDE: TRAVEL_FAIL"),`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:168` · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` — ZIPTIDE diagnostic tag. `Assert.AreEqual(0, CountLogs("ZIPTIDE: XRI_NOT_READY"),`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:243` · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` — ZIPTIDE diagnostic tag. `if (CountLogs("ZIPTIDE: TRAVEL_FAIL") > 0) break;`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:56` · `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RECOVERY_VIRTUAL_XR_LAYOUT controls=Primary2DAxis,GripButton");`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:111` · `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RECOVERY_VIRTUAL_XR_BILATERAL_OK actions=" + locomotionActions`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:121` · `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` — ZIPTIDE diagnostic tag. `Debug.LogError("ZIPTIDE: RECOVERY_VIRTUAL_XR_BILATERAL_FAIL actions=" + locomotionActions`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeCreatureVisualApplier.cs:73` · `Ziptide.Visuals.ForgeCreatureVisualApplier` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FORGE_CREATURE_APPLIED id=" + creatureId`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs:28` · `Ziptide.Visuals.ForgeVisualApplier` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: FORGE_RECIPE_NOT_FOUND id=" + recipeId + " item=" + item.name);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs:89` · `Ziptide.Visuals.ForgeVisualApplier` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FORGE_APPLIED id=" + recipeId + " item=" + item.name`
@@ -940,7 +947,7 @@
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensus.cs:351` · `Ziptide.Tests.PlayMode.RecoveryRuntimeCensusSnapshot` — Input System action reference. `int activeInput = CountActive(snapshot.managers, "InputActionManager");`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensus.cs:356` · `Ziptide.Tests.PlayMode.RecoveryRuntimeCensusSnapshot` — Input System action reference. `AddFinding(snapshot, "DUPLICATE_INPUT_ACTION_MANAGER", "BLOCKER", "InputActionManager", "",`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensus.cs:357` · `Ziptide.Tests.PlayMode.RecoveryRuntimeCensusSnapshot` — Input System action reference. `"Active InputActionManager count is " + activeInput + "; expected at most one.");`
-- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs:69` · `Ziptide.Tests.PlayMode.RecoveryRuntimeCensusTests` — Input System action reference. `Assert.AreEqual(1, Count(snapshot.managers, "InputActionManager", true));`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs:84` · `Ziptide.Tests.PlayMode.RecoveryRuntimeCensusTests` — Input System action reference. `Assert.AreEqual(1, Count(snapshot.managers, "InputActionManager", true));`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:31` · `Ziptide.Tests.PlayMode.RecoveryTestRig` — Input System action reference. `public InputActionManager InputManager { get; private set; }`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:32` · `Ziptide.Tests.PlayMode.RecoveryTestRig` — Input System action reference. `public InputActionAsset ActionAsset { get; private set; }`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:54` · `Ziptide.Tests.PlayMode.RecoveryTestRig` — Input System action reference. `ActionAsset = ScriptableObject.CreateInstance<InputActionAsset>();`
@@ -960,6 +967,10 @@
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:382` · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` — Input System action reference. `Assert.IsTrue(input.enabled, "The canonical InputActionManager is disabled.");`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:386` · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` — Input System action reference. `private static int[] InputAssetIds(InputActionManager manager, bool assertEnabled)`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:391` · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` — Input System action reference. `foreach (InputActionAsset asset in manager.actionAssets)`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:76` · `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` — Input System action reference. `InputActionManager[] managers = UnityEngine.Object.FindObjectsOfType<InputActionManager>(true);`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:79` · `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` — Input System action reference. `InputActionManager manager = managers[managerIndex];`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:81` · `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` — Input System action reference. `foreach (InputActionAsset asset in manager.actionAssets)`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:86` · `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` — Input System action reference. `foreach (InputAction action in map.actions)`
 - **INPUT_BUTTON_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs:27` · `Ziptide.Gameplay.QuickSwap` — Controller/button reference. `_swap.AddBinding("<XRController>{RightHand}/secondaryButton"); // B`
 - **INPUT_BUTTON_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs:99` · `Ziptide.Gameplay.DashLocomotion` — Controller/button reference. `_jumpAction.AddBinding("<XRController>{RightHand}/primaryButton"); // A`
 - **INPUT_BUTTON_REFERENCE** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:146` · `Ziptide.Ship.ShipFlightRuntime` — Controller/button reference. `_boostButton.AddBinding("<XRController>{RightHand}/primaryButton"); // A`
@@ -1433,7 +1444,7 @@
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:97` · `Ziptide.Ship.VehicleRuntime` — Runtime primitive construction. `var prow = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:105` · `Ziptide.Ship.VehicleRuntime` — Runtime primitive construction. `var seat = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:132` · `Ziptide.Ship.VehicleRuntime` — Runtime primitive construction. `var tile = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs:51` · `Ziptide.Tests.EditMode.HeadsetBuildBlockerRegressionTests` — Runtime primitive construction. `StringAssert.Contains("GameObject.CreatePrimitive(PrimitiveType.Cube)", safety);`
+- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs:55` · `Ziptide.Tests.EditMode.HeadsetBuildBlockerRegressionTests` — Runtime primitive construction. `StringAssert.Contains("GameObject.CreatePrimitive(PrimitiveType.Cube)", safety);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/EditMode/ReactivePropTests.cs:119` · `Ziptide.Tests.EditMode.ReactivePropTests` — Runtime primitive construction. `var host = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryCoreBootstrapGateTests.cs:88` · `Ziptide.Tests.PlayMode.RecoveryCoreBootstrapGateTests` — Runtime primitive construction. `var rendererHost = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs:112` · `Ziptide.Tests.PlayMode.RecoveryRenderSnapshotTests` — Runtime primitive construction. `GameObject go = GameObject.CreatePrimitive(type);`
@@ -1772,7 +1783,7 @@
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs:33` · `Ziptide.Tests.PlayMode.RecoveryRenderSnapshotTests` — Runtime GameObject construction. `var cameraHost = new GameObject("__RECOVERY_SNAPSHOT_CAMERA");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeArtifactGuardTests.cs:33` · `Ziptide.Tests.PlayMode.RecoveryRuntimeArtifactGuardTests` — Runtime GameObject construction. `var debug = new GameObject("Ziptide_DebugHUD");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeArtifactGuardTests.cs:35` · `Ziptide.Tests.PlayMode.RecoveryRuntimeArtifactGuardTests` — Runtime GameObject construction. `var photon = new GameObject("PhotonMono");`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs:127` · `Ziptide.Tests.PlayMode.RecoveryRuntimeCensusTests` — Runtime GameObject construction. `var go = new GameObject(name);`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs:143` · `Ziptide.Tests.PlayMode.RecoveryRuntimeCensusTests` — Runtime GameObject construction. `var go = new GameObject(name);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoverySpawnClearanceAuditTests.cs:26` · `Ziptide.Tests.PlayMode.RecoverySpawnClearanceAuditTests` — Runtime GameObject construction. `var rig = new GameObject("__RECOVERY_SPAWN_RIG");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoverySpawnClearanceAuditTests.cs:28` · `Ziptide.Tests.PlayMode.RecoverySpawnClearanceAuditTests` — Runtime GameObject construction. `var cameraHost = new GameObject("__RECOVERY_SPAWN_HEAD");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:42` · `Ziptide.Tests.PlayMode.RecoveryTestRig` — Runtime GameObject construction. `Root = new GameObject(RootName);`
@@ -2229,7 +2240,7 @@
 - **XRI_MANAGER_CREATE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:96` · `Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests` — XRInteractionManager creation. `earlyHost.AddComponent<XRInteractionManager>();`
 - **XRI_MANAGER_CREATE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:114` · `Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests` — XRInteractionManager creation. `var replacement = replacementHost.AddComponent<XRInteractionManager>();`
 - **XRI_MANAGER_CREATE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:50` · `Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests` — XRInteractionManager creation. `primaryHost.AddComponent<XRInteractionManager>();`
-- **XRI_MANAGER_CREATE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs:93` · `Ziptide.Tests.PlayMode.RecoveryRuntimeCensusTests` — XRInteractionManager creation. `extra.AddComponent<XRInteractionManager>();`
+- **XRI_MANAGER_CREATE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs:109` · `Ziptide.Tests.PlayMode.RecoveryRuntimeCensusTests` — XRInteractionManager creation. `extra.AddComponent<XRInteractionManager>();`
 - **XRI_MANAGER_CREATE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:51` · `Ziptide.Tests.PlayMode.RecoveryTestRig` — XRInteractionManager creation. `InteractionManager = managerHost.AddComponent<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Editor/Audit/WorldAuditRunner.cs:161` · `Ziptide.Editor.Audit.WorldAuditRunner` — XRInteractionManager lookup. `var managers = Object.FindObjectsOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Editor/Setup/EnsureLocomotionRig.cs:248` · `Ziptide.Editor.Setup.EnsureLocomotionRig` — XRInteractionManager lookup. `var interactionManager = Object.FindObjectOfType<XRInteractionManager>();`

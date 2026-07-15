@@ -1,7 +1,7 @@
 # ZIPTIDE Event and Save Ownership Graph
 
-- Scanned C# files: **637**
-- Evidence edges: **683**
+- Scanned C# files: **638**
+- Evidence edges: **688**
 - Named subscriptions without matching unsubscribe in the same owner: **47**
 
 This is a static ownership graph. An unmatched row is a review target, not automatic proof of a leak; process-lifetime static hooks may be intentional.
@@ -10,9 +10,9 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 - **AUTOSAVE:** 7
 - **EVENT_DECLARE:** 45
-- **EVENT_INVOKE:** 56
-- **EVENT_SUBSCRIBE:** 92
-- **EVENT_UNSUBSCRIBE:** 47
+- **EVENT_INVOKE:** 57
+- **EVENT_SUBSCRIBE:** 93
+- **EVENT_UNSUBSCRIBE:** 50
 - **PLAYER_PREFS_ACCESS:** 11
 - **PROFILE_FIELD_ACCESS:** 358
 - **SAVE_ACCESS:** 67
@@ -56,7 +56,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - `Ziptide.Multiplayer.Bots.BotPerception` subscribes `aim.Y` → `_rng` at `Ziptide/Assets/Ziptide/Multiplayer/Runtime/Bots/BotBrain.cs:237`
 - `Ziptide.Multiplayer.Conquest.ConquestPlayer` subscribes `planet.defenseLevel` → `d` at `Ziptide/Assets/Ziptide/Multiplayer/Runtime/Conquest/ConquestState.cs:103`
 - `Ziptide.Tests.EditMode.FieldCameraCompletionTests` subscribes `SceneManager.sceneLoaded` → `OnSceneLoaded` at `Ziptide/Assets/Ziptide/Tests/EditMode/FieldCameraCompletionTests.cs:82`
-- `Ziptide.Tests.EditMode.HeadsetBuildBlockerRegressionTests` subscribes `EditorSceneManager.sceneOpened` → `OnSceneOpened` at `Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs:67`
+- `Ziptide.Tests.EditMode.HeadsetBuildBlockerRegressionTests` subscribes `EditorSceneManager.sceneOpened` → `OnSceneOpened` at `Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs:71`
 - `Ziptide.Tests.EditMode.HomeHubFlowTests` subscribes `castOff.DestinationSelected` → `destination` at `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:115`
 - `Ziptide.Tests.EditMode.PvpNetTests` subscribes `t.OnFire` → `m` at `Ziptide/Assets/Ziptide/Tests/EditMode/PvpNetTests.cs:27`
 - `Ziptide.Tests.EditMode.PvpNetTests` subscribes `t.OnHit` → `m` at `Ziptide/Assets/Ziptide/Tests/EditMode/PvpNetTests.cs:41`
@@ -235,7 +235,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Editor.Audit.AuditPhysicsSync` · `Ziptide/Assets/Ziptide/Editor/Audit/AuditPhysicsSync.cs:19` · `OnSceneOpened` — `EditorSceneManager.sceneOpened -= OnSceneOpened;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Editor.Audit.AuditPhysicsSync` · `Ziptide/Assets/Ziptide/Editor/Audit/AuditPhysicsSync.cs:20` · `OnSceneOpened` — `EditorSceneManager.sceneOpened += OnSceneOpened;`
-- **EVENT_SUBSCRIBE** · `Ziptide.Tests.EditMode.HeadsetBuildBlockerRegressionTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs:67` · `OnSceneOpened` — `StringAssert.Contains("EditorSceneManager.sceneOpened += OnSceneOpened;", sync);`
+- **EVENT_SUBSCRIBE** · `Ziptide.Tests.EditMode.HeadsetBuildBlockerRegressionTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs:71` · `OnSceneOpened` — `StringAssert.Contains("EditorSceneManager.sceneOpened += OnSceneOpened;", sync);`
 
 ### `ExpectedArchetype`
 
@@ -405,6 +405,13 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 ### `Idempotent`
 
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.ShipRefit` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipRefit.cs:10` · `profile` — `/// runtime, from the profile. Idempotent + re-runnable (the hangar calls it live on every equip):`
+
+### `InputSystem.onAfterUpdate`
+
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:54` · `AuditBilateralBindings` — `InputSystem.onAfterUpdate -= AuditBilateralBindings;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:55` · `AuditBilateralBindings` — `InputSystem.onAfterUpdate += AuditBilateralBindings;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:110` · `AuditBilateralBindings` — `InputSystem.onAfterUpdate -= AuditBilateralBindings;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:120` · `AuditBilateralBindings` — `InputSystem.onAfterUpdate -= AuditBilateralBindings;`
 
 ### `ItemHolstered`
 
@@ -1053,6 +1060,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 - **EVENT_INVOKE** · `Ziptide.Tests.EditMode.AudioDirectorLifecycleTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/AudioDirectorLifecycleTests.cs:37` — `Assert.DoesNotThrow(() => method.Invoke(null, new object[] { source }));`
 - **EVENT_INVOKE** · `Ziptide.Tests.EditMode.AudioDirectorLifecycleTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/AudioDirectorLifecycleTests.cs:50` — `Assert.DoesNotThrow(() => method.Invoke(null, new object[] { null }));`
+- **EVENT_INVOKE** · `Ziptide.Tests.EditMode.HeadsetBuildBlockerRegressionTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs:173` — `() => method.Invoke(null, new object[] { "RECOVERY_CANARY", throwingHook }));`
 - **EVENT_INVOKE** · `Ziptide.Tests.EditMode.ZiplineSignalTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/ZiplineSignalTests.cs:184` — `method.Invoke(line, args);`
 - **EVENT_INVOKE** · `Ziptide.Tests.PlayMode.RecoveryCoreBootstrapGateTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryCoreBootstrapGateTests.cs:123` — `method.Invoke(null, null);`
 - **EVENT_INVOKE** · `Ziptide.Tests.PlayMode.RecoveryGameplayBootstrapGateTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGameplayBootstrapGateTests.cs:112` — `method.Invoke(null, null);`
