@@ -1,15 +1,15 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-15T20:46:24.083607+00:00",
+  "generatedAtUtc": "2026-07-15T20:54:00.270705+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
     "Ziptide/Assets/Ziptide",
     "Ziptide/Assets/ZiptideNet"
   ],
-  "scannedFiles": 635,
-  "findingCount": 2208,
+  "scannedFiles": 637,
+  "findingCount": 2212,
   "categoryCounts": {
     "bootstrap": 29,
     "diagnostics": 467,
@@ -19,7 +19,7 @@
     "input": 160,
     "materials": 226,
     "persistence": 17,
-    "runtime_creation": 581,
+    "runtime_creation": 585,
     "runtime_ui": 118,
     "save_state": 255,
     "scene_loading": 8,
@@ -30,7 +30,7 @@
     "CAMERA_MAIN_REFERENCE": 40,
     "CAMERA_POST_PROCESSING": 1,
     "CANVAS_COMPONENT": 5,
-    "CREATE_PRIMITIVE": 230,
+    "CREATE_PRIMITIVE": 232,
     "DIRECT_SCENE_LOAD": 2,
     "DIRECT_SCENE_LOAD_ASYNC": 6,
     "DONT_DESTROY_ON_LOAD": 17,
@@ -41,7 +41,7 @@
     "FRAME_BUTTON_POLL": 1,
     "INPUT_ACTION_REFERENCE": 153,
     "INPUT_BUTTON_REFERENCE": 6,
-    "NEW_GAME_OBJECT": 351,
+    "NEW_GAME_OBJECT": 353,
     "PLAYER_PROFILE_REFERENCE": 139,
     "RENDER_SETTINGS_MUTATION": 36,
     "RUNTIME_BOOTSTRAP": 23,
@@ -4241,7 +4241,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeArtifactGuard.cs",
-      "line": 116,
+      "line": 122,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryRuntimeArtifactFinding",
       "snippet": "Debug.Log(\"ZIPTIDE: RECOVERY_STALE_ARTIFACT_REMOVED path=\""
     },
@@ -12538,6 +12538,24 @@
       "category": "runtime_creation",
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoverySpawnClearanceAuditTests.cs",
+      "line": 34,
+      "symbol": "Ziptide.Tests.PlayMode.RecoverySpawnClearanceAuditTests",
+      "snippet": "var floor = GameObject.CreatePrimitive(PrimitiveType.Cube);"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "CREATE_PRIMITIVE",
+      "description": "Runtime primitive construction",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoverySpawnClearanceAuditTests.cs",
+      "line": 53,
+      "symbol": "Ziptide.Tests.PlayMode.RecoverySpawnClearanceAuditTests",
+      "snippet": "var obstacle = GameObject.CreatePrimitive(PrimitiveType.Cube);"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "CREATE_PRIMITIVE",
+      "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs",
       "line": 92,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryTestRig",
@@ -15530,6 +15548,24 @@
       "line": 127,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryRuntimeCensusTests",
       "snippet": "var go = new GameObject(name);"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoverySpawnClearanceAuditTests.cs",
+      "line": 26,
+      "symbol": "Ziptide.Tests.PlayMode.RecoverySpawnClearanceAuditTests",
+      "snippet": "var rig = new GameObject(\"__RECOVERY_SPAWN_RIG\");"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoverySpawnClearanceAuditTests.cs",
+      "line": 28,
+      "symbol": "Ziptide.Tests.PlayMode.RecoverySpawnClearanceAuditTests",
+      "snippet": "var cameraHost = new GameObject(\"__RECOVERY_SPAWN_HEAD\");"
     },
     {
       "category": "runtime_creation",

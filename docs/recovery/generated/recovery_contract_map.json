@@ -1,8 +1,8 @@
 {
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
-  "scannedFiles": 635,
-  "findingCount": 2208,
+  "scannedFiles": 637,
+  "findingCount": 2212,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -10679,6 +10679,47 @@
             "line": 127,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryRuntimeCensusTests",
             "snippet": "var go = new GameObject(name);"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Tests.PlayMode.RecoverySpawnClearanceAuditTests",
+        "evidenceCount": 4,
+        "codes": [
+          "CREATE_PRIMITIVE",
+          "NEW_GAME_OBJECT"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoverySpawnClearanceAuditTests.cs"
+        ],
+        "evidence": [
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoverySpawnClearanceAuditTests.cs",
+            "line": 26,
+            "symbol": "Ziptide.Tests.PlayMode.RecoverySpawnClearanceAuditTests",
+            "snippet": "var rig = new GameObject(\"__RECOVERY_SPAWN_RIG\");"
+          },
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoverySpawnClearanceAuditTests.cs",
+            "line": 28,
+            "symbol": "Ziptide.Tests.PlayMode.RecoverySpawnClearanceAuditTests",
+            "snippet": "var cameraHost = new GameObject(\"__RECOVERY_SPAWN_HEAD\");"
+          },
+          {
+            "code": "CREATE_PRIMITIVE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoverySpawnClearanceAuditTests.cs",
+            "line": 34,
+            "symbol": "Ziptide.Tests.PlayMode.RecoverySpawnClearanceAuditTests",
+            "snippet": "var floor = GameObject.CreatePrimitive(PrimitiveType.Cube);"
+          },
+          {
+            "code": "CREATE_PRIMITIVE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoverySpawnClearanceAuditTests.cs",
+            "line": 53,
+            "symbol": "Ziptide.Tests.PlayMode.RecoverySpawnClearanceAuditTests",
+            "snippet": "var obstacle = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           }
         ]
       },

@@ -1,7 +1,7 @@
 # ZIPTIDE Recovery Contract Scan
 
-- Scanned files: **635**
-- Findings: **2208**
+- Scanned files: **637**
+- Findings: **2212**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
@@ -16,7 +16,7 @@
 | `input` | 160 |
 | `materials` | 226 |
 | `persistence` | 17 |
-| `runtime_creation` | 581 |
+| `runtime_creation` | 585 |
 | `runtime_ui` | 118 |
 | `save_state` | 255 |
 | `scene_loading` | 8 |
@@ -492,7 +492,7 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:110` · `Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests` — ZIPTIDE diagnostic tag. `new Regex("ZIPTIDE: HOME_HUB_TILE_BOUND tile=Tile_MANAGER_REPLACE mode=rebound"));`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPersistentDiagnosticRingTests.cs:18` · `Ziptide.Tests.PlayMode.RecoveryPersistentDiagnosticRingTests` — ZIPTIDE diagnostic tag. `string token = "ZIPTIDE: DIAG_RING_TEST frame=" + Time.frameCount;`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshot.cs:141` · `Ziptide.Tests.PlayMode.RecoveryRenderSnapshotMetrics` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RECOVERY_SNAPSHOT label=" + label`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeArtifactGuard.cs:116` · `Ziptide.Tests.PlayMode.RecoveryRuntimeArtifactFinding` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RECOVERY_STALE_ARTIFACT_REMOVED path="`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeArtifactGuard.cs:122` · `Ziptide.Tests.PlayMode.RecoveryRuntimeArtifactFinding` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RECOVERY_STALE_ARTIFACT_REMOVED path="`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:160` · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` — ZIPTIDE diagnostic tag. `Assert.AreEqual(2, CountLogs("ZIPTIDE: TRAVEL_START dest=" + ZiptideConstants.SceneW000));`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:161` · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` — ZIPTIDE diagnostic tag. `Assert.AreEqual(2, CountLogs("ZIPTIDE: TRAVEL_OK dest=" + ZiptideConstants.SceneW000));`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:162` · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` — ZIPTIDE diagnostic tag. `Assert.AreEqual(1, CountLogs("ZIPTIDE: TRAVEL_START dest=" + ZiptideConstants.SceneToxicCity));`
@@ -1428,6 +1428,8 @@
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryCoreBootstrapGateTests.cs:88` · `Ziptide.Tests.PlayMode.RecoveryCoreBootstrapGateTests` — Runtime primitive construction. `var rendererHost = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs:109` · `Ziptide.Tests.PlayMode.RecoveryRenderSnapshotTests` — Runtime primitive construction. `GameObject go = GameObject.CreatePrimitive(type);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs:57` · `Ziptide.Tests.PlayMode.RecoveryRuntimeCensusTests` — Runtime primitive construction. `GameObject primitive = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoverySpawnClearanceAuditTests.cs:34` · `Ziptide.Tests.PlayMode.RecoverySpawnClearanceAuditTests` — Runtime primitive construction. `var floor = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoverySpawnClearanceAuditTests.cs:53` · `Ziptide.Tests.PlayMode.RecoverySpawnClearanceAuditTests` — Runtime primitive construction. `var obstacle = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:92` · `Ziptide.Tests.PlayMode.RecoveryTestRig` — Runtime primitive construction. `Floor = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRigTests.cs:78` · `Ziptide.Tests.PlayMode.RecoveryTestRigTests` — Runtime primitive construction. `var target = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/PracticalLight.cs:108` · `Ziptide.Visuals.PracticalLight` — Runtime primitive construction. `var go = GameObject.CreatePrimitive(PrimitiveType.Quad);`
@@ -1761,6 +1763,8 @@
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeArtifactGuardTests.cs:33` · `Ziptide.Tests.PlayMode.RecoveryRuntimeArtifactGuardTests` — Runtime GameObject construction. `var debug = new GameObject("Ziptide_DebugHUD");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeArtifactGuardTests.cs:35` · `Ziptide.Tests.PlayMode.RecoveryRuntimeArtifactGuardTests` — Runtime GameObject construction. `var photon = new GameObject("PhotonMono");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs:127` · `Ziptide.Tests.PlayMode.RecoveryRuntimeCensusTests` — Runtime GameObject construction. `var go = new GameObject(name);`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoverySpawnClearanceAuditTests.cs:26` · `Ziptide.Tests.PlayMode.RecoverySpawnClearanceAuditTests` — Runtime GameObject construction. `var rig = new GameObject("__RECOVERY_SPAWN_RIG");`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoverySpawnClearanceAuditTests.cs:28` · `Ziptide.Tests.PlayMode.RecoverySpawnClearanceAuditTests` — Runtime GameObject construction. `var cameraHost = new GameObject("__RECOVERY_SPAWN_HEAD");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:42` · `Ziptide.Tests.PlayMode.RecoveryTestRig` — Runtime GameObject construction. `Root = new GameObject(RootName);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:49` · `Ziptide.Tests.PlayMode.RecoveryTestRig` — Runtime GameObject construction. `var managerHost = new GameObject("InteractionManager");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:62` · `Ziptide.Tests.PlayMode.RecoveryTestRig` — Runtime GameObject construction. `var inputHost = new GameObject("InputActionManager");`

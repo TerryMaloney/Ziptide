@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
-- Scanned files: **635**
-- Scanner findings: **2208**
+- Scanned files: **637**
+- Scanner findings: **2212**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -2279,6 +2279,15 @@ None.
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs:52` **TEXTMESH_COMPONENT** — `textHost.AddComponent<TextMesh>().text = "CENSUS";`
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs:57` **CREATE_PRIMITIVE** — `GameObject primitive = GameObject.CreatePrimitive(PrimitiveType.Cube);`
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs:127` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
+
+### `Ziptide.Tests.PlayMode.RecoverySpawnClearanceAuditTests` — 4 signal(s)
+
+- Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`
+- Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoverySpawnClearanceAuditTests.cs`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoverySpawnClearanceAuditTests.cs:26` **NEW_GAME_OBJECT** — `var rig = new GameObject("__RECOVERY_SPAWN_RIG");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoverySpawnClearanceAuditTests.cs:28` **NEW_GAME_OBJECT** — `var cameraHost = new GameObject("__RECOVERY_SPAWN_HEAD");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoverySpawnClearanceAuditTests.cs:34` **CREATE_PRIMITIVE** — `var floor = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoverySpawnClearanceAuditTests.cs:53` **CREATE_PRIMITIVE** — `var obstacle = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 
 ### `Ziptide.Tests.PlayMode.RecoveryTestRig` — 9 signal(s)
 
