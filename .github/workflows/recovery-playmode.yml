@@ -1,8 +1,8 @@
 name: Recovery PlayMode Observation
 
-# R1.1 infrastructure spike. This workflow is intentionally separate from the durable
-# Unity verdict until it proves two green runs. A red result remains visible and honest;
-# it does not weaken or replace the required EditMode + patch/audit jobs.
+# Recovery PlayMode lane. R1.1 one-frame lifecycle infrastructure has earned two-green
+# promotion. R1.2+ tests remain observational until their own bounded promotion gates pass.
+# This workflow stays separate from the durable EditMode + patch/audit Unity verdict.
 on:
   push:
     branches:
@@ -27,7 +27,7 @@ concurrency:
 
 jobs:
   playmode-smoke:
-    name: PlayMode one-frame smoke
+    name: Recovery PlayMode suite
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -47,7 +47,7 @@ jobs:
             Library-playmode-r1-
             Library-
 
-      - name: Run PlayMode infrastructure test
+      - name: Run recovery PlayMode tests
         id: playmode
         uses: game-ci/unity-test-runner@v4
         env:
@@ -61,7 +61,7 @@ jobs:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
           artifactsPath: playmode-test-results
 
-      - name: Render durable PlayMode observation
+      - name: Render PlayMode observation artifact
         if: always()
         shell: bash
         run: |
@@ -69,13 +69,13 @@ jobs:
           cat > docs/recovery/generated/recovery_playmode_observation.md <<EOF
           # Recovery PlayMode Observation
 
-          - Tested SHA: \`${GITHUB_SHA}\`
-          - Workflow run: \`${GITHUB_RUN_ID}\`
-          - Attempt: \`${GITHUB_RUN_ATTEMPT}\`
+          - Tested SHA: `${GITHUB_SHA}`
+          - Workflow run: `${GITHUB_RUN_ID}`
+          - Attempt: `${GITHUB_RUN_ATTEMPT}`
           - Test step outcome: **${{ steps.playmode.outcome }}**
-          - Scope: R1.1 one-frame lifecycle infrastructure only
+          - Scope: R1 recovery PlayMode suite
           - Unity: ${UNITY_VERSION}
-          - Promotion state: observation; requires two green runs before becoming a recovery-required lane
+          - Promotion state: R1.1 promoted; later harness layers remain observational until separately proven
           EOF
 
       - name: Upload PlayMode results
@@ -88,8 +88,10 @@ jobs:
             docs/recovery/generated/recovery_playmode_observation.md
           if-no-files-found: warn
 
-      - name: Commit durable observation on current branch head
-        if: always()
+      - name: Commit completed observation on current branch head
+        # Cancelled/skipped superseded runs keep their uploaded artifact but may not replace
+        # the branch's durable result. This prevents stale cancellation races.
+        if: always() && (steps.playmode.outcome == 'success' || steps.playmode.outcome == 'failure')
         shell: bash
         run: |
           set -euo pipefail
