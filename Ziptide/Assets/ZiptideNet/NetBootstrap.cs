@@ -8,6 +8,7 @@
 // ─────────────────────────────────────────────────────────────────────────────────────────────
 #if ZIPTIDE_PHOTON
 using UnityEngine;
+using Ziptide.Core;
 using Ziptide.Multiplayer;
 
 namespace ZiptideNet
@@ -19,6 +20,13 @@ namespace ZiptideNet
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         private static void Install()
         {
+            if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.NetBootstrap))
+            {
+                PvpNetHub.OnlineStarter = null;
+                PvpNetHub.OnlineStopper = null;
+                return;
+            }
+
             PvpNetHub.OnlineStarter = StartOnline;
             PvpNetHub.OnlineStopper = StopOnline;
             Debug.Log("ZIPTIDE: NET_STARTER_INSTALLED (Photon)");
@@ -26,6 +34,8 @@ namespace ZiptideNet
 
         private static bool StartOnline(string roomCode)
         {
+            if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.NetBootstrap)) return false;
+
             if (_launcherGo == null)
             {
                 _launcherGo = new GameObject("__PhotonPvpLauncher");
