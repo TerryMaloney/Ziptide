@@ -13,7 +13,8 @@ namespace Ziptide.Tests.PlayMode
     /// <summary>
     /// R1 checkpoint proof for the rb26 cold-boot fix. This runs the real BootLoader and persistent
     /// rig seam, then proves the observable ordering required on-device:
-    /// hold armed -> Home Hub ready -> hold released at settled content spawn -> SPAWN_AT evidence.
+    /// hold armed -> Home Hub ready -> BOARD_PROBE active -> hold released at settled content spawn
+    /// -> SPAWN_AT evidence.
     /// </summary>
     public sealed class RecoveryBootHoldOrderingTests
     {
@@ -81,9 +82,12 @@ namespace Ziptide.Tests.PlayMode
 
             int armedIndex = FindLog("ZIPTIDE: BOOT_HOLD on");
             int readyIndex = FindLog("ZIPTIDE: HOME_HUB_READY");
+            int probeIndex = FindLog("ZIPTIDE: BOARD_PROBE surface=HomeHub phase=aim");
             Assert.GreaterOrEqual(armedIndex, 0, "No BOOT_HOLD arm evidence was emitted.");
             Assert.Greater(readyIndex, armedIndex,
                 "Home Hub readiness was emitted before BOOT_HOLD arm evidence.");
+            Assert.Greater(probeIndex, readyIndex,
+                "The exact Golden Home Hub did not activate its persistent BOARD_PROBE.");
 
             var markerHost = new GameObject("__RECOVERY_BOOT_ORDER_MARKER");
             _created.Add(markerHost);
