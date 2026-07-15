@@ -1,8 +1,8 @@
 {
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
-  "scannedFiles": 619,
-  "findingCount": 2091,
+  "scannedFiles": 621,
+  "findingCount": 2102,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -1712,6 +1712,72 @@
             "line": 189,
             "symbol": "Ziptide.Tests.EditMode.FirstHourObservationCoreTests",
             "snippet": "StringAssert.DoesNotContain(\"InputAction\", source);"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Tests.PlayMode.RecoveryRuntimeCensusSnapshot",
+        "evidenceCount": 5,
+        "codes": [
+          "INPUT_ACTION_REFERENCE"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensus.cs"
+        ],
+        "evidence": [
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensus.cs",
+            "line": 252,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryRuntimeCensusSnapshot",
+            "snippet": "InputActionManager input = go.GetComponent<InputActionManager>();"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensus.cs",
+            "line": 254,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryRuntimeCensusSnapshot",
+            "snippet": "snapshot.managers.Add(ComponentRecord(\"InputActionManager\", input, \"INPUT_SESSION\"));"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensus.cs",
+            "line": 351,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryRuntimeCensusSnapshot",
+            "snippet": "int activeInput = CountActive(snapshot.managers, \"InputActionManager\");"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensus.cs",
+            "line": 356,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryRuntimeCensusSnapshot",
+            "snippet": "AddFinding(snapshot, \"DUPLICATE_INPUT_ACTION_MANAGER\", \"BLOCKER\", \"InputActionManager\", \"\","
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensus.cs",
+            "line": 357,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryRuntimeCensusSnapshot",
+            "snippet": "\"Active InputActionManager count is \" + activeInput + \"; expected at most one.\");"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Tests.PlayMode.RecoveryRuntimeCensusTests",
+        "evidenceCount": 1,
+        "codes": [
+          "INPUT_ACTION_REFERENCE"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs"
+        ],
+        "evidence": [
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs",
+            "line": 69,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryRuntimeCensusTests",
+            "snippet": "Assert.AreEqual(1, Count(snapshot.managers, \"InputActionManager\", true));"
           }
         ]
       },
@@ -10060,6 +10126,49 @@
         ]
       },
       {
+        "owner": "Ziptide.Tests.PlayMode.RecoveryRuntimeCensusTests",
+        "evidenceCount": 4,
+        "codes": [
+          "CANVAS_COMPONENT",
+          "CREATE_PRIMITIVE",
+          "NEW_GAME_OBJECT",
+          "TEXTMESH_COMPONENT"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs"
+        ],
+        "evidence": [
+          {
+            "code": "CANVAS_COMPONENT",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs",
+            "line": 49,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryRuntimeCensusTests",
+            "snippet": "canvasHost.AddComponent<Canvas>();"
+          },
+          {
+            "code": "TEXTMESH_COMPONENT",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs",
+            "line": 52,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryRuntimeCensusTests",
+            "snippet": "textHost.AddComponent<TextMesh>().text = \"CENSUS\";"
+          },
+          {
+            "code": "CREATE_PRIMITIVE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs",
+            "line": 57,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryRuntimeCensusTests",
+            "snippet": "GameObject primitive = GameObject.CreatePrimitive(PrimitiveType.Cube);"
+          },
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs",
+            "line": 127,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryRuntimeCensusTests",
+            "snippet": "var go = new GameObject(name);"
+          }
+        ]
+      },
+      {
         "owner": "Ziptide.Tests.PlayMode.RecoveryTestRig",
         "evidenceCount": 9,
         "codes": [
@@ -11509,6 +11618,25 @@
             "line": 114,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests",
             "snippet": "var replacement = replacementHost.AddComponent<XRInteractionManager>();"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Tests.PlayMode.RecoveryRuntimeCensusTests",
+        "evidenceCount": 1,
+        "codes": [
+          "XRI_MANAGER_CREATE"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs"
+        ],
+        "evidence": [
+          {
+            "code": "XRI_MANAGER_CREATE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs",
+            "line": 93,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryRuntimeCensusTests",
+            "snippet": "extra.AddComponent<XRInteractionManager>();"
           }
         ]
       },

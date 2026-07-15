@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
-- Scanned files: **619**
-- Scanner findings: **2091**
+- Scanned files: **621**
+- Scanner findings: **2102**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -431,6 +431,22 @@ None.
 - Codes: `INPUT_ACTION_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourObservationCoreTests.cs`
   - `Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourObservationCoreTests.cs:189` **INPUT_ACTION_REFERENCE** — `StringAssert.DoesNotContain("InputAction", source);`
+
+### `Ziptide.Tests.PlayMode.RecoveryRuntimeCensusSnapshot` — 5 signal(s)
+
+- Codes: `INPUT_ACTION_REFERENCE`
+- Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensus.cs`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensus.cs:252` **INPUT_ACTION_REFERENCE** — `InputActionManager input = go.GetComponent<InputActionManager>();`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensus.cs:254` **INPUT_ACTION_REFERENCE** — `snapshot.managers.Add(ComponentRecord("InputActionManager", input, "INPUT_SESSION"));`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensus.cs:351` **INPUT_ACTION_REFERENCE** — `int activeInput = CountActive(snapshot.managers, "InputActionManager");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensus.cs:356` **INPUT_ACTION_REFERENCE** — `AddFinding(snapshot, "DUPLICATE_INPUT_ACTION_MANAGER", "BLOCKER", "InputActionManager", "",`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensus.cs:357` **INPUT_ACTION_REFERENCE** — `"Active InputActionManager count is " + activeInput + "; expected at most one.");`
+
+### `Ziptide.Tests.PlayMode.RecoveryRuntimeCensusTests` — 1 signal(s)
+
+- Codes: `INPUT_ACTION_REFERENCE`
+- Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs:69` **INPUT_ACTION_REFERENCE** — `Assert.AreEqual(1, Count(snapshot.managers, "InputActionManager", true));`
 
 ### `Ziptide.Tests.PlayMode.RecoveryTestRig` — 6 signal(s)
 
@@ -2146,6 +2162,15 @@ None.
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:94` **NEW_GAME_OBJECT** — `var earlyHost = new GameObject("__RECOVERY_EARLY_XRI_MANAGER");`
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:112` **NEW_GAME_OBJECT** — `var replacementHost = new GameObject("__RECOVERY_REPLACEMENT_XRI_MANAGER");`
 
+### `Ziptide.Tests.PlayMode.RecoveryRuntimeCensusTests` — 4 signal(s)
+
+- Codes: `CANVAS_COMPONENT`, `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`, `TEXTMESH_COMPONENT`
+- Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs:49` **CANVAS_COMPONENT** — `canvasHost.AddComponent<Canvas>();`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs:52` **TEXTMESH_COMPONENT** — `textHost.AddComponent<TextMesh>().text = "CENSUS";`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs:57` **CREATE_PRIMITIVE** — `GameObject primitive = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs:127` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
+
 ### `Ziptide.Tests.PlayMode.RecoveryTestRig` — 9 signal(s)
 
 - Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`
@@ -2490,6 +2515,12 @@ None.
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:96` **XRI_MANAGER_CREATE** — `earlyHost.AddComponent<XRInteractionManager>();`
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:97` **XRI_MANAGER_ASSIGN** — `for (int frame = 0; frame < 10 && interactable.interactionManager == null; frame++)`
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:114` **XRI_MANAGER_CREATE** — `var replacement = replacementHost.AddComponent<XRInteractionManager>();`
+
+### `Ziptide.Tests.PlayMode.RecoveryRuntimeCensusTests` — 1 signal(s)
+
+- Codes: `XRI_MANAGER_CREATE`
+- Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs:93` **XRI_MANAGER_CREATE** — `extra.AddComponent<XRInteractionManager>();`
 
 ### `Ziptide.Tests.PlayMode.RecoveryTestRig` — 2 signal(s)
 

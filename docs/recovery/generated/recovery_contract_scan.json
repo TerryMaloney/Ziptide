@@ -1,36 +1,36 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-15T18:38:26.373024+00:00",
+  "generatedAtUtc": "2026-07-15T18:47:51.758846+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
     "Ziptide/Assets/Ziptide",
     "Ziptide/Assets/ZiptideNet"
   ],
-  "scannedFiles": 619,
-  "findingCount": 2091,
+  "scannedFiles": 621,
+  "findingCount": 2102,
   "categoryCounts": {
     "bootstrap": 27,
     "diagnostics": 449,
     "events": 64,
     "fallback_debt": 119,
     "global_render": 78,
-    "input": 115,
+    "input": 121,
     "materials": 222,
     "persistence": 17,
-    "runtime_creation": 571,
-    "runtime_ui": 114,
+    "runtime_creation": 573,
+    "runtime_ui": 116,
     "save_state": 234,
     "scene_loading": 5,
-    "xri_ownership": 76
+    "xri_ownership": 77
   },
   "codeCounts": {
     "AUTOSAVE_CALL": 8,
     "CAMERA_MAIN_REFERENCE": 40,
     "CAMERA_POST_PROCESSING": 1,
-    "CANVAS_COMPONENT": 3,
-    "CREATE_PRIMITIVE": 228,
+    "CANVAS_COMPONENT": 4,
+    "CREATE_PRIMITIVE": 229,
     "DIRECT_SCENE_LOAD": 2,
     "DIRECT_SCENE_LOAD_ASYNC": 3,
     "DONT_DESTROY_ON_LOAD": 17,
@@ -39,9 +39,9 @@
     "EVENT_SYSTEM_COMPONENT": 2,
     "FALLBACK_MARKER": 119,
     "FRAME_BUTTON_POLL": 1,
-    "INPUT_ACTION_REFERENCE": 108,
+    "INPUT_ACTION_REFERENCE": 114,
     "INPUT_BUTTON_REFERENCE": 6,
-    "NEW_GAME_OBJECT": 343,
+    "NEW_GAME_OBJECT": 344,
     "PLAYER_PROFILE_REFERENCE": 133,
     "RENDER_SETTINGS_MUTATION": 36,
     "RUNTIME_BOOTSTRAP": 21,
@@ -49,11 +49,11 @@
     "SAVE_SYSTEM_REFERENCE": 93,
     "SHADER_FIND": 135,
     "STATIC_EVENT_DECLARATION": 16,
-    "TEXTMESH_COMPONENT": 43,
+    "TEXTMESH_COMPONENT": 44,
     "TMP_COMPONENT": 3,
     "VOLUME_COMPONENT": 1,
     "XRI_MANAGER_ASSIGN": 33,
-    "XRI_MANAGER_CREATE": 5,
+    "XRI_MANAGER_CREATE": 6,
     "XRI_MANAGER_LOOKUP": 38,
     "XR_INTERACTABLE_COMPONENT": 61,
     "XR_UI_INPUT_MODULE": 2,
@@ -7606,6 +7606,60 @@
       "category": "input",
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensus.cs",
+      "line": 252,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryRuntimeCensusSnapshot",
+      "snippet": "InputActionManager input = go.GetComponent<InputActionManager>();"
+    },
+    {
+      "category": "input",
+      "code": "INPUT_ACTION_REFERENCE",
+      "description": "Input System action reference",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensus.cs",
+      "line": 254,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryRuntimeCensusSnapshot",
+      "snippet": "snapshot.managers.Add(ComponentRecord(\"InputActionManager\", input, \"INPUT_SESSION\"));"
+    },
+    {
+      "category": "input",
+      "code": "INPUT_ACTION_REFERENCE",
+      "description": "Input System action reference",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensus.cs",
+      "line": 351,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryRuntimeCensusSnapshot",
+      "snippet": "int activeInput = CountActive(snapshot.managers, \"InputActionManager\");"
+    },
+    {
+      "category": "input",
+      "code": "INPUT_ACTION_REFERENCE",
+      "description": "Input System action reference",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensus.cs",
+      "line": 356,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryRuntimeCensusSnapshot",
+      "snippet": "AddFinding(snapshot, \"DUPLICATE_INPUT_ACTION_MANAGER\", \"BLOCKER\", \"InputActionManager\", \"\","
+    },
+    {
+      "category": "input",
+      "code": "INPUT_ACTION_REFERENCE",
+      "description": "Input System action reference",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensus.cs",
+      "line": 357,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryRuntimeCensusSnapshot",
+      "snippet": "\"Active InputActionManager count is \" + activeInput + \"; expected at most one.\");"
+    },
+    {
+      "category": "input",
+      "code": "INPUT_ACTION_REFERENCE",
+      "description": "Input System action reference",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs",
+      "line": 69,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryRuntimeCensusTests",
+      "snippet": "Assert.AreEqual(1, Count(snapshot.managers, \"InputActionManager\", true));"
+    },
+    {
+      "category": "input",
+      "code": "INPUT_ACTION_REFERENCE",
+      "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs",
       "line": 31,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryTestRig",
@@ -11872,6 +11926,15 @@
       "category": "runtime_creation",
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs",
+      "line": 57,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryRuntimeCensusTests",
+      "snippet": "GameObject primitive = GameObject.CreatePrimitive(PrimitiveType.Cube);"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "CREATE_PRIMITIVE",
+      "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs",
       "line": 92,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryTestRig",
@@ -14824,6 +14887,15 @@
       "category": "runtime_creation",
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs",
+      "line": 127,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryRuntimeCensusTests",
+      "snippet": "var go = new GameObject(name);"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs",
       "line": 42,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryTestRig",
@@ -15044,6 +15116,15 @@
       "line": 87,
       "symbol": "Ziptide.Gameplay.ObjectiveBoard",
       "snippet": "var canvas = canvasGo.AddComponent<Canvas>();"
+    },
+    {
+      "category": "runtime_ui",
+      "code": "CANVAS_COMPONENT",
+      "description": "Canvas creation/reference",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs",
+      "line": 49,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryRuntimeCensusTests",
+      "snippet": "canvasHost.AddComponent<Canvas>();"
     },
     {
       "category": "runtime_ui",
@@ -15449,6 +15530,15 @@
       "line": 159,
       "symbol": "Ziptide.Tests.EditMode.UiReadabilityAuditRulesTests",
       "snippet": "var text = label.AddComponent<TextMesh>();"
+    },
+    {
+      "category": "runtime_ui",
+      "code": "TEXTMESH_COMPONENT",
+      "description": "Legacy TextMesh creation/reference",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs",
+      "line": 52,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryRuntimeCensusTests",
+      "snippet": "textHost.AddComponent<TextMesh>().text = \"CENSUS\";"
     },
     {
       "category": "runtime_ui",
@@ -18527,6 +18617,15 @@
       "line": 114,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests",
       "snippet": "var replacement = replacementHost.AddComponent<XRInteractionManager>();"
+    },
+    {
+      "category": "xri_ownership",
+      "code": "XRI_MANAGER_CREATE",
+      "description": "XRInteractionManager creation",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs",
+      "line": 93,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryRuntimeCensusTests",
+      "snippet": "extra.AddComponent<XRInteractionManager>();"
     },
     {
       "category": "xri_ownership",
