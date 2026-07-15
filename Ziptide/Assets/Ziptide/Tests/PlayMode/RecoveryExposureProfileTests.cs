@@ -107,6 +107,7 @@ namespace Ziptide.Tests.PlayMode
             Assert.IsFalse(profile.Allows(RecoveryFeatureId.ConquestMissionInjector));
             Assert.IsFalse(profile.Allows(RecoveryFeatureId.PvpProgression));
             Assert.IsFalse(profile.Allows(RecoveryFeatureId.QuartersCameraInjector));
+            Assert.IsFalse(profile.Allows(RecoveryFeatureId.NetBootstrap));
         }
 
         [Test]
@@ -134,6 +135,7 @@ namespace Ziptide.Tests.PlayMode
             Assert.IsTrue(RecoveryRuntimeGate.Allows(RecoveryFeatureId.TravelCoordinator));
             Assert.IsFalse(RecoveryRuntimeGate.Allows(RecoveryFeatureId.ConquestMissionInjector));
             Assert.IsFalse(RecoveryRuntimeGate.Allows(RecoveryFeatureId.EcologyInjector));
+            Assert.IsFalse(RecoveryRuntimeGate.Allows(RecoveryFeatureId.NetBootstrap));
 
             var diagnostic = RecoveryExposureProfiles.Diagnostic(RecoveryFeatureId.VrBootDiagnostics);
             RecoveryRuntimeGate.SetActiveProfile(diagnostic);
