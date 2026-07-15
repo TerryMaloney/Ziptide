@@ -40,13 +40,12 @@ namespace Ziptide.Tests.PlayMode
         }
 
         [Test]
-        public void RuntimeBootstrapDiscovery_CoversActualSourceAttributes()
+        public void RuntimeBootstrapDiscovery_CoversAllFirstPartySourceAttributes()
         {
             string repositoryRoot = Path.GetFullPath(Path.Combine(Application.dataPath, "..", ".."));
             string[] scanRoots =
             {
-                "Ziptide/Assets/Ziptide/Core/Runtime",
-                "Ziptide/Assets/Ziptide/Gameplay/Runtime",
+                "Ziptide/Assets/Ziptide",
                 "Ziptide/Assets/ZiptideNet"
             };
             const string gateInfrastructure =
@@ -64,17 +63,18 @@ namespace Ziptide.Tests.PlayMode
                 Assert.IsTrue(Directory.Exists(absoluteRoot), "Missing runtime scan root " + scanRoots[r]);
                 foreach (string file in Directory.GetFiles(absoluteRoot, "*.cs", SearchOption.AllDirectories))
                 {
-                    string source = File.ReadAllText(file);
-                    if (!marker.IsMatch(source)) continue;
-
                     string relative = file.Substring(repositoryRoot.Length)
                         .TrimStart(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar)
                         .Replace('\\', '/');
+                    if (relative.Contains("/Editor/") || relative.Contains("/Tests/")) continue;
+
+                    string source = File.ReadAllText(file);
+                    if (!marker.IsMatch(source)) continue;
                     if (relative == gateInfrastructure) continue;
 
                     discovered.Add(relative);
                     Assert.IsTrue(catalogPaths.Contains(relative),
-                        "Real runtime bootstrap is absent from the closed exposure catalog: " + relative);
+                        "Real first-party runtime bootstrap is absent from the closed exposure catalog: " + relative);
                 }
             }
 
@@ -105,6 +105,7 @@ namespace Ziptide.Tests.PlayMode
             legacyMenu.Show();
             legacyMenu.Toggle();
             quarters.BuildFeature();
+            DevWarp.WarpToScene("W000_DriftIn");
             DevWarp.WarpToMarker("Spawn_Player");
             yield return null;
 
@@ -113,7 +114,7 @@ namespace Ziptide.Tests.PlayMode
             Assert.IsNull(quarters.transform.Find(QuartersCameraFeature.FeatureRootName),
                 "Blocked Quarters public builder created its feature root.");
             Assert.IsNull(FindSceneObject("__DevWarpRunner"),
-                "Blocked developer warp API created a persistent runner.");
+                "Blocked developer scene-warp API created a persistent runner.");
             Assert.IsFalse(DevWarp.Enabled, "Developer warp API reports enabled in GoldenSlice.");
         }
 
