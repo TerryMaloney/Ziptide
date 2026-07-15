@@ -1,6 +1,6 @@
 name: CI
 
-# Compiles the Unity project and runs EditMode tests on every push/PR.
+# Compiles the Unity project and runs EditMode tests on every source push/PR.
 # Also produces report-only project-contract artifacts. That job is deliberately
 # non-blocking until its rules have proven low-noise against the real repo.
 #
@@ -15,23 +15,21 @@ on:
       - main
       - 'claude/**'
       - terry-local-wip
-    # The final recorder changes only this file. Excluding it is a second guard
-    # against a write-back loop in addition to GITHUB_TOKEN and [skip ci].
+    # Generated proof and handoff-only commits do not change executable source. Excluding them
+    # prevents write-back loops and keeps the Unity queue focused on source candidates.
     paths-ignore:
       - docs/CI_VERDICT.md
+      - docs/recovery/generated/**
+      - docs/HANDOFF.md
   pull_request:
     branches:
       - main
   workflow_dispatch:
 
-# unity-test-runner publishes results as a GitHub Check, which needs write access.
-# Without this the default GITHUB_TOKEN is read-only and the run fails at the very end
-# with "Resource not accessible by integration" even when compile + tests succeed.
 permissions:
   checks: write
   contents: read
 
-# The Unity project lives in the Ziptide/ subfolder of the repo.
 env:
   PROJECT_PATH: Ziptide
   UNITY_VERSION: 2022.3.62f3
@@ -40,8 +38,6 @@ jobs:
   continuity-report:
     name: Project contract reports (non-blocking)
     runs-on: ubuntu-latest
-    # FH-02A/FH-01A/FH-01B/FH-01C/FH-01D are observation-only. Findings and even job failure remain
-    # visible without blocking Unity tests, Android builds, or another operator's push.
     continue-on-error: true
     steps:
       - name: Checkout
@@ -136,12 +132,8 @@ jobs:
           path: test-results
 
   patch-audit:
-    # THE PER-PUSH BUILD GATE (2026-07-14). The Android job below runs the real device pipeline but
-    # only on dispatch/main — that blind spot let scene-patcher/audit blockers pile up invisibly
-    # from July 5 to July 14 (the W011 phantom-dome SPAWN blocker) while the branch read "GREEN".
-    # This job runs the SAME patch + author + audit pipeline (BuildAndroid.PatchScenesAndAudit) on
-    # EVERY push, minus the APK — an audit BLOCKER fails this job exactly like it aborts Terry's
-    # PC build. Uses the small standalone editor image, not the 12 GB Android one.
+    # Runs the same patch + author + bake + shader-safety + audit pipeline as the device build,
+    # minus APK packaging. A blocker or required build-hook failure makes this job red.
     name: Patch scenes + world audit (no APK)
     needs: test
     runs-on: ubuntu-latest
@@ -173,7 +165,6 @@ jobs:
           buildMethod: Ziptide.Build.BuildAndroid.PatchScenesAndAudit
           allowDirtyBuild: true
 
-      # On a red run this report IS the diagnosis — the full blocker list, every scene, one shot.
       - name: Upload audit report
         uses: actions/upload-artifact@v4
         if: always()
@@ -188,19 +179,8 @@ jobs:
     name: Build Android APK
     needs: test
     runs-on: ubuntu-latest
-    # Android builds are slow, so they don't run on every push. They run:
-    #   - on demand: Actions tab > CI > "Run workflow" (any branch), or an agent triggers it via the
-    #     GitHub API after pushing a device-test-worthy change, or
-    #   - automatically on push to main.
-    # The build runs the SAME path as the local PC build (BuildAndroid.PatchScenesThenAPK): it patches
-    # every scene, runs the world audit (a BLOCKER fails the run), then produces the APK — so build
-    # breakage is caught in the cloud BEFORE the headset, and the APK is downloadable as an artifact.
     if: github.event_name == 'workflow_dispatch' || github.ref == 'refs/heads/main'
     steps:
-      # The Unity Android editor Docker image is ~12 GB and the stock runner ships with only ~14 GB
-      # free — the docker pull died with "no space left on device" (run 28547683786). Evict the big
-      # preinstalled toolchains we never use (.NET, Android cmdline SDK, Haskell, CodeQL, docker cache)
-      # BEFORE pulling; frees ~25-30 GB.
       - name: Free disk space for the Unity image
         run: |
           sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL /usr/local/.ghcup
@@ -231,10 +211,7 @@ jobs:
           projectPath: ${{ env.PROJECT_PATH }}
           unityVersion: ${{ env.UNITY_VERSION }}
           targetPlatform: Android
-          # Run our real build entrypoint (patch scenes + audit + APK) instead of the default build,
-          # so CI exercises exactly what the PC build does.
           buildMethod: Ziptide.Build.BuildAndroid.PatchScenesThenAPK
-          # The scene patchers modify scenes/assets during the build, which dirties the working tree.
           allowDirtyBuild: true
 
       - name: Upload APK
@@ -245,8 +222,6 @@ jobs:
           path: ${{ env.PROJECT_PATH }}/Builds/Android/Ziptide.apk
           if-no-files-found: warn
 
-      # The audit writes its full report into the workspace; on a red run it's the ONLY diagnosis
-      # source a remote operator has, so ship it as an artifact unconditionally.
       - name: Upload audit report
         uses: actions/upload-artifact@v4
         if: always()
@@ -290,18 +265,30 @@ jobs:
           current="$(git rev-parse HEAD)"
           echo "tested=$tested"
           echo "current=$current"
+
           if [[ "$current" == "$tested" ]]; then
             echo "write=true" >> "$GITHUB_OUTPUT"
-          elif [[ "$(git diff --name-only "$tested" HEAD | tr -d '\n')" == "docs/CI_VERDICT.md" ]]; then
-            # HEAD differs from the tested SHA only by verdict write(s): a RERUN of this SHA may
-            # refresh its own verdict. Without this branch, a flaked first attempt wrote RED and
-            # the successful rerun could never overwrite it (found 2026-07-14).
-            echo "write=true" >> "$GITHUB_OUTPUT"
-            echo "::notice::Rerun refreshing the verdict for the same tested SHA."
-          else
-            echo "write=false" >> "$GITHUB_OUTPUT"
-            echo "::notice::Branch advanced; the newer run owns the durable verdict."
+            exit 0
           fi
+
+          git cat-file -e "${tested}^{commit}"
+          changed="$(git diff --name-only "$tested" HEAD)"
+          echo "$changed"
+          while IFS= read -r path; do
+            [[ -z "$path" ]] && continue
+            case "$path" in
+              docs/recovery/generated/*|docs/CI_VERDICT.md|docs/HANDOFF.md)
+                ;;
+              *)
+                echo "write=false" >> "$GITHUB_OUTPUT"
+                echo "::notice::Branch advanced through proof-relevant path '$path'; newer source owns the verdict."
+                exit 0
+                ;;
+            esac
+          done <<< "$changed"
+
+          echo "write=true" >> "$GITHUB_OUTPUT"
+          echo "::notice::Only generated evidence, the verdict, or docs/HANDOFF.md advanced; recording the tested SHA is safe."
 
       - name: Render verdict file
         if: steps.freshness.outputs.write == 'true'
