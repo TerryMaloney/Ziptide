@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
-- Scanned files: **600**
-- Scanner findings: **2014**
+- Scanned files: **602**
+- Scanner findings: **2037**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -422,6 +422,24 @@ None.
 - Codes: `INPUT_ACTION_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourObservationCoreTests.cs`
   - `Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourObservationCoreTests.cs:189` **INPUT_ACTION_REFERENCE** — `StringAssert.DoesNotContain("InputAction", source);`
+
+### `Ziptide.Tests.PlayMode.RecoveryTestRig` — 6 signal(s)
+
+- Codes: `INPUT_ACTION_REFERENCE`
+- Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:31` **INPUT_ACTION_REFERENCE** — `public InputActionManager InputManager { get; private set; }`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:32` **INPUT_ACTION_REFERENCE** — `public InputActionAsset ActionAsset { get; private set; }`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:54` **INPUT_ACTION_REFERENCE** — `ActionAsset = ScriptableObject.CreateInstance<InputActionAsset>();`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:62` **INPUT_ACTION_REFERENCE** — `var inputHost = new GameObject("InputActionManager");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:64` **INPUT_ACTION_REFERENCE** — `InputManager = inputHost.AddComponent<InputActionManager>();`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:66` **INPUT_ACTION_REFERENCE** — `InputManager.actionAssets = new List<InputActionAsset> { ActionAsset };`
+
+### `Ziptide.Tests.PlayMode.RecoveryTestRigTests` — 2 signal(s)
+
+- Codes: `INPUT_ACTION_REFERENCE`
+- Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRigTests.cs`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRigTests.cs:54` **INPUT_ACTION_REFERENCE** — `Assert.AreEqual(1, _fixture.Root.GetComponentsInChildren<InputActionManager>(true).Length);`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRigTests.cs:56` **INPUT_ACTION_REFERENCE** — `Assert.IsTrue(_fixture.ActionMap.enabled, "InputActionManager did not enable the tests-only action asset.");`
 
 
 ## Runtime surfaces
@@ -2082,6 +2100,27 @@ None.
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/PlayModeInfrastructureTests.cs`
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/PlayModeInfrastructureTests.cs:20` **NEW_GAME_OBJECT** — `var host = new GameObject("__RECOVERY_PLAYMODE_FRAME_PROBE");`
 
+### `Ziptide.Tests.PlayMode.RecoveryTestRig` — 9 signal(s)
+
+- Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`
+- Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:42` **NEW_GAME_OBJECT** — `Root = new GameObject(RootName);`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:49` **NEW_GAME_OBJECT** — `var managerHost = new GameObject("InteractionManager");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:62` **NEW_GAME_OBJECT** — `var inputHost = new GameObject("InputActionManager");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:70` **NEW_GAME_OBJECT** — `var offset = new GameObject("Camera Offset");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:74` **NEW_GAME_OBJECT** — `var head = new GameObject("Main Camera");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:92` **CREATE_PRIMITIVE** — `Floor = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:99` **NEW_GAME_OBJECT** — `var spawn = new GameObject(SpawnName);`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:126` **NEW_GAME_OBJECT** — `var controller = new GameObject(name);`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:135` **NEW_GAME_OBJECT** — `var rayHost = new GameObject(name);`
+
+### `Ziptide.Tests.PlayMode.RecoveryTestRigTests` — 2 signal(s)
+
+- Codes: `CREATE_PRIMITIVE`, `XR_INTERACTABLE_COMPONENT`
+- Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRigTests.cs`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRigTests.cs:78` **CREATE_PRIMITIVE** — `var target = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRigTests.cs:85` **XR_INTERACTABLE_COMPONENT** — `var interactable = target.AddComponent<XRSimpleInteractable>();`
+
 ### `Ziptide.Visuals.ForgeCreatureVisualApplier` — 2 signal(s)
 
 - Codes: `NEW_GAME_OBJECT`, `RUNTIME_MATERIAL_CREATE`
@@ -2394,6 +2433,19 @@ None.
 - Paths: `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs`
   - `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:150` **XRI_MANAGER_LOOKUP** — `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
   - `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:151` **XRI_MANAGER_ASSIGN** — `if (mgr != null) interactable.interactionManager = mgr;`
+
+### `Ziptide.Tests.PlayMode.RecoveryTestRig` — 2 signal(s)
+
+- Codes: `XRI_MANAGER_ASSIGN`, `XRI_MANAGER_CREATE`
+- Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:51` **XRI_MANAGER_CREATE** — `InteractionManager = managerHost.AddComponent<XRInteractionManager>();`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:141` **XRI_MANAGER_ASSIGN** — `ray.interactionManager = InteractionManager;`
+
+### `Ziptide.Tests.PlayMode.RecoveryTestRigTests` — 1 signal(s)
+
+- Codes: `XRI_MANAGER_ASSIGN`
+- Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRigTests.cs`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRigTests.cs:86` **XRI_MANAGER_ASSIGN** — `interactable.interactionManager = _fixture.InteractionManager;`
 
 
 ## events & Save
@@ -3399,6 +3451,12 @@ None.
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ZiptideGateEffect.cs`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ZiptideGateEffect.cs:185` **CAMERA_MAIN_REFERENCE** — `var cam = Camera.main;`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ZiptideGateEffect.cs:228` **CAMERA_MAIN_REFERENCE** — `var cam = Camera.main;`
+
+### `Ziptide.Tests.PlayMode.RecoveryTestRigTests` — 1 signal(s)
+
+- Codes: `CAMERA_MAIN_REFERENCE`
+- Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRigTests.cs`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRigTests.cs:55` **CAMERA_MAIN_REFERENCE** — `Assert.AreEqual(_fixture.HeadCamera, Camera.main);`
 
 ### `Ziptide.Visuals.PracticalLight` — 1 signal(s)
 

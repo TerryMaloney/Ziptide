@@ -1,7 +1,7 @@
 # ZIPTIDE Recovery Contract Scan
 
-- Scanned files: **600**
-- Findings: **2014**
+- Scanned files: **602**
+- Findings: **2037**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
@@ -12,15 +12,15 @@
 | `diagnostics` | 417 |
 | `events` | 64 |
 | `fallback_debt` | 119 |
-| `global_render` | 75 |
-| `input` | 111 |
+| `global_render` | 76 |
+| `input` | 119 |
 | `materials` | 223 |
 | `persistence` | 17 |
-| `runtime_creation` | 549 |
-| `runtime_ui` | 113 |
+| `runtime_creation` | 559 |
+| `runtime_ui` | 114 |
 | `save_state` | 231 |
 | `scene_loading` | 5 |
-| `xri_ownership` | 66 |
+| `xri_ownership` | 69 |
 
 ## Findings
 
@@ -692,6 +692,7 @@
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ZiptideGateEffect.cs:185` · `Ziptide.Gameplay.ZiptideGateEffect` — Camera.main dependency. `var cam = Camera.main;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ZiptideGateEffect.cs:228` · `Ziptide.Gameplay.ZiptideGateEffect` — Camera.main dependency. `var cam = Camera.main;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldDirector.cs:47` · `Ziptide.Gameplay.WorldDirector` — Camera.main dependency. `Camera cam = Camera.main;`
+- **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRigTests.cs:55` · `Ziptide.Tests.PlayMode.RecoveryTestRigTests` — Camera.main dependency. `Assert.AreEqual(_fixture.HeadCamera, Camera.main);`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/PracticalLight.cs:96` · `Ziptide.Visuals.PracticalLight` — Camera.main dependency. `var cam = Camera.main;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs:165` · `Ziptide.Visuals.SkyAtmosphereRig` — Camera.main dependency. `var cam = Camera.main;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyVistaRig.cs:100` · `Ziptide.Visuals.SkyVistaRig` — Camera.main dependency. `var cam = Camera.main;`
@@ -839,6 +840,14 @@
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:74` · `Ziptide.Ship.VehicleRuntime` — Input System action reference. `_boostA = new InputAction("ZiptideRideBoostA", InputActionType.Button);`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourHolsterAdapterTests.cs:154` · `Ziptide.Tests.EditMode.FirstHourHolsterAdapterTests` — Input System action reference. `StringAssert.DoesNotContain("InputAction", socketSource + helperSource);`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourObservationCoreTests.cs:189` · `Ziptide.Tests.EditMode.FirstHourObservationCoreTests` — Input System action reference. `StringAssert.DoesNotContain("InputAction", source);`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:31` · `Ziptide.Tests.PlayMode.RecoveryTestRig` — Input System action reference. `public InputActionManager InputManager { get; private set; }`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:32` · `Ziptide.Tests.PlayMode.RecoveryTestRig` — Input System action reference. `public InputActionAsset ActionAsset { get; private set; }`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:54` · `Ziptide.Tests.PlayMode.RecoveryTestRig` — Input System action reference. `ActionAsset = ScriptableObject.CreateInstance<InputActionAsset>();`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:62` · `Ziptide.Tests.PlayMode.RecoveryTestRig` — Input System action reference. `var inputHost = new GameObject("InputActionManager");`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:64` · `Ziptide.Tests.PlayMode.RecoveryTestRig` — Input System action reference. `InputManager = inputHost.AddComponent<InputActionManager>();`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:66` · `Ziptide.Tests.PlayMode.RecoveryTestRig` — Input System action reference. `InputManager.actionAssets = new List<InputActionAsset> { ActionAsset };`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRigTests.cs:54` · `Ziptide.Tests.PlayMode.RecoveryTestRigTests` — Input System action reference. `Assert.AreEqual(1, _fixture.Root.GetComponentsInChildren<InputActionManager>(true).Length);`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRigTests.cs:56` · `Ziptide.Tests.PlayMode.RecoveryTestRigTests` — Input System action reference. `Assert.IsTrue(_fixture.ActionMap.enabled, "InputActionManager did not enable the tests-only action asset.");`
 - **INPUT_BUTTON_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs:28` · `Ziptide.Gameplay.QuickSwap` — Controller/button reference. `_swap.AddBinding("<XRController>{RightHand}/secondaryButton"); // B`
 - **INPUT_BUTTON_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs:33` · `Ziptide.Gameplay.QuickSwap` — Controller/button reference. `_menuGuard.AddBinding("<XRController>{LeftHand}/secondaryButton"); // Y`
 - **INPUT_BUTTON_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs:99` · `Ziptide.Gameplay.DashLocomotion` — Controller/button reference. `_jumpAction.AddBinding("<XRController>{RightHand}/primaryButton"); // A`
@@ -1312,6 +1321,8 @@
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:132` · `Ziptide.Ship.VehicleRuntime` — Runtime primitive construction. `var tile = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs:47` · `Ziptide.Tests.EditMode.HeadsetBuildBlockerRegressionTests` — Runtime primitive construction. `StringAssert.Contains("GameObject.CreatePrimitive(PrimitiveType.Cube)", safety);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/EditMode/ReactivePropTests.cs:119` · `Ziptide.Tests.EditMode.ReactivePropTests` — Runtime primitive construction. `var host = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:92` · `Ziptide.Tests.PlayMode.RecoveryTestRig` — Runtime primitive construction. `Floor = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRigTests.cs:78` · `Ziptide.Tests.PlayMode.RecoveryTestRigTests` — Runtime primitive construction. `var target = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/PracticalLight.cs:106` · `Ziptide.Visuals.PracticalLight` — Runtime primitive construction. `var go = GameObject.CreatePrimitive(PrimitiveType.Quad);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyPlanetRig.cs:95` · `Ziptide.Visuals.SkyPlanetRig` — Runtime primitive construction. `_skyRoot = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyPlanetRig.cs:124` · `Ziptide.Visuals.SkyPlanetRig` — Runtime primitive construction. `_planetRoot = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
@@ -1627,6 +1638,14 @@
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/WristScannerResultTests.cs:212` · `Ziptide.Tests.EditMode.WristScannerResultTests` — Runtime GameObject construction. `var go = new GameObject(name);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/ZiplineSignalTests.cs:160` · `Ziptide.Tests.EditMode.ZiplineSignalTests` — Runtime GameObject construction. `var go = new GameObject(name);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/PlayModeInfrastructureTests.cs:20` · `Ziptide.Tests.PlayMode.PlayModeInfrastructureTests` — Runtime GameObject construction. `var host = new GameObject("__RECOVERY_PLAYMODE_FRAME_PROBE");`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:42` · `Ziptide.Tests.PlayMode.RecoveryTestRig` — Runtime GameObject construction. `Root = new GameObject(RootName);`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:49` · `Ziptide.Tests.PlayMode.RecoveryTestRig` — Runtime GameObject construction. `var managerHost = new GameObject("InteractionManager");`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:62` · `Ziptide.Tests.PlayMode.RecoveryTestRig` — Runtime GameObject construction. `var inputHost = new GameObject("InputActionManager");`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:70` · `Ziptide.Tests.PlayMode.RecoveryTestRig` — Runtime GameObject construction. `var offset = new GameObject("Camera Offset");`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:74` · `Ziptide.Tests.PlayMode.RecoveryTestRig` — Runtime GameObject construction. `var head = new GameObject("Main Camera");`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:99` · `Ziptide.Tests.PlayMode.RecoveryTestRig` — Runtime GameObject construction. `var spawn = new GameObject(SpawnName);`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:126` · `Ziptide.Tests.PlayMode.RecoveryTestRig` — Runtime GameObject construction. `var controller = new GameObject(name);`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:135` · `Ziptide.Tests.PlayMode.RecoveryTestRig` — Runtime GameObject construction. `var rayHost = new GameObject(name);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeCreatureVisualApplier.cs:31` · `Ziptide.Visuals.ForgeCreatureVisualApplier` — Runtime GameObject construction. `var vis = new GameObject(VisualChildName);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeSkinnedBuilder.cs:42` · `Ziptide.Visuals.ForgeSkinnedBuilder` — Runtime GameObject construction. `var rootGo = new GameObject("Skeleton_" + (body != null ? body.bodyId : "null"));`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeSkinnedBuilder.cs:210` · `Ziptide.Visuals.ForgeSkinnedBuilder` — Runtime GameObject construction. `var tmp = new GameObject("__synthParts");`
@@ -1754,6 +1773,7 @@
 - **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:201` · `Ziptide.Ship.ShipFlightRuntime` — XR interactable creation/reference. `var ret = _returnPanel.AddComponent<XRSimpleInteractable>();`
 - **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:223` · `Ziptide.Ship.ShipFlightRuntime` — XR interactable creation/reference. `var interactable = tile.AddComponent<XRSimpleInteractable>();`
 - **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:149` · `Ziptide.Ship.VehicleRuntime` — XR interactable creation/reference. `var interactable = tile.AddComponent<XRSimpleInteractable>();`
+- **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRigTests.cs:85` · `Ziptide.Tests.PlayMode.RecoveryTestRigTests` — XR interactable creation/reference. `var interactable = target.AddComponent<XRSimpleInteractable>();`
 - **XR_UI_INPUT_MODULE** — `Ziptide/Assets/Ziptide/Editor/Setup/SetupMilestoneAScene.cs:100` · `Ziptide.Editor.Setup.SetupMilestoneAScene` — XR UI input module creation/reference. `eventSystemGo.AddComponent<XRUIInputModule>();`
 - **XR_UI_INPUT_MODULE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:77` · `Ziptide.Gameplay.DevTools.DevMenu` — XR UI input module creation/reference. `module = host.AddComponent<XRUIInputModule>();`
 ### save_state
@@ -2026,8 +2046,11 @@
 - **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:271` · `Ziptide.Gameplay.WorldTravelStation` — Explicit interactable interactionManager assignment. `interactable.interactionManager = mgr;`
 - **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:246` · `Ziptide.Ship.ShipFlightRuntime` — Explicit interactable interactionManager assignment. `if (mgr != null) interactable.interactionManager = mgr;`
 - **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:151` · `Ziptide.Ship.VehicleRuntime` — Explicit interactable interactionManager assignment. `if (mgr != null) interactable.interactionManager = mgr;`
+- **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:141` · `Ziptide.Tests.PlayMode.RecoveryTestRig` — Explicit interactable interactionManager assignment. `ray.interactionManager = InteractionManager;`
+- **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRigTests.cs:86` · `Ziptide.Tests.PlayMode.RecoveryTestRigTests` — Explicit interactable interactionManager assignment. `interactable.interactionManager = _fixture.InteractionManager;`
 - **XRI_MANAGER_CREATE** — `Ziptide/Assets/Ziptide/Editor/Setup/SetupMilestoneAScene.cs:72` · `Ziptide.Editor.Setup.SetupMilestoneAScene` — XRInteractionManager creation. `managerGo.AddComponent<XRInteractionManager>();`
 - **XRI_MANAGER_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:423` · `Ziptide.Gameplay.BootHoldState` — XRInteractionManager creation. `_xriManager = go.AddComponent<XRInteractionManager>();`
+- **XRI_MANAGER_CREATE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:51` · `Ziptide.Tests.PlayMode.RecoveryTestRig` — XRInteractionManager creation. `InteractionManager = managerHost.AddComponent<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Editor/Audit/WorldAuditRunner.cs:161` · `Ziptide.Editor.Audit.WorldAuditRunner` — XRInteractionManager lookup. `var managers = Object.FindObjectsOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Editor/Setup/EnsureLocomotionRig.cs:248` · `Ziptide.Editor.Setup.EnsureLocomotionRig` — XRInteractionManager lookup. `var interactionManager = Object.FindObjectOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Editor/Setup/SetupMilestoneAScene.cs:69` · `Ziptide.Editor.Setup.SetupMilestoneAScene` — XRInteractionManager lookup. `if (Object.FindObjectOfType<XRInteractionManager>() == null)`

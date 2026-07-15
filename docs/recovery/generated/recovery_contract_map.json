@@ -1,8 +1,8 @@
 {
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
-  "scannedFiles": 600,
-  "findingCount": 2014,
+  "scannedFiles": 602,
+  "findingCount": 2037,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -1695,6 +1695,86 @@
             "line": 189,
             "symbol": "Ziptide.Tests.EditMode.FirstHourObservationCoreTests",
             "snippet": "StringAssert.DoesNotContain(\"InputAction\", source);"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Tests.PlayMode.RecoveryTestRig",
+        "evidenceCount": 6,
+        "codes": [
+          "INPUT_ACTION_REFERENCE"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs"
+        ],
+        "evidence": [
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs",
+            "line": 31,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryTestRig",
+            "snippet": "public InputActionManager InputManager { get; private set; }"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs",
+            "line": 32,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryTestRig",
+            "snippet": "public InputActionAsset ActionAsset { get; private set; }"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs",
+            "line": 54,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryTestRig",
+            "snippet": "ActionAsset = ScriptableObject.CreateInstance<InputActionAsset>();"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs",
+            "line": 62,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryTestRig",
+            "snippet": "var inputHost = new GameObject(\"InputActionManager\");"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs",
+            "line": 64,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryTestRig",
+            "snippet": "InputManager = inputHost.AddComponent<InputActionManager>();"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs",
+            "line": 66,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryTestRig",
+            "snippet": "InputManager.actionAssets = new List<InputActionAsset> { ActionAsset };"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Tests.PlayMode.RecoveryTestRigTests",
+        "evidenceCount": 2,
+        "codes": [
+          "INPUT_ACTION_REFERENCE"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRigTests.cs"
+        ],
+        "evidence": [
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRigTests.cs",
+            "line": 54,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryTestRigTests",
+            "snippet": "Assert.AreEqual(1, _fixture.Root.GetComponentsInChildren<InputActionManager>(true).Length);"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRigTests.cs",
+            "line": 56,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryTestRigTests",
+            "snippet": "Assert.IsTrue(_fixture.ActionMap.enabled, \"InputActionManager did not enable the tests-only action asset.\");"
           }
         ]
       }
@@ -9818,6 +9898,109 @@
         ]
       },
       {
+        "owner": "Ziptide.Tests.PlayMode.RecoveryTestRig",
+        "evidenceCount": 9,
+        "codes": [
+          "CREATE_PRIMITIVE",
+          "NEW_GAME_OBJECT"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs"
+        ],
+        "evidence": [
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs",
+            "line": 42,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryTestRig",
+            "snippet": "Root = new GameObject(RootName);"
+          },
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs",
+            "line": 49,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryTestRig",
+            "snippet": "var managerHost = new GameObject(\"InteractionManager\");"
+          },
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs",
+            "line": 62,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryTestRig",
+            "snippet": "var inputHost = new GameObject(\"InputActionManager\");"
+          },
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs",
+            "line": 70,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryTestRig",
+            "snippet": "var offset = new GameObject(\"Camera Offset\");"
+          },
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs",
+            "line": 74,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryTestRig",
+            "snippet": "var head = new GameObject(\"Main Camera\");"
+          },
+          {
+            "code": "CREATE_PRIMITIVE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs",
+            "line": 92,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryTestRig",
+            "snippet": "Floor = GameObject.CreatePrimitive(PrimitiveType.Cube);"
+          },
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs",
+            "line": 99,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryTestRig",
+            "snippet": "var spawn = new GameObject(SpawnName);"
+          },
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs",
+            "line": 126,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryTestRig",
+            "snippet": "var controller = new GameObject(name);"
+          },
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs",
+            "line": 135,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryTestRig",
+            "snippet": "var rayHost = new GameObject(name);"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Tests.PlayMode.RecoveryTestRigTests",
+        "evidenceCount": 2,
+        "codes": [
+          "CREATE_PRIMITIVE",
+          "XR_INTERACTABLE_COMPONENT"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRigTests.cs"
+        ],
+        "evidence": [
+          {
+            "code": "CREATE_PRIMITIVE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRigTests.cs",
+            "line": 78,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryTestRigTests",
+            "snippet": "var target = GameObject.CreatePrimitive(PrimitiveType.Cube);"
+          },
+          {
+            "code": "XR_INTERACTABLE_COMPONENT",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRigTests.cs",
+            "line": 85,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryTestRigTests",
+            "snippet": "var interactable = target.AddComponent<XRSimpleInteractable>();"
+          }
+        ]
+      },
+      {
         "owner": "Ziptide.Visuals.ForgeCreatureVisualApplier",
         "evidenceCount": 2,
         "codes": [
@@ -11108,6 +11291,52 @@
             "line": 151,
             "symbol": "Ziptide.Ship.VehicleRuntime",
             "snippet": "if (mgr != null) interactable.interactionManager = mgr;"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Tests.PlayMode.RecoveryTestRig",
+        "evidenceCount": 2,
+        "codes": [
+          "XRI_MANAGER_ASSIGN",
+          "XRI_MANAGER_CREATE"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs"
+        ],
+        "evidence": [
+          {
+            "code": "XRI_MANAGER_CREATE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs",
+            "line": 51,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryTestRig",
+            "snippet": "InteractionManager = managerHost.AddComponent<XRInteractionManager>();"
+          },
+          {
+            "code": "XRI_MANAGER_ASSIGN",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs",
+            "line": 141,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryTestRig",
+            "snippet": "ray.interactionManager = InteractionManager;"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Tests.PlayMode.RecoveryTestRigTests",
+        "evidenceCount": 1,
+        "codes": [
+          "XRI_MANAGER_ASSIGN"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRigTests.cs"
+        ],
+        "evidence": [
+          {
+            "code": "XRI_MANAGER_ASSIGN",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRigTests.cs",
+            "line": 86,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryTestRigTests",
+            "snippet": "interactable.interactionManager = _fixture.InteractionManager;"
           }
         ]
       }
@@ -15150,6 +15379,25 @@
             "line": 228,
             "symbol": "Ziptide.Gameplay.ZiptideGateEffect",
             "snippet": "var cam = Camera.main;"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Tests.PlayMode.RecoveryTestRigTests",
+        "evidenceCount": 1,
+        "codes": [
+          "CAMERA_MAIN_REFERENCE"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRigTests.cs"
+        ],
+        "evidence": [
+          {
+            "code": "CAMERA_MAIN_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRigTests.cs",
+            "line": 55,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryTestRigTests",
+            "snippet": "Assert.AreEqual(_fixture.HeadCamera, Camera.main);"
           }
         ]
       },

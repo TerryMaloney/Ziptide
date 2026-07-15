@@ -1,8 +1,8 @@
 # ZIPTIDE Event and Save Ownership Graph
 
-- Scanned C# files: **600**
-- Evidence edges: **614**
-- Named subscriptions without matching unsubscribe in the same owner: **46**
+- Scanned C# files: **602**
+- Evidence edges: **615**
+- Named subscriptions without matching unsubscribe in the same owner: **47**
 
 This is a static ownership graph. An unmatched row is a review target, not automatic proof of a leak; process-lifetime static hooks may be intentional.
 
@@ -11,7 +11,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **AUTOSAVE:** 7
 - **EVENT_DECLARE:** 45
 - **EVENT_INVOKE:** 52
-- **EVENT_SUBSCRIBE:** 77
+- **EVENT_SUBSCRIBE:** 78
 - **EVENT_UNSUBSCRIBE:** 30
 - **PLAYER_PREFS_ACCESS:** 11
 - **PROFILE_FIELD_ACCESS:** 329
@@ -64,6 +64,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - `Ziptide.Tests.EditMode.PvpNetTests` subscribes `t.OnWall` → `m` at `Ziptide/Assets/Ziptide/Tests/EditMode/PvpNetTests.cs:70`
 - `Ziptide.Tests.EditMode.PvpNetTests` subscribes `t.OnPose` → `m` at `Ziptide/Assets/Ziptide/Tests/EditMode/PvpNetTests.cs:90`
 - `Ziptide.Tests.EditMode.ZiplineSignalTests` subscribes `_rig.position` → `delta` at `Ziptide/Assets/Ziptide/Tests/EditMode/ZiplineSignalTests.cs:132`
+- `Ziptide.Tests.PlayMode.RecoveryTestRig` subscribes `Root.transform.position` → `delta` at `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:121`
 - `Ziptide.Visuals.SkyAtmosphereRig` subscribes `p.y` → `eyeY` at `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs:176`
 
 ## Targets
@@ -507,6 +508,10 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 - **EVENT_DECLARE** · `Ziptide.Gameplay.ZiplineRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ZiplineRuntime.cs:28` · `System.Action` — `public event System.Action RideStarted;`
 - **EVENT_DECLARE** · `Ziptide.Tests.EditMode.ZiplineSignalTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/ZiplineSignalTests.cs:125` · `System.Action` — `StringAssert.Contains("public event System.Action RideStarted;", source);`
+
+### `Root.transform.position`
+
+- **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryTestRig` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:121` · `delta` — `Root.transform.position += delta;`
 
 ### `SaveSystem.AutosaveNow`
 

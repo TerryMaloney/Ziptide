@@ -1,18 +1,18 @@
 {
   "tool": "recovery_event_save_graph",
-  "scannedFiles": 600,
-  "evidenceCount": 614,
+  "scannedFiles": 602,
+  "evidenceCount": 615,
   "kindCounts": {
     "AUTOSAVE": 7,
     "EVENT_DECLARE": 45,
     "EVENT_INVOKE": 52,
-    "EVENT_SUBSCRIBE": 77,
+    "EVENT_SUBSCRIBE": 78,
     "EVENT_UNSUBSCRIBE": 30,
     "PLAYER_PREFS_ACCESS": 11,
     "PROFILE_FIELD_ACCESS": 329,
     "SAVE_ACCESS": 63
   },
-  "unmatchedNamedSubscriptionCount": 46,
+  "unmatchedNamedSubscriptionCount": 47,
   "unmatchedNamedSubscriptions": [
     {
       "kind": "EVENT_SUBSCRIBE",
@@ -418,6 +418,15 @@
       "target": "_rig.position",
       "detail": "delta",
       "snippet": "Assert.AreEqual(1, Count(source, \"if (_rig != null) _rig.position += delta;\"));"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs",
+      "line": 121,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryTestRig",
+      "target": "Root.transform.position",
+      "detail": "delta",
+      "snippet": "Root.transform.position += delta;"
     },
     {
       "kind": "EVENT_SUBSCRIBE",
@@ -2988,6 +2997,17 @@
         "target": "RideStarted",
         "detail": "System.Action",
         "snippet": "StringAssert.Contains(\"public event System.Action RideStarted;\", source);"
+      }
+    ],
+    "Root.transform.position": [
+      {
+        "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs",
+        "line": 121,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryTestRig",
+        "target": "Root.transform.position",
+        "detail": "delta",
+        "snippet": "Root.transform.position += delta;"
       }
     ],
     "SaveSystem.AutosaveNow": [
@@ -11627,6 +11647,15 @@
       "target": "method",
       "detail": "",
       "snippet": "method.Invoke(line, args);"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs",
+      "line": 121,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryTestRig",
+      "target": "Root.transform.position",
+      "detail": "delta",
+      "snippet": "Root.transform.position += delta;"
     },
     {
       "kind": "PROFILE_FIELD_ACCESS",
