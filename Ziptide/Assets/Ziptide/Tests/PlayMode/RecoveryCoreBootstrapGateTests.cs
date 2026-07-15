@@ -79,7 +79,7 @@ namespace Ziptide.Tests.PlayMode
         }
 
         [UnityTest]
-        public IEnumerator GoldenSlice_BlocksCoreBootstrapSideEffects()
+        public IEnumerator GoldenSlice_EnforcesCoreBootstrapAllowlist()
         {
             var cameraHost = new GameObject("__RECOVERY_CORE_GATE_CAMERA");
             _created.Add(cameraHost);
@@ -104,8 +104,12 @@ namespace Ziptide.Tests.PlayMode
                 "GoldenSlice allowed RuntimeMaterialFixer to rewrite a renderer material.");
             Assert.IsNull(FindSceneObject("Ziptide_DebugHUD"),
                 "GoldenSlice allowed the debug HUD bootstrap to create its overlay.");
-            Assert.IsNull(FindSceneObject("__RuntimeHealth"),
-                "GoldenSlice allowed the runtime health bootstrap to create its persistent host.");
+
+            GameObject health = FindSceneObject("__RuntimeHealth");
+            Assert.IsNotNull(health,
+                "GoldenSlice must preserve RuntimeHealthMonitor as an approved support owner.");
+            Assert.AreEqual(1, CountSceneObjects("__RuntimeHealth"),
+                "The allowed health bootstrap created duplicate persistent hosts.");
         }
 
         private static void InvokeBootstrap(GateExpectation expectation)
@@ -133,6 +137,18 @@ namespace Ziptide.Tests.PlayMode
                 if (go != null && go.scene.IsValid() && go.name == objectName)
                     UnityEngine.Object.DestroyImmediate(go);
             }
+        }
+
+        private static int CountSceneObjects(string objectName)
+        {
+            int count = 0;
+            var all = Resources.FindObjectsOfTypeAll<GameObject>();
+            for (int i = 0; i < all.Length; i++)
+            {
+                var go = all[i];
+                if (go != null && go.scene.IsValid() && go.name == objectName) count++;
+            }
+            return count;
         }
 
         private static GameObject FindSceneObject(string objectName)
