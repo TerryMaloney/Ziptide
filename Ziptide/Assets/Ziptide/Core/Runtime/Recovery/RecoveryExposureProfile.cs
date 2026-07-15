@@ -46,10 +46,6 @@ namespace Ziptide.Core
             RecoveryFeatureId.RuntimeHealthMonitor,
             RecoveryFeatureId.AmbienceDirector,
             RecoveryFeatureId.ComfortVignette,
-            // The host is automatic but the board is not ambient: it is visible only after the
-            // forehead/F2/ADB summon. Fable's independent checkpoint review requires BOARD_PROBE
-            // to remain reachable in the exact Golden APK Terry tests.
-            RecoveryFeatureId.DevWarpBoard,
             // Ecology remains compiled and available in FullDevelopment, but the R0 manifest
             // requires named-creature contact/grounding proof before it can enter GoldenSlice.
             RecoveryFeatureId.SaveSystem,
