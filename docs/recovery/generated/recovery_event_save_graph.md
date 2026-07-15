@@ -47,8 +47,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - `Ziptide.Gameplay.SonicThumperRuntime` subscribes `bot.transform.position` → `shoveDir` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/SonicThumperRuntime.cs:78`
 - `Ziptide.Gameplay.ClimbableSurface` subscribes `_rig.position` → `new` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ClimbRuntime.cs:218`
 - `Ziptide.Gameplay.ConquestMissionRuntime` subscribes `SceneManager.sceneLoaded` → `OnSceneLoaded` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:45`
-- `Ziptide.Gameplay.ConquestMissionRuntime` subscribes `_rigRoot.transform.position` → `Vector3` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:402`
-- `Ziptide.Gameplay.ConquestMissionRuntime` subscribes `transform.localPosition` → `Vector3` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:486`
+- `Ziptide.Gameplay.ConquestMissionRuntime` subscribes `_rigRoot.transform.position` → `Vector3` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:414`
+- `Ziptide.Gameplay.ConquestMissionRuntime` subscribes `transform.localPosition` → `Vector3` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:498`
 - `Ziptide.Gameplay.HazardZoneRuntime` subscribes `_rig.transform.position` → `dir` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HazardZoneRuntime.cs:111`
 - `Ziptide.Gameplay.HazardZoneRuntime` subscribes `_rig.transform.position` → `outDir` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HazardZoneRuntime.cs:134`
 - `Ziptide.Gameplay.LiftRuntime` subscribes `_rig.position` → `delta` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/LiftRuntime.cs:88`
@@ -209,8 +209,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.JobDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs:61` · `OnDroneDisabled` — `DroneRuntime.OnDroneDisabled += OnDroneDisabled;`
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.JobDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs:69` · `OnDroneDisabled` — `DroneRuntime.OnDroneDisabled -= OnDroneDisabled;`
-- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.ConquestMissionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:85` · `OnDroneDown` — `DroneRuntime.OnDroneDisabled += OnDroneDown;`
-- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.ConquestMissionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:95` · `OnDroneDown` — `DroneRuntime.OnDroneDisabled -= OnDroneDown;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.ConquestMissionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:97` · `OnDroneDown` — `DroneRuntime.OnDroneDisabled += OnDroneDown;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.ConquestMissionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:107` · `OnDroneDown` — `DroneRuntime.OnDroneDisabled -= OnDroneDown;`
 
 ### `EditorApplication.playModeStateChanged`
 
@@ -598,7 +598,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **SAVE_ACCESS** · `Ziptide.Gameplay.RillCompanion` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs:151` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_ACCESS** · `Ziptide.Gameplay.RillCompanion` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs:266` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_ACCESS** · `Ziptide.Gameplay.TransmissionConsole` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/TransmissionConsole.cs:69` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
-- **SAVE_ACCESS** · `Ziptide.Gameplay.ConquestMissionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:349` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
+- **SAVE_ACCESS** · `Ziptide.Gameplay.ConquestMissionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:361` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_ACCESS** · `Ziptide.Gameplay.ConquestTableRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestTableRuntime.cs:76` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_ACCESS** · `Ziptide.Gameplay.ConquestTableRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestTableRuntime.cs:84` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_ACCESS** · `Ziptide.Gameplay.ConquestTableRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestTableRuntime.cs:104` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
@@ -742,7 +742,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `Ziptide.Core.FlightSignals.TargetDisabled`
 
-- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.ConquestMissionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:96` · `OnFlightTargetDisabled` — `if (_flightHooked) Ziptide.Core.FlightSignals.TargetDisabled -= OnFlightTargetDisabled;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.ConquestMissionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:108` · `OnFlightTargetDisabled` — `if (_flightHooked) Ziptide.Core.FlightSignals.TargetDisabled -= OnFlightTargetDisabled;`
 
 ### `_bound.OnPose`
 
@@ -798,7 +798,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `_rigRoot.transform.position`
 
-- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.ConquestMissionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:402` · `Vector3` — `_rigRoot.transform.position += Vector3.down * 0.25f;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.ConquestMissionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:414` · `Vector3` — `_rigRoot.transform.position += Vector3.down * 0.25f;`
 
 ### `_runtime.JobCompleted`
 
@@ -1204,7 +1204,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `transform.localPosition`
 
-- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.ConquestMissionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:486` · `Vector3` — `transform.localPosition += Vector3.down * 0.02f; // each slap seats it deeper`
+- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.ConquestMissionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:498` · `Vector3` — `transform.localPosition += Vector3.down * 0.02f; // each slap seats it deeper`
 
 ### `transform.position`
 

@@ -5223,98 +5223,98 @@
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-            "line": 67,
+            "line": 79,
             "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
             "snippet": "_boardRoot = new GameObject(\"MissionBoard\").transform;"
           },
           {
             "code": "TEXTMESH_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-            "line": 70,
+            "line": 82,
             "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
             "snippet": "_board = _boardRoot.gameObject.AddComponent<TextMesh>();"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-            "line": 124,
+            "line": 136,
             "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
             "snippet": "var root = new GameObject(\"ShieldPylon_\" + i);"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-            "line": 152,
+            "line": 164,
             "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
             "snippet": "var root = new GameObject(\"ScanNode_\" + i);"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-            "line": 174,
+            "line": 186,
             "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
             "snippet": "var beaconRoot = new GameObject(\"StrikeBeacon\");"
           },
           {
             "code": "XR_INTERACTABLE_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-            "line": 195,
+            "line": 207,
             "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
             "snippet": "beaconRoot.AddComponent<XRGrabInteractable>();"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-            "line": 198,
+            "line": 210,
             "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
             "snippet": "var pad = new GameObject(\"UplinkPad\");"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-            "line": 215,
+            "line": 227,
             "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
             "snippet": "var root = new GameObject(\"Conduit_\" + i);"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-            "line": 245,
+            "line": 257,
             "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
             "snippet": "var body = GameObject.CreatePrimitive(PrimitiveType.Sphere);"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-            "line": 267,
+            "line": 279,
             "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
             "snippet": "var p = GameObject.CreatePrimitive(type);"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-            "line": 278,
+            "line": 290,
             "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
             "snippet": "var pivot = new GameObject(\"OrbiterPivot\").transform;"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-            "line": 282,
+            "line": 294,
             "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
             "snippet": "var chip = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "XR_INTERACTABLE_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-            "line": 386,
+            "line": 398,
             "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
             "snippet": "gameObject.AddComponent<XRSimpleInteractable>().selectEntered"
           },
           {
             "code": "XR_INTERACTABLE_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-            "line": 465,
+            "line": 477,
             "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
             "snippet": "gameObject.AddComponent<XRSimpleInteractable>().selectEntered.AddListener(_ => Hit());"
           }
@@ -12288,7 +12288,7 @@
           {
             "code": "SAVE_SYSTEM_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-            "line": 349,
+            "line": 361,
             "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
             "snippet": "var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
           }
@@ -15043,21 +15043,21 @@
           {
             "code": "CAMERA_MAIN_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-            "line": 105,
+            "line": 117,
             "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
             "snippet": "var cam = Camera.main;"
           },
           {
             "code": "CAMERA_MAIN_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-            "line": 297,
+            "line": 309,
             "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
             "snippet": "var cam = Camera.main;"
           },
           {
             "code": "CAMERA_MAIN_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-            "line": 427,
+            "line": 439,
             "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
             "snippet": "var cam = Camera.main;"
           }

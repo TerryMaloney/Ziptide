@@ -269,7 +269,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 402,
+      "line": 414,
       "owner": "Ziptide.Gameplay.ConquestMissionRuntime",
       "target": "_rigRoot.transform.position",
       "detail": "Vector3",
@@ -278,7 +278,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 486,
+      "line": 498,
       "owner": "Ziptide.Gameplay.ConquestMissionRuntime",
       "target": "transform.localPosition",
       "detail": "Vector3",
@@ -1310,7 +1310,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-        "line": 85,
+        "line": 97,
         "owner": "Ziptide.Gameplay.ConquestMissionRuntime",
         "target": "DroneRuntime.OnDroneDisabled",
         "detail": "OnDroneDown",
@@ -1319,7 +1319,7 @@
       {
         "kind": "EVENT_UNSUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-        "line": 95,
+        "line": 107,
         "owner": "Ziptide.Gameplay.ConquestMissionRuntime",
         "target": "DroneRuntime.OnDroneDisabled",
         "detail": "OnDroneDown",
@@ -3636,7 +3636,7 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-        "line": 349,
+        "line": 361,
         "owner": "Ziptide.Gameplay.ConquestMissionRuntime",
         "target": "SaveSystem.Profile",
         "detail": "",
@@ -4507,7 +4507,7 @@
       {
         "kind": "EVENT_UNSUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-        "line": 96,
+        "line": 108,
         "owner": "Ziptide.Gameplay.ConquestMissionRuntime",
         "target": "Ziptide.Core.FlightSignals.TargetDisabled",
         "detail": "OnFlightTargetDisabled",
@@ -4736,7 +4736,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-        "line": 402,
+        "line": 414,
         "owner": "Ziptide.Gameplay.ConquestMissionRuntime",
         "target": "_rigRoot.transform.position",
         "detail": "Vector3",
@@ -6415,7 +6415,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-        "line": 486,
+        "line": 498,
         "owner": "Ziptide.Gameplay.ConquestMissionRuntime",
         "target": "transform.localPosition",
         "detail": "Vector3",
@@ -9693,7 +9693,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 85,
+      "line": 97,
       "owner": "Ziptide.Gameplay.ConquestMissionRuntime",
       "target": "DroneRuntime.OnDroneDisabled",
       "detail": "OnDroneDown",
@@ -9702,7 +9702,7 @@
     {
       "kind": "EVENT_UNSUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 95,
+      "line": 107,
       "owner": "Ziptide.Gameplay.ConquestMissionRuntime",
       "target": "DroneRuntime.OnDroneDisabled",
       "detail": "OnDroneDown",
@@ -9711,7 +9711,7 @@
     {
       "kind": "EVENT_UNSUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 96,
+      "line": 108,
       "owner": "Ziptide.Gameplay.ConquestMissionRuntime",
       "target": "Ziptide.Core.FlightSignals.TargetDisabled",
       "detail": "OnFlightTargetDisabled",
@@ -9720,7 +9720,7 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 349,
+      "line": 361,
       "owner": "Ziptide.Gameplay.ConquestMissionRuntime",
       "target": "SaveSystem.Profile",
       "detail": "",
@@ -9729,7 +9729,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 402,
+      "line": 414,
       "owner": "Ziptide.Gameplay.ConquestMissionRuntime",
       "target": "_rigRoot.transform.position",
       "detail": "Vector3",
@@ -9738,7 +9738,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 486,
+      "line": 498,
       "owner": "Ziptide.Gameplay.ConquestMissionRuntime",
       "target": "transform.localPosition",
       "detail": "Vector3",

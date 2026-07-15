@@ -1136,20 +1136,20 @@ None.
 - Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`, `TEXTMESH_COMPONENT`, `XR_INTERACTABLE_COMPONENT`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:53` **NEW_GAME_OBJECT** — `var go = new GameObject("__ConquestMission");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:67` **NEW_GAME_OBJECT** — `_boardRoot = new GameObject("MissionBoard").transform;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:70` **TEXTMESH_COMPONENT** — `_board = _boardRoot.gameObject.AddComponent<TextMesh>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:124` **NEW_GAME_OBJECT** — `var root = new GameObject("ShieldPylon_" + i);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:152` **NEW_GAME_OBJECT** — `var root = new GameObject("ScanNode_" + i);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:174` **NEW_GAME_OBJECT** — `var beaconRoot = new GameObject("StrikeBeacon");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:195` **XR_INTERACTABLE_COMPONENT** — `beaconRoot.AddComponent<XRGrabInteractable>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:198` **NEW_GAME_OBJECT** — `var pad = new GameObject("UplinkPad");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:215` **NEW_GAME_OBJECT** — `var root = new GameObject("Conduit_" + i);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:245` **CREATE_PRIMITIVE** — `var body = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:267` **CREATE_PRIMITIVE** — `var p = GameObject.CreatePrimitive(type);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:278` **NEW_GAME_OBJECT** — `var pivot = new GameObject("OrbiterPivot").transform;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:282` **CREATE_PRIMITIVE** — `var chip = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:386` **XR_INTERACTABLE_COMPONENT** — `gameObject.AddComponent<XRSimpleInteractable>().selectEntered`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:465` **XR_INTERACTABLE_COMPONENT** — `gameObject.AddComponent<XRSimpleInteractable>().selectEntered.AddListener(_ => Hit());`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:79` **NEW_GAME_OBJECT** — `_boardRoot = new GameObject("MissionBoard").transform;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:82` **TEXTMESH_COMPONENT** — `_board = _boardRoot.gameObject.AddComponent<TextMesh>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:136` **NEW_GAME_OBJECT** — `var root = new GameObject("ShieldPylon_" + i);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:164` **NEW_GAME_OBJECT** — `var root = new GameObject("ScanNode_" + i);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:186` **NEW_GAME_OBJECT** — `var beaconRoot = new GameObject("StrikeBeacon");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:207` **XR_INTERACTABLE_COMPONENT** — `beaconRoot.AddComponent<XRGrabInteractable>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:210` **NEW_GAME_OBJECT** — `var pad = new GameObject("UplinkPad");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:227` **NEW_GAME_OBJECT** — `var root = new GameObject("Conduit_" + i);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:257` **CREATE_PRIMITIVE** — `var body = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:279` **CREATE_PRIMITIVE** — `var p = GameObject.CreatePrimitive(type);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:290` **NEW_GAME_OBJECT** — `var pivot = new GameObject("OrbiterPivot").transform;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:294` **CREATE_PRIMITIVE** — `var chip = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:398` **XR_INTERACTABLE_COMPONENT** — `gameObject.AddComponent<XRSimpleInteractable>().selectEntered`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:477` **XR_INTERACTABLE_COMPONENT** — `gameObject.AddComponent<XRSimpleInteractable>().selectEntered.AddListener(_ => Hit());`
 
 ### `Ziptide.Gameplay.ConquestTableRuntime` — 12 signal(s)
 
@@ -2695,7 +2695,7 @@ None.
 
 - Codes: `SAVE_SYSTEM_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:349` **SAVE_SYSTEM_REFERENCE** — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:361` **SAVE_SYSTEM_REFERENCE** — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 
 ### `Ziptide.Gameplay.ConquestTableRuntime` — 4 signal(s)
 
@@ -3353,9 +3353,9 @@ None.
 
 - Codes: `CAMERA_MAIN_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:105` **CAMERA_MAIN_REFERENCE** — `var cam = Camera.main;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:297` **CAMERA_MAIN_REFERENCE** — `var cam = Camera.main;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:427` **CAMERA_MAIN_REFERENCE** — `var cam = Camera.main;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:117` **CAMERA_MAIN_REFERENCE** — `var cam = Camera.main;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:309` **CAMERA_MAIN_REFERENCE** — `var cam = Camera.main;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:439` **CAMERA_MAIN_REFERENCE** — `var cam = Camera.main;`
 
 ### `Ziptide.Gameplay.CreatureBehaviorBase` — 1 signal(s)
 

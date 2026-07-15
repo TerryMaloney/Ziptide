@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-15T11:13:07.555150+00:00",
+  "generatedAtUtc": "2026-07-15T11:15:42.236590+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -2918,7 +2918,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 86,
+      "line": 98,
       "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: CONQ_MISSION_SPAWNED kind=\" + _attempt.mission.kind +"
     },
@@ -2927,7 +2927,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 330,
+      "line": 342,
       "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: CONQ_MISSION_OBJECTIVE done=\" + _attempt.objectivesDone +"
     },
@@ -2936,7 +2936,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 346,
+      "line": 358,
       "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: CONQ_MISSION_\" + (won ? \"WIN\" : \"LOSE\") +"
     },
@@ -2945,7 +2945,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 404,
+      "line": 416,
       "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: CONQ_PYLON_DOWN name=\" + gameObject.name);"
     },
@@ -2954,7 +2954,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 443,
+      "line": 455,
       "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: CONQ_SCAN_LOCK name=\" + gameObject.name);"
     },
@@ -2963,7 +2963,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 487,
+      "line": 499,
       "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: CONQ_CONDUIT_HIT hits=\" + _hits + \"/\" + HitsToFix);"
     },
@@ -6005,7 +6005,7 @@
       "code": "CAMERA_MAIN_REFERENCE",
       "description": "Camera.main dependency",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 105,
+      "line": 117,
       "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
       "snippet": "var cam = Camera.main;"
     },
@@ -6014,7 +6014,7 @@
       "code": "CAMERA_MAIN_REFERENCE",
       "description": "Camera.main dependency",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 297,
+      "line": 309,
       "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
       "snippet": "var cam = Camera.main;"
     },
@@ -6023,7 +6023,7 @@
       "code": "CAMERA_MAIN_REFERENCE",
       "description": "Camera.main dependency",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 427,
+      "line": 439,
       "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
       "snippet": "var cam = Camera.main;"
     },
@@ -11252,7 +11252,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 245,
+      "line": 257,
       "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
       "snippet": "var body = GameObject.CreatePrimitive(PrimitiveType.Sphere);"
     },
@@ -11261,7 +11261,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 267,
+      "line": 279,
       "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
       "snippet": "var p = GameObject.CreatePrimitive(type);"
     },
@@ -11270,7 +11270,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 282,
+      "line": 294,
       "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
       "snippet": "var chip = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -13817,7 +13817,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 67,
+      "line": 79,
       "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
       "snippet": "_boardRoot = new GameObject(\"MissionBoard\").transform;"
     },
@@ -13826,7 +13826,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 124,
+      "line": 136,
       "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
       "snippet": "var root = new GameObject(\"ShieldPylon_\" + i);"
     },
@@ -13835,7 +13835,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 152,
+      "line": 164,
       "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
       "snippet": "var root = new GameObject(\"ScanNode_\" + i);"
     },
@@ -13844,7 +13844,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 174,
+      "line": 186,
       "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
       "snippet": "var beaconRoot = new GameObject(\"StrikeBeacon\");"
     },
@@ -13853,7 +13853,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 198,
+      "line": 210,
       "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
       "snippet": "var pad = new GameObject(\"UplinkPad\");"
     },
@@ -13862,7 +13862,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 215,
+      "line": 227,
       "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
       "snippet": "var root = new GameObject(\"Conduit_\" + i);"
     },
@@ -13871,7 +13871,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 278,
+      "line": 290,
       "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
       "snippet": "var pivot = new GameObject(\"OrbiterPivot\").transform;"
     },
@@ -14942,7 +14942,7 @@
       "code": "TEXTMESH_COMPONENT",
       "description": "Legacy TextMesh creation/reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 70,
+      "line": 82,
       "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
       "snippet": "_board = _boardRoot.gameObject.AddComponent<TextMesh>();"
     },
@@ -15545,7 +15545,7 @@
       "code": "XR_INTERACTABLE_COMPONENT",
       "description": "XR interactable creation/reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 195,
+      "line": 207,
       "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
       "snippet": "beaconRoot.AddComponent<XRGrabInteractable>();"
     },
@@ -15554,7 +15554,7 @@
       "code": "XR_INTERACTABLE_COMPONENT",
       "description": "XR interactable creation/reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 386,
+      "line": 398,
       "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
       "snippet": "gameObject.AddComponent<XRSimpleInteractable>().selectEntered"
     },
@@ -15563,7 +15563,7 @@
       "code": "XR_INTERACTABLE_COMPONENT",
       "description": "XR interactable creation/reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 465,
+      "line": 477,
       "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
       "snippet": "gameObject.AddComponent<XRSimpleInteractable>().selectEntered.AddListener(_ => Hit());"
     },
@@ -17471,7 +17471,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "line": 349,
+      "line": 361,
       "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
       "snippet": "var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
     },
