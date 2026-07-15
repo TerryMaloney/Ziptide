@@ -4,18 +4,19 @@ This documentation-only marker proves that a bounded PlayMode harness layer rema
 
 It changes no Unity source, scene, asset, package, project setting or test implementation.
 
-## R1.2 fake-XR repeat
+## R1.3 exposure-contract repeat
 
 The currently tested suite contains:
 
 - the promoted one-frame lifecycle test;
-- the tests-only tracked-head/controller/XRI composition test;
-- the right-ray hover/select interaction test;
-- leak-free teardown of active and partial fixtures.
+- the promoted tests-only fake tracked-rig/XRI interaction tests;
+- automatic-owner catalog coverage against the R0 JSON evidence;
+- `FullDevelopment`, `GoldenSlice` and explicit `Diagnostic` profile rules;
+- the `RecoveryRuntimeGate` active-profile decision seam.
 
-Promotion of R1.2 requires this marker SHA to produce:
+Promotion of the R1.3 contract foundation requires this marker SHA to produce:
 
-- three passing tests and zero failed/skipped tests;
+- eight passing tests and zero failed/skipped tests;
 - a successful `Recovery PlayMode Observation`;
 - a test-result artifact;
 - a durable observation recording this exact tested SHA.
