@@ -1,13 +1,12 @@
 using UnityEngine;
+using Ziptide.Core;
 
 namespace Ziptide.Gameplay
 {
     /// <summary>
-    /// Tiny always-on credits readout so the economy is visible ("I don't see the economy anywhere").
-    /// Lives on the persistent rig (ensured by <see cref="PlayerRigPersistence"/> like the stun receiver),
-    /// so it shows in every world. Reads the live profile's "credits" resource — the same id the ToxicCity
-    /// bounty pays into — and billboards a small TextMesh in the lower-left of the view. Built from TextMesh
-    /// (not TMP) to match the rest of the HUDs and avoid the TMP import issues.
+    /// Legacy always-on credits readout. FullDevelopment may retain it while systems migrate, but
+    /// recovery GoldenSlice/Diagnostic builds fail closed through RecoveryPlayerSurfacePolicy so
+    /// the intrusive yellow CR 0 cannot contaminate the checkpoint view.
     /// </summary>
     public class CreditsHud : MonoBehaviour
     {
@@ -20,8 +19,25 @@ namespace Ziptide.Gameplay
         private float _nextRefresh;
         private long _shown = long.MinValue;
 
+        private void Awake()
+        {
+            if (RecoveryPlayerSurfacePolicy.Allows(RecoveryPlayerSurfaceId.CreditsHud)) return;
+
+            enabled = false;
+            Debug.Log("ZIPTIDE: PLAYER_SURFACE_BLOCKED id=CreditsHud profile="
+                + RecoveryRuntimeGate.ActiveProfileName);
+        }
+
         private void Start()
         {
+            // Awake disables this component before Start in recovery profiles. Re-check here so a
+            // manually enabled scene-authored component still cannot bypass the central policy.
+            if (!RecoveryPlayerSurfacePolicy.Allows(RecoveryPlayerSurfaceId.CreditsHud))
+            {
+                enabled = false;
+                return;
+            }
+
             var rig = FindObjectOfType<PlayerRigPersistence>();
             if (rig != null) _cam = rig.GetComponentInChildren<Camera>()?.transform;
             if (_cam == null && Camera.main != null) _cam = Camera.main.transform;
@@ -33,26 +49,32 @@ namespace Ziptide.Gameplay
             var go = new GameObject("CreditsHudText");
             go.transform.SetParent(transform, false);
             _text = go.AddComponent<TextMesh>();
-            _text.characterSize = 0.01f; // smaller — was a big "CR 0" in the middle of the view
+            _text.characterSize = 0.01f;
             _text.fontSize = 64;
             _text.anchor = TextAnchor.MiddleLeft;
             _text.alignment = TextAlignment.Left;
-            _text.color = new Color(1f, 0.86f, 0.35f); // credit-gold
+            _text.color = new Color(1f, 0.86f, 0.35f);
             _text.text = "CR 0";
         }
 
         private void Update()
         {
+            if (!RecoveryPlayerSurfacePolicy.Allows(RecoveryPlayerSurfaceId.CreditsHud))
+            {
+                enabled = false;
+                return;
+            }
+
             if (_cam == null)
             {
                 if (Camera.main != null) _cam = Camera.main.transform; else return;
             }
             if (_text == null) return;
 
-            // Lower-LEFT corner of the comfortable FOV (steeper down/left angle than before — it was reading
-            // as a big label near center). Billboarded so it tracks the gaze without drifting offscreen.
-            _text.transform.position = _cam.position + _cam.forward * 0.8f - _cam.up * 0.36f - _cam.right * 0.46f;
-            _text.transform.rotation = Quaternion.LookRotation(_text.transform.position - _cam.position);
+            _text.transform.position = _cam.position + _cam.forward * 0.8f
+                - _cam.up * 0.36f - _cam.right * 0.46f;
+            _text.transform.rotation = Quaternion.LookRotation(
+                _text.transform.position - _cam.position);
 
             if (Time.unscaledTime < _nextRefresh) return;
             _nextRefresh = Time.unscaledTime + RefreshInterval;
