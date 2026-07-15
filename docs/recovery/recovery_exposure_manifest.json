@@ -1,6 +1,7 @@
 {
   "schemaVersion": 1,
-  "status": "R0_LOCKED_FOR_R1_IMPLEMENTATION",
+  "status": "R1_AMENDED_BY_INDEPENDENT_REVIEW_2026-07-15",
+  "checkpointDiagnosticAmendment": "The Golden checkpoint retains the summoned-only DevWarpBoard host so BOARD_PROBE and bounded world access remain available during Terry's device pass. The board is never ambient and does not alter normal player controls until explicitly summoned.",
   "goldenDestinationDecision": {
     "scene": "ToxicCity",
     "storyIdentity": "W001 first real destination after W000",
@@ -28,7 +29,8 @@
         "AMBIENCE_DIRECTOR",
         "COMFORT_VIGNETTE",
         "RUNTIME_HEALTH_MONITOR",
-        "FIRST_HOUR_OBSERVATION_BOOTSTRAP"
+        "FIRST_HOUR_OBSERVATION_BOOTSTRAP",
+        "DEV_WARP_BOARD_BOOTSTRAP"
       ],
       "conditionallyAllowedAutomaticOwners": [
         {
@@ -43,7 +45,6 @@
         "RUNTIME_MATERIAL_FIXER",
         "VR_BOOT_DIAGNOSTICS",
         "CONQUEST_MISSION_INJECTOR",
-        "DEV_WARP_BOARD_BOOTSTRAP",
         "PVP_PROGRESSION_BOOTSTRAP",
         "QUARTERS_CAMERA_INJECTOR",
         "NET_BOOTSTRAP"
@@ -56,7 +57,8 @@
         "one creature and non-lethal resolution",
         "one job/reward/spend surface",
         "one ship boarding/use surface",
-        "minimal contextual status needed to complete the loop"
+        "minimal contextual status needed to complete the loop",
+        "summoned-only developer warp board for checkpoint diagnostics"
       ],
       "forbiddenPlayerFacingSurfaces": [
         "always-on CreditsHud",
@@ -78,12 +80,12 @@
     "Diagnostic": {
       "base": "GoldenSlice",
       "optionalAutomaticOwners": [
-        "DEV_WARP_BOARD_BOOTSTRAP",
         "DEBUG_HUD_BOOTSTRAP",
         "VR_BOOT_DIAGNOSTICS"
       ],
       "rules": [
         "Each diagnostic owner is explicitly enabled by ID",
+        "The Golden DevWarpBoard remains summoned-only; Diagnostic does not make it ambient",
         "No diagnostic is automatically visible merely because the APK is a development build",
         "Diagnostic screenshots and logs record the enabled IDs",
         "Diagnostics may not alter the GoldenSlice input, camera, material or save owner contracts"
