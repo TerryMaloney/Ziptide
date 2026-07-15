@@ -204,7 +204,7 @@ None.
 
 - Codes: `EDITOR_BOOTSTRAP`
 - Paths: `Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs:62` **EDITOR_BOOTSTRAP** — `StringAssert.Contains("[InitializeOnLoad]", sync);`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs:66` **EDITOR_BOOTSTRAP** — `StringAssert.Contains("[InitializeOnLoad]", sync);`
 
 ### `Ziptide.Tests.PlayMode.RecoveryGateBypassTests` — 1 signal(s)
 
@@ -2015,7 +2015,7 @@ None.
 
 - Codes: `CREATE_PRIMITIVE`
 - Paths: `Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs:47` **CREATE_PRIMITIVE** — `StringAssert.Contains("GameObject.CreatePrimitive(PrimitiveType.Cube)", safety);`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs:51` **CREATE_PRIMITIVE** — `StringAssert.Contains("GameObject.CreatePrimitive(PrimitiveType.Cube)", safety);`
 
 ### `Ziptide.Tests.EditMode.HomeHubFlowTests` — 4 signal(s)
 

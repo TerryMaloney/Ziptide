@@ -56,7 +56,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - `Ziptide.Multiplayer.Bots.BotPerception` subscribes `aim.Y` → `_rng` at `Ziptide/Assets/Ziptide/Multiplayer/Runtime/Bots/BotBrain.cs:237`
 - `Ziptide.Multiplayer.Conquest.ConquestPlayer` subscribes `planet.defenseLevel` → `d` at `Ziptide/Assets/Ziptide/Multiplayer/Runtime/Conquest/ConquestState.cs:103`
 - `Ziptide.Tests.EditMode.FieldCameraCompletionTests` subscribes `SceneManager.sceneLoaded` → `OnSceneLoaded` at `Ziptide/Assets/Ziptide/Tests/EditMode/FieldCameraCompletionTests.cs:82`
-- `Ziptide.Tests.EditMode.HeadsetBuildBlockerRegressionTests` subscribes `EditorSceneManager.sceneOpened` → `OnSceneOpened` at `Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs:63`
+- `Ziptide.Tests.EditMode.HeadsetBuildBlockerRegressionTests` subscribes `EditorSceneManager.sceneOpened` → `OnSceneOpened` at `Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs:67`
 - `Ziptide.Tests.EditMode.HomeHubFlowTests` subscribes `castOff.DestinationSelected` → `destination` at `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:115`
 - `Ziptide.Tests.EditMode.PvpNetTests` subscribes `t.OnFire` → `m` at `Ziptide/Assets/Ziptide/Tests/EditMode/PvpNetTests.cs:27`
 - `Ziptide.Tests.EditMode.PvpNetTests` subscribes `t.OnHit` → `m` at `Ziptide/Assets/Ziptide/Tests/EditMode/PvpNetTests.cs:41`
@@ -220,7 +220,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Editor.Audit.AuditPhysicsSync` · `Ziptide/Assets/Ziptide/Editor/Audit/AuditPhysicsSync.cs:19` · `OnSceneOpened` — `EditorSceneManager.sceneOpened -= OnSceneOpened;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Editor.Audit.AuditPhysicsSync` · `Ziptide/Assets/Ziptide/Editor/Audit/AuditPhysicsSync.cs:20` · `OnSceneOpened` — `EditorSceneManager.sceneOpened += OnSceneOpened;`
-- **EVENT_SUBSCRIBE** · `Ziptide.Tests.EditMode.HeadsetBuildBlockerRegressionTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs:63` · `OnSceneOpened` — `StringAssert.Contains("EditorSceneManager.sceneOpened += OnSceneOpened;", sync);`
+- **EVENT_SUBSCRIBE** · `Ziptide.Tests.EditMode.HeadsetBuildBlockerRegressionTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs:67` · `OnSceneOpened` — `StringAssert.Contains("EditorSceneManager.sceneOpened += OnSceneOpened;", sync);`
 
 ### `ExpectedArchetype`
 

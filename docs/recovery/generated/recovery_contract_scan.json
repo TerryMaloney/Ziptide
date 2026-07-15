@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-15T15:07:36.735093+00:00",
+  "generatedAtUtc": "2026-07-15T15:08:15.268934+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -110,7 +110,7 @@
       "code": "EDITOR_BOOTSTRAP",
       "description": "Unity editor-load bootstrap",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs",
-      "line": 62,
+      "line": 66,
       "symbol": "Ziptide.Tests.EditMode.HeadsetBuildBlockerRegressionTests",
       "snippet": "StringAssert.Contains(\"[InitializeOnLoad]\", sync);"
     },
@@ -11648,7 +11648,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs",
-      "line": 47,
+      "line": 51,
       "symbol": "Ziptide.Tests.EditMode.HeadsetBuildBlockerRegressionTests",
       "snippet": "StringAssert.Contains(\"GameObject.CreatePrimitive(PrimitiveType.Cube)\", safety);"
     },

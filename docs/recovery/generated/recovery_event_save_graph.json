@@ -350,7 +350,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs",
-      "line": 63,
+      "line": 67,
       "owner": "Ziptide.Tests.EditMode.HeadsetBuildBlockerRegressionTests",
       "target": "EditorSceneManager.sceneOpened",
       "detail": "OnSceneOpened",
@@ -1359,7 +1359,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs",
-        "line": 63,
+        "line": 67,
         "owner": "Ziptide.Tests.EditMode.HeadsetBuildBlockerRegressionTests",
         "target": "EditorSceneManager.sceneOpened",
         "detail": "OnSceneOpened",
@@ -11155,7 +11155,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs",
-      "line": 63,
+      "line": 67,
       "owner": "Ziptide.Tests.EditMode.HeadsetBuildBlockerRegressionTests",
       "target": "EditorSceneManager.sceneOpened",
       "detail": "OnSceneOpened",
