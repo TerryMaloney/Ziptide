@@ -22,6 +22,7 @@ namespace Ziptide.Core
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void OnLoad()
         {
+            if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.DebugHud)) return;
             if (!Debug.isDebugBuild || !Enabled) return;
 
             s_Root = new GameObject("Ziptide_DebugHUD");
