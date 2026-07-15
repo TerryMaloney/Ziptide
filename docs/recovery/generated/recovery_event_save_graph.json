@@ -1,11 +1,11 @@
 {
   "tool": "recovery_event_save_graph",
-  "scannedFiles": 612,
-  "evidenceCount": 639,
+  "scannedFiles": 613,
+  "evidenceCount": 640,
   "kindCounts": {
     "AUTOSAVE": 7,
     "EVENT_DECLARE": 45,
-    "EVENT_INVOKE": 54,
+    "EVENT_INVOKE": 55,
     "EVENT_SUBSCRIBE": 78,
     "EVENT_UNSUBSCRIBE": 30,
     "PLAYER_PREFS_ACCESS": 11,
@@ -4781,6 +4781,17 @@
         "target": "_runtime.StepChanged",
         "detail": "OnStepChanged",
         "snippet": "_runtime.StepChanged -= OnStepChanged;"
+      }
+    ],
+    "addTile": [
+      {
+        "kind": "EVENT_INVOKE",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs",
+        "line": 74,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests",
+        "target": "addTile",
+        "detail": "",
+        "snippet": "addTile.Invoke(hub, new object[]"
       }
     ],
     "aim.Y": [
@@ -12083,6 +12094,15 @@
       "target": "method",
       "detail": "",
       "snippet": "method.Invoke(null, null);"
+    },
+    {
+      "kind": "EVENT_INVOKE",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs",
+      "line": 74,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests",
+      "target": "addTile",
+      "detail": "",
+      "snippet": "addTile.Invoke(hub, new object[]"
     },
     {
       "kind": "EVENT_SUBSCRIBE",

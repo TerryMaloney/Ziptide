@@ -1,7 +1,7 @@
 # ZIPTIDE Event and Save Ownership Graph
 
-- Scanned C# files: **612**
-- Evidence edges: **639**
+- Scanned C# files: **613**
+- Evidence edges: **640**
 - Named subscriptions without matching unsubscribe in the same owner: **47**
 
 This is a static ownership graph. An unmatched row is a review target, not automatic proof of a leak; process-lifetime static hooks may be intentional.
@@ -10,7 +10,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 - **AUTOSAVE:** 7
 - **EVENT_DECLARE:** 45
-- **EVENT_INVOKE:** 54
+- **EVENT_INVOKE:** 55
 - **EVENT_SUBSCRIBE:** 78
 - **EVENT_UNSUBSCRIBE:** 30
 - **PLAYER_PREFS_ACCESS:** 11
@@ -809,6 +809,10 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.JobDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs:59` · `OnStepChanged` — `_runtime.StepChanged += OnStepChanged;`
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.JobDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs:67` · `OnStepChanged` — `_runtime.StepChanged -= OnStepChanged;`
+
+### `addTile`
+
+- **EVENT_INVOKE** · `Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:74` — `addTile.Invoke(hub, new object[]`
 
 ### `aim.Y`
 

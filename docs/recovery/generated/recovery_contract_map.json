@@ -1,8 +1,8 @@
 {
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
-  "scannedFiles": 612,
-  "findingCount": 2053,
+  "scannedFiles": 613,
+  "findingCount": 2059,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -9968,6 +9968,32 @@
         ]
       },
       {
+        "owner": "Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests",
+        "evidenceCount": 2,
+        "codes": [
+          "NEW_GAME_OBJECT"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs"
+        ],
+        "evidence": [
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs",
+            "line": 66,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests",
+            "snippet": "var hubHost = new GameObject(\"__RECOVERY_HOME_HUB_BIND_TEST\");"
+          },
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs",
+            "line": 91,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests",
+            "snippet": "var managerHost = new GameObject(\"__RECOVERY_LATE_XRI_MANAGER\");"
+          }
+        ]
+      },
+      {
         "owner": "Ziptide.Tests.PlayMode.RecoveryTestRig",
         "evidenceCount": 9,
         "codes": [
@@ -11375,6 +11401,41 @@
             "line": 151,
             "symbol": "Ziptide.Ship.VehicleRuntime",
             "snippet": "if (mgr != null) interactable.interactionManager = mgr;"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests",
+        "evidenceCount": 3,
+        "codes": [
+          "XRI_MANAGER_ASSIGN",
+          "XRI_MANAGER_CREATE",
+          "XRI_MANAGER_LOOKUP"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs"
+        ],
+        "evidence": [
+          {
+            "code": "XRI_MANAGER_LOOKUP",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs",
+            "line": 43,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests",
+            "snippet": "Assert.IsNull(UnityEngine.Object.FindObjectOfType<XRInteractionManager>(),"
+          },
+          {
+            "code": "XRI_MANAGER_CREATE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs",
+            "line": 93,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests",
+            "snippet": "var manager = managerHost.AddComponent<XRInteractionManager>();"
+          },
+          {
+            "code": "XRI_MANAGER_ASSIGN",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs",
+            "line": 98,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests",
+            "snippet": "for (int frame = 0; frame < 10 && interactable.interactionManager == null; frame++)"
           }
         ]
       },
