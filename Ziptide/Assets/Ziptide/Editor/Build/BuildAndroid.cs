@@ -14,9 +14,6 @@ namespace Ziptide.Build
     /// </summary>
     public static class BuildAndroid
     {
-        /// <summary>
-        /// Opens each enabled build scene, runs ScenePatcherC0/D0/D1/D2 per scene, saves, then builds APK. Idempotent; safe for batchmode.
-        /// </summary>
         public static void PatchScenesThenAPK()
         {
             PatchAndAudit();
@@ -25,9 +22,8 @@ namespace Ziptide.Build
         }
 
         /// <summary>
-        /// THE PER-PUSH CI GATE (2026-07-14): the FULL patch + author + audit pipeline with NO APK.
-        /// Every patch, author, bake and audit hook is required. Any exception aborts the build instead
-        /// of shipping a partial world with primitive or missing generated content.
+        /// Per-push CI gate: full patch, author, bake, shader-safety, and audit pipeline without APK.
+        /// Every hook is required. Any exception aborts instead of shipping partial generated content.
         /// </summary>
         public static void PatchScenesAndAudit()
         {
@@ -35,16 +31,16 @@ namespace Ziptide.Build
             Debug.Log("ZIPTIDE: PATCH_AUDIT_OK scenes patched + audit green (no APK)");
         }
 
-        /// <summary>The shared pipeline: patch/author every enabled scene, then run the world audit.
-        /// Every hook fails closed. Exactly what the device build runs before BuildPlayer.</summary>
         private static void PatchAndAudit()
         {
+            // Run before any scene mutation. The same gate protects local and cloud Quest builds.
+            RunRequired("RuntimeShaderVariantGate.Validate", RuntimeShaderVariantGate.Validate);
+
             RunRequired("ScenePatcherBoot.PatchBootScene",
                 Ziptide.Editor.Patching.ScenePatcherBoot.PatchBootScene);
             RunRequired("ScenePatcherD0.EnsureD0SceneExists",
                 Ziptide.Editor.Patching.ScenePatcherD0.EnsureD0SceneExists);
 
-            // Ensure every authored destination is present before the enabled scene list is captured.
             RunRequired("ScenePatcherSandbox.EnsureInBuildSettings",
                 Ziptide.Editor.Patching.ScenePatcherSandbox.EnsureInBuildSettings);
             RunRequired("ScenePatcherStarterWorld.EnsureInBuildSettings",
@@ -54,7 +50,6 @@ namespace Ziptide.Build
             RunRequired("ScenePatcherPvP.EnsureInBuildSettings",
                 Ziptide.Editor.Patching.ScenePatcherPvP.EnsureInBuildSettings);
 
-            // Seed data-driven content. These are build inputs, not optional best-effort decoration.
             RunRequired("CreatureVariantAuthor.EnsureAllAuthored",
                 Ziptide.Editor.Patching.CreatureVariantAuthor.EnsureAllAuthored);
             RunRequired("BotProfileAuthor.EnsureAllAuthored",
@@ -96,7 +91,6 @@ namespace Ziptide.Build
             RunRequired("ScenePatcherArena.EnsureAllInBuildSettings",
                 Ziptide.Editor.Patching.ScenePatcherArena.EnsureAllInBuildSettings);
 
-            // Scene patchers may modify EditorBuildSettings, so capture the list only after all ensures.
             var scenes = EditorBuildSettings.scenes;
             for (int i = 0; i < scenes.Length; i++)
             {
@@ -176,7 +170,6 @@ namespace Ziptide.Build
                 throw new Exception("World audit FAILED with " + auditBlockers +
                                     " blocker(s). See docs/AUDIT_REPORT.md.");
 
-            // Rebuild the in-VR dev-menu manifest last, after all patchers update world packs.
             RunRequired("DevWorldManifestBuilder.Rebuild",
                 Ziptide.Editor.DevTools.DevWorldManifestBuilder.Rebuild);
         }
@@ -210,23 +203,23 @@ namespace Ziptide.Build
             }
         }
 
-        /// <summary>
-        /// Build APK only (no scene patching). Use when scene is already prepared in Editor.
-        /// </summary>
         public static void APK()
         {
-            var outDir = Path.Combine(Directory.GetParent(Application.dataPath)!.FullName, "Builds", "Android");
+            var outDir = Path.Combine(
+                Directory.GetParent(Application.dataPath)!.FullName,
+                "Builds",
+                "Android");
             Directory.CreateDirectory(outDir);
             var outPath = Path.Combine(outDir, "Ziptide.apk");
             var sceneList = EditorBuildSettingsScene.GetActiveSceneList(EditorBuildSettings.scenes);
-            var opts = new BuildPlayerOptions
+            var options = new BuildPlayerOptions
             {
                 scenes = sceneList,
                 locationPathName = outPath,
                 target = BuildTarget.Android,
                 options = BuildOptions.Development | BuildOptions.AllowDebugging
             };
-            var report = BuildPipeline.BuildPlayer(opts);
+            var report = BuildPipeline.BuildPlayer(options);
             if (report.summary.result != UnityEditor.Build.Reporting.BuildResult.Succeeded)
                 throw new Exception("Android build failed: " + report.summary.result);
             Debug.Log("Built APK: " + outPath);
