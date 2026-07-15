@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
 - Scanned files: **607**
-- Scanner findings: **2044**
+- Scanner findings: **2043**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -45,7 +45,7 @@ None.
 - Codes: `DONT_DESTROY_ON_LOAD`, `RUNTIME_BOOTSTRAP`
 - Paths: `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs`
   - `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs:33` **RUNTIME_BOOTSTRAP** — `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
-  - `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs:38` **DONT_DESTROY_ON_LOAD** — `DontDestroyOnLoad(go);`
+  - `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs:39` **DONT_DESTROY_ON_LOAD** — `DontDestroyOnLoad(go);`
 
 ### `Ziptide.Core.RuntimeInputEnabler` — 1 signal(s)
 
@@ -234,13 +234,12 @@ None.
 
 ## Input
 
-### `Ziptide.Core.RuntimeInputEnabler` — 9 signal(s)
+### `Ziptide.Core.RuntimeInputEnabler` — 8 signal(s)
 
 - Codes: `INPUT_ACTION_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeInputEnabler.cs`
-  - `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeInputEnabler.cs:18` **INPUT_ACTION_REFERENCE** — `var assetsEnabled = new HashSet<InputActionAsset>();`
-  - `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeInputEnabler.cs:27` **INPUT_ACTION_REFERENCE** — `InputActionAsset asset = GetAssetFromController(c);`
-  - `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeInputEnabler.cs:35` **INPUT_ACTION_REFERENCE** — `// Any other MonoBehaviour with InputActionReference fields (e.g. ActionBasedControllerManager)`
+  - `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeInputEnabler.cs:20` **INPUT_ACTION_REFERENCE** — `var assetsEnabled = new HashSet<InputActionAsset>();`
+  - `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeInputEnabler.cs:28` **INPUT_ACTION_REFERENCE** — `InputActionAsset asset = GetAssetFromController(c);`
   - `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeInputEnabler.cs:40` **INPUT_ACTION_REFERENCE** — `InputActionAsset asset = GetAssetFromInputActionReferences(mb);`
   - `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeInputEnabler.cs:49` **INPUT_ACTION_REFERENCE** — `Debug.Log($"[Ziptide] RuntimeInputEnabler: enabled {totalAssets} InputActionAsset(s). Controllers={controllersProcessed}, Other={otherProcessed}.");`
   - `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeInputEnabler.cs:52` **INPUT_ACTION_REFERENCE** — `private static InputActionAsset GetAssetFromController(ActionBasedController c)`
@@ -471,14 +470,14 @@ None.
 
 - Codes: `NEW_GAME_OBJECT`
 - Paths: `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs`
-  - `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs:37` **NEW_GAME_OBJECT** — `var go = new GameObject("__RuntimeHealth");`
+  - `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs:38` **NEW_GAME_OBJECT** — `var go = new GameObject("__RuntimeHealth");`
 
 ### `Ziptide.Core.RuntimeMaterialFixer` — 2 signal(s)
 
 - Codes: `RUNTIME_MATERIAL_CREATE`, `SHADER_FIND`
 - Paths: `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeMaterialFixer.cs`
-  - `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeMaterialFixer.cs:17` **SHADER_FIND** — `Shader urpLit = Shader.Find(URPShaderName);`
-  - `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeMaterialFixer.cs:49` **RUNTIME_MATERIAL_CREATE** — `Material fallback = new Material(urpLit);`
+  - `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeMaterialFixer.cs:19` **SHADER_FIND** — `Shader urpLit = Shader.Find(URPShaderName);`
+  - `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeMaterialFixer.cs:51` **RUNTIME_MATERIAL_CREATE** — `Material fallback = new Material(urpLit);`
 
 ### `Ziptide.Editor.Art.BuildingKitLibrary` — 6 signal(s)
 
@@ -3598,12 +3597,12 @@ None.
 
 - Codes: `FALLBACK_MARKER`
 - Paths: `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeMaterialFixer.cs`
-  - `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeMaterialFixer.cs:49` **FALLBACK_MARKER** — `Material fallback = new Material(urpLit);`
-  - `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeMaterialFixer.cs:50` **FALLBACK_MARKER** — `fallback.name = "RuntimeMaterialFixer_" + r.gameObject.name;`
-  - `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeMaterialFixer.cs:51` **FALLBACK_MARKER** — `fallback.hideFlags = HideFlags.HideAndDontSave;`
-  - `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeMaterialFixer.cs:53` **FALLBACK_MARKER** — `if (fallback.HasProperty(Shader.PropertyToID(ShaderBaseColor)))`
-  - `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeMaterialFixer.cs:54` **FALLBACK_MARKER** — `fallback.SetColor(ShaderBaseColor, color);`
-  - `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeMaterialFixer.cs:56` **FALLBACK_MARKER** — `r.sharedMaterial = fallback;`
+  - `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeMaterialFixer.cs:51` **FALLBACK_MARKER** — `Material fallback = new Material(urpLit);`
+  - `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeMaterialFixer.cs:52` **FALLBACK_MARKER** — `fallback.name = "RuntimeMaterialFixer_" + r.gameObject.name;`
+  - `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeMaterialFixer.cs:53` **FALLBACK_MARKER** — `fallback.hideFlags = HideFlags.HideAndDontSave;`
+  - `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeMaterialFixer.cs:55` **FALLBACK_MARKER** — `if (fallback.HasProperty(Shader.PropertyToID(ShaderBaseColor)))`
+  - `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeMaterialFixer.cs:56` **FALLBACK_MARKER** — `fallback.SetColor(ShaderBaseColor, color);`
+  - `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeMaterialFixer.cs:58` **FALLBACK_MARKER** — `r.sharedMaterial = fallback;`
 
 ### `Ziptide.Core.SaveFileStore` — 1 signal(s)
 

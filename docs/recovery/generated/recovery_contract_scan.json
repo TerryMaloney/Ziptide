@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-15T00:40:55.214962+00:00",
+  "generatedAtUtc": "2026-07-15T00:42:24.920784+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -9,14 +9,14 @@
     "Ziptide/Assets/ZiptideNet"
   ],
   "scannedFiles": 607,
-  "findingCount": 2044,
+  "findingCount": 2043,
   "categoryCounts": {
     "bootstrap": 26,
     "diagnostics": 418,
     "events": 64,
     "fallback_debt": 120,
     "global_render": 76,
-    "input": 119,
+    "input": 118,
     "materials": 223,
     "persistence": 17,
     "runtime_creation": 559,
@@ -39,7 +39,7 @@
     "EVENT_SYSTEM_COMPONENT": 2,
     "FALLBACK_MARKER": 120,
     "FRAME_BUTTON_POLL": 1,
-    "INPUT_ACTION_REFERENCE": 111,
+    "INPUT_ACTION_REFERENCE": 110,
     "INPUT_BUTTON_REFERENCE": 7,
     "NEW_GAME_OBJECT": 332,
     "PLAYER_PROFILE_REFERENCE": 133,
@@ -398,7 +398,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs",
-      "line": 49,
+      "line": 50,
       "symbol": "Ziptide.Core.RuntimeHealthMonitor",
       "snippet": "Debug.Log(\"ZIPTIDE: HEALTH_READY budgetMs=\" + BudgetMs.ToString(\"F1\"));"
     },
@@ -407,7 +407,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs",
-      "line": 69,
+      "line": 70,
       "symbol": "Ziptide.Core.RuntimeHealthMonitor",
       "snippet": "Debug.Log(\"ZIPTIDE: HEALTH fps=\" + _stats.AverageFps.ToString(\"F1\") +"
     },
@@ -416,7 +416,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs",
-      "line": 76,
+      "line": 77,
       "symbol": "Ziptide.Core.RuntimeHealthMonitor",
       "snippet": "Debug.Log(\"ZIPTIDE: HEALTH_SLOW low1=\" + low1.ToString(\"F1\") +"
     },
@@ -425,7 +425,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs",
-      "line": 97,
+      "line": 95,
       "symbol": "Ziptide.Core.RuntimeHealthMonitor",
       "snippet": "Debug.Log(\"ZIPTIDE: HEALTH_SWEEP scene=\" + sceneName +"
     },
@@ -4754,7 +4754,7 @@
       "code": "FALLBACK_MARKER",
       "description": "Source text marks fallback/prototype debt",
       "path": "Ziptide/Assets/Ziptide/Core/Runtime/RuntimeMaterialFixer.cs",
-      "line": 49,
+      "line": 51,
       "symbol": "Ziptide.Core.RuntimeMaterialFixer",
       "snippet": "Material fallback = new Material(urpLit);"
     },
@@ -4763,7 +4763,7 @@
       "code": "FALLBACK_MARKER",
       "description": "Source text marks fallback/prototype debt",
       "path": "Ziptide/Assets/Ziptide/Core/Runtime/RuntimeMaterialFixer.cs",
-      "line": 50,
+      "line": 52,
       "symbol": "Ziptide.Core.RuntimeMaterialFixer",
       "snippet": "fallback.name = \"RuntimeMaterialFixer_\" + r.gameObject.name;"
     },
@@ -4772,7 +4772,7 @@
       "code": "FALLBACK_MARKER",
       "description": "Source text marks fallback/prototype debt",
       "path": "Ziptide/Assets/Ziptide/Core/Runtime/RuntimeMaterialFixer.cs",
-      "line": 51,
+      "line": 53,
       "symbol": "Ziptide.Core.RuntimeMaterialFixer",
       "snippet": "fallback.hideFlags = HideFlags.HideAndDontSave;"
     },
@@ -4781,7 +4781,7 @@
       "code": "FALLBACK_MARKER",
       "description": "Source text marks fallback/prototype debt",
       "path": "Ziptide/Assets/Ziptide/Core/Runtime/RuntimeMaterialFixer.cs",
-      "line": 53,
+      "line": 55,
       "symbol": "Ziptide.Core.RuntimeMaterialFixer",
       "snippet": "if (fallback.HasProperty(Shader.PropertyToID(ShaderBaseColor)))"
     },
@@ -4790,7 +4790,7 @@
       "code": "FALLBACK_MARKER",
       "description": "Source text marks fallback/prototype debt",
       "path": "Ziptide/Assets/Ziptide/Core/Runtime/RuntimeMaterialFixer.cs",
-      "line": 54,
+      "line": 56,
       "symbol": "Ziptide.Core.RuntimeMaterialFixer",
       "snippet": "fallback.SetColor(ShaderBaseColor, color);"
     },
@@ -4799,7 +4799,7 @@
       "code": "FALLBACK_MARKER",
       "description": "Source text marks fallback/prototype debt",
       "path": "Ziptide/Assets/Ziptide/Core/Runtime/RuntimeMaterialFixer.cs",
-      "line": 56,
+      "line": 58,
       "symbol": "Ziptide.Core.RuntimeMaterialFixer",
       "snippet": "r.sharedMaterial = fallback;"
     },
@@ -6410,7 +6410,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Core/Runtime/RuntimeInputEnabler.cs",
-      "line": 18,
+      "line": 20,
       "symbol": "Ziptide.Core.RuntimeInputEnabler",
       "snippet": "var assetsEnabled = new HashSet<InputActionAsset>();"
     },
@@ -6419,18 +6419,9 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Core/Runtime/RuntimeInputEnabler.cs",
-      "line": 27,
+      "line": 28,
       "symbol": "Ziptide.Core.RuntimeInputEnabler",
       "snippet": "InputActionAsset asset = GetAssetFromController(c);"
-    },
-    {
-      "category": "input",
-      "code": "INPUT_ACTION_REFERENCE",
-      "description": "Input System action reference",
-      "path": "Ziptide/Assets/Ziptide/Core/Runtime/RuntimeInputEnabler.cs",
-      "line": 35,
-      "symbol": "Ziptide.Core.RuntimeInputEnabler",
-      "snippet": "// Any other MonoBehaviour with InputActionReference fields (e.g. ActionBasedControllerManager)"
     },
     {
       "category": "input",
@@ -7472,7 +7463,7 @@
       "code": "RUNTIME_MATERIAL_CREATE",
       "description": "Runtime Material allocation",
       "path": "Ziptide/Assets/Ziptide/Core/Runtime/RuntimeMaterialFixer.cs",
-      "line": 49,
+      "line": 51,
       "symbol": "Ziptide.Core.RuntimeMaterialFixer",
       "snippet": "Material fallback = new Material(urpLit);"
     },
@@ -8255,7 +8246,7 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Core/Runtime/RuntimeMaterialFixer.cs",
-      "line": 17,
+      "line": 19,
       "symbol": "Ziptide.Core.RuntimeMaterialFixer",
       "snippet": "Shader urpLit = Shader.Find(URPShaderName);"
     },
@@ -9488,7 +9479,7 @@
       "code": "DONT_DESTROY_ON_LOAD",
       "description": "Object promoted across scene loads",
       "path": "Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs",
-      "line": 38,
+      "line": 39,
       "symbol": "Ziptide.Core.RuntimeHealthMonitor",
       "snippet": "DontDestroyOnLoad(go);"
     },
@@ -11711,7 +11702,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs",
-      "line": 37,
+      "line": 38,
       "symbol": "Ziptide.Core.RuntimeHealthMonitor",
       "snippet": "var go = new GameObject(\"__RuntimeHealth\");"
     },

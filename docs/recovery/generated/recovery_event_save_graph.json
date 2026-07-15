@@ -3867,7 +3867,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs",
-        "line": 48,
+        "line": 49,
         "owner": "Ziptide.Core.RuntimeHealthMonitor",
         "target": "SceneManager.sceneLoaded",
         "detail": "OnSceneLoaded",
@@ -3876,7 +3876,7 @@
       {
         "kind": "EVENT_UNSUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs",
-        "line": 54,
+        "line": 55,
         "owner": "Ziptide.Core.RuntimeHealthMonitor",
         "target": "SceneManager.sceneLoaded",
         "detail": "OnSceneLoaded",
@@ -7126,7 +7126,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs",
-      "line": 48,
+      "line": 49,
       "owner": "Ziptide.Core.RuntimeHealthMonitor",
       "target": "SceneManager.sceneLoaded",
       "detail": "OnSceneLoaded",
@@ -7135,7 +7135,7 @@
     {
       "kind": "EVENT_UNSUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs",
-      "line": 54,
+      "line": 55,
       "owner": "Ziptide.Core.RuntimeHealthMonitor",
       "target": "SceneManager.sceneLoaded",
       "detail": "OnSceneLoaded",

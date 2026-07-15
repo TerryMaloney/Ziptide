@@ -1,7 +1,7 @@
 # ZIPTIDE Recovery Contract Scan
 
 - Scanned files: **607**
-- Findings: **2044**
+- Findings: **2043**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
@@ -13,7 +13,7 @@
 | `events` | 64 |
 | `fallback_debt` | 120 |
 | `global_render` | 76 |
-| `input` | 119 |
+| `input` | 118 |
 | `materials` | 223 |
 | `persistence` | 17 |
 | `runtime_creation` | 559 |
@@ -65,10 +65,10 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs:18` · `Ziptide.Core.RuntimeHealthMonitor` — ZIPTIDE diagnostic tag. `/// ZIPTIDE: HEALTH fps=71.8 low1=63.2 dropped=4/720 mats=412 tex=189 mesh=143 clips=9 memMB=612`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs:19` · `Ziptide.Core.RuntimeHealthMonitor` — ZIPTIDE diagnostic tag. `/// ZIPTIDE: HEALTH_SWEEP scene=W005_OxidizedCanopy freed mats=37 tex=12 mesh=8 clips=3`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs:20` · `Ziptide.Core.RuntimeHealthMonitor` — ZIPTIDE diagnostic tag. `/// ZIPTIDE: HEALTH_SLOW low1=54.1 — sustained budget misses (investigate the current world)`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs:49` · `Ziptide.Core.RuntimeHealthMonitor` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: HEALTH_READY budgetMs=" + BudgetMs.ToString("F1"));`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs:69` · `Ziptide.Core.RuntimeHealthMonitor` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: HEALTH fps=" + _stats.AverageFps.ToString("F1") +`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs:76` · `Ziptide.Core.RuntimeHealthMonitor` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: HEALTH_SLOW low1=" + low1.ToString("F1") +`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs:97` · `Ziptide.Core.RuntimeHealthMonitor` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: HEALTH_SWEEP scene=" + sceneName +`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs:50` · `Ziptide.Core.RuntimeHealthMonitor` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: HEALTH_READY budgetMs=" + BudgetMs.ToString("F1"));`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs:70` · `Ziptide.Core.RuntimeHealthMonitor` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: HEALTH fps=" + _stats.AverageFps.ToString("F1") +`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs:77` · `Ziptide.Core.RuntimeHealthMonitor` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: HEALTH_SLOW low1=" + low1.ToString("F1") +`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs:95` · `Ziptide.Core.RuntimeHealthMonitor` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: HEALTH_SWEEP scene=" + sceneName +`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Core/Runtime/ZiptideConstants.cs:54` · `Ziptide.Core.ZiptideConstants` — ZIPTIDE diagnostic tag. `public const string DiagPrefix = "ZIPTIDE: ";`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Core/Runtime/ZiptideConstants.cs:55` · `Ziptide.Core.ZiptideConstants` — ZIPTIDE diagnostic tag. `public const string DiagTravelStart = "ZIPTIDE: TRAVEL_START";`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Core/Runtime/ZiptideConstants.cs:56` · `Ziptide.Core.ZiptideConstants` — ZIPTIDE diagnostic tag. `public const string DiagTravelOk = "ZIPTIDE: TRAVEL_OK";`
@@ -553,12 +553,12 @@
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Content/Runtime/Tutorial/FirstHourContractDefinition.cs:124` · `Ziptide.Content.FirstHourContractReference` — Source text marks fallback/prototype debt. `/// must never depend on a fabricated fallback list.`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Core/Runtime/CosmeticLocker.cs:8` · `Ziptide.Core.CosmeticLocker` — Source text marks fallback/prototype debt. `/// with the existing profile plumbing for free and never needs its own persistence. One equipped`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Core/Runtime/Persistence/SaveFileStore.cs:32` · `Ziptide.Core.SaveFileStore` — Source text marks fallback/prototype debt. `// fallback still never leaves us without at least one complete file.`
-- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeMaterialFixer.cs:49` · `Ziptide.Core.RuntimeMaterialFixer` — Source text marks fallback/prototype debt. `Material fallback = new Material(urpLit);`
-- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeMaterialFixer.cs:50` · `Ziptide.Core.RuntimeMaterialFixer` — Source text marks fallback/prototype debt. `fallback.name = "RuntimeMaterialFixer_" + r.gameObject.name;`
-- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeMaterialFixer.cs:51` · `Ziptide.Core.RuntimeMaterialFixer` — Source text marks fallback/prototype debt. `fallback.hideFlags = HideFlags.HideAndDontSave;`
-- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeMaterialFixer.cs:53` · `Ziptide.Core.RuntimeMaterialFixer` — Source text marks fallback/prototype debt. `if (fallback.HasProperty(Shader.PropertyToID(ShaderBaseColor)))`
-- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeMaterialFixer.cs:54` · `Ziptide.Core.RuntimeMaterialFixer` — Source text marks fallback/prototype debt. `fallback.SetColor(ShaderBaseColor, color);`
-- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeMaterialFixer.cs:56` · `Ziptide.Core.RuntimeMaterialFixer` — Source text marks fallback/prototype debt. `r.sharedMaterial = fallback;`
+- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeMaterialFixer.cs:51` · `Ziptide.Core.RuntimeMaterialFixer` — Source text marks fallback/prototype debt. `Material fallback = new Material(urpLit);`
+- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeMaterialFixer.cs:52` · `Ziptide.Core.RuntimeMaterialFixer` — Source text marks fallback/prototype debt. `fallback.name = "RuntimeMaterialFixer_" + r.gameObject.name;`
+- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeMaterialFixer.cs:53` · `Ziptide.Core.RuntimeMaterialFixer` — Source text marks fallback/prototype debt. `fallback.hideFlags = HideFlags.HideAndDontSave;`
+- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeMaterialFixer.cs:55` · `Ziptide.Core.RuntimeMaterialFixer` — Source text marks fallback/prototype debt. `if (fallback.HasProperty(Shader.PropertyToID(ShaderBaseColor)))`
+- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeMaterialFixer.cs:56` · `Ziptide.Core.RuntimeMaterialFixer` — Source text marks fallback/prototype debt. `fallback.SetColor(ShaderBaseColor, color);`
+- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeMaterialFixer.cs:58` · `Ziptide.Core.RuntimeMaterialFixer` — Source text marks fallback/prototype debt. `r.sharedMaterial = fallback;`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Core/Runtime/TransmissionText.cs:4` · `Ziptide.Core.TransmissionText` — Source text marks fallback/prototype debt. `/// The Transmission's PLAYBACK TEXT per clarity tier (GAME_PLAN M1 stub; full audio lands at the`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Core/Runtime/ZiptideConstants.cs:20` · `Ziptide.Core.ZiptideConstants` — Source text marks fallback/prototype debt. `// 2026-07-06 (Picasso): REVERTED the June-18 Sandbox dev-bypass — booting into the graybox left`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Editor/Art/ArtModuleRegistry.cs:30` · `Ziptide.Editor.Art.ArtModuleRegistry` — Source text marks fallback/prototype debt. `/// <summary>Consumers: try the registry; false = build your primitive fallback.</summary>`
@@ -741,9 +741,8 @@
 ### input
 
 - **FRAME_BUTTON_POLL** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:75` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — Frame-polled input state. `if (kb != null && kb.f2Key.wasPressedThisFrame) Toggle();`
-- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeInputEnabler.cs:18` · `Ziptide.Core.RuntimeInputEnabler` — Input System action reference. `var assetsEnabled = new HashSet<InputActionAsset>();`
-- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeInputEnabler.cs:27` · `Ziptide.Core.RuntimeInputEnabler` — Input System action reference. `InputActionAsset asset = GetAssetFromController(c);`
-- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeInputEnabler.cs:35` · `Ziptide.Core.RuntimeInputEnabler` — Input System action reference. `// Any other MonoBehaviour with InputActionReference fields (e.g. ActionBasedControllerManager)`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeInputEnabler.cs:20` · `Ziptide.Core.RuntimeInputEnabler` — Input System action reference. `var assetsEnabled = new HashSet<InputActionAsset>();`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeInputEnabler.cs:28` · `Ziptide.Core.RuntimeInputEnabler` — Input System action reference. `InputActionAsset asset = GetAssetFromController(c);`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeInputEnabler.cs:40` · `Ziptide.Core.RuntimeInputEnabler` — Input System action reference. `InputActionAsset asset = GetAssetFromInputActionReferences(mb);`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeInputEnabler.cs:49` · `Ziptide.Core.RuntimeInputEnabler` — Input System action reference. `Debug.Log($"[Ziptide] RuntimeInputEnabler: enabled {totalAssets} InputActionAsset(s). Controllers={controllersProcessed}, Other={otherProcessed}.");`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeInputEnabler.cs:52` · `Ziptide.Core.RuntimeInputEnabler` — Input System action reference. `private static InputActionAsset GetAssetFromController(ActionBasedController c)`
@@ -861,7 +860,7 @@
 - **INPUT_BUTTON_REFERENCE** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:75` · `Ziptide.Ship.VehicleRuntime` — Controller/button reference. `_boostA.AddBinding("<XRController>{RightHand}/primaryButton");`
 ### materials
 
-- **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeMaterialFixer.cs:49` · `Ziptide.Core.RuntimeMaterialFixer` — Runtime Material allocation. `Material fallback = new Material(urpLit);`
+- **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeMaterialFixer.cs:51` · `Ziptide.Core.RuntimeMaterialFixer` — Runtime Material allocation. `Material fallback = new Material(urpLit);`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Editor/Art/BuildingKitLibrary.cs:134` · `Ziptide.Editor.Art.BuildingKitLibrary` — Runtime Material allocation. `var mat = new Material(interior);`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:71` · `Ziptide.Editor.Patching.CityBuilder` — Runtime Material allocation. `m = new Material(shader) { name = "CityMat_" + ColorUtility.ToHtmlStringRGB(c) };`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Editor/Patching/ForgeBaker.cs:152` · `Ziptide.Editor.Patching.ForgeBaker` — Runtime Material allocation. `mat = new Material(Shader.Find("Universal Render Pipeline/Lit"));`
@@ -948,7 +947,7 @@
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Vfx/VfxFactory.cs:347` · `Ziptide.Visuals.VfxFactory` — Runtime Material allocation. `_sharedMaterial = new Material(shader)`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Water/ZiptideWater.cs:65` · `Ziptide.Visuals.ZiptideWater` — Runtime Material allocation. `_waterMat = new Material(lit) { name = "ZiptideWater" };`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Water/ZiptideWater.cs:113` · `Ziptide.Visuals.ZiptideWater` — Runtime Material allocation. `_foamMat = new Material(lit) { name = "ZiptideWaterFoam" };`
-- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeMaterialFixer.cs:17` · `Ziptide.Core.RuntimeMaterialFixer` — Runtime shader lookup. `Shader urpLit = Shader.Find(URPShaderName);`
+- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeMaterialFixer.cs:19` · `Ziptide.Core.RuntimeMaterialFixer` — Runtime shader lookup. `Shader urpLit = Shader.Find(URPShaderName);`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Editor/Art/BuildingKitLibrary.cs:131` · `Ziptide.Editor.Art.BuildingKitLibrary` — Runtime shader lookup. `var interior = Shader.Find("Ziptide/InteriorMapping");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:69` · `Ziptide.Editor.Patching.CityBuilder` — Runtime shader lookup. `var shader = Shader.Find("Universal Render Pipeline/Lit");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:70` · `Ziptide.Editor.Patching.CityBuilder` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Standard");`
@@ -1087,7 +1086,7 @@
 ### persistence
 
 - **DONT_DESTROY_ON_LOAD** — `Ziptide/Assets/Ziptide/Core/Runtime/DebugHUD.cs:29` · `Ziptide.Core.DebugHUD` — Object promoted across scene loads. `Object.DontDestroyOnLoad(s_Root);`
-- **DONT_DESTROY_ON_LOAD** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs:38` · `Ziptide.Core.RuntimeHealthMonitor` — Object promoted across scene loads. `DontDestroyOnLoad(go);`
+- **DONT_DESTROY_ON_LOAD** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs:39` · `Ziptide.Core.RuntimeHealthMonitor` — Object promoted across scene loads. `DontDestroyOnLoad(go);`
 - **DONT_DESTROY_ON_LOAD** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs:39` · `Ziptide.Gameplay.AmbienceDirector` — Object promoted across scene loads. `DontDestroyOnLoad(go);`
 - **DONT_DESTROY_ON_LOAD** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs:32` · `Ziptide.Gameplay.AudioDirector` — Object promoted across scene loads. `DontDestroyOnLoad(gameObject);`
 - **DONT_DESTROY_ON_LOAD** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarp.cs:76` · `Ziptide.Gameplay.DevTools.DevWarp` — Object promoted across scene loads. `Object.DontDestroyOnLoad(go);`
@@ -1336,7 +1335,7 @@
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Core/Runtime/DebugHUD.cs:37` · `Ziptide.Core.DebugHUD` — Runtime GameObject construction. `var go = new GameObject("Text");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Core/Runtime/GamePool.cs:39` · `Ziptide.Core.GamePool` — Runtime GameObject construction. `var go = new GameObject("__GAMEPOOL");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Core/Runtime/GamePool.cs:130` · `Ziptide.Core.GamePool` — Runtime GameObject construction. `var go = new GameObject("__GAMEPOOL_TICKER");`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs:37` · `Ziptide.Core.RuntimeHealthMonitor` — Runtime GameObject construction. `var go = new GameObject("__RuntimeHealth");`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs:38` · `Ziptide.Core.RuntimeHealthMonitor` — Runtime GameObject construction. `var go = new GameObject("__RuntimeHealth");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Art/BuildingKitLibrary.cs:62` · `Ziptide.Editor.Art.BuildingKitLibrary` — Runtime GameObject construction. `var root = new GameObject("Kit_" + styleId + (windowReveal ? "_WallWindow" : "_WallSolid"));`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Art/CavernKitLibrary.cs:37` · `Ziptide.Editor.Art.CavernKitLibrary` — Runtime GameObject construction. `var root = new GameObject("Kit_Cavern_FloorPad");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Art/CavernKitLibrary.cs:73` · `Ziptide.Editor.Art.CavernKitLibrary` — Runtime GameObject construction. `var root = new GameObject("Kit_Cavern_Stalactite");`

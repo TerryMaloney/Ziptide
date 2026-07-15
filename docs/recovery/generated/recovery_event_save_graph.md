@@ -632,8 +632,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 ### `SceneManager.sceneLoaded`
 
 - **EVENT_SUBSCRIBE** · `Ziptide.Core.GamePool` · `Ziptide/Assets/Ziptide/Core/Runtime/GamePool.cs:50` · `(_, __) =>` — `SceneManager.sceneLoaded += (_, __) => ResetForNewScene();`
-- **EVENT_SUBSCRIBE** · `Ziptide.Core.RuntimeHealthMonitor` · `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs:48` · `OnSceneLoaded` — `SceneManager.sceneLoaded += OnSceneLoaded;`
-- **EVENT_UNSUBSCRIBE** · `Ziptide.Core.RuntimeHealthMonitor` · `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs:54` · `OnSceneLoaded` — `if (_instance == this) { SceneManager.sceneLoaded -= OnSceneLoaded; _instance = null; }`
+- **EVENT_SUBSCRIBE** · `Ziptide.Core.RuntimeHealthMonitor` · `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs:49` · `OnSceneLoaded` — `SceneManager.sceneLoaded += OnSceneLoaded;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Core.RuntimeHealthMonitor` · `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs:55` · `OnSceneLoaded` — `if (_instance == this) { SceneManager.sceneLoaded -= OnSceneLoaded; _instance = null; }`
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.AmbienceDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs:49` · `OnSceneLoaded` — `SceneManager.sceneLoaded += OnSceneLoaded;`
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.AmbienceDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs:55` · `OnSceneLoaded` — `if (_instance == this) { SceneManager.sceneLoaded -= OnSceneLoaded; _instance = null; }`
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.AudioDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs:40` · `OnSceneLoaded` — `SceneManager.sceneLoaded += OnSceneLoaded;`
