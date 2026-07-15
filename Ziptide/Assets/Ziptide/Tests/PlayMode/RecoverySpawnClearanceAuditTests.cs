@@ -66,6 +66,8 @@ namespace Ziptide.Tests.PlayMode
                 "r1_6_controlled_blocked_spawn");
             Assert.IsTrue(File.Exists(blockedPath));
             Assert.IsTrue(HasCode(blocked, "SPAWN_TORSO_OCCLUDED"), Format(blocked));
+
+            yield return null;
         }
 
         private static int BlockerCount(RecoverySpawnClearanceReport report)
