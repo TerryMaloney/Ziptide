@@ -80,7 +80,7 @@ namespace Ziptide.Tests.EditMode
         private static int CountRuntimeLogCalls(string root, string tag)
         {
             var pattern = new Regex(
-                @"Debug\.Log(?:Warning|Error)?\(\s*\""ZIPTIDE: " + Regex.Escape(tag),
+                "Debug\\.Log(?:Warning|Error)?\\(\\s*\\\"ZIPTIDE: " + Regex.Escape(tag),
                 RegexOptions.CultureInvariant);
             int count = 0;
             foreach (string file in Directory.GetFiles(root, "*.cs", SearchOption.AllDirectories))
