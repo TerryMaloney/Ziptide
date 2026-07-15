@@ -144,3 +144,100 @@ jobs:
             ${{ env.PROJECT_PATH }}/Builds/Reports/*
           if-no-files-found: warn
           retention-days: 90
+
+  record-observation:
+    name: Record durable Golden Android observation
+    needs: build-golden-apk
+    if: >-
+      always() &&
+      (github.event_name == 'push' || github.event_name == 'workflow_dispatch') &&
+      github.ref == 'refs/heads/terry-local-wip'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    continue-on-error: true
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout current branch head
+        uses: actions/checkout@v4
+        with:
+          ref: terry-local-wip
+          fetch-depth: 0
+          lfs: false
+
+      - name: Refuse stale observation writes
+        id: freshness
+        shell: bash
+        run: |
+          set -euo pipefail
+          tested="${{ github.sha }}"
+          current="$(git rev-parse HEAD)"
+          echo "tested=$tested"
+          echo "current=$current"
+
+          if [[ "$current" == "$tested" ]]; then
+            echo "write=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          git cat-file -e "${tested}^{commit}"
+          changed="$(git diff --name-only "$tested" HEAD)"
+          echo "$changed"
+
+          while IFS= read -r path; do
+            [[ -z "$path" ]] && continue
+            case "$path" in
+              docs/recovery/generated/*|docs/CI_VERDICT.md)
+                ;;
+              *)
+                echo "write=false" >> "$GITHUB_OUTPUT"
+                echo "::notice::Branch advanced through non-generated path '$path'; newer source owns the observation."
+                exit 0
+                ;;
+            esac
+          done <<< "$changed"
+
+          echo "write=true" >> "$GITHUB_OUTPUT"
+          echo "::notice::Only generated evidence commits advanced the branch; recording the tested SHA is safe."
+
+      - name: Render observation
+        if: steps.freshness.outputs.write == 'true'
+        shell: bash
+        env:
+          BUILD_RESULT: ${{ needs.build-golden-apk.result }}
+        run: |
+          set -euo pipefail
+          mkdir -p docs/recovery/generated
+          cat > docs/recovery/generated/recovery_golden_android_observation.md <<EOF
+          # Recovery Golden Android Observation
+
+          - Tested SHA: `${{ github.sha }}`
+          - Workflow run: `${{ github.run_id }}`
+          - Attempt: `${{ github.run_attempt }}`
+          - Build/verification result: **${BUILD_RESULT}**
+          - Unity: ${UNITY_VERSION}
+          - Build method: `Ziptide.Build.RecoveryBuildAndroid.PatchScenesThenGoldenAPK`
+          - Compile define: `ZIPTIDE_RECOVERY_GOLDEN`
+          - Locked scenes: `_Boot`, `W000_DriftIn`, `ToxicCity`
+          - Candidate artifact: `recovery-golden-apk-${{ github.sha }}`
+          - Audit artifact: `recovery-golden-audit-${{ github.sha }}`
+          EOF
+
+      - name: Commit observation without forcing
+        if: steps.freshness.outputs.write == 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          path="docs/recovery/generated/recovery_golden_android_observation.md"
+          if git diff --quiet -- "$path"; then
+            echo "::notice::Observation already matches this run."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$path"
+          git commit -m "ci(recovery): record Golden Android observation for ${GITHUB_SHA:0:7} [skip ci]"
+          if ! git push origin HEAD:terry-local-wip; then
+            echo "::warning::Branch advanced during observation write; no force push attempted."
+            exit 0
+          fi
