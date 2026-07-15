@@ -25,7 +25,8 @@ namespace Ziptide.Tests.PlayMode
             new SourceExpectation("Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs", RecoveryFeatureId.PvpProgression),
             new SourceExpectation("Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs", RecoveryFeatureId.QuartersCameraInjector),
             new SourceExpectation("Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs", RecoveryFeatureId.FirstHourObservation),
-            new SourceExpectation("Ziptide/Assets/Ziptide/Gameplay/Runtime/Diagnostics/SingletonValidator.cs", RecoveryFeatureId.SingletonValidator)
+            new SourceExpectation("Ziptide/Assets/Ziptide/Gameplay/Runtime/Diagnostics/SingletonValidator.cs", RecoveryFeatureId.SingletonValidator),
+            new SourceExpectation("Ziptide/Assets/ZiptideNet/NetBootstrap.cs", RecoveryFeatureId.NetBootstrap)
         };
 
         private readonly struct SourceExpectation
