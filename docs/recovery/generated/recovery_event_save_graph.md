@@ -812,7 +812,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `addTile`
 
-- **EVENT_INVOKE** · `Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:75` — `addTile.Invoke(hub, new object[]`
+- **EVENT_INVOKE** · `Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:77` — `addTile.Invoke(hub, new object[]`
 
 ### `aim.Y`
 

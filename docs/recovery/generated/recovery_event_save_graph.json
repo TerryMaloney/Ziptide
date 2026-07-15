@@ -4787,7 +4787,7 @@
       {
         "kind": "EVENT_INVOKE",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs",
-        "line": 75,
+        "line": 77,
         "owner": "Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests",
         "target": "addTile",
         "detail": "",
@@ -12098,7 +12098,7 @@
     {
       "kind": "EVENT_INVOKE",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs",
-      "line": 75,
+      "line": 77,
       "owner": "Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests",
       "target": "addTile",
       "detail": "",

@@ -2127,9 +2127,9 @@ None.
 
 - Codes: `NEW_GAME_OBJECT`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:66` **NEW_GAME_OBJECT** — `var hubHost = new GameObject("__RECOVERY_HOME_HUB_BIND_TEST");`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:92` **NEW_GAME_OBJECT** — `var earlyHost = new GameObject("__RECOVERY_EARLY_XRI_MANAGER");`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:110` **NEW_GAME_OBJECT** — `var replacementHost = new GameObject("__RECOVERY_REPLACEMENT_XRI_MANAGER");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:68` **NEW_GAME_OBJECT** — `var hubHost = new GameObject("__RECOVERY_HOME_HUB_BIND_TEST");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:94` **NEW_GAME_OBJECT** — `var earlyHost = new GameObject("__RECOVERY_EARLY_XRI_MANAGER");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:112` **NEW_GAME_OBJECT** — `var replacementHost = new GameObject("__RECOVERY_REPLACEMENT_XRI_MANAGER");`
 
 ### `Ziptide.Tests.PlayMode.RecoveryTestRig` — 9 signal(s)
 
@@ -2471,11 +2471,11 @@ None.
 
 - Codes: `XRI_MANAGER_ASSIGN`, `XRI_MANAGER_CREATE`, `XRI_MANAGER_LOOKUP`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:43` **XRI_MANAGER_LOOKUP** — `Assert.IsNull(UnityEngine.Object.FindObjectOfType<XRInteractionManager>(),`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:90` **XRI_MANAGER_ASSIGN** — `if (interactable.interactionManager == null)`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:94` **XRI_MANAGER_CREATE** — `earlyHost.AddComponent<XRInteractionManager>();`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:95` **XRI_MANAGER_ASSIGN** — `for (int frame = 0; frame < 10 && interactable.interactionManager == null; frame++)`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:112` **XRI_MANAGER_CREATE** — `var replacement = replacementHost.AddComponent<XRInteractionManager>();`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:45` **XRI_MANAGER_LOOKUP** — `Assert.IsNull(UnityEngine.Object.FindObjectOfType<XRInteractionManager>(),`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:92` **XRI_MANAGER_ASSIGN** — `if (interactable.interactionManager == null)`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:96` **XRI_MANAGER_CREATE** — `earlyHost.AddComponent<XRInteractionManager>();`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:97` **XRI_MANAGER_ASSIGN** — `for (int frame = 0; frame < 10 && interactable.interactionManager == null; frame++)`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:114` **XRI_MANAGER_CREATE** — `var replacement = replacementHost.AddComponent<XRInteractionManager>();`
 
 ### `Ziptide.Tests.PlayMode.RecoveryTestRig` — 2 signal(s)
 
