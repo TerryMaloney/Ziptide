@@ -41,7 +41,7 @@ namespace Ziptide.Tests.PlayMode
 
             yield return null;
             Assert.IsNull(UnityEngine.Object.FindObjectOfType<XRInteractionManager>(),
-                "The late-binding test requires no active XR manager before the tile is built.");
+                "The replacement test requires no active XR manager before the tile is built.");
         }
 
         [UnityTearDown]
@@ -61,11 +61,12 @@ namespace Ziptide.Tests.PlayMode
         }
 
         [UnityTest]
-        public IEnumerator TileCreatedBeforeManager_BindsThroughDelayedPath()
+        public IEnumerator TileBoundToEarlyManager_RebindsWhenManagerIsReplaced()
         {
             var hubHost = new GameObject("__RECOVERY_HOME_HUB_BIND_TEST");
             _created.Add(hubHost);
             var hub = hubHost.AddComponent<HomeHubRuntime>();
+            hub.enabled = false; // suppress Start; the private tile seam owns this bounded test.
 
             MethodInfo addTile = typeof(HomeHubRuntime).GetMethod(
                 "AddTile", BindingFlags.Instance | BindingFlags.NonPublic);
@@ -73,33 +74,55 @@ namespace Ziptide.Tests.PlayMode
 
             addTile.Invoke(hub, new object[]
             {
-                "LATE BIND",
+                "MANAGER REPLACE",
                 Vector3.zero,
                 Color.white,
                 new Action(() => { })
             });
 
-            Transform tileTransform = hubHost.transform.Find("Tile_LATE_BIND");
+            Transform tileTransform = hubHost.transform.Find("Tile_MANAGER_REPLACE");
             Assert.IsNotNull(tileTransform, "The Home Hub test tile was not created.");
             var interactable = tileTransform.GetComponent<XRSimpleInteractable>();
             Assert.IsNotNull(interactable, "The Home Hub tile has no XRSimpleInteractable.");
-            Assert.IsNull(interactable.interactionManager,
-                "The test tile unexpectedly bound before a manager existed.");
 
-            yield return null;
+            // XRI may create or resolve an early manager during interactable OnEnable. If this
+            // runtime does not, supply one and allow the Home Hub monitor to bind it.
+            if (interactable.interactionManager == null)
+            {
+                var earlyHost = new GameObject("__RECOVERY_EARLY_XRI_MANAGER");
+                _created.Add(earlyHost);
+                earlyHost.AddComponent<XRInteractionManager>();
+                for (int frame = 0; frame < 10 && interactable.interactionManager == null; frame++)
+                    yield return null;
+            }
 
-            var managerHost = new GameObject("__RECOVERY_LATE_XRI_MANAGER");
-            _created.Add(managerHost);
-            var manager = managerHost.AddComponent<XRInteractionManager>();
+            XRInteractionManager earlyManager = interactable.interactionManager;
+            Assert.IsNotNull(earlyManager, "The test tile never acquired its initial XR manager.");
+
+            GameObject earlyManagerHost = earlyManager.gameObject;
+            if (!WasExistingManagerHost(earlyManagerHost) && !_created.Contains(earlyManagerHost))
+                _created.Add(earlyManagerHost);
+            earlyManagerHost.SetActive(false);
 
             LogAssert.Expect(LogType.Log,
-                new Regex("ZIPTIDE: HOME_HUB_TILE_BOUND tile=Tile_LATE_BIND mode=delayed"));
+                new Regex("ZIPTIDE: HOME_HUB_TILE_BOUND tile=Tile_MANAGER_REPLACE mode=rebound"));
 
-            for (int frame = 0; frame < 10 && interactable.interactionManager == null; frame++)
+            var replacementHost = new GameObject("__RECOVERY_REPLACEMENT_XRI_MANAGER");
+            _created.Add(replacementHost);
+            var replacement = replacementHost.AddComponent<XRInteractionManager>();
+
+            for (int frame = 0; frame < 10 && interactable.interactionManager != replacement; frame++)
                 yield return null;
 
-            Assert.AreSame(manager, interactable.interactionManager,
-                "The startup tile did not bind when the XR manager appeared later.");
+            Assert.AreSame(replacement, interactable.interactionManager,
+                "The startup tile stayed attached to the early XR manager after replacement.");
+        }
+
+        private bool WasExistingManagerHost(GameObject host)
+        {
+            for (int i = 0; i < _existingManagers.Count; i++)
+                if (_existingManagers[i].Host == host) return true;
+            return false;
         }
     }
 }
