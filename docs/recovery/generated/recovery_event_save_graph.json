@@ -1,16 +1,16 @@
 {
   "tool": "recovery_event_save_graph",
-  "scannedFiles": 628,
-  "evidenceCount": 658,
+  "scannedFiles": 630,
+  "evidenceCount": 676,
   "kindCounts": {
     "AUTOSAVE": 7,
     "EVENT_DECLARE": 45,
     "EVENT_INVOKE": 56,
-    "EVENT_SUBSCRIBE": 85,
-    "EVENT_UNSUBSCRIBE": 39,
+    "EVENT_SUBSCRIBE": 89,
+    "EVENT_UNSUBSCRIBE": 43,
     "PLAYER_PREFS_ACCESS": 11,
-    "PROFILE_FIELD_ACCESS": 352,
-    "SAVE_ACCESS": 63
+    "PROFILE_FIELD_ACCESS": 358,
+    "SAVE_ACCESS": 67
   },
   "unmatchedNamedSubscriptionCount": 47,
   "unmatchedNamedSubscriptions": [
@@ -815,6 +815,24 @@
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
         "line": 53,
         "owner": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
+        "target": "Application.logMessageReceived",
+        "detail": "_logCallback",
+        "snippet": "if (_logCallback != null) Application.logMessageReceived -= _logCallback;"
+      },
+      {
+        "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
+        "line": 65,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
+        "target": "Application.logMessageReceived",
+        "detail": "_logCallback",
+        "snippet": "Application.logMessageReceived += _logCallback;"
+      },
+      {
+        "kind": "EVENT_UNSUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
+        "line": 76,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
         "target": "Application.logMessageReceived",
         "detail": "_logCallback",
         "snippet": "if (_logCallback != null) Application.logMessageReceived -= _logCallback;"
@@ -1810,6 +1828,24 @@
         "target": "GetResource",
         "detail": "profile",
         "snippet": "Assert.AreEqual(0, profile.GetResource(\"scrap\"), 1e-9, \"nothing credited\");"
+      },
+      {
+        "kind": "PROFILE_FIELD_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
+        "line": 359,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
+        "target": "GetResource",
+        "detail": "profile",
+        "snippet": "Assert.AreEqual(ProbeAmount, profile.GetResource(ProbeResource),"
+      },
+      {
+        "kind": "PROFILE_FIELD_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
+        "line": 372,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
+        "target": "GetResource",
+        "detail": "profile",
+        "snippet": "Assert.AreEqual(ProbeAmount, profile.GetResource(ProbeResource),"
       }
     ],
     "GetWorld": [
@@ -2464,6 +2500,24 @@
         "target": "HasFlag",
         "detail": "profile",
         "snippet": "Assert.IsTrue(profile.HasFlag(\"W001_COMPLETE\"));"
+      },
+      {
+        "kind": "PROFILE_FIELD_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
+        "line": 358,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
+        "target": "HasFlag",
+        "detail": "profile",
+        "snippet": "Assert.IsTrue(profile.HasFlag(ProbeFlag), \"Recovery probe flag was lost from live state.\");"
+      },
+      {
+        "kind": "PROFILE_FIELD_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
+        "line": 371,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
+        "target": "HasFlag",
+        "detail": "profile",
+        "snippet": "Assert.IsTrue(profile.HasFlag(ProbeFlag), \"Recovery probe flag was not persisted to disk.\");"
       }
     ],
     "HomeHubRuntime.BootPresentationReady": [
@@ -2481,6 +2535,24 @@
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
         "line": 55,
         "owner": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
+        "target": "HomeHubRuntime.BootPresentationReady",
+        "detail": "OnBootReady",
+        "snippet": "HomeHubRuntime.BootPresentationReady -= OnBootReady;"
+      },
+      {
+        "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
+        "line": 66,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
+        "target": "HomeHubRuntime.BootPresentationReady",
+        "detail": "OnBootReady",
+        "snippet": "HomeHubRuntime.BootPresentationReady += OnBootReady;"
+      },
+      {
+        "kind": "EVENT_UNSUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
+        "line": 78,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
         "target": "HomeHubRuntime.BootPresentationReady",
         "detail": "OnBootReady",
         "snippet": "HomeHubRuntime.BootPresentationReady -= OnBootReady;"
@@ -2504,6 +2576,26 @@
         "target": "HomeHubRuntime.ChoiceSelected",
         "detail": "OnChoice",
         "snippet": "HomeHubRuntime.ChoiceSelected -= OnChoice;"
+      }
+    ],
+    "HomeHubRuntime.NewGameProfileCreated": [
+      {
+        "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
+        "line": 67,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
+        "target": "HomeHubRuntime.NewGameProfileCreated",
+        "detail": "OnNewGameProfileCreated",
+        "snippet": "HomeHubRuntime.NewGameProfileCreated += OnNewGameProfileCreated;"
+      },
+      {
+        "kind": "EVENT_UNSUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
+        "line": 79,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
+        "target": "HomeHubRuntime.NewGameProfileCreated",
+        "detail": "OnNewGameProfileCreated",
+        "snippet": "HomeHubRuntime.NewGameProfileCreated -= OnNewGameProfileCreated;"
       }
     ],
     "HomeHubRuntime.SettingsRequested": [
@@ -3487,6 +3579,15 @@
         "target": "SaveSystem.HasExistingProfile",
         "detail": "",
         "snippet": "bool canContinue = SaveSystem.HasExistingProfile;"
+      },
+      {
+        "kind": "SAVE_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
+        "line": 95,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
+        "target": "SaveSystem.HasExistingProfile",
+        "detail": "",
+        "snippet": "Assert.IsFalse(SaveSystem.HasExistingProfile,"
       }
     ],
     "SaveSystem.Load": [
@@ -3507,6 +3608,15 @@
         "target": "SaveSystem.Load",
         "detail": "",
         "snippet": "StringAssert.Contains(\"SaveSystem.Instance.Load();\", source);"
+      },
+      {
+        "kind": "SAVE_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
+        "line": 147,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
+        "target": "SaveSystem.Load",
+        "detail": "",
+        "snippet": "SaveSystem.Instance.Load();"
       }
     ],
     "SaveSystem.Profile": [
@@ -3968,6 +4078,24 @@
         "target": "SaveSystem.Profile",
         "detail": "",
         "snippet": "SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null,"
+      },
+      {
+        "kind": "SAVE_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
+        "line": 128,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
+        "target": "SaveSystem.Profile",
+        "detail": "",
+        "snippet": "PlayerProfile live = SaveSystem.Instance.Profile;"
+      },
+      {
+        "kind": "SAVE_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
+        "line": 355,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
+        "target": "SaveSystem.Profile",
+        "detail": "",
+        "snippet": "PlayerProfile profile = SaveSystem.Instance.Profile;"
       }
     ],
     "SaveSystem.StartNewProfile": [
@@ -4644,6 +4772,26 @@
         "target": "TravelCompleted",
         "detail": "",
         "snippet": "StringAssert.DoesNotContain(\"TravelCompleted?.Invoke(sceneName)\","
+      }
+    ],
+    "TravelCoordinator.TravelCompleted": [
+      {
+        "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
+        "line": 68,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
+        "target": "TravelCoordinator.TravelCompleted",
+        "detail": "OnTravelCompleted",
+        "snippet": "TravelCoordinator.TravelCompleted += OnTravelCompleted;"
+      },
+      {
+        "kind": "EVENT_UNSUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
+        "line": 80,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
+        "target": "TravelCoordinator.TravelCompleted",
+        "detail": "OnTravelCompleted",
+        "snippet": "TravelCoordinator.TravelCompleted -= OnTravelCompleted;"
       }
     ],
     "TryGet": [
@@ -6103,6 +6251,24 @@
         "target": "playerId",
         "detail": "Profile",
         "snippet": "Debug.Log(\"ZIPTIDE: SAVE_NEW_PROFILE playerId=\" + Profile.playerId);"
+      },
+      {
+        "kind": "PROFILE_FIELD_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
+        "line": 357,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
+        "target": "playerId",
+        "detail": "profile",
+        "snippet": "Assert.AreEqual(expectedPlayerId, profile.playerId);"
+      },
+      {
+        "kind": "PROFILE_FIELD_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
+        "line": 370,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
+        "target": "playerId",
+        "detail": "profile",
+        "snippet": "Assert.AreEqual(expectedPlayerId, profile.playerId);"
       }
     ],
     "plot.plantedAtUnix": [
@@ -12450,6 +12616,168 @@
       "target": "Root.transform.position",
       "detail": "delta",
       "snippet": "Root.transform.position += delta;"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
+      "line": 65,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
+      "target": "Application.logMessageReceived",
+      "detail": "_logCallback",
+      "snippet": "Application.logMessageReceived += _logCallback;"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
+      "line": 66,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
+      "target": "HomeHubRuntime.BootPresentationReady",
+      "detail": "OnBootReady",
+      "snippet": "HomeHubRuntime.BootPresentationReady += OnBootReady;"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
+      "line": 67,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
+      "target": "HomeHubRuntime.NewGameProfileCreated",
+      "detail": "OnNewGameProfileCreated",
+      "snippet": "HomeHubRuntime.NewGameProfileCreated += OnNewGameProfileCreated;"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
+      "line": 68,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
+      "target": "TravelCoordinator.TravelCompleted",
+      "detail": "OnTravelCompleted",
+      "snippet": "TravelCoordinator.TravelCompleted += OnTravelCompleted;"
+    },
+    {
+      "kind": "EVENT_UNSUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
+      "line": 76,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
+      "target": "Application.logMessageReceived",
+      "detail": "_logCallback",
+      "snippet": "if (_logCallback != null) Application.logMessageReceived -= _logCallback;"
+    },
+    {
+      "kind": "EVENT_UNSUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
+      "line": 78,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
+      "target": "HomeHubRuntime.BootPresentationReady",
+      "detail": "OnBootReady",
+      "snippet": "HomeHubRuntime.BootPresentationReady -= OnBootReady;"
+    },
+    {
+      "kind": "EVENT_UNSUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
+      "line": 79,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
+      "target": "HomeHubRuntime.NewGameProfileCreated",
+      "detail": "OnNewGameProfileCreated",
+      "snippet": "HomeHubRuntime.NewGameProfileCreated -= OnNewGameProfileCreated;"
+    },
+    {
+      "kind": "EVENT_UNSUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
+      "line": 80,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
+      "target": "TravelCoordinator.TravelCompleted",
+      "detail": "OnTravelCompleted",
+      "snippet": "TravelCoordinator.TravelCompleted -= OnTravelCompleted;"
+    },
+    {
+      "kind": "SAVE_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
+      "line": 95,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
+      "target": "SaveSystem.HasExistingProfile",
+      "detail": "",
+      "snippet": "Assert.IsFalse(SaveSystem.HasExistingProfile,"
+    },
+    {
+      "kind": "SAVE_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
+      "line": 128,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
+      "target": "SaveSystem.Profile",
+      "detail": "",
+      "snippet": "PlayerProfile live = SaveSystem.Instance.Profile;"
+    },
+    {
+      "kind": "SAVE_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
+      "line": 147,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
+      "target": "SaveSystem.Load",
+      "detail": "",
+      "snippet": "SaveSystem.Instance.Load();"
+    },
+    {
+      "kind": "SAVE_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
+      "line": 355,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
+      "target": "SaveSystem.Profile",
+      "detail": "",
+      "snippet": "PlayerProfile profile = SaveSystem.Instance.Profile;"
+    },
+    {
+      "kind": "PROFILE_FIELD_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
+      "line": 357,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
+      "target": "playerId",
+      "detail": "profile",
+      "snippet": "Assert.AreEqual(expectedPlayerId, profile.playerId);"
+    },
+    {
+      "kind": "PROFILE_FIELD_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
+      "line": 358,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
+      "target": "HasFlag",
+      "detail": "profile",
+      "snippet": "Assert.IsTrue(profile.HasFlag(ProbeFlag), \"Recovery probe flag was lost from live state.\");"
+    },
+    {
+      "kind": "PROFILE_FIELD_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
+      "line": 359,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
+      "target": "GetResource",
+      "detail": "profile",
+      "snippet": "Assert.AreEqual(ProbeAmount, profile.GetResource(ProbeResource),"
+    },
+    {
+      "kind": "PROFILE_FIELD_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
+      "line": 370,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
+      "target": "playerId",
+      "detail": "profile",
+      "snippet": "Assert.AreEqual(expectedPlayerId, profile.playerId);"
+    },
+    {
+      "kind": "PROFILE_FIELD_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
+      "line": 371,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
+      "target": "HasFlag",
+      "detail": "profile",
+      "snippet": "Assert.IsTrue(profile.HasFlag(ProbeFlag), \"Recovery probe flag was not persisted to disk.\");"
+    },
+    {
+      "kind": "PROFILE_FIELD_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
+      "line": 372,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
+      "target": "GetResource",
+      "detail": "profile",
+      "snippet": "Assert.AreEqual(ProbeAmount, profile.GetResource(ProbeResource),"
     },
     {
       "kind": "PROFILE_FIELD_ACCESS",
