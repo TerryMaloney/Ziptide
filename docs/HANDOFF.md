@@ -27,6 +27,54 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-15 (rb33) — Fable 5: GPT's end-of-window state recorded + the next bounded packet, with four requirements
+
+- **Why this entry exists:** GPT's execution window ended before it could commit its own HANDOFF
+  entry. Terry relayed its report; I'm recording it here for continuity and issuing the next-packet
+  instructions Terry asked for. Status remains: **NOT headset-ready; no Quest authorization.**
+- **GPT's reported state (as relayed; independently re-verify what's starred):** candidate
+  `4954f388` ran the full 36-test PlayMode suite: **32 green, 4 red**. All four reds are TEST-RIG
+  contract gaps, not game regressions: ① three tests fail because Unity's virtual `XRController`
+  base layout has no `Primary2DAxis` control while the real locomotion bindings require
+  `<XRController>{Left/RightHand}/{Primary2DAxis}` — the new guard correctly reports "8 locomotion
+  actions, 0 bound controls" instead of a misleading null-ref (that's the harness doing its job);
+  ② the render proof produces a valid PNG + metrics, then Linux headless Unity hangs during GPU
+  resource DESTRUCTION — the proof works, the cleanup hangs. Also landed this window: bilateral
+  tracked-rig simulator restored (the rb31 zero-test red fixed), real-scene UI audits for Home
+  Hub/W000/ToxicCity, TMP-ancestry detection, floor/head-height/torso-clearance evidence at
+  arrivals, real-time scene-load limits, explicit input-binding evidence, and a REAL defect found
+  by the UI audit and fixed: the Home Hub title rendered ~8.75 m wide on a 2.4 m board. *Starred:
+  GPT reports the rb31 HOLD-2 items (shader-variant gate, fail-fast patch/bake hooks, Forge-output
+  reconciliation) now exist in source — I could not independently re-verify this window (tooling
+  outage); requirement 3 below supersedes that verification anyway. Work-in-progress branch:
+  `recovery/r1-virtual-layout-render-retention`.
+- **NEXT BOUNDED PACKET — endorsed as GPT proposed, with four requirements attached:**
+  1. **Test-only XR layout, test-only forever.** Register the `XRController`-derived layout (real
+     `primary2DAxis` stick control, Left/Right usages preserved) from the TESTS assembly only, and
+     add a source-scan assertion that no runtime assembly ever registers an input layout — a test
+     device layout leaking into the APK would be a new DS-02-class collision. Then prove the eight
+     real locomotion actions bind >0 controls on BOTH hands.
+  2. **GPU retention is visible, capped, and named.** Retaining test textures until process exit is
+     the right workaround for the headless destruction hang — but the retained objects must carry a
+     hard cap, a comment naming the hang, and a count reported in the census artifact. Hidden
+     retention today is tomorrow's "why does CI leak" mystery.
+  3. **CANARY-PROVE the new Android gates before trusting them.** Seed a deliberate violation in a
+     fixture — one runtime `EnableKeyword` transparency flip for the shader gate, one throwing
+     patch hook for the fail-fast gate — and show each gate actually goes RED, then remove the
+     seed. A gate that has never fired is an unproven gate; this also closes rb31 HOLD-2 with
+     evidence instead of assertion.
+  4. **Rerun the UNCHANGED 36-test suite — the assertion surface may not shrink to get green.** And
+     land the isolated branch back onto `terry-local-wip` promptly via the exact-SHA rule; no
+     long-lived divergence.
+- **Then the already-agreed order, unchanged:** independent inspection of the PNGs/UI/clearance/
+  travel/save artifacts → R1.9 fallback-surface proof → R1.10 performance/leak proof → exact-SHA
+  Golden Android with patch/bake/shader evidence → independent claim sampling (rb30/rb31 are the
+  template) → ONLY THEN the bounded Quest checklist for Terry.
+- **Heads-up:** the Home Hub title catch is the program's proof-of-value in one line — a real
+  player-facing defect found and fixed by an automated audit before a headset ever saw it. That is
+  the machine we have been trying to build since the first broken device night.
+- **Commit:** documentation-only HANDOFF entry; no runtime content changed.
+
 ### 2026-07-15 (rb32) — Fable 5: THE FACTORY top-tier plan boarded (planning only, hard-gated behind recovery)
 
 - **Did:** wrote [`docs/design/FACTORY_TOPTIER_PLAN.md`](design/FACTORY_TOPTIER_PLAN.md) at Terry's
