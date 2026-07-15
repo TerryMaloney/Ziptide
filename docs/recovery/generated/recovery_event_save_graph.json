@@ -1,6 +1,6 @@
 {
   "tool": "recovery_event_save_graph",
-  "scannedFiles": 625,
+  "scannedFiles": 626,
   "evidenceCount": 658,
   "kindCounts": {
     "AUTOSAVE": 7,
@@ -804,7 +804,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
-        "line": 40,
+        "line": 42,
         "owner": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
         "target": "Application.logMessageReceived",
         "detail": "_logCallback",
@@ -813,7 +813,7 @@
       {
         "kind": "EVENT_UNSUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
-        "line": 49,
+        "line": 53,
         "owner": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
         "target": "Application.logMessageReceived",
         "detail": "_logCallback",
@@ -2470,7 +2470,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
-        "line": 41,
+        "line": 43,
         "owner": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
         "target": "HomeHubRuntime.BootPresentationReady",
         "detail": "OnBootReady",
@@ -2479,7 +2479,7 @@
       {
         "kind": "EVENT_UNSUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
-        "line": 51,
+        "line": 55,
         "owner": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
         "target": "HomeHubRuntime.BootPresentationReady",
         "detail": "OnBootReady",
@@ -2490,7 +2490,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
-        "line": 42,
+        "line": 44,
         "owner": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
         "target": "HomeHubRuntime.ChoiceSelected",
         "detail": "OnChoice",
@@ -2499,7 +2499,7 @@
       {
         "kind": "EVENT_UNSUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
-        "line": 52,
+        "line": 56,
         "owner": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
         "target": "HomeHubRuntime.ChoiceSelected",
         "detail": "OnChoice",
@@ -2510,7 +2510,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
-        "line": 43,
+        "line": 45,
         "owner": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
         "target": "HomeHubRuntime.SettingsRequested",
         "detail": "OnSettingsRequested",
@@ -2519,7 +2519,7 @@
       {
         "kind": "EVENT_UNSUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
-        "line": 53,
+        "line": 57,
         "owner": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
         "target": "HomeHubRuntime.SettingsRequested",
         "detail": "OnSettingsRequested",
@@ -12148,7 +12148,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
-      "line": 40,
+      "line": 42,
       "owner": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
       "target": "Application.logMessageReceived",
       "detail": "_logCallback",
@@ -12157,7 +12157,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
-      "line": 41,
+      "line": 43,
       "owner": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
       "target": "HomeHubRuntime.BootPresentationReady",
       "detail": "OnBootReady",
@@ -12166,7 +12166,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
-      "line": 42,
+      "line": 44,
       "owner": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
       "target": "HomeHubRuntime.ChoiceSelected",
       "detail": "OnChoice",
@@ -12175,7 +12175,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
-      "line": 43,
+      "line": 45,
       "owner": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
       "target": "HomeHubRuntime.SettingsRequested",
       "detail": "OnSettingsRequested",
@@ -12184,7 +12184,7 @@
     {
       "kind": "EVENT_UNSUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
-      "line": 49,
+      "line": 53,
       "owner": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
       "target": "Application.logMessageReceived",
       "detail": "_logCallback",
@@ -12193,7 +12193,7 @@
     {
       "kind": "EVENT_UNSUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
-      "line": 51,
+      "line": 55,
       "owner": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
       "target": "HomeHubRuntime.BootPresentationReady",
       "detail": "OnBootReady",
@@ -12202,7 +12202,7 @@
     {
       "kind": "EVENT_UNSUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
-      "line": 52,
+      "line": 56,
       "owner": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
       "target": "HomeHubRuntime.ChoiceSelected",
       "detail": "OnChoice",
@@ -12211,7 +12211,7 @@
     {
       "kind": "EVENT_UNSUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
-      "line": 53,
+      "line": 57,
       "owner": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
       "target": "HomeHubRuntime.SettingsRequested",
       "detail": "OnSettingsRequested",

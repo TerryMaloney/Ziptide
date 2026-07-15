@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
-- Scanned files: **625**
-- Scanner findings: **2148**
+- Scanned files: **626**
+- Scanner findings: **2147**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -248,7 +248,7 @@ None.
 
 - Codes: `DIRECT_SCENE_LOAD_ASYNC`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:63` **DIRECT_SCENE_LOAD_ASYNC** — `AsyncOperation load = SceneManager.LoadSceneAsync(`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:67` **DIRECT_SCENE_LOAD_ASYNC** — `AsyncOperation load = SceneManager.LoadSceneAsync(`
 
 
 ## Input
@@ -464,10 +464,10 @@ None.
 
 - Codes: `INPUT_ACTION_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:75` **INPUT_ACTION_REFERENCE** — `InputActionManager inputManager = null;`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:81` **INPUT_ACTION_REFERENCE** — `inputManager = UnityEngine.Object.FindObjectOfType<InputActionManager>();`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:91` **INPUT_ACTION_REFERENCE** — `Assert.IsNotNull(inputManager, "The actual _Boot scene has no InputActionManager.");`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:104` **INPUT_ACTION_REFERENCE** — `Assert.AreEqual(1, ActiveManagerCount(settled, "InputActionManager"));`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:79` **INPUT_ACTION_REFERENCE** — `InputActionManager inputManager = null;`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:85` **INPUT_ACTION_REFERENCE** — `inputManager = UnityEngine.Object.FindObjectOfType<InputActionManager>();`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:95` **INPUT_ACTION_REFERENCE** — `Assert.IsNotNull(inputManager, "The actual _Boot scene has no InputActionManager.");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:108` **INPUT_ACTION_REFERENCE** — `Assert.AreEqual(1, ActiveManagerCount(settled, "InputActionManager"));`
 
 ### `Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests` — 14 signal(s)
 
@@ -2574,12 +2574,18 @@ None.
   - `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:150` **XRI_MANAGER_LOOKUP** — `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
   - `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:151` **XRI_MANAGER_ASSIGN** — `if (mgr != null) interactable.interactionManager = mgr;`
 
+### `Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation` — 1 signal(s)
+
+- Codes: `XRI_MANAGER_ASSIGN`
+- Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:78` **XRI_MANAGER_ASSIGN** — `rightRay.interactionManager = canonicalManager;`
+
 ### `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` — 2 signal(s)
 
 - Codes: `XRI_MANAGER_ASSIGN`, `XRI_MANAGER_LOOKUP`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:80` **XRI_MANAGER_LOOKUP** — `manager = UnityEngine.Object.FindObjectOfType<XRInteractionManager>();`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:122` **XRI_MANAGER_ASSIGN** — `(settings.interactionManager == null || newGame.interactionManager == null); frame++)`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:84` **XRI_MANAGER_LOOKUP** — `manager = UnityEngine.Object.FindObjectOfType<XRInteractionManager>();`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:126` **XRI_MANAGER_ASSIGN** — `(settings.interactionManager == null || newGame.interactionManager == null); frame++)`
 
 ### `Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests` — 5 signal(s)
 
@@ -4122,14 +4128,6 @@ None.
 - Codes: `FALLBACK_MARKER`
 - Paths: `Ziptide/Assets/Ziptide/Tests/EditMode/ItemRegistryConventionTests.cs`
   - `Ziptide/Assets/Ziptide/Tests/EditMode/ItemRegistryConventionTests.cs:11` **FALLBACK_MARKER** — `/// device (the loaded-objects fallback only sees assets a loaded scene happens to reference — a`
-
-### `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` — 3 signal(s)
-
-- Codes: `FALLBACK_MARKER`
-- Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:224` **FALLBACK_MARKER** — `XRRayInteractor fallback = null;`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:230` **FALLBACK_MARKER** — `if (fallback == null) fallback = ray;`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:235` **FALLBACK_MARKER** — `return fallback;`
 
 ### `Ziptide.Tests.PlayMode.RecoveryExposureProfileTests` — 1 signal(s)
 

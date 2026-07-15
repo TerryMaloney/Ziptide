@@ -1,6 +1,6 @@
 # ZIPTIDE Event and Save Ownership Graph
 
-- Scanned C# files: **625**
+- Scanned C# files: **626**
 - Evidence edges: **658**
 - Named subscriptions without matching unsubscribe in the same owner: **47**
 
@@ -125,8 +125,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 - **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryBootHoldOrderingTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootHoldOrderingTests.cs:37` · `_capture` — `Application.logMessageReceived += _capture;`
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryBootHoldOrderingTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootHoldOrderingTests.cs:44` · `_capture` — `Application.logMessageReceived -= _capture;`
-- **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:40` · `_logCallback` — `Application.logMessageReceived += _logCallback;`
-- **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:49` · `_logCallback` — `if (_logCallback != null) Application.logMessageReceived -= _logCallback;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:42` · `_logCallback` — `Application.logMessageReceived += _logCallback;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:53` · `_logCallback` — `if (_logCallback != null) Application.logMessageReceived -= _logCallback;`
 
 ### `Application.logMessageReceivedThreaded`
 
@@ -374,18 +374,18 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `HomeHubRuntime.BootPresentationReady`
 
-- **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:41` · `OnBootReady` — `HomeHubRuntime.BootPresentationReady += OnBootReady;`
-- **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:51` · `OnBootReady` — `HomeHubRuntime.BootPresentationReady -= OnBootReady;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:43` · `OnBootReady` — `HomeHubRuntime.BootPresentationReady += OnBootReady;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:55` · `OnBootReady` — `HomeHubRuntime.BootPresentationReady -= OnBootReady;`
 
 ### `HomeHubRuntime.ChoiceSelected`
 
-- **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:42` · `OnChoice` — `HomeHubRuntime.ChoiceSelected += OnChoice;`
-- **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:52` · `OnChoice` — `HomeHubRuntime.ChoiceSelected -= OnChoice;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:44` · `OnChoice` — `HomeHubRuntime.ChoiceSelected += OnChoice;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:56` · `OnChoice` — `HomeHubRuntime.ChoiceSelected -= OnChoice;`
 
 ### `HomeHubRuntime.SettingsRequested`
 
-- **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:43` · `OnSettingsRequested` — `HomeHubRuntime.SettingsRequested += OnSettingsRequested;`
-- **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:53` · `OnSettingsRequested` — `HomeHubRuntime.SettingsRequested -= OnSettingsRequested;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:45` · `OnSettingsRequested` — `HomeHubRuntime.SettingsRequested += OnSettingsRequested;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:57` · `OnSettingsRequested` — `HomeHubRuntime.SettingsRequested -= OnSettingsRequested;`
 
 ### `Idempotent`
 

@@ -1,20 +1,20 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-15T19:12:19.917329+00:00",
+  "generatedAtUtc": "2026-07-15T19:21:19.441799+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
     "Ziptide/Assets/Ziptide",
     "Ziptide/Assets/ZiptideNet"
   ],
-  "scannedFiles": 625,
-  "findingCount": 2148,
+  "scannedFiles": 626,
+  "findingCount": 2147,
   "categoryCounts": {
     "bootstrap": 29,
-    "diagnostics": 456,
+    "diagnostics": 457,
     "events": 64,
-    "fallback_debt": 122,
+    "fallback_debt": 119,
     "global_render": 78,
     "input": 149,
     "materials": 222,
@@ -23,7 +23,7 @@
     "runtime_ui": 116,
     "save_state": 234,
     "scene_loading": 6,
-    "xri_ownership": 81
+    "xri_ownership": 82
   },
   "codeCounts": {
     "AUTOSAVE_CALL": 8,
@@ -37,7 +37,7 @@
     "EDITOR_BOOTSTRAP": 6,
     "EVENT_DECLARATION": 48,
     "EVENT_SYSTEM_COMPONENT": 2,
-    "FALLBACK_MARKER": 122,
+    "FALLBACK_MARKER": 119,
     "FRAME_BUTTON_POLL": 1,
     "INPUT_ACTION_REFERENCE": 142,
     "INPUT_BUTTON_REFERENCE": 6,
@@ -52,12 +52,12 @@
     "TEXTMESH_COMPONENT": 44,
     "TMP_COMPONENT": 3,
     "VOLUME_COMPONENT": 1,
-    "XRI_MANAGER_ASSIGN": 34,
+    "XRI_MANAGER_ASSIGN": 35,
     "XRI_MANAGER_CREATE": 7,
     "XRI_MANAGER_LOOKUP": 40,
     "XR_INTERACTABLE_COMPONENT": 61,
     "XR_UI_INPUT_MODULE": 2,
-    "ZIPTIDE_LOG_TAG": 456
+    "ZIPTIDE_LOG_TAG": 457
   },
   "findings": [
     {
@@ -4105,6 +4105,15 @@
       "category": "diagnostics",
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
+      "line": 80,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
+      "snippet": "Debug.Log(\"ZIPTIDE: RECOVERY_TRACKED_CONTROLLER_SIM ray=\" + simulation.RightRayPath"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootHoldOrderingTests.cs",
       "line": 83,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryBootHoldOrderingTests",
@@ -4151,7 +4160,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
-      "line": 154,
+      "line": 169,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
       "snippet": "int travelStartsBefore = CountLogs(\"ZIPTIDE: TRAVEL_START\");"
     },
@@ -4160,7 +4169,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
-      "line": 173,
+      "line": 188,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
       "snippet": "Assert.AreEqual(travelStartsBefore, CountLogs(\"ZIPTIDE: TRAVEL_START\"),"
     },
@@ -4169,7 +4178,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
-      "line": 181,
+      "line": 196,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
       "snippet": "Assert.GreaterOrEqual(CountLogs(\"ZIPTIDE: BOARD_PROBE surface=HomeHub phase=select\"), 1,"
     },
@@ -5963,33 +5972,6 @@
       "line": 11,
       "symbol": "Ziptide.Tests.EditMode.ItemRegistryConventionTests",
       "snippet": "/// device (the loaded-objects fallback only sees assets a loaded scene happens to reference \u2014 a"
-    },
-    {
-      "category": "fallback_debt",
-      "code": "FALLBACK_MARKER",
-      "description": "Source text marks fallback/prototype debt",
-      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
-      "line": 224,
-      "symbol": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
-      "snippet": "XRRayInteractor fallback = null;"
-    },
-    {
-      "category": "fallback_debt",
-      "code": "FALLBACK_MARKER",
-      "description": "Source text marks fallback/prototype debt",
-      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
-      "line": 230,
-      "symbol": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
-      "snippet": "if (fallback == null) fallback = ray;"
-    },
-    {
-      "category": "fallback_debt",
-      "code": "FALLBACK_MARKER",
-      "description": "Source text marks fallback/prototype debt",
-      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
-      "line": 235,
-      "symbol": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
-      "snippet": "return fallback;"
     },
     {
       "category": "fallback_debt",
@@ -7805,7 +7787,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
-      "line": 75,
+      "line": 79,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
       "snippet": "InputActionManager inputManager = null;"
     },
@@ -7814,7 +7796,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
-      "line": 81,
+      "line": 85,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
       "snippet": "inputManager = UnityEngine.Object.FindObjectOfType<InputActionManager>();"
     },
@@ -7823,7 +7805,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
-      "line": 91,
+      "line": 95,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
       "snippet": "Assert.IsNotNull(inputManager, \"The actual _Boot scene has no InputActionManager.\");"
     },
@@ -7832,7 +7814,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
-      "line": 104,
+      "line": 108,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
       "snippet": "Assert.AreEqual(1, ActiveManagerCount(settled, \"InputActionManager\"));"
     },
@@ -18659,7 +18641,7 @@
       "code": "DIRECT_SCENE_LOAD_ASYNC",
       "description": "Direct asynchronous scene load",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
-      "line": 63,
+      "line": 67,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
       "snippet": "AsyncOperation load = SceneManager.LoadSceneAsync("
     },
@@ -18928,8 +18910,17 @@
       "category": "xri_ownership",
       "code": "XRI_MANAGER_ASSIGN",
       "description": "Explicit interactable interactionManager assignment",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
+      "line": 78,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
+      "snippet": "rightRay.interactionManager = canonicalManager;"
+    },
+    {
+      "category": "xri_ownership",
+      "code": "XRI_MANAGER_ASSIGN",
+      "description": "Explicit interactable interactionManager assignment",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
-      "line": 122,
+      "line": 126,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
       "snippet": "(settings.interactionManager == null || newGame.interactionManager == null); frame++)"
     },
@@ -19379,7 +19370,7 @@
       "code": "XRI_MANAGER_LOOKUP",
       "description": "XRInteractionManager lookup",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
-      "line": 80,
+      "line": 84,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
       "snippet": "manager = UnityEngine.Object.FindObjectOfType<XRInteractionManager>();"
     },
