@@ -1,8 +1,8 @@
 {
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
-  "scannedFiles": 621,
-  "findingCount": 2102,
+  "scannedFiles": 623,
+  "findingCount": 2115,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -753,6 +753,25 @@
             "line": 134,
             "symbol": "Ziptide.Tests.EditMode.FirstHourTravelSignalTests",
             "snippet": "int asyncLoad = source.IndexOf(\"SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);\");"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
+        "evidenceCount": 1,
+        "codes": [
+          "DIRECT_SCENE_LOAD_ASYNC"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs"
+        ],
+        "evidence": [
+          {
+            "code": "DIRECT_SCENE_LOAD_ASYNC",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
+            "line": 63,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
+            "snippet": "AsyncOperation load = SceneManager.LoadSceneAsync("
           }
         ]
       }
@@ -1712,6 +1731,46 @@
             "line": 189,
             "symbol": "Ziptide.Tests.EditMode.FirstHourObservationCoreTests",
             "snippet": "StringAssert.DoesNotContain(\"InputAction\", source);"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
+        "evidenceCount": 4,
+        "codes": [
+          "INPUT_ACTION_REFERENCE"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs"
+        ],
+        "evidence": [
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
+            "line": 75,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
+            "snippet": "InputActionManager inputManager = null;"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
+            "line": 81,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
+            "snippet": "inputManager = UnityEngine.Object.FindObjectOfType<InputActionManager>();"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
+            "line": 91,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
+            "snippet": "Assert.IsNotNull(inputManager, \"The actual _Boot scene has no InputActionManager.\");"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
+            "line": 104,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
+            "snippet": "Assert.AreEqual(1, ActiveManagerCount(settled, \"InputActionManager\"));"
           }
         ]
       },
@@ -11573,6 +11632,33 @@
         ]
       },
       {
+        "owner": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
+        "evidenceCount": 2,
+        "codes": [
+          "XRI_MANAGER_ASSIGN",
+          "XRI_MANAGER_LOOKUP"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs"
+        ],
+        "evidence": [
+          {
+            "code": "XRI_MANAGER_LOOKUP",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
+            "line": 80,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
+            "snippet": "manager = UnityEngine.Object.FindObjectOfType<XRInteractionManager>();"
+          },
+          {
+            "code": "XRI_MANAGER_ASSIGN",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
+            "line": 122,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
+            "snippet": "(settings.interactionManager == null || newGame.interactionManager == null); frame++)"
+          }
+        ]
+      },
+      {
         "owner": "Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests",
         "evidenceCount": 5,
         "codes": [
@@ -17544,6 +17630,39 @@
             "line": 11,
             "symbol": "Ziptide.Tests.EditMode.ItemRegistryConventionTests",
             "snippet": "/// device (the loaded-objects fallback only sees assets a loaded scene happens to reference \u2014 a"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
+        "evidenceCount": 3,
+        "codes": [
+          "FALLBACK_MARKER"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs"
+        ],
+        "evidence": [
+          {
+            "code": "FALLBACK_MARKER",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
+            "line": 224,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
+            "snippet": "XRRayInteractor fallback = null;"
+          },
+          {
+            "code": "FALLBACK_MARKER",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
+            "line": 230,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
+            "snippet": "if (fallback == null) fallback = ray;"
+          },
+          {
+            "code": "FALLBACK_MARKER",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
+            "line": 235,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
+            "snippet": "return fallback;"
           }
         ]
       },

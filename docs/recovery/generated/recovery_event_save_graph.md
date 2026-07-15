@@ -1,7 +1,7 @@
 # ZIPTIDE Event and Save Ownership Graph
 
-- Scanned C# files: **621**
-- Evidence edges: **646**
+- Scanned C# files: **623**
+- Evidence edges: **655**
 - Named subscriptions without matching unsubscribe in the same owner: **47**
 
 This is a static ownership graph. An unmatched row is a review target, not automatic proof of a leak; process-lifetime static hooks may be intentional.
@@ -10,9 +10,9 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 - **AUTOSAVE:** 7
 - **EVENT_DECLARE:** 45
-- **EVENT_INVOKE:** 55
-- **EVENT_SUBSCRIBE:** 80
-- **EVENT_UNSUBSCRIBE:** 33
+- **EVENT_INVOKE:** 56
+- **EVENT_SUBSCRIBE:** 84
+- **EVENT_UNSUBSCRIBE:** 37
 - **PLAYER_PREFS_ACCESS:** 11
 - **PROFILE_FIELD_ACCESS:** 352
 - **SAVE_ACCESS:** 63
@@ -125,6 +125,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 - **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryBootHoldOrderingTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootHoldOrderingTests.cs:37` · `_capture` — `Application.logMessageReceived += _capture;`
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryBootHoldOrderingTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootHoldOrderingTests.cs:44` · `_capture` — `Application.logMessageReceived -= _capture;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:40` · `_logCallback` — `Application.logMessageReceived += _logCallback;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:49` · `_logCallback` — `if (_logCallback != null) Application.logMessageReceived -= _logCallback;`
 
 ### `Application.logMessageReceivedThreaded`
 
@@ -369,6 +371,21 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.WorldGatingTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/WorldGatingTests.cs:87` · `profile` — `Assert.IsTrue(profile.HasFlag("C1_W001_RILL_BOOT"));`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.WorldGatingTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/WorldGatingTests.cs:88` · `profile` — `Assert.IsTrue(profile.HasFlag("SIGNAL_THRESHOLD_1"));`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.WorldGatingTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/WorldGatingTests.cs:89` · `profile` — `Assert.IsTrue(profile.HasFlag("W001_COMPLETE"));`
+
+### `HomeHubRuntime.BootPresentationReady`
+
+- **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:41` · `OnBootReady` — `HomeHubRuntime.BootPresentationReady += OnBootReady;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:51` · `OnBootReady` — `HomeHubRuntime.BootPresentationReady -= OnBootReady;`
+
+### `HomeHubRuntime.ChoiceSelected`
+
+- **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:42` · `OnChoice` — `HomeHubRuntime.ChoiceSelected += OnChoice;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:52` · `OnChoice` — `HomeHubRuntime.ChoiceSelected -= OnChoice;`
+
+### `HomeHubRuntime.SettingsRequested`
+
+- **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:43` · `OnSettingsRequested` — `HomeHubRuntime.SettingsRequested += OnSettingsRequested;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:53` · `OnSettingsRequested` — `HomeHubRuntime.SettingsRequested -= OnSettingsRequested;`
 
 ### `Idempotent`
 
@@ -1007,6 +1024,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **EVENT_INVOKE** · `Ziptide.Tests.EditMode.ZiplineSignalTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/ZiplineSignalTests.cs:184` — `method.Invoke(line, args);`
 - **EVENT_INVOKE** · `Ziptide.Tests.PlayMode.RecoveryCoreBootstrapGateTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryCoreBootstrapGateTests.cs:123` — `method.Invoke(null, null);`
 - **EVENT_INVOKE** · `Ziptide.Tests.PlayMode.RecoveryGameplayBootstrapGateTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGameplayBootstrapGateTests.cs:112` — `method.Invoke(null, null);`
+- **EVENT_INVOKE** · `Ziptide.Tests.PlayMode.RecoverySceneTestIsolation` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoverySceneTestIsolation.cs:130` — `method.Invoke(null, null);`
 
 ### `name`
 
