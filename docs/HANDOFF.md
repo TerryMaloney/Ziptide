@@ -27,6 +27,30 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-15 (rb32) — Fable 5: THE FACTORY top-tier plan boarded (planning only, hard-gated behind recovery)
+
+- **Did:** wrote [`docs/design/FACTORY_TOPTIER_PLAN.md`](design/FACTORY_TOPTIER_PLAN.md) at Terry's
+  direction after the 2026-07-15 automation deep-dive — the factory/automation system pitched and
+  planned as if it were the sole product. Contents: the no-text first-factory pitch; six pillars
+  (headline: **the kids test** — a new player with zero text reads producer/consumer/path in 30
+  seconds — is the acceptance bar for every envelope); the 8-rung learning ladder (watch → connect →
+  route → multiply → optimize → logistics → interplanetary → wonders); the **one-grammar/eighty-
+  dialects** model for ~80 worlds (five inviolable machine silhouettes game-wide; variation spent on
+  ~8 world-TIERS with one new rule each + free resource/terrain skins + one Wonder landmark machine
+  per region); the fun multipliers (raid-defense fusion with the existing combat, the tide event,
+  the staged idle-homecoming moment, conductor transit, jobs/ship integration); the sensory juice
+  spec; and the F-0..F-9 envelope program with per-envelope `VISUAL`+`QUEST` proof.
+- **Verified basis:** the deep-dive confirmed the mechanical layer survives untouched — pure
+  `BeltLattice` sim (visuals are already "a skin over state" by design), physical tile placement,
+  blueprint wand, conductor ride, economy-safe `MineState` sharing, 4.1f persistence, 4.1g budget
+  audit. The overhaul is silhouettes + motion + feedback + content tiers, NOT a rewrite.
+- **⛔ Heads-up (the gate, stated twice on purpose):** this is PLANNING ONLY. Nothing in F-0..F-9
+  starts until the recovery program completes (R1 exit → R2 contracts → R3 golden slice green
+  on-device). The doc's own §0 carries the same gate. Envelope F-0 (machine anchor contract) is
+  deliberately shaped as an R2-style contract so the recovery lane can slot it when the time comes.
+  All factory materials fall under the rb30 Amendment-1 shader-variant law from day one.
+- **Commit:** the plan doc + this entry; documentation only, no runtime content changed.
+
 ### 2026-07-15 (rb31) — Fable 5 second independent review: R1.4–R1.8 verified with two holds before any headset build
 
 - **Scope:** read-only spot-check of the recovery lane's latest status report against the repo and live
