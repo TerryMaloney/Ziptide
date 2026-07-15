@@ -31,10 +31,25 @@ namespace Ziptide.Gameplay
             return existing != null ? existing : room.gameObject.AddComponent<QuartersCameraFeature>();
         }
 
-        private void Start() => BuildFeature();
+        private void Awake()
+        {
+            if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.QuartersCameraInjector))
+                enabled = false;
+        }
+
+        private void Start()
+        {
+            if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.QuartersCameraInjector))
+            {
+                enabled = false;
+                return;
+            }
+            BuildFeature();
+        }
 
         public void BuildFeature()
         {
+            if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.QuartersCameraInjector)) return;
             Transform old = transform.Find(FeatureRootName); if (old != null) Destroy(old.gameObject);
             Transform root = new GameObject(FeatureRootName).transform; root.SetParent(transform, false);
 
