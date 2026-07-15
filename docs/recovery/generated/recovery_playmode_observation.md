@@ -1,9 +1,9 @@
 # Recovery PlayMode Observation
 
-- Tested SHA: `d3776cdf4979a6b2535ef1b0cc8648fc5f0f274c`
-- Workflow run: `29382445069`
+- Tested SHA: `5829998b2cdc9a6c57f2a1e103b3bfe8827d141f`
+- Workflow run: `29409916961`
 - Attempt: `1`
-- Test step outcome: **success**
+- Test step outcome: **failure**
 - Scope: R1 recovery PlayMode suite
 - Unity: 2022.3.62f3
 - Promotion state: R1.1 promoted; later harness layers remain observational until separately proven
