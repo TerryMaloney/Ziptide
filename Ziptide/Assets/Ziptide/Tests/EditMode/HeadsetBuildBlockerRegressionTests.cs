@@ -32,6 +32,8 @@ namespace Ziptide.Tests.EditMode
             string build = Read("Editor", "Build", "BuildAndroid.cs");
             string cavern = Read("Editor", "Patching", "ScenePatcherCavern.cs");
             StringAssert.Contains("ScenePatcherCavern.EnsureUndercroftInBuildSettings();", build);
+            StringAssert.Contains("RunRequired(\"ScenePatcherCavern.EnsureUndercroftInBuildSettings\"", build,
+                "the undercroft generator must remain a required build hook");
             StringAssert.Contains("public static void EnsureUndercroftInBuildSettings()", cavern);
             StringAssert.Contains("sceneName = \"W011_Undercroft\"", cavern);
             StringAssert.Contains("EnsureInBuildSettings(scenePath);", cavern);
@@ -43,6 +45,8 @@ namespace Ziptide.Tests.EditMode
             string build = Read("Editor", "Build", "BuildAndroid.cs");
             string safety = Read("Editor", "Patching", "CaveSpawnSafety.cs");
             StringAssert.Contains("CaveSpawnSafety.EnsureUndercroftSpawnFloor();", build);
+            StringAssert.Contains("RunRequired(\"CaveSpawnSafety.EnsureUndercroftSpawnFloor\"", build,
+                "the spawn-floor repair must remain a required build hook");
             StringAssert.Contains("FloorName = \"__SPAWN_FLOOR\"", safety);
             StringAssert.Contains("GameObject.CreatePrimitive(PrimitiveType.Cube)", safety);
             StringAssert.Contains("floor.layer = 0;", safety);
@@ -77,19 +81,13 @@ namespace Ziptide.Tests.EditMode
         [Test]
         public void CavernFloorPad_ColliderIsThin_NeverAPhantomDome()
         {
-            // THE ROOT CAUSE of the W011 SPAWN_OVERLAP_SOLID headset-build blocker: the FloorPad's
-            // cylinder primitive shipped a CapsuleCollider, and a capsule squashed to a 0.12-thick
-            // disc then scaled to a chamber degenerates into a SPHERE the radius of the chamber —
-            // an invisible dome the spawn sat inside. This builds the REAL pad at chamber scale and
-            // runs the audit's own physics probes against it.
             Ziptide.Editor.Art.CavernKitLibrary.EnsureRegistered();
             Assert.IsTrue(Ziptide.Editor.Art.ArtModuleRegistry.TryBuild("cavernModule:rock/FloorPad", out var pad),
                 "FloorPad module must build from the registry");
             try
             {
-                // Far from anything another test might leave in the scene.
                 pad.transform.position = new Vector3(500f, -400f, 500f);
-                pad.transform.localScale = new Vector3(6f, 1f, 6f); // a real chamber radius
+                pad.transform.localScale = new Vector3(6f, 1f, 6f);
                 Physics.SyncTransforms();
 
                 foreach (var col in pad.GetComponentsInChildren<Collider>(true))
@@ -100,7 +98,6 @@ namespace Ziptide.Tests.EditMode
                         col.name + " bulges above the walk surface — the phantom dome is back");
                 }
 
-                // The audit's exact probes at the spawn ScenePatcherCavern authors (chamber Y + 0.25):
                 Vector3 spawn = pad.transform.position + Vector3.up * 0.25f;
                 foreach (var hit in Physics.OverlapSphere(spawn + Vector3.up * 0.9f, 0.3f))
                     Assert.Fail("'" + hit.name + "' overlaps the spawn torso — SPAWN_OVERLAP_SOLID");
