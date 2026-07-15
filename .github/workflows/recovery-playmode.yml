@@ -31,12 +31,25 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - name: Checkout
+      - name: Checkout exact tested commit
         uses: actions/checkout@v4
         with:
-          ref: terry-local-wip
+          # The durable observation records GITHUB_SHA. Test that immutable tree rather than
+          # the moving branch, which may advance while a run is queued.
+          ref: ${{ github.sha }}
           fetch-depth: 0
           lfs: true
+
+      - name: Verify checkout matches observation SHA
+        shell: bash
+        run: |
+          set -euo pipefail
+          actual="$(git rev-parse HEAD)"
+          if [[ "$actual" != "$GITHUB_SHA" ]]; then
+            echo "Checkout mismatch: expected $GITHUB_SHA, got $actual"
+            exit 1
+          fi
+          echo "RECOVERY_PLAYMODE_TESTED_SHA=$actual"
 
       - name: Cache isolated PlayMode Library
         uses: actions/cache@v4
