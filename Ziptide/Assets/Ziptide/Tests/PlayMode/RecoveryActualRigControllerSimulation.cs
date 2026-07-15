@@ -15,6 +15,7 @@ namespace Ziptide.Tests.PlayMode
     /// CI runner has no tracked XR devices, so XRInputModalityManager correctly deactivates all
     /// controller groups and the camera remains at an untracked origin. This helper temporarily:
     /// - installs left/right generic XR controller devices with zeroed state,
+    /// - rebuilds the already-enabled canonical action assets against those devices,
     /// - disables modality switching and camera pose drivers only inside the test,
     /// - places the real tracked-head camera at an adult standing pose,
     /// - activates both existing non-teleport controller-ray hierarchies,
@@ -123,6 +124,7 @@ namespace Ziptide.Tests.PlayMode
                 leftRay,
                 rightRay);
             simulation.InstallVirtualControllerDevices();
+            simulation.RefreshCanonicalInputAssets(canonicalManager);
             simulation.DisableModalityManagers(rig);
             simulation.SetTrackedHeadPose(rig, trackedHeadHeight);
             simulation.ActivateControllerRay(rig, leftRay, canonicalManager);
@@ -189,6 +191,58 @@ namespace Ziptide.Tests.PlayMode
             InputSystemXRController right = InputSystem.AddDevice<InputSystemXRController>();
             InputSystem.SetDeviceUsage(right, CommonUsages.RightHand);
             _virtualDevices.Add(right);
+            InputSystem.Update();
+        }
+
+        private static void RefreshCanonicalInputAssets(XRInteractionManager canonicalManager)
+        {
+            InputActionManager inputManager = canonicalManager.GetComponent<InputActionManager>();
+            if (inputManager == null)
+                throw new InvalidOperationException(
+                    "The canonical XRInteractionManager has no InputActionManager to refresh.");
+
+            int assetCount = 0;
+            foreach (InputActionAsset asset in inputManager.actionAssets)
+            {
+                if (asset == null) continue;
+                asset.Disable();
+                assetCount++;
+            }
+            if (assetCount == 0)
+                throw new InvalidOperationException(
+                    "The canonical InputActionManager owns no action assets for tracked-rig simulation.");
+
+            InputSystem.Update();
+            foreach (InputActionAsset asset in inputManager.actionAssets)
+                if (asset != null) asset.Enable();
+            InputSystem.Update();
+
+            int locomotionActions = 0;
+            int locomotionControls = 0;
+            foreach (InputActionAsset asset in inputManager.actionAssets)
+            {
+                if (asset == null) continue;
+                foreach (InputActionMap map in asset.actionMaps)
+                {
+                    foreach (InputAction action in map.actions)
+                    {
+                        if (action.name.IndexOf("Turn", StringComparison.OrdinalIgnoreCase) < 0 &&
+                            action.name.IndexOf("Move", StringComparison.OrdinalIgnoreCase) < 0)
+                            continue;
+                        locomotionActions++;
+                        locomotionControls += action.controls.Count;
+                    }
+                }
+            }
+
+            Debug.Log("ZIPTIDE: RECOVERY_VIRTUAL_XR_BINDINGS assets=" + assetCount
+                + " locomotionActions=" + locomotionActions
+                + " locomotionControls=" + locomotionControls);
+            if (locomotionActions > 0 && locomotionControls == 0)
+            {
+                throw new InvalidOperationException(
+                    "The canonical locomotion actions did not bind to the virtual left/right XR controllers.");
+            }
         }
 
         private void DisableModalityManagers(PlayerRigPersistence rig)
