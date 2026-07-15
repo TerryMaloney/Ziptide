@@ -56,8 +56,20 @@ namespace Ziptide.Gameplay
         }
 
         // ── Build ────────────────────────────────────────────────────────────
+        private void Awake()
+        {
+            if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.ConquestMissionInjector))
+                enabled = false;
+        }
+
         private void Start()
         {
+            if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.ConquestMissionInjector))
+            {
+                enabled = false;
+                return;
+            }
+
             _attempt = ConquestSession.Pending != null ? ConquestSession.Pending.attempt : null;
             if (_attempt == null || _attempt.phase != MissionPhase.Accepted) { Destroy(gameObject); return; }
 
