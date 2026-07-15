@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Ziptide.Core;
+using Ziptide.Gameplay;
 
 namespace Ziptide.Tests.PlayMode
 {
@@ -21,10 +23,11 @@ namespace Ziptide.Tests.PlayMode
     [Serializable]
     public sealed class RecoveryRuntimeArtifactReport
     {
-        public string schemaVersion = "1";
+        public string schemaVersion = "2";
         public string label;
         public string capturedAtUtc;
         public string activeProfile;
+        public RecoverySpawnClearanceReport spawnClearance;
         public List<RecoveryRuntimeArtifactFinding> findings =
             new List<RecoveryRuntimeArtifactFinding>();
     }
@@ -34,7 +37,9 @@ namespace Ziptide.Tests.PlayMode
     /// symbol is not itself a MonoBehaviour. The PlayMode process starts in editor FullDevelopment,
     /// so DebugHUD and Photon can exist before an actual-scene test switches to GoldenSlice. They
     /// are removed during fresh-Golden isolation, then this same guard fails if either artifact is
-    /// recreated by the real Golden boot path.
+    /// recreated by the real Golden boot path. In content scenes it also embeds the standing
+    /// spawn-clearance report, so every settled Golden arrival proves floor, head height and torso
+    /// collision instead of relying on XZ alignment alone.
     /// </summary>
     public static class RecoveryRuntimeArtifactGuard
     {
@@ -83,6 +88,7 @@ namespace Ziptide.Tests.PlayMode
                 }
             }
 
+            CaptureSpawnClearanceWhenApplicable(report, label);
             report.findings.Sort((a, b) =>
             {
                 int code = string.CompareOrdinal(a.code, b.code);
@@ -135,6 +141,50 @@ namespace Ziptide.Tests.PlayMode
             File.WriteAllText(path, JsonUtility.ToJson(report, true) + Environment.NewLine,
                 Encoding.UTF8);
             return path;
+        }
+
+        private static void CaptureSpawnClearanceWhenApplicable(
+            RecoveryRuntimeArtifactReport report,
+            string label)
+        {
+            if (SceneManager.GetActiveScene().name == ZiptideConstants.SceneBoot) return;
+
+            PlayerRigPersistence rig = UnityEngine.Object.FindObjectOfType<PlayerRigPersistence>();
+            if (rig == null) return; // Controlled artifact fixtures do not model a content arrival.
+
+            Camera camera = rig.GetComponentInChildren<Camera>(true);
+            if (camera == null)
+            {
+                report.findings.Add(new RecoveryRuntimeArtifactFinding
+                {
+                    code = "SPAWN_HEAD_CAMERA_MISSING",
+                    featureId = string.Empty,
+                    hierarchyPath = RecoveryRuntimeCensus.HierarchyPath(rig.transform),
+                    objectName = rig.name,
+                    componentTypes = ComponentTypes(rig.gameObject),
+                    message = "Persistent rig has no tracked-head camera for standing spawn proof."
+                });
+                return;
+            }
+
+            RecoverySpawnClearanceReport spawn = RecoverySpawnClearanceAudit.Capture(
+                rig.transform,
+                camera,
+                label + "_SPAWN_CLEARANCE");
+            report.spawnClearance = spawn;
+            for (int i = 0; i < spawn.findings.Count; i++)
+            {
+                RecoverySpawnClearanceFinding finding = spawn.findings[i];
+                report.findings.Add(new RecoveryRuntimeArtifactFinding
+                {
+                    code = finding.code,
+                    featureId = string.Empty,
+                    hierarchyPath = finding.hierarchyPath,
+                    objectName = string.Empty,
+                    componentTypes = Array.Empty<string>(),
+                    message = finding.message
+                });
+            }
         }
 
         private static bool IsDebugHudArtifact(GameObject go, string[] componentTypes)
