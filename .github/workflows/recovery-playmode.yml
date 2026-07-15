@@ -200,9 +200,9 @@ jobs:
             while IFS= read -r path; do
               [[ -z "$path" ]] && continue
               case "$path" in
-                docs/recovery/generated/*|docs/CI_VERDICT.md) ;;
+                docs/recovery/generated/*|docs/CI_VERDICT.md|docs/HANDOFF.md) ;;
                 *)
-                  echo "::notice::Newer source path '$path' exists; refusing stale PlayMode observation write."
+                  echo "::notice::Newer proof-relevant path '$path' exists; refusing stale PlayMode observation write."
                   exit 0
                   ;;
               esac
