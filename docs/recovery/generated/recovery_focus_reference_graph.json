@@ -1,6 +1,6 @@
 {
   "tool": "recovery_focus_reference_graph",
-  "scannedFiles": 639,
+  "scannedFiles": 642,
   "referenceCount": 368,
   "summaries": {
     "melee": {
@@ -2998,7 +2998,7 @@
           "focus": "shipPresentation",
           "token": "ShipChassisPreset",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs",
-          "line": 47,
+          "line": 59,
           "symbol": "Ziptide.Gameplay.HangarBayRuntime",
           "snippet": "for (int i = 0; i < ShipChassisPreset.All.Length; i++)",
           "declaration_file": false
@@ -3007,7 +3007,7 @@
           "focus": "shipPresentation",
           "token": "ShipChassisPreset",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs",
-          "line": 49,
+          "line": 61,
           "symbol": "Ziptide.Gameplay.HangarBayRuntime",
           "snippet": "var c = ShipChassisPreset.All[i];",
           "declaration_file": false
@@ -3016,7 +3016,7 @@
           "focus": "shipPresentation",
           "token": "ShipChassisPreset",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs",
-          "line": 97,
+          "line": 109,
           "symbol": "Ziptide.Gameplay.HangarBayRuntime",
           "snippet": "var chassis = ShipChassisPreset.Find(ShipLocker.GetEquipped(profile, \"chassis\"));",
           "declaration_file": false
@@ -3256,7 +3256,7 @@
           "focus": "shipPresentation",
           "token": "ShipLocker",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs",
-          "line": 86,
+          "line": 98,
           "symbol": "Ziptide.Gameplay.HangarBayRuntime",
           "snippet": "ShipLocker.Equip(profile, slot, id);",
           "declaration_file": false
@@ -3265,7 +3265,7 @@
           "focus": "shipPresentation",
           "token": "ShipLocker",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs",
-          "line": 97,
+          "line": 109,
           "symbol": "Ziptide.Gameplay.HangarBayRuntime",
           "snippet": "var chassis = ShipChassisPreset.Find(ShipLocker.GetEquipped(profile, \"chassis\"));",
           "declaration_file": false
@@ -3274,7 +3274,7 @@
           "focus": "shipPresentation",
           "token": "ShipLocker",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs",
-          "line": 99,
+          "line": 111,
           "symbol": "Ziptide.Gameplay.HangarBayRuntime",
           "snippet": "foreach (var id in ShipLocker.EquippedModules(profile, new[] { \"engine\", \"wings\", \"hardpoint\", \"cargo\" }))",
           "declaration_file": false
@@ -3501,7 +3501,7 @@
           "focus": "shipPresentation",
           "token": "ShipRefit",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs",
-          "line": 88,
+          "line": 100,
           "symbol": "Ziptide.Gameplay.HangarBayRuntime",
           "snippet": "if (shipRoot != null) ShipRefit.Apply(shipRoot);",
           "declaration_file": false
@@ -3566,7 +3566,7 @@
           "focus": "shipPresentation",
           "token": "ShipRefit.Apply",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs",
-          "line": 88,
+          "line": 100,
           "symbol": "Ziptide.Gameplay.HangarBayRuntime",
           "snippet": "if (shipRoot != null) ShipRefit.Apply(shipRoot);",
           "declaration_file": false
@@ -5730,7 +5730,7 @@
       "focus": "shipPresentation",
       "token": "ShipChassisPreset",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs",
-      "line": 47,
+      "line": 59,
       "symbol": "Ziptide.Gameplay.HangarBayRuntime",
       "snippet": "for (int i = 0; i < ShipChassisPreset.All.Length; i++)",
       "declaration_file": false
@@ -5739,7 +5739,7 @@
       "focus": "shipPresentation",
       "token": "ShipChassisPreset",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs",
-      "line": 49,
+      "line": 61,
       "symbol": "Ziptide.Gameplay.HangarBayRuntime",
       "snippet": "var c = ShipChassisPreset.All[i];",
       "declaration_file": false
@@ -5748,7 +5748,7 @@
       "focus": "shipPresentation",
       "token": "ShipChassisPreset",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs",
-      "line": 97,
+      "line": 109,
       "symbol": "Ziptide.Gameplay.HangarBayRuntime",
       "snippet": "var chassis = ShipChassisPreset.Find(ShipLocker.GetEquipped(profile, \"chassis\"));",
       "declaration_file": false
@@ -5766,7 +5766,7 @@
       "focus": "shipPresentation",
       "token": "ShipLocker",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs",
-      "line": 86,
+      "line": 98,
       "symbol": "Ziptide.Gameplay.HangarBayRuntime",
       "snippet": "ShipLocker.Equip(profile, slot, id);",
       "declaration_file": false
@@ -5775,7 +5775,7 @@
       "focus": "shipPresentation",
       "token": "ShipLocker",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs",
-      "line": 97,
+      "line": 109,
       "symbol": "Ziptide.Gameplay.HangarBayRuntime",
       "snippet": "var chassis = ShipChassisPreset.Find(ShipLocker.GetEquipped(profile, \"chassis\"));",
       "declaration_file": false
@@ -5784,7 +5784,7 @@
       "focus": "shipPresentation",
       "token": "ShipLocker",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs",
-      "line": 99,
+      "line": 111,
       "symbol": "Ziptide.Gameplay.HangarBayRuntime",
       "snippet": "foreach (var id in ShipLocker.EquippedModules(profile, new[] { \"engine\", \"wings\", \"hardpoint\", \"cargo\" }))",
       "declaration_file": false
@@ -5811,7 +5811,7 @@
       "focus": "shipPresentation",
       "token": "ShipRefit",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs",
-      "line": 88,
+      "line": 100,
       "symbol": "Ziptide.Gameplay.HangarBayRuntime",
       "snippet": "if (shipRoot != null) ShipRefit.Apply(shipRoot);",
       "declaration_file": false
@@ -5820,7 +5820,7 @@
       "focus": "shipPresentation",
       "token": "ShipRefit.Apply",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs",
-      "line": 88,
+      "line": 100,
       "symbol": "Ziptide.Gameplay.HangarBayRuntime",
       "snippet": "if (shipRoot != null) ShipRefit.Apply(shipRoot);",
       "declaration_file": false

@@ -1,33 +1,33 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-15T23:54:06.414832+00:00",
+  "generatedAtUtc": "2026-07-16T00:49:34.971859+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
     "Ziptide/Assets/Ziptide",
     "Ziptide/Assets/ZiptideNet"
   ],
-  "scannedFiles": 639,
-  "findingCount": 2237,
+  "scannedFiles": 642,
+  "findingCount": 2242,
   "categoryCounts": {
     "bootstrap": 31,
     "diagnostics": 481,
     "events": 64,
     "fallback_debt": 122,
-    "global_render": 78,
+    "global_render": 80,
     "input": 171,
     "materials": 226,
     "persistence": 18,
-    "runtime_creation": 585,
-    "runtime_ui": 118,
+    "runtime_creation": 587,
+    "runtime_ui": 119,
     "save_state": 252,
     "scene_loading": 8,
     "xri_ownership": 83
   },
   "codeCounts": {
     "AUTOSAVE_CALL": 8,
-    "CAMERA_MAIN_REFERENCE": 40,
+    "CAMERA_MAIN_REFERENCE": 42,
     "CAMERA_POST_PROCESSING": 1,
     "CANVAS_COMPONENT": 5,
     "CREATE_PRIMITIVE": 232,
@@ -41,7 +41,7 @@
     "FRAME_BUTTON_POLL": 1,
     "INPUT_ACTION_REFERENCE": 164,
     "INPUT_BUTTON_REFERENCE": 6,
-    "NEW_GAME_OBJECT": 353,
+    "NEW_GAME_OBJECT": 355,
     "PLAYER_PROFILE_REFERENCE": 138,
     "RENDER_SETTINGS_MUTATION": 36,
     "RUNTIME_BOOTSTRAP": 25,
@@ -49,7 +49,7 @@
     "SAVE_SYSTEM_REFERENCE": 106,
     "SHADER_FIND": 138,
     "STATIC_EVENT_DECLARATION": 16,
-    "TEXTMESH_COMPONENT": 45,
+    "TEXTMESH_COMPONENT": 46,
     "TMP_COMPONENT": 3,
     "VOLUME_COMPONENT": 1,
     "XRI_MANAGER_ASSIGN": 35,
@@ -3314,7 +3314,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs",
-      "line": 90,
+      "line": 102,
       "symbol": "Ziptide.Gameplay.HangarBayRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: HANGAR_EQUIP slot=\" + slot + \" id=\" + id);"
     },
@@ -3791,7 +3791,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs",
-      "line": 127,
+      "line": 126,
       "symbol": "Ziptide.Gameplay.WorldTravelStation",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: DOOR_NO_MANAGER at build time, will retry\");"
     },
@@ -3800,7 +3800,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs",
-      "line": 149,
+      "line": 148,
       "symbol": "Ziptide.Gameplay.WorldTravelStation",
       "snippet": "Debug.Log(\"ZIPTIDE: TRAVEL_LOCKED pack=\" + (pack.packId ?? \"?\")"
     },
@@ -3809,7 +3809,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs",
-      "line": 272,
+      "line": 268,
       "symbol": "Ziptide.Gameplay.WorldTravelStation",
       "snippet": "Debug.Log(\"ZIPTIDE: DOOR_MANAGER_RETRY_OK frame=\" + i);"
     },
@@ -3818,7 +3818,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs",
-      "line": 276,
+      "line": 272,
       "symbol": "Ziptide.Gameplay.WorldTravelStation",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: DOOR_MANAGER_RETRY_FAIL after 10 frames\");"
     },
@@ -6643,6 +6643,24 @@
       "category": "global_render",
       "code": "CAMERA_MAIN_REFERENCE",
       "description": "Camera.main dependency",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingPresentationGuard.cs",
+      "line": 129,
+      "symbol": "Ziptide.Gameplay.ShipBoardingPresentationGuard",
+      "snippet": "if (_viewer == null) _viewer = Camera.main;"
+    },
+    {
+      "category": "global_render",
+      "code": "CAMERA_MAIN_REFERENCE",
+      "description": "Camera.main dependency",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ViewerSideWorldLabel.cs",
+      "line": 61,
+      "symbol": "Ziptide.Gameplay.ViewerSideWorldLabel",
+      "snippet": "if (_viewer == null) _viewer = Camera.main;"
+    },
+    {
+      "category": "global_render",
+      "code": "CAMERA_MAIN_REFERENCE",
+      "description": "Camera.main dependency",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ZiptideGateEffect.cs",
       "line": 185,
       "symbol": "Ziptide.Gameplay.ZiptideGateEffect",
@@ -9218,7 +9236,7 @@
       "code": "RUNTIME_MATERIAL_CREATE",
       "description": "Runtime Material allocation",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs",
-      "line": 248,
+      "line": 244,
       "symbol": "Ziptide.Gameplay.WorldTravelStation",
       "snippet": "var mat = new Material(shader);"
     },
@@ -10424,7 +10442,7 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs",
-      "line": 245,
+      "line": 241,
       "symbol": "Ziptide.Gameplay.WorldTravelStation",
       "snippet": "var shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
     },
@@ -10433,7 +10451,7 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs",
-      "line": 246,
+      "line": 242,
       "symbol": "Ziptide.Gameplay.WorldTravelStation",
       "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
     },
@@ -12485,7 +12503,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs",
-      "line": 35,
+      "line": 47,
       "symbol": "Ziptide.Gameplay.HangarBayRuntime",
       "snippet": "var board = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -12494,7 +12512,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs",
-      "line": 116,
+      "line": 128,
       "symbol": "Ziptide.Gameplay.HangarBayRuntime",
       "snippet": "var tile = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -12674,7 +12692,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs",
-      "line": 176,
+      "line": 174,
       "symbol": "Ziptide.Gameplay.WorldTravelStation",
       "snippet": "var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -15095,7 +15113,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs",
-      "line": 131,
+      "line": 143,
       "symbol": "Ziptide.Gameplay.HangarBayRuntime",
       "snippet": "var go = new GameObject(\"Txt_\" + text);"
     },
@@ -15338,7 +15356,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs",
-      "line": 109,
+      "line": 108,
       "symbol": "Ziptide.Gameplay.WorldTravelStation",
       "snippet": "var door = new GameObject(\"Door\");"
     },
@@ -15347,7 +15365,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs",
-      "line": 230,
+      "line": 226,
       "symbol": "Ziptide.Gameplay.WorldTravelStation",
       "snippet": "var go = new GameObject(\"Label\");"
     },
@@ -15764,6 +15782,24 @@
       "line": 98,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests",
       "snippet": "var host = new GameObject(name);"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPresentationGuardTests.cs",
+      "line": 132,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryPresentationGuardTests",
+      "snippet": "var go = new GameObject(name);"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPresentationGuardTests.cs",
+      "line": 140,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryPresentationGuardTests",
+      "snippet": "var go = new GameObject(name);"
     },
     {
       "category": "runtime_creation",
@@ -16337,7 +16373,7 @@
       "code": "TEXTMESH_COMPONENT",
       "description": "Legacy TextMesh creation/reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs",
-      "line": 134,
+      "line": 146,
       "symbol": "Ziptide.Gameplay.HangarBayRuntime",
       "snippet": "var tm = go.AddComponent<TextMesh>();"
     },
@@ -16427,7 +16463,7 @@
       "code": "TEXTMESH_COMPONENT",
       "description": "Legacy TextMesh creation/reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs",
-      "line": 231,
+      "line": 227,
       "symbol": "Ziptide.Gameplay.WorldTravelStation",
       "snippet": "var tm = go.AddComponent<TextMesh>();"
     },
@@ -16493,6 +16529,15 @@
       "line": 159,
       "symbol": "Ziptide.Tests.EditMode.UiReadabilityAuditRulesTests",
       "snippet": "var text = label.AddComponent<TextMesh>();"
+    },
+    {
+      "category": "runtime_ui",
+      "code": "TEXTMESH_COMPONENT",
+      "description": "Legacy TextMesh creation/reference",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPresentationGuardTests.cs",
+      "line": 149,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryPresentationGuardTests",
+      "snippet": "TextMesh text = go.AddComponent<TextMesh>();"
     },
     {
       "category": "runtime_ui",
@@ -17003,7 +17048,7 @@
       "code": "XR_INTERACTABLE_COMPONENT",
       "description": "XR interactable creation/reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs",
-      "line": 122,
+      "line": 134,
       "symbol": "Ziptide.Gameplay.HangarBayRuntime",
       "snippet": "var grab = tile.AddComponent<XRSimpleInteractable>(); // collider exists (primitive)"
     },
@@ -17048,7 +17093,7 @@
       "code": "XR_INTERACTABLE_COMPONENT",
       "description": "XR interactable creation/reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs",
-      "line": 118,
+      "line": 117,
       "symbol": "Ziptide.Gameplay.WorldTravelStation",
       "snippet": "var interactable = door.AddComponent<XRSimpleInteractable>();"
     },
@@ -18956,7 +19001,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs",
-      "line": 84,
+      "line": 96,
       "symbol": "Ziptide.Gameplay.HangarBayRuntime",
       "snippet": "var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
     },
@@ -18965,7 +19010,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs",
-      "line": 96,
+      "line": 108,
       "symbol": "Ziptide.Gameplay.HangarBayRuntime",
       "snippet": "var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
     },
@@ -19118,7 +19163,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs",
-      "line": 150,
+      "line": 149,
       "symbol": "Ziptide.Gameplay.WorldTravelStation",
       "snippet": "+ \" missing=\" + (WorldGating.FirstMissingRequirement(pack, SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null) ?? \"?\"));"
     },
@@ -19424,7 +19469,7 @@
       "code": "DIRECT_SCENE_LOAD_ASYNC",
       "description": "Direct asynchronous scene load",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
-      "line": 59,
+      "line": 64,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
       "snippet": "AsyncOperation bootLoad = SceneManager.LoadSceneAsync("
     },
@@ -19676,7 +19721,7 @@
       "code": "XRI_MANAGER_ASSIGN",
       "description": "Explicit interactable interactionManager assignment",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs",
-      "line": 123,
+      "line": 122,
       "symbol": "Ziptide.Gameplay.WorldTravelStation",
       "snippet": "interactable.interactionManager = mgr;"
     },
@@ -19685,7 +19730,7 @@
       "code": "XRI_MANAGER_ASSIGN",
       "description": "Explicit interactable interactionManager assignment",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs",
-      "line": 271,
+      "line": 267,
       "symbol": "Ziptide.Gameplay.WorldTravelStation",
       "snippet": "interactable.interactionManager = mgr;"
     },
@@ -20135,7 +20180,7 @@
       "code": "XRI_MANAGER_LOOKUP",
       "description": "XRInteractionManager lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs",
-      "line": 120,
+      "line": 119,
       "symbol": "Ziptide.Gameplay.WorldTravelStation",
       "snippet": "var mgr = Object.FindObjectOfType<XRInteractionManager>();"
     },
@@ -20144,7 +20189,7 @@
       "code": "XRI_MANAGER_LOOKUP",
       "description": "XRInteractionManager lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs",
-      "line": 268,
+      "line": 264,
       "symbol": "Ziptide.Gameplay.WorldTravelStation",
       "snippet": "var mgr = Object.FindObjectOfType<XRInteractionManager>();"
     },
@@ -20171,7 +20216,7 @@
       "code": "XRI_MANAGER_LOOKUP",
       "description": "XRInteractionManager lookup",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
-      "line": 106,
+      "line": 111,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
       "snippet": "XRInteractionManager manager = UnityEngine.Object.FindObjectOfType<XRInteractionManager>();"
     },

@@ -1,6 +1,6 @@
 {
   "tool": "recovery_event_save_graph",
-  "scannedFiles": 639,
+  "scannedFiles": 642,
   "evidenceCount": 688,
   "kindCounts": {
     "AUTOSAVE": 7,
@@ -3985,7 +3985,7 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs",
-        "line": 84,
+        "line": 96,
         "owner": "Ziptide.Gameplay.HangarBayRuntime",
         "target": "SaveSystem.Profile",
         "detail": "",
@@ -3994,7 +3994,7 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs",
-        "line": 96,
+        "line": 108,
         "owner": "Ziptide.Gameplay.HangarBayRuntime",
         "target": "SaveSystem.Profile",
         "detail": "",
@@ -4111,7 +4111,7 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs",
-        "line": 150,
+        "line": 149,
         "owner": "Ziptide.Gameplay.WorldTravelStation",
         "target": "SaveSystem.Profile",
         "detail": "",
@@ -4452,7 +4452,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
-        "line": 58,
+        "line": 63,
         "owner": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
         "target": "SceneManager.sceneLoaded",
         "detail": "OnBootSceneLoadedBeforeStart",
@@ -4461,7 +4461,7 @@
       {
         "kind": "EVENT_UNSUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
-        "line": 71,
+        "line": 76,
         "owner": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
         "target": "SceneManager.sceneLoaded",
         "detail": "OnBootSceneLoadedBeforeStart",
@@ -4571,7 +4571,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs",
-        "line": 87,
+        "line": 99,
         "owner": "Ziptide.Gameplay.HangarBayRuntime",
         "target": "SetFlag",
         "detail": "profile",
@@ -10336,7 +10336,7 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs",
-      "line": 84,
+      "line": 96,
       "owner": "Ziptide.Gameplay.HangarBayRuntime",
       "target": "SaveSystem.Profile",
       "detail": "",
@@ -10345,7 +10345,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs",
-      "line": 87,
+      "line": 99,
       "owner": "Ziptide.Gameplay.HangarBayRuntime",
       "target": "SetFlag",
       "detail": "profile",
@@ -10354,7 +10354,7 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs",
-      "line": 96,
+      "line": 108,
       "owner": "Ziptide.Gameplay.HangarBayRuntime",
       "target": "SaveSystem.Profile",
       "detail": "",
@@ -10687,7 +10687,7 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs",
-      "line": 150,
+      "line": 149,
       "owner": "Ziptide.Gameplay.WorldTravelStation",
       "target": "SaveSystem.Profile",
       "detail": "",
@@ -12442,7 +12442,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
-      "line": 58,
+      "line": 63,
       "owner": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
       "target": "SceneManager.sceneLoaded",
       "detail": "OnBootSceneLoadedBeforeStart",
@@ -12451,7 +12451,7 @@
     {
       "kind": "EVENT_UNSUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
-      "line": 71,
+      "line": 76,
       "owner": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
       "target": "SceneManager.sceneLoaded",
       "detail": "OnBootSceneLoadedBeforeStart",

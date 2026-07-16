@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
-- Scanned files: **639**
-- Scanner findings: **2237**
+- Scanned files: **642**
+- Scanner findings: **2242**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -266,7 +266,7 @@ None.
 
 - Codes: `DIRECT_SCENE_LOAD_ASYNC`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:59` **DIRECT_SCENE_LOAD_ASYNC** — `AsyncOperation bootLoad = SceneManager.LoadSceneAsync(`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:64` **DIRECT_SCENE_LOAD_ASYNC** — `AsyncOperation bootLoad = SceneManager.LoadSceneAsync(`
 
 ### `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` — 1 signal(s)
 
@@ -1466,11 +1466,11 @@ None.
 
 - Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`, `TEXTMESH_COMPONENT`, `XR_INTERACTABLE_COMPONENT`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs:35` **CREATE_PRIMITIVE** — `var board = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs:116` **CREATE_PRIMITIVE** — `var tile = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs:122` **XR_INTERACTABLE_COMPONENT** — `var grab = tile.AddComponent<XRSimpleInteractable>(); // collider exists (primitive)`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs:131` **NEW_GAME_OBJECT** — `var go = new GameObject("Txt_" + text);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs:134` **TEXTMESH_COMPONENT** — `var tm = go.AddComponent<TextMesh>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs:47` **CREATE_PRIMITIVE** — `var board = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs:128` **CREATE_PRIMITIVE** — `var tile = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs:134` **XR_INTERACTABLE_COMPONENT** — `var grab = tile.AddComponent<XRSimpleInteractable>(); // collider exists (primitive)`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs:143` **NEW_GAME_OBJECT** — `var go = new GameObject("Txt_" + text);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs:146` **TEXTMESH_COMPONENT** — `var tm = go.AddComponent<TextMesh>();`
 
 ### `Ziptide.Gameplay.HazardZoneRuntime` — 4 signal(s)
 
@@ -2017,14 +2017,14 @@ None.
 - Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`, `RUNTIME_MATERIAL_CREATE`, `SHADER_FIND`, `TEXTMESH_COMPONENT`, `XR_INTERACTABLE_COMPONENT`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:88` **NEW_GAME_OBJECT** — `var doorRoot = new GameObject("TravelDoor_" + (pack.packId ?? "?"));`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:109` **NEW_GAME_OBJECT** — `var door = new GameObject("Door");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:118` **XR_INTERACTABLE_COMPONENT** — `var interactable = door.AddComponent<XRSimpleInteractable>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:176` **CREATE_PRIMITIVE** — `var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:230` **NEW_GAME_OBJECT** — `var go = new GameObject("Label");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:231` **TEXTMESH_COMPONENT** — `var tm = go.AddComponent<TextMesh>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:245` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Lit");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:246` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:248` **RUNTIME_MATERIAL_CREATE** — `var mat = new Material(shader);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:108` **NEW_GAME_OBJECT** — `var door = new GameObject("Door");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:117` **XR_INTERACTABLE_COMPONENT** — `var interactable = door.AddComponent<XRSimpleInteractable>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:174` **CREATE_PRIMITIVE** — `var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:226` **NEW_GAME_OBJECT** — `var go = new GameObject("Label");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:227` **TEXTMESH_COMPONENT** — `var tm = go.AddComponent<TextMesh>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:241` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Lit");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:242` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:244` **RUNTIME_MATERIAL_CREATE** — `var mat = new Material(shader);`
 
 ### `Ziptide.Gameplay.WristScanner` — 11 signal(s)
 
@@ -2290,6 +2290,14 @@ None.
 - Codes: `NEW_GAME_OBJECT`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs`
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:98` **NEW_GAME_OBJECT** — `var host = new GameObject(name);`
+
+### `Ziptide.Tests.PlayMode.RecoveryPresentationGuardTests` — 3 signal(s)
+
+- Codes: `NEW_GAME_OBJECT`, `TEXTMESH_COMPONENT`
+- Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPresentationGuardTests.cs`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPresentationGuardTests.cs:132` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPresentationGuardTests.cs:140` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPresentationGuardTests.cs:149` **TEXTMESH_COMPONENT** — `TextMesh text = go.AddComponent<TextMesh>();`
 
 ### `Ziptide.Tests.PlayMode.RecoveryRenderSnapshotTests` — 6 signal(s)
 
@@ -2659,10 +2667,10 @@ None.
 
 - Codes: `XRI_MANAGER_ASSIGN`, `XRI_MANAGER_LOOKUP`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:120` **XRI_MANAGER_LOOKUP** — `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:123` **XRI_MANAGER_ASSIGN** — `interactable.interactionManager = mgr;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:268` **XRI_MANAGER_LOOKUP** — `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:271` **XRI_MANAGER_ASSIGN** — `interactable.interactionManager = mgr;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:119` **XRI_MANAGER_LOOKUP** — `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:122` **XRI_MANAGER_ASSIGN** — `interactable.interactionManager = mgr;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:264` **XRI_MANAGER_LOOKUP** — `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:267` **XRI_MANAGER_ASSIGN** — `interactable.interactionManager = mgr;`
 
 ### `Ziptide.Ship.ShipFlightRuntime` — 2 signal(s)
 
@@ -2688,7 +2696,7 @@ None.
 
 - Codes: `XRI_MANAGER_LOOKUP`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:106` **XRI_MANAGER_LOOKUP** — `XRInteractionManager manager = UnityEngine.Object.FindObjectOfType<XRInteractionManager>();`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:111` **XRI_MANAGER_LOOKUP** — `XRInteractionManager manager = UnityEngine.Object.FindObjectOfType<XRInteractionManager>();`
 
 ### `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` — 2 signal(s)
 
@@ -3020,8 +3028,8 @@ None.
 
 - Codes: `SAVE_SYSTEM_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs:84` **SAVE_SYSTEM_REFERENCE** — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs:96` **SAVE_SYSTEM_REFERENCE** — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs:108` **SAVE_SYSTEM_REFERENCE** — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 
 ### `Ziptide.Gameplay.HolsterSocketInteractor` — 4 signal(s)
 
@@ -3246,7 +3254,7 @@ None.
 - Codes: `SAVE_SYSTEM_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:64` **SAVE_SYSTEM_REFERENCE** — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:150` **SAVE_SYSTEM_REFERENCE** — `+ " missing=" + (WorldGating.FirstMissingRequirement(pack, SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null) ?? "?"));`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:149` **SAVE_SYSTEM_REFERENCE** — `+ " missing=" + (WorldGating.FirstMissingRequirement(pack, SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null) ?? "?"));`
 
 ### `Ziptide.Gameplay.WristScanner` — 2 signal(s)
 
@@ -3753,6 +3761,12 @@ None.
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs:210` **CAMERA_MAIN_REFERENCE** — `if (cam == null) cam = Camera.main;`
 
+### `Ziptide.Gameplay.ShipBoardingPresentationGuard` — 1 signal(s)
+
+- Codes: `CAMERA_MAIN_REFERENCE`
+- Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingPresentationGuard.cs`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingPresentationGuard.cs:129` **CAMERA_MAIN_REFERENCE** — `if (_viewer == null) _viewer = Camera.main;`
+
 ### `Ziptide.Gameplay.ShipCastOffRuntime` — 1 signal(s)
 
 - Codes: `CAMERA_MAIN_REFERENCE`
@@ -3770,6 +3784,12 @@ None.
 - Codes: `CAMERA_MAIN_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs:111` **CAMERA_MAIN_REFERENCE** — `Camera camera = Camera.main;`
+
+### `Ziptide.Gameplay.ViewerSideWorldLabel` — 1 signal(s)
+
+- Codes: `CAMERA_MAIN_REFERENCE`
+- Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ViewerSideWorldLabel.cs`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ViewerSideWorldLabel.cs:61` **CAMERA_MAIN_REFERENCE** — `if (_viewer == null) _viewer = Camera.main;`
 
 ### `Ziptide.Gameplay.WorldDirector` — 1 signal(s)
 

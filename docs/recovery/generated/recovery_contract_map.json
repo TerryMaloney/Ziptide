@@ -1,8 +1,8 @@
 {
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
-  "scannedFiles": 639,
-  "findingCount": 2237,
+  "scannedFiles": 642,
+  "findingCount": 2242,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -852,7 +852,7 @@
           {
             "code": "DIRECT_SCENE_LOAD_ASYNC",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
-            "line": 59,
+            "line": 64,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
             "snippet": "AsyncOperation bootLoad = SceneManager.LoadSceneAsync("
           }
@@ -6814,35 +6814,35 @@
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs",
-            "line": 35,
+            "line": 47,
             "symbol": "Ziptide.Gameplay.HangarBayRuntime",
             "snippet": "var board = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs",
-            "line": 116,
+            "line": 128,
             "symbol": "Ziptide.Gameplay.HangarBayRuntime",
             "snippet": "var tile = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "XR_INTERACTABLE_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs",
-            "line": 122,
+            "line": 134,
             "symbol": "Ziptide.Gameplay.HangarBayRuntime",
             "snippet": "var grab = tile.AddComponent<XRSimpleInteractable>(); // collider exists (primitive)"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs",
-            "line": 131,
+            "line": 143,
             "symbol": "Ziptide.Gameplay.HangarBayRuntime",
             "snippet": "var go = new GameObject(\"Txt_\" + text);"
           },
           {
             "code": "TEXTMESH_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs",
-            "line": 134,
+            "line": 146,
             "symbol": "Ziptide.Gameplay.HangarBayRuntime",
             "snippet": "var tm = go.AddComponent<TextMesh>();"
           }
@@ -9533,56 +9533,56 @@
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs",
-            "line": 109,
+            "line": 108,
             "symbol": "Ziptide.Gameplay.WorldTravelStation",
             "snippet": "var door = new GameObject(\"Door\");"
           },
           {
             "code": "XR_INTERACTABLE_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs",
-            "line": 118,
+            "line": 117,
             "symbol": "Ziptide.Gameplay.WorldTravelStation",
             "snippet": "var interactable = door.AddComponent<XRSimpleInteractable>();"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs",
-            "line": 176,
+            "line": 174,
             "symbol": "Ziptide.Gameplay.WorldTravelStation",
             "snippet": "var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs",
-            "line": 230,
+            "line": 226,
             "symbol": "Ziptide.Gameplay.WorldTravelStation",
             "snippet": "var go = new GameObject(\"Label\");"
           },
           {
             "code": "TEXTMESH_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs",
-            "line": 231,
+            "line": 227,
             "symbol": "Ziptide.Gameplay.WorldTravelStation",
             "snippet": "var tm = go.AddComponent<TextMesh>();"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs",
-            "line": 245,
+            "line": 241,
             "symbol": "Ziptide.Gameplay.WorldTravelStation",
             "snippet": "var shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs",
-            "line": 246,
+            "line": 242,
             "symbol": "Ziptide.Gameplay.WorldTravelStation",
             "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
           },
           {
             "code": "RUNTIME_MATERIAL_CREATE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs",
-            "line": 248,
+            "line": 244,
             "symbol": "Ziptide.Gameplay.WorldTravelStation",
             "snippet": "var mat = new Material(shader);"
           }
@@ -10703,6 +10703,40 @@
             "line": 98,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests",
             "snippet": "var host = new GameObject(name);"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Tests.PlayMode.RecoveryPresentationGuardTests",
+        "evidenceCount": 3,
+        "codes": [
+          "NEW_GAME_OBJECT",
+          "TEXTMESH_COMPONENT"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPresentationGuardTests.cs"
+        ],
+        "evidence": [
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPresentationGuardTests.cs",
+            "line": 132,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryPresentationGuardTests",
+            "snippet": "var go = new GameObject(name);"
+          },
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPresentationGuardTests.cs",
+            "line": 140,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryPresentationGuardTests",
+            "snippet": "var go = new GameObject(name);"
+          },
+          {
+            "code": "TEXTMESH_COMPONENT",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPresentationGuardTests.cs",
+            "line": 149,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryPresentationGuardTests",
+            "snippet": "TextMesh text = go.AddComponent<TextMesh>();"
           }
         ]
       },
@@ -12264,28 +12298,28 @@
           {
             "code": "XRI_MANAGER_LOOKUP",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs",
-            "line": 120,
+            "line": 119,
             "symbol": "Ziptide.Gameplay.WorldTravelStation",
             "snippet": "var mgr = Object.FindObjectOfType<XRInteractionManager>();"
           },
           {
             "code": "XRI_MANAGER_ASSIGN",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs",
-            "line": 123,
+            "line": 122,
             "symbol": "Ziptide.Gameplay.WorldTravelStation",
             "snippet": "interactable.interactionManager = mgr;"
           },
           {
             "code": "XRI_MANAGER_LOOKUP",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs",
-            "line": 268,
+            "line": 264,
             "symbol": "Ziptide.Gameplay.WorldTravelStation",
             "snippet": "var mgr = Object.FindObjectOfType<XRInteractionManager>();"
           },
           {
             "code": "XRI_MANAGER_ASSIGN",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs",
-            "line": 271,
+            "line": 267,
             "symbol": "Ziptide.Gameplay.WorldTravelStation",
             "snippet": "interactable.interactionManager = mgr;"
           }
@@ -12377,7 +12411,7 @@
           {
             "code": "XRI_MANAGER_LOOKUP",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
-            "line": 106,
+            "line": 111,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
             "snippet": "XRInteractionManager manager = UnityEngine.Object.FindObjectOfType<XRInteractionManager>();"
           }
@@ -13657,14 +13691,14 @@
           {
             "code": "SAVE_SYSTEM_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs",
-            "line": 84,
+            "line": 96,
             "symbol": "Ziptide.Gameplay.HangarBayRuntime",
             "snippet": "var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
           },
           {
             "code": "SAVE_SYSTEM_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs",
-            "line": 96,
+            "line": 108,
             "symbol": "Ziptide.Gameplay.HangarBayRuntime",
             "snippet": "var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
           }
@@ -14611,7 +14645,7 @@
           {
             "code": "SAVE_SYSTEM_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs",
-            "line": 150,
+            "line": 149,
             "symbol": "Ziptide.Gameplay.WorldTravelStation",
             "snippet": "+ \" missing=\" + (WorldGating.FirstMissingRequirement(pack, SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null) ?? \"?\"));"
           }
@@ -16699,6 +16733,25 @@
         ]
       },
       {
+        "owner": "Ziptide.Gameplay.ShipBoardingPresentationGuard",
+        "evidenceCount": 1,
+        "codes": [
+          "CAMERA_MAIN_REFERENCE"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingPresentationGuard.cs"
+        ],
+        "evidence": [
+          {
+            "code": "CAMERA_MAIN_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingPresentationGuard.cs",
+            "line": 129,
+            "symbol": "Ziptide.Gameplay.ShipBoardingPresentationGuard",
+            "snippet": "if (_viewer == null) _viewer = Camera.main;"
+          }
+        ]
+      },
+      {
         "owner": "Ziptide.Gameplay.ShipCastOffRuntime",
         "evidenceCount": 1,
         "codes": [
@@ -16752,6 +16805,25 @@
             "line": 111,
             "symbol": "Ziptide.Gameplay.Tutorial.FirstHourObservationAdapter",
             "snippet": "Camera camera = Camera.main;"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Gameplay.ViewerSideWorldLabel",
+        "evidenceCount": 1,
+        "codes": [
+          "CAMERA_MAIN_REFERENCE"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ViewerSideWorldLabel.cs"
+        ],
+        "evidence": [
+          {
+            "code": "CAMERA_MAIN_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ViewerSideWorldLabel.cs",
+            "line": 61,
+            "symbol": "Ziptide.Gameplay.ViewerSideWorldLabel",
+            "snippet": "if (_viewer == null) _viewer = Camera.main;"
           }
         ]
       },

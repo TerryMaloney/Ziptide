@@ -1,6 +1,6 @@
 # ZIPTIDE Focused Recovery Reference Graph
 
-- Scanned C# files: **639**
+- Scanned C# files: **642**
 - Focused references: **368**
 
 ## melee
@@ -387,9 +387,9 @@
 - **declaration** · `Ziptide.Content.Ship.ShipSilhouette` · `Ziptide/Assets/Ziptide/Content/Runtime/Ship/ShipLoadoutCore.cs:81` — `public static ShipChassisPreset Find(string id)`
 - **declaration** · `Ziptide.Content.Ship.ShipSilhouette` · `Ziptide/Assets/Ziptide/Content/Runtime/Ship/ShipLoadoutCore.cs:136` — `public static ShipStats Resolve(ShipChassisPreset chassis, IEnumerable<ShipModulePreset> modules)`
 - **declaration** · `Ziptide.Content.Ship.ShipSilhouette` · `Ziptide/Assets/Ziptide/Content/Runtime/Ship/ShipLoadoutCore.cs:138` — `if (chassis == null) chassis = ShipChassisPreset.Find(null);`
-- **reference** · `Ziptide.Gameplay.HangarBayRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs:47` — `for (int i = 0; i < ShipChassisPreset.All.Length; i++)`
-- **reference** · `Ziptide.Gameplay.HangarBayRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs:49` — `var c = ShipChassisPreset.All[i];`
-- **reference** · `Ziptide.Gameplay.HangarBayRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs:97` — `var chassis = ShipChassisPreset.Find(ShipLocker.GetEquipped(profile, "chassis"));`
+- **reference** · `Ziptide.Gameplay.HangarBayRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs:59` — `for (int i = 0; i < ShipChassisPreset.All.Length; i++)`
+- **reference** · `Ziptide.Gameplay.HangarBayRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs:61` — `var c = ShipChassisPreset.All[i];`
+- **reference** · `Ziptide.Gameplay.HangarBayRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs:109` — `var chassis = ShipChassisPreset.Find(ShipLocker.GetEquipped(profile, "chassis"));`
 - **reference** · `Ziptide.Gameplay.ShipRefit` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipRefit.cs:11` — `/// · CHASSIS — reproportions the named ShipHullBuilder parts per ShipChassisPreset (fuselage`
 - **reference** · `Ziptide.Gameplay.ShipRefit` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipRefit.cs:36` — `var chassis = ShipChassisPreset.Find(chassisId);`
 - **reference** · `Ziptide.Gameplay.ShipRefit` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipRefit.cs:47` — `private static void ApplyProportions(Transform root, ShipChassisPreset c)`
@@ -424,9 +424,9 @@
 
 - **declaration** · `Ziptide.Core.ShipLocker` · `Ziptide/Assets/Ziptide/Core/Runtime/ShipLocker.cs:11` — `public static class ShipLocker`
 - **reference** · `Ziptide.Gameplay.HangarBayRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs:13` — `/// equips via ShipLocker (profile-flag persistence) and re-runs ShipRefit LIVE on the berth hull —`
-- **reference** · `Ziptide.Gameplay.HangarBayRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs:86` — `ShipLocker.Equip(profile, slot, id);`
-- **reference** · `Ziptide.Gameplay.HangarBayRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs:97` — `var chassis = ShipChassisPreset.Find(ShipLocker.GetEquipped(profile, "chassis"));`
-- **reference** · `Ziptide.Gameplay.HangarBayRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs:99` — `foreach (var id in ShipLocker.EquippedModules(profile, new[] { "engine", "wings", "hardpoint", "cargo" }))`
+- **reference** · `Ziptide.Gameplay.HangarBayRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs:98` — `ShipLocker.Equip(profile, slot, id);`
+- **reference** · `Ziptide.Gameplay.HangarBayRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs:109` — `var chassis = ShipChassisPreset.Find(ShipLocker.GetEquipped(profile, "chassis"));`
+- **reference** · `Ziptide.Gameplay.HangarBayRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs:111` — `foreach (var id in ShipLocker.EquippedModules(profile, new[] { "engine", "wings", "hardpoint", "cargo" }))`
 - **reference** · `Ziptide.Gameplay.ShipRefit` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipRefit.cs:21` — `/// · NAMEPLATE — the ship's name (ShipLocker "name") on the bow.`
 - **reference** · `Ziptide.Gameplay.ShipRefit` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipRefit.cs:35` — `string chassisId = ShipLocker.GetEquipped(profile, "chassis");`
 - **reference** · `Ziptide.Gameplay.ShipRefit` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipRefit.cs:180` — `string shipName = ShipLocker.GetEquipped(profile, "name");`
@@ -454,7 +454,7 @@
 - **reference** · `Ziptide.Gameplay.ConquestMissionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:372` — `/// Public sibling, never a nested MonoBehaviour (the ShipRefitBaseXf lesson).</summary>`
 - **reference** · `Ziptide.Gameplay.HangarBayRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs:13` — `/// equips via ShipLocker (profile-flag persistence) and re-runs ShipRefit LIVE on the berth hull —`
 - **reference** · `Ziptide.Gameplay.HangarBayRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs:19` — `[Tooltip("The hull root ShipRefit applies to (the boarding station's ship).")]`
-- **reference** · `Ziptide.Gameplay.HangarBayRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs:88` — `if (shipRoot != null) ShipRefit.Apply(shipRoot);`
+- **reference** · `Ziptide.Gameplay.HangarBayRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs:100` — `if (shipRoot != null) ShipRefit.Apply(shipRoot);`
 - **reference** · `Ziptide.Gameplay.ShipBoardingStation` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:55` — `ShipRefit.Apply(gameObject);`
 - **declaration** · `Ziptide.Gameplay.ShipRefit` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipRefit.cs:25` — `public static class ShipRefit`
 - **declaration** · `Ziptide.Gameplay.ShipRefit` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipRefit.cs:106` — `private static ShipRefitBaseXf Remember(Transform t)`
@@ -464,6 +464,6 @@
 
 ### `ShipRefit.Apply`
 
-- **reference** · `Ziptide.Gameplay.HangarBayRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs:88` — `if (shipRoot != null) ShipRefit.Apply(shipRoot);`
+- **reference** · `Ziptide.Gameplay.HangarBayRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs:100` — `if (shipRoot != null) ShipRefit.Apply(shipRoot);`
 - **reference** · `Ziptide.Gameplay.ShipBoardingStation` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:55` — `ShipRefit.Apply(gameObject);`
 
