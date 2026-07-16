@@ -1,5 +1,8 @@
 name: Recovery Clean Package Proof
 
+# Slow, authoritative lane for Unity/XR/package changes and foundational input/travel changes.
+# Every Unity job begins from an empty Library. Ordinary feature work uses the faster CI and
+# Recovery PlayMode workflows instead.
 on:
   push:
     branches:
@@ -12,7 +15,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   checks: write
 
 env:
@@ -35,6 +38,7 @@ jobs:
           ref: ${{ github.sha }}
           fetch-depth: 0
           lfs: true
+
       - name: Verify exact SHA and empty Library
         shell: bash
         run: |
@@ -42,7 +46,9 @@ jobs:
           test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
           rm -rf "${PROJECT_PATH}/Library"
           test ! -e "${PROJECT_PATH}/Library"
+
       - name: Run PlayMode suite from clean import
+        id: playmode
         uses: game-ci/unity-test-runner@v4
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
@@ -54,10 +60,80 @@ jobs:
           testMode: playmode
           githubToken: ${{ secrets.GITHUB_TOKEN }}
           artifactsPath: clean-playmode-results
+
+      - name: Require exact 43-test NUnit evidence
+        if: always()
+        shell: bash
+        env:
+          PLAYMODE_OUTCOME: ${{ steps.playmode.outcome }}
+        run: |
+          set -euo pipefail
+          mkdir -p docs/recovery/generated
+          python3 - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          import xml.etree.ElementTree as ET
+
+          totals = {key: 0 for key in ('total', 'passed', 'failed', 'skipped', 'inconclusive')}
+          files = []
+          for path in sorted(Path('clean-playmode-results').rglob('*.xml')):
+              try:
+                  root = ET.parse(path).getroot()
+              except ET.ParseError:
+                  continue
+              if root.tag.split('}')[-1] != 'test-run':
+                  continue
+              files.append(path.as_posix())
+              for key in totals:
+                  totals[key] += int(root.attrib.get(key, 0) or 0)
+
+          payload = {
+              'testedSha': os.environ['GITHUB_SHA'],
+              'runId': os.environ['GITHUB_RUN_ID'],
+              'attempt': os.environ['GITHUB_RUN_ATTEMPT'],
+              'outcome': os.environ.get('PLAYMODE_OUTCOME', 'unknown'),
+              'resultFiles': files,
+              **totals,
+          }
+          Path('docs/recovery/generated/recovery_clean_package_counts.json').write_text(
+              json.dumps(payload, indent=2) + '\n', encoding='utf-8')
+
+          manifest = json.loads(Path('Ziptide/Packages/manifest.json').read_text(encoding='utf-8'))
+          deps = manifest.get('dependencies', {})
+          text = f"""# Recovery Clean Package Proof
+
+          - Tested SHA: `{payload['testedSha']}`
+          - Workflow run: `{payload['runId']}`
+          - Attempt: `{payload['attempt']}`
+          - Clean PlayMode outcome: **{payload['outcome']}**
+          - NUnit totals: total={payload['total']} passed={payload['passed']} failed={payload['failed']} skipped={payload['skipped']} inconclusive={payload['inconclusive']}
+          - Unity: {os.environ['UNITY_VERSION']}
+          - Input System: `{deps.get('com.unity.inputsystem', 'unknown')}`
+          - XR Interaction Toolkit: `{deps.get('com.unity.xr.interaction.toolkit', 'unknown')}`
+          - Library policy: deleted before every Unity job
+          - Clean PlayMode artifact: `clean-playmode-{payload['testedSha']}`
+          - Clean EditMode artifact: `clean-editmode-{payload['testedSha']}`
+          - Clean audit artifact: `clean-patch-audit-{payload['testedSha']}`
+          - Clean Golden artifact: `clean-golden-apk-{payload['testedSha']}`
+          - Promotion rule: the entire workflow, ordinary CI, normal PlayMode, normal Golden Android, artifact review and the Quest checkpoint must all agree before recovery exits.
+          """
+          Path('docs/recovery/generated/recovery_clean_package_observation.md').write_text(
+              text, encoding='utf-8')
+
+          if payload['outcome'] != 'success':
+              raise SystemExit('Clean PlayMode runner did not succeed.')
+          expected = {'total': 43, 'passed': 43, 'failed': 0, 'skipped': 0, 'inconclusive': 0}
+          actual = {key: payload[key] for key in expected}
+          if actual != expected:
+              raise SystemExit(f'Clean PlayMode evidence is not exact 43/43: {actual}')
+          PY
+
       - name: Require resolved package lock
         if: always()
         shell: bash
         run: test -s "${PROJECT_PATH}/Packages/packages-lock.json"
+
       - name: Upload clean PlayMode evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -65,8 +141,55 @@ jobs:
           name: clean-playmode-${{ github.sha }}
           path: |
             clean-playmode-results
+            docs/recovery/generated/recovery_clean_package_counts.json
+            docs/recovery/generated/recovery_clean_package_observation.md
             ${{ env.PROJECT_PATH }}/Packages/packages-lock.json
           if-no-files-found: error
+
+      - name: Record clean proof and resolved package lock when current
+        if: steps.playmode.outcome == 'success'
+        shell: bash
+        run: |
+          set -euo pipefail
+          tested="$GITHUB_SHA"
+          cp docs/recovery/generated/recovery_clean_package_observation.md /tmp/recovery_clean_package_observation.md
+          cp docs/recovery/generated/recovery_clean_package_counts.json /tmp/recovery_clean_package_counts.json
+          cp "${PROJECT_PATH}/Packages/packages-lock.json" /tmp/packages-lock.json
+
+          git fetch origin terry-local-wip
+          current="$(git rev-parse origin/terry-local-wip)"
+          if [[ "$current" != "$tested" ]]; then
+            changed="$(git diff --name-only "$tested" "$current")"
+            while IFS= read -r path; do
+              [[ -z "$path" ]] && continue
+              case "$path" in
+                docs/recovery/generated/*|docs/CI_VERDICT.md|docs/HANDOFF.md) ;;
+                *)
+                  echo "::notice::Newer proof-relevant path '$path' exists; preserving this run in artifacts only."
+                  exit 0
+                  ;;
+              esac
+            done <<< "$changed"
+          fi
+
+          git checkout -B terry-local-wip origin/terry-local-wip
+          mkdir -p docs/recovery/generated Ziptide/Packages
+          cp /tmp/recovery_clean_package_observation.md docs/recovery/generated/recovery_clean_package_observation.md
+          cp /tmp/recovery_clean_package_counts.json docs/recovery/generated/recovery_clean_package_counts.json
+          cp /tmp/packages-lock.json Ziptide/Packages/packages-lock.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/recovery/generated/recovery_clean_package_observation.md \
+                  docs/recovery/generated/recovery_clean_package_counts.json \
+                  Ziptide/Packages/packages-lock.json
+          if git diff --cached --quiet; then
+            echo "Clean proof observation and package lock already match."
+            exit 0
+          fi
+          git commit -m "ci(recovery): record clean package proof for ${GITHUB_SHA:0:7} [skip ci]"
+          if ! git push origin HEAD:terry-local-wip; then
+            echo "::warning::Branch advanced during clean-proof writeback; artifacts remain authoritative."
+          fi
 
   editmode-clean:
     name: Clean EditMode suite
@@ -171,14 +294,17 @@ jobs:
           targetPlatform: Android
           buildMethod: Ziptide.Build.RecoveryBuildAndroid.PatchScenesThenGoldenAPK
           allowDirtyBuild: true
-      - name: Verify Golden outputs
+      - name: Verify and checksum Golden outputs
         shell: bash
         run: |
           set -euo pipefail
-          test -s "${PROJECT_PATH}/Builds/Android/Ziptide.apk"
-          test -s "${PROJECT_PATH}/Builds/Reports/recovery_golden_build_profile.json"
+          apk="${PROJECT_PATH}/Builds/Android/Ziptide.apk"
+          report="${PROJECT_PATH}/Builds/Reports/recovery_golden_build_profile.json"
+          test -s "$apk"
+          test -s "$report"
           test -s "${PROJECT_PATH}/Packages/packages-lock.json"
-          sha256sum "${PROJECT_PATH}/Builds/Android/Ziptide.apk" | tee "${PROJECT_PATH}/Builds/Android/Ziptide.apk.sha256"
+          sha256sum "$apk" | tee "${apk}.sha256"
+          sha256sum "$report" | tee "${report}.sha256"
       - name: Upload clean Golden candidate
         if: always()
         uses: actions/upload-artifact@v4
