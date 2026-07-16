@@ -27,6 +27,34 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-16 (rb37) — Fable 5: CLEAN PACKAGE PROOF GREEN — the last automated gate is cleared
+
+- **Diagnosis:** the clean lane's only failure (run `29532312901` on `19b86b6`) was NOT the game,
+  packages, or tests — the 43/43 assertion had already passed and the Golden APK had already built
+  (checksum printed in the log) before both jobs died on `Permission denied`: game-ci's Unity
+  container runs as root, so the regenerated `packages-lock.json` and `Builds/` outputs were
+  root-owned and the runner user could not write the receipts beside them. The proof succeeded;
+  the paperwork crashed.
+- **Fix (`2b158b4`):** `sudo chown` the container outputs back to the runner user before each
+  writeback/checksum step in `recovery-clean-package-proof.yml`. No test, threshold, or proof
+  content changed.
+- **RESULT (verified from the durable observation + jobs API, run `29540554179`):** on exact SHA
+  `2b158b4`, with **Library deleted before every Unity job** — Clean PlayMode **43/43** (0 failed/
+  skipped/inconclusive) · Clean EditMode ✅ · Clean patch/world audit ✅ · Clean locked Golden
+  Android APK ✅. Input System `1.6.3` + XRI `2.4.3` confirmed as the resolved graph with no cache
+  contamination possible. Ordinary CI also green on the same SHA.
+- **What this means:** every automated requirement in the authorization list is now satisfied on
+  one exact source. The intermittent post-travel Input System failure (rb36) is resolved by the
+  package matrix change and proven from a cold import.
+- **Remaining before Terry's headset (process, not proof):** ① independent sampling of the clean
+  run's artifacts (rb30/31/35 template); ② the authorization table in `QUEST_GOLDEN_CHECKPOINT_V2`
+  must quote THIS run's APK + build-profile SHA-256 (the hashes quoted for the previous candidate
+  `19b86b6` are superseded — `2b158b4` contains only the workflow fix, no runtime change, but the
+  authorized artifact must be the one from the clean run's own Golden job); ③ merge PR #48;
+  ④ hand Terry the exact download/verify/install block. NO local rebuilds — the artifact is the
+  candidate.
+- **Commit:** `2b158b4` (workflow fix) · this entry (docs).
+
 ### 2026-07-16 (rb36) — Fable 5: input-race peeled to ONE residual poll; CIRCUIT BREAKER → package decision escalated to the lane
 
 - **Also this window (both proven):** the travel-arrival input race was confirmed a REAL production
