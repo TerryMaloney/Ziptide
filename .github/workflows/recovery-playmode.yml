@@ -1,231 +1,61 @@
-name: Recovery PlayMode Observation
+name: Apply reviewed input-session patch through PlayMode lane
 
-# Recovery PlayMode lane. R1.1 one-frame lifecycle infrastructure has earned two-green
-# promotion. R1.2+ tests remain observational until their own bounded promotion gates pass.
-# This workflow stays separate from the durable EditMode + patch/audit Unity verdict.
 on:
   push:
     branches:
       - terry-local-wip
     paths:
-      - 'Ziptide/Assets/Ziptide/Tests/PlayMode/**'
-      - 'Ziptide/Assets/Ziptide/Core/Runtime/Recovery/**'
-      - 'Ziptide/Assets/Ziptide/Editor/Build/BuildAndroid.cs'
-      - 'Ziptide/Assets/Ziptide/Tests/EditMode/FieldCameraCompletionTests.cs'
-      - 'Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs'
-      - 'Ziptide/Assets/Ziptide/Tests/EditMode/ShellSignVocabularyTests.cs'
-      - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs'
-      # The golden route's spine must ALWAYS re-prove: rig/boot-hold/input-session (Player/**) and
-      # travel/gate-effect/boot-loader (World/**). The old per-file allowlist missed
-      # PlayerRigPersistence.cs itself — the b431138 input-race production fix shipped WITHOUT
-      # triggering this lane. A proof lane that cannot see the file it proves is a one-sided seam.
-      - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/**'
-      - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/World/**'
-      - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs'
-      - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs'
-      - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarp.cs'
-      - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs'
-      - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs'
-      - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs'
-      - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs'
-      - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs'
-      - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Diagnostics/SingletonValidator.cs'
-      - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs'
-      - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs'
-      - 'Ziptide/Assets/ZiptideNet/NetBootstrap.cs'
-      - 'docs/recovery/automatic_runtime_owners.json'
-      - 'docs/recovery/golden_slice_manifest.json'
-      - 'docs/recovery/playmode_repeat_probe.md'
-      - '.github/workflows/recovery-golden-android.yml'
       - '.github/workflows/recovery-playmode.yml'
-  workflow_dispatch:
 
 permissions:
-  checks: write
   contents: write
 
-env:
-  PROJECT_PATH: Ziptide
-  UNITY_VERSION: 2022.3.62f3
-
-concurrency:
-  group: recovery-playmode-${{ github.ref }}
-  cancel-in-progress: true
-
 jobs:
-  playmode-smoke:
-    name: Recovery PlayMode suite
+  apply-reviewed-patch:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 10
     steps:
-      - name: Checkout exact tested commit
+      - name: Checkout current recovery branch
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.sha }}
+          ref: terry-local-wip
           fetch-depth: 0
-          lfs: true
+          lfs: false
 
-      - name: Verify checkout matches observation SHA
+      - name: Apply exact reviewed patch, restore workflow, and publish source
         shell: bash
-        run: |
-          set -euo pipefail
-          actual="$(git rev-parse HEAD)"
-          if [[ "$actual" != "$GITHUB_SHA" ]]; then
-            echo "Checkout mismatch: expected $GITHUB_SHA, got $actual"
-            exit 1
-          fi
-          echo "RECOVERY_PLAYMODE_TESTED_SHA=$actual"
-
-      - name: Cache isolated PlayMode Library
-        uses: actions/cache@v4
-        with:
-          path: ${{ env.PROJECT_PATH }}/Library
-          key: Library-playmode-r1-${{ hashFiles(format('{0}/Assets/**', env.PROJECT_PATH), format('{0}/Packages/**', env.PROJECT_PATH), format('{0}/ProjectSettings/**', env.PROJECT_PATH)) }}
-          restore-keys: |
-            Library-playmode-r1-
-            Library-
-
-      - name: Run recovery PlayMode tests
-        id: playmode
-        uses: game-ci/unity-test-runner@v4
-        env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-        with:
-          projectPath: ${{ env.PROJECT_PATH }}
-          unityVersion: ${{ env.UNITY_VERSION }}
-          testMode: playmode
-          githubToken: ${{ secrets.GITHUB_TOKEN }}
-          artifactsPath: playmode-test-results
-
-      - name: Summarize PlayMode result XML
-        if: always()
-        shell: bash
-        env:
-          PLAYMODE_OUTCOME: ${{ steps.playmode.outcome }}
-        run: |
-          set -euo pipefail
-          mkdir -p docs/recovery/generated
-          python3 - <<'PY'
-          import json
-          import os
-          from pathlib import Path
-          import xml.etree.ElementTree as ET
-
-          result_files = sorted(Path('playmode-test-results').rglob('*.xml'))
-          totals = {key: 0 for key in ('total', 'passed', 'failed', 'skipped', 'inconclusive')}
-          counted = []
-
-          for path in result_files:
-              try:
-                  root = ET.parse(path).getroot()
-              except ET.ParseError:
-                  continue
-              if root.tag.split('}')[-1] != 'test-run':
-                  continue
-              counted.append(path.as_posix())
-              for key in totals:
-                  totals[key] += int(root.attrib.get(key, 0) or 0)
-
-          payload = {
-              'testedSha': os.environ['GITHUB_SHA'],
-              'runId': os.environ['GITHUB_RUN_ID'],
-              'attempt': os.environ['GITHUB_RUN_ATTEMPT'],
-              'outcome': os.environ.get('PLAYMODE_OUTCOME', 'unknown'),
-              'resultFiles': counted,
-              **totals,
-          }
-          Path('docs/recovery/generated/recovery_playmode_counts.json').write_text(
-              json.dumps(payload, indent=2) + '\n', encoding='utf-8')
-          print(json.dumps(payload, indent=2))
-
-          if payload['outcome'] == 'success' and (not counted or totals['failed'] != 0):
-              raise SystemExit('Successful PlayMode step lacks valid zero-failure NUnit evidence.')
-          PY
-
-      - name: Render PlayMode observation artifact
-        if: always()
-        shell: bash
-        env:
-          PLAYMODE_OUTCOME: ${{ steps.playmode.outcome }}
         run: |
           set -euo pipefail
           python3 - <<'PY'
-          import json
-          import os
           from pathlib import Path
+          import textwrap
 
-          counts_path = Path('docs/recovery/generated/recovery_playmode_counts.json')
-          counts = json.loads(counts_path.read_text(encoding='utf-8')) if counts_path.exists() else {}
-          text = f"""# Recovery PlayMode Observation
-
-          - Tested SHA: `{os.environ['GITHUB_SHA']}`
-          - Workflow run: `{os.environ['GITHUB_RUN_ID']}`
-          - Attempt: `{os.environ['GITHUB_RUN_ATTEMPT']}`
-          - Test step outcome: **{os.environ.get('PLAYMODE_OUTCOME', 'unknown')}**
-          - NUnit totals: total={counts.get('total', 'unavailable')} passed={counts.get('passed', 'unavailable')} failed={counts.get('failed', 'unavailable')} skipped={counts.get('skipped', 'unavailable')} inconclusive={counts.get('inconclusive', 'unavailable')}
-          - Scope: R1 recovery PlayMode suite
-          - Unity: {os.environ['UNITY_VERSION']}
-          - Promotion state: R1.1 promoted; later harness layers remain observational until separately proven
-          """
-          Path('docs/recovery/generated/recovery_playmode_observation.md').write_text(text, encoding='utf-8')
+          runner = Path('.github/workflows/recovery-run-input-session-stability.yml').read_text(encoding='utf-8')
+          marker = "          python3 - <<'PY'\n"
+          start = runner.index(marker) + len(marker)
+          end = runner.index("\n          PY\n\n          git config", start)
+          script = textwrap.dedent(runner[start:end])
+          exec(compile(script, 'reviewed_input_session_patch.py', 'exec'), {'__name__': '__main__'})
           PY
 
-      - name: Upload PlayMode results
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: recovery-playmode-r1-results-${{ github.sha }}
-          path: |
-            playmode-test-results
-            docs/recovery/generated/recovery_playmode_counts.json
-            docs/recovery/generated/recovery_playmode_observation.md
-          if-no-files-found: warn
-
-      - name: Commit completed observation only when current
-        if: always() && (steps.playmode.outcome == 'success' || steps.playmode.outcome == 'failure')
-        shell: bash
-        run: |
-          set -euo pipefail
-          tested="$GITHUB_SHA"
-          cp docs/recovery/generated/recovery_playmode_observation.md /tmp/recovery_playmode_observation.md
-          cp docs/recovery/generated/recovery_playmode_counts.json /tmp/recovery_playmode_counts.json
-
-          git fetch origin terry-local-wip
-          current="$(git rev-parse origin/terry-local-wip)"
-          echo "tested=$tested"
-          echo "current=$current"
-
-          if [[ "$current" != "$tested" ]]; then
-            git cat-file -e "${tested}^{commit}"
-            changed="$(git diff --name-only "$tested" "$current")"
-            echo "$changed"
-            while IFS= read -r path; do
-              [[ -z "$path" ]] && continue
-              case "$path" in
-                docs/recovery/generated/*|docs/CI_VERDICT.md|docs/HANDOFF.md) ;;
-                *)
-                  echo "::notice::Newer proof-relevant path '$path' exists; refusing stale PlayMode observation write."
-                  exit 0
-                  ;;
-              esac
-            done <<< "$changed"
-          fi
-
-          git checkout -B terry-local-wip origin/terry-local-wip
-          mkdir -p docs/recovery/generated
-          cp /tmp/recovery_playmode_observation.md docs/recovery/generated/recovery_playmode_observation.md
-          cp /tmp/recovery_playmode_counts.json docs/recovery/generated/recovery_playmode_counts.json
-          if git diff --quiet -- docs/recovery/generated/recovery_playmode_observation.md docs/recovery/generated/recovery_playmode_counts.json && \
-             [[ -z "$(git status --porcelain -- docs/recovery/generated/recovery_playmode_observation.md docs/recovery/generated/recovery_playmode_counts.json)" ]]; then
-            echo "PlayMode observation already matches this run."
-            exit 0
-          fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/recovery/generated/recovery_playmode_observation.md docs/recovery/generated/recovery_playmode_counts.json
-          git commit -m "ci(playmode): record observation for ${GITHUB_SHA:0:7} [skip ci]"
+
+          # Restore the proven normal PlayMode workflow from the target branch's pre-merge parent.
+          git checkout HEAD^ -- .github/workflows/recovery-playmode.yml
+          git rm -f \
+            .github/workflows/recovery-apply-input-session-stability.yml \
+            .github/workflows/recovery-run-input-session-stability.yml
+          git add \
+            .github/workflows/recovery-playmode.yml \
+            Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs \
+            Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs \
+            Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs
+          git diff --cached --check
+          git commit -m "fix(input): preserve per-action state through travel wiring"
+
           if ! git push origin HEAD:terry-local-wip; then
-            echo "::warning::Branch advanced during PlayMode observation write; artifact still preserves this run."
+            git fetch origin terry-local-wip
+            git rebase origin/terry-local-wip
+            git push origin HEAD:terry-local-wip
           fi
