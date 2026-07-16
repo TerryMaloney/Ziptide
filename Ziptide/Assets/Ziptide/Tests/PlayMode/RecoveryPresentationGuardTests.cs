@@ -79,9 +79,14 @@ namespace Ziptide.Tests.PlayMode
             FieldInfo viewerField = typeof(ShipBoardingPresentationGuard).GetField(
                 "_viewer",
                 BindingFlags.Instance | BindingFlags.NonPublic);
+            FieldInfo scanCountField = typeof(ShipBoardingPresentationGuard).GetField(
+                "_hierarchyScanCount",
+                BindingFlags.Instance | BindingFlags.NonPublic);
             Assert.IsNotNull(viewerField);
+            Assert.IsNotNull(scanCountField);
             viewerField.SetValue(guard, camera);
             guard.RefreshNow();
+            yield return null; // allow Start to run once; all later frames must use the cache.
 
             Assert.IsFalse(helm.activeSelf);
             Assert.IsFalse(disembark.activeSelf);
@@ -90,9 +95,10 @@ namespace Ziptide.Tests.PlayMode
             Assert.IsFalse(bay.activeSelf);
             Assert.IsFalse(locker.activeSelf);
             Assert.IsFalse(returnPanel.activeSelf);
+            int steadyStateScanCount = (int)scanCountField.GetValue(guard);
+            Assert.Greater(steadyStateScanCount, 0);
 
             camera.transform.position = cockpit.transform.position + Vector3.up * 1.65f;
-            guard.RefreshNow();
             yield return null;
 
             Assert.IsTrue(helm.activeSelf);
@@ -106,9 +112,15 @@ namespace Ziptide.Tests.PlayMode
                 camera.transform.position));
             Assert.IsFalse(bay.activeSelf,
                 "Quarters browsing surfaces became visible while the player was only on the deck.");
+            Assert.AreEqual(steadyStateScanCount, (int)scanCountField.GetValue(guard),
+                "The guard rescanned its hierarchy during steady-state deck presentation.");
+
+            yield return null;
+            yield return null;
+            Assert.AreEqual(steadyStateScanCount, (int)scanCountField.GetValue(guard),
+                "The guard allocated repeated hierarchy scans across unchanged frames.");
 
             camera.transform.position = quarters.transform.position + Vector3.up * 1.65f;
-            guard.RefreshNow();
             yield return null;
 
             Assert.IsFalse(helm.activeSelf);
@@ -116,6 +128,8 @@ namespace Ziptide.Tests.PlayMode
             Assert.IsTrue(bay.activeSelf);
             Assert.IsTrue(locker.activeSelf);
             Assert.IsTrue(returnPanel.activeSelf);
+            Assert.AreEqual(steadyStateScanCount, (int)scanCountField.GetValue(guard),
+                "Changing presentation zones required an avoidable hierarchy rescan.");
         }
 
         private Camera NewCamera(Vector3 position)
