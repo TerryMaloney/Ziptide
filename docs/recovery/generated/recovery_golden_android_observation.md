@@ -1,7 +1,12 @@
 # Recovery Golden Android Observation
 
-- Status: **pending automated replacement**
-- Purpose: seed the generated observation path so the Golden workflow can update and commit its first exact-SHA result.
-- Authority: `.github/workflows/recovery-golden-android.yml`
-
-This placeholder contains no build claim and must be replaced by the next completed Golden Android workflow run.
+- Tested SHA: `9b928cd4d3b1e39f94055bede51c85a22c76c1a6`
+- Workflow run: `29519001665`
+- Attempt: `1`
+- Build/verification result: **success**
+- Unity: 2022.3.62f3
+- Build method: `Ziptide.Build.RecoveryBuildAndroid.PatchScenesThenGoldenAPK`
+- Compile define: `ZIPTIDE_RECOVERY_GOLDEN`
+- Locked scenes: `_Boot`, `W000_DriftIn`, `ToxicCity`
+- Candidate artifact: `recovery-golden-apk-9b928cd4d3b1e39f94055bede51c85a22c76c1a6`
+- Audit artifact: `recovery-golden-audit-9b928cd4d3b1e39f94055bede51c85a22c76c1a6`
