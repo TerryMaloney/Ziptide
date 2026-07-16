@@ -41,10 +41,9 @@ namespace Ziptide.Core
 
     public static class RecoveryExposureProfiles
     {
-        // Package-compatibility proof marker (2026-07-16): the Unity 2022.3 editor was running
-        // the 2023-generation Input System 1.7 / XRI 2.5 pair. This comment-only watched source
-        // change makes every recovery lane execute against the bounded Input 1.6.3 / XRI 2.4.3
-        // matrix while preserving all runtime, scene, route, threshold and 43-test behavior.
+        // Clean-package proof marker (2026-07-16): the bounded Input System 1.6.3 / XRI 2.4.3
+        // matrix must import from an empty Unity Library and pass the unchanged PlayMode, EditMode,
+        // patch/audit and Golden Android routes before it can become the headset candidate.
         private static readonly RecoveryFeatureId[] GoldenFeatures =
         {
             RecoveryFeatureId.RuntimeHealthMonitor,
