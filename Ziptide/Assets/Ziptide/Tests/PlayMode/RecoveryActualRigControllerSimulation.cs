@@ -15,19 +15,16 @@ namespace Ziptide.Tests.PlayMode
     /// CI runner has no tracked XR devices, so XRInputModalityManager correctly deactivates all
     /// controller groups and the camera remains at an untracked origin. This helper temporarily:
     /// - installs left/right generic XR controller devices with zeroed state,
-    /// - rebuilds the already-enabled canonical action assets against those devices,
+    /// - rebuilds the canonical action assets against those devices,
     /// - disables modality switching and camera pose drivers only inside the test,
     /// - places the real tracked-head camera at an adult standing pose,
     /// - activates both existing non-teleport controller-ray hierarchies,
     /// - binds those rays to the already-proven canonical XRInteractionManager.
     ///
-    /// The virtual devices are required because actual locomotion providers resume when BOOT_HOLD
-    /// releases. Without bound XR controls, Input System 1.7 can enter its processor path with no
-    /// control and throw before a round-trip assertion is reached. Zeroed generic XR devices preserve
-    /// the real action asset/provider path while supplying the hardware presence that CI lacks.
-    ///
-    /// It creates no alternate rig, ray, camera, action map, interaction manager, UI or production
-    /// bootstrap, and restores every touched state in Dispose.
+    /// Disposal first disables the canonical action assets, then removes the virtual devices while no
+    /// locomotion provider can read them, restores every touched rig state, and finally restores each
+    /// action asset to its original enabled state. This prevents Input System processor null references
+    /// and teardown stalls without changing production input assets or providers.
     /// </summary>
     public sealed class RecoveryActualRigControllerSimulation : IDisposable
     {
@@ -37,6 +34,7 @@ namespace Ziptide.Tests.PlayMode
         private readonly List<BehaviourState> _behaviourStates = new List<BehaviourState>();
         private readonly List<TransformState> _transformStates = new List<TransformState>();
         private readonly List<InputDevice> _virtualDevices = new List<InputDevice>();
+        private readonly List<InputActionAssetState> _inputAssetStates = new List<InputActionAssetState>();
         private bool _disposed;
 
         private readonly struct GameObjectState
@@ -76,6 +74,18 @@ namespace Ziptide.Tests.PlayMode
                 LocalPosition = value != null ? value.localPosition : Vector3.zero;
                 LocalRotation = value != null ? value.localRotation : Quaternion.identity;
                 LocalScale = value != null ? value.localScale : Vector3.one;
+            }
+        }
+
+        private readonly struct InputActionAssetState
+        {
+            public readonly InputActionAsset Asset;
+            public readonly bool Enabled;
+
+            public InputActionAssetState(InputActionAsset asset)
+            {
+                Asset = asset;
+                Enabled = asset != null && asset.enabled;
             }
         }
 
@@ -123,8 +133,9 @@ namespace Ziptide.Tests.PlayMode
                 headCamera,
                 leftRay,
                 rightRay);
+            simulation.CaptureCanonicalInputAssets(canonicalManager);
             simulation.InstallVirtualControllerDevices();
-            RefreshCanonicalInputAssets(canonicalManager);
+            simulation.RefreshCanonicalInputAssets();
             simulation.DisableModalityManagers(rig);
             simulation.SetTrackedHeadPose(rig, trackedHeadHeight);
             simulation.ActivateControllerRay(rig, leftRay, canonicalManager);
@@ -146,24 +157,19 @@ namespace Ziptide.Tests.PlayMode
             if (_disposed) return;
             _disposed = true;
 
-            for (int i = _transformStates.Count - 1; i >= 0; i--)
-            {
-                TransformState state = _transformStates[i];
-                if (state.Transform == null) continue;
-                state.Transform.localPosition = state.LocalPosition;
-                state.Transform.localRotation = state.LocalRotation;
-                state.Transform.localScale = state.LocalScale;
-            }
+            Debug.Log("ZIPTIDE: RECOVERY_VIRTUAL_XR_DISPOSE phase=begin assets="
+                + _inputAssetStates.Count + " devices=" + _virtualDevices.Count);
+
+            SetInputAssetsEnabled(false);
+            InputSystem.Update();
+            Debug.Log("ZIPTIDE: RECOVERY_VIRTUAL_XR_DISPOSE phase=assets_disabled");
+
             for (int i = _behaviourStates.Count - 1; i >= 0; i--)
             {
-                BehaviourState state = _behaviourStates[i];
-                if (state.Behaviour != null) state.Behaviour.enabled = state.Enabled;
+                Behaviour behaviour = _behaviourStates[i].Behaviour;
+                if (behaviour != null) behaviour.enabled = false;
             }
-            for (int i = _gameObjectStates.Count - 1; i >= 0; i--)
-            {
-                GameObjectState state = _gameObjectStates[i];
-                if (state.Object != null) state.Object.SetActive(state.ActiveSelf);
-            }
+
             for (int i = _virtualDevices.Count - 1; i >= 0; i--)
             {
                 InputDevice device = _virtualDevices[i];
@@ -175,11 +181,51 @@ namespace Ziptide.Tests.PlayMode
                         + device.displayName + " reason=" + ex.Message);
                 }
             }
+            InputSystem.Update();
+            Debug.Log("ZIPTIDE: RECOVERY_VIRTUAL_XR_DISPOSE phase=devices_removed");
+
+            for (int i = _transformStates.Count - 1; i >= 0; i--)
+            {
+                TransformState state = _transformStates[i];
+                if (state.Transform == null) continue;
+                state.Transform.localPosition = state.LocalPosition;
+                state.Transform.localRotation = state.LocalRotation;
+                state.Transform.localScale = state.LocalScale;
+            }
+            for (int i = _gameObjectStates.Count - 1; i >= 0; i--)
+            {
+                GameObjectState state = _gameObjectStates[i];
+                if (state.Object != null) state.Object.SetActive(state.ActiveSelf);
+            }
+            for (int i = _behaviourStates.Count - 1; i >= 0; i--)
+            {
+                BehaviourState state = _behaviourStates[i];
+                if (state.Behaviour != null) state.Behaviour.enabled = state.Enabled;
+            }
+
+            RestoreInputAssetStates();
+            InputSystem.Update();
+            Debug.Log("ZIPTIDE: RECOVERY_VIRTUAL_XR_DISPOSE phase=restored");
 
             _transformStates.Clear();
             _behaviourStates.Clear();
             _gameObjectStates.Clear();
             _virtualDevices.Clear();
+            _inputAssetStates.Clear();
+        }
+
+        private void CaptureCanonicalInputAssets(XRInteractionManager canonicalManager)
+        {
+            InputActionManager inputManager = canonicalManager.GetComponent<InputActionManager>();
+            if (inputManager == null)
+                throw new InvalidOperationException(
+                    "The canonical XRInteractionManager has no InputActionManager to refresh.");
+
+            foreach (InputActionAsset asset in inputManager.actionAssets)
+                if (asset != null) _inputAssetStates.Add(new InputActionAssetState(asset));
+            if (_inputAssetStates.Count == 0)
+                throw new InvalidOperationException(
+                    "The canonical InputActionManager owns no action assets for tracked-rig simulation.");
         }
 
         private void InstallVirtualControllerDevices()
@@ -194,33 +240,22 @@ namespace Ziptide.Tests.PlayMode
             InputSystem.Update();
         }
 
-        private static void RefreshCanonicalInputAssets(XRInteractionManager canonicalManager)
+        private void RefreshCanonicalInputAssets()
         {
-            InputActionManager inputManager = canonicalManager.GetComponent<InputActionManager>();
-            if (inputManager == null)
-                throw new InvalidOperationException(
-                    "The canonical XRInteractionManager has no InputActionManager to refresh.");
-
-            int assetCount = 0;
-            foreach (InputActionAsset asset in inputManager.actionAssets)
-            {
-                if (asset == null) continue;
-                asset.Disable();
-                assetCount++;
-            }
-            if (assetCount == 0)
-                throw new InvalidOperationException(
-                    "The canonical InputActionManager owns no action assets for tracked-rig simulation.");
-
+            SetInputAssetsEnabled(false);
             InputSystem.Update();
-            foreach (InputActionAsset asset in inputManager.actionAssets)
+            for (int i = 0; i < _inputAssetStates.Count; i++)
+            {
+                InputActionAsset asset = _inputAssetStates[i].Asset;
                 if (asset != null) asset.Enable();
+            }
             InputSystem.Update();
 
             int locomotionActions = 0;
             int locomotionControls = 0;
-            foreach (InputActionAsset asset in inputManager.actionAssets)
+            for (int i = 0; i < _inputAssetStates.Count; i++)
             {
+                InputActionAsset asset = _inputAssetStates[i].Asset;
                 if (asset == null) continue;
                 foreach (InputActionMap map in asset.actionMaps)
                 {
@@ -235,13 +270,35 @@ namespace Ziptide.Tests.PlayMode
                 }
             }
 
-            Debug.Log("ZIPTIDE: RECOVERY_VIRTUAL_XR_BINDINGS assets=" + assetCount
+            Debug.Log("ZIPTIDE: RECOVERY_VIRTUAL_XR_BINDINGS assets=" + _inputAssetStates.Count
                 + " locomotionActions=" + locomotionActions
                 + " locomotionControls=" + locomotionControls);
             if (locomotionActions > 0 && locomotionControls == 0)
             {
                 throw new InvalidOperationException(
                     "The canonical locomotion actions did not bind to the virtual left/right XR controllers.");
+            }
+        }
+
+        private void SetInputAssetsEnabled(bool enabled)
+        {
+            for (int i = 0; i < _inputAssetStates.Count; i++)
+            {
+                InputActionAsset asset = _inputAssetStates[i].Asset;
+                if (asset == null) continue;
+                if (enabled) asset.Enable();
+                else asset.Disable();
+            }
+        }
+
+        private void RestoreInputAssetStates()
+        {
+            for (int i = 0; i < _inputAssetStates.Count; i++)
+            {
+                InputActionAssetState state = _inputAssetStates[i];
+                if (state.Asset == null) continue;
+                if (state.Enabled) state.Asset.Enable();
+                else state.Asset.Disable();
             }
         }
 

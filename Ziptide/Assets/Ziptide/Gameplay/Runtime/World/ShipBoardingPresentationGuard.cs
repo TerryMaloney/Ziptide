@@ -18,6 +18,7 @@ namespace Ziptide.Gameplay
         private const float QuartersRevealRadius = 4.0f;
         private const float HelmCharacterSize = 0.016f;
         private const float HierarchyRetrySeconds = 0.5f;
+        private const float LoosePanelMaximumDistance = 20f;
 
         private static readonly string[] DeckUiNames =
         {
@@ -92,6 +93,9 @@ namespace Ziptide.Gameplay
             _hierarchyScanCount++;
             _nextHierarchyRetryAt = Time.unscaledTime + HierarchyRetrySeconds;
 
+            AdoptLooseShipPanel("DisembarkPanel");
+            AdoptLooseShipPanel("QuartersPanel");
+
             Transform[] all = GetComponentsInChildren<Transform>(true);
             _cockpitDeck = FindByName(all, "CockpitDeck");
             _quarters = FindByName(all, "Quarters");
@@ -128,6 +132,34 @@ namespace Ziptide.Gameplay
 
             NormalizeHelmLabels();
             _hierarchyResolved = CachedHierarchyIsValid();
+        }
+
+        private void AdoptLooseShipPanel(string panelName)
+        {
+            Transform[] all = Resources.FindObjectsOfTypeAll<Transform>();
+            Transform best = null;
+            float bestDistance = LoosePanelMaximumDistance * LoosePanelMaximumDistance;
+            for (int i = 0; i < all.Length; i++)
+            {
+                Transform candidate = all[i];
+                if (candidate == null ||
+                    candidate == transform ||
+                    candidate.parent != null ||
+                    !candidate.gameObject.scene.IsValid() ||
+                    candidate.gameObject.scene != gameObject.scene ||
+                    !string.Equals(candidate.name, panelName, StringComparison.Ordinal))
+                    continue;
+
+                float distance = (candidate.position - transform.position).sqrMagnitude;
+                if (distance > bestDistance) continue;
+                bestDistance = distance;
+                best = candidate;
+            }
+
+            if (best == null) return;
+            best.SetParent(transform, true);
+            Debug.Log("ZIPTIDE: SHIP_PANEL_ADOPT panel=" + panelName
+                + " ship=" + RecoveryRuntimePath(transform));
         }
 
         private bool CachedHierarchyIsValid()
@@ -216,6 +248,19 @@ namespace Ziptide.Gameplay
                     return value;
             }
             return null;
+        }
+
+        private static string RecoveryRuntimePath(Transform value)
+        {
+            if (value == null) return "none";
+            string path = value.name;
+            Transform parent = value.parent;
+            while (parent != null)
+            {
+                path = parent.name + "/" + path;
+                parent = parent.parent;
+            }
+            return path;
         }
 
         private static float HorizontalDistance(Vector3 a, Vector3 b)
