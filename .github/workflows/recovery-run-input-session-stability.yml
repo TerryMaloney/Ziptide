@@ -1,7 +1,7 @@
 name: Run bounded input-session stability patch
 
-# Retrigger marker 2026-07-16: workflow now exists on the target branch, so this normal PR push
-# executes the reviewed patch. A docs/evidence-only concurrent advance is rebased before retry.
+# Direct trigger marker 2026-07-16-b: the workflow is established on terry-local-wip and this
+# watched-path push executes the reviewed exact replacement packet.
 on:
   push:
     branches:
