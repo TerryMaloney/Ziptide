@@ -45,6 +45,7 @@ namespace Ziptide.Core
         // PlayerRigPersistence.cs, which was omitted from the narrow Recovery PlayMode and Golden
         // Android path filters. This comment intentionally advances the exact candidate without
         // changing runtime behavior so both native workflows execute against the production fix.
+        // The final retrigger also proves the newly tracked Golden observation writeback path.
         private static readonly RecoveryFeatureId[] GoldenFeatures =
         {
             RecoveryFeatureId.RuntimeHealthMonitor,
