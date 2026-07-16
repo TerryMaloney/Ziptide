@@ -132,6 +132,48 @@ namespace Ziptide.Tests.PlayMode
                 "Changing presentation zones required an avoidable hierarchy rescan.");
         }
 
+        [UnityTest]
+        public IEnumerator ShipPresentationGuard_CapturesLateQuartersChildrenOnNextFrame()
+        {
+            Camera camera = NewCamera(new Vector3(0f, 1.65f, 0f));
+            GameObject ship = NewObject("__RECOVERY_LATE_SHIP", new Vector3(0f, 0f, 10f));
+            NewChild(ship.transform, "CockpitDeck", Vector3.zero);
+            NewChild(ship.transform, "HelmRows", Vector3.zero);
+            NewChild(ship.transform, "DisembarkPanel", Vector3.zero);
+            NewChild(ship.transform, "QuartersPanel", Vector3.zero);
+            NewChild(ship.transform, "HangarBay", Vector3.zero);
+            GameObject quarters = NewChild(ship.transform, "Quarters", new Vector3(0f, 0f, -5f));
+
+            ShipBoardingPresentationGuard guard = ship.AddComponent<ShipBoardingPresentationGuard>();
+            FieldInfo viewerField = typeof(ShipBoardingPresentationGuard).GetField(
+                "_viewer",
+                BindingFlags.Instance | BindingFlags.NonPublic);
+            FieldInfo scanCountField = typeof(ShipBoardingPresentationGuard).GetField(
+                "_hierarchyScanCount",
+                BindingFlags.Instance | BindingFlags.NonPublic);
+            Assert.IsNotNull(viewerField);
+            Assert.IsNotNull(scanCountField);
+            viewerField.SetValue(guard, camera);
+            guard.RefreshNow();
+            int incompleteScanCount = (int)scanCountField.GetValue(guard);
+
+            GameObject lateBay = NewChild(quarters.transform, "Bay_LateBuilt", Vector3.zero);
+            Assert.IsTrue(lateBay.activeSelf,
+                "The late-built bay must begin visible so the guard proves it discovered and hid it.");
+
+            yield return null;
+            int resolvedScanCount = (int)scanCountField.GetValue(guard);
+            Assert.Greater(resolvedScanCount, incompleteScanCount,
+                "The incomplete startup hierarchy was not retried on the next frame.");
+            Assert.IsFalse(lateBay.activeSelf,
+                "The exterior view kept a Quarters bay visible after the late hierarchy resolved.");
+
+            yield return null;
+            yield return null;
+            Assert.AreEqual(resolvedScanCount, (int)scanCountField.GetValue(guard),
+                "The guard kept scanning after the late hierarchy reached a complete steady state.");
+        }
+
         private Camera NewCamera(Vector3 position)
         {
             GameObject go = NewObject("__RECOVERY_PRESENTATION_CAMERA", position);
