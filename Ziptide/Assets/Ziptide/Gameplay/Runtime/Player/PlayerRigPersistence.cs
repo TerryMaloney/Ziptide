@@ -837,15 +837,24 @@ namespace Ziptide.Gameplay
         private IEnumerator RestoreReadersAfterInputSettle()
         {
             // Frame counts are not a settle guarantee: run 29518294931 showed the FIRST poll after a
-            // two-frame wait still hitting the ApplyProcessors NRE. Instead, PROBE the exact actions
-            // the suspended readers poll (in a try/catch, so a not-yet-resolved state is contained)
-            // and re-enable only once every read succeeds cleanly — bounded by real time.
+            // two-frame wait still hitting the ApplyProcessors NRE. Run 29518996619 went further —
+            // a PASSING probe followed by a clean MOVE_DIAG read still preceded a ContinuousTurn NRE,
+            // because the restore landed while the TRAVEL COROUTINE was still running and input churn
+            // (manager adoption, asset clears, guard reasserts) had not finished. The identical route
+            // reads clean in steady state (the perf-route legs), so the rule is: readers stay
+            // suspended until travel has fully ENDED, then probe-settle, then two extra frames.
             yield return null;
+            float travelDeadline = Time.realtimeSinceStartup + 45f; // covers the 30 s scene-load budget
+            while (Time.realtimeSinceStartup < travelDeadline && TravelCoordinator.IsTravelling)
+                yield return null;
+
             float deadline = Time.realtimeSinceStartup + 2f;
             while (Time.realtimeSinceStartup < deadline && !SuspendedReaderActionsReadSafely())
                 yield return null;
             if (!SuspendedReaderActionsReadSafely())
                 Debug.LogWarning("ZIPTIDE: INPUT_MUTATION_SETTLE_TIMEOUT — re-enabling readers anyway");
+            yield return null;
+            yield return null; // two settled frames beyond the last clean probe
 
             bool handedToBootHold = _bootHold.Held;
             foreach (var b in _mutationSuspendedReaders)
