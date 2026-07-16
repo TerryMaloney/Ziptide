@@ -41,11 +41,10 @@ namespace Ziptide.Core
 
     public static class RecoveryExposureProfiles
     {
-        // Proof-lane retrigger marker (2026-07-16): source b431138 changed
-        // PlayerRigPersistence.cs, which was omitted from the narrow Recovery PlayMode and Golden
-        // Android path filters. This comment intentionally advances the exact candidate without
-        // changing runtime behavior so both native workflows execute against the production fix.
-        // The final retrigger also proves the newly tracked Golden observation writeback path.
+        // Exact-source proof marker (2026-07-16): the preceding GitHub Actions commit e1d8e03
+        // contains the bounded per-action ownership repair but cannot recursively trigger workflows.
+        // This comment-only descendant is merged through a normal PR so PlayMode, contract scan,
+        // ordinary CI and Golden Android all execute against the same unchanged runtime behavior.
         private static readonly RecoveryFeatureId[] GoldenFeatures =
         {
             RecoveryFeatureId.RuntimeHealthMonitor,
