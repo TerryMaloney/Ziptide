@@ -371,6 +371,16 @@ namespace Ziptide.Gameplay
 
         public void EnsureXRIWiring()
         {
+            // Input-mutation window: this method disables sibling actions inside live assets
+            // (DisableAnchorInputActions) and re-enables whole assets (EnsurePersistentInputActions).
+            // InputSystem 1.7 re-resolves its InputActionState over the next frame(s); an XRI
+            // locomotion provider polling ReadValue inside that window throws the ApplyProcessors
+            // NullReferenceException (proven on every post-travel arrival by PlayMode run
+            // 29506225255 — SnapTurn and ContinuousTurn stacks directly after
+            // ANCHOR_ACTIONS_DISABLED). Suspend the polling readers across the window; they are
+            // restored two frames later, after the action state settles.
+            SuspendLocomotionReadersForInputMutation();
+
             var allManagers = FindObjectsOfType<XRInteractionManager>(true);
 
             // Identify scene-local manager (lives in the active scene, not DontDestroyOnLoad).
@@ -791,6 +801,55 @@ namespace Ziptide.Gameplay
                 b.enabled = false;
                 _bootSuspended.Add(b);
             }
+        }
+
+        // ── Travel-time input-mutation window (recovery: the post-travel SnapTurn/ContinuousTurn
+        //    ApplyProcessors NRE, PlayMode run 29506225255) ─────────────────────────────────────
+        // Ownership rules mirror the boot hold exactly: each mechanism disables only providers it
+        // found ENABLED and restores only its own set, so the two never fight. If the boot hold is
+        // holding when the settle window closes, the readers are HANDED to the boot hold instead of
+        // re-enabled — the hold's release-on-spawn then restores them (locomotion must never wake
+        // under a held menu).
+        private readonly System.Collections.Generic.List<Behaviour> _mutationSuspendedReaders =
+            new System.Collections.Generic.List<Behaviour>();
+        private Coroutine _mutationReaderRestore;
+
+        private void SuspendLocomotionReadersForInputMutation()
+        {
+            if (_mutationReaderRestore != null) return; // window already open; restorer owns the set
+            CollectForMutation(GetComponentsInChildren<ActionBasedContinuousMoveProvider>(true));
+            CollectForMutation(GetComponentsInChildren<ActionBasedContinuousTurnProvider>(true));
+            CollectForMutation(GetComponentsInChildren<ActionBasedSnapTurnProvider>(true));
+            if (_mutationSuspendedReaders.Count == 0) return;
+            _mutationReaderRestore = StartCoroutine(RestoreReadersAfterInputSettle());
+        }
+
+        private void CollectForMutation(Behaviour[] providers)
+        {
+            foreach (var b in providers)
+            {
+                if (b == null || !b.enabled) continue;
+                b.enabled = false;
+                _mutationSuspendedReaders.Add(b);
+            }
+        }
+
+        private IEnumerator RestoreReadersAfterInputSettle()
+        {
+            yield return null;
+            yield return null; // InputActionState re-resolution completes across these frames
+
+            bool handedToBootHold = _bootHold.Held;
+            foreach (var b in _mutationSuspendedReaders)
+            {
+                if (b == null) continue;
+                if (handedToBootHold) _bootSuspended.Add(b);
+                else b.enabled = true;
+            }
+            Debug.Log("ZIPTIDE: INPUT_MUTATION_READERS restored=" + _mutationSuspendedReaders.Count
+                + (handedToBootHold ? " handedTo=bootHold" : ""));
+            _mutationSuspendedReaders.Clear();
+            _mutationReaderRestore = null;
         }
 
         public void TeleportToSpawnMarker()
