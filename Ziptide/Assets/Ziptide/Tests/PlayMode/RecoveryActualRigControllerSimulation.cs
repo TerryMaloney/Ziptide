@@ -12,29 +12,26 @@ namespace Ziptide.Tests.PlayMode
     /// <summary>
     /// Test-only tracked-rig stand-in for actual-scene PlayMode tests. The real Quest rig is loaded
     /// unchanged, including its actual head camera and left/right direct controller rays. A headless
-    /// CI runner has no tracked XR devices, so XRInputModalityManager correctly deactivates all
-    /// controller groups and the camera remains at an untracked origin. This helper temporarily:
-    /// - installs left/right generic XR controller devices with zeroed state,
-    /// - rebuilds the canonical action assets against those devices,
-    /// - disables modality switching and camera pose drivers only inside the test,
-    /// - places the real tracked-head camera at an adult standing pose,
-    /// - activates both existing non-teleport controller-ray hierarchies,
-    /// - binds those rays to the already-proven canonical XRInteractionManager.
+    /// CI runner has no tracked XR devices, so this helper temporarily installs two neutral generic XR
+    /// controllers, rebuilds the real action assets against them, fixes the tracked-head pose and
+    /// activates the existing direct-ray hierarchies.
     ///
-    /// Disposal first disables the canonical action assets, then removes the virtual devices while no
-    /// locomotion provider can read them, restores every touched rig state, and finally restores each
-    /// action asset to its original enabled state. This prevents Input System processor null references
-    /// and teardown stalls without changing production input assets or providers.
+    /// Input ownership is explicit and finite. The simulator snapshots exact per-action enabled state
+    /// only around its own deliberate asset rebind and device-removal windows, while locomotion readers
+    /// are quiescent. It never installs a global action-state restorer. Production remains free to
+    /// disable Rotate/Translate Anchor after every scene load without the test harness undoing it.
     /// </summary>
     public sealed class RecoveryActualRigControllerSimulation : IDisposable
     {
         public const float DefaultTrackedHeadHeight = 1.65f;
 
+        private readonly PlayerRigPersistence _rig;
         private readonly List<GameObjectState> _gameObjectStates = new List<GameObjectState>();
         private readonly List<BehaviourState> _behaviourStates = new List<BehaviourState>();
         private readonly List<TransformState> _transformStates = new List<TransformState>();
         private readonly List<InputDevice> _virtualDevices = new List<InputDevice>();
-        private readonly List<InputActionAssetState> _inputAssetStates = new List<InputActionAssetState>();
+        private readonly List<InputActionAssetState> _inputAssetStates =
+            new List<InputActionAssetState>();
         private bool _disposed;
 
         private readonly struct GameObjectState
@@ -80,12 +77,22 @@ namespace Ziptide.Tests.PlayMode
         private readonly struct InputActionAssetState
         {
             public readonly InputActionAsset Asset;
-            public readonly bool Enabled;
 
             public InputActionAssetState(InputActionAsset asset)
             {
                 Asset = asset;
-                Enabled = asset != null && asset.enabled;
+            }
+        }
+
+        private readonly struct InputActionEnabledState
+        {
+            public readonly InputAction Action;
+            public readonly bool Enabled;
+
+            public InputActionEnabledState(InputAction action)
+            {
+                Action = action;
+                Enabled = action != null && action.enabled;
             }
         }
 
@@ -96,10 +103,12 @@ namespace Ziptide.Tests.PlayMode
         public string RightRayPath => RecoveryRuntimeCensus.HierarchyPath(RightRay.transform);
 
         private RecoveryActualRigControllerSimulation(
+            PlayerRigPersistence rig,
             Camera headCamera,
             XRRayInteractor leftRay,
             XRRayInteractor rightRay)
         {
+            _rig = rig;
             HeadCamera = headCamera;
             LeftRay = leftRay;
             RightRay = rightRay;
@@ -130,26 +139,48 @@ namespace Ziptide.Tests.PlayMode
             }
 
             var simulation = new RecoveryActualRigControllerSimulation(
+                rig,
                 headCamera,
                 leftRay,
                 rightRay);
-            simulation.CaptureCanonicalInputAssets(canonicalManager);
-            simulation.InstallVirtualControllerDevices();
-            simulation.RefreshCanonicalInputAssets();
-            simulation.DisableModalityManagers(rig);
-            simulation.SetTrackedHeadPose(rig, trackedHeadHeight);
-            simulation.ActivateControllerRay(rig, leftRay, canonicalManager);
-            simulation.ActivateControllerRay(rig, rightRay, canonicalManager);
 
-            Debug.Log("ZIPTIDE: RECOVERY_TRACKED_RIG_SIM head="
-                + RecoveryRuntimeCensus.HierarchyPath(headCamera.transform)
-                + " headHeight=" + trackedHeadHeight.ToString("F2")
-                + " leftRay=" + simulation.LeftRayPath
-                + " rightRay=" + simulation.RightRayPath
-                + " manager=" + canonicalManager.GetInstanceID()
-                + " sourceRays=" + rays.Length
-                + " virtualDevices=" + simulation._virtualDevices.Count);
-            return simulation;
+            try
+            {
+                simulation.CaptureCanonicalInputAssets(canonicalManager);
+                simulation.DisableModalityManagers(rig);
+
+                List<BehaviourState> rebindReaders =
+                    simulation.QuiesceLocomotionProviders();
+                try
+                {
+                    simulation.InstallVirtualControllerDevices();
+                    simulation.RefreshCanonicalInputAssets();
+                }
+                finally
+                {
+                    RestoreBehaviourStates(rebindReaders);
+                }
+
+                simulation.SetTrackedHeadPose(rig, trackedHeadHeight);
+                simulation.ActivateControllerRay(rig, leftRay, canonicalManager);
+                simulation.ActivateControllerRay(rig, rightRay, canonicalManager);
+
+                Debug.Log(
+                    "ZIPTIDE: RECOVERY_TRACKED_RIG_SIM head=" +
+                    RecoveryRuntimeCensus.HierarchyPath(headCamera.transform) +
+                    " headHeight=" + trackedHeadHeight.ToString("F2") +
+                    " leftRay=" + simulation.LeftRayPath +
+                    " rightRay=" + simulation.RightRayPath +
+                    " manager=" + canonicalManager.GetInstanceID() +
+                    " sourceRays=" + rays.Length +
+                    " virtualDevices=" + simulation._virtualDevices.Count);
+                return simulation;
+            }
+            catch
+            {
+                simulation.Dispose();
+                throw;
+            }
         }
 
         public void Dispose()
@@ -157,12 +188,12 @@ namespace Ziptide.Tests.PlayMode
             if (_disposed) return;
             _disposed = true;
 
-            Debug.Log("ZIPTIDE: RECOVERY_VIRTUAL_XR_DISPOSE phase=begin assets="
-                + _inputAssetStates.Count + " devices=" + _virtualDevices.Count);
+            Debug.Log(
+                "ZIPTIDE: RECOVERY_VIRTUAL_XR_DISPOSE phase=begin assets=" +
+                _inputAssetStates.Count + " devices=" + _virtualDevices.Count);
 
-            SetInputAssetsEnabled(false);
-            InputSystem.Update();
-            Debug.Log("ZIPTIDE: RECOVERY_VIRTUAL_XR_DISPOSE phase=assets_disabled");
+            List<InputActionEnabledState> actionStates = CaptureCurrentActionStates();
+            List<BehaviourState> locomotionStates = QuiesceLocomotionProviders();
 
             for (int i = _behaviourStates.Count - 1; i >= 0; i--)
             {
@@ -170,15 +201,23 @@ namespace Ziptide.Tests.PlayMode
                 if (behaviour != null) behaviour.enabled = false;
             }
 
+            SetInputAssetsEnabled(false);
+            InputSystem.Update();
+            Debug.Log("ZIPTIDE: RECOVERY_VIRTUAL_XR_DISPOSE phase=assets_disabled");
+
             for (int i = _virtualDevices.Count - 1; i >= 0; i--)
             {
                 InputDevice device = _virtualDevices[i];
                 if (device == null) continue;
-                try { InputSystem.RemoveDevice(device); }
+                try
+                {
+                    InputSystem.RemoveDevice(device);
+                }
                 catch (Exception ex)
                 {
-                    Debug.LogWarning("ZIPTIDE: RECOVERY_VIRTUAL_XR_REMOVE_FAIL device="
-                        + device.displayName + " reason=" + ex.Message);
+                    Debug.LogWarning(
+                        "ZIPTIDE: RECOVERY_VIRTUAL_XR_REMOVE_FAIL device=" +
+                        device.displayName + " reason=" + ex.Message);
                 }
             }
             InputSystem.Update();
@@ -192,20 +231,26 @@ namespace Ziptide.Tests.PlayMode
                 state.Transform.localRotation = state.LocalRotation;
                 state.Transform.localScale = state.LocalScale;
             }
+
             for (int i = _gameObjectStates.Count - 1; i >= 0; i--)
             {
                 GameObjectState state = _gameObjectStates[i];
                 if (state.Object != null) state.Object.SetActive(state.ActiveSelf);
             }
+
+            int restoredActions = RestoreActionStates(actionStates);
+            InputSystem.Update();
+
             for (int i = _behaviourStates.Count - 1; i >= 0; i--)
             {
                 BehaviourState state = _behaviourStates[i];
                 if (state.Behaviour != null) state.Behaviour.enabled = state.Enabled;
             }
+            RestoreBehaviourStates(locomotionStates);
 
-            RestoreInputAssetStates();
-            InputSystem.Update();
-            Debug.Log("ZIPTIDE: RECOVERY_VIRTUAL_XR_DISPOSE phase=restored");
+            Debug.Log(
+                "ZIPTIDE: RECOVERY_VIRTUAL_XR_DISPOSE phase=restored actionChanges=" +
+                restoredActions);
 
             _transformStates.Clear();
             _behaviourStates.Clear();
@@ -242,13 +287,10 @@ namespace Ziptide.Tests.PlayMode
 
         private void RefreshCanonicalInputAssets()
         {
+            List<InputActionEnabledState> states = CaptureCurrentActionStates();
             SetInputAssetsEnabled(false);
             InputSystem.Update();
-            for (int i = 0; i < _inputAssetStates.Count; i++)
-            {
-                InputActionAsset asset = _inputAssetStates[i].Asset;
-                if (asset != null) asset.Enable();
-            }
+            int restored = RestoreActionStates(states);
             InputSystem.Update();
 
             int locomotionActions = 0;
@@ -270,14 +312,51 @@ namespace Ziptide.Tests.PlayMode
                 }
             }
 
-            Debug.Log("ZIPTIDE: RECOVERY_VIRTUAL_XR_BINDINGS assets=" + _inputAssetStates.Count
-                + " locomotionActions=" + locomotionActions
-                + " locomotionControls=" + locomotionControls);
+            Debug.Log(
+                "ZIPTIDE: RECOVERY_VIRTUAL_XR_BINDINGS assets=" + _inputAssetStates.Count +
+                " actionsRestored=" + restored +
+                " locomotionActions=" + locomotionActions +
+                " locomotionControls=" + locomotionControls);
             if (locomotionActions > 0 && locomotionControls == 0)
             {
                 throw new InvalidOperationException(
                     "The canonical locomotion actions did not bind to the virtual left/right XR controllers.");
             }
+        }
+
+        private List<InputActionEnabledState> CaptureCurrentActionStates()
+        {
+            var states = new List<InputActionEnabledState>();
+            var seen = new HashSet<InputAction>();
+            for (int i = 0; i < _inputAssetStates.Count; i++)
+            {
+                InputActionAsset asset = _inputAssetStates[i].Asset;
+                if (asset == null) continue;
+                foreach (InputActionMap map in asset.actionMaps)
+                {
+                    foreach (InputAction action in map.actions)
+                    {
+                        if (action == null || !seen.Add(action)) continue;
+                        states.Add(new InputActionEnabledState(action));
+                    }
+                }
+            }
+            return states;
+        }
+
+        private static int RestoreActionStates(
+            IList<InputActionEnabledState> states)
+        {
+            int changed = 0;
+            for (int i = 0; i < states.Count; i++)
+            {
+                InputActionEnabledState state = states[i];
+                if (state.Action == null || state.Action.enabled == state.Enabled) continue;
+                if (state.Enabled) state.Action.Enable();
+                else state.Action.Disable();
+                changed++;
+            }
+            return changed;
         }
 
         private void SetInputAssetsEnabled(bool enabled)
@@ -291,14 +370,32 @@ namespace Ziptide.Tests.PlayMode
             }
         }
 
-        private void RestoreInputAssetStates()
+        private List<BehaviourState> QuiesceLocomotionProviders()
         {
-            for (int i = 0; i < _inputAssetStates.Count; i++)
+            var states = new List<BehaviourState>();
+            if (_rig == null) return states;
+            LocomotionProvider[] providers =
+                _rig.GetComponentsInChildren<LocomotionProvider>(true);
+            for (int i = 0; i < providers.Length; i++)
             {
-                InputActionAssetState state = _inputAssetStates[i];
-                if (state.Asset == null) continue;
-                if (state.Enabled) state.Asset.Enable();
-                else state.Asset.Disable();
+                LocomotionProvider provider = providers[i];
+                if (provider == null) continue;
+                states.Add(new BehaviourState(provider));
+                provider.enabled = false;
+            }
+            Debug.Log(
+                "ZIPTIDE: RECOVERY_VIRTUAL_XR_READERS_QUIESCED providers=" + states.Count);
+            return states;
+        }
+
+        private static void RestoreBehaviourStates(
+            IList<BehaviourState> states)
+        {
+            if (states == null) return;
+            for (int i = states.Count - 1; i >= 0; i--)
+            {
+                BehaviourState state = states[i];
+                if (state.Behaviour != null) state.Behaviour.enabled = state.Enabled;
             }
         }
 
@@ -314,7 +411,9 @@ namespace Ziptide.Tests.PlayMode
             }
         }
 
-        private void SetTrackedHeadPose(PlayerRigPersistence rig, float trackedHeadHeight)
+        private void SetTrackedHeadPose(
+            PlayerRigPersistence rig,
+            float trackedHeadHeight)
         {
             Transform head = HeadCamera.transform;
             Transform current = head;
@@ -326,8 +425,12 @@ namespace Ziptide.Tests.PlayMode
                     Behaviour behaviour = behaviours[i];
                     if (behaviour == null) continue;
                     string typeName = behaviour.GetType().FullName ?? string.Empty;
-                    if (typeName.IndexOf("TrackedPoseDriver", StringComparison.OrdinalIgnoreCase) >= 0 ||
-                        typeName.IndexOf("PoseDriver", StringComparison.OrdinalIgnoreCase) >= 0)
+                    if (typeName.IndexOf(
+                            "TrackedPoseDriver",
+                            StringComparison.OrdinalIgnoreCase) >= 0 ||
+                        typeName.IndexOf(
+                            "PoseDriver",
+                            StringComparison.OrdinalIgnoreCase) >= 0)
                     {
                         TrackBehaviour(behaviour);
                         behaviour.enabled = false;
@@ -365,7 +468,8 @@ namespace Ziptide.Tests.PlayMode
                 current = current.parent;
             }
             if (chain.Count == 0 || chain[chain.Count - 1] != rigRoot.gameObject)
-                throw new InvalidOperationException("Selected controller ray is not under the persistent rig.");
+                throw new InvalidOperationException(
+                    "Selected controller ray is not under the persistent rig.");
 
             for (int i = chain.Count - 1; i >= 0; i--)
             {
@@ -375,7 +479,9 @@ namespace Ziptide.Tests.PlayMode
             }
         }
 
-        private void EnableControllerBehaviours(Transform leaf, Transform rigRoot)
+        private void EnableControllerBehaviours(
+            Transform leaf,
+            Transform rigRoot)
         {
             Transform current = leaf;
             while (current != null)
@@ -388,8 +494,12 @@ namespace Ziptide.Tests.PlayMode
                     string typeName = behaviour.GetType().FullName ?? string.Empty;
                     if (behaviour is XRBaseController ||
                         behaviour is XRBaseControllerInteractor ||
-                        typeName.IndexOf("Controller", StringComparison.OrdinalIgnoreCase) >= 0 ||
-                        typeName.IndexOf("InteractorLineVisual", StringComparison.OrdinalIgnoreCase) >= 0)
+                        typeName.IndexOf(
+                            "Controller",
+                            StringComparison.OrdinalIgnoreCase) >= 0 ||
+                        typeName.IndexOf(
+                            "InteractorLineVisual",
+                            StringComparison.OrdinalIgnoreCase) >= 0)
                     {
                         TrackBehaviour(behaviour);
                         behaviour.enabled = true;
@@ -423,7 +533,9 @@ namespace Ziptide.Tests.PlayMode
             _transformStates.Add(new TransformState(value));
         }
 
-        private static XRRayInteractor SelectDirectRay(XRRayInteractor[] rays, string handName)
+        private static XRRayInteractor SelectDirectRay(
+            XRRayInteractor[] rays,
+            string handName)
         {
             XRRayInteractor fallback = null;
             for (int i = 0; i < rays.Length; i++)
@@ -449,10 +561,11 @@ namespace Ziptide.Tests.PlayMode
             {
                 XRRayInteractor ray = rays[i];
                 if (ray == null) continue;
-                values.Add(RecoveryRuntimeCensus.HierarchyPath(ray.transform)
-                    + " activeSelf=" + ray.gameObject.activeSelf
-                    + " activeHierarchy=" + ray.gameObject.activeInHierarchy
-                    + " enabled=" + ray.enabled);
+                values.Add(
+                    RecoveryRuntimeCensus.HierarchyPath(ray.transform) +
+                    " activeSelf=" + ray.gameObject.activeSelf +
+                    " activeHierarchy=" + ray.gameObject.activeInHierarchy +
+                    " enabled=" + ray.enabled);
             }
             return "rays=" + values.Count + " [" + string.Join("; ", values) + "]";
         }

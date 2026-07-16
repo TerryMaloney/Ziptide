@@ -5,6 +5,7 @@ using System.IO;
 using System.Text;
 using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -98,6 +99,7 @@ namespace Ziptide.Tests.PlayMode
                 "The actual New Game selection did not create a performance-route profile.");
 
             yield return WaitForCompletedDestination(1, ZiptideConstants.SceneW000);
+            yield return AssertProductionInputOwnershipSurvivesTravel(manager);
             yield return WaitForSweepAndCapture(
                 ZiptideConstants.SceneW000,
                 sweepOccurrence: 1,
@@ -106,6 +108,7 @@ namespace Ziptide.Tests.PlayMode
 
             TravelCoordinator.TravelTo(ZiptideConstants.SceneToxicCity);
             yield return WaitForCompletedDestination(2, ZiptideConstants.SceneToxicCity);
+            yield return AssertProductionInputOwnershipSurvivesTravel(manager);
             yield return WaitForSweepAndCapture(
                 ZiptideConstants.SceneToxicCity,
                 sweepOccurrence: 1,
@@ -114,6 +117,7 @@ namespace Ziptide.Tests.PlayMode
 
             TravelCoordinator.TravelTo(ZiptideConstants.SceneW000);
             yield return WaitForCompletedDestination(3, ZiptideConstants.SceneW000);
+            yield return AssertProductionInputOwnershipSurvivesTravel(manager);
             yield return WaitForSweepAndCapture(
                 ZiptideConstants.SceneW000,
                 sweepOccurrence: 2,
@@ -133,6 +137,7 @@ namespace Ziptide.Tests.PlayMode
                 "Performance soak did not produce all three post-sweep artifacts.");
             Assert.AreEqual(0, CountLogs("ZIPTIDE: TRAVEL_FAIL"));
             Assert.AreEqual(0, CountLogs("ZIPTIDE: XRI_NOT_READY"));
+            Assert.AreEqual(0, CountLogs("ZIPTIDE: RECOVERY_VIRTUAL_XR_READ_FAIL"));
         }
 
         private IEnumerator LoadActualBoot()
@@ -175,6 +180,63 @@ namespace Ziptide.Tests.PlayMode
             Assert.IsFalse(TravelCoordinator.IsTravelling);
             yield return null;
             yield return null;
+        }
+
+        private IEnumerator AssertProductionInputOwnershipSurvivesTravel(
+            XRInteractionManager manager)
+        {
+            InputActionManager inputManager = manager.GetComponent<InputActionManager>();
+            Assert.IsNotNull(inputManager,
+                "The canonical interaction manager lost its InputActionManager after travel.");
+
+            for (int pass = 0; pass < 2; pass++)
+            {
+                int disabledAnchorActions = 0;
+                int readableSnapTurnActions = 0;
+                var seen = new HashSet<InputAction>();
+                foreach (InputActionAsset asset in inputManager.actionAssets)
+                {
+                    if (asset == null) continue;
+                    foreach (InputActionMap map in asset.actionMaps)
+                    {
+                        foreach (InputAction action in map.actions)
+                        {
+                            if (action == null || !seen.Add(action)) continue;
+                            if (action.name == "Rotate Anchor" ||
+                                action.name == "Translate Anchor")
+                            {
+                                disabledAnchorActions++;
+                                Assert.IsFalse(action.enabled,
+                                    "Production-disabled anchor action was re-enabled by the virtual XR " +
+                                    "harness after travel: " + map.name + "/" + action.name +
+                                    " pass=" + pass);
+                            }
+                            else if (action.name == "Snap Turn")
+                            {
+                                Assert.DoesNotThrow(
+                                    () => { action.ReadValue<Vector2>(); },
+                                    "Snap Turn became unreadable after production input ownership " +
+                                    "settled: " + map.name + "/" + action.name + " pass=" + pass);
+                                readableSnapTurnActions++;
+                            }
+                        }
+                    }
+                }
+
+                Assert.AreEqual(4, disabledAnchorActions,
+                    "The canonical input asset no longer exposes the four production anchor actions.");
+                Assert.AreEqual(2, readableSnapTurnActions,
+                    "The canonical input asset no longer exposes two readable Snap Turn actions.");
+
+                if (pass == 0)
+                {
+                    yield return null;
+                    yield return null;
+                }
+            }
+
+            Debug.Log(
+                "ZIPTIDE: RECOVERY_INPUT_OWNERSHIP_OK anchorsDisabled=4 snapTurnReadable=2");
         }
 
         private IEnumerator WaitForSweepAndCapture(
