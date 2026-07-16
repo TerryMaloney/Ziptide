@@ -1,5 +1,7 @@
 name: Run bounded input-session stability patch
 
+# Retrigger marker 2026-07-16: workflow now exists on the target branch, so this normal PR push
+# executes the reviewed patch. A docs/evidence-only concurrent advance is rebased before retry.
 on:
   push:
     branches:
@@ -113,4 +115,8 @@ jobs:
             Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs
           git diff --cached --check
           git commit -m "fix(input): preserve per-action state through travel wiring"
-          git push origin HEAD:terry-local-wip
+          if ! git push origin HEAD:terry-local-wip; then
+            git fetch origin terry-local-wip
+            git rebase origin/terry-local-wip
+            git push origin HEAD:terry-local-wip
+          fi
