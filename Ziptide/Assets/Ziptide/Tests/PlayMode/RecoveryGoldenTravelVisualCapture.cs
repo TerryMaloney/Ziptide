@@ -52,6 +52,9 @@ namespace Ziptide.Tests.PlayMode
                 camera,
                 "R1_8_ACTUAL_" + labelToken,
                 "r1_8_actual_" + stemToken);
+            RecoveryFallbackSurfaceAudit.AssertAndWrite(
+                "R1_9_ACTUAL_" + labelToken,
+                "r1_9_actual_" + stemToken);
 
             CapturedDestinations.Add(destination);
             Debug.Log("ZIPTIDE: RECOVERY_GOLDEN_VISUAL_OK dest=" + destination
