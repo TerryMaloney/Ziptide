@@ -1,0 +1,51 @@
+name: Run bounded input-session stability patch
+
+on:
+  push:
+    branches:
+      - terry-local-wip
+    paths:
+      - '.github/workflows/recovery-run-input-session-stability.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: terry-local-wip
+          fetch-depth: 0
+
+      - name: Execute the exact reviewed replacement script
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import textwrap
+
+          helper = Path('.github/workflows/recovery-apply-input-session-stability.yml').read_text(encoding='utf-8')
+          start_marker = "          python3 - <<'PY'\n"
+          end_marker = "\n          PY\n\n          git config"
+          start = helper.index(start_marker) + len(start_marker)
+          end = helper.index(end_marker, start)
+          script = textwrap.dedent(helper[start:end])
+          namespace = {'__name__': '__main__'}
+          exec(compile(script, 'bounded_input_session_patch.py', 'exec'), namespace)
+          PY
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm \
+            .github/workflows/recovery-apply-input-session-stability.yml \
+            .github/workflows/recovery-run-input-session-stability.yml
+          git add \
+            Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs \
+            Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs \
+            Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs
+          git diff --cached --check
+          git commit -m "fix(input): preserve per-action state through travel wiring"
+          git push origin HEAD:terry-local-wip
