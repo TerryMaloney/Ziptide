@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
 - Scanned files: **648**
-- Scanner findings: **2305**
+- Scanner findings: **2306**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -113,9 +113,9 @@ None.
 - Codes: `DONT_DESTROY_ON_LOAD`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:158` **DONT_DESTROY_ON_LOAD** — `DontDestroyOnLoad(gameObject);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:406` **DONT_DESTROY_ON_LOAD** — `DontDestroyOnLoad(_xriManager.gameObject);`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:416` **DONT_DESTROY_ON_LOAD** — `DontDestroyOnLoad(_xriManager.gameObject);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:424` **DONT_DESTROY_ON_LOAD** — `DontDestroyOnLoad(_xriManager.gameObject);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:426` **DONT_DESTROY_ON_LOAD** — `DontDestroyOnLoad(_xriManager.gameObject);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:434` **DONT_DESTROY_ON_LOAD** — `DontDestroyOnLoad(_xriManager.gameObject);`
 
 ### `Ziptide.Gameplay.ComfortVignette` — 1 signal(s)
 
@@ -364,28 +364,28 @@ None.
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:59` **INPUT_ACTION_REFERENCE** — `/// InputActionManager asset list before Destroy — preventing the shared`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:60` **INPUT_ACTION_REFERENCE** — `/// InputActionAsset from being disabled by InputActionManager.OnDisable.`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:377` **INPUT_ACTION_REFERENCE** — `// The scene-local manager always has the correct InputActionManager+assets wired up.`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:393` **INPUT_ACTION_REFERENCE** — `// CRITICAL FIX: clear the OLD manager's InputActionManager asset list BEFORE`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:394` **INPUT_ACTION_REFERENCE** — `// destroying it. InputActionManager.OnDisable calls actionAsset.Disable() which`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:575` **INPUT_ACTION_REFERENCE** — `var primary = _xriManager != null ? _xriManager.GetComponent<InputActionManager>() : null;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:599` **INPUT_ACTION_REFERENCE** — `/// Guarantees the persistent rig owns its input. The scene's InputActionManager often`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:604` **INPUT_ACTION_REFERENCE** — `/// the rig references, (2) put them on an InputActionManager on the PERSISTENT manager`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:605` **INPUT_ACTION_REFERENCE** — `/// object, (3) clear the asset list on every other InputActionManager so their OnDisable`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:610` **INPUT_ACTION_REFERENCE** — `var assets = new System.Collections.Generic.List<InputActionAsset>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:611` **INPUT_ACTION_REFERENCE** — `void Add(InputActionAsset a) { if (a != null && !assets.Contains(a)) assets.Add(a); }`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:613` **INPUT_ACTION_REFERENCE** — `var allManagers = FindObjectsOfType<InputActionManager>(true);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:622` **INPUT_ACTION_REFERENCE** — `var primary = _xriManager.GetComponent<InputActionManager>()`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:623` **INPUT_ACTION_REFERENCE** — `?? _xriManager.gameObject.AddComponent<InputActionManager>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:645` **INPUT_ACTION_REFERENCE** — `private static InputActionAsset GetActionAssetFromController(ActionBasedController c)`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:654` **INPUT_ACTION_REFERENCE** — `/// <summary>Clears m_ActionAssets on an InputActionManager so its OnDisable won't disable shared assets.</summary>`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:655` **INPUT_ACTION_REFERENCE** — `private static void ClearInputActionAssets(InputActionManager iam)`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:660` **INPUT_ACTION_REFERENCE** — `var field = typeof(InputActionManager).GetField(`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:663` **INPUT_ACTION_REFERENCE** — `field.SetValue(iam, new System.Collections.Generic.List<InputActionAsset>());`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:672` **INPUT_ACTION_REFERENCE** — `/// Clears the action asset list on an InputActionManager via reflection BEFORE`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:673` **INPUT_ACTION_REFERENCE** — `/// the manager is destroyed. This prevents InputActionManager.OnDisable from`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:679` **INPUT_ACTION_REFERENCE** — `var iam = mgr.GetComponent<InputActionManager>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:683` **INPUT_ACTION_REFERENCE** — `var field = typeof(InputActionManager).GetField(`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:687` **INPUT_ACTION_REFERENCE** — `field.SetValue(iam, new System.Collections.Generic.List<InputActionAsset>());`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:387` **INPUT_ACTION_REFERENCE** — `// The scene-local manager always has the correct InputActionManager+assets wired up.`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:403` **INPUT_ACTION_REFERENCE** — `// CRITICAL FIX: clear the OLD manager's InputActionManager asset list BEFORE`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:404` **INPUT_ACTION_REFERENCE** — `// destroying it. InputActionManager.OnDisable calls actionAsset.Disable() which`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:585` **INPUT_ACTION_REFERENCE** — `var primary = _xriManager != null ? _xriManager.GetComponent<InputActionManager>() : null;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:609` **INPUT_ACTION_REFERENCE** — `/// Guarantees the persistent rig owns its input. The scene's InputActionManager often`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:614` **INPUT_ACTION_REFERENCE** — `/// the rig references, (2) put them on an InputActionManager on the PERSISTENT manager`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:615` **INPUT_ACTION_REFERENCE** — `/// object, (3) clear the asset list on every other InputActionManager so their OnDisable`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:620` **INPUT_ACTION_REFERENCE** — `var assets = new System.Collections.Generic.List<InputActionAsset>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:621` **INPUT_ACTION_REFERENCE** — `void Add(InputActionAsset a) { if (a != null && !assets.Contains(a)) assets.Add(a); }`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:623` **INPUT_ACTION_REFERENCE** — `var allManagers = FindObjectsOfType<InputActionManager>(true);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:632` **INPUT_ACTION_REFERENCE** — `var primary = _xriManager.GetComponent<InputActionManager>()`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:633` **INPUT_ACTION_REFERENCE** — `?? _xriManager.gameObject.AddComponent<InputActionManager>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:655` **INPUT_ACTION_REFERENCE** — `private static InputActionAsset GetActionAssetFromController(ActionBasedController c)`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:664` **INPUT_ACTION_REFERENCE** — `/// <summary>Clears m_ActionAssets on an InputActionManager so its OnDisable won't disable shared assets.</summary>`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:665` **INPUT_ACTION_REFERENCE** — `private static void ClearInputActionAssets(InputActionManager iam)`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:670` **INPUT_ACTION_REFERENCE** — `var field = typeof(InputActionManager).GetField(`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:673` **INPUT_ACTION_REFERENCE** — `field.SetValue(iam, new System.Collections.Generic.List<InputActionAsset>());`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:682` **INPUT_ACTION_REFERENCE** — `/// Clears the action asset list on an InputActionManager via reflection BEFORE`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:683` **INPUT_ACTION_REFERENCE** — `/// the manager is destroyed. This prevents InputActionManager.OnDisable from`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:689` **INPUT_ACTION_REFERENCE** — `var iam = mgr.GetComponent<InputActionManager>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:693` **INPUT_ACTION_REFERENCE** — `var field = typeof(InputActionManager).GetField(`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:697` **INPUT_ACTION_REFERENCE** — `field.SetValue(iam, new System.Collections.Generic.List<InputActionAsset>());`
 
 ### `Ziptide.Gameplay.DashLocomotion` — 7 signal(s)
 
@@ -1195,7 +1195,7 @@ None.
 - Codes: `NEW_GAME_OBJECT`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:306` **NEW_GAME_OBJECT** — `var go = new GameObject(Ziptide.Core.ZiptideConstants.GoBeltRig);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:421` **NEW_GAME_OBJECT** — `var go = new GameObject("__XRI");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:431` **NEW_GAME_OBJECT** — `var go = new GameObject("__XRI");`
 
 ### `Ziptide.Gameplay.BootLoader` — 1 signal(s)
 
@@ -2556,9 +2556,9 @@ None.
 - Codes: `XRI_MANAGER_ASSIGN`, `XRI_MANAGER_CREATE`, `XRI_MANAGER_LOOKUP`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:140` **XRI_MANAGER_LOOKUP** — `foreach (var m in FindObjectsOfType<XRInteractionManager>(true))`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:374` **XRI_MANAGER_LOOKUP** — `var allManagers = FindObjectsOfType<XRInteractionManager>(true);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:423` **XRI_MANAGER_CREATE** — `_xriManager = go.AddComponent<XRInteractionManager>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:450` **XRI_MANAGER_ASSIGN** — `i.interactionManager = _xriManager;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:384` **XRI_MANAGER_LOOKUP** — `var allManagers = FindObjectsOfType<XRInteractionManager>(true);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:433` **XRI_MANAGER_CREATE** — `_xriManager = go.AddComponent<XRInteractionManager>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:460` **XRI_MANAGER_ASSIGN** — `i.interactionManager = _xriManager;`
 
 ### `Ziptide.Gameplay.BuildSocketRuntime` — 2 signal(s)
 
@@ -4164,7 +4164,7 @@ None.
 
 - Codes: `FALLBACK_MARKER`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:717` **FALLBACK_MARKER** — `// Name-based fallback for rigs without XROrigin component attached.`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:727` **FALLBACK_MARKER** — `// Name-based fallback for rigs without XROrigin component attached.`
 
 ### `Ziptide.Gameplay.CollectibleRuntime` — 1 signal(s)
 

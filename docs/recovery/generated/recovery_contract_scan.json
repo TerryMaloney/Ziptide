@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-16T14:21:47.649201+00:00",
+  "generatedAtUtc": "2026-07-16T15:43:22.576642+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -9,10 +9,10 @@
     "Ziptide/Assets/ZiptideNet"
   ],
   "scannedFiles": 648,
-  "findingCount": 2305,
+  "findingCount": 2306,
   "categoryCounts": {
     "bootstrap": 31,
-    "diagnostics": 502,
+    "diagnostics": 503,
     "events": 64,
     "fallback_debt": 134,
     "global_render": 80,
@@ -57,7 +57,7 @@
     "XRI_MANAGER_LOOKUP": 41,
     "XR_INTERACTABLE_COMPONENT": 62,
     "XR_UI_INPUT_MODULE": 2,
-    "ZIPTIDE_LOG_TAG": 502
+    "ZIPTIDE_LOG_TAG": 503
   },
   "findings": [
     {
@@ -1946,7 +1946,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 420,
+      "line": 430,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: XRI_MISSING (creating XRInteractionManager)\");"
     },
@@ -1955,7 +1955,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 503,
+      "line": 513,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "Debug.Log(\"ZIPTIDE: XRI_WIRING cams=\" + cams + \" rays=\" + totalRays +"
     },
@@ -1964,7 +1964,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 505,
+      "line": 515,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "if (totalRays == 0) Debug.LogWarning(\"ZIPTIDE: NO_RAY_INTERACTORS\");"
     },
@@ -1973,7 +1973,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 526,
+      "line": 536,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: ANCHOR_FIELD_MISSING m_AllowAnchorControl \u2014 gun may still rotate\");"
     },
@@ -1982,7 +1982,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 595,
+      "line": 605,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "Debug.Log(\"ZIPTIDE: ANCHOR_ACTIONS_DISABLED count=\" + disabled);"
     },
@@ -1991,7 +1991,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 627,
+      "line": 637,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: INPUT_ACTIONS_MISSING\");"
     },
@@ -2000,7 +2000,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 667,
+      "line": 677,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: ClearInputActionAssets failed: \" + ex.Message);"
     },
@@ -2009,7 +2009,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 694,
+      "line": 704,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: SafeClearInputActionAssets failed: \" + ex.Message);"
     },
@@ -2018,7 +2018,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 750,
+      "line": 760,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: BOOT_HOLD no_rig held=\" + held);"
     },
@@ -2027,7 +2027,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 766,
+      "line": 776,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "Debug.Log(\"ZIPTIDE: BOOT_HOLD on pose=\" + transform.position.ToString(\"F2\")"
     },
@@ -2036,7 +2036,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 781,
+      "line": 791,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "Debug.Log(\"ZIPTIDE: BOOT_HOLD off safe=\" + transform.position.ToString(\"F2\")"
     },
@@ -2045,7 +2045,16 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 870,
+      "line": 849,
+      "symbol": "Ziptide.Gameplay.BootHoldState",
+      "snippet": "Debug.Log(\"ZIPTIDE: INPUT_MUTATION_READERS restored=\" + _mutationSuspendedReaders.Count"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
+      "line": 929,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "Debug.Log(\"ZIPTIDE: SPAWN_AT marker='\" + marker.markerId + \"' rig=\" + transform.position.ToString(\"F2\")"
     },
@@ -6140,7 +6149,7 @@
       "code": "FALLBACK_MARKER",
       "description": "Source text marks fallback/prototype debt",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 717,
+      "line": 727,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "// Name-based fallback for rigs without XROrigin component attached."
     },
@@ -7958,7 +7967,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 377,
+      "line": 387,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "// The scene-local manager always has the correct InputActionManager+assets wired up."
     },
@@ -7967,7 +7976,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 393,
+      "line": 403,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "// CRITICAL FIX: clear the OLD manager's InputActionManager asset list BEFORE"
     },
@@ -7976,7 +7985,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 394,
+      "line": 404,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "// destroying it. InputActionManager.OnDisable calls actionAsset.Disable() which"
     },
@@ -7985,7 +7994,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 575,
+      "line": 585,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "var primary = _xriManager != null ? _xriManager.GetComponent<InputActionManager>() : null;"
     },
@@ -7994,7 +8003,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 599,
+      "line": 609,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "/// Guarantees the persistent rig owns its input. The scene's InputActionManager often"
     },
@@ -8003,7 +8012,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 604,
+      "line": 614,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "/// the rig references, (2) put them on an InputActionManager on the PERSISTENT manager"
     },
@@ -8012,7 +8021,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 605,
+      "line": 615,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "/// object, (3) clear the asset list on every other InputActionManager so their OnDisable"
     },
@@ -8021,7 +8030,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 610,
+      "line": 620,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "var assets = new System.Collections.Generic.List<InputActionAsset>();"
     },
@@ -8030,7 +8039,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 611,
+      "line": 621,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "void Add(InputActionAsset a) { if (a != null && !assets.Contains(a)) assets.Add(a); }"
     },
@@ -8039,7 +8048,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 613,
+      "line": 623,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "var allManagers = FindObjectsOfType<InputActionManager>(true);"
     },
@@ -8048,7 +8057,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 622,
+      "line": 632,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "var primary = _xriManager.GetComponent<InputActionManager>()"
     },
@@ -8057,7 +8066,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 623,
+      "line": 633,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "?? _xriManager.gameObject.AddComponent<InputActionManager>();"
     },
@@ -8066,7 +8075,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 645,
+      "line": 655,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "private static InputActionAsset GetActionAssetFromController(ActionBasedController c)"
     },
@@ -8075,7 +8084,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 654,
+      "line": 664,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "/// <summary>Clears m_ActionAssets on an InputActionManager so its OnDisable won't disable shared assets.</summary>"
     },
@@ -8084,7 +8093,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 655,
+      "line": 665,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "private static void ClearInputActionAssets(InputActionManager iam)"
     },
@@ -8093,27 +8102,9 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 660,
+      "line": 670,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "var field = typeof(InputActionManager).GetField("
-    },
-    {
-      "category": "input",
-      "code": "INPUT_ACTION_REFERENCE",
-      "description": "Input System action reference",
-      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 663,
-      "symbol": "Ziptide.Gameplay.BootHoldState",
-      "snippet": "field.SetValue(iam, new System.Collections.Generic.List<InputActionAsset>());"
-    },
-    {
-      "category": "input",
-      "code": "INPUT_ACTION_REFERENCE",
-      "description": "Input System action reference",
-      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 672,
-      "symbol": "Ziptide.Gameplay.BootHoldState",
-      "snippet": "/// Clears the action asset list on an InputActionManager via reflection BEFORE"
     },
     {
       "category": "input",
@@ -8122,16 +8113,16 @@
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
       "line": 673,
       "symbol": "Ziptide.Gameplay.BootHoldState",
-      "snippet": "/// the manager is destroyed. This prevents InputActionManager.OnDisable from"
+      "snippet": "field.SetValue(iam, new System.Collections.Generic.List<InputActionAsset>());"
     },
     {
       "category": "input",
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 679,
+      "line": 682,
       "symbol": "Ziptide.Gameplay.BootHoldState",
-      "snippet": "var iam = mgr.GetComponent<InputActionManager>();"
+      "snippet": "/// Clears the action asset list on an InputActionManager via reflection BEFORE"
     },
     {
       "category": "input",
@@ -8140,6 +8131,24 @@
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
       "line": 683,
       "symbol": "Ziptide.Gameplay.BootHoldState",
+      "snippet": "/// the manager is destroyed. This prevents InputActionManager.OnDisable from"
+    },
+    {
+      "category": "input",
+      "code": "INPUT_ACTION_REFERENCE",
+      "description": "Input System action reference",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
+      "line": 689,
+      "symbol": "Ziptide.Gameplay.BootHoldState",
+      "snippet": "var iam = mgr.GetComponent<InputActionManager>();"
+    },
+    {
+      "category": "input",
+      "code": "INPUT_ACTION_REFERENCE",
+      "description": "Input System action reference",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
+      "line": 693,
+      "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "var field = typeof(InputActionManager).GetField("
     },
     {
@@ -8147,7 +8156,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 687,
+      "line": 697,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "field.SetValue(iam, new System.Collections.Generic.List<InputActionAsset>());"
     },
@@ -11180,15 +11189,6 @@
       "code": "DONT_DESTROY_ON_LOAD",
       "description": "Object promoted across scene loads",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 406,
-      "symbol": "Ziptide.Gameplay.BootHoldState",
-      "snippet": "DontDestroyOnLoad(_xriManager.gameObject);"
-    },
-    {
-      "category": "persistence",
-      "code": "DONT_DESTROY_ON_LOAD",
-      "description": "Object promoted across scene loads",
-      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
       "line": 416,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "DontDestroyOnLoad(_xriManager.gameObject);"
@@ -11198,7 +11198,16 @@
       "code": "DONT_DESTROY_ON_LOAD",
       "description": "Object promoted across scene loads",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 424,
+      "line": 426,
+      "symbol": "Ziptide.Gameplay.BootHoldState",
+      "snippet": "DontDestroyOnLoad(_xriManager.gameObject);"
+    },
+    {
+      "category": "persistence",
+      "code": "DONT_DESTROY_ON_LOAD",
+      "description": "Object promoted across scene loads",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
+      "line": 434,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "DontDestroyOnLoad(_xriManager.gameObject);"
     },
@@ -15140,7 +15149,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 421,
+      "line": 431,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "var go = new GameObject(\"__XRI\");"
     },
@@ -20090,7 +20099,7 @@
       "code": "XRI_MANAGER_ASSIGN",
       "description": "Explicit interactable interactionManager assignment",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 450,
+      "line": 460,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "i.interactionManager = _xriManager;"
     },
@@ -20387,7 +20396,7 @@
       "code": "XRI_MANAGER_CREATE",
       "description": "XRInteractionManager creation",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 423,
+      "line": 433,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "_xriManager = go.AddComponent<XRInteractionManager>();"
     },
@@ -20540,7 +20549,7 @@
       "code": "XRI_MANAGER_LOOKUP",
       "description": "XRInteractionManager lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 374,
+      "line": 384,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "var allManagers = FindObjectsOfType<XRInteractionManager>(true);"
     },

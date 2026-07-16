@@ -197,7 +197,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 852,
+      "line": 911,
       "owner": "Ziptide.Gameplay.BootHoldState",
       "target": "transform.position",
       "detail": "headDelta",
@@ -7037,7 +7037,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-        "line": 852,
+        "line": 911,
         "owner": "Ziptide.Gameplay.BootHoldState",
         "target": "transform.position",
         "detail": "headDelta",
@@ -9485,7 +9485,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 852,
+      "line": 911,
       "owner": "Ziptide.Gameplay.BootHoldState",
       "target": "transform.position",
       "detail": "headDelta",
