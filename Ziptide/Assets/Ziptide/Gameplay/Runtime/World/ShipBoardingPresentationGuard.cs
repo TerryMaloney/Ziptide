@@ -17,6 +17,7 @@ namespace Ziptide.Gameplay
         private const float DeckRevealRadius = 4.5f;
         private const float QuartersRevealRadius = 4.0f;
         private const float HelmCharacterSize = 0.016f;
+        private const float HierarchyRetrySeconds = 0.5f;
 
         private static readonly string[] DeckUiNames =
         {
@@ -31,13 +32,18 @@ namespace Ziptide.Gameplay
 
         private Transform _cockpitDeck;
         private Transform _quarters;
-        private Transform _normalizedHelmRoot;
+        private Transform _helmRows;
+        private Transform _disembarkPanel;
+        private Transform _quartersPanel;
+        private Transform _hangarBay;
         private Camera _viewer;
-        private int _lastHierarchyCount = -1;
+        private float _nextHierarchyRetryAt;
+        private bool _hierarchyResolved;
+        private int _hierarchyScanCount;
 
         public void RefreshNow()
         {
-            ResolveHierarchy(force: true);
+            ResolveHierarchy();
             UpdatePresentation();
         }
 
@@ -53,7 +59,7 @@ namespace Ziptide.Gameplay
 
         private void UpdatePresentation()
         {
-            ResolveHierarchy(force: false);
+            EnsureHierarchy();
             Camera viewer = ResolveViewer();
             if (viewer == null) return;
 
@@ -67,23 +73,32 @@ namespace Ziptide.Gameplay
 
             if (showDeck)
             {
-                FaceNamedPanel("DisembarkPanel", viewer.transform.position);
-                FaceNamedPanel("QuartersPanel", viewer.transform.position);
-                FaceNamedPanel("HangarBay", viewer.transform.position);
-                NormalizeHelmLabels();
+                FacePanel(_disembarkPanel, viewer.transform.position);
+                FacePanel(_quartersPanel, viewer.transform.position);
+                FacePanel(_hangarBay, viewer.transform.position);
             }
         }
 
-        private void ResolveHierarchy(bool force)
+        private void EnsureHierarchy()
         {
-            Transform[] all = GetComponentsInChildren<Transform>(true);
-            if (!force && all.Length == _lastHierarchyCount &&
-                _cockpitDeck != null && _quarters != null)
-                return;
+            if (_hierarchyResolved && CachedHierarchyIsValid()) return;
+            _hierarchyResolved = false;
+            if (Time.unscaledTime < _nextHierarchyRetryAt) return;
+            ResolveHierarchy();
+        }
 
-            _lastHierarchyCount = all.Length;
+        private void ResolveHierarchy()
+        {
+            _hierarchyScanCount++;
+            _nextHierarchyRetryAt = Time.unscaledTime + HierarchyRetrySeconds;
+
+            Transform[] all = GetComponentsInChildren<Transform>(true);
             _cockpitDeck = FindByName(all, "CockpitDeck");
             _quarters = FindByName(all, "Quarters");
+            _helmRows = FindByName(all, "HelmRows");
+            _disembarkPanel = FindByName(all, "DisembarkPanel");
+            _quartersPanel = FindByName(all, "QuartersPanel");
+            _hangarBay = FindByName(all, "HangarBay");
 
             _deckUi.Clear();
             for (int i = 0; i < DeckUiNames.Length; i++)
@@ -111,12 +126,20 @@ namespace Ziptide.Gameplay
                 }
             }
 
-            Transform helm = FindByName(all, "HelmRows");
-            if (helm != _normalizedHelmRoot)
-            {
-                _normalizedHelmRoot = helm;
-                NormalizeHelmLabels();
-            }
+            NormalizeHelmLabels();
+            _hierarchyResolved = CachedHierarchyIsValid();
+        }
+
+        private bool CachedHierarchyIsValid()
+        {
+            return _cockpitDeck != null &&
+                   _quarters != null &&
+                   _helmRows != null &&
+                   _disembarkPanel != null &&
+                   _quartersPanel != null &&
+                   _hangarBay != null &&
+                   _deckUi.Count == DeckUiNames.Length &&
+                   _quartersUi.Count > 0;
         }
 
         private Camera ResolveViewer()
@@ -130,9 +153,8 @@ namespace Ziptide.Gameplay
             return _viewer;
         }
 
-        private void FaceNamedPanel(string name, Vector3 viewerPosition)
+        private static void FacePanel(Transform value, Vector3 viewerPosition)
         {
-            Transform value = FindByName(GetComponentsInChildren<Transform>(true), name);
             if (value == null || !value.gameObject.activeInHierarchy) return;
             value.rotation = WorldLabelFacing.FaceViewer(
                 value.position,
@@ -142,8 +164,8 @@ namespace Ziptide.Gameplay
 
         private void NormalizeHelmLabels()
         {
-            if (_normalizedHelmRoot == null) return;
-            TextMesh[] labels = _normalizedHelmRoot.GetComponentsInChildren<TextMesh>(true);
+            if (_helmRows == null) return;
+            TextMesh[] labels = _helmRows.GetComponentsInChildren<TextMesh>(true);
             for (int i = 0; i < labels.Length; i++)
             {
                 TextMesh label = labels[i];
@@ -152,7 +174,7 @@ namespace Ziptide.Gameplay
             }
         }
 
-        private static void SetActive(List<GameObject> values, bool active)
+        private void SetActive(List<GameObject> values, bool active)
         {
             for (int i = values.Count - 1; i >= 0; i--)
             {
@@ -160,6 +182,7 @@ namespace Ziptide.Gameplay
                 if (value == null)
                 {
                     values.RemoveAt(i);
+                    _hierarchyResolved = false;
                     continue;
                 }
                 if (value.activeSelf != active) value.SetActive(active);
