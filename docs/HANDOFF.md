@@ -27,6 +27,52 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-16 (rb35) — Fable 5 takeover: 38/38 — the first fully green PlayMode suite, all four lanes green on one SHA
+
+- **Takeover context:** per `docs/HANDOFF_RB34_GPT_LOOP_TO_FABLE5.md` (GPT's operator loop stalled on
+  a PR-only polling helper; its two test packets were sound). Fable 5 resumed from the exact visual
+  failure and drove it green in two bounded, test-only packets.
+- **Root cause of the ToxicCity blank-cyan red (proven from raw artifact + source, not guessed):**
+  the golden visual capture fired synchronously inside `TravelCoordinator`'s `TravelCompleted`
+  publication — while `ZiptideGateEffect`'s arrival was still showing its deliberately OPAQUE crest
+  flash shell parented around the head camera (torn down only ~12% into the arrival animation). The
+  camera photographed the inside of the shell: uniform pale cyan whose measured luminance (0.9542)
+  matches the `Crest` tint (0.85, 0.98, 1) exactly; the only other content was the Rill caption,
+  which sits inside the shell radius. W000 passed only because boot travel is `skipGate` and plays
+  no arrival effect. The world itself was never blank.
+- **Packet 1 (`89cfa19`):** capture TIMING fixed, assertion surface GROWN — the TravelCompleted
+  handler now only marks a destination pending (no assertions inside the publication path, which is
+  also what had been cascading into the suite timeout); the round-trip test drives the deferred
+  capture after each golden arrival with a bounded REAL-TIME wait for `ZiptideGateEffect` +
+  `__ZiptideFlash` teardown (a stranded flash is now itself a failure), then runs the UNCHANGED
+  frame/UI assertions; a new end-of-trip assert requires CapturedCount == 2 so deferral can never
+  silently skip. Result (run `29496812449`): round trip PASSED; ToxicCity capture went from 3
+  quantized colors / 0.008 dynamic range to **214 colors / 0.949**. The suite then flaked 37/38 on
+  the OTHER known class: the R1.5 boot smoke burned its "600 frame" scene-load budget in 0.2 real
+  seconds (headless ~3000 fps) while the disk-bound load still ran.
+- **Packet 2 (`026e244`):** completed the frame-count → real-time migration the lane had already
+  agreed to — the four remaining wall-clock-bound budgets (scene load 30 s, boot readiness 15 s, in
+  the boot smoke and the round trip's `LoadActualBoot`) are now bounded real-time waits.
+  Frame-semantic waits (delayed XRI binding, settled-frame pairs) deliberately stay frame-based.
+  No thresholds or assertions weakened in either packet; production code untouched.
+- **THE RESULT (independently verified, not self-reported):** durable observation for exact SHA
+  `026e2446` = run `29497675520`, **NUnit total=38 passed=38 failed=0 skipped=0** — the first fully
+  green R1 PlayMode suite. Same SHA: Contract Scan ✅, ordinary CI ✅, Golden Android ✅ — **all four
+  lanes green on one exact commit.** I also pulled the green run's artifact and VIEWED the new
+  ToxicCity PNG: a real rendered scene (buildings with window insets, railing, moon, Rill caption
+  crisply readable). The W000 PNG was already verified real in the prior run.
+- **Next (the rb34 order stands):** ① independent inspection of the full R1.5–R1.8 artifact set
+  (PNGs, UI spatial reports, spawn clearance, census, travel/save/persistent-log evidence — the two
+  PNGs above are inspected; the rest of the sampling remains); ② land and prove R1.9
+  fallback-surface (PR #28, held); ③ correct the `WaitForEndOfFrame` in PR #33 and prove R1.10;
+  ④ exact-SHA Golden Android with loud patch/bake/shader evidence, INCLUDING the rb33 requirement-3
+  canary proof of the shader gate and fail-fast hooks; ⑤ independent claim sampling; ⑥ only then
+  Terry's bounded Quest checklist. **Still NOT headset-ready; no Quest authorization; freeze holds.**
+- **Heads-up (art note, not a defect):** the ToxicCity spawn view composes very tight against a
+  building and dark — fine as visual PROOF, but the spawn-facing/vista composition belongs on the
+  post-recovery presentation list alongside the R2 scene-presentation contract.
+- **Commit:** `89cfa19` + `026e244` (test-only) · this HANDOFF entry (docs).
+
 ### 2026-07-15 (rb33) — Fable 5: GPT's end-of-window state recorded + the next bounded packet, with four requirements
 
 - **Why this entry exists:** GPT's execution window ended before it could commit its own HANDOFF
