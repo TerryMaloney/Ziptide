@@ -58,7 +58,7 @@ namespace Ziptide.Tests.PlayMode
         }
 
         [UnityTest]
-        public IEnumerator ShipPresentationGuard_HidesExteriorClutterAndRevealsLocalSurfaces()
+        public IEnumerator ShipPresentationGuard_AdoptsLoosePanelsAndGatesLocalSurfaces()
         {
             Camera camera = NewCamera(new Vector3(0f, 1.65f, 0f));
             GameObject ship = NewObject("__RECOVERY_SHIP", new Vector3(0f, 0f, 10f));
@@ -66,8 +66,15 @@ namespace Ziptide.Tests.PlayMode
             GameObject helm = NewChild(ship.transform, "HelmRows", Vector3.zero);
             TextMesh helmLabel = NewText(helm.transform, "LOCKED - THE BROADCAST TOMB", Vector3.zero);
             helmLabel.characterSize = 0.028f;
-            GameObject disembark = NewChild(ship.transform, "DisembarkPanel", new Vector3(0f, 1f, -1f));
-            GameObject quartersPanel = NewChild(ship.transform, "QuartersPanel", new Vector3(-1f, 1f, -1f));
+
+            // ShipBoardingStation historically authored these panel roots at scene root. The recovery
+            // guard must adopt them without changing world position before applying visibility/facing.
+            GameObject disembark = NewObject(
+                "DisembarkPanel",
+                ship.transform.position + new Vector3(0f, 1f, -1f));
+            GameObject quartersPanel = NewObject(
+                "QuartersPanel",
+                ship.transform.position + new Vector3(-1f, 1f, -1f));
             GameObject hangar = NewChild(ship.transform, "HangarBay", new Vector3(2f, 1f, -2f));
 
             GameObject quarters = NewChild(ship.transform, "Quarters", new Vector3(0f, 0f, -5f));
@@ -75,6 +82,8 @@ namespace Ziptide.Tests.PlayMode
             GameObject locker = NewChild(quarters.transform, "LockerBoard", Vector3.zero);
             GameObject returnPanel = NewChild(quarters.transform, "QuartersReturn", Vector3.zero);
 
+            Vector3 disembarkWorld = disembark.transform.position;
+            Vector3 quartersWorld = quartersPanel.transform.position;
             ShipBoardingPresentationGuard guard = ship.AddComponent<ShipBoardingPresentationGuard>();
             FieldInfo viewerField = typeof(ShipBoardingPresentationGuard).GetField(
                 "_viewer",
@@ -88,6 +97,14 @@ namespace Ziptide.Tests.PlayMode
             guard.RefreshNow();
             yield return null; // allow Start to run once; all later frames must use the cache.
 
+            Assert.AreSame(ship.transform, disembark.transform.parent,
+                "The loose disembark panel was not adopted by its ship.");
+            Assert.AreSame(ship.transform, quartersPanel.transform.parent,
+                "The loose Quarters panel was not adopted by its ship.");
+            Assert.Less(Vector3.Distance(disembarkWorld, disembark.transform.position), 0.0001f,
+                "Adopting the disembark panel changed its world position.");
+            Assert.Less(Vector3.Distance(quartersWorld, quartersPanel.transform.position), 0.0001f,
+                "Adopting the Quarters panel changed its world position.");
             Assert.IsFalse(helm.activeSelf);
             Assert.IsFalse(disembark.activeSelf);
             Assert.IsFalse(quartersPanel.activeSelf);
@@ -106,6 +123,10 @@ namespace Ziptide.Tests.PlayMode
             Assert.IsTrue(quartersPanel.activeSelf);
             Assert.IsTrue(hangar.activeSelf);
             Assert.AreEqual(0.016f, helmLabel.characterSize, 0.0001f);
+            Assert.IsTrue(WorldLabelFacing.IsReadableFrom(
+                disembark.transform.rotation,
+                disembark.transform.position,
+                camera.transform.position));
             Assert.IsTrue(WorldLabelFacing.IsReadableFrom(
                 quartersPanel.transform.rotation,
                 quartersPanel.transform.position,
