@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-16T18:49:11.739229+00:00",
+  "generatedAtUtc": "2026-07-16T19:52:21.510258+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -19163,7 +19163,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryExposureProfile.cs",
-      "line": 55,
+      "line": 54,
       "symbol": "Ziptide.Core.RecoveryExposureProfile",
       "snippet": "RecoveryFeatureId.SaveSystem,"
     },
