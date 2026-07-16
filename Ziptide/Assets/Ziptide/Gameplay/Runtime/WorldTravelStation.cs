@@ -92,17 +92,16 @@ namespace Ziptide.Gameplay
             doorRoot.transform.localScale = Vector3.one;
 
             float frameW = DoorWidth + FrameThickness * 2f;
-            float frameH = DoorHeight + FrameThickness;
 
-            var frameLeft = CreatePrimitiveCube("FrameLeft", doorRoot.transform,
+            CreatePrimitiveCube("FrameLeft", doorRoot.transform,
                 new Vector3(-(DoorWidth * 0.5f + FrameThickness * 0.5f), DoorHeight * 0.5f, 0f),
                 new Vector3(FrameThickness, DoorHeight, FrameThickness), FrameColor, false);
 
-            var frameRight = CreatePrimitiveCube("FrameRight", doorRoot.transform,
+            CreatePrimitiveCube("FrameRight", doorRoot.transform,
                 new Vector3(DoorWidth * 0.5f + FrameThickness * 0.5f, DoorHeight * 0.5f, 0f),
                 new Vector3(FrameThickness, DoorHeight, FrameThickness), FrameColor, false);
 
-            var frameTop = CreatePrimitiveCube("FrameTop", doorRoot.transform,
+            CreatePrimitiveCube("FrameTop", doorRoot.transform,
                 new Vector3(0f, DoorHeight + FrameThickness * 0.5f, 0f),
                 new Vector3(frameW, FrameThickness, FrameThickness), FrameColor, false);
 
@@ -150,13 +149,12 @@ namespace Ziptide.Gameplay
                     + " missing=" + (WorldGating.FirstMissingRequirement(pack, SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null) ?? "?"));
             }
 
-            // DS-14: labels ship on BOTH faces, each rotated by THE ONE facing contract
-            // (WorldLabelFacing) so the text reads correctly from whichever side the player
-            // approaches. The old single identity-rotation label read mirrored on-device because
-            // players approach these stations from the label's +Z side (TextMesh is readable from
-            // its −Z side only) — duplicating per face removes the approach-side guess entirely.
-            AddFaceLabels(doorRoot.transform, "To " + label, 0.06f, LabelColor,
-                new Vector3(0f, DoorHeight + FrameThickness + 0.15f, 0f), 0.02f);
+            // DS-14: one label object remains authored on each physical face, but ViewerSideWorldLabel
+            // enables only the face occupied by the tracked player. Legacy TextMesh materials are
+            // double-sided, so leaving both renderers enabled produced a readable label plus a mirrored
+            // duplicate in the same view. Both active faces still use THE ONE WorldLabelFacing contract.
+            AddFaceLabels(doorRoot.transform, "To " + label, 0.05f, LabelColor,
+                new Vector3(0f, DoorHeight + FrameThickness + 0.55f, 0f), 0.02f);
             AddFaceLabels(door.transform, label, 0.05f, new Color(0.85f, 0.9f, 1f),
                 new Vector3(0f, 0.2f, 0f), DoorDepth * 0.5f + 0.005f);
 
@@ -198,30 +196,28 @@ namespace Ziptide.Gameplay
         }
 
         /// <summary>
-        /// DS-14: one readable label per face. The rotations come from WorldLabelFacing evaluated in
-        /// LOCAL space — a synthetic viewer on each side of the face — so the readable-side
-        /// convention lives in exactly one place and both labels stay correct however the station
-        /// itself is rotated in the world.
+        /// DS-14: one authored object per physical face. ViewerSideWorldLabel prevents the opposite
+        /// double-sided TextMesh from rendering and updates the selected face from the tracked camera.
         /// </summary>
         private void AddFaceLabels(Transform parent, string text, float charSize, Color color,
             Vector3 localCenter, float faceOffset)
         {
-            // Face whose viewer stands on the parent's −Z side…
             var back = CreateTextMesh(text, charSize, color);
             back.transform.SetParent(parent, false);
             back.transform.localPosition = localCenter + new Vector3(0f, 0f, -faceOffset);
             back.transform.localRotation = WorldLabelFacing.FaceViewer(
                 localCenter, localCenter + Vector3.back, yawOnly: false);
             NeutralizeScale(back.transform);
+            back.AddComponent<ViewerSideWorldLabel>().Configure(localCenter, faceOffset, -1);
             _owned.Add(back);
 
-            // …and the face whose viewer stands on the +Z side (the mirrored one Terry hit).
             var front = CreateTextMesh(text, charSize, color);
             front.transform.SetParent(parent, false);
             front.transform.localPosition = localCenter + new Vector3(0f, 0f, faceOffset);
             front.transform.localRotation = WorldLabelFacing.FaceViewer(
                 localCenter, localCenter + Vector3.forward, yawOnly: false);
             NeutralizeScale(front.transform);
+            front.AddComponent<ViewerSideWorldLabel>().Configure(localCenter, faceOffset, 1);
             _owned.Add(front);
         }
 
@@ -256,7 +252,7 @@ namespace Ziptide.Gameplay
         {
             if (r == null || r.material == null) return;
             if (r.material.HasProperty("_BaseColor")) r.material.SetColor("_BaseColor", color);
-            else if (r.material.HasProperty("_Color")) r.material.SetColor("_Color", color);
+            else if (r.material.HasProperty("_Color")) r.material.color = color;
         }
 
         private IEnumerator RetryManagerAssignment(XRSimpleInteractable interactable)

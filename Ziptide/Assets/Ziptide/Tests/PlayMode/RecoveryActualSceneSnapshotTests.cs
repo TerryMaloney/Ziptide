@@ -43,9 +43,14 @@ namespace Ziptide.Tests.PlayMode
         {
             SceneManager.sceneLoaded -= OnBootSceneLoadedBeforeStart;
             HomeHubRuntime.BootPresentationReady -= OnBootReady;
+
+            // Destroy the isolated Golden runtime before removing its test-only XR devices. Removing
+            // virtual controls while live action assets and locomotion providers are enabled can stall
+            // Input System and leave invalid processor state for the next PlayMode test.
+            yield return RecoverySceneTestIsolation.ResetToEmptyFullDevelopment();
             _simulation?.Dispose();
             _simulation = null;
-            yield return RecoverySceneTestIsolation.ResetToEmptyFullDevelopment();
+
             _saveBackup?.Dispose();
             _saveBackup = null;
         }

@@ -27,6 +27,18 @@ namespace Ziptide.Gameplay
         {
             BuildPanel();
             RefreshReadout();
+
+            // The complete ship hierarchy exists by HangarBay.Start. Attach the local presentation
+            // guard here so exterior arrival views do not render cockpit/quarters/hangar UI before
+            // the tracked head is physically in those spaces. ShipBoardingStation remains the sole
+            // owner of boarding, teleport and travel behavior.
+            if (shipRoot != null)
+            {
+                ShipBoardingPresentationGuard guard =
+                    shipRoot.GetComponent<ShipBoardingPresentationGuard>();
+                if (guard == null) guard = shipRoot.AddComponent<ShipBoardingPresentationGuard>();
+                guard.RefreshNow();
+            }
         }
 
         private void BuildPanel()
