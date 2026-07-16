@@ -186,11 +186,15 @@ namespace Ziptide.Tests.PlayMode
                 ZiptideConstants.SceneBoot,
                 LoadSceneMode.Single);
             Assert.IsNotNull(load, "Unity did not start the actual _Boot scene load.");
-            for (int frame = 0; frame < 600 && !load.isDone; frame++) yield return null;
-            Assert.IsTrue(load.isDone, "Actual _Boot scene load did not complete within 600 frames.");
+            // REAL-TIME budgets, not frames — headless batchmode burns frame counts in fractions of
+            // a second while disk-bound loads still run (the run-29496812449 boot-smoke flake class).
+            float loadDeadline = Time.realtimeSinceStartup + 30f;
+            while (Time.realtimeSinceStartup < loadDeadline && !load.isDone) yield return null;
+            Assert.IsTrue(load.isDone, "Actual _Boot scene load did not complete within 30 s.");
 
             RecoverySceneTestIsolation.InvokeAllowedAfterSceneLoadBootstraps();
-            for (int frame = 0; frame < 300 && !_bootReady; frame++) yield return null;
+            float readyDeadline = Time.realtimeSinceStartup + 15f;
+            while (Time.realtimeSinceStartup < readyDeadline && !_bootReady) yield return null;
             Assert.IsTrue(_bootReady, "The actual Home Hub never reached ready state.");
             Assert.AreEqual(ZiptideConstants.SceneBoot, SceneManager.GetActiveScene().name);
             Assert.IsNotNull(FindRequired<HomeHubRuntime>());

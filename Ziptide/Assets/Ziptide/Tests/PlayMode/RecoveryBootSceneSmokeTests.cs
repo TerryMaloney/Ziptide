@@ -68,8 +68,12 @@ namespace Ziptide.Tests.PlayMode
                 ZiptideConstants.SceneBoot,
                 LoadSceneMode.Single);
             Assert.IsNotNull(load, "Unity did not start loading the actual _Boot scene.");
-            for (int frame = 0; frame < 600 && !load.isDone; frame++) yield return null;
-            Assert.IsTrue(load.isDone, "Actual _Boot scene load did not complete within 600 frames.");
+            // REAL-TIME budget, not frames: headless batchmode ticks thousands of frames per second,
+            // so a frame count elapses in fractions of a second while the disk-bound load still runs
+            // (the exact flake run 29496812449 hit — 600 frames burned in 0.2 s).
+            float loadDeadline = Time.realtimeSinceStartup + 30f;
+            while (Time.realtimeSinceStartup < loadDeadline && !load.isDone) yield return null;
+            Assert.IsTrue(load.isDone, "Actual _Boot scene load did not complete within 30 s.");
 
             RecoverySceneTestIsolation.InvokeAllowedAfterSceneLoadBootstraps();
 
@@ -77,7 +81,8 @@ namespace Ziptide.Tests.PlayMode
             PlayerRigPersistence rig = null;
             XRInteractionManager manager = null;
             InputActionManager inputManager = null;
-            for (int frame = 0; frame < 300; frame++)
+            float readyDeadline = Time.realtimeSinceStartup + 15f; // real time, not frames (see load wait)
+            while (Time.realtimeSinceStartup < readyDeadline)
             {
                 home = UnityEngine.Object.FindObjectOfType<HomeHubRuntime>();
                 rig = UnityEngine.Object.FindObjectOfType<PlayerRigPersistence>();
