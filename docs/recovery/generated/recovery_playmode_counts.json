@@ -1,14 +1,14 @@
 {
-  "testedSha": "89cfa1998282236ac98dcc528adc152c061d4775",
-  "runId": "29496812449",
+  "testedSha": "026e2446aeb77713a4779130cbe635ec10a6f059",
+  "runId": "29497675520",
   "attempt": "1",
-  "outcome": "failure",
+  "outcome": "success",
   "resultFiles": [
     "playmode-test-results/playmode-results.xml"
   ],
   "total": 38,
-  "passed": 37,
-  "failed": 1,
+  "passed": 38,
+  "failed": 0,
   "skipped": 0,
   "inconclusive": 0
 }
