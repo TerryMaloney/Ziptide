@@ -41,10 +41,10 @@ namespace Ziptide.Core
 
     public static class RecoveryExposureProfiles
     {
-        // Exact-source proof marker (2026-07-16): the preceding GitHub Actions commit e1d8e03
-        // contains the bounded per-action ownership repair but cannot recursively trigger workflows.
-        // This comment-only descendant is merged through a normal PR so PlayMode, contract scan,
-        // ordinary CI and Golden Android all execute against the same unchanged runtime behavior.
+        // Exact-source proof marker (2026-07-16-b): GitHub Actions commit b285ff3 contains
+        // the bounded XRI ownership distinction: disabled references remain externally managed,
+        // while provider-owned direct actions are prepared under suspension and proven by the
+        // existing input-session canary. This normal PR descendant triggers every proof lane.
         private static readonly RecoveryFeatureId[] GoldenFeatures =
         {
             RecoveryFeatureId.RuntimeHealthMonitor,
