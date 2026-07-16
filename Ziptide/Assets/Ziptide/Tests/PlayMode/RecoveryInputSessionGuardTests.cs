@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -93,6 +94,45 @@ namespace Ziptide.Tests.PlayMode
                 "Repeated consolidation changed primary per-action state.");
             Assert.IsFalse(duplicateHeldOff.enabled,
                 "Repeated consolidation changed transferred per-action state.");
+
+            MethodInfo readiness = typeof(PlayerRigPersistence).GetMethod(
+                "ActionReadsSafely",
+                BindingFlags.NonPublic | BindingFlags.Static);
+            Assert.IsNotNull(readiness,
+                "The input-mutation readiness seam is missing from PlayerRigPersistence.");
+
+            InputAction referencedAction = primaryAsset.FindAction("PrimaryAction");
+            referencedAction.Disable();
+            InputActionReference referencedActionRef = InputActionReference.Create(referencedAction);
+            var referencedProperty = new InputActionProperty(referencedActionRef);
+            try
+            {
+                Assert.IsTrue((bool)readiness.Invoke(null, new object[] { referencedProperty }),
+                    "A disabled externally managed reference was incorrectly treated as unstable.");
+            }
+            finally
+            {
+                if (referencedActionRef != null) Object.DestroyImmediate(referencedActionRef);
+            }
+
+            var directAction = new InputAction(
+                "ControlledDirectTurn",
+                InputActionType.Value,
+                expectedControlType: "Vector2");
+            var directProperty = new InputActionProperty(directAction);
+            try
+            {
+                Assert.IsFalse((bool)readiness.Invoke(null, new object[] { directProperty }),
+                    "A disabled direct action was accepted without being prepared first.");
+                Assert.IsTrue(directAction.enabled,
+                    "The provider-owned direct action was not enabled while its reader was suspended.");
+                Assert.IsTrue((bool)readiness.Invoke(null, new object[] { directProperty }),
+                    "The prepared direct action did not become readable on the following probe.");
+            }
+            finally
+            {
+                directAction.Dispose();
+            }
 
             RecoveryRuntimeCensusSnapshot census = RecoveryRuntimeCensus.Capture(
                 "R1_5_INPUT_SESSION_CONTROLLED");

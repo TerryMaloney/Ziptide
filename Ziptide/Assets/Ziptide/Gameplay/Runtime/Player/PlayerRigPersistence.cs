@@ -919,9 +919,11 @@ namespace Ziptide.Gameplay
             {
                 if (!action.enabled)
                 {
-                    // A provider may own a direct action. Prepare it while the provider is still
-                    // suspended, then force the settle loop to observe it on a later frame.
-                    if (property.reference != null) return false;
+                    // XRI action-based behaviours own only DIRECT actions. A disabled reference is
+                    // externally managed, remains safe to read as its default value, and must not make
+                    // the settle predicate impossible. Prepare only direct actions while the provider
+                    // is suspended, then force a later-frame read before waking the provider.
+                    if (property.reference != null) return true;
                     action.Enable();
                     return false;
                 }
