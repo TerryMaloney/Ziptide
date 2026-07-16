@@ -1,13 +1,13 @@
 {
   "tool": "recovery_event_save_graph",
   "scannedFiles": 642,
-  "evidenceCount": 691,
+  "evidenceCount": 688,
   "kindCounts": {
     "AUTOSAVE": 7,
     "EVENT_DECLARE": 45,
     "EVENT_INVOKE": 57,
     "EVENT_SUBSCRIBE": 94,
-    "EVENT_UNSUBSCRIBE": 52,
+    "EVENT_UNSUBSCRIBE": 49,
     "PLAYER_PREFS_ACCESS": 11,
     "PROFILE_FIELD_ACCESS": 358,
     "SAVE_ACCESS": 67
@@ -2651,7 +2651,7 @@
       {
         "kind": "EVENT_UNSUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
-        "line": 91,
+        "line": 81,
         "owner": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
         "target": "InputSystem.onAfterUpdate",
         "detail": "AuditBilateralBindings",
@@ -2660,45 +2660,18 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
-        "line": 92,
+        "line": 82,
         "owner": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
         "target": "InputSystem.onAfterUpdate",
         "detail": "AuditBilateralBindings",
         "snippet": "InputSystem.onAfterUpdate += AuditBilateralBindings;"
-      },
-      {
-        "kind": "EVENT_UNSUBSCRIBE",
-        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
-        "line": 148,
-        "owner": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
-        "target": "InputSystem.onAfterUpdate",
-        "detail": "AuditBilateralBindings",
-        "snippet": "InputSystem.onAfterUpdate -= AuditBilateralBindings;"
-      },
-      {
-        "kind": "EVENT_UNSUBSCRIBE",
-        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
-        "line": 166,
-        "owner": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
-        "target": "InputSystem.onAfterUpdate",
-        "detail": "AuditBilateralBindings",
-        "snippet": "InputSystem.onAfterUpdate -= AuditBilateralBindings;"
-      },
-      {
-        "kind": "EVENT_UNSUBSCRIBE",
-        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
-        "line": 177,
-        "owner": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
-        "target": "InputSystem.onAfterUpdate",
-        "detail": "AuditBilateralBindings",
-        "snippet": "InputSystem.onAfterUpdate -= AuditBilateralBindings;"
       }
     ],
     "InputSystem.onDeviceChange": [
       {
         "kind": "EVENT_UNSUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
-        "line": 55,
+        "line": 79,
         "owner": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
         "target": "InputSystem.onDeviceChange",
         "detail": "OnDeviceChange",
@@ -2707,7 +2680,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
-        "line": 56,
+        "line": 80,
         "owner": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
         "target": "InputSystem.onDeviceChange",
         "detail": "OnDeviceChange",
@@ -12993,7 +12966,7 @@
     {
       "kind": "EVENT_UNSUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
-      "line": 55,
+      "line": 79,
       "owner": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
       "target": "InputSystem.onDeviceChange",
       "detail": "OnDeviceChange",
@@ -13002,7 +12975,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
-      "line": 56,
+      "line": 80,
       "owner": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
       "target": "InputSystem.onDeviceChange",
       "detail": "OnDeviceChange",
@@ -13011,7 +12984,7 @@
     {
       "kind": "EVENT_UNSUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
-      "line": 91,
+      "line": 81,
       "owner": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
       "target": "InputSystem.onAfterUpdate",
       "detail": "AuditBilateralBindings",
@@ -13020,38 +12993,11 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
-      "line": 92,
+      "line": 82,
       "owner": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
       "target": "InputSystem.onAfterUpdate",
       "detail": "AuditBilateralBindings",
       "snippet": "InputSystem.onAfterUpdate += AuditBilateralBindings;"
-    },
-    {
-      "kind": "EVENT_UNSUBSCRIBE",
-      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
-      "line": 148,
-      "owner": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
-      "target": "InputSystem.onAfterUpdate",
-      "detail": "AuditBilateralBindings",
-      "snippet": "InputSystem.onAfterUpdate -= AuditBilateralBindings;"
-    },
-    {
-      "kind": "EVENT_UNSUBSCRIBE",
-      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
-      "line": 166,
-      "owner": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
-      "target": "InputSystem.onAfterUpdate",
-      "detail": "AuditBilateralBindings",
-      "snippet": "InputSystem.onAfterUpdate -= AuditBilateralBindings;"
-    },
-    {
-      "kind": "EVENT_UNSUBSCRIBE",
-      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
-      "line": 177,
-      "owner": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
-      "target": "InputSystem.onAfterUpdate",
-      "detail": "AuditBilateralBindings",
-      "snippet": "InputSystem.onAfterUpdate -= AuditBilateralBindings;"
     },
     {
       "kind": "PROFILE_FIELD_ACCESS",

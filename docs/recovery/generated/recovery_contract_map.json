@@ -2,7 +2,7 @@
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
   "scannedFiles": 642,
-  "findingCount": 2253,
+  "findingCount": 2267,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -743,7 +743,7 @@
           {
             "code": "RUNTIME_BOOTSTRAP",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
-            "line": 51,
+            "line": 75,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
             "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]"
           }
@@ -2406,7 +2406,7 @@
       },
       {
         "owner": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
-        "evidenceCount": 4,
+        "evidenceCount": 15,
         "codes": [
           "INPUT_ACTION_REFERENCE"
         ],
@@ -2417,28 +2417,105 @@
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
-            "line": 113,
+            "line": 56,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
-            "snippet": "InputActionManager[] managers = UnityEngine.Object.FindObjectsOfType<InputActionManager>(true);"
+            "snippet": "public readonly InputAction Action;"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
-            "line": 116,
+            "line": 59,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
+            "snippet": "public CanonicalActionState(InputAction action)"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
+            "line": 133,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
+            "snippet": "var seen = new HashSet<InputAction>();"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
+            "line": 134,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
+            "snippet": "InputActionManager[] managers ="
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
+            "line": 135,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
+            "snippet": "UnityEngine.Object.FindObjectsOfType<InputActionManager>(true);"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
+            "line": 138,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
             "snippet": "InputActionManager manager = managers[managerIndex];"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
-            "line": 118,
+            "line": 140,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
             "snippet": "foreach (InputActionAsset asset in manager.actionAssets)"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
-            "line": 123,
+            "line": 145,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
+            "snippet": "foreach (InputAction action in map.actions)"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
+            "line": 181,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
+            "snippet": "InputAction action = CanonicalActionStates[i].Action;"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
+            "line": 237,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
+            "snippet": "var seenActions = new HashSet<InputAction>();"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
+            "line": 238,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
+            "snippet": "InputActionManager[] managers ="
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
+            "line": 239,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
+            "snippet": "UnityEngine.Object.FindObjectsOfType<InputActionManager>(true);"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
+            "line": 242,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
+            "snippet": "InputActionManager manager = managers[managerIndex];"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
+            "line": 244,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
+            "snippet": "foreach (InputActionAsset asset in manager.actionAssets)"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
+            "line": 249,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
             "snippet": "foreach (InputAction action in map.actions)"
           }

@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
 - Scanned files: **642**
-- Scanner findings: **2253**
+- Scanner findings: **2267**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -235,7 +235,7 @@ None.
 
 - Codes: `RUNTIME_BOOTSTRAP`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:51` **RUNTIME_BOOTSTRAP** — `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:75` **RUNTIME_BOOTSTRAP** — `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]`
 
 ### `ZiptideNet.NetBootstrap` — 2 signal(s)
 
@@ -583,14 +583,25 @@ None.
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:386` **INPUT_ACTION_REFERENCE** — `private static int[] InputAssetIds(InputActionManager manager, bool assertEnabled)`
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:391` **INPUT_ACTION_REFERENCE** — `foreach (InputActionAsset asset in manager.actionAssets)`
 
-### `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` — 4 signal(s)
+### `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` — 15 signal(s)
 
 - Codes: `INPUT_ACTION_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:113` **INPUT_ACTION_REFERENCE** — `InputActionManager[] managers = UnityEngine.Object.FindObjectsOfType<InputActionManager>(true);`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:116` **INPUT_ACTION_REFERENCE** — `InputActionManager manager = managers[managerIndex];`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:118` **INPUT_ACTION_REFERENCE** — `foreach (InputActionAsset asset in manager.actionAssets)`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:123` **INPUT_ACTION_REFERENCE** — `foreach (InputAction action in map.actions)`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:56` **INPUT_ACTION_REFERENCE** — `public readonly InputAction Action;`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:59` **INPUT_ACTION_REFERENCE** — `public CanonicalActionState(InputAction action)`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:133` **INPUT_ACTION_REFERENCE** — `var seen = new HashSet<InputAction>();`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:134` **INPUT_ACTION_REFERENCE** — `InputActionManager[] managers =`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:135` **INPUT_ACTION_REFERENCE** — `UnityEngine.Object.FindObjectsOfType<InputActionManager>(true);`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:138` **INPUT_ACTION_REFERENCE** — `InputActionManager manager = managers[managerIndex];`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:140` **INPUT_ACTION_REFERENCE** — `foreach (InputActionAsset asset in manager.actionAssets)`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:145` **INPUT_ACTION_REFERENCE** — `foreach (InputAction action in map.actions)`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:181` **INPUT_ACTION_REFERENCE** — `InputAction action = CanonicalActionStates[i].Action;`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:237` **INPUT_ACTION_REFERENCE** — `var seenActions = new HashSet<InputAction>();`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:238` **INPUT_ACTION_REFERENCE** — `InputActionManager[] managers =`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:239` **INPUT_ACTION_REFERENCE** — `UnityEngine.Object.FindObjectsOfType<InputActionManager>(true);`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:242` **INPUT_ACTION_REFERENCE** — `InputActionManager manager = managers[managerIndex];`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:244` **INPUT_ACTION_REFERENCE** — `foreach (InputActionAsset asset in manager.actionAssets)`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:249` **INPUT_ACTION_REFERENCE** — `foreach (InputAction action in map.actions)`
 
 
 ## Runtime surfaces
