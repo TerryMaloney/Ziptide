@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
 - Scanned files: **642**
-- Scanner findings: **2242**
+- Scanner findings: **2250**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -490,17 +490,20 @@ None.
 - Paths: `Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourObservationCoreTests.cs`
   - `Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourObservationCoreTests.cs:189` **INPUT_ACTION_REFERENCE** — `StringAssert.DoesNotContain("InputAction", source);`
 
-### `Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation` — 7 signal(s)
+### `Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation` — 10 signal(s)
 
 - Codes: `INPUT_ACTION_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:199` **INPUT_ACTION_REFERENCE** — `InputActionManager inputManager = canonicalManager.GetComponent<InputActionManager>();`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:202` **INPUT_ACTION_REFERENCE** — `"The canonical XRInteractionManager has no InputActionManager to refresh.");`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:205` **INPUT_ACTION_REFERENCE** — `foreach (InputActionAsset asset in inputManager.actionAssets)`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:213` **INPUT_ACTION_REFERENCE** — `"The canonical InputActionManager owns no action assets for tracked-rig simulation.");`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:216` **INPUT_ACTION_REFERENCE** — `foreach (InputActionAsset asset in inputManager.actionAssets)`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:222` **INPUT_ACTION_REFERENCE** — `foreach (InputActionAsset asset in inputManager.actionAssets)`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:227` **INPUT_ACTION_REFERENCE** — `foreach (InputAction action in map.actions)`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:82` **INPUT_ACTION_REFERENCE** — `public readonly InputActionAsset Asset;`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:85` **INPUT_ACTION_REFERENCE** — `public InputActionAssetState(InputActionAsset asset)`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:219` **INPUT_ACTION_REFERENCE** — `InputActionManager inputManager = canonicalManager.GetComponent<InputActionManager>();`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:222` **INPUT_ACTION_REFERENCE** — `"The canonical XRInteractionManager has no InputActionManager to refresh.");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:224` **INPUT_ACTION_REFERENCE** — `foreach (InputActionAsset asset in inputManager.actionAssets)`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:228` **INPUT_ACTION_REFERENCE** — `"The canonical InputActionManager owns no action assets for tracked-rig simulation.");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:249` **INPUT_ACTION_REFERENCE** — `InputActionAsset asset = _inputAssetStates[i].Asset;`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:258` **INPUT_ACTION_REFERENCE** — `InputActionAsset asset = _inputAssetStates[i].Asset;`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:262` **INPUT_ACTION_REFERENCE** — `foreach (InputAction action in map.actions)`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:287` **INPUT_ACTION_REFERENCE** — `InputActionAsset asset = _inputAssetStates[i].Asset;`
 
 ### `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` — 4 signal(s)
 
@@ -2295,9 +2298,9 @@ None.
 
 - Codes: `NEW_GAME_OBJECT`, `TEXTMESH_COMPONENT`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPresentationGuardTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPresentationGuardTests.cs:146` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPresentationGuardTests.cs:154` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPresentationGuardTests.cs:163` **TEXTMESH_COMPONENT** — `TextMesh text = go.AddComponent<TextMesh>();`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPresentationGuardTests.cs:167` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPresentationGuardTests.cs:175` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPresentationGuardTests.cs:184` **TEXTMESH_COMPONENT** — `TextMesh text = go.AddComponent<TextMesh>();`
 
 ### `Ziptide.Tests.PlayMode.RecoveryRenderSnapshotTests` — 6 signal(s)
 
@@ -2690,7 +2693,7 @@ None.
 
 - Codes: `XRI_MANAGER_ASSIGN`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:297` **XRI_MANAGER_ASSIGN** — `ray.interactionManager = canonicalManager;`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:354` **XRI_MANAGER_ASSIGN** — `ray.interactionManager = canonicalManager;`
 
 ### `Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests` — 1 signal(s)
 
@@ -3765,7 +3768,7 @@ None.
 
 - Codes: `CAMERA_MAIN_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingPresentationGuard.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingPresentationGuard.cs:152` **CAMERA_MAIN_REFERENCE** — `if (_viewer == null) _viewer = Camera.main;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingPresentationGuard.cs:184` **CAMERA_MAIN_REFERENCE** — `if (_viewer == null) _viewer = Camera.main;`
 
 ### `Ziptide.Gameplay.ShipCastOffRuntime` — 1 signal(s)
 
@@ -4296,9 +4299,9 @@ None.
 
 - Codes: `FALLBACK_MARKER`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:371` **FALLBACK_MARKER** — `XRRayInteractor fallback = null;`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:380` **FALLBACK_MARKER** — `if (fallback == null) fallback = ray;`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:384` **FALLBACK_MARKER** — `return fallback;`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:428` **FALLBACK_MARKER** — `XRRayInteractor fallback = null;`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:437` **FALLBACK_MARKER** — `if (fallback == null) fallback = ray;`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:441` **FALLBACK_MARKER** — `return fallback;`
 
 ### `Ziptide.Tests.PlayMode.RecoveryExposureProfileTests` — 1 signal(s)
 

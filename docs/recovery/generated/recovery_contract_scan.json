@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-16T01:13:34.842837+00:00",
+  "generatedAtUtc": "2026-07-16T01:46:09.350160+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -9,14 +9,14 @@
     "Ziptide/Assets/ZiptideNet"
   ],
   "scannedFiles": 642,
-  "findingCount": 2242,
+  "findingCount": 2250,
   "categoryCounts": {
     "bootstrap": 31,
-    "diagnostics": 481,
+    "diagnostics": 486,
     "events": 64,
     "fallback_debt": 122,
     "global_render": 80,
-    "input": 171,
+    "input": 174,
     "materials": 226,
     "persistence": 18,
     "runtime_creation": 587,
@@ -39,7 +39,7 @@
     "EVENT_SYSTEM_COMPONENT": 2,
     "FALLBACK_MARKER": 122,
     "FRAME_BUTTON_POLL": 1,
-    "INPUT_ACTION_REFERENCE": 164,
+    "INPUT_ACTION_REFERENCE": 167,
     "INPUT_BUTTON_REFERENCE": 6,
     "NEW_GAME_OBJECT": 355,
     "PLAYER_PROFILE_REFERENCE": 138,
@@ -57,7 +57,7 @@
     "XRI_MANAGER_LOOKUP": 41,
     "XR_INTERACTABLE_COMPONENT": 61,
     "XR_UI_INPUT_MODULE": 2,
-    "ZIPTIDE_LOG_TAG": 481
+    "ZIPTIDE_LOG_TAG": 486
   },
   "findings": [
     {
@@ -3448,6 +3448,15 @@
       "category": "diagnostics",
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingPresentationGuard.cs",
+      "line": 161,
+      "symbol": "Ziptide.Gameplay.ShipBoardingPresentationGuard",
+      "snippet": "Debug.Log(\"ZIPTIDE: SHIP_PANEL_ADOPT panel=\" + panelName"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
       "line": 18,
       "symbol": "Ziptide.Gameplay.ShipBoardingStation",
@@ -4142,7 +4151,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
-      "line": 133,
+      "line": 144,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
       "snippet": "Debug.Log(\"ZIPTIDE: RECOVERY_TRACKED_RIG_SIM head=\""
     },
@@ -4151,7 +4160,25 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
-      "line": 174,
+      "line": 160,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
+      "snippet": "Debug.Log(\"ZIPTIDE: RECOVERY_VIRTUAL_XR_DISPOSE phase=begin assets=\""
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
+      "line": 165,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
+      "snippet": "Debug.Log(\"ZIPTIDE: RECOVERY_VIRTUAL_XR_DISPOSE phase=assets_disabled\");"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
+      "line": 180,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: RECOVERY_VIRTUAL_XR_REMOVE_FAIL device=\""
     },
@@ -4160,9 +4187,27 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
-      "line": 238,
+      "line": 185,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
-      "snippet": "Debug.Log(\"ZIPTIDE: RECOVERY_VIRTUAL_XR_BINDINGS assets=\" + assetCount"
+      "snippet": "Debug.Log(\"ZIPTIDE: RECOVERY_VIRTUAL_XR_DISPOSE phase=devices_removed\");"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
+      "line": 208,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
+      "snippet": "Debug.Log(\"ZIPTIDE: RECOVERY_VIRTUAL_XR_DISPOSE phase=restored\");"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
+      "line": 273,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
+      "snippet": "Debug.Log(\"ZIPTIDE: RECOVERY_VIRTUAL_XR_BINDINGS assets=\" + _inputAssetStates.Count"
     },
     {
       "category": "diagnostics",
@@ -6212,7 +6257,7 @@
       "code": "FALLBACK_MARKER",
       "description": "Source text marks fallback/prototype debt",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
-      "line": 371,
+      "line": 428,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
       "snippet": "XRRayInteractor fallback = null;"
     },
@@ -6221,7 +6266,7 @@
       "code": "FALLBACK_MARKER",
       "description": "Source text marks fallback/prototype debt",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
-      "line": 380,
+      "line": 437,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
       "snippet": "if (fallback == null) fallback = ray;"
     },
@@ -6230,7 +6275,7 @@
       "code": "FALLBACK_MARKER",
       "description": "Source text marks fallback/prototype debt",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
-      "line": 384,
+      "line": 441,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
       "snippet": "return fallback;"
     },
@@ -6644,7 +6689,7 @@
       "code": "CAMERA_MAIN_REFERENCE",
       "description": "Camera.main dependency",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingPresentationGuard.cs",
-      "line": 152,
+      "line": 184,
       "symbol": "Ziptide.Gameplay.ShipBoardingPresentationGuard",
       "snippet": "if (_viewer == null) _viewer = Camera.main;"
     },
@@ -8066,7 +8111,25 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
-      "line": 199,
+      "line": 82,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
+      "snippet": "public readonly InputActionAsset Asset;"
+    },
+    {
+      "category": "input",
+      "code": "INPUT_ACTION_REFERENCE",
+      "description": "Input System action reference",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
+      "line": 85,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
+      "snippet": "public InputActionAssetState(InputActionAsset asset)"
+    },
+    {
+      "category": "input",
+      "code": "INPUT_ACTION_REFERENCE",
+      "description": "Input System action reference",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
+      "line": 219,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
       "snippet": "InputActionManager inputManager = canonicalManager.GetComponent<InputActionManager>();"
     },
@@ -8075,7 +8138,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
-      "line": 202,
+      "line": 222,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
       "snippet": "\"The canonical XRInteractionManager has no InputActionManager to refresh.\");"
     },
@@ -8084,7 +8147,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
-      "line": 205,
+      "line": 224,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
       "snippet": "foreach (InputActionAsset asset in inputManager.actionAssets)"
     },
@@ -8093,7 +8156,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
-      "line": 213,
+      "line": 228,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
       "snippet": "\"The canonical InputActionManager owns no action assets for tracked-rig simulation.\");"
     },
@@ -8102,27 +8165,36 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
-      "line": 216,
+      "line": 249,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
-      "snippet": "foreach (InputActionAsset asset in inputManager.actionAssets)"
+      "snippet": "InputActionAsset asset = _inputAssetStates[i].Asset;"
     },
     {
       "category": "input",
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
-      "line": 222,
+      "line": 258,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
-      "snippet": "foreach (InputActionAsset asset in inputManager.actionAssets)"
+      "snippet": "InputActionAsset asset = _inputAssetStates[i].Asset;"
     },
     {
       "category": "input",
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
-      "line": 227,
+      "line": 262,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
       "snippet": "foreach (InputAction action in map.actions)"
+    },
+    {
+      "category": "input",
+      "code": "INPUT_ACTION_REFERENCE",
+      "description": "Input System action reference",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
+      "line": 287,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
+      "snippet": "InputActionAsset asset = _inputAssetStates[i].Asset;"
     },
     {
       "category": "input",
@@ -15788,7 +15860,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPresentationGuardTests.cs",
-      "line": 146,
+      "line": 167,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryPresentationGuardTests",
       "snippet": "var go = new GameObject(name);"
     },
@@ -15797,7 +15869,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPresentationGuardTests.cs",
-      "line": 154,
+      "line": 175,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryPresentationGuardTests",
       "snippet": "var go = new GameObject(name);"
     },
@@ -16535,7 +16607,7 @@
       "code": "TEXTMESH_COMPONENT",
       "description": "Legacy TextMesh creation/reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPresentationGuardTests.cs",
-      "line": 163,
+      "line": 184,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryPresentationGuardTests",
       "snippet": "TextMesh text = go.AddComponent<TextMesh>();"
     },
@@ -19757,7 +19829,7 @@
       "code": "XRI_MANAGER_ASSIGN",
       "description": "Explicit interactable interactionManager assignment",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
-      "line": 297,
+      "line": 354,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
       "snippet": "ray.interactionManager = canonicalManager;"
     },
