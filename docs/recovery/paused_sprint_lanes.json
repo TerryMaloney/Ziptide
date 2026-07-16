@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "1",
+  "paused": [
+    {
+      "board": "SPRINT_ART.md",
+      "pausedSince": "2026-07-14",
+      "reason": "RECOVERY_PROGRAM freezes Picasso/Forge expansion and broad visual work while integration evidence is rebuilt.",
+      "resumeGate": "Resume only after the recovery owner records the R3 Golden vertical-slice exit gate in docs/HANDOFF.md."
+    },
+    {
+      "board": "SPRINT_MULTIPLAYER.md",
+      "pausedSince": "2026-07-14",
+      "reason": "RECOVERY_PROGRAM explicitly pauses multiplayer implementation while the single-player Golden route is consolidated.",
+      "resumeGate": "Resume only after the recovery owner records the R3 Golden vertical-slice exit gate in docs/HANDOFF.md."
+    }
+  ]
+}
