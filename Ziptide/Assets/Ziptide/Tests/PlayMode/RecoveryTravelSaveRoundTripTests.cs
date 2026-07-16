@@ -124,6 +124,10 @@ namespace Ziptide.Tests.PlayMode
 
             yield return WaitForCompletedDestination(1, ZiptideConstants.SceneW000);
             AssertSettledWorld(identity, ZiptideConstants.SceneW000, "r1_6_w000_first_arrival");
+            // Golden visual proof AFTER the arrival transition clears — capturing inside the opaque
+            // crest flash is what produced the blank pale-cyan ToxicCity frame in run 29494329424.
+            yield return RecoveryGoldenTravelVisualCapture.CaptureSettledPending(
+                ZiptideConstants.SceneW000);
 
             PlayerProfile live = SaveSystem.Instance.Profile;
             Assert.AreEqual(identity.PlayerId, live.playerId);
@@ -135,6 +139,8 @@ namespace Ziptide.Tests.PlayMode
             TravelCoordinator.TravelTo(ZiptideConstants.SceneToxicCity);
             yield return WaitForCompletedDestination(2, ZiptideConstants.SceneToxicCity);
             AssertSettledWorld(identity, ZiptideConstants.SceneToxicCity, "r1_6_toxic_city_arrival");
+            yield return RecoveryGoldenTravelVisualCapture.CaptureSettledPending(
+                ZiptideConstants.SceneToxicCity);
             AssertLiveProfile(identity.PlayerId);
             AssertDiskProfile(identity.PlayerId);
 
@@ -167,6 +173,11 @@ namespace Ziptide.Tests.PlayMode
                 "The round-trip emitted a travel failure despite completion events.");
             Assert.AreEqual(0, CountLogs("ZIPTIDE: XRI_NOT_READY"),
                 "A destination completed without canonical XRI readiness.");
+
+            // Deferred golden captures may never silently skip: both destinations must have produced
+            // their settled frame + UI proofs by the end of the round trip.
+            Assert.AreEqual(2, RecoveryGoldenTravelVisualCapture.CapturedCount,
+                "The golden visual capture set is incomplete — a deferred capture was skipped.");
         }
 
         private IEnumerator LoadActualBoot()
