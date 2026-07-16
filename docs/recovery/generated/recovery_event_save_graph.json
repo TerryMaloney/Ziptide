@@ -1,16 +1,16 @@
 {
   "tool": "recovery_event_save_graph",
-  "scannedFiles": 645,
-  "evidenceCount": 689,
+  "scannedFiles": 648,
+  "evidenceCount": 698,
   "kindCounts": {
     "AUTOSAVE": 7,
     "EVENT_DECLARE": 45,
     "EVENT_INVOKE": 57,
-    "EVENT_SUBSCRIBE": 95,
-    "EVENT_UNSUBSCRIBE": 49,
+    "EVENT_SUBSCRIBE": 99,
+    "EVENT_UNSUBSCRIBE": 53,
     "PLAYER_PREFS_ACCESS": 11,
     "PROFILE_FIELD_ACCESS": 358,
-    "SAVE_ACCESS": 67
+    "SAVE_ACCESS": 68
   },
   "unmatchedNamedSubscriptionCount": 48,
   "unmatchedNamedSubscriptions": [
@@ -824,6 +824,24 @@
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
         "line": 53,
         "owner": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
+        "target": "Application.logMessageReceived",
+        "detail": "_logCallback",
+        "snippet": "if (_logCallback != null) Application.logMessageReceived -= _logCallback;"
+      },
+      {
+        "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs",
+        "line": 54,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests",
+        "target": "Application.logMessageReceived",
+        "detail": "_logCallback",
+        "snippet": "Application.logMessageReceived += _logCallback;"
+      },
+      {
+        "kind": "EVENT_UNSUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs",
+        "line": 65,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests",
         "target": "Application.logMessageReceived",
         "detail": "_logCallback",
         "snippet": "if (_logCallback != null) Application.logMessageReceived -= _logCallback;"
@@ -2568,6 +2586,24 @@
       },
       {
         "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs",
+        "line": 55,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests",
+        "target": "HomeHubRuntime.BootPresentationReady",
+        "detail": "OnBootReady",
+        "snippet": "HomeHubRuntime.BootPresentationReady += OnBootReady;"
+      },
+      {
+        "kind": "EVENT_UNSUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs",
+        "line": 67,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests",
+        "target": "HomeHubRuntime.BootPresentationReady",
+        "detail": "OnBootReady",
+        "snippet": "HomeHubRuntime.BootPresentationReady -= OnBootReady;"
+      },
+      {
+        "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
         "line": 66,
         "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
@@ -2606,6 +2642,24 @@
       }
     ],
     "HomeHubRuntime.NewGameProfileCreated": [
+      {
+        "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs",
+        "line": 56,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests",
+        "target": "HomeHubRuntime.NewGameProfileCreated",
+        "detail": "OnNewGameProfileCreated",
+        "snippet": "HomeHubRuntime.NewGameProfileCreated += OnNewGameProfileCreated;"
+      },
+      {
+        "kind": "EVENT_UNSUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs",
+        "line": 68,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests",
+        "target": "HomeHubRuntime.NewGameProfileCreated",
+        "detail": "OnNewGameProfileCreated",
+        "snippet": "HomeHubRuntime.NewGameProfileCreated -= OnNewGameProfileCreated;"
+      },
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
@@ -3646,6 +3700,15 @@
         "target": "SaveSystem.HasExistingProfile",
         "detail": "",
         "snippet": "bool canContinue = SaveSystem.HasExistingProfile;"
+      },
+      {
+        "kind": "SAVE_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs",
+        "line": 84,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests",
+        "target": "SaveSystem.HasExistingProfile",
+        "detail": "",
+        "snippet": "Assert.IsFalse(SaveSystem.HasExistingProfile,"
       },
       {
         "kind": "SAVE_ACCESS",
@@ -4869,6 +4932,24 @@
       }
     ],
     "TravelCoordinator.TravelCompleted": [
+      {
+        "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs",
+        "line": 57,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests",
+        "target": "TravelCoordinator.TravelCompleted",
+        "detail": "OnTravelCompleted",
+        "snippet": "TravelCoordinator.TravelCompleted += OnTravelCompleted;"
+      },
+      {
+        "kind": "EVENT_UNSUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs",
+        "line": 69,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests",
+        "target": "TravelCoordinator.TravelCompleted",
+        "detail": "OnTravelCompleted",
+        "snippet": "TravelCoordinator.TravelCompleted -= OnTravelCompleted;"
+      },
       {
         "kind": "EVENT_UNSUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenTravelVisualCapture.cs",
@@ -12784,6 +12865,87 @@
       "target": "method",
       "detail": "",
       "snippet": "method.Invoke(null, null);"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs",
+      "line": 54,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests",
+      "target": "Application.logMessageReceived",
+      "detail": "_logCallback",
+      "snippet": "Application.logMessageReceived += _logCallback;"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs",
+      "line": 55,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests",
+      "target": "HomeHubRuntime.BootPresentationReady",
+      "detail": "OnBootReady",
+      "snippet": "HomeHubRuntime.BootPresentationReady += OnBootReady;"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs",
+      "line": 56,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests",
+      "target": "HomeHubRuntime.NewGameProfileCreated",
+      "detail": "OnNewGameProfileCreated",
+      "snippet": "HomeHubRuntime.NewGameProfileCreated += OnNewGameProfileCreated;"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs",
+      "line": 57,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests",
+      "target": "TravelCoordinator.TravelCompleted",
+      "detail": "OnTravelCompleted",
+      "snippet": "TravelCoordinator.TravelCompleted += OnTravelCompleted;"
+    },
+    {
+      "kind": "EVENT_UNSUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs",
+      "line": 65,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests",
+      "target": "Application.logMessageReceived",
+      "detail": "_logCallback",
+      "snippet": "if (_logCallback != null) Application.logMessageReceived -= _logCallback;"
+    },
+    {
+      "kind": "EVENT_UNSUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs",
+      "line": 67,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests",
+      "target": "HomeHubRuntime.BootPresentationReady",
+      "detail": "OnBootReady",
+      "snippet": "HomeHubRuntime.BootPresentationReady -= OnBootReady;"
+    },
+    {
+      "kind": "EVENT_UNSUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs",
+      "line": 68,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests",
+      "target": "HomeHubRuntime.NewGameProfileCreated",
+      "detail": "OnNewGameProfileCreated",
+      "snippet": "HomeHubRuntime.NewGameProfileCreated -= OnNewGameProfileCreated;"
+    },
+    {
+      "kind": "EVENT_UNSUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs",
+      "line": 69,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests",
+      "target": "TravelCoordinator.TravelCompleted",
+      "detail": "OnTravelCompleted",
+      "snippet": "TravelCoordinator.TravelCompleted -= OnTravelCompleted;"
+    },
+    {
+      "kind": "SAVE_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs",
+      "line": 84,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests",
+      "target": "SaveSystem.HasExistingProfile",
+      "detail": "",
+      "snippet": "Assert.IsFalse(SaveSystem.HasExistingProfile,"
     },
     {
       "kind": "EVENT_UNSUBSCRIBE",

@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
-- Scanned files: **645**
-- Scanner findings: **2292**
+- Scanned files: **648**
+- Scanner findings: **2305**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -273,6 +273,12 @@ None.
 - Codes: `DIRECT_SCENE_LOAD_ASYNC`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs`
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:67` **DIRECT_SCENE_LOAD_ASYNC** — `AsyncOperation load = SceneManager.LoadSceneAsync(`
+
+### `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` — 1 signal(s)
+
+- Codes: `DIRECT_SCENE_LOAD_ASYNC`
+- Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:140` **DIRECT_SCENE_LOAD_ASYNC** — `AsyncOperation load = SceneManager.LoadSceneAsync(`
 
 ### `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` — 1 signal(s)
 
@@ -3576,6 +3582,15 @@ None.
 - Codes: `SAVE_SYSTEM_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs`
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:34` **SAVE_SYSTEM_REFERENCE** — `_saveBackup = RecoverySaveFileBackup.CaptureAndClear(SaveSystem.SavePath);`
+
+### `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` — 4 signal(s)
+
+- Codes: `PLAYER_PROFILE_REFERENCE`, `SAVE_SYSTEM_REFERENCE`
+- Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:40` **PLAYER_PROFILE_REFERENCE** — `private PlayerProfile _newGameProfile;`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:45` **SAVE_SYSTEM_REFERENCE** — `_saveBackup = RecoverySaveFileBackup.CaptureAndClear(SaveSystem.SavePath);`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:84` **SAVE_SYSTEM_REFERENCE** — `Assert.IsFalse(SaveSystem.HasExistingProfile,`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:281` **PLAYER_PROFILE_REFERENCE** — `private void OnNewGameProfileCreated(PlayerProfile profile) => _newGameProfile = profile;`
 
 ### `Ziptide.Tests.PlayMode.RecoverySaveFileBackup` — 1 signal(s)
 

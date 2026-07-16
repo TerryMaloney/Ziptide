@@ -1,18 +1,18 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-16T13:39:02.477283+00:00",
+  "generatedAtUtc": "2026-07-16T13:58:50.655147+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
     "Ziptide/Assets/Ziptide",
     "Ziptide/Assets/ZiptideNet"
   ],
-  "scannedFiles": 645,
-  "findingCount": 2292,
+  "scannedFiles": 648,
+  "findingCount": 2305,
   "categoryCounts": {
     "bootstrap": 31,
-    "diagnostics": 494,
+    "diagnostics": 502,
     "events": 64,
     "fallback_debt": 134,
     "global_render": 80,
@@ -21,8 +21,8 @@
     "persistence": 18,
     "runtime_creation": 593,
     "runtime_ui": 120,
-    "save_state": 252,
-    "scene_loading": 8,
+    "save_state": 256,
+    "scene_loading": 9,
     "xri_ownership": 83
   },
   "codeCounts": {
@@ -32,7 +32,7 @@
     "CANVAS_COMPONENT": 5,
     "CREATE_PRIMITIVE": 236,
     "DIRECT_SCENE_LOAD": 2,
-    "DIRECT_SCENE_LOAD_ASYNC": 6,
+    "DIRECT_SCENE_LOAD_ASYNC": 7,
     "DONT_DESTROY_ON_LOAD": 18,
     "EDITOR_BOOTSTRAP": 6,
     "EVENT_DECLARATION": 48,
@@ -42,11 +42,11 @@
     "INPUT_ACTION_REFERENCE": 178,
     "INPUT_BUTTON_REFERENCE": 6,
     "NEW_GAME_OBJECT": 357,
-    "PLAYER_PROFILE_REFERENCE": 138,
+    "PLAYER_PROFILE_REFERENCE": 140,
     "RENDER_SETTINGS_MUTATION": 36,
     "RUNTIME_BOOTSTRAP": 25,
     "RUNTIME_MATERIAL_CREATE": 89,
-    "SAVE_SYSTEM_REFERENCE": 106,
+    "SAVE_SYSTEM_REFERENCE": 108,
     "SHADER_FIND": 141,
     "STATIC_EVENT_DECLARATION": 16,
     "TEXTMESH_COMPONENT": 46,
@@ -57,7 +57,7 @@
     "XRI_MANAGER_LOOKUP": 41,
     "XR_INTERACTABLE_COMPONENT": 62,
     "XR_UI_INPUT_MODULE": 2,
-    "ZIPTIDE_LOG_TAG": 494
+    "ZIPTIDE_LOG_TAG": 502
   },
   "findings": [
     {
@@ -4321,6 +4321,42 @@
       "category": "diagnostics",
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs",
+      "line": 134,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests",
+      "snippet": "Assert.AreEqual(0, CountLogs(\"ZIPTIDE: TRAVEL_FAIL\"));"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs",
+      "line": 135,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests",
+      "snippet": "Assert.AreEqual(0, CountLogs(\"ZIPTIDE: XRI_NOT_READY\"));"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs",
+      "line": 166,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests",
+      "snippet": "if (CountLogs(\"ZIPTIDE: TRAVEL_FAIL\") > 0) break;"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs",
+      "line": 186,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests",
+      "snippet": "string prefix = \"ZIPTIDE: HEALTH_SWEEP scene=\" + sceneName;"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenTravelVisualCapture.cs",
       "line": 43,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryGoldenTravelVisualCapture",
@@ -4352,6 +4388,42 @@
       "line": 110,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests",
       "snippet": "new Regex(\"ZIPTIDE: HOME_HUB_TILE_BOUND tile=Tile_MANAGER_REPLACE mode=rebound\"));"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPerformanceSample.cs",
+      "line": 72,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryPerformanceSampleRecord",
+      "snippet": "healthSweepEvidence.IndexOf(\"ZIPTIDE: HEALTH_SWEEP\", StringComparison.Ordinal) < 0)"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPerformanceSample.cs",
+      "line": 145,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryPerformanceSampleRecord",
+      "snippet": "Debug.Log(\"ZIPTIDE: RECOVERY_PERF_SAMPLE label=\" + sample.label"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPerformanceSampleTests.cs",
+      "line": 13,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryPerformanceSampleTests",
+      "snippet": "string sweep = \"ZIPTIDE: HEALTH_SWEEP scene=CONTROLLED freed mats=2 tex=1 mesh=0 clips=0 memMB=128\";"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPerformanceSampleTests.cs",
+      "line": 42,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryPerformanceSampleTests",
+      "snippet": "\"ZIPTIDE: TRAVEL_OK dest=W000_DriftIn\","
     },
     {
       "category": "diagnostics",
@@ -18874,6 +18946,24 @@
       "category": "save_state",
       "code": "PLAYER_PROFILE_REFERENCE",
       "description": "PlayerProfile reference",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs",
+      "line": 40,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests",
+      "snippet": "private PlayerProfile _newGameProfile;"
+    },
+    {
+      "category": "save_state",
+      "code": "PLAYER_PROFILE_REFERENCE",
+      "description": "PlayerProfile reference",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs",
+      "line": 281,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests",
+      "snippet": "private void OnNewGameProfileCreated(PlayerProfile profile) => _newGameProfile = profile;"
+    },
+    {
+      "category": "save_state",
+      "code": "PLAYER_PROFILE_REFERENCE",
+      "description": "PlayerProfile reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
       "line": 40,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
@@ -19765,6 +19855,24 @@
       "category": "save_state",
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs",
+      "line": 45,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests",
+      "snippet": "_saveBackup = RecoverySaveFileBackup.CaptureAndClear(SaveSystem.SavePath);"
+    },
+    {
+      "category": "save_state",
+      "code": "SAVE_SYSTEM_REFERENCE",
+      "description": "SaveSystem reference",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs",
+      "line": 84,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests",
+      "snippet": "Assert.IsFalse(SaveSystem.HasExistingProfile,"
+    },
+    {
+      "category": "save_state",
+      "code": "SAVE_SYSTEM_REFERENCE",
+      "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoverySaveFileBackup.cs",
       "line": 10,
       "symbol": "Ziptide.Tests.PlayMode.RecoverySaveFileBackup",
@@ -19930,6 +20038,15 @@
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
       "line": 67,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
+      "snippet": "AsyncOperation load = SceneManager.LoadSceneAsync("
+    },
+    {
+      "category": "scene_loading",
+      "code": "DIRECT_SCENE_LOAD_ASYNC",
+      "description": "Direct asynchronous scene load",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs",
+      "line": 140,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests",
       "snippet": "AsyncOperation load = SceneManager.LoadSceneAsync("
     },
     {

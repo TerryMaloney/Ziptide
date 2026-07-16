@@ -1,8 +1,8 @@
 {
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
-  "scannedFiles": 645,
-  "findingCount": 2292,
+  "scannedFiles": 648,
+  "findingCount": 2305,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -873,6 +873,25 @@
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
             "line": 67,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
+            "snippet": "AsyncOperation load = SceneManager.LoadSceneAsync("
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests",
+        "evidenceCount": 1,
+        "codes": [
+          "DIRECT_SCENE_LOAD_ASYNC"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs"
+        ],
+        "evidence": [
+          {
+            "code": "DIRECT_SCENE_LOAD_ASYNC",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs",
+            "line": 140,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests",
             "snippet": "AsyncOperation load = SceneManager.LoadSceneAsync("
           }
         ]
@@ -16085,6 +16104,47 @@
             "line": 34,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
             "snippet": "_saveBackup = RecoverySaveFileBackup.CaptureAndClear(SaveSystem.SavePath);"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests",
+        "evidenceCount": 4,
+        "codes": [
+          "PLAYER_PROFILE_REFERENCE",
+          "SAVE_SYSTEM_REFERENCE"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs"
+        ],
+        "evidence": [
+          {
+            "code": "PLAYER_PROFILE_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs",
+            "line": 40,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests",
+            "snippet": "private PlayerProfile _newGameProfile;"
+          },
+          {
+            "code": "SAVE_SYSTEM_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs",
+            "line": 45,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests",
+            "snippet": "_saveBackup = RecoverySaveFileBackup.CaptureAndClear(SaveSystem.SavePath);"
+          },
+          {
+            "code": "SAVE_SYSTEM_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs",
+            "line": 84,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests",
+            "snippet": "Assert.IsFalse(SaveSystem.HasExistingProfile,"
+          },
+          {
+            "code": "PLAYER_PROFILE_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs",
+            "line": 281,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests",
+            "snippet": "private void OnNewGameProfileCreated(PlayerProfile profile) => _newGameProfile = profile;"
           }
         ]
       },
