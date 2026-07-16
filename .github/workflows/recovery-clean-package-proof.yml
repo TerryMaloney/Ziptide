@@ -151,6 +151,11 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          # game-ci's Unity container runs as root, so the regenerated packages-lock.json and any
+          # container-written outputs are root-owned on the runner. Reclaim them before the
+          # writeback: run 29532312901 failed EXACTLY here with 'cp: Permission denied' AFTER the
+          # 43/43 assertion had already passed — the proof succeeded, only the receipt failed.
+          sudo chown -R "$(id -u):$(id -g)" "${PROJECT_PATH}/Packages" docs/recovery/generated
           tested="$GITHUB_SHA"
           cp docs/recovery/generated/recovery_clean_package_observation.md /tmp/recovery_clean_package_observation.md
           cp docs/recovery/generated/recovery_clean_package_counts.json /tmp/recovery_clean_package_counts.json
@@ -298,6 +303,10 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          # Reclaim the root-owned container build outputs before writing .sha256 files beside
+          # them (run 29532312901: 'tee: Ziptide.apk.sha256: Permission denied' after a
+          # SUCCESSFUL build whose checksum had already printed).
+          sudo chown -R "$(id -u):$(id -g)" "${PROJECT_PATH}/Builds" "${PROJECT_PATH}/Packages"
           apk="${PROJECT_PATH}/Builds/Android/Ziptide.apk"
           report="${PROJECT_PATH}/Builds/Reports/recovery_golden_build_profile.json"
           test -s "$apk"
