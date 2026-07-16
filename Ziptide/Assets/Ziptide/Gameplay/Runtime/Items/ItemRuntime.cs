@@ -6,6 +6,8 @@ namespace Ziptide.Gameplay
 {
     /// <summary>
     /// Runtime component for a data-driven item. Ensures Rigidbody, Collider, XRGrabInteractable and applies definition.
+    /// Scene-authored items also reapply their serialized Forge look during Awake. Runtime-created items
+    /// still receive their Forge look from ItemFactory after Init, once the complete item hierarchy exists.
     /// </summary>
     [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(Collider))]
@@ -19,6 +21,14 @@ namespace Ziptide.Gameplay
         private void Awake()
         {
             ApplyDefinition();
+
+            // ItemFactory adds this component before Init, so its definition is null during Awake and
+            // the factory remains the single Forge caller for runtime-created items. A scene-authored
+            // item already has its definition serialized here; reapplying at runtime replaces any stale
+            // build-generated ForgeVisual child whose gitignored material asset is unavailable in the
+            // current checkout/build, instead of exposing an active null-material renderer.
+            if (definition != null && !string.IsNullOrEmpty(definition.forgeRecipeId))
+                Ziptide.Visuals.ForgeVisualApplier.TryApply(gameObject, definition.forgeRecipeId);
         }
 
         /// <summary>

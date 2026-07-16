@@ -10,8 +10,10 @@ namespace Ziptide.Visuals
     /// the audit's FORGE_RECIPE_MISSING blocker catches it at build time). Meshes build once per
     /// recipeId and are cached — zero committed binaries, zero per-frame allocations (SkyVista's
     /// bake-on-entry contract, in 3D). Called by ItemFactory.Create when a definition carries a
-    /// forgeRecipeId; also snaps existing socket-named children (Grip/Muzzle) to the recipe's poses,
-    /// which carries the +45° Quest grip tilt (ASSET_SWAP_PIPELINE.md §4).
+    /// forgeRecipeId; scene-authored ItemRuntime instances also reapply their serialized definition at
+    /// Awake so stale build-generated visuals cannot survive into a source-only PlayMode checkout.
+    /// Existing socket-named children (Grip/Muzzle) snap to the recipe's poses, which carries the +45°
+    /// Quest grip tilt (ASSET_SWAP_PIPELINE.md §4).
     /// </summary>
     public static class ForgeVisualApplier
     {
@@ -40,18 +42,21 @@ namespace Ziptide.Visuals
             vis.transform.localRotation = Quaternion.identity;
             vis.transform.localScale = Vector3.one;
 
+            // ForgeVisual owns its entire child hierarchy. Build patching can serialize a baked
+            // prefab(Clone) whose material lives under the regenerated/gitignored ForgeBaked tree.
+            // A source-only PlayMode checkout then resolves that old child renderer with a null material.
+            // Clear every previously-owned child before choosing the currently available baked/fallback
+            // representation. Deactivate first so deferred runtime destruction cannot expose one stale
+            // frame to rendering or the R1.9 surface audit.
+            int removedChildren = ClearOwnedChildren(vis.transform);
+
             // E1.4: prefer the BAKED look (single textured material, build-time ForgeBaker output).
             // The runtime flat-color mesh stays as the dev fallback when no bake shipped.
             var baked = Resources.Load<GameObject>("ForgeBaked/" + recipeId + "/prefab");
             int tris;
             if (baked != null)
             {
-                for (int i = vis.transform.childCount - 1; i >= 0; i--)
-                    Object.Destroy(vis.transform.GetChild(i).gameObject);
-                var oldMf = vis.GetComponent<MeshFilter>();
-                if (oldMf != null) Object.Destroy(oldMf);
-                var oldMr = vis.GetComponent<MeshRenderer>();
-                if (oldMr != null) Object.Destroy(oldMr);
+                RemoveFallbackComponents(vis);
                 var look = Object.Instantiate(baked, vis.transform, false);
                 var lookMf = look.GetComponent<MeshFilter>();
                 tris = lookMf != null && lookMf.sharedMesh != null ? lookMf.sharedMesh.triangles.Length / 3 : 0;
@@ -69,6 +74,7 @@ namespace Ziptide.Visuals
 
                 var mr = vis.GetComponent<MeshRenderer>();
                 if (mr == null) mr = vis.AddComponent<MeshRenderer>();
+                mr.enabled = true;
                 mr.sharedMaterials = ForgeMaterials.ForRecipe(recipe);
                 mr.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off; // Quest budget
                 tris = mesh.triangles.Length / 3;
@@ -87,8 +93,40 @@ namespace Ziptide.Visuals
                 }
 
             Debug.Log("ZIPTIDE: FORGE_APPLIED id=" + recipeId + " item=" + item.name
-                + " baked=" + (baked != null) + " tris=" + tris);
+                + " baked=" + (baked != null) + " tris=" + tris
+                + " replacedChildren=" + removedChildren);
             return true;
+        }
+
+        private static int ClearOwnedChildren(Transform visualRoot)
+        {
+            int removed = visualRoot.childCount;
+            for (int i = visualRoot.childCount - 1; i >= 0; i--)
+            {
+                GameObject child = visualRoot.GetChild(i).gameObject;
+                child.SetActive(false);
+                DestroyOwned(child);
+            }
+            return removed;
+        }
+
+        private static void RemoveFallbackComponents(GameObject visualRoot)
+        {
+            var oldMr = visualRoot.GetComponent<MeshRenderer>();
+            if (oldMr != null)
+            {
+                oldMr.enabled = false;
+                DestroyOwned(oldMr);
+            }
+            var oldMf = visualRoot.GetComponent<MeshFilter>();
+            if (oldMf != null) DestroyOwned(oldMf);
+        }
+
+        private static void DestroyOwned(Object value)
+        {
+            if (value == null) return;
+            if (Application.isPlaying) Object.Destroy(value);
+            else Object.DestroyImmediate(value);
         }
     }
 }
