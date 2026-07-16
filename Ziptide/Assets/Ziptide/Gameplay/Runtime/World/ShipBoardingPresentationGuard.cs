@@ -18,6 +18,7 @@ namespace Ziptide.Gameplay
         private const float QuartersRevealRadius = 4.0f;
         private const float HelmCharacterSize = 0.016f;
         private const float HierarchyRetrySeconds = 0.5f;
+        private const int FastHierarchyRetryScans = 12;
 
         private static readonly string[] DeckUiNames =
         {
@@ -81,8 +82,12 @@ namespace Ziptide.Gameplay
 
         private void EnsureHierarchy()
         {
-            if (_hierarchyResolved && CachedHierarchyIsValid()) return;
-            _hierarchyResolved = false;
+            if (_hierarchyResolved)
+            {
+                if (CachedHierarchyIsValid()) return;
+                _hierarchyResolved = false;
+                _nextHierarchyRetryAt = 0f;
+            }
             if (Time.unscaledTime < _nextHierarchyRetryAt) return;
             ResolveHierarchy();
         }
@@ -90,7 +95,6 @@ namespace Ziptide.Gameplay
         private void ResolveHierarchy()
         {
             _hierarchyScanCount++;
-            _nextHierarchyRetryAt = Time.unscaledTime + HierarchyRetrySeconds;
 
             Transform[] all = GetComponentsInChildren<Transform>(true);
             _cockpitDeck = FindByName(all, "CockpitDeck");
@@ -128,6 +132,11 @@ namespace Ziptide.Gameplay
 
             NormalizeHelmLabels();
             _hierarchyResolved = CachedHierarchyIsValid();
+            _nextHierarchyRetryAt = _hierarchyResolved
+                ? float.PositiveInfinity
+                : Time.unscaledTime + (_hierarchyScanCount < FastHierarchyRetryScans
+                    ? 0f
+                    : HierarchyRetrySeconds);
         }
 
         private bool CachedHierarchyIsValid()
@@ -183,6 +192,7 @@ namespace Ziptide.Gameplay
                 {
                     values.RemoveAt(i);
                     _hierarchyResolved = false;
+                    _nextHierarchyRetryAt = 0f;
                     continue;
                 }
                 if (value.activeSelf != active) value.SetActive(active);
