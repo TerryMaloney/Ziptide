@@ -1832,7 +1832,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-        "line": 370,
+        "line": 374,
         "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
         "target": "GetResource",
         "detail": "profile",
@@ -1841,7 +1841,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-        "line": 383,
+        "line": 387,
         "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
         "target": "GetResource",
         "detail": "profile",
@@ -2504,7 +2504,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-        "line": 369,
+        "line": 373,
         "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
         "target": "HasFlag",
         "detail": "profile",
@@ -2513,7 +2513,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-        "line": 382,
+        "line": 386,
         "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
         "target": "HasFlag",
         "detail": "profile",
@@ -4149,7 +4149,7 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-        "line": 366,
+        "line": 370,
         "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
         "target": "SaveSystem.Profile",
         "detail": "",
@@ -6367,7 +6367,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-        "line": 368,
+        "line": 372,
         "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
         "target": "playerId",
         "detail": "profile",
@@ -6376,7 +6376,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-        "line": 381,
+        "line": 385,
         "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
         "target": "playerId",
         "detail": "profile",
@@ -12903,7 +12903,7 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-      "line": 366,
+      "line": 370,
       "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
       "target": "SaveSystem.Profile",
       "detail": "",
@@ -12912,7 +12912,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-      "line": 368,
+      "line": 372,
       "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
       "target": "playerId",
       "detail": "profile",
@@ -12921,7 +12921,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-      "line": 369,
+      "line": 373,
       "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
       "target": "HasFlag",
       "detail": "profile",
@@ -12930,7 +12930,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-      "line": 370,
+      "line": 374,
       "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
       "target": "GetResource",
       "detail": "profile",
@@ -12939,7 +12939,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-      "line": 381,
+      "line": 385,
       "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
       "target": "playerId",
       "detail": "profile",
@@ -12948,7 +12948,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-      "line": 382,
+      "line": 386,
       "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
       "target": "HasFlag",
       "detail": "profile",
@@ -12957,7 +12957,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-      "line": 383,
+      "line": 387,
       "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
       "target": "GetResource",
       "detail": "profile",

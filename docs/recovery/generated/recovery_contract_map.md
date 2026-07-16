@@ -509,10 +509,10 @@ None.
 
 - Codes: `INPUT_ACTION_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:79` **INPUT_ACTION_REFERENCE** — `InputActionManager inputManager = null;`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:85` **INPUT_ACTION_REFERENCE** — `inputManager = UnityEngine.Object.FindObjectOfType<InputActionManager>();`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:95` **INPUT_ACTION_REFERENCE** — `Assert.IsNotNull(inputManager, "The actual _Boot scene has no InputActionManager.");`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:109` **INPUT_ACTION_REFERENCE** — `Assert.AreEqual(1, ActiveManagerCount(settled, "InputActionManager"));`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:83` **INPUT_ACTION_REFERENCE** — `InputActionManager inputManager = null;`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:90` **INPUT_ACTION_REFERENCE** — `inputManager = UnityEngine.Object.FindObjectOfType<InputActionManager>();`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:100` **INPUT_ACTION_REFERENCE** — `Assert.IsNotNull(inputManager, "The actual _Boot scene has no InputActionManager.");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:114` **INPUT_ACTION_REFERENCE** — `Assert.AreEqual(1, ActiveManagerCount(settled, "InputActionManager"));`
 
 ### `Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests` — 14 signal(s)
 
@@ -572,16 +572,16 @@ None.
 - Codes: `INPUT_ACTION_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs`
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:110` **INPUT_ACTION_REFERENCE** — `Assert.AreEqual(1, ActiveManagerCount(bootCensus, "InputActionManager"));`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:274` **INPUT_ACTION_REFERENCE** — `InputActionManager input = CanonicalInputManager();`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:281` **INPUT_ACTION_REFERENCE** — `"The canonical InputActionManager owns no action assets at Home Hub settlement.");`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:306` **INPUT_ACTION_REFERENCE** — `InputActionManager input = CanonicalInputManager();`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:332` **INPUT_ACTION_REFERENCE** — `Assert.AreEqual(1, ActiveManagerCount(census, "InputActionManager"));`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:387` **INPUT_ACTION_REFERENCE** — `private static InputActionManager CanonicalInputManager()`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:390` **INPUT_ACTION_REFERENCE** — `InputActionManager input = manager.GetComponent<InputActionManager>();`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:392` **INPUT_ACTION_REFERENCE** — `"The canonical XRInteractionManager has no InputActionManager beside it.");`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:393` **INPUT_ACTION_REFERENCE** — `Assert.IsTrue(input.enabled, "The canonical InputActionManager is disabled.");`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:397` **INPUT_ACTION_REFERENCE** — `private static int[] InputAssetIds(InputActionManager manager, bool assertEnabled)`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:402` **INPUT_ACTION_REFERENCE** — `foreach (InputActionAsset asset in manager.actionAssets)`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:278` **INPUT_ACTION_REFERENCE** — `InputActionManager input = CanonicalInputManager();`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:285` **INPUT_ACTION_REFERENCE** — `"The canonical InputActionManager owns no action assets at Home Hub settlement.");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:310` **INPUT_ACTION_REFERENCE** — `InputActionManager input = CanonicalInputManager();`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:336` **INPUT_ACTION_REFERENCE** — `Assert.AreEqual(1, ActiveManagerCount(census, "InputActionManager"));`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:391` **INPUT_ACTION_REFERENCE** — `private static InputActionManager CanonicalInputManager()`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:394` **INPUT_ACTION_REFERENCE** — `InputActionManager input = manager.GetComponent<InputActionManager>();`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:396` **INPUT_ACTION_REFERENCE** — `"The canonical XRInteractionManager has no InputActionManager beside it.");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:397` **INPUT_ACTION_REFERENCE** — `Assert.IsTrue(input.enabled, "The canonical InputActionManager is disabled.");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:401` **INPUT_ACTION_REFERENCE** — `private static int[] InputAssetIds(InputActionManager manager, bool assertEnabled)`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:406` **INPUT_ACTION_REFERENCE** — `foreach (InputActionAsset asset in manager.actionAssets)`
 
 ### `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` — 15 signal(s)
 
@@ -2716,8 +2716,8 @@ None.
 
 - Codes: `XRI_MANAGER_ASSIGN`, `XRI_MANAGER_LOOKUP`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:84` **XRI_MANAGER_LOOKUP** — `manager = UnityEngine.Object.FindObjectOfType<XRInteractionManager>();`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:127` **XRI_MANAGER_ASSIGN** — `(settings.interactionManager == null || newGame.interactionManager == null); frame++)`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:89` **XRI_MANAGER_LOOKUP** — `manager = UnityEngine.Object.FindObjectOfType<XRInteractionManager>();`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:132` **XRI_MANAGER_ASSIGN** — `(settings.interactionManager == null || newGame.interactionManager == null); frame++)`
 
 ### `Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests` — 5 signal(s)
 
@@ -3572,16 +3572,16 @@ None.
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:132` **PLAYER_PROFILE_REFERENCE** — `PlayerProfile live = SaveSystem.Instance.Profile;`
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:132` **SAVE_SYSTEM_REFERENCE** — `PlayerProfile live = SaveSystem.Instance.Profile;`
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:153` **SAVE_SYSTEM_REFERENCE** — `SaveSystem.Instance.Load();`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:275` **SAVE_SYSTEM_REFERENCE** — `SaveSystem save = FindRequired<SaveSystem>();`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:307` **SAVE_SYSTEM_REFERENCE** — `SaveSystem save = FindRequired<SaveSystem>();`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:314` **SAVE_SYSTEM_REFERENCE** — `Assert.AreEqual(identity.SaveSystemId, save.GetInstanceID(), "SaveSystem identity changed.");`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:365` **SAVE_SYSTEM_REFERENCE** — `Assert.IsNotNull(SaveSystem.Instance);`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:366` **PLAYER_PROFILE_REFERENCE** — `PlayerProfile profile = SaveSystem.Instance.Profile;`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:366` **SAVE_SYSTEM_REFERENCE** — `PlayerProfile profile = SaveSystem.Instance.Profile;`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:376` **SAVE_SYSTEM_REFERENCE** — `Assert.IsTrue(File.Exists(SaveSystem.SavePath),`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:378` **SAVE_SYSTEM_REFERENCE** — `string json = File.ReadAllText(SaveSystem.SavePath);`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:379` **PLAYER_PROFILE_REFERENCE** — `Assert.IsTrue(ProfileSerializer.TryDeserialize(json, out PlayerProfile profile),`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:416` **PLAYER_PROFILE_REFERENCE** — `private void OnNewGameProfileCreated(PlayerProfile profile) => _newGameProfile = profile;`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:279` **SAVE_SYSTEM_REFERENCE** — `SaveSystem save = FindRequired<SaveSystem>();`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:311` **SAVE_SYSTEM_REFERENCE** — `SaveSystem save = FindRequired<SaveSystem>();`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:318` **SAVE_SYSTEM_REFERENCE** — `Assert.AreEqual(identity.SaveSystemId, save.GetInstanceID(), "SaveSystem identity changed.");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:369` **SAVE_SYSTEM_REFERENCE** — `Assert.IsNotNull(SaveSystem.Instance);`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:370` **PLAYER_PROFILE_REFERENCE** — `PlayerProfile profile = SaveSystem.Instance.Profile;`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:370` **SAVE_SYSTEM_REFERENCE** — `PlayerProfile profile = SaveSystem.Instance.Profile;`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:380` **SAVE_SYSTEM_REFERENCE** — `Assert.IsTrue(File.Exists(SaveSystem.SavePath),`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:382` **SAVE_SYSTEM_REFERENCE** — `string json = File.ReadAllText(SaveSystem.SavePath);`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:383` **PLAYER_PROFILE_REFERENCE** — `Assert.IsTrue(ProfileSerializer.TryDeserialize(json, out PlayerProfile profile),`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:420` **PLAYER_PROFILE_REFERENCE** — `private void OnNewGameProfileCreated(PlayerProfile profile) => _newGameProfile = profile;`
 
 ### `ZiptideNet.PhotonPvpTransport` — 5 signal(s)
 

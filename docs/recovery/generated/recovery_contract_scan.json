@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-16T12:05:25.035667+00:00",
+  "generatedAtUtc": "2026-07-16T12:19:20.782659+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -4259,7 +4259,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
-      "line": 170,
+      "line": 175,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
       "snippet": "int travelStartsBefore = CountLogs(\"ZIPTIDE: TRAVEL_START\");"
     },
@@ -4268,7 +4268,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
-      "line": 189,
+      "line": 194,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
       "snippet": "Assert.AreEqual(travelStartsBefore, CountLogs(\"ZIPTIDE: TRAVEL_START\"),"
     },
@@ -4277,7 +4277,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
-      "line": 197,
+      "line": 202,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
       "snippet": "Assert.GreaterOrEqual(CountLogs(\"ZIPTIDE: BOARD_PROBE surface=HomeHub phase=select\"), 1,"
     },
@@ -4484,7 +4484,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-      "line": 254,
+      "line": 258,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
       "snippet": "if (CountLogs(\"ZIPTIDE: TRAVEL_FAIL\") > 0) break;"
     },
@@ -8264,7 +8264,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
-      "line": 79,
+      "line": 83,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
       "snippet": "InputActionManager inputManager = null;"
     },
@@ -8273,7 +8273,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
-      "line": 85,
+      "line": 90,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
       "snippet": "inputManager = UnityEngine.Object.FindObjectOfType<InputActionManager>();"
     },
@@ -8282,7 +8282,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
-      "line": 95,
+      "line": 100,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
       "snippet": "Assert.IsNotNull(inputManager, \"The actual _Boot scene has no InputActionManager.\");"
     },
@@ -8291,7 +8291,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
-      "line": 109,
+      "line": 114,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
       "snippet": "Assert.AreEqual(1, ActiveManagerCount(settled, \"InputActionManager\"));"
     },
@@ -8561,7 +8561,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-      "line": 274,
+      "line": 278,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
       "snippet": "InputActionManager input = CanonicalInputManager();"
     },
@@ -8570,7 +8570,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-      "line": 281,
+      "line": 285,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
       "snippet": "\"The canonical InputActionManager owns no action assets at Home Hub settlement.\");"
     },
@@ -8579,7 +8579,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-      "line": 306,
+      "line": 310,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
       "snippet": "InputActionManager input = CanonicalInputManager();"
     },
@@ -8588,7 +8588,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-      "line": 332,
+      "line": 336,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
       "snippet": "Assert.AreEqual(1, ActiveManagerCount(census, \"InputActionManager\"));"
     },
@@ -8597,7 +8597,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-      "line": 387,
+      "line": 391,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
       "snippet": "private static InputActionManager CanonicalInputManager()"
     },
@@ -8606,7 +8606,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-      "line": 390,
+      "line": 394,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
       "snippet": "InputActionManager input = manager.GetComponent<InputActionManager>();"
     },
@@ -8615,7 +8615,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-      "line": 392,
+      "line": 396,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
       "snippet": "\"The canonical XRInteractionManager has no InputActionManager beside it.\");"
     },
@@ -8624,7 +8624,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-      "line": 393,
+      "line": 397,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
       "snippet": "Assert.IsTrue(input.enabled, \"The canonical InputActionManager is disabled.\");"
     },
@@ -8633,7 +8633,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-      "line": 397,
+      "line": 401,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
       "snippet": "private static int[] InputAssetIds(InputActionManager manager, bool assertEnabled)"
     },
@@ -8642,7 +8642,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-      "line": 402,
+      "line": 406,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
       "snippet": "foreach (InputActionAsset asset in manager.actionAssets)"
     },
@@ -18677,7 +18677,7 @@
       "code": "PLAYER_PROFILE_REFERENCE",
       "description": "PlayerProfile reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-      "line": 366,
+      "line": 370,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
       "snippet": "PlayerProfile profile = SaveSystem.Instance.Profile;"
     },
@@ -18686,7 +18686,7 @@
       "code": "PLAYER_PROFILE_REFERENCE",
       "description": "PlayerProfile reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-      "line": 379,
+      "line": 383,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
       "snippet": "Assert.IsTrue(ProfileSerializer.TryDeserialize(json, out PlayerProfile profile),"
     },
@@ -18695,7 +18695,7 @@
       "code": "PLAYER_PROFILE_REFERENCE",
       "description": "PlayerProfile reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-      "line": 416,
+      "line": 420,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
       "snippet": "private void OnNewGameProfileCreated(PlayerProfile profile) => _newGameProfile = profile;"
     },
@@ -19595,7 +19595,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-      "line": 275,
+      "line": 279,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
       "snippet": "SaveSystem save = FindRequired<SaveSystem>();"
     },
@@ -19604,7 +19604,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-      "line": 307,
+      "line": 311,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
       "snippet": "SaveSystem save = FindRequired<SaveSystem>();"
     },
@@ -19613,7 +19613,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-      "line": 314,
+      "line": 318,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
       "snippet": "Assert.AreEqual(identity.SaveSystemId, save.GetInstanceID(), \"SaveSystem identity changed.\");"
     },
@@ -19622,7 +19622,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-      "line": 365,
+      "line": 369,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
       "snippet": "Assert.IsNotNull(SaveSystem.Instance);"
     },
@@ -19631,7 +19631,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-      "line": 366,
+      "line": 370,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
       "snippet": "PlayerProfile profile = SaveSystem.Instance.Profile;"
     },
@@ -19640,7 +19640,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-      "line": 376,
+      "line": 380,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
       "snippet": "Assert.IsTrue(File.Exists(SaveSystem.SavePath),"
     },
@@ -19649,7 +19649,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-      "line": 378,
+      "line": 382,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
       "snippet": "string json = File.ReadAllText(SaveSystem.SavePath);"
     },
@@ -20000,7 +20000,7 @@
       "code": "XRI_MANAGER_ASSIGN",
       "description": "Explicit interactable interactionManager assignment",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
-      "line": 127,
+      "line": 132,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
       "snippet": "(settings.interactionManager == null || newGame.interactionManager == null); frame++)"
     },
@@ -20459,7 +20459,7 @@
       "code": "XRI_MANAGER_LOOKUP",
       "description": "XRInteractionManager lookup",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
-      "line": 84,
+      "line": 89,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
       "snippet": "manager = UnityEngine.Object.FindObjectOfType<XRInteractionManager>();"
     },
