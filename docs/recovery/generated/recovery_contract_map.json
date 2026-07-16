@@ -10779,28 +10779,28 @@
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs",
-            "line": 34,
+            "line": 39,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryForgeVisualOwnershipTests",
             "snippet": "_item = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "XR_INTERACTABLE_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs",
-            "line": 38,
+            "line": 43,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryForgeVisualOwnershipTests",
             "snippet": "_item.AddComponent<XRGrabInteractable>();"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs",
-            "line": 40,
+            "line": 45,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryForgeVisualOwnershipTests",
-            "snippet": "var visual = new GameObject(ForgeVisualApplier.VisualChildName);"
+            "snippet": "var visual = new GameObject(ForgeVisualName);"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs",
-            "line": 42,
+            "line": 47,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryForgeVisualOwnershipTests",
             "snippet": "GameObject stale = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           }

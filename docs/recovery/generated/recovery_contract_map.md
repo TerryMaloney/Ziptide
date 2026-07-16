@@ -2293,10 +2293,10 @@ None.
 
 - Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`, `XR_INTERACTABLE_COMPONENT`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs:34` **CREATE_PRIMITIVE** — `_item = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs:38` **XR_INTERACTABLE_COMPONENT** — `_item.AddComponent<XRGrabInteractable>();`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs:40` **NEW_GAME_OBJECT** — `var visual = new GameObject(ForgeVisualApplier.VisualChildName);`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs:42` **CREATE_PRIMITIVE** — `GameObject stale = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs:39` **CREATE_PRIMITIVE** — `_item = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs:43` **XR_INTERACTABLE_COMPONENT** — `_item.AddComponent<XRGrabInteractable>();`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs:45` **NEW_GAME_OBJECT** — `var visual = new GameObject(ForgeVisualName);`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs:47` **CREATE_PRIMITIVE** — `GameObject stale = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 
 ### `Ziptide.Tests.PlayMode.RecoveryGateBypassTests` — 2 signal(s)
 
