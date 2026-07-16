@@ -41,10 +41,10 @@ namespace Ziptide.Core
 
     public static class RecoveryExposureProfiles
     {
-        // Exact-source proof marker (2026-07-16-b): GitHub Actions commit b285ff3 contains
-        // the bounded XRI ownership distinction: disabled references remain externally managed,
-        // while provider-owned direct actions are prepared under suspension and proven by the
-        // existing input-session canary. This normal PR descendant triggers every proof lane.
+        // Package-compatibility proof marker (2026-07-16): the Unity 2022.3 editor was running
+        // the 2023-generation Input System 1.7 / XRI 2.5 pair. This comment-only watched source
+        // change makes every recovery lane execute against the bounded Input 1.6.3 / XRI 2.4.3
+        // matrix while preserving all runtime, scene, route, threshold and 43-test behavior.
         private static readonly RecoveryFeatureId[] GoldenFeatures =
         {
             RecoveryFeatureId.RuntimeHealthMonitor,
