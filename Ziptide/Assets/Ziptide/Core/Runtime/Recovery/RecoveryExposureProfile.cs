@@ -41,6 +41,10 @@ namespace Ziptide.Core
 
     public static class RecoveryExposureProfiles
     {
+        // Proof-lane retrigger marker (2026-07-16): source b431138 changed
+        // PlayerRigPersistence.cs, which was omitted from the narrow Recovery PlayMode and Golden
+        // Android path filters. This comment intentionally advances the exact candidate without
+        // changing runtime behavior so both native workflows execute against the production fix.
         private static readonly RecoveryFeatureId[] GoldenFeatures =
         {
             RecoveryFeatureId.RuntimeHealthMonitor,
