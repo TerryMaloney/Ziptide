@@ -27,6 +27,43 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-16 (rb36) — Fable 5: input-race peeled to ONE residual poll; CIRCUIT BREAKER → package decision escalated to the lane
+
+- **Also this window (both proven):** the travel-arrival input race was confirmed a REAL production
+  defect and largely fixed; and BOTH proof lanes' trigger allowlists were missing the golden route's
+  spine — `PlayerRigPersistence.cs` itself was not path-bound, so a production input fix shipped
+  without triggering PlayMode/Golden. Fixed with `Player/**` + `World/**` globs (`3acb66f`). A proof
+  lane that cannot see the file it proves is a one-sided seam; recommend the lane add a
+  trigger-coverage check to the contract scan.
+- **The evidence chain (4 runs, one failure class):** ① `29506225255` 41/43 — SnapTurn/ContinuousTurn
+  `ApplyProcessors` NREs on EVERY post-travel arrival, stacks directly after `ANCHOR_ACTIONS_DISABLED`
+  (production mutates live action assets mid-travel; readers poll during the re-resolve).
+  ② Suspension window (`b431138`) → `29518294931` 42/43 — first poll after a blind 2-frame restore
+  still NRE'd. ③ Probe-settle (`9b928cd`) → `29518996619` 42/43 — a PASSING probe plus a clean
+  MOVE_DIAG read still preceded the NRE; restore had landed in the travel tail. ④ Travel-end gate
+  (`8760c21`) → 42/43 — restore fired AFTER travel completed, probe read the exact polled actions
+  cleanly, and SnapTurn's next poll STILL threw, with no intervening mutation logged. The perf-route
+  test runs the identical route in the same player and passes clean each time.
+- **Conclusion (three-strikes stop, per the law):** windowing cannot fully guard InputSystem
+  **1.7.0**'s `InputActionState.ApplyProcessors` cache — it can break between a clean read and the
+  very next poll under device/action churn. The residual is a PACKAGE defect class, not an ownership
+  defect. The three landed windows remain net production hardening (the reproducible every-travel
+  crash class is gone — that part ships value to the headset regardless).
+- **ESCALATED DECISION for the recovery lane (Golden-affecting, needs its own bounded packet + full
+  proof ladder):** upgrade `com.unity.inputsystem` from 1.7.0 to the latest verified 1.x (the
+  ApplyProcessors NRE family has fixes in later patch lines), rerun the unchanged 43-suite, and take
+  the package bump through EditMode + patch/audit + Golden APK before any headset checkpoint.
+  Fallback if the upgrade is rejected: a bounded provider-level containment (try/catch read shim on
+  the four rig providers) — uglier, but keeps the package pinned. Do NOT weaken the suite; the
+  round-trip test is correctly refusing to certify a route that can still throw once.
+- **State at hand-back:** durable PlayMode = 42/43 on `8760c21` (only `NewGame_W000_ToxicCity_W000…`
+  red, single NRE in the whole suite); Contract Scan / CI / Golden Android green on the same SHA.
+  R1.9 exit report stands (40/40 on `4512126b`); R1.10 artifacts + the canary proofs remain the next
+  inspections after the package decision lands.
+- **Commit:** `b431138` · `9b928cd` · `8760c21` (production hardening) · `3acb66f` (lane coverage) ·
+  this entry (docs).
+
+
 ### 2026-07-16 (rb35) — Fable 5 takeover: 38/38 — the first fully green PlayMode suite, all four lanes green on one SHA
 
 - **Takeover context:** per `docs/HANDOFF_RB34_GPT_LOOP_TO_FABLE5.md` (GPT's operator loop stalled on
