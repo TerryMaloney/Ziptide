@@ -14,7 +14,7 @@ namespace Ziptide.Core
         internal RecoveryExposureProfile(string name, IEnumerable<RecoveryFeatureId> enabled)
         {
             if (string.IsNullOrWhiteSpace(name))
-                throw new ArgumentException("Recovery profile name is required.", nameof(name));
+                throw new ArgumentException("Profile name is required.", nameof(name));
             if (enabled == null)
                 throw new ArgumentNullException(nameof(enabled));
 
