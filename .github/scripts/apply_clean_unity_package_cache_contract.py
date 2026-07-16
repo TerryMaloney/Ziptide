@@ -1,111 +1,134 @@
 from pathlib import Path
 
 
-def replace_once(path: str, old: str, new: str, label: str) -> None:
-    p = Path(path)
-    text = p.read_text(encoding="utf-8")
-    count = text.count(old)
-    print(f"{label}: matches={count}")
-    if count != 1:
-        raise SystemExit(f"{label}: expected one exact match, found {count}")
-    p.write_text(text.replace(old, new), encoding="utf-8")
+def load(path: str) -> list[str]:
+    return Path(path).read_text(encoding="utf-8").splitlines()
 
 
-playmode = ".github/workflows/recovery-playmode.yml"
-golden = ".github/workflows/recovery-golden-android.yml"
-ci = ".github/workflows/ci.yml"
+def save(path: str, lines: list[str]) -> None:
+    Path(path).write_text("\n".join(lines) + "\n", encoding="utf-8")
 
-replace_once(
+
+def ensure_after(lines: list[str], anchor: str, value: str, label: str) -> None:
+    if value in lines:
+        print(f"{label}: already present")
+        return
+    matches = [i for i, line in enumerate(lines) if line == anchor]
+    print(f"{label}: anchor matches={len(matches)}")
+    if len(matches) != 1:
+        raise SystemExit(f"{label}: expected one anchor, found {len(matches)}")
+    lines.insert(matches[0] + 1, value)
+
+
+def replace_cache(lines: list[str], old_prefix: str, new_prefix: str, label: str) -> None:
+    matches = [i for i, line in enumerate(lines) if old_prefix in line]
+    if not matches:
+        matches = [i for i, line in enumerate(lines) if new_prefix in line]
+        if len(matches) == 1:
+            print(f"{label}: already migrated")
+            return
+    print(f"{label}: key matches={len(matches)}")
+    if len(matches) != 1:
+        raise SystemExit(f"{label}: expected one cache key, found {len(matches)}")
+    i = matches[0]
+    lines[i] = lines[i].replace(old_prefix, new_prefix)
+    key_indent = len(lines[i]) - len(lines[i].lstrip(" "))
+    j = i + 1
+    if j < len(lines) and lines[j].strip() == "restore-keys: |":
+        del lines[j]
+        while j < len(lines):
+            line = lines[j]
+            if not line.strip():
+                break
+            indent = len(line) - len(line.lstrip(" "))
+            if indent <= key_indent:
+                break
+            del lines[j]
+    print(f"{label}: broad restore fallback removed")
+
+
+def ensure_artifact_after(lines: list[str], anchor_contains: str, value: str, label: str) -> None:
+    if any(line.strip() == value.strip() for line in lines):
+        print(f"{label}: already present")
+        return
+    matches = [i for i, line in enumerate(lines) if anchor_contains in line]
+    print(f"{label}: anchor matches={len(matches)}")
+    if len(matches) != 1:
+        raise SystemExit(f"{label}: expected one artifact anchor, found {len(matches)}")
+    indent = lines[matches[0]][: len(lines[matches[0]]) - len(lines[matches[0]].lstrip(" "))]
+    lines.insert(matches[0] + 1, indent + value.strip())
+
+
+playmode_path = ".github/workflows/recovery-playmode.yml"
+golden_path = ".github/workflows/recovery-golden-android.yml"
+ci_path = ".github/workflows/ci.yml"
+
+playmode = load(playmode_path)
+ensure_after(
     playmode,
-    "      - 'Ziptide/Assets/Ziptide/Core/Runtime/Recovery/**'\n",
-    "      - 'Ziptide/Assets/Ziptide/Core/Runtime/Recovery/**'\n"
-    "      - 'Ziptide/Packages/**'\n",
+    "      - 'Ziptide/Assets/Ziptide/Core/Runtime/Recovery/**'",
+    "      - 'Ziptide/Packages/**'",
     "PlayMode package trigger coverage",
 )
-replace_once(
+replace_cache(
     playmode,
-    "          key: Library-playmode-r1-${{ hashFiles(format('{0}/Assets/**', env.PROJECT_PATH), format('{0}/Packages/**', env.PROJECT_PATH), format('{0}/ProjectSettings/**', env.PROJECT_PATH)) }}\n"
-    "          restore-keys: |\n"
-    "            Library-playmode-r1-\n"
-    "            Library-\n",
-    "          # Package-matrix changes must import from a clean Library. Exact-key reuse is safe;\n"
-    "          # cross-hash fallback restores are forbidden because they mix compiled package assemblies.\n"
-    "          key: Library-playmode-r1-clean-v2-${{ hashFiles(format('{0}/Assets/**', env.PROJECT_PATH), format('{0}/Packages/**', env.PROJECT_PATH), format('{0}/ProjectSettings/**', env.PROJECT_PATH)) }}\n",
+    "Library-playmode-r1-",
+    "Library-playmode-r1-clean-v2-",
     "PlayMode clean Library key",
 )
-replace_once(
+ensure_artifact_after(
     playmode,
-    "            docs/recovery/generated/recovery_playmode_observation.md\n",
-    "            docs/recovery/generated/recovery_playmode_observation.md\n"
-    "            ${{ env.PROJECT_PATH }}/Packages/packages-lock.json\n",
+    "docs/recovery/generated/recovery_playmode_observation.md",
+    "${{ env.PROJECT_PATH }}/Packages/packages-lock.json",
     "PlayMode resolved lock artifact",
 )
+save(playmode_path, playmode)
 
-replace_once(
+golden = load(golden_path)
+ensure_after(
     golden,
-    "      - 'Ziptide/Assets/Ziptide/Core/Runtime/Recovery/**'\n",
-    "      - 'Ziptide/Assets/Ziptide/Core/Runtime/Recovery/**'\n"
-    "      - 'Ziptide/Packages/**'\n",
+    "      - 'Ziptide/Assets/Ziptide/Core/Runtime/Recovery/**'",
+    "      - 'Ziptide/Packages/**'",
     "Golden package trigger coverage",
 )
-replace_once(
+replace_cache(
     golden,
-    "          key: Library-recovery-golden-android-${{ hashFiles(format('{0}/Assets/**', env.PROJECT_PATH), format('{0}/Packages/**', env.PROJECT_PATH), format('{0}/ProjectSettings/**', env.PROJECT_PATH)) }}\n"
-    "          restore-keys: |\n"
-    "            Library-recovery-golden-android-\n"
-    "            Library-android-\n"
-    "            Library-\n",
-    "          # Never restore a Unity Library compiled against a different package graph.\n"
-    "          key: Library-recovery-golden-android-clean-v2-${{ hashFiles(format('{0}/Assets/**', env.PROJECT_PATH), format('{0}/Packages/**', env.PROJECT_PATH), format('{0}/ProjectSettings/**', env.PROJECT_PATH)) }}\n",
+    "Library-recovery-golden-android-",
+    "Library-recovery-golden-android-clean-v2-",
     "Golden clean Library key",
 )
-replace_once(
+ensure_artifact_after(
     golden,
-    "            ${{ env.PROJECT_PATH }}/Builds/Reports/*\n",
-    "            ${{ env.PROJECT_PATH }}/Builds/Reports/*\n"
-    "            ${{ env.PROJECT_PATH }}/Packages/packages-lock.json\n",
+    "${{ env.PROJECT_PATH }}/Builds/Reports/*",
+    "${{ env.PROJECT_PATH }}/Packages/packages-lock.json",
     "Golden resolved lock artifact",
 )
+save(golden_path, golden)
 
-replace_once(
+ci = load(ci_path)
+replace_cache(ci, "Library-test-", "Library-test-clean-v2-", "EditMode clean Library key")
+replace_cache(ci, "Library-audit-", "Library-audit-clean-v2-", "Audit clean Library key")
+replace_cache(ci, "Library-android-", "Library-android-clean-v2-", "Android clean Library key")
+
+if not any("${{ env.PROJECT_PATH }}/Packages/packages-lock.json" in line for line in ci):
+    matches = [i for i, line in enumerate(ci) if line.strip() == "path: test-results"]
+    print(f"EditMode resolved lock artifact: anchor matches={len(matches)}")
+    if len(matches) != 1:
+        raise SystemExit(f"EditMode resolved lock artifact: expected one path anchor, found {len(matches)}")
+    i = matches[0]
+    indent = ci[i][: len(ci[i]) - len(ci[i].lstrip(" "))]
+    ci[i : i + 1] = [
+        indent + "path: |",
+        indent + "  test-results",
+        indent + "  ${{ env.PROJECT_PATH }}/Packages/packages-lock.json",
+    ]
+else:
+    print("EditMode resolved lock artifact: already present")
+
+ensure_artifact_after(
     ci,
-    "          key: Library-test-${{ hashFiles(format('{0}/Assets/**', env.PROJECT_PATH), format('{0}/Packages/**', env.PROJECT_PATH), format('{0}/ProjectSettings/**', env.PROJECT_PATH)) }}\n"
-    "          restore-keys: |\n"
-    "            Library-test-\n"
-    "            Library-\n",
-    "          key: Library-test-clean-v2-${{ hashFiles(format('{0}/Assets/**', env.PROJECT_PATH), format('{0}/Packages/**', env.PROJECT_PATH), format('{0}/ProjectSettings/**', env.PROJECT_PATH)) }}\n",
-    "EditMode clean Library key",
-)
-replace_once(
-    ci,
-    "          path: test-results\n",
-    "          path: |\n"
-    "            test-results\n"
-    "            ${{ env.PROJECT_PATH }}/Packages/packages-lock.json\n",
-    "EditMode resolved lock artifact",
-)
-replace_once(
-    ci,
-    "          key: Library-audit-${{ hashFiles(format('{0}/Assets/**', env.PROJECT_PATH), format('{0}/Packages/**', env.PROJECT_PATH), format('{0}/ProjectSettings/**', env.PROJECT_PATH)) }}\n"
-    "          restore-keys: |\n"
-    "            Library-audit-\n"
-    "            Library-\n",
-    "          key: Library-audit-clean-v2-${{ hashFiles(format('{0}/Assets/**', env.PROJECT_PATH), format('{0}/Packages/**', env.PROJECT_PATH), format('{0}/ProjectSettings/**', env.PROJECT_PATH)) }}\n",
-    "Audit clean Library key",
-)
-replace_once(
-    ci,
-    "            ${{ env.PROJECT_PATH }}/Builds/Reports/*\n",
-    "            ${{ env.PROJECT_PATH }}/Builds/Reports/*\n"
-    "            ${{ env.PROJECT_PATH }}/Packages/packages-lock.json\n",
+    "${{ env.PROJECT_PATH }}/Builds/Reports/*",
+    "${{ env.PROJECT_PATH }}/Packages/packages-lock.json",
     "Audit resolved lock artifact",
 )
-replace_once(
-    ci,
-    "          key: Library-android-${{ hashFiles(format('{0}/Assets/**', env.PROJECT_PATH), format('{0}/Packages/**', env.PROJECT_PATH), format('{0}/ProjectSettings/**', env.PROJECT_PATH)) }}\n"
-    "          restore-keys: |\n"
-    "            Library-android-\n"
-    "            Library-\n",
-    "          key: Library-android-clean-v2-${{ hashFiles(format('{0}/Assets/**', env.PROJECT_PATH), format('{0}/Packages/**', env.PROJECT_PATH), format('{0}/ProjectSettings/**', env.PROJECT_PATH)) }}\n",
-    "Android clean Library key",
-)
+save(ci_path, ci)

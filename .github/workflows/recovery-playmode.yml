@@ -1,4 +1,4 @@
-name: Apply clean Unity package-cache contract
+name: Apply robust clean Unity package-cache contract
 
 on:
   push:
@@ -22,14 +22,14 @@ jobs:
           fetch-depth: 0
           lfs: false
 
-      - name: Restore normal workflow, apply cache contract, and publish
+      - name: Restore normal workflow, apply robust cache contract, and publish
         shell: bash
         run: |
           set -euo pipefail
 
-          # Restore the normal PlayMode workflow from the target branch's pre-merge parent before
-          # applying the permanent cache/trigger edits.
-          git checkout HEAD^ -- .github/workflows/recovery-playmode.yml
+          # Restore the last proven normal PlayMode workflow, then apply only the permanent
+          # package-trigger/cache/artifact changes with line-based transformations.
+          git checkout b3e4eded13546871e9b4ff6320983fa4f3147afc -- .github/workflows/recovery-playmode.yml
           python3 .github/scripts/apply_clean_unity_package_cache_contract.py
 
           git config user.name "github-actions[bot]"
