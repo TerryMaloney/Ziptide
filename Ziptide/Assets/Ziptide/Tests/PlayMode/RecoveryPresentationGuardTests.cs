@@ -121,6 +121,7 @@ namespace Ziptide.Tests.PlayMode
         private Camera NewCamera(Vector3 position)
         {
             GameObject go = NewObject("__RECOVERY_PRESENTATION_CAMERA", position);
+            go.tag = "MainCamera";
             Camera camera = go.AddComponent<Camera>();
             camera.enabled = true;
             return camera;
