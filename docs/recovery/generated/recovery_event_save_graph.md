@@ -1,7 +1,7 @@
 # ZIPTIDE Event and Save Ownership Graph
 
 - Scanned C# files: **642**
-- Evidence edges: **688**
+- Evidence edges: **691**
 - Named subscriptions without matching unsubscribe in the same owner: **47**
 
 This is a static ownership graph. An unmatched row is a review target, not automatic proof of a leak; process-lifetime static hooks may be intentional.
@@ -11,8 +11,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **AUTOSAVE:** 7
 - **EVENT_DECLARE:** 45
 - **EVENT_INVOKE:** 57
-- **EVENT_SUBSCRIBE:** 93
-- **EVENT_UNSUBSCRIBE:** 50
+- **EVENT_SUBSCRIBE:** 94
+- **EVENT_UNSUBSCRIBE:** 52
 - **PLAYER_PREFS_ACCESS:** 11
 - **PROFILE_FIELD_ACCESS:** 358
 - **SAVE_ACCESS:** 67
@@ -408,10 +408,16 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `InputSystem.onAfterUpdate`
 
-- **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:54` · `AuditBilateralBindings` — `InputSystem.onAfterUpdate -= AuditBilateralBindings;`
-- **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:55` · `AuditBilateralBindings` — `InputSystem.onAfterUpdate += AuditBilateralBindings;`
-- **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:110` · `AuditBilateralBindings` — `InputSystem.onAfterUpdate -= AuditBilateralBindings;`
-- **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:120` · `AuditBilateralBindings` — `InputSystem.onAfterUpdate -= AuditBilateralBindings;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:91` · `AuditBilateralBindings` — `InputSystem.onAfterUpdate -= AuditBilateralBindings;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:92` · `AuditBilateralBindings` — `InputSystem.onAfterUpdate += AuditBilateralBindings;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:148` · `AuditBilateralBindings` — `InputSystem.onAfterUpdate -= AuditBilateralBindings;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:166` · `AuditBilateralBindings` — `InputSystem.onAfterUpdate -= AuditBilateralBindings;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:177` · `AuditBilateralBindings` — `InputSystem.onAfterUpdate -= AuditBilateralBindings;`
+
+### `InputSystem.onDeviceChange`
+
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:55` · `OnDeviceChange` — `InputSystem.onDeviceChange -= OnDeviceChange;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:56` · `OnDeviceChange` — `InputSystem.onDeviceChange += OnDeviceChange;`
 
 ### `ItemHolstered`
 

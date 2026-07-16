@@ -1,7 +1,7 @@
 # ZIPTIDE Recovery Contract Scan
 
 - Scanned files: **642**
-- Findings: **2250**
+- Findings: **2253**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
@@ -9,7 +9,7 @@
 | Category | Count |
 |---|---:|
 | `bootstrap` | 31 |
-| `diagnostics` | 486 |
+| `diagnostics` | 489 |
 | `events` | 64 |
 | `fallback_debt` | 122 |
 | `global_render` | 80 |
@@ -55,7 +55,7 @@
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Tests/EditMode/EventHygieneTests.cs:26` · `Ziptide.Tests.EditMode.EventHygieneTests` — RuntimeInitializeOnLoadMethod bootstrap. `"Gameplay/Runtime/World/ConquestMissionRuntime.cs", // [RuntimeInitializeOnLoadMethod] static hook`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs:61` · `Ziptide.Tests.PlayMode.RecoveryGateBypassTests` — RuntimeInitializeOnLoadMethod bootstrap. `var marker = new Regex(@"(?m)^\s*\[RuntimeInitializeOnLoadMethod(?:\s*\(|\s*\])");`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenTravelVisualCapture.cs:16` · `Ziptide.Tests.PlayMode.RecoveryGoldenTravelVisualCapture` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]`
-- **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:48` · `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]`
+- **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:51` · `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/ZiptideNet/NetBootstrap.cs:20` · `ZiptideNet.NetBootstrap` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]`
 ### diagnostics
 
@@ -519,9 +519,12 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:166` · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` — ZIPTIDE diagnostic tag. `Assert.AreEqual(0, CountLogs("ZIPTIDE: TRAVEL_FAIL"),`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:168` · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` — ZIPTIDE diagnostic tag. `Assert.AreEqual(0, CountLogs("ZIPTIDE: XRI_NOT_READY"),`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:243` · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` — ZIPTIDE diagnostic tag. `if (CountLogs("ZIPTIDE: TRAVEL_FAIL") > 0) break;`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:56` · `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RECOVERY_VIRTUAL_XR_LAYOUT controls=Primary2DAxis,GripButton");`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:111` · `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RECOVERY_VIRTUAL_XR_BILATERAL_OK actions=" + locomotionActions`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:121` · `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` — ZIPTIDE diagnostic tag. `Debug.LogError("ZIPTIDE: RECOVERY_VIRTUAL_XR_BILATERAL_FAIL actions=" + locomotionActions`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:58` · `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RECOVERY_VIRTUAL_XR_LAYOUT controls=Primary2DAxis,GripButton state=explicit-neutral");`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:70` · `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` — ZIPTIDE diagnostic tag. `Debug.LogError("ZIPTIDE: RECOVERY_VIRTUAL_XR_STATE_FAIL device=" + device.layout`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:79` · `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RECOVERY_VIRTUAL_XR_STATE_QUEUED device=" + device.deviceId`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:149` · `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` — ZIPTIDE diagnostic tag. `Debug.LogError("ZIPTIDE: RECOVERY_VIRTUAL_XR_READ_FAIL action="`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:167` · `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RECOVERY_VIRTUAL_XR_BILATERAL_OK actions=" + locomotionActions`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:178` · `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` — ZIPTIDE diagnostic tag. `Debug.LogError("ZIPTIDE: RECOVERY_VIRTUAL_XR_BILATERAL_FAIL actions=" + locomotionActions`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeCreatureVisualApplier.cs:73` · `Ziptide.Visuals.ForgeCreatureVisualApplier` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FORGE_CREATURE_APPLIED id=" + creatureId`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs:28` · `Ziptide.Visuals.ForgeVisualApplier` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: FORGE_RECIPE_NOT_FOUND id=" + recipeId + " item=" + item.name);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs:89` · `Ziptide.Visuals.ForgeVisualApplier` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FORGE_APPLIED id=" + recipeId + " item=" + item.name`
@@ -983,10 +986,10 @@
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:382` · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` — Input System action reference. `Assert.IsTrue(input.enabled, "The canonical InputActionManager is disabled.");`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:386` · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` — Input System action reference. `private static int[] InputAssetIds(InputActionManager manager, bool assertEnabled)`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:391` · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` — Input System action reference. `foreach (InputActionAsset asset in manager.actionAssets)`
-- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:76` · `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` — Input System action reference. `InputActionManager[] managers = UnityEngine.Object.FindObjectsOfType<InputActionManager>(true);`
-- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:79` · `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` — Input System action reference. `InputActionManager manager = managers[managerIndex];`
-- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:81` · `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` — Input System action reference. `foreach (InputActionAsset asset in manager.actionAssets)`
-- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:86` · `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` — Input System action reference. `foreach (InputAction action in map.actions)`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:113` · `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` — Input System action reference. `InputActionManager[] managers = UnityEngine.Object.FindObjectsOfType<InputActionManager>(true);`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:116` · `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` — Input System action reference. `InputActionManager manager = managers[managerIndex];`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:118` · `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` — Input System action reference. `foreach (InputActionAsset asset in manager.actionAssets)`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:123` · `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` — Input System action reference. `foreach (InputAction action in map.actions)`
 - **INPUT_BUTTON_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs:27` · `Ziptide.Gameplay.QuickSwap` — Controller/button reference. `_swap.AddBinding("<XRController>{RightHand}/secondaryButton"); // B`
 - **INPUT_BUTTON_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs:99` · `Ziptide.Gameplay.DashLocomotion` — Controller/button reference. `_jumpAction.AddBinding("<XRController>{RightHand}/primaryButton"); // A`
 - **INPUT_BUTTON_REFERENCE** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:146` · `Ziptide.Ship.ShipFlightRuntime` — Controller/button reference. `_boostButton.AddBinding("<XRController>{RightHand}/primaryButton"); // A`
@@ -2297,6 +2300,6 @@
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:264` · `Ziptide.Gameplay.WorldTravelStation` — XRInteractionManager lookup. `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:245` · `Ziptide.Ship.ShipFlightRuntime` — XRInteractionManager lookup. `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:150` · `Ziptide.Ship.VehicleRuntime` — XRInteractionManager lookup. `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
-- **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:111` · `Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests` — XRInteractionManager lookup. `XRInteractionManager manager = UnityEngine.Object.FindObjectOfType<XRInteractionManager>();`
+- **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:117` · `Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests` — XRInteractionManager lookup. `XRInteractionManager manager = UnityEngine.Object.FindObjectOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:84` · `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` — XRInteractionManager lookup. `manager = UnityEngine.Object.FindObjectOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:45` · `Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests` — XRInteractionManager lookup. `Assert.IsNull(UnityEngine.Object.FindObjectOfType<XRInteractionManager>(),`

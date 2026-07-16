@@ -2,7 +2,7 @@
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
   "scannedFiles": 642,
-  "findingCount": 2250,
+  "findingCount": 2253,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -743,7 +743,7 @@
           {
             "code": "RUNTIME_BOOTSTRAP",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
-            "line": 48,
+            "line": 51,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
             "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]"
           }
@@ -2417,28 +2417,28 @@
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
-            "line": 76,
+            "line": 113,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
             "snippet": "InputActionManager[] managers = UnityEngine.Object.FindObjectsOfType<InputActionManager>(true);"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
-            "line": 79,
+            "line": 116,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
             "snippet": "InputActionManager manager = managers[managerIndex];"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
-            "line": 81,
+            "line": 118,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
             "snippet": "foreach (InputActionAsset asset in manager.actionAssets)"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
-            "line": 86,
+            "line": 123,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
             "snippet": "foreach (InputAction action in map.actions)"
           }
@@ -12432,7 +12432,7 @@
           {
             "code": "XRI_MANAGER_LOOKUP",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
-            "line": 111,
+            "line": 117,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
             "snippet": "XRInteractionManager manager = UnityEngine.Object.FindObjectOfType<XRInteractionManager>();"
           }
