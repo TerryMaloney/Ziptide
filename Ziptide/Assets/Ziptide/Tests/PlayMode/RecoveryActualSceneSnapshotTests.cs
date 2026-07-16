@@ -87,8 +87,14 @@ namespace Ziptide.Tests.PlayMode
             Assert.IsTrue(_bootReady,
                 "Actual Home Hub never reached ready state within " +
                 BootReadyTimeoutSeconds + " seconds.");
+
+            // RecoveryRenderSnapshot.Capture performs an explicit synchronous Camera.Render. Unity's
+            // WaitForEndOfFrame does not resume reliably in Linux batch mode and previously consumed the
+            // entire 180-second test timeout before the already-valid capture could run. Two ordinary
+            // frames preserve the settled-runtime requirement without depending on an editor-only frame
+            // boundary. The rendered-frame and UI assertions below remain unchanged.
             yield return null;
-            yield return new WaitForEndOfFrame();
+            yield return null;
 
             Camera camera = _simulation.HeadCamera;
             Assert.IsNotNull(camera);
