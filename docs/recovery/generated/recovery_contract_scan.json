@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-16T17:05:12.062416+00:00",
+  "generatedAtUtc": "2026-07-16T17:15:20.328054+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -9,10 +9,10 @@
     "Ziptide/Assets/ZiptideNet"
   ],
   "scannedFiles": 648,
-  "findingCount": 2306,
+  "findingCount": 2307,
   "categoryCounts": {
     "bootstrap": 31,
-    "diagnostics": 503,
+    "diagnostics": 504,
     "events": 64,
     "fallback_debt": 134,
     "global_render": 80,
@@ -57,7 +57,7 @@
     "XRI_MANAGER_LOOKUP": 41,
     "XR_INTERACTABLE_COMPONENT": 62,
     "XR_UI_INPUT_MODULE": 2,
-    "ZIPTIDE_LOG_TAG": 503
+    "ZIPTIDE_LOG_TAG": 504
   },
   "findings": [
     {
@@ -2045,7 +2045,16 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 849,
+      "line": 848,
+      "symbol": "Ziptide.Gameplay.BootHoldState",
+      "snippet": "Debug.LogWarning(\"ZIPTIDE: INPUT_MUTATION_SETTLE_TIMEOUT \u2014 re-enabling readers anyway\");"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
+      "line": 857,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "Debug.Log(\"ZIPTIDE: INPUT_MUTATION_READERS restored=\" + _mutationSuspendedReaders.Count"
     },
@@ -2054,7 +2063,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 929,
+      "line": 981,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "Debug.Log(\"ZIPTIDE: SPAWN_AT marker='\" + marker.markerId + \"' rig=\" + transform.position.ToString(\"F2\")"
     },

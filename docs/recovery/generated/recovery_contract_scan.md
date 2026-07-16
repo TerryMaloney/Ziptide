@@ -1,7 +1,7 @@
 # ZIPTIDE Recovery Contract Scan
 
 - Scanned files: **648**
-- Findings: **2306**
+- Findings: **2307**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
@@ -9,7 +9,7 @@
 | Category | Count |
 |---|---:|
 | `bootstrap` | 31 |
-| `diagnostics` | 503 |
+| `diagnostics` | 504 |
 | `events` | 64 |
 | `fallback_debt` | 134 |
 | `global_render` | 80 |
@@ -248,8 +248,9 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:760` · `Ziptide.Gameplay.BootHoldState` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: BOOT_HOLD no_rig held=" + held);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:776` · `Ziptide.Gameplay.BootHoldState` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: BOOT_HOLD on pose=" + transform.position.ToString("F2")`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:791` · `Ziptide.Gameplay.BootHoldState` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: BOOT_HOLD off safe=" + transform.position.ToString("F2")`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:849` · `Ziptide.Gameplay.BootHoldState` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: INPUT_MUTATION_READERS restored=" + _mutationSuspendedReaders.Count`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:929` · `Ziptide.Gameplay.BootHoldState` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: SPAWN_AT marker='" + marker.markerId + "' rig=" + transform.position.ToString("F2")`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:848` · `Ziptide.Gameplay.BootHoldState` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: INPUT_MUTATION_SETTLE_TIMEOUT — re-enabling readers anyway");`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:857` · `Ziptide.Gameplay.BootHoldState` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: INPUT_MUTATION_READERS restored=" + _mutationSuspendedReaders.Count`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:981` · `Ziptide.Gameplay.BootHoldState` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: SPAWN_AT marker='" + marker.markerId + "' rig=" + transform.position.ToString("F2")`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerStunReceiver.cs:54` · `Ziptide.Gameplay.PlayerStunReceiver` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: PLAYER_STUN sec=" + seconds.ToString("F2") + " slow=" + slowFactor.ToString("F2"));`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerStunReceiver.cs:69` · `Ziptide.Gameplay.PlayerStunReceiver` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: PLAYER_HIT src=" + sourcePos.ToString("F1"));`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/ArenaLobbyBoard.cs:139` · `Ziptide.Gameplay.ArenaLobbyBoard` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: LOBBY_START mode=" + ArenaMatchConfig.Mode`
