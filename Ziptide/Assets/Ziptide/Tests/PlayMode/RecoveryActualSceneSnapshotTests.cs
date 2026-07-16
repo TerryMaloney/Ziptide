@@ -106,6 +106,9 @@ namespace Ziptide.Tests.PlayMode
                 camera,
                 "R1_8_ACTUAL_HOME_HUB",
                 "r1_8_actual_home_hub");
+            RecoveryFallbackSurfaceAudit.AssertAndWrite(
+                "R1_9_ACTUAL_HOME_HUB",
+                "r1_9_actual_home_hub");
         }
 
         private void OnBootSceneLoadedBeforeStart(Scene scene, LoadSceneMode mode)
