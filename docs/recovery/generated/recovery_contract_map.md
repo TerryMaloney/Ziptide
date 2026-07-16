@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
 - Scanned files: **648**
-- Scanner findings: **2317**
+- Scanner findings: **2320**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -541,26 +541,29 @@ None.
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:197` **INPUT_ACTION_REFERENCE** — `foreach (InputActionAsset asset in inputManager.actionAssets)`
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:202` **INPUT_ACTION_REFERENCE** — `foreach (InputAction action in map.actions)`
 
-### `Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests` — 16 signal(s)
+### `Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests` — 19 signal(s)
 
 - Codes: `INPUT_ACTION_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:17` **INPUT_ACTION_REFERENCE** — `private readonly List<InputActionAsset> _assets = new List<InputActionAsset>();`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:51` **INPUT_ACTION_REFERENCE** — `InputActionManager primary = primaryHost.AddComponent<InputActionManager>();`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:52` **INPUT_ACTION_REFERENCE** — `InputActionAsset primaryAsset = CreateAsset("PrimaryAsset", "PrimaryAction");`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:53` **INPUT_ACTION_REFERENCE** — `InputAction primaryHeldOff = primaryAsset.FindActionMap("TestMap")`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:55` **INPUT_ACTION_REFERENCE** — `primary.actionAssets = new List<InputActionAsset> { primaryAsset };`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:60` **INPUT_ACTION_REFERENCE** — `InputActionManager duplicate = duplicateHost.AddComponent<InputActionManager>();`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:61` **INPUT_ACTION_REFERENCE** — `InputActionAsset duplicateAsset = CreateAsset("SceneAsset", "SceneAction");`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:62` **INPUT_ACTION_REFERENCE** — `InputAction duplicateHeldOff = duplicateAsset.FindActionMap("TestMap")`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:64` **INPUT_ACTION_REFERENCE** — `duplicate.actionAssets = new List<InputActionAsset> { duplicateAsset };`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:73` **INPUT_ACTION_REFERENCE** — `Assert.IsTrue(primary.enabled, "The canonical InputActionManager was disabled.");`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:74` **INPUT_ACTION_REFERENCE** — `Assert.IsFalse(duplicate.enabled, "The scene duplicate InputActionManager stayed enabled.");`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:103` **INPUT_ACTION_REFERENCE** — `if (record.category == "InputActionManager" && record.active && record.enabled)`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:107` **INPUT_ACTION_REFERENCE** — `"The runtime census still sees more than one enabled InputActionManager.");`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:117` **INPUT_ACTION_REFERENCE** — `private InputActionAsset CreateAsset(string assetName, string actionName)`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:119` **INPUT_ACTION_REFERENCE** — `InputActionAsset asset = ScriptableObject.CreateInstance<InputActionAsset>();`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:133` **INPUT_ACTION_REFERENCE** — `InputActionManager[] input = Resources.FindObjectsOfTypeAll<InputActionManager>();`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:18` **INPUT_ACTION_REFERENCE** — `private readonly List<InputActionAsset> _assets = new List<InputActionAsset>();`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:52` **INPUT_ACTION_REFERENCE** — `InputActionManager primary = primaryHost.AddComponent<InputActionManager>();`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:53` **INPUT_ACTION_REFERENCE** — `InputActionAsset primaryAsset = CreateAsset("PrimaryAsset", "PrimaryAction");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:54` **INPUT_ACTION_REFERENCE** — `InputAction primaryHeldOff = primaryAsset.FindActionMap("TestMap")`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:56` **INPUT_ACTION_REFERENCE** — `primary.actionAssets = new List<InputActionAsset> { primaryAsset };`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:61` **INPUT_ACTION_REFERENCE** — `InputActionManager duplicate = duplicateHost.AddComponent<InputActionManager>();`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:62` **INPUT_ACTION_REFERENCE** — `InputActionAsset duplicateAsset = CreateAsset("SceneAsset", "SceneAction");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:63` **INPUT_ACTION_REFERENCE** — `InputAction duplicateHeldOff = duplicateAsset.FindActionMap("TestMap")`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:65` **INPUT_ACTION_REFERENCE** — `duplicate.actionAssets = new List<InputActionAsset> { duplicateAsset };`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:74` **INPUT_ACTION_REFERENCE** — `Assert.IsTrue(primary.enabled, "The canonical InputActionManager was disabled.");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:75` **INPUT_ACTION_REFERENCE** — `Assert.IsFalse(duplicate.enabled, "The scene duplicate InputActionManager stayed enabled.");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:104` **INPUT_ACTION_REFERENCE** — `InputAction referencedAction = primaryAsset.FindAction("PrimaryAction");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:106` **INPUT_ACTION_REFERENCE** — `InputActionReference referencedActionRef = InputActionReference.Create(referencedAction);`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:118` **INPUT_ACTION_REFERENCE** — `var directAction = new InputAction(`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:143` **INPUT_ACTION_REFERENCE** — `if (record.category == "InputActionManager" && record.active && record.enabled)`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:147` **INPUT_ACTION_REFERENCE** — `"The runtime census still sees more than one enabled InputActionManager.");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:157` **INPUT_ACTION_REFERENCE** — `private InputActionAsset CreateAsset(string assetName, string actionName)`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:159` **INPUT_ACTION_REFERENCE** — `InputActionAsset asset = ScriptableObject.CreateInstance<InputActionAsset>();`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:173` **INPUT_ACTION_REFERENCE** — `InputActionManager[] input = Resources.FindObjectsOfTypeAll<InputActionManager>();`
 
 ### `Ziptide.Tests.PlayMode.RecoveryRuntimeCensusSnapshot` — 5 signal(s)
 
@@ -2344,7 +2347,7 @@ None.
 
 - Codes: `NEW_GAME_OBJECT`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:112` **NEW_GAME_OBJECT** — `var host = new GameObject(name);`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:152` **NEW_GAME_OBJECT** — `var host = new GameObject(name);`
 
 ### `Ziptide.Tests.PlayMode.RecoveryPresentationGuardTests` — 3 signal(s)
 
@@ -2774,7 +2777,7 @@ None.
 
 - Codes: `XRI_MANAGER_CREATE`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:50` **XRI_MANAGER_CREATE** — `primaryHost.AddComponent<XRInteractionManager>();`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:51` **XRI_MANAGER_CREATE** — `primaryHost.AddComponent<XRInteractionManager>();`
 
 ### `Ziptide.Tests.PlayMode.RecoveryRuntimeCensusTests` — 1 signal(s)
 

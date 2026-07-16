@@ -1,7 +1,7 @@
 # ZIPTIDE Event and Save Ownership Graph
 
 - Scanned C# files: **648**
-- Evidence edges: **698**
+- Evidence edges: **701**
 - Named subscriptions without matching unsubscribe in the same owner: **48**
 
 This is a static ownership graph. An unmatched row is a review target, not automatic proof of a leak; process-lifetime static hooks may be intentional.
@@ -10,7 +10,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 - **AUTOSAVE:** 7
 - **EVENT_DECLARE:** 45
-- **EVENT_INVOKE:** 57
+- **EVENT_INVOKE:** 60
 - **EVENT_SUBSCRIBE:** 99
 - **EVENT_UNSUBSCRIBE:** 53
 - **PLAYER_PREFS_ACCESS:** 11
@@ -39,7 +39,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - `Ziptide.Gameplay.CreatureRuntime` subscribes `transform.position` → `flat` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:106`
 - `Ziptide.Gameplay.CreatureRuntime` subscribes `transform.position` → `flat` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:107`
 - `Ziptide.Gameplay.StunBolt` subscribes `transform.position` → `step` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/StunBolt.cs:65`
-- `Ziptide.Gameplay.BootHoldState` subscribes `transform.position` → `headDelta` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:997`
+- `Ziptide.Gameplay.BootHoldState` subscribes `transform.position` → `headDelta` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:999`
 - `Ziptide.Gameplay.PvpBolt` subscribes `transform.position` → `step` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpBolt.cs:67`
 - `Ziptide.Gameplay.PvpBot` subscribes `transform.position` → `k` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpBot.cs:346`
 - `Ziptide.Gameplay.MiningRigRuntime` subscribes `_mine.stored` → `_mine` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/MiningRigRuntime.cs:114`
@@ -1182,6 +1182,12 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.BeltCellSpec` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltFloorRuntime.cs:274` · `rail` — `rail.transform.position += rail.transform.right * (cellSize * 0.44f * side);`
 
+### `readiness`
+
+- **EVENT_INVOKE** · `Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:110` — `Assert.IsTrue((bool)readiness.Invoke(null, new object[] { referencedProperty }),`
+- **EVENT_INVOKE** · `Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:125` — `Assert.IsFalse((bool)readiness.Invoke(null, new object[] { directProperty }),`
+- **EVENT_INVOKE** · `Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:129` — `Assert.IsTrue((bool)readiness.Invoke(null, new object[] { directProperty }),`
+
 ### `report.materialSlotCount`
 
 - **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceReport` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAudit.cs:96` · `materials` — `report.materialSlotCount += materials.Length;`
@@ -1312,7 +1318,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.CreatureRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:106` · `flat` — `case PvpWeapon.BreakerBlade: transform.position += flat * 0.3f; break; // light stagger`
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.CreatureRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:107` · `flat` — `default: transform.position += flat * 0.5f; break; // gravity/net/etc kick`
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.StunBolt` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/StunBolt.cs:65` · `step` — `transform.position += step;`
-- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.BootHoldState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:997` · `headDelta` — `transform.position += headDelta;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.BootHoldState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:999` · `headDelta` — `transform.position += headDelta;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.PvpBolt` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpBolt.cs:67` · `step` — `transform.position += step;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.PvpBot` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpBot.cs:346` · `k` — `transform.position += k.normalized * 0.6f; // small knockback`
 

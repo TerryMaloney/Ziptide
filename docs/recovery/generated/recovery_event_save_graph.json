@@ -1,11 +1,11 @@
 {
   "tool": "recovery_event_save_graph",
   "scannedFiles": 648,
-  "evidenceCount": 698,
+  "evidenceCount": 701,
   "kindCounts": {
     "AUTOSAVE": 7,
     "EVENT_DECLARE": 45,
-    "EVENT_INVOKE": 57,
+    "EVENT_INVOKE": 60,
     "EVENT_SUBSCRIBE": 99,
     "EVENT_UNSUBSCRIBE": 53,
     "PLAYER_PREFS_ACCESS": 11,
@@ -197,7 +197,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 997,
+      "line": 999,
       "owner": "Ziptide.Gameplay.BootHoldState",
       "target": "transform.position",
       "detail": "headDelta",
@@ -6606,6 +6606,35 @@
         "snippet": "rail.transform.position += rail.transform.right * (cellSize * 0.44f * side);"
       }
     ],
+    "readiness": [
+      {
+        "kind": "EVENT_INVOKE",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs",
+        "line": 110,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests",
+        "target": "readiness",
+        "detail": "",
+        "snippet": "Assert.IsTrue((bool)readiness.Invoke(null, new object[] { referencedProperty }),"
+      },
+      {
+        "kind": "EVENT_INVOKE",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs",
+        "line": 125,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests",
+        "target": "readiness",
+        "detail": "",
+        "snippet": "Assert.IsFalse((bool)readiness.Invoke(null, new object[] { directProperty }),"
+      },
+      {
+        "kind": "EVENT_INVOKE",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs",
+        "line": 129,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests",
+        "target": "readiness",
+        "detail": "",
+        "snippet": "Assert.IsTrue((bool)readiness.Invoke(null, new object[] { directProperty }),"
+      }
+    ],
     "report.materialSlotCount": [
       {
         "kind": "EVENT_SUBSCRIBE",
@@ -7037,7 +7066,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-        "line": 997,
+        "line": 999,
         "owner": "Ziptide.Gameplay.BootHoldState",
         "target": "transform.position",
         "detail": "headDelta",
@@ -9485,7 +9514,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 997,
+      "line": 999,
       "owner": "Ziptide.Gameplay.BootHoldState",
       "target": "transform.position",
       "detail": "headDelta",
@@ -12973,6 +13002,33 @@
       "target": "addTile",
       "detail": "",
       "snippet": "addTile.Invoke(hub, new object[]"
+    },
+    {
+      "kind": "EVENT_INVOKE",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs",
+      "line": 110,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests",
+      "target": "readiness",
+      "detail": "",
+      "snippet": "Assert.IsTrue((bool)readiness.Invoke(null, new object[] { referencedProperty }),"
+    },
+    {
+      "kind": "EVENT_INVOKE",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs",
+      "line": 125,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests",
+      "target": "readiness",
+      "detail": "",
+      "snippet": "Assert.IsFalse((bool)readiness.Invoke(null, new object[] { directProperty }),"
+    },
+    {
+      "kind": "EVENT_INVOKE",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs",
+      "line": 129,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests",
+      "target": "readiness",
+      "detail": "",
+      "snippet": "Assert.IsTrue((bool)readiness.Invoke(null, new object[] { directProperty }),"
     },
     {
       "kind": "EVENT_INVOKE",

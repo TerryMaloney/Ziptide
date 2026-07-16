@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-16T18:24:58.488119+00:00",
+  "generatedAtUtc": "2026-07-16T18:36:33.735591+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -9,14 +9,14 @@
     "Ziptide/Assets/ZiptideNet"
   ],
   "scannedFiles": 648,
-  "findingCount": 2317,
+  "findingCount": 2320,
   "categoryCounts": {
     "bootstrap": 31,
     "diagnostics": 505,
     "events": 64,
     "fallback_debt": 134,
     "global_render": 80,
-    "input": 194,
+    "input": 197,
     "materials": 230,
     "persistence": 18,
     "runtime_creation": 593,
@@ -39,7 +39,7 @@
     "EVENT_SYSTEM_COMPONENT": 2,
     "FALLBACK_MARKER": 134,
     "FRAME_BUTTON_POLL": 1,
-    "INPUT_ACTION_REFERENCE": 187,
+    "INPUT_ACTION_REFERENCE": 190,
     "INPUT_BUTTON_REFERENCE": 6,
     "NEW_GAME_OBJECT": 357,
     "PLAYER_PROFILE_REFERENCE": 140,
@@ -2072,7 +2072,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 1015,
+      "line": 1017,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "Debug.Log(\"ZIPTIDE: SPAWN_AT marker='\" + marker.markerId + \"' rig=\" + transform.position.ToString(\"F2\")"
     },
@@ -8660,7 +8660,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs",
-      "line": 17,
+      "line": 18,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests",
       "snippet": "private readonly List<InputActionAsset> _assets = new List<InputActionAsset>();"
     },
@@ -8669,7 +8669,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs",
-      "line": 51,
+      "line": 52,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests",
       "snippet": "InputActionManager primary = primaryHost.AddComponent<InputActionManager>();"
     },
@@ -8678,7 +8678,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs",
-      "line": 52,
+      "line": 53,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests",
       "snippet": "InputActionAsset primaryAsset = CreateAsset(\"PrimaryAsset\", \"PrimaryAction\");"
     },
@@ -8687,7 +8687,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs",
-      "line": 53,
+      "line": 54,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests",
       "snippet": "InputAction primaryHeldOff = primaryAsset.FindActionMap(\"TestMap\")"
     },
@@ -8696,7 +8696,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs",
-      "line": 55,
+      "line": 56,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests",
       "snippet": "primary.actionAssets = new List<InputActionAsset> { primaryAsset };"
     },
@@ -8705,7 +8705,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs",
-      "line": 60,
+      "line": 61,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests",
       "snippet": "InputActionManager duplicate = duplicateHost.AddComponent<InputActionManager>();"
     },
@@ -8714,7 +8714,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs",
-      "line": 61,
+      "line": 62,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests",
       "snippet": "InputActionAsset duplicateAsset = CreateAsset(\"SceneAsset\", \"SceneAction\");"
     },
@@ -8723,7 +8723,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs",
-      "line": 62,
+      "line": 63,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests",
       "snippet": "InputAction duplicateHeldOff = duplicateAsset.FindActionMap(\"TestMap\")"
     },
@@ -8732,7 +8732,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs",
-      "line": 64,
+      "line": 65,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests",
       "snippet": "duplicate.actionAssets = new List<InputActionAsset> { duplicateAsset };"
     },
@@ -8741,7 +8741,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs",
-      "line": 73,
+      "line": 74,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests",
       "snippet": "Assert.IsTrue(primary.enabled, \"The canonical InputActionManager was disabled.\");"
     },
@@ -8750,7 +8750,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs",
-      "line": 74,
+      "line": 75,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests",
       "snippet": "Assert.IsFalse(duplicate.enabled, \"The scene duplicate InputActionManager stayed enabled.\");"
     },
@@ -8759,7 +8759,34 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs",
-      "line": 103,
+      "line": 104,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests",
+      "snippet": "InputAction referencedAction = primaryAsset.FindAction(\"PrimaryAction\");"
+    },
+    {
+      "category": "input",
+      "code": "INPUT_ACTION_REFERENCE",
+      "description": "Input System action reference",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs",
+      "line": 106,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests",
+      "snippet": "InputActionReference referencedActionRef = InputActionReference.Create(referencedAction);"
+    },
+    {
+      "category": "input",
+      "code": "INPUT_ACTION_REFERENCE",
+      "description": "Input System action reference",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs",
+      "line": 118,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests",
+      "snippet": "var directAction = new InputAction("
+    },
+    {
+      "category": "input",
+      "code": "INPUT_ACTION_REFERENCE",
+      "description": "Input System action reference",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs",
+      "line": 143,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests",
       "snippet": "if (record.category == \"InputActionManager\" && record.active && record.enabled)"
     },
@@ -8768,7 +8795,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs",
-      "line": 107,
+      "line": 147,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests",
       "snippet": "\"The runtime census still sees more than one enabled InputActionManager.\");"
     },
@@ -8777,7 +8804,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs",
-      "line": 117,
+      "line": 157,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests",
       "snippet": "private InputActionAsset CreateAsset(string assetName, string actionName)"
     },
@@ -8786,7 +8813,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs",
-      "line": 119,
+      "line": 159,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests",
       "snippet": "InputActionAsset asset = ScriptableObject.CreateInstance<InputActionAsset>();"
     },
@@ -8795,7 +8822,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs",
-      "line": 133,
+      "line": 173,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests",
       "snippet": "InputActionManager[] input = Resources.FindObjectsOfTypeAll<InputActionManager>();"
     },
@@ -16400,7 +16427,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs",
-      "line": 112,
+      "line": 152,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests",
       "snippet": "var host = new GameObject(name);"
     },
@@ -20522,7 +20549,7 @@
       "code": "XRI_MANAGER_CREATE",
       "description": "XRInteractionManager creation",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs",
-      "line": 50,
+      "line": 51,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests",
       "snippet": "primaryHost.AddComponent<XRInteractionManager>();"
     },
