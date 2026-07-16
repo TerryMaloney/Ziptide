@@ -1,4 +1,4 @@
-name: Apply robust clean Unity package-cache contract
+name: Diagnose clean Unity package-cache contract delivery
 
 on:
   push:
@@ -11,7 +11,7 @@ permissions:
   contents: write
 
 jobs:
-  apply-cache-contract:
+  diagnose-cache-contract:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -22,18 +22,40 @@ jobs:
           fetch-depth: 0
           lfs: false
 
-      - name: Restore normal workflow, apply robust cache contract, and publish
+      - name: Capture exact patch failure or publish successful contract
         shell: bash
         run: |
           set -euo pipefail
 
-          # Restore the last proven normal PlayMode workflow, then apply only the permanent
-          # package-trigger/cache/artifact changes with line-based transformations.
           git checkout b3e4eded13546871e9b4ff6320983fa4f3147afc -- .github/workflows/recovery-playmode.yml
-          python3 .github/scripts/apply_clean_unity_package_cache_contract.py
+          set +e
+          python3 .github/scripts/apply_clean_unity_package_cache_contract.py > /tmp/cache_contract.log 2>&1
+          status=$?
+          set -e
+          cat /tmp/cache_contract.log
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          if [[ "$status" -ne 0 ]]; then
+            git reset --hard HEAD
+            mkdir -p docs/recovery/generated
+            {
+              echo '# Cache contract delivery diagnostic'
+              echo
+              echo '- Source workflow commit: `'$GITHUB_SHA'`'
+              echo '- Patch exit code: `'$status'`'
+              echo
+              echo '```text'
+              cat /tmp/cache_contract.log
+              echo '```'
+            } > docs/recovery/generated/cache_contract_delivery_debug.md
+            git add docs/recovery/generated/cache_contract_delivery_debug.md
+            git commit -m "ci(recovery): record cache-contract delivery failure [skip ci]"
+            git push origin HEAD:terry-local-wip
+            exit "$status"
+          fi
+
           git rm .github/scripts/apply_clean_unity_package_cache_contract.py
           git add \
             .github/workflows/recovery-playmode.yml \
