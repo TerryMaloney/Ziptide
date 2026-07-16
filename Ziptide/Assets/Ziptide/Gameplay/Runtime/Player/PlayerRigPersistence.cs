@@ -836,8 +836,16 @@ namespace Ziptide.Gameplay
 
         private IEnumerator RestoreReadersAfterInputSettle()
         {
+            // Frame counts are not a settle guarantee: run 29518294931 showed the FIRST poll after a
+            // two-frame wait still hitting the ApplyProcessors NRE. Instead, PROBE the exact actions
+            // the suspended readers poll (in a try/catch, so a not-yet-resolved state is contained)
+            // and re-enable only once every read succeeds cleanly — bounded by real time.
             yield return null;
-            yield return null; // InputActionState re-resolution completes across these frames
+            float deadline = Time.realtimeSinceStartup + 2f;
+            while (Time.realtimeSinceStartup < deadline && !SuspendedReaderActionsReadSafely())
+                yield return null;
+            if (!SuspendedReaderActionsReadSafely())
+                Debug.LogWarning("ZIPTIDE: INPUT_MUTATION_SETTLE_TIMEOUT — re-enabling readers anyway");
 
             bool handedToBootHold = _bootHold.Held;
             foreach (var b in _mutationSuspendedReaders)
@@ -850,6 +858,50 @@ namespace Ziptide.Gameplay
                 + (handedToBootHold ? " handedTo=bootHold" : ""));
             _mutationSuspendedReaders.Clear();
             _mutationReaderRestore = null;
+        }
+
+        /// <summary>True when every action the suspended readers poll reads without throwing —
+        /// i.e. the InputActionState re-resolution triggered by the wiring mutation has completed.</summary>
+        private bool SuspendedReaderActionsReadSafely()
+        {
+            foreach (var b in _mutationSuspendedReaders)
+            {
+                switch (b)
+                {
+                    case ActionBasedContinuousMoveProvider move:
+                        if (!ActionReadsSafely(move.leftHandMoveAction) ||
+                            !ActionReadsSafely(move.rightHandMoveAction)) return false;
+                        break;
+                    case ActionBasedContinuousTurnProvider turn:
+                        if (!ActionReadsSafely(turn.leftHandTurnAction) ||
+                            !ActionReadsSafely(turn.rightHandTurnAction)) return false;
+                        break;
+                    case ActionBasedSnapTurnProvider snap:
+                        if (!ActionReadsSafely(snap.leftHandSnapTurnAction) ||
+                            !ActionReadsSafely(snap.rightHandSnapTurnAction)) return false;
+                        break;
+                }
+            }
+            return true;
+        }
+
+        private static bool ActionReadsSafely(InputActionProperty property)
+        {
+            var action = property.action;
+            if (action == null || !action.enabled) return true; // nothing to settle
+            try
+            {
+                action.ReadValue<Vector2>();
+                return true;
+            }
+            catch (System.NullReferenceException)
+            {
+                return false; // InputActionState still mid-re-resolve — the exact NRE the readers would hit
+            }
+            catch (System.InvalidOperationException)
+            {
+                return false; // value-type mismatch during re-resolve — equally unsafe to poll
+            }
         }
 
         public void TeleportToSpawnMarker()
