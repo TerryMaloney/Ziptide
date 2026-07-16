@@ -1832,7 +1832,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-        "line": 359,
+        "line": 370,
         "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
         "target": "GetResource",
         "detail": "profile",
@@ -1841,7 +1841,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-        "line": 372,
+        "line": 383,
         "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
         "target": "GetResource",
         "detail": "profile",
@@ -2504,7 +2504,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-        "line": 358,
+        "line": 369,
         "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
         "target": "HasFlag",
         "detail": "profile",
@@ -2513,7 +2513,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-        "line": 371,
+        "line": 382,
         "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
         "target": "HasFlag",
         "detail": "profile",
@@ -3670,7 +3670,7 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-        "line": 147,
+        "line": 153,
         "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
         "target": "SaveSystem.Load",
         "detail": "",
@@ -4140,7 +4140,7 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-        "line": 128,
+        "line": 132,
         "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
         "target": "SaveSystem.Profile",
         "detail": "",
@@ -4149,7 +4149,7 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-        "line": 355,
+        "line": 366,
         "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
         "target": "SaveSystem.Profile",
         "detail": "",
@@ -4863,20 +4863,20 @@
       {
         "kind": "EVENT_UNSUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenTravelVisualCapture.cs",
-        "line": 21,
+        "line": 41,
         "owner": "Ziptide.Tests.PlayMode.RecoveryGoldenTravelVisualCapture",
         "target": "TravelCoordinator.TravelCompleted",
-        "detail": "CaptureCompletedDestination",
-        "snippet": "TravelCoordinator.TravelCompleted -= CaptureCompletedDestination;"
+        "detail": "MarkCompletedDestinationPending",
+        "snippet": "TravelCoordinator.TravelCompleted -= MarkCompletedDestinationPending;"
       },
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenTravelVisualCapture.cs",
-        "line": 22,
+        "line": 42,
         "owner": "Ziptide.Tests.PlayMode.RecoveryGoldenTravelVisualCapture",
         "target": "TravelCoordinator.TravelCompleted",
-        "detail": "CaptureCompletedDestination",
-        "snippet": "TravelCoordinator.TravelCompleted += CaptureCompletedDestination;"
+        "detail": "MarkCompletedDestinationPending",
+        "snippet": "TravelCoordinator.TravelCompleted += MarkCompletedDestinationPending;"
       },
       {
         "kind": "EVENT_SUBSCRIBE",
@@ -6367,7 +6367,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-        "line": 357,
+        "line": 368,
         "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
         "target": "playerId",
         "detail": "profile",
@@ -6376,7 +6376,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-        "line": 370,
+        "line": 381,
         "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
         "target": "playerId",
         "detail": "profile",
@@ -12759,20 +12759,20 @@
     {
       "kind": "EVENT_UNSUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenTravelVisualCapture.cs",
-      "line": 21,
+      "line": 41,
       "owner": "Ziptide.Tests.PlayMode.RecoveryGoldenTravelVisualCapture",
       "target": "TravelCoordinator.TravelCompleted",
-      "detail": "CaptureCompletedDestination",
-      "snippet": "TravelCoordinator.TravelCompleted -= CaptureCompletedDestination;"
+      "detail": "MarkCompletedDestinationPending",
+      "snippet": "TravelCoordinator.TravelCompleted -= MarkCompletedDestinationPending;"
     },
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenTravelVisualCapture.cs",
-      "line": 22,
+      "line": 42,
       "owner": "Ziptide.Tests.PlayMode.RecoveryGoldenTravelVisualCapture",
       "target": "TravelCoordinator.TravelCompleted",
-      "detail": "CaptureCompletedDestination",
-      "snippet": "TravelCoordinator.TravelCompleted += CaptureCompletedDestination;"
+      "detail": "MarkCompletedDestinationPending",
+      "snippet": "TravelCoordinator.TravelCompleted += MarkCompletedDestinationPending;"
     },
     {
       "kind": "EVENT_INVOKE",
@@ -12885,7 +12885,7 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-      "line": 128,
+      "line": 132,
       "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
       "target": "SaveSystem.Profile",
       "detail": "",
@@ -12894,7 +12894,7 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-      "line": 147,
+      "line": 153,
       "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
       "target": "SaveSystem.Load",
       "detail": "",
@@ -12903,7 +12903,7 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-      "line": 355,
+      "line": 366,
       "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
       "target": "SaveSystem.Profile",
       "detail": "",
@@ -12912,7 +12912,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-      "line": 357,
+      "line": 368,
       "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
       "target": "playerId",
       "detail": "profile",
@@ -12921,7 +12921,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-      "line": 358,
+      "line": 369,
       "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
       "target": "HasFlag",
       "detail": "profile",
@@ -12930,7 +12930,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-      "line": 359,
+      "line": 370,
       "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
       "target": "GetResource",
       "detail": "profile",
@@ -12939,7 +12939,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-      "line": 370,
+      "line": 381,
       "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
       "target": "playerId",
       "detail": "profile",
@@ -12948,7 +12948,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-      "line": 371,
+      "line": 382,
       "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
       "target": "HasFlag",
       "detail": "profile",
@@ -12957,7 +12957,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-      "line": 372,
+      "line": 383,
       "owner": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
       "target": "GetResource",
       "detail": "profile",

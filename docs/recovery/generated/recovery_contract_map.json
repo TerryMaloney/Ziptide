@@ -2,7 +2,7 @@
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
   "scannedFiles": 642,
-  "findingCount": 2267,
+  "findingCount": 2268,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -705,7 +705,7 @@
           {
             "code": "RUNTIME_BOOTSTRAP",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenTravelVisualCapture.cs",
-            "line": 16,
+            "line": 36,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryGoldenTravelVisualCapture",
             "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]"
           }
@@ -890,7 +890,7 @@
           {
             "code": "DIRECT_SCENE_LOAD_ASYNC",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-            "line": 174,
+            "line": 185,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
             "snippet": "AsyncOperation load = SceneManager.LoadSceneAsync("
           }
@@ -2335,70 +2335,70 @@
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-            "line": 263,
+            "line": 274,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
             "snippet": "InputActionManager input = CanonicalInputManager();"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-            "line": 270,
+            "line": 281,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
             "snippet": "\"The canonical InputActionManager owns no action assets at Home Hub settlement.\");"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-            "line": 295,
+            "line": 306,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
             "snippet": "InputActionManager input = CanonicalInputManager();"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-            "line": 321,
+            "line": 332,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
             "snippet": "Assert.AreEqual(1, ActiveManagerCount(census, \"InputActionManager\"));"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-            "line": 376,
+            "line": 387,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
             "snippet": "private static InputActionManager CanonicalInputManager()"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-            "line": 379,
+            "line": 390,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
             "snippet": "InputActionManager input = manager.GetComponent<InputActionManager>();"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-            "line": 381,
+            "line": 392,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
             "snippet": "\"The canonical XRInteractionManager has no InputActionManager beside it.\");"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-            "line": 382,
+            "line": 393,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
             "snippet": "Assert.IsTrue(input.enabled, \"The canonical InputActionManager is disabled.\");"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-            "line": 386,
+            "line": 397,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
             "snippet": "private static int[] InputAssetIds(InputActionManager manager, bool assertEnabled)"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-            "line": 391,
+            "line": 402,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
             "snippet": "foreach (InputActionAsset asset in manager.actionAssets)"
           }
@@ -16036,91 +16036,91 @@
           {
             "code": "PLAYER_PROFILE_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-            "line": 128,
+            "line": 132,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
             "snippet": "PlayerProfile live = SaveSystem.Instance.Profile;"
           },
           {
             "code": "SAVE_SYSTEM_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-            "line": 128,
+            "line": 132,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
             "snippet": "PlayerProfile live = SaveSystem.Instance.Profile;"
           },
           {
             "code": "SAVE_SYSTEM_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-            "line": 147,
+            "line": 153,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
             "snippet": "SaveSystem.Instance.Load();"
           },
           {
             "code": "SAVE_SYSTEM_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-            "line": 264,
+            "line": 275,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
             "snippet": "SaveSystem save = FindRequired<SaveSystem>();"
           },
           {
             "code": "SAVE_SYSTEM_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-            "line": 296,
+            "line": 307,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
             "snippet": "SaveSystem save = FindRequired<SaveSystem>();"
           },
           {
             "code": "SAVE_SYSTEM_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-            "line": 303,
+            "line": 314,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
             "snippet": "Assert.AreEqual(identity.SaveSystemId, save.GetInstanceID(), \"SaveSystem identity changed.\");"
           },
           {
             "code": "SAVE_SYSTEM_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-            "line": 354,
+            "line": 365,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
             "snippet": "Assert.IsNotNull(SaveSystem.Instance);"
           },
           {
             "code": "PLAYER_PROFILE_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-            "line": 355,
+            "line": 366,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
             "snippet": "PlayerProfile profile = SaveSystem.Instance.Profile;"
           },
           {
             "code": "SAVE_SYSTEM_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-            "line": 355,
+            "line": 366,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
             "snippet": "PlayerProfile profile = SaveSystem.Instance.Profile;"
           },
           {
             "code": "SAVE_SYSTEM_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-            "line": 365,
+            "line": 376,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
             "snippet": "Assert.IsTrue(File.Exists(SaveSystem.SavePath),"
           },
           {
             "code": "SAVE_SYSTEM_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-            "line": 367,
+            "line": 378,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
             "snippet": "string json = File.ReadAllText(SaveSystem.SavePath);"
           },
           {
             "code": "PLAYER_PROFILE_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-            "line": 368,
+            "line": 379,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
             "snippet": "Assert.IsTrue(ProfileSerializer.TryDeserialize(json, out PlayerProfile profile),"
           },
           {
             "code": "PLAYER_PROFILE_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs",
-            "line": 405,
+            "line": 416,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests",
             "snippet": "private void OnNewGameProfileCreated(PlayerProfile profile) => _newGameProfile = profile;"
           }

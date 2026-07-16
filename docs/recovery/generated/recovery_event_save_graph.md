@@ -292,8 +292,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.ProfileEconomyTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/ProfileEconomyTests.cs:114` · `profile` — `Assert.AreEqual(42.0, profile.GetResource("scrap"), 1e-9);`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.SalvageCacheTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/SalvageCacheTests.cs:21` · `profile` — `Assert.AreEqual(7, profile.GetResource("scrap"), 1e-9);`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.SalvageCacheTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/SalvageCacheTests.cs:36` · `profile` — `Assert.AreEqual(0, profile.GetResource("scrap"), 1e-9, "nothing credited");`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:359` · `profile` — `Assert.AreEqual(ProbeAmount, profile.GetResource(ProbeResource),`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:372` · `profile` — `Assert.AreEqual(ProbeAmount, profile.GetResource(ProbeResource),`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:370` · `profile` — `Assert.AreEqual(ProbeAmount, profile.GetResource(ProbeResource),`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:383` · `profile` — `Assert.AreEqual(ProbeAmount, profile.GetResource(ProbeResource),`
 
 ### `GetWorld`
 
@@ -375,8 +375,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.WorldGatingTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/WorldGatingTests.cs:87` · `profile` — `Assert.IsTrue(profile.HasFlag("C1_W001_RILL_BOOT"));`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.WorldGatingTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/WorldGatingTests.cs:88` · `profile` — `Assert.IsTrue(profile.HasFlag("SIGNAL_THRESHOLD_1"));`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.WorldGatingTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/WorldGatingTests.cs:89` · `profile` — `Assert.IsTrue(profile.HasFlag("W001_COMPLETE"));`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:358` · `profile` — `Assert.IsTrue(profile.HasFlag(ProbeFlag), "Recovery probe flag was lost from live state.");`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:371` · `profile` — `Assert.IsTrue(profile.HasFlag(ProbeFlag), "Recovery probe flag was not persisted to disk.");`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:369` · `profile` — `Assert.IsTrue(profile.HasFlag(ProbeFlag), "Recovery probe flag was lost from live state.");`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:382` · `profile` — `Assert.IsTrue(profile.HasFlag(ProbeFlag), "Recovery probe flag was not persisted to disk.");`
 
 ### `HomeHubRuntime.BootPresentationReady`
 
@@ -624,7 +624,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 - **SAVE_ACCESS** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:133` — `SaveSystem.Instance.Load();`
 - **SAVE_ACCESS** · `Ziptide.Tests.EditMode.HomeHubFlowTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:95` — `StringAssert.Contains("SaveSystem.Instance.Load();", source);`
-- **SAVE_ACCESS** · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:147` — `SaveSystem.Instance.Load();`
+- **SAVE_ACCESS** · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:153` — `SaveSystem.Instance.Load();`
 
 ### `SaveSystem.Profile`
 
@@ -679,8 +679,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **SAVE_ACCESS** · `Ziptide.Gameplay.WorldTravelStation` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:149` — `+ " missing=" + (WorldGating.FirstMissingRequirement(pack, SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null) ?? "?"));`
 - **SAVE_ACCESS** · `Ziptide.Ship.ShipFlightRuntime` · `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:114` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_ACCESS** · `Ziptide.Ship.SpaceTargetRuntime` · `Ziptide/Assets/Ziptide/Ship/Runtime/SpaceTargetRuntime.cs:74` — `SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null,`
-- **SAVE_ACCESS** · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:128` — `PlayerProfile live = SaveSystem.Instance.Profile;`
-- **SAVE_ACCESS** · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:355` — `PlayerProfile profile = SaveSystem.Instance.Profile;`
+- **SAVE_ACCESS** · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:132` — `PlayerProfile live = SaveSystem.Instance.Profile;`
+- **SAVE_ACCESS** · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:366` — `PlayerProfile profile = SaveSystem.Instance.Profile;`
 
 ### `SaveSystem.StartNewProfile`
 
@@ -801,8 +801,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `TravelCoordinator.TravelCompleted`
 
-- **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryGoldenTravelVisualCapture` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenTravelVisualCapture.cs:21` · `CaptureCompletedDestination` — `TravelCoordinator.TravelCompleted -= CaptureCompletedDestination;`
-- **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryGoldenTravelVisualCapture` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenTravelVisualCapture.cs:22` · `CaptureCompletedDestination` — `TravelCoordinator.TravelCompleted += CaptureCompletedDestination;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryGoldenTravelVisualCapture` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenTravelVisualCapture.cs:41` · `MarkCompletedDestinationPending` — `TravelCoordinator.TravelCompleted -= MarkCompletedDestinationPending;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryGoldenTravelVisualCapture` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenTravelVisualCapture.cs:42` · `MarkCompletedDestinationPending` — `TravelCoordinator.TravelCompleted += MarkCompletedDestinationPending;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:68` · `OnTravelCompleted` — `TravelCoordinator.TravelCompleted += OnTravelCompleted;`
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:80` · `OnTravelCompleted` — `TravelCoordinator.TravelCompleted -= OnTravelCompleted;`
 
@@ -1132,8 +1132,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Core.ProfileSerializer` · `Ziptide/Assets/Ziptide/Core/Runtime/Persistence/ProfileSerializer.cs:38` · `profile` — `if (string.IsNullOrEmpty(profile.playerId)) { profile = null; return false; }`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.SaveSystem` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Persistence/SaveSystem.cs:86` · `Profile` — `Debug.Log("ZIPTIDE: SAVE_LOAD playerId=" + Profile.playerId +`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.SaveSystem` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Persistence/SaveSystem.cs:98` · `Profile` — `Debug.Log("ZIPTIDE: SAVE_NEW_PROFILE playerId=" + Profile.playerId);`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:357` · `profile` — `Assert.AreEqual(expectedPlayerId, profile.playerId);`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:370` · `profile` — `Assert.AreEqual(expectedPlayerId, profile.playerId);`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:368` · `profile` — `Assert.AreEqual(expectedPlayerId, profile.playerId);`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:381` · `profile` — `Assert.AreEqual(expectedPlayerId, profile.playerId);`
 
 ### `plot.plantedAtUnix`
 
