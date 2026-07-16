@@ -1,6 +1,6 @@
 # ZIPTIDE Event and Save Ownership Graph
 
-- Scanned C# files: **644**
+- Scanned C# files: **645**
 - Evidence edges: **689**
 - Named subscriptions without matching unsubscribe in the same owner: **48**
 

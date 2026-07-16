@@ -1,7 +1,7 @@
 # ZIPTIDE Recovery Contract Scan
 
-- Scanned files: **644**
-- Findings: **2287**
+- Scanned files: **645**
+- Findings: **2292**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
@@ -11,13 +11,13 @@
 | `bootstrap` | 31 |
 | `diagnostics` | 494 |
 | `events` | 64 |
-| `fallback_debt` | 133 |
+| `fallback_debt` | 134 |
 | `global_render` | 80 |
 | `input` | 185 |
 | `materials` | 230 |
 | `persistence` | 18 |
-| `runtime_creation` | 590 |
-| `runtime_ui` | 119 |
+| `runtime_creation` | 593 |
+| `runtime_ui` | 120 |
 | `save_state` | 252 |
 | `scene_loading` | 8 |
 | `xri_ownership` | 83 |
@@ -531,8 +531,8 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:304` · `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RECOVERY_VIRTUAL_XR_BILATERAL_OK actions=" + locomotionActions`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:314` · `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` — ZIPTIDE diagnostic tag. `Debug.LogError("ZIPTIDE: RECOVERY_VIRTUAL_XR_BILATERAL_FAIL actions=" + locomotionActions`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeCreatureVisualApplier.cs:73` · `Ziptide.Visuals.ForgeCreatureVisualApplier` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FORGE_CREATURE_APPLIED id=" + creatureId`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs:28` · `Ziptide.Visuals.ForgeVisualApplier` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: FORGE_RECIPE_NOT_FOUND id=" + recipeId + " item=" + item.name);`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs:89` · `Ziptide.Visuals.ForgeVisualApplier` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FORGE_APPLIED id=" + recipeId + " item=" + item.name`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs:30` · `Ziptide.Visuals.ForgeVisualApplier` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: FORGE_RECIPE_NOT_FOUND id=" + recipeId + " item=" + item.name);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs:95` · `Ziptide.Visuals.ForgeVisualApplier` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FORGE_APPLIED id=" + recipeId + " item=" + item.name`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/PracticalLight.cs:137` · `Ziptide.Visuals.PracticalLight` — ZIPTIDE diagnostic tag. `Debug.LogError("ZIPTIDE: SHADER_MISSING name=" + AdditiveShaderName +`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Grounding/GroundShadow.cs:47` · `Ziptide.Visuals.GroundShadow` — ZIPTIDE diagnostic tag. `Debug.LogError("ZIPTIDE: SHADER_MISSING name=" + AlphaShaderName +`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs:58` · `Ziptide.Visuals.SkyAtmosphereRig` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: SKY_ATMO hazard=" + atmosphere.hazardTag +`
@@ -752,7 +752,8 @@
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeSkinnedBuilder.cs:8` · `Ziptide.Visuals.ForgeSkinnedBuilder` — Source text marks fallback/prototype debt. `/// rigid-weighted skinned mesh + its bone skeleton: root bone carries the core parts, each`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeSkinnedBuilder.cs:30` · `Ziptide.Visuals.ForgeSkinnedBuilder` — Source text marks fallback/prototype debt. `/// <summary>Build mesh + skeleton. Caller owns the returned skeletonRoot GameObject.</summary>`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeSkinnedBuilder.cs:41` · `Ziptide.Visuals.ForgeSkinnedBuilder` — Source text marks fallback/prototype debt. `// ── Skeleton ────────────────────────────────────────────────────`
-- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs:44` · `Ziptide.Visuals.ForgeVisualApplier` — Source text marks fallback/prototype debt. `// The runtime flat-color mesh stays as the dev fallback when no bake shipped.`
+- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs:48` · `Ziptide.Visuals.ForgeVisualApplier` — Source text marks fallback/prototype debt. `// Clear every previously-owned child before choosing the currently available baked/fallback`
+- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs:54` · `Ziptide.Visuals.ForgeVisualApplier` — Source text marks fallback/prototype debt. `// The runtime flat-color mesh stays as the dev fallback when no bake shipped.`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Water/ZiptideWater.cs:9` · `Ziptide.Visuals.ZiptideWater` — Source text marks fallback/prototype debt. `/// fallback), a scrolling normal offset (<see cref="WaterMotion"/>), a gentle low-res vertex`
 ### global_render
 
@@ -1500,6 +1501,8 @@
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryCoreBootstrapGateTests.cs:88` · `Ziptide.Tests.PlayMode.RecoveryCoreBootstrapGateTests` — Runtime primitive construction. `var rendererHost = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAuditTests.cs:24` · `Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceAuditTests` — Runtime primitive construction. `GameObject fallback = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAuditTests.cs:35` · `Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceAuditTests` — Runtime primitive construction. `GameObject nullSlot = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
+- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs:34` · `Ziptide.Tests.PlayMode.RecoveryForgeVisualOwnershipTests` — Runtime primitive construction. `_item = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs:42` · `Ziptide.Tests.PlayMode.RecoveryForgeVisualOwnershipTests` — Runtime primitive construction. `GameObject stale = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs:215` · `Ziptide.Tests.PlayMode.RecoveryRenderSnapshotTests` — Runtime primitive construction. `GameObject go = GameObject.CreatePrimitive(type);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs:57` · `Ziptide.Tests.PlayMode.RecoveryRuntimeCensusTests` — Runtime primitive construction. `GameObject primitive = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoverySpawnClearanceAuditTests.cs:34` · `Ziptide.Tests.PlayMode.RecoverySpawnClearanceAuditTests` — Runtime primitive construction. `var floor = GameObject.CreatePrimitive(PrimitiveType.Cube);`
@@ -1826,6 +1829,7 @@
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootHoldOrderingTests.cs:92` · `Ziptide.Tests.PlayMode.RecoveryBootHoldOrderingTests` — Runtime GameObject construction. `var markerHost = new GameObject("__RECOVERY_BOOT_ORDER_MARKER");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryCoreBootstrapGateTests.cs:84` · `Ziptide.Tests.PlayMode.RecoveryCoreBootstrapGateTests` — Runtime GameObject construction. `var cameraHost = new GameObject("__RECOVERY_CORE_GATE_CAMERA");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAuditTests.cs:13` · `Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceAuditTests` — Runtime GameObject construction. `var root = new GameObject("__RECOVERY_FALLBACK_CANARY_ROOT");`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs:40` · `Ziptide.Tests.PlayMode.RecoveryForgeVisualOwnershipTests` — Runtime GameObject construction. `var visual = new GameObject(ForgeVisualApplier.VisualChildName);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs:110` · `Ziptide.Tests.PlayMode.RecoveryGateBypassTests` — Runtime GameObject construction. `int launcherCreate = netSource.IndexOf("new GameObject(\"__PhotonPvpLauncher\")", startOnline, StringComparison.Ordinal);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs:154` · `Ziptide.Tests.PlayMode.RecoveryGateBypassTests` — Runtime GameObject construction. `var go = new GameObject(name);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenSurfacePolicyTests.cs:34` · `Ziptide.Tests.PlayMode.RecoveryGoldenSurfacePolicyTests` — Runtime GameObject construction. `var host = new GameObject("__RECOVERY_GOLDEN_CREDITS_HUD");`
@@ -1857,7 +1861,7 @@
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeSkinnedBuilder.cs:42` · `Ziptide.Visuals.ForgeSkinnedBuilder` — Runtime GameObject construction. `var rootGo = new GameObject("Skeleton_" + (body != null ? body.bodyId : "null"));`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeSkinnedBuilder.cs:210` · `Ziptide.Visuals.ForgeSkinnedBuilder` — Runtime GameObject construction. `var tmp = new GameObject("__synthParts");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeSkinnedBuilder.cs:251` · `Ziptide.Visuals.ForgeSkinnedBuilder` — Runtime GameObject construction. `var boneGo = new GameObject("Bone_" + tag + "_" + s);`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs:37` · `Ziptide.Visuals.ForgeVisualApplier` — Runtime GameObject construction. `GameObject vis = existing != null ? existing.gameObject : new GameObject(VisualChildName);`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs:39` · `Ziptide.Visuals.ForgeVisualApplier` — Runtime GameObject construction. `GameObject vis = existing != null ? existing.gameObject : new GameObject(VisualChildName);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Grounding/GroundShadow.cs:27` · `Ziptide.Visuals.GroundShadow` — Runtime GameObject construction. `var go = new GameObject(ChildName);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyPlanetRig.cs:68` · `Ziptide.Visuals.SkyPlanetRig` — Runtime GameObject construction. `var go = new GameObject("SkyVistaRig");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs:362` · `Ziptide.Visuals.SkyAtmosphereRig` — Runtime GameObject construction. `var go = new GameObject(name);`
@@ -1939,7 +1943,7 @@
 - **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:428` · `Ziptide.Gameplay.ItemFactory` — XR interactable creation/reference. `var grab = go.AddComponent<XRGrabInteractable>();`
 - **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:474` · `Ziptide.Gameplay.ItemFactory` — XR interactable creation/reference. `go.AddComponent<XRSimpleInteractable>(); // collider exists first (gotcha #6)`
 - **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:490` · `Ziptide.Gameplay.ItemFactory` — XR interactable creation/reference. `go.AddComponent<XRGrabInteractable>();`
-- **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemRuntime.cs:12` · `Ziptide.Gameplay.ItemRuntime` — XR interactable creation/reference. `[RequireComponent(typeof(XRGrabInteractable))]`
+- **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemRuntime.cs:14` · `Ziptide.Gameplay.ItemRuntime` — XR interactable creation/reference. `[RequireComponent(typeof(XRGrabInteractable))]`
 - **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobCollectible.cs:11` · `Ziptide.Gameplay.JobCollectible` — XR interactable creation/reference. `[RequireComponent(typeof(XRGrabInteractable))]`
 - **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/AugmentController.cs:105` · `Ziptide.Gameplay.AugmentController` — XR interactable creation/reference. `var grab = go.AddComponent<XRSimpleInteractable>();`
 - **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/ArenaLobbyBoard.cs:296` · `Ziptide.Gameplay.ArenaLobbyBoard` — XR interactable creation/reference. `var interactable = go.AddComponent<XRSimpleInteractable>();`
@@ -1985,6 +1989,7 @@
 - **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:201` · `Ziptide.Ship.ShipFlightRuntime` — XR interactable creation/reference. `var ret = _returnPanel.AddComponent<XRSimpleInteractable>();`
 - **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:223` · `Ziptide.Ship.ShipFlightRuntime` — XR interactable creation/reference. `var interactable = tile.AddComponent<XRSimpleInteractable>();`
 - **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:149` · `Ziptide.Ship.VehicleRuntime` — XR interactable creation/reference. `var interactable = tile.AddComponent<XRSimpleInteractable>();`
+- **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs:38` · `Ziptide.Tests.PlayMode.RecoveryForgeVisualOwnershipTests` — XR interactable creation/reference. `_item.AddComponent<XRGrabInteractable>();`
 - **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRigTests.cs:85` · `Ziptide.Tests.PlayMode.RecoveryTestRigTests` — XR interactable creation/reference. `var interactable = target.AddComponent<XRSimpleInteractable>();`
 - **XR_UI_INPUT_MODULE** — `Ziptide/Assets/Ziptide/Editor/Setup/SetupMilestoneAScene.cs:100` · `Ziptide.Editor.Setup.SetupMilestoneAScene` — XR UI input module creation/reference. `eventSystemGo.AddComponent<XRUIInputModule>();`
 - **XR_UI_INPUT_MODULE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:86` · `Ziptide.Gameplay.DevTools.DevMenu` — XR UI input module creation/reference. `module = host.AddComponent<XRUIInputModule>();`

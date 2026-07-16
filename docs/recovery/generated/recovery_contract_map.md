@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
-- Scanned files: **644**
-- Scanner findings: **2287**
+- Scanned files: **645**
+- Scanner findings: **2292**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -1573,7 +1573,7 @@ None.
 
 - Codes: `XR_INTERACTABLE_COMPONENT`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemRuntime.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemRuntime.cs:12` **XR_INTERACTABLE_COMPONENT** — `[RequireComponent(typeof(XRGrabInteractable))]`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemRuntime.cs:14` **XR_INTERACTABLE_COMPONENT** — `[RequireComponent(typeof(XRGrabInteractable))]`
 
 ### `Ziptide.Gameplay.JobCollectible` — 1 signal(s)
 
@@ -2289,6 +2289,15 @@ None.
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAuditTests.cs:29` **RUNTIME_MATERIAL_CREATE** — `fallbackMaterial = new Material(shader)`
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAuditTests.cs:35` **CREATE_PRIMITIVE** — `GameObject nullSlot = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
 
+### `Ziptide.Tests.PlayMode.RecoveryForgeVisualOwnershipTests` — 4 signal(s)
+
+- Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`, `XR_INTERACTABLE_COMPONENT`
+- Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs:34` **CREATE_PRIMITIVE** — `_item = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs:38` **XR_INTERACTABLE_COMPONENT** — `_item.AddComponent<XRGrabInteractable>();`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs:40` **NEW_GAME_OBJECT** — `var visual = new GameObject(ForgeVisualApplier.VisualChildName);`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs:42` **CREATE_PRIMITIVE** — `GameObject stale = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+
 ### `Ziptide.Tests.PlayMode.RecoveryGateBypassTests` — 2 signal(s)
 
 - Codes: `NEW_GAME_OBJECT`
@@ -2418,7 +2427,7 @@ None.
 
 - Codes: `NEW_GAME_OBJECT`
 - Paths: `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs`
-  - `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs:37` **NEW_GAME_OBJECT** — `GameObject vis = existing != null ? existing.gameObject : new GameObject(VisualChildName);`
+  - `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs:39` **NEW_GAME_OBJECT** — `GameObject vis = existing != null ? existing.gameObject : new GameObject(VisualChildName);`
 
 ### `Ziptide.Visuals.GroundShadow` — 3 signal(s)
 
@@ -4387,11 +4396,12 @@ None.
   - `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeSkinnedBuilder.cs:30` **FALLBACK_MARKER** — `/// <summary>Build mesh + skeleton. Caller owns the returned skeletonRoot GameObject.</summary>`
   - `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeSkinnedBuilder.cs:41` **FALLBACK_MARKER** — `// ── Skeleton ────────────────────────────────────────────────────`
 
-### `Ziptide.Visuals.ForgeVisualApplier` — 1 signal(s)
+### `Ziptide.Visuals.ForgeVisualApplier` — 2 signal(s)
 
 - Codes: `FALLBACK_MARKER`
 - Paths: `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs`
-  - `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs:44` **FALLBACK_MARKER** — `// The runtime flat-color mesh stays as the dev fallback when no bake shipped.`
+  - `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs:48` **FALLBACK_MARKER** — `// Clear every previously-owned child before choosing the currently available baked/fallback`
+  - `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs:54` **FALLBACK_MARKER** — `// The runtime flat-color mesh stays as the dev fallback when no bake shipped.`
 
 ### `Ziptide.Visuals.ZiptideWater` — 1 signal(s)
 

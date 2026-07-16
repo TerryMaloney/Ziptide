@@ -1,6 +1,6 @@
 # ZIPTIDE Focused Recovery Reference Graph
 
-- Scanned C# files: **644**
+- Scanned C# files: **645**
 - Focused references: **368**
 
 ## melee
@@ -102,8 +102,8 @@
 - **reference** · `Ziptide.Visuals.ForgeQualityState` · `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeRecipeDefinition.cs:80` — `/// <summary>Named attach point (Grip/Muzzle/Seat/Door/...). Consumers snap existing children here —`
 - **reference** · `Ziptide.Visuals.ForgeQualityState` · `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeRecipeDefinition.cs:317` — `if (names.Contains("Grip") && !names.Contains("Muzzle"))`
 - **reference** · `Ziptide.Visuals.ForgeQualityState` · `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeRecipeDefinition.cs:318` — `issues.Add("handheld contract: a Grip socket requires a Muzzle socket");`
-- **reference** · `Ziptide.Visuals.ForgeVisualApplier` · `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs:13` — `/// forgeRecipeId; also snaps existing socket-named children (Grip/Muzzle) to the recipe's poses,`
-- **reference** · `Ziptide.Visuals.ForgeVisualApplier` · `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs:77` — `// Snap existing socket-named children (Grip = XR attach, Muzzle = ray origin) to the`
+- **reference** · `Ziptide.Visuals.ForgeVisualApplier` · `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs:15` — `/// Existing socket-named children (Grip/Muzzle) snap to the recipe's poses, which carries the +45°`
+- **reference** · `Ziptide.Visuals.ForgeVisualApplier` · `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs:83` — `// Snap existing socket-named children (Grip = XR attach, Muzzle = ray origin) to the`
 - **reference** · `Ziptide.Visuals.VfxFactory` · `Ziptide/Assets/Ziptide/Visuals/Runtime/Vfx/VfxFactory.cs:278` — `case VfxKind.Muzzle:`
 - **reference** · `Ziptide.Visuals.VfxFactory` · `Ziptide/Assets/Ziptide/Visuals/Runtime/Vfx/VfxFactory.cs:324` — `bool streak = kind == VfxKind.Muzzle || kind == VfxKind.Sparks;`
 - **reference** · `Ziptide.Visuals.VfxFactory` · `Ziptide/Assets/Ziptide/Visuals/Runtime/Vfx/VfxFactory.cs:430` — `case VfxKind.Muzzle:`

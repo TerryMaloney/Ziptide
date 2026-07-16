@@ -1,8 +1,8 @@
 {
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
-  "scannedFiles": 644,
-  "findingCount": 2287,
+  "scannedFiles": 645,
+  "findingCount": 2292,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -7417,7 +7417,7 @@
           {
             "code": "XR_INTERACTABLE_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemRuntime.cs",
-            "line": 12,
+            "line": 14,
             "symbol": "Ziptide.Gameplay.ItemRuntime",
             "snippet": "[RequireComponent(typeof(XRGrabInteractable))]"
           }
@@ -10765,6 +10765,48 @@
         ]
       },
       {
+        "owner": "Ziptide.Tests.PlayMode.RecoveryForgeVisualOwnershipTests",
+        "evidenceCount": 4,
+        "codes": [
+          "CREATE_PRIMITIVE",
+          "NEW_GAME_OBJECT",
+          "XR_INTERACTABLE_COMPONENT"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs"
+        ],
+        "evidence": [
+          {
+            "code": "CREATE_PRIMITIVE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs",
+            "line": 34,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryForgeVisualOwnershipTests",
+            "snippet": "_item = GameObject.CreatePrimitive(PrimitiveType.Cube);"
+          },
+          {
+            "code": "XR_INTERACTABLE_COMPONENT",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs",
+            "line": 38,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryForgeVisualOwnershipTests",
+            "snippet": "_item.AddComponent<XRGrabInteractable>();"
+          },
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs",
+            "line": 40,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryForgeVisualOwnershipTests",
+            "snippet": "var visual = new GameObject(ForgeVisualApplier.VisualChildName);"
+          },
+          {
+            "code": "CREATE_PRIMITIVE",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs",
+            "line": 42,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryForgeVisualOwnershipTests",
+            "snippet": "GameObject stale = GameObject.CreatePrimitive(PrimitiveType.Cube);"
+          }
+        ]
+      },
+      {
         "owner": "Ziptide.Tests.PlayMode.RecoveryGateBypassTests",
         "evidenceCount": 2,
         "codes": [
@@ -11321,7 +11363,7 @@
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs",
-            "line": 37,
+            "line": 39,
             "symbol": "Ziptide.Visuals.ForgeVisualApplier",
             "snippet": "GameObject vis = existing != null ? existing.gameObject : new GameObject(VisualChildName);"
           }
@@ -19079,7 +19121,7 @@
       },
       {
         "owner": "Ziptide.Visuals.ForgeVisualApplier",
-        "evidenceCount": 1,
+        "evidenceCount": 2,
         "codes": [
           "FALLBACK_MARKER"
         ],
@@ -19090,7 +19132,14 @@
           {
             "code": "FALLBACK_MARKER",
             "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs",
-            "line": 44,
+            "line": 48,
+            "symbol": "Ziptide.Visuals.ForgeVisualApplier",
+            "snippet": "// Clear every previously-owned child before choosing the currently available baked/fallback"
+          },
+          {
+            "code": "FALLBACK_MARKER",
+            "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs",
+            "line": 54,
             "symbol": "Ziptide.Visuals.ForgeVisualApplier",
             "snippet": "// The runtime flat-color mesh stays as the dev fallback when no bake shipped."
           }
