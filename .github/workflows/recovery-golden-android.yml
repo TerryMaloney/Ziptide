@@ -26,8 +26,10 @@ on:
       - 'Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs'
       - 'Ziptide/Assets/Ziptide/Tests/EditMode/ShellSignVocabularyTests.cs'
       - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs'
-      - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/ComfortVignette.cs'
-      - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs'
+      # Golden-route spine coverage (see recovery-playmode.yml): the per-file allowlist missed
+      # PlayerRigPersistence.cs — a proof lane must see every file the golden route executes.
+      - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/**'
+      - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/World/**'
       - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs'
       - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs'
       - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarp.cs'

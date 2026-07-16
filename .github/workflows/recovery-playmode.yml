@@ -15,8 +15,12 @@ on:
       - 'Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs'
       - 'Ziptide/Assets/Ziptide/Tests/EditMode/ShellSignVocabularyTests.cs'
       - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs'
-      - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/ComfortVignette.cs'
-      - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs'
+      # The golden route's spine must ALWAYS re-prove: rig/boot-hold/input-session (Player/**) and
+      # travel/gate-effect/boot-loader (World/**). The old per-file allowlist missed
+      # PlayerRigPersistence.cs itself — the b431138 input-race production fix shipped WITHOUT
+      # triggering this lane. A proof lane that cannot see the file it proves is a one-sided seam.
+      - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/**'
+      - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/World/**'
       - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs'
       - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs'
       - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarp.cs'
