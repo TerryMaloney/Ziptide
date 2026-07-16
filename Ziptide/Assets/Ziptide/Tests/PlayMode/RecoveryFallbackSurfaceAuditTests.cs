@@ -12,6 +12,7 @@ namespace Ziptide.Tests.PlayMode
         {
             var root = new GameObject("__RECOVERY_FALLBACK_CANARY_ROOT");
             Material fallbackMaterial = null;
+            RecoveryExposureProfile originalProfile = RecoveryRuntimeGate.ActiveProfile;
             RecoveryRuntimeGate.SetActiveProfile(RecoveryExposureProfiles.GoldenSlice);
             try
             {
@@ -61,7 +62,7 @@ namespace Ziptide.Tests.PlayMode
             {
                 if (root != null) Object.DestroyImmediate(root);
                 if (fallbackMaterial != null) Object.DestroyImmediate(fallbackMaterial);
-                RecoveryRuntimeGate.SetActiveProfile(RecoveryExposureProfiles.FullDevelopment);
+                RecoveryRuntimeGate.SetActiveProfile(originalProfile);
             }
         }
     }
