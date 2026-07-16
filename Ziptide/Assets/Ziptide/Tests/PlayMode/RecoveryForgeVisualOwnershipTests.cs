@@ -4,14 +4,13 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 using UnityEngine.XR.Interaction.Toolkit;
-using Ziptide.Content;
 using Ziptide.Gameplay;
-using Ziptide.Visuals;
 
 namespace Ziptide.Tests.PlayMode
 {
     public sealed class RecoveryForgeVisualOwnershipTests
     {
+        private const string ForgeVisualName = "ForgeVisual";
         private GameObject _item;
 
         [UnityTearDown]
@@ -25,10 +24,16 @@ namespace Ziptide.Tests.PlayMode
         [UnityTest]
         public IEnumerator SceneAuthoredItemAwake_ReplacesStaleBakedChildWithValidOwnedSurface()
         {
-            PistolDefinition definition =
-                Resources.Load<PistolDefinition>("Items/DefaultPistol");
+            // The PlayMode assembly intentionally depends on Gameplay rather than the Content/Visuals
+            // implementation assemblies. Load the real serialized definition as a Unity object and set
+            // ItemRuntime's existing serialized seam through reflection; the behavior under proof remains
+            // ItemRuntime.Awake -> ForgeVisualApplier, exactly as it is for a scene-authored weapon.
+            Object definition = Resources.Load("Items/DefaultPistol");
             Assert.IsNotNull(definition, "DefaultPistol definition is missing from Resources/Items.");
-            Assert.IsFalse(string.IsNullOrEmpty(definition.forgeRecipeId),
+            FieldInfo recipeField = FindField(definition.GetType(), "forgeRecipeId");
+            Assert.IsNotNull(recipeField, "DefaultPistol definition has no forgeRecipeId field.");
+            string recipeId = recipeField.GetValue(definition) as string;
+            Assert.IsFalse(string.IsNullOrEmpty(recipeId),
                 "DefaultPistol has no Forge recipe for the ownership canary.");
 
             _item = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -37,7 +42,7 @@ namespace Ziptide.Tests.PlayMode
             _item.AddComponent<Rigidbody>();
             _item.AddComponent<XRGrabInteractable>();
 
-            var visual = new GameObject(ForgeVisualApplier.VisualChildName);
+            var visual = new GameObject(ForgeVisualName);
             visual.transform.SetParent(_item.transform, false);
             GameObject stale = GameObject.CreatePrimitive(PrimitiveType.Cube);
             stale.name = "prefab(Clone)";
@@ -47,9 +52,7 @@ namespace Ziptide.Tests.PlayMode
             staleRenderer.sharedMaterials = new Material[] { null };
 
             ItemRuntime runtime = _item.AddComponent<ItemRuntime>();
-            FieldInfo definitionField = typeof(ItemRuntime).GetField(
-                "definition",
-                BindingFlags.Instance | BindingFlags.NonPublic);
+            FieldInfo definitionField = FindField(typeof(ItemRuntime), "definition");
             Assert.IsNotNull(definitionField);
             definitionField.SetValue(runtime, definition);
 
@@ -91,6 +94,19 @@ namespace Ziptide.Tests.PlayMode
 
             Assert.Greater(activeSurfaceCount, 0,
                 "Forge ownership repair left the scene-authored item with no active visual surface.");
+        }
+
+        private static FieldInfo FindField(System.Type type, string name)
+        {
+            while (type != null)
+            {
+                FieldInfo field = type.GetField(
+                    name,
+                    BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly);
+                if (field != null) return field;
+                type = type.BaseType;
+            }
+            return null;
         }
     }
 }
