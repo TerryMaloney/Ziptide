@@ -50,14 +50,20 @@ namespace Ziptide.Tests.PlayMode
             primaryHost.AddComponent<XRInteractionManager>();
             InputActionManager primary = primaryHost.AddComponent<InputActionManager>();
             InputActionAsset primaryAsset = CreateAsset("PrimaryAsset", "PrimaryAction");
+            InputAction primaryHeldOff = primaryAsset.FindActionMap("TestMap")
+                .AddAction("Rotate Anchor", InputActionType.Value);
             primary.actionAssets = new List<InputActionAsset> { primaryAsset };
             primaryAsset.Enable();
+            primaryHeldOff.Disable();
 
             GameObject duplicateHost = CreateHost("__RECOVERY_SCENE_INPUT_MANAGER");
             InputActionManager duplicate = duplicateHost.AddComponent<InputActionManager>();
             InputActionAsset duplicateAsset = CreateAsset("SceneAsset", "SceneAction");
+            InputAction duplicateHeldOff = duplicateAsset.FindActionMap("TestMap")
+                .AddAction("Translate Anchor", InputActionType.Value);
             duplicate.actionAssets = new List<InputActionAsset> { duplicateAsset };
             duplicateAsset.Enable();
+            duplicateHeldOff.Disable();
             yield return null;
 
             int disabled = PlayerInputSessionGuard.Consolidate("controlled_test");
@@ -74,11 +80,19 @@ namespace Ziptide.Tests.PlayMode
                 "The canonical manager did not receive the full union of input assets.");
             Assert.IsTrue(primaryAsset.enabled, "Primary action asset was not enabled.");
             Assert.IsTrue(duplicateAsset.enabled, "Transferred scene action asset was not enabled.");
+            Assert.IsFalse(primaryHeldOff.enabled,
+                "Consolidation re-enabled a primary action that production intentionally disabled.");
+            Assert.IsFalse(duplicateHeldOff.enabled,
+                "Consolidation re-enabled a transferred action that production intentionally disabled.");
 
             int disabledAgain = PlayerInputSessionGuard.Consolidate("controlled_test_repeat");
             Assert.AreEqual(0, disabledAgain, "The input-session guard is not idempotent.");
             Assert.IsFalse(duplicate.enabled);
             Assert.AreEqual(0, duplicate.actionAssets.Count);
+            Assert.IsFalse(primaryHeldOff.enabled,
+                "Repeated consolidation changed primary per-action state.");
+            Assert.IsFalse(duplicateHeldOff.enabled,
+                "Repeated consolidation changed transferred per-action state.");
 
             RecoveryRuntimeCensusSnapshot census = RecoveryRuntimeCensus.Capture(
                 "R1_5_INPUT_SESSION_CONTROLLED");

@@ -596,6 +596,7 @@ namespace Ziptide.Gameplay
                         if (action == null) continue;
                         if (action.name == "Rotate Anchor" || action.name == "Translate Anchor")
                         {
+                            if (!action.enabled) continue;
                             action.Disable();
                             disabled++;
                         }
@@ -647,9 +648,18 @@ namespace Ziptide.Gameplay
                 ClearInputActionAssets(m);
             }
 
-            // Keep the assets enabled (idempotent). Restores input if a prior unload disabled them.
+            // Asset.Enable() is not idempotent for a partially enabled asset: it re-enables every
+            // intentionally disabled action and rebuilds shared InputActionState. Recover only an
+            // asset that is completely disabled; preserve a live asset's exact per-action state.
+            int recoveredAssets = 0;
             foreach (var a in assets)
+            {
+                if (a == null || a.enabled) continue;
                 a.Enable();
+                recoveredAssets++;
+            }
+            if (recoveredAssets > 0)
+                Debug.Log("ZIPTIDE: INPUT_ASSET_RECOVERED count=" + recoveredAssets);
         }
 
         private static InputActionAsset GetActionAssetFromController(ActionBasedController c)
@@ -852,7 +862,14 @@ namespace Ziptide.Gameplay
             while (Time.realtimeSinceStartup < deadline && !SuspendedReaderActionsReadSafely())
                 yield return null;
             if (!SuspendedReaderActionsReadSafely())
-                Debug.LogWarning("ZIPTIDE: INPUT_MUTATION_SETTLE_TIMEOUT — re-enabling readers anyway");
+            {
+                // Fail closed. Re-enabling a reader with a known-unsafe InputActionState recreates the
+                // proven Quest crash candidate; disabled locomotion plus a blocking error is safer.
+                Debug.LogError("ZIPTIDE: INPUT_MUTATION_SETTLE_FAIL readers="
+                    + _mutationSuspendedReaders.Count);
+                _mutationReaderRestore = null;
+                yield break;
+            }
             yield return null;
             yield return null; // two settled frames beyond the last clean probe
 
@@ -897,9 +914,17 @@ namespace Ziptide.Gameplay
         private static bool ActionReadsSafely(InputActionProperty property)
         {
             var action = property.action;
-            if (action == null || !action.enabled) return true; // nothing to settle
+            if (action == null) return true;
             try
             {
+                if (!action.enabled)
+                {
+                    // A provider may own a direct action. Prepare it while the provider is still
+                    // suspended, then force the settle loop to observe it on a later frame.
+                    if (property.reference != null) return false;
+                    action.Enable();
+                    return false;
+                }
                 action.ReadValue<Vector2>();
                 return true;
             }

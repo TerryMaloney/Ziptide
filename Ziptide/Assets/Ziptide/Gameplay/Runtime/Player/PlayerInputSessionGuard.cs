@@ -71,10 +71,42 @@ namespace Ziptide.Gameplay
             for (int i = 0; i < managers.Length; i++)
                 AddAssets(managers[i], assets);
 
+            var fullyDisabledAssets = new List<InputActionAsset>();
+            var intentionallyDisabledActions = new List<InputAction>();
+            for (int i = 0; i < assets.Count; i++)
+            {
+                InputActionAsset asset = assets[i];
+                if (asset == null) continue;
+                if (!asset.enabled)
+                {
+                    fullyDisabledAssets.Add(asset);
+                    continue;
+                }
+                foreach (InputActionMap map in asset.actionMaps)
+                    foreach (InputAction action in map.actions)
+                        if (action != null && !action.enabled)
+                            intentionallyDisabledActions.Add(action);
+            }
+
             primary.actionAssets = assets;
             primary.enabled = true;
-            for (int i = 0; i < assets.Count; i++)
-                if (assets[i] != null) assets[i].Enable();
+
+            // InputActionManager.OnEnable may enable every assigned asset. Restore the exact disabled
+            // actions from assets that were already live before manager activation.
+            for (int i = 0; i < intentionallyDisabledActions.Count; i++)
+            {
+                InputAction action = intentionallyDisabledActions[i];
+                if (action != null && action.enabled) action.Disable();
+            }
+
+            int recoveredAssets = 0;
+            for (int i = 0; i < fullyDisabledAssets.Count; i++)
+            {
+                InputActionAsset asset = fullyDisabledAssets[i];
+                if (asset == null) continue;
+                if (!asset.enabled) asset.Enable();
+                recoveredAssets++;
+            }
 
             int disabled = 0;
             for (int i = 0; i < managers.Length; i++)
@@ -95,7 +127,7 @@ namespace Ziptide.Gameplay
 
             Debug.Log("ZIPTIDE: INPUT_SESSION_CANONICAL manager=" + HierarchyPath(primary.transform)
                 + " assets=" + assets.Count + " duplicatesDisabled=" + disabled
-                + " reason=" + reason);
+                + " recoveredAssets=" + recoveredAssets + " reason=" + reason);
             return disabled;
         }
 
