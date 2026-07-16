@@ -10720,21 +10720,21 @@
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPresentationGuardTests.cs",
-            "line": 132,
+            "line": 146,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryPresentationGuardTests",
             "snippet": "var go = new GameObject(name);"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPresentationGuardTests.cs",
-            "line": 140,
+            "line": 154,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryPresentationGuardTests",
             "snippet": "var go = new GameObject(name);"
           },
           {
             "code": "TEXTMESH_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPresentationGuardTests.cs",
-            "line": 149,
+            "line": 163,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryPresentationGuardTests",
             "snippet": "TextMesh text = go.AddComponent<TextMesh>();"
           }
@@ -16745,7 +16745,7 @@
           {
             "code": "CAMERA_MAIN_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingPresentationGuard.cs",
-            "line": 129,
+            "line": 152,
             "symbol": "Ziptide.Gameplay.ShipBoardingPresentationGuard",
             "snippet": "if (_viewer == null) _viewer = Camera.main;"
           }

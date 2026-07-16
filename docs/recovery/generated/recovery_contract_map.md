@@ -2295,9 +2295,9 @@ None.
 
 - Codes: `NEW_GAME_OBJECT`, `TEXTMESH_COMPONENT`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPresentationGuardTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPresentationGuardTests.cs:132` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPresentationGuardTests.cs:140` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPresentationGuardTests.cs:149` **TEXTMESH_COMPONENT** — `TextMesh text = go.AddComponent<TextMesh>();`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPresentationGuardTests.cs:146` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPresentationGuardTests.cs:154` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPresentationGuardTests.cs:163` **TEXTMESH_COMPONENT** — `TextMesh text = go.AddComponent<TextMesh>();`
 
 ### `Ziptide.Tests.PlayMode.RecoveryRenderSnapshotTests` — 6 signal(s)
 
@@ -3765,7 +3765,7 @@ None.
 
 - Codes: `CAMERA_MAIN_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingPresentationGuard.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingPresentationGuard.cs:129` **CAMERA_MAIN_REFERENCE** — `if (_viewer == null) _viewer = Camera.main;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingPresentationGuard.cs:152` **CAMERA_MAIN_REFERENCE** — `if (_viewer == null) _viewer = Camera.main;`
 
 ### `Ziptide.Gameplay.ShipCastOffRuntime` — 1 signal(s)
 

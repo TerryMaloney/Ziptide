@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-16T00:58:07.529185+00:00",
+  "generatedAtUtc": "2026-07-16T01:13:34.842837+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -6644,7 +6644,7 @@
       "code": "CAMERA_MAIN_REFERENCE",
       "description": "Camera.main dependency",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingPresentationGuard.cs",
-      "line": 129,
+      "line": 152,
       "symbol": "Ziptide.Gameplay.ShipBoardingPresentationGuard",
       "snippet": "if (_viewer == null) _viewer = Camera.main;"
     },
@@ -15788,7 +15788,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPresentationGuardTests.cs",
-      "line": 132,
+      "line": 146,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryPresentationGuardTests",
       "snippet": "var go = new GameObject(name);"
     },
@@ -15797,7 +15797,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPresentationGuardTests.cs",
-      "line": 140,
+      "line": 154,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryPresentationGuardTests",
       "snippet": "var go = new GameObject(name);"
     },
@@ -16535,7 +16535,7 @@
       "code": "TEXTMESH_COMPONENT",
       "description": "Legacy TextMesh creation/reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPresentationGuardTests.cs",
-      "line": 149,
+      "line": 163,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryPresentationGuardTests",
       "snippet": "TextMesh text = go.AddComponent<TextMesh>();"
     },
