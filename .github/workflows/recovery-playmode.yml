@@ -1,4 +1,4 @@
-name: Apply reviewed input-session patch through PlayMode lane
+name: Apply narrow reviewed input-session patch
 
 on:
   push:
@@ -22,27 +22,418 @@ jobs:
           fetch-depth: 0
           lfs: false
 
-      - name: Apply exact reviewed patch, restore workflow, and publish source
+      - name: Apply narrow source-anchored edits and publish source
         shell: bash
         run: |
           set -euo pipefail
           python3 - <<'PY'
           from pathlib import Path
-          import textwrap
 
-          runner = Path('.github/workflows/recovery-run-input-session-stability.yml').read_text(encoding='utf-8')
-          marker = "          python3 - <<'PY'\n"
-          start = runner.index(marker) + len(marker)
-          end = runner.index("\n          PY\n\n          git config", start)
-          script = textwrap.dedent(runner[start:end])
-          exec(compile(script, 'reviewed_input_session_patch.py', 'exec'), {'__name__': '__main__'})
+          def replace_once(path, old, new, label):
+              p = Path(path)
+              text = p.read_text(encoding='utf-8')
+              count = text.count(old)
+              print(f'{label}: matches={count}')
+              if count != 1:
+                  raise SystemExit(f'{label}: expected one exact current-source match, found {count}')
+              p.write_text(text.replace(old, new), encoding='utf-8')
+
+          rig = 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs'
+          guard = 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs'
+          test = 'Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs'
+
+          replace_once(rig, '''        // Belt-and-suspenders for the anchor bug: hard-disable the two input actions the right thumbstick is
+        // bound to for anchor control ("Rotate Anchor" / "Translate Anchor" in the Interaction map). Even if
+        // the interactor gate above is ever re-enabled, no input reaches the manipulation. Runs AFTER
+        // EnsurePersistentInputActions() (which Enable()s the whole asset) and on every scene load, so the
+        // two actions stay off while everything else (grab, turn, move) stays live.
+        private void DisableAnchorInputActions()
+        {
+            var primary = _xriManager != null ? _xriManager.GetComponent<InputActionManager>() : null;
+            if (primary == null || primary.actionAssets == null) return;
+            int disabled = 0;
+            foreach (var asset in primary.actionAssets)
+            {
+                if (asset == null) continue;
+                foreach (var map in asset.actionMaps)
+                {
+                    if (map == null) continue;
+                    foreach (var action in map.actions)
+                    {
+                        if (action == null) continue;
+                        if (action.name == "Rotate Anchor" || action.name == "Translate Anchor")
+                        {
+                            action.Disable();
+                            disabled++;
+                        }
+                    }
+                }
+            }
+            Debug.Log("ZIPTIDE: ANCHOR_ACTIONS_DISABLED count=" + disabled);
+        }
+''', '''        // Belt-and-suspenders for the anchor bug: hard-disable the two input actions the right thumbstick is
+        // bound to for anchor control ("Rotate Anchor" / "Translate Anchor" in the Interaction map). A live,
+        // partially enabled canonical asset is no longer globally re-enabled on every scene load, so this
+        // method changes state only when an anchor action is actually enabled.
+        private void DisableAnchorInputActions()
+        {
+            var primary = _xriManager != null ? _xriManager.GetComponent<InputActionManager>() : null;
+            if (primary == null || primary.actionAssets == null) return;
+            int found = 0;
+            int changed = 0;
+            foreach (var asset in primary.actionAssets)
+            {
+                if (asset == null) continue;
+                foreach (var map in asset.actionMaps)
+                {
+                    if (map == null) continue;
+                    foreach (var action in map.actions)
+                    {
+                        if (action == null) continue;
+                        if (action.name == "Rotate Anchor" || action.name == "Translate Anchor")
+                        {
+                            found++;
+                            if (!action.enabled) continue;
+                            action.Disable();
+                            changed++;
+                        }
+                    }
+                }
+            }
+            Debug.Log("ZIPTIDE: ANCHOR_ACTIONS_DISABLED count=" + found + " changed=" + changed);
+        }
+''', 'rig anchor state')
+
+          replace_once(rig, '''            // Keep the assets enabled (idempotent). Restores input if a prior unload disabled them.
+            foreach (var a in assets)
+                a.Enable();
+''', '''            // InputActionAsset.Enable() is not idempotent for a partially enabled asset: it re-enables
+            // intentionally disabled actions and rebuilds the shared InputActionState. Preserve exact
+            // per-action state for a live asset; recover only an asset that is completely disabled.
+            int recoveredAssets = 0;
+            foreach (var a in assets)
+            {
+                if (a == null || a.enabled) continue;
+                a.Enable();
+                recoveredAssets++;
+            }
+            if (recoveredAssets > 0)
+                Debug.Log("ZIPTIDE: INPUT_ASSET_RECOVERED count=" + recoveredAssets);
+''', 'rig whole-asset enable')
+
+          replace_once(rig, '''        private void SuspendLocomotionReadersForInputMutation()
+        {
+            if (_mutationReaderRestore != null) return; // window already open; restorer owns the set
+            CollectForMutation(GetComponentsInChildren<ActionBasedContinuousMoveProvider>(true));
+            CollectForMutation(GetComponentsInChildren<ActionBasedContinuousTurnProvider>(true));
+            CollectForMutation(GetComponentsInChildren<ActionBasedSnapTurnProvider>(true));
+            if (_mutationSuspendedReaders.Count == 0) return;
+            _mutationReaderRestore = StartCoroutine(RestoreReadersAfterInputSettle());
+        }
+''', '''        private void SuspendLocomotionReadersForInputMutation()
+        {
+            if (_mutationReaderRestore != null) return; // window already open; restorer owns the set
+            // A fail-closed attempt deliberately leaves its owned readers disabled. Reuse that exact
+            // set on the next wiring pass instead of losing ownership because disabled readers are not recollected.
+            if (_mutationSuspendedReaders.Count == 0)
+            {
+                CollectForMutation(GetComponentsInChildren<ActionBasedContinuousMoveProvider>(true));
+                CollectForMutation(GetComponentsInChildren<ActionBasedContinuousTurnProvider>(true));
+                CollectForMutation(GetComponentsInChildren<ActionBasedSnapTurnProvider>(true));
+            }
+            if (_mutationSuspendedReaders.Count == 0) return;
+            _mutationReaderRestore = StartCoroutine(RestoreReadersAfterInputSettle());
+        }
+''', 'rig suspended reader ownership')
+
+          replace_once(rig, '''        private IEnumerator RestoreReadersAfterInputSettle()
+        {
+            // Frame counts are not a settle guarantee: run 29518294931 showed the FIRST poll after a
+            // two-frame wait still hitting the ApplyProcessors NRE. Run 29518996619 went further —
+            // a PASSING probe followed by a clean MOVE_DIAG read still preceded a ContinuousTurn NRE,
+            // because the restore landed while the TRAVEL COROUTINE was still running and input churn
+            // (manager adoption, asset clears, guard reasserts) had not finished. The identical route
+            // reads clean in steady state (the perf-route legs), so the rule is: readers stay
+            // suspended until travel has fully ENDED, then probe-settle, then two extra frames.
+            yield return null;
+            float travelDeadline = Time.realtimeSinceStartup + 45f; // covers the 30 s scene-load budget
+            while (Time.realtimeSinceStartup < travelDeadline && TravelCoordinator.IsTravelling)
+                yield return null;
+
+            float deadline = Time.realtimeSinceStartup + 2f;
+            while (Time.realtimeSinceStartup < deadline && !SuspendedReaderActionsReadSafely())
+                yield return null;
+            if (!SuspendedReaderActionsReadSafely())
+                Debug.LogWarning("ZIPTIDE: INPUT_MUTATION_SETTLE_TIMEOUT — re-enabling readers anyway");
+            yield return null;
+            yield return null; // two settled frames beyond the last clean probe
+
+            bool handedToBootHold = _bootHold.Held;
+            foreach (var b in _mutationSuspendedReaders)
+            {
+                if (b == null) continue;
+                if (handedToBootHold) _bootSuspended.Add(b);
+                else b.enabled = true;
+            }
+            Debug.Log("ZIPTIDE: INPUT_MUTATION_READERS restored=" + _mutationSuspendedReaders.Count
+                + (handedToBootHold ? " handedTo=bootHold" : ""));
+            _mutationSuspendedReaders.Clear();
+            _mutationReaderRestore = null;
+        }
+
+        /// <summary>True when every action the suspended readers poll reads without throwing —
+        /// i.e. the InputActionState re-resolution triggered by the wiring mutation has completed.</summary>
+        private bool SuspendedReaderActionsReadSafely()
+        {
+            foreach (var b in _mutationSuspendedReaders)
+            {
+                switch (b)
+                {
+                    case ActionBasedContinuousMoveProvider move:
+                        if (!ActionReadsSafely(move.leftHandMoveAction) ||
+                            !ActionReadsSafely(move.rightHandMoveAction)) return false;
+                        break;
+                    case ActionBasedContinuousTurnProvider turn:
+                        if (!ActionReadsSafely(turn.leftHandTurnAction) ||
+                            !ActionReadsSafely(turn.rightHandTurnAction)) return false;
+                        break;
+                    case ActionBasedSnapTurnProvider snap:
+                        if (!ActionReadsSafely(snap.leftHandSnapTurnAction) ||
+                            !ActionReadsSafely(snap.rightHandSnapTurnAction)) return false;
+                        break;
+                }
+            }
+            return true;
+        }
+
+        private static bool ActionReadsSafely(InputActionProperty property)
+        {
+            var action = property.action;
+            if (action == null || !action.enabled) return true; // nothing to settle
+            try
+            {
+                action.ReadValue<Vector2>();
+                return true;
+            }
+            catch (System.NullReferenceException)
+            {
+                return false; // InputActionState still mid-re-resolve — the exact NRE the readers would hit
+            }
+            catch (System.InvalidOperationException)
+            {
+                return false; // value-type mismatch during re-resolve — equally unsafe to poll
+            }
+        }
+''', '''        private IEnumerator RestoreReadersAfterInputSettle()
+        {
+            // A disabled provider can own a direct InputAction. A probe used to call that action safe merely
+            // because it was disabled; provider OnEnable then enabled it and started a fresh re-resolution
+            // after the proof. Prepare direct actions while readers remain quiescent and require two
+            // consecutive safe frames before waking any reader.
+            yield return null;
+            float travelDeadline = Time.realtimeSinceStartup + 45f;
+            while (Time.realtimeSinceStartup < travelDeadline && TravelCoordinator.IsTravelling)
+                yield return null;
+
+            float deadline = Time.realtimeSinceStartup + 3f;
+            int stableFrames = 0;
+            int probes = 0;
+            int directActionsPrepared = 0;
+            while (Time.realtimeSinceStartup < deadline && stableFrames < 2)
+            {
+                int preparedThisProbe;
+                bool safe = SuspendedReaderActionsReadSafely(out preparedThisProbe);
+                directActionsPrepared += preparedThisProbe;
+                probes++;
+                stableFrames = safe ? stableFrames + 1 : 0;
+                if (stableFrames < 2) yield return null;
+            }
+
+            if (stableFrames < 2)
+            {
+                Debug.LogError("ZIPTIDE: INPUT_MUTATION_SETTLE_FAIL probes=" + probes
+                    + " directPrepared=" + directActionsPrepared + " readers="
+                    + _mutationSuspendedReaders.Count);
+                _mutationReaderRestore = null;
+                yield break;
+            }
+
+            bool handedToBootHold = _bootHold.Held;
+            foreach (var b in _mutationSuspendedReaders)
+            {
+                if (b == null) continue;
+                if (handedToBootHold) _bootSuspended.Add(b);
+                else b.enabled = true;
+            }
+            Debug.Log("ZIPTIDE: INPUT_MUTATION_READERS restored=" + _mutationSuspendedReaders.Count
+                + " probes=" + probes + " directPrepared=" + directActionsPrepared
+                + (handedToBootHold ? " handedTo=bootHold" : ""));
+            _mutationSuspendedReaders.Clear();
+            _mutationReaderRestore = null;
+        }
+
+        /// <summary>True when every action the suspended readers will poll is enabled and readable.
+        /// Direct actions are enabled here while their providers are still quiescent.</summary>
+        private bool SuspendedReaderActionsReadSafely(out int directActionsPrepared)
+        {
+            directActionsPrepared = 0;
+            foreach (var b in _mutationSuspendedReaders)
+            {
+                switch (b)
+                {
+                    case ActionBasedContinuousMoveProvider move:
+                        if (!ActionReadsSafely(move.leftHandMoveAction, ref directActionsPrepared) ||
+                            !ActionReadsSafely(move.rightHandMoveAction, ref directActionsPrepared)) return false;
+                        break;
+                    case ActionBasedContinuousTurnProvider turn:
+                        if (!ActionReadsSafely(turn.leftHandTurnAction, ref directActionsPrepared) ||
+                            !ActionReadsSafely(turn.rightHandTurnAction, ref directActionsPrepared)) return false;
+                        break;
+                    case ActionBasedSnapTurnProvider snap:
+                        if (!ActionReadsSafely(snap.leftHandSnapTurnAction, ref directActionsPrepared) ||
+                            !ActionReadsSafely(snap.rightHandSnapTurnAction, ref directActionsPrepared)) return false;
+                        break;
+                }
+            }
+            return true;
+        }
+
+        private static bool ActionReadsSafely(InputActionProperty property, ref int directActionsPrepared)
+        {
+            var action = property.action;
+            if (action == null) return true;
+            try
+            {
+                if (!action.enabled)
+                {
+                    if (property.reference != null) return false;
+                    action.Enable();
+                    directActionsPrepared++;
+                }
+                action.ReadValue<Vector2>();
+                return true;
+            }
+            catch (System.NullReferenceException)
+            {
+                return false;
+            }
+            catch (System.InvalidOperationException)
+            {
+                return false;
+            }
+        }
+''', 'rig readiness and fail-closed restore')
+
+          replace_once(guard, '''            primary.actionAssets = assets;
+            primary.enabled = true;
+            for (int i = 0; i < assets.Count; i++)
+                if (assets[i] != null) assets[i].Enable();
+
+            int disabled = 0;
+''', '''            var fullyDisabledAssets = new List<InputActionAsset>();
+            var intentionallyDisabledActions = new List<InputAction>();
+            for (int i = 0; i < assets.Count; i++)
+            {
+                InputActionAsset asset = assets[i];
+                if (asset == null) continue;
+                if (!asset.enabled)
+                {
+                    fullyDisabledAssets.Add(asset);
+                    continue;
+                }
+                foreach (InputActionMap map in asset.actionMaps)
+                    foreach (InputAction action in map.actions)
+                        if (action != null && !action.enabled)
+                            intentionallyDisabledActions.Add(action);
+            }
+
+            primary.actionAssets = assets;
+            primary.enabled = true;
+
+            // InputActionManager.OnEnable may have enabled all assigned assets. Restore exact
+            // per-action disables from assets that were already live before manager activation.
+            for (int i = 0; i < intentionallyDisabledActions.Count; i++)
+            {
+                InputAction action = intentionallyDisabledActions[i];
+                if (action != null && action.enabled) action.Disable();
+            }
+
+            int recoveredAssets = 0;
+            for (int i = 0; i < fullyDisabledAssets.Count; i++)
+            {
+                InputActionAsset asset = fullyDisabledAssets[i];
+                if (asset == null) continue;
+                if (!asset.enabled) asset.Enable();
+                recoveredAssets++;
+            }
+
+            int disabled = 0;
+''', 'guard manager/asset activation')
+
+          replace_once(guard, '''            Debug.Log("ZIPTIDE: INPUT_SESSION_CANONICAL manager=" + HierarchyPath(primary.transform)
+                + " assets=" + assets.Count + " duplicatesDisabled=" + disabled
+                + " reason=" + reason);
+''', '''            Debug.Log("ZIPTIDE: INPUT_SESSION_CANONICAL manager=" + HierarchyPath(primary.transform)
+                + " assets=" + assets.Count + " duplicatesDisabled=" + disabled
+                + " recoveredAssets=" + recoveredAssets + " reason=" + reason);
+''', 'guard diagnostic')
+
+          replace_once(test, '''            InputActionAsset primaryAsset = CreateAsset("PrimaryAsset", "PrimaryAction");
+            primary.actionAssets = new List<InputActionAsset> { primaryAsset };
+            primaryAsset.Enable();
+''', '''            InputActionAsset primaryAsset = CreateAsset("PrimaryAsset", "PrimaryAction");
+            InputAction primaryHeldOff = primaryAsset.FindActionMap("TestMap")
+                .AddAction("Rotate Anchor", InputActionType.Value);
+            primary.actionAssets = new List<InputActionAsset> { primaryAsset };
+            primaryAsset.Enable();
+            primaryHeldOff.Disable();
+''', 'canary primary disabled action')
+
+          replace_once(test, '''            InputActionAsset duplicateAsset = CreateAsset("SceneAsset", "SceneAction");
+            duplicate.actionAssets = new List<InputActionAsset> { duplicateAsset };
+            duplicateAsset.Enable();
+''', '''            InputActionAsset duplicateAsset = CreateAsset("SceneAsset", "SceneAction");
+            InputAction duplicateHeldOff = duplicateAsset.FindActionMap("TestMap")
+                .AddAction("Translate Anchor", InputActionType.Value);
+            duplicate.actionAssets = new List<InputActionAsset> { duplicateAsset };
+            duplicateAsset.Enable();
+            duplicateHeldOff.Disable();
+''', 'canary transferred disabled action')
+
+          replace_once(test, '''            Assert.IsTrue(primaryAsset.enabled, "Primary action asset was not enabled.");
+            Assert.IsTrue(duplicateAsset.enabled, "Transferred scene action asset was not enabled.");
+
+            int disabledAgain = PlayerInputSessionGuard.Consolidate("controlled_test_repeat");
+''', '''            Assert.IsTrue(primaryAsset.enabled, "Primary action asset was not enabled.");
+            Assert.IsTrue(duplicateAsset.enabled, "Transferred scene action asset was not enabled.");
+            Assert.IsFalse(primaryHeldOff.enabled,
+                "Consolidation re-enabled an intentionally disabled action in the primary asset.");
+            Assert.IsFalse(duplicateHeldOff.enabled,
+                "Consolidation re-enabled an intentionally disabled action in the transferred asset.");
+
+            int disabledAgain = PlayerInputSessionGuard.Consolidate("controlled_test_repeat");
+''', 'canary first consolidation assertions')
+
+          replace_once(test, '''            Assert.IsFalse(duplicate.enabled);
+            Assert.AreEqual(0, duplicate.actionAssets.Count);
+
+            RecoveryRuntimeCensusSnapshot census = RecoveryRuntimeCensus.Capture(
+''', '''            Assert.IsFalse(duplicate.enabled);
+            Assert.AreEqual(0, duplicate.actionAssets.Count);
+            Assert.IsFalse(primaryHeldOff.enabled,
+                "Repeated consolidation changed the primary asset's per-action state.");
+            Assert.IsFalse(duplicateHeldOff.enabled,
+                "Repeated consolidation changed the transferred asset's per-action state.");
+
+            RecoveryRuntimeCensusSnapshot census = RecoveryRuntimeCensus.Capture(
+''', 'canary repeated consolidation assertions')
           PY
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          # Restore the proven normal PlayMode workflow from the target branch's pre-merge parent.
-          git checkout HEAD^ -- .github/workflows/recovery-playmode.yml
+          # New merge -> parent 216b565 (temporary workflow) -> grandparent 9a9fe66 (normal workflow).
+          git checkout HEAD^^ -- .github/workflows/recovery-playmode.yml
           git rm -f \
             .github/workflows/recovery-apply-input-session-stability.yml \
             .github/workflows/recovery-run-input-session-stability.yml
@@ -53,9 +444,4 @@ jobs:
             Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs
           git diff --cached --check
           git commit -m "fix(input): preserve per-action state through travel wiring"
-
-          if ! git push origin HEAD:terry-local-wip; then
-            git fetch origin terry-local-wip
-            git rebase origin/terry-local-wip
-            git push origin HEAD:terry-local-wip
-          fi
+          git push origin HEAD:terry-local-wip
