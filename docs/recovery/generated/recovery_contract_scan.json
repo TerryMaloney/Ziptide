@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-16T13:58:50.655147+00:00",
+  "generatedAtUtc": "2026-07-16T14:21:47.649201+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -326,7 +326,7 @@
       "code": "RUNTIME_BOOTSTRAP",
       "description": "RuntimeInitializeOnLoadMethod bootstrap",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
-      "line": 75,
+      "line": 53,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
       "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]"
     },
@@ -4151,25 +4151,25 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
-      "line": 144,
+      "line": 169,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
-      "snippet": "Debug.Log(\"ZIPTIDE: RECOVERY_TRACKED_RIG_SIM head=\""
+      "snippet": "\"ZIPTIDE: RECOVERY_TRACKED_RIG_SIM head=\" +"
     },
     {
       "category": "diagnostics",
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
-      "line": 160,
+      "line": 192,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
-      "snippet": "Debug.Log(\"ZIPTIDE: RECOVERY_VIRTUAL_XR_DISPOSE phase=begin assets=\""
+      "snippet": "\"ZIPTIDE: RECOVERY_VIRTUAL_XR_DISPOSE phase=begin assets=\" +"
     },
     {
       "category": "diagnostics",
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
-      "line": 165,
+      "line": 206,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
       "snippet": "Debug.Log(\"ZIPTIDE: RECOVERY_VIRTUAL_XR_DISPOSE phase=assets_disabled\");"
     },
@@ -4178,16 +4178,16 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
-      "line": 180,
+      "line": 219,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
-      "snippet": "Debug.LogWarning(\"ZIPTIDE: RECOVERY_VIRTUAL_XR_REMOVE_FAIL device=\""
+      "snippet": "\"ZIPTIDE: RECOVERY_VIRTUAL_XR_REMOVE_FAIL device=\" +"
     },
     {
       "category": "diagnostics",
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
-      "line": 185,
+      "line": 224,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
       "snippet": "Debug.Log(\"ZIPTIDE: RECOVERY_VIRTUAL_XR_DISPOSE phase=devices_removed\");"
     },
@@ -4196,18 +4196,27 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
-      "line": 208,
+      "line": 252,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
-      "snippet": "Debug.Log(\"ZIPTIDE: RECOVERY_VIRTUAL_XR_DISPOSE phase=restored\");"
+      "snippet": "\"ZIPTIDE: RECOVERY_VIRTUAL_XR_DISPOSE phase=restored actionChanges=\" +"
     },
     {
       "category": "diagnostics",
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
-      "line": 273,
+      "line": 316,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
-      "snippet": "Debug.Log(\"ZIPTIDE: RECOVERY_VIRTUAL_XR_BINDINGS assets=\" + _inputAssetStates.Count"
+      "snippet": "\"ZIPTIDE: RECOVERY_VIRTUAL_XR_BINDINGS assets=\" + _inputAssetStates.Count +"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
+      "line": 387,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
+      "snippet": "\"ZIPTIDE: RECOVERY_VIRTUAL_XR_READERS_QUIESCED providers=\" + states.Count);"
     },
     {
       "category": "diagnostics",
@@ -4322,7 +4331,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs",
-      "line": 134,
+      "line": 138,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests",
       "snippet": "Assert.AreEqual(0, CountLogs(\"ZIPTIDE: TRAVEL_FAIL\"));"
     },
@@ -4331,7 +4340,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs",
-      "line": 135,
+      "line": 139,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests",
       "snippet": "Assert.AreEqual(0, CountLogs(\"ZIPTIDE: XRI_NOT_READY\"));"
     },
@@ -4340,7 +4349,16 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs",
-      "line": 166,
+      "line": 140,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests",
+      "snippet": "Assert.AreEqual(0, CountLogs(\"ZIPTIDE: RECOVERY_VIRTUAL_XR_READ_FAIL\"));"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs",
+      "line": 171,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests",
       "snippet": "if (CountLogs(\"ZIPTIDE: TRAVEL_FAIL\") > 0) break;"
     },
@@ -4349,7 +4367,16 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs",
-      "line": 186,
+      "line": 239,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests",
+      "snippet": "\"ZIPTIDE: RECOVERY_INPUT_OWNERSHIP_OK anchorsDisabled=4 snapTurnReadable=2\");"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs",
+      "line": 248,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests",
       "snippet": "string prefix = \"ZIPTIDE: HEALTH_SWEEP scene=\" + sceneName;"
     },
@@ -4574,45 +4601,45 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
-      "line": 88,
+      "line": 64,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
-      "snippet": "Debug.Log(\"ZIPTIDE: RECOVERY_VIRTUAL_XR_LAYOUT controls=Primary2DAxis,GripButton state=explicit-neutral actionState=exact\");"
+      "snippet": "\"ZIPTIDE: RECOVERY_VIRTUAL_XR_LAYOUT controls=Primary2DAxis,GripButton \" +"
     },
     {
       "category": "diagnostics",
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
-      "line": 105,
+      "line": 79,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
-      "snippet": "Debug.LogError(\"ZIPTIDE: RECOVERY_VIRTUAL_XR_STATE_FAIL device=\" + device.layout"
+      "snippet": "\"ZIPTIDE: RECOVERY_VIRTUAL_XR_STATE_FAIL device=\" + device.layout +"
     },
     {
       "category": "diagnostics",
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
-      "line": 114,
+      "line": 86,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
-      "snippet": "Debug.Log(\"ZIPTIDE: RECOVERY_VIRTUAL_XR_STATE_QUEUED device=\" + device.deviceId"
+      "snippet": "\"ZIPTIDE: RECOVERY_VIRTUAL_XR_STATE_QUEUED device=\" + device.deviceId +"
     },
     {
       "category": "diagnostics",
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
-      "line": 156,
+      "line": 178,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
-      "snippet": "Debug.Log(\"ZIPTIDE: RECOVERY_VIRTUAL_XR_ACTION_STATE_CAPTURED total=\""
+      "snippet": "\"ZIPTIDE: RECOVERY_VIRTUAL_XR_READ_FAIL action=\" +"
     },
     {
       "category": "diagnostics",
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
-      "line": 203,
+      "line": 200,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
-      "snippet": "Debug.Log(\"ZIPTIDE: RECOVERY_VIRTUAL_XR_ACTION_STATE_RESTORED changed=\""
+      "snippet": "\"ZIPTIDE: RECOVERY_VIRTUAL_XR_BILATERAL_OK actions=\" + locomotionActions +"
     },
     {
       "category": "diagnostics",
@@ -4621,34 +4648,7 @@
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
       "line": 211,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
-      "snippet": "Debug.Log(\"ZIPTIDE: RECOVERY_VIRTUAL_XR_ACTION_STATE_RELEASED total=\""
-    },
-    {
-      "category": "diagnostics",
-      "code": "ZIPTIDE_LOG_TAG",
-      "description": "ZIPTIDE diagnostic tag",
-      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
-      "line": 284,
-      "symbol": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
-      "snippet": "Debug.LogError(\"ZIPTIDE: RECOVERY_VIRTUAL_XR_READ_FAIL action=\""
-    },
-    {
-      "category": "diagnostics",
-      "code": "ZIPTIDE_LOG_TAG",
-      "description": "ZIPTIDE diagnostic tag",
-      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
-      "line": 304,
-      "symbol": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
-      "snippet": "Debug.Log(\"ZIPTIDE: RECOVERY_VIRTUAL_XR_BILATERAL_OK actions=\" + locomotionActions"
-    },
-    {
-      "category": "diagnostics",
-      "code": "ZIPTIDE_LOG_TAG",
-      "description": "ZIPTIDE diagnostic tag",
-      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
-      "line": 314,
-      "symbol": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
-      "snippet": "Debug.LogError(\"ZIPTIDE: RECOVERY_VIRTUAL_XR_BILATERAL_FAIL actions=\" + locomotionActions"
+      "snippet": "\"ZIPTIDE: RECOVERY_VIRTUAL_XR_BILATERAL_FAIL actions=\" + locomotionActions +"
     },
     {
       "category": "diagnostics",
@@ -6401,7 +6401,7 @@
       "code": "FALLBACK_MARKER",
       "description": "Source text marks fallback/prototype debt",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
-      "line": 428,
+      "line": 540,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
       "snippet": "XRRayInteractor fallback = null;"
     },
@@ -6410,7 +6410,7 @@
       "code": "FALLBACK_MARKER",
       "description": "Source text marks fallback/prototype debt",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
-      "line": 437,
+      "line": 549,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
       "snippet": "if (fallback == null) fallback = ray;"
     },
@@ -6419,7 +6419,7 @@
       "code": "FALLBACK_MARKER",
       "description": "Source text marks fallback/prototype debt",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
-      "line": 441,
+      "line": 553,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
       "snippet": "return fallback;"
     },
@@ -8363,7 +8363,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
-      "line": 82,
+      "line": 79,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
       "snippet": "public readonly InputActionAsset Asset;"
     },
@@ -8372,7 +8372,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
-      "line": 85,
+      "line": 81,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
       "snippet": "public InputActionAssetState(InputActionAsset asset)"
     },
@@ -8381,7 +8381,25 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
-      "line": 219,
+      "line": 89,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
+      "snippet": "public readonly InputAction Action;"
+    },
+    {
+      "category": "input",
+      "code": "INPUT_ACTION_REFERENCE",
+      "description": "Input System action reference",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
+      "line": 92,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
+      "snippet": "public InputActionEnabledState(InputAction action)"
+    },
+    {
+      "category": "input",
+      "code": "INPUT_ACTION_REFERENCE",
+      "description": "Input System action reference",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
+      "line": 264,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
       "snippet": "InputActionManager inputManager = canonicalManager.GetComponent<InputActionManager>();"
     },
@@ -8390,7 +8408,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
-      "line": 222,
+      "line": 267,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
       "snippet": "\"The canonical XRInteractionManager has no InputActionManager to refresh.\");"
     },
@@ -8399,7 +8417,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
-      "line": 224,
+      "line": 269,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
       "snippet": "foreach (InputActionAsset asset in inputManager.actionAssets)"
     },
@@ -8408,7 +8426,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
-      "line": 228,
+      "line": 273,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
       "snippet": "\"The canonical InputActionManager owns no action assets for tracked-rig simulation.\");"
     },
@@ -8417,7 +8435,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
-      "line": 249,
+      "line": 300,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
       "snippet": "InputActionAsset asset = _inputAssetStates[i].Asset;"
     },
@@ -8426,16 +8444,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
-      "line": 258,
-      "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
-      "snippet": "InputActionAsset asset = _inputAssetStates[i].Asset;"
-    },
-    {
-      "category": "input",
-      "code": "INPUT_ACTION_REFERENCE",
-      "description": "Input System action reference",
-      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
-      "line": 262,
+      "line": 304,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
       "snippet": "foreach (InputAction action in map.actions)"
     },
@@ -8444,7 +8453,34 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
-      "line": 287,
+      "line": 330,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
+      "snippet": "var seen = new HashSet<InputAction>();"
+    },
+    {
+      "category": "input",
+      "code": "INPUT_ACTION_REFERENCE",
+      "description": "Input System action reference",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
+      "line": 333,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
+      "snippet": "InputActionAsset asset = _inputAssetStates[i].Asset;"
+    },
+    {
+      "category": "input",
+      "code": "INPUT_ACTION_REFERENCE",
+      "description": "Input System action reference",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
+      "line": 337,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
+      "snippet": "foreach (InputAction action in map.actions)"
+    },
+    {
+      "category": "input",
+      "code": "INPUT_ACTION_REFERENCE",
+      "description": "Input System action reference",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
+      "line": 366,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
       "snippet": "InputActionAsset asset = _inputAssetStates[i].Asset;"
     },
@@ -8483,6 +8519,51 @@
       "line": 114,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
       "snippet": "Assert.AreEqual(1, ActiveManagerCount(settled, \"InputActionManager\"));"
+    },
+    {
+      "category": "input",
+      "code": "INPUT_ACTION_REFERENCE",
+      "description": "Input System action reference",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs",
+      "line": 188,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests",
+      "snippet": "InputActionManager inputManager = manager.GetComponent<InputActionManager>();"
+    },
+    {
+      "category": "input",
+      "code": "INPUT_ACTION_REFERENCE",
+      "description": "Input System action reference",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs",
+      "line": 190,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests",
+      "snippet": "\"The canonical interaction manager lost its InputActionManager after travel.\");"
+    },
+    {
+      "category": "input",
+      "code": "INPUT_ACTION_REFERENCE",
+      "description": "Input System action reference",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs",
+      "line": 196,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests",
+      "snippet": "var seen = new HashSet<InputAction>();"
+    },
+    {
+      "category": "input",
+      "code": "INPUT_ACTION_REFERENCE",
+      "description": "Input System action reference",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs",
+      "line": 197,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests",
+      "snippet": "foreach (InputActionAsset asset in inputManager.actionAssets)"
+    },
+    {
+      "category": "input",
+      "code": "INPUT_ACTION_REFERENCE",
+      "description": "Input System action reference",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs",
+      "line": 202,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests",
+      "snippet": "foreach (InputAction action in map.actions)"
     },
     {
       "category": "input",
@@ -8840,88 +8921,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
-      "line": 56,
-      "symbol": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
-      "snippet": "public readonly InputAction Action;"
-    },
-    {
-      "category": "input",
-      "code": "INPUT_ACTION_REFERENCE",
-      "description": "Input System action reference",
-      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
-      "line": 59,
-      "symbol": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
-      "snippet": "public CanonicalActionState(InputAction action)"
-    },
-    {
-      "category": "input",
-      "code": "INPUT_ACTION_REFERENCE",
-      "description": "Input System action reference",
-      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
-      "line": 133,
-      "symbol": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
-      "snippet": "var seen = new HashSet<InputAction>();"
-    },
-    {
-      "category": "input",
-      "code": "INPUT_ACTION_REFERENCE",
-      "description": "Input System action reference",
-      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
-      "line": 134,
-      "symbol": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
-      "snippet": "InputActionManager[] managers ="
-    },
-    {
-      "category": "input",
-      "code": "INPUT_ACTION_REFERENCE",
-      "description": "Input System action reference",
-      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
-      "line": 135,
-      "symbol": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
-      "snippet": "UnityEngine.Object.FindObjectsOfType<InputActionManager>(true);"
-    },
-    {
-      "category": "input",
-      "code": "INPUT_ACTION_REFERENCE",
-      "description": "Input System action reference",
-      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
-      "line": 138,
-      "symbol": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
-      "snippet": "InputActionManager manager = managers[managerIndex];"
-    },
-    {
-      "category": "input",
-      "code": "INPUT_ACTION_REFERENCE",
-      "description": "Input System action reference",
-      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
-      "line": 140,
-      "symbol": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
-      "snippet": "foreach (InputActionAsset asset in manager.actionAssets)"
-    },
-    {
-      "category": "input",
-      "code": "INPUT_ACTION_REFERENCE",
-      "description": "Input System action reference",
-      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
-      "line": 145,
-      "symbol": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
-      "snippet": "foreach (InputAction action in map.actions)"
-    },
-    {
-      "category": "input",
-      "code": "INPUT_ACTION_REFERENCE",
-      "description": "Input System action reference",
-      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
-      "line": 181,
-      "symbol": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
-      "snippet": "InputAction action = CanonicalActionStates[i].Action;"
-    },
-    {
-      "category": "input",
-      "code": "INPUT_ACTION_REFERENCE",
-      "description": "Input System action reference",
-      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
-      "line": 237,
+      "line": 125,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
       "snippet": "var seenActions = new HashSet<InputAction>();"
     },
@@ -8930,7 +8930,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
-      "line": 238,
+      "line": 126,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
       "snippet": "InputActionManager[] managers ="
     },
@@ -8939,7 +8939,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
-      "line": 239,
+      "line": 127,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
       "snippet": "UnityEngine.Object.FindObjectsOfType<InputActionManager>(true);"
     },
@@ -8948,7 +8948,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
-      "line": 242,
+      "line": 130,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
       "snippet": "InputActionManager manager = managers[managerIndex];"
     },
@@ -8957,7 +8957,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
-      "line": 244,
+      "line": 132,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
       "snippet": "foreach (InputActionAsset asset in manager.actionAssets)"
     },
@@ -8966,7 +8966,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs",
-      "line": 249,
+      "line": 137,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap",
       "snippet": "foreach (InputAction action in map.actions)"
     },
@@ -18947,7 +18947,7 @@
       "code": "PLAYER_PROFILE_REFERENCE",
       "description": "PlayerProfile reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs",
-      "line": 40,
+      "line": 41,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests",
       "snippet": "private PlayerProfile _newGameProfile;"
     },
@@ -18956,7 +18956,7 @@
       "code": "PLAYER_PROFILE_REFERENCE",
       "description": "PlayerProfile reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs",
-      "line": 281,
+      "line": 343,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests",
       "snippet": "private void OnNewGameProfileCreated(PlayerProfile profile) => _newGameProfile = profile;"
     },
@@ -19856,7 +19856,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs",
-      "line": 45,
+      "line": 46,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests",
       "snippet": "_saveBackup = RecoverySaveFileBackup.CaptureAndClear(SaveSystem.SavePath);"
     },
@@ -19865,7 +19865,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs",
-      "line": 84,
+      "line": 85,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests",
       "snippet": "Assert.IsFalse(SaveSystem.HasExistingProfile,"
     },
@@ -20045,7 +20045,7 @@
       "code": "DIRECT_SCENE_LOAD_ASYNC",
       "description": "Direct asynchronous scene load",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs",
-      "line": 140,
+      "line": 145,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests",
       "snippet": "AsyncOperation load = SceneManager.LoadSceneAsync("
     },
@@ -20324,7 +20324,7 @@
       "code": "XRI_MANAGER_ASSIGN",
       "description": "Explicit interactable interactionManager assignment",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
-      "line": 354,
+      "line": 457,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
       "snippet": "ray.interactionManager = canonicalManager;"
     },

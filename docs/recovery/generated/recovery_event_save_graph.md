@@ -128,8 +128,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryBootHoldOrderingTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootHoldOrderingTests.cs:44` · `_capture` — `Application.logMessageReceived -= _capture;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:42` · `_logCallback` — `Application.logMessageReceived += _logCallback;`
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:53` · `_logCallback` — `if (_logCallback != null) Application.logMessageReceived -= _logCallback;`
-- **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:54` · `_logCallback` — `Application.logMessageReceived += _logCallback;`
-- **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:65` · `_logCallback` — `if (_logCallback != null) Application.logMessageReceived -= _logCallback;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:55` · `_logCallback` — `Application.logMessageReceived += _logCallback;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:66` · `_logCallback` — `if (_logCallback != null) Application.logMessageReceived -= _logCallback;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:65` · `_logCallback` — `Application.logMessageReceived += _logCallback;`
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:76` · `_logCallback` — `if (_logCallback != null) Application.logMessageReceived -= _logCallback;`
 
@@ -387,8 +387,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:45` · `OnBootReady` — `HomeHubRuntime.BootPresentationReady -= OnBootReady;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:43` · `OnBootReady` — `HomeHubRuntime.BootPresentationReady += OnBootReady;`
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:55` · `OnBootReady` — `HomeHubRuntime.BootPresentationReady -= OnBootReady;`
-- **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:55` · `OnBootReady` — `HomeHubRuntime.BootPresentationReady += OnBootReady;`
-- **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:67` · `OnBootReady` — `HomeHubRuntime.BootPresentationReady -= OnBootReady;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:56` · `OnBootReady` — `HomeHubRuntime.BootPresentationReady += OnBootReady;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:68` · `OnBootReady` — `HomeHubRuntime.BootPresentationReady -= OnBootReady;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:66` · `OnBootReady` — `HomeHubRuntime.BootPresentationReady += OnBootReady;`
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:78` · `OnBootReady` — `HomeHubRuntime.BootPresentationReady -= OnBootReady;`
 
@@ -399,8 +399,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `HomeHubRuntime.NewGameProfileCreated`
 
-- **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:56` · `OnNewGameProfileCreated` — `HomeHubRuntime.NewGameProfileCreated += OnNewGameProfileCreated;`
-- **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:68` · `OnNewGameProfileCreated` — `HomeHubRuntime.NewGameProfileCreated -= OnNewGameProfileCreated;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:57` · `OnNewGameProfileCreated` — `HomeHubRuntime.NewGameProfileCreated += OnNewGameProfileCreated;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:69` · `OnNewGameProfileCreated` — `HomeHubRuntime.NewGameProfileCreated -= OnNewGameProfileCreated;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:67` · `OnNewGameProfileCreated` — `HomeHubRuntime.NewGameProfileCreated += OnNewGameProfileCreated;`
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:79` · `OnNewGameProfileCreated` — `HomeHubRuntime.NewGameProfileCreated -= OnNewGameProfileCreated;`
 
@@ -415,13 +415,13 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `InputSystem.onAfterUpdate`
 
-- **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:81` · `AuditBilateralBindings` — `InputSystem.onAfterUpdate -= AuditBilateralBindings;`
-- **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:82` · `AuditBilateralBindings` — `InputSystem.onAfterUpdate += AuditBilateralBindings;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:59` · `AuditBilateralBindings` — `InputSystem.onAfterUpdate -= AuditBilateralBindings;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:60` · `AuditBilateralBindings` — `InputSystem.onAfterUpdate += AuditBilateralBindings;`
 
 ### `InputSystem.onDeviceChange`
 
-- **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:79` · `OnDeviceChange` — `InputSystem.onDeviceChange -= OnDeviceChange;`
-- **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:80` · `OnDeviceChange` — `InputSystem.onDeviceChange += OnDeviceChange;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:57` · `OnDeviceChange` — `InputSystem.onDeviceChange -= OnDeviceChange;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:58` · `OnDeviceChange` — `InputSystem.onDeviceChange += OnDeviceChange;`
 
 ### `ItemHolstered`
 
@@ -625,7 +625,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 ### `SaveSystem.HasExistingProfile`
 
 - **SAVE_ACCESS** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:84` — `bool canContinue = SaveSystem.HasExistingProfile;`
-- **SAVE_ACCESS** · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:84` — `Assert.IsFalse(SaveSystem.HasExistingProfile,`
+- **SAVE_ACCESS** · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:85` — `Assert.IsFalse(SaveSystem.HasExistingProfile,`
 - **SAVE_ACCESS** · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:95` — `Assert.IsFalse(SaveSystem.HasExistingProfile,`
 
 ### `SaveSystem.Load`
@@ -809,8 +809,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `TravelCoordinator.TravelCompleted`
 
-- **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:57` · `OnTravelCompleted` — `TravelCoordinator.TravelCompleted += OnTravelCompleted;`
-- **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:69` · `OnTravelCompleted` — `TravelCoordinator.TravelCompleted -= OnTravelCompleted;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:58` · `OnTravelCompleted` — `TravelCoordinator.TravelCompleted += OnTravelCompleted;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:70` · `OnTravelCompleted` — `TravelCoordinator.TravelCompleted -= OnTravelCompleted;`
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryGoldenTravelVisualCapture` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenTravelVisualCapture.cs:41` · `MarkCompletedDestinationPending` — `TravelCoordinator.TravelCompleted -= MarkCompletedDestinationPending;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryGoldenTravelVisualCapture` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenTravelVisualCapture.cs:42` · `MarkCompletedDestinationPending` — `TravelCoordinator.TravelCompleted += MarkCompletedDestinationPending;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:68` · `OnTravelCompleted` — `TravelCoordinator.TravelCompleted += OnTravelCompleted;`
