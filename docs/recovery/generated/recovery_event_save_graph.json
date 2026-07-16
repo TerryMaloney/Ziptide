@@ -1,18 +1,18 @@
 {
   "tool": "recovery_event_save_graph",
-  "scannedFiles": 642,
-  "evidenceCount": 688,
+  "scannedFiles": 644,
+  "evidenceCount": 689,
   "kindCounts": {
     "AUTOSAVE": 7,
     "EVENT_DECLARE": 45,
     "EVENT_INVOKE": 57,
-    "EVENT_SUBSCRIBE": 94,
+    "EVENT_SUBSCRIBE": 95,
     "EVENT_UNSUBSCRIBE": 49,
     "PLAYER_PREFS_ACCESS": 11,
     "PROFILE_FIELD_ACCESS": 358,
     "SAVE_ACCESS": 67
   },
-  "unmatchedNamedSubscriptionCount": 47,
+  "unmatchedNamedSubscriptionCount": 48,
   "unmatchedNamedSubscriptions": [
     {
       "kind": "EVENT_SUBSCRIBE",
@@ -418,6 +418,15 @@
       "target": "_rig.position",
       "detail": "delta",
       "snippet": "Assert.AreEqual(1, Count(source, \"if (_rig != null) _rig.position += delta;\"));"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAudit.cs",
+      "line": 96,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceReport",
+      "target": "report.materialSlotCount",
+      "detail": "materials",
+      "snippet": "report.materialSlotCount += materials.Length;"
     },
     {
       "kind": "EVENT_SUBSCRIBE",
@@ -6514,6 +6523,17 @@
         "target": "rail.transform.position",
         "detail": "rail",
         "snippet": "rail.transform.position += rail.transform.right * (cellSize * 0.44f * side);"
+      }
+    ],
+    "report.materialSlotCount": [
+      {
+        "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAudit.cs",
+        "line": 96,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceReport",
+        "target": "report.materialSlotCount",
+        "detail": "materials",
+        "snippet": "report.materialSlotCount += materials.Length;"
       }
     ],
     "resources": [
@@ -12746,6 +12766,15 @@
       "target": "Allows",
       "detail": "profile",
       "snippet": "Assert.IsFalse(profile.Allows(RecoveryFeatureId.RuntimeMaterialFixer),"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAudit.cs",
+      "line": 96,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceReport",
+      "target": "report.materialSlotCount",
+      "detail": "materials",
+      "snippet": "report.materialSlotCount += materials.Length;"
     },
     {
       "kind": "EVENT_INVOKE",

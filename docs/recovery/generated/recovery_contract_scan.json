@@ -1,25 +1,25 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-16T12:19:20.782659+00:00",
+  "generatedAtUtc": "2026-07-16T13:07:42.783079+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
     "Ziptide/Assets/Ziptide",
     "Ziptide/Assets/ZiptideNet"
   ],
-  "scannedFiles": 642,
-  "findingCount": 2268,
+  "scannedFiles": 644,
+  "findingCount": 2287,
   "categoryCounts": {
     "bootstrap": 31,
-    "diagnostics": 493,
+    "diagnostics": 494,
     "events": 64,
-    "fallback_debt": 122,
+    "fallback_debt": 133,
     "global_render": 80,
     "input": 185,
-    "materials": 226,
+    "materials": 230,
     "persistence": 18,
-    "runtime_creation": 587,
+    "runtime_creation": 590,
     "runtime_ui": 119,
     "save_state": 252,
     "scene_loading": 8,
@@ -30,24 +30,24 @@
     "CAMERA_MAIN_REFERENCE": 42,
     "CAMERA_POST_PROCESSING": 1,
     "CANVAS_COMPONENT": 5,
-    "CREATE_PRIMITIVE": 232,
+    "CREATE_PRIMITIVE": 234,
     "DIRECT_SCENE_LOAD": 2,
     "DIRECT_SCENE_LOAD_ASYNC": 6,
     "DONT_DESTROY_ON_LOAD": 18,
     "EDITOR_BOOTSTRAP": 6,
     "EVENT_DECLARATION": 48,
     "EVENT_SYSTEM_COMPONENT": 2,
-    "FALLBACK_MARKER": 122,
+    "FALLBACK_MARKER": 133,
     "FRAME_BUTTON_POLL": 1,
     "INPUT_ACTION_REFERENCE": 178,
     "INPUT_BUTTON_REFERENCE": 6,
-    "NEW_GAME_OBJECT": 355,
+    "NEW_GAME_OBJECT": 356,
     "PLAYER_PROFILE_REFERENCE": 138,
     "RENDER_SETTINGS_MUTATION": 36,
     "RUNTIME_BOOTSTRAP": 25,
-    "RUNTIME_MATERIAL_CREATE": 88,
+    "RUNTIME_MATERIAL_CREATE": 89,
     "SAVE_SYSTEM_REFERENCE": 106,
-    "SHADER_FIND": 138,
+    "SHADER_FIND": 141,
     "STATIC_EVENT_DECLARATION": 16,
     "TEXTMESH_COMPONENT": 46,
     "TMP_COMPONENT": 3,
@@ -57,7 +57,7 @@
     "XRI_MANAGER_LOOKUP": 41,
     "XR_INTERACTABLE_COMPONENT": 61,
     "XR_UI_INPUT_MODULE": 2,
-    "ZIPTIDE_LOG_TAG": 493
+    "ZIPTIDE_LOG_TAG": 494
   },
   "findings": [
     {
@@ -4312,6 +4312,15 @@
       "category": "diagnostics",
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAudit.cs",
+      "line": 179,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceReport",
+      "snippet": "Debug.Log(\"ZIPTIDE: RECOVERY_FALLBACK_SURFACE_OK label=\" + label"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenTravelVisualCapture.cs",
       "line": 43,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryGoldenTravelVisualCapture",
@@ -4331,7 +4340,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenTravelVisualCapture.cs",
-      "line": 106,
+      "line": 109,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryGoldenTravelVisualCapture",
       "snippet": "Debug.Log(\"ZIPTIDE: RECOVERY_GOLDEN_VISUAL_OK dest=\" + destination"
     },
@@ -6350,6 +6359,105 @@
       "line": 125,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryExposureProfileTests",
       "snippet": "\"Global fallback mutators are not diagnostic surfaces.\");"
+    },
+    {
+      "category": "fallback_debt",
+      "code": "FALLBACK_MARKER",
+      "description": "Source text marks fallback/prototype debt",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAudit.cs",
+      "line": 52,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceReport",
+      "snippet": "/// Test-owned R1.9 material/fallback exposure layer. The existing Golden profile, runtime census,"
+    },
+    {
+      "category": "fallback_debt",
+      "code": "FALLBACK_MARKER",
+      "description": "Source text marks fallback/prototype debt",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAudit.cs",
+      "line": 65,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceReport",
+      "snippet": "public const string ArtifactDirectoryName = \"recovery-fallback-surfaces\";"
+    },
+    {
+      "category": "fallback_debt",
+      "code": "FALLBACK_MARKER",
+      "description": "Source text marks fallback/prototype debt",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAudit.cs",
+      "line": 71,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceReport",
+      "snippet": "throw new ArgumentException(\"Fallback-surface label is required.\", nameof(label));"
+    },
+    {
+      "category": "fallback_debt",
+      "code": "FALLBACK_MARKER",
+      "description": "Source text marks fallback/prototype debt",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAudit.cs",
+      "line": 196,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceReport",
+      "snippet": "Assert.Fail(label + \" exposed known fallback/material blockers. JSON=\" + paths.JsonPath"
+    },
+    {
+      "category": "fallback_debt",
+      "code": "FALLBACK_MARKER",
+      "description": "Source text marks fallback/prototype debt",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAudit.cs",
+      "line": 249,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceReport",
+      "snippet": "text.AppendLine(\"# Recovery Fallback Surface Audit \u2014 \" + report.label);"
+    },
+    {
+      "category": "fallback_debt",
+      "code": "FALLBACK_MARKER",
+      "description": "Source text marks fallback/prototype debt",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAudit.cs",
+      "line": 276,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceReport",
+      "snippet": "if (string.IsNullOrWhiteSpace(stem)) stem = \"fallback-surfaces\";"
+    },
+    {
+      "category": "fallback_debt",
+      "code": "FALLBACK_MARKER",
+      "description": "Source text marks fallback/prototype debt",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAuditTests.cs",
+      "line": 24,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceAuditTests",
+      "snippet": "GameObject fallback = GameObject.CreatePrimitive(PrimitiveType.Cube);"
+    },
+    {
+      "category": "fallback_debt",
+      "code": "FALLBACK_MARKER",
+      "description": "Source text marks fallback/prototype debt",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAuditTests.cs",
+      "line": 25,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceAuditTests",
+      "snippet": "fallback.name = \"__RECOVERY_FALLBACK_CANARY_MATERIAL\";"
+    },
+    {
+      "category": "fallback_debt",
+      "code": "FALLBACK_MARKER",
+      "description": "Source text marks fallback/prototype debt",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAuditTests.cs",
+      "line": 26,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceAuditTests",
+      "snippet": "fallback.transform.SetParent(root.transform, false);"
+    },
+    {
+      "category": "fallback_debt",
+      "code": "FALLBACK_MARKER",
+      "description": "Source text marks fallback/prototype debt",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAuditTests.cs",
+      "line": 27,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceAuditTests",
+      "snippet": "Renderer fallbackRenderer = fallback.GetComponent<Renderer>();"
+    },
+    {
+      "category": "fallback_debt",
+      "code": "FALLBACK_MARKER",
+      "description": "Source text marks fallback/prototype debt",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAuditTests.cs",
+      "line": 52,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceAuditTests",
+      "snippet": "\"The canary produced unexpected fallback-surface findings.\");"
     },
     {
       "category": "fallback_debt",
@@ -9514,6 +9622,15 @@
       "category": "materials",
       "code": "RUNTIME_MATERIAL_CREATE",
       "description": "Runtime Material allocation",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAuditTests.cs",
+      "line": 29,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceAuditTests",
+      "snippet": "fallbackMaterial = new Material(shader)"
+    },
+    {
+      "category": "materials",
+      "code": "RUNTIME_MATERIAL_CREATE",
+      "description": "Runtime Material allocation",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs",
       "line": 227,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryRenderSnapshotTests",
@@ -10733,6 +10850,33 @@
       "line": 203,
       "symbol": "Ziptide.Tests.EditMode.ShellSignPlacementTests",
       "snippet": "if (shader == null) shader = Shader.Find(\"Sprites/Default\");"
+    },
+    {
+      "category": "materials",
+      "code": "SHADER_FIND",
+      "description": "Runtime shader lookup",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAuditTests.cs",
+      "line": 19,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceAuditTests",
+      "snippet": "Shader shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
+    },
+    {
+      "category": "materials",
+      "code": "SHADER_FIND",
+      "description": "Runtime shader lookup",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAuditTests.cs",
+      "line": 20,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceAuditTests",
+      "snippet": "if (shader == null) shader = Shader.Find(\"Universal Render Pipeline/Unlit\");"
+    },
+    {
+      "category": "materials",
+      "code": "SHADER_FIND",
+      "description": "Runtime shader lookup",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAuditTests.cs",
+      "line": 21,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceAuditTests",
+      "snippet": "if (shader == null) shader = Shader.Find(\"Unlit/Color\");"
     },
     {
       "category": "materials",
@@ -13019,6 +13163,24 @@
       "line": 88,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryCoreBootstrapGateTests",
       "snippet": "var rendererHost = GameObject.CreatePrimitive(PrimitiveType.Cube);"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "CREATE_PRIMITIVE",
+      "description": "Runtime primitive construction",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAuditTests.cs",
+      "line": 24,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceAuditTests",
+      "snippet": "GameObject fallback = GameObject.CreatePrimitive(PrimitiveType.Cube);"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "CREATE_PRIMITIVE",
+      "description": "Runtime primitive construction",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAuditTests.cs",
+      "line": 35,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceAuditTests",
+      "snippet": "GameObject nullSlot = GameObject.CreatePrimitive(PrimitiveType.Sphere);"
     },
     {
       "category": "runtime_creation",
@@ -15944,6 +16106,15 @@
       "line": 84,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryCoreBootstrapGateTests",
       "snippet": "var cameraHost = new GameObject(\"__RECOVERY_CORE_GATE_CAMERA\");"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAuditTests.cs",
+      "line": 13,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceAuditTests",
+      "snippet": "var root = new GameObject(\"__RECOVERY_FALLBACK_CANARY_ROOT\");"
     },
     {
       "category": "runtime_creation",
@@ -20450,7 +20621,7 @@
       "code": "XRI_MANAGER_LOOKUP",
       "description": "XRInteractionManager lookup",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
-      "line": 117,
+      "line": 120,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests",
       "snippet": "XRInteractionManager manager = UnityEngine.Object.FindObjectOfType<XRInteractionManager>();"
     },

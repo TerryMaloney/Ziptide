@@ -1,8 +1,8 @@
 # ZIPTIDE Event and Save Ownership Graph
 
-- Scanned C# files: **642**
-- Evidence edges: **688**
-- Named subscriptions without matching unsubscribe in the same owner: **47**
+- Scanned C# files: **644**
+- Evidence edges: **689**
+- Named subscriptions without matching unsubscribe in the same owner: **48**
 
 This is a static ownership graph. An unmatched row is a review target, not automatic proof of a leak; process-lifetime static hooks may be intentional.
 
@@ -11,7 +11,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **AUTOSAVE:** 7
 - **EVENT_DECLARE:** 45
 - **EVENT_INVOKE:** 57
-- **EVENT_SUBSCRIBE:** 94
+- **EVENT_SUBSCRIBE:** 95
 - **EVENT_UNSUBSCRIBE:** 49
 - **PLAYER_PREFS_ACCESS:** 11
 - **PROFILE_FIELD_ACCESS:** 358
@@ -64,6 +64,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - `Ziptide.Tests.EditMode.PvpNetTests` subscribes `t.OnWall` → `m` at `Ziptide/Assets/Ziptide/Tests/EditMode/PvpNetTests.cs:70`
 - `Ziptide.Tests.EditMode.PvpNetTests` subscribes `t.OnPose` → `m` at `Ziptide/Assets/Ziptide/Tests/EditMode/PvpNetTests.cs:90`
 - `Ziptide.Tests.EditMode.ZiplineSignalTests` subscribes `_rig.position` → `delta` at `Ziptide/Assets/Ziptide/Tests/EditMode/ZiplineSignalTests.cs:132`
+- `Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceReport` subscribes `report.materialSlotCount` → `materials` at `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAudit.cs:96`
 - `Ziptide.Tests.PlayMode.RecoveryTestRig` subscribes `Root.transform.position` → `delta` at `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTestRig.cs:121`
 - `Ziptide.Visuals.SkyAtmosphereRig` subscribes `position.y` → `eyeY` at `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs:235`
 
@@ -1171,6 +1172,10 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 ### `rail.transform.position`
 
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.BeltCellSpec` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltFloorRuntime.cs:274` · `rail` — `rail.transform.position += rail.transform.right * (cellSize * 0.44f * side);`
+
+### `report.materialSlotCount`
+
+- **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceReport` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAudit.cs:96` · `materials` — `report.materialSlotCount += materials.Length;`
 
 ### `resources`
 

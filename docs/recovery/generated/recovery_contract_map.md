@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
-- Scanned files: **642**
-- Scanner findings: **2268**
+- Scanned files: **644**
+- Scanner findings: **2287**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -2277,6 +2277,18 @@ None.
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryCoreBootstrapGateTests.cs:84` **NEW_GAME_OBJECT** — `var cameraHost = new GameObject("__RECOVERY_CORE_GATE_CAMERA");`
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryCoreBootstrapGateTests.cs:88` **CREATE_PRIMITIVE** — `var rendererHost = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 
+### `Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceAuditTests` — 7 signal(s)
+
+- Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`, `RUNTIME_MATERIAL_CREATE`, `SHADER_FIND`
+- Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAuditTests.cs`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAuditTests.cs:13` **NEW_GAME_OBJECT** — `var root = new GameObject("__RECOVERY_FALLBACK_CANARY_ROOT");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAuditTests.cs:19` **SHADER_FIND** — `Shader shader = Shader.Find("Universal Render Pipeline/Lit");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAuditTests.cs:20` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Universal Render Pipeline/Unlit");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAuditTests.cs:21` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Unlit/Color");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAuditTests.cs:24` **CREATE_PRIMITIVE** — `GameObject fallback = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAuditTests.cs:29` **RUNTIME_MATERIAL_CREATE** — `fallbackMaterial = new Material(shader)`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAuditTests.cs:35` **CREATE_PRIMITIVE** — `GameObject nullSlot = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
+
 ### `Ziptide.Tests.PlayMode.RecoveryGateBypassTests` — 2 signal(s)
 
 - Codes: `NEW_GAME_OBJECT`
@@ -2710,7 +2722,7 @@ None.
 
 - Codes: `XRI_MANAGER_LOOKUP`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:117` **XRI_MANAGER_LOOKUP** — `XRInteractionManager manager = UnityEngine.Object.FindObjectOfType<XRInteractionManager>();`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:120` **XRI_MANAGER_LOOKUP** — `XRInteractionManager manager = UnityEngine.Object.FindObjectOfType<XRInteractionManager>();`
 
 ### `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` — 2 signal(s)
 
@@ -4319,6 +4331,27 @@ None.
 - Codes: `FALLBACK_MARKER`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs`
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs:125` **FALLBACK_MARKER** — `"Global fallback mutators are not diagnostic surfaces.");`
+
+### `Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceAuditTests` — 5 signal(s)
+
+- Codes: `FALLBACK_MARKER`
+- Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAuditTests.cs`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAuditTests.cs:24` **FALLBACK_MARKER** — `GameObject fallback = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAuditTests.cs:25` **FALLBACK_MARKER** — `fallback.name = "__RECOVERY_FALLBACK_CANARY_MATERIAL";`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAuditTests.cs:26` **FALLBACK_MARKER** — `fallback.transform.SetParent(root.transform, false);`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAuditTests.cs:27` **FALLBACK_MARKER** — `Renderer fallbackRenderer = fallback.GetComponent<Renderer>();`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAuditTests.cs:52` **FALLBACK_MARKER** — `"The canary produced unexpected fallback-surface findings.");`
+
+### `Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceReport` — 6 signal(s)
+
+- Codes: `FALLBACK_MARKER`
+- Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAudit.cs`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAudit.cs:52` **FALLBACK_MARKER** — `/// Test-owned R1.9 material/fallback exposure layer. The existing Golden profile, runtime census,`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAudit.cs:65` **FALLBACK_MARKER** — `public const string ArtifactDirectoryName = "recovery-fallback-surfaces";`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAudit.cs:71` **FALLBACK_MARKER** — `throw new ArgumentException("Fallback-surface label is required.", nameof(label));`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAudit.cs:196` **FALLBACK_MARKER** — `Assert.Fail(label + " exposed known fallback/material blockers. JSON=" + paths.JsonPath`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAudit.cs:249` **FALLBACK_MARKER** — `text.AppendLine("# Recovery Fallback Surface Audit — " + report.label);`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAudit.cs:276` **FALLBACK_MARKER** — `if (string.IsNullOrWhiteSpace(stem)) stem = "fallback-surfaces";`
 
 ### `Ziptide.Visuals.ForgeCreatureAnimator` — 2 signal(s)
 

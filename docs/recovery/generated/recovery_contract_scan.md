@@ -1,7 +1,7 @@
 # ZIPTIDE Recovery Contract Scan
 
-- Scanned files: **642**
-- Findings: **2268**
+- Scanned files: **644**
+- Findings: **2287**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
@@ -9,14 +9,14 @@
 | Category | Count |
 |---|---:|
 | `bootstrap` | 31 |
-| `diagnostics` | 493 |
+| `diagnostics` | 494 |
 | `events` | 64 |
-| `fallback_debt` | 122 |
+| `fallback_debt` | 133 |
 | `global_render` | 80 |
 | `input` | 185 |
-| `materials` | 226 |
+| `materials` | 230 |
 | `persistence` | 18 |
-| `runtime_creation` | 587 |
+| `runtime_creation` | 590 |
 | `runtime_ui` | 119 |
 | `save_state` | 252 |
 | `scene_loading` | 8 |
@@ -500,9 +500,10 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBuildProfileTests.cs:65` · `Ziptide.Tests.PlayMode.RecoveryBuildProfileTests` — ZIPTIDE diagnostic tag. `StringAssert.Contains("ZIPTIDE: BUILD_PROFILE profile=GoldenSlice", builder);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBuildProfileTests.cs:91` · `Ziptide.Tests.PlayMode.RecoveryBuildProfileTests` — ZIPTIDE diagnostic tag. `StringAssert.Contains("ZIPTIDE: BUILD_PROFILE profile=GoldenSlice", smokeScript);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBuildProfileTests.cs:92` · `Ziptide.Tests.PlayMode.RecoveryBuildProfileTests` — ZIPTIDE diagnostic tag. `StringAssert.Contains("ZIPTIDE: RECOVERY_EXPOSURE buildProfile=GoldenSlice profile=GoldenSlice", smokeScript);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAudit.cs:179` · `Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceReport` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RECOVERY_FALLBACK_SURFACE_OK label=" + label`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenTravelVisualCapture.cs:43` · `Ziptide.Tests.PlayMode.RecoveryGoldenTravelVisualCapture` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RECOVERY_GOLDEN_VISUAL_CAPTURE_READY");`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenTravelVisualCapture.cs:53` · `Ziptide.Tests.PlayMode.RecoveryGoldenTravelVisualCapture` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RECOVERY_GOLDEN_VISUAL_PENDING dest=" + destination);`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenTravelVisualCapture.cs:106` · `Ziptide.Tests.PlayMode.RecoveryGoldenTravelVisualCapture` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RECOVERY_GOLDEN_VISUAL_OK dest=" + destination`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenTravelVisualCapture.cs:109` · `Ziptide.Tests.PlayMode.RecoveryGoldenTravelVisualCapture` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RECOVERY_GOLDEN_VISUAL_OK dest=" + destination`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:110` · `Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests` — ZIPTIDE diagnostic tag. `new Regex("ZIPTIDE: HOME_HUB_TILE_BOUND tile=Tile_MANAGER_REPLACE mode=rebound"));`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPersistentDiagnosticRingTests.cs:18` · `Ziptide.Tests.PlayMode.RecoveryPersistentDiagnosticRingTests` — ZIPTIDE diagnostic tag. `string token = "ZIPTIDE: DIAG_RING_TEST frame=" + Time.frameCount;`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshot.cs:149` · `Ziptide.Tests.PlayMode.RecoveryRenderSnapshotMetrics` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RECOVERY_SNAPSHOT label=" + label`
@@ -731,6 +732,17 @@
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:437` · `Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation` — Source text marks fallback/prototype debt. `if (fallback == null) fallback = ray;`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:441` · `Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation` — Source text marks fallback/prototype debt. `return fallback;`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryExposureProfileTests.cs:125` · `Ziptide.Tests.PlayMode.RecoveryExposureProfileTests` — Source text marks fallback/prototype debt. `"Global fallback mutators are not diagnostic surfaces.");`
+- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAudit.cs:52` · `Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceReport` — Source text marks fallback/prototype debt. `/// Test-owned R1.9 material/fallback exposure layer. The existing Golden profile, runtime census,`
+- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAudit.cs:65` · `Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceReport` — Source text marks fallback/prototype debt. `public const string ArtifactDirectoryName = "recovery-fallback-surfaces";`
+- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAudit.cs:71` · `Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceReport` — Source text marks fallback/prototype debt. `throw new ArgumentException("Fallback-surface label is required.", nameof(label));`
+- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAudit.cs:196` · `Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceReport` — Source text marks fallback/prototype debt. `Assert.Fail(label + " exposed known fallback/material blockers. JSON=" + paths.JsonPath`
+- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAudit.cs:249` · `Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceReport` — Source text marks fallback/prototype debt. `text.AppendLine("# Recovery Fallback Surface Audit — " + report.label);`
+- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAudit.cs:276` · `Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceReport` — Source text marks fallback/prototype debt. `if (string.IsNullOrWhiteSpace(stem)) stem = "fallback-surfaces";`
+- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAuditTests.cs:24` · `Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceAuditTests` — Source text marks fallback/prototype debt. `GameObject fallback = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAuditTests.cs:25` · `Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceAuditTests` — Source text marks fallback/prototype debt. `fallback.name = "__RECOVERY_FALLBACK_CANARY_MATERIAL";`
+- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAuditTests.cs:26` · `Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceAuditTests` — Source text marks fallback/prototype debt. `fallback.transform.SetParent(root.transform, false);`
+- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAuditTests.cs:27` · `Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceAuditTests` — Source text marks fallback/prototype debt. `Renderer fallbackRenderer = fallback.GetComponent<Renderer>();`
+- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAuditTests.cs:52` · `Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceAuditTests` — Source text marks fallback/prototype debt. `"The canary produced unexpected fallback-surface findings.");`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeCreatureAnimator.cs:7` · `Ziptide.Visuals.ForgeCreatureAnimator` — Source text marks fallback/prototype debt. `/// built skeleton once; every LateUpdate it measures its OWN world speed (no Gameplay`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeCreatureAnimator.cs:28` · `Ziptide.Visuals.ForgeCreatureAnimator` — Source text marks fallback/prototype debt. `/// <summary>Wire the animator to a built skeleton (ForgeSkinnedBuilder.Result.bones).</summary>`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeCreatureVisualApplier.cs:9` · `Ziptide.Visuals.ForgeCreatureVisualApplier` — Source text marks fallback/prototype debt. `/// this builds the skinned walking body under a "ForgeVisual" child (skeleton + one`
@@ -1088,6 +1100,7 @@
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Tests/EditMode/ReactivePropTests.cs:188` · `Ziptide.Tests.EditMode.ReactivePropTests` — Runtime Material allocation. `StringAssert.DoesNotContain("new Material(", source);`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Tests/EditMode/ResourceDisciplineTests.cs:38` · `Ziptide.Tests.EditMode.ResourceDisciplineTests` — Runtime Material allocation. `private static readonly string[] CreatorMarkers = { "new Material(", "new Texture2D(", "AudioClip.Create(" };`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Tests/EditMode/ShellSignPlacementTests.cs:205` · `Ziptide.Tests.EditMode.ShellSignPlacementTests` — Runtime Material allocation. `var material = new Material(shader) { name = name };`
+- **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAuditTests.cs:29` · `Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceAuditTests` — Runtime Material allocation. `fallbackMaterial = new Material(shader)`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs:227` · `Ziptide.Tests.PlayMode.RecoveryRenderSnapshotTests` — Runtime Material allocation. `var material = new Material(shader) { name = name + "_Material" };`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeCreatureVisualApplier.cs:86` · `Ziptide.Visuals.ForgeCreatureVisualApplier` — Runtime Material allocation. `var mat = new Material(baseMat) { name = baseMat.name + "_Eye" };`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeMaterials.cs:22` · `Ziptide.Visuals.ForgeMaterials` — Runtime Material allocation. `var mat = new Material(shader) { name = "ForgeMat_" + ColorUtility.ToHtmlStringRGB(color) };`
@@ -1224,6 +1237,9 @@
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Tests/EditMode/ShellSignPlacementTests.cs:201` · `Ziptide.Tests.EditMode.ShellSignPlacementTests` — Runtime shader lookup. `Shader shader = Shader.Find("Universal Render Pipeline/Unlit");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Tests/EditMode/ShellSignPlacementTests.cs:202` · `Ziptide.Tests.EditMode.ShellSignPlacementTests` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Unlit/Color");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Tests/EditMode/ShellSignPlacementTests.cs:203` · `Ziptide.Tests.EditMode.ShellSignPlacementTests` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Sprites/Default");`
+- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAuditTests.cs:19` · `Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceAuditTests` — Runtime shader lookup. `Shader shader = Shader.Find("Universal Render Pipeline/Lit");`
+- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAuditTests.cs:20` · `Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceAuditTests` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Universal Render Pipeline/Unlit");`
+- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAuditTests.cs:21` · `Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceAuditTests` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Unlit/Color");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs:223` · `Ziptide.Tests.PlayMode.RecoveryRenderSnapshotTests` — Runtime shader lookup. `Shader shader = Shader.Find("Universal Render Pipeline/Unlit");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs:224` · `Ziptide.Tests.PlayMode.RecoveryRenderSnapshotTests` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Unlit/Color");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs:225` · `Ziptide.Tests.PlayMode.RecoveryRenderSnapshotTests` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Standard");`
@@ -1482,6 +1498,8 @@
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs:55` · `Ziptide.Tests.EditMode.HeadsetBuildBlockerRegressionTests` — Runtime primitive construction. `StringAssert.Contains("GameObject.CreatePrimitive(PrimitiveType.Cube)", safety);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/EditMode/ReactivePropTests.cs:119` · `Ziptide.Tests.EditMode.ReactivePropTests` — Runtime primitive construction. `var host = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryCoreBootstrapGateTests.cs:88` · `Ziptide.Tests.PlayMode.RecoveryCoreBootstrapGateTests` — Runtime primitive construction. `var rendererHost = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAuditTests.cs:24` · `Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceAuditTests` — Runtime primitive construction. `GameObject fallback = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAuditTests.cs:35` · `Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceAuditTests` — Runtime primitive construction. `GameObject nullSlot = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshotTests.cs:215` · `Ziptide.Tests.PlayMode.RecoveryRenderSnapshotTests` — Runtime primitive construction. `GameObject go = GameObject.CreatePrimitive(type);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensusTests.cs:57` · `Ziptide.Tests.PlayMode.RecoveryRuntimeCensusTests` — Runtime primitive construction. `GameObject primitive = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoverySpawnClearanceAuditTests.cs:34` · `Ziptide.Tests.PlayMode.RecoverySpawnClearanceAuditTests` — Runtime primitive construction. `var floor = GameObject.CreatePrimitive(PrimitiveType.Cube);`
@@ -1807,6 +1825,7 @@
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootHoldOrderingTests.cs:66` · `Ziptide.Tests.PlayMode.RecoveryBootHoldOrderingTests` — Runtime GameObject construction. `var bootHost = new GameObject("__RECOVERY_BOOT_ORDER_LOADER");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootHoldOrderingTests.cs:92` · `Ziptide.Tests.PlayMode.RecoveryBootHoldOrderingTests` — Runtime GameObject construction. `var markerHost = new GameObject("__RECOVERY_BOOT_ORDER_MARKER");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryCoreBootstrapGateTests.cs:84` · `Ziptide.Tests.PlayMode.RecoveryCoreBootstrapGateTests` — Runtime GameObject construction. `var cameraHost = new GameObject("__RECOVERY_CORE_GATE_CAMERA");`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAuditTests.cs:13` · `Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceAuditTests` — Runtime GameObject construction. `var root = new GameObject("__RECOVERY_FALLBACK_CANARY_ROOT");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs:110` · `Ziptide.Tests.PlayMode.RecoveryGateBypassTests` — Runtime GameObject construction. `int launcherCreate = netSource.IndexOf("new GameObject(\"__PhotonPvpLauncher\")", startOnline, StringComparison.Ordinal);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs:154` · `Ziptide.Tests.PlayMode.RecoveryGateBypassTests` — Runtime GameObject construction. `var go = new GameObject(name);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenSurfacePolicyTests.cs:34` · `Ziptide.Tests.PlayMode.RecoveryGoldenSurfacePolicyTests` — Runtime GameObject construction. `var host = new GameObject("__RECOVERY_GOLDEN_CREDITS_HUD");`
@@ -2315,6 +2334,6 @@
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:264` · `Ziptide.Gameplay.WorldTravelStation` — XRInteractionManager lookup. `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:245` · `Ziptide.Ship.ShipFlightRuntime` — XRInteractionManager lookup. `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:150` · `Ziptide.Ship.VehicleRuntime` — XRInteractionManager lookup. `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
-- **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:117` · `Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests` — XRInteractionManager lookup. `XRInteractionManager manager = UnityEngine.Object.FindObjectOfType<XRInteractionManager>();`
+- **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:120` · `Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests` — XRInteractionManager lookup. `XRInteractionManager manager = UnityEngine.Object.FindObjectOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:89` · `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` — XRInteractionManager lookup. `manager = UnityEngine.Object.FindObjectOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:45` · `Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests` — XRInteractionManager lookup. `Assert.IsNull(UnityEngine.Object.FindObjectOfType<XRInteractionManager>(),`
