@@ -27,6 +27,32 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-17 (rb39) — Fable 5: FORGE HORIZON PROGRAM planned — the art program now has a destination past FORGE IV (planning only, zero code)
+
+- **Did:** at Terry's direction ("take our current forge multiple steps further — in planning"),
+  researched the full Forge program state (Forge I/II complete; Forge III ~85% landed with F3.6/F3.7
+  open and device verdicts pending; FORGE IV planned, CP-0 complete) plus every recorded deferral
+  across the art docs, then wrote **`docs/project_art_plan/FORGE_V_AND_BEYOND.md`** — the horizon
+  program: **Forge V — Living Stage** (world-state skins, closed staging grammar with a
+  player-freedom contract, RILL cinematic presence, ambient society in P3/P4 bands, weather/tide
+  acts, return & memory), **Forge VI — World Compiler** (world recipes, kit completion, one
+  deterministic compile pass, the identity guarantee + hero-element law, ART_REGISTRY §5 backend
+  and streaming on-ramps, the CI review farm), **Forge VII — Director's Chair** (Terry's north star
+  literal: in-headset command seam that compiles to author/recipe edits only, clamped live look
+  tuning, in-headset verdict chamber, capture/photo mode, cosmetic forge). Includes a debt-intake
+  table mapping every known deferral (water shader, grounding polish, VFX runtime, building
+  modules, Tripo/Addressables triggers, WorldStubGenerator, skyscape tiers) to the generation that
+  retires it, standing rejections carried forward, and a hard gate ladder. README index updated.
+- **Next:** nothing runtime — the doc authorizes zero code. Gate ladder: recovery exit (Terry's
+  Quest checkpoint, rb38) → vertical slice under the proof ladder → Forge III close → FORGE IV
+  CP-1..CP-11 → only then Forge V. First future paper artifacts: `LIVING_STAGE_CONSTITUTION.md`
+  during late FORGE IV, and WC-1's world-recipe field list during CP-11.
+- **Heads-up:** the horizon doc is direction, not authorization — it explicitly defers to every
+  binding plan and keeps all budgets/rails. If FORGE IV execution reshapes CP envelopes, amend
+  `FORGE_V_AND_BEYOND.md` in the same commit. The recovery freeze is untouched; Terry's headset
+  checkpoint remains the only device task.
+- **Commit:** this one (docs only: `FORGE_V_AND_BEYOND.md` + art-plan README + this entry).
+
 ### 2026-07-17 (rb38) — Fable 5: HEADSET CHECKPOINT AUTHORIZED — paperwork complete, Terry's session is ready
 
 - **At Terry's direction, the remaining authorization process is done:**

@@ -9,6 +9,7 @@ This directory is the art/audio/presentation plan of record. Read the active spr
 3. `CREATURE_QUALITY_V2_LIFE_LEAP.md` — creature-specific life/presentation follow-on.
 4. `FORGE_IV_CINEMATIC_PRESENCE.md` — Terry-approved canonical next-generation program for cinematic realism, depth, awe and soundtrack.
 5. `CINEMATIC_PRESENCE_CONSTITUTION.md` — CP-0 decision contract; **complete** and binding before FORGE IV implementation.
+5b. `FORGE_V_AND_BEYOND.md` — the horizon program (Forge V Living Stage · VI World Compiler · VII Director's Chair); planning only, hard-gated behind recovery exit → Forge III close → FORGE IV two-world proof.
 6. `../GPT_ADDITIONS/2026-07-11_GPT56_CINEMATIC_PRESENCE/CINEMATIC_PRESENCE_HANDOFF.md` — Did/Next/Heads-up/Commits and the preserved Picasso queue.
 
 ## Canonical program sequence
@@ -32,6 +33,10 @@ Species passports, motion intent, contact, secondary motion, tells/voice, habita
 ### Forge IV — cinematic presence
 
 Perceptual fidelity packages, lived-in material intelligence, Prospect-depth atmosphere, Awe Nodes, cinematic light/surface response, runtime fidelity allocation, Audio Forge, diegetic interfaces, W002 technical proof and W001 emotional proof.
+
+### Forge V–VII — the horizon program (planned direction only)
+
+`FORGE_V_AND_BEYOND.md`: **V — Living Stage** (world states, staging grammar, RILL presence, ambient society, weather/tide acts, return & memory) · **VI — World Compiler** (world recipes, kit completion, compile pass, identity guarantee, external backends, streaming, review farm) · **VII — Director's Chair** (in-headset command seam, live look tuning, verdict chamber, capture/showcase, cosmetic forge). Each generation writes its own CP-0-style constitution before its first envelope.
 
 ## Important status
 
