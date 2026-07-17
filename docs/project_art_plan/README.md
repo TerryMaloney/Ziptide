@@ -36,7 +36,7 @@ Perceptual fidelity packages, lived-in material intelligence, Prospect-depth atm
 
 ### Forge V–VII — the horizon program (planned direction only)
 
-`FORGE_V_AND_BEYOND.md`: **V — Living Stage** (world states, staging grammar, RILL presence, ambient society, weather/tide acts, return & memory) · **VI — World Compiler** (world recipes, kit completion, compile pass, identity guarantee, external backends, streaming, review farm) · **VII — Director's Chair** (in-headset command seam, live look tuning, verdict chamber, capture/showcase, cosmetic forge). Each generation writes its own CP-0-style constitution before its first envelope.
+`FORGE_V_AND_BEYOND.md` is the horizon index (gate ladder, debt intake, standing rejections). Each generation now has its fleshed-out plan of record: **`FORGE_V_LIVING_STAGE.md`** (world states, staging grammar + freedom contract, RILL presence, ambient society, weather/tide acts, return & memory) · **`FORGE_VI_WORLD_COMPILER.md`** (world recipes, kit completion, deterministic compile pass + hash law, identity guarantee + hero-element law, backend/streaming on-ramps, review farm) · **`FORGE_VII_DIRECTORS_CHAIR.md`** (command seam + author-power law, clamped live tuning, verdict chamber, photo mode/capture, cosmetic forge). All planning only — the §1 gate ladder in the horizon index governs when anything starts.
 
 ## Important status
 

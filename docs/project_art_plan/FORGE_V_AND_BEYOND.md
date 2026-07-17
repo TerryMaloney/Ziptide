@@ -78,6 +78,9 @@ names which debts it retires, so nothing silently evaporates. (Sources: `SPRINT_
 # FORGE V — THE LIVING STAGE
 ### World dramaturgy: the game stops being a beautiful place and starts being a told story
 
+> **Fleshed-out plan of record: `FORGE_V_LIVING_STAGE.md`** (2026-07-17) — envelope detail, data
+> shapes, acceptance gates, seam table, pilot. This section remains the summary.
+
 **North star:** a player who never reads a menu can tell you what happened in this world last
 chapter — because the world itself changed, staged it, and remembers.
 
@@ -138,6 +141,10 @@ that breaks the derivation law; ambient life that costs real AI.
 
 # FORGE VI — THE WORLD COMPILER
 ### Scale: eighty worlds that each feel authored, from a pipeline that doesn't need eighty months
+
+> **Fleshed-out plan of record: `FORGE_VI_WORLD_COMPILER.md`** (2026-07-17) — recipe schema,
+> compile-pass order + hash law, identity metrics, review-farm verdict schema, pilot. This
+> section remains the summary.
 
 **North star:** a new world goes from "story bible row" to "walkable, conformant, identity-bearing,
 budget-clean world" in one operator session — and no player can tell which worlds were compiled.
@@ -204,6 +211,10 @@ any budget "because there are more worlds now."
 
 # FORGE VII — THE DIRECTOR'S CHAIR
 ### Terry's north star, made literal: art direction from inside the headset
+
+> **Fleshed-out plan of record: `FORGE_VII_DIRECTORS_CHAIR.md`** (2026-07-17) — command grammar,
+> author-power law, double-verdict commit flow, verdict chamber, photo mode, cosmetic tiers.
+> This section remains the summary.
 
 **North star (CLAUDE.md, verbatim):** *"Terry puts on the headset, says 'move that building / make
 this do that,' and it just happens with ~zero errors."*

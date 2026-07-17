@@ -27,6 +27,38 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-17 (rb40) — Fable 5: Forge V/VI/VII FLESHED OUT — each horizon generation now has its plan of record (planning only, zero code)
+
+- **Did:** at Terry's direction ("flesh them out a bit more — just planning, no code"), expanded
+  each horizon generation from rb39's summaries into a full plan doc in the FORGE III/IV house
+  style (rails, closed vocabularies, paper data schemas, per-envelope why/what/acceptance/budget/
+  do-nots, cross-lane seam tables, pilots, definitions of done):
+  **`FORGE_V_LIVING_STAGE.md`** — LS-1..LS-6 detailed: `WorldStateVariant` schema + default-state
+  identity law, closed staging grammar (8 kinds) + tested player-freedom contract, RILL blocking
+  library + growth clamps, ambient lanes (2 update rates, zero AI), weather/tide acts with 30–120s
+  crossfades + saved act state, marks vocabulary; W001 pilot; order LS-1→2→5→3→4→6.
+  **`FORGE_VI_WORLD_COMPILER.md`** — WC-1..WC-7 detailed: world-recipe paper schema, per-archetype
+  kit completion bounded by pilot needs, 13-step deterministic compile pass + hash law + manifest,
+  identity vector (7 dimensions, ≥3-dimension pairwise gate, thresholds calibrated on hand-built
+  pilots) + hero-element block, ART_REGISTRY §5 on-ramps (build only on trigger), review-farm
+  verdict schema + Terry sample-audit calibration; pilot = 2–3 compiled siblings vs. their
+  hand-built original in blind comparison.
+  **`FORGE_VII_DIRECTORS_CHAIR.md`** — DC-1..DC-5 detailed: closed command grammar (11 verbs) +
+  the author-power law as a contract test + double-verdict commit flow (in-headset A/B → CI green
+  → `chair:` commit), clamp-mirroring tuning board, verdict chamber consuming the WC-7 queue with
+  hold-to-confirm ceremonies, tethered photo mode + HMD-sovereignty test + spectator splines,
+  3-tier cosmetic forge; acceptance = Terry's "move that building" sentence run live end-to-end.
+  `FORGE_V_AND_BEYOND.md` stays the horizon index (gate ladder/debt intake/rejections) and now
+  points at the three plans; art-plan README updated.
+- **Next:** unchanged — nothing runtime; the §1 gate ladder governs (recovery exit is rung one;
+  Terry's Quest checkpoint remains the only device task). First future paper artifacts still:
+  `LIVING_STAGE_CONSTITUTION.md` in late FORGE IV; WC-1 field-list draft during CP-11.
+- **Heads-up:** the three plans deliberately pre-decide shapes (schemas, orders, clamps) so a
+  smaller model can't invent them later — but every number marked "calibrated on pilots" is a
+  placeholder until device/pilot evidence exists; do not treat them as licensed budgets. If FORGE
+  IV execution reshapes CP-3/5/7/8 surfaces, amend the dependent envelopes in the same commit.
+- **Commit:** this one (docs only: 3 new plan docs + horizon index pointers + README + this entry).
+
 ### 2026-07-17 (rb39) — Fable 5: FORGE HORIZON PROGRAM planned — the art program now has a destination past FORGE IV (planning only, zero code)
 
 - **Did:** at Terry's direction ("take our current forge multiple steps further — in planning"),
