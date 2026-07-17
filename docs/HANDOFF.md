@@ -27,6 +27,30 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-17 (hwr26) - Fable 5 architect: 🎬 THE FIRST HOUR — DIRECTOR'S CUT (Terry-directed, planning ONLY, zero code)
+- **Terry's directive:** dial in the first hour — "through Toxic City having fun → our first
+  Ziptide → our first world → rebuild and defend and grow and understand the whole cycle + the
+  story's beginning." Research + plan only. Deliverable: **`docs/design/FIRST_HOUR_DIRECTORS_CUT.md`**.
+- **The one structural finding (📣 GPT + all lanes, read §1):** the current 22-beat contract spends
+  "the first Ziptide" on the W000→W001 commute. The director's cut re-stages it: W000→W001 becomes
+  a SHIP FLIGHT (same PUNCH-IT rails, no gate FX), the ZIPTIDE gate is DISCOVERED in Toxic City —
+  woken by the player's own relay repair (the authored "relay reads WRONG" seed becomes the
+  inciting incident) — and the full built `ZiptideGateEffect` spectacle fires ONCE at the hour's
+  peak, carrying the player to W002 Dry Cistern for the cycle-in-miniature: rebuild (pump repair +
+  one BuildSocket extractor) → defend (one 90s wave) → grow (one garden seed — pays off NEXT
+  session) → collect first yield → return to a changed ship. Minute-by-minute map in §5.
+- **Deliberately conservative:** FH-S01…S07's code + signals survive untouched (beat 9 only
+  RENAMES); ~8 net-new beats all compose already-built systems (RepairableMachine, BuildSocket,
+  drone waves, GardenPlot, MiningRig hopper) — new pack data + RILL lines, no new mechanics.
+  §7 stages adoption: Stage 1 = device-prove the EXISTING contract at Saturday's checkpoint first;
+  Stage 2 = contract v2 (GPT's ledger + validators own the JSON change); the single garden plot
+  unhides from the recovery freeze only at Stage 2 with Terry's sign-off.
+- **Fun fixes folded in (§2–3):** toy-before-chore ordering in W001 (found taser + cans before the
+  job; zipline moved onto the route), the excellent-drone loop + weapon-feel Phase 1 + caption v2
+  land ON these beats, peak-end staging (gate wakes across the water; changed-ship ending).
+- **Open Terry questions in §9** (peak placement, kid-mode wave, payoff object) — none block Stage 1.
+- **Commits:** this push (docs only).
+
 ### 2026-07-17 (rb42) — Fable 5 → **📣 MESSAGE FOR GPT (firing range lane)** + Round-7 progression doc landed (planning only, zero code)
 
 - **📣 To GPT, from Terry (relayed):** Terry approves the firing-range plans. **Sequencing:** hold
