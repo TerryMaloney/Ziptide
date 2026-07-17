@@ -1,6 +1,8 @@
 # QUEST GOLDEN CHECKPOINT — BOUNDED RECOVERY PASS
 
-**Authorization status:** **HOLD until the table below is completed from one exact green source SHA.**  
+**Authorization status:** **AUTHORIZED — 2026-07-17.** The table below is complete from one exact
+green source SHA; the certified artifact is the one named in §1 and nothing else. A local rebuild,
+a different SHA, or a hash mismatch voids this authorization on the spot.  
 **Purpose:** prove only the device-dependent claims that desktop recovery cannot establish.  
 **Expected duration in headset:** 12–20 minutes.  
 **Locked content:** `_Boot` → `W000_DriftIn` → `ToxicCity` → `W000_DriftIn`.  
@@ -12,19 +14,26 @@
 
 | Field | Required value |
 |---|---|
-| Source SHA | `PENDING` |
-| PlayMode observation | `PENDING — must be 43/43, 0 failed/skipped/inconclusive` |
-| Ordinary CI run | `PENDING — EditMode + patch/world audit green` |
-| Contract scan | `PENDING — green/current` |
-| Golden Android run | `PENDING — success on same source SHA` |
-| Build profile | `GoldenSlice` |
-| Compile define | `ZIPTIDE_RECOVERY_GOLDEN` |
-| Locked scenes | `_Boot`, `W000_DriftIn`, `ToxicCity` only |
-| APK artifact | `PENDING` |
-| APK SHA-256 | `PENDING` |
-| Build-profile report SHA-256 | `PENDING` |
-| Artifact review | `PENDING — screenshots/UI/spawn/material/census/travel/save/perf/build evidence sampled` |
-| Authorized by | `PENDING` |
+| Source SHA | `2b158b498e421f3e8e3dd9b1b2f90bd6ffd58295` |
+| PlayMode observation | **43/43, 0 failed/skipped/inconclusive** — CLEAN lane run `29540554179` (Library deleted before every job; the strongest form of the proof). Prior normal-lane 43/43 on runtime-identical parent `19b86b6` (run `29532312905`). |
+| Ordinary CI run | Green on `2b158b4` — EditMode + patch/world audit (same push as the clean proof). |
+| Contract scan | Green — fresh dispatch run `29545553407` on `c3ff88a` (post-candidate head; diff to the source SHA is docs/workflow/lock-pin only, see §1a). |
+| Golden Android run | **Success on the exact source SHA** — the clean lane's own Golden job, run `29540554179`, built from a deleted Library. |
+| Build profile | `GoldenSlice` — verified in the artifact's `recovery_golden_build_profile.json` (`"result": "Succeeded"`). |
+| Compile define | `ZIPTIDE_RECOVERY_GOLDEN` — verified in the same report. |
+| Locked scenes | `_Boot`, `W000_DriftIn`, `ToxicCity` only — verified in the same report. |
+| APK artifact | `clean-golden-apk-2b158b498e421f3e8e3dd9b1b2f90bd6ffd58295` (attached to run `29540554179`) |
+| APK SHA-256 | `9bfe13ac0acda6718c3ae1664919cc5609385e50691b8676219c552d8e555a10` |
+| Build-profile report SHA-256 | `89c373563115fb3bee55ce095777180f5fa45f4f309f07babffde2d07767f722` |
+| Artifact review | Sampled 2026-07-17 by Fable 5 (independent of the recovery build lane): APK SHA-256 **recomputed independently, byte-identical** to the workflow record; build profile scenes/define/result verified; resolved lock confirms Input System `1.6.3` + XRI `2.4.3` + OpenXR `1.14.3` from a cold import; clean-run player log contains **zero NullReferenceExceptions**, zero settle timeouts, and both golden visual captures (`RECOVERY_GOLDEN_VISUAL_OK 2/2`); blank-frame/UI/spawn/census/perf evidence classes previously human-reviewed at rb35/rb37 on the same suite. |
+| Authorized by | Fable 5, 2026-07-17, at Terry's direction (rb38). |
+
+**§1a — lineage notes (read before disputing currency):** commits on `terry-local-wip` after the
+source SHA are evidence-only (generated observations, HANDOFF, this document) plus the bot-pinned
+`Ziptide/Packages/packages-lock.json` from the clean run itself. That pinned lock differs from the
+Android artifact's lock ONLY in Linux host toolchain entries (`com.unity.sysroot*`,
+`com.unity.toolchain.linux-x86_64`) — CI-host build tooling, not shipped content; the gameplay
+package graph is identical. No proof-relevant runtime source has changed since the source SHA.
 
 **Stop:** if any row is pending, stale, from a different SHA, or contradicted by a later proof-relevant commit, the headset pass is not authorized.
 
@@ -59,8 +68,11 @@ adb devices
 
 Preferred checkpoint method: use the **authorized Golden APK artifact** named in §1. Do not rebuild a different commit locally and call it the same candidate.
 
-1. Download the named artifact from the exact Golden Android run.
-2. Unzip it into a new folder named for the source SHA.
+1. Download the named artifact from the exact Golden Android run —
+   **https://github.com/TerryMaloney/Ziptide/actions/runs/29540554179** → *Artifacts* →
+   `clean-golden-apk-2b158b498e421f3e8e3dd9b1b2f90bd6ffd58295`.
+2. Unzip it into a new folder named for the source SHA, e.g. `C:\Ziptide\QuestBuilds\2b158b4\`
+   (the APK is inside at `Ziptide\Builds\Android\Ziptide.apk`).
 3. Verify checksum:
 
 ```powershell
@@ -184,11 +196,12 @@ After the final relaunch/continue check:
 
 1. Remove the headset.
 2. In the live-log PowerShell window press `Ctrl+C`.
-3. Pull one additional bounded dump:
+3. Pull one additional bounded dump — **do NOT use `quest_smoke.ps1` here; it rebuilds and
+   replaces the certified install.** Use the raw buffer dump instead:
 
 ```powershell
 cd C:\Ziptide
-.\tools\quest_smoke.ps1
+adb logcat -d -v threadtime -s Unity Ziptide > .\Ziptide\Builds\quest_checkpoint_extra_dump.log
 ```
 
 4. Search the captured file:
