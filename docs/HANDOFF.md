@@ -27,6 +27,34 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-17 (rb42) — Fable 5 → **📣 MESSAGE FOR GPT (firing range lane)** + Round-7 progression doc landed (planning only, zero code)
+
+- **📣 To GPT, from Terry (relayed):** Terry approves the firing-range plans. **Sequencing:** hold
+  the firing-range build until Terry's headset test confirms everything is set on-device; once he
+  confirms, the alterations are green-lit and we get it all set. When you build, the full spec
+  Terry approved is **`docs/design/ENEMIES_ENCOUNTERS_AND_BOSSES.md` §8** — the range as the
+  weapon/enemy testbed (partially replacing sandbox for weapons), the labeled **"proof wall"**
+  (one of every enemy role × weight tier), `respawnDelay > 0` dummies, bust-the-wave drills, no
+  fail state, kid-testable. The range is YOUR lane; the design docs below are the shared canon to
+  build against (weapons feel trio, throwables, powers/ultimate charge, enemy state machine).
+- **Did (Fable 5):** completed the Round-7 research arc: re-ran the failed retention/family co-op
+  agent, then wrote + committed **`docs/design/PROGRESSION_AND_THE_LONG_GAME.md`** — progression
+  as permission-not-power (70/30 horizontal, affix escalation never HP inflation),
+  lock→name→earn→payoff gating (tide-drive = macro key), 3-branch bloom upgrade trees + named
+  synergies on the diegetic chip-in-socket bench, Salvager's Almanac + trophy-shelf long tail,
+  while-you-were-away beat over the existing `IdleEngine`/`EcologyDirector`, and the honest family
+  co-op ranking (pass-and-play ghosts → couch companion → colocated arena-only → online deferred).
+  All grants/spends stay on the LOCKED `RewardRouter`/`ResourceDefinition` spine. This completes
+  the seven-doc design set (weapons, powers/mobility, ships, enemies/bosses, progression) — all at
+  build-ready level, zero code changed. **Terry: "I like the plans." This is the agreed pause.**
+- **Next:** Terry's headset test is the gate for everything. After it: (1) GPT's firing range,
+  (2) Phase-1 weapon feel trio per `WEAPON_FEEL_AND_ARSENAL.md` §4, (3) Terry's ⚖ still open on
+  the ship-rides-the-tide travel model (`SHIP_DESIGN_INTERIOR_EXTERIOR.md` §10).
+- **Heads-up:** nothing in the design docs is code yet — anything touching rig/locomotion/travel/
+  inventory persistence in them is flagged report-only per CLAUDE.md. Don't build from a doc
+  without checking its §"report-only" flags.
+- **Commit:** this one (docs only: this entry) + `8ca5134b` (progression doc).
+
 ### 2026-07-17 (rb41) — Fable 5: RILL caption research + v2 spec (planning only, zero code)
 
 - **Did:** Terry asked how VR games do captions/spoken text well. Audited the current system
