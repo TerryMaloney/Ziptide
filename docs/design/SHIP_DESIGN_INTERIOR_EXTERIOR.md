@@ -184,3 +184,50 @@ Every craft consumes salvage, so the world's scrap literally becomes your ship.
 4. **Grab-and-snap module install + one exterior↔interior pair** (e.g. the cargo slot: small nook ↔
    walkable hold) — proves the whole "makes sense" thesis in one vertical slice.
 5. Then the trophy shelf (salvage → decor) — the "home" hook.
+
+---
+
+## 10. TRAVEL & HOME MODEL — the ship + THE ZIPTIDE reconciled (proposed; needs Terry's blessing)
+**The question:** if the ship is HOME and travel is THE ZIPTIDE (Terry's "like Stargate" tide-gate
+between worlds), do they collide? Is there a homeworld we return to? Where does the ship go when we
+zip-tide? **The answer dissolves the collision:**
+
+### THE SHIP RIDES THE TIDE — home is not a place, it's your vessel.
+You don't zip-tide on foot and leave the ship behind — **you zip-tide BY riding your ship through the
+tide.** One act, not two systems. The ZIPTIDE is the ancient current between worlds; the ship is the
+vessel that catches it. The fly-out cinematic IS the ship cresting into the tide; arrival is it cresting
+out at the destination world's **berth**. Step off into the world → do the mission (disable/salvage/
+explore) → step back aboard → pick the next world → ride the tide onward. **Home travels with you, so
+there is no separate homeworld to return to** (which is exactly what would create a two-homes problem).
+
+### Why it's elegant
+- **"Ship is home" holds absolutely** — it's always with you.
+- **The name pays off twice** — the *Ziptide* is the tide you zip across, AND your ship rides it.
+- **1:1 fit with the LOCKED architecture** (no contract changes): the ship is the diegetic UI for
+  `TravelCoordinator.TravelTo`; `ZiptideGateEffect` already tints the tide by destination; the fly-out
+  is already the S2 plan; the ship is already "a mobile `WorldTravelStation`" (SHIPS.md).
+- **Decisive precedent:** Mass Effect (Normandy = home, Mass Relays = the network, the ship RIDES the
+  relays). Also Outer Wilds, No Man's Sky's summonable freighter, Serenity / the Cyclops.
+
+### The lore hook (ties travel to the salvage economy)
+The ship carries a **tide-caller / gate-key**; a `special`-slot **tide-drive** upgrade unlocks farther/
+faster tide-riding — so travel range is gated by the **salvage → craft → upgrade** loop and the existing
+`ShipDefinition.reachablePackIds`. RILL voices the tide as an old current only your ship can ride.
+
+### The loop, concretely
+aboard the ship at a world's berth → walk to cockpit → holo-map pick a destination → pull the launch
+lever → **ship crests into the tide (fly-out cinematic, tint = destination sky)** → arrive at the
+destination **berth** → disembark. The ship waits at the berth it crested into; a "return to ship /
+call ship" affordance brings you back. S4 free-flight (a real space scene) reads as **"riding the open
+tide"** when the story wants a hands-on flight beat — coexists with cinematic travel, no contradiction.
+
+### Rejected alternatives (on the record)
+- **Homeworld hub + ship-as-taxi** — recreates the two-homes collision; makes the ship "just a car,"
+  diluting the home warmth.
+- **On-foot tide, ship parked** — breaks "ship is home" (home stays behind); the ship becomes a place
+  you leave, not a companion.
+
+### Architecture note
+No new travel path (contract #1 intact). Additive only: a `berthLocalPos` per world where the ship
+crests in, a "call ship / return to berth" affordance, and the `special`-slot **tide-drive** as the
+range-gating upgrade. On-foot doors (if kept) are **intra-world** traversal, not the interstellar tide.
