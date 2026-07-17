@@ -27,6 +27,33 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-17 (rb38) — Fable 5: HEADSET CHECKPOINT AUTHORIZED — paperwork complete, Terry's session is ready
+
+- **At Terry's direction, the remaining authorization process is done:**
+  ① **Independent artifact sample of clean run `29540554179`:** downloaded the Golden artifact and
+  RECOMPUTED the APK SHA-256 myself — byte-identical to the workflow record
+  (`9bfe13ac0acda6718c3ae1664919cc5609385e50691b8676219c552d8e555a10`); verified the build profile
+  (GoldenSlice, `ZIPTIDE_RECOVERY_GOLDEN`, exactly `_Boot`/`W000_DriftIn`/`ToxicCity`, Succeeded);
+  verified the cold-import resolved lock (Input System `1.6.3`, XRI `2.4.3`, OpenXR `1.14.3`);
+  verified the clean player log: **zero NullReferenceExceptions**, zero settle timeouts, both golden
+  visual captures OK. ② **PR #48 un-drafted and merged** (`c3ff88a`) — the Quest checkpoint doc +
+  `docs/PROJECT_COMPLETION_ROADMAP.md` are on the branch. ③ **Authorization table FILLED** in
+  `docs/recovery/QUEST_GOLDEN_CHECKPOINT.md`: source SHA `2b158b4`, all run IDs, both hashes, the
+  §1a lineage note (post-candidate commits are evidence-only; the pinned lock differs from the
+  artifact lock ONLY in Linux host toolchain entries), authorized-by recorded. ④ **Fresh contract
+  scan dispatched and green** (run `29545553407`). ⑤ **TERRY_RUNBOOK §0 replaced** — one pointer to
+  the checkpoint doc; old stabilization §0 kept as history.
+- **Status: the headset pass is AUTHORIZED.** Terry installs the exact artifact from run
+  `29540554179` (hash-verified), runs the 12–20 minute route, captures the log. No local rebuilds;
+  `quest_smoke.ps1`/`dev_build_install.ps1` are forbidden for this pass.
+- **After the checkpoint (either outcome):** log + observations come back to whichever operator is
+  awake. PASS → recovery exits at an immutable checkpoint (tag the source SHA), normal development
+  resumes under `RECOVERY_VERIFICATION_SYSTEM.md`'s proof ladder, and the build queue starts from
+  the roadmap's vertical slice (hero ship + one weapon + one production loop; the factory work
+  stays gated per `docs/design/FACTORY_TOPTIER_PLAN.md` §0). FAIL → the blocker list in the
+  checkpoint doc routes the evidence; no fixes before diagnosis.
+- **Commit:** PR #48 merge `c3ff88a` · authorization fill + runbook + this entry (docs only).
+
 ### 2026-07-16 (rb37) — Fable 5: CLEAN PACKAGE PROOF GREEN — the last automated gate is cleared
 
 - **Diagnosis:** the clean lane's only failure (run `29532312901` on `19b86b6`) was NOT the game,

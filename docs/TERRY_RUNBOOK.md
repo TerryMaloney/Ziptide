@@ -20,7 +20,18 @@ the device pass.
 > checklist. Terry clears this whole file in one sitting. (Last consolidated: 2026-07-09 — combat A3,
 > flight v1.1, worlds.)
 
-## 0. ⛑ STABILIZATION PHASE 1 — the ONLY device pass that matters right now (2026-07-14, Fable 5)
+## 0. 🎯 THE AUTHORIZED QUEST CHECKPOINT — your one device task (2026-07-17, supersedes the old §0)
+
+Everything below in old §0 is superseded. Your next headset session is fully specified in ONE
+document: **`docs/recovery/QUEST_GOLDEN_CHECKPOINT.md`** — authorization table FILLED (source SHA
+`2b158b4`, APK SHA-256 verified independently), download link, install commands, the 12–20 minute
+in-headset route, blockers, and the final log scan. Two rules that override everything else:
+**install only the downloaded artifact (its hash must match §1)** and **do NOT run
+`quest_smoke.ps1` or `dev_build_install.ps1` for this pass** — they rebuild locally and replace the
+certified build. If the checkpoint passes, recovery exits and normal building resumes under the
+proof ladder in `docs/recovery/RECOVERY_VERIFICATION_SYSTEM.md`.
+
+## 0-old. ⛑ STABILIZATION PHASE 1 — superseded by the checkpoint above (kept for history)
 
 Per `docs/DEVICE_STABILIZATION_FORENSIC_PLAN.md` (rb25/rb26): multiplayer is paused and Phase 2
 (weapon poses etc.) does not start until this checklist passes. Build + install the new APK, then:
