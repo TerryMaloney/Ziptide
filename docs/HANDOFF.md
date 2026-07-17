@@ -27,6 +27,29 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-17 (rb41) — Fable 5: RILL caption research + v2 spec (planning only, zero code)
+
+- **Did:** Terry asked how VR games do captions/spoken text well. Audited the current system
+  (`RillCompanion.cs` + `SubtitleText.cs`: hard head-lock, ~24° below gaze, raw pale-cyan TextMesh
+  with no plate, unlimited line count, default Arial) and researched the field (BBC R&D VR subtitle
+  studies, Owlchemy's Cosmonious High caption system, Game Accessibility Guidelines / Xbox / Ian
+  Hamilton standards, Meta legibility guidance). Wrote **`docs/design/RILL_CAPTION_RESEARCH.md`**:
+  findings + a concrete v2 spec — lazy-follow head anchor (0.25–0.35 s settle) at 12–15° below eye
+  line and 1.3–1.6 m (Quest focal plane), dark ~65% plate + near-white semibold humanist sans
+  (real imported font, TextMesh convention kept — no TMP), RILL state-color NAME TAG instead of
+  tinted body text, ≤2-line chunked cards at 38 chars, per-word reveal now / whole-card when VO
+  lands (⚖ Terry), overlay queue so captions never clip or vanish in the gate flash, directional
+  chevron to RILL when she's off-view, and a PlayMode contrast/line-count/angle audit so caption
+  regressions fail CI.
+- **Next:** nothing runtime (freeze). The spec is a ~3-commit envelope proposed for the early
+  post-recovery quality slice; FORGE IV CP-9 inherits it as its caption section. Terry decisions
+  flagged ⚖: typewriter fate, plate opacity options.
+- **Heads-up:** the current caption color (0.75,0.92,1) is nearly the Crest flash color
+  (0.85,0.98,1) and close to our sky/water families — worst-case invisibility is REAL on the
+  golden route; the plate + near-white body fixes it. Line WRITING quality is the story lane,
+  not this doc.
+- **Commit:** this one (docs only: research doc + this entry).
+
 ### 2026-07-17 (rb40) — Fable 5: Forge V/VI/VII FLESHED OUT — each horizon generation now has its plan of record (planning only, zero code)
 
 - **Did:** at Terry's direction ("flesh them out a bit more — just planning, no code"), expanded
