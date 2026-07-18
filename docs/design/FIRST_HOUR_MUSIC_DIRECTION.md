@@ -72,6 +72,36 @@ percussion hits" → "almost no percussion"; add "distant / faint / half-remembe
 "score" → "background score, understated"; replace "suffocating tension" with the world's own
 adjective; keep the tide sounds ALWAYS (they are the game's name in audio).
 
+## §1a-B — THE SECOND CANONICAL PROMPT: THE SOAR STRAND (Terry's, 2026-07-18)
+
+Terry's second prompt — his description: a fusion of the **Oblivion** (M83) and **Prospect**
+soundtracks. Recorded verbatim as **Genome B**:
+
+> *"Epic cinematic sci-fi fusion score. Bright, crystallized synth arpeggios and soaring
+> M83-style electronic swells blending with an ominous, low-pulsing sub-bass. Ethereal,
+> wordless youthful choir chants and haunting, airy vocals floating over wide, dramatic
+> orchestral strings. Sweeping French horn crescendos contrast with metallic, tubular textures
+> and buzzing alien forest ambiance. A transition from intimate, suffocating wilderness tension
+> to vast, lonely, post-apocalyptic grandeur. Pounding cinematic percussion hits and deep
+> electronic drums. Beautiful, melancholic, soaring, and dangerous."*
+
+**How A and B relate (this is the score's whole architecture now):**
+- **Genome A** (§1a) = the INTIMATE strand — ground-level, moody, the wilderness pressing in.
+- **Genome B** = the SOAR strand — airborne, vast, the world seen from above.
+- **Shared DNA (deliberate, in both prompts):** wordless youthful choir · pulsing sub-bass ·
+  metallic tubular textures · wilderness tension · beautiful-and-dangerous. The shared thread
+  means A and B takes will sound like ONE score in two moods — the kinship dial applies to
+  BOTH strands.
+- **Note "M83-style" may trip Suno's artist-name filter** — if a generation refuses or drifts,
+  substitute "soaring anthemic electronic swells, shimmering analog synth walls."
+
+**Assignment map (which strand scores what):**
+| Strand | Scores |
+|---|---|
+| **A — intimate** | title/menu (the berth is quiet) · world beds · gate-wake build · tension/interior moments |
+| **B — soar** | `flight_punchit` (B-derived, not A) · **`ziptide_crossing`** (the A theme stated in B's clothes — the intimate melody goes airborne at the peak: that IS the first-crossing feeling) · space/vista worlds and the ship-flight layer · late-game "vast lonely grandeur" (scarred states, Earth-approach corridor) · the trailer |
+| **A×B blend** | chapter capstones; the endgame — the two strands finally play at once (and if the partner's voice ever gets a musical identity, it's strand B to Cal's A) |
+
 ## §1b — THE KINSHIP DIAL (Terry's design, 2026-07-18: the title theme runs through the game at four volumes)
 
 | Tier | Who gets it | Prompt recipe |
