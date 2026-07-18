@@ -102,6 +102,35 @@ soundtracks. Recorded verbatim as **Genome B**:
 | **B — soar** | `flight_punchit` (B-derived, not A) · **`ziptide_crossing`** (the A theme stated in B's clothes — the intimate melody goes airborne at the peak: that IS the first-crossing feeling) · space/vista worlds and the ship-flight layer · late-game "vast lonely grandeur" (scarred states, Earth-approach corridor) · the trailer |
 | **A×B blend** | chapter capstones; the endgame — the two strands finally play at once (and if the partner's voice ever gets a musical identity, it's strand B to Cal's A) |
 
+## §1a-C — THE SEPARATION CLAUSE (Terry's, 2026-07-18 — a mix technique, not a third theme)
+
+Terry's cleaned-up prompt solving the "music runs into itself" problem via explicit
+foreground/midground/background staging. Verbatim:
+
+> *"Cinematic sci-fi score with clean instrument separation. Foreground features a soaring,
+> melancholic melody led by bright, crystallized synth arpeggios and airy, wordless choral
+> chants. Midground is held by a sweeping, cinematic orchestra of clean strings and dramatic
+> French horn swells. Background layers provide deep, steady electronic sub-bass and subtle,
+> sparse metallic ambient textures. No clutter, minimal elements, spacious and wide
+> soundstage. Emotional, beautiful, lonely, and epic."*
+
+**How to use it:** this is an OVERLAY, appendable to any A- or B-strand prompt. The load-
+bearing phrases are the staging skeleton + the closer — reuse them verbatim:
+`"clean instrument separation… Foreground [the cue's lead] … Midground [the cue's body] …
+Background [sub-bass + sparse metallic textures]. No clutter, minimal elements, spacious and
+wide soundstage."`
+For quiet beds (K1/K2), the same skeleton with humbler occupants: foreground = almost nothing
+or the faint choir thread; midground = drones; background unchanged. The EMPTIER the
+foreground, the better a bed behaves under gameplay.
+
+**Two happy alignments worth knowing:**
+- The staging maps 1:1 onto the future stem architecture (`ADAPTIVE_AUDIO.md`): foreground ≈
+  the melodic/ancient stems, midground ≈ orchestral body, background ≈ the sub-drone stem —
+  cues generated with this clause will SPLIT better when stems matter.
+- It is the music wearing the game's own five-layer depth law (FORGE IV's near/mid/far world
+  equation): the score now composes space the same way the vistas do. One aesthetic, every
+  sense.
+
 ## §1b — THE KINSHIP DIAL (Terry's design, 2026-07-18: the title theme runs through the game at four volumes)
 
 | Tier | Who gets it | Prompt recipe |
