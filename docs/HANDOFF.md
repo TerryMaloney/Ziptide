@@ -27,6 +27,33 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-18 (rb48) — Fable 5: GAP AUDIT — what a really good game still needs (planning only, zero code)
+
+- **Did:** Terry asked what aspects of a really good game we've glanced over. Swept
+  EXCELLENCE_MAP's ~35 rows + all ~45 design docs + systems + art plan + META_STORE_READINESS
+  against a shipped family VR game's needs. Verified NOT gaps (already owned): store cert incl.
+  entitlement/keystore/doff, combat health/death economy, haptics, comfort/settings, onboarding,
+  difficulty/kid mode, achievements. Wrote **`docs/design/GAP_AUDIT_JULY2026.md`** — six real
+  gaps, ranked: ① **SFX Forge** (music/ambience planned, but impact/foley SFX has NO system;
+  pairs 1:1 with the damage response matrix's material classes — biggest feel-per-effort win);
+  ② **localization DECISION** (every string is a C# literal; the author files are accidentally
+  our string table — decide languages now, one page, avoid the worst retrofit in games);
+  ③ **family profiles** (ONE save Profile today; siblings sharing a Quest overwrite each other —
+  diegetic bunk-tag slots + per-slot comfort + slot-scoped once-latches); ④ **cross-world
+  wayfinding** (per-world routes exist; the 80-world "where was I?" layer doesn't — diegetic
+  ship contract ledger over existing flags + RILL FollowUps); ⑤ **playtest protocol +
+  local-only telemetry** (kid-session one-pager + on-device session summary from existing
+  ZIPTIDE logs, nothing transmitted, COPPA-clean); ⑥ **the resume moment** (doff/resume works
+  technically but is mute — RILL re-orients from saved state in one line). Small folds:
+  photosensitivity row (gate flash!), CP-7 thermal input, CREDITS.md ledger, minimap explicitly
+  rejected (ledger+cairns+RILL is the diegetic answer).
+- **Next:** Terry blesses/edits the list; the localization one-pager and playtest protocol are
+  paper-draftable during the freeze; SFX Forge doc is the natural next research+plan pass.
+- **Heads-up:** GAP 4 (profiles) needs a save-lane claim before any design hardens; GAP 2's
+  audio contact-sheet idea needs CI feasibility (audio capture in batchmode) checked before
+  it's promised as a gate.
+- **Commit:** this one (docs only: audit doc + this entry).
+
 ### 2026-07-18 (rb47) — Fable 5: Cal voice & barks candidate set (writing pass, zero code)
 
 - **Did:** Terry commissioned Cal's protagonist voice — movie-level entry lines + rare outbursts
