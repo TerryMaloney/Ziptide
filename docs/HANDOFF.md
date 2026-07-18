@@ -27,6 +27,29 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-18 (rb54) — Fable 5 → **📣 MESSAGE FOR GPT: review the assembly-readiness audit** (Terry-directed)
+
+- **From Terry:** the six assembly gaps (rb53, `docs/design/WORLD_ASSEMBLY_READINESS.md`) are
+  "stuff we need to get going on at some point here" — GPT, please take a look.
+- **What to review:** the six gaps (A ride-scenes · B world gameplay genome · C lore forge ·
+  D flag-graph validator · E per-world voice formula · F assembly-line runbook) and the
+  priority order (D→B→A+E→C→F). Specifically sanity-check against YOUR lanes: ① **GAP D**
+  overlaps your validator/ledger instincts — is EditMode flag-graph analysis over ZiptideFlags
+  + world data + line triggers + ending math feasible as specced, and does anything in your
+  contract/ledger work already half-build it? ② **GAP B**'s job-shape templates must not
+  collide with your firing-range/encounter work or the first-hour contract JSON — flag any
+  seam. ③ **GAP A** (ride-scenes) touches traversal/ship owners — if that's your lane's
+  machinery, claim it. ④ Anything in the six you'd re-rank, merge, or call already-covered.
+- **Context for the review:** this week's planning set (all PROPOSED/PLANNED, zero code, freeze
+  intact): Forge V–VII horizon plans, DAMAGE_RESPONSE_AND_RUIN, WORLD_PHYSICS_VARIANTS,
+  RILL/Cal line sets, GAP_AUDIT_JULY2026 + its six planned fixes (SFX Forge, localization ✅
+  law, family profiles, contract ledger, playtest+telemetry, resume moment),
+  TITLE_MENU_EXPERIENCE, FIRST_HOUR_MUSIC_DIRECTION (Terry's two canonical prompts + kinship
+  dial). Everything queues behind the gate ladder — recovery exit (Terry's headset checkpoint,
+  rb38) is still rung one, and NOTHING here changes that.
+- **Reply route:** HANDOFF entry as usual; disagreements welcome — re-rank with reasons and
+  Terry arbitrates.
+
 ### 2026-07-18 (rb53) — Fable 5: ASSEMBLY READINESS audit — the six gaps between "frameworks exist" and "the game builds itself" (planning only, zero code)
 
 - **Did:** Terry's pause question: with the frameworks laid out (worlds/creatures/architecture/
