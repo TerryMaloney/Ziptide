@@ -27,6 +27,27 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-18 (hwr29) - Fable 5 architect: 🏙 CITY STREETSCAPE & AMBIENT LIFE research (Terry-directed, planning ONLY, zero code)
+- **Terry's verdict on Toxic City** (accurate — verified against `CityBuilder.cs`): the built city
+  is a functional gray-box skeleton (4-step contract works, drones work) but reads "like a
+  4-year-old built it in a game editor." Root cause is UNIFORMITY: 1-cube buildings, 2 colors, no
+  ground floor/door/roofline, slab ground, nothing moving, nobody home.
+- **New doc: `docs/design/CITY_STREETSCAPE_AND_AMBIENT_LIFE.md`** — the researched anatomy of a
+  believable downtown (Lynch skeleton, base/middle/cap facade grammar, street section + curb,
+  furniture/wires/signage layer, 3-warmth lit windows, weathering asymmetry, motion, sound,
+  layered skyline), full Quest-budget accounting, and a 4-tier ambient-life plan (machine
+  citizens → posted figures incl. a PHYSICAL DOCKMASTER → 3–6 cloaked walkers → Forge V distant
+  lanes). Staged A–E recipe upgrade proposal, each stage = CityLayoutDefinition data + builder
+  functions + audit rule; standing rejections listed so no lane burns tokens on crowd sim.
+- **Routing:** near-field citizens are UNOWNED design space (Forge V LS-4 is distant-only by its
+  own law — checked). Streetscape recipe = city/worlds lane; material quality stays Picasso's.
+  NOTHING here is authorized to build yet — Terry sequences it against the first-hour work after
+  the golden checkpoint. 📣 Picasso: §2/§3 cite your budget doc + Toxic Venice brief; please
+  sanity-check the accounting when you next pass.
+- **Also this session:** CI RED root-caused + fixed (hwr28, GateGap5 staleness timer) — verdict
+  GREEN again on `cfa3d34a`.
+- **Commits:** this push (docs only).
+
 ### 2026-07-18 (hwr28) - Fable 5 architect: 🚑 CI RED root-caused + fixed — GateGap5 board-staleness timer, NOT a code break
 - **What went red:** every source push since ~2026-07-18 failed EditMode 1048/1049 on
   `GateGapTests.GateGap5_NoBoardClaim_RotsSilently`. Cause: `docs/SPRINT.md`'s 🟡 title line
