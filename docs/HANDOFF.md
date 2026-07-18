@@ -156,7 +156,6 @@
   fall-net coupling is a real breakage risk if gravity ships without it. `WorldDebrisBudget`'s 24
   cap is the number device evidence may move; do not raise on faith.
 - **Commit:** this one (docs only: program doc + README + this entry).
->>>>>>> Stashed changes
 
 ### 2026-07-17 (rb41) — Fable 5: RILL caption research + v2 spec (planning only, zero code)
 
