@@ -8,17 +8,32 @@ Companions: `ADAPTIVE_AUDIO.md` (the stem architecture this feeds later), `SFX_F
 
 ---
 
-## ⚠️ §0 — THE LICENSE LAW (read before generating anything you love)
+## ⚠️ §0 — THE LICENSE LAW (updated 2026-07-18 after the commercial-options check)
 
-- **Suno free tier is NON-COMMERCIAL.** Free-tier tracks cannot ship in a store game, ever —
-  and the rights attach at CREATION time: upgrading later does NOT retroactively license tracks
-  made on free tier.
-- **The plan that respects this:** use free tier to FIND the sound — styles, tempos, the motif,
-  which prompts work. Keep a keeper list. When the freeze lifts and audio wiring lands, buy
-  **one Pro month** and regenerate/finalize the keepers under the paid license (verify Suno's
-  current commercial terms that day — terms drift).
-- Every shipped track gets a `CREDITS.md` line (the licensing ledger law): tool, plan at
-  generation, date, prompt kept on file.
+- **Suno free tier is NON-COMMERCIAL,** and rights attach at CREATION time (subscribing later
+  does NOT retroactively license free-tier tracks). Free-tier output never ships. Terry
+  dropped the free-tier plan accordingly.
+- **The commercial answer (checked 2026-07-18): Suno Pro, $10/month ($8 annual),** grants
+  commercial rights to tracks generated WHILE subscribed — explicitly including games sold on
+  stores — with 2,500 credits/month (≈500 generations: the entire first hour many times over,
+  realistically the whole game's exploration phase in 1–2 months). Premier ($30) adds volume +
+  studio tools, NOT better rights — Pro is enough. **Recommendation: skip the free tier
+  entirely; run ONE Pro month and generate everything in it.** Re-verify the live terms on
+  subscribe day (terms drift).
+- **Alternatives, ranked, if Suno disappoints:** AIVA Pro (cinematic/game scoring specialist,
+  full copyright on Pro — strongest fit for orchestral awe cues); Stable Audio (licensed
+  training dataset — cleanest provenance story if that ever matters at store review); Udio
+  (downloads currently disabled while it rebuilds as a licensed platform — OUT for now);
+  curated CC0/paid music packs (OpenGameArt, itch.io, Unity Asset Store perpetual game
+  licenses) as the zero-AI fallback.
+- **Copyright nuance, so it never surprises us:** pure-AI output currently lacks copyright
+  protection in the US — the paid license lets US ship it, but we can't stop others from using
+  identical output. Fine for a game score; just don't build the brand's ONE signature motif on
+  something unprotectable without knowing that — if the Tide motif becomes precious, a human
+  re-records/arranges it later (a derivative human work IS protectable) — future option, not
+  a blocker.
+- Every shipped track gets a `CREDITS.md` line: tool, plan at generation, date, prompt on file
+  in `music/PROMPTS_LOG.md`.
 
 ## §1 — What Ziptide should SOUND like (the direction)
 
