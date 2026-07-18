@@ -27,7 +27,37 @@
 
 ## ENTRIES — newest first
 
-<<<<<<< Updated upstream
+### 2026-07-18 (rb45) — Fable 5: WORLD PHYSICS VARIANTS researched + planned (planning only, zero code)
+
+- **Did:** Terry commissioned the gravity aspect grown into full per-world physics variants
+  ("higher gravity, move slower, shots drop… other physics/weather aspects, story-anchored, not
+  overused"). Audit: 16 hazard tags already CODE (`SkyAtmosphereCore`), `LocomotionProfile` is SO
+  data (speed multiplier is one field), darts/nets are real-gravity rigidbodies (drop nearly
+  free), `PvpBolt` integrates manually (needs the shared params), traversal cores already take g
+  as a parameter, `Physics.gravity` unclaimed. Research: Outer Wilds (one readable rule per world
+  = identity), Lone Echo/Echo VR + Space Junkies (VR tolerates different physics, punishes
+  imposed acceleration), comfort literature (world-level at load boundaries only), game-feel
+  (a dial without its tells reads floaty/buggy). Wrote **`docs/design/WORLD_PHYSICS_VARIANTS.md`**:
+  closed 6-dial vocabulary (gravityScale 0.3–1.5 · airDensity · windVector · moveScale 0.8–1.15 ·
+  buoyantMedium · story-gated object-only anomalies static_surge/mag_lift/tide_pull), rejected
+  list (whole-world zero-g→horizon, time dilation, mid-scene changes, inverted gravity), comfort
+  constitution (travel-apply only; velocities not accelerations; head untouched; fall net derives
+  from g; deviation announced by RILL; PvP pinned baseline; clamp-edge headset verdicts), rarity
+  law (≤1 strong deviation/chapter + PHYSICS_DIAL_OVERUSE audit), ⚖ story-bible mapping proposals
+  (W000 0.6 g · W003 thin air · W006 wind · W010 tide_pull · W011 static_surge · a Ch.3+ 1.25 g
+  heavy world), envelopes WP-1..WP-6 with cross-lane claims, physics-alley trajectory contact
+  sheets. DAMAGE doc's DR-6 section now points here (WP-2 executes it).
+- **Next:** nothing runtime (freeze + ladder). Paper-draftable early: WP-1 schema + the world
+  mapping (needs story-lane + Terry sign-off on which worlds deviate).
+- **Heads-up:** ① the fall-net-derives-from-gravity coupling is promoted to LAW (§4.4) — if
+  gravity ever ships without it the boot/fall contract misfires at low g; ship flight is out of
+  scope but holds an entry/exit non-interference claim. ② **Bookkeeping fix:** my previous entry
+  pushed with unresolved stash-conflict markers in this file (commit `06ed50a`) — resolved here;
+  and TWO lanes both minted "rb42" the same day, so my DAMAGE entry below is relabeled **rb44**
+  (its commit message still says rb42). Lanes: consider prefixing entry ids per session to avoid
+  collisions.
+- **Commit:** this one (docs only: variants doc + DR-6 pointer + conflict fix + this entry).
+
 ### 2026-07-18 (hwr27) - Fable 5 architect: 🎬 Director's Cut v2.1 — "THE KEY THAT KNEW YOU" + VEX BOOTSTRAPPER (Terry-directed, planning ONLY, zero code)
 - **Terry's new story (now the spine of `docs/design/FIRST_HOUR_DIRECTORS_CUT.md` v2.1):** a space
   salvage sortie finds HALF an artifact ("that's not supposed to be — anywhere"); the Toxic City
@@ -99,8 +129,8 @@
   inventory persistence in them is flagged report-only per CLAUDE.md. Don't build from a doc
   without checking its §"report-only" flags.
 - **Commit:** this one (docs only: this entry) + `8ca5134b` (progression doc).
-=======
-### 2026-07-17 (rb42) — Fable 5: DAMAGE, RESPONSE & RUIN researched + planned (planning only, zero code)
+
+### 2026-07-17 (rb44, committed as "rb42" in `06ed50a`) — Fable 5: DAMAGE, RESPONSE & RUIN researched + planned (planning only, zero code)
 
 - **Did:** Terry commissioned the damage/destruction/movable/recovery aspect ("gravity gun blasts
   rocks → they fly; blast a building → maybe a cracked window; low-g worlds tie into physics and

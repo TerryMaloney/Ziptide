@@ -125,6 +125,11 @@ Rules that make it feel RIGHT (Terry's examples, encoded):
 
 ## §6 — Per-world gravity (NEW seam — cross-lane, Terry-level feature decision)
 
+> **2026-07-17 update:** this section is now owned by **`docs/design/WORLD_PHYSICS_VARIANTS.md`**
+> (Terry commissioned the full physics-dial program the same day) — gravity became one dial of a
+> closed vocabulary (gravity, air density, wind, move scale, buoyant medium, anomalies). DR-6
+> executes there as envelope WP-2. The couplings below remain the checklist.
+
 - **Data:** `WorldProfile.gravityScale` (clamp 0.3–1.5; default 1.0). Applied ONCE per arrival by
   the travel seam (the only legal writer of `Physics.gravity` — audited), restored by the same
   seam. Never touched mid-scene.
