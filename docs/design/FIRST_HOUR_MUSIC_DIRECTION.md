@@ -32,6 +32,16 @@ Companions: `ADAPTIVE_AUDIO.md` (the stem architecture this feeds later), `SFX_F
   something unprotectable without knowing that — if the Tide motif becomes precious, a human
   re-records/arranges it later (a derivative human work IS protectable) — future option, not
   a blocker.
+- **The remix question (ruled 2026-07-18):** Terry generated a strong free-tier candidate for
+  the title theme (Prospect × Halo × BR2049 — on-target for the tidal-ambient brief). Suno's
+  help docs: rights attach at the ORIGINAL song's creation time, no retroactive licensing "by
+  default," and Pro-era Cover/Extend/Remaster of a free-tier song is NOT clearly granted
+  commercial rights — treat the remix path as unsafe. Safe paths, in order: ① ask Suno support
+  in writing for retroactive rights on that specific track (the "by default" wording implies
+  exceptions exist; a written yes + track URL = bulletproof); ② subscribe to Pro FIRST, then
+  regenerate with the same prompt until a take lands beside it — the Pro keeper becomes
+  canonical, the free track stays as the A/B reference (legal as reference). Terry: save the
+  exact prompt + track link NOW as keeper-log entry #1.
 - Every shipped track gets a `CREDITS.md` line: tool, plan at generation, date, prompt on file
   in `music/PROMPTS_LOG.md`.
 
