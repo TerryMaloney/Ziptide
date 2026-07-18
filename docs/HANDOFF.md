@@ -27,6 +27,33 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-18 (rb51) — Fable 5: first-hour music direction + Suno cue sheet (planning only, zero code)
+
+- **Did:** Terry has Suno free tier and asked what music to go for in the first hour. Wrote
+  **`docs/design/FIRST_HOUR_MUSIC_DIRECTION.md`**: ⚠️ THE LICENSE LAW up top (free tier =
+  non-commercial, rights attach at creation time — free-tier keepers CANNOT ship; plan = find
+  the sound free, regenerate keepers in one paid Pro month at wiring time, verify terms that
+  day, CREDITS.md lines per track); the direction — **"tidal ambient"** (water + salvage metal
+  as instruments: deep pads/sub-drone foundation, processed water + hull-resonance textures,
+  celesta motif voice, distant wordless choir RESERVED for ancient/awe, percussion only in
+  combat; wonder-first/kid-safe per tone charter; family coherence via ~76 BPM + D minor in
+  every prompt — matches ADAPTIVE_AUDIO's phase-aligned-stem future); **THE TIDE MOTIF** (one
+  hummable 5–7 note phrase; generate the title theme FIRST in bulk, the keeper take DEFINES the
+  motif; reprise by description or wave-editor reuse); a **9-cue sheet** mapped to the
+  Director's Cut minute map (title_berth · w000_wake · flight_punchit · w001_toxiccity_bed ·
+  w001_gate_wake build · ziptide_crossing stinger [the hour's peak] · w002_cistern_bed ·
+  w002_defend [same BPM as bed 7 for stem alignment] · return_changed_ship motif reprise) with
+  paste-ready Suno prompts per cue; workflow (≥4 takes/cue keep 1; keeper tests; Audacity loop
+  trims; `firsthour_<cueid>_vX.wav` naming + PROMPTS_LOG.md; beds drop into EXISTING
+  AudioProfile slots with no new code, stingers wait for TM/SFX hooks; beds stay low per the
+  silence-is-authored law).
+- **Next:** Terry generates at his pace (free-tier arithmetic in-doc: ~1 cue/day comfortable;
+  title theme deserves 2–3 days of takes). Post-freeze: cues 2/4/7 wire into AudioProfiles
+  immediately; cue 1 = TM-1.
+- **Heads-up:** do NOT let any free-tier take reach a store build — the regeneration step is
+  load-bearing, not bureaucratic.
+- **Commit:** this one (docs only: music direction doc + this entry).
+
 ### 2026-07-18 (rb50) — Fable 5: TITLE MENU researched + planned ("the berth before dawn") + gap-audit sign-offs recorded (planning only, zero code)
 
 - **Did:** ① Recorded Terry's sign-offs in-doc: LOCALIZATION_DECISION → ✅ APPROVED (law);
