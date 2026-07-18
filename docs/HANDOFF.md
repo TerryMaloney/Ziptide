@@ -27,6 +27,26 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-18 (hwr27) - Fable 5 architect: 🎬 Director's Cut v2.1 — "THE KEY THAT KNEW YOU" + VEX BOOTSTRAPPER (Terry-directed, planning ONLY, zero code)
+- **Terry's new story (now the spine of `docs/design/FIRST_HOUR_DIRECTORS_CUT.md` v2.1):** a space
+  salvage sortie finds HALF an artifact ("that's not supposed to be — anywhere"); the Toxic City
+  contract's payment includes the OTHER half; joining them lights a beacon-thread across the sky
+  that leads **back to your own berth** — "the artifacts knew who you were"; the joined key seats
+  in the ship's gate coupler and BOOM — the first Ziptide fires from YOUR ship to W002. §2 has the
+  full beat + dialogue direction; §5 the new minute-by-minute; §6 the reconciliation (~11 net-new
+  beats, FH-S01…S07 signals survive, beat 9 renames to FH_FIRST_FLIGHT).
+- **NEW §2b — the quest-giver (Terry-directed):** *Vex Bootstrapper* — computer-code name per
+  Terry ("Mr/Colonel Bootstrapper… maybe Vextor"); the universe's command-prompt-made-flesh who
+  boots Cal's journey. **Unseen in hour one** — just two contracts signed `>_ V. BOOTSTRAPPER`
+  (salvage job + Dockmaster work order), and RILL's noticing beat after the join: "Two contracts.
+  Two halves. One signer." Alternates on file: Colonel Bootstrapper, Old Man Init.
+- **📣 Story lane:** Vex + the artifact-key canon need STORY_BIBLE/TRANSMISSION canonization with
+  Terry's sign-off — the doc marks what is recommendation vs canon. **📣 GPT/all lanes:** §8 keeps
+  every new beat data-only (contract JSON + pack data + RILL lines; flags ARTIFACT_HALF_A/B,
+  ARTIFACT_JOINED, KEY_SEATED) so direction changes stay cheap; §7 staging unchanged — Stage 1 is
+  still device-proving the EXISTING 22-beat contract at Saturday's checkpoint. No code anywhere.
+- **Commits:** this push (docs only).
+
 ### 2026-07-17 (hwr26) - Fable 5 architect: 🎬 THE FIRST HOUR — DIRECTOR'S CUT (Terry-directed, planning ONLY, zero code)
 - **Terry's directive:** dial in the first hour — "through Toxic City having fun → our first
   Ziptide → our first world → rebuild and defend and grow and understand the whole cycle + the
