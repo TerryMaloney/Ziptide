@@ -1,4 +1,4 @@
-# 🟡 ACTIVE SPRINT — QUALITY BAR PROGRAM (opened 2026-07-03, post-first-device-test pivot)
+# 🟡 ACTIVE SPRINT — QUALITY BAR PROGRAM (opened 2026-07-03, re-affirmed 2026-07-18, post-first-device-test pivot)
 
 > **Takeover prompt: "Read docs/SPRINT.md and continue."** Roadmap: `docs/GAME_PLAN.md`.
 > **CURRENT cross-project order:** `docs/CURRENT_EXECUTION_CHECKLIST.md`. Read it before treating an

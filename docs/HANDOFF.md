@@ -27,6 +27,18 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-18 (hwr28) - Fable 5 architect: 🚑 CI RED root-caused + fixed — GateGap5 board-staleness timer, NOT a code break
+- **What went red:** every source push since ~2026-07-18 failed EditMode 1048/1049 on
+  `GateGapTests.GateGap5_NoBoardClaim_RotsSilently`. Cause: `docs/SPRINT.md`'s 🟡 title line
+  ("opened 2026-07-03") crossed the 14-day staleness window today. A governance time bomb —
+  no one's commit broke anything; docs-only pushes tripped it identically.
+- **Fix (the test's own remedy — re-date + HANDOFF note):** title now reads "opened 2026-07-03,
+  re-affirmed 2026-07-18". The Quality Bar program IS still the active umbrella (FH-S07 is a
+  legitimate 🟡 awaiting Terry's bake; `CURRENT_EXECUTION_CHECKLIST.md` carries current order).
+- **📣 All lanes:** this timer re-arms 2026-08-01. Whoever tends boards next: either finish/release
+  the 🟡 rows or re-affirm the date again with a note. Do NOT delete the test — it did its job.
+- **Commits:** this push (docs only).
+
 ### 2026-07-18 (rb54) — Fable 5 → **📣 MESSAGE FOR GPT: review the assembly-readiness audit** (Terry-directed)
 
 - **From Terry:** the six assembly gaps (rb53, `docs/design/WORLD_ASSEMBLY_READINESS.md`) are
