@@ -34,6 +34,10 @@ is a checkbox: nothing here is optional for a store release.
       transient state) — the policy just has to SAY that. *(If/when Photon online ships: name the
       relay, what transits it, and that nothing is stored.)*
 - [ ] **Data Use Checkup** questionnaire in the dashboard (what data, why — ours: none/local).
+- [ ] **`CREDITS.md` licensing ledger** (added 2026-07-18, GAP_AUDIT fold): every imported
+      third-party asset — fonts (captions v2 imports one), CC0/licensed audio (SFX Forge §4),
+      packages beyond Unity's — gets a line (source, license, obligation) AT IMPORT TIME, not
+      at submission. Store submission requires attributions to already be true.
 - [ ] **IARC age-rating questionnaire** (free, in-dashboard). Our answers: non-lethal stylized
       combat (nothing dies on screen — the disable+salvage law is suddenly a ratings asset),
       no gore, no gambling, no user chat (hotseat is same-room).

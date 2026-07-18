@@ -91,6 +91,13 @@ players (45° snap, max vignette, no rolls, slower ziplines, no slide). Intense 
 turn, full-speed flight) exist ONLY behind Bold. If review pushes back, the one-line fallback is:
 make Cozy the install default (a one-value change, pinned by the resolve test).
 
+## Photosensitivity review (added 2026-07-18, GAP_AUDIT fold)
+Full-view luminance spikes get a review row before ship: the gate flash (`ZiptideGateEffect`
+crest shell) is the known case — bound its rise time and peak duration, no strobing/repeated
+flashes anywhere (VFX rails already forbid), and expose ONE "flash intensity" option riding the
+existing vignette-strength plumbing. Check any new full-view effect against this row (audit
+candidate once the caption/flash contrast audit lands — same screenshot machinery).
+
 ## Explicitly deferred (named so nobody re-litigates)
 Full input remapping (locked contract) · per-eye IPD/lens knobs (platform-owned) · colorblind
 palette setting (teal/amber accents already pass common CVD checks; revisit only on player report)

@@ -27,6 +27,39 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-18 (rb49) — Fable 5: ALL SIX GAPS PLANNED — the gap audit closed on paper (planning only, zero code)
+
+- **Did:** Terry: "let's go ahead and hit all of them." All six gap-audit items now have plans:
+  ① **`docs/design/SFX_FORGE.md`** — audited the audio truth (AudioDirector/AudioProfile = MUSIC
+  only; SFX is ad-hoc PlayClipAtPoint with single clips, zero variation/material response);
+  closed SfxLibrary sharing the damage matrix's material taxonomy, SfxDefinition with jitter
+  clamps (±12% pitch/±3 dB) + priority classes + per-id cooldowns, pooled SfxPlayer (≤12
+  sources, ~32-voice budget, dialogue never culled), sourcing ladder (synthesized → CC0-with-
+  CREDITS.md → foley), envelopes SFX-1..5, test-alley audio pass. ② **`LOCALIZATION_DECISION.md`**
+  — ⚖ recommended: English-only at launch, structured for more; three disciplines (author files
+  = the string table, ids are identity, symbols-first) + the font rider (Latin-extended on every
+  import; CJK/Arabic explicitly out unless market appears). ③ **`FAMILY_PROFILES.md`** — 4 bunk
+  slots + guest via path parameterization (slot 0 = existing file, back-compat by construction),
+  diegetic bunk-tag pick, per-slot comfort/once-latches, guest never persists; REQUIRES save-lane
+  claim. ④ **`CONTRACT_LEDGER_WAYFINDING.md`** — ship ledger board (flags → rows, derived-never-
+  authored-twice, mismatch audit), stamp ceremony, RILL FollowUp nudges (one per session cap),
+  no-minimap law upheld. ⑤ **`PLAYTEST_AND_TELEMETRY.md`** — kid-session one-pager (takeoff
+  point/stalls/delight markers, comfort question mandatory, PLAYTEST_LOG.md) usable at the NEXT
+  session + local-only SessionSummary from existing ZIPTIDE counters (closed list, ≤2 KB, never
+  transmitted, no minor recordings — refusals section). ⑥ **`RESUME_MOMENT.md`** — doff=autosave,
+  re-don recap caption from ledger data ("Toxic City. The relay job. You were winning."),
+  <60 s fidget suppression, save-teach once-latch, safe-rest resume (locomotion claim). Plus the
+  three folds: photosensitivity row (COMFORT doc — gate flash bounds + intensity option),
+  CP-7 thermal input (FORGE IV), CREDITS.md ledger row (META_STORE_READINESS §2).
+- **Next:** ⚖ Terry sign-offs: localization decision + family-album sharing (profiles §2) +
+  SFX middleware rejection stands. Post-freeze build order per the audit's priority: SFX-1 →
+  playtest telemetry envelope → resume pass → profiles (after save-lane claim) → ledger.
+  The §1 playtest protocol needs NO code — use it at the next kid session.
+- **Heads-up:** SFX audio-capture-in-CI feasibility unverified (booth video+audio) — promised
+  only as "to confirm"; profiles and ledger each carry one cross-lane claim (save lane;
+  gate-room seam) that MUST be boarded before code.
+- **Commit:** this one (docs only: 6 new docs + 3 folds + this entry).
+
 ### 2026-07-18 (rb48) — Fable 5: GAP AUDIT — what a really good game still needs (planning only, zero code)
 
 - **Did:** Terry asked what aspects of a really good game we've glanced over. Swept

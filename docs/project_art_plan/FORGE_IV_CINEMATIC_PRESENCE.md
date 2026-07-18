@@ -218,6 +218,8 @@ One policy component allocates quality according to attention and current health
 - distance and visibility;
 - interaction/story importance;
 - current CPU/GPU/frame health;
+- device thermal state (long family sessions throttle; the director sheds quality gracefully
+  before the OS does it crudely — added 2026-07-18, GAP_AUDIT fold);
 - active creatures, VFX and lights;
 - Awe Node state;
 - occlusion and room/portal state.
