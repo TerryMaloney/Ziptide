@@ -27,6 +27,27 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-18 (rb46) — Fable 5: RILL profound-lines candidate set (writing pass, zero code)
+
+- **Did:** Terry asked for Matrix-caliber profound lines for RILL — original, not recycled. Read
+  the full canon (`STORY_BIBLE.md`, `THE_TRANSMISSION.md`, `CHAPTER_7_RILL.md`) and every shipped
+  line (`RillLineAuthor.cs` — 12 locked beats, world-enters, gate pool, Cal's half, FollowUps).
+  Wrote **`docs/storyboard/RILL_PROFOUND_LINES.md`**: craft rules (turn in the last clause;
+  reframe OUR verbs — repair/salvage/passage/tide; every keeper must reread differently after the
+  Transmission reveal; famous-cadence blacklist; caption-v2 fit) + ~28 candidates in 7 groups
+  (repair-as-waking, cage/cradle/glass, memory/Ouroboros pre-seed, made-things/witness, gate-pool
+  weight, wrecks, fenced endgame G-group) with speaker/state/trigger placements and joke-bracket
+  pairings per the bible's §3b law. Highlights: "From inside, a cage and a cradle are the same
+  shape…" · "You cannot see the glass until something taps on the other side." · "The tide erases
+  footprints. It cannot erase the habit of walking." · "Archives do not dream. I have checked the
+  specification twice."
+- **Next:** Terry reads and shortlists; adopted lines go into `RillLineAuthor.cs` slots
+  post-freeze (story pipeline: BIBLE → WORLD_DATA → author → build). Density law in the doc:
+  ≤1 profound line per world visit, FollowUp trigger preferred (profundity lands unprompted).
+- **Heads-up:** PROPOSED status — nothing is canon until Terry's read; the G-group (endgame) sits
+  near locked beats and needs story-lane placement; no shipped line was altered.
+- **Commit:** this one (docs only: candidate doc + this entry).
+
 ### 2026-07-18 (rb45) — Fable 5: WORLD PHYSICS VARIANTS researched + planned (planning only, zero code)
 
 - **Did:** Terry commissioned the gravity aspect grown into full per-world physics variants
