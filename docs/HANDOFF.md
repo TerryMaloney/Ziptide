@@ -27,6 +27,33 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-18 (rb50) — Fable 5: TITLE MENU researched + planned ("the berth before dawn") + gap-audit sign-offs recorded (planning only, zero code)
+
+- **Did:** ① Recorded Terry's sign-offs in-doc: LOCALIZATION_DECISION → ✅ APPROVED (law);
+  FAMILY_PROFILES gallery stays family-shared ✅; SFX middleware rejection confirmed ✅.
+  ② Title menu: audited the truth — the Home Hub SKELETON is excellent (BootLoader → boot-hold →
+  HomeHubRuntime.Configure(scene, travel cb); pure HomeHubFlowState travel-exactly-once; save/
+  travel fully delegated; Golden-surface PlayMode tests + BOARD_PROBE) but the PRESENTATION is
+  primitive cubes on a dark board floating in a black void with TOTAL SILENCE (no _Boot audio
+  profile, no ui sounds, title = a TextMesh label). Researched VR menu practice (menu-is-a-place;
+  diegetic as VR consensus; the menu teaches the first verb; time-to-play is cert-measured; title
+  music = identity in 8 bars; restrained ambient motion). Wrote
+  **`docs/design/TITLE_MENU_EXPERIENCE.md`** — THE BERTH BEFORE DAWN: boot standing on the dock
+  at the ship's berth (menu SkyVista + derived light script + calm ZiptideWater strip + moored
+  ship silhouette w/ one lantern + "ZIPTIDE" as monumental F3.7 letterforms across the water +
+  the existing board re-skinned as the departure board, tiles/flow SEMANTICALLY UNTOUCHED);
+  RILL's orb dormant on the board — choosing wakes her (the ceremony IS the transition); title
+  theme via one AudioDirector boot-profile slot + ui SFX + tide-surge stinger; title theme and
+  CP-8's return-home stem share a motif. Wiring: one idempotent MenuBerthEnsure (BootLoader
+  sibling), teardown-on-travel, PerfBudget-audited, time-to-interactive law; the golden boot
+  screenshot becomes the beauty gate. Envelopes TM-1..TM-5 (audio FIRST — biggest upgrade per
+  effort), TM-5 = profiles-era bunk CONTINUE inside FP-3.
+- **Next:** post-freeze, TM-1 is a small early win; TM-2..4 ride the art window. CP-8 owns
+  composing the actual identity theme; menu takes its crown (placeholder pad until then).
+- **Heads-up:** HomeHubRuntime is a recovery Golden surface — every TM envelope must keep the
+  golden flow tests + BOARD_PROBE green; dressing is additive AROUND it, semantics frozen.
+- **Commit:** this one (docs only: menu doc + 3 sign-off edits + this entry).
+
 ### 2026-07-18 (rb49) — Fable 5: ALL SIX GAPS PLANNED — the gap audit closed on paper (planning only, zero code)
 
 - **Did:** Terry: "let's go ahead and hit all of them." All six gap-audit items now have plans:

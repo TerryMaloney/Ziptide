@@ -28,7 +28,8 @@ acceptance bar is literally Terry's kids, this is the deepest UX hole we have.
   once-latches (each kid gets their own first-time RILL moments — this falls out free, the
   latches live IN the profile), caption options, equipped cosmetics.
 - **Shared, deliberately:** device-level settings (volume, IPD-ish), unlocked SANDBOX/guest
-  content, the photo gallery (family album is a feature, not a leak — ⚖ Terry may override).
+  content, the photo gallery (family album is a feature, not a leak — ✅ Terry approved
+  2026-07-18: gallery stays family-shared).
 - **Guest slot:** full play, never writes story flags past a session, resets on exit — the
   "friend comes over" and "demo at a family party" answer, and it protects the kids' saves
   from enthusiastic visitors.

@@ -91,7 +91,8 @@ completeness/validation tests; final sound QUALITY is a headset verdict, always.
 ## §6 — Do-nots
 
 - No audio middleware (FMOD/Wwise) — same single-source-of-truth logic as every rejected
-  parallel toolchain; Unity's mixer + our rails suffice at this scope.
+  parallel toolchain; Unity's mixer + our rails suffice at this scope. (✅ Terry confirmed the
+  rejection 2026-07-18.)
 - No per-object bespoke AudioSources for one-shots (the pool is the path); no stereo positional
   clips; no unlicensed sounds, ever — `CREDITS.md` or it doesn't import.
 - No new singletons — `SfxPlayer` lives under `AudioDirector`'s ownership umbrella.

@@ -1,7 +1,8 @@
 # LOCALIZATION — the one-page decision (GAP 1)
 
-**Status: 🔵 PROPOSED DECISION — needs Terry's sign-off, then this page becomes law.**
-From `GAP_AUDIT_JULY2026.md` GAP 1, commissioned 2026-07-18. Zero code now.
+**Status: ✅ APPROVED — Terry signed off 2026-07-18. This page is law.**
+From `GAP_AUDIT_JULY2026.md` GAP 1. Decision: English-only at launch, structured for more; the
+three disciplines + font rider below bind every future text-touching change. Zero code now.
 
 ## The decision (recommended)
 
