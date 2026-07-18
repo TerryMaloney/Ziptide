@@ -27,6 +27,7 @@
 
 ## ENTRIES — newest first
 
+<<<<<<< Updated upstream
 ### 2026-07-18 (hwr27) - Fable 5 architect: 🎬 Director's Cut v2.1 — "THE KEY THAT KNEW YOU" + VEX BOOTSTRAPPER (Terry-directed, planning ONLY, zero code)
 - **Terry's new story (now the spine of `docs/design/FIRST_HOUR_DIRECTORS_CUT.md` v2.1):** a space
   salvage sortie finds HALF an artifact ("that's not supposed to be — anywhere"); the Toxic City
@@ -98,6 +99,34 @@
   inventory persistence in them is flagged report-only per CLAUDE.md. Don't build from a doc
   without checking its §"report-only" flags.
 - **Commit:** this one (docs only: this entry) + `8ca5134b` (progression doc).
+=======
+### 2026-07-17 (rb42) — Fable 5: DAMAGE, RESPONSE & RUIN researched + planned (planning only, zero code)
+
+- **Did:** Terry commissioned the damage/destruction/movable/recovery aspect ("gravity gun blasts
+  rocks → they fly; blast a building → maybe a cracked window; low-g worlds tie into physics and
+  weapons"). Audited the real seams: **F3.6 `ReactiveProp` is BUILT** (4-reaction closed vocabulary,
+  pure cooldown state, structural-collider law already in code) + `WorldDebrisBudget` (24 chunks,
+  4.5 s) + `VfxFactory` runtime EXISTS + full weapon verb set incl. `GravityGunRuntime` (drone
+  launch impulse) + `IPvpDamageable.ReceiveHit` as the single hit seam + `RepairableMachine` for
+  the recovery half; **per-world gravity does NOT exist** (`Physics.gravity` never touched; fall
+  net assumes 9.81). Researched industry practice (Alyx health+pre-authored break pieces+cheap
+  non-physical shrapnel; Boneworks full-physics pole and Valve's no-force-feedback argument;
+  Quest/mobile: pre-fracture only, primitive colliders, pooled debris, mesh-swap damage states).
+  Wrote **`docs/project_art_plan/DAMAGE_RESPONSE_AND_RUIN.md`**: the RESPONSE MATRIX (material
+  class × weapon verb → tier T0 MARK / T1 REACT / T2 WOUND / T3 SHOVE / T4 BREAK; every cell must
+  answer — dead cell is a CI blocker), damage stages + break pieces as Forge recipe data, mass
+  classes + one impulse law `verbBase × intensity × (g/9.81)^k`, the `WorldProfile.gravityScale`
+  seam (travel-applied only) with its coupling list (fall net! traversal cores, gaits, VFX),
+  repair-reversal + LS-1/LS-6 persistence, envelopes DR-1..DR-8 with homes (art half = FORGE IV
+  CP-6 expansion; physics half = cross-lane claims; memory half = Forge V), test-alley proof scene,
+  do-nots. Art-plan README indexed.
+- **Next:** nothing runtime (freeze + gate ladder). Paper-draftable early: DR-1 matrix table +
+  DR-2 stage schema (like WC-1). ⚖ Terry: which worlds get low-g and how low (roadmap-level).
+- **Heads-up:** DR-5/DR-6 MUST be claimed by weapons/locomotion/travel owners before code — the
+  fall-net coupling is a real breakage risk if gravity ships without it. `WorldDebrisBudget`'s 24
+  cap is the number device evidence may move; do not raise on faith.
+- **Commit:** this one (docs only: program doc + README + this entry).
+>>>>>>> Stashed changes
 
 ### 2026-07-17 (rb41) — Fable 5: RILL caption research + v2 spec (planning only, zero code)
 
