@@ -27,6 +27,30 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-18 (rb52) — Fable 5: THE CANONICAL MUSIC PROMPT + kinship dial — Terry found the sound (planning only, zero code)
+
+- **Did:** Terry's first free-tier Suno session produced the title-theme candidate ("perfect
+  mixture of Prospect and Halo and Blade Runner 2049") and his prompt is now the score's GENOME,
+  recorded verbatim in `FIRST_HOUR_MUSIC_DIRECTION.md` §1a: atmospheric sci-fi space-western /
+  wordless youthful choir / deep string drones / industrial synths / sub-bass / metallic tubular
+  textures / used-future 70s cinema / quiet tide sounds. License path per the §0 ruling: remix-
+  of-free-tier is unsafe — ask Suno support in writing for that track OR regenerate under Pro
+  with the same prompt; keeper's detected bpm/key then replaces the generic 76/Dm defaults in
+  every derived prompt. **§1b THE KINSHIP DIAL (Terry's design):** K3 FULL VOICE (title, first
+  crossing, endgame — canonical prompt verbatim) · K2 RELATIVE (signature story worlds — all
+  DNA words + toning-down operators: demote percussion, add distant/faint/half-remembered,
+  world palette line) · K1 TRACE (default worlds — own palette + ONE thread: faint distant
+  choir surfacing, half-remembered) · K0 OWN VOICE (the weird worlds — own palette, keep only
+  quiet tide sounds or nothing). Rarity logic mirrors the physics-dial law. §3 rewritten:
+  all 9 first-hour cues re-prompted as derivations of the canonical DNA (Toxic City = the
+  named K2 exemplar: "toned-down, quieter, not as massive"), plus K0 examples (The Hum, Mirror
+  Flats) and the world-prompt formula for the other ~70 worlds.
+- **Next:** Terry regenerates the title keeper under Pro (or gets written retroactive rights),
+  logs prompt+link as keeper #1, detects keeper bpm/key → propagate into the derived prompts.
+- **Heads-up:** "quiet tide sounds" is the one DNA element kept at every kinship tier K1+ —
+  it is the game's name in audio; don't tone it out.
+- **Commit:** this one (docs only).
+
 ### 2026-07-18 (rb51) — Fable 5: first-hour music direction + Suno cue sheet (planning only, zero code)
 
 - **Did:** Terry has Suno free tier and asked what music to go for in the first hour. Wrote

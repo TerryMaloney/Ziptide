@@ -45,7 +45,47 @@ Companions: `ADAPTIVE_AUDIO.md` (the stem architecture this feeds later), `SFX_F
 - Every shipped track gets a `CREDITS.md` line: tool, plan at generation, date, prompt on file
   in `music/PROMPTS_LOG.md`.
 
-## §1 — What Ziptide should SOUND like (the direction)
+## §1a — THE CANONICAL PROMPT (Terry's, 2026-07-18 — this supersedes the generic direction below)
+
+Terry found the sound on his first free-tier session. **This prompt is the score's genome;
+every other prompt in this doc derives from it:**
+
+> *"Atmospheric sci-fi space-western score. Ethereal, wordless youthful choir chants, haunting
+> airy vocals drifting over deep orchestral string drones. Ominous industrial synths, low
+> pulsing sub-bass, and metallic tubular textures mimicking alien forest ambiance. Sparse,
+> heavy cinematic percussion hits. Moody, beautiful yet dangerous, suffocating wilderness
+> tension, retro-futuristic, 'used future' aesthetic, 70s sci-fi cinema score. quiet tide
+> sounds."*
+
+Terry's verdict on the result: "a perfect mixture of Prospect and Halo and Blade Runner 2049" —
+which is the tidal-ambient brief hit dead center (Prospect is the skyscape bible's canonical
+reference). Plan: regenerate under Pro with this prompt until a take lands beside the free-tier
+reference (license §0); **when the Pro keeper lands, detect ITS tempo and key and use those in
+every derived prompt** (replacing the generic 76 bpm / D minor defaults below — the keeper is
+the authority, not the guess).
+
+**The DNA words (the kinship thread — reused verbatim in derived prompts):** wordless youthful
+choir · deep orchestral string drones · industrial synths · pulsing sub-bass · metallic tubular
+textures · used-future / 70s sci-fi cinema · quiet tide sounds.
+**The toning-down operators (how a derivation gets quieter):** demote "sparse heavy cinematic
+percussion hits" → "almost no percussion"; add "distant / faint / half-remembered"; swap
+"score" → "background score, understated"; replace "suffocating tension" with the world's own
+adjective; keep the tide sounds ALWAYS (they are the game's name in audio).
+
+## §1b — THE KINSHIP DIAL (Terry's design, 2026-07-18: the title theme runs through the game at four volumes)
+
+| Tier | Who gets it | Prompt recipe |
+|---|---|---|
+| **K3 FULL VOICE** | title/menu · first Ziptide crossing · endgame beats | the canonical prompt, verbatim (± length/act tweaks) |
+| **K2 RELATIVE** | signature story worlds (Toxic City, capstones) | all DNA words kept + toning-down operators + the world's palette line — "a toned-down version, quieter, not as massive" |
+| **K1 TRACE** | most standard worlds | world's own palette FIRST + exactly one thread: *"a faint, distant wordless choir occasionally surfaces, half-remembered"* + quiet tide sounds |
+| **K0 OWN VOICE** | the deliberately-weird worlds (The Hum, Mirror Flats class) | fully own palette; keep ONLY "quiet tide sounds" (or nothing, for one or two truly alien places) |
+
+Rarity logic mirrors the physics-dial law: K3 is rare and earned, K2 for story spines, K1 is
+the default, K0 is the seasoning. This is how "some of the title track keeps running in your
+head" without eighty worlds of the same song.
+
+## §1 — What Ziptide should SOUND like (the direction — now subordinate to §1a's genome)
 
 **"Tidal ambient"** — an organic-electronic hybrid where water and salvage metal are the
 instruments:
@@ -89,7 +129,63 @@ gentle rising 6-note theme") and accept approximation — where exact reprise ma
 Free-tier arithmetic: ~10 generations/day × 2 takes each — one cue per day with 4–10 candidate
 takes is a comfortable curation pace; the title theme deserves 2–3 days of takes by itself.
 
-## §3 — Paste-ready prompts (tune freely; keep BPM/key/instrumental in every one)
+## §3 — Paste-ready prompts, v2 — DERIVED FROM THE CANONICAL PROMPT (supersedes the v1 generics below)
+
+Once the Pro keeper exists, append ITS bpm/key to each. Kinship tier marked per cue.
+
+1. **title_berth (K3):** the canonical prompt, verbatim. Add: *"instrumental, slow build,
+   the main theme fully stated by the midpoint, seamless loop."*
+2. **w000_wake (K1):** *"Quiet atmospheric sci-fi ambience, used-future 70s cinema feel. Deep
+   string drones and soft industrial hum, weightless and curious, like a sleeping ship waking.
+   Almost no percussion, no melody yet. A faint, distant wordless choir surfaces once,
+   half-remembered. quiet tide sounds. Instrumental, seamless loop."*
+3. **flight_punchit (K2):** *"Soaring retro-futuristic sci-fi flight cue. Deep orchestral
+   string drones lifting, industrial synths brightening, pulsing sub-bass momentum, metallic
+   tubular textures streaming past like wind. The wordless youthful choir rises open and
+   hopeful. Sparse cinematic percussion enters late. Leaving harbor for open sky — wonder, not
+   war. Ends unresolved. Instrumental."*
+4. **w001_toxiccity_bed (K2 — Terry's named example):** *"Toned-down atmospheric sci-fi
+   space-western background score, quieter and less massive. Deep string drones low in the
+   mix, soft industrial synths, damp dripping-water textures over metallic tubular ambiance,
+   slow pulsing sub-bass. The wordless choir is distant and rare, drifting in like fog.
+   Almost no percussion. Patient, moody, beautiful yet dangerous, used-future aesthetic.
+   quiet tide sounds. Instrumental, seamless loop, stays out of the way."*
+5. **w001_gate_wake (K3 build):** *"Atmospheric sci-fi score build — something ancient waking.
+   Deep orchestral string drones swelling, industrial synths pulsing like a huge machine
+   breathing, metallic tubular textures ringing. The ethereal wordless youthful choir
+   assembles the main theme in fragments, closer and closer. Sparse heavy cinematic hits
+   marking each awakening stage. Awe rising, not fear. used-future, 70s sci-fi cinema.
+   quiet tide sounds growing to a rush. Instrumental, 90 seconds."*
+6. **ziptide_crossing (K3):** *"Cinematic sci-fi stinger — a tidal wave of light. The full
+   ethereal wordless youthful choir states the main theme once, triumphant, over massive
+   string drones, industrial synths and heavy percussion hits, then sudden calm afterglow
+   with quiet tide sounds. Beautiful, enormous, brief. 70s sci-fi cinema, used future.
+   Instrumental, 40 seconds."*
+7. **w002_cistern_bed (K1):** *"Hopeful quiet sci-fi background score with a stone-cistern
+   feel: soft mallet patterns like water drips in a vast chamber, warm low drones, gentle
+   workshop rhythm, used-future aesthetic. A faint distant wordless choir surfaces
+   occasionally, half-remembered. quiet tide sounds. Instrumental, understated, seamless
+   loop."*
+8. **w002_defend (K1 energetic):** *"Driving but friendly retro-futuristic defense groove:
+   pulsing sub-bass, industrial synth rhythm, metallic tubular percussion, playful urgency —
+   arcade energy, zero horror, kid-safe. One faint choir swell at the climax. used-future
+   aesthetic. Instrumental, 90 seconds, clean start and end."*
+9. **return_changed_ship (K3, small):** *"Gentle sci-fi homecoming cue: the main theme played
+   slow and warm — soft wordless choir and low string drones, faint metallic textures, almost
+   no percussion. Tender, earned rest, used-future warmth. quiet tide sounds. Instrumental,
+   short, fades to quiet."*
+
+**K0 examples for later worlds (the own-voice tier):** The Hum: *"Alien resonance study: the
+music IS a planet humming — deep tuned drones beating against each other, no choir, no melody,
+slow phasing pulses in the rock. Instrumental, hypnotic, seamless loop. quiet tide sounds."* ·
+Mirror Flats: *"Vast empty light: glassy shimmering pads, crystalline chimes, near-silence,
+enormous space, no choir, no percussion. Instrumental, seamless loop."*
+
+**The world-prompt formula (for the other ~70 worlds, when their time comes):**
+`[kinship-tier recipe from §1b] + [world palette line: its hazard/biome as instruments] +
+[its adjective] + "quiet tide sounds" (K1+) + "Instrumental, seamless loop" + keeper bpm/key.`
+
+## §3-v1 — original generic prompts (kept for reference; superseded by v2 above)
 
 1. **title_berth:** *"Instrumental. Ambient electronic title theme, 76 bpm, D minor. Pre-dawn
    ocean calm: deep slow synth pads, soft water textures, gentle struck-metal chimes. A simple
