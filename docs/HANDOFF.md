@@ -27,6 +27,35 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-18 (rb53) — Fable 5: ASSEMBLY READINESS audit — the six gaps between "frameworks exist" and "the game builds itself" (planning only, zero code)
+
+- **Did:** Terry's pause question: with the frameworks laid out (worlds/creatures/architecture/
+  music/SFX), what's still missing for the game to build itself — cutscenes? Wrote
+  **`docs/design/WORLD_ASSEMBLY_READINESS.md`**. Headline: the ART of a world builds itself on
+  paper; the CONTENT and connective tissue don't. Six gaps: **A — ride-scenes** (Terry's
+  cutscene instinct, VR-ruled: never steer the body — the legal form is the CONVEYANCE (Alyx
+  tram): authored moments staged around something the player chose to board — barge/lift/ship/
+  gate; head sovereign, hands live, skip = throttle up, ≤1/world; lands as LS-2 `ride` kind);
+  **B — world gameplay genome** (WC-1 builds the body, nothing scales the PURPOSE: closed
+  job-shape templates + encounter beats + reward/mystery/log/ride slots as validated data);
+  **C — the Lore Forge** (nobody owns producing/validating ~60 chained wreck logs + 80 mystery
+  objects; registry + chain validation, prose stays Terry-reviewed); **D — flag-graph
+  validator** (evidence: the bible's own audit found PLAYER_TRUSTED_RILL orphaned; pure
+  EditMode granted/consumed/reachability analysis, FLAG_ORPHAN warn→blocker); **E — per-world
+  voice formula** (music got genome+formula; lines need the equal: a 4-line kit per world
+  drafted from its data row against the craft rules, PROPOSED pattern at batch throughput);
+  **F — THE ASSEMBLY LINE RUNBOOK** (the capstone: World N bible-row→device-pass in one
+  ordered manual; "one session walks one standard world through it in one sitting" = the
+  program's definition of success; written LAST from the first compiled world's experience).
+  Priority: D (cheapest, protects everything) → B → A+E → C → F. Known-not-reopened: VO
+  casting deferred, game modes (Terry's own flag — separate pass), Earth kit scheduled,
+  multiplayer paused.
+- **Next:** B/C/E schemas + D's rule list are paper-draftable during the freeze if Terry wants
+  them next; otherwise this queues behind the gate ladder like everything.
+- **Heads-up:** GAP A must never soften into head-steering — the freedom contract is absolute;
+  a ride-scene that can't be looked away from is a bug, not a feature.
+- **Commit:** this one (docs only).
+
 ### 2026-07-18 (rb52) — Fable 5: THE CANONICAL MUSIC PROMPT + kinship dial — Terry found the sound (planning only, zero code)
 
 - **Did:** Terry's first free-tier Suno session produced the title-theme candidate ("perfect
