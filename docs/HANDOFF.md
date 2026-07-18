@@ -27,6 +27,29 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-18 (rb47) — Fable 5: Cal voice & barks candidate set (writing pass, zero code)
+
+- **Did:** Terry commissioned Cal's protagonist voice — movie-level entry lines + rare outbursts
+  (combat, builds), "realistic but cinematic," never annoying. Audit: Cal's ~25 shipped lines are
+  ALL answers to RILL — she never reacts to fights, finds, work, or rooms. Research: bark craft
+  (variety pools + controlled usage; Far Cry 2's one-bark-three-jobs standard; scarcity as power —
+  Chief's four-word lines carried by silence; Drake's context-specific reaction beats).
+  Wrote **`docs/storyboard/CAL_VOICE_AND_BARKS.md`**: voice charter (understatement first; talks
+  TO things never to camera; complaint-as-affection with QUIET as the real alarm; exclamations
+  earned, Cal-sized; no Marvel-quip, ambiguous-voice-safe), an ANTI-ANNOYANCE CONSTITUTION with
+  numbers (silence default; ≥6-variant pools, no-repeat last-4; 60–90 s global cooldown; combat
+  barks notability-gated — first takedown/streak/near-miss/save/wave/new-enemy only; awe lines
+  once per world per save; priority-yield never queue), ~40 candidates in 6 groups (A cinematic
+  first-entries incl. the flagship "…You could have warned me." / "I did not want to spoil it."
+  pair; B combat; C the "oh, NOW you work" work family; D salvage; E damage mutters; F traversal),
+  plus §6 planning note: future `BarkEvent` trigger seam fed from existing log points with the
+  constitution enforced in code (cross-lane, post-freeze).
+- **Next:** Terry shortlists; adopted lines → `RillLineAuthor.cs` Cal section (A-group rides
+  WorldEnter today; B–F need the bark seam envelope post-freeze).
+- **Heads-up:** PROPOSED status. A1's pause timing is a headset verdict. The bark seam is
+  cross-lane (gameplay owners hold the event hooks) — claim before code.
+- **Commit:** this one (docs only: candidate doc + this entry).
+
 ### 2026-07-18 (rb46) — Fable 5: RILL profound-lines candidate set (writing pass, zero code)
 
 - **Did:** Terry asked for Matrix-caliber profound lines for RILL — original, not recycled. Read
