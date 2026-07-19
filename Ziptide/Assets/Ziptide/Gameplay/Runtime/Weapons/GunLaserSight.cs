@@ -5,9 +5,10 @@ namespace Ziptide.Gameplay
 {
     /// <summary>
     /// The aim line (CONTROL_SCHEME.md "Aim"): a thin ray from the Muzzle to the first hit,
-    /// shown only while the gun is HELD — VR's equivalent of console stick-aim (Test Day 1:
-    /// "we should be able to aim... like an xbox controller, that would be a huge leap up on
-    /// every gun"). One LineRenderer, no per-frame allocation; color per item definition.
+    /// shown only while a ranged gun is HELD — VR's equivalent of console stick-aim. Melee weapons
+    /// also expose a child named Muzzle as their physical tip, so this component disables itself when
+    /// MeleeWeaponRuntime is present instead of painting a misleading laser down a sword or pike.
+    /// One LineRenderer, no per-frame allocation; color per item definition.
     /// </summary>
     public class GunLaserSight : MonoBehaviour
     {
@@ -18,6 +19,12 @@ namespace Ziptide.Gameplay
         private LineRenderer _lr;
         private XRGrabInteractable _grab;
         private Color _color = DefaultColor;
+
+        private void Awake()
+        {
+            if (GetComponent<MeleeWeaponRuntime>() != null)
+                enabled = false;
+        }
 
         /// <summary>Alpha 0 keeps the default sight color (ItemDefinition fallback idiom).</summary>
         public void Init(Color color)
