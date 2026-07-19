@@ -105,8 +105,8 @@ namespace Ziptide.Gameplay
             _socketRenderer = socket.GetComponent<Renderer>();
             socket.SetActive(false);
 
-            // Stage 1: the access panel — a grabbable plate covering the socket. A constrained dynamic
-            // body avoids XRI's "throwing a kinematic Rigidbody" warning while remaining bolted in place.
+            // Stage 1: the access panel — a grabbable plate covering the socket. It begins constrained,
+            // then drops without inheriting an XR throw impulse after the player lets go.
             var panel = new GameObject("Panel");
             panel.transform.SetParent(transform, false);
             panel.transform.localPosition = new Vector3(0f, 0.85f, -0.42f);
@@ -117,8 +117,10 @@ namespace Ziptide.Gameplay
             panelRb.useGravity = false;
             panelRb.constraints = RigidbodyConstraints.FreezeAll;
             var panelGrab = panel.AddComponent<XRGrabInteractable>();
+            panelGrab.throwOnDetach = false;
             WireManager(panelGrab);
             panelGrab.selectEntered.AddListener(_ => OnPanelPulled(panel, panelRb));
+            panelGrab.selectExited.AddListener(_ => SettleLooseBody(panelRb, useGravity: true));
             var panelVisual = GameObject.CreatePrimitive(PrimitiveType.Cube);
             panelVisual.name = "Plate"; StripCollider(panelVisual);
             panelVisual.transform.SetParent(panel.transform, false);
@@ -171,17 +173,20 @@ namespace Ziptide.Gameplay
             partRb.useGravity = false;
             partRb.constraints = RigidbodyConstraints.FreezeAll;
             var partGrab = part.AddComponent<XRGrabInteractable>();
+            partGrab.throwOnDetach = false;
             WireManager(partGrab);
             partGrab.selectEntered.AddListener(_ =>
             {
                 if (partRb == null) return;
+                partRb.velocity = Vector3.zero;
+                partRb.angularVelocity = Vector3.zero;
                 partRb.constraints = RigidbodyConstraints.None;
                 partRb.useGravity = false;
             });
             partGrab.selectExited.AddListener(_ =>
             {
                 if (partRb == null || _part == null || _stage != RepairStage.Part) return;
-                partRb.useGravity = true;
+                SettleLooseBody(partRb, useGravity: true);
             });
             var partVisual = GameObject.CreatePrimitive(PrimitiveType.Cube);
             partVisual.name = "PartVisual"; StripCollider(partVisual);
@@ -203,7 +208,7 @@ namespace Ziptide.Gameplay
 
         private void Update()
         {
-            // Stage 2: seat the part — snaps when it comes near the exposed socket (held or tossed).
+            // Stage 2: seat the part — snaps when it comes near the exposed socket (held or dropped).
             if (_stage == RepairStage.Part && _part != null && _socket != null &&
                 Vector3.Distance(_part.position, _socket.position) <= SeatDistance)
             {
@@ -220,7 +225,7 @@ namespace Ziptide.Gameplay
         {
             if (_stage != RepairStage.Panel) return;
             _stage = RepairStage.Part;
-            // The plate comes free in the hand; once dropped it's junk with physics.
+            // The plate comes free in the hand; after release it drops in place with no inherited throw.
             rb.constraints = RigidbodyConstraints.None;
             rb.useGravity = true;
             panel.transform.SetParent(null, true);
@@ -290,6 +295,16 @@ namespace Ziptide.Gameplay
         {
             var mgr = Object.FindObjectOfType<XRInteractionManager>();
             if (mgr != null) interactable.interactionManager = mgr;
+        }
+
+        private static void SettleLooseBody(Rigidbody body, bool useGravity)
+        {
+            if (body == null) return;
+            body.isKinematic = false;
+            body.constraints = RigidbodyConstraints.None;
+            body.useGravity = useGravity;
+            body.velocity = Vector3.zero;
+            body.angularVelocity = Vector3.zero;
         }
 
         private static void StripCollider(GameObject go)

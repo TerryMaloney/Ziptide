@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 using Ziptide.Content;
 using Ziptide.Gameplay;
 using Ziptide.Visuals;
@@ -9,10 +10,10 @@ using Ziptide.Visuals;
 namespace Ziptide.Tests.EditMode
 {
     /// <summary>
-    /// Regression coverage for Terry's 2026-07-19 Quest checkpoint findings:
-    /// forged weapons were scaled twice and appeared centimetre-sized; every weapon family pitched
-    /// upward in-hand; and the coupler's real final control was small/high/ambiguous while the visible
-    /// red sphere was only a non-interactable lamp.
+    /// Regression coverage for Terry's 2026-07-19 Quest checkpoint findings and retry:
+    /// forged weapons must stay human-sized, dropped visuals must be fully supported by their colliders,
+    /// ranged items keep the controller-forward grip, the device-proven Breaker Blade uses its reversed
+    /// melee grip, melee tips never create gun lasers, and repair pieces cannot inherit XR throw drift.
     /// </summary>
     public sealed class QuestWeaponAndCouplerRegressionTests
     {
@@ -24,7 +25,7 @@ namespace Ziptide.Tests.EditMode
         [TestCase("prism_beam", 0.20f, 0.90f)]
         [TestCase("breaker_blade", 0.75f, 1.00f)]
         [TestCase("tide_pike", 1.35f, 1.65f)]
-        public void EveryWeaponFamily_HasHumanScaleAndForwardGrip(
+        public void EveryWeaponFamily_HasHumanScaleDevicePoseAndSupportedVisibleBounds(
             string itemId,
             float minimumLargestDimension,
             float maximumLargestDimension)
@@ -37,10 +38,17 @@ namespace Ziptide.Tests.EditMode
 
                 Transform grip = item.transform.Find("Grip");
                 Assert.That(grip, Is.Not.Null, itemId + " must expose the canonical Grip attach.");
-                Assert.That(Quaternion.Angle(grip.localRotation, Quaternion.identity), Is.LessThan(0.5f),
-                    itemId + " Grip must not pitch the item away from controller/interactor forward.");
+
+                bool reversedBlade = itemId == "breaker_blade";
+                Quaternion expectedGrip = reversedBlade
+                    ? Quaternion.Euler(0f, 180f, 0f)
+                    : Quaternion.identity;
+                Assert.That(Quaternion.Angle(grip.localRotation, expectedGrip), Is.LessThan(0.5f),
+                    itemId + " must retain the device-proven held orientation.");
+                float expectedForwardDot = reversedBlade ? -1f : 1f;
                 Assert.That(Vector3.Dot(grip.forward.normalized, item.transform.forward.normalized),
-                    Is.GreaterThan(0.999f), itemId + " local +Z must remain the held forward axis.");
+                    Is.EqualTo(expectedForwardDot).Within(0.001f),
+                    itemId + " grip forward relation regressed.");
 
                 Bounds visibleBounds = ActiveRendererBounds(item);
                 float largest = Mathf.Max(visibleBounds.size.x, visibleBounds.size.y, visibleBounds.size.z);
@@ -48,6 +56,28 @@ namespace Ziptide.Tests.EditMode
                     itemId + " is still too small for a VR hand: bounds=" + visibleBounds.size.ToString("F3"));
                 Assert.That(largest, Is.LessThanOrEqualTo(maximumLargestDimension),
                     itemId + " exceeded its bounded handheld size: bounds=" + visibleBounds.size.ToString("F3"));
+
+                Assert.That(item.GetComponent<ItemPhysicalStability>(), Is.Not.Null,
+                    itemId + " must schedule final visible-collider fitting.");
+                Assert.That(ItemPhysicalStability.FitNow(item), Is.True,
+                    itemId + " must have a root BoxCollider and visible MeshRenderer hierarchy.");
+                var box = item.GetComponent<BoxCollider>();
+                Assert.That(box, Is.Not.Null);
+                visibleBounds = ActiveRendererBounds(item);
+                Assert.That(box.bounds.min.x, Is.LessThan(visibleBounds.min.x));
+                Assert.That(box.bounds.min.y, Is.LessThan(visibleBounds.min.y),
+                    itemId + " visible mesh may not extend beneath its floor-support collider.");
+                Assert.That(box.bounds.min.z, Is.LessThan(visibleBounds.min.z));
+                Assert.That(box.bounds.max.x, Is.GreaterThan(visibleBounds.max.x));
+                Assert.That(box.bounds.max.y, Is.GreaterThan(visibleBounds.max.y));
+                Assert.That(box.bounds.max.z, Is.GreaterThan(visibleBounds.max.z));
+
+                if (itemId == "breaker_blade" || itemId == "tide_pike")
+                {
+                    var sight = item.GetComponent<GunLaserSight>();
+                    Assert.That(sight == null || !sight.enabled, Is.True,
+                        itemId + " uses Muzzle as a melee tip and must never display a gun laser.");
+                }
             }
             finally
             {
@@ -69,13 +99,13 @@ namespace Ziptide.Tests.EditMode
                 var box = item.GetComponent<BoxCollider>();
                 Assert.That(box, Is.Not.Null);
                 AssertVector(box.size, new Vector3(0.08f, 0.04f, 0.20f), 0.0001f,
-                    "The old primitive dimensions must survive as the physical collider.");
+                    "The old primitive dimensions must survive as the pre-Start physical shell.");
 
                 Assert.That(ForgeVisualApplier.TryApply(item, "pistol_scrap_mk1"), Is.True);
                 AssertVector(item.transform.localScale, Vector3.one, 0.0001f,
                     "Reapplying a Forge look must not re-scale the item.");
                 AssertVector(box.size, new Vector3(0.08f, 0.04f, 0.20f), 0.0001f,
-                    "Reapplying a Forge look must not inflate or reset the collider.");
+                    "Forge reapplication must not mutate physics before final stability fitting.");
             }
             finally
             {
@@ -84,7 +114,7 @@ namespace Ziptide.Tests.EditMode
         }
 
         [Test]
-        public void Coupler_FinalControl_IsDistinctChildReachableAndForgiving()
+        public void Coupler_FinalControl_IsDistinctChildReachableForgivingAndReleaseStable()
         {
             GameObject machineRoot = null;
             GameObject loosePart = null;
@@ -128,20 +158,28 @@ namespace Ziptide.Tests.EditMode
                 Transform panel = machineRoot.transform.Find("Panel");
                 Assert.That(panel, Is.Not.Null);
                 var panelBody = panel.GetComponent<Rigidbody>();
+                var panelGrab = panel.GetComponent<XRGrabInteractable>();
                 Assert.That(panelBody, Is.Not.Null);
+                Assert.That(panelGrab, Is.Not.Null);
                 Assert.That(panelBody.isKinematic, Is.False,
                     "The access panel must not enter XRI as a kinematic throw body.");
                 Assert.That(panelBody.constraints, Is.EqualTo(RigidbodyConstraints.FreezeAll),
                     "The dynamic panel stays physically bolted until selected.");
+                Assert.That(panelGrab.throwOnDetach, Is.False,
+                    "The released panel must drop rather than inherit hand throw velocity.");
 
                 loosePart = FindLoosePart();
                 Assert.That(loosePart, Is.Not.Null);
                 var partBody = loosePart.GetComponent<Rigidbody>();
+                var partGrab = loosePart.GetComponent<XRGrabInteractable>();
                 Assert.That(partBody, Is.Not.Null);
+                Assert.That(partGrab, Is.Not.Null);
                 Assert.That(partBody.isKinematic, Is.False,
                     "The replacement part must not enter XRI as a kinematic throw body.");
                 Assert.That(partBody.constraints, Is.EqualTo(RigidbodyConstraints.FreezeAll),
                     "The replacement part remains parked until selected.");
+                Assert.That(partGrab.throwOnDetach, Is.False,
+                    "The released replacement part must drop locally rather than float away.");
             }
             finally
             {
@@ -160,7 +198,7 @@ namespace Ziptide.Tests.EditMode
 
         private static Bounds ActiveRendererBounds(GameObject root)
         {
-            var renderers = root.GetComponentsInChildren<Renderer>(true)
+            var renderers = root.GetComponentsInChildren<MeshRenderer>(true)
                 .Where(r => r != null && r.enabled && r.gameObject.activeInHierarchy)
                 .ToArray();
             Assert.That(renderers.Length, Is.GreaterThan(0), root.name + " has no active visible renderer.");
