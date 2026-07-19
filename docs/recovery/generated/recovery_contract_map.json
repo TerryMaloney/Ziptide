@@ -1,8 +1,8 @@
 {
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
-  "scannedFiles": 649,
-  "findingCount": 2325,
+  "scannedFiles": 651,
+  "findingCount": 2327,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -6957,21 +6957,21 @@
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs",
-            "line": 53,
+            "line": 60,
             "symbol": "Ziptide.Gameplay.GunLaserSight",
             "snippet": "var go = new GameObject(\"__LaserSight\");"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs",
-            "line": 61,
+            "line": 68,
             "symbol": "Ziptide.Gameplay.GunLaserSight",
             "snippet": "var shader = Shader.Find(\"Universal Render Pipeline/Unlit\");"
           },
           {
             "code": "RUNTIME_MATERIAL_CREATE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs",
-            "line": 64,
+            "line": 71,
             "symbol": "Ziptide.Gameplay.GunLaserSight",
             "snippet": "var mat = new Material(shader);"
           }
@@ -8728,91 +8728,91 @@
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-            "line": 122,
+            "line": 124,
             "symbol": "Ziptide.Gameplay.RepairableMachine",
             "snippet": "var panelVisual = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-            "line": 130,
+            "line": 132,
             "symbol": "Ziptide.Gameplay.RepairableMachine",
             "snippet": "var sw = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "XR_INTERACTABLE_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-            "line": 140,
+            "line": 142,
             "symbol": "Ziptide.Gameplay.RepairableMachine",
             "snippet": "var swInteractable = sw.AddComponent<XRSimpleInteractable>();"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-            "line": 144,
+            "line": 146,
             "symbol": "Ziptide.Gameplay.RepairableMachine",
             "snippet": "var switchLabelGo = new GameObject(\"PowerSwitchLabel\");"
           },
           {
             "code": "TEXTMESH_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-            "line": 149,
+            "line": 151,
             "symbol": "Ziptide.Gameplay.RepairableMachine",
             "snippet": "var switchLabel = switchLabelGo.AddComponent<TextMesh>();"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-            "line": 165,
+            "line": 167,
             "symbol": "Ziptide.Gameplay.RepairableMachine",
             "snippet": "var part = new GameObject(\"Part_\" + _def.partItemId);"
           },
           {
             "code": "XR_INTERACTABLE_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-            "line": 173,
+            "line": 175,
             "symbol": "Ziptide.Gameplay.RepairableMachine",
             "snippet": "var partGrab = part.AddComponent<XRGrabInteractable>();"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-            "line": 186,
+            "line": 191,
             "symbol": "Ziptide.Gameplay.RepairableMachine",
             "snippet": "var partVisual = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-            "line": 191,
+            "line": 196,
             "symbol": "Ziptide.Gameplay.RepairableMachine",
             "snippet": "var partLabel = new GameObject(\"PartLabel\");"
           },
           {
             "code": "TEXTMESH_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-            "line": 192,
+            "line": 197,
             "symbol": "Ziptide.Gameplay.RepairableMachine",
             "snippet": "var ptm = partLabel.AddComponent<TextMesh>();"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-            "line": 307,
+            "line": 322,
             "symbol": "Ziptide.Gameplay.RepairableMachine",
             "snippet": "var shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-            "line": 308,
+            "line": 323,
             "symbol": "Ziptide.Gameplay.RepairableMachine",
             "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
           },
           {
             "code": "RUNTIME_MATERIAL_CREATE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-            "line": 310,
+            "line": 325,
             "symbol": "Ziptide.Gameplay.RepairableMachine",
             "snippet": "var mat = new Material(shader);"
           }
@@ -9095,35 +9095,35 @@
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-            "line": 72,
+            "line": 89,
             "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
             "snippet": "var pedestal = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-            "line": 79,
+            "line": 100,
             "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
             "snippet": "var button = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-            "line": 86,
+            "line": 107,
             "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
             "snippet": "var label = new GameObject(\"Label_PUNCH_IT\");"
           },
           {
             "code": "TEXTMESH_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-            "line": 91,
+            "line": 112,
             "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
             "snippet": "var tm = label.AddComponent<TextMesh>();"
           },
           {
             "code": "XR_INTERACTABLE_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-            "line": 100,
+            "line": 121,
             "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
             "snippet": "var interactable = button.AddComponent<XRSimpleInteractable>();"
           }
@@ -10491,7 +10491,7 @@
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Tests/EditMode/QuestWeaponAndCouplerRegressionTests.cs",
-            "line": 93,
+            "line": 123,
             "symbol": "Ziptide.Tests.EditMode.QuestWeaponAndCouplerRegressionTests",
             "snippet": "machineRoot = new GameObject(\"QuestCouplerRegression\");"
           }
@@ -12489,14 +12489,14 @@
           {
             "code": "XRI_MANAGER_LOOKUP",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-            "line": 291,
+            "line": 296,
             "symbol": "Ziptide.Gameplay.RepairableMachine",
             "snippet": "var mgr = Object.FindObjectOfType<XRInteractionManager>();"
           },
           {
             "code": "XRI_MANAGER_ASSIGN",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-            "line": 292,
+            "line": 297,
             "symbol": "Ziptide.Gameplay.RepairableMachine",
             "snippet": "if (mgr != null) interactable.interactionManager = mgr;"
           }
@@ -12543,14 +12543,14 @@
           {
             "code": "XRI_MANAGER_LOOKUP",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-            "line": 101,
+            "line": 122,
             "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
             "snippet": "var mgr = FindObjectOfType<XRInteractionManager>();"
           },
           {
             "code": "XRI_MANAGER_ASSIGN",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-            "line": 102,
+            "line": 123,
             "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
             "snippet": "if (mgr != null) interactable.interactionManager = mgr;"
           }
@@ -14811,7 +14811,7 @@
           {
             "code": "EVENT_DECLARATION",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-            "line": 40,
+            "line": 39,
             "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
             "snippet": "public event Action<string> DestinationSelected;"
           }
@@ -17114,7 +17114,7 @@
           {
             "code": "CAMERA_MAIN_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-            "line": 214,
+            "line": 219,
             "symbol": "Ziptide.Gameplay.RepairableMachine",
             "snippet": "var cam = Camera.main;"
           }
@@ -17171,7 +17171,7 @@
           {
             "code": "CAMERA_MAIN_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-            "line": 172,
+            "line": 193,
             "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
             "snippet": "var cam = Camera.main;"
           }
@@ -18554,7 +18554,7 @@
           {
             "code": "FALLBACK_MARKER",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs",
-            "line": 22,
+            "line": 29,
             "symbol": "Ziptide.Gameplay.GunLaserSight",
             "snippet": "/// <summary>Alpha 0 keeps the default sight color (ItemDefinition fallback idiom).</summary>"
           }

@@ -1,12 +1,12 @@
 {
   "tool": "recovery_focus_reference_graph",
-  "scannedFiles": 649,
-  "referenceCount": 369,
+  "scannedFiles": 651,
+  "referenceCount": 373,
   "summaries": {
     "melee": {
-      "referenceCount": 84,
-      "fileCount": 29,
-      "callerFileCount": 29,
+      "referenceCount": 88,
+      "fileCount": 30,
+      "callerFileCount": 30,
       "paths": [
         "Ziptide/Assets/Ziptide/Content/Runtime/Items/ItemDefinition.cs",
         "Ziptide/Assets/Ziptide/Editor/Patching/ArenaWeaponAuthor.cs",
@@ -30,6 +30,7 @@
         "Ziptide/Assets/Ziptide/Tests/EditMode/ForgeLifecycleTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/ForgeMeshTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/ForgeRecipeLibraryTests.cs",
+        "Ziptide/Assets/Ziptide/Tests/EditMode/QuestWeaponAndCouplerRegressionTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/VfxRecipeTests.cs",
         "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs",
         "Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeRecipeDefinition.cs",
@@ -61,6 +62,7 @@
         "Ziptide/Assets/Ziptide/Tests/EditMode/ForgeLifecycleTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/ForgeMeshTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/ForgeRecipeLibraryTests.cs",
+        "Ziptide/Assets/Ziptide/Tests/EditMode/QuestWeaponAndCouplerRegressionTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/VfxRecipeTests.cs",
         "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs",
         "Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeRecipeDefinition.cs",
@@ -429,6 +431,24 @@
         {
           "focus": "melee",
           "token": "MeleeWeaponRuntime",
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs",
+          "line": 10,
+          "symbol": "Ziptide.Gameplay.GunLaserSight",
+          "snippet": "/// MeleeWeaponRuntime is present instead of painting a misleading laser down a sword or pike.",
+          "declaration_file": false
+        },
+        {
+          "focus": "melee",
+          "token": "MeleeWeaponRuntime",
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs",
+          "line": 25,
+          "symbol": "Ziptide.Gameplay.GunLaserSight",
+          "snippet": "if (GetComponent<MeleeWeaponRuntime>() != null)",
+          "declaration_file": false
+        },
+        {
+          "focus": "melee",
+          "token": "MeleeWeaponRuntime",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
           "line": 28,
           "symbol": "Ziptide.Gameplay.MeleeWeaponRuntime",
@@ -657,7 +677,16 @@
           "focus": "melee",
           "token": "Muzzle",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs",
-          "line": 30,
+          "line": 9,
+          "symbol": "Ziptide.Gameplay.GunLaserSight",
+          "snippet": "/// also expose a child named Muzzle as their physical tip, so this component disables itself when",
+          "declaration_file": false
+        },
+        {
+          "focus": "melee",
+          "token": "Muzzle",
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs",
+          "line": 37,
           "symbol": "Ziptide.Gameplay.GunLaserSight",
           "snippet": "_muzzle = transform.Find(\"Muzzle\");",
           "declaration_file": false
@@ -854,6 +883,15 @@
         {
           "focus": "melee",
           "token": "Muzzle",
+          "path": "Ziptide/Assets/Ziptide/Tests/EditMode/QuestWeaponAndCouplerRegressionTests.cs",
+          "line": 79,
+          "symbol": "Ziptide.Tests.EditMode.QuestWeaponAndCouplerRegressionTests",
+          "snippet": "itemId + \" uses Muzzle as a melee tip and must never display a gun laser.\");",
+          "declaration_file": false
+        },
+        {
+          "focus": "melee",
+          "token": "Muzzle",
           "path": "Ziptide/Assets/Ziptide/Tests/EditMode/VfxRecipeTests.cs",
           "line": 94,
           "symbol": "Ziptide.Tests.EditMode.VfxRecipeTests",
@@ -1016,14 +1054,14 @@
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
           "line": 17,
           "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
-          "snippet": "/// tutorial's coupler machine is repaired. The pure rule is <see cref=\"CastOffArming\"/> \u2014 a",
+          "snippet": "/// <see cref=\"CastOffArming\"/> \u2014 a missing machine never strands the launch. Blocked presses flash the",
           "declaration_file": false
         },
         {
           "focus": "repairObjective",
           "token": "CastOffArming",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-          "line": 131,
+          "line": 152,
           "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
           "snippet": "// but never cache absence: a truly machine-less scene stays armed (CastOffArming law).",
           "declaration_file": false
@@ -1032,7 +1070,7 @@
           "focus": "repairObjective",
           "token": "CastOffArming",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-          "line": 135,
+          "line": 156,
           "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
           "snippet": "bool armed = CastOffArming.IsArmed(gateConfigured, _armingMachine != null,",
           "declaration_file": false
@@ -1718,7 +1756,7 @@
           "focus": "repairObjective",
           "token": "JobDirector",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-          "line": 254,
+          "line": 259,
           "symbol": "Ziptide.Gameplay.RepairableMachine",
           "snippet": "if (_director == null) _director = FindObjectOfType<JobDirector>();",
           "declaration_file": false
@@ -1727,7 +1765,7 @@
           "focus": "repairObjective",
           "token": "JobDirector",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-          "line": 130,
+          "line": 151,
           "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
           "snippet": "// The machine is spawned at runtime by JobDirector, so keep looking until found \u2014",
           "declaration_file": false
@@ -1736,7 +1774,7 @@
           "focus": "repairObjective",
           "token": "JobDirector",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-          "line": 139,
+          "line": 160,
           "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
           "snippet": "// observes and its repaired state \u2014 divergence from the JobDirector-spawned machine",
           "declaration_file": false
@@ -2102,7 +2140,7 @@
           "focus": "repairObjective",
           "token": "REPAIR_TRACE",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-          "line": 145,
+          "line": 166,
           "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
           "snippet": "Debug.Log(\"ZIPTIDE: REPAIR_TRACE hop=castoff armed=\" + armed",
           "declaration_file": false
@@ -2340,7 +2378,7 @@
           "focus": "repairObjective",
           "token": "RepairableMachine",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-          "line": 28,
+          "line": 27,
           "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
           "snippet": "[Tooltip(\"RepairableMachine id that must be RUNNING before PUNCH IT arms (empty = no gate).\")]",
           "declaration_file": false
@@ -2349,7 +2387,7 @@
           "focus": "repairObjective",
           "token": "RepairableMachine",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-          "line": 32,
+          "line": 31,
           "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
           "snippet": "private RepairableMachine _armingMachine; // cached once found; absence is re-checked per press",
           "declaration_file": false
@@ -2358,7 +2396,7 @@
           "focus": "repairObjective",
           "token": "RepairableMachine",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-          "line": 132,
+          "line": 153,
           "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
           "snippet": "foreach (var m in FindObjectsOfType<RepairableMachine>())",
           "declaration_file": false
@@ -2367,7 +2405,7 @@
           "focus": "repairObjective",
           "token": "RepairableMachine",
           "path": "Ziptide/Assets/Ziptide/Tests/EditMode/QuestWeaponAndCouplerRegressionTests.cs",
-          "line": 94,
+          "line": 124,
           "symbol": "Ziptide.Tests.EditMode.QuestWeaponAndCouplerRegressionTests",
           "snippet": "var machine = machineRoot.AddComponent<RepairableMachine>();",
           "declaration_file": false
@@ -2540,7 +2578,7 @@
           "focus": "repairObjective",
           "token": "ReportRepair",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-          "line": 255,
+          "line": 260,
           "symbol": "Ziptide.Gameplay.RepairableMachine",
           "snippet": "if (_director != null) _director.ReportRepair(_def.machineId);",
           "declaration_file": false
@@ -2668,7 +2706,7 @@
           "focus": "repairObjective",
           "token": "ShipCastOffRuntime",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-          "line": 21,
+          "line": 20,
           "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
           "snippet": "public class ShipCastOffRuntime : MonoBehaviour",
           "declaration_file": true
@@ -2769,7 +2807,7 @@
           "focus": "repairObjective",
           "token": "gate_coupler",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-          "line": 29,
+          "line": 28,
           "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
           "snippet": "[SerializeField] private string armingMachineId = \"gate_coupler\";",
           "declaration_file": false
@@ -2838,7 +2876,7 @@
           "focus": "shipPresentation",
           "token": "ShipCastOffRuntime",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-          "line": 21,
+          "line": 20,
           "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
           "snippet": "public class ShipCastOffRuntime : MonoBehaviour",
           "declaration_file": true
@@ -5230,7 +5268,7 @@
       "focus": "repairObjective",
       "token": "JobDirector",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-      "line": 254,
+      "line": 259,
       "symbol": "Ziptide.Gameplay.RepairableMachine",
       "snippet": "if (_director == null) _director = FindObjectOfType<JobDirector>();",
       "declaration_file": false
@@ -5257,7 +5295,7 @@
       "focus": "repairObjective",
       "token": "ReportRepair",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-      "line": 255,
+      "line": 260,
       "symbol": "Ziptide.Gameplay.RepairableMachine",
       "snippet": "if (_director != null) _director.ReportRepair(_def.machineId);",
       "declaration_file": false
@@ -5295,14 +5333,14 @@
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
       "line": 17,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
-      "snippet": "/// tutorial's coupler machine is repaired. The pure rule is <see cref=\"CastOffArming\"/> \u2014 a",
+      "snippet": "/// <see cref=\"CastOffArming\"/> \u2014 a missing machine never strands the launch. Blocked presses flash the",
       "declaration_file": false
     },
     {
       "focus": "repairObjective",
       "token": "CastOffArming",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 131,
+      "line": 152,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "// but never cache absence: a truly machine-less scene stays armed (CastOffArming law).",
       "declaration_file": false
@@ -5311,7 +5349,7 @@
       "focus": "repairObjective",
       "token": "CastOffArming",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 135,
+      "line": 156,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "bool armed = CastOffArming.IsArmed(gateConfigured, _armingMachine != null,",
       "declaration_file": false
@@ -5320,7 +5358,7 @@
       "focus": "repairObjective",
       "token": "JobDirector",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 130,
+      "line": 151,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "// The machine is spawned at runtime by JobDirector, so keep looking until found \u2014",
       "declaration_file": false
@@ -5329,7 +5367,7 @@
       "focus": "repairObjective",
       "token": "JobDirector",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 139,
+      "line": 160,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "// observes and its repaired state \u2014 divergence from the JobDirector-spawned machine",
       "declaration_file": false
@@ -5338,7 +5376,7 @@
       "focus": "repairObjective",
       "token": "REPAIR_TRACE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 145,
+      "line": 166,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: REPAIR_TRACE hop=castoff armed=\" + armed",
       "declaration_file": false
@@ -5347,7 +5385,7 @@
       "focus": "repairObjective",
       "token": "RepairableMachine",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 28,
+      "line": 27,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "[Tooltip(\"RepairableMachine id that must be RUNNING before PUNCH IT arms (empty = no gate).\")]",
       "declaration_file": false
@@ -5356,7 +5394,7 @@
       "focus": "repairObjective",
       "token": "RepairableMachine",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 32,
+      "line": 31,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "private RepairableMachine _armingMachine; // cached once found; absence is re-checked per press",
       "declaration_file": false
@@ -5365,7 +5403,7 @@
       "focus": "repairObjective",
       "token": "RepairableMachine",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 132,
+      "line": 153,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "foreach (var m in FindObjectsOfType<RepairableMachine>())",
       "declaration_file": false
@@ -5374,7 +5412,7 @@
       "focus": "repairObjective",
       "token": "ShipCastOffRuntime",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 21,
+      "line": 20,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "public class ShipCastOffRuntime : MonoBehaviour",
       "declaration_file": true
@@ -5383,7 +5421,7 @@
       "focus": "repairObjective",
       "token": "gate_coupler",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 29,
+      "line": 28,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "[SerializeField] private string armingMachineId = \"gate_coupler\";",
       "declaration_file": false
@@ -5392,7 +5430,7 @@
       "focus": "shipPresentation",
       "token": "ShipCastOffRuntime",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 21,
+      "line": 20,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "public class ShipCastOffRuntime : MonoBehaviour",
       "declaration_file": true
@@ -5516,6 +5554,24 @@
     },
     {
       "focus": "melee",
+      "token": "MeleeWeaponRuntime",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs",
+      "line": 10,
+      "symbol": "Ziptide.Gameplay.GunLaserSight",
+      "snippet": "/// MeleeWeaponRuntime is present instead of painting a misleading laser down a sword or pike.",
+      "declaration_file": false
+    },
+    {
+      "focus": "melee",
+      "token": "MeleeWeaponRuntime",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs",
+      "line": 25,
+      "symbol": "Ziptide.Gameplay.GunLaserSight",
+      "snippet": "if (GetComponent<MeleeWeaponRuntime>() != null)",
+      "declaration_file": false
+    },
+    {
+      "focus": "melee",
       "token": "Muzzle",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs",
       "line": 7,
@@ -5527,7 +5583,16 @@
       "focus": "melee",
       "token": "Muzzle",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs",
-      "line": 30,
+      "line": 9,
+      "symbol": "Ziptide.Gameplay.GunLaserSight",
+      "snippet": "/// also expose a child named Muzzle as their physical tip, so this component disables itself when",
+      "declaration_file": false
+    },
+    {
+      "focus": "melee",
+      "token": "Muzzle",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs",
+      "line": 37,
       "symbol": "Ziptide.Gameplay.GunLaserSight",
       "snippet": "_muzzle = transform.Find(\"Muzzle\");",
       "declaration_file": false
@@ -6388,10 +6453,19 @@
       "declaration_file": false
     },
     {
+      "focus": "melee",
+      "token": "Muzzle",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/QuestWeaponAndCouplerRegressionTests.cs",
+      "line": 79,
+      "symbol": "Ziptide.Tests.EditMode.QuestWeaponAndCouplerRegressionTests",
+      "snippet": "itemId + \" uses Muzzle as a melee tip and must never display a gun laser.\");",
+      "declaration_file": false
+    },
+    {
       "focus": "repairObjective",
       "token": "RepairableMachine",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/QuestWeaponAndCouplerRegressionTests.cs",
-      "line": 94,
+      "line": 124,
       "symbol": "Ziptide.Tests.EditMode.QuestWeaponAndCouplerRegressionTests",
       "snippet": "var machine = machineRoot.AddComponent<RepairableMachine>();",
       "declaration_file": false

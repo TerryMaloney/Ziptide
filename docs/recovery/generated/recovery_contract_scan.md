@@ -1,7 +1,7 @@
 # ZIPTIDE Recovery Contract Scan
 
-- Scanned files: **649**
-- Findings: **2325**
+- Scanned files: **651**
+- Findings: **2327**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
@@ -9,7 +9,7 @@
 | Category | Count |
 |---|---:|
 | `bootstrap` | 31 |
-| `diagnostics` | 505 |
+| `diagnostics` | 507 |
 | `events` | 64 |
 | `fallback_debt` | 134 |
 | `global_render` | 80 |
@@ -317,21 +317,23 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/MiningRigRuntime.cs:14` · `Ziptide.Gameplay.MiningRigRuntime` — ZIPTIDE diagnostic tag. `/// Logs ZIPTIDE: MINE_COLLECT id=… amt=…`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/MiningRigRuntime.cs:144` · `Ziptide.Gameplay.MiningRigRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: MINE_COLLECT id=" + _def.id + " amt=" + System.Math.Floor(amt) +`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:14` · `Ziptide.Gameplay.RepairableMachine` — ZIPTIDE diagnostic tag. `/// Logs: ZIPTIDE: MACHINE_STAGE id=… stage=… · ZIPTIDE: MACHINE_REPAIRED id=…`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:228` · `Ziptide.Gameplay.RepairableMachine` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: MACHINE_STAGE id=" + _def.machineId + " stage=panel_off");`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:243` · `Ziptide.Gameplay.RepairableMachine` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: MACHINE_STAGE id=" + _def.machineId + " stage=part_seated");`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:258` · `Ziptide.Gameplay.RepairableMachine` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: MACHINE_REPAIRED id=" + _def.machineId`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:270` · `Ziptide.Gameplay.RepairableMachine` — ZIPTIDE diagnostic tag. `ex => Debug.LogWarning("ZIPTIDE: REPAIR_STAGE_SUBSCRIBER_FAIL id=" + MachineId +`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:233` · `Ziptide.Gameplay.RepairableMachine` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: MACHINE_STAGE id=" + _def.machineId + " stage=panel_off");`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:248` · `Ziptide.Gameplay.RepairableMachine` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: MACHINE_STAGE id=" + _def.machineId + " stage=part_seated");`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:263` · `Ziptide.Gameplay.RepairableMachine` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: MACHINE_REPAIRED id=" + _def.machineId`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:275` · `Ziptide.Gameplay.RepairableMachine` — ZIPTIDE diagnostic tag. `ex => Debug.LogWarning("ZIPTIDE: REPAIR_STAGE_SUBSCRIBER_FAIL id=" + MachineId +`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs:19` · `Ziptide.Gameplay.RillCompanion` — ZIPTIDE diagnostic tag. `/// not just reacting the moment it happens. Logs ZIPTIDE: RILL_LINE per delivery.`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs:55` · `Ziptide.Gameplay.RillCompanion` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: RILL_LINES_MISSING Resources/Story/RillLines not found");`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs:199` · `Ziptide.Gameplay.RillCompanion` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RILL_LINE id=" + line.id);`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:50` · `Ziptide.Gameplay.ShipCastOffRuntime` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: FLIGHT_DESTINATION_REJECTED target=" + destinationScene);`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:55` · `Ziptide.Gameplay.ShipCastOffRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FLIGHT_DESTINATION_SELECTED target=" + targetScene);`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:113` · `Ziptide.Gameplay.ShipCastOffRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FLIGHT_BLOCKED reason=unarmed machine=" + armingMachineId);`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:118` · `Ziptide.Gameplay.ShipCastOffRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FLIGHT_LAUNCH scene=" + gameObject.scene.name + " target=" + targetScene);`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:145` · `Ziptide.Gameplay.ShipCastOffRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: REPAIR_TRACE hop=castoff armed=" + armed`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:173` · `Ziptide.Gameplay.ShipCastOffRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FLIGHT_STREAKS seconds=" + streakSeconds);`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:196` · `Ziptide.Gameplay.ShipCastOffRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FLIGHT_DEPART target=" + targetScene);`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:209` · `Ziptide.Gameplay.ShipCastOffRuntime` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: FLIGHT_DESTINATION_SUBSCRIBER_FAIL reason=" + ex.Message);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:49` · `Ziptide.Gameplay.ShipCastOffRuntime` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: FLIGHT_DESTINATION_REJECTED target=" + destinationScene);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:54` · `Ziptide.Gameplay.ShipCastOffRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FLIGHT_DESTINATION_SELECTED target=" + targetScene);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:78` · `Ziptide.Gameplay.ShipCastOffRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: CASTOFF_CONSOLE_LOCATION mode=cockpit");`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:86` · `Ziptide.Gameplay.ShipCastOffRuntime` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: CASTOFF_CONSOLE_LOCATION mode=berth_fallback reason=no_cockpit_deck");`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:134` · `Ziptide.Gameplay.ShipCastOffRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FLIGHT_BLOCKED reason=unarmed machine=" + armingMachineId);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:139` · `Ziptide.Gameplay.ShipCastOffRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FLIGHT_LAUNCH scene=" + gameObject.scene.name + " target=" + targetScene);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:166` · `Ziptide.Gameplay.ShipCastOffRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: REPAIR_TRACE hop=castoff armed=" + armed`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:194` · `Ziptide.Gameplay.ShipCastOffRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FLIGHT_STREAKS seconds=" + streakSeconds);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:217` · `Ziptide.Gameplay.ShipCastOffRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FLIGHT_DEPART target=" + targetScene);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:230` · `Ziptide.Gameplay.ShipCastOffRuntime` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: FLIGHT_DESTINATION_SUBSCRIBER_FAIL reason=" + ex.Message);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/TransmissionConsole.cs:14` · `Ziptide.Gameplay.TransmissionConsole` — ZIPTIDE diagnostic tag. `/// message de-garbled further. Logs ZIPTIDE: TRANSMISSION_PLAYBACK tier=&lt;n&gt;.`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/TransmissionConsole.cs:78` · `Ziptide.Gameplay.TransmissionConsole` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: TRANSMISSION_PLAYBACK tier=" + tier);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/WateringCanRuntime.cs:120` · `Ziptide.Gameplay.WateringCanRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: GARDEN_POUR plotTend fill=" + _can.fill01.ToString("F2"));`
@@ -576,7 +578,7 @@
 - **EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpMatchDirector.cs:26` · `Ziptide.Gameplay.PvpMatchDirector` — Event declaration. `public event System.Action MatchRestarted;`
 - **EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/WristScanner.cs:43` · `Ziptide.Gameplay.WristScanner` — Event declaration. `public static event System.Action<WristScanResult> ScanResultPublished;`
 - **EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:38` · `Ziptide.Gameplay.RepairableMachine` — Event declaration. `public event System.Action<RepairStage> StageChanged;`
-- **EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:40` · `Ziptide.Gameplay.ShipCastOffRuntime` — Event declaration. `public event Action<string> DestinationSelected;`
+- **EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:39` · `Ziptide.Gameplay.ShipCastOffRuntime` — Event declaration. `public event Action<string> DestinationSelected;`
 - **EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/ComfortConsoleRuntime.cs:15` · `Ziptide.Gameplay.ComfortConsoleRuntime` — Event declaration. `public static event Action<ComfortPreset> PresetConfirmed;`
 - **EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:14` · `Ziptide.Gameplay.FirstDestinationHelmRuntime` — Event declaration. `public static event Action<string> FirstDestinationSelected;`
 - **EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:111` · `Ziptide.Gameplay.FirstDestinationHelmRuntime` — Event declaration. `public static event Action<string> NamedBunkObjectGrabbed;`
@@ -718,7 +720,7 @@
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/CollectibleRuntime.cs:57` · `Ziptide.Gameplay.CollectibleRuntime` — Source text marks fallback/prototype debt. `// Visual: a small spinning "shard" (stretched cube reads as a crystal at graybox quality).`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs:101` · `Ziptide.Gameplay.RillCompanion` — Source text marks fallback/prototype debt. `// Drop already-said once-lines BEFORE the wildcard fallback, so a spent specific`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/TransmissionConsole.cs:9` · `Ziptide.Gameplay.TransmissionConsole` — Source text marks fallback/prototype debt. `/// The de-garble playback console (GAME_PLAN M1 stub; audio at M6): a small terminal that, when`
-- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:22` · `Ziptide.Gameplay.GunLaserSight` — Source text marks fallback/prototype debt. `/// <summary>Alpha 0 keeps the default sight color (ItemDefinition fallback idiom).</summary>`
+- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:29` · `Ziptide.Gameplay.GunLaserSight` — Source text marks fallback/prototype debt. `/// <summary>Alpha 0 keeps the default sight color (ItemDefinition fallback idiom).</summary>`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/PistolRuntime.cs:62` · `Ziptide.Gameplay.PistolRuntime` — Source text marks fallback/prototype debt. `// Fallback: some rigs don’t route Activate events; polling ensures trigger fires while held.`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HazardZoneRuntime.cs:56` · `Ziptide.Gameplay.HazardZoneRuntime` — Source text marks fallback/prototype debt. `// A thin tinted floor slab marks the zone (graybox read; VFX at the M6 art pass).`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/QuartersRoom.cs:15` · `Ziptide.Gameplay.QuartersRoom` — Source text marks fallback/prototype debt. `/// stub — the ROOM and its plumbing are the deliverable.`
@@ -791,9 +793,9 @@
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/CollectibleRuntime.cs:91` · `Ziptide.Gameplay.CollectibleRuntime` — Camera.main dependency. `var cam = Camera.main;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/GardenPlotRuntime.cs:203` · `Ziptide.Gameplay.GardenPlotRuntime` — Camera.main dependency. `var cam = Camera.main;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/MiningRigRuntime.cs:126` · `Ziptide.Gameplay.MiningRigRuntime` — Camera.main dependency. `var cam = Camera.main;`
-- **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:214` · `Ziptide.Gameplay.RepairableMachine` — Camera.main dependency. `var cam = Camera.main;`
+- **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:219` · `Ziptide.Gameplay.RepairableMachine` — Camera.main dependency. `var cam = Camera.main;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs:210` · `Ziptide.Gameplay.RillCompanion` — Camera.main dependency. `if (cam == null) cam = Camera.main;`
-- **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:172` · `Ziptide.Gameplay.ShipCastOffRuntime` — Camera.main dependency. `var cam = Camera.main;`
+- **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:193` · `Ziptide.Gameplay.ShipCastOffRuntime` — Camera.main dependency. `var cam = Camera.main;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs:111` · `Ziptide.Gameplay.Tutorial.FirstHourObservationAdapter` — Camera.main dependency. `Camera camera = Camera.main;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:155` · `Ziptide.Gameplay.HomeHubChoice` — Camera.main dependency. `Transform cam = Camera.main != null ? Camera.main.transform : null;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:281` · `Ziptide.Gameplay.HomeHubChoice` — Camera.main dependency. `Camera cam = Camera.main;`
@@ -1100,7 +1102,7 @@
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/CollectibleRuntime.cs:103` · `Ziptide.Gameplay.CollectibleRuntime` — Runtime Material allocation. `var mat = new Material(shader);`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/GardenPlotRuntime.cs:252` · `Ziptide.Gameplay.GardenPlotRuntime` — Runtime Material allocation. `var mat = new Material(shader);`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/MiningRigRuntime.cs:155` · `Ziptide.Gameplay.MiningRigRuntime` — Runtime Material allocation. `var mat = new Material(shader);`
-- **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:310` · `Ziptide.Gameplay.RepairableMachine` — Runtime Material allocation. `var mat = new Material(shader);`
+- **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:325` · `Ziptide.Gameplay.RepairableMachine` — Runtime Material allocation. `var mat = new Material(shader);`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs:229` · `Ziptide.Gameplay.RillCompanion` — Runtime Material allocation. `_orbMat = new Material(shader);`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/TransmissionConsole.cs:99` · `Ziptide.Gameplay.TransmissionConsole` — Runtime Material allocation. `var mat = new Material(shader);`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/WateringCanRuntime.cs:158` · `Ziptide.Gameplay.WateringCanRuntime` — Runtime Material allocation. `var mat = new Material(shader);`
@@ -1108,7 +1110,7 @@
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/ComfortConsoleRuntime.cs:124` · `Ziptide.Gameplay.ComfortConsoleRuntime` — Runtime Material allocation. `var material = new Material(shader);`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:374` · `Ziptide.Gameplay.HomeHubChoice` — Runtime Material allocation. `var material = new Material(shader);`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GravityGunRuntime.cs:154` · `Ziptide.Gameplay.GravityGunRuntime` — Runtime Material allocation. `var mat = new Material(shader);`
-- **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:64` · `Ziptide.Gameplay.GunLaserSight` — Runtime Material allocation. `var mat = new Material(shader);`
+- **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:71` · `Ziptide.Gameplay.GunLaserSight` — Runtime Material allocation. `var mat = new Material(shader);`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/TaserDartProjectile.cs:104` · `Ziptide.Gameplay.TaserDartProjectile` — Runtime Material allocation. `var mat = new Material(shader);`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/TracerFx.cs:35` · `Ziptide.Gameplay.TracerFx` — Runtime Material allocation. `var mat = shader != null ? new Material(shader) : new Material(Shader.Find("Sprites/Default"));`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HazardZoneRuntime.cs:71` · `Ziptide.Gameplay.HazardZoneRuntime` — Runtime Material allocation. `var mat = new Material(shader);`
@@ -1222,8 +1224,8 @@
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/GardenPlotRuntime.cs:250` · `Ziptide.Gameplay.GardenPlotRuntime` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Standard");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/MiningRigRuntime.cs:152` · `Ziptide.Gameplay.MiningRigRuntime` — Runtime shader lookup. `var shader = Shader.Find("Universal Render Pipeline/Lit");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/MiningRigRuntime.cs:153` · `Ziptide.Gameplay.MiningRigRuntime` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Standard");`
-- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:307` · `Ziptide.Gameplay.RepairableMachine` — Runtime shader lookup. `var shader = Shader.Find("Universal Render Pipeline/Lit");`
-- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:308` · `Ziptide.Gameplay.RepairableMachine` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Standard");`
+- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:322` · `Ziptide.Gameplay.RepairableMachine` — Runtime shader lookup. `var shader = Shader.Find("Universal Render Pipeline/Lit");`
+- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:323` · `Ziptide.Gameplay.RepairableMachine` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Standard");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs:225` · `Ziptide.Gameplay.RillCompanion` — Runtime shader lookup. `var shader = Shader.Find("Universal Render Pipeline/Unlit");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs:226` · `Ziptide.Gameplay.RillCompanion` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Universal Render Pipeline/Lit");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/TransmissionConsole.cs:96` · `Ziptide.Gameplay.TransmissionConsole` — Runtime shader lookup. `var shader = Shader.Find("Universal Render Pipeline/Lit");`
@@ -1237,7 +1239,7 @@
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:372` · `Ziptide.Gameplay.HomeHubChoice` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Standard");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GravityGunRuntime.cs:150` · `Ziptide.Gameplay.GravityGunRuntime` — Runtime shader lookup. `var shader = Shader.Find("Universal Render Pipeline/Unlit");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GravityGunRuntime.cs:151` · `Ziptide.Gameplay.GravityGunRuntime` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Sprites/Default");`
-- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:61` · `Ziptide.Gameplay.GunLaserSight` — Runtime shader lookup. `var shader = Shader.Find("Universal Render Pipeline/Unlit");`
+- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:68` · `Ziptide.Gameplay.GunLaserSight` — Runtime shader lookup. `var shader = Shader.Find("Universal Render Pipeline/Unlit");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/TaserDartProjectile.cs:100` · `Ziptide.Gameplay.TaserDartProjectile` — Runtime shader lookup. `var shader = Shader.Find("Universal Render Pipeline/Unlit");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/TaserDartProjectile.cs:101` · `Ziptide.Gameplay.TaserDartProjectile` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Universal Render Pipeline/Lit");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/TracerFx.cs:34` · `Ziptide.Gameplay.TracerFx` — Runtime shader lookup. `var shader = Shader.Find("Universal Render Pipeline/Unlit");`
@@ -1452,12 +1454,12 @@
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:68` · `Ziptide.Gameplay.RepairableMachine` — Runtime primitive construction. `var body = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:78` · `Ziptide.Gameplay.RepairableMachine` — Runtime primitive construction. `var lamp = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:98` · `Ziptide.Gameplay.RepairableMachine` — Runtime primitive construction. `var socket = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:122` · `Ziptide.Gameplay.RepairableMachine` — Runtime primitive construction. `var panelVisual = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:130` · `Ziptide.Gameplay.RepairableMachine` — Runtime primitive construction. `var sw = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:186` · `Ziptide.Gameplay.RepairableMachine` — Runtime primitive construction. `var partVisual = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:124` · `Ziptide.Gameplay.RepairableMachine` — Runtime primitive construction. `var panelVisual = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:132` · `Ziptide.Gameplay.RepairableMachine` — Runtime primitive construction. `var sw = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:191` · `Ziptide.Gameplay.RepairableMachine` — Runtime primitive construction. `var partVisual = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs:217` · `Ziptide.Gameplay.RillCompanion` — Runtime primitive construction. `_orb = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
-- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:72` · `Ziptide.Gameplay.ShipCastOffRuntime` — Runtime primitive construction. `var pedestal = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:79` · `Ziptide.Gameplay.ShipCastOffRuntime` — Runtime primitive construction. `var button = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:89` · `Ziptide.Gameplay.ShipCastOffRuntime` — Runtime primitive construction. `var pedestal = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:100` · `Ziptide.Gameplay.ShipCastOffRuntime` — Runtime primitive construction. `var button = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/TransmissionConsole.cs:32` · `Ziptide.Gameplay.TransmissionConsole` — Runtime primitive construction. `var body = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/TransmissionConsole.cs:39` · `Ziptide.Gameplay.TransmissionConsole` — Runtime primitive construction. `var screen = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/WateringCanRuntime.cs:59` · `Ziptide.Gameplay.WateringCanRuntime` — Runtime primitive construction. `var body = GameObject.CreatePrimitive(PrimitiveType.Cube);`
@@ -1753,11 +1755,11 @@
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/MiningRigRuntime.cs:97` · `Ziptide.Gameplay.MiningRigRuntime` — Runtime GameObject construction. `var readoutGo = new GameObject("Readout");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:87` · `Ziptide.Gameplay.RepairableMachine` — Runtime GameObject construction. `var labelGo = new GameObject("Label");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:110` · `Ziptide.Gameplay.RepairableMachine` — Runtime GameObject construction. `var panel = new GameObject("Panel");`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:144` · `Ziptide.Gameplay.RepairableMachine` — Runtime GameObject construction. `var switchLabelGo = new GameObject("PowerSwitchLabel");`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:165` · `Ziptide.Gameplay.RepairableMachine` — Runtime GameObject construction. `var part = new GameObject("Part_" + _def.partItemId);`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:191` · `Ziptide.Gameplay.RepairableMachine` — Runtime GameObject construction. `var partLabel = new GameObject("PartLabel");`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:146` · `Ziptide.Gameplay.RepairableMachine` — Runtime GameObject construction. `var switchLabelGo = new GameObject("PowerSwitchLabel");`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:167` · `Ziptide.Gameplay.RepairableMachine` — Runtime GameObject construction. `var part = new GameObject("Part_" + _def.partItemId);`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:196` · `Ziptide.Gameplay.RepairableMachine` — Runtime GameObject construction. `var partLabel = new GameObject("PartLabel");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs:238` · `Ziptide.Gameplay.RillCompanion` — Runtime GameObject construction. `var go = new GameObject("__RillSubtitle");`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:86` · `Ziptide.Gameplay.ShipCastOffRuntime` — Runtime GameObject construction. `var label = new GameObject("Label_PUNCH_IT");`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:107` · `Ziptide.Gameplay.ShipCastOffRuntime` — Runtime GameObject construction. `var label = new GameObject("Label_PUNCH_IT");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/TransmissionConsole.cs:54` · `Ziptide.Gameplay.TransmissionConsole` — Runtime GameObject construction. `var textGo = new GameObject("ScreenText");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/WateringCanRuntime.cs:38` · `Ziptide.Gameplay.WateringCanRuntime` — Runtime GameObject construction. `var go = new GameObject("WateringCan");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/ComfortConsoleRuntime.cs:99` · `Ziptide.Gameplay.ComfortConsoleRuntime` — Runtime GameObject construction. `var go = new GameObject("Label_" + text.Replace('\n', '_'));`
@@ -1767,7 +1769,7 @@
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:146` · `Ziptide.Gameplay.HomeHubChoice` — Runtime GameObject construction. `var go = new GameObject("__HOME_HUB_COMFORT_SETTINGS");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:349` · `Ziptide.Gameplay.HomeHubChoice` — Runtime GameObject construction. `var go = new GameObject("Label_" + text.Replace(' ', '_').Replace('\n', '_'));`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GravityGunRuntime.cs:39` · `Ziptide.Gameplay.GravityGunRuntime` — Runtime GameObject construction. `var m = new GameObject("Muzzle");`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:53` · `Ziptide.Gameplay.GunLaserSight` — Runtime GameObject construction. `var go = new GameObject("__LaserSight");`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:60` · `Ziptide.Gameplay.GunLaserSight` — Runtime GameObject construction. `var go = new GameObject("__LaserSight");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/PistolRuntime.cs:34` · `Ziptide.Gameplay.PistolRuntime` — Runtime GameObject construction. `var m = new GameObject("Muzzle");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/StaticNetWeapon.cs:98` · `Ziptide.Gameplay.StaticNetGunRuntime` — Runtime GameObject construction. `var zone = new GameObject("SlowZone");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/TaserDartGunRuntime.cs:33` · `Ziptide.Gameplay.TaserDartGunRuntime` — Runtime GameObject construction. `var m = new GameObject("Muzzle");`
@@ -1836,7 +1838,7 @@
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:110` · `Ziptide.Tests.EditMode.HomeHubFlowTests` — Runtime GameObject construction. `var go = new GameObject("castoff-test");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:135` · `Ziptide.Tests.EditMode.HomeHubFlowTests` — Runtime GameObject construction. `var go = new GameObject("bunk-test");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/PracticalLightTests.cs:16` · `Ziptide.Tests.EditMode.PracticalLightTests` — Runtime GameObject construction. `host = new GameObject("PracticalHost");`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/QuestWeaponAndCouplerRegressionTests.cs:93` · `Ziptide.Tests.EditMode.QuestWeaponAndCouplerRegressionTests` — Runtime GameObject construction. `machineRoot = new GameObject("QuestCouplerRegression");`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/QuestWeaponAndCouplerRegressionTests.cs:123` · `Ziptide.Tests.EditMode.QuestWeaponAndCouplerRegressionTests` — Runtime GameObject construction. `machineRoot = new GameObject("QuestCouplerRegression");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/ReactivePracticalSwapTests.cs:14` · `Ziptide.Tests.EditMode.ReactivePracticalSwapTests` — Runtime GameObject construction. `var root = new GameObject("ReactiveStreetPole");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/ReactivePropAuthorTests.cs:172` · `Ziptide.Tests.EditMode.ReactivePropAuthorTests` — Runtime GameObject construction. `var value = new GameObject(name);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/ReactivePropAuthorTests.cs:179` · `Ziptide.Tests.EditMode.ReactivePropAuthorTests` — Runtime GameObject construction. `var value = new GameObject(name);`
@@ -1922,10 +1924,10 @@
 - **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/GardenPlotRuntime.cs:77` · `Ziptide.Gameplay.GardenPlotRuntime` — Legacy TextMesh creation/reference. `_readout = readoutGo.AddComponent<TextMesh>();`
 - **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/MiningRigRuntime.cs:98` · `Ziptide.Gameplay.MiningRigRuntime` — Legacy TextMesh creation/reference. `_readout = readoutGo.AddComponent<TextMesh>();`
 - **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:88` · `Ziptide.Gameplay.RepairableMachine` — Legacy TextMesh creation/reference. `_label = labelGo.AddComponent<TextMesh>();`
-- **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:149` · `Ziptide.Gameplay.RepairableMachine` — Legacy TextMesh creation/reference. `var switchLabel = switchLabelGo.AddComponent<TextMesh>();`
-- **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:192` · `Ziptide.Gameplay.RepairableMachine` — Legacy TextMesh creation/reference. `var ptm = partLabel.AddComponent<TextMesh>();`
+- **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:151` · `Ziptide.Gameplay.RepairableMachine` — Legacy TextMesh creation/reference. `var switchLabel = switchLabelGo.AddComponent<TextMesh>();`
+- **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:197` · `Ziptide.Gameplay.RepairableMachine` — Legacy TextMesh creation/reference. `var ptm = partLabel.AddComponent<TextMesh>();`
 - **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs:239` · `Ziptide.Gameplay.RillCompanion` — Legacy TextMesh creation/reference. `_text = go.AddComponent<TextMesh>();`
-- **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:91` · `Ziptide.Gameplay.ShipCastOffRuntime` — Legacy TextMesh creation/reference. `var tm = label.AddComponent<TextMesh>();`
+- **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:112` · `Ziptide.Gameplay.ShipCastOffRuntime` — Legacy TextMesh creation/reference. `var tm = label.AddComponent<TextMesh>();`
 - **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/TransmissionConsole.cs:55` · `Ziptide.Gameplay.TransmissionConsole` — Legacy TextMesh creation/reference. `_screenText = textGo.AddComponent<TextMesh>();`
 - **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/ComfortConsoleRuntime.cs:102` · `Ziptide.Gameplay.ComfortConsoleRuntime` — Legacy TextMesh creation/reference. `var tm = go.AddComponent<TextMesh>();`
 - **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:79` · `Ziptide.Gameplay.FirstDestinationHelmRuntime` — Legacy TextMesh creation/reference. `var tm = go.AddComponent<TextMesh>();`
@@ -1983,9 +1985,9 @@
 - **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/GardenPlotRuntime.cs:62` · `Ziptide.Gameplay.GardenPlotRuntime` — XR interactable creation/reference. `var interactable = soil.AddComponent<XRSimpleInteractable>();`
 - **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/MiningRigRuntime.cs:92` · `Ziptide.Gameplay.MiningRigRuntime` — XR interactable creation/reference. `var interactable = hopper.AddComponent<XRSimpleInteractable>();`
 - **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:119` · `Ziptide.Gameplay.RepairableMachine` — XR interactable creation/reference. `var panelGrab = panel.AddComponent<XRGrabInteractable>();`
-- **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:140` · `Ziptide.Gameplay.RepairableMachine` — XR interactable creation/reference. `var swInteractable = sw.AddComponent<XRSimpleInteractable>();`
-- **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:173` · `Ziptide.Gameplay.RepairableMachine` — XR interactable creation/reference. `var partGrab = part.AddComponent<XRGrabInteractable>();`
-- **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:100` · `Ziptide.Gameplay.ShipCastOffRuntime` — XR interactable creation/reference. `var interactable = button.AddComponent<XRSimpleInteractable>();`
+- **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:142` · `Ziptide.Gameplay.RepairableMachine` — XR interactable creation/reference. `var swInteractable = sw.AddComponent<XRSimpleInteractable>();`
+- **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:175` · `Ziptide.Gameplay.RepairableMachine` — XR interactable creation/reference. `var partGrab = part.AddComponent<XRGrabInteractable>();`
+- **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:121` · `Ziptide.Gameplay.ShipCastOffRuntime` — XR interactable creation/reference. `var interactable = button.AddComponent<XRSimpleInteractable>();`
 - **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/TransmissionConsole.cs:48` · `Ziptide.Gameplay.TransmissionConsole` — XR interactable creation/reference. `var interactable = screen.AddComponent<XRSimpleInteractable>();`
 - **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/WateringCanRuntime.cs:44` · `Ziptide.Gameplay.WateringCanRuntime` — XR interactable creation/reference. `var grab = go.AddComponent<XRGrabInteractable>();`
 - **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/ThemeSwitchStation.cs:74` · `Ziptide.Gameplay.ThemeSwitchStation` — XR interactable creation/reference. `var interactable = button.AddComponent<XRSimpleInteractable>();`
@@ -2305,8 +2307,8 @@
 - **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/CollectibleRuntime.cs:54` · `Ziptide.Gameplay.CollectibleRuntime` — Explicit interactable interactionManager assignment. `if (mgr != null) grab.interactionManager = mgr;`
 - **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/GardenPlotRuntime.cs:64` · `Ziptide.Gameplay.GardenPlotRuntime` — Explicit interactable interactionManager assignment. `if (mgr != null) interactable.interactionManager = mgr;`
 - **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/MiningRigRuntime.cs:94` · `Ziptide.Gameplay.MiningRigRuntime` — Explicit interactable interactionManager assignment. `if (mgr != null) interactable.interactionManager = mgr;`
-- **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:292` · `Ziptide.Gameplay.RepairableMachine` — Explicit interactable interactionManager assignment. `if (mgr != null) interactable.interactionManager = mgr;`
-- **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:102` · `Ziptide.Gameplay.ShipCastOffRuntime` — Explicit interactable interactionManager assignment. `if (mgr != null) interactable.interactionManager = mgr;`
+- **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:297` · `Ziptide.Gameplay.RepairableMachine` — Explicit interactable interactionManager assignment. `if (mgr != null) interactable.interactionManager = mgr;`
+- **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:123` · `Ziptide.Gameplay.ShipCastOffRuntime` — Explicit interactable interactionManager assignment. `if (mgr != null) interactable.interactionManager = mgr;`
 - **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/TransmissionConsole.cs:50` · `Ziptide.Gameplay.TransmissionConsole` — Explicit interactable interactionManager assignment. `if (mgr != null) interactable.interactionManager = mgr;`
 - **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/TransmissionConsole.cs:88` · `Ziptide.Gameplay.TransmissionConsole` — Explicit interactable interactionManager assignment. `if (mgr != null) { interactable.interactionManager = mgr; yield break; }`
 - **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/WateringCanRuntime.cs:46` · `Ziptide.Gameplay.WateringCanRuntime` — Explicit interactable interactionManager assignment. `if (mgr != null) grab.interactionManager = mgr;`
@@ -2354,8 +2356,8 @@
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/CollectibleRuntime.cs:53` · `Ziptide.Gameplay.CollectibleRuntime` — XRInteractionManager lookup. `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/GardenPlotRuntime.cs:63` · `Ziptide.Gameplay.GardenPlotRuntime` — XRInteractionManager lookup. `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/MiningRigRuntime.cs:93` · `Ziptide.Gameplay.MiningRigRuntime` — XRInteractionManager lookup. `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
-- **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:291` · `Ziptide.Gameplay.RepairableMachine` — XRInteractionManager lookup. `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
-- **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:101` · `Ziptide.Gameplay.ShipCastOffRuntime` — XRInteractionManager lookup. `var mgr = FindObjectOfType<XRInteractionManager>();`
+- **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:296` · `Ziptide.Gameplay.RepairableMachine` — XRInteractionManager lookup. `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
+- **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:122` · `Ziptide.Gameplay.ShipCastOffRuntime` — XRInteractionManager lookup. `var mgr = FindObjectOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/TransmissionConsole.cs:49` · `Ziptide.Gameplay.TransmissionConsole` — XRInteractionManager lookup. `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/TransmissionConsole.cs:87` · `Ziptide.Gameplay.TransmissionConsole` — XRInteractionManager lookup. `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/WateringCanRuntime.cs:45` · `Ziptide.Gameplay.WateringCanRuntime` — XRInteractionManager lookup. `var mgr = Object.FindObjectOfType<XRInteractionManager>();`

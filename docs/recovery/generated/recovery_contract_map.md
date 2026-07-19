@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
-- Scanned files: **649**
-- Scanner findings: **2325**
+- Scanned files: **651**
+- Scanner findings: **2327**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -1487,9 +1487,9 @@ None.
 
 - Codes: `NEW_GAME_OBJECT`, `RUNTIME_MATERIAL_CREATE`, `SHADER_FIND`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:53` **NEW_GAME_OBJECT** — `var go = new GameObject("__LaserSight");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:61` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Unlit");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:64` **RUNTIME_MATERIAL_CREATE** — `var mat = new Material(shader);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:60` **NEW_GAME_OBJECT** — `var go = new GameObject("__LaserSight");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:68` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Unlit");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:71` **RUNTIME_MATERIAL_CREATE** — `var mat = new Material(shader);`
 
 ### `Ziptide.Gameplay.HammerTool` — 3 signal(s)
 
@@ -1846,19 +1846,19 @@ None.
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:98` **CREATE_PRIMITIVE** — `var socket = GameObject.CreatePrimitive(PrimitiveType.Cube);`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:110` **NEW_GAME_OBJECT** — `var panel = new GameObject("Panel");`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:119` **XR_INTERACTABLE_COMPONENT** — `var panelGrab = panel.AddComponent<XRGrabInteractable>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:122` **CREATE_PRIMITIVE** — `var panelVisual = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:130` **CREATE_PRIMITIVE** — `var sw = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:140` **XR_INTERACTABLE_COMPONENT** — `var swInteractable = sw.AddComponent<XRSimpleInteractable>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:144` **NEW_GAME_OBJECT** — `var switchLabelGo = new GameObject("PowerSwitchLabel");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:149` **TEXTMESH_COMPONENT** — `var switchLabel = switchLabelGo.AddComponent<TextMesh>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:165` **NEW_GAME_OBJECT** — `var part = new GameObject("Part_" + _def.partItemId);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:173` **XR_INTERACTABLE_COMPONENT** — `var partGrab = part.AddComponent<XRGrabInteractable>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:186` **CREATE_PRIMITIVE** — `var partVisual = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:191` **NEW_GAME_OBJECT** — `var partLabel = new GameObject("PartLabel");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:192` **TEXTMESH_COMPONENT** — `var ptm = partLabel.AddComponent<TextMesh>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:307` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Lit");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:308` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:310` **RUNTIME_MATERIAL_CREATE** — `var mat = new Material(shader);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:124` **CREATE_PRIMITIVE** — `var panelVisual = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:132` **CREATE_PRIMITIVE** — `var sw = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:142` **XR_INTERACTABLE_COMPONENT** — `var swInteractable = sw.AddComponent<XRSimpleInteractable>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:146` **NEW_GAME_OBJECT** — `var switchLabelGo = new GameObject("PowerSwitchLabel");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:151` **TEXTMESH_COMPONENT** — `var switchLabel = switchLabelGo.AddComponent<TextMesh>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:167` **NEW_GAME_OBJECT** — `var part = new GameObject("Part_" + _def.partItemId);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:175` **XR_INTERACTABLE_COMPONENT** — `var partGrab = part.AddComponent<XRGrabInteractable>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:191` **CREATE_PRIMITIVE** — `var partVisual = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:196` **NEW_GAME_OBJECT** — `var partLabel = new GameObject("PartLabel");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:197` **TEXTMESH_COMPONENT** — `var ptm = partLabel.AddComponent<TextMesh>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:322` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Lit");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:323` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:325` **RUNTIME_MATERIAL_CREATE** — `var mat = new Material(shader);`
 
 ### `Ziptide.Gameplay.RillCompanion` — 6 signal(s)
 
@@ -1913,11 +1913,11 @@ None.
 
 - Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`, `TEXTMESH_COMPONENT`, `XR_INTERACTABLE_COMPONENT`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:72` **CREATE_PRIMITIVE** — `var pedestal = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:79` **CREATE_PRIMITIVE** — `var button = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:86` **NEW_GAME_OBJECT** — `var label = new GameObject("Label_PUNCH_IT");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:91` **TEXTMESH_COMPONENT** — `var tm = label.AddComponent<TextMesh>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:100` **XR_INTERACTABLE_COMPONENT** — `var interactable = button.AddComponent<XRSimpleInteractable>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:89` **CREATE_PRIMITIVE** — `var pedestal = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:100` **CREATE_PRIMITIVE** — `var button = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:107` **NEW_GAME_OBJECT** — `var label = new GameObject("Label_PUNCH_IT");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:112` **TEXTMESH_COMPONENT** — `var tm = label.AddComponent<TextMesh>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:121` **XR_INTERACTABLE_COMPONENT** — `var interactable = button.AddComponent<XRSimpleInteractable>();`
 
 ### `Ziptide.Gameplay.ShipRefit` — 4 signal(s)
 
@@ -2214,7 +2214,7 @@ None.
 
 - Codes: `NEW_GAME_OBJECT`
 - Paths: `Ziptide/Assets/Ziptide/Tests/EditMode/QuestWeaponAndCouplerRegressionTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/EditMode/QuestWeaponAndCouplerRegressionTests.cs:93` **NEW_GAME_OBJECT** — `machineRoot = new GameObject("QuestCouplerRegression");`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/QuestWeaponAndCouplerRegressionTests.cs:123` **NEW_GAME_OBJECT** — `machineRoot = new GameObject("QuestCouplerRegression");`
 
 ### `Ziptide.Tests.EditMode.ReactivePracticalSwapTests` — 1 signal(s)
 
@@ -2691,8 +2691,8 @@ None.
 
 - Codes: `XRI_MANAGER_ASSIGN`, `XRI_MANAGER_LOOKUP`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:291` **XRI_MANAGER_LOOKUP** — `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:292` **XRI_MANAGER_ASSIGN** — `if (mgr != null) interactable.interactionManager = mgr;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:296` **XRI_MANAGER_LOOKUP** — `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:297` **XRI_MANAGER_ASSIGN** — `if (mgr != null) interactable.interactionManager = mgr;`
 
 ### `Ziptide.Gameplay.ShipBoardingStation` — 2 signal(s)
 
@@ -2705,8 +2705,8 @@ None.
 
 - Codes: `XRI_MANAGER_ASSIGN`, `XRI_MANAGER_LOOKUP`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:101` **XRI_MANAGER_LOOKUP** — `var mgr = FindObjectOfType<XRInteractionManager>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:102` **XRI_MANAGER_ASSIGN** — `if (mgr != null) interactable.interactionManager = mgr;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:122` **XRI_MANAGER_LOOKUP** — `var mgr = FindObjectOfType<XRInteractionManager>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:123` **XRI_MANAGER_ASSIGN** — `if (mgr != null) interactable.interactionManager = mgr;`
 
 ### `Ziptide.Gameplay.TransmissionConsole` — 4 signal(s)
 
@@ -3271,7 +3271,7 @@ None.
 
 - Codes: `EVENT_DECLARATION`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:40` **EVENT_DECLARATION** — `public event Action<string> DestinationSelected;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:39` **EVENT_DECLARATION** — `public event Action<string> DestinationSelected;`
 
 ### `Ziptide.Gameplay.ShipRefit` — 4 signal(s)
 
@@ -3830,7 +3830,7 @@ None.
 
 - Codes: `CAMERA_MAIN_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:214` **CAMERA_MAIN_REFERENCE** — `var cam = Camera.main;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:219` **CAMERA_MAIN_REFERENCE** — `var cam = Camera.main;`
 
 ### `Ziptide.Gameplay.RillCompanion` — 1 signal(s)
 
@@ -3848,7 +3848,7 @@ None.
 
 - Codes: `CAMERA_MAIN_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:172` **CAMERA_MAIN_REFERENCE** — `var cam = Camera.main;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:193` **CAMERA_MAIN_REFERENCE** — `var cam = Camera.main;`
 
 ### `Ziptide.Gameplay.StaticNetGunRuntime` — 1 signal(s)
 
@@ -4222,7 +4222,7 @@ None.
 
 - Codes: `FALLBACK_MARKER`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:22` **FALLBACK_MARKER** — `/// <summary>Alpha 0 keeps the default sight color (ItemDefinition fallback idiom).</summary>`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:29` **FALLBACK_MARKER** — `/// <summary>Alpha 0 keeps the default sight color (ItemDefinition fallback idiom).</summary>`
 
 ### `Ziptide.Gameplay.HazardZoneRuntime` — 1 signal(s)
 

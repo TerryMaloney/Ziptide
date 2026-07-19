@@ -1,6 +1,6 @@
 # ZIPTIDE Event and Save Ownership Graph
 
-- Scanned C# files: **649**
+- Scanned C# files: **651**
 - Evidence edges: **701**
 - Named subscriptions without matching unsubscribe in the same owner: **48**
 
@@ -215,7 +215,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `DestinationSelected`
 
-- **EVENT_DECLARE** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:40` · `Action<string>` — `public event Action<string> DestinationSelected;`
+- **EVENT_DECLARE** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:39` · `Action<string>` — `public event Action<string> DestinationSelected;`
 
 ### `DisabledState`
 
