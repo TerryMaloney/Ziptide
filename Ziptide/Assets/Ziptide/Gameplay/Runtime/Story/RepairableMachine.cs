@@ -7,8 +7,8 @@ namespace Ziptide.Gameplay
     /// <summary>
     /// The hands-on repair fantasy (GAME_PLAN M2): a broken machine fixed in three PHYSICAL stages —
     /// 1) grab the access PANEL off, 2) fetch the replacement PART (spawned wherever the pack says —
-    /// the fetch is part of the job) and seat it in the exposed socket, 3) flip the power SWITCH.
-    /// Then the machine hums back to life and credits RepairMachineCount job steps via
+    /// the fetch is part of the job) and seat it in the exposed socket, 3) press the illuminated power
+    /// SWITCH. Then the machine hums back to life and credits RepairMachineCount job steps via
     /// <see cref="JobDirector.ReportRepair"/>. Spawned by JobDirector from
     /// <see cref="MachineSpawnDefinition"/> pack data — never in scene YAML.
     /// Logs: ZIPTIDE: MACHINE_STAGE id=… stage=… · ZIPTIDE: MACHINE_REPAIRED id=…
@@ -20,6 +20,7 @@ namespace Ziptide.Gameplay
         private static readonly Color SocketEmpty = new Color(0.55f, 0.25f, 0.20f); // exposed fault
         private static readonly Color PartColor = new Color(0.85f, 0.65f, 0.25f);
         private static readonly Color SwitchOff = new Color(0.45f, 0.15f, 0.12f);
+        private static readonly Color SwitchReady = new Color(1.0f, 0.48f, 0.08f);
         private static readonly Color RunningColor = new Color(0.25f, 0.75f, 0.55f);
         private const float SeatDistance = 0.3f;
 
@@ -36,7 +37,7 @@ namespace Ziptide.Gameplay
         /// <summary>Neutral notification emitted after an established physical stage transition.</summary>
         public event System.Action<RepairStage> StageChanged;
 
-        /// <summary>True once the machine hums (panel off → part seated → switch flipped).
+        /// <summary>True once the machine hums (panel off → part seated → switch pressed).
         /// Queried by ShipCastOffRuntime's arming gate.</summary>
         public bool IsRepaired => _stage == RepairStage.Running;
 
@@ -50,6 +51,7 @@ namespace Ziptide.Gameplay
         private Renderer _socketRenderer;
         private Renderer _switchRenderer;
         private Renderer _statusLamp;
+        private GameObject _powerSwitch;
         private TextMesh _label;
 
         /// <summary>Build + arm the machine. Call immediately after AddComponent (spawner does).</summary>
@@ -70,16 +72,18 @@ namespace Ziptide.Gameplay
             body.transform.localScale = new Vector3(1.0f, 1.5f, 0.7f);
             Paint(body, BodyColor);
 
-            // Status lamp on top — red while broken, green when running.
-            var lamp = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-            lamp.name = "StatusLamp"; StripCollider(lamp);
+            // Status INDICATOR — deliberately a flat light, not a round button. It is red while broken
+            // and green when running, but never receives interaction. The actual power control appears
+            // on the child-reachable front face only after the replacement part seats.
+            var lamp = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            lamp.name = "StatusIndicator"; StripCollider(lamp);
             lamp.transform.SetParent(transform, false);
-            lamp.transform.localPosition = new Vector3(0f, 1.62f, 0f);
-            lamp.transform.localScale = Vector3.one * 0.12f;
+            lamp.transform.localPosition = new Vector3(0f, 1.34f, -0.37f);
+            lamp.transform.localScale = new Vector3(0.18f, 0.07f, 0.035f);
             Paint(lamp, SwitchOff);
             _statusLamp = lamp.GetComponent<Renderer>();
 
-            // Floating label + stage hint.
+            // Floating label + stage hint. This is guidance only; every actual control is below 0.9 m.
             var labelGo = new GameObject("Label");
             _label = labelGo.AddComponent<TextMesh>();
             _label.characterSize = 0.035f;
@@ -88,7 +92,7 @@ namespace Ziptide.Gameplay
             _label.alignment = TextAlignment.Center;
             _label.color = new Color(1f, 0.85f, 0.6f);
             labelGo.transform.SetParent(transform, false);
-            labelGo.transform.localPosition = new Vector3(0f, 1.95f, 0f);
+            labelGo.transform.localPosition = new Vector3(0f, 1.58f, -0.38f);
 
             // The exposed socket behind the panel (visible once the panel is off).
             var socket = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -101,14 +105,17 @@ namespace Ziptide.Gameplay
             _socketRenderer = socket.GetComponent<Renderer>();
             socket.SetActive(false);
 
-            // Stage 1: the access panel — a grabbable plate covering the socket.
+            // Stage 1: the access panel — a grabbable plate covering the socket. A constrained dynamic
+            // body avoids XRI's "throwing a kinematic Rigidbody" warning while remaining bolted in place.
             var panel = new GameObject("Panel");
             panel.transform.SetParent(transform, false);
             panel.transform.localPosition = new Vector3(0f, 0.85f, -0.42f);
             var panelCol = panel.AddComponent<BoxCollider>();
             panelCol.size = new Vector3(0.5f, 0.5f, 0.06f);
             var panelRb = panel.AddComponent<Rigidbody>();
-            panelRb.isKinematic = true; // bolted on until grabbed
+            panelRb.isKinematic = false;
+            panelRb.useGravity = false;
+            panelRb.constraints = RigidbodyConstraints.FreezeAll;
             var panelGrab = panel.AddComponent<XRGrabInteractable>();
             WireManager(panelGrab);
             panelGrab.selectEntered.AddListener(_ => OnPanelPulled(panel, panelRb));
@@ -118,17 +125,37 @@ namespace Ziptide.Gameplay
             panelVisual.transform.localScale = new Vector3(0.5f, 0.5f, 0.05f);
             Paint(panelVisual, PanelColor);
 
-            // Stage 3: the power switch (armed after the part seats).
+            // Stage 3: a large, front-centre, child-reachable power switch. It remains hidden until the
+            // part seats, so the only newly illuminated control is the one the player must press.
             var sw = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            sw.name = "PowerSwitch";
+            sw.name = "PowerSwitch_PRESS";
             sw.transform.SetParent(transform, false);
-            sw.transform.localPosition = new Vector3(0.42f, 1.1f, -0.30f);
-            sw.transform.localScale = new Vector3(0.12f, 0.2f, 0.08f);
-            Paint(sw, SwitchOff);
+            sw.transform.localPosition = new Vector3(0f, 0.72f, -0.43f);
+            sw.transform.localScale = new Vector3(0.34f, 0.24f, 0.10f);
+            Paint(sw, SwitchReady);
             _switchRenderer = sw.GetComponent<Renderer>();
+            var swCollider = sw.GetComponent<BoxCollider>();
+            if (swCollider != null)
+                swCollider.size = new Vector3(1.35f, 1.40f, 1.80f); // forgiving ray/direct target
             var swInteractable = sw.AddComponent<XRSimpleInteractable>();
             WireManager(swInteractable);
             swInteractable.selectEntered.AddListener(_ => OnSwitchFlipped());
+
+            var switchLabelGo = new GameObject("PowerSwitchLabel");
+            switchLabelGo.transform.SetParent(sw.transform, false);
+            switchLabelGo.transform.localPosition = new Vector3(0f, 0f, -0.58f);
+            // Neutralize parent non-uniform scale so the text is readable rather than stretched.
+            switchLabelGo.transform.localScale = new Vector3(1f / 0.34f, 1f / 0.24f, 1f / 0.10f) * 0.16f;
+            var switchLabel = switchLabelGo.AddComponent<TextMesh>();
+            switchLabel.text = "PRESS POWER";
+            switchLabel.characterSize = 0.04f;
+            switchLabel.fontSize = 48;
+            switchLabel.anchor = TextAnchor.MiddleCenter;
+            switchLabel.alignment = TextAlignment.Center;
+            switchLabel.color = Color.white;
+
+            _powerSwitch = sw;
+            _powerSwitch.SetActive(false);
 
             // Stage 2: the replacement part, spawned where the pack says (fetch = gameplay).
             Vector3 partPos = _def.partLocalPosition == Vector3.zero
@@ -140,9 +167,22 @@ namespace Ziptide.Gameplay
             var partCol = part.AddComponent<SphereCollider>();
             partCol.radius = 0.12f;
             var partRb = part.AddComponent<Rigidbody>();
-            partRb.isKinematic = true; // floats until grabbed; VelocityTracking after
+            partRb.isKinematic = false;
+            partRb.useGravity = false;
+            partRb.constraints = RigidbodyConstraints.FreezeAll;
             var partGrab = part.AddComponent<XRGrabInteractable>();
             WireManager(partGrab);
+            partGrab.selectEntered.AddListener(_ =>
+            {
+                if (partRb == null) return;
+                partRb.constraints = RigidbodyConstraints.None;
+                partRb.useGravity = false;
+            });
+            partGrab.selectExited.AddListener(_ =>
+            {
+                if (partRb == null || _part == null || _stage != RepairStage.Part) return;
+                partRb.useGravity = true;
+            });
             var partVisual = GameObject.CreatePrimitive(PrimitiveType.Cube);
             partVisual.name = "PartVisual"; StripCollider(partVisual);
             partVisual.transform.SetParent(part.transform, false);
@@ -181,7 +221,7 @@ namespace Ziptide.Gameplay
             if (_stage != RepairStage.Panel) return;
             _stage = RepairStage.Part;
             // The plate comes free in the hand; once dropped it's junk with physics.
-            rb.isKinematic = false;
+            rb.constraints = RigidbodyConstraints.None;
             rb.useGravity = true;
             panel.transform.SetParent(null, true);
             if (_socket != null) _socket.gameObject.SetActive(true);
@@ -198,6 +238,8 @@ namespace Ziptide.Gameplay
             Destroy(_part.gameObject);
             _part = null;
             if (_socketRenderer != null) Tint(_socketRenderer, PartColor);
+            if (_powerSwitch != null) _powerSwitch.SetActive(true);
+            if (_switchRenderer != null) Tint(_switchRenderer, SwitchReady);
             Debug.Log("ZIPTIDE: MACHINE_STAGE id=" + _def.machineId + " stage=part_seated");
             UpdateLabel();
             PublishStageChanged();
@@ -239,7 +281,7 @@ namespace Ziptide.Gameplay
             {
                 case RepairStage.Panel: _label.text = name + "\n< pull the access panel >"; break;
                 case RepairStage.Part: _label.text = name + "\n< seat the " + (_def.partItemId ?? "part").Replace('_', ' ') + " >"; break;
-                case RepairStage.Power: _label.text = name + "\n< flip the power switch >"; break;
+                case RepairStage.Power: _label.text = name + "\n< press the illuminated POWER switch >"; break;
                 default: _label.text = name + "\nRUNNING"; _label.color = RunningColor; break;
             }
         }
