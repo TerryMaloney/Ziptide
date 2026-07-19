@@ -22,14 +22,26 @@ namespace Ziptide.Gameplay
 
         private void Awake()
         {
-            if (GetComponent<MeleeWeaponRuntime>() != null)
-                enabled = false;
+            DisableForMelee();
         }
 
-        /// <summary>Alpha 0 keeps the default sight color (ItemDefinition fallback idiom).</summary>
+        /// <summary>
+        /// Alpha 0 keeps the default sight color (ItemDefinition fallback idiom). Init repeats the melee
+        /// guard because ItemFactory calls it in every construction context, including EditMode where Unity
+        /// does not invoke Awake for a newly added runtime component.
+        /// </summary>
         public void Init(Color color)
         {
+            if (DisableForMelee()) return;
             if (color.a > 0.01f) _color = color;
+        }
+
+        private bool DisableForMelee()
+        {
+            if (GetComponent<MeleeWeaponRuntime>() == null) return false;
+            enabled = false;
+            if (_lr != null) _lr.enabled = false;
+            return true;
         }
 
         private void Start()
