@@ -2,14 +2,18 @@ using System;
 using System.IO;
 using UnityEditor;
 using UnityEditor.Build.Reporting;
+using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using Ziptide.Content;
 using Ziptide.Core;
 
 namespace Ziptide.Build
 {
     /// <summary>
-    /// Recovery candidate Android builder. It reuses the canonical patch/audit path, then builds
-    /// only the three R0-locked Golden scenes with a per-build compile define. Project-wide
+    /// Recovery candidate Android builder. It reuses the canonical patch/audit path, applies the
+    /// three-scene Golden-route corrections that depend on the reduced scene set, re-audits that exact
+    /// route, then builds only the R0-locked Golden scenes with a per-build compile define. Project-wide
     /// scripting symbols and EditorBuildSettings are not changed.
     ///
     /// Batch entrypoint:
@@ -23,6 +27,10 @@ namespace Ziptide.Build
             "Assets/Ziptide/Scenes/Generated/W000_DriftIn.unity",
             "Assets/Ziptide/Scenes/ToxicCity.unity"
         };
+
+        private const string ToxicCityExitPackPath =
+            "Assets/Ziptide/Content/Worlds/Packs/ToxicCityExit_WorldPack.asset";
+        private const string GoldenBridgeName = "__RECOVERY_GOLDEN_SHIPYARD_BRIDGE";
 
         [Serializable]
         private sealed class GoldenBuildReport
@@ -39,8 +47,77 @@ namespace Ziptide.Build
         public static void PatchScenesThenGoldenAPK()
         {
             BuildAndroid.PatchScenesAndAudit();
+            PatchAndValidateGoldenRoute();
             Ziptide.Editor.Setup.ApplyQuestPlayerDefaults.EnsureSplashDisabled();
             GoldenAPK();
+        }
+
+        /// <summary>
+        /// The canonical patcher sees the project's full EditorBuildSettings list, while this recovery
+        /// player intentionally ships only three scenes. Pin ToxicCity's return to W000 and bridge the
+        /// one-metre district/berth seam, then re-run the world audit against the exact saved scene.
+        /// </summary>
+        private static void PatchAndValidateGoldenRoute()
+        {
+            var exitPack = AssetDatabase.LoadAssetAtPath<WorldPackDefinition>(ToxicCityExitPackPath);
+            if (exitPack == null)
+                throw new FileNotFoundException("Golden ToxicCity exit pack is missing.", ToxicCityExitPackPath);
+
+            exitPack.sceneName = ZiptideConstants.SceneW000;
+            EditorUtility.SetDirty(exitPack);
+            AssetDatabase.SaveAssets();
+
+            var scene = EditorSceneManager.OpenScene(GoldenScenes[2], OpenSceneMode.Single);
+            var bridge = GameObject.Find(GoldenBridgeName);
+            if (bridge == null)
+            {
+                bridge = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                bridge.name = GoldenBridgeName;
+            }
+
+            // Shipyard district rear edge = z -39; berth front edge = z -40. This two-metre apron
+            // overlaps both sides by 0.5 m and spans the full 20 m berth width.
+            bridge.transform.position = new Vector3(0f, -0.5f, -39.5f);
+            bridge.transform.rotation = Quaternion.identity;
+            bridge.transform.localScale = new Vector3(20f, 1f, 2f);
+            var collider = bridge.GetComponent<BoxCollider>();
+            if (collider == null) collider = bridge.AddComponent<BoxCollider>();
+            collider.enabled = true;
+            collider.isTrigger = false;
+
+            var renderer = bridge.GetComponent<Renderer>();
+            if (renderer != null)
+            {
+                var shader = Shader.Find("Universal Render Pipeline/Lit");
+                if (shader == null) shader = Shader.Find("Standard");
+                if (shader != null)
+                {
+                    var material = new Material(shader);
+                    var color = new Color(0.28f, 0.30f, 0.33f);
+                    if (material.HasProperty("_BaseColor")) material.SetColor("_BaseColor", color);
+                    else if (material.HasProperty("_Color")) material.SetColor("_Color", color);
+                    renderer.sharedMaterial = material;
+                    renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+                }
+            }
+
+            EditorSceneManager.MarkSceneDirty(scene);
+            if (!EditorSceneManager.SaveScene(scene, GoldenScenes[2]))
+                throw new Exception("Failed to save Golden ToxicCity route patch.");
+
+            if (exitPack.sceneName != ZiptideConstants.SceneW000)
+                throw new Exception("Golden ToxicCity exit does not target W000.");
+            if (bridge.GetComponent<Collider>() == null || !bridge.GetComponent<Collider>().enabled)
+                throw new Exception("Golden ToxicCity shipyard bridge has no enabled collider.");
+
+            int blockers = Ziptide.Editor.Audit.WorldAuditRunner.RunAll();
+            if (blockers > 0)
+                throw new Exception("Golden route audit FAILED with " + blockers + " blocker(s).");
+
+            Debug.Log("ZIPTIDE: GOLDEN_ROUTE_PATCH exit=" + exitPack.sceneName
+                + " bridge=" + bridge.transform.position.ToString("F2")
+                + " size=" + bridge.transform.localScale.ToString("F2")
+                + " auditBlockers=" + blockers);
         }
 
         public static void GoldenAPK()
