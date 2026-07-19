@@ -27,6 +27,50 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-19 (hwr30) - Fable 5 architect → **📣 WORK ORDER FOR GPT: THE BIG BUILD SPRINT** (Terry-directed, fires AFTER the retry checkpoint passes)
+- **From Terry, verbatim intent:** after the next test run, GPT should run "a super long ass task
+  and just get me a whole bunch of s*** built and working... like a bunch of stuff. If it ends up
+  getting built but it's kind of broken, that will help us dial in our system to not end up with
+  everything broken. If it works then we can just keep rolling." Terry's Fable 5 quota is nearly
+  spent; **GPT owns this sprint end-to-end.** Today is his only headset day — optimize for
+  VISIBLE-ON-DEVICE change per CI cycle, pipelined so a fresh build is always ready when he
+  takes the headset off.
+- **Gate to start:** the `c3f9a4d` retry checkpoint route passes and recovery formally exits per
+  `docs/recovery/RECOVERY_VERIFICATION_SYSTEM.md`. Until then, only GPT's in-flight fixes move.
+- **THE ORDERED SPRINT (each item = its own small commits, CI green between; specs already exist):**
+  1. **Close recovery** — record the exit, lift the freeze per its own rules, refresh
+     `CURRENT_EXECUTION_CHECKLIST.md`.
+  2. **City Stage A — building grammar** (`docs/design/CITY_STREETSCAPE_AND_AMBIENT_LIFE.md` §5-A,
+     recipe details §2.2/2.3/2.6, Quest budget accounting §3): composite base/middle/cap buildings
+     in `CityBuilder`, footprint/height variation, 3-warmth emissive windows, parapet + roof
+     clutter, curbs, ~8-slot palette. Add the per-district object-budget audit rule the doc
+     specifies. Queue the ToxicCity scene regen as a 🔧 runbook step for Terry's bake sitting.
+     *This is the direct attack on Terry's "4-year-old built it" verdict — highest visible value.*
+  3. **Weapon feel Phase 1** (`docs/design/WEAPON_FEEL_AND_ARSENAL.md`, Terry-approved; rb42 was
+     holding for headset confirmation — today IS that): grip/pose, recoil/haptic read, muzzle
+     response on pistol + taser first (the two weapons every session touches).
+  4. **Drone excellence pass** (`docs/design/ENEMIES_ENCOUNTERS_AND_BOSSES.md`): Terry's on-record
+     complaint — "oval shaped red things that fly around and shoot a light." Telegraphs, movement
+     personality, hit reactions, projectile readability.
+  5. **Stretch, only if 2–4 land green:** City Stage B street layer (wires/lamps/signs/alleys, §5-B).
+- **Also queue for Terry's ONE bake sitting (runbook, batched):** FH-S07 home surfaces author,
+  sky-vista + arena regens already listed, Field Camera author (code-complete, never baked),
+  ToxicCity regen after Stage A lands. One sitting, commit generated assets, one build.
+- **Terry's stated risk tolerance (this is the system-tuning experiment):** built-but-kind-of-broken
+  is ACCEPTABLE DATA — the point is to stress whether our gates catch breakage. So: build boldly,
+  but keep the *gates* honest — never skip/weaken a gate to get green, never batch unrelated
+  changes into one commit, log every known-broken edge in HANDOFF + runbook instead of hiding it.
+  The laws that stay absolute regardless of tolerance: circuit breaker (3 CI-reds on one task →
+  stop + HANDOFF), patcher-indirection (no hand-edited scene/prefab YAML), report-only categories
+  (rig ownership, travel, input actions, inventory persistence, build settings), comfort laws,
+  one-economy chokepoint, `ZIPTIDE:` diag tags on everything new.
+- **Explicitly OUT of this sprint:** FH-S08 director (multi-day, not headset-bound), NPCs/ambient
+  life tiers (designed in hwr29, not sequenced), multiplayer, anything Forge IV+.
+- **Lane courtesy:** Fable 5 (me) claims NOTHING here — this whole order is GPT's. Picasso: Stage
+  A touches CityBuilder only, primitives-first per your Toxic Venice brief; material/kit upgrades
+  stay yours.
+- **Commits:** this push (docs only).
+
 ### 2026-07-18 (hwr29) - Fable 5 architect: 🏙 CITY STREETSCAPE & AMBIENT LIFE research (Terry-directed, planning ONLY, zero code)
 - **Terry's verdict on Toxic City** (accurate — verified against `CityBuilder.cs`): the built city
   is a functional gray-box skeleton (4-step contract works, drones work) but reads "like a
