@@ -21,11 +21,7 @@ namespace Ziptide.Gameplay
         private void Awake()
         {
             ApplyDefinition();
-
-            // Fit the final visible hierarchy during Start, after ItemFactory and any Forge look finish.
-            // This keeps dropped meshes physically above the floor without making visuals own physics.
-            if (GetComponent<ItemPhysicalStability>() == null)
-                gameObject.AddComponent<ItemPhysicalStability>();
+            EnsurePhysicalStability();
 
             // ItemFactory adds this component before Init, so its definition is null during Awake and
             // the factory remains the single Forge caller for runtime-created items. A scene-authored
@@ -38,12 +34,23 @@ namespace Ziptide.Gameplay
 
         /// <summary>
         /// Called by ItemFactory instead of reflection to set the definition at runtime.
-        /// Immediately applies mass and movement type.
+        /// Immediately applies mass and movement type and ensures the final visible-collider fit is
+        /// scheduled even in construction contexts where Unity has not invoked Awake yet.
         /// </summary>
         public void Init(ItemDefinition def)
         {
             definition = def;
             ApplyDefinition();
+            EnsurePhysicalStability();
+        }
+
+        private void EnsurePhysicalStability()
+        {
+            // Start runs after ItemFactory and any Forge look finish, so the final visible hierarchy—not
+            // the temporary primitive shell—defines floor support. This is idempotent for scene-authored
+            // Awake and runtime-created Init paths.
+            if (GetComponent<ItemPhysicalStability>() == null)
+                gameObject.AddComponent<ItemPhysicalStability>();
         }
 
         private void ApplyDefinition()
