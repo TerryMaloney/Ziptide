@@ -24,6 +24,9 @@ namespace Ziptide.Tests.PlayMode
         [UnityTest]
         public IEnumerator SceneAuthoredItemAwake_ReplacesStaleBakedChildWithValidOwnedSurface()
         {
+            // This existing Recovery* canary deliberately remains the exact-SHA proof trigger for the
+            // 2026-07-19 weapon/coupler correction. It does not add a 44th PlayMode test; touching this
+            // file routes the bounded candidate through both Recovery PlayMode and Golden Android.
             // The PlayMode assembly intentionally depends on Gameplay rather than the Content/Visuals
             // implementation assemblies. Load the real serialized definition as a Unity object and set
             // ItemRuntime's existing serialized seam through reflection; the behavior under proof remains

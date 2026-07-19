@@ -295,7 +295,9 @@ namespace Ziptide.Gameplay
         private static void StripCollider(GameObject go)
         {
             var c = go.GetComponent<Collider>();
-            if (c != null) Destroy(c);
+            if (c == null) return;
+            if (Application.isPlaying) Destroy(c);
+            else DestroyImmediate(c);
         }
 
         private static void Paint(GameObject go, Color color)
