@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 using NUnit.Framework;
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
 using Ziptide.Content;
 using Ziptide.Gameplay;
 using Ziptide.Visuals;
@@ -158,27 +157,27 @@ namespace Ziptide.Tests.EditMode
                 Transform panel = machineRoot.transform.Find("Panel");
                 Assert.That(panel, Is.Not.Null);
                 var panelBody = panel.GetComponent<Rigidbody>();
-                var panelGrab = panel.GetComponent<XRGrabInteractable>();
+                var panelGrab = FindBehaviour(panel.gameObject, "XRGrabInteractable");
                 Assert.That(panelBody, Is.Not.Null);
                 Assert.That(panelGrab, Is.Not.Null);
                 Assert.That(panelBody.isKinematic, Is.False,
                     "The access panel must not enter XRI as a kinematic throw body.");
                 Assert.That(panelBody.constraints, Is.EqualTo(RigidbodyConstraints.FreezeAll),
                     "The dynamic panel stays physically bolted until selected.");
-                Assert.That(panelGrab.throwOnDetach, Is.False,
+                Assert.That(ReadBoolProperty(panelGrab, "throwOnDetach"), Is.False,
                     "The released panel must drop rather than inherit hand throw velocity.");
 
                 loosePart = FindLoosePart();
                 Assert.That(loosePart, Is.Not.Null);
                 var partBody = loosePart.GetComponent<Rigidbody>();
-                var partGrab = loosePart.GetComponent<XRGrabInteractable>();
+                var partGrab = FindBehaviour(loosePart, "XRGrabInteractable");
                 Assert.That(partBody, Is.Not.Null);
                 Assert.That(partGrab, Is.Not.Null);
                 Assert.That(partBody.isKinematic, Is.False,
                     "The replacement part must not enter XRI as a kinematic throw body.");
                 Assert.That(partBody.constraints, Is.EqualTo(RigidbodyConstraints.FreezeAll),
                     "The replacement part remains parked until selected.");
-                Assert.That(partGrab.throwOnDetach, Is.False,
+                Assert.That(ReadBoolProperty(partGrab, "throwOnDetach"), Is.False,
                     "The released replacement part must drop locally rather than float away.");
             }
             finally
@@ -186,6 +185,24 @@ namespace Ziptide.Tests.EditMode
                 if (machineRoot != null) UnityEngine.Object.DestroyImmediate(machineRoot);
                 if (loosePart != null) UnityEngine.Object.DestroyImmediate(loosePart);
             }
+        }
+
+        private static MonoBehaviour FindBehaviour(GameObject host, string typeName)
+        {
+            return host.GetComponents<MonoBehaviour>()
+                .FirstOrDefault(component => component != null && component.GetType().Name == typeName);
+        }
+
+        private static bool ReadBoolProperty(object target, string propertyName)
+        {
+            Assert.That(target, Is.Not.Null);
+            var property = target.GetType().GetProperty(
+                propertyName,
+                System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public);
+            Assert.That(property, Is.Not.Null,
+                target.GetType().Name + " must expose public property " + propertyName + ".");
+            Assert.That(property.PropertyType, Is.EqualTo(typeof(bool)));
+            return (bool)property.GetValue(target);
         }
 
         private static GameObject FindLoosePart()
