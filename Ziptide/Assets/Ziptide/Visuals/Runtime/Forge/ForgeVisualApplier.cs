@@ -18,6 +18,10 @@ namespace Ziptide.Visuals
     /// scale on the root scales the forged mesh a second time and produces centimetre-sized weapons.
     /// Before mounting the Forge look, this class transfers the old root scale into the BoxCollider and
     /// restores a unit-scale item root. Reapplication is idempotent.
+    ///
+    /// IMPORTANT AIM CONTRACT: every handheld item's authored forward axis is local +Z. Forge sockets
+    /// may position the Grip, but may not pitch it away from the controller's forward axis. The prior
+    /// +45 degree socket rotated the item -45 degrees in-hand and made the muzzle point into the sky.
     /// </summary>
     public static class ForgeVisualApplier
     {
@@ -87,7 +91,8 @@ namespace Ziptide.Visuals
             }
 
             // Snap existing socket-named children (Grip = XR attach, Muzzle = ray origin) to the
-            // recipe's poses so the generated shape and the interaction points agree.
+            // recipe's positions so the generated shape and interaction points agree. Grip rotation is
+            // canonical identity: item local +Z must match the controller/interactor forward direction.
             if (recipe.sockets != null)
                 foreach (var s in recipe.sockets)
                 {
@@ -95,7 +100,9 @@ namespace Ziptide.Visuals
                     var child = item.transform.Find(s.name);
                     if (child == null) continue;
                     child.localPosition = s.localPosition;
-                    child.localRotation = Quaternion.Euler(s.localEuler);
+                    child.localRotation = s.name == "Grip"
+                        ? Quaternion.identity
+                        : Quaternion.Euler(s.localEuler);
                 }
 
             Debug.Log("ZIPTIDE: FORGE_APPLIED id=" + recipeId + " item=" + item.name
