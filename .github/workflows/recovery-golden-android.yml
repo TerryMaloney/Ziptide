@@ -22,12 +22,22 @@ on:
       - 'Ziptide/Assets/Ziptide/Scenes/Generated/W000_DriftIn.unity'
       - 'Ziptide/Assets/Ziptide/Scenes/ToxicCity.unity'
       - 'Ziptide/Assets/Ziptide/Tests/PlayMode/Recovery*.cs'
+      # Device-recovery owners used by the locked W000 -> ToxicCity -> W000 route. Keep this
+      # synchronized with recovery-playmode.yml so every proof-relevant source receives both the
+      # canonical 43-test observation and an immutable exact-SHA Golden APK.
+      - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/**'
+      - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs'
+      - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs'
+      - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs'
+      - 'Ziptide/Assets/Ziptide/Content/Worlds/Packs/ToxicCityExit_WorldPack.asset'
+      - 'Ziptide/Assets/Ziptide/Resources/Items/BreakerBlade.asset'
+      - 'Ziptide/Assets/Ziptide/Tests/EditMode/Quest*.cs'
       - 'Ziptide/Assets/Ziptide/Tests/EditMode/FieldCameraCompletionTests.cs'
       - 'Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs'
       - 'Ziptide/Assets/Ziptide/Tests/EditMode/ShellSignVocabularyTests.cs'
       - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs'
-      # Golden-route spine coverage (see recovery-playmode.yml): the per-file allowlist missed
-      # PlayerRigPersistence.cs — a proof lane must see every file the golden route executes.
+      # Golden-route spine coverage (see recovery-playmode.yml): a proof lane must see every file
+      # the locked route executes, including persistent rig and world travel owners.
       - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/**'
       - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/World/**'
       - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs'
