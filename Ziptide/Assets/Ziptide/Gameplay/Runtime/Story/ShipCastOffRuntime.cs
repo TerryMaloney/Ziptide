@@ -7,16 +7,15 @@ using Ziptide.Core;
 namespace Ziptide.Gameplay
 {
     /// <summary>
-    /// PUNCH IT — the W000 cast-off beat (Test Day 1: "i dont see punch it for the ship.. cant
-    /// fly yet"). Added to the ship root by the shipyard patcher; builds a console beside the
-    /// stern with one big button. Pressing it plays a rails take-off: star-streak lines rush past
-    /// for a few seconds (the world moves, the rig NEVER parents to the hull — SPACEFLIGHT_PHYSICS
-    /// law), then TravelCoordinator carries you to the target scene. Free-flight (FlightModel,
-    /// P4b) replaces the rails later; this ships the fantasy today.
-    /// ARMING GATE (the boarded fuel-cell follow-up, PRIORITIES #3): launch is blocked until the
-    /// tutorial's coupler machine is repaired. The pure rule is <see cref="CastOffArming"/> — a
-    /// missing machine never strands the launch. Blocked presses flash the button label as the hint.
-    /// Logs FLIGHT_LAUNCH / FLIGHT_STREAKS / FLIGHT_DEPART / FLIGHT_BLOCKED.
+    /// PUNCH IT — the W000 cast-off beat. The launch control now sits on the boardable cockpit deck,
+    /// so the player repairs the coupler, boards the ship, and launches from aboard instead of pressing
+    /// a flight command while standing outside on the berth. Pressing it plays a rails take-off:
+    /// star-streak lines rush past for a few seconds (the world moves, the rig NEVER parents to the hull —
+    /// SPACEFLIGHT_PHYSICS law), then TravelCoordinator carries you to the target scene. Free-flight
+    /// replaces the rails later; this ships the fantasy today.
+    /// ARMING GATE: launch is blocked until the tutorial's coupler machine is repaired. The pure rule is
+    /// <see cref="CastOffArming"/> — a missing machine never strands the launch. Blocked presses flash the
+    /// button label as the hint. Logs FLIGHT_LAUNCH / FLIGHT_STREAKS / FLIGHT_DEPART / FLIGHT_BLOCKED.
     /// </summary>
     public class ShipCastOffRuntime : MonoBehaviour
     {
@@ -64,15 +63,37 @@ namespace Ziptide.Gameplay
 
         private void BuildConsole()
         {
-            // Beside the stern, grounded by raycast so it works at any berth height.
-            Vector3 pos = transform.position - transform.right * 4f - transform.forward * 3f;
-            if (Physics.Raycast(pos + Vector3.up * 3f, Vector3.down, out var hit, 10f))
-                pos.y = hit.point.y;
+            // The boardable ship builds CockpitDeck during Awake. Start runs after every Awake, so the
+            // console can be placed on that walkable deck. Keep the old grounded berth position only as
+            // a fail-safe for malformed/non-boardable test ships.
+            Transform deck = transform.Find("CockpitDeck");
+            Vector3 pos;
+            Vector3 faceTarget;
+            if (deck != null)
+            {
+                pos = deck.position - transform.right * 1.05f - transform.forward * 0.15f;
+                var deckCollider = deck.GetComponent<Collider>();
+                pos.y = deckCollider != null ? deckCollider.bounds.max.y : deck.position.y + 0.1f;
+                faceTarget = deck.position + transform.forward * 0.35f;
+                Debug.Log("ZIPTIDE: CASTOFF_CONSOLE_LOCATION mode=cockpit");
+            }
+            else
+            {
+                pos = transform.position - transform.right * 4f - transform.forward * 3f;
+                if (Physics.Raycast(pos + Vector3.up * 3f, Vector3.down, out var hit, 10f))
+                    pos.y = hit.point.y;
+                faceTarget = transform.position;
+                Debug.LogWarning("ZIPTIDE: CASTOFF_CONSOLE_LOCATION mode=berth_fallback reason=no_cockpit_deck");
+            }
 
             var pedestal = GameObject.CreatePrimitive(PrimitiveType.Cube);
             pedestal.name = "CastOffConsole";
             pedestal.transform.position = pos + Vector3.up * 0.55f;
-            pedestal.transform.rotation = Quaternion.LookRotation(transform.position - pos);
+            Vector3 face = faceTarget - pos;
+            face.y = 0f;
+            pedestal.transform.rotation = face.sqrMagnitude > 0.001f
+                ? Quaternion.LookRotation(face.normalized, Vector3.up)
+                : transform.rotation;
             pedestal.transform.localScale = new Vector3(0.5f, 1.1f, 0.35f);
             ItemFactory.ApplyURPColor(pedestal, new Color(0.16f, 0.18f, 0.2f));
 
