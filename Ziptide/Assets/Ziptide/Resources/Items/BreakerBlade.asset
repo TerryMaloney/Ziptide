@@ -17,11 +17,11 @@ MonoBehaviour:
   forgeRecipeId: 
   mass: 0.5
   colliderSizeOverride: {x: 0, y: 0, z: 0}
-  visualScale: {x: 0, y: 0, z: 0}
+  visualScale: {x: 0.045, y: 0.12, z: 0.82}
   visualColor: {r: 0, g: 0, b: 0, a: 0}
-  gripLocalPos: {x: 0, y: 0, z: 0}
-  muzzleLocalPos: {x: 0, y: 0, z: 0}
-  gripLocalEuler: {x: 0, y: 0, z: 0}
+  gripLocalPos: {x: 0, y: -0.17, z: -0.37}
+  muzzleLocalPos: {x: 0, y: 0, z: 0.5}
+  gripLocalEuler: {x: 360, y: 0, z: 0}
   laserSightColor: {r: 0, g: 0, b: 0, a: 0}
   kind: 3
   fireCooldown: 1.2
