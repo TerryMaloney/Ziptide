@@ -902,7 +902,7 @@
           "focus": "melee",
           "token": "Muzzle",
           "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs",
-          "line": 59,
+          "line": 60,
           "symbol": "Ziptide.Tests.PlayMode.RecoveryForgeVisualOwnershipTests",
           "snippet": "var muzzle = new GameObject(\"Muzzle\");",
           "declaration_file": false
@@ -6888,7 +6888,7 @@
       "focus": "melee",
       "token": "Muzzle",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs",
-      "line": 59,
+      "line": 60,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryForgeVisualOwnershipTests",
       "snippet": "var muzzle = new GameObject(\"Muzzle\");",
       "declaration_file": false
