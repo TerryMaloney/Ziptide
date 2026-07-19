@@ -86,14 +86,13 @@ namespace Ziptide.Tests.PlayMode
             Assert.IsFalse(rootRenderer.enabled,
                 "The primitive root look remained exposed after Forge ownership was restored.");
 
-            // Recovery size contract: primitive dimensions become collider dimensions, while the item
-            // root returns to unit scale so the metre-authored Forge mesh is not scaled a second time.
+            // Recovery size contract: the item root returns to unit scale so the metre-authored Forge
+            // mesh is not scaled twice. ItemPhysicalStability then replaces the temporary primitive
+            // shell with a support-padded collider fitted to the final visible hierarchy.
             AssertVector(_item.transform.localScale, Vector3.one, 0.0001f,
                 "Forge ownership did not normalize the item root scale.");
             var box = _item.GetComponent<BoxCollider>();
             Assert.IsNotNull(box, "The canonical cube item lost its physical collider.");
-            AssertVector(box.size, new Vector3(0.08f, 0.04f, 0.20f), 0.0001f,
-                "Primitive dimensions were not preserved as collider dimensions.");
 
             // Recovery aim contract: the Grip attach must preserve local +Z as the held forward axis.
             Assert.Less(Quaternion.Angle(grip.transform.localRotation, Quaternion.identity), 0.5f,
@@ -137,6 +136,20 @@ namespace Ziptide.Tests.PlayMode
 
             Assert.Greater(activeSurfaceCount, 0,
                 "Forge ownership repair left the scene-authored item with no active visual surface.");
+            const float minimumSupportSkin = 0.004f;
+            Assert.LessOrEqual(box.bounds.min.x, activeBounds.min.x - minimumSupportSkin,
+                "The fitted collider does not support the visible mesh on -X.");
+            Assert.LessOrEqual(box.bounds.min.y, activeBounds.min.y - minimumSupportSkin,
+                "The fitted collider does not keep the visible mesh above the floor.");
+            Assert.LessOrEqual(box.bounds.min.z, activeBounds.min.z - minimumSupportSkin,
+                "The fitted collider does not support the visible mesh on -Z.");
+            Assert.GreaterOrEqual(box.bounds.max.x, activeBounds.max.x + minimumSupportSkin,
+                "The fitted collider does not support the visible mesh on +X.");
+            Assert.GreaterOrEqual(box.bounds.max.y, activeBounds.max.y + minimumSupportSkin,
+                "The fitted collider does not support the visible mesh on +Y.");
+            Assert.GreaterOrEqual(box.bounds.max.z, activeBounds.max.z + minimumSupportSkin,
+                "The fitted collider does not support the visible mesh on +Z.");
+
             float largestDimension = Mathf.Max(activeBounds.size.x, activeBounds.size.y, activeBounds.size.z);
             Assert.GreaterOrEqual(largestDimension, 0.15f,
                 "The real Forge pistol is still centimetre-sized after scale normalization: " +
