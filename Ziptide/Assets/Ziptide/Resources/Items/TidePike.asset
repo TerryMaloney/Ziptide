@@ -15,13 +15,13 @@ MonoBehaviour:
   itemId: tide_pike
   modelPrefab: {fileID: 0}
   forgeRecipeId: 
-  mass: 0.5
+  mass: 0.75
   colliderSizeOverride: {x: 0, y: 0, z: 0}
-  visualScale: {x: 0, y: 0, z: 0}
+  visualScale: {x: 0.055, y: 0.055, z: 1.45}
   visualColor: {r: 0, g: 0, b: 0, a: 0}
-  gripLocalPos: {x: 0, y: 0, z: 0}
-  muzzleLocalPos: {x: 0, y: 0, z: 0}
-  gripLocalEuler: {x: 0, y: 0, z: 0}
+  gripLocalPos: {x: 0, y: 0, z: -0.36}
+  muzzleLocalPos: {x: 0, y: 0, z: 0.5}
+  gripLocalEuler: {x: 360, y: 0, z: 0}
   laserSightColor: {r: 0, g: 0, b: 0, a: 0}
   kind: 4
   fireCooldown: 1.2

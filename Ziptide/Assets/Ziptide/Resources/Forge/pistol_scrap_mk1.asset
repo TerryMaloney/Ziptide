@@ -187,13 +187,13 @@ MonoBehaviour:
   sockets:
   - name: Grip
     localPosition: {x: 0, y: -0.05, z: -0.05}
-    localEuler: {x: 45, y: 0, z: 0}
+    localEuler: {x: 0, y: 0, z: 0}
   - name: Muzzle
     localPosition: {x: 0, y: 0.045, z: 0.125}
     localEuler: {x: 0, y: 0, z: 0}
   qualityState: 1
   lockedContentHash: 
-  storyRole: "Standard salvage sidearm \u2014 the working stiff's holdout."
+  storyRole: "Standard salvage sidearm — the working stiff's holdout."
   storyRefs:
   - salvage
   - stun_combat

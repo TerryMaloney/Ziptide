@@ -12,8 +12,16 @@ namespace Ziptide.Visuals
     /// bake-on-entry contract, in 3D). Called by ItemFactory.Create when a definition carries a
     /// forgeRecipeId; scene-authored ItemRuntime instances also reapply their serialized definition at
     /// Awake so stale build-generated visuals cannot survive into a source-only PlayMode checkout.
-    /// Existing socket-named children (Grip/Muzzle) snap to the recipe's poses, which carries the +45°
-    /// Quest grip tilt (ASSET_SWAP_PIPELINE.md §4).
+    ///
+    /// IMPORTANT SIZE CONTRACT: ItemFactory's primitive root scale is the intended collider/body size.
+    /// A Forge recipe is already authored in Unity metres. Leaving that small non-uniform primitive
+    /// scale on the root scales the forged mesh a second time and produces centimetre-sized weapons.
+    /// Before mounting the Forge look, this class transfers the old root scale into the BoxCollider and
+    /// restores a unit-scale item root. Reapplication is idempotent.
+    ///
+    /// IMPORTANT AIM CONTRACT: every handheld item's authored forward axis is local +Z. Forge sockets
+    /// may position the Grip, but may not pitch it away from the controller's forward axis. The prior
+    /// +45 degree socket rotated the item -45 degrees in-hand and made the muzzle point into the sky.
     /// </summary>
     public static class ForgeVisualApplier
     {
@@ -34,6 +42,8 @@ namespace Ziptide.Visuals
             // Park the primitive look (root renderer only — children like rails/indicators keep theirs).
             var rootRenderer = item.GetComponent<MeshRenderer>();
             if (rootRenderer != null) rootRenderer.enabled = false;
+
+            bool normalizedScale = NormalizeItemRootScale(item, out Vector3 colliderSize);
 
             var existing = item.transform.Find(VisualChildName);
             GameObject vis = existing != null ? existing.gameObject : new GameObject(VisualChildName);
@@ -81,7 +91,8 @@ namespace Ziptide.Visuals
             }
 
             // Snap existing socket-named children (Grip = XR attach, Muzzle = ray origin) to the
-            // recipe's poses so the generated shape and the interaction points agree.
+            // recipe's positions so the generated shape and interaction points agree. Grip rotation is
+            // canonical identity: item local +Z must match the controller/interactor forward direction.
             if (recipe.sockets != null)
                 foreach (var s in recipe.sockets)
                 {
@@ -89,13 +100,56 @@ namespace Ziptide.Visuals
                     var child = item.transform.Find(s.name);
                     if (child == null) continue;
                     child.localPosition = s.localPosition;
-                    child.localRotation = Quaternion.Euler(s.localEuler);
+                    child.localRotation = s.name == "Grip"
+                        ? Quaternion.identity
+                        : Quaternion.Euler(s.localEuler);
                 }
 
             Debug.Log("ZIPTIDE: FORGE_APPLIED id=" + recipeId + " item=" + item.name
                 + " baked=" + (baked != null) + " tris=" + tris
-                + " replacedChildren=" + removedChildren);
+                + " replacedChildren=" + removedChildren
+                + " normalizedScale=" + normalizedScale
+                + " collider=" + colliderSize.ToString("F3"));
             return true;
+        }
+
+        /// <summary>
+        /// Move ItemFactory's primitive dimensions from Transform scale into the root BoxCollider, then
+        /// restore a unit-scale root so metre-authored Forge geometry is not scaled twice. A previously
+        /// normalized item has unit root scale plus a non-unit collider and is left unchanged.
+        /// </summary>
+        private static bool NormalizeItemRootScale(GameObject item, out Vector3 colliderSize)
+        {
+            var box = item.GetComponent<BoxCollider>();
+            Vector3 rootScale = item.transform.localScale;
+            bool rootIsUnit = Approximately(rootScale, Vector3.one);
+            bool colliderAlreadyCarriesSize = box != null && !Approximately(box.size, Vector3.one);
+
+            if (rootIsUnit && colliderAlreadyCarriesSize)
+            {
+                colliderSize = box.size;
+                return false;
+            }
+
+            colliderSize = PositiveSize(rootScale);
+            if (box != null) box.size = colliderSize;
+            item.transform.localScale = Vector3.one;
+            return !rootIsUnit;
+        }
+
+        private static Vector3 PositiveSize(Vector3 value)
+        {
+            return new Vector3(
+                Mathf.Max(0.01f, Mathf.Abs(value.x)),
+                Mathf.Max(0.01f, Mathf.Abs(value.y)),
+                Mathf.Max(0.01f, Mathf.Abs(value.z)));
+        }
+
+        private static bool Approximately(Vector3 a, Vector3 b)
+        {
+            return Mathf.Abs(a.x - b.x) < 0.0001f
+                && Mathf.Abs(a.y - b.y) < 0.0001f
+                && Mathf.Abs(a.z - b.z) < 0.0001f;
         }
 
         private static int ClearOwnedChildren(Transform visualRoot)
