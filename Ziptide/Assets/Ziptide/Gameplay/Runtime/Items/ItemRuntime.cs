@@ -22,6 +22,11 @@ namespace Ziptide.Gameplay
         {
             ApplyDefinition();
 
+            // Fit the final visible hierarchy during Start, after ItemFactory and any Forge look finish.
+            // This keeps dropped meshes physically above the floor without making visuals own physics.
+            if (GetComponent<ItemPhysicalStability>() == null)
+                gameObject.AddComponent<ItemPhysicalStability>();
+
             // ItemFactory adds this component before Init, so its definition is null during Awake and
             // the factory remains the single Forge caller for runtime-created items. A scene-authored
             // item already has its definition serialized here; reapplying at runtime replaces any stale
