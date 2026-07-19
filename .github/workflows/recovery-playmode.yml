@@ -10,6 +10,17 @@ on:
       - 'Ziptide/Assets/Ziptide/Tests/PlayMode/**'
       - 'Ziptide/Assets/Ziptide/Core/Runtime/Recovery/**'
       - 'Ziptide/Assets/Ziptide/Editor/Build/BuildAndroid.cs'
+      - 'Ziptide/Assets/Ziptide/Editor/Build/RecoveryBuildAndroid.cs'
+      # Device-recovery owners used by the locked W000 -> ToxicCity -> W000 route.
+      # These were previously missed, allowing a source candidate to start Golden Android without
+      # also receiving the canonical 43-test PlayMode observation.
+      - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/**'
+      - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs'
+      - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs'
+      - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs'
+      - 'Ziptide/Assets/Ziptide/Content/Worlds/Packs/ToxicCityExit_WorldPack.asset'
+      - 'Ziptide/Assets/Ziptide/Resources/Items/BreakerBlade.asset'
+      - 'Ziptide/Assets/Ziptide/Tests/EditMode/Quest*.cs'
       - 'Ziptide/Assets/Ziptide/Tests/EditMode/FieldCameraCompletionTests.cs'
       - 'Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs'
       - 'Ziptide/Assets/Ziptide/Tests/EditMode/ShellSignVocabularyTests.cs'
