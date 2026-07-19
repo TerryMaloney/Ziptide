@@ -1487,9 +1487,9 @@ None.
 
 - Codes: `NEW_GAME_OBJECT`, `RUNTIME_MATERIAL_CREATE`, `SHADER_FIND`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:60` **NEW_GAME_OBJECT** — `var go = new GameObject("__LaserSight");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:68` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Unlit");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:71` **RUNTIME_MATERIAL_CREATE** — `var mat = new Material(shader);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:72` **NEW_GAME_OBJECT** — `var go = new GameObject("__LaserSight");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:80` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Unlit");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:83` **RUNTIME_MATERIAL_CREATE** — `var mat = new Material(shader);`
 
 ### `Ziptide.Gameplay.HammerTool` — 3 signal(s)
 
@@ -4222,7 +4222,7 @@ None.
 
 - Codes: `FALLBACK_MARKER`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:29` **FALLBACK_MARKER** — `/// <summary>Alpha 0 keeps the default sight color (ItemDefinition fallback idiom).</summary>`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:29` **FALLBACK_MARKER** — `/// Alpha 0 keeps the default sight color (ItemDefinition fallback idiom). Init repeats the melee`
 
 ### `Ziptide.Gameplay.HazardZoneRuntime` — 1 signal(s)
 

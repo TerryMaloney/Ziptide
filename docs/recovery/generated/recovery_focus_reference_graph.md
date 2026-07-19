@@ -49,7 +49,7 @@
 
 - **reference** · `Ziptide.Gameplay.ItemFactory` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:454` — `case ArenaWeaponKind.TidePike: go.AddComponent<MeleeWeaponRuntime>(); break;`
 - **reference** · `Ziptide.Gameplay.GunLaserSight` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:10` — `/// MeleeWeaponRuntime is present instead of painting a misleading laser down a sword or pike.`
-- **reference** · `Ziptide.Gameplay.GunLaserSight` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:25` — `if (GetComponent<MeleeWeaponRuntime>() != null)`
+- **reference** · `Ziptide.Gameplay.GunLaserSight` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:41` — `if (GetComponent<MeleeWeaponRuntime>() == null) return false;`
 - **declaration** · `Ziptide.Gameplay.MeleeWeaponRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:28` — `public class MeleeWeaponRuntime : MonoBehaviour`
 
 ### `Muzzle`
@@ -79,7 +79,7 @@
 - **reference** · `Ziptide.Gameplay.GravityGunRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GravityGunRuntime.cs:39` — `var m = new GameObject("Muzzle");`
 - **reference** · `Ziptide.Gameplay.GunLaserSight` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:7` — `/// The aim line (CONTROL_SCHEME.md "Aim"): a thin ray from the Muzzle to the first hit,`
 - **reference** · `Ziptide.Gameplay.GunLaserSight` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:9` — `/// also expose a child named Muzzle as their physical tip, so this component disables itself when`
-- **reference** · `Ziptide.Gameplay.GunLaserSight` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:37` — `_muzzle = transform.Find("Muzzle");`
+- **reference** · `Ziptide.Gameplay.GunLaserSight` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:49` — `_muzzle = transform.Find("Muzzle");`
 - **reference** · `Ziptide.Gameplay.MeleeWeaponRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:31` — `private Transform _tip; // the business end (child "Muzzle" from ItemFactory)`
 - **reference** · `Ziptide.Gameplay.MeleeWeaponRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:51` — `_tip = transform.Find("Muzzle");`
 - **reference** · `Ziptide.Gameplay.PistolRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/PistolRuntime.cs:9` — `/// Hitscan pistol: raycast from Muzzle on trigger, hit TargetRuntime, haptics, muzzle flash, optional audio.`

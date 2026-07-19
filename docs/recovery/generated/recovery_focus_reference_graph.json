@@ -441,9 +441,9 @@
           "focus": "melee",
           "token": "MeleeWeaponRuntime",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs",
-          "line": 25,
+          "line": 41,
           "symbol": "Ziptide.Gameplay.GunLaserSight",
-          "snippet": "if (GetComponent<MeleeWeaponRuntime>() != null)",
+          "snippet": "if (GetComponent<MeleeWeaponRuntime>() == null) return false;",
           "declaration_file": false
         },
         {
@@ -686,7 +686,7 @@
           "focus": "melee",
           "token": "Muzzle",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs",
-          "line": 37,
+          "line": 49,
           "symbol": "Ziptide.Gameplay.GunLaserSight",
           "snippet": "_muzzle = transform.Find(\"Muzzle\");",
           "declaration_file": false
@@ -5565,9 +5565,9 @@
       "focus": "melee",
       "token": "MeleeWeaponRuntime",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs",
-      "line": 25,
+      "line": 41,
       "symbol": "Ziptide.Gameplay.GunLaserSight",
-      "snippet": "if (GetComponent<MeleeWeaponRuntime>() != null)",
+      "snippet": "if (GetComponent<MeleeWeaponRuntime>() == null) return false;",
       "declaration_file": false
     },
     {
@@ -5592,7 +5592,7 @@
       "focus": "melee",
       "token": "Muzzle",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs",
-      "line": 37,
+      "line": 49,
       "symbol": "Ziptide.Gameplay.GunLaserSight",
       "snippet": "_muzzle = transform.Find(\"Muzzle\");",
       "declaration_file": false

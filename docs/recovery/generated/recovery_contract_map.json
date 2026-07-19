@@ -6957,21 +6957,21 @@
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs",
-            "line": 60,
+            "line": 72,
             "symbol": "Ziptide.Gameplay.GunLaserSight",
             "snippet": "var go = new GameObject(\"__LaserSight\");"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs",
-            "line": 68,
+            "line": 80,
             "symbol": "Ziptide.Gameplay.GunLaserSight",
             "snippet": "var shader = Shader.Find(\"Universal Render Pipeline/Unlit\");"
           },
           {
             "code": "RUNTIME_MATERIAL_CREATE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs",
-            "line": 71,
+            "line": 83,
             "symbol": "Ziptide.Gameplay.GunLaserSight",
             "snippet": "var mat = new Material(shader);"
           }
@@ -18556,7 +18556,7 @@
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs",
             "line": 29,
             "symbol": "Ziptide.Gameplay.GunLaserSight",
-            "snippet": "/// <summary>Alpha 0 keeps the default sight color (ItemDefinition fallback idiom).</summary>"
+            "snippet": "/// Alpha 0 keeps the default sight color (ItemDefinition fallback idiom). Init repeats the melee"
           }
         ]
       },
