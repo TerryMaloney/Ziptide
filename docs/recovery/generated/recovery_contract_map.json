@@ -1,8 +1,8 @@
 {
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
-  "scannedFiles": 648,
-  "findingCount": 2320,
+  "scannedFiles": 649,
+  "findingCount": 2325,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -8663,7 +8663,7 @@
       },
       {
         "owner": "Ziptide.Gameplay.RepairableMachine",
-        "evidenceCount": 18,
+        "evidenceCount": 20,
         "codes": [
           "CREATE_PRIMITIVE",
           "NEW_GAME_OBJECT",
@@ -8679,126 +8679,140 @@
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-            "line": 66,
+            "line": 68,
             "symbol": "Ziptide.Gameplay.RepairableMachine",
             "snippet": "var body = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-            "line": 74,
+            "line": 78,
             "symbol": "Ziptide.Gameplay.RepairableMachine",
-            "snippet": "var lamp = GameObject.CreatePrimitive(PrimitiveType.Sphere);"
+            "snippet": "var lamp = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-            "line": 83,
+            "line": 87,
             "symbol": "Ziptide.Gameplay.RepairableMachine",
             "snippet": "var labelGo = new GameObject(\"Label\");"
           },
           {
             "code": "TEXTMESH_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-            "line": 84,
+            "line": 88,
             "symbol": "Ziptide.Gameplay.RepairableMachine",
             "snippet": "_label = labelGo.AddComponent<TextMesh>();"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-            "line": 94,
+            "line": 98,
             "symbol": "Ziptide.Gameplay.RepairableMachine",
             "snippet": "var socket = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-            "line": 105,
+            "line": 110,
             "symbol": "Ziptide.Gameplay.RepairableMachine",
             "snippet": "var panel = new GameObject(\"Panel\");"
           },
           {
             "code": "XR_INTERACTABLE_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-            "line": 112,
+            "line": 119,
             "symbol": "Ziptide.Gameplay.RepairableMachine",
             "snippet": "var panelGrab = panel.AddComponent<XRGrabInteractable>();"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-            "line": 115,
+            "line": 122,
             "symbol": "Ziptide.Gameplay.RepairableMachine",
             "snippet": "var panelVisual = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-            "line": 122,
+            "line": 130,
             "symbol": "Ziptide.Gameplay.RepairableMachine",
             "snippet": "var sw = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "XR_INTERACTABLE_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-            "line": 129,
+            "line": 140,
             "symbol": "Ziptide.Gameplay.RepairableMachine",
             "snippet": "var swInteractable = sw.AddComponent<XRSimpleInteractable>();"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-            "line": 138,
+            "line": 144,
+            "symbol": "Ziptide.Gameplay.RepairableMachine",
+            "snippet": "var switchLabelGo = new GameObject(\"PowerSwitchLabel\");"
+          },
+          {
+            "code": "TEXTMESH_COMPONENT",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
+            "line": 149,
+            "symbol": "Ziptide.Gameplay.RepairableMachine",
+            "snippet": "var switchLabel = switchLabelGo.AddComponent<TextMesh>();"
+          },
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
+            "line": 165,
             "symbol": "Ziptide.Gameplay.RepairableMachine",
             "snippet": "var part = new GameObject(\"Part_\" + _def.partItemId);"
           },
           {
             "code": "XR_INTERACTABLE_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-            "line": 144,
+            "line": 173,
             "symbol": "Ziptide.Gameplay.RepairableMachine",
             "snippet": "var partGrab = part.AddComponent<XRGrabInteractable>();"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-            "line": 146,
+            "line": 186,
             "symbol": "Ziptide.Gameplay.RepairableMachine",
             "snippet": "var partVisual = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-            "line": 151,
+            "line": 191,
             "symbol": "Ziptide.Gameplay.RepairableMachine",
             "snippet": "var partLabel = new GameObject(\"PartLabel\");"
           },
           {
             "code": "TEXTMESH_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-            "line": 152,
+            "line": 192,
             "symbol": "Ziptide.Gameplay.RepairableMachine",
             "snippet": "var ptm = partLabel.AddComponent<TextMesh>();"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-            "line": 263,
+            "line": 305,
             "symbol": "Ziptide.Gameplay.RepairableMachine",
             "snippet": "var shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-            "line": 264,
+            "line": 306,
             "symbol": "Ziptide.Gameplay.RepairableMachine",
             "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
           },
           {
             "code": "RUNTIME_MATERIAL_CREATE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-            "line": 266,
+            "line": 308,
             "symbol": "Ziptide.Gameplay.RepairableMachine",
             "snippet": "var mat = new Material(shader);"
           }
@@ -10465,6 +10479,25 @@
         ]
       },
       {
+        "owner": "Ziptide.Tests.EditMode.QuestWeaponAndCouplerRegressionTests",
+        "evidenceCount": 1,
+        "codes": [
+          "NEW_GAME_OBJECT"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/EditMode/QuestWeaponAndCouplerRegressionTests.cs"
+        ],
+        "evidence": [
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Tests/EditMode/QuestWeaponAndCouplerRegressionTests.cs",
+            "line": 93,
+            "symbol": "Ziptide.Tests.EditMode.QuestWeaponAndCouplerRegressionTests",
+            "snippet": "machineRoot = new GameObject(\"QuestCouplerRegression\");"
+          }
+        ]
+      },
+      {
         "owner": "Ziptide.Tests.EditMode.ReactivePracticalSwapTests",
         "evidenceCount": 1,
         "codes": [
@@ -10881,7 +10914,7 @@
       },
       {
         "owner": "Ziptide.Tests.PlayMode.RecoveryForgeVisualOwnershipTests",
-        "evidenceCount": 4,
+        "evidenceCount": 6,
         "codes": [
           "CREATE_PRIMITIVE",
           "NEW_GAME_OBJECT",
@@ -10901,21 +10934,35 @@
           {
             "code": "XR_INTERACTABLE_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs",
-            "line": 43,
+            "line": 46,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryForgeVisualOwnershipTests",
-            "snippet": "_item.AddComponent<XRGrabInteractable>();"
+            "snippet": "var grab = _item.AddComponent<XRGrabInteractable>();"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs",
-            "line": 45,
+            "line": 49,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryForgeVisualOwnershipTests",
+            "snippet": "var grip = new GameObject(\"Grip\");"
+          },
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs",
+            "line": 55,
+            "symbol": "Ziptide.Tests.PlayMode.RecoveryForgeVisualOwnershipTests",
+            "snippet": "var muzzle = new GameObject(\"Muzzle\");"
+          },
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs",
+            "line": 59,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryForgeVisualOwnershipTests",
             "snippet": "var visual = new GameObject(ForgeVisualName);"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs",
-            "line": 47,
+            "line": 61,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryForgeVisualOwnershipTests",
             "snippet": "GameObject stale = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           }
@@ -11478,7 +11525,7 @@
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs",
-            "line": 39,
+            "line": 49,
             "symbol": "Ziptide.Visuals.ForgeVisualApplier",
             "snippet": "GameObject vis = existing != null ? existing.gameObject : new GameObject(VisualChildName);"
           }
@@ -12442,14 +12489,14 @@
           {
             "code": "XRI_MANAGER_LOOKUP",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-            "line": 249,
+            "line": 291,
             "symbol": "Ziptide.Gameplay.RepairableMachine",
             "snippet": "var mgr = Object.FindObjectOfType<XRInteractionManager>();"
           },
           {
             "code": "XRI_MANAGER_ASSIGN",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-            "line": 250,
+            "line": 292,
             "symbol": "Ziptide.Gameplay.RepairableMachine",
             "snippet": "if (mgr != null) interactable.interactionManager = mgr;"
           }
@@ -14547,7 +14594,7 @@
           {
             "code": "EVENT_DECLARATION",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-            "line": 37,
+            "line": 38,
             "symbol": "Ziptide.Gameplay.RepairableMachine",
             "snippet": "public event System.Action<RepairStage> StageChanged;"
           }
@@ -17067,7 +17114,7 @@
           {
             "code": "CAMERA_MAIN_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-            "line": 174,
+            "line": 214,
             "symbol": "Ziptide.Gameplay.RepairableMachine",
             "snippet": "var cam = Camera.main;"
           }
@@ -19288,14 +19335,14 @@
           {
             "code": "FALLBACK_MARKER",
             "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs",
-            "line": 48,
+            "line": 58,
             "symbol": "Ziptide.Visuals.ForgeVisualApplier",
             "snippet": "// Clear every previously-owned child before choosing the currently available baked/fallback"
           },
           {
             "code": "FALLBACK_MARKER",
             "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs",
-            "line": 54,
+            "line": 64,
             "symbol": "Ziptide.Visuals.ForgeVisualApplier",
             "snippet": "// The runtime flat-color mesh stays as the dev fallback when no bake shipped."
           }

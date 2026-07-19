@@ -1,6 +1,6 @@
 # ZIPTIDE Event and Save Ownership Graph
 
-- Scanned C# files: **648**
+- Scanned C# files: **649**
 - Evidence edges: **701**
 - Named subscriptions without matching unsubscribe in the same owner: **48**
 
@@ -768,7 +768,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `StageChanged`
 
-- **EVENT_DECLARE** · `Ziptide.Gameplay.RepairableMachine` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:37` · `System.Action<RepairStage>` — `public event System.Action<RepairStage> StageChanged;`
+- **EVENT_DECLARE** · `Ziptide.Gameplay.RepairableMachine` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:38` · `System.Action<RepairStage>` — `public event System.Action<RepairStage> StageChanged;`
 
 ### `StepChanged`
 

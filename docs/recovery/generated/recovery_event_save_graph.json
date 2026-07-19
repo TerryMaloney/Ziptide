@@ -1,6 +1,6 @@
 {
   "tool": "recovery_event_save_graph",
-  "scannedFiles": 648,
+  "scannedFiles": 649,
   "evidenceCount": 701,
   "kindCounts": {
     "AUTOSAVE": 7,
@@ -4741,7 +4741,7 @@
       {
         "kind": "EVENT_DECLARE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-        "line": 37,
+        "line": 38,
         "owner": "Ziptide.Gameplay.RepairableMachine",
         "target": "StageChanged",
         "detail": "System.Action<RepairStage>",
@@ -10027,7 +10027,7 @@
     {
       "kind": "EVENT_DECLARE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-      "line": 37,
+      "line": 38,
       "owner": "Ziptide.Gameplay.RepairableMachine",
       "target": "StageChanged",
       "detail": "System.Action<RepairStage>",

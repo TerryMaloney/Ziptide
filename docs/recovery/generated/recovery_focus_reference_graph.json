@@ -1,12 +1,12 @@
 {
   "tool": "recovery_focus_reference_graph",
-  "scannedFiles": 648,
-  "referenceCount": 368,
+  "scannedFiles": 649,
+  "referenceCount": 369,
   "summaries": {
     "melee": {
       "referenceCount": 84,
-      "fileCount": 28,
-      "callerFileCount": 28,
+      "fileCount": 29,
+      "callerFileCount": 29,
       "paths": [
         "Ziptide/Assets/Ziptide/Content/Runtime/Items/ItemDefinition.cs",
         "Ziptide/Assets/Ziptide/Editor/Patching/ArenaWeaponAuthor.cs",
@@ -31,6 +31,7 @@
         "Ziptide/Assets/Ziptide/Tests/EditMode/ForgeMeshTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/ForgeRecipeLibraryTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/VfxRecipeTests.cs",
+        "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs",
         "Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeRecipeDefinition.cs",
         "Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs",
         "Ziptide/Assets/Ziptide/Visuals/Runtime/Vfx/VfxFactory.cs",
@@ -61,6 +62,7 @@
         "Ziptide/Assets/Ziptide/Tests/EditMode/ForgeMeshTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/ForgeRecipeLibraryTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/VfxRecipeTests.cs",
+        "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs",
         "Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeRecipeDefinition.cs",
         "Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs",
         "Ziptide/Assets/Ziptide/Visuals/Runtime/Vfx/VfxFactory.cs",
@@ -69,9 +71,9 @@
       ]
     },
     "repairObjective": {
-      "referenceCount": 195,
-      "fileCount": 47,
-      "callerFileCount": 46,
+      "referenceCount": 196,
+      "fileCount": 48,
+      "callerFileCount": 47,
       "paths": [
         "Ziptide/Assets/Ziptide/Content/Runtime/Jobs/JobRewards.cs",
         "Ziptide/Assets/Ziptide/Content/Runtime/Jobs/RepairMachineCountStepDefinition.cs",
@@ -117,6 +119,7 @@
         "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/JobRuntimeCollectTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/JobRuntimeRepairTests.cs",
+        "Ziptide/Assets/Ziptide/Tests/EditMode/QuestWeaponAndCouplerRegressionTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryCheckpointEvidenceTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/RepairableMachineSignalTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/WorldPackValidatorTests.cs"
@@ -165,6 +168,7 @@
         "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/JobRuntimeCollectTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/JobRuntimeRepairTests.cs",
+        "Ziptide/Assets/Ziptide/Tests/EditMode/QuestWeaponAndCouplerRegressionTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryCheckpointEvidenceTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/RepairableMachineSignalTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/WorldPackValidatorTests.cs"
@@ -859,6 +863,15 @@
         {
           "focus": "melee",
           "token": "Muzzle",
+          "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs",
+          "line": 55,
+          "symbol": "Ziptide.Tests.PlayMode.RecoveryForgeVisualOwnershipTests",
+          "snippet": "var muzzle = new GameObject(\"Muzzle\");",
+          "declaration_file": false
+        },
+        {
+          "focus": "melee",
+          "token": "Muzzle",
           "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeRecipeDefinition.cs",
           "line": 80,
           "symbol": "Ziptide.Visuals.ForgeQualityState",
@@ -887,16 +900,7 @@
           "focus": "melee",
           "token": "Muzzle",
           "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs",
-          "line": 15,
-          "symbol": "Ziptide.Visuals.ForgeVisualApplier",
-          "snippet": "/// Existing socket-named children (Grip/Muzzle) snap to the recipe's poses, which carries the +45\u00b0",
-          "declaration_file": false
-        },
-        {
-          "focus": "melee",
-          "token": "Muzzle",
-          "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs",
-          "line": 83,
+          "line": 93,
           "symbol": "Ziptide.Visuals.ForgeVisualApplier",
           "snippet": "// Snap existing socket-named children (Grip = XR attach, Muzzle = ray origin) to the",
           "declaration_file": false
@@ -1696,7 +1700,7 @@
           "focus": "repairObjective",
           "token": "JobDirector",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-          "line": 27,
+          "line": 28,
           "symbol": "Ziptide.Gameplay.RepairableMachine",
           "snippet": "private JobDirector _director;",
           "declaration_file": false
@@ -1705,7 +1709,7 @@
           "focus": "repairObjective",
           "token": "JobDirector",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-          "line": 56,
+          "line": 58,
           "symbol": "Ziptide.Gameplay.RepairableMachine",
           "snippet": "public void Init(MachineSpawnDefinition def, JobDirector director)",
           "declaration_file": false
@@ -1714,7 +1718,7 @@
           "focus": "repairObjective",
           "token": "JobDirector",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-          "line": 212,
+          "line": 254,
           "symbol": "Ziptide.Gameplay.RepairableMachine",
           "snippet": "if (_director == null) _director = FindObjectOfType<JobDirector>();",
           "declaration_file": false
@@ -2362,6 +2366,15 @@
         {
           "focus": "repairObjective",
           "token": "RepairableMachine",
+          "path": "Ziptide/Assets/Ziptide/Tests/EditMode/QuestWeaponAndCouplerRegressionTests.cs",
+          "line": 94,
+          "symbol": "Ziptide.Tests.EditMode.QuestWeaponAndCouplerRegressionTests",
+          "snippet": "var machine = machineRoot.AddComponent<RepairableMachine>();",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "RepairableMachine",
           "path": "Ziptide/Assets/Ziptide/Tests/EditMode/RepairableMachineSignalTests.cs",
           "line": 12,
           "symbol": "Ziptide.Tests.EditMode.RepairableMachineSignalTests",
@@ -2527,7 +2540,7 @@
           "focus": "repairObjective",
           "token": "ReportRepair",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-          "line": 213,
+          "line": 255,
           "symbol": "Ziptide.Gameplay.RepairableMachine",
           "snippet": "if (_director != null) _director.ReportRepair(_def.machineId);",
           "declaration_file": false
@@ -2646,7 +2659,7 @@
           "focus": "repairObjective",
           "token": "ShipCastOffRuntime",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-          "line": 40,
+          "line": 41,
           "symbol": "Ziptide.Gameplay.RepairableMachine",
           "snippet": "/// Queried by ShipCastOffRuntime's arming gate.</summary>",
           "declaration_file": false
@@ -2747,7 +2760,7 @@
           "focus": "repairObjective",
           "token": "gate_coupler",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-          "line": 30,
+          "line": 31,
           "symbol": "Ziptide.Gameplay.RepairableMachine",
           "snippet": "/// <summary>Stable machine id from pack data (e.g. \"gate_coupler\"). Null before Init.</summary>",
           "declaration_file": false
@@ -2816,7 +2829,7 @@
           "focus": "shipPresentation",
           "token": "ShipCastOffRuntime",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-          "line": 40,
+          "line": 41,
           "symbol": "Ziptide.Gameplay.RepairableMachine",
           "snippet": "/// Queried by ShipCastOffRuntime's arming gate.</summary>",
           "declaration_file": false
@@ -5199,7 +5212,7 @@
       "focus": "repairObjective",
       "token": "JobDirector",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-      "line": 27,
+      "line": 28,
       "symbol": "Ziptide.Gameplay.RepairableMachine",
       "snippet": "private JobDirector _director;",
       "declaration_file": false
@@ -5208,7 +5221,7 @@
       "focus": "repairObjective",
       "token": "JobDirector",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-      "line": 56,
+      "line": 58,
       "symbol": "Ziptide.Gameplay.RepairableMachine",
       "snippet": "public void Init(MachineSpawnDefinition def, JobDirector director)",
       "declaration_file": false
@@ -5217,7 +5230,7 @@
       "focus": "repairObjective",
       "token": "JobDirector",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-      "line": 212,
+      "line": 254,
       "symbol": "Ziptide.Gameplay.RepairableMachine",
       "snippet": "if (_director == null) _director = FindObjectOfType<JobDirector>();",
       "declaration_file": false
@@ -5244,7 +5257,7 @@
       "focus": "repairObjective",
       "token": "ReportRepair",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-      "line": 213,
+      "line": 255,
       "symbol": "Ziptide.Gameplay.RepairableMachine",
       "snippet": "if (_director != null) _director.ReportRepair(_def.machineId);",
       "declaration_file": false
@@ -5253,7 +5266,7 @@
       "focus": "repairObjective",
       "token": "ShipCastOffRuntime",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-      "line": 40,
+      "line": 41,
       "symbol": "Ziptide.Gameplay.RepairableMachine",
       "snippet": "/// Queried by ShipCastOffRuntime's arming gate.</summary>",
       "declaration_file": false
@@ -5262,7 +5275,7 @@
       "focus": "repairObjective",
       "token": "gate_coupler",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-      "line": 30,
+      "line": 31,
       "symbol": "Ziptide.Gameplay.RepairableMachine",
       "snippet": "/// <summary>Stable machine id from pack data (e.g. \"gate_coupler\"). Null before Init.</summary>",
       "declaration_file": false
@@ -5271,7 +5284,7 @@
       "focus": "shipPresentation",
       "token": "ShipCastOffRuntime",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-      "line": 40,
+      "line": 41,
       "symbol": "Ziptide.Gameplay.RepairableMachine",
       "snippet": "/// Queried by ShipCastOffRuntime's arming gate.</summary>",
       "declaration_file": false
@@ -6376,6 +6389,15 @@
     },
     {
       "focus": "repairObjective",
+      "token": "RepairableMachine",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/QuestWeaponAndCouplerRegressionTests.cs",
+      "line": 94,
+      "symbol": "Ziptide.Tests.EditMode.QuestWeaponAndCouplerRegressionTests",
+      "snippet": "var machine = machineRoot.AddComponent<RepairableMachine>();",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
       "token": "REPAIR_TRACE",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryCheckpointEvidenceTests.cs",
       "line": 72,
@@ -6791,6 +6813,15 @@
     {
       "focus": "melee",
       "token": "Muzzle",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs",
+      "line": 55,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryForgeVisualOwnershipTests",
+      "snippet": "var muzzle = new GameObject(\"Muzzle\");",
+      "declaration_file": false
+    },
+    {
+      "focus": "melee",
+      "token": "Muzzle",
       "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeRecipeDefinition.cs",
       "line": 80,
       "symbol": "Ziptide.Visuals.ForgeQualityState",
@@ -6819,16 +6850,7 @@
       "focus": "melee",
       "token": "Muzzle",
       "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs",
-      "line": 15,
-      "symbol": "Ziptide.Visuals.ForgeVisualApplier",
-      "snippet": "/// Existing socket-named children (Grip/Muzzle) snap to the recipe's poses, which carries the +45\u00b0",
-      "declaration_file": false
-    },
-    {
-      "focus": "melee",
-      "token": "Muzzle",
-      "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs",
-      "line": 83,
+      "line": 93,
       "symbol": "Ziptide.Visuals.ForgeVisualApplier",
       "snippet": "// Snap existing socket-named children (Grip = XR attach, Muzzle = ray origin) to the",
       "declaration_file": false

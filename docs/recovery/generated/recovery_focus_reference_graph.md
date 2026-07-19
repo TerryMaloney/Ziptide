@@ -1,13 +1,13 @@
 # ZIPTIDE Focused Recovery Reference Graph
 
-- Scanned C# files: **648**
-- Focused references: **368**
+- Scanned C# files: **649**
+- Focused references: **369**
 
 ## melee
 
 - References: **84**
-- Files: **28**
-- Non-declaration caller files: **28**
+- Files: **29**
+- Non-declaration caller files: **29**
 
 ### `ArenaWeaponKind.BreakerBlade`
 
@@ -99,11 +99,11 @@
 - **reference** · `Ziptide.Tests.EditMode.ForgeRecipeLibraryTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/ForgeRecipeLibraryTests.cs:77` — `if (s.name == "Muzzle") muzzle = s;`
 - **reference** · `Ziptide.Tests.EditMode.ForgeRecipeLibraryTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/ForgeRecipeLibraryTests.cs:80` — `Assert.IsNotNull(muzzle, kv.Key + " handheld without a Muzzle socket");`
 - **reference** · `Ziptide.Tests.EditMode.VfxRecipeTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/VfxRecipeTests.cs:94` — `foreach (var k in new[] { VfxKind.Impact, VfxKind.Muzzle, VfxKind.SteamVent, VfxKind.Motes, VfxKind.Sparks })`
+- **reference** · `Ziptide.Tests.PlayMode.RecoveryForgeVisualOwnershipTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs:55` — `var muzzle = new GameObject("Muzzle");`
 - **reference** · `Ziptide.Visuals.ForgeQualityState` · `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeRecipeDefinition.cs:80` — `/// <summary>Named attach point (Grip/Muzzle/Seat/Door/...). Consumers snap existing children here —`
 - **reference** · `Ziptide.Visuals.ForgeQualityState` · `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeRecipeDefinition.cs:317` — `if (names.Contains("Grip") && !names.Contains("Muzzle"))`
 - **reference** · `Ziptide.Visuals.ForgeQualityState` · `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeRecipeDefinition.cs:318` — `issues.Add("handheld contract: a Grip socket requires a Muzzle socket");`
-- **reference** · `Ziptide.Visuals.ForgeVisualApplier` · `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs:15` — `/// Existing socket-named children (Grip/Muzzle) snap to the recipe's poses, which carries the +45°`
-- **reference** · `Ziptide.Visuals.ForgeVisualApplier` · `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs:83` — `// Snap existing socket-named children (Grip = XR attach, Muzzle = ray origin) to the`
+- **reference** · `Ziptide.Visuals.ForgeVisualApplier` · `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs:93` — `// Snap existing socket-named children (Grip = XR attach, Muzzle = ray origin) to the`
 - **reference** · `Ziptide.Visuals.VfxFactory` · `Ziptide/Assets/Ziptide/Visuals/Runtime/Vfx/VfxFactory.cs:278` — `case VfxKind.Muzzle:`
 - **reference** · `Ziptide.Visuals.VfxFactory` · `Ziptide/Assets/Ziptide/Visuals/Runtime/Vfx/VfxFactory.cs:324` — `bool streak = kind == VfxKind.Muzzle || kind == VfxKind.Sparks;`
 - **reference** · `Ziptide.Visuals.VfxFactory` · `Ziptide/Assets/Ziptide/Visuals/Runtime/Vfx/VfxFactory.cs:430` — `case VfxKind.Muzzle:`
@@ -119,9 +119,9 @@
 
 ## repairObjective
 
-- References: **195**
-- Files: **47**
-- Non-declaration caller files: **46**
+- References: **196**
+- Files: **48**
+- Non-declaration caller files: **47**
 
 ### `CastOffArming`
 
@@ -206,9 +206,9 @@
 - **reference** · `Ziptide.Gameplay.GardenPlotRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/GardenPlotRuntime.cs:40` — `/// <summary>Build + bind. Called by JobDirector right after AddComponent (runtime only).</summary>`
 - **reference** · `Ziptide.Gameplay.MiningRigRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/MiningRigRuntime.cs:13` — `/// you). Spawned by JobDirector from <see cref="MineSpawnDefinition"/> pack data.`
 - **reference** · `Ziptide.Gameplay.RepairableMachine` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:12` — `/// <see cref="JobDirector.ReportRepair"/>. Spawned by JobDirector from`
-- **reference** · `Ziptide.Gameplay.RepairableMachine` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:27` — `private JobDirector _director;`
-- **reference** · `Ziptide.Gameplay.RepairableMachine` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:56` — `public void Init(MachineSpawnDefinition def, JobDirector director)`
-- **reference** · `Ziptide.Gameplay.RepairableMachine` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:212` — `if (_director == null) _director = FindObjectOfType<JobDirector>();`
+- **reference** · `Ziptide.Gameplay.RepairableMachine` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:28` — `private JobDirector _director;`
+- **reference** · `Ziptide.Gameplay.RepairableMachine` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:58` — `public void Init(MachineSpawnDefinition def, JobDirector director)`
+- **reference** · `Ziptide.Gameplay.RepairableMachine` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:254` — `if (_director == null) _director = FindObjectOfType<JobDirector>();`
 - **reference** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:130` — `// The machine is spawned at runtime by JobDirector, so keep looking until found —`
 - **reference** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:139` — `// observes and its repaired state — divergence from the JobDirector-spawned machine`
 - **reference** · `Ziptide.Gameplay.TransmissionConsole` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/TransmissionConsole.cs:12` — `/// screen. Spawned by JobDirector next to any fragment pickup (the playback device lives where the`
@@ -294,6 +294,7 @@
 - **reference** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:28` — `[Tooltip("RepairableMachine id that must be RUNNING before PUNCH IT arms (empty = no gate).")]`
 - **reference** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:32` — `private RepairableMachine _armingMachine; // cached once found; absence is re-checked per press`
 - **reference** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:132` — `foreach (var m in FindObjectsOfType<RepairableMachine>())`
+- **reference** · `Ziptide.Tests.EditMode.QuestWeaponAndCouplerRegressionTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/QuestWeaponAndCouplerRegressionTests.cs:94` — `var machine = machineRoot.AddComponent<RepairableMachine>();`
 - **reference** · `Ziptide.Tests.EditMode.RepairableMachineSignalTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/RepairableMachineSignalTests.cs:12` — `public class RepairableMachineSignalTests`
 - **reference** · `Ziptide.Tests.EditMode.RepairableMachineSignalTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/RepairableMachineSignalTests.cs:40` — `RepairableMachine machine = CreateMachine("machine");`
 - **reference** · `Ziptide.Tests.EditMode.RepairableMachineSignalTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/RepairableMachineSignalTests.cs:67` — `RepairableMachine designated = CreateMachine("same_id");`
@@ -315,7 +316,7 @@
 - **reference** · `Ziptide.Gameplay.JobDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs:125` — `_runtime.ReportRepair(machineId);`
 - **reference** · `Ziptide.Gameplay.JobRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobRuntime.cs:84` — `public void ReportRepair(string machineId)`
 - **reference** · `Ziptide.Gameplay.RepairableMachine` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:12` — `/// <see cref="JobDirector.ReportRepair"/>. Spawned by JobDirector from`
-- **reference** · `Ziptide.Gameplay.RepairableMachine` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:213` — `if (_director != null) _director.ReportRepair(_def.machineId);`
+- **reference** · `Ziptide.Gameplay.RepairableMachine` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:255` — `if (_director != null) _director.ReportRepair(_def.machineId);`
 - **reference** · `Ziptide.Tests.EditMode.JobRuntimeRepairTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/JobRuntimeRepairTests.cs:45` — `rt.ReportRepair("cistern_pump");`
 - **reference** · `Ziptide.Tests.EditMode.JobRuntimeRepairTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/JobRuntimeRepairTests.cs:55` — `rt.ReportRepair("fuel_rig");`
 - **reference** · `Ziptide.Tests.EditMode.JobRuntimeRepairTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/JobRuntimeRepairTests.cs:59` — `rt.ReportRepair("cistern_pump");`
@@ -331,7 +332,7 @@
 - **reference** · `Ziptide.Editor.Patching.CityBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:381` — `if (kit.sceneName == "W000_DriftIn" && ship.GetComponent<ShipCastOffRuntime>() == null)`
 - **reference** · `Ziptide.Editor.Patching.CityBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:382` — `ship.gameObject.AddComponent<ShipCastOffRuntime>();`
 - **reference** · `Ziptide.Editor.FirstHourSurfaceAuthor` · `Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs:36` — `ShipCastOffRuntime castOff = FindInScene<ShipCastOffRuntime>(scene);`
-- **reference** · `Ziptide.Gameplay.RepairableMachine` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:40` — `/// Queried by ShipCastOffRuntime's arming gate.</summary>`
+- **reference** · `Ziptide.Gameplay.RepairableMachine` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:41` — `/// Queried by ShipCastOffRuntime's arming gate.</summary>`
 - **declaration** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:21` — `public class ShipCastOffRuntime : MonoBehaviour`
 - **reference** · `Ziptide.Gameplay.FirstDestinationHelmRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:10` — `/// destination into ShipCastOffRuntime; it never launches or calls TravelCoordinator itself.`
 - **reference** · `Ziptide.Gameplay.FirstDestinationHelmRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:16` — `private ShipCastOffRuntime _castOff;`
@@ -345,7 +346,7 @@
 
 - **reference** · `Ziptide.Editor.Patching.WorldJobLibrary` · `Ziptide/Assets/Ziptide/Editor/Patching/WorldJobLibrary.cs:138` — `.Machine("gate_coupler", new Vector3(6, 0.1f, 14), "coupler_cell",`
 - **reference** · `Ziptide.Editor.Patching.WorldJobLibrary` · `Ziptide/Assets/Ziptide/Editor/Patching/WorldJobLibrary.cs:140` — `.Repair("gate_coupler")`
-- **reference** · `Ziptide.Gameplay.RepairableMachine` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:30` — `/// <summary>Stable machine id from pack data (e.g. "gate_coupler"). Null before Init.</summary>`
+- **reference** · `Ziptide.Gameplay.RepairableMachine` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:31` — `/// <summary>Stable machine id from pack data (e.g. "gate_coupler"). Null before Init.</summary>`
 - **reference** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:29` — `[SerializeField] private string armingMachineId = "gate_coupler";`
 
 ## shipPresentation
@@ -364,7 +365,7 @@
 - **reference** · `Ziptide.Editor.Patching.CityBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:381` — `if (kit.sceneName == "W000_DriftIn" && ship.GetComponent<ShipCastOffRuntime>() == null)`
 - **reference** · `Ziptide.Editor.Patching.CityBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:382` — `ship.gameObject.AddComponent<ShipCastOffRuntime>();`
 - **reference** · `Ziptide.Editor.FirstHourSurfaceAuthor` · `Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs:36` — `ShipCastOffRuntime castOff = FindInScene<ShipCastOffRuntime>(scene);`
-- **reference** · `Ziptide.Gameplay.RepairableMachine` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:40` — `/// Queried by ShipCastOffRuntime's arming gate.</summary>`
+- **reference** · `Ziptide.Gameplay.RepairableMachine` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:41` — `/// Queried by ShipCastOffRuntime's arming gate.</summary>`
 - **declaration** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:21` — `public class ShipCastOffRuntime : MonoBehaviour`
 - **reference** · `Ziptide.Gameplay.FirstDestinationHelmRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:10` — `/// destination into ShipCastOffRuntime; it never launches or calls TravelCoordinator itself.`
 - **reference** · `Ziptide.Gameplay.FirstDestinationHelmRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:16` — `private ShipCastOffRuntime _castOff;`
