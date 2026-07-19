@@ -31,6 +31,14 @@ namespace Ziptide.Build
         private const string ToxicCityExitPackPath =
             "Assets/Ziptide/Content/Worlds/Packs/ToxicCityExit_WorldPack.asset";
         private const string GoldenBridgeName = "__RECOVERY_GOLDEN_SHIPYARD_BRIDGE";
+        private static readonly Vector3 GoldenBridgeCenter = new Vector3(0f, -0.5f, -39.5f);
+        private static readonly Vector3 GoldenBridgeSize = new Vector3(20f, 1f, 2f);
+
+        /// <summary>Exact return scene authorized by the three-scene recovery profile.</summary>
+        public static string GoldenExitSceneName => ZiptideConstants.SceneW000;
+
+        /// <summary>Pure geometry contract used by EditMode tests before any scene mutation.</summary>
+        public static Bounds GoldenShipyardBridgeBounds => new Bounds(GoldenBridgeCenter, GoldenBridgeSize);
 
         [Serializable]
         private sealed class GoldenBuildReport
@@ -63,7 +71,7 @@ namespace Ziptide.Build
             if (exitPack == null)
                 throw new FileNotFoundException("Golden ToxicCity exit pack is missing.", ToxicCityExitPackPath);
 
-            exitPack.sceneName = ZiptideConstants.SceneW000;
+            exitPack.sceneName = GoldenExitSceneName;
             EditorUtility.SetDirty(exitPack);
             AssetDatabase.SaveAssets();
 
@@ -77,9 +85,9 @@ namespace Ziptide.Build
 
             // Shipyard district rear edge = z -39; berth front edge = z -40. This two-metre apron
             // overlaps both sides by 0.5 m and spans the full 20 m berth width.
-            bridge.transform.position = new Vector3(0f, -0.5f, -39.5f);
+            bridge.transform.position = GoldenBridgeCenter;
             bridge.transform.rotation = Quaternion.identity;
-            bridge.transform.localScale = new Vector3(20f, 1f, 2f);
+            bridge.transform.localScale = GoldenBridgeSize;
             var collider = bridge.GetComponent<BoxCollider>();
             if (collider == null) collider = bridge.AddComponent<BoxCollider>();
             collider.enabled = true;
@@ -105,7 +113,7 @@ namespace Ziptide.Build
             if (!EditorSceneManager.SaveScene(scene, GoldenScenes[2]))
                 throw new Exception("Failed to save Golden ToxicCity route patch.");
 
-            if (exitPack.sceneName != ZiptideConstants.SceneW000)
+            if (exitPack.sceneName != GoldenExitSceneName)
                 throw new Exception("Golden ToxicCity exit does not target W000.");
             if (bridge.GetComponent<Collider>() == null || !bridge.GetComponent<Collider>().enabled)
                 throw new Exception("Golden ToxicCity shipyard bridge has no enabled collider.");
