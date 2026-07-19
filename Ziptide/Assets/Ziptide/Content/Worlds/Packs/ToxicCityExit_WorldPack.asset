@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   packId: toxic_city_exit
   displayName: Leave
-  sceneName: MilestoneA_GrabCube
+  sceneName: W000_DriftIn
   defaultTheme: {fileID: 0}
   availableThemes: []
   jobs: []
