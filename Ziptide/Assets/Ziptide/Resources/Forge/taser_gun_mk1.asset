@@ -163,13 +163,13 @@ MonoBehaviour:
   sockets:
   - name: Grip
     localPosition: {x: 0, y: -0.045, z: -0.05}
-    localEuler: {x: 45, y: 0, z: 0}
+    localEuler: {x: 0, y: 0, z: 0}
   - name: Muzzle
     localPosition: {x: 0, y: 0.012, z: 0.125}
     localEuler: {x: 0, y: 0, z: 0}
   qualityState: 1
   lockedContentHash: 
-  storyRole: "Cal's starter stun tool \u2014 salvage-tech that hums with RILL's teal."
+  storyRole: "Cal's starter stun tool — salvage-tech that hums with RILL's teal."
   storyRefs:
   - rill_teal
   - salvage_tech
