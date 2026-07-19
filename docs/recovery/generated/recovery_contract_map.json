@@ -8798,21 +8798,21 @@
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-            "line": 305,
+            "line": 307,
             "symbol": "Ziptide.Gameplay.RepairableMachine",
             "snippet": "var shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-            "line": 306,
+            "line": 308,
             "symbol": "Ziptide.Gameplay.RepairableMachine",
             "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
           },
           {
             "code": "RUNTIME_MATERIAL_CREATE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-            "line": 308,
+            "line": 310,
             "symbol": "Ziptide.Gameplay.RepairableMachine",
             "snippet": "var mat = new Material(shader);"
           }
@@ -10927,42 +10927,42 @@
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs",
-            "line": 39,
+            "line": 42,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryForgeVisualOwnershipTests",
             "snippet": "_item = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "XR_INTERACTABLE_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs",
-            "line": 46,
+            "line": 49,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryForgeVisualOwnershipTests",
             "snippet": "var grab = _item.AddComponent<XRGrabInteractable>();"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs",
-            "line": 49,
+            "line": 52,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryForgeVisualOwnershipTests",
             "snippet": "var grip = new GameObject(\"Grip\");"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs",
-            "line": 55,
+            "line": 58,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryForgeVisualOwnershipTests",
             "snippet": "var muzzle = new GameObject(\"Muzzle\");"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs",
-            "line": 59,
+            "line": 62,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryForgeVisualOwnershipTests",
             "snippet": "var visual = new GameObject(ForgeVisualName);"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs",
-            "line": 61,
+            "line": 64,
             "symbol": "Ziptide.Tests.PlayMode.RecoveryForgeVisualOwnershipTests",
             "snippet": "GameObject stale = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           }

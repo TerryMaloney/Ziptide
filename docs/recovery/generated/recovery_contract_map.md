@@ -1856,9 +1856,9 @@ None.
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:186` **CREATE_PRIMITIVE** — `var partVisual = GameObject.CreatePrimitive(PrimitiveType.Cube);`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:191` **NEW_GAME_OBJECT** — `var partLabel = new GameObject("PartLabel");`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:192` **TEXTMESH_COMPONENT** — `var ptm = partLabel.AddComponent<TextMesh>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:305` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Lit");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:306` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:308` **RUNTIME_MATERIAL_CREATE** — `var mat = new Material(shader);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:307` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Lit");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:308` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:310` **RUNTIME_MATERIAL_CREATE** — `var mat = new Material(shader);`
 
 ### `Ziptide.Gameplay.RillCompanion` — 6 signal(s)
 
@@ -2324,12 +2324,12 @@ None.
 
 - Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`, `XR_INTERACTABLE_COMPONENT`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs:39` **CREATE_PRIMITIVE** — `_item = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs:46` **XR_INTERACTABLE_COMPONENT** — `var grab = _item.AddComponent<XRGrabInteractable>();`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs:49` **NEW_GAME_OBJECT** — `var grip = new GameObject("Grip");`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs:55` **NEW_GAME_OBJECT** — `var muzzle = new GameObject("Muzzle");`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs:59` **NEW_GAME_OBJECT** — `var visual = new GameObject(ForgeVisualName);`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs:61` **CREATE_PRIMITIVE** — `GameObject stale = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs:42` **CREATE_PRIMITIVE** — `_item = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs:49` **XR_INTERACTABLE_COMPONENT** — `var grab = _item.AddComponent<XRGrabInteractable>();`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs:52` **NEW_GAME_OBJECT** — `var grip = new GameObject("Grip");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs:58` **NEW_GAME_OBJECT** — `var muzzle = new GameObject("Muzzle");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs:62` **NEW_GAME_OBJECT** — `var visual = new GameObject(ForgeVisualName);`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs:64` **CREATE_PRIMITIVE** — `GameObject stale = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 
 ### `Ziptide.Tests.PlayMode.RecoveryGateBypassTests` — 2 signal(s)
 
