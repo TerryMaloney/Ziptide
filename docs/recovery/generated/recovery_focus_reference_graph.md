@@ -101,7 +101,7 @@
 - **reference** · `Ziptide.Tests.EditMode.ForgeRecipeLibraryTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/ForgeRecipeLibraryTests.cs:11` — `/// handhelds) honors the Grip/Muzzle socket contract with the Quest grip tilt.`
 - **reference** · `Ziptide.Tests.EditMode.ForgeRecipeLibraryTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/ForgeRecipeLibraryTests.cs:77` — `if (s.name == "Muzzle") muzzle = s;`
 - **reference** · `Ziptide.Tests.EditMode.ForgeRecipeLibraryTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/ForgeRecipeLibraryTests.cs:80` — `Assert.IsNotNull(muzzle, kv.Key + " handheld without a Muzzle socket");`
-- **reference** · `Ziptide.Tests.EditMode.QuestWeaponAndCouplerRegressionTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/QuestWeaponAndCouplerRegressionTests.cs:79` — `itemId + " uses Muzzle as a melee tip and must never display a gun laser.");`
+- **reference** · `Ziptide.Tests.EditMode.QuestWeaponAndCouplerRegressionTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/QuestWeaponAndCouplerRegressionTests.cs:78` — `itemId + " uses Muzzle as a melee tip and must never display a gun laser.");`
 - **reference** · `Ziptide.Tests.EditMode.VfxRecipeTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/VfxRecipeTests.cs:94` — `foreach (var k in new[] { VfxKind.Impact, VfxKind.Muzzle, VfxKind.SteamVent, VfxKind.Motes, VfxKind.Sparks })`
 - **reference** · `Ziptide.Tests.PlayMode.RecoveryForgeVisualOwnershipTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs:59` — `var muzzle = new GameObject("Muzzle");`
 - **reference** · `Ziptide.Visuals.ForgeQualityState` · `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeRecipeDefinition.cs:80` — `/// <summary>Named attach point (Grip/Muzzle/Seat/Door/...). Consumers snap existing children here —`
@@ -298,7 +298,7 @@
 - **reference** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:27` — `[Tooltip("RepairableMachine id that must be RUNNING before PUNCH IT arms (empty = no gate).")]`
 - **reference** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:31` — `private RepairableMachine _armingMachine; // cached once found; absence is re-checked per press`
 - **reference** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:153` — `foreach (var m in FindObjectsOfType<RepairableMachine>())`
-- **reference** · `Ziptide.Tests.EditMode.QuestWeaponAndCouplerRegressionTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/QuestWeaponAndCouplerRegressionTests.cs:124` — `var machine = machineRoot.AddComponent<RepairableMachine>();`
+- **reference** · `Ziptide.Tests.EditMode.QuestWeaponAndCouplerRegressionTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/QuestWeaponAndCouplerRegressionTests.cs:123` — `var machine = machineRoot.AddComponent<RepairableMachine>();`
 - **reference** · `Ziptide.Tests.EditMode.RepairableMachineSignalTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/RepairableMachineSignalTests.cs:12` — `public class RepairableMachineSignalTests`
 - **reference** · `Ziptide.Tests.EditMode.RepairableMachineSignalTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/RepairableMachineSignalTests.cs:40` — `RepairableMachine machine = CreateMachine("machine");`
 - **reference** · `Ziptide.Tests.EditMode.RepairableMachineSignalTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/RepairableMachineSignalTests.cs:67` — `RepairableMachine designated = CreateMachine("same_id");`

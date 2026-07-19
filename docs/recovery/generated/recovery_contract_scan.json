@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-19T22:34:10.515377+00:00",
+  "generatedAtUtc": "2026-07-19T22:40:57.678954+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -16229,7 +16229,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/QuestWeaponAndCouplerRegressionTests.cs",
-      "line": 123,
+      "line": 122,
       "symbol": "Ziptide.Tests.EditMode.QuestWeaponAndCouplerRegressionTests",
       "snippet": "machineRoot = new GameObject(\"QuestCouplerRegression\");"
     },

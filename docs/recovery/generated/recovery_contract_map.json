@@ -10491,7 +10491,7 @@
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Tests/EditMode/QuestWeaponAndCouplerRegressionTests.cs",
-            "line": 123,
+            "line": 122,
             "symbol": "Ziptide.Tests.EditMode.QuestWeaponAndCouplerRegressionTests",
             "snippet": "machineRoot = new GameObject(\"QuestCouplerRegression\");"
           }

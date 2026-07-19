@@ -1,7 +1,7 @@
 {
   "tool": "recovery_inventory_gate",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-19T22:34:10.605456+00:00",
+  "generatedAtUtc": "2026-07-19T22:40:57.772235+00:00",
   "status": "pass",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "inventoryPath": "/home/runner/work/Ziptide/Ziptide/docs/recovery/canonical_system_contracts.json",

@@ -884,7 +884,7 @@
           "focus": "melee",
           "token": "Muzzle",
           "path": "Ziptide/Assets/Ziptide/Tests/EditMode/QuestWeaponAndCouplerRegressionTests.cs",
-          "line": 79,
+          "line": 78,
           "symbol": "Ziptide.Tests.EditMode.QuestWeaponAndCouplerRegressionTests",
           "snippet": "itemId + \" uses Muzzle as a melee tip and must never display a gun laser.\");",
           "declaration_file": false
@@ -2405,7 +2405,7 @@
           "focus": "repairObjective",
           "token": "RepairableMachine",
           "path": "Ziptide/Assets/Ziptide/Tests/EditMode/QuestWeaponAndCouplerRegressionTests.cs",
-          "line": 124,
+          "line": 123,
           "symbol": "Ziptide.Tests.EditMode.QuestWeaponAndCouplerRegressionTests",
           "snippet": "var machine = machineRoot.AddComponent<RepairableMachine>();",
           "declaration_file": false
@@ -6456,7 +6456,7 @@
       "focus": "melee",
       "token": "Muzzle",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/QuestWeaponAndCouplerRegressionTests.cs",
-      "line": 79,
+      "line": 78,
       "symbol": "Ziptide.Tests.EditMode.QuestWeaponAndCouplerRegressionTests",
       "snippet": "itemId + \" uses Muzzle as a melee tip and must never display a gun laser.\");",
       "declaration_file": false
@@ -6465,7 +6465,7 @@
       "focus": "repairObjective",
       "token": "RepairableMachine",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/QuestWeaponAndCouplerRegressionTests.cs",
-      "line": 124,
+      "line": 123,
       "symbol": "Ziptide.Tests.EditMode.QuestWeaponAndCouplerRegressionTests",
       "snippet": "var machine = machineRoot.AddComponent<RepairableMachine>();",
       "declaration_file": false

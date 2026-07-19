@@ -2214,7 +2214,7 @@ None.
 
 - Codes: `NEW_GAME_OBJECT`
 - Paths: `Ziptide/Assets/Ziptide/Tests/EditMode/QuestWeaponAndCouplerRegressionTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/EditMode/QuestWeaponAndCouplerRegressionTests.cs:123` **NEW_GAME_OBJECT** — `machineRoot = new GameObject("QuestCouplerRegression");`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/QuestWeaponAndCouplerRegressionTests.cs:122` **NEW_GAME_OBJECT** — `machineRoot = new GameObject("QuestCouplerRegression");`
 
 ### `Ziptide.Tests.EditMode.ReactivePracticalSwapTests` — 1 signal(s)
 
