@@ -26,6 +26,17 @@ namespace Ziptide.Tests.EditMode
         }
 
         [Test]
+        public void GoldenDestinationFilter_RejectsRowsWhoseScenesAreAbsentFromTheApk()
+        {
+            Assert.That(RecoveryBuildAndroid.IsGoldenDestinationScene(ZiptideConstants.SceneW000), Is.True);
+            Assert.That(RecoveryBuildAndroid.IsGoldenDestinationScene(ZiptideConstants.SceneToxicCity), Is.True);
+            Assert.That(RecoveryBuildAndroid.IsGoldenDestinationScene(ZiptideConstants.SceneD0City), Is.False,
+                "The ToxicCity helm must not offer the D0_City row that failed on Quest.");
+            Assert.That(RecoveryBuildAndroid.IsGoldenDestinationScene(ZiptideConstants.SceneTestRoom), Is.False,
+                "The direct Leave door must not fall back to MilestoneA_GrabCube.");
+        }
+
+        [Test]
         public void GoldenShipyardBridge_OverlapsBothWalkableSlabsAtWalkwayHeight()
         {
             var layout = AssetDatabase.LoadAssetAtPath<CityLayoutDefinition>(LayoutPath);
