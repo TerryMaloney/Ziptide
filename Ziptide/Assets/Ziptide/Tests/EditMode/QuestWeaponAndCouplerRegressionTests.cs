@@ -96,9 +96,8 @@ namespace Ziptide.Tests.EditMode
 
                 Transform indicator = machineRoot.transform.Find("StatusIndicator");
                 Assert.That(indicator, Is.Not.Null, "Broken/running state must read as an indicator, not a button.");
-                // Primitive collider removal is deferred until Unity's frame cleanup in EditMode. The
-                // player-facing contract is that the indicator never owns an XR interactable; only the
-                // labelled power target can receive selection.
+                Assert.That(indicator.GetComponent<Collider>(), Is.Null,
+                    "The status indicator must have no physical selection surface.");
                 Assert.That(indicator.GetComponents<MonoBehaviour>().Any(c =>
                         c != null && c.GetType().Name.Contains("Interactable")), Is.False,
                     "The status indicator must never masquerade as an interactable target.");
