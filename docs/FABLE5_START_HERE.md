@@ -1,5 +1,7 @@
 # ▶ START HERE — the single-operator manual (LEGACY — superseded 2026-07-03)
 
+> **🚨 CURRENT TAKEOVER — 2026-07-20:** Terry asked GPT to stop and hand the Quest recovery/input blocker back to Fable 5. Read **`docs/recovery/FABLE5_INPUT_RECOVERY_HANDOFF_20260720.md`** before changing code. Current source is not headset-authorized; the exact remaining 42/43 failure and minimal next edit are recorded there.
+
 > ⚠️ **THE CURRENT MANUAL IS `docs/OPERATOR_START_HERE.md`** (model-agnostic: Fable, Opus 4.8,
 > anyone — four tracks, the blackboard, THE LAWS, the circuit breaker, Opus calibration). Read THAT
 > first. This file stays as the detailed legacy reference (state snapshots, history); where the two
