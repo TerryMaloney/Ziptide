@@ -17,8 +17,6 @@ namespace Ziptide.Core
     /// </summary>
     public static class RuntimeInputEnabler
     {
-        private const string RepairDriverName = "__ZiptideInputMutationRepair";
-
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void OnLoad()
         {
@@ -62,10 +60,15 @@ namespace Ziptide.Core
         {
             if (Object.FindObjectOfType<InputMutationRepairDriver>(true) != null) return;
 
-            var go = new GameObject(RepairDriverName);
-            Object.DontDestroyOnLoad(go);
-            go.AddComponent<InputMutationRepairDriver>();
-            Debug.Log("ZIPTIDE: INPUT_MUTATION_REPAIR_DRIVER ready");
+            var rig = Object.FindObjectOfType<Ziptide.Gameplay.PlayerRigPersistence>(true);
+            if (rig == null)
+            {
+                Debug.LogWarning("ZIPTIDE: INPUT_MUTATION_REPAIR_DRIVER no_persistent_rig");
+                return;
+            }
+
+            rig.gameObject.AddComponent<InputMutationRepairDriver>();
+            Debug.Log("ZIPTIDE: INPUT_MUTATION_REPAIR_DRIVER ready owner=PlayerRigPersistence");
         }
 
         private static InputActionAsset GetAssetFromController(ActionBasedController c)
@@ -97,8 +100,8 @@ namespace Ziptide.Core
     }
 
     /// <summary>
-    /// Existing RuntimeInputEnabler owner, split into a runtime driver so no additional automatic bootstrap
-    /// or recovery owner is introduced. One driver survives scene loads and observes travel transitions.
+    /// Existing RuntimeInputEnabler owner, split into a driver attached to the canonical persistent rig.
+    /// This avoids introducing another persistent root while still observing every travel transition.
     /// </summary>
     internal sealed class InputMutationRepairDriver : MonoBehaviour
     {
@@ -110,7 +113,6 @@ namespace Ziptide.Core
 
         private void Awake()
         {
-            DontDestroyOnLoad(gameObject);
             _sawTravel = Ziptide.Gameplay.TravelCoordinator.IsTravelling;
         }
 
