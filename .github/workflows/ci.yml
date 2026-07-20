@@ -112,6 +112,8 @@ jobs:
             Library-
 
       - name: Run EditMode tests
+        id: unity-tests
+        continue-on-error: true
         uses: game-ci/unity-test-runner@v4
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
@@ -123,6 +125,75 @@ jobs:
           testMode: editmode
           githubToken: ${{ secrets.GITHUB_TOKEN }}
           artifactsPath: test-results
+
+      - name: Verify authoritative NUnit result
+        if: always()
+        shell: bash
+        env:
+          UNITY_TEST_OUTCOME: ${{ steps.unity-tests.outcome }}
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          import xml.etree.ElementTree as ET
+
+          root_dir = Path('test-results')
+          result_files = sorted(root_dir.rglob('*results.xml'))
+          if not result_files:
+              raise SystemExit('EditMode produced no NUnit result XML.')
+
+          totals = {key: 0 for key in ('total', 'passed', 'failed', 'skipped', 'inconclusive')}
+          counted = []
+          for path in result_files:
+              root = ET.parse(path).getroot()
+              if root.tag.split('}')[-1] != 'test-run':
+                  continue
+              counted.append(path.as_posix())
+              for key in totals:
+                  totals[key] += int(root.attrib.get(key, 0) or 0)
+              if root.attrib.get('result') != 'Passed':
+                  raise SystemExit(f'NUnit root is not Passed: {path} {root.attrib}')
+
+          if not counted or totals['total'] <= 0:
+              raise SystemExit('EditMode produced no counted NUnit tests.')
+          if totals['failed'] or totals['skipped'] or totals['inconclusive']:
+              raise SystemExit(f'EditMode NUnit gate failed: {totals}')
+          if totals['passed'] != totals['total']:
+              raise SystemExit(f'EditMode totals are inconsistent: {totals}')
+
+          outcome = os.environ.get('UNITY_TEST_OUTCOME', 'unknown')
+          log_text = '\n'.join(
+              path.read_text(encoding='utf-8', errors='replace')
+              for path in sorted(root_dir.rglob('*.log'))
+          )
+          if outcome != 'success':
+              known_xr_teardown = (
+                  'Call to StopSubsystems without an initialized manager' in log_text
+                  and 'XRManagerSettings:StopSubsystems' in log_text
+              )
+              if not known_xr_teardown:
+                  raise SystemExit(
+                      'GameCI failed despite passing NUnit XML, but the failure was not the known XR teardown.'
+                  )
+              fatal_markers = (
+                  'Scripts have compiler errors',
+                  'Compilation failed',
+                  'Aborting batchmode due to failure',
+                  'Crash!!!',
+              )
+              found = [marker for marker in fatal_markers if marker in log_text]
+              if found:
+                  raise SystemExit(f'Fatal Unity markers found after NUnit: {found}')
+              print('Accepted passing NUnit XML with the exact known XR shutdown-only failure signature.')
+
+          print(json.dumps({
+              'gameCiOutcome': outcome,
+              'resultFiles': counted,
+              **totals,
+          }, indent=2))
+          PY
 
       - name: Upload test results
         uses: actions/upload-artifact@v4
