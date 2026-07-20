@@ -7,58 +7,25 @@ on:
     paths:
       - '.github/workflows/recovery-golden-android.yml'
       - '.github/workflows/recovery-playmode.yml'
-      - 'Ziptide/Assets/Ziptide/Core/Runtime/Recovery/**'
-      - 'Ziptide/Assets/Ziptide/Editor/Build/**'
-      # World Improvement framework: recipe-only or module/gate changes alter the locked W000/ToxicCity
-      # artifact and must receive an immutable exact-SHA Golden APK.
       - 'docs/worldimprovements/**'
+      - 'Ziptide/Assets/Ziptide/Core/Runtime/Recovery/**'
+      - 'Ziptide/Assets/Ziptide/Core/Runtime/WorldImprovementAssessmentCore.cs'
       - 'Ziptide/Assets/Ziptide/Content/WorldImprovement/**'
+      - 'Ziptide/Assets/Ziptide/Editor/Build/**'
       - 'Ziptide/Assets/Ziptide/Editor/WorldImprovement/**'
-      - 'Ziptide/Assets/Ziptide/Editor/Audit/BuildProfileTravelAuditRules.cs'
-      - 'Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs'
-      - 'Ziptide/Assets/Ziptide/Editor/Audit/PerceptualCoverageAuditRules.cs'
-      - 'Ziptide/Assets/Ziptide/Editor/Audit/RouteContinuityAuditRules.cs'
-      - 'Ziptide/Assets/Ziptide/Editor/Audit/InteractionReachAuditRules.cs'
-      - 'Ziptide/Assets/Ziptide/Editor/Audit/WorldImprovementAuditRules.cs'
-      - 'Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovement*.cs'
-      - 'Ziptide/Assets/Ziptide/Tests/EditMode/*PerceptualAuditRulesTests.cs'
-      - 'Ziptide/Assets/Ziptide/Tests/EditMode/RouteContinuityAuditRulesTests.cs'
-      - 'Ziptide/Assets/Ziptide/Tests/EditMode/InteractionReachAuditRulesTests.cs'
-      - 'Ziptide/Assets/Ziptide/Tests/EditMode/BuildProfileTravelAuditRulesTests.cs'
+      - 'Ziptide/Assets/Ziptide/Editor/Audit/**'
       - 'Ziptide/Assets/Ziptide/Editor/Patching/ForgeBaker.cs'
+      - 'Ziptide/Assets/Ziptide/Editor/Patching/ShipHullBuilder.cs'
+      - 'Ziptide/Assets/Ziptide/Editor/Patching/ToxicCity*.cs'
       - 'Ziptide/Assets/Ziptide/Editor/Art/ForgeDependencyAuditor.cs'
-      - 'Ziptide/Assets/Ziptide/Resources/ZiptideTransparentAlphaUnlit.shader'
-      - 'Ziptide/Assets/Ziptide/Resources/ZiptideTransparentAlphaUnlit.shader.meta'
-      - 'Ziptide/Assets/Ziptide/Resources/ZiptideAdditiveUnlit.shader'
-      - 'Ziptide/Assets/Ziptide/Resources/ZiptideAdditiveUnlit.shader.meta'
-      - 'Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/PracticalLight.cs'
-      - 'Ziptide/Assets/Ziptide/Visuals/Runtime/Grounding/GroundShadow.cs'
-      - 'Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs'
-      - 'Ziptide/Assets/Ziptide/Scenes/_Boot.unity'
-      - 'Ziptide/Assets/Ziptide/Scenes/Generated/W000_DriftIn.unity'
-      - 'Ziptide/Assets/Ziptide/Scenes/ToxicCity.unity'
-      - 'Ziptide/Assets/Ziptide/Tests/PlayMode/Recovery*.cs'
-      # Device-recovery owners used by the locked W000 -> ToxicCity -> W000 route. Keep this
-      # synchronized with recovery-playmode.yml so every proof-relevant source receives both the
-      # canonical 43-test observation and an immutable exact-SHA Golden APK.
       - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/**'
-      - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs'
-      - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs'
-      - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs'
-      - 'Ziptide/Assets/Ziptide/Content/Worlds/Packs/ToxicCityExit_WorldPack.asset'
-      - 'Ziptide/Assets/Ziptide/Resources/Items/BreakerBlade.asset'
-      - 'Ziptide/Assets/Ziptide/Tests/EditMode/Quest*.cs'
-      - 'Ziptide/Assets/Ziptide/Tests/EditMode/FieldCameraCompletionTests.cs'
-      - 'Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs'
-      - 'Ziptide/Assets/Ziptide/Tests/EditMode/ShellSignVocabularyTests.cs'
-      - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs'
-      # Golden-route spine coverage (see recovery-playmode.yml): a proof lane must see every file
-      # the locked route executes, including persistent rig and world travel owners.
       - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/**'
       - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/World/**'
-      - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs'
-      - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs'
-      - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarp.cs'
+      - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs'
+      - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs'
+      - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/**'
+      - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs'
+      - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/**'
       - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs'
       - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs'
       - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs'
@@ -67,6 +34,24 @@ on:
       - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Diagnostics/SingletonValidator.cs'
       - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs'
       - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs'
+      - 'Ziptide/Assets/Ziptide/Tests/PlayMode/Recovery*.cs'
+      - 'Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovement*.cs'
+      - 'Ziptide/Assets/Ziptide/Tests/EditMode/RoundThree*.cs'
+      - 'Ziptide/Assets/Ziptide/Tests/EditMode/Quest*.cs'
+      - 'Ziptide/Assets/Ziptide/Tests/EditMode/*PerceptualAuditRulesTests.cs'
+      - 'Ziptide/Assets/Ziptide/Tests/EditMode/RouteContinuityAuditRulesTests.cs'
+      - 'Ziptide/Assets/Ziptide/Tests/EditMode/InteractionReachAuditRulesTests.cs'
+      - 'Ziptide/Assets/Ziptide/Tests/EditMode/BuildProfileTravelAuditRulesTests.cs'
+      - 'Ziptide/Assets/Ziptide/Scenes/_Boot.unity'
+      - 'Ziptide/Assets/Ziptide/Scenes/Generated/W000_DriftIn.unity'
+      - 'Ziptide/Assets/Ziptide/Scenes/ToxicCity.unity'
+      - 'Ziptide/Assets/Ziptide/Content/Worlds/Packs/ToxicCityExit_WorldPack.asset'
+      - 'Ziptide/Assets/Ziptide/Resources/Items/BreakerBlade.asset'
+      - 'Ziptide/Assets/Ziptide/Resources/ZiptideTransparentAlphaUnlit.shader*'
+      - 'Ziptide/Assets/Ziptide/Resources/ZiptideAdditiveUnlit.shader*'
+      - 'Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/PracticalLight.cs'
+      - 'Ziptide/Assets/Ziptide/Visuals/Runtime/Grounding/GroundShadow.cs'
+      - 'Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs'
       - 'Ziptide/Assets/ZiptideNet/NetBootstrap.cs'
       - 'docs/recovery/automatic_runtime_owners.json'
       - 'docs/recovery/golden_slice_manifest.json'
@@ -136,14 +121,13 @@ jobs:
           buildMethod: Ziptide.Build.RecoveryBuildAndroid.PatchScenesThenGoldenAPK
           allowDirtyBuild: true
 
-      - name: Verify Golden build artifacts independently
+      - name: Verify Golden build and Round 3 evidence independently
         shell: bash
         run: |
           set -euo pipefail
           apk="${PROJECT_PATH}/Builds/Android/Ziptide.apk"
           report="${PROJECT_PATH}/Builds/Reports/recovery_golden_build_profile.json"
           improvement="${PROJECT_PATH}/Builds/Reports/world_improvement_compile.json"
-
           test -s "$apk"
           test -s "$report"
           test -s "$improvement"
@@ -164,7 +148,6 @@ jobs:
               "Assets/Ziptide/Scenes/Generated/W000_DriftIn.unity",
               "Assets/Ziptide/Scenes/ToxicCity.unity",
           ]
-
           assert payload.get("profile") == "GoldenSlice", payload
           assert payload.get("define") == "ZIPTIDE_RECOVERY_GOLDEN", payload
           assert payload.get("result") == "Succeeded", payload
@@ -172,23 +155,36 @@ jobs:
           assert int(payload.get("totalBytes", 0)) > 0, payload
           assert os.path.getsize(apk_path) > 0, apk_path
 
-          assert improvement.get("schemaVersion") == 1, improvement
-          assert improvement.get("compilerVersion") == 1, improvement
+          assert improvement.get("schemaVersion") == 2, improvement
+          assert improvement.get("compilerVersion") == 2, improvement
           records = {row.get("sceneName"): row for row in improvement.get("worlds", [])}
           expected_manifests = {
-              "W000_DriftIn": "ziptide-w000-round2",
-              "ToxicCity": "ziptide-toxiccity-round2",
+              "W000_DriftIn": "ziptide-w000-round3",
+              "ToxicCity": "ziptide-toxiccity-round3",
+          }
+          expected_modules = {
+              "arrival_identity", "route_beacons", "ambient_motion", "horizon_frame",
+              "grounded_route", "discovery_nodes", "story_traces",
           }
           for scene_name, manifest_id in expected_manifests.items():
               row = records.get(scene_name)
               assert row, (scene_name, improvement)
               assert row.get("manifestId") == manifest_id, row
-              assert row.get("round") == 2, row
+              assert row.get("round") == 3, row
               assert row.get("recipeVersion") == 1, row
               assert len(row.get("recipeHash", "")) == 64, row
-              assert row.get("modules"), row
-              assert len(row.get("modules", [])) == len(row.get("objectCounts", [])), row
-              assert all(int(value) > 0 for value in row.get("objectCounts", [])), row
+              modules = row.get("modules", [])
+              counts = row.get("objectCounts", [])
+              assert set(modules) == expected_modules, row
+              assert len(modules) == len(counts) == 7, row
+              assert all(int(value) > 0 for value in counts), row
+              names = row.get("aspectNames", [])
+              scores = row.get("aspectScores", [])
+              weakest = row.get("weakestAspects", [])
+              assert len(names) == len(scores) == 9, row
+              assert all(int(value) > 0 for value in scores), row
+              assert 1 <= len(weakest) <= 3, row
+              assert all(value in names for value in weakest), row
 
           print(json.dumps({
               "verified": True,
@@ -256,7 +252,6 @@ jobs:
           current="$(git rev-parse HEAD)"
           echo "tested=$tested"
           echo "current=$current"
-
           if [[ "$current" == "$tested" ]]; then
             echo "write=true" >> "$GITHUB_OUTPUT"
             exit 0
@@ -265,7 +260,6 @@ jobs:
           git cat-file -e "${tested}^{commit}"
           changed="$(git diff --name-only "$tested" HEAD)"
           echo "$changed"
-
           while IFS= read -r path; do
             [[ -z "$path" ]] && continue
             case "$path" in
@@ -278,9 +272,7 @@ jobs:
                 ;;
             esac
           done <<< "$changed"
-
           echo "write=true" >> "$GITHUB_OUTPUT"
-          echo "::notice::Only generated evidence, the verdict, or docs/HANDOFF.md advanced; recording the tested SHA is safe."
 
       - name: Render observation
         if: steps.freshness.outputs.write == 'true'
@@ -302,7 +294,6 @@ jobs:
           attempt = os.environ["WORKFLOW_ATTEMPT"]
           result = os.environ["BUILD_RESULT"]
           unity = os.environ["UNITY_VERSION"]
-
           text = f"""# Recovery Golden Android Observation
 
           - Tested SHA: `{tested_sha}`
@@ -315,12 +306,9 @@ jobs:
           - Locked scenes: `_Boot`, `W000_DriftIn`, `ToxicCity`
           - Candidate artifact: `recovery-golden-apk-{tested_sha}`
           - Audit artifact: `recovery-golden-audit-{tested_sha}`
-          - Improvement evidence: `world_improvement_compile.json` independently verified for W000/ToxicCity Round 2
+          - Improvement evidence: `world_improvement_compile.json` independently verified for W000/ToxicCity Round 3
           """
-
-          Path("docs/recovery/generated/recovery_golden_android_observation.md").write_text(
-              text, encoding="utf-8"
-          )
+          Path("docs/recovery/generated/recovery_golden_android_observation.md").write_text(text, encoding="utf-8")
           PY
 
       - name: Commit observation without forcing

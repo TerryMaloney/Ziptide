@@ -13,11 +13,12 @@ namespace Ziptide.Tests.EditMode
     public sealed class WorldImprovementCompilerTests
     {
         [Test]
-        public void Registry_ContainsThePortableRoundOneModules()
+        public void Registry_ContainsThePortableAndZiptideRoundModules()
         {
             CollectionAssert.AreEquivalent(new[]
             {
-                "arrival_identity", "route_beacons", "ambient_motion", "horizon_frame"
+                "arrival_identity", "route_beacons", "ambient_motion", "horizon_frame",
+                "grounded_route", "discovery_nodes", "story_traces"
             }, WorldImprovementModuleRegistry.KnownIds());
         }
 

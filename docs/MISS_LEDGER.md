@@ -9,7 +9,7 @@ Read by every lane at session start alongside HANDOFF. Full spec: `FINISHED_GAME
 
 ---
 
-## OPEN / SEEDED 2026-07-19 (the benchmark exercise's own findings — entries 1–10)
+## OPEN / SEEDED 2026-07-19 (the benchmark exercise's own findings — entries 1–13)
 
 1. **WHAT:** no player-facing credits roll designed. **FOUND BY:** finished-game benchmark (B3).
    **WHY MISSED:** CREDITS.md solved the LICENSING need and its existence masked the
@@ -28,8 +28,8 @@ Read by every lane at session start alongside HANDOFF. Full spec: `FINISHED_GAME
    ceremony, replay answer) undesigned while ending STORY is fully designed. **FOUND BY:**
    benchmark (B5). **WHY MISSED:** story lane owned the endings' MEANING; no lane owned their
    STAGING; first-hour got a Director's Cut, last-hour never did. **CLASS:** asymmetric care —
-   entrances polished, exits assumed. **SYSTEM CHANGE:** benchmark B5 row + "LAST_HOUR_DIRECTORS_CUT"
-   queued as a design doc (→ pending); EXCELLENCE_MAP row.
+   entrances polished, exits assumed. **SYSTEM CHANGE:** benchmark B5 row +
+   "LAST_HOUR_DIRECTORS_CUT" queued as a design doc (→ pending); EXCELLENCE_MAP row.
 5. **WHAT:** "Ziptide" never trademark/store-collision searched. **FOUND BY:** benchmark (B6).
    **WHY MISSED:** legal-compliance list was platform-shaped (what Meta asks) — nothing asked
    what the WORLD asks. **CLASS:** compliance scoped to the platform's questionnaire.
@@ -58,6 +58,27 @@ Read by every lane at session start alongside HANDOFF. Full spec: `FINISHED_GAME
     inside-out planning blindness. **SYSTEM CHANGE:** ✅ THIS LEDGER + the benchmark as a
     recurring milestone gate (checklist row) + EXCELLENCE_MAP rows per category — the
     ship-backward view now has standing machinery.
+11. **WHAT:** the recovery PlayMode route could boot before any headless tracked XR device
+    existed, causing production input-settle to fail closed before the per-test simulator was
+    installed. **FOUND BY:** Recovery PlayMode 42/43 on `0f01fc5`. **WHY MISSED:** the simulator
+    modeled controller interaction inside individual tests but not the platform precondition that
+    real Quest controllers already exist during `_Boot`. **CLASS:** test environment supplies a
+    dependency after the production owner consumes it. **SYSTEM CHANGE:** suite-scoped
+    `RecoveryPlayModeInputEnvironment` installs neutral left/right XR devices before any recovery
+    scene loads; closure requires exact 43/43 proof (→ pending CI verification).
+12. **WHAT:** adding a new improvement round created duplicate matching recipes because the
+    resolver assumed history would be destructively replaced. **FOUND BY:** Round 3 recipe
+    integration review. **WHY MISSED:** Round 2 proved currentness but not successive-round
+    provenance. **CLASS:** current-state resolver with no version-history law. **SYSTEM CHANGE:**
+    resolver selects highest round then highest recipeVersion and rejects only same-version ties;
+    older recipes remain auditable history (→ pending CI/generated-scene verification).
+13. **WHAT:** Golden Android's independent verifier encoded Round 2 IDs and module counts, so the
+    build could not distinguish a correct new round from stale proof expectations. **FOUND BY:**
+    Round 3 proof-contract review. **WHY MISSED:** evidence schema was treated as a one-time build
+    assertion rather than a versioned framework consumer. **CLASS:** verifier hard-coded to one
+    generation of the producer contract. **SYSTEM CHANGE:** compile-report schema/compiler v2 plus
+    Golden verification of Round 3 IDs, seven modules, positive counts, nine aspect scores and
+    weakest-aspect output (→ pending exact-SHA Golden verification).
 
 ## CLOSED
 

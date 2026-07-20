@@ -171,6 +171,9 @@ namespace Ziptide.Editor.WorldImprovement
                 { "route_beacons", new RouteBeaconModule() },
                 { "ambient_motion", new AmbientMotionModule() },
                 { "horizon_frame", new HorizonFrameModule() },
+                { "grounded_route", new GroundedRouteModule() },
+                { "discovery_nodes", new DiscoveryNodeModule() },
+                { "story_traces", new StoryTraceModule() },
             };
 
         public static IWorldImprovementModule Resolve(string id)

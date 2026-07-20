@@ -6,23 +6,26 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Ziptide.Content;
+using Ziptide.Core;
 
 namespace Ziptide.Editor.WorldImprovement
 {
     /// <summary>
     /// Deterministic compiler for docs/worldimprovements/*.improvement.json. Exact-scene manifests beat
-    /// generated-world defaults. Every compile replaces one owned root, runs versioned modules, stamps the
-    /// recipe hash, and records evidence. No per-world C# and no hand-edited scene YAML.
+    /// generated-world defaults; within each class the newest round/recipe wins while older recipes remain
+    /// auditable history. Every compile replaces one owned root, runs versioned modules, stamps the recipe
+    /// hash, scores required-aspect evidence and records the next weakest dimensions. No per-world C# and
+    /// no hand-edited scene YAML.
     /// </summary>
     public static class WorldImprovementCompiler
     {
-        public const int CompilerVersion = 1;
+        public const int CompilerVersion = 2;
         public const string RootName = "__WORLD_IMPROVEMENT_ROUND";
 
         [Serializable]
         private sealed class CompileReport
         {
-            public int schemaVersion = 1;
+            public int schemaVersion = 2;
             public int compilerVersion = CompilerVersion;
             public List<CompileRecord> worlds = new List<CompileRecord>();
         }
@@ -38,6 +41,9 @@ namespace Ziptide.Editor.WorldImprovement
             public string manifestPath;
             public string[] modules;
             public int[] objectCounts;
+            public string[] aspectNames;
+            public int[] aspectScores;
+            public string[] weakestAspects;
         }
 
         private sealed class ManifestSource
@@ -84,6 +90,7 @@ namespace Ziptide.Editor.WorldImprovement
             var context = BuildContext(sceneName, scenePath, manifest, rootObject.transform);
             var moduleIds = new List<string>();
             var objectCounts = new List<int>();
+            var aspectEvidence = new List<WorldAspectEvidence>();
 
             foreach (WorldImprovementModuleSpec spec in manifest.modules)
             {
@@ -108,6 +115,17 @@ namespace Ziptide.Editor.WorldImprovement
                     .Configure(spec, result.ObjectCount);
                 moduleIds.Add(spec.moduleId);
                 objectCounts.Add(result.ObjectCount);
+
+                if (spec.aspects != null)
+                {
+                    for (int i = 0; i < spec.aspects.Length; i++)
+                    {
+                        string aspect = (spec.aspects[i] ?? string.Empty).Trim();
+                        if (aspect.Length > 0)
+                            aspectEvidence.Add(new WorldAspectEvidence(aspect, 1, result.ObjectCount));
+                    }
+                }
+
                 Debug.Log("ZIPTIDE: WORLD_IMPROVEMENT_MODULE scene=" + sceneName
                     + " id=" + spec.moduleId + " version=" + spec.version
                     + " objects=" + result.ObjectCount + " summary=" + (result.Summary ?? string.Empty));
@@ -115,6 +133,17 @@ namespace Ziptide.Editor.WorldImprovement
 
             rootObject.AddComponent<WorldImprovementStamp>()
                 .Configure(manifest, sceneName, CompilerVersion, hash);
+
+            WorldAspectAssessment[] assessment = WorldImprovementAssessmentCore.Assess(
+                manifest.requiredAspects, aspectEvidence);
+            var aspectNames = new string[assessment.Length];
+            var aspectScores = new int[assessment.Length];
+            for (int i = 0; i < assessment.Length; i++)
+            {
+                aspectNames[i] = assessment[i].Aspect;
+                aspectScores[i] = assessment[i].Score;
+            }
+            string[] weakest = WorldImprovementAssessmentCore.Weakest(assessment, 3);
 
             SessionRecords.Add(new CompileRecord
             {
@@ -126,10 +155,14 @@ namespace Ziptide.Editor.WorldImprovement
                 manifestPath = MakeRepoRelative(manifestPath),
                 modules = moduleIds.ToArray(),
                 objectCounts = objectCounts.ToArray(),
+                aspectNames = aspectNames,
+                aspectScores = aspectScores,
+                weakestAspects = weakest,
             });
             Debug.Log("ZIPTIDE: WORLD_IMPROVEMENT_COMPILED scene=" + sceneName
                 + " manifest=" + manifest.manifestId + " round=" + manifest.round
-                + " hash=" + hash.Substring(0, 12) + " modules=" + moduleIds.Count);
+                + " hash=" + hash.Substring(0, 12) + " modules=" + moduleIds.Count
+                + " weakest=" + string.Join(",", weakest));
         }
 
         public static bool TryResolveManifest(string sceneName, string scenePath,
@@ -151,17 +184,9 @@ namespace Ziptide.Editor.WorldImprovement
                 if (!candidate.AppliesTo(sceneName, scenePath)) continue;
                 var source = new ManifestSource { Manifest = candidate, Json = json, Path = files[i] };
                 if (!string.IsNullOrEmpty(candidate.sceneName) && candidate.sceneName == sceneName)
-                {
-                    if (exact != null)
-                        throw new InvalidOperationException("Multiple exact world improvement manifests for " + sceneName);
-                    exact = source;
-                }
+                    exact = SelectNewest(exact, source, "exact", sceneName);
                 else
-                {
-                    if (generatedDefault != null)
-                        throw new InvalidOperationException("Multiple generated-world defaults match " + sceneName);
-                    generatedDefault = source;
-                }
+                    generatedDefault = SelectNewest(generatedDefault, source, "generated-default", sceneName);
             }
 
             ManifestSource resolved = exact ?? generatedDefault;
@@ -170,6 +195,23 @@ namespace Ziptide.Editor.WorldImprovement
             rawJson = resolved.Json;
             manifestPath = resolved.Path;
             return true;
+        }
+
+        private static ManifestSource SelectNewest(ManifestSource current, ManifestSource candidate,
+            string kind, string sceneName)
+        {
+            if (current == null) return candidate;
+            int round = candidate.Manifest.round.CompareTo(current.Manifest.round);
+            if (round > 0) return candidate;
+            if (round < 0) return current;
+
+            int recipe = candidate.Manifest.recipeVersion.CompareTo(current.Manifest.recipeVersion);
+            if (recipe > 0) return candidate;
+            if (recipe < 0) return current;
+
+            throw new InvalidOperationException("Duplicate " + kind + " world improvement manifests at round="
+                + candidate.Manifest.round + " recipeVersion=" + candidate.Manifest.recipeVersion
+                + " for " + sceneName + ": " + current.Path + " and " + candidate.Path);
         }
 
         public static void WriteReport()

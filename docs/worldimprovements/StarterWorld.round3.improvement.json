@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "gameId": "ziptide",
+  "manifestId": "ziptide-starter-world-round3",
+  "sceneName": "StarterWorld",
+  "displayName": "STARTER WORLD",
+  "round": 3,
+  "recipeVersion": 1,
+  "seed": 30020,
+  "appliesToGeneratedWorlds": false,
+  "excludedScenes": [],
+  "requiredAspects": ["Identity", "Perception", "Navigation", "SpatialSafety", "Ambience", "Atmosphere", "Interaction", "Discovery", "Story"],
+  "requiredEvidence": ["logic", "spatial", "perceptual", "performance", "device"],
+  "primaryColor": { "r": 0.20, "g": 0.30, "b": 0.25, "a": 1.0 },
+  "accentColor": { "r": 0.70, "g": 0.54, "b": 0.20, "a": 1.0 },
+  "glowColor": { "r": 0.34, "g": 0.86, "b": 0.68, "a": 1.0 },
+  "modules": [
+    { "moduleId": "arrival_identity", "version": 1, "enabled": true, "intensity": 0.8, "budget": 8, "seedOffset": 3, "aspects": ["Identity", "Perception"] },
+    { "moduleId": "route_beacons", "version": 1, "enabled": true, "intensity": 0.7, "budget": 18, "seedOffset": 13, "aspects": ["Navigation", "SpatialSafety", "Perception"] },
+    { "moduleId": "ambient_motion", "version": 1, "enabled": true, "intensity": 0.7, "budget": 6, "seedOffset": 29, "aspects": ["Ambience", "Perception"] },
+    { "moduleId": "horizon_frame", "version": 1, "enabled": true, "intensity": 0.5, "budget": 8, "seedOffset": 43, "aspects": ["Identity", "Atmosphere", "Perception"] },
+    { "moduleId": "grounded_route", "version": 1, "enabled": true, "intensity": 0.8, "budget": 20, "seedOffset": 59, "aspects": ["Navigation", "SpatialSafety", "Perception"] },
+    { "moduleId": "discovery_nodes", "version": 1, "enabled": true, "intensity": 0.8, "budget": 8, "seedOffset": 71, "aspects": ["Interaction", "Discovery", "Perception"] },
+    { "moduleId": "story_traces", "version": 1, "enabled": true, "intensity": 0.8, "budget": 8, "seedOffset": 83, "aspects": ["Story", "Identity", "Atmosphere"] }
+  ]
+}

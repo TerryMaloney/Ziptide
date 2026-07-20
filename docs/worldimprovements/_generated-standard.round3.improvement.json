@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "gameId": "ziptide",
+  "manifestId": "ziptide-generated-standard-round3",
+  "sceneName": "",
+  "displayName": "",
+  "round": 3,
+  "recipeVersion": 1,
+  "seed": 360720,
+  "appliesToGeneratedWorlds": true,
+  "excludedScenes": ["W000_DriftIn", "ToxicCity", "W011_Undercroft", "Sandbox", "PvpArena", "PvP_Arena"],
+  "requiredAspects": ["Identity", "Perception", "Navigation", "SpatialSafety", "Ambience", "Atmosphere", "Interaction", "Discovery", "Story"],
+  "requiredEvidence": ["logic", "spatial", "perceptual", "performance", "device"],
+  "primaryColor": { "r": 0.0, "g": 0.0, "b": 0.0, "a": 0.0 },
+  "accentColor": { "r": 0.0, "g": 0.0, "b": 0.0, "a": 0.0 },
+  "glowColor": { "r": 0.0, "g": 0.0, "b": 0.0, "a": 0.0 },
+  "modules": [
+    { "moduleId": "arrival_identity", "version": 1, "enabled": true, "intensity": 0.9, "budget": 8, "seedOffset": 7, "aspects": ["Identity", "Perception"] },
+    { "moduleId": "route_beacons", "version": 1, "enabled": true, "intensity": 0.8, "budget": 21, "seedOffset": 19, "aspects": ["Navigation", "SpatialSafety", "Perception"] },
+    { "moduleId": "ambient_motion", "version": 1, "enabled": true, "intensity": 0.75, "budget": 7, "seedOffset": 31, "aspects": ["Ambience", "Perception"] },
+    { "moduleId": "horizon_frame", "version": 1, "enabled": true, "intensity": 0.7, "budget": 10, "seedOffset": 47, "aspects": ["Identity", "Atmosphere", "Perception"] },
+    { "moduleId": "grounded_route", "version": 1, "enabled": true, "intensity": 0.8, "budget": 24, "seedOffset": 61, "aspects": ["Navigation", "SpatialSafety", "Perception"] },
+    { "moduleId": "discovery_nodes", "version": 1, "enabled": true, "intensity": 0.8, "budget": 12, "seedOffset": 73, "aspects": ["Interaction", "Discovery", "Perception"] },
+    { "moduleId": "story_traces", "version": 1, "enabled": true, "intensity": 0.8, "budget": 12, "seedOffset": 89, "aspects": ["Story", "Identity", "Atmosphere"] }
+  ]
+}

@@ -4,13 +4,16 @@ Files ending in `.improvement.json` are the editable truth for repeatable world-
 They are compiled headlessly by `WorldImprovementCompiler` after normal world patchers and before scene
 save/audit.
 
-## Resolution
+## Resolution and history
 
-1. An exact `sceneName` manifest wins.
-2. Otherwise one `appliesToGeneratedWorlds: true` manifest may match a scene under
-   `Assets/Ziptide/Scenes/Generated/`.
-3. `excludedScenes` removes special scenes from a generated default.
-4. Multiple matching exact or default manifests are a build error.
+1. Exact `sceneName` manifests beat generated-world defaults.
+2. Within the exact or default class, highest `round` wins.
+3. Within the same round, highest `recipeVersion` wins.
+4. Two matching manifests with the same round and recipe version are a build error.
+5. `excludedScenes` removes special scenes from a generated default.
+6. Older recipes remain checked in as auditable history; they do not need destructive replacement.
+
+This lets the project prove how a world improved over time while keeping one deterministic current recipe.
 
 ## Required fields
 
@@ -26,10 +29,18 @@ save/audit.
 
 ## Current module ids
 
+Portable presentation floor:
+
 - `arrival_identity`
 - `route_beacons`
 - `ambient_motion`
 - `horizon_frame`
+
+Round 3 gameplay/story-density modules:
+
+- `grounded_route`
+- `discovery_nodes`
+- `story_traces`
 
 Unknown ids, stale module versions, duplicate ids, disabled-only aspect coverage and negative budgets are
 rejected before scene mutation.
@@ -43,7 +54,13 @@ rejected before scene mutation.
 5. Leave collision off unless collision is the explicit feature and has its own audit.
 6. Add pure tests and a deliberately broken scene fixture.
 7. Add a manifest only to worlds where the module belongs.
-8. Review the generated sheet and record the HANDOFF stamp before closure.
+8. Review the generated evidence and record the HANDOFF stamp before closure.
+
+## Evidence scoring
+
+Compiler report schema 2 records every required aspect, its deterministic evidence score and the three weakest
+aspects. This is coverage evidence, not an automated artistic verdict. Missing coverage remains a blocker;
+thin coverage is a named warning and the next round's priority input.
 
 ## Hash/currentness law
 
