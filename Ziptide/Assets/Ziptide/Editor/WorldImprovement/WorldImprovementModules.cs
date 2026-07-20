@@ -1,7 +1,6 @@
 #if UNITY_EDITOR
 using System;
 using System.Collections.Generic;
-using System.IO;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -77,6 +76,7 @@ namespace Ziptide.Editor.WorldImprovement
                 material.SetColor("_EmissionColor", Color.black);
             }
             EditorUtility.SetDirty(material);
+            AssetDatabase.SaveAssetIfDirty(material);
             _materials[color] = material;
             return material;
         }
