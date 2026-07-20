@@ -740,10 +740,10 @@ None.
 
 - Codes: `CREATE_PRIMITIVE`, `RUNTIME_MATERIAL_CREATE`, `SHADER_FIND`
 - Paths: `Ziptide/Assets/Ziptide/Editor/Patching/CityStageAPrimitiveFactory.cs`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityStageAPrimitiveFactory.cs:19` **CREATE_PRIMITIVE** — `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityStageAPrimitiveFactory.cs:56` **SHADER_FIND** — `Shader shader = Shader.Find("Universal Render Pipeline/Lit");`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityStageAPrimitiveFactory.cs:57` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityStageAPrimitiveFactory.cs:58` **RUNTIME_MATERIAL_CREATE** — `material = new Material(shader) { name = "CityStageA_" + key };`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityStageAPrimitiveFactory.cs:20` **CREATE_PRIMITIVE** — `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityStageAPrimitiveFactory.cs:57` **SHADER_FIND** — `Shader shader = Shader.Find("Universal Render Pipeline/Lit");`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityStageAPrimitiveFactory.cs:58` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityStageAPrimitiveFactory.cs:59` **RUNTIME_MATERIAL_CREATE** — `material = new Material(shader) { name = "CityStageA_" + key };`
 
 ### `Ziptide.Editor.Patching.ForgeBaker` — 3 signal(s)
 
