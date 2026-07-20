@@ -1,0 +1,229 @@
+#if UNITY_EDITOR
+using System;
+using System.Collections.Generic;
+using System.IO;
+using UnityEditor;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using Ziptide.Content;
+
+namespace Ziptide.Editor.WorldImprovement
+{
+    /// <summary>
+    /// Deterministic compiler for docs/worldimprovements/*.improvement.json. Exact-scene manifests beat
+    /// generated-world defaults. Every compile replaces one owned root, runs versioned modules, stamps the
+    /// recipe hash, and records evidence. No per-world C# and no hand-edited scene YAML.
+    /// </summary>
+    public static class WorldImprovementCompiler
+    {
+        public const int CompilerVersion = 1;
+        public const string RootName = "__WORLD_IMPROVEMENT_ROUND";
+
+        [Serializable]
+        private sealed class CompileReport
+        {
+            public int schemaVersion = 1;
+            public int compilerVersion = CompilerVersion;
+            public List<CompileRecord> worlds = new List<CompileRecord>();
+        }
+
+        [Serializable]
+        private sealed class CompileRecord
+        {
+            public string sceneName;
+            public string manifestId;
+            public int round;
+            public int recipeVersion;
+            public string recipeHash;
+            public string manifestPath;
+            public string[] modules;
+            public int[] objectCounts;
+        }
+
+        private sealed class ManifestSource
+        {
+            public WorldImprovementManifest Manifest;
+            public string Json;
+            public string Path;
+        }
+
+        private static readonly List<CompileRecord> SessionRecords = new List<CompileRecord>();
+
+        public static string ManifestFolder =>
+            Path.GetFullPath(Path.Combine(Application.dataPath, "../../docs/worldimprovements"));
+
+        public static void BeginCompileSession() => SessionRecords.Clear();
+
+        public static bool CompileActiveSceneIfDeclared(string scenePath)
+        {
+            Scene scene = SceneManager.GetActiveScene();
+            if (!scene.IsValid() || string.IsNullOrEmpty(scene.name)) return false;
+            if (!TryResolveManifest(scene.name, scenePath, out WorldImprovementManifest manifest,
+                    out string rawJson, out string manifestPath))
+                return false;
+            CompileActiveScene(manifest, rawJson, manifestPath, scenePath);
+            return true;
+        }
+
+        public static void CompileActiveScene(WorldImprovementManifest manifest, string rawJson,
+            string manifestPath, string scenePath)
+        {
+            if (manifest == null) throw new ArgumentNullException(nameof(manifest));
+            List<string> issues = manifest.Validate();
+            if (issues.Count > 0)
+                throw new InvalidOperationException("World improvement manifest rejected: "
+                    + string.Join(" | ", issues));
+
+            Scene scene = SceneManager.GetActiveScene();
+            string sceneName = scene.name;
+            string hash = WorldImprovementHashCore.Compute(rawJson, CompilerVersion);
+            GameObject existing = FindOwnedRoot(scene);
+            if (existing != null) UnityEngine.Object.DestroyImmediate(existing);
+
+            var rootObject = new GameObject(RootName);
+            var context = BuildContext(sceneName, scenePath, manifest, rootObject.transform);
+            var moduleIds = new List<string>();
+            var objectCounts = new List<int>();
+
+            foreach (WorldImprovementModuleSpec spec in manifest.modules)
+            {
+                if (spec == null || !spec.enabled) continue;
+                IWorldImprovementModule module = WorldImprovementModuleRegistry.Resolve(spec.moduleId);
+                if (module == null)
+                    throw new InvalidOperationException("Unknown world improvement module '" + spec.moduleId
+                        + "'. Known=[" + string.Join(",", WorldImprovementModuleRegistry.KnownIds()) + "]");
+                if (spec.version != module.CurrentVersion)
+                    throw new InvalidOperationException("Module version mismatch id=" + spec.moduleId
+                        + " manifest=" + spec.version + " compiler=" + module.CurrentVersion);
+
+                string safeName = spec.moduleId.Replace('-', '_').Replace(' ', '_').ToUpperInvariant();
+                var moduleRoot = new GameObject("__WIM_" + safeName).transform;
+                moduleRoot.SetParent(rootObject.transform, false);
+                WorldImprovementModuleResult result = module.Apply(context, spec, moduleRoot)
+                    ?? new WorldImprovementModuleResult();
+                if (result.ObjectCount > spec.budget)
+                    throw new InvalidOperationException("Module budget exceeded id=" + spec.moduleId
+                        + " count=" + result.ObjectCount + " budget=" + spec.budget);
+                moduleRoot.gameObject.AddComponent<WorldImprovementModuleMarker>()
+                    .Configure(spec, result.ObjectCount);
+                moduleIds.Add(spec.moduleId);
+                objectCounts.Add(result.ObjectCount);
+                Debug.Log("ZIPTIDE: WORLD_IMPROVEMENT_MODULE scene=" + sceneName
+                    + " id=" + spec.moduleId + " version=" + spec.version
+                    + " objects=" + result.ObjectCount + " summary=" + (result.Summary ?? string.Empty));
+            }
+
+            rootObject.AddComponent<WorldImprovementStamp>()
+                .Configure(manifest, sceneName, CompilerVersion, hash);
+
+            SessionRecords.Add(new CompileRecord
+            {
+                sceneName = sceneName,
+                manifestId = manifest.manifestId,
+                round = manifest.round,
+                recipeVersion = manifest.recipeVersion,
+                recipeHash = hash,
+                manifestPath = MakeRepoRelative(manifestPath),
+                modules = moduleIds.ToArray(),
+                objectCounts = objectCounts.ToArray(),
+            });
+            Debug.Log("ZIPTIDE: WORLD_IMPROVEMENT_COMPILED scene=" + sceneName
+                + " manifest=" + manifest.manifestId + " round=" + manifest.round
+                + " hash=" + hash.Substring(0, 12) + " modules=" + moduleIds.Count);
+        }
+
+        public static bool TryResolveManifest(string sceneName, string scenePath,
+            out WorldImprovementManifest manifest, out string rawJson, out string manifestPath)
+        {
+            manifest = null;
+            rawJson = null;
+            manifestPath = null;
+            if (!Directory.Exists(ManifestFolder)) return false;
+
+            ManifestSource exact = null;
+            ManifestSource generatedDefault = null;
+            string[] files = Directory.GetFiles(ManifestFolder, "*.improvement.json");
+            Array.Sort(files, StringComparer.Ordinal);
+            for (int i = 0; i < files.Length; i++)
+            {
+                string json = File.ReadAllText(files[i]);
+                WorldImprovementManifest candidate = WorldImprovementManifest.FromJson(json);
+                if (!candidate.AppliesTo(sceneName, scenePath)) continue;
+                var source = new ManifestSource { Manifest = candidate, Json = json, Path = files[i] };
+                if (!string.IsNullOrEmpty(candidate.sceneName) && candidate.sceneName == sceneName)
+                {
+                    if (exact != null)
+                        throw new InvalidOperationException("Multiple exact world improvement manifests for " + sceneName);
+                    exact = source;
+                }
+                else
+                {
+                    if (generatedDefault != null)
+                        throw new InvalidOperationException("Multiple generated-world defaults match " + sceneName);
+                    generatedDefault = source;
+                }
+            }
+
+            ManifestSource resolved = exact ?? generatedDefault;
+            if (resolved == null) return false;
+            manifest = resolved.Manifest;
+            rawJson = resolved.Json;
+            manifestPath = resolved.Path;
+            return true;
+        }
+
+        public static void WriteReport()
+        {
+            string projectRoot = Path.GetFullPath(Path.Combine(Application.dataPath, ".."));
+            string reportFolder = Path.Combine(projectRoot, "Builds", "Reports");
+            Directory.CreateDirectory(reportFolder);
+            var report = new CompileReport { worlds = new List<CompileRecord>(SessionRecords) };
+            string path = Path.Combine(reportFolder, "world_improvement_compile.json");
+            File.WriteAllText(path, JsonUtility.ToJson(report, true) + Environment.NewLine);
+            Debug.Log("ZIPTIDE: WORLD_IMPROVEMENT_REPORT path=" + path
+                + " worlds=" + SessionRecords.Count);
+        }
+
+        private static WorldImprovementContext BuildContext(string sceneName, string scenePath,
+            WorldImprovementManifest manifest, Transform root)
+        {
+            GameObject spawnObject = GameObject.Find("__SPAWN_PLAYER");
+            Color fog = RenderSettings.fog ? RenderSettings.fogColor : new Color(0.20f, 0.23f, 0.27f, 1f);
+            Color primaryFallback = Color.Lerp(fog, new Color(0.30f, 0.34f, 0.38f, 1f), 0.55f);
+            Color accentFallback = Color.Lerp(primaryFallback, new Color(0.65f, 0.48f, 0.22f, 1f), 0.55f);
+            Color glowFallback = Color.Lerp(accentFallback, Color.white, 0.35f);
+            return new WorldImprovementContext
+            {
+                SceneName = sceneName,
+                ScenePath = scenePath,
+                Root = root,
+                Spawn = spawnObject != null ? spawnObject.transform : null,
+                Manifest = manifest,
+                Primary = manifest.ResolvePrimary(primaryFallback),
+                Accent = manifest.ResolveAccent(accentFallback),
+                Glow = manifest.ResolveGlow(glowFallback),
+            };
+        }
+
+        private static GameObject FindOwnedRoot(Scene scene)
+        {
+            if (!scene.IsValid()) return null;
+            GameObject[] roots = scene.GetRootGameObjects();
+            for (int i = 0; i < roots.Length; i++)
+                if (roots[i] != null && roots[i].name == RootName) return roots[i];
+            return null;
+        }
+
+        private static string MakeRepoRelative(string path)
+        {
+            if (string.IsNullOrEmpty(path)) return string.Empty;
+            string repoRoot = Path.GetFullPath(Path.Combine(Application.dataPath, "../.."));
+            string full = Path.GetFullPath(path);
+            if (full.StartsWith(repoRoot, StringComparison.OrdinalIgnoreCase))
+                return full.Substring(repoRoot.Length).TrimStart(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar)
+                    .Replace('\\', '/');
+            return full.Replace('\\', '/');
+        }
+    }
+}
+#endif
