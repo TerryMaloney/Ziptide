@@ -27,6 +27,36 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-19 (hwr32) - Fable 5 architect → **📣 WORK ORDER FOR GPT #3: LLM-FIRST BUILD PIPELINE** (Terry-directed — change anything, first-time-right, by LLM)
+- **Terry's goal on record:** "build or rebuild or change every aspect and have it work perfectly
+  the first time — done by LLM." Researched against the actual pipeline; spec:
+  **`docs/design/LLM_FIRST_BUILD_PIPELINE.md`**.
+- **Headline finding (changes how everyone should think about bakes):** CI already runs the ENTIRE
+  author/patcher pipeline headlessly on every push (`BuildAndroid.PatchScenesAndAudit` — 20+
+  authors, WorldSpecCompiler, all scene patchers). "The cloud can't make .asset files" is FALSE at
+  pipeline level. The real faults are structural:
+  **F1** create-only authors (`if (LoadAssetAtPath != null) return;` — verified
+  `ArenaLayoutLibrary.cs:34`; recipe-code changes are SILENTLY ABSORBED by stale committed assets
+  — the W007-vista / arena-pads / runbook-delete-then-regen disease) ·
+  **F2** two sources of truth (committed assets vs CI-regenerated; stale committed wins) ·
+  **F3** Terry's bake sittings exist only to un-stick F1/F2, not because assets need a human.
+- **The fix — RECIPE-HASH LAW (§3, aligns with Forge VI):** authors stamp
+  hash(recipe data + RecipeVersion) into generated assets; `EnsureAllAuthored` becomes
+  `EnsureAllCurrent` (mismatch → regenerate IN PLACE, same GUID); `ForgeStaleness` buckets
+  (SafeAuto/Review/Breaking — already exists, tested) generalized to all recipe kinds; new CI
+  Blocker `ASSET_STALE_VS_RECIPE`. Result: edit recipe → push → exactly the affected assets
+  regenerate → gates judge → APK carries the change. No menus, no deletions, no human.
+- **GPT staged order (do NOT one-shot):** **S1** hash law on the create-only `*Library`/`*Author`
+  set + staleness blocker + stale-asset test (~5 commits — permanently deletes most of the
+  runbook §1 bake list) → **S2** bot-commit `bake` workflow (CI_VERDICT-writer idiom) so repo
+  state always equals recipe state (~3 commits + workflow) → **S3** pre-flight change-impact
+  report (generalized `ForgeStaleness.Affected` as the front door of every change) → S4/S5 are
+  PG-5/PG-6 + Forge VI, already ordered elsewhere.
+- **Sequencing vs the other orders:** hwr31 PG-2/PG-1 first (live bug classes), then S1 here —
+  it is itself a gate and makes every hwr30 sprint item land born-current. §5 of the doc states
+  the honest limit: pipelines guarantee fidelity, not fun — feel stays Terry's seat.
+- **Commits:** this push (docs only).
+
 ### 2026-07-19 (hwr31) - Fable 5 architect → **📣 WORK ORDER FOR GPT #2: PERCEPTUAL GATE PROGRAM** (Terry-directed — "make sure all that is implemented")
 - **Why (Terry):** device sessions keep finding what CI can't see — tiny weapons, upward muzzles,
   the Leave-door loading a scene absent from the Golden build, the shipyard walkway gap. "It's

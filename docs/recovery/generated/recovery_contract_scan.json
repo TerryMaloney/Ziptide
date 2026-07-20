@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-20T09:36:31.577517+00:00",
+  "generatedAtUtc": "2026-07-20T09:54:32.607891+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -1379,7 +1379,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-      "line": 207,
+      "line": 227,
       "symbol": "Ziptide.Gameplay.DroneCombatBehavior",
       "snippet": "Debug.Log(\"ZIPTIDE: DRONE_SHOT instance=\" + GetInstanceID()"
     },
@@ -1388,7 +1388,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-      "line": 305,
+      "line": 325,
       "symbol": "Ziptide.Gameplay.DroneCombatBehavior",
       "snippet": "Debug.Log(\"ZIPTIDE: DRONE_PHASE instance=\" + GetInstanceID()"
     },
@@ -7112,7 +7112,7 @@
       "code": "CAMERA_MAIN_REFERENCE",
       "description": "Camera.main dependency",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-      "line": 171,
+      "line": 191,
       "symbol": "Ziptide.Gameplay.DroneCombatBehavior",
       "snippet": "if (Camera.main != null) _player = Camera.main.transform;"
     },
@@ -9812,7 +9812,7 @@
       "code": "RUNTIME_MATERIAL_CREATE",
       "description": "Runtime Material allocation",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-      "line": 255,
+      "line": 275,
       "symbol": "Ziptide.Gameplay.DroneCombatBehavior",
       "snippet": "_threatMaterial = new Material(shader) { name = \"DroneThreatPresentation\" };"
     },
@@ -10784,7 +10784,7 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-      "line": 253,
+      "line": 273,
       "symbol": "Ziptide.Gameplay.DroneCombatBehavior",
       "snippet": "Shader shader = Shader.Find(\"Universal Render Pipeline/Unlit\");"
     },
@@ -10793,7 +10793,7 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-      "line": 254,
+      "line": 274,
       "symbol": "Ziptide.Gameplay.DroneCombatBehavior",
       "snippet": "if (shader == null) shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
     },
@@ -12746,7 +12746,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-      "line": 267,
+      "line": 287,
       "symbol": "Ziptide.Gameplay.DroneCombatBehavior",
       "snippet": "_telegraphFx = GameObject.CreatePrimitive(PrimitiveType.Sphere);"
     },
@@ -15527,7 +15527,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-      "line": 202,
+      "line": 222,
       "symbol": "Ziptide.Gameplay.DroneCombatBehavior",
       "snippet": "var go = new GameObject(\"StunBolt\");"
     },
@@ -15536,7 +15536,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-      "line": 283,
+      "line": 303,
       "symbol": "Ziptide.Gameplay.DroneCombatBehavior",
       "snippet": "var line = new GameObject(\"__ThreatAimLine\");"
     },

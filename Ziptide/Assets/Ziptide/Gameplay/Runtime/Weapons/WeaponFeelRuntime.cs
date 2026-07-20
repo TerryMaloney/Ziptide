@@ -183,6 +183,24 @@ namespace Ziptide.Gameplay
             _recoilRoutine = null;
         }
 
+        private void OnDestroy()
+        {
+            // Clips are shared across weapons. The last owner releases them so scene reloads and EditMode
+            // fixture teardown cannot leak procedural native audio resources.
+            WeaponFeelRuntime[] remaining = FindObjectsOfType<WeaponFeelRuntime>(true);
+            if (remaining.Length > 1) return;
+            DestroyClip(ref _ballisticClip);
+            DestroyClip(ref _electricClip);
+        }
+
+        private static void DestroyClip(ref AudioClip clip)
+        {
+            if (clip == null) return;
+            if (Application.isPlaying) Object.Destroy(clip);
+            else Object.DestroyImmediate(clip);
+            clip = null;
+        }
+
         private void RestoreVisual()
         {
             if (_visual == null) return;

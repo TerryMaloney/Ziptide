@@ -1500,12 +1500,12 @@ None.
 
 - Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`, `RUNTIME_MATERIAL_CREATE`, `SHADER_FIND`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:202` **NEW_GAME_OBJECT** — `var go = new GameObject("StunBolt");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:253` **SHADER_FIND** — `Shader shader = Shader.Find("Universal Render Pipeline/Unlit");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:254` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Universal Render Pipeline/Lit");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:255` **RUNTIME_MATERIAL_CREATE** — `_threatMaterial = new Material(shader) { name = "DroneThreatPresentation" };`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:267` **CREATE_PRIMITIVE** — `_telegraphFx = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:283` **NEW_GAME_OBJECT** — `var line = new GameObject("__ThreatAimLine");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:222` **NEW_GAME_OBJECT** — `var go = new GameObject("StunBolt");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:273` **SHADER_FIND** — `Shader shader = Shader.Find("Universal Render Pipeline/Unlit");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:274` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Universal Render Pipeline/Lit");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:275` **RUNTIME_MATERIAL_CREATE** — `_threatMaterial = new Material(shader) { name = "DroneThreatPresentation" };`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:287` **CREATE_PRIMITIVE** — `_telegraphFx = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:303` **NEW_GAME_OBJECT** — `var line = new GameObject("__ThreatAimLine");`
 
 ### `Ziptide.Gameplay.DroneRuntime` — 8 signal(s)
 
@@ -3904,7 +3904,7 @@ None.
 
 - Codes: `CAMERA_MAIN_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:171` **CAMERA_MAIN_REFERENCE** — `if (Camera.main != null) _player = Camera.main.transform;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:191` **CAMERA_MAIN_REFERENCE** — `if (Camera.main != null) _player = Camera.main.transform;`
 
 ### `Ziptide.Gameplay.GardenPlotRuntime` — 1 signal(s)
 

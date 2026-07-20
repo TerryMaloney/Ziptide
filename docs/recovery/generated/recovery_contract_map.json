@@ -6999,42 +6999,42 @@
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-            "line": 202,
+            "line": 222,
             "symbol": "Ziptide.Gameplay.DroneCombatBehavior",
             "snippet": "var go = new GameObject(\"StunBolt\");"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-            "line": 253,
+            "line": 273,
             "symbol": "Ziptide.Gameplay.DroneCombatBehavior",
             "snippet": "Shader shader = Shader.Find(\"Universal Render Pipeline/Unlit\");"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-            "line": 254,
+            "line": 274,
             "symbol": "Ziptide.Gameplay.DroneCombatBehavior",
             "snippet": "if (shader == null) shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
           },
           {
             "code": "RUNTIME_MATERIAL_CREATE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-            "line": 255,
+            "line": 275,
             "symbol": "Ziptide.Gameplay.DroneCombatBehavior",
             "snippet": "_threatMaterial = new Material(shader) { name = \"DroneThreatPresentation\" };"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-            "line": 267,
+            "line": 287,
             "symbol": "Ziptide.Gameplay.DroneCombatBehavior",
             "snippet": "_telegraphFx = GameObject.CreatePrimitive(PrimitiveType.Sphere);"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-            "line": 283,
+            "line": 303,
             "symbol": "Ziptide.Gameplay.DroneCombatBehavior",
             "snippet": "var line = new GameObject(\"__ThreatAimLine\");"
           }
@@ -17510,7 +17510,7 @@
           {
             "code": "CAMERA_MAIN_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-            "line": 171,
+            "line": 191,
             "symbol": "Ziptide.Gameplay.DroneCombatBehavior",
             "snippet": "if (Camera.main != null) _player = Camera.main.transform;"
           }
