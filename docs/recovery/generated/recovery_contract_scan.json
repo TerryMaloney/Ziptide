@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-20T21:43:59.682187+00:00",
+  "generatedAtUtc": "2026-07-20T21:45:00.238812+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -9,14 +9,14 @@
     "Ziptide/Assets/ZiptideNet"
   ],
   "scannedFiles": 721,
-  "findingCount": 2518,
+  "findingCount": 2517,
   "categoryCounts": {
     "bootstrap": 35,
     "diagnostics": 558,
     "events": 64,
     "fallback_debt": 154,
     "global_render": 81,
-    "input": 208,
+    "input": 207,
     "materials": 246,
     "persistence": 20,
     "runtime_creation": 672,
@@ -39,7 +39,7 @@
     "EVENT_SYSTEM_COMPONENT": 2,
     "FALLBACK_MARKER": 154,
     "FRAME_BUTTON_POLL": 1,
-    "INPUT_ACTION_REFERENCE": 201,
+    "INPUT_ACTION_REFERENCE": 200,
     "INPUT_BUTTON_REFERENCE": 6,
     "NEW_GAME_OBJECT": 413,
     "PLAYER_PROFILE_REFERENCE": 140,
@@ -2405,16 +2405,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 880,
-      "symbol": "Ziptide.Gameplay.BootHoldState",
-      "snippet": "Debug.Log(\"ZIPTIDE: INPUT_MUTATION_READERS restored=\""
-    },
-    {
-      "category": "diagnostics",
-      "code": "ZIPTIDE_LOG_TAG",
-      "description": "ZIPTIDE diagnostic tag",
-      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 892,
+      "line": 868,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "Debug.LogError(\"ZIPTIDE: INPUT_MUTATION_SETTLE_FAIL readers=\""
     },
@@ -2423,7 +2414,16 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 1055,
+      "line": 883,
+      "symbol": "Ziptide.Gameplay.BootHoldState",
+      "snippet": "Debug.Log(\"ZIPTIDE: INPUT_MUTATION_READERS restored=\" + _mutationSuspendedReaders.Count"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
+      "line": 1017,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "Debug.Log(\"ZIPTIDE: SPAWN_AT marker='\" + marker.markerId + \"' rig=\" + transform.position.ToString(\"F2\")"
     },
@@ -9014,15 +9014,6 @@
       "line": 707,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "field.SetValue(iam, new System.Collections.Generic.List<InputActionAsset>());"
-    },
-    {
-      "category": "input",
-      "code": "INPUT_ACTION_REFERENCE",
-      "description": "Input System action reference",
-      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 974,
-      "symbol": "Ziptide.Gameplay.BootHoldState",
-      "snippet": "private static string ActionPath(InputAction action)"
     },
     {
       "category": "input",

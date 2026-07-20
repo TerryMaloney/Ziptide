@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
 - Scanned files: **721**
-- Scanner findings: **2518**
+- Scanner findings: **2517**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -392,7 +392,7 @@ None.
   - `Ziptide/Assets/Ziptide/Editor/Validation/XRGrabReadiness.cs:68` **INPUT_ACTION_REFERENCE** — `results.Add("FAIL: InputActionManager has no action assets assigned. Assign XRI Default Input Actions.");`
   - `Ziptide/Assets/Ziptide/Editor/Validation/XRGrabReadiness.cs:72` **INPUT_ACTION_REFERENCE** — `results.Add("PASS: InputActionManager has " + count + " action asset(s) assigned.");`
 
-### `Ziptide.Gameplay.BootHoldState` — 25 signal(s)
+### `Ziptide.Gameplay.BootHoldState` — 24 signal(s)
 
 - Codes: `INPUT_ACTION_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs`
@@ -420,7 +420,6 @@ None.
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:699` **INPUT_ACTION_REFERENCE** — `var iam = mgr.GetComponent<InputActionManager>();`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:703` **INPUT_ACTION_REFERENCE** — `var field = typeof(InputActionManager).GetField(`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:707` **INPUT_ACTION_REFERENCE** — `field.SetValue(iam, new System.Collections.Generic.List<InputActionAsset>());`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:974` **INPUT_ACTION_REFERENCE** — `private static string ActionPath(InputAction action)`
 
 ### `Ziptide.Gameplay.DashLocomotion` — 7 signal(s)
 
