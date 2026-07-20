@@ -23,6 +23,32 @@ upgrade (post-checkpoint, budget-gated), LS-5 tide acts, the night-glow motif fa
   skiff's fin-keels grip · why gates stand in water. One mechanism, five visuals, no new lore
   debt. Cal's "how do you make a tide out of light?" → you slow it down until it pools.
 
+## §1b — THE ENTRAINMENT LAW (Terry's addition, 2026-07-20 — the tide is made of HERE)
+
+**Terry:** "over water it pulls the water up… I want the metal of the area around it to
+dematerialize and turn into the vortex — the ground, whether dirt or metal, dematerializes
+into this wave."
+**The canon (one clean physics step deeper):** light strongly coupled to matter is a
+POLARITON — a light-matter hybrid (real physics). At full surge the photon fluid ENTRAINS
+nearby matter: floor plates, grit, sand, water — whatever is local — hybridizes into the
+luminous fluid grain by grain and flows up into the wave. On the ebb it RE-DEPOSITS,
+restored. The ground is never destroyed; it is BORROWED. Consequences:
+- **Per-world crossing identity for free:** a sea gate makes a water-tide, the Moss arena
+  gate makes a metal-tide (plates peeling up in spirals), a desert gate makes a sand-tide —
+  every world's crossing is made OF that world. (WC identity machinery gains a gate flavor
+  axis at zero extra systems — the entrained material = the world's palette.)
+- **The inhale gains its image:** before the crest rises, a ring of ground around the gate
+  LOOSENS — grit lifts, plates tremble and peel, debris floats (the arena keepers' floating
+  debris, now canon) — the anti-grav held breath.
+- **The restore is the grace note:** after travel, everything settles back — the last few
+  glowing grains raining down onto a floor that reassembles. (Non-destructive = kid-safe awe,
+  and no persistent world damage to manage.)
+**Feasibility (honest):** authored "loose rim" pieces around gate floors (small separate
+meshes that lift/spiral/dissolve — the debris-pool machinery reused), a dissolve ring on the
+ground texture (mask + emissive edge, CP-3-style — no custom shader required for v1:
+tint+sink+particles sells it), particle streams within F3.5 caps. The crest itself unchanged
+from §2.
+
 ## §2 — The visual language (vs. Stargate's vertical puddle)
 
 - **The resting gate:** between the pillars, the sea is DIFFERENT — glassier, faintly deep-lit
