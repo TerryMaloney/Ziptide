@@ -12,6 +12,7 @@ namespace Ziptide.Editor.Audit
     ///  - BUILDING_OVER_BUDGET (blocker) renderer count under one __BUILDINGS_ district root exceeds
     ///    the Quest draw-call proxy cap.
     /// Scenes with no __BUILDINGS_ roots are exempt (buildings are opt-in per district).
+    /// The same audit entrypoint also runs the legacy ToxicCity Stage A grammar/material/object gates.
     /// </summary>
     public static class BuildingAuditRules
     {
@@ -39,6 +40,8 @@ namespace Ziptide.Editor.Audit
                             "The lot frontage law should prevent this — check for overlapping props/patchers.");
                 }
             }
+
+            CityStageAAuditRules.Run(report);
         }
     }
 }
