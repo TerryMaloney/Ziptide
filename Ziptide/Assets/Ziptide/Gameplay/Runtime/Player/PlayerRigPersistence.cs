@@ -847,45 +847,55 @@ namespace Ziptide.Gameplay
 
         private IEnumerator RestoreReadersAfterInputSettle()
         {
-            // Frame counts are not a settle guarantee: run 29518294931 showed the FIRST poll after a
-            // two-frame wait still hitting the ApplyProcessors NRE. Run 29518996619 went further —
-            // a PASSING probe followed by a clean MOVE_DIAG read still preceded a ContinuousTurn NRE,
-            // because the restore landed while the TRAVEL COROUTINE was still running and input churn
-            // (manager adoption, asset clears, guard reasserts) had not finished. The identical route
-            // reads clean in steady state (the perf-route legs), so the rule is: readers stay
-            // suspended until travel has fully ENDED, then probe-settle, then two extra frames.
+            // One owner spans chained travel. A second trip may begin after the first TRAVEL_OK but before
+            // the previous two-frame settle tail closes; that is fresh input churn, not permanent corruption.
+            // Travel or one unsafe consumer-equivalent read resets clean progress. Restore only after two
+            // consecutive safe frames while travel is inactive. The overall deadline remains bounded and
+            // failure remains closed: providers are never re-enabled after an unproven state.
             yield return null;
-            float travelDeadline = Time.realtimeSinceStartup + 45f; // covers the 30 s scene-load budget
-            while (Time.realtimeSinceStartup < travelDeadline && TravelCoordinator.IsTravelling)
-                yield return null;
+            float deadline = Time.realtimeSinceStartup + 45f;
+            int cleanFrames = 0;
+            Ziptide.Core.InputMutationSettleDecision lastDecision =
+                Ziptide.Core.InputMutationSettleDecision.WaitForTravel;
 
-            float deadline = Time.realtimeSinceStartup + 2f;
-            while (Time.realtimeSinceStartup < deadline && !SuspendedReaderActionsReadSafely())
-                yield return null;
-            if (!SuspendedReaderActionsReadSafely())
+            while (Time.realtimeSinceStartup < deadline)
             {
-                // Fail closed. Re-enabling a reader with a known-unsafe InputActionState recreates the
-                // proven Quest crash candidate; disabled locomotion plus a blocking error is safer.
-                Debug.LogError("ZIPTIDE: INPUT_MUTATION_SETTLE_FAIL readers="
-                    + _mutationSuspendedReaders.Count + " detail="
-                    + (string.IsNullOrEmpty(_lastInputSettleFailure)
-                        ? "<no failing action captured>" : _lastInputSettleFailure));
-                _mutationReaderRestore = null;
-                yield break;
-            }
-            yield return null;
-            yield return null; // two settled frames beyond the last clean probe
+                bool travelling = TravelCoordinator.IsTravelling;
+                bool actionsSafe = !travelling && SuspendedReaderActionsReadSafely();
+                Ziptide.Core.InputMutationSettleStep step =
+                    Ziptide.Core.InputMutationSettleCore.Advance(
+                        travelling, actionsSafe, cleanFrames);
+                cleanFrames = step.NextCleanFrames;
+                lastDecision = step.Decision;
 
-            bool handedToBootHold = _bootHold.Held;
-            foreach (var b in _mutationSuspendedReaders)
-            {
-                if (b == null) continue;
-                if (handedToBootHold) _bootSuspended.Add(b);
-                else b.enabled = true;
+                if (step.Decision == Ziptide.Core.InputMutationSettleDecision.Restore)
+                {
+                    bool handedToBootHold = _bootHold.Held;
+                    foreach (var b in _mutationSuspendedReaders)
+                    {
+                        if (b == null) continue;
+                        if (handedToBootHold) _bootSuspended.Add(b);
+                        else b.enabled = true;
+                    }
+                    Debug.Log("ZIPTIDE: INPUT_MUTATION_READERS restored="
+                        + _mutationSuspendedReaders.Count
+                        + " cleanFrames=" + cleanFrames
+                        + (handedToBootHold ? " handedTo=bootHold" : ""));
+                    _mutationSuspendedReaders.Clear();
+                    _mutationReaderRestore = null;
+                    yield break;
+                }
+
+                yield return null;
             }
-            Debug.Log("ZIPTIDE: INPUT_MUTATION_READERS restored=" + _mutationSuspendedReaders.Count
-                + (handedToBootHold ? " handedTo=bootHold" : ""));
-            _mutationSuspendedReaders.Clear();
+
+            Debug.LogError("ZIPTIDE: INPUT_MUTATION_SETTLE_FAIL readers="
+                + _mutationSuspendedReaders.Count
+                + " decision=" + lastDecision
+                + " travelling=" + TravelCoordinator.IsTravelling
+                + " cleanFrames=" + cleanFrames
+                + " detail=" + (string.IsNullOrEmpty(_lastInputSettleFailure)
+                    ? "<no failing action captured>" : _lastInputSettleFailure));
             _mutationReaderRestore = null;
         }
 
@@ -931,10 +941,9 @@ namespace Ziptide.Gameplay
             {
                 if (!action.enabled)
                 {
-                    // XRI action-based behaviours own only DIRECT actions. A disabled reference is
-                    // externally managed, remains safe to read as its default value, and must not make
-                    // the settle predicate impossible. Prepare only direct actions while the provider
-                    // is suspended, then force a later-frame read before waking the provider.
+                    // XRI action-based locomotion providers own only DIRECT actions. A disabled reference
+                    // is externally managed and reads its default safely. Prepare only direct actions while
+                    // the provider is suspended, then require a later-frame consumer-equivalent read.
                     if (property.reference != null) return true;
                     action.Enable();
                     failure = owner + " action=" + ActionPath(action)
@@ -942,21 +951,9 @@ namespace Ziptide.Gameplay
                     return false;
                 }
 
-                string runtimeType = action.valueType != null ? action.valueType.FullName : string.Empty;
-                Ziptide.Core.InputActionReadKind kind = Ziptide.Core.InputActionReadKindCore.Resolve(
-                    action.expectedControlType, runtimeType);
-                switch (kind)
-                {
-                    case Ziptide.Core.InputActionReadKind.Scalar:
-                        action.ReadValue<float>();
-                        break;
-                    case Ziptide.Core.InputActionReadKind.Vector2:
-                        action.ReadValue<Vector2>();
-                        break;
-                    default:
-                        action.ReadValueAsObject();
-                        break;
-                }
+                // These exact providers consume Vector2. The safety probe must match the consumer contract;
+                // a different value type is a real miswire and must stay fail-closed.
+                action.ReadValue<Vector2>();
                 return true;
             }
             catch (System.Exception ex)
