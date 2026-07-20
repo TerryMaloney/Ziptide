@@ -271,8 +271,12 @@ namespace Ziptide.Gameplay
 
             foreach (InputAction action in directActions)
             {
-                if (action == null || !action.enabled) continue;
-                action.Disable();
+                if (action == null) continue;
+
+                // PlayerRigPersistence's canonical probe prepares a disabled direct action by enabling
+                // it while the provider is suspended, then requires a later-frame read. Mirror that
+                // contract here; skipping a disabled direct action makes the repair predicate impossible.
+                if (action.enabled) action.Disable();
                 action.Enable();
                 repairedDirect++;
             }
