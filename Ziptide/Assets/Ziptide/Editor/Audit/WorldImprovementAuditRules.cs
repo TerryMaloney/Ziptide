@@ -11,6 +11,7 @@ namespace Ziptide.Editor.Audit
     /// <summary>Per-world excellence contract for deterministic improvement rounds.</summary>
     public static class WorldImprovementAuditRules
     {
+        public const string CoverageMissing = "WORLD_IMPROVEMENT_MANIFEST_MISSING";
         public const string StampMissing = "WORLD_IMPROVEMENT_STAMP_MISSING";
         public const string StaleRecipe = "WORLD_IMPROVEMENT_STALE_VS_RECIPE";
         public const string ModuleMissing = "WORLD_IMPROVEMENT_MODULE_MISSING";
@@ -26,9 +27,19 @@ namespace Ziptide.Editor.Audit
             Scene scene = SceneManager.GetActiveScene();
             if (!scene.IsValid()) return;
             string scenePath = scene.path;
-            if (!WorldImprovementCompiler.TryResolveManifest(scene.name, scenePath,
-                    out WorldImprovementManifest manifest, out string rawJson, out _))
+            bool hasManifest = WorldImprovementCompiler.TryResolveManifest(scene.name, scenePath,
+                out WorldImprovementManifest manifest, out string rawJson, out _);
+            if (!hasManifest)
+            {
+                WorldImprovementCoveragePolicy policy =
+                    WorldImprovementCoveragePolicyLoader.LoadRequired();
+                if (policy.RequiresManifest(scene.name, scenePath))
+                    report.Blocker(CoverageMissing,
+                        "Coverage policy classifies '" + scene.name
+                        + "' as a game world, but no exact/default improvement manifest resolves for path '"
+                        + scenePath + "'.");
                 return;
+            }
             string expectedHash = WorldImprovementHashCore.Compute(rawJson,
                 WorldImprovementCompiler.CompilerVersion);
             AuditAgainstManifest(report, manifest, expectedHash, scene.name);
