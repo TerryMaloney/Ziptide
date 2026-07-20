@@ -22,6 +22,11 @@ approved. Terry's rule honored by design: nothing gets paid for until plenty is 
   arm's length; ⑤ obeys the salvage-yard grammar (one builder's hands, even on bolt-ons);
   ⑥ a kid could draw it from memory after one look.
 
+> **✅ SHIP EXTERIOR APPROVED 2026-07-20** — Terry's keepers landed same-day: hero dock shot +
+> full 4-view ortho sheet ("SLV-01 Scrapper"), stored at `concepts/ship_scavenger_mk1/`.
+> Measured spec + B+ recipe plan: **`SHIP_SCAVENGER_VISUAL_SPEC.md`**. Still open from this
+> brief: S4 cockpit + S5 quarters interiors.
+
 ## §1 — LEAD BRIEF: THE SHIP (Cal's Toxic City Scavenger — exterior + interior)
 
 **Canon (already locked — the prompts encode it, don't reinvent):** utilitarian blue-collar

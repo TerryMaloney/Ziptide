@@ -27,6 +27,32 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-20 (rb63) — Fable 5: 🚀 THE SHIP HAS A FACE — Terry's concepts approved, visual spec + B+ recipe plan derived (docs + reference images only)
+
+- **Did:** Terry generated and delivered the ship keepers SAME-DAY: a dock beauty shot + a
+  full 4-view orthographic sheet ("SLV-01 SCRAPPER") — truck cab high-forward, ONE dominant
+  engine drum with a **quincunx nozzle cluster** (1 big + 4 small — the signature view),
+  left-flank 3-segment salvage claw, chipped hazard amber, warm floodlights, the single cyan
+  power port (the coupler), 4 splayed hydraulic legs. Passes every rubric law incl.
+  fill-it-black and kid-drawable; matches locked canon beat for beat. Stored durably at
+  **`concepts/ship_scavenger_mk1/`** (session uploads are ephemeral — repo is the record).
+  Wrote **`docs/project_art_plan/SHIP_SCAVENGER_VISUAL_SPEC.md`**: rubric verdict · measured
+  proportions as LENGTH-fractions off the ortho sheet (nose 0–0.18, cab 0.10–0.30 atop the
+  roofline, mid hull to 0.65, engine drum 0.62–1.00 and tallest; legs wider than hull —
+  ignore the sheet's printed dimensions, they're generation noise; ⚖ canon scale ~18 m
+  proposed) · palette/material story mapped to EXISTING machinery (plate wash + tintJitter,
+  rust streaks, new `HazardStripe` style entry, GlowPanel floodlights, LIVE emissive coupler
+  submesh) · **the full B+ recipe op decomposition** (7 groups, ~14.4k tris, inside the 15k
+  hull cap — the claw reuses the creature Limb op!) · 5-pass booth sequencing (silhouette
+  overlay vs. ortho FIRST, engine quincunx second) · ForgeModuleLook integration under the
+  ShipHullBuilder root · this model = the permanent distant LOD later.
+- **Next:** post-checkpoint, any art-lane session can build `ship_scavenger_mk1` from the
+  spec alone. Terry: S4 cockpit + S5 quarters concepts when convenient · ⚖ scale + "SLV-01
+  Scrapper" designation · paste the winning prompt into concepts/PROMPTS_LOG.md.
+- **Heads-up:** the two PNGs (~3.6 MB total) are in-repo deliberately — canonical references
+  outrank prose and must survive sessions. Concepts folder is reference-only (never ships).
+- **Commit:** this one (docs + reference images only; zero code).
+
 ### 2026-07-20 (rb62) — Fable 5: TIER-C CONCEPT QUEUE — the ship brief + the hero lineup, all free, all now (zero code)
 
 - **Did (Terry: "hit it up… not paying for Tripo until plenty is lined up"):** wrote
