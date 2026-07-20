@@ -48,6 +48,9 @@ namespace Ziptide.Build
             return sceneName == ZiptideConstants.SceneW000 || sceneName == ZiptideConstants.SceneToxicCity;
         }
 
+        /// <summary>Immutable scene profile consumed by PG-2 tests and the exact-profile travel gate.</summary>
+        public static IReadOnlyList<string> GoldenScenePaths => GoldenScenes;
+
         [Serializable]
         private sealed class GoldenBuildReport
         {
@@ -71,8 +74,8 @@ namespace Ziptide.Build
         /// <summary>
         /// The canonical patcher sees the project's full EditorBuildSettings list, while this recovery
         /// player intentionally ships only three scenes. Pin ToxicCity's return to W000, remove helm rows
-        /// whose scenes are absent from this APK, bridge the one-metre district/berth seam, then re-run the
-        /// world audit against the exact saved scenes.
+        /// whose scenes are absent from this APK, bridge the one-metre district/berth seam, then run both
+        /// the ordinary project audit and PG-2 against the exact saved artifact scene universe.
         /// </summary>
         private static void PatchAndValidateGoldenRoute()
         {
@@ -91,15 +94,21 @@ namespace Ziptide.Build
             if (exitPack.sceneName != GoldenExitSceneName)
                 throw new Exception("Golden ToxicCity exit does not target W000.");
 
-            int blockers = Ziptide.Editor.Audit.WorldAuditRunner.RunAll();
-            if (blockers > 0)
-                throw new Exception("Golden route audit FAILED with " + blockers + " blocker(s).");
+            int projectBlockers = Ziptide.Editor.Audit.WorldAuditRunner.RunAll();
+            if (projectBlockers > 0)
+                throw new Exception("Golden route project audit FAILED with " + projectBlockers + " blocker(s).");
+
+            int profileTravelBlockers = Ziptide.Editor.Audit.BuildProfileTravelAuditRules.RunScenes(GoldenScenes);
+            if (profileTravelBlockers > 0)
+                throw new Exception("Golden artifact-profile travel audit FAILED with "
+                    + profileTravelBlockers + " blocker(s).");
 
             Debug.Log("ZIPTIDE: GOLDEN_ROUTE_PATCH exit=" + exitPack.sceneName
                 + " bridge=" + GoldenBridgeCenter.ToString("F2")
                 + " size=" + GoldenBridgeSize.ToString("F2")
                 + " removedDeadShipRows=" + removedRows
-                + " auditBlockers=" + blockers);
+                + " projectAuditBlockers=" + projectBlockers
+                + " profileTravelBlockers=" + profileTravelBlockers);
         }
 
         private static int PatchGoldenScene(string scenePath, bool addShipyardBridge)
@@ -116,8 +125,6 @@ namespace Ziptide.Build
                     bridge.name = GoldenBridgeName;
                 }
 
-                // Shipyard district rear edge = z -39; berth front edge = z -40. This two-metre apron
-                // overlaps both sides by 0.5 m and spans the full 20 m berth width.
                 bridge.transform.position = GoldenBridgeCenter;
                 bridge.transform.rotation = Quaternion.identity;
                 bridge.transform.localScale = GoldenBridgeSize;
