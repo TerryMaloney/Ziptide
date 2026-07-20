@@ -69,6 +69,28 @@ namespace Ziptide.Tests.EditMode
             }
         }
 
+        [Test]
+        public void ReverseGripMelee_UsesMeleePoseLawButStillPassesScaleAndColliderChecks()
+        {
+            GameObject weapon = null;
+            try
+            {
+                weapon = BuildWeapon(new Vector3(0.16f, 0.11f, 0.42f),
+                    new Vector3(0f, 0f, 0.26f));
+                weapon.transform.Find("Grip").localRotation = Quaternion.Euler(0f, 180f, 0f);
+                var report = new SceneAuditReport { sceneName = "ValidMeleeFixture" };
+
+                WeaponPerceptualAuditRules.ValidateWeapon(weapon, report, validateAimAxis: false);
+
+                Assert.That(report.blockerCount, Is.Zero,
+                    "Melee hand poses may reverse Grip.forward while the visible blade/tip remains correct.");
+            }
+            finally
+            {
+                if (weapon != null) Object.DestroyImmediate(weapon);
+            }
+        }
+
         private static GameObject BuildWeapon(Vector3 visualScale, Vector3 muzzlePosition)
         {
             GameObject weapon = GameObject.CreatePrimitive(PrimitiveType.Cube);
