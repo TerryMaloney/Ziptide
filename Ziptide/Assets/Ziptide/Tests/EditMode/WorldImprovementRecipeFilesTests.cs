@@ -1,6 +1,6 @@
 using System.IO;
 using NUnit.Framework;
-using UnityEngine;
+using UnityEditor;
 using Ziptide.Content;
 using Ziptide.Editor.WorldImprovement;
 
@@ -14,7 +14,7 @@ namespace Ziptide.Tests.EditMode
             string folder = WorldImprovementCompiler.ManifestFolder;
             Assert.That(Directory.Exists(folder), Is.True, folder);
             string[] files = Directory.GetFiles(folder, "*.improvement.json");
-            Assert.That(files.Length, Is.GreaterThanOrEqualTo(3));
+            Assert.That(files.Length, Is.GreaterThanOrEqualTo(5));
 
             foreach (string file in files)
             {
@@ -35,6 +35,23 @@ namespace Ziptide.Tests.EditMode
         }
 
         [Test]
+        public void CoveragePolicy_ValidatesAndEveryRequiredBuildSceneResolves()
+        {
+            WorldImprovementCoveragePolicy policy = WorldImprovementCoveragePolicyLoader.LoadRequired();
+            Assert.That(policy.Validate(), Is.Empty);
+
+            foreach (EditorBuildSettingsScene scene in EditorBuildSettings.scenes)
+            {
+                if (!scene.enabled || string.IsNullOrEmpty(scene.path)) continue;
+                string sceneName = Path.GetFileNameWithoutExtension(scene.path);
+                if (!policy.RequiresManifest(sceneName, scene.path)) continue;
+                Assert.That(WorldImprovementCompiler.TryResolveManifest(sceneName, scene.path,
+                    out _, out _, out _), Is.True,
+                    "Coverage policy requires a manifest for " + sceneName + " at " + scene.path);
+            }
+        }
+
+        [Test]
         public void Resolver_UsesExactRecipesBeforeGeneratedDefault()
         {
             Assert.That(WorldImprovementCompiler.TryResolveManifest("W000_DriftIn",
@@ -44,6 +61,14 @@ namespace Ziptide.Tests.EditMode
             Assert.That(WorldImprovementCompiler.TryResolveManifest("ToxicCity",
                 "Assets/Ziptide/Scenes/ToxicCity.unity", out var toxic, out _, out _), Is.True);
             Assert.That(toxic.manifestId, Is.EqualTo("ziptide-toxiccity-round2"));
+
+            Assert.That(WorldImprovementCompiler.TryResolveManifest("D0_City",
+                "Assets/Ziptide/Scenes/D0_City.unity", out var d0, out _, out _), Is.True);
+            Assert.That(d0.manifestId, Is.EqualTo("ziptide-d0-city-round2"));
+
+            Assert.That(WorldImprovementCompiler.TryResolveManifest("StarterWorld",
+                "Assets/Ziptide/Scenes/StarterWorld.unity", out var starter, out _, out _), Is.True);
+            Assert.That(starter.manifestId, Is.EqualTo("ziptide-starter-world-round2"));
 
             Assert.That(WorldImprovementCompiler.TryResolveManifest("W002_TestWorld",
                 "Assets/Ziptide/Scenes/Generated/W002_TestWorld.unity", out var generated, out _, out _), Is.True);
