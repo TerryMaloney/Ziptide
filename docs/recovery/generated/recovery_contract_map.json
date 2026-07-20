@@ -2,7 +2,7 @@
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
   "scannedFiles": 722,
-  "findingCount": 2527,
+  "findingCount": 2515,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -117,7 +117,7 @@
           {
             "code": "RUNTIME_BOOTSTRAP",
             "path": "Ziptide/Assets/Ziptide/Core/Runtime/RuntimeInputEnabler.cs",
-            "line": 20,
+            "line": 15,
             "symbol": "Ziptide.Core.RuntimeInputEnabler",
             "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]"
           }
@@ -995,7 +995,7 @@
     "input": [
       {
         "owner": "Ziptide.Core.RuntimeInputEnabler",
-        "evidenceCount": 16,
+        "evidenceCount": 8,
         "codes": [
           "INPUT_ACTION_REFERENCE"
         ],
@@ -1006,114 +1006,58 @@
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Core/Runtime/RuntimeInputEnabler.cs",
-            "line": 25,
+            "line": 20,
             "symbol": "Ziptide.Core.RuntimeInputEnabler",
             "snippet": "var assetsEnabled = new HashSet<InputActionAsset>();"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Core/Runtime/RuntimeInputEnabler.cs",
-            "line": 33,
+            "line": 28,
             "symbol": "Ziptide.Core.RuntimeInputEnabler",
             "snippet": "InputActionAsset asset = GetAssetFromController(c);"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Core/Runtime/RuntimeInputEnabler.cs",
-            "line": 45,
+            "line": 40,
             "symbol": "Ziptide.Core.RuntimeInputEnabler",
             "snippet": "InputActionAsset asset = GetAssetFromInputActionReferences(mb);"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Core/Runtime/RuntimeInputEnabler.cs",
-            "line": 56,
+            "line": 49,
             "symbol": "Ziptide.Core.RuntimeInputEnabler",
             "snippet": "Debug.Log($\"[Ziptide] RuntimeInputEnabler: enabled {totalAssets} InputActionAsset(s). Controllers={controllersProcessed}, Other={otherProcessed}.\");"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Core/Runtime/RuntimeInputEnabler.cs",
-            "line": 74,
+            "line": 52,
             "symbol": "Ziptide.Core.RuntimeInputEnabler",
             "snippet": "private static InputActionAsset GetAssetFromController(ActionBasedController c)"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Core/Runtime/RuntimeInputEnabler.cs",
-            "line": 86,
+            "line": 64,
             "symbol": "Ziptide.Core.RuntimeInputEnabler",
             "snippet": "private static InputActionAsset GetAssetFromInputActionReferences(MonoBehaviour mb)"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Core/Runtime/RuntimeInputEnabler.cs",
-            "line": 93,
+            "line": 71,
             "symbol": "Ziptide.Core.RuntimeInputEnabler",
             "snippet": "if (f.FieldType != typeof(InputActionReference)) continue;"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Core/Runtime/RuntimeInputEnabler.cs",
-            "line": 94,
+            "line": 72,
             "symbol": "Ziptide.Core.RuntimeInputEnabler",
             "snippet": "var refVal = f.GetValue(mb) as InputActionReference;"
-          },
-          {
-            "code": "INPUT_ACTION_REFERENCE",
-            "path": "Ziptide/Assets/Ziptide/Core/Runtime/RuntimeInputEnabler.cs",
-            "line": 204,
-            "symbol": "Ziptide.Core.RuntimeInputEnabler",
-            "snippet": "var directActions = new HashSet<InputAction>();"
-          },
-          {
-            "code": "INPUT_ACTION_REFERENCE",
-            "path": "Ziptide/Assets/Ziptide/Core/Runtime/RuntimeInputEnabler.cs",
-            "line": 233,
-            "symbol": "Ziptide.Core.RuntimeInputEnabler",
-            "snippet": "var disabledBefore = new List<InputAction>();"
-          },
-          {
-            "code": "INPUT_ACTION_REFERENCE",
-            "path": "Ziptide/Assets/Ziptide/Core/Runtime/RuntimeInputEnabler.cs",
-            "line": 234,
-            "symbol": "Ziptide.Core.RuntimeInputEnabler",
-            "snippet": "foreach (InputAction action in map.actions)"
-          },
-          {
-            "code": "INPUT_ACTION_REFERENCE",
-            "path": "Ziptide/Assets/Ziptide/Core/Runtime/RuntimeInputEnabler.cs",
-            "line": 242,
-            "symbol": "Ziptide.Core.RuntimeInputEnabler",
-            "snippet": "foreach (InputAction action in disabledBefore)"
-          },
-          {
-            "code": "INPUT_ACTION_REFERENCE",
-            "path": "Ziptide/Assets/Ziptide/Core/Runtime/RuntimeInputEnabler.cs",
-            "line": 252,
-            "symbol": "Ziptide.Core.RuntimeInputEnabler",
-            "snippet": "foreach (InputAction action in directActions)"
-          },
-          {
-            "code": "INPUT_ACTION_REFERENCE",
-            "path": "Ziptide/Assets/Ziptide/Core/Runtime/RuntimeInputEnabler.cs",
-            "line": 266,
-            "symbol": "Ziptide.Core.RuntimeInputEnabler",
-            "snippet": "HashSet<InputAction> directActions)"
-          },
-          {
-            "code": "INPUT_ACTION_REFERENCE",
-            "path": "Ziptide/Assets/Ziptide/Core/Runtime/RuntimeInputEnabler.cs",
-            "line": 268,
-            "symbol": "Ziptide.Core.RuntimeInputEnabler",
-            "snippet": "InputAction action = property.action;"
-          },
-          {
-            "code": "INPUT_ACTION_REFERENCE",
-            "path": "Ziptide/Assets/Ziptide/Core/Runtime/RuntimeInputEnabler.cs",
-            "line": 299,
-            "symbol": "Ziptide.Core.RuntimeInputEnabler",
-            "snippet": "InputAction action = property.action;"
           }
         ]
       },
@@ -1830,91 +1774,91 @@
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
-            "line": 86,
+            "line": 88,
             "symbol": "Ziptide.Gameplay.PlayerInputSessionGuard",
             "snippet": "InputActionManager[] managers = UnityEngine.Object.FindObjectsOfType<InputActionManager>(true);"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
-            "line": 87,
+            "line": 89,
             "symbol": "Ziptide.Gameplay.PlayerInputSessionGuard",
             "snippet": "var assets = new List<InputActionAsset>();"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
-            "line": 92,
+            "line": 94,
             "symbol": "Ziptide.Gameplay.PlayerInputSessionGuard",
             "snippet": "var fullyDisabledAssets = new List<InputActionAsset>();"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
-            "line": 93,
+            "line": 95,
             "symbol": "Ziptide.Gameplay.PlayerInputSessionGuard",
             "snippet": "var intentionallyDisabledActions = new List<InputAction>();"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
-            "line": 96,
+            "line": 98,
             "symbol": "Ziptide.Gameplay.PlayerInputSessionGuard",
             "snippet": "InputActionAsset asset = assets[i];"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
-            "line": 104,
+            "line": 106,
             "symbol": "Ziptide.Gameplay.PlayerInputSessionGuard",
             "snippet": "foreach (InputAction action in map.actions)"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
-            "line": 112,
+            "line": 114,
             "symbol": "Ziptide.Gameplay.PlayerInputSessionGuard",
             "snippet": "// InputActionManager.OnEnable may enable every assigned asset. Restore the exact disabled"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
-            "line": 116,
+            "line": 118,
             "symbol": "Ziptide.Gameplay.PlayerInputSessionGuard",
             "snippet": "InputAction action = intentionallyDisabledActions[i];"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
-            "line": 123,
+            "line": 125,
             "symbol": "Ziptide.Gameplay.PlayerInputSessionGuard",
             "snippet": "InputActionAsset asset = fullyDisabledAssets[i];"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
-            "line": 132,
+            "line": 134,
             "symbol": "Ziptide.Gameplay.PlayerInputSessionGuard",
             "snippet": "InputActionManager manager = managers[i];"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
-            "line": 136,
+            "line": 138,
             "symbol": "Ziptide.Gameplay.PlayerInputSessionGuard",
             "snippet": "manager.actionAssets = new List<InputActionAsset>();"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
-            "line": 168,
+            "line": 186,
             "symbol": "Ziptide.Gameplay.PlayerInputSessionGuard",
             "snippet": "private static void AddAssets(InputActionManager manager, List<InputActionAsset> assets)"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
-            "line": 171,
+            "line": 189,
             "symbol": "Ziptide.Gameplay.PlayerInputSessionGuard",
             "snippet": "foreach (InputActionAsset asset in manager.actionAssets)"
           }
@@ -13648,7 +13592,7 @@
           {
             "code": "XRI_MANAGER_LOOKUP",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
-            "line": 155,
+            "line": 173,
             "symbol": "Ziptide.Gameplay.PlayerInputSessionGuard",
             "snippet": "UnityEngine.Object.FindObjectsOfType<XRInteractionManager>(true);"
           }
