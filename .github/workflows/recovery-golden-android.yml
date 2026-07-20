@@ -9,6 +9,22 @@ on:
       - '.github/workflows/recovery-playmode.yml'
       - 'Ziptide/Assets/Ziptide/Core/Runtime/Recovery/**'
       - 'Ziptide/Assets/Ziptide/Editor/Build/**'
+      # World Improvement framework: recipe-only or module/gate changes alter the locked W000/ToxicCity
+      # artifact and must receive an immutable exact-SHA Golden APK.
+      - 'docs/worldimprovements/**'
+      - 'Ziptide/Assets/Ziptide/Content/WorldImprovement/**'
+      - 'Ziptide/Assets/Ziptide/Editor/WorldImprovement/**'
+      - 'Ziptide/Assets/Ziptide/Editor/Audit/BuildProfileTravelAuditRules.cs'
+      - 'Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs'
+      - 'Ziptide/Assets/Ziptide/Editor/Audit/PerceptualCoverageAuditRules.cs'
+      - 'Ziptide/Assets/Ziptide/Editor/Audit/RouteContinuityAuditRules.cs'
+      - 'Ziptide/Assets/Ziptide/Editor/Audit/InteractionReachAuditRules.cs'
+      - 'Ziptide/Assets/Ziptide/Editor/Audit/WorldImprovementAuditRules.cs'
+      - 'Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovement*.cs'
+      - 'Ziptide/Assets/Ziptide/Tests/EditMode/*PerceptualAuditRulesTests.cs'
+      - 'Ziptide/Assets/Ziptide/Tests/EditMode/RouteContinuityAuditRulesTests.cs'
+      - 'Ziptide/Assets/Ziptide/Tests/EditMode/InteractionReachAuditRulesTests.cs'
+      - 'Ziptide/Assets/Ziptide/Tests/EditMode/BuildProfileTravelAuditRulesTests.cs'
       - 'Ziptide/Assets/Ziptide/Editor/Patching/ForgeBaker.cs'
       - 'Ziptide/Assets/Ziptide/Editor/Art/ForgeDependencyAuditor.cs'
       - 'Ziptide/Assets/Ziptide/Resources/ZiptideTransparentAlphaUnlit.shader'
@@ -126,18 +142,22 @@ jobs:
           set -euo pipefail
           apk="${PROJECT_PATH}/Builds/Android/Ziptide.apk"
           report="${PROJECT_PATH}/Builds/Reports/recovery_golden_build_profile.json"
+          improvement="${PROJECT_PATH}/Builds/Reports/world_improvement_compile.json"
 
           test -s "$apk"
           test -s "$report"
+          test -s "$improvement"
 
-          python3 - "$report" "$apk" <<'PY'
+          python3 - "$report" "$apk" "$improvement" <<'PY'
           import json
           import os
           import sys
 
-          report_path, apk_path = sys.argv[1], sys.argv[2]
+          report_path, apk_path, improvement_path = sys.argv[1], sys.argv[2], sys.argv[3]
           with open(report_path, "r", encoding="utf-8") as handle:
               payload = json.load(handle)
+          with open(improvement_path, "r", encoding="utf-8") as handle:
+              improvement = json.load(handle)
 
           expected_scenes = [
               "Assets/Ziptide/Scenes/_Boot.unity",
@@ -152,6 +172,24 @@ jobs:
           assert int(payload.get("totalBytes", 0)) > 0, payload
           assert os.path.getsize(apk_path) > 0, apk_path
 
+          assert improvement.get("schemaVersion") == 1, improvement
+          assert improvement.get("compilerVersion") == 1, improvement
+          records = {row.get("sceneName"): row for row in improvement.get("worlds", [])}
+          expected_manifests = {
+              "W000_DriftIn": "ziptide-w000-round2",
+              "ToxicCity": "ziptide-toxiccity-round2",
+          }
+          for scene_name, manifest_id in expected_manifests.items():
+              row = records.get(scene_name)
+              assert row, (scene_name, improvement)
+              assert row.get("manifestId") == manifest_id, row
+              assert row.get("round") == 2, row
+              assert row.get("recipeVersion") == 1, row
+              assert len(row.get("recipeHash", "")) == 64, row
+              assert row.get("modules"), row
+              assert len(row.get("modules", [])) == len(row.get("objectCounts", [])), row
+              assert all(int(value) > 0 for value in row.get("objectCounts", [])), row
+
           print(json.dumps({
               "verified": True,
               "profile": payload["profile"],
@@ -159,10 +197,12 @@ jobs:
               "scenes": payload["scenes"],
               "reportedBytes": payload["totalBytes"],
               "apkBytes": os.path.getsize(apk_path),
+              "improvementCompiler": improvement["compilerVersion"],
+              "improvedGoldenScenes": expected_manifests,
           }, indent=2))
           PY
 
-          sha256sum "$apk" "$report"
+          sha256sum "$apk" "$report" "$improvement"
 
       - name: Upload Golden candidate
         uses: actions/upload-artifact@v4
@@ -172,6 +212,7 @@ jobs:
           path: |
             ${{ env.PROJECT_PATH }}/Builds/Android/Ziptide.apk
             ${{ env.PROJECT_PATH }}/Builds/Reports/recovery_golden_build_profile.json
+            ${{ env.PROJECT_PATH }}/Builds/Reports/world_improvement_compile.json
           if-no-files-found: error
           retention-days: 90
 
@@ -274,6 +315,7 @@ jobs:
           - Locked scenes: `_Boot`, `W000_DriftIn`, `ToxicCity`
           - Candidate artifact: `recovery-golden-apk-{tested_sha}`
           - Audit artifact: `recovery-golden-audit-{tested_sha}`
+          - Improvement evidence: `world_improvement_compile.json` independently verified for W000/ToxicCity Round 2
           """
 
           Path("docs/recovery/generated/recovery_golden_android_observation.md").write_text(
