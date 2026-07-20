@@ -27,7 +27,6 @@ namespace Ziptide.Tests.PlayMode
         private const float BootReadyTimeoutSeconds = 30f;
         private const float TravelTimeoutSeconds = 120f;
         private const float SweepTimeoutSeconds = 45f;
-        private const float InputSettleTimeoutSeconds = 10f;
         private const int FrameSampleCount = 120;
 
         private readonly List<string> _logs = new List<string>();
@@ -82,21 +81,13 @@ namespace Ziptide.Tests.PlayMode
             Assert.IsTrue(Application.CanStreamedLevelBeLoaded(ZiptideConstants.SceneW000));
             Assert.IsTrue(Application.CanStreamedLevelBeLoaded(ZiptideConstants.SceneToxicCity));
 
-            yield return LoadActualBoot();
+            yield return LoadActualBootAndInstallSimulator();
             Assert.IsFalse(SaveSystem.HasExistingProfile,
                 "The performance soak inherited a profile instead of presenting clean New Game.");
 
-            // The production rig opens a short input-mutation settle window while _Boot adopts and
-            // disables canonical actions. The headless simulator must not rebuild those same assets
-            // until production has handed its readers to the boot hold. The old ordering created a
-            // test-only stale InputActionState and INPUT_MUTATION_SETTLE_FAIL during the first hop.
-            yield return WaitForBootInputMutationSettle();
-
-            PlayerRigPersistence rig = FindRequired<PlayerRigPersistence>();
             XRInteractionManager manager = FindRequired<XRInteractionManager>();
-            _simulation = RecoveryActualRigControllerSimulation.Activate(rig, manager);
-            yield return null;
-            yield return null;
+            Assert.IsNotNull(_simulation,
+                "The actual tracked-rig simulator was not installed during cold boot.");
             Assert.IsTrue(_simulation.RightRay.isActiveAndEnabled &&
                           _simulation.RightRay.gameObject.activeInHierarchy,
                 "The actual right controller ray did not become active for performance-route New Game.");
@@ -149,7 +140,7 @@ namespace Ziptide.Tests.PlayMode
                 "The virtual XR harness raced a production input-mutation settle window.");
         }
 
-        private IEnumerator LoadActualBoot()
+        private IEnumerator LoadActualBootAndInstallSimulator()
         {
             AsyncOperation load = SceneManager.LoadSceneAsync(
                 ZiptideConstants.SceneBoot,
@@ -161,32 +152,26 @@ namespace Ziptide.Tests.PlayMode
                 "Actual _Boot did not load within " + BootLoadTimeoutSeconds + " seconds.");
 
             RecoverySceneTestIsolation.InvokeAllowedAfterSceneLoadBootstraps();
+
+            // Headless Linux needs the full canonical action-asset refresh immediately after the scene and
+            // its allowed bootstraps exist. Waiting for HomeHubRuntime readiness first consumed the
+            // production two-second settle deadline; the other actual-route recovery tests already use
+            // this early installation order and settle cleanly.
+            PlayerRigPersistence rig = FindRequired<PlayerRigPersistence>();
+            XRInteractionManager manager = FindRequired<XRInteractionManager>();
+            _simulation = RecoveryActualRigControllerSimulation.Activate(rig, manager);
+            yield return null;
+            yield return null;
+
             float readyDeadline = Time.realtimeSinceStartup + BootReadyTimeoutSeconds;
             while (!_bootReady && Time.realtimeSinceStartup < readyDeadline) yield return null;
             Assert.IsTrue(_bootReady,
                 "Actual Home Hub did not become ready within " + BootReadyTimeoutSeconds + " seconds.");
             Assert.AreEqual(ZiptideConstants.SceneBoot, SceneManager.GetActiveScene().name);
             Assert.IsNotNull(FindRequired<HomeHubRuntime>());
-            Assert.IsNotNull(FindRequired<PlayerRigPersistence>());
-            Assert.IsNotNull(FindRequired<XRInteractionManager>());
+            Assert.IsNotNull(rig);
+            Assert.IsNotNull(manager);
             Assert.IsNotNull(FindRequired<RuntimeHealthMonitor>());
-        }
-
-        private IEnumerator WaitForBootInputMutationSettle()
-        {
-            const string restoredPrefix = "ZIPTIDE: INPUT_MUTATION_READERS restored=";
-            const string failurePrefix = "ZIPTIDE: INPUT_MUTATION_SETTLE_FAIL";
-            float deadline = Time.realtimeSinceStartup + InputSettleTimeoutSeconds;
-            while (CountLogs(restoredPrefix) == 0 && CountLogs(failurePrefix) == 0 &&
-                   Time.realtimeSinceStartup < deadline)
-                yield return null;
-
-            Assert.AreEqual(0, CountLogs(failurePrefix),
-                "Production input settle failed before the virtual XR simulator was installed. Recent logs:\n"
-                + RecentLogs(30));
-            Assert.Greater(CountLogs(restoredPrefix), 0,
-                "Production input readers never settled/handed to the boot hold within "
-                + InputSettleTimeoutSeconds + " seconds. Recent logs:\n" + RecentLogs(30));
         }
 
         private IEnumerator WaitForCompletedDestination(int expectedCount, string expectedScene)
