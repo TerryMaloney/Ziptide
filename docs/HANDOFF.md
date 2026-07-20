@@ -27,6 +27,24 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-20 (rb44) — Fable 5: FACTORY MASTER ORDER — the multi-research merge (planning only, zero code)
+
+- **Did:** Terry asked for the merge: read every parallel research (ONE_SHOT_BUILD_FRAMEWORK ·
+  LLM_FIRST_BUILD_PIPELINE · PERCEPTUAL_GATE_PROGRAM (PG-1..5 rules+tests verified LANDED) ·
+  WORLD_IMPROVEMENT_FRAMEWORK (live) · WORLD_ASSEMBLY_READINESS), checked conclusions against the
+  branch, and wrote **`docs/design/FACTORY_MASTER_ORDER.md`** — the reconciled single execution
+  order optimized for accurate AND fast. Verdict: the models CONVERGED on the five-layer factory
+  (treat the shape as settled); differences are complementary. Seven blanks nobody covered, the
+  big ones: PlayMode promotion is in no work order · TWO hash laws are about to exist (S1 must
+  reuse the WorldImprovement hash helper, not parallel it) · CI throughput (no concurrency
+  groups; superseded runs waste the queue) · HANDOFF is the collision hotspot. Speed thesis on
+  record: round-trip cost is the schedule — gates and the hash law ARE the speed program.
+- **Next:** Phase 1 = UNSTICK (S1/S2 hash law · PlayMode → blocking · throughput pack · license
+  cron) with the owner map in §4. Terry adjudicates before any build starts.
+- **Heads-up (cross-operator):** GPT/Architect — §1.2 of the doc: please converge on ONE hash
+  stamping helper before S1 lands, or we fork staleness dialects.
+- **Commit:** this one (docs only: the merge doc + this entry).
+
 ### 2026-07-20 (rb43) — Fable 5: ONE-SHOT BUILD FRAMEWORK study (planning only, zero code)
 
 - **Did:** at Terry's direction, researched how to (a) build the rest of the game with near-zero
