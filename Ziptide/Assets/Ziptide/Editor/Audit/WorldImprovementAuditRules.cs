@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Ziptide.Content;
+using Ziptide.Core;
 using Ziptide.Editor.WorldImprovement;
 
 namespace Ziptide.Editor.Audit
@@ -20,7 +21,9 @@ namespace Ziptide.Editor.Audit
         public const string ModuleEmpty = "WORLD_IMPROVEMENT_MODULE_EMPTY";
         public const string ModuleBudget = "WORLD_IMPROVEMENT_MODULE_OVER_BUDGET";
         public const string AspectMissing = "WORLD_IMPROVEMENT_ASPECT_UNCOVERED";
+        public const string AspectThin = "WORLD_IMPROVEMENT_ASPECT_THIN";
         public const string EvidenceMissing = "WORLD_IMPROVEMENT_EVIDENCE_UNDECLARED";
+        public const int ThinAspectEvidenceScore = 65;
 
         public static void Run(SceneAuditReport report)
         {
@@ -87,6 +90,7 @@ namespace Ziptide.Editor.Audit
             }
 
             var covered = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            var aspectEvidence = new List<WorldAspectEvidence>();
             foreach (WorldImprovementModuleSpec spec in manifest.modules)
             {
                 if (spec == null || !spec.enabled) continue;
@@ -105,14 +109,32 @@ namespace Ziptide.Editor.Audit
                     report.Blocker(ModuleBudget, "Module '" + spec.moduleId + "' objects="
                         + marker.ObjectCount + " budget=" + spec.budget + ".", markerPath);
                 if (marker.Aspects != null)
+                {
                     foreach (string aspect in marker.Aspects)
-                        if (!string.IsNullOrWhiteSpace(aspect)) covered.Add(aspect.Trim());
+                    {
+                        if (string.IsNullOrWhiteSpace(aspect)) continue;
+                        string normalized = aspect.Trim();
+                        covered.Add(normalized);
+                        aspectEvidence.Add(new WorldAspectEvidence(normalized, 1, marker.ObjectCount));
+                    }
+                }
             }
 
             foreach (string aspect in manifest.requiredAspects ?? Array.Empty<string>())
                 if (!string.IsNullOrWhiteSpace(aspect) && !covered.Contains(aspect.Trim()))
                     report.Blocker(AspectMissing, "Required quality aspect '" + aspect
                         + "' has no compiled module coverage.", stampPath);
+
+            WorldAspectAssessment[] assessment = WorldImprovementAssessmentCore.Assess(
+                manifest.requiredAspects, aspectEvidence);
+            for (int i = 0; i < assessment.Length; i++)
+            {
+                WorldAspectAssessment item = assessment[i];
+                if (item.Score <= 0 || item.Score >= ThinAspectEvidenceScore) continue;
+                report.Warning(AspectThin, "Quality aspect '" + item.Aspect + "' has thin evidence score="
+                    + item.Score + " modules=" + item.ModuleCount + " objects=" + item.ObjectCount
+                    + "; prioritize it in the next improvement round.", stampPath);
+            }
 
             var evidence = new HashSet<string>(stamp.RequiredEvidence ?? Array.Empty<string>(),
                 StringComparer.OrdinalIgnoreCase);
