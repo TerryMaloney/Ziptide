@@ -6,8 +6,9 @@ using Ziptide.Gameplay;
 namespace Ziptide.Editor.Audit
 {
     /// <summary>
-    /// PG-1: judges scene-authored weapons from their final visible hierarchy, collider and Grip/Muzzle
-    /// relationship. Definition values and root Transform scale are intentionally ignored.
+    /// PG-1: judges scene-authored held weapons from their final visible hierarchy, collider and grip/tip
+    /// relationship. Firearms use Grip-forward aim semantics; melee keeps its own hand-pose convention
+    /// while still receiving visible-size, grip-presence and collider-coverage checks.
     /// </summary>
     public static class WeaponPerceptualAuditRules
     {
@@ -24,17 +25,21 @@ namespace Ziptide.Editor.Audit
             foreach (ItemRuntime item in Object.FindObjectsOfType<ItemRuntime>(true))
             {
                 if (item == null || item.GetComponent<XRGrabInteractable>() == null) continue;
+                bool melee = item.GetComponent<MeleeWeaponRuntime>() != null;
                 bool hasMuzzle = item.transform.Find("Muzzle") != null;
-                bool knownWeapon = hasMuzzle
+                bool knownWeapon = melee || hasMuzzle
                     || item.GetComponent<PistolRuntime>() != null
                     || item.GetComponent<TaserDartGunRuntime>() != null
                     || item.GetComponent<GravityGunRuntime>() != null;
                 if (!knownWeapon) continue;
-                ValidateWeapon(item.gameObject, report);
+                ValidateWeapon(item.gameObject, report, validateAimAxis: !melee);
             }
         }
 
         public static void ValidateWeapon(GameObject weapon, SceneAuditReport report)
+            => ValidateWeapon(weapon, report, validateAimAxis: true);
+
+        public static void ValidateWeapon(GameObject weapon, SceneAuditReport report, bool validateAimAxis)
         {
             if (weapon == null || report == null) return;
             string path = GetPath(weapon.transform);
@@ -62,14 +67,22 @@ namespace Ziptide.Editor.Audit
             }
 
             Transform muzzle = weapon.transform.Find("Muzzle");
-            if (muzzle != null)
+            if (validateAimAxis && muzzle != null)
             {
                 Vector3 gripToMuzzle = muzzle.position - grip.position;
                 float distance = gripToMuzzle.magnitude;
-                if (distance < 0.075f || distance > 2.40f)
+                // Factory roots can be non-uniformly scaled while the final Forge visual is human-sized.
+                // Judge socket placement relative to visible length, with only a small absolute floor to
+                // catch coincident grip/muzzle points. This keeps the gate about perceptual truth rather
+                // than authoring-unit assumptions.
+                float minimumDistance = Mathf.Max(0.020f, longest * 0.055f);
+                float maximumDistance = Mathf.Max(0.30f, longest * 1.75f);
+                if (distance < minimumDistance || distance > maximumDistance)
                     report.Blocker(MuzzleDistance,
                         path + " Grip→Muzzle distance is " + distance.ToString("F3")
-                        + "m; expected 0.075–2.40m.", path);
+                        + "m; expected " + minimumDistance.ToString("F3") + "–"
+                        + maximumDistance.ToString("F2") + "m for visible length "
+                        + longest.ToString("F2") + "m.", path);
                 if (distance > 0.0001f)
                 {
                     float forwardDot = Vector3.Dot(grip.forward.normalized, gripToMuzzle.normalized);
