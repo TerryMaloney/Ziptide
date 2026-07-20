@@ -1,11 +1,17 @@
 # FACTORY GOVERNANCE CHECKLIST — every build round
 
+**Stage:** 9 — Benchmark & Cert *(reused as a cross-stage ratchet)*  
+**Type:** law
+
 This is a standing gate, not a planning memo. `FactoryGovernanceFilesTests` reads it on every
 EditMode run. A world/gameplay round is not complete until these rows remain structurally present
-and its new misses have been fed through the Class Law.
+and its new misses have been fed through the Class Law. This checklist does not reorder
+`docs/PIPELINE.md`; its full benchmark verdict closes at Stage 9 while its structural checks run
+earlier to prevent late discovery.
 
 ## Start of every operator session
 
+- [ ] Read `docs/PIPELINE.md` for the current stage, allowed overlap and checkpoint block.
 - [ ] Read `docs/HANDOFF.md` newest-first.
 - [ ] Read `docs/MISS_LEDGER.md`; do not close an entry until its SYSTEM CHANGE is verified.
 - [ ] Read the applicable `docs/EXCELLENCE_MAP.md` rows and current improvement compile evidence.
@@ -18,6 +24,7 @@ and its new misses have been fed through the Class Law.
 - [ ] Every newly discovered miss records **WHAT · FOUND BY · WHY MISSED · CLASS · SYSTEM CHANGE**.
 - [ ] A symptom fix without a verified system change remains OPEN.
 - [ ] Human headset time is reserved for feel, comfort and fun—not machine-detectable omissions.
+- [ ] No work claims a later pipeline stage or checkpoint without a same-commit `docs/PIPELINE.md` amendment and version bump.
 
 ## Finished-game ship-backward benchmark
 
