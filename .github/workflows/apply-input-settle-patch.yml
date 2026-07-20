@@ -1,0 +1,41 @@
+name: Apply input settle patch
+
+on:
+  push:
+    branches:
+      - gpt/input-settle-value-types
+    paths:
+      - '.github/workflows/apply-input-settle-patch.yml'
+      - 'tools/apply_input_settle_value_types.py'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout patch branch
+        uses: actions/checkout@v4
+        with:
+          ref: gpt/input-settle-value-types
+          fetch-depth: 0
+
+      - name: Apply guarded source replacement
+        run: python3 tools/apply_input_settle_value_types.py
+
+      - name: Commit patched runtime only
+        shell: bash
+        run: |
+          set -euo pipefail
+          target='Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs'
+          git diff --check
+          if git diff --quiet -- "$target"; then
+            echo '::error::Patch produced no runtime diff.'
+            exit 1
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "$target"
+          git commit -m 'fix: read input settle actions by declared value type'
+          git push origin HEAD:gpt/input-settle-value-types
