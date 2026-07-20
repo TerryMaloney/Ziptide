@@ -289,6 +289,14 @@ namespace Ziptide.Gameplay
 
         private static RepairCounts RepairLocomotionBindings(IList<Behaviour> readers)
         {
+            // Clear inert placeholders FIRST. Disabling an empty embedded action is not durable:
+            // restoring a suspended provider (reader.enabled = true) runs XRI's OnEnable, whose
+            // EnableAllDirectActions re-enables it, and the next ReadInput NREs inside
+            // InputActionState.ApplyProcessors (the 42/43 PlayMode failure on f91c098). A default
+            // property (null action) is the durable spelling of "this hand does not turn": ReadInput
+            // null-skips it and OnEnable has nothing to re-enable.
+            int inertCleared = ClearInertDirectProperties(readers);
+
             var maps = new HashSet<InputActionMap>();
             var directActions = new HashSet<InputAction>();
             AddReaderActions(readers, maps, directActions);
@@ -341,7 +349,51 @@ namespace Ziptide.Gameplay
                 repairedDirect++;
             }
 
-            return new RepairCounts(repairedMaps, repairedDirect, inertDirect, preservedDisabled);
+            return new RepairCounts(repairedMaps, repairedDirect, inertDirect + inertCleared,
+                preservedDisabled);
+        }
+
+        // Replace empty embedded direct actions with a default property (null action). The XRI
+        // property setters disable the outgoing action while playing, so this is the one mutation
+        // that survives every later OnEnable/EnableAllDirectActions pass. Bound or referenced
+        // actions are never touched.
+        private static int ClearInertDirectProperties(IList<Behaviour> readers)
+        {
+            if (readers == null) return 0;
+            int cleared = 0;
+            for (int i = 0; i < readers.Count; i++)
+            {
+                switch (readers[i])
+                {
+                    case ActionBasedContinuousMoveProvider move:
+                        if (IsInertDirectProperty(move.leftHandMoveAction))
+                        { move.leftHandMoveAction = default; cleared++; }
+                        if (IsInertDirectProperty(move.rightHandMoveAction))
+                        { move.rightHandMoveAction = default; cleared++; }
+                        break;
+                    case ActionBasedContinuousTurnProvider turn:
+                        if (IsInertDirectProperty(turn.leftHandTurnAction))
+                        { turn.leftHandTurnAction = default; cleared++; }
+                        if (IsInertDirectProperty(turn.rightHandTurnAction))
+                        { turn.rightHandTurnAction = default; cleared++; }
+                        break;
+                    case ActionBasedSnapTurnProvider snap:
+                        if (IsInertDirectProperty(snap.leftHandSnapTurnAction))
+                        { snap.leftHandSnapTurnAction = default; cleared++; }
+                        if (IsInertDirectProperty(snap.rightHandSnapTurnAction))
+                        { snap.rightHandSnapTurnAction = default; cleared++; }
+                        break;
+                }
+            }
+            if (cleared > 0)
+                Debug.Log("ZIPTIDE: INPUT_MUTATION_INERT_CLEARED count=" + cleared);
+            return cleared;
+        }
+
+        private static bool IsInertDirectProperty(InputActionProperty property)
+        {
+            if (property.reference != null) return false;
+            return IsInertDirectAction(property.action);
         }
 
         private static bool IsInertDirectAction(InputAction action)

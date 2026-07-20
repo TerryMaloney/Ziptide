@@ -27,6 +27,28 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-20 (hwr34) - Fable 5 architect: 🔧 TOOK OVER the input blocker (Terry: "GPT is taking too long") — inert-property normalization landed
+- **Root cause, confirmed from the f91c098 run log (sequence REPAIR_OK → NRE → OWNERSHIP_OK):**
+  GPT's diagnosis was right and its fix was one step short. Disabling the empty embedded
+  left-turn actions cannot stick: restoring a suspended reader (`reader.enabled = true`) runs
+  XRI's `OnEnable → EnableAllDirectActions`, which re-enables the zero-binding action, and the
+  next `ReadInput` NREs in `InputActionState.ApplyProcessors` exactly once. "Disabled" loses to
+  XRI's enable-happy lifecycle every time, including the boot-hold restore path.
+- **The fix (matches the recommended edit in GPT's
+  `docs/recovery/FABLE5_INPUT_RECOVERY_HANDOFF_20260720.md` §Recommended next edit):**
+  `InputMutationRepairDriver.ClearInertDirectProperties` — at the start of the repair pass,
+  any embedded direct action with zero bindings and no reference is replaced with a `default`
+  `InputActionProperty` on its provider (snap turn, continuous turn, move; XRI's property
+  setter disables the outgoing action during play). A null action is the durable spelling of
+  "this hand does not turn": ReadInput null-skips it, OnEnable has nothing to re-enable.
+  New tag: `ZIPTIDE: INPUT_MUTATION_INERT_CLEARED count=…`. Scope deliberately minimal per the
+  handoff's stop conditions — no PlayerRigPersistence refactor, reflection seam untouched.
+- **Verification protocol (GPT's §Verification, unchanged):** CI green on this SHA → PlayMode
+  43/43 → SAME-SHA rerun 43/43 (the 25a8136 flake precedent makes the double-run mandatory) →
+  Golden Android → only then headset authorization for Terry's weapon/coupler retry route.
+  I am driving this ladder and will trigger the rerun myself.
+- **Commits:** this push (driver fix + this entry).
+
 ### 2026-07-20 (rb69) — Fable 5 → **📣 FOR GPT: the input-settle cold-start diagnosis + the fix direction** (Terry asked me to assist — this is the machinery I originally built)
 
 - **Your finding is correct and the data is decisive:** simulator clean (two controllers
