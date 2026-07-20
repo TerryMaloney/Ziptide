@@ -1,7 +1,7 @@
 # ZIPTIDE Event and Save Ownership Graph
 
-- Scanned C# files: **656**
-- Evidence edges: **701**
+- Scanned C# files: **658**
+- Evidence edges: **703**
 - Named subscriptions without matching unsubscribe in the same owner: **48**
 
 This is a static ownership graph. An unmatched row is a review target, not automatic proof of a leak; process-lifetime static hooks may be intentional.
@@ -11,8 +11,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **AUTOSAVE:** 7
 - **EVENT_DECLARE:** 45
 - **EVENT_INVOKE:** 60
-- **EVENT_SUBSCRIBE:** 99
-- **EVENT_UNSUBSCRIBE:** 53
+- **EVENT_SUBSCRIBE:** 100
+- **EVENT_UNSUBSCRIBE:** 54
 - **PLAYER_PREFS_ACCESS:** 11
 - **PROFILE_FIELD_ACCESS:** 358
 - **SAVE_ACCESS:** 68
@@ -239,6 +239,11 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Editor.Audit.AuditPhysicsSync` · `Ziptide/Assets/Ziptide/Editor/Audit/AuditPhysicsSync.cs:19` · `OnSceneOpened` — `EditorSceneManager.sceneOpened -= OnSceneOpened;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Editor.Audit.AuditPhysicsSync` · `Ziptide/Assets/Ziptide/Editor/Audit/AuditPhysicsSync.cs:20` · `OnSceneOpened` — `EditorSceneManager.sceneOpened += OnSceneOpened;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Tests.EditMode.HeadsetBuildBlockerRegressionTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs:71` · `OnSceneOpened` — `StringAssert.Contains("EditorSceneManager.sceneOpened += OnSceneOpened;", sync);`
+
+### `EditorSceneManager.sceneSaving`
+
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Editor.Patching.ToxicCityStageASaveHook` · `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageASaveHook.cs:21` · `OnSceneSaving` — `EditorSceneManager.sceneSaving -= OnSceneSaving;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Editor.Patching.ToxicCityStageASaveHook` · `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageASaveHook.cs:22` · `OnSceneSaving` — `EditorSceneManager.sceneSaving += OnSceneSaving;`
 
 ### `ExpectedArchetype`
 

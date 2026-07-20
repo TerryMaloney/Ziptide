@@ -1,8 +1,8 @@
 {
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
-  "scannedFiles": 656,
-  "findingCount": 2337,
+  "scannedFiles": 658,
+  "findingCount": 2344,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -252,6 +252,25 @@
             "path": "Ziptide/Assets/Ziptide/Editor/DevTools/DevWarpPlayHook.cs",
             "line": 14,
             "symbol": "Ziptide.Editor.DevTools.DevWarpPlayHook",
+            "snippet": "[InitializeOnLoad]"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Editor.Patching.ToxicCityStageASaveHook",
+        "evidenceCount": 1,
+        "codes": [
+          "EDITOR_BOOTSTRAP"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageASaveHook.cs"
+        ],
+        "evidence": [
+          {
+            "code": "EDITOR_BOOTSTRAP",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageASaveHook.cs",
+            "line": 16,
+            "symbol": "Ziptide.Editor.Patching.ToxicCityStageASaveHook",
             "snippet": "[InitializeOnLoad]"
           }
         ]
@@ -10743,6 +10762,40 @@
             "line": 205,
             "symbol": "Ziptide.Tests.EditMode.ShellSignPlacementTests",
             "snippet": "var material = new Material(shader) { name = name };"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Tests.EditMode.ToxicCityStageAIntegrationTests",
+        "evidenceCount": 3,
+        "codes": [
+          "CREATE_PRIMITIVE",
+          "NEW_GAME_OBJECT"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/EditMode/ToxicCityStageAIntegrationTests.cs"
+        ],
+        "evidence": [
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Tests/EditMode/ToxicCityStageAIntegrationTests.cs",
+            "line": 28,
+            "symbol": "Ziptide.Tests.EditMode.ToxicCityStageAIntegrationTests",
+            "snippet": "city = new GameObject(\"__TEST_CITY_ROOT\");"
+          },
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Tests/EditMode/ToxicCityStageAIntegrationTests.cs",
+            "line": 29,
+            "symbol": "Ziptide.Tests.EditMode.ToxicCityStageAIntegrationTests",
+            "snippet": "var district = new GameObject(\"District_Test\");"
+          },
+          {
+            "code": "CREATE_PRIMITIVE",
+            "path": "Ziptide/Assets/Ziptide/Tests/EditMode/ToxicCityStageAIntegrationTests.cs",
+            "line": 75,
+            "symbol": "Ziptide.Tests.EditMode.ToxicCityStageAIntegrationTests",
+            "snippet": "GameObject facade = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           }
         ]
       },

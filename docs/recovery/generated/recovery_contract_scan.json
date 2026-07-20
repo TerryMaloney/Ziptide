@@ -1,25 +1,25 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-20T00:47:39.406479+00:00",
+  "generatedAtUtc": "2026-07-20T00:51:16.947695+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
     "Ziptide/Assets/Ziptide",
     "Ziptide/Assets/ZiptideNet"
   ],
-  "scannedFiles": 656,
-  "findingCount": 2337,
+  "scannedFiles": 658,
+  "findingCount": 2344,
   "categoryCounts": {
-    "bootstrap": 31,
-    "diagnostics": 510,
+    "bootstrap": 32,
+    "diagnostics": 513,
     "events": 64,
     "fallback_debt": 134,
     "global_render": 80,
     "input": 197,
     "materials": 233,
     "persistence": 18,
-    "runtime_creation": 601,
+    "runtime_creation": 604,
     "runtime_ui": 121,
     "save_state": 256,
     "scene_loading": 9,
@@ -30,18 +30,18 @@
     "CAMERA_MAIN_REFERENCE": 42,
     "CAMERA_POST_PROCESSING": 1,
     "CANVAS_COMPONENT": 5,
-    "CREATE_PRIMITIVE": 237,
+    "CREATE_PRIMITIVE": 238,
     "DIRECT_SCENE_LOAD": 2,
     "DIRECT_SCENE_LOAD_ASYNC": 7,
     "DONT_DESTROY_ON_LOAD": 18,
-    "EDITOR_BOOTSTRAP": 6,
+    "EDITOR_BOOTSTRAP": 7,
     "EVENT_DECLARATION": 48,
     "EVENT_SYSTEM_COMPONENT": 2,
     "FALLBACK_MARKER": 134,
     "FRAME_BUTTON_POLL": 1,
     "INPUT_ACTION_REFERENCE": 190,
     "INPUT_BUTTON_REFERENCE": 6,
-    "NEW_GAME_OBJECT": 364,
+    "NEW_GAME_OBJECT": 366,
     "PLAYER_PROFILE_REFERENCE": 140,
     "RENDER_SETTINGS_MUTATION": 36,
     "RUNTIME_BOOTSTRAP": 25,
@@ -57,7 +57,7 @@
     "XRI_MANAGER_LOOKUP": 41,
     "XR_INTERACTABLE_COMPONENT": 62,
     "XR_UI_INPUT_MODULE": 2,
-    "ZIPTIDE_LOG_TAG": 510
+    "ZIPTIDE_LOG_TAG": 513
   },
   "findings": [
     {
@@ -103,6 +103,15 @@
       "path": "Ziptide/Assets/Ziptide/Editor/DevTools/DevWarpPlayHook.cs",
       "line": 14,
       "symbol": "Ziptide.Editor.DevTools.DevWarpPlayHook",
+      "snippet": "[InitializeOnLoad]"
+    },
+    {
+      "category": "bootstrap",
+      "code": "EDITOR_BOOTSTRAP",
+      "description": "Unity editor-load bootstrap",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageASaveHook.cs",
+      "line": 16,
+      "symbol": "Ziptide.Editor.Patching.ToxicCityStageASaveHook",
       "snippet": "[InitializeOnLoad]"
     },
     {
@@ -797,6 +806,33 @@
       "line": 100,
       "symbol": "Ziptide.Editor.Patching.ToxicCityStageA",
       "snippet": "Debug.Log(\"ZIPTIDE: CITY_STAGE_A_COMPLETE districts=\" + districtCount"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageASaveHook.cs",
+      "line": 36,
+      "symbol": "Ziptide.Editor.Patching.ToxicCityStageASaveHook",
+      "snippet": "Debug.LogError(\"ZIPTIDE: CITY_STAGE_A_HOOK_FAIL reason=missing_layout\");"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageASaveHook.cs",
+      "line": 46,
+      "symbol": "Ziptide.Editor.Patching.ToxicCityStageASaveHook",
+      "snippet": "Debug.LogError(\"ZIPTIDE: CITY_STAGE_A_HOOK_FAIL reason=missing_root root=\" + rootName);"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageASaveHook.cs",
+      "line": 51,
+      "symbol": "Ziptide.Editor.Patching.ToxicCityStageASaveHook",
+      "snippet": "Debug.Log(\"ZIPTIDE: CITY_STAGE_A_HOOK scene=\" + scene.name"
     },
     {
       "category": "diagnostics",
@@ -13456,6 +13492,15 @@
       "category": "runtime_creation",
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/ToxicCityStageAIntegrationTests.cs",
+      "line": 75,
+      "symbol": "Ziptide.Tests.EditMode.ToxicCityStageAIntegrationTests",
+      "snippet": "GameObject facade = GameObject.CreatePrimitive(PrimitiveType.Cube);"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "CREATE_PRIMITIVE",
+      "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryCoreBootstrapGateTests.cs",
       "line": 88,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryCoreBootstrapGateTests",
@@ -16385,6 +16430,24 @@
       "line": 94,
       "symbol": "Ziptide.Tests.EditMode.ShellSignPlacementTests",
       "snippet": "_root = new GameObject(\"ShellSignPlacementRoot\");"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/ToxicCityStageAIntegrationTests.cs",
+      "line": 28,
+      "symbol": "Ziptide.Tests.EditMode.ToxicCityStageAIntegrationTests",
+      "snippet": "city = new GameObject(\"__TEST_CITY_ROOT\");"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/ToxicCityStageAIntegrationTests.cs",
+      "line": 29,
+      "symbol": "Ziptide.Tests.EditMode.ToxicCityStageAIntegrationTests",
+      "snippet": "var district = new GameObject(\"District_Test\");"
     },
     {
       "category": "runtime_creation",

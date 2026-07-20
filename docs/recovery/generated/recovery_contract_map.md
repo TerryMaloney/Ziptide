@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
-- Scanned files: **656**
-- Scanner findings: **2337**
+- Scanned files: **658**
+- Scanner findings: **2344**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -94,6 +94,12 @@ None.
 - Codes: `EDITOR_BOOTSTRAP`
 - Paths: `Ziptide/Assets/Ziptide/Editor/DevTools/DevWarpPlayHook.cs`
   - `Ziptide/Assets/Ziptide/Editor/DevTools/DevWarpPlayHook.cs:14` **EDITOR_BOOTSTRAP** — `[InitializeOnLoad]`
+
+### `Ziptide.Editor.Patching.ToxicCityStageASaveHook` — 1 signal(s)
+
+- Codes: `EDITOR_BOOTSTRAP`
+- Paths: `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageASaveHook.cs`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageASaveHook.cs:16` **EDITOR_BOOTSTRAP** — `[InitializeOnLoad]`
 
 ### `Ziptide.Gameplay.AmbienceDirector` — 2 signal(s)
 
@@ -2276,6 +2282,14 @@ None.
   - `Ziptide/Assets/Ziptide/Tests/EditMode/ShellSignPlacementTests.cs:202` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Unlit/Color");`
   - `Ziptide/Assets/Ziptide/Tests/EditMode/ShellSignPlacementTests.cs:203` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Sprites/Default");`
   - `Ziptide/Assets/Ziptide/Tests/EditMode/ShellSignPlacementTests.cs:205` **RUNTIME_MATERIAL_CREATE** — `var material = new Material(shader) { name = name };`
+
+### `Ziptide.Tests.EditMode.ToxicCityStageAIntegrationTests` — 3 signal(s)
+
+- Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`
+- Paths: `Ziptide/Assets/Ziptide/Tests/EditMode/ToxicCityStageAIntegrationTests.cs`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/ToxicCityStageAIntegrationTests.cs:28` **NEW_GAME_OBJECT** — `city = new GameObject("__TEST_CITY_ROOT");`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/ToxicCityStageAIntegrationTests.cs:29` **NEW_GAME_OBJECT** — `var district = new GameObject("District_Test");`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/ToxicCityStageAIntegrationTests.cs:75` **CREATE_PRIMITIVE** — `GameObject facade = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 
 ### `Ziptide.Tests.EditMode.UiReadabilityAuditRulesTests` — 4 signal(s)
 

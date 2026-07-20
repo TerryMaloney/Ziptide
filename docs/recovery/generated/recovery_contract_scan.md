@@ -1,22 +1,22 @@
 # ZIPTIDE Recovery Contract Scan
 
-- Scanned files: **656**
-- Findings: **2337**
+- Scanned files: **658**
+- Findings: **2344**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
 
 | Category | Count |
 |---|---:|
-| `bootstrap` | 31 |
-| `diagnostics` | 510 |
+| `bootstrap` | 32 |
+| `diagnostics` | 513 |
 | `events` | 64 |
 | `fallback_debt` | 134 |
 | `global_render` | 80 |
 | `input` | 197 |
 | `materials` | 233 |
 | `persistence` | 18 |
-| `runtime_creation` | 601 |
+| `runtime_creation` | 604 |
 | `runtime_ui` | 121 |
 | `save_state` | 256 |
 | `scene_loading` | 9 |
@@ -31,6 +31,7 @@
 - **EDITOR_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Editor/Art/ForgeBuildingKit.cs:16` · `Ziptide.Editor.Art.ForgeBuildingKit` — Unity editor-load bootstrap. `/// (last-registration-wins needs deterministic order, and [InitializeOnLoadMethod] order isn't).`
 - **EDITOR_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Editor/Audit/AuditPhysicsSync.cs:14` · `Ziptide.Editor.Audit.AuditPhysicsSync` — Unity editor-load bootstrap. `[InitializeOnLoad]`
 - **EDITOR_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Editor/DevTools/DevWarpPlayHook.cs:14` · `Ziptide.Editor.DevTools.DevWarpPlayHook` — Unity editor-load bootstrap. `[InitializeOnLoad]`
+- **EDITOR_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageASaveHook.cs:16` · `Ziptide.Editor.Patching.ToxicCityStageASaveHook` — Unity editor-load bootstrap. `[InitializeOnLoad]`
 - **EDITOR_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs:70` · `Ziptide.Tests.EditMode.HeadsetBuildBlockerRegressionTests` — Unity editor-load bootstrap. `StringAssert.Contains("[InitializeOnLoad]", sync);`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Core/Runtime/DebugHUD.cs:22` · `Ziptide.Core.DebugHUD` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Core/Runtime/EnsureXRCameraActive.cs:11` · `Ziptide.Core.EnsureXRCameraActive` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
@@ -110,6 +111,9 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSandbox.cs:171` · `Ziptide.Editor.Patching.ScenePatcherSandbox` — ZIPTIDE diagnostic tag. `/// when you stand and stare, and the sink pays scrap (ZIPTIDE: BELT_SUNK). Authoring only —`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageA.cs:91` · `Ziptide.Editor.Patching.ToxicCityStageA` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: CITY_STAGE_A district=" + def.id`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageA.cs:100` · `Ziptide.Editor.Patching.ToxicCityStageA` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: CITY_STAGE_A_COMPLETE districts=" + districtCount`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageASaveHook.cs:36` · `Ziptide.Editor.Patching.ToxicCityStageASaveHook` — ZIPTIDE diagnostic tag. `Debug.LogError("ZIPTIDE: CITY_STAGE_A_HOOK_FAIL reason=missing_layout");`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageASaveHook.cs:46` · `Ziptide.Editor.Patching.ToxicCityStageASaveHook` — ZIPTIDE diagnostic tag. `Debug.LogError("ZIPTIDE: CITY_STAGE_A_HOOK_FAIL reason=missing_root root=" + rootName);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageASaveHook.cs:51` · `Ziptide.Editor.Patching.ToxicCityStageASaveHook` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: CITY_STAGE_A_HOOK scene=" + scene.name`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Spec/WorldSpecCompiler.cs:74` · `Ziptide.Editor.Spec.WorldSpecCompiler` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: SPEC_DRIFT scene=" + spec.sceneName`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs:95` · `Ziptide.Gameplay.AmbienceDirector` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: AMBIENCE biome=" + biome + " wind=" + _spec.WindLevel.ToString("F2") +`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs:80` · `Ziptide.Gameplay.AudioDirector` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: AUDIO_CLIP_MISSING on profile " + profile.name);`
@@ -1530,6 +1534,7 @@
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:132` · `Ziptide.Ship.VehicleRuntime` — Runtime primitive construction. `var tile = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs:55` · `Ziptide.Tests.EditMode.HeadsetBuildBlockerRegressionTests` — Runtime primitive construction. `StringAssert.Contains("GameObject.CreatePrimitive(PrimitiveType.Cube)", safety);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/EditMode/ReactivePropTests.cs:119` · `Ziptide.Tests.EditMode.ReactivePropTests` — Runtime primitive construction. `var host = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/EditMode/ToxicCityStageAIntegrationTests.cs:75` · `Ziptide.Tests.EditMode.ToxicCityStageAIntegrationTests` — Runtime primitive construction. `GameObject facade = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryCoreBootstrapGateTests.cs:88` · `Ziptide.Tests.PlayMode.RecoveryCoreBootstrapGateTests` — Runtime primitive construction. `var rendererHost = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAuditTests.cs:24` · `Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceAuditTests` — Runtime primitive construction. `GameObject fallback = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAuditTests.cs:35` · `Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceAuditTests` — Runtime primitive construction. `GameObject nullSlot = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
@@ -1856,6 +1861,8 @@
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/ReactivePropTests.cs:103` · `Ziptide.Tests.EditMode.ReactivePropTests` — Runtime GameObject construction. `var host = new GameObject("ReactiveSteam");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/RepairableMachineSignalTests.cs:240` · `Ziptide.Tests.EditMode.RepairableMachineSignalTests` — Runtime GameObject construction. `var go = new GameObject(name);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/ShellSignPlacementTests.cs:94` · `Ziptide.Tests.EditMode.ShellSignPlacementTests` — Runtime GameObject construction. `_root = new GameObject("ShellSignPlacementRoot");`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/ToxicCityStageAIntegrationTests.cs:28` · `Ziptide.Tests.EditMode.ToxicCityStageAIntegrationTests` — Runtime GameObject construction. `city = new GameObject("__TEST_CITY_ROOT");`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/ToxicCityStageAIntegrationTests.cs:29` · `Ziptide.Tests.EditMode.ToxicCityStageAIntegrationTests` — Runtime GameObject construction. `var district = new GameObject("District_Test");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/UiReadabilityAuditRulesTests.cs:138` · `Ziptide.Tests.EditMode.UiReadabilityAuditRulesTests` — Runtime GameObject construction. `var go = new GameObject(name);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/WaterTests.cs:174` · `Ziptide.Tests.EditMode.WaterTests` — Runtime GameObject construction. `var go = new GameObject("Water");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/WristScannerResultTests.cs:212` · `Ziptide.Tests.EditMode.WristScannerResultTests` — Runtime GameObject construction. `var go = new GameObject(name);`

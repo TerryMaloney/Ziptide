@@ -1,13 +1,13 @@
 {
   "tool": "recovery_event_save_graph",
-  "scannedFiles": 656,
-  "evidenceCount": 701,
+  "scannedFiles": 658,
+  "evidenceCount": 703,
   "kindCounts": {
     "AUTOSAVE": 7,
     "EVENT_DECLARE": 45,
     "EVENT_INVOKE": 60,
-    "EVENT_SUBSCRIBE": 99,
-    "EVENT_UNSUBSCRIBE": 53,
+    "EVENT_SUBSCRIBE": 100,
+    "EVENT_UNSUBSCRIBE": 54,
     "PLAYER_PREFS_ACCESS": 11,
     "PROFILE_FIELD_ACCESS": 358,
     "SAVE_ACCESS": 68
@@ -1476,6 +1476,26 @@
         "target": "EditorSceneManager.sceneOpened",
         "detail": "OnSceneOpened",
         "snippet": "StringAssert.Contains(\"EditorSceneManager.sceneOpened += OnSceneOpened;\", sync);"
+      }
+    ],
+    "EditorSceneManager.sceneSaving": [
+      {
+        "kind": "EVENT_UNSUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageASaveHook.cs",
+        "line": 21,
+        "owner": "Ziptide.Editor.Patching.ToxicCityStageASaveHook",
+        "target": "EditorSceneManager.sceneSaving",
+        "detail": "OnSceneSaving",
+        "snippet": "EditorSceneManager.sceneSaving -= OnSceneSaving;"
+      },
+      {
+        "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageASaveHook.cs",
+        "line": 22,
+        "owner": "Ziptide.Editor.Patching.ToxicCityStageASaveHook",
+        "target": "EditorSceneManager.sceneSaving",
+        "detail": "OnSceneSaving",
+        "snippet": "EditorSceneManager.sceneSaving += OnSceneSaving;"
       }
     ],
     "ExpectedArchetype": [
@@ -8313,6 +8333,24 @@
       "target": "availableThemes",
       "detail": "profile",
       "snippet": "profile.availableThemes.Add(theme);"
+    },
+    {
+      "kind": "EVENT_UNSUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageASaveHook.cs",
+      "line": 21,
+      "owner": "Ziptide.Editor.Patching.ToxicCityStageASaveHook",
+      "target": "EditorSceneManager.sceneSaving",
+      "detail": "OnSceneSaving",
+      "snippet": "EditorSceneManager.sceneSaving -= OnSceneSaving;"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageASaveHook.cs",
+      "line": 22,
+      "owner": "Ziptide.Editor.Patching.ToxicCityStageASaveHook",
+      "target": "EditorSceneManager.sceneSaving",
+      "detail": "OnSceneSaving",
+      "snippet": "EditorSceneManager.sceneSaving += OnSceneSaving;"
     },
     {
       "kind": "PROFILE_FIELD_ACCESS",
