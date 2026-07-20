@@ -27,6 +27,30 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-20 (hwr33) - Fable 5 architect: 🏁 FINISHED-GAME BENCHMARK — the gap audit vs a shipped Quest title (Terry-directed, one of multiple model runs, planning only, zero code)
+- **Terry's instinct, now confirmed with repo evidence:** "even in our planning we're missing
+  important parts of what anyone would call a finished game." New doc:
+  **`docs/design/FINISHED_GAME_BENCHMARK.md`** — Meta store cert (VRC classes) + commercial
+  completeness bar + live-ops, every item verdict-ed ✅/🟠/📋/❌ with grep evidence.
+- **The headline (§4):** the plans are deep on world/content quality and near-silent on the SHELL
+  of a shipped product. Verified-unplanned set: entitlement check · HMD-doff pause/mute ·
+  tracking/boundary/recenter · controller-loss handling · in-game pause menu · audio mix bus +
+  volume sliders · handedness swap · seated mode/height recal · save-management UX (confirm/
+  delete/recovery) · **ending + credits roll (the 80-world vision has no defined END for v1)** ·
+  device soak protocol · store listing kit · IARC/privacy · version display · cloud saves ·
+  telemetry (first-hour funnel!) · achievements · localization decision. Bright spots: music
+  licensing already ruled on (📋), save migration law ✅, onboarding is the best-covered item ✅,
+  fall/stuck recovery device-proven ✅.
+- **Proposal (§5, for the multi-model merge to refine):** a SHIP SHELL lane (SS-01…SS-18
+  envelopes; most are 1–3 commit LLM-buildable systems), ordered lifecycle/tracking first →
+  pause+settings mini-program on FH-S07's surfaces → v1 ending = a defined stopping beat +
+  credits when the DC story locks → store kit last-mile → telemetry EARLY if Terry wants funnel
+  data. New EXCELLENCE_MAP row "Ship shell" so the map stops hiding the hole.
+- **⚠️ Multi-model merge note (rb43 protocol):** verdicts carry evidence — siblings should
+  re-check, then ADD rows, not re-litigate. Merge by section; Terry adjudicates; every ❌ becomes
+  an envelope or a recorded CUT.
+- **Commits:** this push (docs only).
+
 ### 2026-07-20 (rb44) — Fable 5: FACTORY MASTER ORDER — the multi-research merge (planning only, zero code)
 
 - **Did:** Terry asked for the merge: read every parallel research (ONE_SHOT_BUILD_FRAMEWORK ·
