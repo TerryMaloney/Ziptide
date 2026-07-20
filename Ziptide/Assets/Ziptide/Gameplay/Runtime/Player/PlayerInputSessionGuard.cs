@@ -83,6 +83,8 @@ namespace Ziptide.Gameplay
                 return 0;
             }
 
+            EnsureMutationRepairDriver(reason);
+
             InputActionManager[] managers = UnityEngine.Object.FindObjectsOfType<InputActionManager>(true);
             var assets = new List<InputActionAsset>();
             AddAssets(primary, assets);
@@ -147,6 +149,22 @@ namespace Ziptide.Gameplay
                 + " assets=" + assets.Count + " duplicatesDisabled=" + disabled
                 + " recoveredAssets=" + recoveredAssets + " reason=" + reason);
             return disabled;
+        }
+
+        private static void EnsureMutationRepairDriver(string reason)
+        {
+            if (UnityEngine.Object.FindObjectOfType<InputMutationRepairDriver>(true) != null) return;
+
+            PlayerRigPersistence rig = UnityEngine.Object.FindObjectOfType<PlayerRigPersistence>(true);
+            if (rig == null)
+            {
+                Debug.LogWarning("ZIPTIDE: INPUT_MUTATION_REPAIR_DRIVER no_persistent_rig reason=" + reason);
+                return;
+            }
+
+            rig.gameObject.AddComponent<InputMutationRepairDriver>();
+            Debug.Log("ZIPTIDE: INPUT_MUTATION_REPAIR_DRIVER ready owner=PlayerInputSessionGuard reason="
+                + reason);
         }
 
         private static XRInteractionManager FindCanonicalXriManager()
