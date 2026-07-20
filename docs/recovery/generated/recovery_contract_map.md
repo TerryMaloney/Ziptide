@@ -2477,9 +2477,9 @@ None.
 
 - Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`
 - Paths: `Ziptide/Assets/Ziptide/Tests/EditMode/WeaponPerceptualAuditRulesTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/EditMode/WeaponPerceptualAuditRulesTests.cs:74` **CREATE_PRIMITIVE** — `GameObject weapon = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Tests/EditMode/WeaponPerceptualAuditRulesTests.cs:78` **NEW_GAME_OBJECT** — `Transform grip = new GameObject("Grip").transform;`
-  - `Ziptide/Assets/Ziptide/Tests/EditMode/WeaponPerceptualAuditRulesTests.cs:83` **NEW_GAME_OBJECT** — `Transform muzzle = new GameObject("Muzzle").transform;`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/WeaponPerceptualAuditRulesTests.cs:96` **CREATE_PRIMITIVE** — `GameObject weapon = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/WeaponPerceptualAuditRulesTests.cs:100` **NEW_GAME_OBJECT** — `Transform grip = new GameObject("Grip").transform;`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/WeaponPerceptualAuditRulesTests.cs:105` **NEW_GAME_OBJECT** — `Transform muzzle = new GameObject("Muzzle").transform;`
 
 ### `Ziptide.Tests.EditMode.WorldImprovementCompilerTests` — 4 signal(s)
 

@@ -1020,7 +1020,7 @@
           "focus": "melee",
           "token": "Muzzle",
           "path": "Ziptide/Assets/Ziptide/Tests/EditMode/WeaponPerceptualAuditRulesTests.cs",
-          "line": 83,
+          "line": 105,
           "symbol": "Ziptide.Tests.EditMode.WeaponPerceptualAuditRulesTests",
           "snippet": "Transform muzzle = new GameObject(\"Muzzle\").transform;",
           "declaration_file": false
@@ -7285,7 +7285,7 @@
       "focus": "melee",
       "token": "Muzzle",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/WeaponPerceptualAuditRulesTests.cs",
-      "line": 83,
+      "line": 105,
       "symbol": "Ziptide.Tests.EditMode.WeaponPerceptualAuditRulesTests",
       "snippet": "Transform muzzle = new GameObject(\"Muzzle\").transform;",
       "declaration_file": false

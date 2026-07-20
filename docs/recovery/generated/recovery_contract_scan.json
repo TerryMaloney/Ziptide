@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-20T12:28:22.258450+00:00",
+  "generatedAtUtc": "2026-07-20T12:29:20.335264+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -14222,7 +14222,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/WeaponPerceptualAuditRulesTests.cs",
-      "line": 74,
+      "line": 96,
       "symbol": "Ziptide.Tests.EditMode.WeaponPerceptualAuditRulesTests",
       "snippet": "GameObject weapon = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -17507,7 +17507,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/WeaponPerceptualAuditRulesTests.cs",
-      "line": 78,
+      "line": 100,
       "symbol": "Ziptide.Tests.EditMode.WeaponPerceptualAuditRulesTests",
       "snippet": "Transform grip = new GameObject(\"Grip\").transform;"
     },
@@ -17516,7 +17516,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/WeaponPerceptualAuditRulesTests.cs",
-      "line": 83,
+      "line": 105,
       "symbol": "Ziptide.Tests.EditMode.WeaponPerceptualAuditRulesTests",
       "snippet": "Transform muzzle = new GameObject(\"Muzzle\").transform;"
     },
