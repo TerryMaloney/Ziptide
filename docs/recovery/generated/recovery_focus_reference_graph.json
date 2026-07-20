@@ -1,7 +1,7 @@
 {
   "tool": "recovery_focus_reference_graph",
-  "scannedFiles": 658,
-  "referenceCount": 373,
+  "scannedFiles": 687,
+  "referenceCount": 382,
   "summaries": {
     "melee": {
       "referenceCount": 88,
@@ -177,12 +177,13 @@
       ]
     },
     "shipPresentation": {
-      "referenceCount": 89,
-      "fileCount": 17,
-      "callerFileCount": 14,
+      "referenceCount": 98,
+      "fileCount": 19,
+      "callerFileCount": 16,
       "paths": [
         "Ziptide/Assets/Ziptide/Content/Runtime/Ship/ShipLoadoutCore.cs",
         "Ziptide/Assets/Ziptide/Core/Runtime/ShipLocker.cs",
+        "Ziptide/Assets/Ziptide/Editor/Audit/FullSendPresentationAuditRules.cs",
         "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
         "Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs",
         "Ziptide/Assets/Ziptide/Editor/Patching/ShipHullBuilder.cs",
@@ -194,12 +195,14 @@
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipRefit.cs",
         "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
+        "Ziptide/Assets/Ziptide/Tests/EditMode/HeroShipHullBuilderTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/ShipFlightParamsTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/ShipLoadoutCoreTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/ShipLockerTests.cs"
       ],
       "callerPaths": [
+        "Ziptide/Assets/Ziptide/Editor/Audit/FullSendPresentationAuditRules.cs",
         "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
         "Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs",
         "Ziptide/Assets/Ziptide/Editor/Patching/ShipHullBuilder.cs",
@@ -210,6 +213,7 @@
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipRefit.cs",
         "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
+        "Ziptide/Assets/Ziptide/Tests/EditMode/HeroShipHullBuilderTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/ShipFlightParamsTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/ShipLoadoutCoreTests.cs",
@@ -713,16 +717,16 @@
           "focus": "melee",
           "token": "Muzzle",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/PistolRuntime.cs",
-          "line": 9,
+          "line": 10,
           "symbol": "Ziptide.Gameplay.PistolRuntime",
-          "snippet": "/// Hitscan pistol: raycast from Muzzle on trigger, hit TargetRuntime, haptics, muzzle flash, optional audio.",
+          "snippet": "/// Hitscan pistol: raycast from Muzzle on trigger, hit TargetRuntime, tracer/muzzle/impact feedback,",
           "declaration_file": false
         },
         {
           "focus": "melee",
           "token": "Muzzle",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/PistolRuntime.cs",
-          "line": 31,
+          "line": 41,
           "symbol": "Ziptide.Gameplay.PistolRuntime",
           "snippet": "_muzzle = transform.Find(\"Muzzle\");",
           "declaration_file": false
@@ -731,7 +735,7 @@
           "focus": "melee",
           "token": "Muzzle",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/PistolRuntime.cs",
-          "line": 34,
+          "line": 44,
           "symbol": "Ziptide.Gameplay.PistolRuntime",
           "snippet": "var m = new GameObject(\"Muzzle\");",
           "declaration_file": false
@@ -812,7 +816,7 @@
           "focus": "melee",
           "token": "Muzzle",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/TaserDartGunRuntime.cs",
-          "line": 30,
+          "line": 43,
           "symbol": "Ziptide.Gameplay.TaserDartGunRuntime",
           "snippet": "_muzzle = transform.Find(\"Muzzle\");",
           "declaration_file": false
@@ -821,7 +825,7 @@
           "focus": "melee",
           "token": "Muzzle",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/TaserDartGunRuntime.cs",
-          "line": 33,
+          "line": 46,
           "symbol": "Ziptide.Gameplay.TaserDartGunRuntime",
           "snippet": "var m = new GameObject(\"Muzzle\");",
           "declaration_file": false
@@ -2819,10 +2823,19 @@
         {
           "focus": "shipPresentation",
           "token": "Fuselage_Aft",
+          "path": "Ziptide/Assets/Ziptide/Editor/Audit/FullSendPresentationAuditRules.cs",
+          "line": 43,
+          "symbol": "Ziptide.Editor.Audit.FullSendPresentationAuditRules",
+          "snippet": "\"Fuselage_Aft\", \"Fuselage_Mid\", \"Fuselage_Bow\", \"Nose_Tip\",",
+          "declaration_file": false
+        },
+        {
+          "focus": "shipPresentation",
+          "token": "Fuselage_Aft",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/ShipHullBuilder.cs",
-          "line": 35,
+          "line": 42,
           "symbol": "Ziptide.Editor.Patching.ShipHullBuilder",
-          "snippet": "Part(ship, \"Fuselage_Aft\", new Vector3(0f, 0f, -L * 0.30f),",
+          "snippet": "Part(ship, \"Fuselage_Aft\", PrimitiveType.Cube,",
           "declaration_file": false
         },
         {
@@ -2832,6 +2845,15 @@
           "line": 27,
           "symbol": "Ziptide.Gameplay.ShipRefit",
           "snippet": "private static readonly string[] FuselageParts = { \"Fuselage_Aft\", \"Fuselage_Mid\", \"Fuselage_Bow\", \"Nose_Tip\", \"DorsalSpine\" };",
+          "declaration_file": false
+        },
+        {
+          "focus": "shipPresentation",
+          "token": "Fuselage_Aft",
+          "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HeroShipHullBuilderTests.cs",
+          "line": 23,
+          "symbol": "Ziptide.Tests.EditMode.HeroShipHullBuilderTests",
+          "snippet": "\"Fuselage_Aft\", \"Fuselage_Mid\", \"Fuselage_Bow\", \"Nose_Tip\",",
           "declaration_file": false
         }
       ],
@@ -3230,6 +3252,24 @@
         {
           "focus": "shipPresentation",
           "token": "ShipHullBuilder",
+          "path": "Ziptide/Assets/Ziptide/Editor/Audit/FullSendPresentationAuditRules.cs",
+          "line": 36,
+          "symbol": "Ziptide.Editor.Audit.FullSendPresentationAuditRules",
+          "snippet": "if (renderers.Length < ShipHullBuilder.MinimumHeroRenderers)",
+          "declaration_file": false
+        },
+        {
+          "focus": "shipPresentation",
+          "token": "ShipHullBuilder",
+          "path": "Ziptide/Assets/Ziptide/Editor/Audit/FullSendPresentationAuditRules.cs",
+          "line": 39,
+          "symbol": "Ziptide.Editor.Audit.FullSendPresentationAuditRules",
+          "snippet": "+ ShipHullBuilder.MinimumHeroRenderers + \".\", path);",
+          "declaration_file": false
+        },
+        {
+          "focus": "shipPresentation",
+          "token": "ShipHullBuilder",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
           "line": 372,
           "symbol": "Ziptide.Editor.Patching.CityBuilder",
@@ -3249,7 +3289,7 @@
           "focus": "shipPresentation",
           "token": "ShipHullBuilder",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/ShipHullBuilder.cs",
-          "line": 17,
+          "line": 14,
           "symbol": "Ziptide.Editor.Patching.ShipHullBuilder",
           "snippet": "public static class ShipHullBuilder",
           "declaration_file": true
@@ -3271,6 +3311,33 @@
           "symbol": "Ziptide.Gameplay.ShipRefit",
           "snippet": "/// baked Forge meshes supersede this through the same parent later (ShipHullBuilder's own",
           "declaration_file": false
+        },
+        {
+          "focus": "shipPresentation",
+          "token": "ShipHullBuilder",
+          "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HeroShipHullBuilderTests.cs",
+          "line": 10,
+          "symbol": "Ziptide.Tests.EditMode.HeroShipHullBuilderTests",
+          "snippet": "public sealed class HeroShipHullBuilderTests",
+          "declaration_file": false
+        },
+        {
+          "focus": "shipPresentation",
+          "token": "ShipHullBuilder",
+          "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HeroShipHullBuilderTests.cs",
+          "line": 19,
+          "symbol": "Ziptide.Tests.EditMode.HeroShipHullBuilderTests",
+          "snippet": "ShipHullBuilder.Build(ship.transform, new Vector3(5f, 3f, 12f), new GlobalPalette());",
+          "declaration_file": false
+        },
+        {
+          "focus": "shipPresentation",
+          "token": "ShipHullBuilder",
+          "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HeroShipHullBuilderTests.cs",
+          "line": 38,
+          "symbol": "Ziptide.Tests.EditMode.HeroShipHullBuilderTests",
+          "snippet": "Assert.That(renderers.Length, Is.GreaterThanOrEqualTo(ShipHullBuilder.MinimumHeroRenderers));",
+          "declaration_file": false
         }
       ],
       "ShipHullBuilder.Build": [
@@ -3281,6 +3348,15 @@
           "line": 377,
           "symbol": "Ziptide.Editor.Patching.CityBuilder",
           "snippet": "ShipHullBuilder.Build(ship, s.shipSize, kit.palette);",
+          "declaration_file": false
+        },
+        {
+          "focus": "shipPresentation",
+          "token": "ShipHullBuilder.Build",
+          "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HeroShipHullBuilderTests.cs",
+          "line": 19,
+          "symbol": "Ziptide.Tests.EditMode.HeroShipHullBuilderTests",
+          "snippet": "ShipHullBuilder.Build(ship.transform, new Vector3(5f, 3f, 12f), new GlobalPalette());",
           "declaration_file": false
         }
       ],
@@ -3610,6 +3686,15 @@
           "symbol": "Ziptide.Gameplay.ShipRefit",
           "snippet": "public class ShipRefitBaseXf : MonoBehaviour",
           "declaration_file": true
+        },
+        {
+          "focus": "shipPresentation",
+          "token": "ShipRefit",
+          "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HeroShipHullBuilderTests.cs",
+          "line": 29,
+          "symbol": "Ziptide.Tests.EditMode.HeroShipHullBuilderTests",
+          "snippet": "anchor + \" is required by ShipRefit and must stay a direct child.\");",
+          "declaration_file": false
         }
       ],
       "ShipRefit.Apply": [
@@ -3931,6 +4016,33 @@
       "symbol": "Ziptide.Core.ShipLocker",
       "snippet": "public static class ShipLocker",
       "declaration_file": true
+    },
+    {
+      "focus": "shipPresentation",
+      "token": "Fuselage_Aft",
+      "path": "Ziptide/Assets/Ziptide/Editor/Audit/FullSendPresentationAuditRules.cs",
+      "line": 43,
+      "symbol": "Ziptide.Editor.Audit.FullSendPresentationAuditRules",
+      "snippet": "\"Fuselage_Aft\", \"Fuselage_Mid\", \"Fuselage_Bow\", \"Nose_Tip\",",
+      "declaration_file": false
+    },
+    {
+      "focus": "shipPresentation",
+      "token": "ShipHullBuilder",
+      "path": "Ziptide/Assets/Ziptide/Editor/Audit/FullSendPresentationAuditRules.cs",
+      "line": 36,
+      "symbol": "Ziptide.Editor.Audit.FullSendPresentationAuditRules",
+      "snippet": "if (renderers.Length < ShipHullBuilder.MinimumHeroRenderers)",
+      "declaration_file": false
+    },
+    {
+      "focus": "shipPresentation",
+      "token": "ShipHullBuilder",
+      "path": "Ziptide/Assets/Ziptide/Editor/Audit/FullSendPresentationAuditRules.cs",
+      "line": 39,
+      "symbol": "Ziptide.Editor.Audit.FullSendPresentationAuditRules",
+      "snippet": "+ ShipHullBuilder.MinimumHeroRenderers + \".\", path);",
+      "declaration_file": false
     },
     {
       "focus": "melee",
@@ -4305,16 +4417,16 @@
       "focus": "shipPresentation",
       "token": "Fuselage_Aft",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ShipHullBuilder.cs",
-      "line": 35,
+      "line": 42,
       "symbol": "Ziptide.Editor.Patching.ShipHullBuilder",
-      "snippet": "Part(ship, \"Fuselage_Aft\", new Vector3(0f, 0f, -L * 0.30f),",
+      "snippet": "Part(ship, \"Fuselage_Aft\", PrimitiveType.Cube,",
       "declaration_file": false
     },
     {
       "focus": "shipPresentation",
       "token": "ShipHullBuilder",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ShipHullBuilder.cs",
-      "line": 17,
+      "line": 14,
       "symbol": "Ziptide.Editor.Patching.ShipHullBuilder",
       "snippet": "public static class ShipHullBuilder",
       "declaration_file": true
@@ -5655,16 +5767,16 @@
       "focus": "melee",
       "token": "Muzzle",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/PistolRuntime.cs",
-      "line": 9,
+      "line": 10,
       "symbol": "Ziptide.Gameplay.PistolRuntime",
-      "snippet": "/// Hitscan pistol: raycast from Muzzle on trigger, hit TargetRuntime, haptics, muzzle flash, optional audio.",
+      "snippet": "/// Hitscan pistol: raycast from Muzzle on trigger, hit TargetRuntime, tracer/muzzle/impact feedback,",
       "declaration_file": false
     },
     {
       "focus": "melee",
       "token": "Muzzle",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/PistolRuntime.cs",
-      "line": 31,
+      "line": 41,
       "symbol": "Ziptide.Gameplay.PistolRuntime",
       "snippet": "_muzzle = transform.Find(\"Muzzle\");",
       "declaration_file": false
@@ -5673,7 +5785,7 @@
       "focus": "melee",
       "token": "Muzzle",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/PistolRuntime.cs",
-      "line": 34,
+      "line": 44,
       "symbol": "Ziptide.Gameplay.PistolRuntime",
       "snippet": "var m = new GameObject(\"Muzzle\");",
       "declaration_file": false
@@ -5781,7 +5893,7 @@
       "focus": "melee",
       "token": "Muzzle",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/TaserDartGunRuntime.cs",
-      "line": 30,
+      "line": 43,
       "symbol": "Ziptide.Gameplay.TaserDartGunRuntime",
       "snippet": "_muzzle = transform.Find(\"Muzzle\");",
       "declaration_file": false
@@ -5790,7 +5902,7 @@
       "focus": "melee",
       "token": "Muzzle",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/TaserDartGunRuntime.cs",
-      "line": 33,
+      "line": 46,
       "symbol": "Ziptide.Gameplay.TaserDartGunRuntime",
       "snippet": "var m = new GameObject(\"Muzzle\");",
       "declaration_file": false
@@ -6225,6 +6337,60 @@
       "line": 80,
       "symbol": "Ziptide.Tests.EditMode.ForgeRecipeLibraryTests",
       "snippet": "Assert.IsNotNull(muzzle, kv.Key + \" handheld without a Muzzle socket\");",
+      "declaration_file": false
+    },
+    {
+      "focus": "shipPresentation",
+      "token": "Fuselage_Aft",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HeroShipHullBuilderTests.cs",
+      "line": 23,
+      "symbol": "Ziptide.Tests.EditMode.HeroShipHullBuilderTests",
+      "snippet": "\"Fuselage_Aft\", \"Fuselage_Mid\", \"Fuselage_Bow\", \"Nose_Tip\",",
+      "declaration_file": false
+    },
+    {
+      "focus": "shipPresentation",
+      "token": "ShipHullBuilder",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HeroShipHullBuilderTests.cs",
+      "line": 10,
+      "symbol": "Ziptide.Tests.EditMode.HeroShipHullBuilderTests",
+      "snippet": "public sealed class HeroShipHullBuilderTests",
+      "declaration_file": false
+    },
+    {
+      "focus": "shipPresentation",
+      "token": "ShipHullBuilder",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HeroShipHullBuilderTests.cs",
+      "line": 19,
+      "symbol": "Ziptide.Tests.EditMode.HeroShipHullBuilderTests",
+      "snippet": "ShipHullBuilder.Build(ship.transform, new Vector3(5f, 3f, 12f), new GlobalPalette());",
+      "declaration_file": false
+    },
+    {
+      "focus": "shipPresentation",
+      "token": "ShipHullBuilder",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HeroShipHullBuilderTests.cs",
+      "line": 38,
+      "symbol": "Ziptide.Tests.EditMode.HeroShipHullBuilderTests",
+      "snippet": "Assert.That(renderers.Length, Is.GreaterThanOrEqualTo(ShipHullBuilder.MinimumHeroRenderers));",
+      "declaration_file": false
+    },
+    {
+      "focus": "shipPresentation",
+      "token": "ShipHullBuilder.Build",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HeroShipHullBuilderTests.cs",
+      "line": 19,
+      "symbol": "Ziptide.Tests.EditMode.HeroShipHullBuilderTests",
+      "snippet": "ShipHullBuilder.Build(ship.transform, new Vector3(5f, 3f, 12f), new GlobalPalette());",
+      "declaration_file": false
+    },
+    {
+      "focus": "shipPresentation",
+      "token": "ShipRefit",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HeroShipHullBuilderTests.cs",
+      "line": 29,
+      "symbol": "Ziptide.Tests.EditMode.HeroShipHullBuilderTests",
+      "snippet": "anchor + \" is required by ShipRefit and must stay a direct child.\");",
       "declaration_file": false
     },
     {

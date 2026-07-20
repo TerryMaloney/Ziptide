@@ -1,8 +1,8 @@
 # ZIPTIDE Event and Save Ownership Graph
 
-- Scanned C# files: **658**
-- Evidence edges: **703**
-- Named subscriptions without matching unsubscribe in the same owner: **48**
+- Scanned C# files: **687**
+- Evidence edges: **721**
+- Named subscriptions without matching unsubscribe in the same owner: **52**
 
 This is a static ownership graph. An unmatched row is a review target, not automatic proof of a leak; process-lifetime static hooks may be intentional.
 
@@ -11,10 +11,10 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **AUTOSAVE:** 7
 - **EVENT_DECLARE:** 45
 - **EVENT_INVOKE:** 60
-- **EVENT_SUBSCRIBE:** 100
-- **EVENT_UNSUBSCRIBE:** 54
+- **EVENT_SUBSCRIBE:** 107
+- **EVENT_UNSUBSCRIBE:** 57
 - **PLAYER_PREFS_ACCESS:** 11
-- **PROFILE_FIELD_ACCESS:** 358
+- **PROFILE_FIELD_ACCESS:** 366
 - **SAVE_ACCESS:** 68
 
 ## Named subscriptions without matching unsubscribe
@@ -45,6 +45,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - `Ziptide.Gameplay.MiningRigRuntime` subscribes `_mine.stored` → `_mine` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/MiningRigRuntime.cs:114`
 - `Ziptide.Gameplay.MeleeWeaponRuntime` subscribes `bot.transform.position` → `transform` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:129`
 - `Ziptide.Gameplay.SonicThumperRuntime` subscribes `bot.transform.position` → `shoveDir` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/SonicThumperRuntime.cs:78`
+- `Ziptide.Gameplay.CityStreetLifeRuntime` subscribes `p.y` → `phase` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/CityStreetLifeRuntime.cs:52`
+- `Ziptide.Gameplay.CityStreetLifeRuntime` subscribes `p.x` → `Mathf` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/CityStreetLifeRuntime.cs:53`
 - `Ziptide.Gameplay.ClimbableSurface` subscribes `_rig.position` → `new` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ClimbRuntime.cs:218`
 - `Ziptide.Gameplay.ConquestMissionRuntime` subscribes `SceneManager.sceneLoaded` → `OnSceneLoaded` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:45`
 - `Ziptide.Gameplay.ConquestMissionRuntime` subscribes `_rigRoot.transform.position` → `Vector3` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:414`
@@ -52,6 +54,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - `Ziptide.Gameplay.HazardZoneRuntime` subscribes `_rig.transform.position` → `dir` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HazardZoneRuntime.cs:111`
 - `Ziptide.Gameplay.HazardZoneRuntime` subscribes `_rig.transform.position` → `outDir` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HazardZoneRuntime.cs:134`
 - `Ziptide.Gameplay.LiftRuntime` subscribes `_rig.position` → `delta` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/LiftRuntime.cs:88`
+- `Ziptide.Gameplay.ToxicRiverSurfaceRuntime` subscribes `p.y` → `Mathf` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ToxicRiverSurfaceRuntime.cs:78`
+- `Ziptide.Gameplay.ToxicRiverSurfaceRuntime` subscribes `p.y` → `Mathf` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ToxicRiverSurfaceRuntime.cs:88`
 - `Ziptide.Gameplay.ZiplineRuntime` subscribes `_rig.position` → `delta` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ZiplineRuntime.cs:217`
 - `Ziptide.Multiplayer.Bots.BotPerception` subscribes `aim.Y` → `_rng` at `Ziptide/Assets/Ziptide/Multiplayer/Runtime/Bots/BotBrain.cs:237`
 - `Ziptide.Multiplayer.Conquest.ConquestPlayer` subscribes `planet.defenseLevel` → `d` at `Ziptide/Assets/Ziptide/Multiplayer/Runtime/Conquest/ConquestState.cs:103`
@@ -69,6 +73,10 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - `Ziptide.Visuals.SkyAtmosphereRig` subscribes `position.y` → `eyeY` at `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs:235`
 
 ## Targets
+
+### `Accent`
+
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Ship.VehicleRuntime` · `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:120` · `profile` — `ObjectiveBeacon.Attach(gameObject, profile.Accent, 5f);`
 
 ### `ActiveStateEvidence`
 
@@ -138,6 +146,12 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Core.PersistentDiagnosticRing` · `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/PersistentDiagnosticRing.cs:41` · `Capture` — `Application.logMessageReceivedThreaded -= Capture;`
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Core.PersistentDiagnosticRing` · `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/PersistentDiagnosticRing.cs:62` · `Capture` — `Application.logMessageReceivedThreaded -= Capture;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Core.PersistentDiagnosticRing` · `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/PersistentDiagnosticRing.cs:63` · `Capture` — `Application.logMessageReceivedThreaded += Capture;`
+
+### `ApproximateBounds`
+
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.VehiclePresentationCoreTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/VehiclePresentationCoreTests.cs:20` · `profile` — `Assert.That(profile.ApproximateBounds.x, Is.InRange(1.4f, 3.0f));`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.VehiclePresentationCoreTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/VehiclePresentationCoreTests.cs:21` · `profile` — `Assert.That(profile.ApproximateBounds.y, Is.InRange(1.2f, 2.4f));`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.VehiclePresentationCoreTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/VehiclePresentationCoreTests.cs:22` · `profile` — `Assert.That(profile.ApproximateBounds.z, Is.InRange(2.5f, 3.8f));`
 
 ### `Assert`
 
@@ -209,10 +223,6 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorReadabilityTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorReadabilityTests.cs:79` · `profile` — `Assert.IsTrue(assetIds.Contains(profile.CreatureId),`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorReadabilityTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorReadabilityTests.cs:80` · `profile` — `"stale/invented readability profile has no shipped CreatureDefinition: " + profile.CreatureId);`
 
-### `Cruise`
-
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Ship.VehicleRuntime` · `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:44` · `profile` — `/// <summary>VehicleDefinition → the ground FlightParams profile. Cruise/boost map with the`
-
 ### `DestinationSelected`
 
 - **EVENT_DECLARE** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:39` · `Action<string>` — `public event Action<string> DestinationSelected;`
@@ -242,8 +252,14 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `EditorSceneManager.sceneSaving`
 
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Editor.Patching.ToxicCityRiverSaveHook` · `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityRiverSaveHook.cs:21` · `OnSceneSaving` — `EditorSceneManager.sceneSaving -= OnSceneSaving;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Editor.Patching.ToxicCityRiverSaveHook` · `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityRiverSaveHook.cs:22` · `OnSceneSaving` — `EditorSceneManager.sceneSaving += OnSceneSaving;`
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Editor.Patching.ToxicCityStageASaveHook` · `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageASaveHook.cs:21` · `OnSceneSaving` — `EditorSceneManager.sceneSaving -= OnSceneSaving;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Editor.Patching.ToxicCityStageASaveHook` · `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageASaveHook.cs:22` · `OnSceneSaving` — `EditorSceneManager.sceneSaving += OnSceneSaving;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Editor.Patching.ToxicCityStageBSaveHook` · `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageBSaveHook.cs:17` · `OnSceneSaving` — `EditorSceneManager.sceneSaving -= OnSceneSaving;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Editor.Patching.ToxicCityStageBSaveHook` · `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageBSaveHook.cs:18` · `OnSceneSaving` — `EditorSceneManager.sceneSaving += OnSceneSaving;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Editor.Patching.ToxicCityVehicleSaveHook` · `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleSaveHook.cs:17` · `OnSceneSaving` — `EditorSceneManager.sceneSaving -= OnSceneSaving;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Editor.Patching.ToxicCityVehicleSaveHook` · `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleSaveHook.cs:18` · `OnSceneSaving` — `EditorSceneManager.sceneSaving += OnSceneSaving;`
 
 ### `ExpectedArchetype`
 
@@ -258,6 +274,12 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Editor.Audit.CreatureBehaviorAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/CreatureBehaviorAuditRules.cs:155` · `profile` — `!factorySource.Contains(profile.FactoryEvidenceToken))`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs:30` · `profile` — `Assert.IsFalse(string.IsNullOrWhiteSpace(profile.FactoryEvidenceToken), profile.CreatureId);`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs:83` · `profile` — `StringAssert.Contains(profile.FactoryEvidenceToken, source,`
+
+### `Family`
+
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Ship.VehicleRuntime` · `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:123` · `profile` — `+ " family=" + profile.Family + " parts=" + parts);`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.VehiclePresentationCoreTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/VehiclePresentationCoreTests.cs:18` · `profile` — `Assert.That(profile.Family, Is.EqualTo(family));`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.VehiclePresentationCoreTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/VehiclePresentationCoreTests.cs:37` · `profile` — `Assert.That(profile.Family, Is.EqualTo("utility"));`
 
 ### `FirstDestinationSelected`
 
@@ -332,6 +354,10 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.ProfileEconomyTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/ProfileEconomyTests.cs:80` · `profile` — `Assert.AreEqual(1100L, profile.GetWorld("ToxicCity").lastResolvedAtUnix);`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.ProfileEconomyTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/ProfileEconomyTests.cs:87` · `profile` — `Assert.IsNull(profile.GetWorld("NewWorld")); // not present yet`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.ProfileEconomyTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/ProfileEconomyTests.cs:92` · `profile` — `var ws = profile.GetWorld("NewWorld");`
+
+### `Glow`
+
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.VehiclePresentationCoreTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/VehiclePresentationCoreTests.cs:23` · `profile` — `Assert.That(profile.Glow.maxColorComponent, Is.GreaterThan(0.75f));`
 
 ### `GoldenSlice`
 
@@ -472,6 +498,10 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 ### `MinAttackOdds`
 
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Multiplayer.Conquest.ConquestAction` · `Ziptide/Assets/Ziptide/Multiplayer/Runtime/Conquest/ConquestAI.cs:134` · `profile` — `if (odds >= profile.MinAttackOdds && odds > bestOdds)`
+
+### `MinimumParts`
+
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.VehiclePresentationCoreTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/VehiclePresentationCoreTests.cs:19` · `profile` — `Assert.That(profile.MinimumParts, Is.GreaterThanOrEqualTo(minimumParts));`
 
 ### `NamedBunkObjectGrabbed`
 
@@ -919,11 +949,11 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `boltCooldown`
 
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.DroneCombatBehavior` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:80` · `profile` — `boltCooldown = profile.boltCooldown;`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.DroneCombatBehavior` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:88` · `profile` — `boltCooldown = profile.boltCooldown;`
 
 ### `boltSpeed`
 
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.DroneCombatBehavior` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:81` · `profile` — `boltSpeed = profile.boltSpeed;`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.DroneCombatBehavior` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:89` · `profile` — `boltSpeed = profile.boltSpeed;`
 
 ### `bot.transform.position`
 
@@ -963,7 +993,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `detectRange`
 
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.DroneCombatBehavior` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:72` · `profile` — `detectRange = profile.detectRange;`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.DroneCombatBehavior` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:80` · `profile` — `detectRange = profile.detectRange;`
 
 ### `effect`
 
@@ -977,7 +1007,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Editor.Patching.ThemeAuthor` · `Ziptide/Assets/Ziptide/Editor/Patching/ThemeAuthor.cs:79` · `profile` — `profile.fallYThreshold = groundY - 3f; // below any canal/hazard depth`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Editor.Setup.CreateDefaultWorldProfile` · `Ziptide/Assets/Ziptide/Editor/Setup/CreateDefaultWorldProfile.cs:45` · `profile` — `profile.fallYThreshold = -2f;`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.FallRespawner` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/FallRespawner.cs:18` · `profile` — `if (transform.position.y < profile.fallYThreshold)`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.FallRespawner` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/FallRespawner.cs:43` · `profile` — `profile.fallYThreshold);`
 
 ### `flags`
 
@@ -1072,7 +1102,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `loseRange`
 
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.DroneCombatBehavior` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:73` · `profile` — `loseRange = profile.loseRange;`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.DroneCombatBehavior` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:81` · `profile` — `loseRange = profile.loseRange;`
 
 ### `method`
 
@@ -1100,19 +1130,26 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `orbitSpeed`
 
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.DroneCombatBehavior` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:75` · `profile` — `orbitSpeed = profile.orbitSpeed;`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.DroneCombatBehavior` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:83` · `profile` — `orbitSpeed = profile.orbitSpeed;`
+
+### `p.x`
+
+- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.CityStreetLifeRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/CityStreetLifeRuntime.cs:53` · `Mathf` — `p.x += Mathf.Sin(Time.time * 0.55f + i) * 0.08f;`
 
 ### `p.y`
 
+- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.CityStreetLifeRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/CityStreetLifeRuntime.cs:52` · `phase` — `p.y += phase * 1.15f;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.ToxicRiverSurfaceRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ToxicRiverSurfaceRuntime.cs:78` · `Mathf` — `p.y += Mathf.Sin(Time.time * 1.8f + i * 0.9f) * waveAmplitude`
+- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.ToxicRiverSurfaceRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ToxicRiverSurfaceRuntime.cs:88` · `Mathf` — `p.y += Mathf.Sin(Time.time * (1.2f + i * 0.07f) + i)`
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.ZiplineRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ZiplineRuntime.cs:83` · `Mathf` — `p.y -= Mathf.Max(0f, sagMeters) * 4f * t * (1f - t);`
 
 ### `patrolRadius`
 
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.DroneCombatBehavior` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:77` · `profile` — `patrolRadius = profile.patrolRadius;`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.DroneCombatBehavior` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:85` · `profile` — `patrolRadius = profile.patrolRadius;`
 
 ### `patrolSpeed`
 
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.DroneCombatBehavior` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:78` · `profile` — `patrolSpeed = profile.patrolSpeed;`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.DroneCombatBehavior` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:86` · `profile` — `patrolSpeed = profile.patrolSpeed;`
 
 ### `photos`
 
@@ -1210,7 +1247,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Editor.Patching.ThemeAuthor` · `Ziptide/Assets/Ziptide/Editor/Patching/ThemeAuthor.cs:78` · `profile` — `profile.respawnOnFall = true;`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Editor.Setup.CreateDefaultWorldProfile` · `Ziptide/Assets/Ziptide/Editor/Setup/CreateDefaultWorldProfile.cs:44` · `profile` — `profile.respawnOnFall = true;`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.FallRespawner` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/FallRespawner.cs:16` · `profile` — `if (!profile.respawnOnFall) return;`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.FallRespawner` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/FallRespawner.cs:33` · `profile` — `if (!profile.respawnOnFall) return;`
 
 ### `result.totalProduced`
 
@@ -1261,7 +1298,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `slowFactor`
 
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.DroneCombatBehavior` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:83` · `profile` — `slowFactor = profile.slowFactor;`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.DroneCombatBehavior` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:91` · `profile` — `slowFactor = profile.slowFactor;`
 
 ### `spawnEuler`
 
@@ -1278,11 +1315,11 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `standoffDistance`
 
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.DroneCombatBehavior` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:74` · `profile` — `standoffDistance = profile.standoffDistance;`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.DroneCombatBehavior` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:82` · `profile` — `standoffDistance = profile.standoffDistance;`
 
 ### `stunSeconds`
 
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.DroneCombatBehavior` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:82` · `profile` — `stunSeconds = profile.stunSeconds;`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.DroneCombatBehavior` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:90` · `profile` — `stunSeconds = profile.stunSeconds;`
 
 ### `t.OnFire`
 
@@ -1310,7 +1347,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `telegraphSeconds`
 
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.DroneCombatBehavior` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:79` · `profile` — `telegraphSeconds = profile.telegraphSeconds;`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.DroneCombatBehavior` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:87` · `profile` — `telegraphSeconds = profile.telegraphSeconds;`
 
 ### `transform.localPosition`
 
@@ -1333,7 +1370,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `verticalBob`
 
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.DroneCombatBehavior` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:76` · `profile` — `verticalBob = profile.verticalBob;`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.DroneCombatBehavior` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:84` · `profile` — `verticalBob = profile.verticalBob;`
 
 ### `volume`
 

@@ -1,7 +1,7 @@
 # ZIPTIDE Focused Recovery Reference Graph
 
-- Scanned C# files: **658**
-- Focused references: **373**
+- Scanned C# files: **687**
+- Focused references: **382**
 
 ## melee
 
@@ -82,9 +82,9 @@
 - **reference** · `Ziptide.Gameplay.GunLaserSight` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:49` — `_muzzle = transform.Find("Muzzle");`
 - **reference** · `Ziptide.Gameplay.MeleeWeaponRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:31` — `private Transform _tip; // the business end (child "Muzzle" from ItemFactory)`
 - **reference** · `Ziptide.Gameplay.MeleeWeaponRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:51` — `_tip = transform.Find("Muzzle");`
-- **reference** · `Ziptide.Gameplay.PistolRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/PistolRuntime.cs:9` — `/// Hitscan pistol: raycast from Muzzle on trigger, hit TargetRuntime, haptics, muzzle flash, optional audio.`
-- **reference** · `Ziptide.Gameplay.PistolRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/PistolRuntime.cs:31` — `_muzzle = transform.Find("Muzzle");`
-- **reference** · `Ziptide.Gameplay.PistolRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/PistolRuntime.cs:34` — `var m = new GameObject("Muzzle");`
+- **reference** · `Ziptide.Gameplay.PistolRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/PistolRuntime.cs:10` — `/// Hitscan pistol: raycast from Muzzle on trigger, hit TargetRuntime, tracer/muzzle/impact feedback,`
+- **reference** · `Ziptide.Gameplay.PistolRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/PistolRuntime.cs:41` — `_muzzle = transform.Find("Muzzle");`
+- **reference** · `Ziptide.Gameplay.PistolRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/PistolRuntime.cs:44` — `var m = new GameObject("Muzzle");`
 - **reference** · `Ziptide.Gameplay.PrismBeamRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/PrismBeamRuntime.cs:37` — `_muzzle = transform.Find("Muzzle");`
 - **reference** · `Ziptide.Gameplay.PrismBeamRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/PrismBeamRuntime.cs:93` — `Vector3 origin = MuzzlePos();`
 - **reference** · `Ziptide.Gameplay.PrismBeamRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/PrismBeamRuntime.cs:94` — `Vector3 dir = MuzzleDir();`
@@ -93,8 +93,8 @@
 - **reference** · `Ziptide.Gameplay.PrismBeamRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/PrismBeamRuntime.cs:148` — `private Vector3 MuzzlePos() =>`
 - **reference** · `Ziptide.Gameplay.PrismBeamRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/PrismBeamRuntime.cs:151` — `private Vector3 MuzzleDir() =>`
 - **reference** · `Ziptide.Gameplay.StaticNetGunRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/StaticNetWeapon.cs:32` — `_muzzle = transform.Find("Muzzle");`
-- **reference** · `Ziptide.Gameplay.TaserDartGunRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/TaserDartGunRuntime.cs:30` — `_muzzle = transform.Find("Muzzle");`
-- **reference** · `Ziptide.Gameplay.TaserDartGunRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/TaserDartGunRuntime.cs:33` — `var m = new GameObject("Muzzle");`
+- **reference** · `Ziptide.Gameplay.TaserDartGunRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/TaserDartGunRuntime.cs:43` — `_muzzle = transform.Find("Muzzle");`
+- **reference** · `Ziptide.Gameplay.TaserDartGunRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/TaserDartGunRuntime.cs:46` — `var m = new GameObject("Muzzle");`
 - **reference** · `Ziptide.Tests.EditMode.ForgeLifecycleTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/ForgeLifecycleTests.cs:25` — `new ForgeSocket { name = "Muzzle", localPosition = new Vector3(0f, 0f, 0.2f) } };`
 - **reference** · `Ziptide.Tests.EditMode.ForgeMeshTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/ForgeMeshTests.cs:187` — `new ForgeSocket { name = "Muzzle" }`
 - **reference** · `Ziptide.Tests.EditMode.ForgeMeshTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/ForgeMeshTests.cs:217` — `Assert.IsNotEmpty(r.Validate(), "Grip without Muzzle");`
@@ -355,14 +355,16 @@
 
 ## shipPresentation
 
-- References: **89**
-- Files: **17**
-- Non-declaration caller files: **14**
+- References: **98**
+- Files: **19**
+- Non-declaration caller files: **16**
 
 ### `Fuselage_Aft`
 
-- **reference** · `Ziptide.Editor.Patching.ShipHullBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/ShipHullBuilder.cs:35` — `Part(ship, "Fuselage_Aft", new Vector3(0f, 0f, -L * 0.30f),`
+- **reference** · `Ziptide.Editor.Audit.FullSendPresentationAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/FullSendPresentationAuditRules.cs:43` — `"Fuselage_Aft", "Fuselage_Mid", "Fuselage_Bow", "Nose_Tip",`
+- **reference** · `Ziptide.Editor.Patching.ShipHullBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/ShipHullBuilder.cs:42` — `Part(ship, "Fuselage_Aft", PrimitiveType.Cube,`
 - **reference** · `Ziptide.Gameplay.ShipRefit` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipRefit.cs:27` — `private static readonly string[] FuselageParts = { "Fuselage_Aft", "Fuselage_Mid", "Fuselage_Bow", "Nose_Tip", "DorsalSpine" };`
+- **reference** · `Ziptide.Tests.EditMode.HeroShipHullBuilderTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/HeroShipHullBuilderTests.cs:23` — `"Fuselage_Aft", "Fuselage_Mid", "Fuselage_Bow", "Nose_Tip",`
 
 ### `ShipCastOffRuntime`
 
@@ -415,15 +417,21 @@
 
 ### `ShipHullBuilder`
 
+- **reference** · `Ziptide.Editor.Audit.FullSendPresentationAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/FullSendPresentationAuditRules.cs:36` — `if (renderers.Length < ShipHullBuilder.MinimumHeroRenderers)`
+- **reference** · `Ziptide.Editor.Audit.FullSendPresentationAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/FullSendPresentationAuditRules.cs:39` — `+ ShipHullBuilder.MinimumHeroRenderers + ".", path);`
 - **reference** · `Ziptide.Editor.Patching.CityBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:372` — `// real ~19-part silhouette now (ShipHullBuilder), same bounding box, so the boarding`
 - **reference** · `Ziptide.Editor.Patching.CityBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:377` — `ShipHullBuilder.Build(ship, s.shipSize, kit.palette);`
-- **declaration** · `Ziptide.Editor.Patching.ShipHullBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/ShipHullBuilder.cs:17` — `public static class ShipHullBuilder`
+- **declaration** · `Ziptide.Editor.Patching.ShipHullBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/ShipHullBuilder.cs:14` — `public static class ShipHullBuilder`
 - **reference** · `Ziptide.Gameplay.ShipRefit` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipRefit.cs:11` — `/// · CHASSIS — reproportions the named ShipHullBuilder parts per ShipChassisPreset (fuselage`
 - **reference** · `Ziptide.Gameplay.ShipRefit` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipRefit.cs:14` — `/// baked Forge meshes supersede this through the same parent later (ShipHullBuilder's own`
+- **reference** · `Ziptide.Tests.EditMode.HeroShipHullBuilderTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/HeroShipHullBuilderTests.cs:10` — `public sealed class HeroShipHullBuilderTests`
+- **reference** · `Ziptide.Tests.EditMode.HeroShipHullBuilderTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/HeroShipHullBuilderTests.cs:19` — `ShipHullBuilder.Build(ship.transform, new Vector3(5f, 3f, 12f), new GlobalPalette());`
+- **reference** · `Ziptide.Tests.EditMode.HeroShipHullBuilderTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/HeroShipHullBuilderTests.cs:38` — `Assert.That(renderers.Length, Is.GreaterThanOrEqualTo(ShipHullBuilder.MinimumHeroRenderers));`
 
 ### `ShipHullBuilder.Build`
 
 - **reference** · `Ziptide.Editor.Patching.CityBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:377` — `ShipHullBuilder.Build(ship, s.shipSize, kit.palette);`
+- **reference** · `Ziptide.Tests.EditMode.HeroShipHullBuilderTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/HeroShipHullBuilderTests.cs:19` — `ShipHullBuilder.Build(ship.transform, new Vector3(5f, 3f, 12f), new GlobalPalette());`
 
 ### `ShipLocker`
 
@@ -466,6 +474,7 @@
 - **declaration** · `Ziptide.Gameplay.ShipRefit` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipRefit.cs:108` — `var b = t.GetComponent<ShipRefitBaseXf>();`
 - **declaration** · `Ziptide.Gameplay.ShipRefit` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipRefit.cs:111` — `b = t.gameObject.AddComponent<ShipRefitBaseXf>();`
 - **declaration** · `Ziptide.Gameplay.ShipRefit` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipRefit.cs:232` — `public class ShipRefitBaseXf : MonoBehaviour`
+- **reference** · `Ziptide.Tests.EditMode.HeroShipHullBuilderTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/HeroShipHullBuilderTests.cs:29` — `anchor + " is required by ShipRefit and must stay a direct child.");`
 
 ### `ShipRefit.Apply`
 

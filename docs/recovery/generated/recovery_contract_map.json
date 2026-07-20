@@ -1,8 +1,8 @@
 {
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
-  "scannedFiles": 658,
-  "findingCount": 2344,
+  "scannedFiles": 687,
+  "findingCount": 2418,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -257,6 +257,25 @@
         ]
       },
       {
+        "owner": "Ziptide.Editor.Patching.ToxicCityRiverSaveHook",
+        "evidenceCount": 1,
+        "codes": [
+          "EDITOR_BOOTSTRAP"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityRiverSaveHook.cs"
+        ],
+        "evidence": [
+          {
+            "code": "EDITOR_BOOTSTRAP",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityRiverSaveHook.cs",
+            "line": 16,
+            "symbol": "Ziptide.Editor.Patching.ToxicCityRiverSaveHook",
+            "snippet": "[InitializeOnLoad]"
+          }
+        ]
+      },
+      {
         "owner": "Ziptide.Editor.Patching.ToxicCityStageASaveHook",
         "evidenceCount": 1,
         "codes": [
@@ -271,6 +290,44 @@
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageASaveHook.cs",
             "line": 16,
             "symbol": "Ziptide.Editor.Patching.ToxicCityStageASaveHook",
+            "snippet": "[InitializeOnLoad]"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Editor.Patching.ToxicCityStageBSaveHook",
+        "evidenceCount": 1,
+        "codes": [
+          "EDITOR_BOOTSTRAP"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageBSaveHook.cs"
+        ],
+        "evidence": [
+          {
+            "code": "EDITOR_BOOTSTRAP",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageBSaveHook.cs",
+            "line": 12,
+            "symbol": "Ziptide.Editor.Patching.ToxicCityStageBSaveHook",
+            "snippet": "[InitializeOnLoad]"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Editor.Patching.ToxicCityVehicleSaveHook",
+        "evidenceCount": 1,
+        "codes": [
+          "EDITOR_BOOTSTRAP"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleSaveHook.cs"
+        ],
+        "evidence": [
+          {
+            "code": "EDITOR_BOOTSTRAP",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleSaveHook.cs",
+            "line": 12,
+            "symbol": "Ziptide.Editor.Patching.ToxicCityVehicleSaveHook",
             "snippet": "[InitializeOnLoad]"
           }
         ]
@@ -1945,42 +2002,42 @@
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
-            "line": 39,
+            "line": 31,
             "symbol": "Ziptide.Ship.VehicleRuntime",
             "snippet": "private InputAction _leftStick, _rightStick, _boostL3, _boostA;"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
-            "line": 68,
+            "line": 70,
             "symbol": "Ziptide.Ship.VehicleRuntime",
             "snippet": "_leftStick = new InputAction(\"ZiptideRideThrottle\", InputActionType.Value);"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
-            "line": 70,
+            "line": 72,
             "symbol": "Ziptide.Ship.VehicleRuntime",
             "snippet": "_rightStick = new InputAction(\"ZiptideRideSteer\", InputActionType.Value);"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
-            "line": 72,
+            "line": 74,
             "symbol": "Ziptide.Ship.VehicleRuntime",
             "snippet": "_boostL3 = new InputAction(\"ZiptideRideBoostL3\", InputActionType.Button);"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
-            "line": 74,
+            "line": 76,
             "symbol": "Ziptide.Ship.VehicleRuntime",
             "snippet": "_boostA = new InputAction(\"ZiptideRideBoostA\", InputActionType.Button);"
           },
           {
             "code": "INPUT_BUTTON_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
-            "line": 75,
+            "line": 77,
             "symbol": "Ziptide.Ship.VehicleRuntime",
             "snippet": "_boostA.AddBinding(\"<XRController>{RightHand}/primaryButton\");"
           }
@@ -4361,30 +4418,30 @@
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ShipHullBuilder.cs",
-            "line": 94,
+            "line": 225,
             "symbol": "Ziptide.Editor.Patching.ShipHullBuilder",
-            "snippet": "var go = GameObject.CreatePrimitive(PrimitiveType.Cube);"
+            "snippet": "GameObject go = GameObject.CreatePrimitive(primitive);"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ShipHullBuilder.cs",
-            "line": 130,
+            "line": 261,
             "symbol": "Ziptide.Editor.Patching.ShipHullBuilder",
-            "snippet": "var shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
+            "snippet": "Shader shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ShipHullBuilder.cs",
-            "line": 131,
+            "line": 262,
             "symbol": "Ziptide.Editor.Patching.ShipHullBuilder",
             "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
           },
           {
             "code": "RUNTIME_MATERIAL_CREATE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ShipHullBuilder.cs",
-            "line": 132,
+            "line": 263,
             "symbol": "Ziptide.Editor.Patching.ShipHullBuilder",
-            "snippet": "var m = new Material(shader) { name = \"ShipMat_\" + ColorUtility.ToHtmlStringRGB(color) };"
+            "snippet": "material = new Material(shader) { name = \"HeroShip_\" + slot };"
           }
         ]
       },
@@ -4471,6 +4528,92 @@
         ]
       },
       {
+        "owner": "Ziptide.Editor.Patching.ToxicCityRiverBuilder",
+        "evidenceCount": 10,
+        "codes": [
+          "CREATE_PRIMITIVE",
+          "NEW_GAME_OBJECT",
+          "RUNTIME_MATERIAL_CREATE",
+          "SHADER_FIND",
+          "TEXTMESH_COMPONENT"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityRiverBuilder.cs"
+        ],
+        "evidence": [
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityRiverBuilder.cs",
+            "line": 47,
+            "symbol": "Ziptide.Editor.Patching.ToxicCityRiverBuilder",
+            "snippet": "var root = new GameObject(RootName).transform;"
+          },
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityRiverBuilder.cs",
+            "line": 78,
+            "symbol": "Ziptide.Editor.Patching.ToxicCityRiverBuilder",
+            "snippet": "var river = new GameObject(RiverPrefix + index).transform;"
+          },
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityRiverBuilder.cs",
+            "line": 107,
+            "symbol": "Ziptide.Editor.Patching.ToxicCityRiverBuilder",
+            "snippet": "Transform motion = new GameObject(\"SurfaceMotion\").transform;"
+          },
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityRiverBuilder.cs",
+            "line": 147,
+            "symbol": "Ziptide.Editor.Patching.ToxicCityRiverBuilder",
+            "snippet": "Transform root = new GameObject(name).transform;"
+          },
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityRiverBuilder.cs",
+            "line": 155,
+            "symbol": "Ziptide.Editor.Patching.ToxicCityRiverBuilder",
+            "snippet": "var label = new GameObject(\"Label\");"
+          },
+          {
+            "code": "TEXTMESH_COMPONENT",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityRiverBuilder.cs",
+            "line": 159,
+            "symbol": "Ziptide.Editor.Patching.ToxicCityRiverBuilder",
+            "snippet": "var text = label.AddComponent<TextMesh>();"
+          },
+          {
+            "code": "CREATE_PRIMITIVE",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityRiverBuilder.cs",
+            "line": 177,
+            "symbol": "Ziptide.Editor.Patching.ToxicCityRiverBuilder",
+            "snippet": "GameObject go = GameObject.CreatePrimitive(type);"
+          },
+          {
+            "code": "SHADER_FIND",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityRiverBuilder.cs",
+            "line": 199,
+            "symbol": "Ziptide.Editor.Patching.ToxicCityRiverBuilder",
+            "snippet": "Shader shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
+          },
+          {
+            "code": "SHADER_FIND",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityRiverBuilder.cs",
+            "line": 200,
+            "symbol": "Ziptide.Editor.Patching.ToxicCityRiverBuilder",
+            "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
+          },
+          {
+            "code": "RUNTIME_MATERIAL_CREATE",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityRiverBuilder.cs",
+            "line": 201,
+            "symbol": "Ziptide.Editor.Patching.ToxicCityRiverBuilder",
+            "snippet": "var material = new Material(shader) { name = \"ToxicRiver_\" + slot };"
+          }
+        ]
+      },
+      {
         "owner": "Ziptide.Editor.Patching.ToxicCityStageA",
         "evidenceCount": 3,
         "codes": [
@@ -4500,6 +4643,178 @@
             "line": 229,
             "symbol": "Ziptide.Editor.Patching.ToxicCityStageA",
             "snippet": "var root = new GameObject(\"__CITY_STAGE_A_CURBS\");"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Editor.Patching.ToxicCityStageB",
+        "evidenceCount": 11,
+        "codes": [
+          "CREATE_PRIMITIVE",
+          "NEW_GAME_OBJECT",
+          "RUNTIME_MATERIAL_CREATE",
+          "SHADER_FIND",
+          "TEXTMESH_COMPONENT"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageB.cs"
+        ],
+        "evidence": [
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageB.cs",
+            "line": 47,
+            "symbol": "Ziptide.Editor.Patching.ToxicCityStageB",
+            "snippet": "Transform root = new GameObject(RootName).transform;"
+          },
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageB.cs",
+            "line": 73,
+            "symbol": "Ziptide.Editor.Patching.ToxicCityStageB",
+            "snippet": "Transform street = new GameObject(DistrictRootName).transform;"
+          },
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageB.cs",
+            "line": 123,
+            "symbol": "Ziptide.Editor.Patching.ToxicCityStageB",
+            "snippet": "Transform root = new GameObject(\"StreetLamp_\" + index).transform;"
+          },
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageB.cs",
+            "line": 139,
+            "symbol": "Ziptide.Editor.Patching.ToxicCityStageB",
+            "snippet": "Transform root = new GameObject(\"DistrictSign\").transform;"
+          },
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageB.cs",
+            "line": 146,
+            "symbol": "Ziptide.Editor.Patching.ToxicCityStageB",
+            "snippet": "GameObject label = new GameObject(\"Label\");"
+          },
+          {
+            "code": "TEXTMESH_COMPONENT",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageB.cs",
+            "line": 150,
+            "symbol": "Ziptide.Editor.Patching.ToxicCityStageB",
+            "snippet": "TextMesh text = label.AddComponent<TextMesh>();"
+          },
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageB.cs",
+            "line": 162,
+            "symbol": "Ziptide.Editor.Patching.ToxicCityStageB",
+            "snippet": "Transform root = new GameObject(\"Vent_\" + index).transform;"
+          },
+          {
+            "code": "CREATE_PRIMITIVE",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageB.cs",
+            "line": 209,
+            "symbol": "Ziptide.Editor.Patching.ToxicCityStageB",
+            "snippet": "GameObject go = GameObject.CreatePrimitive(primitive);"
+          },
+          {
+            "code": "SHADER_FIND",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageB.cs",
+            "line": 231,
+            "symbol": "Ziptide.Editor.Patching.ToxicCityStageB",
+            "snippet": "Shader shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
+          },
+          {
+            "code": "SHADER_FIND",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageB.cs",
+            "line": 232,
+            "symbol": "Ziptide.Editor.Patching.ToxicCityStageB",
+            "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
+          },
+          {
+            "code": "RUNTIME_MATERIAL_CREATE",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageB.cs",
+            "line": 233,
+            "symbol": "Ziptide.Editor.Patching.ToxicCityStageB",
+            "snippet": "material = new Material(shader) { name = \"CityStageB_\" + slot };"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Editor.Patching.ToxicCityVehicleBuilder",
+        "evidenceCount": 9,
+        "codes": [
+          "CREATE_PRIMITIVE",
+          "NEW_GAME_OBJECT",
+          "RUNTIME_MATERIAL_CREATE",
+          "SHADER_FIND",
+          "TEXTMESH_COMPONENT"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs"
+        ],
+        "evidence": [
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs",
+            "line": 30,
+            "symbol": "Ziptide.Editor.Patching.ToxicCityVehicleBuilder",
+            "snippet": "Transform root = new GameObject(RootName).transform;"
+          },
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs",
+            "line": 57,
+            "symbol": "Ziptide.Editor.Patching.ToxicCityVehicleBuilder",
+            "snippet": "Transform bay = new GameObject(\"VehicleBay_\" + id).transform;"
+          },
+          {
+            "code": "CREATE_PRIMITIVE",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs",
+            "line": 61,
+            "symbol": "Ziptide.Editor.Patching.ToxicCityVehicleBuilder",
+            "snippet": "GameObject pad = GameObject.CreatePrimitive(PrimitiveType.Cube);"
+          },
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs",
+            "line": 76,
+            "symbol": "Ziptide.Editor.Patching.ToxicCityVehicleBuilder",
+            "snippet": "GameObject vehicle = new GameObject(\"Vehicle_\" + id);"
+          },
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs",
+            "line": 82,
+            "symbol": "Ziptide.Editor.Patching.ToxicCityVehicleBuilder",
+            "snippet": "GameObject label = new GameObject(\"BayLabel\");"
+          },
+          {
+            "code": "TEXTMESH_COMPONENT",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs",
+            "line": 85,
+            "symbol": "Ziptide.Editor.Patching.ToxicCityVehicleBuilder",
+            "snippet": "TextMesh text = label.AddComponent<TextMesh>();"
+          },
+          {
+            "code": "SHADER_FIND",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs",
+            "line": 97,
+            "symbol": "Ziptide.Editor.Patching.ToxicCityVehicleBuilder",
+            "snippet": "Shader shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
+          },
+          {
+            "code": "SHADER_FIND",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs",
+            "line": 98,
+            "symbol": "Ziptide.Editor.Patching.ToxicCityVehicleBuilder",
+            "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
+          },
+          {
+            "code": "RUNTIME_MATERIAL_CREATE",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs",
+            "line": 99,
+            "symbol": "Ziptide.Editor.Patching.ToxicCityVehicleBuilder",
+            "snippet": "material = new Material(shader) { name = \"VehiclePad_\" + ColorUtility.ToHtmlStringRGB(color) };"
           }
         ]
       },
@@ -6670,7 +6985,7 @@
       },
       {
         "owner": "Ziptide.Gameplay.DroneCombatBehavior",
-        "evidenceCount": 5,
+        "evidenceCount": 6,
         "codes": [
           "CREATE_PRIMITIVE",
           "NEW_GAME_OBJECT",
@@ -6689,32 +7004,39 @@
             "snippet": "var go = new GameObject(\"StunBolt\");"
           },
           {
-            "code": "CREATE_PRIMITIVE",
+            "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-            "line": 215,
+            "line": 253,
             "symbol": "Ziptide.Gameplay.DroneCombatBehavior",
-            "snippet": "_telegraphFx = GameObject.CreatePrimitive(PrimitiveType.Sphere);"
+            "snippet": "Shader shader = Shader.Find(\"Universal Render Pipeline/Unlit\");"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-            "line": 224,
-            "symbol": "Ziptide.Gameplay.DroneCombatBehavior",
-            "snippet": "var shader = Shader.Find(\"Universal Render Pipeline/Unlit\");"
-          },
-          {
-            "code": "SHADER_FIND",
-            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-            "line": 225,
+            "line": 254,
             "symbol": "Ziptide.Gameplay.DroneCombatBehavior",
             "snippet": "if (shader == null) shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
           },
           {
             "code": "RUNTIME_MATERIAL_CREATE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-            "line": 226,
+            "line": 255,
             "symbol": "Ziptide.Gameplay.DroneCombatBehavior",
-            "snippet": "var mat = new Material(shader);"
+            "snippet": "_threatMaterial = new Material(shader) { name = \"DroneThreatPresentation\" };"
+          },
+          {
+            "code": "CREATE_PRIMITIVE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
+            "line": 267,
+            "symbol": "Ziptide.Gameplay.DroneCombatBehavior",
+            "snippet": "_telegraphFx = GameObject.CreatePrimitive(PrimitiveType.Sphere);"
+          },
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
+            "line": 283,
+            "symbol": "Ziptide.Gameplay.DroneCombatBehavior",
+            "snippet": "var line = new GameObject(\"__ThreatAimLine\");"
           }
         ]
       },
@@ -8133,21 +8455,21 @@
           {
             "code": "XR_INTERACTABLE_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/PistolRuntime.cs",
-            "line": 11,
+            "line": 13,
             "symbol": "Ziptide.Gameplay.PistolRuntime",
             "snippet": "[RequireComponent(typeof(XRGrabInteractable))]"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/PistolRuntime.cs",
-            "line": 34,
+            "line": 44,
             "symbol": "Ziptide.Gameplay.PistolRuntime",
             "snippet": "var m = new GameObject(\"Muzzle\");"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/PistolRuntime.cs",
-            "line": 123,
+            "line": 140,
             "symbol": "Ziptide.Gameplay.PistolRuntime",
             "snippet": "var go = GameObject.CreatePrimitive(PrimitiveType.Sphere);"
           }
@@ -9391,21 +9713,21 @@
           {
             "code": "XR_INTERACTABLE_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/TaserDartGunRuntime.cs",
-            "line": 10,
+            "line": 12,
             "symbol": "Ziptide.Gameplay.TaserDartGunRuntime",
             "snippet": "[RequireComponent(typeof(XRGrabInteractable))]"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/TaserDartGunRuntime.cs",
-            "line": 33,
+            "line": 46,
             "symbol": "Ziptide.Gameplay.TaserDartGunRuntime",
             "snippet": "var m = new GameObject(\"Muzzle\");"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/TaserDartGunRuntime.cs",
-            "line": 72,
+            "line": 99,
             "symbol": "Ziptide.Gameplay.TaserDartGunRuntime",
             "snippet": "var dart = GameObject.CreatePrimitive(PrimitiveType.Cylinder);"
           }
@@ -9426,28 +9748,28 @@
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/TaserDartProjectile.cs",
-            "line": 91,
+            "line": 103,
             "symbol": "Ziptide.Gameplay.TaserDartProjectile",
             "snippet": "var spark = GameObject.CreatePrimitive(PrimitiveType.Sphere);"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/TaserDartProjectile.cs",
-            "line": 100,
+            "line": 112,
             "symbol": "Ziptide.Gameplay.TaserDartProjectile",
             "snippet": "var shader = Shader.Find(\"Universal Render Pipeline/Unlit\");"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/TaserDartProjectile.cs",
-            "line": 101,
+            "line": 113,
             "symbol": "Ziptide.Gameplay.TaserDartProjectile",
             "snippet": "if (shader == null) shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
           },
           {
             "code": "RUNTIME_MATERIAL_CREATE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/TaserDartProjectile.cs",
-            "line": 104,
+            "line": 116,
             "symbol": "Ziptide.Gameplay.TaserDartProjectile",
             "snippet": "var mat = new Material(shader);"
           }
@@ -9759,6 +10081,32 @@
         ]
       },
       {
+        "owner": "Ziptide.Gameplay.WeaponImpactFx",
+        "evidenceCount": 2,
+        "codes": [
+          "CREATE_PRIMITIVE"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/WeaponImpactFx.cs"
+        ],
+        "evidence": [
+          {
+            "code": "CREATE_PRIMITIVE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/WeaponImpactFx.cs",
+            "line": 25,
+            "symbol": "Ziptide.Gameplay.WeaponImpactFx",
+            "snippet": "GameObject root = GameObject.CreatePrimitive(PrimitiveType.Sphere);"
+          },
+          {
+            "code": "CREATE_PRIMITIVE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/WeaponImpactFx.cs",
+            "line": 34,
+            "symbol": "Ziptide.Gameplay.WeaponImpactFx",
+            "snippet": "GameObject ray = GameObject.CreatePrimitive(PrimitiveType.Cube);"
+          }
+        ]
+      },
+      {
         "owner": "Ziptide.Gameplay.WorldDebrisBudget",
         "evidenceCount": 1,
         "codes": [
@@ -9809,21 +10157,21 @@
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldRuntime.cs",
-            "line": 129,
+            "line": 146,
             "symbol": "Ziptide.Gameplay.WorldRuntime",
             "snippet": "GameObject go = new GameObject(\"WorldDirector\");"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldRuntime.cs",
-            "line": 167,
+            "line": 184,
             "symbol": "Ziptide.Gameplay.WorldRuntime",
             "snippet": "GameObject go = new GameObject(\"PlayAreaBounds\");"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldRuntime.cs",
-            "line": 183,
+            "line": 200,
             "symbol": "Ziptide.Gameplay.WorldRuntime",
             "snippet": "GameObject go = new GameObject(\"ThemeSwitchStation\");"
           }
@@ -10208,7 +10556,7 @@
       },
       {
         "owner": "Ziptide.Ship.VehicleRuntime",
-        "evidenceCount": 12,
+        "evidenceCount": 11,
         "codes": [
           "CREATE_PRIMITIVE",
           "NEW_GAME_OBJECT",
@@ -10222,88 +10570,81 @@
         ],
         "evidence": [
           {
-            "code": "CREATE_PRIMITIVE",
+            "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
             "line": 90,
             "symbol": "Ziptide.Ship.VehicleRuntime",
-            "snippet": "var hull = GameObject.CreatePrimitive(PrimitiveType.Cube);"
-          },
-          {
-            "code": "CREATE_PRIMITIVE",
-            "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
-            "line": 97,
-            "symbol": "Ziptide.Ship.VehicleRuntime",
-            "snippet": "var prow = GameObject.CreatePrimitive(PrimitiveType.Cube);"
-          },
-          {
-            "code": "CREATE_PRIMITIVE",
-            "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
-            "line": 105,
-            "symbol": "Ziptide.Ship.VehicleRuntime",
-            "snippet": "var seat = GameObject.CreatePrimitive(PrimitiveType.Cube);"
+            "snippet": "Transform visual = new GameObject(VisualRootName).transform;"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
-            "line": 115,
+            "line": 109,
             "symbol": "Ziptide.Ship.VehicleRuntime",
-            "snippet": "var labelGo = new GameObject(\"RideLabel\");"
+            "snippet": "GameObject labelGo = new GameObject(\"RideLabel\");"
           },
           {
             "code": "TEXTMESH_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
-            "line": 118,
+            "line": 112,
             "symbol": "Ziptide.Ship.VehicleRuntime",
             "snippet": "_label = labelGo.AddComponent<TextMesh>();"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
-            "line": 132,
+            "line": 227,
             "symbol": "Ziptide.Ship.VehicleRuntime",
-            "snippet": "var tile = GameObject.CreatePrimitive(PrimitiveType.Cube);"
+            "snippet": "GameObject go = GameObject.CreatePrimitive(primitive);"
+          },
+          {
+            "code": "CREATE_PRIMITIVE",
+            "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
+            "line": 241,
+            "symbol": "Ziptide.Ship.VehicleRuntime",
+            "snippet": "GameObject tile = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
-            "line": 138,
+            "line": 247,
             "symbol": "Ziptide.Ship.VehicleRuntime",
-            "snippet": "var label = new GameObject(\"Label\");"
+            "snippet": "GameObject label = new GameObject(\"Label\");"
           },
           {
             "code": "TEXTMESH_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
-            "line": 142,
+            "line": 251,
             "symbol": "Ziptide.Ship.VehicleRuntime",
-            "snippet": "var tm = label.AddComponent<TextMesh>();"
+            "snippet": "TextMesh tm = label.AddComponent<TextMesh>();"
           },
           {
             "code": "XR_INTERACTABLE_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
-            "line": 149,
+            "line": 255,
             "symbol": "Ziptide.Ship.VehicleRuntime",
-            "snippet": "var interactable = tile.AddComponent<XRSimpleInteractable>();"
+            "snippet": "XRSimpleInteractable interactable = tile.AddComponent<XRSimpleInteractable>();"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
-            "line": 266,
+            "line": 450,
             "symbol": "Ziptide.Ship.VehicleRuntime",
-            "snippet": "var shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
+            "snippet": "Shader shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
-            "line": 267,
+            "line": 451,
             "symbol": "Ziptide.Ship.VehicleRuntime",
             "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
           },
           {
             "code": "RUNTIME_MATERIAL_CREATE",
             "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
-            "line": 269,
+            "line": 453,
             "symbol": "Ziptide.Ship.VehicleRuntime",
-            "snippet": "var mat = new Material(shader);"
+            "snippet": "material = new Material(shader) { name = \"Vehicle_\" + ColorUtility.ToHtmlStringRGB(color) };"
           }
         ]
       },
@@ -10510,6 +10851,25 @@
             "line": 55,
             "symbol": "Ziptide.Tests.EditMode.HeadsetBuildBlockerRegressionTests",
             "snippet": "StringAssert.Contains(\"GameObject.CreatePrimitive(PrimitiveType.Cube)\", safety);"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Tests.EditMode.HeroShipHullBuilderTests",
+        "evidenceCount": 1,
+        "codes": [
+          "NEW_GAME_OBJECT"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/EditMode/HeroShipHullBuilderTests.cs"
+        ],
+        "evidence": [
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HeroShipHullBuilderTests.cs",
+            "line": 18,
+            "symbol": "Ziptide.Tests.EditMode.HeroShipHullBuilderTests",
+            "snippet": "ship = new GameObject(\"Ship_Static_Placeholder\");"
           }
         ]
       },
@@ -10766,6 +11126,40 @@
         ]
       },
       {
+        "owner": "Ziptide.Tests.EditMode.ToxicCityRiverBuilderTests",
+        "evidenceCount": 3,
+        "codes": [
+          "CREATE_PRIMITIVE",
+          "NEW_GAME_OBJECT"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/EditMode/ToxicCityRiverBuilderTests.cs"
+        ],
+        "evidence": [
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Tests/EditMode/ToxicCityRiverBuilderTests.cs",
+            "line": 20,
+            "symbol": "Ziptide.Tests.EditMode.ToxicCityRiverBuilderTests",
+            "snippet": "city = new GameObject(\"__TEST_TOXIC_CITY_ROOT\");"
+          },
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Tests/EditMode/ToxicCityRiverBuilderTests.cs",
+            "line": 21,
+            "symbol": "Ziptide.Tests.EditMode.ToxicCityRiverBuilderTests",
+            "snippet": "Transform legacy = new GameObject(\"Canals\").transform;"
+          },
+          {
+            "code": "CREATE_PRIMITIVE",
+            "path": "Ziptide/Assets/Ziptide/Tests/EditMode/ToxicCityRiverBuilderTests.cs",
+            "line": 23,
+            "symbol": "Ziptide.Tests.EditMode.ToxicCityRiverBuilderTests",
+            "snippet": "GameObject legacySlab = GameObject.CreatePrimitive(PrimitiveType.Cube);"
+          }
+        ]
+      },
+      {
         "owner": "Ziptide.Tests.EditMode.ToxicCityStageAIntegrationTests",
         "evidenceCount": 3,
         "codes": [
@@ -10796,6 +11190,51 @@
             "line": 78,
             "symbol": "Ziptide.Tests.EditMode.ToxicCityStageAIntegrationTests",
             "snippet": "GameObject facade = GameObject.CreatePrimitive(PrimitiveType.Cube);"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Tests.EditMode.ToxicCityStageBTests",
+        "evidenceCount": 2,
+        "codes": [
+          "NEW_GAME_OBJECT"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/EditMode/ToxicCityStageBTests.cs"
+        ],
+        "evidence": [
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Tests/EditMode/ToxicCityStageBTests.cs",
+            "line": 20,
+            "symbol": "Ziptide.Tests.EditMode.ToxicCityStageBTests",
+            "snippet": "city = new GameObject(\"__TEST_CITY_ROOT\");"
+          },
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Tests/EditMode/ToxicCityStageBTests.cs",
+            "line": 21,
+            "symbol": "Ziptide.Tests.EditMode.ToxicCityStageBTests",
+            "snippet": "Transform district = new GameObject(\"District_Test\").transform;"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Tests.EditMode.ToxicCityVehicleBuilderTests",
+        "evidenceCount": 1,
+        "codes": [
+          "NEW_GAME_OBJECT"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/EditMode/ToxicCityVehicleBuilderTests.cs"
+        ],
+        "evidence": [
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Tests/EditMode/ToxicCityVehicleBuilderTests.cs",
+            "line": 19,
+            "symbol": "Ziptide.Tests.EditMode.ToxicCityVehicleBuilderTests",
+            "snippet": "city = new GameObject(\"__TEST_CITY_ROOT\");"
           }
         ]
       },
@@ -10856,6 +11295,32 @@
             "line": 174,
             "symbol": "Ziptide.Tests.EditMode.WaterTests",
             "snippet": "var go = new GameObject(\"Water\");"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Tests.EditMode.WeaponFeelRuntimeTests",
+        "evidenceCount": 2,
+        "codes": [
+          "NEW_GAME_OBJECT"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/EditMode/WeaponFeelRuntimeTests.cs"
+        ],
+        "evidence": [
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Tests/EditMode/WeaponFeelRuntimeTests.cs",
+            "line": 13,
+            "symbol": "Ziptide.Tests.EditMode.WeaponFeelRuntimeTests",
+            "snippet": "var host = new GameObject(\"WeaponFeelHost\");"
+          },
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Tests/EditMode/WeaponFeelRuntimeTests.cs",
+            "line": 61,
+            "symbol": "Ziptide.Tests.EditMode.WeaponFeelRuntimeTests",
+            "snippet": "var host = new GameObject(\"WeaponFeelNullHand\");"
           }
         ]
       },
@@ -12860,16 +13325,16 @@
           {
             "code": "XRI_MANAGER_LOOKUP",
             "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
-            "line": 150,
+            "line": 256,
             "symbol": "Ziptide.Ship.VehicleRuntime",
-            "snippet": "var mgr = Object.FindObjectOfType<XRInteractionManager>();"
+            "snippet": "XRInteractionManager manager = Object.FindObjectOfType<XRInteractionManager>();"
           },
           {
             "code": "XRI_MANAGER_ASSIGN",
             "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
-            "line": 151,
+            "line": 257,
             "symbol": "Ziptide.Ship.VehicleRuntime",
-            "snippet": "if (mgr != null) interactable.interactionManager = mgr;"
+            "snippet": "if (manager != null) interactable.interactionManager = manager;"
           }
         ]
       },
@@ -18030,6 +18495,32 @@
         ]
       },
       {
+        "owner": "Ziptide.Editor.Audit.FullSendPresentationAuditRules",
+        "evidenceCount": 2,
+        "codes": [
+          "FALLBACK_MARKER"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Editor/Audit/FullSendPresentationAuditRules.cs"
+        ],
+        "evidence": [
+          {
+            "code": "FALLBACK_MARKER",
+            "path": "Ziptide/Assets/Ziptide/Editor/Audit/FullSendPresentationAuditRules.cs",
+            "line": 38,
+            "symbol": "Ziptide.Editor.Audit.FullSendPresentationAuditRules",
+            "snippet": "path + \" has \" + renderers.Length + \" hull renderers; minimum hero fallback is \""
+          },
+          {
+            "code": "FALLBACK_MARKER",
+            "path": "Ziptide/Assets/Ziptide/Editor/Audit/FullSendPresentationAuditRules.cs",
+            "line": 67,
+            "symbol": "Ziptide.Editor.Audit.FullSendPresentationAuditRules",
+            "snippet": "path + \" has only \" + nonCube + \" non-cube hull primitives; hero fallback regressed toward a block stack.\", path);"
+          }
+        ]
+      },
+      {
         "owner": "Ziptide.Editor.Audit.WorldAuditRunner",
         "evidenceCount": 1,
         "codes": [
@@ -18349,7 +18840,7 @@
       },
       {
         "owner": "Ziptide.Editor.Patching.ShipHullBuilder",
-        "evidenceCount": 1,
+        "evidenceCount": 3,
         "codes": [
           "FALLBACK_MARKER"
         ],
@@ -18362,7 +18853,21 @@
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ShipHullBuilder.cs",
             "line": 9,
             "symbol": "Ziptide.Editor.Patching.ShipHullBuilder",
-            "snippet": "/// THE INTERIM HULL (Quality Bar P4a). Terry's verdict on the 4-cube ship: \"a very very poor"
+            "snippet": "/// Shared hero-ship fallback used by every berth. It preserves the named refit skeleton and overall"
+          },
+          {
+            "code": "FALLBACK_MARKER",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/ShipHullBuilder.cs",
+            "line": 41,
+            "symbol": "Ziptide.Editor.Patching.ShipHullBuilder",
+            "snippet": "// Refit skeleton: these exact direct-child names remain authoritative."
+          },
+          {
+            "code": "FALLBACK_MARKER",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/ShipHullBuilder.cs",
+            "line": 55,
+            "symbol": "Ziptide.Editor.Patching.ShipHullBuilder",
+            "snippet": "// Curved shell volumes soften the refit skeleton without replacing it."
           }
         ]
       },
@@ -18791,25 +19296,6 @@
         ]
       },
       {
-        "owner": "Ziptide.Gameplay.PistolRuntime",
-        "evidenceCount": 1,
-        "codes": [
-          "FALLBACK_MARKER"
-        ],
-        "paths": [
-          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/PistolRuntime.cs"
-        ],
-        "evidence": [
-          {
-            "code": "FALLBACK_MARKER",
-            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/PistolRuntime.cs",
-            "line": 62,
-            "symbol": "Ziptide.Gameplay.PistolRuntime",
-            "snippet": "// Fallback: some rigs don\u2019t route Activate events; polling ensures trigger fires while held."
-          }
-        ]
-      },
-      {
         "owner": "Ziptide.Gameplay.PvpBot",
         "evidenceCount": 1,
         "codes": [
@@ -18985,7 +19471,7 @@
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldRuntime.cs",
             "line": 78,
             "symbol": "Ziptide.Gameplay.WorldRuntime",
-            "snippet": "// sludge surface) \u2192 respawn-fall-loop. Marker first, profile only as fallback."
+            "snippet": "// and create a respawn-fall loop. Marker first, profile only as fallback."
           }
         ]
       },

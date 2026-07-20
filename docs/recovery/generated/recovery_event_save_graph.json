@@ -1,18 +1,18 @@
 {
   "tool": "recovery_event_save_graph",
-  "scannedFiles": 658,
-  "evidenceCount": 703,
+  "scannedFiles": 687,
+  "evidenceCount": 721,
   "kindCounts": {
     "AUTOSAVE": 7,
     "EVENT_DECLARE": 45,
     "EVENT_INVOKE": 60,
-    "EVENT_SUBSCRIBE": 100,
-    "EVENT_UNSUBSCRIBE": 54,
+    "EVENT_SUBSCRIBE": 107,
+    "EVENT_UNSUBSCRIBE": 57,
     "PLAYER_PREFS_ACCESS": 11,
-    "PROFILE_FIELD_ACCESS": 358,
+    "PROFILE_FIELD_ACCESS": 366,
     "SAVE_ACCESS": 68
   },
-  "unmatchedNamedSubscriptionCount": 48,
+  "unmatchedNamedSubscriptionCount": 52,
   "unmatchedNamedSubscriptions": [
     {
       "kind": "EVENT_SUBSCRIBE",
@@ -250,6 +250,24 @@
     },
     {
       "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/CityStreetLifeRuntime.cs",
+      "line": 52,
+      "owner": "Ziptide.Gameplay.CityStreetLifeRuntime",
+      "target": "p.y",
+      "detail": "phase",
+      "snippet": "p.y += phase * 1.15f;"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/CityStreetLifeRuntime.cs",
+      "line": 53,
+      "owner": "Ziptide.Gameplay.CityStreetLifeRuntime",
+      "target": "p.x",
+      "detail": "Mathf",
+      "snippet": "p.x += Mathf.Sin(Time.time * 0.55f + i) * 0.08f;"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ClimbRuntime.cs",
       "line": 218,
       "owner": "Ziptide.Gameplay.ClimbableSurface",
@@ -310,6 +328,24 @@
       "target": "_rig.position",
       "detail": "delta",
       "snippet": "if (onDeck) _rig.position += delta; // delta-translate \u2014 NEVER parent the rig"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ToxicRiverSurfaceRuntime.cs",
+      "line": 78,
+      "owner": "Ziptide.Gameplay.ToxicRiverSurfaceRuntime",
+      "target": "p.y",
+      "detail": "Mathf",
+      "snippet": "p.y += Mathf.Sin(Time.time * 1.8f + i * 0.9f) * waveAmplitude"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ToxicRiverSurfaceRuntime.cs",
+      "line": 88,
+      "owner": "Ziptide.Gameplay.ToxicRiverSurfaceRuntime",
+      "target": "p.y",
+      "detail": "Mathf",
+      "snippet": "p.y += Mathf.Sin(Time.time * (1.2f + i * 0.07f) + i)"
     },
     {
       "kind": "EVENT_SUBSCRIBE",
@@ -448,6 +484,17 @@
     }
   ],
   "targets": {
+    "Accent": [
+      {
+        "kind": "PROFILE_FIELD_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
+        "line": 120,
+        "owner": "Ziptide.Ship.VehicleRuntime",
+        "target": "Accent",
+        "detail": "profile",
+        "snippet": "ObjectiveBeacon.Attach(gameObject, profile.Accent, 5f);"
+      }
+    ],
     "ActiveStateEvidence": [
       {
         "kind": "PROFILE_FIELD_ACCESS",
@@ -892,6 +939,35 @@
         "target": "Application.logMessageReceivedThreaded",
         "detail": "Capture",
         "snippet": "Application.logMessageReceivedThreaded += Capture;"
+      }
+    ],
+    "ApproximateBounds": [
+      {
+        "kind": "PROFILE_FIELD_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Tests/EditMode/VehiclePresentationCoreTests.cs",
+        "line": 20,
+        "owner": "Ziptide.Tests.EditMode.VehiclePresentationCoreTests",
+        "target": "ApproximateBounds",
+        "detail": "profile",
+        "snippet": "Assert.That(profile.ApproximateBounds.x, Is.InRange(1.4f, 3.0f));"
+      },
+      {
+        "kind": "PROFILE_FIELD_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Tests/EditMode/VehiclePresentationCoreTests.cs",
+        "line": 21,
+        "owner": "Ziptide.Tests.EditMode.VehiclePresentationCoreTests",
+        "target": "ApproximateBounds",
+        "detail": "profile",
+        "snippet": "Assert.That(profile.ApproximateBounds.y, Is.InRange(1.2f, 2.4f));"
+      },
+      {
+        "kind": "PROFILE_FIELD_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Tests/EditMode/VehiclePresentationCoreTests.cs",
+        "line": 22,
+        "owner": "Ziptide.Tests.EditMode.VehiclePresentationCoreTests",
+        "target": "ApproximateBounds",
+        "detail": "profile",
+        "snippet": "Assert.That(profile.ApproximateBounds.z, Is.InRange(2.5f, 3.8f));"
       }
     ],
     "Assert": [
@@ -1349,17 +1425,6 @@
         "snippet": "\"stale/invented readability profile has no shipped CreatureDefinition: \" + profile.CreatureId);"
       }
     ],
-    "Cruise": [
-      {
-        "kind": "PROFILE_FIELD_ACCESS",
-        "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
-        "line": 44,
-        "owner": "Ziptide.Ship.VehicleRuntime",
-        "target": "Cruise",
-        "detail": "profile",
-        "snippet": "/// <summary>VehicleDefinition \u2192 the ground FlightParams profile. Cruise/boost map with the"
-      }
-    ],
     "DestinationSelected": [
       {
         "kind": "EVENT_DECLARE",
@@ -1481,6 +1546,24 @@
     "EditorSceneManager.sceneSaving": [
       {
         "kind": "EVENT_UNSUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityRiverSaveHook.cs",
+        "line": 21,
+        "owner": "Ziptide.Editor.Patching.ToxicCityRiverSaveHook",
+        "target": "EditorSceneManager.sceneSaving",
+        "detail": "OnSceneSaving",
+        "snippet": "EditorSceneManager.sceneSaving -= OnSceneSaving;"
+      },
+      {
+        "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityRiverSaveHook.cs",
+        "line": 22,
+        "owner": "Ziptide.Editor.Patching.ToxicCityRiverSaveHook",
+        "target": "EditorSceneManager.sceneSaving",
+        "detail": "OnSceneSaving",
+        "snippet": "EditorSceneManager.sceneSaving += OnSceneSaving;"
+      },
+      {
+        "kind": "EVENT_UNSUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageASaveHook.cs",
         "line": 21,
         "owner": "Ziptide.Editor.Patching.ToxicCityStageASaveHook",
@@ -1493,6 +1576,42 @@
         "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageASaveHook.cs",
         "line": 22,
         "owner": "Ziptide.Editor.Patching.ToxicCityStageASaveHook",
+        "target": "EditorSceneManager.sceneSaving",
+        "detail": "OnSceneSaving",
+        "snippet": "EditorSceneManager.sceneSaving += OnSceneSaving;"
+      },
+      {
+        "kind": "EVENT_UNSUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageBSaveHook.cs",
+        "line": 17,
+        "owner": "Ziptide.Editor.Patching.ToxicCityStageBSaveHook",
+        "target": "EditorSceneManager.sceneSaving",
+        "detail": "OnSceneSaving",
+        "snippet": "EditorSceneManager.sceneSaving -= OnSceneSaving;"
+      },
+      {
+        "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageBSaveHook.cs",
+        "line": 18,
+        "owner": "Ziptide.Editor.Patching.ToxicCityStageBSaveHook",
+        "target": "EditorSceneManager.sceneSaving",
+        "detail": "OnSceneSaving",
+        "snippet": "EditorSceneManager.sceneSaving += OnSceneSaving;"
+      },
+      {
+        "kind": "EVENT_UNSUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleSaveHook.cs",
+        "line": 17,
+        "owner": "Ziptide.Editor.Patching.ToxicCityVehicleSaveHook",
+        "target": "EditorSceneManager.sceneSaving",
+        "detail": "OnSceneSaving",
+        "snippet": "EditorSceneManager.sceneSaving -= OnSceneSaving;"
+      },
+      {
+        "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleSaveHook.cs",
+        "line": 18,
+        "owner": "Ziptide.Editor.Patching.ToxicCityVehicleSaveHook",
         "target": "EditorSceneManager.sceneSaving",
         "detail": "OnSceneSaving",
         "snippet": "EditorSceneManager.sceneSaving += OnSceneSaving;"
@@ -1572,6 +1691,35 @@
         "target": "FactoryEvidenceToken",
         "detail": "profile",
         "snippet": "StringAssert.Contains(profile.FactoryEvidenceToken, source,"
+      }
+    ],
+    "Family": [
+      {
+        "kind": "PROFILE_FIELD_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
+        "line": 123,
+        "owner": "Ziptide.Ship.VehicleRuntime",
+        "target": "Family",
+        "detail": "profile",
+        "snippet": "+ \" family=\" + profile.Family + \" parts=\" + parts);"
+      },
+      {
+        "kind": "PROFILE_FIELD_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Tests/EditMode/VehiclePresentationCoreTests.cs",
+        "line": 18,
+        "owner": "Ziptide.Tests.EditMode.VehiclePresentationCoreTests",
+        "target": "Family",
+        "detail": "profile",
+        "snippet": "Assert.That(profile.Family, Is.EqualTo(family));"
+      },
+      {
+        "kind": "PROFILE_FIELD_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Tests/EditMode/VehiclePresentationCoreTests.cs",
+        "line": 37,
+        "owner": "Ziptide.Tests.EditMode.VehiclePresentationCoreTests",
+        "target": "Family",
+        "detail": "profile",
+        "snippet": "Assert.That(profile.Family, Is.EqualTo(\"utility\"));"
       }
     ],
     "FirstDestinationSelected": [
@@ -2138,6 +2286,17 @@
         "target": "GetWorld",
         "detail": "profile",
         "snippet": "var ws = profile.GetWorld(\"NewWorld\");"
+      }
+    ],
+    "Glow": [
+      {
+        "kind": "PROFILE_FIELD_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Tests/EditMode/VehiclePresentationCoreTests.cs",
+        "line": 23,
+        "owner": "Ziptide.Tests.EditMode.VehiclePresentationCoreTests",
+        "target": "Glow",
+        "detail": "profile",
+        "snippet": "Assert.That(profile.Glow.maxColorComponent, Is.GreaterThan(0.75f));"
       }
     ],
     "GoldenSlice": [
@@ -2948,6 +3107,17 @@
         "target": "MinAttackOdds",
         "detail": "profile",
         "snippet": "if (odds >= profile.MinAttackOdds && odds > bestOdds)"
+      }
+    ],
+    "MinimumParts": [
+      {
+        "kind": "PROFILE_FIELD_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Tests/EditMode/VehiclePresentationCoreTests.cs",
+        "line": 19,
+        "owner": "Ziptide.Tests.EditMode.VehiclePresentationCoreTests",
+        "target": "MinimumParts",
+        "detail": "profile",
+        "snippet": "Assert.That(profile.MinimumParts, Is.GreaterThanOrEqualTo(minimumParts));"
       }
     ],
     "NamedBunkObjectGrabbed": [
@@ -5375,7 +5545,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-        "line": 80,
+        "line": 88,
         "owner": "Ziptide.Gameplay.DroneCombatBehavior",
         "target": "boltCooldown",
         "detail": "profile",
@@ -5386,7 +5556,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-        "line": 81,
+        "line": 89,
         "owner": "Ziptide.Gameplay.DroneCombatBehavior",
         "target": "boltSpeed",
         "detail": "profile",
@@ -5546,7 +5716,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-        "line": 72,
+        "line": 80,
         "owner": "Ziptide.Gameplay.DroneCombatBehavior",
         "target": "detectRange",
         "detail": "profile",
@@ -5597,11 +5767,11 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/FallRespawner.cs",
-        "line": 18,
+        "line": 43,
         "owner": "Ziptide.Gameplay.FallRespawner",
         "target": "fallYThreshold",
         "detail": "profile",
-        "snippet": "if (transform.position.y < profile.fallYThreshold)"
+        "snippet": "profile.fallYThreshold);"
       }
     ],
     "flags": [
@@ -6152,7 +6322,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-        "line": 73,
+        "line": 81,
         "owner": "Ziptide.Gameplay.DroneCombatBehavior",
         "target": "loseRange",
         "detail": "profile",
@@ -6279,14 +6449,52 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-        "line": 75,
+        "line": 83,
         "owner": "Ziptide.Gameplay.DroneCombatBehavior",
         "target": "orbitSpeed",
         "detail": "profile",
         "snippet": "orbitSpeed = profile.orbitSpeed;"
       }
     ],
+    "p.x": [
+      {
+        "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/CityStreetLifeRuntime.cs",
+        "line": 53,
+        "owner": "Ziptide.Gameplay.CityStreetLifeRuntime",
+        "target": "p.x",
+        "detail": "Mathf",
+        "snippet": "p.x += Mathf.Sin(Time.time * 0.55f + i) * 0.08f;"
+      }
+    ],
     "p.y": [
+      {
+        "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/CityStreetLifeRuntime.cs",
+        "line": 52,
+        "owner": "Ziptide.Gameplay.CityStreetLifeRuntime",
+        "target": "p.y",
+        "detail": "phase",
+        "snippet": "p.y += phase * 1.15f;"
+      },
+      {
+        "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ToxicRiverSurfaceRuntime.cs",
+        "line": 78,
+        "owner": "Ziptide.Gameplay.ToxicRiverSurfaceRuntime",
+        "target": "p.y",
+        "detail": "Mathf",
+        "snippet": "p.y += Mathf.Sin(Time.time * 1.8f + i * 0.9f) * waveAmplitude"
+      },
+      {
+        "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ToxicRiverSurfaceRuntime.cs",
+        "line": 88,
+        "owner": "Ziptide.Gameplay.ToxicRiverSurfaceRuntime",
+        "target": "p.y",
+        "detail": "Mathf",
+        "snippet": "p.y += Mathf.Sin(Time.time * (1.2f + i * 0.07f) + i)"
+      },
       {
         "kind": "EVENT_UNSUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ZiplineRuntime.cs",
@@ -6301,7 +6509,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-        "line": 77,
+        "line": 85,
         "owner": "Ziptide.Gameplay.DroneCombatBehavior",
         "target": "patrolRadius",
         "detail": "profile",
@@ -6312,7 +6520,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-        "line": 78,
+        "line": 86,
         "owner": "Ziptide.Gameplay.DroneCombatBehavior",
         "target": "patrolSpeed",
         "detail": "profile",
@@ -6719,7 +6927,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/FallRespawner.cs",
-        "line": 16,
+        "line": 33,
         "owner": "Ziptide.Gameplay.FallRespawner",
         "target": "respawnOnFall",
         "detail": "profile",
@@ -6878,7 +7086,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-        "line": 83,
+        "line": 91,
         "owner": "Ziptide.Gameplay.DroneCombatBehavior",
         "target": "slowFactor",
         "detail": "profile",
@@ -6931,7 +7139,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-        "line": 74,
+        "line": 82,
         "owner": "Ziptide.Gameplay.DroneCombatBehavior",
         "target": "standoffDistance",
         "detail": "profile",
@@ -6942,7 +7150,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-        "line": 82,
+        "line": 90,
         "owner": "Ziptide.Gameplay.DroneCombatBehavior",
         "target": "stunSeconds",
         "detail": "profile",
@@ -7019,7 +7227,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-        "line": 79,
+        "line": 87,
         "owner": "Ziptide.Gameplay.DroneCombatBehavior",
         "target": "telegraphSeconds",
         "detail": "profile",
@@ -7126,7 +7334,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-        "line": 76,
+        "line": 84,
         "owner": "Ziptide.Gameplay.DroneCombatBehavior",
         "target": "verticalBob",
         "detail": "profile",
@@ -8336,6 +8544,24 @@
     },
     {
       "kind": "EVENT_UNSUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityRiverSaveHook.cs",
+      "line": 21,
+      "owner": "Ziptide.Editor.Patching.ToxicCityRiverSaveHook",
+      "target": "EditorSceneManager.sceneSaving",
+      "detail": "OnSceneSaving",
+      "snippet": "EditorSceneManager.sceneSaving -= OnSceneSaving;"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityRiverSaveHook.cs",
+      "line": 22,
+      "owner": "Ziptide.Editor.Patching.ToxicCityRiverSaveHook",
+      "target": "EditorSceneManager.sceneSaving",
+      "detail": "OnSceneSaving",
+      "snippet": "EditorSceneManager.sceneSaving += OnSceneSaving;"
+    },
+    {
+      "kind": "EVENT_UNSUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageASaveHook.cs",
       "line": 21,
       "owner": "Ziptide.Editor.Patching.ToxicCityStageASaveHook",
@@ -8348,6 +8574,42 @@
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageASaveHook.cs",
       "line": 22,
       "owner": "Ziptide.Editor.Patching.ToxicCityStageASaveHook",
+      "target": "EditorSceneManager.sceneSaving",
+      "detail": "OnSceneSaving",
+      "snippet": "EditorSceneManager.sceneSaving += OnSceneSaving;"
+    },
+    {
+      "kind": "EVENT_UNSUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageBSaveHook.cs",
+      "line": 17,
+      "owner": "Ziptide.Editor.Patching.ToxicCityStageBSaveHook",
+      "target": "EditorSceneManager.sceneSaving",
+      "detail": "OnSceneSaving",
+      "snippet": "EditorSceneManager.sceneSaving -= OnSceneSaving;"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageBSaveHook.cs",
+      "line": 18,
+      "owner": "Ziptide.Editor.Patching.ToxicCityStageBSaveHook",
+      "target": "EditorSceneManager.sceneSaving",
+      "detail": "OnSceneSaving",
+      "snippet": "EditorSceneManager.sceneSaving += OnSceneSaving;"
+    },
+    {
+      "kind": "EVENT_UNSUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleSaveHook.cs",
+      "line": 17,
+      "owner": "Ziptide.Editor.Patching.ToxicCityVehicleSaveHook",
+      "target": "EditorSceneManager.sceneSaving",
+      "detail": "OnSceneSaving",
+      "snippet": "EditorSceneManager.sceneSaving -= OnSceneSaving;"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleSaveHook.cs",
+      "line": 18,
+      "owner": "Ziptide.Editor.Patching.ToxicCityVehicleSaveHook",
       "target": "EditorSceneManager.sceneSaving",
       "detail": "OnSceneSaving",
       "snippet": "EditorSceneManager.sceneSaving += OnSceneSaving;"
@@ -8868,7 +9130,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-      "line": 72,
+      "line": 80,
       "owner": "Ziptide.Gameplay.DroneCombatBehavior",
       "target": "detectRange",
       "detail": "profile",
@@ -8877,7 +9139,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-      "line": 73,
+      "line": 81,
       "owner": "Ziptide.Gameplay.DroneCombatBehavior",
       "target": "loseRange",
       "detail": "profile",
@@ -8886,7 +9148,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-      "line": 74,
+      "line": 82,
       "owner": "Ziptide.Gameplay.DroneCombatBehavior",
       "target": "standoffDistance",
       "detail": "profile",
@@ -8895,7 +9157,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-      "line": 75,
+      "line": 83,
       "owner": "Ziptide.Gameplay.DroneCombatBehavior",
       "target": "orbitSpeed",
       "detail": "profile",
@@ -8904,7 +9166,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-      "line": 76,
+      "line": 84,
       "owner": "Ziptide.Gameplay.DroneCombatBehavior",
       "target": "verticalBob",
       "detail": "profile",
@@ -8913,7 +9175,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-      "line": 77,
+      "line": 85,
       "owner": "Ziptide.Gameplay.DroneCombatBehavior",
       "target": "patrolRadius",
       "detail": "profile",
@@ -8922,7 +9184,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-      "line": 78,
+      "line": 86,
       "owner": "Ziptide.Gameplay.DroneCombatBehavior",
       "target": "patrolSpeed",
       "detail": "profile",
@@ -8931,7 +9193,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-      "line": 79,
+      "line": 87,
       "owner": "Ziptide.Gameplay.DroneCombatBehavior",
       "target": "telegraphSeconds",
       "detail": "profile",
@@ -8940,7 +9202,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-      "line": 80,
+      "line": 88,
       "owner": "Ziptide.Gameplay.DroneCombatBehavior",
       "target": "boltCooldown",
       "detail": "profile",
@@ -8949,7 +9211,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-      "line": 81,
+      "line": 89,
       "owner": "Ziptide.Gameplay.DroneCombatBehavior",
       "target": "boltSpeed",
       "detail": "profile",
@@ -8958,7 +9220,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-      "line": 82,
+      "line": 90,
       "owner": "Ziptide.Gameplay.DroneCombatBehavior",
       "target": "stunSeconds",
       "detail": "profile",
@@ -8967,7 +9229,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-      "line": 83,
+      "line": 91,
       "owner": "Ziptide.Gameplay.DroneCombatBehavior",
       "target": "slowFactor",
       "detail": "profile",
@@ -9057,7 +9319,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/FallRespawner.cs",
-      "line": 16,
+      "line": 33,
       "owner": "Ziptide.Gameplay.FallRespawner",
       "target": "respawnOnFall",
       "detail": "profile",
@@ -9066,11 +9328,11 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/FallRespawner.cs",
-      "line": 18,
+      "line": 43,
       "owner": "Ziptide.Gameplay.FallRespawner",
       "target": "fallYThreshold",
       "detail": "profile",
-      "snippet": "if (transform.position.y < profile.fallYThreshold)"
+      "snippet": "profile.fallYThreshold);"
     },
     {
       "kind": "PROFILE_FIELD_ACCESS",
@@ -10360,6 +10622,24 @@
       "snippet": "bot.transform.position += shoveDir * (float)PvpRules.ThumperShoveMeters * 0.5f;"
     },
     {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/CityStreetLifeRuntime.cs",
+      "line": 52,
+      "owner": "Ziptide.Gameplay.CityStreetLifeRuntime",
+      "target": "p.y",
+      "detail": "phase",
+      "snippet": "p.y += phase * 1.15f;"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/CityStreetLifeRuntime.cs",
+      "line": 53,
+      "owner": "Ziptide.Gameplay.CityStreetLifeRuntime",
+      "target": "p.x",
+      "detail": "Mathf",
+      "snippet": "p.x += Mathf.Sin(Time.time * 0.55f + i) * 0.08f;"
+    },
+    {
       "kind": "PLAYER_PREFS_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ClimbRuntime.cs",
       "line": 166,
@@ -10747,6 +11027,24 @@
       "snippet": "var earned = ShipJourneyDecals.FromFlags(profile.flags);"
     },
     {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ToxicRiverSurfaceRuntime.cs",
+      "line": 78,
+      "owner": "Ziptide.Gameplay.ToxicRiverSurfaceRuntime",
+      "target": "p.y",
+      "detail": "Mathf",
+      "snippet": "p.y += Mathf.Sin(Time.time * 1.8f + i * 0.9f) * waveAmplitude"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ToxicRiverSurfaceRuntime.cs",
+      "line": 88,
+      "owner": "Ziptide.Gameplay.ToxicRiverSurfaceRuntime",
+      "target": "p.y",
+      "detail": "Mathf",
+      "snippet": "p.y += Mathf.Sin(Time.time * (1.2f + i * 0.07f) + i)"
+    },
+    {
       "kind": "EVENT_DECLARE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs",
       "line": 38,
@@ -11118,11 +11416,20 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
-      "line": 44,
+      "line": 120,
       "owner": "Ziptide.Ship.VehicleRuntime",
-      "target": "Cruise",
+      "target": "Accent",
       "detail": "profile",
-      "snippet": "/// <summary>VehicleDefinition \u2192 the ground FlightParams profile. Cruise/boost map with the"
+      "snippet": "ObjectiveBeacon.Attach(gameObject, profile.Accent, 5f);"
+    },
+    {
+      "kind": "PROFILE_FIELD_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
+      "line": 123,
+      "owner": "Ziptide.Ship.VehicleRuntime",
+      "target": "Family",
+      "detail": "profile",
+      "snippet": "+ \" family=\" + profile.Family + \" parts=\" + parts);"
     },
     {
       "kind": "EVENT_INVOKE",
@@ -12392,6 +12699,69 @@
       "target": "SaveSystem.AutosaveNow",
       "detail": "",
       "snippet": "Assert.DoesNotThrow(() => SaveSystem.AutosaveNow(\"travel\"));"
+    },
+    {
+      "kind": "PROFILE_FIELD_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/VehiclePresentationCoreTests.cs",
+      "line": 18,
+      "owner": "Ziptide.Tests.EditMode.VehiclePresentationCoreTests",
+      "target": "Family",
+      "detail": "profile",
+      "snippet": "Assert.That(profile.Family, Is.EqualTo(family));"
+    },
+    {
+      "kind": "PROFILE_FIELD_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/VehiclePresentationCoreTests.cs",
+      "line": 19,
+      "owner": "Ziptide.Tests.EditMode.VehiclePresentationCoreTests",
+      "target": "MinimumParts",
+      "detail": "profile",
+      "snippet": "Assert.That(profile.MinimumParts, Is.GreaterThanOrEqualTo(minimumParts));"
+    },
+    {
+      "kind": "PROFILE_FIELD_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/VehiclePresentationCoreTests.cs",
+      "line": 20,
+      "owner": "Ziptide.Tests.EditMode.VehiclePresentationCoreTests",
+      "target": "ApproximateBounds",
+      "detail": "profile",
+      "snippet": "Assert.That(profile.ApproximateBounds.x, Is.InRange(1.4f, 3.0f));"
+    },
+    {
+      "kind": "PROFILE_FIELD_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/VehiclePresentationCoreTests.cs",
+      "line": 21,
+      "owner": "Ziptide.Tests.EditMode.VehiclePresentationCoreTests",
+      "target": "ApproximateBounds",
+      "detail": "profile",
+      "snippet": "Assert.That(profile.ApproximateBounds.y, Is.InRange(1.2f, 2.4f));"
+    },
+    {
+      "kind": "PROFILE_FIELD_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/VehiclePresentationCoreTests.cs",
+      "line": 22,
+      "owner": "Ziptide.Tests.EditMode.VehiclePresentationCoreTests",
+      "target": "ApproximateBounds",
+      "detail": "profile",
+      "snippet": "Assert.That(profile.ApproximateBounds.z, Is.InRange(2.5f, 3.8f));"
+    },
+    {
+      "kind": "PROFILE_FIELD_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/VehiclePresentationCoreTests.cs",
+      "line": 23,
+      "owner": "Ziptide.Tests.EditMode.VehiclePresentationCoreTests",
+      "target": "Glow",
+      "detail": "profile",
+      "snippet": "Assert.That(profile.Glow.maxColorComponent, Is.GreaterThan(0.75f));"
+    },
+    {
+      "kind": "PROFILE_FIELD_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/VehiclePresentationCoreTests.cs",
+      "line": 37,
+      "owner": "Ziptide.Tests.EditMode.VehiclePresentationCoreTests",
+      "target": "Family",
+      "detail": "profile",
+      "snippet": "Assert.That(profile.Family, Is.EqualTo(\"utility\"));"
     },
     {
       "kind": "EVENT_INVOKE",

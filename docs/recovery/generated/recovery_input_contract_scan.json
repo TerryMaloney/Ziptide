@@ -1,6 +1,6 @@
 {
   "tool": "recovery_input_contract_scan",
-  "scannedFiles": 658,
+  "scannedFiles": 687,
   "bindingCount": 18,
   "chordReferenceCount": 0,
   "collisionControlCount": 5,
@@ -137,8 +137,8 @@
       "field": "_leftStick",
       "action_name": "ZiptideRideThrottle",
       "binding": "<XRController>{LeftHand}/thumbstick",
-      "action_line": 68,
-      "binding_line": 69
+      "action_line": 70,
+      "binding_line": 71
     },
     {
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
@@ -146,8 +146,8 @@
       "field": "_rightStick",
       "action_name": "ZiptideRideSteer",
       "binding": "<XRController>{RightHand}/thumbstick",
-      "action_line": 70,
-      "binding_line": 71
+      "action_line": 72,
+      "binding_line": 73
     },
     {
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
@@ -155,8 +155,8 @@
       "field": "_boostL3",
       "action_name": "ZiptideRideBoostL3",
       "binding": "<XRController>{LeftHand}/thumbstickClicked",
-      "action_line": 72,
-      "binding_line": 73
+      "action_line": 74,
+      "binding_line": 75
     },
     {
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
@@ -164,8 +164,8 @@
       "field": "_boostA",
       "action_name": "ZiptideRideBoostA",
       "binding": "<XRController>{RightHand}/primaryButton",
-      "action_line": 74,
-      "binding_line": 75
+      "action_line": 76,
+      "binding_line": 77
     }
   ],
   "chordReferences": [],
@@ -186,8 +186,8 @@
         "field": "_leftStick",
         "action_name": "ZiptideRideThrottle",
         "binding": "<XRController>{LeftHand}/thumbstick",
-        "action_line": 68,
-        "binding_line": 69
+        "action_line": 70,
+        "binding_line": 71
       }
     ],
     "<XRController>{LeftHand}/thumbstickClicked": [
@@ -215,8 +215,8 @@
         "field": "_boostL3",
         "action_name": "ZiptideRideBoostL3",
         "binding": "<XRController>{LeftHand}/thumbstickClicked",
-        "action_line": 72,
-        "binding_line": 73
+        "action_line": 74,
+        "binding_line": 75
       }
     ],
     "<XRController>{RightHand}/primaryButton": [
@@ -244,8 +244,8 @@
         "field": "_boostA",
         "action_name": "ZiptideRideBoostA",
         "binding": "<XRController>{RightHand}/primaryButton",
-        "action_line": 74,
-        "binding_line": 75
+        "action_line": 76,
+        "binding_line": 77
       }
     ],
     "<XRController>{RightHand}/secondaryButton": [
@@ -284,8 +284,8 @@
         "field": "_rightStick",
         "action_name": "ZiptideRideSteer",
         "binding": "<XRController>{RightHand}/thumbstick",
-        "action_line": 70,
-        "binding_line": 71
+        "action_line": 72,
+        "binding_line": 73
       }
     ]
   }

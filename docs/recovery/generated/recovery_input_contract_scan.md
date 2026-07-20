@@ -1,6 +1,6 @@
 # ZIPTIDE Runtime Input Contract Scan
 
-- Scanned C# files: **658**
+- Scanned C# files: **687**
 - Runtime-created bindings: **18**
 - Legacy menu-chord references: **0**
 - Controls bound by more than one owner: **5**
@@ -27,29 +27,29 @@ None.
 | `Ziptide.Ship.ShipFlightRuntime` | `ZiptideFlightRollL` | `_rollLeftButton` | `<XRController>{LeftHand}/primaryButton` | `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:148` |
 | `Ziptide.Ship.ShipFlightRuntime` | `ZiptideFlightRollR` | `_rollRightButton` | `<XRController>{RightHand}/secondaryButton` | `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:150` |
 | `Ziptide.Ship.ShipFlightRuntime` | `ZiptideFlightFire` | `_fireAction` | `<XRController>{RightHand}/trigger` | `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:152` |
-| `Ziptide.Ship.VehicleRuntime` | `ZiptideRideThrottle` | `_leftStick` | `<XRController>{LeftHand}/thumbstick` | `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:69` |
-| `Ziptide.Ship.VehicleRuntime` | `ZiptideRideSteer` | `_rightStick` | `<XRController>{RightHand}/thumbstick` | `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:71` |
-| `Ziptide.Ship.VehicleRuntime` | `ZiptideRideBoostL3` | `_boostL3` | `<XRController>{LeftHand}/thumbstickClicked` | `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:73` |
-| `Ziptide.Ship.VehicleRuntime` | `ZiptideRideBoostA` | `_boostA` | `<XRController>{RightHand}/primaryButton` | `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:75` |
+| `Ziptide.Ship.VehicleRuntime` | `ZiptideRideThrottle` | `_leftStick` | `<XRController>{LeftHand}/thumbstick` | `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:71` |
+| `Ziptide.Ship.VehicleRuntime` | `ZiptideRideSteer` | `_rightStick` | `<XRController>{RightHand}/thumbstick` | `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:73` |
+| `Ziptide.Ship.VehicleRuntime` | `ZiptideRideBoostL3` | `_boostL3` | `<XRController>{LeftHand}/thumbstickClicked` | `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:75` |
+| `Ziptide.Ship.VehicleRuntime` | `ZiptideRideBoostA` | `_boostA` | `<XRController>{RightHand}/primaryButton` | `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:77` |
 
 ## Cross-owner control collisions
 
 ### `<XRController>{LeftHand}/thumbstick`
 
 - `Ziptide.Ship.ShipFlightRuntime` → `ZiptideFlightThrottle` at `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:140`
-- `Ziptide.Ship.VehicleRuntime` → `ZiptideRideThrottle` at `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:69`
+- `Ziptide.Ship.VehicleRuntime` → `ZiptideRideThrottle` at `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:71`
 
 ### `<XRController>{LeftHand}/thumbstickClicked`
 
 - `Ziptide.Gameplay.DashLocomotion` → `ZiptideSprint` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs:104`
 - `Ziptide.Ship.ShipFlightRuntime` → `ZiptideFlightBoostL3` at `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:144`
-- `Ziptide.Ship.VehicleRuntime` → `ZiptideRideBoostL3` at `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:73`
+- `Ziptide.Ship.VehicleRuntime` → `ZiptideRideBoostL3` at `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:75`
 
 ### `<XRController>{RightHand}/primaryButton`
 
 - `Ziptide.Gameplay.DashLocomotion` → `ZiptideJump` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs:99`
 - `Ziptide.Ship.ShipFlightRuntime` → `ZiptideFlightBoostA` at `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:146`
-- `Ziptide.Ship.VehicleRuntime` → `ZiptideRideBoostA` at `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:75`
+- `Ziptide.Ship.VehicleRuntime` → `ZiptideRideBoostA` at `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:77`
 
 ### `<XRController>{RightHand}/secondaryButton`
 
@@ -59,5 +59,5 @@ None.
 ### `<XRController>{RightHand}/thumbstick`
 
 - `Ziptide.Ship.ShipFlightRuntime` → `ZiptideFlightSteer` at `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:142`
-- `Ziptide.Ship.VehicleRuntime` → `ZiptideRideSteer` at `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:71`
+- `Ziptide.Ship.VehicleRuntime` → `ZiptideRideSteer` at `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:73`
 
