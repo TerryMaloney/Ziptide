@@ -823,7 +823,6 @@ namespace Ziptide.Gameplay
         private readonly System.Collections.Generic.List<Behaviour> _mutationSuspendedReaders =
             new System.Collections.Generic.List<Behaviour>();
         private Coroutine _mutationReaderRestore;
-        private string _lastInputSettleFailure = string.Empty;
 
         private void SuspendLocomotionReadersForInputMutation()
         {
@@ -847,55 +846,43 @@ namespace Ziptide.Gameplay
 
         private IEnumerator RestoreReadersAfterInputSettle()
         {
-            // One owner spans chained travel. A second trip may begin after the first TRAVEL_OK but before
-            // the previous two-frame settle tail closes; that is fresh input churn, not permanent corruption.
-            // Travel or one unsafe consumer-equivalent read resets clean progress. Restore only after two
-            // consecutive safe frames while travel is inactive. The overall deadline remains bounded and
-            // failure remains closed: providers are never re-enabled after an unproven state.
+            // Frame counts are not a settle guarantee: run 29518294931 showed the FIRST poll after a
+            // two-frame wait still hitting the ApplyProcessors NRE. Run 29518996619 went further —
+            // a PASSING probe followed by a clean MOVE_DIAG read still preceded a ContinuousTurn NRE,
+            // because the restore landed while the TRAVEL COROUTINE was still running and input churn
+            // (manager adoption, asset clears, guard reasserts) had not finished. The identical route
+            // reads clean in steady state (the perf-route legs), so the rule is: readers stay
+            // suspended until travel has fully ENDED, then probe-settle, then two extra frames.
             yield return null;
-            float deadline = Time.realtimeSinceStartup + 45f;
-            int cleanFrames = 0;
-            Ziptide.Core.InputMutationSettleDecision lastDecision =
-                Ziptide.Core.InputMutationSettleDecision.WaitForTravel;
-
-            while (Time.realtimeSinceStartup < deadline)
-            {
-                bool travelling = TravelCoordinator.IsTravelling;
-                bool actionsSafe = !travelling && SuspendedReaderActionsReadSafely();
-                Ziptide.Core.InputMutationSettleStep step =
-                    Ziptide.Core.InputMutationSettleCore.Advance(
-                        travelling, actionsSafe, cleanFrames);
-                cleanFrames = step.NextCleanFrames;
-                lastDecision = step.Decision;
-
-                if (step.Decision == Ziptide.Core.InputMutationSettleDecision.Restore)
-                {
-                    bool handedToBootHold = _bootHold.Held;
-                    foreach (var b in _mutationSuspendedReaders)
-                    {
-                        if (b == null) continue;
-                        if (handedToBootHold) _bootSuspended.Add(b);
-                        else b.enabled = true;
-                    }
-                    Debug.Log("ZIPTIDE: INPUT_MUTATION_READERS restored="
-                        + _mutationSuspendedReaders.Count
-                        + " cleanFrames=" + cleanFrames
-                        + (handedToBootHold ? " handedTo=bootHold" : ""));
-                    _mutationSuspendedReaders.Clear();
-                    _mutationReaderRestore = null;
-                    yield break;
-                }
-
+            float travelDeadline = Time.realtimeSinceStartup + 45f; // covers the 30 s scene-load budget
+            while (Time.realtimeSinceStartup < travelDeadline && TravelCoordinator.IsTravelling)
                 yield return null;
-            }
 
-            Debug.LogError("ZIPTIDE: INPUT_MUTATION_SETTLE_FAIL readers="
-                + _mutationSuspendedReaders.Count
-                + " decision=" + lastDecision
-                + " travelling=" + TravelCoordinator.IsTravelling
-                + " cleanFrames=" + cleanFrames
-                + " detail=" + (string.IsNullOrEmpty(_lastInputSettleFailure)
-                    ? "<no failing action captured>" : _lastInputSettleFailure));
+            float deadline = Time.realtimeSinceStartup + 2f;
+            while (Time.realtimeSinceStartup < deadline && !SuspendedReaderActionsReadSafely())
+                yield return null;
+            if (!SuspendedReaderActionsReadSafely())
+            {
+                // Fail closed. Re-enabling a reader with a known-unsafe InputActionState recreates the
+                // proven Quest crash candidate; disabled locomotion plus a blocking error is safer.
+                Debug.LogError("ZIPTIDE: INPUT_MUTATION_SETTLE_FAIL readers="
+                    + _mutationSuspendedReaders.Count);
+                _mutationReaderRestore = null;
+                yield break;
+            }
+            yield return null;
+            yield return null; // two settled frames beyond the last clean probe
+
+            bool handedToBootHold = _bootHold.Held;
+            foreach (var b in _mutationSuspendedReaders)
+            {
+                if (b == null) continue;
+                if (handedToBootHold) _bootSuspended.Add(b);
+                else b.enabled = true;
+            }
+            Debug.Log("ZIPTIDE: INPUT_MUTATION_READERS restored=" + _mutationSuspendedReaders.Count
+                + (handedToBootHold ? " handedTo=bootHold" : ""));
+            _mutationSuspendedReaders.Clear();
             _mutationReaderRestore = null;
         }
 
@@ -903,79 +890,54 @@ namespace Ziptide.Gameplay
         /// i.e. the InputActionState re-resolution triggered by the wiring mutation has completed.</summary>
         private bool SuspendedReaderActionsReadSafely()
         {
-            _lastInputSettleFailure = string.Empty;
             foreach (var b in _mutationSuspendedReaders)
             {
                 switch (b)
                 {
                     case ActionBasedContinuousMoveProvider move:
-                        if (!ActionReadsSafely(move.leftHandMoveAction,
-                                "ContinuousMove.leftHandMoveAction", out _lastInputSettleFailure) ||
-                            !ActionReadsSafely(move.rightHandMoveAction,
-                                "ContinuousMove.rightHandMoveAction", out _lastInputSettleFailure)) return false;
+                        if (!ActionReadsSafely(move.leftHandMoveAction) ||
+                            !ActionReadsSafely(move.rightHandMoveAction)) return false;
                         break;
                     case ActionBasedContinuousTurnProvider turn:
-                        if (!ActionReadsSafely(turn.leftHandTurnAction,
-                                "ContinuousTurn.leftHandTurnAction", out _lastInputSettleFailure) ||
-                            !ActionReadsSafely(turn.rightHandTurnAction,
-                                "ContinuousTurn.rightHandTurnAction", out _lastInputSettleFailure)) return false;
+                        if (!ActionReadsSafely(turn.leftHandTurnAction) ||
+                            !ActionReadsSafely(turn.rightHandTurnAction)) return false;
                         break;
                     case ActionBasedSnapTurnProvider snap:
-                        if (!ActionReadsSafely(snap.leftHandSnapTurnAction,
-                                "SnapTurn.leftHandSnapTurnAction", out _lastInputSettleFailure) ||
-                            !ActionReadsSafely(snap.rightHandSnapTurnAction,
-                                "SnapTurn.rightHandSnapTurnAction", out _lastInputSettleFailure)) return false;
+                        if (!ActionReadsSafely(snap.leftHandSnapTurnAction) ||
+                            !ActionReadsSafely(snap.rightHandSnapTurnAction)) return false;
                         break;
                 }
             }
             return true;
         }
 
-        private static bool ActionReadsSafely(InputActionProperty property,
-            string owner, out string failure)
+        private static bool ActionReadsSafely(InputActionProperty property)
         {
-            failure = string.Empty;
             var action = property.action;
             if (action == null) return true;
             try
             {
                 if (!action.enabled)
                 {
-                    // XRI action-based locomotion providers own only DIRECT actions. A disabled reference
-                    // is externally managed and reads its default safely. Prepare only direct actions while
-                    // the provider is suspended, then require a later-frame consumer-equivalent read.
+                    // XRI action-based behaviours own only DIRECT actions. A disabled reference is
+                    // externally managed, remains safe to read as its default value, and must not make
+                    // the settle predicate impossible. Prepare only direct actions while the provider
+                    // is suspended, then force a later-frame read before waking the provider.
                     if (property.reference != null) return true;
                     action.Enable();
-                    failure = owner + " action=" + ActionPath(action)
-                        + " phase=direct_action_enabled";
                     return false;
                 }
-
-                // These exact providers consume Vector2. The safety probe must match the consumer contract;
-                // a different value type is a real miswire and must stay fail-closed.
                 action.ReadValue<Vector2>();
                 return true;
             }
-            catch (System.Exception ex)
+            catch (System.NullReferenceException)
             {
-                string runtimeType;
-                try { runtimeType = action.valueType != null ? action.valueType.FullName : string.Empty; }
-                catch { runtimeType = "<unavailable>"; }
-                failure = owner + " action=" + ActionPath(action)
-                    + " expected=" + (action.expectedControlType ?? string.Empty)
-                    + " runtime=" + runtimeType
-                    + " enabled=" + action.enabled
-                    + " reference=" + (property.reference != null)
-                    + " exception=" + ex.GetType().Name + ":" + ex.Message;
-                return false;
+                return false; // InputActionState still mid-re-resolve — the exact NRE the readers would hit
             }
-        }
-
-        private static string ActionPath(InputAction action)
-        {
-            if (action == null) return "<null>";
-            string map = action.actionMap != null ? action.actionMap.name : "<direct>";
-            return map + "/" + action.name;
+            catch (System.InvalidOperationException)
+            {
+                return false; // value-type mismatch during re-resolve — equally unsafe to poll
+            }
         }
 
         public void TeleportToSpawnMarker()
