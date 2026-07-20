@@ -20,7 +20,8 @@ namespace Ziptide.Gameplay
     /// initial scene and after each later scene load, then makes the persistent XRI manager's
     /// InputActionManager the only enabled manager. A scene-generation latch prevents the retained
     /// sceneLoaded subscription and AfterSceneLoad bootstrap from consolidating the same activation twice
-    /// when PlayMode runs without a domain reload.
+    /// when PlayMode runs without a domain reload. A stable canonical session is a strict no-op: assigning
+    /// the same live action-asset list again forces Input System re-resolution and can race locomotion.
     /// </summary>
     public static class PlayerInputSessionGuard
     {
@@ -106,15 +107,25 @@ namespace Ziptide.Gameplay
                             intentionallyDisabledActions.Add(action);
             }
 
-            primary.actionAssets = assets;
-            primary.enabled = true;
+            bool assetListsMatch = AssetListsMatch(primary.actionAssets, assets);
+            bool primaryWasEnabled = primary.enabled;
+            bool mutatePrimary = InputSessionConsolidationCore.NeedsPrimaryMutation(
+                primaryWasEnabled, assetListsMatch, fullyDisabledAssets.Count);
 
-            // InputActionManager.OnEnable may enable every assigned asset. Restore the exact disabled
-            // actions from assets that were already live before manager activation.
-            for (int i = 0; i < intentionallyDisabledActions.Count; i++)
+            if (!assetListsMatch)
+                primary.actionAssets = assets;
+            if (!primaryWasEnabled)
+                primary.enabled = true;
+
+            // Assignment and manager activation may enable every action. Restore only when one of those
+            // operations actually occurred; a stable session must remain completely untouched.
+            if (!assetListsMatch || !primaryWasEnabled)
             {
-                InputAction action = intentionallyDisabledActions[i];
-                if (action != null && action.enabled) action.Disable();
+                for (int i = 0; i < intentionallyDisabledActions.Count; i++)
+                {
+                    InputAction action = intentionallyDisabledActions[i];
+                    if (action != null && action.enabled) action.Disable();
+                }
             }
 
             int recoveredAssets = 0;
@@ -133,7 +144,7 @@ namespace Ziptide.Gameplay
                 if (manager == null || manager == primary) continue;
 
                 int moved = manager.actionAssets != null ? manager.actionAssets.Count : 0;
-                manager.actionAssets = new List<InputActionAsset>();
+                if (moved > 0) manager.actionAssets = new List<InputActionAsset>();
                 if (manager.enabled)
                 {
                     manager.enabled = false;
@@ -145,8 +156,20 @@ namespace Ziptide.Gameplay
 
             Debug.Log("ZIPTIDE: INPUT_SESSION_CANONICAL manager=" + HierarchyPath(primary.transform)
                 + " assets=" + assets.Count + " duplicatesDisabled=" + disabled
-                + " recoveredAssets=" + recoveredAssets + " reason=" + reason);
+                + " recoveredAssets=" + recoveredAssets + " primaryMutated=" + mutatePrimary
+                + " reason=" + reason);
             return disabled;
+        }
+
+        private static bool AssetListsMatch(IList<InputActionAsset> current,
+            IList<InputActionAsset> expected)
+        {
+            int currentCount = current != null ? current.Count : 0;
+            int expectedCount = expected != null ? expected.Count : 0;
+            if (currentCount != expectedCount) return false;
+            for (int i = 0; i < currentCount; i++)
+                if (current[i] != expected[i]) return false;
+            return true;
         }
 
         private static XRInteractionManager FindCanonicalXriManager()
