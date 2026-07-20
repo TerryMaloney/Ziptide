@@ -89,8 +89,17 @@ composition).
 - Light script derives per F3.1: key from the amber horizon band (warm, low), fog = the green
   haze color — the images demonstrate exactly the sky-stains-ground behavior the deriver
   produces.
-- Night-act variant still wanted (LS-5 second act + darkest-grade reference) — one more
-  generation pass someday.
+- **✅ NIGHT ACT delivered same-day (`sky_night_hero_v1.png`)** — the darkest-grade
+  reference, and it PASSES the readability floor (silhouettes legible, warm lanterns vs.
+  cool sky). Vista night-variant translation: dense unfamiliar star field + shimmer field ON
+  (the SkyVista shimmer channel's reference) + the giant as a dark disc with lit crescent
+  edge and rings — **the RING-ARC is the night sky's landmark** + one pale moon + aurora
+  haze bands. **NEW MOTIF ADOPTED (emergent from the keeper): THE TIDE GLOWS AT NIGHT** —
+  the horizon line carries a cold cyan luminous band (pillars silhouetted against it),
+  unifying the night-glow family: horizon band + K5 tide pools + the skiff's wake = the
+  Ziptide faintly visible everywhere after dark. Night is the tide's hour. (Feeds: night
+  grade, LS-5 act data, the gate's ambient presence, and the skiff's "how does it read at
+  night" answer — all one idea.)
 
 ## §3 — STREET LEVEL (K3 — the mood target for Stage A)
 
