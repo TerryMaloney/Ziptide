@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-20T12:11:01.315740+00:00",
+  "generatedAtUtc": "2026-07-20T12:11:38.711271+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -17498,7 +17498,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs",
-      "line": 72,
+      "line": 77,
       "symbol": "Ziptide.Tests.EditMode.WorldImprovementCompilerTests",
       "snippet": "root = new GameObject(WorldImprovementCompiler.RootName);"
     },
@@ -17507,7 +17507,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs",
-      "line": 76,
+      "line": 81,
       "symbol": "Ziptide.Tests.EditMode.WorldImprovementCompilerTests",
       "snippet": "var moduleRoot = new GameObject(\"__WIM_ARRIVAL_IDENTITY\");"
     },

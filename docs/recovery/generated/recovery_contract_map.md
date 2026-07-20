@@ -2484,8 +2484,8 @@ None.
 - Paths: `Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs`
   - `Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs:30` **CREATE_PRIMITIVE** — `floor = GameObject.CreatePrimitive(PrimitiveType.Cube);`
   - `Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs:35` **NEW_GAME_OBJECT** — `spawn = new GameObject("__SPAWN_PLAYER");`
-  - `Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs:72` **NEW_GAME_OBJECT** — `root = new GameObject(WorldImprovementCompiler.RootName);`
-  - `Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs:76` **NEW_GAME_OBJECT** — `var moduleRoot = new GameObject("__WIM_ARRIVAL_IDENTITY");`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs:77` **NEW_GAME_OBJECT** — `root = new GameObject(WorldImprovementCompiler.RootName);`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs:81` **NEW_GAME_OBJECT** — `var moduleRoot = new GameObject("__WIM_ARRIVAL_IDENTITY");`
 
 ### `Ziptide.Tests.EditMode.WristScannerResultTests` — 1 signal(s)
 
