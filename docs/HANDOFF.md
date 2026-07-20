@@ -27,6 +27,42 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-20 (rb60) — Fable 5: **THE STORY GENESIS KIT** — the pre-pipeline lands as the first Slipway module (parallel to the project, zero coupling, zero code)
+
+- **Did (Terry-directed, plan-approved):** created **`docs/slipway/`** — the cloneable-framework
+  folder (ONE_SHOT_FRAMEWORK T5's name) — with its first module: the STORY kit, the
+  pre-pipeline that runs BEFORE `PIPELINE.md` Stage 0 for any future game, and module #1 of
+  Terry's stated long-term goal (an LLM game generator). Three files:
+  ① **`README.md`** — the folder's purpose + **THE NON-INTERFERENCE LAW** (one-way street:
+  the kit cites Ziptide as worked example; NO project doc may depend on the kit; changes here
+  never gate the game, never need PIPELINE amendments, never touch the freeze) + the
+  extraction-timing warning (the REST of the Slipway waits for the Stage-5 One-Session-World
+  checkpoint).
+  ② **`STORY_GENESIS.md`** — the method: **ten laws reverse-engineered from Ziptide's bible**
+  (A1 the fantasy contains the verb · A2 gameplay↔fiction unity table · A3 the revelation
+  ladder · A4 layered truth that recontextualizes-never-invalidates · A5 one moral question,
+  factions as answers, endings as the player's answer · A6 companion as delivery vehicle +
+  the relationship rules · A7 devices that generate content slots · A8 the two-audience law ·
+  A9 canon lock + the three lists · A10 structure-as-data), each with its evidence and a
+  concrete TEST; the craft imports (want-vs-need, mystery-box payoff ledger,
+  implication-over-exposition, emotional-arc-first, the contradiction law, restraint as
+  budget); **the 12-step method** ending at a CANON LOCK checkpoint (same ceremony as every
+  pipeline checkpoint) and handing off to the Genesis Interview (rb57) → Stage 0/1; the
+  quality rubric (0–2 × ten laws, lock needs ≥16/20 no zeros) + the Haiku-Workshop
+  distillation loop + the honest Class-9 limit.
+  ③ **`STORY_BIBLE_TEMPLATE.md`** — Ziptide's bible generalized into a 12-section fill-in
+  skeleton (logline w/ verb test → locked meta w/ recontextualization list → protagonist w/
+  HABIT slot → companion rules → factions-as-answers table → the mechanic↔fiction table →
+  ladder → devices → endings → tone charter → the three lists → structure-as-data appendix
+  incl. the world-template sections and chapter header tuple).
+- **Classification:** every file carries `Stage: pre-pipeline (Slipway) · Type: research —
+  PARALLEL TO ZIPTIDE`. No PIPELINE amendment (outside it by design), no CLAUDE.md edits, no
+  project-doc links into the kit. The freeze and all lanes are untouched.
+- **Next:** nothing — the kit is complete as paper. It activates the day a second game (or
+  the generator) needs it; Ziptide-side, the only relationship is that our own story work may
+  consult it as a mirror.
+- **Commit:** this one (docs only: 3 new slipway files + this entry).
+
 ### 2026-07-20 (rb59) — Fable 5 → **📣 FOR GPT: THE FIRST-HOUR COMPLETION ORDER — plan + sequence** (Terry-directed)
 
 - **Terry's intent, on record:** once the stack lands, he wants to issue ONE order: *"finish the
