@@ -949,11 +949,11 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `boltCooldown`
 
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.DroneCombatBehavior` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:88` · `profile` — `boltCooldown = profile.boltCooldown;`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.DroneCombatBehavior` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:108` · `profile` — `boltCooldown = profile.boltCooldown;`
 
 ### `boltSpeed`
 
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.DroneCombatBehavior` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:89` · `profile` — `boltSpeed = profile.boltSpeed;`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.DroneCombatBehavior` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:109` · `profile` — `boltSpeed = profile.boltSpeed;`
 
 ### `bot.transform.position`
 
@@ -993,7 +993,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `detectRange`
 
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.DroneCombatBehavior` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:80` · `profile` — `detectRange = profile.detectRange;`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.DroneCombatBehavior` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:100` · `profile` — `detectRange = profile.detectRange;`
 
 ### `effect`
 
@@ -1102,7 +1102,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `loseRange`
 
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.DroneCombatBehavior` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:81` · `profile` — `loseRange = profile.loseRange;`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.DroneCombatBehavior` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:101` · `profile` — `loseRange = profile.loseRange;`
 
 ### `method`
 
@@ -1130,7 +1130,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `orbitSpeed`
 
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.DroneCombatBehavior` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:83` · `profile` — `orbitSpeed = profile.orbitSpeed;`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.DroneCombatBehavior` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:103` · `profile` — `orbitSpeed = profile.orbitSpeed;`
 
 ### `p.x`
 
@@ -1145,11 +1145,11 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `patrolRadius`
 
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.DroneCombatBehavior` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:85` · `profile` — `patrolRadius = profile.patrolRadius;`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.DroneCombatBehavior` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:105` · `profile` — `patrolRadius = profile.patrolRadius;`
 
 ### `patrolSpeed`
 
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.DroneCombatBehavior` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:86` · `profile` — `patrolSpeed = profile.patrolSpeed;`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.DroneCombatBehavior` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:106` · `profile` — `patrolSpeed = profile.patrolSpeed;`
 
 ### `photos`
 
@@ -1298,7 +1298,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `slowFactor`
 
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.DroneCombatBehavior` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:91` · `profile` — `slowFactor = profile.slowFactor;`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.DroneCombatBehavior` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:111` · `profile` — `slowFactor = profile.slowFactor;`
 
 ### `spawnEuler`
 
@@ -1315,11 +1315,11 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `standoffDistance`
 
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.DroneCombatBehavior` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:82` · `profile` — `standoffDistance = profile.standoffDistance;`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.DroneCombatBehavior` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:102` · `profile` — `standoffDistance = profile.standoffDistance;`
 
 ### `stunSeconds`
 
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.DroneCombatBehavior` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:90` · `profile` — `stunSeconds = profile.stunSeconds;`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.DroneCombatBehavior` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:110` · `profile` — `stunSeconds = profile.stunSeconds;`
 
 ### `t.OnFire`
 
@@ -1347,7 +1347,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `telegraphSeconds`
 
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.DroneCombatBehavior` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:87` · `profile` — `telegraphSeconds = profile.telegraphSeconds;`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.DroneCombatBehavior` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:107` · `profile` — `telegraphSeconds = profile.telegraphSeconds;`
 
 ### `transform.localPosition`
 
@@ -1370,7 +1370,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `verticalBob`
 
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.DroneCombatBehavior` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:84` · `profile` — `verticalBob = profile.verticalBob;`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.DroneCombatBehavior` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:104` · `profile` — `verticalBob = profile.verticalBob;`
 
 ### `volume`
 

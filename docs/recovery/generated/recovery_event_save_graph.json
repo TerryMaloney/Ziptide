@@ -5545,7 +5545,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-        "line": 88,
+        "line": 108,
         "owner": "Ziptide.Gameplay.DroneCombatBehavior",
         "target": "boltCooldown",
         "detail": "profile",
@@ -5556,7 +5556,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-        "line": 89,
+        "line": 109,
         "owner": "Ziptide.Gameplay.DroneCombatBehavior",
         "target": "boltSpeed",
         "detail": "profile",
@@ -5716,7 +5716,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-        "line": 80,
+        "line": 100,
         "owner": "Ziptide.Gameplay.DroneCombatBehavior",
         "target": "detectRange",
         "detail": "profile",
@@ -6322,7 +6322,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-        "line": 81,
+        "line": 101,
         "owner": "Ziptide.Gameplay.DroneCombatBehavior",
         "target": "loseRange",
         "detail": "profile",
@@ -6449,7 +6449,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-        "line": 83,
+        "line": 103,
         "owner": "Ziptide.Gameplay.DroneCombatBehavior",
         "target": "orbitSpeed",
         "detail": "profile",
@@ -6509,7 +6509,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-        "line": 85,
+        "line": 105,
         "owner": "Ziptide.Gameplay.DroneCombatBehavior",
         "target": "patrolRadius",
         "detail": "profile",
@@ -6520,7 +6520,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-        "line": 86,
+        "line": 106,
         "owner": "Ziptide.Gameplay.DroneCombatBehavior",
         "target": "patrolSpeed",
         "detail": "profile",
@@ -7086,7 +7086,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-        "line": 91,
+        "line": 111,
         "owner": "Ziptide.Gameplay.DroneCombatBehavior",
         "target": "slowFactor",
         "detail": "profile",
@@ -7139,7 +7139,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-        "line": 82,
+        "line": 102,
         "owner": "Ziptide.Gameplay.DroneCombatBehavior",
         "target": "standoffDistance",
         "detail": "profile",
@@ -7150,7 +7150,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-        "line": 90,
+        "line": 110,
         "owner": "Ziptide.Gameplay.DroneCombatBehavior",
         "target": "stunSeconds",
         "detail": "profile",
@@ -7227,7 +7227,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-        "line": 87,
+        "line": 107,
         "owner": "Ziptide.Gameplay.DroneCombatBehavior",
         "target": "telegraphSeconds",
         "detail": "profile",
@@ -7334,7 +7334,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-        "line": 84,
+        "line": 104,
         "owner": "Ziptide.Gameplay.DroneCombatBehavior",
         "target": "verticalBob",
         "detail": "profile",
@@ -9130,7 +9130,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-      "line": 80,
+      "line": 100,
       "owner": "Ziptide.Gameplay.DroneCombatBehavior",
       "target": "detectRange",
       "detail": "profile",
@@ -9139,7 +9139,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-      "line": 81,
+      "line": 101,
       "owner": "Ziptide.Gameplay.DroneCombatBehavior",
       "target": "loseRange",
       "detail": "profile",
@@ -9148,7 +9148,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-      "line": 82,
+      "line": 102,
       "owner": "Ziptide.Gameplay.DroneCombatBehavior",
       "target": "standoffDistance",
       "detail": "profile",
@@ -9157,7 +9157,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-      "line": 83,
+      "line": 103,
       "owner": "Ziptide.Gameplay.DroneCombatBehavior",
       "target": "orbitSpeed",
       "detail": "profile",
@@ -9166,7 +9166,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-      "line": 84,
+      "line": 104,
       "owner": "Ziptide.Gameplay.DroneCombatBehavior",
       "target": "verticalBob",
       "detail": "profile",
@@ -9175,7 +9175,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-      "line": 85,
+      "line": 105,
       "owner": "Ziptide.Gameplay.DroneCombatBehavior",
       "target": "patrolRadius",
       "detail": "profile",
@@ -9184,7 +9184,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-      "line": 86,
+      "line": 106,
       "owner": "Ziptide.Gameplay.DroneCombatBehavior",
       "target": "patrolSpeed",
       "detail": "profile",
@@ -9193,7 +9193,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-      "line": 87,
+      "line": 107,
       "owner": "Ziptide.Gameplay.DroneCombatBehavior",
       "target": "telegraphSeconds",
       "detail": "profile",
@@ -9202,7 +9202,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-      "line": 88,
+      "line": 108,
       "owner": "Ziptide.Gameplay.DroneCombatBehavior",
       "target": "boltCooldown",
       "detail": "profile",
@@ -9211,7 +9211,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-      "line": 89,
+      "line": 109,
       "owner": "Ziptide.Gameplay.DroneCombatBehavior",
       "target": "boltSpeed",
       "detail": "profile",
@@ -9220,7 +9220,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-      "line": 90,
+      "line": 110,
       "owner": "Ziptide.Gameplay.DroneCombatBehavior",
       "target": "stunSeconds",
       "detail": "profile",
@@ -9229,7 +9229,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs",
-      "line": 91,
+      "line": 111,
       "owner": "Ziptide.Gameplay.DroneCombatBehavior",
       "target": "slowFactor",
       "detail": "profile",
