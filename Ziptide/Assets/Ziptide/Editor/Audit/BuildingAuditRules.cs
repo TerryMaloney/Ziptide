@@ -4,15 +4,7 @@ using UnityEngine;
 namespace Ziptide.Editor.Audit
 {
     /// <summary>
-    /// V2.5 H1 building gates (ExperienceAuditRules pattern; per non-boot scene):
-    ///  - BUILDING_DOOR_BLOCKED (blocker) a doorway's outward path is walled off — raycast from each
-    ///    __DOOR marker (chest height, facing out) must reach 1.5m of clear air. LotPartitioner +
-    ///    BuildingGrammar make this true by construction; the gate catches regressions in the BAKED
-    ///    scene (e.g., a hand-moved prop or a colliding patcher).
-    ///  - BUILDING_OVER_BUDGET (blocker) renderer count under one __BUILDINGS_ district root exceeds
-    ///    the Quest draw-call proxy cap.
-    /// Scenes with no __BUILDINGS_ roots are exempt (buildings are opt-in per district).
-    /// The same audit entrypoint also runs the legacy ToxicCity Stage A grammar/material/object gates.
+    /// V2.5 H1 building gates plus the invoked generated-world architecture aggregators.
     /// </summary>
     public static class BuildingAuditRules
     {
@@ -32,8 +24,8 @@ namespace Ziptide.Editor.Audit
                 foreach (var t in root.GetComponentsInChildren<Transform>(true))
                 {
                     if (t.name != "__DOOR") continue;
-                    // Clear exit: nothing solid within 1.5m straight out of the doorway at chest height.
-                    if (Physics.Raycast(t.position, t.forward, out var hit, 1.5f, ~0, QueryTriggerInteraction.Ignore))
+                    if (Physics.Raycast(t.position, t.forward, out var hit, 1.5f, ~0,
+                            QueryTriggerInteraction.Ignore))
                         report.Blocker("BUILDING_DOOR_BLOCKED",
                             "Doorway at " + t.position.ToString("F1") + " in " + root.name +
                             " exits into '" + hit.collider.name + "' " + hit.distance.ToString("F2") + "m out. " +
@@ -42,6 +34,9 @@ namespace Ziptide.Editor.Audit
             }
 
             CityStageAAuditRules.Run(report);
+            CityStageBAuditRules.Run(report);
+            WorldContainmentAuditRules.Run(report);
+            FullSendPresentationAuditRules.Run(report);
         }
     }
 }

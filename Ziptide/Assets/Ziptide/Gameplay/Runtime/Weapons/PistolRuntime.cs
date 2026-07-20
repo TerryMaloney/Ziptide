@@ -2,28 +2,38 @@ using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 using Ziptide.Content;
+using Ziptide.Core;
 
 namespace Ziptide.Gameplay
 {
     /// <summary>
-    /// Hitscan pistol: raycast from Muzzle on trigger, hit TargetRuntime, haptics, muzzle flash, optional audio.
+    /// Hitscan pistol: raycast from Muzzle on trigger, hit TargetRuntime, tracer/muzzle/impact feedback,
+    /// layered definition-driven haptics, visual-only Forge recoil, and authored-or-procedural audio.
     /// </summary>
     [RequireComponent(typeof(XRGrabInteractable))]
+    [RequireComponent(typeof(WeaponFeelRuntime))]
     public class PistolRuntime : MonoBehaviour
     {
         [SerializeField] private PistolDefinition pistolDefinition;
 
         /// <summary>Called by ItemFactory instead of reflection to set the definition.</summary>
-        public void Init(PistolDefinition def) { pistolDefinition = def; }
+        public void Init(PistolDefinition def)
+        {
+            pistolDefinition = def;
+            EnsureFeel();
+            ConfigureFeel(def);
+        }
 
         private XRGrabInteractable _grab;
         private Transform _muzzle;
         private float _nextFireTime;
         private AudioSource _audioSource;
         private bool _triggerWasDown;
-        private static AudioClip _fallbackClickClip;
+        private WeaponFeelRuntime _feel;
 
-        private PistolDefinition Def => pistolDefinition != null ? pistolDefinition : GetComponent<ItemRuntime>()?.Definition as PistolDefinition;
+        private PistolDefinition Def => pistolDefinition != null
+            ? pistolDefinition
+            : GetComponent<ItemRuntime>()?.Definition as PistolDefinition;
 
         private void Awake()
         {
@@ -37,36 +47,44 @@ namespace Ziptide.Gameplay
                 _muzzle = m.transform;
             }
             _audioSource = GetComponent<AudioSource>();
-            if (_audioSource == null)
-                _audioSource = gameObject.AddComponent<AudioSource>();
+            if (_audioSource == null) _audioSource = gameObject.AddComponent<AudioSource>();
             _audioSource.spatialBlend = 1f;
             _audioSource.playOnAwake = false;
             _audioSource.minDistance = 0.25f;
             _audioSource.maxDistance = 8f;
+            EnsureFeel();
+            ConfigureFeel(Def);
+        }
+
+        private void EnsureFeel()
+        {
+            if (_feel == null) _feel = GetComponent<WeaponFeelRuntime>();
+            if (_feel == null) _feel = gameObject.AddComponent<WeaponFeelRuntime>();
+        }
+
+        private void ConfigureFeel(PistolDefinition def)
+        {
+            if (def == null) return;
+            EnsureFeel();
+            _feel.Configure(def.itemId, WeaponFeelKind.Ballistic,
+                def.hapticAmplitude, def.hapticDuration, def.recoilKick, def.fireRate);
         }
 
         private void OnEnable()
         {
-            if (_grab != null)
-                _grab.activated.AddListener(OnActivated);
+            if (_grab != null) _grab.activated.AddListener(OnActivated);
         }
 
         private void OnDisable()
         {
-            if (_grab != null)
-                _grab.activated.RemoveListener(OnActivated);
+            if (_grab != null) _grab.activated.RemoveListener(OnActivated);
         }
 
         private void Update()
         {
-            // Fallback: some rigs don’t route Activate events; polling ensures trigger fires while held.
             if (_grab == null || !_grab.isSelected) { _triggerWasDown = false; return; }
-
             bool triggerDown = IsAnyTriggerDown();
-            if (triggerDown && !_triggerWasDown)
-            {
-                Fire(GetSelectingControllerInteractor());
-            }
+            if (triggerDown && !_triggerWasDown) Fire(GetSelectingControllerInteractor());
             _triggerWasDown = triggerDown;
         }
 
@@ -77,26 +95,33 @@ namespace Ziptide.Gameplay
 
         private void Fire(XRBaseControllerInteractor controllerInteractor)
         {
-            var def = Def;
-            if (def == null) return;
-            if (Time.time < _nextFireTime) return;
+            PistolDefinition def = Def;
+            if (def == null || Time.time < _nextFireTime) return;
             _nextFireTime = Time.time + def.fireRate;
+            ConfigureFeel(def);
 
-            var origin = _muzzle != null ? _muzzle.position : transform.position;
-            var dir = _muzzle != null ? _muzzle.forward : transform.forward;
+            Vector3 origin = _muzzle != null ? _muzzle.position : transform.position;
+            Vector3 dir = _muzzle != null ? _muzzle.forward : transform.forward;
             Vector3 tracerEnd = origin + dir * def.range;
-            if (Physics.Raycast(origin, dir, out var hit, def.range))
+            bool confirmedHit = false;
+            if (Physics.Raycast(origin, dir, out RaycastHit hit, def.range))
             {
                 tracerEnd = hit.point;
-                var target = hit.collider.GetComponentInParent<TargetRuntime>();
+                TargetRuntime target = hit.collider.GetComponentInParent<TargetRuntime>();
                 if (target != null)
+                {
                     target.Hit(def.hitForce, hit.point);
+                    confirmedHit = true;
+                }
+                WeaponImpactFx.Spawn(hit.point, hit.normal, confirmedHit);
             }
-            // Every shot is visible (Test Day 1: "shows nothing shooting out of it").
-            TracerFx.Spawn(origin, tracerEnd, new Color(1f, 0.85f, 0.45f));
 
-            if (controllerInteractor != null)
-                controllerInteractor.SendHapticImpulse(def.hapticAmplitude, def.hapticDuration);
+            TracerFx.Spawn(origin, tracerEnd, new Color(1f, 0.85f, 0.45f));
+            if (_feel != null)
+            {
+                _feel.Fire(controllerInteractor, _audioSource, def.fireClip);
+                if (confirmedHit) _feel.ConfirmHit(controllerInteractor);
+            }
 
             if (def.muzzleFlashPrefab != null)
             {
@@ -105,19 +130,11 @@ namespace Ziptide.Gameplay
             }
             else
             {
-                // Pooled (HARDWIRING 0.5): a flash per trigger pull is the hottest spawn on the belt.
-                var flashGo = Ziptide.Core.GamePool.Get("pistol_flash", BuildFallbackFlash, _muzzle.position);
-                Ziptide.Core.GamePool.ReleaseAfter("pistol_flash", flashGo, 0.08f);
-            }
-
-            if (_audioSource != null)
-            {
-                if (def.fireClip != null) _audioSource.PlayOneShot(def.fireClip);
-                else _audioSource.PlayOneShot(GetFallbackClickClip());
+                var flashGo = GamePool.Get("pistol_flash", BuildFallbackFlash, _muzzle.position);
+                GamePool.ReleaseAfter("pistol_flash", flashGo, 0.08f);
             }
         }
 
-        /// <summary>Pool factory — runs once; the built flash is reused for every later shot.</summary>
         private static GameObject BuildFallbackFlash()
         {
             var go = GameObject.CreatePrimitive(PrimitiveType.Sphere);
@@ -125,26 +142,8 @@ namespace Ziptide.Gameplay
             go.transform.localScale = Vector3.one * 0.02f;
             var col = go.GetComponent<Collider>();
             if (col != null) col.enabled = false;
+            ItemFactory.ApplyURPColor(go, new Color(1f, 0.72f, 0.24f));
             return go;
-        }
-
-        private static AudioClip GetFallbackClickClip()
-        {
-            if (_fallbackClickClip != null) return _fallbackClickClip;
-            const int sampleRate = 44100;
-            const float duration = 0.03f;
-            int samples = Mathf.CeilToInt(sampleRate * duration);
-            var data = new float[samples];
-            for (int i = 0; i < samples; i++)
-            {
-                float t = i / (float)sampleRate;
-                float env = Mathf.Exp(-t * 60f);
-                float n = (Random.value * 2f - 1f) * env;
-                data[i] = n * 0.25f;
-            }
-            _fallbackClickClip = AudioClip.Create("Pistol_Click", samples, 1, sampleRate, false);
-            _fallbackClickClip.SetData(data, 0);
-            return _fallbackClickClip;
         }
 
         private XRBaseControllerInteractor GetSelectingControllerInteractor()

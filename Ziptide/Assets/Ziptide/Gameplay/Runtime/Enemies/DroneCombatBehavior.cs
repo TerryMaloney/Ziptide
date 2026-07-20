@@ -1,14 +1,12 @@
 using UnityEngine;
 using Ziptide.Content;
+using Ziptide.Core;
 
 namespace Ziptide.Gameplay
 {
     /// <summary>
-    /// Drone Combat V1 — optional sibling of <see cref="DroneRuntime"/> (only on combat drones).
-    /// Patrols its home, detects the player, orbits/strafes at a standoff, telegraphs, then fires a
-    /// slow non-lethal <see cref="StunBolt"/>. All gated on <c>DroneRuntime.IsActive</c>, so shooting
-    /// the drone (taser/pistol/gravity) still downs it normally and combat simply stops. Tunables are
-    /// serialized and optionally overridden by a <see cref="DroneCombatProfile"/> asset (data variants).
+    /// Drone Combat V1 — existing combat FSM, movement, collision, LoS and projectile truth plus a
+    /// persistent readable threat presentation. No attack timing, damage, stun or decision rule lives here.
     /// </summary>
     [RequireComponent(typeof(DroneRuntime))]
     public class DroneCombatBehavior : MonoBehaviour
@@ -25,8 +23,7 @@ namespace Ziptide.Gameplay
         public float patrolRadius = 3f;
         public float patrolSpeed = 18f;
         public float moveLerp = 1.7f;
-        [Tooltip("Max distance the drone will stray from its home spot — keeps it in its open zone " +
-                 "instead of chasing the player through buildings.")]
+        [Tooltip("Max distance the drone will stray from its home spot — keeps it in its open zone instead of chasing through buildings.")]
         public float leashRadius = 9f;
 
         [Header("Attack")]
@@ -37,7 +34,7 @@ namespace Ziptide.Gameplay
         [Range(0.1f, 1f)] public float slowFactor = 0.45f;
         public Color telegraphColor = new Color(0.3f, 0.9f, 1f);
 
-        [Tooltip("Optional data variant. Overrides the serialized values above when assigned.")]
+        [Tooltip("Optional data variant. Overrides serialized values when assigned.")]
         public DroneCombatProfile profile;
 
         private DroneRuntime _drone;
@@ -45,25 +42,36 @@ namespace Ziptide.Gameplay
         private Transform _player;
         private PlayerStunReceiver _receiver;
         private float _orbitAngle;
-        private float _phase; // per-drone offset so a pack doesn't move in lockstep
+        private float _phase;
         private GameObject _telegraphFx;
         private Renderer _telegraphRenderer;
+        private LineRenderer _aimLine;
+        private Material _threatMaterial;
+        private DroneCombatPhase _lastLoggedPhase;
+        private bool _phaseLogPrimed;
+        private float _shotFlashUntil;
 
         private void Awake()
         {
             _drone = GetComponent<DroneRuntime>();
-            // Per-drone phase offset so multiple drones don't bob/orbit in sync (reads as alive, not cloned).
             _phase = (GetInstanceID() & 0x3FF) * 0.123f;
             ApplyProfile();
             _fsm.DetectRange = detectRange;
             _fsm.LoseRange = loseRange;
             _fsm.TelegraphSeconds = telegraphSeconds;
             _fsm.BoltCooldown = boltCooldown;
+            EnsureThreatPresentation();
+            HideThreatPresentation();
         }
 
         private void OnEnable()
         {
-            if (_drone != null) _drone.CombatDriven = true; // we own motion
+            if (_drone != null) _drone.CombatDriven = true;
+        }
+
+        private void OnDisable()
+        {
+            HideThreatPresentation();
         }
 
         private void ApplyProfile()
@@ -87,27 +95,29 @@ namespace Ziptide.Gameplay
         {
             if (_drone == null) return;
             float dt = Time.deltaTime;
-
             if (_player == null) FindPlayer();
             bool active = _drone.IsActive;
-            float dist = _player != null ? Vector3.Distance(transform.position, _player.position) : 9999f;
-            bool los = _player != null && HasLineOfSight();
+            float distance = _player != null ? Vector3.Distance(transform.position, _player.position) : 9999f;
+            bool lineOfSight = _player != null && HasLineOfSight();
 
-            _fsm.Tick(dt, dist, los, active);
+            _fsm.Tick(dt, distance, lineOfSight, active);
+            LogPhaseTransition();
 
-            if (!active) { ClearTelegraph(); return; }
+            if (!active)
+            {
+                HideThreatPresentation();
+                return;
+            }
 
-            Move(dt, dist);
-            UpdateTelegraph();
-
+            Move(dt);
+            UpdateThreatPresentation();
             if (_fsm.FireRequested) FireBolt();
         }
 
-        private void Move(float dt, float dist)
+        private void Move(float dt)
         {
             Vector3 home = _drone.HomePos;
             Vector3 desired;
-
             if (_fsm.Phase == DroneCombatPhase.Patrol || _player == null)
             {
                 _orbitAngle += patrolSpeed * dt * Mathf.Deg2Rad;
@@ -116,52 +126,42 @@ namespace Ziptide.Gameplay
             }
             else
             {
-                // Lifelike engage: NON-UNIFORM orbit speed + a slow "breathe" in/out on the standoff radius
-                // (darts a little closer, then backs off) + the per-drone phase so a pack isn't synchronized.
-                // Still feeds the leash clamp + CollideMove below, so it never clips walls or leaves its zone.
-                _orbitAngle += orbitSpeed * dt * Mathf.Deg2Rad * (1f + 0.35f * Mathf.Sin(Time.time * 0.6f + _phase));
+                _orbitAngle += orbitSpeed * dt * Mathf.Deg2Rad
+                    * (1f + 0.35f * Mathf.Sin(Time.time * 0.6f + _phase));
                 Vector3 center = _player.position;
-                float breathe = standoffDistance + Mathf.Sin(Time.time * 0.5f + _phase) * 1.0f;
-                Vector3 ring = new Vector3(Mathf.Cos(_orbitAngle), 0f, Mathf.Sin(_orbitAngle)) * breathe;
-                desired = center + ring;
+                float breathe = standoffDistance + Mathf.Sin(Time.time * 0.5f + _phase);
+                desired = center + new Vector3(Mathf.Cos(_orbitAngle), 0f, Mathf.Sin(_orbitAngle)) * breathe;
                 desired.y = home.y + Mathf.Sin(Time.time * 1.5f + _phase) * verticalBob;
-                // face the player
-                Vector3 look = center - transform.position; look.y = 0f;
+                Vector3 look = center - transform.position;
+                look.y = 0f;
                 if (look.sqrMagnitude > 0.001f)
                     transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(look), dt * 4f);
             }
 
-            // Leash to home so combat drones hold their open zone instead of phasing through buildings
-            // to chase you ("coming out of nowhere / shooting through walls").
-            Vector3 off = desired - home;
-            if (off.magnitude > leashRadius) desired = home + off.normalized * leashRadius;
-
-            // Collision-aware: a drone moves by transform (no Rigidbody), so without this it flies THROUGH
-            // building walls. Clamp the step at the nearest wall so it never clips into/through geometry.
+            Vector3 offset = desired - home;
+            if (offset.magnitude > leashRadius) desired = home + offset.normalized * leashRadius;
             Vector3 next = Vector3.Lerp(transform.position, desired, dt * moveLerp);
             transform.position = CollideMove(transform.position, next);
         }
 
-        // Stop the move at the nearest solid wall (ignoring the player rig and other drones).
         private Vector3 CollideMove(Vector3 from, Vector3 to)
         {
             Vector3 delta = to - from;
-            float dist = delta.magnitude;
-            if (dist < 0.0001f) return to;
-            Vector3 dir = delta / dist;
-            const float r = 0.22f;
-            var hits = Physics.SphereCastAll(from, r, dir, dist, ~0, QueryTriggerInteraction.Ignore);
-            float nearest = dist;
+            float distance = delta.magnitude;
+            if (distance < 0.0001f) return to;
+            Vector3 direction = delta / distance;
+            const float radius = 0.22f;
+            var hits = Physics.SphereCastAll(from, radius, direction, distance, ~0, QueryTriggerInteraction.Ignore);
+            float nearest = distance;
             for (int i = 0; i < hits.Length; i++)
             {
-                var col = hits[i].collider;
-                if (col == null) continue;
-                if (col.GetComponentInParent<DroneRuntime>() != null) continue; // self / other drones
-                if (IsPlayerRig(col.transform)) continue;                       // the player
+                Collider collider = hits[i].collider;
+                if (collider == null) continue;
+                if (collider.GetComponentInParent<DroneRuntime>() != null) continue;
+                if (IsPlayerRig(collider.transform)) continue;
                 if (hits[i].distance < nearest) nearest = hits[i].distance;
             }
-            if (nearest < dist) return from + dir * Mathf.Max(0f, nearest - r);
-            return to;
+            return nearest < distance ? from + direction * Mathf.Max(0f, nearest - radius) : to;
         }
 
         private void FindPlayer()
@@ -173,13 +173,13 @@ namespace Ziptide.Gameplay
 
         private bool HasLineOfSight()
         {
-            Vector3 a = transform.position;
-            Vector3 b = _player.position;
-            Vector3 dir = (b - a);
-            float d = dir.magnitude;
-            if (d < 0.01f) return true;
-            a += dir.normalized * 0.4f; // start past our own collider
-            if (Physics.Linecast(a, b, out var hit, lineOfSightMask, QueryTriggerInteraction.Ignore))
+            Vector3 from = transform.position;
+            Vector3 to = _player.position;
+            Vector3 direction = to - from;
+            float distance = direction.magnitude;
+            if (distance < 0.01f) return true;
+            from += direction.normalized * 0.4f;
+            if (Physics.Linecast(from, to, out var hit, lineOfSightMask, QueryTriggerInteraction.Ignore))
                 return IsPlayerRig(hit.collider.transform);
             return true;
         }
@@ -198,47 +198,112 @@ namespace Ziptide.Gameplay
         {
             if (_player == null) return;
             Vector3 origin = transform.position;
-            Vector3 dir = (_player.position - origin).normalized;
+            Vector3 direction = (_player.position - origin).normalized;
             var go = new GameObject("StunBolt");
-            go.transform.position = origin + dir * 0.5f;
+            go.transform.position = origin + direction * 0.5f;
             var bolt = go.AddComponent<StunBolt>();
-            bolt.Init(dir * boltSpeed, stunSeconds, slowFactor);
+            bolt.Init(direction * boltSpeed, stunSeconds, slowFactor);
+            _shotFlashUntil = Time.time + 0.07f;
+            Debug.Log("ZIPTIDE: DRONE_SHOT instance=" + GetInstanceID()
+                + " speed=" + boltSpeed.ToString("F1")
+                + " stun=" + stunSeconds.ToString("F1"));
         }
 
-        private void UpdateTelegraph()
+        private void UpdateThreatPresentation()
         {
-            float p = _fsm.Phase == DroneCombatPhase.Telegraph ? _fsm.TelegraphProgress : 0f;
-            if (p <= 0f) { ClearTelegraph(); return; }
+            bool flash = Time.time < _shotFlashUntil;
+            bool telegraphing = _fsm.Phase == DroneCombatPhase.Telegraph;
+            DroneThreatPresentation presentation = DroneThreatPresentationCore.Resolve(
+                _fsm.TelegraphProgress, telegraphing, flash);
+            if (!presentation.Visible)
+            {
+                HideThreatPresentation();
+                return;
+            }
+
+            EnsureThreatPresentation();
+            _telegraphFx.SetActive(true);
+            _telegraphFx.transform.localScale = Vector3.one * presentation.OrbScale;
+            Color color = flash ? Color.white : telegraphColor;
+            if (_threatMaterial != null)
+            {
+                if (_threatMaterial.HasProperty("_BaseColor")) _threatMaterial.SetColor("_BaseColor", color);
+                else if (_threatMaterial.HasProperty("_Color")) _threatMaterial.SetColor("_Color", color);
+                if (_threatMaterial.HasProperty("_EmissionColor"))
+                    _threatMaterial.SetColor("_EmissionColor", color * presentation.Intensity);
+            }
+
+            bool showLine = presentation.ShowAimLine && _player != null;
+            _aimLine.enabled = showLine;
+            if (showLine)
+            {
+                Vector3 from = transform.position + transform.forward * 0.42f;
+                _aimLine.startWidth = presentation.LineWidth;
+                _aimLine.endWidth = presentation.LineWidth * 0.35f;
+                _aimLine.SetPosition(0, from);
+                _aimLine.SetPosition(1, _player.position);
+            }
+        }
+
+        private void EnsureThreatPresentation()
+        {
+            if (_telegraphFx != null && _aimLine != null) return;
+            if (_threatMaterial == null)
+            {
+                Shader shader = Shader.Find("Universal Render Pipeline/Unlit");
+                if (shader == null) shader = Shader.Find("Universal Render Pipeline/Lit");
+                _threatMaterial = new Material(shader) { name = "DroneThreatPresentation" };
+                if (_threatMaterial.HasProperty("_BaseColor"))
+                    _threatMaterial.SetColor("_BaseColor", telegraphColor);
+                if (_threatMaterial.HasProperty("_EmissionColor"))
+                {
+                    _threatMaterial.EnableKeyword("_EMISSION");
+                    _threatMaterial.SetColor("_EmissionColor", telegraphColor);
+                }
+            }
 
             if (_telegraphFx == null)
             {
                 _telegraphFx = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-                _telegraphFx.name = "__Telegraph";
-                var col = _telegraphFx.GetComponent<Collider>();
-                if (col != null) Destroy(col);
+                _telegraphFx.name = "__ThreatTelegraph";
+                Collider col = _telegraphFx.GetComponent<Collider>();
+                if (col != null) col.enabled = false;
                 _telegraphFx.transform.SetParent(transform, false);
                 _telegraphFx.transform.localPosition = Vector3.forward * 0.4f;
                 _telegraphRenderer = _telegraphFx.GetComponent<Renderer>();
                 if (_telegraphRenderer != null)
                 {
-                    var shader = Shader.Find("Universal Render Pipeline/Unlit");
-                    if (shader == null) shader = Shader.Find("Universal Render Pipeline/Lit");
-                    var mat = new Material(shader);
-                    mat.color = telegraphColor;
-                    if (mat.HasProperty("_BaseColor")) mat.SetColor("_BaseColor", telegraphColor);
-                    _telegraphRenderer.material = mat;
+                    _telegraphRenderer.sharedMaterial = _threatMaterial;
                     _telegraphRenderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
                 }
             }
-            float s = Mathf.Lerp(0.05f, 0.35f, p);
-            _telegraphFx.transform.localScale = Vector3.one * s;
+
+            if (_aimLine == null)
+            {
+                var line = new GameObject("__ThreatAimLine");
+                line.transform.SetParent(transform, false);
+                _aimLine = line.AddComponent<LineRenderer>();
+                _aimLine.useWorldSpace = true;
+                _aimLine.positionCount = 2;
+                _aimLine.sharedMaterial = _threatMaterial;
+                _aimLine.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+            }
         }
 
-        private void ClearTelegraph()
+        private void HideThreatPresentation()
         {
-            if (_telegraphFx != null) Destroy(_telegraphFx);
-            _telegraphFx = null;
-            _telegraphRenderer = null;
+            if (_telegraphFx != null) _telegraphFx.SetActive(false);
+            if (_aimLine != null) _aimLine.enabled = false;
+        }
+
+        private void LogPhaseTransition()
+        {
+            if (_phaseLogPrimed && _lastLoggedPhase == _fsm.Phase) return;
+            DroneCombatPhase previous = _phaseLogPrimed ? _lastLoggedPhase : _fsm.Phase;
+            _phaseLogPrimed = true;
+            _lastLoggedPhase = _fsm.Phase;
+            Debug.Log("ZIPTIDE: DRONE_PHASE instance=" + GetInstanceID()
+                + " from=" + previous + " to=" + _fsm.Phase);
         }
     }
 }
