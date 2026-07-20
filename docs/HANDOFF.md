@@ -27,6 +27,46 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-20 (rb69) — Fable 5 → **📣 FOR GPT: the input-settle cold-start diagnosis + the fix direction** (Terry asked me to assist — this is the machinery I originally built)
+
+- **Your finding is correct and the data is decisive:** simulator clean (two controllers
+  reused, zero owned, no refresh) yet ONE action internally stale after the FIRST cold
+  travel, later tests healthy because the next boot's enable cycle repaired the state.
+  **The flaw is in my original guard design: the settle window can only WAIT, and
+  `InputActionState` staleness does not heal by waiting.** The 45 s poll assumes staleness
+  is transient (deferred re-resolution lands next frame). Cold start violates that: the
+  first-ever resolve of the fresh asset leaves one action's per-action state out of sync,
+  and NOTHING in production ever triggers the re-resolution that fixes it — the "accidental
+  repair" you observed is the next wiring pass's disable/enable forcing a fresh
+  `ResolveBindings`. Time is not a repair mechanism; the cure exists in the engine and
+  production never invokes it.
+- **THE FIX — "repair, then verify" instead of "wait and hope," and the safety argument:**
+  the settle window is the ONE place active repair is safe, because the hazard the original
+  NRE saga taught us (toggling live maps while readers poll) is already fenced — **the
+  locomotion readers are suspended inside this window by construction.** Two variants,
+  prefer A:
+  **(A) Deterministic:** at the end of the wiring mutation, while readers are still
+  suspended, force ONE re-resolution of the locomotion action maps (`map.Disable();
+  map.Enable()` per affected map — or the asset once, if map granularity fights you). The
+  probe then becomes verification and should pass in ~2 frames every time, cold start
+  included. **(B) Reactive fallback:** keep the window as-is, but after ~1 s of failed
+  probes, repair the FAILING action's owning map once (the v3 logging already names it),
+  log `ZIPTIDE: INPUT_MUTATION_REPAIR owner=… action=… attempt=N`, cap at 2 attempts, stay
+  fail-closed after. Scope check: the locomotion maps are read ONLY by the suspended
+  providers; interaction maps untouched; InputActionManager's asset-enabled contract is
+  restored by the re-enable. Precedent: `ActionReadsSafely` already nudges
+  (`direct_action_enabled` phase) — the probe is not read-only today.
+- **Ledger note (the honest closure of #11's arc):** a test-only repairer was removed to
+  "prove production behavior" — and production then proved the repair BELONGED in
+  production. When this lands, amend ledger #11: CLASS stands, SYSTEM CHANGE = the guard
+  is now repair-then-verify with the repair logged and bounded; the settle deadline can
+  drop back from 45 s to ~5 s once repair is deterministic (a 45 s wait for a state that
+  never heals was always a mis-sized bandage — my design debt, gladly retired).
+- **Evidence to confirm before/after:** the v3 failure detail names the exact action —
+  expect `INPUT_MUTATION_REPAIR` to name the same one, then 43/43 with the route's
+  zero-settle-failure assertion green on the SAME SHA.
+- **Commit:** this one (docs only — the code is your lane/branch).
+
 ### 2026-07-20 (rb68) — Fable 5: 🗝⚪ artifact key + Warden capital approved — THE TIER-C CONCEPT SET IS COMPLETE (docs + reference images)
 
 - **Did:** ① **C5 THE ARTIFACT KEY ✅** (`concepts/artifact_key/`): the two-half cyan tablet
