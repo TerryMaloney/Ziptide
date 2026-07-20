@@ -12,9 +12,10 @@ namespace Ziptide.Editor.WorldImprovement
 {
     /// <summary>
     /// Deterministic compiler for docs/worldimprovements/*.improvement.json. Exact-scene manifests beat
-    /// generated-world defaults. Every compile replaces one owned root, runs versioned modules, stamps the
-    /// recipe hash, scores required-aspect evidence and records the next weakest dimensions. No per-world
-    /// C# and no hand-edited scene YAML.
+    /// generated-world defaults; within each class the newest round/recipe wins while older recipes remain
+    /// auditable history. Every compile replaces one owned root, runs versioned modules, stamps the recipe
+    /// hash, scores required-aspect evidence and records the next weakest dimensions. No per-world C# and
+    /// no hand-edited scene YAML.
     /// </summary>
     public static class WorldImprovementCompiler
     {
@@ -183,17 +184,9 @@ namespace Ziptide.Editor.WorldImprovement
                 if (!candidate.AppliesTo(sceneName, scenePath)) continue;
                 var source = new ManifestSource { Manifest = candidate, Json = json, Path = files[i] };
                 if (!string.IsNullOrEmpty(candidate.sceneName) && candidate.sceneName == sceneName)
-                {
-                    if (exact != null)
-                        throw new InvalidOperationException("Multiple exact world improvement manifests for " + sceneName);
-                    exact = source;
-                }
+                    exact = SelectNewest(exact, source, "exact", sceneName);
                 else
-                {
-                    if (generatedDefault != null)
-                        throw new InvalidOperationException("Multiple generated-world defaults match " + sceneName);
-                    generatedDefault = source;
-                }
+                    generatedDefault = SelectNewest(generatedDefault, source, "generated-default", sceneName);
             }
 
             ManifestSource resolved = exact ?? generatedDefault;
@@ -202,6 +195,23 @@ namespace Ziptide.Editor.WorldImprovement
             rawJson = resolved.Json;
             manifestPath = resolved.Path;
             return true;
+        }
+
+        private static ManifestSource SelectNewest(ManifestSource current, ManifestSource candidate,
+            string kind, string sceneName)
+        {
+            if (current == null) return candidate;
+            int round = candidate.Manifest.round.CompareTo(current.Manifest.round);
+            if (round > 0) return candidate;
+            if (round < 0) return current;
+
+            int recipe = candidate.Manifest.recipeVersion.CompareTo(current.Manifest.recipeVersion);
+            if (recipe > 0) return candidate;
+            if (recipe < 0) return current;
+
+            throw new InvalidOperationException("Duplicate " + kind + " world improvement manifests at round="
+                + candidate.Manifest.round + " recipeVersion=" + candidate.Manifest.recipeVersion
+                + " for " + sceneName + ": " + current.Path + " and " + candidate.Path);
         }
 
         public static void WriteReport()
