@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -17,14 +18,21 @@ namespace Ziptide.Gameplay
     internal sealed class InputMutationRepairDriver : MonoBehaviour
     {
         private const int MaxRepairAttempts = 2;
-        private const int MaxSuspensionWaitFrames = 120;
+        private const int MaxWindowWaitFrames = 120;
+        private const string SuspendedReadersFieldName = "_mutationSuspendedReaders";
 
+        private static FieldInfo _suspendedReadersField;
+        private static bool _suspendedReadersFieldResolved;
+
+        private PlayerRigPersistence _rig;
         private bool _sawTravel;
         private Coroutine _repairRoutine;
 
         private void Awake()
         {
+            _rig = GetComponent<PlayerRigPersistence>();
             _sawTravel = TravelCoordinator.IsTravelling;
+            ResolveSuspendedReadersField();
         }
 
         private void Update()
@@ -46,8 +54,12 @@ namespace Ziptide.Gameplay
 
         private IEnumerator RepairAfterTravel()
         {
+            // The canonical window is PlayerRigPersistence's exact owned reader set. Provider enabled
+            // state is not a valid proxy: the boot hold and the travel settle owner can hand readers
+            // between themselves while components appear active or inactive for unrelated reasons.
             int waitFrames = 0;
-            while (waitFrames < MaxSuspensionWaitFrames)
+            IList<Behaviour> readers = null;
+            while (waitFrames < MaxWindowWaitFrames)
             {
                 if (TravelCoordinator.IsTravelling)
                 {
@@ -55,34 +67,41 @@ namespace Ziptide.Gameplay
                     yield break;
                 }
 
-                // Healthy travel can finish the original settle window before this observer runs.
-                // In that case there is nothing to repair and active readers are expected, not an error.
-                if (LocomotionActionsReadSafely())
+                readers = GetCanonicalSuspendedReaders();
+                if (readers == null)
                 {
-                    Debug.Log("ZIPTIDE: INPUT_MUTATION_REPAIR_SKIPPED cause=already_safe frames="
+                    Debug.LogError("ZIPTIDE: INPUT_MUTATION_REPAIR_ABORT cause=canonical_window_unavailable");
+                    _repairRoutine = null;
+                    yield break;
+                }
+
+                if (readers.Count > 0) break;
+
+                // A healthy route may close the canonical settle window before this observer runs.
+                // In that case there is nothing to repair.
+                if (AllLocomotionActionsReadSafely())
+                {
+                    Debug.Log("ZIPTIDE: INPUT_MUTATION_REPAIR_SKIPPED cause=no_window_already_safe frames="
                         + waitFrames);
                     _repairRoutine = null;
                     yield break;
                 }
 
-                if (LocomotionReadersAreSuspended()) break;
                 waitFrames++;
                 yield return null;
             }
 
-            if (!LocomotionReadersAreSuspended())
+            if (readers == null || readers.Count == 0)
             {
-                // Recheck at the boundary so a just-completed healthy settle does not become a false
-                // failure. A genuinely unsafe active reader remains an error and stays fail-closed.
-                if (LocomotionActionsReadSafely())
+                if (AllLocomotionActionsReadSafely())
                 {
-                    Debug.Log("ZIPTIDE: INPUT_MUTATION_REPAIR_SKIPPED cause=settled_during_wait frames="
+                    Debug.Log("ZIPTIDE: INPUT_MUTATION_REPAIR_SKIPPED cause=window_closed_safe frames="
                         + waitFrames);
                     _repairRoutine = null;
                     yield break;
                 }
 
-                Debug.LogError("ZIPTIDE: INPUT_MUTATION_REPAIR_ABORT cause=unsafe_readers_active frames="
+                Debug.LogError("ZIPTIDE: INPUT_MUTATION_REPAIR_ABORT cause=no_canonical_window frames="
                     + waitFrames);
                 _repairRoutine = null;
                 yield break;
@@ -96,15 +115,18 @@ namespace Ziptide.Gameplay
                     yield break;
                 }
 
-                RepairCounts counts = RepairLocomotionBindings();
+                RepairCounts counts = RepairLocomotionBindings(readers);
                 Debug.Log("ZIPTIDE: INPUT_MUTATION_REPAIR owner=PlayerInputSessionGuard attempt="
-                    + attempt + " maps=" + counts.Maps + " direct=" + counts.DirectActions
+                    + attempt + " readers=" + readers.Count + " maps=" + counts.Maps
+                    + " direct=" + counts.DirectActions
                     + " preservedDisabled=" + counts.PreservedDisabledActions);
 
                 yield return null;
                 yield return null;
 
-                if (LocomotionActionsReadSafely())
+                // The original settle coroutine may clear the shared list after observing this repair.
+                // An empty list therefore means the canonical owner verified and closed the window.
+                if (readers.Count == 0 || ReaderActionsReadSafely(readers))
                 {
                     Debug.Log("ZIPTIDE: INPUT_MUTATION_REPAIR_OK attempt=" + attempt);
                     _repairRoutine = null;
@@ -115,44 +137,48 @@ namespace Ziptide.Gameplay
                     yield return new WaitForSecondsRealtime(0.5f);
             }
 
-            Debug.LogError("ZIPTIDE: INPUT_MUTATION_REPAIR_FAIL attempts=" + MaxRepairAttempts);
+            Debug.LogError("ZIPTIDE: INPUT_MUTATION_REPAIR_FAIL attempts=" + MaxRepairAttempts
+                + " readers=" + readers.Count);
             _repairRoutine = null;
         }
 
-        private static bool LocomotionReadersAreSuspended()
+        private IList<Behaviour> GetCanonicalSuspendedReaders()
         {
-            foreach (var move in Object.FindObjectsOfType<ActionBasedContinuousMoveProvider>(true))
-                if (move != null && move.isActiveAndEnabled) return false;
-            foreach (var turn in Object.FindObjectsOfType<ActionBasedContinuousTurnProvider>(true))
-                if (turn != null && turn.isActiveAndEnabled) return false;
-            foreach (var snap in Object.FindObjectsOfType<ActionBasedSnapTurnProvider>(true))
-                if (snap != null && snap.isActiveAndEnabled) return false;
-            return true;
+            if (_rig == null) _rig = GetComponent<PlayerRigPersistence>();
+            if (_rig == null) return null;
+
+            ResolveSuspendedReadersField();
+            if (_suspendedReadersField == null) return null;
+
+            try
+            {
+                return _suspendedReadersField.GetValue(_rig) as IList<Behaviour>;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
-        private static RepairCounts RepairLocomotionBindings()
+        private static void ResolveSuspendedReadersField()
+        {
+            if (_suspendedReadersFieldResolved) return;
+            _suspendedReadersFieldResolved = true;
+            _suspendedReadersField = typeof(PlayerRigPersistence).GetField(
+                SuspendedReadersFieldName,
+                BindingFlags.Instance | BindingFlags.NonPublic);
+
+            if (_suspendedReadersField == null)
+                Debug.LogError("ZIPTIDE: INPUT_MUTATION_REPAIR_SEAM_MISSING field="
+                    + SuspendedReadersFieldName);
+        }
+
+        private static RepairCounts RepairLocomotionBindings(IList<Behaviour> readers)
         {
             var maps = new HashSet<InputActionMap>();
             var directActions = new HashSet<InputAction>();
 
-            foreach (var move in Object.FindObjectsOfType<ActionBasedContinuousMoveProvider>(true))
-            {
-                if (move == null) continue;
-                AddAction(move.leftHandMoveAction, maps, directActions);
-                AddAction(move.rightHandMoveAction, maps, directActions);
-            }
-            foreach (var turn in Object.FindObjectsOfType<ActionBasedContinuousTurnProvider>(true))
-            {
-                if (turn == null) continue;
-                AddAction(turn.leftHandTurnAction, maps, directActions);
-                AddAction(turn.rightHandTurnAction, maps, directActions);
-            }
-            foreach (var snap in Object.FindObjectsOfType<ActionBasedSnapTurnProvider>(true))
-            {
-                if (snap == null) continue;
-                AddAction(snap.leftHandSnapTurnAction, maps, directActions);
-                AddAction(snap.rightHandSnapTurnAction, maps, directActions);
-            }
+            AddReaderActions(readers, maps, directActions);
 
             int repairedMaps = 0;
             int repairedDirect = 0;
@@ -192,6 +218,32 @@ namespace Ziptide.Gameplay
             return new RepairCounts(repairedMaps, repairedDirect, preservedDisabled);
         }
 
+        private static void AddReaderActions(
+            IList<Behaviour> readers,
+            HashSet<InputActionMap> maps,
+            HashSet<InputAction> directActions)
+        {
+            if (readers == null) return;
+            for (int i = 0; i < readers.Count; i++)
+            {
+                switch (readers[i])
+                {
+                    case ActionBasedContinuousMoveProvider move:
+                        AddAction(move.leftHandMoveAction, maps, directActions);
+                        AddAction(move.rightHandMoveAction, maps, directActions);
+                        break;
+                    case ActionBasedContinuousTurnProvider turn:
+                        AddAction(turn.leftHandTurnAction, maps, directActions);
+                        AddAction(turn.rightHandTurnAction, maps, directActions);
+                        break;
+                    case ActionBasedSnapTurnProvider snap:
+                        AddAction(snap.leftHandSnapTurnAction, maps, directActions);
+                        AddAction(snap.rightHandSnapTurnAction, maps, directActions);
+                        break;
+                }
+            }
+        }
+
         private static void AddAction(
             InputActionProperty property,
             HashSet<InputActionMap> maps,
@@ -203,7 +255,31 @@ namespace Ziptide.Gameplay
             else directActions.Add(action);
         }
 
-        private static bool LocomotionActionsReadSafely()
+        private static bool ReaderActionsReadSafely(IList<Behaviour> readers)
+        {
+            if (readers == null) return false;
+            for (int i = 0; i < readers.Count; i++)
+            {
+                switch (readers[i])
+                {
+                    case ActionBasedContinuousMoveProvider move:
+                        if (!ActionReadsSafely(move.leftHandMoveAction) ||
+                            !ActionReadsSafely(move.rightHandMoveAction)) return false;
+                        break;
+                    case ActionBasedContinuousTurnProvider turn:
+                        if (!ActionReadsSafely(turn.leftHandTurnAction) ||
+                            !ActionReadsSafely(turn.rightHandTurnAction)) return false;
+                        break;
+                    case ActionBasedSnapTurnProvider snap:
+                        if (!ActionReadsSafely(snap.leftHandSnapTurnAction) ||
+                            !ActionReadsSafely(snap.rightHandSnapTurnAction)) return false;
+                        break;
+                }
+            }
+            return true;
+        }
+
+        private static bool AllLocomotionActionsReadSafely()
         {
             foreach (var move in Object.FindObjectsOfType<ActionBasedContinuousMoveProvider>(true))
             {
