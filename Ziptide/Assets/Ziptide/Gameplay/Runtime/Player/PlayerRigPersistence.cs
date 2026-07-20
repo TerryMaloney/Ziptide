@@ -823,6 +823,7 @@ namespace Ziptide.Gameplay
         private readonly System.Collections.Generic.List<Behaviour> _mutationSuspendedReaders =
             new System.Collections.Generic.List<Behaviour>();
         private Coroutine _mutationReaderRestore;
+        private string _lastInputSettleFailure = string.Empty;
 
         private void SuspendLocomotionReadersForInputMutation()
         {
@@ -866,7 +867,9 @@ namespace Ziptide.Gameplay
                 // Fail closed. Re-enabling a reader with a known-unsafe InputActionState recreates the
                 // proven Quest crash candidate; disabled locomotion plus a blocking error is safer.
                 Debug.LogError("ZIPTIDE: INPUT_MUTATION_SETTLE_FAIL readers="
-                    + _mutationSuspendedReaders.Count);
+                    + _mutationSuspendedReaders.Count + " detail="
+                    + (string.IsNullOrEmpty(_lastInputSettleFailure)
+                        ? "<no failing action captured>" : _lastInputSettleFailure));
                 _mutationReaderRestore = null;
                 yield break;
             }
@@ -890,29 +893,38 @@ namespace Ziptide.Gameplay
         /// i.e. the InputActionState re-resolution triggered by the wiring mutation has completed.</summary>
         private bool SuspendedReaderActionsReadSafely()
         {
+            _lastInputSettleFailure = string.Empty;
             foreach (var b in _mutationSuspendedReaders)
             {
                 switch (b)
                 {
                     case ActionBasedContinuousMoveProvider move:
-                        if (!ActionReadsSafely(move.leftHandMoveAction) ||
-                            !ActionReadsSafely(move.rightHandMoveAction)) return false;
+                        if (!ActionReadsSafely(move.leftHandMoveAction,
+                                "ContinuousMove.leftHandMoveAction", out _lastInputSettleFailure) ||
+                            !ActionReadsSafely(move.rightHandMoveAction,
+                                "ContinuousMove.rightHandMoveAction", out _lastInputSettleFailure)) return false;
                         break;
                     case ActionBasedContinuousTurnProvider turn:
-                        if (!ActionReadsSafely(turn.leftHandTurnAction) ||
-                            !ActionReadsSafely(turn.rightHandTurnAction)) return false;
+                        if (!ActionReadsSafely(turn.leftHandTurnAction,
+                                "ContinuousTurn.leftHandTurnAction", out _lastInputSettleFailure) ||
+                            !ActionReadsSafely(turn.rightHandTurnAction,
+                                "ContinuousTurn.rightHandTurnAction", out _lastInputSettleFailure)) return false;
                         break;
                     case ActionBasedSnapTurnProvider snap:
-                        if (!ActionReadsSafely(snap.leftHandSnapTurnAction) ||
-                            !ActionReadsSafely(snap.rightHandSnapTurnAction)) return false;
+                        if (!ActionReadsSafely(snap.leftHandSnapTurnAction,
+                                "SnapTurn.leftHandSnapTurnAction", out _lastInputSettleFailure) ||
+                            !ActionReadsSafely(snap.rightHandSnapTurnAction,
+                                "SnapTurn.rightHandSnapTurnAction", out _lastInputSettleFailure)) return false;
                         break;
                 }
             }
             return true;
         }
 
-        private static bool ActionReadsSafely(InputActionProperty property)
+        private static bool ActionReadsSafely(InputActionProperty property,
+            string owner, out string failure)
         {
+            failure = string.Empty;
             var action = property.action;
             if (action == null) return true;
             try
@@ -925,19 +937,48 @@ namespace Ziptide.Gameplay
                     // is suspended, then force a later-frame read before waking the provider.
                     if (property.reference != null) return true;
                     action.Enable();
+                    failure = owner + " action=" + ActionPath(action)
+                        + " phase=direct_action_enabled";
                     return false;
                 }
-                action.ReadValue<Vector2>();
+
+                string runtimeType = action.valueType != null ? action.valueType.FullName : string.Empty;
+                Ziptide.Core.InputActionReadKind kind = Ziptide.Core.InputActionReadKindCore.Resolve(
+                    action.expectedControlType, runtimeType);
+                switch (kind)
+                {
+                    case Ziptide.Core.InputActionReadKind.Scalar:
+                        action.ReadValue<float>();
+                        break;
+                    case Ziptide.Core.InputActionReadKind.Vector2:
+                        action.ReadValue<Vector2>();
+                        break;
+                    default:
+                        action.ReadValueAsObject();
+                        break;
+                }
                 return true;
             }
-            catch (System.NullReferenceException)
+            catch (System.Exception ex)
             {
-                return false; // InputActionState still mid-re-resolve — the exact NRE the readers would hit
+                string runtimeType;
+                try { runtimeType = action.valueType != null ? action.valueType.FullName : string.Empty; }
+                catch { runtimeType = "<unavailable>"; }
+                failure = owner + " action=" + ActionPath(action)
+                    + " expected=" + (action.expectedControlType ?? string.Empty)
+                    + " runtime=" + runtimeType
+                    + " enabled=" + action.enabled
+                    + " reference=" + (property.reference != null)
+                    + " exception=" + ex.GetType().Name + ":" + ex.Message;
+                return false;
             }
-            catch (System.InvalidOperationException)
-            {
-                return false; // value-type mismatch during re-resolve — equally unsafe to poll
-            }
+        }
+
+        private static string ActionPath(InputAction action)
+        {
+            if (action == null) return "<null>";
+            string map = action.actionMap != null ? action.actionMap.name : "<direct>";
+            return map + "/" + action.name;
         }
 
         public void TeleportToSpawnMarker()
