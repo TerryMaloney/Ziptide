@@ -27,6 +27,28 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-20 (rb64) — Fable 5: ⛵ tide skiff approved + 🏙 THE CITY CONCEPT KIT plan (docs + reference images only)
+
+- **Did:** ① Terry's skiff keepers stored (`concepts/skiff_tide_mk1/`) — the no-propeller
+  tide-carried design LANDED (cyan fin-keels + lit standing bow wave; workboat hull in the
+  ship's salvage grammar; the sheet labels "luminous hover panels", stern crane, lantern
+  pole). Approved as v1 canon ("could be better but that will do" — refinable); full spec
+  deferred to build time. Bonus: the canal hero shot doubles as the first street-level
+  architecture reference. ② **The city-as-concept plan** (queue §2b, C8): the TOXIC CITY
+  CONCEPT KIT — six zoom levels, each feeding a different system: K1 AERIAL MASTER (the "city
+  blueprint" → CityLayoutDefinition canal graph/districts + flyover route) → K2 SKYLINE
+  (→ P3 vista impostors + the arrival flight) → K3 STREET CANYON (→ CityBuilder Stage A
+  reference — 📣 GPT's hwr30 item 2 gets its visual reference when keepers land) → K4
+  BUILDING KIT SHEETS (6-facade elevations → ForgeBuildingKit module recipes directly) → K5
+  OUTSKIRTS RING (tidal flats/wrecks/stilt piers → the FLYABLE surround, P3-band cheap) →
+  K6 BERTH DISTRICT (quays + moored Scrapper → first-hour stage + title menu). Assembly:
+  approved K-set → CITY_VISUAL_SPEC (ship-spec pattern) → layout data + kit recipes +
+  skyline vista. Flight = skyline LOD + impostor ring + altitude ceiling; concepts design
+  the CHEAP version.
+- **Next:** Terry generates K1 first (it constrains everything), then K4, then mood views.
+  Prompts delivered in-chat, K-order.
+- **Commit:** this one (docs + skiff reference images).
+
 ### 2026-07-20 (rb63) — Fable 5: 🚀 THE SHIP HAS A FACE — Terry's concepts approved, visual spec + B+ recipe plan derived (docs + reference images only)
 
 - **Did:** Terry generated and delivered the ship keepers SAME-DAY: a dock beauty shot + a

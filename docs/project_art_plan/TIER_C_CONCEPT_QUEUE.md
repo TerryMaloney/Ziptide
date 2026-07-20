@@ -89,6 +89,37 @@ side · how much hull is "one ship" vs visibly welded salvage (aim ~70/30).
 there) · world skies (SkyVista owns them) · anything needed in quantity (§2-A law: Tier C
 stays a short named list).
 
+## §2a — C7 · THE TIDE SKIFF — ✅ APPROVED 2026-07-20 ("could be better but that will do")
+
+Keepers at `concepts/skiff_tide_mk1/` (canal hero + 4-view sheet). The design hook LANDED:
+no propeller — glowing cyan fin-keels ("luminous hover panels" per the sheet) + a lit standing
+bow wave = the tide visibly carrying it; hull = flat workboat in the ship's salvage grammar
+(hazard stripes, cargo nets, oil lantern pole, stern crane, engine block). Terry's
+reservation noted — treat as v1 canon, refinable; full visual spec deferred to build time
+(the ship-spec pattern applies when a session builds `skiff_tide_mk1`). Extra value: the
+canal hero shot doubles as the first K3 street-level architecture reference below.
+
+## §2b — C8 · THE TOXIC CITY CONCEPT KIT (the city AS concept — Terry-commissioned 2026-07-20)
+
+A city isn't one image — it's SIX ZOOM LEVELS, and each level feeds a different system.
+Generate in K-order; each approved level constrains the next:
+
+| K | View | Feeds |
+|---|---|---|
+| **K1 AERIAL MASTER** ("the city blueprint") | isometric high-angle map: canal graph, 5–6 districts, the leaning tower, harbor south, outskirts ring, the gate pillars beyond | `CityLayoutDefinition` (district shapes + canal network + POI slots), the flyover route plan — THE decision image |
+| **K2 SKYLINE PANORAMA** | the city from ship altitude on approach over the flats | vista/skyline impostors (P3), the W000→W001 arrival flight (Director's Cut), trailer |
+| **K3 STREET CANYON** | eye-level canal street at dusk | CityBuilder Stage A reference (GPT's hwr30 item 2!) — facade grammar, grade/mood |
+| **K4 BUILDING KIT SHEETS** | 6 facades side-by-side, elevation style, one construction language | ForgeBuildingKit module recipes directly (walls/doors/roofs — the WC-2 kit) |
+| **K5 OUTSKIRTS RING** | tidal flats, wreck fields, stilt piers, sea wall, city behind in haze | the FLYABLE surround: P3-band dressing so circling the city feels like a place |
+| **K6 BERTH DISTRICT** | the harbor: quays, cranes, the moored Scrapper, dockmaster booth | ties ship-home + title menu + C6; the first-hour's opening stage |
+
+**Assembly step (after keepers):** approved K-set → `CITY_VISUAL_SPEC` (ship-spec pattern:
+district ratios measured off K1, facade grammar off K4, palette off K3) → CityLayoutDefinition
+data + kit recipes + skyline vista. **Flight note:** overflight = K2 skyline LOD + K5
+impostor ring + an altitude ceiling; perf per FORGE IV P3 band — the concepts DESIGN the
+cheap version, they don't license an expensive one. 📣 Coordinate with GPT's city Stage A —
+these keepers become its visual reference via HANDOFF when they land.
+
 ## §3a — THE B+ BRIDGE (Terry-approved workflow, 2026-07-20)
 
 Once the ship's sheets are approved, a model session builds a **B+ Forge version from the
