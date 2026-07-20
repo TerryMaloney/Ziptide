@@ -4,11 +4,7 @@ using UnityEngine;
 namespace Ziptide.Editor.Audit
 {
     /// <summary>
-    /// V2.5 H1 building gates (ExperienceAuditRules pattern; per non-boot scene):
-    ///  - BUILDING_DOOR_BLOCKED (blocker) a doorway's outward path is walled off.
-    ///  - BUILDING_OVER_BUDGET (blocker) renderer count under a district building root exceeds the cap.
-    /// The same invoked architecture entrypoint runs ToxicCity Stage A and world-containment gates so
-    /// generated buildings, city support, and explicit hazard boundaries are audited together.
+    /// V2.5 H1 building gates plus the invoked generated-world architecture aggregators.
     /// </summary>
     public static class BuildingAuditRules
     {
@@ -39,6 +35,7 @@ namespace Ziptide.Editor.Audit
 
             CityStageAAuditRules.Run(report);
             WorldContainmentAuditRules.Run(report);
+            FullSendPresentationAuditRules.Run(report);
         }
     }
 }
