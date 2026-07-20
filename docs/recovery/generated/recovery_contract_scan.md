@@ -1,7 +1,7 @@
 # ZIPTIDE Recovery Contract Scan
 
-- Scanned files: **721**
-- Findings: **2515**
+- Scanned files: **722**
+- Findings: **2527**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
@@ -9,11 +9,11 @@
 | Category | Count |
 |---|---:|
 | `bootstrap` | 35 |
-| `diagnostics` | 559 |
+| `diagnostics` | 563 |
 | `events` | 64 |
 | `fallback_debt` | 154 |
 | `global_render` | 81 |
-| `input` | 207 |
+| `input` | 215 |
 | `materials` | 246 |
 | `persistence` | 18 |
 | `runtime_creation` | 671 |
@@ -264,6 +264,10 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/EmergencyRespawn.cs:61` · `Ziptide.Gameplay.EmergencyRespawn` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: EMERGENCY_RESPAWN");`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/EmergencyRespawn.cs:80` · `Ziptide.Gameplay.EmergencyRespawn` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: EMERGENCY_RESPAWN teleported to marker '" + marker.markerId + "'");`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/EmergencyRespawn.cs:84` · `Ziptide.Gameplay.EmergencyRespawn` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: EMERGENCY_RESPAWN no WorldRuntime or SpawnMarkerRuntime found; cannot respawn.");`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:65` · `Ziptide.Gameplay.InputMutationRepairDriver` — ZIPTIDE diagnostic tag. `Debug.LogError("ZIPTIDE: INPUT_MUTATION_REPAIR_ABORT cause=readers_not_suspended frames="`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:80` · `Ziptide.Gameplay.InputMutationRepairDriver` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: INPUT_MUTATION_REPAIR owner=PlayerInputSessionGuard attempt="`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:89` · `Ziptide.Gameplay.InputMutationRepairDriver` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: INPUT_MUTATION_REPAIR_OK attempt=" + attempt);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:98` · `Ziptide.Gameplay.InputMutationRepairDriver` — ZIPTIDE diagnostic tag. `Debug.LogError("ZIPTIDE: INPUT_MUTATION_REPAIR_FAIL attempts=" + MaxRepairAttempts);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PingTool.cs:56` · `Ziptide.Gameplay.PingTool` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: PING_AT " + hit.point.ToString("F1"));`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerAvatarRig.cs:35` · `Ziptide.Gameplay.PlayerAvatarRig` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: AVATAR_READY gloves+torso");`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:56` · `Ziptide.Gameplay.PlayerInputSessionGuard` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: INPUT_SESSION_CONSOLIDATE_SKIPPED scene="`
@@ -989,6 +993,14 @@
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/EmergencyRespawn.cs:17` · `Ziptide.Gameplay.EmergencyRespawn` — Input System action reference. `private InputAction _rightGrip;`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/EmergencyRespawn.cs:23` · `Ziptide.Gameplay.EmergencyRespawn` — Input System action reference. `_leftGrip = new InputAction("EmergencyLeft", InputActionType.Button);`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/EmergencyRespawn.cs:27` · `Ziptide.Gameplay.EmergencyRespawn` — Input System action reference. `_rightGrip = new InputAction("EmergencyRight", InputActionType.Button);`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:116` · `Ziptide.Gameplay.InputMutationRepairDriver` — Input System action reference. `var directActions = new HashSet<InputAction>();`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:145` · `Ziptide.Gameplay.InputMutationRepairDriver` — Input System action reference. `var disabledBefore = new List<InputAction>();`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:146` · `Ziptide.Gameplay.InputMutationRepairDriver` — Input System action reference. `foreach (InputAction action in map.actions)`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:154` · `Ziptide.Gameplay.InputMutationRepairDriver` — Input System action reference. `foreach (InputAction action in disabledBefore)`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:164` · `Ziptide.Gameplay.InputMutationRepairDriver` — Input System action reference. `foreach (InputAction action in directActions)`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:178` · `Ziptide.Gameplay.InputMutationRepairDriver` — Input System action reference. `HashSet<InputAction> directActions)`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:180` · `Ziptide.Gameplay.InputMutationRepairDriver` — Input System action reference. `InputAction action = property.action;`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:211` · `Ziptide.Gameplay.InputMutationRepairDriver` — Input System action reference. `InputAction action = property.action;`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PingTool.cs:19` · `Ziptide.Gameplay.PingTool` — Input System action reference. `private InputAction _ping;`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PingTool.cs:27` · `Ziptide.Gameplay.PingTool` — Input System action reference. `_ping = new InputAction("ZiptidePing", InputActionType.Button);`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:15` · `Ziptide.Gameplay.PlayerInputSessionGuard` — Input System action reference. `/// asset to the InputActionManager beside it. Scene-authored InputActionManagers must then be`
