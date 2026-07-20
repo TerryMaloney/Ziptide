@@ -58,14 +58,16 @@ Read by every lane at session start alongside HANDOFF. Full spec: `FINISHED_GAME
     inside-out planning blindness. **SYSTEM CHANGE:** ✅ THIS LEDGER + the benchmark as a
     recurring milestone gate (checklist row) + EXCELLENCE_MAP rows per category — the
     ship-backward view now has standing machinery.
-11. **WHAT:** the recovery PlayMode route could boot before any headless tracked XR device
-    existed, causing production input-settle to fail closed before the per-test simulator was
-    installed. **FOUND BY:** Recovery PlayMode 42/43 on `0f01fc5`. **WHY MISSED:** the simulator
-    modeled controller interaction inside individual tests but not the platform precondition that
-    real Quest controllers already exist during `_Boot`. **CLASS:** test environment supplies a
-    dependency after the production owner consumes it. **SYSTEM CHANGE:** suite-scoped
-    `RecoveryPlayModeInputEnvironment` installs neutral left/right XR devices before any recovery
-    scene loads; closure requires exact 43/43 proof (→ pending CI verification).
+11. **WHAT:** the recovery PlayMode route repeatedly failed input settle during `_Boot`, even
+    after neutral tracked devices existed before scene load. **FOUND BY:** Recovery PlayMode
+    42/43 on `0f01fc5`, then again on `be4a6b98`. **WHY MISSED:** PlayMode retained the static
+    `sceneLoaded` subscription across tests; the same `_Boot` activation was consolidated once by
+    the retained callback and again by `AfterSceneLoad.Bootstrap`, mutating shared InputAction
+    state twice inside one settle window. **CLASS:** two lifecycle callbacks claim one scene
+    generation when domain reload is absent. **SYSTEM CHANGE:** suite-scoped neutral XR devices
+    preserve platform fidelity, and `InputSessionSceneLatchCore` makes
+    `PlayerInputSessionGuard` consolidate each scene handle exactly once; pure latch tests plus the
+    existing zero-settle-failure route assertion require exact 43/43 closure (→ pending CI verification).
 12. **WHAT:** adding a new improvement round created duplicate matching recipes because the
     resolver assumed history would be destructively replaced. **FOUND BY:** Round 3 recipe
     integration review. **WHY MISSED:** Round 2 proved currentness but not successive-round
