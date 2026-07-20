@@ -10,6 +10,23 @@ namespace Ziptide.Tests.EditMode
         private static string RepoRoot => Path.GetFullPath(Path.Combine(Application.dataPath, "../.."));
 
         [Test]
+        public void PipelineSpine_KeepsAllStagesCurrentPositionAndAmendmentLaw()
+        {
+            string pipeline = Read("docs/PIPELINE.md");
+            StringAssert.Contains("Version 1.0", pipeline);
+            StringAssert.Contains("THE AMENDMENT LAW", pipeline);
+            StringAssert.Contains("## Current position, in one line", pipeline);
+            for (int i = 0; i <= 11; i++)
+                StringAssert.Contains("## STAGE " + i + " ", pipeline,
+                    "Pipeline stage " + i + " disappeared from the canonical spine.");
+
+            string checklist = Read("docs/FACTORY_GOVERNANCE_CHECKLIST.md");
+            StringAssert.Contains("**Stage:** 9", checklist);
+            StringAssert.Contains("**Type:** law", checklist);
+            StringAssert.Contains("same-commit `docs/PIPELINE.md` amendment", checklist);
+        }
+
+        [Test]
         public void FinishedGameBenchmark_KeepsAllTenShipBackwardCategories()
         {
             string benchmark = Read("docs/design/FINISHED_GAME_BENCHMARK_RB.md");
