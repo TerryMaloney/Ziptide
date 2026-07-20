@@ -27,12 +27,13 @@ namespace Ziptide.Content
         public string[] RequiredAspects => requiredAspects;
         public string[] RequiredEvidence => requiredEvidence;
 
-        public void Configure(WorldImprovementManifest manifest, int compiledVersion, string hash)
+        public void Configure(WorldImprovementManifest manifest, string compiledSceneName,
+            int compiledVersion, string hash)
         {
             if (manifest == null) throw new ArgumentNullException(nameof(manifest));
             gameId = manifest.gameId ?? string.Empty;
             manifestId = manifest.manifestId ?? string.Empty;
-            sceneName = manifest.sceneName ?? string.Empty;
+            sceneName = compiledSceneName ?? string.Empty;
             round = manifest.round;
             recipeVersion = manifest.recipeVersion;
             compilerVersion = compiledVersion;
