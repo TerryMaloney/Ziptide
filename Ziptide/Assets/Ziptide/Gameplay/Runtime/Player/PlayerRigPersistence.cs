@@ -958,12 +958,9 @@ namespace Ziptide.Gameplay
             }
             catch (System.Exception ex)
             {
-                string runtimeType;
-                try { runtimeType = action.valueType != null ? action.valueType.FullName : string.Empty; }
-                catch { runtimeType = "<unavailable>"; }
                 failure = owner + " action=" + ActionPath(action)
                     + " expected=" + (action.expectedControlType ?? string.Empty)
-                    + " runtime=" + runtimeType
+                    + " consumer=Vector2"
                     + " enabled=" + action.enabled
                     + " reference=" + (property.reference != null)
                     + " exception=" + ex.GetType().Name + ":" + ex.Message;
