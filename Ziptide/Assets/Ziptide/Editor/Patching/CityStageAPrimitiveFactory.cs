@@ -7,7 +7,10 @@ using Ziptide.Core;
 
 namespace Ziptide.Editor.Patching
 {
-    /// <summary>Shared-material, batching-static primitive translator for ToxicCity Stage A.</summary>
+    /// <summary>
+    /// Shared-material, batching-static primitive translator for ToxicCity Stage A. Every generated
+    /// piece maps to one of exactly eight semantic material slots, so building count cannot inflate draw calls.
+    /// </summary>
     internal sealed class CityStageAPrimitiveFactory
     {
         private readonly Dictionary<string, Material> _materials = new Dictionary<string, Material>();
@@ -28,17 +31,13 @@ namespace Ziptide.Editor.Patching
             var renderer = go.GetComponent<Renderer>();
             if (renderer != null)
             {
-                renderer.sharedMaterial = MaterialFor(color, emissive);
+                renderer.sharedMaterial = MaterialFor(MaterialSlot(name), color, emissive);
                 renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
             }
             GameObjectUtility.SetStaticEditorFlags(go, StaticEditorFlags.BatchingStatic);
             return go;
         }
 
-        /// <summary>
-        /// Closed four-state window vocabulary using only three lit colors plus the existing dark slot.
-        /// Warm reuses accent, neutral reuses concrete, cool is the only Stage-A-specific color.
-        /// </summary>
         public Color WindowColor(CityWindowLight mode, GlobalPalette palette)
         {
             switch (mode)
@@ -50,13 +49,27 @@ namespace Ziptide.Editor.Patching
             }
         }
 
-        private Material MaterialFor(Color color, bool emissive)
+        private static string MaterialSlot(string objectName)
         {
-            string key = ColorUtility.ToHtmlStringRGBA(color) + (emissive ? "_E" : "_L");
-            if (_materials.TryGetValue(key, out Material material) && material != null) return material;
+            if (objectName.StartsWith("Window_"))
+            {
+                if (objectName.EndsWith("HomeWarm")) return "WindowWarm";
+                if (objectName.EndsWith("ShopCool")) return "WindowCool";
+                if (objectName.EndsWith("IndustrialNeutral")) return "WindowNeutral";
+                return "WindowDark";
+            }
+            if (objectName == "Base" || objectName == "DoorVisual") return "StructureDark";
+            if (objectName == "Middle") return "StructureMain";
+            if (objectName == "Awning" || objectName == "Antenna") return "Accent";
+            return "Metal";
+        }
+
+        private Material MaterialFor(string slot, Color color, bool emissive)
+        {
+            if (_materials.TryGetValue(slot, out Material material) && material != null) return material;
             Shader shader = Shader.Find("Universal Render Pipeline/Lit");
             if (shader == null) shader = Shader.Find("Standard");
-            material = new Material(shader) { name = "CityStageA_" + key };
+            material = new Material(shader) { name = "CityStageA_" + slot };
             if (material.HasProperty("_BaseColor")) material.SetColor("_BaseColor", color);
             else if (material.HasProperty("_Color")) material.SetColor("_Color", color);
             if (emissive && material.HasProperty("_EmissionColor"))
@@ -64,7 +77,7 @@ namespace Ziptide.Editor.Patching
                 material.EnableKeyword("_EMISSION");
                 material.SetColor("_EmissionColor", color * 1.8f);
             }
-            _materials[key] = material;
+            _materials[slot] = material;
             return material;
         }
     }
