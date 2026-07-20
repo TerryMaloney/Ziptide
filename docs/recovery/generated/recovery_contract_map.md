@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
 - Scanned files: **719**
-- Scanner findings: **2498**
+- Scanner findings: **2496**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -302,7 +302,7 @@ None.
 
 - Codes: `DIRECT_SCENE_LOAD_ASYNC`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:154` **DIRECT_SCENE_LOAD_ASYNC** — `AsyncOperation load = SceneManager.LoadSceneAsync(`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:145` **DIRECT_SCENE_LOAD_ASYNC** — `AsyncOperation load = SceneManager.LoadSceneAsync(`
 
 ### `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` — 1 signal(s)
 
@@ -559,11 +559,11 @@ None.
 
 - Codes: `INPUT_ACTION_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:214` **INPUT_ACTION_REFERENCE** — `InputActionManager inputManager = manager.GetComponent<InputActionManager>();`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:216` **INPUT_ACTION_REFERENCE** — `"The canonical interaction manager lost its InputActionManager after travel.");`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:222` **INPUT_ACTION_REFERENCE** — `var seen = new HashSet<InputAction>();`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:223` **INPUT_ACTION_REFERENCE** — `foreach (InputActionAsset asset in inputManager.actionAssets)`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:228` **INPUT_ACTION_REFERENCE** — `foreach (InputAction action in map.actions)`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:199` **INPUT_ACTION_REFERENCE** — `InputActionManager inputManager = manager.GetComponent<InputActionManager>();`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:201` **INPUT_ACTION_REFERENCE** — `"The canonical interaction manager lost its InputActionManager after travel.");`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:207` **INPUT_ACTION_REFERENCE** — `var seen = new HashSet<InputAction>();`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:208` **INPUT_ACTION_REFERENCE** — `foreach (InputActionAsset asset in inputManager.actionAssets)`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:213` **INPUT_ACTION_REFERENCE** — `foreach (InputAction action in map.actions)`
 
 ### `Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests` — 19 signal(s)
 
@@ -3870,10 +3870,10 @@ None.
 
 - Codes: `PLAYER_PROFILE_REFERENCE`, `SAVE_SYSTEM_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:42` **PLAYER_PROFILE_REFERENCE** — `private PlayerProfile _newGameProfile;`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:47` **SAVE_SYSTEM_REFERENCE** — `_saveBackup = RecoverySaveFileBackup.CaptureAndClear(SaveSystem.SavePath);`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:86` **SAVE_SYSTEM_REFERENCE** — `Assert.IsFalse(SaveSystem.HasExistingProfile,`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:369` **PLAYER_PROFILE_REFERENCE** — `private void OnNewGameProfileCreated(PlayerProfile profile) => _newGameProfile = profile;`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:41` **PLAYER_PROFILE_REFERENCE** — `private PlayerProfile _newGameProfile;`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:46` **SAVE_SYSTEM_REFERENCE** — `_saveBackup = RecoverySaveFileBackup.CaptureAndClear(SaveSystem.SavePath);`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:85` **SAVE_SYSTEM_REFERENCE** — `Assert.IsFalse(SaveSystem.HasExistingProfile,`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:354` **PLAYER_PROFILE_REFERENCE** — `private void OnNewGameProfileCreated(PlayerProfile profile) => _newGameProfile = profile;`
 
 ### `Ziptide.Tests.PlayMode.RecoverySaveFileBackup` — 1 signal(s)
 
