@@ -101,7 +101,10 @@ namespace Ziptide.Editor.Audit
             IReadOnlyCollection<string> shippedSceneNames)
         {
             if (string.IsNullOrEmpty(destination)) return true;
-            return shippedSceneNames != null && shippedSceneNames.Contains(destination);
+            if (shippedSceneNames == null) return false;
+            foreach (string sceneName in shippedSceneNames)
+                if (sceneName == destination) return true;
+            return false;
         }
 
         private static void ValidatePackArray(SceneAuditReport report, Component owner,
