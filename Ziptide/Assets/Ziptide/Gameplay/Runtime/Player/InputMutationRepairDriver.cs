@@ -138,6 +138,7 @@ namespace Ziptide.Gameplay
                 yield break;
             }
 
+            string lastFailure = string.Empty;
             for (int attempt = 1; attempt <= MaxRepairAttempts; attempt++)
             {
                 if (TravelCoordinator.IsTravelling)
@@ -157,19 +158,22 @@ namespace Ziptide.Gameplay
 
                 // The original settle coroutine may clear the shared list after observing this repair.
                 // An empty list therefore means the canonical owner verified and closed the window.
-                if (readers.Count == 0 || ReaderActionsReadSafely(readers))
+                if (readers.Count == 0 || ReaderActionsReadSafely(readers, out lastFailure))
                 {
                     Debug.Log("ZIPTIDE: INPUT_MUTATION_REPAIR_OK attempt=" + attempt);
                     _repairRoutine = null;
                     yield break;
                 }
 
+                Debug.LogWarning("ZIPTIDE: INPUT_MUTATION_REPAIR_PROBE_FAIL attempt=" + attempt
+                    + " detail=" + lastFailure);
+
                 if (attempt < MaxRepairAttempts)
                     yield return new WaitForSecondsRealtime(0.5f);
             }
 
             Debug.LogError("ZIPTIDE: INPUT_MUTATION_REPAIR_FAIL attempts=" + MaxRepairAttempts
-                + " readers=" + readers.Count);
+                + " readers=" + readers.Count + " detail=" + lastFailure);
             _repairRoutine = null;
         }
 
@@ -321,24 +325,43 @@ namespace Ziptide.Gameplay
             else directActions.Add(action);
         }
 
-        private static bool ReaderActionsReadSafely(IList<Behaviour> readers)
+        private static bool ReaderActionsReadSafely(
+            IList<Behaviour> readers,
+            out string failure)
         {
-            if (readers == null) return false;
+            failure = string.Empty;
+            if (readers == null)
+            {
+                failure = "readers=<null>";
+                return false;
+            }
+
             for (int i = 0; i < readers.Count; i++)
             {
-                switch (readers[i])
+                Behaviour reader = readers[i];
+                if (reader == null) continue;
+                string owner = "reader[" + i + "]=" + reader.GetType().Name
+                    + " path=" + HierarchyPath(reader.transform);
+
+                switch (reader)
                 {
                     case ActionBasedContinuousMoveProvider move:
-                        if (!ActionReadsSafely(move.leftHandMoveAction) ||
-                            !ActionReadsSafely(move.rightHandMoveAction)) return false;
+                        if (!ActionReadsSafely(move.leftHandMoveAction,
+                                owner + ".leftHandMoveAction", out failure) ||
+                            !ActionReadsSafely(move.rightHandMoveAction,
+                                owner + ".rightHandMoveAction", out failure)) return false;
                         break;
                     case ActionBasedContinuousTurnProvider turn:
-                        if (!ActionReadsSafely(turn.leftHandTurnAction) ||
-                            !ActionReadsSafely(turn.rightHandTurnAction)) return false;
+                        if (!ActionReadsSafely(turn.leftHandTurnAction,
+                                owner + ".leftHandTurnAction", out failure) ||
+                            !ActionReadsSafely(turn.rightHandTurnAction,
+                                owner + ".rightHandTurnAction", out failure)) return false;
                         break;
                     case ActionBasedSnapTurnProvider snap:
-                        if (!ActionReadsSafely(snap.leftHandSnapTurnAction) ||
-                            !ActionReadsSafely(snap.rightHandSnapTurnAction)) return false;
+                        if (!ActionReadsSafely(snap.leftHandSnapTurnAction,
+                                owner + ".leftHandSnapTurnAction", out failure) ||
+                            !ActionReadsSafely(snap.rightHandSnapTurnAction,
+                                owner + ".rightHandSnapTurnAction", out failure)) return false;
                         break;
                 }
             }
@@ -370,19 +393,73 @@ namespace Ziptide.Gameplay
 
         private static bool ActionReadsSafely(InputActionProperty property)
         {
+            return ActionReadsSafely(property, "unscoped", out _);
+        }
+
+        private static bool ActionReadsSafely(
+            InputActionProperty property,
+            string owner,
+            out string failure)
+        {
+            failure = string.Empty;
             InputAction action = property.action;
             if (action == null) return true;
-            if (!action.enabled) return property.reference != null;
+
+            if (!action.enabled)
+            {
+                if (property.reference != null) return true;
+                failure = owner + " action=" + ActionPath(action)
+                    + " phase=disabled_direct";
+                return false;
+            }
 
             try
             {
                 action.ReadValue<Vector2>();
                 return true;
             }
-            catch
+            catch (System.Exception ex)
             {
+                int controls = 0;
+                try { controls = action.controls.Count; } catch { controls = -1; }
+                string activeControl;
+                try
+                {
+                    activeControl = action.activeControl != null
+                        ? action.activeControl.GetType().FullName
+                        : "<none>";
+                }
+                catch { activeControl = "<unavailable>"; }
+
+                failure = owner + " action=" + ActionPath(action)
+                    + " expected=" + (action.expectedControlType ?? string.Empty)
+                    + " enabled=" + action.enabled
+                    + " reference=" + (property.reference != null)
+                    + " controls=" + controls
+                    + " activeControl=" + activeControl
+                    + " exception=" + ex.GetType().Name + ":" + ex.Message;
                 return false;
             }
+        }
+
+        private static string ActionPath(InputAction action)
+        {
+            if (action == null) return "<null>";
+            string map = action.actionMap != null ? action.actionMap.name : "<direct>";
+            return map + "/" + action.name;
+        }
+
+        private static string HierarchyPath(Transform value)
+        {
+            if (value == null) return "<none>";
+            string path = value.name;
+            Transform parent = value.parent;
+            while (parent != null)
+            {
+                path = parent.name + "/" + path;
+                parent = parent.parent;
+            }
+            return path;
         }
 
         private readonly struct RepairCounts
