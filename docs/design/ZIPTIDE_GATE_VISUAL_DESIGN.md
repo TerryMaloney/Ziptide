@@ -50,6 +50,30 @@ animation on ONE mesh. No refraction, no sim — a SCULPTED wave, art-directed, 
 against the concept. Post-checkpoint envelope; transparent-coverage budget (≤35% brief
 authored reveal, FORGE IV) is the governing rail.
 
-## §4 — The concept prompt (C2 — Terry generates with city/sky keepers as references)
+## §4 — ✅ KEEPERS LANDED (2026-07-20, `concepts/ziptide_gate/` — five images = the gate's LIFECYCLE)
 
-Main prompt in-chat (rb-lane, 2026-07-20); keeper lands here + queue C2 when approved.
+- **`gate_standing_crest_hero_v1`** — **THE CROSSING IDENTITY** (matches §2 exactly): the
+  towering held crest between weathered pillar clusters, teal→cyan→white-light foam, the
+  TROUGH visibly pulled back at the base (the inhale sells "the sea is doing this"), spray
+  dissolving into glow-motes, a tiny rusted craft dwarfed before it. Canon read for every
+  ordinary crossing.
+- **`gate_resting_pillars_v1`** — the RESTING state + **pillar material reference**: the
+  stone is SOAKED in tide — glowing cyan speckles/lichen on the monoliths, luminous drips,
+  glow patches in the water. **ADOPTED MOTIF: the pillars are stained by the tide** (photon-
+  fluid residue on stone — ties the night-glow family to the architecture; feeds the pillar
+  recipe's emissive mask).
+- **`gate_spiral_ship_crossing_v1`** — the tide at FULL REACH: a sky-filling spiral of
+  luminous water with THE SCRAPPER riding it (design consistency held again). Ruling: the
+  no-swirl law stands for the standard crossing read — but this is adopted as **the
+  SHIP-crossing seen from outside**: when a whole vessel rides, the tide climbs the sky.
+  Rare, earned, trailer-grade (the Director's Cut first-crossing exterior beat).
+- **`gate_arena_column_v1` + `gate_arena_inhale_v1`** — a NEW architecture the generation
+  proposed: a double-ring stone colonnade "gate arena" with a machined circular floor —
+  column-of-tide surge state + a thin-beam inhale state with debris floating (anti-grav
+  moment). **⚖ FORK FOR TERRY:** adopt as a SECOND gate class? (e.g., the Moss transport
+  hub's built-up civic gate = arena form; wild gates in open water = pillar-ring form. Two
+  tiers of gate architecture, one phenomenon.) Pending his call; both stored either way.
+
+**Lifecycle assembled:** resting glass-water → inhale/trough (debris lifts) → the crest
+(person-scale crossing) → the spiral (ship-scale crossing) → ebb. The future
+`ZiptideGateEffect` upgrade now has a reference frame for every state it needs.

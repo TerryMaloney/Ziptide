@@ -27,6 +27,33 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-20 (rb67) — Fable 5: 🌊 THE ZIPTIDE ITSELF — photon-fluid design canon + the gate's full lifecycle in keepers (docs + reference images)
+
+- **Did:** ① **`docs/design/ZIPTIDE_GATE_VISUAL_DESIGN.md`** — Terry asked for a plausible-
+  science upgrade of the janky-but-working gate ("think photons," loves Stargate's water):
+  the canon (⚖) is built on the REAL field of quantum fluids of light / slow-light media —
+  the Shell membrane is a slow-light boundary; between the pillars light CONDENSES into a
+  photon fluid (a liquid of light) whose cycling membrane tension gives it TIDES; crossing =
+  the crest picks you up, you arrive on the ebb ("the tide remembers where we were going" —
+  now physics). Pillars = resonators at membrane wavelength ("do not count the pillars" =
+  shifting interference nodes). **THE UNIFIER:** trace photon-fluid dissolved in seawater =
+  the night-glowing horizon + tide pools + what the skiff's fins grip + why gates stand in
+  water — one mechanism, five visuals. Visual language: NOT a Stargate puddle — the INHALE
+  (trough) → the STANDING CREST (teal→cyan→white light-foam, slow-motion ripples, spray
+  dissolving to glow) → sweep-through → ebb. Feasibility rails honest (sculpted layered
+  planes + existing water normals + emissive gradient + capped particles; flash shell kept
+  as the inside-the-wave beat). ② **Five keepers landed same-day** (`concepts/ziptide_gate/`)
+  = the gate's LIFECYCLE: standing-crest HERO (the crossing identity, design-doc-exact) ·
+  resting state (**adopted motif: tide-stained pillars** — glowing residue on the stone) ·
+  the SPIRAL (tide at full reach with THE SCRAPPER riding it — no-swirl law stands for
+  person crossings; adopted as the rare SHIP-crossing exterior/trailer beat) · two "gate
+  arena" takes (double-ring colonnade + machined floor; column surge + thin-beam inhale
+  w/ floating debris) — **⚖ FORK: adopt arena form as the civic/hub gate class vs. wild
+  pillar-ring gates?**
+- **Next:** Terry blesses: photon-fluid canon · the arena/wild two-tier gate fork · (standing
+  ⚖ queue unchanged). Effect upgrade = post-checkpoint envelope against these references.
+- **Commit:** this one (docs + 5 reference images).
+
 ### 2026-07-20 (rb66) — Fable 5: 🗺 K7 — the city's LOGIC LAYER (schematic blueprint with gameplay semantics)
 
 - **Did:** Terry delivered an isometric SCHEMATIC blueprint of the city ("THE 'MOSS'
