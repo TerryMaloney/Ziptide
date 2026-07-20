@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.IO;
 using NUnit.Framework;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Ziptide.Content;
@@ -17,6 +19,28 @@ namespace Ziptide.Tests.EditMode
             {
                 "arrival_identity", "route_beacons", "ambient_motion", "horizon_frame"
             }, WorldImprovementModuleRegistry.KnownIds());
+        }
+
+        [Test]
+        public void ModuleMarker_HasItsOwnSerializableMonoScriptFile()
+        {
+            GameObject host = null;
+            try
+            {
+                host = new GameObject("ModuleMarkerSerializationFixture");
+                WorldImprovementModuleMarker marker = host.AddComponent<WorldImprovementModuleMarker>();
+                MonoScript script = MonoScript.FromMonoBehaviour(marker);
+                Assert.That(script, Is.Not.Null);
+                Assert.That(script.GetClass(), Is.EqualTo(typeof(WorldImprovementModuleMarker)));
+                string path = AssetDatabase.GetAssetPath(script);
+                Assert.That(Path.GetFileNameWithoutExtension(path),
+                    Is.EqualTo(nameof(WorldImprovementModuleMarker)),
+                    "Attachable framework components must live in matching filenames or Unity can drop them when scenes reopen.");
+            }
+            finally
+            {
+                if (host != null) Object.DestroyImmediate(host);
+            }
         }
 
         [Test]
