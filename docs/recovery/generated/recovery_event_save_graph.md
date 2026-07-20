@@ -1,6 +1,6 @@
 # ZIPTIDE Event and Save Ownership Graph
 
-- Scanned C# files: **717**
+- Scanned C# files: **719**
 - Evidence edges: **721**
 - Named subscriptions without matching unsubscribe in the same owner: **52**
 
@@ -754,9 +754,9 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.EcologyDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs:44` · `(scene, mode) =>` — `SceneManager.sceneLoaded += (scene, mode) => Ensure(scene);`
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.QuartersCameraFeature` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs:16` · `OnSceneLoaded` — `SceneManager.sceneLoaded -= OnSceneLoaded;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.QuartersCameraFeature` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs:17` · `OnSceneLoaded` — `SceneManager.sceneLoaded += OnSceneLoaded;`
-- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.PlayerInputSessionGuard` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:28` · `OnSceneLoaded` — `SceneManager.sceneLoaded -= OnSceneLoaded;`
-- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.PlayerInputSessionGuard` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:35` · `OnSceneLoaded` — `SceneManager.sceneLoaded -= OnSceneLoaded;`
-- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.PlayerInputSessionGuard` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:36` · `OnSceneLoaded` — `SceneManager.sceneLoaded += OnSceneLoaded;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.PlayerInputSessionGuard` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:32` · `OnSceneLoaded` — `SceneManager.sceneLoaded -= OnSceneLoaded;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.PlayerInputSessionGuard` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:40` · `OnSceneLoaded` — `SceneManager.sceneLoaded -= OnSceneLoaded;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.PlayerInputSessionGuard` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:41` · `OnSceneLoaded` — `SceneManager.sceneLoaded += OnSceneLoaded;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.BootHoldState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:159` · `OnSceneLoaded` — `SceneManager.sceneLoaded += OnSceneLoaded;`
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.BootHoldState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:317` · `OnSceneLoaded` — `SceneManager.sceneLoaded -= OnSceneLoaded;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.PvpProgressionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:49` · `OnSceneLoaded` — `SceneManager.sceneLoaded += OnSceneLoaded;`

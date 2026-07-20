@@ -1,6 +1,6 @@
 {
   "tool": "recovery_event_save_graph",
-  "scannedFiles": 717,
+  "scannedFiles": 719,
   "evidenceCount": 721,
   "kindCounts": {
     "AUTOSAVE": 7,
@@ -4590,7 +4590,7 @@
       {
         "kind": "EVENT_UNSUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
-        "line": 28,
+        "line": 32,
         "owner": "Ziptide.Gameplay.PlayerInputSessionGuard",
         "target": "SceneManager.sceneLoaded",
         "detail": "OnSceneLoaded",
@@ -4599,7 +4599,7 @@
       {
         "kind": "EVENT_UNSUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
-        "line": 35,
+        "line": 40,
         "owner": "Ziptide.Gameplay.PlayerInputSessionGuard",
         "target": "SceneManager.sceneLoaded",
         "detail": "OnSceneLoaded",
@@ -4608,7 +4608,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
-        "line": 36,
+        "line": 41,
         "owner": "Ziptide.Gameplay.PlayerInputSessionGuard",
         "target": "SceneManager.sceneLoaded",
         "detail": "OnSceneLoaded",
@@ -9769,7 +9769,7 @@
     {
       "kind": "EVENT_UNSUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
-      "line": 28,
+      "line": 32,
       "owner": "Ziptide.Gameplay.PlayerInputSessionGuard",
       "target": "SceneManager.sceneLoaded",
       "detail": "OnSceneLoaded",
@@ -9778,7 +9778,7 @@
     {
       "kind": "EVENT_UNSUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
-      "line": 35,
+      "line": 40,
       "owner": "Ziptide.Gameplay.PlayerInputSessionGuard",
       "target": "SceneManager.sceneLoaded",
       "detail": "OnSceneLoaded",
@@ -9787,7 +9787,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
-      "line": 36,
+      "line": 41,
       "owner": "Ziptide.Gameplay.PlayerInputSessionGuard",
       "target": "SceneManager.sceneLoaded",
       "detail": "OnSceneLoaded",

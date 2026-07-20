@@ -1,8 +1,8 @@
 {
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
-  "scannedFiles": 717,
-  "findingCount": 2497,
+  "scannedFiles": 719,
+  "findingCount": 2498,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -534,14 +534,14 @@
           {
             "code": "RUNTIME_BOOTSTRAP",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
-            "line": 25,
+            "line": 29,
             "symbol": "Ziptide.Gameplay.PlayerInputSessionGuard",
             "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]"
           },
           {
             "code": "RUNTIME_BOOTSTRAP",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
-            "line": 31,
+            "line": 36,
             "symbol": "Ziptide.Gameplay.PlayerInputSessionGuard",
             "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]"
           }
@@ -1687,110 +1687,110 @@
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
             "line": 21,
             "symbol": "Ziptide.Gameplay.PlayerInputSessionGuard",
-            "snippet": "/// InputActionManager the only enabled manager."
+            "snippet": "/// InputActionManager the only enabled manager. A scene-generation latch prevents the retained"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
-            "line": 47,
+            "line": 65,
             "symbol": "Ziptide.Gameplay.PlayerInputSessionGuard",
             "snippet": "/// Transfer the union of all action assets to the InputActionManager attached to the sole"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
-            "line": 60,
+            "line": 78,
             "symbol": "Ziptide.Gameplay.PlayerInputSessionGuard",
             "snippet": "InputActionManager primary = canonicalXri.GetComponent<InputActionManager>();"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
-            "line": 68,
+            "line": 86,
             "symbol": "Ziptide.Gameplay.PlayerInputSessionGuard",
             "snippet": "InputActionManager[] managers = UnityEngine.Object.FindObjectsOfType<InputActionManager>(true);"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
-            "line": 69,
+            "line": 87,
             "symbol": "Ziptide.Gameplay.PlayerInputSessionGuard",
             "snippet": "var assets = new List<InputActionAsset>();"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
-            "line": 74,
+            "line": 92,
             "symbol": "Ziptide.Gameplay.PlayerInputSessionGuard",
             "snippet": "var fullyDisabledAssets = new List<InputActionAsset>();"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
-            "line": 75,
+            "line": 93,
             "symbol": "Ziptide.Gameplay.PlayerInputSessionGuard",
             "snippet": "var intentionallyDisabledActions = new List<InputAction>();"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
-            "line": 78,
+            "line": 96,
             "symbol": "Ziptide.Gameplay.PlayerInputSessionGuard",
             "snippet": "InputActionAsset asset = assets[i];"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
-            "line": 86,
+            "line": 104,
             "symbol": "Ziptide.Gameplay.PlayerInputSessionGuard",
             "snippet": "foreach (InputAction action in map.actions)"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
-            "line": 94,
+            "line": 112,
             "symbol": "Ziptide.Gameplay.PlayerInputSessionGuard",
             "snippet": "// InputActionManager.OnEnable may enable every assigned asset. Restore the exact disabled"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
-            "line": 98,
+            "line": 116,
             "symbol": "Ziptide.Gameplay.PlayerInputSessionGuard",
             "snippet": "InputAction action = intentionallyDisabledActions[i];"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
-            "line": 105,
+            "line": 123,
             "symbol": "Ziptide.Gameplay.PlayerInputSessionGuard",
             "snippet": "InputActionAsset asset = fullyDisabledAssets[i];"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
-            "line": 114,
+            "line": 132,
             "symbol": "Ziptide.Gameplay.PlayerInputSessionGuard",
             "snippet": "InputActionManager manager = managers[i];"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
-            "line": 118,
+            "line": 136,
             "symbol": "Ziptide.Gameplay.PlayerInputSessionGuard",
             "snippet": "manager.actionAssets = new List<InputActionAsset>();"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
-            "line": 150,
+            "line": 168,
             "symbol": "Ziptide.Gameplay.PlayerInputSessionGuard",
             "snippet": "private static void AddAssets(InputActionManager manager, List<InputActionAsset> assets)"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
-            "line": 153,
+            "line": 171,
             "symbol": "Ziptide.Gameplay.PlayerInputSessionGuard",
             "snippet": "foreach (InputActionAsset asset in manager.actionAssets)"
           }
@@ -13517,7 +13517,7 @@
           {
             "code": "XRI_MANAGER_LOOKUP",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
-            "line": 137,
+            "line": 155,
             "symbol": "Ziptide.Gameplay.PlayerInputSessionGuard",
             "snippet": "UnityEngine.Object.FindObjectsOfType<XRInteractionManager>(true);"
           }

@@ -1,7 +1,7 @@
 # ZIPTIDE Recovery Contract Scan
 
-- Scanned files: **717**
-- Findings: **2497**
+- Scanned files: **719**
+- Findings: **2498**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
@@ -9,7 +9,7 @@
 | Category | Count |
 |---|---:|
 | `bootstrap` | 35 |
-| `diagnostics` | 551 |
+| `diagnostics` | 552 |
 | `events` | 64 |
 | `fallback_debt` | 153 |
 | `global_render` | 81 |
@@ -50,8 +50,8 @@
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Persistence/SaveSystem.cs:50` · `Ziptide.Gameplay.SaveSystem` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs:12` · `Ziptide.Gameplay.QuartersCameraFeature` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/ComfortVignette.cs:31` · `Ziptide.Gameplay.ComfortVignette` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
-- **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:25` · `Ziptide.Gameplay.PlayerInputSessionGuard` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]`
-- **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:31` · `Ziptide.Gameplay.PlayerInputSessionGuard` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
+- **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:29` · `Ziptide.Gameplay.PlayerInputSessionGuard` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]`
+- **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:36` · `Ziptide.Gameplay.PlayerInputSessionGuard` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:26` · `Ziptide.Gameplay.PvpProgressionRuntime` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs:45` · `Ziptide.Gameplay.Tutorial.FirstHourObservationAdapter` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:39` · `Ziptide.Gameplay.ConquestMissionRuntime` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
@@ -260,10 +260,11 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/EmergencyRespawn.cs:84` · `Ziptide.Gameplay.EmergencyRespawn` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: EMERGENCY_RESPAWN no WorldRuntime or SpawnMarkerRuntime found; cannot respawn.");`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PingTool.cs:56` · `Ziptide.Gameplay.PingTool` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: PING_AT " + hit.point.ToString("F1"));`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerAvatarRig.cs:35` · `Ziptide.Gameplay.PlayerAvatarRig` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: AVATAR_READY gloves+torso");`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:56` · `Ziptide.Gameplay.PlayerInputSessionGuard` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: INPUT_SESSION_GUARD no_canonical_xri reason=" + reason);`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:63` · `Ziptide.Gameplay.PlayerInputSessionGuard` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: INPUT_SESSION_GUARD no_primary_input_manager xri="`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:124` · `Ziptide.Gameplay.PlayerInputSessionGuard` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: INPUT_MANAGER_DISABLED path=" + HierarchyPath(manager.transform)`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:128` · `Ziptide.Gameplay.PlayerInputSessionGuard` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: INPUT_SESSION_CANONICAL manager=" + HierarchyPath(primary.transform)`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:56` · `Ziptide.Gameplay.PlayerInputSessionGuard` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: INPUT_SESSION_CONSOLIDATE_SKIPPED scene="`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:74` · `Ziptide.Gameplay.PlayerInputSessionGuard` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: INPUT_SESSION_GUARD no_canonical_xri reason=" + reason);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:81` · `Ziptide.Gameplay.PlayerInputSessionGuard` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: INPUT_SESSION_GUARD no_primary_input_manager xri="`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:142` · `Ziptide.Gameplay.PlayerInputSessionGuard` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: INPUT_MANAGER_DISABLED path=" + HierarchyPath(manager.transform)`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:146` · `Ziptide.Gameplay.PlayerInputSessionGuard` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: INPUT_SESSION_CANONICAL manager=" + HierarchyPath(primary.transform)`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:211` · `Ziptide.Gameplay.BootHoldState` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: FALL_SAFETY y=" + transform.position.y.ToString("F1")`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:242` · `Ziptide.Gameplay.BootHoldState` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FALL_SAFETY_RESPAWN to " + transform.position.ToString("F2"));`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:271` · `Ziptide.Gameplay.BootHoldState` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: STUN_RECEIVER_ENSURED on persistent rig");`
@@ -975,22 +976,22 @@
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PingTool.cs:19` · `Ziptide.Gameplay.PingTool` — Input System action reference. `private InputAction _ping;`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PingTool.cs:27` · `Ziptide.Gameplay.PingTool` — Input System action reference. `_ping = new InputAction("ZiptidePing", InputActionType.Button);`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:15` · `Ziptide.Gameplay.PlayerInputSessionGuard` — Input System action reference. `/// asset to the InputActionManager beside it. Scene-authored InputActionManagers must then be`
-- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:21` · `Ziptide.Gameplay.PlayerInputSessionGuard` — Input System action reference. `/// InputActionManager the only enabled manager.`
-- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:47` · `Ziptide.Gameplay.PlayerInputSessionGuard` — Input System action reference. `/// Transfer the union of all action assets to the InputActionManager attached to the sole`
-- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:60` · `Ziptide.Gameplay.PlayerInputSessionGuard` — Input System action reference. `InputActionManager primary = canonicalXri.GetComponent<InputActionManager>();`
-- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:68` · `Ziptide.Gameplay.PlayerInputSessionGuard` — Input System action reference. `InputActionManager[] managers = UnityEngine.Object.FindObjectsOfType<InputActionManager>(true);`
-- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:69` · `Ziptide.Gameplay.PlayerInputSessionGuard` — Input System action reference. `var assets = new List<InputActionAsset>();`
-- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:74` · `Ziptide.Gameplay.PlayerInputSessionGuard` — Input System action reference. `var fullyDisabledAssets = new List<InputActionAsset>();`
-- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:75` · `Ziptide.Gameplay.PlayerInputSessionGuard` — Input System action reference. `var intentionallyDisabledActions = new List<InputAction>();`
-- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:78` · `Ziptide.Gameplay.PlayerInputSessionGuard` — Input System action reference. `InputActionAsset asset = assets[i];`
-- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:86` · `Ziptide.Gameplay.PlayerInputSessionGuard` — Input System action reference. `foreach (InputAction action in map.actions)`
-- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:94` · `Ziptide.Gameplay.PlayerInputSessionGuard` — Input System action reference. `// InputActionManager.OnEnable may enable every assigned asset. Restore the exact disabled`
-- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:98` · `Ziptide.Gameplay.PlayerInputSessionGuard` — Input System action reference. `InputAction action = intentionallyDisabledActions[i];`
-- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:105` · `Ziptide.Gameplay.PlayerInputSessionGuard` — Input System action reference. `InputActionAsset asset = fullyDisabledAssets[i];`
-- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:114` · `Ziptide.Gameplay.PlayerInputSessionGuard` — Input System action reference. `InputActionManager manager = managers[i];`
-- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:118` · `Ziptide.Gameplay.PlayerInputSessionGuard` — Input System action reference. `manager.actionAssets = new List<InputActionAsset>();`
-- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:150` · `Ziptide.Gameplay.PlayerInputSessionGuard` — Input System action reference. `private static void AddAssets(InputActionManager manager, List<InputActionAsset> assets)`
-- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:153` · `Ziptide.Gameplay.PlayerInputSessionGuard` — Input System action reference. `foreach (InputActionAsset asset in manager.actionAssets)`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:21` · `Ziptide.Gameplay.PlayerInputSessionGuard` — Input System action reference. `/// InputActionManager the only enabled manager. A scene-generation latch prevents the retained`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:65` · `Ziptide.Gameplay.PlayerInputSessionGuard` — Input System action reference. `/// Transfer the union of all action assets to the InputActionManager attached to the sole`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:78` · `Ziptide.Gameplay.PlayerInputSessionGuard` — Input System action reference. `InputActionManager primary = canonicalXri.GetComponent<InputActionManager>();`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:86` · `Ziptide.Gameplay.PlayerInputSessionGuard` — Input System action reference. `InputActionManager[] managers = UnityEngine.Object.FindObjectsOfType<InputActionManager>(true);`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:87` · `Ziptide.Gameplay.PlayerInputSessionGuard` — Input System action reference. `var assets = new List<InputActionAsset>();`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:92` · `Ziptide.Gameplay.PlayerInputSessionGuard` — Input System action reference. `var fullyDisabledAssets = new List<InputActionAsset>();`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:93` · `Ziptide.Gameplay.PlayerInputSessionGuard` — Input System action reference. `var intentionallyDisabledActions = new List<InputAction>();`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:96` · `Ziptide.Gameplay.PlayerInputSessionGuard` — Input System action reference. `InputActionAsset asset = assets[i];`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:104` · `Ziptide.Gameplay.PlayerInputSessionGuard` — Input System action reference. `foreach (InputAction action in map.actions)`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:112` · `Ziptide.Gameplay.PlayerInputSessionGuard` — Input System action reference. `// InputActionManager.OnEnable may enable every assigned asset. Restore the exact disabled`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:116` · `Ziptide.Gameplay.PlayerInputSessionGuard` — Input System action reference. `InputAction action = intentionallyDisabledActions[i];`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:123` · `Ziptide.Gameplay.PlayerInputSessionGuard` — Input System action reference. `InputActionAsset asset = fullyDisabledAssets[i];`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:132` · `Ziptide.Gameplay.PlayerInputSessionGuard` — Input System action reference. `InputActionManager manager = managers[i];`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:136` · `Ziptide.Gameplay.PlayerInputSessionGuard` — Input System action reference. `manager.actionAssets = new List<InputActionAsset>();`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:168` · `Ziptide.Gameplay.PlayerInputSessionGuard` — Input System action reference. `private static void AddAssets(InputActionManager manager, List<InputActionAsset> assets)`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:171` · `Ziptide.Gameplay.PlayerInputSessionGuard` — Input System action reference. `foreach (InputActionAsset asset in manager.actionAssets)`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:59` · `Ziptide.Gameplay.BootHoldState` — Input System action reference. `/// InputActionManager asset list before Destroy — preventing the shared`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:60` · `Ziptide.Gameplay.BootHoldState` — Input System action reference. `/// InputActionAsset from being disabled by InputActionManager.OnDisable.`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:387` · `Ziptide.Gameplay.BootHoldState` — Input System action reference. `// The scene-local manager always has the correct InputActionManager+assets wired up.`
@@ -2514,7 +2515,7 @@
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:261` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — XRInteractionManager lookup. `var mgr = FindObjectOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/NestRuntime.cs:72` · `Ziptide.Gameplay.NestRuntime` — XRInteractionManager lookup. `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs:75` · `Ziptide.Gameplay.QuickSwap` — XRInteractionManager lookup. `if (_mgr == null) _mgr = FindObjectOfType<XRInteractionManager>();`
-- **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:137` · `Ziptide.Gameplay.PlayerInputSessionGuard` — XRInteractionManager lookup. `UnityEngine.Object.FindObjectsOfType<XRInteractionManager>(true);`
+- **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:155` · `Ziptide.Gameplay.PlayerInputSessionGuard` — XRInteractionManager lookup. `UnityEngine.Object.FindObjectsOfType<XRInteractionManager>(true);`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:140` · `Ziptide.Gameplay.BootHoldState` — XRInteractionManager lookup. `foreach (var m in FindObjectsOfType<XRInteractionManager>(true))`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:384` · `Ziptide.Gameplay.BootHoldState` — XRInteractionManager lookup. `var allManagers = FindObjectsOfType<XRInteractionManager>(true);`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/ArenaLobbyBoard.cs:297` · `Ziptide.Gameplay.ArenaLobbyBoard` — XRInteractionManager lookup. `var mgr = FindObjectOfType<XRInteractionManager>();`
