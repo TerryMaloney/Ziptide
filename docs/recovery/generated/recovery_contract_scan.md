@@ -1,6 +1,6 @@
 # ZIPTIDE Recovery Contract Scan
 
-- Scanned files: **652**
+- Scanned files: **653**
 - Findings: **2327**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 

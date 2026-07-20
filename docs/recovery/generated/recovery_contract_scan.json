@@ -1,14 +1,14 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-20T00:18:59.027555+00:00",
+  "generatedAtUtc": "2026-07-20T00:27:08.631657+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
     "Ziptide/Assets/Ziptide",
     "Ziptide/Assets/ZiptideNet"
   ],
-  "scannedFiles": 652,
+  "scannedFiles": 653,
   "findingCount": 2327,
   "categoryCounts": {
     "bootstrap": 31,
