@@ -126,6 +126,22 @@ impostor ring + an altitude ceiling; perf per FORGE IV P3 band — the concepts 
 cheap version, they don't license an expensive one. 📣 Coordinate with GPT's city Stage A —
 these keepers become its visual reference via HANDOFF when they land.
 
+## §2c — C5 · THE ARTIFACT KEY — ✅ APPROVED 2026-07-20 (`concepts/artifact_key/`)
+
+**`key_two_half_states_v1`** = THE first-hour key, canon-exact: TWO halves (ARTIFACT_HALF_A/B),
+rounded palm tablet, stepped S-curve interlock that TEACHES the join gesture, flowing
+frozen-current channels (not circuitry), dark dense stone-metal, three states — separated /
+**"mid-activation (within two inches)"** with cyan arcs bridging the gap / active with every
+channel flowing crest-cyan. The sheet accidentally SPECCED the mechanic: proximity-pull
+engages at ~2 inches (the DC's "they pull at each other" beat, now with a number). Feeds:
+the held-item recipe (Tier-B face-distance rules), the join ceremony staging, the coupler
+seat state.
+**`artifact_hex_seal_variant_v1`** = too good to discard, wrong for the key (3 pieces ≠ two
+halves; AMBER ≠ crest-cyan; engraved glyphs need the alien family — glyph-law caution).
+**ADOPTED as a second artifact CLASS (⚖ Terry):** the hex SEAL — Architect-seal/mystery-object
+family for later chapters (amber = a different system's voice than the tide's cyan; 3-piece
+assembly = a later, bigger ceremony). Parked with its caution until story lane places it.
+
 ## §3a — THE B+ BRIDGE (Terry-approved workflow, 2026-07-20)
 
 Once the ship's sheets are approved, a model session builds a **B+ Forge version from the
