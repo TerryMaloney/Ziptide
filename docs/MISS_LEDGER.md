@@ -9,7 +9,7 @@ Read by every lane at session start alongside HANDOFF. Full spec: `FINISHED_GAME
 
 ---
 
-## OPEN / SEEDED 2026-07-19 (the benchmark exercise's own findings — entries 1–13)
+## OPEN / SEEDED 2026-07-19 (the benchmark exercise's own findings — entries 1–14)
 
 1. **WHAT:** no player-facing credits roll designed. **FOUND BY:** finished-game benchmark (B3).
    **WHY MISSED:** CREDITS.md solved the LICENSING need and its existence masked the
@@ -85,6 +85,16 @@ Read by every lane at session start alongside HANDOFF. Full spec: `FINISHED_GAME
     generation of the producer contract. **SYSTEM CHANGE:** compile-report schema/compiler v2 plus
     Golden verification of Round 3 IDs, seven modules, positive counts, nine aspect scores and
     weakest-aspect output (→ pending exact-SHA Golden verification).
+14. **WHAT:** `WorldDiscoveryNodeRuntime` allocated a `MaterialPropertyBlock` in a MonoBehaviour
+    instance-field initializer, causing Unity to throw during EditMode `AddComponent` and stopping
+    ordinary CI before scene audit. **FOUND BY:** authoritative EditMode run `29754045806` on
+    `dfeddc15`. **WHY MISSED:** runtime review treated `MaterialPropertyBlock` as ordinary managed
+    state, while Unity constructs MonoBehaviours through a restricted serialization path that forbids
+    Unity API object creation in constructors and field initializers. **CLASS:** UnityEngine object
+    allocation before `Awake`/explicit initialization. **SYSTEM CHANGE:** discovery nodes now lazily
+    allocate their property block inside `Awake`/first use; the real Round 3 EditMode integration test
+    continues to add the component through Unity and must pass before generated-scene audit can run
+    (→ pending exact CI verification).
 
 ## CLOSED
 

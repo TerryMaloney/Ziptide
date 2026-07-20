@@ -22,7 +22,7 @@ namespace Ziptide.Gameplay
         private Renderer _renderer;
         private TextMesh _status;
         private bool _discovered;
-        private readonly MaterialPropertyBlock _properties = new MaterialPropertyBlock();
+        private MaterialPropertyBlock _properties;
 
         public string NodeId => nodeId;
         public bool IsDiscovered => _discovered;
@@ -39,6 +39,7 @@ namespace Ziptide.Gameplay
             _interactable = GetComponent<XRSimpleInteractable>();
             _renderer = GetComponent<Renderer>();
             _status = GetComponentInChildren<TextMesh>(true);
+            EnsurePropertyBlock();
             if (_interactable.interactionManager == null)
                 _interactable.interactionManager = FindObjectOfType<XRInteractionManager>();
             _interactable.selectEntered.AddListener(OnSelected);
@@ -74,10 +75,17 @@ namespace Ziptide.Gameplay
         private void ApplyColor(Color color)
         {
             if (_renderer == null) return;
+            EnsurePropertyBlock();
             _renderer.GetPropertyBlock(_properties);
             _properties.SetColor("_BaseColor", color);
             _properties.SetColor("_Color", color);
             _renderer.SetPropertyBlock(_properties);
+        }
+
+        private void EnsurePropertyBlock()
+        {
+            if (_properties == null)
+                _properties = new MaterialPropertyBlock();
         }
     }
 }
