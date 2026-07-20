@@ -19,9 +19,9 @@ namespace Ziptide.Tests.PlayMode
     /// cold-start ordering defect.
     ///
     /// This test-only owner reacts to the simulator-ready diagnostic, quiesces locomotion readers, probes
-    /// every bound Move/Turn action, and resets only an action that is actually unreadable. Enabled state is
-    /// preserved exactly. It runs outside the production APK and never touches anchor actions, gameplay
-    /// input policy, scene assets, or the production fail-closed settle guard.
+    /// every bound Move/Turn action using its declared value type, and resets only an action that is actually
+    /// unreadable. Enabled state is preserved exactly. It runs outside the production APK and never touches
+    /// anchor actions, gameplay input policy, scene assets, or the production fail-closed settle guard.
     /// </summary>
     internal static class RecoveryHeadlessInputReadabilityRepair
     {
@@ -85,7 +85,7 @@ namespace Ziptide.Tests.PlayMode
                 for (int i = 0; i < actions.Count; i++)
                 {
                     InputAction action = actions[i];
-                    if (ReadsVector2(action, out _)) continue;
+                    if (ReadsExpectedValue(action, out _)) continue;
 
                     bool wasEnabled = action.enabled;
                     try
@@ -95,8 +95,8 @@ namespace Ziptide.Tests.PlayMode
                         if (!wasEnabled) action.Disable();
                         repaired++;
                         Debug.Log("ZIPTIDE: RECOVERY_HEADLESS_XR_ACTION_REPAIR action="
-                            + ActionPath(action) + " wasEnabled=" + wasEnabled
-                            + " controls=" + action.controls.Count);
+                            + ActionPath(action) + " expected=" + ExpectedValueType(action)
+                            + " wasEnabled=" + wasEnabled + " controls=" + action.controls.Count);
                     }
                     catch (Exception ex)
                     {
@@ -115,15 +115,16 @@ namespace Ziptide.Tests.PlayMode
                 {
                     InputAction action = actions[i];
                     controls += CountVirtualControls(action);
-                    if (ReadsVector2(action, out string reason))
+                    if (ReadsExpectedValue(action, out string reason))
                     {
                         readable++;
                         continue;
                     }
 
                     Debug.LogError("ZIPTIDE: RECOVERY_HEADLESS_XR_READABILITY_FAIL action="
-                        + ActionPath(action) + " phase=verify enabled=" + action.enabled
-                        + " controls=" + action.controls.Count + " reason=" + reason);
+                        + ActionPath(action) + " phase=verify expected=" + ExpectedValueType(action)
+                        + " enabled=" + action.enabled + " controls=" + action.controls.Count
+                        + " reason=" + reason);
                     return;
                 }
 
@@ -173,11 +174,14 @@ namespace Ziptide.Tests.PlayMode
                 || name.IndexOf("Turn", StringComparison.OrdinalIgnoreCase) >= 0;
         }
 
-        private static bool ReadsVector2(InputAction action, out string reason)
+        private static bool ReadsExpectedValue(InputAction action, out string reason)
         {
             try
             {
-                action.ReadValue<Vector2>();
+                if (string.Equals(ExpectedValueType(action), "Button", StringComparison.OrdinalIgnoreCase))
+                    action.ReadValue<float>();
+                else
+                    action.ReadValue<Vector2>();
                 reason = string.Empty;
                 return true;
             }
@@ -187,6 +191,9 @@ namespace Ziptide.Tests.PlayMode
                 return false;
             }
         }
+
+        private static string ExpectedValueType(InputAction action)
+            => string.IsNullOrEmpty(action.expectedControlType) ? "Vector2" : action.expectedControlType;
 
         private static int CountVirtualControls(InputAction action)
         {
