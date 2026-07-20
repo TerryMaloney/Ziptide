@@ -7,7 +7,8 @@ namespace Ziptide.Editor.Audit
 {
     /// <summary>
     /// PG-3: samples authored route surfaces in world space. Presence of a Connection object is not enough;
-    /// its traversable centerline and each player spawn must resolve to enabled solid support.
+    /// its traversable centerline and each player spawn must resolve to enabled solid support. Box routes
+    /// are sampled along their real transformed local long axis, not their rotated world AABB.
     /// </summary>
     public static class RouteContinuityAuditRules
     {
@@ -28,13 +29,7 @@ namespace Ziptide.Editor.Audit
                     Renderer renderer = route != null ? route.GetComponent<Renderer>() : null;
                     if (collider == null || renderer == null || !collider.enabled || collider.isTrigger) continue;
 
-                    Bounds bounds = collider.bounds;
-                    bool alongX = bounds.size.x >= bounds.size.z;
-                    float half = (alongX ? bounds.extents.x : bounds.extents.z) - 0.08f;
-                    Vector3 axis = alongX ? Vector3.right : Vector3.forward;
-                    Vector3 center = new Vector3(bounds.center.x, bounds.max.y + 0.30f, bounds.center.z);
-                    Vector3 start = center - axis * Mathf.Max(0f, half);
-                    Vector3 end = center + axis * Mathf.Max(0f, half);
+                    GetSurfaceCenterline(collider, out Vector3 start, out Vector3 end);
                     int unsupported = CountUnsupportedSamples(start, end, DefaultSampleStep, 0.05f, 1.20f);
                     if (unsupported > 0)
                         report.Blocker(RouteGap,
@@ -53,6 +48,43 @@ namespace Ziptide.Editor.Audit
                         GetPath(spawn.transform) + " has no sampled solid support below the player spawn.",
                         GetPath(spawn.transform));
             }
+        }
+
+        /// <summary>
+        /// Returns points above the actual oriented centerline of the collider. The previous AABB-based
+        /// implementation cut diagonally across rotated walkways and reported entire valid bridges as gaps.
+        /// </summary>
+        public static void GetSurfaceCenterline(Collider collider, out Vector3 start, out Vector3 end)
+        {
+            const float edgeInsetWorld = 0.10f;
+            const float originHeightWorld = 0.25f;
+            if (collider is BoxCollider box)
+            {
+                Transform t = box.transform;
+                Vector3 scale = t.lossyScale;
+                float scaleX = Mathf.Max(0.0001f, Mathf.Abs(scale.x));
+                float scaleZ = Mathf.Max(0.0001f, Mathf.Abs(scale.z));
+                bool alongX = box.size.x * scaleX >= box.size.z * scaleZ;
+                Vector3 localAxis = alongX ? Vector3.right : Vector3.forward;
+                float localLength = alongX ? box.size.x : box.size.z;
+                float axisScale = alongX ? scaleX : scaleZ;
+                float half = Mathf.Max(0f, localLength * 0.5f - edgeInsetWorld / axisScale);
+                Vector3 localSurface = box.center + Vector3.up * (box.size.y * 0.5f);
+                start = t.TransformPoint(localSurface - localAxis * half) + Vector3.up * originHeightWorld;
+                end = t.TransformPoint(localSurface + localAxis * half) + Vector3.up * originHeightWorld;
+                return;
+            }
+
+            // Conservative fallback for uncommon collider types. Generated route slabs are BoxColliders;
+            // this keeps legacy mesh/capsule connections observable without inventing local geometry.
+            Bounds bounds = collider.bounds;
+            bool fallbackX = bounds.size.x >= bounds.size.z;
+            float fallbackHalf = Mathf.Max(0f,
+                (fallbackX ? bounds.extents.x : bounds.extents.z) - edgeInsetWorld);
+            Vector3 fallbackAxis = fallbackX ? Vector3.right : Vector3.forward;
+            Vector3 center = new Vector3(bounds.center.x, bounds.max.y + originHeightWorld, bounds.center.z);
+            start = center - fallbackAxis * fallbackHalf;
+            end = center + fallbackAxis * fallbackHalf;
         }
 
         public static int CountUnsupportedSamples(Vector3 start, Vector3 end,
