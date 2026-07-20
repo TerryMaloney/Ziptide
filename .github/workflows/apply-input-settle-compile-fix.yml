@@ -1,0 +1,41 @@
+name: Apply input settle diagnostic compile fix
+
+on:
+  push:
+    branches:
+      - gpt/input-settle-compile-fix
+    paths:
+      - '.github/workflows/apply-input-settle-compile-fix.yml'
+      - 'tools/apply_input_settle_compile_fix.py'
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout patch branch
+        uses: actions/checkout@v4
+        with:
+          ref: gpt/input-settle-compile-fix
+          fetch-depth: 0
+
+      - name: Apply guarded source replacement
+        run: python3 tools/apply_input_settle_compile_fix.py
+
+      - name: Commit patched runtime only
+        shell: bash
+        run: |
+          set -euo pipefail
+          target='Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs'
+          git diff --check
+          if git diff --quiet -- "$target"; then
+            echo '::error::Patch produced no runtime diff.'
+            exit 1
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "$target"
+          git commit -m 'fix: use supported input settle diagnostics'
+          git push origin HEAD:gpt/input-settle-compile-fix
