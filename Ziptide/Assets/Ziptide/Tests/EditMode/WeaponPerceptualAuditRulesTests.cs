@@ -32,8 +32,11 @@ namespace Ziptide.Tests.EditMode
             GameObject weapon = null;
             try
             {
+                // The root has non-uniform world scale. A local X offset of 0.24 was not actually
+                // sideways enough after scaling; 1.0 produces a true world-space lateral axis and
+                // proves the same calculation the shipped gate uses.
                 weapon = BuildWeapon(new Vector3(0.16f, 0.11f, 0.42f),
-                    new Vector3(0.24f, 0f, 0f));
+                    new Vector3(1.0f, 0f, 0f));
                 var report = new SceneAuditReport { sceneName = "BrokenWeaponFixture" };
 
                 WeaponPerceptualAuditRules.ValidateWeapon(weapon, report);
