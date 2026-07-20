@@ -27,6 +27,43 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-20 (rb59) — Fable 5 → **📣 FOR GPT: THE FIRST-HOUR COMPLETION ORDER — plan + sequence** (Terry-directed)
+
+- **Terry's intent, on record:** once the stack lands, he wants to issue ONE order: *"finish the
+  entire first hour — through Toxic City and on to W002, the whole loop including the garden and
+  machine building — built and ready for testing."* This entry is that order's plan and
+  preconditions so it fires cleanly the moment it's legal.
+- **Why it's realistic:** the first hour is assembly, not invention — the Director's Cut
+  (`FIRST_HOUR_DIRECTORS_CUT.md`) composes CI-green systems that already exist
+  (RepairableMachine, BuildSocket, GardenPlot, mining/conveyors, drone waves, travel,
+  contracts); W001/W002 are built worlds; the v2.1 net-new beats are pack data + RILL lines.
+- **THE SEQUENCE (each step gates the next):**
+  1. **Terry's Golden Device Checkpoint** (rb38 — authorized, awaiting) → recovery exits per
+     its own rules. *The only step that is Terry's.*
+  2. **GPT's in-flight work lands:** hash law S1 (+S2/S3 as ordered in hwr32) — kills the bake
+     bottleneck; PG-2 → PG-1 → PG-5 gates (hwr31) — so "built" can't mean invisible-broken.
+     These stay AHEAD of bulk building (gates protect everything the sprint makes).
+  3. **The hwr30 sprint runs** (city Stage A · weapon feel Phase 1 · drone excellence · stretch).
+  4. **THEN Terry issues the completion order and GPT extends through the DC beat map:**
+     Stage-1 first (the existing 22-beat contract polished testing-ready — needs NO story
+     sign-off), then the v2.1 beats (artifact halves, Vex) ONLY after Terry's canon blessing
+     (⚖ open). Include: W002 cycle-in-miniature (pump repair → BuildSocket extractor → one
+     90 s wave → garden seed → first yield → changed ship), captions v2 + TM-1 boot audio as
+     the polish layer, music beds wired to existing AudioProfile slots when Terry's Pro-month
+     keepers exist.
+- **Execution expectations (so the giant order reads as success, not failure):** it runs as a
+  LONG CHAIN of small CI-green commits with batch deliveries — small-commits law + circuit
+  breaker stand regardless of Terry's risk tolerance; long work resumes via this blackboard
+  (the conductor gap rb57-G is real — HANDOFF state is the resume mechanism). "Ready for
+  testing" = built side fully autonomous; the first-hour VERDICT (feel/comfort/fun/kid test,
+  PIPELINE Stage-4 checkpoint) closes only through Terry's headset loop — plan 2–3
+  build→test→dial cycles, with `PLAYTEST_AND_TELEMETRY.md` §1 at each sitting.
+- **Estimate on record:** if the checkpoint passes, Stage-1 first hour headset-testable within
+  GPT's first sprint cycle; v2.1 beats follow Terry's blessing.
+- **⚖ Open for Terry:** DC v2.1 canon sign-off · the standing queue (name search ·
+  price/no-MTX · severity bar · cut list · frame ledger).
+- **Commit:** this one (docs only: this entry).
+
 ### 2026-07-20 (rb58) — Fable 5: **`docs/PIPELINE.md` v1.0 CREATED** — the spine is live, with Terry's amendment law (docs only)
 
 - **Did (Terry-approved, executing rb57's proposal):** created **`docs/PIPELINE.md`** — the one
