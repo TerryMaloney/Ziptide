@@ -10,7 +10,7 @@ namespace Ziptide.Gameplay
     /// retaining the portable compiler/module contract.
     /// </summary>
     [DisallowMultipleComponent]
-    [RequireComponent(typeof(Collider))]
+    [RequireComponent(typeof(SphereCollider))]
     [RequireComponent(typeof(XRSimpleInteractable))]
     public sealed class WorldDiscoveryNodeRuntime : MonoBehaviour
     {
