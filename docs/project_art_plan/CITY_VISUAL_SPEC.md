@@ -68,6 +68,30 @@ cyan glints (tide pools/gate). K2's aircraft = OUR SHIP in the real shot (the W0
 arrival frame, Director's Cut); K5's sunset variant proves the skyline works in a second
 lighting act (LS-5 evidence).
 
+## §2a — THE SKYSCAPE (keepers 2026-07-20, `concepts/skyscape_moss/`) — the Prospect bar, met
+
+Two keepers; **`sky_giant_dusk_hero_v1.png` is THE reference** — it passes the
+`SKYSCAPE_DESIGN.md` rubric on sight: the banded giant fills half the sky with its lower edge
+DISSOLVING into green haze and dark cloud banks crossing IN FRONT of the disc (not pasted-on);
+rings sweep low catching the amber dusk band; one small moon high; the sky's green/amber
+visibly stains clouds, water, and rooftops; the gate pillars sit on the sea horizon directly
+beneath the giant (scale anchor + story anchor in one). `sky_panorama_dusk_v1.png` is the
+wide/panoramic companion (near-equirect feel — candidate DIRECT reference for the dome bake's
+composition).
+
+**Vista translation (for the reserved ToxicCity `SkyVistaDefinition` when its time comes):**
+- Gradient: deep green-teal zenith → green haze band → warm amber horizon strip.
+- Giant: azimuth over the sea (SE of the berth), size class MAX, band tints cream/rust/amber,
+  shallow ring angle, LOW elevation so city haze eats its bottom edge — the occlusion comes
+  free from our fog derivation + dome layering, no trickery needed.
+- **Body budget note:** the panorama shows ~6 moons; the vista baseline is ≤3 bodies — the
+  bake picks the giant + 1 pale moon (+1 optional). Concept vibe survives the cap.
+- Light script derives per F3.1: key from the amber horizon band (warm, low), fog = the green
+  haze color — the images demonstrate exactly the sky-stains-ground behavior the deriver
+  produces.
+- Night-act variant still wanted (LS-5 second act + darkest-grade reference) — one more
+  generation pass someday.
+
 ## §3 — STREET LEVEL (K3 — the mood target for Stage A)
 
 Canal canyon: 3-story leaning tenements BOTH sides · wet stone quay one side with working
