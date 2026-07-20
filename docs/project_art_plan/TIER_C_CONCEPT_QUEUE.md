@@ -166,6 +166,37 @@ halves; AMBER ≠ crest-cyan; engraved glyphs need the alien family — glyph-la
 family for later chapters (amber = a different system's voice than the tide's cyan; 3-piece
 assembly = a later, bigger ceremony). Parked with its caution until story lane places it.
 
+## §2e — C9 · CAL — ✅ APPROVED 2026-07-20 + AN ENTIRE SUIT PROGRESSION LINE (`concepts/cal_goliath_suit/`)
+
+**`cal_mk4_hero_v1` is CAL** — canon-perfect ambiguity: rounded FRIENDLY helmet, visor
+reflecting the green sky (never a face — the visor-as-mirror doubles as the reflection-
+wrongness story device), gender-neutral padded workwear (mechanic, not marine), chest rig +
+brown satchel matching the avatar rig, and the personal layer that makes a faceless figure
+likable: **a small bird trinket on the chest strap · TALLY MARKS on the forearm guard ·
+mismatched RED LACES on one boot · a sewn patch.** The generation ALSO produced a full
+progression line ("GOLIATH SALVAGE RIG" MK.IV → IV.5 → IV.5-modified → MK.V Mechanic →
+APEX-Goliath) — and kept the red laces through EVERY tier (the sheet literally labels
+"evolved EVA boots w/ mismatched lacing" on the endgame suit).
+**Rulings (⚖ where marked):**
+- **Base canon = MK.IV.** The suit-tier line is ADOPTED as the visual-progression track
+  (DC-5 / progression-doc permission-not-power: suits mark milestones, never stats).
+  Proposed mapping ⚖: MK.IV start · IV.5 mid · MK.V late · APEX endgame (its green neural
+  visor can read as the Pattern arriving — story-perfect for Ch.5+).
+- **THE RED LACES ARE CANON** — Cal's constant across every suit, like the trinket and the
+  tallies. Small, human, kid-spottable ("that's Cal because the red laces").
+- **Tallies adopted:** Cal counts something on the forearm guard (jobs? crossings? ⚖ story
+  lane) — the physical twin of RILL's incident log; the two of them keep counts of each other.
+- **RILL drone design ruling:** the friendly boxy thruster-cube on the MK.IV sheets fits
+  RILL's kid-safe identity; the SPIDER "Quantum-AI RILL" on the later sheets does NOT — it's
+  REJECTED as RILL and PARKED as a possible hostile drone class (Wake Guild recon/corrupted
+  unit — great design, wrong character). RILL's in-game form remains the orb family; the
+  cube is a future shell option.
+- **Faceted dark helmet (IV.5-modified): parked** as an optional late cosmetic — too
+  military for base Cal.
+- **"GOLIATH SALVAGE RIG" ⚖** as the suit line's in-fiction name (pairs with "SLV-01
+  Scrapper").
+Also stored: `ship_S5_quarters_v2` (wider quarters angle w/ holo desk — layout companion).
+
 ## §3a — THE B+ BRIDGE (Terry-approved workflow, 2026-07-20)
 
 Once the ship's sheets are approved, a model session builds a **B+ Forge version from the

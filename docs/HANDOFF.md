@@ -27,6 +27,32 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-20 (rb70) — Fable 5: 🧑‍🚀 CAL EXISTS — hero design + a full suit progression line; THE VISUAL CAST IS COMPLETE (docs + reference images)
+
+- **Did:** Terry's Cal batch approved (`concepts/cal_goliath_suit/`, 6 sheets + a second
+  quarters angle): **MK.IV is Cal** — friendly rounded helmet, mirror visor (no face ever —
+  ambiguity canon SOLVED visually, and the visor-as-mirror doubles as the reflection-
+  wrongness device), mechanic-not-marine padded suit, chest rig matching the avatar rig, and
+  the personal layer: bird trinket · forearm TALLY MARKS · **mismatched red laces** · sewn
+  patch. The generation also produced the whole "GOLIATH SALVAGE RIG" progression (MK.IV →
+  IV.5 → MK.V → APEX) and KEPT THE RED LACES on every tier. Rulings in queue §2e: red laces
+  = Cal's canon constant · tallies adopted (physical twin of RILL's log; what they count = ⚖
+  story) · suit tiers = the DC-5 visual-progression track (⚖ mapping; APEX's green neural
+  visor reads as the Pattern arriving) · **spider "RILL" drone REJECTED as RILL** (kid-safe
+  orb/cube identity stands) and parked as a hostile-drone design · faceted helmet parked as
+  late cosmetic · "Goliath Salvage Rig" ⚖ as the line's name.
+- **STATUS — THE ENTIRE VISUAL CAST NOW EXISTS, approved and committed:** the Scrapper
+  (ext/ortho/cockpit/quarters×2/context) · tide skiff · the Moss (7 layers, look+logic) ·
+  tower · dockmaster · skyscape (dusk/panorama/night) · the gate (6-state lifecycle + physics
+  canon) · artifact key + seal class · Warden capital · **and Cal**. Color language holds
+  everywhere (tide cyan / lantern amber / seal deep-amber / Warden sterile white). The
+  Tier-C queue is closed; the paid-3D month has a full backlog; every future builder matches
+  references instead of guessing.
+- **⚖ stack for Terry (art):** photon-fluid + entrainment canons · gate arena/wild fork ·
+  "the Moss" · numbered doors · seal class · suit-tier mapping · tally meaning · "Goliath
+  Salvage Rig" · (business queue unchanged: name search, price, severity bar, cut list).
+- **Commit:** this one (docs + 7 reference images).
+
 ### 2026-07-20 (hwr34) - Fable 5 architect: 🔧 TOOK OVER the input blocker (Terry: "GPT is taking too long") — inert-property normalization landed
 - **Root cause, confirmed from the f91c098 run log (sequence REPAIR_OK → NRE → OWNERSHIP_OK):**
   GPT's diagnosis was right and its fix was one step short. Disabling the empty embedded
