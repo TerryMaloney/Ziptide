@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
 - Scanned files: **722**
-- Scanner findings: **2526**
+- Scanner findings: **2527**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -442,17 +442,17 @@ None.
 
 - Codes: `INPUT_ACTION_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:293` **INPUT_ACTION_REFERENCE** — `var directActions = new HashSet<InputAction>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:305` **INPUT_ACTION_REFERENCE** — `var disabledBefore = new List<InputAction>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:306` **INPUT_ACTION_REFERENCE** — `foreach (InputAction action in map.actions)`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:314` **INPUT_ACTION_REFERENCE** — `foreach (InputAction action in disabledBefore)`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:324` **INPUT_ACTION_REFERENCE** — `foreach (InputAction action in directActions)`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:347` **INPUT_ACTION_REFERENCE** — `private static bool IsInertDirectAction(InputAction action)`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:357` **INPUT_ACTION_REFERENCE** — `HashSet<InputAction> directActions)`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:383` **INPUT_ACTION_REFERENCE** — `HashSet<InputAction> directActions)`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:385` **INPUT_ACTION_REFERENCE** — `InputAction action = property.action;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:468` **INPUT_ACTION_REFERENCE** — `InputAction action = property.action;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:519` **INPUT_ACTION_REFERENCE** — `private static string ActionPath(InputAction action)`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:301` **INPUT_ACTION_REFERENCE** — `var directActions = new HashSet<InputAction>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:313` **INPUT_ACTION_REFERENCE** — `var disabledBefore = new List<InputAction>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:314` **INPUT_ACTION_REFERENCE** — `foreach (InputAction action in map.actions)`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:322` **INPUT_ACTION_REFERENCE** — `foreach (InputAction action in disabledBefore)`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:332` **INPUT_ACTION_REFERENCE** — `foreach (InputAction action in directActions)`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:399` **INPUT_ACTION_REFERENCE** — `private static bool IsInertDirectAction(InputAction action)`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:409` **INPUT_ACTION_REFERENCE** — `HashSet<InputAction> directActions)`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:435` **INPUT_ACTION_REFERENCE** — `HashSet<InputAction> directActions)`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:437` **INPUT_ACTION_REFERENCE** — `InputAction action = property.action;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:520` **INPUT_ACTION_REFERENCE** — `InputAction action = property.action;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:571` **INPUT_ACTION_REFERENCE** — `private static string ActionPath(InputAction action)`
 
 ### `Ziptide.Gameplay.PingTool` — 2 signal(s)
 
@@ -4552,7 +4552,7 @@ None.
 
 - Codes: `FALLBACK_MARKER`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:330` **FALLBACK_MARKER** — `// inert placeholder, not a binding that can be repaired. Keep it disabled so XRI never`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:338` **FALLBACK_MARKER** — `// inert placeholder, not a binding that can be repaired. Keep it disabled so XRI never`
 
 ### `Ziptide.Gameplay.InventoryState` — 1 signal(s)
 
