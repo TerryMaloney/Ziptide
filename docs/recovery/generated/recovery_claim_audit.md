@@ -1,6 +1,6 @@
 # ZIPTIDE Current-Board Completion Claim Audit
 
-- Strong-claim lines: **260**
+- Strong-claim lines: **262**
 - No proof qualifier on the same line: **138**
 
 A finding is not automatically false. It is a line that must be reconciled with the recovery proof ledger before the current status layer can be trusted.
@@ -8,7 +8,7 @@ A finding is not automatically false. It is a line that must be reconciled with 
 ## Counts by current document
 
 - `docs/CURRENT_EXECUTION_CHECKLIST.md`: 39
-- `docs/EXCELLENCE_MAP.md`: 34
+- `docs/EXCELLENCE_MAP.md`: 36
 - `docs/MASTER_CHECKLIST.md`: 34
 - `docs/SPRINT.md`: 60
 - `docs/SPRINT_ARCHITECTURE.md`: 23
@@ -58,38 +58,40 @@ A finding is not automatically false. It is a line that must be reconciled with 
 - `docs/CURRENT_EXECUTION_CHECKLIST.md:215` — qualifiers: `QUEST`, `CI` — 6. Record CI/test/device evidence honestly: code-green is not device-green.
 - `docs/EXCELLENCE_MAP.md:9` — qualifiers: **none** — 1. **STATE** — what actually exists (⬜ nothing · 🦴 skeleton · 🧱 v1 solid · 💎 rich · numbers, not vibes).
 - `docs/EXCELLENCE_MAP.md:20` — qualifiers: **none** — - **The unevenness rule:** if your lane's rows are all 💎 while a neighboring aspect you depend on
-- `docs/EXCELLENCE_MAP.md:35` — qualifiers: **none** — | Buildings & city | 🧱 v1 (grammar/WFC, kits registering) | Biome→kit/palette mapping; no primitive-box fallbacks in shipped worlds | `BuildingAuditRules`; registry fallback logs |
+- `docs/EXCELLENCE_MAP.md:35` — qualifiers: **none** — | Buildings & city | 🧱→💎 in flight (Stage A/B + Round 1 ToxicCity pass) | Biome→kit/palette mapping; no primitive-box fallbacks in shipped worlds; street identity and motion fit budget | `BuildingAuditRules`; City Stage A/B audits; registry fallback logs |
 - `docs/EXCELLENCE_MAP.md:37` — qualifiers: **none** — | Vertical/caverns/traversal | 💎 (zip/climb/lift/pad/grapple + cave worlds) | Every traversal verb usable; multi-level reachability proven | reachability one-way edges + traversal test suites |
-- `docs/EXCELLENCE_MAP.md:39` — qualifiers: `QUEST` — | Travel & gates | 💎 code (one `TravelCoordinator`, gated doors, THE ZIPTIDE, pre-flight, async load behind crest; device frame check pending) | One travel path; all targets valid; no frozen-world hitch inside crest | locked contract; `CrashProofingTests`; `FirstHourTravelSignalTests` |
-- `docs/EXCELLENCE_MAP.md:45` — qualifiers: **none** — | Creatures (bodies) | 🧱→💎 in flight (Forge genomes, roster complete) | Hero creatures use their class budget; no primitive stand-ins; tells hold | `ForgeAuditRules` + class budgets; 🕳️ budget-utilization floor |
-- `docs/EXCELLENCE_MAP.md:46` — qualifiers: `PATCHED_AUDIT`, `QUEST` — | Creature behavior | 🧱 structural v1 (7 shipped ids; ≥3 active states each; device readability/polish pending) | Every shipped species has readable active vocabulary, a fair telegraph, a counter and separate non-lethal resolution; actual Quest timing/readability still matters | `CreatureBehaviorReadabilityCatalog` + both readability/audit test suites + `CreatureBehaviorBuildGate`; headset quality check remains |
-- `docs/EXCELLENCE_MAP.md:48` — qualifiers: **none** — | Automation/belts | 💎 | Place/ride/persist/feed/clone; deterministic flow; machinery motion follows work | `AutomationAuditRules` + tests |
-- `docs/EXCELLENCE_MAP.md:55` — qualifiers: `QUEST` — | Locomotion & comfort | 🧱 v1.1 (move/snap/vignette; Cozy/Standard/Bold and console code-green; device pending) | Player-visible presets; every artificial motion reports/suspends correctly and never parents rig | locked contract; traversal tests; `ComfortSettingsTests` + `ComfortCoverageTests` |
-- `docs/EXCELLENCE_MAP.md:56` — qualifiers: **none** — | Hands & interaction | 💎 (grab/holster/belt/tools; collider-first) | Everything interactive answers within reach; collider before interactable | `VR_RIG_GOTCHAS.md`; wiring tests |
-- `docs/EXCELLENCE_MAP.md:59` — qualifiers: **none** — | Player progression/saves | 💎 (atomic profile + backups, overlays, one economy) | Nothing earned/built lost on quit or interrupted save | serializer/round-trip/crash recovery/economy gates |
-- `docs/EXCELLENCE_MAP.md:66` — qualifiers: **none** — | Ship customization | 💎 (chassis/modules/refit/liveries/decals/hums) | Loadout visibly changes ship and flight | ShipLoadout/Locker tests |
-- `docs/EXCELLENCE_MAP.md:67` — qualifiers: **none** — | Flight | 💎 v1.3 | Cockpit reference; full arcade vocabulary; never parent rig | flight tests + comfort law |
-- `docs/EXCELLENCE_MAP.md:69` — qualifiers: `APK` — | Vehicles | 🧱 structural v1 (3 biome-surfaced rides; 3/6 archetypes, no garage) | Shares Forge/comfort/mount patterns; every authored ride reaches a world; distinct missing families and a usable garage/catalog surface complete the vocabulary | vehicle tests + **`CatalogBreadthAuditRules`/tests/APK gate**; warnings name Rover/GravSled/Walker and missing garage |
-- `docs/EXCELLENCE_MAP.md:75` — qualifiers: **none** — | Narrative spine | 💎 | Movie-tight setup/payoff; four distinct endings | canon/continuity tests |
-- `docs/EXCELLENCE_MAP.md:76` — qualifiers: **none** — | Character voices | 💎 (RILL/Cal/Mara/Sable/Nine) | No faction mouthpieces; identifiable without names | voice guide + line tests |
-- `docs/EXCELLENCE_MAP.md:77` — qualifiers: **none** — | Story delivery in-game | 🦴 (built-world beats) | Every shipped world carries jobs/lines/choices; endings wired | story-beat coverage baseline; extend with per-world line query |
-- `docs/EXCELLENCE_MAP.md:85` — qualifiers: **none** — | Tidefront conquest | 💎 | Deterministic complete war, missions affect outcomes | sim/catalog/save tests |
-- `docs/EXCELLENCE_MAP.md:87` — qualifiers: **none** — | Economy | 💎 | Every payout through RewardRouter | `EconomyAuditRules` |
-- `docs/EXCELLENCE_MAP.md:94` — qualifiers: `PATCHED_AUDIT`, `VISUAL` — | Art pipeline (Forge) | 💎 | All shipped look traced to Forge/registry; hero photo loop | Forge/audit/library/wiring tests |
-- `docs/EXCELLENCE_MAP.md:95` — qualifiers: **none** — | Wiring integrity | 💎 | Producer + consumer + verifier + map row | `WiringValidatorTests` |
-- `docs/EXCELLENCE_MAP.md:96` — qualifiers: **none** — | Save integrity | 💎 | Overlay idiom; neutral old-save defaults | per-system round trips |
-- `docs/EXCELLENCE_MAP.md:97` — qualifiers: `CI` — | CI & verification | 💎 | Green per push; red stops code; 3-red breaker | operating laws + durable verdict |
-- `docs/EXCELLENCE_MAP.md:101` — qualifiers: `CI` — | Onboarding/tutorial | 🧱 in flight (most adapters + W000 surfaces code-green; A01/S05/S08 remain; **review 2026-07-11: FH-GAP-1..4 added to `first_hour/ADAPTER_ENVELOPES.md` — veteran skip · runbook mirroring · gate promotion · map linkage**) | Cold player learns W000→W001 through moments; hesitation-only hints; veterans never nagged | first-hour contracts/tests + `first_hour_gate.py` in CI (report-only → BLOCKING at S08 close) |
-- `docs/EXCELLENCE_MAP.md:103` — qualifiers: `QUEST` — | Haptics | 🦴 inventory complete (scanner explicit; inspected first-hour owners mapped) | Every hand/body verb has a distinct, bounded, correct-hand signature with no duplicate XRI pulse | **`docs/design/HAPTIC_COVERAGE.md` closes the doc-level gap**; runtime/source/device rows remain; no registry exists |
-- `docs/EXCELLENCE_MAP.md:121` — qualifiers: **none** — 2. ~~Skyscape signature rubric~~ — CLOSED 2026-07-10.
-- `docs/EXCELLENCE_MAP.md:122` — qualifiers: **none** — 3. ~~Story-beat coverage baseline~~ — CLOSED 2026-07-10.
-- `docs/EXCELLENCE_MAP.md:123` — qualifiers: `PATCHED_AUDIT` — 4. ~~Interior audit~~ — CLOSED 2026-07-10.
-- `docs/EXCELLENCE_MAP.md:124` — qualifiers: **none** — 5. ~~Board-staleness flag~~ — CLOSED 2026-07-10.
-- `docs/EXCELLENCE_MAP.md:125` — qualifiers: `PATCHED_AUDIT`, `QUEST` — 6. ~~UI readability/reach audit~~ — **CLOSED at WARN-only maturity 2026-07-11** (`UiReadabilityAuditRules` + tests/build processor); generated-scene/device calibration precedes any blocker promotion.
-- `docs/EXCELLENCE_MAP.md:126` — qualifiers: **none** — 7. ~~Haptic coverage checklist~~ — **CLOSED at documentation level 2026-07-11** (`design/HAPTIC_COVERAGE.md`); runtime owner rows remain individually open.
-- `docs/EXCELLENCE_MAP.md:127` — qualifiers: **none** — 8. ~~Accessibility design doc~~ — CLOSED 2026-07-10; non-preset controls remain implementation rows.
-- `docs/EXCELLENCE_MAP.md:128` — qualifiers: `EDITMODE`, `APK`, `QUEST`, `CI` — 9. ~~Creature behavior-count/readability check~~ — **CLOSED at structural code/CI maturity 2026-07-11** (one canonical catalog, source/factory evidence, EditMode suites and APK pre-build blocker; headset readability remains a quality/device row).
-- `docs/EXCELLENCE_MAP.md:129` — qualifiers: `PATCHED_AUDIT`, `APK` — 10. ~~Plant/vehicle catalog breadth audit~~ — **CLOSED at structural audit maturity 2026-07-11** (`CatalogBreadthAuditRules` + tests/APK gate); actual seed surfacing, starter asset reconciliation, three missing ride families and garage remain content rows.
+- `docs/EXCELLENCE_MAP.md:39` — qualifiers: `QUEST` — | Travel & gates | 💎 code (one `TravelCoordinator`, gated doors, THE ZIPTIDE, pre-flight, async load behind crest; device frame check pending) | One travel path; all targets valid in the actual shipped profile; no frozen-world hitch inside crest | locked contract; `BuildProfileTravelAuditRules`; `CrashProofingTests`; `FirstHourTravelSignalTests` |
+- `docs/EXCELLENCE_MAP.md:46` — qualifiers: **none** — | Creatures (bodies) | 🧱→💎 in flight (Forge genomes, roster complete) | Hero creatures use their class budget; no primitive stand-ins; tells hold | `ForgeAuditRules` + class budgets; 🕳️ budget-utilization floor |
+- `docs/EXCELLENCE_MAP.md:47` — qualifiers: `PATCHED_AUDIT`, `QUEST` — | Creature behavior | 🧱 structural v1 (7 shipped ids; ≥3 active states each; device readability/polish pending) | Every shipped species has readable active vocabulary, a fair telegraph, a counter and separate non-lethal resolution; actual Quest timing/readability still matters | `CreatureBehaviorReadabilityCatalog` + both readability/audit test suites + `CreatureBehaviorBuildGate`; headset quality check remains |
+- `docs/EXCELLENCE_MAP.md:49` — qualifiers: **none** — | Automation/belts | 💎 | Place/ride/persist/feed/clone; deterministic flow; machinery motion follows work | `AutomationAuditRules` + tests |
+- `docs/EXCELLENCE_MAP.md:56` — qualifiers: `QUEST` — | Locomotion & comfort | 🧱 v1.1 (move/snap/vignette; Cozy/Standard/Bold and console code-green; device pending) | Player-visible presets; every artificial motion reports/suspends correctly and never parents rig | locked contract; traversal tests; `ComfortSettingsTests` + `ComfortCoverageTests` |
+- `docs/EXCELLENCE_MAP.md:57` — qualifiers: `QUEST` — | Hands & interaction | 💎 code / device calibration ongoing | Everything interactive answers within reach; collider before interactable | `InteractionReachAuditRules`; `VR_RIG_GOTCHAS.md`; wiring tests |
+- `docs/EXCELLENCE_MAP.md:58` — qualifiers: `QUEST` — | Weapons & combat feel | 🧱→💎 in flight (Round 1 recoil/haptics/audio/impact; device pending) | Every weapon distinct in hand, cadence, recoil, sound and tactile response; actual bounds and held axis valid | combat tests; `WeaponPerceptualAuditRules`; headset feel ledger |
+- `docs/EXCELLENCE_MAP.md:60` — qualifiers: **none** — | Player progression/saves | 💎 (atomic profile + backups, overlays, one economy) | Nothing earned/built lost on quit or interrupted save | serializer/round-trip/crash recovery/economy gates |
+- `docs/EXCELLENCE_MAP.md:67` — qualifiers: **none** — | Ship customization | 💎 (chassis/modules/refit/liveries/decals/hums; hero hull Round 1) | Loadout visibly changes a production-quality ship without breaking boarding/refit anchors | ShipLoadout/Locker tests; `FullSendPresentationAuditRules` |
+- `docs/EXCELLENCE_MAP.md:68` — qualifiers: **none** — | Flight | 💎 v1.3 | Cockpit reference; full arcade vocabulary; never parent rig | flight tests + comfort law |
+- `docs/EXCELLENCE_MAP.md:70` — qualifiers: `APK` — | Vehicles | 🧱→💎 in flight (three distinct ToxicCity rides, edge/dismount safety; 3/6 archetypes, no garage) | Shares Forge/comfort/mount patterns; every authored ride reaches a world; distinct missing families and a usable garage/catalog surface complete the vocabulary | vehicle tests + `FullSendPresentationAuditRules` + **`CatalogBreadthAuditRules`/tests/APK gate** |
+- `docs/EXCELLENCE_MAP.md:76` — qualifiers: **none** — | Narrative spine | 💎 | Movie-tight setup/payoff; four distinct endings | canon/continuity tests |
+- `docs/EXCELLENCE_MAP.md:77` — qualifiers: **none** — | Character voices | 💎 (RILL/Cal/Mara/Sable/Nine) | No faction mouthpieces; identifiable without names | voice guide + line tests |
+- `docs/EXCELLENCE_MAP.md:78` — qualifiers: **none** — | Story delivery in-game | 🦴 (built-world beats) | Every shipped world carries jobs/lines/choices; endings wired | story-beat coverage baseline; 🕳️ `WorldContentGenome`, per-world line-kit and flag-graph gates |
+- `docs/EXCELLENCE_MAP.md:86` — qualifiers: **none** — | Tidefront conquest | 💎 | Deterministic complete war, missions affect outcomes | sim/catalog/save tests |
+- `docs/EXCELLENCE_MAP.md:88` — qualifiers: **none** — | Economy | 💎 | Every payout through RewardRouter | `EconomyAuditRules` |
+- `docs/EXCELLENCE_MAP.md:95` — qualifiers: `PATCHED_AUDIT`, `VISUAL` — | Art pipeline (Forge) | 💎 | All shipped look traced to Forge/registry; hero photo loop | Forge/audit/library/wiring tests |
+- `docs/EXCELLENCE_MAP.md:96` — qualifiers: **none** — | Wiring integrity | 💎 | Producer + consumer + verifier + map row | `WiringValidatorTests` |
+- `docs/EXCELLENCE_MAP.md:97` — qualifiers: **none** — | Save integrity | 💎 | Overlay idiom; neutral old-save defaults | per-system round trips |
+- `docs/EXCELLENCE_MAP.md:98` — qualifiers: `APK`, `CI` — | CI & verification | 💎 | Green per push; red stops code; 3-red breaker; recipe-only rounds trigger route and APK proof | operating laws + durable verdict + synchronized recovery workflow paths |
+- `docs/EXCELLENCE_MAP.md:102` — qualifiers: **none** — | Docs & blackboard | 🧱→💎 in flight | Current checklist routes to detailed/history boards; every round emits machine-readable expected-output evidence | staleness/session-zero gates + `world_improvement_compile.json` + round runbook |
+- `docs/EXCELLENCE_MAP.md:103` — qualifiers: `CI` — | Onboarding/tutorial | 🧱 in flight (most adapters + W000 surfaces code-green; A01/S05/S08 remain; **review 2026-07-11: FH-GAP-1..4 added to `first_hour/ADAPTER_ENVELOPES.md` — veteran skip · runbook mirroring · gate promotion · map linkage**) | Cold player learns W000→W001 through moments; hesitation-only hints; veterans never nagged | first-hour contracts/tests + `first_hour_gate.py` in CI (report-only → BLOCKING at S08 close) |
+- `docs/EXCELLENCE_MAP.md:123` — qualifiers: **none** — repeat failure will escape. A dimension is not “closed” merely because one gate exists; it is closed when
+- `docs/EXCELLENCE_MAP.md:146` — qualifiers: **none** — 8. ~~Skyscape signature rubric~~ — CLOSED 2026-07-10.
+- `docs/EXCELLENCE_MAP.md:147` — qualifiers: **none** — 9. ~~Story-beat coverage baseline~~ — CLOSED 2026-07-10.
+- `docs/EXCELLENCE_MAP.md:148` — qualifiers: `PATCHED_AUDIT` — 10. ~~Interior audit~~ — CLOSED 2026-07-10.
+- `docs/EXCELLENCE_MAP.md:149` — qualifiers: **none** — 11. ~~Board-staleness flag~~ — CLOSED 2026-07-10.
+- `docs/EXCELLENCE_MAP.md:150` — qualifiers: `PATCHED_AUDIT`, `QUEST` — 12. ~~UI readability/reach audit~~ — **CLOSED at structural maturity**; headset calibration remains.
+- `docs/EXCELLENCE_MAP.md:151` — qualifiers: `QUEST` — 13. ~~Haptic coverage checklist~~ — **CLOSED at documentation level**; runtime/device rows remain.
+- `docs/EXCELLENCE_MAP.md:152` — qualifiers: **none** — 14. ~~Accessibility design doc~~ — CLOSED 2026-07-10; non-preset controls remain implementation rows.
+- `docs/EXCELLENCE_MAP.md:153` — qualifiers: `QUEST`, `CI` — 15. ~~Creature behavior-count/readability check~~ — **CLOSED at structural code/CI maturity**; headset readability remains.
+- `docs/EXCELLENCE_MAP.md:154` — qualifiers: `PATCHED_AUDIT` — 16. ~~Plant/vehicle catalog breadth audit~~ — **CLOSED at structural audit maturity**; content breadth remains.
 - `docs/MASTER_CHECKLIST.md:7` — qualifiers: **none** — > That file carries the live done/next/blocked order and must be updated after meaningful work. This
 - `docs/MASTER_CHECKLIST.md:11` — qualifiers: `QUEST`, `CI` — - **Status:** ✅ complete/verified · 🟢 code/CI built, device or bake evidence pending · 🟡 actively incomplete · 🔲 planned · 🔭 long-term.
 - `docs/MASTER_CHECKLIST.md:14` — qualifiers: `CI` — - **Latest gameplay-code proof at reconciliation:** async travel tested green at `c7b5d52`, CI run `29167548682`.

@@ -1,13 +1,13 @@
 # ZIPTIDE Focused Recovery Reference Graph
 
-- Scanned C# files: **687**
-- Focused references: **382**
+- Scanned C# files: **709**
+- Focused references: **396**
 
 ## melee
 
-- References: **88**
-- Files: **30**
-- Non-declaration caller files: **30**
+- References: **101**
+- Files: **32**
+- Non-declaration caller files: **32**
 
 ### `ArenaWeaponKind.BreakerBlade`
 
@@ -55,6 +55,17 @@
 ### `Muzzle`
 
 - **reference** · `Ziptide.Content.ItemDefinition` · `Ziptide/Assets/Ziptide/Content/Runtime/Items/ItemDefinition.cs:43` — `[Tooltip("Muzzle point (local). Zero = factory default. Bolts/rays originate here.")]`
+- **reference** · `Ziptide.Editor.Audit.WeaponPerceptualAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs:9` — `/// PG-1: judges scene-authored weapons from their final visible hierarchy, collider and Grip/Muzzle`
+- **reference** · `Ziptide.Editor.Audit.WeaponPerceptualAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs:19` — `public const string MuzzleDistance = "WEAPON_MUZZLE_DISTANCE_INVALID";`
+- **reference** · `Ziptide.Editor.Audit.WeaponPerceptualAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs:27` — `bool hasMuzzle = item.transform.Find("Muzzle") != null;`
+- **reference** · `Ziptide.Editor.Audit.WeaponPerceptualAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs:28` — `bool knownWeapon = hasMuzzle`
+- **reference** · `Ziptide.Editor.Audit.WeaponPerceptualAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs:64` — `Transform muzzle = weapon.transform.Find("Muzzle");`
+- **reference** · `Ziptide.Editor.Audit.WeaponPerceptualAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs:67` — `Vector3 gripToMuzzle = muzzle.position - grip.position;`
+- **reference** · `Ziptide.Editor.Audit.WeaponPerceptualAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs:68` — `float distance = gripToMuzzle.magnitude;`
+- **reference** · `Ziptide.Editor.Audit.WeaponPerceptualAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs:70` — `report.Blocker(MuzzleDistance,`
+- **reference** · `Ziptide.Editor.Audit.WeaponPerceptualAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs:71` — `path + " Grip→Muzzle distance is " + distance.ToString("F3")`
+- **reference** · `Ziptide.Editor.Audit.WeaponPerceptualAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs:75` — `float forwardDot = Vector3.Dot(grip.forward.normalized, gripToMuzzle.normalized);`
+- **reference** · `Ziptide.Editor.Audit.WeaponPerceptualAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs:78` — `path + " Grip forward and Grip→Muzzle direction dot="`
 - **reference** · `Ziptide.Editor.Patching.ForgeRecipeLibrary` · `Ziptide/Assets/Ziptide/Editor/Patching/ForgeRecipeLibrary.cs:730` — `name = "MuzzleRing", op = ForgeOp.Tube, segments = 10, wallThickness = 0.007f,`
 - **reference** · `Ziptide.Editor.Patching.ForgeRecipeLibrary` · `Ziptide/Assets/Ziptide/Editor/Patching/ForgeRecipeLibrary.cs:775` — `new ForgeSocket { name = "Muzzle", localPosition = new Vector3(0f, 0.012f, 0.125f), localEuler = Vector3.zero },`
 - **reference** · `Ziptide.Editor.Patching.ForgeRecipeLibrary` · `Ziptide/Assets/Ziptide/Editor/Patching/ForgeRecipeLibrary.cs:914` — `new ForgePart { name = "MuzzleRing", op = ForgeOp.Tube, segments = 10, wallThickness = 0.004f,`
@@ -103,6 +114,8 @@
 - **reference** · `Ziptide.Tests.EditMode.ForgeRecipeLibraryTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/ForgeRecipeLibraryTests.cs:80` — `Assert.IsNotNull(muzzle, kv.Key + " handheld without a Muzzle socket");`
 - **reference** · `Ziptide.Tests.EditMode.QuestWeaponAndCouplerRegressionTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/QuestWeaponAndCouplerRegressionTests.cs:78` — `itemId + " uses Muzzle as a melee tip and must never display a gun laser.");`
 - **reference** · `Ziptide.Tests.EditMode.VfxRecipeTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/VfxRecipeTests.cs:94` — `foreach (var k in new[] { VfxKind.Impact, VfxKind.Muzzle, VfxKind.SteamVent, VfxKind.Motes, VfxKind.Sparks })`
+- **reference** · `Ziptide.Tests.EditMode.WeaponPerceptualAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/WeaponPerceptualAuditRulesTests.cs:30` — `public void DeliberatelySidewaysMuzzle_FiresAimAxisBlocker()`
+- **reference** · `Ziptide.Tests.EditMode.WeaponPerceptualAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/WeaponPerceptualAuditRulesTests.cs:80` — `Transform muzzle = new GameObject("Muzzle").transform;`
 - **reference** · `Ziptide.Tests.PlayMode.RecoveryForgeVisualOwnershipTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs:60` — `var muzzle = new GameObject("Muzzle");`
 - **reference** · `Ziptide.Visuals.ForgeQualityState` · `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeRecipeDefinition.cs:80` — `/// <summary>Named attach point (Grip/Muzzle/Seat/Door/...). Consumers snap existing children here —`
 - **reference** · `Ziptide.Visuals.ForgeQualityState` · `Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeRecipeDefinition.cs:317` — `if (names.Contains("Grip") && !names.Contains("Muzzle"))`
@@ -123,9 +136,9 @@
 
 ## repairObjective
 
-- References: **196**
-- Files: **48**
-- Non-declaration caller files: **47**
+- References: **197**
+- Files: **49**
+- Non-declaration caller files: **48**
 
 ### `CastOffArming`
 
@@ -286,6 +299,7 @@
 - **reference** · `Ziptide.Content.RepairMachineCountStepDefinition` · `Ziptide/Assets/Ziptide/Content/Runtime/Jobs/RepairMachineCountStepDefinition.cs:6` — `/// Step: repair a count of machines (hands-on RepairableMachine stages: panel → part → power).`
 - **reference** · `Ziptide.Content.MachineSpawnDefinition` · `Ziptide/Assets/Ziptide/Content/Runtime/WorldPacks/MachineSpawnDefinition.cs:7` — `/// A repairable machine authored as PACK DATA (GAME_PLAN M2): JobDirector spawns a RepairableMachine`
 - **reference** · `Ziptide.Content.WorldPackDefinition` · `Ziptide/Assets/Ziptide/Content/Runtime/WorldPacks/WorldPackDefinition.cs:48` — `"power). Pure data — JobDirector materializes RepairableMachine objects, like spawnMarkers.")]`
+- **reference** · `Ziptide.Editor.Audit.PerceptualCoverageAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/PerceptualCoverageAuditRules.cs:30` — `foreach (RepairableMachine machine in Object.FindObjectsOfType<RepairableMachine>(true))`
 - **reference** · `Ziptide.Editor.Patching.WorldJobLibrary` · `Ziptide/Assets/Ziptide/Editor/Patching/WorldJobLibrary.cs:73` — `// A repairable machine in the world (JobDirector spawns a RepairableMachine from pack data).`
 - **reference** · `Ziptide.Gameplay.JobDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs:117` — `/// Called by RepairableMachine when its final repair stage completes. For RepairMachineCountStep.`
 - **reference** · `Ziptide.Gameplay.JobDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs:217` — `go.AddComponent<RepairableMachine>().Init(m, this);`

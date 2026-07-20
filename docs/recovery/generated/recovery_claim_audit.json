@@ -1,11 +1,11 @@
 {
   "tool": "recovery_claim_audit",
-  "claimCount": 260,
+  "claimCount": 262,
   "unqualifiedCount": 138,
   "missingDocuments": [],
   "fileCounts": {
     "docs/CURRENT_EXECUTION_CHECKLIST.md": 39,
-    "docs/EXCELLENCE_MAP.md": 34,
+    "docs/EXCELLENCE_MAP.md": 36,
     "docs/MASTER_CHECKLIST.md": 34,
     "docs/SPRINT.md": 60,
     "docs/SPRINT_ARCHITECTURE.md": 23,
@@ -13,12 +13,12 @@
     "docs/SPRINT_MULTIPLAYER.md": 33
   },
   "qualifierCounts": {
-    "APK": 22,
+    "APK": 21,
     "CI": 79,
-    "EDITMODE": 7,
+    "EDITMODE": 6,
     "PATCHED_AUDIT": 23,
     "PLAYMODE": 1,
-    "QUEST": 52,
+    "QUEST": 54,
     "UNQUALIFIED": 138,
     "VISUAL": 8
   },
@@ -305,8 +305,8 @@
       "line": 94,
       "text": "### Complete or substantially complete",
       "markers": [
-        "Complete",
-        "complete"
+        "complete",
+        "Complete"
       ],
       "qualifiers": [],
       "unqualified": true
@@ -520,9 +520,10 @@
     {
       "path": "docs/EXCELLENCE_MAP.md",
       "line": 35,
-      "text": "| Buildings & city | \ud83e\uddf1 v1 (grammar/WFC, kits registering) | Biome\u2192kit/palette mapping; no primitive-box fallbacks in shipped worlds | `BuildingAuditRules`; registry fallback logs |",
+      "text": "| Buildings & city | \ud83e\uddf1\u2192\ud83d\udc8e in flight (Stage A/B + Round 1 ToxicCity pass) | Biome\u2192kit/palette mapping; no primitive-box fallbacks in shipped worlds; street identity and motion fit budget | `BuildingAuditRules`; City Stage A/B audits; registry fallback logs |",
       "markers": [
-        "shipped"
+        "shipped",
+        "\ud83d\udc8e"
       ],
       "qualifiers": [],
       "unqualified": true
@@ -540,8 +541,9 @@
     {
       "path": "docs/EXCELLENCE_MAP.md",
       "line": 39,
-      "text": "| Travel & gates | \ud83d\udc8e code (one `TravelCoordinator`, gated doors, THE ZIPTIDE, pre-flight, async load behind crest; device frame check pending) | One travel path; all targets valid; no frozen-world hitch inside crest | locked contract; `CrashProofingTests`; `FirstHourTravelSignalTests` |",
+      "text": "| Travel & gates | \ud83d\udc8e code (one `TravelCoordinator`, gated doors, THE ZIPTIDE, pre-flight, async load behind crest; device frame check pending) | One travel path; all targets valid in the actual shipped profile; no frozen-world hitch inside crest | locked contract; `BuildProfileTravelAuditRules`; `CrashProofingTests`; `FirstHourTravelSignalTests` |",
       "markers": [
+        "shipped",
         "\ud83d\udc8e"
       ],
       "qualifiers": [
@@ -551,7 +553,7 @@
     },
     {
       "path": "docs/EXCELLENCE_MAP.md",
-      "line": 45,
+      "line": 46,
       "text": "| Creatures (bodies) | \ud83e\uddf1\u2192\ud83d\udc8e in flight (Forge genomes, roster complete) | Hero creatures use their class budget; no primitive stand-ins; tells hold | `ForgeAuditRules` + class budgets; \ud83d\udd73\ufe0f budget-utilization floor |",
       "markers": [
         "complete",
@@ -562,7 +564,7 @@
     },
     {
       "path": "docs/EXCELLENCE_MAP.md",
-      "line": 46,
+      "line": 47,
       "text": "| Creature behavior | \ud83e\uddf1 structural v1 (7 shipped ids; \u22653 active states each; device readability/polish pending) | Every shipped species has readable active vocabulary, a fair telegraph, a counter and separate non-lethal resolution; actual Quest timing/readability still matters | `CreatureBehaviorReadabilityCatalog` + both readability/audit test suites + `CreatureBehaviorBuildGate`; headset quality check remains |",
       "markers": [
         "shipped"
@@ -575,7 +577,7 @@
     },
     {
       "path": "docs/EXCELLENCE_MAP.md",
-      "line": 48,
+      "line": 49,
       "text": "| Automation/belts | \ud83d\udc8e | Place/ride/persist/feed/clone; deterministic flow; machinery motion follows work | `AutomationAuditRules` + tests |",
       "markers": [
         "\ud83d\udc8e"
@@ -585,7 +587,7 @@
     },
     {
       "path": "docs/EXCELLENCE_MAP.md",
-      "line": 55,
+      "line": 56,
       "text": "| Locomotion & comfort | \ud83e\uddf1 v1.1 (move/snap/vignette; Cozy/Standard/Bold and console code-green; device pending) | Player-visible presets; every artificial motion reports/suspends correctly and never parents rig | locked contract; traversal tests; `ComfortSettingsTests` + `ComfortCoverageTests` |",
       "markers": [
         "green"
@@ -597,17 +599,31 @@
     },
     {
       "path": "docs/EXCELLENCE_MAP.md",
-      "line": 56,
-      "text": "| Hands & interaction | \ud83d\udc8e (grab/holster/belt/tools; collider-first) | Everything interactive answers within reach; collider before interactable | `VR_RIG_GOTCHAS.md`; wiring tests |",
+      "line": 57,
+      "text": "| Hands & interaction | \ud83d\udc8e code / device calibration ongoing | Everything interactive answers within reach; collider before interactable | `InteractionReachAuditRules`; `VR_RIG_GOTCHAS.md`; wiring tests |",
       "markers": [
         "\ud83d\udc8e"
       ],
-      "qualifiers": [],
-      "unqualified": true
+      "qualifiers": [
+        "QUEST"
+      ],
+      "unqualified": false
     },
     {
       "path": "docs/EXCELLENCE_MAP.md",
-      "line": 59,
+      "line": 58,
+      "text": "| Weapons & combat feel | \ud83e\uddf1\u2192\ud83d\udc8e in flight (Round 1 recoil/haptics/audio/impact; device pending) | Every weapon distinct in hand, cadence, recoil, sound and tactile response; actual bounds and held axis valid | combat tests; `WeaponPerceptualAuditRules`; headset feel ledger |",
+      "markers": [
+        "\ud83d\udc8e"
+      ],
+      "qualifiers": [
+        "QUEST"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/EXCELLENCE_MAP.md",
+      "line": 60,
       "text": "| Player progression/saves | \ud83d\udc8e (atomic profile + backups, overlays, one economy) | Nothing earned/built lost on quit or interrupted save | serializer/round-trip/crash recovery/economy gates |",
       "markers": [
         "built",
@@ -618,8 +634,8 @@
     },
     {
       "path": "docs/EXCELLENCE_MAP.md",
-      "line": 66,
-      "text": "| Ship customization | \ud83d\udc8e (chassis/modules/refit/liveries/decals/hums) | Loadout visibly changes ship and flight | ShipLoadout/Locker tests |",
+      "line": 67,
+      "text": "| Ship customization | \ud83d\udc8e (chassis/modules/refit/liveries/decals/hums; hero hull Round 1) | Loadout visibly changes a production-quality ship without breaking boarding/refit anchors | ShipLoadout/Locker tests; `FullSendPresentationAuditRules` |",
       "markers": [
         "\ud83d\udc8e"
       ],
@@ -628,7 +644,7 @@
     },
     {
       "path": "docs/EXCELLENCE_MAP.md",
-      "line": 67,
+      "line": 68,
       "text": "| Flight | \ud83d\udc8e v1.3 | Cockpit reference; full arcade vocabulary; never parent rig | flight tests + comfort law |",
       "markers": [
         "\ud83d\udc8e"
@@ -638,10 +654,11 @@
     },
     {
       "path": "docs/EXCELLENCE_MAP.md",
-      "line": 69,
-      "text": "| Vehicles | \ud83e\uddf1 structural v1 (3 biome-surfaced rides; 3/6 archetypes, no garage) | Shares Forge/comfort/mount patterns; every authored ride reaches a world; distinct missing families and a usable garage/catalog surface complete the vocabulary | vehicle tests + **`CatalogBreadthAuditRules`/tests/APK gate**; warnings name Rover/GravSled/Walker and missing garage |",
+      "line": 70,
+      "text": "| Vehicles | \ud83e\uddf1\u2192\ud83d\udc8e in flight (three distinct ToxicCity rides, edge/dismount safety; 3/6 archetypes, no garage) | Shares Forge/comfort/mount patterns; every authored ride reaches a world; distinct missing families and a usable garage/catalog surface complete the vocabulary | vehicle tests + `FullSendPresentationAuditRules` + **`CatalogBreadthAuditRules`/tests/APK gate** |",
       "markers": [
-        "complete"
+        "complete",
+        "\ud83d\udc8e"
       ],
       "qualifiers": [
         "APK"
@@ -650,7 +667,7 @@
     },
     {
       "path": "docs/EXCELLENCE_MAP.md",
-      "line": 75,
+      "line": 76,
       "text": "| Narrative spine | \ud83d\udc8e | Movie-tight setup/payoff; four distinct endings | canon/continuity tests |",
       "markers": [
         "\ud83d\udc8e"
@@ -660,7 +677,7 @@
     },
     {
       "path": "docs/EXCELLENCE_MAP.md",
-      "line": 76,
+      "line": 77,
       "text": "| Character voices | \ud83d\udc8e (RILL/Cal/Mara/Sable/Nine) | No faction mouthpieces; identifiable without names | voice guide + line tests |",
       "markers": [
         "\ud83d\udc8e"
@@ -670,8 +687,8 @@
     },
     {
       "path": "docs/EXCELLENCE_MAP.md",
-      "line": 77,
-      "text": "| Story delivery in-game | \ud83e\uddb4 (built-world beats) | Every shipped world carries jobs/lines/choices; endings wired | story-beat coverage baseline; extend with per-world line query |",
+      "line": 78,
+      "text": "| Story delivery in-game | \ud83e\uddb4 (built-world beats) | Every shipped world carries jobs/lines/choices; endings wired | story-beat coverage baseline; \ud83d\udd73\ufe0f `WorldContentGenome`, per-world line-kit and flag-graph gates |",
       "markers": [
         "built",
         "shipped"
@@ -681,7 +698,7 @@
     },
     {
       "path": "docs/EXCELLENCE_MAP.md",
-      "line": 85,
+      "line": 86,
       "text": "| Tidefront conquest | \ud83d\udc8e | Deterministic complete war, missions affect outcomes | sim/catalog/save tests |",
       "markers": [
         "complete",
@@ -692,7 +709,7 @@
     },
     {
       "path": "docs/EXCELLENCE_MAP.md",
-      "line": 87,
+      "line": 88,
       "text": "| Economy | \ud83d\udc8e | Every payout through RewardRouter | `EconomyAuditRules` |",
       "markers": [
         "\ud83d\udc8e"
@@ -702,7 +719,7 @@
     },
     {
       "path": "docs/EXCELLENCE_MAP.md",
-      "line": 94,
+      "line": 95,
       "text": "| Art pipeline (Forge) | \ud83d\udc8e | All shipped look traced to Forge/registry; hero photo loop | Forge/audit/library/wiring tests |",
       "markers": [
         "shipped",
@@ -716,7 +733,7 @@
     },
     {
       "path": "docs/EXCELLENCE_MAP.md",
-      "line": 95,
+      "line": 96,
       "text": "| Wiring integrity | \ud83d\udc8e | Producer + consumer + verifier + map row | `WiringValidatorTests` |",
       "markers": [
         "\ud83d\udc8e"
@@ -726,7 +743,7 @@
     },
     {
       "path": "docs/EXCELLENCE_MAP.md",
-      "line": 96,
+      "line": 97,
       "text": "| Save integrity | \ud83d\udc8e | Overlay idiom; neutral old-save defaults | per-system round trips |",
       "markers": [
         "\ud83d\udc8e"
@@ -736,20 +753,31 @@
     },
     {
       "path": "docs/EXCELLENCE_MAP.md",
-      "line": 97,
-      "text": "| CI & verification | \ud83d\udc8e | Green per push; red stops code; 3-red breaker | operating laws + durable verdict |",
+      "line": 98,
+      "text": "| CI & verification | \ud83d\udc8e | Green per push; red stops code; 3-red breaker; recipe-only rounds trigger route and APK proof | operating laws + durable verdict + synchronized recovery workflow paths |",
       "markers": [
         "Green",
         "\ud83d\udc8e"
       ],
       "qualifiers": [
+        "APK",
         "CI"
       ],
       "unqualified": false
     },
     {
       "path": "docs/EXCELLENCE_MAP.md",
-      "line": 101,
+      "line": 102,
+      "text": "| Docs & blackboard | \ud83e\uddf1\u2192\ud83d\udc8e in flight | Current checklist routes to detailed/history boards; every round emits machine-readable expected-output evidence | staleness/session-zero gates + `world_improvement_compile.json` + round runbook |",
+      "markers": [
+        "\ud83d\udc8e"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/EXCELLENCE_MAP.md",
+      "line": 103,
       "text": "| Onboarding/tutorial | \ud83e\uddf1 in flight (most adapters + W000 surfaces code-green; A01/S05/S08 remain; **review 2026-07-11: FH-GAP-1..4 added to `first_hour/ADAPTER_ENVELOPES.md` \u2014 veteran skip \u00b7 runbook mirroring \u00b7 gate promotion \u00b7 map linkage**) | Cold player learns W000\u2192W001 through moments; hesitation-only hints; veterans never nagged | first-hour contracts/tests + `first_hour_gate.py` in CI (report-only \u2192 BLOCKING at S08 close) |",
       "markers": [
         "green"
@@ -761,40 +789,38 @@
     },
     {
       "path": "docs/EXCELLENCE_MAP.md",
-      "line": 103,
-      "text": "| Haptics | \ud83e\uddb4 inventory complete (scanner explicit; inspected first-hour owners mapped) | Every hand/body verb has a distinct, bounded, correct-hand signature with no duplicate XRI pulse | **`docs/design/HAPTIC_COVERAGE.md` closes the doc-level gap**; runtime/source/device rows remain; no registry exists |",
-      "markers": [
-        "complete"
-      ],
-      "qualifiers": [
-        "QUEST"
-      ],
-      "unqualified": false
-    },
-    {
-      "path": "docs/EXCELLENCE_MAP.md",
-      "line": 121,
-      "text": "2. ~~Skyscape signature rubric~~ \u2014 CLOSED 2026-07-10.",
-      "markers": [
-        "CLOSED"
-      ],
-      "qualifiers": [],
-      "unqualified": true
-    },
-    {
-      "path": "docs/EXCELLENCE_MAP.md",
-      "line": 122,
-      "text": "3. ~~Story-beat coverage baseline~~ \u2014 CLOSED 2026-07-10.",
-      "markers": [
-        "CLOSED"
-      ],
-      "qualifiers": [],
-      "unqualified": true
-    },
-    {
-      "path": "docs/EXCELLENCE_MAP.md",
       "line": 123,
-      "text": "4. ~~Interior audit~~ \u2014 CLOSED 2026-07-10.",
+      "text": "repeat failure will escape. A dimension is not \u201cclosed\u201d merely because one gate exists; it is closed when",
+      "markers": [
+        "closed"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/EXCELLENCE_MAP.md",
+      "line": 146,
+      "text": "8. ~~Skyscape signature rubric~~ \u2014 CLOSED 2026-07-10.",
+      "markers": [
+        "CLOSED"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/EXCELLENCE_MAP.md",
+      "line": 147,
+      "text": "9. ~~Story-beat coverage baseline~~ \u2014 CLOSED 2026-07-10.",
+      "markers": [
+        "CLOSED"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/EXCELLENCE_MAP.md",
+      "line": 148,
+      "text": "10. ~~Interior audit~~ \u2014 CLOSED 2026-07-10.",
       "markers": [
         "CLOSED"
       ],
@@ -805,8 +831,8 @@
     },
     {
       "path": "docs/EXCELLENCE_MAP.md",
-      "line": 124,
-      "text": "5. ~~Board-staleness flag~~ \u2014 CLOSED 2026-07-10.",
+      "line": 149,
+      "text": "11. ~~Board-staleness flag~~ \u2014 CLOSED 2026-07-10.",
       "markers": [
         "CLOSED"
       ],
@@ -815,8 +841,8 @@
     },
     {
       "path": "docs/EXCELLENCE_MAP.md",
-      "line": 125,
-      "text": "6. ~~UI readability/reach audit~~ \u2014 **CLOSED at WARN-only maturity 2026-07-11** (`UiReadabilityAuditRules` + tests/build processor); generated-scene/device calibration precedes any blocker promotion.",
+      "line": 150,
+      "text": "12. ~~UI readability/reach audit~~ \u2014 **CLOSED at structural maturity**; headset calibration remains.",
       "markers": [
         "CLOSED"
       ],
@@ -828,34 +854,34 @@
     },
     {
       "path": "docs/EXCELLENCE_MAP.md",
-      "line": 126,
-      "text": "7. ~~Haptic coverage checklist~~ \u2014 **CLOSED at documentation level 2026-07-11** (`design/HAPTIC_COVERAGE.md`); runtime owner rows remain individually open.",
-      "markers": [
-        "CLOSED"
-      ],
-      "qualifiers": [],
-      "unqualified": true
-    },
-    {
-      "path": "docs/EXCELLENCE_MAP.md",
-      "line": 127,
-      "text": "8. ~~Accessibility design doc~~ \u2014 CLOSED 2026-07-10; non-preset controls remain implementation rows.",
-      "markers": [
-        "CLOSED"
-      ],
-      "qualifiers": [],
-      "unqualified": true
-    },
-    {
-      "path": "docs/EXCELLENCE_MAP.md",
-      "line": 128,
-      "text": "9. ~~Creature behavior-count/readability check~~ \u2014 **CLOSED at structural code/CI maturity 2026-07-11** (one canonical catalog, source/factory evidence, EditMode suites and APK pre-build blocker; headset readability remains a quality/device row).",
+      "line": 151,
+      "text": "13. ~~Haptic coverage checklist~~ \u2014 **CLOSED at documentation level**; runtime/device rows remain.",
       "markers": [
         "CLOSED"
       ],
       "qualifiers": [
-        "EDITMODE",
-        "APK",
+        "QUEST"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/EXCELLENCE_MAP.md",
+      "line": 152,
+      "text": "14. ~~Accessibility design doc~~ \u2014 CLOSED 2026-07-10; non-preset controls remain implementation rows.",
+      "markers": [
+        "CLOSED"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/EXCELLENCE_MAP.md",
+      "line": 153,
+      "text": "15. ~~Creature behavior-count/readability check~~ \u2014 **CLOSED at structural code/CI maturity**; headset readability remains.",
+      "markers": [
+        "CLOSED"
+      ],
+      "qualifiers": [
         "QUEST",
         "CI"
       ],
@@ -863,14 +889,13 @@
     },
     {
       "path": "docs/EXCELLENCE_MAP.md",
-      "line": 129,
-      "text": "10. ~~Plant/vehicle catalog breadth audit~~ \u2014 **CLOSED at structural audit maturity 2026-07-11** (`CatalogBreadthAuditRules` + tests/APK gate); actual seed surfacing, starter asset reconciliation, three missing ride families and garage remain content rows.",
+      "line": 154,
+      "text": "16. ~~Plant/vehicle catalog breadth audit~~ \u2014 **CLOSED at structural audit maturity**; content breadth remains.",
       "markers": [
         "CLOSED"
       ],
       "qualifiers": [
-        "PATCHED_AUDIT",
-        "APK"
+        "PATCHED_AUDIT"
       ],
       "unqualified": false
     },

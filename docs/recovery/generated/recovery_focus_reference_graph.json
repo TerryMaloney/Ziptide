@@ -1,14 +1,15 @@
 {
   "tool": "recovery_focus_reference_graph",
-  "scannedFiles": 687,
-  "referenceCount": 382,
+  "scannedFiles": 709,
+  "referenceCount": 396,
   "summaries": {
     "melee": {
-      "referenceCount": 88,
-      "fileCount": 30,
-      "callerFileCount": 30,
+      "referenceCount": 101,
+      "fileCount": 32,
+      "callerFileCount": 32,
       "paths": [
         "Ziptide/Assets/Ziptide/Content/Runtime/Items/ItemDefinition.cs",
+        "Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs",
         "Ziptide/Assets/Ziptide/Editor/Patching/ArenaWeaponAuthor.cs",
         "Ziptide/Assets/Ziptide/Editor/Patching/ForgeRecipeLibrary.cs",
         "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherArena.cs",
@@ -32,6 +33,7 @@
         "Ziptide/Assets/Ziptide/Tests/EditMode/ForgeRecipeLibraryTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/QuestWeaponAndCouplerRegressionTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/VfxRecipeTests.cs",
+        "Ziptide/Assets/Ziptide/Tests/EditMode/WeaponPerceptualAuditRulesTests.cs",
         "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs",
         "Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeRecipeDefinition.cs",
         "Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs",
@@ -41,6 +43,7 @@
       ],
       "callerPaths": [
         "Ziptide/Assets/Ziptide/Content/Runtime/Items/ItemDefinition.cs",
+        "Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs",
         "Ziptide/Assets/Ziptide/Editor/Patching/ArenaWeaponAuthor.cs",
         "Ziptide/Assets/Ziptide/Editor/Patching/ForgeRecipeLibrary.cs",
         "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherArena.cs",
@@ -64,6 +67,7 @@
         "Ziptide/Assets/Ziptide/Tests/EditMode/ForgeRecipeLibraryTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/QuestWeaponAndCouplerRegressionTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/VfxRecipeTests.cs",
+        "Ziptide/Assets/Ziptide/Tests/EditMode/WeaponPerceptualAuditRulesTests.cs",
         "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs",
         "Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeRecipeDefinition.cs",
         "Ziptide/Assets/Ziptide/Visuals/Runtime/Forge/ForgeVisualApplier.cs",
@@ -73,9 +77,9 @@
       ]
     },
     "repairObjective": {
-      "referenceCount": 196,
-      "fileCount": 48,
-      "callerFileCount": 47,
+      "referenceCount": 197,
+      "fileCount": 49,
+      "callerFileCount": 48,
       "paths": [
         "Ziptide/Assets/Ziptide/Content/Runtime/Jobs/JobRewards.cs",
         "Ziptide/Assets/Ziptide/Content/Runtime/Jobs/RepairMachineCountStepDefinition.cs",
@@ -89,6 +93,7 @@
         "Ziptide/Assets/Ziptide/Content/Runtime/WorldPacks/WorldGating.cs",
         "Ziptide/Assets/Ziptide/Content/Runtime/WorldPacks/WorldPackDefinition.cs",
         "Ziptide/Assets/Ziptide/Content/Runtime/WorldPacks/WorldPackValidator.cs",
+        "Ziptide/Assets/Ziptide/Editor/Audit/PerceptualCoverageAuditRules.cs",
         "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
         "Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs",
         "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherD0.cs",
@@ -139,6 +144,7 @@
         "Ziptide/Assets/Ziptide/Content/Runtime/WorldPacks/WorldGating.cs",
         "Ziptide/Assets/Ziptide/Content/Runtime/WorldPacks/WorldPackDefinition.cs",
         "Ziptide/Assets/Ziptide/Content/Runtime/WorldPacks/WorldPackValidator.cs",
+        "Ziptide/Assets/Ziptide/Editor/Audit/PerceptualCoverageAuditRules.cs",
         "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
         "Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs",
         "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherD0.cs",
@@ -468,6 +474,105 @@
           "line": 43,
           "symbol": "Ziptide.Content.ItemDefinition",
           "snippet": "[Tooltip(\"Muzzle point (local). Zero = factory default. Bolts/rays originate here.\")]",
+          "declaration_file": false
+        },
+        {
+          "focus": "melee",
+          "token": "Muzzle",
+          "path": "Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs",
+          "line": 9,
+          "symbol": "Ziptide.Editor.Audit.WeaponPerceptualAuditRules",
+          "snippet": "/// PG-1: judges scene-authored weapons from their final visible hierarchy, collider and Grip/Muzzle",
+          "declaration_file": false
+        },
+        {
+          "focus": "melee",
+          "token": "Muzzle",
+          "path": "Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs",
+          "line": 19,
+          "symbol": "Ziptide.Editor.Audit.WeaponPerceptualAuditRules",
+          "snippet": "public const string MuzzleDistance = \"WEAPON_MUZZLE_DISTANCE_INVALID\";",
+          "declaration_file": false
+        },
+        {
+          "focus": "melee",
+          "token": "Muzzle",
+          "path": "Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs",
+          "line": 27,
+          "symbol": "Ziptide.Editor.Audit.WeaponPerceptualAuditRules",
+          "snippet": "bool hasMuzzle = item.transform.Find(\"Muzzle\") != null;",
+          "declaration_file": false
+        },
+        {
+          "focus": "melee",
+          "token": "Muzzle",
+          "path": "Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs",
+          "line": 28,
+          "symbol": "Ziptide.Editor.Audit.WeaponPerceptualAuditRules",
+          "snippet": "bool knownWeapon = hasMuzzle",
+          "declaration_file": false
+        },
+        {
+          "focus": "melee",
+          "token": "Muzzle",
+          "path": "Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs",
+          "line": 64,
+          "symbol": "Ziptide.Editor.Audit.WeaponPerceptualAuditRules",
+          "snippet": "Transform muzzle = weapon.transform.Find(\"Muzzle\");",
+          "declaration_file": false
+        },
+        {
+          "focus": "melee",
+          "token": "Muzzle",
+          "path": "Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs",
+          "line": 67,
+          "symbol": "Ziptide.Editor.Audit.WeaponPerceptualAuditRules",
+          "snippet": "Vector3 gripToMuzzle = muzzle.position - grip.position;",
+          "declaration_file": false
+        },
+        {
+          "focus": "melee",
+          "token": "Muzzle",
+          "path": "Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs",
+          "line": 68,
+          "symbol": "Ziptide.Editor.Audit.WeaponPerceptualAuditRules",
+          "snippet": "float distance = gripToMuzzle.magnitude;",
+          "declaration_file": false
+        },
+        {
+          "focus": "melee",
+          "token": "Muzzle",
+          "path": "Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs",
+          "line": 70,
+          "symbol": "Ziptide.Editor.Audit.WeaponPerceptualAuditRules",
+          "snippet": "report.Blocker(MuzzleDistance,",
+          "declaration_file": false
+        },
+        {
+          "focus": "melee",
+          "token": "Muzzle",
+          "path": "Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs",
+          "line": 71,
+          "symbol": "Ziptide.Editor.Audit.WeaponPerceptualAuditRules",
+          "snippet": "path + \" Grip\u2192Muzzle distance is \" + distance.ToString(\"F3\")",
+          "declaration_file": false
+        },
+        {
+          "focus": "melee",
+          "token": "Muzzle",
+          "path": "Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs",
+          "line": 75,
+          "symbol": "Ziptide.Editor.Audit.WeaponPerceptualAuditRules",
+          "snippet": "float forwardDot = Vector3.Dot(grip.forward.normalized, gripToMuzzle.normalized);",
+          "declaration_file": false
+        },
+        {
+          "focus": "melee",
+          "token": "Muzzle",
+          "path": "Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs",
+          "line": 78,
+          "symbol": "Ziptide.Editor.Audit.WeaponPerceptualAuditRules",
+          "snippet": "path + \" Grip forward and Grip\u2192Muzzle direction dot=\"",
           "declaration_file": false
         },
         {
@@ -900,6 +1005,24 @@
           "line": 94,
           "symbol": "Ziptide.Tests.EditMode.VfxRecipeTests",
           "snippet": "foreach (var k in new[] { VfxKind.Impact, VfxKind.Muzzle, VfxKind.SteamVent, VfxKind.Motes, VfxKind.Sparks })",
+          "declaration_file": false
+        },
+        {
+          "focus": "melee",
+          "token": "Muzzle",
+          "path": "Ziptide/Assets/Ziptide/Tests/EditMode/WeaponPerceptualAuditRulesTests.cs",
+          "line": 30,
+          "symbol": "Ziptide.Tests.EditMode.WeaponPerceptualAuditRulesTests",
+          "snippet": "public void DeliberatelySidewaysMuzzle_FiresAimAxisBlocker()",
+          "declaration_file": false
+        },
+        {
+          "focus": "melee",
+          "token": "Muzzle",
+          "path": "Ziptide/Assets/Ziptide/Tests/EditMode/WeaponPerceptualAuditRulesTests.cs",
+          "line": 80,
+          "symbol": "Ziptide.Tests.EditMode.WeaponPerceptualAuditRulesTests",
+          "snippet": "Transform muzzle = new GameObject(\"Muzzle\").transform;",
           "declaration_file": false
         },
         {
@@ -2295,6 +2418,15 @@
           "line": 48,
           "symbol": "Ziptide.Content.WorldPackDefinition",
           "snippet": "\"power). Pure data \u2014 JobDirector materializes RepairableMachine objects, like spawnMarkers.\")]",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "RepairableMachine",
+          "path": "Ziptide/Assets/Ziptide/Editor/Audit/PerceptualCoverageAuditRules.cs",
+          "line": 30,
+          "symbol": "Ziptide.Editor.Audit.PerceptualCoverageAuditRules",
+          "snippet": "foreach (RepairableMachine machine in Object.FindObjectsOfType<RepairableMachine>(true))",
           "declaration_file": false
         },
         {
@@ -4042,6 +4174,114 @@
       "line": 39,
       "symbol": "Ziptide.Editor.Audit.FullSendPresentationAuditRules",
       "snippet": "+ ShipHullBuilder.MinimumHeroRenderers + \".\", path);",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
+      "token": "RepairableMachine",
+      "path": "Ziptide/Assets/Ziptide/Editor/Audit/PerceptualCoverageAuditRules.cs",
+      "line": 30,
+      "symbol": "Ziptide.Editor.Audit.PerceptualCoverageAuditRules",
+      "snippet": "foreach (RepairableMachine machine in Object.FindObjectsOfType<RepairableMachine>(true))",
+      "declaration_file": false
+    },
+    {
+      "focus": "melee",
+      "token": "Muzzle",
+      "path": "Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs",
+      "line": 9,
+      "symbol": "Ziptide.Editor.Audit.WeaponPerceptualAuditRules",
+      "snippet": "/// PG-1: judges scene-authored weapons from their final visible hierarchy, collider and Grip/Muzzle",
+      "declaration_file": false
+    },
+    {
+      "focus": "melee",
+      "token": "Muzzle",
+      "path": "Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs",
+      "line": 19,
+      "symbol": "Ziptide.Editor.Audit.WeaponPerceptualAuditRules",
+      "snippet": "public const string MuzzleDistance = \"WEAPON_MUZZLE_DISTANCE_INVALID\";",
+      "declaration_file": false
+    },
+    {
+      "focus": "melee",
+      "token": "Muzzle",
+      "path": "Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs",
+      "line": 27,
+      "symbol": "Ziptide.Editor.Audit.WeaponPerceptualAuditRules",
+      "snippet": "bool hasMuzzle = item.transform.Find(\"Muzzle\") != null;",
+      "declaration_file": false
+    },
+    {
+      "focus": "melee",
+      "token": "Muzzle",
+      "path": "Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs",
+      "line": 28,
+      "symbol": "Ziptide.Editor.Audit.WeaponPerceptualAuditRules",
+      "snippet": "bool knownWeapon = hasMuzzle",
+      "declaration_file": false
+    },
+    {
+      "focus": "melee",
+      "token": "Muzzle",
+      "path": "Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs",
+      "line": 64,
+      "symbol": "Ziptide.Editor.Audit.WeaponPerceptualAuditRules",
+      "snippet": "Transform muzzle = weapon.transform.Find(\"Muzzle\");",
+      "declaration_file": false
+    },
+    {
+      "focus": "melee",
+      "token": "Muzzle",
+      "path": "Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs",
+      "line": 67,
+      "symbol": "Ziptide.Editor.Audit.WeaponPerceptualAuditRules",
+      "snippet": "Vector3 gripToMuzzle = muzzle.position - grip.position;",
+      "declaration_file": false
+    },
+    {
+      "focus": "melee",
+      "token": "Muzzle",
+      "path": "Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs",
+      "line": 68,
+      "symbol": "Ziptide.Editor.Audit.WeaponPerceptualAuditRules",
+      "snippet": "float distance = gripToMuzzle.magnitude;",
+      "declaration_file": false
+    },
+    {
+      "focus": "melee",
+      "token": "Muzzle",
+      "path": "Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs",
+      "line": 70,
+      "symbol": "Ziptide.Editor.Audit.WeaponPerceptualAuditRules",
+      "snippet": "report.Blocker(MuzzleDistance,",
+      "declaration_file": false
+    },
+    {
+      "focus": "melee",
+      "token": "Muzzle",
+      "path": "Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs",
+      "line": 71,
+      "symbol": "Ziptide.Editor.Audit.WeaponPerceptualAuditRules",
+      "snippet": "path + \" Grip\u2192Muzzle distance is \" + distance.ToString(\"F3\")",
+      "declaration_file": false
+    },
+    {
+      "focus": "melee",
+      "token": "Muzzle",
+      "path": "Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs",
+      "line": 75,
+      "symbol": "Ziptide.Editor.Audit.WeaponPerceptualAuditRules",
+      "snippet": "float forwardDot = Vector3.Dot(grip.forward.normalized, gripToMuzzle.normalized);",
+      "declaration_file": false
+    },
+    {
+      "focus": "melee",
+      "token": "Muzzle",
+      "path": "Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs",
+      "line": 78,
+      "symbol": "Ziptide.Editor.Audit.WeaponPerceptualAuditRules",
+      "snippet": "path + \" Grip forward and Grip\u2192Muzzle direction dot=\"",
       "declaration_file": false
     },
     {
@@ -7030,6 +7270,24 @@
       "line": 94,
       "symbol": "Ziptide.Tests.EditMode.VfxRecipeTests",
       "snippet": "foreach (var k in new[] { VfxKind.Impact, VfxKind.Muzzle, VfxKind.SteamVent, VfxKind.Motes, VfxKind.Sparks })",
+      "declaration_file": false
+    },
+    {
+      "focus": "melee",
+      "token": "Muzzle",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/WeaponPerceptualAuditRulesTests.cs",
+      "line": 30,
+      "symbol": "Ziptide.Tests.EditMode.WeaponPerceptualAuditRulesTests",
+      "snippet": "public void DeliberatelySidewaysMuzzle_FiresAimAxisBlocker()",
+      "declaration_file": false
+    },
+    {
+      "focus": "melee",
+      "token": "Muzzle",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/WeaponPerceptualAuditRulesTests.cs",
+      "line": 80,
+      "symbol": "Ziptide.Tests.EditMode.WeaponPerceptualAuditRulesTests",
+      "snippet": "Transform muzzle = new GameObject(\"Muzzle\").transform;",
       "declaration_file": false
     },
     {
