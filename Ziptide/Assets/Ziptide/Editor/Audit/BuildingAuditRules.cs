@@ -41,6 +41,7 @@ namespace Ziptide.Editor.Audit
             PerceptualCoverageAuditRules.Run(report);
             WeaponPerceptualAuditRules.Run(report);
             InteractionReachAuditRules.Run(report);
+            WorldImprovementAuditRules.Run(report);
         }
     }
 }
