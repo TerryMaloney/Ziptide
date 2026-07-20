@@ -100,6 +100,14 @@ authored reveal, FORGE IV) is the governing rail.
   hub's built-up civic gate = arena form; wild gates in open water = pillar-ring form. Two
   tiers of gate architecture, one phenomenon.) Pending his call; both stored either way.
 
-**Lifecycle assembled:** resting glass-water → inhale/trough (debris lifts) → the crest
-(person-scale crossing) → the spiral (ship-scale crossing) → ebb. The future
-`ZiptideGateEffect` upgrade now has a reference frame for every state it needs.
+- **`gate_entrainment_hero_v1`** (✅ same-day) — **THE ENTRAINMENT REFERENCE, nailed first
+  try:** deck plates peeling up in ORDERED luminous streamlines (called, not blasted), edges
+  glowing cyan as metal hybridizes into light, the inner floor ring unbuilt down to glowing
+  seams, weightless debris, the freed material feeding the rising column's base. The §1b law
+  as an image; the ZiptideGateEffect upgrade's surge-state money reference.
+
+**Lifecycle assembled — COMPLETE:** resting glass-water → inhale/trough (debris lifts) →
+ENTRAINMENT (the ground borrowed into the fluid) → the crest (person-scale crossing) → the
+spiral (ship-scale crossing) → ebb/restore. Every state the effect upgrade needs now has an
+approved reference. Still optional: the RESTORE grace-note shot (grains raining onto a
+reassembling floor).
