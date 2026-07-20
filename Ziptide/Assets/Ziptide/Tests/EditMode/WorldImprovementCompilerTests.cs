@@ -37,7 +37,10 @@ namespace Ziptide.Tests.EditMode
                 spawn.transform.rotation = Quaternion.identity;
                 Physics.SyncTransforms();
 
-                WorldImprovementManifest manifest = MakeFullManifest(SceneManager.GetActiveScene().name);
+                string activeSceneName = SceneManager.GetActiveScene().name;
+                string manifestSceneName = string.IsNullOrEmpty(activeSceneName)
+                    ? "WIM_TestFixture" : activeSceneName;
+                WorldImprovementManifest manifest = MakeFullManifest(manifestSceneName);
                 string json = manifest.ToJson();
                 string expectedHash = WorldImprovementHashCore.Compute(json,
                     WorldImprovementCompiler.CompilerVersion);
@@ -68,7 +71,9 @@ namespace Ziptide.Tests.EditMode
             {
                 DestroyOwnedRoots();
                 string sceneName = SceneManager.GetActiveScene().name;
-                WorldImprovementManifest manifest = MakeFullManifest(sceneName);
+                string manifestSceneName = string.IsNullOrEmpty(sceneName)
+                    ? "WIM_TestFixture" : sceneName;
+                WorldImprovementManifest manifest = MakeFullManifest(manifestSceneName);
                 root = new GameObject(WorldImprovementCompiler.RootName);
                 root.AddComponent<WorldImprovementStamp>().Configure(manifest, sceneName,
                     WorldImprovementCompiler.CompilerVersion, "old-hash");
@@ -118,7 +123,7 @@ namespace Ziptide.Tests.EditMode
             {
                 gameId = "portable-test",
                 manifestId = "portable-round2",
-                sceneName = sceneName,
+                sceneName = string.IsNullOrEmpty(sceneName) ? "WIM_TestFixture" : sceneName,
                 displayName = "PORTABLE TEST WORLD",
                 round = 2,
                 recipeVersion = 1,
