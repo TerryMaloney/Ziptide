@@ -8,6 +8,8 @@ namespace Ziptide.Tests.EditMode
 {
     public sealed class ToxicCityStageAIntegrationTests
     {
+        private const int IntendedPaletteSlots = 8;
+
         [Test]
         public void Enrich_ReplacesLegacyBoxesWithBudgetedCompositeGrammar()
         {
@@ -34,7 +36,8 @@ namespace Ziptide.Tests.EditMode
                 ToxicCityStageA.Summary summary = ToxicCityStageA.Enrich(city.transform, kit);
                 Assert.That(summary.Districts, Is.EqualTo(1));
                 Assert.That(summary.Facades, Is.EqualTo(2));
-                Assert.That(summary.Materials, Is.LessThanOrEqualTo(ToxicCityStageA.HardMaterialsPerDistrict));
+                Assert.That(summary.Materials, Is.LessThanOrEqualTo(IntendedPaletteSlots),
+                    "Stage A must stay on the closed eight-slot semantic palette.");
                 Assert.That(city.transform.Find("__CITY_STAGE_A"), Is.Not.Null);
                 Assert.That(district.transform.Find("__CITY_STAGE_A_CURBS"), Is.Not.Null);
 
@@ -57,7 +60,7 @@ namespace Ziptide.Tests.EditMode
                 int objects = ToxicCityStageA.CountObjects(district.transform);
                 Assert.That(objects, Is.LessThanOrEqualTo(ToxicCityStageA.HardObjectsPerDistrict));
                 Assert.That(ToxicCityStageA.CountMaterials(district.transform),
-                    Is.LessThanOrEqualTo(ToxicCityStageA.HardMaterialsPerDistrict));
+                    Is.LessThanOrEqualTo(IntendedPaletteSlots));
 
                 ToxicCityStageA.Summary second = ToxicCityStageA.Enrich(city.transform, kit);
                 Assert.That(second.Facades, Is.EqualTo(summary.Facades), "Stage A must be idempotent.");
