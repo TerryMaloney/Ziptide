@@ -1,18 +1,18 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-20T00:44:38.874973+00:00",
+  "generatedAtUtc": "2026-07-20T00:47:39.406479+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
     "Ziptide/Assets/Ziptide",
     "Ziptide/Assets/ZiptideNet"
   ],
-  "scannedFiles": 655,
-  "findingCount": 2336,
+  "scannedFiles": 656,
+  "findingCount": 2337,
   "categoryCounts": {
     "bootstrap": 31,
-    "diagnostics": 509,
+    "diagnostics": 510,
     "events": 64,
     "fallback_debt": 134,
     "global_render": 80,
@@ -57,7 +57,7 @@
     "XRI_MANAGER_LOOKUP": 41,
     "XR_INTERACTABLE_COMPONENT": 62,
     "XR_UI_INPUT_MODULE": 2,
-    "ZIPTIDE_LOG_TAG": 509
+    "ZIPTIDE_LOG_TAG": 510
   },
   "findings": [
     {
@@ -617,6 +617,15 @@
       "line": 397,
       "symbol": "Ziptide.Editor.Audit.CatalogBreadthAuditRules",
       "snippet": "string message = \"ZIPTIDE: CATALOG_BREADTH_AUDIT code=\" + finding.code +"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Editor/Audit/CityStageAAuditRules.cs",
+      "line": 42,
+      "symbol": "Ziptide.Editor.Audit.CityStageAAuditRules",
+      "snippet": "Debug.LogWarning(\"ZIPTIDE: CITY_STAGE_A_BUDGET_YELLOW district=\" + district.name"
     },
     {
       "category": "diagnostics",

@@ -1,7 +1,7 @@
 # ZIPTIDE Recovery Contract Scan
 
-- Scanned files: **655**
-- Findings: **2336**
+- Scanned files: **656**
+- Findings: **2337**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
@@ -9,7 +9,7 @@
 | Category | Count |
 |---|---:|
 | `bootstrap` | 31 |
-| `diagnostics` | 509 |
+| `diagnostics` | 510 |
 | `events` | 64 |
 | `fallback_debt` | 134 |
 | `global_render` | 80 |
@@ -90,6 +90,7 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Audit/ArtConformanceAuditRules.cs:163` · `Ziptide.Editor.Audit.ArtConformanceAuditRules` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: ART_CONFORMANCE_WHITELIST_REJECTED line=\"" + bad +`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Audit/ArtConformanceAuditRules.cs:169` · `Ziptide.Editor.Audit.ArtConformanceAuditRules` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: ART_CONFORMANCE_WHITELIST_ERROR " + ex.Message);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Audit/CatalogBreadthAuditRules.cs:397` · `Ziptide.Editor.Audit.CatalogBreadthAuditRules` — ZIPTIDE diagnostic tag. `string message = "ZIPTIDE: CATALOG_BREADTH_AUDIT code=" + finding.code +`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Audit/CityStageAAuditRules.cs:42` · `Ziptide.Editor.Audit.CityStageAAuditRules` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: CITY_STAGE_A_BUDGET_YELLOW district=" + district.name`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Audit/CreatureBehaviorAuditRules.cs:183` · `Ziptide.Editor.Audit.CreatureBehaviorAuditRules` — ZIPTIDE diagnostic tag. `string message = "ZIPTIDE: CREATURE_BEHAVIOR_AUDIT code=" + finding.code +`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Audit/RigDumpExporter.cs:48` · `Ziptide.Editor.Audit.RigDumpExporter` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: SCENE_DUMP written to " + outPath);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Audit/UiReadabilityAuditRules.cs:183` · `Ziptide.Editor.Audit.UiReadabilityAuditRules` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: UI_AUDIT scene=" + scene.name +`
