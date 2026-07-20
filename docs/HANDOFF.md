@@ -27,6 +27,62 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-20 (rb57) — Fable 5: three chat-research passes recorded + THE PIPELINE spine proposal — Terry's status: "we're pretty good; now implement, keep building, let the Class Law fill the gaps"
+
+- **Did (these were chat-only research at Terry's direction — recorded here so they're not lost):**
+  ① **The Genesis Interview** (how the system asks the right questions given only a story bible):
+  implication pass sorts every design domain into DERIVED (bible already decided — extract with
+  quoted evidence) / OPEN (genuinely silent) / MASQUERADING (tonally implied, never decided —
+  the miss-ledger's "values mistaken for decisions" class); question taxonomy Q0 identity →
+  Q1 loops → Q2 genre-delta → Q3 variety budget → Q4 constraints → Q5 ship-backward (the
+  benchmark as interrogatives); **the question generator IS the miss ledger played backwards**
+  (every missed class becomes a day-one question for the next game); lazy elicitation (a
+  question is asked when its answer first blocks a gate — the ⚖ pattern formalized); answers
+  land as structure (constitution clauses/genome fields/benchmark rows), never prose. Slipway
+  front door.
+  ② **The Platform Constitution** (how constraints become hard rules BEFORE building, per
+  industry practice): cert floors (VRC/TRC-class, non-negotiable) → **measured** ceilings via
+  STRESS-LAB probe scenes on min-spec device (budgets from measurement at ~75% margin, never
+  folklore — current Meta Quest 3 guidance on record: 500–1000 draw calls, 1–2M tris, ~4.5 ms
+  GPU/8 ms CPU, high performers sit 450–650) → **the FRAME LEDGER** (⚖: split the 13.9 ms by
+  the game's identity — spend the frame where the fantasy lives: vistas/water/creatures over
+  shadows/crowds) → every budget row must name its gate (budget without a gate is a wish) →
+  renegotiation only with device evidence. Field note: CPU/script time is now the more
+  dangerous constraint than GPU on Quest-class hardware — stress lab needs a script-load probe.
+  ③ **Pipeline-distance assessment** ("how close to it-just-runs?"): honest ~35–40% blended.
+  Built: the factory floor (CI+headless authors+PlayMode+clean room+golden hash+booth+audits).
+  In flight: hash law, PG gates, sprint. THREE NEW GAPS no prior pass named — **G the
+  CONDUCTOR** (no machine-readable work queue/dispatcher/state tracking; boards are prose;
+  model quota + Terry attention unbudgeted), **H SESSION RELIABILITY** (the least reliable
+  pipeline stage is the model sessions — evidence: conflict markers pushed twice this week;
+  needs pre-push hooks + post-session output verification + defined units of work), **I
+  PER-WORLD GENERATED ROUTE TESTS** (the PlayMode suite is hand-written for the golden slice;
+  the compiler must EMIT each world's route test or scaled worlds ship gate-blind). Biggest
+  research risks: reviewer calibration (WC-7) + the conductor; everything else is assembly of
+  proven patterns. The "we always find more" meta-answer: find-rate IS the metric — recurring
+  passes, readiness = two consecutive passes finding nothing of consequence.
+  ④ **Organization answer (Terry's closing question):** we're organized for archaeology, not
+  navigation — 60+ docs, a dozen envelope prefixes, no spine. **Proposal: `docs/PIPELINE.md`**
+  — ONE ordered ~12-stage route (0 canon → 1 genesis → 2 rails → 3 genomes → 4 vertical slice
+  → 5 assembly line proven → 6 batch production → 7 cross-cutting passes → 8 ship shell →
+  9 benchmark/cert → 10 launch → 11 live ops), each stage: inputs → machines (links) → gates →
+  **a named CHECKPOINT on the Quest-Golden-Checkpoint template** → outputs → verdict owner.
+  Every doc gets `Stage:` + `Type:` header fields + a CI docs-index check (DOC_ORPHAN);
+  status consolidates into the stage column; aggressive archiving. **📣 All lanes: this
+  re-headers everything — bless/amend the stage list via HANDOFF before anyone executes;
+  not imposed unilaterally.**
+- **Terry's status statement, on record:** "we're pretty good at the moment — we just need to
+  implement all of those things and then keep building; we'll keep noticing issues but our
+  acute-issue-→-system-adjustment training (the Class Law) should start filling gaps itself."
+- **Next:** GPT continues implementation (hash law, PG gates, sprint per hwr30-33); gaps
+  G/H/I should be added to `WORLD_ASSEMBLY_READINESS.md` in its next edit; PIPELINE.md awaits
+  lane blessing; the ⚖ queue for Terry stands (name search · price/no-MTX · severity bar ·
+  cut list · frame ledger).
+- **Heads-up:** the Genesis Interview + Platform Constitution + conductor/session/route-test
+  gaps exist ONLY in this entry and the chat — first lane to need them should promote them to
+  docs (planning lane, freeze rules).
+- **Commit:** this one (docs only: this entry).
+
 ### 2026-07-20 (hwr33) - Fable 5 architect: 🏁 FINISHED-GAME BENCHMARK — the gap audit vs a shipped Quest title (Terry-directed, one of multiple model runs, planning only, zero code)
 - **Terry's instinct, now confirmed with repo evidence:** "even in our planning we're missing
   important parts of what anyone would call a finished game." New doc:
