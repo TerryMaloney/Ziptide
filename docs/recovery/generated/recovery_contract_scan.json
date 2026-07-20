@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-20T22:24:05.155432+00:00",
+  "generatedAtUtc": "2026-07-20T22:32:00.702077+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -8660,7 +8660,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs",
-      "line": 286,
+      "line": 290,
       "symbol": "Ziptide.Gameplay.InputMutationRepairDriver",
       "snippet": "HashSet<InputAction> directActions)"
     },
@@ -8669,7 +8669,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs",
-      "line": 312,
+      "line": 316,
       "symbol": "Ziptide.Gameplay.InputMutationRepairDriver",
       "snippet": "HashSet<InputAction> directActions)"
     },
@@ -8678,7 +8678,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs",
-      "line": 314,
+      "line": 318,
       "symbol": "Ziptide.Gameplay.InputMutationRepairDriver",
       "snippet": "InputAction action = property.action;"
     },
@@ -8687,7 +8687,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs",
-      "line": 369,
+      "line": 373,
       "symbol": "Ziptide.Gameplay.InputMutationRepairDriver",
       "snippet": "InputAction action = property.action;"
     },
