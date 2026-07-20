@@ -87,6 +87,9 @@ Interaction Toolkit **2.5.4**. The Unity project lives in the **`Ziptide/`** sub
   scenes before. Prefer runtime ensures or editor patchers, and have the user verify in Unity.
 
 ## Key docs
+- `docs/PIPELINE.md` — **THE SPINE: the one ordered route (story bible → live game), 12 stages
+  with checkpoints; every doc serves exactly one stage; pipeline changes land ONLY through its
+  amendment log (§A).** Check "current position" there first.
 - `docs/CURRENT_EXECUTION_CHECKLIST.md` — **current cross-project done/next/blocked checklist.** It
   points back to the previous broad checklists and must be updated when meaningful status changes.
 - `docs/EXCELLENCE_MAP.md` — **every aspect of the game: its state, its standard, its guardrail.**

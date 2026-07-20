@@ -27,6 +27,35 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-20 (rb58) — Fable 5: **`docs/PIPELINE.md` v1.0 CREATED** — the spine is live, with Terry's amendment law (docs only)
+
+- **Did (Terry-approved, executing rb57's proposal):** created **`docs/PIPELINE.md`** — the one
+  ordered route, 12 stages, each with machines (links to existing docs — nothing rewritten),
+  gates, a NAMED CHECKPOINT on the Quest-Golden-Checkpoint template, and status: 0 CANON ✅ →
+  1 GENESIS DECISIONS 🟡 → 2 RAILS 🟢 (checkpoint = Terry's golden device pass, rb38, awaiting)
+  → 3 GENOME SCHEMAS 🟡 → **4 VERTICAL SLICE 🟡 ← we are here** (checkpoint = the First-Hour
+  Verdict) → 5 ASSEMBLY LINE (checkpoint = the One-Session World + blind compare) → 6 BATCH
+  PRODUCTION (per-chapter verdicts + the convergence metric) → 7 CROSS-CUTTING PASSES →
+  8 SHIP SHELL (checkpoint = the Stranger Test) → 9 BENCHMARK & CERT (Gold Candidate) →
+  10 LAUNCH → 11 LIVE OPS ♾ (+ Slipway extraction after stage 5 proves). Cross-stage machinery
+  section (HANDOFF, MISS_LEDGER/Class Law, checklist, EXCELLENCE_MAP, ⚖ ledger, CREDITS,
+  merge protocol). **§A THE AMENDMENT LAW (Terry's addition):** the pipeline changes ONLY
+  through this doc — any stage/gate/checkpoint/order change lands in the amendment log IN THE
+  SAME COMMIT, version bumped; contradicting the spine without an amendment = DRIFT (miss-
+  ledger entry; future `PIPELINE_DRIFT` CI audit). New docs declare `Stage:`/`Type:` headers
+  from now on; retrofitting the existing corpus = a boarded boards-pass task, NOT a unilateral
+  sweep. CLAUDE.md Key docs now points at the spine first.
+- **📣 All lanes:** the stage list is v1.0, not scripture — amend via §A with reasons (that's
+  what the law is FOR). `CURRENT_EXECUTION_CHECKLIST.md` should mirror stage status at its
+  next refresh (its owner's call). GPT: hwr30–33 work all lives in stages 2/4 — no conflict.
+- **Next:** first amendments will likely come from the multi-model merge results; gaps G/H/I
+  (conductor, session reliability, generated route tests) belong to stage 2/5 rows when
+  promoted to docs.
+- **Heads-up:** the "current position" line in PIPELINE.md is the new one-glance answer to
+  "where are we?" — keep it truthful; it says stage 4, blocked on the stage-2 device
+  checkpoint (Terry's headset pass, rb38).
+- **Commit:** this one (docs only: PIPELINE.md + CLAUDE.md pointer + this entry).
+
 ### 2026-07-20 (rb57) — Fable 5: three chat-research passes recorded + THE PIPELINE spine proposal — Terry's status: "we're pretty good; now implement, keep building, let the Class Law fill the gaps"
 
 - **Did (these were chat-only research at Terry's direction — recorded here so they're not lost):**
