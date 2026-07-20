@@ -1,6 +1,8 @@
 #if UNITY_EDITOR
 using System;
 using System.Collections.Generic;
+using System.IO;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 using Ziptide.Content;
@@ -23,6 +25,7 @@ namespace Ziptide.Editor.WorldImprovement
 
     public sealed class WorldImprovementContext
     {
+        private const string MaterialFolder = "Assets/Ziptide/Generated/WorldImprovement/Materials";
         private readonly Dictionary<Color, Material> _materials = new Dictionary<Color, Material>();
 
         public string SceneName { get; internal set; }
@@ -34,14 +37,33 @@ namespace Ziptide.Editor.WorldImprovement
         public Color Accent { get; internal set; }
         public Color Glow { get; internal set; }
 
+        /// <summary>
+        /// Resolve a durable material asset keyed by exact RGBA. Generated scenes must never reference a
+        /// transient in-memory Material: the editor, CI checkout and APK must all reopen the same object.
+        /// </summary>
         public Material Material(Color color)
         {
             if (_materials.TryGetValue(color, out Material cached) && cached != null) return cached;
+
             Shader shader = Shader.Find("Universal Render Pipeline/Unlit");
             if (shader == null) shader = Shader.Find("Universal Render Pipeline/Lit");
             if (shader == null) shader = Shader.Find("Standard");
             if (shader == null) return null;
-            var material = new Material(shader) { name = "WIM_" + ColorUtility.ToHtmlStringRGBA(color) };
+
+            EnsureAssetFolder(MaterialFolder);
+            string hex = ColorUtility.ToHtmlStringRGBA(color);
+            string path = MaterialFolder + "/WIM_" + hex + ".mat";
+            Material material = AssetDatabase.LoadAssetAtPath<Material>(path);
+            if (material == null)
+            {
+                material = new Material(shader) { name = "WIM_" + hex };
+                AssetDatabase.CreateAsset(material, path);
+            }
+            else if (material.shader != shader)
+            {
+                material.shader = shader;
+            }
+
             if (material.HasProperty("_BaseColor")) material.SetColor("_BaseColor", color);
             else if (material.HasProperty("_Color")) material.SetColor("_Color", color);
             if (material.HasProperty("_EmissionColor") && color.maxColorComponent > 0.55f)
@@ -49,6 +71,12 @@ namespace Ziptide.Editor.WorldImprovement
                 material.EnableKeyword("_EMISSION");
                 material.SetColor("_EmissionColor", color * 1.3f);
             }
+            else if (material.HasProperty("_EmissionColor"))
+            {
+                material.DisableKeyword("_EMISSION");
+                material.SetColor("_EmissionColor", Color.black);
+            }
+            EditorUtility.SetDirty(material);
             _materials[color] = material;
             return material;
         }
@@ -115,6 +143,22 @@ namespace Ziptide.Editor.WorldImprovement
                 if (!duplicate) anchors.Add(t);
             }
             return anchors;
+        }
+
+        private static void EnsureAssetFolder(string folder)
+        {
+            string normalized = folder.Replace('\\', '/').Trim('/');
+            string[] parts = normalized.Split('/');
+            if (parts.Length == 0 || parts[0] != "Assets")
+                throw new InvalidOperationException("Generated material folder must live under Assets: " + folder);
+            string current = "Assets";
+            for (int i = 1; i < parts.Length; i++)
+            {
+                string next = current + "/" + parts[i];
+                if (!AssetDatabase.IsValidFolder(next))
+                    AssetDatabase.CreateFolder(current, parts[i]);
+                current = next;
+            }
         }
     }
 
