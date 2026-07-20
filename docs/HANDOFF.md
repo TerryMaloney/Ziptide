@@ -27,6 +27,32 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-20 (rb68) — Fable 5: 🗝⚪ artifact key + Warden capital approved — THE TIER-C CONCEPT SET IS COMPLETE (docs + reference images)
+
+- **Did:** ① **C5 THE ARTIFACT KEY ✅** (`concepts/artifact_key/`): the two-half cyan tablet
+  is canon-exact — stepped S-curve interlock that teaches the join gesture, frozen-current
+  channels, three states; the sheet's "mid-activation (within two inches)" label accidentally
+  SPECCED the proximity-pull mechanic at ~2 in (the DC's "they pull at each other," now with
+  a number). The gorgeous-but-wrong 3-piece AMBER hex variant is adopted as a SECOND artifact
+  class (⚖): the Architect SEAL family for later chapters (amber = a different system's voice;
+  glyph-law caution on its engraved script). ② **C3 THE WARDEN CAPITAL ✅ first try**
+  (`concepts/warden_capital/`): pale segmented ceramic-bone ovoid, single black-glass eye,
+  sterile-white seam lights, NO rivets/windows/engines/weapons — the contrast law delivered
+  ("a white blood cell the size of a city"); the Scrapper appears tiny below it (design
+  consistency held a 4th time). Optional future keepers: quarantine-cone state, W037 eye-vs-
+  drone recognition beat. ③ Also this arc (rb67→rb68): the gate ENTRAINMENT law + its
+  first-try hero keeper (the ground borrowed into the tide — lifecycle set complete).
+- **STATUS: the Tier-C concept queue is COMPLETE except ship S4/S5 interiors.** The entire
+  first-hour visual cast now has approved, stored, spec'd references: ship · skiff · the Moss
+  (7 layers) · tower · dockmaster · skyscape (dusk/panorama/night) · gate (6-state lifecycle)
+  · artifact key (+seal class) · Warden capital. **The §3 paid-3D trigger is effectively MET**
+  whenever Terry chooses to spend the month. Color language locked across the cast: tide
+  CYAN · lantern AMBER (warm) · Architect-seal AMBER (deep) · Warden STERILE WHITE.
+- **⚖ standing for Terry:** photon-fluid canon · entrainment law · arena/wild gate fork ·
+  "the Moss" name · numbered doors · Architect-seal class · (plus the old queue: name search,
+  price/no-MTX, severity bar, cut list, frame ledger).
+- **Commit:** this one (docs + 1 reference image; C5's landed in `4d3e268`).
+
 ### 2026-07-20 (rb67) — Fable 5: 🌊 THE ZIPTIDE ITSELF — photon-fluid design canon + the gate's full lifecycle in keepers (docs + reference images)
 
 - **Did:** ① **`docs/design/ZIPTIDE_GATE_VISUAL_DESIGN.md`** — Terry asked for a plausible-

@@ -126,6 +126,23 @@ impostor ring + an altitude ceiling; perf per FORGE IV P3 band — the concepts 
 cheap version, they don't license an expensive one. 📣 Coordinate with GPT's city Stage A —
 these keepers become its visual reference via HANDOFF when they land.
 
+## §2d — C3 · THE WARDEN CAPITAL — ✅ APPROVED 2026-07-20, FIRST TRY (`concepts/warden_capital/`)
+
+`warden_capital_hero_v1` nails the contrast law: a vast pale segmented ovoid of ceramic-bone
+plates — no rivets, no windows, no engines, no weapons — one huge black-glass cyclopean eye
+at the prow, thin cold STERILE-WHITE seam-lights between segments (the Warden voice color:
+deliberately not the tide's cyan, not the seal's amber), hanging silently in green haze with
+the ringed giant behind — and THE SCRAPPER tiny below it (design consistency held a FOURTH
+time). Fill-it-black passes: segmented lozenge + eye, kid-drawable. Reads exactly as
+commissioned: a white blood cell the size of a city. Feeds: the ship-scale enemy hero
+(Tier-C), the creature-warden design kinship (same species of made-thing at two scales),
+the P3 distant-fleet silhouette. Still optional: the quarantine-cone state and the W037
+recognition beat (eye vs. drone) as second/third keepers.
+
+**QUEUE STATUS: the Tier-C concept set is COMPLETE except ship interiors (S4 dedicated
+cockpit + S5 quarters).** §3's paid-3D trigger condition is effectively MET whenever Terry
+chooses (ship exterior + cab POV approved; six queue assets approved).
+
 ## §2c — C5 · THE ARTIFACT KEY — ✅ APPROVED 2026-07-20 (`concepts/artifact_key/`)
 
 **`key_two_half_states_v1`** = THE first-hour key, canon-exact: TWO halves (ARTIFACT_HALF_A/B),
