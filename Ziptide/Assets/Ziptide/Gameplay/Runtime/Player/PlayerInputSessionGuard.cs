@@ -18,14 +18,19 @@ namespace Ziptide.Gameplay
     ///
     /// This class owns no input meaning and creates no persistent GameObject. It runs after the
     /// initial scene and after each later scene load, then makes the persistent XRI manager's
-    /// InputActionManager the only enabled manager.
+    /// InputActionManager the only enabled manager. A scene-generation latch prevents the retained
+    /// sceneLoaded subscription and AfterSceneLoad bootstrap from consolidating the same activation twice
+    /// when PlayMode runs without a domain reload.
     /// </summary>
     public static class PlayerInputSessionGuard
     {
+        private static InputSessionSceneLatchCore _sceneLatch;
+
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         private static void ResetSubscription()
         {
             SceneManager.sceneLoaded -= OnSceneLoaded;
+            _sceneLatch.Reset();
         }
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
@@ -34,13 +39,26 @@ namespace Ziptide.Gameplay
             if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.PlayerInputSessionGuard)) return;
             SceneManager.sceneLoaded -= OnSceneLoaded;
             SceneManager.sceneLoaded += OnSceneLoaded;
-            Consolidate("initial_scene");
+            ConsolidateSceneOnce(SceneManager.GetActiveScene(), "initial_scene");
         }
 
         private static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
             if (!RecoveryRuntimeGate.Allows(RecoveryFeatureId.PlayerInputSessionGuard)) return;
-            Consolidate("scene_loaded:" + scene.name);
+            ConsolidateSceneOnce(scene, "scene_loaded:" + scene.name);
+        }
+
+        private static void ConsolidateSceneOnce(Scene scene, string reason)
+        {
+            int handle = scene.IsValid() ? scene.handle : int.MinValue;
+            if (!_sceneLatch.TryEnter(handle))
+            {
+                Debug.Log("ZIPTIDE: INPUT_SESSION_CONSOLIDATE_SKIPPED scene="
+                    + (scene.IsValid() ? scene.name : "invalid") + " handle=" + handle
+                    + " reason=" + reason + " cause=already_consolidated");
+                return;
+            }
+            Consolidate(reason);
         }
 
         /// <summary>
