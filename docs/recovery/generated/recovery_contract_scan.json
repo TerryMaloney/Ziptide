@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-20T12:21:39.159358+00:00",
+  "generatedAtUtc": "2026-07-20T12:22:45.460184+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -9,12 +9,12 @@
     "Ziptide/Assets/ZiptideNet"
   ],
   "scannedFiles": 710,
-  "findingCount": 2466,
+  "findingCount": 2467,
   "categoryCounts": {
     "bootstrap": 35,
     "diagnostics": 545,
     "events": 64,
-    "fallback_debt": 147,
+    "fallback_debt": 148,
     "global_render": 81,
     "input": 197,
     "materials": 246,
@@ -37,7 +37,7 @@
     "EDITOR_BOOTSTRAP": 10,
     "EVENT_DECLARATION": 48,
     "EVENT_SYSTEM_COMPONENT": 2,
-    "FALLBACK_MARKER": 147,
+    "FALLBACK_MARKER": 148,
     "FRAME_BUTTON_POLL": 1,
     "INPUT_ACTION_REFERENCE": 190,
     "INPUT_BUTTON_REFERENCE": 6,
@@ -6116,6 +6116,15 @@
       "line": 67,
       "symbol": "Ziptide.Editor.Audit.FullSendPresentationAuditRules",
       "snippet": "path + \" has only \" + nonCube + \" non-cube hull primitives; hero fallback regressed toward a block stack.\", path);"
+    },
+    {
+      "category": "fallback_debt",
+      "code": "FALLBACK_MARKER",
+      "description": "Source text marks fallback/prototype debt",
+      "path": "Ziptide/Assets/Ziptide/Editor/Audit/RouteContinuityAuditRules.cs",
+      "line": 78,
+      "symbol": "Ziptide.Editor.Audit.RouteContinuityAuditRules",
+      "snippet": "// Conservative fallback for uncommon collider types. Generated route slabs are BoxColliders;"
     },
     {
       "category": "fallback_debt",

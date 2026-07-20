@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
 - Scanned files: **710**
-- Scanner findings: **2466**
+- Scanner findings: **2467**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -4283,6 +4283,12 @@ None.
 - Paths: `Ziptide/Assets/Ziptide/Editor/Audit/FullSendPresentationAuditRules.cs`
   - `Ziptide/Assets/Ziptide/Editor/Audit/FullSendPresentationAuditRules.cs:38` **FALLBACK_MARKER** — `path + " has " + renderers.Length + " hull renderers; minimum hero fallback is "`
   - `Ziptide/Assets/Ziptide/Editor/Audit/FullSendPresentationAuditRules.cs:67` **FALLBACK_MARKER** — `path + " has only " + nonCube + " non-cube hull primitives; hero fallback regressed toward a block stack.", path);`
+
+### `Ziptide.Editor.Audit.RouteContinuityAuditRules` — 1 signal(s)
+
+- Codes: `FALLBACK_MARKER`
+- Paths: `Ziptide/Assets/Ziptide/Editor/Audit/RouteContinuityAuditRules.cs`
+  - `Ziptide/Assets/Ziptide/Editor/Audit/RouteContinuityAuditRules.cs:78` **FALLBACK_MARKER** — `// Conservative fallback for uncommon collider types. Generated route slabs are BoxColliders;`
 
 ### `Ziptide.Editor.Audit.WorldAuditRunner` — 1 signal(s)
 

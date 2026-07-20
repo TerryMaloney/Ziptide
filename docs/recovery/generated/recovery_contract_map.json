@@ -2,7 +2,7 @@
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
   "scannedFiles": 710,
-  "findingCount": 2466,
+  "findingCount": 2467,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -18907,6 +18907,25 @@
             "line": 67,
             "symbol": "Ziptide.Editor.Audit.FullSendPresentationAuditRules",
             "snippet": "path + \" has only \" + nonCube + \" non-cube hull primitives; hero fallback regressed toward a block stack.\", path);"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Editor.Audit.RouteContinuityAuditRules",
+        "evidenceCount": 1,
+        "codes": [
+          "FALLBACK_MARKER"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Editor/Audit/RouteContinuityAuditRules.cs"
+        ],
+        "evidence": [
+          {
+            "code": "FALLBACK_MARKER",
+            "path": "Ziptide/Assets/Ziptide/Editor/Audit/RouteContinuityAuditRules.cs",
+            "line": 78,
+            "symbol": "Ziptide.Editor.Audit.RouteContinuityAuditRules",
+            "snippet": "// Conservative fallback for uncommon collider types. Generated route slabs are BoxColliders;"
           }
         ]
       },

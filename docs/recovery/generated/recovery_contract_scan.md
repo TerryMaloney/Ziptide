@@ -1,7 +1,7 @@
 # ZIPTIDE Recovery Contract Scan
 
 - Scanned files: **710**
-- Findings: **2466**
+- Findings: **2467**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
@@ -11,7 +11,7 @@
 | `bootstrap` | 35 |
 | `diagnostics` | 545 |
 | `events` | 64 |
-| `fallback_debt` | 147 |
+| `fallback_debt` | 148 |
 | `global_render` | 81 |
 | `input` | 197 |
 | `materials` | 246 |
@@ -705,6 +705,7 @@
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Editor/Audit/FirstHourContractAuditRules.cs:11` · `Ziptide.Editor.Audit.FirstHourContractAuditRules` — Source text marks fallback/prototype debt. `/// it must never become a world-build blocker or invent a fallback beat list.`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Editor/Audit/FullSendPresentationAuditRules.cs:38` · `Ziptide.Editor.Audit.FullSendPresentationAuditRules` — Source text marks fallback/prototype debt. `path + " has " + renderers.Length + " hull renderers; minimum hero fallback is "`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Editor/Audit/FullSendPresentationAuditRules.cs:67` · `Ziptide.Editor.Audit.FullSendPresentationAuditRules` — Source text marks fallback/prototype debt. `path + " has only " + nonCube + " non-cube hull primitives; hero fallback regressed toward a block stack.", path);`
+- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Editor/Audit/RouteContinuityAuditRules.cs:78` · `Ziptide.Editor.Audit.RouteContinuityAuditRules` — Source text marks fallback/prototype debt. `// Conservative fallback for uncommon collider types. Generated route slabs are BoxColliders;`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Editor/Audit/WorldAuditRunner.cs:454` · `Ziptide.Editor.Audit.WorldAuditRunner` — Source text marks fallback/prototype debt. `return 1.0f; // fallback: at least 1m above ground`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Editor/Patching/BuildingBuilder.cs:11` · `Ziptide.Editor.Patching.BuildingBuilder` — Source text marks fallback/prototype debt. `/// ArtModuleRegistry ("buildingModule:&lt;styleId&gt;/&lt;Module&gt;") with primitive fallback, so Picasso's`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Editor/Patching/BuildingBuilder.cs:182` · `Ziptide.Editor.Patching.BuildingBuilder` — Source text marks fallback/prototype debt. `Debug.LogWarning("[Ziptide] KIT_UNFULFILLED id=" + regId + " (primitive fallback walls)");`
