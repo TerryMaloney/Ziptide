@@ -27,6 +27,41 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-20 (rb61) — Fable 5: HERO ASSET STRATEGY — the Forge's honest ceiling + the three-tier path to AAA (Terry-directed research, zero code)
+
+- **Terry's verdict, confirmed honest:** "the ship… the space battle stuff… I can't see that
+  coming out very good as is; guns/melee okay but not great." Wrote
+  **`docs/project_art_plan/HERO_ASSET_STRATEGY.md`** — and RECORDED that ART_REGISTRY §5's
+  hero-asset deferral trigger has now FIRED (the owner's verdict IS the trigger).
+- **The ceiling, stated plainly (§1):** primitive-op composition can't economically reach
+  designed silhouettes, detail density (panels/greebles/bolts), or edge quality (bevels vs.
+  razor edges) — the warden's 5-version "bin with a lid" saga is our own evidence of
+  silhouette design done expensively in 3D. VR face-distance inspection makes hero scale the
+  harshest test. **The architecture always knew:** stable ids + ForgeVisualApplier
+  (root-stable/visual-child-replaceable) + §5 exist so hero meshes can arrive from outside
+  without gameplay noticing.
+- **The three tiers (§2), every asset declares one:** **A FORGE-NATIVE** (props/flora/modules/
+  practicals/most creatures — already on the AAA path via CP-2/CP-3, change nothing);
+  **B FORGE-PLUS** (weapons/hero creatures — closable INSIDE the Forge: new Bevel/Chamfer +
+  PanelInset + GreebleScatter ops, face-distance texel law, 2–3-material-split Validate()
+  check, grip-derived touch-point wear; an envelope in the art window); **C HERO** (THE ship
+  ext+int, close capitals, signature landmarks — external path: **2D CONCEPT FIRST law**
+  (silhouette approval in images where iteration is cheap), then AI 3D gen (Tripo/Meshy-class:
+  2026 state = PBR output, quad options, Unity export, commercial license on PAID tiers only —
+  the Suno lesson applies verbatim) OR marketplace kitbash OR ⚖ a commissioned hard-surface
+  artist for the ship (plausibly the project's highest-leverage art dollar), all through
+  WC-5's intake gates: hero-class budget review, re-material into OUR families, provenance +
+  CREDITS, booth + Terry verdict). Space battles: distant fleet = P3 silhouette/VFX
+  (Forge-native), only closed-with ships need Tier C. Long-term recorded: headless Blender as
+  a scripted Forge backend (Slipway era).
+- **New small laws (§3):** tier field on recipes · no Tier-C geometry before an approved
+  concept sheet · paid-tier-only external generation with CREDITS · imports re-materialed +
+  same audits (cohesion is non-negotiable) · Tier C stays a short named list (~a dozen max).
+- **Next (● = freeze-compatible):** ● ship concept sheets (image-gen, Terry picks — the best
+  art hour available right now) · ● ⚖ commission budget / tool+tier pick / hero budget review
+  · Tier-B ops envelope post-freeze · WC-5 intake built on first real import.
+- **Commit:** this one (docs only: strategy doc + this entry).
+
 ### 2026-07-20 (rb60) — Fable 5: **THE STORY GENESIS KIT** — the pre-pipeline lands as the first Slipway module (parallel to the project, zero coupling, zero code)
 
 - **Did (Terry-directed, plan-approved):** created **`docs/slipway/`** — the cloneable-framework
