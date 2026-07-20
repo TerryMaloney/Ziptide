@@ -1,0 +1,62 @@
+name: One-shot input compile repair
+
+on:
+  push:
+    branches:
+      - terry-local-wip
+    paths:
+      - .github/workflows/one-shot-input-compile-repair.yml
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout current branch
+        uses: actions/checkout@v4
+        with:
+          ref: terry-local-wip
+          fetch-depth: 0
+
+      - name: Apply compile-safe diagnostic correction
+        shell: bash
+        run: |
+          set -euo pipefail
+          git pull --rebase origin terry-local-wip
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs')
+          text = path.read_text(encoding='utf-8')
+          old = '''                string runtimeType;
+                try { runtimeType = action.valueType != null ? action.valueType.FullName : string.Empty; }
+                catch { runtimeType = "<unavailable>"; }
+'''
+          new = '''                string runtimeType;
+                try
+                {
+                    runtimeType = action.activeControl != null
+                        ? action.activeControl.GetType().FullName
+                        : "<no-active-control>";
+                }
+                catch { runtimeType = "<unavailable>"; }
+'''
+          if old not in text:
+              raise SystemExit('Expected InputAction.valueType diagnostic block was not found; refusing to modify the file.')
+          if text.count(old) != 1:
+              raise SystemExit(f'Expected one diagnostic block, found {text.count(old)}; refusing to modify the file.')
+          path.write_text(text.replace(old, new, 1), encoding='utf-8')
+          PY
+
+      - name: Commit correction and remove one-shot workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "Ziptide CI Repair"
+          git config user.email "actions@users.noreply.github.com"
+          git rm .github/workflows/one-shot-input-compile-repair.yml
+          git add Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs
+          git commit -m "fix(input): use compile-safe active-control diagnostics"
+          git push origin HEAD:terry-local-wip
