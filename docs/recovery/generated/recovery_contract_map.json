@@ -11114,38 +11114,37 @@
         "owner": "Ziptide.Tests.EditMode.PerceptualCoverageAuditRulesTests",
         "evidenceCount": 4,
         "codes": [
-          "CREATE_PRIMITIVE",
-          "NEW_GAME_OBJECT"
+          "CREATE_PRIMITIVE"
         ],
         "paths": [
           "Ziptide/Assets/Ziptide/Tests/EditMode/PerceptualCoverageAuditRulesTests.cs"
         ],
         "evidence": [
           {
-            "code": "NEW_GAME_OBJECT",
-            "path": "Ziptide/Assets/Ziptide/Tests/EditMode/PerceptualCoverageAuditRulesTests.cs",
-            "line": 16,
-            "symbol": "Ziptide.Tests.EditMode.PerceptualCoverageAuditRulesTests",
-            "snippet": "root = new GameObject(\"InvisibleKeyItem\");"
-          },
-          {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Tests/EditMode/PerceptualCoverageAuditRulesTests.cs",
-            "line": 37,
+            "line": 19,
             "symbol": "Ziptide.Tests.EditMode.PerceptualCoverageAuditRulesTests",
             "snippet": "root = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Tests/EditMode/PerceptualCoverageAuditRulesTests.cs",
-            "line": 59,
+            "line": 43,
             "symbol": "Ziptide.Tests.EditMode.PerceptualCoverageAuditRulesTests",
             "snippet": "root = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Tests/EditMode/PerceptualCoverageAuditRulesTests.cs",
-            "line": 61,
+            "line": 65,
+            "symbol": "Ziptide.Tests.EditMode.PerceptualCoverageAuditRulesTests",
+            "snippet": "root = GameObject.CreatePrimitive(PrimitiveType.Cube);"
+          },
+          {
+            "code": "CREATE_PRIMITIVE",
+            "path": "Ziptide/Assets/Ziptide/Tests/EditMode/PerceptualCoverageAuditRulesTests.cs",
+            "line": 67,
             "symbol": "Ziptide.Tests.EditMode.PerceptualCoverageAuditRulesTests",
             "snippet": "GameObject child = GameObject.CreatePrimitive(PrimitiveType.Cylinder);"
           }
@@ -11602,21 +11601,21 @@
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Tests/EditMode/WeaponPerceptualAuditRulesTests.cs",
-            "line": 71,
+            "line": 74,
             "symbol": "Ziptide.Tests.EditMode.WeaponPerceptualAuditRulesTests",
             "snippet": "GameObject weapon = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Tests/EditMode/WeaponPerceptualAuditRulesTests.cs",
-            "line": 75,
+            "line": 78,
             "symbol": "Ziptide.Tests.EditMode.WeaponPerceptualAuditRulesTests",
             "snippet": "Transform grip = new GameObject(\"Grip\").transform;"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Tests/EditMode/WeaponPerceptualAuditRulesTests.cs",
-            "line": 80,
+            "line": 83,
             "symbol": "Ziptide.Tests.EditMode.WeaponPerceptualAuditRulesTests",
             "snippet": "Transform muzzle = new GameObject(\"Muzzle\").transform;"
           }

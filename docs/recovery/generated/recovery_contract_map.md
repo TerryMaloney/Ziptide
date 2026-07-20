@@ -2349,12 +2349,12 @@ None.
 
 ### `Ziptide.Tests.EditMode.PerceptualCoverageAuditRulesTests` — 4 signal(s)
 
-- Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`
+- Codes: `CREATE_PRIMITIVE`
 - Paths: `Ziptide/Assets/Ziptide/Tests/EditMode/PerceptualCoverageAuditRulesTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/EditMode/PerceptualCoverageAuditRulesTests.cs:16` **NEW_GAME_OBJECT** — `root = new GameObject("InvisibleKeyItem");`
-  - `Ziptide/Assets/Ziptide/Tests/EditMode/PerceptualCoverageAuditRulesTests.cs:37` **CREATE_PRIMITIVE** — `root = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Tests/EditMode/PerceptualCoverageAuditRulesTests.cs:59` **CREATE_PRIMITIVE** — `root = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Tests/EditMode/PerceptualCoverageAuditRulesTests.cs:61` **CREATE_PRIMITIVE** — `GameObject child = GameObject.CreatePrimitive(PrimitiveType.Cylinder);`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/PerceptualCoverageAuditRulesTests.cs:19` **CREATE_PRIMITIVE** — `root = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/PerceptualCoverageAuditRulesTests.cs:43` **CREATE_PRIMITIVE** — `root = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/PerceptualCoverageAuditRulesTests.cs:65` **CREATE_PRIMITIVE** — `root = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/PerceptualCoverageAuditRulesTests.cs:67` **CREATE_PRIMITIVE** — `GameObject child = GameObject.CreatePrimitive(PrimitiveType.Cylinder);`
 
 ### `Ziptide.Tests.EditMode.PracticalLightTests` — 1 signal(s)
 
@@ -2474,9 +2474,9 @@ None.
 
 - Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`
 - Paths: `Ziptide/Assets/Ziptide/Tests/EditMode/WeaponPerceptualAuditRulesTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/EditMode/WeaponPerceptualAuditRulesTests.cs:71` **CREATE_PRIMITIVE** — `GameObject weapon = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Tests/EditMode/WeaponPerceptualAuditRulesTests.cs:75` **NEW_GAME_OBJECT** — `Transform grip = new GameObject("Grip").transform;`
-  - `Ziptide/Assets/Ziptide/Tests/EditMode/WeaponPerceptualAuditRulesTests.cs:80` **NEW_GAME_OBJECT** — `Transform muzzle = new GameObject("Muzzle").transform;`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/WeaponPerceptualAuditRulesTests.cs:74` **CREATE_PRIMITIVE** — `GameObject weapon = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/WeaponPerceptualAuditRulesTests.cs:78` **NEW_GAME_OBJECT** — `Transform grip = new GameObject("Grip").transform;`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/WeaponPerceptualAuditRulesTests.cs:83` **NEW_GAME_OBJECT** — `Transform muzzle = new GameObject("Muzzle").transform;`
 
 ### `Ziptide.Tests.EditMode.WorldImprovementCompilerTests` — 4 signal(s)
 

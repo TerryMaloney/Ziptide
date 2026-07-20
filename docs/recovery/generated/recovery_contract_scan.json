@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-20T12:00:16.149881+00:00",
+  "generatedAtUtc": "2026-07-20T12:11:01.315740+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -30,7 +30,7 @@
     "CAMERA_MAIN_REFERENCE": 42,
     "CAMERA_POST_PROCESSING": 1,
     "CANVAS_COMPONENT": 5,
-    "CREATE_PRIMITIVE": 254,
+    "CREATE_PRIMITIVE": 255,
     "DIRECT_SCENE_LOAD": 2,
     "DIRECT_SCENE_LOAD_ASYNC": 7,
     "DONT_DESTROY_ON_LOAD": 18,
@@ -41,7 +41,7 @@
     "FRAME_BUTTON_POLL": 1,
     "INPUT_ACTION_REFERENCE": 190,
     "INPUT_BUTTON_REFERENCE": 6,
-    "NEW_GAME_OBJECT": 404,
+    "NEW_GAME_OBJECT": 403,
     "PLAYER_PROFILE_REFERENCE": 140,
     "RENDER_SETTINGS_MUTATION": 37,
     "RUNTIME_BOOTSTRAP": 25,
@@ -14114,7 +14114,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/PerceptualCoverageAuditRulesTests.cs",
-      "line": 37,
+      "line": 19,
       "symbol": "Ziptide.Tests.EditMode.PerceptualCoverageAuditRulesTests",
       "snippet": "root = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -14123,7 +14123,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/PerceptualCoverageAuditRulesTests.cs",
-      "line": 59,
+      "line": 43,
       "symbol": "Ziptide.Tests.EditMode.PerceptualCoverageAuditRulesTests",
       "snippet": "root = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -14132,7 +14132,16 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/PerceptualCoverageAuditRulesTests.cs",
-      "line": 61,
+      "line": 65,
+      "symbol": "Ziptide.Tests.EditMode.PerceptualCoverageAuditRulesTests",
+      "snippet": "root = GameObject.CreatePrimitive(PrimitiveType.Cube);"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "CREATE_PRIMITIVE",
+      "description": "Runtime primitive construction",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/PerceptualCoverageAuditRulesTests.cs",
+      "line": 67,
       "symbol": "Ziptide.Tests.EditMode.PerceptualCoverageAuditRulesTests",
       "snippet": "GameObject child = GameObject.CreatePrimitive(PrimitiveType.Cylinder);"
     },
@@ -14186,7 +14195,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/WeaponPerceptualAuditRulesTests.cs",
-      "line": 71,
+      "line": 74,
       "symbol": "Ziptide.Tests.EditMode.WeaponPerceptualAuditRulesTests",
       "snippet": "GameObject weapon = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -17281,15 +17290,6 @@
       "category": "runtime_creation",
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
-      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/PerceptualCoverageAuditRulesTests.cs",
-      "line": 16,
-      "symbol": "Ziptide.Tests.EditMode.PerceptualCoverageAuditRulesTests",
-      "snippet": "root = new GameObject(\"InvisibleKeyItem\");"
-    },
-    {
-      "category": "runtime_creation",
-      "code": "NEW_GAME_OBJECT",
-      "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/PracticalLightTests.cs",
       "line": 16,
       "symbol": "Ziptide.Tests.EditMode.PracticalLightTests",
@@ -17471,7 +17471,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/WeaponPerceptualAuditRulesTests.cs",
-      "line": 75,
+      "line": 78,
       "symbol": "Ziptide.Tests.EditMode.WeaponPerceptualAuditRulesTests",
       "snippet": "Transform grip = new GameObject(\"Grip\").transform;"
     },
@@ -17480,7 +17480,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/WeaponPerceptualAuditRulesTests.cs",
-      "line": 80,
+      "line": 83,
       "symbol": "Ziptide.Tests.EditMode.WeaponPerceptualAuditRulesTests",
       "snippet": "Transform muzzle = new GameObject(\"Muzzle\").transform;"
     },
