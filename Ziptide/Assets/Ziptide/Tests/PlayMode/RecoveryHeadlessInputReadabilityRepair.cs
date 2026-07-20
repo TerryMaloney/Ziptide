@@ -10,23 +10,25 @@ using InputSystemXRController = UnityEngine.InputSystem.XR.XRController;
 namespace Ziptide.Tests.PlayMode
 {
     /// <summary>
-    /// Headless-only cold-start repair for the abstract XRController layout used by Recovery PlayMode.
+    /// Headless-only action-state repair for the abstract XRController layout used by Recovery PlayMode.
     ///
     /// The suite installs its left/right generic controllers before _Boot and the actual-rig simulator
-    /// verifies that all eight Move/Turn actions have bilateral controls. On the first no-domain-reload
-    /// route, however, Input System can still report those actions as enabled and bound while one action's
-    /// internal state throws during ReadValue. Later tests inherit the naturally repaired state, hiding the
-    /// cold-start ordering defect.
+    /// verifies that all eight Move/Turn actions have bilateral controls. Linux batchmode can nevertheless
+    /// leave one of those already-bound actions unreadable after PlayerRigPersistence mutates/re-resolves
+    /// the canonical assets at a scene boundary. Real Quest controller layouts settle through the runtime
+    /// Input System; the abstract headless layout sometimes does not.
     ///
-    /// This test-only owner reacts to the simulator-ready diagnostic, quiesces locomotion readers, probes
-    /// every bound Move/Turn action using its declared value type, and resets only an action that is actually
-    /// unreadable. Enabled state is preserved exactly. It runs outside the production APK and never touches
-    /// anchor actions, gameplay input policy, scene assets, or the production fail-closed settle guard.
+    /// This test-only owner runs at the two proven boundaries: when the tracked-rig simulator comes online
+    /// and immediately after each `XRI_WIRING` mutation completes. It quiesces locomotion readers, probes
+    /// every bound Move/Turn action using its declared value type, resets only an action that actually throws,
+    /// and preserves enabled state exactly. The production settle coroutine remains fail-closed and is still
+    /// solely responsible for restoring providers. This owner is absent from the headset APK.
     /// </summary>
     internal static class RecoveryHeadlessInputReadabilityRepair
     {
         private const int RequiredLocomotionActions = 8;
         private const string SimulatorReadyPrefix = "ZIPTIDE: RECOVERY_TRACKED_RIG_SIM";
+        private const string InputMutationCompletePrefix = "ZIPTIDE: XRI_WIRING";
         private static bool _repairing;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
@@ -40,14 +42,25 @@ namespace Ziptide.Tests.PlayMode
 
         private static void OnLogMessage(string condition, string stackTrace, LogType type)
         {
-            if (_repairing || string.IsNullOrEmpty(condition)
-                || !condition.StartsWith(SimulatorReadyPrefix, StringComparison.Ordinal))
+            if (_repairing || string.IsNullOrEmpty(condition)) return;
+
+            bool simulatorReady = condition.StartsWith(SimulatorReadyPrefix, StringComparison.Ordinal);
+            bool mutationComplete = condition.StartsWith(InputMutationCompletePrefix, StringComparison.Ordinal);
+            if (!simulatorReady && !mutationComplete) return;
+
+            // XRI_WIRING is emitted by production code in many PlayMode contexts. Only intervene when
+            // this Recovery suite's abstract left/right XR pair is actually installed.
+            if (!HasVirtualHand(CommonUsages.LeftHand) || !HasVirtualHand(CommonUsages.RightHand))
+            {
+                if (simulatorReady)
+                    Debug.LogError("ZIPTIDE: RECOVERY_HEADLESS_XR_READABILITY_FAIL reason=missing_virtual_hands");
                 return;
+            }
 
             _repairing = true;
             try
             {
-                RepairFreshHeadlessState();
+                RepairFreshHeadlessState(simulatorReady ? "simulator_ready" : "xri_wiring");
             }
             finally
             {
@@ -55,14 +68,8 @@ namespace Ziptide.Tests.PlayMode
             }
         }
 
-        private static void RepairFreshHeadlessState()
+        private static void RepairFreshHeadlessState(string boundary)
         {
-            if (!HasVirtualHand(CommonUsages.LeftHand) || !HasVirtualHand(CommonUsages.RightHand))
-            {
-                Debug.LogError("ZIPTIDE: RECOVERY_HEADLESS_XR_READABILITY_FAIL reason=missing_virtual_hands");
-                return;
-            }
-
             var providerStates = new List<ProviderState>();
             foreach (LocomotionProvider provider in UnityEngine.Object.FindObjectsOfType<LocomotionProvider>(true))
             {
@@ -76,8 +83,21 @@ namespace Ziptide.Tests.PlayMode
                 var actions = CollectLocomotionActions();
                 if (actions.Count < RequiredLocomotionActions)
                 {
-                    Debug.LogError("ZIPTIDE: RECOVERY_HEADLESS_XR_READABILITY_FAIL reason=missing_actions count="
-                        + actions.Count + " required=" + RequiredLocomotionActions);
+                    // During an early _Boot wiring pass the canonical action manager may not yet own the
+                    // complete asset. The simulator-ready boundary is mandatory; an earlier mutation pass
+                    // is only an opportunity to settle state.
+                    if (boundary == "simulator_ready")
+                    {
+                        Debug.LogError("ZIPTIDE: RECOVERY_HEADLESS_XR_READABILITY_FAIL boundary="
+                            + boundary + " reason=missing_actions count=" + actions.Count
+                            + " required=" + RequiredLocomotionActions);
+                    }
+                    else
+                    {
+                        Debug.Log("ZIPTIDE: RECOVERY_HEADLESS_XR_READABILITY_DEFER boundary="
+                            + boundary + " actions=" + actions.Count
+                            + " required=" + RequiredLocomotionActions);
+                    }
                     return;
                 }
 
@@ -94,15 +114,17 @@ namespace Ziptide.Tests.PlayMode
                         action.Enable();
                         if (!wasEnabled) action.Disable();
                         repaired++;
-                        Debug.Log("ZIPTIDE: RECOVERY_HEADLESS_XR_ACTION_REPAIR action="
-                            + ActionPath(action) + " expected=" + ExpectedValueType(action)
-                            + " wasEnabled=" + wasEnabled + " controls=" + action.controls.Count);
+                        Debug.Log("ZIPTIDE: RECOVERY_HEADLESS_XR_ACTION_REPAIR boundary="
+                            + boundary + " action=" + ActionPath(action)
+                            + " expected=" + ExpectedValueType(action)
+                            + " wasEnabled=" + wasEnabled
+                            + " controls=" + action.controls.Count);
                     }
                     catch (Exception ex)
                     {
-                        Debug.LogError("ZIPTIDE: RECOVERY_HEADLESS_XR_READABILITY_FAIL action="
-                            + ActionPath(action) + " phase=reset reason="
-                            + ex.GetType().Name + ":" + ex.Message);
+                        Debug.LogError("ZIPTIDE: RECOVERY_HEADLESS_XR_READABILITY_FAIL boundary="
+                            + boundary + " action=" + ActionPath(action)
+                            + " phase=reset reason=" + ex.GetType().Name + ":" + ex.Message);
                         return;
                     }
                 }
@@ -121,16 +143,18 @@ namespace Ziptide.Tests.PlayMode
                         continue;
                     }
 
-                    Debug.LogError("ZIPTIDE: RECOVERY_HEADLESS_XR_READABILITY_FAIL action="
-                        + ActionPath(action) + " phase=verify expected=" + ExpectedValueType(action)
+                    Debug.LogError("ZIPTIDE: RECOVERY_HEADLESS_XR_READABILITY_FAIL boundary="
+                        + boundary + " action=" + ActionPath(action)
+                        + " phase=verify expected=" + ExpectedValueType(action)
                         + " enabled=" + action.enabled + " controls=" + action.controls.Count
                         + " reason=" + reason);
                     return;
                 }
 
-                Debug.Log("ZIPTIDE: RECOVERY_HEADLESS_XR_READABILITY_OK actions=" + actions.Count
-                    + " readable=" + readable + " virtualControls=" + controls
-                    + " repaired=" + repaired + " providersQuiesced=" + providerStates.Count);
+                Debug.Log("ZIPTIDE: RECOVERY_HEADLESS_XR_READABILITY_OK boundary=" + boundary
+                    + " actions=" + actions.Count + " readable=" + readable
+                    + " virtualControls=" + controls + " repaired=" + repaired
+                    + " providersQuiesced=" + providerStates.Count);
             }
             finally
             {
