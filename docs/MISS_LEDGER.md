@@ -59,18 +59,21 @@ Read by every lane at session start alongside HANDOFF. Full spec: `FINISHED_GAME
     recurring milestone gate (checklist row) + EXCELLENCE_MAP rows per category — the
     ship-backward view now has standing machinery.
 11. **WHAT:** the recovery PlayMode performance route repeatedly failed input settle during
-    `_Boot`. **FOUND BY:** 42/43 on `0f01fc5`, `be4a6b98`, `dfeddc15`, and `c766c24`.
-    **WHY MISSED:** the harness eventually installed neutral suite controllers before boot, but
-    the per-test tracked-rig simulator still created a second left/right pair after boot and always
-    forced a canonical action-asset disable/enable cycle. That duplicated the platform lifecycle
-    and raced the production input-mutation guard even though the pre-boot bindings were already
-    healthy. **CLASS:** a test double recreates an already-satisfied platform dependency and
-    mutates production-owned state a second time. **SYSTEM CHANGE:** neutral suite devices preserve
-    the Quest ordering; `InputSessionSceneLatchCore` enforces one consolidation per scene handle;
-    `RecoveryGoldenPerformanceRouteTests` installs the simulator immediately after `_Boot`; and
-    `RecoveryActualRigControllerSimulation` now borrows the pre-boot pair, validates existing
-    bilateral bindings, skips healthy asset refresh/removal, and owns only missing fallback devices.
-    The zero-settle-failure route assertion requires exact 43/43 closure (→ pending CI verification).
+    cold `_Boot`. **FOUND BY:** 42/43 on `0f01fc5`, `be4a6b98`, `dfeddc15`, `c766c24`, and
+    `77870ebc`. **WHY MISSED:** the harness first reconstructed controller availability too late,
+    then duplicated the pre-boot pair; after those ordering errors were removed, the `77870ebc`
+    artifact proved the remaining distinction: all eight locomotion actions had the correct
+    bilateral controls, but one fresh no-domain-reload Input System state was still unreadable.
+    Later route tests inherited the naturally repaired state and passed, so counting bindings
+    falsely looked equivalent to proving readable input. **CLASS:** structural input binding
+    evidence mistaken for executable/readable input state on first use. **SYSTEM CHANGE:** neutral
+    suite devices preserve Quest ordering; `InputSessionSceneLatchCore` enforces one consolidation
+    per scene handle; `RecoveryActualRigControllerSimulation` reuses the pre-boot pair; and the
+    test-only `RecoveryHeadlessInputReadabilityRepair` now probes every bound Move/Turn action when
+    the actual-rig simulator comes online, quiesces locomotion readers, resets only actions that
+    throw, preserves enabled state, and fails loudly unless all eight are readable before NEW GAME.
+    Production input policy and its fail-closed settle guard remain unchanged. The route assertion
+    still requires exact 43/43 closure (→ pending CI verification).
 12. **WHAT:** adding a new improvement round created duplicate matching recipes because the
     resolver assumed history would be destructively replaced. **FOUND BY:** Round 3 recipe
     integration review. **WHY MISSED:** Round 2 proved currentness but not successive-round
