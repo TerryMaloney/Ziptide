@@ -27,6 +27,33 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-20 (rb65) — Fable 5: 🏙 THE CITY HAS A FACE — all six K-levels approved in one batch + city visual spec (docs + reference images only)
+
+- **Did:** Terry delivered the ENTIRE city concept kit same-day: K1 aerial master (concentric
+  canal city on tidal flats — tower island center, ring+radial canals, breached sea wall,
+  harbor breakwater S, wreck/stilt outskirts, THE GATE PILLARS on the NE horizon) · K2
+  skyline approach (the W000→W001 arrival frame — swap the plane for our ship) · K3 street
+  canyon (the Stage A mood target: lantern rhythm ≈ our practicals spacing, 3-warmth windows,
+  fog-swallowed distance) · K4 six-facade kit sheet (concrete frame + corrugated infill
+  base/middle/cap grammar; **NUMBERED DOORS adopted as city wayfinding vocab** ⚖; noise
+  flagged: real-world script → alien glyphs, ignore person/cat) · K5 outskirts ring (the
+  FLYABLE surround; **glowing green tide pools = new adopted dressing motif**; sunset variant
+  = second lighting act evidence) · K6 berth district — **with the SCRAPPER moored and
+  consistent** (nano banana held the ship design across generations!), dockmaster shack
+  included → K6 = title-menu berth + first-hour stage + C6 in ONE image. Bonus 8th image:
+  ship-context 4-panel incl. **CAB POV** (S4 framing reference; engine quincunx lit = thrust
+  glow reference). All stored (`concepts/toxic_city_kit/`, ship folder for the 4-panel);
+  **`CITY_VISUAL_SPEC.md`** written: layout-data translation (radial-ring graph for
+  CityLayoutDefinition), skyline/palette bands, street grammar, kit measurements, berth
+  staging, noise flags. Queue updated: C8 ✅, C4+C6 satisfied by the batch; remaining: C2
+  gate · C3 Warden capital · C5 artifact key · S4/S5 interiors.
+- **📣 GPT (city Stage A):** K3/K4 + spec §3/§4 are your visual reference when the sprint
+  fires — the Stage A verdict test is written in §3 ("the built street should read like K3
+  squinted").
+- **Next:** Terry: remaining queue items whenever; ⚖ numbered-doors adoption + district
+  count (5 vs 6) at layout time.
+- **Commit:** this one (docs + 7 reference images).
+
 ### 2026-07-20 (rb64) — Fable 5: ⛵ tide skiff approved + 🏙 THE CITY CONCEPT KIT plan (docs + reference images only)
 
 - **Did:** ① Terry's skiff keepers stored (`concepts/skiff_tide_mk1/`) — the no-propeller

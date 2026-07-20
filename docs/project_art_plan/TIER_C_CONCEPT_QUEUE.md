@@ -99,6 +99,12 @@ reservation noted — treat as v1 canon, refinable; full visual spec deferred to
 (the ship-spec pattern applies when a session builds `skiff_tide_mk1`). Extra value: the
 canal hero shot doubles as the first K3 street-level architecture reference below.
 
+> **✅ C8 COMPLETE SAME-DAY (2026-07-20):** Terry delivered ALL SIX K-levels in one batch +
+> a bonus ship-context 4-panel with CAB POV. Keepers at `concepts/toxic_city_kit/`; measured
+> spec: **`CITY_VISUAL_SPEC.md`**. Also satisfied by this batch: **C4 (tower — K1/K2/K5 agree
+> on its silhouette)** and **C6 (dockmaster shack — in K6)**. Remaining queue: C2 gate
+> close-up · C3 Warden capital · C5 artifact key · ship S4 (dedicated cockpit) + S5 quarters.
+
 ## §2b — C8 · THE TOXIC CITY CONCEPT KIT (the city AS concept — Terry-commissioned 2026-07-20)
 
 A city isn't one image — it's SIX ZOOM LEVELS, and each level feeds a different system.
