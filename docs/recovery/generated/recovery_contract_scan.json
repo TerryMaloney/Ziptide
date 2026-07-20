@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-20T00:57:19.878734+00:00",
+  "generatedAtUtc": "2026-07-20T01:05:57.711675+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -13493,7 +13493,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/ToxicCityStageAIntegrationTests.cs",
-      "line": 75,
+      "line": 78,
       "symbol": "Ziptide.Tests.EditMode.ToxicCityStageAIntegrationTests",
       "snippet": "GameObject facade = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -16436,7 +16436,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/ToxicCityStageAIntegrationTests.cs",
-      "line": 28,
+      "line": 30,
       "symbol": "Ziptide.Tests.EditMode.ToxicCityStageAIntegrationTests",
       "snippet": "city = new GameObject(\"__TEST_CITY_ROOT\");"
     },
@@ -16445,7 +16445,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/ToxicCityStageAIntegrationTests.cs",
-      "line": 29,
+      "line": 31,
       "symbol": "Ziptide.Tests.EditMode.ToxicCityStageAIntegrationTests",
       "snippet": "var district = new GameObject(\"District_Test\");"
     },

@@ -2287,9 +2287,9 @@ None.
 
 - Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`
 - Paths: `Ziptide/Assets/Ziptide/Tests/EditMode/ToxicCityStageAIntegrationTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/EditMode/ToxicCityStageAIntegrationTests.cs:28` **NEW_GAME_OBJECT** — `city = new GameObject("__TEST_CITY_ROOT");`
-  - `Ziptide/Assets/Ziptide/Tests/EditMode/ToxicCityStageAIntegrationTests.cs:29` **NEW_GAME_OBJECT** — `var district = new GameObject("District_Test");`
-  - `Ziptide/Assets/Ziptide/Tests/EditMode/ToxicCityStageAIntegrationTests.cs:75` **CREATE_PRIMITIVE** — `GameObject facade = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/ToxicCityStageAIntegrationTests.cs:30` **NEW_GAME_OBJECT** — `city = new GameObject("__TEST_CITY_ROOT");`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/ToxicCityStageAIntegrationTests.cs:31` **NEW_GAME_OBJECT** — `var district = new GameObject("District_Test");`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/ToxicCityStageAIntegrationTests.cs:78` **CREATE_PRIMITIVE** — `GameObject facade = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 
 ### `Ziptide.Tests.EditMode.UiReadabilityAuditRulesTests` — 4 signal(s)
 

@@ -10779,21 +10779,21 @@
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Tests/EditMode/ToxicCityStageAIntegrationTests.cs",
-            "line": 28,
+            "line": 30,
             "symbol": "Ziptide.Tests.EditMode.ToxicCityStageAIntegrationTests",
             "snippet": "city = new GameObject(\"__TEST_CITY_ROOT\");"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Tests/EditMode/ToxicCityStageAIntegrationTests.cs",
-            "line": 29,
+            "line": 31,
             "symbol": "Ziptide.Tests.EditMode.ToxicCityStageAIntegrationTests",
             "snippet": "var district = new GameObject(\"District_Test\");"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Tests/EditMode/ToxicCityStageAIntegrationTests.cs",
-            "line": 75,
+            "line": 78,
             "symbol": "Ziptide.Tests.EditMode.ToxicCityStageAIntegrationTests",
             "snippet": "GameObject facade = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           }
