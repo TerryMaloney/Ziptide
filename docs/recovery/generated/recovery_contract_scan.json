@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-20T19:44:50.231927+00:00",
+  "generatedAtUtc": "2026-07-20T19:57:37.755410+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -9,10 +9,10 @@
     "Ziptide/Assets/ZiptideNet"
   ],
   "scannedFiles": 720,
-  "findingCount": 2523,
+  "findingCount": 2525,
   "categoryCounts": {
     "bootstrap": 36,
-    "diagnostics": 561,
+    "diagnostics": 563,
     "events": 64,
     "fallback_debt": 154,
     "global_render": 81,
@@ -57,7 +57,7 @@
     "XRI_MANAGER_LOOKUP": 42,
     "XR_INTERACTABLE_COMPONENT": 65,
     "XR_UI_INPUT_MODULE": 2,
-    "ZIPTIDE_LOG_TAG": 561
+    "ZIPTIDE_LOG_TAG": 563
   },
   "findings": [
     {
@@ -362,7 +362,7 @@
       "code": "RUNTIME_BOOTSTRAP",
       "description": "RuntimeInitializeOnLoadMethod bootstrap",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs",
-      "line": 32,
+      "line": 34,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair",
       "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]"
     },
@@ -4898,7 +4898,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs",
-      "line": 29,
+      "line": 30,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair",
       "snippet": "private const string SimulatorReadyPrefix = \"ZIPTIDE: RECOVERY_TRACKED_RIG_SIM\";"
     },
@@ -4907,7 +4907,16 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs",
-      "line": 38,
+      "line": 31,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair",
+      "snippet": "private const string InputMutationCompletePrefix = \"ZIPTIDE: XRI_WIRING\";"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs",
+      "line": 40,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair",
       "snippet": "Debug.Log(\"ZIPTIDE: RECOVERY_HEADLESS_XR_READABILITY_ARMED\");"
     },
@@ -4916,7 +4925,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs",
-      "line": 62,
+      "line": 56,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair",
       "snippet": "Debug.LogError(\"ZIPTIDE: RECOVERY_HEADLESS_XR_READABILITY_FAIL reason=missing_virtual_hands\");"
     },
@@ -4925,9 +4934,9 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs",
-      "line": 79,
+      "line": 91,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair",
-      "snippet": "Debug.LogError(\"ZIPTIDE: RECOVERY_HEADLESS_XR_READABILITY_FAIL reason=missing_actions count=\""
+      "snippet": "Debug.LogError(\"ZIPTIDE: RECOVERY_HEADLESS_XR_READABILITY_FAIL boundary=\""
     },
     {
       "category": "diagnostics",
@@ -4936,34 +4945,43 @@
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs",
       "line": 97,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair",
-      "snippet": "Debug.Log(\"ZIPTIDE: RECOVERY_HEADLESS_XR_ACTION_REPAIR action=\""
+      "snippet": "Debug.Log(\"ZIPTIDE: RECOVERY_HEADLESS_XR_READABILITY_DEFER boundary=\""
     },
     {
       "category": "diagnostics",
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs",
-      "line": 103,
+      "line": 117,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair",
-      "snippet": "Debug.LogError(\"ZIPTIDE: RECOVERY_HEADLESS_XR_READABILITY_FAIL action=\""
+      "snippet": "Debug.Log(\"ZIPTIDE: RECOVERY_HEADLESS_XR_ACTION_REPAIR boundary=\""
     },
     {
       "category": "diagnostics",
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs",
-      "line": 124,
+      "line": 125,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair",
-      "snippet": "Debug.LogError(\"ZIPTIDE: RECOVERY_HEADLESS_XR_READABILITY_FAIL action=\""
+      "snippet": "Debug.LogError(\"ZIPTIDE: RECOVERY_HEADLESS_XR_READABILITY_FAIL boundary=\""
     },
     {
       "category": "diagnostics",
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs",
-      "line": 131,
+      "line": 146,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair",
-      "snippet": "Debug.Log(\"ZIPTIDE: RECOVERY_HEADLESS_XR_READABILITY_OK actions=\" + actions.Count"
+      "snippet": "Debug.LogError(\"ZIPTIDE: RECOVERY_HEADLESS_XR_READABILITY_FAIL boundary=\""
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs",
+      "line": 154,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair",
+      "snippet": "Debug.Log(\"ZIPTIDE: RECOVERY_HEADLESS_XR_READABILITY_OK boundary=\" + boundary"
     },
     {
       "category": "diagnostics",
@@ -9407,7 +9425,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs",
-      "line": 87,
+      "line": 107,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair",
       "snippet": "InputAction action = actions[i];"
     },
@@ -9416,7 +9434,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs",
-      "line": 116,
+      "line": 138,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair",
       "snippet": "InputAction action = actions[i];"
     },
@@ -9425,7 +9443,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs",
-      "line": 145,
+      "line": 169,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair",
       "snippet": "private static List<InputAction> CollectLocomotionActions()"
     },
@@ -9434,7 +9452,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs",
-      "line": 147,
+      "line": 171,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair",
       "snippet": "var actions = new List<InputAction>();"
     },
@@ -9443,7 +9461,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs",
-      "line": 148,
+      "line": 172,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair",
       "snippet": "var seen = new HashSet<InputAction>();"
     },
@@ -9452,7 +9470,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs",
-      "line": 149,
+      "line": 173,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair",
       "snippet": "foreach (InputActionManager manager in UnityEngine.Object.FindObjectsOfType<InputActionManager>(true))"
     },
@@ -9461,7 +9479,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs",
-      "line": 152,
+      "line": 176,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair",
       "snippet": "foreach (InputActionAsset asset in manager.actionAssets)"
     },
@@ -9470,7 +9488,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs",
-      "line": 157,
+      "line": 181,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair",
       "snippet": "foreach (InputAction action in map.actions)"
     },
@@ -9479,7 +9497,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs",
-      "line": 170,
+      "line": 194,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair",
       "snippet": "private static bool IsLocomotionAction(InputAction action)"
     },
@@ -9488,7 +9506,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs",
-      "line": 177,
+      "line": 201,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair",
       "snippet": "private static bool ReadsExpectedValue(InputAction action, out string reason)"
     },
@@ -9497,7 +9515,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs",
-      "line": 195,
+      "line": 219,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair",
       "snippet": "private static string ExpectedValueType(InputAction action)"
     },
@@ -9506,7 +9524,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs",
-      "line": 198,
+      "line": 222,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair",
       "snippet": "private static int CountVirtualControls(InputAction action)"
     },
@@ -9515,7 +9533,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs",
-      "line": 220,
+      "line": 244,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair",
       "snippet": "private static string ActionPath(InputAction action)"
     },

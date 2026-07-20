@@ -896,7 +896,7 @@
       {
         "kind": "EVENT_UNSUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs",
-        "line": 35,
+        "line": 37,
         "owner": "Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair",
         "target": "Application.logMessageReceived",
         "detail": "OnLogMessage",
@@ -905,7 +905,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs",
-        "line": 36,
+        "line": 38,
         "owner": "Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair",
         "target": "Application.logMessageReceived",
         "detail": "OnLogMessage",
@@ -13423,7 +13423,7 @@
     {
       "kind": "EVENT_UNSUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs",
-      "line": 35,
+      "line": 37,
       "owner": "Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair",
       "target": "Application.logMessageReceived",
       "detail": "OnLogMessage",
@@ -13432,7 +13432,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs",
-      "line": 36,
+      "line": 38,
       "owner": "Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair",
       "target": "Application.logMessageReceived",
       "detail": "OnLogMessage",
