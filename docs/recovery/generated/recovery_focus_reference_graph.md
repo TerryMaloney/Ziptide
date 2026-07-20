@@ -1,6 +1,6 @@
 # ZIPTIDE Focused Recovery Reference Graph
 
-- Scanned C# files: **709**
+- Scanned C# files: **710**
 - Focused references: **396**
 
 ## melee
@@ -47,6 +47,7 @@
 
 ### `MeleeWeaponRuntime`
 
+- **reference** · `Ziptide.Editor.Audit.WeaponPerceptualAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs:28` — `bool melee = item.GetComponent<MeleeWeaponRuntime>() != null;`
 - **reference** · `Ziptide.Gameplay.ItemFactory` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:454` — `case ArenaWeaponKind.TidePike: go.AddComponent<MeleeWeaponRuntime>(); break;`
 - **reference** · `Ziptide.Gameplay.GunLaserSight` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:10` — `/// MeleeWeaponRuntime is present instead of painting a misleading laser down a sword or pike.`
 - **reference** · `Ziptide.Gameplay.GunLaserSight` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:41` — `if (GetComponent<MeleeWeaponRuntime>() == null) return false;`
@@ -55,17 +56,16 @@
 ### `Muzzle`
 
 - **reference** · `Ziptide.Content.ItemDefinition` · `Ziptide/Assets/Ziptide/Content/Runtime/Items/ItemDefinition.cs:43` — `[Tooltip("Muzzle point (local). Zero = factory default. Bolts/rays originate here.")]`
-- **reference** · `Ziptide.Editor.Audit.WeaponPerceptualAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs:9` — `/// PG-1: judges scene-authored weapons from their final visible hierarchy, collider and Grip/Muzzle`
-- **reference** · `Ziptide.Editor.Audit.WeaponPerceptualAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs:19` — `public const string MuzzleDistance = "WEAPON_MUZZLE_DISTANCE_INVALID";`
-- **reference** · `Ziptide.Editor.Audit.WeaponPerceptualAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs:27` — `bool hasMuzzle = item.transform.Find("Muzzle") != null;`
-- **reference** · `Ziptide.Editor.Audit.WeaponPerceptualAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs:28` — `bool knownWeapon = hasMuzzle`
-- **reference** · `Ziptide.Editor.Audit.WeaponPerceptualAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs:64` — `Transform muzzle = weapon.transform.Find("Muzzle");`
-- **reference** · `Ziptide.Editor.Audit.WeaponPerceptualAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs:67` — `Vector3 gripToMuzzle = muzzle.position - grip.position;`
-- **reference** · `Ziptide.Editor.Audit.WeaponPerceptualAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs:68` — `float distance = gripToMuzzle.magnitude;`
-- **reference** · `Ziptide.Editor.Audit.WeaponPerceptualAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs:70` — `report.Blocker(MuzzleDistance,`
-- **reference** · `Ziptide.Editor.Audit.WeaponPerceptualAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs:71` — `path + " Grip→Muzzle distance is " + distance.ToString("F3")`
-- **reference** · `Ziptide.Editor.Audit.WeaponPerceptualAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs:75` — `float forwardDot = Vector3.Dot(grip.forward.normalized, gripToMuzzle.normalized);`
-- **reference** · `Ziptide.Editor.Audit.WeaponPerceptualAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs:78` — `path + " Grip forward and Grip→Muzzle direction dot="`
+- **reference** · `Ziptide.Editor.Audit.WeaponPerceptualAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs:20` — `public const string MuzzleDistance = "WEAPON_MUZZLE_DISTANCE_INVALID";`
+- **reference** · `Ziptide.Editor.Audit.WeaponPerceptualAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs:29` — `bool hasMuzzle = item.transform.Find("Muzzle") != null;`
+- **reference** · `Ziptide.Editor.Audit.WeaponPerceptualAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs:30` — `bool knownWeapon = melee || hasMuzzle`
+- **reference** · `Ziptide.Editor.Audit.WeaponPerceptualAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs:69` — `Transform muzzle = weapon.transform.Find("Muzzle");`
+- **reference** · `Ziptide.Editor.Audit.WeaponPerceptualAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs:72` — `Vector3 gripToMuzzle = muzzle.position - grip.position;`
+- **reference** · `Ziptide.Editor.Audit.WeaponPerceptualAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs:73` — `float distance = gripToMuzzle.magnitude;`
+- **reference** · `Ziptide.Editor.Audit.WeaponPerceptualAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs:81` — `report.Blocker(MuzzleDistance,`
+- **reference** · `Ziptide.Editor.Audit.WeaponPerceptualAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs:82` — `path + " Grip→Muzzle distance is " + distance.ToString("F3")`
+- **reference** · `Ziptide.Editor.Audit.WeaponPerceptualAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs:88` — `float forwardDot = Vector3.Dot(grip.forward.normalized, gripToMuzzle.normalized);`
+- **reference** · `Ziptide.Editor.Audit.WeaponPerceptualAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs:91` — `path + " Grip forward and Grip→Muzzle direction dot="`
 - **reference** · `Ziptide.Editor.Patching.ForgeRecipeLibrary` · `Ziptide/Assets/Ziptide/Editor/Patching/ForgeRecipeLibrary.cs:730` — `name = "MuzzleRing", op = ForgeOp.Tube, segments = 10, wallThickness = 0.007f,`
 - **reference** · `Ziptide.Editor.Patching.ForgeRecipeLibrary` · `Ziptide/Assets/Ziptide/Editor/Patching/ForgeRecipeLibrary.cs:775` — `new ForgeSocket { name = "Muzzle", localPosition = new Vector3(0f, 0.012f, 0.125f), localEuler = Vector3.zero },`
 - **reference** · `Ziptide.Editor.Patching.ForgeRecipeLibrary` · `Ziptide/Assets/Ziptide/Editor/Patching/ForgeRecipeLibrary.cs:914` — `new ForgePart { name = "MuzzleRing", op = ForgeOp.Tube, segments = 10, wallThickness = 0.004f,`

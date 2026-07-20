@@ -1,6 +1,6 @@
 # ZIPTIDE R0 Ownership Maps
 
-- Scanned files: **709**
+- Scanned files: **710**
 - Scanner findings: **2466**
 - Inventory systems: **22**
 
