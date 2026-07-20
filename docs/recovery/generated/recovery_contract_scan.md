@@ -1,7 +1,7 @@
 # ZIPTIDE Recovery Contract Scan
 
 - Scanned files: **710**
-- Findings: **2471**
+- Findings: **2474**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
@@ -9,7 +9,7 @@
 | Category | Count |
 |---|---:|
 | `bootstrap` | 35 |
-| `diagnostics` | 545 |
+| `diagnostics` | 548 |
 | `events` | 64 |
 | `fallback_debt` | 148 |
 | `global_render` | 81 |
@@ -549,12 +549,15 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBuildProfileTests.cs:91` · `Ziptide.Tests.PlayMode.RecoveryBuildProfileTests` — ZIPTIDE diagnostic tag. `StringAssert.Contains("ZIPTIDE: BUILD_PROFILE profile=GoldenSlice", smokeScript);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBuildProfileTests.cs:92` · `Ziptide.Tests.PlayMode.RecoveryBuildProfileTests` — ZIPTIDE diagnostic tag. `StringAssert.Contains("ZIPTIDE: RECOVERY_EXPOSURE buildProfile=GoldenSlice profile=GoldenSlice", smokeScript);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAudit.cs:179` · `Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceReport` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RECOVERY_FALLBACK_SURFACE_OK label=" + label`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:138` · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` — ZIPTIDE diagnostic tag. `Assert.AreEqual(0, CountLogs("ZIPTIDE: TRAVEL_FAIL"));`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:139` · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` — ZIPTIDE diagnostic tag. `Assert.AreEqual(0, CountLogs("ZIPTIDE: XRI_NOT_READY"));`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:140` · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` — ZIPTIDE diagnostic tag. `Assert.AreEqual(0, CountLogs("ZIPTIDE: RECOVERY_VIRTUAL_XR_READ_FAIL"));`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:171` · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` — ZIPTIDE diagnostic tag. `if (CountLogs("ZIPTIDE: TRAVEL_FAIL") > 0) break;`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:239` · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` — ZIPTIDE diagnostic tag. `"ZIPTIDE: RECOVERY_INPUT_OWNERSHIP_OK anchorsDisabled=4 snapTurnReadable=2");`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:248` · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` — ZIPTIDE diagnostic tag. `string prefix = "ZIPTIDE: HEALTH_SWEEP scene=" + sceneName;`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:145` · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` — ZIPTIDE diagnostic tag. `Assert.AreEqual(0, CountLogs("ZIPTIDE: TRAVEL_FAIL"));`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:146` · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` — ZIPTIDE diagnostic tag. `Assert.AreEqual(0, CountLogs("ZIPTIDE: XRI_NOT_READY"));`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:147` · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` — ZIPTIDE diagnostic tag. `Assert.AreEqual(0, CountLogs("ZIPTIDE: RECOVERY_VIRTUAL_XR_READ_FAIL"));`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:148` · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` — ZIPTIDE diagnostic tag. `Assert.AreEqual(0, CountLogs("ZIPTIDE: INPUT_MUTATION_SETTLE_FAIL"),`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:177` · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` — ZIPTIDE diagnostic tag. `const string restoredPrefix = "ZIPTIDE: INPUT_MUTATION_READERS restored=";`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:178` · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` — ZIPTIDE diagnostic tag. `const string failurePrefix = "ZIPTIDE: INPUT_MUTATION_SETTLE_FAIL";`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:197` · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` — ZIPTIDE diagnostic tag. `if (CountLogs("ZIPTIDE: TRAVEL_FAIL") > 0) break;`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:265` · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` — ZIPTIDE diagnostic tag. `"ZIPTIDE: RECOVERY_INPUT_OWNERSHIP_OK anchorsDisabled=4 snapTurnReadable=2");`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:274` · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` — ZIPTIDE diagnostic tag. `string prefix = "ZIPTIDE: HEALTH_SWEEP scene=" + sceneName;`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenTravelVisualCapture.cs:43` · `Ziptide.Tests.PlayMode.RecoveryGoldenTravelVisualCapture` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RECOVERY_GOLDEN_VISUAL_CAPTURE_READY");`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenTravelVisualCapture.cs:53` · `Ziptide.Tests.PlayMode.RecoveryGoldenTravelVisualCapture` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RECOVERY_GOLDEN_VISUAL_PENDING dest=" + destination);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenTravelVisualCapture.cs:109` · `Ziptide.Tests.PlayMode.RecoveryGoldenTravelVisualCapture` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RECOVERY_GOLDEN_VISUAL_OK dest=" + destination`
@@ -1045,11 +1048,11 @@
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:90` · `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` — Input System action reference. `inputManager = UnityEngine.Object.FindObjectOfType<InputActionManager>();`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:100` · `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` — Input System action reference. `Assert.IsNotNull(inputManager, "The actual _Boot scene has no InputActionManager.");`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:114` · `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` — Input System action reference. `Assert.AreEqual(1, ActiveManagerCount(settled, "InputActionManager"));`
-- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:188` · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` — Input System action reference. `InputActionManager inputManager = manager.GetComponent<InputActionManager>();`
-- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:190` · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` — Input System action reference. `"The canonical interaction manager lost its InputActionManager after travel.");`
-- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:196` · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` — Input System action reference. `var seen = new HashSet<InputAction>();`
-- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:197` · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` — Input System action reference. `foreach (InputActionAsset asset in inputManager.actionAssets)`
-- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:202` · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` — Input System action reference. `foreach (InputAction action in map.actions)`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:214` · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` — Input System action reference. `InputActionManager inputManager = manager.GetComponent<InputActionManager>();`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:216` · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` — Input System action reference. `"The canonical interaction manager lost its InputActionManager after travel.");`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:222` · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` — Input System action reference. `var seen = new HashSet<InputAction>();`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:223` · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` — Input System action reference. `foreach (InputActionAsset asset in inputManager.actionAssets)`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:228` · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` — Input System action reference. `foreach (InputAction action in map.actions)`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:18` · `Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests` — Input System action reference. `private readonly List<InputActionAsset> _assets = new List<InputActionAsset>();`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:52` · `Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests` — Input System action reference. `InputActionManager primary = primaryHost.AddComponent<InputActionManager>();`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:53` · `Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests` — Input System action reference. `InputActionAsset primaryAsset = CreateAsset("PrimaryAsset", "PrimaryAction");`
@@ -2310,8 +2313,8 @@
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/EditMode/WorldGatingTests.cs:95` · `Ziptide.Tests.EditMode.WorldGatingTests` — PlayerProfile reference. `var profile = new PlayerProfile();`
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/EditMode/WorldGatingTests.cs:107` · `Ziptide.Tests.EditMode.WorldGatingTests` — PlayerProfile reference. `var profile = new PlayerProfile();`
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/EditMode/ZiplineSignalTests.cs:152` · `Ziptide.Tests.EditMode.ZiplineSignalTests` — PlayerProfile reference. `StringAssert.DoesNotContain("PlayerProfile", source);`
-- **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:41` · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` — PlayerProfile reference. `private PlayerProfile _newGameProfile;`
-- **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:343` · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` — PlayerProfile reference. `private void OnNewGameProfileCreated(PlayerProfile profile) => _newGameProfile = profile;`
+- **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:42` · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` — PlayerProfile reference. `private PlayerProfile _newGameProfile;`
+- **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:369` · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` — PlayerProfile reference. `private void OnNewGameProfileCreated(PlayerProfile profile) => _newGameProfile = profile;`
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:40` · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` — PlayerProfile reference. `private PlayerProfile _newGameProfile;`
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:132` · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` — PlayerProfile reference. `PlayerProfile live = SaveSystem.Instance.Profile;`
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:370` · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` — PlayerProfile reference. `PlayerProfile profile = SaveSystem.Instance.Profile;`
@@ -2411,8 +2414,8 @@
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/EditMode/WristScannerResultTests.cs:205` · `Ziptide.Tests.EditMode.WristScannerResultTests` — SaveSystem reference. `StringAssert.DoesNotContain("SaveSystem", source);`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/EditMode/ZiplineSignalTests.cs:153` · `Ziptide.Tests.EditMode.ZiplineSignalTests` — SaveSystem reference. `StringAssert.DoesNotContain("SaveSystem", source);`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:34` · `Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests` — SaveSystem reference. `_saveBackup = RecoverySaveFileBackup.CaptureAndClear(SaveSystem.SavePath);`
-- **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:46` · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` — SaveSystem reference. `_saveBackup = RecoverySaveFileBackup.CaptureAndClear(SaveSystem.SavePath);`
-- **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:85` · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` — SaveSystem reference. `Assert.IsFalse(SaveSystem.HasExistingProfile,`
+- **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:47` · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` — SaveSystem reference. `_saveBackup = RecoverySaveFileBackup.CaptureAndClear(SaveSystem.SavePath);`
+- **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:86` · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` — SaveSystem reference. `Assert.IsFalse(SaveSystem.HasExistingProfile,`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoverySaveFileBackup.cs:10` · `Ziptide.Tests.PlayMode.RecoverySaveFileBackup` — SaveSystem reference. `/// must be allowed to exercise SaveSystem's real persistentDataPath without destroying a local`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:57` · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` — SaveSystem reference. `_saveBackup = RecoverySaveFileBackup.CaptureAndClear(SaveSystem.SavePath);`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:95` · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` — SaveSystem reference. `Assert.IsFalse(SaveSystem.HasExistingProfile,`
@@ -2434,7 +2437,7 @@
 - **DIRECT_SCENE_LOAD_ASYNC** — `Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourTravelSignalTests.cs:134` · `Ziptide.Tests.EditMode.FirstHourTravelSignalTests` — Direct asynchronous scene load. `int asyncLoad = source.IndexOf("SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);");`
 - **DIRECT_SCENE_LOAD_ASYNC** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:64` · `Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests` — Direct asynchronous scene load. `AsyncOperation bootLoad = SceneManager.LoadSceneAsync(`
 - **DIRECT_SCENE_LOAD_ASYNC** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:67` · `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` — Direct asynchronous scene load. `AsyncOperation load = SceneManager.LoadSceneAsync(`
-- **DIRECT_SCENE_LOAD_ASYNC** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:145` · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` — Direct asynchronous scene load. `AsyncOperation load = SceneManager.LoadSceneAsync(`
+- **DIRECT_SCENE_LOAD_ASYNC** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:154` · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` — Direct asynchronous scene load. `AsyncOperation load = SceneManager.LoadSceneAsync(`
 - **DIRECT_SCENE_LOAD_ASYNC** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:185` · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` — Direct asynchronous scene load. `AsyncOperation load = SceneManager.LoadSceneAsync(`
 ### xri_ownership
 
