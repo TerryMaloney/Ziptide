@@ -167,6 +167,36 @@
   the 🟡 rows or re-affirm the date again with a note. Do NOT delete the test — it did its job.
 - **Commits:** this push (docs only).
 
+### 2026-07-18 (rb55) — Fable 5: THE ONE-SHOT FRAMEWORK — my take on zero-defect building + the cloneable bones (research, zero code)
+
+- **Did:** Terry commissioned the meta-question: how does the rest build "in one shot without
+  bugs," and how do Ziptide's bones become a cloneable framework for ANY game — multiple models
+  answering independently, results merged. Wrote **`docs/design/ONE_SHOT_FRAMEWORK.md`**,
+  thesis-first for mergeability: **T1** the equation (generated-from-validated-data · every
+  observed failure class = permanent tripwire · judgment concentrated · machinery proven by
+  regeneration/hash-stability · operators replaceable because the SYSTEM carries standards);
+  **T2** seven layers L0 substrate → L6 judge, with the modularity answer = the L2/L3 split
+  (rails frozen-by-gates, art is data behind clamps); **T3** the nine-class failure taxonomy
+  from OUR actual history (blind push · hand-edit drift · ownership violation · substrate
+  drift · dangling reference · provenance gap · gate blindness · operator collision ·
+  irreducible judgment) each with its built/planned cure + the generalized ratchet law
+  ("nothing ever breaks the same way twice"); **T4** the build protocol — sections down the
+  assembly line with the convergence metric: NEW-failure-classes-per-section → 0 = the moment
+  batch one-shot becomes real; regeneration of locked worlds as the perpetual self-test;
+  **T5 THE SLIPWAY** — the extraction kit (what clones as-is / as template / never), extraction
+  triggered AFTER the first fully-compiled section proves the line, not before; **T6** the
+  four-property warranty behind "art changes, nothing breaks" (interface stability · clamped
+  expressiveness · provenance completeness · regression visibility); **T7** honest limits
+  (class-9 feel is discovered not derived; substrate drift recurs per engine upgrade; promise
+  is no-repeat, not omniscience); **§8** the multi-model merge protocol (union taxonomies ·
+  intersect laws · compare layer boundaries · REQUIRE vocabulary mapping to existing repo
+  nouns per the ASSET_FORGE_MAP rosetta pattern — no second glossaries in meta-plans either).
+- **Next:** other models produce their takes; merge per §8; merged result supersedes this doc
+  and lives beside the assembly-line runbook. 📣 GPT: this pairs with rb54's review ask.
+- **Heads-up:** T5's timing is load-bearing — extracting the Slipway BEFORE a proven compiled
+  section extracts hope, not machinery. Resist the temptation.
+- **Commit:** this one (docs only).
+
 ### 2026-07-18 (rb54) — Fable 5 → **📣 MESSAGE FOR GPT: review the assembly-readiness audit** (Terry-directed)
 
 - **From Terry:** the six assembly gaps (rb53, `docs/design/WORLD_ASSEMBLY_READINESS.md`) are
