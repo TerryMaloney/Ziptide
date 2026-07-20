@@ -2,7 +2,7 @@
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
   "scannedFiles": 710,
-  "findingCount": 2468,
+  "findingCount": 2470,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -4741,7 +4741,7 @@
       },
       {
         "owner": "Ziptide.Editor.Patching.ToxicCityVehicleBuilder",
-        "evidenceCount": 9,
+        "evidenceCount": 11,
         "codes": [
           "CREATE_PRIMITIVE",
           "NEW_GAME_OBJECT",
@@ -4756,63 +4756,77 @@
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs",
-            "line": 30,
+            "line": 39,
             "symbol": "Ziptide.Editor.Patching.ToxicCityVehicleBuilder",
             "snippet": "Transform root = new GameObject(RootName).transform;"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs",
-            "line": 57,
+            "line": 66,
             "symbol": "Ziptide.Editor.Patching.ToxicCityVehicleBuilder",
             "snippet": "Transform bay = new GameObject(\"VehicleBay_\" + id).transform;"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs",
-            "line": 61,
+            "line": 70,
             "symbol": "Ziptide.Editor.Patching.ToxicCityVehicleBuilder",
             "snippet": "GameObject pad = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs",
-            "line": 76,
+            "line": 85,
             "symbol": "Ziptide.Editor.Patching.ToxicCityVehicleBuilder",
             "snippet": "GameObject vehicle = new GameObject(\"Vehicle_\" + id);"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs",
-            "line": 82,
+            "line": 92,
             "symbol": "Ziptide.Editor.Patching.ToxicCityVehicleBuilder",
             "snippet": "GameObject label = new GameObject(\"BayLabel\");"
           },
           {
             "code": "TEXTMESH_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs",
-            "line": 85,
+            "line": 95,
             "symbol": "Ziptide.Editor.Patching.ToxicCityVehicleBuilder",
             "snippet": "TextMesh text = label.AddComponent<TextMesh>();"
           },
           {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs",
+            "line": 117,
+            "symbol": "Ziptide.Editor.Patching.ToxicCityVehicleBuilder",
+            "snippet": "Transform preview = new GameObject(PreviewRootName).transform;"
+          },
+          {
+            "code": "CREATE_PRIMITIVE",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs",
+            "line": 163,
+            "symbol": "Ziptide.Editor.Patching.ToxicCityVehicleBuilder",
+            "snippet": "GameObject part = GameObject.CreatePrimitive(primitive);"
+          },
+          {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs",
-            "line": 97,
+            "line": 189,
             "symbol": "Ziptide.Editor.Patching.ToxicCityVehicleBuilder",
             "snippet": "Shader shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs",
-            "line": 98,
+            "line": 190,
             "symbol": "Ziptide.Editor.Patching.ToxicCityVehicleBuilder",
             "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
           },
           {
             "code": "RUNTIME_MATERIAL_CREATE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs",
-            "line": 99,
+            "line": 191,
             "symbol": "Ziptide.Editor.Patching.ToxicCityVehicleBuilder",
             "snippet": "material = new Material(shader) { name = \"VehiclePad_\" + ColorUtility.ToHtmlStringRGB(color) };"
           }

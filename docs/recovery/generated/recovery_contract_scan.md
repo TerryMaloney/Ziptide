@@ -1,7 +1,7 @@
 # ZIPTIDE Recovery Contract Scan
 
 - Scanned files: **710**
-- Findings: **2468**
+- Findings: **2470**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
@@ -16,7 +16,7 @@
 | `input` | 197 |
 | `materials` | 246 |
 | `persistence` | 18 |
-| `runtime_creation` | 659 |
+| `runtime_creation` | 661 |
 | `runtime_ui` | 127 |
 | `save_state` | 256 |
 | `scene_loading` | 9 |
@@ -130,7 +130,7 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageBSaveHook.cs:33` · `Ziptide.Editor.Patching.ToxicCityStageBSaveHook` — ZIPTIDE diagnostic tag. `Debug.LogError("ZIPTIDE: CITY_STAGE_B_HOOK_FAIL reason=missing_layout");`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageBSaveHook.cs:43` · `Ziptide.Editor.Patching.ToxicCityStageBSaveHook` — ZIPTIDE diagnostic tag. `Debug.LogError("ZIPTIDE: CITY_STAGE_B_HOOK_FAIL reason=missing_root root=" + rootName);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageBSaveHook.cs:48` · `Ziptide.Editor.Patching.ToxicCityStageBSaveHook` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: CITY_STAGE_B_HOOK districts=" + summary.Districts`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:49` · `Ziptide.Editor.Patching.ToxicCityVehicleBuilder` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: TOXIC_CITY_VEHICLES vehicles=" + summary.Vehicles`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:58` · `Ziptide.Editor.Patching.ToxicCityVehicleBuilder` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: TOXIC_CITY_VEHICLES vehicles=" + summary.Vehicles`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleSaveHook.cs:33` · `Ziptide.Editor.Patching.ToxicCityVehicleSaveHook` — ZIPTIDE diagnostic tag. `Debug.LogError("ZIPTIDE: TOXIC_CITY_VEHICLE_HOOK_FAIL reason=missing_layout");`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleSaveHook.cs:43` · `Ziptide.Editor.Patching.ToxicCityVehicleSaveHook` — ZIPTIDE diagnostic tag. `Debug.LogError("ZIPTIDE: TOXIC_CITY_VEHICLE_HOOK_FAIL reason=missing_root root=" + rootName);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleSaveHook.cs:48` · `Ziptide.Editor.Patching.ToxicCityVehicleSaveHook` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: TOXIC_CITY_VEHICLE_HOOK vehicles=" + summary.Vehicles`
@@ -1131,7 +1131,7 @@
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Editor/Patching/SignRecipeLibrary.cs:159` · `Ziptide.Editor.Patching.SignRecipeLibrary` — Runtime Material allocation. `var material = new Material(shader)`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityRiverBuilder.cs:201` · `Ziptide.Editor.Patching.ToxicCityRiverBuilder` — Runtime Material allocation. `var material = new Material(shader) { name = "ToxicRiver_" + slot };`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageB.cs:233` · `Ziptide.Editor.Patching.ToxicCityStageB` — Runtime Material allocation. `material = new Material(shader) { name = "CityStageB_" + slot };`
-- **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:99` · `Ziptide.Editor.Patching.ToxicCityVehicleBuilder` — Runtime Material allocation. `material = new Material(shader) { name = "VehiclePad_" + ColorUtility.ToHtmlStringRGB(color) };`
+- **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:191` · `Ziptide.Editor.Patching.ToxicCityVehicleBuilder` — Runtime Material allocation. `material = new Material(shader) { name = "VehiclePad_" + ColorUtility.ToHtmlStringRGB(color) };`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Editor/Patching/WorldDressingBuilder.cs:311` · `Ziptide.Editor.Patching.WorldDressingBuilder` — Runtime Material allocation. `m = new Material(shader) { name = "DressMat_" + ColorUtility.ToHtmlStringRGB(color) };`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Editor/Patching/WorldExperienceBuilder.cs:466` · `Ziptide.Editor.Patching.WorldExperienceBuilder` — Runtime Material allocation. `var m = new Material(shader) { name = name };`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Editor/Patching/WorldPoiBuilder.cs:382` · `Ziptide.Editor.Patching.WorldPoiBuilder` — Runtime Material allocation. `var m = new Material(shader) { name = "PoiMat_" + ColorUtility.ToHtmlStringRGB(color) };`
@@ -1234,8 +1234,8 @@
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityRiverBuilder.cs:200` · `Ziptide.Editor.Patching.ToxicCityRiverBuilder` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Standard");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageB.cs:231` · `Ziptide.Editor.Patching.ToxicCityStageB` — Runtime shader lookup. `Shader shader = Shader.Find("Universal Render Pipeline/Lit");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageB.cs:232` · `Ziptide.Editor.Patching.ToxicCityStageB` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Standard");`
-- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:97` · `Ziptide.Editor.Patching.ToxicCityVehicleBuilder` — Runtime shader lookup. `Shader shader = Shader.Find("Universal Render Pipeline/Lit");`
-- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:98` · `Ziptide.Editor.Patching.ToxicCityVehicleBuilder` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Standard");`
+- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:189` · `Ziptide.Editor.Patching.ToxicCityVehicleBuilder` — Runtime shader lookup. `Shader shader = Shader.Find("Universal Render Pipeline/Lit");`
+- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:190` · `Ziptide.Editor.Patching.ToxicCityVehicleBuilder` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Standard");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Editor/Patching/WorldDressingBuilder.cs:309` · `Ziptide.Editor.Patching.WorldDressingBuilder` — Runtime shader lookup. `var shader = Shader.Find("Universal Render Pipeline/Lit");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Editor/Patching/WorldDressingBuilder.cs:310` · `Ziptide.Editor.Patching.WorldDressingBuilder` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Standard");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Editor/Patching/WorldExperienceBuilder.cs:464` · `Ziptide.Editor.Patching.WorldExperienceBuilder` — Runtime shader lookup. `var shader = Shader.Find("Universal Render Pipeline/Lit");`
@@ -1435,7 +1435,8 @@
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/SignAuthor.cs:151` · `Ziptide.Editor.Patching.SignAuthor` — Runtime primitive construction. `var glyph = GameObject.CreatePrimitive(PrimitiveType.Quad);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityRiverBuilder.cs:177` · `Ziptide.Editor.Patching.ToxicCityRiverBuilder` — Runtime primitive construction. `GameObject go = GameObject.CreatePrimitive(type);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageB.cs:209` · `Ziptide.Editor.Patching.ToxicCityStageB` — Runtime primitive construction. `GameObject go = GameObject.CreatePrimitive(primitive);`
-- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:61` · `Ziptide.Editor.Patching.ToxicCityVehicleBuilder` — Runtime primitive construction. `GameObject pad = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:70` · `Ziptide.Editor.Patching.ToxicCityVehicleBuilder` — Runtime primitive construction. `GameObject pad = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:163` · `Ziptide.Editor.Patching.ToxicCityVehicleBuilder` — Runtime primitive construction. `GameObject part = GameObject.CreatePrimitive(primitive);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/WorldDressingBuilder.cs:296` · `Ziptide.Editor.Patching.WorldDressingBuilder` — Runtime primitive construction. `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/WorldExperienceBuilder.cs:445` · `Ziptide.Editor.Patching.WorldExperienceBuilder` — Runtime primitive construction. `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/WorldPoiBuilder.cs:355` · `Ziptide.Editor.Patching.WorldPoiBuilder` — Runtime primitive construction. `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
@@ -1735,10 +1736,11 @@
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageB.cs:139` · `Ziptide.Editor.Patching.ToxicCityStageB` — Runtime GameObject construction. `Transform root = new GameObject("DistrictSign").transform;`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageB.cs:146` · `Ziptide.Editor.Patching.ToxicCityStageB` — Runtime GameObject construction. `GameObject label = new GameObject("Label");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageB.cs:162` · `Ziptide.Editor.Patching.ToxicCityStageB` — Runtime GameObject construction. `Transform root = new GameObject("Vent_" + index).transform;`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:30` · `Ziptide.Editor.Patching.ToxicCityVehicleBuilder` — Runtime GameObject construction. `Transform root = new GameObject(RootName).transform;`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:57` · `Ziptide.Editor.Patching.ToxicCityVehicleBuilder` — Runtime GameObject construction. `Transform bay = new GameObject("VehicleBay_" + id).transform;`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:76` · `Ziptide.Editor.Patching.ToxicCityVehicleBuilder` — Runtime GameObject construction. `GameObject vehicle = new GameObject("Vehicle_" + id);`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:82` · `Ziptide.Editor.Patching.ToxicCityVehicleBuilder` — Runtime GameObject construction. `GameObject label = new GameObject("BayLabel");`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:39` · `Ziptide.Editor.Patching.ToxicCityVehicleBuilder` — Runtime GameObject construction. `Transform root = new GameObject(RootName).transform;`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:66` · `Ziptide.Editor.Patching.ToxicCityVehicleBuilder` — Runtime GameObject construction. `Transform bay = new GameObject("VehicleBay_" + id).transform;`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:85` · `Ziptide.Editor.Patching.ToxicCityVehicleBuilder` — Runtime GameObject construction. `GameObject vehicle = new GameObject("Vehicle_" + id);`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:92` · `Ziptide.Editor.Patching.ToxicCityVehicleBuilder` — Runtime GameObject construction. `GameObject label = new GameObject("BayLabel");`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:117` · `Ziptide.Editor.Patching.ToxicCityVehicleBuilder` — Runtime GameObject construction. `Transform preview = new GameObject(PreviewRootName).transform;`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/WaterAuthor.cs:23` · `Ziptide.Editor.Patching.WaterAuthor` — Runtime GameObject construction. `var go = new GameObject("BerthWater");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/WorldDressingBuilder.cs:37` · `Ziptide.Editor.Patching.WorldDressingBuilder` — Runtime GameObject construction. `var dressRoot = new GameObject("Dressing").transform;`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/WorldDressingBuilder.cs:94` · `Ziptide.Editor.Patching.WorldDressingBuilder` — Runtime GameObject construction. `var cairnRoot = new GameObject("Route").transform;`
@@ -2046,7 +2048,7 @@
 - **EVENT_SYSTEM_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:84` · `Ziptide.Gameplay.DevTools.DevMenu` — EventSystem creation/reference. `host.AddComponent<EventSystem>();`
 - **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityRiverBuilder.cs:159` · `Ziptide.Editor.Patching.ToxicCityRiverBuilder` — Legacy TextMesh creation/reference. `var text = label.AddComponent<TextMesh>();`
 - **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageB.cs:150` · `Ziptide.Editor.Patching.ToxicCityStageB` — Legacy TextMesh creation/reference. `TextMesh text = label.AddComponent<TextMesh>();`
-- **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:85` · `Ziptide.Editor.Patching.ToxicCityVehicleBuilder` — Legacy TextMesh creation/reference. `TextMesh text = label.AddComponent<TextMesh>();`
+- **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:95` · `Ziptide.Editor.Patching.ToxicCityVehicleBuilder` — Legacy TextMesh creation/reference. `TextMesh text = label.AddComponent<TextMesh>();`
 - **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Editor/Patching/WorldStubGenerator.cs:224` · `Ziptide.Editor.Patching.WorldStubGenerator` — Legacy TextMesh creation/reference. `var tm = label.AddComponent<TextMesh>();`
 - **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Editor/WorldImprovement/StandardWorldImprovementModules.cs:44` · `Ziptide.Editor.WorldImprovement.ArrivalIdentityModule` — Legacy TextMesh creation/reference. `var label = labelObject.AddComponent<TextMesh>();`
 - **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltBlueprintWandItem.cs:63` · `Ziptide.Gameplay.BeltBlueprintWandItem` — Legacy TextMesh creation/reference. `_countLabel = labelGo.AddComponent<TextMesh>();`

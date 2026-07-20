@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
 - Scanned files: **710**
-- Scanner findings: **2468**
+- Scanner findings: **2470**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -1053,19 +1053,21 @@ None.
   - `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageB.cs:232` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
   - `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageB.cs:233` **RUNTIME_MATERIAL_CREATE** — `material = new Material(shader) { name = "CityStageB_" + slot };`
 
-### `Ziptide.Editor.Patching.ToxicCityVehicleBuilder` — 9 signal(s)
+### `Ziptide.Editor.Patching.ToxicCityVehicleBuilder` — 11 signal(s)
 
 - Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`, `RUNTIME_MATERIAL_CREATE`, `SHADER_FIND`, `TEXTMESH_COMPONENT`
 - Paths: `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:30` **NEW_GAME_OBJECT** — `Transform root = new GameObject(RootName).transform;`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:57` **NEW_GAME_OBJECT** — `Transform bay = new GameObject("VehicleBay_" + id).transform;`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:61` **CREATE_PRIMITIVE** — `GameObject pad = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:76` **NEW_GAME_OBJECT** — `GameObject vehicle = new GameObject("Vehicle_" + id);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:82` **NEW_GAME_OBJECT** — `GameObject label = new GameObject("BayLabel");`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:85` **TEXTMESH_COMPONENT** — `TextMesh text = label.AddComponent<TextMesh>();`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:97` **SHADER_FIND** — `Shader shader = Shader.Find("Universal Render Pipeline/Lit");`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:98` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:99` **RUNTIME_MATERIAL_CREATE** — `material = new Material(shader) { name = "VehiclePad_" + ColorUtility.ToHtmlStringRGB(color) };`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:39` **NEW_GAME_OBJECT** — `Transform root = new GameObject(RootName).transform;`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:66` **NEW_GAME_OBJECT** — `Transform bay = new GameObject("VehicleBay_" + id).transform;`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:70` **CREATE_PRIMITIVE** — `GameObject pad = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:85` **NEW_GAME_OBJECT** — `GameObject vehicle = new GameObject("Vehicle_" + id);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:92` **NEW_GAME_OBJECT** — `GameObject label = new GameObject("BayLabel");`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:95` **TEXTMESH_COMPONENT** — `TextMesh text = label.AddComponent<TextMesh>();`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:117` **NEW_GAME_OBJECT** — `Transform preview = new GameObject(PreviewRootName).transform;`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:163` **CREATE_PRIMITIVE** — `GameObject part = GameObject.CreatePrimitive(primitive);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:189` **SHADER_FIND** — `Shader shader = Shader.Find("Universal Render Pipeline/Lit");`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:190` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:191` **RUNTIME_MATERIAL_CREATE** — `material = new Material(shader) { name = "VehiclePad_" + ColorUtility.ToHtmlStringRGB(color) };`
 
 ### `Ziptide.Editor.Patching.WaterAuthor` — 1 signal(s)
 
