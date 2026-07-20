@@ -73,9 +73,9 @@ namespace Ziptide.Build
 
         /// <summary>
         /// The canonical patcher sees the project's full EditorBuildSettings list, while this recovery
-        /// player intentionally ships only three scenes. Pin ToxicCity's return to W000, remove helm rows
-        /// whose scenes are absent from this APK, bridge the one-metre district/berth seam, then run both
-        /// the ordinary project audit and PG-2 against the exact saved artifact scene universe.
+        /// player intentionally ships only three scenes. Pin ToxicCity's return to W000, remove every
+        /// serialized travel row whose scene is absent from this APK, bridge the district/berth seam, then
+        /// run both the ordinary project audit and PG-2 against the exact saved artifact scene universe.
         /// </summary>
         private static void PatchAndValidateGoldenRoute()
         {
@@ -106,7 +106,7 @@ namespace Ziptide.Build
             Debug.Log("ZIPTIDE: GOLDEN_ROUTE_PATCH exit=" + exitPack.sceneName
                 + " bridge=" + GoldenBridgeCenter.ToString("F2")
                 + " size=" + GoldenBridgeSize.ToString("F2")
-                + " removedDeadShipRows=" + removedRows
+                + " removedDeadTravelRows=" + removedRows
                 + " projectAuditBlockers=" + projectBlockers
                 + " profileTravelBlockers=" + profileTravelBlockers);
         }
@@ -114,7 +114,7 @@ namespace Ziptide.Build
         private static int PatchGoldenScene(string scenePath, bool addShipyardBridge)
         {
             var scene = EditorSceneManager.OpenScene(scenePath, OpenSceneMode.Single);
-            int removedRows = FilterGoldenShipDestinations(scene.name);
+            int removedRows = FilterGoldenTravelDestinations(scene.name);
 
             if (addShipyardBridge)
             {
@@ -159,35 +159,61 @@ namespace Ziptide.Build
             return removedRows;
         }
 
-        private static int FilterGoldenShipDestinations(string currentSceneName)
+        /// <summary>
+        /// Artifact-profile reduction must cover every serialized pack-array owner. Filtering only the
+        /// ship helm left ordinary WorldTravelStation doors pointing at editor-valid worlds absent from the
+        /// three-scene APK; PG-2 correctly rejected that mismatch. Keep only the opposite Golden world.
+        /// </summary>
+        private static int FilterGoldenTravelDestinations(string currentSceneName)
         {
             int removed = 0;
-            var stations = UnityEngine.Object.FindObjectsOfType<ShipBoardingStation>(true);
-            for (int stationIndex = 0; stationIndex < stations.Length; stationIndex++)
-            {
-                var station = stations[stationIndex];
-                if (station == null) continue;
-                var serialized = new SerializedObject(station);
-                var packsProperty = serialized.FindProperty("destinationPacks");
-                if (packsProperty == null) continue;
-
-                var kept = new List<WorldPackDefinition>();
-                for (int i = 0; i < packsProperty.arraySize; i++)
-                {
-                    var pack = packsProperty.GetArrayElementAtIndex(i).objectReferenceValue as WorldPackDefinition;
-                    if (pack != null && IsGoldenDestinationScene(pack.sceneName) && pack.sceneName != currentSceneName)
-                        kept.Add(pack);
-                    else
-                        removed++;
-                }
-
-                packsProperty.arraySize = kept.Count;
-                for (int i = 0; i < kept.Count; i++)
-                    packsProperty.GetArrayElementAtIndex(i).objectReferenceValue = kept[i];
-                serialized.ApplyModifiedPropertiesWithoutUndo();
-                EditorUtility.SetDirty(station);
-            }
+            foreach (ShipBoardingStation station in UnityEngine.Object.FindObjectsOfType<ShipBoardingStation>(true))
+                if (station != null) removed += FilterDestinationPackArray(station, currentSceneName);
+            foreach (WorldTravelStation station in UnityEngine.Object.FindObjectsOfType<WorldTravelStation>(true))
+                if (station != null) removed += FilterDestinationPackArray(station, currentSceneName);
             return removed;
+        }
+
+        private static int FilterDestinationPackArray(Component owner, string currentSceneName)
+        {
+            var serialized = new SerializedObject(owner);
+            var packsProperty = serialized.FindProperty("destinationPacks");
+            if (packsProperty == null) return 0;
+
+            int removed = 0;
+            var kept = new List<WorldPackDefinition>();
+            for (int i = 0; i < packsProperty.arraySize; i++)
+            {
+                var pack = packsProperty.GetArrayElementAtIndex(i).objectReferenceValue as WorldPackDefinition;
+                if (pack != null && IsGoldenDestinationScene(pack.sceneName)
+                    && pack.sceneName != currentSceneName)
+                    kept.Add(pack);
+                else
+                    removed++;
+            }
+
+            packsProperty.arraySize = kept.Count;
+            for (int i = 0; i < kept.Count; i++)
+                packsProperty.GetArrayElementAtIndex(i).objectReferenceValue = kept[i];
+            serialized.ApplyModifiedPropertiesWithoutUndo();
+            EditorUtility.SetDirty(owner);
+
+            Debug.Log("ZIPTIDE: GOLDEN_TRAVEL_REDUCER owner=" + owner.GetType().Name
+                + " path=" + HierarchyPath(owner.transform)
+                + " kept=" + kept.Count + " removed=" + removed);
+            return removed;
+        }
+
+        private static string HierarchyPath(Transform value)
+        {
+            if (value == null) return string.Empty;
+            string path = value.name;
+            while (value.parent != null)
+            {
+                value = value.parent;
+                path = value.name + "/" + path;
+            }
+            return path;
         }
 
         public static void GoldenAPK()
