@@ -4,7 +4,7 @@ using UnityEngine;
 namespace Ziptide.Editor.Audit
 {
     /// <summary>
-    /// V2.5 H1 building gates plus the invoked generated-world architecture aggregators.
+    /// V2.5 H1 building gates plus the invoked generated-world and perceptual aggregators.
     /// </summary>
     public static class BuildingAuditRules
     {
@@ -37,6 +37,7 @@ namespace Ziptide.Editor.Audit
             CityStageBAuditRules.Run(report);
             WorldContainmentAuditRules.Run(report);
             FullSendPresentationAuditRules.Run(report);
+            WeaponPerceptualAuditRules.Run(report);
         }
     }
 }
