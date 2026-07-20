@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
 - Scanned files: **710**
-- Scanner findings: **2470**
+- Scanner findings: **2471**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -2481,14 +2481,15 @@ None.
   - `Ziptide/Assets/Ziptide/Tests/EditMode/WeaponPerceptualAuditRulesTests.cs:100` **NEW_GAME_OBJECT** — `Transform grip = new GameObject("Grip").transform;`
   - `Ziptide/Assets/Ziptide/Tests/EditMode/WeaponPerceptualAuditRulesTests.cs:105` **NEW_GAME_OBJECT** — `Transform muzzle = new GameObject("Muzzle").transform;`
 
-### `Ziptide.Tests.EditMode.WorldImprovementCompilerTests` — 4 signal(s)
+### `Ziptide.Tests.EditMode.WorldImprovementCompilerTests` — 5 signal(s)
 
 - Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`
 - Paths: `Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs:30` **CREATE_PRIMITIVE** — `floor = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs:35` **NEW_GAME_OBJECT** — `spawn = new GameObject("__SPAWN_PLAYER");`
-  - `Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs:77` **NEW_GAME_OBJECT** — `root = new GameObject(WorldImprovementCompiler.RootName);`
-  - `Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs:81` **NEW_GAME_OBJECT** — `var moduleRoot = new GameObject("__WIM_ARRIVAL_IDENTITY");`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs:30` **NEW_GAME_OBJECT** — `host = new GameObject("ModuleMarkerSerializationFixture");`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs:54` **CREATE_PRIMITIVE** — `floor = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs:59` **NEW_GAME_OBJECT** — `spawn = new GameObject("__SPAWN_PLAYER");`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs:101` **NEW_GAME_OBJECT** — `root = new GameObject(WorldImprovementCompiler.RootName);`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs:105` **NEW_GAME_OBJECT** — `var moduleRoot = new GameObject("__WIM_ARRIVAL_IDENTITY");`
 
 ### `Ziptide.Tests.EditMode.WristScannerResultTests` — 1 signal(s)
 

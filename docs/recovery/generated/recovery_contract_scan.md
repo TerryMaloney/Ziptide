@@ -1,7 +1,7 @@
 # ZIPTIDE Recovery Contract Scan
 
 - Scanned files: **710**
-- Findings: **2470**
+- Findings: **2471**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
@@ -16,7 +16,7 @@
 | `input` | 197 |
 | `materials` | 246 |
 | `persistence` | 18 |
-| `runtime_creation` | 661 |
+| `runtime_creation` | 662 |
 | `runtime_ui` | 127 |
 | `save_state` | 256 |
 | `scene_loading` | 9 |
@@ -1616,7 +1616,7 @@
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/EditMode/ToxicCityRiverBuilderTests.cs:23` · `Ziptide.Tests.EditMode.ToxicCityRiverBuilderTests` — Runtime primitive construction. `GameObject legacySlab = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/EditMode/ToxicCityStageAIntegrationTests.cs:78` · `Ziptide.Tests.EditMode.ToxicCityStageAIntegrationTests` — Runtime primitive construction. `GameObject facade = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/EditMode/WeaponPerceptualAuditRulesTests.cs:96` · `Ziptide.Tests.EditMode.WeaponPerceptualAuditRulesTests` — Runtime primitive construction. `GameObject weapon = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs:30` · `Ziptide.Tests.EditMode.WorldImprovementCompilerTests` — Runtime primitive construction. `floor = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs:54` · `Ziptide.Tests.EditMode.WorldImprovementCompilerTests` — Runtime primitive construction. `floor = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryCoreBootstrapGateTests.cs:88` · `Ziptide.Tests.PlayMode.RecoveryCoreBootstrapGateTests` — Runtime primitive construction. `var rendererHost = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAuditTests.cs:24` · `Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceAuditTests` — Runtime primitive construction. `GameObject fallback = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAuditTests.cs:35` · `Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceAuditTests` — Runtime primitive construction. `GameObject nullSlot = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
@@ -1982,9 +1982,10 @@
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/WeaponFeelRuntimeTests.cs:61` · `Ziptide.Tests.EditMode.WeaponFeelRuntimeTests` — Runtime GameObject construction. `var host = new GameObject("WeaponFeelNullHand");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/WeaponPerceptualAuditRulesTests.cs:100` · `Ziptide.Tests.EditMode.WeaponPerceptualAuditRulesTests` — Runtime GameObject construction. `Transform grip = new GameObject("Grip").transform;`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/WeaponPerceptualAuditRulesTests.cs:105` · `Ziptide.Tests.EditMode.WeaponPerceptualAuditRulesTests` — Runtime GameObject construction. `Transform muzzle = new GameObject("Muzzle").transform;`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs:35` · `Ziptide.Tests.EditMode.WorldImprovementCompilerTests` — Runtime GameObject construction. `spawn = new GameObject("__SPAWN_PLAYER");`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs:77` · `Ziptide.Tests.EditMode.WorldImprovementCompilerTests` — Runtime GameObject construction. `root = new GameObject(WorldImprovementCompiler.RootName);`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs:81` · `Ziptide.Tests.EditMode.WorldImprovementCompilerTests` — Runtime GameObject construction. `var moduleRoot = new GameObject("__WIM_ARRIVAL_IDENTITY");`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs:30` · `Ziptide.Tests.EditMode.WorldImprovementCompilerTests` — Runtime GameObject construction. `host = new GameObject("ModuleMarkerSerializationFixture");`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs:59` · `Ziptide.Tests.EditMode.WorldImprovementCompilerTests` — Runtime GameObject construction. `spawn = new GameObject("__SPAWN_PLAYER");`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs:101` · `Ziptide.Tests.EditMode.WorldImprovementCompilerTests` — Runtime GameObject construction. `root = new GameObject(WorldImprovementCompiler.RootName);`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs:105` · `Ziptide.Tests.EditMode.WorldImprovementCompilerTests` — Runtime GameObject construction. `var moduleRoot = new GameObject("__WIM_ARRIVAL_IDENTITY");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/WristScannerResultTests.cs:212` · `Ziptide.Tests.EditMode.WristScannerResultTests` — Runtime GameObject construction. `var go = new GameObject(name);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/ZiplineSignalTests.cs:160` · `Ziptide.Tests.EditMode.ZiplineSignalTests` — Runtime GameObject construction. `var go = new GameObject(name);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/PlayModeInfrastructureTests.cs:20` · `Ziptide.Tests.PlayMode.PlayModeInfrastructureTests` — Runtime GameObject construction. `var host = new GameObject("__RECOVERY_PLAYMODE_FRAME_PROBE");`

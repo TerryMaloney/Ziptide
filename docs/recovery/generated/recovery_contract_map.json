@@ -2,7 +2,7 @@
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
   "scannedFiles": 710,
-  "findingCount": 2470,
+  "findingCount": 2471,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -11644,7 +11644,7 @@
       },
       {
         "owner": "Ziptide.Tests.EditMode.WorldImprovementCompilerTests",
-        "evidenceCount": 4,
+        "evidenceCount": 5,
         "codes": [
           "CREATE_PRIMITIVE",
           "NEW_GAME_OBJECT"
@@ -11654,30 +11654,37 @@
         ],
         "evidence": [
           {
-            "code": "CREATE_PRIMITIVE",
+            "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs",
             "line": 30,
+            "symbol": "Ziptide.Tests.EditMode.WorldImprovementCompilerTests",
+            "snippet": "host = new GameObject(\"ModuleMarkerSerializationFixture\");"
+          },
+          {
+            "code": "CREATE_PRIMITIVE",
+            "path": "Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs",
+            "line": 54,
             "symbol": "Ziptide.Tests.EditMode.WorldImprovementCompilerTests",
             "snippet": "floor = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs",
-            "line": 35,
+            "line": 59,
             "symbol": "Ziptide.Tests.EditMode.WorldImprovementCompilerTests",
             "snippet": "spawn = new GameObject(\"__SPAWN_PLAYER\");"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs",
-            "line": 77,
+            "line": 101,
             "symbol": "Ziptide.Tests.EditMode.WorldImprovementCompilerTests",
             "snippet": "root = new GameObject(WorldImprovementCompiler.RootName);"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs",
-            "line": 81,
+            "line": 105,
             "symbol": "Ziptide.Tests.EditMode.WorldImprovementCompilerTests",
             "snippet": "var moduleRoot = new GameObject(\"__WIM_ARRIVAL_IDENTITY\");"
           }

@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-20T12:29:20.335264+00:00",
+  "generatedAtUtc": "2026-07-20T12:30:30.149641+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -9,7 +9,7 @@
     "Ziptide/Assets/ZiptideNet"
   ],
   "scannedFiles": 710,
-  "findingCount": 2470,
+  "findingCount": 2471,
   "categoryCounts": {
     "bootstrap": 35,
     "diagnostics": 545,
@@ -19,7 +19,7 @@
     "input": 197,
     "materials": 246,
     "persistence": 18,
-    "runtime_creation": 661,
+    "runtime_creation": 662,
     "runtime_ui": 127,
     "save_state": 256,
     "scene_loading": 9,
@@ -41,7 +41,7 @@
     "FRAME_BUTTON_POLL": 1,
     "INPUT_ACTION_REFERENCE": 190,
     "INPUT_BUTTON_REFERENCE": 6,
-    "NEW_GAME_OBJECT": 404,
+    "NEW_GAME_OBJECT": 405,
     "PLAYER_PROFILE_REFERENCE": 140,
     "RENDER_SETTINGS_MUTATION": 37,
     "RUNTIME_BOOTSTRAP": 25,
@@ -14231,7 +14231,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs",
-      "line": 30,
+      "line": 54,
       "symbol": "Ziptide.Tests.EditMode.WorldImprovementCompilerTests",
       "snippet": "floor = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -17525,7 +17525,16 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs",
-      "line": 35,
+      "line": 30,
+      "symbol": "Ziptide.Tests.EditMode.WorldImprovementCompilerTests",
+      "snippet": "host = new GameObject(\"ModuleMarkerSerializationFixture\");"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs",
+      "line": 59,
       "symbol": "Ziptide.Tests.EditMode.WorldImprovementCompilerTests",
       "snippet": "spawn = new GameObject(\"__SPAWN_PLAYER\");"
     },
@@ -17534,7 +17543,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs",
-      "line": 77,
+      "line": 101,
       "symbol": "Ziptide.Tests.EditMode.WorldImprovementCompilerTests",
       "snippet": "root = new GameObject(WorldImprovementCompiler.RootName);"
     },
@@ -17543,7 +17552,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs",
-      "line": 81,
+      "line": 105,
       "symbol": "Ziptide.Tests.EditMode.WorldImprovementCompilerTests",
       "snippet": "var moduleRoot = new GameObject(\"__WIM_ARRIVAL_IDENTITY\");"
     },
