@@ -29,12 +29,6 @@ namespace Ziptide.Tests.PlayMode
             Debug.Log("ZIPTIDE: RECOVERY_HEADLESS_XR_READY devices=2");
         }
 
-        [SetUp]
-        public void EnsureDevicesBeforeEveryRecoveryTest()
-        {
-            EnsureDevices();
-        }
-
         [OneTimeTearDown]
         public void RemoveHeadlessTrackedControllers()
         {
