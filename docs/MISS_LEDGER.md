@@ -59,19 +59,18 @@ Read by every lane at session start alongside HANDOFF. Full spec: `FINISHED_GAME
     recurring milestone gate (checklist row) + EXCELLENCE_MAP rows per category — the
     ship-backward view now has standing machinery.
 11. **WHAT:** the recovery PlayMode performance route repeatedly failed input settle during
-    `_Boot`. **FOUND BY:** 42/43 on `0f01fc5`, `be4a6b98`, and `dfeddc15`. **WHY MISSED:** two
-    separate no-domain-reload harness gaps overlapped: the same scene could be consolidated by
-    both a retained `sceneLoaded` callback and `AfterSceneLoad.Bootstrap`, and—after that duplicate
-    was correctly latched—the performance test still waited for Home Hub readiness before installing
-    the full virtual-controller action refresh. Other green actual-route tests installed it
-    immediately after scene load and allowed boot input to settle. **CLASS:** test environment
-    reconstructs a platform dependency after a production deadline, with two lifecycle owners
-    obscuring the ordering defect. **SYSTEM CHANGE:** neutral suite devices preserve platform
-    fidelity; `InputSessionSceneLatchCore` enforces one consolidation per scene handle; and
-    `RecoveryGoldenPerformanceRouteTests` now installs `RecoveryActualRigControllerSimulation`
-    immediately after `_Boot` plus allowed bootstraps, before waiting for presentation readiness.
-    Pure latch tests and the zero-settle-failure route assertion require exact 43/43 closure
-    (→ pending CI verification).
+    `_Boot`. **FOUND BY:** 42/43 on `0f01fc5`, `be4a6b98`, `dfeddc15`, and `c766c24`.
+    **WHY MISSED:** the harness eventually installed neutral suite controllers before boot, but
+    the per-test tracked-rig simulator still created a second left/right pair after boot and always
+    forced a canonical action-asset disable/enable cycle. That duplicated the platform lifecycle
+    and raced the production input-mutation guard even though the pre-boot bindings were already
+    healthy. **CLASS:** a test double recreates an already-satisfied platform dependency and
+    mutates production-owned state a second time. **SYSTEM CHANGE:** neutral suite devices preserve
+    the Quest ordering; `InputSessionSceneLatchCore` enforces one consolidation per scene handle;
+    `RecoveryGoldenPerformanceRouteTests` installs the simulator immediately after `_Boot`; and
+    `RecoveryActualRigControllerSimulation` now borrows the pre-boot pair, validates existing
+    bilateral bindings, skips healthy asset refresh/removal, and owns only missing fallback devices.
+    The zero-settle-failure route assertion requires exact 43/43 closure (→ pending CI verification).
 12. **WHAT:** adding a new improvement round created duplicate matching recipes because the
     resolver assumed history would be destructively replaced. **FOUND BY:** Round 3 recipe
     integration review. **WHY MISSED:** Round 2 proved currentness but not successive-round

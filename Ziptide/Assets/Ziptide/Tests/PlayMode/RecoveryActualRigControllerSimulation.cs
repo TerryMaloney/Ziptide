@@ -11,15 +11,15 @@ namespace Ziptide.Tests.PlayMode
 {
     /// <summary>
     /// Test-only tracked-rig stand-in for actual-scene PlayMode tests. The real Quest rig is loaded
-    /// unchanged, including its actual head camera and left/right direct controller rays. A headless
-    /// CI runner has no tracked XR devices, so this helper temporarily installs two neutral generic XR
-    /// controllers, rebuilds the real action assets against them, fixes the tracked-head pose and
-    /// activates the existing direct-ray hierarchies.
+    /// unchanged, including its actual head camera and left/right direct controller rays. The suite
+    /// installs a neutral left/right XR pair before any scene boots, matching the real headset ordering.
+    /// This helper borrows that pair, creates only a missing fallback device, fixes the tracked-head pose
+    /// and activates the existing direct-ray hierarchies.
     ///
-    /// Input ownership is explicit and finite. The simulator snapshots exact per-action enabled state
-    /// only around its own deliberate asset rebind and device-removal windows, while locomotion readers
-    /// are quiescent. It never installs a global action-state restorer. Production remains free to
-    /// disable Rotate/Translate Anchor after every scene load without the test harness undoing it.
+    /// Input ownership is explicit and finite. A canonical action-asset refresh occurs only when the
+    /// pre-boot pair did not already resolve every locomotion action. Borrowed devices are never removed
+    /// and healthy assets are never toggled at activation or disposal. Production remains free to disable
+    /// Rotate/Translate Anchor after every scene load without the test harness undoing it.
     /// </summary>
     public sealed class RecoveryActualRigControllerSimulation : IDisposable
     {
@@ -29,7 +29,8 @@ namespace Ziptide.Tests.PlayMode
         private readonly List<GameObjectState> _gameObjectStates = new List<GameObjectState>();
         private readonly List<BehaviourState> _behaviourStates = new List<BehaviourState>();
         private readonly List<TransformState> _transformStates = new List<TransformState>();
-        private readonly List<InputDevice> _virtualDevices = new List<InputDevice>();
+        private readonly List<InputDevice> _activeVirtualDevices = new List<InputDevice>();
+        private readonly List<InputDevice> _ownedVirtualDevices = new List<InputDevice>();
         private readonly List<InputActionAssetState> _inputAssetStates =
             new List<InputActionAssetState>();
         private bool _disposed;
@@ -148,17 +149,30 @@ namespace Ziptide.Tests.PlayMode
             {
                 simulation.CaptureCanonicalInputAssets(canonicalManager);
                 simulation.DisableModalityManagers(rig);
+                simulation.InstallOrReuseVirtualControllerDevices();
 
-                List<BehaviourState> rebindReaders =
-                    simulation.QuiesceLocomotionProviders();
-                try
+                if (simulation.CanonicalLocomotionBindingsReady(
+                        out int preboundActions,
+                        out int preboundControls))
                 {
-                    simulation.InstallVirtualControllerDevices();
-                    simulation.RefreshCanonicalInputAssets();
+                    Debug.Log(
+                        "ZIPTIDE: RECOVERY_VIRTUAL_XR_BINDINGS_REUSED assets=" +
+                        simulation._inputAssetStates.Count +
+                        " locomotionActions=" + preboundActions +
+                        " locomotionControls=" + preboundControls);
                 }
-                finally
+                else
                 {
-                    RestoreBehaviourStates(rebindReaders);
+                    List<BehaviourState> rebindReaders =
+                        simulation.QuiesceLocomotionProviders();
+                    try
+                    {
+                        simulation.RefreshCanonicalInputAssets();
+                    }
+                    finally
+                    {
+                        RestoreBehaviourStates(rebindReaders);
+                    }
                 }
 
                 simulation.SetTrackedHeadPose(rig, trackedHeadHeight);
@@ -173,7 +187,8 @@ namespace Ziptide.Tests.PlayMode
                     " rightRay=" + simulation.RightRayPath +
                     " manager=" + canonicalManager.GetInstanceID() +
                     " sourceRays=" + rays.Length +
-                    " virtualDevices=" + simulation._virtualDevices.Count);
+                    " virtualDevices=" + simulation._activeVirtualDevices.Count +
+                    " ownedVirtualDevices=" + simulation._ownedVirtualDevices.Count);
                 return simulation;
             }
             catch
@@ -188,12 +203,19 @@ namespace Ziptide.Tests.PlayMode
             if (_disposed) return;
             _disposed = true;
 
+            bool ownsInputDevices = _ownedVirtualDevices.Count > 0;
             Debug.Log(
                 "ZIPTIDE: RECOVERY_VIRTUAL_XR_DISPOSE phase=begin assets=" +
-                _inputAssetStates.Count + " devices=" + _virtualDevices.Count);
+                _inputAssetStates.Count +
+                " activeDevices=" + _activeVirtualDevices.Count +
+                " ownedDevices=" + _ownedVirtualDevices.Count);
 
-            List<InputActionEnabledState> actionStates = CaptureCurrentActionStates();
-            List<BehaviourState> locomotionStates = QuiesceLocomotionProviders();
+            List<InputActionEnabledState> actionStates = ownsInputDevices
+                ? CaptureCurrentActionStates()
+                : new List<InputActionEnabledState>();
+            List<BehaviourState> locomotionStates = ownsInputDevices
+                ? QuiesceLocomotionProviders()
+                : new List<BehaviourState>();
 
             for (int i = _behaviourStates.Count - 1; i >= 0; i--)
             {
@@ -201,27 +223,35 @@ namespace Ziptide.Tests.PlayMode
                 if (behaviour != null) behaviour.enabled = false;
             }
 
-            SetInputAssetsEnabled(false);
-            InputSystem.Update();
-            Debug.Log("ZIPTIDE: RECOVERY_VIRTUAL_XR_DISPOSE phase=assets_disabled");
-
-            for (int i = _virtualDevices.Count - 1; i >= 0; i--)
+            if (ownsInputDevices)
             {
-                InputDevice device = _virtualDevices[i];
-                if (device == null) continue;
-                try
+                SetInputAssetsEnabled(false);
+                InputSystem.Update();
+                Debug.Log("ZIPTIDE: RECOVERY_VIRTUAL_XR_DISPOSE phase=assets_disabled");
+
+                for (int i = _ownedVirtualDevices.Count - 1; i >= 0; i--)
                 {
-                    InputSystem.RemoveDevice(device);
+                    InputDevice device = _ownedVirtualDevices[i];
+                    if (device == null) continue;
+                    try
+                    {
+                        InputSystem.RemoveDevice(device);
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.LogWarning(
+                            "ZIPTIDE: RECOVERY_VIRTUAL_XR_REMOVE_FAIL device=" +
+                            device.displayName + " reason=" + ex.Message);
+                    }
                 }
-                catch (Exception ex)
-                {
-                    Debug.LogWarning(
-                        "ZIPTIDE: RECOVERY_VIRTUAL_XR_REMOVE_FAIL device=" +
-                        device.displayName + " reason=" + ex.Message);
-                }
+                InputSystem.Update();
+                Debug.Log("ZIPTIDE: RECOVERY_VIRTUAL_XR_DISPOSE phase=owned_devices_removed");
             }
-            InputSystem.Update();
-            Debug.Log("ZIPTIDE: RECOVERY_VIRTUAL_XR_DISPOSE phase=devices_removed");
+            else
+            {
+                Debug.Log(
+                    "ZIPTIDE: RECOVERY_VIRTUAL_XR_DISPOSE phase=borrowed_devices_preserved");
+            }
 
             for (int i = _transformStates.Count - 1; i >= 0; i--)
             {
@@ -238,8 +268,10 @@ namespace Ziptide.Tests.PlayMode
                 if (state.Object != null) state.Object.SetActive(state.ActiveSelf);
             }
 
-            int restoredActions = RestoreActionStates(actionStates);
-            InputSystem.Update();
+            int restoredActions = ownsInputDevices
+                ? RestoreActionStates(actionStates)
+                : 0;
+            if (ownsInputDevices) InputSystem.Update();
 
             for (int i = _behaviourStates.Count - 1; i >= 0; i--)
             {
@@ -255,7 +287,8 @@ namespace Ziptide.Tests.PlayMode
             _transformStates.Clear();
             _behaviourStates.Clear();
             _gameObjectStates.Clear();
-            _virtualDevices.Clear();
+            _ownedVirtualDevices.Clear();
+            _activeVirtualDevices.Clear();
             _inputAssetStates.Clear();
         }
 
@@ -273,16 +306,90 @@ namespace Ziptide.Tests.PlayMode
                     "The canonical InputActionManager owns no action assets for tracked-rig simulation.");
         }
 
-        private void InstallVirtualControllerDevices()
+        private void InstallOrReuseVirtualControllerDevices()
         {
-            InputSystemXRController left = InputSystem.AddDevice<InputSystemXRController>();
-            InputSystem.SetDeviceUsage(left, CommonUsages.LeftHand);
-            _virtualDevices.Add(left);
+            InputSystemXRController left = FindController(CommonUsages.LeftHand);
+            if (left == null) left = AddOwnedController(CommonUsages.LeftHand);
+            _activeVirtualDevices.Add(left);
 
-            InputSystemXRController right = InputSystem.AddDevice<InputSystemXRController>();
-            InputSystem.SetDeviceUsage(right, CommonUsages.RightHand);
-            _virtualDevices.Add(right);
+            InputSystemXRController right = FindController(CommonUsages.RightHand);
+            if (right == null || right == left) right = AddOwnedController(CommonUsages.RightHand);
+            _activeVirtualDevices.Add(right);
+
             InputSystem.Update();
+            Debug.Log(
+                "ZIPTIDE: RECOVERY_VIRTUAL_XR_DEVICES active=" + _activeVirtualDevices.Count +
+                " owned=" + _ownedVirtualDevices.Count +
+                " reused=" + (_activeVirtualDevices.Count - _ownedVirtualDevices.Count));
+        }
+
+        private InputSystemXRController AddOwnedController(
+            UnityEngine.InputSystem.Utilities.InternedString usage)
+        {
+            InputSystemXRController controller = InputSystem.AddDevice<InputSystemXRController>();
+            InputSystem.SetDeviceUsage(controller, usage);
+            _ownedVirtualDevices.Add(controller);
+            return controller;
+        }
+
+        private static InputSystemXRController FindController(
+            UnityEngine.InputSystem.Utilities.InternedString usage)
+        {
+            foreach (InputDevice device in InputSystem.devices)
+            {
+                if (!(device is InputSystemXRController controller)) continue;
+                for (int i = 0; i < controller.usages.Count; i++)
+                    if (controller.usages[i] == usage) return controller;
+            }
+            return null;
+        }
+
+        private bool CanonicalLocomotionBindingsReady(
+            out int locomotionActions,
+            out int locomotionControls)
+        {
+            locomotionActions = 0;
+            locomotionControls = 0;
+            int boundActions = 0;
+
+            for (int i = 0; i < _inputAssetStates.Count; i++)
+            {
+                InputActionAsset asset = _inputAssetStates[i].Asset;
+                if (asset == null) continue;
+                foreach (InputActionMap map in asset.actionMaps)
+                {
+                    foreach (InputAction action in map.actions)
+                    {
+                        if (!IsLocomotionAction(action)) continue;
+                        locomotionActions++;
+                        bool bound = false;
+                        foreach (InputControl control in action.controls)
+                        {
+                            if (control == null || !IsActiveVirtualDevice(control.device)) continue;
+                            locomotionControls++;
+                            bound = true;
+                        }
+                        if (bound) boundActions++;
+                    }
+                }
+            }
+
+            return locomotionActions > 0 && boundActions == locomotionActions;
+        }
+
+        private static bool IsLocomotionAction(InputAction action)
+        {
+            if (action == null) return false;
+            return action.name.IndexOf("Turn", StringComparison.OrdinalIgnoreCase) >= 0 ||
+                   action.name.IndexOf("Move", StringComparison.OrdinalIgnoreCase) >= 0;
+        }
+
+        private bool IsActiveVirtualDevice(InputDevice device)
+        {
+            if (device == null) return false;
+            for (int i = 0; i < _activeVirtualDevices.Count; i++)
+                if (_activeVirtualDevices[i] == device) return true;
+            return false;
         }
 
         private void RefreshCanonicalInputAssets()
@@ -293,34 +400,18 @@ namespace Ziptide.Tests.PlayMode
             int restored = RestoreActionStates(states);
             InputSystem.Update();
 
-            int locomotionActions = 0;
-            int locomotionControls = 0;
-            for (int i = 0; i < _inputAssetStates.Count; i++)
-            {
-                InputActionAsset asset = _inputAssetStates[i].Asset;
-                if (asset == null) continue;
-                foreach (InputActionMap map in asset.actionMaps)
-                {
-                    foreach (InputAction action in map.actions)
-                    {
-                        if (action.name.IndexOf("Turn", StringComparison.OrdinalIgnoreCase) < 0 &&
-                            action.name.IndexOf("Move", StringComparison.OrdinalIgnoreCase) < 0)
-                            continue;
-                        locomotionActions++;
-                        locomotionControls += action.controls.Count;
-                    }
-                }
-            }
-
+            bool ready = CanonicalLocomotionBindingsReady(
+                out int locomotionActions,
+                out int locomotionControls);
             Debug.Log(
-                "ZIPTIDE: RECOVERY_VIRTUAL_XR_BINDINGS assets=" + _inputAssetStates.Count +
+                "ZIPTIDE: RECOVERY_VIRTUAL_XR_BINDINGS_REFRESHED assets=" + _inputAssetStates.Count +
                 " actionsRestored=" + restored +
                 " locomotionActions=" + locomotionActions +
                 " locomotionControls=" + locomotionControls);
-            if (locomotionActions > 0 && locomotionControls == 0)
+            if (!ready)
             {
                 throw new InvalidOperationException(
-                    "The canonical locomotion actions did not bind to the virtual left/right XR controllers.");
+                    "The canonical locomotion actions did not bind bilaterally to the virtual left/right XR controllers.");
             }
         }
 
