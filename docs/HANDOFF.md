@@ -27,6 +27,26 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-20 (rb43) — Fable 5: ONE-SHOT BUILD FRAMEWORK study (planning only, zero code)
+
+- **Did:** at Terry's direction, researched how to (a) build the rest of the game with near-zero
+  escaped bugs and (b) eventually clone this project's bones as a reusable framework for any
+  future game. Three research lanes (gate-coverage audit vs the 16 historical failure classes ·
+  industry one-shot-correctness practice · framework/game split + extraction plan) synthesized
+  into **`docs/design/ONE_SHOT_BUILD_FRAMEWORK.md`**. Headlines: the PlayMode lane already boots
+  `_Boot` + runs the golden travel route headless but is path-filtered and non-blocking —
+  promoting it is the single biggest lever; top-10 missing gates ranked; the one-shot ladder
+  (promote → data seams → sim fuzzing → perf → section protocol → ensemble-by-verifier for
+  multi-model work); the thin-template/thick-packages extraction plan (six UPM packages + docs
+  skeleton, harvested only after ship with game 2 as the forcing function); the honest device-only
+  residue. **⚠️ Multi-model note:** Terry is running this SAME study on other models and merging —
+  if you find sibling docs, merge by section per the doc's §7 (testable claims decided by tests).
+- **Next:** nothing until Terry adjudicates the merged takes. The doc's §8 shortlist is the
+  proposed first build slice (all gate/process work, no gameplay).
+- **Heads-up:** lane-A audit confirmed at least 4 of the 16 historical failure classes would have
+  been caught by a blocking PlayMode lane. Also on record: the asmdef reality (Visuals below
+  Content/Gameplay) differs from CLAUDE.md's stated ladder — acyclic and fine, but doc ≠ reality.
+- **Commit:** this one (docs only: the framework doc + this entry).
 ### 2026-07-19 (hwr32) - Fable 5 architect → **📣 WORK ORDER FOR GPT #3: LLM-FIRST BUILD PIPELINE** (Terry-directed — change anything, first-time-right, by LLM)
 - **Terry's goal on record:** "build or rebuild or change every aspect and have it work perfectly
   the first time — done by LLM." Researched against the actual pipeline; spec:
