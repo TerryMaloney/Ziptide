@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "gameId": "ziptide",
+  "manifestId": "ziptide-d0-city-round2",
+  "sceneName": "D0_City",
+  "displayName": "D0 CITY",
+  "round": 2,
+  "recipeVersion": 1,
+  "seed": 20010,
+  "appliesToGeneratedWorlds": false,
+  "excludedScenes": [],
+  "requiredAspects": ["Identity", "Perception", "Navigation", "SpatialSafety", "Ambience", "Atmosphere"],
+  "requiredEvidence": ["logic", "spatial", "perceptual", "performance", "device"],
+  "primaryColor": { "r": 0.22, "g": 0.24, "b": 0.28, "a": 1.0 },
+  "accentColor": { "r": 0.68, "g": 0.38, "b": 0.16, "a": 1.0 },
+  "glowColor": { "r": 0.28, "g": 0.72, "b": 0.88, "a": 1.0 },
+  "modules": [
+    { "moduleId": "arrival_identity", "version": 1, "enabled": true, "intensity": 0.8, "budget": 8, "seedOffset": 5, "aspects": ["Identity", "Perception"] },
+    { "moduleId": "route_beacons", "version": 1, "enabled": true, "intensity": 0.7, "budget": 18, "seedOffset": 17, "aspects": ["Navigation", "SpatialSafety", "Perception"] },
+    { "moduleId": "ambient_motion", "version": 1, "enabled": true, "intensity": 0.6, "budget": 6, "seedOffset": 31, "aspects": ["Ambience", "Perception"] },
+    { "moduleId": "horizon_frame", "version": 1, "enabled": true, "intensity": 0.6, "budget": 8, "seedOffset": 47, "aspects": ["Identity", "Atmosphere", "Perception"] }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "gameId": "ziptide",
+  "requiredScenes": [
+    "D0_City",
+    "StarterWorld",
+    "ToxicCity"
+  ],
+  "requiredPathContains": [
+    "Assets/Ziptide/Scenes/Generated/"
+  ],
+  "exemptions": [
+    { "sceneName": "_Boot", "reason": "persistent bootstrap, not a playable world" },
+    { "sceneName": "MilestoneA_GrabCube", "reason": "legacy interaction milestone scene" },
+    { "sceneName": "SandboxTestLab", "reason": "developer test laboratory" },
+    { "sceneName": "PvP_Arena01", "reason": "specialized competitive mode with its own arena compiler" },
+    { "sceneName": "Arena_Chitinwall", "reason": "specialized arena recipe" },
+    { "sceneName": "Arena_Cistern", "reason": "specialized arena recipe" },
+    { "sceneName": "Arena_MirrorFlats", "reason": "specialized arena recipe" },
+    { "sceneName": "Arena_Tidal", "reason": "specialized arena recipe" },
+    { "sceneName": "Arena_Void", "reason": "specialized arena recipe" },
+    { "sceneName": "W011_Undercroft", "reason": "specialized cavern scene awaiting a cavern-appropriate improvement manifest" }
+  ]
+}

@@ -98,6 +98,8 @@ namespace Ziptide.Build
                 Ziptide.Editor.Patching.AugmentAuthor.EnsureAllAuthored);
             RunRequired("ScenePatcherArena.EnsureAllInBuildSettings",
                 Ziptide.Editor.Patching.ScenePatcherArena.EnsureAllInBuildSettings);
+            RunRequired("WorldImprovementCompiler.BeginCompileSession",
+                Ziptide.Editor.WorldImprovement.WorldImprovementCompiler.BeginCompileSession);
 
             var scenes = EditorBuildSettings.scenes;
             for (int i = 0; i < scenes.Length; i++)
@@ -140,11 +142,20 @@ namespace Ziptide.Build
                     Ziptide.Editor.Patching.WorldStubGenerator.PatchActiveSceneIfGenerated);
                 RunRequired("ScenePatcherArena.PatchActiveSceneIfArena:" + path,
                     Ziptide.Editor.Patching.ScenePatcherArena.PatchActiveSceneIfArena);
+                RunRequired("WorldImprovementCompiler.CompileActiveSceneIfDeclared:" + path,
+                    () =>
+                    {
+                        Ziptide.Editor.WorldImprovement.WorldImprovementCompiler
+                            .CompileActiveSceneIfDeclared(path);
+                    });
 
                 EditorSceneManager.MarkSceneDirty(scene);
                 if (!EditorSceneManager.SaveOpenScenes())
                     throw new Exception("Required build step failed: save scene " + path);
             }
+
+            RunRequired("WorldImprovementCompiler.WriteReport",
+                Ziptide.Editor.WorldImprovement.WorldImprovementCompiler.WriteReport);
 
             RunRequired("SkyVistaAuthor",
                 () =>

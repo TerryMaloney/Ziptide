@@ -11,6 +11,22 @@ on:
       - 'Ziptide/Assets/Ziptide/Core/Runtime/Recovery/**'
       - 'Ziptide/Assets/Ziptide/Editor/Build/BuildAndroid.cs'
       - 'Ziptide/Assets/Ziptide/Editor/Build/RecoveryBuildAndroid.cs'
+      # World Improvement framework: recipe-only or module/gate changes alter the locked W000/ToxicCity
+      # route and therefore require the same canonical PlayMode observation as runtime code changes.
+      - 'docs/worldimprovements/**'
+      - 'Ziptide/Assets/Ziptide/Content/WorldImprovement/**'
+      - 'Ziptide/Assets/Ziptide/Editor/WorldImprovement/**'
+      - 'Ziptide/Assets/Ziptide/Editor/Audit/BuildProfileTravelAuditRules.cs'
+      - 'Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs'
+      - 'Ziptide/Assets/Ziptide/Editor/Audit/PerceptualCoverageAuditRules.cs'
+      - 'Ziptide/Assets/Ziptide/Editor/Audit/RouteContinuityAuditRules.cs'
+      - 'Ziptide/Assets/Ziptide/Editor/Audit/InteractionReachAuditRules.cs'
+      - 'Ziptide/Assets/Ziptide/Editor/Audit/WorldImprovementAuditRules.cs'
+      - 'Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovement*.cs'
+      - 'Ziptide/Assets/Ziptide/Tests/EditMode/*PerceptualAuditRulesTests.cs'
+      - 'Ziptide/Assets/Ziptide/Tests/EditMode/RouteContinuityAuditRulesTests.cs'
+      - 'Ziptide/Assets/Ziptide/Tests/EditMode/InteractionReachAuditRulesTests.cs'
+      - 'Ziptide/Assets/Ziptide/Tests/EditMode/BuildProfileTravelAuditRulesTests.cs'
       # Device-recovery owners used by the locked W000 -> ToxicCity -> W000 route.
       # These were previously missed, allowing a source candidate to start Golden Android without
       # also receiving the canonical 43-test PlayMode observation.
