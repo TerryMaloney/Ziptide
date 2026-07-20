@@ -27,6 +27,29 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-20 (rb62) — Fable 5: TIER-C CONCEPT QUEUE — the ship brief + the hero lineup, all free, all now (zero code)
+
+- **Did (Terry: "hit it up… not paying for Tripo until plenty is lined up"):** wrote
+  **`docs/project_art_plan/TIER_C_CONCEPT_QUEUE.md`** — the concept phase that costs $0:
+  concept images are REFERENCE (never ship), so the whole phase runs on free image
+  generators; paid 3D happens per-asset only AFTER its sheet is approved. **The lead brief:
+  THE SHIP** — prompts S1–S6 encoding the LOCKED canon (Toxic City Scavenger: asymmetric
+  salvage rig, ONE oversized patched engine as dominant feature, grabber arm as hero part,
+  chipped hazard amber + one crest-cyan coupler glow, cockpit CAB with floor windows +
+  chunky levers, quarters bunk wall w/ name tags [family profiles!], plus the dock beauty
+  shot that doubles as title-menu reference). **S1 silhouette sheet runs first** — decisions
+  at the fill-it-black level per the ship doc's six laws, which are also the §0 selection
+  rubric (+ "a kid could draw it from memory"). **The queue (C2–C6):** the Ziptide gate ·
+  the Warden capital (smooth-vs-salvage CONTRAST is the design) · W001's leaning tenement
+  tower (WC-4 hero element) · the joined artifact key (face-distance macguffin) · the
+  Dockmaster's post. Workflow = the music-keeper discipline (≥6 candidates, prompts logged,
+  approval ceremony per asset → eligible for WC-5 intake). **§3 the paid trigger, concrete:**
+  buy the 3D month when ship S1–S4 + ≥2 queue assets are approved — one month converts the
+  whole approved backlog, Suno-Pro batching logic.
+- **Next:** Terry generates at his pace, S1 first. Every approved sheet also gives the booth
+  a reference to chase for the Forge-native placeholders in the meantime.
+- **Commit:** this one (docs only: queue doc + this entry).
+
 ### 2026-07-20 (rb61) — Fable 5: HERO ASSET STRATEGY — the Forge's honest ceiling + the three-tier path to AAA (Terry-directed research, zero code)
 
 - **Terry's verdict, confirmed honest:** "the ship… the space battle stuff… I can't see that
