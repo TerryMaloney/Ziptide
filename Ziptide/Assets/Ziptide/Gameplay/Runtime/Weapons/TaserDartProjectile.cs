@@ -1,11 +1,13 @@
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 using Ziptide.Core;
 using Ziptide.Multiplayer;
 
 namespace Ziptide.Gameplay
 {
     /// <summary>
-    /// Sticky dart: on collision, parents to target, shocks IShockable, hits TargetRuntime.
+    /// Sticky dart: on collision, parents to target, shocks IShockable, hits TargetRuntime, and returns
+    /// one restrained hit-confirm pulse to the firing hand when a gameplay target actually accepted it.
     /// </summary>
     public class TaserDartProjectile : MonoBehaviour
     {
@@ -14,13 +16,18 @@ namespace Ziptide.Gameplay
         private float _lifetime;
         private AudioClip _impactClip;
         private bool _stuck;
+        private WeaponFeelRuntime _feel;
+        private XRBaseControllerInteractor _firingHand;
 
-        public void Init(float stunSeconds, float hitImpulse, float lifetime, AudioClip impactClip)
+        public void Init(float stunSeconds, float hitImpulse, float lifetime, AudioClip impactClip,
+            WeaponFeelRuntime feel = null, XRBaseControllerInteractor firingHand = null)
         {
             _stunSeconds = stunSeconds;
             _hitImpulse = hitImpulse;
             _lifetime = lifetime;
             _impactClip = impactClip;
+            _feel = feel;
+            _firingHand = firingHand;
             Destroy(gameObject, lifetime);
         }
 
@@ -34,58 +41,63 @@ namespace Ziptide.Gameplay
             {
                 rb.isKinematic = true;
                 rb.velocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
             }
 
             transform.SetParent(collision.transform, true);
-
             SpawnSpark();
+            bool confirmedTarget = false;
 
             // A drone handles its own taser shock + location-based go-down from the stick point.
-            // (Routing here avoids double-triggering its TargetRuntime/IShockable paths.)
+            // Routing here avoids double-triggering its TargetRuntime/IShockable paths.
             var drone = collision.gameObject.GetComponentInParent<DroneRuntime>();
             if (drone != null)
             {
                 drone.RegisterHit(transform.position, true);
+                confirmedTarget = true;
             }
             else
             {
-                // PvP: a player/bot combatant takes taser damage (Drone Combat / single-player paths
-                // are untouched — this is just one more branch).
                 var pvp = collision.gameObject.GetComponentInParent<IPvpDamageable>();
                 if (pvp != null)
                 {
-                    PvpHitSource.Report(0); // held weapons are the local player's (rig = index 0)
+                    PvpHitSource.Report(0);
                     pvp.ReceiveHit(PvpWeapon.Taser, transform.position, transform.forward);
+                    confirmedTarget = true;
                 }
                 else
                 {
                     var shockable = collision.gameObject.GetComponentInParent<IShockable>();
                     if (shockable != null)
+                    {
                         shockable.Shock(_stunSeconds);
+                        confirmedTarget = true;
+                    }
 
                     var target = collision.gameObject.GetComponentInParent<TargetRuntime>();
                     if (target != null)
+                    {
                         target.Hit(_hitImpulse, transform.position);
+                        confirmedTarget = true;
+                    }
                 }
             }
 
+            if (confirmedTarget && _feel != null)
+                _feel.ConfirmHit(_firingHand);
+
             if (_impactClip != null)
-            {
                 AudioSource.PlayClipAtPoint(_impactClip, transform.position, 0.5f);
-            }
 
             Destroy(gameObject, 2f);
         }
 
         private void SpawnSpark()
         {
-            // Pooled (HARDWIRING 0.5): one spark per dart hit, and the factory runs ONCE — the old
-            // path leaked a fresh Material into memory on every single impact.
-            var spark = Ziptide.Core.GamePool.Get("taser_spark", BuildSpark, transform.position);
-            Ziptide.Core.GamePool.ReleaseAfter("taser_spark", spark, 0.15f);
+            var spark = GamePool.Get("taser_spark", BuildSpark, transform.position);
+            GamePool.ReleaseAfter("taser_spark", spark, 0.15f);
         }
 
-        /// <summary>Pool factory — runs once; spark visual (and its material) reused per hit.</summary>
         private static GameObject BuildSpark()
         {
             var spark = GameObject.CreatePrimitive(PrimitiveType.Sphere);
@@ -102,9 +114,9 @@ namespace Ziptide.Gameplay
                 if (shader != null)
                 {
                     var mat = new Material(shader);
-                    mat.color = new Color(0.3f, 0.9f, 1f, 1f);
-                    if (mat.HasProperty("_BaseColor"))
-                        mat.SetColor("_BaseColor", new Color(0.3f, 0.9f, 1f, 1f));
+                    Color color = new Color(0.3f, 0.9f, 1f, 1f);
+                    mat.color = color;
+                    if (mat.HasProperty("_BaseColor")) mat.SetColor("_BaseColor", color);
                     r.material = mat;
                 }
             }
