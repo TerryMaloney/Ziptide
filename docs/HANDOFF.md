@@ -27,6 +27,22 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-20 (rb66) — Fable 5: 🗺 K7 — the city's LOGIC LAYER (schematic blueprint with gameplay semantics)
+
+- **Did:** Terry delivered an isometric SCHEMATIC blueprint of the city ("THE 'MOSS'
+  HABITATION ZONE") — K1 is the look, K7 is the logic: sector lettering A–G (G = the stone
+  circle with an "anomalous energy reading" caution — the blueprint's own fiction pointing
+  at the gate), NAMED WRECKS adopted as the wreck-thread pattern ("RUSTBUCKET" bulk carrier,
+  "SEAWEED" trawler — each gets its log + salvage node), a KEY that maps 1:1 to our systems
+  (light relay→practicals · water filter/power hub→RepairableMachine job sites · unstable
+  structure→hazard volumes · loot point→salvage nodes — adopted as the city POI vocabulary),
+  player-route/safe-zone/spillage legend (→ cairn route, spawn areas, acid-hazard volumes).
+  Stored as `concepts/toxic_city_kit/city_K7_schematic_blueprint_v1.png`; spec §1a added.
+  ⚖ NEW for Terry: adopt **"the Moss"** as the city's proper name (from the sheet's title)?
+- **Note:** the city kit is now look (K1–K6) + logic (K7) — CityLayoutDefinition can be
+  authored from K1+K7 together with almost no invention left.
+- **Commit:** this one (docs + 1 reference image).
+
 ### 2026-07-20 (rb65) — Fable 5: 🏙 THE CITY HAS A FACE — all six K-levels approved in one batch + city visual spec (docs + reference images only)
 
 - **Did:** Terry delivered the ENTIRE city concept kit same-day: K1 aerial master (concentric

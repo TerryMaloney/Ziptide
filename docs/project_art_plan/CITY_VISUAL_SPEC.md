@@ -33,6 +33,31 @@ ring canal + 3–4 radial canals · 4–6 district wedges · harbor wedge with b
 wall ring with 2 breaches · outskirt scatter bands (wrecks/stilts/pools) · gate ring as a
 far-anchor vista object, NOT geometry.
 
+## §1a — THE LOGIC LAYER (K7 schematic blueprint — added 2026-07-20, same-day)
+
+`city_K7_schematic_blueprint_v1.png` — an isometric SCHEMATIC of the city with gameplay
+semantics; K1 is the LOOK, K7 is the LOGIC. Adopted reads (garbled AI text ignored where
+noted):
+- **Sector lettering A–G:** A-1 central leaning tower · A/B/C dense habitation wedges ·
+  D/E the named-wreck outskirt sectors · industrial/sea-wall sector · **G = the ancient
+  stone circle (the gate pillars) with an "anomalous energy reading" caution — the
+  blueprint's own fiction pointing at the Ziptide.** Sector ids slot straight into
+  CityLayoutDefinition district naming.
+- **NAMED WRECKS adopted:** bulk carrier "RUSTBUCKET", trawler "SEAWEED" — wreck-thread
+  device instances (each gets its log + salvage node per canon); naming wrecks is now the
+  pattern for all outskirt wrecks.
+- **The KEY maps 1:1 onto our systems** (adopt as the city's POI vocabulary): light relay →
+  practicals · water filter point / power hub → RepairableMachine job sites · unstable
+  structure ⚠ → hazard/no-build volumes · loot point → salvage nodes.
+- **Pathfinding legend:** player route (green) = the cairn route; safe zones = spawn/rest
+  areas; hatched **toxic spillage zones** = the acid-hazard volumes (pairs with K5's glowing
+  tide pools).
+- **"THE MOSS HABITATION ZONE"** — the sheet names the city. ⚖ Terry: adopt "the Moss" as
+  the city/district's proper name? (W001 is "Toxic Venice" informally; the Moss reads
+  in-world and kid-sayable.) Pending his call.
+- Waterways numbered 1–5; central moorings/transport hub + external freighter docks confirm
+  the harbor's two-tier use (player berth vs. big docks — flyover landmarks).
+
 ## §2 — SKYLINE & PALETTE (K2/K5)
 
 Layered depth exactly per the Prospect rubric: foreground flats+wrecks → stilt fringe →
