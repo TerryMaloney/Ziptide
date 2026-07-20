@@ -187,7 +187,9 @@ namespace Ziptide.Editor.Patching
                 renderer.sharedMaterial = Mat(materialSlot, color, emissive);
                 renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
             }
-            GameObjectUtility.SetStaticEditorFlags(go, StaticEditorFlags.BatchingStatic);
+            bool animated = name.StartsWith("Flow_") || name.StartsWith("Bubble_");
+            if (!animated)
+                GameObjectUtility.SetStaticEditorFlags(go, StaticEditorFlags.BatchingStatic);
             return go;
         }
 
