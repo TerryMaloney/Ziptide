@@ -1,25 +1,25 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-20T00:27:08.631657+00:00",
+  "generatedAtUtc": "2026-07-20T00:44:38.874973+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
     "Ziptide/Assets/Ziptide",
     "Ziptide/Assets/ZiptideNet"
   ],
-  "scannedFiles": 653,
-  "findingCount": 2327,
+  "scannedFiles": 655,
+  "findingCount": 2336,
   "categoryCounts": {
     "bootstrap": 31,
-    "diagnostics": 507,
+    "diagnostics": 509,
     "events": 64,
     "fallback_debt": 134,
     "global_render": 80,
     "input": 197,
-    "materials": 230,
+    "materials": 233,
     "persistence": 18,
-    "runtime_creation": 597,
+    "runtime_creation": 601,
     "runtime_ui": 121,
     "save_state": 256,
     "scene_loading": 9,
@@ -30,7 +30,7 @@
     "CAMERA_MAIN_REFERENCE": 42,
     "CAMERA_POST_PROCESSING": 1,
     "CANVAS_COMPONENT": 5,
-    "CREATE_PRIMITIVE": 236,
+    "CREATE_PRIMITIVE": 237,
     "DIRECT_SCENE_LOAD": 2,
     "DIRECT_SCENE_LOAD_ASYNC": 7,
     "DONT_DESTROY_ON_LOAD": 18,
@@ -41,13 +41,13 @@
     "FRAME_BUTTON_POLL": 1,
     "INPUT_ACTION_REFERENCE": 190,
     "INPUT_BUTTON_REFERENCE": 6,
-    "NEW_GAME_OBJECT": 361,
+    "NEW_GAME_OBJECT": 364,
     "PLAYER_PROFILE_REFERENCE": 140,
     "RENDER_SETTINGS_MUTATION": 36,
     "RUNTIME_BOOTSTRAP": 25,
-    "RUNTIME_MATERIAL_CREATE": 89,
+    "RUNTIME_MATERIAL_CREATE": 90,
     "SAVE_SYSTEM_REFERENCE": 108,
-    "SHADER_FIND": 141,
+    "SHADER_FIND": 143,
     "STATIC_EVENT_DECLARATION": 16,
     "TEXTMESH_COMPONENT": 47,
     "TMP_COMPONENT": 3,
@@ -57,7 +57,7 @@
     "XRI_MANAGER_LOOKUP": 41,
     "XR_INTERACTABLE_COMPONENT": 62,
     "XR_UI_INPUT_MODULE": 2,
-    "ZIPTIDE_LOG_TAG": 507
+    "ZIPTIDE_LOG_TAG": 509
   },
   "findings": [
     {
@@ -770,6 +770,24 @@
       "line": 171,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherSandbox",
       "snippet": "/// when you stand and stare, and the sink pays scrap (ZIPTIDE: BELT_SUNK). Authoring only \u2014"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageA.cs",
+      "line": 91,
+      "symbol": "Ziptide.Editor.Patching.ToxicCityStageA",
+      "snippet": "Debug.Log(\"ZIPTIDE: CITY_STAGE_A district=\" + def.id"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageA.cs",
+      "line": 100,
+      "symbol": "Ziptide.Editor.Patching.ToxicCityStageA",
+      "snippet": "Debug.Log(\"ZIPTIDE: CITY_STAGE_A_COMPLETE districts=\" + districtCount"
     },
     {
       "category": "diagnostics",
@@ -9208,6 +9226,15 @@
       "category": "materials",
       "code": "RUNTIME_MATERIAL_CREATE",
       "description": "Runtime Material allocation",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityStageAPrimitiveFactory.cs",
+      "line": 58,
+      "symbol": "Ziptide.Editor.Patching.CityStageAPrimitiveFactory",
+      "snippet": "material = new Material(shader) { name = \"CityStageA_\" + key };"
+    },
+    {
+      "category": "materials",
+      "code": "RUNTIME_MATERIAL_CREATE",
+      "description": "Runtime Material allocation",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ForgeBaker.cs",
       "line": 215,
       "symbol": "Ziptide.Editor.Patching.ForgeBaker",
@@ -10012,6 +10039,24 @@
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
       "line": 70,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
+      "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
+    },
+    {
+      "category": "materials",
+      "code": "SHADER_FIND",
+      "description": "Runtime shader lookup",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityStageAPrimitiveFactory.cs",
+      "line": 56,
+      "symbol": "Ziptide.Editor.Patching.CityStageAPrimitiveFactory",
+      "snippet": "Shader shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
+    },
+    {
+      "category": "materials",
+      "code": "SHADER_FIND",
+      "description": "Runtime shader lookup",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityStageAPrimitiveFactory.cs",
+      "line": 57,
+      "symbol": "Ziptide.Editor.Patching.CityStageAPrimitiveFactory",
       "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
     },
     {
@@ -11561,6 +11606,15 @@
       "line": 512,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var drone = GameObject.CreatePrimitive(PrimitiveType.Sphere);"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "CREATE_PRIMITIVE",
+      "description": "Runtime primitive construction",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityStageAPrimitiveFactory.cs",
+      "line": 19,
+      "symbol": "Ziptide.Editor.Patching.CityStageAPrimitiveFactory",
+      "snippet": "var go = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
     {
       "category": "runtime_creation",
@@ -14333,6 +14387,33 @@
       "line": 120,
       "symbol": "Ziptide.Editor.Patching.SignAuthor",
       "snippet": "var holder = new GameObject(string.IsNullOrEmpty(plan.name) ? \"ShellSign\" : plan.name);"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageA.cs",
+      "line": 98,
+      "symbol": "Ziptide.Editor.Patching.ToxicCityStageA",
+      "snippet": "var marker = new GameObject(MarkerName);"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageA.cs",
+      "line": 121,
+      "symbol": "Ziptide.Editor.Patching.ToxicCityStageA",
+      "snippet": "var root = new GameObject(name);"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageA.cs",
+      "line": 229,
+      "symbol": "Ziptide.Editor.Patching.ToxicCityStageA",
+      "snippet": "var root = new GameObject(\"__CITY_STAGE_A_CURBS\");"
     },
     {
       "category": "runtime_creation",

@@ -1,8 +1,8 @@
 {
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
-  "scannedFiles": 653,
-  "findingCount": 2327,
+  "scannedFiles": 655,
+  "findingCount": 2336,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -3105,6 +3105,48 @@
         ]
       },
       {
+        "owner": "Ziptide.Editor.Patching.CityStageAPrimitiveFactory",
+        "evidenceCount": 4,
+        "codes": [
+          "CREATE_PRIMITIVE",
+          "RUNTIME_MATERIAL_CREATE",
+          "SHADER_FIND"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Editor/Patching/CityStageAPrimitiveFactory.cs"
+        ],
+        "evidence": [
+          {
+            "code": "CREATE_PRIMITIVE",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityStageAPrimitiveFactory.cs",
+            "line": 19,
+            "symbol": "Ziptide.Editor.Patching.CityStageAPrimitiveFactory",
+            "snippet": "var go = GameObject.CreatePrimitive(PrimitiveType.Cube);"
+          },
+          {
+            "code": "SHADER_FIND",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityStageAPrimitiveFactory.cs",
+            "line": 56,
+            "symbol": "Ziptide.Editor.Patching.CityStageAPrimitiveFactory",
+            "snippet": "Shader shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
+          },
+          {
+            "code": "SHADER_FIND",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityStageAPrimitiveFactory.cs",
+            "line": 57,
+            "symbol": "Ziptide.Editor.Patching.CityStageAPrimitiveFactory",
+            "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
+          },
+          {
+            "code": "RUNTIME_MATERIAL_CREATE",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityStageAPrimitiveFactory.cs",
+            "line": 58,
+            "symbol": "Ziptide.Editor.Patching.CityStageAPrimitiveFactory",
+            "snippet": "material = new Material(shader) { name = \"CityStageA_\" + key };"
+          }
+        ]
+      },
+      {
         "owner": "Ziptide.Editor.Patching.ForgeBaker",
         "evidenceCount": 3,
         "codes": [
@@ -4406,6 +4448,39 @@
             "line": 159,
             "symbol": "Ziptide.Editor.Patching.SignRecipeLibrary",
             "snippet": "var material = new Material(shader)"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Editor.Patching.ToxicCityStageA",
+        "evidenceCount": 3,
+        "codes": [
+          "NEW_GAME_OBJECT"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageA.cs"
+        ],
+        "evidence": [
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageA.cs",
+            "line": 98,
+            "symbol": "Ziptide.Editor.Patching.ToxicCityStageA",
+            "snippet": "var marker = new GameObject(MarkerName);"
+          },
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageA.cs",
+            "line": 121,
+            "symbol": "Ziptide.Editor.Patching.ToxicCityStageA",
+            "snippet": "var root = new GameObject(name);"
+          },
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageA.cs",
+            "line": 229,
+            "symbol": "Ziptide.Editor.Patching.ToxicCityStageA",
+            "snippet": "var root = new GameObject(\"__CITY_STAGE_A_CURBS\");"
           }
         ]
       },

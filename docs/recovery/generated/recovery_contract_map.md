@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
-- Scanned files: **653**
-- Scanner findings: **2327**
+- Scanned files: **655**
+- Scanner findings: **2336**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -730,6 +730,15 @@ None.
   - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:512` **CREATE_PRIMITIVE** — `var drone = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
   - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:536` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
 
+### `Ziptide.Editor.Patching.CityStageAPrimitiveFactory` — 4 signal(s)
+
+- Codes: `CREATE_PRIMITIVE`, `RUNTIME_MATERIAL_CREATE`, `SHADER_FIND`
+- Paths: `Ziptide/Assets/Ziptide/Editor/Patching/CityStageAPrimitiveFactory.cs`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityStageAPrimitiveFactory.cs:19` **CREATE_PRIMITIVE** — `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityStageAPrimitiveFactory.cs:56` **SHADER_FIND** — `Shader shader = Shader.Find("Universal Render Pipeline/Lit");`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityStageAPrimitiveFactory.cs:57` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityStageAPrimitiveFactory.cs:58` **RUNTIME_MATERIAL_CREATE** — `material = new Material(shader) { name = "CityStageA_" + key };`
+
 ### `Ziptide.Editor.Patching.ForgeBaker` — 3 signal(s)
 
 - Codes: `NEW_GAME_OBJECT`, `RUNTIME_MATERIAL_CREATE`, `SHADER_FIND`
@@ -980,6 +989,14 @@ None.
   - `Ziptide/Assets/Ziptide/Editor/Patching/SignRecipeLibrary.cs:151` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Unlit/Texture");`
   - `Ziptide/Assets/Ziptide/Editor/Patching/SignRecipeLibrary.cs:152` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Sprites/Default");`
   - `Ziptide/Assets/Ziptide/Editor/Patching/SignRecipeLibrary.cs:159` **RUNTIME_MATERIAL_CREATE** — `var material = new Material(shader)`
+
+### `Ziptide.Editor.Patching.ToxicCityStageA` — 3 signal(s)
+
+- Codes: `NEW_GAME_OBJECT`
+- Paths: `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageA.cs`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageA.cs:98` **NEW_GAME_OBJECT** — `var marker = new GameObject(MarkerName);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageA.cs:121` **NEW_GAME_OBJECT** — `var root = new GameObject(name);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageA.cs:229` **NEW_GAME_OBJECT** — `var root = new GameObject("__CITY_STAGE_A_CURBS");`
 
 ### `Ziptide.Editor.Patching.WaterAuthor` — 1 signal(s)
 
