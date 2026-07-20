@@ -139,9 +139,16 @@ commissioned: a white blood cell the size of a city. Feeds: the ship-scale enemy
 the P3 distant-fleet silhouette. Still optional: the quarantine-cone state and the W037
 recognition beat (eye vs. drone) as second/third keepers.
 
-**QUEUE STATUS: the Tier-C concept set is COMPLETE except ship interiors (S4 dedicated
-cockpit + S5 quarters).** §3's paid-3D trigger condition is effectively MET whenever Terry
-chooses (ship exterior + cab POV approved; six queue assets approved).
+**QUEUE STATUS: ✅ THE TIER-C CONCEPT SET IS 100% COMPLETE (2026-07-20).** S4 cockpit + S5
+quarters approved same-day (`ship_S4_cockpit_v1` / `ship_S5_quarters_v1`): the cockpit
+delivers truck-not-fighter (upright worn seat, flat chunky dash, throttle quadrant + dual
+sticks, heavy toggles, analog gauges, taped notes, mirror/wiper), **GLASS FLOOR PANELS
+showing the dock and landing gear below** (the vertigo canon, delivered), the salvage dock
+alive through the windshield, and a cyan-glowing port instrument on the right console (the
+coupler's read); the quarters delivers **the FOUR BUNK PODS WITH NAME-TAG PLATES** (family
+profiles' fiction, exactly), personal trinket shelves, string lights, green porthole, wheel-
+lock door, boots and thermos. §3's paid-3D trigger: MET — the entire approved backlog awaits
+the Tripo/Meshy month whenever Terry chooses.
 
 ## §2c — C5 · THE ARTIFACT KEY — ✅ APPROVED 2026-07-20 (`concepts/artifact_key/`)
 
