@@ -58,16 +58,20 @@ Read by every lane at session start alongside HANDOFF. Full spec: `FINISHED_GAME
     inside-out planning blindness. **SYSTEM CHANGE:** ✅ THIS LEDGER + the benchmark as a
     recurring milestone gate (checklist row) + EXCELLENCE_MAP rows per category — the
     ship-backward view now has standing machinery.
-11. **WHAT:** the recovery PlayMode route repeatedly failed input settle during `_Boot`, even
-    after neutral tracked devices existed before scene load. **FOUND BY:** Recovery PlayMode
-    42/43 on `0f01fc5`, then again on `be4a6b98`. **WHY MISSED:** PlayMode retained the static
-    `sceneLoaded` subscription across tests; the same `_Boot` activation was consolidated once by
-    the retained callback and again by `AfterSceneLoad.Bootstrap`, mutating shared InputAction
-    state twice inside one settle window. **CLASS:** two lifecycle callbacks claim one scene
-    generation when domain reload is absent. **SYSTEM CHANGE:** suite-scoped neutral XR devices
-    preserve platform fidelity, and `InputSessionSceneLatchCore` makes
-    `PlayerInputSessionGuard` consolidate each scene handle exactly once; pure latch tests plus the
-    existing zero-settle-failure route assertion require exact 43/43 closure (→ pending CI verification).
+11. **WHAT:** the recovery PlayMode performance route repeatedly failed input settle during
+    `_Boot`. **FOUND BY:** 42/43 on `0f01fc5`, `be4a6b98`, and `dfeddc15`. **WHY MISSED:** two
+    separate no-domain-reload harness gaps overlapped: the same scene could be consolidated by
+    both a retained `sceneLoaded` callback and `AfterSceneLoad.Bootstrap`, and—after that duplicate
+    was correctly latched—the performance test still waited for Home Hub readiness before installing
+    the full virtual-controller action refresh. Other green actual-route tests installed it
+    immediately after scene load and allowed boot input to settle. **CLASS:** test environment
+    reconstructs a platform dependency after a production deadline, with two lifecycle owners
+    obscuring the ordering defect. **SYSTEM CHANGE:** neutral suite devices preserve platform
+    fidelity; `InputSessionSceneLatchCore` enforces one consolidation per scene handle; and
+    `RecoveryGoldenPerformanceRouteTests` now installs `RecoveryActualRigControllerSimulation`
+    immediately after `_Boot` plus allowed bootstraps, before waiting for presentation readiness.
+    Pure latch tests and the zero-settle-failure route assertion require exact 43/43 closure
+    (→ pending CI verification).
 12. **WHAT:** adding a new improvement round created duplicate matching recipes because the
     resolver assumed history would be destructively replaced. **FOUND BY:** Round 3 recipe
     integration review. **WHY MISSED:** Round 2 proved currentness but not successive-round
