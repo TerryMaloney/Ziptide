@@ -84,6 +84,21 @@ side · how much hull is "one ship" vs visibly welded salvage (aim ~70/30).
 there) · world skies (SkyVista owns them) · anything needed in quantity (§2-A law: Tier C
 stays a short named list).
 
+## §3a — THE B+ BRIDGE (Terry-approved workflow, 2026-07-20)
+
+Once the ship's sheets are approved, a model session builds a **B+ Forge version from the
+images** — Terry hands over the schematic/views; the session derives a visual spec
+(proportions, masses, landmarks measured off the sheet), writes the `ship_scavenger_mk1`
+recipe, and drives the BOOTH LOOP against the reference (the proven taser/warden method —
+render, compare to the concept, revise). Expectation set honestly: silhouette + masses +
+material story RIGHT; panel-density/greebles/bevel edges wait for Tier-B ops or the hero
+mesh. **The B+ ship is permanent, not throwaway:** when the Tier-C hero mesh arrives it
+becomes LOD0 and the Forge version becomes the forever distant/berth LOD; the applier
+contract makes the swap free. Interior stays on ShipHullBuilder graybox + module looks.
+Sequencing: recipe/spec design from images = anytime; code + booth loop = post-checkpoint;
+tactically, the Tier-B hard-surface ops envelope leads if possible (the ship justifies it;
+every weapon inherits it).
+
 ## §3 — When the queue is "plenty lined up" (the paid-trigger, made concrete)
 
 Buy the 3D-generation month when: **the ship's S1–S4 sheets are approved + ≥2 queue assets
