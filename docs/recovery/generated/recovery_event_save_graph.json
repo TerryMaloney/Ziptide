@@ -1,13 +1,13 @@
 {
   "tool": "recovery_event_save_graph",
-  "scannedFiles": 719,
-  "evidenceCount": 721,
+  "scannedFiles": 720,
+  "evidenceCount": 723,
   "kindCounts": {
     "AUTOSAVE": 7,
     "EVENT_DECLARE": 45,
     "EVENT_INVOKE": 60,
-    "EVENT_SUBSCRIBE": 107,
-    "EVENT_UNSUBSCRIBE": 57,
+    "EVENT_SUBSCRIBE": 108,
+    "EVENT_UNSUBSCRIBE": 58,
     "PLAYER_PREFS_ACCESS": 11,
     "PROFILE_FIELD_ACCESS": 366,
     "SAVE_ACCESS": 68
@@ -892,6 +892,24 @@
         "target": "Application.logMessageReceived",
         "detail": "_logCallback",
         "snippet": "if (_logCallback != null) Application.logMessageReceived -= _logCallback;"
+      },
+      {
+        "kind": "EVENT_UNSUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs",
+        "line": 35,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair",
+        "target": "Application.logMessageReceived",
+        "detail": "OnLogMessage",
+        "snippet": "Application.logMessageReceived -= OnLogMessage;"
+      },
+      {
+        "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs",
+        "line": 36,
+        "owner": "Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair",
+        "target": "Application.logMessageReceived",
+        "detail": "OnLogMessage",
+        "snippet": "Application.logMessageReceived += OnLogMessage;"
       },
       {
         "kind": "EVENT_SUBSCRIBE",
@@ -13401,6 +13419,24 @@
       "target": "TravelCoordinator.TravelCompleted",
       "detail": "MarkCompletedDestinationPending",
       "snippet": "TravelCoordinator.TravelCompleted += MarkCompletedDestinationPending;"
+    },
+    {
+      "kind": "EVENT_UNSUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs",
+      "line": 35,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair",
+      "target": "Application.logMessageReceived",
+      "detail": "OnLogMessage",
+      "snippet": "Application.logMessageReceived -= OnLogMessage;"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs",
+      "line": 36,
+      "owner": "Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair",
+      "target": "Application.logMessageReceived",
+      "detail": "OnLogMessage",
+      "snippet": "Application.logMessageReceived += OnLogMessage;"
     },
     {
       "kind": "EVENT_INVOKE",

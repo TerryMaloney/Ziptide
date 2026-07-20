@@ -1,7 +1,7 @@
 # ZIPTIDE Event and Save Ownership Graph
 
-- Scanned C# files: **719**
-- Evidence edges: **721**
+- Scanned C# files: **720**
+- Evidence edges: **723**
 - Named subscriptions without matching unsubscribe in the same owner: **52**
 
 This is a static ownership graph. An unmatched row is a review target, not automatic proof of a leak; process-lifetime static hooks may be intentional.
@@ -11,8 +11,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **AUTOSAVE:** 7
 - **EVENT_DECLARE:** 45
 - **EVENT_INVOKE:** 60
-- **EVENT_SUBSCRIBE:** 107
-- **EVENT_UNSUBSCRIBE:** 57
+- **EVENT_SUBSCRIBE:** 108
+- **EVENT_UNSUBSCRIBE:** 58
 - **PLAYER_PREFS_ACCESS:** 11
 - **PROFILE_FIELD_ACCESS:** 366
 - **SAVE_ACCESS:** 68
@@ -138,6 +138,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:53` · `_logCallback` — `if (_logCallback != null) Application.logMessageReceived -= _logCallback;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:55` · `_logCallback` — `Application.logMessageReceived += _logCallback;`
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:66` · `_logCallback` — `if (_logCallback != null) Application.logMessageReceived -= _logCallback;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs:35` · `OnLogMessage` — `Application.logMessageReceived -= OnLogMessage;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs:36` · `OnLogMessage` — `Application.logMessageReceived += OnLogMessage;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:65` · `_logCallback` — `Application.logMessageReceived += _logCallback;`
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:76` · `_logCallback` — `if (_logCallback != null) Application.logMessageReceived -= _logCallback;`
 

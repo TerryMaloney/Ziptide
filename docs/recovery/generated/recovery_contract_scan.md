@@ -1,19 +1,19 @@
 # ZIPTIDE Recovery Contract Scan
 
-- Scanned files: **719**
-- Findings: **2501**
+- Scanned files: **720**
+- Findings: **2523**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
 
 | Category | Count |
 |---|---:|
-| `bootstrap` | 35 |
-| `diagnostics` | 553 |
+| `bootstrap` | 36 |
+| `diagnostics` | 561 |
 | `events` | 64 |
 | `fallback_debt` | 154 |
 | `global_render` | 81 |
-| `input` | 199 |
+| `input` | 212 |
 | `materials` | 246 |
 | `persistence` | 18 |
 | `runtime_creation` | 671 |
@@ -59,6 +59,7 @@
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Tests/EditMode/EventHygieneTests.cs:26` · `Ziptide.Tests.EditMode.EventHygieneTests` — RuntimeInitializeOnLoadMethod bootstrap. `"Gameplay/Runtime/World/ConquestMissionRuntime.cs", // [RuntimeInitializeOnLoadMethod] static hook`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGateBypassTests.cs:61` · `Ziptide.Tests.PlayMode.RecoveryGateBypassTests` — RuntimeInitializeOnLoadMethod bootstrap. `var marker = new Regex(@"(?m)^\s*\[RuntimeInitializeOnLoadMethod(?:\s*\(|\s*\])");`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenTravelVisualCapture.cs:36` · `Ziptide.Tests.PlayMode.RecoveryGoldenTravelVisualCapture` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]`
+- **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs:32` · `Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryVirtualXrLayoutBootstrap.cs:53` · `Ziptide.Tests.PlayMode.RecoveryVirtualXrLayoutBootstrap` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/ZiptideNet/NetBootstrap.cs:20` · `ZiptideNet.NetBootstrap` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]`
 ### diagnostics
@@ -564,6 +565,14 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenTravelVisualCapture.cs:43` · `Ziptide.Tests.PlayMode.RecoveryGoldenTravelVisualCapture` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RECOVERY_GOLDEN_VISUAL_CAPTURE_READY");`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenTravelVisualCapture.cs:53` · `Ziptide.Tests.PlayMode.RecoveryGoldenTravelVisualCapture` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RECOVERY_GOLDEN_VISUAL_PENDING dest=" + destination);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenTravelVisualCapture.cs:109` · `Ziptide.Tests.PlayMode.RecoveryGoldenTravelVisualCapture` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RECOVERY_GOLDEN_VISUAL_OK dest=" + destination`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs:29` · `Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair` — ZIPTIDE diagnostic tag. `private const string SimulatorReadyPrefix = "ZIPTIDE: RECOVERY_TRACKED_RIG_SIM";`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs:38` · `Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RECOVERY_HEADLESS_XR_READABILITY_ARMED");`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs:62` · `Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair` — ZIPTIDE diagnostic tag. `Debug.LogError("ZIPTIDE: RECOVERY_HEADLESS_XR_READABILITY_FAIL reason=missing_virtual_hands");`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs:79` · `Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair` — ZIPTIDE diagnostic tag. `Debug.LogError("ZIPTIDE: RECOVERY_HEADLESS_XR_READABILITY_FAIL reason=missing_actions count="`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs:97` · `Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RECOVERY_HEADLESS_XR_ACTION_REPAIR action="`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs:103` · `Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair` — ZIPTIDE diagnostic tag. `Debug.LogError("ZIPTIDE: RECOVERY_HEADLESS_XR_READABILITY_FAIL action="`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs:124` · `Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair` — ZIPTIDE diagnostic tag. `Debug.LogError("ZIPTIDE: RECOVERY_HEADLESS_XR_READABILITY_FAIL action="`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs:131` · `Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RECOVERY_HEADLESS_XR_READABILITY_OK actions=" + actions.Count`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:110` · `Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests` — ZIPTIDE diagnostic tag. `new Regex("ZIPTIDE: HOME_HUB_TILE_BOUND tile=Tile_MANAGER_REPLACE mode=rebound"));`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPerformanceSample.cs:72` · `Ziptide.Tests.PlayMode.RecoveryPerformanceSampleRecord` — ZIPTIDE diagnostic tag. `healthSweepEvidence.IndexOf("ZIPTIDE: HEALTH_SWEEP", StringComparison.Ordinal) < 0)`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPerformanceSample.cs:145` · `Ziptide.Tests.PlayMode.RecoveryPerformanceSampleRecord` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RECOVERY_PERF_SAMPLE label=" + sample.label`
@@ -1065,6 +1074,19 @@
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:207` · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` — Input System action reference. `var seen = new HashSet<InputAction>();`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:208` · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` — Input System action reference. `foreach (InputActionAsset asset in inputManager.actionAssets)`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:213` · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` — Input System action reference. `foreach (InputAction action in map.actions)`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs:87` · `Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair` — Input System action reference. `InputAction action = actions[i];`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs:116` · `Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair` — Input System action reference. `InputAction action = actions[i];`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs:145` · `Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair` — Input System action reference. `private static List<InputAction> CollectLocomotionActions()`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs:147` · `Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair` — Input System action reference. `var actions = new List<InputAction>();`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs:148` · `Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair` — Input System action reference. `var seen = new HashSet<InputAction>();`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs:149` · `Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair` — Input System action reference. `foreach (InputActionManager manager in UnityEngine.Object.FindObjectsOfType<InputActionManager>(true))`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs:152` · `Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair` — Input System action reference. `foreach (InputActionAsset asset in manager.actionAssets)`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs:157` · `Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair` — Input System action reference. `foreach (InputAction action in map.actions)`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs:170` · `Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair` — Input System action reference. `private static bool IsLocomotionAction(InputAction action)`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs:177` · `Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair` — Input System action reference. `private static bool ReadsExpectedValue(InputAction action, out string reason)`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs:195` · `Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair` — Input System action reference. `private static string ExpectedValueType(InputAction action)`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs:198` · `Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair` — Input System action reference. `private static int CountVirtualControls(InputAction action)`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs:220` · `Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair` — Input System action reference. `private static string ActionPath(InputAction action)`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:18` · `Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests` — Input System action reference. `private readonly List<InputActionAsset> _assets = new List<InputActionAsset>();`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:52` · `Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests` — Input System action reference. `InputActionManager primary = primaryHost.AddComponent<InputActionManager>();`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:53` · `Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests` — Input System action reference. `InputActionAsset primaryAsset = CreateAsset("PrimaryAsset", "PrimaryAction");`
