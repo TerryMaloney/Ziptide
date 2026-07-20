@@ -92,6 +92,28 @@ the same factory that builds worlds can build the shell.
 - **Benchmark ratchet:** this table becomes a checked list; a lane isn't "done" adding shell
   features — the game is done when §1 is all ✅ and §2 has explicit ship/cut decisions.
 
+## 5b · SIBLING ADDITIONS (Fable rb-lane run, `FINISHED_GAME_BENCHMARK_RB.md` — ADD-only per §0)
+
+The rb-lane run scored ten coarser categories; most overlap rows above. Its rows NOT covered
+here, added per the merge protocol:
+- **NAME/IP CLEARANCE:** "Ziptide" has never been trademark/store-collision searched. An
+  afternoon, freeze-compatible, and every day of delay raises the cost of a bad answer. (⚖
+  Terry runs it — HIGH.)
+- **Business decisions on record:** price point, launch-discount posture, explicit no-MTX
+  stance — implied by the tone charter everywhere, DECIDED nowhere. One ⚖ page.
+- **Cut list + bug-severity ship bar as artifacts:** we defer well but never DECLARE cuts, and
+  gates enforce continuous quality without a discrete ship bar (zero S1/S2, ≤N S3). Two ⚖
+  pages.
+- **Review-response/community policy** (beyond telemetry): support contact, FAQ, review-reply
+  posture — the human half of §2.3's live-ops.
+- **THE CLASS LAW + `docs/MISS_LEDGER.md`** (rb-lane's process contribution, now live): every
+  miss — bug, omission, blind spot — gets a 5-field ledger entry (WHAT · FOUND BY · **WHY
+  MISSED** · CLASS · SYSTEM CHANGE); a fix without a system change is a loan; entries close
+  only on verified system changes. The ledger is seeded with both benchmark runs' meta-finding:
+  categories were missed because planning grew game-outward and nothing forced ship-backward —
+  system change = the ledger + this benchmark as a recurring milestone gate + the
+  EXCELLENCE_MAP rows (§5's "Ship shell" row satisfies this).
+
 ## 6 · ACCEPTANCE FOR THIS STUDY
 Merged-doc version adjudicated by Terry → SHIP SHELL lane exists with owners → every ❌ above is
 either an envelope or an explicit CUT decision recorded here. The finished-game test, stated

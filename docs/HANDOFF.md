@@ -89,6 +89,39 @@
   been caught by a blocking PlayMode lane. Also on record: the asmdef reality (Visuals below
   Content/Gameplay) differs from CLAUDE.md's stated ladder — acyclic and fine, but doc ≠ reality.
 - **Commit:** this one (docs only: the framework doc + this entry).
+
+### 2026-07-19 (rb56) — Fable 5: FINISHED-GAME BENCHMARK + THE CLASS LAW + the MISS LEDGER (research, zero code)
+
+- **Did:** Terry: research completed-game benchmarks, compare to our map (multi-model, results
+  merged later), and formalize the feedback law — "any acute issue is a systemic issue."
+  ① ten categories of "done" — now at **`docs/design/FINISHED_GAME_BENCHMARK_RB.md`** (hwr33's
+  evidence-verdict take landed the canonical path first; my unique rows are merged into its §5b:
+  name clearance, business/cut-list/severity ⚖ pages, review-response policy, the Class Law) —
+  (B1 feature ·
+  B2 content · B3 presentation · B4 quality bars · B5 player lifecycle · B6 compliance/legal ·
+  B7 store/marketing · B8 business · B9 live ops · B10 preservation) scored honestly:
+  B1/B2/B4/B10 planned-strong; the real holes: **B5 the ending EXPERIENCE** (endings designed
+  as story, not as staging — no roll-credits moment, no completion ceremony, no replay answer;
+  first hour got a Director's Cut, last hour never did), **B6 NAME CLEARANCE** ("Ziptide" never
+  trademark-searched — an afternoon, do it during the freeze), **B7 the campaign** (DC-4 is
+  tooling, not the deliverable), **B8 business decisions** (premium/no-MTX implied, never
+  decided), **B9 live-ops** (every plan ends at launch), B3 credits-roll/legal-screens/error-
+  fiction. Priority order in §4 (name search first). ② **THE CLASS LAW formalized** (§3,
+  generalizing hwr31's device-bug ratchet to ALL misses): every miss gets a 5-field entry —
+  WHAT · FOUND BY · **WHY MISSED (which system layer failed to see it)** · CLASS · SYSTEM
+  CHANGE — and a fix without a system change is a loan. ③ **`docs/MISS_LEDGER.md`** created and
+  SEEDED with this exercise's own ten findings, including the meta-entry: whole categories were
+  missed because planning grew game-outward and nothing forced ship-backward — system change =
+  the ledger itself + the benchmark as a recurring milestone gate + EXCELLENCE_MAP rows per
+  category. Ledger joins session-start reading beside HANDOFF.
+- **Next:** other models' benchmark runs → merge per ONE_SHOT_FRAMEWORK §8 (union of
+  categories); Terry: the name search (⚖ HIGH, freeze-compatible) + the three ⚖ decision
+  one-pagers (price/no-MTX, severity bar, cut list). EXCELLENCE_MAP rows + checklist row for
+  the recurring benchmark = next boards pass.
+- **Heads-up:** the ledger's law only works if entries CLOSE on verified system changes, not
+  fixes — reviewers should bounce any entry closed without one.
+- **Commit:** this one (docs only).
+
 ### 2026-07-19 (hwr32) - Fable 5 architect → **📣 WORK ORDER FOR GPT #3: LLM-FIRST BUILD PIPELINE** (Terry-directed — change anything, first-time-right, by LLM)
 - **Terry's goal on record:** "build or rebuild or change every aspect and have it work perfectly
   the first time — done by LLM." Researched against the actual pipeline; spec:
