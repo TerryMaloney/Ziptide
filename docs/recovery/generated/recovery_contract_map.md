@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
 - Scanned files: **721**
-- Scanner findings: **2525**
+- Scanner findings: **2502**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -249,12 +249,6 @@ None.
 - Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenTravelVisualCapture.cs`
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenTravelVisualCapture.cs:36` **RUNTIME_BOOTSTRAP** — `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]`
 
-### `Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair` — 1 signal(s)
-
-- Codes: `RUNTIME_BOOTSTRAP`
-- Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs:34` **RUNTIME_BOOTSTRAP** — `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]`
-
 ### `Ziptide.Tests.PlayMode.RecoveryRenderSnapshotTests` — 1 signal(s)
 
 - Codes: `DONT_DESTROY_ON_LOAD`
@@ -388,7 +382,7 @@ None.
   - `Ziptide/Assets/Ziptide/Editor/Validation/XRGrabReadiness.cs:68` **INPUT_ACTION_REFERENCE** — `results.Add("FAIL: InputActionManager has no action assets assigned. Assign XRI Default Input Actions.");`
   - `Ziptide/Assets/Ziptide/Editor/Validation/XRGrabReadiness.cs:72` **INPUT_ACTION_REFERENCE** — `results.Add("PASS: InputActionManager has " + count + " action asset(s) assigned.");`
 
-### `Ziptide.Gameplay.BootHoldState` — 24 signal(s)
+### `Ziptide.Gameplay.BootHoldState` — 25 signal(s)
 
 - Codes: `INPUT_ACTION_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs`
@@ -416,6 +410,7 @@ None.
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:699` **INPUT_ACTION_REFERENCE** — `var iam = mgr.GetComponent<InputActionManager>();`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:703` **INPUT_ACTION_REFERENCE** — `var field = typeof(InputActionManager).GetField(`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:707` **INPUT_ACTION_REFERENCE** — `field.SetValue(iam, new System.Collections.Generic.List<InputActionAsset>());`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:974` **INPUT_ACTION_REFERENCE** — `private static string ActionPath(InputAction action)`
 
 ### `Ziptide.Gameplay.DashLocomotion` — 7 signal(s)
 
@@ -571,24 +566,6 @@ None.
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:207` **INPUT_ACTION_REFERENCE** — `var seen = new HashSet<InputAction>();`
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:208` **INPUT_ACTION_REFERENCE** — `foreach (InputActionAsset asset in inputManager.actionAssets)`
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:213` **INPUT_ACTION_REFERENCE** — `foreach (InputAction action in map.actions)`
-
-### `Ziptide.Tests.PlayMode.RecoveryHeadlessInputReadabilityRepair` — 13 signal(s)
-
-- Codes: `INPUT_ACTION_REFERENCE`
-- Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs:107` **INPUT_ACTION_REFERENCE** — `InputAction action = actions[i];`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs:138` **INPUT_ACTION_REFERENCE** — `InputAction action = actions[i];`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs:169` **INPUT_ACTION_REFERENCE** — `private static List<InputAction> CollectLocomotionActions()`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs:171` **INPUT_ACTION_REFERENCE** — `var actions = new List<InputAction>();`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs:172` **INPUT_ACTION_REFERENCE** — `var seen = new HashSet<InputAction>();`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs:173` **INPUT_ACTION_REFERENCE** — `foreach (InputActionManager manager in UnityEngine.Object.FindObjectsOfType<InputActionManager>(true))`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs:176` **INPUT_ACTION_REFERENCE** — `foreach (InputActionAsset asset in manager.actionAssets)`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs:181` **INPUT_ACTION_REFERENCE** — `foreach (InputAction action in map.actions)`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs:194` **INPUT_ACTION_REFERENCE** — `private static bool IsLocomotionAction(InputAction action)`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs:201` **INPUT_ACTION_REFERENCE** — `private static bool ReadsExpectedValue(InputAction action, out string reason)`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs:219` **INPUT_ACTION_REFERENCE** — `private static string ExpectedValueType(InputAction action)`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs:222` **INPUT_ACTION_REFERENCE** — `private static int CountVirtualControls(InputAction action)`
-  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHeadlessInputReadabilityRepair.cs:244` **INPUT_ACTION_REFERENCE** — `private static string ActionPath(InputAction action)`
 
 ### `Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests` — 19 signal(s)
 
