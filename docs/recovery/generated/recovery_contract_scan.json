@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-20T00:53:04.994527+00:00",
+  "generatedAtUtc": "2026-07-20T00:57:19.878734+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -9272,9 +9272,9 @@
       "code": "RUNTIME_MATERIAL_CREATE",
       "description": "Runtime Material allocation",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityStageAPrimitiveFactory.cs",
-      "line": 59,
+      "line": 72,
       "symbol": "Ziptide.Editor.Patching.CityStageAPrimitiveFactory",
-      "snippet": "material = new Material(shader) { name = \"CityStageA_\" + key };"
+      "snippet": "material = new Material(shader) { name = \"CityStageA_\" + slot };"
     },
     {
       "category": "materials",
@@ -10091,7 +10091,7 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityStageAPrimitiveFactory.cs",
-      "line": 57,
+      "line": 70,
       "symbol": "Ziptide.Editor.Patching.CityStageAPrimitiveFactory",
       "snippet": "Shader shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
     },
@@ -10100,7 +10100,7 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityStageAPrimitiveFactory.cs",
-      "line": 58,
+      "line": 71,
       "symbol": "Ziptide.Editor.Patching.CityStageAPrimitiveFactory",
       "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
     },
@@ -11657,7 +11657,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityStageAPrimitiveFactory.cs",
-      "line": 20,
+      "line": 23,
       "symbol": "Ziptide.Editor.Patching.CityStageAPrimitiveFactory",
       "snippet": "var go = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },

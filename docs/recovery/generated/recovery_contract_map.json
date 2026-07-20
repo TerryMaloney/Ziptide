@@ -3138,30 +3138,30 @@
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityStageAPrimitiveFactory.cs",
-            "line": 20,
+            "line": 23,
             "symbol": "Ziptide.Editor.Patching.CityStageAPrimitiveFactory",
             "snippet": "var go = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityStageAPrimitiveFactory.cs",
-            "line": 57,
+            "line": 70,
             "symbol": "Ziptide.Editor.Patching.CityStageAPrimitiveFactory",
             "snippet": "Shader shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityStageAPrimitiveFactory.cs",
-            "line": 58,
+            "line": 71,
             "symbol": "Ziptide.Editor.Patching.CityStageAPrimitiveFactory",
             "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
           },
           {
             "code": "RUNTIME_MATERIAL_CREATE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityStageAPrimitiveFactory.cs",
-            "line": 59,
+            "line": 72,
             "symbol": "Ziptide.Editor.Patching.CityStageAPrimitiveFactory",
-            "snippet": "material = new Material(shader) { name = \"CityStageA_\" + key };"
+            "snippet": "material = new Material(shader) { name = \"CityStageA_\" + slot };"
           }
         ]
       },
