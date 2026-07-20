@@ -1,0 +1,489 @@
+name: Headset Round 3 Candidate
+
+on:
+  push:
+    branches:
+      - gpt/headset-round3-candidate
+    paths-ignore:
+      - 'docs/recovery/generated/headset_round3_candidate_observation.md'
+  workflow_dispatch:
+
+permissions:
+  checks: write
+  contents: write
+
+env:
+  PROJECT_PATH: Ziptide
+  UNITY_VERSION: 2022.3.62f3
+
+concurrency:
+  group: headset-round3-candidate-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  editmode:
+    name: EditMode exact-source gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - name: Checkout exact candidate
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 1
+          lfs: true
+
+      - name: Verify immutable checkout
+        shell: bash
+        run: test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+
+      - name: Cache EditMode Library
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.PROJECT_PATH }}/Library
+          key: Library-headset-round3-edit-${{ hashFiles(format('{0}/Assets/**', env.PROJECT_PATH), format('{0}/Packages/**', env.PROJECT_PATH), format('{0}/ProjectSettings/**', env.PROJECT_PATH)) }}
+          restore-keys: |
+            Library-test-
+            Library-
+
+      - name: Run EditMode tests
+        id: editmode
+        continue-on-error: true
+        uses: game-ci/unity-test-runner@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          projectPath: ${{ env.PROJECT_PATH }}
+          unityVersion: ${{ env.UNITY_VERSION }}
+          testMode: editmode
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          artifactsPath: headset-editmode-results
+
+      - name: Verify authoritative EditMode NUnit result
+        if: always()
+        shell: bash
+        env:
+          UNITY_TEST_OUTCOME: ${{ steps.editmode.outcome }}
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          import xml.etree.ElementTree as ET
+
+          root_dir = Path('headset-editmode-results')
+          result_files = sorted(root_dir.rglob('*results.xml'))
+          if not result_files:
+              result_files = sorted(root_dir.rglob('*.xml'))
+          if not result_files:
+              raise SystemExit('EditMode produced no NUnit result XML.')
+
+          totals = {key: 0 for key in ('total', 'passed', 'failed', 'skipped', 'inconclusive')}
+          counted = []
+          for path in result_files:
+              root = ET.parse(path).getroot()
+              if root.tag.split('}')[-1] != 'test-run':
+                  continue
+              counted.append(path.as_posix())
+              for key in totals:
+                  totals[key] += int(root.attrib.get(key, 0) or 0)
+              if root.attrib.get('result') != 'Passed':
+                  raise SystemExit(f'NUnit root is not Passed: {path} {root.attrib}')
+
+          if not counted or totals['total'] <= 0:
+              raise SystemExit('EditMode produced no counted NUnit tests.')
+          if totals['failed'] or totals['skipped'] or totals['inconclusive']:
+              raise SystemExit(f'EditMode NUnit gate failed: {totals}')
+          if totals['passed'] != totals['total']:
+              raise SystemExit(f'EditMode totals are inconsistent: {totals}')
+
+          outcome = os.environ.get('UNITY_TEST_OUTCOME', 'unknown')
+          log_text = '\n'.join(
+              path.read_text(encoding='utf-8', errors='replace')
+              for path in sorted(root_dir.rglob('*.log'))
+          )
+          if outcome != 'success':
+              known_xr_teardown = (
+                  'Call to StopSubsystems without an initialized manager' in log_text
+                  and 'XRManagerSettings:StopSubsystems' in log_text
+              )
+              if not known_xr_teardown:
+                  raise SystemExit('GameCI failed despite passing NUnit XML without the known XR teardown signature.')
+              fatal = ('Scripts have compiler errors', 'Compilation failed',
+                       'Aborting batchmode due to failure', 'Crash!!!')
+              found = [marker for marker in fatal if marker in log_text]
+              if found:
+                  raise SystemExit(f'Fatal Unity markers found after NUnit: {found}')
+
+          print(json.dumps({'gameCiOutcome': outcome, 'resultFiles': counted, **totals}, indent=2))
+          PY
+
+      - name: Upload EditMode evidence
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: headset-editmode-${{ github.sha }}
+          path: headset-editmode-results
+          if-no-files-found: error
+          retention-days: 30
+
+  patch-audit:
+    name: Patch scenes and world audit
+    needs: editmode
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout exact candidate
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 1
+          lfs: true
+
+      - name: Verify immutable checkout
+        shell: bash
+        run: test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+
+      - name: Cache audit Library
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.PROJECT_PATH }}/Library
+          key: Library-headset-round3-audit-${{ hashFiles(format('{0}/Assets/**', env.PROJECT_PATH), format('{0}/Packages/**', env.PROJECT_PATH), format('{0}/ProjectSettings/**', env.PROJECT_PATH)) }}
+          restore-keys: |
+            Library-audit-
+            Library-
+
+      - name: Patch scenes and run world audit
+        uses: game-ci/unity-builder@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          projectPath: ${{ env.PROJECT_PATH }}
+          unityVersion: ${{ env.UNITY_VERSION }}
+          targetPlatform: StandaloneLinux64
+          buildMethod: Ziptide.Build.BuildAndroid.PatchScenesAndAudit
+          allowDirtyBuild: true
+
+      - name: Upload patch and audit evidence
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: headset-patch-audit-${{ github.sha }}
+          path: |
+            docs/AUDIT_REPORT.*
+            ${{ env.PROJECT_PATH }}/Builds/Reports/*
+          if-no-files-found: warn
+          retention-days: 30
+
+  playmode:
+    name: Recovery PlayMode 43 of 43
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - name: Checkout exact candidate
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 1
+          lfs: true
+
+      - name: Verify immutable checkout
+        shell: bash
+        run: test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+
+      - name: Cache PlayMode Library
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.PROJECT_PATH }}/Library
+          key: Library-headset-round3-play-${{ hashFiles(format('{0}/Packages/**', env.PROJECT_PATH), format('{0}/ProjectSettings/**', env.PROJECT_PATH)) }}
+          restore-keys: |
+            Library-playmode-r1-v3-
+            Library-
+
+      - name: Run Recovery PlayMode suite
+        id: playmode
+        continue-on-error: true
+        uses: game-ci/unity-test-runner@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          projectPath: ${{ env.PROJECT_PATH }}
+          unityVersion: ${{ env.UNITY_VERSION }}
+          testMode: playmode
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          artifactsPath: headset-playmode-results
+
+      - name: Verify exact 43-test recovery route
+        if: always()
+        shell: bash
+        env:
+          UNITY_TEST_OUTCOME: ${{ steps.playmode.outcome }}
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          import xml.etree.ElementTree as ET
+
+          root_dir = Path('headset-playmode-results')
+          result_files = sorted(root_dir.rglob('*.xml'))
+          totals = {key: 0 for key in ('total', 'passed', 'failed', 'skipped', 'inconclusive')}
+          counted = []
+          for path in result_files:
+              try:
+                  root = ET.parse(path).getroot()
+              except ET.ParseError:
+                  continue
+              if root.tag.split('}')[-1] != 'test-run':
+                  continue
+              counted.append(path.as_posix())
+              for key in totals:
+                  totals[key] += int(root.attrib.get(key, 0) or 0)
+              if root.attrib.get('result') != 'Passed':
+                  raise SystemExit(f'PlayMode NUnit root is not Passed: {path} {root.attrib}')
+
+          expected = {'total': 43, 'passed': 43, 'failed': 0, 'skipped': 0, 'inconclusive': 0}
+          if not counted or totals != expected:
+              raise SystemExit(f'Recovery PlayMode must be exact 43/43: files={counted} totals={totals}')
+
+          outcome = os.environ.get('UNITY_TEST_OUTCOME', 'unknown')
+          log_text = '\n'.join(
+              path.read_text(encoding='utf-8', errors='replace')
+              for path in sorted(root_dir.rglob('*.log'))
+          )
+          if 'INPUT_MUTATION_SETTLE_FAIL' in log_text:
+              raise SystemExit('Recovery route emitted INPUT_MUTATION_SETTLE_FAIL despite passing XML.')
+          if outcome != 'success':
+              known_xr_teardown = (
+                  'Call to StopSubsystems without an initialized manager' in log_text
+                  and 'XRManagerSettings:StopSubsystems' in log_text
+              )
+              if not known_xr_teardown:
+                  raise SystemExit('GameCI PlayMode failed despite 43/43 without the known XR teardown signature.')
+              fatal = ('Scripts have compiler errors', 'Compilation failed',
+                       'Aborting batchmode due to failure', 'Crash!!!')
+              found = [marker for marker in fatal if marker in log_text]
+              if found:
+                  raise SystemExit(f'Fatal Unity markers found after PlayMode: {found}')
+
+          print(json.dumps({'gameCiOutcome': outcome, 'resultFiles': counted, **totals}, indent=2))
+          PY
+
+      - name: Upload PlayMode evidence
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: headset-playmode-${{ github.sha }}
+          path: headset-playmode-results
+          if-no-files-found: error
+          retention-days: 30
+
+  golden:
+    name: Build and verify exact Golden APK
+    needs:
+      - editmode
+      - patch-audit
+      - playmode
+    runs-on: ubuntu-latest
+    timeout-minutes: 80
+    steps:
+      - name: Free disk space for Unity Android image
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL /usr/local/.ghcup
+          sudo docker image prune --all --force || true
+          df -h /
+
+      - name: Checkout exact candidate
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 1
+          lfs: true
+
+      - name: Verify immutable checkout
+        shell: bash
+        run: test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+
+      - name: Cache Golden Android Library
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.PROJECT_PATH }}/Library
+          key: Library-headset-round3-golden-${{ hashFiles(format('{0}/Assets/**', env.PROJECT_PATH), format('{0}/Packages/**', env.PROJECT_PATH), format('{0}/ProjectSettings/**', env.PROJECT_PATH)) }}
+          restore-keys: |
+            Library-recovery-golden-android-
+            Library-android-
+            Library-
+
+      - name: Build exact Golden Android player
+        uses: game-ci/unity-builder@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          projectPath: ${{ env.PROJECT_PATH }}
+          unityVersion: ${{ env.UNITY_VERSION }}
+          targetPlatform: Android
+          buildMethod: Ziptide.Build.RecoveryBuildAndroid.PatchScenesThenGoldenAPK
+          allowDirtyBuild: true
+
+      - name: Verify Golden build and Round 3 evidence independently
+        shell: bash
+        run: |
+          set -euo pipefail
+          apk="${PROJECT_PATH}/Builds/Android/Ziptide.apk"
+          profile="${PROJECT_PATH}/Builds/Reports/recovery_golden_build_profile.json"
+          improvement="${PROJECT_PATH}/Builds/Reports/world_improvement_compile.json"
+          hashfile="${PROJECT_PATH}/Builds/Reports/headset_round3_sha256.txt"
+          test -s "$apk"
+          test -s "$profile"
+          test -s "$improvement"
+
+          python3 - "$profile" "$apk" "$improvement" <<'PY'
+          import json
+          import os
+          import sys
+
+          profile_path, apk_path, improvement_path = sys.argv[1], sys.argv[2], sys.argv[3]
+          with open(profile_path, 'r', encoding='utf-8') as handle:
+              profile = json.load(handle)
+          with open(improvement_path, 'r', encoding='utf-8') as handle:
+              improvement = json.load(handle)
+
+          expected_scenes = [
+              'Assets/Ziptide/Scenes/_Boot.unity',
+              'Assets/Ziptide/Scenes/Generated/W000_DriftIn.unity',
+              'Assets/Ziptide/Scenes/ToxicCity.unity',
+          ]
+          assert profile.get('profile') == 'GoldenSlice', profile
+          assert profile.get('define') == 'ZIPTIDE_RECOVERY_GOLDEN', profile
+          assert profile.get('result') == 'Succeeded', profile
+          assert profile.get('scenes') == expected_scenes, profile
+          assert int(profile.get('totalBytes', 0)) > 0, profile
+          assert os.path.getsize(apk_path) > 0, apk_path
+
+          assert improvement.get('schemaVersion') == 2, improvement
+          assert improvement.get('compilerVersion') == 2, improvement
+          records = {row.get('sceneName'): row for row in improvement.get('worlds', [])}
+          expected_manifests = {
+              'W000_DriftIn': 'ziptide-w000-round3',
+              'ToxicCity': 'ziptide-toxiccity-round3',
+          }
+          expected_modules = {
+              'arrival_identity', 'route_beacons', 'ambient_motion', 'horizon_frame',
+              'grounded_route', 'discovery_nodes', 'story_traces',
+          }
+          for scene_name, manifest_id in expected_manifests.items():
+              row = records.get(scene_name)
+              assert row, (scene_name, improvement)
+              assert row.get('manifestId') == manifest_id, row
+              assert row.get('round') == 3, row
+              assert row.get('recipeVersion') == 1, row
+              assert len(row.get('recipeHash', '')) == 64, row
+              modules = row.get('modules', [])
+              counts = row.get('objectCounts', [])
+              assert set(modules) == expected_modules, row
+              assert len(modules) == len(counts) == 7, row
+              assert all(int(value) > 0 for value in counts), row
+              names = row.get('aspectNames', [])
+              scores = row.get('aspectScores', [])
+              weakest = row.get('weakestAspects', [])
+              assert len(names) == len(scores) == 9, row
+              assert all(int(value) > 0 for value in scores), row
+              assert 1 <= len(weakest) <= 3, row
+              assert all(value in names for value in weakest), row
+          PY
+
+          sha256sum "$apk" "$profile" "$improvement" | tee "$hashfile"
+
+      - name: Upload exact headset candidate
+        uses: actions/upload-artifact@v4
+        with:
+          name: headset-round3-${{ github.sha }}
+          path: |
+            ${{ env.PROJECT_PATH }}/Builds/Android/Ziptide.apk
+            ${{ env.PROJECT_PATH }}/Builds/Reports/recovery_golden_build_profile.json
+            ${{ env.PROJECT_PATH }}/Builds/Reports/world_improvement_compile.json
+            ${{ env.PROJECT_PATH }}/Builds/Reports/headset_round3_sha256.txt
+            docs/AUDIT_REPORT.*
+          if-no-files-found: error
+          retention-days: 90
+
+  record:
+    name: Record isolated candidate verdict
+    needs:
+      - editmode
+      - patch-audit
+      - playmode
+      - golden
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    continue-on-error: true
+    steps:
+      - name: Checkout frozen candidate branch
+        uses: actions/checkout@v4
+        with:
+          ref: gpt/headset-round3-candidate
+          fetch-depth: 0
+          lfs: false
+
+      - name: Render candidate observation
+        shell: bash
+        env:
+          EDITMODE_RESULT: ${{ needs.editmode.result }}
+          PATCH_AUDIT_RESULT: ${{ needs.patch-audit.result }}
+          PLAYMODE_RESULT: ${{ needs.playmode.result }}
+          GOLDEN_RESULT: ${{ needs.golden.result }}
+        run: |
+          set -euo pipefail
+          mkdir -p docs/recovery/generated
+          python3 - <<'PY'
+          import os
+          from pathlib import Path
+
+          results = {
+              'EditMode': os.environ['EDITMODE_RESULT'],
+              'Patch/audit': os.environ['PATCH_AUDIT_RESULT'],
+              'Recovery PlayMode 43/43': os.environ['PLAYMODE_RESULT'],
+              'Golden Android': os.environ['GOLDEN_RESULT'],
+          }
+          overall = 'GREEN' if all(value == 'success' for value in results.values()) else 'RED'
+          rows = '\n'.join(f'| {name} | {value} |' for name, value in results.items())
+          sha = os.environ['GITHUB_SHA']
+          run_id = os.environ['GITHUB_RUN_ID']
+          text = f'''# Headset Round 3 Candidate Observation
+
+          - Overall: **{overall}**
+          - Tested SHA: `{sha}`
+          - Workflow run: `{run_id}`
+          - Unity: {os.environ['UNITY_VERSION']}
+          - Exact artifact: `headset-round3-{sha}`
+          - Locked route: `_Boot → W000_DriftIn → ToxicCity → W000_DriftIn`
+
+          | Gate | Result |
+          |---|---|
+          {rows}
+          '''
+          Path('docs/recovery/generated/headset_round3_candidate_observation.md').write_text(
+              text, encoding='utf-8')
+          PY
+
+      - name: Commit observation to isolated branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          path='docs/recovery/generated/headset_round3_candidate_observation.md'
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "$path"
+          git commit -m "ci: record isolated headset candidate for ${GITHUB_SHA:0:7} [skip ci]"
+          git push origin HEAD:gpt/headset-round3-candidate
