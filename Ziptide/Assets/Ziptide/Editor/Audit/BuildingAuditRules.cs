@@ -36,6 +36,7 @@ namespace Ziptide.Editor.Audit
             CityStageAAuditRules.Run(report);
             CityStageBAuditRules.Run(report);
             WorldContainmentAuditRules.Run(report);
+            RouteContinuityAuditRules.Run(report);
             FullSendPresentationAuditRules.Run(report);
             PerceptualCoverageAuditRules.Run(report);
             WeaponPerceptualAuditRules.Run(report);
