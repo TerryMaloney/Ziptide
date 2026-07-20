@@ -27,6 +27,39 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-19 (hwr31) - Fable 5 architect → **📣 WORK ORDER FOR GPT #2: PERCEPTUAL GATE PROGRAM** (Terry-directed — "make sure all that is implemented")
+- **Why (Terry):** device sessions keep finding what CI can't see — tiny weapons, upward muzzles,
+  the Leave-door loading a scene absent from the Golden build, the shipyard walkway gap. "It's
+  going to be very difficult to build 80 worlds at consistent quality if our system isn't
+  top-notch." This is the systemic fix, researched against the actual audit code.
+- **New spec (implement from this): `docs/design/PERCEPTUAL_GATE_PROGRAM.md`** — five gates with
+  file-level implementation detail on the existing `WorldAuditRunner`/`ForgePhotoBooth` infra:
+  **PG-1** held-item scale + grip-pose audit (bounds 0.06–0.55m, compound-scale trap, muzzle ≤25°
+  off grip-forward) · **PG-2** build-profile-aware travel audit (the sharp lesson: the
+  `TRAVEL_DEST_NOT_IN_BUILD` blocker EXISTED but validated `EditorBuildSettings`, not the Golden
+  3-scene universe — gates must run against the artifact's actual scene set) · **PG-3** walkable-
+  continuity audit (route sampling: holes/steps/squeezes on spawn→marker→door→berth edges) ·
+  **PG-4** reach-envelope audit (generalize the coupler's child-reach law to every interactable) ·
+  **PG-5** referenced contact sheets (mannequin + 10cm grid so "tiny" is visible in 2D) + a
+  Definition-of-Done review stamp: `SHEET REVIEWED <run> — verdict` in HANDOFF or the lane isn't
+  closed · **PG-6** on-device agent bus (designed, POST-recovery; Meta Quest Agentic Tools/MCP
+  cover the device side, we build only the in-game verb server).
+- **GPT implementation order: PG-2 → PG-1 → PG-5 → PG-3 → PG-4** (live bug class first, then the
+  class that just bit us, then widest coverage per commit). Each gate: Blocker tags + a
+  deliberately-broken-scene test proving it fires. Slot ahead of/alongside the hwr30 sprint —
+  gates first protect everything the sprint builds.
+- **THE RATCHET LAW (adopt into `OPERATOR_START_HERE.md` Definition of Done, all lanes):** every
+  device-found bug dies three deaths — fix + a gate that would have caught it + a HANDOFF line
+  `RATCHET: <bug> → <gate>`. A fix without a gate is a loan. GPT's own coupler/exit workflow
+  coverage from tonight is the model case, now law.
+- **The bigger frame (doc §3, for every operator):** the five-layer game factory — spec-is-truth,
+  deterministic generators, gate-per-quality-dimension (logical/spatial/perceptual/performance/
+  feel), the evidence blackboard, the ratchet. Per-world excellence contract is enforceable as a
+  `WorldExcellenceAuditRules`; EXCELLENCE_MAP should gain a gate-coverage column (aspects with
+  zero gates are where the next escape lives). Terry's stated end goal on record: this framework
+  should be able to build OTHER games consistently, not just Ziptide.
+- **Commits:** this push (docs only).
+
 ### 2026-07-19 (hwr30) - Fable 5 architect → **📣 WORK ORDER FOR GPT: THE BIG BUILD SPRINT** (Terry-directed, fires AFTER the retry checkpoint passes)
 - **From Terry, verbatim intent:** after the next test run, GPT should run "a super long ass task
   and just get me a whole bunch of s*** built and working... like a bunch of stuff. If it ends up
