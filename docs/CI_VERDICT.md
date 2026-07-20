@@ -14,7 +14,7 @@
     "greenRequires": "Unity EditMode success AND patch-scenes+audit success AND Android success when Android ran. The patch+audit job runs on every source push; a skipped result is never green."
   },
   "overall": "RED",
-  "recordedAtUtc": "2026-07-20T01:09:54.442066+00:00",
+  "recordedAtUtc": "2026-07-20T01:18:24.962145+00:00",
   "repository": "TerryMaloney/Ziptide",
   "results": {
     "androidApk": "skipped",
@@ -22,7 +22,7 @@
     "projectContractReports": "success",
     "unityEditMode": "failure"
   },
-  "runAttempt": "1",
+  "runAttempt": "2",
   "runId": "29710412322",
   "runUrl": "https://github.com/TerryMaloney/Ziptide/actions/runs/29710412322",
   "schemaVersion": 2,
