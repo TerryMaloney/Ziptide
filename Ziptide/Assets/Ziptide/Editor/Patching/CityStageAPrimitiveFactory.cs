@@ -11,6 +11,7 @@ namespace Ziptide.Editor.Patching
     internal sealed class CityStageAPrimitiveFactory
     {
         private readonly Dictionary<string, Material> _materials = new Dictionary<string, Material>();
+        private static readonly Color ShopCool = new Color(0.20f, 0.72f, 0.90f);
         public int MaterialCount => _materials.Count;
 
         public GameObject Cube(Transform parent, string name, Vector3 position, Vector3 scale,
@@ -34,18 +35,18 @@ namespace Ziptide.Editor.Patching
             return go;
         }
 
+        /// <summary>
+        /// Closed four-state window vocabulary using only three lit colors plus the existing dark slot.
+        /// Warm reuses accent, neutral reuses concrete, cool is the only Stage-A-specific color.
+        /// </summary>
         public Color WindowColor(CityWindowLight mode, GlobalPalette palette)
         {
             switch (mode)
             {
-                case CityWindowLight.HomeWarm:
-                    return Color.Lerp(palette.accent, new Color(1f, 0.42f, 0.14f), 0.48f);
-                case CityWindowLight.ShopCool:
-                    return Color.Lerp(palette.facadeWindow, new Color(0.20f, 0.82f, 1f), 0.72f);
-                case CityWindowLight.IndustrialNeutral:
-                    return Color.Lerp(palette.facadeWindow, new Color(0.84f, 0.90f, 0.82f), 0.62f);
-                default:
-                    return Color.Lerp(palette.facadeWindow, Color.black, 0.20f);
+                case CityWindowLight.HomeWarm: return palette.accent;
+                case CityWindowLight.ShopCool: return ShopCool;
+                case CityWindowLight.IndustrialNeutral: return palette.concrete;
+                default: return palette.facadeWindow;
             }
         }
 
