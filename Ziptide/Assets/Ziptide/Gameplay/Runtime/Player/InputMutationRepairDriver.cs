@@ -20,19 +20,23 @@ namespace Ziptide.Gameplay
         private const int MaxRepairAttempts = 2;
         private const int MaxWindowWaitFrames = 120;
         private const string SuspendedReadersFieldName = "_mutationSuspendedReaders";
+        private const string RestoreCoroutineFieldName = "_mutationReaderRestore";
 
         private static FieldInfo _suspendedReadersField;
-        private static bool _suspendedReadersFieldResolved;
+        private static FieldInfo _restoreCoroutineField;
+        private static bool _canonicalFieldsResolved;
 
         private PlayerRigPersistence _rig;
         private bool _sawTravel;
+        private bool _wasTravelling;
         private Coroutine _repairRoutine;
 
         private void Awake()
         {
             _rig = GetComponent<PlayerRigPersistence>();
             _sawTravel = TravelCoordinator.IsTravelling;
-            ResolveSuspendedReadersField();
+            _wasTravelling = TravelCoordinator.IsTravelling;
+            ResolveCanonicalFields();
         }
 
         private void Update()
@@ -40,16 +44,43 @@ namespace Ziptide.Gameplay
             bool travelling = TravelCoordinator.IsTravelling;
             if (travelling)
             {
+                // A second trip can begin before the previous two-frame settle tail closes. That is
+                // fresh input churn, not corruption. Cancel the obsolete verifier immediately, keep
+                // its exact suspended-reader set, and let EnsureXRIWiring start a fresh verifier on
+                // arrival. The gate lead gives this edge detector a frame before scene activation.
+                if (!_wasTravelling)
+                    ResetCanonicalSettleForChainedTravel();
+
+                _wasTravelling = true;
                 _sawTravel = true;
                 return;
             }
 
+            _wasTravelling = false;
             if (!_sawTravel) return;
             _sawTravel = false;
 
             if (_repairRoutine != null)
                 StopCoroutine(_repairRoutine);
             _repairRoutine = StartCoroutine(RepairAfterTravel());
+        }
+
+        private void ResetCanonicalSettleForChainedTravel()
+        {
+            if (_repairRoutine != null)
+            {
+                StopCoroutine(_repairRoutine);
+                _repairRoutine = null;
+            }
+
+            IList<Behaviour> readers = GetCanonicalSuspendedReaders();
+            Coroutine restore = GetCanonicalRestoreCoroutine();
+            if (_rig == null || restore == null) return;
+
+            _rig.StopCoroutine(restore);
+            SetCanonicalRestoreCoroutine(null);
+            Debug.Log("ZIPTIDE: INPUT_MUTATION_REPAIR_RESET reason=new_travel readers="
+                + (readers != null ? readers.Count : 0));
         }
 
         private IEnumerator RepairAfterTravel()
@@ -147,7 +178,7 @@ namespace Ziptide.Gameplay
             if (_rig == null) _rig = GetComponent<PlayerRigPersistence>();
             if (_rig == null) return null;
 
-            ResolveSuspendedReadersField();
+            ResolveCanonicalFields();
             if (_suspendedReadersField == null) return null;
 
             try
@@ -160,17 +191,48 @@ namespace Ziptide.Gameplay
             }
         }
 
-        private static void ResolveSuspendedReadersField()
+        private Coroutine GetCanonicalRestoreCoroutine()
         {
-            if (_suspendedReadersFieldResolved) return;
-            _suspendedReadersFieldResolved = true;
-            _suspendedReadersField = typeof(PlayerRigPersistence).GetField(
-                SuspendedReadersFieldName,
-                BindingFlags.Instance | BindingFlags.NonPublic);
+            if (_rig == null) _rig = GetComponent<PlayerRigPersistence>();
+            if (_rig == null) return null;
 
-            if (_suspendedReadersField == null)
-                Debug.LogError("ZIPTIDE: INPUT_MUTATION_REPAIR_SEAM_MISSING field="
-                    + SuspendedReadersFieldName);
+            ResolveCanonicalFields();
+            if (_restoreCoroutineField == null) return null;
+
+            try
+            {
+                return _restoreCoroutineField.GetValue(_rig) as Coroutine;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        private void SetCanonicalRestoreCoroutine(Coroutine value)
+        {
+            if (_rig == null) return;
+            ResolveCanonicalFields();
+            if (_restoreCoroutineField == null) return;
+
+            try { _restoreCoroutineField.SetValue(_rig, value); }
+            catch { }
+        }
+
+        private static void ResolveCanonicalFields()
+        {
+            if (_canonicalFieldsResolved) return;
+            _canonicalFieldsResolved = true;
+            const BindingFlags flags = BindingFlags.Instance | BindingFlags.NonPublic;
+            _suspendedReadersField = typeof(PlayerRigPersistence).GetField(
+                SuspendedReadersFieldName, flags);
+            _restoreCoroutineField = typeof(PlayerRigPersistence).GetField(
+                RestoreCoroutineFieldName, flags);
+
+            if (_suspendedReadersField == null || _restoreCoroutineField == null)
+                Debug.LogError("ZIPTIDE: INPUT_MUTATION_REPAIR_SEAM_MISSING readersField="
+                    + (_suspendedReadersField != null) + " restoreField="
+                    + (_restoreCoroutineField != null));
         }
 
         private static RepairCounts RepairLocomotionBindings(IList<Behaviour> readers)
