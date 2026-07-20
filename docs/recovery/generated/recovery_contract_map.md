@@ -2983,9 +2983,9 @@ None.
 
 - Codes: `XRI_MANAGER_ASSIGN`, `XRI_MANAGER_LOOKUP`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldDiscoveryNodeRuntime.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldDiscoveryNodeRuntime.cs:42` **XRI_MANAGER_ASSIGN** — `if (_interactable.interactionManager == null)`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldDiscoveryNodeRuntime.cs:43` **XRI_MANAGER_ASSIGN** — `_interactable.interactionManager = FindObjectOfType<XRInteractionManager>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldDiscoveryNodeRuntime.cs:43` **XRI_MANAGER_LOOKUP** — `_interactable.interactionManager = FindObjectOfType<XRInteractionManager>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldDiscoveryNodeRuntime.cs:43` **XRI_MANAGER_ASSIGN** — `if (_interactable.interactionManager == null)`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldDiscoveryNodeRuntime.cs:44` **XRI_MANAGER_ASSIGN** — `_interactable.interactionManager = FindObjectOfType<XRInteractionManager>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldDiscoveryNodeRuntime.cs:44` **XRI_MANAGER_LOOKUP** — `_interactable.interactionManager = FindObjectOfType<XRInteractionManager>();`
 
 ### `Ziptide.Gameplay.WorldTravelStation` — 4 signal(s)
 

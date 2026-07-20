@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-20T15:22:56.204849+00:00",
+  "generatedAtUtc": "2026-07-20T15:28:40.361390+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -4124,7 +4124,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldDiscoveryNodeRuntime.cs",
-      "line": 65,
+      "line": 66,
       "symbol": "Ziptide.Gameplay.WorldDiscoveryNodeRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: WORLD_DISCOVERY scene=\" + gameObject.scene.name"
     },
@@ -21980,7 +21980,7 @@
       "code": "XRI_MANAGER_ASSIGN",
       "description": "Explicit interactable interactionManager assignment",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldDiscoveryNodeRuntime.cs",
-      "line": 42,
+      "line": 43,
       "symbol": "Ziptide.Gameplay.WorldDiscoveryNodeRuntime",
       "snippet": "if (_interactable.interactionManager == null)"
     },
@@ -21989,7 +21989,7 @@
       "code": "XRI_MANAGER_ASSIGN",
       "description": "Explicit interactable interactionManager assignment",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldDiscoveryNodeRuntime.cs",
-      "line": 43,
+      "line": 44,
       "symbol": "Ziptide.Gameplay.WorldDiscoveryNodeRuntime",
       "snippet": "_interactable.interactionManager = FindObjectOfType<XRInteractionManager>();"
     },
@@ -22457,7 +22457,7 @@
       "code": "XRI_MANAGER_LOOKUP",
       "description": "XRInteractionManager lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldDiscoveryNodeRuntime.cs",
-      "line": 43,
+      "line": 44,
       "symbol": "Ziptide.Gameplay.WorldDiscoveryNodeRuntime",
       "snippet": "_interactable.interactionManager = FindObjectOfType<XRInteractionManager>();"
     },

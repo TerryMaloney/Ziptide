@@ -13758,21 +13758,21 @@
           {
             "code": "XRI_MANAGER_ASSIGN",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldDiscoveryNodeRuntime.cs",
-            "line": 42,
+            "line": 43,
             "symbol": "Ziptide.Gameplay.WorldDiscoveryNodeRuntime",
             "snippet": "if (_interactable.interactionManager == null)"
           },
           {
             "code": "XRI_MANAGER_ASSIGN",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldDiscoveryNodeRuntime.cs",
-            "line": 43,
+            "line": 44,
             "symbol": "Ziptide.Gameplay.WorldDiscoveryNodeRuntime",
             "snippet": "_interactable.interactionManager = FindObjectOfType<XRInteractionManager>();"
           },
           {
             "code": "XRI_MANAGER_LOOKUP",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldDiscoveryNodeRuntime.cs",
-            "line": 43,
+            "line": 44,
             "symbol": "Ziptide.Gameplay.WorldDiscoveryNodeRuntime",
             "snippet": "_interactable.interactionManager = FindObjectOfType<XRInteractionManager>();"
           }
