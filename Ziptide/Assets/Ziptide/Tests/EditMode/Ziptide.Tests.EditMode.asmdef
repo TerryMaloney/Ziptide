@@ -8,6 +8,7 @@
         "Ziptide.Multiplayer",
         "Ziptide.Ship",
         "Ziptide.Visuals",
+        "Unity.XR.Interaction.Toolkit",
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
         "Ziptide.Editor"
