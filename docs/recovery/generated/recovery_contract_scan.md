@@ -1,7 +1,7 @@
 # ZIPTIDE Recovery Contract Scan
 
 - Scanned files: **710**
-- Findings: **2467**
+- Findings: **2468**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
@@ -16,7 +16,7 @@
 | `input` | 197 |
 | `materials` | 246 |
 | `persistence` | 18 |
-| `runtime_creation` | 658 |
+| `runtime_creation` | 659 |
 | `runtime_ui` | 127 |
 | `save_state` | 256 |
 | `scene_loading` | 9 |
@@ -1610,7 +1610,8 @@
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/EditMode/PerceptualCoverageAuditRulesTests.cs:67` · `Ziptide.Tests.EditMode.PerceptualCoverageAuditRulesTests` — Runtime primitive construction. `GameObject child = GameObject.CreatePrimitive(PrimitiveType.Cylinder);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/EditMode/ReactivePropTests.cs:119` · `Ziptide.Tests.EditMode.ReactivePropTests` — Runtime primitive construction. `var host = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/EditMode/RouteContinuityAuditRulesTests.cs:15` · `Ziptide.Tests.EditMode.RouteContinuityAuditRulesTests` — Runtime primitive construction. `floor = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/EditMode/RouteContinuityAuditRulesTests.cs:81` · `Ziptide.Tests.EditMode.RouteContinuityAuditRulesTests` — Runtime primitive construction. `GameObject floor = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/EditMode/RouteContinuityAuditRulesTests.cs:40` · `Ziptide.Tests.EditMode.RouteContinuityAuditRulesTests` — Runtime primitive construction. `route = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/EditMode/RouteContinuityAuditRulesTests.cs:111` · `Ziptide.Tests.EditMode.RouteContinuityAuditRulesTests` — Runtime primitive construction. `GameObject floor = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/EditMode/ToxicCityRiverBuilderTests.cs:23` · `Ziptide.Tests.EditMode.ToxicCityRiverBuilderTests` — Runtime primitive construction. `GameObject legacySlab = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/EditMode/ToxicCityStageAIntegrationTests.cs:78` · `Ziptide.Tests.EditMode.ToxicCityStageAIntegrationTests` — Runtime primitive construction. `GameObject facade = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/EditMode/WeaponPerceptualAuditRulesTests.cs:74` · `Ziptide.Tests.EditMode.WeaponPerceptualAuditRulesTests` — Runtime primitive construction. `GameObject weapon = GameObject.CreatePrimitive(PrimitiveType.Cube);`

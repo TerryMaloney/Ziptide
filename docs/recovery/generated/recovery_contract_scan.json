@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-20T12:22:45.460184+00:00",
+  "generatedAtUtc": "2026-07-20T12:23:16.271772+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -9,7 +9,7 @@
     "Ziptide/Assets/ZiptideNet"
   ],
   "scannedFiles": 710,
-  "findingCount": 2467,
+  "findingCount": 2468,
   "categoryCounts": {
     "bootstrap": 35,
     "diagnostics": 545,
@@ -19,7 +19,7 @@
     "input": 197,
     "materials": 246,
     "persistence": 18,
-    "runtime_creation": 658,
+    "runtime_creation": 659,
     "runtime_ui": 127,
     "save_state": 256,
     "scene_loading": 9,
@@ -30,7 +30,7 @@
     "CAMERA_MAIN_REFERENCE": 42,
     "CAMERA_POST_PROCESSING": 1,
     "CANVAS_COMPONENT": 5,
-    "CREATE_PRIMITIVE": 255,
+    "CREATE_PRIMITIVE": 256,
     "DIRECT_SCENE_LOAD": 2,
     "DIRECT_SCENE_LOAD_ASYNC": 7,
     "DONT_DESTROY_ON_LOAD": 18,
@@ -14177,7 +14177,16 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/RouteContinuityAuditRulesTests.cs",
-      "line": 81,
+      "line": 40,
+      "symbol": "Ziptide.Tests.EditMode.RouteContinuityAuditRulesTests",
+      "snippet": "route = GameObject.CreatePrimitive(PrimitiveType.Cube);"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "CREATE_PRIMITIVE",
+      "description": "Runtime primitive construction",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/RouteContinuityAuditRulesTests.cs",
+      "line": 111,
       "symbol": "Ziptide.Tests.EditMode.RouteContinuityAuditRulesTests",
       "snippet": "GameObject floor = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },

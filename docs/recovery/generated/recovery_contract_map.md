@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
 - Scanned files: **710**
-- Scanner findings: **2467**
+- Scanner findings: **2468**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -2402,12 +2402,13 @@ None.
 - Paths: `Ziptide/Assets/Ziptide/Tests/EditMode/ResourceDisciplineTests.cs`
   - `Ziptide/Assets/Ziptide/Tests/EditMode/ResourceDisciplineTests.cs:38` **RUNTIME_MATERIAL_CREATE** — `private static readonly string[] CreatorMarkers = { "new Material(", "new Texture2D(", "AudioClip.Create(" };`
 
-### `Ziptide.Tests.EditMode.RouteContinuityAuditRulesTests` — 2 signal(s)
+### `Ziptide.Tests.EditMode.RouteContinuityAuditRulesTests` — 3 signal(s)
 
 - Codes: `CREATE_PRIMITIVE`
 - Paths: `Ziptide/Assets/Ziptide/Tests/EditMode/RouteContinuityAuditRulesTests.cs`
   - `Ziptide/Assets/Ziptide/Tests/EditMode/RouteContinuityAuditRulesTests.cs:15` **CREATE_PRIMITIVE** — `floor = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Tests/EditMode/RouteContinuityAuditRulesTests.cs:81` **CREATE_PRIMITIVE** — `GameObject floor = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/RouteContinuityAuditRulesTests.cs:40` **CREATE_PRIMITIVE** — `route = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/RouteContinuityAuditRulesTests.cs:111` **CREATE_PRIMITIVE** — `GameObject floor = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 
 ### `Ziptide.Tests.EditMode.ShellSignPlacementTests` — 5 signal(s)
 

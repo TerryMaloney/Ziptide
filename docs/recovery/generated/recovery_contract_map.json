@@ -2,7 +2,7 @@
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
   "scannedFiles": 710,
-  "findingCount": 2467,
+  "findingCount": 2468,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -11315,7 +11315,7 @@
       },
       {
         "owner": "Ziptide.Tests.EditMode.RouteContinuityAuditRulesTests",
-        "evidenceCount": 2,
+        "evidenceCount": 3,
         "codes": [
           "CREATE_PRIMITIVE"
         ],
@@ -11333,7 +11333,14 @@
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Tests/EditMode/RouteContinuityAuditRulesTests.cs",
-            "line": 81,
+            "line": 40,
+            "symbol": "Ziptide.Tests.EditMode.RouteContinuityAuditRulesTests",
+            "snippet": "route = GameObject.CreatePrimitive(PrimitiveType.Cube);"
+          },
+          {
+            "code": "CREATE_PRIMITIVE",
+            "path": "Ziptide/Assets/Ziptide/Tests/EditMode/RouteContinuityAuditRulesTests.cs",
+            "line": 111,
             "symbol": "Ziptide.Tests.EditMode.RouteContinuityAuditRulesTests",
             "snippet": "GameObject floor = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           }
