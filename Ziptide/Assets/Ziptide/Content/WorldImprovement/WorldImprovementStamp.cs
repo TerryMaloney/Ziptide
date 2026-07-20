@@ -42,28 +42,4 @@ namespace Ziptide.Content
             requiredEvidence = manifest.requiredEvidence ?? Array.Empty<string>();
         }
     }
-
-    /// <summary>One deterministic module output marker. Audits use this instead of guessing from visuals.</summary>
-    [DisallowMultipleComponent]
-    public sealed class WorldImprovementModuleMarker : MonoBehaviour
-    {
-        [SerializeField] private string moduleId;
-        [SerializeField] private int moduleVersion;
-        [SerializeField] private int objectCount;
-        [SerializeField] private string[] aspects = Array.Empty<string>();
-
-        public string ModuleId => moduleId;
-        public int ModuleVersion => moduleVersion;
-        public int ObjectCount => objectCount;
-        public string[] Aspects => aspects;
-
-        public void Configure(WorldImprovementModuleSpec spec, int count)
-        {
-            if (spec == null) throw new ArgumentNullException(nameof(spec));
-            moduleId = spec.moduleId ?? string.Empty;
-            moduleVersion = spec.version;
-            objectCount = Mathf.Max(0, count);
-            aspects = spec.aspects ?? Array.Empty<string>();
-        }
-    }
 }
