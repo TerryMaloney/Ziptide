@@ -30,6 +30,7 @@ on:
       # Device-recovery owners used by the locked W000 -> ToxicCity -> W000 route.
       # These were previously missed, allowing a source candidate to start Golden Android without
       # also receiving the canonical 43-test PlayMode observation.
+      - 'Ziptide/Assets/Ziptide/Core/Runtime/RuntimeInputEnabler.cs'
       - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/**'
       - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs'
       - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs'
