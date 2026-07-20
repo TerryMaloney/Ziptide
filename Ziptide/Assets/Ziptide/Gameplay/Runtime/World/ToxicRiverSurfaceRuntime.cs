@@ -18,6 +18,7 @@ namespace Ziptide.Gameplay
         private Transform[] _bubbles;
         private Vector3[] _flowBase;
         private Vector3[] _bubbleBase;
+        private Vector3[] _bubbleBaseScale;
         private float _damagePulse;
 
         public void Configure(bool alongZ, float span)
@@ -46,8 +47,13 @@ namespace Ziptide.Gameplay
             _bubbles = bubbles.ToArray();
             _flowBase = new Vector3[_flow.Length];
             _bubbleBase = new Vector3[_bubbles.Length];
+            _bubbleBaseScale = new Vector3[_bubbles.Length];
             for (int i = 0; i < _flow.Length; i++) _flowBase[i] = _flow[i].localPosition;
-            for (int i = 0; i < _bubbles.Length; i++) _bubbleBase[i] = _bubbles[i].localPosition;
+            for (int i = 0; i < _bubbles.Length; i++)
+            {
+                _bubbleBase[i] = _bubbles[i].localPosition;
+                _bubbleBaseScale[i] = _bubbles[i].localScale;
+            }
         }
 
         public void PulseDamage()
@@ -66,9 +72,11 @@ namespace Ziptide.Gameplay
                 Transform t = _flow[i];
                 if (t == null) continue;
                 Vector3 p = _flowBase[i];
-                float offset = Mathf.Repeat(Time.time * flowSpeed + i * (flowSpan / Mathf.Max(1, _flow.Length)), flowSpan) - half;
+                float offset = Mathf.Repeat(Time.time * flowSpeed + i *
+                    (flowSpan / Mathf.Max(1, _flow.Length)), flowSpan) - half;
                 if (flowAlongZ) p.z = offset; else p.x = offset;
-                p.y += Mathf.Sin(Time.time * 1.8f + i * 0.9f) * waveAmplitude + _damagePulse * 0.025f;
+                p.y += Mathf.Sin(Time.time * 1.8f + i * 0.9f) * waveAmplitude
+                    + _damagePulse * 0.025f;
                 t.localPosition = p;
             }
 
@@ -77,10 +85,12 @@ namespace Ziptide.Gameplay
                 Transform t = _bubbles[i];
                 if (t == null) continue;
                 Vector3 p = _bubbleBase[i];
-                p.y += Mathf.Sin(Time.time * (1.2f + i * 0.07f) + i) * (waveAmplitude * 1.6f);
-                float scale = 0.82f + 0.18f * Mathf.Sin(Time.time * 2.1f + i * 0.6f) + _damagePulse * 0.20f;
+                p.y += Mathf.Sin(Time.time * (1.2f + i * 0.07f) + i)
+                    * (waveAmplitude * 1.6f);
+                float scale = 0.82f + 0.18f * Mathf.Sin(Time.time * 2.1f + i * 0.6f)
+                    + _damagePulse * 0.20f;
                 t.localPosition = p;
-                t.localScale = Vector3.one * Mathf.Max(0.08f, scale);
+                t.localScale = _bubbleBaseScale[i] * Mathf.Max(0.25f, scale);
             }
         }
     }
