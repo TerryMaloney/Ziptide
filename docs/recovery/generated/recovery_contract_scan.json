@@ -1,47 +1,47 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-20T12:55:15.563976+00:00",
+  "generatedAtUtc": "2026-07-20T14:57:22.993606+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
     "Ziptide/Assets/Ziptide",
     "Ziptide/Assets/ZiptideNet"
   ],
-  "scannedFiles": 710,
-  "findingCount": 2474,
+  "scannedFiles": 717,
+  "findingCount": 2497,
   "categoryCounts": {
     "bootstrap": 35,
-    "diagnostics": 548,
+    "diagnostics": 551,
     "events": 64,
-    "fallback_debt": 148,
+    "fallback_debt": 153,
     "global_render": 81,
-    "input": 197,
+    "input": 198,
     "materials": 246,
     "persistence": 18,
-    "runtime_creation": 662,
-    "runtime_ui": 127,
+    "runtime_creation": 671,
+    "runtime_ui": 129,
     "save_state": 256,
     "scene_loading": 9,
-    "xri_ownership": 83
+    "xri_ownership": 86
   },
   "codeCounts": {
     "AUTOSAVE_CALL": 8,
     "CAMERA_MAIN_REFERENCE": 42,
     "CAMERA_POST_PROCESSING": 1,
     "CANVAS_COMPONENT": 5,
-    "CREATE_PRIMITIVE": 257,
+    "CREATE_PRIMITIVE": 259,
     "DIRECT_SCENE_LOAD": 2,
     "DIRECT_SCENE_LOAD_ASYNC": 7,
     "DONT_DESTROY_ON_LOAD": 18,
     "EDITOR_BOOTSTRAP": 10,
     "EVENT_DECLARATION": 48,
     "EVENT_SYSTEM_COMPONENT": 2,
-    "FALLBACK_MARKER": 148,
+    "FALLBACK_MARKER": 153,
     "FRAME_BUTTON_POLL": 1,
-    "INPUT_ACTION_REFERENCE": 190,
+    "INPUT_ACTION_REFERENCE": 191,
     "INPUT_BUTTON_REFERENCE": 6,
-    "NEW_GAME_OBJECT": 405,
+    "NEW_GAME_OBJECT": 412,
     "PLAYER_PROFILE_REFERENCE": 140,
     "RENDER_SETTINGS_MUTATION": 37,
     "RUNTIME_BOOTSTRAP": 25,
@@ -49,15 +49,15 @@
     "SAVE_SYSTEM_REFERENCE": 108,
     "SHADER_FIND": 152,
     "STATIC_EVENT_DECLARATION": 16,
-    "TEXTMESH_COMPONENT": 51,
+    "TEXTMESH_COMPONENT": 52,
     "TMP_COMPONENT": 3,
     "VOLUME_COMPONENT": 1,
-    "XRI_MANAGER_ASSIGN": 35,
+    "XRI_MANAGER_ASSIGN": 37,
     "XRI_MANAGER_CREATE": 7,
-    "XRI_MANAGER_LOOKUP": 41,
-    "XR_INTERACTABLE_COMPONENT": 64,
+    "XRI_MANAGER_LOOKUP": 42,
+    "XR_INTERACTABLE_COMPONENT": 65,
     "XR_UI_INPUT_MODULE": 2,
-    "ZIPTIDE_LOG_TAG": 548
+    "ZIPTIDE_LOG_TAG": 551
   },
   "findings": [
     {
@@ -1028,7 +1028,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Editor/WorldImprovement/WorldImprovementCompiler.cs",
-      "line": 111,
+      "line": 129,
       "symbol": "Ziptide.Editor.WorldImprovement.WorldImprovementCompiler",
       "snippet": "Debug.Log(\"ZIPTIDE: WORLD_IMPROVEMENT_MODULE scene=\" + sceneName"
     },
@@ -1037,7 +1037,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Editor/WorldImprovement/WorldImprovementCompiler.cs",
-      "line": 130,
+      "line": 162,
       "symbol": "Ziptide.Editor.WorldImprovement.WorldImprovementCompiler",
       "snippet": "Debug.Log(\"ZIPTIDE: WORLD_IMPROVEMENT_COMPILED scene=\" + sceneName"
     },
@@ -1046,7 +1046,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Editor/WorldImprovement/WorldImprovementCompiler.cs",
-      "line": 183,
+      "line": 225,
       "symbol": "Ziptide.Editor.WorldImprovement.WorldImprovementCompiler",
       "snippet": "Debug.Log(\"ZIPTIDE: WORLD_IMPROVEMENT_REPORT path=\" + path"
     },
@@ -4114,6 +4114,15 @@
       "category": "diagnostics",
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldDiscoveryNodeRuntime.cs",
+      "line": 65,
+      "symbol": "Ziptide.Gameplay.WorldDiscoveryNodeRuntime",
+      "snippet": "Debug.Log(\"ZIPTIDE: WORLD_DISCOVERY scene=\" + gameObject.scene.name"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ZiplineRuntime.cs",
       "line": 72,
       "symbol": "Ziptide.Gameplay.ZiplineRuntime",
@@ -4910,6 +4919,24 @@
       "line": 18,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryPersistentDiagnosticRingTests",
       "snippet": "string token = \"ZIPTIDE: DIAG_RING_TEST frame=\" + Time.frameCount;"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPlayModeInputEnvironment.cs",
+      "line": 29,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryPlayModeInputEnvironment",
+      "snippet": "Debug.Log(\"ZIPTIDE: RECOVERY_HEADLESS_XR_READY devices=2\");"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPlayModeInputEnvironment.cs",
+      "line": 38,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryPlayModeInputEnvironment",
+      "snippet": "Debug.Log(\"ZIPTIDE: RECOVERY_HEADLESS_XR_REMOVED\");"
     },
     {
       "category": "diagnostics",
@@ -6580,6 +6607,51 @@
       "category": "fallback_debt",
       "code": "FALLBACK_MARKER",
       "description": "Source text marks fallback/prototype debt",
+      "path": "Ziptide/Assets/Ziptide/Editor/WorldImprovement/RoundThreeWorldImprovementModules.cs",
+      "line": 61,
+      "symbol": "Ziptide.Editor.WorldImprovement.GroundedRouteModule",
+      "snippet": "int fallback = Mathf.Min(6, budget);"
+    },
+    {
+      "category": "fallback_debt",
+      "code": "FALLBACK_MARKER",
+      "description": "Source text marks fallback/prototype debt",
+      "path": "Ziptide/Assets/Ziptide/Editor/WorldImprovement/RoundThreeWorldImprovementModules.cs",
+      "line": 62,
+      "symbol": "Ziptide.Editor.WorldImprovement.GroundedRouteModule",
+      "snippet": "for (int i = 0; i < fallback; i++)"
+    },
+    {
+      "category": "fallback_debt",
+      "code": "FALLBACK_MARKER",
+      "description": "Source text marks fallback/prototype debt",
+      "path": "Ziptide/Assets/Ziptide/Editor/WorldImprovement/RoundThreeWorldImprovementModules.cs",
+      "line": 64,
+      "symbol": "Ziptide.Editor.WorldImprovement.GroundedRouteModule",
+      "snippet": "float angle = i * Mathf.PI * 2f / fallback;"
+    },
+    {
+      "category": "fallback_debt",
+      "code": "FALLBACK_MARKER",
+      "description": "Source text marks fallback/prototype debt",
+      "path": "Ziptide/Assets/Ziptide/Editor/WorldImprovement/RoundThreeWorldImprovementModules.cs",
+      "line": 235,
+      "symbol": "Ziptide.Editor.WorldImprovement.GroundedRouteModule",
+      "snippet": "if (count == 0 && context.TryGround(origin + Vector3.forward * 6f, out Vector3 fallback))"
+    },
+    {
+      "category": "fallback_debt",
+      "code": "FALLBACK_MARKER",
+      "description": "Source text marks fallback/prototype debt",
+      "path": "Ziptide/Assets/Ziptide/Editor/WorldImprovement/RoundThreeWorldImprovementModules.cs",
+      "line": 239,
+      "symbol": "Ziptide.Editor.WorldImprovement.GroundedRouteModule",
+      "snippet": "trace.position = fallback;"
+    },
+    {
+      "category": "fallback_debt",
+      "code": "FALLBACK_MARKER",
+      "description": "Source text marks fallback/prototype debt",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltMinePortRuntime.cs",
       "line": 79,
       "symbol": "Ziptide.Gameplay.BeltMinePortRuntime",
@@ -7787,7 +7859,7 @@
       "code": "RENDER_SETTINGS_MUTATION",
       "description": "Global RenderSettings access",
       "path": "Ziptide/Assets/Ziptide/Editor/WorldImprovement/WorldImprovementCompiler.cs",
-      "line": 191,
+      "line": 233,
       "symbol": "Ziptide.Editor.WorldImprovement.WorldImprovementCompiler",
       "snippet": "Color fog = RenderSettings.fog ? RenderSettings.fogColor : new Color(0.20f, 0.23f, 0.27f, 1f);"
     },
@@ -9383,6 +9455,15 @@
       "line": 173,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests",
       "snippet": "InputActionManager[] input = Resources.FindObjectsOfTypeAll<InputActionManager>();"
+    },
+    {
+      "category": "input",
+      "code": "INPUT_ACTION_REFERENCE",
+      "description": "Input System action reference",
+      "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPlayModeInputEnvironment.cs",
+      "line": 11,
+      "symbol": "Ziptide.Tests.PlayMode.RecoveryPlayModeInputEnvironment",
+      "snippet": "/// has tracked left/right controllers before _Boot resolves its InputAction assets; Linux CI did not."
     },
     {
       "category": "input",
@@ -12709,6 +12790,15 @@
       "category": "runtime_creation",
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
+      "path": "Ziptide/Assets/Ziptide/Editor/WorldImprovement/RoundThreeWorldImprovementModules.cs",
+      "line": 152,
+      "symbol": "Ziptide.Editor.WorldImprovement.GroundedRouteModule",
+      "snippet": "GameObject core = GameObject.CreatePrimitive(PrimitiveType.Sphere);"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "CREATE_PRIMITIVE",
+      "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Editor/WorldImprovement/WorldImprovementModules.cs",
       "line": 87,
       "symbol": "Ziptide.Editor.WorldImprovement.WorldImprovementModuleResult",
@@ -14203,6 +14293,15 @@
       "category": "runtime_creation",
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/RoundThreeWorldImprovementModulesTests.cs",
+      "line": 25,
+      "symbol": "Ziptide.Tests.EditMode.RoundThreeWorldImprovementModulesTests",
+      "snippet": "floor = GameObject.CreatePrimitive(PrimitiveType.Cube);"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "CREATE_PRIMITIVE",
+      "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/RouteContinuityAuditRulesTests.cs",
       "line": 15,
       "symbol": "Ziptide.Tests.EditMode.RouteContinuityAuditRulesTests",
@@ -14258,7 +14357,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs",
-      "line": 54,
+      "line": 55,
       "symbol": "Ziptide.Tests.EditMode.WorldImprovementCompilerTests",
       "snippet": "floor = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -15670,6 +15769,42 @@
       "category": "runtime_creation",
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Editor/WorldImprovement/RoundThreeWorldImprovementModules.cs",
+      "line": 141,
+      "symbol": "Ziptide.Editor.WorldImprovement.GroundedRouteModule",
+      "snippet": "Transform node = new GameObject(\"DiscoveryNode_\" + index).transform;"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Editor/WorldImprovement/RoundThreeWorldImprovementModules.cs",
+      "line": 173,
+      "symbol": "Ziptide.Editor.WorldImprovement.GroundedRouteModule",
+      "snippet": "GameObject labelObject = new GameObject(\"DiscoveryStatus\");"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Editor/WorldImprovement/RoundThreeWorldImprovementModules.cs",
+      "line": 215,
+      "symbol": "Ziptide.Editor.WorldImprovement.GroundedRouteModule",
+      "snippet": "Transform trace = new GameObject(\"StoryTrace_\" + i).transform;"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Editor/WorldImprovement/RoundThreeWorldImprovementModules.cs",
+      "line": 237,
+      "symbol": "Ziptide.Editor.WorldImprovement.GroundedRouteModule",
+      "snippet": "Transform trace = new GameObject(\"StoryTrace_Fallback\").transform;"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/WorldImprovement/StandardWorldImprovementModules.cs",
       "line": 41,
       "symbol": "Ziptide.Editor.WorldImprovement.ArrivalIdentityModule",
@@ -15698,7 +15833,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/WorldImprovement/WorldImprovementCompiler.cs",
-      "line": 83,
+      "line": 89,
       "symbol": "Ziptide.Editor.WorldImprovement.WorldImprovementCompiler",
       "snippet": "var rootObject = new GameObject(RootName);"
     },
@@ -15707,7 +15842,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/WorldImprovement/WorldImprovementCompiler.cs",
-      "line": 100,
+      "line": 107,
       "symbol": "Ziptide.Editor.WorldImprovement.WorldImprovementCompiler",
       "snippet": "var moduleRoot = new GameObject(\"__WIM_\" + safeName).transform;"
     },
@@ -17425,6 +17560,33 @@
       "category": "runtime_creation",
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/RoundThreeWorldImprovementModulesTests.cs",
+      "line": 30,
+      "symbol": "Ziptide.Tests.EditMode.RoundThreeWorldImprovementModulesTests",
+      "snippet": "spawn = new GameObject(\"__SPAWN_PLAYER\");"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/RoundThreeWorldImprovementModulesTests.cs",
+      "line": 31,
+      "symbol": "Ziptide.Tests.EditMode.RoundThreeWorldImprovementModulesTests",
+      "snippet": "markerA = new GameObject(\"Marker_RoundThree_A\");"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/RoundThreeWorldImprovementModulesTests.cs",
+      "line": 33,
+      "symbol": "Ziptide.Tests.EditMode.RoundThreeWorldImprovementModulesTests",
+      "snippet": "markerB = new GameObject(\"Marker_RoundThree_B\");"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/ShellSignPlacementTests.cs",
       "line": 94,
       "symbol": "Ziptide.Tests.EditMode.ShellSignPlacementTests",
@@ -17552,7 +17714,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs",
-      "line": 30,
+      "line": 31,
       "symbol": "Ziptide.Tests.EditMode.WorldImprovementCompilerTests",
       "snippet": "host = new GameObject(\"ModuleMarkerSerializationFixture\");"
     },
@@ -17561,7 +17723,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs",
-      "line": 59,
+      "line": 60,
       "symbol": "Ziptide.Tests.EditMode.WorldImprovementCompilerTests",
       "snippet": "spawn = new GameObject(\"__SPAWN_PLAYER\");"
     },
@@ -17570,7 +17732,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs",
-      "line": 101,
+      "line": 102,
       "symbol": "Ziptide.Tests.EditMode.WorldImprovementCompilerTests",
       "snippet": "root = new GameObject(WorldImprovementCompiler.RootName);"
     },
@@ -17579,7 +17741,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs",
-      "line": 105,
+      "line": 106,
       "symbol": "Ziptide.Tests.EditMode.WorldImprovementCompilerTests",
       "snippet": "var moduleRoot = new GameObject(\"__WIM_ARRIVAL_IDENTITY\");"
     },
@@ -18149,6 +18311,15 @@
       "line": 224,
       "symbol": "Ziptide.Editor.Patching.WorldStubGenerator",
       "snippet": "var tm = label.AddComponent<TextMesh>();"
+    },
+    {
+      "category": "runtime_ui",
+      "code": "TEXTMESH_COMPONENT",
+      "description": "Legacy TextMesh creation/reference",
+      "path": "Ziptide/Assets/Ziptide/Editor/WorldImprovement/RoundThreeWorldImprovementModules.cs",
+      "line": 177,
+      "symbol": "Ziptide.Editor.WorldImprovement.GroundedRouteModule",
+      "snippet": "TextMesh label = labelObject.AddComponent<TextMesh>();"
     },
     {
       "category": "runtime_ui",
@@ -19094,6 +19265,15 @@
       "line": 331,
       "symbol": "Ziptide.Gameplay.ShipBoardingStation",
       "snippet": "var interactable = plate.AddComponent<XRSimpleInteractable>();"
+    },
+    {
+      "category": "runtime_ui",
+      "code": "XR_INTERACTABLE_COMPONENT",
+      "description": "XR interactable creation/reference",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldDiscoveryNodeRuntime.cs",
+      "line": 14,
+      "symbol": "Ziptide.Gameplay.WorldDiscoveryNodeRuntime",
+      "snippet": "[RequireComponent(typeof(XRSimpleInteractable))]"
     },
     {
       "category": "runtime_ui",
@@ -21808,6 +21988,24 @@
       "category": "xri_ownership",
       "code": "XRI_MANAGER_ASSIGN",
       "description": "Explicit interactable interactionManager assignment",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldDiscoveryNodeRuntime.cs",
+      "line": 42,
+      "symbol": "Ziptide.Gameplay.WorldDiscoveryNodeRuntime",
+      "snippet": "if (_interactable.interactionManager == null)"
+    },
+    {
+      "category": "xri_ownership",
+      "code": "XRI_MANAGER_ASSIGN",
+      "description": "Explicit interactable interactionManager assignment",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldDiscoveryNodeRuntime.cs",
+      "line": 43,
+      "symbol": "Ziptide.Gameplay.WorldDiscoveryNodeRuntime",
+      "snippet": "_interactable.interactionManager = FindObjectOfType<XRInteractionManager>();"
+    },
+    {
+      "category": "xri_ownership",
+      "code": "XRI_MANAGER_ASSIGN",
+      "description": "Explicit interactable interactionManager assignment",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs",
       "line": 122,
       "symbol": "Ziptide.Gameplay.WorldTravelStation",
@@ -22262,6 +22460,15 @@
       "line": 349,
       "symbol": "Ziptide.Gameplay.TravelCoordinator",
       "snippet": "var mgr = Object.FindObjectOfType<XRInteractionManager>();"
+    },
+    {
+      "category": "xri_ownership",
+      "code": "XRI_MANAGER_LOOKUP",
+      "description": "XRInteractionManager lookup",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldDiscoveryNodeRuntime.cs",
+      "line": 43,
+      "symbol": "Ziptide.Gameplay.WorldDiscoveryNodeRuntime",
+      "snippet": "_interactable.interactionManager = FindObjectOfType<XRInteractionManager>();"
     },
     {
       "category": "xri_ownership",

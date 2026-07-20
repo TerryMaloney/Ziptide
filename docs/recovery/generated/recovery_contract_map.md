@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
-- Scanned files: **710**
-- Scanner findings: **2474**
+- Scanned files: **717**
+- Scanner findings: **2497**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -588,6 +588,12 @@ None.
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:157` **INPUT_ACTION_REFERENCE** — `private InputActionAsset CreateAsset(string assetName, string actionName)`
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:159` **INPUT_ACTION_REFERENCE** — `InputActionAsset asset = ScriptableObject.CreateInstance<InputActionAsset>();`
   - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:173` **INPUT_ACTION_REFERENCE** — `InputActionManager[] input = Resources.FindObjectsOfTypeAll<InputActionManager>();`
+
+### `Ziptide.Tests.PlayMode.RecoveryPlayModeInputEnvironment` — 1 signal(s)
+
+- Codes: `INPUT_ACTION_REFERENCE`
+- Paths: `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPlayModeInputEnvironment.cs`
+  - `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPlayModeInputEnvironment.cs:11` **INPUT_ACTION_REFERENCE** — `/// has tracked left/right controllers before _Boot resolves its InputAction assets; Linux CI did not.`
 
 ### `Ziptide.Tests.PlayMode.RecoveryRuntimeCensusSnapshot` — 5 signal(s)
 
@@ -1177,12 +1183,23 @@ None.
   - `Ziptide/Assets/Ziptide/Editor/WorldImprovement/StandardWorldImprovementModules.cs:83` **NEW_GAME_OBJECT** — `var beacon = new GameObject("RouteBeacon_" + i).transform;`
   - `Ziptide/Assets/Ziptide/Editor/WorldImprovement/StandardWorldImprovementModules.cs:158` **NEW_GAME_OBJECT** — `var tower = new GameObject("HorizonLandmark_" + i).transform;`
 
+### `Ziptide.Editor.WorldImprovement.GroundedRouteModule` — 6 signal(s)
+
+- Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`, `TEXTMESH_COMPONENT`
+- Paths: `Ziptide/Assets/Ziptide/Editor/WorldImprovement/RoundThreeWorldImprovementModules.cs`
+  - `Ziptide/Assets/Ziptide/Editor/WorldImprovement/RoundThreeWorldImprovementModules.cs:141` **NEW_GAME_OBJECT** — `Transform node = new GameObject("DiscoveryNode_" + index).transform;`
+  - `Ziptide/Assets/Ziptide/Editor/WorldImprovement/RoundThreeWorldImprovementModules.cs:152` **CREATE_PRIMITIVE** — `GameObject core = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
+  - `Ziptide/Assets/Ziptide/Editor/WorldImprovement/RoundThreeWorldImprovementModules.cs:173` **NEW_GAME_OBJECT** — `GameObject labelObject = new GameObject("DiscoveryStatus");`
+  - `Ziptide/Assets/Ziptide/Editor/WorldImprovement/RoundThreeWorldImprovementModules.cs:177` **TEXTMESH_COMPONENT** — `TextMesh label = labelObject.AddComponent<TextMesh>();`
+  - `Ziptide/Assets/Ziptide/Editor/WorldImprovement/RoundThreeWorldImprovementModules.cs:215` **NEW_GAME_OBJECT** — `Transform trace = new GameObject("StoryTrace_" + i).transform;`
+  - `Ziptide/Assets/Ziptide/Editor/WorldImprovement/RoundThreeWorldImprovementModules.cs:237` **NEW_GAME_OBJECT** — `Transform trace = new GameObject("StoryTrace_Fallback").transform;`
+
 ### `Ziptide.Editor.WorldImprovement.WorldImprovementCompiler` — 2 signal(s)
 
 - Codes: `NEW_GAME_OBJECT`
 - Paths: `Ziptide/Assets/Ziptide/Editor/WorldImprovement/WorldImprovementCompiler.cs`
-  - `Ziptide/Assets/Ziptide/Editor/WorldImprovement/WorldImprovementCompiler.cs:83` **NEW_GAME_OBJECT** — `var rootObject = new GameObject(RootName);`
-  - `Ziptide/Assets/Ziptide/Editor/WorldImprovement/WorldImprovementCompiler.cs:100` **NEW_GAME_OBJECT** — `var moduleRoot = new GameObject("__WIM_" + safeName).transform;`
+  - `Ziptide/Assets/Ziptide/Editor/WorldImprovement/WorldImprovementCompiler.cs:89` **NEW_GAME_OBJECT** — `var rootObject = new GameObject(RootName);`
+  - `Ziptide/Assets/Ziptide/Editor/WorldImprovement/WorldImprovementCompiler.cs:107` **NEW_GAME_OBJECT** — `var moduleRoot = new GameObject("__WIM_" + safeName).transform;`
 
 ### `Ziptide.Editor.WorldImprovement.WorldImprovementModuleResult` — 5 signal(s)
 
@@ -2165,6 +2182,12 @@ None.
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldDirector.cs`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldDirector.cs:57` **NEW_GAME_OBJECT** — `GameObject rigGo = new GameObject("SkyRig");`
 
+### `Ziptide.Gameplay.WorldDiscoveryNodeRuntime` — 1 signal(s)
+
+- Codes: `XR_INTERACTABLE_COMPONENT`
+- Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldDiscoveryNodeRuntime.cs`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldDiscoveryNodeRuntime.cs:14` **XR_INTERACTABLE_COMPONENT** — `[RequireComponent(typeof(XRSimpleInteractable))]`
+
 ### `Ziptide.Gameplay.WorldRuntime` — 3 signal(s)
 
 - Codes: `NEW_GAME_OBJECT`
@@ -2404,6 +2427,15 @@ None.
 - Paths: `Ziptide/Assets/Ziptide/Tests/EditMode/ResourceDisciplineTests.cs`
   - `Ziptide/Assets/Ziptide/Tests/EditMode/ResourceDisciplineTests.cs:38` **RUNTIME_MATERIAL_CREATE** — `private static readonly string[] CreatorMarkers = { "new Material(", "new Texture2D(", "AudioClip.Create(" };`
 
+### `Ziptide.Tests.EditMode.RoundThreeWorldImprovementModulesTests` — 4 signal(s)
+
+- Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`
+- Paths: `Ziptide/Assets/Ziptide/Tests/EditMode/RoundThreeWorldImprovementModulesTests.cs`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/RoundThreeWorldImprovementModulesTests.cs:25` **CREATE_PRIMITIVE** — `floor = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/RoundThreeWorldImprovementModulesTests.cs:30` **NEW_GAME_OBJECT** — `spawn = new GameObject("__SPAWN_PLAYER");`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/RoundThreeWorldImprovementModulesTests.cs:31` **NEW_GAME_OBJECT** — `markerA = new GameObject("Marker_RoundThree_A");`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/RoundThreeWorldImprovementModulesTests.cs:33` **NEW_GAME_OBJECT** — `markerB = new GameObject("Marker_RoundThree_B");`
+
 ### `Ziptide.Tests.EditMode.RouteContinuityAuditRulesTests` — 3 signal(s)
 
 - Codes: `CREATE_PRIMITIVE`
@@ -2485,11 +2517,11 @@ None.
 
 - Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`
 - Paths: `Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs:30` **NEW_GAME_OBJECT** — `host = new GameObject("ModuleMarkerSerializationFixture");`
-  - `Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs:54` **CREATE_PRIMITIVE** — `floor = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs:59` **NEW_GAME_OBJECT** — `spawn = new GameObject("__SPAWN_PLAYER");`
-  - `Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs:101` **NEW_GAME_OBJECT** — `root = new GameObject(WorldImprovementCompiler.RootName);`
-  - `Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs:105` **NEW_GAME_OBJECT** — `var moduleRoot = new GameObject("__WIM_ARRIVAL_IDENTITY");`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs:31` **NEW_GAME_OBJECT** — `host = new GameObject("ModuleMarkerSerializationFixture");`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs:55` **CREATE_PRIMITIVE** — `floor = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs:60` **NEW_GAME_OBJECT** — `spawn = new GameObject("__SPAWN_PLAYER");`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs:102` **NEW_GAME_OBJECT** — `root = new GameObject(WorldImprovementCompiler.RootName);`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs:106` **NEW_GAME_OBJECT** — `var moduleRoot = new GameObject("__WIM_ARRIVAL_IDENTITY");`
 
 ### `Ziptide.Tests.EditMode.WristScannerResultTests` — 1 signal(s)
 
@@ -2946,6 +2978,14 @@ None.
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/WateringCanRuntime.cs`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/WateringCanRuntime.cs:45` **XRI_MANAGER_LOOKUP** — `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/WateringCanRuntime.cs:46` **XRI_MANAGER_ASSIGN** — `if (mgr != null) grab.interactionManager = mgr;`
+
+### `Ziptide.Gameplay.WorldDiscoveryNodeRuntime` — 3 signal(s)
+
+- Codes: `XRI_MANAGER_ASSIGN`, `XRI_MANAGER_LOOKUP`
+- Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldDiscoveryNodeRuntime.cs`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldDiscoveryNodeRuntime.cs:42` **XRI_MANAGER_ASSIGN** — `if (_interactable.interactionManager == null)`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldDiscoveryNodeRuntime.cs:43` **XRI_MANAGER_ASSIGN** — `_interactable.interactionManager = FindObjectOfType<XRInteractionManager>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldDiscoveryNodeRuntime.cs:43` **XRI_MANAGER_LOOKUP** — `_interactable.interactionManager = FindObjectOfType<XRInteractionManager>();`
 
 ### `Ziptide.Gameplay.WorldTravelStation` — 4 signal(s)
 
@@ -3920,7 +3960,7 @@ None.
 
 - Codes: `RENDER_SETTINGS_MUTATION`
 - Paths: `Ziptide/Assets/Ziptide/Editor/WorldImprovement/WorldImprovementCompiler.cs`
-  - `Ziptide/Assets/Ziptide/Editor/WorldImprovement/WorldImprovementCompiler.cs:191` **RENDER_SETTINGS_MUTATION** — `Color fog = RenderSettings.fog ? RenderSettings.fogColor : new Color(0.20f, 0.23f, 0.27f, 1f);`
+  - `Ziptide/Assets/Ziptide/Editor/WorldImprovement/WorldImprovementCompiler.cs:233` **RENDER_SETTINGS_MUTATION** — `Color fog = RenderSettings.fog ? RenderSettings.fogColor : new Color(0.20f, 0.23f, 0.27f, 1f);`
 
 ### `Ziptide.Gameplay.ArenaLobbyBoard` — 1 signal(s)
 
@@ -4420,6 +4460,16 @@ None.
 - Codes: `FALLBACK_MARKER`
 - Paths: `Ziptide/Assets/Ziptide/Editor/Setup/SetupMilestoneAScene.cs`
   - `Ziptide/Assets/Ziptide/Editor/Setup/SetupMilestoneAScene.cs:63` **FALLBACK_MARKER** — `Debug.LogWarning("[Ziptide] XR Origin prefab not found. Add it manually: GameObject > XR > XR Origin (VR). Creating empty placeholder.");`
+
+### `Ziptide.Editor.WorldImprovement.GroundedRouteModule` — 5 signal(s)
+
+- Codes: `FALLBACK_MARKER`
+- Paths: `Ziptide/Assets/Ziptide/Editor/WorldImprovement/RoundThreeWorldImprovementModules.cs`
+  - `Ziptide/Assets/Ziptide/Editor/WorldImprovement/RoundThreeWorldImprovementModules.cs:61` **FALLBACK_MARKER** — `int fallback = Mathf.Min(6, budget);`
+  - `Ziptide/Assets/Ziptide/Editor/WorldImprovement/RoundThreeWorldImprovementModules.cs:62` **FALLBACK_MARKER** — `for (int i = 0; i < fallback; i++)`
+  - `Ziptide/Assets/Ziptide/Editor/WorldImprovement/RoundThreeWorldImprovementModules.cs:64` **FALLBACK_MARKER** — `float angle = i * Mathf.PI * 2f / fallback;`
+  - `Ziptide/Assets/Ziptide/Editor/WorldImprovement/RoundThreeWorldImprovementModules.cs:235` **FALLBACK_MARKER** — `if (count == 0 && context.TryGround(origin + Vector3.forward * 6f, out Vector3 fallback))`
+  - `Ziptide/Assets/Ziptide/Editor/WorldImprovement/RoundThreeWorldImprovementModules.cs:239` **FALLBACK_MARKER** — `trace.position = fallback;`
 
 ### `Ziptide.Gameplay.BeltMinePortRuntime` — 1 signal(s)
 

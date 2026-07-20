@@ -1,7 +1,7 @@
 # ZIPTIDE Recovery Contract Scan
 
-- Scanned files: **710**
-- Findings: **2474**
+- Scanned files: **717**
+- Findings: **2497**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
@@ -9,18 +9,18 @@
 | Category | Count |
 |---|---:|
 | `bootstrap` | 35 |
-| `diagnostics` | 548 |
+| `diagnostics` | 551 |
 | `events` | 64 |
-| `fallback_debt` | 148 |
+| `fallback_debt` | 153 |
 | `global_render` | 81 |
-| `input` | 197 |
+| `input` | 198 |
 | `materials` | 246 |
 | `persistence` | 18 |
-| `runtime_creation` | 662 |
-| `runtime_ui` | 127 |
+| `runtime_creation` | 671 |
+| `runtime_ui` | 129 |
 | `save_state` | 256 |
 | `scene_loading` | 9 |
-| `xri_ownership` | 83 |
+| `xri_ownership` | 86 |
 
 ## Findings
 
@@ -135,9 +135,9 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleSaveHook.cs:43` · `Ziptide.Editor.Patching.ToxicCityVehicleSaveHook` — ZIPTIDE diagnostic tag. `Debug.LogError("ZIPTIDE: TOXIC_CITY_VEHICLE_HOOK_FAIL reason=missing_root root=" + rootName);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleSaveHook.cs:48` · `Ziptide.Editor.Patching.ToxicCityVehicleSaveHook` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: TOXIC_CITY_VEHICLE_HOOK vehicles=" + summary.Vehicles`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Spec/WorldSpecCompiler.cs:74` · `Ziptide.Editor.Spec.WorldSpecCompiler` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: SPEC_DRIFT scene=" + spec.sceneName`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/WorldImprovement/WorldImprovementCompiler.cs:111` · `Ziptide.Editor.WorldImprovement.WorldImprovementCompiler` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: WORLD_IMPROVEMENT_MODULE scene=" + sceneName`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/WorldImprovement/WorldImprovementCompiler.cs:130` · `Ziptide.Editor.WorldImprovement.WorldImprovementCompiler` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: WORLD_IMPROVEMENT_COMPILED scene=" + sceneName`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/WorldImprovement/WorldImprovementCompiler.cs:183` · `Ziptide.Editor.WorldImprovement.WorldImprovementCompiler` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: WORLD_IMPROVEMENT_REPORT path=" + path`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/WorldImprovement/WorldImprovementCompiler.cs:129` · `Ziptide.Editor.WorldImprovement.WorldImprovementCompiler` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: WORLD_IMPROVEMENT_MODULE scene=" + sceneName`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/WorldImprovement/WorldImprovementCompiler.cs:162` · `Ziptide.Editor.WorldImprovement.WorldImprovementCompiler` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: WORLD_IMPROVEMENT_COMPILED scene=" + sceneName`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/WorldImprovement/WorldImprovementCompiler.cs:225` · `Ziptide.Editor.WorldImprovement.WorldImprovementCompiler` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: WORLD_IMPROVEMENT_REPORT path=" + path`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs:95` · `Ziptide.Gameplay.AmbienceDirector` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: AMBIENCE biome=" + biome + " wind=" + _spec.WindLevel.ToString("F2") +`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs:80` · `Ziptide.Gameplay.AudioDirector` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: AUDIO_CLIP_MISSING on profile " + profile.name);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltBlueprintWandItem.cs:141` · `Ziptide.Gameplay.BeltBlueprintWandItem` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: BELT_BLUEPRINT_CAPTURE cells=" + bp.Count);`
@@ -478,6 +478,7 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:276` · `Ziptide.Gameplay.TravelCoordinator` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: AUDIT_FAIL multiple_managers_after_travel count=" + (managers?.Length ?? 0));`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:280` · `Ziptide.Gameplay.TravelCoordinator` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: TRAVEL_OK dest=" + sceneName);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:287` · `Ziptide.Gameplay.TravelCoordinator` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FIRST_HOUR_TRAVEL dest=" + sceneName +`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldDiscoveryNodeRuntime.cs:65` · `Ziptide.Gameplay.WorldDiscoveryNodeRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: WORLD_DISCOVERY scene=" + gameObject.scene.name`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ZiplineRuntime.cs:72` · `Ziptide.Gameplay.ZiplineRuntime` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: ZIPLINE_DEGENERATE anchors too close — disabled");`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ZiplineRuntime.cs:125` · `Ziptide.Gameplay.ZiplineRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: ZIPLINE_READY len=" +`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ZiplineRuntime.cs:156` · `Ziptide.Gameplay.ZiplineRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: ZIPLINE_RIDE_START");`
@@ -567,6 +568,8 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPerformanceSampleTests.cs:13` · `Ziptide.Tests.PlayMode.RecoveryPerformanceSampleTests` — ZIPTIDE diagnostic tag. `string sweep = "ZIPTIDE: HEALTH_SWEEP scene=CONTROLLED freed mats=2 tex=1 mesh=0 clips=0 memMB=128";`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPerformanceSampleTests.cs:42` · `Ziptide.Tests.PlayMode.RecoveryPerformanceSampleTests` — ZIPTIDE diagnostic tag. `"ZIPTIDE: TRAVEL_OK dest=W000_DriftIn",`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPersistentDiagnosticRingTests.cs:18` · `Ziptide.Tests.PlayMode.RecoveryPersistentDiagnosticRingTests` — ZIPTIDE diagnostic tag. `string token = "ZIPTIDE: DIAG_RING_TEST frame=" + Time.frameCount;`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPlayModeInputEnvironment.cs:29` · `Ziptide.Tests.PlayMode.RecoveryPlayModeInputEnvironment` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RECOVERY_HEADLESS_XR_READY devices=2");`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPlayModeInputEnvironment.cs:38` · `Ziptide.Tests.PlayMode.RecoveryPlayModeInputEnvironment` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RECOVERY_HEADLESS_XR_REMOVED");`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshot.cs:149` · `Ziptide.Tests.PlayMode.RecoveryRenderSnapshotMetrics` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RECOVERY_SNAPSHOT label=" + label`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshot.cs:173` · `Ziptide.Tests.PlayMode.RecoveryRenderSnapshotMetrics` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RECOVERY_SNAPSHOT_CLEANUP_QUEUED label=" + label);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRenderSnapshot.cs:203` · `Ziptide.Tests.PlayMode.RecoveryRenderSnapshotMetrics` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RECOVERY_SNAPSHOT_GPU_RETAINED label=" + label`
@@ -756,6 +759,11 @@
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Editor/Patching/WorldStubGenerator.cs:42` · `Ziptide.Editor.Patching.WorldStubGenerator` — Source text marks fallback/prototype debt. `EditorUtility.DisplayDialog("World Stub Generator",`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Editor/Patching/WorldStubGenerator.cs:50` · `Ziptide.Editor.Patching.WorldStubGenerator` — Source text marks fallback/prototype debt. `EditorUtility.DisplayDialog("World Stub Generator",`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Editor/Setup/SetupMilestoneAScene.cs:63` · `Ziptide.Editor.Setup.SetupMilestoneAScene` — Source text marks fallback/prototype debt. `Debug.LogWarning("[Ziptide] XR Origin prefab not found. Add it manually: GameObject > XR > XR Origin (VR). Creating empty placeholder.");`
+- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Editor/WorldImprovement/RoundThreeWorldImprovementModules.cs:61` · `Ziptide.Editor.WorldImprovement.GroundedRouteModule` — Source text marks fallback/prototype debt. `int fallback = Mathf.Min(6, budget);`
+- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Editor/WorldImprovement/RoundThreeWorldImprovementModules.cs:62` · `Ziptide.Editor.WorldImprovement.GroundedRouteModule` — Source text marks fallback/prototype debt. `for (int i = 0; i < fallback; i++)`
+- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Editor/WorldImprovement/RoundThreeWorldImprovementModules.cs:64` · `Ziptide.Editor.WorldImprovement.GroundedRouteModule` — Source text marks fallback/prototype debt. `float angle = i * Mathf.PI * 2f / fallback;`
+- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Editor/WorldImprovement/RoundThreeWorldImprovementModules.cs:235` · `Ziptide.Editor.WorldImprovement.GroundedRouteModule` — Source text marks fallback/prototype debt. `if (count == 0 && context.TryGround(origin + Vector3.forward * 6f, out Vector3 fallback))`
+- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Editor/WorldImprovement/RoundThreeWorldImprovementModules.cs:239` · `Ziptide.Editor.WorldImprovement.GroundedRouteModule` — Source text marks fallback/prototype debt. `trace.position = fallback;`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltMinePortRuntime.cs:79` · `Ziptide.Gameplay.BeltMinePortRuntime` — Source text marks fallback/prototype debt. `// A stub drill over the port — enough to read "this is where the ore comes from".`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:70` · `Ziptide.Gameplay.DevTools.DevMenu` — Source text marks fallback/prototype debt. `/// fallback if a scene forgot one) and force every UI-enabled ray interactor to re-register`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:77` · `Ziptide.Gameplay.CreatureRuntime` — Source text marks fallback/prototype debt. `// ── Hit entry points (existing weapon plumbing) ─────────────────────`
@@ -892,7 +900,7 @@
 - **RENDER_SETTINGS_MUTATION** — `Ziptide/Assets/Ziptide/Editor/Patching/WorldExperienceBuilder.cs:477` · `Ziptide.Editor.Patching.WorldExperienceBuilder` — Global RenderSettings access. `if (!RenderSettings.fog || ex.vista == VistaKind.None) return;`
 - **RENDER_SETTINGS_MUTATION** — `Ziptide/Assets/Ziptide/Editor/Patching/WorldExperienceBuilder.cs:479` · `Ziptide.Editor.Patching.WorldExperienceBuilder` — Global RenderSettings access. `if (RenderSettings.fogDensity > maxDensity)`
 - **RENDER_SETTINGS_MUTATION** — `Ziptide/Assets/Ziptide/Editor/Patching/WorldExperienceBuilder.cs:480` · `Ziptide.Editor.Patching.WorldExperienceBuilder` — Global RenderSettings access. `RenderSettings.fogDensity = maxDensity;`
-- **RENDER_SETTINGS_MUTATION** — `Ziptide/Assets/Ziptide/Editor/WorldImprovement/WorldImprovementCompiler.cs:191` · `Ziptide.Editor.WorldImprovement.WorldImprovementCompiler` — Global RenderSettings access. `Color fog = RenderSettings.fog ? RenderSettings.fogColor : new Color(0.20f, 0.23f, 0.27f, 1f);`
+- **RENDER_SETTINGS_MUTATION** — `Ziptide/Assets/Ziptide/Editor/WorldImprovement/WorldImprovementCompiler.cs:233` · `Ziptide.Editor.WorldImprovement.WorldImprovementCompiler` — Global RenderSettings access. `Color fog = RenderSettings.fog ? RenderSettings.fogColor : new Color(0.20f, 0.23f, 0.27f, 1f);`
 - **RENDER_SETTINGS_MUTATION** — `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyVistaDefinition.cs:52` · `Ziptide.Visuals.SkyVistaDefinition` — Global RenderSettings access. `[Tooltip("If enabled, RenderSettings.ambientLight is set to ambientColor.")]`
 - **RENDER_SETTINGS_MUTATION** — `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyVistaRig.cs:305` · `Ziptide.Visuals.SkyVistaRig` — Global RenderSettings access. `RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Flat;`
 - **RENDER_SETTINGS_MUTATION** — `Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyVistaRig.cs:306` · `Ziptide.Visuals.SkyVistaRig` — Global RenderSettings access. `RenderSettings.ambientLight = vista.ambientColor;`
@@ -1072,6 +1080,7 @@
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:157` · `Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests` — Input System action reference. `private InputActionAsset CreateAsset(string assetName, string actionName)`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:159` · `Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests` — Input System action reference. `InputActionAsset asset = ScriptableObject.CreateInstance<InputActionAsset>();`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryInputSessionGuardTests.cs:173` · `Ziptide.Tests.PlayMode.RecoveryInputSessionGuardTests` — Input System action reference. `InputActionManager[] input = Resources.FindObjectsOfTypeAll<InputActionManager>();`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryPlayModeInputEnvironment.cs:11` · `Ziptide.Tests.PlayMode.RecoveryPlayModeInputEnvironment` — Input System action reference. `/// has tracked left/right controllers before _Boot resolves its InputAction assets; Linux CI did not.`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensus.cs:252` · `Ziptide.Tests.PlayMode.RecoveryRuntimeCensusSnapshot` — Input System action reference. `InputActionManager input = go.GetComponent<InputActionManager>();`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensus.cs:254` · `Ziptide.Tests.PlayMode.RecoveryRuntimeCensusSnapshot` — Input System action reference. `snapshot.managers.Add(ComponentRecord("InputActionManager", input, "INPUT_SESSION"));`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryRuntimeCensus.cs:351` · `Ziptide.Tests.PlayMode.RecoveryRuntimeCensusSnapshot` — Input System action reference. `int activeInput = CountActive(snapshot.managers, "InputActionManager");`
@@ -1447,6 +1456,7 @@
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/WorldStubGenerator.cs:214` · `Ziptide.Editor.Patching.WorldStubGenerator` — Runtime primitive construction. `var lintel = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Setup/SetupMilestoneAScene.cs:104` · `Ziptide.Editor.Setup.SetupMilestoneAScene` — Runtime primitive construction. `var plane = GameObject.CreatePrimitive(PrimitiveType.Plane);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Setup/SetupMilestoneAScene.cs:116` · `Ziptide.Editor.Setup.SetupMilestoneAScene` — Runtime primitive construction. `var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/WorldImprovement/RoundThreeWorldImprovementModules.cs:152` · `Ziptide.Editor.WorldImprovement.GroundedRouteModule` — Runtime primitive construction. `GameObject core = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/WorldImprovement/WorldImprovementModules.cs:87` · `Ziptide.Editor.WorldImprovement.WorldImprovementModuleResult` — Runtime primitive construction. `var go = GameObject.CreatePrimitive(primitive);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltBlueprintWandItem.cs:37` · `Ziptide.Gameplay.BeltBlueprintWandItem` — Runtime primitive construction. `var shaft = GameObject.CreatePrimitive(PrimitiveType.Cylinder);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltBlueprintWandItem.cs:44` · `Ziptide.Gameplay.BeltBlueprintWandItem` — Runtime primitive construction. `var guard = GameObject.CreatePrimitive(PrimitiveType.Cylinder);`
@@ -1613,13 +1623,14 @@
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/EditMode/PerceptualCoverageAuditRulesTests.cs:65` · `Ziptide.Tests.EditMode.PerceptualCoverageAuditRulesTests` — Runtime primitive construction. `root = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/EditMode/PerceptualCoverageAuditRulesTests.cs:67` · `Ziptide.Tests.EditMode.PerceptualCoverageAuditRulesTests` — Runtime primitive construction. `GameObject child = GameObject.CreatePrimitive(PrimitiveType.Cylinder);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/EditMode/ReactivePropTests.cs:119` · `Ziptide.Tests.EditMode.ReactivePropTests` — Runtime primitive construction. `var host = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/EditMode/RoundThreeWorldImprovementModulesTests.cs:25` · `Ziptide.Tests.EditMode.RoundThreeWorldImprovementModulesTests` — Runtime primitive construction. `floor = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/EditMode/RouteContinuityAuditRulesTests.cs:15` · `Ziptide.Tests.EditMode.RouteContinuityAuditRulesTests` — Runtime primitive construction. `floor = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/EditMode/RouteContinuityAuditRulesTests.cs:40` · `Ziptide.Tests.EditMode.RouteContinuityAuditRulesTests` — Runtime primitive construction. `route = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/EditMode/RouteContinuityAuditRulesTests.cs:111` · `Ziptide.Tests.EditMode.RouteContinuityAuditRulesTests` — Runtime primitive construction. `GameObject floor = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/EditMode/ToxicCityRiverBuilderTests.cs:23` · `Ziptide.Tests.EditMode.ToxicCityRiverBuilderTests` — Runtime primitive construction. `GameObject legacySlab = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/EditMode/ToxicCityStageAIntegrationTests.cs:78` · `Ziptide.Tests.EditMode.ToxicCityStageAIntegrationTests` — Runtime primitive construction. `GameObject facade = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/EditMode/WeaponPerceptualAuditRulesTests.cs:96` · `Ziptide.Tests.EditMode.WeaponPerceptualAuditRulesTests` — Runtime primitive construction. `GameObject weapon = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs:54` · `Ziptide.Tests.EditMode.WorldImprovementCompilerTests` — Runtime primitive construction. `floor = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs:55` · `Ziptide.Tests.EditMode.WorldImprovementCompilerTests` — Runtime primitive construction. `floor = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryCoreBootstrapGateTests.cs:88` · `Ziptide.Tests.PlayMode.RecoveryCoreBootstrapGateTests` — Runtime primitive construction. `var rendererHost = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAuditTests.cs:24` · `Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceAuditTests` — Runtime primitive construction. `GameObject fallback = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryFallbackSurfaceAuditTests.cs:35` · `Ziptide.Tests.PlayMode.RecoveryFallbackSurfaceAuditTests` — Runtime primitive construction. `GameObject nullSlot = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
@@ -1776,11 +1787,15 @@
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Setup/SetupMilestoneAScene.cs:71` · `Ziptide.Editor.Setup.SetupMilestoneAScene` — Runtime GameObject construction. `managerGo = new GameObject("XR Interaction Manager");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Setup/SetupMilestoneAScene.cs:96` · `Ziptide.Editor.Setup.SetupMilestoneAScene` — Runtime GameObject construction. `eventSystemGo = new GameObject("EventSystem");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Setup/SetupMilestoneAScene.cs:259` · `Ziptide.Editor.Setup.SetupMilestoneAScene` — Runtime GameObject construction. `var go = new GameObject("WorldDirector");`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/WorldImprovement/RoundThreeWorldImprovementModules.cs:141` · `Ziptide.Editor.WorldImprovement.GroundedRouteModule` — Runtime GameObject construction. `Transform node = new GameObject("DiscoveryNode_" + index).transform;`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/WorldImprovement/RoundThreeWorldImprovementModules.cs:173` · `Ziptide.Editor.WorldImprovement.GroundedRouteModule` — Runtime GameObject construction. `GameObject labelObject = new GameObject("DiscoveryStatus");`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/WorldImprovement/RoundThreeWorldImprovementModules.cs:215` · `Ziptide.Editor.WorldImprovement.GroundedRouteModule` — Runtime GameObject construction. `Transform trace = new GameObject("StoryTrace_" + i).transform;`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/WorldImprovement/RoundThreeWorldImprovementModules.cs:237` · `Ziptide.Editor.WorldImprovement.GroundedRouteModule` — Runtime GameObject construction. `Transform trace = new GameObject("StoryTrace_Fallback").transform;`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/WorldImprovement/StandardWorldImprovementModules.cs:41` · `Ziptide.Editor.WorldImprovement.ArrivalIdentityModule` — Runtime GameObject construction. `var labelObject = new GameObject("IdentityLabel");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/WorldImprovement/StandardWorldImprovementModules.cs:83` · `Ziptide.Editor.WorldImprovement.ArrivalIdentityModule` — Runtime GameObject construction. `var beacon = new GameObject("RouteBeacon_" + i).transform;`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/WorldImprovement/StandardWorldImprovementModules.cs:158` · `Ziptide.Editor.WorldImprovement.ArrivalIdentityModule` — Runtime GameObject construction. `var tower = new GameObject("HorizonLandmark_" + i).transform;`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/WorldImprovement/WorldImprovementCompiler.cs:83` · `Ziptide.Editor.WorldImprovement.WorldImprovementCompiler` — Runtime GameObject construction. `var rootObject = new GameObject(RootName);`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/WorldImprovement/WorldImprovementCompiler.cs:100` · `Ziptide.Editor.WorldImprovement.WorldImprovementCompiler` — Runtime GameObject construction. `var moduleRoot = new GameObject("__WIM_" + safeName).transform;`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/WorldImprovement/WorldImprovementCompiler.cs:89` · `Ziptide.Editor.WorldImprovement.WorldImprovementCompiler` — Runtime GameObject construction. `var rootObject = new GameObject(RootName);`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/WorldImprovement/WorldImprovementCompiler.cs:107` · `Ziptide.Editor.WorldImprovement.WorldImprovementCompiler` — Runtime GameObject construction. `var moduleRoot = new GameObject("__WIM_" + safeName).transform;`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs:40` · `Ziptide.Gameplay.AmbienceDirector` — Runtime GameObject construction. `var go = new GameObject("__AmbienceDirector");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltBlueprintWandItem.cs:27` · `Ziptide.Gameplay.BeltBlueprintWandItem` — Runtime GameObject construction. `var go = new GameObject("BeltBlueprintWand");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltBlueprintWandItem.cs:62` · `Ziptide.Gameplay.BeltBlueprintWandItem` — Runtime GameObject construction. `var labelGo = new GameObject("WandCount");`
@@ -1971,6 +1986,9 @@
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/ReactivePropTests.cs:80` · `Ziptide.Tests.EditMode.ReactivePropTests` — Runtime GameObject construction. `var host = new GameObject("ReactivePractical");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/ReactivePropTests.cs:103` · `Ziptide.Tests.EditMode.ReactivePropTests` — Runtime GameObject construction. `var host = new GameObject("ReactiveSteam");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/RepairableMachineSignalTests.cs:240` · `Ziptide.Tests.EditMode.RepairableMachineSignalTests` — Runtime GameObject construction. `var go = new GameObject(name);`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/RoundThreeWorldImprovementModulesTests.cs:30` · `Ziptide.Tests.EditMode.RoundThreeWorldImprovementModulesTests` — Runtime GameObject construction. `spawn = new GameObject("__SPAWN_PLAYER");`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/RoundThreeWorldImprovementModulesTests.cs:31` · `Ziptide.Tests.EditMode.RoundThreeWorldImprovementModulesTests` — Runtime GameObject construction. `markerA = new GameObject("Marker_RoundThree_A");`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/RoundThreeWorldImprovementModulesTests.cs:33` · `Ziptide.Tests.EditMode.RoundThreeWorldImprovementModulesTests` — Runtime GameObject construction. `markerB = new GameObject("Marker_RoundThree_B");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/ShellSignPlacementTests.cs:94` · `Ziptide.Tests.EditMode.ShellSignPlacementTests` — Runtime GameObject construction. `_root = new GameObject("ShellSignPlacementRoot");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/ToxicCityRiverBuilderTests.cs:20` · `Ziptide.Tests.EditMode.ToxicCityRiverBuilderTests` — Runtime GameObject construction. `city = new GameObject("__TEST_TOXIC_CITY_ROOT");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/ToxicCityRiverBuilderTests.cs:21` · `Ziptide.Tests.EditMode.ToxicCityRiverBuilderTests` — Runtime GameObject construction. `Transform legacy = new GameObject("Canals").transform;`
@@ -1985,10 +2003,10 @@
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/WeaponFeelRuntimeTests.cs:61` · `Ziptide.Tests.EditMode.WeaponFeelRuntimeTests` — Runtime GameObject construction. `var host = new GameObject("WeaponFeelNullHand");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/WeaponPerceptualAuditRulesTests.cs:100` · `Ziptide.Tests.EditMode.WeaponPerceptualAuditRulesTests` — Runtime GameObject construction. `Transform grip = new GameObject("Grip").transform;`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/WeaponPerceptualAuditRulesTests.cs:105` · `Ziptide.Tests.EditMode.WeaponPerceptualAuditRulesTests` — Runtime GameObject construction. `Transform muzzle = new GameObject("Muzzle").transform;`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs:30` · `Ziptide.Tests.EditMode.WorldImprovementCompilerTests` — Runtime GameObject construction. `host = new GameObject("ModuleMarkerSerializationFixture");`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs:59` · `Ziptide.Tests.EditMode.WorldImprovementCompilerTests` — Runtime GameObject construction. `spawn = new GameObject("__SPAWN_PLAYER");`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs:101` · `Ziptide.Tests.EditMode.WorldImprovementCompilerTests` — Runtime GameObject construction. `root = new GameObject(WorldImprovementCompiler.RootName);`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs:105` · `Ziptide.Tests.EditMode.WorldImprovementCompilerTests` — Runtime GameObject construction. `var moduleRoot = new GameObject("__WIM_ARRIVAL_IDENTITY");`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs:31` · `Ziptide.Tests.EditMode.WorldImprovementCompilerTests` — Runtime GameObject construction. `host = new GameObject("ModuleMarkerSerializationFixture");`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs:60` · `Ziptide.Tests.EditMode.WorldImprovementCompilerTests` — Runtime GameObject construction. `spawn = new GameObject("__SPAWN_PLAYER");`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs:102` · `Ziptide.Tests.EditMode.WorldImprovementCompilerTests` — Runtime GameObject construction. `root = new GameObject(WorldImprovementCompiler.RootName);`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementCompilerTests.cs:106` · `Ziptide.Tests.EditMode.WorldImprovementCompilerTests` — Runtime GameObject construction. `var moduleRoot = new GameObject("__WIM_ARRIVAL_IDENTITY");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/WristScannerResultTests.cs:212` · `Ziptide.Tests.EditMode.WristScannerResultTests` — Runtime GameObject construction. `var go = new GameObject(name);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/ZiplineSignalTests.cs:160` · `Ziptide.Tests.EditMode.ZiplineSignalTests` — Runtime GameObject construction. `var go = new GameObject(name);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/PlayModeInfrastructureTests.cs:20` · `Ziptide.Tests.PlayMode.PlayModeInfrastructureTests` — Runtime GameObject construction. `var host = new GameObject("__RECOVERY_PLAYMODE_FRAME_PROBE");`
@@ -2054,6 +2072,7 @@
 - **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageB.cs:150` · `Ziptide.Editor.Patching.ToxicCityStageB` — Legacy TextMesh creation/reference. `TextMesh text = label.AddComponent<TextMesh>();`
 - **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:95` · `Ziptide.Editor.Patching.ToxicCityVehicleBuilder` — Legacy TextMesh creation/reference. `TextMesh text = label.AddComponent<TextMesh>();`
 - **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Editor/Patching/WorldStubGenerator.cs:224` · `Ziptide.Editor.Patching.WorldStubGenerator` — Legacy TextMesh creation/reference. `var tm = label.AddComponent<TextMesh>();`
+- **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Editor/WorldImprovement/RoundThreeWorldImprovementModules.cs:177` · `Ziptide.Editor.WorldImprovement.GroundedRouteModule` — Legacy TextMesh creation/reference. `TextMesh label = labelObject.AddComponent<TextMesh>();`
 - **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Editor/WorldImprovement/StandardWorldImprovementModules.cs:44` · `Ziptide.Editor.WorldImprovement.ArrivalIdentityModule` — Legacy TextMesh creation/reference. `var label = labelObject.AddComponent<TextMesh>();`
 - **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltBlueprintWandItem.cs:63` · `Ziptide.Gameplay.BeltBlueprintWandItem` — Legacy TextMesh creation/reference. `_countLabel = labelGo.AddComponent<TextMesh>();`
 - **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltMinePortRuntime.cs:110` · `Ziptide.Gameplay.BeltMinePortRuntime` — Legacy TextMesh creation/reference. `_readout = readoutGo.AddComponent<TextMesh>();`
@@ -2159,6 +2178,7 @@
 - **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/QuartersRoom.cs:259` · `Ziptide.Gameplay.QuartersRoom` — XR interactable creation/reference. `var interactable = plate.AddComponent<XRSimpleInteractable>();`
 - **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/SalvageCacheRuntime.cs:46` · `Ziptide.Gameplay.SalvageCacheRuntime` — XR interactable creation/reference. `var grab = body.gameObject.AddComponent<XRSimpleInteractable>();`
 - **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:331` · `Ziptide.Gameplay.ShipBoardingStation` — XR interactable creation/reference. `var interactable = plate.AddComponent<XRSimpleInteractable>();`
+- **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldDiscoveryNodeRuntime.cs:14` · `Ziptide.Gameplay.WorldDiscoveryNodeRuntime` — XR interactable creation/reference. `[RequireComponent(typeof(XRSimpleInteractable))]`
 - **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ZiplineRuntime.cs:122` · `Ziptide.Gameplay.ZiplineRuntime` — XR interactable creation/reference. `var grab = handleGo.AddComponent<XRSimpleInteractable>();`
 - **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:117` · `Ziptide.Gameplay.WorldTravelStation` — XR interactable creation/reference. `var interactable = door.AddComponent<XRSimpleInteractable>();`
 - **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:201` · `Ziptide.Ship.ShipFlightRuntime` — XR interactable creation/reference. `var ret = _returnPanel.AddComponent<XRSimpleInteractable>();`
@@ -2466,6 +2486,8 @@
 - **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:255` · `Ziptide.Gameplay.HomeHubChoice` — Explicit interactable interactionManager assignment. `interactable.interactionManager = manager;`
 - **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/QuartersRoom.cs:261` · `Ziptide.Gameplay.QuartersRoom` — Explicit interactable interactionManager assignment. `if (mgr != null) interactable.interactionManager = mgr;`
 - **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:333` · `Ziptide.Gameplay.ShipBoardingStation` — Explicit interactable interactionManager assignment. `if (mgr != null) interactable.interactionManager = mgr;`
+- **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldDiscoveryNodeRuntime.cs:42` · `Ziptide.Gameplay.WorldDiscoveryNodeRuntime` — Explicit interactable interactionManager assignment. `if (_interactable.interactionManager == null)`
+- **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldDiscoveryNodeRuntime.cs:43` · `Ziptide.Gameplay.WorldDiscoveryNodeRuntime` — Explicit interactable interactionManager assignment. `_interactable.interactionManager = FindObjectOfType<XRInteractionManager>();`
 - **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:122` · `Ziptide.Gameplay.WorldTravelStation` — Explicit interactable interactionManager assignment. `interactable.interactionManager = mgr;`
 - **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:267` · `Ziptide.Gameplay.WorldTravelStation` — Explicit interactable interactionManager assignment. `interactable.interactionManager = mgr;`
 - **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:246` · `Ziptide.Ship.ShipFlightRuntime` — Explicit interactable interactionManager assignment. `if (mgr != null) interactable.interactionManager = mgr;`
@@ -2517,6 +2539,7 @@
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:332` · `Ziptide.Gameplay.ShipBoardingStation` — XRInteractionManager lookup. `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:274` · `Ziptide.Gameplay.TravelCoordinator` — XRInteractionManager lookup. `var managers = Object.FindObjectsOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:349` · `Ziptide.Gameplay.TravelCoordinator` — XRInteractionManager lookup. `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
+- **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldDiscoveryNodeRuntime.cs:43` · `Ziptide.Gameplay.WorldDiscoveryNodeRuntime` — XRInteractionManager lookup. `_interactable.interactionManager = FindObjectOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:119` · `Ziptide.Gameplay.WorldTravelStation` — XRInteractionManager lookup. `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:264` · `Ziptide.Gameplay.WorldTravelStation` — XRInteractionManager lookup. `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:245` · `Ziptide.Ship.ShipFlightRuntime` — XRInteractionManager lookup. `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
