@@ -97,7 +97,7 @@ namespace Ziptide.Content
                 foreach (string issue in module.Validate()) issues.Add(issue);
                 if (!string.IsNullOrEmpty(module.moduleId) && !ids.Add(module.moduleId))
                     issues.Add("duplicate moduleId " + module.moduleId);
-                if (module.aspects == null) continue;
+                if (!module.enabled || module.aspects == null) continue;
                 foreach (string aspect in module.aspects)
                     if (!string.IsNullOrWhiteSpace(aspect)) covered.Add(aspect.Trim());
             }
