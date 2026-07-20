@@ -8,17 +8,14 @@ using Ziptide.Gameplay;
 namespace Ziptide.Ship
 {
     /// <summary>
-    /// Data-driven ground ride using the comfort-clamped FlightModel with pitch locked to zero. The
-    /// interaction/movement owner is unchanged; presentation now resolves per VehicleArchetype, terrain
-    /// probes ignore the vehicle itself, unsupported map edges stop movement, and dismount requires a
-    /// proven non-toxic landing position.
+    /// Data-driven ground ride using the shared comfort-clamped FlightModel with pitch locked to zero.
+    /// Each archetype owns a distinct shared-material silhouette; terrain probes ignore self-collision,
+    /// reject unsupported map edges, understand authored river surfaces, and require safe dismount ground.
     /// </summary>
     public class VehicleRuntime : MonoBehaviour
     {
-        [Tooltip("VehicleDefinition id under Resources/Vehicles (data-driven, never a hard ref).")]
         [SerializeField] private string vehicleId = "tide_skiff";
 
-        private const float SeatStrayExit = 3f;
         private const float GroundRayUp = 4f;
         private const float GroundRayDown = 30f;
         private const string VisualRootName = "__VehicleVisual";
@@ -28,10 +25,8 @@ namespace Ziptide.Ship
         private FlightState _state;
         private FlightYawLatch _yawLatch;
         private bool _riding;
-        private Vector3 _padOrigin;
         private float _restY;
         private float _nextEdgeLog;
-
         private PlayerRigPersistence _rig;
         private InputAction _leftStick, _rightStick, _boostL3, _boostA;
         private TextMesh _label;
@@ -47,28 +42,31 @@ namespace Ziptide.Ship
             if (!string.IsNullOrEmpty(id)) vehicleId = id;
         }
 
-        /// <summary>VehicleDefinition → ground FlightParams. Pitch is zero by construction.</summary>
         public static FlightParams ParamsFrom(VehicleDefinition def)
         {
-            var p = FlightParams.Default;
+            FlightParams p = FlightParams.Default;
             p.pitchRateDeg = 0f;
             p.pitchClampDeg = 0f;
             if (def == null) { p.maxSpeed = 14f; return p; }
             if (def.cruiseSpeed > 0f) p.maxSpeed = def.cruiseSpeed;
             if (def.boostMultiplier > 0f) p.boostMultiplier = Mathf.Clamp(def.boostMultiplier, 1f, 3f);
-            if (def.roamRadius > 0f) p.laneRadius = Mathf.Min(def.roamRadius, FlightParams.Default.laneRadius);
+            if (def.roamRadius > 0f)
+                p.laneRadius = Mathf.Min(def.roamRadius, FlightParams.Default.laneRadius);
             return p;
         }
 
         private void Start()
         {
             _def = Resources.Load<VehicleDefinition>("Vehicles/" + vehicleId);
-            if (_def == null)
-                Debug.LogWarning("ZIPTIDE: VEHICLE_DEF_MISSING id=" + vehicleId);
+            if (_def == null) Debug.LogWarning("ZIPTIDE: VEHICLE_DEF_MISSING id=" + vehicleId);
             _params = ParamsFrom(_def);
-            _padOrigin = transform.position;
             _restY = transform.position.y;
+            CreateActions();
+            BuildVisualAndPanels();
+        }
 
+        private void CreateActions()
+        {
             _leftStick = new InputAction("ZiptideRideThrottle", InputActionType.Value);
             _leftStick.AddBinding("<XRController>{LeftHand}/thumbstick");
             _rightStick = new InputAction("ZiptideRideSteer", InputActionType.Value);
@@ -77,42 +75,29 @@ namespace Ziptide.Ship
             _boostL3.AddBinding("<XRController>{LeftHand}/thumbstickClicked");
             _boostA = new InputAction("ZiptideRideBoostA", InputActionType.Button);
             _boostA.AddBinding("<XRController>{RightHand}/primaryButton");
-
-            BuildVisualAndPanels();
         }
 
         private void OnDestroy()
         {
-            _leftStick?.Dispose();
-            _rightStick?.Dispose();
-            _boostL3?.Dispose();
-            _boostA?.Dispose();
+            _leftStick?.Dispose(); _rightStick?.Dispose();
+            _boostL3?.Dispose(); _boostA?.Dispose();
         }
 
         private void BuildVisualAndPanels()
         {
             Transform existing = transform.Find(VisualRootName);
             if (existing != null) Destroy(existing.gameObject);
-
             Transform visual = new GameObject(VisualRootName).transform;
             visual.SetParent(transform, false);
+
             VehicleArchetype archetype = _def != null ? _def.archetype : VehicleArchetype.Skiff;
             VehicleVisualProfile profile = VehiclePresentationCore.Resolve(archetype);
-
             switch (archetype)
             {
-                case VehicleArchetype.Hoverbike:
-                    BuildHoverbike(visual, profile);
-                    break;
-                case VehicleArchetype.DrillCrawler:
-                    BuildCrawler(visual, profile);
-                    break;
-                case VehicleArchetype.Skiff:
-                    BuildSkiff(visual, profile);
-                    break;
-                default:
-                    BuildUtility(visual, profile);
-                    break;
+                case VehicleArchetype.Hoverbike: BuildHoverbike(visual, profile); break;
+                case VehicleArchetype.DrillCrawler: BuildCrawler(visual, profile); break;
+                case VehicleArchetype.Skiff: BuildSkiff(visual, profile); break;
+                default: BuildUtility(visual, profile); break;
             }
             BuildSeatAndControls(visual, profile);
 
@@ -121,7 +106,7 @@ namespace Ziptide.Ship
             MakeTile("Tile_DISMOUNT", new Vector3(0.9f, 1.05f, -0.15f),
                 new Color(0.6f, 0.5f, 0.2f), "STEP OFF", Dismount);
 
-            var labelGo = new GameObject("RideLabel");
+            GameObject labelGo = new GameObject("RideLabel");
             labelGo.transform.SetParent(transform, false);
             labelGo.transform.localPosition = new Vector3(0f, 1.65f, -0.15f);
             _label = labelGo.AddComponent<TextMesh>();
@@ -130,8 +115,7 @@ namespace Ziptide.Ship
             _label.anchor = TextAnchor.MiddleCenter;
             _label.alignment = TextAlignment.Center;
             _label.color = new Color(0.95f, 0.8f, 0.5f);
-            _label.text = (_def != null ? _def.DisplayName.Replace('_', ' ') : vehicleId)
-                          + "\n< RIDE to mount >";
+            SetIdleLabel();
 
             ObjectiveBeacon.Attach(gameObject, profile.Accent, 5f);
             int parts = visual.GetComponentsInChildren<Renderer>(true).Length;
@@ -141,150 +125,111 @@ namespace Ziptide.Ship
 
         private static void BuildSkiff(Transform root, VehicleVisualProfile p)
         {
-            Part(root, "SkiffHull", PrimitiveType.Cube, new Vector3(0f, 0.34f, 0f),
-                new Vector3(1.25f, 0.34f, 2.35f), Vector3.zero, p.Body, true);
-            Part(root, "Deck", PrimitiveType.Cube, new Vector3(0f, 0.57f, -0.05f),
-                new Vector3(1.02f, 0.12f, 1.72f), Vector3.zero, Darken(p.Body), false);
+            Part(root, "SkiffHull", PrimitiveType.Cube, V(0, .34f, 0), V(1.25f, .34f, 2.35f), V0, p.Body, true);
+            Part(root, "Deck", PrimitiveType.Cube, V(0, .57f, -.05f), V(1.02f, .12f, 1.72f), V0, Darken(p.Body), false);
             for (int side = -1; side <= 1; side += 2)
             {
                 string tag = side < 0 ? "L" : "R";
-                Part(root, "Pontoon_" + tag, PrimitiveType.Cube,
-                    new Vector3(side * 0.82f, 0.20f, -0.05f),
-                    new Vector3(0.28f, 0.25f, 2.62f), new Vector3(0f, side * -2f, 0f), p.Body, false);
-                Part(root, "ProwBlade_" + tag, PrimitiveType.Cube,
-                    new Vector3(side * 0.55f, 0.37f, 1.25f),
-                    new Vector3(0.42f, 0.22f, 0.72f), new Vector3(-12f, side * -12f, side * 4f), p.Accent, false);
-                Part(root, "Rail_" + tag, PrimitiveType.Cube,
-                    new Vector3(side * 0.57f, 0.86f, 0f),
-                    new Vector3(0.06f, 0.38f, 1.45f), Vector3.zero, p.Accent, false);
+                Part(root, "Pontoon_" + tag, PrimitiveType.Cube, V(side * .82f, .20f, -.05f),
+                    V(.28f, .25f, 2.62f), V(0, side * -2f, 0), p.Body, false);
+                Part(root, "ProwBlade_" + tag, PrimitiveType.Cube, V(side * .55f, .37f, 1.25f),
+                    V(.42f, .22f, .72f), V(-12f, side * -12f, side * 4f), p.Accent, false);
+                Part(root, "Rail_" + tag, PrimitiveType.Cube, V(side * .57f, .86f, 0),
+                    V(.06f, .38f, 1.45f), V0, p.Accent, false);
             }
-            Part(root, "EngineBlock", PrimitiveType.Cube, new Vector3(0f, 0.62f, -1.02f),
-                new Vector3(0.78f, 0.52f, 0.55f), Vector3.zero, Darken(p.Body), false);
-            Part(root, "FanRing", PrimitiveType.Cylinder, new Vector3(0f, 0.72f, -1.35f),
-                new Vector3(0.48f, 0.12f, 0.48f), new Vector3(90f, 0f, 0f), p.Accent, false);
-            Part(root, "FanHub", PrimitiveType.Cylinder, new Vector3(0f, 0.72f, -1.43f),
-                new Vector3(0.18f, 0.10f, 0.18f), new Vector3(90f, 0f, 0f), p.Glow, false);
-            Part(root, "BowLamp", PrimitiveType.Sphere, new Vector3(0f, 0.48f, 1.42f),
-                Vector3.one * 0.13f, Vector3.zero, p.Glow, false);
-            Part(root, "CargoRack", PrimitiveType.Cube, new Vector3(0f, 0.83f, -0.62f),
-                new Vector3(0.82f, 0.08f, 0.52f), Vector3.zero, p.Accent, false);
+            Part(root, "EngineBlock", PrimitiveType.Cube, V(0, .62f, -1.02f), V(.78f, .52f, .55f), V0, Darken(p.Body), false);
+            Part(root, "FanRing", PrimitiveType.Cylinder, V(0, .72f, -1.35f), V(.48f, .12f, .48f), V(90, 0, 0), p.Accent, false);
+            Part(root, "FanHub", PrimitiveType.Cylinder, V(0, .72f, -1.43f), V(.18f, .10f, .18f), V(90, 0, 0), p.Glow, false);
+            Part(root, "BowLamp", PrimitiveType.Sphere, V(0, .48f, 1.42f), Vector3.one * .13f, V0, p.Glow, false);
+            Part(root, "CargoRack", PrimitiveType.Cube, V(0, .83f, -.62f), V(.82f, .08f, .52f), V0, p.Accent, false);
         }
 
         private static void BuildHoverbike(Transform root, VehicleVisualProfile p)
         {
-            Part(root, "BikeChassis", PrimitiveType.Cube, new Vector3(0f, 0.48f, 0f),
-                new Vector3(0.55f, 0.30f, 2.18f), Vector3.zero, p.Body, true);
-            Part(root, "NoseCowl", PrimitiveType.Cube, new Vector3(0f, 0.57f, 1.08f),
-                new Vector3(0.48f, 0.34f, 0.72f), new Vector3(-16f, 0f, 0f), p.Accent, false);
-            Part(root, "Spine", PrimitiveType.Cube, new Vector3(0f, 0.75f, -0.18f),
-                new Vector3(0.18f, 0.18f, 1.45f), Vector3.zero, Darken(p.Body), false);
+            Part(root, "BikeChassis", PrimitiveType.Cube, V(0, .48f, 0), V(.55f, .30f, 2.18f), V0, p.Body, true);
+            Part(root, "NoseCowl", PrimitiveType.Cube, V(0, .57f, 1.08f), V(.48f, .34f, .72f), V(-16, 0, 0), p.Accent, false);
+            Part(root, "Spine", PrimitiveType.Cube, V(0, .75f, -.18f), V(.18f, .18f, 1.45f), V0, Darken(p.Body), false);
             for (int side = -1; side <= 1; side += 2)
             {
                 string tag = side < 0 ? "L" : "R";
-                Part(root, "Stabilizer_" + tag, PrimitiveType.Cube,
-                    new Vector3(side * 0.62f, 0.38f, -0.12f),
-                    new Vector3(0.62f, 0.08f, 0.72f), new Vector3(0f, side * 8f, side * 7f), p.Accent, false);
-                Part(root, "Fork_" + tag, PrimitiveType.Cube,
-                    new Vector3(side * 0.25f, 0.64f, 0.78f),
-                    new Vector3(0.07f, 0.68f, 0.07f), new Vector3(20f, 0f, 0f), Darken(p.Body), false);
+                Part(root, "Stabilizer_" + tag, PrimitiveType.Cube, V(side * .62f, .38f, -.12f),
+                    V(.62f, .08f, .72f), V(0, side * 8f, side * 7f), p.Accent, false);
+                Part(root, "Fork_" + tag, PrimitiveType.Cube, V(side * .25f, .64f, .78f),
+                    V(.07f, .68f, .07f), V(20, 0, 0), Darken(p.Body), false);
                 for (int end = -1; end <= 1; end += 2)
                     Part(root, "HoverPad_" + tag + "_" + end, PrimitiveType.Cylinder,
-                        new Vector3(side * 0.58f, 0.16f, end * 0.72f),
-                        new Vector3(0.30f, 0.055f, 0.38f), Vector3.zero, p.Glow, false);
+                        V(side * .58f, .16f, end * .72f), V(.30f, .055f, .38f), V0, p.Glow, false);
             }
-            Part(root, "RearThruster", PrimitiveType.Cylinder, new Vector3(0f, 0.48f, -1.20f),
-                new Vector3(0.32f, 0.16f, 0.32f), new Vector3(90f, 0f, 0f), p.Accent, false);
-            Part(root, "ThrusterGlow", PrimitiveType.Cylinder, new Vector3(0f, 0.48f, -1.38f),
-                new Vector3(0.22f, 0.06f, 0.22f), new Vector3(90f, 0f, 0f), p.Glow, false);
-            Part(root, "Headlamp", PrimitiveType.Sphere, new Vector3(0f, 0.62f, 1.42f),
-                Vector3.one * 0.12f, Vector3.zero, p.Glow, false);
+            Part(root, "RearThruster", PrimitiveType.Cylinder, V(0, .48f, -1.20f), V(.32f, .16f, .32f), V(90, 0, 0), p.Accent, false);
+            Part(root, "ThrusterGlow", PrimitiveType.Cylinder, V(0, .48f, -1.38f), V(.22f, .06f, .22f), V(90, 0, 0), p.Glow, false);
+            Part(root, "Headlamp", PrimitiveType.Sphere, V(0, .62f, 1.42f), Vector3.one * .12f, V0, p.Glow, false);
         }
 
         private static void BuildCrawler(Transform root, VehicleVisualProfile p)
         {
-            Part(root, "CrawlerHull", PrimitiveType.Cube, new Vector3(0f, 0.52f, -0.12f),
-                new Vector3(1.38f, 0.58f, 2.05f), Vector3.zero, p.Body, true);
+            Part(root, "CrawlerHull", PrimitiveType.Cube, V(0, .52f, -.12f), V(1.38f, .58f, 2.05f), V0, p.Body, true);
             for (int side = -1; side <= 1; side += 2)
             {
                 string tag = side < 0 ? "L" : "R";
-                Part(root, "TreadBody_" + tag, PrimitiveType.Cube,
-                    new Vector3(side * 0.86f, 0.30f, -0.10f),
-                    new Vector3(0.42f, 0.48f, 2.35f), Vector3.zero, Darken(p.Body), false);
+                Part(root, "TreadBody_" + tag, PrimitiveType.Cube, V(side * .86f, .30f, -.10f),
+                    V(.42f, .48f, 2.35f), V0, Darken(p.Body), false);
                 for (int segment = 0; segment < 5; segment++)
-                {
-                    float z = -0.92f + segment * 0.46f;
                     Part(root, "Tread_" + tag + "_" + segment, PrimitiveType.Cube,
-                        new Vector3(side * 1.08f, 0.30f, z),
-                        new Vector3(0.08f, 0.56f, 0.34f), Vector3.zero, p.Accent, false);
-                }
+                        V(side * 1.08f, .30f, -.92f + segment * .46f), V(.08f, .56f, .34f), V0, p.Accent, false);
             }
-            Part(root, "Cabin", PrimitiveType.Cube, new Vector3(0f, 1.02f, -0.28f),
-                new Vector3(1.05f, 0.78f, 0.92f), new Vector3(-3f, 0f, 0f), p.Body, false);
-            Part(root, "Windshield", PrimitiveType.Cube, new Vector3(0f, 1.12f, 0.21f),
-                new Vector3(0.82f, 0.42f, 0.07f), new Vector3(-8f, 0f, 0f), new Color(0.18f, 0.42f, 0.52f), false);
-            Part(root, "RoofRack", PrimitiveType.Cube, new Vector3(0f, 1.50f, -0.30f),
-                new Vector3(1.18f, 0.09f, 1.02f), Vector3.zero, p.Accent, false);
-            Part(root, "RearCargo", PrimitiveType.Cube, new Vector3(0f, 0.93f, -1.05f),
-                new Vector3(1.12f, 0.62f, 0.58f), Vector3.zero, Darken(p.Body), false);
+            Part(root, "Cabin", PrimitiveType.Cube, V(0, 1.02f, -.28f), V(1.05f, .78f, .92f), V(-3, 0, 0), p.Body, false);
+            Part(root, "Windshield", PrimitiveType.Cube, V(0, 1.12f, .21f), V(.82f, .42f, .07f), V(-8, 0, 0), new Color(.18f, .42f, .52f), false);
+            Part(root, "RoofRack", PrimitiveType.Cube, V(0, 1.50f, -.30f), V(1.18f, .09f, 1.02f), V0, p.Accent, false);
+            Part(root, "RearCargo", PrimitiveType.Cube, V(0, .93f, -1.05f), V(1.12f, .62f, .58f), V0, Darken(p.Body), false);
             for (int ring = 0; ring < 3; ring++)
             {
-                float radius = 0.48f - ring * 0.11f;
-                Part(root, "DrillRing_" + ring, PrimitiveType.Cylinder,
-                    new Vector3(0f, 0.60f, 1.12f + ring * 0.25f),
-                    new Vector3(radius, 0.18f, radius), new Vector3(90f, 0f, 0f), p.Accent, false);
+                float radius = .48f - ring * .11f;
+                Part(root, "DrillRing_" + ring, PrimitiveType.Cylinder, V(0, .60f, 1.12f + ring * .25f),
+                    V(radius, .18f, radius), V(90, 0, 0), p.Accent, false);
             }
-            Part(root, "DrillTip", PrimitiveType.Cube, new Vector3(0f, 0.60f, 1.72f),
-                new Vector3(0.18f, 0.18f, 0.38f), new Vector3(0f, 45f, 45f), p.Glow, false);
+            Part(root, "DrillTip", PrimitiveType.Cube, V(0, .60f, 1.72f), V(.18f, .18f, .38f), V(0, 45, 45), p.Glow, false);
             for (int side = -1; side <= 1; side += 2)
             {
-                Part(root, "ExhaustStack_" + side, PrimitiveType.Cylinder,
-                    new Vector3(side * 0.52f, 1.42f, -0.86f),
-                    new Vector3(0.11f, 0.48f, 0.11f), Vector3.zero, Darken(p.Body), false);
-                Part(root, "WorkLamp_" + side, PrimitiveType.Sphere,
-                    new Vector3(side * 0.42f, 1.24f, 0.36f),
-                    Vector3.one * 0.12f, Vector3.zero, p.Glow, false);
+                Part(root, "ExhaustStack_" + side, PrimitiveType.Cylinder, V(side * .52f, 1.42f, -.86f),
+                    V(.11f, .48f, .11f), V0, Darken(p.Body), false);
+                Part(root, "WorkLamp_" + side, PrimitiveType.Sphere, V(side * .42f, 1.24f, .36f),
+                    Vector3.one * .12f, V0, p.Glow, false);
             }
         }
 
         private static void BuildUtility(Transform root, VehicleVisualProfile p)
         {
-            Part(root, "UtilityHull", PrimitiveType.Cube, new Vector3(0f, 0.42f, 0f),
-                new Vector3(1.15f, 0.46f, 2.15f), Vector3.zero, p.Body, true);
-            Part(root, "UtilityDeck", PrimitiveType.Cube, new Vector3(0f, 0.72f, -0.2f),
-                new Vector3(0.92f, 0.12f, 1.32f), Vector3.zero, p.Accent, false);
+            Part(root, "UtilityHull", PrimitiveType.Cube, V(0, .42f, 0), V(1.15f, .46f, 2.15f), V0, p.Body, true);
+            Part(root, "UtilityDeck", PrimitiveType.Cube, V(0, .72f, -.2f), V(.92f, .12f, 1.32f), V0, p.Accent, false);
             for (int side = -1; side <= 1; side += 2)
             {
-                Part(root, "UtilityPod_" + side, PrimitiveType.Cube,
-                    new Vector3(side * 0.72f, 0.30f, -0.15f),
-                    new Vector3(0.28f, 0.35f, 1.55f), Vector3.zero, Darken(p.Body), false);
-                Part(root, "UtilityGlow_" + side, PrimitiveType.Cube,
-                    new Vector3(side * 0.72f, 0.18f, -0.82f),
-                    new Vector3(0.18f, 0.08f, 0.30f), Vector3.zero, p.Glow, false);
+                Part(root, "UtilityPod_" + side, PrimitiveType.Cube, V(side * .72f, .30f, -.15f),
+                    V(.28f, .35f, 1.55f), V0, Darken(p.Body), false);
+                Part(root, "UtilityGlow_" + side, PrimitiveType.Cube, V(side * .72f, .18f, -.82f),
+                    V(.18f, .08f, .30f), V0, p.Glow, false);
+                Part(root, "UtilityLamp_" + side, PrimitiveType.Sphere, V(side * .38f, .64f, 1.10f),
+                    Vector3.one * .10f, V0, p.Glow, false);
             }
         }
 
         private void BuildSeatAndControls(Transform root, VehicleVisualProfile p)
         {
-            Vector3 seatPos = _def != null ? _def.seatLocalPos : new Vector3(0f, 0.55f, -0.2f);
-            Part(root, "Seat", PrimitiveType.Cube, seatPos,
-                new Vector3(0.52f, 0.16f, 0.56f), new Vector3(-5f, 0f, 0f), Darken(p.Body), false);
-            Part(root, "SeatBack", PrimitiveType.Cube, seatPos + new Vector3(0f, 0.35f, -0.24f),
-                new Vector3(0.52f, 0.62f, 0.12f), new Vector3(-8f, 0f, 0f), Darken(p.Body), false);
-            Part(root, "ControlBar", PrimitiveType.Cube, seatPos + new Vector3(0f, 0.42f, 0.56f),
-                new Vector3(0.82f, 0.08f, 0.08f), Vector3.zero, p.Accent, false);
-            Part(root, "DashGlow", PrimitiveType.Cube, seatPos + new Vector3(0f, 0.34f, 0.42f),
-                new Vector3(0.42f, 0.08f, 0.12f), new Vector3(-25f, 0f, 0f), p.Glow, false);
+            Vector3 seat = _def != null ? _def.seatLocalPos : V(0, .55f, -.2f);
+            Part(root, "Seat", PrimitiveType.Cube, seat, V(.52f, .16f, .56f), V(-5, 0, 0), Darken(p.Body), false);
+            Part(root, "SeatBack", PrimitiveType.Cube, seat + V(0, .35f, -.24f), V(.52f, .62f, .12f), V(-8, 0, 0), Darken(p.Body), false);
+            Part(root, "ControlBar", PrimitiveType.Cube, seat + V(0, .42f, .56f), V(.82f, .08f, .08f), V0, p.Accent, false);
+            Part(root, "DashGlow", PrimitiveType.Cube, seat + V(0, .34f, .42f), V(.42f, .08f, .12f), V(-25, 0, 0), p.Glow, false);
         }
 
         private static GameObject Part(Transform parent, string name, PrimitiveType primitive,
-            Vector3 localPosition, Vector3 localScale, Vector3 localEuler, Color color, bool collider)
+            Vector3 position, Vector3 scale, Vector3 euler, Color color, bool collider)
         {
             GameObject go = GameObject.CreatePrimitive(primitive);
             go.name = name;
             go.transform.SetParent(parent, false);
-            go.transform.localPosition = localPosition;
-            go.transform.localScale = localScale;
-            go.transform.localRotation = Quaternion.Euler(localEuler);
+            go.transform.localPosition = position;
+            go.transform.localScale = scale;
+            go.transform.localRotation = Quaternion.Euler(euler);
             Collider col = go.GetComponent<Collider>();
             if (col != null && !collider) Object.Destroy(col);
             Paint(go, color);
@@ -293,26 +238,23 @@ namespace Ziptide.Ship
 
         private void MakeTile(string name, Vector3 localPos, Color color, string text, System.Action onPress)
         {
-            var tile = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            GameObject tile = GameObject.CreatePrimitive(PrimitiveType.Cube);
             tile.name = name;
             tile.transform.SetParent(transform, false);
             tile.transform.localPosition = localPos;
-            tile.transform.localScale = new Vector3(0.5f, 0.18f, 0.3f);
+            tile.transform.localScale = V(.5f, .18f, .3f);
             Paint(tile, color);
-            var label = new GameObject("Label");
+            GameObject label = new GameObject("Label");
             label.transform.SetParent(tile.transform, false);
-            label.transform.localPosition = new Vector3(0f, 0f, -0.55f);
-            label.transform.localScale = new Vector3(1f / 0.5f, 1f / 0.18f, 1f / 0.3f) * 0.25f;
-            var tm = label.AddComponent<TextMesh>();
-            tm.text = text;
-            tm.characterSize = 0.03f;
-            tm.fontSize = 56;
-            tm.anchor = TextAnchor.MiddleCenter;
-            tm.alignment = TextAlignment.Center;
-            tm.color = new Color(1f, 0.95f, 0.8f);
-            var interactable = tile.AddComponent<XRSimpleInteractable>();
-            var mgr = Object.FindObjectOfType<XRInteractionManager>();
-            if (mgr != null) interactable.interactionManager = mgr;
+            label.transform.localPosition = V(0, 0, -.55f);
+            label.transform.localScale = V(2f, 5.555f, 3.333f) * .25f;
+            TextMesh tm = label.AddComponent<TextMesh>();
+            tm.text = text; tm.characterSize = .03f; tm.fontSize = 56;
+            tm.anchor = TextAnchor.MiddleCenter; tm.alignment = TextAlignment.Center;
+            tm.color = new Color(1f, .95f, .8f);
+            XRSimpleInteractable interactable = tile.AddComponent<XRSimpleInteractable>();
+            XRInteractionManager manager = Object.FindObjectOfType<XRInteractionManager>();
+            if (manager != null) interactable.interactionManager = manager;
             interactable.selectEntered.AddListener(_ => onPress());
         }
 
@@ -321,16 +263,12 @@ namespace Ziptide.Ship
             if (_riding) return;
             _rig = Object.FindObjectOfType<PlayerRigPersistence>();
             if (_rig == null) return;
-
             _state = new FlightState { position = transform.position };
             _yawLatch = new FlightYawLatch { Armed = true };
             SuspendLocomotion(_rig);
-            var cc = _rig.GetComponent<CharacterController>();
+            CharacterController cc = _rig.GetComponent<CharacterController>();
             if (cc != null) cc.enabled = false;
-            _leftStick.Enable();
-            _rightStick.Enable();
-            _boostL3.Enable();
-            _boostA.Enable();
+            SetActionsEnabled(true);
             _riding = true;
             if (_label != null) _label.text = "RIDING\nleft stick drive - right stick turn - L3/A boost";
             Debug.Log("ZIPTIDE: VEHICLE_MOUNT id=" + vehicleId + " maxSpeed=" + _params.maxSpeed);
@@ -340,7 +278,8 @@ namespace Ziptide.Ship
         private void Dismount()
         {
             if (!_riding) return;
-            if (_rig != null && !TryFindSafeDismount(out Vector3 dismountPosition))
+            Vector3 dismountPosition = transform.position;
+            if (_rig != null && !TryFindSafeDismount(out dismountPosition))
             {
                 if (_label != null) _label.text = "REACH SOLID GROUND\nBEFORE STEPPING OFF";
                 Debug.Log("ZIPTIDE: VEHICLE_DISMOUNT_BLOCKED id=" + vehicleId + " reason=no_safe_ground");
@@ -348,20 +287,15 @@ namespace Ziptide.Ship
             }
 
             _riding = false;
-            _leftStick.Disable();
-            _rightStick.Disable();
-            _boostL3.Disable();
-            _boostA.Disable();
+            SetActionsEnabled(false);
             if (_rig != null)
             {
-                var cc = _rig.GetComponent<CharacterController>();
+                CharacterController cc = _rig.GetComponent<CharacterController>();
                 _rig.transform.position = dismountPosition;
                 if (cc != null) cc.enabled = true;
             }
             ResumeLocomotion();
-            if (_label != null)
-                _label.text = (_def != null ? _def.DisplayName.Replace('_', ' ') : vehicleId)
-                              + "\n< RIDE to mount >";
+            SetIdleLabel();
             Debug.Log("ZIPTIDE: VEHICLE_DISMOUNT id=" + vehicleId);
         }
 
@@ -370,18 +304,15 @@ namespace Ziptide.Ship
             if (!_riding) return;
             if (_rig == null) { ForceDismount(); return; }
 
-            var frame = FlightInputCore.Shape(
+            FlightInputFrame frame = FlightInputCore.Shape(
                 _leftStick.ReadValue<Vector2>(), _rightStick.ReadValue<Vector2>(), ref _yawLatch, Time.time);
             bool boost = _boostL3.IsPressed() || _boostA.IsPressed();
-
-            if (frame.YawSnap != 0)
-                _state = FlightModel.SnapYaw(_state, _params, frame.YawSnap);
-            FlightState proposed = FlightModel.Tick(
-                _state, _params, frame.Throttle, 0f, frame.Strafe, boost, Time.deltaTime);
+            if (frame.YawSnap != 0) _state = FlightModel.SnapYaw(_state, _params, frame.YawSnap);
+            FlightState proposed = FlightModel.Tick(_state, _params, frame.Throttle, 0f, frame.Strafe, boost, Time.deltaTime);
 
             if (TryGroundYAt(proposed.position, out float groundY))
             {
-                proposed.position.y = groundY + (_def != null ? _def.hoverHeight : 0.6f);
+                proposed.position.y = groundY + (_def != null ? _def.hoverHeight : .6f);
                 _state = proposed;
             }
             else
@@ -398,27 +329,32 @@ namespace Ziptide.Ship
 
             transform.SetPositionAndRotation(_state.position, Quaternion.Euler(0f, _state.yawDeg, 0f));
             FollowSeat();
+        }
 
-            if (Vector3.Distance(transform.position, _padOrigin) > SeatStrayExit + _params.laneRadius)
-                Debug.LogWarning("ZIPTIDE: VEHICLE_SOFT_WALL_DRIFT id=" + vehicleId);
+        private void SetActionsEnabled(bool enabled)
+        {
+            if (enabled)
+            {
+                _leftStick.Enable(); _rightStick.Enable(); _boostL3.Enable(); _boostA.Enable();
+            }
+            else
+            {
+                _leftStick.Disable(); _rightStick.Disable(); _boostL3.Disable(); _boostA.Disable();
+            }
         }
 
         private void ForceDismount()
         {
             _riding = false;
-            _leftStick?.Disable();
-            _rightStick?.Disable();
-            _boostL3?.Disable();
-            _boostA?.Disable();
+            SetActionsEnabled(false);
             ResumeLocomotion();
         }
 
         private void FollowSeat()
         {
             if (_rig == null) return;
-            Vector3 seat = transform.TransformPoint(
-                _def != null ? _def.seatLocalPos : new Vector3(0f, 0.55f, -0.2f));
-            _rig.transform.position = seat;
+            Vector3 seat = _def != null ? _def.seatLocalPos : V(0, .55f, -.2f);
+            _rig.transform.position = transform.TransformPoint(seat);
         }
 
         private bool TryGroundYAt(Vector3 pos, out float groundY)
@@ -426,27 +362,20 @@ namespace Ziptide.Ship
             RaycastHit[] hits = Physics.RaycastAll(pos + Vector3.up * GroundRayUp, Vector3.down,
                 GroundRayUp + GroundRayDown, ~0, QueryTriggerInteraction.Ignore);
             System.Array.Sort(hits, (a, b) => a.distance.CompareTo(b.distance));
-            for (int i = 0; i < hits.Length; i++)
+            foreach (RaycastHit hit in hits)
             {
-                Collider col = hits[i].collider;
+                Collider col = hit.collider;
                 if (col == null || col.transform.IsChildOf(transform)) continue;
                 if (_rig != null && col.transform.IsChildOf(_rig.transform)) continue;
-
                 ToxicRiverRuntime river = col.GetComponentInParent<ToxicRiverRuntime>();
                 if (river != null)
                 {
-                    VehicleArchetype archetype = _def != null ? _def.archetype : VehicleArchetype.Skiff;
-                    if (archetype != VehicleArchetype.Skiff && archetype != VehicleArchetype.Hoverbike)
-                        continue;
+                    VehicleArchetype type = _def != null ? _def.archetype : VehicleArchetype.Skiff;
+                    if (type != VehicleArchetype.Skiff && type != VehicleArchetype.Hoverbike) continue;
                     Transform surface = river.transform.Find("ToxicSurface");
-                    if (surface != null)
-                    {
-                        groundY = surface.position.y;
-                        return true;
-                    }
+                    if (surface != null) { groundY = surface.position.y; return true; }
                 }
-
-                groundY = hits[i].point.y;
+                groundY = hit.point.y;
                 return true;
             }
             groundY = _restY;
@@ -457,23 +386,21 @@ namespace Ziptide.Ship
         {
             Vector3[] offsets =
             {
-                -transform.right * 1.6f,
-                transform.right * 1.6f,
-                -transform.forward * 1.8f,
-                transform.forward * 1.8f,
+                -transform.right * 1.6f, transform.right * 1.6f,
+                -transform.forward * 1.8f, transform.forward * 1.8f,
             };
-            for (int i = 0; i < offsets.Length; i++)
+            foreach (Vector3 offset in offsets)
             {
-                Vector3 candidate = transform.position + offsets[i];
-                RaycastHit[] hits = Physics.RaycastAll(candidate + Vector3.up * 2f, Vector3.down,
-                    8f, ~0, QueryTriggerInteraction.Ignore);
+                RaycastHit[] hits = Physics.RaycastAll(transform.position + offset + Vector3.up * 2f,
+                    Vector3.down, 8f, ~0, QueryTriggerInteraction.Ignore);
                 System.Array.Sort(hits, (a, b) => a.distance.CompareTo(b.distance));
-                for (int h = 0; h < hits.Length; h++)
+                foreach (RaycastHit hit in hits)
                 {
-                    Collider col = hits[h].collider;
+                    Collider col = hit.collider;
                     if (col == null || col.transform.IsChildOf(transform)) continue;
+                    if (_rig != null && col.transform.IsChildOf(_rig.transform)) continue;
                     if (col.GetComponentInParent<ToxicRiverRuntime>() != null) continue;
-                    position = hits[h].point + Vector3.up * 0.10f;
+                    position = hit.point + Vector3.up * .10f;
                     return true;
                 }
             }
@@ -492,25 +419,31 @@ namespace Ziptide.Ship
 
         private void Collect(Behaviour[] behaviours)
         {
-            foreach (var b in behaviours)
+            foreach (Behaviour b in behaviours)
                 if (b != null && b.enabled) { b.enabled = false; _suspended.Add(b); }
         }
 
         private void ResumeLocomotion()
         {
-            foreach (var b in _suspended)
-                if (b != null) b.enabled = true;
+            foreach (Behaviour b in _suspended) if (b != null) b.enabled = true;
             _suspended.Clear();
         }
 
-        private static Color Darken(Color color)
+        private void SetIdleLabel()
         {
-            return Color.Lerp(color, Color.black, 0.35f);
+            if (_label == null) return;
+            string display = _def != null && !string.IsNullOrEmpty(_def.DisplayName)
+                ? _def.DisplayName.Replace('_', ' ') : vehicleId;
+            _label.text = display + "\n< RIDE to mount >";
         }
+
+        private static Vector3 V(float x, float y, float z) => new Vector3(x, y, z);
+        private static Vector3 V0 => Vector3.zero;
+        private static Color Darken(Color color) => Color.Lerp(color, Color.black, .35f);
 
         private static void Paint(GameObject go, Color color)
         {
-            var renderer = go.GetComponent<Renderer>();
+            Renderer renderer = go.GetComponent<Renderer>();
             if (renderer == null) return;
             if (!SharedMaterials.TryGetValue(color, out Material material) || material == null)
             {
