@@ -59,21 +59,22 @@ Read by every lane at session start alongside HANDOFF. Full spec: `FINISHED_GAME
     recurring milestone gate (checklist row) + EXCELLENCE_MAP rows per category — the
     ship-backward view now has standing machinery.
 11. **WHAT:** the recovery PlayMode performance route repeatedly failed input settle during
-    cold `_Boot`. **FOUND BY:** 42/43 on `0f01fc5`, `be4a6b98`, `dfeddc15`, `c766c24`, and
-    `77870ebc`. **WHY MISSED:** the harness first reconstructed controller availability too late,
-    then duplicated the pre-boot pair; after those ordering errors were removed, the `77870ebc`
-    artifact proved the remaining distinction: all eight locomotion actions had the correct
-    bilateral controls, but one fresh no-domain-reload Input System state was still unreadable.
-    Later route tests inherited the naturally repaired state and passed, so counting bindings
-    falsely looked equivalent to proving readable input. **CLASS:** structural input binding
-    evidence mistaken for executable/readable input state on first use. **SYSTEM CHANGE:** neutral
-    suite devices preserve Quest ordering; `InputSessionSceneLatchCore` enforces one consolidation
-    per scene handle; `RecoveryActualRigControllerSimulation` reuses the pre-boot pair; and the
-    test-only `RecoveryHeadlessInputReadabilityRepair` now probes every bound Move/Turn action when
-    the actual-rig simulator comes online, quiesces locomotion readers, resets only actions that
-    throw, preserves enabled state, and fails loudly unless all eight are readable before NEW GAME.
-    Production input policy and its fail-closed settle guard remain unchanged. The route assertion
-    still requires exact 43/43 closure (→ pending CI verification).
+    cold `_Boot` and first W000 arrival. **FOUND BY:** 42/43 on `0f01fc5`, `be4a6b98`,
+    `dfeddc15`, `c766c24`, `77870ebc`, `f177b1a`, and `a3bdfd5`. **WHY MISSED:** early fixes
+    correctly repaired test-device ordering and proved all eight canonical Move/Turn actions were
+    bound and readable at simulator-ready and every `XRI_WIRING` boundary (`repaired=0`). The
+    production fail-closed probe was nevertheless hard-coded to call `ReadValue<Vector2>()` on
+    every `InputActionProperty`. A valid scalar/Button/Axis action therefore produced the same
+    `InvalidOperationException` classification as a genuinely stale `InputActionState`, making the
+    settle predicate impossible while later steady-state route tests appeared healthy. **CLASS:** a
+    safety probe whose observation is not semantically equivalent to the consumer contract; value-
+    type mismatch conflated with state corruption. **SYSTEM CHANGE:** `InputActionReadKindCore`
+    resolves scalar/Vector2/object reads from declared and runtime value types with EditMode coverage;
+    `PlayerRigPersistence.ActionReadsSafely` now reads accordingly and records exact provider, hand,
+    action path, expected/runtime types and exception on a true failure. The two unsuccessful test-
+    only repair owners were removed so the next route proves production behavior. The two-second
+    deadline, mutation ownership, boot handoff and fail-closed restoration remain unchanged. Exact
+    43/43 Recovery PlayMode is still required before closure (→ pending CI verification).
 12. **WHAT:** adding a new improvement round created duplicate matching recipes because the
     resolver assumed history would be destructively replaced. **FOUND BY:** Round 3 recipe
     integration review. **WHY MISSED:** Round 2 proved currentness but not successive-round
