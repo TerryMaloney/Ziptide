@@ -55,6 +55,16 @@ namespace Ziptide.Gameplay
                     yield break;
                 }
 
+                // Healthy travel can finish the original settle window before this observer runs.
+                // In that case there is nothing to repair and active readers are expected, not an error.
+                if (LocomotionActionsReadSafely())
+                {
+                    Debug.Log("ZIPTIDE: INPUT_MUTATION_REPAIR_SKIPPED cause=already_safe frames="
+                        + waitFrames);
+                    _repairRoutine = null;
+                    yield break;
+                }
+
                 if (LocomotionReadersAreSuspended()) break;
                 waitFrames++;
                 yield return null;
@@ -62,7 +72,17 @@ namespace Ziptide.Gameplay
 
             if (!LocomotionReadersAreSuspended())
             {
-                Debug.LogError("ZIPTIDE: INPUT_MUTATION_REPAIR_ABORT cause=readers_not_suspended frames="
+                // Recheck at the boundary so a just-completed healthy settle does not become a false
+                // failure. A genuinely unsafe active reader remains an error and stays fail-closed.
+                if (LocomotionActionsReadSafely())
+                {
+                    Debug.Log("ZIPTIDE: INPUT_MUTATION_REPAIR_SKIPPED cause=settled_during_wait frames="
+                        + waitFrames);
+                    _repairRoutine = null;
+                    yield break;
+                }
+
+                Debug.LogError("ZIPTIDE: INPUT_MUTATION_REPAIR_ABORT cause=unsafe_readers_active frames="
                     + waitFrames);
                 _repairRoutine = null;
                 yield break;
