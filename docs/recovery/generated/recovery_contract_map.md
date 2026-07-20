@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
 - Scanned files: **722**
-- Scanner findings: **2517**
+- Scanner findings: **2520**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -438,18 +438,19 @@ None.
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/EmergencyRespawn.cs:23` **INPUT_ACTION_REFERENCE** — `_leftGrip = new InputAction("EmergencyLeft", InputActionType.Button);`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/EmergencyRespawn.cs:27` **INPUT_ACTION_REFERENCE** — `_rightGrip = new InputAction("EmergencyRight", InputActionType.Button);`
 
-### `Ziptide.Gameplay.InputMutationRepairDriver` — 8 signal(s)
+### `Ziptide.Gameplay.InputMutationRepairDriver` — 9 signal(s)
 
 - Codes: `INPUT_ACTION_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:136` **INPUT_ACTION_REFERENCE** — `var directActions = new HashSet<InputAction>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:165` **INPUT_ACTION_REFERENCE** — `var disabledBefore = new List<InputAction>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:166` **INPUT_ACTION_REFERENCE** — `foreach (InputAction action in map.actions)`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:174` **INPUT_ACTION_REFERENCE** — `foreach (InputAction action in disabledBefore)`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:184` **INPUT_ACTION_REFERENCE** — `foreach (InputAction action in directActions)`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:198` **INPUT_ACTION_REFERENCE** — `HashSet<InputAction> directActions)`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:200` **INPUT_ACTION_REFERENCE** — `InputAction action = property.action;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:231` **INPUT_ACTION_REFERENCE** — `InputAction action = property.action;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:179` **INPUT_ACTION_REFERENCE** — `var directActions = new HashSet<InputAction>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:191` **INPUT_ACTION_REFERENCE** — `var disabledBefore = new List<InputAction>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:192` **INPUT_ACTION_REFERENCE** — `foreach (InputAction action in map.actions)`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:200` **INPUT_ACTION_REFERENCE** — `foreach (InputAction action in disabledBefore)`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:210` **INPUT_ACTION_REFERENCE** — `foreach (InputAction action in directActions)`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:224` **INPUT_ACTION_REFERENCE** — `HashSet<InputAction> directActions)`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:250` **INPUT_ACTION_REFERENCE** — `HashSet<InputAction> directActions)`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:252` **INPUT_ACTION_REFERENCE** — `InputAction action = property.action;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:307` **INPUT_ACTION_REFERENCE** — `InputAction action = property.action;`
 
 ### `Ziptide.Gameplay.PingTool` — 2 signal(s)
 

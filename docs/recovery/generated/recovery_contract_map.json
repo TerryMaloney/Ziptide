@@ -2,7 +2,7 @@
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
   "scannedFiles": 722,
-  "findingCount": 2517,
+  "findingCount": 2520,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -1641,7 +1641,7 @@
       },
       {
         "owner": "Ziptide.Gameplay.InputMutationRepairDriver",
-        "evidenceCount": 8,
+        "evidenceCount": 9,
         "codes": [
           "INPUT_ACTION_REFERENCE"
         ],
@@ -1652,56 +1652,63 @@
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs",
-            "line": 136,
+            "line": 179,
             "symbol": "Ziptide.Gameplay.InputMutationRepairDriver",
             "snippet": "var directActions = new HashSet<InputAction>();"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs",
-            "line": 165,
+            "line": 191,
             "symbol": "Ziptide.Gameplay.InputMutationRepairDriver",
             "snippet": "var disabledBefore = new List<InputAction>();"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs",
-            "line": 166,
+            "line": 192,
             "symbol": "Ziptide.Gameplay.InputMutationRepairDriver",
             "snippet": "foreach (InputAction action in map.actions)"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs",
-            "line": 174,
+            "line": 200,
             "symbol": "Ziptide.Gameplay.InputMutationRepairDriver",
             "snippet": "foreach (InputAction action in disabledBefore)"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs",
-            "line": 184,
+            "line": 210,
             "symbol": "Ziptide.Gameplay.InputMutationRepairDriver",
             "snippet": "foreach (InputAction action in directActions)"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs",
-            "line": 198,
+            "line": 224,
             "symbol": "Ziptide.Gameplay.InputMutationRepairDriver",
             "snippet": "HashSet<InputAction> directActions)"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs",
-            "line": 200,
+            "line": 250,
+            "symbol": "Ziptide.Gameplay.InputMutationRepairDriver",
+            "snippet": "HashSet<InputAction> directActions)"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs",
+            "line": 252,
             "symbol": "Ziptide.Gameplay.InputMutationRepairDriver",
             "snippet": "InputAction action = property.action;"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs",
-            "line": 231,
+            "line": 307,
             "symbol": "Ziptide.Gameplay.InputMutationRepairDriver",
             "snippet": "InputAction action = property.action;"
           }
