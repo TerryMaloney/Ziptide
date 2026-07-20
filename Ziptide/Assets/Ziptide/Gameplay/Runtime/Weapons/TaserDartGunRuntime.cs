@@ -1,27 +1,40 @@
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using Ziptide.Content;
+using Ziptide.Core;
 
 namespace Ziptide.Gameplay
 {
     /// <summary>
-    /// Fires sticky taser darts that shock targets implementing IShockable.
+    /// Fires sticky taser darts with definition-driven layered haptics, visual-only Forge recoil,
+    /// authored-or-procedural fire audio, and a confirmed-impact return pulse from the projectile.
     /// </summary>
     [RequireComponent(typeof(XRGrabInteractable))]
+    [RequireComponent(typeof(WeaponFeelRuntime))]
     public class TaserDartGunRuntime : MonoBehaviour
     {
         private XRGrabInteractable _grab;
         private Transform _muzzle;
         private float _nextFireTime;
         private AudioSource _audioSource;
+        private WeaponFeelRuntime _feel;
+        private TaserDartGunDefinition _definition;
 
         private TaserDartGunDefinition Def
         {
             get
             {
+                if (_definition != null) return _definition;
                 var item = GetComponent<ItemRuntime>();
                 return item != null ? item.Definition as TaserDartGunDefinition : null;
             }
+        }
+
+        public void Init(TaserDartGunDefinition def)
+        {
+            _definition = def;
+            EnsureFeel();
+            ConfigureFeel(def);
         }
 
         private void Awake()
@@ -36,22 +49,37 @@ namespace Ziptide.Gameplay
                 _muzzle = m.transform;
             }
             _audioSource = GetComponent<AudioSource>();
-            if (_audioSource == null)
-                _audioSource = gameObject.AddComponent<AudioSource>();
+            if (_audioSource == null) _audioSource = gameObject.AddComponent<AudioSource>();
             _audioSource.spatialBlend = 1f;
             _audioSource.playOnAwake = false;
+            EnsureFeel();
+            ConfigureFeel(Def);
+        }
+
+        private void EnsureFeel()
+        {
+            if (_feel == null) _feel = GetComponent<WeaponFeelRuntime>();
+            if (_feel == null) _feel = gameObject.AddComponent<WeaponFeelRuntime>();
+        }
+
+        private void ConfigureFeel(TaserDartGunDefinition def)
+        {
+            if (def == null) return;
+            EnsureFeel();
+            // Momentum-derived presentation kick: data-owned mass and velocity, bounded by WeaponFeelCore.
+            float recoil = Mathf.Clamp(def.dartMass * def.muzzleVelocity * 0.01f, 0f, 0.025f);
+            _feel.Configure(def.itemId, WeaponFeelKind.Electric,
+                def.hapticAmplitude, def.hapticDuration, recoil, def.fireCooldown);
         }
 
         private void OnEnable()
         {
-            if (_grab != null)
-                _grab.activated.AddListener(OnActivated);
+            if (_grab != null) _grab.activated.AddListener(OnActivated);
         }
 
         private void OnDisable()
         {
-            if (_grab != null)
-                _grab.activated.RemoveListener(OnActivated);
+            if (_grab != null) _grab.activated.RemoveListener(OnActivated);
         }
 
         private void OnActivated(ActivateEventArgs args)
@@ -61,14 +89,13 @@ namespace Ziptide.Gameplay
 
         private void Fire(XRBaseControllerInteractor controllerInteractor)
         {
-            var def = Def;
-            if (def == null) return;
-            if (Time.time < _nextFireTime) return;
+            TaserDartGunDefinition def = Def;
+            if (def == null || Time.time < _nextFireTime) return;
             _nextFireTime = Time.time + def.fireCooldown;
+            ConfigureFeel(def);
 
-            var origin = _muzzle.position;
-            var dir = _muzzle.forward;
-
+            Vector3 origin = _muzzle.position;
+            Vector3 dir = _muzzle.forward;
             var dart = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
             dart.name = "TaserDart";
             dart.transform.position = origin + dir * 0.12f;
@@ -76,7 +103,11 @@ namespace Ziptide.Gameplay
             dart.transform.localScale = new Vector3(0.015f, 0.06f, 0.015f);
 
             var dartCol = dart.GetComponent<Collider>();
-            if (dartCol != null) Object.Destroy(dartCol);
+            if (dartCol != null)
+            {
+                dartCol.enabled = false;
+                Object.Destroy(dartCol);
+            }
             var capsule = dart.AddComponent<CapsuleCollider>();
             capsule.radius = 0.015f;
             capsule.height = 0.12f;
@@ -87,23 +118,16 @@ namespace Ziptide.Gameplay
             rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
             rb.velocity = dir * def.muzzleVelocity;
 
-            // Don't let the dart stick to the gun itself or the player body on spawn
-            // (that was the "bullet stops short / stuck in front of the gun" bug).
             foreach (var gunCol in GetComponentsInChildren<Collider>(true))
                 if (gunCol != null) Physics.IgnoreCollision(capsule, gunCol);
             var playerBody = Object.FindObjectOfType<CharacterController>();
             if (playerBody != null) Physics.IgnoreCollision(capsule, playerBody);
 
             var proj = dart.AddComponent<TaserDartProjectile>();
-            proj.Init(def.stunSeconds, def.hitImpulse, def.dartLifetime, def.impactClip);
-
+            proj.Init(def.stunSeconds, def.hitImpulse, def.dartLifetime, def.impactClip,
+                _feel, controllerInteractor);
             ItemFactory.ApplyURPColor(dart, new Color(0.1f, 0.9f, 1f));
-
-            if (controllerInteractor != null)
-                controllerInteractor.SendHapticImpulse(def.hapticAmplitude, def.hapticDuration);
-
-            if (_audioSource != null && def.fireClip != null)
-                _audioSource.PlayOneShot(def.fireClip);
+            if (_feel != null) _feel.Fire(controllerInteractor, _audioSource, def.fireClip);
         }
     }
 }
