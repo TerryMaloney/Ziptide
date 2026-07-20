@@ -25,11 +25,9 @@ namespace Ziptide.Tests.EditMode
             for (int seed = 0; seed < 200; seed++)
             {
                 var value = CityBuildingPresentationCore.WindowFor(seed, seed % 4, seed % 3, seed % 7, 0.65f);
-                Assert.That(value, Is.AnyOf(
-                    CityWindowLight.Dark,
-                    CityWindowLight.HomeWarm,
-                    CityWindowLight.ShopCool,
-                    CityWindowLight.IndustrialNeutral));
+                Assert.That((int)value, Is.InRange(
+                    (int)CityWindowLight.Dark,
+                    (int)CityWindowLight.IndustrialNeutral));
             }
         }
 
