@@ -1,7 +1,7 @@
 # ZIPTIDE Recovery Contract Scan
 
 - Scanned files: **722**
-- Findings: **2520**
+- Findings: **2521**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
@@ -9,7 +9,7 @@
 | Category | Count |
 |---|---:|
 | `bootstrap` | 35 |
-| `diagnostics` | 563 |
+| `diagnostics` | 564 |
 | `events` | 64 |
 | `fallback_debt` | 154 |
 | `global_render` | 81 |
@@ -258,14 +258,15 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/EmergencyRespawn.cs:61` · `Ziptide.Gameplay.EmergencyRespawn` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: EMERGENCY_RESPAWN");`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/EmergencyRespawn.cs:80` · `Ziptide.Gameplay.EmergencyRespawn` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: EMERGENCY_RESPAWN teleported to marker '" + marker.markerId + "'");`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/EmergencyRespawn.cs:84` · `Ziptide.Gameplay.EmergencyRespawn` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: EMERGENCY_RESPAWN no WorldRuntime or SpawnMarkerRuntime found; cannot respawn.");`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:73` · `Ziptide.Gameplay.InputMutationRepairDriver` — ZIPTIDE diagnostic tag. `Debug.LogError("ZIPTIDE: INPUT_MUTATION_REPAIR_ABORT cause=canonical_window_unavailable");`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:84` · `Ziptide.Gameplay.InputMutationRepairDriver` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: INPUT_MUTATION_REPAIR_SKIPPED cause=no_window_already_safe frames="`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:98` · `Ziptide.Gameplay.InputMutationRepairDriver` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: INPUT_MUTATION_REPAIR_SKIPPED cause=window_closed_safe frames="`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:104` · `Ziptide.Gameplay.InputMutationRepairDriver` — ZIPTIDE diagnostic tag. `Debug.LogError("ZIPTIDE: INPUT_MUTATION_REPAIR_ABORT cause=no_canonical_window frames="`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:119` · `Ziptide.Gameplay.InputMutationRepairDriver` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: INPUT_MUTATION_REPAIR owner=PlayerInputSessionGuard attempt="`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:131` · `Ziptide.Gameplay.InputMutationRepairDriver` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: INPUT_MUTATION_REPAIR_OK attempt=" + attempt);`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:140` · `Ziptide.Gameplay.InputMutationRepairDriver` — ZIPTIDE diagnostic tag. `Debug.LogError("ZIPTIDE: INPUT_MUTATION_REPAIR_FAIL attempts=" + MaxRepairAttempts`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:172` · `Ziptide.Gameplay.InputMutationRepairDriver` — ZIPTIDE diagnostic tag. `Debug.LogError("ZIPTIDE: INPUT_MUTATION_REPAIR_SEAM_MISSING field="`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:82` · `Ziptide.Gameplay.InputMutationRepairDriver` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: INPUT_MUTATION_REPAIR_RESET reason=new_travel readers="`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:104` · `Ziptide.Gameplay.InputMutationRepairDriver` — ZIPTIDE diagnostic tag. `Debug.LogError("ZIPTIDE: INPUT_MUTATION_REPAIR_ABORT cause=canonical_window_unavailable");`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:115` · `Ziptide.Gameplay.InputMutationRepairDriver` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: INPUT_MUTATION_REPAIR_SKIPPED cause=no_window_already_safe frames="`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:129` · `Ziptide.Gameplay.InputMutationRepairDriver` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: INPUT_MUTATION_REPAIR_SKIPPED cause=window_closed_safe frames="`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:135` · `Ziptide.Gameplay.InputMutationRepairDriver` — ZIPTIDE diagnostic tag. `Debug.LogError("ZIPTIDE: INPUT_MUTATION_REPAIR_ABORT cause=no_canonical_window frames="`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:150` · `Ziptide.Gameplay.InputMutationRepairDriver` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: INPUT_MUTATION_REPAIR owner=PlayerInputSessionGuard attempt="`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:162` · `Ziptide.Gameplay.InputMutationRepairDriver` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: INPUT_MUTATION_REPAIR_OK attempt=" + attempt);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:171` · `Ziptide.Gameplay.InputMutationRepairDriver` — ZIPTIDE diagnostic tag. `Debug.LogError("ZIPTIDE: INPUT_MUTATION_REPAIR_FAIL attempts=" + MaxRepairAttempts`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:233` · `Ziptide.Gameplay.InputMutationRepairDriver` — ZIPTIDE diagnostic tag. `Debug.LogError("ZIPTIDE: INPUT_MUTATION_REPAIR_SEAM_MISSING readersField="`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PingTool.cs:56` · `Ziptide.Gameplay.PingTool` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: PING_AT " + hit.point.ToString("F1"));`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerAvatarRig.cs:35` · `Ziptide.Gameplay.PlayerAvatarRig` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: AVATAR_READY gloves+torso");`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:56` · `Ziptide.Gameplay.PlayerInputSessionGuard` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: INPUT_SESSION_CONSOLIDATE_SKIPPED scene="`
@@ -985,15 +986,15 @@
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/EmergencyRespawn.cs:17` · `Ziptide.Gameplay.EmergencyRespawn` — Input System action reference. `private InputAction _rightGrip;`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/EmergencyRespawn.cs:23` · `Ziptide.Gameplay.EmergencyRespawn` — Input System action reference. `_leftGrip = new InputAction("EmergencyLeft", InputActionType.Button);`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/EmergencyRespawn.cs:27` · `Ziptide.Gameplay.EmergencyRespawn` — Input System action reference. `_rightGrip = new InputAction("EmergencyRight", InputActionType.Button);`
-- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:179` · `Ziptide.Gameplay.InputMutationRepairDriver` — Input System action reference. `var directActions = new HashSet<InputAction>();`
-- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:191` · `Ziptide.Gameplay.InputMutationRepairDriver` — Input System action reference. `var disabledBefore = new List<InputAction>();`
-- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:192` · `Ziptide.Gameplay.InputMutationRepairDriver` — Input System action reference. `foreach (InputAction action in map.actions)`
-- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:200` · `Ziptide.Gameplay.InputMutationRepairDriver` — Input System action reference. `foreach (InputAction action in disabledBefore)`
-- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:210` · `Ziptide.Gameplay.InputMutationRepairDriver` — Input System action reference. `foreach (InputAction action in directActions)`
-- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:224` · `Ziptide.Gameplay.InputMutationRepairDriver` — Input System action reference. `HashSet<InputAction> directActions)`
-- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:250` · `Ziptide.Gameplay.InputMutationRepairDriver` — Input System action reference. `HashSet<InputAction> directActions)`
-- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:252` · `Ziptide.Gameplay.InputMutationRepairDriver` — Input System action reference. `InputAction action = property.action;`
-- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:307` · `Ziptide.Gameplay.InputMutationRepairDriver` — Input System action reference. `InputAction action = property.action;`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:241` · `Ziptide.Gameplay.InputMutationRepairDriver` — Input System action reference. `var directActions = new HashSet<InputAction>();`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:253` · `Ziptide.Gameplay.InputMutationRepairDriver` — Input System action reference. `var disabledBefore = new List<InputAction>();`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:254` · `Ziptide.Gameplay.InputMutationRepairDriver` — Input System action reference. `foreach (InputAction action in map.actions)`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:262` · `Ziptide.Gameplay.InputMutationRepairDriver` — Input System action reference. `foreach (InputAction action in disabledBefore)`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:272` · `Ziptide.Gameplay.InputMutationRepairDriver` — Input System action reference. `foreach (InputAction action in directActions)`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:286` · `Ziptide.Gameplay.InputMutationRepairDriver` — Input System action reference. `HashSet<InputAction> directActions)`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:312` · `Ziptide.Gameplay.InputMutationRepairDriver` — Input System action reference. `HashSet<InputAction> directActions)`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:314` · `Ziptide.Gameplay.InputMutationRepairDriver` — Input System action reference. `InputAction action = property.action;`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs:369` · `Ziptide.Gameplay.InputMutationRepairDriver` — Input System action reference. `InputAction action = property.action;`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PingTool.cs:19` · `Ziptide.Gameplay.PingTool` — Input System action reference. `private InputAction _ping;`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PingTool.cs:27` · `Ziptide.Gameplay.PingTool` — Input System action reference. `_ping = new InputAction("ZiptidePing", InputActionType.Button);`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:15` · `Ziptide.Gameplay.PlayerInputSessionGuard` — Input System action reference. `/// asset to the InputActionManager beside it. Scene-authored InputActionManagers must then be`

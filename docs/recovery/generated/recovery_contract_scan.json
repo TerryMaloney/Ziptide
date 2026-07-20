@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-20T22:14:36.285490+00:00",
+  "generatedAtUtc": "2026-07-20T22:24:05.155432+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -9,10 +9,10 @@
     "Ziptide/Assets/ZiptideNet"
   ],
   "scannedFiles": 722,
-  "findingCount": 2520,
+  "findingCount": 2521,
   "categoryCounts": {
     "bootstrap": 35,
-    "diagnostics": 563,
+    "diagnostics": 564,
     "events": 64,
     "fallback_debt": 154,
     "global_render": 81,
@@ -57,7 +57,7 @@
     "XRI_MANAGER_LOOKUP": 42,
     "XR_INTERACTABLE_COMPONENT": 65,
     "XR_UI_INPUT_MODULE": 2,
-    "ZIPTIDE_LOG_TAG": 563
+    "ZIPTIDE_LOG_TAG": 564
   },
   "findings": [
     {
@@ -2135,27 +2135,9 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs",
-      "line": 73,
+      "line": 82,
       "symbol": "Ziptide.Gameplay.InputMutationRepairDriver",
-      "snippet": "Debug.LogError(\"ZIPTIDE: INPUT_MUTATION_REPAIR_ABORT cause=canonical_window_unavailable\");"
-    },
-    {
-      "category": "diagnostics",
-      "code": "ZIPTIDE_LOG_TAG",
-      "description": "ZIPTIDE diagnostic tag",
-      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs",
-      "line": 84,
-      "symbol": "Ziptide.Gameplay.InputMutationRepairDriver",
-      "snippet": "Debug.Log(\"ZIPTIDE: INPUT_MUTATION_REPAIR_SKIPPED cause=no_window_already_safe frames=\""
-    },
-    {
-      "category": "diagnostics",
-      "code": "ZIPTIDE_LOG_TAG",
-      "description": "ZIPTIDE diagnostic tag",
-      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs",
-      "line": 98,
-      "symbol": "Ziptide.Gameplay.InputMutationRepairDriver",
-      "snippet": "Debug.Log(\"ZIPTIDE: INPUT_MUTATION_REPAIR_SKIPPED cause=window_closed_safe frames=\""
+      "snippet": "Debug.Log(\"ZIPTIDE: INPUT_MUTATION_REPAIR_RESET reason=new_travel readers=\""
     },
     {
       "category": "diagnostics",
@@ -2164,6 +2146,33 @@
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs",
       "line": 104,
       "symbol": "Ziptide.Gameplay.InputMutationRepairDriver",
+      "snippet": "Debug.LogError(\"ZIPTIDE: INPUT_MUTATION_REPAIR_ABORT cause=canonical_window_unavailable\");"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs",
+      "line": 115,
+      "symbol": "Ziptide.Gameplay.InputMutationRepairDriver",
+      "snippet": "Debug.Log(\"ZIPTIDE: INPUT_MUTATION_REPAIR_SKIPPED cause=no_window_already_safe frames=\""
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs",
+      "line": 129,
+      "symbol": "Ziptide.Gameplay.InputMutationRepairDriver",
+      "snippet": "Debug.Log(\"ZIPTIDE: INPUT_MUTATION_REPAIR_SKIPPED cause=window_closed_safe frames=\""
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs",
+      "line": 135,
+      "symbol": "Ziptide.Gameplay.InputMutationRepairDriver",
       "snippet": "Debug.LogError(\"ZIPTIDE: INPUT_MUTATION_REPAIR_ABORT cause=no_canonical_window frames=\""
     },
     {
@@ -2171,7 +2180,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs",
-      "line": 119,
+      "line": 150,
       "symbol": "Ziptide.Gameplay.InputMutationRepairDriver",
       "snippet": "Debug.Log(\"ZIPTIDE: INPUT_MUTATION_REPAIR owner=PlayerInputSessionGuard attempt=\""
     },
@@ -2180,7 +2189,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs",
-      "line": 131,
+      "line": 162,
       "symbol": "Ziptide.Gameplay.InputMutationRepairDriver",
       "snippet": "Debug.Log(\"ZIPTIDE: INPUT_MUTATION_REPAIR_OK attempt=\" + attempt);"
     },
@@ -2189,7 +2198,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs",
-      "line": 140,
+      "line": 171,
       "symbol": "Ziptide.Gameplay.InputMutationRepairDriver",
       "snippet": "Debug.LogError(\"ZIPTIDE: INPUT_MUTATION_REPAIR_FAIL attempts=\" + MaxRepairAttempts"
     },
@@ -2198,9 +2207,9 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs",
-      "line": 172,
+      "line": 233,
       "symbol": "Ziptide.Gameplay.InputMutationRepairDriver",
-      "snippet": "Debug.LogError(\"ZIPTIDE: INPUT_MUTATION_REPAIR_SEAM_MISSING field=\""
+      "snippet": "Debug.LogError(\"ZIPTIDE: INPUT_MUTATION_REPAIR_SEAM_MISSING readersField=\""
     },
     {
       "category": "diagnostics",
@@ -8606,7 +8615,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs",
-      "line": 179,
+      "line": 241,
       "symbol": "Ziptide.Gameplay.InputMutationRepairDriver",
       "snippet": "var directActions = new HashSet<InputAction>();"
     },
@@ -8615,7 +8624,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs",
-      "line": 191,
+      "line": 253,
       "symbol": "Ziptide.Gameplay.InputMutationRepairDriver",
       "snippet": "var disabledBefore = new List<InputAction>();"
     },
@@ -8624,7 +8633,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs",
-      "line": 192,
+      "line": 254,
       "symbol": "Ziptide.Gameplay.InputMutationRepairDriver",
       "snippet": "foreach (InputAction action in map.actions)"
     },
@@ -8633,7 +8642,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs",
-      "line": 200,
+      "line": 262,
       "symbol": "Ziptide.Gameplay.InputMutationRepairDriver",
       "snippet": "foreach (InputAction action in disabledBefore)"
     },
@@ -8642,7 +8651,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs",
-      "line": 210,
+      "line": 272,
       "symbol": "Ziptide.Gameplay.InputMutationRepairDriver",
       "snippet": "foreach (InputAction action in directActions)"
     },
@@ -8651,7 +8660,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs",
-      "line": 224,
+      "line": 286,
       "symbol": "Ziptide.Gameplay.InputMutationRepairDriver",
       "snippet": "HashSet<InputAction> directActions)"
     },
@@ -8660,7 +8669,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs",
-      "line": 250,
+      "line": 312,
       "symbol": "Ziptide.Gameplay.InputMutationRepairDriver",
       "snippet": "HashSet<InputAction> directActions)"
     },
@@ -8669,7 +8678,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs",
-      "line": 252,
+      "line": 314,
       "symbol": "Ziptide.Gameplay.InputMutationRepairDriver",
       "snippet": "InputAction action = property.action;"
     },
@@ -8678,7 +8687,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/InputMutationRepairDriver.cs",
-      "line": 307,
+      "line": 369,
       "symbol": "Ziptide.Gameplay.InputMutationRepairDriver",
       "snippet": "InputAction action = property.action;"
     },
