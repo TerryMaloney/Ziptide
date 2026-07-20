@@ -13,7 +13,13 @@ namespace Ziptide.Tests.EditMode
             GameObject root = null;
             try
             {
-                root = new GameObject("InvisibleKeyItem");
+                // ItemRuntime requires a concrete Collider. Build the same primitive-backed item shape the
+                // runtime factory uses, then disable its renderer so this fixture is genuinely invisible
+                // while still satisfying the owner's component contract.
+                root = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                root.name = "InvisibleKeyItem";
+                Renderer renderer = root.GetComponent<Renderer>();
+                renderer.enabled = false;
                 ItemRuntime item = root.AddComponent<ItemRuntime>();
                 var report = new SceneAuditReport { sceneName = "BrokenCoverageFixture" };
 
