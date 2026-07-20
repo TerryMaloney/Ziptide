@@ -32,6 +32,36 @@ namespace Ziptide.Tests.EditMode
         }
 
         [Test]
+        public void RotatedBoxRoute_SamplesItsActualLongAxis()
+        {
+            GameObject route = null;
+            try
+            {
+                route = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                route.name = "RotatedRoute";
+                route.transform.position = new Vector3(2f, -0.10f, -1f);
+                route.transform.rotation = Quaternion.Euler(0f, 37f, 0f);
+                route.transform.localScale = new Vector3(2f, 0.20f, 8f);
+                Physics.SyncTransforms();
+
+                RouteContinuityAuditRules.GetSurfaceCenterline(route.GetComponent<Collider>(),
+                    out Vector3 start, out Vector3 end);
+                int unsupported = RouteContinuityAuditRules.CountUnsupportedSamples(
+                    start, end, 0.40f, 0.05f, 1.0f);
+
+                Assert.That(unsupported, Is.Zero,
+                    "A rotated solid walkway must not be sampled across its world-space AABB diagonal.");
+                Vector3 sampledDirection = (end - start).normalized;
+                Assert.That(Mathf.Abs(Vector3.Dot(sampledDirection, route.transform.forward)),
+                    Is.GreaterThan(0.99f));
+            }
+            finally
+            {
+                if (route != null) Object.DestroyImmediate(route);
+            }
+        }
+
+        [Test]
         public void DeliberatelyBrokenRoute_HasUnsupportedSamples()
         {
             GameObject a = null;
