@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
-  "scannedFiles": 720,
+  "scannedFiles": 721,
   "findingCount": 2525,
   "maps": {
     "bootstrapPersistence": [
