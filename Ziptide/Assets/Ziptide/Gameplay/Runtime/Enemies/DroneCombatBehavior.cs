@@ -74,6 +74,26 @@ namespace Ziptide.Gameplay
             HideThreatPresentation();
         }
 
+        private void OnDestroy()
+        {
+            // Presentation objects and their native material are owned exclusively by this behaviour.
+            // Explicit teardown keeps scene reloads and test fixture destruction from leaking resources.
+            DestroyOwned(_aimLine != null ? _aimLine.gameObject : null);
+            DestroyOwned(_telegraphFx);
+            DestroyOwned(_threatMaterial);
+            _aimLine = null;
+            _telegraphFx = null;
+            _telegraphRenderer = null;
+            _threatMaterial = null;
+        }
+
+        private static void DestroyOwned(Object value)
+        {
+            if (value == null) return;
+            if (Application.isPlaying) Object.Destroy(value);
+            else Object.DestroyImmediate(value);
+        }
+
         private void ApplyProfile()
         {
             if (profile == null) return;
