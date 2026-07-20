@@ -67,15 +67,15 @@ namespace Ziptide.Gameplay
         }
 
         /// <summary>
-        /// Move player to spawn and zero velocity. Called by FallRespawner.
+        /// Move player to the authored spawn and zero motion. Called by FallRespawner and lethal hazards.
         /// </summary>
         public void RespawnPlayer(Transform playerRig)
         {
             if (playerRig == null) return;
 
             // Prefer the actual __SPAWN_PLAYER marker (on solid ground at the courtyard). The
-            // WorldProfile.spawnPosition can sit over collider-disabled geometry (e.g. the toxic
-            // sludge surface) → respawn-fall-loop. Marker first, profile only as fallback.
+            // WorldProfile.spawnPosition can sit over collider-disabled geometry (e.g. toxic sludge)
+            // and create a respawn-fall loop. Marker first, profile only as fallback.
             Vector3 pos;
             Quaternion rot;
             var marker = FindSpawnMarker();
@@ -91,21 +91,38 @@ namespace Ziptide.Gameplay
             }
             else return;
 
-            playerRig.position = pos;
-            playerRig.rotation = rot;
+            MovePlayer(playerRig, pos, rot);
+        }
 
-            var rb = playerRig.GetComponentInChildren<Rigidbody>(true);
-            if (rb != null)
+        /// <summary>
+        /// Recover to an already-proven supported pose without changing the world's canonical spawn.
+        /// FallRespawner owns the decision; WorldRuntime remains the single relocation/motion-clear path.
+        /// </summary>
+        public void RecoverPlayerAt(Transform playerRig, Vector3 position, Quaternion rotation)
+        {
+            if (playerRig == null) return;
+            MovePlayer(playerRig, position, rotation);
+        }
+
+        private static void MovePlayer(Transform playerRig, Vector3 position, Quaternion rotation)
+        {
+            var cc = playerRig.GetComponentInChildren<CharacterController>(true);
+            if (cc != null) cc.enabled = false;
+
+            playerRig.SetPositionAndRotation(position, rotation);
+
+            var bodies = playerRig.GetComponentsInChildren<Rigidbody>(true);
+            for (int i = 0; i < bodies.Length; i++)
             {
+                Rigidbody rb = bodies[i];
+                if (rb == null) continue;
                 rb.velocity = Vector3.zero;
                 rb.angularVelocity = Vector3.zero;
             }
 
-            var cc = playerRig.GetComponentInChildren<CharacterController>(true);
             if (cc != null)
             {
-                cc.enabled = false;
-                playerRig.position = pos;
+                playerRig.SetPositionAndRotation(position, rotation);
                 cc.enabled = true;
             }
         }
@@ -153,7 +170,7 @@ namespace Ziptide.Gameplay
             // "invisible wall I can jump over" in large worlds like Toxic City.
             if (!worldProfile.usePlayAreaBounds)
             {
-                if (_bounds != null) Destroy(_bounds.gameObject); // remove any existing boundary walls
+                if (_bounds != null) Destroy(_bounds.gameObject);
                 _bounds = null;
                 return;
             }
