@@ -302,6 +302,36 @@ axis SEPARATE from the tech/architect accent system — toxic **yellow-green** (
 IS tuned). So a glow on a creature reads "alive," a glow on a machine reads "powered/signal" —
 two languages, no collision. Warden white stays the made-thing color (drone = machine, not beast).
 
+## ✅ TIER 4 APPROVALS — held gear, all 4 tools landed 2026-07-21 (`concepts/held_gear_ch1/`)
+
+*All photoreal (matches the ship/prop look), several with bonus ortho/design sheets. Face-
+distance hero props → top texel, Tier C. Prop specs added to `TIER1_PROP_SPECS.md` §8.*
+
+- **#20 Salvage tractor** — `tractor_harvester_hero_v1` + `tractor_harvester_ortho_v1` (4-view):
+  nail-gun form, copper coil-ring emitter with a cyan core, chipped-amber body, red/yellow
+  cabling, wrapped grip. **⚖ EMERGENT: the ortho labels it "A-11 ENERGY HARVESTER" with a
+  "POWER INTAKE" port** — the generation fused tractor + energy-siphon into one tool. Reads
+  great and reconciles the salvage verb: you PULL debris and DRAW power with the same device.
+  Recommend adopting the name + the dual function.
+- **#21 Mining drill** — `mining_drill_ortho_v1` (4-view): multi-tooth rotating bit, gearbox
+  window, hazard stripes, one cyan charge lamp, wrapped grip. Labeled **"MO-01 MINING DRILL."**
+- **#22 Magnet-tether/anchor** — `tether_anchor_hero_v1` + `tether_anchor_designsheet_v1`: hook/
+  horseshoe-magnet head, coiled steel cable, ratchet crank, cyan ring indicator. **The design
+  sheet is gold — it storyboards the MECHANICS:** E) fire anchor into a surface (stay-put in
+  wind / traversal), F) reel-pull an object (crate), G) rotating-hook open/close, + variants.
+  This is the W003 traversal tool's interaction spec, drawn.
+- **#23 Headlamp + scanner** — `headlamp_scanner_hero_v1`: battered lamp with a **warm-amber
+  beam** + a folding **cyan scanner screen** (bar-graph + hex map), green webbing strap, battery
+  pack. The intended two-color split delivered exactly: amber = worklight, cyan = tech readout.
+
+**⚖ NAMING + LABEL CONVENTIONS (recommend adopting):**
+- **`XX-01` model designations** are consistent salvage-culture branding: SLV-01 Scrapper ·
+  A-11 Energy Harvester · MO-01 Mining Drill · (Goliath Rig). Adopt as the gear-naming pattern.
+- **Human-readable stamped labels are OK on the player's salvage gear** (function labels /
+  model plates in the salvage culture's own language) — **glyph-law still reserves INVENTED
+  glyphs for ancient Architect tech.** Clean rule: modern salvage = readable stamps; ancient =
+  glyphs. (Keeps VR tool text legible without breaking alien immersion where it matters.)
+
 ## Priority guidance (if the day runs short)
 
 - **Do Tier 1 first (1–9): the next three levels have NOTHING.** That alone moves the North

@@ -218,6 +218,27 @@ build in the §0 material families, not the cartoon look.*
   lamps (green/amber/red per accent rule). ~2 m. `used_metal`+brass. **interact.** **Tier B.**
   [reuses/extends `prop_salvage_console`]
 
+## §8 — HELD GEAR (from the Tier-4 batch, `concepts/held_gear_ch1/`) — Tier C, top texel
+
+*All held at ~30 cm → highest texture density, 2–3 materials, bevel/panel ops. `XX-01`
+designations + readable salvage stamps (glyphs reserved for ancient tech).*
+
+- **`gear_tractor_harvester`** ("A-11 Energy Harvester") — 0.35 m nail-gun form, copper coil-ring
+  emitter + `cyan_emissive` core, chipped-amber body, red/yellow cabling, wrapped grip, rear
+  "power intake" port. `used_metal`+copper. **grab/hero** (pull debris + siphon power — the core
+  salvage verb). **Tier C.** [= Tripo #20]
+- **`gear_mining_drill`** ("MO-01") — 0.4 m, multi-tooth rotating bit, gearbox window, hazard
+  stripes, one cyan charge lamp, wrapped grip + trigger, side-clipped spare bit. `used_metal`.
+  **grab/hero** (mine `node_mineral`; tiered depth gate). **Tier C.** [= Tripo #21, W002]
+- **`gear_tether_anchor`** — 0.4 m, hook/horseshoe-magnet head, coiled steel cable, ratchet
+  crank, cyan ring indicator, wrapped grip. `used_metal`. **grab/hero.** **Mechanics (from the
+  design sheet):** (a) fire anchor into a surface = stay-put in wind / swing traversal; (b)
+  reel-pull an object; (c) rotating-hook open/close. **Tier C.** [W003 traversal upgrade]
+- **`gear_headlamp_scanner`** — head-worn: battered lamp with a **warm-amber beam** + a folding
+  **cyan scanner screen** (bar-graph + hex map) on a side arm, green webbing strap, battery pack,
+  red/yellow wiring. `used_metal`+fabric. **wear** (equipped; toggles beam/scan). **Tier B/C.**
+  [W002 see-in-dark / tag-ore]
+
 ## §6 — Accent-color discipline (locked by the Tier-1 batch)
 
 - `amber_emissive` = **ancient Architect** stone/glyphs only. `cyan_emissive` = **signal/tide/

@@ -27,6 +27,26 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-21 (rb78) — Fable 5: 🔦 TIER 4 HELD GEAR — 4 tools approved (+ bonus ortho/design sheets)
+
+- **Terry generated Tier 4 — all 4 held tools approved, photoreal, several with bonus sheets.**
+  Stored in `concepts/held_gear_ch1/`; approvals in `CONCEPT_ART_NEXT_30.md`, prop specs in
+  `TIER1_PROP_SPECS.md` §8. Tools: salvage tractor, mining drill, magnet-tether/anchor,
+  headlamp+scanner. The tether's design sheet even storyboarded its mechanics (anchor-to-surface
+  for wind/traversal, reel-pull objects, rotating-hook open/close).
+- **⚖ EMERGENT: the tractor came back labeled "A-11 ENERGY HARVESTER" with a "POWER INTAKE"** —
+  the gen fused tractor + energy-siphon into one tool; recommend adopting (one device pulls
+  debris AND draws power — reconciles the salvage verb). Drill = "MO-01."
+- **⚖ NAMING/LABEL rules (recommend adopting):** `XX-01` model designations are the salvage-
+  culture branding pattern (SLV-01 Scrapper · A-11 Harvester · MO-01 Drill · Goliath Rig); and
+  **human-readable stamped labels are OK on the player's salvage gear while glyph-law reserves
+  invented glyphs for ancient Architect tech** (modern salvage = readable stamps; ancient =
+  glyphs — keeps VR tool text legible without breaking alien immersion).
+- **Progress: 23 of 30 concepts approved** (T1–T4 done). Remaining: **Tier 5 only** — the 7
+  grammar sheets + key art (Architect glyph sheet, title key art, Cal first-person hands, the
+  coupler, Pattern grammar; Transmission + memory-shard already effectively covered by W004 #9).
+  **Commit:** this one (6 images + doc updates + entry).
+
 ### 2026-07-21 (rb77) — Fable 5: 🐾 TIER 3 BESTIARY — 4 creature sheets, all approved (concepts + docs)
 
 - **Terry generated Tier 3 — 4 multi-angle creature turnaround sheets, all approved.** Stored
