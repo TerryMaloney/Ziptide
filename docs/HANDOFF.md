@@ -27,6 +27,29 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-21 (rb73) — Fable 5: 🎨 THE NEXT 30 CONCEPT ART — the Chapter-1 North Star wave (docs only; Terry generates 2D free)
+
+- **Terry clarified he's not at Tripo yet — he wants the top 30 2D CONCEPTS we still NEED.**
+  Wrote **`CONCEPT_ART_NEXT_30.md`**: paste-ready nano-banana prompts, grounded in the actual
+  world READMEs (W002/W003/W004) and the core-loop docs (GARDEN_AAA, HOME_HUB,
+  AUTOMATION_CONVEYORS), all inheriting the style + color canon + glyph-law.
+- **The gap it fills (the honest finding):** the first-hour CAST is 100% concepted, but the
+  **next three levels W002 Dry Cistern / W003 Glass Shelf / W004 Broadcast Tomb have ZERO
+  art**, and the **entire core loop (garden, automation, build, home hub) was never
+  concepted** either. That's the whole "get a few levels looking good as North Star" gap.
+- **The 30, tiered by priority:** T1 the three unbuilt worlds (9 = establishing + hero
+  landmark + mystery/machine each) · T2 core loop (6: home hub, garden, watering can, belt
+  line, fabricator, galaxy map) · T3 bestiary (4 hero creatures: canal stalker, swarmer,
+  tendril, Warden drone) · T4 per-world held gear (4: salvage tractor, mining drill,
+  tether/anchor, headlamp+scanner) · T5 grammar sheets + key art (7: **Architect glyph-
+  language sheet** [fixes glyph-law everywhere], Transmission stages, Pattern grammar, **title
+  key art** [S6, still un-delivered], the coupler/ship's heart, memory-shard, **Cal first-
+  person hands** [resolves the Cal body hole]). Short-day guidance: T1 first, then T5's 24/27/30.
+- **Heads-up:** this is freeze-legal 2D generation; approved sheets flow into
+  `CONCEPT_TO_BUILT_PIPELINE.md` and later the Tripo intake. No queue-doc overlap — the
+  Tier-C queue stays "cast complete"; this is the next wave (worlds + loop, spans all tiers).
+- **Commit:** this one (new doc + this entry).
+
 ### 2026-07-21 (rb72) — Fable 5: 💳 THE TRIPO MONTH IS ON — generation-day plan + the 30-prompt priority list (docs only, clean APK untouched)
 
 - **Terry is buying the paid month TODAY** (50–300 generations) and spending the day
