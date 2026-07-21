@@ -270,6 +270,38 @@ hero/held props flagged for face-distance budget, accent-color discipline locked
 **Consistency wins:** Cal's glove recurs; the cyan node-map bridges hub↔helm; accents stayed
 scarce. **Prop specs for all six added to `TIER1_PROP_SPECS.md` §7 (core-loop / ship-home).**
 
+## ✅ TIER 3 APPROVALS — the Chapter-1 bestiary, all 4 landed 2026-07-21 (`concepts/bestiary_ch1/`)
+
+*All came back as proper multi-angle turnaround sheets — build-ready. Spec line format:
+`creature_id` · size · archetype · palette · signature · interaction.*
+
+- **#16 `canal_stalker_sheet_v1`** (`tox_canal_stalker_01` — recipe already stubbed) · ~3.5 m
+  crocodilian-salamander · amphibious ambush predator · grey-green amphibian flesh + armored
+  dorsal plates, **yellow-green bioluminescent hazard stripes** along spine/tail · wide gill-
+  fringed maw, webbed clawed feet, drips toxic water · shockable melee threat; swims + crawls
+  (side/front/top/foot/tail + underwater views all provided). *Note: came back with small dorsal
+  eyes (not eyeless) — Terry approved, so canon = low-set dorsal eyes + vibration-sense head.*
+- **#17 `cistern_swarmer_sheet_v1`** (`creature_cistern_swarmer`, W002) · cat-sized · isopod/
+  silverfish swarm archetype · pale chitin, **phosphorescent BLUE underside/spots** · long
+  antennae, many fast legs, nests in clusters (nest inset provided) · shockable, small loot,
+  fought in numbers.
+- **#18 `glass_tendril_sheet_v1`** (`creature_glass_tendril`, W003) · ~1.5 m · anchored flora-
+  fauna hybrid · brown chitin pod on root-claws + long translucent **cyan-veined** whipping
+  tendrils (detail insets: cyan veining, barbed tip) · catches the wind; the cyan veins quietly
+  echo "everything here is tuned to one signal" · ranged/lash threat, rooted (doesn't chase).
+- **#19 `warden_drone_sheet_v1`** (`creature_warden_drone`) · human-sized hovering ovoid · Warden
+  immune-unit · smooth pale **ceramic-bone** plating, thin sterile-white seams, **ONE black
+  cyclopean eye**, dark underside aperture · no visible thrust/weapons · silent enforcer.
+  **★ KINSHIP LOCKED:** capital ship ↔ warden drone ↔ RILL are ONE design family (smooth
+  ceramic-bone + single eye); the drone is RILL's **cold-eyed** twin (black glass) vs RILL's
+  **warm** iris — the contrast the player is meant to feel.
+
+**★ CREATURE-PALETTE RULE (new, ⚖ to bless):** creatures carry a **biological bioluminescence**
+axis SEPARATE from the tech/architect accent system — toxic **yellow-green** (canal), phosphor
+**blue** (cave swarm), tuned **cyan** (tendril, deliberately touching the signal-cyan because it
+IS tuned). So a glow on a creature reads "alive," a glow on a machine reads "powered/signal" —
+two languages, no collision. Warden white stays the made-thing color (drone = machine, not beast).
+
 ## Priority guidance (if the day runs short)
 
 - **Do Tier 1 first (1–9): the next three levels have NOTHING.** That alone moves the North

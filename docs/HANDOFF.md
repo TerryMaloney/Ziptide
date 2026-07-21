@@ -27,6 +27,23 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-21 (rb77) — Fable 5: 🐾 TIER 3 BESTIARY — 4 creature sheets, all approved (concepts + docs)
+
+- **Terry generated Tier 3 — 4 multi-angle creature turnaround sheets, all approved.** Stored
+  in `concepts/bestiary_ch1/` (canal_stalker, cistern_swarmer, glass_tendril, warden_drone);
+  spec lines + rulings in `CONCEPT_ART_NEXT_30.md`.
+- **★ KINSHIP LOCKED:** the warden drone is unmistakably the same ceramic-bone + single-eye
+  design family as the capital ship AND RILL — it's RILL's **cold black-eyed twin**, the
+  contrast the player should feel. Canon consistency across three scales.
+- **★ NEW CREATURE-PALETTE RULE (⚖ to bless):** creature **biological bioluminescence** is a
+  separate axis from the tech/architect accents — toxic yellow-green (canal), phosphor blue
+  (swarm), tuned cyan (tendril, deliberately touching signal-cyan because it's tuned). Glow on
+  a beast = "alive"; glow on a machine = "powered/signal"; Warden white = made-thing. No collision.
+- **Minor:** canal stalker came back with small dorsal eyes (prompt said eyeless) — approved, so
+  canon = low dorsal eyes + vibration-sense head.
+- **Progress: 19 of 30 concepts approved** (T1 9 + T2 6 + T3 4). Remaining: Tier 4 held gear (4),
+  Tier 5 grammar sheets + key art (7). **Commit:** this one (4 sheets + doc updates + entry).
+
 ### 2026-07-21 (rb76) — Fable 5: 🔧 TIER 2 CORE-LOOP CONCEPTS — all 6 landed + prop specs (concepts + docs)
 
 - **Terry generated Tier 2 (the core loop) — 6 keepers, all approved.** Stored in
