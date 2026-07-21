@@ -27,6 +27,33 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-21 (rb72) — Fable 5: 💳 THE TRIPO MONTH IS ON — generation-day plan + the 30-prompt priority list (docs only, clean APK untouched)
+
+- **Terry is buying the paid month TODAY** (50–300 generations) and spending the day
+  generating. Plan doc: **`TRIPO_MONTH_PLAN.md`** — §0 day-one license checklist
+  (screenshot terms+plan+date into `art_intake/_LICENSE_RECORD/`; CREDITS line per keeper —
+  the Suno law applied), §1 holding area **`art_intake/` at repo root, OUTSIDE
+  `Ziptide/Assets/`** so the clean APK is untouched by construction, §2 the plug-in wiring
+  map per asset (applier visual-child swap everywhere; ship arm generated SEPARATELY for
+  articulation; RILL needs one emissive-mask re-bake for the state driver; Cal via auto-rig
+  for mirror/menu route), §3 credit-efficient workflow (image-to-3D from CROPPED keepers,
+  multiview from the ortho sheets, silhouette-first variant judging, text prompts routed
+  through free nano banana first where no sheet exists).
+- **The 30-prompt list, §4, priority-ordered with per-asset credit budgets (~125–150
+  total):** Tier 1 North Star set (Scrapper hull + separate grabber arm, RILL, key halves
+  A/B, skiff, Warden capital, Cal MK.IV, gate pillar cluster — ~45 credits, the stop-line if
+  the plan is 50-credit) · Tier 2 held weapons (taser, gravity gun — `GravityGunDefinition`
+  is canon in code — breaker bar, belt cutter) · Tier 3 Moss landmarks (tower, booth, crane,
+  pier, RUSTBUCKET, sea-wall chunk, footbridge, shanty one-off, buoy) · Tier 4 lived-in
+  props (seat, console, bunk, lantern, floodlights, cargo set, ledger) · Tier 5
+  opportunistic (spider drone as ENEMY class, hex seal). Excluded on purpose: creatures
+  (Creature V2 owns), sky (texture/data), the gate tide (shader/VFX), the tiling building
+  kit (modularity is where AI gen fails — kit stays Forge).
+- **Heads-up:** intake of the generated meshes (cleanup + wiring, §2) is post-Golden-
+  Checkpoint work, first in the `CONCEPT_TO_BUILT_PIPELINE.md` §4 order. Today produces
+  licensed keepers + manifests only. 📣 all lanes: `art_intake/` is the agreed holding path.
+- **Commit:** this one (plan doc + this entry).
+
 ### 2026-07-21 (rb71) — Fable 5: 🔵 RILL APPROVED (cast 100% closed) + THE CONCEPT→BUILT CAPABILITY PLAN (docs + 2 reference images)
 
 - **Did (1) — RILL keepers landed** (`concepts/rill_drone/`, 2 variants; queue §2f): the orb
