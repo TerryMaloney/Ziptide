@@ -236,6 +236,40 @@ receding into black. Dread, exact. **TIER 1 IS 9/9 COMPLETE.**
 prop in the 9 keepers named + dimensioned, shared salvage families specced once for reuse,
 hero/held props flagged for face-distance budget, accent-color discipline locked.
 
+## ✅ TIER 2 APPROVALS — the core loop, all 6 landed 2026-07-21 (`concepts/core_loop/`)
+
+- **#10 `home_hub_v1`** — the ship hub, canon-perfect: a worn leather sectional, a coffee-table
+  holo projector showing a **cyan node star-map** (mirrored on a wall screen — the map is the
+  hub's centerpiece, ties to #15), a dead CRT beside it, green-tinted portholes, string lights,
+  books, kettle + thermos, taped notes/photos, gauges — **and Cal's little BIRD TRINKET on the
+  table.** *Adopted: the bird is a recurring Cal keepsake (chest strap → home).* Warm amber
+  light + one cyan holo = the accent rule, held.
+- **#11 `garden_v1`** — corrugated-metal raised beds under warm grow-lights, string lights,
+  growth stages readable (young sprouts glow cyan → mature → the **GIANT glowing rare crop**,
+  the screenshot moment, delivered), the brass watering can hung on the wall (matches #12), a
+  dripping pipe-valve, prune snips, a cyan-button control panel. *Excluded: the "VR 5°" HUD
+  text top-left = generation noise.* *Adopted: corrugated raised-bed module + cyan-seedling
+  growth tell.*
+- **#12 `watering_can_v1`** — THE hero garden tool, exact: dented brass body, riveted spout +
+  rose head, wrapped wire handle, chipped amber paint, water beads, gloved hand. Pour-physics
+  hero prop.
+- **#13 `automation_belt_v1`** — riveted conveyor modules with hazard-amber trim + **one cyan
+  indicator each** (the accent rule, honored), an inserter claw arm, a gear-in-glass processor
+  with a hopper, glowing mineral chunks riding, and a VR headset + glove + holo blueprint on the
+  desk (the "you build this with your hands" framing). *Caveat: illustrated/cel style — build
+  translates shapes into our realistic used-future materials, not the cartoon rendering.*
+- **#14 `fabricator_v1`** — the build station: two articulated welder arms, a **cyan assembly
+  cylinder with a half-built GUN inside** (scrap+mineral→gear, the loop made literal), a scrap
+  hopper + a mineral/crystal hopper as inputs, a brass lever-gauge-and-lamp panel (green=OK,
+  red=stop — accent discipline). *Same illustrated-style caveat as #13.*
+- **#15 `galaxy_map_v1`** — first-person over a helm console of knobs/sliders/buttons, a big
+  **cyan spiral-galaxy hologram** with world-nodes + faint routes, one node highlighted brighter
+  with an **invented-glyph label** (glyph-law honored), a gloved hand reaching. *Adopted: the
+  "cyan node-map" is the navigation visual language at two scales — hub table (#10) + helm (#15).*
+
+**Consistency wins:** Cal's glove recurs; the cyan node-map bridges hub↔helm; accents stayed
+scarce. **Prop specs for all six added to `TIER1_PROP_SPECS.md` §7 (core-loop / ship-home).**
+
 ## Priority guidance (if the day runs short)
 
 - **Do Tier 1 first (1–9): the next three levels have NOTHING.** That alone moves the North

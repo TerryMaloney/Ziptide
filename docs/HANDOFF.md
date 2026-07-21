@@ -27,6 +27,25 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-21 (rb76) — Fable 5: 🔧 TIER 2 CORE-LOOP CONCEPTS — all 6 landed + prop specs (concepts + docs)
+
+- **Terry generated Tier 2 (the core loop) — 6 keepers, all approved.** Stored in
+  `concepts/core_loop/` (home_hub, garden, watering_can, automation_belt, fabricator,
+  galaxy_map). Approvals + rulings in `CONCEPT_ART_NEXT_30.md`; **super-specific prop specs
+  added to `TIER1_PROP_SPECS.md` §7** (core-loop / ship-home props).
+- **Highlights:** the home hub nails the diegetic menu (cyan node star-map on a coffee-table
+  holo AND a wall screen — the nav visual language, mirrored at #15's helm scale — plus **Cal's
+  bird trinket**, adopted as a recurring keepsake). The garden delivers the giant glowing rare
+  crop (screenshot moment) + a cyan-seedling growth tell (adopted). The fabricator makes the
+  loop literal: scrap hopper + mineral hopper → cyan assembly field building a GUN. Belt line
+  honored the one-cyan-lamp-per-module accent rule.
+- **Caveats logged:** #13/#14 came back illustrated/cel-style — treated as SHAPE references;
+  build in our realistic used-future material families. Garden "VR" HUD text = excluded noise.
+- **Heads-up:** Tier 1 (9) + Tier 2 (6) = 15 of the 30 concepts approved. Remaining: Tier 3
+  bestiary (4), Tier 4 held gear (4), Tier 5 grammar sheets + key art (7, of which the
+  Transmission + memory-shard are already effectively covered by W004 #9). **Commit:** this one
+  (6 images + doc updates + entry).
+
 ### 2026-07-21 (rb75) — Fable 5: ✅ TIER 1 COMPLETE (9/9) + the super-specific PROP BILL (concepts + docs)
 
 - **W004 #7 landed** (`concepts/w004_broadcast_tomb/w004_establishing_deadscreens_v1.png`) — the
