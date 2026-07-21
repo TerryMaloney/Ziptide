@@ -27,6 +27,33 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-21 (rb79) — Fable 5: 🏁 THE 30-CONCEPT WAVE IS COMPLETE — Tier 5 grammar + key art landed (concepts + docs)
+
+- **Terry generated Tier 5 — all 7 approved.** Stored in `concepts/grammar_keyart/`; approvals
+  + canon locks in `CONCEPT_ART_NEXT_30.md`. **This closes the entire 30-concept wave** (worlds
+  9 · core loop 6 · bestiary 4 · held gear 4 · grammar/key-art 7).
+- **Major canon locks this batch:**
+  - **`architect_syllabary_v1` = THE MASTER ALPHABET** (30-glyph syllabary + frozen-current
+    motifs + geometric borders, amber on stone). Every ancient carving game-wide references it;
+    glyph-law now has its canonical source.
+  - **The Pattern got a full grammar + behavior:** 3-stage sheets + an 11-panel "Geometric
+    Morphogenesis" lifecycle (sky-seed → possesses minerals → breaches → dominion). **📣 story
+    lane: this is antagonist behavior, not just VFX.** Palette = signal-cyan pushed cold +
+    violet wrongness (it IS the signal's geometry).
+  - **`title_key_art_v1`** = the poster / cold-boot title (Scrapper + dock + lantern + giant
+    planet + monumental glyph-columns in the #24 alphabet, wordless per glyph-law).
+  - **`coupler_ship_heart_v1`** — the coupler's S-seam MATCHES the artifact key interlock (the
+    heart accepts the key — canon lock).
+  - **`cal_first_person_hands_v1`** — **resolves the Cal body hole (route 1 confirmed):** tally
+    forearm + red laces + bird trinket + gloves all read in POV; no full-body pipeline needed
+    for the core view.
+- **STATUS:** with the earlier first-hour cast, the first four worlds + full core loop +
+  bestiary + all held gear + master alphabet + antagonist grammar + title art + Cal POV all have
+  canonical reference. `TIER1_PROP_SPECS.md` carries the itemized prop bill. Next art step =
+  BUILD (post-Golden-Checkpoint) per `CONCEPT_TO_BUILT_PIPELINE.md` §4.
+- **⚖ stack += Pattern-palette (signal-cyan→cold+violet) · Cal route-1 · Architect alphabet as
+  canon.** **Commit:** this one (7 images + doc updates + entry).
+
 ### 2026-07-21 (rb78) — Fable 5: 🔦 TIER 4 HELD GEAR — 4 tools approved (+ bonus ortho/design sheets)
 
 - **Terry generated Tier 4 — all 4 held tools approved, photoreal, several with bonus sheets.**

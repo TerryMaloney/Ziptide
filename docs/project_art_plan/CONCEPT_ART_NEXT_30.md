@@ -332,6 +332,51 @@ distance hero props → top texel, Tier C. Prop specs added to `TIER1_PROP_SPECS
   glyphs for ancient Architect tech.** Clean rule: modern salvage = readable stamps; ancient =
   glyphs. (Keeps VR tool text legible without breaking alien immersion where it matters.)
 
+## ✅ TIER 5 APPROVALS — grammar sheets + key art, all 7 landed 2026-07-21 (`concepts/grammar_keyart/`) → **THE 30 IS COMPLETE**
+
+- **#24 `architect_syllabary_v1`** — **THE MASTER ALPHABET, locked.** Deep-amber-on-dark-stone:
+  a **30-glyph syllabary** + **frozen-current channel motifs** + **geometric border carvings.**
+  Every ancient carving in the game (gate pillars, cistern wall, artifact key, RILL, seals,
+  the key art) now references THIS sheet. Glyph-law finally has its canonical source. *(Sheet
+  labels "SYLLABARY/GEOMETRIC" are reference annotations, not in-world.)*
+- **#26 Pattern grammar — THREE keepers:** `pattern_grammar_3panel_a/b_v1` (the 3-stage
+  sky-seed → rock-seams → room-takeover) **plus `pattern_morphogenesis_sheet_v1`** — an
+  11-panel **"Geometric Morphogenesis"** storyboard of the Pattern's FULL lifecycle as an
+  entity: Airborne Seed → Aerial Shift → Descent → Contact → **Possession** (cyan lattice
+  flooding a mineral) → Internal Genesis → **The Breach** → Convergence → Emergence → **Dominion.**
+  This is both the VFX grammar AND the antagonist's behavior — **📣 feeds story lane** (the
+  Pattern is a geometric process that seeds from sky, possesses minerals, breaches into space).
+  *Palette note: the Pattern is signal-cyan pushed cold + a violet wrongness creeping in — it
+  IS the signal's geometry taken to dominion. Its cyan is allowed to touch the tide-cyan
+  because that kinship is the point.* *(Panel-caption typos = generation noise.)*
+- **#27 `title_key_art_v1`** — **THE POSTER / title screen.** The Scrapper moored over black
+  water at a plank dock, a lone suited figure with an oil lantern, a giant ringed planet, and
+  **monumental glowing Architect glyph-columns** (in the #24 alphabet) rising and reflecting.
+  Wordless/abstract per glyph-law. The marketing North Star + the cold-boot title image.
+- **#28 `coupler_ship_heart_v1`** — the ship's heart: an armored central coupler with an
+  **S-curve frozen-current seam that MATCHES the artifact key's interlock** (canon lock — the
+  heart literally accepts the key), radiant crest-cyan conduits branching through the engine
+  room's pipework, warm amber wall lanterns. Awe, exact.
+- **#30 `cal_first_person_hands_v1`** — **resolves the Cal body question (route 1 confirmed).**
+  POV down: grey tactical gloves on a wrench, padded sleeves, **forearm tally marks**, **red
+  laces** on the boots below, the **bird trinket** on the belt, cyan wrist-light, tools on a
+  grated floor. Every Cal tell, first-person — no full-body pipeline needed for the core view.
+
+**#25 (Transmission) / #29 (memory-shard):** left as covered by W004 #9 — not separately
+generated. Optional later.
+
+---
+
+## 🏁 CONCEPT PROGRAM COMPLETE (2026-07-21) — 30/30 this wave, on top of the first-hour cast
+
+Every Tier (worlds · core loop · bestiary · held gear · grammar/key-art) is approved and
+stored. Combined with the earlier `TIER_C_CONCEPT_QUEUE.md` cast, **the first four worlds, the
+full core loop, the Chapter-1 bestiary, every held tool, the master glyph alphabet, the
+antagonist grammar, the title art, and Cal's POV all now have canonical reference.** Builders
+match sheets instead of guessing; the Tripo month has a complete backlog; `TIER1_PROP_SPECS.md`
+carries the itemized prop bill. Next art step is BUILD (post-Golden-Checkpoint), per
+`CONCEPT_TO_BUILT_PIPELINE.md` §4.
+
 ## Priority guidance (if the day runs short)
 
 - **Do Tier 1 first (1–9): the next three levels have NOTHING.** That alone moves the North
