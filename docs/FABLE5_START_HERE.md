@@ -1,6 +1,6 @@
 # ▶ START HERE — the single-operator manual (LEGACY — superseded 2026-07-03)
 
-> **🚨 CURRENT TAKEOVER — 2026-07-20:** Terry asked GPT to stop and hand the Quest recovery/input blocker back to Fable 5. Read **`docs/recovery/FABLE5_INPUT_RECOVERY_HANDOFF_20260720.md`** before changing code. Current source is not headset-authorized; the exact remaining 42/43 failure and minimal next edit are recorded there.
+> **✅ INPUT BLOCKER RESOLVED — 2026-07-20:** Fable 5 closed the Quest recovery/input blocker on source `c45b1a29`; ordinary CI is green, recovery PlayMode is 43/43 twice on the same SHA, and Golden Android succeeded. Read `docs/HANDOFF.md` hwr34–hwr35 for the close-out and `docs/recovery/RECOVERY_DEBUG_FAST_PATH.md` before any future slow XR/input recovery work. The authorized headset retry artifact is `recovery-golden-apk-c45b1a2…` from run `29786604008`.
 
 > ⚠️ **THE CURRENT MANUAL IS `docs/OPERATOR_START_HERE.md`** (model-agnostic: Fable, Opus 4.8,
 > anyone — four tracks, the blackboard, THE LAWS, the circuit breaker, Opus calibration). Read THAT
