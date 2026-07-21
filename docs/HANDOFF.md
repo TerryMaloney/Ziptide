@@ -27,6 +27,27 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-21 (rb81) — Fable 5: 🚀 SHIP MK2 — Cal's Architect-derived upgrade ship designed (doc + prompts)
+
+- **Terry wants a hyper-high-tech upgrade ship ~L3**, carrying over some Scrapper gear, to
+  escape the worn-out steampunk look and to give the skin shop a better canvas. **⚖ ORIGIN:
+  Terry chose Architect-derived relic** (asked via AskUserQuestion). Design doc:
+  **`SHIP_MK2_ARCHITECT_UPGRADE.md`**.
+- **The design threads Terry's two no's** (not steampunk-scavenger, not Warden-blank-nothing)
+  via: advanced = density-of-intent + energy-doing-work (layered transparency, reconfigurable
+  geometry, energy-as-structure, purposeful micro-detail). Three distinctive hooks: **force-
+  field-held FLOATING hull segments** that reconfigure (fold/bloom) · the locked **frozen-current
+  channel language** (cyan drive + amber Architect) on a semi-transparent iridescent hull · the
+  **evolved drive-heart** (the coupler grown up; the key's true chassis).
+- **The carry-over rule (Terry's ask + the beat that saves it):** Cal transplants her home's guts
+  — grabber arm, salvage cockpit pod, oil lantern, coupler, bird trinket — as warm human islands
+  grafted into the Architect hull. Keeps identity, keeps VR grab-readability, KILLS the empty
+  look by construction. Red-laces principle at ship scale.
+- **Skin-shop:** the advanced modular energy-hull is the SKIN PLATFORM (vary energy color/alloy/
+  faction/channel pattern); Cal's grafted gear stays constant across skins; Scrapper stays a
+  fixed nostalgia LOD. **📣 story lane:** where/why she finds an Architect ship that answers to
+  her key (§4). 6 concept prompts in §7. **Commit:** this one (doc + entry).
+
 ### 2026-07-21 (rb80) — Fable 5: 🤖 ROGUE DRONES + Wake-Guild spider approved (concept + docs)
 
 - **Terry added the rogue-drone enemy set** (`DisableDrones` targets). One sheet approved
