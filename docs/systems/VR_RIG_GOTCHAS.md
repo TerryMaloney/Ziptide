@@ -83,9 +83,34 @@ The cloud container has the XRI **DLLs but not source**, so you can't read XRI m
 public API name is uncertain (see #1), either (a) reflect a known `[SerializeField]` field, or (b) just
 push and let CI's compile catch a wrong name fast — cheaper than guessing in prose.
 
+## #9 — A zero-binding direct XRI action still crashes after it was disabled
+- **Symptom:** the recovery route logs a successful action-map repair and reader restoration, then one frame
+  later throws `NullReferenceException` from `InputActionState.ApplyProcessors` through
+  `ActionBasedSnapTurnProvider.ReadInput()`. The action reports `bindings=0`, `controls=0`, and no active
+  control. Repeated disable/enable timing changes may appear to fix it for one run and then fail the same-SHA
+  rerun.
+- **REAL root cause (proved 2026-07-20):** a deliberately unused embedded direct `InputAction` remained
+  **non-null**. Keeping it disabled is not durable. Re-enabling its suspended XRI provider runs
+  `OnEnable -> EnableAllDirectActions`, which enables the empty action again; the next provider read enters
+  the Input System with no binding state and crashes. The lifecycle after the "fix" undoes the fix.
+- **Fix (shipped):** `InputMutationRepairDriver.ClearInertDirectProperties()` runs before action repair. For
+  move, continuous-turn, and snap-turn providers, any action property with **no reference + direct action +
+  zero bindings** is assigned `default(InputActionProperty)`. XRI's property setter disables the outgoing
+  action, later `OnEnable` has nothing to revive, and `ReadInput` null-skips the property. Log:
+  `ZIPTIDE: INPUT_MUTATION_INERT_CLEARED count=...`.
+- **Hard rule:** for an intentionally unused hand/action, **null/default property beats disabled non-null
+  action**. Before accepting any input-state fix, inspect the later provider lifecycle (`OnEnable`, restore,
+  boot hold, scene load, travel rewire). If that lifecycle can reverse the state toggle, normalize the owned
+  property/data instead.
+- **Verification rule:** timing-sensitive input recovery is not accepted after one green route. Require
+  ordinary CI green, recovery PlayMode 43/43, the same-SHA rerun 43/43, zero Input System/XRI exceptions,
+  then Golden Android success. See `docs/recovery/RECOVERY_DEBUG_FAST_PATH.md`.
+
 ## Where these fixes live (so you extend, not re-add)
 - Rig input/rays/anchor: `PlayerRigPersistence.EnsureXRIWiring()` + `DisableAnchorControl()` (m_AllowAnchorControl)
   + `DisableAnchorInputActions()`.
+- Input mutation/inert actions: `InputMutationRepairDriver.ClearInertDirectProperties()`; evidence and
+  escalation rules: `docs/recovery/RECOVERY_DEBUG_FAST_PATH.md`.
 - Gun physics: `ItemFactory.RestorePhysicsOnRelease()`.
 - Drone/projectile collision: `DroneCombatBehavior.CollideMove()`, `StunBolt.Update()`, `DroneCombatState`.
 - Spawn correctness (roomscale head-align + ground-snap): `PlayerRigPersistence.TeleportToMarker()`.
