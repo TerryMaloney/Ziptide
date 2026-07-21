@@ -197,6 +197,38 @@ APEX-Goliath) — and kept the red laces through EVERY tier (the sheet literally
   Scrapper").
 Also stored: `ship_S5_quarters_v2` (wider quarters angle w/ holo desk — layout companion).
 
+## §2f — C10 · RILL — ✅ APPROVED 2026-07-21 ("these except for the random hand") — THE CAST IS COMPLETE
+
+Keepers at `concepts/rill_drone/` (`rill_orb_hero_moodstates_v1` + `_v2`, two variants of the
+same winning composition). What landed, protect-tell by protect-tell:
+- **The orb identity, confirmed:** a palm-scale sphere in the ARTIFACT material family — dark
+  dense stone-metal shell with flowing engraved channels (frozen-current grammar, exactly the
+  key's), raised organic ridge-plates, 40k-year patina. She is visibly a MADE-BY-THE-SAME-HANDS
+  cousin of the artifact key, which is the whole story told in material.
+- **ONE warm expressive lens-eye** — big, iris-detailed, ALIVE — the deliberate rhyme/inversion
+  of the Warden capital's cold black cyclopean eye (same anatomy, opposite soul). Front view =
+  eye dominant; fill-it-black passes: circle + eye, the most kid-drawable design in the game.
+- **THE REPAIR PANEL (her red laces): DELIVERED** — the back view shows one mismatched
+  riveted plate interrupting the engraved flow, brighter/newer metal, clearly a patch by
+  cruder hands than her makers'. Canon: someone fixed her once, imperfectly, and she kept it.
+- **The four mood states, palette-exact:** the bottom row renders the canon `RillState`
+  colors as eye+channel-glow states — Dormant blue-grey (dim, half-asleep) · Bright cyan
+  (curious) · Remembering green-teal (warm) · Late-arc amber-gold — with the engraved
+  channels lighting as her "veins" per state. This row is a direct emissive-state reference
+  for the in-game `RillState` material driver: eye iris color + channel-glow color + glow
+  intensity per state, nothing else changes.
+- **EXCLUDED (generation noise, per Terry):** the floating disembodied glove between the orbs
+  — it was requested as a scale reference and rendered as a severed prop. Same treatment as
+  K4's real-world script: cropped from canon, images otherwise approved. Scale stays as
+  written in the brief: palm-sized (the mood tiles and the key set the size language).
+- Terry's verdict verbatim: **"these except for the random hand… I think that's a decent
+  concept art at least for now"** → v1 canon, refinable later like the skiff.
+
+**With RILL landed, every named thing in the first hour has a face:** the Scrapper (ext +
+cockpit + quarters) · the skiff · the city (K1–K7) · the skyscape (dusk/night) · the gate
+(full 6-state lifecycle) · the artifact key · the Warden capital · Cal (+ suit line) · RILL.
+The Tier-C concept phase is CLOSED except for optional bonus shots.
+
 ## §3a — THE B+ BRIDGE (Terry-approved workflow, 2026-07-20)
 
 Once the ship's sheets are approved, a model session builds a **B+ Forge version from the

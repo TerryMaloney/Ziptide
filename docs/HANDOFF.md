@@ -27,6 +27,32 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-21 (rb71) — Fable 5: 🔵 RILL APPROVED (cast 100% closed) + THE CONCEPT→BUILT CAPABILITY PLAN (docs + 2 reference images)
+
+- **Did (1) — RILL keepers landed** (`concepts/rill_drone/`, 2 variants; queue §2f): the orb
+  in the ARTIFACT material family (engraved frozen-current channels — visibly the key's
+  cousin), ONE warm iris-detailed lens-eye (the deliberate inversion of the Warden capital's
+  cold eye), **the riveted repair panel on the back** (her red-laces equivalent, delivered),
+  and a four-tile mood row rendering the canon `RillState` palette exactly (dormant blue-grey
+  / bright cyan / remembering green-teal / late amber-gold) as eye+channel emissive states —
+  a direct reference for the future state-driven material. **Excluded per Terry: the floating
+  glove** ("these except for the random hand") — scale-reference noise, K4-script treatment.
+  With RILL, the Tier-C phase is CLOSED: every named thing in the first hour has a face.
+- **Did (2) — answered Terry's "can the system actually BUILD from these concepts?" with
+  `CONCEPT_TO_BUILT_PIPELINE.md`:** the one five-step route (measured spec → recipe plan →
+  booth loop WITH the concept as acceptance target → gates → device verdict; steps 1–2
+  proven by the ship/city specs) + honest per-class ratings: 🟢 RILL/key/buildings/skyscape
+  (machinery mostly exists — `RillState`, `ForgeBuildingKit`, `CityLayoutDefinition`,
+  SkyVista all in code) · 🟡 gate/ship/Warden-near (planned, unbuilt: Tier-B ops, B+ bridge —
+  `HeroShipHullBuilder` already started) · 🔴 **Cal full-body = the one capability hole** —
+  no humanoid pipeline; ⚖ three routes, recommend first-person-only + implied body (VR-native,
+  zero new machinery), AI-gen/commission single hero body only if the DC demands it.
+  Complete gap list §3 (smallest: booth reference-plate mode — concept beside turnaround in
+  one comparison PNG) + post-checkpoint sequence §4 (key first: the pipeline's tutorial asset).
+- **Heads-up:** all build steps queue behind the Golden Checkpoint as ever; the ● paper
+  starts (RILL/key/gate-state visual specs, ⚖ Cal route) are freeze-legal any time.
+- **Commit:** this one (2 images + queue §2f + the new plan doc + this entry).
+
 ### 2026-07-20 (hwr35) - Fable 5 architect: ✅ INPUT BLOCKER CLOSED — ladder fully green on `c45b1a29`, headset retry AUTHORIZED
 - **The hwr34 fix held deterministically:** PlayMode **43/43 TWICE on the same SHA** (run
   `29786603998`, attempts 1 and 2 — the double-run the 25a8136 flake made mandatory), ordinary
