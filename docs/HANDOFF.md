@@ -27,6 +27,20 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-21 (rb80) — Fable 5: 🤖 ROGUE DRONES + Wake-Guild spider approved (concept + docs)
+
+- **Terry added the rogue-drone enemy set** (`DisableDrones` targets). One sheet approved
+  (`concepts/bestiary_ch1/rogue_drone_and_guild_spider_sheet_v1.png`) covering: the feral
+  security-drone family (rusted salvage, ducted fans, RED eye, pulser emitter, jury-rigged =
+  reads broken), the **disabled/powered-down state** (honors canon "disable, don't kill" →
+  `DRONE_DOWN`), and the **Wake-Guild recon spider** (maintained, quad-lens, red targeting
+  grid, **anchor+cog Guild emblem**). Specs in `CONCEPT_ART_NEXT_30.md` addendum.
+- **★ COLOR LAW LOCKED:** machine-eyes — RILL amber (friend) / Warden white (immune) / rogue+
+  Guild drone RED (hostile). Player tech CYAN vs hostile fire RED-ORANGE (friend/foe legibility).
+  Wake-Guild emblem = anchor+cog (adopt as faction mark).
+- **Still open (drone set):** the PULSER weapon/projectile sheet (emitter + red-orange bolt +
+  muzzle-flash + impact). **Commit:** this one (1 image + doc updates + entry).
+
 ### 2026-07-21 (rb79) — Fable 5: 🏁 THE 30-CONCEPT WAVE IS COMPLETE — Tier 5 grammar + key art landed (concepts + docs)
 
 - **Terry generated Tier 5 — all 7 approved.** Stored in `concepts/grammar_keyart/`; approvals

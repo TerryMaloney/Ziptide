@@ -377,6 +377,31 @@ match sheets instead of guessing; the Tripo month has a complete backlog; `TIER1
 carries the itemized prop bill. Next art step is BUILD (post-Golden-Checkpoint), per
 `CONCEPT_TO_BUILT_PIPELINE.md` §4.
 
+## ✅ ADDENDUM — ROGUE DRONES + WAKE-GUILD SPIDER, approved 2026-07-21 (`concepts/bestiary_ch1/rogue_drone_and_guild_spider_sheet_v1.png`)
+
+*Added at Terry's request (the `DisableDrones` enemies). Story canon honored: you fight
+"malfunctioning machines, not people — **you disable, you don't kill.**" One sheet covered the
+feral family + the disabled state + the Guild unit.*
+
+- **`creature_rogue_drone`** (feral security drone) · ~0.6 m hovering core · rusted salvage
+  metal + mismatched welded plating, chipped hazard-amber, exposed wiring, dirty ducted fans,
+  **single RED sensor eye**, one stubby underslung pulser emitter · jury-rigged/asymmetric
+  (reads BROKEN, not military) · **DISABLE not destroy** — the sheet shows the knocked-down
+  powered-off state (eye dark, sparking, recoverable = `DRONE_DOWN`). Recon + heavier variants
+  in the family group. **Tier A/B** (Forge, instanced — they come in patrols of 3–6).
+- **`creature_guild_spider`** (Wake-Guild recon spider, W012+) · quadruped, sleek and
+  **maintained** (the opposite of the feral wrecks — "someone still runs these"), quad-lens
+  sensor cluster, red laser targeting grid, **Guild insignia = an ANCHOR fused with a COG.**
+  The promoted parked design from the Cal sheets. **Tier B/C.**
+
+**★ COLOR LAW LOCKED (drones): the three machine-eyes read at a glance —** RILL = **warm amber**
+(friend) · Warden = **sterile white** (immune-system/wrong) · rogue/Guild drone = **hostile RED**.
+And **player tech = CYAN vs hostile fire = RED-ORANGE** (friend/foe legibility, VR-critical).
+**★ Wake-Guild emblem = anchor+cog** (maritime salvage + machinery) — adopt as the faction mark.
+
+**STILL OPEN (drone set): the PULSER weapon/projectile sheet** — the emitter muzzle + red-orange
+energy bolt in flight + muzzle-flash + wall impact (what they shoot at you). Prompt still stands.
+
 ## Priority guidance (if the day runs short)
 
 - **Do Tier 1 first (1–9): the next three levels have NOTHING.** That alone moves the North
