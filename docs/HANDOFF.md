@@ -27,6 +27,20 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-20 (hwr35) - Fable 5 architect: ✅ INPUT BLOCKER CLOSED — ladder fully green on `c45b1a29`, headset retry AUTHORIZED
+- **The hwr34 fix held deterministically:** PlayMode **43/43 TWICE on the same SHA** (run
+  `29786603998`, attempts 1 and 2 — the double-run the 25a8136 flake made mandatory), ordinary
+  CI GREEN, Golden Android **SUCCESS** (run `29786604008`), clean package proof recorded. Zero
+  repair failures/aborts, zero Input System exceptions. GPT's
+  `FABLE5_INPUT_RECOVERY_HANDOFF_20260720.md` status flipped to RESOLVED (history preserved).
+- **RATCHET: restore-path re-enable of inert direct actions → caught by the existing PlayMode
+  route gate** (it did its job twice); the durable fix removes the class (null property beats
+  disabled action). Reflection-seam cleanup deferred per the handoff's own stop conditions.
+- **Terry's next device pass runs on artifact `recovery-golden-apk-c45b1a2…`** (run
+  `29786604008`) — weapon scale/angle, coupler PRESS POWER reach, travel/input stability route
+  from GPT's corrections list. Commits after `c45b1a29` are art/docs only; source-identical.
+- **Commits:** this push (docs only — close-out).
+
 ### 2026-07-20 (rb70) — Fable 5: 🧑‍🚀 CAL EXISTS — hero design + a full suit progression line; THE VISUAL CAST IS COMPLETE (docs + reference images)
 
 - **Did:** Terry's Cal batch approved (`concepts/cal_goliath_suit/`, 6 sheets + a second

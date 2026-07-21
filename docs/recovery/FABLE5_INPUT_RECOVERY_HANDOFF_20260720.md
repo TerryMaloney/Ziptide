@@ -5,7 +5,13 @@
 **Branch:** `terry-local-wip`  
 **Current branch head when written:** `280d91bf244a61edfb9f08dc82959f5283c476e9` (generated failed PlayMode observation)  
 **Last source commit:** `f91c098209cfe4879e2cc5bb069f19b43ce1cf6c`  
-**Status:** STOPPED. Do not authorize a headset build yet.
+**Status:** ✅ **RESOLVED 2026-07-20 by Fable 5 (hwr34) on `c45b1a29`** — the recommended
+inert-property normalization landed (`InputMutationRepairDriver.ClearInertDirectProperties`;
+root cause: restore's `OnEnable → EnableAllDirectActions` re-enabled the disabled empty action).
+Verification per §Verification below: CI GREEN + PlayMode **43/43 twice on the same SHA**
+(run `29786603998` attempts 1+2, the determinism requirement) + Golden Android SUCCESS
+(run `29786604008`) + clean package proof. **Headset retry is authorized on the
+`recovery-golden-apk-c45b1a2…` artifact.** Original stop-state text preserved below for history.
 
 ## Read this first
 
