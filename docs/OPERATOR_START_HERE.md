@@ -30,6 +30,8 @@ clever around it. *(This supersedes `FABLE5_START_HERE.md`, kept as a pointer st
 
 **Cross-track order = `docs/PRIORITIES.md`** (the tiebreaker). Game vision = `docs/GAME_PLAN.md`.
 Change-safety playbook = `docs/HOW_TO_CHANGE_ANYTHING.md` — consult BEFORE modifying any system.
+**Slow recovery/debugging fast path = `docs/recovery/RECOVERY_DEBUG_FAST_PATH.md` — mandatory for XR,
+input, travel, persistence, PlayMode, Golden Android, or device blockers after the first failed candidate.**
 
 ## THE BLACKBOARD (how four stateless operators share one repo without collisions)
 Our docs ARE a file blackboard — treat them exactly like this:
@@ -54,10 +56,20 @@ Our docs ARE a file blackboard — treat them exactly like this:
    keeps it fixed (`Editor/Audit/*AuditRules.cs` pattern, one `report.Blocker(code, msg)` per rule).
 4. **Verify through CI, not hope.** You cannot run Unity. Push → CI compiles + runs EditMode tests
    (+ audit + APK on dispatched runs). CI red = warn Terry loudly, stop shipping C#.
-5. **⛔ THE CIRCUIT BREAKER: three consecutive CI-reds on the same task → STOP.** Write up what you
-   tried in HANDOFF, mark the board row `🔴 blocked`, and move to your next task or end the session.
-   Do not grind. A human (Terry) or another operator picks the lock. Target: you should need this
-   rarely; needing it is not failure — looping is.
+5. **⛔ THE CIRCUIT BREAKER covers every expensive gate, not only ordinary CI.** A failed recovery
+   PlayMode route or Golden Android route counts as red. After **two failed source candidates on the
+   same blocker**, enter `docs/recovery/RECOVERY_DEBUG_FAST_PATH.md`: pin the exact artifact, name the
+   owner/property, audit the lifecycle that runs after the attempted fix, and evidence-lock the next
+   bounded edit. A third candidate is allowed only when the latest artifact names a materially new
+   mechanism. Three total failures without that new evidence → STOP, write the blocker handoff, mark
+   the board row `🔴 blocked`, and hand the lock to another operator/Terry. Do not grind.
+   - **Evidence lock:** when the current handoff already contains an exact remaining failure and a
+     bounded `Recommended next edit`, the next source commit must implement it or document concrete
+     evidence disproving it. Do not invent a new bootstrap, retry loop, timing delay, reflection layer,
+     or architecture while that bounded edit remains untested.
+   - **Lifecycle rule:** before using enable/disable as a fix, inspect later setters, `Awake`, `OnEnable`,
+     restore, scene-load wiring, boot holds, and travel completion. A later owner that can reverse the
+     toggle means the toggle is not durable.
 6. **🎨 THE RICHNESS BAR (Terry, 2026-07-10).** Terry's device verdict: too much is landing at ~10%
    of its budget — boxy, skeletal, "one primitive per idea." The bar, for EVERY lane (creatures,
    gardens, vehicles, machines, props, tables, missions — everything):
@@ -96,6 +108,7 @@ No judgment calls here; that's the point. A chunk ships when ALL of these are tr
    can't, the previous session broke the contract — fix the board first, that IS your first task.
 3. Work in ONE-COMMIT bites: spec the change on the board row → tests → code → push → confirm CI.
    Prefer small and reversible; when a task feels bigger than ~2 commits, split it on the board.
+   For a slow recovery blocker, the second failed source candidate activates the evidence-lock fast path.
 4. Queue any 🔧/🎮 steps in the runbook. 5. Close: board updated, HANDOFF appended, PRIORITIES
    re-ordered if state changed.
 
