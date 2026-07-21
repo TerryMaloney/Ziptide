@@ -38,8 +38,10 @@
 - **★ COLOR LAW LOCKED:** machine-eyes — RILL amber (friend) / Warden white (immune) / rogue+
   Guild drone RED (hostile). Player tech CYAN vs hostile fire RED-ORANGE (friend/foe legibility).
   Wake-Guild emblem = anchor+cog (adopt as faction mark).
-- **Still open (drone set):** the PULSER weapon/projectile sheet (emitter + red-orange bolt +
-  muzzle-flash + impact). **Commit:** this one (1 image + doc updates + entry).
+- **✅ PULSER SHEET LANDED** (`concepts/bestiary_ch1/pulser_weapon_sheet_v1.png`) — 4-panel:
+  red-orange emitter coil · plasma-slug bolt + trail · muzzle-flash · molten wall-scorch.
+  Confirms enemy-red vs player-cyan; feeds F3.5 VFX (projectile/muzzle/impact) + drone emitter.
+  **The drone set is complete.** **Commit:** the pulser add (image + doc updates).
 
 ### 2026-07-21 (rb79) — Fable 5: 🏁 THE 30-CONCEPT WAVE IS COMPLETE — Tier 5 grammar + key art landed (concepts + docs)
 

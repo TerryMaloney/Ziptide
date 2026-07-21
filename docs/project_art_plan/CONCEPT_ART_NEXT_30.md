@@ -399,8 +399,12 @@ feral family + the disabled state + the Guild unit.*
 And **player tech = CYAN vs hostile fire = RED-ORANGE** (friend/foe legibility, VR-critical).
 **★ Wake-Guild emblem = anchor+cog** (maritime salvage + machinery) — adopt as the faction mark.
 
-**STILL OPEN (drone set): the PULSER weapon/projectile sheet** — the emitter muzzle + red-orange
-energy bolt in flight + muzzle-flash + wall impact (what they shoot at you). Prompt still stands.
+- **`fx_pulser_bolt`** (`pulser_weapon_sheet_v1`) — the drones' weapon, 4-panel: emitter muzzle
+  with a glowing **red-orange** coil · a compact plasma-slug bolt in flight with a short trail ·
+  the muzzle-flash burst · a molten-scorch wall impact. Confirms the friend/foe law (enemy
+  red-orange vs player cyan). **Feeds F3.5 VFX** (projectile + muzzle + impact particle sets) +
+  the drone emitter mesh. Non-lethal to the player in tone (knockback/scramble), lethal-looking
+  to sell threat. **DRONE SET COMPLETE.**
 
 ## Priority guidance (if the day runs short)
 
