@@ -227,9 +227,14 @@ Terry approved all eight on sight. Per-image rulings + adopted motifs:
 **Consistency wins:** nano banana held **Cal's gloved hand** (cyan wrist-light) across #6 and
 #9, and kept invented glyphs (glyph-law honored — no real script) in #2/#6/#9.
 
-**STILL OPEN — the one Tier-1 gap: #7 W004 establishing** (the wall of hundreds of dead
-screens, one flickering an alien sky). Re-run when convenient; everything else in Tier 1 is
-locked v1.
+**✅ #7 `w004_establishing_deadscreens_v1` LANDED (2026-07-21)** — a grid wall of dead convex
+CRT screens in metal bezels, ash-grey and dust-filmed, one cluster of 2–3 faintly showing an
+alien sky/planet (the only light), a long gutted control desk, draped cables, a corridor
+receding into black. Dread, exact. **TIER 1 IS 9/9 COMPLETE.**
+
+**→ Followed by `TIER1_PROP_SPECS.md`** — the super-specific prop bill (Terry's request): every
+prop in the 9 keepers named + dimensioned, shared salvage families specced once for reuse,
+hero/held props flagged for face-distance budget, accent-color discipline locked.
 
 ## Priority guidance (if the day runs short)
 

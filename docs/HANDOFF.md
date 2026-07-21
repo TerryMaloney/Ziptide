@@ -27,6 +27,24 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-21 (rb75) — Fable 5: ✅ TIER 1 COMPLETE (9/9) + the super-specific PROP BILL (concepts + docs)
+
+- **W004 #7 landed** (`concepts/w004_broadcast_tomb/w004_establishing_deadscreens_v1.png`) — the
+  dead-screen wall with the alien-sky cluster. **Tier 1 world concepts are 9/9.**
+- **Did — Terry's "make props super specific" request → `TIER1_PROP_SPECS.md`:** read all 9
+  keepers and itemized every prop with real-meter sizes, material family, wear, interaction verb
+  (static/grab/machine/hazard/hero), and build tier (A Forge / B Forge-plus / C hero). Key
+  structure: **§1 SHARED SALVAGE FAMILIES specced ONCE** (pipes, wheel-valves, dial-gauge
+  clusters, caged oil lantern, cable bundles, catwalk/railing, deck plates, crates, hand tools,
+  scaffold, the salvage console) — reuse-first, since ~70% of every interior is this kit; §2–§4
+  per-world specifics (spiral stair, ore conveyor, glyph wall, wind-baffle relay, glass bloom,
+  broadcast spine, dead-screen module, memory shard…); §5 the four HERO/held props for
+  face-distance budget; §6 accent-color discipline locked (amber=Architect, cyan=signal,
+  green=OK-only, red=danger-only, warm-amber=worklight — accents kept scarce). Inferences marked
+  *(inf)* per Terry's license. This is the pattern for every future world's prop bill.
+- **Heads-up:** next up is Tier 2 (the core loop — home hub, garden, automation, fabricator,
+  galaxy map). **Commit:** this one (W004 #7 image + prop-bill doc + doc updates + entry).
+
 ### 2026-07-21 (rb74) — Fable 5: 🌍 TIER 1 CONCEPTS — 8 of 9 landed, W002/W003/W004 now have faces (concepts + docs)
 
 - **Terry generated Tier 1 in one batch — 8 keepers, all approved on sight.** Stored in
