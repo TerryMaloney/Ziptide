@@ -175,6 +175,62 @@ body hole, the missing title shot).*
 
 ---
 
+## ✅ TIER 1 APPROVALS — 8 of 9 landed 2026-07-21 (one batch; only #7 remains)
+
+Keepers in `concepts/w002_dry_cistern/`, `w003_glass_shelf/`, `w004_broadcast_tomb/`.
+Terry approved all eight on sight. Per-image rulings + adopted motifs:
+
+**W002 · Dry Cistern**
+- **#1 `w002_establishing_v1`** — nailed it, and richer than the brief: the ancient waterworks
+  reads as a CATHEDRAL of arches, spiral stairs, and stacked catwalks, not a rough cave. The
+  single daylight shaft is the navigational landmark (README canon). **Adopted: the cistern is
+  MONUMENTAL/architectural** — verticality + Architect masonry, tiny headlamp figure for scale.
+- **#2 `w002_architect_reveal_v1`** — the old-under-new reveal, exact: crude bolted salvage
+  pipework/scaffolding over a colossal wall whose glyph channels glow **DEEP AMBER**. This
+  confirms a canon split (see the color note below).
+- **#3 `w002_pump_station_v1`** — pumps + gauges + warm amber work-lantern + the ore-bucket
+  conveyor climbing a shaft, plus a **cyan control screen** on the salvage console (the modern
+  tech layer reads cyan). The first-conveyor lesson made legible.
+
+**W003 · Glass Shelf**
+- **#4 `w003_establishing_awe_v1`** — the awe beat: purple-cyan glass mesas, two moons + the
+  big ringed planet, tiny figure, and the **zenith Pattern shimmer is present and correctly
+  SUBTLE** (a faint geometric lattice top-center — reads as "did I imagine that?"). Adopted
+  palette: pale blue-white + amethyst crystal.
+- **#5 `w003_windbaffle_relay_v1`** — salvage-built relay (crane, welders mid-work) with the
+  **wind hazard made VISIBLE as a sky vortex** of vapor/grit. **Adopted: wind is shown, not
+  just felt** — spiral streamers around the baffles (gameplay legibility + beauty).
+- **#6 `w003_glass_crystal_v1`** — the mystery resource: a **fractal-geometric** crystal held
+  at face distance beside a glyph-engraved host rock. The geometric (not organic) form quietly
+  rhymes with the Pattern — foreshadow that the glass "rings at one signal." Face-distance
+  held-item reference.
+
+**W004 · Broadcast Tomb**
+- **#8 `w004_broadcast_spine_v1`** — the spine machine with the **static hazard visible** as
+  electric arcs across its junctions, a levered control console, amber wall-lanterns, dark
+  catwalk ring. Ominous, exact.
+- **#9 `w004_memory_shard_transmission_v1`** — the standout: a first-person gloved hand holding
+  a geometric crystal orb that projects a **ghostly cyan face ringed by floating invented
+  glyphs** — the half-formed face in the static ("what's hidden is Cal's own voice"). **This
+  one image triple-serves:** W004's mystery object AND Tier-5 #25 (the Transmission) AND #29
+  (the memory-shard visual) — three prompts satisfied by one keeper.
+
+**★ COLOR-LANGUAGE FINDING (⚖ Terry to bless) — the batch clarified a clean split:**
+- **ANCIENT ARCHITECT stone/structure glyphs = DEEP AMBER** (the cistern wall #2; matches the
+  Architect-seal + entrainment amber already locked).
+- **THE SIGNAL / TRANSMISSION / TIDE / tuned crystal = CYAN** (the pump screen, the glass
+  crystal #6, the memory face #9; matches tide-cyan).
+- So: **amber = the makers' physical works; cyan = the living signal that runs through them.**
+  Warden STERILE-WHITE and lantern AMBER (human worklight) unchanged. This is emergent and
+  consistent across the whole batch — recommend locking it as canon.
+
+**Consistency wins:** nano banana held **Cal's gloved hand** (cyan wrist-light) across #6 and
+#9, and kept invented glyphs (glyph-law honored — no real script) in #2/#6/#9.
+
+**STILL OPEN — the one Tier-1 gap: #7 W004 establishing** (the wall of hundreds of dead
+screens, one flickering an alien sky). Re-run when convenient; everything else in Tier 1 is
+locked v1.
+
 ## Priority guidance (if the day runs short)
 
 - **Do Tier 1 first (1–9): the next three levels have NOTHING.** That alone moves the North

@@ -27,6 +27,27 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-21 (rb74) — Fable 5: 🌍 TIER 1 CONCEPTS — 8 of 9 landed, W002/W003/W004 now have faces (concepts + docs)
+
+- **Terry generated Tier 1 in one batch — 8 keepers, all approved on sight.** Stored in
+  `concepts/w002_dry_cistern/`, `w003_glass_shelf/`, `w004_broadcast_tomb/`. Approval records
+  + per-image rulings in `CONCEPT_ART_NEXT_30.md` (new ✅ section). The next three levels now
+  have establishing + hero + mystery/machine art; only **W004 #7 (dead-screens establishing)**
+  remains of Tier 1.
+- **Highlights:** W002 cistern reads MONUMENTAL (arched cathedral waterworks, not a cave —
+  adopted); the Architect reveal glows deep-amber glyph channels; the pump station shows the
+  ore conveyor + a cyan control screen. W003 nails the awe beat with a correctly-SUBTLE zenith
+  Pattern shimmer, and makes the wind hazard VISIBLE as a sky vortex (adopted). W004's memory-
+  shard/transmission keeper (`w004_memory_shard_transmission_v1`) is a triple-server — it also
+  satisfies Tier-5 #25 (Transmission) and #29 (memory shard): a ghostly cyan face ringed by
+  invented glyphs.
+- **★ COLOR-LANGUAGE FINDING (⚖ Terry to bless):** the batch surfaced a clean, consistent
+  split — **ancient Architect stone glyphs = DEEP AMBER; the signal/transmission/tide/tuned
+  crystal = CYAN** (amber = the makers' works, cyan = the living signal through them). Warden
+  white + lantern amber unchanged. Recommend locking. Also: nano banana held Cal's gloved hand
+  across the two held-item shots and honored glyph-law (invented glyphs, no real script).
+- **⚖ stack += the amber/cyan color split.** **Commit:** this one (8 images + doc updates + entry).
+
 ### 2026-07-21 (rb73) — Fable 5: 🎨 THE NEXT 30 CONCEPT ART — the Chapter-1 North Star wave (docs only; Terry generates 2D free)
 
 - **Terry clarified he's not at Tripo yet — he wants the top 30 2D CONCEPTS we still NEED.**
