@@ -27,6 +27,17 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-21 (rb82) — Fable 5: 🚀 SHIP MK2 prompt CORRECTION — "ship first, energy second"
+
+- **First MK2 render failed** (stored `concepts/ship_mk2_architect/_rejected/`): the prompt
+  over-weighted floating/transparent → an amorphous energy lozenge, not a flyable ship, salvage
+  pod detached. **Corrected design law added (`SHIP_MK2_ARCHITECT_UPGRADE.md` §7a):** AIRFRAME
+  FIRST (must silhouette-test as a ship — nose/canopy/wings/engines), ~70% solid alloy hull with
+  energy as ACCENT (channels inlaid in metal, not the body), an EXPLICIT solid graft hardpoint
+  for the arm + salvage plating, integrated nose canopy, warmth in the interior. Target =
+  desirable hot-rod/hyper-yacht, not an abstract advanced object. Corrected hyper-specific prompt
+  delivered to Terry. **Commit:** this one (rejected ref + doc §7a + entry).
+
 ### 2026-07-21 (rb81) — Fable 5: 🚀 SHIP MK2 — Cal's Architect-derived upgrade ship designed (doc + prompts)
 
 - **Terry wants a hyper-high-tech upgrade ship ~L3**, carrying over some Scrapper gear, to

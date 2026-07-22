@@ -113,6 +113,30 @@ module) → cheaper to build than a from-scratch second ship.
   advanced iridescent alien ship with floating glowing segments — the same pilot's gear visible on
   both — an upgrade reveal, cinematic, used-future to far-future, melancholy and hopeful."*
 
+## §7a — REVISION after first render (2026-07-21) — SHIP FIRST, energy second
+
+**First render failed** (`concepts/ship_mk2_architect/_rejected/`): the M1 prompt over-weighted
+"floating segments + semi-transparent hull" → nano banana produced an **amorphous translucent
+energy lozenge**, not a vehicle (no nose/wings/engines/thrust read), with the salvage pod
+floating DETACHED (nothing solid to graft to). Terry: "doesn't look like a ship… doesn't look
+possible to graft under that… I want something you'd actually want to FLY."
+
+**Corrected design law (prevents the blob class):**
+- **AIRFRAME FIRST.** It must pass the fill-it-black silhouette test AS A SHIP — sharp nose,
+  cockpit canopy, swept wings/fins, visible rear engines, clear thrust direction. Target the
+  *desirability* of a hot-rod fighter / alien hyper-yacht, not an abstract advanced object.
+- **~70% SOLID iridescent-alloy hull** you can touch and bolt to; energy is an ACCENT LAYER
+  (channels inlaid IN the metal, engine glow, a few hovering wingtip vanes) — NOT the body.
+  Demote hook #1: floating segments are a small wingtip/tail accent, never the whole ship.
+- **EXPLICIT GRAFT HARDPOINT:** a solid belly/flank structural rail carries the salvaged grabber
+  arm + a patch of welded salvage plating; the primary cockpit is an INTEGRATED canopy (you fly
+  from the nose), and the warm salvage carry-over lives in the INTERIOR (M4) + the arm/plating
+  outside. (The old scavenger cockpit pod can be repurposed as a side airlock/docking module,
+  not the whole silhouette.)
+- **Corrected hyper-specific prompt is the working M1** (in chat + regenerate list). Keep amber/
+  cyan frozen-current channels as the OURS tell; negative-prompt "translucent blob / amorphous
+  energy cloud."
+
 ## §8 — Build / tier notes
 
 - **Tier C hero** (the second most-stared-at object; face-distance interior). Floating segments
