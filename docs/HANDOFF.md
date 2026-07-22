@@ -27,6 +27,18 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-21 (rb87) — Fable 5: 📐 MK2 interior blueprint filed + required interior-zone list (bedroom gap flagged)
+
+- **Blueprint landed** (`concepts/ship_mk2_architect/mk2_interior_blueprint_v1.png`) — a 1:50
+  "Living Yacht VR Spec": lounge & galley, dorsal greenhouse, cockpit station, hull context,
+  invented-glyph KEY (glyph-law honored). Good walkable-layout reference.
+- **⚠ Terry flagged a gap:** the blueprint has **no dedicated bedroom / sleeping quarters
+  (bunks)** — living space yes, sleeping space no. Locked the **canonical MK2 interior zone list**
+  in §7e so it can't be lost: cockpit · crew lounge/galley · **BEDROOM/BUNKS (must add)** ·
+  greenhouse · drive-core · fabricator/workshop · airlock. Clarified `mk2_quarters_v1` is the
+  LOUNGE, not the bunks. Queued a bedroom concept prompt for when the generator frees up (MK1
+  counterpart = `ship_S5_quarters`). **Commit:** this one (blueprint image + §7e + entry).
+
 ### 2026-07-21 (rb86) — Fable 5: 🛋️ MK2 upgraded rooms approved (quarters/grow room/watering can) — skin system shown in art
 
 - **3 sleeker MK2 interiors landed** (`concepts/ship_mk2_architect/mk2_quarters_v1`,

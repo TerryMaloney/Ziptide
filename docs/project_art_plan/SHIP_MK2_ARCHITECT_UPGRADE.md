@@ -210,6 +210,34 @@ the same room/asset, two shells, fixed identity zones shared — exactly a skin 
 quarters as a skin" is now referenceable art. **⏳ PENDING:** a room/ship BLUEPRINT (Terry hit the
 generator's usage limit; will arrive later) — file it here when it lands.
 
+## §7e — ✅ INTERIOR BLUEPRINT + the required INTERIOR ZONE LIST (bedroom must be added)
+
+`mk2_interior_blueprint_v1.png` — a proper 1:50 "Living Yacht VR Spec" interior blueprint: top-view
+crew lounge & galley, dorsal greenhouse layout, cockpit station detail, hull context (manta wings,
+gill engines, detached vanes), human scale figures, and an invented-glyph KEY (glyph-law honored).
+Great walkable-layout reference.
+
+**⚠ GAP Terry flagged: the blueprint has NO dedicated bedroom / sleeping quarters (bunks).** It
+shows the living/lounge space but not the sleeping space. **REQUIRED so it can't get lost — the
+canonical MK2 walkable interior zone list (front → back):**
+1. **Cockpit** (fwd) — teardrop canopy, salvage console, drive-core through-floor. [`mk2_cockpit_v1`]
+2. **Crew lounge & galley** — the leather-sectional living space + kitchen nook. [`mk2_quarters_v1`
+   is this LOUNGE, not the bunks — naming clarified]
+3. **Bedroom / sleeping quarters (bunks)** — **MISSING, MUST ADD.** Ref: MK1 `ship_S5_quarters`
+   (4 bunk pods) → sleek MK2 bunk-pods. Concept prompt queued (below).
+4. **Dorsal greenhouse** — two hydroponic planters + centerpiece crop. [`mk2_growroom_v1`]
+5. **Drive-core** — central, through-floor (the key's chassis). [`mk2_drive_heart_v1`]
+6. **Fabricator / workshop** — the build station needs a home too (belly/work bay); ensure placed.
+7. **Airlock / boarding** — the grafted salvage cockpit-pod repurposed as the side airlock.
+
+**Queued prompt (when the generator frees up) — the missing MK2 bedroom:** *"Interior concept art
+of sleek private sleeping quarters inside a hyper-advanced grown-alloy alien ship: a row of
+enclosed bunk-pods with curved smart-glass privacy shutters and soft cyan frozen-current channel
+trim, personal cubbies holding Cal's keepsakes (a small bird trinket, taped photos, the oil
+lantern), a fold-down bunk with worn blankets, warm concealed lighting against cool grown-metal,
+cozy-advanced, lived-in, far-future meets used-future, first-person eye level, no text, no
+watermark."* (Its MK1 counterpart = the busted `ship_S5_quarters` bunk wall.)
+
 ## §8 — Build / tier notes
 
 - **Tier C hero** (the second most-stared-at object; face-distance interior). Floating segments
