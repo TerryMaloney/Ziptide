@@ -191,6 +191,25 @@ Scrapper rooms = the INITIAL quarters, sleeker MK2 rooms = the upgrade/later ski
 hull + rooms with separated material zones + fixed identity zones (grafted salvage gear, lantern,
 bird) so skins vary the advanced hull while Cal's soul stays constant.
 
+## §7d — ✅ MK2 UPGRADED ROOMS APPROVED (2026-07-21) + a live skin-system demo
+
+Three sleeker MK2 interiors landed (`concepts/ship_mk2_architect/`), the upgrade counterparts to
+the busted MK1 Scrapper rooms (which stay as the INITIAL quarters):
+- **`mk2_quarters_v1`** — the MK1 home-hub re-shelled: sleek grown-alloy + cyan channels + nebula
+  windows + node star-map holo, but it KEPT every Cal anchor (leather sectional, bird trinket,
+  kettle+thermos, books, taped notes). **This is the skin system proven in a picture:** fixed
+  identity zones constant, shell swapped → still unmistakably Cal's home. High-tech, not showroom.
+- **`mk2_growroom_v1`** — sleek grown-alloy hydroponic planters with cyan channel trim, lush
+  staged crops, the giant glowing rare crop centerpiece, the carried-over brass watering can on
+  the rack, canopy sky. *(Excluded: the "VR 5°" HUD text = generation noise, as the MK1 garden.)*
+- **`mk2_watering_can_v1`** — sleek iridescent grown crystal-metal, cyan channels, translucent
+  reservoir showing the water inside, rose head. The advanced evolution of the brass can; hero tool.
+
+**These are the first concrete SKIN PAIRS** (MK1 busted ↔ MK2 sleek) for `SKIN_AND_VARIANT_SYSTEM.md`:
+the same room/asset, two shells, fixed identity zones shared — exactly a skin swap. Terry's "new
+quarters as a skin" is now referenceable art. **⏳ PENDING:** a room/ship BLUEPRINT (Terry hit the
+generator's usage limit; will arrive later) — file it here when it lands.
+
 ## §8 — Build / tier notes
 
 - **Tier C hero** (the second most-stared-at object; face-distance interior). Floating segments

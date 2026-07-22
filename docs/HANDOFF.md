@@ -27,6 +27,19 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-21 (rb86) — Fable 5: 🛋️ MK2 upgraded rooms approved (quarters/grow room/watering can) — skin system shown in art
+
+- **3 sleeker MK2 interiors landed** (`concepts/ship_mk2_architect/mk2_quarters_v1`,
+  `mk2_growroom_v1`, `mk2_watering_can_v1`) — the upgrade counterparts to the busted MK1 Scrapper
+  rooms (which stay as the INITIAL quarters). Doc §7d.
+- **`mk2_quarters_v1` is the skin system PROVEN in a picture:** the MK1 home-hub re-shelled in
+  sleek grown-alloy + cyan channels, but it KEPT every Cal identity anchor (leather sectional,
+  bird trinket, kettle, books, node star-map holo) → still unmistakably Cal's home. These MK1↔MK2
+  room pairs are the first concrete skin-swap examples for `SKIN_AND_VARIANT_SYSTEM.md`.
+- Excluded: the grow-room "VR 5°" HUD text (generation noise). **⏳ Pending:** a room/ship
+  BLUEPRINT (Terry hit the generator usage limit — arrives later). **Commit:** this one (3 images
+  + doc §7d + entry).
+
 ### 2026-07-21 (rb85) — Fable 5: 🚀 MK2 full view set approved + 🎨 SKIN & VARIANT SYSTEM (how to make 500 Cals)
 
 - **Full MK2 view set landed + stored** (`concepts/ship_mk2_architect/`, 7 views — hero, scaled
