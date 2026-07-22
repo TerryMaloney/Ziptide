@@ -62,6 +62,20 @@ child; the gameplay object doesn't change. Per asset class:
   AI mesh from breaking cohesion) · LOD ladder · booth turnaround + your verdict vs. the
   concept sheet. All of that is post-checkpoint code/editor work; today is generation only.
 
+## §2b — AUTHOR FOR VARIANCE (Terry's "500 Cals / reskin guns on a whim" — the build-once rule)
+
+**Full method: `SKIN_AND_VARIANT_SYSTEM.md`.** The short version that binds THIS month: you build
+each character + hero weapon + the MK2 ship + rooms as a mesh **ONCE**, and all the color/design
+variety comes from a cheap SKIN layer afterward — NEVER regenerate geometry for a variant. So when
+generating/cleaning a skinnable asset, set it up for skins up front:
+- **one clean UV layout · SEPARATED material zones** (Cal = suit/gloves/straps/visor/accents; gun =
+  body/grip/barrel/emissive — so a tint can hit just one region) · a **FIXED-zone list** (identity
+  anchors never reskinned: bird trinket, red laces, tally guard; the ship's grafted salvage) ·
+  **attach points** for modular swap-parts · a neutral mid-grey base texture.
+- Variants then = `SkinDefinition`s (parametric tints = free/infinite · authored skin textures =
+  minutes each · modular parts = combinatorial). **Don't spend Tripo credits on variants** — one
+  clean base per asset; the skin system makes the 500. Quarters/ship/room skins use the same system.
+
 ## §3 — GENERATION WORKFLOW (get the most out of every credit)
 
 - **Image-to-3D is the primary mode** — our approved concepts ARE the prompts. Feed ONE

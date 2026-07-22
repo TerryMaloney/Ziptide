@@ -27,6 +27,23 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-21 (rb85) — Fable 5: 🚀 MK2 full view set approved + 🎨 SKIN & VARIANT SYSTEM (how to make 500 Cals)
+
+- **Full MK2 view set landed + stored** (`concepts/ship_mk2_architect/`, 7 views — hero, scaled
+  turnaround, reconfigure bloom, cockpit, drive-heart [key S-seam matches the artifact key],
+  compare, in-flight). MK2 = the second hero ship, done. Doc §7c.
+- **Answered Terry's "500 Cals / reskin guns on a whim" → `SKIN_AND_VARIANT_SYSTEM.md`:** the
+  one insight = separate GEOMETRY (build ONCE via Tripo) from SKIN (cheap/infinite). Three layers:
+  parametric tint (free, runtime, infinite) · authored skin texture sets (minutes each) · modular
+  swap-parts (combinatorial). Lives as `SkinDefinition` (string-ID, applied via ForgeVisualApplier)
+  — fits our data-driven architecture. **Author-for-variance rule added to `TRIPO_MONTH_PLAN.md`
+  §2b:** build each skinnable asset once with clean UV + SEPARATED material zones + fixed identity
+  zones (bird/red-laces/tally; ship's salvage graft) + attach points; DON'T spend Tripo credits on
+  variants. Character/weapon/ship/ROOM skins all one system → **"new quarters as a skin" confirmed.**
+- **Next:** delivered prompts for the UPGRADED (MK2, sleeker) quarters + grow room + watering can
+  (the busted MK1 versions stay as initial quarters). **Commit:** this one (6 MK2 images + 3 docs
+  + entry).
+
 ### 2026-07-21 (rb84) — Fable 5: 🚀 SHIP MK2 scale revision — a multi-deck LIVING YACHT (concept + doc)
 
 - **Terry scaled the MK2 UP** (`concepts/ship_mk2_architect/mk2_turnaround_scale_v1.png`): a

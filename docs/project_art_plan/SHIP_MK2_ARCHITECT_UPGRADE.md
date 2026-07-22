@@ -174,6 +174,23 @@ heavier vessel **turns/handles slower = VR comfort** (no snap-fast jet turns). T
 not a tiny hot-rod but a **hyper-advanced living yacht** — real mass, still sleek and desirable.
 The MK1 hero (`mk2_hero_v1`) stays valid for the LOOK; scale/interior now per the turnaround.
 
+## §7c — ✅ FULL MK2 VIEW SET APPROVED (2026-07-21, `concepts/ship_mk2_architect/`)
+
+All seven views landed and cohere as ONE vessel: `mk2_hero_v1` + `mk2_hero_context_v1` (scaled
+dock hero) · `mk2_turnaround_scale_v1` (4-view, walkable multi-deck) · `mk2_reconfigure_v1`
+(flight vs work-mode bloom — panels split along circulatory seams, garden + drive-core exposed,
+grabber arm deployed) · `mk2_cockpit_v1` (grown channels + amber holo glyphs + Cal's salvage
+module + lantern + bird + drive-core underfoot) · `mk2_drive_heart_v1` (**the key's S-seam matches
+the artifact key exactly** — canon lock; cyan circulatory veins into an amber core) · `mk2_compare_v1`
+(Scrapper vs MK2, shared arm+lantern) · `mk2_inflight_v1` (banking over the Moss, garden visible
+through the dorsal canopy). The MK2 is the second hero ship, done.
+
+**Skinnable / skin-platform (Terry):** the MK2 is a SKIN PLATFORM — `SKIN_AND_VARIANT_SYSTEM.md`.
+**"New quarters as a skin"** confirmed: the ship's rooms are skinnable assets; the busted MK1
+Scrapper rooms = the INITIAL quarters, sleeker MK2 rooms = the upgrade/later skins. Author the
+hull + rooms with separated material zones + fixed identity zones (grafted salvage gear, lantern,
+bird) so skins vary the advanced hull while Cal's soul stays constant.
+
 ## §8 — Build / tier notes
 
 - **Tier C hero** (the second most-stared-at object; face-distance interior). Floating segments
