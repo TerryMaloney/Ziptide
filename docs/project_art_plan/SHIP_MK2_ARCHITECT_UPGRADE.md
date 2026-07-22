@@ -83,13 +83,20 @@ module) → cheaper to build than a from-scratch second ship.
 
 ## §7 — CONCEPT PROMPTS (nano banana; append "no text, no watermark")
 
-- **M1 · Hero exterior reveal** — *"Concept art of a hyper-advanced alien starship moored at a
-  dock over dark water at dawn, an iridescent semi-transparent crystalline hull whose armor
-  plates float apart held by glowing force-fields, intricate frozen-current channels glowing
-  cyan and amber across its surface, a visible pulsing energy core seen through the hull, and —
-  grafted onto it — a salvaged industrial grabber arm and a chunky welded cockpit pod from an
-  old scavenger ship, advanced but lived-in, awe, used-future 70s sci-fi meets far-future tech,
-  NOT rusty, NOT blank."*
+- **M1 · Hero exterior reveal (v3 — scaled, matches `mk2_turnaround_scale_v1`):** *"Concept art
+  of a substantial multi-deck alien starship moored at a salvage dock at dawn, side three-quarter
+  view, a lone human figure on the dock for scale showing it is large — big enough to walk
+  through. Unmistakably a SHIP: a long iridescent oil-slick purple-blue grown-metal fuselage with
+  a sharp pointed nose, a forward teardrop bubble cockpit canopy, and a long dorsal greenhouse
+  canopy amidships revealing an interior garden of green growing rows and a small crew cabin.
+  Swept manta wings with detached wingtip vanes floating on faint force-fields, twin heavy rear
+  gill-intake nacelles glowing with contained cyan plasma. The solid grown-alloy hull is inlaid
+  with fine cyan frozen-current light-channels flowing like veins. A salvaged industrial grabber
+  arm and a patch of mismatched welded scavenger plating are bolted to a belly hardpoint. Rests
+  on slim folding skids. A heavy, substantial hyper-advanced LIVING YACHT — real mass, not a tiny
+  jet — elegant and desirable, far-future biomechanical tech with a used-future soul. NOT a
+  translucent blob — a solid readable multi-deck ship. Cinematic, grounded realism."* (v1 blob
+  render rejected; v2 hero `mk2_hero_v1` locked the look; v3 scales it up.)
 - **M2 · Silhouette + ortho sheet** — *"Design sheet, 4 orthographic views (front, side, rear,
   top) of a hyper-advanced alien starship with floating force-field-held hull segments,
   crystalline iridescent plating, glowing cyan and amber channel-work, a grafted salvage grabber
@@ -157,6 +164,15 @@ other view must match.** Established features (repeat them in all MK2 prompts fo
 - **Graft:** an amidships belly hardpoint — salvaged grabber arm + a patch of mismatched welded
   scavenger plating (the human graft on the grown hull). Keep this in every exterior.
 - **Stance:** slim folding skids/gear; grounded at a salvage dock.
+
+**SCALE REVISION (2026-07-21, `mk2_turnaround_scale_v1.png` — Terry):** the ship is **bigger than
+a jet — a substantial MULTI-DECK craft you can walk through** (⚖ ~25–30 m). The turnaround shows
+the interior: **cockpit forward · crew cabin · a GREENHOUSE GARDEN strip visible through a long
+dorsal canopy** (green growing rows seen through the hull — adopt this as a signature feature).
+Rationale: it must physically house the living systems (quarters, garden, fabricator), AND a
+heavier vessel **turns/handles slower = VR comfort** (no snap-fast jet turns). Target updated:
+not a tiny hot-rod but a **hyper-advanced living yacht** — real mass, still sleek and desirable.
+The MK1 hero (`mk2_hero_v1`) stays valid for the LOOK; scale/interior now per the turnaround.
 
 ## §8 — Build / tier notes
 

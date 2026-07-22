@@ -27,6 +27,17 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-21 (rb84) — Fable 5: 🚀 SHIP MK2 scale revision — a multi-deck LIVING YACHT (concept + doc)
+
+- **Terry scaled the MK2 UP** (`concepts/ship_mk2_architect/mk2_turnaround_scale_v1.png`): a
+  substantial **multi-deck ship you can walk through** (⚖ ~25–30 m) — cockpit + crew cabin + a
+  **greenhouse garden strip visible through a long dorsal canopy** (adopted signature). Rationale:
+  it must house the living systems (quarters/garden/fabricator), and a heavier ship **turns
+  slower = VR comfort**. Target updated from tiny hot-rod → **hyper-advanced living yacht** (real
+  mass, still sleek/desirable). Doc §7b scale-revision + M1 prompt rewritten to v3 (scaled).
+- The v2 look canon (`mk2_hero_v1`, biomechanical grown-alloy) still holds; only scale/interior
+  changed. M2–M7 prompts unchanged. **Commit:** this one (turnaround image + doc updates + entry).
+
 ### 2026-07-21 (rb83) — Fable 5: 🚀 SHIP MK2 hero APPROVED + design canon locked (concept + doc §7b)
 
 - **The corrected "ship-first" prompt landed** (`concepts/ship_mk2_architect/mk2_hero_v1.png`):
