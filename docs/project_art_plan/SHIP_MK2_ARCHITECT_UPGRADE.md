@@ -137,6 +137,27 @@ possible to graft under that… I want something you'd actually want to FLY."
   cyan frozen-current channels as the OURS tell; negative-prompt "translucent blob / amorphous
   energy cloud."
 
+## §7b — ✅ HERO APPROVED (`concepts/ship_mk2_architect/mk2_hero_v1.png`) — the canonical design
+
+The corrected prompt landed: a desirable, readable SHIP. **This is now the design canon every
+other view must match.** Established features (repeat them in all MK2 prompts for consistency):
+- **Silhouette:** long sleek aerodynamic fuselage, sharp pointed nose, forward **teardrop bubble
+  canopy**, swept manta/delta wings, twin rear engine nacelles. Reads as a hot-rod / hyper-yacht.
+- **Material:** iridescent oil-slick **purple-blue-teal alloy**, smooth faceted panels — subtly
+  **GROWN / biomechanical** (grown crystal-metal over a machined skeleton; abalone/beetle-
+  carapace sheen), NOT riveted, NOT ceramic-blank. *This biomechanical-but-sleek read is the
+  MK2's signature — the Giger lesson applied elegantly, and the through-line to the gate/key.*
+- **Channels:** fine **frozen-current channels of liquid CYAN light** inlaid under a skin-thin
+  layer, flowing like a **circulatory system** toward the engines. (Amber welcome at structural
+  nodes — v1 came cyan-dominant; fine.)
+- **Engines:** twin nacelles with **gill-like intakes** + a contained **cyan plasma bloom** and
+  heat-shimmer exhaust (not open flame).
+- **Wings:** **wingtip vanes that float detached on force-fields**, drifting/adjusting like a
+  manta's tips — the one advanced-float tell, kept as an ACCENT (the fix held).
+- **Graft:** an amidships belly hardpoint — salvaged grabber arm + a patch of mismatched welded
+  scavenger plating (the human graft on the grown hull). Keep this in every exterior.
+- **Stance:** slim folding skids/gear; grounded at a salvage dock.
+
 ## §8 — Build / tier notes
 
 - **Tier C hero** (the second most-stared-at object; face-distance interior). Floating segments

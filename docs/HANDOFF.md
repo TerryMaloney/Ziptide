@@ -27,6 +27,19 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-21 (rb83) — Fable 5: 🚀 SHIP MK2 hero APPROVED + design canon locked (concept + doc §7b)
+
+- **The corrected "ship-first" prompt landed** (`concepts/ship_mk2_architect/mk2_hero_v1.png`):
+  a desirable, readable ship — sleek iridescent grown-alloy fuselage, teardrop bubble canopy,
+  cyan circulatory frozen-current channels, twin gill-intake plasma nacelles, floating wingtip
+  vanes as accents (fix held), amidships salvage graft patch, folding skids. Design canon
+  recorded in `SHIP_MK2_ARCHITECT_UPGRADE.md` §7b — **signature = biomechanical-but-sleek grown
+  Architect tech** (the elegant Giger lesson; through-line to gate/key). All other MK2 views must
+  match it.
+- **Next:** delivered hyper-detailed, consistent prompts for the remaining MK2 views (ortho,
+  reconfigure/bloom, cockpit, drive-heart, compare, in-flight) at xenomorph-level specificity.
+  **Commit:** this one (hero image + doc §7b + entry).
+
 ### 2026-07-21 (rb82) — Fable 5: 🚀 SHIP MK2 prompt CORRECTION — "ship first, energy second"
 
 - **First MK2 render failed** (stored `concepts/ship_mk2_architect/_rejected/`): the prompt
