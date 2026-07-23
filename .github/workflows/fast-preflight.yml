@@ -45,6 +45,9 @@ jobs:
       - name: MK2 room manifest gate
         run: python3 tools/mk2_room_manifest_gate.py
 
+      - name: Gate lifecycle gate
+        run: python3 tools/gate_lifecycle_gate.py
+
       - name: Unified offline readiness report
         run: |
           python3 tools/offline_readiness_report.py \
