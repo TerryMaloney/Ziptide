@@ -6,6 +6,11 @@ on:
       - main
       - 'claude/**'
       - terry-local-wip
+    paths-ignore:
+      - docs/CI_VERDICT.md
+      - docs/recovery/generated/**
+      - docs/HANDOFF.md
+      - docs/handoff_queue/**
   pull_request:
     branches:
       - main
@@ -32,6 +37,9 @@ jobs:
 
       - name: Factory governance gate
         run: python3 tools/factory_governance_gate.py
+
+      - name: Coordination-only path policy gate
+        run: python3 tools/coordination_path_policy.py --check
 
       - name: Third-party licensing gate
         run: |
