@@ -51,6 +51,9 @@ jobs:
       - name: Space POI catalog gate
         run: python3 tools/space_poi_catalog_gate.py
 
+      - name: Launch transition gate
+        run: python3 tools/launch_transition_gate.py
+
       - name: Unified offline readiness report
         run: |
           python3 tools/offline_readiness_report.py \
