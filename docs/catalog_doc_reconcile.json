@@ -33,35 +33,42 @@
       "doc": "docs/design/SPACE_MISSION_TYPES.md",
       "owner": "rb",
       "lastReconciled": "2026-07-23",
-      "note": "The 6 Moss-orbit POI families that give missions destinations (lives in the mission loop doc)."
+      "note": "The 6 Moss-orbit POI families that give missions destinations."
+    },
+    {
+      "catalog": "docs/design/space_poi_spawn_catalog.json",
+      "doc": "docs/design/SPACE_POI_SPAWN_PACKETS.md",
+      "owner": "gpt",
+      "lastReconciled": "2026-07-23",
+      "note": "Deterministic placement packets, caps, seeds, sockets, and exclusions for the six Moss POI families; runtime spawning remains unauthorized."
     },
     {
       "catalog": "docs/project_art_plan/concept_intake_manifest.json",
       "doc": "docs/project_art_plan/CONCEPT_TO_BUILT_PIPELINE.md",
       "owner": "gpt",
       "lastReconciled": "2026-07-23",
-      "note": "Approved concept keepers -> intake-ready build contracts. Owner (GPT) to confirm doc pairing + add back-link."
+      "note": "Approved concept keepers -> intake-ready build contracts; prose back-link present."
     },
     {
       "catalog": "docs/project_art_plan/gate_lifecycle_catalog.json",
       "doc": "docs/design/ZIPTIDE_GATE_VISUAL_DESIGN.md",
       "owner": "gpt",
       "lastReconciled": "2026-07-23",
-      "note": "7 gate lifecycle states + comfort/ownership rules. Owner (GPT) to add back-link."
+      "note": "7 gate lifecycle states + comfort/ownership rules; prose back-link present."
     },
     {
       "catalog": "docs/project_art_plan/mk2_room_socket_manifest.json",
       "doc": "docs/project_art_plan/SHIP_MK2_ARCHITECT_UPGRADE.md",
       "owner": "gpt",
       "lastReconciled": "2026-07-23",
-      "note": "MK2 room order + sockets + identity/skinnable zones. Owner (GPT) to add back-link."
+      "note": "MK2 room order + sockets + identity/skinnable zones; prose back-link present."
     },
     {
       "catalog": "docs/project_art_plan/rill_visual_state_catalog.json",
       "doc": "docs/project_art_plan/TIER_C_CONCEPT_QUEUE.md",
       "owner": "gpt",
       "lastReconciled": "2026-07-23",
-      "note": "9 RillMemoryState visual profiles. Owner (GPT) to confirm doc pairing (RILL cast) + add back-link."
+      "note": "9 RillMemoryState visual profiles; prose back-link present."
     }
   ]
 }
