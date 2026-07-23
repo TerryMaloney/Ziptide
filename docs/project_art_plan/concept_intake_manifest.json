@@ -5,13 +5,15 @@
       "id": "artifact_key",
       "displayName": "Artifact Key",
       "tier": "B",
-      "status": "spec-ready-concept-unresolved",
+      "status": "intake-ready",
       "specPath": "docs/project_art_plan/DEVICE_GATE_PRODUCTION_PACK.md",
       "sourceDocs": [
         "docs/project_art_plan/CONCEPT_TO_BUILT_PIPELINE.md",
+        "docs/project_art_plan/TIER_C_CONCEPT_QUEUE.md",
         "docs/project_art_plan/CONCEPT_ART_NEXT_30.md"
       ],
       "conceptPaths": [
+        "concepts/artifact_key/key_two_half_states_v1.png",
         "concepts/grammar_keyart/pattern_morphogenesis_sheet_v1.png",
         "concepts/grammar_keyart/coupler_ship_heart_v1.png"
       ],
@@ -22,7 +24,7 @@
         "## Interaction and collider envelope",
         "## Build acceptance"
       ],
-      "note": "The family references are registered, but the exact standalone keeper filename must be confirmed before status advances to intake-ready."
+      "note": "Standalone keeper confirmed: rounded palm tablet, stepped S-curve interlock, separated / within-two-inches arcing / joined flowing states. Runtime build remains post-headset-gate."
     },
     {
       "id": "rill_orb",
