@@ -1,13 +1,13 @@
 # Recovery Golden Android Observation
 
-- Tested SHA: `4cd43f3819e4a2239591621eaffa9720254f88fe`
-- Workflow run: `30049010329`
+- Tested SHA: `ce6d8f7111458d8b8c8d62b4b373fa23a177a335`
+- Workflow run: `30051602439`
 - Attempt: `1`
 - Build/verification result: **success**
 - Unity: 2022.3.62f3
 - Build method: `Ziptide.Build.RecoveryBuildAndroid.PatchScenesThenGoldenAPK`
 - Compile define: `ZIPTIDE_RECOVERY_GOLDEN`
 - Locked scenes: `_Boot`, `W000_DriftIn`, `ToxicCity`
-- Candidate artifact: `recovery-golden-apk-4cd43f3819e4a2239591621eaffa9720254f88fe`
-- Audit artifact: `recovery-golden-audit-4cd43f3819e4a2239591621eaffa9720254f88fe`
+- Candidate artifact: `recovery-golden-apk-ce6d8f7111458d8b8c8d62b4b373fa23a177a335`
+- Audit artifact: `recovery-golden-audit-ce6d8f7111458d8b8c8d62b4b373fa23a177a335`
 - Improvement evidence: `world_improvement_compile.json` independently verified for W000/ToxicCity Round 3
