@@ -27,6 +27,25 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-23 (rb99) — Fable 5 (C-lane): STATE OF THE GAME — whole-game built/not-built rollup for Terry (planning only, zero code)
+
+- **Did:** Terry asked for the actual whole-game picture (art, mechanics, content — built vs not)
+  and best steps. Ran a hard-count content census against the branch + reconciled EXCELLENCE_MAP /
+  GAME_PLAN / checklist / benchmark runs into **`docs/STATE_OF_THE_GAME.md`** — the plain-language
+  per-pillar scoreboard. Census headlines: 13 playable worlds (24 scenes; Golden build = 3) · 8
+  weapons · 7 creatures (only 2 with Forge bodies) · 67 job assets · 71 RILL lines (text only,
+  0 VO) · 88 flags · 42 world packs · 1 committed music track · ~zero imported art (2 materials —
+  everything procedural) · 0 ShipDefinition assets despite full flight/space-combat runtime ·
+  **`docs/worldspecs/` does not exist — the WorldSpec compile pipeline has ZERO spec inputs** ·
+  222 test files / 25 audit rule sets / 31 py gates. Verdict: systems-complete-ish, content-thin,
+  presentation-early; three walls (device M0 → content M1–M5 → presentation M6+shell).
+- **Next:** the doc's §3 order — green CI (last verdict RED via cancelled run) → M0 headset proof →
+  GPT Phase-1 queue → M1 story-delivery remainder → art+audio programs parallel → M4 ship →
+  shell lane background → M5 scale last. ⚖ items consolidated in §4.
+- **Heads-up:** repo carries ~16 Photon/XRI demo scenes + demo art as dead weight (none in build
+  settings — cleanup candidate, low priority). W001 scene slot is empty (ToxicCity stands in).
+- **Commit:** this one (docs only: STATE_OF_THE_GAME + this entry).
+
 ### 2026-07-23 (rb98) — Fable 5 (C-lane): FINISHED-GAME BENCHMARK third run — audience-certification layer + fresh verdicts (planning only, zero code)
 
 - **Did:** Terry's multi-model benchmark study, third run (after hwr33's canonical + rb56's
