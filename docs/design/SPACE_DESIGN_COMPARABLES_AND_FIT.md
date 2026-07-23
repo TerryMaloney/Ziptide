@@ -78,16 +78,15 @@ Ziptide's space = a deliberate blend, all comfort-capped:
   the teaching level. *NMS seated posture + Everspace/Elite autopilot-to-POI; huge for all-ages +
   accessibility.*
 
-## §3 — THE ⚖ SCOPE DECISIONS (my recommendation, for Terry to bless)
+## §3 — THE ⚖ SCOPE DECISIONS — ✅ LOCKED BY TERRY 2026-07-21
 
-1. **Arcade flight, NOT Newtonian** — comfort + all-ages. ✅ recommend.
-2. **No EVA in v1** — you stay in the ship; salvage is tractor-from-cockpit. Keeps scope + comfort;
-   revisit EVA much later. ✅ recommend.
-3. **No punitive fuel** — recharging drive/boost only. ✅ recommend.
-4. **Soft-lock combat, not free-aim dogfighting** — comfort + agency balance. ✅ recommend.
-5. **HOTAS optional, virtual-grab base** — never require a peripheral. ✅ recommend.
-6. **Combat is optional spice** — the game is beatable exploration/salvage-forward; a pacifist can
-   largely avoid fights (matches the ground "disable, don't kill / pacifists still finish"). ✅ recommend.
+1. **Arcade flight, NOT Newtonian** — comfort + all-ages. ✅ LOCKED.
+2. **No EVA in v1** — you stay in the ship; salvage is tractor-from-cockpit. Revisit EVA much later. ✅ LOCKED.
+3. **No punitive fuel** — recharging drive/boost only. ✅ LOCKED.
+4. **Soft-lock combat, not free-aim dogfighting** — comfort + agency. ✅ LOCKED.
+5. **HOTAS optional, virtual-grab base** — never require a peripheral. ✅ LOCKED.
+6. **Combat is optional spice** — beatable exploration/salvage-forward; a pacifist can largely avoid
+   fights (matches the ground "disable, don't kill / pacifists still finish"). ✅ LOCKED.
 
 ## §4 — HOW THIS CLOSES THE GAP AUDIT (the failed columns)
 

@@ -27,6 +27,25 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-21 (rb95) — Fable 5: 🎯 SPACE MISSION TYPES (from the story bible) + scope ⚖ LOCKED
+
+- **Terry LOCKED the 6 space scope ⚖** (arcade-not-Newtonian · no-EVA-v1 · no-punitive-fuel ·
+  soft-lock · HOTAS-optional · combat-optional-spice) → marked ✅ in `SPACE_DESIGN_COMPARABLES_AND_FIT`.
+- **Designed the mission-type set FROM the story bible → `docs/design/SPACE_MISSION_TYPES.md`.** Key
+  realization: **the bible already wrote the backbone** — abandoned wrecks = "prior breakout attempts,
+  each with a log + a part you need + a clue the Shell's been tested before" (§5/§7); passage credits
+  = the leash; repairing relays raises the Signal meter (wakes the universe). So space missions ARE
+  the bible's devices in flight, not filler.
+- **10 types:** CORE (salvage run · derelict discovery/lore-dive · ferry/passage · distress/rescue ·
+  relay-repair[raises Signal]) · STORY-GATED (Warden evasion + W037 recognition · escort [Guild/Nine] ·
+  Sable raid/faction op [Ch.4 ally-or-oppose] · gate-run to new system) · UNIQUE (THE APPROACH:
+  Lagrange cloaked ship → Earth, endgame §8b). Progression map ties each to the chapter ladder +
+  factions (Guild/Sable/Wardens/Architects) + Signal. **Pacifist-viable** (all CORE completable
+  without firing; only Sable-raid is combat-forward, and opposing it is valid) — matches ground canon.
+- **Reuses `JobDefinition`+steps** (+ new space steps: TractorSalvage/ScanDerelict/EscortTo/
+  EvadePatrol/RepairRelay/AnswerBeacon); rewards via `ProfileEconomy`; flags/Signal as today → a
+  space mission is data + a few steps (World-Compiler-authorable). **Commit:** this one.
+
 ### 2026-07-21 (rb94) — Fable 5: 🔭 SPACE DESIGN — comparables researched, what fits ZIPTIDE (resolves the gap ⚖)
 
 - **Terry: look up what other games do, pick what fits.** Researched comparables (web) →
