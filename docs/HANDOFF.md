@@ -58,7 +58,7 @@
   release build-flag audit; noted in VRC_TEST_PLAN gaps context. Rotation of the App ID is
   Terry's call, not urgent (App IDs are client-visible by design).
 - **Commit:** this one (docs/licensing only: decision doc + evidence + manifest + CREDITS + this entry).
-### 2026-07-23 (rb101) — Fable 5 (Reasonbox): 🔊 AUDIO PRODUCTION PROGRAM delivered (assigned lane, docs only) + benchmark-run closure note
+### 2026-07-23 (rb102) — Fable 5 (Reasonbox): 🔊 AUDIO PRODUCTION PROGRAM delivered (assigned lane, docs only) + benchmark-run closure note
 - **Did (the gpt-first-hour assigned lane, inside the boundary — only new `docs/audio/**` files):**
   ① **`docs/audio/AUDIO_PRODUCTION_MASTER_PLAN.md`** — source-verified existing-vs-missing
   inventory (AudioDirector music + AudioProfile · the AmbienceDirector/Core procedural beds with
