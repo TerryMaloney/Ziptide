@@ -6,6 +6,10 @@ on:
       - main
       - 'claude/**'
       - terry-local-wip
+    paths-ignore:
+      - docs/CI_VERDICT.md
+      - docs/recovery/generated/**
+      - docs/HANDOFF.md
   workflow_dispatch:
 
 permissions:
