@@ -27,6 +27,38 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-23 (rb101) — Fable 5 (C-lane/T-Dog): ✅ PHOTON PROVENANCE + RELEASE-LICENSE DECISION delivered (docs/licensing lane, per gpt-first-hour follow-on)
+
+- **Did (evidence-first, nothing inferred from folder names):** identified the exact product from
+  repo evidence — **PUN 2.55** (`PhotonNetwork.cs:67 PunVersion` + changelog v2.55 3-Jul-2026,
+  Realtime/Chat API 4.1.8.21), imported by commit `21f117c1` (Terry, 2026-07-06). Verified
+  product/licensing facts against OFFICIAL Photon sources (3 fetches, dated): PUN = ongoing-
+  support mode, Fusion = successor; **the SDK license text ships as license.txt inside packages
+  and is NOT in our tree** (only a ReordableList LICENSE + demo OpenSans Apache exist) → license/
+  redistribution/attribution remain unprovable from the repo. Key build facts: **ZIPTIDE_PHOTON +
+  PUN defines are ON for Android/Standalone → Photon + the ZiptideNet adapter compile into dev
+  builds TODAY**, and the committed **live AppIdRealtime** in `PhotonServerSettings.asset`
+  (Resources/) ships in every build regardless of defines. Demos/.chm referenced by nothing.
+  Deliverables: **`docs/licensing/PHOTON_RELEASE_DECISION.md`** (findings, dependency map,
+  recommendation: KEEP gated · STRIP demos at release · defines OFF for release until online
+  ships ⚖ · App-ID rotation check ⚖ · PUN-vs-Fusion decided at M7b, not now) +
+  **`docs/licensing/evidence/photon/EVIDENCE.md`** (durable evidence, every claim pathed/dated) +
+  manifest/CREDITS updated to the PROVEN degree only (exactVersion + sourceRecord resolved;
+  licenseId/evidence/obligations stay verification-required; **hold-verification preserved** —
+  nothing approved). Missing artifacts named precisely: the PUN 2.55 package license.txt +
+  Terry's one-line acquisition record (channel, FREE vs PLUS).
+- **Verified:** `third_party_license_gate.py` = 0 blockers / 2 expected warnings (research
+  pending + hold); full tools/tests suite = **236 OK**. No Photon files deleted, no packages or
+  multiplayer runtime touched, no distribution approval granted.
+- **Next:** ⚖ Terry (two minutes): state the acquisition channel + drop the package license.txt
+  into `docs/licensing/evidence/photon/` — that unlocks the licenseId/obligations fields.
+  Release-hygiene lane later executes the defines-off + demo-strip recommendations.
+- **Heads-up (cross-lane):** the defines-ON finding means current dev APKs carry unused
+  networking code + a live App ID — relevant to VRC Security.2 (minimal permissions) and the
+  release build-flag audit; noted in VRC_TEST_PLAN gaps context. Rotation of the App ID is
+  Terry's call, not urgent (App IDs are client-visible by design).
+- **Commit:** this one (docs/licensing only: decision doc + evidence + manifest + CREDITS + this entry).
+
 ### 2026-07-23 (gpt-first-hour) — first-hour evidence clean + permanent ratchet; Reasonbox audio lane and T-Dog follow-on assigned
 
 - **Did:** Took the collision-free first-hour evidence reconciliation lane while T-Dog owns VRC/device certification. Added `tools/first_hour_evidence_refresh.py` plus eight mutation tests and `.github/workflows/first-hour-evidence-refresh.yml`. The applicator accepts a refresh only when the request identifies one exact beat/path/token, the stale token occurs exactly once in the inventory, the stale token is absent from current source, and the replacement exists in current source; it never edits runtime. Queued and applied four proven source-drift corrections: `FH_BOOT_READY` now follows BootLoader's `destination` callback variable (two tokens), and `FH_MACHINE_POWER_CYCLE` now follows `RepairStage.Running` plus the current multiline `MACHINE_REPAIRED` log prefix (two tokens). The queue was consumed only after `first_hour_binding_gate.py --strict` passed. Added the strict first-hour gate and its JSON artifact to Fast Preflight so future drift blocks instead of becoming background warnings. Runtime, recovery scenes, weapons, coupler, travel, and Golden APK route were untouched.

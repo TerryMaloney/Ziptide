@@ -19,14 +19,14 @@
       "repositoryPath": "Ziptide/Assets/Photon",
       "packageId": "",
       "owner": "multiplayer",
-      "exactVersion": "verification-required",
-      "sourceRecord": "verification-required",
+      "exactVersion": "PUN 2.55 (Realtime/Chat API 4.1.8.21)",
+      "sourceRecord": "Imported by git commit 21f117c1 (2026-07-06, Terry: 'PUN2 imported + App ID + ZIPTIDE_PHOTON define on'); acquisition channel (photonengine.com vs Asset Store, FREE vs PLUS) unrecorded — see docs/licensing/evidence/photon/EVIDENCE.md",
       "licenseId": "verification-required",
       "licenseEvidencePath": "verification-required",
       "obligations": "verification-required",
       "distributionStatus": "hold-verification",
       "shipsInCurrentRecoveryCandidate": false,
-      "notes": "Imported SDK is present, but the exact version, source record, and redistribution/attribution obligations must be verified before any release distribution. The c45b1a2 recovery APK route does not depend on Photon."
+      "notes": "Version + import provenance verified 2026-07-23 (docs/licensing/PHOTON_RELEASE_DECISION.md + evidence/photon/EVIDENCE.md). No Photon SDK license.txt exists in the tree; exact license/redistribution/attribution terms remain unproven — the missing artifact is the license.txt of the exact PUN 2.55 package plus Terry's acquisition record. ZIPTIDE_PHOTON is currently ON for Android/Standalone, so Photon compiles into dev builds and the committed live App ID (PhotonServerSettings.asset, a Resources asset) ships in every build; recommendation (not yet executed): defines OFF for release until online ships, strip Demos/.chm at release. The c45b1a2 recovery APK route does not depend on Photon."
     }
   ]
 }

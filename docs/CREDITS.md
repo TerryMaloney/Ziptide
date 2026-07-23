@@ -21,11 +21,18 @@ obligations, and `distributionStatus: approved`. Unknown terms are written as
 - **Provider:** Photon Engine / Exit Games
 - **Repository path:** `Ziptide/Assets/Photon`
 - **Purpose:** Optional online networking seam; current recovery and headset route do not depend on it.
-- **Exact version:** Verification required.
-- **Source/download record:** Verification required.
-- **License and redistribution terms:** Verification required from the package/source record.
-- **Attribution or notice obligation:** Verification required.
+- **Exact version:** **PUN 2.55** (Realtime/Chat API 4.1.8.21) — verified 2026-07-23 from
+  `PhotonNetwork.cs` (`PunVersion`) + `changelog.txt`.
+- **Source/download record:** Imported by git commit `21f117c1` (2026-07-06, Terry). Acquisition
+  channel (photonengine.com vs Asset Store; FREE vs PLUS) still needs Terry's one-line record.
+- **License and redistribution terms:** Verification required — no Photon SDK `license.txt`
+  exists in the imported tree; the governing text ships inside the SDK package. Missing
+  artifacts + findings: `docs/licensing/PHOTON_RELEASE_DECISION.md` and
+  `docs/licensing/evidence/photon/EVIDENCE.md`.
+- **Attribution or notice obligation:** Verification required (from the package license text).
 - **Distribution status:** **HOLD — not approved for release distribution until verified.**
+  Note: `ZIPTIDE_PHOTON` is currently ON, so Photon compiles into dev builds today; the release
+  recommendation (defines off until online ships, demos stripped) is in the decision doc.
 - **Owner:** Multiplayer lane.
 
 ## Unity packages
