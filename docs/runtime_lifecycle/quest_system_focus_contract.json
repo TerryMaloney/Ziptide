@@ -5,7 +5,7 @@
   "authoredDate": "2026-07-23",
   "canonicalOwner": {
     "name": "SystemFocusLifecycle",
-    "status": "proposed-new-owner",
+    "status": "implemented-s1",
     "plannedPath": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs",
     "justification": "audit found zero handling for SystemOverlay and TrackingLost; one subscriber derives one LifecycleState; consumers subscribe",
     "preservedOwners": {
@@ -13,7 +13,8 @@
       "PlayerRigPersistence": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
       "PlayerInputSessionGuard": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
       "TravelCoordinator": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs"
-    }
+    },
+    "implementedPath": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs"
   },
   "auditedSeams": {
     "save": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Persistence/SaveSystem.cs",
@@ -66,7 +67,8 @@
         "atomicity": "TravelCoordinator.IsTraveling latch guards re-entry",
         "network": "offline-first; Photon recovery-gated off"
       },
-      "notes": "baseline state; entry only via Resuming checklist"
+      "notes": "baseline state; entry only via Resuming checklist",
+      "implementedBy": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs"
     },
     "SystemOverlay": {
       "behaviors": {
@@ -81,7 +83,8 @@
         "atomicity": "travel coroutine continues under crest; acceptable",
         "network": "no new obligations"
       },
-      "notes": "focusChanged(false) while not paused: Universal Menu, Guardian, notifications; app keeps running \u2014 today's biggest gap"
+      "notes": "focusChanged(false) while not paused: Universal Menu, Guardian, notifications; app keeps running \u2014 today's biggest gap",
+      "implementedBy": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs"
     },
     "HeadsetRemoved": {
       "behaviors": {
@@ -96,7 +99,8 @@
         "atomicity": "pause mid-travel freezes coroutine inside crest and resumes intact; RepairStage survives in memory; process death resets stage but persisted job-step flags never regress (decided+accepted)",
         "network": "n/a"
       },
-      "notes": "OnApplicationPause(true) from proximity sensor; OS enforces most behavior"
+      "notes": "OnApplicationPause(true) from proximity sensor; OS enforces most behavior",
+      "implementedBy": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs"
     },
     "Backgrounded": {
       "behaviors": {
@@ -111,7 +115,8 @@
         "atomicity": "same as HeadsetRemoved",
         "network": "same as HeadsetRemoved"
       },
-      "notes": "pause with unknown return intent; signal-identical to HeadsetRemoved on Quest, modeled separately for resume policy and other platforms"
+      "notes": "pause with unknown return intent; signal-identical to HeadsetRemoved on Quest, modeled separately for resume policy and other platforms",
+      "implementedBy": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs"
     },
     "TrackingLost": {
       "behaviors": {
@@ -141,7 +146,8 @@
         "atomicity": "if IsTraveling, defer checklist completion until travel's XRI-ready wait finishes \u2014 one ordering, not two",
         "network": "reconnect semantics deferred to multiplayer lane (D4)"
       },
-      "notes": "the only path back to Active; an ordered checklist, not an instant"
+      "notes": "the only path back to Active; an ordered checklist, not an instant",
+      "implementedBy": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs"
     }
   },
   "transitions": [
@@ -315,6 +321,22 @@
       "id": "D4",
       "what": "multiplayer resume semantics route through these states",
       "ownerLane": "multiplayer lane"
+    }
+  ],
+  "adjudications": [
+    {
+      "id": "A1",
+      "decision": "SystemOverlay simulation CONTINUES",
+      "date": "2026-07-23",
+      "by": "Reasonbox best judgment, Terry-delegated",
+      "tripwire": "device evidence of creatures harassing a menu-docked player escalates to holding hostile actions targeting the player during SystemOverlay"
+    },
+    {
+      "id": "A2",
+      "decision": "audio DUCKS -10dB during SystemOverlay, never mutes",
+      "date": "2026-07-23",
+      "by": "Reasonbox best judgment, Terry-delegated",
+      "tripwire": "none"
     }
   ]
 }

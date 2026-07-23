@@ -27,6 +27,44 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-23 (rb104) — Fable 5 (Reasonbox): ⚖️ §4 decisions ADJUDICATED (Terry-delegated) + 🎛️ lifecycle slice S1 IMPLEMENTED
+
+- **Adjudication (Terry delegated the two open §4 calls; recorded in contract MD + JSON
+  `adjudications`):** ① SystemOverlay simulation CONTINUES (non-lethal canon caps harm; pausing
+  would freeze travel coroutines mid-crest; input suppression removes exploitation) with a NAMED
+  TRIPWIRE: device evidence of creatures harassing a menu-docked player escalates to holding
+  player-targeted hostile actions during overlay — a bounded follow-up, MISS_LEDGER'd if fired.
+  ② Audio DUCKS −10 dB, never mutes (presence comforts; OS already attenuates; mute/unmute pops
+  are worse).
+- **S1 implemented (the contract's own next unclaimed slice; Terry directed completion):** ONE
+  new runtime file `Gameplay/Runtime/Player/SystemFocusLifecycle.cs` — pure
+  `SystemFocusStateMachine.Next(prev, focus, pause, tracking)` (pause dominates focus; tracking
+  loss only from otherwise-Active; **every recovery routes through Resuming, never straight to
+  Active — the rb36 class made structural**) + the thin persistent owner (established
+  RuntimeInitializeOnLoadMethod ensure idiom, DUP_SINGLETON guard) that logs
+  `ZIPTIDE: LIFECYCLE state=a->b reason=…` and fires the ONE S1 behavior:
+  `SaveSystem.AutosaveNow("system_overlay")` on overlay entry. SaveSystem's own pause hook KEPT
+  (contract R1 layered defense). Suppression/duck/visuals/tracking are S2–S5, not smuggled in;
+  `TrackingValid` is a named constant until S4. 10 EditMode derivation tests incl. the
+  never-straight-to-Active table and the doff-mid-overlay sequence. Contract JSON flipped to
+  `implemented-s1` with `implementedBy` on the five S1 states (TrackingLost stays unclaimed until
+  S4) — **the gate's ratchet now enforces the file's existence**; gate green; python suite OK.
+- **⚠️ For GPT's unified-readiness/collision review (explicit flag):** SystemFocusLifecycle is a
+  NEW always-on bootstrap (SaveSystem-class safety, deliberately NOT RecoveryRuntimeGate-gated —
+  it only logs + saves in S1). It enters the next Golden build via the normal lanes; PlayMode +
+  Golden trigger on this push per the Player/** path bindings. If review wants it gated instead,
+  it is one `RecoveryFeatureId` line — recorded as an open review point, not decided
+  unilaterally... beyond what shipping it un-gated already decides; revert is one file.
+- **Verified pre-push:** `tools/quest_lifecycle_gate.py` OK (ratchet live) · full tools/tests
+  discover OK · Unity compile/tests = THIS PUSH's CI (do not infer green from silence; verdict
+  pending).
+- **Next (unclaimed):** S2 needs dependency D1 (suppress/resume API on the canonical input
+  session — rig/input lane's file); S4 tracking detection; S5 checklist ordering. All specced in
+  the contract for lower-cost execution.
+- **Commit:** this push (adjudication edits, S1 + meta, 10 EditMode tests + meta, JSON ratchet
+  flip, this entry).
+
+
 ### 2026-07-23 (rb103) — Fable 5 (C-lane/T-Dog): ✅ RELEASE BUILD HYGIENE AUDITOR delivered — actual tooling, per gpt-high-value-lanes
 
 - **Did (assigned lane, inside ownership: new docs/release/** + the gate + tests + one Fast

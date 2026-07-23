@@ -50,6 +50,15 @@
 
 ## 4. BEHAVIOR CONTRACT PER STATE (normative; JSON `states[*].behaviors` mirrors this)
 
+> **ADJUDICATED 2026-07-23 (Terry delegated the call):** ① **Overlay simulation CONTINUES** —
+> non-lethal canon caps the harm, pausing would freeze travel coroutines mid-crest, and input
+> suppression removes exploitation. **Named tripwire:** if device testing shows creatures
+> harassing a menu-docked player (stun/shove while in the Universal Menu), escalate to
+> "hostile actions targeting the player are held during SystemOverlay" — a bounded follow-up,
+> not a redesign. ② **Audio DUCKS (−10 dB), never mutes** — presence under the overlay is
+> comforting, the OS already attenuates, and hard mute/unmute pops are worse than quiet
+> continuity. Both decisions ride the MISS_LEDGER if the tripwire fires.
+
 | Axis | Active | SystemOverlay | HeadsetRemoved / Backgrounded | TrackingLost | Resuming |
 |---|---|---|---|---|---|
 | **Save** | autosave on travel + flag grants (existing) | `AutosaveNow("system_overlay")` on entry | `SaveSystem.OnApplicationPause` fires (existing, KEEP); owner adds nothing — double save is harmless/atomic | none required | none (verify SAVE_OK was logged; never re-save during checklist) |
