@@ -1,0 +1,249 @@
+{
+  "schemaVersion": 1,
+  "contractId": "ziptide-meta-store-release-v1",
+  "reviewedAgainst": {
+    "document": "docs/VRC_TEST_PLAN.md",
+    "officialSource": "https://developers.meta.com/horizon/resources/publish-quest-req/",
+    "verifiedAt": "2026-07-23"
+  },
+  "policy": {
+    "developmentGate": "Validate structure, evidence truthfulness, ownership, and deadlines without requiring every future release item to be complete.",
+    "releaseGate": "Every required item must be verified or explicitly waived with approval before a submission candidate may be called release-ready.",
+    "unknownValue": "verification-required",
+    "allowedStatuses": [
+      "not-started",
+      "in-progress",
+      "owner-input-required",
+      "decision-required",
+      "blocked",
+      "verified",
+      "waived",
+      "not-applicable"
+    ]
+  },
+  "releaseCandidate": {
+    "status": "hold",
+    "reason": "Recovery headset proof and required Meta release obligations remain open.",
+    "candidateSha": "verification-required"
+  },
+  "requirements": [
+    {
+      "id": "meta-developer-organization",
+      "category": "administration",
+      "title": "Meta developer organization verified",
+      "required": true,
+      "owner": "terry",
+      "status": "owner-input-required",
+      "vrcIds": [],
+      "evidence": [],
+      "nextAction": "Verify the developer organization and record the dashboard evidence reference."
+    },
+    {
+      "id": "meta-app-record",
+      "category": "administration",
+      "title": "Meta app record and App ID created",
+      "required": true,
+      "owner": "terry",
+      "status": "owner-input-required",
+      "vrcIds": ["Security.1"],
+      "evidence": [],
+      "nextAction": "Create the dashboard app record and store the App ID through the project secret/configuration process; never commit a private credential."
+    },
+    {
+      "id": "support-page-url",
+      "category": "publishing",
+      "title": "Stable support page URL",
+      "required": true,
+      "owner": "terry",
+      "status": "owner-input-required",
+      "vrcIds": ["Publishing.2"],
+      "url": "verification-required",
+      "evidence": [],
+      "nextAction": "Publish a stable support page and record the HTTPS URL plus a dated accessibility check."
+    },
+    {
+      "id": "terms-of-service-url",
+      "category": "publishing",
+      "title": "Stable Terms of Service URL",
+      "required": true,
+      "owner": "terry",
+      "status": "owner-input-required",
+      "vrcIds": ["Publishing.3"],
+      "url": "verification-required",
+      "evidence": [],
+      "nextAction": "Publish Terms of Service appropriate to the actual offline/online feature set and record the HTTPS URL."
+    },
+    {
+      "id": "privacy-policy-url",
+      "category": "privacy",
+      "title": "Hosted privacy policy and deletion/contact path",
+      "required": true,
+      "owner": "terry",
+      "status": "owner-input-required",
+      "vrcIds": ["Privacy.1", "Privacy.2", "Privacy.3", "Privacy.4"],
+      "url": "verification-required",
+      "evidence": [],
+      "nextAction": "Publish a policy matching the proven data behavior, including Photon only if online functionality ships."
+    },
+    {
+      "id": "data-use-checkup",
+      "category": "privacy",
+      "title": "Meta Data Use Checkup completed and annual renewal tracked",
+      "required": true,
+      "owner": "terry",
+      "status": "owner-input-required",
+      "vrcIds": ["Privacy.5"],
+      "renewal": {
+        "cadence": "annual",
+        "lastCompleted": "verification-required",
+        "nextDue": "verification-required"
+      },
+      "evidence": [],
+      "nextAction": "Complete the dashboard checkup, record the completion evidence, and schedule the next annual due date."
+    },
+    {
+      "id": "audience-and-age-rating",
+      "category": "audience",
+      "title": "Age-group self-certification and IARC answers locked",
+      "required": true,
+      "owner": "terry",
+      "status": "decision-required",
+      "vrcIds": ["Content.1", "Content.2"],
+      "evidence": [],
+      "nextAction": "Lock the Mixed Ages path and complete IARC using the shipped content, not planned content."
+    },
+    {
+      "id": "store-assets",
+      "category": "publishing",
+      "title": "Store art, screenshots, trailer, descriptions, and keywords conform",
+      "required": true,
+      "owner": "art",
+      "status": "not-started",
+      "vrcIds": ["Asset.1", "Asset.2", "Asset.3", "Asset.4", "Asset.5", "Asset.6", "Asset.7", "Asset.8", "Asset.9", "Asset.10", "Publishing.1", "Publishing.4", "Publishing.5", "Publishing.6", "Publishing.7", "Publishing.8"],
+      "evidence": [],
+      "nextAction": "Create the asset-production brief from the current Meta size/content rules after the visual vertical slice exists."
+    },
+    {
+      "id": "release-keystore",
+      "category": "packaging",
+      "title": "Release keystore owned, backed up, and used",
+      "required": true,
+      "owner": "release-engineering",
+      "status": "owner-input-required",
+      "vrcIds": ["Packaging.2"],
+      "evidence": [],
+      "nextAction": "Create the release keystore outside the repository, document recovery custody, and prove APK signature scheme v2."
+    },
+    {
+      "id": "release-manifest-hygiene",
+      "category": "packaging",
+      "title": "Release manifest, permissions, build flags, and architecture audited",
+      "required": true,
+      "owner": "release-engineering",
+      "status": "not-started",
+      "vrcIds": ["Packaging.1", "Packaging.3", "Packaging.5", "Packaging.6", "Security.2"],
+      "evidence": [],
+      "nextAction": "Create a release-only manifest/permission/size/ARM64 audit with a preserved report artifact."
+    },
+    {
+      "id": "photon-release-boundary",
+      "category": "packaging",
+      "title": "Photon defines, demos, App ID, and licensing match the release feature set",
+      "required": true,
+      "owner": "multiplayer",
+      "status": "blocked",
+      "vrcIds": ["Packaging.1", "Security.2"],
+      "evidence": [
+        "docs/licensing/PHOTON_RELEASE_DECISION.md",
+        "docs/licensing/evidence/photon/EVIDENCE.md"
+      ],
+      "nextAction": "Keep release on hold until package license evidence is stored; decide defines-off and demo-strip behavior for the release pipeline."
+    },
+    {
+      "id": "entitlement-check",
+      "category": "security",
+      "title": "Entitlement check executes within the required launch window",
+      "required": true,
+      "owner": "platform",
+      "status": "blocked",
+      "vrcIds": ["Security.1"],
+      "evidence": [],
+      "nextAction": "After the Meta App ID exists, add the Platform SDK entitlement path and capture device evidence."
+    },
+    {
+      "id": "system-focus-envelope",
+      "category": "functional",
+      "title": "Pause, focus-aware rendering, input suppression, and audio behavior comply",
+      "required": true,
+      "owner": "architecture",
+      "status": "blocked",
+      "vrcIds": ["Functional.2", "Input.4"],
+      "evidence": [
+        "docs/VRC_TEST_PLAN.md",
+        "docs/DEVICE_TEST_CHECKLIST.md"
+      ],
+      "nextAction": "Implement only after recovery freeze release, then pass every doff and Universal Menu row on device."
+    },
+    {
+      "id": "recenter-and-tracking-metadata",
+      "category": "tracking",
+      "title": "Recenter behavior and sitting/standing/input metadata are truthful",
+      "required": true,
+      "owner": "architecture",
+      "status": "blocked",
+      "vrcIds": ["Functional.9", "Tracking.1", "Tracking.2"],
+      "evidence": [],
+      "nextAction": "Resolve in the settings/height program after recovery, then prove on the supported-device matrix."
+    },
+    {
+      "id": "launch-first-tracked-frame",
+      "category": "performance",
+      "title": "Head-tracked graphics or VR loading indicator appears within four seconds",
+      "required": true,
+      "owner": "performance",
+      "status": "not-started",
+      "vrcIds": ["Performance.3"],
+      "evidence": [
+        "docs/DEVICE_TEST_CHECKLIST.md"
+      ],
+      "nextAction": "Measure a release-like cold boot on the oldest supported device and preserve timestamped evidence."
+    },
+    {
+      "id": "thermal-performance",
+      "category": "performance",
+      "title": "Sustained 72 Hz under release-build thermal load",
+      "required": true,
+      "owner": "performance",
+      "status": "not-started",
+      "vrcIds": ["Performance.1"],
+      "evidence": [
+        "docs/DEVICE_TEST_CHECKLIST.md"
+      ],
+      "nextAction": "Run the twenty-minute thermal test and preserve RuntimeHealthMonitor/device evidence."
+    },
+    {
+      "id": "save-update-and-interrupt-proof",
+      "category": "functional",
+      "title": "No data loss across interrupts, low storage, and update-over-install",
+      "required": true,
+      "owner": "architecture",
+      "status": "not-started",
+      "vrcIds": ["Functional.1", "Functional.3", "Functional.4", "Functional.5"],
+      "evidence": [
+        "docs/DEVICE_TEST_CHECKLIST.md"
+      ],
+      "nextAction": "Run the broader post-recovery certification matrix and convert every failure into a tracked blocker."
+    },
+    {
+      "id": "player-facing-shell",
+      "category": "in-game",
+      "title": "Title/save, comfort settings, onboarding, credits, version, and release-safe diagnostics exist",
+      "required": true,
+      "owner": "story-ship",
+      "status": "blocked",
+      "vrcIds": ["Accessibility.2", "Accessibility.7", "Accessibility.8", "Accessibility.9"],
+      "evidence": [],
+      "nextAction": "Build the player-facing shell after recovery; strip or lock DevMenu in release without deleting diagnostics."
+    }
+  ]
+}
