@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "policy": {
+    "creditsPath": "docs/CREDITS.md",
+    "packagesManifest": "Ziptide/Packages/manifest.json",
+    "unknownValue": "verification-required",
+    "approvedDistributionStatus": "approved",
+    "unityPackagePrefix": "com.unity."
+  },
+  "knownExternalAssetRoots": [
+    "Ziptide/Assets/Photon"
+  ],
+  "entries": [
+    {
+      "id": "photon-unity-sdk",
+      "creditsAnchor": "photon-unity-sdk",
+      "category": "networking-sdk",
+      "provider": "Photon Engine / Exit Games",
+      "repositoryPath": "Ziptide/Assets/Photon",
+      "packageId": "",
+      "owner": "multiplayer",
+      "exactVersion": "verification-required",
+      "sourceRecord": "verification-required",
+      "licenseId": "verification-required",
+      "licenseEvidencePath": "verification-required",
+      "obligations": "verification-required",
+      "distributionStatus": "hold-verification",
+      "shipsInCurrentRecoveryCandidate": false,
+      "notes": "Imported SDK is present, but the exact version, source record, and redistribution/attribution obligations must be verified before any release distribution. The c45b1a2 recovery APK route does not depend on Photon."
+    }
+  ]
+}
