@@ -33,6 +33,11 @@ jobs:
       - name: Factory governance gate
         run: python3 tools/factory_governance_gate.py
 
+      - name: Third-party licensing gate
+        run: |
+          python3 tools/third_party_license_gate.py \
+            --json-report Builds/Reports/third_party_license.json
+
       - name: Concept intake gate
         run: python3 tools/concept_intake_gate.py
 
@@ -101,6 +106,7 @@ jobs:
           name: fast-preflight-evidence-${{ github.sha }}
           path: |
             Builds/Reports/offline_readiness.json
+            Builds/Reports/third_party_license.json
             Builds/Reports/sunrig_contract.json
             Builds/Reports/space_poi_spawn_catalog.json
             Builds/Reports/fast-python-gates.log
