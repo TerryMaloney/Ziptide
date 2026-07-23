@@ -27,6 +27,27 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-21 (rb91) — Fable 5: 🚀 THREE SPACE DOMAINS — launch/transition + world-genome block + repair loop
+
+- **Terry named three interlocked domains; hit all three, wired via the genome:**
+- **(C) `LAUNCH_AND_ATMOSPHERE_TRANSITION.md` (NEW, detailed):** liftoff (scripted slow comfortable
+  rise, intentional trigger, diegetic — NOT free vertical flight, vection-safe) → ascent (SkyVista
+  lerps ground→space since both share the system truth) → **the VEIL** (diegetic red-hot plasma
+  envelope builds smoothly, brightness peaks, and UNDER it `TravelCoordinator` swaps planet-scene→
+  space-scene — **this is the load mask, so planet + space never render together, exactly Terry's
+  point**) → arrive in orbit (CELESTIAL match). Reverse = re-entry. **Terry's "red-hot covers the
+  screen" validated:** a transition veil is comfort-safe (expected/brief/smooth/no-acting), UNLIKE
+  a combat flash — rules: smooth build not strobe, diegetic plasma not flat fill, camera never moves.
+- **(B) world system advanced — `CELESTIAL_SYSTEM_CANON` §8 genome block:** exact per-world
+  `celestial` fields (systemId, parentBody, moons, sunDirection, timeOfDay, atmosphereColor/
+  thickness, gravity, veilTint, shellGrid) that the sky, space env, debris palette, AND launch all
+  read → can't mismatch (audit-enforced). `systemId` is the one knob tying it together. Meta spine.
+- **(A) repair loop — `SHIP_ALERT_AND_DAMAGE_FEEDBACK` §8:** brace→recover, not death-spiral; armor
+  auto-recharges, hull dents accrue as history (like Cal's tallies), breaches = hands-on repair
+  (grabber arm/dock, restore-not-destroy = the entrainment ethic), spends salvage (the debris that
+  hit you fixes you — loop closes), RILL logs it. Non-lethal always.
+- **Commit:** this one (launch doc + 2 appends + entry).
+
 ### 2026-07-21 (rb90) — Fable 5: 🚨 SHIP ALERT & DAMAGE FEEDBACK system (debris impacts, VR-safe)
 
 - **Terry: debris hitting the ship needs a warning/alarm — a whole system.** Wrote

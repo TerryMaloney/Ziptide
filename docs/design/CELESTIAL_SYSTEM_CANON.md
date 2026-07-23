@@ -109,3 +109,29 @@ Read off `concepts/skyscape_moss/` (dusk + night):
 - **Freeze:** all post-Golden-Checkpoint; this is the map + the ⚖ Moss-system decisions for Terry.
 - **⚖ stack for Terry:** Moss = moon-of-the-giant · sibling grey moon = a world · W001 = single warm
   sun · the giant's + system's names · binary-suns reserved for a later signature system.
+
+## §8 — THE WORLD GENOME BLOCK (the exact fields every world declares — Stage-3 schema)
+
+*So the sky, the space view, AND the launch transition (`LAUNCH_AND_ATMOSPHERE_TRANSITION.md`) all
+read ONE per-world truth and can never mismatch. Added to `_WORLD_TEMPLATE` / WorldPack.*
+
+```
+world.celestial:
+  systemId:            <string>   → the StarSystemDefinition this world belongs to
+                                    (also = which SPACE SCENE you launch into)
+  parentBody:          <bodyId>   → what it orbits (Moss → the ringed giant); "" if a primary
+  moons:               [<bodyId>] → its own moon(s) / visible sibling bodies
+  sunDirection:        <vec3>     → primary sun bearing (drives SunRig + sky warm source)
+  timeOfDay:           <0..1>     → dusk/night/day slot for the ground vista
+  atmosphereColor:     <color>    → ascent gradient tint + veil fire edge color
+  atmosphereThickness: <0..1>     → ascent length + how thick/long the re-entry veil reads
+                                    (airless moon ≈ 0 → almost no veil, just a fade)
+  gravity:             <float>    → liftoff feel (heavier = slower, more labored rise)
+  veilTint:            <color>    → transition-veil color (default red-hot; toxic ≈ amber-green)
+  shellGridIntensity:  <0..1>     → story canon 0(W001)→1(W012); usually system/region-owned
+```
+
+**Rules:** every world MUST fill `celestial` (audit-enforced — no world ships without it, so nothing
+can mismatch). `systemId` is the single knob that ties a world's sky, its space environment, its
+debris palette (§6), and its launch destination together. Worlds sharing a `systemId` share the
+star/giant/starfield for free. This block is the meta-building spine for the whole space domain.

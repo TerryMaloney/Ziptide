@@ -111,3 +111,22 @@ never-annoying rule (severity-gated, cooldowns, variety) from `CAL_VOICE_AND_BAR
   reuse the channel for ground hazards.
 - **Comfort test on device is the gate:** confirm zero nausea (no camera move, no FOV flash), the
   directional read works, and severity escalation is legible. Freeze: all post-Golden-Checkpoint.
+
+## §8 — THE REPAIR LOOP (the recovery half — restore, never destroy)
+
+Damage isn't a death spiral; it's a **brace → recover** rhythm that fits the non-lethal canon AND
+the entrainment ethic (things are RESTORED, not destroyed):
+- **Armor = soft/auto:** the recharging armor layer (`SPACE_COMBAT`) refills after you stop taking
+  hits — the moment-to-moment forgiveness. No hands-on needed for normal scrapes.
+- **Hull damage = hands-on, and it's a beat you can feel good about:** dents/scorches are cosmetic
+  wear that accumulate (the ship shows its history — like Cal's tallies); **breaches / system-downs
+  are the real repair** — patch them with the **grabber arm / a repair tool at a hardpoint**, or
+  at a dock. A breach temporarily downs a system (engine/nav/drive) → you route power or seal it →
+  it comes back. Restore-not-destroy, the same grammar as the gate's entrainment (borrow, give back).
+- **Economy tie:** repairs/upgrades spend **salvage** (the debris that hit you is also what fixes
+  you — the loop closes on itself). Bigger repairs = a dock visit; field patches = quick + partial.
+- **RILL tracks it** (incident log — "third hull patch this run, Cal") → continuity + character; the
+  scars persist visibly until repaired, so the ship remembers the trip.
+- **Reuse:** the grabber-arm interaction, the salvage economy (`ProfileEconomy`), the wear-decal
+  system, RILL lines. Non-lethal always: you can always limp home and mend. **Feeds:** the alert
+  system above (a breach raised by §3 tier-4 becomes a repair task here).
