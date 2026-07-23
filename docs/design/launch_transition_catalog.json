@@ -1,0 +1,128 @@
+{
+  "schemaVersion": 1,
+  "owner": "TravelCoordinator",
+  "cameraOwner": "XR-rig",
+  "celestialCatalog": "docs/design/celestial_system_catalog.json",
+  "globalContract": {
+    "planetAndSpaceHeavyScenesCoLoaded": false,
+    "intentionalPlayerTriggerRequired": true,
+    "cameraMotionAllowed": false,
+    "cameraRollAllowed": false,
+    "forcedFovChangeAllowed": false,
+    "fullFieldStrobeAllowed": false,
+    "comfortVignetteOptional": true,
+    "minimumVeilFadeSeconds": 0.25,
+    "controlRestoreRequiresStableFloorHorizonInput": true,
+    "shipPersistsAcrossSwap": true
+  },
+  "routes": [
+    {
+      "id": "launch_w001_to_moss_orbit",
+      "direction": "planet-to-space",
+      "worldId": "W001",
+      "systemId": "moss_system_working",
+      "originBody": "moss_world_body",
+      "destinationSpaceView": "space_moss_orbit",
+      "sourceFields": {
+        "atmosphereColor": "worldPlacements[W001].atmosphereColor",
+        "atmosphereThickness": "worldPlacements[W001].atmosphereThickness",
+        "gravity": "worldPlacements[W001].gravity",
+        "veilTint": "worldPlacements[W001].veilTint",
+        "primaryStar": "worldPlacements[W001].primaryStar",
+        "parentBody": "worldPlacements[W001].parentBody",
+        "visibleSiblingBodies": "worldPlacements[W001].visibleSiblingBodies"
+      },
+      "phases": [
+        {
+          "id": "liftoff",
+          "sequence": 1,
+          "durationSeconds": {"min": 2.0, "max": 6.0, "loadHoldAllowed": false},
+          "inputPolicy": "launch-controls-owned-scripted-rise",
+          "visualLayers": ["engine_spinup", "drive_heart_brighten", "dock_dust_or_water", "skid_retract"],
+          "audioCue": "engine_spinup_and_RILL_launch_callout",
+          "exitCondition": "safe_ascent_altitude",
+          "requiredLog": "ZIPTIDE: LAUNCH phase=liftoff"
+        },
+        {
+          "id": "ascent",
+          "sequence": 2,
+          "durationSeconds": {"min": 4.0, "max": 12.0, "loadHoldAllowed": false},
+          "inputPolicy": "scripted_climb_comfort_profile",
+          "visualLayers": ["sky_gradient_darkening", "stars_fade_in", "haze_thins", "sun_glare_sharpens", "horizon_curve_reveal"],
+          "audioCue": "engine_climb_and_hull_hum",
+          "exitCondition": "edge_of_space",
+          "requiredLog": "ZIPTIDE: LAUNCH phase=ascent"
+        },
+        {
+          "id": "veil",
+          "sequence": 3,
+          "durationSeconds": {"min": 1.0, "max": 2.0, "loadHoldAllowed": true},
+          "inputPolicy": "TravelCoordinator-owned-hold",
+          "visualLayers": ["canopy_plasma_build", "orange_to_white_heat", "smooth_brightness_peak", "transition_shell"],
+          "audioCue": "plasma_roar_and_bounded_haptic_rumble",
+          "exitCondition": "destination_loaded_and_stable",
+          "requiredLog": "ZIPTIDE: LAUNCH phase=veil"
+        },
+        {
+          "id": "arrive",
+          "sequence": 4,
+          "durationSeconds": {"min": 0.5, "max": 3.0, "loadHoldAllowed": false},
+          "inputPolicy": "restore_after_floor_horizon_input_stable",
+          "visualLayers": ["transition_shell_clear", "full_starfield_reveal", "origin_planet_recedes", "shared_bodies_reveal"],
+          "audioCue": "plasma_release_to_calm_hull_bed",
+          "exitCondition": "player_control_restored",
+          "requiredLog": "ZIPTIDE: LAUNCH phase=arrive"
+        }
+      ]
+    },
+    {
+      "id": "reentry_moss_orbit_to_w001",
+      "direction": "space-to-planet",
+      "worldId": "W001",
+      "systemId": "moss_system_working",
+      "originSpaceView": "space_moss_orbit",
+      "destinationBody": "moss_world_body",
+      "sourceFields": {
+        "atmosphereColor": "worldPlacements[W001].atmosphereColor",
+        "atmosphereThickness": "worldPlacements[W001].atmosphereThickness",
+        "gravity": "worldPlacements[W001].gravity",
+        "veilTint": "worldPlacements[W001].veilTint",
+        "primaryStar": "worldPlacements[W001].primaryStar",
+        "parentBody": "worldPlacements[W001].parentBody",
+        "visibleSiblingBodies": "worldPlacements[W001].visibleSiblingBodies"
+      },
+      "phases": [
+        {
+          "id": "reentry_veil",
+          "sequence": 1,
+          "durationSeconds": {"min": 1.0, "max": 2.0, "loadHoldAllowed": true},
+          "inputPolicy": "TravelCoordinator-owned-hold",
+          "visualLayers": ["transition_shell", "canopy_plasma_build", "orange_to_white_heat", "smooth_brightness_peak"],
+          "audioCue": "reentry_plasma_roar_and_bounded_haptic_rumble",
+          "exitCondition": "planet_scene_loaded_and_stable",
+          "requiredLog": "ZIPTIDE: REENTRY phase=veil"
+        },
+        {
+          "id": "descent",
+          "sequence": 2,
+          "durationSeconds": {"min": 4.0, "max": 12.0, "loadHoldAllowed": false},
+          "inputPolicy": "scripted_descent_comfort_profile",
+          "visualLayers": ["transition_shell_clear", "atmosphere_gradient_restore", "haze_returns", "dock_landmark_acquire"],
+          "audioCue": "engine_descent_and_RILL_dock_callout",
+          "exitCondition": "landing_approach_stable",
+          "requiredLog": "ZIPTIDE: REENTRY phase=descent"
+        },
+        {
+          "id": "touchdown",
+          "sequence": 3,
+          "durationSeconds": {"min": 2.0, "max": 6.0, "loadHoldAllowed": false},
+          "inputPolicy": "restore_after_floor_horizon_input_stable",
+          "visualLayers": ["scripted_slow_lower", "skid_deploy", "dock_dust_or_water", "engine_cooldown"],
+          "audioCue": "touchdown_and_engine_cooldown",
+          "exitCondition": "player_control_restored",
+          "requiredLog": "ZIPTIDE: REENTRY phase=touchdown"
+        }
+      ]
+    }
+  ]
+}
