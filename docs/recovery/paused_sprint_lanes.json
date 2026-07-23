@@ -3,15 +3,15 @@
   "paused": [
     {
       "board": "SPRINT_ART.md",
-      "pausedSince": "2026-07-14",
-      "reason": "RECOVERY_PROGRAM freezes Picasso/Forge expansion and broad visual work while integration evidence is rebuilt.",
-      "resumeGate": "Resume only after the recovery owner records the R3 Golden vertical-slice exit gate in docs/HANDOFF.md."
+      "pausedSince": "2026-07-23",
+      "reason": "Runtime Forge/art integration remains paused so the authorized c45b1a2 headset route stays experimentally isolated. Concept art, measured visual specs, intake planning, and other zero-runtime paper work remain allowed.",
+      "resumeGate": "Resume runtime art integration only after Terry records the exact recovery-golden-apk-c45b1a2 headset verdict and the active branch fast preflight plus ordinary CI are green."
     },
     {
       "board": "SPRINT_MULTIPLAYER.md",
-      "pausedSince": "2026-07-14",
-      "reason": "RECOVERY_PROGRAM explicitly pauses multiplayer implementation while the single-player Golden route is consolidated.",
-      "resumeGate": "Resume only after the recovery owner records the R3 Golden vertical-slice exit gate in docs/HANDOFF.md."
+      "pausedSince": "2026-07-23",
+      "reason": "Multiplayer implementation remains paused until the single-player weapon, coupler, travel, and input route receives its exact authorized headset verdict. Multiplayer planning and evidence review remain allowed.",
+      "resumeGate": "Resume multiplayer source work only after Terry records the exact recovery-golden-apk-c45b1a2 headset verdict and the active branch fast preflight plus ordinary CI are green."
     }
   ]
 }
