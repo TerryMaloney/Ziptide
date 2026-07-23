@@ -27,6 +27,25 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-21 (rb88) — Fable 5: 🛰️ SPACE FLIGHT & ENVIRONMENT AUDIT (what's built vs the gap to "feel like space")
+
+- **Terry asked how far along space flight is** (esp. the ACTUAL space environment — local sun(s),
+  stars, feeling out there). Audited code + design → `docs/design/SPACE_ENVIRONMENT_AUDIT.md`.
+- **Headline:** the **VERB (flying) is a real comfort-tuned v1** (`FlightModel` + runtimes,
+  EditMode-tested: snap-yaw, clamped pitch, roll-returns-to-level, bounded lane; `SpaceLane_Trial`
+  scene with seat-locked cockpit, ring course, salvage drones). The **PLACE (space) is a
+  placeholder backdrop** (near-black sky + one flat planet). SkyVista *has* stars/nebula/SunDisc but
+  only as a painted DOME, not scene light or 3D depth. Floating origin, interior physics, distant-
+  body parallax, launch transition, space combat = **designed with protected seams, NOT built.**
+- **The gap (felt-impact-per-cost order):** ①★ a real **SunRig** (felt sun as scene key light +
+  disc + flare + hull terminator; multi-sun) · ②★ **compose the real cosmos** into the flight scene
+  (full 360 starfield + nebula + sun) · ③★ the **launch/atmosphere transition** (leave the world) ·
+  ④ DistantBodyRig parallax (receding planet/moons) · ⑤ floating origin (open volume) · ⑥ space
+  content (asteroids/derelicts/stations) · ⑦ space VFX (speed streaks) · ⑧ space audio · ⑨ walk-
+  the-flying-ship (interior physics, the finale). First THREE are cheap and transform the feeling.
+- Mostly composition + a few new rigs, not green-field (reuses SkyVista, TravelCoordinator, F3.5,
+  BotBrain). Freeze: all post-checkpoint. **Commit:** this one (audit doc + entry).
+
 ### 2026-07-21 (rb87) — Fable 5: 📐 MK2 interior blueprint filed + required interior-zone list (bedroom gap flagged)
 
 - **Blueprint landed** (`concepts/ship_mk2_architect/mk2_interior_blueprint_v1.png`) — a 1:50
