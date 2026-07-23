@@ -27,6 +27,27 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-21 (rb89) — Fable 5: 🪐 CELESTIAL SYSTEM CANON — one sky truth per system, matched ground↔space (design)
+
+- **Terry: the first world is the first space trip — the ground sky (moon + ringed giant) MUST
+  match when you fly up; plan it + keep it consistent across all worlds + space debris.** Wrote
+  `docs/design/CELESTIAL_SYSTEM_CANON.md`.
+- **Principle:** ONE `StarSystemDefinition` (data) is the celestial truth; the ground SkyVista and
+  the space env are two VIEWS of it → they match by construction. Extends the shipped SkyVista
+  (which already has stars/nebula/SunDisc/BandedPlanet/Moon/shell-grid), adding a shared SYSTEM
+  layer above it. Ground = truth through atmosphere; space = same truth, no haze, full 360, depth.
+- **Answered "does it get bigger?":** short hop up → apparent size barely changes; what changes is
+  REVELATION (haze gone, full body not horizon-cut, parallax depth, your world below), not scale.
+- **⚖ W001 Moss-system canon proposed:** the Moss is a **MOON of the ringed giant** (explains why
+  it looms) · the grey moon = a **sibling moon = a nearby visitable world** (short in-system hop) ·
+  **one warm sun** (binary suns reserved for a later signature system) · a Moss constellation set +
+  galactic arc · shell grid 0. **Consistency law:** few systems / many worlds (`StarSystemLibrary`);
+  worlds in a system share star+giant+starfield; **gates jump systems = new starfield = "you went
+  far."** **Meta-building:** add a CELESTIAL block (systemId + placement) to the world genome/
+  `_WORLD_TEMPLATE` (Stage-3 schema) so no world can mismatch. **Debris/derelicts:** per-system
+  space-object palette, ground-wreck↔space-derelict echo, faction-consistent traffic, salvage loop.
+- **Commit:** this one (canon doc + entry).
+
 ### 2026-07-21 (rb88) — Fable 5: 🛰️ SPACE FLIGHT & ENVIRONMENT AUDIT (what's built vs the gap to "feel like space")
 
 - **Terry asked how far along space flight is** (esp. the ACTUAL space environment — local sun(s),
