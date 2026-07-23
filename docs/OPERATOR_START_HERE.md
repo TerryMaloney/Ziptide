@@ -30,6 +30,8 @@ clever around it. *(This supersedes `FABLE5_START_HERE.md`, kept as a pointer st
 
 **Cross-track order = `docs/PRIORITIES.md`** (the tiebreaker). Game vision = `docs/GAME_PLAN.md`.
 Change-safety playbook = `docs/HOW_TO_CHANGE_ANYTHING.md` — consult BEFORE modifying any system.
+**Fast pre-push gate = `docs/FAST_PREFLIGHT.md`; run `.\tools\dev_preflight.ps1` immediately before
+every source push so cheap governance/test failures die before Unity.**
 **Slow recovery/debugging fast path = `docs/recovery/RECOVERY_DEBUG_FAST_PATH.md` — mandatory for XR,
 input, travel, persistence, PlayMode, Golden Android, or device blockers after the first failed candidate.**
 
@@ -54,8 +56,10 @@ Our docs ARE a file blackboard — treat them exactly like this:
    / wall-clock in generators. Scene classes only translate.
 3. **A gate per quality dimension.** If you fix a class of badness, add the audit blocker that
    keeps it fixed (`Editor/Audit/*AuditRules.cs` pattern, one `report.Blocker(code, msg)` per rule).
-4. **Verify through CI, not hope.** You cannot run Unity. Push → CI compiles + runs EditMode tests
-   (+ audit + APK on dispatched runs). CI red = warn Terry loudly, stop shipping C#.
+4. **Verify through preflight, then CI — not hope.** Immediately before every source push run
+   `.\tools\dev_preflight.ps1`; a failure means repair locally and do not enter the Unity queue.
+   After preflight passes, push → CI compiles + runs EditMode tests (+ audit + APK on dispatched
+   runs). CI red = warn Terry loudly, stop shipping C#.
 5. **⛔ THE CIRCUIT BREAKER covers every expensive gate, not only ordinary CI.** A failed recovery
    PlayMode route or Golden Android route counts as red. After **two failed source candidates on the
    same blocker**, enter `docs/recovery/RECOVERY_DEBUG_FAST_PATH.md`: pin the exact artifact, name the
@@ -97,7 +101,7 @@ No judgment calls here; that's the point. A chunk ships when ALL of these are tr
 4. **Save story:** if the player can change/earn it, it survives quit (overlay idiom) — or the
    HANDOFF says explicitly why not.
 5. **Diagnostics:** `ZIPTIDE: <TAG>` logs on every new runtime behavior (the logcat contract).
-6. **CI green** on the push that contains the change (LAWS 4–5).
+6. **Fast preflight + CI green** on the push that contains the change (LAWS 4–5).
 7. **Blackboard:** board row updated · HANDOFF entry (Did/Next/Heads-up/Commits) · Terry's runbook
    gets the 🔧 menu step + 🎮 feel pass with CONCRETE knob values to react to.
 8. **Map:** if the aspect's STATE changed, its EXCELLENCE_MAP row is updated in the same push.
@@ -106,9 +110,10 @@ No judgment calls here; that's the point. A chunk ships when ALL of these are tr
 1. `git pull --rebase origin terry-local-wip` · read newest HANDOFF entries · read YOUR board.
 2. **Session-zero test:** you must be able to state your next commit from the board alone. If you
    can't, the previous session broke the contract — fix the board first, that IS your first task.
-3. Work in ONE-COMMIT bites: spec the change on the board row → tests → code → push → confirm CI.
-   Prefer small and reversible; when a task feels bigger than ~2 commits, split it on the board.
-   For a slow recovery blocker, the second failed source candidate activates the evidence-lock fast path.
+3. Work in ONE-COMMIT bites: spec the change on the board row → tests → code →
+   `.\tools\dev_preflight.ps1` → push → confirm CI. Prefer small and reversible; when a task feels
+   bigger than ~2 commits, split it on the board. For a slow recovery blocker, the second failed
+   source candidate activates the evidence-lock fast path.
 4. Queue any 🔧/🎮 steps in the runbook. 5. Close: board updated, HANDOFF appended, PRIORITIES
    re-ordered if state changed.
 
@@ -138,5 +143,5 @@ Terry sign-off first, not code).
   headset). Tag runbook items accordingly.
 
 ## Definition of Done (unchanged, non-negotiable)
-CI green · tests for pure logic · gates for new quality dimensions · board updated in the same
-commit · HANDOFF entry · 🔧/🎮 queued · never claim done on device-feel work Terry hasn't seen.
+Fast preflight + CI green · tests for pure logic · gates for new quality dimensions · board updated
+in the same commit · HANDOFF entry · 🔧/🎮 queued · never claim done on device-feel work Terry hasn't seen.
