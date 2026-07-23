@@ -134,6 +134,7 @@ class OfflineReadinessReportTests(unittest.TestCase):
             "gate_lifecycle",
             "space_pois",
             "launch_transition",
+            "rill_visual_states",
             "continuity",
             "first_hour_contract",
             "first_hour_binding",
