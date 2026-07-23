@@ -56,6 +56,11 @@ jobs:
       - name: Space POI catalog gate
         run: python3 tools/space_poi_catalog_gate.py
 
+      - name: Space POI spawn catalog gate
+        run: |
+          python3 tools/space_poi_spawn_catalog_gate.py \
+            --json-report Builds/Reports/space_poi_spawn_catalog.json
+
       - name: Launch transition gate
         run: python3 tools/launch_transition_gate.py
 
@@ -97,6 +102,7 @@ jobs:
           path: |
             Builds/Reports/offline_readiness.json
             Builds/Reports/sunrig_contract.json
+            Builds/Reports/space_poi_spawn_catalog.json
             Builds/Reports/fast-python-gates.log
           if-no-files-found: warn
           retention-days: 14
