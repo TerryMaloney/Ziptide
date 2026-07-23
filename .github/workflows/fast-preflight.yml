@@ -38,6 +38,12 @@ jobs:
           python3 tools/third_party_license_gate.py \
             --json-report Builds/Reports/third_party_license.json
 
+      - name: First-hour binding evidence gate
+        run: |
+          python3 tools/first_hour_binding_gate.py \
+            --strict \
+            --json-report Builds/Reports/first_hour_binding_report.json
+
       - name: Concept intake gate
         run: python3 tools/concept_intake_gate.py
 
@@ -107,6 +113,7 @@ jobs:
           path: |
             Builds/Reports/offline_readiness.json
             Builds/Reports/third_party_license.json
+            Builds/Reports/first_hour_binding_report.json
             Builds/Reports/sunrig_contract.json
             Builds/Reports/space_poi_spawn_catalog.json
             Builds/Reports/fast-python-gates.log
