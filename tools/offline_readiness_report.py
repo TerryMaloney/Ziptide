@@ -4,6 +4,7 @@
 Statuses remain intentionally distinct:
 - pass/fail: deterministic repository evidence available now;
 - warning: report-only drift that remains visible but does not block unrelated work;
+- release-hold: development may continue, but the named evidence forbids a release claim;
 - awaiting-ci: the current source is newer than the durable Unity/audit verdict;
 - awaiting-device: Terry's exact authorized Quest route is the only valid closer.
 """
@@ -39,7 +40,7 @@ import space_poi_spawn_catalog_gate
 EXIT_OK = 0
 EXIT_OPERATIONAL_ERROR = 1
 EXIT_VALIDATION_FAILED = 2
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 2
 JSON_FENCE = re.compile(r"```json\s*(\{.*?\})\s*```", re.DOTALL)
 FAIL_SEVERITIES = {"error", "failure", "fatal", "blocker"}
 FAIL_STATUSES = {"fail", "failure", "blocked", "red"}
@@ -83,6 +84,7 @@ def _run_report_tool(
     check_id: str,
     script_name: str,
     extra_args: Sequence[str] = (),
+    hold_statuses: Sequence[str] = (),
 ) -> CheckResult:
     script = root / "tools" / script_name
     if not script.is_file():
@@ -148,8 +150,13 @@ def _run_report_tool(
         for finding in findings
     )
     payload_status = str(payload.get("status", "pass")).strip().lower()
+    normalized_hold_statuses = {
+        str(value).strip().lower() for value in hold_statuses if str(value).strip()
+    }
     if operational_failure or severe_finding or payload_status in FAIL_STATUSES:
         status = "fail"
+    elif payload_status in normalized_hold_statuses:
+        status = "release-hold"
     elif findings or payload_status == "warning":
         status = "warning"
     else:
@@ -334,6 +341,22 @@ def _deterministic_checks(root: Path) -> list[CheckResult]:
         ("first_hour_launch", "first_hour_launch_gate.py"),
     ):
         checks.append(_run_report_tool(root, check_id=check_id, script_name=script_name))
+    checks.append(
+        _run_report_tool(
+            root,
+            check_id="third_party_licensing",
+            script_name="third_party_license_gate.py",
+            hold_statuses=("warning",),
+        )
+    )
+    checks.append(
+        _run_report_tool(
+            root,
+            check_id="meta_store_readiness",
+            script_name="meta_store_readiness_gate.py",
+            hold_statuses=("hold",),
+        )
+    )
     return checks
 
 
@@ -360,14 +383,19 @@ def build_report(root: Path, *, source_sha: str | None = None) -> dict[str, Any]
 
     failed = [check.id for check in checks if check.status == "fail"]
     warnings = [check.id for check in checks if check.status == "warning"]
+    release_holds = [check.id for check in checks if check.status == "release-hold"]
     awaiting_ci = [check.id for check in checks if check.status == "awaiting-ci"]
     awaiting_device = [check.id for check in checks if check.status == "awaiting-device"]
     if failed:
         overall = "blocked-deterministic"
-    elif awaiting_ci:
+    elif awaiting_ci and awaiting_device:
         overall = "ready-offline-awaiting-ci-and-device"
+    elif awaiting_ci:
+        overall = "ready-offline-awaiting-ci"
     elif awaiting_device:
         overall = "ready-offline-awaiting-device"
+    elif release_holds:
+        overall = "ready-offline-release-held"
     else:
         overall = "ready"
 
@@ -378,10 +406,18 @@ def build_report(root: Path, *, source_sha: str | None = None) -> dict[str, Any]
         "root": root.as_posix(),
         "sourceSha": current_sha,
         "overall": overall,
+        "releaseCandidateStatus": "hold" if release_holds else "ready",
         "failedChecks": failed,
         "warningChecks": warnings,
+        "releaseHoldChecks": release_holds,
         "awaitingCiChecks": awaiting_ci,
         "awaitingDeviceChecks": awaiting_device,
+        "nextBlockingLanes": {
+            "deterministic": failed,
+            "ci": awaiting_ci,
+            "device": awaiting_device,
+            "release": release_holds,
+        },
         "checks": [asdict(check) for check in checks],
         "backAtComputer": [
             "Run tools/check_dev_capabilities.ps1",
@@ -412,7 +448,8 @@ def main(argv: Sequence[str] | None = None) -> int:
     output.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     print(
         "OFFLINE_READINESS_WRITTEN "
-        f"overall={report['overall']} source={report['sourceSha']} output={output}"
+        f"overall={report['overall']} release={report['releaseCandidateStatus']} "
+        f"source={report['sourceSha']} output={output}"
     )
     return EXIT_VALIDATION_FAILED if report["failedChecks"] else EXIT_OK
 
