@@ -51,6 +51,11 @@ jobs:
           python3 tools/meta_store_readiness_gate.py \
             --json-report Builds/Reports/meta_store_readiness.json
 
+      - name: Release build hygiene gate
+        run: |
+          python3 tools/release_build_hygiene_gate.py \
+            --json-report Builds/Reports/release_build_hygiene.json
+
       - name: First-hour binding evidence gate
         run: |
           python3 tools/first_hour_binding_gate.py \

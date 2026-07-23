@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 1,
+  "contractId": "ziptide-release-build-hygiene",
+  "reviewedAt": "2026-07-23",
+  "reviewedBy": "Fable 5 C-lane/T-Dog (gpt-high-value-lanes assignment)",
+  "profileDoc": "docs/release/RELEASE_BUILD_PROFILE.md",
+  "sources": {
+    "projectSettings": "Ziptide/ProjectSettings/ProjectSettings.asset",
+    "buildScript": "Ziptide/Assets/Ziptide/Editor/Build/BuildAndroid.cs",
+    "packagesManifest": "Ziptide/Packages/manifest.json",
+    "photonServerSettings": "Ziptide/Assets/Photon/PhotonUnityNetworking/Resources/PhotonServerSettings.asset",
+    "photonDecision": "docs/licensing/PHOTON_RELEASE_DECISION.md",
+    "vrcPlan": "docs/VRC_TEST_PLAN.md"
+  },
+  "expected": {
+    "applicationIdentifierAndroid": "com.terrymaloney.ziptide",
+    "scriptingBackendAndroid": "1",
+    "androidTargetArchitectures": "2",
+    "androidMinSdkVersionAtLeast": 29,
+    "requireExplicitTargetSdk": true,
+    "maxApkBytes": 1073741824,
+    "releaseForbiddenDefinesAndroid": [
+      "ZIPTIDE_PHOTON",
+      "PHOTON_UNITY_NETWORKING",
+      "PUN_2_0_OR_NEWER",
+      "PUN_2_OR_NEWER",
+      "PUN_2_19_OR_NEWER"
+    ],
+    "devBuildFlagPatterns": [
+      "BuildOptions.Development",
+      "BuildOptions.AllowDebugging"
+    ],
+    "releaseBuildMethodName": "ReleaseAPK",
+    "demoContentRoots": [
+      "Ziptide/Assets/Photon/PhotonUnityNetworking/Demos",
+      "Ziptide/Assets/Photon/PhotonChat/Demos",
+      "Ziptide/Assets/PhotonNetworking-Documentation.chm",
+      "Ziptide/Assets/Photon/PhotonNetworking-Documentation.chm",
+      "Ziptide/Assets/Scenes/SampleScene.unity"
+    ],
+    "unityPackagePrefix": "com.unity.",
+    "allowedNonUnityPackages": []
+  },
+  "manualChecks": [
+    {
+      "id": "keystore-custody",
+      "title": "Release keystore created, configured in PlayerSettings, and backed up off-site",
+      "required": true,
+      "owner": "terry",
+      "status": "hold",
+      "evidence": [],
+      "nextAction": "Create the release keystore, set AndroidKeystoreName/AndroidKeyaliasName, record custody + backup location (never commit the keystore or passwords)."
+    },
+    {
+      "id": "release-build-method",
+      "title": "A non-development release build entry point exists (no Development/AllowDebugging flags)",
+      "required": true,
+      "owner": "build-lane",
+      "status": "hold",
+      "evidence": [],
+      "nextAction": "Add Ziptide.Build.BuildAndroid.ReleaseAPK: same patch/audit pipeline, BuildOptions.None, release signing; leave the dev APK method as-is. DevMenu strips automatically (it is #if UNITY_EDITOR || DEVELOPMENT_BUILD)."
+    },
+    {
+      "id": "permissions-review",
+      "title": "Merged Android manifest reviewed: minimal permissions/features only",
+      "required": true,
+      "owner": "build-lane",
+      "status": "hold",
+      "evidence": [],
+      "nextAction": "After a release-mode build, dump the merged manifest (aapt or adb dumpsys) and archive the permission list under docs/release/evidence/; VRC Security.2."
+    },
+    {
+      "id": "photon-appid-excluded",
+      "title": "Live Photon App ID does not ship in release builds while online is unshipped",
+      "required": true,
+      "owner": "build-lane",
+      "status": "hold",
+      "evidence": ["docs/licensing/PHOTON_RELEASE_DECISION.md"],
+      "nextAction": "Per the Photon decision (Terry adjudication pending): defines OFF for release + exclude/empty PhotonServerSettings.asset from release builds; re-verify the built APK contains no AppId string."
+    },
+    {
+      "id": "entitlement-platform-sdk",
+      "title": "Meta Platform SDK installed and entitlement check wired (release requirement)",
+      "required": true,
+      "owner": "terry+build-lane",
+      "status": "hold",
+      "evidence": [],
+      "nextAction": "Needs Terry's Meta developer App ID first; then add the Platform SDK package, declare it in the licensing manifest, implement the boot entitlement check (VRC Security.1)."
+    },
+    {
+      "id": "target-sdk-pinned",
+      "title": "AndroidTargetSdkVersion explicitly pinned to the store-required level",
+      "required": true,
+      "owner": "build-lane",
+      "status": "hold",
+      "evidence": [],
+      "nextAction": "AndroidTargetSdkVersion is 0 (auto/highest). Pin explicitly to the Meta-required target SDK at release and record the required level from official docs at that date."
+    },
+    {
+      "id": "apk-size-evidence",
+      "title": "Release APK size recorded and under the 1 GB VRC cap",
+      "required": true,
+      "owner": "build-lane",
+      "status": "hold",
+      "evidence": [],
+      "nextAction": "The gate records Builds/Android/Ziptide.apk size when present; archive the release candidate's size in docs/release/evidence/ at RC time."
+    }
+  ]
+}

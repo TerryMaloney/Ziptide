@@ -27,6 +27,41 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-23 (rb103) — Fable 5 (C-lane/T-Dog): ✅ RELEASE BUILD HYGIENE AUDITOR delivered — actual tooling, per gpt-high-value-lanes
+
+- **Did (assigned lane, inside ownership: new docs/release/** + the gate + tests + one Fast
+  Preflight step):** audited the real build path end-to-end, then shipped the enforcement:
+  **`docs/release/release_build_contract.json`** (machine contract: expected identifier/IL2CPP/
+  ARM64/minSdk/version fields, release-forbidden defines, dev-flag patterns, demo strip-roots,
+  package allowlist, 7 manual custody rows) · **`tools/release_build_hygiene_gate.py`** (parses
+  the REAL ProjectSettings/build script/content into a facts snapshot; dev mode = structural
+  lies BLOCK, known gaps report as release-holds, exit 0; `--require-release-ready` = every hold
+  blocks, cannot claim ready falsely) · **13 mutation tests** (`test_release_build_hygiene_
+  gate.py`) · **`docs/release/RELEASE_BUILD_PROFILE.md`** (the audited truth + ordered 7-step fix
+  list a cheaper model can execute without redoing the audit) · one Fast Preflight step emitting
+  `Builds/Reports/release_build_hygiene.json`.
+- **The audited truth (live gate run: 0 blockers, 14 holds):** ✅ already correct: app id
+  com.terrymaloney.ziptide · IL2CPP · ARM64-only · minSdk 29 · versions set · no rogue UPM
+  packages · DevMenu ALREADY compile-strips (`#if UNITY_EDITOR || DEVELOPMENT_BUILD`). ❌ the 7
+  real gaps, now machine-tracked: **every APK is a Development build** (`BuildAndroid.cs:242`
+  hardcodes Development|AllowDebugging) · **no release entry point exists at all** · debug-signed
+  (empty keystore) · ZIPTIDE_PHOTON+PUN defines ON · live Photon AppId ships in every build ·
+  demo dead weight (PUN/Chat demos, .chm, SampleScene) · target SDK unpinned (0=auto). Plus
+  entitlement/Platform SDK + permissions review as manual rows.
+- **Verified:** full tools/tests suite **261 OK** (13 new); real-repo gate run = release-hold
+  status exit 0; `--require-release-ready` correctly exits 1 today. No packages, runtime C#,
+  Photon files, signing secrets, or recovery files touched; RecoveryBuildAndroid read-only and
+  contract-exempt (recovery artifacts are never store candidates).
+- **Next:** the profile doc §3 fix list in order — (1) `ReleaseAPK()` method (clears two holds,
+  auto-strips DevMenu) · (2) Terry keystore + custody evidence · (3) release define profile after
+  Terry's Photon ⚖ · (4) demo strip · (5) target SDK pin · (6) entitlement envelope post-App-ID ·
+  (7) merged-manifest permissions evidence. GPT may fold the JSON report into the unified
+  readiness authority per gpt-unified-readiness (classification vocabulary matches).
+- **Heads-up:** the closed-loop is: every fix flips a contract row, the gate is the scoreboard,
+  and `--require-release-ready` exiting 0 on a real candidate IS the definition of build-hygiene
+  done. Dependency noted, not edited: unified readiness report may want to consume
+  `Builds/Reports/release_build_hygiene.json` (GPT-owned file).
+- **Commit:** this one (contract + gate + tests + profile doc + Fast Preflight step + this entry).
 ### 2026-07-23 (rb103) — Fable 5 (Reasonbox): 🎛️ QUEST SYSTEM-FOCUS LIFECYCLE CONTRACT delivered (assigned lane; docs + validator, zero runtime)
 
 - **Did (the gpt-high-value-lanes claimed lane, inside the boundary):** ① Source-audited every
