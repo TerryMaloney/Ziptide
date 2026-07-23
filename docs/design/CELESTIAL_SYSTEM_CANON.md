@@ -135,3 +135,14 @@ world.celestial:
 can mismatch). `systemId` is the single knob that ties a world's sky, its space environment, its
 debris palette (§6), and its launch destination together. Worlds sharing a `systemId` share the
 star/giant/starfield for free. This block is the meta-building spine for the whole space domain.
+
+**Also in the world genome — the flight envelope** (`ATMOSPHERIC_FLIGHT_AND_LANDING.md` §7, same
+audit-enforced meta so in-world flight/boundary/landing behave identically everywhere):
+```
+world.flightEnvelope:
+  boundaryShape/size:  → flyable volume (auto-turn boundary)
+  ceilingAltitude:     → where ascent-to-space is offered (intentional)
+  terrainBuffer:       → building/ground avoidance distance
+  dockMarkers:         [<markerId>] → legal spaceship landing pads (ties to spawn-marker law)
+  flyableCeilingView:  → vista/curvature shown at max altitude
+```

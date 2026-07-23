@@ -27,6 +27,26 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-21 (rb92) — Fable 5: 🛩️ ATMOSPHERIC FLIGHT & LANDING — boundary, terrain avoid, dock landing
+
+- **Terry: fly the world before ascending; soft map-boundary auto-turn + "leaving mission zone"
+  warning; terrain/building auto-correct; spaceships land ONLY at docks (other craft maybe anywhere
+  later); dock-approach → prompt → autopilot landing; re-entry mirror; meta-consistent everywhere.**
+  Wrote `docs/design/ATMOSPHERIC_FLIGHT_AND_LANDING.md`.
+- **The middle layer between dock and space.** Full loop: docked→liftoff→free atmospheric flight
+  (bounded)→[intentional ascend at ceiling]→veil→space, and the mirror down. Key pieces: **soft
+  BOUNDARY** (2 tiers — warn via SHIP_ALERT + RILL, then GENTLE eased auto-turn, never a wall/bounce;
+  seeds off the existing `FlightModel.laneRadius`) · **TERRAIN AVOIDANCE** (proximity warn → soft
+  auto-correct climb/veer so you can't crash; hence no terrain-collision damage) · **DOCK-ONLY
+  LANDING** (docks = markers reusing `ShipBoardingStation`; manual approach + **autopiloted
+  touchdown** = comfort/reliable; RILL "want me to bring us in?") · **`canLandAnywhere` per-vehicle
+  flag** (spaceship false, skiff/future craft true — data, not special-case) · descent = the veil
+  reverse.
+- **Meta:** added `world.flightEnvelope` to the genome (`CELESTIAL_SYSTEM_CANON` §8): boundary,
+  ceiling, terrainBuffer, dockMarkers, ceiling-view — audit-enforced so flight behaves identically
+  per world. Comfort law: gentle eased assists, warned, autopilot landing, camera never jerks,
+  ascent always intentional. Reuses FlightModel/alert/markers/TravelCoordinator. **Commit:** this one.
+
 ### 2026-07-21 (rb91) — Fable 5: 🚀 THREE SPACE DOMAINS — launch/transition + world-genome block + repair loop
 
 - **Terry named three interlocked domains; hit all three, wired via the genome:**
