@@ -31,6 +31,7 @@ import factory_governance_gate
 import gate_lifecycle_gate
 import launch_transition_gate
 import mk2_room_manifest_gate
+import rill_visual_state_gate
 import space_mission_catalog_gate
 import space_poi_catalog_gate
 
@@ -303,6 +304,13 @@ def _deterministic_checks(root: Path) -> list[CheckResult]:
                 root / "docs/design/celestial_system_catalog.json",
             ),
             "docs/design/launch_transition_catalog.json",
+        ),
+        (
+            "rill_visual_states",
+            lambda: rill_visual_state_gate.validate_catalog(
+                root, root / "docs/project_art_plan/rill_visual_state_catalog.json"
+            ),
+            "docs/project_art_plan/rill_visual_state_catalog.json",
         ),
     )
     checks = [_direct_check(check_id, runner(), evidence) for check_id, runner, evidence in direct]
