@@ -1,0 +1,63 @@
+name: Coordination Path Policy Refresh
+
+on:
+  push:
+    branches:
+      - terry-local-wip
+    paths:
+      - 'docs/coordination_path_queue/**.json'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: coordination-path-policy-terry-local-wip
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: terry-local-wip
+          fetch-depth: 0
+
+      - name: Test policy tool
+        run: |
+          python3 -m unittest discover \
+            -s tools/tests \
+            -p 'test_coordination_path_policy.py' \
+            -v
+
+      - name: Apply coordination policy
+        run: python3 tools/coordination_path_policy.py --apply
+
+      - name: Verify coordination policy
+        run: python3 tools/coordination_path_policy.py --check
+
+      - name: Consume policy request
+        run: rm -f docs/coordination_path_queue/*.json
+
+      - name: Diff safety check
+        run: git diff --check
+
+      - name: Commit policy refresh
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add .github/workflows/ci.yml \
+                  .github/workflows/fast-preflight.yml \
+                  .github/workflows/cancel-superseded-ci.yml \
+                  docs/coordination_path_queue
+          if git diff --cached --quiet; then
+            echo 'No coordination policy changes to commit.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'ci: align coordination-only path policy'
+          git push origin HEAD:terry-local-wip
