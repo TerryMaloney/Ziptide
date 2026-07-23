@@ -121,6 +121,7 @@ class OfflineReadinessReportTests(unittest.TestCase):
         )
         self.assertEqual([], report["failedChecks"])
         self.assertIn("warningChecks", report)
+        self.assertIn("sunrig_contract", report["warningChecks"])
         self.assertIn("durable_ci", report["awaitingCiChecks"])
         self.assertEqual(["headset_recovery_route"], report["awaitingDeviceChecks"])
         self.assertEqual("ready-offline-awaiting-ci-and-device", report["overall"])
@@ -130,9 +131,11 @@ class OfflineReadinessReportTests(unittest.TestCase):
             "concept_intake",
             "space_missions",
             "celestial_systems",
+            "sunrig_contract",
             "mk2_rooms",
             "gate_lifecycle",
             "space_pois",
+            "space_poi_spawn_packets",
             "launch_transition",
             "rill_visual_states",
             "continuity",
