@@ -34,6 +34,7 @@ import mk2_room_manifest_gate
 import rill_visual_state_gate
 import space_mission_catalog_gate
 import space_poi_catalog_gate
+import space_poi_spawn_catalog_gate
 
 EXIT_OK = 0
 EXIT_OPERATIONAL_ERROR = 1
@@ -297,6 +298,16 @@ def _deterministic_checks(root: Path) -> list[CheckResult]:
             "docs/design/space_poi_catalog.json",
         ),
         (
+            "space_poi_spawn_packets",
+            lambda: space_poi_spawn_catalog_gate.validate_catalog(
+                root,
+                root / "docs/design/space_poi_spawn_catalog.json",
+                root / "docs/design/space_poi_catalog.json",
+                root / "docs/design/space_mission_catalog.json",
+            ),
+            "docs/design/space_poi_spawn_catalog.json",
+        ),
+        (
             "launch_transition",
             lambda: launch_transition_gate.validate_catalog(
                 root,
@@ -315,6 +326,7 @@ def _deterministic_checks(root: Path) -> list[CheckResult]:
     )
     checks = [_direct_check(check_id, runner(), evidence) for check_id, runner, evidence in direct]
     for check_id, script_name in (
+        ("sunrig_contract", "sunrig_contract_gate.py"),
         ("continuity", "continuity_gate.py"),
         ("first_hour_contract", "first_hour_gate.py"),
         ("first_hour_binding", "first_hour_binding_gate.py"),
