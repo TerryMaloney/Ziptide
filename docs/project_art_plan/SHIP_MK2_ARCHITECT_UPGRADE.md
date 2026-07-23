@@ -6,6 +6,8 @@
 from), `SHIP_SCAVENGER_VISUAL_SPEC.md`, `CONCEPT_ART_NEXT_30.md` (the Architect syllabary +
 coupler this inherits), `HERO_ASSET_STRATEGY.md` (Tier C).
 
+> **Machine catalog:** `docs/project_art_plan/mk2_room_socket_manifest.json` — CI-enforced; keep in sync (`docs/CATALOG_DOC_RECONCILE.md`).
+
 ---
 
 ## §1 — The two failure modes this design must dodge
