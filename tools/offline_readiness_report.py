@@ -3,6 +3,7 @@
 
 Statuses remain intentionally distinct:
 - pass/fail: deterministic repository evidence available now;
+- warning: report-only drift that remains visible but does not block unrelated work;
 - awaiting-ci: the current source is newer than the durable Unity/audit verdict;
 - awaiting-device: Terry's exact authorized Quest route is the only valid closer.
 """
@@ -38,6 +39,8 @@ EXIT_OPERATIONAL_ERROR = 1
 EXIT_VALIDATION_FAILED = 2
 SCHEMA_VERSION = 1
 JSON_FENCE = re.compile(r"```json\s*(\{.*?\})\s*```", re.DOTALL)
+FAIL_SEVERITIES = {"error", "failure", "fatal", "blocker"}
+FAIL_STATUSES = {"fail", "failure", "blocked", "red"}
 
 
 @dataclass(frozen=True)
@@ -138,9 +141,20 @@ def _run_report_tool(
         for item in raw_findings
     )
     operational_failure = completed.returncode not in (0, EXIT_VALIDATION_FAILED)
+    severe_finding = any(
+        str(finding.get("severity", "warning")).strip().lower() in FAIL_SEVERITIES
+        for finding in findings
+    )
+    payload_status = str(payload.get("status", "pass")).strip().lower()
+    if operational_failure or severe_finding or payload_status in FAIL_STATUSES:
+        status = "fail"
+    elif findings or payload_status == "warning":
+        status = "warning"
+    else:
+        status = "pass"
     return CheckResult(
         id=check_id,
-        status="fail" if operational_failure or findings else "pass",
+        status=status,
         finding_count=len(findings),
         findings=findings,
         evidence=f"tools/{script_name}",
@@ -325,6 +339,7 @@ def build_report(root: Path, *, source_sha: str | None = None) -> dict[str, Any]
     )
 
     failed = [check.id for check in checks if check.status == "fail"]
+    warnings = [check.id for check in checks if check.status == "warning"]
     awaiting_ci = [check.id for check in checks if check.status == "awaiting-ci"]
     awaiting_device = [check.id for check in checks if check.status == "awaiting-device"]
     if failed:
@@ -344,6 +359,7 @@ def build_report(root: Path, *, source_sha: str | None = None) -> dict[str, Any]
         "sourceSha": current_sha,
         "overall": overall,
         "failedChecks": failed,
+        "warningChecks": warnings,
         "awaitingCiChecks": awaiting_ci,
         "awaitingDeviceChecks": awaiting_device,
         "checks": [asdict(check) for check in checks],
