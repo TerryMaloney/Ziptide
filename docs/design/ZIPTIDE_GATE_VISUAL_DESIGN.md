@@ -5,6 +5,8 @@
 scientific way this could work." Feeds: queue C2 (gate concept), the future `ZiptideGateEffect`
 upgrade (post-checkpoint, budget-gated), LS-5 tide acts, the night-glow motif family.
 
+> **Machine catalog:** `docs/project_art_plan/gate_lifecycle_catalog.json` — CI-enforced; keep in sync (`docs/CATALOG_DOC_RECONCILE.md`).
+
 ## §1 — The pseudo-science canon (⚖ Terry to bless; built on REAL physics with one stretch)
 
 - **Real basis:** "quantum fluids of light" is an actual research field — in slow-light media
