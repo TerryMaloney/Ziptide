@@ -10,6 +10,7 @@ on:
       - docs/CI_VERDICT.md
       - docs/recovery/generated/**
       - docs/HANDOFF.md
+      - docs/handoff_queue/**
   workflow_dispatch:
 
 permissions:
