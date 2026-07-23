@@ -31,8 +31,8 @@
         {
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/BootLoader.cs",
           "tokens": [
-            "Debug.Log(\"ZIPTIDE: BOOT_LOAD dest=\" + target);",
-            "TravelCoordinator.TravelTo(target, skipGate: true);"
+            "Debug.Log(\"ZIPTIDE: BOOT_LOAD dest=\" + destination);",
+            "TravelCoordinator.TravelTo(destination, skipGate: true);"
           ]
         }
       ],
@@ -424,9 +424,9 @@
         {
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
           "tokens": [
-            "public bool IsRepaired => _stage == Stage.Running;",
+            "public bool IsRepaired => _stage == RepairStage.Running;",
             "if (_director != null) _director.ReportRepair(_def.machineId);",
-            "Debug.Log(\"ZIPTIDE: MACHINE_REPAIRED id=\" + _def.machineId);"
+            "Debug.Log(\"ZIPTIDE: MACHINE_REPAIRED id=\" + _def.machineId"
           ]
         }
       ],
