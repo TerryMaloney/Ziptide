@@ -27,6 +27,34 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-23 (rb96) — Fable 5: ✅ REVIEWED GPT's offline production pass (sound) + assisted (SunRig contract, item #3)
+
+- **Terry asked me to double-check GPT's work + assist + log it.** GPT ran a big offline pass
+  (48 files, ~7.5k lines): turned our design docs into **machine-enforceable JSON catalogs +
+  Python validators + tests + CI gates** — celestial, mission, POI, launch, gate-lifecycle, MK2
+  room sockets, RILL visual states, artifact-key intake, a unified offline-readiness report, Fast
+  Preflight. All tooling/data/docs — **no Unity C# runtime touched** (freeze-safe).
+- **VERIFICATION (I ran it): SOUND.** All 8 validators PASS; `python3 -m unittest` = **187 tests
+  OK**; CI_VERDICT = **GREEN** for GPT's head `806d871a`. Content matches canon: mission catalog =
+  my exact 10 type ids; POI families = the 6 (give missions destinations); celestial = Moss as
+  `habitable-toxic-moon` w/ `parentBody: moss_ringed_giant` + one `SunRig-primary-key` star, names
+  kept "TBD" (didn't invent past ⚖). **RILL "9 states" was CORRECT** — the real `RillMemoryState`
+  enum has 9 (5 progression + 4 endings); GPT mapped the real enum, didn't duplicate. My ledger #15
+  left intact. GPT's honesty holds: newest head is NOT Unity-verified (only the Python side is); the
+  `c45b1a2` recovery APK is still the reserved headset artifact.
+- **ASSIST — did GPT's queue item #3: `docs/design/SUNRIG_CONTRACT.md`** — the SunRig interface +
+  authored-data contract that CONSUMES the `stars[]` GPT put in `celestial_system_catalog.json`
+  (`SunRig-primary-key`, temperatureFamily, exactColor/discAngularSize author-required, countRole).
+  Defines: what SunRig owns (key light + disc + bloom/flare + hull terminator, 1–2 suns), the data
+  schema (shared ground/space direction+size), ground-vs-space behavior, comfort rules (no FOV
+  flash), the interface surface (`ApplyStar`/`ApplySystem`/`SetAtmosphere`), and a proposed
+  `sunrig_contract_gate` in GPT's validator idiom. Advances SPACE_ENVIRONMENT_AUDIT §2.1 (#1 item).
+- **Remaining GPT queue (my read):** #4 map missions→jobs/economy/Signal (I sketched it in
+  SPACE_MISSION_TYPES §4 — good next design assist) · #5 POIs→spawn packets · #6 MK2 bedroom
+  (needs Terry's keeper; prompt already queued rb87) · #1 reconcile 5 first-hour evidence warnings ·
+  #2 CI concurrency-cancel (workflow YAML — low-risk, report-first). **⚖ for Terry:** the Moss sun's
+  exact color + disc angular size (the two author-required fields). **Commit:** this one.
+
 ### 2026-07-21 (rb95) — Fable 5: 🎯 SPACE MISSION TYPES (from the story bible) + scope ⚖ LOCKED
 
 - **Terry LOCKED the 6 space scope ⚖** (arcade-not-Newtonian · no-EVA-v1 · no-punitive-fuel ·
