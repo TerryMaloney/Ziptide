@@ -1,0 +1,69 @@
+name: Cancel superseded CI
+
+on:
+  push:
+    branches:
+      - main
+      - 'claude/**'
+      - terry-local-wip
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: read
+
+concurrency:
+  group: cancel-superseded-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  cancel-older-ci:
+    name: Cancel older branch CI runs
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Cancel older ci.yml runs for this branch
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const branch = context.ref.replace('refs/heads/', '');
+            const currentRunId = Number(context.runId);
+            const activeStates = new Set([
+              'queued',
+              'in_progress',
+              'waiting',
+              'requested',
+              'pending'
+            ]);
+
+            const response = await github.rest.actions.listWorkflowRuns({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'ci.yml',
+              branch,
+              per_page: 50
+            });
+
+            const candidates = response.data.workflow_runs.filter(run =>
+              run.id < currentRunId &&
+              run.head_branch === branch &&
+              activeStates.has(run.status)
+            );
+
+            core.info(`Found ${candidates.length} superseded active CI run(s) for ${branch}.`);
+            for (const run of candidates) {
+              core.info(`Cancelling CI run ${run.id} (${run.head_sha.slice(0, 7)}, ${run.status}).`);
+              try {
+                await github.rest.actions.cancelWorkflowRun({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  run_id: run.id
+                });
+              } catch (error) {
+                if (error.status === 409) {
+                  core.info(`Run ${run.id} already completed or was cancelled concurrently.`);
+                  continue;
+                }
+                throw error;
+              }
+            }
