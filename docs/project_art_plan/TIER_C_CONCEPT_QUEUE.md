@@ -8,6 +8,8 @@ ship in the game — so this entire phase runs on any free image generator. Paid
 (Tripo/Meshy tier, license verified that day) happens ONLY per-asset, after its sheet is
 approved. Terry's rule honored by design: nothing gets paid for until plenty is lined up.
 
+> **Machine catalog:** `docs/project_art_plan/rill_visual_state_catalog.json` — CI-enforced RILL state companion; keep in sync (`docs/CATALOG_DOC_RECONCILE.md`).
+
 ## §0 — Workflow + bookkeeping (same discipline as the music keepers)
 
 - Generate ≥6 candidates per prompt; keep 1–2 per view. Iterate at the SILHOUETTE level first
