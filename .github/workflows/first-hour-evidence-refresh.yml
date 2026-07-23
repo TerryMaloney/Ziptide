@@ -1,0 +1,62 @@
+name: First-Hour Evidence Refresh
+
+on:
+  push:
+    branches:
+      - terry-local-wip
+    paths:
+      - 'docs/first_hour/evidence_refresh_queue/**.json'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: first-hour-evidence-refresh-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Test refresh tool
+        run: |
+          python3 -m unittest discover \
+            -s tools/tests \
+            -p 'test_first_hour_evidence_refresh.py' \
+            -v
+
+      - name: Validate queued refreshes
+        run: python3 tools/first_hour_evidence_refresh.py --check
+
+      - name: Apply queued refreshes
+        run: python3 tools/first_hour_evidence_refresh.py
+
+      - name: Prove first-hour evidence inventory
+        run: |
+          python3 tools/first_hour_binding_gate.py \
+            --strict \
+            --json-report Builds/Reports/first_hour_binding_report.json
+
+      - name: Diff safety check
+        run: git diff --check
+
+      - name: Commit refreshed inventory
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add docs/first_hour/first_hour_bindings.json docs/first_hour/evidence_refresh_queue
+          if git diff --cached --quiet; then
+            echo 'No evidence refresh changes to commit.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'docs: refresh first-hour evidence tokens'
+          git push
