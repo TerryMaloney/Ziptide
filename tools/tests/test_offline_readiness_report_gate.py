@@ -66,6 +66,53 @@ class OfflineReadinessReportTests(unittest.TestCase):
         self.assertEqual(1, result.finding_count)
         self.assertEqual("CODE", result.findings[0]["code"])
 
+    def _write_report_tool(self, root: Path, *, status: str, severity: str) -> str:
+        tools = root / "tools"
+        tools.mkdir(parents=True, exist_ok=True)
+        script = tools / "fixture_report.py"
+        payload = {
+            "status": status,
+            "findings": [
+                {"code": "FIXTURE", "message": "fixture finding", "severity": severity}
+            ],
+        }
+        script.write_text(
+            "import argparse, json\n"
+            "from pathlib import Path\n"
+            "p=argparse.ArgumentParser()\n"
+            "p.add_argument('--json-report', type=Path, required=True)\n"
+            "a=p.parse_args()\n"
+            f"payload={payload!r}\n"
+            "a.json_report.parent.mkdir(parents=True, exist_ok=True)\n"
+            "a.json_report.write_text(json.dumps(payload), encoding='utf-8')\n",
+            encoding="utf-8",
+        )
+        return script.name
+
+    def test_report_only_warning_remains_visible_without_blocking(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            script_name = self._write_report_tool(root, status="warning", severity="warning")
+            result = offline_readiness_report._run_report_tool(
+                root,
+                check_id="fixture",
+                script_name=script_name,
+            )
+            self.assertEqual("warning", result.status)
+            self.assertEqual(1, result.finding_count)
+
+    def test_error_severity_still_blocks(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            script_name = self._write_report_tool(root, status="warning", severity="error")
+            result = offline_readiness_report._run_report_tool(
+                root,
+                check_id="fixture",
+                script_name=script_name,
+            )
+            self.assertEqual("fail", result.status)
+            self.assertEqual(1, result.finding_count)
+
     def test_repository_report_has_no_deterministic_failures(self) -> None:
         root = Path(__file__).resolve().parents[2]
         report = offline_readiness_report.build_report(
@@ -73,6 +120,7 @@ class OfflineReadinessReportTests(unittest.TestCase):
             source_sha="deliberately-newer-than-durable-verdict",
         )
         self.assertEqual([], report["failedChecks"])
+        self.assertIn("warningChecks", report)
         self.assertIn("durable_ci", report["awaitingCiChecks"])
         self.assertEqual(["headset_recovery_route"], report["awaitingDeviceChecks"])
         self.assertEqual("ready-offline-awaiting-ci-and-device", report["overall"])
