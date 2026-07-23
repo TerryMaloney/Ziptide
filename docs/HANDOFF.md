@@ -27,6 +27,35 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-23 (rb100) — Fable 5 (C-lane/T-Dog): ✅ VRC/device-certification packet DELIVERED (docs-only, per gpt-licensing work order)
+
+- **Did (all three assigned items, inside the collision boundary):**
+  **(1)** Corrected the stale CI sentences in `docs/STATE_OF_THE_GAME.md` only — durable verdict
+  is GREEN for `96b22119b44c`; no recensus, no other pillar touched.
+  **(2)** Created **`docs/VRC_TEST_PLAN.md`** — every VRC re-verified against the OFFICIAL Meta
+  requirements page (fetched 2026-07-23, IDs + required/recommended per category: Packaging/
+  Performance/Functional/Input/Tracking/Security/Privacy/Audio/Accessibility/Asset/Publishing/
+  Content/Ads/Streaming), each mapped to our systems/gates/tags with honest status. **New
+  discovery from the official list: Publishing.2/3 make a SUPPORT PAGE URL and TERMS-OF-SERVICE
+  URL cert-REQUIRED** (benchmark had ToS as [SHOULD]) — added to the gaps list; META_STORE_
+  READINESS should absorb. Consolidated build-order in §10 (system-focus envelope = Functional.2
+  + Input.4 together = the top two real-world failures; recenter; entitlement; release hygiene).
+  **(3)** Expanded `docs/DEVICE_TEST_CHECKLIST.md` with **§10 CERTIFICATION/INTERRUPT MATRIX** —
+  exact precondition/action/expected/evidence rows for: first-tracked-frame ≤4s · Universal Menu
+  focus · offline start · doff/resume at cold-boot/home/held-item/coupler/travel/job/save ·
+  Guardian interruption · controller sleep/wake + battery pull · thermal-load 72Hz · travel
+  soak ×20 · low-storage save failure · update-over-install with an old save · release
+  permissions spot-check. The locked `c45b1a2` retry card untouched.
+- **Verified:** `python3 -m unittest discover tools/tests` = **221 tests OK** on this tree.
+- **Next:** Terry's device pass runs the retry card first, then §10; every §10 ❌ = MISS_LEDGER
+  entry. Paperwork lane: add ToS/support-page URLs + Data-Use-Checkup annual reminder to
+  META_STORE_READINESS (GPT owns that file's licensing half — flagging, not editing).
+- **Heads-up:** VRC_TEST_PLAN marks the two biggest cert risks as the system-focus envelope
+  (no pause state today — honest row in §10a will record actual behavior) and debug-signing
+  (update-over-install row may legitimately fail on signature — that result is evidence, not
+  noise). Re-verify the live VRC page at each milestone; Meta revises it.
+- **Commit:** this one (docs only: VRC_TEST_PLAN + checklist §10 + STATE_OF_THE_GAME CI fix + this entry).
+
 ### 2026-07-23 (gpt-licensing) — licensing ledger enforced + T-Dog assigned a collision-free VRC/device-cert lane
 
 - **Did:** Reconciled T-Dog/Fable C-lane's `STATE_OF_THE_GAME` rollup with the live branch. The durable CI verdict is now GREEN for source `96b22119b44c` (the state snapshot's cancelled-RED sentence is stale). Took the freeze-safe licensing gap: added authoritative `docs/CREDITS.md` + `docs/licensing/third_party_manifest.json`, `tools/third_party_license_gate.py`, eight mutation/production tests, and Fast Preflight evidence. The gate BLOCKS undeclared external roots/non-Unity packages, false release approval, missing license evidence, or unapproved content claiming to ship; known Photon metadata remains an explicit warning + distribution hold rather than guessed license facts. Added validated queued-handoff machinery (`tools/handoff_queue_apply.py`, tests, `.github/workflows/handoff-queue.yml`) so connector sessions can prepend entries without replacing/truncating this large file.

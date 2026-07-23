@@ -153,6 +153,80 @@ adb logcat | findstr "ZIPTIDE"
 
 ---
 
+## 10. CERTIFICATION / INTERRUPT MATRIX (the VRC-shaped pass — new 2026-07-23)
+
+**Why:** Meta cert (and real players) test exactly these; none were on this checklist before.
+Companion: `docs/VRC_TEST_PLAN.md` (the full requirement map). These rows are for the broader
+post-recovery device pass — **the locked `c45b1a2` recovery retry card (`docs/testing/
+HEADSET_RETRY_C45B1A2.md`) is unchanged and still runs as written.**
+Each row: check ⬜→✅/❌; a ❌ = a MISS_LEDGER entry (fix + gate, per the Class Law).
+Evidence = say what you saw + the logcat tag if one fires; screenshots welcome.
+
+### 10a. Launch & focus
+- [ ] **First tracked frame ≤ 4 s** — Precondition: app fully closed (quit from Quest library).
+  Action: cold-launch; count seconds until you see head-tracked graphics or a VR loading view.
+  Expected: tracked view or loading indicator within 4 s, never a frozen/black screen.
+  Evidence: rough seconds count + first `ZIPTIDE:` boot tag time. (VRC Performance.3)
+- [ ] **Universal Menu focus** — Precondition: mid-gameplay, weapon in hand. Action: press the
+  Oculus button; wait 10 s in the menu; close it. Expected: game visibly pauses behind the menu
+  (world/audio hold), your hands/controllers hidden while menu is up, no input leaks (you did
+  NOT fire/move), clean resume exactly where you were. Evidence: describe pause/audio behavior —
+  today a hold is NOT implemented, so record actual behavior honestly. (VRC Functional.2 + Input.4)
+- [ ] **Offline start** — Precondition: Wi-Fi OFF on the headset. Action: cold-launch, play 5
+  min, travel once, save. Expected: everything works identically (offline-first game).
+  Evidence: any errors/log oddities. (VRC Functional.7)
+
+### 10b. Doff/resume — repeat at each state
+For EACH state below: Precondition = be in that state. Action: take the headset off, wait ~60 s
+(let it sleep), put it back on. Expected: instant resume exactly where you were — no crash, no
+reset, no lost item, save intact. Evidence: `SaveSystem` pause-save tag on doff + note anything lost.
+- [ ] Doff at **cold boot** (during first load, before the world appears)
+- [ ] Doff at the **home hub / boot world** (menus idle)
+- [ ] Doff with a **weapon held in-hand** (does it stay held/holstered on resume?)
+- [ ] Doff mid-**coupler interaction** (hand mid-socket)
+- [ ] Doff mid-**TRAVEL** (during the gate crest — the hard case) `(TRAVEL_*)`
+- [ ] Doff mid-**job step** (contract active, step partially done — progress intact?)
+- [ ] Doff during a **save moment** (right after a bounty pays) — profile intact on resume
+  AND after a full quit+relaunch. `(JOB_REWARD_GRANTED then autosave)`
+
+### 10c. System interruptions
+- [ ] **Guardian interruption** — Precondition: mid-combat. Action: step fully outside the
+  Guardian boundary until passthrough kicks in; re-enter; redraw the boundary from the system
+  menu; return to game. Expected: game holds/resumes sanely, rig not displaced into geometry,
+  no runaway state. Evidence: describe rig position on return. (VRC Functional.5)
+- [ ] **Controller sleep/wake** — Precondition: weapon held. Action: set both controllers down
+  until they sleep (~1 min); pick them back up. Expected: tracking + input return cleanly,
+  held/holstered items recover, no permanent dead input. Evidence: note re-grab behavior.
+- [ ] **Controller battery pull (if practical)** — Action: pull one battery mid-hold; reinsert.
+  Expected: same graceful recovery. Evidence: note behavior.
+
+### 10d. Endurance & storage
+- [ ] **Thermal-load 72 Hz** — Precondition: device warm (≥20 min continuous play). Action: play
+  the busiest area (ToxicCity market) at minute ~25–30. Expected: no obvious frame drops after
+  heat-soak; note any late-session judder vs the fresh-boot feel. Evidence:
+  `ZIPTIDE: HEALTH_SLOW` / `HEALTH_SWEEP` lines late-session vs early. (VRC Performance.1)
+- [ ] **Travel soak ×20** — Action: 20 consecutive travel round-trips. Expected: no slowdown,
+  no memory creep, audio stays clean. Evidence: `HEALTH_SWEEP ... clips=` trend.
+- [ ] **Low-storage save failure** — Precondition: headset storage nearly full (record a few
+  long videos to fill it if needed). Action: play to a save moment. Expected (today's honest
+  bar): game does not crash or corrupt the existing save; note that `SAVE_FAIL` is currently
+  silent to the player (known gap — error-fiction row, MISS_LEDGER #3). Evidence: `SAVE_FAIL`
+  tag; confirm the old profile still loads afterwards. (VRC Functional.4)
+
+### 10e. Update path & release hygiene (build-side, same session)
+- [ ] **Update-over-install with an old save** — Precondition: previous APK installed WITH a
+  played profile on it. Action: install the new APK OVER it (no uninstall — skip the
+  `adb uninstall` step deliberately); launch; Continue. Expected: profile loads, nothing wiped,
+  schema migration silent. Evidence: profile contents match pre-update; any migration tags.
+  *(If the signature blocks the install-over, note that too — it is release-relevant evidence.)*
+- [ ] **Release-build permissions/manifest spot-check** — Action (PC): after the build, run
+  `adb shell dumpsys package com.terrymaloney.ziptide | findstr permission`. Expected: only
+  expected permissions (no microphone/location/etc. surprises). Evidence: paste the list into
+  the session notes. (VRC Security.2 / Packaging.1 — the full release-flag audit is a separate
+  planned gate.)
+
+---
+
 ## Feel notes to send back (tuning, not pass/fail)
 Ray length · drone speed & fire rate · wrist-scanner size/position · gravity-hop distance · gun grip
 offset · combat pacing · city scale/walkability.

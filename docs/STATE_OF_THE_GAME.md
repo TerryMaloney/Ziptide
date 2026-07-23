@@ -19,7 +19,8 @@ music track and zero voice/SFX, no ship you can board, 68 of the planned 80 worl
 none of the "finished game shell" (pause menu, settings sliders, ending/credits, store
 compliance). The plan for every missing piece EXISTS and is good — the project's real state is
 **"systems-complete-ish, content-thin, presentation-early."** The gate everything waits on:
-**M0, your device-proof headset session** — and CI must be green again first.
+**M0, your device-proof headset session** — CI is green (durable verdict GREEN for `96b22119b44c`,
+2026-07-23; the earlier RED was a cancelled run, since cleared).
 
 ## 1 · Scoreboard by pillar
 
@@ -36,13 +37,13 @@ compliance). The plan for every missing piece EXISTS and is good — the project
 | **Gardens/automation** | 🟢 v1 BUILT | Genetics/watering/24 species authored (3 as assets, 21 patcher-side), belts/machines deterministic + persistent | Seed surfacing in worlds; giants/breeding playable polish |
 | **Multiplayer** | 🟡 PARTIAL | PvP solo-vs-bot (5 arenas, ladder v1), Tidefront conquest sim complete + deterministic, Photon presence seam | Online play (M7b, needs 2 headsets), arena AAA program (M7a), league (post-launch) |
 | **The finished-game shell** | 🔴 MISSING | Benchmark docs + SHIP SHELL lane defined; META_STORE_READINESS checklist; comfort presets code | Pause menu, volume sliders, assist toggle, credits/ending experience, entitlement/Platform SDK, Mixed-Ages cert, store assets, CREDITS.md ledger — all ❌ (three benchmark runs agree) |
-| **Quality machine** | 🟢 STRONG | 182 EditMode + 40 PlayMode tests, 25 audit rule sets, 31 python gates + their own tests, golden APK + verdict machinery, MISS_LEDGER law | PlayMode lane still non-blocking; legacy recipe-hash law (S1/S2) in GPT's queue; **CI verdict currently RED (cancelled run — needs a clean green re-run)** |
+| **Quality machine** | 🟢 STRONG | 182 EditMode + 40 PlayMode tests, 25 audit rule sets, 31 python gates + their own tests, golden APK + verdict machinery, MISS_LEDGER law | PlayMode lane still non-blocking; legacy recipe-hash law (S1/S2) in GPT's queue; CI durable verdict **GREEN** for `96b22119b44c` (2026-07-23) |
 
 ## 2 · The three walls between here and "a real game"
 
 1. **THE DEVICE WALL (now — M0).** Nothing below matters until the current build is proven on
    your headset: rig/guns/travel across the worlds, the interrupt cases, the feel notes. Every
-   lane is staged behind this. CI must be re-run green first (last verdict RED via cancellation).
+   lane is staged behind this. CI is green (durable verdict for `96b22119b44c`, 2026-07-23).
 2. **THE CONTENT WALL (M1–M5).** Story delivery into worlds → hands-on job loop → living
    creatures → THE SHIP → then, and only then, scale to 80 worlds through the factory. The
    factory (genomes, kits, gates, hash law) exists precisely so this wall is climbable by LLMs;
@@ -54,9 +55,9 @@ compliance). The plan for every missing piece EXISTS and is good — the project
 
 ## 3 · Best steps from here (the order, with owners)
 
-1. **Green the board, then M0** *(Terry + any operator)*: re-run CI to clear the cancelled RED;
-   then the headset session — runbook bake + `DEVICE_TEST_CHECKLIST.md` (now incl. interrupt
-   rows). Every ❌ becomes a ratchet entry (fix + gate).
+1. **M0 — the headset session** *(Terry; CI already green)*: runbook bake +
+   `DEVICE_TEST_CHECKLIST.md` (now incl. the §10 certification/interrupt matrix). Every ❌
+   becomes a ratchet entry (fix + gate).
 2. **Phase-1 UNSTICK while M0 waits** *(GPT queue, already ordered)*: legacy recipe-hash law
    S1/S2 (kills bake sittings) · PlayMode lane → blocking · CI concurrency-cancel · license
    cron. All from `FACTORY_MASTER_ORDER.md`; none touch gameplay.
