@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 1,
+  "assetId": "rill_orb",
+  "decisionStatus": "proposed-canon",
+  "stateType": "Ziptide.Core.RillMemoryState",
+  "stateSource": "Ziptide/Assets/Ziptide/Core/Runtime/RillState.cs",
+  "currentPresenter": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs",
+  "keeperConcept": "concepts/rill_drone/rill_orb_hero_moodstates_v2.png",
+  "invariants": {
+    "stateDerivedFromStoryFlags": true,
+    "secondEmotionRuntimeAllowed": false,
+    "repairPanelVisibleAllStates": true,
+    "irisAndChannelsIndependent": true,
+    "fullBodyStrobeAllowed": false,
+    "minimumConversationDistanceMeters": 0.45,
+    "defaultConversationDistanceMeters": {"min": 0.65, "max": 0.95},
+    "channelIntensityRange": {"min": 0.0, "max": 1.0},
+    "irisIntensityRange": {"min": 0.0, "max": 1.0}
+  },
+  "currentRuntimeBaseline": {
+    "Dormant": {"rgb": [0.25, 0.45, 0.65], "sourceConstant": "DormantColor"},
+    "Stirring": {"rgb": [0.30, 0.80, 0.95], "sourceConstant": "StirringColor"},
+    "Remembering": {"rgb": [0.55, 0.85, 0.75], "sourceConstant": "RememberingColor"},
+    "laterStatesCollapsedToDefault": {
+      "states": ["Unsealing", "Integrated", "EndgameA", "EndgameB", "EndgameC", "EndgameD"],
+      "rgb": [0.85, 0.80, 0.45],
+      "sourceConstant": "LateColor"
+    }
+  },
+  "profiles": [
+    {
+      "state": "Dormant",
+      "chapterBand": "W001-W004",
+      "profileId": "quiet_dormant",
+      "keeperMoodSlot": "author-label-unresolved",
+      "iris": {"family": "muted-blue", "intensity": 0.45, "aperture": "narrow-neutral"},
+      "channels": {"family": "muted-blue", "intensity": 0.25, "motion": "slow-breath"},
+      "structuralNodes": {"family": "amber", "intensity": 0.10},
+      "motionCue": "functional-hover-minimal-lean",
+      "audioRegister": "short-functional",
+      "glitchAllowed": false
+    },
+    {
+      "state": "Stirring",
+      "chapterBand": "W005-W012",
+      "profileId": "curious_stirring",
+      "keeperMoodSlot": "author-label-unresolved",
+      "iris": {"family": "bright-cyan", "intensity": 0.75, "aperture": "open-curious"},
+      "channels": {"family": "crest-cyan", "intensity": 0.60, "motion": "localized-wave-to-eye"},
+      "structuralNodes": {"family": "amber", "intensity": 0.15},
+      "motionCue": "single-curious-tilt-then-settle",
+      "audioRegister": "questions-and-observation",
+      "glitchAllowed": false
+    },
+    {
+      "state": "Remembering",
+      "chapterBand": "W013-W028",
+      "profileId": "memory_pressure",
+      "keeperMoodSlot": "author-label-unresolved",
+      "iris": {"family": "cyan-teal", "intensity": 0.70, "aperture": "variable-memory-focus"},
+      "channels": {"family": "cyan-teal", "intensity": 0.72, "motion": "partial-discontinuous-recall"},
+      "structuralNodes": {"family": "amber", "intensity": 0.35},
+      "motionCue": "one-bounded-pose-hitch-on-memory-event",
+      "audioRegister": "partial-memory-emotional",
+      "glitchAllowed": true,
+      "glitchRails": {"maxBurstSeconds": 0.35, "minimumGapSeconds": 4.0, "fullFrameFlicker": false}
+    },
+    {
+      "state": "Unsealing",
+      "chapterBand": "W029-W051",
+      "profileId": "unsealed_vocabulary",
+      "keeperMoodSlot": "extrapolated-from-approved-language",
+      "iris": {"family": "cyan-with-amber-ring", "intensity": 0.82, "aperture": "steady-alert"},
+      "channels": {"family": "crest-cyan", "intensity": 0.85, "motion": "full-network-flow"},
+      "structuralNodes": {"family": "amber", "intensity": 0.55},
+      "motionCue": "confident-leading-orbit",
+      "audioRegister": "full-vocabulary",
+      "glitchAllowed": true,
+      "glitchRails": {"maxBurstSeconds": 0.25, "minimumGapSeconds": 6.0, "fullFrameFlicker": false}
+    },
+    {
+      "state": "Integrated",
+      "chapterBand": "W052-W068",
+      "profileId": "integrated_equal",
+      "keeperMoodSlot": "extrapolated-from-approved-language",
+      "iris": {"family": "balanced-cyan-amber", "intensity": 0.88, "aperture": "calm-open"},
+      "channels": {"family": "cyan-amber-balanced", "intensity": 0.82, "motion": "coherent-circulation"},
+      "structuralNodes": {"family": "amber", "intensity": 0.65},
+      "motionCue": "eye-level-equal-conversation",
+      "audioRegister": "equal-with-Cal-revelation",
+      "glitchAllowed": false
+    },
+    {
+      "state": "EndgameA",
+      "chapterBand": "ending-A",
+      "profileId": "ending_network",
+      "keeperMoodSlot": "ending-author-required",
+      "iris": {"family": "network-cyan", "intensity": 0.90, "aperture": "wide-distant"},
+      "channels": {"family": "network-cyan", "intensity": 0.92, "motion": "outward-network-ripples"},
+      "structuralNodes": {"family": "amber", "intensity": 0.50},
+      "motionCue": "network-presence-not-body-frenzy",
+      "audioRegister": "stays-in-network",
+      "glitchAllowed": false
+    },
+    {
+      "state": "EndgameB",
+      "chapterBand": "ending-B",
+      "profileId": "ending_crosses_with_Cal",
+      "keeperMoodSlot": "ending-author-required",
+      "iris": {"family": "warm-cyan", "intensity": 0.88, "aperture": "calm-open"},
+      "channels": {"family": "warm-cyan-amber", "intensity": 0.86, "motion": "steady-forward-flow"},
+      "structuralNodes": {"family": "amber", "intensity": 0.62},
+      "motionCue": "close-companion-forward-orbit",
+      "audioRegister": "crosses-with-Cal",
+      "glitchAllowed": false
+    },
+    {
+      "state": "EndgameC",
+      "chapterBand": "ending-C",
+      "profileId": "ending_forget",
+      "keeperMoodSlot": "ending-author-required",
+      "iris": {"family": "soft-dormant-blue", "intensity": 0.35, "aperture": "small-peaceful"},
+      "channels": {"family": "soft-blue", "intensity": 0.18, "motion": "nearly-still-breath"},
+      "structuralNodes": {"family": "amber", "intensity": 0.08},
+      "motionCue": "gentle-unfamiliar-hover",
+      "audioRegister": "chooses-to-forget",
+      "glitchAllowed": false
+    },
+    {
+      "state": "EndgameD",
+      "chapterBand": "ending-D",
+      "profileId": "ending_pattern",
+      "keeperMoodSlot": "ending-author-required",
+      "iris": {"family": "pattern-violet-cyan", "intensity": 0.92, "aperture": "nonhuman-geometric"},
+      "channels": {"family": "pattern-violet-cyan", "intensity": 0.90, "motion": "ordered-morphogenesis"},
+      "structuralNodes": {"family": "amber", "intensity": 0.30},
+      "motionCue": "precise-pattern-orbit-no-random-jitter",
+      "audioRegister": "becomes-the-Pattern",
+      "glitchAllowed": true,
+      "glitchRails": {"maxBurstSeconds": 0.30, "minimumGapSeconds": 5.0, "fullFrameFlicker": false}
+    }
+  ]
+}
