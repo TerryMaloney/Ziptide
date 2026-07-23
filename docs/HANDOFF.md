@@ -27,6 +27,26 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-21 (rb90) — Fable 5: 🚨 SHIP ALERT & DAMAGE FEEDBACK system (debris impacts, VR-safe)
+
+- **Terry: debris hitting the ship needs a warning/alarm — a whole system.** Wrote
+  `docs/design/SHIP_ALERT_AND_DAMAGE_FEEDBACK.md`. **Key VR correction:** "flash across the screen"
+  becomes DIEGETIC + comfort-safe — the head camera NEVER moves, NO FOV-filling flash (both cause
+  nausea / violate Meta comfort). The cockpit-locked frame IS the HUD.
+- **Multi-channel, redundant, directional:** AUDIO (klaxon + spatial impact + RILL callout) ·
+  VISUAL-DIEGETIC (red console panel, directional cockpit edge-lights, armor gauge drop, impact
+  sparks/dent decals, drive-heart flicker, canopy-crack/venting on breach) · HAPTIC (controller
+  rumble scaled to severity — the safe replacement for camera shake) · restrained screen-space
+  (soft peripheral vignette pulse ONLY, toggle). 4 severity tiers (tick/impact/warning/critical),
+  alert kinds incl. PROXIMITY (preventive — warns before the hit).
+- **Data:** reuses armor-only damage (`SPACE_COMBAT`); `ShipStatusRuntime` raises typed events
+  (OnImpact(bearing,severity)/OnBreach/OnProximity…) that cockpit+audio+haptics+RILL subscribe to
+  (event bus, no polling); `ShipAlertDefinition` authorable. Debris system: per-system palette
+  (`CELESTIAL_SYSTEM_CANON`), pooled, armor damage on hit, **course NOT knocked (comfort)**,
+  avoidable + salvageable. **RILL is the VOICE of alerts** ("Debris—starboard, brace!") → warmth +
+  reuses her line system + never-annoying rules. The alert CHANNEL is reusable for ground hazards.
+- **Commit:** this one (system doc + entry).
+
 ### 2026-07-21 (rb89) — Fable 5: 🪐 CELESTIAL SYSTEM CANON — one sky truth per system, matched ground↔space (design)
 
 - **Terry: the first world is the first space trip — the ground sky (moon + ringed giant) MUST
