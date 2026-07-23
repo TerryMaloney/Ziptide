@@ -54,6 +54,9 @@ jobs:
       - name: Launch transition gate
         run: python3 tools/launch_transition_gate.py
 
+      - name: RILL visual state gate
+        run: python3 tools/rill_visual_state_gate.py
+
       - name: Unified offline readiness report
         run: |
           python3 tools/offline_readiness_report.py \
