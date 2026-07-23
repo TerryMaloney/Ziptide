@@ -45,6 +45,12 @@ jobs:
       - name: MK2 room manifest gate
         run: python3 tools/mk2_room_manifest_gate.py
 
+      - name: Unified offline readiness report
+        run: |
+          python3 tools/offline_readiness_report.py \
+            --source-sha "${GITHUB_SHA}" \
+            --output Builds/Reports/offline_readiness.json
+
       - name: Fast Python gate tests
         id: python-gates
         shell: bash
@@ -58,17 +64,19 @@ jobs:
             -v >"$log" 2>&1; then
             tail -n 25 "$log"
           else
-            echo "::error::Fast Python gate tests failed. See fast-python-gates artifact."
+            echo "::error::Fast Python gate tests failed. See fast-preflight-evidence artifact."
             tail -n 50 "$log"
             exit 1
           fi
 
-      - name: Upload fast test log
+      - name: Upload fast preflight evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: fast-python-gates-${{ github.sha }}
-          path: Builds/Reports/fast-python-gates.log
+          name: fast-preflight-evidence-${{ github.sha }}
+          path: |
+            Builds/Reports/offline_readiness.json
+            Builds/Reports/fast-python-gates.log
           if-no-files-found: warn
           retention-days: 14
 
