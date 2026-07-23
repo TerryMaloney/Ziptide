@@ -106,8 +106,9 @@ def render(
             "contractReports": "Informational and non-blocking.",
             "currentWhen": (
                 "The live branch head is testedSha, or differs only through generated recovery "
-                "evidence, docs/CI_VERDICT.md, or docs/HANDOFF.md. Any other later path makes "
-                "the result stale."
+                "evidence, docs/CI_VERDICT.md, docs/HANDOFF.md, or transient "
+                "docs/handoff_queue/** coordination entries. Any other later path makes the "
+                "result stale."
             ),
         },
     }
@@ -132,9 +133,9 @@ def render(
         f"Workflow run: {run_url}",
         "",
         "The recorder writes only when the tested SHA is current at the source level. "
-        "Generated recovery evidence, `docs/CI_VERDICT.md`, and `docs/HANDOFF.md` may follow "
-        "without invalidating it; any other later path makes this verdict stale until that "
-        "source's CI run records its own result.",
+        "Generated recovery evidence, `docs/CI_VERDICT.md`, `docs/HANDOFF.md`, and transient "
+        "`docs/handoff_queue/**` coordination entries may follow without invalidating it; any "
+        "other later path makes this verdict stale until that source's CI run records its own result.",
         "",
     ]
     return "\n".join(lines)
