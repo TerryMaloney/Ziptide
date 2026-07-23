@@ -32,12 +32,33 @@ jobs:
       - name: Factory governance gate
         run: python3 tools/factory_governance_gate.py
 
+      - name: Concept intake gate
+        run: python3 tools/concept_intake_gate.py
+
+      - name: Space mission catalog gate
+        run: python3 tools/space_mission_catalog_gate.py
+
+      - name: Celestial system gate
+        run: python3 tools/celestial_system_gate.py
+
+      - name: MK2 room manifest gate
+        run: python3 tools/mk2_room_manifest_gate.py
+
       - name: Fast Python gate tests
+        shell: bash
         run: |
-          python3 -m unittest discover \
+          set -uo pipefail
+          log="${RUNNER_TEMP}/fast-python-gates.log"
+          if python3 -m unittest discover \
             -s tools/tests \
             -p 'test_*_gate.py' \
-            -v
+            -v >"$log" 2>&1; then
+            tail -n 25 "$log"
+          else
+            echo "::error::Fast Python gate tests failed. Showing the final 160 lines."
+            tail -n 160 "$log"
+            exit 1
+          fi
 
       - name: Commit whitespace and conflict check
         shell: bash
