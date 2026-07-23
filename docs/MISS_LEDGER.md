@@ -113,6 +113,20 @@ Read by every lane at session start alongside HANDOFF. Full spec: `FINISHED_GAME
     checklist into the audit/benchmark machinery + re-run it on the existing designed domains, not
     just space.)
 
+16. **WHAT:** design docs (prose) and the new machine catalogs (JSON, GPT's offline pass) now BOTH
+    hold truth, so they can drift; "we'll reconcile periodically" is a forgettable promise, not a
+    fix. **FOUND BY:** rb review of GPT's offline pass (2026-07-23) — Terry: "make sure the periodic
+    reconcile is not something that gets forgotten." **WHY MISSED:** the machine-catalog pattern was
+    added fast for CI enforcement; the docs got a companion source-of-truth but nobody OWNED keeping
+    the two in sync. **CLASS:** dual source-of-truth with no sync owner — a standing promise standing
+    in for standing machinery. **SYSTEM CHANGE:** `docs/catalog_doc_reconcile.json` registry +
+    `tools/catalog_doc_sync_gate.py` (CI in `fast-preflight.yml`; `test_catalog_doc_sync_gate.py`) —
+    BLOCKS on an unregistered/missing/invalid design catalog, WARNS on a missing doc back-link or a
+    `lastReconciled` older than 45 days ("reconcile due"); ritual in `docs/CATALOG_DOC_RECONCILE.md`.
+    The forgettable part is removed: a pair can't be silently added or left untracked. (→ machinery
+    in place + gate green locally; closes when the GPT-owned back-links are added and the gate has run
+    green in CI.)
+
 ## CLOSED
 
 *(entries move here when their SYSTEM CHANGE is verified in place — the fix alone never closes

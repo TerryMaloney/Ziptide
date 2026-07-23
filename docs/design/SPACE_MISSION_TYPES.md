@@ -7,6 +7,8 @@ types that ARE the bible's devices in flight. Grounded in `STORY_BIBLE.md` §5 (
 (`SPACE_DESIGN_COMPARABLES_AND_FIT.md`: exploration+salvage forward, soft-lock, no timers, combat =
 optional spice). Reuses the existing `JobDefinition` + step contract idiom.
 
+> **Machine catalog:** `docs/design/space_mission_catalog.json` + `docs/design/space_poi_catalog.json` — CI-enforced; keep in sync (`docs/CATALOG_DOC_RECONCILE.md`).
+
 ---
 
 ## §0 — THE PHILOSOPHY (from the fit doc + the bible's tone)

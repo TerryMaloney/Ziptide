@@ -6,6 +6,8 @@
 `CELESTIAL_SYSTEM_CANON` (the sky both scenes share). Reuses `TravelCoordinator` (the ONLY scene-
 change path) + the comfort-safe ziptide transition veil (`SANDBOX_TEST_LAB`).
 
+> **Machine catalog:** `docs/design/launch_transition_catalog.json` — CI-enforced; keep in sync (`docs/CATALOG_DOC_RECONCILE.md`).
+
 ---
 
 ## §0 — THE THREE BEATS (and the reverse)

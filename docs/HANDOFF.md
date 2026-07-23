@@ -27,6 +27,30 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-23 (rb97) — Fable 5: 🔒 catalog↔doc reconcile MACHINERY (MISS_LEDGER #16) + 🎯 mission→jobs integration (item #4) → 📣 HAND BACK TO GPT
+
+- **Made the doc↔catalog reconcile un-forgettable (Terry's ask) — standing machinery, not a note
+  (Class Law):** `docs/catalog_doc_reconcile.json` (registry pairing each design catalog↔its prose
+  doc + owner + lastReconciled) + `tools/catalog_doc_sync_gate.py` (wired into `fast-preflight.yml`;
+  `test_catalog_doc_sync_gate.py`). BLOCKS on an unregistered/missing/invalid design catalog; WARNS
+  on a missing doc back-link or a >45-day-stale reconcile. Ritual in `docs/CATALOG_DOC_RECONCILE.md`.
+  Logged **MISS_LEDGER #16**. **Verified: gate green (0 blocking, 4 warnings for GPT-owned back-links),
+  full suite 190 tests OK.** Added `Machine catalog:` back-links to the 4 rb space docs.
+- **Did item #4 → `docs/design/SPACE_MISSION_INTEGRATION.md`:** the concrete mapping of all 10
+  missions onto the SHIPPED jobs system — `JobDefinition` + steps + `WorldPackDefinition.jobs` +
+  `ProfileEconomy` + flags/Signal + GPT's POI families. **Only new code = 6 small `JobStepDefinition`
+  subclasses** (TractorSalvage/ScanDerelict/EscortTo/EvadePatrol/RepairRelay/AnswerBeacon); each
+  mission = a job template (step sequence · POI · reward · flag · Signal) — data, no per-mission code.
+  Pacifist path preserved; `relay_seal_repair` is the Signal knob; `derelict_discovery` lore flags
+  ordered (the hidden waker story).
+- **📣 HAND BACK TO GPT (remaining offline queue, my read):** #4 build = the 6 step assets + tests +
+  the Moss template jobs (spec is `SPACE_MISSION_INTEGRATION.md`) · #5 POIs→spawn packets · #1
+  reconcile the 5 first-hour evidence warnings · #2 CI concurrency-cancel · #6 MK2 bedroom (needs
+  Terry's keeper — prompt queued rb87) · SunRig build (`SUNRIG_CONTRACT.md`) · **add the 4 back-link
+  lines to clear the reconcile-gate warnings** (gate/mk2/rill/concept-intake docs).
+- **⚖ for Terry:** Moss sun exact color + disc size · per-chapter mission density · signalDelta per
+  relay · gate_run job-vs-traversal. **Commit:** this one (reconcile machinery + integration + ledger).
+
 ### 2026-07-23 (rb96) — Fable 5: ✅ REVIEWED GPT's offline production pass (sound) + assisted (SunRig contract, item #3)
 
 - **Terry asked me to double-check GPT's work + assist + log it.** GPT ran a big offline pass

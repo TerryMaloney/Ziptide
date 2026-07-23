@@ -1,0 +1,67 @@
+{
+  "purpose": "Registry pairing each machine-enforced DESIGN catalog/manifest with its prose design doc, so doc<->catalog drift can never be silently forgotten. Enforced by tools/catalog_doc_sync_gate.py (CI, fast-preflight). Policy: docs/CATALOG_DOC_RECONCILE.md.",
+  "trackedGlobs": [
+    "docs/design/*_catalog.json",
+    "docs/project_art_plan/*_catalog.json",
+    "docs/project_art_plan/*_manifest.json"
+  ],
+  "staleWarnDays": 45,
+  "entries": [
+    {
+      "catalog": "docs/design/celestial_system_catalog.json",
+      "doc": "docs/design/CELESTIAL_SYSTEM_CANON.md",
+      "owner": "rb",
+      "lastReconciled": "2026-07-23",
+      "note": "Star/body/system truth; SunRig + space env + launch read it."
+    },
+    {
+      "catalog": "docs/design/launch_transition_catalog.json",
+      "doc": "docs/design/LAUNCH_AND_ATMOSPHERE_TRANSITION.md",
+      "owner": "rb",
+      "lastReconciled": "2026-07-23",
+      "note": "Liftoff/ascent/veil/re-entry sequencing."
+    },
+    {
+      "catalog": "docs/design/space_mission_catalog.json",
+      "doc": "docs/design/SPACE_MISSION_TYPES.md",
+      "owner": "rb",
+      "lastReconciled": "2026-07-23",
+      "note": "The 10 mission types."
+    },
+    {
+      "catalog": "docs/design/space_poi_catalog.json",
+      "doc": "docs/design/SPACE_MISSION_TYPES.md",
+      "owner": "rb",
+      "lastReconciled": "2026-07-23",
+      "note": "The 6 Moss-orbit POI families that give missions destinations (lives in the mission loop doc)."
+    },
+    {
+      "catalog": "docs/project_art_plan/concept_intake_manifest.json",
+      "doc": "docs/project_art_plan/CONCEPT_TO_BUILT_PIPELINE.md",
+      "owner": "gpt",
+      "lastReconciled": "2026-07-23",
+      "note": "Approved concept keepers -> intake-ready build contracts. Owner (GPT) to confirm doc pairing + add back-link."
+    },
+    {
+      "catalog": "docs/project_art_plan/gate_lifecycle_catalog.json",
+      "doc": "docs/design/ZIPTIDE_GATE_VISUAL_DESIGN.md",
+      "owner": "gpt",
+      "lastReconciled": "2026-07-23",
+      "note": "7 gate lifecycle states + comfort/ownership rules. Owner (GPT) to add back-link."
+    },
+    {
+      "catalog": "docs/project_art_plan/mk2_room_socket_manifest.json",
+      "doc": "docs/project_art_plan/SHIP_MK2_ARCHITECT_UPGRADE.md",
+      "owner": "gpt",
+      "lastReconciled": "2026-07-23",
+      "note": "MK2 room order + sockets + identity/skinnable zones. Owner (GPT) to add back-link."
+    },
+    {
+      "catalog": "docs/project_art_plan/rill_visual_state_catalog.json",
+      "doc": "docs/project_art_plan/TIER_C_CONCEPT_QUEUE.md",
+      "owner": "gpt",
+      "lastReconciled": "2026-07-23",
+      "note": "9 RillMemoryState visual profiles. Owner (GPT) to confirm doc pairing (RILL cast) + add back-link."
+    }
+  ]
+}

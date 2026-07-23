@@ -57,6 +57,9 @@ jobs:
       - name: RILL visual state gate
         run: python3 tools/rill_visual_state_gate.py
 
+      - name: Catalog <-> doc reconcile gate
+        run: python3 tools/catalog_doc_sync_gate.py
+
       - name: Unified offline readiness report
         run: |
           python3 tools/offline_readiness_report.py \

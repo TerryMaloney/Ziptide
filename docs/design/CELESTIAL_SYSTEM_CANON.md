@@ -6,6 +6,8 @@ declares its place in a star system, and the ground sky + the space view are two
 SAME data. Companions: `SPACE_ENVIRONMENT_AUDIT.md` (the space renderer this feeds), `systems/
 SKYSCAPE_DESIGN.md` (the Prospect bar), `SkyVistaDefinition.cs` (the existing dome this extends).
 
+> **Machine catalog:** `docs/design/celestial_system_catalog.json` — CI-enforced; keep in sync (`docs/CATALOG_DOC_RECONCILE.md`).
+
 ---
 
 ## §1 — THE PRINCIPLE (the thing that must not break)
