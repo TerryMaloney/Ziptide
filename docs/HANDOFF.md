@@ -27,6 +27,25 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-21 (rb94) — Fable 5: 🔭 SPACE DESIGN — comparables researched, what fits ZIPTIDE (resolves the gap ⚖)
+
+- **Terry: look up what other games do, pick what fits.** Researched comparables (web) →
+  `docs/design/SPACE_DESIGN_COMPARABLES_AND_FIT.md`, answering the gap-audit gaps.
+- **The blend:** *No Man's Sky's pace (seated, explore-forward, combat-light) + Vox Machinae's
+  hands (grab the virtual throttle/stick, grip-to-lock) + Rebel Galaxy Outlaw's soft-lock combat +
+  Everspace 2's stop-and-breathe handcrafted POIs* — all comfort-capped.
+- **Recs per gap:** A1 grab virtual throttle+stick (HOTAS optional later) · A2 diegetic panel
+  gauges · A3 hover/station-keeping + strafe · A4 **ARCADE not Newtonian** · B1 diegetic nav beacon
+  + RILL bearings · **B2 loop = exploration+salvage forward, no timers** (salvage run/discovery/
+  ferry/escort/distress/gate-run; combat = spice) · C1 **soft-lock targeting** · C2 tractor-from-
+  cockpit salvage · D1 **no punitive fuel** (recharging drive) · **D2 disabled = RILL distress
+  beacon + auto-tow rescue, never a harsh game-over** · F1 **transmissions-in-flight** (the
+  de-garbling Transmission — finally uses travel for story) · G1/G2 seated + **assist-fly autopilot**.
+- **⚖ scope recs for Terry:** arcade-not-Newtonian · no-EVA-v1 (tractor only) · no-punitive-fuel ·
+  soft-lock-not-dogfight · HOTAS-optional · combat-is-optional-spice (pacifist-beatable).
+- **Closes gap-audit's failed columns** (LOOP/FAILURE/NAV/NARRATIVE/ONBOARDING) → MISS_LEDGER #15
+  passes for space pending Terry's ⚖. **Commit:** this one (fit doc + entry).
+
 ### 2026-07-21 (rb93) — Fable 5: 🔍 SPACE FLIGHT GAP AUDIT + a class fired (MISS_LEDGER #15)
 
 - **Terry: "look at all those aspects, figure out what we're missing."** Laid the whole space
