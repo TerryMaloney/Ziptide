@@ -28,6 +28,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 2
+          show-progress: false
 
       - name: Factory governance gate
         run: python3 tools/factory_governance_gate.py
@@ -45,22 +46,34 @@ jobs:
         run: python3 tools/mk2_room_manifest_gate.py
 
       - name: Fast Python gate tests
+        id: python-gates
         shell: bash
         run: |
           set -uo pipefail
-          log="${RUNNER_TEMP}/fast-python-gates.log"
+          mkdir -p Builds/Reports
+          log="Builds/Reports/fast-python-gates.log"
           if python3 -m unittest discover \
             -s tools/tests \
             -p 'test_*_gate.py' \
             -v >"$log" 2>&1; then
             tail -n 25 "$log"
           else
-            echo "::error::Fast Python gate tests failed. Showing the final 160 lines."
-            tail -n 160 "$log"
+            echo "::error::Fast Python gate tests failed. See fast-python-gates artifact."
+            tail -n 50 "$log"
             exit 1
           fi
 
+      - name: Upload fast test log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: fast-python-gates-${{ github.sha }}
+          path: Builds/Reports/fast-python-gates.log
+          if-no-files-found: warn
+          retention-days: 14
+
       - name: Commit whitespace and conflict check
+        if: always() && steps.python-gates.outcome == 'success'
         shell: bash
         run: |
           set -euo pipefail
