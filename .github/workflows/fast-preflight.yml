@@ -42,6 +42,11 @@ jobs:
       - name: Celestial system gate
         run: python3 tools/celestial_system_gate.py
 
+      - name: SunRig contract gate
+        run: |
+          python3 tools/sunrig_contract_gate.py \
+            --json-report Builds/Reports/sunrig_contract.json
+
       - name: MK2 room manifest gate
         run: python3 tools/mk2_room_manifest_gate.py
 
@@ -91,6 +96,7 @@ jobs:
           name: fast-preflight-evidence-${{ github.sha }}
           path: |
             Builds/Reports/offline_readiness.json
+            Builds/Reports/sunrig_contract.json
             Builds/Reports/fast-python-gates.log
           if-no-files-found: warn
           retention-days: 14
