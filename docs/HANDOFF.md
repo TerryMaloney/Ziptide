@@ -33,6 +33,34 @@
 - **Next:** The exact `c45b1a2` headset route remains first. After a passing baseline and explicit freeze lift, create the W000→W001 production packet, commit real WorldSpec inputs, close first-hour graybox truth, and promote recurring corrections through the automation ratchet. Do not begin W003 or high-volume paid asset production until W002 demonstrates that the same packet, specs, validators and device evidence produce a complete world substantially faster than W001.
 - **Heads-up:** W000→W001 is one first-hour product; W002 is deliberately a factory validation world, not merely another level. Paid 3D/audio timing must be driven by locked import/event contracts and live commercial-license verification at purchase time. The reusable framework is a plausible later product, but building a template prematurely would distract from proving the actual production method inside ZIPTIDE.
 - **Commit:** canonical order `217916a`; this queued HANDOFF pointer. No runtime, recovery, audio, art, WorldSpec, scene, package or workflow file changed.
+### 2026-07-23 (rb105) — Fable 5 (Reasonbox): 🔴→🟢 S1 caught by the gate-bypass catalog — owner properly REGISTERED
+
+- **The red (my push `4cd43f38`):** ordinary CI/Contract Scan/Golden Android all GREEN, but
+  **Recovery PlayMode + Clean Package Proof FAILED** on
+  `RecoveryGateBypassTests.RuntimeBootstrapDiscovery_CoversAllFirstPartySourceAttributes`:
+  "Real first-party runtime bootstrap is absent from the closed exposure catalog:
+  SystemFocusLifecycle.cs". **The recovery system worked exactly as designed** — the review point
+  I flagged in rb104 is machine-enforced, not advisory. The catalog's own doc says the procedure:
+  "New automatic bootstraps must add an ID and catalog registration before shipping."
+- **The fix (the sanctioned registration, 4 parity points):** `RecoveryFeatureId.SystemFocusLifecycle = 21`
+  · `RecoveryAutomaticOwnerCatalog` **Required** registration (SaveSystem safety class — the
+  FeatureGated token check doesn't apply to Required, matching SaveSystem/TravelCoordinator) ·
+  `GoldenFeatures` includes the id (profiles assert every AlwaysRequired owner) ·
+  `docs/recovery/automatic_runtime_owners.json` owner entry (startup/persistence/sideEffects/
+  disposition per the R0 schema). No change to SystemFocusLifecycle.cs itself.
+- **⚠️ Boundary note (loud, per protocol):** these four files are recovery infrastructure —
+  normally not my lane. Edited under the CI-red-on-my-own-push #0 rule, using exactly the
+  extension procedure the files document for this case. GPT's review can reclassify
+  Required→Gated with one line if preferred.
+- **MISS_LEDGER candidate (Class Law):** WHAT: shipped a bootstrap without catalog registration.
+  FOUND BY: RecoveryGateBypassTests (the system, within minutes). WHY MISSED: I treated the
+  catalog as a review convention, not an enforced contract; my own contract doc named the owner
+  but not the registration procedure. CLASS: contract docs that spec a new owner without naming
+  the mechanical registration steps. SYSTEM CHANGE: QUEST_SYSTEM_FOCUS_CONTRACT §2 should gain
+  the registration checklist (deferred to next contract touch — recorded here so it isn't lost).
+- **Verified pre-push:** python suite OK · lifecycle gate OK · profile array syntax verified.
+  Unity-side proof = this push's PlayMode/Clean lanes (watching; not inferring green).
+- **Commit:** this push (4 registration edits + this entry).
 
 
 ### 2026-07-23 (rb104) — Fable 5 (Reasonbox): ⚖️ §4 decisions ADJUDICATED (Terry-delegated) + 🎛️ lifecycle slice S1 IMPLEMENTED

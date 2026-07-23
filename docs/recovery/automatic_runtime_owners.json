@@ -1,238 +1,327 @@
 {
-  "schemaVersion": 1,
-  "status": "R1_INPUT_SESSION_GUARD_ADDED_2026-07-15",
-  "purpose": "Catalog every confirmed automatic or persistent runtime owner that can affect the recovery candidate without an explicit player action.",
-  "owners": [
-    {
-      "id": "DEBUG_HUD_BOOTSTRAP",
-      "source": "Ziptide/Assets/Ziptide/Core/Runtime/DebugHUD.cs",
-      "symbol": "Ziptide.Core.DebugHUD",
-      "startup": "RuntimeInitializeOnLoadMethod AfterSceneLoad in development builds",
-      "persistence": "Creates DontDestroyOnLoad screen-space overlay",
-      "sideEffects": ["Creates top-sorting Canvas", "Creates legacy UI Text", "Updates once per second"],
-      "recoveryExposure": "DIAGNOSTIC",
-      "canonicalDisposition": "Retain as explicit opt-in diagnostic; recovery candidate default must be off",
-      "priority": "R2_UI_POLICY"
-    },
-    {
-      "id": "XR_CAMERA_ENFORCER",
-      "source": "Ziptide/Assets/Ziptide/Core/Runtime/EnsureXRCameraActive.cs",
-      "symbol": "Ziptide.Core.EnsureXRCameraActive",
-      "startup": "RuntimeInitializeOnLoadMethod AfterSceneLoad",
-      "persistence": "Static hook runs after every scene load",
-      "sideEffects": ["Finds every active Camera", "Disables cameras not under a name-matched XR Origin or Camera Offset"],
-      "recoveryExposure": "REPLACE_OR_MERGE",
-      "canonicalDisposition": "Replace name-based global mutation with one explicit camera ownership policy after R1 census",
-      "priority": "R2_CAMERA_POLICY"
-    },
-    {
-      "id": "RUNTIME_HEALTH_MONITOR",
-      "source": "Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs",
-      "symbol": "Ziptide.Core.RuntimeHealthMonitor",
-      "startup": "RuntimeInitializeOnLoadMethod AfterSceneLoad",
-      "persistence": "DontDestroyOnLoad singleton",
-      "sideEffects": ["Samples frame and resource counts", "Runs Resources.UnloadUnusedAssets 1.5 seconds after non-boot scene loads"],
-      "recoveryExposure": "SUPPORT",
-      "canonicalDisposition": "Preserve but measure its post-load hitch in R1 travel/performance artifacts",
-      "priority": "R1_PERFORMANCE"
-    },
-    {
-      "id": "RUNTIME_INPUT_ENABLER",
-      "source": "Ziptide/Assets/Ziptide/Core/Runtime/RuntimeInputEnabler.cs",
-      "symbol": "Ziptide.Core.RuntimeInputEnabler",
-      "startup": "RuntimeInitializeOnLoadMethod AfterSceneLoad",
-      "persistence": "Static global pass after every scene load",
-      "sideEffects": ["Reflects across every MonoBehaviour InputActionReference field", "Enables entire InputActionAssets", "Overlaps PlayerRigPersistence input-session ownership"],
-      "recoveryExposure": "REPLACE_OR_MERGE",
-      "canonicalDisposition": "PlayerRigPersistence/canonical input session becomes sole owner; retire or gate this fallback after R1 proof",
-      "priority": "R2_INPUT_POLICY"
-    },
-    {
-      "id": "RUNTIME_MATERIAL_FIXER",
-      "source": "Ziptide/Assets/Ziptide/Core/Runtime/RuntimeMaterialFixer.cs",
-      "symbol": "Ziptide.Core.RuntimeMaterialFixer",
-      "startup": "RuntimeInitializeOnLoadMethod AfterSceneLoad",
-      "persistence": "Static global pass after every scene load",
-      "sideEffects": ["Scans every Renderer", "Replaces null and every non-URP material at runtime", "Assigns arbitrary green, blue or gray fallback colors from object names", "Creates hidden runtime materials outside authored-scene and art audits"],
-      "recoveryExposure": "REPLACE_OR_MERGE",
-      "canonicalDisposition": "Recovery-blocked global mutator; replace with build-time material validation and explicit development fallback policy",
-      "priority": "R2_VISUAL_PRIORITY_ZERO"
-    },
-    {
-      "id": "VR_BOOT_DIAGNOSTICS",
-      "source": "Ziptide/Assets/Ziptide/Core/Runtime/VRBootDiagnostics.cs",
-      "symbol": "Ziptide.Core.VRBootDiagnostics",
-      "startup": "RuntimeInitializeOnLoadMethod AfterSceneLoad",
-      "persistence": "Static diagnostic executes after every scene load",
-      "sideEffects": ["Enumerates all cameras", "Enumerates every renderer and material", "Writes high-volume logs"],
-      "recoveryExposure": "DIAGNOSTIC",
-      "canonicalDisposition": "Retain behind explicit diagnostic mode rather than unconditional scene-load execution",
-      "priority": "R2_DIAGNOSTIC_POLICY"
-    },
-    {
-      "id": "AMBIENCE_DIRECTOR",
-      "source": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs",
-      "symbol": "Ziptide.Gameplay.AmbienceDirector",
-      "startup": "RuntimeInitializeOnLoadMethod AfterSceneLoad",
-      "persistence": "DontDestroyOnLoad singleton",
-      "sideEffects": ["Creates four AudioSources", "Synthesizes biome clips", "Crossfades and schedules one-shots on scene load"],
-      "recoveryExposure": "SUPPORT",
-      "canonicalDisposition": "Preserve under one audio-composition/lifecycle contract with AudioDirector; include clip/source counts in R1",
-      "priority": "R1_AUDIO_CENSUS"
-    },
-    {
-      "id": "COMFORT_VIGNETTE",
-      "source": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/ComfortVignette.cs",
-      "symbol": "Ziptide.Gameplay.ComfortVignette",
-      "startup": "RuntimeInitializeOnLoadMethod AfterSceneLoad",
-      "persistence": "Creates camera-child component on persistent rig",
-      "sideEffects": ["Creates procedural iris mesh and material", "Mutates view every LateUpdate from rig/external motion"],
-      "recoveryExposure": "GOLDEN_PATH",
-      "canonicalDisposition": "Preserve as the sole comfort vignette, but census exactly one and snapshot open/closed states",
-      "priority": "R1_FAKE_XR"
-    },
-    {
-      "id": "CONQUEST_MISSION_INJECTOR",
-      "source": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
-      "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
-      "startup": "RuntimeInitializeOnLoadMethod AfterSceneLoad installs global sceneLoaded hook",
-      "persistence": "Static hook; injected mission object is scene-local",
-      "sideEffects": ["Can inject mission boards, TextMesh, primitives, interactables, drones and objectives into any matching world", "Can auto-travel back to the table"],
-      "recoveryExposure": "PROTOTYPE_HIDDEN",
-      "canonicalDisposition": "Feature-gate every bootstrap, component lifecycle, and public construction path out of recovery candidates; preserve mission source",
-      "priority": "R1_EXPOSURE_PROFILE"
-    },
-    {
-      "id": "DEV_WARP_BOARD_BOOTSTRAP",
-      "source": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
-      "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
-      "startup": "RuntimeInitializeOnLoadMethod AfterSceneLoad in editor/development builds",
-      "persistence": "DontDestroyOnLoad host; visible board is temporary",
-      "sideEffects": ["Polls forehead gesture/F2/ADB", "Creates primitive world-space menu and travel requests"],
-      "recoveryExposure": "DIAGNOSTIC",
-      "canonicalDisposition": "Keep one explicit diagnostic interface only; gate bootstrap, scene-authored lifecycle, legacy menu, and underlying warp API",
-      "priority": "R2_INPUT_POLICY"
-    },
-    {
-      "id": "ECOLOGY_INJECTOR",
-      "source": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs",
-      "symbol": "Ziptide.Gameplay.EcologyDirector",
-      "startup": "RuntimeInitializeOnLoadMethod AfterSceneLoad installs sceneLoaded hook",
-      "persistence": "Static hook; one scene-local director when creatures exist",
-      "sideEffects": ["Activates/deactivates baked creature population by UTC and save pressure", "Runs live ecology every five minutes"],
-      "recoveryExposure": "CONDITIONAL_GOLDEN_PATH",
-      "canonicalDisposition": "Blocked until the selected golden creature has contact and grounding proof; all lifecycle paths must fail closed meanwhile",
-      "priority": "R1_CREATURE_CONTACT"
-    },
-    {
-      "id": "PVP_PROGRESSION_BOOTSTRAP",
-      "source": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
-      "symbol": "Ziptide.Gameplay.PvpProgressionRuntime",
-      "startup": "RuntimeInitializeOnLoadMethod AfterSceneLoad",
-      "persistence": "DontDestroyOnLoad singleton",
-      "sideEffects": ["Binds arena directors", "Writes profile career and rewards", "Autosaves after matches"],
-      "recoveryExposure": "PROTOTYPE_HIDDEN",
-      "canonicalDisposition": "Feature-gate bootstrap and scene-authored lifecycle out of recovery candidates while preserving pure progression core",
-      "priority": "R1_EXPOSURE_PROFILE"
-    },
-    {
-      "id": "QUARTERS_CAMERA_INJECTOR",
-      "source": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs",
-      "symbol": "Ziptide.Gameplay.QuartersCameraFeature",
-      "startup": "RuntimeInitializeOnLoadMethod BeforeSceneLoad installs global sceneLoaded hook",
-      "persistence": "Static hook; injected feature is attached to each QuartersRoom",
-      "sideEffects": ["Adds FieldCameraFeature", "Builds primitive dock and photo wall", "Spawns handheld camera item"],
-      "recoveryExposure": "PROTOTYPE_HIDDEN",
-      "canonicalDisposition": "Feature-gate hook, scene-authored lifecycle, and public builder out of recovery candidates",
-      "priority": "R1_EXPOSURE_PROFILE"
-    },
-    {
-      "id": "SAVE_SYSTEM_BOOTSTRAP",
-      "source": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Persistence/SaveSystem.cs",
-      "symbol": "Ziptide.Gameplay.SaveSystem",
-      "startup": "RuntimeInitializeOnLoadMethod AfterSceneLoad",
-      "persistence": "DontDestroyOnLoad singleton plus disk state",
-      "sideEffects": ["Creates/loads persistent profile", "Receives writes from many gameplay systems"],
-      "recoveryExposure": "SUPPORT",
-      "canonicalDisposition": "Preserve as sole profile persistence owner; R1 adds golden-path save/write census and quit/resume proof",
-      "priority": "R1_SAVE_ROUNDTRIP"
-    },
-    {
-      "id": "FIRST_HOUR_OBSERVATION_BOOTSTRAP",
-      "source": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs",
-      "symbol": "Ziptide.Gameplay.Tutorial.FirstHourObservationAdapter",
-      "startup": "RuntimeInitializeOnLoadMethod AfterSceneLoad",
-      "persistence": "DontDestroyOnLoad singleton",
-      "sideEffects": ["Tracks camera/RILL/movement when a beat is explicitly active", "Publishes semantic completion event"],
-      "recoveryExposure": "SUPPORT",
-      "canonicalDisposition": "Preserve neutral adapter; census exactly one and keep inactive until golden-path director requests a beat",
-      "priority": "R1_EVENT_MAP"
-    },
-    {
-      "id": "PLAYER_RIG_PERSISTENCE",
-      "source": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "symbol": "Ziptide.Gameplay.PlayerRigPersistence",
-      "startup": "Scene-authored in _Boot; Awake singleton",
-      "persistence": "DontDestroyOnLoad",
-      "sideEffects": ["Owns/adopts XRInteractionManager", "Moves action assets between managers", "Ensures belt, HUD, RILL, ping, quick-swap, avatar and stun receiver", "Owns boot hold and fall safety"],
-      "recoveryExposure": "GOLDEN_PATH",
-      "canonicalDisposition": "Canonical persistent rig/input-session owner, but split ensured services behind exposure policy during R2",
-      "priority": "R1_RUNTIME_CENSUS"
-    },
-    {
-      "id": "PLAYER_INPUT_SESSION_GUARD",
-      "source": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
-      "symbol": "Ziptide.Gameplay.PlayerInputSessionGuard",
-      "startup": "RuntimeInitializeOnLoadMethod AfterSceneLoad plus sceneLoaded subscription",
-      "persistence": "Static support hook; creates no GameObject",
-      "sideEffects": ["Transfers the union of scene action assets to the persistent XRI manager", "Enables the canonical InputActionManager", "Clears and disables every duplicate scene InputActionManager"],
-      "recoveryExposure": "SUPPORT",
-      "canonicalDisposition": "Subordinate enforcement for PlayerRigPersistence; owns no input meanings and exists only to guarantee one enabled lifecycle owner",
-      "priority": "R1_INPUT_SESSION"
-    },
-    {
-      "id": "AUDIO_DIRECTOR",
-      "source": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs",
-      "symbol": "Ziptide.Gameplay.AudioDirector",
-      "startup": "Scene-authored service",
-      "persistence": "DontDestroyOnLoad singleton",
-      "sideEffects": ["Owns music sources and transitions"],
-      "recoveryExposure": "SUPPORT",
-      "canonicalDisposition": "Preserve and reconcile with AmbienceDirector under one lifecycle/census contract",
-      "priority": "R1_AUDIO_CENSUS"
-    },
-    {
-      "id": "TRAVEL_COORDINATOR",
-      "source": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs",
-      "symbol": "Ziptide.Gameplay.TravelCoordinator",
-      "startup": "Scene-authored service in _Boot",
-      "persistence": "DontDestroyOnLoad singleton",
-      "sideEffects": ["Autosaves", "Loads scenes", "Teleports/restores rig and inventory", "Creates departure/arrival effects"],
-      "recoveryExposure": "GOLDEN_PATH",
-      "canonicalDisposition": "Preserve as sole scene-travel owner; direct fallback remains a recovery finding",
-      "priority": "R1_TRAVEL_ROUNDTRIP"
-    },
-    {
-      "id": "SINGLETON_VALIDATOR",
-      "source": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Diagnostics/SingletonValidator.cs",
-      "symbol": "Ziptide.Gameplay.SingletonValidator",
-      "startup": "Scene-authored component",
-      "persistence": "DontDestroyOnLoad singleton",
-      "sideEffects": ["Checks only XRInteractionManager, AudioDirector and PlayerRigPersistence after scene loads"],
-      "recoveryExposure": "SUPPORT",
-      "canonicalDisposition": "Replace narrow warning-only list with R1 runtime census over all canonical owners",
-      "priority": "R1_RUNTIME_CENSUS"
-    },
-    {
-      "id": "NET_BOOTSTRAP",
-      "source": "Ziptide/Assets/ZiptideNet/NetBootstrap.cs",
-      "symbol": "ZiptideNet.NetBootstrap",
-      "startup": "RuntimeInitializeOnLoadMethod BeforeSceneLoad when ZIPTIDE_PHOTON is compiled",
-      "persistence": "Installs static online delegates and can create a DontDestroyOnLoad Photon launcher",
-      "sideEffects": ["Mutates PvpNetHub online delegates", "Creates PhotonPvpLauncher", "Can connect or disconnect Photon"],
-      "recoveryExposure": "PROTOTYPE_HIDDEN",
-      "canonicalDisposition": "Compile may remain available for FullDevelopment, but bootstrap and online-start path must fail closed in GoldenSlice",
-      "priority": "R1_EXPOSURE_PROFILE"
-    }
-  ]
+ "schemaVersion": 1,
+ "status": "R1_INPUT_SESSION_GUARD_ADDED_2026-07-15",
+ "purpose": "Catalog every confirmed automatic or persistent runtime owner that can affect the recovery candidate without an explicit player action.",
+ "owners": [
+  {
+   "id": "DEBUG_HUD_BOOTSTRAP",
+   "source": "Ziptide/Assets/Ziptide/Core/Runtime/DebugHUD.cs",
+   "symbol": "Ziptide.Core.DebugHUD",
+   "startup": "RuntimeInitializeOnLoadMethod AfterSceneLoad in development builds",
+   "persistence": "Creates DontDestroyOnLoad screen-space overlay",
+   "sideEffects": [
+    "Creates top-sorting Canvas",
+    "Creates legacy UI Text",
+    "Updates once per second"
+   ],
+   "recoveryExposure": "DIAGNOSTIC",
+   "canonicalDisposition": "Retain as explicit opt-in diagnostic; recovery candidate default must be off",
+   "priority": "R2_UI_POLICY"
+  },
+  {
+   "id": "XR_CAMERA_ENFORCER",
+   "source": "Ziptide/Assets/Ziptide/Core/Runtime/EnsureXRCameraActive.cs",
+   "symbol": "Ziptide.Core.EnsureXRCameraActive",
+   "startup": "RuntimeInitializeOnLoadMethod AfterSceneLoad",
+   "persistence": "Static hook runs after every scene load",
+   "sideEffects": [
+    "Finds every active Camera",
+    "Disables cameras not under a name-matched XR Origin or Camera Offset"
+   ],
+   "recoveryExposure": "REPLACE_OR_MERGE",
+   "canonicalDisposition": "Replace name-based global mutation with one explicit camera ownership policy after R1 census",
+   "priority": "R2_CAMERA_POLICY"
+  },
+  {
+   "id": "RUNTIME_HEALTH_MONITOR",
+   "source": "Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs",
+   "symbol": "Ziptide.Core.RuntimeHealthMonitor",
+   "startup": "RuntimeInitializeOnLoadMethod AfterSceneLoad",
+   "persistence": "DontDestroyOnLoad singleton",
+   "sideEffects": [
+    "Samples frame and resource counts",
+    "Runs Resources.UnloadUnusedAssets 1.5 seconds after non-boot scene loads"
+   ],
+   "recoveryExposure": "SUPPORT",
+   "canonicalDisposition": "Preserve but measure its post-load hitch in R1 travel/performance artifacts",
+   "priority": "R1_PERFORMANCE"
+  },
+  {
+   "id": "RUNTIME_INPUT_ENABLER",
+   "source": "Ziptide/Assets/Ziptide/Core/Runtime/RuntimeInputEnabler.cs",
+   "symbol": "Ziptide.Core.RuntimeInputEnabler",
+   "startup": "RuntimeInitializeOnLoadMethod AfterSceneLoad",
+   "persistence": "Static global pass after every scene load",
+   "sideEffects": [
+    "Reflects across every MonoBehaviour InputActionReference field",
+    "Enables entire InputActionAssets",
+    "Overlaps PlayerRigPersistence input-session ownership"
+   ],
+   "recoveryExposure": "REPLACE_OR_MERGE",
+   "canonicalDisposition": "PlayerRigPersistence/canonical input session becomes sole owner; retire or gate this fallback after R1 proof",
+   "priority": "R2_INPUT_POLICY"
+  },
+  {
+   "id": "RUNTIME_MATERIAL_FIXER",
+   "source": "Ziptide/Assets/Ziptide/Core/Runtime/RuntimeMaterialFixer.cs",
+   "symbol": "Ziptide.Core.RuntimeMaterialFixer",
+   "startup": "RuntimeInitializeOnLoadMethod AfterSceneLoad",
+   "persistence": "Static global pass after every scene load",
+   "sideEffects": [
+    "Scans every Renderer",
+    "Replaces null and every non-URP material at runtime",
+    "Assigns arbitrary green, blue or gray fallback colors from object names",
+    "Creates hidden runtime materials outside authored-scene and art audits"
+   ],
+   "recoveryExposure": "REPLACE_OR_MERGE",
+   "canonicalDisposition": "Recovery-blocked global mutator; replace with build-time material validation and explicit development fallback policy",
+   "priority": "R2_VISUAL_PRIORITY_ZERO"
+  },
+  {
+   "id": "VR_BOOT_DIAGNOSTICS",
+   "source": "Ziptide/Assets/Ziptide/Core/Runtime/VRBootDiagnostics.cs",
+   "symbol": "Ziptide.Core.VRBootDiagnostics",
+   "startup": "RuntimeInitializeOnLoadMethod AfterSceneLoad",
+   "persistence": "Static diagnostic executes after every scene load",
+   "sideEffects": [
+    "Enumerates all cameras",
+    "Enumerates every renderer and material",
+    "Writes high-volume logs"
+   ],
+   "recoveryExposure": "DIAGNOSTIC",
+   "canonicalDisposition": "Retain behind explicit diagnostic mode rather than unconditional scene-load execution",
+   "priority": "R2_DIAGNOSTIC_POLICY"
+  },
+  {
+   "id": "AMBIENCE_DIRECTOR",
+   "source": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs",
+   "symbol": "Ziptide.Gameplay.AmbienceDirector",
+   "startup": "RuntimeInitializeOnLoadMethod AfterSceneLoad",
+   "persistence": "DontDestroyOnLoad singleton",
+   "sideEffects": [
+    "Creates four AudioSources",
+    "Synthesizes biome clips",
+    "Crossfades and schedules one-shots on scene load"
+   ],
+   "recoveryExposure": "SUPPORT",
+   "canonicalDisposition": "Preserve under one audio-composition/lifecycle contract with AudioDirector; include clip/source counts in R1",
+   "priority": "R1_AUDIO_CENSUS"
+  },
+  {
+   "id": "COMFORT_VIGNETTE",
+   "source": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/ComfortVignette.cs",
+   "symbol": "Ziptide.Gameplay.ComfortVignette",
+   "startup": "RuntimeInitializeOnLoadMethod AfterSceneLoad",
+   "persistence": "Creates camera-child component on persistent rig",
+   "sideEffects": [
+    "Creates procedural iris mesh and material",
+    "Mutates view every LateUpdate from rig/external motion"
+   ],
+   "recoveryExposure": "GOLDEN_PATH",
+   "canonicalDisposition": "Preserve as the sole comfort vignette, but census exactly one and snapshot open/closed states",
+   "priority": "R1_FAKE_XR"
+  },
+  {
+   "id": "CONQUEST_MISSION_INJECTOR",
+   "source": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
+   "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
+   "startup": "RuntimeInitializeOnLoadMethod AfterSceneLoad installs global sceneLoaded hook",
+   "persistence": "Static hook; injected mission object is scene-local",
+   "sideEffects": [
+    "Can inject mission boards, TextMesh, primitives, interactables, drones and objectives into any matching world",
+    "Can auto-travel back to the table"
+   ],
+   "recoveryExposure": "PROTOTYPE_HIDDEN",
+   "canonicalDisposition": "Feature-gate every bootstrap, component lifecycle, and public construction path out of recovery candidates; preserve mission source",
+   "priority": "R1_EXPOSURE_PROFILE"
+  },
+  {
+   "id": "DEV_WARP_BOARD_BOOTSTRAP",
+   "source": "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs",
+   "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
+   "startup": "RuntimeInitializeOnLoadMethod AfterSceneLoad in editor/development builds",
+   "persistence": "DontDestroyOnLoad host; visible board is temporary",
+   "sideEffects": [
+    "Polls forehead gesture/F2/ADB",
+    "Creates primitive world-space menu and travel requests"
+   ],
+   "recoveryExposure": "DIAGNOSTIC",
+   "canonicalDisposition": "Keep one explicit diagnostic interface only; gate bootstrap, scene-authored lifecycle, legacy menu, and underlying warp API",
+   "priority": "R2_INPUT_POLICY"
+  },
+  {
+   "id": "ECOLOGY_INJECTOR",
+   "source": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs",
+   "symbol": "Ziptide.Gameplay.EcologyDirector",
+   "startup": "RuntimeInitializeOnLoadMethod AfterSceneLoad installs sceneLoaded hook",
+   "persistence": "Static hook; one scene-local director when creatures exist",
+   "sideEffects": [
+    "Activates/deactivates baked creature population by UTC and save pressure",
+    "Runs live ecology every five minutes"
+   ],
+   "recoveryExposure": "CONDITIONAL_GOLDEN_PATH",
+   "canonicalDisposition": "Blocked until the selected golden creature has contact and grounding proof; all lifecycle paths must fail closed meanwhile",
+   "priority": "R1_CREATURE_CONTACT"
+  },
+  {
+   "id": "PVP_PROGRESSION_BOOTSTRAP",
+   "source": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
+   "symbol": "Ziptide.Gameplay.PvpProgressionRuntime",
+   "startup": "RuntimeInitializeOnLoadMethod AfterSceneLoad",
+   "persistence": "DontDestroyOnLoad singleton",
+   "sideEffects": [
+    "Binds arena directors",
+    "Writes profile career and rewards",
+    "Autosaves after matches"
+   ],
+   "recoveryExposure": "PROTOTYPE_HIDDEN",
+   "canonicalDisposition": "Feature-gate bootstrap and scene-authored lifecycle out of recovery candidates while preserving pure progression core",
+   "priority": "R1_EXPOSURE_PROFILE"
+  },
+  {
+   "id": "QUARTERS_CAMERA_INJECTOR",
+   "source": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs",
+   "symbol": "Ziptide.Gameplay.QuartersCameraFeature",
+   "startup": "RuntimeInitializeOnLoadMethod BeforeSceneLoad installs global sceneLoaded hook",
+   "persistence": "Static hook; injected feature is attached to each QuartersRoom",
+   "sideEffects": [
+    "Adds FieldCameraFeature",
+    "Builds primitive dock and photo wall",
+    "Spawns handheld camera item"
+   ],
+   "recoveryExposure": "PROTOTYPE_HIDDEN",
+   "canonicalDisposition": "Feature-gate hook, scene-authored lifecycle, and public builder out of recovery candidates",
+   "priority": "R1_EXPOSURE_PROFILE"
+  },
+  {
+   "id": "SAVE_SYSTEM_BOOTSTRAP",
+   "source": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Persistence/SaveSystem.cs",
+   "symbol": "Ziptide.Gameplay.SaveSystem",
+   "startup": "RuntimeInitializeOnLoadMethod AfterSceneLoad",
+   "persistence": "DontDestroyOnLoad singleton plus disk state",
+   "sideEffects": [
+    "Creates/loads persistent profile",
+    "Receives writes from many gameplay systems"
+   ],
+   "recoveryExposure": "SUPPORT",
+   "canonicalDisposition": "Preserve as sole profile persistence owner; R1 adds golden-path save/write census and quit/resume proof",
+   "priority": "R1_SAVE_ROUNDTRIP"
+  },
+  {
+   "id": "FIRST_HOUR_OBSERVATION_BOOTSTRAP",
+   "source": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs",
+   "symbol": "Ziptide.Gameplay.Tutorial.FirstHourObservationAdapter",
+   "startup": "RuntimeInitializeOnLoadMethod AfterSceneLoad",
+   "persistence": "DontDestroyOnLoad singleton",
+   "sideEffects": [
+    "Tracks camera/RILL/movement when a beat is explicitly active",
+    "Publishes semantic completion event"
+   ],
+   "recoveryExposure": "SUPPORT",
+   "canonicalDisposition": "Preserve neutral adapter; census exactly one and keep inactive until golden-path director requests a beat",
+   "priority": "R1_EVENT_MAP"
+  },
+  {
+   "id": "PLAYER_RIG_PERSISTENCE",
+   "source": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
+   "symbol": "Ziptide.Gameplay.PlayerRigPersistence",
+   "startup": "Scene-authored in _Boot; Awake singleton",
+   "persistence": "DontDestroyOnLoad",
+   "sideEffects": [
+    "Owns/adopts XRInteractionManager",
+    "Moves action assets between managers",
+    "Ensures belt, HUD, RILL, ping, quick-swap, avatar and stun receiver",
+    "Owns boot hold and fall safety"
+   ],
+   "recoveryExposure": "GOLDEN_PATH",
+   "canonicalDisposition": "Canonical persistent rig/input-session owner, but split ensured services behind exposure policy during R2",
+   "priority": "R1_RUNTIME_CENSUS"
+  },
+  {
+   "id": "PLAYER_INPUT_SESSION_GUARD",
+   "source": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
+   "symbol": "Ziptide.Gameplay.PlayerInputSessionGuard",
+   "startup": "RuntimeInitializeOnLoadMethod AfterSceneLoad plus sceneLoaded subscription",
+   "persistence": "Static support hook; creates no GameObject",
+   "sideEffects": [
+    "Transfers the union of scene action assets to the persistent XRI manager",
+    "Enables the canonical InputActionManager",
+    "Clears and disables every duplicate scene InputActionManager"
+   ],
+   "recoveryExposure": "SUPPORT",
+   "canonicalDisposition": "Subordinate enforcement for PlayerRigPersistence; owns no input meanings and exists only to guarantee one enabled lifecycle owner",
+   "priority": "R1_INPUT_SESSION"
+  },
+  {
+   "id": "AUDIO_DIRECTOR",
+   "source": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs",
+   "symbol": "Ziptide.Gameplay.AudioDirector",
+   "startup": "Scene-authored service",
+   "persistence": "DontDestroyOnLoad singleton",
+   "sideEffects": [
+    "Owns music sources and transitions"
+   ],
+   "recoveryExposure": "SUPPORT",
+   "canonicalDisposition": "Preserve and reconcile with AmbienceDirector under one lifecycle/census contract",
+   "priority": "R1_AUDIO_CENSUS"
+  },
+  {
+   "id": "TRAVEL_COORDINATOR",
+   "source": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs",
+   "symbol": "Ziptide.Gameplay.TravelCoordinator",
+   "startup": "Scene-authored service in _Boot",
+   "persistence": "DontDestroyOnLoad singleton",
+   "sideEffects": [
+    "Autosaves",
+    "Loads scenes",
+    "Teleports/restores rig and inventory",
+    "Creates departure/arrival effects"
+   ],
+   "recoveryExposure": "GOLDEN_PATH",
+   "canonicalDisposition": "Preserve as sole scene-travel owner; direct fallback remains a recovery finding",
+   "priority": "R1_TRAVEL_ROUNDTRIP"
+  },
+  {
+   "id": "SINGLETON_VALIDATOR",
+   "source": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Diagnostics/SingletonValidator.cs",
+   "symbol": "Ziptide.Gameplay.SingletonValidator",
+   "startup": "Scene-authored component",
+   "persistence": "DontDestroyOnLoad singleton",
+   "sideEffects": [
+    "Checks only XRInteractionManager, AudioDirector and PlayerRigPersistence after scene loads"
+   ],
+   "recoveryExposure": "SUPPORT",
+   "canonicalDisposition": "Replace narrow warning-only list with R1 runtime census over all canonical owners",
+   "priority": "R1_RUNTIME_CENSUS"
+  },
+  {
+   "id": "NET_BOOTSTRAP",
+   "source": "Ziptide/Assets/ZiptideNet/NetBootstrap.cs",
+   "symbol": "ZiptideNet.NetBootstrap",
+   "startup": "RuntimeInitializeOnLoadMethod BeforeSceneLoad when ZIPTIDE_PHOTON is compiled",
+   "persistence": "Installs static online delegates and can create a DontDestroyOnLoad Photon launcher",
+   "sideEffects": [
+    "Mutates PvpNetHub online delegates",
+    "Creates PhotonPvpLauncher",
+    "Can connect or disconnect Photon"
+   ],
+   "recoveryExposure": "PROTOTYPE_HIDDEN",
+   "canonicalDisposition": "Compile may remain available for FullDevelopment, but bootstrap and online-start path must fail closed in GoldenSlice",
+   "priority": "R1_EXPOSURE_PROFILE"
+  },
+  {
+   "id": "SYSTEM_FOCUS_LIFECYCLE",
+   "source": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs",
+   "symbol": "Ziptide.Gameplay.SystemFocusLifecycle",
+   "startup": "RuntimeInitializeOnLoadMethod AfterSceneLoad",
+   "persistence": "DontDestroyOnLoad singleton, no disk state of its own",
+   "sideEffects": [
+    "Logs ZIPTIDE: LIFECYCLE state transitions",
+    "Requests SaveSystem.AutosaveNow on SystemOverlay entry"
+   ],
+   "recoveryExposure": "SUPPORT",
+   "canonicalDisposition": "Sole system-focus lifecycle owner per docs/runtime_lifecycle/QUEST_SYSTEM_FOCUS_CONTRACT.md; S1 scope logs+saves only; S2-S5 add suppression/duck/tracking behind this owner",
+   "priority": "S1_LIFECYCLE_CONTRACT"
+  }
+ ]
 }

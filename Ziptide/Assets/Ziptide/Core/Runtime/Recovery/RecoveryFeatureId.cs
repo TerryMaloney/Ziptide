@@ -26,7 +26,8 @@ namespace Ziptide.Core
         TravelCoordinator = 17,
         SingletonValidator = 18,
         NetBootstrap = 19,
-        PlayerInputSessionGuard = 20
+        PlayerInputSessionGuard = 20,
+        SystemFocusLifecycle = 21
     }
 
     public enum RecoveryOwnerClassification

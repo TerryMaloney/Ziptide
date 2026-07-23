@@ -56,6 +56,7 @@ namespace Ziptide.Core
             Required("AUDIO_DIRECTOR", "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs", "Ziptide.Gameplay.AudioDirector", RecoveryFeatureId.AudioDirector),
             Required("TRAVEL_COORDINATOR", "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs", "Ziptide.Gameplay.TravelCoordinator", RecoveryFeatureId.TravelCoordinator),
             Gated("SINGLETON_VALIDATOR", "Ziptide/Assets/Ziptide/Gameplay/Runtime/Diagnostics/SingletonValidator.cs", "Ziptide.Gameplay.SingletonValidator", RecoveryFeatureId.SingletonValidator),
+            Required("SYSTEM_FOCUS_LIFECYCLE", "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs", "Ziptide.Gameplay.SystemFocusLifecycle", RecoveryFeatureId.SystemFocusLifecycle),
             Gated("NET_BOOTSTRAP", "Ziptide/Assets/ZiptideNet/NetBootstrap.cs", "ZiptideNet.NetBootstrap", RecoveryFeatureId.NetBootstrap)
         };
 

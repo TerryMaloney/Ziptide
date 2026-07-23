@@ -57,7 +57,8 @@ namespace Ziptide.Core
             RecoveryFeatureId.PlayerInputSessionGuard,
             RecoveryFeatureId.AudioDirector,
             RecoveryFeatureId.TravelCoordinator,
-            RecoveryFeatureId.SingletonValidator
+            RecoveryFeatureId.SingletonValidator,
+            RecoveryFeatureId.SystemFocusLifecycle,
         };
 
         private static readonly HashSet<RecoveryFeatureId> ApprovedDiagnostics =
