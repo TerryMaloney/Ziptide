@@ -9,14 +9,16 @@ class DevMenuAccessContractTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
         cls.root = Path(__file__).resolve().parents[2]
-        cls.menu = (cls.root / "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs").read_text(encoding="utf-8")
-        cls.gesture = (cls.root / "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenuGesture.cs").read_text(encoding="utf-8")
-        cls.gate = (cls.root / "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevAccessGate.cs").read_text(encoding="utf-8")
+        devtools = cls.root / "Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools"
+        cls.menu = (devtools / "DevMenu.cs").read_text(encoding="utf-8")
+        cls.board = (devtools / "DevWarpBoard.cs").read_text(encoding="utf-8")
+        cls.gesture = (devtools / "DevMenuGesture.cs").read_text(encoding="utf-8")
+        cls.gate = (devtools / "DevAccessGate.cs").read_text(encoding="utf-8")
         cls.script = (cls.root / "tools/dev_menu_access.ps1").read_text(encoding="utf-8")
         cls.controls = (cls.root / "docs/design/CONTROL_SCHEME.md").read_text(encoding="utf-8")
 
     def test_dev_access_reads_pose_but_no_gameplay_buttons(self) -> None:
-        combined = self.menu + "\n" + self.gesture
+        combined = self.board + "\n" + self.menu + "\n" + self.gesture
         forbidden = (
             "secondaryButton",
             "primaryButton",
@@ -26,18 +28,26 @@ class DevMenuAccessContractTests(unittest.TestCase):
             "menuButton",
         )
         for token in forbidden:
-            self.assertNotIn(token, combined, f"DevMenu must reserve zero gameplay buttons: {token}")
+            self.assertNotIn(token, combined, f"Dev access must reserve zero gameplay buttons: {token}")
 
         self.assertIn("CommonUsages.devicePosition", self.gesture)
         self.assertNotIn("CommonUsages.deviceRotation", self.gesture)
 
     def test_editor_headset_and_backup_paths_are_explicit(self) -> None:
-        self.assertIn("f2Key.wasPressedThisFrame", self.menu)
-        self.assertIn("_headsetGesture.Tick(Time.unscaledDeltaTime)", self.menu)
-        self.assertIn("DevAccessGate.TryConsumeOpenRequest()", self.menu)
-        self.assertIn("#if UNITY_EDITOR || DEVELOPMENT_BUILD", self.menu)
+        # DS-02 transferred all summon ownership from the retired TMP DevMenu to the
+        # device-proven primitive DevWarpBoard. The gate follows the authority, not the old class name.
+        self.assertIn("f2Key.wasPressedThisFrame", self.board)
+        self.assertIn("_gesture.Tick(Time.unscaledDeltaTime)", self.board)
+        self.assertIn("DevAccessGate.TryConsumeOpenRequest()", self.board)
+        self.assertIn("#if UNITY_EDITOR || DEVELOPMENT_BUILD", self.board)
         self.assertIn("#if UNITY_EDITOR || DEVELOPMENT_BUILD", self.gesture)
         self.assertIn("#if UNITY_EDITOR || DEVELOPMENT_BUILD", self.gate)
+
+        self.assertIn("RETIRED FROM RUNTIME", self.menu)
+        self.assertNotIn("f2Key.wasPressedThisFrame", self.menu)
+        self.assertNotIn("RuntimeInitializeOnLoadMethod", self.menu.replace(
+            "Do not re-add a RuntimeInitializeOnLoadMethod here.", ""
+        ))
 
     def test_gesture_requires_hold_and_release_latch(self) -> None:
         self.assertIn("HoldSeconds = 2f", self.gesture)
