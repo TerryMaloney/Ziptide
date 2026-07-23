@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "gateId": "ziptide_gate_hero",
+  "transitionOwner": "TravelCoordinator",
+  "cameraOwner": "XR-rig",
+  "globalRails": {
+    "maxTransparentCoverage": 0.35,
+    "maxLiveParticles": 64,
+    "maxLiveParticleSystems": 6,
+    "minimumFadeSeconds": 0.25,
+    "cameraMotionAllowed": false,
+    "forcedFovChangeAllowed": false,
+    "fullFieldStrobeAllowed": false,
+    "restoreControlBeforeStableFloor": false,
+    "childReachControlMaxMeters": 0.95
+  },
+  "states": [
+    {
+      "id": "dormant",
+      "sequence": 1,
+      "looping": true,
+      "durationSeconds": {"min": 0.0, "max": 0.0, "authorDriven": true},
+      "layers": ["architect_frame", "pooled_seam", "amber_diagnostic_path"],
+      "transparentCoverageMax": 0.05,
+      "particleBudget": 0,
+      "audioCue": "low_inactive_structure_hum",
+      "controlPolicy": "normal-player-control",
+      "exitCondition": "activation-authorized",
+      "requiredLog": "ZIPTIDE: GATE_VISUAL_STATE dormant"
+    },
+    {
+      "id": "waking",
+      "sequence": 2,
+      "looping": false,
+      "durationSeconds": {"min": 1.0, "max": 2.5, "authorDriven": false},
+      "layers": ["architect_frame", "rising_current", "growing_crest", "rim_entrainment_light"],
+      "transparentCoverageMax": 0.25,
+      "particleBudget": 24,
+      "audioCue": "current_rise_and_frame_resonance",
+      "controlPolicy": "normal-player-control",
+      "exitCondition": "crest-stable",
+      "requiredLog": "ZIPTIDE: GATE_VISUAL_STATE waking"
+    },
+    {
+      "id": "open",
+      "sequence": 3,
+      "looping": true,
+      "durationSeconds": {"min": 0.0, "max": 0.0, "authorDriven": true},
+      "layers": ["photon_fluid_body", "internal_current", "architect_frame", "bounded_rim_spray"],
+      "transparentCoverageMax": 0.35,
+      "particleBudget": 48,
+      "audioCue": "stable_gate_breath",
+      "controlPolicy": "normal-player-control",
+      "exitCondition": "traveler-crosses-entry-plane-or-collapse-command",
+      "requiredLog": "ZIPTIDE: GATE_VISUAL_STATE open"
+    },
+    {
+      "id": "traversal",
+      "sequence": 4,
+      "looping": false,
+      "durationSeconds": {"min": 0.5, "max": 8.0, "authorDriven": true},
+      "layers": ["entry_current_pull", "travel_shell", "transition_veil"],
+      "transparentCoverageMax": 1.0,
+      "particleBudget": 32,
+      "audioCue": "travel_shell_rise",
+      "controlPolicy": "TravelCoordinator-owned-hold",
+      "exitCondition": "destination-scene-ready-and-stable",
+      "requiredLog": "ZIPTIDE: GATE_VISUAL_STATE traversal"
+    },
+    {
+      "id": "exit_reform",
+      "sequence": 5,
+      "looping": false,
+      "durationSeconds": {"min": 0.5, "max": 3.0, "authorDriven": false},
+      "layers": ["destination_crest", "travel_shell_clear", "floor_horizon_reveal"],
+      "transparentCoverageMax": 1.0,
+      "particleBudget": 32,
+      "audioCue": "destination_reform_release",
+      "controlPolicy": "TravelCoordinator-owned-until-floor-horizon-stable",
+      "exitCondition": "floor-horizon-input-stable",
+      "requiredLog": "ZIPTIDE: GATE_VISUAL_STATE exit_reform"
+    },
+    {
+      "id": "collapse",
+      "sequence": 6,
+      "looping": false,
+      "durationSeconds": {"min": 0.75, "max": 3.0, "authorDriven": false},
+      "layers": ["crest_drain", "anchor_return", "rim_settle"],
+      "transparentCoverageMax": 0.30,
+      "particleBudget": 32,
+      "audioCue": "current_drain_and_frame_cooldown",
+      "controlPolicy": "normal-player-control",
+      "exitCondition": "photon-fluid-drained",
+      "requiredLog": "ZIPTIDE: GATE_VISUAL_STATE collapse"
+    },
+    {
+      "id": "entrainment_surge",
+      "sequence": 7,
+      "looping": false,
+      "durationSeconds": {"min": 1.0, "max": 5.0, "authorDriven": true},
+      "layers": ["recognizable_rim_objects", "dissolve_ribbons", "current_streams", "photon_fluid_body"],
+      "transparentCoverageMax": 0.35,
+      "particleBudget": 64,
+      "audioCue": "entrainment_surge_bounded",
+      "controlPolicy": "story-authored-no-camera-motion",
+      "exitCondition": "entrained-objects-resolved",
+      "requiredLog": "ZIPTIDE: GATE_VISUAL_STATE entrainment_surge"
+    }
+  ],
+  "allowedTransitions": [
+    ["dormant", "waking"],
+    ["waking", "open"],
+    ["open", "traversal"],
+    ["traversal", "exit_reform"],
+    ["exit_reform", "open"],
+    ["open", "collapse"],
+    ["collapse", "dormant"],
+    ["open", "entrainment_surge"],
+    ["entrainment_surge", "open"]
+  ]
+}
