@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "systems": [
+    {
+      "id": "moss_system_working",
+      "decisionStatus": "proposed-canon",
+      "displayName": "TBD — Moss home system",
+      "stars": [
+        {
+          "id": "moss_star_primary",
+          "countRole": "primary",
+          "temperatureFamily": "warm-K-or-G",
+          "lightRole": "SunRig-primary-key",
+          "discRole": "shared-ground-space",
+          "exactColor": "author-required",
+          "exactDiscAngularSize": "author-required"
+        }
+      ],
+      "bodies": [
+        {
+          "id": "moss_ringed_giant",
+          "kind": "ringed-gas-giant",
+          "role": "parent-body-and-dominant-landmark",
+          "groundRead": "dominant-about-one-third-of-sky",
+          "spaceRead": "same-bearing-fully-revealed-with-crisp-ringplane",
+          "parallaxBand": "distant-major-body"
+        },
+        {
+          "id": "moss_world_body",
+          "kind": "habitable-toxic-moon",
+          "role": "W001-world-and-launch-origin",
+          "parentBody": "moss_ringed_giant",
+          "spaceRead": "recedes-below-player-during-launch",
+          "parallaxBand": "near-launch-body"
+        },
+        {
+          "id": "moss_sibling_grey_moon",
+          "kind": "grey-cratered-moon",
+          "role": "visible-sibling-and-future-visit-candidate",
+          "parentBody": "moss_ringed_giant",
+          "spaceRead": "nearby-in-system-hop",
+          "parallaxBand": "mid-body"
+        }
+      ],
+      "deepBackground": {
+        "starfieldId": "moss_starfield_v1",
+        "constellationSetId": "moss_constellations_unamed_v1",
+        "galacticBand": true,
+        "nebulaPresence": "faint",
+        "sharedAcrossSystem": true
+      },
+      "region": {
+        "shellGridBaseline": 0.0,
+        "patternShimmerBaseline": 0.0,
+        "progressionAuthoredPerWorld": true
+      },
+      "spaceObjectPalette": {
+        "asteroidFamilies": ["dark-basalt", "metal-poor-rubble"],
+        "debrisDensity": "low-to-medium",
+        "derelictClasses": ["salvage-tug", "prior-waker-smallcraft"],
+        "stationPresence": "sparse",
+        "trafficFactions": ["salvager"],
+        "groundSpaceEchoRequired": true
+      }
+    }
+  ],
+  "worldPlacements": [
+    {
+      "worldId": "W001",
+      "worldName": "The Moss",
+      "decisionStatus": "proposed-canon",
+      "systemId": "moss_system_working",
+      "bodyId": "moss_world_body",
+      "parentBody": "moss_ringed_giant",
+      "visibleSiblingBodies": ["moss_sibling_grey_moon"],
+      "primaryStar": "moss_star_primary",
+      "sunDirection": "author-required-from-keeper",
+      "timeOfDay": "dusk-baseline",
+      "atmosphereColor": "amber-toxic-dusk-author-required",
+      "atmosphereThickness": "medium-thick",
+      "gravity": "existing-W001-authority",
+      "veilTint": "amber-green-hot-edge",
+      "shellGridIntensity": 0.0,
+      "groundVistaMode": "derived-through-atmosphere",
+      "spaceSceneId": "space_moss_orbit"
+    }
+  ],
+  "spaceViews": [
+    {
+      "id": "space_moss_orbit",
+      "systemId": "moss_system_working",
+      "originBody": "moss_world_body",
+      "primaryStar": "moss_star_primary",
+      "requiredBodies": [
+        "moss_ringed_giant",
+        "moss_sibling_grey_moon",
+        "moss_world_body"
+      ],
+      "backgroundId": "moss_starfield_v1",
+      "atmosphereRemoved": true,
+      "fullHorizon": true,
+      "parallaxEnabledFor": [
+        "moss_world_body",
+        "moss_sibling_grey_moon",
+        "moss_ringed_giant"
+      ],
+      "sunBearingMatchesGround": true,
+      "bodyBearingsMatchGround": true
+    }
+  ]
+}
