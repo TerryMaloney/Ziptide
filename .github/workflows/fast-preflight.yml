@@ -1,0 +1,50 @@
+name: Fast Preflight
+
+on:
+  push:
+    branches:
+      - main
+      - 'claude/**'
+      - terry-local-wip
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: fast-preflight-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  governance:
+    name: Governance + Python gates
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Factory governance gate
+        run: python3 tools/factory_governance_gate.py
+
+      - name: Fast Python gate tests
+        run: |
+          python3 -m unittest discover \
+            -s tools/tests \
+            -p 'test_*_gate.py' \
+            -v
+
+      - name: Commit whitespace and conflict check
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git rev-parse HEAD^ >/dev/null 2>&1; then
+            git diff --check HEAD^ HEAD
+          else
+            git diff --check --cached
+          fi
