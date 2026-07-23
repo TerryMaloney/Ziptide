@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "assets": [
+    {
+      "id": "artifact_key",
+      "displayName": "Artifact Key",
+      "tier": "B",
+      "status": "spec-ready-concept-unresolved",
+      "specPath": "docs/project_art_plan/DEVICE_GATE_PRODUCTION_PACK.md",
+      "sourceDocs": [
+        "docs/project_art_plan/CONCEPT_TO_BUILT_PIPELINE.md",
+        "docs/project_art_plan/CONCEPT_ART_NEXT_30.md"
+      ],
+      "conceptPaths": [
+        "concepts/grammar_keyart/pattern_morphogenesis_sheet_v1.png",
+        "concepts/grammar_keyart/coupler_ship_heart_v1.png"
+      ],
+      "requiredMarkers": [
+        "# ASSET: ARTIFACT KEY",
+        "## Scale and ergonomics",
+        "## State vocabulary",
+        "## Interaction and collider envelope",
+        "## Build acceptance"
+      ],
+      "note": "The family references are registered, but the exact standalone keeper filename must be confirmed before status advances to intake-ready."
+    },
+    {
+      "id": "rill_orb",
+      "displayName": "RILL Orb Companion",
+      "tier": "B",
+      "status": "concept-locked",
+      "specPath": "docs/project_art_plan/DEVICE_GATE_PRODUCTION_PACK.md",
+      "sourceDocs": [
+        "docs/project_art_plan/CONCEPT_TO_BUILT_PIPELINE.md",
+        "docs/project_art_plan/CONCEPT_ART_NEXT_30.md"
+      ],
+      "conceptPaths": [
+        "concepts/rill_drone/rill_orb_hero_moodstates_v2.png"
+      ],
+      "requiredMarkers": [
+        "# ASSET: RILL ORB",
+        "## Scale and presence",
+        "## Mood/state vocabulary",
+        "## Motion and interaction",
+        "## Build acceptance"
+      ]
+    },
+    {
+      "id": "ziptide_gate_lifecycle",
+      "displayName": "Ziptide Gate Lifecycle",
+      "tier": "B+",
+      "status": "concept-locked",
+      "specPath": "docs/project_art_plan/DEVICE_GATE_PRODUCTION_PACK.md",
+      "sourceDocs": [
+        "docs/project_art_plan/CONCEPT_TO_BUILT_PIPELINE.md",
+        "docs/project_art_plan/CONCEPT_ART_NEXT_30.md"
+      ],
+      "conceptPaths": [
+        "concepts/grammar_keyart/pattern_morphogenesis_sheet_v1.png",
+        "concepts/grammar_keyart/title_key_art_v1.png"
+      ],
+      "requiredMarkers": [
+        "# ASSET: ZIPTIDE GATE LIFECYCLE",
+        "## Lifecycle states",
+        "## Comfort and safety rails",
+        "## Build acceptance"
+      ]
+    },
+    {
+      "id": "ship_mk2_architect",
+      "displayName": "MK2 Architect Living Yacht",
+      "tier": "C",
+      "status": "concept-locked",
+      "specPath": "docs/project_art_plan/DEVICE_GATE_PRODUCTION_PACK.md",
+      "sourceDocs": [
+        "docs/project_art_plan/SHIP_MK2_ARCHITECT_UPGRADE.md",
+        "docs/project_art_plan/SKIN_AND_VARIANT_SYSTEM.md",
+        "docs/project_art_plan/CONCEPT_TO_BUILT_PIPELINE.md"
+      ],
+      "conceptPaths": [
+        "concepts/ship_mk2_architect/mk2_hero_v1.png",
+        "concepts/ship_mk2_architect/mk2_hero_context_v1.png",
+        "concepts/ship_mk2_architect/mk2_turnaround_scale_v1.png",
+        "concepts/ship_mk2_architect/mk2_reconfigure_v1.png",
+        "concepts/ship_mk2_architect/mk2_cockpit_v1.png",
+        "concepts/ship_mk2_architect/mk2_drive_heart_v1.png",
+        "concepts/ship_mk2_architect/mk2_inflight_v1.png",
+        "concepts/ship_mk2_architect/mk2_interior_blueprint_v1.png",
+        "concepts/ship_mk2_architect/mk2_quarters_v1.png",
+        "concepts/ship_mk2_architect/mk2_growroom_v1.png"
+      ],
+      "requiredMarkers": [
+        "# ASSET: MK2 ARCHITECT LIVING YACHT",
+        "## Scale and layout",
+        "## Fixed identity zones",
+        "## Skinnable zones",
+        "## Reconfigure vocabulary",
+        "## LOD and intake bands",
+        "## Build acceptance"
+      ],
+      "note": "The dedicated bedroom/bunk keeper remains missing; the layout requirement is nevertheless locked in the spec."
+    }
+  ]
+}
