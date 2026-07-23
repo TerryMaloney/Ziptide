@@ -106,8 +106,8 @@ Read by every lane at session start alongside HANDOFF. Full spec: `FINISHED_GAME
     **WHY MISSED:** exciting mechanics pull design attention; verbs/loop/failure/onboarding get
     assumed. Same asymmetry as benchmark #4 (entrances polished, exits assumed) — recurring.
     **CLASS:** a DOMAIN designed cool-path-first; its verbs, loop, failure states, wayfinding,
-    narrative delivery, onboarding and accessibility assumed rather than designed. **SYSTEM
-    CHANGE:** the **DOMAIN-COMPLETENESS CHECKLIST** — every domain audit must score eight columns
+    narrative delivery, onboarding and accessibility assumed rather than designed. **SYSTEM CHANGE:**
+    the **DOMAIN-COMPLETENESS CHECKLIST** — every domain audit must score eight columns
     (VERB · PLACE · LOOP · FAILURE · NAV/WAYFINDING · NARRATIVE · ONBOARDING · ACCESSIBILITY/
     COMFORT) and no domain is "designed" until all eight are addressed. (→ pending: adopt the
     checklist into the audit/benchmark machinery + re-run it on the existing designed domains, not
