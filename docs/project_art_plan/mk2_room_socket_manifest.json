@@ -1,0 +1,233 @@
+{
+  "schemaVersion": 1,
+  "shipId": "ship_mk2_architect",
+  "scaleMeters": {
+    "lengthMin": 25.0,
+    "lengthMax": 30.0,
+    "interiorClearHeightMin": 2.1,
+    "interiorClearHeightMax": 2.5,
+    "primaryCorridorWidthMin": 1.1,
+    "primaryCorridorWidthMax": 1.5
+  },
+  "skinContract": {
+    "gameplaySocketsRemainStable": true,
+    "navigationVolumesRemainStable": true,
+    "collisionOwnershipRemainsStable": true,
+    "fixedIdentityZonesRemainVisible": true,
+    "roomShellsMaySwap": true
+  },
+  "rooms": [
+    {
+      "id": "cockpit",
+      "sequence": 1,
+      "displayName": "Cockpit",
+      "conceptStatus": "keeper-locked",
+      "conceptPaths": ["concepts/ship_mk2_architect/mk2_cockpit_v1.png"],
+      "requiredSockets": [
+        "seat_pilot",
+        "control_throttle_primary",
+        "control_snap_yaw_left",
+        "control_snap_yaw_right",
+        "control_boost",
+        "control_dock_autopilot",
+        "display_navigation",
+        "display_ship_status",
+        "view_drive_core_floor",
+        "prop_lantern_fixed",
+        "prop_bird_fixed"
+      ],
+      "fixedIdentityZones": [
+        "salvage_console",
+        "chunky_physical_controls",
+        "oil_lantern",
+        "bird_trinket",
+        "worn_notes"
+      ],
+      "skinnableZones": [
+        "grown_alloy_shell",
+        "channel_emissive",
+        "trim",
+        "non_gameplay_hologram_style"
+      ],
+      "essentialControlReachMeters": {
+        "min": 0.55,
+        "max": 0.95
+      }
+    },
+    {
+      "id": "lounge_galley",
+      "sequence": 2,
+      "displayName": "Crew Lounge and Galley",
+      "conceptStatus": "keeper-locked",
+      "conceptPaths": ["concepts/ship_mk2_architect/mk2_quarters_v1.png"],
+      "requiredSockets": [
+        "seat_sectional_a",
+        "seat_sectional_b",
+        "galley_kettle",
+        "galley_thermos",
+        "storage_books",
+        "display_galaxy_map",
+        "route_cockpit",
+        "route_sleeping_quarters"
+      ],
+      "fixedIdentityZones": [
+        "leather_sectional",
+        "kettle_thermos",
+        "books",
+        "taped_notes",
+        "personal_clutter"
+      ],
+      "skinnableZones": [
+        "room_shell",
+        "concealed_lighting",
+        "upholstery_shell",
+        "hologram_style"
+      ]
+    },
+    {
+      "id": "sleeping_quarters",
+      "sequence": 3,
+      "displayName": "Bedroom and Sleeping Quarters",
+      "conceptStatus": "keeper-missing-required",
+      "conceptPaths": [],
+      "requiredSockets": [
+        "bunk_01",
+        "bunk_02",
+        "bunk_03",
+        "bunk_04",
+        "privacy_shutter_01",
+        "privacy_shutter_02",
+        "privacy_shutter_03",
+        "privacy_shutter_04",
+        "personal_cubby_01",
+        "personal_cubby_02",
+        "route_lounge",
+        "route_greenhouse"
+      ],
+      "fixedIdentityZones": [
+        "worn_blankets",
+        "personal_photos",
+        "keepsake_cubbies",
+        "one_carried_lantern_hook"
+      ],
+      "skinnableZones": [
+        "bunk_shells",
+        "privacy_shutters",
+        "room_shell",
+        "concealed_lighting"
+      ]
+    },
+    {
+      "id": "greenhouse",
+      "sequence": 4,
+      "displayName": "Dorsal Greenhouse",
+      "conceptStatus": "keeper-locked",
+      "conceptPaths": ["concepts/ship_mk2_architect/mk2_growroom_v1.png"],
+      "requiredSockets": [
+        "planter_row_left",
+        "planter_row_right",
+        "crop_centerpiece",
+        "watering_can_rack",
+        "water_fill_station",
+        "automation_input",
+        "automation_output",
+        "route_sleeping_quarters",
+        "route_drive_core"
+      ],
+      "fixedIdentityZones": [
+        "gameplay_planter_coordinates",
+        "centerpiece_crop_socket",
+        "watering_can_rack",
+        "automation_ports"
+      ],
+      "skinnableZones": [
+        "planter_shells",
+        "canopy_frame",
+        "channel_emissive",
+        "watering_can_shell"
+      ]
+    },
+    {
+      "id": "drive_core",
+      "sequence": 5,
+      "displayName": "Drive Core and Heart",
+      "conceptStatus": "keeper-locked",
+      "conceptPaths": ["concepts/ship_mk2_architect/mk2_drive_heart_v1.png"],
+      "requiredSockets": [
+        "artifact_key_joined",
+        "coupler_core",
+        "service_access_left",
+        "service_access_right",
+        "route_greenhouse",
+        "route_workshop"
+      ],
+      "fixedIdentityZones": [
+        "artifact_key_s_seam",
+        "coupler_core",
+        "drive_heart",
+        "service_access_geometry"
+      ],
+      "skinnableZones": [
+        "surround_shell",
+        "channel_emissive_color",
+        "structural_trim"
+      ]
+    },
+    {
+      "id": "workshop",
+      "sequence": 6,
+      "displayName": "Fabricator and Workshop",
+      "conceptStatus": "spec-required",
+      "conceptPaths": [],
+      "requiredSockets": [
+        "fabricator_primary",
+        "material_input",
+        "finished_output",
+        "tool_rack",
+        "salvage_storage",
+        "automation_input",
+        "automation_output",
+        "route_drive_core",
+        "route_airlock"
+      ],
+      "fixedIdentityZones": [
+        "fabricator_coordinates",
+        "automation_ports",
+        "tool_rack_coordinates",
+        "salvage_storage_coordinates"
+      ],
+      "skinnableZones": [
+        "machine_shells",
+        "workbench_surface",
+        "room_shell",
+        "lighting"
+      ]
+    },
+    {
+      "id": "airlock",
+      "sequence": 7,
+      "displayName": "Airlock and Boarding Module",
+      "conceptStatus": "derived-from-graft",
+      "conceptPaths": ["concepts/ship_mk2_architect/mk2_hero_context_v1.png"],
+      "requiredSockets": [
+        "boarding_entry",
+        "boarding_exit",
+        "dock_alignment",
+        "grabber_arm_hardpoint",
+        "suit_storage",
+        "route_workshop"
+      ],
+      "fixedIdentityZones": [
+        "salvage_module_graft",
+        "grabber_arm_hardpoint",
+        "welded_plating_patch",
+        "boarding_coordinates"
+      ],
+      "skinnableZones": [
+        "inner_shell",
+        "outer_trim",
+        "channel_emissive"
+      ]
+    }
+  ]
+}
