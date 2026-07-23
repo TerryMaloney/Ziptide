@@ -6,6 +6,8 @@ route every approved concept follows. Companions: `HERO_ASSET_STRATEGY.md` (the 
 `TIER_C_CONCEPT_QUEUE.md` (the approved sheets), `SHIP_SCAVENGER_VISUAL_SPEC.md` +
 `CITY_VISUAL_SPEC.md` (the proof this route's first step already works).
 
+> **Machine catalog:** `docs/project_art_plan/concept_intake_manifest.json` — CI-enforced; keep in sync (`docs/CATALOG_DOC_RECONCILE.md`).
+
 ---
 
 ## §0 — The honest one-line answer
