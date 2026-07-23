@@ -58,6 +58,45 @@
   release build-flag audit; noted in VRC_TEST_PLAN gaps context. Rotation of the App ID is
   Terry's call, not urgent (App IDs are client-visible by design).
 - **Commit:** this one (docs/licensing only: decision doc + evidence + manifest + CREDITS + this entry).
+### 2026-07-23 (rb101) — Fable 5 (Reasonbox): 🔊 AUDIO PRODUCTION PROGRAM delivered (assigned lane, docs only) + benchmark-run closure note
+- **Did (the gpt-first-hour assigned lane, inside the boundary — only new `docs/audio/**` files):**
+  ① **`docs/audio/AUDIO_PRODUCTION_MASTER_PLAN.md`** — source-verified existing-vs-missing
+  inventory (AudioDirector music + AudioProfile · the AmbienceDirector/Core procedural beds with
+  their tested seamless/deterministic/true-silence laws · the ONE committed track
+  `Zerogravity_Bloom_Favorite_1.wav` wired at `ScenePatcherD2.cs:20` · ~24 scattered AudioSource
+  call sites · subtitle-first RILL delivery) · ZIPTIDE sonic identity (wet/hollow/resonant,
+  discharge-not-gore, the ship as a body, RILL's chime signature, authored silence, the kept
+  track as tonal reference — Terry adjudicates then it locks) · `ZiptideMix` bus tree + ducking
+  DATA + player sliders (closes the benchmark mix-bus gap) at DEVICE-level persistence ·
+  spatialization rules (2D/3D split, no Doppler, near-field hand clamp, portal-rooms flagged as
+  free occlusion volumes LATER) · comfort + **non-speech caption-twin law** (any progress/safety
+  cue gets a subtitle twin — checkable) · file/import law (format, per-family Unity import
+  settings, sample-exact loops) · Quest budgets (≤24MB, ≤24 voices, per-family caps — proposed,
+  ratchet pattern) · `aud.<family>.<event>` stable-ID naming + one `AudioEvents.Play(id)` seam ·
+  **licensing-at-import through the EXISTING manifest/gate/CREDITS/art_intake machinery** (no
+  parallel system; Zerogravity backfill is queue row R5) · phases P0–P4 · acceptance evidence per
+  proof lane incl. a LUFS listening trace. ② **`docs/audio/AUDIO_VERTICAL_SLICE_QUEUE.md`** —
+  implementation-ready table: 5 rails rows (mixer author, AudioEvents seam, sliders, caption
+  plumbing, licensing backfill) + **34 asset rows across all 8 assigned beats** (boot/home, RILL,
+  comfort console, grab/holster, coupler stages incl. `RepairStage.Running`/`MACHINE_REPAIRED`
+  alignment with gpt's refreshed bindings, PUNCH IT/travel, W001 ambience/scanner/job,
+  weapons/disable/salvage, creature presence, ship alerts/flight) + 4 debt rows — every row:
+  stable ID, trigger→existing runtime owner, mono/stereo, 2D/3D, loop/one-shot, duration,
+  priority, dependency, device acceptance line written to drop into `DEVICE_TEST_CHECKLIST.md`
+  (❌ ⇒ MISS_LEDGER five-field entry). P1 minimum audible slice = 22 assets; 2 ambience rows are
+  DATA-only (the procedural-bed architecture means biome coverage without files).
+- **Benchmark-run closure (Terry asked me to check my interrupted run):** my planned
+  contributions are COMPLETE VIA SIBLINGS — hwr33's benchmark + rb100's official-VRC re-verify
+  cover the gap audit, and the acute→systemic mechanism I was drafting already exists BETTER as
+  `MISS_LEDGER.md` + the Class Law + Fast Preflight field enforcement. No redundant doc filed;
+  recording the verification here instead per the merge protocol (re-check, add, don't
+  re-litigate — nothing left to add).
+- **Boundary compliance:** no runtime, no audio generated/imported, no licensing manifest edits,
+  no first-hour/preflight/queue files touched. Rails rows R1–R5 name FUTURE build lanes.
+- **Next (unclaimed):** P0 rails build (mixer author + AudioEvents seam + sliders) is the natural
+  first audio implementation lane post-adjudication; Terry's taste pass on §2 sonic identity
+  gates asset production.
+- **Commit:** this push (docs only: two new docs/audio files + this entry).
 
 ### 2026-07-23 (gpt-first-hour) — first-hour evidence clean + permanent ratchet; Reasonbox audio lane and T-Dog follow-on assigned
 
