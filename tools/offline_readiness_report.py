@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Build one ZIPTIDE report for work that can proceed without Unity or a headset.
+"""Build one ZIPTIDE readiness report for work possible without Unity or Quest.
 
-The report deliberately distinguishes three states:
-- pass/fail: deterministic repository checks that can be resolved now;
-- awaiting-ci: latest source has not received a durable Unity/audit verdict yet;
-- awaiting-device: only Terry's exact authorized Quest route can close the item.
+Statuses remain intentionally distinct:
+- pass/fail: deterministic repository evidence available now;
+- awaiting-ci: the current source is newer than the durable Unity/audit verdict;
+- awaiting-device: Terry's exact authorized Quest route is the only valid closer.
 """
 
 from __future__ import annotations
@@ -18,7 +18,7 @@ import tempfile
 from dataclasses import asdict, dataclass
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any, Sequence
+from typing import Any, Callable, Sequence
 
 TOOLS_DIR = Path(__file__).resolve().parent
 if str(TOOLS_DIR) not in sys.path:
@@ -27,8 +27,11 @@ if str(TOOLS_DIR) not in sys.path:
 import celestial_system_gate
 import concept_intake_gate
 import factory_governance_gate
+import gate_lifecycle_gate
+import launch_transition_gate
 import mk2_room_manifest_gate
 import space_mission_catalog_gate
+import space_poi_catalog_gate
 
 EXIT_OK = 0
 EXIT_OPERATIONAL_ERROR = 1
@@ -88,15 +91,14 @@ def _run_report_tool(
 
     with tempfile.TemporaryDirectory() as temp_dir:
         report_path = Path(temp_dir) / f"{check_id}.json"
-        command = [
-            sys.executable,
-            str(script),
-            *extra_args,
-            "--json-report",
-            str(report_path),
-        ]
         completed = subprocess.run(
-            command,
+            [
+                sys.executable,
+                str(script),
+                *extra_args,
+                "--json-report",
+                str(report_path),
+            ],
             cwd=root,
             text=True,
             stdout=subprocess.PIPE,
@@ -129,11 +131,14 @@ def _run_report_tool(
             )
 
     raw_findings = payload.get("findings", [])
-    findings = tuple(dict(item) if isinstance(item, dict) else {"message": str(item)} for item in raw_findings)
-    failed = completed.returncode not in (0, 2) or bool(findings)
+    findings = tuple(
+        dict(item) if isinstance(item, dict) else {"message": str(item)}
+        for item in raw_findings
+    )
+    operational_failure = completed.returncode not in (0, EXIT_VALIDATION_FAILED)
     return CheckResult(
         id=check_id,
-        status="fail" if failed else "pass",
+        status="fail" if operational_failure or findings else "pass",
         finding_count=len(findings),
         findings=findings,
         evidence=f"tools/{script_name}",
@@ -142,9 +147,8 @@ def _run_report_tool(
 
 def _read_ci_verdict(root: Path, source_sha: str) -> CheckResult:
     relative = Path("docs/CI_VERDICT.md")
-    path = root / relative
     try:
-        text = path.read_text(encoding="utf-8")
+        text = (root / relative).read_text(encoding="utf-8")
     except OSError as exc:
         return CheckResult(
             id="durable_ci",
@@ -182,9 +186,7 @@ def _read_ci_verdict(root: Path, source_sha: str) -> CheckResult:
             status="awaiting-ci",
             finding_count=0,
             findings=(),
-            evidence=(
-                f"{relative.as_posix()} tested={tested_sha or 'missing'} current={source_sha}"
-            ),
+            evidence=f"{relative.as_posix()} tested={tested_sha or 'missing'} current={source_sha}",
         )
     if overall != "GREEN":
         return CheckResult(
@@ -222,86 +224,90 @@ def _git_head(root: Path) -> str:
     return value if completed.returncode == 0 and value else "unknown"
 
 
+def _deterministic_checks(root: Path) -> list[CheckResult]:
+    direct: tuple[tuple[str, Callable[[], Any], str], ...] = (
+        (
+            "factory_governance",
+            lambda: type(
+                "GovernanceResult",
+                (),
+                {"findings": factory_governance_gate.validate_repository(root)},
+            )(),
+            "tools/factory_governance_gate.py",
+        ),
+        (
+            "concept_intake",
+            lambda: concept_intake_gate.validate_manifest(
+                root, root / "docs/project_art_plan/concept_intake_manifest.json"
+            ),
+            "docs/project_art_plan/concept_intake_manifest.json",
+        ),
+        (
+            "space_missions",
+            lambda: space_mission_catalog_gate.validate_catalog(
+                root / "docs/design/space_mission_catalog.json"
+            ),
+            "docs/design/space_mission_catalog.json",
+        ),
+        (
+            "celestial_systems",
+            lambda: celestial_system_gate.validate_catalog(
+                root / "docs/design/celestial_system_catalog.json"
+            ),
+            "docs/design/celestial_system_catalog.json",
+        ),
+        (
+            "mk2_rooms",
+            lambda: mk2_room_manifest_gate.validate_manifest(
+                root, root / "docs/project_art_plan/mk2_room_socket_manifest.json"
+            ),
+            "docs/project_art_plan/mk2_room_socket_manifest.json",
+        ),
+        (
+            "gate_lifecycle",
+            lambda: gate_lifecycle_gate.validate_catalog(
+                root / "docs/project_art_plan/gate_lifecycle_catalog.json"
+            ),
+            "docs/project_art_plan/gate_lifecycle_catalog.json",
+        ),
+        (
+            "space_pois",
+            lambda: space_poi_catalog_gate.validate_catalog(
+                root,
+                root / "docs/design/space_poi_catalog.json",
+                root / "docs/design/space_mission_catalog.json",
+            ),
+            "docs/design/space_poi_catalog.json",
+        ),
+        (
+            "launch_transition",
+            lambda: launch_transition_gate.validate_catalog(
+                root,
+                root / "docs/design/launch_transition_catalog.json",
+                root / "docs/design/celestial_system_catalog.json",
+            ),
+            "docs/design/launch_transition_catalog.json",
+        ),
+    )
+    checks = [_direct_check(check_id, runner(), evidence) for check_id, runner, evidence in direct]
+    for check_id, script_name in (
+        ("continuity", "continuity_gate.py"),
+        ("first_hour_contract", "first_hour_gate.py"),
+        ("first_hour_binding", "first_hour_binding_gate.py"),
+        ("first_hour_envelope", "first_hour_envelope_gate.py"),
+        ("first_hour_launch", "first_hour_launch_gate.py"),
+    ):
+        checks.append(_run_report_tool(root, check_id=check_id, script_name=script_name))
+    return checks
+
+
 def build_report(root: Path, *, source_sha: str | None = None) -> dict[str, Any]:
     root = root.resolve()
     if not (root / "docs").is_dir() or not (root / "tools").is_dir():
         raise ReadinessError(f"Not a ZIPTIDE repository root: {root}")
     current_sha = source_sha or _git_head(root)
 
-    checks: list[CheckResult] = []
-    checks.append(
-        _direct_check(
-            "factory_governance",
-            type("R", (), {"findings": factory_governance_gate.validate_repository(root)})(),
-            "tools/factory_governance_gate.py",
-        )
-    )
-    checks.append(
-        _direct_check(
-            "concept_intake",
-            concept_intake_gate.validate_manifest(
-                root, root / "docs/project_art_plan/concept_intake_manifest.json"
-            ),
-            "docs/project_art_plan/concept_intake_manifest.json",
-        )
-    )
-    checks.append(
-        _direct_check(
-            "space_missions",
-            space_mission_catalog_gate.validate_catalog(
-                root / "docs/design/space_mission_catalog.json"
-            ),
-            "docs/design/space_mission_catalog.json",
-        )
-    )
-    checks.append(
-        _direct_check(
-            "celestial_systems",
-            celestial_system_gate.validate_catalog(
-                root / "docs/design/celestial_system_catalog.json"
-            ),
-            "docs/design/celestial_system_catalog.json",
-        )
-    )
-    checks.append(
-        _direct_check(
-            "mk2_rooms",
-            mk2_room_manifest_gate.validate_manifest(
-                root, root / "docs/project_art_plan/mk2_room_socket_manifest.json"
-            ),
-            "docs/project_art_plan/mk2_room_socket_manifest.json",
-        )
-    )
-
-    checks.extend(
-        [
-            _run_report_tool(
-                root,
-                check_id="continuity",
-                script_name="continuity_gate.py",
-            ),
-            _run_report_tool(
-                root,
-                check_id="first_hour_contract",
-                script_name="first_hour_gate.py",
-            ),
-            _run_report_tool(
-                root,
-                check_id="first_hour_binding",
-                script_name="first_hour_binding_gate.py",
-            ),
-            _run_report_tool(
-                root,
-                check_id="first_hour_envelope",
-                script_name="first_hour_envelope_gate.py",
-            ),
-            _run_report_tool(
-                root,
-                check_id="first_hour_launch",
-                script_name="first_hour_launch_gate.py",
-            ),
-        ]
-    )
+    checks = _deterministic_checks(root)
     checks.append(_read_ci_verdict(root, current_sha))
     checks.append(
         CheckResult(
@@ -363,9 +369,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         print(f"OFFLINE_READINESS_ERROR {exc}", file=sys.stderr)
         return EXIT_OPERATIONAL_ERROR
 
-    output = args.output
-    if not output.is_absolute():
-        output = args.root.resolve() / output
+    output = args.output if args.output.is_absolute() else args.root.resolve() / args.output
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     print(
