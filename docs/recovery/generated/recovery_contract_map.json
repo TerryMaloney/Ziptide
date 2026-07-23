@@ -1,8 +1,8 @@
 {
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
-  "scannedFiles": 722,
-  "findingCount": 2527,
+  "scannedFiles": 724,
+  "findingCount": 2539,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -518,6 +518,33 @@
             "line": 40,
             "symbol": "Ziptide.Gameplay.EcologyDirector",
             "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Gameplay.LifecycleState",
+        "evidenceCount": 2,
+        "codes": [
+          "DONT_DESTROY_ON_LOAD",
+          "RUNTIME_BOOTSTRAP"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs"
+        ],
+        "evidence": [
+          {
+            "code": "RUNTIME_BOOTSTRAP",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs",
+            "line": 84,
+            "symbol": "Ziptide.Gameplay.LifecycleState",
+            "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]"
+          },
+          {
+            "code": "DONT_DESTROY_ON_LOAD",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs",
+            "line": 89,
+            "symbol": "Ziptide.Gameplay.LifecycleState",
+            "snippet": "Object.DontDestroyOnLoad(go);"
           }
         ]
       },
@@ -8392,6 +8419,25 @@
         ]
       },
       {
+        "owner": "Ziptide.Gameplay.LifecycleState",
+        "evidenceCount": 1,
+        "codes": [
+          "NEW_GAME_OBJECT"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs"
+        ],
+        "evidence": [
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs",
+            "line": 88,
+            "symbol": "Ziptide.Gameplay.LifecycleState",
+            "snippet": "var go = new GameObject(\"SystemFocusLifecycle\");"
+          }
+        ]
+      },
+      {
         "owner": "Ziptide.Gameplay.LiftRuntime",
         "evidenceCount": 2,
         "codes": [
@@ -15539,6 +15585,62 @@
             "line": 14,
             "symbol": "Ziptide.Gameplay.JobRuntime",
             "snippet": "public event Action JobCompleted;"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Gameplay.LifecycleState",
+        "evidenceCount": 6,
+        "codes": [
+          "AUTOSAVE_CALL",
+          "EVENT_DECLARATION",
+          "SAVE_SYSTEM_REFERENCE"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs"
+        ],
+        "evidence": [
+          {
+            "code": "SAVE_SYSTEM_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs",
+            "line": 66,
+            "symbol": "Ziptide.Gameplay.LifecycleState",
+            "snippet": "/// wires real detection. SaveSystem's own pause-save is intentionally KEPT beneath this"
+          },
+          {
+            "code": "SAVE_SYSTEM_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs",
+            "line": 68,
+            "symbol": "Ziptide.Gameplay.LifecycleState",
+            "snippet": "/// Always-required safety class (like SaveSystem) \u2014 deliberately NOT RecoveryRuntimeGate-gated;"
+          },
+          {
+            "code": "EVENT_DECLARATION",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs",
+            "line": 76,
+            "symbol": "Ziptide.Gameplay.LifecycleState",
+            "snippet": "public event System.Action<LifecycleState, LifecycleState> StateChanged;"
+          },
+          {
+            "code": "SAVE_SYSTEM_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs",
+            "line": 137,
+            "symbol": "Ziptide.Gameplay.LifecycleState",
+            "snippet": "// (The OS-pause path is already covered by SaveSystem's own hook \u2014 layered defense.)"
+          },
+          {
+            "code": "AUTOSAVE_CALL",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs",
+            "line": 139,
+            "symbol": "Ziptide.Gameplay.LifecycleState",
+            "snippet": "SaveSystem.AutosaveNow(\"system_overlay\");"
+          },
+          {
+            "code": "SAVE_SYSTEM_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs",
+            "line": 139,
+            "symbol": "Ziptide.Gameplay.LifecycleState",
+            "snippet": "SaveSystem.AutosaveNow(\"system_overlay\");"
           }
         ]
       },

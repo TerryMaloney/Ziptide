@@ -1,24 +1,24 @@
 # ZIPTIDE Recovery Contract Scan
 
-- Scanned files: **722**
-- Findings: **2527**
+- Scanned files: **724**
+- Findings: **2539**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
 
 | Category | Count |
 |---|---:|
-| `bootstrap` | 35 |
-| `diagnostics` | 567 |
-| `events` | 64 |
+| `bootstrap` | 36 |
+| `diagnostics` | 570 |
+| `events` | 65 |
 | `fallback_debt` | 155 |
 | `global_render` | 81 |
 | `input` | 210 |
 | `materials` | 246 |
-| `persistence` | 18 |
-| `runtime_creation` | 671 |
+| `persistence` | 19 |
+| `runtime_creation` | 672 |
 | `runtime_ui` | 129 |
-| `save_state` | 256 |
+| `save_state` | 261 |
 | `scene_loading` | 9 |
 | `xri_ownership` | 86 |
 
@@ -52,6 +52,7 @@
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/ComfortVignette.cs:31` · `Ziptide.Gameplay.ComfortVignette` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:29` · `Ziptide.Gameplay.PlayerInputSessionGuard` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:36` · `Ziptide.Gameplay.PlayerInputSessionGuard` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
+- **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs:84` · `Ziptide.Gameplay.LifecycleState` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:26` · `Ziptide.Gameplay.PvpProgressionRuntime` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs:45` · `Ziptide.Gameplay.Tutorial.FirstHourObservationAdapter` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:39` · `Ziptide.Gameplay.ConquestMissionRuntime` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
@@ -302,6 +303,9 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:1017` · `Ziptide.Gameplay.BootHoldState` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: SPAWN_AT marker='" + marker.markerId + "' rig=" + transform.position.ToString("F2")`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerStunReceiver.cs:54` · `Ziptide.Gameplay.PlayerStunReceiver` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: PLAYER_STUN sec=" + seconds.ToString("F2") + " slow=" + slowFactor.ToString("F2"));`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerStunReceiver.cs:69` · `Ziptide.Gameplay.PlayerStunReceiver` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: PLAYER_HIT src=" + sourcePos.ToString("F1"));`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs:69` · `Ziptide.Gameplay.LifecycleState` — ZIPTIDE diagnostic tag. `/// flagged for the unified-readiness review in HANDOFF. Logs ZIPTIDE: LIFECYCLE state=a->b.`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs:97` · `Ziptide.Gameplay.LifecycleState` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: DUP_SINGLETON SystemFocusLifecycle");`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs:134` · `Ziptide.Gameplay.LifecycleState` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: LIFECYCLE state=" + previous + "->" + next + " reason=" + reason);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/ArenaLobbyBoard.cs:139` · `Ziptide.Gameplay.ArenaLobbyBoard` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: LOBBY_START mode=" + ArenaMatchConfig.Mode`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/ArenaLobbyBoard.cs:164` · `Ziptide.Gameplay.ArenaLobbyBoard` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: LOBBY_DAILY day=" + day + " mode=" + ArenaMatchConfig.Mode`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/ArenaLobbyBoard.cs:180` · `Ziptide.Gameplay.ArenaLobbyBoard` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: LOBBY_ONLINE_STOP");`
@@ -637,6 +641,7 @@
 - **EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobRuntime.cs:13` · `Ziptide.Gameplay.JobRuntime` — Event declaration. `public event Action StepChanged;`
 - **EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobRuntime.cs:14` · `Ziptide.Gameplay.JobRuntime` — Event declaration. `public event Action JobCompleted;`
 - **EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerStunReceiver.cs:16` · `Ziptide.Gameplay.PlayerStunReceiver` — Event declaration. `public static event System.Action OnPlayerStunned;`
+- **EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs:76` · `Ziptide.Gameplay.LifecycleState` — Event declaration. `public event System.Action<LifecycleState, LifecycleState> StateChanged;`
 - **EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpMatchDirector.cs:22` · `Ziptide.Gameplay.PvpMatchDirector` — Event declaration. `public event System.Action<int, int> KillScored;`
 - **EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpMatchDirector.cs:24` · `Ziptide.Gameplay.PvpMatchDirector` — Event declaration. `public event System.Action<int> MatchEnded;`
 - **EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpMatchDirector.cs:26` · `Ziptide.Gameplay.PvpMatchDirector` — Event declaration. `public event System.Action MatchRestarted;`
@@ -1410,6 +1415,7 @@
 - **DONT_DESTROY_ON_LOAD** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:416` · `Ziptide.Gameplay.BootHoldState` — Object promoted across scene loads. `DontDestroyOnLoad(_xriManager.gameObject);`
 - **DONT_DESTROY_ON_LOAD** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:426` · `Ziptide.Gameplay.BootHoldState` — Object promoted across scene loads. `DontDestroyOnLoad(_xriManager.gameObject);`
 - **DONT_DESTROY_ON_LOAD** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:434` · `Ziptide.Gameplay.BootHoldState` — Object promoted across scene loads. `DontDestroyOnLoad(_xriManager.gameObject);`
+- **DONT_DESTROY_ON_LOAD** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs:89` · `Ziptide.Gameplay.LifecycleState` — Object promoted across scene loads. `Object.DontDestroyOnLoad(go);`
 - **DONT_DESTROY_ON_LOAD** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:33` · `Ziptide.Gameplay.PvpProgressionRuntime` — Object promoted across scene loads. `DontDestroyOnLoad(go);`
 - **DONT_DESTROY_ON_LOAD** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs:51` · `Ziptide.Gameplay.Tutorial.FirstHourObservationAdapter` — Object promoted across scene loads. `DontDestroyOnLoad(go);`
 - **DONT_DESTROY_ON_LOAD** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs:64` · `Ziptide.Gameplay.Tutorial.FirstHourObservationAdapter` — Object promoted across scene loads. `DontDestroyOnLoad(gameObject);`
@@ -1902,6 +1908,7 @@
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerAvatarRig.cs:74` · `Ziptide.Gameplay.PlayerAvatarRig` — Runtime GameObject construction. `var torso = new GameObject("__AvatarTorso");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:306` · `Ziptide.Gameplay.BootHoldState` — Runtime GameObject construction. `var go = new GameObject(Ziptide.Core.ZiptideConstants.GoBeltRig);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:431` · `Ziptide.Gameplay.BootHoldState` — Runtime GameObject construction. `var go = new GameObject("__XRI");`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs:88` · `Ziptide.Gameplay.LifecycleState` — Runtime GameObject construction. `var go = new GameObject("SystemFocusLifecycle");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/ArenaLobbyBoard.cs:332` · `Ziptide.Gameplay.ArenaLobbyBoard` — Runtime GameObject construction. `var go = new GameObject("Label_" + text.Replace(' ', '_'));`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpBot.cs:332` · `Ziptide.Gameplay.PvpBot` — Runtime GameObject construction. `var go = new GameObject("PvpBolt");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpHud.cs:28` · `Ziptide.Gameplay.PvpHud` — Runtime GameObject construction. `var go = new GameObject("PvpHudText");`
@@ -2226,6 +2233,7 @@
 - **AUTOSAVE_CALL** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltFloorRuntime.cs:195` · `Ziptide.Gameplay.BeltCellSpec` — Autosave request. `SaveSystem.AutosaveNow("belt_stamp");`
 - **AUTOSAVE_CALL** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltFloorRuntime.cs:207` · `Ziptide.Gameplay.BeltCellSpec` — Autosave request. `SaveSystem.AutosaveNow("belt_edit");`
 - **AUTOSAVE_CALL** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Persistence/SaveSystem.cs:123` · `Ziptide.Gameplay.SaveSystem` — Autosave request. `public static void AutosaveNow(string reason)`
+- **AUTOSAVE_CALL** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs:139` · `Ziptide.Gameplay.LifecycleState` — Autosave request. `SaveSystem.AutosaveNow("system_overlay");`
 - **AUTOSAVE_CALL** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:143` · `Ziptide.Gameplay.PvpProgressionRuntime` — Autosave request. `SaveSystem.AutosaveNow("pvp_match");`
 - **AUTOSAVE_CALL** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:119` · `Ziptide.Gameplay.TravelCoordinator` — Autosave request. `SaveSystem.AutosaveNow("travel_fallback");`
 - **AUTOSAVE_CALL** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:187` · `Ziptide.Gameplay.TravelCoordinator` — Autosave request. `SaveSystem.AutosaveNow("travel");`
@@ -2400,6 +2408,10 @@
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/PhotoCaptureCamera.cs:97` · `Ziptide.Gameplay.PhotoCaptureCamera` — SaveSystem reference. `SaveSystem save = SaveSystem.Instance;`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/ComfortVignette.cs:13` · `Ziptide.Gameplay.ComfortVignette` — SaveSystem reference. `/// Self-bootstrapped like SaveSystem (no scene edit); strength is a device-level setting in`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/CreditsHud.cs:82` · `Ziptide.Gameplay.CreditsHud` — SaveSystem reference. `var save = SaveSystem.Instance;`
+- **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs:66` · `Ziptide.Gameplay.LifecycleState` — SaveSystem reference. `/// wires real detection. SaveSystem's own pause-save is intentionally KEPT beneath this`
+- **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs:68` · `Ziptide.Gameplay.LifecycleState` — SaveSystem reference. `/// Always-required safety class (like SaveSystem) — deliberately NOT RecoveryRuntimeGate-gated;`
+- **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs:137` · `Ziptide.Gameplay.LifecycleState` — SaveSystem reference. `// (The OS-pause path is already covered by SaveSystem's own hook — layered defense.)`
+- **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs:139` · `Ziptide.Gameplay.LifecycleState` — SaveSystem reference. `SaveSystem.AutosaveNow("system_overlay");`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/ArenaLobbyBoard.cs:248` · `Ziptide.Gameplay.ArenaLobbyBoard` — SaveSystem reference. `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:10` · `Ziptide.Gameplay.PvpProgressionRuntime` — SaveSystem reference. `/// like SaveSystem (no scene edit, so every already-committed arena gets it): on each scene`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:93` · `Ziptide.Gameplay.PvpProgressionRuntime` — SaveSystem reference. `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`

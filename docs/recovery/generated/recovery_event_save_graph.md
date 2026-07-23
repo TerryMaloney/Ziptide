@@ -1,21 +1,21 @@
 # ZIPTIDE Event and Save Ownership Graph
 
-- Scanned C# files: **722**
-- Evidence edges: **721**
+- Scanned C# files: **724**
+- Evidence edges: **725**
 - Named subscriptions without matching unsubscribe in the same owner: **52**
 
 This is a static ownership graph. An unmatched row is a review target, not automatic proof of a leak; process-lifetime static hooks may be intentional.
 
 ## Evidence counts
 
-- **AUTOSAVE:** 7
-- **EVENT_DECLARE:** 45
-- **EVENT_INVOKE:** 60
+- **AUTOSAVE:** 8
+- **EVENT_DECLARE:** 46
+- **EVENT_INVOKE:** 61
 - **EVENT_SUBSCRIBE:** 107
 - **EVENT_UNSUBSCRIBE:** 57
 - **PLAYER_PREFS_ACCESS:** 11
 - **PROFILE_FIELD_ACCESS:** 366
-- **SAVE_ACCESS:** 68
+- **SAVE_ACCESS:** 69
 
 ## Named subscriptions without matching unsubscribe
 
@@ -648,6 +648,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **SAVE_ACCESS** · `Ziptide.Gameplay.BeltCellSpec` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltFloorRuntime.cs:195` — `SaveSystem.AutosaveNow("belt_stamp");`
 - **AUTOSAVE** · `Ziptide.Gameplay.BeltCellSpec` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltFloorRuntime.cs:207` · `belt_edit` — `SaveSystem.AutosaveNow("belt_edit");`
 - **SAVE_ACCESS** · `Ziptide.Gameplay.BeltCellSpec` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltFloorRuntime.cs:207` — `SaveSystem.AutosaveNow("belt_edit");`
+- **AUTOSAVE** · `Ziptide.Gameplay.SystemFocusStateMachine` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs:139` · `system_overlay` — `SaveSystem.AutosaveNow("system_overlay");`
+- **SAVE_ACCESS** · `Ziptide.Gameplay.SystemFocusStateMachine` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs:139` — `SaveSystem.AutosaveNow("system_overlay");`
 - **AUTOSAVE** · `Ziptide.Gameplay.PvpProgressionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:143` · `pvp_match` — `SaveSystem.AutosaveNow("pvp_match");`
 - **SAVE_ACCESS** · `Ziptide.Gameplay.PvpProgressionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:143` — `SaveSystem.AutosaveNow("pvp_match");`
 - **AUTOSAVE** · `Ziptide.Gameplay.TravelCoordinator` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:119` · `travel_fallback` — `SaveSystem.AutosaveNow("travel_fallback");`
@@ -804,6 +806,11 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 ### `StageChanged`
 
 - **EVENT_DECLARE** · `Ziptide.Gameplay.RepairableMachine` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:38` · `System.Action<RepairStage>` — `public event System.Action<RepairStage> StageChanged;`
+
+### `StateChanged`
+
+- **EVENT_DECLARE** · `Ziptide.Gameplay.SystemFocusStateMachine` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs:76` · `System.Action<LifecycleState, LifecycleState>` — `public event System.Action<LifecycleState, LifecycleState> StateChanged;`
+- **EVENT_INVOKE** · `Ziptide.Gameplay.SystemFocusStateMachine` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs:141` — `StateChanged?.Invoke(previous, next);`
 
 ### `StepChanged`
 

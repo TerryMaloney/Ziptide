@@ -1,52 +1,52 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-23T15:11:05.733879+00:00",
+  "generatedAtUtc": "2026-07-23T22:11:47.817247+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
     "Ziptide/Assets/Ziptide",
     "Ziptide/Assets/ZiptideNet"
   ],
-  "scannedFiles": 722,
-  "findingCount": 2527,
+  "scannedFiles": 724,
+  "findingCount": 2539,
   "categoryCounts": {
-    "bootstrap": 35,
-    "diagnostics": 567,
-    "events": 64,
+    "bootstrap": 36,
+    "diagnostics": 570,
+    "events": 65,
     "fallback_debt": 155,
     "global_render": 81,
     "input": 210,
     "materials": 246,
-    "persistence": 18,
-    "runtime_creation": 671,
+    "persistence": 19,
+    "runtime_creation": 672,
     "runtime_ui": 129,
-    "save_state": 256,
+    "save_state": 261,
     "scene_loading": 9,
     "xri_ownership": 86
   },
   "codeCounts": {
-    "AUTOSAVE_CALL": 8,
+    "AUTOSAVE_CALL": 9,
     "CAMERA_MAIN_REFERENCE": 42,
     "CAMERA_POST_PROCESSING": 1,
     "CANVAS_COMPONENT": 5,
     "CREATE_PRIMITIVE": 259,
     "DIRECT_SCENE_LOAD": 2,
     "DIRECT_SCENE_LOAD_ASYNC": 7,
-    "DONT_DESTROY_ON_LOAD": 18,
+    "DONT_DESTROY_ON_LOAD": 19,
     "EDITOR_BOOTSTRAP": 10,
-    "EVENT_DECLARATION": 48,
+    "EVENT_DECLARATION": 49,
     "EVENT_SYSTEM_COMPONENT": 2,
     "FALLBACK_MARKER": 155,
     "FRAME_BUTTON_POLL": 1,
     "INPUT_ACTION_REFERENCE": 203,
     "INPUT_BUTTON_REFERENCE": 6,
-    "NEW_GAME_OBJECT": 412,
+    "NEW_GAME_OBJECT": 413,
     "PLAYER_PROFILE_REFERENCE": 140,
     "RENDER_SETTINGS_MUTATION": 37,
-    "RUNTIME_BOOTSTRAP": 25,
+    "RUNTIME_BOOTSTRAP": 26,
     "RUNTIME_MATERIAL_CREATE": 94,
-    "SAVE_SYSTEM_REFERENCE": 108,
+    "SAVE_SYSTEM_REFERENCE": 112,
     "SHADER_FIND": 152,
     "STATIC_EVENT_DECLARATION": 16,
     "TEXTMESH_COMPONENT": 52,
@@ -57,7 +57,7 @@
     "XRI_MANAGER_LOOKUP": 42,
     "XR_INTERACTABLE_COMPONENT": 65,
     "XR_UI_INPUT_MODULE": 2,
-    "ZIPTIDE_LOG_TAG": 567
+    "ZIPTIDE_LOG_TAG": 570
   },
   "findings": [
     {
@@ -292,6 +292,15 @@
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
       "line": 36,
       "symbol": "Ziptide.Gameplay.PlayerInputSessionGuard",
+      "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]"
+    },
+    {
+      "category": "bootstrap",
+      "code": "RUNTIME_BOOTSTRAP",
+      "description": "RuntimeInitializeOnLoadMethod bootstrap",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs",
+      "line": 84,
+      "symbol": "Ziptide.Gameplay.LifecycleState",
       "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]"
     },
     {
@@ -2525,6 +2534,33 @@
       "line": 69,
       "symbol": "Ziptide.Gameplay.PlayerStunReceiver",
       "snippet": "Debug.Log(\"ZIPTIDE: PLAYER_HIT src=\" + sourcePos.ToString(\"F1\"));"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs",
+      "line": 69,
+      "symbol": "Ziptide.Gameplay.LifecycleState",
+      "snippet": "/// flagged for the unified-readiness review in HANDOFF. Logs ZIPTIDE: LIFECYCLE state=a->b."
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs",
+      "line": 97,
+      "symbol": "Ziptide.Gameplay.LifecycleState",
+      "snippet": "Debug.Log(\"ZIPTIDE: DUP_SINGLETON SystemFocusLifecycle\");"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs",
+      "line": 134,
+      "symbol": "Ziptide.Gameplay.LifecycleState",
+      "snippet": "Debug.Log(\"ZIPTIDE: LIFECYCLE state=\" + previous + \"->\" + next + \" reason=\" + reason);"
     },
     {
       "category": "diagnostics",
@@ -5522,6 +5558,15 @@
       "line": 16,
       "symbol": "Ziptide.Gameplay.PlayerStunReceiver",
       "snippet": "public static event System.Action OnPlayerStunned;"
+    },
+    {
+      "category": "events",
+      "code": "EVENT_DECLARATION",
+      "description": "Event declaration",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs",
+      "line": 76,
+      "symbol": "Ziptide.Gameplay.LifecycleState",
+      "snippet": "public event System.Action<LifecycleState, LifecycleState> StateChanged;"
     },
     {
       "category": "events",
@@ -12394,6 +12439,15 @@
       "category": "persistence",
       "code": "DONT_DESTROY_ON_LOAD",
       "description": "Object promoted across scene loads",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs",
+      "line": 89,
+      "symbol": "Ziptide.Gameplay.LifecycleState",
+      "snippet": "Object.DontDestroyOnLoad(go);"
+    },
+    {
+      "category": "persistence",
+      "code": "DONT_DESTROY_ON_LOAD",
+      "description": "Object promoted across scene loads",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
       "line": 33,
       "symbol": "Ziptide.Gameplay.PvpProgressionRuntime",
@@ -16804,6 +16858,15 @@
       "category": "runtime_creation",
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs",
+      "line": 88,
+      "symbol": "Ziptide.Gameplay.LifecycleState",
+      "snippet": "var go = new GameObject(\"SystemFocusLifecycle\");"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/ArenaLobbyBoard.cs",
       "line": 332,
       "symbol": "Ziptide.Gameplay.ArenaLobbyBoard",
@@ -19684,6 +19747,15 @@
       "category": "save_state",
       "code": "AUTOSAVE_CALL",
       "description": "Autosave request",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs",
+      "line": 139,
+      "symbol": "Ziptide.Gameplay.LifecycleState",
+      "snippet": "SaveSystem.AutosaveNow(\"system_overlay\");"
+    },
+    {
+      "category": "save_state",
+      "code": "AUTOSAVE_CALL",
+      "description": "Autosave request",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
       "line": 143,
       "symbol": "Ziptide.Gameplay.PvpProgressionRuntime",
@@ -21245,6 +21317,42 @@
       "line": 82,
       "symbol": "Ziptide.Gameplay.CreditsHud",
       "snippet": "var save = SaveSystem.Instance;"
+    },
+    {
+      "category": "save_state",
+      "code": "SAVE_SYSTEM_REFERENCE",
+      "description": "SaveSystem reference",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs",
+      "line": 66,
+      "symbol": "Ziptide.Gameplay.LifecycleState",
+      "snippet": "/// wires real detection. SaveSystem's own pause-save is intentionally KEPT beneath this"
+    },
+    {
+      "category": "save_state",
+      "code": "SAVE_SYSTEM_REFERENCE",
+      "description": "SaveSystem reference",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs",
+      "line": 68,
+      "symbol": "Ziptide.Gameplay.LifecycleState",
+      "snippet": "/// Always-required safety class (like SaveSystem) \u2014 deliberately NOT RecoveryRuntimeGate-gated;"
+    },
+    {
+      "category": "save_state",
+      "code": "SAVE_SYSTEM_REFERENCE",
+      "description": "SaveSystem reference",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs",
+      "line": 137,
+      "symbol": "Ziptide.Gameplay.LifecycleState",
+      "snippet": "// (The OS-pause path is already covered by SaveSystem's own hook \u2014 layered defense.)"
+    },
+    {
+      "category": "save_state",
+      "code": "SAVE_SYSTEM_REFERENCE",
+      "description": "SaveSystem reference",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs",
+      "line": 139,
+      "symbol": "Ziptide.Gameplay.LifecycleState",
+      "snippet": "SaveSystem.AutosaveNow(\"system_overlay\");"
     },
     {
       "category": "save_state",

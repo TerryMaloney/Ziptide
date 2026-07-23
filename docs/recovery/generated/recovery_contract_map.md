@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
-- Scanned files: **722**
-- Scanner findings: **2527**
+- Scanned files: **724**
+- Scanner findings: **2539**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -171,6 +171,13 @@ None.
 - Codes: `RUNTIME_BOOTSTRAP`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs:40` **RUNTIME_BOOTSTRAP** — `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
+
+### `Ziptide.Gameplay.LifecycleState` — 2 signal(s)
+
+- Codes: `DONT_DESTROY_ON_LOAD`, `RUNTIME_BOOTSTRAP`
+- Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs:84` **RUNTIME_BOOTSTRAP** — `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs:89` **DONT_DESTROY_ON_LOAD** — `Object.DontDestroyOnLoad(go);`
 
 ### `Ziptide.Gameplay.PlayerInputSessionGuard` — 2 signal(s)
 
@@ -1772,6 +1779,12 @@ None.
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs:242` **NEW_GAME_OBJECT** — `var root = new GameObject("Collectibles");`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs:247` **NEW_GAME_OBJECT** — `var go = new GameObject("Collectible_" + c.itemId);`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs:256` **NEW_GAME_OBJECT** — `var console = new GameObject("TransmissionConsole_" + c.itemId);`
+
+### `Ziptide.Gameplay.LifecycleState` — 1 signal(s)
+
+- Codes: `NEW_GAME_OBJECT`
+- Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs:88` **NEW_GAME_OBJECT** — `var go = new GameObject("SystemFocusLifecycle");`
 
 ### `Ziptide.Gameplay.LiftRuntime` — 2 signal(s)
 
@@ -3422,6 +3435,17 @@ None.
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobRuntime.cs`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobRuntime.cs:13` **EVENT_DECLARATION** — `public event Action StepChanged;`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobRuntime.cs:14` **EVENT_DECLARATION** — `public event Action JobCompleted;`
+
+### `Ziptide.Gameplay.LifecycleState` — 6 signal(s)
+
+- Codes: `AUTOSAVE_CALL`, `EVENT_DECLARATION`, `SAVE_SYSTEM_REFERENCE`
+- Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs:66` **SAVE_SYSTEM_REFERENCE** — `/// wires real detection. SaveSystem's own pause-save is intentionally KEPT beneath this`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs:68` **SAVE_SYSTEM_REFERENCE** — `/// Always-required safety class (like SaveSystem) — deliberately NOT RecoveryRuntimeGate-gated;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs:76` **EVENT_DECLARATION** — `public event System.Action<LifecycleState, LifecycleState> StateChanged;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs:137` **SAVE_SYSTEM_REFERENCE** — `// (The OS-pause path is already covered by SaveSystem's own hook — layered defense.)`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs:139` **AUTOSAVE_CALL** — `SaveSystem.AutosaveNow("system_overlay");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs:139` **SAVE_SYSTEM_REFERENCE** — `SaveSystem.AutosaveNow("system_overlay");`
 
 ### `Ziptide.Gameplay.MiningRigRuntime` — 2 signal(s)
 

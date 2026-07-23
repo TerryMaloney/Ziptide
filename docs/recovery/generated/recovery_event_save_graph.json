@@ -1,16 +1,16 @@
 {
   "tool": "recovery_event_save_graph",
-  "scannedFiles": 722,
-  "evidenceCount": 721,
+  "scannedFiles": 724,
+  "evidenceCount": 725,
   "kindCounts": {
-    "AUTOSAVE": 7,
-    "EVENT_DECLARE": 45,
-    "EVENT_INVOKE": 60,
+    "AUTOSAVE": 8,
+    "EVENT_DECLARE": 46,
+    "EVENT_INVOKE": 61,
     "EVENT_SUBSCRIBE": 107,
     "EVENT_UNSUBSCRIBE": 57,
     "PLAYER_PREFS_ACCESS": 11,
     "PROFILE_FIELD_ACCESS": 366,
-    "SAVE_ACCESS": 68
+    "SAVE_ACCESS": 69
   },
   "unmatchedNamedSubscriptionCount": 52,
   "unmatchedNamedSubscriptions": [
@@ -3810,6 +3810,24 @@
       },
       {
         "kind": "AUTOSAVE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs",
+        "line": 139,
+        "owner": "Ziptide.Gameplay.SystemFocusStateMachine",
+        "target": "SaveSystem.AutosaveNow",
+        "detail": "system_overlay",
+        "snippet": "SaveSystem.AutosaveNow(\"system_overlay\");"
+      },
+      {
+        "kind": "SAVE_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs",
+        "line": 139,
+        "owner": "Ziptide.Gameplay.SystemFocusStateMachine",
+        "target": "SaveSystem.AutosaveNow",
+        "detail": "",
+        "snippet": "SaveSystem.AutosaveNow(\"system_overlay\");"
+      },
+      {
+        "kind": "AUTOSAVE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
         "line": 143,
         "owner": "Ziptide.Gameplay.PvpProgressionRuntime",
@@ -4936,6 +4954,26 @@
         "target": "StageChanged",
         "detail": "System.Action<RepairStage>",
         "snippet": "public event System.Action<RepairStage> StageChanged;"
+      }
+    ],
+    "StateChanged": [
+      {
+        "kind": "EVENT_DECLARE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs",
+        "line": 76,
+        "owner": "Ziptide.Gameplay.SystemFocusStateMachine",
+        "target": "StateChanged",
+        "detail": "System.Action<LifecycleState, LifecycleState>",
+        "snippet": "public event System.Action<LifecycleState, LifecycleState> StateChanged;"
+      },
+      {
+        "kind": "EVENT_INVOKE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs",
+        "line": 141,
+        "owner": "Ziptide.Gameplay.SystemFocusStateMachine",
+        "target": "StateChanged",
+        "detail": "",
+        "snippet": "StateChanged?.Invoke(previous, next);"
       }
     ],
     "StepChanged": [
@@ -9837,6 +9875,42 @@
       "target": "OnPlayerStunned",
       "detail": "",
       "snippet": "OnPlayerStunned?.Invoke();"
+    },
+    {
+      "kind": "EVENT_DECLARE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs",
+      "line": 76,
+      "owner": "Ziptide.Gameplay.SystemFocusStateMachine",
+      "target": "StateChanged",
+      "detail": "System.Action<LifecycleState, LifecycleState>",
+      "snippet": "public event System.Action<LifecycleState, LifecycleState> StateChanged;"
+    },
+    {
+      "kind": "AUTOSAVE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs",
+      "line": 139,
+      "owner": "Ziptide.Gameplay.SystemFocusStateMachine",
+      "target": "SaveSystem.AutosaveNow",
+      "detail": "system_overlay",
+      "snippet": "SaveSystem.AutosaveNow(\"system_overlay\");"
+    },
+    {
+      "kind": "SAVE_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs",
+      "line": 139,
+      "owner": "Ziptide.Gameplay.SystemFocusStateMachine",
+      "target": "SaveSystem.AutosaveNow",
+      "detail": "",
+      "snippet": "SaveSystem.AutosaveNow(\"system_overlay\");"
+    },
+    {
+      "kind": "EVENT_INVOKE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs",
+      "line": 141,
+      "owner": "Ziptide.Gameplay.SystemFocusStateMachine",
+      "target": "StateChanged",
+      "detail": "",
+      "snippet": "StateChanged?.Invoke(previous, next);"
     },
     {
       "kind": "SAVE_ACCESS",
