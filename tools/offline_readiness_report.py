@@ -89,7 +89,9 @@ def _run_report_tool(
             evidence=f"tools/{script_name}",
         )
 
-    with tempfile.TemporaryDirectory() as temp_dir:
+    temp_parent = root / "Builds" / "Reports"
+    temp_parent.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix="offline-readiness-", dir=temp_parent) as temp_dir:
         report_path = Path(temp_dir) / f"{check_id}.json"
         completed = subprocess.run(
             [
