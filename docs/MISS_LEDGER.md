@@ -99,6 +99,20 @@ Read by every lane at session start alongside HANDOFF. Full spec: `FINISHED_GAME
     continues to add the component through Unity and must pass before generated-scene audit can run
     (→ pending exact CI verification).
 
+15. **WHAT:** the space-flight domain was designed cool-path-first — flying, the vista, the launch
+    veil, taking hits, landing all thorough — while the connective tissue (how you pilot/aim/
+    navigate), the failure/edge states (fuel, disabled, **stranded**), and the "why you're out
+    here" LOOP were left thin or undesigned. **FOUND BY:** `SPACE_FLIGHT_GAP_AUDIT.md` (2026-07-21).
+    **WHY MISSED:** exciting mechanics pull design attention; verbs/loop/failure/onboarding get
+    assumed. Same asymmetry as benchmark #4 (entrances polished, exits assumed) — recurring.
+    **CLASS:** a DOMAIN designed cool-path-first; its verbs, loop, failure states, wayfinding,
+    narrative delivery, onboarding and accessibility assumed rather than designed. **SYSTEM
+    CHANGE:** the **DOMAIN-COMPLETENESS CHECKLIST** — every domain audit must score eight columns
+    (VERB · PLACE · LOOP · FAILURE · NAV/WAYFINDING · NARRATIVE · ONBOARDING · ACCESSIBILITY/
+    COMFORT) and no domain is "designed" until all eight are addressed. (→ pending: adopt the
+    checklist into the audit/benchmark machinery + re-run it on the existing designed domains, not
+    just space.)
+
 ## CLOSED
 
 *(entries move here when their SYSTEM CHANGE is verified in place — the fix alone never closes

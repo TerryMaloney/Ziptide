@@ -27,6 +27,26 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-21 (rb93) — Fable 5: 🔍 SPACE FLIGHT GAP AUDIT + a class fired (MISS_LEDGER #15)
+
+- **Terry: "look at all those aspects, figure out what we're missing."** Laid the whole space
+  experience (ship-backward) against our 7 space docs → `docs/design/SPACE_FLIGHT_GAP_AUDIT.md`.
+- **The pattern:** we designed the COOL PATH + the PLACE thoroughly, but under-designed the
+  connective tissue + failure states + the "why fly" loop. **Gaps grouped:** A piloting (diegetic
+  grab-the-controls, cockpit instruments, hover/station-keeping) · B nav & PURPOSE (in-flight
+  wayfinding, **the space gameplay LOOP / mission types = biggest gap**, discovery) · C combat/
+  salvage interaction (VR targeting, the salvage grab, telegraphing) · D **failure/edge (fuel model,
+  the STRANDED/disabled state)** · E presence/life (ambient traffic, awe beats) · F **narrative in
+  flight (RILL comms + the de-garbling Transmission!) + flight music** · G onboarding/accessibility/
+  save · H special docking (station, gate-from-space, derelict/EVA ⚖).
+- **★ CLASS FIRED → MISS_LEDGER #15:** "domain designed cool-path-first; verbs/loop/failure/nav/
+  narrative/onboarding/accessibility assumed." **System change proposed: a DOMAIN-COMPLETENESS
+  CHECKLIST** (8 columns: VERB·PLACE·LOOP·FAILURE·NAV·NARRATIVE·ONBOARDING·ACCESSIBILITY) run on
+  every domain audit + re-run on existing designed domains. Space failed LOOP/FAILURE/NAV/NARRATIVE/
+  ONBOARDING.
+- **⚖ for Terry:** fuel/energy model yes/no · EVA/derelict-boarding scope · the mission-type set.
+  §4 lists the honest MVP "space works" slice. **Commit:** this one (audit + ledger #15 + entry).
+
 ### 2026-07-21 (rb92) — Fable 5: 🛩️ ATMOSPHERIC FLIGHT & LANDING — boundary, terrain avoid, dock landing
 
 - **Terry: fly the world before ascending; soft map-boundary auto-turn + "leaving mission zone"
