@@ -27,6 +27,32 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-23 (rb98) — Fable 5 (C-lane): FINISHED-GAME BENCHMARK third run — audience-certification layer + fresh verdicts (planning only, zero code)
+
+- **Did:** Terry's multi-model benchmark study, third run (after hwr33's canonical + rb56's
+  sibling). Three research lanes (fresh 18-category repo audit · industry 55-item checklist ·
+  Meta/kids certification research) distilled into **`docs/design/FINISHED_GAME_BENCHMARK_F5C.md`**;
+  unique rows merged into canonical `FINISHED_GAME_BENCHMARK.md` **§5c** per its ADD-only
+  protocol; **MISS_LEDGER #17** logged. Headlines: **(1) the audience-certification chain** —
+  without Meta's "Mixed Ages" self-cert the game is INVISIBLE to parent-managed preteen accounts;
+  Mixed Ages ⇒ no ads + COPPA-clean data (our local-only telemetry stance is already the
+  compliant architecture) + Get Age Category API within 30 days; E10 is the honest IARC
+  expectation (Moss got E10 for sword-vs-beetles). **(2) VRC teeth:** 4-second launch rule,
+  focus-aware rendering ≠ pause, the real top cert failures (store art! thermal-load 72fps!),
+  and Meta's downloadable VRC test plan + Validator → proposed `docs/VRC_TEST_PLAN.md`.
+  **(3) kid-body layer:** shorter-player MODE (Owlchemy precedent; PG-4's reach audit already
+  gates its law) · ≤20-min clean-session pacing law · kid-playtest methodology. **(4) verdict
+  updates:** localization is ✅ DECIDED (checklist row stale) · store compliance now 📋 owned by
+  META_STORE_READINESS · Field Camera is ✅ HAVE · `CREDITS.md` is mandated by two docs and
+  STILL missing while Photon sits imported.
+- **Next:** freeze-safe immediates anyone can take: create `CREDITS.md` · interrupt rows into
+  `DEVICE_TEST_CHECKLIST.md` · fix the stale localization row · draft `VRC_TEST_PLAN.md` ·
+  ⚖ Terry: Mixed Ages designation + device-target (Quest 3/3S primary) one-pagers.
+- **Heads-up:** GAP_AUDIT's "difficulty/achievements/settings are not gaps" deflections point at
+  SYSTEM docs, not player-facing SURFACES — third run confirms hwr33: pause menu, volume
+  sliders, assist toggle, credits roll remain ❌ everywhere.
+- **Commit:** this one (docs only: F5C doc + canonical §5c + ledger #17 + this entry).
+
 ### 2026-07-23 (rb97) — Fable 5: 🔒 catalog↔doc reconcile MACHINERY (MISS_LEDGER #16) + 🎯 mission→jobs integration (item #4) → 📣 HAND BACK TO GPT
 
 - **Made the doc↔catalog reconcile un-forgettable (Terry's ask) — standing machinery, not a note

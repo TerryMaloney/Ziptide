@@ -114,6 +114,40 @@ here, added per the merge protocol:
   system change = the ledger + this benchmark as a recurring milestone gate + the
   EXCELLENCE_MAP rows (§5's "Ship shell" row satisfies this).
 
+## 5c · SIBLING ADDITIONS (Fable 5 C-lane run, `FINISHED_GAME_BENCHMARK_F5C.md`, 2026-07-23 — ADD-only per §0)
+
+Verdict updates (branch moved since this doc's 07-20 greps): **2.4 localization is now ✅
+DECIDED** (`LOCALIZATION_DECISION.md`, Terry-approved; the execution-checklist row is stale) ·
+0.6/0.7 are now **📋 owned by `META_STORE_READINESS.md`** (planned, zero executed) · **Field
+Camera photo mode is ✅ code-HAVE** · multi-profile saves are 📋 (`FAMILY_PROFILES.md`).
+
+New rows (full detail + sources in the F5C doc):
+- **AUDIENCE CERTIFICATION CHAIN (market access, not polish):** Meta's age-group
+  self-certification is separate from IARC — a family title not self-certified **"Mixed Ages"
+  is invisible to parent-managed preteen (10–12) accounts**. Mixed Ages requires: no ads ·
+  COPPA-clean data (our local-only telemetry stance IS the compliant architecture) · **Get Age
+  Category API within 30 days** if any Platform SDK feature ships (else SDK cut / store
+  removal). E vs E10 anchor: Moss got E10 for sword-vs-beetles; frequent drone combat likely =
+  E10, honest IARC answers mandatory.
+- **VRC teeth:** the 4-second launch rule (head-tracked view or VR loading indicator) ·
+  focus-aware rendering (render on, hands hidden, input ignored during Universal Menu — not
+  just "pause") · top real-world first-time failures are store-art violations, doff-pause,
+  offline notice, entitlement, and 72 FPS under THERMAL load in release builds · **Meta's VRC
+  test plan is downloadable and the VRC Validator pre-runs it** — pull it into a
+  `docs/VRC_TEST_PLAN.md` checklist (ratchet applied to cert) · App Lab is dissolved (VRCs are
+  the whole gate) · Quest 2 sunsets — device-target ⚖ (Quest 3/3S primary) belongs on paper.
+- **KID-BODY LAYER:** shorter-player MODE (Owlchemy "Smaller Human Mode" precedent) — a world-
+  fit mode, not a slider; PG-4's 0.35–1.9 m reach audit already gates its law · session
+  chunking as design law (preteen 2h default limits, ~30-min breaks → every session must end
+  clean in ≤20 min) · kid-playtest methodology (ask "younger or older than you?", picture
+  scales, observe-don't-interview) into the playtest protocol.
+- **PROCESS:** DECLARED Alpha/Content-Lock as dated board rows (the benchmark re-score's
+  trigger points) · **update-over-install** test case (old APK + old save + new build) in the
+  RC script · post-launch cadence with data: named update every 4–8 weeks, year one — the
+  world-pack pipeline is built for exactly this · immediate freeze-safe items: create the
+  mandated-but-missing `CREDITS.md` (Photon already imported), add interrupt rows to
+  `DEVICE_TEST_CHECKLIST.md`.
+
 ## 6 · ACCEPTANCE FOR THIS STUDY
 Merged-doc version adjudicated by Terry → SHIP SHELL lane exists with owners → every ❌ above is
 either an envelope or an explicit CUT decision recorded here. The finished-game test, stated

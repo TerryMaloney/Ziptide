@@ -127,6 +127,22 @@ Read by every lane at session start alongside HANDOFF. Full spec: `FINISHED_GAME
     in place + gate green locally; closes when the GPT-owned back-links are added and the gate has run
     green in CI.)
 
+17. **WHAT:** the audience-certification chain for a family title — Meta's "Mixed Ages"
+    age-group self-certification (separate from IARC), without which the app is INVISIBLE to
+    parent-managed preteen (10–12) accounts, plus its obligations (no ads · COPPA-clean data ·
+    Get Age Category API within 30 days of self-cert or SDK cut/store removal) — appeared in NO
+    store planning, though the 10–12 family audience is the project's stated core. **FOUND BY:**
+    finished-game benchmark, third run (F5C, 2026-07-23). **WHY MISSED:** store planning was
+    shaped by Meta's generic submission checklist (what EVERY app needs); nothing asked what
+    THIS AUDIENCE needs — the family goal lived in design docs, compliance lived in platform
+    docs, and no artifact crossed them. **CLASS:** audience-specific platform requirements
+    invisible to generic platform checklists. **SYSTEM CHANGE:** canonical benchmark §5c rows +
+    `META_STORE_READINESS.md` must gain a "Mixed Ages / family access" section whose items ride
+    the entitlement/Platform-SDK envelope; the recurring benchmark re-score gains an "audience
+    access" column so audience-conditional requirements are re-checked per milestone.
+    (→ pending: META_STORE_READINESS section + ⚖ Terry confirms Mixed Ages as the target
+    designation.)
+
 ## CLOSED
 
 *(entries move here when their SYSTEM CHANGE is verified in place — the fix alone never closes
