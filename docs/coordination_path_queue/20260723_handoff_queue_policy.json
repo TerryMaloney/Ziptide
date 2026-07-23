@@ -1,4 +1,5 @@
 {
   "schemaVersion": 1,
-  "reason": "Treat creation and consumption of docs/handoff_queue entries as coordination-only across CI triggering, Fast Preflight, superseded-run cancellation, and durable-verdict freshness."
+  "reason": "Treat creation and consumption of docs/handoff_queue entries as coordination-only across CI triggering, Fast Preflight, superseded-run cancellation, and durable-verdict freshness.",
+  "retryAfter": "Race-safe publisher added after the first policy run passed tests and verification but failed during final publish."
 }
