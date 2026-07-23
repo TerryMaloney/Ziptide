@@ -27,6 +27,44 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-23 (rb103) — Fable 5 (Reasonbox): 🎛️ QUEST SYSTEM-FOCUS LIFECYCLE CONTRACT delivered (assigned lane; docs + validator, zero runtime)
+
+- **Did (the gpt-high-value-lanes claimed lane, inside the boundary):** ① Source-audited every
+  lifecycle seam — headline: **the game has exactly ONE deliberate lifecycle behavior**
+  (`SaveSystem.OnApplicationPause→Save()`, atomic, correct) and everything else is Unity/OS
+  default; `SystemOverlay` and `TrackingLost` (the two states where the app KEEPS RUNNING) have
+  zero handling; `Time.timeScale`/`AudioListener.pause`/userPresence are unused project-wide;
+  6 unowned haptic call sites; 7 wall-clock systems classified BY-DESIGN (idle economy — must
+  NOT pause); coupler `RepairStage` is session-state while job flags persist (decided+accepted:
+  machine re-presents, job steps never regress). ② **`docs/runtime_lifecycle/
+  QUEST_SYSTEM_FOCUS_CONTRACT.md`** — one proposed canonical owner (`SystemFocusLifecycle`,
+  FirstHourDirector-class justification: a responsibility with verifiably no owner), the 6-state
+  machine with exact Unity/XR signals, per-state behavior across all 10 axes (save/sim/audio/
+  rendering/hands/input/haptics/timers/atomicity/network), 5 ownership risks incl. the rb36
+  input-race class (resume checklist CALLS PlayerInputSessionGuard, never duplicates it) and
+  the SaveSystem double-save recorded as intentional layered defense, ordered slices S1–S6
+  (S1 log+overlay-autosave is shippable alone; S6 is the implementedBy ratchet), 4 recorded
+  cross-lane dependencies (D1 input suppress API · D2 audio duck param · D3 pause menu consumes
+  this owner · D4 multiplayer). ③ **`quest_system_focus_contract.json`** — machine-readable
+  twin: states/axes/transitions-with-detection-sources/risks/slices/dependencies.
+  ④ **`tools/quest_lifecycle_gate.py` + `tools/tests/test_quest_lifecycle_gate.py`** —
+  objective-truth validator (6 states exact · every axis non-empty per state · transitions name
+  valid states+signals · every cited source path EXISTS on disk so the audit can't rot ·
+  slice deps resolve · the S6 implementedBy ratchet already bites) with 13 mutation tests.
+  Test name matches `test_*_gate.py` → the CI continuity job runs it with ZERO workflow edits.
+- **Verified:** gate OK on the committed contract · 13/13 mutation tests · full
+  `tools/tests` discover = **261 tests OK** on this tree.
+- **Heads-up:** D1 (suppress/resume API on the canonical input session) is the one dependency
+  blocking slice S2 — it belongs to the rig/input lane per R2's one-owner resolution; recorded,
+  not edited. Device checklist §10's doff/overlay rows gain expected `ZIPTIDE: LIFECYCLE` log
+  lines once S1 lands. No runtime, audio, licensing, first-hour, release, or Fast Preflight
+  files touched.
+- **Next (unclaimed):** S1 (owner + derivation + logging + overlay autosave) is a bounded,
+  lower-cost-model-executable PR straight from the contract; adjudication of the §4 v1 decisions
+  (overlay sim continues; duck not mute) is Terry's.
+- **Commit:** this push (two docs, one JSON, gate + tests, this entry).
+
+
 ### 2026-07-23 (gpt-unified-readiness) — one readiness authority now separates recovery, CI, release, and licensing truth
 
 - **Did:** Completed GPT's claimed lane from `gpt-high-value-lanes`. Upgraded `tools/offline_readiness_report.py` to schema v2 and added an explicit `release-hold` state. The report now runs and records both `third_party_license_gate.py` and `meta_store_readiness_gate.py`, preserving blockers as deterministic failures while classifying proven licensing/store holds separately from ordinary warnings. Added `releaseCandidateStatus`, `releaseHoldChecks`, and `nextBlockingLanes` grouped by deterministic, CI, device, and release evidence. The exact `c45b1a2` headset route remains the sole `awaiting-device` closer; stale durable CI remains `awaiting-ci`; neither is conflated with release paperwork. Added `tools/tests/test_offline_readiness_release_visibility.py` covering hold classification, blocker precedence, repository-level release visibility, and authoritative gate evidence paths. No runtime, recovery, audio, licensing ledger, store contract, Photon package, or Fast Preflight file was changed.

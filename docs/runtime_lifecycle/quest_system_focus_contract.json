@@ -1,0 +1,320 @@
+{
+  "schemaVersion": 1,
+  "contract": "quest-system-focus-lifecycle",
+  "authoredBy": "Reasonbox (Fable 5)",
+  "authoredDate": "2026-07-23",
+  "canonicalOwner": {
+    "name": "SystemFocusLifecycle",
+    "status": "proposed-new-owner",
+    "plannedPath": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs",
+    "justification": "audit found zero handling for SystemOverlay and TrackingLost; one subscriber derives one LifecycleState; consumers subscribe",
+    "preservedOwners": {
+      "SaveSystem": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Persistence/SaveSystem.cs",
+      "PlayerRigPersistence": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
+      "PlayerInputSessionGuard": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
+      "TravelCoordinator": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs"
+    }
+  },
+  "auditedSeams": {
+    "save": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Persistence/SaveSystem.cs",
+    "travel": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs",
+    "inputSession": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
+    "audioMusic": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs",
+    "audioAmbience": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs",
+    "repairCoupler": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
+    "hapticSites": [
+      "Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltTileItem.cs",
+      "Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltConductorRuntime.cs",
+      "Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltBlueprintWandItem.cs",
+      "Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/CameraRuntime.cs",
+      "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldDiscoveryNodeRuntime.cs",
+      "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ZiptideGateEffect.cs"
+    ],
+    "wallClockByDesign": [
+      "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/GardenPlotRuntime.cs",
+      "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/MiningRigRuntime.cs",
+      "Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltMinePortRuntime.cs",
+      "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs",
+      "Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldRuntime.cs",
+      "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
+      "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/ArenaLobbyBoard.cs"
+    ]
+  },
+  "requiredBehaviorAxes": [
+    "save",
+    "simulation",
+    "audio",
+    "rendering",
+    "controllersHands",
+    "gameplayInput",
+    "haptics",
+    "timers",
+    "atomicity",
+    "network"
+  ],
+  "states": {
+    "Active": {
+      "behaviors": {
+        "save": "existing autosave-on-travel and flag-grant persistence; no additions",
+        "simulation": "runs",
+        "audio": "normal mix per docs/audio/AUDIO_PRODUCTION_MASTER_PLAN.md",
+        "rendering": "normal",
+        "controllersHands": "normal",
+        "gameplayInput": "enabled",
+        "haptics": "normal",
+        "timers": "wall-clock systems advance by design; session timers run",
+        "atomicity": "TravelCoordinator.IsTraveling latch guards re-entry",
+        "network": "offline-first; Photon recovery-gated off"
+      },
+      "notes": "baseline state; entry only via Resuming checklist"
+    },
+    "SystemOverlay": {
+      "behaviors": {
+        "save": "SaveSystem.AutosaveNow(\"system_overlay\") on entry",
+        "simulation": "continues (v1 decision: non-lethal canon makes overlay-time simulation safe)",
+        "audio": "duck Master -10dB via mixer param (dependency D2)",
+        "rendering": "continues; OS composites overlay above",
+        "controllersHands": "hide ray/hand visuals",
+        "gameplayInput": "suppressed via input-session suppress API (dependency D1); system/recenter untouched",
+        "haptics": "zero impulses (static gate predicate, slice S3)",
+        "timers": "wall-clock and session timers both continue",
+        "atomicity": "travel coroutine continues under crest; acceptable",
+        "network": "no new obligations"
+      },
+      "notes": "focusChanged(false) while not paused: Universal Menu, Guardian, notifications; app keeps running \u2014 today's biggest gap"
+    },
+    "HeadsetRemoved": {
+      "behaviors": {
+        "save": "existing SaveSystem.OnApplicationPause(true)->Save() KEPT as safety net; owner adds nothing",
+        "simulation": "OS-halted (player loop frozen)",
+        "audio": "OS-silenced; on resume drop, never queue, missed one-shots",
+        "rendering": "OS-owned",
+        "controllersHands": "n/a",
+        "gameplayInput": "OS-blocked",
+        "haptics": "OS-blocked",
+        "timers": "wall-clock advances (offline progress is the feature); session timers frozen by OS",
+        "atomicity": "pause mid-travel freezes coroutine inside crest and resumes intact; RepairStage survives in memory; process death resets stage but persisted job-step flags never regress (decided+accepted)",
+        "network": "n/a"
+      },
+      "notes": "OnApplicationPause(true) from proximity sensor; OS enforces most behavior"
+    },
+    "Backgrounded": {
+      "behaviors": {
+        "save": "same as HeadsetRemoved (pause hook covers)",
+        "simulation": "OS-halted",
+        "audio": "OS-silenced",
+        "rendering": "OS-owned",
+        "controllersHands": "n/a",
+        "gameplayInput": "OS-blocked",
+        "haptics": "OS-blocked",
+        "timers": "same as HeadsetRemoved; resume applies stale-time classification",
+        "atomicity": "same as HeadsetRemoved",
+        "network": "same as HeadsetRemoved"
+      },
+      "notes": "pause with unknown return intent; signal-identical to HeadsetRemoved on Quest, modeled separately for resume policy and other platforms"
+    },
+    "TrackingLost": {
+      "behaviors": {
+        "save": "none required",
+        "simulation": "continues (player present, untracked)",
+        "audio": "unchanged",
+        "rendering": "comfort fade to neutral within 250ms (reuse existing comfort fade family); never render a swimming world",
+        "controllersHands": "show controller models if trackable; hide hands",
+        "gameplayInput": "suppressed except recenter",
+        "haptics": "zero",
+        "timers": "continue",
+        "atomicity": "no interaction",
+        "network": "unchanged"
+      },
+      "notes": "6DoF invalid while app runs (covered sensors, darkness); comfort-critical; currently completely unhandled"
+    },
+    "Resuming": {
+      "behaviors": {
+        "save": "none; verify SAVE_OK was logged; never re-save during checklist",
+        "simulation": "runs",
+        "audio": "unduck over 400ms AFTER input re-enabled",
+        "rendering": "fade back in <=500ms as the LAST checklist step",
+        "controllersHands": "restore visuals before fade-in",
+        "gameplayInput": "re-enabled ONLY after PlayerInputSessionGuard consolidation pass (the rb36 race class)",
+        "haptics": "zero until Active",
+        "timers": "wall-clock deltas resolve via each system's existing catch-up",
+        "atomicity": "if IsTraveling, defer checklist completion until travel's XRI-ready wait finishes \u2014 one ordering, not two",
+        "network": "reconnect semantics deferred to multiplayer lane (D4)"
+      },
+      "notes": "the only path back to Active; an ordered checklist, not an instant"
+    }
+  },
+  "transitions": [
+    {
+      "from": "Active",
+      "to": "SystemOverlay",
+      "signal": "Application.focusChanged(false) && !paused",
+      "detectionSource": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Persistence/SaveSystem.cs"
+    },
+    {
+      "from": "Active",
+      "to": "HeadsetRemoved",
+      "signal": "OnApplicationPause(true)",
+      "detectionSource": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Persistence/SaveSystem.cs"
+    },
+    {
+      "from": "Active",
+      "to": "TrackingLost",
+      "signal": "XRInputSubsystem device tracking invalid (0.5s cadence poll)",
+      "detectionSource": "Ziptide/Assets/Ziptide/Core/Runtime/VRBootDiagnostics.cs"
+    },
+    {
+      "from": "SystemOverlay",
+      "to": "HeadsetRemoved",
+      "signal": "OnApplicationPause(true)",
+      "detectionSource": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Persistence/SaveSystem.cs"
+    },
+    {
+      "from": "SystemOverlay",
+      "to": "Resuming",
+      "signal": "Application.focusChanged(true)",
+      "detectionSource": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Persistence/SaveSystem.cs"
+    },
+    {
+      "from": "HeadsetRemoved",
+      "to": "Resuming",
+      "signal": "OnApplicationPause(false)",
+      "detectionSource": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Persistence/SaveSystem.cs"
+    },
+    {
+      "from": "Backgrounded",
+      "to": "Resuming",
+      "signal": "OnApplicationPause(false)",
+      "detectionSource": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Persistence/SaveSystem.cs"
+    },
+    {
+      "from": "TrackingLost",
+      "to": "Resuming",
+      "signal": "tracking valid again",
+      "detectionSource": "Ziptide/Assets/Ziptide/Core/Runtime/VRBootDiagnostics.cs"
+    },
+    {
+      "from": "Resuming",
+      "to": "Active",
+      "signal": "resume checklist complete (guard pass -> visuals -> audio -> input)",
+      "detectionSource": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs"
+    }
+  ],
+  "ownershipRisks": [
+    {
+      "id": "R1",
+      "risk": "SaveSystem pause hook + owner double-save",
+      "resolution": "intentional layered defense; both idempotent+atomic; save pinned first-on-entry"
+    },
+    {
+      "id": "R2",
+      "risk": "input re-enable racing scene wiring (rb36 class)",
+      "resolution": "resume checklist CALLS PlayerInputSessionGuard consolidation; suppress API lives on session owner (D1)"
+    },
+    {
+      "id": "R3",
+      "risk": "future pause menu growing a second suppression system",
+      "resolution": "must consume this owner's suppression path (forward dependency D3)"
+    },
+    {
+      "id": "R4",
+      "risk": "TrackingLost fade duplicating ComfortVignette family",
+      "resolution": "reuse existing comfort fade surface"
+    },
+    {
+      "id": "R5",
+      "risk": "six unowned haptic call sites",
+      "resolution": "single static gate predicate (S3); full haptics service stays future EXCELLENCE_MAP gap #7"
+    }
+  ],
+  "implementationSlices": [
+    {
+      "id": "S1",
+      "title": "owner + state derivation + logging + overlay autosave",
+      "dependsOn": [],
+      "evidence": [
+        "EditMode derivation tables",
+        "PlayMode focus/pause pulses on golden route",
+        "device checklist s10 log lines"
+      ]
+    },
+    {
+      "id": "S2",
+      "title": "input suppression via session-owner API",
+      "dependsOn": [
+        "D1"
+      ],
+      "evidence": [
+        "PlayMode suppression + resume-order asserts",
+        "device Universal-Menu leak test"
+      ]
+    },
+    {
+      "id": "S3",
+      "title": "haptics gate + audio duck + visuals hide",
+      "dependsOn": [
+        "D2"
+      ],
+      "evidence": [
+        "EditMode predicate truth table",
+        "device duck/no-buzz check"
+      ]
+    },
+    {
+      "id": "S4",
+      "title": "TrackingLost detection + comfort fade + recenter-only input",
+      "dependsOn": [],
+      "evidence": [
+        "device covered-sensor test"
+      ]
+    },
+    {
+      "id": "S5",
+      "title": "formal Resuming ordering + travel deferral",
+      "dependsOn": [
+        "S1",
+        "S2"
+      ],
+      "evidence": [
+        "PlayMode resume-during-travel",
+        "device doff-mid-travel/mid-repair rows"
+      ]
+    },
+    {
+      "id": "S6",
+      "title": "contract promotion: implementedBy fields required by gate (ratchet)",
+      "dependsOn": [
+        "S1",
+        "S2",
+        "S3",
+        "S4",
+        "S5"
+      ],
+      "evidence": [
+        "gate WARN->BLOCK flip"
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "id": "D1",
+      "what": "suppress/resume API on canonical input session",
+      "ownerLane": "rig/input lane (PlayerRigPersistence side)"
+    },
+    {
+      "id": "D2",
+      "what": "ZiptideMix mixer + duck param (audio P0 rails)",
+      "ownerLane": "audio lane"
+    },
+    {
+      "id": "D3",
+      "what": "pause menu consumes this owner's suppression",
+      "ownerLane": "ship-shell lane"
+    },
+    {
+      "id": "D4",
+      "what": "multiplayer resume semantics route through these states",
+      "ownerLane": "multiplayer lane"
+    }
+  ]
+}
