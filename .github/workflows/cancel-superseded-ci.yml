@@ -28,6 +28,7 @@ jobs:
           script: |
             const branch = context.ref.replace('refs/heads/', '');
             const currentRunId = Number(context.runId);
+            const currentSourceSha = context.sha;
             const activeStates = new Set([
               'queued',
               'in_progress',
@@ -47,10 +48,14 @@ jobs:
             const candidates = response.data.workflow_runs.filter(run =>
               run.id < currentRunId &&
               run.head_branch === branch &&
+              run.head_sha !== currentSourceSha &&
               activeStates.has(run.status)
             );
 
-            core.info(`Found ${candidates.length} superseded active CI run(s) for ${branch}.`);
+            core.info(
+              `Found ${candidates.length} superseded active CI run(s) for ${branch}; ` +
+              `current source ${currentSourceSha.slice(0, 7)} is protected.`
+            );
             for (const run of candidates) {
               core.info(`Cancelling CI run ${run.id} (${run.head_sha.slice(0, 7)}, ${run.status}).`);
               try {
