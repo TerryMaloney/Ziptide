@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "reason": "Refresh four stale source tokens reported by first_hour_binding_gate without changing runtime code or weakening exact evidence validation.",
+  "changes": [
+    {
+      "beatId": "FH_BOOT_READY",
+      "evidencePath": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/BootLoader.cs",
+      "oldToken": "Debug.Log(\"ZIPTIDE: BOOT_LOAD dest=\" + target);",
+      "newToken": "Debug.Log(\"ZIPTIDE: BOOT_LOAD dest=\" + destination);"
+    },
+    {
+      "beatId": "FH_BOOT_READY",
+      "evidencePath": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/BootLoader.cs",
+      "oldToken": "TravelCoordinator.TravelTo(target, skipGate: true);",
+      "newToken": "TravelCoordinator.TravelTo(destination, skipGate: true);"
+    },
+    {
+      "beatId": "FH_MACHINE_POWER_CYCLE",
+      "evidencePath": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
+      "oldToken": "public bool IsRepaired => _stage == Stage.Running;",
+      "newToken": "public bool IsRepaired => _stage == RepairStage.Running;"
+    },
+    {
+      "beatId": "FH_MACHINE_POWER_CYCLE",
+      "evidencePath": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
+      "oldToken": "Debug.Log(\"ZIPTIDE: MACHINE_REPAIRED id=\" + _def.machineId);",
+      "newToken": "Debug.Log(\"ZIPTIDE: MACHINE_REPAIRED id=\" + _def.machineId"
+    }
+  ]
+}
