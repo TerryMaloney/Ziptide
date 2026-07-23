@@ -21,6 +21,7 @@ on:
       - docs/CI_VERDICT.md
       - docs/recovery/generated/**
       - docs/HANDOFF.md
+      - docs/handoff_queue/**
   pull_request:
     branches:
       - main
@@ -348,7 +349,7 @@ jobs:
           while IFS= read -r path; do
             [[ -z "$path" ]] && continue
             case "$path" in
-              docs/recovery/generated/*|docs/CI_VERDICT.md|docs/HANDOFF.md)
+              docs/recovery/generated/*|docs/CI_VERDICT.md|docs/HANDOFF.md|docs/handoff_queue/*)
                 ;;
               *)
                 echo "write=false" >> "$GITHUB_OUTPUT"
@@ -359,7 +360,7 @@ jobs:
           done <<< "$changed"
 
           echo "write=true" >> "$GITHUB_OUTPUT"
-          echo "::notice::Only generated evidence, the verdict, or docs/HANDOFF.md advanced; recording the tested SHA is safe."
+          echo "::notice::Only generated evidence, the verdict, HANDOFF, or handoff queue coordination advanced; recording the tested SHA is safe."
 
       - name: Render verdict file
         if: steps.freshness.outputs.write == 'true'
