@@ -1,0 +1,153 @@
+{
+  "schemaVersion": 1,
+  "systemId": "moss_system_working",
+  "scope": {
+    "runtimeSpawningAuthorized": false,
+    "combatRequired": false,
+    "evaRequired": false,
+    "floatingOriginRequired": false,
+    "questBudgetProfile": "bounded-orbit-v1"
+  },
+  "budgetClasses": {
+    "P1_micro": {
+      "maxTrianglesNear": 12000,
+      "maxMaterials": 3,
+      "maxLiveObjects": 24,
+      "lodRequired": true
+    },
+    "P2_small": {
+      "maxTrianglesNear": 28000,
+      "maxMaterials": 5,
+      "maxLiveObjects": 10,
+      "lodRequired": true
+    },
+    "P3_landmark": {
+      "maxTrianglesNear": 60000,
+      "maxMaterials": 7,
+      "maxLiveObjects": 3,
+      "lodRequired": true
+    }
+  },
+  "pois": [
+    {
+      "id": "prior_waker_smallcraft",
+      "displayName": "Prior-Waker Smallcraft Wreck",
+      "category": "derelict",
+      "missionCompatibility": ["salvage_run", "derelict_discovery", "distress_rescue"],
+      "pacifistAccessible": true,
+      "distanceBand": "near-to-mid",
+      "budgetClass": "P2_small",
+      "factionOwnership": "prior-waker-unaffiliated",
+      "salvageOutputs": ["drive_part", "architect_fragment", "repair_material"],
+      "storyDrop": {
+        "type": "waker-log",
+        "chanceBand": "guaranteed-first-encounter-then-authored",
+        "orderedThread": true
+      },
+      "requiredSockets": ["scan_target", "tractor_salvage_01", "log_recovery", "dock_or_inspect"],
+      "lodPlan": ["near_broken_hull", "mid_silhouette_and_beacon", "far_beacon_only"],
+      "groundSpaceEcho": "shares_scrapper-era_salvage_language",
+      "hazards": ["unstable_power", "optional_feral_guardian"]
+    },
+    {
+      "id": "salvage_tug_disabled",
+      "displayName": "Disabled Salvage Tug",
+      "category": "ship",
+      "missionCompatibility": ["distress_rescue", "ferry_passage", "escort_assist"],
+      "pacifistAccessible": true,
+      "distanceBand": "near-to-mid",
+      "budgetClass": "P2_small",
+      "factionOwnership": "salvager",
+      "salvageOutputs": ["repair_material", "trade_cargo"],
+      "storyDrop": {
+        "type": "crew-testimony",
+        "chanceBand": "authored",
+        "orderedThread": false
+      },
+      "requiredSockets": ["distress_beacon", "tow_attach", "repair_panel", "escort_anchor"],
+      "lodPlan": ["near_tug_and_damage", "mid_tug_silhouette", "far_distress_beacon"],
+      "groundSpaceEcho": "uses_Moss_industrial_tug_parts_and_numbered_service_panels",
+      "hazards": ["drifting_debris", "failing_life_support_story_pressure_no_timer"]
+    },
+    {
+      "id": "debris_ribbon",
+      "displayName": "Debris Ribbon",
+      "category": "field",
+      "missionCompatibility": ["salvage_run", "ferry_passage", "warden_evasion"],
+      "pacifistAccessible": true,
+      "distanceBand": "mid-to-far",
+      "budgetClass": "P1_micro",
+      "factionOwnership": "unowned",
+      "salvageOutputs": ["scrap_metal", "circuit_bundle", "minor_trade_goods"],
+      "storyDrop": {
+        "type": "none",
+        "chanceBand": "none",
+        "orderedThread": false
+      },
+      "requiredSockets": ["tractor_salvage_01", "tractor_salvage_02", "safe_lane_a", "safe_lane_b"],
+      "lodPlan": ["near_pooled_fragments", "mid_impostor_clusters", "far_density_band"],
+      "groundSpaceEcho": "contains_Moss_cargo_panels_and_known_tug_fragments",
+      "hazards": ["collision_assist_required", "low_visibility_pockets"]
+    },
+    {
+      "id": "orbital_repair_relay",
+      "displayName": "Orbital Relay / Seal Node",
+      "category": "infrastructure",
+      "missionCompatibility": ["relay_seal_repair", "warden_evasion"],
+      "pacifistAccessible": true,
+      "distanceBand": "near-to-far-landmark",
+      "budgetClass": "P3_landmark",
+      "factionOwnership": "wake-guild-maintained-architect-origin",
+      "salvageOutputs": ["relay_component", "passage_credit"],
+      "storyDrop": {
+        "type": "containment-diagnostic",
+        "chanceBand": "authored",
+        "orderedThread": false
+      },
+      "requiredSockets": ["scan_target", "repair_panel", "signal_hook", "warden_response_origin"],
+      "lodPlan": ["near_service_geometry", "mid_relay_silhouette", "far_signal_beacon"],
+      "groundSpaceEcho": "same_numbered_relay_class_seen_on_Moss_ground",
+      "hazards": ["raises_signal", "warden_attention"]
+    },
+    {
+      "id": "stranded_civilian_ship",
+      "displayName": "Stranded Civilian Ship",
+      "category": "ship",
+      "missionCompatibility": ["distress_rescue", "escort_assist", "ferry_passage"],
+      "pacifistAccessible": true,
+      "distanceBand": "near-to-mid",
+      "budgetClass": "P2_small",
+      "factionOwnership": "civilian-variable",
+      "salvageOutputs": ["faction_trust", "trade_cargo", "repair_material"],
+      "storyDrop": {
+        "type": "crew-story-or-prior-waker-clue",
+        "chanceBand": "authored",
+        "orderedThread": false
+      },
+      "requiredSockets": ["distress_beacon", "tow_attach", "repair_panel", "passenger_or_cargo_transfer"],
+      "lodPlan": ["near_cabin_and_damage", "mid_ship_silhouette", "far_distress_beacon"],
+      "groundSpaceEcho": "uses_civilian_Moss_material_and_signage_families",
+      "hazards": ["optional_patrol", "drift_tow_assist"]
+    },
+    {
+      "id": "ziptide_gate_approach_lane",
+      "displayName": "Ziptide Gate Approach Lane",
+      "category": "travel-landmark",
+      "missionCompatibility": ["gate_run", "ferry_passage", "warden_evasion"],
+      "pacifistAccessible": true,
+      "distanceBand": "near-to-system-landmark",
+      "budgetClass": "P3_landmark",
+      "factionOwnership": "architect-origin-contested",
+      "salvageOutputs": ["world_access", "system_discovery"],
+      "storyDrop": {
+        "type": "gate-diagnostic",
+        "chanceBand": "authored",
+        "orderedThread": false
+      },
+      "requiredSockets": ["approach_beacon", "alignment_volume", "traversal_plane", "safe_arrival_anchor"],
+      "lodPlan": ["near_gate_and_anchors", "mid_gate_silhouette", "far_gate_beacon"],
+      "groundSpaceEcho": "same_photon_fluid_and_architect_frame_language_as_ground_gate",
+      "hazards": ["soft_boundary", "optional_warden_attention"]
+    }
+  ]
+}
