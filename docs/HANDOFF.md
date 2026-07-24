@@ -27,6 +27,13 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-24 (gpt-prompt-tests-grip-biorefinery) — Grip keepers selected; BioRefiner interaction refinement queued
+- **Did:** Recorded the final Cistern Gripvine micro-pass as the proposed visual keeper set in `docs/project_art_plan/PROMPT_TEST_02_CISTERN_GRIP_FAMILY_FINAL_KEEPERS.md`. Recorded the first BioRefiner Mk I machinery test and its bounded refinement prompts in `docs/project_art_plan/PROMPT_TEST_03_BIOREFINER_MK1_VERDICT.md`. The prompt playbook has now passed across biological species, resources, state pairs, environments, and salvage machinery.
+- **Next:** Terry runs one delta-only BioRefiner refinement using the verdict prompts. Preserve the current machine/world composition; fix guarded loading, door interlock, child-readable controls, keeper-correct biological inputs/outputs, and seated/child reach. If that pass succeeds, preserve BioRefiner keepers and test Assembler Mk I before any deep conveyor concept work.
+- **Heads-up:** Uploaded concept binaries currently live in the conversation, not the repository. Archive the selected source images with prompts/provenance before measured visual specs, paid 3D, or asset intake. No runtime, machine authority, recipe, scene, WorldSpec, save, audio, recovery, or APK files changed. Current docs commits require their own durable CI verdict; tomorrow's exact frozen headset artifact remains unaffected.
+- **Commit:** Grip keeper verdict `a64cd10`; BioRefiner verdict `dbdf98c`; this coordination entry only.
+
+
 ### 2026-07-24 (gpt-concept-prompt-playbook) — concept generation converted into a repeatable production-design process
 - **Did:** Created `docs/project_art_plan/CONCEPT_ART_PROMPT_PLAYBOOK.md`, formalizing structured briefs, ZIPTIDE-wide visual constants, six prompt archetypes, breadth/convergence/production passes, the delta-only refinement law, keeper scoring, prompt provenance, the Moss Filter case study and the future generator-adapter boundary. Created `docs/project_art_plan/PROMPT_TEST_02_CISTERN_GRIP_FAMILY.md`, a paste-ready controlled test for a visually distinct Grip family in W002 with lifecycle, harvest, discovery, state-pair and optional equipment prompts.
 - **Next:** Terry runs Prompt A (species sheet) and Prompt C (W002 discovery) first, returns outputs, and GPT scores them against the playbook before issuing delta-only refinements. Only after a candidate passes and Terry explicitly approves it may it be recorded as a proposed keeper and moved toward measured visual specification.
