@@ -27,6 +27,14 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-24 (gpt-concept-prompt-pipeline) — Filter/Grip/BioRefiner/Assembler prompt pipeline proven
+
+- **Did:** Added `docs/project_art_plan/CONCEPT_ART_PROMPT_PLAYBOOK.md`; preserved the Moss Filter case study; completed and recorded proposed keeper verdicts for the Cistern Grip family, BioRefiner Mk I, and Assembler Mk I. The Assembler closes as a composite keeper: latest machine/interaction images plus the separate Moss Filter Rig equipment keeper.
+- **Next:** Archive Terry-provided source images with prompt provenance before measured-spec or paid-3D intake. After the exact headset recovery verdict and explicit freeze lift, route approved keepers through measured visual specs and the existing concept-to-built pipeline. Next optional prompt experiment is Ore Processor Mk I; do not enter deep conveyor design yet.
+- **Heads-up:** Concept keepers do not authorize runtime, scenes, recipes, saves, WorldSpecs, machine ownership, equipment implementation, or replacement APKs. Generated text/logos are never canon. BioRefiner stabilizes raw biology; Assembler joins refined biology to industrial frames. Preserve the exact c45b1a2 headset artifact for the upcoming test.
+- **Commit:** `8bc42e4` (`docs: record Assembler Mk I final keeper verdict`) plus preceding prompt-playbook/verdict commits on `terry-local-wip`.
+
+
 ### 2026-07-24 (gpt-prompt-tests-grip-biorefinery) — Grip keepers selected; BioRefiner interaction refinement queued
 - **Did:** Recorded the final Cistern Gripvine micro-pass as the proposed visual keeper set in `docs/project_art_plan/PROMPT_TEST_02_CISTERN_GRIP_FAMILY_FINAL_KEEPERS.md`. Recorded the first BioRefiner Mk I machinery test and its bounded refinement prompts in `docs/project_art_plan/PROMPT_TEST_03_BIOREFINER_MK1_VERDICT.md`. The prompt playbook has now passed across biological species, resources, state pairs, environments, and salvage machinery.
 - **Next:** Terry runs one delta-only BioRefiner refinement using the verdict prompts. Preserve the current machine/world composition; fix guarded loading, door interlock, child-readable controls, keeper-correct biological inputs/outputs, and seated/child reach. If that pass succeeds, preserve BioRefiner keepers and test Assembler Mk I before any deep conveyor concept work.
