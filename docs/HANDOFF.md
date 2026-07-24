@@ -27,6 +27,29 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-23 (rb106) — Fable 5 (C-lane/T-Dog): ✅ GROWING-LOOP REVIEW filed (assigned lane: device/child/narration/perf/interruption/release)
+
+- **Did:** independent first opinion per `GROWING_INVENTION_LOOP_REVIEW_PACKET.md` →
+  **`docs/growing/reviews/TDOG_GROWING_LOOP_REVIEW.md`** (blue+red team, source-audited, verdict
+  table, §20 Q7/Q8/Q13/Q14/Q15 answered). **Overall: adopt the thesis** — it solves the audited
+  unsurfaced-gardens gap and is well-disciplined. Source-audit wins: **the belt has exactly 3
+  holster sockets** (`BeltRig.cs:58-60` — Terry's recollection CONFIRMED; recommend locking the
+  field kit at 3, no weight tiers v1) · growth/automation persistence is already won (IdleEngine
+  absolute-time + belt-tested state) · reach/readability gates already apply to the future
+  catalog. Key calls: **narration = prerecorded stable-ID clips (name + one-line function) on
+  one ducked bus, captions carry until clips land; runtime TTS = CUT** · **"no scrolling lists"
+  law — seeds as physical pucks in shaped sockets** (recipe grammar as visible geometry; a
+  6-year-old can post a round seed in a round hole) · sprites-as-systems PARK · online rotation
+  PARK (offline-first release; local date-hash rotation = the safe freshness form later) · two
+  pillar additions proposed (recipe COMMIT atomic; no real-time-pressure steps in cultivation) ·
+  everything rides INSIDE the locked post-M0 W000→W001 band (W001 scene doesn't exist yet).
+- **Next:** Architect + Reasonbox reviews land → GPT reconciles per the packet → Terry
+  adjudicates. No implementation from my review; two proposed pillar sentences go to the
+  reconciliation, not the master (boundary respected).
+- **Heads-up:** narration is the plan's biggest NEW cost surface — the 2-clips-per-item contract
+  keeps it inside the ≤24MB audio budget and doubles as a VRC Accessibility.1/2/3 quality-rating
+  win. Perf: per-plot object budgets must ride the existing manifest-budget pattern from day one.
+- **Commit:** this one (review file + this entry only).
 ### 2026-07-23 (rb106) — Fable 5 (Reasonbox): 🌱 growing-loop review FILED — adopt the thesis at 1/3 scale, through the planter beat
 
 - **Did (assigned review, `docs/growing/reviews/REASONBOX_GROWING_LOOP_REVIEW.md`, docs only):**
