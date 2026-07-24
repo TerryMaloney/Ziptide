@@ -27,6 +27,32 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-23 (hwr36) - Fable 5 (Architect): 🧬 GROWING-LOOP ARCHITECTURE REVIEW filed (assigned lane; docs only, zero runtime)
+- **Output:** `docs/growing/reviews/ARCHITECT_GROWING_LOOP_REVIEW.md` per the packet §3.
+  **Verdict: APPROVE as an EXTENSION, not a build** — the source audit found ~80% of the plan's
+  "potential data authorities" already exist with tested owners: `PlantGenetics` (deterministic
+  seeded crossing, giants), `GardenService` (plant/tend/harvest/CrossPlots + timing windows),
+  `RecipeDefinition`+`RecipeService` (costs, machine gating, unlockFlag, **campaignUse/
+  multiplayerUse already split**), `MachineNodeState` (**BioRefiner/Assembler with recipeId +
+  progressTicks, saved**), ResourceLedger one-economy, ItemFactory, WorldPack flags,
+  CatalogBreadth audit. The #1 red-team risk is REBUILDING these under new names — my §1
+  ownership map (proven/missing/forbidden) should be binding input to GPT's reconciliation.
+- **The one big call (packet Q3/Q4):** ONE recipe family for every transformation — extend
+  `RecipeDefinition` with role-tagged inputs (Base/Trait/Catalyst), `domain` incl. Plot, and
+  `requiredTraitIds`. **Determinism law: recipes never roll; genes are the only randomness**
+  (instance quality via `PlantGenetics.Cross`) — pillars 3.3/3.4 both satisfied cleanly.
+  Hybrids are AUTHORED species unlocked deterministically, never runtime-generated content.
+- **Genuinely new (small):** TraitDefinition layer · recipe extension · per-recipe discovery
+  states on the profile (ids+ints, overlay-save law) · **narration TEXT seam on the base
+  `Definition` class (spokenName/spokenFunction) + one NarrationDirector — project-wide by
+  design, voice source is T-Dog's call** · `slotCost` loadout capacity on the existing holster.
+- **W002 pass/fail line:** its cultivation content ships as DATA ONLY through the same authors —
+  zero new C# or the architecture failed. Sprites PARKED; MP rotation PARKED with state kept
+  out of campaign saves; per-item narration clips and any second crafting/inventory CUT.
+- **Sequencing unchanged:** nothing builds before the M0 headset verdict + freeze lift + the
+  W000→W001 production band (`POST_HEADSET_WORLD_FACTORY_ORDER.md` stays first).
+- **Commits:** this push (review file + this entry).
+
 ### 2026-07-23 (rb106) — Fable 5 (C-lane/T-Dog): ✅ GROWING-LOOP REVIEW filed (assigned lane: device/child/narration/perf/interruption/release)
 
 - **Did:** independent first opinion per `GROWING_INVENTION_LOOP_REVIEW_PACKET.md` →
