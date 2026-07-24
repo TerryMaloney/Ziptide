@@ -1,0 +1,6 @@
+### 2026-07-24 (gpt-relay-reed-keeper) — Conduct family lifecycle/function test closed
+
+- **Did:** recorded `docs/project_art_plan/PROMPT_TEST_07_FINAL_KEEPER_VERDICT_RELAY_REED.md`; approved the latest Relay Reed lifecycle sheet and wet-industrial discovery scene as a composite proposed keeper. Locked the Conduct grammar: split-cylinder seed, clustered segmented graphite-brown reeds, copper biological pathways, forked contacts, restrained moving violet-white pulse, Charge Nodules with organic collars/internal spirals, and compact ceramic-rack ship cultivation.
+- **Next:** run the harvested Conductive Vein + Charge Nodule component sheet and the departure/return nursery pair. Circuit Bridge Mk I waits until those components close. Exact species name, world placement, recipes, progression, and implementation remain provisional.
+- **Heads-up:** Charge Nodules remain the weak subcomponent and must be strengthened as biological organs in the component sheet. No runtime, scene, recipe, save, WorldSpec, equipment, machine, or headset artifact was changed. Binary images require archival with prompt provenance before measured-spec or paid-3D intake.
+- **Commit:** `b05f36a1dde9fa0433dca66810487f297d15b6ae`
