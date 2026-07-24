@@ -27,6 +27,13 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-24 (gpt-w001-identity) — W001 world/region identity reconciled from existing canon
+- **Did:** Created `docs/production/W001_IDENTITY_DECISION_BRIEF.md`. Reconciled the apparent W001 naming conflict from existing authorities: `W001` world/display identity = **The Moss**; first playable region/scene identity = **Toxic City**; celestial body = habitable toxic moon of a dominant ringed giant; later orbital view = `space_moss_orbit`. The brief connects the approved Toxic City concept kit, leaning tenement landmark, berth district, canal-stalker W001 assignment, proposed Filter-family seed/first-invention fit, scene/data naming boundary, remaining Terry decisions and post-M0 implementation order.
+- **Next:** Exact `c45b1a2` headset route still runs first. After M0 and explicit freeze lift, Terry approves/edits the identity hierarchy, then the world/story lane closes final names/job/story/counter details and creates the first authoritative W001 WorldSpec. No scene migration or runtime hard-code removal occurs before that.
+- **Heads-up:** This is recommended canon, not implementation authority. No runtime, scene, WorldSpec, asset, audio, creature, recipe, save, travel, coupler, rig, input or APK file changed. CI for the latest normal docs commit must be read before claiming current durable green.
+- **Commit:** `7dd53d5` identity brief; this queued handoff pointer.
+
+
 ### 2026-07-24 (gpt-model-band-packet) — W000→W001 pre-M0 production packet prepared
 - **Did:** Created `docs/production/W000_W001_MODEL_BAND_PRODUCTION_PACKET.md`, a review-ready docs-only packet that consolidates the first-hour authorities, current owner map, W001 identity gate, W000/W001 content requirements, growing/invention integration, child accessibility, audio/art sockets, save/interruption rules, performance/evidence gates, device route, automation ratchet and post-M0 execution order. It explicitly preserves two controlled contract deltas rather than guessing: W000 coupler semantic placement and additive first-invention craft/equip beats after return.
 - **Next:** Run the exact `c45b1a2` headset route first. After M0 passes and the freeze is explicitly lifted, approve the seven packet-close decisions (canonical W001 identity, coupler role, first invention, signature creature, story object, arrival landmark, supported Quest floor), then convert the packet from review draft to execution authority and begin the additive architecture/data slice.
