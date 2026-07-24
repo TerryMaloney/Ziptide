@@ -1,0 +1,6 @@
+### 2026-07-24 (gpt-ore-processor-keeper) — Ore Processor and Equipment Frame Blank prompt test closed
+
+- **Did:** recorded `docs/project_art_plan/PROMPT_TEST_05_FINAL_KEEPER_VERDICT_ORE_PROCESSOR_MK1.md`; approved the latest Ore Processor body/operation sheets, industrial output vocabulary, and Equipment Frame Blank cross-machine prop sheet as proposed visual keepers. Locked the manual industrial role: keyed raw-input tray → guarded compression chamber/cassette → separate standardized output drawer. Preserved the no-conveyor boundary and marked generated labels/dimensions as non-authoritative.
+- **Next:** run one controlled Grip-family field-equipment prompt test using the completed manual chain. Recommended target: a compact one-slot **Cistern Grip Clamp** that uses one Equipment Frame Blank plus one refined Grip Surface Insert or stabilized Grip Fiber. Test must preserve the Assembler square/round grammar, three-slot belt law, child readability, and physical utility without becoming a grappling gun or weapon.
+- **Heads-up:** no runtime, scene, machine, recipe, save, WorldSpec, conveyor, mining, or headset artifact was changed. Binary Nano Banana images still need archival with prompt provenance before measured-spec or paid-3D intake. Do not reconstruct unavailable keeper images from prose.
+- **Commit:** `d837a3723d4a527d0116f33bd202f142fb8acb78`
