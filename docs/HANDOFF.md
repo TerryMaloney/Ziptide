@@ -27,6 +27,13 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-24 (gpt-model-band-packet) — W000→W001 pre-M0 production packet prepared
+- **Did:** Created `docs/production/W000_W001_MODEL_BAND_PRODUCTION_PACKET.md`, a review-ready docs-only packet that consolidates the first-hour authorities, current owner map, W001 identity gate, W000/W001 content requirements, growing/invention integration, child accessibility, audio/art sockets, save/interruption rules, performance/evidence gates, device route, automation ratchet and post-M0 execution order. It explicitly preserves two controlled contract deltas rather than guessing: W000 coupler semantic placement and additive first-invention craft/equip beats after return.
+- **Next:** Run the exact `c45b1a2` headset route first. After M0 passes and the freeze is explicitly lifted, approve the seven packet-close decisions (canonical W001 identity, coupler role, first invention, signature creature, story object, arrival landmark, supported Quest floor), then convert the packet from review draft to execution authority and begin the additive architecture/data slice.
+- **Heads-up:** No runtime, scene, prefab, WorldSpec, audio asset, save schema, recipe, creature, weapon, travel, coupler, XR-rig or APK file changed. The prior durable GREEN became stale only because the new production doc is a normal non-generated path; read the next CI verdict before claiming current green.
+- **Commit:** `30abecc` packet; this queued handoff pointer.
+
+
 ### 2026-07-24 (gpt-headset-eve-readiness) — tomorrow's exact recovery test is clean, current CI green, and the interpretation boundary is explicit
 
 - **Did:** Completed the Friday pre-headset readiness pass. Current durable CI is GREEN for source `b7cd0bfe9ff98f3ba9e52690461a1c6691a03c87`, run `30059910304`: Unity EditMode success, patch-scenes/world-audit success, project-contract reports success, ordinary branch Android correctly skipped. Compared exact recovery source `c45b1a295e50637d81aab14c09e36eb08bf6ed58` to current `terry-local-wip`: no later changes touched the tested weapon scale/angle/attach/collider runtime, coupler runtime, PUNCH IT/ToxicCity travel runtime, XR rig runtime, or `InputMutationRepairDriver`. The locked recovery artifact remains an uncontaminated test of those corrections. Post-artifact runtime work is limited to `SystemFocusLifecycle` S1 and its recovery-owner registration; that code is deliberately outside tomorrow's frozen APK.
