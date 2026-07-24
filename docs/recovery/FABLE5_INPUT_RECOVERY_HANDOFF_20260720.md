@@ -8,9 +8,16 @@
 **Status:** ✅ **RESOLVED 2026-07-20 by Fable 5 (hwr34) on `c45b1a29`** — the recommended
 inert-property normalization landed (`InputMutationRepairDriver.ClearInertDirectProperties`;
 root cause: restore's `OnEnable → EnableAllDirectActions` re-enabled the disabled empty action).
-Verification per §Verification below: CI GREEN + PlayMode **43/43 twice on the same SHA**
-(run `29786603998` attempts 1+2, the determinism requirement) + Golden Android SUCCESS
-(run `29786604008`) + clean package proof. **Headset retry is authorized on the
+Verification (**evidence record corrected 2026-07-20** per
+`docs/recovery/EVIDENCE_INDEPENDENCE_PROTOCOL.md`): CI GREEN + **warm-Library PlayMode 43/43**
+(run `29786603998`) + **cold-Library PlayMode 43/43 from the clean package proof, `Library`
+deleted before every Unity job — run `29786604080`, THE decorrelated second sample** + Golden
+Android SUCCESS (run `29786604008`). Disease classified **racy-system**, cured structurally (a
+null `InputActionProperty` cannot be re-enabled by `OnEnable`), not by repetition.
+⚠️ The originally-cited "43/43 twice on the same SHA" (run `29786603998` attempt 2) was a
+**same-run rerun and is struck as non-probative** — it varied only wall-clock, holding SHA,
+cached `Library`, runner image and test order constant. The authorization stands on the warm+cold
+pair above. **Headset retry is authorized on the
 `recovery-golden-apk-c45b1a2…` artifact.** Original stop-state text preserved below for history.
 
 ## Read this first

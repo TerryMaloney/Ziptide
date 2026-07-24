@@ -27,6 +27,57 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-20 (hwr37) - Fable 5 (Architect): 🔬 EVIDENCE INDEPENDENCE PROTOCOL — binding fix to how we count greens (Terry-authorized; docs only, zero runtime)
+**RED-CAUSE: net** (this entry documents a flaw in our verification machinery, not in the game.)
+
+- **What I got wrong, first:** during the input blocker I executed the new "43/43 twice on the
+  same SHA" rule using `rerun_workflow_run` — which re-runs the **same run** — and reported the
+  double green to Terry as strong evidence. It wasn't. A same-run rerun holds constant the SHA,
+  the **cached Unity `Library`** (`key: Library-playmode-r1-v3-…`), the runner image, the package
+  graph and the deterministic NUnit order. It varies wall-clock and nothing else. It is the most
+  CORRELATED repeat obtainable — not a second sample.
+- **Why it matters structurally:** the 43 PlayMode tests are not independent trials either. They
+  run in ONE Unity process (`testMode: playmode`) sharing one global `InputSystem` seeded by a
+  single `[SetUpFixture]`/`[OneTimeSetUp]` holding **static** virtual devices
+  (`RecoveryPlayModeInputEnvironment.cs`). Shared-state suite + identical environment = repeats
+  that are positively correlated, so a second green multiplies confidence by far less than the
+  naive independent-trials intuition, and in the fully-correlated limit by nothing at all.
+- **THE LAW ADDED (`docs/recovery/EVIDENCE_INDEPENDENCE_PROTOCOL.md`, binding, all lanes):**
+  1. **Classify before you re-run.** A gate that flips on identical source has one of two
+     diseases: **noisy measurement** (sample more) or **racy system** (remove the degree of
+     freedom). Re-running is valid evidence ONLY for the first. Applied to a race it manufactures
+     confidence — you can pass N times and still ship the race. Operators must write
+     `DISEASE: racy-system | noisy-measurement` and match the cure.
+  2. **Warm + cold, not warm + warm.** The canonical second sample is the **clean package proof**
+     lane (deletes `Ziptide/Library`, cold import — varies Library state, resolve order, import
+     order AND timing). A same-run rerun must never be recorded as satisfying a determinism
+     requirement. **We already own this lane** — it was treated as a heavyweight special case; it
+     is also the statistically valuable repeat.
+  3. **`RED-CAUSE: net|product|mixed` on every HANDOFF entry reporting/resolving a red.** We
+     measure the product's failure rate obsessively and the GATES' failure rate not at all.
+     Motivating data I pulled from our own Actions history: the recovery PlayMode gate is
+     **8 success / 39 failure / 13 cancelled over its last 60 runs — a 17% green rate**; and
+     `GateGap5` once red-lighted docs-only pushes while the game was fine. This ratio bounds the
+     ratchet law (`PERCEPTUAL_GATE_PROGRAM.md` §2): gates are code, gates fail, "a gate per bug"
+     has a cost curve. When `net` reds dominate, gate hardening outranks new gates.
+- **✅ `c45b1a29` RE-ADJUDICATED — the headset authorization STANDS, on better evidence than was
+  originally cited:** it already has a genuine cold-Library 43/43 (**clean package proof run
+  `29786604080`**, `Library` deleted before every Unity job) alongside the warm 43/43 (run
+  `29786603998`), plus CI green and Golden Android success. Disease was **racy-system**, cured
+  structurally (a null `InputActionProperty` cannot be re-enabled by XRI's `OnEnable`). The
+  same-run rerun is struck from the evidence record as non-probative. **Nothing about the build
+  Terry installed changes.**
+- **Wired in, not just written:** `RECOVERY_VERIFICATION_SYSTEM.md` §7 gains authorization rule
+  9 (evidence independence) and §9 gains the trap **"Repeated green versus independent green"**
+  next to the existing "Green icon versus evidence"; the input handoff's evidence record is
+  corrected in place.
+- **Deliberately NOT done now (§5 of the protocol):** NUnit random test-order seeding — the
+  correct third decorrelation axis — is NOT being wired while the PlayMode lane is the live gate
+  authorizing an in-flight headset checkpoint. Do it after recovery exits, in its own bounded PR,
+  treating the first randomized run as a NEW baseline rather than a regression. Same for
+  splitting the suite into isolated processes.
+- **Commits:** this push (protocol doc + ladder amendments + corrected evidence record + entry).
+
 ### 2026-07-24 (gpt-relay-reed-components) — Conduct components and nursery closed; Circuit Bridge next
 
 - **Did:** recorded `docs/project_art_plan/PROMPT_TEST_07_COMPONENTS_AND_NURSERY_KEEPER_VERDICT_RELAY_REED.md`; approved Conductive Vein, Charge Nodule, low-voltage bench test, seed/socket relation, and departure/return nursery as a composite proposed keeper. Added `docs/project_art_plan/PROMPT_TEST_08_CIRCUIT_BRIDGE_MK1.md` for the third one-slot field-equipment test.

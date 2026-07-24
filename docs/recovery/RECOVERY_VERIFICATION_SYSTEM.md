@@ -248,7 +248,13 @@ A Quest checkpoint is authorized only when one exact source SHA has:
 5. Golden Android green on the same source;
 6. raw artifacts independently inspected;
 7. exact APK and build-report SHA-256 recorded;
-8. authorization table completed in `docs/recovery/QUEST_GOLDEN_CHECKPOINT.md`.
+8. authorization table completed in `docs/recovery/QUEST_GOLDEN_CHECKPOINT.md`;
+9. **evidence independence satisfied** when the candidate addresses any nondeterminism
+   (a gate that returned different verdicts for identical source): the required pair is **one
+   warm-Library green plus one clean-package-proof (cold-Library) green on the same source SHA**,
+   and the candidate's disease must be classified `racy-system` or `noisy-measurement` with the
+   cure matching. **A same-run rerun (`rerun_workflow_run`) is NOT a second sample and must never
+   be recorded as one.** Binding detail: `docs/recovery/EVIDENCE_INDEPENDENCE_PROTOCOL.md`.
 
 The Quest pass itself then proves:
 
@@ -333,6 +339,17 @@ An open, conflicted recovery PR may be superseded. Check the current handoff and
 ### Green icon versus evidence
 
 A green GitHub check proves only that workflow’s exit status. Promotion still requires the expected artifacts and internally consistent counts/hashes.
+
+### Repeated green versus independent green
+
+Two greens are worth two greens only if something that could hide the defect actually *changed*
+between them. A same-run rerun holds the SHA, the cached Unity `Library`, the runner image, the
+package graph and the deterministic test order constant — it is the most correlated repeat
+available and proves nothing beyond the first run. The 43 PlayMode tests also share one Unity
+process and one global `InputSystem` (static devices installed by a single `[SetUpFixture]`), so
+they are not independent trials of each other either. **The canonical second sample is the clean
+package proof lane (cold `Library`), not a rerun.** Full rule and the classify-before-rerun law:
+`docs/recovery/EVIDENCE_INDEPENDENCE_PROTOCOL.md`.
 
 ---
 
