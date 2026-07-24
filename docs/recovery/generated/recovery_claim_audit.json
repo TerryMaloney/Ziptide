@@ -305,8 +305,8 @@
       "line": 94,
       "text": "### Complete or substantially complete",
       "markers": [
-        "complete",
-        "Complete"
+        "Complete",
+        "complete"
       ],
       "qualifiers": [],
       "unqualified": true
@@ -1993,9 +1993,10 @@
     {
       "path": "docs/SPRINT_ARCHITECTURE.md",
       "line": 21,
-      "text": "| FH-02A | **Continuity manifest + report-only validator** \u2014 log: `docs/GPT_ADDITIONS/2026-07-10_GPT56_FIRST_HOUR/FH02A_IMPLEMENTATION_LOG.md`. `docs/continuity/*` + `tools/continuity_gate.py` + stdlib tests + isolated non-blocking report job shipped. No Unity/runtime behavior and no blocker promotion. | \ud83d\udfe1 IMPLEMENTED \u2014 first real Actions artifact pending; FILE CLAIM RELEASED |",
+      "text": "| FH-02A | **Continuity manifest + report-only validator** \u2014 log: `docs/GPT_ADDITIONS/2026-07-10_GPT56_FIRST_HOUR/FH02A_IMPLEMENTATION_LOG.md`. `docs/continuity/*` + `tools/continuity_gate.py` + stdlib tests + isolated non-blocking report job shipped. No Unity/runtime behavior and no blocker promotion. | \u2705 PROVEN \u2014 report job produced `project-contract-reports` artifacts; latest observed run `30058066208`; FILE CLAIM RELEASED |",
       "markers": [
-        "shipped"
+        "shipped",
+        "\u2705"
       ],
       "qualifiers": [],
       "unqualified": true
