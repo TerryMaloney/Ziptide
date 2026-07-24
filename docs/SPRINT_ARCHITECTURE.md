@@ -18,7 +18,7 @@ any LLM: request a change as data, build, gates catch mistakes.
 | FH-X02 | **First-hour progression core** — pure C# ordered-beat evaluator; current beat, signal acceptance, granted flags, hint latch and reload resume. Log: `docs/GPT_ADDITIONS/2026-07-11_GPT56_FIRST_HOUR/FHX02_IMPLEMENTATION_LOG.md`. | ✅ GREEN run `29157947325`; FILE CLAIM RELEASED |
 | FH-X01 | **First-hour contract asset** — deterministic Editor import from approved JSON into one Resources asset; runtime never parses JSON; WARN-only missing/drift/invalid audit. Log: `docs/GPT_ADDITIONS/2026-07-11_GPT56_FIRST_HOUR/FHX01_IMPLEMENTATION_LOG.md`. | ✅ GREEN run `29155472303`; FILE CLAIM RELEASED |
 | CI-V1 | **Durable branch CI verdict** — log: `docs/GPT_ADDITIONS/2026-07-11_GPT56_CI_VERDICT/CI_VERDICT_IMPLEMENTATION_LOG.md`. Final isolated CI job writes tested SHA + GREEN/RED to `docs/CI_VERDICT.md`; stale-head/race safe, no Unity job changes, no recursion. | ✅ PROVEN — caught a real red, then recorded GREEN run `29151953887`; FILE CLAIM RELEASED |
-| FH-02A | **Continuity manifest + report-only validator** — log: `docs/GPT_ADDITIONS/2026-07-10_GPT56_FIRST_HOUR/FH02A_IMPLEMENTATION_LOG.md`. `docs/continuity/*` + `tools/continuity_gate.py` + stdlib tests + isolated non-blocking report job shipped. No Unity/runtime behavior and no blocker promotion. | 🟡 IMPLEMENTED — first real Actions artifact pending; FILE CLAIM RELEASED |
+| FH-02A | **Continuity manifest + report-only validator** — log: `docs/GPT_ADDITIONS/2026-07-10_GPT56_FIRST_HOUR/FH02A_IMPLEMENTATION_LOG.md`. `docs/continuity/*` + `tools/continuity_gate.py` + stdlib tests + isolated non-blocking report job shipped. No Unity/runtime behavior and no blocker promotion. | ✅ PROVEN — report job produced `project-contract-reports` artifacts; latest observed run `30058066208`; FILE CLAIM RELEASED |
 | Q0 | Program docs: ARCHITECTURE_V2 design + this board + HANDOFF (ppp) + PRIORITIES rewrite + tools/*.ps1 ASCII fix (Terry's PS 5.1 parse error) | ✅ `5b5b1b6` |
 | Q1a | **`WorldSpec`** SHIPPED: one serializable class = the whole world (identity/seed · sky/fog/planet · experience terrain+vista · POIs · palette/districts/connections/canals/shipyard · drones/creatures/hazards · collectibles/machines/mines/gardens/sockets · flags · advisory skyVistaId). REUSES the layout/pack [Serializable] classes verbatim — zero mapping drift; JSON round-trip via JsonUtility (enums as ints, tables in WORLD_RECIPE) | ✅ this commit |
 | Q1b | **`WorldSpecValidator`** SHIPPED (pure): stable CODE-token errors — identity/seed, POI count/verbs/spacing/bounds/dup + StoryAnchor-when-flags predicate, district/connection/spawn refs, registry checks (creatures/plants/items; null set = permissive), mine/socket economy sanity. **14 tests** | ✅ this commit |
@@ -43,7 +43,7 @@ any LLM: request a change as data, build, gates catch mistakes.
 - **FH-X01 (2026-07-11): COMPLETE, GREEN, FILE CLAIM RELEASED** — exact tested SHA `be97cf8c678c`, run `29155472303`. Contract asset/importer/tests/audit/build hook shipped. See `FHX01_IMPLEMENTATION_LOG.md`.
 - **Next first-hour action:** Story/Ship claims `docs/first_hour/envelopes/FH-S01-OBSERVATION.json` on `docs/SPRINT.md`.
 - **CI-V1 (2026-07-11): PROVEN, FILE CLAIM RELEASED** — durable verdict caught a real Unity red, then recorded GREEN for `b388f1b` in run `29151953887`. Read `docs/CI_VERDICT.md`; a later normal commit makes the verdict stale until its own run completes.
-- **FH-02A (2026-07-10): IMPLEMENTED, FILE CLAIM RELEASED** — report-only continuity manifest/validator/tests and the non-blocking project-contract job are in the branch. First real Actions artifact is still pending; warnings must be reviewed, not fixed blindly. See `FH02A_IMPLEMENTATION_LOG.md`.
+- **FH-02A (2026-07-24): PROVEN, FILE CLAIM RELEASED** — the report-only continuity manifest/validator/tests and non-blocking project-contract job are producing `project-contract-reports` artifacts; latest observed run `30058066208`. Warnings remain report-only and must be reviewed rather than fixed blindly. See `FH02A_IMPLEMENTATION_LOG.md`.
 - **State (2026-07-03, the LAST Fable architect session):** Q1 + Q2a + H1 buildings + H4 registry +
   H6 takeover kit all shipped; H2/H3/H5 enveloped to T-Dog, Q4b to Picasso (HANDOFF qqq). This
   track's operator is **Opus 4.8 from here** — that is fine by design; read `OPERATOR_START_HERE.md`.
@@ -71,4 +71,5 @@ any LLM: request a change as data, build, gates catch mistakes.
 - **Branch:** `terry-local-wip`; three other tracks push often — pull --rebase before every push.
 
 ---
+
 *Opened 2026-07-03 by the architect (Fable 5) from Terry's PDF directive; plan approved.*
