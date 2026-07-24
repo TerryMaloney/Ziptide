@@ -27,6 +27,35 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-23 (rb106) — Fable 5 (Reasonbox): 🌱 growing-loop review FILED — adopt the thesis at 1/3 scale, through the planter beat
+
+- **Did (assigned review, `docs/growing/reviews/REASONBOX_GROWING_LOOP_REVIEW.md`, docs only):**
+  independent fun/progression/economy/pacing review of the growing+invention master plan, blue +
+  red team, with the required source audit. **Audit headline: ~60% of the plan's cultivation core
+  is already tested source** — genetics, ADJACENCY CROSSING (`GardenService.CrossPlots`),
+  wall-clock idle growth, giants/mutation, and a recipe-shaped step grammar (`WorldJobLibrary`
+  spec-table); the genuinely new builds are recipe grammar + invention catalog + trait language +
+  SEED SURFACING (the real W001 work). **Verdict: adopt thesis + grammar NOW at reduced scale;
+  park the trimmings.** Key recommendations: recipe inputs capped at **1+1+1** (the 8+2+1
+  illustration is a VR chore); couple bio/industrial by FUNCTION (industrial=body,
+  biological=behavior) instead of a blanket both-paths rule; required-path chains carry ZERO RNG
+  with visible bounded pity (≤5 crosses) for optional rarities; **belt-as-loadout** (physical
+  sockets are the carry limit — no abstract menu) + one mid-world swap point; garden enters hour
+  one ONLY as the slice packet's PR-8 planter beat + one silhouette card (the §12 intro band is
+  five teachings too many); value split 60/25/15 salvage/garden/combined, enforceable via
+  LedgerSource; 6 families / 8–10 cards / 1 catalyst per world / one-contribution-per-world
+  cadence for the 80-world plan; the "name it, say it, use it" six-year-old test; sprites KEEP
+  LATER; multiplayer rotation PARK (FOMO + Photon hold). Full KEEP NOW/LATER/CUT-PARK matrix +
+  early and mid-game example loops in the file.
+- **Reconciliation:** binds to the locked 22-beat contract, my audio program's narration/caption
+  seams (the §17 three-channel contract is the same law — recommend project-wide
+  `AccessibleCatalogItem` = YES, Architect to own), the lifecycle contract's wall-clock
+  classification, and gpt-post-m0-order's per-world ratchet.
+- **Next:** Architect + T-Dog file their independent reviews; merge per the packet's rules;
+  Terry adjudicates the CUT/PARK rows.
+- **Commit:** this push (review file + this entry).
+
+
 ### 2026-07-23 (gpt-growing-invention-master) — initial growing/invention loop packaged for independent red-team/blue-team review
 
 - **Did:** Packaged Terry's current cultivation + biological alchemy + mining/machine processing + crafting + limited loadout direction into `docs/growing/GROWING_INVENTION_LOOP_MASTER_PLAN.md`. The proposal distinguishes proven current foundations from new design: existing garden genetics/watering, 24 authored plant species, persistent deterministic belts/machines, economy/save/inventory/Forge/audit infrastructure versus open seed surfacing, useful breeding play, invention-catalog, spoken child-readable menus, biological/industrial recipe balance, loadout rules, conveyor purpose, and multiplayer rotation. It makes useful outputs, understandable recipe logic, deterministic campaign progression, limited strategic loadouts, and icon+name+spoken-label accessibility non-negotiable while explicitly marking all architecture and implementation as provisional. Added `docs/growing/GROWING_INVENTION_LOOP_REVIEW_PACKET.md` with three independent assignments and exact output files: Reasonbox → `docs/growing/reviews/REASONBOX_GROWING_LOOP_REVIEW.md` (fun/progression/economy/pacing); Architect → `docs/growing/reviews/ARCHITECT_GROWING_LOOP_REVIEW.md` (canonical owners/schemas/save/data flow/automation); T-Dog → `docs/growing/reviews/TDOG_GROWING_LOOP_REVIEW.md` (Quest child usability/narration/performance/interruption/release). Each must perform both blue-team and red-team analysis, audit current source, recommend KEEP NOW / KEEP LATER / CUT OR PARK, file independent first opinions, and avoid runtime implementation.
