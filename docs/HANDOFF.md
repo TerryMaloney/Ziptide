@@ -27,6 +27,31 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-24 (hwr40) - Fable 5 (Architect): ✨ AFFORDANCE SHEEN + 🧰 LOST ITEMS design (Terry-directed, docs only, Round-shaped)
+- **New doc: `docs/design/AFFORDANCE_SHEEN_AND_LOST_ITEMS.md`** — two small-but-important
+  systems, both verified as absent (no highlight/affordance code anywhere;
+  `InventoryState` comments confirm loose items are left behind on travel and don't persist).
+- **Sheen (the coupler lesson generalized):** faint white rim = "usable NOW", 2× on hover, one
+  pulse when something BECOMES usable, honest absence otherwise. Applies to doors (derelict
+  archetype needs it day one), harvestable-vs-scenery plants (unifies the 10m readability law
+  from the gap audit, ripe = pulse via GardenService timing), items, machine stage points
+  (current stage only), sockets, kiosks, zipline handles. **Quest implementation law: NO
+  outline post-process/stencil/second camera — a fixed set of ~4 shared sheen-state material
+  variants swapped by reference** (property blocks break SRP batching), attached FREE by
+  factories/builders via one `AffordanceSheen` component. Luminance-based = colorblind-safe;
+  pairs with the narration seam for kids. Gate: `AFFORDANCE_TRUTH` audit (every interactable
+  carries it; no non-interactable uses the material).
+- **Lost items (the no-lost-tools guarantee):** three layers — belt tell at drop (emptied
+  holster shows its sheen + haptic) → beacon while separated (owned+loose 90s/25m → item sheen
+  pulses + soft chirp + one RILL line) → **reclaim on travel/quit: owned loose items go to a
+  physical LOST & FOUND crate in the Quarters** (profile id-list via the overlay-save idiom;
+  ItemFactory rebuilds on collection). **LAW: an owned item can never cease to exist.** World-
+  native junk exempt. Explicit non-goals: no quest arrows, no auto-return teleport (it would
+  delete the deliberate put-down verb machines/plots rely on).
+- **Round shaping:** sheen v1 ~3 commits, lost-items v1 ~3 commits, both observable on device,
+  neither touches the spine. Natural ROUND 01/02 slate items.
+- **Commits:** this push (design doc + this entry).
+
 ### 2026-07-24 (hwr39) - Fable 5 (Architect): 🌍 WORLD RECIPE GAP AUDIT — the missing layers + the missing ARCHETYPE axis (Terry-directed deep dig, docs only)
 - **New doc: `docs/design/WORLD_RECIPE_GAP_AUDIT.md`.** Terry asked what a COMPLETE world recipe
   still lacks — "not just two or three things." Full file-verified inventory first (§1: the
