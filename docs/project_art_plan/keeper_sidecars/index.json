@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0",
+  "index_id": "growing_invention_keeper_sidecars",
+  "status": "canonical_navigation_data",
+  "runtime_authority": "none",
+  "provenance_policy": {
+    "internal_reference": "No third-party shipping-ledger entry is required while generated art remains internal concept reference. Preserve prompt and source provenance before production intake.",
+    "proposed_shipping_use": "Any generated image proposed for store, in-game, marketing, or other public shipping use requires current commercial-use and ownership review plus a third-party licensing-ledger entry before approval.",
+    "binary_archive": "Conversation attachments and temporary mounts are not durable archives. Sidecar image paths remain null until original binaries are stored in an approved durable location."
+  },
+  "sidecars": [
+    "docs/project_art_plan/keeper_sidecars/family_moss_filter.json",
+    "docs/project_art_plan/keeper_sidecars/family_cistern_gripvine.json",
+    "docs/project_art_plan/keeper_sidecars/family_relay_reed.json",
+    "docs/project_art_plan/keeper_sidecars/machine_bio_refiner_mk1.json",
+    "docs/project_art_plan/keeper_sidecars/machine_ore_processor_mk1.json",
+    "docs/project_art_plan/keeper_sidecars/machine_assembler_mk1.json",
+    "docs/project_art_plan/keeper_sidecars/component_equipment_frame_blank.json",
+    "docs/project_art_plan/keeper_sidecars/equipment_moss_filter_rig_mk1.json",
+    "docs/project_art_plan/keeper_sidecars/equipment_cistern_grip_clamp_mk1.json",
+    "docs/project_art_plan/keeper_sidecars/equipment_circuit_bridge_mk1.json"
+  ],
+  "measured_specs": [
+    "docs/project_art_plan/measured_specs/GI_MSPEC_001_EQUIPMENT_FRAME_AND_ASSEMBLER_SOCKET.md",
+    "docs/project_art_plan/measured_specs/GI_MSPEC_002_CIRCUIT_BRIDGE_AND_RELAY_TARGET.md",
+    "docs/project_art_plan/measured_specs/GI_MSPEC_003_MOSS_FILTER_RIG_AND_CONTAMINATION_TARGET.md",
+    "docs/project_art_plan/measured_specs/GI_MSPEC_004_BIOREFINER_MK1_INTERACTION_SURFACES.md",
+    "docs/project_art_plan/measured_specs/GI_MSPEC_005_ORE_PROCESSOR_MK1_INTERACTION_SURFACES.md",
+    "docs/project_art_plan/measured_specs/GI_MSPEC_006_CISTERN_GRIP_CLAMP_AND_BRACE_TARGET.md",
+    "docs/project_art_plan/measured_specs/GI_MSPEC_007_RELAY_REED_COMPONENTS_AND_SHIP_CULTIVAR.md",
+    "docs/project_art_plan/measured_specs/GI_MSPEC_008_ASSEMBLER_MK1_RECONCILIATION.md"
+  ],
+  "next_gate": "After M0, select BioRefiner Mk I as the first keeper to run through measured spec, Forge recipe, built-versus-keeper comparison, and headset verdict. No back-half build is active before M0 and explicit freeze lift."
+}
