@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "keeper_id": "keeper.family.relay_reed.v1",
+  "asset_id_proposed": "family.relay_reed.conduct",
+  "display_name_working": "Relay Reed",
+  "status": "proposed_keeper",
+  "asset_class": "biological_family",
+  "role": "conduct, route, bridge, and safely discharge low-voltage current",
+  "scale_band": {
+    "seed": "palm-sized split-cylinder puck",
+    "wild": "approximately chest-height colony",
+    "ship_cultivar": "below-waist six-to-eight-reed cluster"
+  },
+  "visual_grammar": [
+    "split-cylinder seed with offset contact ridges",
+    "graphite-brown segmented reeds",
+    "copper biological paths beneath smoky tissue",
+    "forked two-prong contact tips",
+    "organic Charge Nodules with torn collars and internal spirals",
+    "restrained violet-white pulse along one active route"
+  ],
+  "palette_slots": {
+    "body_primary": "graphite_brown",
+    "internal_path": "biological_copper",
+    "nodule": "ceramic_white_and_smoky_translucent",
+    "active_state": "restrained_violet_white"
+  },
+  "authority_split": [
+    "final lifecycle sheet controls anatomy and compact ship scale",
+    "wet industrial discovery scene controls route-to-analog-response behavior",
+    "component sheet controls Conductive Vein and Charge Nodule anatomy",
+    "nursery pair controls seed key and departure/return state",
+    "lifecycle sheet overrides nursery overgrowth",
+    "exact world and species name remain provisional"
+  ],
+  "keeper_documents": [
+    "docs/project_art_plan/PROMPT_TEST_07_FINAL_KEEPER_VERDICT_RELAY_REED.md",
+    "docs/project_art_plan/PROMPT_TEST_07_COMPONENTS_AND_NURSERY_KEEPER_VERDICT_RELAY_REED.md",
+    "docs/project_art_plan/GROWING_INVENTION_CONCEPT_KEEPER_INDEX.md"
+  ],
+  "image_records": [
+    {
+      "archive_status": "pending",
+      "path": null,
+      "generator": "Nano Banana",
+      "generation_date": "2026-07-24",
+      "hash_sha256": null
+    }
+  ],
+  "measured_spec": "docs/project_art_plan/measured_specs/GI_MSPEC_007_RELAY_REED_COMPONENTS_AND_SHIP_CULTIVAR.md",
+  "provenance_status": "conversation_sources_not_durably_archived",
+  "shipping_use": "internal_reference",
+  "license_review_status": "not_required_for_internal_reference",
+  "runtime_authority": "none",
+  "known_unresolved": [
+    "final name and world placement",
+    "growth timing and yields",
+    "electrical-fiction limits",
+    "production asset budgets",
+    "binary archive"
+  ]
+}
