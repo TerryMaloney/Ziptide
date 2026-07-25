@@ -27,6 +27,37 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-23 (rb107) — Fable 5 (C-lane/T-Dog): ⚡ SIGNATURE POWERS research + design delivered (Terry-directed; GPT-only review per budget)
+
+- **Did:** Terry asked for the hero-power layer (Fortnite mythic / Cap shield / Zeus bolt): what
+  we have, what VR does well to emulate, and novel ideas nobody ships. Ran lean (1 research
+  agent + inline source audit; Fable budget conserved) → **`docs/design/SIGNATURE_POWERS_VR.md`**.
+  **What we have:** the wrist scanner is already our first true gesture power (cover-and-charge →
+  pulse, device-tested — exactly the research-canonized grammar); gravity gun = closest mythic
+  item; 6 live augments; ultimate tier designed (ChargeMeter etc.), zero code. **Translation
+  rules locked:** body-performed → world-effect (never camera) → state as glow-on-object (never
+  HUD) → ceremony → resistance; held POSES over drawn shapes; trigger-gated gestures; two-stage
+  confirm; receipts on every recognition. **Emulate list:** Alyx flick-catch (confirms the
+  Gravity Glove plan), Until-You-Fall weapon-glow super (= our ChargeMeter as glow), Ghostbusters
+  tug-of-war capture (our tonal cousin), Vader force-pull, B&S imbue-pour. **THE NOVEL SET (six
+  documented industry gaps → own 2-3):** ① STASIS GRAB (asymmetric two-hand: off-hand freezes a
+  drone, dominant hand reaches in and unscrews the part — the disable+salvage loop AS one power;
+  flagship) · ② "ZIPTIDE!" spoken storm ult (voice-cast never shipped as core Quest verb; ⚠
+  RECORD_AUDIO = COPPA/DUC/permissions report-only, gesture path default) · ③ ZIP DISC
+  (Cap-shield grammar: ricochet tag-stun + yank-recall — the iconic THING) · ④ DUCK-AND-SURGE
+  (playspace-position casting: rise-from-real-crouch fires the counter-pulse) · ⑤ TIDE-CHARGE
+  Zeus ritual (collect sky-charge at a tide gate, slam into tool → chain-stun imbue) · ⑥
+  Reclaimer Wisp (summon-and-command; KEEP LATER, coordinates with the growing sprite review).
+  All mapped as effectIds on the existing augment/ultimate economy + one small pure
+  pose-detection service; rig/comfort/input/mic riders flagged report-only.
+- **Next:** GPT reconciles (single-reviewer mode per Terry). Build order proposal in doc §6,
+  post-M0: weapon-glow super on the taser first (smallest proof of the charge economy) → Stasis
+  Grab → Zip Disc.
+- **Heads-up:** the voice ult is the cheapest maximum-wow item on the list BUT carries the mic
+  permission into a Mixed Ages title — on-device keyword spotting only, zero retention,
+  disclosed; Terry ⚖ before any voice work. Duck thresholds need the seated-mode alternative per
+  the accessibility contract.
+- **Commit:** this one (design doc + this entry).
 ### 2026-07-24 (hwr40) - Fable 5 (Architect): ✨ AFFORDANCE SHEEN + 🧰 LOST ITEMS design (Terry-directed, docs only, Round-shaped)
 - **New doc: `docs/design/AFFORDANCE_SHEEN_AND_LOST_ITEMS.md`** — two small-but-important
   systems, both verified as absent (no highlight/affordance code anywhere;
