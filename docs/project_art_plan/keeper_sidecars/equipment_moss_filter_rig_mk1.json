@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "keeper_id": "keeper.equipment.moss_filter_rig.mk1.v1",
+  "asset_id_proposed": "equipment.moss_filter_rig.mk1",
+  "display_name_working": "Moss Filter Rig",
+  "status": "proposed_keeper",
+  "asset_class": "one_slot_field_equipment",
+  "role": "enable visible low-grade contamination access or interaction",
+  "scale_band": {
+    "handling": "compact light one-hand",
+    "mount": "one belt slot",
+    "target": "local low-grade contamination pocket or service area"
+  },
+  "visual_grammar": [
+    "compact rectangular salvage-metal body",
+    "dominant round living Filter Membrane cartridge",
+    "warm off-white porous tissue",
+    "muted moss-green biological rim",
+    "large service latch",
+    "mechanical clean-blocked-ready state",
+    "restrained cyan activity only while filtering"
+  ],
+  "palette_slots": {
+    "structure": "worn_salvage_metal",
+    "biological_body": "warm_off_white_and_moss_green",
+    "active_state": "restrained_cyan",
+    "hazard_context": "amber_green_toxic_haze"
+  },
+  "authority_split": [
+    "dedicated compact belt-mounted rig sheet controls equipment body and service view",
+    "Filter-family keepers control biological anatomy",
+    "W001 design documents control contamination context",
+    "generated chest harness, mask, and machine-sheet outputs are rejected"
+  ],
+  "keeper_documents": [
+    "docs/project_art_plan/GROWING_INVENTION_CONCEPT_KEEPER_INDEX.md",
+    "docs/production/W001_IDENTITY_DECISION_BRIEF.md"
+  ],
+  "image_records": [
+    {
+      "archive_status": "pending",
+      "path": null,
+      "generator": "Nano Banana",
+      "generation_date": "2026-07-24",
+      "hash_sha256": null
+    }
+  ],
+  "measured_spec": "docs/project_art_plan/measured_specs/GI_MSPEC_003_MOSS_FILTER_RIG_AND_CONTAMINATION_TARGET.md",
+  "provenance_status": "conversation_sources_not_durably_archived",
+  "shipping_use": "internal_reference",
+  "license_review_status": "not_required_for_internal_reference",
+  "runtime_authority": "none",
+  "known_unresolved": [
+    "activation model",
+    "dimensions and belt clearance",
+    "hazard class and target route",
+    "duration or depletion behavior",
+    "recipe and progression",
+    "binary archive"
+  ]
+}
