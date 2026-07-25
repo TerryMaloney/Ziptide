@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "keeper_id": "keeper.machine.ore_processor.mk1.v1",
+  "asset_id_proposed": "machine.ore_processor.mk1",
+  "display_name_working": "Ore Processor Mk I",
+  "status": "proposed_keeper",
+  "asset_class": "ship_machine",
+  "role": "convert one raw mineral or salvage-metal input into one standardized recipe-ready industrial component",
+  "scale_band": {
+    "installation": "broad heavy floor-mounted machine",
+    "interaction": "waist-height controls reachable standing, seated, and by young players"
+  },
+  "visual_grammar": [
+    "broad low heavy silhouette",
+    "asymmetric removable ore tray",
+    "guarded compression chamber",
+    "heavy mechanical crossbar",
+    "high-resistance process handle",
+    "separate lower output drawer",
+    "analog pressure gauges",
+    "worn dark steel and structural ribs"
+  ],
+  "palette_slots": {
+    "structure": "worn_dark_steel",
+    "wear": "oxidized_iron_grease_and_dust",
+    "working_state": "restrained_amber",
+    "output": "material_specific_industrial"
+  },
+  "authority_split": [
+    "production and ship-context sheets control body and operation",
+    "industrial output sheet controls category silhouettes only",
+    "Equipment Frame Blank prop sheet controls first cross-machine output",
+    "generated dimensions, raw recipes, cassettes, and labels are non-authoritative"
+  ],
+  "keeper_documents": [
+    "docs/project_art_plan/PROMPT_TEST_05_FINAL_KEEPER_VERDICT_ORE_PROCESSOR_MK1.md",
+    "docs/project_art_plan/GROWING_INVENTION_CONCEPT_KEEPER_INDEX.md"
+  ],
+  "image_records": [
+    {
+      "archive_status": "pending",
+      "path": null,
+      "generator": "Nano Banana",
+      "generation_date": "2026-07-24",
+      "hash_sha256": null
+    }
+  ],
+  "measured_spec": "docs/project_art_plan/measured_specs/GI_MSPEC_005_ORE_PROCESSOR_MK1_INTERACTION_SURFACES.md",
+  "provenance_status": "conversation_sources_not_durably_archived",
+  "shipping_use": "internal_reference",
+  "license_review_status": "not_required_for_internal_reference",
+  "runtime_authority": "none",
+  "known_unresolved": [
+    "dimensions and reach plate",
+    "handle and crossbar force",
+    "cassette and output unlocks",
+    "save and atomicity behavior",
+    "Quest asset budgets",
+    "binary archive"
+  ]
+}
