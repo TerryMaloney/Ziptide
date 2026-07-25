@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "keeper_id": "keeper.family.cistern_gripvine.v1",
+  "asset_id_proposed": "family.cistern_gripvine",
+  "display_name_working": "Cistern Gripvine",
+  "status": "proposed_keeper",
+  "asset_class": "biological_family",
+  "role": "grip, brace, and hold under wet load",
+  "scale_band": {
+    "seed": "palm-sized asymmetric clamp puck",
+    "wild": "two-to-three-metre wall spread",
+    "ship_cultivar": "below-waist trellis form"
+  },
+  "visual_grammar": [
+    "two-lobed clamp seed anatomy",
+    "dark olive braided tendons",
+    "pale biological microhook contact pads",
+    "restrained amber compression nodes",
+    "lateral wall growth",
+    "trellis-trained compact cultivar"
+  ],
+  "palette_slots": {
+    "body_primary": "dark_olive",
+    "contact_surface": "pale_rubberized_biological",
+    "active_state": "restrained_amber",
+    "habitat": "wet_dark_stone_and_rusted_metal"
+  },
+  "authority_split": [
+    "final lifecycle sheet controls anatomy and scale",
+    "Dry Cistern discovery scene controls environment behavior",
+    "dedicated resource sheet controls Grip Pad and Grip Fiber anatomy",
+    "nursery pair controls ship state change",
+    "generated labels and dimensions are non-authoritative"
+  ],
+  "keeper_documents": [
+    "docs/project_art_plan/PROMPT_TEST_02_CISTERN_GRIP_FAMILY_FINAL_KEEPERS.md",
+    "docs/project_art_plan/GROWING_INVENTION_CONCEPT_KEEPER_INDEX.md"
+  ],
+  "image_records": [
+    {
+      "archive_status": "pending",
+      "path": null,
+      "generator": "Nano Banana",
+      "generation_date": "2026-07-24",
+      "hash_sha256": null
+    }
+  ],
+  "measured_spec": "docs/project_art_plan/measured_specs/GI_MSPEC_006_CISTERN_GRIP_CLAMP_AND_BRACE_TARGET.md",
+  "provenance_status": "conversation_sources_not_durably_archived",
+  "shipping_use": "internal_reference",
+  "license_review_status": "not_required_for_internal_reference",
+  "runtime_authority": "none",
+  "known_unresolved": [
+    "exact world and progression placement",
+    "growth timing and yields",
+    "wild and ship dimensions",
+    "production asset budgets",
+    "binary archive"
+  ]
+}
