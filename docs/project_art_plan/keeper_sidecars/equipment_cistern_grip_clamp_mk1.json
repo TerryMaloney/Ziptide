@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0",
+  "keeper_id": "keeper.equipment.cistern_grip_clamp.mk1.v1",
+  "asset_id_proposed": "equipment.cistern_grip_clamp.mk1",
+  "display_name_working": "Grip Clamp",
+  "status": "proposed_keeper",
+  "asset_class": "one_slot_field_equipment",
+  "role": "temporarily brace one small repair component against an approved wet stone or metal surface",
+  "scale_band": {
+    "handling": "compact light one-hand",
+    "mount": "one belt slot",
+    "target": "local small-component brace pair"
+  },
+  "visual_grammar": [
+    "compact rectangular salvage-metal body",
+    "dominant round pale Grip Surface Insert",
+    "dark olive fibrous rim",
+    "restrained amber compression nodes under load",
+    "one large tension lever",
+    "one keyed mounting jaw",
+    "mechanical locked-unlocked state",
+    "visible biological pad deformation"
+  ],
+  "palette_slots": {
+    "structure": "worn_salvage_metal",
+    "contact_surface": "pale_biological",
+    "biological_rim": "dark_olive",
+    "loaded_state": "restrained_amber"
+  },
+  "authority_split": [
+    "production sheet controls body, pad, lever, jaw, belt, and service view",
+    "Dry Cistern scene controls hands-free brace behavior",
+    "component keeper controls Grip Surface anatomy",
+    "equipment card controls icon and before-after layout",
+    "chain schematic controls logic only"
+  ],
+  "keeper_documents": [
+    "docs/project_art_plan/PROMPT_TEST_06_FINAL_KEEPER_VERDICT_CISTERN_GRIP_CLAMP_MK1.md",
+    "docs/project_art_plan/GROWING_INVENTION_CONCEPT_KEEPER_INDEX.md"
+  ],
+  "image_records": [
+    {
+      "archive_status": "pending",
+      "path": null,
+      "generator": "Nano Banana",
+      "generation_date": "2026-07-24",
+      "hash_sha256": null
+    }
+  ],
+  "measured_spec": "docs/project_art_plan/measured_specs/GI_MSPEC_006_CISTERN_GRIP_CLAMP_AND_BRACE_TARGET.md",
+  "provenance_status": "conversation_sources_not_durably_archived",
+  "shipping_use": "internal_reference",
+  "license_review_status": "not_required_for_internal_reference",
+  "runtime_authority": "none",
+  "known_unresolved": [
+    "dimensions and belt clearance",
+    "jaw travel and load class",
+    "lever force",
+    "target eligibility data",
+    "recipe and progression",
+    "binary archive"
+  ]
+}
