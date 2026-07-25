@@ -1,0 +1,63 @@
+{
+  "schema_version": "1.0",
+  "keeper_id": "keeper.machine.bio_refiner.mk1.v1",
+  "asset_id_proposed": "machine.bio_refiner.mk1",
+  "display_name_working": "BioRefiner Mk I",
+  "status": "proposed_keeper",
+  "asset_class": "ship_machine",
+  "role": "convert one raw biological output into one stable recipe-ready biological material",
+  "scale_band": {
+    "installation": "fixed waist-height station",
+    "interaction": "standing, seated, and young-child reachable"
+  },
+  "visual_grammar": [
+    "compact worn salvage cabinet",
+    "asymmetric removable biological tray",
+    "guarded locked chamber",
+    "visible process cassette identity",
+    "one dominant process lever",
+    "one cancel-and-return control",
+    "separate output tray",
+    "analog gauges and amber work light"
+  ],
+  "palette_slots": {
+    "structure": "worn_salvage_metal",
+    "practical_light": "amber",
+    "state_accent": "restrained_family_specific",
+    "biological_input": "keeper_family_palette"
+  },
+  "authority_split": [
+    "installed interaction scene controls player-facing layout",
+    "production sheet controls cabinet body and service decomposition",
+    "input-output sheet controls transformation logic only",
+    "dedicated family component keepers control raw and refined material anatomy",
+    "open-hopper and generated branding are non-authoritative"
+  ],
+  "keeper_documents": [
+    "docs/project_art_plan/PROMPT_TEST_03_BIOREFINER_MK1_VERDICT.md",
+    "docs/project_art_plan/PROMPT_TEST_03_BIOREFINER_MK1_FINAL_PASS_VERDICT.md",
+    "docs/project_art_plan/GROWING_INVENTION_CONCEPT_KEEPER_INDEX.md"
+  ],
+  "image_records": [
+    {
+      "archive_status": "pending",
+      "path": null,
+      "generator": "Nano Banana",
+      "generation_date": "2026-07-24",
+      "hash_sha256": null
+    }
+  ],
+  "measured_spec": "docs/project_art_plan/measured_specs/GI_MSPEC_004_BIOREFINER_MK1_INTERACTION_SURFACES.md",
+  "provenance_status": "conversation_sources_not_durably_archived",
+  "shipping_use": "internal_reference",
+  "license_review_status": "not_required_for_internal_reference",
+  "runtime_authority": "none",
+  "known_unresolved": [
+    "dimensions and reach plate",
+    "cassette inventory",
+    "timing and yields",
+    "save and atomicity behavior",
+    "Quest asset budgets",
+    "binary archive"
+  ]
+}
