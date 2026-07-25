@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "keeper_id": "keeper.family.moss_filter.v1",
+  "asset_id_proposed": "family.moss_filter",
+  "display_name_working": "Moss Filter",
+  "status": "proposed_keeper",
+  "asset_class": "biological_family",
+  "role": "filter, purify, and support low-grade contamination access",
+  "scale_band": {
+    "seed": "palm-sized",
+    "wild": "approximately human-height",
+    "ship_cultivar": "below-waist to waist-height"
+  },
+  "visual_grammar": [
+    "notched porous seed puck",
+    "muted moss-green external tissue",
+    "warm off-white membrane and honeycomb anatomy",
+    "detachable Filter Organs",
+    "restrained cyan biological activity only by state"
+  ],
+  "palette_slots": {
+    "body_primary": "muted_moss_green",
+    "membrane": "warm_off_white",
+    "active_state": "restrained_cyan",
+    "ship_context": "worn_metal_and_amber_practical"
+  },
+  "authority_split": [
+    "latest Moss Filter lifecycle sheet controls lifecycle and wild/ship scale",
+    "dedicated Filter Organ image controls harvested-organ anatomy",
+    "departure/return nursery pair controls state change and plot composition",
+    "generated text, logos, dimensions, and embedded machine depictions are non-authoritative"
+  ],
+  "keeper_documents": [
+    "docs/project_art_plan/GROWING_INVENTION_CONCEPT_KEEPER_INDEX.md",
+    "docs/production/W001_IDENTITY_DECISION_BRIEF.md"
+  ],
+  "image_records": [
+    {
+      "archive_status": "pending",
+      "path": null,
+      "generator": "Nano Banana",
+      "generation_date": "2026-07-24",
+      "hash_sha256": null
+    }
+  ],
+  "measured_spec": "docs/project_art_plan/measured_specs/GI_MSPEC_003_MOSS_FILTER_RIG_AND_CONTAMINATION_TARGET.md",
+  "provenance_status": "conversation_sources_not_durably_archived",
+  "shipping_use": "internal_reference",
+  "license_review_status": "not_required_for_internal_reference",
+  "runtime_authority": "none",
+  "known_unresolved": [
+    "final stable IDs",
+    "growth timing and yields",
+    "exact ship cultivar dimensions",
+    "production asset budgets",
+    "binary archive"
+  ]
+}
