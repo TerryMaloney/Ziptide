@@ -27,6 +27,33 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-23 (rb109) — Fable 5 (C-lane/T-Dog): 📌 STANDING INSTALL LAW + two-headset setup for Terry's M0 session (docs only)
+
+- **📌 THE UNINSTALL-FIRST LAW (Terry-directed — stop wasting session time on this forever):**
+  every headset install of a CI-artifact APK MUST be preceded by
+  `adb uninstall com.terrymaloney.ziptide` (expect and ignore an error if not installed).
+  **Root cause, on record:** local `dev_build_install.ps1` builds are debug-signed with TERRY'S
+  PC debug keystore; CI artifacts are debug-signed with the CI RUNNER'S key. Different debug
+  keys ⇒ `INSTALL_FAILED_UPDATE_INCOMPATIBLE` on any `adb install -r` that crosses the
+  local↔CI boundary. Uninstall-first is unconditional so nobody has to remember which kind is
+  currently installed. → Every future install card/runbook MUST carry the uninstall line
+  explicitly (M0 card §4 currently lacks it — owners of that card: add
+  `adb uninstall com.terrymaloney.ziptide` immediately before `adb install -r`). This entry is
+  the durable reminder; the release keystore (release lane) will eventually make signatures
+  stable, but the law stays until then.
+- **Two-headset discipline (Photon-future prep, Terry has headset #2):** with both plugged in,
+  `adb devices` lists two serials; EVERY adb command must then use `-s <SERIAL>`. The M0 verdict
+  runs on ONE headset; the second gets the same exact golden APK afterward (uninstall-first,
+  same checksum) purely for parity so both are current when Photon/two-player work starts
+  (M7b — not part of M0). Second headset needs Developer Mode via the Meta Horizon phone app +
+  the USB-debugging Always-Allow prompt. "Meta Link" is not an app on the headset — the fix for
+  the Link annoyance is: headset Settings → System → Quest Link → disable Auto-Connect
+  (+ uninstall the Meta Quest Link PC app if unwanted; ADB sideloading does not use it).
+- **Next:** Terry runs `docs/testing/M0_HEADSET_EXECUTION_C45B1A2.md` today (Saturday) with the
+  uninstall line added to its §4 sequence; verdict block + logs come back per the card; §9
+  branch executes on the result.
+- **Commit:** this one (this entry only — the law lives here until the card owner patches §4).
+
 ### 2026-07-25 (gpt-m0-exact-execution) — Exact c45b1a2 headset packet verified and made the single next-test authority
 
 - **Did:** audited `docs/testing/HEADSET_RETRY_C45B1A2.md`, `docs/recovery/RECOVERY_PROGRAM.md`, `docs/TERRY_RUNBOOK.md`, and the older `docs/recovery/QUEST_GOLDEN_CHECKPOINT.md`. Found a real documentation hazard: the runbook/old checkpoint still point to superseded `2b158b4`. Queried Golden run `29786604008`; confirmed unexpired APK artifact `recovery-golden-apk-c45b1a295e50637d81aab14c09e36eb08bf6ed58` (artifact ID `8478885142`), downloaded it independently, verified internal path `Android/Ziptide.apk`, APK size `102482894`, APK SHA-256 `296dd92e6488e93019014ce7624c1092989180513a02640efa53cf2c5d92f8e1`, and artifact ZIP SHA-256 `77da9927f307f636f27f228e8ea1c30028e8d1810cb281551458dfda52cbdd75`. Added `docs/testing/M0_HEADSET_EXECUTION_C45B1A2.md` as the single install/log/two-pass/verdict authority and updated the retry card to point there explicitly.
