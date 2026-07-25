@@ -27,6 +27,25 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-23 (rb108) — Fable 5 (C-lane/T-Dog): ⚡ STATIC GLOVE — Terry's signature-power pitch adopted into SIGNATURE_POWERS_VR
+
+- **Did:** Terry pitched a new signature: a canonically static-charged planet (objects arc and
+  crackle at random — the world telegraphs its power), and the **Static Blast Glove**: trigger +
+  palm-UP = absorb static from the air (charge ramp, faster near arcing props/open sky) →
+  flip palm-OUT = prime → trigger = chain-arcing non-lethal blast. Adopted into
+  `docs/design/SIGNATURE_POWERS_VR.md` §4.7 + promoted to #3 in the §6 build order. Design
+  notes: input is pure palm-orientation + trigger-gate (one dot product, no gesture-recognition
+  risk, EditMode-testable) · absorb→flip→fire = the three-beat ceremony law · hazard-IS-the-
+  resource gives M2's planned "static" biome hazard its power payoff · cross-links: Static Net
+  VFX family, growing-plan conductive-trait plants as the bio upgrade path, and a shared
+  **`WorldChargeSource`** service proposed so the Tide-Charge ritual and every future
+  world-sourced power ride one pattern.
+- **Next:** GPT reconciliation covers the whole powers doc incl. this addition; no code until
+  post-M0 per standing order.
+- **Heads-up:** the arcing-object world telegraph is a natural WorldImprovement module
+  (ambient-motion family) when that world is built — flagging for the world-factory lane.
+- **Commit:** this one (doc §4.7 + §6 edit + this entry).
+
 ### 2026-07-23 (rb107) — Fable 5 (C-lane/T-Dog): ⚡ SIGNATURE POWERS research + design delivered (Terry-directed; GPT-only review per budget)
 
 - **Did:** Terry asked for the hero-power layer (Fortnite mythic / Cap shield / Zeus bolt): what

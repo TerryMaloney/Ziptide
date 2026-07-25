@@ -109,7 +109,32 @@ for rare ultimates (fatigue), small gestures for frequent verbs.
    combat pet. **KEEP LATER** — coordinate with the growing-plan sprite review (my growing
    review parked sprites-as-systems; the wisp is the ONE justified exception if the loop needs
    a fetch verb, and only post-W002).
-7. *(Parked, on record: god-scale "Giant's Moment" — discrete swap only, world set-piece not a
+7. **THE STATIC GLOVE — Terry's pitch (2026-07-23), adopted as a first-class signature.**
+   *The world:* one planet's atmosphere is canonically hyper-statically charged — objects on the
+   surface arc and crackle at random intervals (the world VISIBLY telegraphs that power lives
+   here; the arcing props double as charge hotspots). This gives the already-planned "static"
+   biome hazard (GAME_PLAN M2's hazard five: wind/static/flood/spore/radiation) its power
+   payoff: **the hazard IS the resource.**
+   *The glove:* hold trigger + **turn your hand palm-UP** → the character's palm opens and
+   ABSORBS static from the air — crackling arcs stream in from nearby charged objects/sky,
+   glove glow builds, haptic ramp + rising pitch (faster near arcing props or under open storm
+   sky, slow indoors — positioning becomes play). **Flip your hand over palm-OUT** → the charge
+   primes (audible clack, glow snaps to the knuckles) → trigger fires a powerful static BLAST:
+   chain-arcing stun that powers down drones in a cone, shoves loose props, non-lethal by
+   nature.
+   *Why it's mechanically excellent by the §2 rules:* the input is pure **palm orientation +
+   trigger-gate** — a held pose measured with one dot product (no gesture recognition to
+   misfire, EditMode-testable math); absorb→flip→fire is a **three-beat ritual** (collect,
+   prime, release = the ceremony law); all state lives ON the glove (glow/arcs, never HUD);
+   the payoff is world-space chain lightning, camera untouched. Flip-primes-then-trigger-fires
+   keeps the two-stage confirm so kids never fire accidentally while absorbing.
+   *Canon hooks:* shares the VFX/audio family with the shipped Static Net weapon · the growing
+   plan's conductive-trait plants are its cross-path upgrade ingredients (bio path improves
+   capacity/chain count — the garden-feeds-equipment law in action) · sibling of the
+   Tide-Charge ritual — build ONE `WorldChargeSource` service (world declares its ambient
+   charge type + hotspots) powering both, so every future world can source a power the same
+   way.
+8. *(Parked, on record: god-scale "Giant's Moment" — discrete swap only, world set-piece not a
    carried power; revisit at world-factory scale.)*
 
 ## 5 · Architecture mapping (extends, never forks)
@@ -132,6 +157,10 @@ for rare ultimates (fatigue), small gestures for frequent verbs.
 
 1. **Weapon-glow super on ONE weapon** (taser) — smallest proof of the whole charge economy.
 2. **The Stasis Grab** — the flagship; it upgrades the core loop itself.
-3. **The Zip Disc** — the iconic object; high joy, moderate build (ricochet + recall).
-4. **Tide-Charge ritual** on one storm world — proves world-sourced power identity.
-5. **Duck-and-Surge** (report-only review first) · then voice-cast ⚖ · wisp last (post-W002).
+3. **The Static Glove on its storm world** — Terry's pitch; the best first WORLD-signature to
+   build because its input is pure pose math (no recognition risk), it proves the
+   `WorldChargeSource` pattern for every later world power, and the arcing-world telegraph is
+   a world-improvement module the compiler can already stage.
+4. **The Zip Disc** — the iconic object; high joy, moderate build (ricochet + recall).
+5. **Tide-Charge ritual** (now riding the same WorldChargeSource service as the glove).
+6. **Duck-and-Surge** (report-only review first) · then voice-cast ⚖ · wisp last (post-W002).
