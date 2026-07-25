@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0",
+  "keeper_id": "keeper.component.equipment_frame_blank.mk1.v1",
+  "asset_id_proposed": "component.equipment_frame_blank.mk1",
+  "display_name_working": "Equipment Frame",
+  "status": "proposed_keeper",
+  "asset_class": "refined_industrial_component",
+  "role": "provide the reusable keyed industrial structure accepted by the Assembler square socket",
+  "scale_band": {
+    "handling": "light one-hand component",
+    "source": "Ore Processor output drawer",
+    "destination": "Assembler left square socket"
+  },
+  "visual_grammar": [
+    "open asymmetrical square frame",
+    "coarse keyed or toothed edge",
+    "one offset corner or stop",
+    "four reinforced corners",
+    "two long mounting channels",
+    "repairable fasteners",
+    "no biological anatomy"
+  ],
+  "palette_slots": {
+    "structure": "worn_steel",
+    "wear": "scuffs_and_repair_marks",
+    "state": "mechanical_only",
+    "biological": "none"
+  },
+  "authority_split": [
+    "dedicated production prop sheet controls source, hand scale, keyed edge, and Assembler seating",
+    "GI-MSPEC-001 controls measured geometry planning",
+    "generated inch labels, exact mass, stamps, and text are non-authoritative"
+  ],
+  "keeper_documents": [
+    "docs/project_art_plan/PROMPT_TEST_05_FINAL_KEEPER_VERDICT_ORE_PROCESSOR_MK1.md",
+    "docs/project_art_plan/measured_specs/GI_MSPEC_001_EQUIPMENT_FRAME_AND_ASSEMBLER_SOCKET.md"
+  ],
+  "image_records": [
+    {
+      "archive_status": "pending",
+      "path": null,
+      "generator": "Nano Banana",
+      "generation_date": "2026-07-24",
+      "hash_sha256": null
+    }
+  ],
+  "measured_spec": "docs/project_art_plan/measured_specs/GI_MSPEC_001_EQUIPMENT_FRAME_AND_ASSEMBLER_SOCKET.md",
+  "provenance_status": "conversation_sources_not_durably_archived",
+  "shipping_use": "internal_reference",
+  "license_review_status": "not_required_for_internal_reference",
+  "runtime_authority": "none",
+  "known_unresolved": [
+    "width, height, depth, and mass",
+    "key tooth pitch and insertion tolerance",
+    "collider and socket depth",
+    "inventory representation",
+    "binary archive"
+  ]
+}
