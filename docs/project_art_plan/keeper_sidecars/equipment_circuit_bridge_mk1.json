@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.0",
+  "keeper_id": "keeper.equipment.circuit_bridge.mk1.v1",
+  "asset_id_proposed": "equipment.circuit_bridge.mk1",
+  "display_name_working": "Circuit Bridge",
+  "status": "composite_proposed_keeper",
+  "asset_class": "one_slot_field_equipment_and_target_pair",
+  "role": "dock flush over one approved broken low-voltage relay gap and route current internally while freeing both hands",
+  "scale_band": {
+    "handling": "compact broad-flat light one-hand",
+    "mount": "one belt slot",
+    "target": "local keyed low-voltage relay surface"
+  },
+  "visual_grammar": [
+    "broad flat rectangular repair-module body",
+    "flat rear docking face",
+    "short side or rear clamps",
+    "large fold-over top bridge lever",
+    "guarded central Conductive Vein route",
+    "mechanical connected-disconnected state",
+    "restrained violet-white internal pulse only while docked"
+  ],
+  "palette_slots": {
+    "structure": "worn_salvage_green_metal",
+    "biological_route": "graphite_brown_smoky_with_copper_paths",
+    "active_state": "restrained_violet_white",
+    "target_context": "wet_rusted_industrial"
+  },
+  "authority_split": [
+    "latest production sheet controls body, service view, belt role, docking interface, and attached state",
+    "dedicated Conductive Vein keeper controls biological anatomy",
+    "rain-wet scene controls environment mood only",
+    "both handheld player-eye scenes are rejected",
+    "GI-MSPEC-002 controls target geometry and final interaction planning"
+  ],
+  "keeper_documents": [
+    "docs/project_art_plan/PROMPT_TEST_08_FINAL_COMPOSITE_KEEPER_VERDICT_CIRCUIT_BRIDGE_MK1.md",
+    "docs/project_art_plan/CONCEPT_ART_PROMPT_PLAYBOOK_SUPPLEMENT_UTILITY_WEAPON_DRIFT.md",
+    "docs/project_art_plan/GROWING_INVENTION_CONCEPT_KEEPER_INDEX.md"
+  ],
+  "image_records": [
+    {
+      "archive_status": "temporary_conversation_mount_only",
+      "path": null,
+      "source_file_id": "file_000000002a3481fb82394e46446d31bc",
+      "generator": "Nano Banana",
+      "generation_date": "2026-07-24",
+      "hash_sha256": "9a6f608b21a50b89e13e935a4da17febe6a010aa764f6bab53647a8ce9005a22",
+      "verdict": "production_sheet_keeper"
+    },
+    {
+      "archive_status": "temporary_conversation_mount_only",
+      "path": null,
+      "source_file_id": "file_00000000899481fbb55b54210501852b",
+      "generator": "Nano Banana",
+      "generation_date": "2026-07-24",
+      "hash_sha256": "71b4d12c7efd2b2cf19f18368e79c50d7c3b513b5d37e0b60db735012e731e3b",
+      "verdict": "rejected_player_eye_weapon_drift"
+    }
+  ],
+  "measured_spec": "docs/project_art_plan/measured_specs/GI_MSPEC_002_CIRCUIT_BRIDGE_AND_RELAY_TARGET.md",
+  "provenance_status": "hashes_recorded_binaries_not_durably_archived",
+  "shipping_use": "internal_reference",
+  "license_review_status": "not_required_for_internal_reference",
+  "runtime_authority": "none",
+  "known_unresolved": [
+    "dimensions and belt clearance",
+    "target lug spacing and clamp travel",
+    "lever arc",
+    "final player-eye measured interaction plate",
+    "recipe and progression",
+    "durable binary archive"
+  ]
+}
