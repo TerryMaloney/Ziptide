@@ -11,6 +11,9 @@
 - `docs/production/W001_IDENTITY_DECISION_BRIEF.md` — The Moss / Toxic City identity reconciliation and Filter-family recommendation.
 - `docs/project_art_plan/CONCEPT_ART_PROMPT_PLAYBOOK.md` — canonical prompt-authoring, refinement, provenance, and keeper-selection process.
 - `docs/project_art_plan/CONCEPT_ART_PROMPT_PLAYBOOK_SUPPLEMENT_UTILITY_WEAPON_DRIFT.md` — binding supplement for non-weapon utilities.
+- `docs/project_art_plan/GROWING_INVENTION_MEASURED_SPEC_EXTRACTION_PACKET.md` — canonical pre-build measured-spec template.
+- `docs/project_art_plan/GROWING_INVENTION_ACCESSIBILITY_NAME_ICON_SPEECH_INVENTORY.md` — child-readable names, icons, spoken functions, captions, and non-color cues.
+- `docs/project_art_plan/CONCEPT_ART_SOURCE_PROVENANCE_MANIFEST.md` — source-image hashes, verdicts, archive state, and backfill queue.
 
 ## 2. Current visual families
 
@@ -135,13 +138,18 @@
 
 ### 4.3 Circuit Bridge Mk I
 
-**Role:** temporarily bridge one local broken low-voltage contact while physically attached to the cabinet.
+**Role:** dock flush over one local broken low-voltage relay gap, route current through a guarded biological channel, and remain attached while both hands perform the actual task.
 
-**First-pass verdict:** `docs/project_art_plan/PROMPT_TEST_08_FIRST_PASS_VERDICT_CIRCUIT_BRIDGE_MK1.md`
+**Verdict documents:**
 
-**Status:** not a keeper yet. First handheld/pistol-like version rejected. One flush-docked bridge-module redesign is allowed.
+- first-pass rejection: `docs/project_art_plan/PROMPT_TEST_08_FIRST_PASS_VERDICT_CIRCUIT_BRIDGE_MK1.md`
+- final composite keeper: `docs/project_art_plan/PROMPT_TEST_08_FINAL_COMPOSITE_KEEPER_VERDICT_CIRCUIT_BRIDGE_MK1.md`
 
-**Boundary:** not a gun, taser, remote hacking device, universal key, battery pack, projectile, or combat electrical tool.
+**Status:** proposed composite keeper. Latest production sheet controls the broad flat body, Conductive Vein channel, belt role, side clamps, fold-over lever, rear docking face, and flush-docked state. Both handheld player-eye scenes are rejected as interaction authority.
+
+**Measured-spec requirement:** a relay-target plate and player hand/clearance diagram are mandatory before implementation. No third image-generation pass is authorized.
+
+**Boundary:** not a gun, taser, remote hacking device, universal key, battery pack, projectile, combat electrical tool, or high-voltage bypass.
 
 ## 5. Cross-machine component contracts
 
@@ -174,7 +182,9 @@ The concept lane has demonstrated:
 5. Ore Processor industrial stock;
 6. Assembler square/round joining grammar;
 7. one-slot belt output;
-8. real world-function payoff.
+8. real world-function payoff;
+9. three distinct biological verbs: filter, grip, conduct;
+10. three distinct field-utility verbs: tolerate, brace, bridge.
 
 This is design evidence for the pipeline, not proof that the runtime implementation exists.
 
@@ -187,19 +197,25 @@ Examples:
 - machine image controls body/interaction; dedicated equipment sheet controls final output;
 - lifecycle sheet controls scale; nursery pair controls state change;
 - chain schematic controls logic only; separate machine keepers control appearance;
-- component sheet repairs a weak biological organ without redrawing the entire species.
+- component sheet repairs a weak biological organ without redrawing the entire species;
+- equipment production sheet controls body/docking while a repeated weaponized field scene is rejected.
 
 Every authority split must be written down. Later images do not automatically supersede earlier keepers.
 
-## 8. Current pending concept order
+## 8. Current pending concept/pre-build order
 
-1. run one flush-docked Circuit Bridge redesign;
-2. accept or park Circuit Bridge under its stop rule;
-3. create measured-spec extraction templates for the three machines, three biological families, Equipment Frame Blank, and accepted field equipment;
-4. create accessibility icon/name/spoken-function inventory;
-5. archive binary source images and generation provenance;
-6. do not begin deep conveyor design yet;
-7. do not implement runtime content before recovery/freeze gates.
+1. stop new Circuit Bridge image generation;
+2. begin measured-spec extraction with Equipment Frame Blank and Assembler square socket;
+3. create Moss Filter Rig measured spec plus one contamination-target plate;
+4. create BioRefiner and Ore Processor interaction-surface measured specs;
+5. create Grip Clamp plus brace-target measured spec;
+6. create Relay Reed component/cultivar measured spec;
+7. create Circuit Bridge body spec plus mandatory relay-target/docking plate;
+8. reconcile Assembler machine spec against accepted Filter and Grip recipes;
+9. review the accessibility name/icon/speech inventory;
+10. backfill binary source images and provenance;
+11. do not begin deep conveyor design yet;
+12. do not implement runtime content before recovery/freeze gates.
 
 ## 9. Required archive metadata
 
@@ -212,12 +228,15 @@ Before paid 3D intake, preserve for every keeper:
 - refinement prompts;
 - source/reference image IDs;
 - unedited binary output;
+- byte size and SHA-256;
 - keeper/reject verdict;
 - controlling decision class;
 - known drifts;
 - commercial-use/license record where applicable;
 - target measured-spec document;
 - supersession history.
+
+The canonical metadata ledger is `docs/project_art_plan/CONCEPT_ART_SOURCE_PROVENANCE_MANIFEST.md`.
 
 ## 10. Chat-transition use
 
