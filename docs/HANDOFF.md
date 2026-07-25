@@ -27,6 +27,40 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-24 (hwr38) - Fable 5 (Architect): 🌱 GROWTH ROUNDS operating system proposed + 4 improvement notes for GPT's concept lane (Terry-directed, docs only)
+- **NEW: `docs/GROWTH_ROUNDS.md`** — Terry's across-the-board growth concept, made mechanical:
+  after M0, recurring rounds where EVERY EXCELLENCE_MAP aspect improves by 1–3 small OBSERVABLE
+  steps (docs don't count — the observability rule exists because last week ran 1,082 doc
+  touches to 1 visuals commit), then ONE verification sweep ending in ONE Terry headset walk of
+  the round, then a retro that classifies every non-landed item as content fault (next slate) or
+  **system fault (factory fix — the compounding step)**. Slate growth is governed by land-rate:
+  ≥80% grow ~25%, <50% shrink and fix the factory. Three metrics only: land-rate, system-fault
+  count, round span. Complements the depth spine (world factory order) — the spine is always the
+  round's largest allocation. §5 has a proposed half-size ROUND 01 slate (10 aspects, ~14 items)
+  for Terry to adjudicate after M0.
+- **📣 For GPT's concept/growing lane — 4 improvements (Terry-approved), lane is otherwise the
+  healthiest planning→production bridge in the project:**
+  1. **Pipeline back half has run ZERO times** (steps 6–9: measured spec → Forge recipe →
+     built-vs-keeper comparison → headset). Pilot ONE keeper end-to-end post-M0 — **BioRefiner
+     Mk1** (Forge-friendly cabinet; `MachineType.BioRefiner` already exists in code) — before
+     concepting family #9. It's in the Round 01 slate seed.
+  2. **Keeper grammar → data**: JSON sidecar per keeper (family, role, scale band, palette
+     slots, authority split, image paths) so Forge/audits consume keepers mechanically. Cheap at
+     8 families, painful at 30.
+  3. **Bridge `CITY_VISUAL_SPEC.md` → City Stage A**: the spec's measured values (skyline
+     composition, 2–3 window warmths, palette, light script) become the BINDING constants for
+     the Stage A `CityBuilder` recipe — one doc pass so the first code pass builds Terry's
+     approved city, not generic defaults.
+  4. **Provenance line in the keeper index**: any generated image that ever SHIPS (store page,
+     in-game poster) must get a third-party-licensing-ledger entry; internal-reference use
+     stays exempt. Route it now, not at store submission.
+- **Context for future operators:** Terry's read, on record — the architecture wait wasn't
+  wasted ("we discovered some really great ways to tie things together") but "on the actual
+  headset there isn't as much as there should be." Growth rounds are the correction mechanism:
+  the game visibly grows every round, and the factory gets faster because retros only ever
+  output framework fixes. M0 headset test expected 2026-07-25; nothing activates before it.
+- **Commits:** this push (GROWTH_ROUNDS.md + this entry).
+
 ### 2026-07-24 (gpt-circuit-bridge-drift) — Circuit Bridge first pass rejected; concept lane indexed
 
 - **Did:** checked `docs/HANDOFF.md` and found no newer Opus-specific authority changing the Circuit Bridge lane. Recorded `docs/project_art_plan/PROMPT_TEST_08_FIRST_PASS_VERDICT_CIRCUIT_BRIDGE_MK1.md`: preserved the guarded Conductive Vein channel as an exploration reference but rejected the pistol/taser silhouette and field-use scene. Reframed the device as a broad flush-docked local bridge module that remains attached and frees both hands. Added `docs/project_art_plan/CONCEPT_ART_PROMPT_PLAYBOOK_SUPPLEMENT_UTILITY_WEAPON_DRIFT.md` with binding silhouette/pose/effect/control/verb checks. Added `docs/project_art_plan/GROWING_INVENTION_CONCEPT_KEEPER_INDEX.md` consolidating current family, machine, component, equipment, authority-split, archive, and pending-work state.
