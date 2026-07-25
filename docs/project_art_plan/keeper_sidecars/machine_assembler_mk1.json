@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "keeper_id": "keeper.machine.assembler.mk1.v1",
+  "asset_id_proposed": "machine.assembler.mk1",
+  "display_name_working": "Assembler Mk I",
+  "status": "proposed_keeper",
+  "asset_class": "ship_machine",
+  "role": "join one industrial equipment frame and one refined biological component into one finished one-slot field item",
+  "scale_band": {
+    "installation": "fixed compact waist-height station",
+    "interaction": "standing, seated, and young-child reachable"
+  },
+  "visual_grammar": [
+    "asymmetrical square industrial socket on left",
+    "round biological socket on right",
+    "solid covered future catalyst position",
+    "protected assembly cradle",
+    "mesh or transparent interlocked guard",
+    "guarded articulated joining arms",
+    "one commit lever and one cancel-return control",
+    "restrained cyan assembly accents with amber practical light"
+  ],
+  "palette_slots": {
+    "structure": "worn_welded_salvage_metal",
+    "practical_light": "amber",
+    "assembly_state": "restrained_cyan",
+    "inputs_and_output": "dedicated_keeper_palettes"
+  },
+  "authority_split": [
+    "final Assembler images control body, sockets, guard, arms, controls, and sequence",
+    "Equipment Frame Blank keeper controls industrial input",
+    "dedicated refined component keepers control biological input",
+    "dedicated equipment keepers control finished output",
+    "embedded generic output depictions are non-authoritative"
+  ],
+  "keeper_documents": [
+    "docs/project_art_plan/PROMPT_TEST_04_FINAL_KEEPER_VERDICT_ASSEMBLER_MK1.md",
+    "docs/project_art_plan/GROWING_INVENTION_CONCEPT_KEEPER_INDEX.md"
+  ],
+  "image_records": [
+    {
+      "archive_status": "pending",
+      "path": null,
+      "generator": "Nano Banana",
+      "generation_date": "2026-07-24",
+      "hash_sha256": null
+    }
+  ],
+  "measured_spec": "docs/project_art_plan/measured_specs/GI_MSPEC_008_ASSEMBLER_MK1_RECONCILIATION.md",
+  "provenance_status": "conversation_sources_not_durably_archived",
+  "shipping_use": "internal_reference",
+  "license_review_status": "not_required_for_internal_reference",
+  "runtime_authority": "none",
+  "known_unresolved": [
+    "dimensions and reach plate",
+    "biological carrier or adapter strategy",
+    "recipe IDs and progression",
+    "save and atomicity behavior",
+    "Quest asset budgets",
+    "binary archive"
+  ]
+}
