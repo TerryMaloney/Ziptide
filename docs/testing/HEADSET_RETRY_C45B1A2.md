@@ -1,5 +1,7 @@
 # HEADSET RETRY CARD — authorized Golden `c45b1a2`
 
+> **START HERE FOR THE COMPUTER/INSTALL SESSION:** `docs/testing/M0_HEADSET_EXECUTION_C45B1A2.md` contains the verified current artifact name, run, APK path, APK SHA-256, install/log commands, bounded two-pass route, and post-verdict branch. It supersedes the old `2b158b4` artifact/install instructions still present in `docs/TERRY_RUNBOOK.md` and `docs/recovery/QUEST_GOLDEN_CHECKPOINT.md`.
+
 **Artifact:** `recovery-golden-apk-c45b1a2…`  
 **Golden Android run:** `29786604008`  
 **Exact gameplay source:** `c45b1a295e50637d81aab14c09e36eb08bf6ed58`  
