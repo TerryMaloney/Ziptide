@@ -27,6 +27,38 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-24 (hwr39) - Fable 5 (Architect): 🌍 WORLD RECIPE GAP AUDIT — the missing layers + the missing ARCHETYPE axis (Terry-directed deep dig, docs only)
+- **New doc: `docs/design/WORLD_RECIPE_GAP_AUDIT.md`.** Terry asked what a COMPLETE world recipe
+  still lacks — "not just two or three things." Full file-verified inventory first (§1: the
+  surface recipe is deep — 12 POI verbs incl. Lookout, Poisson dressing, cairns, arrival-vista
+  sightline discipline, biome native-species lists, audited budgets), then the gaps:
+- **The headline hole (§3): there is NO interior archetype.** Everything assumes surface +
+  terrain + one sun + full gravity; `hazardType="vacuum"` is a string with nothing behind it.
+  Derelict ships/stations — which the story bible, W007, and the Director's Cut space-sortie
+  all need — have zero substrate. Design sketch included, composing EXISTING owners: rooms-are-
+  districts deck grammar · **sun law flips to emissive practicals + player lamp** · **power
+  restoration IS the visual progress meter** (RepairableMachine chains wake the ship bank by
+  bank) · gravity tiers full/low/**magnetized** (mag-boots = zero-g fiction with comfort laws
+  intact; free-float explicitly deferred) · airlock/pressure as a door-pair FSM + compartment
+  states (Moss Filter family = the air gear — growing lane ties in) · dock ring / **breach**
+  docking on TravelBerth · the TWO loops: derelict (dark→lamp→power→wake→salvage→echo-logs→
+  something answered) vs inhabited (lit/loud/services/sanctuary rule/Vex posts jobs here) ·
+  derelict→inhabited restoration as a Forge V state delta for free.
+- **The other gaps (§2):** ❌ inhabitants (confirmed zero code; fix = placement SLOTS on
+  existing POI verbs + InhabitantDefinition on the narration seam) · 🟠 harvest-vs-scenery
+  flora split (readability law: harvestable must read at 10m) · 🟠 viewpoint/awe CONTRACT
+  (Lookout pocket exists; composed view target + reveal staging + PhotoComposition hook +
+  place-name don't) · 🟠 place-story layer (toponymy, echo-logs, dressing-with-intent) · 🟠
+  traversal network vocabulary · 🟠 light-as-design + darkness/player-lamp · 🟠 liquids ·
+  ❌ **per-ELEMENT budget envelope** (per-world caps exist; the allocation template across
+  terrain/dressing/POIs/NPCs/flora per archetype does not) · 🟠 World Definition-of-Done v2.
+- **Sequence proposal (§5, Round-02+ shaped, all post-M0):** budget envelope + DoD v2 →
+  viewpoint contract + flora split → 2 posted inhabitants in ToxicCity → place-story on W001/2 →
+  **interior pilot = ONE small derelict as the first-hour space-sortie pocket** → full station
+  world only after its device verdict. Lane routing in §6; concept-lane families suggested
+  (derelict corridor kit, scenery flora sheets, inhabitant silhouettes).
+- **Commits:** this push (gap audit + this entry).
+
 ### 2026-07-24 (hwr38) - Fable 5 (Architect): 🌱 GROWTH ROUNDS operating system proposed + 4 improvement notes for GPT's concept lane (Terry-directed, docs only)
 - **NEW: `docs/GROWTH_ROUNDS.md`** — Terry's across-the-board growth concept, made mechanical:
   after M0, recurring rounds where EVERY EXCELLENCE_MAP aspect improves by 1–3 small OBSERVABLE
