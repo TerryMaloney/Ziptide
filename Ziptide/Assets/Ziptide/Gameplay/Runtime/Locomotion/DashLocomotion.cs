@@ -8,7 +8,8 @@ namespace Ziptide.Gameplay
     /// Console-style locomotion extras on the persistent XR rig (the body-verb owner per
     /// docs/design/CONTROL_SCHEME.md):
     ///   - Jump: A (right primary). Sprint: hold/click L3. Auto-run: double-click L3.
-    ///   - Crouch: R3 toggle (lower CC + camera, slower). Slide: crouch while sprinting.
+    ///   - Crouch: centred R3 toggle (blended camera + lower CC, slower). Slide: centred R3 while
+    ///     sprinting forward. R3 is ignored while the right stick is actively turning.
     /// Self-contained (own gravity, own input actions) so it works in every scene the
     /// persistent rig travels into. Class name kept as DashLocomotion to preserve existing
     /// scene component references (GUID) and the LocomotionDirector.Configure() call.
@@ -17,8 +18,11 @@ namespace Ziptide.Gameplay
     public class DashLocomotion : MonoBehaviour
     {
         private const float FallbackWalkSpeed = 3f; // matches LocomotionProfile.moveSpeed default
-        private const float CrouchCamDrop = 0.55f;  // how far the view lowers while crouched
+        private const float CrouchCamDrop = 0.55f;
+        private const float CrouchCamBlendSeconds = 0.18f;
         private const float CrouchCcHeight = 1.05f; // capped every frame (an HMD driver may fight it)
+        private const float CrouchTurnDeadzone = 0.22f;
+        private const float SlideForwardThreshold = 0.55f;
 
         private float _jumpHeight = 1.1f;
         private float _gravity = 16f;
@@ -36,6 +40,7 @@ namespace Ziptide.Gameplay
         private InputAction _jumpAction;
         private InputAction _sprintAction;
         private InputAction _crouchAction;
+        private InputAction _rightStickAction;
 
         private float _cooldownTimer;
         private float _verticalVelocity;
@@ -46,9 +51,12 @@ namespace Ziptide.Gameplay
         private float _slideTimer;      // > 0 while sliding
         private float _lastSprintPress; // L3 double-tap detection
         private float _ccStandHeight = -1f;
-        private Transform _camOffset;   // camera's parent — lowered while crouched
+        private Transform _camOffset;   // camera's parent — blended while crouching
         private Camera _cam;            // gaze source for auto-run heading
         private float _camOffsetStandY;
+        private float _camOffsetTargetY;
+        private float _camOffsetVelocity;
+        private bool _camOffsetInitialized;
         private float _diagTimer;
 
         /// <summary>
@@ -83,6 +91,11 @@ namespace Ziptide.Gameplay
             _cc = GetComponent<CharacterController>();
             _moveProvider = GetComponentInChildren<ActionBasedContinuousMoveProvider>(true);
 
+            // The body-verb owner also ensures the persistent player menu owner. This keeps Y's
+            // production mapping explicit instead of introducing another hidden scene bootstrap.
+            if (GetComponent<PlayerMenuRuntime>() == null)
+                gameObject.AddComponent<PlayerMenuRuntime>();
+
             // Guarantee a usable walk speed even if no per-scene LocomotionDirector configured it
             // (fixes "can't move in the test room"). Diagnostic logs the real rig state.
             if (_moveProvider != null && _moveProvider.moveSpeed < 0.1f)
@@ -91,7 +104,7 @@ namespace Ziptide.Gameplay
             Debug.Log("ZIPTIDE: LOCO_STATE moveProvider=" + (_moveProvider != null)
                 + " moveSpeed=" + (_moveProvider != null ? _moveProvider.moveSpeed : 0f)
                 + " cc=" + (_cc != null) + " ccEnabled=" + (_cc != null && _cc.enabled));
-            Debug.Log("ZIPTIDE: CONTROLS move=left-stick turn=right-stick sprint=hold-L3 autorun=double-L3 crouch=R3 slide=crouch-while-sprinting jump=A dev-menu=diagnostic-profile-forehead-gesture");
+            Debug.Log("ZIPTIDE: CONTROLS move=left-stick turn=right-stick sprint=hold-L3 autorun=double-L3 crouch=centered-R3 slide=centered-R3-while-sprinting-forward jump=A player-menu=Y dev-menu=diagnostic-profile-forehead-gesture");
 
             if (_jumpAction == null)
             {
@@ -108,21 +121,35 @@ namespace Ziptide.Gameplay
                 _crouchAction = new InputAction("ZiptideCrouch", InputActionType.Button);
                 _crouchAction.AddBinding("<XRController>{RightHand}/thumbstickClicked"); // R3
             }
+            if (_rightStickAction == null)
+            {
+                _rightStickAction = new InputAction("ZiptideCrouchTurnGuard", InputActionType.Value);
+                _rightStickAction.AddBinding("<XRController>{RightHand}/thumbstick");
+            }
             _jumpAction.Enable();
             _sprintAction.Enable();
             _crouchAction.Enable();
+            _rightStickAction.Enable();
 
             _cam = GetComponentInChildren<Camera>(true);
             _camOffset = _cam != null ? _cam.transform.parent : null;
+            if (_camOffset != null && !_camOffsetInitialized)
+            {
+                _camOffsetStandY = _camOffset.localPosition.y;
+                _camOffsetTargetY = _camOffsetStandY;
+                _camOffsetInitialized = true;
+            }
         }
 
         private void OnDisable()
         {
             if (_crouched) SetCrouch(false);
+            RestoreCrouchCameraImmediate();
             EndSprint();
             _jumpAction?.Disable();
             _sprintAction?.Disable();
             _crouchAction?.Disable();
+            _rightStickAction?.Disable();
         }
 
         private void Update()
@@ -132,6 +159,7 @@ namespace Ziptide.Gameplay
             // which is why movement worked only on the 2nd entry. This fixes first-load movement.
             EnsureMoveActionsEnabled();
             MoveDiagTick();
+            UpdateCrouchCamera();
 
             if (_cc == null || !_cc.enabled) return;
             if (_cooldownTimer > 0f) _cooldownTimer -= Time.deltaTime;
@@ -162,9 +190,16 @@ namespace Ziptide.Gameplay
             // ── Inputs ──
             bool sprintHeld = _sprintAction != null && _sprintAction.IsPressed();
             bool sprintPressed = _sprintAction != null && _sprintAction.WasPressedThisFrame();
-            bool crouchPressed = _crouchAction != null && _crouchAction.WasPressedThisFrame();
+            bool crouchRequested = _crouchAction != null && _crouchAction.WasPressedThisFrame();
+            float turnMagnitude = RightStickMagnitude();
+            bool crouchPressed = crouchRequested && turnMagnitude <= CrouchTurnDeadzone;
+            if (crouchRequested && !crouchPressed)
+            {
+                Debug.Log("ZIPTIDE: LOCO_STATE crouch_ignored reason=turning stick=" +
+                          turnMagnitude.ToString("F2"));
+            }
 
-            // Auto-run: double-click L3 toggles; any of stick input / jump / crouch cancels.
+            // Auto-run: double-click L3 toggles; any of stick input / jump / accepted crouch cancels.
             if (sprintPressed)
             {
                 if (Time.unscaledTime - _lastSprintPress < _autoRunTapWindow)
@@ -180,10 +215,11 @@ namespace Ziptide.Gameplay
                 Debug.Log("ZIPTIDE: LOCO_STATE autorun=false");
             }
 
-            // Crouch toggle; crouching WHILE sprinting starts a slide.
+            // Crouch toggle. A slide requires a centred R3 click AND a deliberate forward sprint;
+            // pressing the turning stick while yawing can no longer create a combined snap/drop/slide.
             if (crouchPressed)
             {
-                if (!_crouched && (_sprinting || _autoRun))
+                if (!_crouched && (_sprinting || _autoRun) && ForwardInput() >= SlideForwardThreshold)
                 {
                     _slideTimer = _slideSeconds;
                     Debug.Log("ZIPTIDE: LOCO_STATE slide=true");
@@ -224,7 +260,7 @@ namespace Ziptide.Gameplay
                     _cc.Move(fwd.normalized * speed * Time.deltaTime);
             }
 
-            // While crouched, keep the CC capped every frame (an HMD height driver may re-expand it).
+            // While crouched, keep the CC capped every frame (an HMD driver may re-expand it).
             if (_crouched && _cc.height > CrouchCcHeight)
             {
                 _cc.height = CrouchCcHeight;
@@ -240,10 +276,12 @@ namespace Ziptide.Gameplay
             if (_ccStandHeight < 0f && _cc != null) _ccStandHeight = _cc.height;
             if (_camOffset != null)
             {
-                if (crouch) _camOffsetStandY = _camOffset.localPosition.y;
-                var lp = _camOffset.localPosition;
-                lp.y = crouch ? _camOffsetStandY - CrouchCamDrop : _camOffsetStandY;
-                _camOffset.localPosition = lp;
+                if (!_camOffsetInitialized)
+                {
+                    _camOffsetStandY = _camOffset.localPosition.y;
+                    _camOffsetInitialized = true;
+                }
+                _camOffsetTargetY = crouch ? _camOffsetStandY - CrouchCamDrop : _camOffsetStandY;
             }
             if (!crouch && _cc != null && _ccStandHeight > 0f)
             {
@@ -253,10 +291,42 @@ namespace Ziptide.Gameplay
             Debug.Log("ZIPTIDE: LOCO_STATE crouch=" + crouch);
         }
 
+        private void UpdateCrouchCamera()
+        {
+            if (_camOffset == null || !_camOffsetInitialized) return;
+            Vector3 local = _camOffset.localPosition;
+            local.y = Mathf.SmoothDamp(local.y, _camOffsetTargetY, ref _camOffsetVelocity,
+                CrouchCamBlendSeconds, Mathf.Infinity, Time.unscaledDeltaTime);
+            _camOffset.localPosition = local;
+        }
+
+        private void RestoreCrouchCameraImmediate()
+        {
+            if (_camOffset == null || !_camOffsetInitialized) return;
+            Vector3 local = _camOffset.localPosition;
+            local.y = _camOffsetStandY;
+            _camOffset.localPosition = local;
+            _camOffsetTargetY = _camOffsetStandY;
+            _camOffsetVelocity = 0f;
+        }
+
         private float StickMagnitude()
         {
             var la = _moveProvider != null ? _moveProvider.leftHandMoveAction.action : null;
             return la != null && la.enabled ? la.ReadValue<Vector2>().magnitude : 0f;
+        }
+
+        private float ForwardInput()
+        {
+            var la = _moveProvider != null ? _moveProvider.leftHandMoveAction.action : null;
+            return la != null && la.enabled ? la.ReadValue<Vector2>().y : 0f;
+        }
+
+        private float RightStickMagnitude()
+        {
+            return _rightStickAction != null && _rightStickAction.enabled
+                ? _rightStickAction.ReadValue<Vector2>().magnitude
+                : 0f;
         }
 
         private void EndSprint()

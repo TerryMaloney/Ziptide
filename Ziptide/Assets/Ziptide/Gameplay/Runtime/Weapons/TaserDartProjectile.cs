@@ -39,9 +39,11 @@ namespace Ziptide.Gameplay
             var rb = GetComponent<Rigidbody>();
             if (rb != null)
             {
-                rb.isKinematic = true;
+                // Unity warns when velocity is written after the body becomes kinematic. Stop the
+                // dynamic body first, then lock it for the sticky-parent state.
                 rb.velocity = Vector3.zero;
                 rb.angularVelocity = Vector3.zero;
+                rb.isKinematic = true;
             }
 
             transform.SetParent(collision.transform, true);
