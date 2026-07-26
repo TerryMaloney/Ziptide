@@ -27,6 +27,12 @@ namespace Ziptide.Gameplay
     [RequireComponent(typeof(XRGrabInteractable))]
     public class MeleeWeaponRuntime : MonoBehaviour
     {
+        // Quest 3S device pass 2026-07-26 proved the earlier 70° factory guess resolves as a forward
+        // stabbing hold on the tracked-controller basis. A 90° attach basis makes the blade's long +Z
+        // axis rise from the fist. This is deliberately blade-only; guns and the thrust-oriented pike
+        // keep their independent pose contracts.
+        private static readonly Vector3 BreakerBladeDeviceGripEuler = new Vector3(90f, 0f, 0f);
+
         private XRGrabInteractable _grab;
         private Transform _tip;                 // the business end (child "Muzzle" from ItemFactory)
         private Vector3 _lastTipPos;
@@ -51,6 +57,17 @@ namespace Ziptide.Gameplay
             _tip = transform.Find("Muzzle");
             if (_tip == null) _tip = transform;
             _lastTipPos = _tip.position;
+        }
+
+        private void Start()
+        {
+            ArenaWeaponDefinition def = Def;
+            if (def == null || def.kind != ArenaWeaponKind.BreakerBlade || _grab == null || _grab.attachTransform == null)
+                return;
+
+            _grab.attachTransform.localRotation = Quaternion.Euler(BreakerBladeDeviceGripEuler);
+            Debug.Log("ZIPTIDE: MELEE_GRIP_POSE weapon=breaker_blade euler=" +
+                      BreakerBladeDeviceGripEuler.ToString("F0"));
         }
 
         private void Update()
