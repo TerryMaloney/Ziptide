@@ -27,6 +27,33 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-26 (rb112) — T-Dog lane: 🟢 UNBLOCK CI — the red was a STALE BOARD ROW, not the Home Hub fix
+
+- **Terry could not get a build because CI was RED. Root cause found and it is not code:** the one
+  failing EditMode test (1170/1171) is **`GateGapTests.GateGap5_NoBoardClaim_RotsSilently`** — a
+  🟡 board claim older than 14 days. Pulled the authoritative NUnit XML from the run artifact
+  rather than guessing; the message names `SPRINT.md` row **FH-S07** (its newest date came from the
+  `2026-07-11_GPT56_FIRST_HOUR` log path = 15 days). The SAME staleness is what fails
+  `factory_governance_gate.py`, i.e. one cause, two red gates.
+- **This red PREDATES the Home Hub work.** Verdict history shows RED from `22c39779` onward — a
+  **docs-only** commit — through ~10 commits by multiple operators, including mine. Everyone has
+  been pushing onto an already-red tree. ⚠️ **The 3-red circuit breaker should have fired days ago
+  and did not** — flagging for the process owner (candidate MISS_LEDGER entry: a staleness gate
+  that blocks every lane has no owner-alert, so it reads as background noise).
+- **Fixed the sanctioned way** (the gate offers finish / re-date-with-HANDOFF-note / release /
+  validated pause): **re-dated FH-S07 to 2026-07-26 with this note**. The row is genuinely live —
+  it IS the Home/W000 boot surface (New/Continue/Settings) that failed on device 2026-07-25 and
+  that rb110 just repaired. Its status now records the device FAIL, the shipped fix `54e23022`,
+  and that bake/headset evidence is pending on the NEXT Golden candidate. No other row is gated:
+  `SPRINT_ART.md` and `SPRINT_MULTIPLAYER.md` are explicitly paused in
+  `docs/recovery/paused_sprint_lanes.json` (verified), so their stale rows are legitimately exempt.
+- **Verified for the record:** the two new Home Hub anchor test failures I suspected were NOT the
+  cause — my float-tolerance hardening (`167d5265`) was correct hygiene but unrelated; all four
+  anchor tests pass. The failing count stayed exactly 1 across every push.
+- **Next:** CI should go green on this push → Recovery Golden Android produces Terry's new
+  candidate APK → install with the rb109 uninstall-first law and re-run the bounded route.
+- **Commit:** this one (SPRINT.md FH-S07 re-date + this entry).
+
 ### 2026-07-25 (rb111) — T-Dog lane: 🔍 WHY THE NET MISSED IT + the BOOT_LIVENESS gate plan (docs only)
 
 - **Terry asked why our system didn't catch the unplayable build.** Independently re-verified
