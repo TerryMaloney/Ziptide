@@ -49,6 +49,7 @@ namespace Ziptide.Gameplay
         private void OnDestroy()
         {
             _toggleAction?.Dispose();
+            if (_menuRoot != null) Destroy(_menuRoot);
         }
 
         private void Update()
@@ -81,6 +82,7 @@ namespace Ziptide.Gameplay
 
             BuildMenuIfNeeded();
             if (_menuRoot == null) return;
+            RebindInteractables();
 
             Vector3 flat = cam.transform.forward;
             flat.y = 0f;
@@ -194,6 +196,31 @@ namespace Ziptide.Gameplay
             interactable.selectEntered.AddListener(_ => selected());
 
             AddLabel(tile.transform, text, new Vector3(0f, 0f, -0.56f), 0.018f);
+        }
+
+        /// <summary>
+        /// The persistent rig adopts and replaces scene-local XRInteractionManagers during travel.
+        /// The field menu persists too, so rebind its tiles every time it opens rather than retaining
+        /// a destroyed manager from the world where the panel was first created.
+        /// </summary>
+        private void RebindInteractables()
+        {
+            if (_menuRoot == null) return;
+            XRInteractionManager manager = FindObjectOfType<XRInteractionManager>();
+            if (manager == null)
+            {
+                Debug.LogWarning("ZIPTIDE: PLAYER_MENU_BIND_FAIL reason=no_xri_manager");
+                return;
+            }
+
+            XRBaseInteractable[] interactables = _menuRoot.GetComponentsInChildren<XRBaseInteractable>(true);
+            for (int i = 0; i < interactables.Length; i++)
+            {
+                XRBaseInteractable interactable = interactables[i];
+                if (interactable != null && interactable.interactionManager != manager)
+                    interactable.interactionManager = manager;
+            }
+            Debug.Log("ZIPTIDE: PLAYER_MENU_BOUND count=" + interactables.Length + " manager=" + manager.name);
         }
 
         private static void AddLabel(Transform parent, string text, Vector3 localPosition, float characterSize)
