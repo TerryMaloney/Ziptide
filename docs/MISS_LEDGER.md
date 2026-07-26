@@ -143,6 +143,27 @@ Read by every lane at session start alongside HANDOFF. Full spec: `FINISHED_GAME
     (→ pending: META_STORE_READINESS section + ⚖ Terry confirms Mixed Ages as the target
     designation.)
 
+18. **WHAT:** an unplayable build passed every gate — from the actual launch state a player had
+    NO available action (boot hold suspended move/turn in a floorless `_Boot`, zero ACTIVE ray
+    interactors, the only choice stranded 2.9-4.4 m away). **FOUND BY:** Terry's M0 headset
+    session, 2026-07-25, in the first sixty seconds. **WHY MISSED:** the PlayMode harness
+    *repaired the failing state before observing it* — `RecoveryActualRigControllerSimulation`
+    disables the production `XRInputModalityManager` (the component that decides ray activation),
+    force-activates the ray hierarchies, and fakes the head pose; the same artifact had already
+    logged `rays=0(active=0)` + `NO_RAY_INTERACTORS` and treated it as setup, not a blocker.
+    Amplifiers: findings are graded individually so a combination that is jointly fatal stayed
+    warning-only, and every UI/reach audit inspects AUTHORED scenes while the Home Hub is created
+    at runtime. **CLASS:** component-green / goal-dead — every owner satisfied its local contract
+    and no gate asked whether a real player could execute the next required verb from the
+    unmutated production state; plus the harness-heals-then-certifies pattern that hides it.
+    **SYSTEM CHANGE:** `docs/recovery/BOOT_LIVENESS_GATE_PLAN.md` G1-G6 — production-state-first
+    liveness assertion before any synthetic activation (G1) · a mechanical harness-honesty gate
+    forbidding mutation-before-assertion and separating synthetic evidence classes (G2) ·
+    contextual fatal combinations emitting a blocking `BOOT_DEADLOCK` (G3) · a runtime-created
+    interactable census measured from the actual tracked pose (G4) · the first-actionable-verb
+    delivery gate before any APK reaches Terry (G5) · standing/seated/child reach proxies (G6).
+    (→ pending: fix shipped rb110; the entry CLOSES only when G1-G4 exist and are green.)
+
 ## CLOSED
 
 *(entries move here when their SYSTEM CHANGE is verified in place — the fix alone never closes

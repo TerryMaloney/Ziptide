@@ -27,6 +27,37 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-25 (rb111) — T-Dog lane: 🔍 WHY THE NET MISSED IT + the BOOT_LIVENESS gate plan (docs only)
+
+- **Terry asked why our system didn't catch the unplayable build.** Independently re-verified
+  GPT's diagnostic against source, then wrote **`docs/recovery/BOOT_LIVENESS_GATE_PLAN.md`**.
+- **The one-sentence answer:** the harness DISABLED the production component whose misbehaviour
+  caused the bug, force-activated the broken thing, then certified the repaired state green —
+  while the raw failure evidence sat in the same artifact, logged and ignored.
+- **Verified myself (not taken on trust):** `RecoveryActualRigControllerSimulation
+  .DisableModalityManagers()` sets `manager.enabled=false` on every `XRInputModalityManager`
+  (:493-503) — that is exactly the owner of ray activation; then `ray.enabled=true` (:547),
+  `go.SetActive(true)` (:569), `behaviour.enabled=true` (:596), and `TrackedPoseDriver` disabled
+  with a forced 1.65 m head (:505-536). Also confirmed `NO_RAY_INTERACTORS` counts only ACTIVE
+  interactors (`PlayerRigPersistence:456-469`) while five rays DO exist in `_Boot.unity`.
+- **The class named: "component-green, goal-dead"** — every owner met its local contract; no gate
+  asked whether a real player can execute the next required verb from the UNMUTATED production
+  state. Three amplifiers: harness-heals-then-certifies · findings graded individually so a
+  jointly-fatal combination stayed warning-only · every UI/reach audit inspects AUTHORED scenes
+  while the hub is built at RUNTIME (a structural blind spot for every future runtime menu).
+- **The plan (ordered, implementable by a lower-cost model):** G1 production-state-first liveness
+  assertion · G2 mechanical harness-honesty gate (no mutation before assertion; synthetic evidence
+  is a separate class) · G3 contextual fatal combinations → blocking `BOOT_DEADLOCK` · G4
+  runtime-created interactable census from the actual tracked pose · G5 first-actionable-verb
+  delivery gate before any APK reaches Terry · G6 standing/seated/child reach proxies. G1+G2 alone
+  would have caught this exact build. Plus the grading law: **CI green never means playable** —
+  the verdict must name its proof level (this build was PLAYMODE-green, QUEST-dead).
+- **MISS_LEDGER #18 logged**; it CLOSES only when G1-G4 exist and are green — the fix alone is a
+  loan, per the Class Law.
+- **Next:** G1/G2 are the cheapest and highest value; they belong to the recovery/verification
+  owner. Terry's retest of the rb110 candidate is unaffected and proceeds first.
+- **Commit:** this one (gate plan + ledger #18 + this entry).
+
 ### 2026-07-25 (rb110) — T-Dog lane: 🔧 M0 BOOT-MENU DEADLOCK — FIX IMPLEMENTED (authorized by Terry after the device FAIL)
 
 - **Device FAIL (Terry, golden `c45b1a2`):** could not move, could not reach/select NEW GAME.
