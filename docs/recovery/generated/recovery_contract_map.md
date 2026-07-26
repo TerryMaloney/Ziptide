@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
-- Scanned files: **724**
-- Scanner findings: **2543**
+- Scanned files: **726**
+- Scanner findings: **2576**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -185,6 +185,12 @@ None.
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:29` **RUNTIME_BOOTSTRAP** — `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:36` **RUNTIME_BOOTSTRAP** — `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
+
+### `Ziptide.Gameplay.PlayerMenuRuntime` — 1 signal(s)
+
+- Codes: `DONT_DESTROY_ON_LOAD`
+- Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs:166` **DONT_DESTROY_ON_LOAD** — `DontDestroyOnLoad(_menuRoot);`
 
 ### `Ziptide.Gameplay.PvpProgressionRuntime` — 2 signal(s)
 
@@ -418,17 +424,19 @@ None.
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:703` **INPUT_ACTION_REFERENCE** — `var field = typeof(InputActionManager).GetField(`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:707` **INPUT_ACTION_REFERENCE** — `field.SetValue(iam, new System.Collections.Generic.List<InputActionAsset>());`
 
-### `Ziptide.Gameplay.DashLocomotion` — 7 signal(s)
+### `Ziptide.Gameplay.DashLocomotion` — 9 signal(s)
 
 - Codes: `INPUT_ACTION_REFERENCE`, `INPUT_BUTTON_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs:36` **INPUT_ACTION_REFERENCE** — `private InputAction _jumpAction;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs:37` **INPUT_ACTION_REFERENCE** — `private InputAction _sprintAction;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs:38` **INPUT_ACTION_REFERENCE** — `private InputAction _crouchAction;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs:98` **INPUT_ACTION_REFERENCE** — `_jumpAction = new InputAction("ZiptideJump", InputActionType.Button);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs:99` **INPUT_BUTTON_REFERENCE** — `_jumpAction.AddBinding("<XRController>{RightHand}/primaryButton"); // A`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs:103` **INPUT_ACTION_REFERENCE** — `_sprintAction = new InputAction("ZiptideSprint", InputActionType.Button);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs:108` **INPUT_ACTION_REFERENCE** — `_crouchAction = new InputAction("ZiptideCrouch", InputActionType.Button);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs:40` **INPUT_ACTION_REFERENCE** — `private InputAction _jumpAction;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs:41` **INPUT_ACTION_REFERENCE** — `private InputAction _sprintAction;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs:42` **INPUT_ACTION_REFERENCE** — `private InputAction _crouchAction;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs:43` **INPUT_ACTION_REFERENCE** — `private InputAction _rightStickAction;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs:111` **INPUT_ACTION_REFERENCE** — `_jumpAction = new InputAction("ZiptideJump", InputActionType.Button);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs:112` **INPUT_BUTTON_REFERENCE** — `_jumpAction.AddBinding("<XRController>{RightHand}/primaryButton"); // A`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs:116` **INPUT_ACTION_REFERENCE** — `_sprintAction = new InputAction("ZiptideSprint", InputActionType.Button);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs:121` **INPUT_ACTION_REFERENCE** — `_crouchAction = new InputAction("ZiptideCrouch", InputActionType.Button);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs:126` **INPUT_ACTION_REFERENCE** — `_rightStickAction = new InputAction("ZiptideCrouchTurnGuard", InputActionType.Value);`
 
 ### `Ziptide.Gameplay.DevTools.DevWarpBoard` — 1 signal(s)
 
@@ -490,6 +498,14 @@ None.
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:186` **INPUT_ACTION_REFERENCE** — `private static void AddAssets(InputActionManager manager, List<InputActionAsset> assets)`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:189` **INPUT_ACTION_REFERENCE** — `foreach (InputActionAsset asset in manager.actionAssets)`
 
+### `Ziptide.Gameplay.PlayerMenuRuntime` — 3 signal(s)
+
+- Codes: `INPUT_ACTION_REFERENCE`, `INPUT_BUTTON_REFERENCE`
+- Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs:25` **INPUT_ACTION_REFERENCE** — `private InputAction _toggleAction;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs:35` **INPUT_ACTION_REFERENCE** — `_toggleAction = new InputAction("ZiptidePlayerMenu", InputActionType.Button);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs:36` **INPUT_BUTTON_REFERENCE** — `_toggleAction.AddBinding("<XRController>{LeftHand}/secondaryButton"); // Y`
+
 ### `Ziptide.Gameplay.QuickSwap` — 3 signal(s)
 
 - Codes: `INPUT_ACTION_REFERENCE`, `INPUT_BUTTON_REFERENCE`
@@ -549,6 +565,12 @@ None.
 - Codes: `INPUT_ACTION_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourObservationCoreTests.cs`
   - `Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourObservationCoreTests.cs:189` **INPUT_ACTION_REFERENCE** — `StringAssert.DoesNotContain("InputAction", source);`
+
+### `Ziptide.Tests.EditMode.RecoveryPlayabilityDeviceTests` — 1 signal(s)
+
+- Codes: `INPUT_BUTTON_REFERENCE`
+- Paths: `Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryPlayabilityDeviceTests.cs`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryPlayabilityDeviceTests.cs:20` **INPUT_BUTTON_REFERENCE** — `StringAssert.Contains("<XRController>{LeftHand}/secondaryButton", source);`
 
 ### `Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation` — 15 signal(s)
 
@@ -1643,9 +1665,9 @@ None.
 
 - Codes: `NEW_GAME_OBJECT`, `RUNTIME_MATERIAL_CREATE`, `SHADER_FIND`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:72` **NEW_GAME_OBJECT** — `var go = new GameObject("__LaserSight");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:80` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Unlit");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:83` **RUNTIME_MATERIAL_CREATE** — `var mat = new Material(shader);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:90` **NEW_GAME_OBJECT** — `var go = new GameObject("__LaserSight");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:98` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Unlit");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:101` **RUNTIME_MATERIAL_CREATE** — `var mat = new Material(shader);`
 
 ### `Ziptide.Gameplay.HammerTool` — 3 signal(s)
 
@@ -1690,15 +1712,15 @@ None.
 
 - Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`, `RUNTIME_MATERIAL_CREATE`, `SHADER_FIND`, `TEXTMESH_COMPONENT`, `XR_INTERACTABLE_COMPONENT`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:265` **NEW_GAME_OBJECT** — `var go = new GameObject("__HOME_HUB_COMFORT_SETTINGS");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:289` **CREATE_PRIMITIVE** — `var board = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:321` **CREATE_PRIMITIVE** — `var tile = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:328` **XR_INTERACTABLE_COMPONENT** — `var interactable = tile.AddComponent<XRSimpleInteractable>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:472` **NEW_GAME_OBJECT** — `var go = new GameObject("Label_" + text.Replace(' ', '_').Replace('\n', '_'));`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:475` **TEXTMESH_COMPONENT** — `var tm = go.AddComponent<TextMesh>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:494` **SHADER_FIND** — `Shader shader = Shader.Find("Universal Render Pipeline/Lit");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:495` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:497` **RUNTIME_MATERIAL_CREATE** — `var material = new Material(shader);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:264` **NEW_GAME_OBJECT** — `var go = new GameObject("__HOME_HUB_COMFORT_SETTINGS");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:288` **CREATE_PRIMITIVE** — `var board = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:320` **CREATE_PRIMITIVE** — `var tile = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:327` **XR_INTERACTABLE_COMPONENT** — `var interactable = tile.AddComponent<XRSimpleInteractable>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:471` **NEW_GAME_OBJECT** — `var go = new GameObject("Label_" + text.Replace(' ', '_').Replace('\n', '_'));`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:474` **TEXTMESH_COMPONENT** — `var tm = go.AddComponent<TextMesh>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:493` **SHADER_FIND** — `Shader shader = Shader.Find("Universal Render Pipeline/Lit");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:494` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:496` **RUNTIME_MATERIAL_CREATE** — `var material = new Material(shader);`
 
 ### `Ziptide.Gameplay.HuskMolterBehavior` — 4 signal(s)
 
@@ -1798,7 +1820,7 @@ None.
 - Codes: `CREATE_PRIMITIVE`, `XR_INTERACTABLE_COMPONENT`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:27` **XR_INTERACTABLE_COMPONENT** — `[RequireComponent(typeof(XRGrabInteractable))]`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:137` **CREATE_PRIMITIVE** — `var s = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:154` **CREATE_PRIMITIVE** — `var s = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
 
 ### `Ziptide.Gameplay.MiningRigRuntime` — 9 signal(s)
 
@@ -1881,6 +1903,20 @@ None.
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerAvatarRig.cs:50` **NEW_GAME_OBJECT** — `var root = new GameObject("__Glove");`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerAvatarRig.cs:74` **NEW_GAME_OBJECT** — `var torso = new GameObject("__AvatarTorso");`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerAvatarRig.cs:93` **CREATE_PRIMITIVE** — `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+
+### `Ziptide.Gameplay.PlayerMenuRuntime` — 9 signal(s)
+
+- Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`, `RUNTIME_MATERIAL_CREATE`, `SHADER_FIND`, `TEXTMESH_COMPONENT`, `XR_INTERACTABLE_COMPONENT`
+- Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs:165` **NEW_GAME_OBJECT** — `_menuRoot = new GameObject("__PLAYER_FIELD_MENU");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs:168` **CREATE_PRIMITIVE** — `GameObject board = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs:186` **CREATE_PRIMITIVE** — `GameObject tile = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs:193` **XR_INTERACTABLE_COMPONENT** — `XRSimpleInteractable interactable = tile.AddComponent<XRSimpleInteractable>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs:228` **NEW_GAME_OBJECT** — `GameObject label = new GameObject("Label");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs:231` **TEXTMESH_COMPONENT** — `TextMesh mesh = label.AddComponent<TextMesh>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs:250` **SHADER_FIND** — `Shader shader = Shader.Find("Universal Render Pipeline/Lit");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs:251` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs:253` **RUNTIME_MATERIAL_CREATE** — `Material material = new Material(shader);`
 
 ### `Ziptide.Gameplay.PlayerStunReceiver` — 4 signal(s)
 
@@ -2127,10 +2163,10 @@ None.
 
 - Codes: `CREATE_PRIMITIVE`, `RUNTIME_MATERIAL_CREATE`, `SHADER_FIND`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/TaserDartProjectile.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/TaserDartProjectile.cs:103` **CREATE_PRIMITIVE** — `var spark = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/TaserDartProjectile.cs:112` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Unlit");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/TaserDartProjectile.cs:113` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Universal Render Pipeline/Lit");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/TaserDartProjectile.cs:116` **RUNTIME_MATERIAL_CREATE** — `var mat = new Material(shader);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/TaserDartProjectile.cs:105` **CREATE_PRIMITIVE** — `var spark = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/TaserDartProjectile.cs:114` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Unlit");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/TaserDartProjectile.cs:115` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Universal Render Pipeline/Lit");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/TaserDartProjectile.cs:118` **RUNTIME_MATERIAL_CREATE** — `var mat = new Material(shader);`
 
 ### `Ziptide.Gameplay.TetherSwarmBehavior` — 5 signal(s)
 
@@ -2927,10 +2963,10 @@ None.
 
 - Codes: `XRI_MANAGER_ASSIGN`, `XRI_MANAGER_LOOKUP`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:330` **XRI_MANAGER_LOOKUP** — `if (manager == null) manager = FindObjectOfType<XRInteractionManager>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:336` **XRI_MANAGER_ASSIGN** — `interactable.interactionManager = manager;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:374` **XRI_MANAGER_LOOKUP** — `XRInteractionManager manager = FindObjectOfType<XRInteractionManager>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:378` **XRI_MANAGER_ASSIGN** — `interactable.interactionManager = manager;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:329` **XRI_MANAGER_LOOKUP** — `if (manager == null) manager = FindObjectOfType<XRInteractionManager>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:335` **XRI_MANAGER_ASSIGN** — `interactable.interactionManager = manager;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:373` **XRI_MANAGER_LOOKUP** — `XRInteractionManager manager = FindObjectOfType<XRInteractionManager>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:377` **XRI_MANAGER_ASSIGN** — `interactable.interactionManager = manager;`
 
 ### `Ziptide.Gameplay.MiningRigRuntime` — 2 signal(s)
 
@@ -2951,6 +2987,15 @@ None.
 - Codes: `XRI_MANAGER_LOOKUP`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:173` **XRI_MANAGER_LOOKUP** — `UnityEngine.Object.FindObjectsOfType<XRInteractionManager>(true);`
+
+### `Ziptide.Gameplay.PlayerMenuRuntime` — 4 signal(s)
+
+- Codes: `XRI_MANAGER_ASSIGN`, `XRI_MANAGER_LOOKUP`
+- Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs:194` **XRI_MANAGER_LOOKUP** — `XRInteractionManager manager = FindObjectOfType<XRInteractionManager>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs:195` **XRI_MANAGER_ASSIGN** — `if (manager != null) interactable.interactionManager = manager;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs:209` **XRI_MANAGER_LOOKUP** — `XRInteractionManager manager = FindObjectOfType<XRInteractionManager>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs:221` **XRI_MANAGER_ASSIGN** — `interactable.interactionManager = manager;`
 
 ### `Ziptide.Gameplay.QuartersRoom` — 2 signal(s)
 
@@ -3399,21 +3444,21 @@ None.
 - Codes: `EVENT_DECLARATION`, `PLAYER_PROFILE_REFERENCE`, `SAVE_SYSTEM_REFERENCE`, `STATIC_EVENT_DECLARATION`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:72` **SAVE_SYSTEM_REFERENCE** — `/// all persistence to SaveSystem and all scene change to the callback supplied by BootLoader.`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:105` **EVENT_DECLARATION** — `public static event Action<bool> BootPresentationReady;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:105` **STATIC_EVENT_DECLARATION** — `public static event Action<bool> BootPresentationReady;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:106` **EVENT_DECLARATION** — `public static event Action<PlayerProfile> NewGameProfileCreated;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:106` **PLAYER_PROFILE_REFERENCE** — `public static event Action<PlayerProfile> NewGameProfileCreated;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:106` **STATIC_EVENT_DECLARATION** — `public static event Action<PlayerProfile> NewGameProfileCreated;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:107` **EVENT_DECLARATION** — `public static event Action<HomeHubChoice> ChoiceSelected;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:107` **STATIC_EVENT_DECLARATION** — `public static event Action<HomeHubChoice> ChoiceSelected;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:108` **EVENT_DECLARATION** — `public static event Action SettingsRequested;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:108` **STATIC_EVENT_DECLARATION** — `public static event Action SettingsRequested;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:135` **SAVE_SYSTEM_REFERENCE** — `bool canContinue = SaveSystem.HasExistingProfile;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:220` **SAVE_SYSTEM_REFERENCE** — `SaveSystem.Instance == null)`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:246` **PLAYER_PROFILE_REFERENCE** — `PlayerProfile profile = SaveSystem.Instance.StartNewProfile();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:246` **SAVE_SYSTEM_REFERENCE** — `PlayerProfile profile = SaveSystem.Instance.StartNewProfile();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:251` **SAVE_SYSTEM_REFERENCE** — `// Load remains SaveSystem's sole profile recovery/migration path.`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:252` **SAVE_SYSTEM_REFERENCE** — `SaveSystem.Instance.Load();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:104` **EVENT_DECLARATION** — `public static event Action<bool> BootPresentationReady;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:104` **STATIC_EVENT_DECLARATION** — `public static event Action<bool> BootPresentationReady;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:105` **EVENT_DECLARATION** — `public static event Action<PlayerProfile> NewGameProfileCreated;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:105` **PLAYER_PROFILE_REFERENCE** — `public static event Action<PlayerProfile> NewGameProfileCreated;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:105` **STATIC_EVENT_DECLARATION** — `public static event Action<PlayerProfile> NewGameProfileCreated;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:106` **EVENT_DECLARATION** — `public static event Action<HomeHubChoice> ChoiceSelected;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:106` **STATIC_EVENT_DECLARATION** — `public static event Action<HomeHubChoice> ChoiceSelected;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:107` **EVENT_DECLARATION** — `public static event Action SettingsRequested;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:107` **STATIC_EVENT_DECLARATION** — `public static event Action SettingsRequested;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:134` **SAVE_SYSTEM_REFERENCE** — `bool canContinue = SaveSystem.HasExistingProfile;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:219` **SAVE_SYSTEM_REFERENCE** — `SaveSystem.Instance == null)`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:245` **PLAYER_PROFILE_REFERENCE** — `PlayerProfile profile = SaveSystem.Instance.StartNewProfile();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:245` **SAVE_SYSTEM_REFERENCE** — `PlayerProfile profile = SaveSystem.Instance.StartNewProfile();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:250` **SAVE_SYSTEM_REFERENCE** — `// Load remains SaveSystem's sole profile recovery/migration path.`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:251` **SAVE_SYSTEM_REFERENCE** — `SaveSystem.Instance.Load();`
 
 ### `Ziptide.Gameplay.ItemFactory` — 1 signal(s)
 
@@ -4084,9 +4129,9 @@ None.
 
 - Codes: `CAMERA_MAIN_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:162` **CAMERA_MAIN_REFERENCE** — `Camera cam = Camera.main;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:274` **CAMERA_MAIN_REFERENCE** — `Camera cam = Camera.main;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:404` **CAMERA_MAIN_REFERENCE** — `Camera cam = Camera.main;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:161` **CAMERA_MAIN_REFERENCE** — `Camera cam = Camera.main;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:273` **CAMERA_MAIN_REFERENCE** — `Camera cam = Camera.main;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:403` **CAMERA_MAIN_REFERENCE** — `Camera cam = Camera.main;`
 
 ### `Ziptide.Gameplay.JobDirector` — 1 signal(s)
 
@@ -4105,6 +4150,12 @@ None.
 - Codes: `CAMERA_MAIN_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:89` **CAMERA_MAIN_REFERENCE** — `canvas.worldCamera = Camera.main;`
+
+### `Ziptide.Gameplay.PlayerMenuRuntime` — 1 signal(s)
+
+- Codes: `CAMERA_MAIN_REFERENCE`
+- Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs:76` **CAMERA_MAIN_REFERENCE** — `if (cam == null) cam = Camera.main;`
 
 ### `Ziptide.Gameplay.PvpBot` — 1 signal(s)
 
@@ -4559,7 +4610,7 @@ None.
 
 - Codes: `FALLBACK_MARKER`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:29` **FALLBACK_MARKER** — `/// Alpha 0 keeps the default sight color (ItemDefinition fallback idiom). Init repeats the melee`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:30` **FALLBACK_MARKER** — `/// Alpha 0 keeps the default sight color (ItemDefinition fallback idiom). Init repeats the melee`
 
 ### `Ziptide.Gameplay.HazardZoneRuntime` — 1 signal(s)
 
@@ -4638,6 +4689,12 @@ None.
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipRefit.cs:13` **FALLBACK_MARKER** — `/// same skeleton, deck/door offsets untouched (they key off the unchanged root). Picasso's`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipRefit.cs:46` **FALLBACK_MARKER** — `// ── Chassis proportions (six silhouettes on one skeleton) ────────────`
 
+### `Ziptide.Gameplay.ToxicRiverRuntime` — 1 signal(s)
+
+- Codes: `FALLBACK_MARKER`
+- Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ToxicRiverRuntime.cs`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ToxicRiverRuntime.cs:14` **FALLBACK_MARKER** — `/// logged fallback when the visual surface cannot be resolved.`
+
 ### `Ziptide.Gameplay.TransmissionConsole` — 1 signal(s)
 
 - Codes: `FALLBACK_MARKER`
@@ -4705,6 +4762,12 @@ None.
 - Codes: `FALLBACK_MARKER`
 - Paths: `Ziptide/Assets/Ziptide/Tests/EditMode/ItemRegistryConventionTests.cs`
   - `Ziptide/Assets/Ziptide/Tests/EditMode/ItemRegistryConventionTests.cs:11` **FALLBACK_MARKER** — `/// device (the loaded-objects fallback only sees assets a loaded scene happens to reference — a`
+
+### `Ziptide.Tests.EditMode.RecoveryPlayabilityDeviceTests` — 1 signal(s)
+
+- Codes: `FALLBACK_MARKER`
+- Paths: `Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryPlayabilityDeviceTests.cs`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryPlayabilityDeviceTests.cs:99` **FALLBACK_MARKER** — `"The no-ray direct-hand fallback must remain valid for the three-tile layout.");`
 
 ### `Ziptide.Tests.EditMode.WorldImprovementManifestTests` — 7 signal(s)
 

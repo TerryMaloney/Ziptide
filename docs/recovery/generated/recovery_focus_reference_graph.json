@@ -1,12 +1,12 @@
 {
   "tool": "recovery_focus_reference_graph",
-  "scannedFiles": 724,
-  "referenceCount": 396,
+  "scannedFiles": 726,
+  "referenceCount": 398,
   "summaries": {
     "melee": {
-      "referenceCount": 101,
-      "fileCount": 32,
-      "callerFileCount": 32,
+      "referenceCount": 103,
+      "fileCount": 33,
+      "callerFileCount": 33,
       "paths": [
         "Ziptide/Assets/Ziptide/Content/Runtime/Items/ItemDefinition.cs",
         "Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs",
@@ -32,6 +32,7 @@
         "Ziptide/Assets/Ziptide/Tests/EditMode/ForgeMeshTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/ForgeRecipeLibraryTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/QuestWeaponAndCouplerRegressionTests.cs",
+        "Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryPlayabilityDeviceTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/VfxRecipeTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/WeaponPerceptualAuditRulesTests.cs",
         "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs",
@@ -66,6 +67,7 @@
         "Ziptide/Assets/Ziptide/Tests/EditMode/ForgeMeshTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/ForgeRecipeLibraryTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/QuestWeaponAndCouplerRegressionTests.cs",
+        "Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryPlayabilityDeviceTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/VfxRecipeTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/WeaponPerceptualAuditRulesTests.cs",
         "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs",
@@ -256,6 +258,15 @@
           "symbol": "Ziptide.Gameplay.ItemFactory",
           "snippet": "case ArenaWeaponKind.BreakerBlade:",
           "declaration_file": false
+        },
+        {
+          "focus": "melee",
+          "token": "ArenaWeaponKind.BreakerBlade",
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
+          "line": 65,
+          "symbol": "Ziptide.Gameplay.MeleeWeaponRuntime",
+          "snippet": "if (def == null || def.kind != ArenaWeaponKind.BreakerBlade || _grab == null || _grab.attachTransform == null)",
+          "declaration_file": false
         }
       ],
       "ArenaWeaponKind.SonicThumper": [
@@ -319,7 +330,7 @@
           "focus": "melee",
           "token": "ArenaWeaponKind.TidePike",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-          "line": 46,
+          "line": 52,
           "symbol": "Ziptide.Gameplay.MeleeWeaponRuntime",
           "snippet": "private bool IsPike => Def != null && Def.kind == ArenaWeaponKind.TidePike;",
           "declaration_file": false
@@ -413,7 +424,7 @@
           "focus": "melee",
           "token": "HitFromHammer",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-          "line": 84,
+          "line": 101,
           "symbol": "Ziptide.Gameplay.MeleeWeaponRuntime",
           "snippet": "wall.HitFromHammer(h.ClosestPoint(tipPos));",
           "declaration_file": false
@@ -451,16 +462,16 @@
           "focus": "melee",
           "token": "MeleeWeaponRuntime",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs",
-          "line": 10,
+          "line": 12,
           "symbol": "Ziptide.Gameplay.GunLaserSight",
-          "snippet": "/// MeleeWeaponRuntime is present instead of painting a misleading laser down a sword or pike.",
+          "snippet": "/// itself when MeleeWeaponRuntime is present.",
           "declaration_file": false
         },
         {
           "focus": "melee",
           "token": "MeleeWeaponRuntime",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs",
-          "line": 41,
+          "line": 42,
           "symbol": "Ziptide.Gameplay.GunLaserSight",
           "snippet": "if (GetComponent<MeleeWeaponRuntime>() == null) return false;",
           "declaration_file": false
@@ -473,6 +484,15 @@
           "symbol": "Ziptide.Gameplay.MeleeWeaponRuntime",
           "snippet": "public class MeleeWeaponRuntime : MonoBehaviour",
           "declaration_file": true
+        },
+        {
+          "focus": "melee",
+          "token": "MeleeWeaponRuntime",
+          "path": "Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryPlayabilityDeviceTests.cs",
+          "line": 56,
+          "symbol": "Ziptide.Tests.EditMode.RecoveryPlayabilityDeviceTests",
+          "snippet": "string melee = Read(\"Gameplay\", \"Runtime\", \"Weapons\", \"MeleeWeaponRuntime.cs\");",
+          "declaration_file": false
         }
       ],
       "Muzzle": [
@@ -786,16 +806,16 @@
           "focus": "melee",
           "token": "Muzzle",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs",
-          "line": 9,
+          "line": 11,
           "symbol": "Ziptide.Gameplay.GunLaserSight",
-          "snippet": "/// also expose a child named Muzzle as their physical tip, so this component disables itself when",
+          "snippet": "/// Melee weapons expose a child named Muzzle as their physical tip, so this component disables",
           "declaration_file": false
         },
         {
           "focus": "melee",
           "token": "Muzzle",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs",
-          "line": 49,
+          "line": 50,
           "symbol": "Ziptide.Gameplay.GunLaserSight",
           "snippet": "_muzzle = transform.Find(\"Muzzle\");",
           "declaration_file": false
@@ -804,7 +824,7 @@
           "focus": "melee",
           "token": "Muzzle",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-          "line": 31,
+          "line": 37,
           "symbol": "Ziptide.Gameplay.MeleeWeaponRuntime",
           "snippet": "private Transform _tip; // the business end (child \"Muzzle\" from ItemFactory)",
           "declaration_file": false
@@ -813,7 +833,7 @@
           "focus": "melee",
           "token": "Muzzle",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-          "line": 51,
+          "line": 57,
           "symbol": "Ziptide.Gameplay.MeleeWeaponRuntime",
           "snippet": "_tip = transform.Find(\"Muzzle\");",
           "declaration_file": false
@@ -5908,16 +5928,16 @@
       "focus": "melee",
       "token": "MeleeWeaponRuntime",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs",
-      "line": 10,
+      "line": 12,
       "symbol": "Ziptide.Gameplay.GunLaserSight",
-      "snippet": "/// MeleeWeaponRuntime is present instead of painting a misleading laser down a sword or pike.",
+      "snippet": "/// itself when MeleeWeaponRuntime is present.",
       "declaration_file": false
     },
     {
       "focus": "melee",
       "token": "MeleeWeaponRuntime",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs",
-      "line": 41,
+      "line": 42,
       "symbol": "Ziptide.Gameplay.GunLaserSight",
       "snippet": "if (GetComponent<MeleeWeaponRuntime>() == null) return false;",
       "declaration_file": false
@@ -5935,25 +5955,34 @@
       "focus": "melee",
       "token": "Muzzle",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs",
-      "line": 9,
+      "line": 11,
       "symbol": "Ziptide.Gameplay.GunLaserSight",
-      "snippet": "/// also expose a child named Muzzle as their physical tip, so this component disables itself when",
+      "snippet": "/// Melee weapons expose a child named Muzzle as their physical tip, so this component disables",
       "declaration_file": false
     },
     {
       "focus": "melee",
       "token": "Muzzle",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs",
-      "line": 49,
+      "line": 50,
       "symbol": "Ziptide.Gameplay.GunLaserSight",
       "snippet": "_muzzle = transform.Find(\"Muzzle\");",
       "declaration_file": false
     },
     {
       "focus": "melee",
+      "token": "ArenaWeaponKind.BreakerBlade",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
+      "line": 65,
+      "symbol": "Ziptide.Gameplay.MeleeWeaponRuntime",
+      "snippet": "if (def == null || def.kind != ArenaWeaponKind.BreakerBlade || _grab == null || _grab.attachTransform == null)",
+      "declaration_file": false
+    },
+    {
+      "focus": "melee",
       "token": "ArenaWeaponKind.TidePike",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-      "line": 46,
+      "line": 52,
       "symbol": "Ziptide.Gameplay.MeleeWeaponRuntime",
       "snippet": "private bool IsPike => Def != null && Def.kind == ArenaWeaponKind.TidePike;",
       "declaration_file": false
@@ -5971,7 +6000,7 @@
       "focus": "melee",
       "token": "HitFromHammer",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-      "line": 84,
+      "line": 101,
       "symbol": "Ziptide.Gameplay.MeleeWeaponRuntime",
       "snippet": "wall.HitFromHammer(h.ClosestPoint(tipPos));",
       "declaration_file": false
@@ -5989,7 +6018,7 @@
       "focus": "melee",
       "token": "Muzzle",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-      "line": 31,
+      "line": 37,
       "symbol": "Ziptide.Gameplay.MeleeWeaponRuntime",
       "snippet": "private Transform _tip; // the business end (child \"Muzzle\" from ItemFactory)",
       "declaration_file": false
@@ -5998,7 +6027,7 @@
       "focus": "melee",
       "token": "Muzzle",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-      "line": 51,
+      "line": 57,
       "symbol": "Ziptide.Gameplay.MeleeWeaponRuntime",
       "snippet": "_tip = transform.Find(\"Muzzle\");",
       "declaration_file": false
@@ -6892,6 +6921,15 @@
       "line": 78,
       "symbol": "Ziptide.Tests.EditMode.RecoveryCheckpointEvidenceTests",
       "snippet": "\"REPAIR_TRACE no longer covers enough hops to distinguish state from presentation.\");",
+      "declaration_file": false
+    },
+    {
+      "focus": "melee",
+      "token": "MeleeWeaponRuntime",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryPlayabilityDeviceTests.cs",
+      "line": 56,
+      "symbol": "Ziptide.Tests.EditMode.RecoveryPlayabilityDeviceTests",
+      "snippet": "string melee = Read(\"Gameplay\", \"Runtime\", \"Weapons\", \"MeleeWeaponRuntime.cs\");",
       "declaration_file": false
     },
     {

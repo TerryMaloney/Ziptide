@@ -1,7 +1,7 @@
 # ZIPTIDE Runtime Input Contract Scan
 
-- Scanned C# files: **724**
-- Runtime-created bindings: **18**
+- Scanned C# files: **726**
+- Runtime-created bindings: **20**
 - Legacy menu-chord references: **0**
 - Controls bound by more than one owner: **5**
 
@@ -14,12 +14,14 @@ None.
 | Owner | Action | Field | Binding | Source |
 |---|---|---|---|---|
 | `Ziptide.Gameplay.QuickSwap` | `ZiptideQuickSwap` | `_swap` | `<XRController>{RightHand}/secondaryButton` | `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs:27` |
-| `Ziptide.Gameplay.DashLocomotion` | `ZiptideJump` | `_jumpAction` | `<XRController>{RightHand}/primaryButton` | `Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs:99` |
-| `Ziptide.Gameplay.DashLocomotion` | `ZiptideSprint` | `_sprintAction` | `<XRController>{LeftHand}/thumbstickClicked` | `Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs:104` |
-| `Ziptide.Gameplay.DashLocomotion` | `ZiptideCrouch` | `_crouchAction` | `<XRController>{RightHand}/thumbstickClicked` | `Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs:109` |
+| `Ziptide.Gameplay.DashLocomotion` | `ZiptideJump` | `_jumpAction` | `<XRController>{RightHand}/primaryButton` | `Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs:112` |
+| `Ziptide.Gameplay.DashLocomotion` | `ZiptideSprint` | `_sprintAction` | `<XRController>{LeftHand}/thumbstickClicked` | `Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs:117` |
+| `Ziptide.Gameplay.DashLocomotion` | `ZiptideCrouch` | `_crouchAction` | `<XRController>{RightHand}/thumbstickClicked` | `Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs:122` |
+| `Ziptide.Gameplay.DashLocomotion` | `ZiptideCrouchTurnGuard` | `_rightStickAction` | `<XRController>{RightHand}/thumbstick` | `Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs:127` |
 | `Ziptide.Gameplay.EmergencyRespawn` | `EmergencyLeft` | `_leftGrip` | `<XRController>{LeftHand}/grip` | `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/EmergencyRespawn.cs:24` |
 | `Ziptide.Gameplay.EmergencyRespawn` | `EmergencyRight` | `_rightGrip` | `<XRController>{RightHand}/grip` | `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/EmergencyRespawn.cs:28` |
 | `Ziptide.Gameplay.PingTool` | `ZiptidePing` | `_ping` | `<XRController>{LeftHand}/triggerPressed` | `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PingTool.cs:28` |
+| `Ziptide.Gameplay.PlayerMenuRuntime` | `ZiptidePlayerMenu` | `_toggleAction` | `<XRController>{LeftHand}/secondaryButton` | `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs:36` |
 | `Ziptide.Ship.ShipFlightRuntime` | `ZiptideFlightThrottle` | `_leftStick` | `<XRController>{LeftHand}/thumbstick` | `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:140` |
 | `Ziptide.Ship.ShipFlightRuntime` | `ZiptideFlightSteer` | `_rightStick` | `<XRController>{RightHand}/thumbstick` | `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:142` |
 | `Ziptide.Ship.ShipFlightRuntime` | `ZiptideFlightBoostL3` | `_boostStickClick` | `<XRController>{LeftHand}/thumbstickClicked` | `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:144` |
@@ -41,13 +43,13 @@ None.
 
 ### `<XRController>{LeftHand}/thumbstickClicked`
 
-- `Ziptide.Gameplay.DashLocomotion` → `ZiptideSprint` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs:104`
+- `Ziptide.Gameplay.DashLocomotion` → `ZiptideSprint` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs:117`
 - `Ziptide.Ship.ShipFlightRuntime` → `ZiptideFlightBoostL3` at `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:144`
 - `Ziptide.Ship.VehicleRuntime` → `ZiptideRideBoostL3` at `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:75`
 
 ### `<XRController>{RightHand}/primaryButton`
 
-- `Ziptide.Gameplay.DashLocomotion` → `ZiptideJump` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs:99`
+- `Ziptide.Gameplay.DashLocomotion` → `ZiptideJump` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs:112`
 - `Ziptide.Ship.ShipFlightRuntime` → `ZiptideFlightBoostA` at `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:146`
 - `Ziptide.Ship.VehicleRuntime` → `ZiptideRideBoostA` at `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:77`
 
@@ -58,6 +60,7 @@ None.
 
 ### `<XRController>{RightHand}/thumbstick`
 
+- `Ziptide.Gameplay.DashLocomotion` → `ZiptideCrouchTurnGuard` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs:127`
 - `Ziptide.Ship.ShipFlightRuntime` → `ZiptideFlightSteer` at `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:142`
 - `Ziptide.Ship.VehicleRuntime` → `ZiptideRideSteer` at `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:73`
 

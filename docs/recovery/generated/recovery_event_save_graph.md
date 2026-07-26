@@ -1,7 +1,7 @@
 # ZIPTIDE Event and Save Ownership Graph
 
-- Scanned C# files: **724**
-- Evidence edges: **725**
+- Scanned C# files: **726**
+- Evidence edges: **727**
 - Named subscriptions without matching unsubscribe in the same owner: **52**
 
 This is a static ownership graph. An unmatched row is a review target, not automatic proof of a leak; process-lifetime static hooks may be intentional.
@@ -11,8 +11,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **AUTOSAVE:** 8
 - **EVENT_DECLARE:** 46
 - **EVENT_INVOKE:** 61
-- **EVENT_SUBSCRIBE:** 107
-- **EVENT_UNSUBSCRIBE:** 57
+- **EVENT_SUBSCRIBE:** 108
+- **EVENT_UNSUBSCRIBE:** 58
 - **PLAYER_PREFS_ACCESS:** 11
 - **PROFILE_FIELD_ACCESS:** 366
 - **SAVE_ACCESS:** 69
@@ -43,7 +43,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - `Ziptide.Gameplay.PvpBolt` subscribes `transform.position` → `step` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpBolt.cs:67`
 - `Ziptide.Gameplay.PvpBot` subscribes `transform.position` → `k` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpBot.cs:346`
 - `Ziptide.Gameplay.MiningRigRuntime` subscribes `_mine.stored` → `_mine` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/MiningRigRuntime.cs:114`
-- `Ziptide.Gameplay.MeleeWeaponRuntime` subscribes `bot.transform.position` → `transform` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:129`
+- `Ziptide.Gameplay.MeleeWeaponRuntime` subscribes `bot.transform.position` → `transform` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:146`
 - `Ziptide.Gameplay.SonicThumperRuntime` subscribes `bot.transform.position` → `shoveDir` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/SonicThumperRuntime.cs:78`
 - `Ziptide.Gameplay.CityStreetLifeRuntime` subscribes `p.y` → `phase` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/CityStreetLifeRuntime.cs:52`
 - `Ziptide.Gameplay.CityStreetLifeRuntime` subscribes `p.x` → `Mathf` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/CityStreetLifeRuntime.cs:53`
@@ -178,11 +178,11 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `BootPresentationReady`
 
-- **EVENT_DECLARE** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:105` · `static Action<bool>` — `public static event Action<bool> BootPresentationReady;`
+- **EVENT_DECLARE** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:104` · `static Action<bool>` — `public static event Action<bool> BootPresentationReady;`
 
 ### `ChoiceSelected`
 
-- **EVENT_DECLARE** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:107` · `static Action<HomeHubChoice>` — `public static event Action<HomeHubChoice> ChoiceSelected;`
+- **EVENT_DECLARE** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:106` · `static Action<HomeHubChoice>` — `public static event Action<HomeHubChoice> ChoiceSelected;`
 
 ### `CounterState`
 
@@ -509,7 +509,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `NewGameProfileCreated`
 
-- **EVENT_DECLARE** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:106` · `static Action<PlayerProfile>` — `public static event Action<PlayerProfile> NewGameProfileCreated;`
+- **EVENT_DECLARE** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:105` · `static Action<PlayerProfile>` — `public static event Action<PlayerProfile> NewGameProfileCreated;`
 
 ### `Null`
 
@@ -661,13 +661,13 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `SaveSystem.HasExistingProfile`
 
-- **SAVE_ACCESS** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:135` — `bool canContinue = SaveSystem.HasExistingProfile;`
+- **SAVE_ACCESS** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:134` — `bool canContinue = SaveSystem.HasExistingProfile;`
 - **SAVE_ACCESS** · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:85` — `Assert.IsFalse(SaveSystem.HasExistingProfile,`
 - **SAVE_ACCESS** · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:95` — `Assert.IsFalse(SaveSystem.HasExistingProfile,`
 
 ### `SaveSystem.Load`
 
-- **SAVE_ACCESS** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:252` — `SaveSystem.Instance.Load();`
+- **SAVE_ACCESS** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:251` — `SaveSystem.Instance.Load();`
 - **SAVE_ACCESS** · `Ziptide.Tests.EditMode.HomeHubFlowTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:161` — `StringAssert.Contains("SaveSystem.Instance.Load();", source);`
 - **SAVE_ACCESS** · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:153` — `SaveSystem.Instance.Load();`
 
@@ -729,7 +729,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `SaveSystem.StartNewProfile`
 
-- **SAVE_ACCESS** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:246` — `PlayerProfile profile = SaveSystem.Instance.StartNewProfile();`
+- **SAVE_ACCESS** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:245` — `PlayerProfile profile = SaveSystem.Instance.StartNewProfile();`
 - **SAVE_ACCESS** · `Ziptide.Tests.EditMode.HomeHubFlowTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:160` — `StringAssert.Contains("SaveSystem.Instance.StartNewProfile()", source);`
 
 ### `SavesForBigShips`
@@ -759,6 +759,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.PlayerInputSessionGuard` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:32` · `OnSceneLoaded` — `SceneManager.sceneLoaded -= OnSceneLoaded;`
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.PlayerInputSessionGuard` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:40` · `OnSceneLoaded` — `SceneManager.sceneLoaded -= OnSceneLoaded;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.PlayerInputSessionGuard` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs:41` · `OnSceneLoaded` — `SceneManager.sceneLoaded += OnSceneLoaded;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.PlayerMenuRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs:39` · `OnSceneLoaded` — `SceneManager.sceneLoaded += OnSceneLoaded;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.PlayerMenuRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs:44` · `OnSceneLoaded` — `SceneManager.sceneLoaded -= OnSceneLoaded;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.BootHoldState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:159` · `OnSceneLoaded` — `SceneManager.sceneLoaded += OnSceneLoaded;`
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.BootHoldState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:317` · `OnSceneLoaded` — `SceneManager.sceneLoaded -= OnSceneLoaded;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.PvpProgressionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:49` · `OnSceneLoaded` — `SceneManager.sceneLoaded += OnSceneLoaded;`
@@ -796,7 +798,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `SettingsRequested`
 
-- **EVENT_DECLARE** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:108` · `static Action` — `public static event Action SettingsRequested;`
+- **EVENT_DECLARE** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:107` · `static Action` — `public static event Action SettingsRequested;`
 
 ### `SignalCompleted`
 
@@ -964,7 +966,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `bot.transform.position`
 
-- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.MeleeWeaponRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:129` · `transform` — `if (bot != null) bot.transform.position += transform.forward * 0.75f; // the poke lands`
+- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.MeleeWeaponRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:146` · `transform` — `if (bot != null) bot.transform.position += transform.forward * 0.75f; // the poke lands`
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.SonicThumperRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/SonicThumperRuntime.cs:78` · `shoveDir` — `bot.transform.position += shoveDir * (float)PvpRules.ThumperShoveMeters * 0.5f;`
 
 ### `callback`

@@ -1,7 +1,7 @@
 {
   "tool": "recovery_input_contract_scan",
-  "scannedFiles": 724,
-  "bindingCount": 18,
+  "scannedFiles": 726,
+  "bindingCount": 20,
   "chordReferenceCount": 0,
   "collisionControlCount": 5,
   "bindings": [
@@ -20,8 +20,8 @@
       "field": "_jumpAction",
       "action_name": "ZiptideJump",
       "binding": "<XRController>{RightHand}/primaryButton",
-      "action_line": 98,
-      "binding_line": 99
+      "action_line": 111,
+      "binding_line": 112
     },
     {
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs",
@@ -29,8 +29,8 @@
       "field": "_sprintAction",
       "action_name": "ZiptideSprint",
       "binding": "<XRController>{LeftHand}/thumbstickClicked",
-      "action_line": 103,
-      "binding_line": 104
+      "action_line": 116,
+      "binding_line": 117
     },
     {
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs",
@@ -38,8 +38,17 @@
       "field": "_crouchAction",
       "action_name": "ZiptideCrouch",
       "binding": "<XRController>{RightHand}/thumbstickClicked",
-      "action_line": 108,
-      "binding_line": 109
+      "action_line": 121,
+      "binding_line": 122
+    },
+    {
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs",
+      "symbol": "Ziptide.Gameplay.DashLocomotion",
+      "field": "_rightStickAction",
+      "action_name": "ZiptideCrouchTurnGuard",
+      "binding": "<XRController>{RightHand}/thumbstick",
+      "action_line": 126,
+      "binding_line": 127
     },
     {
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/EmergencyRespawn.cs",
@@ -67,6 +76,15 @@
       "binding": "<XRController>{LeftHand}/triggerPressed",
       "action_line": 27,
       "binding_line": 28
+    },
+    {
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs",
+      "symbol": "Ziptide.Gameplay.PlayerMenuRuntime",
+      "field": "_toggleAction",
+      "action_name": "ZiptidePlayerMenu",
+      "binding": "<XRController>{LeftHand}/secondaryButton",
+      "action_line": 35,
+      "binding_line": 36
     },
     {
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
@@ -197,8 +215,8 @@
         "field": "_sprintAction",
         "action_name": "ZiptideSprint",
         "binding": "<XRController>{LeftHand}/thumbstickClicked",
-        "action_line": 103,
-        "binding_line": 104
+        "action_line": 116,
+        "binding_line": 117
       },
       {
         "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
@@ -226,8 +244,8 @@
         "field": "_jumpAction",
         "action_name": "ZiptideJump",
         "binding": "<XRController>{RightHand}/primaryButton",
-        "action_line": 98,
-        "binding_line": 99
+        "action_line": 111,
+        "binding_line": 112
       },
       {
         "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
@@ -269,6 +287,15 @@
       }
     ],
     "<XRController>{RightHand}/thumbstick": [
+      {
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs",
+        "symbol": "Ziptide.Gameplay.DashLocomotion",
+        "field": "_rightStickAction",
+        "action_name": "ZiptideCrouchTurnGuard",
+        "binding": "<XRController>{RightHand}/thumbstick",
+        "action_line": 126,
+        "binding_line": 127
+      },
       {
         "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
         "symbol": "Ziptide.Ship.ShipFlightRuntime",

@@ -1,8 +1,8 @@
 {
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
-  "scannedFiles": 724,
-  "findingCount": 2543,
+  "scannedFiles": 726,
+  "findingCount": 2576,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -571,6 +571,25 @@
             "line": 36,
             "symbol": "Ziptide.Gameplay.PlayerInputSessionGuard",
             "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Gameplay.PlayerMenuRuntime",
+        "evidenceCount": 1,
+        "codes": [
+          "DONT_DESTROY_ON_LOAD"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs"
+        ],
+        "evidence": [
+          {
+            "code": "DONT_DESTROY_ON_LOAD",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs",
+            "line": 166,
+            "symbol": "Ziptide.Gameplay.PlayerMenuRuntime",
+            "snippet": "DontDestroyOnLoad(_menuRoot);"
           }
         ]
       },
@@ -1547,7 +1566,7 @@
       },
       {
         "owner": "Ziptide.Gameplay.DashLocomotion",
-        "evidenceCount": 7,
+        "evidenceCount": 9,
         "codes": [
           "INPUT_ACTION_REFERENCE",
           "INPUT_BUTTON_REFERENCE"
@@ -1559,51 +1578,65 @@
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs",
-            "line": 36,
+            "line": 40,
             "symbol": "Ziptide.Gameplay.DashLocomotion",
             "snippet": "private InputAction _jumpAction;"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs",
-            "line": 37,
+            "line": 41,
             "symbol": "Ziptide.Gameplay.DashLocomotion",
             "snippet": "private InputAction _sprintAction;"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs",
-            "line": 38,
+            "line": 42,
             "symbol": "Ziptide.Gameplay.DashLocomotion",
             "snippet": "private InputAction _crouchAction;"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs",
-            "line": 98,
+            "line": 43,
+            "symbol": "Ziptide.Gameplay.DashLocomotion",
+            "snippet": "private InputAction _rightStickAction;"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs",
+            "line": 111,
             "symbol": "Ziptide.Gameplay.DashLocomotion",
             "snippet": "_jumpAction = new InputAction(\"ZiptideJump\", InputActionType.Button);"
           },
           {
             "code": "INPUT_BUTTON_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs",
-            "line": 99,
+            "line": 112,
             "symbol": "Ziptide.Gameplay.DashLocomotion",
             "snippet": "_jumpAction.AddBinding(\"<XRController>{RightHand}/primaryButton\"); // A"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs",
-            "line": 103,
+            "line": 116,
             "symbol": "Ziptide.Gameplay.DashLocomotion",
             "snippet": "_sprintAction = new InputAction(\"ZiptideSprint\", InputActionType.Button);"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs",
-            "line": 108,
+            "line": 121,
             "symbol": "Ziptide.Gameplay.DashLocomotion",
             "snippet": "_crouchAction = new InputAction(\"ZiptideCrouch\", InputActionType.Button);"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/DashLocomotion.cs",
+            "line": 126,
+            "symbol": "Ziptide.Gameplay.DashLocomotion",
+            "snippet": "_rightStickAction = new InputAction(\"ZiptideCrouchTurnGuard\", InputActionType.Value);"
           }
         ]
       },
@@ -1913,6 +1946,40 @@
         ]
       },
       {
+        "owner": "Ziptide.Gameplay.PlayerMenuRuntime",
+        "evidenceCount": 3,
+        "codes": [
+          "INPUT_ACTION_REFERENCE",
+          "INPUT_BUTTON_REFERENCE"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs"
+        ],
+        "evidence": [
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs",
+            "line": 25,
+            "symbol": "Ziptide.Gameplay.PlayerMenuRuntime",
+            "snippet": "private InputAction _toggleAction;"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs",
+            "line": 35,
+            "symbol": "Ziptide.Gameplay.PlayerMenuRuntime",
+            "snippet": "_toggleAction = new InputAction(\"ZiptidePlayerMenu\", InputActionType.Button);"
+          },
+          {
+            "code": "INPUT_BUTTON_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs",
+            "line": 36,
+            "symbol": "Ziptide.Gameplay.PlayerMenuRuntime",
+            "snippet": "_toggleAction.AddBinding(\"<XRController>{LeftHand}/secondaryButton\"); // Y"
+          }
+        ]
+      },
+      {
         "owner": "Ziptide.Gameplay.QuickSwap",
         "evidenceCount": 3,
         "codes": [
@@ -2194,6 +2261,25 @@
             "line": 189,
             "symbol": "Ziptide.Tests.EditMode.FirstHourObservationCoreTests",
             "snippet": "StringAssert.DoesNotContain(\"InputAction\", source);"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Tests.EditMode.RecoveryPlayabilityDeviceTests",
+        "evidenceCount": 1,
+        "codes": [
+          "INPUT_BUTTON_REFERENCE"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryPlayabilityDeviceTests.cs"
+        ],
+        "evidence": [
+          {
+            "code": "INPUT_BUTTON_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryPlayabilityDeviceTests.cs",
+            "line": 20,
+            "symbol": "Ziptide.Tests.EditMode.RecoveryPlayabilityDeviceTests",
+            "snippet": "StringAssert.Contains(\"<XRController>{LeftHand}/secondaryButton\", source);"
           }
         ]
       },
@@ -7701,21 +7787,21 @@
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs",
-            "line": 72,
+            "line": 90,
             "symbol": "Ziptide.Gameplay.GunLaserSight",
             "snippet": "var go = new GameObject(\"__LaserSight\");"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs",
-            "line": 80,
+            "line": 98,
             "symbol": "Ziptide.Gameplay.GunLaserSight",
             "snippet": "var shader = Shader.Find(\"Universal Render Pipeline/Unlit\");"
           },
           {
             "code": "RUNTIME_MATERIAL_CREATE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs",
-            "line": 83,
+            "line": 101,
             "symbol": "Ziptide.Gameplay.GunLaserSight",
             "snippet": "var mat = new Material(shader);"
           }
@@ -7928,63 +8014,63 @@
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 265,
+            "line": 264,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "var go = new GameObject(\"__HOME_HUB_COMFORT_SETTINGS\");"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 289,
+            "line": 288,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "var board = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 321,
+            "line": 320,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "var tile = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "XR_INTERACTABLE_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 328,
+            "line": 327,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "var interactable = tile.AddComponent<XRSimpleInteractable>();"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 472,
+            "line": 471,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "var go = new GameObject(\"Label_\" + text.Replace(' ', '_').Replace('\\n', '_'));"
           },
           {
             "code": "TEXTMESH_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 475,
+            "line": 474,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "var tm = go.AddComponent<TextMesh>();"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 494,
+            "line": 493,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "Shader shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 495,
+            "line": 494,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
           },
           {
             "code": "RUNTIME_MATERIAL_CREATE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 497,
+            "line": 496,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "var material = new Material(shader);"
           }
@@ -8484,7 +8570,7 @@
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-            "line": 137,
+            "line": 154,
             "symbol": "Ziptide.Gameplay.MeleeWeaponRuntime",
             "snippet": "var s = GameObject.CreatePrimitive(PrimitiveType.Sphere);"
           }
@@ -8872,6 +8958,86 @@
             "line": 93,
             "symbol": "Ziptide.Gameplay.PlayerAvatarRig",
             "snippet": "var go = GameObject.CreatePrimitive(PrimitiveType.Cube);"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Gameplay.PlayerMenuRuntime",
+        "evidenceCount": 9,
+        "codes": [
+          "CREATE_PRIMITIVE",
+          "NEW_GAME_OBJECT",
+          "RUNTIME_MATERIAL_CREATE",
+          "SHADER_FIND",
+          "TEXTMESH_COMPONENT",
+          "XR_INTERACTABLE_COMPONENT"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs"
+        ],
+        "evidence": [
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs",
+            "line": 165,
+            "symbol": "Ziptide.Gameplay.PlayerMenuRuntime",
+            "snippet": "_menuRoot = new GameObject(\"__PLAYER_FIELD_MENU\");"
+          },
+          {
+            "code": "CREATE_PRIMITIVE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs",
+            "line": 168,
+            "symbol": "Ziptide.Gameplay.PlayerMenuRuntime",
+            "snippet": "GameObject board = GameObject.CreatePrimitive(PrimitiveType.Cube);"
+          },
+          {
+            "code": "CREATE_PRIMITIVE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs",
+            "line": 186,
+            "symbol": "Ziptide.Gameplay.PlayerMenuRuntime",
+            "snippet": "GameObject tile = GameObject.CreatePrimitive(PrimitiveType.Cube);"
+          },
+          {
+            "code": "XR_INTERACTABLE_COMPONENT",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs",
+            "line": 193,
+            "symbol": "Ziptide.Gameplay.PlayerMenuRuntime",
+            "snippet": "XRSimpleInteractable interactable = tile.AddComponent<XRSimpleInteractable>();"
+          },
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs",
+            "line": 228,
+            "symbol": "Ziptide.Gameplay.PlayerMenuRuntime",
+            "snippet": "GameObject label = new GameObject(\"Label\");"
+          },
+          {
+            "code": "TEXTMESH_COMPONENT",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs",
+            "line": 231,
+            "symbol": "Ziptide.Gameplay.PlayerMenuRuntime",
+            "snippet": "TextMesh mesh = label.AddComponent<TextMesh>();"
+          },
+          {
+            "code": "SHADER_FIND",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs",
+            "line": 250,
+            "symbol": "Ziptide.Gameplay.PlayerMenuRuntime",
+            "snippet": "Shader shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
+          },
+          {
+            "code": "SHADER_FIND",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs",
+            "line": 251,
+            "symbol": "Ziptide.Gameplay.PlayerMenuRuntime",
+            "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
+          },
+          {
+            "code": "RUNTIME_MATERIAL_CREATE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs",
+            "line": 253,
+            "symbol": "Ziptide.Gameplay.PlayerMenuRuntime",
+            "snippet": "Material material = new Material(shader);"
           }
         ]
       },
@@ -10095,28 +10261,28 @@
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/TaserDartProjectile.cs",
-            "line": 103,
+            "line": 105,
             "symbol": "Ziptide.Gameplay.TaserDartProjectile",
             "snippet": "var spark = GameObject.CreatePrimitive(PrimitiveType.Sphere);"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/TaserDartProjectile.cs",
-            "line": 112,
+            "line": 114,
             "symbol": "Ziptide.Gameplay.TaserDartProjectile",
             "snippet": "var shader = Shader.Find(\"Universal Render Pipeline/Unlit\");"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/TaserDartProjectile.cs",
-            "line": 113,
+            "line": 115,
             "symbol": "Ziptide.Gameplay.TaserDartProjectile",
             "snippet": "if (shader == null) shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
           },
           {
             "code": "RUNTIME_MATERIAL_CREATE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/TaserDartProjectile.cs",
-            "line": 116,
+            "line": 118,
             "symbol": "Ziptide.Gameplay.TaserDartProjectile",
             "snippet": "var mat = new Material(shader);"
           }
@@ -13565,28 +13731,28 @@
           {
             "code": "XRI_MANAGER_LOOKUP",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 330,
+            "line": 329,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "if (manager == null) manager = FindObjectOfType<XRInteractionManager>();"
           },
           {
             "code": "XRI_MANAGER_ASSIGN",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 336,
+            "line": 335,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "interactable.interactionManager = manager;"
           },
           {
             "code": "XRI_MANAGER_LOOKUP",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 374,
+            "line": 373,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "XRInteractionManager manager = FindObjectOfType<XRInteractionManager>();"
           },
           {
             "code": "XRI_MANAGER_ASSIGN",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 378,
+            "line": 377,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "interactable.interactionManager = manager;"
           }
@@ -13662,6 +13828,47 @@
             "line": 173,
             "symbol": "Ziptide.Gameplay.PlayerInputSessionGuard",
             "snippet": "UnityEngine.Object.FindObjectsOfType<XRInteractionManager>(true);"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Gameplay.PlayerMenuRuntime",
+        "evidenceCount": 4,
+        "codes": [
+          "XRI_MANAGER_ASSIGN",
+          "XRI_MANAGER_LOOKUP"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs"
+        ],
+        "evidence": [
+          {
+            "code": "XRI_MANAGER_LOOKUP",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs",
+            "line": 194,
+            "symbol": "Ziptide.Gameplay.PlayerMenuRuntime",
+            "snippet": "XRInteractionManager manager = FindObjectOfType<XRInteractionManager>();"
+          },
+          {
+            "code": "XRI_MANAGER_ASSIGN",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs",
+            "line": 195,
+            "symbol": "Ziptide.Gameplay.PlayerMenuRuntime",
+            "snippet": "if (manager != null) interactable.interactionManager = manager;"
+          },
+          {
+            "code": "XRI_MANAGER_LOOKUP",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs",
+            "line": 209,
+            "symbol": "Ziptide.Gameplay.PlayerMenuRuntime",
+            "snippet": "XRInteractionManager manager = FindObjectOfType<XRInteractionManager>();"
+          },
+          {
+            "code": "XRI_MANAGER_ASSIGN",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs",
+            "line": 221,
+            "symbol": "Ziptide.Gameplay.PlayerMenuRuntime",
+            "snippet": "interactable.interactionManager = manager;"
           }
         ]
       },
@@ -15406,105 +15613,105 @@
           {
             "code": "EVENT_DECLARATION",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 105,
+            "line": 104,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "public static event Action<bool> BootPresentationReady;"
           },
           {
             "code": "STATIC_EVENT_DECLARATION",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 105,
+            "line": 104,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "public static event Action<bool> BootPresentationReady;"
           },
           {
             "code": "EVENT_DECLARATION",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 106,
+            "line": 105,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "public static event Action<PlayerProfile> NewGameProfileCreated;"
           },
           {
             "code": "PLAYER_PROFILE_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 106,
+            "line": 105,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "public static event Action<PlayerProfile> NewGameProfileCreated;"
           },
           {
             "code": "STATIC_EVENT_DECLARATION",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 106,
+            "line": 105,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "public static event Action<PlayerProfile> NewGameProfileCreated;"
           },
           {
             "code": "EVENT_DECLARATION",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 107,
+            "line": 106,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "public static event Action<HomeHubChoice> ChoiceSelected;"
           },
           {
             "code": "STATIC_EVENT_DECLARATION",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 107,
+            "line": 106,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "public static event Action<HomeHubChoice> ChoiceSelected;"
           },
           {
             "code": "EVENT_DECLARATION",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 108,
+            "line": 107,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "public static event Action SettingsRequested;"
           },
           {
             "code": "STATIC_EVENT_DECLARATION",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 108,
+            "line": 107,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "public static event Action SettingsRequested;"
           },
           {
             "code": "SAVE_SYSTEM_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 135,
+            "line": 134,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "bool canContinue = SaveSystem.HasExistingProfile;"
           },
           {
             "code": "SAVE_SYSTEM_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 220,
+            "line": 219,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "SaveSystem.Instance == null)"
           },
           {
             "code": "PLAYER_PROFILE_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 246,
+            "line": 245,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "PlayerProfile profile = SaveSystem.Instance.StartNewProfile();"
           },
           {
             "code": "SAVE_SYSTEM_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 246,
+            "line": 245,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "PlayerProfile profile = SaveSystem.Instance.StartNewProfile();"
           },
           {
             "code": "SAVE_SYSTEM_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 251,
+            "line": 250,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "// Load remains SaveSystem's sole profile recovery/migration path."
           },
           {
             "code": "SAVE_SYSTEM_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 252,
+            "line": 251,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "SaveSystem.Instance.Load();"
           }
@@ -18300,21 +18507,21 @@
           {
             "code": "CAMERA_MAIN_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 162,
+            "line": 161,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "Camera cam = Camera.main;"
           },
           {
             "code": "CAMERA_MAIN_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 274,
+            "line": 273,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "Camera cam = Camera.main;"
           },
           {
             "code": "CAMERA_MAIN_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 404,
+            "line": 403,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "Camera cam = Camera.main;"
           }
@@ -18374,6 +18581,25 @@
             "line": 89,
             "symbol": "Ziptide.Gameplay.ObjectiveBoard",
             "snippet": "canvas.worldCamera = Camera.main;"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Gameplay.PlayerMenuRuntime",
+        "evidenceCount": 1,
+        "codes": [
+          "CAMERA_MAIN_REFERENCE"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs"
+        ],
+        "evidence": [
+          {
+            "code": "CAMERA_MAIN_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs",
+            "line": 76,
+            "symbol": "Ziptide.Gameplay.PlayerMenuRuntime",
+            "snippet": "if (cam == null) cam = Camera.main;"
           }
         ]
       },
@@ -20045,7 +20271,7 @@
           {
             "code": "FALLBACK_MARKER",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs",
-            "line": 29,
+            "line": 30,
             "symbol": "Ziptide.Gameplay.GunLaserSight",
             "snippet": "/// Alpha 0 keeps the default sight color (ItemDefinition fallback idiom). Init repeats the melee"
           }
@@ -20315,6 +20541,25 @@
         ]
       },
       {
+        "owner": "Ziptide.Gameplay.ToxicRiverRuntime",
+        "evidenceCount": 1,
+        "codes": [
+          "FALLBACK_MARKER"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ToxicRiverRuntime.cs"
+        ],
+        "evidence": [
+          {
+            "code": "FALLBACK_MARKER",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ToxicRiverRuntime.cs",
+            "line": 14,
+            "symbol": "Ziptide.Gameplay.ToxicRiverRuntime",
+            "snippet": "/// logged fallback when the visual surface cannot be resolved."
+          }
+        ]
+      },
+      {
         "owner": "Ziptide.Gameplay.TransmissionConsole",
         "evidenceCount": 1,
         "codes": [
@@ -20534,6 +20779,25 @@
             "line": 11,
             "symbol": "Ziptide.Tests.EditMode.ItemRegistryConventionTests",
             "snippet": "/// device (the loaded-objects fallback only sees assets a loaded scene happens to reference \u2014 a"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Tests.EditMode.RecoveryPlayabilityDeviceTests",
+        "evidenceCount": 1,
+        "codes": [
+          "FALLBACK_MARKER"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryPlayabilityDeviceTests.cs"
+        ],
+        "evidence": [
+          {
+            "code": "FALLBACK_MARKER",
+            "path": "Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryPlayabilityDeviceTests.cs",
+            "line": 99,
+            "symbol": "Ziptide.Tests.EditMode.RecoveryPlayabilityDeviceTests",
+            "snippet": "\"The no-ray direct-hand fallback must remain valid for the three-tile layout.\");"
           }
         ]
       },
