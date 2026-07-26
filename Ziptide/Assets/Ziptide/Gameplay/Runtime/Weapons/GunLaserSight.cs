@@ -5,10 +5,11 @@ namespace Ziptide.Gameplay
 {
     /// <summary>
     /// The aim line (CONTROL_SCHEME.md "Aim"): a thin ray from the Muzzle to the first hit,
-    /// shown only while a ranged gun is HELD — VR's equivalent of console stick-aim. Melee weapons
-    /// also expose a child named Muzzle as their physical tip, so this component disables itself when
-    /// MeleeWeaponRuntime is present instead of painting a misleading laser down a sword or pike.
-    /// One LineRenderer, no per-frame allocation; color per item definition.
+    /// shown only while a ranged gun is HELD BY A CONTROLLER HAND — VR's equivalent of console
+    /// stick-aim. Socket selection is deliberately excluded: an XRSocketInteractor selects a
+    /// holstered gun too, but a gun on the belt must never paint a laser through the world.
+    /// Melee weapons expose a child named Muzzle as their physical tip, so this component disables
+    /// itself when MeleeWeaponRuntime is present.
     /// </summary>
     public class GunLaserSight : MonoBehaviour
     {
@@ -52,7 +53,7 @@ namespace Ziptide.Gameplay
 
         private void Update()
         {
-            bool show = _grab != null && _grab.isSelected && _muzzle != null;
+            bool show = IsSelectedByControllerHand() && _muzzle != null;
             if (!show)
             {
                 if (_lr != null) _lr.enabled = false;
@@ -65,6 +66,23 @@ namespace Ziptide.Gameplay
             Vector3 to = Physics.Raycast(from, dir, out var hit, MaxRange) ? hit.point : from + dir * MaxRange;
             _lr.SetPosition(0, from);
             _lr.SetPosition(1, to);
+        }
+
+        /// <summary>
+        /// XRGrabInteractable.isSelected is also true while an XRSocketInteractor owns the item.
+        /// Require at least one live XRBaseControllerInteractor so belt sockets, restore parenting and
+        /// other non-hand selectors never activate the sight.
+        /// </summary>
+        private bool IsSelectedByControllerHand()
+        {
+            if (_grab == null || !_grab.isSelected) return false;
+            foreach (IXRSelectInteractor interactor in _grab.interactorsSelecting)
+            {
+                var controller = interactor as XRBaseControllerInteractor;
+                if (controller != null && controller.isActiveAndEnabled && controller.gameObject.activeInHierarchy)
+                    return true;
+            }
+            return false;
         }
 
         private void Build()
