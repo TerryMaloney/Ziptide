@@ -1,7 +1,7 @@
 # Recovery Clean Package Proof
 
-- Tested SHA: `c45b1a295e50637d81aab14c09e36eb08bf6ed58`
-- Workflow run: `29786604080`
+- Tested SHA: `134aefa6dcf1b5f4cbf275889f1a2991a93a629a`
+- Workflow run: `30224434422`
 - Attempt: `1`
 - Clean PlayMode outcome: **success**
 - NUnit totals: total=43 passed=43 failed=0 skipped=0 inconclusive=0
@@ -9,8 +9,8 @@
 - Input System: `1.6.3`
 - XR Interaction Toolkit: `2.4.3`
 - Library policy: deleted before every Unity job
-- Clean PlayMode artifact: `clean-playmode-c45b1a295e50637d81aab14c09e36eb08bf6ed58`
-- Clean EditMode artifact: `clean-editmode-c45b1a295e50637d81aab14c09e36eb08bf6ed58`
-- Clean audit artifact: `clean-patch-audit-c45b1a295e50637d81aab14c09e36eb08bf6ed58`
-- Clean Golden artifact: `clean-golden-apk-c45b1a295e50637d81aab14c09e36eb08bf6ed58`
+- Clean PlayMode artifact: `clean-playmode-134aefa6dcf1b5f4cbf275889f1a2991a93a629a`
+- Clean EditMode artifact: `clean-editmode-134aefa6dcf1b5f4cbf275889f1a2991a93a629a`
+- Clean audit artifact: `clean-patch-audit-134aefa6dcf1b5f4cbf275889f1a2991a93a629a`
+- Clean Golden artifact: `clean-golden-apk-134aefa6dcf1b5f4cbf275889f1a2991a93a629a`
 - Promotion rule: the entire workflow, ordinary CI, normal PlayMode, normal Golden Android, artifact review and the Quest checkpoint must all agree before recovery exits.
