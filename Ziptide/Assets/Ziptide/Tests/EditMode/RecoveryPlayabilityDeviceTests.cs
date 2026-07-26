@@ -30,7 +30,7 @@ namespace Ziptide.Tests.EditMode
         [Test]
         public void GunLaser_RequiresAControllerHandRatherThanAnySelector()
         {
-            string source = Read("Gameplay", "Runtime", "Items", "GunLaserSight.cs");
+            string source = Read("Gameplay", "Runtime", "Weapons", "GunLaserSight.cs");
 
             StringAssert.Contains("IsSelectedByControllerHand()", source);
             StringAssert.Contains("interactor as XRBaseControllerInteractor", source);
