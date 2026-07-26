@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-24T01:47:48.452068+00:00",
+  "generatedAtUtc": "2026-07-26T17:45:32.616956+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -9,13 +9,13 @@
     "Ziptide/Assets/ZiptideNet"
   ],
   "scannedFiles": 724,
-  "findingCount": 2539,
+  "findingCount": 2543,
   "categoryCounts": {
     "bootstrap": 36,
-    "diagnostics": 570,
+    "diagnostics": 573,
     "events": 65,
     "fallback_debt": 155,
-    "global_render": 81,
+    "global_render": 82,
     "input": 210,
     "materials": 246,
     "persistence": 19,
@@ -27,7 +27,7 @@
   },
   "codeCounts": {
     "AUTOSAVE_CALL": 9,
-    "CAMERA_MAIN_REFERENCE": 42,
+    "CAMERA_MAIN_REFERENCE": 43,
     "CAMERA_POST_PROCESSING": 1,
     "CANVAS_COMPONENT": 5,
     "CREATE_PRIMITIVE": 259,
@@ -57,7 +57,7 @@
     "XRI_MANAGER_LOOKUP": 42,
     "XR_INTERACTABLE_COMPONENT": 65,
     "XR_UI_INPUT_MODULE": 2,
-    "ZIPTIDE_LOG_TAG": 570
+    "ZIPTIDE_LOG_TAG": 573
   },
   "findings": [
     {
@@ -3404,7 +3404,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 80,
+      "line": 131,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: HOME_HUB_MISSING_CONFIG\");"
     },
@@ -3413,7 +3413,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 88,
+      "line": 139,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "Debug.Log(\"ZIPTIDE: HOME_HUB_READY continue=\" + canContinue.ToString().ToLowerInvariant());"
     },
@@ -3422,7 +3422,25 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 107,
+      "line": 189,
+      "symbol": "Ziptide.Gameplay.HomeHubChoice",
+      "snippet": "Debug.Log(\"ZIPTIDE: HOME_HUB_ANCHOR mode=follow dist=\" + posError.ToString(\"F2\")"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
+      "line": 208,
+      "symbol": "Ziptide.Gameplay.HomeHubChoice",
+      "snippet": "Debug.Log(\"ZIPTIDE: HOME_HUB_ANCHOR mode=\" + mode"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
+      "line": 222,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: HOME_HUB_CHOICE_BLOCKED reason=save_unavailable\");"
     },
@@ -3431,7 +3449,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 115,
+      "line": 234,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "Debug.Log(\"ZIPTIDE: HOME_HUB_CHOICE choice=\" + choiceName);"
     },
@@ -3440,7 +3458,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 139,
+      "line": 258,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "else Debug.LogWarning(\"ZIPTIDE: HOME_HUB_TRAVEL_MISSING dest=\" + _targetScene);"
     },
@@ -3449,7 +3467,16 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 214,
+      "line": 286,
+      "symbol": "Ziptide.Gameplay.HomeHubChoice",
+      "snippet": "Debug.LogWarning(\"ZIPTIDE: HOME_HUB_ANCHOR mode=no_camera pending_track=true\");"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
+      "line": 337,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "Debug.Log(\"ZIPTIDE: HOME_HUB_TILE_BOUND tile=\" + tile.name +"
     },
@@ -3458,7 +3485,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 257,
+      "line": 380,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "Debug.Log(\"ZIPTIDE: HOME_HUB_TILE_BOUND tile=\" + tileName +"
     },
@@ -3467,7 +3494,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 269,
+      "line": 392,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: HOME_HUB_TILE_BIND_TIMEOUT tile=\" + tileName +"
     },
@@ -3476,7 +3503,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 283,
+      "line": 406,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "Debug.Log(\"ZIPTIDE: BOARD_PROBE surface=HomeHub phase=\" + phase"
     },
@@ -3485,7 +3512,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 310,
+      "line": 433,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "Debug.Log(\"ZIPTIDE: BOARD_PROBE surface=HomeHub phase=aim\""
     },
@@ -3494,7 +3521,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 320,
+      "line": 443,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "Debug.Log(\"ZIPTIDE: BOARD_PROBE surface=HomeHub phase=aim\""
     },
@@ -3503,7 +3530,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 389,
+      "line": 512,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: HOME_HUB_SUBSCRIBER_FAIL phase=\" + phase + \" reason=\" + ex.Message);"
     },
@@ -3512,7 +3539,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 402,
+      "line": 525,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: HOME_HUB_SUBSCRIBER_FAIL phase=\" + phase + \" reason=\" + ex.Message);"
     },
@@ -4628,7 +4655,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-      "line": 99,
+      "line": 163,
       "symbol": "Ziptide.Tests.EditMode.HomeHubFlowTests",
       "snippet": "StringAssert.Contains(\"ZIPTIDE: HOME_HUB_READY continue=\", source);"
     },
@@ -4637,7 +4664,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-      "line": 100,
+      "line": 164,
       "symbol": "Ziptide.Tests.EditMode.HomeHubFlowTests",
       "snippet": "StringAssert.Contains(\"ZIPTIDE: HOME_HUB_CHOICE choice=\", source);"
     },
@@ -4646,7 +4673,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-      "line": 119,
+      "line": 183,
       "symbol": "Ziptide.Tests.EditMode.HomeHubFlowTests",
       "snippet": "new Regex(\"ZIPTIDE: FLIGHT_DESTINATION_REJECTED target=PvP_Arena01\"));"
     },
@@ -5663,7 +5690,7 @@
       "code": "EVENT_DECLARATION",
       "description": "Event declaration",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 57,
+      "line": 105,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "public static event Action<bool> BootPresentationReady;"
     },
@@ -5672,7 +5699,7 @@
       "code": "EVENT_DECLARATION",
       "description": "Event declaration",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 58,
+      "line": 106,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "public static event Action<PlayerProfile> NewGameProfileCreated;"
     },
@@ -5681,7 +5708,7 @@
       "code": "EVENT_DECLARATION",
       "description": "Event declaration",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 59,
+      "line": 107,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "public static event Action<HomeHubChoice> ChoiceSelected;"
     },
@@ -5690,7 +5717,7 @@
       "code": "EVENT_DECLARATION",
       "description": "Event declaration",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 60,
+      "line": 108,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "public static event Action SettingsRequested;"
     },
@@ -6023,7 +6050,7 @@
       "code": "STATIC_EVENT_DECLARATION",
       "description": "Static event declaration",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 57,
+      "line": 105,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "public static event Action<bool> BootPresentationReady;"
     },
@@ -6032,7 +6059,7 @@
       "code": "STATIC_EVENT_DECLARATION",
       "description": "Static event declaration",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 58,
+      "line": 106,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "public static event Action<PlayerProfile> NewGameProfileCreated;"
     },
@@ -6041,7 +6068,7 @@
       "code": "STATIC_EVENT_DECLARATION",
       "description": "Static event declaration",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 59,
+      "line": 107,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "public static event Action<HomeHubChoice> ChoiceSelected;"
     },
@@ -6050,7 +6077,7 @@
       "code": "STATIC_EVENT_DECLARATION",
       "description": "Static event declaration",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 60,
+      "line": 108,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "public static event Action SettingsRequested;"
     },
@@ -7742,16 +7769,25 @@
       "code": "CAMERA_MAIN_REFERENCE",
       "description": "Camera.main dependency",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 155,
+      "line": 162,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
-      "snippet": "Transform cam = Camera.main != null ? Camera.main.transform : null;"
+      "snippet": "Camera cam = Camera.main;"
     },
     {
       "category": "global_render",
       "code": "CAMERA_MAIN_REFERENCE",
       "description": "Camera.main dependency",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 281,
+      "line": 274,
+      "symbol": "Ziptide.Gameplay.HomeHubChoice",
+      "snippet": "Camera cam = Camera.main;"
+    },
+    {
+      "category": "global_render",
+      "code": "CAMERA_MAIN_REFERENCE",
+      "description": "Camera.main dependency",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
+      "line": 404,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "Camera cam = Camera.main;"
     },
@@ -10676,7 +10712,7 @@
       "code": "RUNTIME_MATERIAL_CREATE",
       "description": "Runtime Material allocation",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 374,
+      "line": 497,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "var material = new Material(shader);"
     },
@@ -11918,7 +11954,7 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 371,
+      "line": 494,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "Shader shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
     },
@@ -11927,7 +11963,7 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 372,
+      "line": 495,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
     },
@@ -14078,7 +14114,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 166,
+      "line": 289,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "var board = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -14087,7 +14123,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 198,
+      "line": 321,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "var tile = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -17147,7 +17183,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 146,
+      "line": 265,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "var go = new GameObject(\"__HOME_HUB_COMFORT_SETTINGS\");"
     },
@@ -17156,7 +17192,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 349,
+      "line": 472,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "var go = new GameObject(\"Label_\" + text.Replace(' ', '_').Replace('\\n', '_'));"
     },
@@ -17786,7 +17822,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-      "line": 66,
+      "line": 130,
       "symbol": "Ziptide.Tests.EditMode.HomeHubFlowTests",
       "snippet": "StringAssert.Contains(\"new GameObject(\\\"__HOME_HUB_RUNTIME\\\").AddComponent<HomeHubRuntime>()\", source);"
     },
@@ -17795,7 +17831,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-      "line": 97,
+      "line": 161,
       "symbol": "Ziptide.Tests.EditMode.HomeHubFlowTests",
       "snippet": "StringAssert.Contains(\"new GameObject(\\\"__HOME_HUB_COMFORT_SETTINGS\\\")\", source);"
     },
@@ -17804,7 +17840,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-      "line": 110,
+      "line": 174,
       "symbol": "Ziptide.Tests.EditMode.HomeHubFlowTests",
       "snippet": "var go = new GameObject(\"castoff-test\");"
     },
@@ -17813,7 +17849,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-      "line": 135,
+      "line": 199,
       "symbol": "Ziptide.Tests.EditMode.HomeHubFlowTests",
       "snippet": "var go = new GameObject(\"bunk-test\");"
     },
@@ -18866,7 +18902,7 @@
       "code": "TEXTMESH_COMPONENT",
       "description": "Legacy TextMesh creation/reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 352,
+      "line": 475,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "var tm = go.AddComponent<TextMesh>();"
     },
@@ -19424,7 +19460,7 @@
       "code": "XR_INTERACTABLE_COMPONENT",
       "description": "XR interactable creation/reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 205,
+      "line": 328,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "var interactable = tile.AddComponent<XRSimpleInteractable>();"
     },
@@ -20297,7 +20333,7 @@
       "code": "PLAYER_PROFILE_REFERENCE",
       "description": "PlayerProfile reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 58,
+      "line": 106,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "public static event Action<PlayerProfile> NewGameProfileCreated;"
     },
@@ -20306,7 +20342,7 @@
       "code": "PLAYER_PROFILE_REFERENCE",
       "description": "PlayerProfile reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 127,
+      "line": 246,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "PlayerProfile profile = SaveSystem.Instance.StartNewProfile();"
     },
@@ -20585,7 +20621,7 @@
       "code": "PLAYER_PROFILE_REFERENCE",
       "description": "PlayerProfile reference",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-      "line": 81,
+      "line": 145,
       "symbol": "Ziptide.Tests.EditMode.HomeHubFlowTests",
       "snippet": "StringAssert.Contains(\"public PlayerProfile StartNewProfile()\", source);"
     },
@@ -21521,7 +21557,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 46,
+      "line": 72,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "/// all persistence to SaveSystem and all scene change to the callback supplied by BootLoader."
     },
@@ -21530,7 +21566,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 84,
+      "line": 135,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "bool canContinue = SaveSystem.HasExistingProfile;"
     },
@@ -21539,7 +21575,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 105,
+      "line": 220,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "SaveSystem.Instance == null)"
     },
@@ -21548,7 +21584,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 127,
+      "line": 246,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "PlayerProfile profile = SaveSystem.Instance.StartNewProfile();"
     },
@@ -21557,7 +21593,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 132,
+      "line": 251,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "// Load remains SaveSystem's sole profile recovery/migration path."
     },
@@ -21566,7 +21602,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 133,
+      "line": 252,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "SaveSystem.Instance.Load();"
     },
@@ -21836,7 +21872,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-      "line": 77,
+      "line": 141,
       "symbol": "Ziptide.Tests.EditMode.HomeHubFlowTests",
       "snippet": "string source = Read(\"Gameplay\", \"Runtime\", \"Persistence\", \"SaveSystem.cs\");"
     },
@@ -21845,7 +21881,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-      "line": 94,
+      "line": 158,
       "symbol": "Ziptide.Tests.EditMode.HomeHubFlowTests",
       "snippet": "StringAssert.Contains(\"SaveSystem.Instance.StartNewProfile()\", source);"
     },
@@ -21854,7 +21890,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-      "line": 95,
+      "line": 159,
       "symbol": "Ziptide.Tests.EditMode.HomeHubFlowTests",
       "snippet": "StringAssert.Contains(\"SaveSystem.Instance.Load();\", source);"
     },
@@ -22331,7 +22367,7 @@
       "code": "XRI_MANAGER_ASSIGN",
       "description": "Explicit interactable interactionManager assignment",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 213,
+      "line": 336,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "interactable.interactionManager = manager;"
     },
@@ -22340,7 +22376,7 @@
       "code": "XRI_MANAGER_ASSIGN",
       "description": "Explicit interactable interactionManager assignment",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 255,
+      "line": 378,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "interactable.interactionManager = manager;"
     },
@@ -22790,7 +22826,7 @@
       "code": "XRI_MANAGER_LOOKUP",
       "description": "XRInteractionManager lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 207,
+      "line": 330,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "if (manager == null) manager = FindObjectOfType<XRInteractionManager>();"
     },
@@ -22799,7 +22835,7 @@
       "code": "XRI_MANAGER_LOOKUP",
       "description": "XRInteractionManager lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 251,
+      "line": 374,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "XRInteractionManager manager = FindObjectOfType<XRInteractionManager>();"
     },

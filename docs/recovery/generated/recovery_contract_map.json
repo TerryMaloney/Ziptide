@@ -2,7 +2,7 @@
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
   "scannedFiles": 724,
-  "findingCount": 2539,
+  "findingCount": 2543,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -7928,63 +7928,63 @@
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 146,
+            "line": 265,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "var go = new GameObject(\"__HOME_HUB_COMFORT_SETTINGS\");"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 166,
+            "line": 289,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "var board = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 198,
+            "line": 321,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "var tile = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "XR_INTERACTABLE_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 205,
+            "line": 328,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "var interactable = tile.AddComponent<XRSimpleInteractable>();"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 349,
+            "line": 472,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "var go = new GameObject(\"Label_\" + text.Replace(' ', '_').Replace('\\n', '_'));"
           },
           {
             "code": "TEXTMESH_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 352,
+            "line": 475,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "var tm = go.AddComponent<TextMesh>();"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 371,
+            "line": 494,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "Shader shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 372,
+            "line": 495,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
           },
           {
             "code": "RUNTIME_MATERIAL_CREATE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 374,
+            "line": 497,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "var material = new Material(shader);"
           }
@@ -11278,28 +11278,28 @@
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-            "line": 66,
+            "line": 130,
             "symbol": "Ziptide.Tests.EditMode.HomeHubFlowTests",
             "snippet": "StringAssert.Contains(\"new GameObject(\\\"__HOME_HUB_RUNTIME\\\").AddComponent<HomeHubRuntime>()\", source);"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-            "line": 97,
+            "line": 161,
             "symbol": "Ziptide.Tests.EditMode.HomeHubFlowTests",
             "snippet": "StringAssert.Contains(\"new GameObject(\\\"__HOME_HUB_COMFORT_SETTINGS\\\")\", source);"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-            "line": 110,
+            "line": 174,
             "symbol": "Ziptide.Tests.EditMode.HomeHubFlowTests",
             "snippet": "var go = new GameObject(\"castoff-test\");"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-            "line": 135,
+            "line": 199,
             "symbol": "Ziptide.Tests.EditMode.HomeHubFlowTests",
             "snippet": "var go = new GameObject(\"bunk-test\");"
           }
@@ -13565,28 +13565,28 @@
           {
             "code": "XRI_MANAGER_LOOKUP",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 207,
+            "line": 330,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "if (manager == null) manager = FindObjectOfType<XRInteractionManager>();"
           },
           {
             "code": "XRI_MANAGER_ASSIGN",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 213,
+            "line": 336,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "interactable.interactionManager = manager;"
           },
           {
             "code": "XRI_MANAGER_LOOKUP",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 251,
+            "line": 374,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "XRInteractionManager manager = FindObjectOfType<XRInteractionManager>();"
           },
           {
             "code": "XRI_MANAGER_ASSIGN",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 255,
+            "line": 378,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "interactable.interactionManager = manager;"
           }
@@ -15399,112 +15399,112 @@
           {
             "code": "SAVE_SYSTEM_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 46,
+            "line": 72,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "/// all persistence to SaveSystem and all scene change to the callback supplied by BootLoader."
           },
           {
             "code": "EVENT_DECLARATION",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 57,
+            "line": 105,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "public static event Action<bool> BootPresentationReady;"
           },
           {
             "code": "STATIC_EVENT_DECLARATION",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 57,
+            "line": 105,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "public static event Action<bool> BootPresentationReady;"
           },
           {
             "code": "EVENT_DECLARATION",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 58,
+            "line": 106,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "public static event Action<PlayerProfile> NewGameProfileCreated;"
           },
           {
             "code": "PLAYER_PROFILE_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 58,
+            "line": 106,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "public static event Action<PlayerProfile> NewGameProfileCreated;"
           },
           {
             "code": "STATIC_EVENT_DECLARATION",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 58,
+            "line": 106,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "public static event Action<PlayerProfile> NewGameProfileCreated;"
           },
           {
             "code": "EVENT_DECLARATION",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 59,
+            "line": 107,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "public static event Action<HomeHubChoice> ChoiceSelected;"
           },
           {
             "code": "STATIC_EVENT_DECLARATION",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 59,
+            "line": 107,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "public static event Action<HomeHubChoice> ChoiceSelected;"
           },
           {
             "code": "EVENT_DECLARATION",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 60,
+            "line": 108,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "public static event Action SettingsRequested;"
           },
           {
             "code": "STATIC_EVENT_DECLARATION",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 60,
+            "line": 108,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "public static event Action SettingsRequested;"
           },
           {
             "code": "SAVE_SYSTEM_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 84,
+            "line": 135,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "bool canContinue = SaveSystem.HasExistingProfile;"
           },
           {
             "code": "SAVE_SYSTEM_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 105,
+            "line": 220,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "SaveSystem.Instance == null)"
           },
           {
             "code": "PLAYER_PROFILE_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 127,
+            "line": 246,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "PlayerProfile profile = SaveSystem.Instance.StartNewProfile();"
           },
           {
             "code": "SAVE_SYSTEM_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 127,
+            "line": 246,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "PlayerProfile profile = SaveSystem.Instance.StartNewProfile();"
           },
           {
             "code": "SAVE_SYSTEM_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 132,
+            "line": 251,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "// Load remains SaveSystem's sole profile recovery/migration path."
           },
           {
             "code": "SAVE_SYSTEM_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 133,
+            "line": 252,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "SaveSystem.Instance.Load();"
           }
@@ -16917,28 +16917,28 @@
           {
             "code": "SAVE_SYSTEM_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-            "line": 77,
+            "line": 141,
             "symbol": "Ziptide.Tests.EditMode.HomeHubFlowTests",
             "snippet": "string source = Read(\"Gameplay\", \"Runtime\", \"Persistence\", \"SaveSystem.cs\");"
           },
           {
             "code": "PLAYER_PROFILE_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-            "line": 81,
+            "line": 145,
             "symbol": "Ziptide.Tests.EditMode.HomeHubFlowTests",
             "snippet": "StringAssert.Contains(\"public PlayerProfile StartNewProfile()\", source);"
           },
           {
             "code": "SAVE_SYSTEM_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-            "line": 94,
+            "line": 158,
             "symbol": "Ziptide.Tests.EditMode.HomeHubFlowTests",
             "snippet": "StringAssert.Contains(\"SaveSystem.Instance.StartNewProfile()\", source);"
           },
           {
             "code": "SAVE_SYSTEM_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-            "line": 95,
+            "line": 159,
             "symbol": "Ziptide.Tests.EditMode.HomeHubFlowTests",
             "snippet": "StringAssert.Contains(\"SaveSystem.Instance.Load();\", source);"
           }
@@ -18289,7 +18289,7 @@
       },
       {
         "owner": "Ziptide.Gameplay.HomeHubChoice",
-        "evidenceCount": 2,
+        "evidenceCount": 3,
         "codes": [
           "CAMERA_MAIN_REFERENCE"
         ],
@@ -18300,14 +18300,21 @@
           {
             "code": "CAMERA_MAIN_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 155,
+            "line": 162,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
-            "snippet": "Transform cam = Camera.main != null ? Camera.main.transform : null;"
+            "snippet": "Camera cam = Camera.main;"
           },
           {
             "code": "CAMERA_MAIN_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-            "line": 281,
+            "line": 274,
+            "symbol": "Ziptide.Gameplay.HomeHubChoice",
+            "snippet": "Camera cam = Camera.main;"
+          },
+          {
+            "code": "CAMERA_MAIN_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
+            "line": 404,
             "symbol": "Ziptide.Gameplay.HomeHubChoice",
             "snippet": "Camera cam = Camera.main;"
           }
