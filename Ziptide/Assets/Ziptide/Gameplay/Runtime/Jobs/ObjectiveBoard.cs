@@ -85,11 +85,11 @@ namespace Ziptide.Gameplay
             if (runtime.IsComplete)
             {
                 _tmp.color = new Color(0.42f, 1f, 0.68f);
-                _tmp.text = "CONTRACT COMPLETE\n" + title + "\n\nReward secured";
+                _tmp.text = "CONTRACT COMPLETE\n" + title + "\n\nAll objectives complete";
                 if (!_completionPresented)
                 {
                     _completionPresented = true;
-                    ShowToast("CONTRACT COMPLETE", title + "\nREWARD SECURED", true);
+                    ShowToast("CONTRACT COMPLETE", title + "\nROUTE COMPLETE", true);
                     StartBoardPulse();
                 }
             }
