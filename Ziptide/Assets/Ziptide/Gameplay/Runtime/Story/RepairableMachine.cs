@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using Ziptide.Content;
@@ -6,18 +7,20 @@ namespace Ziptide.Gameplay
 {
     /// <summary>
     /// The hands-on repair fantasy (GAME_PLAN M2): a broken machine fixed in three PHYSICAL stages —
-    /// 1) grab the access PANEL off, 2) fetch the replacement PART (spawned wherever the pack says —
-    /// the fetch is part of the job) and seat it in the exposed socket, 3) press the illuminated power
-    /// SWITCH. Then the machine hums back to life and credits RepairMachineCount job steps via
-    /// <see cref="JobDirector.ReportRepair"/>. Spawned by JobDirector from
-    /// <see cref="MachineSpawnDefinition"/> pack data — never in scene YAML.
-    /// Logs: ZIPTIDE: MACHINE_STAGE id=… stage=… · ZIPTIDE: MACHINE_REPAIRED id=…
+    /// 1) grab the access PANEL off, 2) fetch the replacement PART and seat it in the exposed socket,
+    /// 3) press the illuminated power SWITCH. Then the machine hums back to life and credits
+    /// RepairMachineCount job steps through JobDirector.
+    ///
+    /// Each physical owner also owns its restrained feedback: the controller that performed the work
+    /// receives one bounded pulse, the machine plays one short local procedural sound, and the newly
+    /// actionable surface visibly confirms the state change. No global haptic/audio manager and no
+    /// parallel repair state are introduced.
     /// </summary>
     public class RepairableMachine : MonoBehaviour, IScannable
     {
         private static readonly Color BodyColor = new Color(0.16f, 0.17f, 0.20f);
-        private static readonly Color PanelColor = new Color(0.32f, 0.20f, 0.14f); // rusted plate
-        private static readonly Color SocketEmpty = new Color(0.55f, 0.25f, 0.20f); // exposed fault
+        private static readonly Color PanelColor = new Color(0.32f, 0.20f, 0.14f);
+        private static readonly Color SocketEmpty = new Color(0.55f, 0.25f, 0.20f);
         private static readonly Color PartColor = new Color(0.85f, 0.65f, 0.25f);
         private static readonly Color SwitchOff = new Color(0.45f, 0.15f, 0.12f);
         private static readonly Color SwitchReady = new Color(1.0f, 0.48f, 0.08f);
@@ -28,20 +31,11 @@ namespace Ziptide.Gameplay
         private JobDirector _director;
         private RepairStage _stage = RepairStage.Panel;
 
-        /// <summary>Stable machine id from pack data (e.g. "gate_coupler"). Null before Init.</summary>
         public string MachineId => _def != null ? _def.machineId : null;
-
-        /// <summary>The single public view of the existing physical repair state.</summary>
         public RepairStage CurrentStage => _stage;
-
-        /// <summary>Neutral notification emitted after an established physical stage transition.</summary>
         public event System.Action<RepairStage> StageChanged;
-
-        /// <summary>True once the machine hums (panel off → part seated → switch pressed).
-        /// Queried by ShipCastOffRuntime's arming gate.</summary>
         public bool IsRepaired => _stage == RepairStage.Running;
 
-        // IScannable — the same physical machine is the objective; no proxy or second scanner state.
         public Transform ScanTransform => transform;
         public ScanKind ScanKind => Ziptide.Gameplay.ScanKind.Objective;
         public bool ScanActive => _stage != RepairStage.Running;
@@ -53,6 +47,13 @@ namespace Ziptide.Gameplay
         private Renderer _statusLamp;
         private GameObject _powerSwitch;
         private TextMesh _label;
+        private AudioSource _feelAudio;
+        private XRBaseControllerInteractor _lastPartHand;
+        private Coroutine _surfacePulse;
+
+        private static AudioClip _panelReleaseClip;
+        private static AudioClip _partSeatClip;
+        private static AudioClip _powerOnClip;
 
         /// <summary>Build + arm the machine. Call immediately after AddComponent (spawner does).</summary>
         public void Init(MachineSpawnDefinition def, JobDirector director)
@@ -64,7 +65,14 @@ namespace Ziptide.Gameplay
 
         private void Build()
         {
-            // Body.
+            _feelAudio = gameObject.AddComponent<AudioSource>();
+            _feelAudio.playOnAwake = false;
+            _feelAudio.spatialBlend = 1f;
+            _feelAudio.rolloffMode = AudioRolloffMode.Linear;
+            _feelAudio.minDistance = 0.4f;
+            _feelAudio.maxDistance = 8f;
+            _feelAudio.volume = 0.48f;
+
             var body = GameObject.CreatePrimitive(PrimitiveType.Cube);
             body.name = "Body";
             body.transform.SetParent(transform, false);
@@ -72,9 +80,6 @@ namespace Ziptide.Gameplay
             body.transform.localScale = new Vector3(1.0f, 1.5f, 0.7f);
             Paint(body, BodyColor);
 
-            // Status INDICATOR — deliberately a flat light, not a round button. It is red while broken
-            // and green when running, but never receives interaction. The actual power control appears
-            // on the child-reachable front face only after the replacement part seats.
             var lamp = GameObject.CreatePrimitive(PrimitiveType.Cube);
             lamp.name = "StatusIndicator"; StripCollider(lamp);
             lamp.transform.SetParent(transform, false);
@@ -83,7 +88,6 @@ namespace Ziptide.Gameplay
             Paint(lamp, SwitchOff);
             _statusLamp = lamp.GetComponent<Renderer>();
 
-            // Floating label + stage hint. This is guidance only; every actual control is below 0.9 m.
             var labelGo = new GameObject("Label");
             _label = labelGo.AddComponent<TextMesh>();
             _label.characterSize = 0.035f;
@@ -94,7 +98,6 @@ namespace Ziptide.Gameplay
             labelGo.transform.SetParent(transform, false);
             labelGo.transform.localPosition = new Vector3(0f, 1.58f, -0.38f);
 
-            // The exposed socket behind the panel (visible once the panel is off).
             var socket = GameObject.CreatePrimitive(PrimitiveType.Cube);
             socket.name = "Socket"; StripCollider(socket);
             socket.transform.SetParent(transform, false);
@@ -105,8 +108,6 @@ namespace Ziptide.Gameplay
             _socketRenderer = socket.GetComponent<Renderer>();
             socket.SetActive(false);
 
-            // Stage 1: the access panel — a grabbable plate covering the socket. It begins constrained,
-            // then drops without inheriting an XR throw impulse after the player lets go.
             var panel = new GameObject("Panel");
             panel.transform.SetParent(transform, false);
             panel.transform.localPosition = new Vector3(0f, 0.85f, -0.42f);
@@ -119,7 +120,8 @@ namespace Ziptide.Gameplay
             var panelGrab = panel.AddComponent<XRGrabInteractable>();
             panelGrab.throwOnDetach = false;
             WireManager(panelGrab);
-            panelGrab.selectEntered.AddListener(_ => OnPanelPulled(panel, panelRb));
+            panelGrab.selectEntered.AddListener(args =>
+                OnPanelPulled(panel, panelRb, SelectingController(args)));
             panelGrab.selectExited.AddListener(_ => SettleLooseBody(panelRb, useGravity: true));
             var panelVisual = GameObject.CreatePrimitive(PrimitiveType.Cube);
             panelVisual.name = "Plate"; StripCollider(panelVisual);
@@ -127,8 +129,6 @@ namespace Ziptide.Gameplay
             panelVisual.transform.localScale = new Vector3(0.5f, 0.5f, 0.05f);
             Paint(panelVisual, PanelColor);
 
-            // Stage 3: a large, front-centre, child-reachable power switch. It remains hidden until the
-            // part seats, so the only newly illuminated control is the one the player must press.
             var sw = GameObject.CreatePrimitive(PrimitiveType.Cube);
             sw.name = "PowerSwitch_PRESS";
             sw.transform.SetParent(transform, false);
@@ -138,15 +138,15 @@ namespace Ziptide.Gameplay
             _switchRenderer = sw.GetComponent<Renderer>();
             var swCollider = sw.GetComponent<BoxCollider>();
             if (swCollider != null)
-                swCollider.size = new Vector3(1.35f, 1.40f, 1.80f); // forgiving ray/direct target
+                swCollider.size = new Vector3(1.35f, 1.40f, 1.80f);
             var swInteractable = sw.AddComponent<XRSimpleInteractable>();
             WireManager(swInteractable);
-            swInteractable.selectEntered.AddListener(_ => OnSwitchFlipped());
+            swInteractable.selectEntered.AddListener(args =>
+                OnSwitchFlipped(SelectingController(args)));
 
             var switchLabelGo = new GameObject("PowerSwitchLabel");
             switchLabelGo.transform.SetParent(sw.transform, false);
             switchLabelGo.transform.localPosition = new Vector3(0f, 0f, -0.58f);
-            // Neutralize parent non-uniform scale so the text is readable rather than stretched.
             switchLabelGo.transform.localScale = new Vector3(1f / 0.34f, 1f / 0.24f, 1f / 0.10f) * 0.16f;
             var switchLabel = switchLabelGo.AddComponent<TextMesh>();
             switchLabel.text = "PRESS POWER";
@@ -159,7 +159,6 @@ namespace Ziptide.Gameplay
             _powerSwitch = sw;
             _powerSwitch.SetActive(false);
 
-            // Stage 2: the replacement part, spawned where the pack says (fetch = gameplay).
             Vector3 partPos = _def.partLocalPosition == Vector3.zero
                 ? transform.position + new Vector3(0.8f, 0.9f, 0f)
                 : transform.parent != null ? transform.parent.TransformPoint(_def.partLocalPosition + Vector3.up * 0.9f)
@@ -175,8 +174,9 @@ namespace Ziptide.Gameplay
             var partGrab = part.AddComponent<XRGrabInteractable>();
             partGrab.throwOnDetach = false;
             WireManager(partGrab);
-            partGrab.selectEntered.AddListener(_ =>
+            partGrab.selectEntered.AddListener(args =>
             {
+                _lastPartHand = SelectingController(args);
                 if (partRb == null) return;
                 partRb.velocity = Vector3.zero;
                 partRb.angularVelocity = Vector3.zero;
@@ -208,28 +208,27 @@ namespace Ziptide.Gameplay
 
         private void Update()
         {
-            // Stage 2: seat the part — snaps when it comes near the exposed socket (held or dropped).
             if (_stage == RepairStage.Part && _part != null && _socket != null &&
                 Vector3.Distance(_part.position, _socket.position) <= SeatDistance)
             {
                 SeatPart();
             }
 
-            // Billboard the label.
             var cam = Camera.main;
             if (cam != null && _label != null)
                 _label.transform.rotation = Quaternion.LookRotation(_label.transform.position - cam.transform.position);
         }
 
-        private void OnPanelPulled(GameObject panel, Rigidbody rb)
+        private void OnPanelPulled(GameObject panel, Rigidbody rb, XRBaseControllerInteractor hand)
         {
             if (_stage != RepairStage.Panel) return;
             _stage = RepairStage.Part;
-            // The plate comes free in the hand; after release it drops in place with no inherited throw.
             rb.constraints = RigidbodyConstraints.None;
             rb.useGravity = true;
             panel.transform.SetParent(null, true);
             if (_socket != null) _socket.gameObject.SetActive(true);
+            SendFeedback(hand, "repair_panel", 0.22f, 0.045f, PanelReleaseClip());
+            PulseSurface(_socketRenderer, SocketEmpty, PartColor, 0.28f);
             Debug.Log("ZIPTIDE: MACHINE_STAGE id=" + _def.machineId + " stage=panel_off");
             UpdateLabel();
             PublishStageChanged();
@@ -238,33 +237,121 @@ namespace Ziptide.Gameplay
         private void SeatPart()
         {
             _stage = RepairStage.Power;
-            // Consume the part into the socket. Destroying a selected interactable is the established
-            // pattern here (CollectibleRuntime does the same) — XRI unregisters it on destroy.
             Destroy(_part.gameObject);
             _part = null;
             if (_socketRenderer != null) Tint(_socketRenderer, PartColor);
             if (_powerSwitch != null) _powerSwitch.SetActive(true);
             if (_switchRenderer != null) Tint(_switchRenderer, SwitchReady);
+            SendFeedback(_lastPartHand, "repair_part_seated", 0.38f, 0.075f, PartSeatClip());
+            PulseSurface(_switchRenderer, SwitchReady, Color.white, 0.32f);
+            _lastPartHand = null;
             Debug.Log("ZIPTIDE: MACHINE_STAGE id=" + _def.machineId + " stage=part_seated");
             UpdateLabel();
             PublishStageChanged();
         }
 
-        private void OnSwitchFlipped()
+        private void OnSwitchFlipped(XRBaseControllerInteractor hand)
         {
             if (_stage != RepairStage.Power) return;
             _stage = RepairStage.Running;
             if (_switchRenderer != null) Tint(_switchRenderer, RunningColor);
             if (_statusLamp != null) Tint(_statusLamp, RunningColor);
+            SendFeedback(hand, "repair_power_on", 0.62f, 0.12f, PowerOnClip());
+            PulseSurface(_statusLamp, RunningColor, Color.white, 0.48f);
             if (_director == null) _director = FindObjectOfType<JobDirector>();
             if (_director != null) _director.ReportRepair(_def.machineId);
-            // DS-10 evidence: instance id + whether a director existed to receive the report —
-            // a repair that never reaches a director is a different fault than a rejected one.
             Debug.Log("ZIPTIDE: MACHINE_REPAIRED id=" + _def.machineId
                 + " instance=" + GetInstanceID()
                 + " director=" + (_director != null ? _director.GetInstanceID().ToString() : "NONE"));
             UpdateLabel();
             PublishStageChanged();
+        }
+
+        private void SendFeedback(XRBaseControllerInteractor hand, string verb,
+            float amplitude, float duration, AudioClip clip)
+        {
+            if (hand != null)
+            {
+                hand.SendHapticImpulse(amplitude, duration);
+                Debug.Log("ZIPTIDE: HAPTIC verb=" + verb + " hand=" + hand.gameObject.name
+                    + " amp=" + amplitude.ToString("F2") + " sec=" + duration.ToString("F3"));
+            }
+            if (_feelAudio != null && clip != null) _feelAudio.PlayOneShot(clip);
+        }
+
+        private void PulseSurface(Renderer renderer, Color baseColor, Color peak, float seconds)
+        {
+            if (renderer == null) return;
+            if (_surfacePulse != null) StopCoroutine(_surfacePulse);
+            _surfacePulse = StartCoroutine(PulseSurfaceRoutine(renderer, baseColor, peak, seconds));
+        }
+
+        private IEnumerator PulseSurfaceRoutine(Renderer renderer, Color baseColor, Color peak, float seconds)
+        {
+            if (renderer == null) yield break;
+            Material material = renderer.material;
+            string prop = material.HasProperty("_BaseColor") ? "_BaseColor" :
+                          (material.HasProperty("_Color") ? "_Color" : null);
+            if (prop == null) yield break;
+
+            float half = Mathf.Max(0.04f, seconds * 0.5f);
+            for (float t = 0f; t < seconds; t += Time.deltaTime)
+            {
+                float p = t < half ? t / half : 1f - (t - half) / half;
+                material.SetColor(prop, Color.Lerp(baseColor, peak, Mathf.Clamp01(p)));
+                yield return null;
+            }
+            material.SetColor(prop, baseColor);
+            _surfacePulse = null;
+        }
+
+        private static XRBaseControllerInteractor SelectingController(SelectEnterEventArgs args)
+        {
+            return args != null ? args.interactorObject as XRBaseControllerInteractor : null;
+        }
+
+        private static AudioClip PanelReleaseClip()
+        {
+            if (_panelReleaseClip == null)
+                _panelReleaseClip = BuildStageClip("Repair_PanelRelease", 170f, 95f, 0.11f, 0.22f);
+            return _panelReleaseClip;
+        }
+
+        private static AudioClip PartSeatClip()
+        {
+            if (_partSeatClip == null)
+                _partSeatClip = BuildStageClip("Repair_PartSeat", 260f, 390f, 0.13f, 0.08f);
+            return _partSeatClip;
+        }
+
+        private static AudioClip PowerOnClip()
+        {
+            if (_powerOnClip == null)
+                _powerOnClip = BuildStageClip("Repair_PowerOn", 240f, 660f, 0.28f, 0.04f);
+            return _powerOnClip;
+        }
+
+        private static AudioClip BuildStageClip(string name, float fromHz, float toHz,
+            float duration, float noiseAmount)
+        {
+            const int sampleRate = 22050;
+            int count = Mathf.CeilToInt(sampleRate * duration);
+            var samples = new float[count];
+            uint noise = 0x9E3779B9u;
+            for (int i = 0; i < count; i++)
+            {
+                float t = i / (float)sampleRate;
+                float p = Mathf.Clamp01(t / duration);
+                float frequency = Mathf.Lerp(fromHz, toHz, p);
+                float envelope = Mathf.Sin(Mathf.PI * p) * Mathf.Exp(-t * 3.2f);
+                float tone = Mathf.Sin(2f * Mathf.PI * frequency * t);
+                noise = noise * 1664525u + 1013904223u;
+                float n = ((noise >> 8) & 0xFFFFu) / 32768f - 1f;
+                samples[i] = Mathf.Clamp((tone * 0.52f + n * noiseAmount) * envelope, -0.72f, 0.72f);
+            }
+            AudioClip clip = AudioClip.Create(name, count, 1, sampleRate, false);
+            clip.SetData(samples, 0);
+            return clip;
         }
 
         private void PublishStageChanged()
