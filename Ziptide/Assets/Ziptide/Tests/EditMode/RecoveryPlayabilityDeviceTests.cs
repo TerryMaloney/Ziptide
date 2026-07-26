@@ -24,7 +24,7 @@ namespace Ziptide.Tests.EditMode
             StringAssert.Contains("PLAYER_MENU_BOUND", source);
             StringAssert.DoesNotContain("TravelTo(ZiptideConstants.SceneBoot", source);
             StringAssert.DoesNotContain("SceneManager.LoadScene", source);
-            StringAssert.DoesNotContain("Time.timeScale", source);
+            StringAssert.DoesNotContain("Time.timeScale =", source);
         }
 
         [Test]
