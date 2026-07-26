@@ -28,6 +28,70 @@ namespace Ziptide.Tests.EditMode
             Assert.IsFalse(flow.TryChoose(HomeHubChoice.Settings, out _));
         }
 
+        // ── DS-02 anchor solver (device 2026-07-25: the boot surface was anchored to an untracked
+        //    camera pose and stranded out of reach while the boot hold suspended move AND turn) ──
+
+        [Test]
+        public void Anchor_PlacesSurfaceAtRequestedDistanceOnTheHorizon()
+        {
+            var head = new Vector3(0f, 1.7f, 0f);
+            HomeHubAnchor.Solve(head, Vector3.forward, 1.6f, 0.15f,
+                out Vector3 position, out Quaternion rotation);
+
+            Assert.AreEqual(1.6f, Vector3.ProjectOnPlane(position - head, Vector3.up).magnitude, 0.001f,
+                "Horizontal distance from the head must equal the requested anchor distance.");
+            Assert.AreEqual(1.55f, position.y, 0.001f, "Board centre sits exactly 'drop' below eye level.");
+            Assert.AreEqual(Vector3.forward, rotation * Vector3.forward, "Surface faces away from the viewer.");
+        }
+
+        [Test]
+        public void Anchor_FlattensPitchSoALookingDownHeadNeverBuriesTheBoard()
+        {
+            var head = new Vector3(0f, 1.7f, 0f);
+            // A steeply pitched (or untracked) head pose is the exact cold-boot failure input.
+            Vector3 steeplyDown = new Vector3(0f, -0.94f, 0.34f).normalized;
+
+            HomeHubAnchor.Solve(head, steeplyDown, 1.6f, 0.15f, out Vector3 position, out _);
+
+            Assert.AreEqual(1.55f, position.y, 0.001f,
+                "Pitch must not drive the board below eye level minus the drop.");
+            Assert.AreEqual(1.6f, Vector3.ProjectOnPlane(position - head, Vector3.up).magnitude, 0.001f,
+                "Flattening must preserve the full horizontal reach distance.");
+        }
+
+        [Test]
+        public void Anchor_FallsBackWhenGazeIsPerfectlyVertical()
+        {
+            HomeHubAnchor.Solve(Vector3.zero, Vector3.down, 1.6f, 0.15f,
+                out Vector3 position, out Quaternion rotation);
+
+            Assert.AreEqual(new Vector3(0f, -0.15f, 1.6f), position,
+                "A degenerate vertical gaze must fall back to world forward, not NaN or zero.");
+            Assert.IsFalse(float.IsNaN(rotation.x), "Rotation must remain finite.");
+        }
+
+        [Test]
+        public void Anchor_KeepsATileChoiceInsideHandReachNotOnlyRayReach()
+        {
+            // BOOT_LIVENESS (M0_BOOT_MENU_DEADLOCK_DIAGNOSTIC_20260725 §6.1): on device the rig had
+            // ZERO active ray interactors, so a choice MUST also be reachable by hand. These are the
+            // shipped constants, read from the runtime so the test cannot drift away from the game.
+            var head = new Vector3(0f, 1.7f, 0f);
+            HomeHubAnchor.Solve(head, Vector3.forward,
+                HomeHubRuntime.AnchorDistance, 0.15f, out Vector3 board, out _);
+
+            // Furthest authored tile offsets: x = 0.72 (three-tile layout), y = -0.22.
+            float along = Vector3.ProjectOnPlane(board - head, Vector3.up).magnitude
+                - HomeHubRuntime.TileForwardOffset;
+            float furthestTile = new Vector3(0.72f, -0.22f, along).magnitude;
+
+            Assert.Greater(along, 0.25f, "Tiles must not be pushed into the player's face.");
+            Assert.LessOrEqual(furthestTile, 0.95f,
+                "Every tile must be reachable by an extended arm/lean when no ray interactor is active.");
+            Assert.Less(furthestTile, 1.4f,
+                "Tiles must also stay inside the clamped drawn ray length so the ray visibly touches them.");
+        }
+
         [Test]
         public void Continue_IsUnavailableWithoutValidSave()
         {

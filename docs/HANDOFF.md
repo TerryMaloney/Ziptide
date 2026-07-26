@@ -27,6 +27,43 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-25 (rb110) — T-Dog lane: 🔧 M0 BOOT-MENU DEADLOCK — FIX IMPLEMENTED (authorized by Terry after the device FAIL)
+
+- **Device FAIL (Terry, golden `c45b1a2`):** could not move, could not reach/select NEW GAME.
+  Log proved: `LOCO_STATE moveProvider=True moveSpeed=1.75 ccEnabled=True` (locomotion healthy) ·
+  `BOOT_HOLD on ... suspended=2` **with no release line all session** · `SPAWN_AT scene=_Boot
+  pos=(0,0.10,0) groundBelow=NONE` · `NO_RAY_INTERACTORS` · both tiles bound + `HOME_HUB_READY`.
+  Matches GPT's `docs/recovery/M0_BOOT_MENU_DEADLOCK_DIAGNOSTIC_20260725.md` (BOOT_LIVENESS §6.1).
+- **Root cause (source-verified):** `HomeHubRuntime.BuildSurface` anchored the board ONCE in
+  `Start()` from the camera pose of that frame. At cold boot the tracked head pose has not landed,
+  so the surface was anchored to an untracked camera and never re-anchored. Once tracking arrived
+  (and with any roomscale offset from the tracking origin) the tiles were stranded — computed
+  2.9–4.4 m away for a player standing 1–3 m off origin, versus a 3 m ray. The boot hold correctly
+  suspended move AND turn (it protects a floorless `_Boot`), so no escape path existed.
+- **Fix (contained to `HomeHubRuntime.cs` + tests — no rig, no boot hold, no scene, no APK rebuild
+  of the frozen candidate):**
+  ① new pure `HomeHubAnchor.Solve()` — flattens head-forward to the horizon (a pitched/untracked
+  gaze can no longer bury the board in the floor) and places the surface at a fixed distance.
+  ② `MaintainAnchor()` in Update re-anchors to the LIVE head pose until a choice is taken: snaps on
+  large corrections (the cold-boot case), lazily follows (0.3 s) only past a 0.35 m / 25° deadzone,
+  freezes on first choice. The menu can no longer be out of reach at any tracking timing or pose.
+  ③ **Per the diagnostic's warning that a placement-only fix leaves the zero-ray root live:** the
+  tile row now floats NEARER than the board (`AnchorDistance` 1.5 m, `TileForwardOffset` 1.05 m) so
+  the furthest tile is ~0.88 m and the shipped two-tile layout ~0.65 m — reachable **by hand**, not
+  only by ray, while the board stays readable at 1.5 m.
+  ④ new `ZIPTIDE: HOME_HUB_ANCHOR mode=… pos=… tileReach=… correction=…` evidence line.
+  ⑤ 4 EditMode tests on the pure solver (distance, pitch-flattening, degenerate vertical gaze,
+  hand-reach guarantee reading the SHIPPED constants so the test cannot drift).
+- **NOT fixed here (deliberate, still open):** the zero-active-ray root itself (rig lane —
+  `NO_RAY_INTERACTORS` counts only ACTIVE interactors; five exist in `_Boot.unity` at
+  `maxRaycastDistance=3`, so they were inactive at wiring time). The hand-reach path makes M0
+  winnable without it, but ray-dependent controls later (coupler, PRESS POWER) may still be
+  affected — diagnostic §10 P0 "active-ray persistence after travel" stands.
+- **Next:** this push triggers Recovery Golden Android (`HomeHubRuntime.cs` is in its trigger
+  paths) → NEW candidate APK + SHA for Terry; install with the rb109 uninstall-first law; re-run
+  the bounded route. Do NOT reuse the `c45b1a2` artifact for the retest.
+- **Commit:** this one (HomeHubRuntime.cs + HomeHubFlowTests.cs + this entry).
+
 ### 2026-07-25 (gpt-m0-boot-liveness-audit) — M0 boot blocker diagnosed as mixed product + verification-net failure
 
 - **Did:** reviewed Terry's device screenshots, live handoff, BootLoader, PlayerRigPersistence boot-hold/XRI paths, HomeHubRuntime, ComfortConsoleRuntime, UI readability audit, R1 integration-harness spec, exact c45b1a2 PlayMode artifact, boot smoke, synthetic tracked-rig helper, and travel round-trip test. Added `docs/recovery/M0_BOOT_MENU_DEADLOCK_DIAGNOSTIC_20260725.md`. Confirmed the global deadlock: intentional `BOOT_HOLD` disabled locomotion in floorless `_Boot`; Home Hub declared ready; zero active rays were present; required tiles were outside direct reach; no independent fallback existed. Confirmed the exact green c45 PlayMode artifact already logged `rays=0`, `NO_RAY_INTERACTORS`, `BOOT_HOLD on`, `HOME_HUB_READY`, and `BOARD_PROBE ray=none` before the test helper force-activated rays. The current PlayMode test then moved the ray to 1.1 m from the tile and directly invoked XRI manager selection, proving synthetic plumbing rather than production boot liveness. Classified `RED-CAUSE: mixed`.

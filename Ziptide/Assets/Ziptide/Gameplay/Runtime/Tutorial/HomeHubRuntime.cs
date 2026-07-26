@@ -42,6 +42,32 @@ namespace Ziptide.Gameplay
     }
 
     /// <summary>
+    /// Pure placement solver for the cold-boot surface (no MonoBehaviour, no XR, EditMode-testable).
+    /// The head's forward is FLATTENED to the horizon before use: a cold-boot or looking-down head
+    /// pose must never drive the board into the floor, which is half of the DS-02 unreachable-menu
+    /// failure found on device 2026-07-25.
+    /// </summary>
+    public static class HomeHubAnchor
+    {
+        public static void Solve(
+            Vector3 headPosition,
+            Vector3 headForward,
+            float distance,
+            float drop,
+            out Vector3 position,
+            out Quaternion rotation)
+        {
+            Vector3 flat = headForward;
+            flat.y = 0f;
+            if (flat.sqrMagnitude < 0.0001f) flat = Vector3.forward; // straight up/down gaze
+            flat.Normalize();
+
+            position = headPosition + flat * distance + Vector3.down * drop;
+            rotation = Quaternion.LookRotation(flat, Vector3.up);
+        }
+    }
+
+    /// <summary>
     /// Minimal diegetic cold-boot Home Hub. It presents New Game / Continue / Settings and delegates
     /// all persistence to SaveSystem and all scene change to the callback supplied by BootLoader.
     /// It owns no save file, profile serializer, scene loader, input map or menu framework.
@@ -54,6 +80,28 @@ namespace Ziptide.Gameplay
         private const float ManagerSteadyPollSeconds = 0.25f;
         private const float ProbeIntervalSeconds = 1f;
 
+        // DS-02 — reach anchoring. The surface used to be placed ONCE in Start() from the camera
+        // pose of that frame. On a cold Quest boot the tracked head pose has not landed yet, so the
+        // board was anchored to an untracked (origin/identity) camera and then stranded metres away
+        // and well below eye level once tracking arrived — with the boot hold (correctly) suspending
+        // move AND turn, the player could neither walk nor turn to it. The surface now re-anchors to
+        // the live head pose until a choice is made, so it can never be out of reach.
+        // Board stays at a readable distance; the TILE ROW floats nearer so a choice is reachable by
+        // HAND even when zero ray interactors are active (the device state on 2026-07-25). A
+        // placement-only fix would have left the screen ray-dependent — see
+        // docs/recovery/M0_BOOT_MENU_DEADLOCK_DIAGNOSTIC_20260725.md §6.1 (BOOT_LIVENESS: at least
+        // one complete escape path must exist).
+        public const float AnchorDistance = 1.5f;    // board centre from the head
+        public const float TileForwardOffset = 1.05f; // tiles sit this much NEARER than the board
+        private const float AnchorDrop = 0.15f;      // board centre slightly below eye level
+        private const float ReanchorDistanceMeters = 0.35f;
+        private const float ReanchorYawDegrees = 25f;
+        private const float SettleDistanceMeters = 0.05f;
+        private const float SettleYawDegrees = 2f;
+        private const float AnchorFollowSeconds = 0.3f; // lazy follow, matches the caption-v2 idiom
+        private const float SnapCorrectionMeters = 1f;
+        private const float SnapCorrectionDegrees = 60f;
+
         public static event Action<bool> BootPresentationReady;
         public static event Action<PlayerProfile> NewGameProfileCreated;
         public static event Action<HomeHubChoice> ChoiceSelected;
@@ -65,6 +113,9 @@ namespace Ziptide.Gameplay
         private ComfortConsoleRuntime _settingsConsole;
         private bool _configured;
         private float _nextProbeAt;
+        private bool _anchored;
+        private bool _anchorLocked;
+        private bool _anchorFollowing;
 
         public void Configure(string targetScene, Action<string> travel)
         {
@@ -91,9 +142,73 @@ namespace Ziptide.Gameplay
 
         private void Update()
         {
-            if (!_configured || _flow == null || Time.unscaledTime < _nextProbeAt) return;
+            if (!_configured || _flow == null) return;
+            MaintainAnchor();
+            if (Time.unscaledTime < _nextProbeAt) return;
             _nextProbeAt = Time.unscaledTime + ProbeIntervalSeconds;
             LogAimProbe();
+        }
+
+        /// <summary>
+        /// Keeps the surface within reach of the LIVE head pose until a choice is taken. Snaps while
+        /// the first tracked pose is still landing (that is the cold-boot failure this repairs), then
+        /// lazily follows only after the player has clearly turned or walked away, so the board never
+        /// jitters or drags on small head motion.
+        /// </summary>
+        private void MaintainAnchor()
+        {
+            if (_anchorLocked) return;
+
+            Camera cam = Camera.main;
+            if (cam == null) return;
+
+            HomeHubAnchor.Solve(cam.transform.position, cam.transform.forward,
+                AnchorDistance, AnchorDrop, out Vector3 targetPos, out Quaternion targetRot);
+
+            float posError = Vector3.Distance(transform.position, targetPos);
+            float yawError = Quaternion.Angle(transform.rotation, targetRot);
+
+            if (!_anchored)
+            {
+                ApplyAnchor(targetPos, targetRot, "initial", posError);
+                return;
+            }
+
+            // A large correction is the cold-boot case (tracked pose finally landed, or the player
+            // walked well away). Snap rather than sail a 3 m board across the room at them.
+            if (posError > SnapCorrectionMeters || yawError > SnapCorrectionDegrees)
+            {
+                ApplyAnchor(targetPos, targetRot, "recentre", posError);
+                return;
+            }
+
+            if (!_anchorFollowing &&
+                (posError > ReanchorDistanceMeters || yawError > ReanchorYawDegrees))
+            {
+                _anchorFollowing = true;
+                Debug.Log("ZIPTIDE: HOME_HUB_ANCHOR mode=follow dist=" + posError.ToString("F2")
+                    + " yaw=" + yawError.ToString("F1"));
+            }
+
+            if (!_anchorFollowing) return;
+
+            float t = 1f - Mathf.Exp(-Time.unscaledDeltaTime / AnchorFollowSeconds);
+            transform.position = Vector3.Lerp(transform.position, targetPos, t);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, t);
+
+            if (posError <= SettleDistanceMeters && yawError <= SettleYawDegrees)
+                _anchorFollowing = false;
+        }
+
+        private void ApplyAnchor(Vector3 position, Quaternion rotation, string mode, float error)
+        {
+            transform.SetPositionAndRotation(position, rotation);
+            _anchored = true;
+            _anchorFollowing = false;
+            Debug.Log("ZIPTIDE: HOME_HUB_ANCHOR mode=" + mode
+                + " pos=" + position.ToString("F2")
+                + " tileReach=" + (AnchorDistance - TileForwardOffset).ToString("F2")
+                + " correction=" + error.ToString("F2"));
         }
 
         private void Choose(HomeHubChoice choice)
@@ -109,6 +224,10 @@ namespace Ziptide.Gameplay
             }
 
             if (!_flow.TryChoose(choice, out bool shouldTravel)) return;
+
+            // Freeze the surface the moment a choice lands: nothing should slide under the player
+            // while the settings console is open or travel is committing.
+            _anchorLocked = true;
 
             string choiceName = choice == HomeHubChoice.NewGame ? "new" :
                                 choice == HomeHubChoice.Continue ? "continue" : "settings";
@@ -152,16 +271,20 @@ namespace Ziptide.Gameplay
 
         private void BuildSurface(bool canContinue)
         {
-            Transform cam = Camera.main != null ? Camera.main.transform : null;
-            Vector3 origin = cam != null
-                ? cam.position + cam.forward * 2.2f + Vector3.down * 0.15f
-                : new Vector3(0f, 1.5f, 2.2f);
-            Quaternion facing = cam != null
-                ? Quaternion.LookRotation(origin - cam.position, Vector3.up)
-                : Quaternion.identity;
-
-            transform.position = origin;
-            transform.rotation = facing;
+            Camera cam = Camera.main;
+            if (cam != null)
+            {
+                HomeHubAnchor.Solve(cam.transform.position, cam.transform.forward,
+                    AnchorDistance, AnchorDrop, out Vector3 origin, out Quaternion facing);
+                ApplyAnchor(origin, facing, "build", 0f);
+            }
+            else
+            {
+                // No camera yet: park at a sane default; MaintainAnchor re-anchors on the first
+                // tracked frame (this is the path the cold-boot failure actually took).
+                transform.SetPositionAndRotation(new Vector3(0f, 1.5f, AnchorDistance), Quaternion.identity);
+                Debug.LogWarning("ZIPTIDE: HOME_HUB_ANCHOR mode=no_camera pending_track=true");
+            }
 
             var board = GameObject.CreatePrimitive(PrimitiveType.Cube);
             board.name = "__HOME_HUB_BOARD";
@@ -177,18 +300,18 @@ namespace Ziptide.Gameplay
 
             if (canContinue)
             {
-                AddTile("NEW GAME", new Vector3(-0.72f, -0.22f, -0.62f),
+                AddTile("NEW GAME", new Vector3(-0.72f, -0.22f, -TileForwardOffset),
                     new Color(0.18f, 0.62f, 0.78f), () => Choose(HomeHubChoice.NewGame));
-                AddTile("CONTINUE", new Vector3(0f, -0.22f, -0.62f),
+                AddTile("CONTINUE", new Vector3(0f, -0.22f, -TileForwardOffset),
                     new Color(0.25f, 0.72f, 0.48f), () => Choose(HomeHubChoice.Continue));
-                AddTile("SETTINGS", new Vector3(0.72f, -0.22f, -0.62f),
+                AddTile("SETTINGS", new Vector3(0.72f, -0.22f, -TileForwardOffset),
                     new Color(0.72f, 0.48f, 0.18f), () => Choose(HomeHubChoice.Settings));
             }
             else
             {
-                AddTile("NEW GAME", new Vector3(-0.42f, -0.22f, -0.62f),
+                AddTile("NEW GAME", new Vector3(-0.42f, -0.22f, -TileForwardOffset),
                     new Color(0.18f, 0.62f, 0.78f), () => Choose(HomeHubChoice.NewGame));
-                AddTile("SETTINGS", new Vector3(0.42f, -0.22f, -0.62f),
+                AddTile("SETTINGS", new Vector3(0.42f, -0.22f, -TileForwardOffset),
                     new Color(0.72f, 0.48f, 0.18f), () => Choose(HomeHubChoice.Settings));
             }
         }
