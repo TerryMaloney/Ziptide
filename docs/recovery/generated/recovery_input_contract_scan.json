@@ -1,9 +1,9 @@
 {
   "tool": "recovery_input_contract_scan",
-  "scannedFiles": 726,
-  "bindingCount": 20,
+  "scannedFiles": 727,
+  "bindingCount": 21,
   "chordReferenceCount": 0,
-  "collisionControlCount": 5,
+  "collisionControlCount": 6,
   "bindings": [
     {
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs",
@@ -155,8 +155,8 @@
       "field": "_leftStick",
       "action_name": "ZiptideRideThrottle",
       "binding": "<XRController>{LeftHand}/thumbstick",
-      "action_line": 70,
-      "binding_line": 71
+      "action_line": 97,
+      "binding_line": 98
     },
     {
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
@@ -164,8 +164,8 @@
       "field": "_rightStick",
       "action_name": "ZiptideRideSteer",
       "binding": "<XRController>{RightHand}/thumbstick",
-      "action_line": 72,
-      "binding_line": 73
+      "action_line": 99,
+      "binding_line": 100
     },
     {
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
@@ -173,8 +173,8 @@
       "field": "_boostL3",
       "action_name": "ZiptideRideBoostL3",
       "binding": "<XRController>{LeftHand}/thumbstickClicked",
-      "action_line": 74,
-      "binding_line": 75
+      "action_line": 101,
+      "binding_line": 102
     },
     {
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
@@ -182,12 +182,41 @@
       "field": "_boostA",
       "action_name": "ZiptideRideBoostA",
       "binding": "<XRController>{RightHand}/primaryButton",
-      "action_line": 76,
-      "binding_line": 77
+      "action_line": 103,
+      "binding_line": 104
+    },
+    {
+      "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
+      "symbol": "Ziptide.Ship.VehicleRuntime",
+      "field": "_dismountX",
+      "action_name": "ZiptideRideDismount",
+      "binding": "<XRController>{LeftHand}/primaryButton",
+      "action_line": 105,
+      "binding_line": 106
     }
   ],
   "chordReferences": [],
   "controlCollisions": {
+    "<XRController>{LeftHand}/primaryButton": [
+      {
+        "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
+        "symbol": "Ziptide.Ship.ShipFlightRuntime",
+        "field": "_rollLeftButton",
+        "action_name": "ZiptideFlightRollL",
+        "binding": "<XRController>{LeftHand}/primaryButton",
+        "action_line": 147,
+        "binding_line": 148
+      },
+      {
+        "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
+        "symbol": "Ziptide.Ship.VehicleRuntime",
+        "field": "_dismountX",
+        "action_name": "ZiptideRideDismount",
+        "binding": "<XRController>{LeftHand}/primaryButton",
+        "action_line": 105,
+        "binding_line": 106
+      }
+    ],
     "<XRController>{LeftHand}/thumbstick": [
       {
         "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
@@ -204,8 +233,8 @@
         "field": "_leftStick",
         "action_name": "ZiptideRideThrottle",
         "binding": "<XRController>{LeftHand}/thumbstick",
-        "action_line": 70,
-        "binding_line": 71
+        "action_line": 97,
+        "binding_line": 98
       }
     ],
     "<XRController>{LeftHand}/thumbstickClicked": [
@@ -233,8 +262,8 @@
         "field": "_boostL3",
         "action_name": "ZiptideRideBoostL3",
         "binding": "<XRController>{LeftHand}/thumbstickClicked",
-        "action_line": 74,
-        "binding_line": 75
+        "action_line": 101,
+        "binding_line": 102
       }
     ],
     "<XRController>{RightHand}/primaryButton": [
@@ -262,8 +291,8 @@
         "field": "_boostA",
         "action_name": "ZiptideRideBoostA",
         "binding": "<XRController>{RightHand}/primaryButton",
-        "action_line": 76,
-        "binding_line": 77
+        "action_line": 103,
+        "binding_line": 104
       }
     ],
     "<XRController>{RightHand}/secondaryButton": [
@@ -311,8 +340,8 @@
         "field": "_rightStick",
         "action_name": "ZiptideRideSteer",
         "binding": "<XRController>{RightHand}/thumbstick",
-        "action_line": 72,
-        "binding_line": 73
+        "action_line": 99,
+        "binding_line": 100
       }
     ]
   }

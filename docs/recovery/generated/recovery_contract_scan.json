@@ -1,26 +1,26 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-26T23:14:59.472249+00:00",
+  "generatedAtUtc": "2026-07-26T23:32:26.529085+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
     "Ziptide/Assets/Ziptide",
     "Ziptide/Assets/ZiptideNet"
   ],
-  "scannedFiles": 726,
-  "findingCount": 2576,
+  "scannedFiles": 727,
+  "findingCount": 2577,
   "categoryCounts": {
     "bootstrap": 36,
     "diagnostics": 583,
     "events": 65,
     "fallback_debt": 157,
     "global_render": 83,
-    "input": 216,
+    "input": 219,
     "materials": 249,
     "persistence": 20,
-    "runtime_creation": 676,
-    "runtime_ui": 131,
+    "runtime_creation": 675,
+    "runtime_ui": 130,
     "save_state": 261,
     "scene_loading": 9,
     "xri_ownership": 90
@@ -39,9 +39,9 @@
     "EVENT_SYSTEM_COMPONENT": 2,
     "FALLBACK_MARKER": 157,
     "FRAME_BUTTON_POLL": 1,
-    "INPUT_ACTION_REFERENCE": 207,
-    "INPUT_BUTTON_REFERENCE": 8,
-    "NEW_GAME_OBJECT": 415,
+    "INPUT_ACTION_REFERENCE": 208,
+    "INPUT_BUTTON_REFERENCE": 10,
+    "NEW_GAME_OBJECT": 414,
     "PLAYER_PROFILE_REFERENCE": 140,
     "RENDER_SETTINGS_MUTATION": 37,
     "RUNTIME_BOOTSTRAP": 26,
@@ -49,7 +49,7 @@
     "SAVE_SYSTEM_REFERENCE": 112,
     "SHADER_FIND": 154,
     "STATIC_EVENT_DECLARATION": 16,
-    "TEXTMESH_COMPONENT": 53,
+    "TEXTMESH_COMPONENT": 52,
     "TMP_COMPONENT": 3,
     "VOLUME_COMPONENT": 1,
     "XRI_MANAGER_ASSIGN": 39,
@@ -4628,7 +4628,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
-      "line": 61,
+      "line": 88,
       "symbol": "Ziptide.Ship.VehicleRuntime",
       "snippet": "if (_def == null) Debug.LogWarning(\"ZIPTIDE: VEHICLE_DEF_MISSING id=\" + vehicleId);"
     },
@@ -4637,7 +4637,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
-      "line": 122,
+      "line": 152,
       "symbol": "Ziptide.Ship.VehicleRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: VEHICLE_VISUAL_READY id=\" + vehicleId"
     },
@@ -4646,16 +4646,16 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
-      "line": 274,
+      "line": 323,
       "symbol": "Ziptide.Ship.VehicleRuntime",
-      "snippet": "Debug.Log(\"ZIPTIDE: VEHICLE_MOUNT id=\" + vehicleId + \" maxSpeed=\" + _params.maxSpeed);"
+      "snippet": "Debug.Log(\"ZIPTIDE: VEHICLE_MOUNT id=\" + vehicleId + \" maxSpeed=\" + _params.maxSpeed"
     },
     {
       "category": "diagnostics",
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
-      "line": 285,
+      "line": 335,
       "symbol": "Ziptide.Ship.VehicleRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: VEHICLE_DISMOUNT_BLOCKED id=\" + vehicleId + \" reason=no_safe_ground\");"
     },
@@ -4664,7 +4664,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
-      "line": 299,
+      "line": 351,
       "symbol": "Ziptide.Ship.VehicleRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: VEHICLE_DISMOUNT id=\" + vehicleId);"
     },
@@ -4673,7 +4673,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
-      "line": 325,
+      "line": 395,
       "symbol": "Ziptide.Ship.VehicleRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: VEHICLE_EDGE_BLOCK id=\" + vehicleId"
     },
@@ -9515,16 +9515,16 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
-      "line": 31,
+      "line": 41,
       "symbol": "Ziptide.Ship.VehicleRuntime",
-      "snippet": "private InputAction _leftStick, _rightStick, _boostL3, _boostA;"
+      "snippet": "private InputAction _leftStick, _rightStick, _boostL3, _boostA, _dismountX;"
     },
     {
       "category": "input",
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
-      "line": 70,
+      "line": 97,
       "symbol": "Ziptide.Ship.VehicleRuntime",
       "snippet": "_leftStick = new InputAction(\"ZiptideRideThrottle\", InputActionType.Value);"
     },
@@ -9533,7 +9533,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
-      "line": 72,
+      "line": 99,
       "symbol": "Ziptide.Ship.VehicleRuntime",
       "snippet": "_rightStick = new InputAction(\"ZiptideRideSteer\", InputActionType.Value);"
     },
@@ -9542,7 +9542,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
-      "line": 74,
+      "line": 101,
       "symbol": "Ziptide.Ship.VehicleRuntime",
       "snippet": "_boostL3 = new InputAction(\"ZiptideRideBoostL3\", InputActionType.Button);"
     },
@@ -9551,9 +9551,18 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
-      "line": 76,
+      "line": 103,
       "symbol": "Ziptide.Ship.VehicleRuntime",
       "snippet": "_boostA = new InputAction(\"ZiptideRideBoostA\", InputActionType.Button);"
+    },
+    {
+      "category": "input",
+      "code": "INPUT_ACTION_REFERENCE",
+      "description": "Input System action reference",
+      "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
+      "line": 105,
+      "symbol": "Ziptide.Ship.VehicleRuntime",
+      "snippet": "_dismountX = new InputAction(\"ZiptideRideDismount\", InputActionType.Button);"
     },
     {
       "category": "input",
@@ -10307,9 +10316,18 @@
       "code": "INPUT_BUTTON_REFERENCE",
       "description": "Controller/button reference",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
-      "line": 77,
+      "line": 104,
       "symbol": "Ziptide.Ship.VehicleRuntime",
       "snippet": "_boostA.AddBinding(\"<XRController>{RightHand}/primaryButton\");"
+    },
+    {
+      "category": "input",
+      "code": "INPUT_BUTTON_REFERENCE",
+      "description": "Controller/button reference",
+      "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
+      "line": 106,
+      "symbol": "Ziptide.Ship.VehicleRuntime",
+      "snippet": "_dismountX.AddBinding(\"<XRController>{LeftHand}/primaryButton\");"
     },
     {
       "category": "input",
@@ -10319,6 +10337,15 @@
       "line": 20,
       "symbol": "Ziptide.Tests.EditMode.RecoveryPlayabilityDeviceTests",
       "snippet": "StringAssert.Contains(\"<XRController>{LeftHand}/secondaryButton\", source);"
+    },
+    {
+      "category": "input",
+      "code": "INPUT_BUTTON_REFERENCE",
+      "description": "Controller/button reference",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/VehiclePlayabilityTests.cs",
+      "line": 43,
+      "symbol": "Ziptide.Tests.EditMode.VehiclePlayabilityTests",
+      "snippet": "StringAssert.Contains(\"<XRController>{LeftHand}/primaryButton\", source);"
     },
     {
       "category": "materials",
@@ -11018,7 +11045,7 @@
       "code": "RUNTIME_MATERIAL_CREATE",
       "description": "Runtime Material allocation",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
-      "line": 453,
+      "line": 552,
       "symbol": "Ziptide.Ship.VehicleRuntime",
       "snippet": "material = new Material(shader) { name = \"Vehicle_\" + ColorUtility.ToHtmlStringRGB(color) };"
     },
@@ -12359,7 +12386,7 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
-      "line": 450,
+      "line": 549,
       "symbol": "Ziptide.Ship.VehicleRuntime",
       "snippet": "Shader shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
     },
@@ -12368,7 +12395,7 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
-      "line": 451,
+      "line": 550,
       "symbol": "Ziptide.Ship.VehicleRuntime",
       "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
     },
@@ -14771,18 +14798,18 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
-      "line": 227,
+      "line": 271,
       "symbol": "Ziptide.Ship.VehicleRuntime",
-      "snippet": "GameObject go = GameObject.CreatePrimitive(primitive);"
+      "snippet": "_mountAffordance = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
     {
       "category": "runtime_creation",
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
-      "line": 241,
+      "line": 287,
       "symbol": "Ziptide.Ship.VehicleRuntime",
-      "snippet": "GameObject tile = GameObject.CreatePrimitive(PrimitiveType.Cube);"
+      "snippet": "GameObject go = GameObject.CreatePrimitive(primitive);"
     },
     {
       "category": "runtime_creation",
@@ -17894,7 +17921,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
-      "line": 90,
+      "line": 124,
       "symbol": "Ziptide.Ship.VehicleRuntime",
       "snippet": "Transform visual = new GameObject(VisualRootName).transform;"
     },
@@ -17903,18 +17930,9 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
-      "line": 109,
+      "line": 139,
       "symbol": "Ziptide.Ship.VehicleRuntime",
       "snippet": "GameObject labelGo = new GameObject(\"RideLabel\");"
-    },
-    {
-      "category": "runtime_creation",
-      "code": "NEW_GAME_OBJECT",
-      "description": "Runtime GameObject construction",
-      "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
-      "line": 247,
-      "symbol": "Ziptide.Ship.VehicleRuntime",
-      "snippet": "GameObject label = new GameObject(\"Label\");"
     },
     {
       "category": "runtime_creation",
@@ -19298,18 +19316,9 @@
       "code": "TEXTMESH_COMPONENT",
       "description": "Legacy TextMesh creation/reference",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
-      "line": 112,
+      "line": 142,
       "symbol": "Ziptide.Ship.VehicleRuntime",
       "snippet": "_label = labelGo.AddComponent<TextMesh>();"
-    },
-    {
-      "category": "runtime_ui",
-      "code": "TEXTMESH_COMPONENT",
-      "description": "Legacy TextMesh creation/reference",
-      "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
-      "line": 251,
-      "symbol": "Ziptide.Ship.VehicleRuntime",
-      "snippet": "TextMesh tm = label.AddComponent<TextMesh>();"
     },
     {
       "category": "runtime_ui",
@@ -19946,9 +19955,9 @@
       "code": "XR_INTERACTABLE_COMPONENT",
       "description": "XR interactable creation/reference",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
-      "line": 255,
+      "line": 278,
       "symbol": "Ziptide.Ship.VehicleRuntime",
-      "snippet": "XRSimpleInteractable interactable = tile.AddComponent<XRSimpleInteractable>();"
+      "snippet": "XRSimpleInteractable interactable = _mountAffordance.AddComponent<XRSimpleInteractable>();"
     },
     {
       "category": "runtime_ui",
@@ -22727,7 +22736,7 @@
       "code": "XRI_MANAGER_ASSIGN",
       "description": "Explicit interactable interactionManager assignment",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
-      "line": 257,
+      "line": 280,
       "symbol": "Ziptide.Ship.VehicleRuntime",
       "snippet": "if (manager != null) interactable.interactionManager = manager;"
     },
@@ -23213,7 +23222,7 @@
       "code": "XRI_MANAGER_LOOKUP",
       "description": "XRInteractionManager lookup",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
-      "line": 256,
+      "line": 279,
       "symbol": "Ziptide.Ship.VehicleRuntime",
       "snippet": "XRInteractionManager manager = Object.FindObjectOfType<XRInteractionManager>();"
     },

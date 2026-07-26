@@ -1,7 +1,7 @@
 # ZIPTIDE Recovery Contract Scan
 
-- Scanned files: **726**
-- Findings: **2576**
+- Scanned files: **727**
+- Findings: **2577**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
@@ -13,11 +13,11 @@
 | `events` | 65 |
 | `fallback_debt` | 157 |
 | `global_render` | 83 |
-| `input` | 216 |
+| `input` | 219 |
 | `materials` | 249 |
 | `persistence` | 20 |
-| `runtime_creation` | 676 |
-| `runtime_ui` | 131 |
+| `runtime_creation` | 675 |
+| `runtime_ui` | 130 |
 | `save_state` | 261 |
 | `scene_loading` | 9 |
 | `xri_ownership` | 90 |
@@ -535,12 +535,12 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:399` · `Ziptide.Ship.ShipFlightRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FLIGHT_FIRE hit=" + (hit != null ? hit.name : "none"));`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:403` · `Ziptide.Ship.ShipFlightRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FLIGHT_DISABLE target=" + hit.name);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:416` · `Ziptide.Ship.ShipFlightRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FLIGHT_SALVAGE target=" + t.name + " granted=" + granted.ToString("F0"));`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:61` · `Ziptide.Ship.VehicleRuntime` — ZIPTIDE diagnostic tag. `if (_def == null) Debug.LogWarning("ZIPTIDE: VEHICLE_DEF_MISSING id=" + vehicleId);`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:122` · `Ziptide.Ship.VehicleRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: VEHICLE_VISUAL_READY id=" + vehicleId`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:274` · `Ziptide.Ship.VehicleRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: VEHICLE_MOUNT id=" + vehicleId + " maxSpeed=" + _params.maxSpeed);`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:285` · `Ziptide.Ship.VehicleRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: VEHICLE_DISMOUNT_BLOCKED id=" + vehicleId + " reason=no_safe_ground");`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:299` · `Ziptide.Ship.VehicleRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: VEHICLE_DISMOUNT id=" + vehicleId);`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:325` · `Ziptide.Ship.VehicleRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: VEHICLE_EDGE_BLOCK id=" + vehicleId`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:88` · `Ziptide.Ship.VehicleRuntime` — ZIPTIDE diagnostic tag. `if (_def == null) Debug.LogWarning("ZIPTIDE: VEHICLE_DEF_MISSING id=" + vehicleId);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:152` · `Ziptide.Ship.VehicleRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: VEHICLE_VISUAL_READY id=" + vehicleId`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:323` · `Ziptide.Ship.VehicleRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: VEHICLE_MOUNT id=" + vehicleId + " maxSpeed=" + _params.maxSpeed`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:335` · `Ziptide.Ship.VehicleRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: VEHICLE_DISMOUNT_BLOCKED id=" + vehicleId + " reason=no_safe_ground");`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:351` · `Ziptide.Ship.VehicleRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: VEHICLE_DISMOUNT id=" + vehicleId);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:395` · `Ziptide.Ship.VehicleRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: VEHICLE_EDGE_BLOCK id=" + vehicleId`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/EditMode/ComfortSettingsTests.cs:120` · `Ziptide.Tests.EditMode.ComfortSettingsTests` — ZIPTIDE diagnostic tag. `StringAssert.Contains("ZIPTIDE: COMFORT_PRESET preset=", source);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourHolsterAdapterTests.cs:150` · `Ziptide.Tests.EditMode.FirstHourHolsterAdapterTests` — ZIPTIDE diagnostic tag. `StringAssert.Contains("ZIPTIDE: FIRST_HOLSTER item=", socketSource);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourTravelSignalTests.cs:110` · `Ziptide.Tests.EditMode.FirstHourTravelSignalTests` — ZIPTIDE diagnostic tag. `int travelOk = source.IndexOf("Debug.Log(\"ZIPTIDE: TRAVEL_OK dest=\" + sceneName);");`
@@ -1086,11 +1086,12 @@
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:147` · `Ziptide.Ship.ShipFlightRuntime` — Input System action reference. `_rollLeftButton = new InputAction("ZiptideFlightRollL", InputActionType.Button);`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:149` · `Ziptide.Ship.ShipFlightRuntime` — Input System action reference. `_rollRightButton = new InputAction("ZiptideFlightRollR", InputActionType.Button);`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:151` · `Ziptide.Ship.ShipFlightRuntime` — Input System action reference. `_fireAction = new InputAction("ZiptideFlightFire", InputActionType.Button);`
-- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:31` · `Ziptide.Ship.VehicleRuntime` — Input System action reference. `private InputAction _leftStick, _rightStick, _boostL3, _boostA;`
-- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:70` · `Ziptide.Ship.VehicleRuntime` — Input System action reference. `_leftStick = new InputAction("ZiptideRideThrottle", InputActionType.Value);`
-- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:72` · `Ziptide.Ship.VehicleRuntime` — Input System action reference. `_rightStick = new InputAction("ZiptideRideSteer", InputActionType.Value);`
-- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:74` · `Ziptide.Ship.VehicleRuntime` — Input System action reference. `_boostL3 = new InputAction("ZiptideRideBoostL3", InputActionType.Button);`
-- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:76` · `Ziptide.Ship.VehicleRuntime` — Input System action reference. `_boostA = new InputAction("ZiptideRideBoostA", InputActionType.Button);`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:41` · `Ziptide.Ship.VehicleRuntime` — Input System action reference. `private InputAction _leftStick, _rightStick, _boostL3, _boostA, _dismountX;`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:97` · `Ziptide.Ship.VehicleRuntime` — Input System action reference. `_leftStick = new InputAction("ZiptideRideThrottle", InputActionType.Value);`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:99` · `Ziptide.Ship.VehicleRuntime` — Input System action reference. `_rightStick = new InputAction("ZiptideRideSteer", InputActionType.Value);`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:101` · `Ziptide.Ship.VehicleRuntime` — Input System action reference. `_boostL3 = new InputAction("ZiptideRideBoostL3", InputActionType.Button);`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:103` · `Ziptide.Ship.VehicleRuntime` — Input System action reference. `_boostA = new InputAction("ZiptideRideBoostA", InputActionType.Button);`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:105` · `Ziptide.Ship.VehicleRuntime` — Input System action reference. `_dismountX = new InputAction("ZiptideRideDismount", InputActionType.Button);`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourHolsterAdapterTests.cs:154` · `Ziptide.Tests.EditMode.FirstHourHolsterAdapterTests` — Input System action reference. `StringAssert.DoesNotContain("InputAction", socketSource + helperSource);`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourObservationCoreTests.cs:189` · `Ziptide.Tests.EditMode.FirstHourObservationCoreTests` — Input System action reference. `StringAssert.DoesNotContain("InputAction", source);`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:80` · `Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation` — Input System action reference. `public readonly InputActionAsset Asset;`
@@ -1174,8 +1175,10 @@
 - **INPUT_BUTTON_REFERENCE** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:146` · `Ziptide.Ship.ShipFlightRuntime` — Controller/button reference. `_boostButton.AddBinding("<XRController>{RightHand}/primaryButton"); // A`
 - **INPUT_BUTTON_REFERENCE** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:148` · `Ziptide.Ship.ShipFlightRuntime` — Controller/button reference. `_rollLeftButton.AddBinding("<XRController>{LeftHand}/primaryButton"); // X`
 - **INPUT_BUTTON_REFERENCE** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:150` · `Ziptide.Ship.ShipFlightRuntime` — Controller/button reference. `_rollRightButton.AddBinding("<XRController>{RightHand}/secondaryButton"); // B`
-- **INPUT_BUTTON_REFERENCE** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:77` · `Ziptide.Ship.VehicleRuntime` — Controller/button reference. `_boostA.AddBinding("<XRController>{RightHand}/primaryButton");`
+- **INPUT_BUTTON_REFERENCE** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:104` · `Ziptide.Ship.VehicleRuntime` — Controller/button reference. `_boostA.AddBinding("<XRController>{RightHand}/primaryButton");`
+- **INPUT_BUTTON_REFERENCE** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:106` · `Ziptide.Ship.VehicleRuntime` — Controller/button reference. `_dismountX.AddBinding("<XRController>{LeftHand}/primaryButton");`
 - **INPUT_BUTTON_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryPlayabilityDeviceTests.cs:20` · `Ziptide.Tests.EditMode.RecoveryPlayabilityDeviceTests` — Controller/button reference. `StringAssert.Contains("<XRController>{LeftHand}/secondaryButton", source);`
+- **INPUT_BUTTON_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/EditMode/VehiclePlayabilityTests.cs:43` · `Ziptide.Tests.EditMode.VehiclePlayabilityTests` — Controller/button reference. `StringAssert.Contains("<XRController>{LeftHand}/primaryButton", source);`
 ### materials
 
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeMaterialFixer.cs:51` · `Ziptide.Core.RuntimeMaterialFixer` — Runtime Material allocation. `Material fallback = new Material(urpLit);`
@@ -1255,7 +1258,7 @@
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ZiptideGateEffect.cs:124` · `Ziptide.Gameplay.ZiptideGateEffect` — Runtime Material allocation. `/// `new Material(null)` throw, and the gate runs on the travel path (a throw there could`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ZiptideGateEffect.cs:130` · `Ziptide.Gameplay.ZiptideGateEffect` — Runtime Material allocation. `return new Material(shader);`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:244` · `Ziptide.Gameplay.WorldTravelStation` — Runtime Material allocation. `var mat = new Material(shader);`
-- **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:453` · `Ziptide.Ship.VehicleRuntime` — Runtime Material allocation. `material = new Material(shader) { name = "Vehicle_" + ColorUtility.ToHtmlStringRGB(color) };`
+- **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:552` · `Ziptide.Ship.VehicleRuntime` — Runtime Material allocation. `material = new Material(shader) { name = "Vehicle_" + ColorUtility.ToHtmlStringRGB(color) };`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Tests/EditMode/ReactivePropTests.cs:188` · `Ziptide.Tests.EditMode.ReactivePropTests` — Runtime Material allocation. `StringAssert.DoesNotContain("new Material(", source);`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Tests/EditMode/ResourceDisciplineTests.cs:38` · `Ziptide.Tests.EditMode.ResourceDisciplineTests` — Runtime Material allocation. `private static readonly string[] CreatorMarkers = { "new Material(", "new Texture2D(", "AudioClip.Create(" };`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Tests/EditMode/ShellSignPlacementTests.cs:205` · `Ziptide.Tests.EditMode.ShellSignPlacementTests` — Runtime Material allocation. `var material = new Material(shader) { name = name };`
@@ -1404,8 +1407,8 @@
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ZiptideGateEffect.cs:129` · `Ziptide.Gameplay.ZiptideGateEffect` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Sprites/Default");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:241` · `Ziptide.Gameplay.WorldTravelStation` — Runtime shader lookup. `var shader = Shader.Find("Universal Render Pipeline/Lit");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:242` · `Ziptide.Gameplay.WorldTravelStation` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Standard");`
-- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:450` · `Ziptide.Ship.VehicleRuntime` — Runtime shader lookup. `Shader shader = Shader.Find("Universal Render Pipeline/Lit");`
-- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:451` · `Ziptide.Ship.VehicleRuntime` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Standard");`
+- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:549` · `Ziptide.Ship.VehicleRuntime` — Runtime shader lookup. `Shader shader = Shader.Find("Universal Render Pipeline/Lit");`
+- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:550` · `Ziptide.Ship.VehicleRuntime` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Standard");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Tests/EditMode/ShellSignPlacementTests.cs:201` · `Ziptide.Tests.EditMode.ShellSignPlacementTests` — Runtime shader lookup. `Shader shader = Shader.Find("Universal Render Pipeline/Unlit");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Tests/EditMode/ShellSignPlacementTests.cs:202` · `Ziptide.Tests.EditMode.ShellSignPlacementTests` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Unlit/Color");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Tests/EditMode/ShellSignPlacementTests.cs:203` · `Ziptide.Tests.EditMode.ShellSignPlacementTests` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Sprites/Default");`
@@ -1676,8 +1679,8 @@
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:170` · `Ziptide.Ship.ShipFlightRuntime` — Runtime primitive construction. `var console = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:194` · `Ziptide.Ship.ShipFlightRuntime` — Runtime primitive construction. `_returnPanel = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:216` · `Ziptide.Ship.ShipFlightRuntime` — Runtime primitive construction. `var tile = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:227` · `Ziptide.Ship.VehicleRuntime` — Runtime primitive construction. `GameObject go = GameObject.CreatePrimitive(primitive);`
-- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:241` · `Ziptide.Ship.VehicleRuntime` — Runtime primitive construction. `GameObject tile = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:271` · `Ziptide.Ship.VehicleRuntime` — Runtime primitive construction. `_mountAffordance = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:287` · `Ziptide.Ship.VehicleRuntime` — Runtime primitive construction. `GameObject go = GameObject.CreatePrimitive(primitive);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs:55` · `Ziptide.Tests.EditMode.HeadsetBuildBlockerRegressionTests` — Runtime primitive construction. `StringAssert.Contains("GameObject.CreatePrimitive(PrimitiveType.Cube)", safety);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/EditMode/InteractionReachAuditRulesTests.cs:47` · `Ziptide.Tests.EditMode.InteractionReachAuditRulesTests` — Runtime primitive construction. `floor = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Tests/EditMode/InteractionReachAuditRulesTests.cs:52` · `Ziptide.Tests.EditMode.InteractionReachAuditRulesTests` — Runtime primitive construction. `control = GameObject.CreatePrimitive(PrimitiveType.Cube);`
@@ -2023,9 +2026,8 @@
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:226` · `Ziptide.Gameplay.WorldTravelStation` — Runtime GameObject construction. `var go = new GameObject("Label");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:182` · `Ziptide.Ship.ShipFlightRuntime` — Runtime GameObject construction. `var statusGo = new GameObject("FlightStatus");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:230` · `Ziptide.Ship.ShipFlightRuntime` — Runtime GameObject construction. `var label = new GameObject("Label");`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:90` · `Ziptide.Ship.VehicleRuntime` — Runtime GameObject construction. `Transform visual = new GameObject(VisualRootName).transform;`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:109` · `Ziptide.Ship.VehicleRuntime` — Runtime GameObject construction. `GameObject labelGo = new GameObject("RideLabel");`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:247` · `Ziptide.Ship.VehicleRuntime` — Runtime GameObject construction. `GameObject label = new GameObject("Label");`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:124` · `Ziptide.Ship.VehicleRuntime` — Runtime GameObject construction. `Transform visual = new GameObject(VisualRootName).transform;`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:139` · `Ziptide.Ship.VehicleRuntime` — Runtime GameObject construction. `GameObject labelGo = new GameObject("RideLabel");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/AmbientMoteTests.cs:69` · `Ziptide.Tests.EditMode.AmbientMoteTests` — Runtime GameObject construction. `_root = new GameObject("AmbientMoteTestRoot");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/AmbientMoteTests.cs:114` · `Ziptide.Tests.EditMode.AmbientMoteTests` — Runtime GameObject construction. `_root = new GameObject("AmbientMoteRuntimeTest");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/ArtConformanceAuditRulesTests.cs:21` · `Ziptide.Tests.EditMode.ArtConformanceAuditRulesTests` — Runtime GameObject construction. `var go = new GameObject(name);`
@@ -2181,8 +2183,7 @@
 - **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:227` · `Ziptide.Gameplay.WorldTravelStation` — Legacy TextMesh creation/reference. `var tm = go.AddComponent<TextMesh>();`
 - **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:186` · `Ziptide.Ship.ShipFlightRuntime` — Legacy TextMesh creation/reference. `_statusText = statusGo.AddComponent<TextMesh>();`
 - **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:234` · `Ziptide.Ship.ShipFlightRuntime` — Legacy TextMesh creation/reference. `var tm = label.AddComponent<TextMesh>();`
-- **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:112` · `Ziptide.Ship.VehicleRuntime` — Legacy TextMesh creation/reference. `_label = labelGo.AddComponent<TextMesh>();`
-- **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:251` · `Ziptide.Ship.VehicleRuntime` — Legacy TextMesh creation/reference. `TextMesh tm = label.AddComponent<TextMesh>();`
+- **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:142` · `Ziptide.Ship.VehicleRuntime` — Legacy TextMesh creation/reference. `_label = labelGo.AddComponent<TextMesh>();`
 - **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Tests/EditMode/UiReadabilityAuditRulesTests.cs:55` · `Ziptide.Tests.EditMode.UiReadabilityAuditRulesTests` — Legacy TextMesh creation/reference. `var smallText = small.AddComponent<TextMesh>();`
 - **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Tests/EditMode/UiReadabilityAuditRulesTests.cs:61` · `Ziptide.Tests.EditMode.UiReadabilityAuditRulesTests` — Legacy TextMesh creation/reference. `var emptyText = empty.AddComponent<TextMesh>();`
 - **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Tests/EditMode/UiReadabilityAuditRulesTests.cs:159` · `Ziptide.Tests.EditMode.UiReadabilityAuditRulesTests` — Legacy TextMesh creation/reference. `var text = label.AddComponent<TextMesh>();`
@@ -2253,7 +2254,7 @@
 - **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:117` · `Ziptide.Gameplay.WorldTravelStation` — XR interactable creation/reference. `var interactable = door.AddComponent<XRSimpleInteractable>();`
 - **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:201` · `Ziptide.Ship.ShipFlightRuntime` — XR interactable creation/reference. `var ret = _returnPanel.AddComponent<XRSimpleInteractable>();`
 - **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:223` · `Ziptide.Ship.ShipFlightRuntime` — XR interactable creation/reference. `var interactable = tile.AddComponent<XRSimpleInteractable>();`
-- **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:255` · `Ziptide.Ship.VehicleRuntime` — XR interactable creation/reference. `XRSimpleInteractable interactable = tile.AddComponent<XRSimpleInteractable>();`
+- **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:278` · `Ziptide.Ship.VehicleRuntime` — XR interactable creation/reference. `XRSimpleInteractable interactable = _mountAffordance.AddComponent<XRSimpleInteractable>();`
 - **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Tests/EditMode/InteractionReachAuditRulesTests.cs:56` · `Ziptide.Tests.EditMode.InteractionReachAuditRulesTests` — XR interactable creation/reference. `control.AddComponent<XRSimpleInteractable>();`
 - **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Tests/EditMode/InteractionReachAuditRulesTests.cs:87` · `Ziptide.Tests.EditMode.InteractionReachAuditRulesTests` — XR interactable creation/reference. `control.AddComponent<XRSimpleInteractable>();`
 - **XR_INTERACTABLE_COMPONENT** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryForgeVisualOwnershipTests.cs:51` · `Ziptide.Tests.PlayMode.RecoveryForgeVisualOwnershipTests` — XR interactable creation/reference. `var grab = _item.AddComponent<XRGrabInteractable>();`
@@ -2568,7 +2569,7 @@
 - **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:122` · `Ziptide.Gameplay.WorldTravelStation` — Explicit interactable interactionManager assignment. `interactable.interactionManager = mgr;`
 - **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:267` · `Ziptide.Gameplay.WorldTravelStation` — Explicit interactable interactionManager assignment. `interactable.interactionManager = mgr;`
 - **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:246` · `Ziptide.Ship.ShipFlightRuntime` — Explicit interactable interactionManager assignment. `if (mgr != null) interactable.interactionManager = mgr;`
-- **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:257` · `Ziptide.Ship.VehicleRuntime` — Explicit interactable interactionManager assignment. `if (manager != null) interactable.interactionManager = manager;`
+- **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:280` · `Ziptide.Ship.VehicleRuntime` — Explicit interactable interactionManager assignment. `if (manager != null) interactable.interactionManager = manager;`
 - **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs:548` · `Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation` — Explicit interactable interactionManager assignment. `ray.interactionManager = canonicalManager;`
 - **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:132` · `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` — Explicit interactable interactionManager assignment. `(settings.interactionManager == null || newGame.interactionManager == null); frame++)`
 - **XRI_MANAGER_ASSIGN** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:92` · `Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests` — Explicit interactable interactionManager assignment. `if (interactable.interactionManager == null)`
@@ -2622,7 +2623,7 @@
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:119` · `Ziptide.Gameplay.WorldTravelStation` — XRInteractionManager lookup. `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:264` · `Ziptide.Gameplay.WorldTravelStation` — XRInteractionManager lookup. `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:245` · `Ziptide.Ship.ShipFlightRuntime` — XRInteractionManager lookup. `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
-- **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:256` · `Ziptide.Ship.VehicleRuntime` — XRInteractionManager lookup. `XRInteractionManager manager = Object.FindObjectOfType<XRInteractionManager>();`
+- **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:279` · `Ziptide.Ship.VehicleRuntime` — XRInteractionManager lookup. `XRInteractionManager manager = Object.FindObjectOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:120` · `Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests` — XRInteractionManager lookup. `XRInteractionManager manager = UnityEngine.Object.FindObjectOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:89` · `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` — XRInteractionManager lookup. `manager = UnityEngine.Object.FindObjectOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:45` · `Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests` — XRInteractionManager lookup. `Assert.IsNull(UnityEngine.Object.FindObjectOfType<XRInteractionManager>(),`

@@ -1,6 +1,6 @@
 {
   "tool": "recovery_event_save_graph",
-  "scannedFiles": 726,
+  "scannedFiles": 727,
   "evidenceCount": 727,
   "kindCounts": {
     "AUTOSAVE": 8,
@@ -488,7 +488,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
-        "line": 120,
+        "line": 150,
         "owner": "Ziptide.Ship.VehicleRuntime",
         "target": "Accent",
         "detail": "profile",
@@ -1697,11 +1697,11 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
-        "line": 123,
+        "line": 153,
         "owner": "Ziptide.Ship.VehicleRuntime",
         "target": "Family",
         "detail": "profile",
-        "snippet": "+ \" family=\" + profile.Family + \" parts=\" + parts);"
+        "snippet": "+ \" family=\" + profile.Family + \" parts=\" + parts"
       },
       {
         "kind": "PROFILE_FIELD_ACCESS",
@@ -11526,7 +11526,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
-      "line": 120,
+      "line": 150,
       "owner": "Ziptide.Ship.VehicleRuntime",
       "target": "Accent",
       "detail": "profile",
@@ -11535,11 +11535,11 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
-      "line": 123,
+      "line": 153,
       "owner": "Ziptide.Ship.VehicleRuntime",
       "target": "Family",
       "detail": "profile",
-      "snippet": "+ \" family=\" + profile.Family + \" parts=\" + parts);"
+      "snippet": "+ \" family=\" + profile.Family + \" parts=\" + parts"
     },
     {
       "kind": "EVENT_INVOKE",
