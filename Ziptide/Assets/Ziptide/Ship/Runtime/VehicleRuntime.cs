@@ -11,6 +11,10 @@ namespace Ziptide.Ship
     /// Data-driven ground ride using the shared comfort-clamped FlightModel with pitch locked to zero.
     /// Each archetype owns a distinct shared-material silhouette; terrain probes ignore self-collision,
     /// reject unsupported map edges, understand authored river surfaces, and require safe dismount ground.
+    ///
+    /// The mounted player lives in one vehicle-space frame: the vehicle owns world yaw while the HMD
+    /// retains local physical-head freedom. Mounting is a compact seat-side affordance, not giant UI
+    /// blocks in the rider's view; X is the explicit step-off action while riding.
     /// </summary>
     public class VehicleRuntime : MonoBehaviour
     {
@@ -19,6 +23,9 @@ namespace Ziptide.Ship
         private const float GroundRayUp = 4f;
         private const float GroundRayDown = 30f;
         private const string VisualRootName = "__VehicleVisual";
+        public const float SteeringDeadzone = 0.18f;
+        public const float SmoothSteerRateDeg = 82f;
+        private const float SteerResponsePerSecond = 5.5f;
 
         private VehicleDefinition _def;
         private FlightParams _params;
@@ -27,9 +34,12 @@ namespace Ziptide.Ship
         private bool _riding;
         private float _restY;
         private float _nextEdgeLog;
+        private float _steerSmoothed;
+        private float _lastVehicleYaw;
         private PlayerRigPersistence _rig;
-        private InputAction _leftStick, _rightStick, _boostL3, _boostA;
+        private InputAction _leftStick, _rightStick, _boostL3, _boostA, _dismountX;
         private TextMesh _label;
+        private GameObject _mountAffordance;
         private readonly List<Behaviour> _suspended = new List<Behaviour>();
         private static readonly Dictionary<Color, Material> SharedMaterials = new Dictionary<Color, Material>();
 
@@ -55,6 +65,22 @@ namespace Ziptide.Ship
             return p;
         }
 
+        /// <summary>Pure steering seam for EditMode tests and future profile tuning.</summary>
+        public static float ShapeSteer(float raw)
+        {
+            return Mathf.Abs(raw) < SteeringDeadzone ? 0f : Mathf.Clamp(raw, -1f, 1f);
+        }
+
+        /// <summary>
+        /// Carries an XR origin through the vehicle's world-yaw delta without touching the HMD's local
+        /// tracked rotation. This is the mounted-frame contract the original position-only follow lacked.
+        /// </summary>
+        public static Quaternion CarryRigYaw(Quaternion rigRotation, float previousVehicleYaw, float currentVehicleYaw)
+        {
+            float delta = Mathf.DeltaAngle(previousVehicleYaw, currentVehicleYaw);
+            return Quaternion.AngleAxis(delta, Vector3.up) * rigRotation;
+        }
+
         private void Start()
         {
             _def = Resources.Load<VehicleDefinition>("Vehicles/" + vehicleId);
@@ -75,12 +101,19 @@ namespace Ziptide.Ship
             _boostL3.AddBinding("<XRController>{LeftHand}/thumbstickClicked");
             _boostA = new InputAction("ZiptideRideBoostA", InputActionType.Button);
             _boostA.AddBinding("<XRController>{RightHand}/primaryButton");
+            _dismountX = new InputAction("ZiptideRideDismount", InputActionType.Button);
+            _dismountX.AddBinding("<XRController>{LeftHand}/primaryButton");
+        }
+
+        private void OnDisable()
+        {
+            if (_riding) ForceDismount();
         }
 
         private void OnDestroy()
         {
             _leftStick?.Dispose(); _rightStick?.Dispose();
-            _boostL3?.Dispose(); _boostA?.Dispose();
+            _boostL3?.Dispose(); _boostA?.Dispose(); _dismountX?.Dispose();
         }
 
         private void BuildVisualAndPanels()
@@ -99,18 +132,14 @@ namespace Ziptide.Ship
                 case VehicleArchetype.Skiff: BuildSkiff(visual, profile); break;
                 default: BuildUtility(visual, profile); break;
             }
-            BuildSeatAndControls(visual, profile);
-
-            MakeTile("Tile_MOUNT", new Vector3(-0.9f, 1.05f, -0.15f),
-                new Color(0.2f, 0.65f, 0.5f), "RIDE", Mount);
-            MakeTile("Tile_DISMOUNT", new Vector3(0.9f, 1.05f, -0.15f),
-                new Color(0.6f, 0.5f, 0.2f), "STEP OFF", Dismount);
+            BuildSeatAndControls(visual, profile, archetype);
+            BuildMountAffordance(profile);
 
             GameObject labelGo = new GameObject("RideLabel");
             labelGo.transform.SetParent(transform, false);
-            labelGo.transform.localPosition = new Vector3(0f, 1.65f, -0.15f);
+            labelGo.transform.localPosition = SeatLocalPosition() + new Vector3(-0.48f, 0.34f, 0.10f);
             _label = labelGo.AddComponent<TextMesh>();
-            _label.characterSize = 0.03f;
+            _label.characterSize = 0.014f;
             _label.fontSize = 48;
             _label.anchor = TextAnchor.MiddleCenter;
             _label.alignment = TextAlignment.Center;
@@ -120,7 +149,8 @@ namespace Ziptide.Ship
             ObjectiveBeacon.Attach(gameObject, profile.Accent, 5f);
             int parts = visual.GetComponentsInChildren<Renderer>(true).Length;
             Debug.Log("ZIPTIDE: VEHICLE_VISUAL_READY id=" + vehicleId
-                + " family=" + profile.Family + " parts=" + parts);
+                + " family=" + profile.Family + " parts=" + parts
+                + " mount=seat_affordance steer=smooth dismount=X");
         }
 
         private static void BuildSkiff(Transform root, VehicleVisualProfile p)
@@ -146,23 +176,25 @@ namespace Ziptide.Ship
 
         private static void BuildHoverbike(Transform root, VehicleVisualProfile p)
         {
-            Part(root, "BikeChassis", PrimitiveType.Cube, V(0, .48f, 0), V(.55f, .30f, 2.18f), V0, p.Body, true);
-            Part(root, "NoseCowl", PrimitiveType.Cube, V(0, .57f, 1.08f), V(.48f, .34f, .72f), V(-16, 0, 0), p.Accent, false);
-            Part(root, "Spine", PrimitiveType.Cube, V(0, .75f, -.18f), V(.18f, .18f, 1.45f), V0, Darken(p.Body), false);
+            // Rider-eye clearance law: no primitive may rise through the central x ±0.24 m channel
+            // above the seat. The original tall forks and common control bar occupied that channel.
+            Part(root, "BikeChassis", PrimitiveType.Cube, V(0, .42f, 0), V(.48f, .24f, 1.92f), V0, p.Body, true);
+            Part(root, "NoseCowl", PrimitiveType.Cube, V(0, .43f, .92f), V(.42f, .22f, .58f), V(-12, 0, 0), p.Accent, false);
+            Part(root, "Spine", PrimitiveType.Cube, V(0, .58f, -.18f), V(.14f, .12f, 1.25f), V0, Darken(p.Body), false);
             for (int side = -1; side <= 1; side += 2)
             {
                 string tag = side < 0 ? "L" : "R";
-                Part(root, "Stabilizer_" + tag, PrimitiveType.Cube, V(side * .62f, .38f, -.12f),
-                    V(.62f, .08f, .72f), V(0, side * 8f, side * 7f), p.Accent, false);
-                Part(root, "Fork_" + tag, PrimitiveType.Cube, V(side * .25f, .64f, .78f),
-                    V(.07f, .68f, .07f), V(20, 0, 0), Darken(p.Body), false);
+                Part(root, "Stabilizer_" + tag, PrimitiveType.Cube, V(side * .58f, .33f, -.12f),
+                    V(.54f, .07f, .66f), V(0, side * 8f, side * 7f), p.Accent, false);
+                Part(root, "Fork_" + tag, PrimitiveType.Cube, V(side * .42f, .42f, .70f),
+                    V(.05f, .28f, .05f), V(12, 0, 0), Darken(p.Body), false);
                 for (int end = -1; end <= 1; end += 2)
                     Part(root, "HoverPad_" + tag + "_" + end, PrimitiveType.Cylinder,
-                        V(side * .58f, .16f, end * .72f), V(.30f, .055f, .38f), V0, p.Glow, false);
+                        V(side * .58f, .14f, end * .68f), V(.28f, .05f, .34f), V0, p.Glow, false);
             }
-            Part(root, "RearThruster", PrimitiveType.Cylinder, V(0, .48f, -1.20f), V(.32f, .16f, .32f), V(90, 0, 0), p.Accent, false);
-            Part(root, "ThrusterGlow", PrimitiveType.Cylinder, V(0, .48f, -1.38f), V(.22f, .06f, .22f), V(90, 0, 0), p.Glow, false);
-            Part(root, "Headlamp", PrimitiveType.Sphere, V(0, .62f, 1.42f), Vector3.one * .12f, V0, p.Glow, false);
+            Part(root, "RearThruster", PrimitiveType.Cylinder, V(0, .42f, -1.08f), V(.30f, .14f, .30f), V(90, 0, 0), p.Accent, false);
+            Part(root, "ThrusterGlow", PrimitiveType.Cylinder, V(0, .42f, -1.24f), V(.20f, .05f, .20f), V(90, 0, 0), p.Glow, false);
+            Part(root, "Headlamp", PrimitiveType.Sphere, V(0, .48f, 1.22f), Vector3.one * .10f, V0, p.Glow, false);
         }
 
         private static void BuildCrawler(Transform root, VehicleVisualProfile p)
@@ -212,13 +244,40 @@ namespace Ziptide.Ship
             }
         }
 
-        private void BuildSeatAndControls(Transform root, VehicleVisualProfile p)
+        private void BuildSeatAndControls(Transform root, VehicleVisualProfile p, VehicleArchetype archetype)
         {
-            Vector3 seat = _def != null ? _def.seatLocalPos : V(0, .55f, -.2f);
+            Vector3 seat = SeatLocalPosition();
             Part(root, "Seat", PrimitiveType.Cube, seat, V(.52f, .16f, .56f), V(-5, 0, 0), Darken(p.Body), false);
             Part(root, "SeatBack", PrimitiveType.Cube, seat + V(0, .35f, -.24f), V(.52f, .62f, .12f), V(-8, 0, 0), Darken(p.Body), false);
-            Part(root, "ControlBar", PrimitiveType.Cube, seat + V(0, .42f, .56f), V(.82f, .08f, .08f), V0, p.Accent, false);
-            Part(root, "DashGlow", PrimitiveType.Cube, seat + V(0, .34f, .42f), V(.42f, .08f, .12f), V(-25, 0, 0), p.Glow, false);
+
+            if (archetype == VehicleArchetype.Hoverbike)
+            {
+                // Split grips leave the central forward view open instead of one large blue crossbar.
+                Part(root, "ControlGrip_L", PrimitiveType.Cube, seat + V(-.28f, .21f, .42f), V(.18f, .055f, .07f), V(0, -10, 0), p.Accent, false);
+                Part(root, "ControlGrip_R", PrimitiveType.Cube, seat + V(.28f, .21f, .42f), V(.18f, .055f, .07f), V(0, 10, 0), p.Accent, false);
+                Part(root, "DashGlow", PrimitiveType.Cube, seat + V(0, .12f, .34f), V(.22f, .035f, .09f), V(-20, 0, 0), p.Glow, false);
+            }
+            else
+            {
+                Part(root, "ControlBar", PrimitiveType.Cube, seat + V(0, .32f, .50f), V(.68f, .065f, .065f), V0, p.Accent, false);
+                Part(root, "DashGlow", PrimitiveType.Cube, seat + V(0, .24f, .38f), V(.34f, .06f, .10f), V(-25, 0, 0), p.Glow, false);
+            }
+        }
+
+        private void BuildMountAffordance(VehicleVisualProfile p)
+        {
+            Vector3 seat = SeatLocalPosition();
+            _mountAffordance = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            _mountAffordance.name = "MountGrip";
+            _mountAffordance.transform.SetParent(transform, false);
+            _mountAffordance.transform.localPosition = seat + V(-.46f, .20f, .04f);
+            _mountAffordance.transform.localScale = V(.16f, .12f, .22f);
+            Paint(_mountAffordance, p.Glow);
+
+            XRSimpleInteractable interactable = _mountAffordance.AddComponent<XRSimpleInteractable>();
+            XRInteractionManager manager = Object.FindObjectOfType<XRInteractionManager>();
+            if (manager != null) interactable.interactionManager = manager;
+            interactable.selectEntered.AddListener(_ => Mount());
         }
 
         private static GameObject Part(Transform parent, string name, PrimitiveType primitive,
@@ -236,42 +295,31 @@ namespace Ziptide.Ship
             return go;
         }
 
-        private void MakeTile(string name, Vector3 localPos, Color color, string text, System.Action onPress)
-        {
-            GameObject tile = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            tile.name = name;
-            tile.transform.SetParent(transform, false);
-            tile.transform.localPosition = localPos;
-            tile.transform.localScale = V(.5f, .18f, .3f);
-            Paint(tile, color);
-            GameObject label = new GameObject("Label");
-            label.transform.SetParent(tile.transform, false);
-            label.transform.localPosition = V(0, 0, -.55f);
-            label.transform.localScale = V(2f, 5.555f, 3.333f) * .25f;
-            TextMesh tm = label.AddComponent<TextMesh>();
-            tm.text = text; tm.characterSize = .03f; tm.fontSize = 56;
-            tm.anchor = TextAnchor.MiddleCenter; tm.alignment = TextAlignment.Center;
-            tm.color = new Color(1f, .95f, .8f);
-            XRSimpleInteractable interactable = tile.AddComponent<XRSimpleInteractable>();
-            XRInteractionManager manager = Object.FindObjectOfType<XRInteractionManager>();
-            if (manager != null) interactable.interactionManager = manager;
-            interactable.selectEntered.AddListener(_ => onPress());
-        }
-
         private void Mount()
         {
             if (_riding) return;
             _rig = Object.FindObjectOfType<PlayerRigPersistence>();
             if (_rig == null) return;
-            _state = new FlightState { position = transform.position };
+
+            _state = new FlightState
+            {
+                position = transform.position,
+                yawDeg = transform.eulerAngles.y
+            };
             _yawLatch = new FlightYawLatch { Armed = true };
+            _steerSmoothed = 0f;
             SuspendLocomotion(_rig);
             CharacterController cc = _rig.GetComponent<CharacterController>();
             if (cc != null) cc.enabled = false;
+
+            AlignHeadToVehicleForward();
+            _lastVehicleYaw = transform.eulerAngles.y;
             SetActionsEnabled(true);
             _riding = true;
-            if (_label != null) _label.text = "RIDING\nleft stick drive - right stick turn - L3/A boost";
-            Debug.Log("ZIPTIDE: VEHICLE_MOUNT id=" + vehicleId + " maxSpeed=" + _params.maxSpeed);
+            if (_mountAffordance != null) _mountAffordance.SetActive(false);
+            if (_label != null) _label.text = "X STEP OFF\nL DRIVE  R STEER  A/L3 BOOST";
+            Debug.Log("ZIPTIDE: VEHICLE_MOUNT id=" + vehicleId + " maxSpeed=" + _params.maxSpeed
+                + " yaw=" + _state.yawDeg.ToString("F1") + " steering=smooth");
             FollowSeat();
         }
 
@@ -295,6 +343,7 @@ namespace Ziptide.Ship
                 if (cc != null) cc.enabled = true;
             }
             ResumeLocomotion();
+            if (_mountAffordance != null) _mountAffordance.SetActive(true);
             SetIdleLabel();
             Debug.Log("ZIPTIDE: VEHICLE_DISMOUNT id=" + vehicleId);
         }
@@ -303,11 +352,19 @@ namespace Ziptide.Ship
         {
             if (!_riding) return;
             if (_rig == null) { ForceDismount(); return; }
+            if (_dismountX.WasPressedThisFrame()) { Dismount(); return; }
 
-            FlightInputFrame frame = FlightInputCore.Shape(
-                _leftStick.ReadValue<Vector2>(), _rightStick.ReadValue<Vector2>(), ref _yawLatch, Time.time);
+            Vector2 left = _leftStick.ReadValue<Vector2>();
+            Vector2 right = _rightStick.ReadValue<Vector2>();
+            // The shared input shaper still owns throttle/strafe/deadzones. Vehicle yaw is deliberately
+            // removed from its snap latch and handled continuously below.
+            FlightInputFrame frame = FlightInputCore.Shape(left, Vector2.zero, ref _yawLatch, Time.time);
+            float steerTarget = ShapeSteer(right.x);
+            _steerSmoothed = Mathf.MoveTowards(_steerSmoothed, steerTarget,
+                SteerResponsePerSecond * Time.deltaTime);
+            _state.yawDeg = Mathf.Repeat(_state.yawDeg + _steerSmoothed * SmoothSteerRateDeg * Time.deltaTime, 360f);
+
             bool boost = _boostL3.IsPressed() || _boostA.IsPressed();
-            if (frame.YawSnap != 0) _state = FlightModel.SnapYaw(_state, _params, frame.YawSnap);
             FlightState proposed = FlightModel.Tick(_state, _params, frame.Throttle, 0f, frame.Strafe, boost, Time.deltaTime);
 
             if (TryGroundYAt(proposed.position, out float groundY))
@@ -335,11 +392,11 @@ namespace Ziptide.Ship
         {
             if (enabled)
             {
-                _leftStick.Enable(); _rightStick.Enable(); _boostL3.Enable(); _boostA.Enable();
+                _leftStick.Enable(); _rightStick.Enable(); _boostL3.Enable(); _boostA.Enable(); _dismountX.Enable();
             }
             else
             {
-                _leftStick.Disable(); _rightStick.Disable(); _boostL3.Disable(); _boostA.Disable();
+                _leftStick.Disable(); _rightStick.Disable(); _boostL3.Disable(); _boostA.Disable(); _dismountX.Disable();
             }
         }
 
@@ -347,14 +404,42 @@ namespace Ziptide.Ship
         {
             _riding = false;
             SetActionsEnabled(false);
+            if (_rig != null)
+            {
+                CharacterController cc = _rig.GetComponent<CharacterController>();
+                if (cc != null) cc.enabled = true;
+            }
             ResumeLocomotion();
+            if (_mountAffordance != null) _mountAffordance.SetActive(true);
+            SetIdleLabel();
+        }
+
+        private void AlignHeadToVehicleForward()
+        {
+            if (_rig == null) return;
+            Camera cam = _rig.GetComponentInChildren<Camera>(true);
+            if (cam == null) return;
+            Vector3 headForward = cam.transform.forward;
+            headForward.y = 0f;
+            if (headForward.sqrMagnitude < 0.0001f) return;
+            headForward.Normalize();
+            float headYaw = Mathf.Atan2(headForward.x, headForward.z) * Mathf.Rad2Deg;
+            float delta = Mathf.DeltaAngle(headYaw, transform.eulerAngles.y);
+            _rig.transform.rotation = Quaternion.AngleAxis(delta, Vector3.up) * _rig.transform.rotation;
         }
 
         private void FollowSeat()
         {
             if (_rig == null) return;
-            Vector3 seat = _def != null ? _def.seatLocalPos : V(0, .55f, -.2f);
-            _rig.transform.position = transform.TransformPoint(seat);
+            float currentVehicleYaw = transform.eulerAngles.y;
+            _rig.transform.rotation = CarryRigYaw(_rig.transform.rotation, _lastVehicleYaw, currentVehicleYaw);
+            _lastVehicleYaw = currentVehicleYaw;
+            _rig.transform.position = transform.TransformPoint(SeatLocalPosition());
+        }
+
+        private Vector3 SeatLocalPosition()
+        {
+            return _def != null ? _def.seatLocalPos : V(0, .55f, -.2f);
         }
 
         private bool TryGroundYAt(Vector3 pos, out float groundY)
@@ -415,6 +500,7 @@ namespace Ziptide.Ship
             Collect(rig.GetComponentsInChildren<ActionBasedContinuousTurnProvider>(true));
             Collect(rig.GetComponentsInChildren<ActionBasedSnapTurnProvider>(true));
             Collect(rig.GetComponentsInChildren<DashLocomotion>(true));
+            Collect(rig.GetComponentsInChildren<PlayerMenuRuntime>(true));
         }
 
         private void Collect(Behaviour[] behaviours)
@@ -434,7 +520,7 @@ namespace Ziptide.Ship
             if (_label == null) return;
             string display = _def != null && !string.IsNullOrEmpty(_def.DisplayName)
                 ? _def.DisplayName.Replace('_', ' ') : vehicleId;
-            _label.text = display + "\n< RIDE to mount >";
+            _label.text = display + "\n< SELECT SEAT GRIP TO RIDE >";
         }
 
         private static Vector3 V(float x, float y, float z) => new Vector3(x, y, z);
