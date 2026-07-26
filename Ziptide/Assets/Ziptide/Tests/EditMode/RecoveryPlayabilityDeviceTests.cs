@@ -20,6 +20,8 @@ namespace Ziptide.Tests.EditMode
             StringAssert.Contains("<XRController>{LeftHand}/secondaryButton", source);
             StringAssert.Contains("TravelCoordinator.TravelTo(ZiptideConstants.SceneW000)", source);
             StringAssert.Contains("RETURN TO SHIP", source);
+            StringAssert.Contains("RebindInteractables();", source);
+            StringAssert.Contains("PLAYER_MENU_BOUND", source);
             StringAssert.DoesNotContain("TravelTo(ZiptideConstants.SceneBoot", source);
             StringAssert.DoesNotContain("SceneManager.LoadScene", source);
             StringAssert.DoesNotContain("Time.timeScale", source);
@@ -99,8 +101,8 @@ namespace Ziptide.Tests.EditMode
 
         private static string Read(params string[] path)
         {
-            string full = Application.dataPath;
-            for (int i = 0; i < path.Length; i++) full = Path.Combine(full, "Ziptide", path[i]);
+            string full = Path.Combine(Application.dataPath, "Ziptide");
+            for (int i = 0; i < path.Length; i++) full = Path.Combine(full, path[i]);
             Assert.IsTrue(File.Exists(full), full);
             return File.ReadAllText(full);
         }
