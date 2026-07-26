@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-26T17:45:32.616956+00:00",
+  "generatedAtUtc": "2026-07-26T20:15:37.306854+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -4655,7 +4655,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-      "line": 163,
+      "line": 165,
       "symbol": "Ziptide.Tests.EditMode.HomeHubFlowTests",
       "snippet": "StringAssert.Contains(\"ZIPTIDE: HOME_HUB_READY continue=\", source);"
     },
@@ -4664,7 +4664,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-      "line": 164,
+      "line": 166,
       "symbol": "Ziptide.Tests.EditMode.HomeHubFlowTests",
       "snippet": "StringAssert.Contains(\"ZIPTIDE: HOME_HUB_CHOICE choice=\", source);"
     },
@@ -4673,7 +4673,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-      "line": 183,
+      "line": 185,
       "symbol": "Ziptide.Tests.EditMode.HomeHubFlowTests",
       "snippet": "new Regex(\"ZIPTIDE: FLIGHT_DESTINATION_REJECTED target=PvP_Arena01\"));"
     },
@@ -17822,7 +17822,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-      "line": 130,
+      "line": 132,
       "symbol": "Ziptide.Tests.EditMode.HomeHubFlowTests",
       "snippet": "StringAssert.Contains(\"new GameObject(\\\"__HOME_HUB_RUNTIME\\\").AddComponent<HomeHubRuntime>()\", source);"
     },
@@ -17831,7 +17831,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-      "line": 161,
+      "line": 163,
       "symbol": "Ziptide.Tests.EditMode.HomeHubFlowTests",
       "snippet": "StringAssert.Contains(\"new GameObject(\\\"__HOME_HUB_COMFORT_SETTINGS\\\")\", source);"
     },
@@ -17840,7 +17840,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-      "line": 174,
+      "line": 176,
       "symbol": "Ziptide.Tests.EditMode.HomeHubFlowTests",
       "snippet": "var go = new GameObject(\"castoff-test\");"
     },
@@ -17849,7 +17849,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-      "line": 199,
+      "line": 201,
       "symbol": "Ziptide.Tests.EditMode.HomeHubFlowTests",
       "snippet": "var go = new GameObject(\"bunk-test\");"
     },
@@ -20621,7 +20621,7 @@
       "code": "PLAYER_PROFILE_REFERENCE",
       "description": "PlayerProfile reference",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-      "line": 145,
+      "line": 147,
       "symbol": "Ziptide.Tests.EditMode.HomeHubFlowTests",
       "snippet": "StringAssert.Contains(\"public PlayerProfile StartNewProfile()\", source);"
     },
@@ -21872,7 +21872,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-      "line": 141,
+      "line": 143,
       "symbol": "Ziptide.Tests.EditMode.HomeHubFlowTests",
       "snippet": "string source = Read(\"Gameplay\", \"Runtime\", \"Persistence\", \"SaveSystem.cs\");"
     },
@@ -21881,7 +21881,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-      "line": 158,
+      "line": 160,
       "symbol": "Ziptide.Tests.EditMode.HomeHubFlowTests",
       "snippet": "StringAssert.Contains(\"SaveSystem.Instance.StartNewProfile()\", source);"
     },
@@ -21890,7 +21890,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-      "line": 159,
+      "line": 161,
       "symbol": "Ziptide.Tests.EditMode.HomeHubFlowTests",
       "snippet": "StringAssert.Contains(\"SaveSystem.Instance.Load();\", source);"
     },

@@ -2386,10 +2386,10 @@ None.
 
 - Codes: `NEW_GAME_OBJECT`
 - Paths: `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:130` **NEW_GAME_OBJECT** — `StringAssert.Contains("new GameObject(\"__HOME_HUB_RUNTIME\").AddComponent<HomeHubRuntime>()", source);`
-  - `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:161` **NEW_GAME_OBJECT** — `StringAssert.Contains("new GameObject(\"__HOME_HUB_COMFORT_SETTINGS\")", source);`
-  - `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:174` **NEW_GAME_OBJECT** — `var go = new GameObject("castoff-test");`
-  - `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:199` **NEW_GAME_OBJECT** — `var go = new GameObject("bunk-test");`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:132` **NEW_GAME_OBJECT** — `StringAssert.Contains("new GameObject(\"__HOME_HUB_RUNTIME\").AddComponent<HomeHubRuntime>()", source);`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:163` **NEW_GAME_OBJECT** — `StringAssert.Contains("new GameObject(\"__HOME_HUB_COMFORT_SETTINGS\")", source);`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:176` **NEW_GAME_OBJECT** — `var go = new GameObject("castoff-test");`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:201` **NEW_GAME_OBJECT** — `var go = new GameObject("bunk-test");`
 
 ### `Ziptide.Tests.EditMode.InteractionReachAuditRulesTests` — 6 signal(s)
 
@@ -3760,10 +3760,10 @@ None.
 
 - Codes: `PLAYER_PROFILE_REFERENCE`, `SAVE_SYSTEM_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:141` **SAVE_SYSTEM_REFERENCE** — `string source = Read("Gameplay", "Runtime", "Persistence", "SaveSystem.cs");`
-  - `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:145` **PLAYER_PROFILE_REFERENCE** — `StringAssert.Contains("public PlayerProfile StartNewProfile()", source);`
-  - `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:158` **SAVE_SYSTEM_REFERENCE** — `StringAssert.Contains("SaveSystem.Instance.StartNewProfile()", source);`
-  - `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:159` **SAVE_SYSTEM_REFERENCE** — `StringAssert.Contains("SaveSystem.Instance.Load();", source);`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:143` **SAVE_SYSTEM_REFERENCE** — `string source = Read("Gameplay", "Runtime", "Persistence", "SaveSystem.cs");`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:147` **PLAYER_PROFILE_REFERENCE** — `StringAssert.Contains("public PlayerProfile StartNewProfile()", source);`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:160` **SAVE_SYSTEM_REFERENCE** — `StringAssert.Contains("SaveSystem.Instance.StartNewProfile()", source);`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:161` **SAVE_SYSTEM_REFERENCE** — `StringAssert.Contains("SaveSystem.Instance.Load();", source);`
 
 ### `Ziptide.Tests.EditMode.JobRewardsTests` — 6 signal(s)
 
