@@ -87,13 +87,12 @@ namespace Ziptide.Gameplay
         // move AND turn, the player could neither walk nor turn to it. The surface now re-anchors to
         // the live head pose until a choice is made, so it can never be out of reach.
         // Board stays at a readable distance; the TILE ROW floats nearer so a choice is reachable by
-        // HAND even when zero ray interactors are active (the device state on 2026-07-25). A
-        // placement-only fix would have left the screen ray-dependent — see
-        // docs/recovery/M0_BOOT_MENU_DEADLOCK_DIAGNOSTIC_20260725.md §6.1 (BOOT_LIVENESS: at least
-        // one complete escape path must exist).
-        public const float AnchorDistance = 1.5f;    // board centre from the head
+        // HAND even when zero ray interactors are active. The first successful device pass proved the
+        // 0.45 m row was uncomfortably close, so the board moved 0.10 m farther while the shipped
+        // three-tile layout remains inside the tested 0.95 m hand/lean liveness envelope.
+        public const float AnchorDistance = 1.6f;     // board centre from the head
         public const float TileForwardOffset = 1.05f; // tiles sit this much NEARER than the board
-        private const float AnchorDrop = 0.15f;      // board centre slightly below eye level
+        private const float AnchorDrop = 0.15f;       // board centre slightly below eye level
         private const float ReanchorDistanceMeters = 0.35f;
         private const float ReanchorYawDegrees = 25f;
         private const float SettleDistanceMeters = 0.05f;
