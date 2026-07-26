@@ -41,7 +41,9 @@ namespace Ziptide.Tests.EditMode
             Assert.AreEqual(1.6f, Vector3.ProjectOnPlane(position - head, Vector3.up).magnitude, 0.001f,
                 "Horizontal distance from the head must equal the requested anchor distance.");
             Assert.AreEqual(1.55f, position.y, 0.001f, "Board centre sits exactly 'drop' below eye level.");
-            Assert.AreEqual(Vector3.forward, rotation * Vector3.forward, "Surface faces away from the viewer.");
+            // Float-tolerant: quaternion round-trips never land on exact component equality.
+            Assert.AreEqual(1f, Vector3.Dot(rotation * Vector3.forward, Vector3.forward), 0.001f,
+                "Surface faces away from the viewer (its +Z points along the gaze).");
         }
 
         [Test]
@@ -65,7 +67,7 @@ namespace Ziptide.Tests.EditMode
             HomeHubAnchor.Solve(Vector3.zero, Vector3.down, 1.6f, 0.15f,
                 out Vector3 position, out Quaternion rotation);
 
-            Assert.AreEqual(new Vector3(0f, -0.15f, 1.6f), position,
+            Assert.AreEqual(0f, Vector3.Distance(new Vector3(0f, -0.15f, 1.6f), position), 0.001f,
                 "A degenerate vertical gaze must fall back to world forward, not NaN or zero.");
             Assert.IsFalse(float.IsNaN(rotation.x), "Rotation must remain finite.");
         }

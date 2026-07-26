@@ -85,13 +85,14 @@ namespace Ziptide.Tests.EditMode
         [Test]
         public void HomeHubBoardMath_AlreadySatisfiesTheContract()
         {
-            // HomeHubRuntime.BuildSurface: origin = cam + fwd*2.2 + down*0.15, rotation =
-            // LookRotation(origin − cam). Terry READ the hub fine on-device — this documents why
-            // (its +Z already points away from the camera) and pins it against future edits.
+            // Terry READ the hub fine on-device — this documents why (its +Z already points away
+            // from the camera) and pins it against future edits. Solved through the SHIPPED anchor
+            // so this test can never drift from the runtime formula again (it previously duplicated
+            // the old 2.2 m constant and would have silently outlived it).
             Vector3 cam = new Vector3(3f, 1.7f, -1f);
             Vector3 fwd = new Vector3(0.6f, 0f, 0.8f).normalized;
-            Vector3 origin = cam + fwd * 2.2f + Vector3.down * 0.15f;
-            Quaternion boardRot = Quaternion.LookRotation(origin - cam, Vector3.up);
+            HomeHubAnchor.Solve(cam, fwd, HomeHubRuntime.AnchorDistance, 0.15f,
+                out Vector3 origin, out Quaternion boardRot);
 
             Assert.IsTrue(WorldLabelFacing.IsReadableFrom(boardRot, origin, cam),
                 "the Home Hub board formula keeps the viewer on the readable side");
