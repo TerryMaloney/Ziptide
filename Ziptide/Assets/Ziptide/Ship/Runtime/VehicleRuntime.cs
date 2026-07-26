@@ -37,6 +37,7 @@ namespace Ziptide.Ship
         private float _steerSmoothed;
         private float _lastVehicleYaw;
         private PlayerRigPersistence _rig;
+        private PlayerMenuRuntime _playerMenu;
         private InputAction _leftStick, _rightStick, _boostL3, _boostA, _dismountX;
         private TextMesh _label;
         private GameObject _mountAffordance;
@@ -300,6 +301,7 @@ namespace Ziptide.Ship
             if (_riding) return;
             _rig = Object.FindObjectOfType<PlayerRigPersistence>();
             if (_rig == null) return;
+            _playerMenu = _rig.GetComponent<PlayerMenuRuntime>();
 
             _state = new FlightState
             {
@@ -343,6 +345,7 @@ namespace Ziptide.Ship
                 if (cc != null) cc.enabled = true;
             }
             ResumeLocomotion();
+            _playerMenu = null;
             if (_mountAffordance != null) _mountAffordance.SetActive(true);
             SetIdleLabel();
             Debug.Log("ZIPTIDE: VEHICLE_DISMOUNT id=" + vehicleId);
@@ -353,6 +356,16 @@ namespace Ziptide.Ship
             if (!_riding) return;
             if (_rig == null) { ForceDismount(); return; }
             if (_dismountX.WasPressedThisFrame()) { Dismount(); return; }
+
+            // Y remains a guaranteed escape path while mounted. The menu owns its own locomotion pause;
+            // the vehicle simply stops consuming steering/throttle while the panel is open.
+            if (_playerMenu != null && _playerMenu.IsOpen)
+            {
+                _state.speed = 0f;
+                _steerSmoothed = 0f;
+                FollowSeat();
+                return;
+            }
 
             Vector2 left = _leftStick.ReadValue<Vector2>();
             Vector2 right = _rightStick.ReadValue<Vector2>();
@@ -410,6 +423,7 @@ namespace Ziptide.Ship
                 if (cc != null) cc.enabled = true;
             }
             ResumeLocomotion();
+            _playerMenu = null;
             if (_mountAffordance != null) _mountAffordance.SetActive(true);
             SetIdleLabel();
         }
@@ -500,7 +514,6 @@ namespace Ziptide.Ship
             Collect(rig.GetComponentsInChildren<ActionBasedContinuousTurnProvider>(true));
             Collect(rig.GetComponentsInChildren<ActionBasedSnapTurnProvider>(true));
             Collect(rig.GetComponentsInChildren<DashLocomotion>(true));
-            Collect(rig.GetComponentsInChildren<PlayerMenuRuntime>(true));
         }
 
         private void Collect(Behaviour[] behaviours)
