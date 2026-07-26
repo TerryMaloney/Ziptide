@@ -1358,9 +1358,10 @@
     {
       "path": "docs/SPRINT.md",
       "line": 25,
-      "text": "| FH-S07 | **Home/W000 surfaces** \u2014 New/Continue/Settings, device comfort presets, W000 console/bunk/first helm; existing save/travel/locomotion/PUNCH IT owners preserved. Log: `docs/GPT_ADDITIONS/2026-07-11_GPT56_FIRST_HOUR/FHS07_IMPLEMENTATION_LOG.md`. | \ud83d\udfe1 CODE + UNITY CI GREEN run `29165306485`; Terry author bake + headset evidence pending; FILE CLAIM RELEASED |",
+      "text": "| FH-S07 | **Home/W000 surfaces** \u2014 New/Continue/Settings, device comfort presets, W000 console/bunk/first helm; existing save/travel/locomotion/PUNCH IT owners preserved. Log: `docs/GPT_ADDITIONS/2026-07-11_GPT56_FIRST_HOUR/FHS07_IMPLEMENTATION_LOG.md`. | \ud83d\udfe1 RE-DATED **2026-07-26** (HANDOFF rb112) \u2014 CODE + UNITY CI GREEN run `29165306485`; **device FAIL 2026-07-25: this row's own boot surface (New/Continue/Settings) was unreachable \u2014 anchor fix shipped `54e23022`, MISS_LEDGER #18**; Terry author",
       "markers": [
-        "GREEN"
+        "GREEN",
+        "shipped"
       ],
       "qualifiers": [
         "QUEST",
