@@ -1,10 +1,13 @@
+using System.Collections;
 using UnityEngine;
 using TMPro;
 
 namespace Ziptide.Gameplay
 {
     /// <summary>
-    /// World-space UI that shows current job title and step checklist. Uses TextMeshPro on a world-space Canvas.
+    /// World-space contract board bound to the canonical JobRuntime. It shows the current job and step,
+    /// and owns presentation-only feedback derived from that state: a short world-space objective card
+    /// when the step changes and a one-time completion card/pulse. It owns no quest progress or rewards.
     /// </summary>
     public class ObjectiveBoard : MonoBehaviour
     {
@@ -12,35 +15,112 @@ namespace Ziptide.Gameplay
         [SerializeField] private JobDirector jobDirector;
 
         private TextMeshProUGUI _tmp;
+        private JobRuntime _subscribedRuntime;
+        private string _announcedJobId;
+        private int _announcedStep = -1;
+        private bool _completionPresented;
+        private Coroutine _boardPulse;
+        private Coroutine _toastRoutine;
+        private GameObject _toastRoot;
+        private TextMesh _toastText;
+        private Renderer _toastPanel;
+        private Material _toastMaterial;
+        private Vector3 _baseScale;
 
         public void Bind(JobDirector director)
         {
+            if (jobDirector != director)
+                UnsubscribeFromRuntime();
+
             jobDirector = director;
+            if (!isActiveAndEnabled)
+                return;
+
+            SubscribeToRuntime();
             RefreshText();
         }
 
         private void Awake()
         {
+            _baseScale = transform.localScale;
             _tmp = GetComponentInChildren<TextMeshProUGUI>(true);
             if (_tmp == null)
                 _tmp = CreateWorldSpaceText(transform);
+        }
+
+        private void OnEnable()
+        {
+            SubscribeToRuntime();
+            RefreshText();
         }
 
         private void Start()
         {
             if (jobDirector == null)
                 jobDirector = FindObjectOfType<JobDirector>();
-            if (jobDirector != null)
-            {
-                jobDirector.Runtime.StepChanged += OnStepChanged;
-                RefreshText();
-            }
+
+            SubscribeToRuntime();
+            RefreshText();
+        }
+
+        private void OnDisable()
+        {
+            UnsubscribeFromRuntime();
+            StopPresentation();
         }
 
         private void OnDestroy()
         {
-            if (jobDirector != null && jobDirector.Runtime != null)
-                jobDirector.Runtime.StepChanged -= OnStepChanged;
+            UnsubscribeFromRuntime();
+            StopPresentation();
+
+            if (_toastRoot != null)
+                Destroy(_toastRoot);
+            if (_toastMaterial != null)
+                Destroy(_toastMaterial);
+        }
+
+        private void SubscribeToRuntime()
+        {
+            JobRuntime runtime = jobDirector != null ? jobDirector.Runtime : null;
+            if (_subscribedRuntime == runtime)
+                return;
+
+            UnsubscribeFromRuntime();
+            if (runtime == null)
+                return;
+
+            runtime.StepChanged += OnStepChanged;
+            runtime.JobCompleted += OnJobCompleted;
+            _subscribedRuntime = runtime;
+        }
+
+        private void UnsubscribeFromRuntime()
+        {
+            if (_subscribedRuntime == null)
+                return;
+
+            _subscribedRuntime.StepChanged -= OnStepChanged;
+            _subscribedRuntime.JobCompleted -= OnJobCompleted;
+            _subscribedRuntime = null;
+        }
+
+        private void StopPresentation()
+        {
+            if (_boardPulse != null)
+            {
+                StopCoroutine(_boardPulse);
+                _boardPulse = null;
+            }
+            if (_toastRoutine != null)
+            {
+                StopCoroutine(_toastRoutine);
+                _toastRoutine = null;
+            }
+
+            transform.localScale = _baseScale;
+            if (_toastRoot != null)
+                _toastRoot.SetActive(false);
         }
 
         public void RefreshText()
@@ -50,28 +130,146 @@ namespace Ziptide.Gameplay
 
             if (jobDirector == null || jobDirector.Runtime == null || jobDirector.Runtime.Definition == null)
             {
-                _tmp.text = "No active job.\nUse the kiosk to start.";
+                _tmp.color = new Color(0.82f, 0.86f, 0.90f);
+                _tmp.text = "CONTRACT BOARD\n\nNo active contract\nSelect one at Dispatch";
+                _announcedJobId = null;
+                _announcedStep = -1;
+                _completionPresented = false;
                 return;
             }
 
-            var r = jobDirector.Runtime;
-            string title = r.Definition.title;
-            string step = r.StepText;
-            if (r.IsComplete)
-                _tmp.text = title + "\n\nComplete!";
-            else
-                _tmp.text = title + "\n\n" + step;
+            JobRuntime runtime = jobDirector.Runtime;
+            string title = string.IsNullOrEmpty(runtime.Definition.title)
+                ? "CONTRACT" : runtime.Definition.title;
+            int totalSteps = runtime.Definition.steps != null ? runtime.Definition.steps.Count : 0;
+            int shownStep = totalSteps > 0 ? Mathf.Clamp(runtime.CurrentStepIndex + 1, 1, totalSteps) : 0;
 
-            // DS-10 evidence (log-only): what the board actually RENDERED and from which director —
-            // stale presentation vs stale state becomes distinguishable in one capture.
+            if (runtime.IsComplete)
+            {
+                _tmp.color = new Color(0.42f, 1f, 0.68f);
+                _tmp.text = "CONTRACT COMPLETE\n" + title + "\n\nAll objectives complete";
+                if (!_completionPresented)
+                {
+                    _completionPresented = true;
+                    ShowToast("CONTRACT COMPLETE", title + "\nROUTE COMPLETE", true);
+                    StartBoardPulse();
+                }
+            }
+            else
+            {
+                _tmp.color = new Color(0.80f, 0.93f, 1f);
+                _tmp.text = title + "\nCONTRACT " + shownStep + "/" + totalSteps + "\n\n" + runtime.StepText;
+
+                string jobId = runtime.Definition.jobId ?? runtime.Definition.name;
+                if (_announcedJobId != jobId || _announcedStep != runtime.CurrentStepIndex)
+                {
+                    _announcedJobId = jobId;
+                    _announcedStep = runtime.CurrentStepIndex;
+                    _completionPresented = false;
+                    ShowToast("NEW OBJECTIVE", runtime.StepText, false);
+                }
+            }
+
             Debug.Log("ZIPTIDE: REPAIR_TRACE hop=board director=" + jobDirector.GetInstanceID()
-                + " step=" + r.CurrentStepIndex + " complete=" + r.IsComplete
-                + " text=\"" + step + "\"");
+                + " step=" + runtime.CurrentStepIndex + " complete=" + runtime.IsComplete
+                + " text=\"" + runtime.StepText + "\"");
         }
 
         private void OnStepChanged()
         {
             RefreshText();
+        }
+
+        private void OnJobCompleted()
+        {
+            RefreshText();
+        }
+
+        private void ShowToast(string header, string body, bool complete)
+        {
+            Camera cam = Camera.main;
+            if (cam == null) return;
+            BuildToastIfNeeded();
+            if (_toastRoot == null || _toastText == null) return;
+
+            Vector3 flat = cam.transform.forward;
+            flat.y = 0f;
+            if (flat.sqrMagnitude < 0.0001f) flat = Vector3.forward;
+            flat.Normalize();
+            _toastRoot.transform.SetPositionAndRotation(
+                cam.transform.position + flat * 0.95f + Vector3.down * 0.14f,
+                Quaternion.LookRotation(flat, Vector3.up));
+
+            _toastText.text = header + "\n" + body;
+            SetMaterialColor(_toastMaterial,
+                complete ? new Color(0.10f, 0.42f, 0.28f) : new Color(0.08f, 0.24f, 0.38f));
+            _toastRoot.SetActive(true);
+            if (_toastRoutine != null) StopCoroutine(_toastRoutine);
+            _toastRoutine = StartCoroutine(HideToastAfter(complete ? 3.0f : 2.2f));
+            Debug.Log("ZIPTIDE: CONTRACT_TOAST kind=" + (complete ? "complete" : "objective")
+                + " step=" + (jobDirector != null ? jobDirector.Runtime.CurrentStepIndex : -1));
+        }
+
+        private void BuildToastIfNeeded()
+        {
+            if (_toastRoot != null) return;
+            _toastRoot = new GameObject("__CONTRACT_TOAST");
+
+            GameObject panel = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            panel.name = "Panel";
+            panel.transform.SetParent(_toastRoot.transform, false);
+            panel.transform.localScale = new Vector3(0.78f, 0.24f, 0.035f);
+            Collider collider = panel.GetComponent<Collider>();
+            if (collider != null) Destroy(collider);
+            _toastPanel = panel.GetComponent<Renderer>();
+
+            Shader shader = Shader.Find("Universal Render Pipeline/Lit");
+            if (shader == null) shader = Shader.Find("Standard");
+            if (shader != null && _toastPanel != null)
+            {
+                _toastMaterial = new Material(shader);
+                SetMaterialColor(_toastMaterial, new Color(0.08f, 0.24f, 0.38f));
+                _toastPanel.sharedMaterial = _toastMaterial;
+                _toastPanel.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+            }
+
+            GameObject text = new GameObject("Text");
+            text.transform.SetParent(panel.transform, false);
+            text.transform.localPosition = new Vector3(0f, 0f, -0.56f);
+            text.transform.localScale = new Vector3(1f / 0.78f, 1f / 0.24f, 1f / 0.035f) * 0.16f;
+            _toastText = text.AddComponent<TextMesh>();
+            _toastText.characterSize = 0.045f;
+            _toastText.fontSize = 56;
+            _toastText.anchor = TextAnchor.MiddleCenter;
+            _toastText.alignment = TextAlignment.Center;
+            _toastText.color = new Color(0.94f, 0.98f, 1f);
+            _toastRoot.SetActive(false);
+        }
+
+        private IEnumerator HideToastAfter(float seconds)
+        {
+            yield return new WaitForSecondsRealtime(seconds);
+            if (_toastRoot != null) _toastRoot.SetActive(false);
+            _toastRoutine = null;
+        }
+
+        private void StartBoardPulse()
+        {
+            if (_boardPulse != null) StopCoroutine(_boardPulse);
+            _boardPulse = StartCoroutine(BoardPulseRoutine());
+        }
+
+        private IEnumerator BoardPulseRoutine()
+        {
+            const float seconds = 0.42f;
+            for (float t = 0f; t < seconds; t += Time.deltaTime)
+            {
+                float p = Mathf.Sin(Mathf.PI * Mathf.Clamp01(t / seconds));
+                transform.localScale = Vector3.Lerp(_baseScale, _baseScale * 1.07f, p);
+                yield return null;
+            }
+            transform.localScale = _baseScale;
+            _boardPulse = null;
         }
 
         private static TextMeshProUGUI CreateWorldSpaceText(Transform parent)
@@ -80,16 +278,11 @@ namespace Ziptide.Gameplay
             canvasGo.transform.SetParent(parent, false);
             canvasGo.transform.localPosition = Vector3.zero;
             canvasGo.transform.localRotation = Quaternion.identity;
-            // ~1m x 0.5m readable board. The old 2x1 @ 0.01 scale was ~2cm wide, so text overflowed to
-            // "NO ACTI..." (the on-screen garbage Terry saw). Bigger rect + small scale fixes it.
             canvasGo.transform.localScale = new Vector3(0.0025f, 0.0025f, 0.0025f);
 
             var canvas = canvasGo.AddComponent<Canvas>();
             canvas.renderMode = RenderMode.WorldSpace;
             canvas.worldCamera = Camera.main;
-            // Adding a Canvas auto-creates the RectTransform; AddComponent<RectTransform> would
-            // return null (a GameObject can't hold two Transform-type components), causing the
-            // NRE on the next line. Use the existing one.
             var rt = canvasGo.GetComponent<RectTransform>();
             if (rt == null) rt = canvasGo.AddComponent<RectTransform>();
             rt.sizeDelta = new Vector2(400f, 220f);
@@ -108,8 +301,15 @@ namespace Ziptide.Gameplay
             tmp.overflowMode = TextOverflowModes.Overflow;
             tmp.alignment = TextAlignmentOptions.TopLeft;
             tmp.margin = new Vector4(12f, 8f, 12f, 8f);
-            tmp.text = "No active job.";
+            tmp.text = "CONTRACT BOARD\n\nNo active contract";
             return tmp;
+        }
+
+        private static void SetMaterialColor(Material material, Color color)
+        {
+            if (material == null) return;
+            if (material.HasProperty("_BaseColor")) material.SetColor("_BaseColor", color);
+            else if (material.HasProperty("_Color")) material.SetColor("_Color", color);
         }
     }
 }
