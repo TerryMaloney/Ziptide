@@ -1,7 +1,7 @@
 {
   "tool": "recovery_focus_reference_graph",
-  "scannedFiles": 727,
-  "referenceCount": 398,
+  "scannedFiles": 728,
+  "referenceCount": 403,
   "summaries": {
     "melee": {
       "referenceCount": 103,
@@ -79,9 +79,9 @@
       ]
     },
     "repairObjective": {
-      "referenceCount": 197,
-      "fileCount": 49,
-      "callerFileCount": 48,
+      "referenceCount": 203,
+      "fileCount": 50,
+      "callerFileCount": 49,
       "paths": [
         "Ziptide/Assets/Ziptide/Content/Runtime/Jobs/JobRewards.cs",
         "Ziptide/Assets/Ziptide/Content/Runtime/Jobs/RepairMachineCountStepDefinition.cs",
@@ -125,6 +125,7 @@
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HazardZoneRuntime.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/CastOffArmingTests.cs",
+        "Ziptide/Assets/Ziptide/Tests/EditMode/FirstRouteFeelTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/JobRuntimeCollectTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/JobRuntimeRepairTests.cs",
@@ -175,6 +176,7 @@
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HazardZoneRuntime.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/CastOffArmingTests.cs",
+        "Ziptide/Assets/Ziptide/Tests/EditMode/FirstRouteFeelTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/JobRuntimeCollectTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/JobRuntimeRepairTests.cs",
@@ -185,9 +187,9 @@
       ]
     },
     "shipPresentation": {
-      "referenceCount": 98,
-      "fileCount": 19,
-      "callerFileCount": 16,
+      "referenceCount": 97,
+      "fileCount": 18,
+      "callerFileCount": 15,
       "paths": [
         "Ziptide/Assets/Ziptide/Content/Runtime/Ship/ShipLoadoutCore.cs",
         "Ziptide/Assets/Ziptide/Core/Runtime/ShipLocker.cs",
@@ -195,7 +197,6 @@
         "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
         "Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs",
         "Ziptide/Assets/Ziptide/Editor/Patching/ShipHullBuilder.cs",
-        "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
@@ -214,7 +215,6 @@
         "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
         "Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs",
         "Ziptide/Assets/Ziptide/Editor/Patching/ShipHullBuilder.cs",
-        "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs",
@@ -1750,7 +1750,7 @@
           "focus": "repairObjective",
           "token": "JobDirector",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs",
-          "line": 12,
+          "line": 15,
           "symbol": "Ziptide.Gameplay.ObjectiveBoard",
           "snippet": "[SerializeField] private JobDirector jobDirector;",
           "declaration_file": false
@@ -1759,7 +1759,7 @@
           "focus": "repairObjective",
           "token": "JobDirector",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs",
-          "line": 16,
+          "line": 30,
           "symbol": "Ziptide.Gameplay.ObjectiveBoard",
           "snippet": "public void Bind(JobDirector director)",
           "declaration_file": false
@@ -1768,7 +1768,7 @@
           "focus": "repairObjective",
           "token": "JobDirector",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs",
-          "line": 32,
+          "line": 60,
           "symbol": "Ziptide.Gameplay.ObjectiveBoard",
           "snippet": "jobDirector = FindObjectOfType<JobDirector>();",
           "declaration_file": false
@@ -1876,16 +1876,7 @@
           "focus": "repairObjective",
           "token": "JobDirector",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-          "line": 12,
-          "symbol": "Ziptide.Gameplay.RepairableMachine",
-          "snippet": "/// <see cref=\"JobDirector.ReportRepair\"/>. Spawned by JobDirector from",
-          "declaration_file": false
-        },
-        {
-          "focus": "repairObjective",
-          "token": "JobDirector",
-          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-          "line": 28,
+          "line": 26,
           "symbol": "Ziptide.Gameplay.RepairableMachine",
           "snippet": "private JobDirector _director;",
           "declaration_file": false
@@ -1894,7 +1885,7 @@
           "focus": "repairObjective",
           "token": "JobDirector",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-          "line": 58,
+          "line": 57,
           "symbol": "Ziptide.Gameplay.RepairableMachine",
           "snippet": "public void Init(MachineSpawnDefinition def, JobDirector director)",
           "declaration_file": false
@@ -1903,7 +1894,7 @@
           "focus": "repairObjective",
           "token": "JobDirector",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-          "line": 259,
+          "line": 290,
           "symbol": "Ziptide.Gameplay.RepairableMachine",
           "snippet": "if (_director == null) _director = FindObjectOfType<JobDirector>();",
           "declaration_file": false
@@ -1981,6 +1972,42 @@
           "symbol": "Ziptide.Gameplay.JobRuntime",
           "snippet": "public class JobRuntime",
           "declaration_file": true
+        },
+        {
+          "focus": "repairObjective",
+          "token": "JobRuntime",
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs",
+          "line": 8,
+          "symbol": "Ziptide.Gameplay.ObjectiveBoard",
+          "snippet": "/// World-space contract board bound to the canonical JobRuntime. It shows the current job and step,",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "JobRuntime",
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs",
+          "line": 18,
+          "symbol": "Ziptide.Gameplay.ObjectiveBoard",
+          "snippet": "private JobRuntime _subscribedRuntime;",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "JobRuntime",
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs",
+          "line": 85,
+          "symbol": "Ziptide.Gameplay.ObjectiveBoard",
+          "snippet": "JobRuntime runtime = jobDirector != null ? jobDirector.Runtime : null;",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "JobRuntime",
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs",
+          "line": 141,
+          "symbol": "Ziptide.Gameplay.ObjectiveBoard",
+          "snippet": "JobRuntime runtime = jobDirector.Runtime;",
+          "declaration_file": false
         },
         {
           "focus": "repairObjective",
@@ -2213,10 +2240,46 @@
           "focus": "repairObjective",
           "token": "ObjectiveBoard",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs",
-          "line": 9,
+          "line": 12,
           "symbol": "Ziptide.Gameplay.ObjectiveBoard",
           "snippet": "public class ObjectiveBoard : MonoBehaviour",
           "declaration_file": true
+        },
+        {
+          "focus": "repairObjective",
+          "token": "ObjectiveBoard",
+          "path": "Ziptide/Assets/Ziptide/Tests/EditMode/FirstRouteFeelTests.cs",
+          "line": 57,
+          "symbol": "Ziptide.Tests.EditMode.FirstRouteFeelTests",
+          "snippet": "public void ObjectiveBoard_PresentsCanonicalRuntimeWithoutOwningProgress()",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "ObjectiveBoard",
+          "path": "Ziptide/Assets/Ziptide/Tests/EditMode/FirstRouteFeelTests.cs",
+          "line": 59,
+          "symbol": "Ziptide.Tests.EditMode.FirstRouteFeelTests",
+          "snippet": "string source = ReadCode(\"Gameplay\", \"Runtime\", \"Jobs\", \"ObjectiveBoard.cs\");",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "ObjectiveBoard",
+          "path": "Ziptide/Assets/Ziptide/Tests/EditMode/FirstRouteFeelTests.cs",
+          "line": 80,
+          "symbol": "Ziptide.Tests.EditMode.FirstRouteFeelTests",
+          "snippet": "public void ObjectiveBoard_SubscriptionAndCompletionPresentationAreOneShot()",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "ObjectiveBoard",
+          "path": "Ziptide/Assets/Ziptide/Tests/EditMode/FirstRouteFeelTests.cs",
+          "line": 82,
+          "symbol": "Ziptide.Tests.EditMode.FirstRouteFeelTests",
+          "snippet": "string source = ReadCode(\"Gameplay\", \"Runtime\", \"Jobs\", \"ObjectiveBoard.cs\");",
+          "declaration_file": false
         }
       ],
       "REPAIR_TRACE": [
@@ -2278,7 +2341,7 @@
           "focus": "repairObjective",
           "token": "REPAIR_TRACE",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs",
-          "line": 67,
+          "line": 173,
           "symbol": "Ziptide.Gameplay.ObjectiveBoard",
           "snippet": "Debug.Log(\"ZIPTIDE: REPAIR_TRACE hop=board director=\" + jobDirector.GetInstanceID()",
           "declaration_file": false
@@ -2525,7 +2588,7 @@
           "focus": "repairObjective",
           "token": "RepairableMachine",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-          "line": 16,
+          "line": 14,
           "symbol": "Ziptide.Gameplay.RepairableMachine",
           "snippet": "public class RepairableMachine : MonoBehaviour, IScannable",
           "declaration_file": true
@@ -2555,6 +2618,24 @@
           "line": 153,
           "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
           "snippet": "foreach (var m in FindObjectsOfType<RepairableMachine>())",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "RepairableMachine",
+          "path": "Ziptide/Assets/Ziptide/Tests/EditMode/FirstRouteFeelTests.cs",
+          "line": 19,
+          "symbol": "Ziptide.Tests.EditMode.FirstRouteFeelTests",
+          "snippet": "string source = ReadCode(\"Gameplay\", \"Runtime\", \"Story\", \"RepairableMachine.cs\");",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "RepairableMachine",
+          "path": "Ziptide/Assets/Ziptide/Tests/EditMode/FirstRouteFeelTests.cs",
+          "line": 37,
+          "symbol": "Ziptide.Tests.EditMode.FirstRouteFeelTests",
+          "snippet": "string source = ReadCode(\"Gameplay\", \"Runtime\", \"Story\", \"RepairableMachine.cs\");",
           "declaration_file": false
         },
         {
@@ -2725,16 +2806,7 @@
           "focus": "repairObjective",
           "token": "ReportRepair",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-          "line": 12,
-          "symbol": "Ziptide.Gameplay.RepairableMachine",
-          "snippet": "/// <see cref=\"JobDirector.ReportRepair\"/>. Spawned by JobDirector from",
-          "declaration_file": false
-        },
-        {
-          "focus": "repairObjective",
-          "token": "ReportRepair",
-          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-          "line": 260,
+          "line": 291,
           "symbol": "Ziptide.Gameplay.RepairableMachine",
           "snippet": "if (_director != null) _director.ReportRepair(_def.machineId);",
           "declaration_file": false
@@ -2852,15 +2924,6 @@
         {
           "focus": "repairObjective",
           "token": "ShipCastOffRuntime",
-          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-          "line": 41,
-          "symbol": "Ziptide.Gameplay.RepairableMachine",
-          "snippet": "/// Queried by ShipCastOffRuntime's arming gate.</summary>",
-          "declaration_file": false
-        },
-        {
-          "focus": "repairObjective",
-          "token": "ShipCastOffRuntime",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
           "line": 20,
           "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
@@ -2953,15 +3016,6 @@
         {
           "focus": "repairObjective",
           "token": "gate_coupler",
-          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-          "line": 31,
-          "symbol": "Ziptide.Gameplay.RepairableMachine",
-          "snippet": "/// <summary>Stable machine id from pack data (e.g. \"gate_coupler\"). Null before Init.</summary>",
-          "declaration_file": false
-        },
-        {
-          "focus": "repairObjective",
-          "token": "gate_coupler",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
           "line": 28,
           "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
@@ -3035,15 +3089,6 @@
           "line": 36,
           "symbol": "Ziptide.Editor.FirstHourSurfaceAuthor",
           "snippet": "ShipCastOffRuntime castOff = FindInScene<ShipCastOffRuntime>(scene);",
-          "declaration_file": false
-        },
-        {
-          "focus": "shipPresentation",
-          "token": "ShipCastOffRuntime",
-          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-          "line": 41,
-          "symbol": "Ziptide.Gameplay.RepairableMachine",
-          "snippet": "/// Queried by ShipCastOffRuntime's arming gate.</summary>",
           "declaration_file": false
         },
         {
@@ -5370,7 +5415,7 @@
       "focus": "repairObjective",
       "token": "JobDirector",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs",
-      "line": 12,
+      "line": 15,
       "symbol": "Ziptide.Gameplay.ObjectiveBoard",
       "snippet": "[SerializeField] private JobDirector jobDirector;",
       "declaration_file": false
@@ -5379,7 +5424,7 @@
       "focus": "repairObjective",
       "token": "JobDirector",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs",
-      "line": 16,
+      "line": 30,
       "symbol": "Ziptide.Gameplay.ObjectiveBoard",
       "snippet": "public void Bind(JobDirector director)",
       "declaration_file": false
@@ -5388,16 +5433,52 @@
       "focus": "repairObjective",
       "token": "JobDirector",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs",
-      "line": 32,
+      "line": 60,
       "symbol": "Ziptide.Gameplay.ObjectiveBoard",
       "snippet": "jobDirector = FindObjectOfType<JobDirector>();",
       "declaration_file": false
     },
     {
       "focus": "repairObjective",
+      "token": "JobRuntime",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs",
+      "line": 8,
+      "symbol": "Ziptide.Gameplay.ObjectiveBoard",
+      "snippet": "/// World-space contract board bound to the canonical JobRuntime. It shows the current job and step,",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
+      "token": "JobRuntime",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs",
+      "line": 18,
+      "symbol": "Ziptide.Gameplay.ObjectiveBoard",
+      "snippet": "private JobRuntime _subscribedRuntime;",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
+      "token": "JobRuntime",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs",
+      "line": 85,
+      "symbol": "Ziptide.Gameplay.ObjectiveBoard",
+      "snippet": "JobRuntime runtime = jobDirector != null ? jobDirector.Runtime : null;",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
+      "token": "JobRuntime",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs",
+      "line": 141,
+      "symbol": "Ziptide.Gameplay.ObjectiveBoard",
+      "snippet": "JobRuntime runtime = jobDirector.Runtime;",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
       "token": "ObjectiveBoard",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs",
-      "line": 9,
+      "line": 12,
       "symbol": "Ziptide.Gameplay.ObjectiveBoard",
       "snippet": "public class ObjectiveBoard : MonoBehaviour",
       "declaration_file": true
@@ -5406,7 +5487,7 @@
       "focus": "repairObjective",
       "token": "REPAIR_TRACE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs",
-      "line": 67,
+      "line": 173,
       "symbol": "Ziptide.Gameplay.ObjectiveBoard",
       "snippet": "Debug.Log(\"ZIPTIDE: REPAIR_TRACE hop=board director=\" + jobDirector.GetInstanceID()",
       "declaration_file": false
@@ -5613,16 +5694,7 @@
       "focus": "repairObjective",
       "token": "JobDirector",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-      "line": 12,
-      "symbol": "Ziptide.Gameplay.RepairableMachine",
-      "snippet": "/// <see cref=\"JobDirector.ReportRepair\"/>. Spawned by JobDirector from",
-      "declaration_file": false
-    },
-    {
-      "focus": "repairObjective",
-      "token": "JobDirector",
-      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-      "line": 28,
+      "line": 26,
       "symbol": "Ziptide.Gameplay.RepairableMachine",
       "snippet": "private JobDirector _director;",
       "declaration_file": false
@@ -5631,7 +5703,7 @@
       "focus": "repairObjective",
       "token": "JobDirector",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-      "line": 58,
+      "line": 57,
       "symbol": "Ziptide.Gameplay.RepairableMachine",
       "snippet": "public void Init(MachineSpawnDefinition def, JobDirector director)",
       "declaration_file": false
@@ -5640,7 +5712,7 @@
       "focus": "repairObjective",
       "token": "JobDirector",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-      "line": 259,
+      "line": 290,
       "symbol": "Ziptide.Gameplay.RepairableMachine",
       "snippet": "if (_director == null) _director = FindObjectOfType<JobDirector>();",
       "declaration_file": false
@@ -5649,7 +5721,7 @@
       "focus": "repairObjective",
       "token": "RepairableMachine",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-      "line": 16,
+      "line": 14,
       "symbol": "Ziptide.Gameplay.RepairableMachine",
       "snippet": "public class RepairableMachine : MonoBehaviour, IScannable",
       "declaration_file": true
@@ -5658,45 +5730,9 @@
       "focus": "repairObjective",
       "token": "ReportRepair",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-      "line": 12,
-      "symbol": "Ziptide.Gameplay.RepairableMachine",
-      "snippet": "/// <see cref=\"JobDirector.ReportRepair\"/>. Spawned by JobDirector from",
-      "declaration_file": false
-    },
-    {
-      "focus": "repairObjective",
-      "token": "ReportRepair",
-      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-      "line": 260,
+      "line": 291,
       "symbol": "Ziptide.Gameplay.RepairableMachine",
       "snippet": "if (_director != null) _director.ReportRepair(_def.machineId);",
-      "declaration_file": false
-    },
-    {
-      "focus": "repairObjective",
-      "token": "ShipCastOffRuntime",
-      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-      "line": 41,
-      "symbol": "Ziptide.Gameplay.RepairableMachine",
-      "snippet": "/// Queried by ShipCastOffRuntime's arming gate.</summary>",
-      "declaration_file": false
-    },
-    {
-      "focus": "repairObjective",
-      "token": "gate_coupler",
-      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-      "line": 31,
-      "symbol": "Ziptide.Gameplay.RepairableMachine",
-      "snippet": "/// <summary>Stable machine id from pack data (e.g. \"gate_coupler\"). Null before Init.</summary>",
-      "declaration_file": false
-    },
-    {
-      "focus": "shipPresentation",
-      "token": "ShipCastOffRuntime",
-      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-      "line": 41,
-      "symbol": "Ziptide.Gameplay.RepairableMachine",
-      "snippet": "/// Queried by ShipCastOffRuntime's arming gate.</summary>",
       "declaration_file": false
     },
     {
@@ -6552,6 +6588,60 @@
       "line": 37,
       "symbol": "Ziptide.Tests.EditMode.CastOffArmingTests",
       "snippet": "Assert.IsTrue(CastOffArming.IsArmed(gateConfigured: false, machineFound: true, machineRepaired: false));",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
+      "token": "ObjectiveBoard",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/FirstRouteFeelTests.cs",
+      "line": 57,
+      "symbol": "Ziptide.Tests.EditMode.FirstRouteFeelTests",
+      "snippet": "public void ObjectiveBoard_PresentsCanonicalRuntimeWithoutOwningProgress()",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
+      "token": "ObjectiveBoard",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/FirstRouteFeelTests.cs",
+      "line": 59,
+      "symbol": "Ziptide.Tests.EditMode.FirstRouteFeelTests",
+      "snippet": "string source = ReadCode(\"Gameplay\", \"Runtime\", \"Jobs\", \"ObjectiveBoard.cs\");",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
+      "token": "ObjectiveBoard",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/FirstRouteFeelTests.cs",
+      "line": 80,
+      "symbol": "Ziptide.Tests.EditMode.FirstRouteFeelTests",
+      "snippet": "public void ObjectiveBoard_SubscriptionAndCompletionPresentationAreOneShot()",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
+      "token": "ObjectiveBoard",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/FirstRouteFeelTests.cs",
+      "line": 82,
+      "symbol": "Ziptide.Tests.EditMode.FirstRouteFeelTests",
+      "snippet": "string source = ReadCode(\"Gameplay\", \"Runtime\", \"Jobs\", \"ObjectiveBoard.cs\");",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
+      "token": "RepairableMachine",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/FirstRouteFeelTests.cs",
+      "line": 19,
+      "symbol": "Ziptide.Tests.EditMode.FirstRouteFeelTests",
+      "snippet": "string source = ReadCode(\"Gameplay\", \"Runtime\", \"Story\", \"RepairableMachine.cs\");",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
+      "token": "RepairableMachine",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/FirstRouteFeelTests.cs",
+      "line": 37,
+      "symbol": "Ziptide.Tests.EditMode.FirstRouteFeelTests",
+      "snippet": "string source = ReadCode(\"Gameplay\", \"Runtime\", \"Story\", \"RepairableMachine.cs\");",
       "declaration_file": false
     },
     {

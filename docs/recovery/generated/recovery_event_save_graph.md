@@ -1,8 +1,8 @@
 # ZIPTIDE Event and Save Ownership Graph
 
-- Scanned C# files: **727**
-- Evidence edges: **727**
-- Named subscriptions without matching unsubscribe in the same owner: **52**
+- Scanned C# files: **728**
+- Evidence edges: **730**
+- Named subscriptions without matching unsubscribe in the same owner: **55**
 
 This is a static ownership graph. An unmatched row is a review target, not automatic proof of a leak; process-lifetime static hooks may be intentional.
 
@@ -11,8 +11,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **AUTOSAVE:** 8
 - **EVENT_DECLARE:** 46
 - **EVENT_INVOKE:** 61
-- **EVENT_SUBSCRIBE:** 108
-- **EVENT_UNSUBSCRIBE:** 58
+- **EVENT_SUBSCRIBE:** 110
+- **EVENT_UNSUBSCRIBE:** 59
 - **PLAYER_PREFS_ACCESS:** 11
 - **PROFILE_FIELD_ACCESS:** 366
 - **SAVE_ACCESS:** 69
@@ -39,6 +39,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - `Ziptide.Gameplay.CreatureRuntime` subscribes `transform.position` → `flat` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:106`
 - `Ziptide.Gameplay.CreatureRuntime` subscribes `transform.position` → `flat` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:107`
 - `Ziptide.Gameplay.StunBolt` subscribes `transform.position` → `step` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/StunBolt.cs:65`
+- `Ziptide.Gameplay.ObjectiveBoard` subscribes `runtime.StepChanged` → `OnStepChanged` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:93`
+- `Ziptide.Gameplay.ObjectiveBoard` subscribes `runtime.JobCompleted` → `OnJobCompleted` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:94`
 - `Ziptide.Gameplay.BootHoldState` subscribes `transform.position` → `headDelta` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:999`
 - `Ziptide.Gameplay.PvpBolt` subscribes `transform.position` → `step` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpBolt.cs:67`
 - `Ziptide.Gameplay.PvpBot` subscribes `transform.position` → `k` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpBot.cs:346`
@@ -60,6 +62,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - `Ziptide.Multiplayer.Bots.BotPerception` subscribes `aim.Y` → `_rng` at `Ziptide/Assets/Ziptide/Multiplayer/Runtime/Bots/BotBrain.cs:237`
 - `Ziptide.Multiplayer.Conquest.ConquestPlayer` subscribes `planet.defenseLevel` → `d` at `Ziptide/Assets/Ziptide/Multiplayer/Runtime/Conquest/ConquestState.cs:103`
 - `Ziptide.Tests.EditMode.FieldCameraCompletionTests` subscribes `SceneManager.sceneLoaded` → `OnSceneLoaded` at `Ziptide/Assets/Ziptide/Tests/EditMode/FieldCameraCompletionTests.cs:82`
+- `Ziptide.Tests.EditMode.FirstRouteFeelTests` subscribes `runtime.JobCompleted` → `OnJobCompleted` at `Ziptide/Assets/Ziptide/Tests/EditMode/FirstRouteFeelTests.cs:61`
 - `Ziptide.Tests.EditMode.HeadsetBuildBlockerRegressionTests` subscribes `EditorSceneManager.sceneOpened` → `OnSceneOpened` at `Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs:71`
 - `Ziptide.Tests.EditMode.HomeHubFlowTests` subscribes `castOff.DestinationSelected` → `destination` at `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:181`
 - `Ziptide.Tests.EditMode.PvpNetTests` subscribes `t.OnFire` → `m` at `Ziptide/Assets/Ziptide/Tests/EditMode/PvpNetTests.cs:27`
@@ -807,7 +810,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `StageChanged`
 
-- **EVENT_DECLARE** · `Ziptide.Gameplay.RepairableMachine` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:38` · `System.Action<RepairStage>` — `public event System.Action<RepairStage> StageChanged;`
+- **EVENT_DECLARE** · `Ziptide.Gameplay.RepairableMachine` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:31` · `System.Action<RepairStage>` — `public event System.Action<RepairStage> StageChanged;`
 
 ### `StateChanged`
 
@@ -938,6 +941,14 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.JobDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs:59` · `OnStepChanged` — `_runtime.StepChanged += OnStepChanged;`
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.JobDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs:67` · `OnStepChanged` — `_runtime.StepChanged -= OnStepChanged;`
 
+### `_subscribedRuntime.JobCompleted`
+
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.ObjectiveBoard` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:104` · `OnJobCompleted` — `_subscribedRuntime.JobCompleted -= OnJobCompleted;`
+
+### `_subscribedRuntime.StepChanged`
+
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.ObjectiveBoard` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:103` · `OnStepChanged` — `_subscribedRuntime.StepChanged -= OnStepChanged;`
+
 ### `addTile`
 
 - **EVENT_INVOKE** · `Ziptide.Tests.PlayMode.RecoveryHomeHubBindingTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryHomeHubBindingTests.cs:77` — `addTile.Invoke(hub, new object[]`
@@ -1054,11 +1065,6 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Editor.Patching.ThemeAuthor` · `Ziptide/Assets/Ziptide/Editor/Patching/ThemeAuthor.cs:77` · `profile` — `profile.groundY = groundY;`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Editor.Setup.CreateDefaultWorldProfile` · `Ziptide/Assets/Ziptide/Editor/Setup/CreateDefaultWorldProfile.cs:43` · `profile` — `profile.groundY = 0f;`
-
-### `jobDirector.Runtime.StepChanged`
-
-- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.ObjectiveBoard` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:35` · `OnStepChanged` — `jobDirector.Runtime.StepChanged += OnStepChanged;`
-- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.ObjectiveBoard` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:43` · `OnStepChanged` — `jobDirector.Runtime.StepChanged -= OnStepChanged;`
 
 ### `json`
 
@@ -1261,6 +1267,15 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 ### `result.totalProduced`
 
 - **EVENT_SUBSCRIBE** · `Ziptide.Core.WorldResolveResult` · `Ziptide/Assets/Ziptide/Core/Runtime/Economy/ProfileEconomy.cs:37` · `acc` — `result.totalProduced += acc.added;`
+
+### `runtime.JobCompleted`
+
+- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.ObjectiveBoard` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:94` · `OnJobCompleted` — `runtime.JobCompleted += OnJobCompleted;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Tests.EditMode.FirstRouteFeelTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/FirstRouteFeelTests.cs:61` · `OnJobCompleted` — `StringAssert.Contains("runtime.JobCompleted += OnJobCompleted", source);`
+
+### `runtime.StepChanged`
+
+- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.ObjectiveBoard` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:93` · `OnStepChanged` — `runtime.StepChanged += OnStepChanged;`
 
 ### `s.Armor`
 

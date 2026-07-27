@@ -1,18 +1,18 @@
 {
   "tool": "recovery_event_save_graph",
-  "scannedFiles": 727,
-  "evidenceCount": 727,
+  "scannedFiles": 728,
+  "evidenceCount": 730,
   "kindCounts": {
     "AUTOSAVE": 8,
     "EVENT_DECLARE": 46,
     "EVENT_INVOKE": 61,
-    "EVENT_SUBSCRIBE": 108,
-    "EVENT_UNSUBSCRIBE": 58,
+    "EVENT_SUBSCRIBE": 110,
+    "EVENT_UNSUBSCRIBE": 59,
     "PLAYER_PREFS_ACCESS": 11,
     "PROFILE_FIELD_ACCESS": 366,
     "SAVE_ACCESS": 69
   },
-  "unmatchedNamedSubscriptionCount": 52,
+  "unmatchedNamedSubscriptionCount": 55,
   "unmatchedNamedSubscriptions": [
     {
       "kind": "EVENT_SUBSCRIBE",
@@ -193,6 +193,24 @@
       "target": "transform.position",
       "detail": "step",
       "snippet": "transform.position += step;"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs",
+      "line": 93,
+      "owner": "Ziptide.Gameplay.ObjectiveBoard",
+      "target": "runtime.StepChanged",
+      "detail": "OnStepChanged",
+      "snippet": "runtime.StepChanged += OnStepChanged;"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs",
+      "line": 94,
+      "owner": "Ziptide.Gameplay.ObjectiveBoard",
+      "target": "runtime.JobCompleted",
+      "detail": "OnJobCompleted",
+      "snippet": "runtime.JobCompleted += OnJobCompleted;"
     },
     {
       "kind": "EVENT_SUBSCRIBE",
@@ -382,6 +400,15 @@
       "target": "SceneManager.sceneLoaded",
       "detail": "OnSceneLoaded",
       "snippet": "StringAssert.Contains(\"SceneManager.sceneLoaded += OnSceneLoaded\", feature);"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/FirstRouteFeelTests.cs",
+      "line": 61,
+      "owner": "Ziptide.Tests.EditMode.FirstRouteFeelTests",
+      "target": "runtime.JobCompleted",
+      "detail": "OnJobCompleted",
+      "snippet": "StringAssert.Contains(\"runtime.JobCompleted += OnJobCompleted\", source);"
     },
     {
       "kind": "EVENT_SUBSCRIBE",
@@ -4967,7 +4994,7 @@
       {
         "kind": "EVENT_DECLARE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-        "line": 38,
+        "line": 31,
         "owner": "Ziptide.Gameplay.RepairableMachine",
         "target": "StageChanged",
         "detail": "System.Action<RepairStage>",
@@ -5535,6 +5562,28 @@
         "snippet": "_runtime.StepChanged -= OnStepChanged;"
       }
     ],
+    "_subscribedRuntime.JobCompleted": [
+      {
+        "kind": "EVENT_UNSUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs",
+        "line": 104,
+        "owner": "Ziptide.Gameplay.ObjectiveBoard",
+        "target": "_subscribedRuntime.JobCompleted",
+        "detail": "OnJobCompleted",
+        "snippet": "_subscribedRuntime.JobCompleted -= OnJobCompleted;"
+      }
+    ],
+    "_subscribedRuntime.StepChanged": [
+      {
+        "kind": "EVENT_UNSUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs",
+        "line": 103,
+        "owner": "Ziptide.Gameplay.ObjectiveBoard",
+        "target": "_subscribedRuntime.StepChanged",
+        "detail": "OnStepChanged",
+        "snippet": "_subscribedRuntime.StepChanged -= OnStepChanged;"
+      }
+    ],
     "addTile": [
       {
         "kind": "EVENT_INVOKE",
@@ -6086,26 +6135,6 @@
         "target": "groundY",
         "detail": "profile",
         "snippet": "profile.groundY = 0f;"
-      }
-    ],
-    "jobDirector.Runtime.StepChanged": [
-      {
-        "kind": "EVENT_SUBSCRIBE",
-        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs",
-        "line": 35,
-        "owner": "Ziptide.Gameplay.ObjectiveBoard",
-        "target": "jobDirector.Runtime.StepChanged",
-        "detail": "OnStepChanged",
-        "snippet": "jobDirector.Runtime.StepChanged += OnStepChanged;"
-      },
-      {
-        "kind": "EVENT_UNSUBSCRIBE",
-        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs",
-        "line": 43,
-        "owner": "Ziptide.Gameplay.ObjectiveBoard",
-        "target": "jobDirector.Runtime.StepChanged",
-        "detail": "OnStepChanged",
-        "snippet": "jobDirector.Runtime.StepChanged -= OnStepChanged;"
       }
     ],
     "json": [
@@ -6999,6 +7028,37 @@
         "target": "result.totalProduced",
         "detail": "acc",
         "snippet": "result.totalProduced += acc.added;"
+      }
+    ],
+    "runtime.JobCompleted": [
+      {
+        "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs",
+        "line": 94,
+        "owner": "Ziptide.Gameplay.ObjectiveBoard",
+        "target": "runtime.JobCompleted",
+        "detail": "OnJobCompleted",
+        "snippet": "runtime.JobCompleted += OnJobCompleted;"
+      },
+      {
+        "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Tests/EditMode/FirstRouteFeelTests.cs",
+        "line": 61,
+        "owner": "Ziptide.Tests.EditMode.FirstRouteFeelTests",
+        "target": "runtime.JobCompleted",
+        "detail": "OnJobCompleted",
+        "snippet": "StringAssert.Contains(\"runtime.JobCompleted += OnJobCompleted\", source);"
+      }
+    ],
+    "runtime.StepChanged": [
+      {
+        "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs",
+        "line": 93,
+        "owner": "Ziptide.Gameplay.ObjectiveBoard",
+        "target": "runtime.StepChanged",
+        "detail": "OnStepChanged",
+        "snippet": "runtime.StepChanged += OnStepChanged;"
       }
     ],
     "s.Armor": [
@@ -9663,20 +9723,38 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs",
-      "line": 35,
+      "line": 93,
       "owner": "Ziptide.Gameplay.ObjectiveBoard",
-      "target": "jobDirector.Runtime.StepChanged",
+      "target": "runtime.StepChanged",
       "detail": "OnStepChanged",
-      "snippet": "jobDirector.Runtime.StepChanged += OnStepChanged;"
+      "snippet": "runtime.StepChanged += OnStepChanged;"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs",
+      "line": 94,
+      "owner": "Ziptide.Gameplay.ObjectiveBoard",
+      "target": "runtime.JobCompleted",
+      "detail": "OnJobCompleted",
+      "snippet": "runtime.JobCompleted += OnJobCompleted;"
     },
     {
       "kind": "EVENT_UNSUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs",
-      "line": 43,
+      "line": 103,
       "owner": "Ziptide.Gameplay.ObjectiveBoard",
-      "target": "jobDirector.Runtime.StepChanged",
+      "target": "_subscribedRuntime.StepChanged",
       "detail": "OnStepChanged",
-      "snippet": "jobDirector.Runtime.StepChanged -= OnStepChanged;"
+      "snippet": "_subscribedRuntime.StepChanged -= OnStepChanged;"
+    },
+    {
+      "kind": "EVENT_UNSUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs",
+      "line": 104,
+      "owner": "Ziptide.Gameplay.ObjectiveBoard",
+      "target": "_subscribedRuntime.JobCompleted",
+      "detail": "OnJobCompleted",
+      "snippet": "_subscribedRuntime.JobCompleted -= OnJobCompleted;"
     },
     {
       "kind": "PROFILE_FIELD_ACCESS",
@@ -10437,7 +10515,7 @@
     {
       "kind": "EVENT_DECLARE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
-      "line": 38,
+      "line": 31,
       "owner": "Ziptide.Gameplay.RepairableMachine",
       "target": "StageChanged",
       "detail": "System.Action<RepairStage>",
@@ -12008,6 +12086,15 @@
       "target": "TravelCompleted",
       "detail": "",
       "snippet": "StringAssert.DoesNotContain(\"TravelCompleted?.Invoke(sceneName)\","
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/FirstRouteFeelTests.cs",
+      "line": 61,
+      "owner": "Ziptide.Tests.EditMode.FirstRouteFeelTests",
+      "target": "runtime.JobCompleted",
+      "detail": "OnJobCompleted",
+      "snippet": "StringAssert.Contains(\"runtime.JobCompleted += OnJobCompleted\", source);"
     },
     {
       "kind": "PROFILE_FIELD_ACCESS",

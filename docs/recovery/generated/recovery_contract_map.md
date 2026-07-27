@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
-- Scanned files: **727**
-- Scanner findings: **2577**
+- Scanned files: **728**
+- Scanner findings: **2586**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -1866,14 +1866,21 @@ None.
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ObjectiveBeacon.cs:43` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Unlit");`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ObjectiveBeacon.cs:44` **RUNTIME_MATERIAL_CREATE** — `_mat = shader != null ? new Material(shader) : null;`
 
-### `Ziptide.Gameplay.ObjectiveBoard` — 4 signal(s)
+### `Ziptide.Gameplay.ObjectiveBoard` — 11 signal(s)
 
-- Codes: `CANVAS_COMPONENT`, `NEW_GAME_OBJECT`, `TMP_COMPONENT`
+- Codes: `CANVAS_COMPONENT`, `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`, `RUNTIME_MATERIAL_CREATE`, `SHADER_FIND`, `TEXTMESH_COMPONENT`, `TMP_COMPONENT`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:79` **NEW_GAME_OBJECT** — `var canvasGo = new GameObject("ObjectiveCanvas");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:87` **CANVAS_COMPONENT** — `var canvas = canvasGo.AddComponent<Canvas>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:97` **NEW_GAME_OBJECT** — `var textGo = new GameObject("ObjectiveText");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:105` **TMP_COMPONENT** — `var tmp = textGo.AddComponent<TextMeshProUGUI>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:216` **NEW_GAME_OBJECT** — `_toastRoot = new GameObject("__CONTRACT_TOAST");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:218` **CREATE_PRIMITIVE** — `GameObject panel = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:226` **SHADER_FIND** — `Shader shader = Shader.Find("Universal Render Pipeline/Lit");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:227` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:230` **RUNTIME_MATERIAL_CREATE** — `_toastMaterial = new Material(shader);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:236` **NEW_GAME_OBJECT** — `GameObject text = new GameObject("Text");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:240` **TEXTMESH_COMPONENT** — `_toastText = text.AddComponent<TextMesh>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:277` **NEW_GAME_OBJECT** — `var canvasGo = new GameObject("ObjectiveCanvas");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:283` **CANVAS_COMPONENT** — `var canvas = canvasGo.AddComponent<Canvas>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:290` **NEW_GAME_OBJECT** — `var textGo = new GameObject("ObjectiveText");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:298` **TMP_COMPONENT** — `var tmp = textGo.AddComponent<TextMeshProUGUI>();`
 
 ### `Ziptide.Gameplay.PhotoCaptureCamera` — 4 signal(s)
 
@@ -2045,26 +2052,26 @@ None.
 
 - Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`, `RUNTIME_MATERIAL_CREATE`, `SHADER_FIND`, `TEXTMESH_COMPONENT`, `XR_INTERACTABLE_COMPONENT`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:68` **CREATE_PRIMITIVE** — `var body = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:78` **CREATE_PRIMITIVE** — `var lamp = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:87` **NEW_GAME_OBJECT** — `var labelGo = new GameObject("Label");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:88` **TEXTMESH_COMPONENT** — `_label = labelGo.AddComponent<TextMesh>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:98` **CREATE_PRIMITIVE** — `var socket = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:110` **NEW_GAME_OBJECT** — `var panel = new GameObject("Panel");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:119` **XR_INTERACTABLE_COMPONENT** — `var panelGrab = panel.AddComponent<XRGrabInteractable>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:124` **CREATE_PRIMITIVE** — `var panelVisual = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:132` **CREATE_PRIMITIVE** — `var sw = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:142` **XR_INTERACTABLE_COMPONENT** — `var swInteractable = sw.AddComponent<XRSimpleInteractable>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:146` **NEW_GAME_OBJECT** — `var switchLabelGo = new GameObject("PowerSwitchLabel");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:151` **TEXTMESH_COMPONENT** — `var switchLabel = switchLabelGo.AddComponent<TextMesh>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:167` **NEW_GAME_OBJECT** — `var part = new GameObject("Part_" + _def.partItemId);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:175` **XR_INTERACTABLE_COMPONENT** — `var partGrab = part.AddComponent<XRGrabInteractable>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:191` **CREATE_PRIMITIVE** — `var partVisual = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:196` **NEW_GAME_OBJECT** — `var partLabel = new GameObject("PartLabel");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:197` **TEXTMESH_COMPONENT** — `var ptm = partLabel.AddComponent<TextMesh>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:322` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Lit");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:323` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:325` **RUNTIME_MATERIAL_CREATE** — `var mat = new Material(shader);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:95` **CREATE_PRIMITIVE** — `var body = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:102` **CREATE_PRIMITIVE** — `var lamp = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:111` **NEW_GAME_OBJECT** — `var labelGo = new GameObject("Label");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:112` **TEXTMESH_COMPONENT** — `_label = labelGo.AddComponent<TextMesh>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:121` **CREATE_PRIMITIVE** — `var socket = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:132` **NEW_GAME_OBJECT** — `var panel = new GameObject("Panel");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:141` **XR_INTERACTABLE_COMPONENT** — `var panelGrab = panel.AddComponent<XRGrabInteractable>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:147` **CREATE_PRIMITIVE** — `var panelVisual = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:154` **CREATE_PRIMITIVE** — `var sw = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:164` **XR_INTERACTABLE_COMPONENT** — `var swInteractable = sw.AddComponent<XRSimpleInteractable>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:169` **NEW_GAME_OBJECT** — `var switchLabelGo = new GameObject("PowerSwitchLabel");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:173` **TEXTMESH_COMPONENT** — `var switchLabel = switchLabelGo.AddComponent<TextMesh>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:189` **NEW_GAME_OBJECT** — `var part = new GameObject("Part_" + _def.partItemId);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:197` **XR_INTERACTABLE_COMPONENT** — `var partGrab = part.AddComponent<XRGrabInteractable>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:214` **CREATE_PRIMITIVE** — `var partVisual = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:220` **NEW_GAME_OBJECT** — `var partLabel = new GameObject("PartLabel");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:221` **TEXTMESH_COMPONENT** — `var ptm = partLabel.AddComponent<TextMesh>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:468` **SHADER_FIND** — `Shader shader = Shader.Find("Universal Render Pipeline/Lit");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:469` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:472` **RUNTIME_MATERIAL_CREATE** — `var material = new Material(shader);`
 
 ### `Ziptide.Gameplay.RillCompanion` — 6 signal(s)
 
@@ -3020,8 +3027,8 @@ None.
 
 - Codes: `XRI_MANAGER_ASSIGN`, `XRI_MANAGER_LOOKUP`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:296` **XRI_MANAGER_LOOKUP** — `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:297` **XRI_MANAGER_ASSIGN** — `if (mgr != null) interactable.interactionManager = mgr;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:442` **XRI_MANAGER_LOOKUP** — `XRInteractionManager manager = FindObjectOfType<XRInteractionManager>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:443` **XRI_MANAGER_ASSIGN** — `if (manager != null) interactable.interactionManager = manager;`
 
 ### `Ziptide.Gameplay.ShipBoardingStation` — 2 signal(s)
 
@@ -3572,7 +3579,7 @@ None.
 
 - Codes: `EVENT_DECLARATION`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:38` **EVENT_DECLARATION** — `public event System.Action<RepairStage> StageChanged;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:31` **EVENT_DECLARATION** — `public event System.Action<RepairStage> StageChanged;`
 
 ### `Ziptide.Gameplay.RillCompanion` — 4 signal(s)
 
@@ -4151,11 +4158,12 @@ None.
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/MiningRigRuntime.cs`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/MiningRigRuntime.cs:126` **CAMERA_MAIN_REFERENCE** — `var cam = Camera.main;`
 
-### `Ziptide.Gameplay.ObjectiveBoard` — 1 signal(s)
+### `Ziptide.Gameplay.ObjectiveBoard` — 2 signal(s)
 
 - Codes: `CAMERA_MAIN_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:89` **CAMERA_MAIN_REFERENCE** — `canvas.worldCamera = Camera.main;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:190` **CAMERA_MAIN_REFERENCE** — `Camera cam = Camera.main;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:285` **CAMERA_MAIN_REFERENCE** — `canvas.worldCamera = Camera.main;`
 
 ### `Ziptide.Gameplay.PlayerMenuRuntime` — 1 signal(s)
 
@@ -4191,7 +4199,7 @@ None.
 
 - Codes: `CAMERA_MAIN_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:219` **CAMERA_MAIN_REFERENCE** — `var cam = Camera.main;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:243` **CAMERA_MAIN_REFERENCE** — `Camera cam = Camera.main;`
 
 ### `Ziptide.Gameplay.RillCompanion` — 1 signal(s)
 
