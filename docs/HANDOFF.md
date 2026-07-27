@@ -27,6 +27,39 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-26 (rb114) — T-Dog lane: 🐛 CREATURE ROSTER + PROMPT QUEUE (Terry's Tripo run-up)
+
+- **Terry asked** for the concept-prompt framework, what creature art already exists, the full
+  expected roster, and the first prompts to run in Gemini before his Tripo membership (~1 week).
+  Wrote **`docs/project_art_plan/CREATURE_ROSTER_AND_PROMPT_QUEUE.md`** against the canonical
+  `CONCEPT_ART_PROMPT_PLAYBOOK.md` (§3 template, §5.1 species archetype, §4 constants).
+- **⚠️ HEADLINE FINDING — four SHIPPED creatures have no concept art and render as fallbacks:**
+  `witness_mite`, `tether_swarm`, `husk_molter` (no art AND no Forge body) and `light_grazer`
+  (Forge body, no art). The game already spawns these. They are the highest-value prompts, ahead
+  of any new species.
+- **⚠️ ID DRIFT to resolve BEFORE models are imported:** concept sheets say
+  `creature_cistern_swarmer` / `creature_glass_tendril`; shipped assets say `swarm_bug` /
+  `tendril`. Pick one ID set now — retrofitting post-import is the expensive version. ⚖ Terry/art
+  lane.
+- **Roster filed:** 5 approved sheets (canal stalker, cistern swarmer, glass tendril, warden drone,
+  rogue-drone family + Wake-Guild spider, plus the pulser sheet) · the 12 novel behaviours from
+  `CREATURE_DESIGN.md` with art status each · the 4 archetypes — **Bruiser is a genuine roster hole
+  (no heavy exists at all)** · Warden classes beyond the drone, Architect constructs, and the three
+  named bosses all unarted.
+- **Locked laws restated for prompt consistency** (already blessed, now in one place): two glow
+  languages (biological bioluminescence vs machine powered-light, never mixed) · machine-eye colour
+  law (RILL amber / Warden white / hostile RED; player cyan vs hostile red-orange) · Warden kinship
+  family · Wake-Guild anchor+cog · every hostile REQUIRES a disabled/powered-down panel (non-lethal
+  canon).
+- **Three full prompts written and paste-ready** (Witness-mite, Light-grazer, Tether-swarm), each
+  demanding the state extremes the rig will need. Next in queue: Husk-molter (its shed husk is a
+  separate prop), a Bruiser heavy, Fractal-splitter, Bridge-former.
+- **The part that makes them game creatures:** every sheet must carry a **six-line behaviour card**
+  (IDLE · NOTICE tell · ~0.4 s ATTACK telegraph · HIT reaction · STUNNED window · DOWNED pose) tied
+  to the existing state machine and the `CreatureBehaviorReadabilityCatalog` requirements — because
+  a sheet showing only a neutral pose produces a Tripo mesh that cannot be rigged for the states the
+  game actually plays. Six-step Tripo-month workflow recorded.
+- **Commit:** this one (roster/prompt doc + this entry). No code; art lane unclaimed.
 ### 2026-07-27 (gpt-first-route-feel-golden-ready) — first-route packet merged; exact Golden candidate authorized for Quest evidence
 
 - **Did:** reconciled live `terry-local-wip` at docs-only head `b83185da` against tested vehicle source `bc8b73cb`, then completed full-file review of `gpt/first-route-feel-live-20260726`. Found and corrected one guaranteed stale test (`REWARD SECURED` after ownership wording changed), ObjectiveBoard subscription/disable/material lifecycle gaps, RepairableMachine procedural clip/runtime-material cleanup and interrupted-pulse restoration, plus source tests that could match comments. Opened bounded PR #90 with exactly four authorized files and squash-merged as executable source `cf94c60883c0f80aaeddacf08a65cd89a929e9f7`. Exact ordinary CI is GREEN run `30258567706` (EditMode + patch/world audit + contract reports; Android skipped). Exact Recovery PlayMode is GREEN run `30258567679`, 43/43 with 0 failed/skipped/inconclusive. Exact Recovery Golden Android is SUCCESS run `30258567678`; artifact `recovery-golden-apk-cf94c60883c0f80aaeddacf08a65cd89a929e9f7`, artifact ID `8650189616`, APK bytes `102563558`, independently recomputed APK SHA-256 `EB018B4EEA643D080443784E1039D0A96090517DD2EC302B0797A8AD0C16ED2F`. Build profile is `GoldenSlice`, define `ZIPTIDE_RECOVERY_GOLDEN`, locked scenes `_Boot`, `W000_DriftIn`, `ToxicCity`. Artifact audit has 0 blockers and 179 warnings. `_Boot` has 0 warnings; W000 has 8; ToxicCity has 15, including the existing report-only material warning at 62 unique materials versus cap 60.
