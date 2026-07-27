@@ -33,6 +33,9 @@ namespace Ziptide.Gameplay
                 UnsubscribeFromRuntime();
 
             jobDirector = director;
+            if (!isActiveAndEnabled)
+                return;
+
             SubscribeToRuntime();
             RefreshText();
         }
@@ -48,6 +51,7 @@ namespace Ziptide.Gameplay
         private void OnEnable()
         {
             SubscribeToRuntime();
+            RefreshText();
         }
 
         private void Start()
