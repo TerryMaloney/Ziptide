@@ -27,6 +27,38 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-26 (rb113) — T-Dog lane: 🗺️ FIRST TWO WORLDS — state + route (answers Terry's "why is the city ugly / what's the concept→cityscape plan")
+
+- **Terry asked** where level 1 and 2 actually stand across art, SFX, city layout, skyscape, space
+  flight and the first hour, and what the plan is for turning his approved concept art into the
+  real cityscape. Surveyed the repo and wrote
+  **`docs/production/FIRST_TWO_WORLDS_STATE_AND_ROUTE.md`** (routing doc — replaces nothing).
+- **The answer: the plan EXISTS and is approved; the gap is execution.** `CITY_VISUAL_SPEC.md` is
+  🟢 REFERENCE APPROVED and defines ToxicCity precisely off Terry's own K1–K6 kit (concentric
+  rings on a drowned tidal flat: Tower island → shanty wedges + canal ring → breached sea wall →
+  harbour wedge/breakwater/moored Scrapper → flyable outskirts with wrecks, stilt villages, glowing
+  tide pools → NE gate pillar ring). **None of that shape is built:** `CityBuilder.cs` still emits
+  the older boulevard layout, and the handoff record states plainly that *"City Stage A remains a
+  separate later bridge"* — both the bridge doc pass and the code pass are unstarted. That is the
+  complete explanation for "doesn't make sense and is super ugly": a generic layout with no
+  authored intent, nothing to do with the concept kit.
+- **Also confirmed:** `CONCEPT_TO_BUILT_PIPELINE.md` already defines the 5-step route and step 1
+  (measured visual spec) is a SOLVED skill — proven twice (ship + city). What has never run for the
+  city is steps 3–5 (booth loop against the sheet → gates → device verdict).
+- **State table filed** for city/concept-machinery/buildings/skyscape/SFX/first-hour/space/creatures
+  across W001+W002. Thinnest lanes: **city Stage A (highest visible impact)** and **audio** (1
+  track, 0 VO, no SFX library, no mix pass — master plan + 34-row queue ready to execute).
+- **Route recorded (all behind M0 per POST_HEADSET_WORLD_FACTORY_ORDER §2):** bridge the city spec
+  into a Stage A recipe (cheapest, ~1 session) → build Stage A **plus the booth reference-plate so
+  built-vs-concept is one image** → K4 facade module recipes → W001 skyscape signature pass (K2) →
+  audio rails THEN the paid SFX batch → close first-hour payoff beats (FH-A01→S05→S08) → W002 as
+  the replication test. Paid 3D month still starts at the W002 gate, not before.
+- **Named the recurring failure mode for the record:** specification outruns execution and the gap
+  stays invisible until the headset. The fix is running the concept→built loop once end-to-end with
+  the sheet pinned beside the render, then repeating it.
+- **Commit:** this one (routing doc + this entry). No code, no lane claimed — city Stage A remains
+  GPT's lane and this doc is reference for whoever fires it.
+
 ### 2026-07-26 (gpt-recovery-vehicle-first-route-handoff) — recovery + vehicle green; first-route feel branch pending
 
 - **Did:** shipped the bounded Quest 3S recovery fixes through PR #87: Y field menu with Resume/canonical Return to Ship and post-travel XRI rebinding; Breaker Blade-only tracked-hand pose; holstered/socketed guns no longer show laser sights; centered-stick R3 crouch/slide guard with blended camera height; modest Home Hub distance retune retaining direct-hand liveness; toxic exposure aligned to the visible rendered surface; taser velocity cleared before kinematic lock. The initial test-only red was 1177/1178 passing and caused solely by matching `Time.timeScale` in an XML comment; corrected in `c0dc9c803c66030f794c23cc2bcdc0c5c401319b`. Exact ordinary CI is GREEN for `c0dc9c80`, run `30224832279`. Then shipped the isolated vehicle pass through PR #89: compact seat-side mount affordance, X dismount, Y menu remains available while mounted, hoverbike eye-clearance channel, split low controls, smooth deadzoned steering, and rig world-yaw follow while preserving local HMD freedom. Exact ordinary CI is GREEN for `bc8b73cb741a9c8e10eb7a0949a229226b54f95f`, run `30225458255`; durable verdict commit is `9a4a5dbad3e996954df2422cf49989896e1f46f8`.
