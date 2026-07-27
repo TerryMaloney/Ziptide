@@ -47,7 +47,7 @@ sense and is ugly": you are seeing a layout with no authored intent, lit and dre
 | **SFX / audio** | ambience beds procedural; **1 music track, 0 VO, no SFX library, no mix pass** | same | 🔴 thinnest lane in the game; master plan + 34-row asset queue written and ready |
 | **First level (W000→space→W001→return)** | current 22-beat contract skips mandatory W000 coupler, playable flight/salvage and reentry; FH-S05 creature, FH-A01 art, FH-S08 orchestration unbuilt | replication target | 🔴 one coherent product contract now exists; machine/runtime migration and integration remain |
 | **Space flight** | flight runtime v1.3 + space-combat core; generated trial scene/pack absent; not bound to first-hour progression | reusable route-leg target | 🟡 code ahead of product integration and device proof |
-| **Creatures** | 7 species w/ behaviour; **only 2 have Forge bodies** | same | 🟡 5 render as fallbacks |
+| **Creatures** | seven behavior families; six forged articulated/textured bodies; tether-swarm deliberately keeps its cluster/cord presentation | same reusable roster | 🟡 signature W001 creature art, encounter resolution and device readability remain open—not the general body pipeline |
 
 ## 4. The route (do these in this order — it is already canon, just unstarted)
 
