@@ -9,19 +9,22 @@ Companions: `CONCEPT_ART_NEXT_30.md` (approvals) · `systems/CREATURE_DESIGN.md`
 
 ## 0. THE HEADLINE FINDING
 
-**Four creatures are already SHIPPED as data and referenced by the game, but have no concept art
-and no Forge body — they render as primitive fallbacks today.** They are the highest-value prompts
-on this list, because art for them upgrades things the game already spawns:
+**The body pipeline is in better shape than the art pipeline.** `ForgeBodyLibrary` defines forged
+bodies for **six** of the seven shipped creatures (only two are committed as `.asset` files —
+`light_grazer`, `swarm_bug`; the rest are generated at build time by the create-only author, which
+is why a disk listing under-reports them). The real gap is **concept art**: four shipped creatures
+the game already spawns have no approved sheet, so their forged bodies were built blind — the exact
+condition the pipeline doc blames for the Warden taking five rounds.
 
-| Shipped `CreatureDefinition` | Concept art? | Forge body? |
+| Shipped `CreatureDefinition` | Concept art? | Forged body? |
 |---|---|---|
-| `light_grazer` | ❌ none | ✅ yes |
-| `swarm_bug` | ❌ (concept exists as *cistern_swarmer* — ID MISMATCH) | ✅ yes |
-| `witness_mite` | ❌ none | ❌ none |
-| `tether_swarm` | ❌ none | ❌ none |
-| `husk_molter` | ❌ none | ❌ none |
-| `tendril` | ✅ *glass_tendril* (ID MISMATCH) | ❌ none |
-| `warden` | ✅ *warden_drone* | ❌ none |
+| `witness_mite` | ❌ **none — prompt now** | ✅ defined |
+| `light_grazer` | ❌ **none — prompt now** | ✅ defined |
+| `husk_molter` | ❌ **none — prompt next** | ✅ defined |
+| `tether_swarm` | ❌ **none — prompt now** | ⚪ intentionally none — it is a cluster + cord, not one body |
+| `swarm_bug` | ✅ as *cistern_swarmer* (ID MISMATCH) | ✅ defined |
+| `tendril` | ✅ as *glass_tendril* (ID MISMATCH) | ✅ defined |
+| `warden` | ✅ as *warden_drone* | ✅ defined |
 
 **⚠️ ID drift to resolve before Tripo:** concept sheets use `creature_cistern_swarmer` /
 `creature_glass_tendril`; the shipped assets use `swarm_bug` / `tendril`. Pick one set of IDs now —

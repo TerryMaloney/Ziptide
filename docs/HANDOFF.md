@@ -33,10 +33,13 @@
   expected roster, and the first prompts to run in Gemini before his Tripo membership (~1 week).
   Wrote **`docs/project_art_plan/CREATURE_ROSTER_AND_PROMPT_QUEUE.md`** against the canonical
   `CONCEPT_ART_PROMPT_PLAYBOOK.md` (§3 template, §5.1 species archetype, §4 constants).
-- **⚠️ HEADLINE FINDING — four SHIPPED creatures have no concept art and render as fallbacks:**
-  `witness_mite`, `tether_swarm`, `husk_molter` (no art AND no Forge body) and `light_grazer`
-  (Forge body, no art). The game already spawns these. They are the highest-value prompts, ahead
-  of any new species.
+- **⚠️ HEADLINE FINDING — four SHIPPED creatures have NO concept art:** `witness_mite`,
+  `light_grazer`, `husk_molter`, `tether_swarm`. Correction after checking `ForgeBodyLibrary`:
+  the BODY pipeline is fine — six of seven have forged bodies defined (only 2 committed as
+  assets; the rest are patcher-generated, so a disk listing under-reports them), and
+  `tether_swarm` intentionally has none (cluster + cord, not one body). So these bodies were
+  built BLIND with no reference — the exact condition the pipeline doc blames for the Warden
+  taking five rounds. Art for them is the highest-value work, ahead of any new species.
 - **⚠️ ID DRIFT to resolve BEFORE models are imported:** concept sheets say
   `creature_cistern_swarmer` / `creature_glass_tendril`; shipped assets say `swarm_bug` /
   `tendril`. Pick one ID set now — retrofitting post-import is the expensive version. ⚖ Terry/art
