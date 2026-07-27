@@ -7,6 +7,11 @@ Companions (all already exist — this doc routes them, it does not replace them
 `project_art_plan/CONCEPT_TO_BUILT_PIPELINE.md` · `project_art_plan/CITY_VISUAL_SPEC.md` ·
 `production/POST_HEADSET_WORLD_FACTORY_ORDER.md` · `audio/AUDIO_PRODUCTION_MASTER_PLAN.md`.
 
+> **Full first-level authority:** [`FIRST_LEVEL_PRODUCT_CONTRACT.md`](FIRST_LEVEL_PRODUCT_CONTRACT.md)
+> defines the complete W000 → space flight/salvage → first Ziptide/reentry → W001 → return product
+> and the W002 replication framework. This document is the city/visual subset of that larger route.
+> Where an older first-hour or flight plan conflicts with it, the conflict must be migrated explicitly.
+
 ---
 
 ## 1. The headline
@@ -40,8 +45,8 @@ sense and is ugly": you are seeing a layout with no authored intent, lit and dre
 | **Buildings/interiors** | kit + interiors exist, generic | same | 🟡 module recipes for the K4 facade grammar unbuilt |
 | **Skyscape** | canonical layers v1; K2 vista sheet approved | inherits | 🟡 the Prospect bar is specified; signature pass + device verdict pending |
 | **SFX / audio** | ambience beds procedural; **1 music track, 0 VO, no SFX library, no mix pass** | same | 🔴 thinnest lane in the game; master plan + 34-row asset queue written and ready |
-| **First hour (W000→W001)** | 22-beat contract + gates green; FH-S05 creature, FH-A01 art, FH-S08 orchestration unbuilt | n/a | 🟡 skeleton complete, payoff beats missing |
-| **Space flight** | flight runtime v1.3 + space-combat core; **0 ship assets**; 10 missions/6 POIs as validated data | n/a | 🟡 code ahead of content; SunRig contract written |
+| **First level (W000→space→W001→return)** | current 22-beat contract skips mandatory W000 coupler, playable flight/salvage and reentry; FH-S05 creature, FH-A01 art, FH-S08 orchestration unbuilt | replication target | 🔴 one coherent product contract now exists; machine/runtime migration and integration remain |
+| **Space flight** | flight runtime v1.3 + space-combat core; generated trial scene/pack absent; not bound to first-hour progression | reusable route-leg target | 🟡 code ahead of product integration and device proof |
 | **Creatures** | 7 species w/ behaviour; **only 2 have Forge bodies** | same | 🟡 5 render as fallbacks |
 
 ## 4. The route (do these in this order — it is already canon, just unstarted)
@@ -51,23 +56,26 @@ sense and is ugly": you are seeing a layout with no authored intent, lit and dre
 
 **Then, in order:**
 
-1. **Bridge the city spec into a recipe (paper, ~1 session).** Turn `CITY_VISUAL_SPEC.md` §1–§4
-   into the Stage A `CityBuilder` recipe: ring radii, wedge counts, canal widths, causeway points,
-   wall breach positions, harbour geometry. This is step 2 of the concept→built route and the
-   cheapest thing on this list.
-2. **Build Stage A + the booth reference-plate.** Implement the recipe, and add the small tooling
+1. **Reconcile the full first-level machine contract.** Implement the v2 route defined in
+   `FIRST_LEVEL_PRODUCT_CONTRACT.md`: W000 teaches coupler scan/repair → PUNCH IT launches into a
+   generated space leg → flight/salvage → first Ziptide/approach/reentry → W001 job → extraction,
+   home payoff and Continue. Remove the current direct-route and teaching-order contradictions.
+2. **Bridge the city spec into a recipe.** Turn `CITY_VISUAL_SPEC.md` §1–§4 into the Stage A
+   `CityBuilder` recipe: ring radii, wedge counts, canal widths, causeway points, wall breach
+   positions, harbour geometry.
+3. **Build Stage A + the booth reference-plate.** Implement the recipe, and add the small tooling
    win the pipeline doc already recommends: **render the built result side-by-side with your keeper
    sheet in one comparison image.** The acceptance test is written in the spec — *"the built street
    should read like K3 squinted."* This is what converts "ugly" into "authored."
-3. **Facade grammar as module recipes (K4)** — the building kit stops being generic boxes.
-4. **Skyscape signature pass for W001 (K2)** — the vista and arrival flight are what sell scale;
+4. **Facade grammar as module recipes (K4)** — the building kit stops being generic boxes.
+5. **Skyscape signature pass for W001 (K2)** — the vista, approach and arrival are what sell scale;
    your own note is that the skyscape is why you started this game.
-5. **Audio rails, then the first paid SFX batch.** The master plan's order is right: build the
+6. **Audio rails, then the first paid SFX batch.** The master plan's order is right: build the
    mixer/bus/event-ID rails first, *then* buy sound. Buying before the event list is stable wastes
    the month.
-6. **Close the first hour's payoff beats** (FH-A01 → FH-S05 → FH-S08) so W000→W001 is a complete
-   experience rather than a working skeleton.
-7. **W002 as the replication test** — rebuild nothing by hand; if W002 needs special-case code, the
+7. **Close the first hour's payoff beats** (FH-A01 → FH-S05 → FH-S08) so the complete first-level
+   route is an experience rather than disconnected working systems.
+8. **W002 as the replication test** — rebuild nothing by hand; if W002 needs special-case code, the
    factory isn't real yet (`POST_HEADSET_WORLD_FACTORY_ORDER.md` §6).
 
 **Paid-asset timing (already decided, worth restating):** the 3D month starts at the W002 gate, not
@@ -77,7 +85,8 @@ after the event rails are stable.
 ## 5. The one thing to internalise
 
 The project's failure mode has never been missing plans — it is that **specification outruns
-execution, and the gap is invisible until the headset**. The city is the clearest example: a
-measured, approved, image-backed spec sitting beside a graybox nobody has rebuilt. The fix is not
-more design. It is running the concept→built loop (§4.2) once, end to end, with the sheet pinned
-next to the render — and then repeating it.
+execution, and the gap is invisible until the headset**. The city is the clearest visual example;
+the disconnected first-hour and flight contracts are the clearest systems example. The fix is not
+more independent design. It is running the complete product route and concept→built loop once,
+end to end, with machine contracts, generated output, comparison evidence and headset verdict all
+agreeing — and then proving W002 can repeat it.
