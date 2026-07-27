@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using Ziptide.Content;
@@ -6,15 +7,9 @@ using Ziptide.Content;
 namespace Ziptide.Gameplay
 {
     /// <summary>
-    /// The hands-on repair fantasy (GAME_PLAN M2): a broken machine fixed in three PHYSICAL stages —
-    /// 1) grab the access PANEL off, 2) fetch the replacement PART and seat it in the exposed socket,
-    /// 3) press the illuminated power SWITCH. Then the machine hums back to life and credits
-    /// RepairMachineCount job steps through JobDirector.
-    ///
-    /// Each physical owner also owns its restrained feedback: the controller that performed the work
-    /// receives one bounded pulse, the machine plays one short local procedural sound, and the newly
-    /// actionable surface visibly confirms the state change. No global haptic/audio manager and no
-    /// parallel repair state are introduced.
+    /// The hands-on repair fantasy: pull the access panel, seat the replacement part, then press power.
+    /// Each established interaction owner provides restrained local feedback without introducing a second
+    /// repair state, global haptic manager, or gameplay dependency on presentation.
     /// </summary>
     public class RepairableMachine : MonoBehaviour, IScannable
     {
@@ -50,17 +45,41 @@ namespace Ziptide.Gameplay
         private AudioSource _feelAudio;
         private XRBaseControllerInteractor _lastPartHand;
         private Coroutine _surfacePulse;
+        private Renderer _pulsingRenderer;
+        private Color _pulsingBaseColor;
+        private MaterialPropertyBlock _surfaceBlock;
+        private List<Material> _ownedMaterials;
+        private AudioClip _panelReleaseClip;
+        private AudioClip _partSeatClip;
+        private AudioClip _powerOnClip;
 
-        private static AudioClip _panelReleaseClip;
-        private static AudioClip _partSeatClip;
-        private static AudioClip _powerOnClip;
-
-        /// <summary>Build + arm the machine. Call immediately after AddComponent (spawner does).</summary>
+        /// <summary>Build and arm the machine. The spawner calls this immediately after AddComponent.</summary>
         public void Init(MachineSpawnDefinition def, JobDirector director)
         {
             _def = def ?? new MachineSpawnDefinition();
             _director = director;
             Build();
+        }
+
+        private void OnDisable()
+        {
+            StopSurfacePulseAndRestore();
+        }
+
+        private void OnDestroy()
+        {
+            StopSurfacePulseAndRestore();
+            DestroyOwnedClip(ref _panelReleaseClip);
+            DestroyOwnedClip(ref _partSeatClip);
+            DestroyOwnedClip(ref _powerOnClip);
+
+            if (_ownedMaterials == null) return;
+            for (int i = 0; i < _ownedMaterials.Count; i++)
+            {
+                if (_ownedMaterials[i] != null)
+                    Destroy(_ownedMaterials[i]);
+            }
+            _ownedMaterials.Clear();
         }
 
         private void Build()
@@ -81,7 +100,8 @@ namespace Ziptide.Gameplay
             Paint(body, BodyColor);
 
             var lamp = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            lamp.name = "StatusIndicator"; StripCollider(lamp);
+            lamp.name = "StatusIndicator";
+            StripCollider(lamp);
             lamp.transform.SetParent(transform, false);
             lamp.transform.localPosition = new Vector3(0f, 1.34f, -0.37f);
             lamp.transform.localScale = new Vector3(0.18f, 0.07f, 0.035f);
@@ -99,7 +119,8 @@ namespace Ziptide.Gameplay
             labelGo.transform.localPosition = new Vector3(0f, 1.58f, -0.38f);
 
             var socket = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            socket.name = "Socket"; StripCollider(socket);
+            socket.name = "Socket";
+            StripCollider(socket);
             socket.transform.SetParent(transform, false);
             socket.transform.localPosition = new Vector3(0f, 0.85f, -0.30f);
             socket.transform.localScale = new Vector3(0.24f, 0.24f, 0.12f);
@@ -124,7 +145,8 @@ namespace Ziptide.Gameplay
                 OnPanelPulled(panel, panelRb, SelectingController(args)));
             panelGrab.selectExited.AddListener(_ => SettleLooseBody(panelRb, useGravity: true));
             var panelVisual = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            panelVisual.name = "Plate"; StripCollider(panelVisual);
+            panelVisual.name = "Plate";
+            StripCollider(panelVisual);
             panelVisual.transform.SetParent(panel.transform, false);
             panelVisual.transform.localScale = new Vector3(0.5f, 0.5f, 0.05f);
             Paint(panelVisual, PanelColor);
@@ -161,8 +183,9 @@ namespace Ziptide.Gameplay
 
             Vector3 partPos = _def.partLocalPosition == Vector3.zero
                 ? transform.position + new Vector3(0.8f, 0.9f, 0f)
-                : transform.parent != null ? transform.parent.TransformPoint(_def.partLocalPosition + Vector3.up * 0.9f)
-                                           : _def.partLocalPosition + Vector3.up * 0.9f;
+                : transform.parent != null
+                    ? transform.parent.TransformPoint(_def.partLocalPosition + Vector3.up * 0.9f)
+                    : _def.partLocalPosition + Vector3.up * 0.9f;
             var part = new GameObject("Part_" + _def.partItemId);
             part.transform.position = partPos;
             var partCol = part.AddComponent<SphereCollider>();
@@ -189,15 +212,18 @@ namespace Ziptide.Gameplay
                 SettleLooseBody(partRb, useGravity: true);
             });
             var partVisual = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            partVisual.name = "PartVisual"; StripCollider(partVisual);
+            partVisual.name = "PartVisual";
+            StripCollider(partVisual);
             partVisual.transform.SetParent(part.transform, false);
             partVisual.transform.localScale = new Vector3(0.18f, 0.18f, 0.18f);
             Paint(partVisual, PartColor);
             var partLabel = new GameObject("PartLabel");
             var ptm = partLabel.AddComponent<TextMesh>();
             ptm.text = (_def.partItemId ?? "part").Replace('_', ' ');
-            ptm.characterSize = 0.025f; ptm.fontSize = 48;
-            ptm.anchor = TextAnchor.MiddleCenter; ptm.alignment = TextAlignment.Center;
+            ptm.characterSize = 0.025f;
+            ptm.fontSize = 48;
+            ptm.anchor = TextAnchor.MiddleCenter;
+            ptm.alignment = TextAlignment.Center;
             ptm.color = PartColor;
             partLabel.transform.SetParent(part.transform, false);
             partLabel.transform.localPosition = Vector3.up * 0.25f;
@@ -214,7 +240,7 @@ namespace Ziptide.Gameplay
                 SeatPart();
             }
 
-            var cam = Camera.main;
+            Camera cam = Camera.main;
             if (cam != null && _label != null)
                 _label.transform.rotation = Quaternion.LookRotation(_label.transform.position - cam.transform.position);
         }
@@ -222,6 +248,7 @@ namespace Ziptide.Gameplay
         private void OnPanelPulled(GameObject panel, Rigidbody rb, XRBaseControllerInteractor hand)
         {
             if (_stage != RepairStage.Panel) return;
+            StopSurfacePulseAndRestore();
             _stage = RepairStage.Part;
             rb.constraints = RigidbodyConstraints.None;
             rb.useGravity = true;
@@ -236,12 +263,13 @@ namespace Ziptide.Gameplay
 
         private void SeatPart()
         {
+            StopSurfacePulseAndRestore();
             _stage = RepairStage.Power;
             Destroy(_part.gameObject);
             _part = null;
-            if (_socketRenderer != null) Tint(_socketRenderer, PartColor);
+            Tint(_socketRenderer, PartColor);
             if (_powerSwitch != null) _powerSwitch.SetActive(true);
-            if (_switchRenderer != null) Tint(_switchRenderer, SwitchReady);
+            Tint(_switchRenderer, SwitchReady);
             SendFeedback(_lastPartHand, "repair_part_seated", 0.38f, 0.075f, PartSeatClip());
             PulseSurface(_switchRenderer, SwitchReady, Color.white, 0.32f);
             _lastPartHand = null;
@@ -253,9 +281,10 @@ namespace Ziptide.Gameplay
         private void OnSwitchFlipped(XRBaseControllerInteractor hand)
         {
             if (_stage != RepairStage.Power) return;
+            StopSurfacePulseAndRestore();
             _stage = RepairStage.Running;
-            if (_switchRenderer != null) Tint(_switchRenderer, RunningColor);
-            if (_statusLamp != null) Tint(_statusLamp, RunningColor);
+            Tint(_switchRenderer, RunningColor);
+            Tint(_statusLamp, RunningColor);
             SendFeedback(hand, "repair_power_on", 0.62f, 0.12f, PowerOnClip());
             PulseSurface(_statusLamp, RunningColor, Color.white, 0.48f);
             if (_director == null) _director = FindObjectOfType<JobDirector>();
@@ -276,33 +305,46 @@ namespace Ziptide.Gameplay
                 Debug.Log("ZIPTIDE: HAPTIC verb=" + verb + " hand=" + hand.gameObject.name
                     + " amp=" + amplitude.ToString("F2") + " sec=" + duration.ToString("F3"));
             }
-            if (_feelAudio != null && clip != null) _feelAudio.PlayOneShot(clip);
+
+            if (_feelAudio != null && clip != null)
+                _feelAudio.PlayOneShot(clip);
         }
 
         private void PulseSurface(Renderer renderer, Color baseColor, Color peak, float seconds)
         {
             if (renderer == null) return;
-            if (_surfacePulse != null) StopCoroutine(_surfacePulse);
+            StopSurfacePulseAndRestore();
+            _pulsingRenderer = renderer;
+            _pulsingBaseColor = baseColor;
             _surfacePulse = StartCoroutine(PulseSurfaceRoutine(renderer, baseColor, peak, seconds));
         }
 
         private IEnumerator PulseSurfaceRoutine(Renderer renderer, Color baseColor, Color peak, float seconds)
         {
-            if (renderer == null) yield break;
-            Material material = renderer.material;
-            string prop = material.HasProperty("_BaseColor") ? "_BaseColor" :
-                          (material.HasProperty("_Color") ? "_Color" : null);
-            if (prop == null) yield break;
-
             float half = Mathf.Max(0.04f, seconds * 0.5f);
             for (float t = 0f; t < seconds; t += Time.deltaTime)
             {
                 float p = t < half ? t / half : 1f - (t - half) / half;
-                material.SetColor(prop, Color.Lerp(baseColor, peak, Mathf.Clamp01(p)));
+                ApplySurfaceColor(renderer, Color.Lerp(baseColor, peak, Mathf.Clamp01(p)));
                 yield return null;
             }
-            material.SetColor(prop, baseColor);
+
+            ApplySurfaceColor(renderer, baseColor);
             _surfacePulse = null;
+            _pulsingRenderer = null;
+        }
+
+        private void StopSurfacePulseAndRestore()
+        {
+            if (_surfacePulse != null)
+            {
+                StopCoroutine(_surfacePulse);
+                _surfacePulse = null;
+            }
+
+            if (_pulsingRenderer != null)
+                ApplySurfaceColor(_pulsingRenderer, _pulsingBaseColor);
+            _pulsingRenderer = null;
         }
 
         private static XRBaseControllerInteractor SelectingController(SelectEnterEventArgs args)
@@ -310,21 +352,21 @@ namespace Ziptide.Gameplay
             return args != null ? args.interactorObject as XRBaseControllerInteractor : null;
         }
 
-        private static AudioClip PanelReleaseClip()
+        private AudioClip PanelReleaseClip()
         {
             if (_panelReleaseClip == null)
                 _panelReleaseClip = BuildStageClip("Repair_PanelRelease", 170f, 95f, 0.11f, 0.22f);
             return _panelReleaseClip;
         }
 
-        private static AudioClip PartSeatClip()
+        private AudioClip PartSeatClip()
         {
             if (_partSeatClip == null)
                 _partSeatClip = BuildStageClip("Repair_PartSeat", 260f, 390f, 0.13f, 0.08f);
             return _partSeatClip;
         }
 
-        private static AudioClip PowerOnClip()
+        private AudioClip PowerOnClip()
         {
             if (_powerOnClip == null)
                 _powerOnClip = BuildStageClip("Repair_PowerOn", 240f, 660f, 0.28f, 0.04f);
@@ -349,9 +391,17 @@ namespace Ziptide.Gameplay
                 float n = ((noise >> 8) & 0xFFFFu) / 32768f - 1f;
                 samples[i] = Mathf.Clamp((tone * 0.52f + n * noiseAmount) * envelope, -0.72f, 0.72f);
             }
+
             AudioClip clip = AudioClip.Create(name, count, 1, sampleRate, false);
             clip.SetData(samples, 0);
             return clip;
+        }
+
+        private static void DestroyOwnedClip(ref AudioClip clip)
+        {
+            if (clip == null) return;
+            Destroy(clip);
+            clip = null;
         }
 
         private void PublishStageChanged()
@@ -359,8 +409,8 @@ namespace Ziptide.Gameplay
             RepairStageSignals.PublishStageSafely(
                 StageChanged,
                 _stage,
-                ex => Debug.LogWarning("ZIPTIDE: REPAIR_STAGE_SUBSCRIBER_FAIL id=" + MachineId +
-                                       " stage=" + _stage + " reason=" + ex.Message));
+                ex => Debug.LogWarning("ZIPTIDE: REPAIR_STAGE_SUBSCRIBER_FAIL id=" + MachineId
+                    + " stage=" + _stage + " reason=" + ex.Message));
         }
 
         private void UpdateLabel()
@@ -371,17 +421,26 @@ namespace Ziptide.Gameplay
                 : _def.displayName;
             switch (_stage)
             {
-                case RepairStage.Panel: _label.text = name + "\n< pull the access panel >"; break;
-                case RepairStage.Part: _label.text = name + "\n< seat the " + (_def.partItemId ?? "part").Replace('_', ' ') + " >"; break;
-                case RepairStage.Power: _label.text = name + "\n< press the illuminated POWER switch >"; break;
-                default: _label.text = name + "\nRUNNING"; _label.color = RunningColor; break;
+                case RepairStage.Panel:
+                    _label.text = name + "\n< pull the access panel >";
+                    break;
+                case RepairStage.Part:
+                    _label.text = name + "\n< seat the " + (_def.partItemId ?? "part").Replace('_', ' ') + " >";
+                    break;
+                case RepairStage.Power:
+                    _label.text = name + "\n< press the illuminated POWER switch >";
+                    break;
+                default:
+                    _label.text = name + "\nRUNNING";
+                    _label.color = RunningColor;
+                    break;
             }
         }
 
         private static void WireManager(XRBaseInteractable interactable)
         {
-            var mgr = Object.FindObjectOfType<XRInteractionManager>();
-            if (mgr != null) interactable.interactionManager = mgr;
+            XRInteractionManager manager = FindObjectOfType<XRInteractionManager>();
+            if (manager != null) interactable.interactionManager = manager;
         }
 
         private static void SettleLooseBody(Rigidbody body, bool useGravity)
@@ -396,31 +455,54 @@ namespace Ziptide.Gameplay
 
         private static void StripCollider(GameObject go)
         {
-            var c = go.GetComponent<Collider>();
-            if (c == null) return;
-            if (Application.isPlaying) Destroy(c);
-            else DestroyImmediate(c);
+            Collider collider = go.GetComponent<Collider>();
+            if (collider == null) return;
+            if (Application.isPlaying) Destroy(collider);
+            else DestroyImmediate(collider);
         }
 
-        private static void Paint(GameObject go, Color color)
+        private void Paint(GameObject go, Color color)
         {
-            var r = go.GetComponent<Renderer>();
-            if (r == null) return;
-            var shader = Shader.Find("Universal Render Pipeline/Lit");
+            Renderer renderer = go.GetComponent<Renderer>();
+            if (renderer == null) return;
+            Shader shader = Shader.Find("Universal Render Pipeline/Lit");
             if (shader == null) shader = Shader.Find("Standard");
             if (shader == null) return;
-            var mat = new Material(shader);
-            if (mat.HasProperty("_BaseColor")) mat.SetColor("_BaseColor", color);
-            else if (mat.HasProperty("_Color")) mat.SetColor("_Color", color);
-            r.sharedMaterial = mat;
-            r.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+
+            var material = new Material(shader);
+            SetMaterialColor(material, color);
+            renderer.sharedMaterial = material;
+            renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+
+            if (_ownedMaterials == null)
+                _ownedMaterials = new List<Material>(6);
+            _ownedMaterials.Add(material);
         }
 
-        private static void Tint(Renderer r, Color color)
+        private void Tint(Renderer renderer, Color color)
         {
-            if (r == null || r.material == null) return;
-            if (r.material.HasProperty("_BaseColor")) r.material.SetColor("_BaseColor", color);
-            else if (r.material.HasProperty("_Color")) r.material.color = color;
+            ApplySurfaceColor(renderer, color);
+        }
+
+        private void ApplySurfaceColor(Renderer renderer, Color color)
+        {
+            if (renderer == null || renderer.sharedMaterial == null) return;
+            string property = renderer.sharedMaterial.HasProperty("_BaseColor") ? "_BaseColor" :
+                (renderer.sharedMaterial.HasProperty("_Color") ? "_Color" : null);
+            if (property == null) return;
+
+            if (_surfaceBlock == null)
+                _surfaceBlock = new MaterialPropertyBlock();
+            renderer.GetPropertyBlock(_surfaceBlock);
+            _surfaceBlock.SetColor(property, color);
+            renderer.SetPropertyBlock(_surfaceBlock);
+        }
+
+        private static void SetMaterialColor(Material material, Color color)
+        {
+            if (material == null) return;
+            if (material.HasProperty("_BaseColor")) material.SetColor("_BaseColor", color);
+            else if (material.HasProperty("_Color")) material.SetColor("_Color", color);
         }
     }
 }
