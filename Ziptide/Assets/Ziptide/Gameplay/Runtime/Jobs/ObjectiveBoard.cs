@@ -15,6 +15,7 @@ namespace Ziptide.Gameplay
         [SerializeField] private JobDirector jobDirector;
 
         private TextMeshProUGUI _tmp;
+        private JobRuntime _subscribedRuntime;
         private string _announcedJobId;
         private int _announcedStep = -1;
         private bool _completionPresented;
@@ -23,11 +24,16 @@ namespace Ziptide.Gameplay
         private GameObject _toastRoot;
         private TextMesh _toastText;
         private Renderer _toastPanel;
+        private Material _toastMaterial;
         private Vector3 _baseScale;
 
         public void Bind(JobDirector director)
         {
+            if (jobDirector != director)
+                UnsubscribeFromRuntime();
+
             jobDirector = director;
+            SubscribeToRuntime();
             RefreshText();
         }
 
@@ -39,26 +45,78 @@ namespace Ziptide.Gameplay
                 _tmp = CreateWorldSpaceText(transform);
         }
 
+        private void OnEnable()
+        {
+            SubscribeToRuntime();
+        }
+
         private void Start()
         {
             if (jobDirector == null)
                 jobDirector = FindObjectOfType<JobDirector>();
-            if (jobDirector != null)
-            {
-                jobDirector.Runtime.StepChanged += OnStepChanged;
-                jobDirector.Runtime.JobCompleted += OnJobCompleted;
-                RefreshText();
-            }
+
+            SubscribeToRuntime();
+            RefreshText();
+        }
+
+        private void OnDisable()
+        {
+            UnsubscribeFromRuntime();
+            StopPresentation();
         }
 
         private void OnDestroy()
         {
-            if (jobDirector != null && jobDirector.Runtime != null)
+            UnsubscribeFromRuntime();
+            StopPresentation();
+
+            if (_toastRoot != null)
+                Destroy(_toastRoot);
+            if (_toastMaterial != null)
+                Destroy(_toastMaterial);
+        }
+
+        private void SubscribeToRuntime()
+        {
+            JobRuntime runtime = jobDirector != null ? jobDirector.Runtime : null;
+            if (_subscribedRuntime == runtime)
+                return;
+
+            UnsubscribeFromRuntime();
+            if (runtime == null)
+                return;
+
+            runtime.StepChanged += OnStepChanged;
+            runtime.JobCompleted += OnJobCompleted;
+            _subscribedRuntime = runtime;
+        }
+
+        private void UnsubscribeFromRuntime()
+        {
+            if (_subscribedRuntime == null)
+                return;
+
+            _subscribedRuntime.StepChanged -= OnStepChanged;
+            _subscribedRuntime.JobCompleted -= OnJobCompleted;
+            _subscribedRuntime = null;
+        }
+
+        private void StopPresentation()
+        {
+            if (_boardPulse != null)
             {
-                jobDirector.Runtime.StepChanged -= OnStepChanged;
-                jobDirector.Runtime.JobCompleted -= OnJobCompleted;
+                StopCoroutine(_boardPulse);
+                _boardPulse = null;
             }
-            if (_toastRoot != null) Destroy(_toastRoot);
+            if (_toastRoutine != null)
+            {
+                StopCoroutine(_toastRoutine);
+                _toastRoutine = null;
+            }
+
+            transform.localScale = _baseScale;
+            if (_toastRoot != null)
+                _toastRoot.SetActive(false);
         }
 
         public void RefreshText()
@@ -139,7 +197,8 @@ namespace Ziptide.Gameplay
                 Quaternion.LookRotation(flat, Vector3.up));
 
             _toastText.text = header + "\n" + body;
-            Tint(_toastPanel, complete ? new Color(0.10f, 0.42f, 0.28f) : new Color(0.08f, 0.24f, 0.38f));
+            SetMaterialColor(_toastMaterial,
+                complete ? new Color(0.10f, 0.42f, 0.28f) : new Color(0.08f, 0.24f, 0.38f));
             _toastRoot.SetActive(true);
             if (_toastRoutine != null) StopCoroutine(_toastRoutine);
             _toastRoutine = StartCoroutine(HideToastAfter(complete ? 3.0f : 2.2f));
@@ -159,7 +218,16 @@ namespace Ziptide.Gameplay
             Collider collider = panel.GetComponent<Collider>();
             if (collider != null) Destroy(collider);
             _toastPanel = panel.GetComponent<Renderer>();
-            Paint(_toastPanel, new Color(0.08f, 0.24f, 0.38f));
+
+            Shader shader = Shader.Find("Universal Render Pipeline/Lit");
+            if (shader == null) shader = Shader.Find("Standard");
+            if (shader != null && _toastPanel != null)
+            {
+                _toastMaterial = new Material(shader);
+                SetMaterialColor(_toastMaterial, new Color(0.08f, 0.24f, 0.38f));
+                _toastPanel.sharedMaterial = _toastMaterial;
+                _toastPanel.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+            }
 
             GameObject text = new GameObject("Text");
             text.transform.SetParent(panel.transform, false);
@@ -233,23 +301,11 @@ namespace Ziptide.Gameplay
             return tmp;
         }
 
-        private static void Paint(Renderer renderer, Color color)
+        private static void SetMaterialColor(Material material, Color color)
         {
-            if (renderer == null) return;
-            Shader shader = Shader.Find("Universal Render Pipeline/Lit");
-            if (shader == null) shader = Shader.Find("Standard");
-            if (shader == null) return;
-            Material material = new Material(shader);
-            renderer.sharedMaterial = material;
-            Tint(renderer, color);
-            renderer.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
-        }
-
-        private static void Tint(Renderer renderer, Color color)
-        {
-            if (renderer == null || renderer.material == null) return;
-            if (renderer.material.HasProperty("_BaseColor")) renderer.material.SetColor("_BaseColor", color);
-            else if (renderer.material.HasProperty("_Color")) renderer.material.SetColor("_Color", color);
+            if (material == null) return;
+            if (material.HasProperty("_BaseColor")) material.SetColor("_BaseColor", color);
+            else if (material.HasProperty("_Color")) material.SetColor("_Color", color);
         }
     }
 }
