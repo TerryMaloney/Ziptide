@@ -206,30 +206,57 @@ animator needs (see §5). Generate breadth first (playbook §6 three-pass method
 **a Bruiser heavy** (the roster hole) · Fractal-splitter (needs 3 nested sizes) · Bridge-former
 (needs its hostile AND its spliced-bridge form).
 
-## 5. THE PART THAT MAKES THEM GAME CREATURES, NOT STATUES
+## 5. THE CREATURE CARD (v2 — corrected after research, 2026-07-26)
 
-Terry's actual goal — *"how do these creatures have movements and attacks and reactions when they
-get hit"* — is answered by making every sheet carry a **behaviour card** alongside it. Tripo gives
-a mesh; the mesh is only useful if it was designed for the states it must play.
+**The earlier six-line card was the right idea, the wrong shape.** Research verdict: it is adequate
+as a pre-*animation* gate but **insufficient as a pre-*modelling* gate**, because only two of its six
+lines constrain the mesh — and it **omitted the COUNTER state, which our own CI already requires**
+(`CreatureBehaviorReadabilityCatalog` enforces `ActiveStates` ≥3 + `TelegraphState` + `CounterState`
++ disabled — verified in source). It was also entirely flatscreen-derived: nothing about angle,
+distance, height, sound, hands, or personal space — the five things that decide whether a VR enemy
+works at all.
 
-Our combat state machine already exists (`ENEMIES_ENCOUNTERS_AND_BOSSES.md`): **IDLE → NOTICE →
-ALERT → APPROACH → ATTACK → RECOVER → STUNNED → DOWNED**, with a ~0.4 s telegraph before any
-attack, and `CreatureBehaviorReadabilityCatalog` already *requires* every shipped species to have
-≥3 active states, a fair telegraph, a counter, and a separate non-lethal resolution.
+Industry sizing for reference: "feels dead" is 3–5 clips, **"feels alive" is 10–14**, solid indie
+20–35, AAA 60–150+. **Our target is 12 clips per Standard creature** — which is exactly what
+`CREATURE_QUALITY_V2_LIFE_LEAP.md` §V2.6's ten-state motion vocabulary already implies. Block A
+below is essentially §V2.2's socket passport pulled forward to concept time, where it belongs.
 
-**So each creature needs these six answers written down before modelling:**
-1. **IDLE** — what it does when unaware (this is 80% of what the player sees).
-2. **NOTICE tell** — the one unmistakable pose change that says "it saw me."
-3. **ATTACK telegraph** — the ~0.4 s wind-up pose, which must be visible in silhouette.
-4. **HIT reaction** — where it flinches from, and what visibly changes (glow flicker, plate flare).
-5. **STUNNED** — the vulnerable window where capture is possible.
-6. **DOWNED/disabled** — the powered-down resting pose (already a required art panel).
+### BLOCK A — BODY CONTRACT *(write BEFORE pressing Generate; irreversible at mesh time)*
+1. **Scale** — metres; threat-height band; must read at **both 1.0 m (kid/seated) and 1.7 m** eye height.
+2. **Locomotion mode** — limb count, ground/wall/fly/burrow, gait role.
+3. **Silhouette triad** — idle / telegraph-apex / disabled, drawn as three thumbnails on the sheet.
+4. **Attack anatomy** — the part that hits, therefore the joints required (jaw? N-segment whip? emitter? inflating bladder = blendshape).
+5. **Socket map** — gaze · mouth/emitter · **weak-point ×n** · **grab handle(s)** (controller-grip sized, positioned OFF the face) · tether point · feet/anchors · VFX mount · audio mount · **carry handle for the downed body**.
+6. **Separable parts** — shed husk, severed cord, salvage parts: each needs its own mesh, sockets and **cap geometry at the break** (you cannot invent an interior later), plus a missing-part silhouette that still reads as the species.
+7. **Tell channel** — which surface region carries the state light, as its own material region/mask (decided before UV/bake).
+8. **Physicality** — grabbable / pushable / ragdoll / static + collider proxy shapes (mesh colliders are banned for gameplay).
+9. **Variants** — sizes/stages and the mechanism: blendshape, bone scale, or separate mesh.
 
-**Modelling consequence:** the sheet must show the extremes of every pose the rig has to hit —
-which is why each prompt above demands the frozen/moving, small/large, cord-intact/severed pairs.
-A creature whose sheet shows only a neutral standing pose will arrive from Tripo un-riggable for
-the states the game needs.
+### BLOCK B — BEHAVIOUR *(before rig/animation — the six lines, corrected and completed)*
+10. **IDLE** — the 80% behaviour + one idle break.
+11. **NOTICE tell** — pose change **plus its sound**; grace window before it commits.
+12. **APPROACH** — how it closes · **closest approach to the headset in metres** · enters arm's reach y/n.
+13. **ATTACK** — telegraph pose · wind-up duration · **apex hold (~0.2–0.3 s)** · **the player's answer and how long that physically takes** · whiff/recovery window.
+14. **COUNTER** — the fair, taught answer. **CI-REQUIRED — omitting it fails the audit.**
+15. **HIT REACTION** — generic additive flinch + one weak-point-specific reaction. Usually only front + grabbed-side matter, not four directions.
+16. **WEAKENED tell** — the limp / one-limb-down gait. Monster Hunter's lesson: the gait change *is* the "capturable now" signal, and it reads with no HUD.
+17. **STUNNED** — grabbable window · flail performance (it must perform urgency, not just freeze) · recover timer · resist tier.
+18. **DOWNED** — pose · recoverable y/n · carryable y/n · which parts detach and in what order · what it leaves behind.
 
-**Recommended workflow for the Tripo month:** (1) approve the concept sheet → (2) write its
-six-line behaviour card → (3) generate the model → (4) confirm the silhouette still reads in the
-telegraph pose → (5) Forge/import per `CONCEPT_TO_BUILT_PIPELINE.md` steps 3–5 → (6) device verdict.
+### BLOCK C — VR CONTRACT *(the block a flatscreen list would never contain)*
+19. **Any-angle readability** — the telegraph must read as a **silhouette-scale change** (never a facial/detail change) from 3 registered views, at **0.6 m and 10 m**. There is no camera to frame it for you.
+20. **Off-FOV channel** — Quest FOV is ~90–110° of a ~200° human field, so **two-thirds of the sphere has zero visual telegraph**. One spatialised sound per state *transition*; haptics if it can touch you; state how it announces itself when below or behind the gaze cone.
+21. **Personal space** — minimum head distance **≥0.6 m, prefer ≥0.8 m** for face-height creatures (below ~0.5 m the eye cannot comfortably fixate); approach-vector rule; never materialise behind the head or inside guardian.
+22. **Hand answer** — what happens when the player grabs / blocks / pushes / covers it, **including mid-attack**. If grabbable, the grapple is **IK-lock + offset blendspace + release-stagger matched to hand direction** (the *Saints & Sinners* pattern), never free physics — VR hands feel no resistance, so simulated resistance reads as mush.
+23. **Comfort & kid rails** — no head-grab, no strobing tell, no fast near-face pass, no attack requiring physical retreat outside guardian, readable at both eye heights.
+
+**Timing correction that matters:** 0.4 s was a controller-era number. A *hand* answer (raise shield, shove, swat) fits ~0.4–0.5 s; a **whole-body answer (duck, sidestep, back off) needs 0.6–0.9 s**, and a guardian-bound player often cannot retreat at all. Both *Until You Fall* and *Half-Life: Alyx* independently concluded VR combat needs slower, louder, more explicit intent than its flatscreen equivalent — Alyx deliberately made the Combine *less* reactive than in HL2.
+
+**Explicitly deferred to animation** (say so on the card so nobody blocks on it): frame counts and curves, extra idle breaks, directional flinch expansion, turn-in-place, taunts, attack variants, spring-bone tuning, get-up timing, LOD behaviour.
+
+### The non-lethal states lethal games never need
+Our disable-and-salvage thesis adds: **weakened/partial disable** (the highest-value addition — MH's limping tell) · **capture gating** (cannot capture until sufficiently weakened) · **struggle while tethered** (Ghostbusters' wrangle — needs a tether socket and a strain pose) · **flee-to-hide and recover** · **reactivation/reboot** (constrains the downed pose: it must be get-up-able) · **carried/dragged** (the downed body is a physical prop — carry handle, held volume that does not blind the player) · **harvest/part-out** (detach order, cap geometry, per-part sockets) · **released, wakes up, wanders off** — one clip that buys the entire kid-friendly fantasy.
+
+**Recommended clip budget per Standard creature: 12** — idle, idle-break, locomotion, turn-in-place, notice, approach, telegraph, apex, whiff-recover, additive flinch, stun-loop, downed. Signature tier adds get-up and one ecology action.
+
+**Tripo-month workflow:** approve the sheet → fill Block A → generate → confirm the silhouette still reads in the telegraph pose → fill Blocks B/C → Forge/import per `CONCEPT_TO_BUILT_PIPELINE.md` steps 3–5 → device verdict.
