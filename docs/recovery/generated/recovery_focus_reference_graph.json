@@ -1,12 +1,12 @@
 {
   "tool": "recovery_focus_reference_graph",
   "scannedFiles": 737,
-  "referenceCount": 409,
+  "referenceCount": 415,
   "summaries": {
     "melee": {
-      "referenceCount": 102,
-      "fileCount": 34,
-      "callerFileCount": 34,
+      "referenceCount": 108,
+      "fileCount": 36,
+      "callerFileCount": 36,
       "paths": [
         "Ziptide/Assets/Ziptide/Content/Runtime/Items/ItemDefinition.cs",
         "Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs",
@@ -16,6 +16,8 @@
         "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherC0.cs",
         "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherD1.cs",
         "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherPvP.cs",
+        "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs",
+        "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/BreakableWall.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/HammerTool.cs",
@@ -52,6 +54,8 @@
         "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherC0.cs",
         "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherD1.cs",
         "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherPvP.cs",
+        "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs",
+        "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/BreakableWall.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/HammerTool.cs",
@@ -269,9 +273,9 @@
           "focus": "melee",
           "token": "ArenaWeaponKind.BreakerBlade",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-          "line": 49,
-          "symbol": "Ziptide.Gameplay.MeleeWeaponRuntime",
-          "snippet": "if (def == null || def.kind != ArenaWeaponKind.BreakerBlade",
+          "line": 94,
+          "symbol": "Ziptide.Gameplay.WeaponPoseCore",
+          "snippet": "if (def == null || def.kind != ArenaWeaponKind.BreakerBlade || _grab == null) return;",
           "declaration_file": false
         }
       ],
@@ -336,8 +340,8 @@
           "focus": "melee",
           "token": "ArenaWeaponKind.TidePike",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-          "line": 36,
-          "symbol": "Ziptide.Gameplay.MeleeWeaponRuntime",
+          "line": 81,
+          "symbol": "Ziptide.Gameplay.WeaponPoseCore",
           "snippet": "private bool IsPike => Def != null && Def.kind == ArenaWeaponKind.TidePike;",
           "declaration_file": false
         }
@@ -421,8 +425,8 @@
           "focus": "melee",
           "token": "HitFromHammer",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-          "line": 94,
-          "symbol": "Ziptide.Gameplay.MeleeWeaponRuntime",
+          "line": 157,
+          "symbol": "Ziptide.Gameplay.WeaponPoseCore",
           "snippet": "wall.HitFromHammer(h.ClosestPoint(tipPos));",
           "declaration_file": false
         },
@@ -477,8 +481,8 @@
           "focus": "melee",
           "token": "MeleeWeaponRuntime",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-          "line": 16,
-          "symbol": "Ziptide.Gameplay.MeleeWeaponRuntime",
+          "line": 61,
+          "symbol": "Ziptide.Gameplay.WeaponPoseCore",
           "snippet": "public class MeleeWeaponRuntime : MonoBehaviour",
           "declaration_file": true
         },
@@ -486,7 +490,7 @@
           "focus": "melee",
           "token": "MeleeWeaponRuntime",
           "path": "Ziptide/Assets/Ziptide/Tests/EditMode/M0SystemicDeviceRegressionTests.cs",
-          "line": 67,
+          "line": 89,
           "symbol": "Ziptide.Tests.EditMode.M0SystemicDeviceRegressionTests",
           "snippet": "string source = Read(\"Gameplay\", \"Runtime\", \"Weapons\", \"MeleeWeaponRuntime.cs\");",
           "declaration_file": false
@@ -495,7 +499,7 @@
           "focus": "melee",
           "token": "MeleeWeaponRuntime",
           "path": "Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryPlayabilityDeviceTests.cs",
-          "line": 56,
+          "line": 57,
           "symbol": "Ziptide.Tests.EditMode.RecoveryPlayabilityDeviceTests",
           "snippet": "string melee = Read(\"Gameplay\", \"Runtime\", \"Weapons\", \"MeleeWeaponRuntime.cs\");",
           "declaration_file": false
@@ -712,6 +716,51 @@
         {
           "focus": "melee",
           "token": "Muzzle",
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs",
+          "line": 148,
+          "symbol": "Ziptide.Gameplay.BeltRig",
+          "snippet": "/// item root axes are solved separately from the actual Muzzle socket by HolsterSocketInteractor.",
+          "declaration_file": false
+        },
+        {
+          "focus": "melee",
+          "token": "Muzzle",
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs",
+          "line": 171,
+          "symbol": "Ziptide.Gameplay.BeltRig",
+          "snippet": "// Euler pose. New code should use ResolveDesiredAxis/ResolveDesiredUp plus the item's Muzzle axis.",
+          "declaration_file": false
+        },
+        {
+          "focus": "melee",
+          "token": "Muzzle",
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
+          "line": 72,
+          "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
+          "snippet": "/// Muzzle/tip axis makes guns hang barrel-down and blades sheath tip-down without assuming model axes.",
+          "declaration_file": false
+        },
+        {
+          "focus": "melee",
+          "token": "Muzzle",
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
+          "line": 127,
+          "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
+          "snippet": "Transform direct = root.Find(\"Muzzle\");",
+          "declaration_file": false
+        },
+        {
+          "focus": "melee",
+          "token": "Muzzle",
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
+          "line": 131,
+          "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
+          "snippet": "if (all[i] != null && all[i].name == \"Muzzle\") return all[i];",
+          "declaration_file": false
+        },
+        {
+          "focus": "melee",
+          "token": "Muzzle",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs",
           "line": 49,
           "symbol": "Ziptide.Gameplay.ItemFactory",
@@ -830,8 +879,17 @@
           "focus": "melee",
           "token": "Muzzle",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-          "line": 41,
-          "symbol": "Ziptide.Gameplay.MeleeWeaponRuntime",
+          "line": 13,
+          "symbol": "Ziptide.Gameplay.WeaponPoseCore",
+          "snippet": "/// swappable as long as they preserve the Muzzle/tip socket.",
+          "declaration_file": false
+        },
+        {
+          "focus": "melee",
+          "token": "Muzzle",
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
+          "line": 86,
+          "symbol": "Ziptide.Gameplay.WeaponPoseCore",
           "snippet": "_tip = transform.Find(\"Muzzle\");",
           "declaration_file": false
         },
@@ -4978,6 +5036,51 @@
     },
     {
       "focus": "melee",
+      "token": "Muzzle",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs",
+      "line": 148,
+      "symbol": "Ziptide.Gameplay.BeltRig",
+      "snippet": "/// item root axes are solved separately from the actual Muzzle socket by HolsterSocketInteractor.",
+      "declaration_file": false
+    },
+    {
+      "focus": "melee",
+      "token": "Muzzle",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs",
+      "line": 171,
+      "symbol": "Ziptide.Gameplay.BeltRig",
+      "snippet": "// Euler pose. New code should use ResolveDesiredAxis/ResolveDesiredUp plus the item's Muzzle axis.",
+      "declaration_file": false
+    },
+    {
+      "focus": "melee",
+      "token": "Muzzle",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
+      "line": 72,
+      "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
+      "snippet": "/// Muzzle/tip axis makes guns hang barrel-down and blades sheath tip-down without assuming model axes.",
+      "declaration_file": false
+    },
+    {
+      "focus": "melee",
+      "token": "Muzzle",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
+      "line": 127,
+      "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
+      "snippet": "Transform direct = root.Find(\"Muzzle\");",
+      "declaration_file": false
+    },
+    {
+      "focus": "melee",
+      "token": "Muzzle",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
+      "line": 131,
+      "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
+      "snippet": "if (all[i] != null && all[i].name == \"Muzzle\") return all[i];",
+      "declaration_file": false
+    },
+    {
+      "focus": "melee",
       "token": "ArenaWeaponKind.BreakerBlade",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs",
       "line": 392,
@@ -6132,17 +6235,17 @@
       "focus": "melee",
       "token": "ArenaWeaponKind.BreakerBlade",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-      "line": 49,
-      "symbol": "Ziptide.Gameplay.MeleeWeaponRuntime",
-      "snippet": "if (def == null || def.kind != ArenaWeaponKind.BreakerBlade",
+      "line": 94,
+      "symbol": "Ziptide.Gameplay.WeaponPoseCore",
+      "snippet": "if (def == null || def.kind != ArenaWeaponKind.BreakerBlade || _grab == null) return;",
       "declaration_file": false
     },
     {
       "focus": "melee",
       "token": "ArenaWeaponKind.TidePike",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-      "line": 36,
-      "symbol": "Ziptide.Gameplay.MeleeWeaponRuntime",
+      "line": 81,
+      "symbol": "Ziptide.Gameplay.WeaponPoseCore",
       "snippet": "private bool IsPike => Def != null && Def.kind == ArenaWeaponKind.TidePike;",
       "declaration_file": false
     },
@@ -6150,8 +6253,8 @@
       "focus": "melee",
       "token": "HitFromHammer",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-      "line": 94,
-      "symbol": "Ziptide.Gameplay.MeleeWeaponRuntime",
+      "line": 157,
+      "symbol": "Ziptide.Gameplay.WeaponPoseCore",
       "snippet": "wall.HitFromHammer(h.ClosestPoint(tipPos));",
       "declaration_file": false
     },
@@ -6159,8 +6262,8 @@
       "focus": "melee",
       "token": "MeleeWeaponRuntime",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-      "line": 16,
-      "symbol": "Ziptide.Gameplay.MeleeWeaponRuntime",
+      "line": 61,
+      "symbol": "Ziptide.Gameplay.WeaponPoseCore",
       "snippet": "public class MeleeWeaponRuntime : MonoBehaviour",
       "declaration_file": true
     },
@@ -6168,8 +6271,17 @@
       "focus": "melee",
       "token": "Muzzle",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-      "line": 41,
-      "symbol": "Ziptide.Gameplay.MeleeWeaponRuntime",
+      "line": 13,
+      "symbol": "Ziptide.Gameplay.WeaponPoseCore",
+      "snippet": "/// swappable as long as they preserve the Muzzle/tip socket.",
+      "declaration_file": false
+    },
+    {
+      "focus": "melee",
+      "token": "Muzzle",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
+      "line": 86,
+      "symbol": "Ziptide.Gameplay.WeaponPoseCore",
       "snippet": "_tip = transform.Find(\"Muzzle\");",
       "declaration_file": false
     },
@@ -7086,7 +7198,7 @@
       "focus": "melee",
       "token": "MeleeWeaponRuntime",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/M0SystemicDeviceRegressionTests.cs",
-      "line": 67,
+      "line": 89,
       "symbol": "Ziptide.Tests.EditMode.M0SystemicDeviceRegressionTests",
       "snippet": "string source = Read(\"Gameplay\", \"Runtime\", \"Weapons\", \"MeleeWeaponRuntime.cs\");",
       "declaration_file": false
@@ -7131,7 +7243,7 @@
       "focus": "melee",
       "token": "MeleeWeaponRuntime",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryPlayabilityDeviceTests.cs",
-      "line": 56,
+      "line": 57,
       "symbol": "Ziptide.Tests.EditMode.RecoveryPlayabilityDeviceTests",
       "snippet": "string melee = Read(\"Gameplay\", \"Runtime\", \"Weapons\", \"MeleeWeaponRuntime.cs\");",
       "declaration_file": false

@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
 - Scanned files: **737**
-- Scanner findings: **2638**
+- Scanner findings: **2649**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -372,15 +372,15 @@ None.
 
 - Codes: `INPUT_ACTION_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs:25` **INPUT_ACTION_REFERENCE** — `InputActionReference turnReference = FindReference("Turn");`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs:60` **INPUT_ACTION_REFERENCE** — `InputActionReference smoothRef = smoothSo.FindProperty("m_RightHandTurnAction.m_Reference")?.objectReferenceValue`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs:61` **INPUT_ACTION_REFERENCE** — `as InputActionReference;`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs:67` **INPUT_ACTION_REFERENCE** — `InputActionReference snapRef = snapSo.FindProperty("m_RightHandSnapTurnAction.m_Reference")?.objectReferenceValue`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs:68` **INPUT_ACTION_REFERENCE** — `as InputActionReference;`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs:74` **INPUT_ACTION_REFERENCE** — `throw new InvalidOperationException("TURN_CONTRACT: smooth and snap providers share one InputActionReference");`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs:77` **INPUT_ACTION_REFERENCE** — `private static InputActionReference FindReference(string actionName)`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs:84` **INPUT_ACTION_REFERENCE** — `InputActionReference reference = assets[i] as InputActionReference;`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs:93` **INPUT_ACTION_REFERENCE** — `InputActionReference reference = assets[i] as InputActionReference;`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs:28` **INPUT_ACTION_REFERENCE** — `InputActionReference turnReference = FindReference("Turn");`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs:73` **INPUT_ACTION_REFERENCE** — `InputActionReference smoothRef = smoothSo.FindProperty("m_RightHandTurnAction.m_Reference")?.objectReferenceValue`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs:74` **INPUT_ACTION_REFERENCE** — `as InputActionReference;`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs:83` **INPUT_ACTION_REFERENCE** — `InputActionReference snapRef = snapSo.FindProperty("m_RightHandSnapTurnAction.m_Reference")?.objectReferenceValue`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs:84` **INPUT_ACTION_REFERENCE** — `as InputActionReference;`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs:90` **INPUT_ACTION_REFERENCE** — `throw new InvalidOperationException("TURN_CONTRACT: smooth and snap providers share one InputActionReference");`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs:97` **INPUT_ACTION_REFERENCE** — `private static InputActionReference FindReference(string actionName)`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs:104` **INPUT_ACTION_REFERENCE** — `InputActionReference reference = assets[i] as InputActionReference;`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs:113` **INPUT_ACTION_REFERENCE** — `InputActionReference reference = assets[i] as InputActionReference;`
 
 ### `Ziptide.Editor.Setup.EnsureLocomotionRig` — 13 signal(s)
 
@@ -605,17 +605,11 @@ None.
 - Paths: `Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourObservationCoreTests.cs`
   - `Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourObservationCoreTests.cs:189` **INPUT_ACTION_REFERENCE** — `StringAssert.DoesNotContain("InputAction", source);`
 
-### `Ziptide.Tests.EditMode.M0SystemicDeviceRegressionTests` — 1 signal(s)
-
-- Codes: `INPUT_ACTION_REFERENCE`
-- Paths: `Ziptide/Assets/Ziptide/Tests/EditMode/M0SystemicDeviceRegressionTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/EditMode/M0SystemicDeviceRegressionTests.cs:42` **INPUT_ACTION_REFERENCE** — `StringAssert.Contains("smooth and snap providers share one InputActionReference", source);`
-
 ### `Ziptide.Tests.EditMode.RecoveryPlayabilityDeviceTests` — 1 signal(s)
 
 - Codes: `INPUT_BUTTON_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryPlayabilityDeviceTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryPlayabilityDeviceTests.cs:20` **INPUT_BUTTON_REFERENCE** — `StringAssert.Contains("<XRController>{LeftHand}/secondaryButton", source);`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryPlayabilityDeviceTests.cs:21` **INPUT_BUTTON_REFERENCE** — `StringAssert.Contains("<XRController>{LeftHand}/secondaryButton", source);`
 
 ### `Ziptide.Tests.EditMode.VehiclePlayabilityTests` — 1 signal(s)
 
@@ -1414,12 +1408,12 @@ None.
 
 - Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`, `RUNTIME_MATERIAL_CREATE`, `SHADER_FIND`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:68` **NEW_GAME_OBJECT** — `var go = new GameObject(holsterName);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:85` **NEW_GAME_OBJECT** — `GameObject attachGo = new GameObject("HolsterAttach");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:95` **CREATE_PRIMITIVE** — `var marker = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:111` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Lit");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:112` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:113` **RUNTIME_MATERIAL_CREATE** — `_holsterMat = new Material(shader) { name = "HolsterMarker_Mat" };`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:80` **NEW_GAME_OBJECT** — `GameObject go = new GameObject(holsterName);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:98` **NEW_GAME_OBJECT** — `GameObject attachGo = new GameObject("HolsterAttach");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:108` **CREATE_PRIMITIVE** — `GameObject marker = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:124` **SHADER_FIND** — `Shader shader = Shader.Find("Universal Render Pipeline/Lit");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:125` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:126` **RUNTIME_MATERIAL_CREATE** — `_holsterMat = new Material(shader) { name = "HolsterMarker_Mat" };`
 
 ### `Ziptide.Gameplay.BeltTileItem` — 5 signal(s)
 
@@ -1760,6 +1754,12 @@ None.
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/HoloRadar.cs:131` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Sprites/Default");`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/HoloRadar.cs:132` **RUNTIME_MATERIAL_CREATE** — `m = new Material(shader);`
 
+### `Ziptide.Gameplay.HolsterSocketInteractor` — 1 signal(s)
+
+- Codes: `NEW_GAME_OBJECT`
+- Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:88` **NEW_GAME_OBJECT** — `GameObject poseGo = new GameObject("HolsterPose_" + item.Definition.itemId + "_" + key);`
+
 ### `Ziptide.Gameplay.HomeHubAnchorLockInstallerRuntime` — 1 signal(s)
 
 - Codes: `NEW_GAME_OBJECT`
@@ -1872,13 +1872,6 @@ None.
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/LiftRuntime.cs`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/LiftRuntime.cs:53` **CREATE_PRIMITIVE** — `var deck = GameObject.CreatePrimitive(PrimitiveType.Cube);`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/LiftRuntime.cs:127` **CREATE_PRIMITIVE** — `var pad = GameObject.CreatePrimitive(PrimitiveType.Cylinder);`
-
-### `Ziptide.Gameplay.MeleeWeaponRuntime` — 2 signal(s)
-
-- Codes: `CREATE_PRIMITIVE`, `XR_INTERACTABLE_COMPONENT`
-- Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:15` **XR_INTERACTABLE_COMPONENT** — `[RequireComponent(typeof(XRGrabInteractable))]`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:153` **CREATE_PRIMITIVE** — `GameObject s = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
 
 ### `Ziptide.Gameplay.MiningRigRuntime` — 9 signal(s)
 
@@ -2312,6 +2305,14 @@ None.
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/WeaponImpactFx.cs`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/WeaponImpactFx.cs:25` **CREATE_PRIMITIVE** — `GameObject root = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/WeaponImpactFx.cs:34` **CREATE_PRIMITIVE** — `GameObject ray = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+
+### `Ziptide.Gameplay.WeaponPoseCore` — 3 signal(s)
+
+- Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`, `XR_INTERACTABLE_COMPONENT`
+- Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:60` **XR_INTERACTABLE_COMPONENT** — `[RequireComponent(typeof(XRGrabInteractable))]`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:104` **NEW_GAME_OBJECT** — `GameObject go = new GameObject(SemanticGripName);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:216` **CREATE_PRIMITIVE** — `GameObject s = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
 
 ### `Ziptide.Gameplay.WorldDebrisBudget` — 1 signal(s)
 
@@ -3517,10 +3518,10 @@ None.
 
 - Codes: `EVENT_DECLARATION`, `PLAYER_PROFILE_REFERENCE`, `SAVE_SYSTEM_REFERENCE`, `STATIC_EVENT_DECLARATION`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:28` **EVENT_DECLARATION** — `public static event Action<string> ItemHolstered;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:28` **STATIC_EVENT_DECLARATION** — `public static event Action<string> ItemHolstered;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:88` **PLAYER_PROFILE_REFERENCE** — `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:88` **SAVE_SYSTEM_REFERENCE** — `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:30` **EVENT_DECLARATION** — `public static event Action<string> ItemHolstered;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:30` **STATIC_EVENT_DECLARATION** — `public static event Action<string> ItemHolstered;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:173` **PLAYER_PROFILE_REFERENCE** — `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:173` **SAVE_SYSTEM_REFERENCE** — `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 
 ### `Ziptide.Gameplay.HomeHubChoice` — 16 signal(s)
 
@@ -4147,7 +4148,7 @@ None.
 
 - Codes: `CAMERA_MAIN_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:32` **CAMERA_MAIN_REFERENCE** — `if (cam == null) cam = Camera.main;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:42` **CAMERA_MAIN_REFERENCE** — `if (cam == null) cam = Camera.main;`
 
 ### `Ziptide.Gameplay.BuildSocketRuntime` — 1 signal(s)
 
@@ -4212,7 +4213,7 @@ None.
 
 - Codes: `CAMERA_MAIN_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubAnchorLockRuntime.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubAnchorLockRuntime.cs:63` **CAMERA_MAIN_REFERENCE** — `Camera cam = Camera.main;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubAnchorLockRuntime.cs:72` **CAMERA_MAIN_REFERENCE** — `Camera cam = Camera.main;`
 
 ### `Ziptide.Gameplay.HomeHubChoice` — 3 signal(s)
 
@@ -4797,6 +4798,13 @@ None.
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/TransmissionConsole.cs`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/TransmissionConsole.cs:9` **FALLBACK_MARKER** — `/// The de-garble playback console (GAME_PLAN M1 stub; audio at M6): a small terminal that, when`
 
+### `Ziptide.Gameplay.WeaponPoseCore` — 2 signal(s)
+
+- Codes: `FALLBACK_MARKER`
+- Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:23` **FALLBACK_MARKER** — `Vector3 fallback = Mathf.Abs(Vector3.Dot(axis, Vector3.up)) < 0.9f`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:25` **FALLBACK_MARKER** — `up = Vector3.ProjectOnPlane(fallback, axis);`
+
 ### `Ziptide.Gameplay.WorldRuntime` — 1 signal(s)
 
 - Codes: `FALLBACK_MARKER`
@@ -4863,7 +4871,7 @@ None.
 
 - Codes: `FALLBACK_MARKER`
 - Paths: `Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryPlayabilityDeviceTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryPlayabilityDeviceTests.cs:101` **FALLBACK_MARKER** — `"The no-ray direct-hand fallback must remain valid for the three-tile layout.");`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryPlayabilityDeviceTests.cs:106` **FALLBACK_MARKER** — `"The no-ray direct-hand fallback must remain valid for the three-tile layout.");`
 
 ### `Ziptide.Tests.EditMode.WorldImprovementManifestTests` — 7 signal(s)
 

@@ -1,20 +1,20 @@
 # ZIPTIDE Focused Recovery Reference Graph
 
 - Scanned C# files: **737**
-- Focused references: **409**
+- Focused references: **415**
 
 ## melee
 
-- References: **102**
-- Files: **34**
-- Non-declaration caller files: **34**
+- References: **108**
+- Files: **36**
+- Non-declaration caller files: **36**
 
 ### `ArenaWeaponKind.BreakerBlade`
 
 - **reference** · `Ziptide.Editor.Patching.ArenaWeaponAuthor` · `Ziptide/Assets/Ziptide/Editor/Patching/ArenaWeaponAuthor.cs:27` — `made += Ensure("breaker_blade", ArenaWeaponKind.BreakerBlade, cooldown: 0.0f);`
 - **reference** · `Ziptide.Gameplay.ItemFactory` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:392` — `case ArenaWeaponKind.BreakerBlade:`
 - **reference** · `Ziptide.Gameplay.ItemFactory` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:453` — `case ArenaWeaponKind.BreakerBlade:`
-- **reference** · `Ziptide.Gameplay.MeleeWeaponRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:49` — `if (def == null || def.kind != ArenaWeaponKind.BreakerBlade`
+- **reference** · `Ziptide.Gameplay.WeaponPoseCore` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:94` — `if (def == null || def.kind != ArenaWeaponKind.BreakerBlade || _grab == null) return;`
 
 ### `ArenaWeaponKind.SonicThumper`
 
@@ -27,7 +27,7 @@
 - **reference** · `Ziptide.Editor.Patching.ArenaWeaponAuthor` · `Ziptide/Assets/Ziptide/Editor/Patching/ArenaWeaponAuthor.cs:28` — `made += Ensure("tide_pike", ArenaWeaponKind.TidePike, cooldown: 0.0f);`
 - **reference** · `Ziptide.Gameplay.ItemFactory` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:399` — `case ArenaWeaponKind.TidePike:`
 - **reference** · `Ziptide.Gameplay.ItemFactory` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:454` — `case ArenaWeaponKind.TidePike: go.AddComponent<MeleeWeaponRuntime>(); break;`
-- **reference** · `Ziptide.Gameplay.MeleeWeaponRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:36` — `private bool IsPike => Def != null && Def.kind == ArenaWeaponKind.TidePike;`
+- **reference** · `Ziptide.Gameplay.WeaponPoseCore` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:81` — `private bool IsPike => Def != null && Def.kind == ArenaWeaponKind.TidePike;`
 
 ### `HammerTool`
 
@@ -42,7 +42,7 @@
 - **reference** · `Ziptide.Gameplay.BreakableWall` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/BreakableWall.cs:48` — `public void HitFromHammer(Vector3 worldHitPoint)`
 - **reference** · `Ziptide.Gameplay.BreakableWall` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/BreakableWall.cs:149` — `public void HitFromHammer() { HitFromHammer(transform.position); }`
 - **reference** · `Ziptide.Gameplay.HammerTool` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/HammerTool.cs:118` — `if (wall != null) { wall.HitFromHammer(_head.position); _lastBreakAt = Time.time; break; }`
-- **reference** · `Ziptide.Gameplay.MeleeWeaponRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:94` — `wall.HitFromHammer(h.ClosestPoint(tipPos));`
+- **reference** · `Ziptide.Gameplay.WeaponPoseCore` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:157` — `wall.HitFromHammer(h.ClosestPoint(tipPos));`
 - **reference** · `Ziptide.Gameplay.SonicThumperRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/SonicThumperRuntime.cs:64` — `wall.HitFromHammer(h.ClosestPoint(transform.position));`
 
 ### `MeleeWeaponRuntime`
@@ -51,9 +51,9 @@
 - **reference** · `Ziptide.Gameplay.ItemFactory` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:454` — `case ArenaWeaponKind.TidePike: go.AddComponent<MeleeWeaponRuntime>(); break;`
 - **reference** · `Ziptide.Gameplay.GunLaserSight` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:12` — `/// itself when MeleeWeaponRuntime is present.`
 - **reference** · `Ziptide.Gameplay.GunLaserSight` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:42` — `if (GetComponent<MeleeWeaponRuntime>() == null) return false;`
-- **declaration** · `Ziptide.Gameplay.MeleeWeaponRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:16` — `public class MeleeWeaponRuntime : MonoBehaviour`
-- **reference** · `Ziptide.Tests.EditMode.M0SystemicDeviceRegressionTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/M0SystemicDeviceRegressionTests.cs:67` — `string source = Read("Gameplay", "Runtime", "Weapons", "MeleeWeaponRuntime.cs");`
-- **reference** · `Ziptide.Tests.EditMode.RecoveryPlayabilityDeviceTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryPlayabilityDeviceTests.cs:56` — `string melee = Read("Gameplay", "Runtime", "Weapons", "MeleeWeaponRuntime.cs");`
+- **declaration** · `Ziptide.Gameplay.WeaponPoseCore` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:61` — `public class MeleeWeaponRuntime : MonoBehaviour`
+- **reference** · `Ziptide.Tests.EditMode.M0SystemicDeviceRegressionTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/M0SystemicDeviceRegressionTests.cs:89` — `string source = Read("Gameplay", "Runtime", "Weapons", "MeleeWeaponRuntime.cs");`
+- **reference** · `Ziptide.Tests.EditMode.RecoveryPlayabilityDeviceTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryPlayabilityDeviceTests.cs:57` — `string melee = Read("Gameplay", "Runtime", "Weapons", "MeleeWeaponRuntime.cs");`
 
 ### `Muzzle`
 
@@ -80,6 +80,11 @@
 - **reference** · `Ziptide.Editor.Patching.ForgeRecipeLibrary` · `Ziptide/Assets/Ziptide/Editor/Patching/ForgeRecipeLibrary.cs:1239` — `new ForgeSocket { name = "Muzzle", localPosition = new Vector3(0f, 0f, 0.59f), localEuler = Vector3.zero },`
 - **reference** · `Ziptide.Editor.Patching.ScenePatcherC0` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherC0.cs:248` — `var muzzle = new GameObject("Muzzle");`
 - **reference** · `Ziptide.Editor.Patching.ScenePatcherD1` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherD1.cs:691` — `var muzzle = new GameObject("Muzzle");`
+- **reference** · `Ziptide.Gameplay.BeltRig` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:148` — `/// item root axes are solved separately from the actual Muzzle socket by HolsterSocketInteractor.`
+- **reference** · `Ziptide.Gameplay.BeltRig` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:171` — `// Euler pose. New code should use ResolveDesiredAxis/ResolveDesiredUp plus the item's Muzzle axis.`
+- **reference** · `Ziptide.Gameplay.HolsterSocketInteractor` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:72` — `/// Muzzle/tip axis makes guns hang barrel-down and blades sheath tip-down without assuming model axes.`
+- **reference** · `Ziptide.Gameplay.HolsterSocketInteractor` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:127` — `Transform direct = root.Find("Muzzle");`
+- **reference** · `Ziptide.Gameplay.HolsterSocketInteractor` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:131` — `if (all[i] != null && all[i].name == "Muzzle") return all[i];`
 - **reference** · `Ziptide.Gameplay.ItemFactory` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:49` — `// Every gun (anything with a Muzzle + grab) gets the aim line (CONTROL_SCHEME "Aim").`
 - **reference** · `Ziptide.Gameplay.ItemFactory` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:50` — `if (built != null && built.transform.Find("Muzzle") != null`
 - **reference** · `Ziptide.Gameplay.ItemFactory` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:208` — `var muzzle = new GameObject("Muzzle");`
@@ -93,7 +98,8 @@
 - **reference** · `Ziptide.Gameplay.GunLaserSight` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:7` — `/// The aim line (CONTROL_SCHEME.md "Aim"): a thin ray from the Muzzle to the first hit,`
 - **reference** · `Ziptide.Gameplay.GunLaserSight` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:11` — `/// Melee weapons expose a child named Muzzle as their physical tip, so this component disables`
 - **reference** · `Ziptide.Gameplay.GunLaserSight` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:50` — `_muzzle = transform.Find("Muzzle");`
-- **reference** · `Ziptide.Gameplay.MeleeWeaponRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:41` — `_tip = transform.Find("Muzzle");`
+- **reference** · `Ziptide.Gameplay.WeaponPoseCore` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:13` — `/// swappable as long as they preserve the Muzzle/tip socket.`
+- **reference** · `Ziptide.Gameplay.WeaponPoseCore` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:86` — `_tip = transform.Find("Muzzle");`
 - **reference** · `Ziptide.Gameplay.PistolRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/PistolRuntime.cs:10` — `/// Hitscan pistol: raycast from Muzzle on trigger, hit TargetRuntime, tracer/muzzle/impact feedback,`
 - **reference** · `Ziptide.Gameplay.PistolRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/PistolRuntime.cs:41` — `_muzzle = transform.Find("Muzzle");`
 - **reference** · `Ziptide.Gameplay.PistolRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/PistolRuntime.cs:44` — `var m = new GameObject("Muzzle");`

@@ -2,7 +2,7 @@
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
   "scannedFiles": 737,
-  "findingCount": 2638,
+  "findingCount": 2649,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -1233,63 +1233,63 @@
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs",
-            "line": 25,
+            "line": 28,
             "symbol": "Ziptide.Editor.Patching.LocomotionContractEnforcer",
             "snippet": "InputActionReference turnReference = FindReference(\"Turn\");"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs",
-            "line": 60,
+            "line": 73,
             "symbol": "Ziptide.Editor.Patching.LocomotionContractEnforcer",
             "snippet": "InputActionReference smoothRef = smoothSo.FindProperty(\"m_RightHandTurnAction.m_Reference\")?.objectReferenceValue"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs",
-            "line": 61,
+            "line": 74,
             "symbol": "Ziptide.Editor.Patching.LocomotionContractEnforcer",
             "snippet": "as InputActionReference;"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs",
-            "line": 67,
+            "line": 83,
             "symbol": "Ziptide.Editor.Patching.LocomotionContractEnforcer",
             "snippet": "InputActionReference snapRef = snapSo.FindProperty(\"m_RightHandSnapTurnAction.m_Reference\")?.objectReferenceValue"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs",
-            "line": 68,
+            "line": 84,
             "symbol": "Ziptide.Editor.Patching.LocomotionContractEnforcer",
             "snippet": "as InputActionReference;"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs",
-            "line": 74,
+            "line": 90,
             "symbol": "Ziptide.Editor.Patching.LocomotionContractEnforcer",
             "snippet": "throw new InvalidOperationException(\"TURN_CONTRACT: smooth and snap providers share one InputActionReference\");"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs",
-            "line": 77,
+            "line": 97,
             "symbol": "Ziptide.Editor.Patching.LocomotionContractEnforcer",
             "snippet": "private static InputActionReference FindReference(string actionName)"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs",
-            "line": 84,
+            "line": 104,
             "symbol": "Ziptide.Editor.Patching.LocomotionContractEnforcer",
             "snippet": "InputActionReference reference = assets[i] as InputActionReference;"
           },
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs",
-            "line": 93,
+            "line": 113,
             "symbol": "Ziptide.Editor.Patching.LocomotionContractEnforcer",
             "snippet": "InputActionReference reference = assets[i] as InputActionReference;"
           }
@@ -2448,25 +2448,6 @@
         ]
       },
       {
-        "owner": "Ziptide.Tests.EditMode.M0SystemicDeviceRegressionTests",
-        "evidenceCount": 1,
-        "codes": [
-          "INPUT_ACTION_REFERENCE"
-        ],
-        "paths": [
-          "Ziptide/Assets/Ziptide/Tests/EditMode/M0SystemicDeviceRegressionTests.cs"
-        ],
-        "evidence": [
-          {
-            "code": "INPUT_ACTION_REFERENCE",
-            "path": "Ziptide/Assets/Ziptide/Tests/EditMode/M0SystemicDeviceRegressionTests.cs",
-            "line": 42,
-            "symbol": "Ziptide.Tests.EditMode.M0SystemicDeviceRegressionTests",
-            "snippet": "StringAssert.Contains(\"smooth and snap providers share one InputActionReference\", source);"
-          }
-        ]
-      },
-      {
         "owner": "Ziptide.Tests.EditMode.RecoveryPlayabilityDeviceTests",
         "evidenceCount": 1,
         "codes": [
@@ -2479,7 +2460,7 @@
           {
             "code": "INPUT_BUTTON_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryPlayabilityDeviceTests.cs",
-            "line": 20,
+            "line": 21,
             "symbol": "Ziptide.Tests.EditMode.RecoveryPlayabilityDeviceTests",
             "snippet": "StringAssert.Contains(\"<XRController>{LeftHand}/secondaryButton\", source);"
           }
@@ -6470,42 +6451,42 @@
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs",
-            "line": 68,
+            "line": 80,
             "symbol": "Ziptide.Gameplay.BeltRig",
-            "snippet": "var go = new GameObject(holsterName);"
+            "snippet": "GameObject go = new GameObject(holsterName);"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs",
-            "line": 85,
+            "line": 98,
             "symbol": "Ziptide.Gameplay.BeltRig",
             "snippet": "GameObject attachGo = new GameObject(\"HolsterAttach\");"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs",
-            "line": 95,
+            "line": 108,
             "symbol": "Ziptide.Gameplay.BeltRig",
-            "snippet": "var marker = GameObject.CreatePrimitive(PrimitiveType.Sphere);"
+            "snippet": "GameObject marker = GameObject.CreatePrimitive(PrimitiveType.Sphere);"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs",
-            "line": 111,
+            "line": 124,
             "symbol": "Ziptide.Gameplay.BeltRig",
-            "snippet": "var shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
+            "snippet": "Shader shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs",
-            "line": 112,
+            "line": 125,
             "symbol": "Ziptide.Gameplay.BeltRig",
             "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
           },
           {
             "code": "RUNTIME_MATERIAL_CREATE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs",
-            "line": 113,
+            "line": 126,
             "symbol": "Ziptide.Gameplay.BeltRig",
             "snippet": "_holsterMat = new Material(shader) { name = \"HolsterMarker_Mat\" };"
           }
@@ -8225,6 +8206,25 @@
         ]
       },
       {
+        "owner": "Ziptide.Gameplay.HolsterSocketInteractor",
+        "evidenceCount": 1,
+        "codes": [
+          "NEW_GAME_OBJECT"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs"
+        ],
+        "evidence": [
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
+            "line": 88,
+            "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
+            "snippet": "GameObject poseGo = new GameObject(\"HolsterPose_\" + item.Definition.itemId + \"_\" + key);"
+          }
+        ]
+      },
+      {
         "owner": "Ziptide.Gameplay.HomeHubAnchorLockInstallerRuntime",
         "evidenceCount": 1,
         "codes": [
@@ -8793,33 +8793,6 @@
             "line": 127,
             "symbol": "Ziptide.Gameplay.LiftRuntime",
             "snippet": "var pad = GameObject.CreatePrimitive(PrimitiveType.Cylinder);"
-          }
-        ]
-      },
-      {
-        "owner": "Ziptide.Gameplay.MeleeWeaponRuntime",
-        "evidenceCount": 2,
-        "codes": [
-          "CREATE_PRIMITIVE",
-          "XR_INTERACTABLE_COMPONENT"
-        ],
-        "paths": [
-          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs"
-        ],
-        "evidence": [
-          {
-            "code": "XR_INTERACTABLE_COMPONENT",
-            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-            "line": 15,
-            "symbol": "Ziptide.Gameplay.MeleeWeaponRuntime",
-            "snippet": "[RequireComponent(typeof(XRGrabInteractable))]"
-          },
-          {
-            "code": "CREATE_PRIMITIVE",
-            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-            "line": 153,
-            "symbol": "Ziptide.Gameplay.MeleeWeaponRuntime",
-            "snippet": "GameObject s = GameObject.CreatePrimitive(PrimitiveType.Sphere);"
           }
         ]
       },
@@ -10954,6 +10927,41 @@
             "line": 34,
             "symbol": "Ziptide.Gameplay.WeaponImpactFx",
             "snippet": "GameObject ray = GameObject.CreatePrimitive(PrimitiveType.Cube);"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Gameplay.WeaponPoseCore",
+        "evidenceCount": 3,
+        "codes": [
+          "CREATE_PRIMITIVE",
+          "NEW_GAME_OBJECT",
+          "XR_INTERACTABLE_COMPONENT"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs"
+        ],
+        "evidence": [
+          {
+            "code": "XR_INTERACTABLE_COMPONENT",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
+            "line": 60,
+            "symbol": "Ziptide.Gameplay.WeaponPoseCore",
+            "snippet": "[RequireComponent(typeof(XRGrabInteractable))]"
+          },
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
+            "line": 104,
+            "symbol": "Ziptide.Gameplay.WeaponPoseCore",
+            "snippet": "GameObject go = new GameObject(SemanticGripName);"
+          },
+          {
+            "code": "CREATE_PRIMITIVE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
+            "line": 216,
+            "symbol": "Ziptide.Gameplay.WeaponPoseCore",
+            "snippet": "GameObject s = GameObject.CreatePrimitive(PrimitiveType.Sphere);"
           }
         ]
       },
@@ -15921,28 +15929,28 @@
           {
             "code": "EVENT_DECLARATION",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-            "line": 28,
+            "line": 30,
             "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
             "snippet": "public static event Action<string> ItemHolstered;"
           },
           {
             "code": "STATIC_EVENT_DECLARATION",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-            "line": 28,
+            "line": 30,
             "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
             "snippet": "public static event Action<string> ItemHolstered;"
           },
           {
             "code": "PLAYER_PROFILE_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-            "line": 88,
+            "line": 173,
             "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
             "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
           },
           {
             "code": "SAVE_SYSTEM_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-            "line": 88,
+            "line": 173,
             "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
             "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
           }
@@ -18640,7 +18648,7 @@
           {
             "code": "CAMERA_MAIN_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs",
-            "line": 32,
+            "line": 42,
             "symbol": "Ziptide.Gameplay.BeltRig",
             "snippet": "if (cam == null) cam = Camera.main;"
           }
@@ -18865,7 +18873,7 @@
           {
             "code": "CAMERA_MAIN_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubAnchorLockRuntime.cs",
-            "line": 63,
+            "line": 72,
             "symbol": "Ziptide.Gameplay.HomeHubAnchorLockRuntime",
             "snippet": "Camera cam = Camera.main;"
           }
@@ -20982,6 +20990,32 @@
         ]
       },
       {
+        "owner": "Ziptide.Gameplay.WeaponPoseCore",
+        "evidenceCount": 2,
+        "codes": [
+          "FALLBACK_MARKER"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs"
+        ],
+        "evidence": [
+          {
+            "code": "FALLBACK_MARKER",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
+            "line": 23,
+            "symbol": "Ziptide.Gameplay.WeaponPoseCore",
+            "snippet": "Vector3 fallback = Mathf.Abs(Vector3.Dot(axis, Vector3.up)) < 0.9f"
+          },
+          {
+            "code": "FALLBACK_MARKER",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
+            "line": 25,
+            "symbol": "Ziptide.Gameplay.WeaponPoseCore",
+            "snippet": "up = Vector3.ProjectOnPlane(fallback, axis);"
+          }
+        ]
+      },
+      {
         "owner": "Ziptide.Gameplay.WorldRuntime",
         "evidenceCount": 1,
         "codes": [
@@ -21198,7 +21232,7 @@
           {
             "code": "FALLBACK_MARKER",
             "path": "Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryPlayabilityDeviceTests.cs",
-            "line": 101,
+            "line": 106,
             "symbol": "Ziptide.Tests.EditMode.RecoveryPlayabilityDeviceTests",
             "snippet": "\"The no-ray direct-hand fallback must remain valid for the three-tile layout.\");"
           }

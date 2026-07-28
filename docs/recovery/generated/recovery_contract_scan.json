@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-28T04:27:17.678930+00:00",
+  "generatedAtUtc": "2026-07-28T14:50:19.443831+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -9,17 +9,17 @@
     "Ziptide/Assets/ZiptideNet"
   ],
   "scannedFiles": 737,
-  "findingCount": 2638,
+  "findingCount": 2649,
   "categoryCounts": {
     "bootstrap": 42,
-    "diagnostics": 609,
+    "diagnostics": 617,
     "events": 65,
-    "fallback_debt": 157,
+    "fallback_debt": 159,
     "global_render": 86,
-    "input": 229,
+    "input": 228,
     "materials": 252,
     "persistence": 22,
-    "runtime_creation": 682,
+    "runtime_creation": 684,
     "runtime_ui": 131,
     "save_state": 261,
     "scene_loading": 9,
@@ -37,11 +37,11 @@
     "EDITOR_BOOTSTRAP": 10,
     "EVENT_DECLARATION": 49,
     "EVENT_SYSTEM_COMPONENT": 2,
-    "FALLBACK_MARKER": 157,
+    "FALLBACK_MARKER": 159,
     "FRAME_BUTTON_POLL": 1,
-    "INPUT_ACTION_REFERENCE": 218,
+    "INPUT_ACTION_REFERENCE": 217,
     "INPUT_BUTTON_REFERENCE": 10,
-    "NEW_GAME_OBJECT": 420,
+    "NEW_GAME_OBJECT": 422,
     "PLAYER_PROFILE_REFERENCE": 140,
     "RENDER_SETTINGS_MUTATION": 37,
     "RUNTIME_BOOTSTRAP": 32,
@@ -57,7 +57,7 @@
     "XRI_MANAGER_LOOKUP": 45,
     "XR_INTERACTABLE_COMPONENT": 66,
     "XR_UI_INPUT_MODULE": 2,
-    "ZIPTIDE_LOG_TAG": 609
+    "ZIPTIDE_LOG_TAG": 617
   },
   "findings": [
     {
@@ -893,9 +893,9 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs",
-      "line": 43,
+      "line": 52,
       "symbol": "Ziptide.Editor.Patching.LocomotionContractEnforcer",
-      "snippet": "Debug.Log(\"ZIPTIDE: TURN_CONTRACT_OK smoothAction=\" + turnReference.action.name"
+      "snippet": "Debug.Log(\"ZIPTIDE: TURN_CONTRACT_OK mode=smooth snapEnabled=false action=\""
     },
     {
       "category": "diagnostics",
@@ -1630,8 +1630,44 @@
       "category": "diagnostics",
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs",
+      "line": 47,
+      "symbol": "Ziptide.Gameplay.BeltRig",
+      "snippet": "Debug.Log(\"ZIPTIDE: BELT_READY sockets=3 camera=\""
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-      "line": 93,
+      "line": 46,
+      "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
+      "snippet": "Debug.Log(\"ZIPTIDE: HOLSTER_SOCKET_READY socket=\" + gameObject.name"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
+      "line": 119,
+      "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
+      "snippet": "Debug.Log(\"ZIPTIDE: HOLSTER_TARGET item=\" + itemId + \" socket=\" + gameObject.name"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
+      "line": 152,
+      "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
+      "snippet": "Debug.Log(\"ZIPTIDE: HOLSTER_CANDIDATE item=\""
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
+      "line": 178,
       "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
       "snippet": "Debug.Log(\"ZIPTIDE: FIRST_HOLSTER item=\" + itemId + \" socket=\" + gameObject.name);"
     },
@@ -1640,7 +1676,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-      "line": 95,
+      "line": 180,
       "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
       "snippet": "Debug.Log(\"ZIPTIDE: HOLSTER_SELECT_ENTER item=\" + itemId + \" socket=\" + gameObject.name"
     },
@@ -1649,7 +1685,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-      "line": 113,
+      "line": 195,
       "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
       "snippet": "Debug.Log((owned ? \"ZIPTIDE: HOLSTER_POSE_APPLIED\" : \"ZIPTIDE: HOLSTER_OWNERSHIP_FAIL\")"
     },
@@ -1658,7 +1694,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-      "line": 131,
+      "line": 206,
       "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
       "snippet": "Debug.Log(\"ZIPTIDE: HOLSTER_SELECT_EXIT item=\""
     },
@@ -2729,8 +2765,26 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs",
-      "line": 55,
-      "symbol": "Ziptide.Gameplay.PlayerSafetyRuntime",
+      "line": 39,
+      "symbol": "Ziptide.Gameplay.TurnModeCore",
+      "snippet": "Debug.Log(\"ZIPTIDE: TURN_MODE smooth=\" + smoothEnabled + \" snap=0 speed=\""
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs",
+      "line": 68,
+      "symbol": "Ziptide.Gameplay.TurnModeCore",
+      "snippet": "Debug.Log(\"ZIPTIDE: PLAYER_SAFETY_ENSURED runtime=true rig=\" + rig.name);"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs",
+      "line": 104,
+      "symbol": "Ziptide.Gameplay.TurnModeCore",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: PLAYER_RECOVERY_BLOCKED reason=no_safety_runtime request=\" + reason);"
     },
     {
@@ -2738,8 +2792,8 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs",
-      "line": 78,
-      "symbol": "Ziptide.Gameplay.PlayerSafetyRuntime",
+      "line": 127,
+      "symbol": "Ziptide.Gameplay.TurnModeCore",
       "snippet": "Debug.Log(\"ZIPTIDE: PLAYER_RECOVERY requested=\" + reason);"
     },
     {
@@ -2747,8 +2801,8 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs",
-      "line": 101,
-      "symbol": "Ziptide.Gameplay.PlayerSafetyRuntime",
+      "line": 160,
+      "symbol": "Ziptide.Gameplay.TurnModeCore",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: PLAYER_HEIGHT_CHECK skipped reason=\""
     },
     {
@@ -2756,8 +2810,8 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs",
-      "line": 109,
-      "symbol": "Ziptide.Gameplay.PlayerSafetyRuntime",
+      "line": 168,
+      "symbol": "Ziptide.Gameplay.TurnModeCore",
       "snippet": "Debug.LogError(\"ZIPTIDE: PLAYER_HEIGHT_BLOCKER reason=no_ground marker=\""
     },
     {
@@ -2765,18 +2819,27 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs",
-      "line": 116,
-      "symbol": "Ziptide.Gameplay.PlayerSafetyRuntime",
-      "snippet": "Debug.Log(\"ZIPTIDE: PLAYER_HEIGHT_CHECK eye=\" + eyeHeight.ToString(\"F2\")"
+      "line": 175,
+      "symbol": "Ziptide.Gameplay.TurnModeCore",
+      "snippet": "Debug.Log(\"ZIPTIDE: PLAYER_HEIGHT_RUNTIME eye=\" + eyeHeight.ToString(\"F2\")"
     },
     {
       "category": "diagnostics",
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs",
-      "line": 131,
-      "symbol": "Ziptide.Gameplay.PlayerSafetyRuntime",
+      "line": 192,
+      "symbol": "Ziptide.Gameplay.TurnModeCore",
       "snippet": "Debug.LogError(\"ZIPTIDE: PLAYER_HEIGHT_REPAIRED from=\" + eyeHeight.ToString(\"F2\")"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs",
+      "line": 251,
+      "symbol": "Ziptide.Gameplay.TurnModeCore",
+      "snippet": "Debug.Log(\"ZIPTIDE: RIG_HEIGHT_RUNTIME origin=\" + requested + \" offsetY=\""
     },
     {
       "category": "diagnostics",
@@ -3701,7 +3764,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubAnchorLockRuntime.cs",
-      "line": 86,
+      "line": 95,
       "symbol": "Ziptide.Gameplay.HomeHubAnchorLockRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: HOME_HUB_ANCHOR locked_world=true pos=\" + transform.position.ToString(\"F2\"));"
     },
@@ -3710,7 +3773,16 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubAnchorLockRuntime.cs",
-      "line": 122,
+      "line": 107,
+      "symbol": "Ziptide.Gameplay.HomeHubAnchorLockRuntime",
+      "snippet": "Debug.Log(\"ZIPTIDE: HOME_HUB_DEPARTURE sockets_restored=true choice=\" + choice);"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubAnchorLockRuntime.cs",
+      "line": 147,
       "symbol": "Ziptide.Gameplay.HomeHubAnchorLockRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: HOME_HUB_BELT_SUPPRESS sockets=\" + sockets.Length);"
     },
@@ -3719,9 +3791,9 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubAnchorLockRuntime.cs",
-      "line": 139,
+      "line": 168,
       "symbol": "Ziptide.Gameplay.HomeHubAnchorLockRuntime",
-      "snippet": "Debug.Log(\"ZIPTIDE: HOME_HUB_BELT_RESTORE sockets=\" + sockets.Length);"
+      "snippet": "Debug.Log(\"ZIPTIDE: HOME_HUB_BELT_RESTORE sockets=\" + restored);"
     },
     {
       "category": "diagnostics",
@@ -3872,17 +3944,17 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-      "line": 57,
-      "symbol": "Ziptide.Gameplay.MeleeWeaponRuntime",
-      "snippet": "Debug.Log(\"ZIPTIDE: MELEE_GRIP_POSE weapon=breaker_blade euler=\" + pose.ToString(\"F0\"));"
+      "line": 118,
+      "symbol": "Ziptide.Gameplay.WeaponPoseCore",
+      "snippet": "Debug.Log(\"ZIPTIDE: MELEE_GRIP_SEMANTIC weapon=breaker_blade axisLocal=\""
     },
     {
       "category": "diagnostics",
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-      "line": 110,
-      "symbol": "Ziptide.Gameplay.MeleeWeaponRuntime",
+      "line": 173,
+      "symbol": "Ziptide.Gameplay.WeaponPoseCore",
       "snippet": "Debug.Log(\"ZIPTIDE: MELEE_HIT weapon=breaker_blade\");"
     },
     {
@@ -3890,8 +3962,8 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-      "line": 148,
-      "symbol": "Ziptide.Gameplay.MeleeWeaponRuntime",
+      "line": 211,
+      "symbol": "Ziptide.Gameplay.WeaponPoseCore",
       "snippet": "Debug.Log(\"ZIPTIDE: MELEE_HIT weapon=tide_pike dist=\" + best.ToString(\"0.0\"));"
     },
     {
@@ -4439,7 +4511,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/SpawnMarkerRuntime.cs",
-      "line": 45,
+      "line": 43,
       "symbol": "Ziptide.Gameplay.SpawnMarkerRuntime",
       "snippet": "string line = \"ZIPTIDE: SPAWN_AT scene=\" + sceneName"
     },
@@ -4448,7 +4520,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/SpawnMarkerRuntime.cs",
-      "line": 52,
+      "line": 50,
       "symbol": "Ziptide.Gameplay.SpawnMarkerRuntime",
       "snippet": "Debug.LogError(\"ZIPTIDE: SPAWN_RUNTIME_BLOCKER \" + line);"
     },
@@ -5933,7 +6005,7 @@
       "code": "EVENT_DECLARATION",
       "description": "Event declaration",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-      "line": 28,
+      "line": 30,
       "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
       "snippet": "public static event Action<string> ItemHolstered;"
     },
@@ -6374,7 +6446,7 @@
       "code": "STATIC_EVENT_DECLARATION",
       "description": "Static event declaration",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-      "line": 28,
+      "line": 30,
       "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
       "snippet": "public static event Action<string> ItemHolstered;"
     },
@@ -7417,6 +7489,24 @@
       "category": "fallback_debt",
       "code": "FALLBACK_MARKER",
       "description": "Source text marks fallback/prototype debt",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
+      "line": 23,
+      "symbol": "Ziptide.Gameplay.WeaponPoseCore",
+      "snippet": "Vector3 fallback = Mathf.Abs(Vector3.Dot(axis, Vector3.up)) < 0.9f"
+    },
+    {
+      "category": "fallback_debt",
+      "code": "FALLBACK_MARKER",
+      "description": "Source text marks fallback/prototype debt",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
+      "line": 25,
+      "symbol": "Ziptide.Gameplay.WeaponPoseCore",
+      "snippet": "up = Vector3.ProjectOnPlane(fallback, axis);"
+    },
+    {
+      "category": "fallback_debt",
+      "code": "FALLBACK_MARKER",
+      "description": "Source text marks fallback/prototype debt",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HazardZoneRuntime.cs",
       "line": 56,
       "symbol": "Ziptide.Gameplay.HazardZoneRuntime",
@@ -7598,7 +7688,7 @@
       "code": "FALLBACK_MARKER",
       "description": "Source text marks fallback/prototype debt",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryPlayabilityDeviceTests.cs",
-      "line": 101,
+      "line": 106,
       "symbol": "Ziptide.Tests.EditMode.RecoveryPlayabilityDeviceTests",
       "snippet": "\"The no-ray direct-hand fallback must remain valid for the three-tile layout.\");"
     },
@@ -7994,7 +8084,7 @@
       "code": "CAMERA_MAIN_REFERENCE",
       "description": "Camera.main dependency",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs",
-      "line": 32,
+      "line": 42,
       "symbol": "Ziptide.Gameplay.BeltRig",
       "snippet": "if (cam == null) cam = Camera.main;"
     },
@@ -8183,7 +8273,7 @@
       "code": "CAMERA_MAIN_REFERENCE",
       "description": "Camera.main dependency",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubAnchorLockRuntime.cs",
-      "line": 63,
+      "line": 72,
       "symbol": "Ziptide.Gameplay.HomeHubAnchorLockRuntime",
       "snippet": "Camera cam = Camera.main;"
     },
@@ -8786,7 +8876,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs",
-      "line": 25,
+      "line": 28,
       "symbol": "Ziptide.Editor.Patching.LocomotionContractEnforcer",
       "snippet": "InputActionReference turnReference = FindReference(\"Turn\");"
     },
@@ -8795,7 +8885,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs",
-      "line": 60,
+      "line": 73,
       "symbol": "Ziptide.Editor.Patching.LocomotionContractEnforcer",
       "snippet": "InputActionReference smoothRef = smoothSo.FindProperty(\"m_RightHandTurnAction.m_Reference\")?.objectReferenceValue"
     },
@@ -8804,7 +8894,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs",
-      "line": 61,
+      "line": 74,
       "symbol": "Ziptide.Editor.Patching.LocomotionContractEnforcer",
       "snippet": "as InputActionReference;"
     },
@@ -8813,7 +8903,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs",
-      "line": 67,
+      "line": 83,
       "symbol": "Ziptide.Editor.Patching.LocomotionContractEnforcer",
       "snippet": "InputActionReference snapRef = snapSo.FindProperty(\"m_RightHandSnapTurnAction.m_Reference\")?.objectReferenceValue"
     },
@@ -8822,7 +8912,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs",
-      "line": 68,
+      "line": 84,
       "symbol": "Ziptide.Editor.Patching.LocomotionContractEnforcer",
       "snippet": "as InputActionReference;"
     },
@@ -8831,7 +8921,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs",
-      "line": 74,
+      "line": 90,
       "symbol": "Ziptide.Editor.Patching.LocomotionContractEnforcer",
       "snippet": "throw new InvalidOperationException(\"TURN_CONTRACT: smooth and snap providers share one InputActionReference\");"
     },
@@ -8840,7 +8930,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs",
-      "line": 77,
+      "line": 97,
       "symbol": "Ziptide.Editor.Patching.LocomotionContractEnforcer",
       "snippet": "private static InputActionReference FindReference(string actionName)"
     },
@@ -8849,7 +8939,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs",
-      "line": 84,
+      "line": 104,
       "symbol": "Ziptide.Editor.Patching.LocomotionContractEnforcer",
       "snippet": "InputActionReference reference = assets[i] as InputActionReference;"
     },
@@ -8858,7 +8948,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs",
-      "line": 93,
+      "line": 113,
       "symbol": "Ziptide.Editor.Patching.LocomotionContractEnforcer",
       "snippet": "InputActionReference reference = assets[i] as InputActionReference;"
     },
@@ -9982,15 +10072,6 @@
       "category": "input",
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
-      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/M0SystemicDeviceRegressionTests.cs",
-      "line": 42,
-      "symbol": "Ziptide.Tests.EditMode.M0SystemicDeviceRegressionTests",
-      "snippet": "StringAssert.Contains(\"smooth and snap providers share one InputActionReference\", source);"
-    },
-    {
-      "category": "input",
-      "code": "INPUT_ACTION_REFERENCE",
-      "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualRigControllerSimulation.cs",
       "line": 80,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryActualRigControllerSimulation",
@@ -10739,7 +10820,7 @@
       "code": "INPUT_BUTTON_REFERENCE",
       "description": "Controller/button reference",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryPlayabilityDeviceTests.cs",
-      "line": 20,
+      "line": 21,
       "symbol": "Ziptide.Tests.EditMode.RecoveryPlayabilityDeviceTests",
       "snippet": "StringAssert.Contains(\"<XRController>{LeftHand}/secondaryButton\", source);"
     },
@@ -11099,7 +11180,7 @@
       "code": "RUNTIME_MATERIAL_CREATE",
       "description": "Runtime Material allocation",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs",
-      "line": 113,
+      "line": 126,
       "symbol": "Ziptide.Gameplay.BeltRig",
       "snippet": "_holsterMat = new Material(shader) { name = \"HolsterMarker_Mat\" };"
     },
@@ -12179,16 +12260,16 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs",
-      "line": 111,
+      "line": 124,
       "symbol": "Ziptide.Gameplay.BeltRig",
-      "snippet": "var shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
+      "snippet": "Shader shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
     },
     {
       "category": "materials",
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs",
-      "line": 112,
+      "line": 125,
       "symbol": "Ziptide.Gameplay.BeltRig",
       "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
     },
@@ -14186,9 +14267,9 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs",
-      "line": 95,
+      "line": 108,
       "symbol": "Ziptide.Gameplay.BeltRig",
-      "snippet": "var marker = GameObject.CreatePrimitive(PrimitiveType.Sphere);"
+      "snippet": "GameObject marker = GameObject.CreatePrimitive(PrimitiveType.Sphere);"
     },
     {
       "category": "runtime_creation",
@@ -14843,8 +14924,8 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-      "line": 153,
-      "symbol": "Ziptide.Gameplay.MeleeWeaponRuntime",
+      "line": 216,
+      "symbol": "Ziptide.Gameplay.WeaponPoseCore",
       "snippet": "GameObject s = GameObject.CreatePrimitive(PrimitiveType.Sphere);"
     },
     {
@@ -17201,18 +17282,27 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs",
-      "line": 68,
+      "line": 80,
       "symbol": "Ziptide.Gameplay.BeltRig",
-      "snippet": "var go = new GameObject(holsterName);"
+      "snippet": "GameObject go = new GameObject(holsterName);"
     },
     {
       "category": "runtime_creation",
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs",
-      "line": 85,
+      "line": 98,
       "symbol": "Ziptide.Gameplay.BeltRig",
       "snippet": "GameObject attachGo = new GameObject(\"HolsterAttach\");"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
+      "line": 88,
+      "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
+      "snippet": "GameObject poseGo = new GameObject(\"HolsterPose_\" + item.Definition.itemId + \"_\" + key);"
     },
     {
       "category": "runtime_creation",
@@ -17996,6 +18086,15 @@
       "line": 90,
       "symbol": "Ziptide.Gameplay.GunLaserSight",
       "snippet": "var go = new GameObject(\"__LaserSight\");"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
+      "line": 104,
+      "symbol": "Ziptide.Gameplay.WeaponPoseCore",
+      "snippet": "GameObject go = new GameObject(SemanticGripName);"
     },
     {
       "category": "runtime_creation",
@@ -20270,8 +20369,8 @@
       "code": "XR_INTERACTABLE_COMPONENT",
       "description": "XR interactable creation/reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-      "line": 15,
-      "symbol": "Ziptide.Gameplay.MeleeWeaponRuntime",
+      "line": 60,
+      "symbol": "Ziptide.Gameplay.WeaponPoseCore",
       "snippet": "[RequireComponent(typeof(XRGrabInteractable))]"
     },
     {
@@ -21080,7 +21179,7 @@
       "code": "PLAYER_PROFILE_REFERENCE",
       "description": "PlayerProfile reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-      "line": 88,
+      "line": 173,
       "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
       "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
     },
@@ -22016,7 +22115,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-      "line": 88,
+      "line": 173,
       "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
       "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
     },
