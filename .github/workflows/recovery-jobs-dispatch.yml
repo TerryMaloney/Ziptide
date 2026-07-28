@@ -1,0 +1,96 @@
+name: Recovery Jobs Proof Dispatcher
+
+# The canonical Recovery PlayMode and Golden Android workflows intentionally use narrow path filters.
+# Jobs/UI-only changes can still alter the locked W000 -> ToxicCity route, so this dispatcher launches
+# those existing proof owners without copying their build or test logic.
+on:
+  push:
+    branches:
+      - terry-local-wip
+    paths:
+      - '.github/workflows/recovery-jobs-dispatch.yml'
+      - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/**'
+      - 'Ziptide/Assets/Ziptide/Tests/EditMode/DispatchKioskSpatialContractTests.cs'
+      - 'Ziptide/Assets/Ziptide/Tests/EditMode/DispatchKioskSpatialContractTests.cs.meta'
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: read
+
+concurrency:
+  group: recovery-jobs-dispatch-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  dispatch:
+    name: Dispatch canonical recovery proofs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout exact dispatcher event
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Decide whether canonical push filters already own this commit
+        id: decision
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [[ "${GITHUB_EVENT_NAME}" == "workflow_dispatch" ]]; then
+            echo "dispatch=true" >> "$GITHUB_OUTPUT"
+            echo "Manual dispatch requested."
+            exit 0
+          fi
+
+          changed="$(git diff-tree --no-commit-id --name-only -r "$GITHUB_SHA")"
+          echo "$changed"
+
+          missing_owner_change=false
+          other_proof_relevant_change=false
+
+          while IFS= read -r path; do
+            [[ -z "$path" ]] && continue
+            case "$path" in
+              .github/workflows/recovery-jobs-dispatch.yml|Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/*|Ziptide/Assets/Ziptide/Tests/EditMode/DispatchKioskSpatialContractTests.cs|Ziptide/Assets/Ziptide/Tests/EditMode/DispatchKioskSpatialContractTests.cs.meta)
+                missing_owner_change=true
+                ;;
+              docs/recovery/generated/*|docs/CI_VERDICT.md|docs/HANDOFF.md|docs/handoff_queue/*)
+                ;;
+              *)
+                # Mixed commits containing Player/World/Items/etc. are already covered by the
+                # canonical workflows' direct push filters. Skipping here prevents duplicate runs.
+                other_proof_relevant_change=true
+                ;;
+            esac
+          done <<< "$changed"
+
+          if [[ "$missing_owner_change" == "true" && "$other_proof_relevant_change" == "false" ]]; then
+            echo "dispatch=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "dispatch=false" >> "$GITHUB_OUTPUT"
+            echo "Canonical direct filters already own this mixed commit, or no Jobs/UI proof change exists."
+          fi
+
+      - name: Dispatch Recovery PlayMode
+        if: steps.decision.outputs.dispatch == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh api --method POST \
+            "repos/${GITHUB_REPOSITORY}/actions/workflows/recovery-playmode.yml/dispatches" \
+            -f ref=terry-local-wip
+
+      - name: Dispatch Recovery Golden Android
+        if: steps.decision.outputs.dispatch == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh api --method POST \
+            "repos/${GITHUB_REPOSITORY}/actions/workflows/recovery-golden-android.yml/dispatches" \
+            -f ref=terry-local-wip
