@@ -1,0 +1,85 @@
+name: Quest Sword Height Hotfix
+
+on:
+  push:
+    branches:
+      - gpt/quest-sword-height-apk-ba505
+    paths:
+      - '.github/workflows/quest-sword-height-hotfix.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: quest-sword-height-hotfix-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  PROJECT_PATH: Ziptide
+  UNITY_VERSION: 2022.3.62f3
+
+jobs:
+  build:
+    name: Build isolated Quest hotfix APK
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    steps:
+      - name: Free disk space
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL /usr/local/.ghcup
+          sudo docker image prune --all --force || true
+          df -h /
+
+      - name: Checkout exact event SHA
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 1
+          lfs: true
+
+      - name: Verify immutable checkout
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+
+      - name: Cache Unity Library
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.PROJECT_PATH }}/Library
+          key: Library-quest-hotfix-${{ hashFiles(format('{0}/Assets/**', env.PROJECT_PATH), format('{0}/Packages/**', env.PROJECT_PATH), format('{0}/ProjectSettings/**', env.PROJECT_PATH)) }}
+          restore-keys: |
+            Library-recovery-golden-android-
+            Library-android-
+            Library-
+
+      - name: Build Golden Android player
+        uses: game-ci/unity-builder@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          projectPath: ${{ env.PROJECT_PATH }}
+          unityVersion: ${{ env.UNITY_VERSION }}
+          targetPlatform: Android
+          buildMethod: Ziptide.Build.RecoveryBuildAndroid.PatchScenesThenGoldenAPK
+          allowDirtyBuild: true
+
+      - name: Verify APK
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s "${PROJECT_PATH}/Builds/Android/Ziptide.apk"
+          sha256sum "${PROJECT_PATH}/Builds/Android/Ziptide.apk"
+
+      - name: Upload exact hotfix APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: quest-sword-height-hotfix-${{ github.sha }}
+          path: |
+            ${{ env.PROJECT_PATH }}/Builds/Android/Ziptide.apk
+            ${{ env.PROJECT_PATH }}/Builds/Reports/recovery_golden_build_profile.json
+          if-no-files-found: error
+          retention-days: 30
