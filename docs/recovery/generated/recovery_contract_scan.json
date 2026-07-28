@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-28T20:29:02.148078+00:00",
+  "generatedAtUtc": "2026-07-28T20:37:58.409003+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -2909,7 +2909,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs",
-      "line": 330,
+      "line": 335,
       "symbol": "Ziptide.Gameplay.QuestDeviceCorrectionsRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: BREAKER_BLADE_LIVE_CALIBRATED desired=\""
     },

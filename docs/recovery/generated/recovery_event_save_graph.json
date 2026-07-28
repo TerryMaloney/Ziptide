@@ -233,7 +233,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs",
-      "line": 327,
+      "line": 332,
       "owner": "Ziptide.Gameplay.QuestDeviceCorrectionsRuntime",
       "target": "transform.position",
       "detail": "handAttach",
@@ -7554,7 +7554,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs",
-        "line": 327,
+        "line": 332,
         "owner": "Ziptide.Gameplay.QuestDeviceCorrectionsRuntime",
         "target": "transform.position",
         "detail": "handAttach",
@@ -10191,7 +10191,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs",
-      "line": 327,
+      "line": 332,
       "owner": "Ziptide.Gameplay.QuestDeviceCorrectionsRuntime",
       "target": "transform.position",
       "detail": "handAttach",

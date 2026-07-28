@@ -43,7 +43,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - `Ziptide.Gameplay.ObjectiveBoard` subscribes `runtime.JobCompleted` → `OnJobCompleted` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:94`
 - `Ziptide.Gameplay.BootHoldState` subscribes `transform.position` → `headDelta` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:999`
 - `Ziptide.Gameplay.TurnModeCore` subscribes `p.y` → `RecoveryEyeHeight` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs:258`
-- `Ziptide.Gameplay.QuestDeviceCorrectionsRuntime` subscribes `transform.position` → `handAttach` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs:327`
+- `Ziptide.Gameplay.QuestDeviceCorrectionsRuntime` subscribes `transform.position` → `handAttach` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs:332`
 - `Ziptide.Gameplay.PvpBolt` subscribes `transform.position` → `step` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpBolt.cs:67`
 - `Ziptide.Gameplay.PvpBot` subscribes `transform.position` → `k` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpBot.cs:346`
 - `Ziptide.Gameplay.MiningRigRuntime` subscribes `_mine.stored` → `_mine` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/MiningRigRuntime.cs:114`
@@ -1400,7 +1400,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.CreatureRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:107` · `flat` — `default: transform.position += flat * 0.5f; break; // gravity/net/etc kick`
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.StunBolt` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/StunBolt.cs:65` · `step` — `transform.position += step;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.BootHoldState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:999` · `headDelta` — `transform.position += headDelta;`
-- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.QuestDeviceCorrectionsRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs:327` · `handAttach` — `transform.position += handAttach.position - grip.position;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.QuestDeviceCorrectionsRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs:332` · `handAttach` — `transform.position += handAttach.position - grip.position;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.PvpBolt` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpBolt.cs:67` · `step` — `transform.position += step;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.PvpBot` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpBot.cs:346` · `k` — `transform.position += k.normalized * 0.6f; // small knockback`
 
