@@ -1,6 +1,6 @@
 {
  "schemaVersion": 1,
- "status": "R1_INPUT_SESSION_GUARD_ADDED_2026-07-15",
+ "status": "M0_SAFETY_OWNERS_ADDED_2026-07-28",
  "purpose": "Catalog every confirmed automatic or persistent runtime owner that can affect the recovery candidate without an explicit player action.",
  "owners": [
   {
@@ -322,6 +322,51 @@
    "recoveryExposure": "SUPPORT",
    "canonicalDisposition": "Sole system-focus lifecycle owner per docs/runtime_lifecycle/QUEST_SYSTEM_FOCUS_CONTRACT.md; S1 scope logs+saves only; S2-S5 add suppression/duck/tracking behind this owner",
    "priority": "S1_LIFECYCLE_CONTRACT"
+  },
+  {
+   "id": "VEHICLE_SAFETY_BOOTSTRAP",
+   "source": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleSafetyRuntime.cs",
+   "symbol": "Ziptide.Ship.VehicleSafetyRuntime",
+   "startup": "RuntimeInitializeOnLoadMethod SubsystemRegistration plus AfterSceneLoad",
+   "persistence": "Static scene hook; safety component is attached to each scene-local VehicleRuntime",
+   "sideEffects": [
+    "Records the last supported vehicle pose",
+    "Rejects impossible vertical escapes",
+    "Repairs impossible mounted eye height"
+   ],
+   "recoveryExposure": "GOLDEN_PATH_REQUIRED",
+   "canonicalDisposition": "Always-required safety envelope subordinate to VehicleRuntime; owns no steering or vehicle content",
+   "priority": "M0_DEVICE_SAFETY"
+  },
+  {
+   "id": "REPAIR_PART_SAFETY_INSTALLER",
+   "source": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairPartSafetyInstallerRuntime.cs",
+   "symbol": "Ziptide.Gameplay.RepairPartSafetyInstallerRuntime",
+   "startup": "RuntimeInitializeOnLoadMethod SubsystemRegistration plus AfterSceneLoad",
+   "persistence": "DontDestroyOnLoad installer; part safety components are scene-local",
+   "sideEffects": [
+    "Finds data-spawned repair parts",
+    "Adds single-owner selection and weapon-collision isolation",
+    "Recovers escaped required repair parts"
+   ],
+   "recoveryExposure": "GOLDEN_PATH_REQUIRED",
+   "canonicalDisposition": "Always-required progression safety subordinate to RepairableMachine; owns no repair stage or reward state",
+   "priority": "M0_DEVICE_SAFETY"
+  },
+  {
+   "id": "HOME_HUB_ANCHOR_LOCK_INSTALLER",
+   "source": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubAnchorLockInstallerRuntime.cs",
+   "symbol": "Ziptide.Gameplay.HomeHubAnchorLockInstallerRuntime",
+   "startup": "RuntimeInitializeOnLoadMethod SubsystemRegistration plus AfterSceneLoad",
+   "persistence": "DontDestroyOnLoad installer; anchor lock component is attached to the runtime Home Hub",
+   "sideEffects": [
+    "Locks the Home Hub in world space after tracking settles",
+    "Suppresses belt socket ray blockers while Boot owns presentation",
+    "Restores belt interaction before New Game or Continue travel"
+   ],
+   "recoveryExposure": "GOLDEN_PATH_REQUIRED",
+   "canonicalDisposition": "Always-required Boot interaction safety subordinate to HomeHubRuntime; owns no menu choice or travel state",
+   "priority": "M0_DEVICE_SAFETY"
   }
  ]
 }
