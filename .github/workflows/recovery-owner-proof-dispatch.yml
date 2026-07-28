@@ -1,0 +1,60 @@
+name: Recovery Owner Proof Dispatch
+
+# Safety-net trigger for the complete shared-owner surface behind the certified
+# _Boot -> W000 -> ToxicCity -> W000 route. The older recovery workflows grew
+# narrow per-file lists and missed general inventory, vehicle, tutorial and patcher changes.
+# This dispatcher converts those broad owner changes into both canonical recovery proofs.
+on:
+  push:
+    branches:
+      - terry-local-wip
+    paths:
+      - '.github/workflows/recovery-owner-proof-dispatch.yml'
+      - 'Ziptide/Assets/Ziptide/Core/Runtime/RuntimeInputEnabler.cs'
+      - 'Ziptide/Assets/Ziptide/Core/Runtime/Recovery/**'
+      - 'Ziptide/Assets/Ziptide/Editor/Build/**'
+      - 'Ziptide/Assets/Ziptide/Editor/Audit/**'
+      - 'Ziptide/Assets/Ziptide/Editor/Patching/**'
+      - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Diagnostics/**'
+      - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/**'
+      - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/**'
+      - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Locomotion/**'
+      - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/**'
+      - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/**'
+      - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/**'
+      - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/**'
+      - 'Ziptide/Assets/Ziptide/Gameplay/Runtime/World/**'
+      - 'Ziptide/Assets/Ziptide/Ship/Runtime/**'
+      - 'Ziptide/Assets/Ziptide/Tests/EditMode/*Quest*.cs'
+      - 'Ziptide/Assets/Ziptide/Tests/EditMode/*Headset*.cs'
+      - 'Ziptide/Assets/Ziptide/Tests/EditMode/M0*.cs'
+      - 'Ziptide/Assets/Ziptide/Tests/PlayMode/Recovery*.cs'
+      - 'docs/recovery/automatic_runtime_owners.json'
+      - 'docs/recovery/golden_slice_manifest.json'
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: read
+
+concurrency:
+  group: recovery-owner-dispatch-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  dispatch-canonical-proofs:
+    name: Dispatch PlayMode and Golden Android
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dispatch exact live-branch recovery workflows
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const ref = 'terry-local-wip';
+            for (const workflow_id of ['recovery-playmode.yml', 'recovery-golden-android.yml']) {
+              await github.rest.actions.createWorkflowDispatch({ owner, repo, workflow_id, ref });
+              core.info(`Dispatched ${workflow_id} at ${ref}`);
+            }

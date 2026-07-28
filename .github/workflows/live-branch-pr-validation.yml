@@ -1,0 +1,169 @@
+name: Live Branch PR Validation
+
+# The production branch is terry-local-wip, not obsolete main. Every same-repository PR into the
+# live branch must compile, pass EditMode NUnit, and survive the exact patch+world-audit build hook
+# before it can be merged.
+on:
+  pull_request:
+    branches:
+      - terry-local-wip
+    types: [opened, synchronize, reopened, ready_for_review]
+
+permissions:
+  checks: write
+  contents: read
+
+env:
+  PROJECT_PATH: Ziptide
+  UNITY_VERSION: 2022.3.62f3
+
+concurrency:
+  group: live-pr-validation-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  editmode:
+    name: Live PR EditMode tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - name: Checkout exact PR merge candidate
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Cache Unity Library
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.PROJECT_PATH }}/Library
+          key: Library-live-pr-${{ hashFiles(format('{0}/Assets/**', env.PROJECT_PATH), format('{0}/Packages/**', env.PROJECT_PATH), format('{0}/ProjectSettings/**', env.PROJECT_PATH)) }}
+          restore-keys: |
+            Library-live-pr-
+            Library-test-
+            Library-
+
+      - name: Run EditMode tests
+        id: unity-tests
+        continue-on-error: true
+        uses: game-ci/unity-test-runner@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          projectPath: ${{ env.PROJECT_PATH }}
+          unityVersion: ${{ env.UNITY_VERSION }}
+          testMode: editmode
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          artifactsPath: live-pr-test-results
+
+      - name: Verify authoritative NUnit result
+        if: always()
+        shell: bash
+        env:
+          UNITY_TEST_OUTCOME: ${{ steps.unity-tests.outcome }}
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          import xml.etree.ElementTree as ET
+
+          root_dir = Path('live-pr-test-results')
+          result_files = sorted(root_dir.rglob('*results.xml'))
+          if not result_files:
+              raise SystemExit('Live PR EditMode produced no NUnit result XML.')
+
+          totals = {key: 0 for key in ('total', 'passed', 'failed', 'skipped', 'inconclusive')}
+          counted = []
+          for path in result_files:
+              root = ET.parse(path).getroot()
+              if root.tag.split('}')[-1] != 'test-run':
+                  continue
+              counted.append(path.as_posix())
+              for key in totals:
+                  totals[key] += int(root.attrib.get(key, 0) or 0)
+              if root.attrib.get('result') != 'Passed':
+                  raise SystemExit(f'NUnit root is not Passed: {path} {root.attrib}')
+
+          if not counted or totals['total'] <= 0:
+              raise SystemExit('Live PR EditMode produced no counted NUnit tests.')
+          if totals['failed'] or totals['skipped'] or totals['inconclusive']:
+              raise SystemExit(f'Live PR NUnit gate failed: {totals}')
+          if totals['passed'] != totals['total']:
+              raise SystemExit(f'Live PR NUnit totals are inconsistent: {totals}')
+
+          outcome = os.environ.get('UNITY_TEST_OUTCOME', 'unknown')
+          log_text = '\n'.join(
+              path.read_text(encoding='utf-8', errors='replace')
+              for path in sorted(root_dir.rglob('*.log'))
+          )
+          if outcome != 'success':
+              known_xr_teardown = (
+                  'Call to StopSubsystems without an initialized manager' in log_text
+                  and 'XRManagerSettings:StopSubsystems' in log_text
+              )
+              if not known_xr_teardown:
+                  raise SystemExit('GameCI failed and was not the accepted XR teardown-only signature.')
+              fatal = [marker for marker in (
+                  'Scripts have compiler errors', 'Compilation failed',
+                  'Aborting batchmode due to failure', 'Crash!!!'
+              ) if marker in log_text]
+              if fatal:
+                  raise SystemExit(f'Fatal Unity markers found: {fatal}')
+
+          print(json.dumps({'gameCiOutcome': outcome, 'resultFiles': counted, **totals}, indent=2))
+          PY
+
+      - name: Upload EditMode evidence
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: live-pr-editmode-${{ github.event.pull_request.number }}
+          path: live-pr-test-results
+          if-no-files-found: warn
+
+  patch-audit:
+    name: Live PR patch scenes + world audit
+    needs: editmode
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout exact PR merge candidate
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Cache Unity Library
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.PROJECT_PATH }}/Library
+          key: Library-live-pr-audit-${{ hashFiles(format('{0}/Assets/**', env.PROJECT_PATH), format('{0}/Packages/**', env.PROJECT_PATH), format('{0}/ProjectSettings/**', env.PROJECT_PATH)) }}
+          restore-keys: |
+            Library-live-pr-audit-
+            Library-audit-
+            Library-
+
+      - name: Patch scenes and run blocking world audit
+        uses: game-ci/unity-builder@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          projectPath: ${{ env.PROJECT_PATH }}
+          unityVersion: ${{ env.UNITY_VERSION }}
+          targetPlatform: StandaloneLinux64
+          buildMethod: Ziptide.Build.BuildAndroid.PatchScenesAndAudit
+          allowDirtyBuild: true
+
+      - name: Upload patch and audit evidence
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: live-pr-patch-audit-${{ github.event.pull_request.number }}
+          path: |
+            docs/AUDIT_REPORT.*
+            ${{ env.PROJECT_PATH }}/Builds/Reports/*
+          if-no-files-found: warn
