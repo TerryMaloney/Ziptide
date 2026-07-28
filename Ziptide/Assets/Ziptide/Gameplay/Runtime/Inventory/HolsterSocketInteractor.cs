@@ -87,7 +87,11 @@ namespace Ziptide.Gameplay
             StartCoroutine(ApplySocketPoseAfterSelection(go.transform, grab, item.Definition.itemId));
             PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;
             string itemId = item.Definition.itemId;
-            FirstHourHolsterSignal.TryReport(itemId, profile, ref _firstHolsterReported, PublishItemHolstered);
+            bool firstHolster = FirstHourHolsterSignal.TryReport(
+                itemId, profile, ref _firstHolsterReported, PublishItemHolstered);
+            if (firstHolster)
+                Debug.Log("ZIPTIDE: FIRST_HOLSTER item=" + itemId + " socket=" + gameObject.name);
+
             Debug.Log("ZIPTIDE: HOLSTER_SELECT_ENTER item=" + itemId + " socket=" + gameObject.name
                 + " selectors=" + grab.interactorsSelecting.Count);
         }
@@ -118,8 +122,6 @@ namespace Ziptide.Gameplay
             XRGrabInteractable grab = go != null ? go.GetComponent<XRGrabInteractable>() : null;
             Rigidbody body = go != null ? go.GetComponent<Rigidbody>() : null;
 
-            // XRI normally applies the hand movement type during a transfer. If the item is simply
-            // removed/dropped and no selector remains, release the socket's explicit kinematic freeze.
             if (body != null && (grab == null || grab.interactorsSelecting.Count == 0))
             {
                 body.isKinematic = false;
