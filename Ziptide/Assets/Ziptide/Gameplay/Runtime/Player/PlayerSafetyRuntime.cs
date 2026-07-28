@@ -189,7 +189,7 @@ namespace Ziptide.Gameplay
                 transform.position = p;
 
                 if (wasEnabled) cc.enabled = true;
-                Debug.LogError("ZIPTIDE: PLAYER_HEIGHT_REPAIRED from=" + eyeHeight.ToString("F2")
+                Debug.LogWarning("ZIPTIDE: PLAYER_HEIGHT_REPAIRED from=" + eyeHeight.ToString("F2")
                     + " to=" + RecoveryEyeHeight.ToString("F2") + " rig=" + transform.position.ToString("F2")
                     + " request=" + reason);
             }
