@@ -8,8 +8,8 @@ using Ziptide.Ship;
 namespace Ziptide.Tests.EditMode
 {
     /// <summary>
-    /// Regression packet for the 2026-07-27 Quest evidence. These checks target shared owners and build
-    /// hooks so the same failure cannot be copied into later worlds or side modes.
+    /// Regression packet for the 2026-07-27 and 2026-07-28 Quest evidence. Numeric pose guesses are
+    /// forbidden; tests assert semantic axes, owner lifecycle, and mutually-exclusive locomotion modes.
     /// </summary>
     public sealed class M0SystemicDeviceRegressionTests
     {
@@ -20,26 +20,38 @@ namespace Ziptide.Tests.EditMode
             StringAssert.Contains("PatcherUtil.EnsureComponent<PlayerSafetyRuntime>(xrOriginGo);", d2);
             StringAssert.Contains("LocomotionContractEnforcer.EnsureCurrentScene();", d2);
             StringAssert.Contains("PlayerRigHeightContractEnforcer.EnsureCurrentScene();", d2);
+
+            string belt = Read("Gameplay", "Runtime", "Inventory", "BeltRig.cs");
+            StringAssert.Contains("PlayerSafetyRuntime.EnsureOnRig(rig.gameObject);", belt,
+                "Runtime rig must install safety even when generated Boot content is stale.");
         }
 
         [Test]
-        public void XrRigHeightContract_UsesFloorTrackingWithZeroSyntheticOffset()
+        public void XrRigHeightContract_UsesFloorTrackingAtBuildAndRuntime()
         {
-            string source = Read("Editor", "Patching", "PlayerRigHeightContractEnforcer.cs");
-            StringAssert.Contains("FloorTrackingOriginMode = 2", source);
-            StringAssert.Contains("offset.floatValue = 0f", source);
-            StringAssert.Contains("expected Floor tracking, cameraYOffset=0 and Camera Offset transform Y=0", source);
-            StringAssert.Contains("cameraOffset.localPosition", source);
+            string editor = Read("Editor", "Patching", "PlayerRigHeightContractEnforcer.cs");
+            StringAssert.Contains("FloorTrackingOriginMode = 2", editor);
+            StringAssert.Contains("offset.floatValue = 0f", editor);
+            StringAssert.Contains("cameraOffset.localPosition", editor);
+
+            string runtime = Read("Gameplay", "Runtime", "Player", "PlayerSafetyRuntime.cs");
+            StringAssert.Contains("TrySetTrackingOriginMode(TrackingOriginModeFlags.Floor)", runtime);
+            StringAssert.Contains("CameraYOffset", runtime);
+            StringAssert.Contains("CameraFloorOffsetObject", runtime);
+            StringAssert.Contains("PLAYER_HEIGHT_RUNTIME", runtime);
+            StringAssert.Contains("PLAYER_HEIGHT_REPAIRED", runtime);
         }
 
         [Test]
-        public void SmoothTurnContract_RequiresContinuousTurnAction_NotSnapAction()
+        public void SmoothTurnContract_IsOneActiveValueVector2Provider()
         {
             string source = Read("Editor", "Patching", "LocomotionContractEnforcer.cs");
             StringAssert.Contains("FindReference(\"Turn\")", source);
-            StringAssert.Contains("continuous provider must use action 'Turn'", source);
-            StringAssert.Contains("snap provider must use action 'Snap Turn'", source);
-            StringAssert.Contains("smooth and snap providers share one InputActionReference", source);
+            StringAssert.Contains("continuous Turn must be Value/Vector2", source);
+            StringAssert.Contains("smooth.enabled = true", source);
+            StringAssert.Contains("snap.enabled = false", source);
+            StringAssert.Contains("Golden route requires smooth enabled and snap disabled", source);
+            Assert.That(TurnModeCore.DefaultSmoothTurnSpeed, Is.InRange(45f, 75f));
         }
 
         [Test]
@@ -53,21 +65,32 @@ namespace Ziptide.Tests.EditMode
         }
 
         [Test]
-        public void BreakerBlade_IsPortableAndHolstersPointDown()
+        public void Holster_UsesPerItemXriAttachTargetAndSemanticDownAxis()
         {
             Assert.IsTrue(HolsterSocketInteractor.AllowsItemId("breaker_blade"));
-            Quaternion pose = HolsterPoseCore.Resolve("breaker_blade", "HolsterRight");
-            Vector3 forward = pose * Vector3.forward;
-            Assert.Less(forward.y, -0.85f, "Holstered blade must point down the leg, not forward.");
+            string source = Read("Gameplay", "Runtime", "Inventory", "HolsterSocketInteractor.cs");
+            StringAssert.Contains("override Transform GetAttachTransform(IXRInteractable interactable)", source);
+            StringAssert.Contains("HolsterPose_", source);
+            StringAssert.Contains("WeaponPoseCore.MapLocalBasisToWorld", source);
+            StringAssert.DoesNotContain("socketAnchor.rotation =", source);
+
+            Quaternion root = WeaponPoseCore.MapLocalBasisToWorld(
+                Vector3.forward, Vector3.up, Vector3.down, Vector3.forward);
+            Vector3 mappedAxis = root * Vector3.forward;
+            Assert.Greater(Vector3.Dot(mappedAxis.normalized, Vector3.down), 0.999f);
         }
 
         [Test]
-        public void BreakerBlade_HandPoseForcesForwardYaw_AndSocketsDoNotAttack()
+        public void BreakerBlade_HandPoseUsesTipAxis_NotEulerGuess_AndSocketsDoNotAttack()
         {
+            Quaternion basis = WeaponPoseCore.BuildLocalBasis(Vector3.up, Vector3.forward);
+            Assert.Greater(Vector3.Dot((basis * Vector3.forward).normalized, Vector3.up), 0.999f);
+
             string source = Read("Gameplay", "Runtime", "Weapons", "MeleeWeaponRuntime.cs");
-            StringAssert.Contains("new Vector3(82f, 180f, 0f)", source);
-            StringAssert.Contains("Yaw is a device contract, not stale asset data", source);
-            StringAssert.DoesNotContain("pose.y = def.gripLocalEuler.y;", source);
+            StringAssert.Contains("MELEE_GRIP_SEMANTIC", source);
+            StringAssert.Contains("ResolveAxisLocal", source);
+            StringAssert.DoesNotContain("new Vector3(82f, 180f, 0f)", source);
+            StringAssert.DoesNotContain("MELEE_GRIP_POSE", source);
             StringAssert.Contains("interactor is XRBaseControllerInteractor", source);
             StringAssert.DoesNotContain("bool held = _grab != null && _grab.isSelected;", source);
         }
@@ -81,12 +104,13 @@ namespace Ziptide.Tests.EditMode
         }
 
         [Test]
-        public void SpawnRuntimeDiagnostic_MatchesAuditFilteringAndEscalatesOnlyRealContentWorldBlockers()
+        public void SpawnRuntimeDiagnostic_ExcludesOnlyExplicitNonSolidVisuals()
         {
             string source = Read("Gameplay", "Runtime", "World", "SpawnMarkerRuntime.cs");
             StringAssert.Contains("QueryTriggerInteraction.Ignore", source);
             StringAssert.Contains("col.GetComponentInParent<PlayerRigPersistence>()", source);
             StringAssert.Contains("col.GetComponentInParent<ObjectiveBeacon>()", source);
+            StringAssert.Contains("SkySphere", source);
             StringAssert.Contains("SPAWN_RUNTIME_BLOCKER", source);
             StringAssert.Contains("sceneName != ZiptideConstants.SceneBoot", source);
         }
@@ -94,7 +118,7 @@ namespace Ziptide.Tests.EditMode
         [Test]
         public void PlayerHeightSafety_ProtectsChildrenAndRejectsImpossibleEyeHeight()
         {
-            Assert.Less(PlayerSafetyRuntime.MinimumPlausibleEyeHeight, 0.60f);
+            Assert.Less(PlayerSafetyRuntime.MinimumPlausibleEyeHeight, 0.45f);
             Assert.Greater(PlayerSafetyRuntime.MaximumPlausibleEyeHeight, 2.0f);
             Assert.Less(PlayerSafetyRuntime.MaximumPlausibleEyeHeight, 2.5f);
             Assert.That(PlayerSafetyRuntime.RecoveryEyeHeight,
@@ -125,12 +149,15 @@ namespace Ziptide.Tests.EditMode
         }
 
         [Test]
-        public void HomeHubAnchor_IsLockedAfterTrackingSettle()
+        public void HomeHubDeparture_IsOneWayAndRestoresCachedSockets()
         {
             string source = Read("Gameplay", "Runtime", "Tutorial", "HomeHubAnchorLockRuntime.cs");
             StringAssert.Contains("stableFor >= 0.45f", source);
             StringAssert.Contains("_hub.enabled = false", source);
-            StringAssert.Contains("HOME_HUB_ANCHOR locked_world=true", source);
+            StringAssert.Contains("_departureCommitted = true", source);
+            StringAssert.Contains("if (_departureCommitted) return;", source);
+            StringAssert.Contains("_socketStates", source);
+            StringAssert.Contains("HOME_HUB_DEPARTURE sockets_restored=true", source);
         }
 
         [Test]
