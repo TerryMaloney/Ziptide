@@ -1,25 +1,25 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-28T15:58:25.303917+00:00",
+  "generatedAtUtc": "2026-07-28T16:30:24.906074+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
     "Ziptide/Assets/Ziptide",
     "Ziptide/Assets/ZiptideNet"
   ],
-  "scannedFiles": 737,
-  "findingCount": 2656,
+  "scannedFiles": 738,
+  "findingCount": 2658,
   "categoryCounts": {
     "bootstrap": 42,
     "diagnostics": 621,
     "events": 65,
     "fallback_debt": 159,
-    "global_render": 86,
+    "global_render": 87,
     "input": 230,
     "materials": 252,
     "persistence": 22,
-    "runtime_creation": 685,
+    "runtime_creation": 686,
     "runtime_ui": 131,
     "save_state": 261,
     "scene_loading": 9,
@@ -27,7 +27,7 @@
   },
   "codeCounts": {
     "AUTOSAVE_CALL": 9,
-    "CAMERA_MAIN_REFERENCE": 47,
+    "CAMERA_MAIN_REFERENCE": 48,
     "CAMERA_POST_PROCESSING": 1,
     "CANVAS_COMPONENT": 5,
     "CREATE_PRIMITIVE": 262,
@@ -41,7 +41,7 @@
     "FRAME_BUTTON_POLL": 1,
     "INPUT_ACTION_REFERENCE": 219,
     "INPUT_BUTTON_REFERENCE": 10,
-    "NEW_GAME_OBJECT": 423,
+    "NEW_GAME_OBJECT": 424,
     "PLAYER_PROFILE_REFERENCE": 140,
     "RENDER_SETTINGS_MUTATION": 37,
     "RUNTIME_BOOTSTRAP": 32,
@@ -8123,6 +8123,15 @@
       "line": 42,
       "symbol": "Ziptide.Gameplay.BeltRig",
       "snippet": "if (cam == null) cam = Camera.main;"
+    },
+    {
+      "category": "global_render",
+      "code": "CAMERA_MAIN_REFERENCE",
+      "description": "Camera.main dependency",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/DispatchKiosk.cs",
+      "line": 98,
+      "symbol": "Ziptide.Gameplay.DispatchKiosk",
+      "snippet": "_camera = Camera.main;"
     },
     {
       "category": "global_render",
@@ -17462,7 +17471,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/DispatchKiosk.cs",
-      "line": 38,
+      "line": 42,
       "symbol": "Ziptide.Gameplay.DispatchKiosk",
       "snippet": "var go = new GameObject(\"__HowToSign\");"
     },
@@ -18676,6 +18685,15 @@
       "category": "runtime_creation",
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/DispatchKioskSpatialContractTests.cs",
+      "line": 24,
+      "symbol": "Ziptide.Tests.EditMode.DispatchKioskSpatialContractTests",
+      "snippet": "GameObject sign = new GameObject(\"KioskSignFacingTest\");"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/ForgeBodyTellTests.cs",
       "line": 17,
       "symbol": "Ziptide.Tests.EditMode.ForgeBodyTellTests",
@@ -19667,7 +19685,7 @@
       "code": "TEXTMESH_COMPONENT",
       "description": "Legacy TextMesh creation/reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/DispatchKiosk.cs",
-      "line": 41,
+      "line": 46,
       "symbol": "Ziptide.Gameplay.DispatchKiosk",
       "snippet": "var tm = go.AddComponent<TextMesh>();"
     },

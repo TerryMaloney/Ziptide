@@ -1,6 +1,6 @@
 # ZIPTIDE Focused Recovery Reference Graph
 
-- Scanned C# files: **737**
+- Scanned C# files: **738**
 - Focused references: **415**
 
 ## melee
@@ -203,9 +203,9 @@
 - **reference** · `Ziptide.Gameplay.DeliveryCradleSocketInteractor` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/DeliveryCradleSocketInteractor.cs:21` — `public void Bind(JobDirector director)`
 - **reference** · `Ziptide.Gameplay.DeliveryCradleSocketInteractor` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/DeliveryCradleSocketInteractor.cs:30` — `_director = FindObjectOfType<JobDirector>();`
 - **reference** · `Ziptide.Gameplay.DispatchKiosk` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/DispatchKiosk.cs:7` — `/// XR interactable kiosk to accept/start a job. Assign JobDirector or it will be found at runtime.`
-- **reference** · `Ziptide.Gameplay.DispatchKiosk` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/DispatchKiosk.cs:14` — `private JobDirector _director;`
-- **reference** · `Ziptide.Gameplay.DispatchKiosk` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/DispatchKiosk.cs:16` — `public void Bind(JobDirector director)`
-- **reference** · `Ziptide.Gameplay.DispatchKiosk` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/DispatchKiosk.cs:24` — `_director = FindObjectOfType<JobDirector>();`
+- **reference** · `Ziptide.Gameplay.DispatchKiosk` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/DispatchKiosk.cs:18` — `private JobDirector _director;`
+- **reference** · `Ziptide.Gameplay.DispatchKiosk` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/DispatchKiosk.cs:20` — `public void Bind(JobDirector director)`
+- **reference** · `Ziptide.Gameplay.DispatchKiosk` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/DispatchKiosk.cs:28` — `_director = FindObjectOfType<JobDirector>();`
 - **reference** · `Ziptide.Gameplay.JobCollectible` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobCollectible.cs:8` — `/// Place on a grabbable item. When the player grabs it, reports collect to JobDirector for CollectItemIdCountStep.`
 - **reference** · `Ziptide.Gameplay.JobCollectible` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobCollectible.cs:14` — `private JobDirector _director;`
 - **reference** · `Ziptide.Gameplay.JobCollectible` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobCollectible.cs:25` — `_director = FindObjectOfType<JobDirector>();`

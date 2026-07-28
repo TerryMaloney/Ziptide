@@ -1,8 +1,8 @@
 {
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
-  "scannedFiles": 737,
-  "findingCount": 2656,
+  "scannedFiles": 738,
+  "findingCount": 2658,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -7619,14 +7619,14 @@
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/DispatchKiosk.cs",
-            "line": 38,
+            "line": 42,
             "symbol": "Ziptide.Gameplay.DispatchKiosk",
             "snippet": "var go = new GameObject(\"__HowToSign\");"
           },
           {
             "code": "TEXTMESH_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/DispatchKiosk.cs",
-            "line": 41,
+            "line": 46,
             "symbol": "Ziptide.Gameplay.DispatchKiosk",
             "snippet": "var tm = go.AddComponent<TextMesh>();"
           }
@@ -11663,6 +11663,25 @@
             "line": 59,
             "symbol": "Ziptide.Tests.EditMode.BuildProfileTravelAuditRulesTests",
             "snippet": "go = new GameObject(\"ValidGoldenExit\");"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Tests.EditMode.DispatchKioskSpatialContractTests",
+        "evidenceCount": 1,
+        "codes": [
+          "NEW_GAME_OBJECT"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/EditMode/DispatchKioskSpatialContractTests.cs"
+        ],
+        "evidence": [
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Tests/EditMode/DispatchKioskSpatialContractTests.cs",
+            "line": 24,
+            "symbol": "Ziptide.Tests.EditMode.DispatchKioskSpatialContractTests",
+            "snippet": "GameObject sign = new GameObject(\"KioskSignFacingTest\");"
           }
         ]
       },
@@ -18864,6 +18883,25 @@
             "line": 271,
             "symbol": "Ziptide.Gameplay.DevTools.DevWarpBoard",
             "snippet": "Camera cam = Camera.main;"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Gameplay.DispatchKiosk",
+        "evidenceCount": 1,
+        "codes": [
+          "CAMERA_MAIN_REFERENCE"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/DispatchKiosk.cs"
+        ],
+        "evidence": [
+          {
+            "code": "CAMERA_MAIN_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/DispatchKiosk.cs",
+            "line": 98,
+            "symbol": "Ziptide.Gameplay.DispatchKiosk",
+            "snippet": "_camera = Camera.main;"
           }
         ]
       },

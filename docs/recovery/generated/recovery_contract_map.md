@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
-- Scanned files: **737**
-- Scanner findings: **2656**
+- Scanned files: **738**
+- Scanner findings: **2658**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -1637,8 +1637,8 @@ None.
 
 - Codes: `NEW_GAME_OBJECT`, `TEXTMESH_COMPONENT`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/DispatchKiosk.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/DispatchKiosk.cs:38` **NEW_GAME_OBJECT** — `var go = new GameObject("__HowToSign");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/DispatchKiosk.cs:41` **TEXTMESH_COMPONENT** — `var tm = go.AddComponent<TextMesh>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/DispatchKiosk.cs:42` **NEW_GAME_OBJECT** — `var go = new GameObject("__HowToSign");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/DispatchKiosk.cs:46` **TEXTMESH_COMPONENT** — `var tm = go.AddComponent<TextMesh>();`
 
 ### `Ziptide.Gameplay.DroneCombatBehavior` — 6 signal(s)
 
@@ -2466,6 +2466,12 @@ None.
 - Paths: `Ziptide/Assets/Ziptide/Tests/EditMode/BuildProfileTravelAuditRulesTests.cs`
   - `Ziptide/Assets/Ziptide/Tests/EditMode/BuildProfileTravelAuditRulesTests.cs:33` **NEW_GAME_OBJECT** — `go = new GameObject("BrokenGoldenExit");`
   - `Ziptide/Assets/Ziptide/Tests/EditMode/BuildProfileTravelAuditRulesTests.cs:59` **NEW_GAME_OBJECT** — `go = new GameObject("ValidGoldenExit");`
+
+### `Ziptide.Tests.EditMode.DispatchKioskSpatialContractTests` — 1 signal(s)
+
+- Codes: `NEW_GAME_OBJECT`
+- Paths: `Ziptide/Assets/Ziptide/Tests/EditMode/DispatchKioskSpatialContractTests.cs`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/DispatchKioskSpatialContractTests.cs:24` **NEW_GAME_OBJECT** — `GameObject sign = new GameObject("KioskSignFacingTest");`
 
 ### `Ziptide.Tests.EditMode.ForgeBodyTellTests` — 4 signal(s)
 
@@ -4209,6 +4215,12 @@ None.
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:136` **CAMERA_MAIN_REFERENCE** — `var cam = Camera.main;`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:271` **CAMERA_MAIN_REFERENCE** — `Camera cam = Camera.main;`
+
+### `Ziptide.Gameplay.DispatchKiosk` — 1 signal(s)
+
+- Codes: `CAMERA_MAIN_REFERENCE`
+- Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/DispatchKiosk.cs`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/DispatchKiosk.cs:98` **CAMERA_MAIN_REFERENCE** — `_camera = Camera.main;`
 
 ### `Ziptide.Gameplay.DroneCombatBehavior` — 1 signal(s)
 
