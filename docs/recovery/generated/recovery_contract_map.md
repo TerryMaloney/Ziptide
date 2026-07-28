@@ -1637,8 +1637,8 @@ None.
 
 - Codes: `NEW_GAME_OBJECT`, `TEXTMESH_COMPONENT`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/DispatchKiosk.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/DispatchKiosk.cs:42` **NEW_GAME_OBJECT** — `var go = new GameObject("__HowToSign");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/DispatchKiosk.cs:46` **TEXTMESH_COMPONENT** — `var tm = go.AddComponent<TextMesh>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/DispatchKiosk.cs:44` **NEW_GAME_OBJECT** — `var go = new GameObject("__HowToSign");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/DispatchKiosk.cs:48` **TEXTMESH_COMPONENT** — `var tm = go.AddComponent<TextMesh>();`
 
 ### `Ziptide.Gameplay.DroneCombatBehavior` — 6 signal(s)
 
@@ -4220,7 +4220,7 @@ None.
 
 - Codes: `CAMERA_MAIN_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/DispatchKiosk.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/DispatchKiosk.cs:98` **CAMERA_MAIN_REFERENCE** — `_camera = Camera.main;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/DispatchKiosk.cs:100` **CAMERA_MAIN_REFERENCE** — `_camera = Camera.main;`
 
 ### `Ziptide.Gameplay.DroneCombatBehavior` — 1 signal(s)
 

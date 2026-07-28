@@ -7619,14 +7619,14 @@
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/DispatchKiosk.cs",
-            "line": 42,
+            "line": 44,
             "symbol": "Ziptide.Gameplay.DispatchKiosk",
             "snippet": "var go = new GameObject(\"__HowToSign\");"
           },
           {
             "code": "TEXTMESH_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/DispatchKiosk.cs",
-            "line": 46,
+            "line": 48,
             "symbol": "Ziptide.Gameplay.DispatchKiosk",
             "snippet": "var tm = go.AddComponent<TextMesh>();"
           }
@@ -18899,7 +18899,7 @@
           {
             "code": "CAMERA_MAIN_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/DispatchKiosk.cs",
-            "line": 98,
+            "line": 100,
             "symbol": "Ziptide.Gameplay.DispatchKiosk",
             "snippet": "_camera = Camera.main;"
           }

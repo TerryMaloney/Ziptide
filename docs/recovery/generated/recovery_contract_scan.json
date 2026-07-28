@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-28T16:30:24.906074+00:00",
+  "generatedAtUtc": "2026-07-28T17:45:14.213868+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -8129,7 +8129,7 @@
       "code": "CAMERA_MAIN_REFERENCE",
       "description": "Camera.main dependency",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/DispatchKiosk.cs",
-      "line": 98,
+      "line": 100,
       "symbol": "Ziptide.Gameplay.DispatchKiosk",
       "snippet": "_camera = Camera.main;"
     },
@@ -17471,7 +17471,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/DispatchKiosk.cs",
-      "line": 42,
+      "line": 44,
       "symbol": "Ziptide.Gameplay.DispatchKiosk",
       "snippet": "var go = new GameObject(\"__HowToSign\");"
     },
@@ -19685,7 +19685,7 @@
       "code": "TEXTMESH_COMPONENT",
       "description": "Legacy TextMesh creation/reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/DispatchKiosk.cs",
-      "line": 46,
+      "line": 48,
       "symbol": "Ziptide.Gameplay.DispatchKiosk",
       "snippet": "var tm = go.AddComponent<TextMesh>();"
     },

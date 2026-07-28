@@ -930,7 +930,7 @@
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureBehaviorBase.cs:84` · `Ziptide.Gameplay.CreatureBehaviorBase` — Camera.main dependency. `if (Camera.main != null) Player = Camera.main.transform;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:191` · `Ziptide.Gameplay.DroneCombatBehavior` — Camera.main dependency. `if (Camera.main != null) _player = Camera.main.transform;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:42` · `Ziptide.Gameplay.BeltRig` — Camera.main dependency. `if (cam == null) cam = Camera.main;`
-- **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/DispatchKiosk.cs:98` · `Ziptide.Gameplay.DispatchKiosk` — Camera.main dependency. `_camera = Camera.main;`
+- **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/DispatchKiosk.cs:100` · `Ziptide.Gameplay.DispatchKiosk` — Camera.main dependency. `_camera = Camera.main;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs:334` · `Ziptide.Gameplay.JobDirector` — Camera.main dependency. `var cam = Camera.main;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:190` · `Ziptide.Gameplay.ObjectiveBoard` — Camera.main dependency. `Camera cam = Camera.main;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:285` · `Ziptide.Gameplay.ObjectiveBoard` — Camera.main dependency. `canvas.worldCamera = Camera.main;`
@@ -1976,7 +1976,7 @@
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:341` · `Ziptide.Gameplay.ItemFactory` — Runtime GameObject construction. `var muzzle = new GameObject("Muzzle");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:436` · `Ziptide.Gameplay.ItemFactory` — Runtime GameObject construction. `var gripGo = new GameObject("Grip");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:445` · `Ziptide.Gameplay.ItemFactory` — Runtime GameObject construction. `var muzzleGo = new GameObject("Muzzle");`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/DispatchKiosk.cs:42` · `Ziptide.Gameplay.DispatchKiosk` — Runtime GameObject construction. `var go = new GameObject("__HowToSign");`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/DispatchKiosk.cs:44` · `Ziptide.Gameplay.DispatchKiosk` — Runtime GameObject construction. `var go = new GameObject("__HowToSign");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs:136` · `Ziptide.Gameplay.JobDirector` — Runtime GameObject construction. `var root = new GameObject("SpawnMarkers");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs:140` · `Ziptide.Gameplay.JobDirector` — Runtime GameObject construction. `var go = new GameObject("Marker_" + m.markerId);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs:152` · `Ziptide.Gameplay.JobDirector` — Runtime GameObject construction. `var root = new GameObject("BuildSockets");`
@@ -2224,7 +2224,7 @@
 - **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltBlueprintWandItem.cs:63` · `Ziptide.Gameplay.BeltBlueprintWandItem` — Legacy TextMesh creation/reference. `_countLabel = labelGo.AddComponent<TextMesh>();`
 - **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltMinePortRuntime.cs:110` · `Ziptide.Gameplay.BeltMinePortRuntime` — Legacy TextMesh creation/reference. `_readout = readoutGo.AddComponent<TextMesh>();`
 - **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:346` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — Legacy TextMesh creation/reference. `var tm = go.AddComponent<TextMesh>();`
-- **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/DispatchKiosk.cs:46` · `Ziptide.Gameplay.DispatchKiosk` — Legacy TextMesh creation/reference. `var tm = go.AddComponent<TextMesh>();`
+- **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/DispatchKiosk.cs:48` · `Ziptide.Gameplay.DispatchKiosk` — Legacy TextMesh creation/reference. `var tm = go.AddComponent<TextMesh>();`
 - **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:240` · `Ziptide.Gameplay.ObjectiveBoard` — Legacy TextMesh creation/reference. `_toastText = text.AddComponent<TextMesh>();`
 - **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/CreditsHud.cs:50` · `Ziptide.Gameplay.CreditsHud` — Legacy TextMesh creation/reference. `_text = go.AddComponent<TextMesh>();`
 - **TEXTMESH_COMPONENT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs:226` · `Ziptide.Gameplay.PlayerMenuRuntime` — Legacy TextMesh creation/reference. `TextMesh mesh = label.AddComponent<TextMesh>();`

@@ -1697,7 +1697,7 @@
           "focus": "repairObjective",
           "token": "JobDirector",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/DispatchKiosk.cs",
-          "line": 18,
+          "line": 20,
           "symbol": "Ziptide.Gameplay.DispatchKiosk",
           "snippet": "private JobDirector _director;",
           "declaration_file": false
@@ -1706,7 +1706,7 @@
           "focus": "repairObjective",
           "token": "JobDirector",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/DispatchKiosk.cs",
-          "line": 20,
+          "line": 22,
           "symbol": "Ziptide.Gameplay.DispatchKiosk",
           "snippet": "public void Bind(JobDirector director)",
           "declaration_file": false
@@ -1715,7 +1715,7 @@
           "focus": "repairObjective",
           "token": "JobDirector",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/DispatchKiosk.cs",
-          "line": 28,
+          "line": 30,
           "symbol": "Ziptide.Gameplay.DispatchKiosk",
           "snippet": "_director = FindObjectOfType<JobDirector>();",
           "declaration_file": false
@@ -5272,7 +5272,7 @@
       "focus": "repairObjective",
       "token": "JobDirector",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/DispatchKiosk.cs",
-      "line": 18,
+      "line": 20,
       "symbol": "Ziptide.Gameplay.DispatchKiosk",
       "snippet": "private JobDirector _director;",
       "declaration_file": false
@@ -5281,7 +5281,7 @@
       "focus": "repairObjective",
       "token": "JobDirector",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/DispatchKiosk.cs",
-      "line": 20,
+      "line": 22,
       "symbol": "Ziptide.Gameplay.DispatchKiosk",
       "snippet": "public void Bind(JobDirector director)",
       "declaration_file": false
@@ -5290,7 +5290,7 @@
       "focus": "repairObjective",
       "token": "JobDirector",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/DispatchKiosk.cs",
-      "line": 28,
+      "line": 30,
       "symbol": "Ziptide.Gameplay.DispatchKiosk",
       "snippet": "_director = FindObjectOfType<JobDirector>();",
       "declaration_file": false
