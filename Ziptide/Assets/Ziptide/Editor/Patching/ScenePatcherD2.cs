@@ -88,6 +88,9 @@ namespace Ziptide.Editor.Patching
         private static void EnsureLocomotionRig()
         {
             Ziptide.Editor.Setup.EnsureLocomotionRig.Run();
+            // BLOCKER contract: continuous turn must use XRI's Turn action, never Snap Turn.
+            // The latter caused the device-observed smooth/jerk cadence and was previously invisible to CI.
+            LocomotionContractEnforcer.EnsureCurrentScene();
         }
 
         private static LocomotionProfile EnsureLocomotionProfileAsset()
@@ -140,6 +143,7 @@ namespace Ziptide.Editor.Patching
             GameObject xrOriginGo = FindXROrigin();
             if (xrOriginGo == null) return;
             PatcherUtil.EnsureComponent<PlayerRigPersistence>(xrOriginGo);
+            PatcherUtil.EnsureComponent<PlayerSafetyRuntime>(xrOriginGo);
             // Anti-stuck failsafe: hold both grips 1s to emergency respawn.
             PatcherUtil.EnsureComponent<EmergencyRespawn>(xrOriginGo);
         }
