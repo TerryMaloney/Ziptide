@@ -4190,7 +4190,7 @@
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherBoot.cs",
-            "line": 83,
+            "line": 94,
             "symbol": "Ziptide.Editor.Patching.ScenePatcherBoot",
             "snippet": "var go = new GameObject(\"BootLoader\");"
           }

@@ -967,7 +967,7 @@ None.
 
 - Codes: `NEW_GAME_OBJECT`
 - Paths: `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherBoot.cs`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherBoot.cs:83` **NEW_GAME_OBJECT** — `var go = new GameObject("BootLoader");`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherBoot.cs:94` **NEW_GAME_OBJECT** — `var go = new GameObject("BootLoader");`
 
 ### `Ziptide.Editor.Patching.ScenePatcherC0` — 10 signal(s)
 

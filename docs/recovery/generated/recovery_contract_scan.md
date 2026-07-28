@@ -1836,7 +1836,7 @@
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherArena.cs:252` · `Ziptide.Editor.Patching.ScenePatcherArena` — Runtime GameObject construction. `var go = new GameObject("Hazard_" + h.id);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherArena.cs:399` · `Ziptide.Editor.Patching.ScenePatcherArena` — Runtime GameObject construction. `return new GameObject(name).transform;`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherArena.cs:417` · `Ziptide.Editor.Patching.ScenePatcherArena` — Runtime GameObject construction. `var go = new GameObject(name);`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherBoot.cs:83` · `Ziptide.Editor.Patching.ScenePatcherBoot` — Runtime GameObject construction. `var go = new GameObject("BootLoader");`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherBoot.cs:94` · `Ziptide.Editor.Patching.ScenePatcherBoot` — Runtime GameObject construction. `var go = new GameObject("BootLoader");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherC0.cs:68` · `Ziptide.Editor.Patching.ScenePatcherC0` — Runtime GameObject construction. `GameObject beltGo = new GameObject("BeltRig");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherC0.cs:132` · `Ziptide.Editor.Patching.ScenePatcherC0` — Runtime GameObject construction. `triggerGo = new GameObject(triggerName);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherC0.cs:161` · `Ziptide.Editor.Patching.ScenePatcherC0` — Runtime GameObject construction. `var hipGo = new GameObject(socketName);`
