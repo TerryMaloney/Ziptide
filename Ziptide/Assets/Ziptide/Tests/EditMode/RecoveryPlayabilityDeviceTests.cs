@@ -95,6 +95,16 @@ namespace Ziptide.Tests.EditMode
         }
 
         [Test]
+        public void PlayerHeightRecovery_ReportsRepairAsWarningWhileMissingGroundRemainsBlocker()
+        {
+            string source = Read("Gameplay", "Runtime", "Player", "PlayerSafetyRuntime.cs");
+
+            StringAssert.Contains("Debug.LogWarning(\"ZIPTIDE: PLAYER_HEIGHT_REPAIRED", source);
+            StringAssert.DoesNotContain("Debug.LogError(\"ZIPTIDE: PLAYER_HEIGHT_REPAIRED", source);
+            StringAssert.Contains("Debug.LogError(\"ZIPTIDE: PLAYER_HEIGHT_BLOCKER", source);
+        }
+
+        [Test]
         public void HomeHub_RetuneRemainsInsideTheExistingHandReachGate()
         {
             float along = Ziptide.Gameplay.HomeHubRuntime.AnchorDistance
