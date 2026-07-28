@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -10,34 +11,101 @@ using UnityEngine.XR.Interaction.Toolkit;
 namespace Ziptide.Gameplay
 {
     /// <summary>
-    /// Runtime turn-mode authority. Smooth and snap providers may exist for settings, but only one may
-    /// be enabled at a time. The default Quest route is continuous turn at a restrained speed.
+    /// Runtime turn-mode policy. Snap remains disabled for the Golden route. Continuous turn is enabled
+    /// only after its InputAction can safely resolve and read a Vector2. This prevents XRI from calling
+    /// ReadValue during action-map/device rebinding windows at scene transitions.
     /// </summary>
     public static class TurnModeCore
     {
         public const float DefaultSmoothTurnSpeed = 60f;
 
-        public static void EnforceSmoothOnly(Transform rigRoot, string reason)
+        public static bool ApplySmoothOnlyWhenReady(Transform rigRoot)
         {
-            if (rigRoot == null) return;
+            if (rigRoot == null) return false;
             ActionBasedContinuousTurnProvider[] smooth =
                 rigRoot.GetComponentsInChildren<ActionBasedContinuousTurnProvider>(true);
             ActionBasedSnapTurnProvider[] snap =
                 rigRoot.GetComponentsInChildren<ActionBasedSnapTurnProvider>(true);
 
-            int smoothEnabled = 0;
-            for (int i = 0; i < smooth.Length; i++)
-            {
-                if (smooth[i] == null) continue;
-                smooth[i].turnSpeed = DefaultSmoothTurnSpeed;
-                smooth[i].enabled = true;
-                smoothEnabled++;
-            }
             for (int i = 0; i < snap.Length; i++)
                 if (snap[i] != null) snap[i].enabled = false;
 
-            Debug.Log("ZIPTIDE: TURN_MODE smooth=" + smoothEnabled + " snap=0 speed="
-                + DefaultSmoothTurnSpeed.ToString("0") + " reason=" + reason);
+            int readyCount = 0;
+            for (int i = 0; i < smooth.Length; i++)
+            {
+                ActionBasedContinuousTurnProvider provider = smooth[i];
+                if (provider == null) continue;
+                provider.turnSpeed = DefaultSmoothTurnSpeed;
+                bool ready = IsTurnActionReady(provider.leftHandTurnAction.action)
+                    || IsTurnActionReady(provider.rightHandTurnAction.action);
+                provider.enabled = ready;
+                if (ready) readyCount++;
+            }
+            return readyCount > 0;
+        }
+
+        public static bool IsTurnActionReady(InputAction action)
+        {
+            if (action == null || !action.enabled) return false;
+            try
+            {
+                if (action.controls.Count == 0) return false;
+                action.ReadValue<Vector2>();
+                return true;
+            }
+            catch (Exception)
+            {
+                // Input System may be between bound-control teardown and re-resolution during scene
+                // transitions. The authority retries on a later frame; the provider must stay disabled.
+                return false;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Executes before XRI's default-order turn provider. It continuously enforces snap-off and gates
+    /// smooth turn on a usable action. State changes are logged once rather than every probe.
+    /// </summary>
+    [DefaultExecutionOrder(-10000)]
+    [DisallowMultipleComponent]
+    public sealed class TurnModeRuntimeAuthority : MonoBehaviour
+    {
+        private const float ProbeInterval = 0.10f;
+        private float _nextProbe;
+        private bool? _lastReady;
+
+        public static TurnModeRuntimeAuthority EnsureOnRig(GameObject rig)
+        {
+            if (rig == null) return null;
+            TurnModeRuntimeAuthority authority = rig.GetComponent<TurnModeRuntimeAuthority>();
+            if (authority == null)
+            {
+                authority = rig.AddComponent<TurnModeRuntimeAuthority>();
+                Debug.Log("ZIPTIDE: TURN_AUTHORITY_ENSURED rig=" + rig.name);
+            }
+            return authority;
+        }
+
+        private void OnEnable()
+        {
+            Probe("enable");
+        }
+
+        private void Update()
+        {
+            if (Time.unscaledTime < _nextProbe) return;
+            _nextProbe = Time.unscaledTime + ProbeInterval;
+            Probe("poll");
+        }
+
+        private void Probe(string reason)
+        {
+            bool ready = TurnModeCore.ApplySmoothOnlyWhenReady(transform);
+            if (_lastReady.HasValue && _lastReady.Value == ready) return;
+            _lastReady = ready;
+            Debug.Log("ZIPTIDE: TURN_MODE smoothReady=" + ready
+                + " snapEnabled=false speed=" + TurnModeCore.DefaultSmoothTurnSpeed.ToString("0")
+                + " reason=" + reason);
         }
     }
 
@@ -67,6 +135,7 @@ namespace Ziptide.Gameplay
                 safety = rig.AddComponent<PlayerSafetyRuntime>();
                 Debug.Log("ZIPTIDE: PLAYER_SAFETY_ENSURED runtime=true rig=" + rig.name);
             }
+            TurnModeRuntimeAuthority.EnsureOnRig(rig);
             return safety;
         }
 
@@ -74,6 +143,7 @@ namespace Ziptide.Gameplay
         {
             _instance = this;
             _rig = GetComponent<PlayerRigPersistence>();
+            TurnModeRuntimeAuthority.EnsureOnRig(gameObject);
             ApplyRuntimeOriginContract("awake");
         }
 
@@ -151,7 +221,7 @@ namespace Ziptide.Gameplay
                 yield return null;
             for (int i = 0; i < 12; i++) yield return null;
 
-            TurnModeCore.EnforceSmoothOnly(transform, "height_settle:" + reason);
+            TurnModeRuntimeAuthority.EnsureOnRig(gameObject);
 
             cam = GetComponentInChildren<Camera>(true);
             SpawnMarkerRuntime marker = FindPlayerMarker();
