@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
 - Scanned files: **737**
-- Scanner findings: **2652**
+- Scanner findings: **2656**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -557,6 +557,13 @@ None.
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:18` **INPUT_ACTION_REFERENCE** — `/// and InputActionManager are all ready`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:358` **INPUT_ACTION_REFERENCE** — `var iam = Object.FindObjectOfType<InputActionManager>();`
+
+### `Ziptide.Gameplay.TurnModeCore` — 2 signal(s)
+
+- Codes: `INPUT_ACTION_REFERENCE`
+- Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs:15` **INPUT_ACTION_REFERENCE** — `/// only after its InputAction can safely resolve and read a Vector2. This prevents XRI from calling`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs:47` **INPUT_ACTION_REFERENCE** — `public static bool IsTurnActionReady(InputAction action)`
 
 ### `Ziptide.Ship.ShipFlightRuntime` — 17 signal(s)
 
@@ -2513,6 +2520,12 @@ None.
   - `Ziptide/Assets/Ziptide/Tests/EditMode/InteractionReachAuditRulesTests.cs:78` **CREATE_PRIMITIVE** — `floor = GameObject.CreatePrimitive(PrimitiveType.Cube);`
   - `Ziptide/Assets/Ziptide/Tests/EditMode/InteractionReachAuditRulesTests.cs:83` **CREATE_PRIMITIVE** — `control = GameObject.CreatePrimitive(PrimitiveType.Cube);`
   - `Ziptide/Assets/Ziptide/Tests/EditMode/InteractionReachAuditRulesTests.cs:87` **XR_INTERACTABLE_COMPONENT** — `control.AddComponent<XRSimpleInteractable>();`
+
+### `Ziptide.Tests.EditMode.M0SystemicDeviceRegressionTests` — 1 signal(s)
+
+- Codes: `NEW_GAME_OBJECT`
+- Paths: `Ziptide/Assets/Ziptide/Tests/EditMode/M0SystemicDeviceRegressionTests.cs`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/M0SystemicDeviceRegressionTests.cs:62` **NEW_GAME_OBJECT** — `GameObject rig = new GameObject("TurnReadinessRig");`
 
 ### `Ziptide.Tests.EditMode.PerceptualCoverageAuditRulesTests` — 4 signal(s)
 

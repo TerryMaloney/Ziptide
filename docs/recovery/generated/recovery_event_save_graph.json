@@ -224,7 +224,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs",
-      "line": 188,
+      "line": 258,
       "owner": "Ziptide.Gameplay.TurnModeCore",
       "target": "p.y",
       "detail": "RecoveryEyeHeight",
@@ -4743,7 +4743,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs",
-        "line": 82,
+        "line": 152,
         "owner": "Ziptide.Gameplay.TurnModeCore",
         "target": "SceneManager.sceneLoaded",
         "detail": "OnSceneLoaded",
@@ -4752,7 +4752,7 @@
       {
         "kind": "EVENT_UNSUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs",
-        "line": 88,
+        "line": 158,
         "owner": "Ziptide.Gameplay.TurnModeCore",
         "target": "SceneManager.sceneLoaded",
         "detail": "OnSceneLoaded",
@@ -6637,7 +6637,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs",
-        "line": 188,
+        "line": 258,
         "owner": "Ziptide.Gameplay.TurnModeCore",
         "target": "p.y",
         "detail": "RecoveryEyeHeight",
@@ -10074,7 +10074,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs",
-      "line": 82,
+      "line": 152,
       "owner": "Ziptide.Gameplay.TurnModeCore",
       "target": "SceneManager.sceneLoaded",
       "detail": "OnSceneLoaded",
@@ -10083,7 +10083,7 @@
     {
       "kind": "EVENT_UNSUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs",
-      "line": 88,
+      "line": 158,
       "owner": "Ziptide.Gameplay.TurnModeCore",
       "target": "SceneManager.sceneLoaded",
       "detail": "OnSceneLoaded",
@@ -10092,7 +10092,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs",
-      "line": 188,
+      "line": 258,
       "owner": "Ziptide.Gameplay.TurnModeCore",
       "target": "p.y",
       "detail": "RecoveryEyeHeight",

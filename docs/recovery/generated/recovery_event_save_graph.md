@@ -42,7 +42,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - `Ziptide.Gameplay.ObjectiveBoard` subscribes `runtime.StepChanged` → `OnStepChanged` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:93`
 - `Ziptide.Gameplay.ObjectiveBoard` subscribes `runtime.JobCompleted` → `OnJobCompleted` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:94`
 - `Ziptide.Gameplay.BootHoldState` subscribes `transform.position` → `headDelta` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:999`
-- `Ziptide.Gameplay.TurnModeCore` subscribes `p.y` → `RecoveryEyeHeight` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs:188`
+- `Ziptide.Gameplay.TurnModeCore` subscribes `p.y` → `RecoveryEyeHeight` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs:258`
 - `Ziptide.Gameplay.PvpBolt` subscribes `transform.position` → `step` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpBolt.cs:67`
 - `Ziptide.Gameplay.PvpBot` subscribes `transform.position` → `k` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpBot.cs:346`
 - `Ziptide.Gameplay.MiningRigRuntime` subscribes `_mine.stored` → `_mine` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/MiningRigRuntime.cs:114`
@@ -771,8 +771,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.PlayerMenuRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs:41` · `OnSceneLoaded` — `SceneManager.sceneLoaded -= OnSceneLoaded;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.BootHoldState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:159` · `OnSceneLoaded` — `SceneManager.sceneLoaded += OnSceneLoaded;`
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.BootHoldState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:317` · `OnSceneLoaded` — `SceneManager.sceneLoaded -= OnSceneLoaded;`
-- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.TurnModeCore` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs:82` · `OnSceneLoaded` — `SceneManager.sceneLoaded += OnSceneLoaded;`
-- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.TurnModeCore` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs:88` · `OnSceneLoaded` — `SceneManager.sceneLoaded -= OnSceneLoaded;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.TurnModeCore` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs:152` · `OnSceneLoaded` — `SceneManager.sceneLoaded += OnSceneLoaded;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.TurnModeCore` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs:158` · `OnSceneLoaded` — `SceneManager.sceneLoaded -= OnSceneLoaded;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.PvpProgressionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:49` · `OnSceneLoaded` — `SceneManager.sceneLoaded += OnSceneLoaded;`
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.PvpProgressionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:55` · `OnSceneLoaded` — `SceneManager.sceneLoaded -= OnSceneLoaded;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.RillCompanion` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs:56` · `OnSceneLoaded` — `SceneManager.sceneLoaded += OnSceneLoaded;`
@@ -1162,7 +1162,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `p.y`
 
-- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.TurnModeCore` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs:188` · `RecoveryEyeHeight` — `p.y += RecoveryEyeHeight - eyeHeight;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.TurnModeCore` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs:258` · `RecoveryEyeHeight` — `p.y += RecoveryEyeHeight - eyeHeight;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.CityStreetLifeRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/CityStreetLifeRuntime.cs:52` · `phase` — `p.y += phase * 1.15f;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.ToxicRiverSurfaceRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ToxicRiverSurfaceRuntime.cs:78` · `Mathf` — `p.y += Mathf.Sin(Time.time * 1.8f + i * 0.9f) * waveAmplitude`
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.ToxicRiverSurfaceRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ToxicRiverSurfaceRuntime.cs:88` · `Mathf` — `p.y += Mathf.Sin(Time.time * (1.2f + i * 0.07f) + i)`

@@ -2,7 +2,7 @@
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
   "scannedFiles": 737,
-  "findingCount": 2652,
+  "findingCount": 2656,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -2205,6 +2205,32 @@
             "line": 358,
             "symbol": "Ziptide.Gameplay.TravelCoordinator",
             "snippet": "var iam = Object.FindObjectOfType<InputActionManager>();"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Gameplay.TurnModeCore",
+        "evidenceCount": 2,
+        "codes": [
+          "INPUT_ACTION_REFERENCE"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs"
+        ],
+        "evidence": [
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs",
+            "line": 15,
+            "symbol": "Ziptide.Gameplay.TurnModeCore",
+            "snippet": "/// only after its InputAction can safely resolve and read a Vector2. This prevents XRI from calling"
+          },
+          {
+            "code": "INPUT_ACTION_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs",
+            "line": 47,
+            "symbol": "Ziptide.Gameplay.TurnModeCore",
+            "snippet": "public static bool IsTurnActionReady(InputAction action)"
           }
         ]
       },
@@ -11855,6 +11881,25 @@
             "line": 87,
             "symbol": "Ziptide.Tests.EditMode.InteractionReachAuditRulesTests",
             "snippet": "control.AddComponent<XRSimpleInteractable>();"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Tests.EditMode.M0SystemicDeviceRegressionTests",
+        "evidenceCount": 1,
+        "codes": [
+          "NEW_GAME_OBJECT"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/EditMode/M0SystemicDeviceRegressionTests.cs"
+        ],
+        "evidence": [
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Tests/EditMode/M0SystemicDeviceRegressionTests.cs",
+            "line": 62,
+            "symbol": "Ziptide.Tests.EditMode.M0SystemicDeviceRegressionTests",
+            "snippet": "GameObject rig = new GameObject(\"TurnReadinessRig\");"
           }
         ]
       },

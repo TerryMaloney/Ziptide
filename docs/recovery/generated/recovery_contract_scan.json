@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-28T15:16:33.525591+00:00",
+  "generatedAtUtc": "2026-07-28T15:58:25.303917+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -9,17 +9,17 @@
     "Ziptide/Assets/ZiptideNet"
   ],
   "scannedFiles": 737,
-  "findingCount": 2652,
+  "findingCount": 2656,
   "categoryCounts": {
     "bootstrap": 42,
-    "diagnostics": 620,
+    "diagnostics": 621,
     "events": 65,
     "fallback_debt": 159,
     "global_render": 86,
-    "input": 228,
+    "input": 230,
     "materials": 252,
     "persistence": 22,
-    "runtime_creation": 684,
+    "runtime_creation": 685,
     "runtime_ui": 131,
     "save_state": 261,
     "scene_loading": 9,
@@ -39,9 +39,9 @@
     "EVENT_SYSTEM_COMPONENT": 2,
     "FALLBACK_MARKER": 159,
     "FRAME_BUTTON_POLL": 1,
-    "INPUT_ACTION_REFERENCE": 217,
+    "INPUT_ACTION_REFERENCE": 219,
     "INPUT_BUTTON_REFERENCE": 10,
-    "NEW_GAME_OBJECT": 422,
+    "NEW_GAME_OBJECT": 423,
     "PLAYER_PROFILE_REFERENCE": 140,
     "RENDER_SETTINGS_MUTATION": 37,
     "RUNTIME_BOOTSTRAP": 32,
@@ -57,7 +57,7 @@
     "XRI_MANAGER_LOOKUP": 45,
     "XR_INTERACTABLE_COMPONENT": 66,
     "XR_UI_INPUT_MODULE": 2,
-    "ZIPTIDE_LOG_TAG": 620
+    "ZIPTIDE_LOG_TAG": 621
   },
   "findings": [
     {
@@ -2765,16 +2765,25 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs",
-      "line": 39,
+      "line": 84,
       "symbol": "Ziptide.Gameplay.TurnModeCore",
-      "snippet": "Debug.Log(\"ZIPTIDE: TURN_MODE smooth=\" + smoothEnabled + \" snap=0 speed=\""
+      "snippet": "Debug.Log(\"ZIPTIDE: TURN_AUTHORITY_ENSURED rig=\" + rig.name);"
     },
     {
       "category": "diagnostics",
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs",
-      "line": 68,
+      "line": 106,
+      "symbol": "Ziptide.Gameplay.TurnModeCore",
+      "snippet": "Debug.Log(\"ZIPTIDE: TURN_MODE smoothReady=\" + ready"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs",
+      "line": 136,
       "symbol": "Ziptide.Gameplay.TurnModeCore",
       "snippet": "Debug.Log(\"ZIPTIDE: PLAYER_SAFETY_ENSURED runtime=true rig=\" + rig.name);"
     },
@@ -2783,7 +2792,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs",
-      "line": 104,
+      "line": 174,
       "symbol": "Ziptide.Gameplay.TurnModeCore",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: PLAYER_RECOVERY_BLOCKED reason=no_safety_runtime request=\" + reason);"
     },
@@ -2792,7 +2801,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs",
-      "line": 127,
+      "line": 197,
       "symbol": "Ziptide.Gameplay.TurnModeCore",
       "snippet": "Debug.Log(\"ZIPTIDE: PLAYER_RECOVERY requested=\" + reason);"
     },
@@ -2801,7 +2810,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs",
-      "line": 160,
+      "line": 230,
       "symbol": "Ziptide.Gameplay.TurnModeCore",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: PLAYER_HEIGHT_CHECK skipped reason=\""
     },
@@ -2810,7 +2819,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs",
-      "line": 168,
+      "line": 238,
       "symbol": "Ziptide.Gameplay.TurnModeCore",
       "snippet": "Debug.LogError(\"ZIPTIDE: PLAYER_HEIGHT_BLOCKER reason=no_ground marker=\""
     },
@@ -2819,7 +2828,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs",
-      "line": 175,
+      "line": 245,
       "symbol": "Ziptide.Gameplay.TurnModeCore",
       "snippet": "Debug.Log(\"ZIPTIDE: PLAYER_HEIGHT_RUNTIME eye=\" + eyeHeight.ToString(\"F2\")"
     },
@@ -2828,7 +2837,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs",
-      "line": 192,
+      "line": 262,
       "symbol": "Ziptide.Gameplay.TurnModeCore",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: PLAYER_HEIGHT_REPAIRED from=\" + eyeHeight.ToString(\"F2\")"
     },
@@ -2837,7 +2846,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs",
-      "line": 251,
+      "line": 321,
       "symbol": "Ziptide.Gameplay.TurnModeCore",
       "snippet": "Debug.Log(\"ZIPTIDE: RIG_HEIGHT_RUNTIME origin=\" + requested + \" offsetY=\""
     },
@@ -9878,6 +9887,24 @@
       "line": 707,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "field.SetValue(iam, new System.Collections.Generic.List<InputActionAsset>());"
+    },
+    {
+      "category": "input",
+      "code": "INPUT_ACTION_REFERENCE",
+      "description": "Input System action reference",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs",
+      "line": 15,
+      "symbol": "Ziptide.Gameplay.TurnModeCore",
+      "snippet": "/// only after its InputAction can safely resolve and read a Vector2. This prevents XRI from calling"
+    },
+    {
+      "category": "input",
+      "code": "INPUT_ACTION_REFERENCE",
+      "description": "Input System action reference",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs",
+      "line": 47,
+      "symbol": "Ziptide.Gameplay.TurnModeCore",
+      "snippet": "public static bool IsTurnActionReady(InputAction action)"
     },
     {
       "category": "input",
@@ -18752,6 +18779,15 @@
       "line": 201,
       "symbol": "Ziptide.Tests.EditMode.HomeHubFlowTests",
       "snippet": "var go = new GameObject(\"bunk-test\");"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/M0SystemicDeviceRegressionTests.cs",
+      "line": 62,
+      "symbol": "Ziptide.Tests.EditMode.M0SystemicDeviceRegressionTests",
+      "snippet": "GameObject rig = new GameObject(\"TurnReadinessRig\");"
     },
     {
       "category": "runtime_creation",

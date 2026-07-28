@@ -1,7 +1,7 @@
 # ZIPTIDE Recovery Contract Scan
 
 - Scanned files: **737**
-- Findings: **2652**
+- Findings: **2656**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
@@ -9,14 +9,14 @@
 | Category | Count |
 |---|---:|
 | `bootstrap` | 42 |
-| `diagnostics` | 620 |
+| `diagnostics` | 621 |
 | `events` | 65 |
 | `fallback_debt` | 159 |
 | `global_render` | 86 |
-| `input` | 228 |
+| `input` | 230 |
 | `materials` | 252 |
 | `persistence` | 22 |
-| `runtime_creation` | 684 |
+| `runtime_creation` | 685 |
 | `runtime_ui` | 131 |
 | `save_state` | 261 |
 | `scene_loading` | 9 |
@@ -328,15 +328,16 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:868` · `Ziptide.Gameplay.BootHoldState` — ZIPTIDE diagnostic tag. `Debug.LogError("ZIPTIDE: INPUT_MUTATION_SETTLE_FAIL readers="`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:883` · `Ziptide.Gameplay.BootHoldState` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: INPUT_MUTATION_READERS restored=" + _mutationSuspendedReaders.Count`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:1017` · `Ziptide.Gameplay.BootHoldState` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: SPAWN_AT marker='" + marker.markerId + "' rig=" + transform.position.ToString("F2")`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs:39` · `Ziptide.Gameplay.TurnModeCore` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: TURN_MODE smooth=" + smoothEnabled + " snap=0 speed="`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs:68` · `Ziptide.Gameplay.TurnModeCore` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: PLAYER_SAFETY_ENSURED runtime=true rig=" + rig.name);`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs:104` · `Ziptide.Gameplay.TurnModeCore` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: PLAYER_RECOVERY_BLOCKED reason=no_safety_runtime request=" + reason);`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs:127` · `Ziptide.Gameplay.TurnModeCore` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: PLAYER_RECOVERY requested=" + reason);`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs:160` · `Ziptide.Gameplay.TurnModeCore` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: PLAYER_HEIGHT_CHECK skipped reason="`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs:168` · `Ziptide.Gameplay.TurnModeCore` — ZIPTIDE diagnostic tag. `Debug.LogError("ZIPTIDE: PLAYER_HEIGHT_BLOCKER reason=no_ground marker="`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs:175` · `Ziptide.Gameplay.TurnModeCore` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: PLAYER_HEIGHT_RUNTIME eye=" + eyeHeight.ToString("F2")`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs:192` · `Ziptide.Gameplay.TurnModeCore` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: PLAYER_HEIGHT_REPAIRED from=" + eyeHeight.ToString("F2")`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs:251` · `Ziptide.Gameplay.TurnModeCore` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RIG_HEIGHT_RUNTIME origin=" + requested + " offsetY="`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs:84` · `Ziptide.Gameplay.TurnModeCore` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: TURN_AUTHORITY_ENSURED rig=" + rig.name);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs:106` · `Ziptide.Gameplay.TurnModeCore` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: TURN_MODE smoothReady=" + ready`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs:136` · `Ziptide.Gameplay.TurnModeCore` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: PLAYER_SAFETY_ENSURED runtime=true rig=" + rig.name);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs:174` · `Ziptide.Gameplay.TurnModeCore` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: PLAYER_RECOVERY_BLOCKED reason=no_safety_runtime request=" + reason);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs:197` · `Ziptide.Gameplay.TurnModeCore` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: PLAYER_RECOVERY requested=" + reason);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs:230` · `Ziptide.Gameplay.TurnModeCore` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: PLAYER_HEIGHT_CHECK skipped reason="`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs:238` · `Ziptide.Gameplay.TurnModeCore` — ZIPTIDE diagnostic tag. `Debug.LogError("ZIPTIDE: PLAYER_HEIGHT_BLOCKER reason=no_ground marker="`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs:245` · `Ziptide.Gameplay.TurnModeCore` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: PLAYER_HEIGHT_RUNTIME eye=" + eyeHeight.ToString("F2")`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs:262` · `Ziptide.Gameplay.TurnModeCore` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: PLAYER_HEIGHT_REPAIRED from=" + eyeHeight.ToString("F2")`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs:321` · `Ziptide.Gameplay.TurnModeCore` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RIG_HEIGHT_RUNTIME origin=" + requested + " offsetY="`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerStunReceiver.cs:54` · `Ziptide.Gameplay.PlayerStunReceiver` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: PLAYER_STUN sec=" + seconds.ToString("F2") + " slow=" + slowFactor.ToString("F2"));`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerStunReceiver.cs:69` · `Ziptide.Gameplay.PlayerStunReceiver` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: PLAYER_HIT src=" + sourcePos.ToString("F1"));`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs:69` · `Ziptide.Gameplay.LifecycleState` — ZIPTIDE diagnostic tag. `/// flagged for the unified-readiness review in HANDOFF. Logs ZIPTIDE: LIFECYCLE state=a->b.`
@@ -1127,6 +1128,8 @@
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:699` · `Ziptide.Gameplay.BootHoldState` — Input System action reference. `var iam = mgr.GetComponent<InputActionManager>();`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:703` · `Ziptide.Gameplay.BootHoldState` — Input System action reference. `var field = typeof(InputActionManager).GetField(`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:707` · `Ziptide.Gameplay.BootHoldState` — Input System action reference. `field.SetValue(iam, new System.Collections.Generic.List<InputActionAsset>());`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs:15` · `Ziptide.Gameplay.TurnModeCore` — Input System action reference. `/// only after its InputAction can safely resolve and read a Vector2. This prevents XRI from calling`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs:47` · `Ziptide.Gameplay.TurnModeCore` — Input System action reference. `public static bool IsTurnActionReady(InputAction action)`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:18` · `Ziptide.Gameplay.TravelCoordinator` — Input System action reference. `/// and InputActionManager are all ready`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:358` · `Ziptide.Gameplay.TravelCoordinator` — Input System action reference. `var iam = Object.FindObjectOfType<InputActionManager>();`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:62` · `Ziptide.Ship.ShipFlightRuntime` — Input System action reference. `private InputAction _leftStick;`
@@ -2119,6 +2122,7 @@
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:163` · `Ziptide.Tests.EditMode.HomeHubFlowTests` — Runtime GameObject construction. `StringAssert.Contains("new GameObject(\"__HOME_HUB_COMFORT_SETTINGS\")", source);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:176` · `Ziptide.Tests.EditMode.HomeHubFlowTests` — Runtime GameObject construction. `var go = new GameObject("castoff-test");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:201` · `Ziptide.Tests.EditMode.HomeHubFlowTests` — Runtime GameObject construction. `var go = new GameObject("bunk-test");`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/M0SystemicDeviceRegressionTests.cs:62` · `Ziptide.Tests.EditMode.M0SystemicDeviceRegressionTests` — Runtime GameObject construction. `GameObject rig = new GameObject("TurnReadinessRig");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/PracticalLightTests.cs:16` · `Ziptide.Tests.EditMode.PracticalLightTests` — Runtime GameObject construction. `host = new GameObject("PracticalHost");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/QuestWeaponAndCouplerRegressionTests.cs:122` · `Ziptide.Tests.EditMode.QuestWeaponAndCouplerRegressionTests` — Runtime GameObject construction. `machineRoot = new GameObject("QuestCouplerRegression");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/ReactivePracticalSwapTests.cs:14` · `Ziptide.Tests.EditMode.ReactivePracticalSwapTests` — Runtime GameObject construction. `var root = new GameObject("ReactiveStreetPole");`
