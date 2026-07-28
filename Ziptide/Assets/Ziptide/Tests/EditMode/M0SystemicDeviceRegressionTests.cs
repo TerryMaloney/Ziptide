@@ -29,6 +29,7 @@ namespace Ziptide.Tests.EditMode
             StringAssert.Contains("FloorTrackingOriginMode = 2", source);
             StringAssert.Contains("offset.floatValue = 0f", source);
             StringAssert.Contains("expected Floor tracking and cameraYOffset=0", source);
+            StringAssert.Contains("cameraOffset.localPosition", source);
         }
 
         [Test]
@@ -80,12 +81,13 @@ namespace Ziptide.Tests.EditMode
         }
 
         [Test]
-        public void SpawnRuntimeDiagnostic_MatchesAuditFilteringAndEscalatesRealBlockers()
+        public void SpawnRuntimeDiagnostic_MatchesAuditFilteringAndEscalatesOnlyContentWorldBlockers()
         {
             string source = Read("Gameplay", "Runtime", "World", "SpawnMarkerRuntime.cs");
             StringAssert.Contains("QueryTriggerInteraction.Ignore", source);
             StringAssert.Contains("col.GetComponentInParent<PlayerRigPersistence>()", source);
             StringAssert.Contains("SPAWN_RUNTIME_BLOCKER", source);
+            StringAssert.Contains("sceneName != ZiptideConstants.SceneBoot", source);
         }
 
         [Test]

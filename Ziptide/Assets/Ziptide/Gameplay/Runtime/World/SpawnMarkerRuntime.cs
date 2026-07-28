@@ -1,11 +1,13 @@
 using UnityEngine;
+using Ziptide.Core;
 
 namespace Ziptide.Gameplay
 {
     /// <summary>
     /// Marks a spawn location for PlayerRigPersistence. Runtime diagnostics mirror the build audit:
     /// triggers, the floor and the persistent player rig are excluded, so buriedAtTorso is no longer
-    /// a false all-layer CheckSphere result. A real obstruction is logged as a blocker-class error.
+    /// a false all-layer CheckSphere result. Content-world obstruction/no-floor states are blockers;
+    /// _Boot is an intentional menu/bootstrap scene with no world floor.
     /// </summary>
     public class SpawnMarkerRuntime : MonoBehaviour
     {
@@ -36,12 +38,17 @@ namespace Ziptide.Gameplay
                 break;
             }
 
-            string line = "ZIPTIDE: SPAWN_AT scene=" + gameObject.scene.name
+            string sceneName = gameObject.scene.name;
+            string line = "ZIPTIDE: SPAWN_AT scene=" + sceneName
                 + " pos=" + transform.position.ToString("F2")
                 + " groundBelow=" + (below ? hit.distance.ToString("F2") + "m@" + hit.collider.name : "NONE")
                 + " buriedAtTorso=" + buried + " obstruction=" + obstruction;
-            if (buried || !below) Debug.LogError("ZIPTIDE: SPAWN_RUNTIME_BLOCKER " + line);
-            else Debug.Log(line);
+
+            bool contentWorldNoFloor = !below && sceneName != ZiptideConstants.SceneBoot;
+            if (buried || contentWorldNoFloor)
+                Debug.LogError("ZIPTIDE: SPAWN_RUNTIME_BLOCKER " + line);
+            else
+                Debug.Log(line);
         }
     }
 }
