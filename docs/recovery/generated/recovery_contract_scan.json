@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-28T17:45:14.213868+00:00",
+  "generatedAtUtc": "2026-07-28T18:09:47.748722+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -5420,7 +5420,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
-      "line": 194,
+      "line": 201,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
       "snippet": "Assert.AreEqual(travelStartsBefore, CountLogs(\"ZIPTIDE: TRAVEL_START\"),"
     },
@@ -5429,7 +5429,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs",
-      "line": 202,
+      "line": 209,
       "symbol": "Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests",
       "snippet": "Assert.GreaterOrEqual(CountLogs(\"ZIPTIDE: BOARD_PROBE surface=HomeHub phase=select\"), 1,"
     },
