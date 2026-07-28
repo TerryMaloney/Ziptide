@@ -8,7 +8,9 @@ namespace Ziptide.Gameplay
     /// </summary>
     public class DispatchKiosk : MonoBehaviour
     {
-        public static readonly Vector3 HowToLocalPosition = new Vector3(-0.75f, 1.25f, 0.02f);
+        // ToxicCity's opening RILL subtitle occupies the lower viewport band. Keep the compact plaque
+        // inside the right edge and above that subtitle band without scene-specific camera offsets.
+        public static readonly Vector3 HowToLocalPosition = new Vector3(-0.95f, 1.80f, 0.02f);
         public const float HowToCharacterSize = 0.009f;
         public const int HowToFontSize = 64;
 
