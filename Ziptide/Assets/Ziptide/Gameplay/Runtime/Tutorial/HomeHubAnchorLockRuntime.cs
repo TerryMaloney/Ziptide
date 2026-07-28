@@ -47,23 +47,10 @@ namespace Ziptide.Gameplay
                 yield return null;
             }
 
-            // HomeHubRuntime has already created the tiles and captured their callbacks. Disabling its
-            // Update freezes presentation only; selecting New/Continue/Settings still invokes those callbacks.
             if (_hub != null)
             {
                 _hub.enabled = false;
                 Debug.Log("ZIPTIDE: HOME_HUB_ANCHOR locked_world=true pos=" + transform.position.ToString("F2"));
-            }
-        }
-
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
-        private static void Install()
-        {
-            HomeHubRuntime[] hubs = Object.FindObjectsOfType<HomeHubRuntime>(true);
-            for (int i = 0; i < hubs.Length; i++)
-            {
-                if (hubs[i] != null && hubs[i].GetComponent<HomeHubAnchorLockRuntime>() == null)
-                    hubs[i].gameObject.AddComponent<HomeHubAnchorLockRuntime>();
             }
         }
     }
