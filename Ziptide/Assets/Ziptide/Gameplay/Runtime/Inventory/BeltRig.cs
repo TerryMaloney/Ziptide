@@ -71,15 +71,24 @@ namespace Ziptide.Gameplay
                 holster = go.transform;
             }
 
-            // Functional socket: a trigger collider for proximity detection + the holster socket
-            // interactor so guns can actually be docked here (markers alone do nothing).
             var trigger = holster.GetComponent<SphereCollider>();
             if (trigger == null) trigger = holster.gameObject.AddComponent<SphereCollider>();
             trigger.isTrigger = true;
-            trigger.radius = 0.12f;
+            trigger.radius = 0.16f;
 
-            if (holster.GetComponent<HolsterSocketInteractor>() == null)
-                holster.gameObject.AddComponent<HolsterSocketInteractor>();
+            HolsterSocketInteractor socket = holster.GetComponent<HolsterSocketInteractor>();
+            if (socket == null) socket = holster.gameObject.AddComponent<HolsterSocketInteractor>();
+
+            Transform attach = holster.Find("HolsterAttach");
+            if (attach == null)
+            {
+                GameObject attachGo = new GameObject("HolsterAttach");
+                attachGo.transform.SetParent(holster, false);
+                attach = attachGo.transform;
+            }
+            attach.localPosition = new Vector3(0f, -0.04f, 0f);
+            attach.localRotation = HolsterPoseCore.Resolve("", holsterName);
+            socket.attachTransform = attach;
 
             if (holster.Find("HolsterMarker") == null)
             {
@@ -118,6 +127,21 @@ namespace Ziptide.Gameplay
             if (mat == null) return;
             if (mat.HasProperty("_BaseColor")) mat.SetColor("_BaseColor", c);
             else if (mat.HasProperty("_Color")) mat.SetColor("_Color", c);
+        }
+    }
+
+    /// <summary>Pure, shared belt-pose contract. ItemFactory hand poses never leak into holsters.</summary>
+    public static class HolsterPoseCore
+    {
+        public static Quaternion Resolve(string itemId, string socketName)
+        {
+            float sideRoll = socketName != null && socketName.ToLowerInvariant().Contains("left") ? -8f : 8f;
+            if (socketName != null && socketName.ToLowerInvariant().Contains("center")) sideRoll = 0f;
+
+            // All current hip items hang with their long/forward axis down the leg. The blade gets a
+            // little more outward cant so it reads as sheathed rather than as a gun barrel on the belt.
+            if (itemId == "breaker_blade") return Quaternion.Euler(88f, 0f, sideRoll * 1.5f);
+            return Quaternion.Euler(82f, 0f, sideRoll);
         }
     }
 }
