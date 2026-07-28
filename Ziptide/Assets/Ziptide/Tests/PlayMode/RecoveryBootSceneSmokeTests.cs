@@ -183,7 +183,14 @@ namespace Ziptide.Tests.PlayMode
             manager.SelectEnter(selectInteractor, selectInteractable);
             Assert.IsTrue(settings.isSelected, "SETTINGS did not enter XRI selected state.");
             yield return null;
-            manager.SelectExit(selectInteractor, selectInteractable);
+
+            // Opening the bounded Settings console can make the real ray auto-release the tile during
+            // XRI's next process pass. A second SelectExit against an already-released interactable is
+            // itself an invalid owner-clash assertion. Normalize only when XRI still owns the selection.
+            if (settings.isSelected)
+                manager.SelectExit(selectInteractor, selectInteractable);
+            Assert.IsFalse(settings.isSelected,
+                "SETTINGS remained selected after the normal XRI release phase.");
             if (settings.isHovered) manager.HoverExit(hoverInteractor, hoverInteractable);
             yield return null;
 
