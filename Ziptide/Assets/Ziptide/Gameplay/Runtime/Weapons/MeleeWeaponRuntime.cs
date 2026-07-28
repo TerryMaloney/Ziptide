@@ -8,33 +8,19 @@ using Ziptide.Multiplayer.Augments;
 namespace Ziptide.Gameplay
 {
     /// <summary>
-    /// THE MELEE PAIR (MP100 wave 1, 2026-07-06) — the game's first TRUE contact melee. Unlike the
-    /// Sonic Thumper (a swing-gated positional AoE pulse), these only hit what the swing actually
-    /// reaches:
-    ///  · BREAKER BLADE — fast 1H swings; while the tip moves faster than PvpRules.MeleeSwingSpeed,
-    ///    a small contact sphere at the tip deals BreakerBladeDamage to each target at most once per
-    ///    BladeContactDebounce. Sustained pressure, light hits, all the risk of being in reach.
-    ///    Bonus: a swing that reaches a BreakableWall cracks it (the hammer synergy).
-    ///  · TIDE PIKE — committed thrusts; when the shaft's velocity along its own forward axis beats
-    ///    PikeThrustSpeed, a ray of PikeReach fires from the tip and the FIRST target takes
-    ///    TidePikeDamage + a shove, then PikeThrustDebounce of recovery. Reach and burst, no spam.
-    /// Counters (design law: every weapon has a visible counter): both need you inside their reach —
-    /// range beats them; the pike's thrust is a straight line — sidestep it.
-    /// Hit detection reuses HammerTool/SonicThumper's proven tracked-point velocity idiom (transform
-    /// position delta, NOT Rigidbody.velocity — VelocityTracking grabs don't report it reliably).
-    /// Every triggered swing reports to <see cref="PvpNoise"/> so bots can hear and investigate.
+    /// Contact melee pair. Breaker Blade uses swing-speed contact; Tide Pike uses a committed forward
+    /// thrust. Socket selection is not treated as being held in a hand, so a sheathed weapon cannot
+    /// attack merely because the belt moved.
     /// </summary>
     [RequireComponent(typeof(XRGrabInteractable))]
     public class MeleeWeaponRuntime : MonoBehaviour
     {
-        // Quest 3S device pass 2026-07-26 proved the earlier 70° factory guess resolves as a forward
-        // stabbing hold on the tracked-controller basis. A 90° attach basis makes the blade's long +Z
-        // axis rise from the fist. This is deliberately blade-only; guns and the thrust-oriented pike
-        // keep their independent pose contracts.
-        private static readonly Vector3 BreakerBladeDeviceGripEuler = new Vector3(90f, 0f, 0f);
+        // Quest evidence: 90° X gave the right broad hold but erased the asset's 180° yaw, leaving the
+        // blade backwards. Preserve definition yaw/roll, apply a small forward lean from vertical.
+        private static readonly Vector3 BreakerBladeDeviceGripEuler = new Vector3(82f, 180f, 0f);
 
         private XRGrabInteractable _grab;
-        private Transform _tip;                 // the business end (child "Muzzle" from ItemFactory)
+        private Transform _tip;
         private Vector3 _lastTipPos;
         private float _nextThrustAt;
         private float _nextWallHitAt;
@@ -44,7 +30,7 @@ namespace Ziptide.Gameplay
         {
             get
             {
-                var item = GetComponent<ItemRuntime>();
+                ItemRuntime item = GetComponent<ItemRuntime>();
                 return item != null ? item.Definition as ArenaWeaponDefinition : null;
             }
         }
@@ -62,12 +48,17 @@ namespace Ziptide.Gameplay
         private void Start()
         {
             ArenaWeaponDefinition def = Def;
-            if (def == null || def.kind != ArenaWeaponKind.BreakerBlade || _grab == null || _grab.attachTransform == null)
-                return;
+            if (def == null || def.kind != ArenaWeaponKind.BreakerBlade
+                || _grab == null || _grab.attachTransform == null) return;
 
-            _grab.attachTransform.localRotation = Quaternion.Euler(BreakerBladeDeviceGripEuler);
-            Debug.Log("ZIPTIDE: MELEE_GRIP_POSE weapon=breaker_blade euler=" +
-                      BreakerBladeDeviceGripEuler.ToString("F0"));
+            Vector3 pose = BreakerBladeDeviceGripEuler;
+            if (def.gripLocalEuler != Vector3.zero)
+            {
+                pose.y = def.gripLocalEuler.y;
+                pose.z = def.gripLocalEuler.z;
+            }
+            _grab.attachTransform.localRotation = Quaternion.Euler(pose);
+            Debug.Log("ZIPTIDE: MELEE_GRIP_POSE weapon=breaker_blade euler=" + pose.ToString("F0"));
         }
 
         private void Update()
@@ -76,26 +67,32 @@ namespace Ziptide.Gameplay
             Vector3 tipVel = Time.deltaTime > 1e-4f ? (tipPos - _lastTipPos) / Time.deltaTime : Vector3.zero;
             _lastTipPos = tipPos;
 
-            bool held = _grab != null && _grab.isSelected;
-            if (!held) return;
-
+            if (!IsHeldByController()) return;
             if (IsPike) TickPike(tipPos, tipVel);
             else TickBlade(tipPos, tipVel);
         }
 
-        // ── Breaker Blade: continuous contact while genuinely swinging ────────────────────────────
+        private bool IsHeldByController()
+        {
+            if (_grab == null || !_grab.isSelected) return false;
+            foreach (IXRSelectInteractor interactor in _grab.interactorsSelecting)
+                if (interactor is XRBaseControllerInteractor) return true;
+            return false;
+        }
+
         private void TickBlade(Vector3 tipPos, Vector3 tipVel)
         {
             if (tipVel.magnitude < (float)PvpRules.MeleeSwingSpeed) return;
             PvpNoise.Report(tipPos);
 
-            var hits = Physics.OverlapSphere(tipPos, (float)PvpRules.BladeReach, ~0, QueryTriggerInteraction.Ignore);
+            Collider[] hits = Physics.OverlapSphere(tipPos, (float)PvpRules.BladeReach,
+                ~0, QueryTriggerInteraction.Ignore);
             for (int i = 0; i < hits.Length; i++)
             {
-                var h = hits[i];
+                Collider h = hits[i];
                 if (h == null || h.transform.root == transform.root) continue;
 
-                var wall = h.GetComponentInParent<BreakableWall>();
+                BreakableWall wall = h.GetComponentInParent<BreakableWall>();
                 if (wall != null && Time.time >= _nextWallHitAt)
                 {
                     wall.HitFromHammer(h.ClosestPoint(tipPos));
@@ -103,11 +100,12 @@ namespace Ziptide.Gameplay
                     continue;
                 }
 
-                var pvp = h.GetComponentInParent<IPvpDamageable>();
-                if (pvp == null || pvp.PlayerIndex == 0) continue;   // never cut yourself
+                IPvpDamageable pvp = h.GetComponentInParent<IPvpDamageable>();
+                if (pvp == null || pvp.PlayerIndex == 0) continue;
                 Transform key = h.transform.root;
                 if (_nextHitAt.TryGetValue(key, out float nextAt) && Time.time < nextAt) continue;
-                _nextHitAt[key] = Time.time + (float)PvpRules.BladeContactDebounce * AugmentEffects.WeaponCooldownScale;
+                _nextHitAt[key] = Time.time + (float)PvpRules.BladeContactDebounce
+                    * AugmentEffects.WeaponCooldownScale;
 
                 Vector3 dir = tipVel.sqrMagnitude > 0.01f ? tipVel.normalized : transform.forward;
                 PvpHitSource.Report(0);
@@ -117,43 +115,48 @@ namespace Ziptide.Gameplay
             }
         }
 
-        // ── Tide Pike: one committed thrust, then recovery ────────────────────────────────────────
         private void TickPike(Vector3 tipPos, Vector3 tipVel)
         {
             if (Time.time < _nextThrustAt) return;
             float forwardSpeed = Vector3.Dot(tipVel, transform.forward);
             if (forwardSpeed < (float)PvpRules.PikeThrustSpeed) return;
 
-            _nextThrustAt = Time.time + (float)PvpRules.PikeThrustDebounce * AugmentEffects.WeaponCooldownScale;
+            _nextThrustAt = Time.time + (float)PvpRules.PikeThrustDebounce
+                * AugmentEffects.WeaponCooldownScale;
             PvpNoise.Report(tipPos);
 
-            // The thrust is a LINE — that's its counter. First body on the line takes the hit.
-            var rays = Physics.RaycastAll(tipPos, transform.forward, (float)PvpRules.PikeReach,
-                                          ~0, QueryTriggerInteraction.Ignore);
-            float best = float.MaxValue; RaycastHit bestHit = default; IPvpDamageable bestPvp = null;
+            RaycastHit[] rays = Physics.RaycastAll(tipPos, transform.forward, (float)PvpRules.PikeReach,
+                ~0, QueryTriggerInteraction.Ignore);
+            float best = float.MaxValue;
+            RaycastHit bestHit = default;
+            IPvpDamageable bestPvp = null;
             for (int i = 0; i < rays.Length; i++)
             {
                 if (rays[i].transform.root == transform.root) continue;
-                var pvp = rays[i].collider.GetComponentInParent<IPvpDamageable>();
+                IPvpDamageable pvp = rays[i].collider.GetComponentInParent<IPvpDamageable>();
                 if (pvp == null || pvp.PlayerIndex == 0) continue;
-                if (rays[i].distance < best) { best = rays[i].distance; bestHit = rays[i]; bestPvp = pvp; }
+                if (rays[i].distance < best)
+                {
+                    best = rays[i].distance;
+                    bestHit = rays[i];
+                    bestPvp = pvp;
+                }
             }
             if (bestPvp == null) return;
 
             PvpHitSource.Report(0);
             bestPvp.ReceiveHit(PvpWeapon.TidePike, bestHit.point, transform.forward);
-            var bot = bestHit.collider.GetComponentInParent<PvpBot>();
-            if (bot != null) bot.transform.position += transform.forward * 0.75f; // the poke lands
+            PvpBot bot = bestHit.collider.GetComponentInParent<PvpBot>();
+            if (bot != null) bot.transform.position += transform.forward * 0.75f;
             HitFlash(bestHit.point, new Color(0.35f, 0.75f, 0.8f));
             Debug.Log("ZIPTIDE: MELEE_HIT weapon=tide_pike dist=" + best.ToString("0.0"));
         }
 
-        /// <summary>Cheap spawn-and-die contact spark so a landed hit READS (ThumpRing idiom).</summary>
         private static void HitFlash(Vector3 at, Color color)
         {
-            var s = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            GameObject s = GameObject.CreatePrimitive(PrimitiveType.Sphere);
             s.name = "MeleeHitFlash";
-            var col = s.GetComponent<Collider>();
+            Collider col = s.GetComponent<Collider>();
             if (col != null) Destroy(col);
             s.transform.position = at;
             s.transform.localScale = Vector3.one * 0.12f;
@@ -162,7 +165,6 @@ namespace Ziptide.Gameplay
         }
     }
 
-    /// <summary>Grows briefly and dies — a contact spark, not a persistent effect.</summary>
     public class MeleeFlashVisual : MonoBehaviour
     {
         private float _t;
