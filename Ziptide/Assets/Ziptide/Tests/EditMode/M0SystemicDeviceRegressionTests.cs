@@ -2,6 +2,7 @@
 using System.IO;
 using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 using Ziptide.Gameplay;
 using Ziptide.Ship;
 
@@ -24,6 +25,7 @@ namespace Ziptide.Tests.EditMode
             string belt = Read("Gameplay", "Runtime", "Inventory", "BeltRig.cs");
             StringAssert.Contains("PlayerSafetyRuntime.EnsureOnRig(rig.gameObject);", belt,
                 "Runtime rig must install safety even when generated Boot content is stale.");
+            StringAssert.Contains("TurnModeRuntimeAuthority.EnsureOnRig(rig.gameObject);", belt);
         }
 
         [Test]
@@ -52,6 +54,34 @@ namespace Ziptide.Tests.EditMode
             StringAssert.Contains("snap.enabled = false", source);
             StringAssert.Contains("Golden route requires smooth enabled and snap disabled", source);
             Assert.That(TurnModeCore.DefaultSmoothTurnSpeed, Is.InRange(45f, 75f));
+        }
+
+        [Test]
+        public void SmoothTurnRuntime_WaitsForUsableInputAndNeverLeavesSnapEnabled()
+        {
+            GameObject rig = new GameObject("TurnReadinessRig");
+            try
+            {
+                ActionBasedContinuousTurnProvider smooth = rig.AddComponent<ActionBasedContinuousTurnProvider>();
+                ActionBasedSnapTurnProvider snap = rig.AddComponent<ActionBasedSnapTurnProvider>();
+                snap.enabled = true;
+
+                bool ready = TurnModeCore.ApplySmoothOnlyWhenReady(rig.transform);
+
+                Assert.IsFalse(ready, "An unbound turn action is not device-ready.");
+                Assert.IsFalse(smooth.enabled, "XRI must not ReadValue from an unready action.");
+                Assert.IsFalse(snap.enabled, "Golden route never leaves snap and smooth active together.");
+            }
+            finally
+            {
+                Object.DestroyImmediate(rig);
+            }
+
+            string runtime = Read("Gameplay", "Runtime", "Player", "PlayerSafetyRuntime.cs");
+            StringAssert.Contains("action.controls.Count == 0", runtime);
+            StringAssert.Contains("action.ReadValue<Vector2>()", runtime);
+            StringAssert.Contains("DefaultExecutionOrder(-10000)", runtime);
+            StringAssert.Contains("TURN_MODE smoothReady=", runtime);
         }
 
         [Test]
