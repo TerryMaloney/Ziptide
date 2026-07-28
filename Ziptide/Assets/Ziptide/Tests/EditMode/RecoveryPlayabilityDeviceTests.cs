@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Ziptide.Tests.EditMode
 {
     /// <summary>
-    /// Source-contract pins for the 2026-07-26 Quest 3S device findings. These do not pretend to be
+    /// Source-contract pins for the 2026-07-26/27 Quest 3S device findings. These do not pretend to be
     /// device proof; they prevent the exact repaired ownership mistakes from silently returning before
     /// the next Golden/headset gate.
     /// </summary>
@@ -51,13 +51,15 @@ namespace Ziptide.Tests.EditMode
         }
 
         [Test]
-        public void BreakerBlade_HasADeviceSpecificVerticalPoseWithoutChangingGunTilt()
+        public void BreakerBlade_HasADeviceSpecificForwardVerticalPoseWithoutChangingGunTilt()
         {
             string melee = Read("Gameplay", "Runtime", "Weapons", "MeleeWeaponRuntime.cs");
             string factory = Read("Gameplay", "Runtime", "Items", "ItemFactory.cs");
 
-            StringAssert.Contains("BreakerBladeDeviceGripEuler = new Vector3(90f, 0f, 0f)", melee);
+            StringAssert.Contains("BreakerBladeDeviceGripEuler = new Vector3(82f, 180f, 0f)", melee);
+            StringAssert.Contains("Yaw is a device contract, not stale asset data", melee);
             StringAssert.Contains("weapon=breaker_blade euler=", melee);
+            StringAssert.DoesNotContain("new Vector3(90f, 0f, 0f)", melee);
             StringAssert.Contains("private static readonly Vector3 GunGripTilt", factory);
         }
 
