@@ -34,6 +34,8 @@ namespace Ziptide.Gameplay
             _cameraOrHead = cam != null ? cam.transform : null;
             EnsureVisualsAndSockets();
             UpdateBeltPosition();
+            Debug.Log("ZIPTIDE: BELT_READY sockets=3 camera="
+                + (_cameraOrHead != null ? _cameraOrHead.name : "NONE"));
         }
 
         private void LateUpdate()
@@ -62,22 +64,23 @@ namespace Ziptide.Gameplay
 
         private Transform EnsureHolster(string holsterName, Vector3 localOffset)
         {
-            var holster = transform.Find(holsterName);
+            Transform holster = transform.Find(holsterName);
             if (holster == null)
             {
-                var go = new GameObject(holsterName);
+                GameObject go = new GameObject(holsterName);
                 go.transform.SetParent(transform, false);
                 go.transform.localPosition = localOffset;
                 holster = go.transform;
             }
 
-            var trigger = holster.GetComponent<SphereCollider>();
+            SphereCollider trigger = holster.GetComponent<SphereCollider>();
             if (trigger == null) trigger = holster.gameObject.AddComponent<SphereCollider>();
             trigger.isTrigger = true;
-            trigger.radius = 0.16f;
+            trigger.radius = 0.20f;
 
             HolsterSocketInteractor socket = holster.GetComponent<HolsterSocketInteractor>();
             if (socket == null) socket = holster.gameObject.AddComponent<HolsterSocketInteractor>();
+            socket.socketActive = true;
 
             Transform attach = holster.Find("HolsterAttach");
             if (attach == null)
@@ -87,12 +90,12 @@ namespace Ziptide.Gameplay
                 attach = attachGo.transform;
             }
             attach.localPosition = new Vector3(0f, -0.04f, 0f);
-            attach.localRotation = HolsterPoseCore.Resolve("", holsterName);
+            attach.localRotation = Quaternion.identity;
             socket.attachTransform = attach;
 
             if (holster.Find("HolsterMarker") == null)
             {
-                var marker = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                GameObject marker = GameObject.CreatePrimitive(PrimitiveType.Sphere);
                 marker.name = "HolsterMarker";
                 marker.transform.SetParent(holster, false);
                 marker.transform.localScale = Vector3.one * 0.06f;
@@ -108,7 +111,7 @@ namespace Ziptide.Gameplay
         private void EnsureMaterials()
         {
             if (_holsterMat != null) return;
-            var shader = Shader.Find("Universal Render Pipeline/Lit");
+            Shader shader = Shader.Find("Universal Render Pipeline/Lit");
             if (shader == null) shader = Shader.Find("Standard");
             _holsterMat = new Material(shader) { name = "HolsterMarker_Mat" };
             SetBaseColor(_holsterMat, new Color(0.1f, 0.8f, 0.2f, 1f));
@@ -130,18 +133,40 @@ namespace Ziptide.Gameplay
         }
     }
 
-    /// <summary>Pure, shared belt-pose contract. ItemFactory hand poses never leak into holsters.</summary>
+    /// <summary>
+    /// Shared semantic belt target. It defines where a weapon's muzzle/tip should point in world space;
+    /// item root axes are solved separately from the actual Muzzle socket by HolsterSocketInteractor.
+    /// </summary>
     public static class HolsterPoseCore
     {
+        public static Vector3 ResolveDesiredAxis(Transform socket, string socketName)
+        {
+            Vector3 outward = Vector3.zero;
+            string lower = socketName != null ? socketName.ToLowerInvariant() : string.Empty;
+            if (socket != null && lower.Contains("left")) outward = -socket.right;
+            else if (socket != null && lower.Contains("right")) outward = socket.right;
+
+            Vector3 back = socket != null ? -socket.forward : Vector3.back;
+            return (Vector3.down + outward * 0.16f + back * 0.06f).normalized;
+        }
+
+        public static Vector3 ResolveDesiredUp(Transform socket, Vector3 desiredAxis)
+        {
+            Vector3 preferred = socket != null ? socket.forward : Vector3.forward;
+            Vector3 projected = Vector3.ProjectOnPlane(preferred, desiredAxis);
+            return projected.sqrMagnitude > 1e-6f ? projected.normalized : Vector3.forward;
+        }
+
+        // Compatibility helper for existing callers: this is the socket target basis, not an item-root
+        // Euler pose. New code should use ResolveDesiredAxis/ResolveDesiredUp plus the item's Muzzle axis.
         public static Quaternion Resolve(string itemId, string socketName)
         {
-            float sideRoll = socketName != null && socketName.ToLowerInvariant().Contains("left") ? -8f : 8f;
-            if (socketName != null && socketName.ToLowerInvariant().Contains("center")) sideRoll = 0f;
-
-            // All current hip items hang with their long/forward axis down the leg. The blade gets a
-            // little more outward cant so it reads as sheathed rather than as a gun barrel on the belt.
-            if (itemId == "breaker_blade") return Quaternion.Euler(88f, 0f, sideRoll * 1.5f);
-            return Quaternion.Euler(82f, 0f, sideRoll);
+            Vector3 outward = socketName != null && socketName.ToLowerInvariant().Contains("left")
+                ? Vector3.left : socketName != null && socketName.ToLowerInvariant().Contains("right")
+                    ? Vector3.right : Vector3.zero;
+            Vector3 axis = (Vector3.down + outward * 0.16f + Vector3.back * 0.06f).normalized;
+            Vector3 up = Vector3.ProjectOnPlane(Vector3.forward, axis).normalized;
+            return Quaternion.LookRotation(axis, up);
         }
     }
 }
