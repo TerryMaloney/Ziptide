@@ -27,6 +27,49 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-28 (rb119) — T-Dog lane: ⚡ FAST LANE — velocity fix after three trivial changes cost SIX HOURS
+
+- **Terry, verbatim:** *"it literally needed to do like two or three fixes… basically just change
+  the direction of the sword and like two other minor things… that took literally 6 hours. If it is
+  going to take that long then I'm just tossing this project in the trash."* Treating this as a
+  project-ending defect, because it is one.
+- **MEASURED diagnosis (not guessed):** `docs/HANDOFF.md` is **3,155 lines / 138 entries**, and the
+  laws require reading it + CLAUDE.md + OPERATOR_START_HERE + the checklist = **~3,600 lines of
+  read-in EVERY session before any code**. Add per-change ceremony (HANDOFF entry, ledger, ratchet
+  gate, board re-dating, catalog reconcile) applied equally to a sword angle and to a new subsystem.
+  Add CI at a **60 min median / 176 min p75** verdict-to-verdict. Add a measured **27-hour
+  continuous RED streak** (07-25 17:18 → 07-26 20:19) caused by a **stale board row, not code**.
+  Add three serialised workflows before an APK exists. Add hand-written install steps regenerated
+  per build. **Root cause: we built governance for 80 worlds and are running single screws through
+  it.**
+- **Shipped now:** **`tools/install_latest.ps1`** — one permanent installer (finds newest APK,
+  prints SHA-256, uninstall-first per rb109, clears logcat, installs, supports `-Serial`/`-Both`,
+  prints the logging command). Nobody hand-writes install instructions again.
+  **`docs/FAST_LANE.md`** + **`docs/FAST_LANE_LOG.md`** — the tiered protocol.
+- **⚠️ DISCOVERY THAT REMOVES AN OPERATOR FROM THE LOOP ENTIRELY:** `recovery-golden-android.yml`
+  already has `workflow_dispatch`. **Terry can build his own APK from the GitHub mobile app**
+  (Actions → Recovery Golden Android → Run workflow). ~12 min to artifact. He never has to wait on
+  a session for a build again.
+- **THE FAST LANE (adopted):** ≤3 files / ≤30 lines · no new system or contract · not touching rig,
+  travel, save, input, build config or recovery artifacts · single-revert reversible · correctness
+  decided by compile + existing tests + Terry's eyes. **Waives:** HANDOFF entry (one line in the
+  fast-lane log instead) · MISS_LEDGER unless the class repeats · the ratchet gate (deferred as
+  logged debt) · EXCELLENCE_MAP row · board reconcile · a dedicated build (batched). **Never
+  waives:** compile, existing tests, revertibility, and the report-only law.
+- **📣 MECHANICAL FIXES FOR WHOEVER OWNS CI (ranked by minutes saved, none change what gates check):**
+  ① **Archive HANDOFF.md** to ~10 newest entries — a **10× cut to the per-session read-in tax**,
+  highest-value single action available. ② **Move doc/board staleness checks OUT of Unity EditMode**
+  — `GateGap5_NoBoardClaim_RotsSilently` costs a full Unity boot + 1,171-test run to report a stale
+  date that `factory_governance_gate.py` reports in ~1 second; **this alone would have prevented the
+  27-hour red streak**. Any check reading only `docs/**` belongs in the python preflight.
+  ③ **Add a `concurrency` group to `ci.yml`** (golden-android already has one). ④ **Print the failing
+  test name into `CI_VERDICT.md`** — finding it currently means downloading and parsing NUnit XML by
+  hand. ⑤ One dispatch that chains CI → PlayMode → Golden APK unattended.
+- **Not done unilaterally:** the HANDOFF archive and the EditMode→python gate move touch shared
+  files while GPT is mid-fix; colliding there would cost more than it saves. They are specified
+  precisely enough to apply in minutes.
+- **Commit:** this one (installer + fast-lane protocol + log + this entry).
+
 ### 2026-07-28 (rb118) — T-Dog lane: 📋 ALL 24 CONCEPT SHEETS GIVEN BODY-CONTRACT PASSPORTS (pre-Tripo, docs only)
 
 - **Terry's ask:** get the whole concept batch wired in while GPT works the device fixes.
