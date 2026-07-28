@@ -8,6 +8,10 @@ namespace Ziptide.Gameplay
     /// </summary>
     public class DispatchKiosk : MonoBehaviour
     {
+        public static readonly Vector3 HowToLocalPosition = new Vector3(-0.75f, 1.25f, 0.02f);
+        public const float HowToCharacterSize = 0.009f;
+        public const int HowToFontSize = 64;
+
         [Tooltip("Job index in WorldPackDefinition.jobs to start when activated (0 = first job).")]
         [SerializeField] private int jobIndex = 0;
 
@@ -37,14 +41,21 @@ namespace Ziptide.Gameplay
             if (transform.Find("__HowToSign") != null) return;
             var go = new GameObject("__HowToSign");
             go.transform.SetParent(transform, false);
-            go.transform.localPosition = new Vector3(0f, 2.1f, 0f);
+            go.transform.localPosition = HowToLocalPosition;
+
             var tm = go.AddComponent<TextMesh>();
-            tm.text = "CONTRACT KIOSK\n1. Point + select to accept the job\n2. Follow the objective markers\n3. Finish the steps - get paid";
-            tm.characterSize = 0.012f; // characterSize x fontSize — the match-board lesson
-            tm.fontSize = 64;
+            tm.text = "CONTRACT KIOSK\n1  SELECT TO ACCEPT\n2  FOLLOW MARKERS\n3  COMPLETE - GET PAID";
+            tm.characterSize = HowToCharacterSize;
+            tm.fontSize = HowToFontSize;
+            tm.lineSpacing = 0.9f;
+            tm.fontStyle = FontStyle.Bold;
             tm.anchor = TextAnchor.MiddleCenter;
             tm.alignment = TextAlignment.Center;
             tm.color = new Color(0.85f, 0.95f, 1f);
+
+            // Legacy TextMesh is read from local -Z. The plaque owns its facing so the same kiosk
+            // authoring works in W000 and ToxicCity without scene-specific Euler guesses.
+            go.AddComponent<KioskHowToSignRuntime>();
         }
 
         private void OnDestroy()
@@ -58,6 +69,33 @@ namespace Ziptide.Gameplay
         {
             if (_director != null)
                 _director.StartJobByIndex(jobIndex);
+        }
+    }
+
+    /// <summary>
+    /// Keeps the compact kiosk plaque readable from the active player camera. TextMesh reads from -Z,
+    /// so +Z points away from the viewer. This component only owns plaque facing; the kiosk owns content
+    /// and placement.
+    /// </summary>
+    [DefaultExecutionOrder(1000)]
+    [DisallowMultipleComponent]
+    public sealed class KioskHowToSignRuntime : MonoBehaviour
+    {
+        private Camera _camera;
+
+        private void LateUpdate()
+        {
+            if (_camera == null || !_camera.isActiveAndEnabled)
+            {
+                _camera = Camera.main;
+                if (_camera == null)
+                    _camera = Object.FindFirstObjectByType<Camera>();
+            }
+            if (_camera == null) return;
+
+            Vector3 awayFromViewer = transform.position - _camera.transform.position;
+            if (awayFromViewer.sqrMagnitude < 0.000001f) return;
+            transform.rotation = Quaternion.LookRotation(awayFromViewer.normalized, Vector3.up);
         }
     }
 }
