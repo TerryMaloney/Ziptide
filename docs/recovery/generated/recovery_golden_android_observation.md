@@ -1,7 +1,7 @@
 # Recovery Golden Android Observation
 
 - Tested SHA: `f3f37d68bc805f6ce8ab6fa6fc7a13002a83b43c`
-- Workflow run: `30370322922`
+- Workflow run: `30370335745`
 - Attempt: `1`
 - Build/verification result: **cancelled**
 - Unity: 2022.3.62f3
