@@ -2,7 +2,7 @@
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
   "scannedFiles": 737,
-  "findingCount": 2636,
+  "findingCount": 2638,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -15235,7 +15235,7 @@
           {
             "code": "SAVE_SYSTEM_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryExposureProfile.cs",
-            "line": 54,
+            "line": 49,
             "symbol": "Ziptide.Core.RecoveryExposureProfile",
             "snippet": "RecoveryFeatureId.SaveSystem,"
           }
@@ -18865,7 +18865,7 @@
           {
             "code": "CAMERA_MAIN_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubAnchorLockRuntime.cs",
-            "line": 30,
+            "line": 63,
             "symbol": "Ziptide.Gameplay.HomeHubAnchorLockRuntime",
             "snippet": "Camera cam = Camera.main;"
           }

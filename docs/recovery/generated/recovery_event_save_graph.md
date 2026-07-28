@@ -1,7 +1,7 @@
 # ZIPTIDE Event and Save Ownership Graph
 
 - Scanned C# files: **737**
-- Evidence edges: **736**
+- Evidence edges: **739**
 - Named subscriptions without matching unsubscribe in the same owner: **57**
 
 This is a static ownership graph. An unmatched row is a review target, not automatic proof of a leak; process-lifetime static hooks may be intentional.
@@ -11,8 +11,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **AUTOSAVE:** 8
 - **EVENT_DECLARE:** 46
 - **EVENT_INVOKE:** 61
-- **EVENT_SUBSCRIBE:** 114
-- **EVENT_UNSUBSCRIBE:** 61
+- **EVENT_SUBSCRIBE:** 115
+- **EVENT_UNSUBSCRIBE:** 63
 - **PLAYER_PREFS_ACCESS:** 11
 - **PROFILE_FIELD_ACCESS:** 366
 - **SAVE_ACCESS:** 69
@@ -430,6 +430,9 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `HomeHubRuntime.ChoiceSelected`
 
+- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.HomeHubAnchorLockRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubAnchorLockRuntime.cs:26` · `OnChoiceSelected` — `HomeHubRuntime.ChoiceSelected += OnChoiceSelected;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.HomeHubAnchorLockRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubAnchorLockRuntime.cs:32` · `OnChoiceSelected` — `HomeHubRuntime.ChoiceSelected -= OnChoiceSelected;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.HomeHubAnchorLockRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubAnchorLockRuntime.cs:37` · `OnChoiceSelected` — `HomeHubRuntime.ChoiceSelected -= OnChoiceSelected;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:44` · `OnChoice` — `HomeHubRuntime.ChoiceSelected += OnChoice;`
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:56` · `OnChoice` — `HomeHubRuntime.ChoiceSelected -= OnChoice;`
 

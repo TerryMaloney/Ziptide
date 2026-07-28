@@ -1,7 +1,7 @@
 # ZIPTIDE Recovery Contract Scan
 
 - Scanned files: **737**
-- Findings: **2636**
+- Findings: **2638**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
@@ -9,7 +9,7 @@
 | Category | Count |
 |---|---:|
 | `bootstrap` | 42 |
-| `diagnostics` | 607 |
+| `diagnostics` | 609 |
 | `events` | 65 |
 | `fallback_debt` | 157 |
 | `global_render` | 86 |
@@ -432,7 +432,9 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:160` · `Ziptide.Gameplay.FirstDestinationHelmRuntime` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: FIRST_HOUR_SURFACE_SUBSCRIBER_FAIL phase=bunk reason=" +`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs:190` · `Ziptide.Gameplay.Tutorial.FirstHourObservationAdapter` — ZIPTIDE diagnostic tag. `"ZIPTIDE: FIRST_HOUR_OBSERVE beat=" + _activeBeatId +`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs:200` · `Ziptide.Gameplay.Tutorial.FirstHourObservationAdapter` — ZIPTIDE diagnostic tag. `"ZIPTIDE: FIRST_HOUR_OBSERVE beat=" + _activeBeatId +`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubAnchorLockRuntime.cs:53` · `Ziptide.Gameplay.HomeHubAnchorLockRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: HOME_HUB_ANCHOR locked_world=true pos=" + transform.position.ToString("F2"));`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubAnchorLockRuntime.cs:86` · `Ziptide.Gameplay.HomeHubAnchorLockRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: HOME_HUB_ANCHOR locked_world=true pos=" + transform.position.ToString("F2"));`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubAnchorLockRuntime.cs:122` · `Ziptide.Gameplay.HomeHubAnchorLockRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: HOME_HUB_BELT_SUPPRESS sockets=" + sockets.Length);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubAnchorLockRuntime.cs:139` · `Ziptide.Gameplay.HomeHubAnchorLockRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: HOME_HUB_BELT_RESTORE sockets=" + sockets.Length);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:130` · `Ziptide.Gameplay.HomeHubChoice` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: HOME_HUB_MISSING_CONFIG");`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:138` · `Ziptide.Gameplay.HomeHubChoice` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: HOME_HUB_READY continue=" + canContinue.ToString().ToLowerInvariant());`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:188` · `Ziptide.Gameplay.HomeHubChoice` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: HOME_HUB_ANCHOR mode=follow dist=" + posError.ToString("F2")`
@@ -934,7 +936,7 @@
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs:210` · `Ziptide.Gameplay.RillCompanion` — Camera.main dependency. `if (cam == null) cam = Camera.main;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:193` · `Ziptide.Gameplay.ShipCastOffRuntime` — Camera.main dependency. `var cam = Camera.main;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs:111` · `Ziptide.Gameplay.Tutorial.FirstHourObservationAdapter` — Camera.main dependency. `Camera camera = Camera.main;`
-- **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubAnchorLockRuntime.cs:30` · `Ziptide.Gameplay.HomeHubAnchorLockRuntime` — Camera.main dependency. `Camera cam = Camera.main;`
+- **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubAnchorLockRuntime.cs:63` · `Ziptide.Gameplay.HomeHubAnchorLockRuntime` — Camera.main dependency. `Camera cam = Camera.main;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:161` · `Ziptide.Gameplay.HomeHubChoice` — Camera.main dependency. `Camera cam = Camera.main;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:273` · `Ziptide.Gameplay.HomeHubChoice` — Camera.main dependency. `Camera cam = Camera.main;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:403` · `Ziptide.Gameplay.HomeHubChoice` — Camera.main dependency. `Camera cam = Camera.main;`
@@ -2470,7 +2472,7 @@
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:420` · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` — PlayerProfile reference. `private void OnNewGameProfileCreated(PlayerProfile profile) => _newGameProfile = profile;`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Core/Runtime/Persistence/ProfileSerializer.cs:7` · `Ziptide.Core.ProfileSerializer` — SaveSystem reference. `/// Kept separate from SaveSystem so it is fully unit-testable in EditMode — no headset, no disk.`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryAutomaticOwnerCatalog.cs:52` · `Ziptide.Core.RecoveryAutomaticOwnerRegistration` — SaveSystem reference. `Required("SAVE_SYSTEM_BOOTSTRAP", "Ziptide/Assets/Ziptide/Gameplay/Runtime/Persistence/SaveSystem.cs", "Ziptide.Gameplay.SaveSystem", RecoveryFeatureId.SaveSystem),`
-- **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryExposureProfile.cs:54` · `Ziptide.Core.RecoveryExposureProfile` — SaveSystem reference. `RecoveryFeatureId.SaveSystem,`
+- **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryExposureProfile.cs:49` · `Ziptide.Core.RecoveryExposureProfile` — SaveSystem reference. `RecoveryFeatureId.SaveSystem,`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryFeatureId.cs:22` · `Ziptide.Core.RecoveryFeatureId` — SaveSystem reference. `SaveSystem = 13,`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltFloorRuntime.cs:24` · `Ziptide.Gameplay.BeltCellSpec` — SaveSystem reference. `/// <see cref="LedgerSource.Factory"/>) onto the live SaveSystem profile.`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltFloorRuntime.cs:117` · `Ziptide.Gameplay.BeltCellSpec` — SaveSystem reference. `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`

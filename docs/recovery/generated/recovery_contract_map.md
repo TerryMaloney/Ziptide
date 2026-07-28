@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
 - Scanned files: **737**
-- Scanner findings: **2636**
+- Scanner findings: **2638**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -3338,7 +3338,7 @@ None.
 
 - Codes: `SAVE_SYSTEM_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryExposureProfile.cs`
-  - `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryExposureProfile.cs:54` **SAVE_SYSTEM_REFERENCE** — `RecoveryFeatureId.SaveSystem,`
+  - `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryExposureProfile.cs:49` **SAVE_SYSTEM_REFERENCE** — `RecoveryFeatureId.SaveSystem,`
 
 ### `Ziptide.Core.RecoveryFeatureId` — 1 signal(s)
 
@@ -4212,7 +4212,7 @@ None.
 
 - Codes: `CAMERA_MAIN_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubAnchorLockRuntime.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubAnchorLockRuntime.cs:30` **CAMERA_MAIN_REFERENCE** — `Camera cam = Camera.main;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubAnchorLockRuntime.cs:63` **CAMERA_MAIN_REFERENCE** — `Camera cam = Camera.main;`
 
 ### `Ziptide.Gameplay.HomeHubChoice` — 3 signal(s)
 

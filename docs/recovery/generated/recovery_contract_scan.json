@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-28T03:42:13.711357+00:00",
+  "generatedAtUtc": "2026-07-28T04:04:11.344286+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -9,10 +9,10 @@
     "Ziptide/Assets/ZiptideNet"
   ],
   "scannedFiles": 737,
-  "findingCount": 2636,
+  "findingCount": 2638,
   "categoryCounts": {
     "bootstrap": 42,
-    "diagnostics": 607,
+    "diagnostics": 609,
     "events": 65,
     "fallback_debt": 157,
     "global_render": 86,
@@ -57,7 +57,7 @@
     "XRI_MANAGER_LOOKUP": 45,
     "XR_INTERACTABLE_COMPONENT": 66,
     "XR_UI_INPUT_MODULE": 2,
-    "ZIPTIDE_LOG_TAG": 607
+    "ZIPTIDE_LOG_TAG": 609
   },
   "findings": [
     {
@@ -3701,9 +3701,27 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubAnchorLockRuntime.cs",
-      "line": 53,
+      "line": 86,
       "symbol": "Ziptide.Gameplay.HomeHubAnchorLockRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: HOME_HUB_ANCHOR locked_world=true pos=\" + transform.position.ToString(\"F2\"));"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubAnchorLockRuntime.cs",
+      "line": 122,
+      "symbol": "Ziptide.Gameplay.HomeHubAnchorLockRuntime",
+      "snippet": "Debug.Log(\"ZIPTIDE: HOME_HUB_BELT_SUPPRESS sockets=\" + sockets.Length);"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubAnchorLockRuntime.cs",
+      "line": 139,
+      "symbol": "Ziptide.Gameplay.HomeHubAnchorLockRuntime",
+      "snippet": "Debug.Log(\"ZIPTIDE: HOME_HUB_BELT_RESTORE sockets=\" + sockets.Length);"
     },
     {
       "category": "diagnostics",
@@ -8165,7 +8183,7 @@
       "code": "CAMERA_MAIN_REFERENCE",
       "description": "Camera.main dependency",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubAnchorLockRuntime.cs",
-      "line": 30,
+      "line": 63,
       "symbol": "Ziptide.Gameplay.HomeHubAnchorLockRuntime",
       "snippet": "Camera cam = Camera.main;"
     },
@@ -21881,7 +21899,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Core/Runtime/Recovery/RecoveryExposureProfile.cs",
-      "line": 54,
+      "line": 49,
       "symbol": "Ziptide.Core.RecoveryExposureProfile",
       "snippet": "RecoveryFeatureId.SaveSystem,"
     },
