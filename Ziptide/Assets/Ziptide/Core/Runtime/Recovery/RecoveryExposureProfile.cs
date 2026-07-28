@@ -41,16 +41,11 @@ namespace Ziptide.Core
 
     public static class RecoveryExposureProfiles
     {
-        // Clean-package proof marker (2026-07-16): the bounded Input System 1.6.3 / XRI 2.4.3
-        // matrix must import from an empty Unity Library and pass the unchanged PlayMode, EditMode,
-        // patch/audit and Golden Android routes before it can become the headset candidate.
         private static readonly RecoveryFeatureId[] GoldenFeatures =
         {
             RecoveryFeatureId.RuntimeHealthMonitor,
             RecoveryFeatureId.AmbienceDirector,
             RecoveryFeatureId.ComfortVignette,
-            // Ecology remains compiled and available in FullDevelopment, but the R0 manifest
-            // requires named-creature contact/grounding proof before it can enter GoldenSlice.
             RecoveryFeatureId.SaveSystem,
             RecoveryFeatureId.FirstHourObservation,
             RecoveryFeatureId.PlayerRigPersistence,
@@ -59,6 +54,9 @@ namespace Ziptide.Core
             RecoveryFeatureId.TravelCoordinator,
             RecoveryFeatureId.SingletonValidator,
             RecoveryFeatureId.SystemFocusLifecycle,
+            RecoveryFeatureId.VehicleSafety,
+            RecoveryFeatureId.RepairPartSafetyInstaller,
+            RecoveryFeatureId.HomeHubAnchorLockInstaller,
         };
 
         private static readonly HashSet<RecoveryFeatureId> ApprovedDiagnostics =
