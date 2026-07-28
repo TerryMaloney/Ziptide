@@ -28,9 +28,9 @@ namespace Ziptide.Core
 
     /// <summary>
     /// Code-side mirror of docs/recovery/automatic_runtime_owners.json.
-    /// The PlayMode contract test fails when the R0 evidence catalog and this gate catalog drift.
-    /// A separate source-discovery test scans real RuntimeInitializeOnLoadMethod attributes so
-    /// agreement between two curated lists cannot hide an omitted bootstrap.
+    /// The PlayMode contract test fails when the R0/R1 evidence catalog and this gate catalog drift.
+    /// A source-discovery test scans real RuntimeInitializeOnLoadMethod attributes so agreement between
+    /// two curated lists cannot hide an omitted bootstrap.
     /// </summary>
     public static class RecoveryAutomaticOwnerCatalog
     {
@@ -57,6 +57,9 @@ namespace Ziptide.Core
             Required("TRAVEL_COORDINATOR", "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs", "Ziptide.Gameplay.TravelCoordinator", RecoveryFeatureId.TravelCoordinator),
             Gated("SINGLETON_VALIDATOR", "Ziptide/Assets/Ziptide/Gameplay/Runtime/Diagnostics/SingletonValidator.cs", "Ziptide.Gameplay.SingletonValidator", RecoveryFeatureId.SingletonValidator),
             Required("SYSTEM_FOCUS_LIFECYCLE", "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs", "Ziptide.Gameplay.SystemFocusLifecycle", RecoveryFeatureId.SystemFocusLifecycle),
+            Required("VEHICLE_SAFETY_BOOTSTRAP", "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleSafetyRuntime.cs", "Ziptide.Ship.VehicleSafetyRuntime", RecoveryFeatureId.VehicleSafety),
+            Required("REPAIR_PART_SAFETY_INSTALLER", "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairPartSafetyInstallerRuntime.cs", "Ziptide.Gameplay.RepairPartSafetyInstallerRuntime", RecoveryFeatureId.RepairPartSafetyInstaller),
+            Required("HOME_HUB_ANCHOR_LOCK_INSTALLER", "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubAnchorLockInstallerRuntime.cs", "Ziptide.Gameplay.HomeHubAnchorLockInstallerRuntime", RecoveryFeatureId.HomeHubAnchorLockInstaller),
             Gated("NET_BOOTSTRAP", "Ziptide/Assets/ZiptideNet/NetBootstrap.cs", "ZiptideNet.NetBootstrap", RecoveryFeatureId.NetBootstrap)
         };
 
