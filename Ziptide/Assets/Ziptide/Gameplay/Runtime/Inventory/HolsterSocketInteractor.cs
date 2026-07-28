@@ -147,10 +147,11 @@ namespace Ziptide.Gameplay
         {
             GameObject go = (args.interactableObject as Component)?.gameObject;
             ItemRuntime item = go != null ? go.GetComponent<ItemRuntime>() : null;
+            IXRSelectInteractable selectable = args.interactableObject as IXRSelectInteractable;
+            bool canSelect = selectable != null && CanSelect(selectable);
             Debug.Log("ZIPTIDE: HOLSTER_CANDIDATE item="
                 + (item != null && item.Definition != null ? item.Definition.itemId : "UNKNOWN")
-                + " socket=" + gameObject.name + " canSelect="
-                + (args.interactableObject != null && CanSelect(args.interactableObject)));
+                + " socket=" + gameObject.name + " canSelect=" + canSelect);
         }
 
         private void OnSelectEnteredCallback(SelectEnterEventArgs args)
