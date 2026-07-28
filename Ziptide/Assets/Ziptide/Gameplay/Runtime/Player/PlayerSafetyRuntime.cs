@@ -272,7 +272,7 @@ namespace Ziptide.Gameplay
 
         private static SpawnMarkerRuntime FindPlayerMarker()
         {
-            SpawnMarkerRuntime[] markers = Object.FindObjectsOfType<SpawnMarkerRuntime>();
+            SpawnMarkerRuntime[] markers = UnityEngine.Object.FindObjectsOfType<SpawnMarkerRuntime>();
             if (markers == null || markers.Length == 0) return null;
             for (int i = 0; i < markers.Length; i++)
                 if (markers[i] != null && markers[i].markerId == "player") return markers[i];
