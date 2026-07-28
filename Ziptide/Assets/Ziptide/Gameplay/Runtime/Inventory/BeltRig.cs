@@ -32,10 +32,10 @@ namespace Ziptide.Gameplay
             if (rig != null)
             {
                 // BeltRig is guaranteed by PlayerRigPersistence and lives on the same persistent root.
-                // Use that guaranteed seam to install the device safety owner even if a stale generated
-                // Boot scene omitted it, and make smooth/snap exclusivity true at runtime.
+                // Use that guaranteed seam to install the device safety owners even if a stale generated
+                // Boot scene omitted them. Turn activation itself waits for usable XR input controls.
                 PlayerSafetyRuntime.EnsureOnRig(rig.gameObject);
-                TurnModeCore.EnforceSmoothOnly(rig.transform, "belt_start");
+                TurnModeRuntimeAuthority.EnsureOnRig(rig.gameObject);
             }
 
             Camera cam = GetComponentInParent<Camera>(true);
