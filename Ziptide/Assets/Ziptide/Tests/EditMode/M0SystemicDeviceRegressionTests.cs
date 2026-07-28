@@ -28,7 +28,7 @@ namespace Ziptide.Tests.EditMode
             string source = Read("Editor", "Patching", "PlayerRigHeightContractEnforcer.cs");
             StringAssert.Contains("FloorTrackingOriginMode = 2", source);
             StringAssert.Contains("offset.floatValue = 0f", source);
-            StringAssert.Contains("expected Floor tracking and cameraYOffset=0", source);
+            StringAssert.Contains("expected Floor tracking, cameraYOffset=0 and Camera Offset transform Y=0", source);
             StringAssert.Contains("cameraOffset.localPosition", source);
         }
 
