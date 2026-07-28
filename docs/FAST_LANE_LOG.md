@@ -7,3 +7,4 @@ Newest first.
 
 2026-07-28 · Board-staleness check moved out of Unity EditMode into the python preflight · `GateGapTests.cs` · a docs-only check was costing a full Unity run and blocking the pipeline (caused the 27-hour red streak) · no debt — `factory_governance_gate.py` already enforced it identically
 2026-07-28 · HANDOFF archived to newest 10 entries · `HANDOFF.md`, `HANDOFF_ARCHIVE_2026-07.md` · 3,155 → 277 lines; the per-session read-in tax was a measured cause of the six-hour trivial-fix cycle · no debt
+2026-07-28 · Rig height contract enforced OUTSIDE ScenePatcherBoot's exception swallow · `ScenePatcherBoot.cs` · D2's failures on _Boot were downgraded to a warning, so a throwing height contract shipped a 14-foot player silently · ⚠ touches rig height (report-only class) — applying an already-approved contract that was never reaching the rig

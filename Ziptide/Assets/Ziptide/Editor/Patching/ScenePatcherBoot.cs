@@ -49,6 +49,17 @@ namespace Ziptide.Editor.Patching
                 Debug.LogWarning("[Ziptide] Boot: D2 patcher warning: " + ex.Message);
             }
 
+            // ⚠ DO NOT MOVE THIS INSIDE THE TRY ABOVE.
+            // _Boot owns the XR Origin, so it is the ONLY scene where the rig height contract
+            // actually matters. The height contract lives inside ScenePatcherD2, and D2's failures
+            // here are deliberately downgraded to a warning — which meant that if the contract threw
+            // for ANY reason, the boot scene was saved anyway and the APK shipped with a synthetic
+            // adult offset stacked on top of Quest floor tracking. That is the "player is 14 feet
+            // tall" bug: a fix that exists, is unit-tested, passes CI, and never reaches the rig.
+            // Enforced OUTSIDE the swallow so a height failure fails the build loudly instead of
+            // silently shipping. (Device 2026-07-28.)
+            PlayerRigHeightContractEnforcer.EnsureCurrentScene();
+
             EnsureBootLoader();
 
             EditorSceneManager.MarkSceneDirty(scene);
