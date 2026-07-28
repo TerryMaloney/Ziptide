@@ -33,8 +33,6 @@ namespace Ziptide.Editor.Patching
             if (!scene.IsValid() || !scene.isLoaded) return;
 
             string sceneName = scene.name;
-
-            // World scenes: content only. No XR rig — it lives only in _Boot (DontDestroyOnLoad).
             if (sceneName != "_Boot")
             {
                 StripRigFromWorldScene();
@@ -53,17 +51,11 @@ namespace Ziptide.Editor.Patching
             EnsureTravelCoordinator();
         }
 
-        /// <summary>Removes any XR Origin, XRInteractionManager, and DontDestroyOnLoad singletons from the active scene so world scenes are content-only. Singletons (TravelCoordinator, AudioDirector) must live only in _Boot.</summary>
         private static void StripRigFromWorldScene()
         {
             var scene = EditorSceneManager.GetActiveScene();
             var roots = scene.GetRootGameObjects();
             var xrOriginType = System.Type.GetType("Unity.XR.CoreUtils.XROrigin, Unity.XR.CoreUtils");
-
-            // Collect first, THEN destroy. Calling DestroyImmediate while iterating (and re-reading
-            // root.name/GetComponent on later entries) can hit an already-destroyed object and throw
-            // "object destroyed but you are still trying to access it" — which left world scenes
-            // half-stripped (XRI manager remained, spawn marker never added → audit blockers).
             var toDestroy = new System.Collections.Generic.List<GameObject>();
             foreach (var root in roots)
             {
@@ -88,6 +80,8 @@ namespace Ziptide.Editor.Patching
         private static void EnsureLocomotionRig()
         {
             Ziptide.Editor.Setup.EnsureLocomotionRig.Run();
+            LocomotionContractEnforcer.EnsureCurrentScene();
+            PlayerRigHeightContractEnforcer.EnsureCurrentScene();
         }
 
         private static LocomotionProfile EnsureLocomotionProfileAsset()
@@ -140,15 +134,12 @@ namespace Ziptide.Editor.Patching
             GameObject xrOriginGo = FindXROrigin();
             if (xrOriginGo == null) return;
             PatcherUtil.EnsureComponent<PlayerRigPersistence>(xrOriginGo);
-            // Anti-stuck failsafe: hold both grips 1s to emergency respawn.
+            PatcherUtil.EnsureComponent<PlayerSafetyRuntime>(xrOriginGo);
             PatcherUtil.EnsureComponent<EmergencyRespawn>(xrOriginGo);
         }
 
         public static void EnsureSpawnMarker(string sceneName)
         {
-            // Preserve authored spawn positions. Generated worlds and cave worlds place their marker
-            // from world data before D2 runs; blindly calling EnsureRootObject with a default position
-            // moved W011_Undercroft from its first chamber to world origin after its floor check.
             GameObject go = GameObject.Find(SpawnMarkerName);
             if (go == null)
             {
@@ -157,7 +148,6 @@ namespace Ziptide.Editor.Patching
             }
 
             PatcherUtil.EnsureComponent<SpawnMarkerRuntime>(go);
-
             var so = new SerializedObject(go.GetComponent<SpawnMarkerRuntime>());
             PatcherUtil.SetString(so, "markerId", "player");
             so.ApplyModifiedPropertiesWithoutUndo();
@@ -165,9 +155,7 @@ namespace Ziptide.Editor.Patching
 
         private static Vector3 GetSceneSpawnPosition(string sceneName)
         {
-            if (sceneName == "D0_City")
-                // Aligned with CourtyardA_Spawn center in D1 city (Z=-16, Y=walkwayHeight=2.5+0.1 for player capsule).
-                return new Vector3(0f, 2.6f, -16f);
+            if (sceneName == "D0_City") return new Vector3(0f, 2.6f, -16f);
             return new Vector3(0f, 0.1f, 0f);
         }
 
@@ -180,9 +168,9 @@ namespace Ziptide.Editor.Patching
 
         private static void EnsureTravelCoordinator()
         {
-            if (Object.FindObjectOfType<Ziptide.Gameplay.TravelCoordinator>() != null) return;
+            if (Object.FindObjectOfType<TravelCoordinator>() != null) return;
             var go = PatcherUtil.EnsureRootObject("__TravelCoordinator", Vector3.zero);
-            PatcherUtil.EnsureComponent<Ziptide.Gameplay.TravelCoordinator>(go);
+            PatcherUtil.EnsureComponent<TravelCoordinator>(go);
         }
 
         private static void EnsureAudioDirector()
@@ -205,7 +193,6 @@ namespace Ziptide.Editor.Patching
             }
 
             var clip = AssetDatabase.LoadAssetAtPath<AudioClip>(AudioClipPath);
-
             var profile = ScriptableObject.CreateInstance<AudioProfile>();
             profile.clip = clip;
             profile.volume = 0.35f;

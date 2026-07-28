@@ -9,11 +9,8 @@ namespace Ziptide.Gameplay
 {
     /// <summary>
     /// Persistent, in-headset player escape surface. Y toggles a compact diegetic field menu in
-    /// every content world. The menu never loads _Boot (bootstrap is not a destination); Return to
-    /// Ship travels through the canonical TravelCoordinator to W000_DriftIn.
-    ///
-    /// It pauses only player locomotion/turning. World time keeps running so scene systems, travel,
-    /// networking and lifecycle owners are never wedged by Time.timeScale changes.
+    /// every content world. Return to Ship uses TravelCoordinator from other worlds and becomes a
+    /// deterministic recenter/unstuck operation when the player is already in W000.
     /// </summary>
     [DisallowMultipleComponent]
     public sealed class PlayerMenuRuntime : MonoBehaviour
@@ -33,7 +30,7 @@ namespace Ziptide.Gameplay
             if (_toggleAction == null)
             {
                 _toggleAction = new InputAction("ZiptidePlayerMenu", InputActionType.Button);
-                _toggleAction.AddBinding("<XRController>{LeftHand}/secondaryButton"); // Y
+                _toggleAction.AddBinding("<XRController>{LeftHand}/secondaryButton");
             }
             _toggleAction.Enable();
             SceneManager.sceneLoaded += OnSceneLoaded;
@@ -113,7 +110,10 @@ namespace Ziptide.Gameplay
             CloseMenu("return_to_ship");
             if (current == ZiptideConstants.SceneW000)
             {
-                Debug.Log("ZIPTIDE: PLAYER_MENU_RETURN already_at_ship=true");
+                // Return to Ship must remain an escape even when the player is already in the ship scene.
+                // The former no-op left Terry stranded after the coupler part/weapon conflict.
+                Debug.Log("ZIPTIDE: PLAYER_MENU_RETURN already_at_ship=true action=recover_spawn");
+                PlayerSafetyRuntime.RecoverNow("field_menu_same_scene");
                 return;
             }
 
@@ -198,11 +198,6 @@ namespace Ziptide.Gameplay
             AddLabel(tile.transform, text, new Vector3(0f, 0f, -0.56f), 0.018f);
         }
 
-        /// <summary>
-        /// The persistent rig adopts and replaces scene-local XRInteractionManagers during travel.
-        /// The field menu persists too, so rebind its tiles every time it opens rather than retaining
-        /// a destroyed manager from the world where the panel was first created.
-        /// </summary>
         private void RebindInteractables()
         {
             if (_menuRoot == null) return;
