@@ -303,10 +303,15 @@ namespace Ziptide.Gameplay
             if (viewForward.sqrMagnitude < 0.001f) viewForward = Vector3.forward;
             viewForward.Normalize();
 
-            // Conventional ready carry: approximately 68 degrees above horizontal with a modest
-            // forward lean. It cannot point back at the player's face because its forward component
-            // is explicitly the camera's outward view direction.
-            Vector3 desiredBladeAxis = (Vector3.up * 0.93f + viewForward * 0.37f).normalized;
+            // THRUST CARRY (device 2026-07-28, Terry): the tip LEADS, roughly 20 degrees above
+            // horizontal — a knife held to stab, not a sword raised to salute. The previous value
+            // was up*0.93 + forward*0.37, i.e. ~68 degrees above horizontal, which reads as the
+            // blade sticking up out of the fist. This component runs AFTER ItemFactory's grip pose
+            // and overrides it, which is why tuning gripEuler in the factory never changed anything.
+            // Tuning knob: raise the up term to lift the tip, raise the forward term to level it.
+            // It still cannot point back at the player because the forward component IS the
+            // camera's outward view direction.
+            Vector3 desiredBladeAxis = (viewForward * 0.94f + Vector3.up * 0.34f).normalized;
             Vector3 desiredBladeWidth = Vector3.ProjectOnPlane(camera.transform.right, desiredBladeAxis);
             if (desiredBladeWidth.sqrMagnitude < 0.001f) desiredBladeWidth = camera.transform.right;
             desiredBladeWidth.Normalize();
