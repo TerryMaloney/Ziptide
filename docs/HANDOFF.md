@@ -27,6 +27,34 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-28 (rb116) — T-Dog lane: 🎨 THREE BESTIARY SHEETS APPROVED + body contracts written (pre-Tripo)
+
+- **Terry generated prompts 4-6 and all three came back build-ready:** **Husk-molter** (incl. the
+  empty husk from 3 angles WITH a hollow-interior view — the separable prop we need), **Dredge-Bull**
+  (the new Bruiser; charge wind-up and the exposed vent in the winded pose both read instantly),
+  **Warden Sentinel** (chest-iris detail panels excellent; kneeling disabled pose).
+- **⚠️ Sentinel deviated from spec: it came back HUMANOID**, not the specced four folding limbs.
+  Recommendation recorded: **KEEP it** — a humanoid rig auto-rigs and retargets far more easily,
+  which materially helps the Tripo pipeline. But logged a **kid-comfort flag ⚖**: a silent,
+  faceless, 3 m humanoid approaching you in VR is much more intimidating than a bird-legged
+  machine, and this is an E/E10 family title. Mitigations already in the design (it warns first,
+  never enters arm's reach, unarmed, kneels when disabled) plus a **hard 1.5 m minimum approach**
+  for this species and a child-tester review before it ships in a required encounter.
+- **Wrote `docs/project_art_plan/BESTIARY_BODY_CONTRACTS.md`** — Block A/B/C passports for all
+  three: metre scale + threat-height band + closest-approach-to-headset, full state vocabulary
+  incl. the **CI-required COUNTER** and the weakened tell, socket maps (weak-point, grab handle
+  placed away from the face, tether, VFX/audio mounts, carry handle), separable parts with cap
+  geometry, collider proxies, and build-acceptance tests. Applied the VR timing rule: the
+  Dredge-Bull's charge telegraph is **0.8 s** because sidestepping is a whole-body answer.
+- **⚠️ DELIBERATELY NOT REGISTERED YET:** `concept_intake_gate.py` verifies every `conceptPaths`
+  file exists on disk (`:214`). The three PNGs are still on Terry's phone, so adding manifest
+  entries now would turn CI red. §0 of the new doc carries the exact 4-step registration recipe
+  for when the images are committed at the computer. Gates verified green as-is.
+- **Process correction for all operators:** Terry is on his PHONE by default and cannot open repo
+  files. Deliverables he needs to act on (prompts, commands, lists) must be IN the chat message,
+  not only committed. Docs are for the record; chat is the interface.
+- **Commit:** this one (body contracts + this entry).
+
 ### 2026-07-26 (rb114) — T-Dog lane: 🐛 CREATURE ROSTER + PROMPT QUEUE (Terry's Tripo run-up)
 
 - **Terry asked** for the concept-prompt framework, what creature art already exists, the full
