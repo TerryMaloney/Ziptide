@@ -1,10 +1,10 @@
 # Recovery PlayMode Observation
 
-- Tested SHA: `c3a3af6a06204cb240a724c6000304cd24cc49ad`
-- Workflow run: `30328781621`
+- Tested SHA: `f3f37d68bc805f6ce8ab6fa6fc7a13002a83b43c`
+- Workflow run: `30370334109`
 - Attempt: `1`
-- Test step outcome: **success**
-- NUnit totals: total=43 passed=43 failed=0 skipped=0 inconclusive=0
+- Test step outcome: **failure**
+- NUnit totals: total=43 passed=42 failed=1 skipped=0 inconclusive=0
 - Scope: R1 recovery PlayMode suite
 - Unity: 2022.3.62f3
 - Promotion state: canonical recovery route; headset authorization still requires matching CI, Golden Android, artifact review and Quest pass
