@@ -2,7 +2,7 @@
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
   "scannedFiles": 739,
-  "findingCount": 2662,
+  "findingCount": 2664,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -19170,6 +19170,25 @@
             "line": 102,
             "symbol": "Ziptide.Gameplay.PvpOnlinePresence",
             "snippet": "var cam = Camera.main;"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Gameplay.QuestDeviceCorrectionsRuntime",
+        "evidenceCount": 1,
+        "codes": [
+          "CAMERA_MAIN_REFERENCE"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs"
+        ],
+        "evidence": [
+          {
+            "code": "CAMERA_MAIN_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs",
+            "line": 298,
+            "symbol": "Ziptide.Gameplay.QuestDeviceCorrectionsRuntime",
+            "snippet": "Camera camera = Camera.main;"
           }
         ]
       },

@@ -1,13 +1,13 @@
 {
   "tool": "recovery_event_save_graph",
   "scannedFiles": 739,
-  "evidenceCount": 742,
+  "evidenceCount": 743,
   "kindCounts": {
     "AUTOSAVE": 8,
     "EVENT_DECLARE": 46,
     "EVENT_INVOKE": 61,
     "EVENT_SUBSCRIBE": 117,
-    "EVENT_UNSUBSCRIBE": 64,
+    "EVENT_UNSUBSCRIBE": 65,
     "PLAYER_PREFS_ACCESS": 11,
     "PROFILE_FIELD_ACCESS": 366,
     "SAVE_ACCESS": 69
@@ -233,11 +233,11 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs",
-      "line": 224,
+      "line": 327,
       "owner": "Ziptide.Gameplay.QuestDeviceCorrectionsRuntime",
-      "target": "position.y",
-      "detail": "CorrectedEyeHeight",
-      "snippet": "position.y += CorrectedEyeHeight - eyeHeight;"
+      "target": "transform.position",
+      "detail": "handAttach",
+      "snippet": "transform.position += handAttach.position - grip.position;"
     },
     {
       "kind": "EVENT_SUBSCRIBE",
@@ -4770,7 +4770,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs",
-        "line": 50,
+        "line": 45,
         "owner": "Ziptide.Gameplay.QuestDeviceCorrectionsRuntime",
         "target": "SceneManager.sceneLoaded",
         "detail": "OnSceneLoaded",
@@ -4779,7 +4779,7 @@
       {
         "kind": "EVENT_UNSUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs",
-        "line": 56,
+        "line": 51,
         "owner": "Ziptide.Gameplay.QuestDeviceCorrectionsRuntime",
         "target": "SceneManager.sceneLoaded",
         "detail": "OnSceneLoaded",
@@ -6936,13 +6936,13 @@
     ],
     "position.y": [
       {
-        "kind": "EVENT_SUBSCRIBE",
+        "kind": "EVENT_UNSUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs",
-        "line": 224,
+        "line": 209,
         "owner": "Ziptide.Gameplay.QuestDeviceCorrectionsRuntime",
         "target": "position.y",
-        "detail": "CorrectedEyeHeight",
-        "snippet": "position.y += CorrectedEyeHeight - eyeHeight;"
+        "detail": "eyeHeight",
+        "snippet": "position.y -= eyeHeight - CorrectedEyeHeight;"
       },
       {
         "kind": "EVENT_SUBSCRIBE",
@@ -7550,6 +7550,15 @@
         "target": "transform.position",
         "detail": "headDelta",
         "snippet": "transform.position += headDelta;"
+      },
+      {
+        "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs",
+        "line": 327,
+        "owner": "Ziptide.Gameplay.QuestDeviceCorrectionsRuntime",
+        "target": "transform.position",
+        "detail": "handAttach",
+        "snippet": "transform.position += handAttach.position - grip.position;"
       },
       {
         "kind": "EVENT_SUBSCRIBE",
@@ -10155,7 +10164,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs",
-      "line": 50,
+      "line": 45,
       "owner": "Ziptide.Gameplay.QuestDeviceCorrectionsRuntime",
       "target": "SceneManager.sceneLoaded",
       "detail": "OnSceneLoaded",
@@ -10164,20 +10173,29 @@
     {
       "kind": "EVENT_UNSUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs",
-      "line": 56,
+      "line": 51,
       "owner": "Ziptide.Gameplay.QuestDeviceCorrectionsRuntime",
       "target": "SceneManager.sceneLoaded",
       "detail": "OnSceneLoaded",
       "snippet": "SceneManager.sceneLoaded -= OnSceneLoaded;"
     },
     {
-      "kind": "EVENT_SUBSCRIBE",
+      "kind": "EVENT_UNSUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs",
-      "line": 224,
+      "line": 209,
       "owner": "Ziptide.Gameplay.QuestDeviceCorrectionsRuntime",
       "target": "position.y",
-      "detail": "CorrectedEyeHeight",
-      "snippet": "position.y += CorrectedEyeHeight - eyeHeight;"
+      "detail": "eyeHeight",
+      "snippet": "position.y -= eyeHeight - CorrectedEyeHeight;"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs",
+      "line": 327,
+      "owner": "Ziptide.Gameplay.QuestDeviceCorrectionsRuntime",
+      "target": "transform.position",
+      "detail": "handAttach",
+      "snippet": "transform.position += handAttach.position - grip.position;"
     },
     {
       "kind": "EVENT_DECLARE",

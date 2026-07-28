@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-28T19:54:50.789992+00:00",
+  "generatedAtUtc": "2026-07-28T20:26:51.441458+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -9,13 +9,13 @@
     "Ziptide/Assets/ZiptideNet"
   ],
   "scannedFiles": 739,
-  "findingCount": 2662,
+  "findingCount": 2664,
   "categoryCounts": {
     "bootstrap": 42,
-    "diagnostics": 625,
+    "diagnostics": 626,
     "events": 65,
     "fallback_debt": 159,
-    "global_render": 87,
+    "global_render": 88,
     "input": 230,
     "materials": 252,
     "persistence": 22,
@@ -27,7 +27,7 @@
   },
   "codeCounts": {
     "AUTOSAVE_CALL": 9,
-    "CAMERA_MAIN_REFERENCE": 48,
+    "CAMERA_MAIN_REFERENCE": 49,
     "CAMERA_POST_PROCESSING": 1,
     "CANVAS_COMPONENT": 5,
     "CREATE_PRIMITIVE": 262,
@@ -57,7 +57,7 @@
     "XRI_MANAGER_LOOKUP": 45,
     "XR_INTERACTABLE_COMPONENT": 66,
     "XR_UI_INPUT_MODULE": 2,
-    "ZIPTIDE_LOG_TAG": 625
+    "ZIPTIDE_LOG_TAG": 626
   },
   "findings": [
     {
@@ -2873,7 +2873,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs",
-      "line": 43,
+      "line": 38,
       "symbol": "Ziptide.Gameplay.QuestDeviceCorrectionsRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: QUEST_DEVICE_CORRECTIONS_ENSURED rig=\" + rig.name);"
     },
@@ -2882,16 +2882,16 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs",
-      "line": 143,
+      "line": 191,
       "symbol": "Ziptide.Gameplay.QuestDeviceCorrectionsRuntime",
-      "snippet": "Debug.Log(\"ZIPTIDE: BREAKER_BLADE_GRIP_FIXED euler=\""
+      "snippet": "Debug.LogWarning(\"ZIPTIDE: QUEST_HEIGHT_NO_GROUND reason=\" + reason);"
     },
     {
       "category": "diagnostics",
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs",
-      "line": 214,
+      "line": 199,
       "symbol": "Ziptide.Gameplay.QuestDeviceCorrectionsRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: QUEST_HEIGHT_OK eye=\" + eyeHeight.ToString(\"F2\")"
     },
@@ -2900,9 +2900,18 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs",
-      "line": 228,
+      "line": 215,
       "symbol": "Ziptide.Gameplay.QuestDeviceCorrectionsRuntime",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: QUEST_HEIGHT_FIXED from=\" + eyeHeight.ToString(\"F2\")"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs",
+      "line": 330,
+      "symbol": "Ziptide.Gameplay.QuestDeviceCorrectionsRuntime",
+      "snippet": "Debug.Log(\"ZIPTIDE: BREAKER_BLADE_LIVE_CALIBRATED desired=\""
     },
     {
       "category": "diagnostics",
@@ -8222,6 +8231,15 @@
       "line": 73,
       "symbol": "Ziptide.Gameplay.PlayerMenuRuntime",
       "snippet": "if (cam == null) cam = Camera.main;"
+    },
+    {
+      "category": "global_render",
+      "code": "CAMERA_MAIN_REFERENCE",
+      "description": "Camera.main dependency",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs",
+      "line": 298,
+      "symbol": "Ziptide.Gameplay.QuestDeviceCorrectionsRuntime",
+      "snippet": "Camera camera = Camera.main;"
     },
     {
       "category": "global_render",

@@ -1,10 +1,10 @@
 {
   "tool": "recovery_focus_reference_graph",
   "scannedFiles": 739,
-  "referenceCount": 418,
+  "referenceCount": 419,
   "summaries": {
     "melee": {
-      "referenceCount": 111,
+      "referenceCount": 112,
       "fileCount": 37,
       "callerFileCount": 37,
       "paths": [
@@ -275,7 +275,7 @@
           "focus": "melee",
           "token": "ArenaWeaponKind.BreakerBlade",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs",
-          "line": 124,
+          "line": 119,
           "symbol": "Ziptide.Gameplay.QuestDeviceCorrectionsRuntime",
           "snippet": "if (definition == null || definition.kind != ArenaWeaponKind.BreakerBlade) continue;",
           "declaration_file": false
@@ -474,7 +474,7 @@
           "focus": "melee",
           "token": "MeleeWeaponRuntime",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs",
-          "line": 115,
+          "line": 110,
           "symbol": "Ziptide.Gameplay.QuestDeviceCorrectionsRuntime",
           "snippet": "MeleeWeaponRuntime[] weapons = UnityEngine.Object.FindObjectsOfType<MeleeWeaponRuntime>(true);",
           "declaration_file": false
@@ -483,7 +483,7 @@
           "focus": "melee",
           "token": "MeleeWeaponRuntime",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs",
-          "line": 118,
+          "line": 113,
           "symbol": "Ziptide.Gameplay.QuestDeviceCorrectionsRuntime",
           "snippet": "MeleeWeaponRuntime weapon = weapons[i];",
           "declaration_file": false
@@ -848,6 +848,15 @@
           "line": 445,
           "symbol": "Ziptide.Gameplay.ItemFactory",
           "snippet": "var muzzleGo = new GameObject(\"Muzzle\");",
+          "declaration_file": false
+        },
+        {
+          "focus": "melee",
+          "token": "Muzzle",
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs",
+          "line": 269,
+          "symbol": "Ziptide.Gameplay.QuestDeviceCorrectionsRuntime",
+          "snippet": "_tip = transform.Find(\"Muzzle\");",
           "declaration_file": false
         },
         {
@@ -5688,7 +5697,7 @@
       "focus": "melee",
       "token": "ArenaWeaponKind.BreakerBlade",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs",
-      "line": 124,
+      "line": 119,
       "symbol": "Ziptide.Gameplay.QuestDeviceCorrectionsRuntime",
       "snippet": "if (definition == null || definition.kind != ArenaWeaponKind.BreakerBlade) continue;",
       "declaration_file": false
@@ -5697,7 +5706,7 @@
       "focus": "melee",
       "token": "MeleeWeaponRuntime",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs",
-      "line": 115,
+      "line": 110,
       "symbol": "Ziptide.Gameplay.QuestDeviceCorrectionsRuntime",
       "snippet": "MeleeWeaponRuntime[] weapons = UnityEngine.Object.FindObjectsOfType<MeleeWeaponRuntime>(true);",
       "declaration_file": false
@@ -5706,9 +5715,18 @@
       "focus": "melee",
       "token": "MeleeWeaponRuntime",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs",
-      "line": 118,
+      "line": 113,
       "symbol": "Ziptide.Gameplay.QuestDeviceCorrectionsRuntime",
       "snippet": "MeleeWeaponRuntime weapon = weapons[i];",
+      "declaration_file": false
+    },
+    {
+      "focus": "melee",
+      "token": "Muzzle",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs",
+      "line": 269,
+      "symbol": "Ziptide.Gameplay.QuestDeviceCorrectionsRuntime",
+      "snippet": "_tip = transform.Find(\"Muzzle\");",
       "declaration_file": false
     },
     {

@@ -1,11 +1,11 @@
 # ZIPTIDE Focused Recovery Reference Graph
 
 - Scanned C# files: **739**
-- Focused references: **418**
+- Focused references: **419**
 
 ## melee
 
-- References: **111**
+- References: **112**
 - Files: **37**
 - Non-declaration caller files: **37**
 
@@ -14,7 +14,7 @@
 - **reference** · `Ziptide.Editor.Patching.ArenaWeaponAuthor` · `Ziptide/Assets/Ziptide/Editor/Patching/ArenaWeaponAuthor.cs:27` — `made += Ensure("breaker_blade", ArenaWeaponKind.BreakerBlade, cooldown: 0.0f);`
 - **reference** · `Ziptide.Gameplay.ItemFactory` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:392` — `case ArenaWeaponKind.BreakerBlade:`
 - **reference** · `Ziptide.Gameplay.ItemFactory` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:453` — `case ArenaWeaponKind.BreakerBlade:`
-- **reference** · `Ziptide.Gameplay.QuestDeviceCorrectionsRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs:124` — `if (definition == null || definition.kind != ArenaWeaponKind.BreakerBlade) continue;`
+- **reference** · `Ziptide.Gameplay.QuestDeviceCorrectionsRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs:119` — `if (definition == null || definition.kind != ArenaWeaponKind.BreakerBlade) continue;`
 - **reference** · `Ziptide.Gameplay.WeaponPoseCore` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:94` — `if (def == null || def.kind != ArenaWeaponKind.BreakerBlade || _grab == null) return;`
 
 ### `ArenaWeaponKind.SonicThumper`
@@ -50,8 +50,8 @@
 
 - **reference** · `Ziptide.Editor.Audit.WeaponPerceptualAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs:28` — `bool melee = item.GetComponent<MeleeWeaponRuntime>() != null;`
 - **reference** · `Ziptide.Gameplay.ItemFactory` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:454` — `case ArenaWeaponKind.TidePike: go.AddComponent<MeleeWeaponRuntime>(); break;`
-- **reference** · `Ziptide.Gameplay.QuestDeviceCorrectionsRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs:115` — `MeleeWeaponRuntime[] weapons = UnityEngine.Object.FindObjectsOfType<MeleeWeaponRuntime>(true);`
-- **reference** · `Ziptide.Gameplay.QuestDeviceCorrectionsRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs:118` — `MeleeWeaponRuntime weapon = weapons[i];`
+- **reference** · `Ziptide.Gameplay.QuestDeviceCorrectionsRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs:110` — `MeleeWeaponRuntime[] weapons = UnityEngine.Object.FindObjectsOfType<MeleeWeaponRuntime>(true);`
+- **reference** · `Ziptide.Gameplay.QuestDeviceCorrectionsRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs:113` — `MeleeWeaponRuntime weapon = weapons[i];`
 - **reference** · `Ziptide.Gameplay.GunLaserSight` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:12` — `/// itself when MeleeWeaponRuntime is present.`
 - **reference** · `Ziptide.Gameplay.GunLaserSight` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:42` — `if (GetComponent<MeleeWeaponRuntime>() == null) return false;`
 - **declaration** · `Ziptide.Gameplay.WeaponPoseCore` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:61` — `public class MeleeWeaponRuntime : MonoBehaviour`
@@ -95,6 +95,7 @@
 - **reference** · `Ziptide.Gameplay.ItemFactory` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:260` — `/// forward "Lens" child (NOT "Muzzle", so no laser sight is attached) and a level grip (you`
 - **reference** · `Ziptide.Gameplay.ItemFactory` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:341` — `var muzzle = new GameObject("Muzzle");`
 - **reference** · `Ziptide.Gameplay.ItemFactory` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:445` — `var muzzleGo = new GameObject("Muzzle");`
+- **reference** · `Ziptide.Gameplay.QuestDeviceCorrectionsRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs:269` — `_tip = transform.Find("Muzzle");`
 - **reference** · `Ziptide.Gameplay.PvpComfortHop` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpComfortHop.cs:23` — `_muzzle = transform.Find("Muzzle");`
 - **reference** · `Ziptide.Gameplay.GravityGunRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GravityGunRuntime.cs:36` — `_muzzle = transform.Find("Muzzle");`
 - **reference** · `Ziptide.Gameplay.GravityGunRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GravityGunRuntime.cs:39` — `var m = new GameObject("Muzzle");`

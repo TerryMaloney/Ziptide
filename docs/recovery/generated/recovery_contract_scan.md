@@ -1,7 +1,7 @@
 # ZIPTIDE Recovery Contract Scan
 
 - Scanned files: **739**
-- Findings: **2662**
+- Findings: **2664**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
@@ -9,10 +9,10 @@
 | Category | Count |
 |---|---:|
 | `bootstrap` | 42 |
-| `diagnostics` | 625 |
+| `diagnostics` | 626 |
 | `events` | 65 |
 | `fallback_debt` | 159 |
-| `global_render` | 87 |
+| `global_render` | 88 |
 | `input` | 230 |
 | `materials` | 252 |
 | `persistence` | 22 |
@@ -340,10 +340,11 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs:321` · `Ziptide.Gameplay.TurnModeCore` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RIG_HEIGHT_RUNTIME origin=" + requested + " offsetY="`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerStunReceiver.cs:54` · `Ziptide.Gameplay.PlayerStunReceiver` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: PLAYER_STUN sec=" + seconds.ToString("F2") + " slow=" + slowFactor.ToString("F2"));`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerStunReceiver.cs:69` · `Ziptide.Gameplay.PlayerStunReceiver` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: PLAYER_HIT src=" + sourcePos.ToString("F1"));`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs:43` · `Ziptide.Gameplay.QuestDeviceCorrectionsRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: QUEST_DEVICE_CORRECTIONS_ENSURED rig=" + rig.name);`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs:143` · `Ziptide.Gameplay.QuestDeviceCorrectionsRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: BREAKER_BLADE_GRIP_FIXED euler="`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs:214` · `Ziptide.Gameplay.QuestDeviceCorrectionsRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: QUEST_HEIGHT_OK eye=" + eyeHeight.ToString("F2")`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs:228` · `Ziptide.Gameplay.QuestDeviceCorrectionsRuntime` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: QUEST_HEIGHT_FIXED from=" + eyeHeight.ToString("F2")`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs:38` · `Ziptide.Gameplay.QuestDeviceCorrectionsRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: QUEST_DEVICE_CORRECTIONS_ENSURED rig=" + rig.name);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs:191` · `Ziptide.Gameplay.QuestDeviceCorrectionsRuntime` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: QUEST_HEIGHT_NO_GROUND reason=" + reason);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs:199` · `Ziptide.Gameplay.QuestDeviceCorrectionsRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: QUEST_HEIGHT_OK eye=" + eyeHeight.ToString("F2")`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs:215` · `Ziptide.Gameplay.QuestDeviceCorrectionsRuntime` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: QUEST_HEIGHT_FIXED from=" + eyeHeight.ToString("F2")`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs:330` · `Ziptide.Gameplay.QuestDeviceCorrectionsRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: BREAKER_BLADE_LIVE_CALIBRATED desired="`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs:69` · `Ziptide.Gameplay.LifecycleState` — ZIPTIDE diagnostic tag. `/// flagged for the unified-readiness review in HANDOFF. Logs ZIPTIDE: LIFECYCLE state=a->b.`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs:97` · `Ziptide.Gameplay.LifecycleState` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: DUP_SINGLETON SystemFocusLifecycle");`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs:134` · `Ziptide.Gameplay.LifecycleState` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: LIFECYCLE state=" + previous + "->" + next + " reason=" + reason);`
@@ -941,6 +942,7 @@
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/CreditsHud.cs:42` · `Ziptide.Gameplay.CreditsHud` — Camera.main dependency. `if (_cam == null && Camera.main != null) _cam = Camera.main.transform;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/CreditsHud.cs:69` · `Ziptide.Gameplay.CreditsHud` — Camera.main dependency. `if (Camera.main != null) _cam = Camera.main.transform; else return;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs:73` · `Ziptide.Gameplay.PlayerMenuRuntime` — Camera.main dependency. `if (cam == null) cam = Camera.main;`
+- **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs:298` · `Ziptide.Gameplay.QuestDeviceCorrectionsRuntime` — Camera.main dependency. `Camera camera = Camera.main;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/ArenaLobbyBoard.cs:214` · `Ziptide.Gameplay.ArenaLobbyBoard` — Camera.main dependency. `var cam = Camera.main;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpBot.cs:387` · `Ziptide.Gameplay.PvpBot` — Camera.main dependency. `if (_player == null && Camera.main != null) _player = Camera.main.transform;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpHud.cs:21` · `Ziptide.Gameplay.PvpHud` — Camera.main dependency. `if (_cam == null && Camera.main != null) _cam = Camera.main.transform;`

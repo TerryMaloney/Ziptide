@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
 - Scanned files: **739**
-- Scanner findings: **2662**
+- Scanner findings: **2664**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -4302,6 +4302,12 @@ None.
 - Codes: `CAMERA_MAIN_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpOnlinePresence.cs`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpOnlinePresence.cs:102` **CAMERA_MAIN_REFERENCE** — `var cam = Camera.main;`
+
+### `Ziptide.Gameplay.QuestDeviceCorrectionsRuntime` — 1 signal(s)
+
+- Codes: `CAMERA_MAIN_REFERENCE`
+- Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs:298` **CAMERA_MAIN_REFERENCE** — `Camera camera = Camera.main;`
 
 ### `Ziptide.Gameplay.RepairableMachine` — 1 signal(s)
 
