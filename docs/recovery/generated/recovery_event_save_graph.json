@@ -1,18 +1,18 @@
 {
   "tool": "recovery_event_save_graph",
-  "scannedFiles": 728,
-  "evidenceCount": 730,
+  "scannedFiles": 737,
+  "evidenceCount": 736,
   "kindCounts": {
     "AUTOSAVE": 8,
     "EVENT_DECLARE": 46,
     "EVENT_INVOKE": 61,
-    "EVENT_SUBSCRIBE": 110,
-    "EVENT_UNSUBSCRIBE": 59,
+    "EVENT_SUBSCRIBE": 114,
+    "EVENT_UNSUBSCRIBE": 61,
     "PLAYER_PREFS_ACCESS": 11,
     "PROFILE_FIELD_ACCESS": 366,
     "SAVE_ACCESS": 69
   },
-  "unmatchedNamedSubscriptionCount": 55,
+  "unmatchedNamedSubscriptionCount": 57,
   "unmatchedNamedSubscriptions": [
     {
       "kind": "EVENT_SUBSCRIBE",
@@ -223,6 +223,15 @@
     },
     {
       "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs",
+      "line": 127,
+      "owner": "Ziptide.Gameplay.PlayerSafetyRuntime",
+      "target": "p.y",
+      "detail": "RecoveryEyeHeight",
+      "snippet": "p.y += RecoveryEyeHeight - eyeHeight;"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpBolt.cs",
       "line": 67,
       "owner": "Ziptide.Gameplay.PvpBolt",
@@ -255,7 +264,7 @@
       "owner": "Ziptide.Gameplay.MeleeWeaponRuntime",
       "target": "bot.transform.position",
       "detail": "transform",
-      "snippet": "if (bot != null) bot.transform.position += transform.forward * 0.75f; // the poke lands"
+      "snippet": "if (bot != null) bot.transform.position += transform.forward * 0.75f;"
     },
     {
       "kind": "EVENT_SUBSCRIBE",
@@ -391,6 +400,15 @@
       "target": "planet.defenseLevel",
       "detail": "d",
       "snippet": "planet.defenseLevel += d.DefenseBonus;"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleSafetyRuntime.cs",
+      "line": 121,
+      "owner": "Ziptide.Ship.VehicleSafetyRuntime",
+      "target": "p.y",
+      "detail": "MountedRecoveryEyeHeight",
+      "snippet": "p.y += MountedRecoveryEyeHeight - eyeHeight;"
     },
     {
       "kind": "EVENT_SUBSCRIBE",
@@ -2960,7 +2978,7 @@
       {
         "kind": "EVENT_DECLARE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-        "line": 25,
+        "line": 28,
         "owner": "Ziptide.Gameplay.HolsterSocketInteractor",
         "target": "ItemHolstered",
         "detail": "static Action<string>",
@@ -2969,7 +2987,7 @@
       {
         "kind": "EVENT_INVOKE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-        "line": 84,
+        "line": 137,
         "owner": "Ziptide.Gameplay.HolsterSocketInteractor",
         "target": "ItemHolstered",
         "detail": "",
@@ -4051,7 +4069,7 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-        "line": 68,
+        "line": 88,
         "owner": "Ziptide.Gameplay.HolsterSocketInteractor",
         "target": "SaveSystem.Profile",
         "detail": "",
@@ -4662,7 +4680,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs",
-        "line": 39,
+        "line": 36,
         "owner": "Ziptide.Gameplay.PlayerMenuRuntime",
         "target": "SceneManager.sceneLoaded",
         "detail": "OnSceneLoaded",
@@ -4671,7 +4689,7 @@
       {
         "kind": "EVENT_UNSUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs",
-        "line": 44,
+        "line": 41,
         "owner": "Ziptide.Gameplay.PlayerMenuRuntime",
         "target": "SceneManager.sceneLoaded",
         "detail": "OnSceneLoaded",
@@ -4691,6 +4709,24 @@
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
         "line": 317,
         "owner": "Ziptide.Gameplay.BootHoldState",
+        "target": "SceneManager.sceneLoaded",
+        "detail": "OnSceneLoaded",
+        "snippet": "SceneManager.sceneLoaded -= OnSceneLoaded;"
+      },
+      {
+        "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs",
+        "line": 34,
+        "owner": "Ziptide.Gameplay.PlayerSafetyRuntime",
+        "target": "SceneManager.sceneLoaded",
+        "detail": "OnSceneLoaded",
+        "snippet": "SceneManager.sceneLoaded += OnSceneLoaded;"
+      },
+      {
+        "kind": "EVENT_UNSUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs",
+        "line": 40,
+        "owner": "Ziptide.Gameplay.PlayerSafetyRuntime",
         "target": "SceneManager.sceneLoaded",
         "detail": "OnSceneLoaded",
         "snippet": "SceneManager.sceneLoaded -= OnSceneLoaded;"
@@ -4739,6 +4775,24 @@
         "target": "SceneManager.sceneLoaded",
         "detail": "OnSceneLoaded",
         "snippet": "SceneManager.sceneLoaded += OnSceneLoaded;"
+      },
+      {
+        "kind": "EVENT_UNSUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleSafetyRuntime.cs",
+        "line": 38,
+        "owner": "Ziptide.Ship.VehicleSafetyRuntime",
+        "target": "SceneManager.sceneLoaded",
+        "detail": "OnSceneLoadedStatic",
+        "snippet": "if (_hooked) SceneManager.sceneLoaded -= OnSceneLoadedStatic;"
+      },
+      {
+        "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleSafetyRuntime.cs",
+        "line": 47,
+        "owner": "Ziptide.Ship.VehicleSafetyRuntime",
+        "target": "SceneManager.sceneLoaded",
+        "detail": "OnSceneLoadedStatic",
+        "snippet": "SceneManager.sceneLoaded += OnSceneLoadedStatic;"
       },
       {
         "kind": "EVENT_SUBSCRIBE",
@@ -5676,7 +5730,7 @@
         "owner": "Ziptide.Gameplay.MeleeWeaponRuntime",
         "target": "bot.transform.position",
         "detail": "transform",
-        "snippet": "if (bot != null) bot.transform.position += transform.forward * 0.75f; // the poke lands"
+        "snippet": "if (bot != null) bot.transform.position += transform.forward * 0.75f;"
       },
       {
         "kind": "EVENT_SUBSCRIBE",
@@ -5714,7 +5768,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherD2.cs",
-        "line": 210,
+        "line": 197,
         "owner": "Ziptide.Editor.Patching.ScenePatcherD2",
         "target": "clip",
         "detail": "profile",
@@ -5770,7 +5824,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherD2.cs",
-        "line": 213,
+        "line": 200,
         "owner": "Ziptide.Editor.Patching.ScenePatcherD2",
         "target": "crossfadeSeconds",
         "detail": "profile",
@@ -5843,7 +5897,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherD2.cs",
-        "line": 214,
+        "line": 201,
         "owner": "Ziptide.Editor.Patching.ScenePatcherD2",
         "target": "enabled",
         "detail": "profile",
@@ -6387,7 +6441,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherD2.cs",
-        "line": 212,
+        "line": 199,
         "owner": "Ziptide.Editor.Patching.ScenePatcherD2",
         "target": "loop",
         "detail": "profile",
@@ -6555,6 +6609,15 @@
     "p.y": [
       {
         "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs",
+        "line": 127,
+        "owner": "Ziptide.Gameplay.PlayerSafetyRuntime",
+        "target": "p.y",
+        "detail": "RecoveryEyeHeight",
+        "snippet": "p.y += RecoveryEyeHeight - eyeHeight;"
+      },
+      {
+        "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/CityStreetLifeRuntime.cs",
         "line": 52,
         "owner": "Ziptide.Gameplay.CityStreetLifeRuntime",
@@ -6588,6 +6651,15 @@
         "target": "p.y",
         "detail": "Mathf",
         "snippet": "p.y -= Mathf.Max(0f, sagMeters) * 4f * t * (1f - t);"
+      },
+      {
+        "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleSafetyRuntime.cs",
+        "line": 121,
+        "owner": "Ziptide.Ship.VehicleSafetyRuntime",
+        "target": "p.y",
+        "detail": "MountedRecoveryEyeHeight",
+        "snippet": "p.y += MountedRecoveryEyeHeight - eyeHeight;"
       }
     ],
     "patrolRadius": [
@@ -7461,7 +7533,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherD2.cs",
-        "line": 211,
+        "line": 198,
         "owner": "Ziptide.Editor.Patching.ScenePatcherD2",
         "target": "volume",
         "detail": "profile",
@@ -8553,7 +8625,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherD2.cs",
-      "line": 210,
+      "line": 197,
       "owner": "Ziptide.Editor.Patching.ScenePatcherD2",
       "target": "clip",
       "detail": "profile",
@@ -8562,7 +8634,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherD2.cs",
-      "line": 211,
+      "line": 198,
       "owner": "Ziptide.Editor.Patching.ScenePatcherD2",
       "target": "volume",
       "detail": "profile",
@@ -8571,7 +8643,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherD2.cs",
-      "line": 212,
+      "line": 199,
       "owner": "Ziptide.Editor.Patching.ScenePatcherD2",
       "target": "loop",
       "detail": "profile",
@@ -8580,7 +8652,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherD2.cs",
-      "line": 213,
+      "line": 200,
       "owner": "Ziptide.Editor.Patching.ScenePatcherD2",
       "target": "crossfadeSeconds",
       "detail": "profile",
@@ -8589,7 +8661,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherD2.cs",
-      "line": 214,
+      "line": 201,
       "owner": "Ziptide.Editor.Patching.ScenePatcherD2",
       "target": "enabled",
       "detail": "profile",
@@ -9471,7 +9543,7 @@
     {
       "kind": "EVENT_DECLARE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-      "line": 25,
+      "line": 28,
       "owner": "Ziptide.Gameplay.HolsterSocketInteractor",
       "target": "ItemHolstered",
       "detail": "static Action<string>",
@@ -9480,7 +9552,7 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-      "line": 68,
+      "line": 88,
       "owner": "Ziptide.Gameplay.HolsterSocketInteractor",
       "target": "SaveSystem.Profile",
       "detail": "",
@@ -9489,7 +9561,7 @@
     {
       "kind": "EVENT_INVOKE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-      "line": 84,
+      "line": 137,
       "owner": "Ziptide.Gameplay.HolsterSocketInteractor",
       "target": "ItemHolstered",
       "detail": "",
@@ -9930,7 +10002,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs",
-      "line": 39,
+      "line": 36,
       "owner": "Ziptide.Gameplay.PlayerMenuRuntime",
       "target": "SceneManager.sceneLoaded",
       "detail": "OnSceneLoaded",
@@ -9939,7 +10011,7 @@
     {
       "kind": "EVENT_UNSUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs",
-      "line": 44,
+      "line": 41,
       "owner": "Ziptide.Gameplay.PlayerMenuRuntime",
       "target": "SceneManager.sceneLoaded",
       "detail": "OnSceneLoaded",
@@ -9971,6 +10043,33 @@
       "target": "transform.position",
       "detail": "headDelta",
       "snippet": "transform.position += headDelta;"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs",
+      "line": 34,
+      "owner": "Ziptide.Gameplay.PlayerSafetyRuntime",
+      "target": "SceneManager.sceneLoaded",
+      "detail": "OnSceneLoaded",
+      "snippet": "SceneManager.sceneLoaded += OnSceneLoaded;"
+    },
+    {
+      "kind": "EVENT_UNSUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs",
+      "line": 40,
+      "owner": "Ziptide.Gameplay.PlayerSafetyRuntime",
+      "target": "SceneManager.sceneLoaded",
+      "detail": "OnSceneLoaded",
+      "snippet": "SceneManager.sceneLoaded -= OnSceneLoaded;"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs",
+      "line": 127,
+      "owner": "Ziptide.Gameplay.PlayerSafetyRuntime",
+      "target": "p.y",
+      "detail": "RecoveryEyeHeight",
+      "snippet": "p.y += RecoveryEyeHeight - eyeHeight;"
     },
     {
       "kind": "EVENT_DECLARE",
@@ -10798,7 +10897,7 @@
       "owner": "Ziptide.Gameplay.MeleeWeaponRuntime",
       "target": "bot.transform.position",
       "detail": "transform",
-      "snippet": "if (bot != null) bot.transform.position += transform.forward * 0.75f; // the poke lands"
+      "snippet": "if (bot != null) bot.transform.position += transform.forward * 0.75f;"
     },
     {
       "kind": "EVENT_SUBSCRIBE",
@@ -11618,6 +11717,33 @@
       "target": "Family",
       "detail": "profile",
       "snippet": "+ \" family=\" + profile.Family + \" parts=\" + parts"
+    },
+    {
+      "kind": "EVENT_UNSUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleSafetyRuntime.cs",
+      "line": 38,
+      "owner": "Ziptide.Ship.VehicleSafetyRuntime",
+      "target": "SceneManager.sceneLoaded",
+      "detail": "OnSceneLoadedStatic",
+      "snippet": "if (_hooked) SceneManager.sceneLoaded -= OnSceneLoadedStatic;"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleSafetyRuntime.cs",
+      "line": 47,
+      "owner": "Ziptide.Ship.VehicleSafetyRuntime",
+      "target": "SceneManager.sceneLoaded",
+      "detail": "OnSceneLoadedStatic",
+      "snippet": "SceneManager.sceneLoaded += OnSceneLoadedStatic;"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleSafetyRuntime.cs",
+      "line": 121,
+      "owner": "Ziptide.Ship.VehicleSafetyRuntime",
+      "target": "p.y",
+      "detail": "MountedRecoveryEyeHeight",
+      "snippet": "p.y += MountedRecoveryEyeHeight - eyeHeight;"
     },
     {
       "kind": "EVENT_INVOKE",

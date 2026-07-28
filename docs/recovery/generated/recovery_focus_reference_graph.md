@@ -1,20 +1,20 @@
 # ZIPTIDE Focused Recovery Reference Graph
 
-- Scanned C# files: **728**
-- Focused references: **403**
+- Scanned C# files: **737**
+- Focused references: **409**
 
 ## melee
 
-- References: **103**
-- Files: **33**
-- Non-declaration caller files: **33**
+- References: **102**
+- Files: **34**
+- Non-declaration caller files: **34**
 
 ### `ArenaWeaponKind.BreakerBlade`
 
 - **reference** · `Ziptide.Editor.Patching.ArenaWeaponAuthor` · `Ziptide/Assets/Ziptide/Editor/Patching/ArenaWeaponAuthor.cs:27` — `made += Ensure("breaker_blade", ArenaWeaponKind.BreakerBlade, cooldown: 0.0f);`
 - **reference** · `Ziptide.Gameplay.ItemFactory` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:392` — `case ArenaWeaponKind.BreakerBlade:`
 - **reference** · `Ziptide.Gameplay.ItemFactory` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:453` — `case ArenaWeaponKind.BreakerBlade:`
-- **reference** · `Ziptide.Gameplay.MeleeWeaponRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:65` — `if (def == null || def.kind != ArenaWeaponKind.BreakerBlade || _grab == null || _grab.attachTransform == null)`
+- **reference** · `Ziptide.Gameplay.MeleeWeaponRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:49` — `if (def == null || def.kind != ArenaWeaponKind.BreakerBlade`
 
 ### `ArenaWeaponKind.SonicThumper`
 
@@ -27,7 +27,7 @@
 - **reference** · `Ziptide.Editor.Patching.ArenaWeaponAuthor` · `Ziptide/Assets/Ziptide/Editor/Patching/ArenaWeaponAuthor.cs:28` — `made += Ensure("tide_pike", ArenaWeaponKind.TidePike, cooldown: 0.0f);`
 - **reference** · `Ziptide.Gameplay.ItemFactory` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:399` — `case ArenaWeaponKind.TidePike:`
 - **reference** · `Ziptide.Gameplay.ItemFactory` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:454` — `case ArenaWeaponKind.TidePike: go.AddComponent<MeleeWeaponRuntime>(); break;`
-- **reference** · `Ziptide.Gameplay.MeleeWeaponRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:52` — `private bool IsPike => Def != null && Def.kind == ArenaWeaponKind.TidePike;`
+- **reference** · `Ziptide.Gameplay.MeleeWeaponRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:36` — `private bool IsPike => Def != null && Def.kind == ArenaWeaponKind.TidePike;`
 
 ### `HammerTool`
 
@@ -35,7 +35,6 @@
 - **reference** · `Ziptide.Editor.Patching.ScenePatcherPvP` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherPvP.cs:131` — `// hammer can't be grabbed (this is why pickup failed — HammerTool added the collider too late`
 - **reference** · `Ziptide.Editor.Patching.ScenePatcherPvP` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherPvP.cs:139` — `go.AddComponent<HammerTool>(); // RequireComponent adds XRGrabInteractable; collider already present`
 - **declaration** · `Ziptide.Gameplay.HammerTool` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/HammerTool.cs:13` — `public class HammerTool : MonoBehaviour`
-- **reference** · `Ziptide.Gameplay.MeleeWeaponRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:23` — `/// Hit detection reuses HammerTool/SonicThumper's proven tracked-point velocity idiom (transform`
 - **reference** · `Ziptide.Gameplay.SonicThumperRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/SonicThumperRuntime.cs:13` — `/// Mirrors HammerTool's proven swing detection (head speed threshold + debounce).`
 
 ### `HitFromHammer`
@@ -43,7 +42,7 @@
 - **reference** · `Ziptide.Gameplay.BreakableWall` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/BreakableWall.cs:48` — `public void HitFromHammer(Vector3 worldHitPoint)`
 - **reference** · `Ziptide.Gameplay.BreakableWall` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/BreakableWall.cs:149` — `public void HitFromHammer() { HitFromHammer(transform.position); }`
 - **reference** · `Ziptide.Gameplay.HammerTool` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/HammerTool.cs:118` — `if (wall != null) { wall.HitFromHammer(_head.position); _lastBreakAt = Time.time; break; }`
-- **reference** · `Ziptide.Gameplay.MeleeWeaponRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:101` — `wall.HitFromHammer(h.ClosestPoint(tipPos));`
+- **reference** · `Ziptide.Gameplay.MeleeWeaponRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:94` — `wall.HitFromHammer(h.ClosestPoint(tipPos));`
 - **reference** · `Ziptide.Gameplay.SonicThumperRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/SonicThumperRuntime.cs:64` — `wall.HitFromHammer(h.ClosestPoint(transform.position));`
 
 ### `MeleeWeaponRuntime`
@@ -52,7 +51,8 @@
 - **reference** · `Ziptide.Gameplay.ItemFactory` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:454` — `case ArenaWeaponKind.TidePike: go.AddComponent<MeleeWeaponRuntime>(); break;`
 - **reference** · `Ziptide.Gameplay.GunLaserSight` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:12` — `/// itself when MeleeWeaponRuntime is present.`
 - **reference** · `Ziptide.Gameplay.GunLaserSight` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:42` — `if (GetComponent<MeleeWeaponRuntime>() == null) return false;`
-- **declaration** · `Ziptide.Gameplay.MeleeWeaponRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:28` — `public class MeleeWeaponRuntime : MonoBehaviour`
+- **declaration** · `Ziptide.Gameplay.MeleeWeaponRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:16` — `public class MeleeWeaponRuntime : MonoBehaviour`
+- **reference** · `Ziptide.Tests.EditMode.M0SystemicDeviceRegressionTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/M0SystemicDeviceRegressionTests.cs:66` — `string source = Read("Gameplay", "Runtime", "Weapons", "MeleeWeaponRuntime.cs");`
 - **reference** · `Ziptide.Tests.EditMode.RecoveryPlayabilityDeviceTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryPlayabilityDeviceTests.cs:56` — `string melee = Read("Gameplay", "Runtime", "Weapons", "MeleeWeaponRuntime.cs");`
 
 ### `Muzzle`
@@ -93,8 +93,7 @@
 - **reference** · `Ziptide.Gameplay.GunLaserSight` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:7` — `/// The aim line (CONTROL_SCHEME.md "Aim"): a thin ray from the Muzzle to the first hit,`
 - **reference** · `Ziptide.Gameplay.GunLaserSight` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:11` — `/// Melee weapons expose a child named Muzzle as their physical tip, so this component disables`
 - **reference** · `Ziptide.Gameplay.GunLaserSight` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:50` — `_muzzle = transform.Find("Muzzle");`
-- **reference** · `Ziptide.Gameplay.MeleeWeaponRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:37` — `private Transform _tip; // the business end (child "Muzzle" from ItemFactory)`
-- **reference** · `Ziptide.Gameplay.MeleeWeaponRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:57` — `_tip = transform.Find("Muzzle");`
+- **reference** · `Ziptide.Gameplay.MeleeWeaponRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:41` — `_tip = transform.Find("Muzzle");`
 - **reference** · `Ziptide.Gameplay.PistolRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/PistolRuntime.cs:10` — `/// Hitscan pistol: raycast from Muzzle on trigger, hit TargetRuntime, tracer/muzzle/impact feedback,`
 - **reference** · `Ziptide.Gameplay.PistolRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/PistolRuntime.cs:41` — `_muzzle = transform.Find("Muzzle");`
 - **reference** · `Ziptide.Gameplay.PistolRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/PistolRuntime.cs:44` — `var m = new GameObject("Muzzle");`
@@ -138,9 +137,9 @@
 
 ## repairObjective
 
-- References: **203**
-- Files: **50**
-- Non-declaration caller files: **49**
+- References: **210**
+- Files: **52**
+- Non-declaration caller files: **51**
 
 ### `CastOffArming`
 
@@ -224,6 +223,7 @@
 - **reference** · `Ziptide.Gameplay.GardenPlotRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/GardenPlotRuntime.cs:19` — `/// Spawned by JobDirector from <see cref="GardenSpawnDefinition"/> pack data at the HarvestGrove`
 - **reference** · `Ziptide.Gameplay.GardenPlotRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/GardenPlotRuntime.cs:40` — `/// <summary>Build + bind. Called by JobDirector right after AddComponent (runtime only).</summary>`
 - **reference** · `Ziptide.Gameplay.MiningRigRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/MiningRigRuntime.cs:13` — `/// you). Spawned by JobDirector from <see cref="MineSpawnDefinition"/> pack data.`
+- **reference** · `Ziptide.Gameplay.RepairPartSafetyInstallerRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairPartSafetyInstallerRuntime.cs:6` — `/// <summary>Finds data-spawned repair parts after JobDirector builds them and attaches the safety rail.</summary>`
 - **reference** · `Ziptide.Gameplay.RepairableMachine` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:26` — `private JobDirector _director;`
 - **reference** · `Ziptide.Gameplay.RepairableMachine` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:57` — `public void Init(MachineSpawnDefinition def, JobDirector director)`
 - **reference** · `Ziptide.Gameplay.RepairableMachine` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:290` — `if (_director == null) _director = FindObjectOfType<JobDirector>();`
@@ -313,6 +313,12 @@
 - **reference** · `Ziptide.Gameplay.JobDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs:117` — `/// Called by RepairableMachine when its final repair stage completes. For RepairMachineCountStep.`
 - **reference** · `Ziptide.Gameplay.JobDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs:217` — `go.AddComponent<RepairableMachine>().Init(m, this);`
 - **reference** · `Ziptide.Gameplay.JobRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobRuntime.cs:83` — `/// <summary>A machine finished its hands-on repair (RepairableMachine's final stage).</summary>`
+- **reference** · `Ziptide.Gameplay.RepairPartSafetyInstallerRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairPartSafetyInstallerRuntime.cs:32` — `RepairableMachine[] machines = Object.FindObjectsOfType<RepairableMachine>(true);`
+- **reference** · `Ziptide.Gameplay.RepairPartSafetyInstallerRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairPartSafetyInstallerRuntime.cs:40` — `RepairableMachine nearest = null;`
+- **reference** · `Ziptide.Gameplay.RepairPartSafetyInstallerRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairPartSafetyInstallerRuntime.cs:44` — `RepairableMachine machine = machines[j];`
+- **reference** · `Ziptide.Gameplay.RepairPartSafetyRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairPartSafetyRuntime.cs:7` — `/// Bounded safety component for RepairableMachine replacement parts. The machine remains the`
+- **reference** · `Ziptide.Gameplay.RepairPartSafetyRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairPartSafetyRuntime.cs:16` — `private RepairableMachine _machine;`
+- **reference** · `Ziptide.Gameplay.RepairPartSafetyRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairPartSafetyRuntime.cs:23` — `public void Configure(RepairableMachine machine)`
 - **reference** · `Ziptide.Gameplay.RepairStage` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairStage.cs:6` — `/// Public read-only vocabulary for the existing RepairableMachine state. Numeric order preserves`
 - **reference** · `Ziptide.Gameplay.RepairStage` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairStage.cs:29` — `RepairableMachine designatedMachine)`
 - **reference** · `Ziptide.Gameplay.RepairStage` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairStage.cs:46` — `RepairableMachine designatedMachine,`

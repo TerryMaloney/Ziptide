@@ -1,50 +1,50 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-27T10:34:16.613013+00:00",
+  "generatedAtUtc": "2026-07-28T03:28:22.029793+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
     "Ziptide/Assets/Ziptide",
     "Ziptide/Assets/ZiptideNet"
   ],
-  "scannedFiles": 728,
-  "findingCount": 2586,
+  "scannedFiles": 737,
+  "findingCount": 2635,
   "categoryCounts": {
-    "bootstrap": 36,
-    "diagnostics": 584,
+    "bootstrap": 42,
+    "diagnostics": 606,
     "events": 65,
     "fallback_debt": 157,
-    "global_render": 84,
-    "input": 219,
+    "global_render": 86,
+    "input": 229,
     "materials": 252,
-    "persistence": 20,
-    "runtime_creation": 678,
+    "persistence": 22,
+    "runtime_creation": 682,
     "runtime_ui": 131,
     "save_state": 261,
     "scene_loading": 9,
-    "xri_ownership": 90
+    "xri_ownership": 93
   },
   "codeCounts": {
     "AUTOSAVE_CALL": 9,
-    "CAMERA_MAIN_REFERENCE": 45,
+    "CAMERA_MAIN_REFERENCE": 47,
     "CAMERA_POST_PROCESSING": 1,
     "CANVAS_COMPONENT": 5,
     "CREATE_PRIMITIVE": 262,
     "DIRECT_SCENE_LOAD": 2,
     "DIRECT_SCENE_LOAD_ASYNC": 7,
-    "DONT_DESTROY_ON_LOAD": 20,
+    "DONT_DESTROY_ON_LOAD": 22,
     "EDITOR_BOOTSTRAP": 10,
     "EVENT_DECLARATION": 49,
     "EVENT_SYSTEM_COMPONENT": 2,
     "FALLBACK_MARKER": 157,
     "FRAME_BUTTON_POLL": 1,
-    "INPUT_ACTION_REFERENCE": 208,
+    "INPUT_ACTION_REFERENCE": 218,
     "INPUT_BUTTON_REFERENCE": 10,
-    "NEW_GAME_OBJECT": 416,
+    "NEW_GAME_OBJECT": 420,
     "PLAYER_PROFILE_REFERENCE": 140,
     "RENDER_SETTINGS_MUTATION": 37,
-    "RUNTIME_BOOTSTRAP": 26,
+    "RUNTIME_BOOTSTRAP": 32,
     "RUNTIME_MATERIAL_CREATE": 96,
     "SAVE_SYSTEM_REFERENCE": 112,
     "SHADER_FIND": 156,
@@ -52,12 +52,12 @@
     "TEXTMESH_COMPONENT": 53,
     "TMP_COMPONENT": 3,
     "VOLUME_COMPONENT": 1,
-    "XRI_MANAGER_ASSIGN": 39,
+    "XRI_MANAGER_ASSIGN": 41,
     "XRI_MANAGER_CREATE": 7,
-    "XRI_MANAGER_LOOKUP": 44,
+    "XRI_MANAGER_LOOKUP": 45,
     "XR_INTERACTABLE_COMPONENT": 66,
     "XR_UI_INPUT_MODULE": 2,
-    "ZIPTIDE_LOG_TAG": 584
+    "ZIPTIDE_LOG_TAG": 606
   },
   "findings": [
     {
@@ -316,6 +316,24 @@
       "category": "bootstrap",
       "code": "RUNTIME_BOOTSTRAP",
       "description": "RuntimeInitializeOnLoadMethod bootstrap",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairPartSafetyInstallerRuntime.cs",
+      "line": 12,
+      "symbol": "Ziptide.Gameplay.RepairPartSafetyInstallerRuntime",
+      "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]"
+    },
+    {
+      "category": "bootstrap",
+      "code": "RUNTIME_BOOTSTRAP",
+      "description": "RuntimeInitializeOnLoadMethod bootstrap",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairPartSafetyInstallerRuntime.cs",
+      "line": 18,
+      "symbol": "Ziptide.Gameplay.RepairPartSafetyInstallerRuntime",
+      "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]"
+    },
+    {
+      "category": "bootstrap",
+      "code": "RUNTIME_BOOTSTRAP",
+      "description": "RuntimeInitializeOnLoadMethod bootstrap",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs",
       "line": 45,
       "symbol": "Ziptide.Gameplay.Tutorial.FirstHourObservationAdapter",
@@ -325,9 +343,45 @@
       "category": "bootstrap",
       "code": "RUNTIME_BOOTSTRAP",
       "description": "RuntimeInitializeOnLoadMethod bootstrap",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubAnchorLockInstallerRuntime.cs",
+      "line": 11,
+      "symbol": "Ziptide.Gameplay.HomeHubAnchorLockInstallerRuntime",
+      "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]"
+    },
+    {
+      "category": "bootstrap",
+      "code": "RUNTIME_BOOTSTRAP",
+      "description": "RuntimeInitializeOnLoadMethod bootstrap",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubAnchorLockInstallerRuntime.cs",
+      "line": 17,
+      "symbol": "Ziptide.Gameplay.HomeHubAnchorLockInstallerRuntime",
+      "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]"
+    },
+    {
+      "category": "bootstrap",
+      "code": "RUNTIME_BOOTSTRAP",
+      "description": "RuntimeInitializeOnLoadMethod bootstrap",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
       "line": 39,
       "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
+      "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]"
+    },
+    {
+      "category": "bootstrap",
+      "code": "RUNTIME_BOOTSTRAP",
+      "description": "RuntimeInitializeOnLoadMethod bootstrap",
+      "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleSafetyRuntime.cs",
+      "line": 35,
+      "symbol": "Ziptide.Ship.VehicleSafetyRuntime",
+      "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]"
+    },
+    {
+      "category": "bootstrap",
+      "code": "RUNTIME_BOOTSTRAP",
+      "description": "RuntimeInitializeOnLoadMethod bootstrap",
+      "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleSafetyRuntime.cs",
+      "line": 42,
+      "symbol": "Ziptide.Ship.VehicleSafetyRuntime",
       "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]"
     },
     {
@@ -833,6 +887,24 @@
       "line": 457,
       "symbol": "Ziptide.Editor.Patching.ForgePhotoBooth",
       "snippet": "Debug.Log(\"ZIPTIDE: FORGE_PHOTO id=\" + id + \" shot=\" + shot.name);"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs",
+      "line": 43,
+      "symbol": "Ziptide.Editor.Patching.LocomotionContractEnforcer",
+      "snippet": "Debug.Log(\"ZIPTIDE: TURN_CONTRACT_OK smoothAction=\" + turnReference.action.name"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/PlayerRigHeightContractEnforcer.cs",
+      "line": 38,
+      "symbol": "Ziptide.Editor.Patching.PlayerRigHeightContractEnforcer",
+      "snippet": "Debug.Log(\"ZIPTIDE: RIG_HEIGHT_CONTRACT_OK tracking=Floor cameraYOffset=0 transformY=0\");"
     },
     {
       "category": "diagnostics",
@@ -1559,16 +1631,34 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-      "line": 79,
+      "line": 91,
       "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
-      "snippet": "Debug.Log(\"ZIPTIDE: FIRST_HOLSTER item=\" + itemId + \" socket=\" + gameObject.name);"
+      "snippet": "Debug.Log(\"ZIPTIDE: HOLSTER_SELECT_ENTER item=\" + itemId + \" socket=\" + gameObject.name"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
+      "line": 109,
+      "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
+      "snippet": "Debug.Log((owned ? \"ZIPTIDE: HOLSTER_POSE_APPLIED\" : \"ZIPTIDE: HOLSTER_OWNERSHIP_FAIL\")"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
+      "line": 129,
+      "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
+      "snippet": "Debug.Log(\"ZIPTIDE: HOLSTER_SELECT_EXIT item=\""
     },
     {
       "category": "diagnostics",
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/InventoryState.cs",
-      "line": 31,
+      "line": 28,
       "symbol": "Ziptide.Gameplay.InventoryState",
       "snippet": "Debug.Log(\"ZIPTIDE: INVENTORY_SAVE count=\" + allItems.Length);"
     },
@@ -1577,7 +1667,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/InventoryState.cs",
-      "line": 46,
+      "line": 37,
       "symbol": "Ziptide.Gameplay.InventoryState",
       "snippet": "Debug.Log(\"ZIPTIDE: INVENTORY_SAVED item=\" + item.Definition.itemId + \" slot=\" + slotId);"
     },
@@ -1586,7 +1676,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/InventoryState.cs",
-      "line": 63,
+      "line": 48,
       "symbol": "Ziptide.Gameplay.InventoryState",
       "snippet": "Debug.Log(\"ZIPTIDE: INVENTORY_RESTORE count=\" + _saved.Count);"
     },
@@ -1595,16 +1685,16 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/InventoryState.cs",
-      "line": 76,
+      "line": 58,
       "symbol": "Ziptide.Gameplay.InventoryState",
-      "snippet": "Debug.LogWarning(\"ZIPTIDE: INVENTORY_RESTORE_FAIL item=\" + saved.itemId + \" reason=factory_returned_null\");"
+      "snippet": "Debug.LogError(\"ZIPTIDE: INVENTORY_RESTORE_BLOCKER item=\" + saved.itemId"
     },
     {
       "category": "diagnostics",
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/InventoryState.cs",
-      "line": 86,
+      "line": 66,
       "symbol": "Ziptide.Gameplay.InventoryState",
       "snippet": "Debug.Log(\"ZIPTIDE: INVENTORY_RESTORED item=\" + saved.itemId + \" slot=\" + saved.slotId);"
     },
@@ -1613,27 +1703,45 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/InventoryState.cs",
-      "line": 160,
+      "line": 101,
       "symbol": "Ziptide.Gameplay.InventoryState",
-      "snippet": "catch (System.Exception ex) { Debug.LogWarning(\"ZIPTIDE: SelectExit error: \" + ex.Message); }"
+      "snippet": "Debug.LogWarning(\"ZIPTIDE: INVENTORY_LEGACY_PARENT item=\" + item.Definition.itemId"
     },
     {
       "category": "diagnostics",
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/InventoryState.cs",
-      "line": 183,
+      "line": 127,
       "symbol": "Ziptide.Gameplay.InventoryState",
-      "snippet": "Debug.LogWarning(\"ZIPTIDE: HOLSTER_DOCK_FAIL item=\" + item.name + \" reason=no_socket slot=\" + slotId);"
+      "snippet": "Debug.LogWarning(\"ZIPTIDE: SelectExit error: \" + ex.Message);"
     },
     {
       "category": "diagnostics",
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/InventoryState.cs",
-      "line": 203,
+      "line": 144,
       "symbol": "Ziptide.Gameplay.InventoryState",
-      "snippet": "Debug.Log(\"ZIPTIDE: HOLSTER_DOCKED item=\" + item.name + \" slot=\" + slotId);"
+      "snippet": "Debug.LogError(\"ZIPTIDE: HOLSTER_DOCK_BLOCKER item=\" + item.name + \" reason=\""
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/InventoryState.cs",
+      "line": 191,
+      "symbol": "Ziptide.Gameplay.InventoryState",
+      "snippet": "Debug.Log(\"ZIPTIDE: HOLSTER_DOCKED item=\" + item.name + \" slot=\" + slotId"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/InventoryState.cs",
+      "line": 202,
+      "symbol": "Ziptide.Gameplay.InventoryState",
+      "snippet": "Debug.LogError(\"ZIPTIDE: HOLSTER_DOCK_BLOCKER item=\" + item.name"
     },
     {
       "category": "diagnostics",
@@ -2351,7 +2459,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs",
-      "line": 60,
+      "line": 57,
       "symbol": "Ziptide.Gameplay.PlayerMenuRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: PLAYER_MENU_BLOCKED reason=travel_in_progress\");"
     },
@@ -2360,7 +2468,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs",
-      "line": 79,
+      "line": 76,
       "symbol": "Ziptide.Gameplay.PlayerMenuRuntime",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: PLAYER_MENU_BLOCKED reason=no_camera\");"
     },
@@ -2369,7 +2477,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs",
-      "line": 99,
+      "line": 96,
       "symbol": "Ziptide.Gameplay.PlayerMenuRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: PLAYER_MENU open scene=\" + SceneManager.GetActiveScene().name);"
     },
@@ -2378,7 +2486,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs",
-      "line": 107,
+      "line": 104,
       "symbol": "Ziptide.Gameplay.PlayerMenuRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: PLAYER_MENU close reason=\" + reason);"
     },
@@ -2387,9 +2495,9 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs",
-      "line": 116,
+      "line": 115,
       "symbol": "Ziptide.Gameplay.PlayerMenuRuntime",
-      "snippet": "Debug.Log(\"ZIPTIDE: PLAYER_MENU_RETURN already_at_ship=true\");"
+      "snippet": "Debug.Log(\"ZIPTIDE: PLAYER_MENU_RETURN already_at_ship=true action=recover_spawn\");"
     },
     {
       "category": "diagnostics",
@@ -2405,7 +2513,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs",
-      "line": 212,
+      "line": 207,
       "symbol": "Ziptide.Gameplay.PlayerMenuRuntime",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: PLAYER_MENU_BIND_FAIL reason=no_xri_manager\");"
     },
@@ -2414,7 +2522,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs",
-      "line": 223,
+      "line": 218,
       "symbol": "Ziptide.Gameplay.PlayerMenuRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: PLAYER_MENU_BOUND count=\" + interactables.Length + \" manager=\" + manager.name);"
     },
@@ -2606,6 +2714,60 @@
       "line": 1017,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "Debug.Log(\"ZIPTIDE: SPAWN_AT marker='\" + marker.markerId + \"' rig=\" + transform.position.ToString(\"F2\")"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs",
+      "line": 55,
+      "symbol": "Ziptide.Gameplay.PlayerSafetyRuntime",
+      "snippet": "Debug.LogWarning(\"ZIPTIDE: PLAYER_RECOVERY_BLOCKED reason=no_safety_runtime request=\" + reason);"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs",
+      "line": 78,
+      "symbol": "Ziptide.Gameplay.PlayerSafetyRuntime",
+      "snippet": "Debug.Log(\"ZIPTIDE: PLAYER_RECOVERY requested=\" + reason);"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs",
+      "line": 101,
+      "symbol": "Ziptide.Gameplay.PlayerSafetyRuntime",
+      "snippet": "Debug.LogWarning(\"ZIPTIDE: PLAYER_HEIGHT_CHECK skipped reason=\""
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs",
+      "line": 109,
+      "symbol": "Ziptide.Gameplay.PlayerSafetyRuntime",
+      "snippet": "Debug.LogError(\"ZIPTIDE: PLAYER_HEIGHT_BLOCKER reason=no_ground marker=\""
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs",
+      "line": 116,
+      "symbol": "Ziptide.Gameplay.PlayerSafetyRuntime",
+      "snippet": "Debug.Log(\"ZIPTIDE: PLAYER_HEIGHT_CHECK eye=\" + eyeHeight.ToString(\"F2\")"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs",
+      "line": 131,
+      "symbol": "Ziptide.Gameplay.PlayerSafetyRuntime",
+      "snippet": "Debug.LogError(\"ZIPTIDE: PLAYER_HEIGHT_REPAIRED from=\" + eyeHeight.ToString(\"F2\")"
     },
     {
       "category": "diagnostics",
@@ -3214,6 +3376,42 @@
       "category": "diagnostics",
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairPartSafetyRuntime.cs",
+      "line": 50,
+      "symbol": "Ziptide.Gameplay.RepairPartSafetyRuntime",
+      "snippet": "Debug.Log(\"ZIPTIDE: REPAIR_PART_SAFETY_READY part=\" + name"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairPartSafetyRuntime.cs",
+      "line": 80,
+      "symbol": "Ziptide.Gameplay.RepairPartSafetyRuntime",
+      "snippet": "Debug.Log(\"ZIPTIDE: REPAIR_PART_SELECT part=\" + name + \" hand=\" + hand"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairPartSafetyRuntime.cs",
+      "line": 87,
+      "symbol": "Ziptide.Gameplay.RepairPartSafetyRuntime",
+      "snippet": "Debug.Log(\"ZIPTIDE: REPAIR_PART_RELEASE part=\" + name + \" hand=\" + hand);"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairPartSafetyRuntime.cs",
+      "line": 100,
+      "symbol": "Ziptide.Gameplay.RepairPartSafetyRuntime",
+      "snippet": "Debug.LogError(\"ZIPTIDE: REPAIR_PART_RECOVERED part=\" + name + \" reason=\" + reason"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
       "line": 259,
       "symbol": "Ziptide.Gameplay.RepairableMachine",
@@ -3493,6 +3691,15 @@
       "category": "diagnostics",
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubAnchorLockRuntime.cs",
+      "line": 53,
+      "symbol": "Ziptide.Gameplay.HomeHubAnchorLockRuntime",
+      "snippet": "Debug.Log(\"ZIPTIDE: HOME_HUB_ANCHOR locked_world=true pos=\" + transform.position.ToString(\"F2\"));"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
       "line": 130,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
@@ -3638,16 +3845,16 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-      "line": 69,
+      "line": 57,
       "symbol": "Ziptide.Gameplay.MeleeWeaponRuntime",
-      "snippet": "Debug.Log(\"ZIPTIDE: MELEE_GRIP_POSE weapon=breaker_blade euler=\" +"
+      "snippet": "Debug.Log(\"ZIPTIDE: MELEE_GRIP_POSE weapon=breaker_blade euler=\" + pose.ToString(\"F0\"));"
     },
     {
       "category": "diagnostics",
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-      "line": 116,
+      "line": 110,
       "symbol": "Ziptide.Gameplay.MeleeWeaponRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: MELEE_HIT weapon=breaker_blade\");"
     },
@@ -4034,9 +4241,18 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ObjectiveBeacon.cs",
-      "line": 28,
+      "line": 29,
       "symbol": "Ziptide.Gameplay.ObjectiveBeacon",
       "snippet": "Debug.Log(\"ZIPTIDE: BEACON_TARGET host=\" + host.name + \" scene=\" + host.scene.name);"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ObjectiveBeacon.cs",
+      "line": 65,
+      "symbol": "Ziptide.Gameplay.ObjectiveBeacon",
+      "snippet": "Debug.Log(\"ZIPTIDE: BEACON_CLOSE_HIDE host=\" + transform.parent.name"
     },
     {
       "category": "diagnostics",
@@ -4196,9 +4412,18 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/SpawnMarkerRuntime.cs",
-      "line": 24,
+      "line": 39,
       "symbol": "Ziptide.Gameplay.SpawnMarkerRuntime",
-      "snippet": "Debug.Log(\"ZIPTIDE: SPAWN_AT scene=\" + gameObject.scene.name"
+      "snippet": "string line = \"ZIPTIDE: SPAWN_AT scene=\" + gameObject.scene.name"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/SpawnMarkerRuntime.cs",
+      "line": 43,
+      "symbol": "Ziptide.Gameplay.SpawnMarkerRuntime",
+      "snippet": "if (buried || !below) Debug.LogError(\"ZIPTIDE: SPAWN_RUNTIME_BLOCKER \" + line);"
     },
     {
       "category": "diagnostics",
@@ -4685,6 +4910,33 @@
       "line": 395,
       "symbol": "Ziptide.Ship.VehicleRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: VEHICLE_EDGE_BLOCK id=\" + vehicleId"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleSafetyRuntime.cs",
+      "line": 126,
+      "symbol": "Ziptide.Ship.VehicleSafetyRuntime",
+      "snippet": "Debug.LogError(\"ZIPTIDE: VEHICLE_EYE_HEIGHT_REPAIRED id=\" + _vehicle.VehicleId"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleSafetyRuntime.cs",
+      "line": 135,
+      "symbol": "Ziptide.Ship.VehicleSafetyRuntime",
+      "snippet": "Debug.Log(\"ZIPTIDE: VEHICLE_SAFE_POSE id=\" + (_vehicle != null ? _vehicle.VehicleId : \"unknown\")"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleSafetyRuntime.cs",
+      "line": 158,
+      "symbol": "Ziptide.Ship.VehicleSafetyRuntime",
+      "snippet": "Debug.LogError(\"ZIPTIDE: VEHICLE_VERTICAL_ESCAPE_RECOVER id=\" + _vehicle.VehicleId"
     },
     {
       "category": "diagnostics",
@@ -5654,7 +5906,7 @@
       "code": "EVENT_DECLARATION",
       "description": "Event declaration",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-      "line": 25,
+      "line": 28,
       "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
       "snippet": "public static event Action<string> ItemHolstered;"
     },
@@ -6095,7 +6347,7 @@
       "code": "STATIC_EVENT_DECLARATION",
       "description": "Static event declaration",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-      "line": 25,
+      "line": 28,
       "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
       "snippet": "public static event Action<string> ItemHolstered;"
     },
@@ -7013,9 +7265,9 @@
       "code": "FALLBACK_MARKER",
       "description": "Source text marks fallback/prototype debt",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/InventoryState.cs",
-      "line": 127,
+      "line": 92,
       "symbol": "Ziptide.Gameplay.InventoryState",
-      "snippet": "// Proximity fallback: a gun resting on a holster may not be socket-SELECTED yet (physics/"
+      "snippet": "// Legacy parent fallback remains readable for one migration cycle, but proximity alone is"
     },
     {
       "category": "fallback_debt",
@@ -7769,7 +8021,7 @@
       "code": "CAMERA_MAIN_REFERENCE",
       "description": "Camera.main dependency",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs",
-      "line": 76,
+      "line": 73,
       "symbol": "Ziptide.Gameplay.PlayerMenuRuntime",
       "snippet": "if (cam == null) cam = Camera.main;"
     },
@@ -7903,6 +8155,15 @@
       "category": "global_render",
       "code": "CAMERA_MAIN_REFERENCE",
       "description": "Camera.main dependency",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubAnchorLockRuntime.cs",
+      "line": 30,
+      "symbol": "Ziptide.Gameplay.HomeHubAnchorLockRuntime",
+      "snippet": "Camera cam = Camera.main;"
+    },
+    {
+      "category": "global_render",
+      "code": "CAMERA_MAIN_REFERENCE",
+      "description": "Camera.main dependency",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
       "line": 161,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
@@ -7961,6 +8222,15 @@
       "line": 439,
       "symbol": "Ziptide.Gameplay.ConquestMissionRuntime",
       "snippet": "var cam = Camera.main;"
+    },
+    {
+      "category": "global_render",
+      "code": "CAMERA_MAIN_REFERENCE",
+      "description": "Camera.main dependency",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ObjectiveBeacon.cs",
+      "line": 57,
+      "symbol": "Ziptide.Gameplay.ObjectiveBeacon",
+      "snippet": "Camera cam = Camera.main;"
     },
     {
       "category": "global_render",
@@ -8483,6 +8753,87 @@
       "line": 26,
       "symbol": "Ziptide.Editor.Audit.RigDumpExporter",
       "snippet": "\"Target\", \"Pistol\", \"Taser\", \"CharacterController\", \"Rigidbody\", \"InputActionManager\","
+    },
+    {
+      "category": "input",
+      "code": "INPUT_ACTION_REFERENCE",
+      "description": "Input System action reference",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs",
+      "line": 25,
+      "symbol": "Ziptide.Editor.Patching.LocomotionContractEnforcer",
+      "snippet": "InputActionReference turnReference = FindReference(\"Turn\");"
+    },
+    {
+      "category": "input",
+      "code": "INPUT_ACTION_REFERENCE",
+      "description": "Input System action reference",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs",
+      "line": 60,
+      "symbol": "Ziptide.Editor.Patching.LocomotionContractEnforcer",
+      "snippet": "InputActionReference smoothRef = smoothSo.FindProperty(\"m_RightHandTurnAction.m_Reference\")?.objectReferenceValue"
+    },
+    {
+      "category": "input",
+      "code": "INPUT_ACTION_REFERENCE",
+      "description": "Input System action reference",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs",
+      "line": 61,
+      "symbol": "Ziptide.Editor.Patching.LocomotionContractEnforcer",
+      "snippet": "as InputActionReference;"
+    },
+    {
+      "category": "input",
+      "code": "INPUT_ACTION_REFERENCE",
+      "description": "Input System action reference",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs",
+      "line": 67,
+      "symbol": "Ziptide.Editor.Patching.LocomotionContractEnforcer",
+      "snippet": "InputActionReference snapRef = snapSo.FindProperty(\"m_RightHandSnapTurnAction.m_Reference\")?.objectReferenceValue"
+    },
+    {
+      "category": "input",
+      "code": "INPUT_ACTION_REFERENCE",
+      "description": "Input System action reference",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs",
+      "line": 68,
+      "symbol": "Ziptide.Editor.Patching.LocomotionContractEnforcer",
+      "snippet": "as InputActionReference;"
+    },
+    {
+      "category": "input",
+      "code": "INPUT_ACTION_REFERENCE",
+      "description": "Input System action reference",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs",
+      "line": 74,
+      "symbol": "Ziptide.Editor.Patching.LocomotionContractEnforcer",
+      "snippet": "throw new InvalidOperationException(\"TURN_CONTRACT: smooth and snap providers share one InputActionReference\");"
+    },
+    {
+      "category": "input",
+      "code": "INPUT_ACTION_REFERENCE",
+      "description": "Input System action reference",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs",
+      "line": 77,
+      "symbol": "Ziptide.Editor.Patching.LocomotionContractEnforcer",
+      "snippet": "private static InputActionReference FindReference(string actionName)"
+    },
+    {
+      "category": "input",
+      "code": "INPUT_ACTION_REFERENCE",
+      "description": "Input System action reference",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs",
+      "line": 84,
+      "symbol": "Ziptide.Editor.Patching.LocomotionContractEnforcer",
+      "snippet": "InputActionReference reference = assets[i] as InputActionReference;"
+    },
+    {
+      "category": "input",
+      "code": "INPUT_ACTION_REFERENCE",
+      "description": "Input System action reference",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs",
+      "line": 93,
+      "symbol": "Ziptide.Editor.Patching.LocomotionContractEnforcer",
+      "snippet": "InputActionReference reference = assets[i] as InputActionReference;"
     },
     {
       "category": "input",
@@ -9155,7 +9506,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs",
-      "line": 25,
+      "line": 22,
       "symbol": "Ziptide.Gameplay.PlayerMenuRuntime",
       "snippet": "private InputAction _toggleAction;"
     },
@@ -9164,7 +9515,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs",
-      "line": 35,
+      "line": 32,
       "symbol": "Ziptide.Gameplay.PlayerMenuRuntime",
       "snippet": "_toggleAction = new InputAction(\"ZiptidePlayerMenu\", InputActionType.Button);"
     },
@@ -9599,6 +9950,15 @@
       "line": 189,
       "symbol": "Ziptide.Tests.EditMode.FirstHourObservationCoreTests",
       "snippet": "StringAssert.DoesNotContain(\"InputAction\", source);"
+    },
+    {
+      "category": "input",
+      "code": "INPUT_ACTION_REFERENCE",
+      "description": "Input System action reference",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/M0SystemicDeviceRegressionTests.cs",
+      "line": 41,
+      "symbol": "Ziptide.Tests.EditMode.M0SystemicDeviceRegressionTests",
+      "snippet": "StringAssert.Contains(\"smooth and snap providers share one InputActionReference\", source);"
     },
     {
       "category": "input",
@@ -10298,9 +10658,9 @@
       "code": "INPUT_BUTTON_REFERENCE",
       "description": "Controller/button reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs",
-      "line": 36,
+      "line": 33,
       "symbol": "Ziptide.Gameplay.PlayerMenuRuntime",
-      "snippet": "_toggleAction.AddBinding(\"<XRController>{LeftHand}/secondaryButton\"); // Y"
+      "snippet": "_toggleAction.AddBinding(\"<XRController>{LeftHand}/secondaryButton\");"
     },
     {
       "category": "input",
@@ -10712,7 +11072,7 @@
       "code": "RUNTIME_MATERIAL_CREATE",
       "description": "Runtime Material allocation",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs",
-      "line": 104,
+      "line": 113,
       "symbol": "Ziptide.Gameplay.BeltRig",
       "snippet": "_holsterMat = new Material(shader) { name = \"HolsterMarker_Mat\" };"
     },
@@ -10775,7 +11135,7 @@
       "code": "RUNTIME_MATERIAL_CREATE",
       "description": "Runtime Material allocation",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs",
-      "line": 253,
+      "line": 248,
       "symbol": "Ziptide.Gameplay.PlayerMenuRuntime",
       "snippet": "Material material = new Material(shader);"
     },
@@ -11000,7 +11360,7 @@
       "code": "RUNTIME_MATERIAL_CREATE",
       "description": "Runtime Material allocation",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ObjectiveBeacon.cs",
-      "line": 44,
+      "line": 45,
       "symbol": "Ziptide.Gameplay.ObjectiveBeacon",
       "snippet": "_mat = shader != null ? new Material(shader) : null;"
     },
@@ -11792,7 +12152,7 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs",
-      "line": 102,
+      "line": 111,
       "symbol": "Ziptide.Gameplay.BeltRig",
       "snippet": "var shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
     },
@@ -11801,7 +12161,7 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs",
-      "line": 103,
+      "line": 112,
       "symbol": "Ziptide.Gameplay.BeltRig",
       "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
     },
@@ -11891,7 +12251,7 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs",
-      "line": 250,
+      "line": 245,
       "symbol": "Ziptide.Gameplay.PlayerMenuRuntime",
       "snippet": "Shader shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
     },
@@ -11900,7 +12260,7 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs",
-      "line": 251,
+      "line": 246,
       "symbol": "Ziptide.Gameplay.PlayerMenuRuntime",
       "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
     },
@@ -12323,9 +12683,9 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ObjectiveBeacon.cs",
-      "line": 43,
+      "line": 44,
       "symbol": "Ziptide.Gameplay.ObjectiveBeacon",
-      "snippet": "var shader = Shader.Find(\"Universal Render Pipeline/Unlit\");"
+      "snippet": "Shader shader = Shader.Find(\"Universal Render Pipeline/Unlit\");"
     },
     {
       "category": "materials",
@@ -12772,6 +13132,15 @@
       "category": "persistence",
       "code": "DONT_DESTROY_ON_LOAD",
       "description": "Object promoted across scene loads",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairPartSafetyInstallerRuntime.cs",
+      "line": 23,
+      "symbol": "Ziptide.Gameplay.RepairPartSafetyInstallerRuntime",
+      "snippet": "Object.DontDestroyOnLoad(go);"
+    },
+    {
+      "category": "persistence",
+      "code": "DONT_DESTROY_ON_LOAD",
+      "description": "Object promoted across scene loads",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs",
       "line": 51,
       "symbol": "Ziptide.Gameplay.Tutorial.FirstHourObservationAdapter",
@@ -12785,6 +13154,15 @@
       "line": 64,
       "symbol": "Ziptide.Gameplay.Tutorial.FirstHourObservationAdapter",
       "snippet": "DontDestroyOnLoad(gameObject);"
+    },
+    {
+      "category": "persistence",
+      "code": "DONT_DESTROY_ON_LOAD",
+      "description": "Object promoted across scene loads",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubAnchorLockInstallerRuntime.cs",
+      "line": 22,
+      "symbol": "Ziptide.Gameplay.HomeHubAnchorLockInstallerRuntime",
+      "snippet": "Object.DontDestroyOnLoad(go);"
     },
     {
       "category": "persistence",
@@ -13781,7 +14159,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs",
-      "line": 86,
+      "line": 95,
       "symbol": "Ziptide.Gameplay.BeltRig",
       "snippet": "var marker = GameObject.CreatePrimitive(PrimitiveType.Sphere);"
     },
@@ -14438,9 +14816,9 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-      "line": 154,
+      "line": 153,
       "symbol": "Ziptide.Gameplay.MeleeWeaponRuntime",
-      "snippet": "var s = GameObject.CreatePrimitive(PrimitiveType.Sphere);"
+      "snippet": "GameObject s = GameObject.CreatePrimitive(PrimitiveType.Sphere);"
     },
     {
       "category": "runtime_creation",
@@ -14672,9 +15050,9 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ObjectiveBeacon.cs",
-      "line": 35,
+      "line": 36,
       "symbol": "Ziptide.Gameplay.ObjectiveBeacon",
-      "snippet": "var pillar = GameObject.CreatePrimitive(PrimitiveType.Cylinder);"
+      "snippet": "GameObject pillar = GameObject.CreatePrimitive(PrimitiveType.Cylinder);"
     },
     {
       "category": "runtime_creation",
@@ -16804,6 +17182,15 @@
       "category": "runtime_creation",
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs",
+      "line": 85,
+      "symbol": "Ziptide.Gameplay.BeltRig",
+      "snippet": "GameObject attachGo = new GameObject(\"HolsterAttach\");"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/InventoryPersistence.cs",
       "line": 15,
       "symbol": "Ziptide.Gameplay.InventoryPersistence",
@@ -17210,7 +17597,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs",
-      "line": 228,
+      "line": 223,
       "symbol": "Ziptide.Gameplay.PlayerMenuRuntime",
       "snippet": "GameObject label = new GameObject(\"Label\");"
     },
@@ -17407,6 +17794,24 @@
       "category": "runtime_creation",
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairPartSafetyInstallerRuntime.cs",
+      "line": 22,
+      "symbol": "Ziptide.Gameplay.RepairPartSafetyInstallerRuntime",
+      "snippet": "GameObject go = new GameObject(\"__RepairPartSafetyInstaller\");"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairPartSafetyRuntime.cs",
+      "line": 40,
+      "symbol": "Ziptide.Gameplay.RepairPartSafetyRuntime",
+      "snippet": "GameObject attach = new GameObject(\"RepairPartGrip\");"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
       "line": 111,
       "symbol": "Ziptide.Gameplay.RepairableMachine",
@@ -17519,6 +17924,15 @@
       "line": 50,
       "symbol": "Ziptide.Gameplay.Tutorial.FirstHourObservationAdapter",
       "snippet": "var go = new GameObject(\"__FirstHourObservationAdapter\");"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubAnchorLockInstallerRuntime.cs",
+      "line": 21,
+      "symbol": "Ziptide.Gameplay.HomeHubAnchorLockInstallerRuntime",
+      "snippet": "GameObject go = new GameObject(\"__HomeHubAnchorLockInstaller\");"
     },
     {
       "category": "runtime_creation",
@@ -17723,9 +18137,9 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ObjectiveBeacon.cs",
-      "line": 24,
+      "line": 25,
       "symbol": "Ziptide.Gameplay.ObjectiveBeacon",
-      "snippet": "var go = new GameObject(\"__ObjectiveBeacon\");"
+      "snippet": "GameObject go = new GameObject(\"__ObjectiveBeacon\");"
     },
     {
       "category": "runtime_creation",
@@ -19091,7 +19505,7 @@
       "code": "TEXTMESH_COMPONENT",
       "description": "Legacy TextMesh creation/reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs",
-      "line": 231,
+      "line": 226,
       "symbol": "Ziptide.Gameplay.PlayerMenuRuntime",
       "snippet": "TextMesh mesh = label.AddComponent<TextMesh>();"
     },
@@ -19829,7 +20243,7 @@
       "code": "XR_INTERACTABLE_COMPONENT",
       "description": "XR interactable creation/reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-      "line": 27,
+      "line": 15,
       "symbol": "Ziptide.Gameplay.MeleeWeaponRuntime",
       "snippet": "[RequireComponent(typeof(XRGrabInteractable))]"
     },
@@ -20639,7 +21053,7 @@
       "code": "PLAYER_PROFILE_REFERENCE",
       "description": "PlayerProfile reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-      "line": 68,
+      "line": 88,
       "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
       "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
     },
@@ -21575,7 +21989,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-      "line": 68,
+      "line": 88,
       "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
       "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
     },
@@ -22555,6 +22969,24 @@
       "category": "xri_ownership",
       "code": "XRI_MANAGER_ASSIGN",
       "description": "Explicit interactable interactionManager assignment",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/InventoryState.cs",
+      "line": 167,
+      "symbol": "Ziptide.Gameplay.InventoryState",
+      "snippet": "socket.interactionManager = manager;"
+    },
+    {
+      "category": "xri_ownership",
+      "code": "XRI_MANAGER_ASSIGN",
+      "description": "Explicit interactable interactionManager assignment",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/InventoryState.cs",
+      "line": 168,
+      "symbol": "Ziptide.Gameplay.InventoryState",
+      "snippet": "grab.interactionManager = manager;"
+    },
+    {
+      "category": "xri_ownership",
+      "code": "XRI_MANAGER_ASSIGN",
+      "description": "Explicit interactable interactionManager assignment",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs",
       "line": 195,
       "symbol": "Ziptide.Gameplay.PlayerMenuRuntime",
@@ -22565,7 +22997,7 @@
       "code": "XRI_MANAGER_ASSIGN",
       "description": "Explicit interactable interactionManager assignment",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs",
-      "line": 221,
+      "line": 216,
       "symbol": "Ziptide.Gameplay.PlayerMenuRuntime",
       "snippet": "interactable.interactionManager = manager;"
     },
@@ -23014,6 +23446,15 @@
       "category": "xri_ownership",
       "code": "XRI_MANAGER_LOOKUP",
       "description": "XRInteractionManager lookup",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/InventoryState.cs",
+      "line": 161,
+      "symbol": "Ziptide.Gameplay.InventoryState",
+      "snippet": "if (manager == null) manager = Object.FindObjectOfType<XRInteractionManager>();"
+    },
+    {
+      "category": "xri_ownership",
+      "code": "XRI_MANAGER_LOOKUP",
+      "description": "XRInteractionManager lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/QuickSwap.cs",
       "line": 75,
       "symbol": "Ziptide.Gameplay.QuickSwap",
@@ -23042,7 +23483,7 @@
       "code": "XRI_MANAGER_LOOKUP",
       "description": "XRInteractionManager lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs",
-      "line": 209,
+      "line": 204,
       "symbol": "Ziptide.Gameplay.PlayerMenuRuntime",
       "snippet": "XRInteractionManager manager = FindObjectOfType<XRInteractionManager>();"
     },

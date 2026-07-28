@@ -1,6 +1,6 @@
 {
   "tool": "recovery_input_contract_scan",
-  "scannedFiles": 728,
+  "scannedFiles": 737,
   "bindingCount": 21,
   "chordReferenceCount": 0,
   "collisionControlCount": 6,
@@ -83,8 +83,8 @@
       "field": "_toggleAction",
       "action_name": "ZiptidePlayerMenu",
       "binding": "<XRController>{LeftHand}/secondaryButton",
-      "action_line": 35,
-      "binding_line": 36
+      "action_line": 32,
+      "binding_line": 33
     },
     {
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",

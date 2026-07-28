@@ -1,6 +1,6 @@
 # ZIPTIDE Runtime Input Contract Scan
 
-- Scanned C# files: **728**
+- Scanned C# files: **737**
 - Runtime-created bindings: **21**
 - Legacy menu-chord references: **0**
 - Controls bound by more than one owner: **6**
@@ -21,7 +21,7 @@ None.
 | `Ziptide.Gameplay.EmergencyRespawn` | `EmergencyLeft` | `_leftGrip` | `<XRController>{LeftHand}/grip` | `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/EmergencyRespawn.cs:24` |
 | `Ziptide.Gameplay.EmergencyRespawn` | `EmergencyRight` | `_rightGrip` | `<XRController>{RightHand}/grip` | `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/EmergencyRespawn.cs:28` |
 | `Ziptide.Gameplay.PingTool` | `ZiptidePing` | `_ping` | `<XRController>{LeftHand}/triggerPressed` | `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PingTool.cs:28` |
-| `Ziptide.Gameplay.PlayerMenuRuntime` | `ZiptidePlayerMenu` | `_toggleAction` | `<XRController>{LeftHand}/secondaryButton` | `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs:36` |
+| `Ziptide.Gameplay.PlayerMenuRuntime` | `ZiptidePlayerMenu` | `_toggleAction` | `<XRController>{LeftHand}/secondaryButton` | `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerMenuRuntime.cs:33` |
 | `Ziptide.Ship.ShipFlightRuntime` | `ZiptideFlightThrottle` | `_leftStick` | `<XRController>{LeftHand}/thumbstick` | `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:140` |
 | `Ziptide.Ship.ShipFlightRuntime` | `ZiptideFlightSteer` | `_rightStick` | `<XRController>{RightHand}/thumbstick` | `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:142` |
 | `Ziptide.Ship.ShipFlightRuntime` | `ZiptideFlightBoostL3` | `_boostStickClick` | `<XRController>{LeftHand}/thumbstickClicked` | `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:144` |

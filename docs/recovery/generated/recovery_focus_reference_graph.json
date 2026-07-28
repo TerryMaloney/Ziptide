@@ -1,12 +1,12 @@
 {
   "tool": "recovery_focus_reference_graph",
-  "scannedFiles": 728,
-  "referenceCount": 403,
+  "scannedFiles": 737,
+  "referenceCount": 409,
   "summaries": {
     "melee": {
-      "referenceCount": 103,
-      "fileCount": 33,
-      "callerFileCount": 33,
+      "referenceCount": 102,
+      "fileCount": 34,
+      "callerFileCount": 34,
       "paths": [
         "Ziptide/Assets/Ziptide/Content/Runtime/Items/ItemDefinition.cs",
         "Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs",
@@ -31,6 +31,7 @@
         "Ziptide/Assets/Ziptide/Tests/EditMode/ForgeLifecycleTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/ForgeMeshTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/ForgeRecipeLibraryTests.cs",
+        "Ziptide/Assets/Ziptide/Tests/EditMode/M0SystemicDeviceRegressionTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/QuestWeaponAndCouplerRegressionTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryPlayabilityDeviceTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/VfxRecipeTests.cs",
@@ -66,6 +67,7 @@
         "Ziptide/Assets/Ziptide/Tests/EditMode/ForgeLifecycleTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/ForgeMeshTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/ForgeRecipeLibraryTests.cs",
+        "Ziptide/Assets/Ziptide/Tests/EditMode/M0SystemicDeviceRegressionTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/QuestWeaponAndCouplerRegressionTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryPlayabilityDeviceTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/VfxRecipeTests.cs",
@@ -79,9 +81,9 @@
       ]
     },
     "repairObjective": {
-      "referenceCount": 203,
-      "fileCount": 50,
-      "callerFileCount": 49,
+      "referenceCount": 210,
+      "fileCount": 52,
+      "callerFileCount": 51,
       "paths": [
         "Ziptide/Assets/Ziptide/Content/Runtime/Jobs/JobRewards.cs",
         "Ziptide/Assets/Ziptide/Content/Runtime/Jobs/RepairMachineCountStepDefinition.cs",
@@ -118,6 +120,8 @@
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/CollectibleRuntime.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/GardenPlotRuntime.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/MiningRigRuntime.cs",
+        "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairPartSafetyInstallerRuntime.cs",
+        "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairPartSafetyRuntime.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairStage.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
@@ -169,6 +173,8 @@
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/CollectibleRuntime.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/GardenPlotRuntime.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/MiningRigRuntime.cs",
+        "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairPartSafetyInstallerRuntime.cs",
+        "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairPartSafetyRuntime.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairStage.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
@@ -263,9 +269,9 @@
           "focus": "melee",
           "token": "ArenaWeaponKind.BreakerBlade",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-          "line": 65,
+          "line": 49,
           "symbol": "Ziptide.Gameplay.MeleeWeaponRuntime",
-          "snippet": "if (def == null || def.kind != ArenaWeaponKind.BreakerBlade || _grab == null || _grab.attachTransform == null)",
+          "snippet": "if (def == null || def.kind != ArenaWeaponKind.BreakerBlade",
           "declaration_file": false
         }
       ],
@@ -330,7 +336,7 @@
           "focus": "melee",
           "token": "ArenaWeaponKind.TidePike",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-          "line": 52,
+          "line": 36,
           "symbol": "Ziptide.Gameplay.MeleeWeaponRuntime",
           "snippet": "private bool IsPike => Def != null && Def.kind == ArenaWeaponKind.TidePike;",
           "declaration_file": false
@@ -376,15 +382,6 @@
         {
           "focus": "melee",
           "token": "HammerTool",
-          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-          "line": 23,
-          "symbol": "Ziptide.Gameplay.MeleeWeaponRuntime",
-          "snippet": "/// Hit detection reuses HammerTool/SonicThumper's proven tracked-point velocity idiom (transform",
-          "declaration_file": false
-        },
-        {
-          "focus": "melee",
-          "token": "HammerTool",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/SonicThumperRuntime.cs",
           "line": 13,
           "symbol": "Ziptide.Gameplay.SonicThumperRuntime",
@@ -424,7 +421,7 @@
           "focus": "melee",
           "token": "HitFromHammer",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-          "line": 101,
+          "line": 94,
           "symbol": "Ziptide.Gameplay.MeleeWeaponRuntime",
           "snippet": "wall.HitFromHammer(h.ClosestPoint(tipPos));",
           "declaration_file": false
@@ -480,10 +477,19 @@
           "focus": "melee",
           "token": "MeleeWeaponRuntime",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-          "line": 28,
+          "line": 16,
           "symbol": "Ziptide.Gameplay.MeleeWeaponRuntime",
           "snippet": "public class MeleeWeaponRuntime : MonoBehaviour",
           "declaration_file": true
+        },
+        {
+          "focus": "melee",
+          "token": "MeleeWeaponRuntime",
+          "path": "Ziptide/Assets/Ziptide/Tests/EditMode/M0SystemicDeviceRegressionTests.cs",
+          "line": 66,
+          "symbol": "Ziptide.Tests.EditMode.M0SystemicDeviceRegressionTests",
+          "snippet": "string source = Read(\"Gameplay\", \"Runtime\", \"Weapons\", \"MeleeWeaponRuntime.cs\");",
+          "declaration_file": false
         },
         {
           "focus": "melee",
@@ -824,16 +830,7 @@
           "focus": "melee",
           "token": "Muzzle",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-          "line": 37,
-          "symbol": "Ziptide.Gameplay.MeleeWeaponRuntime",
-          "snippet": "private Transform _tip; // the business end (child \"Muzzle\" from ItemFactory)",
-          "declaration_file": false
-        },
-        {
-          "focus": "melee",
-          "token": "Muzzle",
-          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-          "line": 57,
+          "line": 41,
           "symbol": "Ziptide.Gameplay.MeleeWeaponRuntime",
           "snippet": "_tip = transform.Find(\"Muzzle\");",
           "declaration_file": false
@@ -1875,6 +1872,15 @@
         {
           "focus": "repairObjective",
           "token": "JobDirector",
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairPartSafetyInstallerRuntime.cs",
+          "line": 6,
+          "symbol": "Ziptide.Gameplay.RepairPartSafetyInstallerRuntime",
+          "snippet": "/// <summary>Finds data-spawned repair parts after JobDirector builds them and attaches the safety rail.</summary>",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "JobDirector",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
           "line": 26,
           "symbol": "Ziptide.Gameplay.RepairableMachine",
@@ -2546,6 +2552,60 @@
           "line": 83,
           "symbol": "Ziptide.Gameplay.JobRuntime",
           "snippet": "/// <summary>A machine finished its hands-on repair (RepairableMachine's final stage).</summary>",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "RepairableMachine",
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairPartSafetyInstallerRuntime.cs",
+          "line": 32,
+          "symbol": "Ziptide.Gameplay.RepairPartSafetyInstallerRuntime",
+          "snippet": "RepairableMachine[] machines = Object.FindObjectsOfType<RepairableMachine>(true);",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "RepairableMachine",
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairPartSafetyInstallerRuntime.cs",
+          "line": 40,
+          "symbol": "Ziptide.Gameplay.RepairPartSafetyInstallerRuntime",
+          "snippet": "RepairableMachine nearest = null;",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "RepairableMachine",
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairPartSafetyInstallerRuntime.cs",
+          "line": 44,
+          "symbol": "Ziptide.Gameplay.RepairPartSafetyInstallerRuntime",
+          "snippet": "RepairableMachine machine = machines[j];",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "RepairableMachine",
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairPartSafetyRuntime.cs",
+          "line": 7,
+          "symbol": "Ziptide.Gameplay.RepairPartSafetyRuntime",
+          "snippet": "/// Bounded safety component for RepairableMachine replacement parts. The machine remains the",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "RepairableMachine",
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairPartSafetyRuntime.cs",
+          "line": 16,
+          "symbol": "Ziptide.Gameplay.RepairPartSafetyRuntime",
+          "snippet": "private RepairableMachine _machine;",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "RepairableMachine",
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairPartSafetyRuntime.cs",
+          "line": 23,
+          "symbol": "Ziptide.Gameplay.RepairPartSafetyRuntime",
+          "snippet": "public void Configure(RepairableMachine machine)",
           "declaration_file": false
         },
         {
@@ -5656,6 +5716,69 @@
     },
     {
       "focus": "repairObjective",
+      "token": "JobDirector",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairPartSafetyInstallerRuntime.cs",
+      "line": 6,
+      "symbol": "Ziptide.Gameplay.RepairPartSafetyInstallerRuntime",
+      "snippet": "/// <summary>Finds data-spawned repair parts after JobDirector builds them and attaches the safety rail.</summary>",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
+      "token": "RepairableMachine",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairPartSafetyInstallerRuntime.cs",
+      "line": 32,
+      "symbol": "Ziptide.Gameplay.RepairPartSafetyInstallerRuntime",
+      "snippet": "RepairableMachine[] machines = Object.FindObjectsOfType<RepairableMachine>(true);",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
+      "token": "RepairableMachine",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairPartSafetyInstallerRuntime.cs",
+      "line": 40,
+      "symbol": "Ziptide.Gameplay.RepairPartSafetyInstallerRuntime",
+      "snippet": "RepairableMachine nearest = null;",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
+      "token": "RepairableMachine",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairPartSafetyInstallerRuntime.cs",
+      "line": 44,
+      "symbol": "Ziptide.Gameplay.RepairPartSafetyInstallerRuntime",
+      "snippet": "RepairableMachine machine = machines[j];",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
+      "token": "RepairableMachine",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairPartSafetyRuntime.cs",
+      "line": 7,
+      "symbol": "Ziptide.Gameplay.RepairPartSafetyRuntime",
+      "snippet": "/// Bounded safety component for RepairableMachine replacement parts. The machine remains the",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
+      "token": "RepairableMachine",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairPartSafetyRuntime.cs",
+      "line": 16,
+      "symbol": "Ziptide.Gameplay.RepairPartSafetyRuntime",
+      "snippet": "private RepairableMachine _machine;",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
+      "token": "RepairableMachine",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairPartSafetyRuntime.cs",
+      "line": 23,
+      "symbol": "Ziptide.Gameplay.RepairPartSafetyRuntime",
+      "snippet": "public void Configure(RepairableMachine machine)",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
       "token": "RepairableMachine",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairStage.cs",
       "line": 6,
@@ -6009,34 +6132,25 @@
       "focus": "melee",
       "token": "ArenaWeaponKind.BreakerBlade",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-      "line": 65,
+      "line": 49,
       "symbol": "Ziptide.Gameplay.MeleeWeaponRuntime",
-      "snippet": "if (def == null || def.kind != ArenaWeaponKind.BreakerBlade || _grab == null || _grab.attachTransform == null)",
+      "snippet": "if (def == null || def.kind != ArenaWeaponKind.BreakerBlade",
       "declaration_file": false
     },
     {
       "focus": "melee",
       "token": "ArenaWeaponKind.TidePike",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-      "line": 52,
+      "line": 36,
       "symbol": "Ziptide.Gameplay.MeleeWeaponRuntime",
       "snippet": "private bool IsPike => Def != null && Def.kind == ArenaWeaponKind.TidePike;",
       "declaration_file": false
     },
     {
       "focus": "melee",
-      "token": "HammerTool",
-      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-      "line": 23,
-      "symbol": "Ziptide.Gameplay.MeleeWeaponRuntime",
-      "snippet": "/// Hit detection reuses HammerTool/SonicThumper's proven tracked-point velocity idiom (transform",
-      "declaration_file": false
-    },
-    {
-      "focus": "melee",
       "token": "HitFromHammer",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-      "line": 101,
+      "line": 94,
       "symbol": "Ziptide.Gameplay.MeleeWeaponRuntime",
       "snippet": "wall.HitFromHammer(h.ClosestPoint(tipPos));",
       "declaration_file": false
@@ -6045,7 +6159,7 @@
       "focus": "melee",
       "token": "MeleeWeaponRuntime",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-      "line": 28,
+      "line": 16,
       "symbol": "Ziptide.Gameplay.MeleeWeaponRuntime",
       "snippet": "public class MeleeWeaponRuntime : MonoBehaviour",
       "declaration_file": true
@@ -6054,16 +6168,7 @@
       "focus": "melee",
       "token": "Muzzle",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-      "line": 37,
-      "symbol": "Ziptide.Gameplay.MeleeWeaponRuntime",
-      "snippet": "private Transform _tip; // the business end (child \"Muzzle\" from ItemFactory)",
-      "declaration_file": false
-    },
-    {
-      "focus": "melee",
-      "token": "Muzzle",
-      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
-      "line": 57,
+      "line": 41,
       "symbol": "Ziptide.Gameplay.MeleeWeaponRuntime",
       "snippet": "_tip = transform.Find(\"Muzzle\");",
       "declaration_file": false
@@ -6975,6 +7080,15 @@
       "line": 94,
       "symbol": "Ziptide.Tests.EditMode.JobRuntimeRepairTests",
       "snippet": "rt.ReportRepair(\"cistern_pump\");",
+      "declaration_file": false
+    },
+    {
+      "focus": "melee",
+      "token": "MeleeWeaponRuntime",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/M0SystemicDeviceRegressionTests.cs",
+      "line": 66,
+      "symbol": "Ziptide.Tests.EditMode.M0SystemicDeviceRegressionTests",
+      "snippet": "string source = Read(\"Gameplay\", \"Runtime\", \"Weapons\", \"MeleeWeaponRuntime.cs\");",
       "declaration_file": false
     },
     {
