@@ -5,9 +5,9 @@ namespace Ziptide.Gameplay
 {
     /// <summary>
     /// Marks a spawn location for PlayerRigPersistence. Runtime diagnostics mirror the build audit:
-    /// triggers, the floor and the persistent player rig are excluded, so buriedAtTorso is no longer
-    /// a false all-layer CheckSphere result. Content-world obstruction/no-floor states are blockers;
-    /// _Boot is an intentional menu/bootstrap scene with no world floor.
+    /// triggers, the floor, the persistent player rig and explicit non-solid wayfinding visuals are
+    /// excluded. Content-world obstruction/no-floor states remain blockers; _Boot intentionally has no
+    /// world floor.
     /// </summary>
     public class SpawnMarkerRuntime : MonoBehaviour
     {
@@ -33,6 +33,9 @@ namespace Ziptide.Gameplay
                 if (col == null || col == floor) continue;
                 if (col.bounds.max.y <= feetY) continue;
                 if (col.GetComponentInParent<PlayerRigPersistence>() != null) continue;
+                // ObjectiveBeacon is a distant visual signpost, never collision or spawn geometry.
+                // W000's own beam may cross the spawn probe but cannot bury or block the player.
+                if (col.GetComponentInParent<ObjectiveBeacon>() != null) continue;
                 buried = true;
                 obstruction = col.name;
                 break;
