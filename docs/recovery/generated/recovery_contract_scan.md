@@ -514,8 +514,8 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipRefit.cs:43` · `Ziptide.Gameplay.ShipRefit` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: SHIP_REFIT chassis=" + chassis.Id);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipRefit.cs:141` · `Ziptide.Gameplay.ShipRefit` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: SHIP_LIVERY id=" + liveryId);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipRefit.cs:172` · `Ziptide.Gameplay.ShipRefit` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: SHIP_DECALS count=" + earned.Count);`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/SpawnMarkerRuntime.cs:42` · `Ziptide.Gameplay.SpawnMarkerRuntime` — ZIPTIDE diagnostic tag. `string line = "ZIPTIDE: SPAWN_AT scene=" + sceneName`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/SpawnMarkerRuntime.cs:49` · `Ziptide.Gameplay.SpawnMarkerRuntime` — ZIPTIDE diagnostic tag. `Debug.LogError("ZIPTIDE: SPAWN_RUNTIME_BLOCKER " + line);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/SpawnMarkerRuntime.cs:45` · `Ziptide.Gameplay.SpawnMarkerRuntime` — ZIPTIDE diagnostic tag. `string line = "ZIPTIDE: SPAWN_AT scene=" + sceneName`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/SpawnMarkerRuntime.cs:52` · `Ziptide.Gameplay.SpawnMarkerRuntime` — ZIPTIDE diagnostic tag. `Debug.LogError("ZIPTIDE: SPAWN_RUNTIME_BLOCKER " + line);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ToxicRiverRuntime.cs:63` · `Ziptide.Gameplay.ToxicRiverRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: TOXIC_RIVER_READY id=" + riverId`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ToxicRiverRuntime.cs:112` · `Ziptide.Gameplay.ToxicRiverRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: TOXIC_RIVER_ENTER id=" + riverId`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ToxicRiverRuntime.cs:115` · `Ziptide.Gameplay.ToxicRiverRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: TOXIC_RIVER_EXIT id=" + riverId);`

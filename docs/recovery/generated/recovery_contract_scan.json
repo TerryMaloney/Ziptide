@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-28T04:04:11.344286+00:00",
+  "generatedAtUtc": "2026-07-28T04:27:17.678930+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -4439,7 +4439,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/SpawnMarkerRuntime.cs",
-      "line": 42,
+      "line": 45,
       "symbol": "Ziptide.Gameplay.SpawnMarkerRuntime",
       "snippet": "string line = \"ZIPTIDE: SPAWN_AT scene=\" + sceneName"
     },
@@ -4448,7 +4448,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/SpawnMarkerRuntime.cs",
-      "line": 49,
+      "line": 52,
       "symbol": "Ziptide.Gameplay.SpawnMarkerRuntime",
       "snippet": "Debug.LogError(\"ZIPTIDE: SPAWN_RUNTIME_BLOCKER \" + line);"
     },
