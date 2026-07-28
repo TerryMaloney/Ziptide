@@ -28,7 +28,17 @@ namespace Ziptide.Gameplay
 
         private void Start()
         {
-            var cam = GetComponentInParent<Camera>(true);
+            PlayerRigPersistence rig = GetComponentInParent<PlayerRigPersistence>();
+            if (rig != null)
+            {
+                // BeltRig is guaranteed by PlayerRigPersistence and lives on the same persistent root.
+                // Use that guaranteed seam to install the device safety owner even if a stale generated
+                // Boot scene omitted it, and make smooth/snap exclusivity true at runtime.
+                PlayerSafetyRuntime.EnsureOnRig(rig.gameObject);
+                TurnModeCore.EnforceSmoothOnly(rig.transform, "belt_start");
+            }
+
+            Camera cam = GetComponentInParent<Camera>(true);
             if (cam == null) cam = Camera.main;
             if (cam == null) cam = Object.FindFirstObjectByType<Camera>();
             _cameraOrHead = cam != null ? cam.transform : null;
