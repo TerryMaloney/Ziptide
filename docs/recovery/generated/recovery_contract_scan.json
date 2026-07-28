@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-28T14:50:19.443831+00:00",
+  "generatedAtUtc": "2026-07-28T15:16:33.525591+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -9,10 +9,10 @@
     "Ziptide/Assets/ZiptideNet"
   ],
   "scannedFiles": 737,
-  "findingCount": 2649,
+  "findingCount": 2652,
   "categoryCounts": {
     "bootstrap": 42,
-    "diagnostics": 617,
+    "diagnostics": 620,
     "events": 65,
     "fallback_debt": 159,
     "global_render": 86,
@@ -57,7 +57,7 @@
     "XRI_MANAGER_LOOKUP": 45,
     "XR_INTERACTABLE_COMPONENT": 66,
     "XR_UI_INPUT_MODULE": 2,
-    "ZIPTIDE_LOG_TAG": 617
+    "ZIPTIDE_LOG_TAG": 620
   },
   "findings": [
     {
@@ -2830,7 +2830,7 @@
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs",
       "line": 192,
       "symbol": "Ziptide.Gameplay.TurnModeCore",
-      "snippet": "Debug.LogError(\"ZIPTIDE: PLAYER_HEIGHT_REPAIRED from=\" + eyeHeight.ToString(\"F2\")"
+      "snippet": "Debug.LogWarning(\"ZIPTIDE: PLAYER_HEIGHT_REPAIRED from=\" + eyeHeight.ToString(\"F2\")"
     },
     {
       "category": "diagnostics",
@@ -5162,6 +5162,33 @@
       "line": 98,
       "symbol": "Ziptide.Tests.EditMode.RecoveryCheckpointEvidenceTests",
       "snippet": "\"Debug\\\\.Log(?:Warning|Error)?\\\\(\\\\s*\\\\\\\"ZIPTIDE: \" + Regex.Escape(tag),"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryPlayabilityDeviceTests.cs",
+      "line": 102,
+      "symbol": "Ziptide.Tests.EditMode.RecoveryPlayabilityDeviceTests",
+      "snippet": "StringAssert.Contains(\"Debug.LogWarning(\\\"ZIPTIDE: PLAYER_HEIGHT_REPAIRED\", source);"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryPlayabilityDeviceTests.cs",
+      "line": 103,
+      "symbol": "Ziptide.Tests.EditMode.RecoveryPlayabilityDeviceTests",
+      "snippet": "StringAssert.DoesNotContain(\"Debug.LogError(\\\"ZIPTIDE: PLAYER_HEIGHT_REPAIRED\", source);"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryPlayabilityDeviceTests.cs",
+      "line": 104,
+      "symbol": "Ziptide.Tests.EditMode.RecoveryPlayabilityDeviceTests",
+      "snippet": "StringAssert.Contains(\"Debug.LogError(\\\"ZIPTIDE: PLAYER_HEIGHT_BLOCKER\", source);"
     },
     {
       "category": "diagnostics",
@@ -7688,7 +7715,7 @@
       "code": "FALLBACK_MARKER",
       "description": "Source text marks fallback/prototype debt",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryPlayabilityDeviceTests.cs",
-      "line": 106,
+      "line": 116,
       "symbol": "Ziptide.Tests.EditMode.RecoveryPlayabilityDeviceTests",
       "snippet": "\"The no-ray direct-hand fallback must remain valid for the three-tile layout.\");"
     },

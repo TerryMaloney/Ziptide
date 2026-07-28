@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
 - Scanned files: **737**
-- Scanner findings: **2649**
+- Scanner findings: **2652**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -4871,7 +4871,7 @@ None.
 
 - Codes: `FALLBACK_MARKER`
 - Paths: `Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryPlayabilityDeviceTests.cs`
-  - `Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryPlayabilityDeviceTests.cs:106` **FALLBACK_MARKER** — `"The no-ray direct-hand fallback must remain valid for the three-tile layout.");`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryPlayabilityDeviceTests.cs:116` **FALLBACK_MARKER** — `"The no-ray direct-hand fallback must remain valid for the three-tile layout.");`
 
 ### `Ziptide.Tests.EditMode.WorldImprovementManifestTests` — 7 signal(s)
 

@@ -2,7 +2,7 @@
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
   "scannedFiles": 737,
-  "findingCount": 2649,
+  "findingCount": 2652,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -21232,7 +21232,7 @@
           {
             "code": "FALLBACK_MARKER",
             "path": "Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryPlayabilityDeviceTests.cs",
-            "line": 106,
+            "line": 116,
             "symbol": "Ziptide.Tests.EditMode.RecoveryPlayabilityDeviceTests",
             "snippet": "\"The no-ray direct-hand fallback must remain valid for the three-tile layout.\");"
           }

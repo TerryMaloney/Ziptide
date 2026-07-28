@@ -1,7 +1,7 @@
 # ZIPTIDE Recovery Contract Scan
 
 - Scanned files: **737**
-- Findings: **2649**
+- Findings: **2652**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
@@ -9,7 +9,7 @@
 | Category | Count |
 |---|---:|
 | `bootstrap` | 42 |
-| `diagnostics` | 617 |
+| `diagnostics` | 620 |
 | `events` | 65 |
 | `fallback_debt` | 159 |
 | `global_render` | 86 |
@@ -335,7 +335,7 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs:160` · `Ziptide.Gameplay.TurnModeCore` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: PLAYER_HEIGHT_CHECK skipped reason="`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs:168` · `Ziptide.Gameplay.TurnModeCore` — ZIPTIDE diagnostic tag. `Debug.LogError("ZIPTIDE: PLAYER_HEIGHT_BLOCKER reason=no_ground marker="`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs:175` · `Ziptide.Gameplay.TurnModeCore` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: PLAYER_HEIGHT_RUNTIME eye=" + eyeHeight.ToString("F2")`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs:192` · `Ziptide.Gameplay.TurnModeCore` — ZIPTIDE diagnostic tag. `Debug.LogError("ZIPTIDE: PLAYER_HEIGHT_REPAIRED from=" + eyeHeight.ToString("F2")`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs:192` · `Ziptide.Gameplay.TurnModeCore` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: PLAYER_HEIGHT_REPAIRED from=" + eyeHeight.ToString("F2")`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs:251` · `Ziptide.Gameplay.TurnModeCore` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RIG_HEIGHT_RUNTIME origin=" + requested + " offsetY="`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerStunReceiver.cs:54` · `Ziptide.Gameplay.PlayerStunReceiver` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: PLAYER_STUN sec=" + seconds.ToString("F2") + " slow=" + slowFactor.ToString("F2"));`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerStunReceiver.cs:69` · `Ziptide.Gameplay.PlayerStunReceiver` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: PLAYER_HIT src=" + sourcePos.ToString("F1"));`
@@ -595,6 +595,9 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryCheckpointEvidenceTests.cs:39` · `Ziptide.Tests.EditMode.RecoveryCheckpointEvidenceTests` — ZIPTIDE diagnostic tag. `timestamp, LogType.Warning, "ZIPTIDE: alpha\r\nbeta");`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryCheckpointEvidenceTests.cs:42` · `Ziptide.Tests.EditMode.RecoveryCheckpointEvidenceTests` — ZIPTIDE diagnostic tag. `StringAssert.Contains("ZIPTIDE: alpha\\r\\nbeta", line);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryCheckpointEvidenceTests.cs:98` · `Ziptide.Tests.EditMode.RecoveryCheckpointEvidenceTests` — ZIPTIDE diagnostic tag. `"Debug\\.Log(?:Warning|Error)?\\(\\s*\\\"ZIPTIDE: " + Regex.Escape(tag),`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryPlayabilityDeviceTests.cs:102` · `Ziptide.Tests.EditMode.RecoveryPlayabilityDeviceTests` — ZIPTIDE diagnostic tag. `StringAssert.Contains("Debug.LogWarning(\"ZIPTIDE: PLAYER_HEIGHT_REPAIRED", source);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryPlayabilityDeviceTests.cs:103` · `Ziptide.Tests.EditMode.RecoveryPlayabilityDeviceTests` — ZIPTIDE diagnostic tag. `StringAssert.DoesNotContain("Debug.LogError(\"ZIPTIDE: PLAYER_HEIGHT_REPAIRED", source);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryPlayabilityDeviceTests.cs:104` · `Ziptide.Tests.EditMode.RecoveryPlayabilityDeviceTests` — ZIPTIDE diagnostic tag. `StringAssert.Contains("Debug.LogError(\"ZIPTIDE: PLAYER_HEIGHT_BLOCKER", source);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/EditMode/RepairableMachineSignalTests.cs:179` · `Ziptide.Tests.EditMode.RepairableMachineSignalTests` — ZIPTIDE diagnostic tag. `int repairedLog = source.IndexOf("ZIPTIDE: MACHINE_REPAIRED id=", reportRepair, StringComparison.Ordinal);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/EditMode/WristScannerResultTests.cs:166` · `Ziptide.Tests.EditMode.WristScannerResultTests` — ZIPTIDE diagnostic tag. `int existingLog = pulse.IndexOf("ZIPTIDE: WRIST_SCAN_PULSE targets=", StringComparison.Ordinal);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Tests/EditMode/WristScannerResultTests.cs:167` · `Ziptide.Tests.EditMode.WristScannerResultTests` — ZIPTIDE diagnostic tag. `int resultLog = pulse.IndexOf("ZIPTIDE: WRIST_SCAN_RESULT count=", StringComparison.Ordinal);`
@@ -879,7 +882,7 @@
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/EditMode/ForgeBuildingKitTests.cs:93` · `Ziptide.Tests.EditMode.ForgeBuildingKitTests` — Source text marks fallback/prototype debt. `id + " lost the structured primitive fallback (editor/no-bake look)");`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/EditMode/ForgeGaitMotorTests.cs:9` · `Ziptide.Tests.EditMode.ForgeGaitMotorTests` — Source text marks fallback/prototype debt. `/// the real skeleton, applies a motor pose the way ForgeCreatureAnimator does, and proves the`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/EditMode/ItemRegistryConventionTests.cs:11` · `Ziptide.Tests.EditMode.ItemRegistryConventionTests` — Source text marks fallback/prototype debt. `/// device (the loaded-objects fallback only sees assets a loaded scene happens to reference — a`
-- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryPlayabilityDeviceTests.cs:106` · `Ziptide.Tests.EditMode.RecoveryPlayabilityDeviceTests` — Source text marks fallback/prototype debt. `"The no-ray direct-hand fallback must remain valid for the three-tile layout.");`
+- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryPlayabilityDeviceTests.cs:116` · `Ziptide.Tests.EditMode.RecoveryPlayabilityDeviceTests` — Source text marks fallback/prototype debt. `"The no-ray direct-hand fallback must remain valid for the three-tile layout.");`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementManifestTests.cs:45` · `Ziptide.Tests.EditMode.WorldImprovementManifestTests` — Source text marks fallback/prototype debt. `WorldImprovementManifest fallback = MakeManifest();`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementManifestTests.cs:46` · `Ziptide.Tests.EditMode.WorldImprovementManifestTests` — Source text marks fallback/prototype debt. `fallback.sceneName = string.Empty;`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementManifestTests.cs:47` · `Ziptide.Tests.EditMode.WorldImprovementManifestTests` — Source text marks fallback/prototype debt. `fallback.appliesToGeneratedWorlds = true;`
