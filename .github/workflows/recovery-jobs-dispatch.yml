@@ -44,7 +44,8 @@ jobs:
             exit 0
           fi
 
-          changed="$(git diff-tree --no-commit-id --name-only -r "$GITHUB_SHA")"
+          # -m exposes paths for merge commits; sort -u removes the same path reported against both parents.
+          changed="$(git diff-tree --no-commit-id --name-only -r -m "$GITHUB_SHA" | sort -u)"
           echo "$changed"
 
           missing_owner_change=false
