@@ -2460,7 +2460,7 @@
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Tests/EditMode/M0SystemicDeviceRegressionTests.cs",
-            "line": 41,
+            "line": 42,
             "symbol": "Ziptide.Tests.EditMode.M0SystemicDeviceRegressionTests",
             "snippet": "StringAssert.Contains(\"smooth and snap providers share one InputActionReference\", source);"
           }

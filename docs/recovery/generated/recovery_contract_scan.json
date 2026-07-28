@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-28T03:28:22.029793+00:00",
+  "generatedAtUtc": "2026-07-28T03:35:43.830653+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -4412,18 +4412,18 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/SpawnMarkerRuntime.cs",
-      "line": 39,
+      "line": 42,
       "symbol": "Ziptide.Gameplay.SpawnMarkerRuntime",
-      "snippet": "string line = \"ZIPTIDE: SPAWN_AT scene=\" + gameObject.scene.name"
+      "snippet": "string line = \"ZIPTIDE: SPAWN_AT scene=\" + sceneName"
     },
     {
       "category": "diagnostics",
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/SpawnMarkerRuntime.cs",
-      "line": 43,
+      "line": 49,
       "symbol": "Ziptide.Gameplay.SpawnMarkerRuntime",
-      "snippet": "if (buried || !below) Debug.LogError(\"ZIPTIDE: SPAWN_RUNTIME_BLOCKER \" + line);"
+      "snippet": "Debug.LogError(\"ZIPTIDE: SPAWN_RUNTIME_BLOCKER \" + line);"
     },
     {
       "category": "diagnostics",
@@ -9956,7 +9956,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/M0SystemicDeviceRegressionTests.cs",
-      "line": 41,
+      "line": 42,
       "symbol": "Ziptide.Tests.EditMode.M0SystemicDeviceRegressionTests",
       "snippet": "StringAssert.Contains(\"smooth and snap providers share one InputActionReference\", source);"
     },
