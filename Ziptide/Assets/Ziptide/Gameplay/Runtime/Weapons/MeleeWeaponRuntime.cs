@@ -15,8 +15,6 @@ namespace Ziptide.Gameplay
     [RequireComponent(typeof(XRGrabInteractable))]
     public class MeleeWeaponRuntime : MonoBehaviour
     {
-        // Quest evidence: 90° X gave the right broad hold but erased the asset's 180° yaw, leaving the
-        // blade backwards. Preserve definition yaw/roll, apply a small forward lean from vertical.
         private static readonly Vector3 BreakerBladeDeviceGripEuler = new Vector3(82f, 180f, 0f);
 
         private XRGrabInteractable _grab;
@@ -51,12 +49,10 @@ namespace Ziptide.Gameplay
             if (def == null || def.kind != ArenaWeaponKind.BreakerBlade
                 || _grab == null || _grab.attachTransform == null) return;
 
+            // Yaw is a device contract, not stale asset data: 180 makes the blade face forward.
+            // Keep only an authored roll if one exists; apply the bounded 8-degree forward lean.
             Vector3 pose = BreakerBladeDeviceGripEuler;
-            if (def.gripLocalEuler != Vector3.zero)
-            {
-                pose.y = def.gripLocalEuler.y;
-                pose.z = def.gripLocalEuler.z;
-            }
+            if (def.gripLocalEuler != Vector3.zero) pose.z = def.gripLocalEuler.z;
             _grab.attachTransform.localRotation = Quaternion.Euler(pose);
             Debug.Log("ZIPTIDE: MELEE_GRIP_POSE weapon=breaker_blade euler=" + pose.ToString("F0"));
         }
