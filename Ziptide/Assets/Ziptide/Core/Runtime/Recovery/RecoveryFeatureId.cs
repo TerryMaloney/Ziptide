@@ -1,7 +1,7 @@
 namespace Ziptide.Core
 {
     /// <summary>
-    /// Closed runtime exposure identifiers for every automatic owner cataloged during R0.
+    /// Closed runtime exposure identifiers for every automatic owner cataloged during R0/R1.
     /// New automatic bootstraps must add an ID and catalog registration before shipping.
     /// </summary>
     public enum RecoveryFeatureId
@@ -27,7 +27,10 @@ namespace Ziptide.Core
         SingletonValidator = 18,
         NetBootstrap = 19,
         PlayerInputSessionGuard = 20,
-        SystemFocusLifecycle = 21
+        SystemFocusLifecycle = 21,
+        VehicleSafety = 22,
+        RepairPartSafetyInstaller = 23,
+        HomeHubAnchorLockInstaller = 24
     }
 
     public enum RecoveryOwnerClassification
