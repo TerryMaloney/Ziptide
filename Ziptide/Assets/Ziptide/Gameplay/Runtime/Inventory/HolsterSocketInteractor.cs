@@ -9,9 +9,7 @@ namespace Ziptide.Gameplay
 {
     /// <summary>
     /// Canonical belt socket. It accepts declared portable items, remains the real XRI selector while
-    /// an item is holstered, and derives a belt pose separately from the item's hand grip. This prevents
-    /// a holstered gun from remaining in an ambiguous hand/parent state and lets repair parts use the
-    /// player's free hand without fighting the weapon.
+    /// an item is holstered, and derives a belt pose separately from the item's hand grip.
     /// </summary>
     public class HolsterSocketInteractor : XRSocketInteractor
     {
@@ -27,7 +25,6 @@ namespace Ziptide.Gameplay
         };
 
         private bool _firstHolsterReported;
-
         public static event Action<string> ItemHolstered;
 
         public static bool AllowsItemId(string itemId)
@@ -65,7 +62,10 @@ namespace Ziptide.Gameplay
             if (go == null) return false;
             ItemRuntime item = go.GetComponent<ItemRuntime>();
             if (item == null || item.Definition == null) return false;
-            return allowedItemIds != null && allowedItemIds.Contains(item.Definition.itemId);
+            string id = item.Definition.itemId;
+            // The code-level portable list heals stale serialized sockets from older generated scenes.
+            return DefaultAllowedIds.Contains(id)
+                || (allowedItemIds != null && allowedItemIds.Contains(id));
         }
 
         private void OnSelectEnteredCallback(SelectEnterEventArgs args)
@@ -86,7 +86,6 @@ namespace Ziptide.Gameplay
             }
 
             StartCoroutine(ApplySocketPoseAfterSelection(go.transform, grab, item.Definition.itemId));
-
             PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;
             string itemId = item.Definition.itemId;
             FirstHourHolsterSignal.TryReport(itemId, profile, ref _firstHolsterReported, PublishItemHolstered);
@@ -102,12 +101,8 @@ namespace Ziptide.Gameplay
             Transform socketAnchor = attachTransform != null ? attachTransform : transform;
             Transform itemGrip = grab.attachTransform;
             Quaternion desiredRoot = transform.rotation * HolsterPoseCore.Resolve(itemId, gameObject.name);
-            if (itemGrip != null)
-                socketAnchor.rotation = desiredRoot * itemGrip.localRotation;
-            else
-                socketAnchor.rotation = desiredRoot;
+            socketAnchor.rotation = itemGrip != null ? desiredRoot * itemGrip.localRotation : desiredRoot;
 
-            // Let XRI resolve one frame with the item-specific anchor, then verify the socket still owns it.
             yield return null;
             bool owned = false;
             foreach (IXRSelectInteractor interactor in grab.interactorsSelecting)
