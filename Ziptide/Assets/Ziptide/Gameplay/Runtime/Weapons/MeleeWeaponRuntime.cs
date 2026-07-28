@@ -8,6 +8,51 @@ using Ziptide.Multiplayer.Augments;
 namespace Ziptide.Gameplay
 {
     /// <summary>
+    /// Semantic weapon-axis math shared by hand grips and holsters. A pose is defined by the actual
+    /// handle-to-tip direction, never by guessed Euler angles. This keeps imported replacement meshes
+    /// swappable as long as they preserve the Muzzle/tip socket.
+    /// </summary>
+    public static class WeaponPoseCore
+    {
+        public static Quaternion BuildLocalBasis(Vector3 localAxis, Vector3 localUpHint)
+        {
+            Vector3 axis = localAxis.sqrMagnitude > 1e-6f ? localAxis.normalized : Vector3.forward;
+            Vector3 up = Vector3.ProjectOnPlane(localUpHint, axis);
+            if (up.sqrMagnitude < 1e-6f)
+            {
+                Vector3 fallback = Mathf.Abs(Vector3.Dot(axis, Vector3.up)) < 0.9f
+                    ? Vector3.up : Vector3.forward;
+                up = Vector3.ProjectOnPlane(fallback, axis);
+            }
+            return Quaternion.LookRotation(axis, up.normalized);
+        }
+
+        public static Vector3 ResolveAxisLocal(Transform root, Transform tip, Vector3 localGripPosition)
+        {
+            if (root == null || tip == null) return Vector3.forward;
+            Vector3 tipLocal = root.InverseTransformPoint(tip.position);
+            Vector3 axis = tipLocal - localGripPosition;
+            return axis.sqrMagnitude > 1e-6f ? axis.normalized : Vector3.forward;
+        }
+
+        public static Vector3 ResolveUpHintLocal(Vector3 localAxis)
+        {
+            Vector3 preferred = Mathf.Abs(Vector3.Dot(localAxis.normalized, Vector3.up)) < 0.9f
+                ? Vector3.up : Vector3.forward;
+            Vector3 projected = Vector3.ProjectOnPlane(preferred, localAxis);
+            return projected.sqrMagnitude > 1e-6f ? projected.normalized : Vector3.right;
+        }
+
+        public static Quaternion MapLocalBasisToWorld(
+            Vector3 localAxis, Vector3 localUp, Vector3 desiredWorldAxis, Vector3 desiredWorldUp)
+        {
+            Quaternion localBasis = BuildLocalBasis(localAxis, localUp);
+            Quaternion worldBasis = BuildLocalBasis(desiredWorldAxis, desiredWorldUp);
+            return worldBasis * Quaternion.Inverse(localBasis);
+        }
+    }
+
+    /// <summary>
     /// Contact melee pair. Breaker Blade uses swing-speed contact; Tide Pike uses a committed forward
     /// thrust. Socket selection is not treated as being held in a hand, so a sheathed weapon cannot
     /// attack merely because the belt moved.
@@ -15,7 +60,7 @@ namespace Ziptide.Gameplay
     [RequireComponent(typeof(XRGrabInteractable))]
     public class MeleeWeaponRuntime : MonoBehaviour
     {
-        private static readonly Vector3 BreakerBladeDeviceGripEuler = new Vector3(82f, 180f, 0f);
+        private const string SemanticGripName = "HandGripAttach";
 
         private XRGrabInteractable _grab;
         private Transform _tip;
@@ -46,15 +91,33 @@ namespace Ziptide.Gameplay
         private void Start()
         {
             ArenaWeaponDefinition def = Def;
-            if (def == null || def.kind != ArenaWeaponKind.BreakerBlade
-                || _grab == null || _grab.attachTransform == null) return;
+            if (def == null || def.kind != ArenaWeaponKind.BreakerBlade || _grab == null) return;
+            InstallSemanticHandGrip();
+        }
 
-            // Yaw is a device contract, not stale asset data: 180 makes the blade face forward.
-            // Keep only an authored roll if one exists; apply the bounded 8-degree forward lean.
-            Vector3 pose = BreakerBladeDeviceGripEuler;
-            if (def.gripLocalEuler != Vector3.zero) pose.z = def.gripLocalEuler.z;
-            _grab.attachTransform.localRotation = Quaternion.Euler(pose);
-            Debug.Log("ZIPTIDE: MELEE_GRIP_POSE weapon=breaker_blade euler=" + pose.ToString("F0"));
+        private void InstallSemanticHandGrip()
+        {
+            Transform previous = _grab.attachTransform;
+            Transform grip = transform.Find(SemanticGripName);
+            if (grip == null)
+            {
+                GameObject go = new GameObject(SemanticGripName);
+                go.transform.SetParent(transform, false);
+                grip = go.transform;
+            }
+
+            Vector3 localGrip = previous != null && previous != transform
+                ? transform.InverseTransformPoint(previous.position) : Vector3.zero;
+            grip.localPosition = localGrip;
+
+            Vector3 axisLocal = WeaponPoseCore.ResolveAxisLocal(transform, _tip, localGrip);
+            Vector3 upLocal = WeaponPoseCore.ResolveUpHintLocal(axisLocal);
+            grip.localRotation = WeaponPoseCore.BuildLocalBasis(axisLocal, upLocal);
+            _grab.attachTransform = grip;
+
+            Debug.Log("ZIPTIDE: MELEE_GRIP_SEMANTIC weapon=breaker_blade axisLocal="
+                + axisLocal.ToString("F3") + " upLocal=" + upLocal.ToString("F3")
+                + " tip=" + (_tip != null ? _tip.name : "NONE"));
         }
 
         private void Update()

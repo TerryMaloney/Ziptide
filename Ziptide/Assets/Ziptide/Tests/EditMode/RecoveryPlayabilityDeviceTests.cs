@@ -2,11 +2,12 @@
 using System.IO;
 using NUnit.Framework;
 using UnityEngine;
+using Ziptide.Gameplay;
 
 namespace Ziptide.Tests.EditMode
 {
     /// <summary>
-    /// Source-contract pins for the 2026-07-26/27 Quest 3S device findings. These do not pretend to be
+    /// Source-contract pins for the 2026-07-26/28 Quest 3S device findings. These do not pretend to be
     /// device proof; they prevent the exact repaired ownership mistakes from silently returning before
     /// the next Golden/headset gate.
     /// </summary>
@@ -51,15 +52,19 @@ namespace Ziptide.Tests.EditMode
         }
 
         [Test]
-        public void BreakerBlade_HasADeviceSpecificForwardVerticalPoseWithoutChangingGunTilt()
+        public void BreakerBlade_UsesItsActualTipAxisWithoutChangingGunTilt()
         {
             string melee = Read("Gameplay", "Runtime", "Weapons", "MeleeWeaponRuntime.cs");
             string factory = Read("Gameplay", "Runtime", "Items", "ItemFactory.cs");
 
-            StringAssert.Contains("BreakerBladeDeviceGripEuler = new Vector3(82f, 180f, 0f)", melee);
-            StringAssert.Contains("Yaw is a device contract, not stale asset data", melee);
-            StringAssert.Contains("weapon=breaker_blade euler=", melee);
-            StringAssert.DoesNotContain("new Vector3(90f, 0f, 0f)", melee);
+            Quaternion basis = WeaponPoseCore.BuildLocalBasis(Vector3.up, Vector3.forward);
+            Assert.Greater(Vector3.Dot((basis * Vector3.forward).normalized, Vector3.up), 0.999f,
+                "Semantic grip basis must map forward to the real handle-to-tip axis.");
+            StringAssert.Contains("ResolveAxisLocal", melee);
+            StringAssert.Contains("HandGripAttach", melee);
+            StringAssert.Contains("MELEE_GRIP_SEMANTIC", melee);
+            StringAssert.DoesNotContain("BreakerBladeDeviceGripEuler", melee);
+            StringAssert.DoesNotContain("new Vector3(82f, 180f, 0f)", melee);
             StringAssert.Contains("private static readonly Vector3 GunGripTilt", factory);
         }
 
