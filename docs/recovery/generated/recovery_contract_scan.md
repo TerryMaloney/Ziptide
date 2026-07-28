@@ -1,7 +1,7 @@
 # ZIPTIDE Recovery Contract Scan
 
 - Scanned files: **737**
-- Findings: **2635**
+- Findings: **2636**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
@@ -9,7 +9,7 @@
 | Category | Count |
 |---|---:|
 | `bootstrap` | 42 |
-| `diagnostics` | 606 |
+| `diagnostics` | 607 |
 | `events` | 65 |
 | `fallback_debt` | 157 |
 | `global_render` | 86 |
@@ -202,9 +202,10 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/WardenBehavior.cs:51` · `Ziptide.Gameplay.WardenBehavior` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: WARDEN mode=" + _fsm.Mode + " tier=" + tier);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/WardenBehavior.cs:92` · `Ziptide.Gameplay.WardenBehavior` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: WARDEN_ARREST");`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/FallRespawner.cs:55` · `Ziptide.Gameplay.FallRespawner` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: GAP_RECOVERY reason=" + decision.Reason`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:91` · `Ziptide.Gameplay.HolsterSocketInteractor` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: HOLSTER_SELECT_ENTER item=" + itemId + " socket=" + gameObject.name`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:109` · `Ziptide.Gameplay.HolsterSocketInteractor` — ZIPTIDE diagnostic tag. `Debug.Log((owned ? "ZIPTIDE: HOLSTER_POSE_APPLIED" : "ZIPTIDE: HOLSTER_OWNERSHIP_FAIL")`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:129` · `Ziptide.Gameplay.HolsterSocketInteractor` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: HOLSTER_SELECT_EXIT item="`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:93` · `Ziptide.Gameplay.HolsterSocketInteractor` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FIRST_HOLSTER item=" + itemId + " socket=" + gameObject.name);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:95` · `Ziptide.Gameplay.HolsterSocketInteractor` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: HOLSTER_SELECT_ENTER item=" + itemId + " socket=" + gameObject.name`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:113` · `Ziptide.Gameplay.HolsterSocketInteractor` — ZIPTIDE diagnostic tag. `Debug.Log((owned ? "ZIPTIDE: HOLSTER_POSE_APPLIED" : "ZIPTIDE: HOLSTER_OWNERSHIP_FAIL")`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:131` · `Ziptide.Gameplay.HolsterSocketInteractor` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: HOLSTER_SELECT_EXIT item="`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/InventoryState.cs:28` · `Ziptide.Gameplay.InventoryState` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: INVENTORY_SAVE count=" + allItems.Length);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/InventoryState.cs:37` · `Ziptide.Gameplay.InventoryState` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: INVENTORY_SAVED item=" + item.Definition.itemId + " slot=" + slotId);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/InventoryState.cs:48` · `Ziptide.Gameplay.InventoryState` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: INVENTORY_RESTORE count=" + _saved.Count);`
@@ -866,7 +867,7 @@
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/EditMode/ForgeBuildingKitTests.cs:93` · `Ziptide.Tests.EditMode.ForgeBuildingKitTests` — Source text marks fallback/prototype debt. `id + " lost the structured primitive fallback (editor/no-bake look)");`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/EditMode/ForgeGaitMotorTests.cs:9` · `Ziptide.Tests.EditMode.ForgeGaitMotorTests` — Source text marks fallback/prototype debt. `/// the real skeleton, applies a motor pose the way ForgeCreatureAnimator does, and proves the`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/EditMode/ItemRegistryConventionTests.cs:11` · `Ziptide.Tests.EditMode.ItemRegistryConventionTests` — Source text marks fallback/prototype debt. `/// device (the loaded-objects fallback only sees assets a loaded scene happens to reference — a`
-- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryPlayabilityDeviceTests.cs:99` · `Ziptide.Tests.EditMode.RecoveryPlayabilityDeviceTests` — Source text marks fallback/prototype debt. `"The no-ray direct-hand fallback must remain valid for the three-tile layout.");`
+- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryPlayabilityDeviceTests.cs:101` · `Ziptide.Tests.EditMode.RecoveryPlayabilityDeviceTests` — Source text marks fallback/prototype debt. `"The no-ray direct-hand fallback must remain valid for the three-tile layout.");`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementManifestTests.cs:45` · `Ziptide.Tests.EditMode.WorldImprovementManifestTests` — Source text marks fallback/prototype debt. `WorldImprovementManifest fallback = MakeManifest();`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementManifestTests.cs:46` · `Ziptide.Tests.EditMode.WorldImprovementManifestTests` — Source text marks fallback/prototype debt. `fallback.sceneName = string.Empty;`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/EditMode/WorldImprovementManifestTests.cs:47` · `Ziptide.Tests.EditMode.WorldImprovementManifestTests` — Source text marks fallback/prototype debt. `fallback.appliesToGeneratedWorlds = true;`

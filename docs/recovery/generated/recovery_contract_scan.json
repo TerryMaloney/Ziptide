@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-28T03:35:43.830653+00:00",
+  "generatedAtUtc": "2026-07-28T03:42:13.711357+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -9,10 +9,10 @@
     "Ziptide/Assets/ZiptideNet"
   ],
   "scannedFiles": 737,
-  "findingCount": 2635,
+  "findingCount": 2636,
   "categoryCounts": {
     "bootstrap": 42,
-    "diagnostics": 606,
+    "diagnostics": 607,
     "events": 65,
     "fallback_debt": 157,
     "global_render": 86,
@@ -57,7 +57,7 @@
     "XRI_MANAGER_LOOKUP": 45,
     "XR_INTERACTABLE_COMPONENT": 66,
     "XR_UI_INPUT_MODULE": 2,
-    "ZIPTIDE_LOG_TAG": 606
+    "ZIPTIDE_LOG_TAG": 607
   },
   "findings": [
     {
@@ -1631,7 +1631,16 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-      "line": 91,
+      "line": 93,
+      "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
+      "snippet": "Debug.Log(\"ZIPTIDE: FIRST_HOLSTER item=\" + itemId + \" socket=\" + gameObject.name);"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
+      "line": 95,
       "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
       "snippet": "Debug.Log(\"ZIPTIDE: HOLSTER_SELECT_ENTER item=\" + itemId + \" socket=\" + gameObject.name"
     },
@@ -1640,7 +1649,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-      "line": 109,
+      "line": 113,
       "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
       "snippet": "Debug.Log((owned ? \"ZIPTIDE: HOLSTER_POSE_APPLIED\" : \"ZIPTIDE: HOLSTER_OWNERSHIP_FAIL\")"
     },
@@ -1649,7 +1658,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-      "line": 129,
+      "line": 131,
       "symbol": "Ziptide.Gameplay.HolsterSocketInteractor",
       "snippet": "Debug.Log(\"ZIPTIDE: HOLSTER_SELECT_EXIT item=\""
     },
@@ -7571,7 +7580,7 @@
       "code": "FALLBACK_MARKER",
       "description": "Source text marks fallback/prototype debt",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/RecoveryPlayabilityDeviceTests.cs",
-      "line": 99,
+      "line": 101,
       "symbol": "Ziptide.Tests.EditMode.RecoveryPlayabilityDeviceTests",
       "snippet": "\"The no-ray direct-hand fallback must remain valid for the three-tile layout.\");"
     },

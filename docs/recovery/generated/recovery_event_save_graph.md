@@ -462,7 +462,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 ### `ItemHolstered`
 
 - **EVENT_DECLARE** · `Ziptide.Gameplay.HolsterSocketInteractor` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:28` · `static Action<string>` — `public static event Action<string> ItemHolstered;`
-- **EVENT_INVOKE** · `Ziptide.Gameplay.HolsterSocketInteractor` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:137` — `ItemHolstered?.Invoke(itemId);`
+- **EVENT_INVOKE** · `Ziptide.Gameplay.HolsterSocketInteractor` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:139` — `ItemHolstered?.Invoke(itemId);`
 
 ### `JobCompleted`
 

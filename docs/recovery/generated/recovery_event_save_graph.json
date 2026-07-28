@@ -2987,7 +2987,7 @@
       {
         "kind": "EVENT_INVOKE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-        "line": 137,
+        "line": 139,
         "owner": "Ziptide.Gameplay.HolsterSocketInteractor",
         "target": "ItemHolstered",
         "detail": "",
@@ -9561,7 +9561,7 @@
     {
       "kind": "EVENT_INVOKE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
-      "line": 137,
+      "line": 139,
       "owner": "Ziptide.Gameplay.HolsterSocketInteractor",
       "target": "ItemHolstered",
       "detail": "",
