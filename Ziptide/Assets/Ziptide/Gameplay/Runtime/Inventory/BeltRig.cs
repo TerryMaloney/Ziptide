@@ -36,6 +36,7 @@ namespace Ziptide.Gameplay
                 // Boot scene omitted them. Turn activation itself waits for usable XR input controls.
                 PlayerSafetyRuntime.EnsureOnRig(rig.gameObject);
                 TurnModeRuntimeAuthority.EnsureOnRig(rig.gameObject);
+                QuestDeviceCorrectionsRuntime.EnsureOnRig(rig.gameObject);
             }
 
             Camera cam = GetComponentInParent<Camera>(true);
