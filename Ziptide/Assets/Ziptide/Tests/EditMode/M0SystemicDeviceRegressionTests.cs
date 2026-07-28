@@ -61,11 +61,12 @@ namespace Ziptide.Tests.EditMode
         }
 
         [Test]
-        public void BreakerBlade_HandPosePreservesForwardYaw_AndSocketsDoNotAttack()
+        public void BreakerBlade_HandPoseForcesForwardYaw_AndSocketsDoNotAttack()
         {
             string source = Read("Gameplay", "Runtime", "Weapons", "MeleeWeaponRuntime.cs");
             StringAssert.Contains("new Vector3(82f, 180f, 0f)", source);
-            StringAssert.Contains("pose.y = def.gripLocalEuler.y;", source);
+            StringAssert.Contains("Yaw is a device contract, not stale asset data", source);
+            StringAssert.DoesNotContain("pose.y = def.gripLocalEuler.y;", source);
             StringAssert.Contains("interactor is XRBaseControllerInteractor", source);
             StringAssert.DoesNotContain("bool held = _grab != null && _grab.isSelected;", source);
         }
