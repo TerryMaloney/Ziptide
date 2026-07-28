@@ -1,7 +1,7 @@
 # ZIPTIDE Recovery Contract Scan
 
-- Scanned files: **738**
-- Findings: **2658**
+- Scanned files: **739**
+- Findings: **2662**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
@@ -9,7 +9,7 @@
 | Category | Count |
 |---|---:|
 | `bootstrap` | 42 |
-| `diagnostics` | 621 |
+| `diagnostics` | 625 |
 | `events` | 65 |
 | `fallback_debt` | 159 |
 | `global_render` | 87 |
@@ -202,7 +202,7 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/WardenBehavior.cs:51` · `Ziptide.Gameplay.WardenBehavior` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: WARDEN mode=" + _fsm.Mode + " tier=" + tier);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/WardenBehavior.cs:92` · `Ziptide.Gameplay.WardenBehavior` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: WARDEN_ARREST");`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/FallRespawner.cs:55` · `Ziptide.Gameplay.FallRespawner` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: GAP_RECOVERY reason=" + decision.Reason`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:47` · `Ziptide.Gameplay.BeltRig` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: BELT_READY sockets=3 camera="`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:48` · `Ziptide.Gameplay.BeltRig` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: BELT_READY sockets=3 camera="`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:46` · `Ziptide.Gameplay.HolsterSocketInteractor` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: HOLSTER_SOCKET_READY socket=" + gameObject.name`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:119` · `Ziptide.Gameplay.HolsterSocketInteractor` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: HOLSTER_TARGET item=" + itemId + " socket=" + gameObject.name`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:152` · `Ziptide.Gameplay.HolsterSocketInteractor` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: HOLSTER_CANDIDATE item="`
@@ -340,6 +340,10 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs:321` · `Ziptide.Gameplay.TurnModeCore` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RIG_HEIGHT_RUNTIME origin=" + requested + " offsetY="`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerStunReceiver.cs:54` · `Ziptide.Gameplay.PlayerStunReceiver` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: PLAYER_STUN sec=" + seconds.ToString("F2") + " slow=" + slowFactor.ToString("F2"));`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerStunReceiver.cs:69` · `Ziptide.Gameplay.PlayerStunReceiver` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: PLAYER_HIT src=" + sourcePos.ToString("F1"));`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs:43` · `Ziptide.Gameplay.QuestDeviceCorrectionsRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: QUEST_DEVICE_CORRECTIONS_ENSURED rig=" + rig.name);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs:143` · `Ziptide.Gameplay.QuestDeviceCorrectionsRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: BREAKER_BLADE_GRIP_FIXED euler="`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs:214` · `Ziptide.Gameplay.QuestDeviceCorrectionsRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: QUEST_HEIGHT_OK eye=" + eyeHeight.ToString("F2")`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs:228` · `Ziptide.Gameplay.QuestDeviceCorrectionsRuntime` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: QUEST_HEIGHT_FIXED from=" + eyeHeight.ToString("F2")`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs:69` · `Ziptide.Gameplay.LifecycleState` — ZIPTIDE diagnostic tag. `/// flagged for the unified-readiness review in HANDOFF. Logs ZIPTIDE: LIFECYCLE state=a->b.`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs:97` · `Ziptide.Gameplay.LifecycleState` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: DUP_SINGLETON SystemFocusLifecycle");`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs:134` · `Ziptide.Gameplay.LifecycleState` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: LIFECYCLE state=" + previous + "->" + next + " reason=" + reason);`
@@ -929,7 +933,7 @@
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:271` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — Camera.main dependency. `Camera cam = Camera.main;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureBehaviorBase.cs:84` · `Ziptide.Gameplay.CreatureBehaviorBase` — Camera.main dependency. `if (Camera.main != null) Player = Camera.main.transform;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:191` · `Ziptide.Gameplay.DroneCombatBehavior` — Camera.main dependency. `if (Camera.main != null) _player = Camera.main.transform;`
-- **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:42` · `Ziptide.Gameplay.BeltRig` — Camera.main dependency. `if (cam == null) cam = Camera.main;`
+- **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:43` · `Ziptide.Gameplay.BeltRig` — Camera.main dependency. `if (cam == null) cam = Camera.main;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/DispatchKiosk.cs:100` · `Ziptide.Gameplay.DispatchKiosk` — Camera.main dependency. `_camera = Camera.main;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs:334` · `Ziptide.Gameplay.JobDirector` — Camera.main dependency. `var cam = Camera.main;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:190` · `Ziptide.Gameplay.ObjectiveBoard` — Camera.main dependency. `Camera cam = Camera.main;`
@@ -1280,7 +1284,7 @@
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/NestRuntime.cs:145` · `Ziptide.Gameplay.NestRuntime` — Runtime Material allocation. `var mat = new Material(shader);`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/StunBolt.cs:41` · `Ziptide.Gameplay.StunBolt` — Runtime Material allocation. `var mat = new Material(shader);`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/TetherSwarmBehavior.cs:62` · `Ziptide.Gameplay.TetherSwarmBehavior` — Runtime Material allocation. `var mat = new Material(shader);`
-- **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:126` · `Ziptide.Gameplay.BeltRig` — Runtime Material allocation. `_holsterMat = new Material(shader) { name = "HolsterMarker_Mat" };`
+- **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:127` · `Ziptide.Gameplay.BeltRig` — Runtime Material allocation. `_holsterMat = new Material(shader) { name = "HolsterMarker_Mat" };`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:98` · `Ziptide.Gameplay.ItemFactory` — Runtime Material allocation. `var mat = new Material(r.sharedMaterial);`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:505` · `Ziptide.Gameplay.ItemFactory` — Runtime Material allocation. `var mat = new Material(shader);`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:230` · `Ziptide.Gameplay.ObjectiveBoard` — Runtime Material allocation. `_toastMaterial = new Material(shader);`
@@ -1400,8 +1404,8 @@
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/StunBolt.cs:40` · `Ziptide.Gameplay.StunBolt` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Universal Render Pipeline/Lit");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/TetherSwarmBehavior.cs:58` · `Ziptide.Gameplay.TetherSwarmBehavior` — Runtime shader lookup. `var shader = Shader.Find("Universal Render Pipeline/Unlit");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/TetherSwarmBehavior.cs:59` · `Ziptide.Gameplay.TetherSwarmBehavior` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Sprites/Default");`
-- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:124` · `Ziptide.Gameplay.BeltRig` — Runtime shader lookup. `Shader shader = Shader.Find("Universal Render Pipeline/Lit");`
-- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:125` · `Ziptide.Gameplay.BeltRig` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Standard");`
+- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:125` · `Ziptide.Gameplay.BeltRig` — Runtime shader lookup. `Shader shader = Shader.Find("Universal Render Pipeline/Lit");`
+- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:126` · `Ziptide.Gameplay.BeltRig` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Standard");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:502` · `Ziptide.Gameplay.ItemFactory` — Runtime shader lookup. `var shader = Shader.Find("Universal Render Pipeline/Lit");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:503` · `Ziptide.Gameplay.ItemFactory` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Standard");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:226` · `Ziptide.Gameplay.ObjectiveBoard` — Runtime shader lookup. `Shader shader = Shader.Find("Universal Render Pipeline/Lit");`
@@ -1627,7 +1631,7 @@
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/NestRuntime.cs:61` · `Ziptide.Gameplay.NestRuntime` — Runtime primitive construction. `var egg = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/NestRuntime.cs:82` · `Ziptide.Gameplay.NestRuntime` — Runtime primitive construction. `var stake = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/StunBolt.cs:30` · `Ziptide.Gameplay.StunBolt` — Runtime primitive construction. `var ball = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
-- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:108` · `Ziptide.Gameplay.BeltRig` — Runtime primitive construction. `GameObject marker = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
+- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:109` · `Ziptide.Gameplay.BeltRig` — Runtime primitive construction. `GameObject marker = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:174` · `Ziptide.Gameplay.ItemFactory` — Runtime primitive construction. `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:218` · `Ziptide.Gameplay.ItemFactory` — Runtime primitive construction. `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:265` · `Ziptide.Gameplay.ItemFactory` — Runtime primitive construction. `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
@@ -1962,8 +1966,8 @@
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs:206` · `Ziptide.Gameplay.EcologyDirector` — Runtime GameObject construction. `var go = new GameObject("Nest_" + s.CreatureId + "_" + i);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/TetherSwarmBehavior.cs:29` · `Ziptide.Gameplay.TetherSwarmBehavior` — Runtime GameObject construction. `_clusterA = new GameObject("ClusterA").transform;`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/TetherSwarmBehavior.cs:32` · `Ziptide.Gameplay.TetherSwarmBehavior` — Runtime GameObject construction. `_clusterB = new GameObject("ClusterB").transform;`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:80` · `Ziptide.Gameplay.BeltRig` — Runtime GameObject construction. `GameObject go = new GameObject(holsterName);`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:98` · `Ziptide.Gameplay.BeltRig` — Runtime GameObject construction. `GameObject attachGo = new GameObject("HolsterAttach");`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:81` · `Ziptide.Gameplay.BeltRig` — Runtime GameObject construction. `GameObject go = new GameObject(holsterName);`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:99` · `Ziptide.Gameplay.BeltRig` — Runtime GameObject construction. `GameObject attachGo = new GameObject("HolsterAttach");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:88` · `Ziptide.Gameplay.HolsterSocketInteractor` — Runtime GameObject construction. `GameObject poseGo = new GameObject("HolsterPose_" + item.Definition.itemId + "_" + key);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/InventoryPersistence.cs:15` · `Ziptide.Gameplay.InventoryPersistence` — Runtime GameObject construction. `var go = new GameObject("__InventoryRoot");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:196` · `Ziptide.Gameplay.ItemFactory` — Runtime GameObject construction. `var grip = new GameObject("Grip");`

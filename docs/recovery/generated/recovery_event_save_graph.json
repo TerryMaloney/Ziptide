@@ -1,18 +1,18 @@
 {
   "tool": "recovery_event_save_graph",
-  "scannedFiles": 738,
-  "evidenceCount": 739,
+  "scannedFiles": 739,
+  "evidenceCount": 742,
   "kindCounts": {
     "AUTOSAVE": 8,
     "EVENT_DECLARE": 46,
     "EVENT_INVOKE": 61,
-    "EVENT_SUBSCRIBE": 115,
-    "EVENT_UNSUBSCRIBE": 63,
+    "EVENT_SUBSCRIBE": 117,
+    "EVENT_UNSUBSCRIBE": 64,
     "PLAYER_PREFS_ACCESS": 11,
     "PROFILE_FIELD_ACCESS": 366,
     "SAVE_ACCESS": 69
   },
-  "unmatchedNamedSubscriptionCount": 57,
+  "unmatchedNamedSubscriptionCount": 58,
   "unmatchedNamedSubscriptions": [
     {
       "kind": "EVENT_SUBSCRIBE",
@@ -229,6 +229,15 @@
       "target": "p.y",
       "detail": "RecoveryEyeHeight",
       "snippet": "p.y += RecoveryEyeHeight - eyeHeight;"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs",
+      "line": 224,
+      "owner": "Ziptide.Gameplay.QuestDeviceCorrectionsRuntime",
+      "target": "position.y",
+      "detail": "CorrectedEyeHeight",
+      "snippet": "position.y += CorrectedEyeHeight - eyeHeight;"
     },
     {
       "kind": "EVENT_SUBSCRIBE",
@@ -4760,6 +4769,24 @@
       },
       {
         "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs",
+        "line": 50,
+        "owner": "Ziptide.Gameplay.QuestDeviceCorrectionsRuntime",
+        "target": "SceneManager.sceneLoaded",
+        "detail": "OnSceneLoaded",
+        "snippet": "SceneManager.sceneLoaded += OnSceneLoaded;"
+      },
+      {
+        "kind": "EVENT_UNSUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs",
+        "line": 56,
+        "owner": "Ziptide.Gameplay.QuestDeviceCorrectionsRuntime",
+        "target": "SceneManager.sceneLoaded",
+        "detail": "OnSceneLoaded",
+        "snippet": "SceneManager.sceneLoaded -= OnSceneLoaded;"
+      },
+      {
+        "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
         "line": 49,
         "owner": "Ziptide.Gameplay.PvpProgressionRuntime",
@@ -6908,6 +6935,15 @@
       }
     ],
     "position.y": [
+      {
+        "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs",
+        "line": 224,
+        "owner": "Ziptide.Gameplay.QuestDeviceCorrectionsRuntime",
+        "target": "position.y",
+        "detail": "CorrectedEyeHeight",
+        "snippet": "position.y += CorrectedEyeHeight - eyeHeight;"
+      },
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Visuals/Runtime/SkyVistas/SkyAtmosphereRig.cs",
@@ -10115,6 +10151,33 @@
       "target": "OnPlayerStunned",
       "detail": "",
       "snippet": "OnPlayerStunned?.Invoke();"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs",
+      "line": 50,
+      "owner": "Ziptide.Gameplay.QuestDeviceCorrectionsRuntime",
+      "target": "SceneManager.sceneLoaded",
+      "detail": "OnSceneLoaded",
+      "snippet": "SceneManager.sceneLoaded += OnSceneLoaded;"
+    },
+    {
+      "kind": "EVENT_UNSUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs",
+      "line": 56,
+      "owner": "Ziptide.Gameplay.QuestDeviceCorrectionsRuntime",
+      "target": "SceneManager.sceneLoaded",
+      "detail": "OnSceneLoaded",
+      "snippet": "SceneManager.sceneLoaded -= OnSceneLoaded;"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs",
+      "line": 224,
+      "owner": "Ziptide.Gameplay.QuestDeviceCorrectionsRuntime",
+      "target": "position.y",
+      "detail": "CorrectedEyeHeight",
+      "snippet": "position.y += CorrectedEyeHeight - eyeHeight;"
     },
     {
       "kind": "EVENT_DECLARE",

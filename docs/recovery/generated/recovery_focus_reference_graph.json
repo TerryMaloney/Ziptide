@@ -1,12 +1,12 @@
 {
   "tool": "recovery_focus_reference_graph",
-  "scannedFiles": 738,
-  "referenceCount": 415,
+  "scannedFiles": 739,
+  "referenceCount": 418,
   "summaries": {
     "melee": {
-      "referenceCount": 108,
-      "fileCount": 36,
-      "callerFileCount": 36,
+      "referenceCount": 111,
+      "fileCount": 37,
+      "callerFileCount": 37,
       "paths": [
         "Ziptide/Assets/Ziptide/Content/Runtime/Items/ItemDefinition.cs",
         "Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs",
@@ -19,6 +19,7 @@
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs",
+        "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/BreakableWall.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/HammerTool.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpComfortHop.cs",
@@ -57,6 +58,7 @@
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs",
+        "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/BreakableWall.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/HammerTool.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpComfortHop.cs",
@@ -272,6 +274,15 @@
         {
           "focus": "melee",
           "token": "ArenaWeaponKind.BreakerBlade",
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs",
+          "line": 124,
+          "symbol": "Ziptide.Gameplay.QuestDeviceCorrectionsRuntime",
+          "snippet": "if (definition == null || definition.kind != ArenaWeaponKind.BreakerBlade) continue;",
+          "declaration_file": false
+        },
+        {
+          "focus": "melee",
+          "token": "ArenaWeaponKind.BreakerBlade",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs",
           "line": 94,
           "symbol": "Ziptide.Gameplay.WeaponPoseCore",
@@ -457,6 +468,24 @@
           "line": 454,
           "symbol": "Ziptide.Gameplay.ItemFactory",
           "snippet": "case ArenaWeaponKind.TidePike: go.AddComponent<MeleeWeaponRuntime>(); break;",
+          "declaration_file": false
+        },
+        {
+          "focus": "melee",
+          "token": "MeleeWeaponRuntime",
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs",
+          "line": 115,
+          "symbol": "Ziptide.Gameplay.QuestDeviceCorrectionsRuntime",
+          "snippet": "MeleeWeaponRuntime[] weapons = UnityEngine.Object.FindObjectsOfType<MeleeWeaponRuntime>(true);",
+          "declaration_file": false
+        },
+        {
+          "focus": "melee",
+          "token": "MeleeWeaponRuntime",
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs",
+          "line": 118,
+          "symbol": "Ziptide.Gameplay.QuestDeviceCorrectionsRuntime",
+          "snippet": "MeleeWeaponRuntime weapon = weapons[i];",
           "declaration_file": false
         },
         {
@@ -717,7 +746,7 @@
           "focus": "melee",
           "token": "Muzzle",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs",
-          "line": 148,
+          "line": 149,
           "symbol": "Ziptide.Gameplay.BeltRig",
           "snippet": "/// item root axes are solved separately from the actual Muzzle socket by HolsterSocketInteractor.",
           "declaration_file": false
@@ -726,7 +755,7 @@
           "focus": "melee",
           "token": "Muzzle",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs",
-          "line": 171,
+          "line": 172,
           "symbol": "Ziptide.Gameplay.BeltRig",
           "snippet": "// Euler pose. New code should use ResolveDesiredAxis/ResolveDesiredUp plus the item's Muzzle axis.",
           "declaration_file": false
@@ -5038,7 +5067,7 @@
       "focus": "melee",
       "token": "Muzzle",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs",
-      "line": 148,
+      "line": 149,
       "symbol": "Ziptide.Gameplay.BeltRig",
       "snippet": "/// item root axes are solved separately from the actual Muzzle socket by HolsterSocketInteractor.",
       "declaration_file": false
@@ -5047,7 +5076,7 @@
       "focus": "melee",
       "token": "Muzzle",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs",
-      "line": 171,
+      "line": 172,
       "symbol": "Ziptide.Gameplay.BeltRig",
       "snippet": "// Euler pose. New code should use ResolveDesiredAxis/ResolveDesiredUp plus the item's Muzzle axis.",
       "declaration_file": false
@@ -5653,6 +5682,33 @@
       "line": 173,
       "symbol": "Ziptide.Gameplay.ObjectiveBoard",
       "snippet": "Debug.Log(\"ZIPTIDE: REPAIR_TRACE hop=board director=\" + jobDirector.GetInstanceID()",
+      "declaration_file": false
+    },
+    {
+      "focus": "melee",
+      "token": "ArenaWeaponKind.BreakerBlade",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs",
+      "line": 124,
+      "symbol": "Ziptide.Gameplay.QuestDeviceCorrectionsRuntime",
+      "snippet": "if (definition == null || definition.kind != ArenaWeaponKind.BreakerBlade) continue;",
+      "declaration_file": false
+    },
+    {
+      "focus": "melee",
+      "token": "MeleeWeaponRuntime",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs",
+      "line": 115,
+      "symbol": "Ziptide.Gameplay.QuestDeviceCorrectionsRuntime",
+      "snippet": "MeleeWeaponRuntime[] weapons = UnityEngine.Object.FindObjectsOfType<MeleeWeaponRuntime>(true);",
+      "declaration_file": false
+    },
+    {
+      "focus": "melee",
+      "token": "MeleeWeaponRuntime",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs",
+      "line": 118,
+      "symbol": "Ziptide.Gameplay.QuestDeviceCorrectionsRuntime",
+      "snippet": "MeleeWeaponRuntime weapon = weapons[i];",
       "declaration_file": false
     },
     {

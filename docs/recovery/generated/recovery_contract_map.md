@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
-- Scanned files: **738**
-- Scanner findings: **2658**
+- Scanned files: **739**
+- Scanner findings: **2662**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -1415,12 +1415,12 @@ None.
 
 - Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`, `RUNTIME_MATERIAL_CREATE`, `SHADER_FIND`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:80` **NEW_GAME_OBJECT** — `GameObject go = new GameObject(holsterName);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:98` **NEW_GAME_OBJECT** — `GameObject attachGo = new GameObject("HolsterAttach");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:108` **CREATE_PRIMITIVE** — `GameObject marker = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:124` **SHADER_FIND** — `Shader shader = Shader.Find("Universal Render Pipeline/Lit");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:125` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:126` **RUNTIME_MATERIAL_CREATE** — `_holsterMat = new Material(shader) { name = "HolsterMarker_Mat" };`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:81` **NEW_GAME_OBJECT** — `GameObject go = new GameObject(holsterName);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:99` **NEW_GAME_OBJECT** — `GameObject attachGo = new GameObject("HolsterAttach");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:109` **CREATE_PRIMITIVE** — `GameObject marker = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:125` **SHADER_FIND** — `Shader shader = Shader.Find("Universal Render Pipeline/Lit");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:126` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:127` **RUNTIME_MATERIAL_CREATE** — `_holsterMat = new Material(shader) { name = "HolsterMarker_Mat" };`
 
 ### `Ziptide.Gameplay.BeltTileItem` — 5 signal(s)
 
@@ -4167,7 +4167,7 @@ None.
 
 - Codes: `CAMERA_MAIN_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:42` **CAMERA_MAIN_REFERENCE** — `if (cam == null) cam = Camera.main;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:43` **CAMERA_MAIN_REFERENCE** — `if (cam == null) cam = Camera.main;`
 
 ### `Ziptide.Gameplay.BuildSocketRuntime` — 1 signal(s)
 

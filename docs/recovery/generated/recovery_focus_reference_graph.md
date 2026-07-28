@@ -1,19 +1,20 @@
 # ZIPTIDE Focused Recovery Reference Graph
 
-- Scanned C# files: **738**
-- Focused references: **415**
+- Scanned C# files: **739**
+- Focused references: **418**
 
 ## melee
 
-- References: **108**
-- Files: **36**
-- Non-declaration caller files: **36**
+- References: **111**
+- Files: **37**
+- Non-declaration caller files: **37**
 
 ### `ArenaWeaponKind.BreakerBlade`
 
 - **reference** · `Ziptide.Editor.Patching.ArenaWeaponAuthor` · `Ziptide/Assets/Ziptide/Editor/Patching/ArenaWeaponAuthor.cs:27` — `made += Ensure("breaker_blade", ArenaWeaponKind.BreakerBlade, cooldown: 0.0f);`
 - **reference** · `Ziptide.Gameplay.ItemFactory` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:392` — `case ArenaWeaponKind.BreakerBlade:`
 - **reference** · `Ziptide.Gameplay.ItemFactory` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:453` — `case ArenaWeaponKind.BreakerBlade:`
+- **reference** · `Ziptide.Gameplay.QuestDeviceCorrectionsRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs:124` — `if (definition == null || definition.kind != ArenaWeaponKind.BreakerBlade) continue;`
 - **reference** · `Ziptide.Gameplay.WeaponPoseCore` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:94` — `if (def == null || def.kind != ArenaWeaponKind.BreakerBlade || _grab == null) return;`
 
 ### `ArenaWeaponKind.SonicThumper`
@@ -49,6 +50,8 @@
 
 - **reference** · `Ziptide.Editor.Audit.WeaponPerceptualAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/WeaponPerceptualAuditRules.cs:28` — `bool melee = item.GetComponent<MeleeWeaponRuntime>() != null;`
 - **reference** · `Ziptide.Gameplay.ItemFactory` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/ItemFactory.cs:454` — `case ArenaWeaponKind.TidePike: go.AddComponent<MeleeWeaponRuntime>(); break;`
+- **reference** · `Ziptide.Gameplay.QuestDeviceCorrectionsRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs:115` — `MeleeWeaponRuntime[] weapons = UnityEngine.Object.FindObjectsOfType<MeleeWeaponRuntime>(true);`
+- **reference** · `Ziptide.Gameplay.QuestDeviceCorrectionsRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs:118` — `MeleeWeaponRuntime weapon = weapons[i];`
 - **reference** · `Ziptide.Gameplay.GunLaserSight` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:12` — `/// itself when MeleeWeaponRuntime is present.`
 - **reference** · `Ziptide.Gameplay.GunLaserSight` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:42` — `if (GetComponent<MeleeWeaponRuntime>() == null) return false;`
 - **declaration** · `Ziptide.Gameplay.WeaponPoseCore` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:61` — `public class MeleeWeaponRuntime : MonoBehaviour`
@@ -80,8 +83,8 @@
 - **reference** · `Ziptide.Editor.Patching.ForgeRecipeLibrary` · `Ziptide/Assets/Ziptide/Editor/Patching/ForgeRecipeLibrary.cs:1239` — `new ForgeSocket { name = "Muzzle", localPosition = new Vector3(0f, 0f, 0.59f), localEuler = Vector3.zero },`
 - **reference** · `Ziptide.Editor.Patching.ScenePatcherC0` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherC0.cs:248` — `var muzzle = new GameObject("Muzzle");`
 - **reference** · `Ziptide.Editor.Patching.ScenePatcherD1` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherD1.cs:691` — `var muzzle = new GameObject("Muzzle");`
-- **reference** · `Ziptide.Gameplay.BeltRig` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:148` — `/// item root axes are solved separately from the actual Muzzle socket by HolsterSocketInteractor.`
-- **reference** · `Ziptide.Gameplay.BeltRig` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:171` — `// Euler pose. New code should use ResolveDesiredAxis/ResolveDesiredUp plus the item's Muzzle axis.`
+- **reference** · `Ziptide.Gameplay.BeltRig` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:149` — `/// item root axes are solved separately from the actual Muzzle socket by HolsterSocketInteractor.`
+- **reference** · `Ziptide.Gameplay.BeltRig` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/BeltRig.cs:172` — `// Euler pose. New code should use ResolveDesiredAxis/ResolveDesiredUp plus the item's Muzzle axis.`
 - **reference** · `Ziptide.Gameplay.HolsterSocketInteractor` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:72` — `/// Muzzle/tip axis makes guns hang barrel-down and blades sheath tip-down without assuming model axes.`
 - **reference** · `Ziptide.Gameplay.HolsterSocketInteractor` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:127` — `Transform direct = root.Find("Muzzle");`
 - **reference** · `Ziptide.Gameplay.HolsterSocketInteractor` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:131` — `if (all[i] != null && all[i].name == "Muzzle") return all[i];`
