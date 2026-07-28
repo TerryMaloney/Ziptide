@@ -42,7 +42,9 @@ Write-Host "         ^ record this in the verdict block" -ForegroundColor DarkGr
 
 # ── 2. Find the headset(s) ───────────────────────────────────────────────────
 adb start-server | Out-Null
-$devices = (adb devices) | Select-String "`tdevice$" | ForEach-Object { ($_ -split "`t")[0] }
+# Force an array even when exactly one device is present. Without @(...), PowerShell stores a
+# single serial as a scalar string and $targets[0] becomes only its first character.
+$devices = @((adb devices) | Select-String "`tdevice$" | ForEach-Object { ($_ -split "`t")[0] })
 
 if ($devices.Count -eq 0) {
     Write-Host "No authorized Quest found. Plug in, then accept 'Allow USB debugging' in the headset." -ForegroundColor Red
@@ -52,8 +54,8 @@ if ($devices.Count -eq 0) {
 
 $targets = @()
 if     ($Serial) { $targets = @($Serial) }
-elseif ($Both)   { $targets = $devices }
-elseif ($devices.Count -eq 1) { $targets = $devices }
+elseif ($Both)   { $targets = @($devices) }
+elseif ($devices.Count -eq 1) { $targets = @($devices[0]) }
 else {
     Write-Host "`nMore than one headset connected:" -ForegroundColor Yellow
     $devices | ForEach-Object { Write-Host "  $_" }
@@ -75,7 +77,7 @@ foreach ($t in $targets) {
 }
 
 # ── 4. Tell the human exactly what to do next ────────────────────────────────
-$first = $targets[0]
+$first = @($targets)[0]
 Write-Host ""
 Write-Host "DONE. Launch Ziptide from the Quest library." -ForegroundColor Green
 Write-Host ""
