@@ -27,6 +27,40 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-28 (rb118) — T-Dog lane: 📋 ALL 24 CONCEPT SHEETS GIVEN BODY-CONTRACT PASSPORTS (pre-Tripo, docs only)
+
+- **Terry's ask:** get the whole concept batch wired in while GPT works the device fixes.
+  Art lane is collision-free with the runtime lane. Expanded
+  **`docs/project_art_plan/BESTIARY_BODY_CONTRACTS.md` from 3 → 24 passports** (770 lines):
+  21 creatures/machines + 3 plants, each with the four gate-required headings (Scale and
+  ergonomics · State vocabulary · Interaction and collider envelope · Build acceptance).
+- **Every passport settles what is IRREVERSIBLE at mesh time:** metre scale + threat-height band +
+  closest-approach-to-headset · locomotion mode · the silhouette set the rig must reach (incl. the
+  new pre-mesh **ambient** pose) · attack anatomy → required joints · full socket map (weak-points,
+  face-safe grab handles, tether, feet, VFX/audio mounts, carry handle) · separable parts WITH cap
+  geometry · tell-channel material region · collider proxies · variant mechanism. Every entry
+  carries its **CI-required COUNTER** (`CreatureBehaviorReadabilityCatalog` enforces it).
+- **Pre-mesh constraints surfaced that would have cost a remodel:** tether-swarm must be ONE
+  instanced object, not 7 agents · light-grazer's two sizes should be a blendshape (continuous
+  inflate), not a mesh swap · tide-phase's phase transition is a whole-body height-masked material
+  pass, so UV/material regions must support it · bridge-former's BRIDGE FORM needs its own authored
+  walkable collider · mimic-vault's closed box must match real container dimensions exactly and its
+  unfold must not sweep through the player's head at 1 m · seal-ward is wall-mounted (scene socket,
+  not floor spawn) · inverter's rig must be genuinely reversible (no "up" assumption) · orbit-grazer
+  has no feet and the rig must not assume a floor · rewinder's after-images are ghost meshes, budget
+  3 concurrent draws · tide-kite needs a carry socket between its hooks for the stolen item ·
+  sludge-melon is a two-handed carry so it needs two opposed grab handles.
+- **Flora passports added** (dew_bulb, rust_fern, sludge_melon) with the plant-specific pre-mesh
+  call: **growth stages as separate meshes, harvested output as its own independent prop** with cap
+  geometry, plus harvest-reach checked against seated/child height.
+- **§0 rewritten** as the full 24-sheet ingest recipe (filenames, `concepts/bestiary_ch1/` +
+  `concepts/flora_ch1/`, manifest entry shape, the four requiredMarkers, gate run). Registration
+  still deliberately deferred — `concept_intake_gate.py:214` verifies conceptPaths exist on disk
+  and the PNGs are still on Terry's phone. **Outstanding sheets: `sump_tender`, `glass_reed`.**
+- **Verified:** `concept_intake_gate.py` PASS · `catalog_doc_sync_gate.py` 0 blocking / 0 warnings.
+  No runtime, recovery, first-hour, licensing or release file touched.
+- **Commit:** this one (passports + this entry).
+
 ### 2026-07-28 (rb117) — T-Dog lane: 🌾 AMBIENT LIFE research → creature card BLOCK D + ⚠️ TWO VERIFIED PERF BUGS
 
 - **Terry's ask:** creatures should be DOING something when you come across them, gated by distance
