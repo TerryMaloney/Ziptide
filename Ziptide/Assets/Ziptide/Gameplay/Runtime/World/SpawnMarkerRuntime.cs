@@ -3,8 +3,9 @@ using UnityEngine;
 namespace Ziptide.Gameplay
 {
     /// <summary>
-    /// Marks a spawn location for PlayerRigPersistence to find after scene load.
-    /// Place one per scene at the desired player arrival point.
+    /// Marks a spawn location for PlayerRigPersistence. Runtime diagnostics mirror the build audit:
+    /// triggers, the floor and the persistent player rig are excluded, so buriedAtTorso is no longer
+    /// a false all-layer CheckSphere result. A real obstruction is logged as a blocker-class error.
     /// </summary>
     public class SpawnMarkerRuntime : MonoBehaviour
     {
@@ -15,16 +16,32 @@ namespace Ziptide.Gameplay
         {
             if (markerId != "player") return;
 
-            // Ground-truth report for spawn bugs (Test Day 1: "stuck halfway under the level" in
-            // an arena). One log line answers the three suspects from device logcat alone:
-            // is there ground below, how far down, and is the marker buried inside solid geometry?
-            bool below = Physics.Raycast(transform.position + Vector3.up * 0.05f, Vector3.down,
-                out var hit, 10f);
-            bool buried = Physics.CheckSphere(transform.position + Vector3.up * 0.9f, 0.25f);
-            Debug.Log("ZIPTIDE: SPAWN_AT scene=" + gameObject.scene.name
+            bool below = Physics.Raycast(transform.position + Vector3.up * 0.2f, Vector3.down,
+                out RaycastHit hit, 10f, Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore);
+            Collider floor = below ? hit.collider : null;
+            float feetY = transform.position.y + 0.2f;
+            bool buried = false;
+            string obstruction = "NONE";
+
+            Collider[] overlaps = Physics.OverlapSphere(transform.position + Vector3.up * 0.9f, 0.3f,
+                Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore);
+            for (int i = 0; i < overlaps.Length; i++)
+            {
+                Collider col = overlaps[i];
+                if (col == null || col == floor) continue;
+                if (col.bounds.max.y <= feetY) continue;
+                if (col.GetComponentInParent<PlayerRigPersistence>() != null) continue;
+                buried = true;
+                obstruction = col.name;
+                break;
+            }
+
+            string line = "ZIPTIDE: SPAWN_AT scene=" + gameObject.scene.name
                 + " pos=" + transform.position.ToString("F2")
                 + " groundBelow=" + (below ? hit.distance.ToString("F2") + "m@" + hit.collider.name : "NONE")
-                + " buriedAtTorso=" + buried);
+                + " buriedAtTorso=" + buried + " obstruction=" + obstruction;
+            if (buried || !below) Debug.LogError("ZIPTIDE: SPAWN_RUNTIME_BLOCKER " + line);
+            else Debug.Log(line);
         }
     }
 }
