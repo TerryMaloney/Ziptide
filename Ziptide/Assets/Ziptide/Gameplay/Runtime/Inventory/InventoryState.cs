@@ -7,40 +7,31 @@ namespace Ziptide.Gameplay
 {
     /// <summary>
     /// Static save/restore registry for items across scene travel.
-    /// Destroy-and-recreate pattern avoids XRI selection state corruption.
-    /// RestoreAfterTravel is an IEnumerator so it can be started as a coroutine,
-    /// deferring restore until XRI is frame-stable and using real socket selection.
+    /// Destroy-and-recreate avoids stale XRI selection state; restore uses a real XRSocketInteractor
+    /// SelectEnter so a holstered item has one unambiguous owner instead of being manually parented.
     /// </summary>
     public static class InventoryState
     {
         public struct SavedItem
         {
             public string itemId;
-            public string slotId; // "holster_left", "holster_center", "holster_right", "hand", "loose"
+            public string slotId;
         }
 
         private static readonly List<SavedItem> _saved = new List<SavedItem>();
-
         public static IReadOnlyList<SavedItem> Items => _saved;
 
         public static void SaveBeforeTravel()
         {
             _saved.Clear();
-
-            var allItems = Object.FindObjectsOfType<ItemRuntime>(true);
+            ItemRuntime[] allItems = Object.FindObjectsOfType<ItemRuntime>(true);
             Debug.Log("ZIPTIDE: INVENTORY_SAVE count=" + allItems.Length);
 
-            foreach (var item in allItems)
+            foreach (ItemRuntime item in allItems)
             {
                 if (item == null || item.Definition == null) continue;
-
                 string slotId = DetermineSlot(item);
-
-                // Only HOLSTERED items travel with the player. Loose / in-hand items belong to the
-                // scene they spawned in and are left behind (they unload with the scene). This stops
-                // guns piling up every round-trip and stops scene-spawned guns from following you.
-                if (!slotId.StartsWith("holster"))
-                    continue;
+                if (!slotId.StartsWith("holster")) continue;
 
                 _saved.Add(new SavedItem { itemId = item.Definition.itemId, slotId = slotId });
                 Debug.Log("ZIPTIDE: INVENTORY_SAVED item=" + item.Definition.itemId + " slot=" + slotId);
@@ -48,57 +39,45 @@ namespace Ziptide.Gameplay
             }
         }
 
-        /// <summary>
-        /// Must be started as a coroutine (e.g. StartCoroutine(InventoryState.RestoreAfterTravel(transform))).
-        /// Waits two frames for XRI interactors to register before attempting socket selection.
-        /// </summary>
         public static IEnumerator RestoreAfterTravel(Transform playerRoot)
         {
             if (_saved.Count == 0) yield break;
-
-            // Wait two frames so XRI interactors/sockets are fully enabled and registered.
             yield return null;
             yield return null;
 
             Debug.Log("ZIPTIDE: INVENTORY_RESTORE count=" + _saved.Count);
-
-            var toRestore = new List<SavedItem>(_saved);
+            List<SavedItem> toRestore = new List<SavedItem>(_saved);
             _saved.Clear();
 
-            foreach (var saved in toRestore)
+            foreach (SavedItem saved in toRestore)
             {
-                var go = ItemFactory.Create(
-                    saved.itemId,
+                GameObject go = ItemFactory.Create(saved.itemId,
                     playerRoot.position + playerRoot.forward * 0.3f + Vector3.up * 0.8f);
-
                 if (go == null)
                 {
-                    Debug.LogWarning("ZIPTIDE: INVENTORY_RESTORE_FAIL item=" + saved.itemId + " reason=factory_returned_null");
+                    Debug.LogError("ZIPTIDE: INVENTORY_RESTORE_BLOCKER item=" + saved.itemId
+                        + " reason=factory_returned_null");
                     continue;
                 }
 
                 if (saved.slotId.StartsWith("holster"))
-                {
-                    // Each TryHolsterCoroutine yields internally; run inline.
                     yield return TryHolsterCoroutine(go, saved.slotId, playerRoot);
-                }
 
                 Debug.Log("ZIPTIDE: INVENTORY_RESTORED item=" + saved.itemId + " slot=" + saved.slotId);
             }
         }
 
-        // ── Slot detection ──────────────────────────────────────────────────
-
         private static string DetermineSlot(ItemRuntime item)
         {
-            var grab = item.GetComponent<XRGrabInteractable>();
+            XRGrabInteractable grab = item.GetComponent<XRGrabInteractable>();
             if (grab == null) return "loose";
 
             if (grab.isSelected)
             {
-                foreach (var interactor in grab.interactorsSelecting)
+                foreach (IXRSelectInteractor interactor in grab.interactorsSelecting)
                 {
-                    if (interactor is XRSocketInteractor socket)
+                    XRSocketInteractor socket = interactor as XRSocketInteractor;
+                    if (socket != null)
                     {
                         string socketName = socket.gameObject.name.ToLowerInvariant();
                         if (socketName.Contains("left")) return "holster_left";
@@ -110,12 +89,17 @@ namespace Ziptide.Gameplay
                 }
             }
 
-            var parent = item.transform.parent;
+            // Legacy parent fallback remains readable for one migration cycle, but proximity alone is
+            // deliberately not treated as ownership. A weapon near a socket is not holstered until XRI
+            // says the socket selected it.
+            Transform parent = item.transform.parent;
             while (parent != null)
             {
                 string pn = parent.name.ToLowerInvariant();
                 if (pn.Contains("holster"))
                 {
+                    Debug.LogWarning("ZIPTIDE: INVENTORY_LEGACY_PARENT item=" + item.Definition.itemId
+                        + " parent=" + parent.name);
                     if (pn.Contains("left")) return "holster_left";
                     if (pn.Contains("center")) return "holster_center";
                     if (pn.Contains("right")) return "holster_right";
@@ -123,90 +107,106 @@ namespace Ziptide.Gameplay
                 }
                 parent = parent.parent;
             }
-
-            // Proximity fallback: a gun resting on a holster may not be socket-SELECTED yet (physics/
-            // timing), which would make it look "loose" and get left behind on travel. If it's sitting
-            // on a holster, still treat it as holstered so it comes with you.
-            var holsters = Object.FindObjectsOfType<HolsterSocketInteractor>();
-            foreach (var h in holsters)
-            {
-                if (h == null) continue;
-                if (Vector3.Distance(item.transform.position, h.transform.position) <= 0.18f)
-                {
-                    string hn = h.gameObject.name.ToLowerInvariant();
-                    if (hn.Contains("left")) return "holster_left";
-                    if (hn.Contains("right")) return "holster_right";
-                    return "holster_center";
-                }
-            }
-
             return "loose";
         }
 
-        // ── Force-drop and destroy before travel ────────────────────────────
-
         private static void ForceDropAndDestroy(ItemRuntime item)
         {
-            var grab = item.GetComponent<XRGrabInteractable>();
+            XRGrabInteractable grab = item.GetComponent<XRGrabInteractable>();
             if (grab != null && grab.isSelected)
             {
-                var mgr = grab.interactionManager;
-                if (mgr != null)
+                XRInteractionManager manager = grab.interactionManager;
+                if (manager != null)
                 {
-                    var selectingList = new List<IXRSelectInteractor>(grab.interactorsSelecting);
-                    foreach (var interactor in selectingList)
+                    List<IXRSelectInteractor> selecting = new List<IXRSelectInteractor>(grab.interactorsSelecting);
+                    foreach (IXRSelectInteractor interactor in selecting)
                     {
-                        try { mgr.SelectExit(interactor, grab); }
-                        catch (System.Exception ex) { Debug.LogWarning("ZIPTIDE: SelectExit error: " + ex.Message); }
+                        try { manager.SelectExit(interactor, grab); }
+                        catch (System.Exception ex)
+                        {
+                            Debug.LogWarning("ZIPTIDE: SelectExit error: " + ex.Message);
+                        }
                     }
                 }
             }
-
             Object.Destroy(item.gameObject);
         }
 
-        // ── Holster restore (coroutine, uses real socket selection) ─────────
-
         private static IEnumerator TryHolsterCoroutine(GameObject item, string slotId, Transform playerRoot)
         {
-            // Give the freshly-created item one frame to complete Awake/OnEnable.
             yield return null;
             if (item == null) yield break;
 
-            var socket = FindMatchingSocket(slotId, playerRoot);
-            Transform anchor = socket != null
-                ? (socket.attachTransform != null ? socket.attachTransform : socket.transform)
-                : null;
-
-            if (anchor == null)
+            HolsterSocketInteractor socket = FindMatchingSocket(slotId, playerRoot);
+            XRGrabInteractable grab = item.GetComponent<XRGrabInteractable>();
+            if (socket == null || grab == null)
             {
-                Debug.LogWarning("ZIPTIDE: HOLSTER_DOCK_FAIL item=" + item.name + " reason=no_socket slot=" + slotId);
+                Debug.LogError("ZIPTIDE: HOLSTER_DOCK_BLOCKER item=" + item.name + " reason="
+                    + (socket == null ? "no_socket" : "no_grab") + " slot=" + slotId);
                 yield break;
             }
 
-            // Robust dock: parent the gun to the hip socket and freeze its physics so it RIDES on
-            // the belt and does NOT fall when we travel. Grabbing it later reparents it to the hand.
-            var rb = item.GetComponent<Rigidbody>();
-            if (rb != null)
+            Transform anchor = socket.attachTransform != null ? socket.attachTransform : socket.transform;
+            item.transform.SetPositionAndRotation(anchor.position, anchor.rotation);
+            Rigidbody body = item.GetComponent<Rigidbody>();
+            if (body != null)
             {
-                rb.velocity = Vector3.zero;
-                rb.angularVelocity = Vector3.zero;
-                rb.isKinematic = true;
+                body.velocity = Vector3.zero;
+                body.angularVelocity = Vector3.zero;
+                body.useGravity = false;
+                body.isKinematic = true;
             }
 
-            var grab = item.GetComponent<XRGrabInteractable>();
-            if (grab != null) grab.retainTransformParent = false;
+            XRInteractionManager manager = socket.interactionManager;
+            if (manager == null) manager = Object.FindObjectOfType<XRInteractionManager>();
+            if (manager == null)
+            {
+                FailHolsterOpen(item, body, slotId, "no_interaction_manager");
+                yield break;
+            }
+            socket.interactionManager = manager;
+            grab.interactionManager = manager;
 
-            item.transform.SetParent(anchor, false);
-            item.transform.localPosition = Vector3.zero;
-            item.transform.localRotation = Quaternion.identity;
-            Debug.Log("ZIPTIDE: HOLSTER_DOCKED item=" + item.name + " slot=" + slotId);
+            Physics.SyncTransforms();
+            yield return null;
+            if (!socket.CanSelect(grab))
+            {
+                FailHolsterOpen(item, body, slotId, "socket_rejected");
+                yield break;
+            }
+
+            manager.SelectEnter(socket, grab);
+            yield return null;
+
+            bool owned = false;
+            foreach (IXRSelectInteractor interactor in grab.interactorsSelecting)
+                if (ReferenceEquals(interactor, socket)) { owned = true; break; }
+
+            if (!owned)
+            {
+                FailHolsterOpen(item, body, slotId, "select_enter_not_owned");
+                yield break;
+            }
+
+            Debug.Log("ZIPTIDE: HOLSTER_DOCKED item=" + item.name + " slot=" + slotId
+                + " owner=" + socket.gameObject.name);
+        }
+
+        private static void FailHolsterOpen(GameObject item, Rigidbody body, string slotId, string reason)
+        {
+            if (body != null)
+            {
+                body.isKinematic = false;
+                body.useGravity = true;
+            }
+            Debug.LogError("ZIPTIDE: HOLSTER_DOCK_BLOCKER item=" + item.name
+                + " reason=" + reason + " slot=" + slotId);
         }
 
         private static HolsterSocketInteractor FindMatchingSocket(string slotId, Transform playerRoot)
         {
-            var holsters = playerRoot.GetComponentsInChildren<HolsterSocketInteractor>(true);
-            foreach (var holster in holsters)
+            HolsterSocketInteractor[] holsters = playerRoot.GetComponentsInChildren<HolsterSocketInteractor>(true);
+            foreach (HolsterSocketInteractor holster in holsters)
             {
                 string hn = holster.gameObject.name.ToLowerInvariant();
                 if (slotId == "holster_left" && hn.Contains("left")) return holster;
