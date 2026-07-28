@@ -63,7 +63,6 @@ namespace Ziptide.Gameplay
             ItemRuntime item = go.GetComponent<ItemRuntime>();
             if (item == null || item.Definition == null) return false;
             string id = item.Definition.itemId;
-            // The code-level portable list heals stale serialized sockets from older generated scenes.
             return DefaultAllowedIds.Contains(id)
                 || (allowedItemIds != null && allowedItemIds.Contains(id));
         }
@@ -116,9 +115,21 @@ namespace Ziptide.Gameplay
         {
             GameObject go = (args.interactableObject as Component)?.gameObject;
             ItemRuntime item = go != null ? go.GetComponent<ItemRuntime>() : null;
+            XRGrabInteractable grab = go != null ? go.GetComponent<XRGrabInteractable>() : null;
+            Rigidbody body = go != null ? go.GetComponent<Rigidbody>() : null;
+
+            // XRI normally applies the hand movement type during a transfer. If the item is simply
+            // removed/dropped and no selector remains, release the socket's explicit kinematic freeze.
+            if (body != null && (grab == null || grab.interactorsSelecting.Count == 0))
+            {
+                body.isKinematic = false;
+                body.useGravity = true;
+            }
+
             Debug.Log("ZIPTIDE: HOLSTER_SELECT_EXIT item="
                 + (item != null && item.Definition != null ? item.Definition.itemId : "UNKNOWN")
-                + " socket=" + gameObject.name);
+                + " socket=" + gameObject.name
+                + " remainingSelectors=" + (grab != null ? grab.interactorsSelecting.Count : 0));
         }
 
         private static void PublishItemHolstered(string itemId)
