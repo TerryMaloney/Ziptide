@@ -27,6 +27,44 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-28 (rb117) — T-Dog lane: 🌾 AMBIENT LIFE research → creature card BLOCK D + ⚠️ TWO VERIFIED PERF BUGS
+
+- **Terry's ask:** creatures should be DOING something when you come across them, gated by distance
+  or line of sight so it doesn't cost performance. Researched (AC Unity AI Recycling, KCD2, Horizon,
+  Rain World abstractization, theHunter animal AI, Watch Dogs Census, Nemesis, Unity CullingGroup /
+  animator culling, Quest budgets, VR impostor limits) and wired the result into
+  `CREATURE_ROSTER_AND_PROMPT_QUEUE.md` as **Block D + field 3b + the tier model + the anti-pop-in law**.
+- **⚠️ TWO LIVE PERF BUGS FOUND AND VERIFIED IN SOURCE** (`CreatureBehaviorBase.cs`, runtime lane —
+  NOT my lane to fix, flagging for the owner):
+  ① **`Update()` runs unconditionally for every creature every frame** (`:56-64`) — `Vector3.Distance`
+  + `Tick` + `TryTouch` per creature per frame with **no distance gating at all**. There is currently
+  no AI LOD in the project.
+  ② **Full-scene type scan per creature per frame**: `Update` calls `FindPlayer()` whenever
+  `Player == null` (`:59`), and `FindPlayer` calls `FindObjectOfType<PlayerStunReceiver>()` (`:82`).
+  If the rig isn't found — early frames after a `TravelCoordinator` load, or any world missing the
+  receiver — **every creature runs a full-scene scan every frame, forever.** Real Quest hazard,
+  independent of the ambient question. Also `Physics.SphereCastAll(..., ~0, ...)` (`:96`) is
+  allocating and all-layers, with `GetComponentInParent` per hit.
+- **⚠️ TERRY'S INSTINCT CORRECTED ON ONE POINT:** distance-tiering YES, **line-of-sight tiering NO**.
+  A VR player turns their head in ~200 ms with no camera cut, and will stand still and STARE. Visibility
+  may PROMOTE, never demote. Use `CullingGroup` distance bands and ignore its `isVisible` flag.
+- **The reframe that saves the work:** the expensive thing was never "creatures doing something" — it
+  was "creatures DECIDING what to do." Make ambient a pure function of `(seed, worldTime)` and a
+  creature at 100 m is correctly mid-graze, at the right phase, in the right place, for the price of a
+  sine wave. **We are already ~60% there** — `ForgeCreatureAnimator` (gait from `(body, Time.time,
+  speed01)` + per-instance breath seed) and `WorldAmbientMotionRuntime` (`sin(time+seed)`) are exactly
+  the right primitive; extend from pose to activity+position and add a tier manager above.
+- **Card changes:** new **field 3b AMBIENT SILHOUETTE is PRE-MESH** (can the Dredge-Bull's plate
+  physically reach the ground to graze? that's a rig constraint, not an animation one) · new Block D
+  fields 24-32 (anchor/den, activity set, schedule, **trace props**, notice-but-not-alarmed +
+  displaced, tier profile, ambient audio that outlives the visual tier, promotion safety, social beat)
+  · clip budget **12 → 14**. ⚠ `witness_mite` needs a tier exemption — "moves only when unwatched"
+  structurally collides with observation-based culling.
+- **Prerequisite flagged:** `docs/07_PERF_BUDGET.md` is still entirely TBD. You cannot tier a budget
+  you have not written down; proposed numbers are in the research (13.9 ms frame, ≤1.5 ms all creature
+  AI, ≤2.0 ms animation+skinning).
+- **Commit:** this one (card Block D + 3b + tier model + anti-pop-in law + this entry).
+
 ### 2026-07-28 (rb116) — T-Dog lane: 🎨 THREE BESTIARY SHEETS APPROVED + body contracts written (pre-Tripo)
 
 - **Terry generated prompts 4-6 and all three came back build-ready:** **Husk-molter** (incl. the

@@ -225,6 +225,12 @@ below is essentially §V2.2's socket passport pulled forward to concept time, wh
 1. **Scale** — metres; threat-height band; must read at **both 1.0 m (kid/seated) and 1.7 m** eye height.
 2. **Locomotion mode** — limb count, ground/wall/fly/burrow, gait role.
 3. **Silhouette triad** — idle / telegraph-apex / disabled, drawn as three thumbnails on the sheet.
+3b. **AMBIENT SILHOUETTE — the fourth thumbnail (PRE-MESH).** Alongside idle / telegraph-apex /
+   disabled, show the creature **mid-ambient-activity** (head down grazing, curled asleep, tending,
+   preening). This is Block A, not Block B, because it **constrains the mesh and rig**: *can the
+   Dredge-Bull's head plate physically reach the ground?* *Does the Light-grazer's vane fan collapse
+   into a sleeping form?* It is also the pose the player sees FIRST and MOST, usually from far away —
+   so it must read at 10 m as clearly as the telegraph does.
 4. **Attack anatomy** — the part that hits, therefore the joints required (jaw? N-segment whip? emitter? inflating bladder = blendshape).
 5. **Socket map** — gaze · mouth/emitter · **weak-point ×n** · **grab handle(s)** (controller-grip sized, positioned OFF the face) · tether point · feet/anchors · VFX mount · audio mount · **carry handle for the downed body**.
 6. **Separable parts** — shed husk, severed cord, salvage parts: each needs its own mesh, sockets and **cap geometry at the break** (you cannot invent an interior later), plus a missing-part silhouette that still reads as the species.
@@ -242,6 +248,56 @@ below is essentially §V2.2's socket passport pulled forward to concept time, wh
 16. **WEAKENED tell** — the limp / one-limb-down gait. Monster Hunter's lesson: the gait change *is* the "capturable now" signal, and it reads with no HUD.
 17. **STUNNED** — grabbable window · flail performance (it must perform urgency, not just freeze) · recover timer · resist tier.
 18. **DOWNED** — pose · recoverable y/n · carryable y/n · which parts detach and in what order · what it leaves behind.
+
+
+### BLOCK D — AMBIENT LIFE *(fill with Block B; fields 24/25/27 are PRE-MESH)*
+Research verdict: **distance-tiering yes, line-of-sight tiering NO** — see §6.
+
+| # | Field | What it specifies |
+|---|---|---|
+| **24** | **AMBIENT ANCHOR** *(pre-mesh)* | What it belongs to — nest / graze patch / perch / roost / patrol node / wreck / burrow — and its radius. Include a **den** where possible: a place the simulation may legitimately end. |
+| **25** | **AMBIENT ACTIVITY SET** *(pre-mesh)* | **2–4 named activities**, one flagged as the 80% default. Each: clip, dwell range, motion amplitude (for distance readability), loop-safe and enterable mid-phase. |
+| **26** | **AMBIENT SCHEDULE** | Which activity in which world-time slot (or `uniform`), and slot length. This is what makes behaviour a pure function of `(seed, worldTime)` — the field that makes the anti-pop-in guarantee **structural rather than tuned**. |
+| **27** | **TRACE PROPS** *(pre-mesh)* | **Minimum one** static thing proving it lived here before you arrived: nest, shed husk, chew marks, worn path, hollowed wreck. `husk_molter`'s husk is the exemplar. Free, and the strongest "this went on without me" signal in the game. |
+| **28** | **NOTICE-BUT-NOT-ALARMED** | The rung BELOW combat notice: head lifts, sound, **does not stop the activity**. Then **DISPLACED** — moves a few metres and **resumes**. This rung is what makes an animal an animal instead of a trigger, and almost nobody builds it. |
+| **29** | **AI TIER PROFILE** | Which body each tier uses (full rig / clip-only / gait+breath / vertex-motion LOD / none), max concurrent at T0 and T1, and any exemption. ⚠ `witness_mite` needs one: its "moves only when unwatched" mechanic structurally collides with observation-based culling. |
+| **30** | **AMBIENT AUDIO SIGNATURE** | The looping sound that **survives to the furthest visual tier**, its radius, plus one punctuation one-shot. "Hear the herd before you see it." Ears have no frustum — this is the single strongest fix for *"the world only lives when I look at it."* |
+| **31** | **PROMOTION SAFETY** | Closest distance this species may be spawned/promoted **in view**; whether in-view promotion must be masked by the notice beat; never inside personal space, never behind the head. |
+| **32** | **SOCIAL BEAT** | Paired/group behaviour and minimum group size, or `solitary`. If it groups: the **leader** rule (herds stagger departures behind one initiator). |
+
+**Consequential edits:** line 10 (IDLE) now defers to fields 25–26. **Clip budget 12 → 14**: add
+`ambient-default` and `ambient-break` as required, and promote *"released, wakes up, wanders off"*
+into the required set — it is the highest-identity-value clip in this game.
+
+### The tier model (recommended)
+Five tiers on **3D head distance only**: **T0 engaged ≤12 m** (full behaviour) · **T1 present ≤30 m**
+(10 Hz ambient FSM, full rig) · **T2 scenery 30–70 m** (2 Hz, deterministic loop only, no casts) ·
+**T3 silhouette 70–150 m** (vertex-shader motion only, no Animator) · **T4 token >150 m** (no
+GameObject; the token IS the state). Demote ring = promote ring × 1.2 (hysteresis — VR head sway
+oscillates a bare threshold). Max **2 promotions per frame**, queued nearest-first. **Audio tier is
+always one ring wider than the visual tier.** Ring distances come from the world profile, not global
+constants — the ratios matter more than the absolutes.
+
+**Why full behaviour must reach ~30 m and not 10–15 m:** at Quest 3's ~22 pixels-per-degree, a 2 m
+creature at 30 m is still ~84 px tall — limb cycles and clip restarts are plainly visible. Flatscreen
+games get away with tighter rings because they own the camera. We don't.
+
+### THE ANTI-POP-IN LAW — "Token + Deterministic Ambient Clock"
+1. **The token is the authority**, not the GameObject. A blittable struct (species, seed, anchor,
+   health, flags) survives scene travel and save/load. Required anyway by our non-lethal thesis: a
+   creature you disabled must STAY disabled.
+2. **Ambient behaviour is a pure function** `Activity(seed, worldTime, anchor)`. Nothing is simulated
+   offscreen, so there is nothing to catch up on and nothing to desync. Position comes from a closed
+   deterministic loop — **one position authority, therefore no snap, ever.**
+3. **Never enter a clip at frame zero** — always `Play(state, layer, phase01)`.
+4. **Pre-roll + hysteresis + a hard promotion budget.**
+5. **Mask any in-view promotion with the notice beat** — a state change with a visible cause reads as
+   intelligence; one with no cause reads as bad AI.
+6. **Traces carry history** — narrate elapsed time through static props instead of simulating it.
+
+We are already ~60% there: `ForgeCreatureAnimator` composes gait from `(body, Time.time, speed01)`
+with a per-instance breath seed, and `WorldAmbientMotionRuntime` is `sin(time + seedPhase)`. The work
+is extending that primitive from *pose* to *activity + position*, and putting a tier manager above it.
 
 ### BLOCK C — VR CONTRACT *(the block a flatscreen list would never contain)*
 19. **Any-angle readability** — the telegraph must read as a **silhouette-scale change** (never a facial/detail change) from 3 registered views, at **0.6 m and 10 m**. There is no camera to frame it for you.
