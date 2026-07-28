@@ -1,14 +1,12 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.XR.Interaction.Toolkit;
 
 namespace Ziptide.Gameplay
 {
     /// <summary>
-    /// Installs a bounded safety component on RepairableMachine replacement parts. The machine remains
-    /// the repair-stage owner; this layer only makes selection explicit, prevents holstered weapons from
-    /// physically fighting the cell, logs hand ownership, and returns an unheld part that escaped the
-    /// playable repair radius. A dropped coupler cell can no longer permanently strand the first level.
+    /// Bounded safety component for RepairableMachine replacement parts. The machine remains the
+    /// repair-stage owner; this layer makes selection explicit, prevents holstered weapons from
+    /// physically fighting the cell, logs hand ownership, and returns an unheld escaped part.
     /// </summary>
     public sealed class RepairPartSafetyRuntime : MonoBehaviour
     {
@@ -115,53 +113,6 @@ namespace Ziptide.Gameplay
                 for (int j = 0; j < colliders.Length; j++)
                     if (colliders[j] != null) Physics.IgnoreCollision(partCollider, colliders[j], true);
             }
-        }
-
-        private sealed class Installer : MonoBehaviour
-        {
-            private float _nextScan;
-
-            private void Update()
-            {
-                if (Time.unscaledTime < _nextScan) return;
-                _nextScan = Time.unscaledTime + 0.5f;
-                RepairableMachine[] machines = Object.FindObjectsOfType<RepairableMachine>(true);
-                XRGrabInteractable[] grabs = Object.FindObjectsOfType<XRGrabInteractable>(true);
-                for (int i = 0; i < grabs.Length; i++)
-                {
-                    XRGrabInteractable grab = grabs[i];
-                    if (grab == null || !grab.gameObject.name.StartsWith("Part_")) continue;
-                    if (grab.GetComponent<RepairPartSafetyRuntime>() != null) continue;
-                    RepairableMachine nearest = null;
-                    float best = float.MaxValue;
-                    for (int j = 0; j < machines.Length; j++)
-                    {
-                        if (machines[j] == null) continue;
-                        float d = Vector3.SqrMagnitude(grab.transform.position - machines[j].transform.position);
-                        if (d < best) { best = d; nearest = machines[j]; }
-                    }
-                    if (nearest == null || best > 36f) continue;
-                    RepairPartSafetyRuntime safety = grab.gameObject.AddComponent<RepairPartSafetyRuntime>();
-                    safety.Configure(nearest);
-                }
-            }
-        }
-
-        private static Installer _installer;
-
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
-        private static void ResetStatics()
-        {
-            _installer = null;
-        }
-
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
-        private static void EnsureInstaller()
-        {
-            if (_installer != null) return;
-            GameObject go = new GameObject("__RepairPartSafetyInstaller");
-            Object.DontDestroyOnLoad(go);
-            _installer = go.AddComponent<Installer>();
         }
     }
 }
