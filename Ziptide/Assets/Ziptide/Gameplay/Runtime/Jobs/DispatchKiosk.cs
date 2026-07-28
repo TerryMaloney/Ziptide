@@ -83,6 +83,14 @@ namespace Ziptide.Gameplay
     {
         private Camera _camera;
 
+        public static void FaceViewer(Transform sign, Vector3 viewerPosition)
+        {
+            if (sign == null) return;
+            Vector3 awayFromViewer = sign.position - viewerPosition;
+            if (awayFromViewer.sqrMagnitude < 0.000001f) return;
+            sign.rotation = Quaternion.LookRotation(awayFromViewer.normalized, Vector3.up);
+        }
+
         private void LateUpdate()
         {
             if (_camera == null || !_camera.isActiveAndEnabled)
@@ -92,10 +100,7 @@ namespace Ziptide.Gameplay
                     _camera = Object.FindFirstObjectByType<Camera>();
             }
             if (_camera == null) return;
-
-            Vector3 awayFromViewer = transform.position - _camera.transform.position;
-            if (awayFromViewer.sqrMagnitude < 0.000001f) return;
-            transform.rotation = Quaternion.LookRotation(awayFromViewer.normalized, Vector3.up);
+            FaceViewer(transform, _camera.transform.position);
         }
     }
 }
