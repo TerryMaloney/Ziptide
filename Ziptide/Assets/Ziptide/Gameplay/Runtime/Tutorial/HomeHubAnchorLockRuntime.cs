@@ -4,22 +4,55 @@ using UnityEngine;
 namespace Ziptide.Gameplay
 {
     /// <summary>
-    /// Device correction for the cold-start menu. HomeHubRuntime may follow the camera only while the
-    /// first tracked pose is settling; once the head is stable this component freezes the already-built
-    /// world-space panel. Tile delegates remain live, but ordinary head turns no longer drag the menu.
+    /// Device correction for the cold-start menu. The panel follows only while tracking settles, then
+    /// becomes world-anchored. While the Home Hub owns boot, belt sockets are interaction-suppressed so
+    /// their hip spheres cannot intercept New Game/Continue/Settings rays. They are restored before
+    /// New Game or Continue commits travel.
     /// </summary>
     [DisallowMultipleComponent]
     public sealed class HomeHubAnchorLockRuntime : MonoBehaviour
     {
         private HomeHubRuntime _hub;
+        private bool _beltSuppressed;
+        private float _nextBeltScan;
 
         private void Awake()
         {
             _hub = GetComponent<HomeHubRuntime>();
         }
 
+        private void OnEnable()
+        {
+            HomeHubRuntime.ChoiceSelected += OnChoiceSelected;
+            SuppressBeltSockets();
+        }
+
+        private void OnDisable()
+        {
+            HomeHubRuntime.ChoiceSelected -= OnChoiceSelected;
+        }
+
+        private void OnDestroy()
+        {
+            HomeHubRuntime.ChoiceSelected -= OnChoiceSelected;
+            RestoreBeltSockets();
+        }
+
+        private void Update()
+        {
+            if (!_beltSuppressed && Time.unscaledTime >= _nextBeltScan)
+            {
+                _nextBeltScan = Time.unscaledTime + 0.05f;
+                SuppressBeltSockets();
+            }
+        }
+
         private IEnumerator Start()
         {
+            // One extra frame covers BeltRig.Start creating its sockets after this component's Awake.
+            yield return null;
+            SuppressBeltSockets();
+
             float deadline = Time.realtimeSinceStartup + 4f;
             float stableFor = 0f;
             Vector3 lastPosition = Vector3.positiveInfinity;
@@ -52,6 +85,58 @@ namespace Ziptide.Gameplay
                 _hub.enabled = false;
                 Debug.Log("ZIPTIDE: HOME_HUB_ANCHOR locked_world=true pos=" + transform.position.ToString("F2"));
             }
+        }
+
+        private void OnChoiceSelected(HomeHubChoice choice)
+        {
+            if (choice == HomeHubChoice.Settings) return;
+            RestoreBeltSockets();
+        }
+
+        private void SuppressBeltSockets()
+        {
+            HolsterSocketInteractor[] sockets = Object.FindObjectsOfType<HolsterSocketInteractor>(true);
+            if (sockets == null || sockets.Length == 0)
+            {
+                _beltSuppressed = false;
+                return;
+            }
+
+            int changed = 0;
+            for (int i = 0; i < sockets.Length; i++)
+            {
+                HolsterSocketInteractor socket = sockets[i];
+                if (socket == null) continue;
+                if (socket.enabled)
+                {
+                    socket.enabled = false;
+                    changed++;
+                }
+                Collider[] colliders = socket.GetComponents<Collider>();
+                for (int j = 0; j < colliders.Length; j++)
+                    if (colliders[j] != null) colliders[j].enabled = false;
+            }
+
+            _beltSuppressed = true;
+            if (changed > 0)
+                Debug.Log("ZIPTIDE: HOME_HUB_BELT_SUPPRESS sockets=" + sockets.Length);
+        }
+
+        private void RestoreBeltSockets()
+        {
+            if (!_beltSuppressed) return;
+            HolsterSocketInteractor[] sockets = Object.FindObjectsOfType<HolsterSocketInteractor>(true);
+            for (int i = 0; i < sockets.Length; i++)
+            {
+                HolsterSocketInteractor socket = sockets[i];
+                if (socket == null) continue;
+                Collider[] colliders = socket.GetComponents<Collider>();
+                for (int j = 0; j < colliders.Length; j++)
+                    if (colliders[j] != null) colliders[j].enabled = true;
+                socket.enabled = true;
+            }
+            _beltSuppressed = false;
+            Debug.Log("ZIPTIDE: HOME_HUB_BELT_RESTORE sockets=" + sockets.Length);
         }
     }
 }
