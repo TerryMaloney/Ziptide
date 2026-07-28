@@ -12,24 +12,19 @@ using Ziptide.Core;
 namespace Ziptide.Gameplay
 {
     /// <summary>
-    /// Small device-only correction owner for the two headset failures that survived the recovery pass:
-    /// stacked XR camera height and the Breaker Blade being aligned like a backwards stabbing weapon.
-    /// Installed by the persistent BeltRig so it exists once across every world.
+    /// Quest-only correction owner for two device truths that cannot be inferred from EditMode:
+    /// the live controller attach basis and the live floor-to-eye measurement.
+    /// Installed once on the persistent rig by BeltRig.
     /// </summary>
     [DefaultExecutionOrder(10000)]
     [DisallowMultipleComponent]
     public sealed class QuestDeviceCorrectionsRuntime : MonoBehaviour
     {
-        // XRI aligns the item's attach transform to the controller attach transform. The controller's
-        // +Z currently points back toward the player on device. 100 degrees makes the blade nearly
-        // vertical with a small forward/away lean instead of an identity-rotation backwards jab.
-        public static readonly Vector3 BreakerBladeGripEuler = new Vector3(100f, 0f, 0f);
+        // Cap rather than force one adult height. Children/crouched players stay unchanged; only the
+        // proven "too tall" state is lowered. 1.48 m keeps all first-hour interactions reachable.
+        public const float MaximumAllowedEyeHeight = 1.55f;
+        public const float CorrectedEyeHeight = 1.48f;
 
-        public const float MaximumAllowedEyeHeight = 1.85f;
-        public const float CorrectedEyeHeight = 1.65f;
-        public const float MinimumAllowedEyeHeight = 0.45f;
-
-        private readonly HashSet<int> _correctedBlades = new HashSet<int>();
         private Coroutine _heightPass;
         private float _nextBladeScan;
 
@@ -61,8 +56,8 @@ namespace Ziptide.Gameplay
         private void Update()
         {
             if (Time.unscaledTime < _nextBladeScan) return;
-            _nextBladeScan = Time.unscaledTime + 0.25f;
-            ApplyBreakerBladeGrip();
+            _nextBladeScan = Time.unscaledTime + 0.20f;
+            EnsureBreakerBladeCalibrators();
         }
 
         private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -89,28 +84,28 @@ namespace Ziptide.Gameplay
             while (TravelCoordinator.IsTravelling && Time.realtimeSinceStartup < travelDeadline)
                 yield return null;
 
-            float deadline = Time.realtimeSinceStartup + 3f;
+            // OpenXR and XROrigin can both re-apply their tracking-origin state for several frames.
+            // Reassert and remeasure for six seconds so the correction survives the complete arrival.
+            float deadline = Time.realtimeSinceStartup + 6f;
+            float nextProbe = 0f;
             while (Time.realtimeSinceStartup < deadline)
             {
                 ApplyFloorOriginContract();
-                if (TryCorrectEyeHeight(reason))
+                if (Time.realtimeSinceStartup >= nextProbe)
                 {
-                    // Re-assert for several frames because XROrigin can apply its serialized offset after
-                    // OpenXR reports the first tracked pose.
-                    for (int i = 0; i < 12; i++)
-                    {
-                        yield return null;
-                        ApplyFloorOriginContract();
-                    }
-                    break;
+                    nextProbe = Time.realtimeSinceStartup + 0.10f;
+                    TryLowerTallEyeHeight(reason);
                 }
                 yield return null;
             }
 
+            // One final measurement after all arrival systems have settled.
+            ApplyFloorOriginContract();
+            TryLowerTallEyeHeight(reason + ":final");
             _heightPass = null;
         }
 
-        private void ApplyBreakerBladeGrip()
+        private void EnsureBreakerBladeCalibrators()
         {
             MeleeWeaponRuntime[] weapons = UnityEngine.Object.FindObjectsOfType<MeleeWeaponRuntime>(true);
             for (int i = 0; i < weapons.Length; i++)
@@ -123,25 +118,8 @@ namespace Ziptide.Gameplay
                     ? item.Definition as ArenaWeaponDefinition : null;
                 if (definition == null || definition.kind != ArenaWeaponKind.BreakerBlade) continue;
 
-                XRGrabInteractable grab = weapon.GetComponent<XRGrabInteractable>();
-                if (grab == null) continue;
-
-                Transform grip = weapon.transform.Find("Grip");
-                if (grip == null) grip = weapon.transform.Find("HandGripAttach");
-                if (grip == null) continue;
-
-                Quaternion target = Quaternion.Euler(BreakerBladeGripEuler);
-                int id = weapon.GetInstanceID();
-                if (_correctedBlades.Contains(id)
-                    && grab.attachTransform == grip
-                    && Quaternion.Angle(grip.localRotation, target) < 0.1f)
-                    continue;
-
-                grip.localRotation = target;
-                grab.attachTransform = grip;
-                _correctedBlades.Add(id);
-                Debug.Log("ZIPTIDE: BREAKER_BLADE_GRIP_FIXED euler="
-                    + BreakerBladeGripEuler.ToString("F0") + " item=" + weapon.name);
+                if (weapon.GetComponent<BreakerBladeHandPoseRuntime>() == null)
+                    weapon.gameObject.AddComponent<BreakerBladeHandPoseRuntime>();
             }
         }
 
@@ -199,17 +177,24 @@ namespace Ziptide.Gameplay
             target.localPosition = local;
         }
 
-        private bool TryCorrectEyeHeight(string reason)
+        private bool TryLowerTallEyeHeight(string reason)
         {
             Camera camera = GetComponentInChildren<Camera>(true);
-            if (camera == null || Mathf.Abs(camera.transform.localPosition.y) < 0.20f) return false;
+            if (camera == null) return false;
 
-            SpawnMarkerRuntime marker = FindPlayerMarker();
-            Vector3 probe = marker != null ? marker.transform.position : transform.position;
-            if (!TryGroundAt(probe, out float groundY, out string groundName)) return false;
+            if (!TryGroundDirectlyBelow(camera.transform.position, out float groundY, out string groundName))
+            {
+                SpawnMarkerRuntime marker = FindPlayerMarker();
+                if (marker == null || !TryGroundDirectlyBelow(marker.transform.position + Vector3.up * 3f,
+                        out groundY, out groundName))
+                {
+                    Debug.LogWarning("ZIPTIDE: QUEST_HEIGHT_NO_GROUND reason=" + reason);
+                    return false;
+                }
+            }
 
             float eyeHeight = camera.transform.position.y - groundY;
-            if (eyeHeight >= MinimumAllowedEyeHeight && eyeHeight <= MaximumAllowedEyeHeight)
+            if (eyeHeight <= MaximumAllowedEyeHeight)
             {
                 Debug.Log("ZIPTIDE: QUEST_HEIGHT_OK eye=" + eyeHeight.ToString("F2")
                     + " ground=" + groundName + " reason=" + reason);
@@ -221,13 +206,16 @@ namespace Ziptide.Gameplay
             if (controllerWasEnabled) controller.enabled = false;
 
             Vector3 position = transform.position;
-            position.y += CorrectedEyeHeight - eyeHeight;
+            position.y -= eyeHeight - CorrectedEyeHeight;
             transform.position = position;
 
             if (controllerWasEnabled) controller.enabled = true;
+
+            float corrected = camera.transform.position.y - groundY;
             Debug.LogWarning("ZIPTIDE: QUEST_HEIGHT_FIXED from=" + eyeHeight.ToString("F2")
-                + " to=" + CorrectedEyeHeight.ToString("F2") + " rigY="
-                + transform.position.y.ToString("F2") + " reason=" + reason);
+                + " to=" + corrected.ToString("F2") + " target=" + CorrectedEyeHeight.ToString("F2")
+                + " ground=" + groundName + " rigY=" + transform.position.y.ToString("F2")
+                + " reason=" + reason);
             return true;
         }
 
@@ -239,9 +227,9 @@ namespace Ziptide.Gameplay
             return markers.Length > 0 ? markers[0] : null;
         }
 
-        private static bool TryGroundAt(Vector3 probe, out float groundY, out string groundName)
+        private static bool TryGroundDirectlyBelow(Vector3 start, out float groundY, out string groundName)
         {
-            RaycastHit[] hits = Physics.RaycastAll(probe + Vector3.up * 3f, Vector3.down, 15f,
+            RaycastHit[] hits = Physics.RaycastAll(start + Vector3.up * 0.25f, Vector3.down, 50f,
                 Physics.DefaultRaycastLayers, QueryTriggerInteraction.Ignore);
             Array.Sort(hits, (a, b) => a.distance.CompareTo(b.distance));
             for (int i = 0; i < hits.Length; i++)
@@ -251,17 +239,98 @@ namespace Ziptide.Gameplay
                 if (collider.GetComponentInParent<PlayerRigPersistence>() != null) continue;
                 if (collider.GetComponentInParent<ObjectiveBeacon>() != null) continue;
                 if (collider.name.IndexOf("SkySphere", StringComparison.OrdinalIgnoreCase) >= 0) continue;
-                if (Vector3.Dot(hits[i].normal, Vector3.up) < 0.55f) continue;
-                if (hits[i].point.y > probe.y + 0.5f) continue;
+                if (Vector3.Dot(hits[i].normal, Vector3.up) < 0.70f) continue;
 
                 groundY = hits[i].point.y;
                 groundName = collider.name;
                 return true;
             }
 
-            groundY = probe.y;
+            groundY = start.y;
             groundName = "NONE";
             return false;
+        }
+    }
+
+    /// <summary>
+    /// Calibrates the Breaker Blade from the ACTUAL live hand attach transform at grab time. This avoids
+    /// all controller-axis and imported-model Euler guesses. On grab, the blade points mostly upward and
+    /// slightly forward/away from the player's face, then follows the wrist normally.
+    /// </summary>
+    [DisallowMultipleComponent]
+    public sealed class BreakerBladeHandPoseRuntime : MonoBehaviour
+    {
+        private XRGrabInteractable _grab;
+        private Transform _tip;
+
+        private void Awake()
+        {
+            _grab = GetComponent<XRGrabInteractable>();
+            _tip = transform.Find("Muzzle");
+            if (_tip == null) _tip = transform;
+        }
+
+        private void OnEnable()
+        {
+            if (_grab != null) _grab.selectEntered.AddListener(OnSelectEntered);
+        }
+
+        private void OnDisable()
+        {
+            if (_grab != null) _grab.selectEntered.RemoveListener(OnSelectEntered);
+        }
+
+        private void OnSelectEntered(SelectEnterEventArgs args)
+        {
+            if (_grab == null || !(args.interactorObject is XRBaseControllerInteractor)) return;
+
+            Transform handAttach = args.interactorObject.GetAttachTransform(_grab);
+            if (handAttach == null) return;
+
+            Transform grip = _grab.attachTransform;
+            if (grip == null || !grip.IsChildOf(transform))
+            {
+                grip = transform.Find("Grip");
+                if (grip == null) grip = transform.Find("HandGripAttach");
+            }
+            if (grip == null) return;
+
+            Camera camera = Camera.main;
+            if (camera == null) camera = UnityEngine.Object.FindFirstObjectByType<Camera>();
+            if (camera == null) return;
+
+            Vector3 viewForward = Vector3.ProjectOnPlane(camera.transform.forward, Vector3.up);
+            if (viewForward.sqrMagnitude < 0.001f) viewForward = Vector3.forward;
+            viewForward.Normalize();
+
+            // Conventional ready carry: approximately 68 degrees above horizontal with a modest
+            // forward lean. It cannot point back at the player's face because its forward component
+            // is explicitly the camera's outward view direction.
+            Vector3 desiredBladeAxis = (Vector3.up * 0.93f + viewForward * 0.37f).normalized;
+            Vector3 desiredBladeWidth = Vector3.ProjectOnPlane(camera.transform.right, desiredBladeAxis);
+            if (desiredBladeWidth.sqrMagnitude < 0.001f) desiredBladeWidth = camera.transform.right;
+            desiredBladeWidth.Normalize();
+
+            Vector3 localGripPosition = transform.InverseTransformPoint(grip.position);
+            Vector3 localBladeAxis = WeaponPoseCore.ResolveAxisLocal(transform, _tip, localGripPosition);
+            Vector3 localBladeWidth = WeaponPoseCore.ResolveUpHintLocal(localBladeAxis);
+            Quaternion desiredRootRotation = WeaponPoseCore.MapLocalBasisToWorld(
+                localBladeAxis, localBladeWidth, desiredBladeAxis, desiredBladeWidth);
+
+            // XRI solves itemRoot = handAttach * inverse(gripLocal). Solve the grip local rotation
+            // from the desired root rotation and the real hand rotation rather than guessing Euler axes.
+            grip.localRotation = Quaternion.Inverse(desiredRootRotation) * handAttach.rotation;
+            _grab.attachTransform = grip;
+
+            // Apply immediately; XRI will preserve the same relationship on subsequent frames.
+            transform.rotation = desiredRootRotation;
+            transform.position += handAttach.position - grip.position;
+
+            Vector3 actualAxis = (_tip.position - grip.position).normalized;
+            Debug.Log("ZIPTIDE: BREAKER_BLADE_LIVE_CALIBRATED desired="
+                + desiredBladeAxis.ToString("F2") + " actual=" + actualAxis.ToString("F2")
+                + " awayDot=" + Vector3.Dot(actualAxis, viewForward).ToString("F2")
+                + " upDot=" + Vector3.Dot(actualAxis, Vector3.up).ToString("F2"));
         }
     }
 }
