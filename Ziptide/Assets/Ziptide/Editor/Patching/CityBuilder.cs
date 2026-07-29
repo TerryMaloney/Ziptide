@@ -402,6 +402,30 @@ namespace Ziptide.Editor.Patching
                 var socket = ship.GetComponent<KeySocketRuntime>()
                     ?? ship.gameObject.AddComponent<KeySocketRuntime>();
                 socket.Configure(ArtifactJoinRuntime.KeyItemId, ZiptideConstants.SceneW002);
+                ship.gameObject.AddComponent<BeaconThreadRuntime>();
+            }
+
+            // ⚖ THE BERTH THE FIRST HOUR ENDS AT. The join happens back at the berth in Toxic City
+            // (Terry, 2026-07-29), which means THIS hull is the one that has to erupt — and until
+            // now only W000's ship had a socket, so the minute-45 beat had nowhere to happen.
+            //
+            // The launch here is gated on the KEY rather than on a coupler: no machine to repair,
+            // no route until the artifact gives it one. Seating the key re-points the ship at W002
+            // and un-suppresses the gate through the same KeySocketRuntime path W000 uses.
+            if (kit.sceneName == ZiptideConstants.SceneToxicCity)
+            {
+                var castOff = ship.GetComponent<ShipCastOffRuntime>()
+                    ?? ship.gameObject.AddComponent<ShipCastOffRuntime>();
+                castOff.Configure(ZiptideConstants.SceneW002, suppressGate: false);
+                castOff.ConfigureKeyGate(required: true, machineId: "");
+
+                var socket = ship.GetComponent<KeySocketRuntime>()
+                    ?? ship.gameObject.AddComponent<KeySocketRuntime>();
+                socket.Configure(ArtifactJoinRuntime.KeyItemId, ZiptideConstants.SceneW002);
+
+                // The thread that makes the join legible: it hangs between the joined key and this
+                // socket, so "follow the beacon back to your berth" is something you can SEE.
+                ship.gameObject.AddComponent<BeaconThreadRuntime>();
             }
 
             // S1 (GAME_PLAN M4 / SHIPS.md): the berthed ship is BOARDABLE — a travel station wearing a

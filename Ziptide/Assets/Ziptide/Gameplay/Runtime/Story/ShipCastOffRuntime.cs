@@ -36,6 +36,10 @@ namespace Ziptide.Gameplay
         [Tooltip("RepairableMachine id that must be RUNNING before PUNCH IT arms (empty = no gate).")]
         [SerializeField] private string armingMachineId = "gate_coupler";
 
+        [Tooltip("TRUE for the berth the first hour ends at: this hull cannot leave until the joined "
+                 + "key is seated in its socket, because the key IS the route.")]
+        [SerializeField] private bool requireKeySeated;
+
         private bool _launching;
         private RepairableMachine _armingMachine; // cached once found; absence is re-checked per press
         private TextMesh _buttonLabel;
@@ -50,6 +54,18 @@ namespace Ziptide.Gameplay
         {
             if (!string.IsNullOrEmpty(destinationScene)) targetScene = destinationScene;
             suppressGateEffect = suppressGate;
+        }
+
+        /// <summary>
+        /// Author entry point for the key-gated berth (the ship the first hour ends on). Separate
+        /// from Configure because KeySocketRuntime CALLS Configure when it arms the tide, and a
+        /// key gate that Configure could reset would unlock the launch at the exact moment it was
+        /// supposed to be the reward.
+        /// </summary>
+        public void ConfigureKeyGate(bool required, string machineId = null)
+        {
+            requireKeySeated = required;
+            if (machineId != null) armingMachineId = machineId;
         }
 
         /// <summary>The destination currently consumed by the existing PUNCH IT launch sequence.</summary>
@@ -158,6 +174,16 @@ namespace Ziptide.Gameplay
             if (_launching) return;
             if (!IsArmed())
             {
+                var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;
+                bool keyMissing = requireKeySeated
+                                  && (profile == null || !profile.HasFlag(ZiptideFlags.KEY_SEATED));
+                if (keyMissing)
+                {
+                    // Not a fault to repair — a route the ship does not have yet.
+                    Debug.Log("ZIPTIDE: FLIGHT_BLOCKED reason=no_key");
+                    ShowHint("NO DESTINATION\nseat the key");
+                    return;
+                }
                 Debug.Log("ZIPTIDE: FLIGHT_BLOCKED reason=unarmed machine=" + armingMachineId);
                 ShowHint("COUPLER OFFLINE\nrepair the " + armingMachineId.Replace('_', ' '));
                 return;
@@ -180,8 +206,11 @@ namespace Ziptide.Gameplay
                 foreach (var m in FindObjectsOfType<RepairableMachine>())
                     if (m.MachineId == armingMachineId) { _armingMachine = m; break; }
             }
+            var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;
+            bool keySeated = profile != null && profile.HasFlag(ZiptideFlags.KEY_SEATED);
             bool armed = CastOffArming.IsArmed(gateConfigured, _armingMachine != null,
-                _armingMachine != null && _armingMachine.IsRepaired);
+                _armingMachine != null && _armingMachine.IsRepaired,
+                requireKeySeated, keySeated);
 
             // DS-10 evidence (log-only, transitions only): WHICH machine instance the cast-off
             // observes and its repaired state — divergence from the JobDirector-spawned machine
@@ -241,17 +270,33 @@ namespace Ziptide.Gameplay
                 }
                 yield return new WaitForSeconds(0.06f);
             }
-            // THE ATMOSPHERE VEIL brackets the cut: the burn builds, the scene swaps at its peak,
-            // and the destination's ReentryArrivalRuntime picks the same fire up on the far side —
-            // so leaving a planet reads as leaving a planet instead of a load. The lead is bounded
-            // by AtmosphereVeilCore, and the veil self-destructs at its hard cap, so this can never
-            // hold travel: worst case the burn is invisible and the flight departs on schedule.
-            float lead = AtmosphereVeilEffect.Play(VeilLeg.Ascent);
-            yield return new WaitForSeconds(lead);
+            if (suppressGateEffect)
+            {
+                // THE ORDINARY CAST-OFF. The atmosphere veil brackets the cut: the burn builds, the
+                // scene swaps at its peak, and the destination's ReentryArrivalRuntime picks the same
+                // fire up on the far side — so leaving a planet reads as leaving a planet instead of
+                // a load. The lead is bounded by AtmosphereVeilCore and the veil self-destructs at
+                // its hard cap, so this can never hold travel: worst case the burn is invisible and
+                // the flight departs on schedule.
+                float lead = AtmosphereVeilEffect.Play(VeilLeg.Ascent);
+                yield return new WaitForSeconds(lead);
 
-            Debug.Log("ZIPTIDE: FLIGHT_DEPART target=" + targetScene
-                + " gate=" + (suppressGateEffect ? "suppressed" : "full"));
-            TravelCoordinator.TravelTo(targetScene, skipGate: suppressGateEffect);
+                Debug.Log("ZIPTIDE: FLIGHT_DEPART target=" + targetScene + " gate=suppressed");
+                TravelCoordinator.TravelTo(targetScene, skipGate: true);
+                yield break;
+            }
+
+            // THE FIRST ZIPTIDE (FIRST_HOUR_DIRECTORS_CUT §2.5). The key is seated, so this launch is
+            // not a flight at all — the tide erupts AROUND THE HULL and takes the ship. Passing the
+            // berth as the gate position is what makes it pour out of your own ship rather than
+            // ringing the player wherever they happen to stand; it is the difference between the
+            // game's biggest moment happening TO the ship and happening near it.
+            //
+            // No atmosphere veil here on purpose: the gate IS the event, and stacking a plasma burn
+            // over it would bury the beat this whole hour was built to earn.
+            Debug.Log("ZIPTIDE: FLIGHT_DEPART target=" + targetScene + " gate=full berth="
+                + transform.position.ToString("F1"));
+            TravelCoordinator.TravelTo(targetScene, transform.position);
         }
 
         private void PublishDestinationSelected(string destination)

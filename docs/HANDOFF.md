@@ -173,6 +173,22 @@
   the missing `tox_canal_stalker_01` CreatureDefinition (without it the zone would have silently
   fallen back to a Swarmer — the exact trap I flagged at B1) + the CityBuilder id case + the spec
   zone on the ring canal. 13 EditMode tests.
+- **B8+B9 (Wave 5): THE FIRST ZIPTIDE CAN NOW ACTUALLY HAPPEN.** ⚠ **Found while building: the
+  minute-45 beat had nowhere to occur.** `KeySocketRuntime` + `ShipCastOffRuntime` were only
+  authored onto W000's ship (`if (kit.sceneName == "W000_DriftIn")`), but per Terry's ⚖ the join
+  happens back at the **Toxic City** berth — so the hull that is supposed to erupt had no socket,
+  no launch, and no way to reach W002. Fixed: `CityBuilder` now authors the socket + cast-off on
+  the ToxicCity berth too, gated on the KEY rather than a coupler.
+  `CastOffArming.IsArmed` gains the key overload with a deliberately **opposite** absence rule —
+  a missing coupler must never strand the launch, a missing key always must (5 tests pin both
+  directions, since that is the easiest thing here to get backwards). PUNCH IT with no key reads
+  "NO DESTINATION / seat the key", not "repair" — it is a route it doesn't have, not a fault.
+  The keyed departure now passes the **berth position** to `TravelCoordinator.TravelTo(scene,
+  gatePos)`, so the tide pours out of your own hull instead of ringing you wherever you stand —
+  and it deliberately plays **no atmosphere veil**, because the gate IS the event. `BeaconThreadRuntime`
+  (the rb121 deferred LOOK problem) hangs a sagging tide-lit arc between the joined key and the
+  socket, brightening as you carry it closer, alive only in the ARTIFACT_JOINED → KEY_SEATED
+  window — so "follow the beacon back to your berth" is something you can see.
 - Commit: (this one).
 
 ### 2026-07-29 (rb126) — Fable 5: 📐 LEVEL1_SPATIAL_SCRIPT — the placement layer, + ⚖ Terry's two story corrections (expedition + boat/stalker)
