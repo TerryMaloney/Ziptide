@@ -19,7 +19,7 @@ its Console line before the next:
 | 3 | `Ziptide → Worlds → Build Toxic City` | `[Ziptide]` city build + audit lines | `ToxicCity.unity` populated (ring city, dispatch, quay, colonnade, **ReentryArrival**) |
 | 4 | `Ziptide → Worlds → Build Toxic City Contract` | contract/job lines | the 5-step W001 contract |
 | 5 | `Ziptide → Worlds → Build Space Lane (Flight Trial)` | `Space lane built: … (5 rings)` | `SpaceLane_Trial.unity` (dock, helm, rings, salvage drones, THE FIND, onward leg) |
-| 6 | (if listed) `Ziptide → Worlds → Build W002 …` / Cavern | W002 lines | `W002_DryCistern.unity` |
+| 6 | `Ziptide → Worlds → Generate All Layout Worlds` | W002 + other layout worlds generated and added to Build Settings | `W002_DryCistern.unity` — **the destination of the first Ziptide.** (The APK build does this for you via `WorldStubGenerator.EnsureGeneratedInBuildSettings`; run it by hand only if you are testing in the editor) |
 | 7 | **File → Save Project**, then `git add -A` + commit + push | — | the baked scenes/assets land in the repo so the cloud lanes can finally see them |
 
 **If a bake errors:** screenshot/copy the FIRST red Console line + the menu name. Don't debug —
