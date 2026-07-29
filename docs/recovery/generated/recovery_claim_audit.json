@@ -1,10 +1,10 @@
 {
   "tool": "recovery_claim_audit",
-  "claimCount": 262,
-  "unqualifiedCount": 138,
+  "claimCount": 265,
+  "unqualifiedCount": 140,
   "missingDocuments": [],
   "fileCounts": {
-    "docs/CURRENT_EXECUTION_CHECKLIST.md": 39,
+    "docs/CURRENT_EXECUTION_CHECKLIST.md": 42,
     "docs/EXCELLENCE_MAP.md": 36,
     "docs/MASTER_CHECKLIST.md": 34,
     "docs/SPRINT.md": 60,
@@ -13,13 +13,13 @@
     "docs/SPRINT_MULTIPLAYER.md": 33
   },
   "qualifierCounts": {
-    "APK": 21,
-    "CI": 79,
+    "APK": 22,
+    "CI": 80,
     "EDITMODE": 6,
     "PATCHED_AUDIT": 23,
     "PLAYMODE": 1,
     "QUEST": 54,
-    "UNQUALIFIED": 138,
+    "UNQUALIFIED": 140,
     "VISUAL": 8
   },
   "claims": [
@@ -35,7 +35,40 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 11,
+      "line": 14,
+      "text": "- Head `30f3ed84`. **CI, Fast Preflight and Golden Android are green (run-level).**",
+      "markers": [
+        "green"
+      ],
+      "qualifiers": [
+        "APK",
+        "CI"
+      ],
+      "unqualified": false
+    },
+    {
+      "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
+      "line": 18,
+      "text": "- **Built today:** the five Catch keepers as geometry \u00b7 the tender's tool arms (were dead code) \u00b7",
+      "markers": [
+        "Built"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
+      "line": 22,
+      "text": "- **Not built:** zipline \u00b7 berths 1\u20135 quay pads \u00b7 W002 defend wave/garden/glyph plate \u00b7 pause board \u00b7",
+      "markers": [
+        "built"
+      ],
+      "qualifiers": [],
+      "unqualified": true
+    },
+    {
+      "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
+      "line": 30,
       "text": "- Latest gameplay/quality-code proof: `e8d18d67732032d79a2806f1e517d19d1aa9330d`, CI run `29170675599`, Unity EditMode green. Later branch commits are unrelated descendants and preserve this cleanup.",
       "markers": [
         "green"
@@ -48,7 +81,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 19,
+      "line": 38,
       "text": "1. `docs/OPERATOR_START_HERE.md` \u2014 laws, verification, ownership, definition of done.",
       "markers": [
         "done"
@@ -58,7 +91,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 21,
+      "line": 40,
       "text": "3. `docs/CI_VERDICT.md` \u2014 whether the latest tested gameplay head is green.",
       "markers": [
         "green"
@@ -68,7 +101,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 41,
+      "line": 60,
       "text": "- [x] Implement the locked asynchronous-travel design. **Code/CI green `c7b5d52`, run `29167548682`; device frame-pacing comparison pending.**",
       "markers": [
         "green"
@@ -81,7 +114,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 42,
+      "line": 61,
       "text": "- [x] Add the WARN-only UI readability/reach build audit. **Code/CI green `a6803ab`, run `29168358234`; generated-scene/device calibration pending.**",
       "markers": [
         "green"
@@ -95,7 +128,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 43,
+      "line": 62,
       "text": "- [x] Write `docs/design/HAPTIC_COVERAGE.md` from inspected existing owners. **Documentation-level gap closed; runtime/device coverage remains deliberately open.**",
       "markers": [
         "closed"
@@ -107,7 +140,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 44,
+      "line": 63,
       "text": "- [x] Build the canonical creature behavior-readability gate. **Seven shipped IDs, \u22653 active states each, telegraph/counter/resolution, source/factory evidence and APK pre-build blocker; code/CI green `d9b6caf`, run `29169591530`.**",
       "markers": [
         "green",
@@ -121,7 +154,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 45,
+      "line": 64,
       "text": "- [x] Build plant and vehicle catalog-breadth audits without touching Picasso visual assets. **Structural CI/APK gate green `b7a6cfa`, run `29170323869`; content warnings remain for unsurfaced plants, three missing vehicle families and no garage.**",
       "markers": [
         "green"
@@ -135,7 +168,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 46,
+      "line": 65,
       "text": "- [x] Harden `AudioDirector` transition/disposal ownership. **Retired persistent sources now release clips; overlapping fades are serialized; code/CI green `e8d18d6`, run `29170675599`; long-session Quest memory soak remains device evidence.**",
       "markers": [
         "green"
@@ -148,7 +181,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 49,
+      "line": 68,
       "text": "- [ ] Continue only with explicitly claimed gameplay/content rows or Terry/Picasso-dependent work; the \u00a77 independent queue is complete.",
       "markers": [
         "complete"
@@ -158,7 +191,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 55,
+      "line": 74,
       "text": "- [ ] `FH-A01-SIGNATURE-CREATURE-PRESENTATION`: W001 species passport and complete review artifacts.",
       "markers": [
         "complete"
@@ -168,7 +201,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 56,
+      "line": 75,
       "text": "- [ ] Do not jump to later FORGE III envelopes before the current water envelope is closed and verified.",
       "markers": [
         "closed",
@@ -179,7 +212,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 77,
+      "line": 96,
       "text": "| FH-X01 contract asset | \u2705 CI green | none |",
       "markers": [
         "green",
@@ -192,7 +225,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 78,
+      "line": 97,
       "text": "| FH-X02 progression core | \u2705 CI green | none |",
       "markers": [
         "green",
@@ -205,7 +238,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 79,
+      "line": 98,
       "text": "| FH-S01 observation | \u2705 CI green | headset evidence |",
       "markers": [
         "green",
@@ -219,7 +252,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 80,
+      "line": 99,
       "text": "| FH-S02 holster | \u2705 CI green | headset evidence |",
       "markers": [
         "green",
@@ -233,7 +266,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 81,
+      "line": 100,
       "text": "| FH-S03 travel | \u2705 CI green | headset evidence |",
       "markers": [
         "green",
@@ -247,7 +280,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 82,
+      "line": 101,
       "text": "| FH-M01 scanner result | \u2705 CI green | normal scanner device check |",
       "markers": [
         "green",
@@ -261,7 +294,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 83,
+      "line": 102,
       "text": "| FH-S04 repair/scan | \u2705 CI green | headset repair/identity check |",
       "markers": [
         "green",
@@ -275,7 +308,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 85,
+      "line": 104,
       "text": "| FH-S06 zipline | \u2705 CI green | headset arrival/release check |",
       "markers": [
         "green",
@@ -289,7 +322,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 86,
+      "line": 105,
       "text": "| FH-S07 Home/W000 surfaces | \ud83d\udfe1 code + CI green | Terry author bake + headset check |",
       "markers": [
         "green"
@@ -302,18 +335,18 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 94,
+      "line": 113,
       "text": "### Complete or substantially complete",
       "markers": [
-        "Complete",
-        "complete"
+        "complete",
+        "Complete"
       ],
       "qualifiers": [],
       "unqualified": true
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 121,
+      "line": 140,
       "text": "- [ ] W001 and Chapter 1 shipped-quality at 72 FPS.",
       "markers": [
         "shipped"
@@ -323,7 +356,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 125,
+      "line": 144,
       "text": "## 6. Historical workstreams \u2014 done and remaining",
       "markers": [
         "done"
@@ -333,7 +366,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 129,
+      "line": 148,
       "text": "**Done:** free-flight/ship handling, space combat v1, ground vehicles v1, garden genetics/plant systems, ecology scheduling/emerge-burrow, furnished interiors and per-room culling.",
       "markers": [
         "Done"
@@ -343,7 +376,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 141,
+      "line": 160,
       "text": "**Done:** WorldSpec/validator/compiler, lot/building grammar, enterable building builder, GamePool core, art registry, reachability gates, first-hour contract/progression core, durable CI verdict, async travel code/CI, synchronized project dashboards, WARN-only UI readability/reach build audit, documentation-level haptic coverage inventory, canonical creature behavior-readability CI/APK gate, plant/vehicle catalog structural CI/APK audit, and `AudioDirector` transition/resource cleanup.",
       "markers": [
         "Done"
@@ -357,7 +390,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 155,
+      "line": 174,
       "text": "**Done:** Quality Bar P0\u2013P5, terrain/vistas/POIs/routes/dressing, gardens/build sockets, improved ship hull, tutorial design, async-travel design, broad scene/gameplay integration and device fixes.",
       "markers": [
         "Done"
@@ -369,7 +402,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 166,
+      "line": 185,
       "text": "The ordered queue is complete. Item 8 was a conditional feasibility check and correctly stopped because the current workflow has no proven PlayMode lane.",
       "markers": [
         "complete"
@@ -381,7 +414,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 168,
+      "line": 187,
       "text": "1. [x] Async travel implementation \u2014 code/CI green; device comparison pending.",
       "markers": [
         "green"
@@ -394,7 +427,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 170,
+      "line": 189,
       "text": "3. [x] UI readability/reach audit \u2014 WARN-only build-scene processor + tests green; real-scene/device calibration pending.",
       "markers": [
         "green"
@@ -407,7 +440,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 172,
+      "line": 191,
       "text": "5. [x] Creature behavior-count/readability gate \u2014 one canonical catalog, source/factory evidence, CI tests and APK blocker green.",
       "markers": [
         "green"
@@ -420,7 +453,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 173,
+      "line": 192,
       "text": "6. [x] Plant/vehicle catalog breadth audit \u2014 structural CI/APK blockers green; exact surfacing/asset/garage debt remains warning-level content work.",
       "markers": [
         "green"
@@ -434,7 +467,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 174,
+      "line": 193,
       "text": "7. [x] `AudioDirector` unload/disposal leak hardening \u2014 stopped sources release clips, one transition owner, lifecycle tests green `e8d18d6`, run `29170675599`; device memory soak remains.",
       "markers": [
         "green"
@@ -446,7 +479,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 187,
+      "line": 206,
       "text": "- [ ] W001/Chapter 1 art and sound at shipped quality.",
       "markers": [
         "shipped"
@@ -456,7 +489,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 192,
+      "line": 211,
       "text": "- [ ] Complete Photon combat sync, room-code UX, avatars/voice when hardware is available.",
       "markers": [
         "Complete"
@@ -466,7 +499,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 199,
+      "line": 218,
       "text": "- [ ] Complete all campaign branches, Transmission fragments, and four endings.",
       "markers": [
         "Complete"
@@ -476,7 +509,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 201,
+      "line": 220,
       "text": "- [ ] Complete multiplayer Arena, Photon online, and Tidefront program.",
       "markers": [
         "Complete"
@@ -486,7 +519,7 @@
     },
     {
       "path": "docs/CURRENT_EXECUTION_CHECKLIST.md",
-      "line": 215,
+      "line": 234,
       "text": "6. Record CI/test/device evidence honestly: code-green is not device-green.",
       "markers": [
         "green"
