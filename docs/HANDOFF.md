@@ -38,6 +38,43 @@
 > `docs/HANDOFF_HISTORY_THROUGH_RB24.md`.
 
 
+### 2026-07-29 (rb121) — THE STORY: the first world was never built as one
+
+- **Terry, verbatim:** *"It doesn't really make sense to punch it because we haven't even found the
+  artifact yet at that point… which also tells me this world isn't really built, or at least not
+  built correctly according to the story."* He was right, and the repo proves it.
+- **THE CANON THE BUILD CONTRADICTED.** `docs/design/FIRST_HOUR_DIRECTORS_CUT.md` **v2.1 "The Key
+  That Knew You"** (2026-07-16/17, Terry-directed) puts minute 10–13 at *"helm → PUNCH IT → cast-off
+  rails (ship flight, **NO gate FX**)"* — a routine wreck-clearance job — and **the first Ziptide at
+  minute 45**, from Cal's own berth, after the key is joined and seated. The build fired the full
+  gate spectacle at minute ten for a bus ride and left nothing for the beat designed to earn it.
+- **THE PROOF W000 WAS NEVER A STORY WORLD:** `docs/storyboard/` carries a per-world README for
+  W001, W002, W003 and W004 and **none for W000**. It is an onboarding box with a ship bolted on.
+- **FOUR CONFLICTING FIRST-HOURS EXIST** in the repo: W001's STORY.md (Cal *starts* at Toxic City,
+  no W000, no artifact), CHAPTER_0-1 (RILL dark pre-boot, boots in W001), the Director's Cut
+  (current authority), and the build. Named in `LEVEL1_MASTER_TRACKER` / the plan so the next
+  operator does not re-derive it.
+- **SHIPPED:** `PUNCH IT` demoted to an ordinary cast-off at the salvage lane with the gate
+  suppressed — and the **AUTHOR** owns that route now, because the committed scene serialized
+  `targetScene: ToxicCity` and relying on serialization would have meant regenerating the world did
+  not fix it. The lane gained an onward leg to Toxic City (it was a cul-de-sac whose only exit was
+  RETURN HOME, which is why the middle of the hour was unreachable). Three artifact
+  `ItemDefinition`s; THE FIND on a wreck past the last ring; half B as the Dockmaster's paperweight
+  in W001's pack; `ArtifactJoinRuntime` (both halves HELD, one per hand — two on the floor must not
+  do it — and they REACH before they snap); `KeySocketRuntime` on the hull, the **only** thing in
+  the game that re-arms the gate, with a test asserting nothing else ever hands it back; ten lines
+  including Vex Bootstrapper's signature on both work orders.
+- **⚠ NOT BUILT, deliberately:** the beacon thread and the hangar walk to berth six (a LOOK problem
+  needing a reference plate, not code to guess at), W000's viewport and prior-owner log — *the
+  opening of a space game still has no space in it* — and W002's rebuild/defend/grow loop.
+- **⚠ NOTHING IN THE THREAD HAS RUN IN A HEADSET.** The join and the find are exactly the two beats
+  whose FEEL decides whether any of it works.
+- **Five CI reds, all mine, all named:** a copied constant, a namespace, leaked colliders, a missing
+  import, and a test that failed on its own documentation. The three logging fixes added at the
+  start of the session (failing test names · compile errors · audit blockers) each caught something
+  on first use and turned a 20-minute artifact dig into one line.
+- **Next:** `docs/production/LEVEL1_MASTER_TRACKER.md` and `docs/design/LEVEL_INVARIANTS.md`.
+
 ### 2026-07-29 (rb120) — LEVEL 1: four silent faults, then the missing middle
 
 - **Terry, verbatim:** *"we're building the whole f****** level… I want everything from level one
