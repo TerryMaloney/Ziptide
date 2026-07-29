@@ -48,6 +48,11 @@ namespace Ziptide.Build
                 Ziptide.Editor.Patching.ScenePatcherToxicCity.EnsureInBuildSettings);
             RunRequired("ScenePatcherPvP.EnsureInBuildSettings",
                 Ziptide.Editor.Patching.ScenePatcherPvP.EnsureInBuildSettings);
+            // The first level's whole middle -- flight, salvage, approach, reentry -- happens here.
+            // Its patcher was complete but menu-only, so the scene had never been created and the
+            // space leg simply did not exist in any build.
+            RunRequired("ScenePatcherSpaceLane.EnsureInBuildSettings",
+                Ziptide.Editor.Patching.ScenePatcherSpaceLane.EnsureInBuildSettings);
 
             RunRequired("CreatureVariantAuthor.EnsureAllAuthored",
                 Ziptide.Editor.Patching.CreatureVariantAuthor.EnsureAllAuthored);
@@ -137,6 +142,17 @@ namespace Ziptide.Build
                 if (sceneName == Ziptide.Editor.Patching.ScenePatcherPvP.SceneName)
                     RunRequired("ScenePatcherPvP.PopulateActivePvP:" + path,
                         Ziptide.Editor.Patching.ScenePatcherPvP.PopulateActivePvP);
+
+                if (sceneName == Ziptide.Editor.Patching.ScenePatcherSpaceLane.SceneName)
+                    RunRequired("ScenePatcherSpaceLane.PatchActiveScene:" + path,
+                        Ziptide.Editor.Patching.ScenePatcherSpaceLane.PatchActiveScene);
+
+                // The W000 first-hour surfaces -- comfort console, bunk keepsake, curated first helm.
+                // These were authored by a menu item nobody had run, so the three beats they carry
+                // were unreachable in every shipped APK while their code sat CI-green.
+                if (sceneName == "W000_DriftIn")
+                    RunRequired("FirstHourSurfaceAuthor.Author:" + path,
+                        () => Ziptide.Editor.FirstHourSurfaceAuthor.Author(scene));
 
                 RunRequired("WorldStubGenerator.PatchActiveSceneIfGenerated:" + path,
                     Ziptide.Editor.Patching.WorldStubGenerator.PatchActiveSceneIfGenerated);

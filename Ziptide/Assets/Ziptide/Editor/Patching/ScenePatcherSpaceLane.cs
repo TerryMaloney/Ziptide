@@ -21,7 +21,7 @@ namespace Ziptide.Editor.Patching
     /// </summary>
     public static class ScenePatcherSpaceLane
     {
-        private const string SceneName = "SpaceLane_Trial";
+        public const string SceneName = "SpaceLane_Trial";
         private const string ScenePath = "Assets/Ziptide/Scenes/" + SceneName + ".unity";
         private const string PackFolder = "Assets/Ziptide/Content/Worlds/Packs";
 
@@ -40,6 +40,37 @@ namespace Ziptide.Editor.Patching
         };
         private const float RingVisualRadius = 6f;
         private const float RingPassRadius = 7f;
+
+        /// <summary>
+        /// Ensure the space lane exists and ships. Called by BuildAndroid, exactly as ToxicCity is.
+        ///
+        /// ⚠ THIS IS WHY THE SPACE LEG DID NOT EXIST. The patcher below was complete and correct for
+        /// months, but it was reachable ONLY from a menu item, and its header asked Terry to run it
+        /// once by hand. Nobody did, so SpaceLane_Trial.unity was never created, never entered Build
+        /// Settings, and the first level's whole middle -- flight, salvage, approach, reentry -- had
+        /// no scene to happen in. A world that only a human can generate is a world that does not
+        /// exist. Every other shipped scene self-generates in the build; now this one does too.
+        /// </summary>
+        public static void EnsureInBuildSettings()
+        {
+            string normalized = ScenePath.Replace('\\', '/');
+            if (!File.Exists(ScenePath))
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(ScenePath));
+                var created = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
+                EditorSceneManager.SaveScene(created, ScenePath);
+                Debug.Log("[Ziptide] Created empty space lane at " + normalized
+                    + " (populated by the per-scene pass below).");
+            }
+            EnsureSceneEnabled();
+        }
+
+        /// <summary>No-op unless the active scene is the space lane. Called in the per-scene loop.</summary>
+        public static void PatchActiveScene()
+        {
+            if (EditorSceneManager.GetActiveScene().name != SceneName) return;
+            Populate();
+        }
 
         [MenuItem("Ziptide/Worlds/Build Space Lane (Flight Trial)")]
         public static void Build()
