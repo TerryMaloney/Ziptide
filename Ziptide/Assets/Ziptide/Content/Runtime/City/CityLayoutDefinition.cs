@@ -70,6 +70,9 @@ namespace Ziptide.Content
         [Header("Points of Interest (Quality Bar P1c — the gameplay pockets; see docs/WORLD_RECIPE.md)")]
         public List<PoiDef> pois = new List<PoiDef>();
 
+        [Header("Ring topology (CITY_VISUAL_SPEC §1 — off = the legacy rectangular districts)")]
+        public RingCityDef rings = new RingCityDef();
+
         [Header("Layout")]
         public List<DistrictDef> districts = new List<DistrictDef>();
         public List<ConnectionDef> connections = new List<ConnectionDef>();
@@ -89,6 +92,8 @@ namespace Ziptide.Content
 
             if (float.IsNaN(walkwayHeight) || float.IsInfinity(walkwayHeight))
                 issues.Add("walkwayHeight is not a finite number.");
+
+            if (rings != null) issues.AddRange(rings.Validate());
 
             if (experience != null && experience.enabled)
             {
@@ -203,6 +208,108 @@ namespace Ziptide.Content
         public Vector3 position = Vector3.zero;
         [Tooltip("0 = early/easy, 1 = mid, 2 = capstone. Drives encounter size and payout.")]
         public int tier = 0;
+    }
+
+    /// <summary>
+    /// THE RING CITY (docs/project_art_plan/CITY_VISUAL_SPEC.md §1, measured off Terry's approved
+    /// K1/K7 sheets). Concentric rings on a drowned tidal flat: the leaning scrap Tower island at the
+    /// centre, shanty wedges cut by a canal ring and radial canals, a breached sea wall, a harbour
+    /// wedge with a double breakwater, flyable outskirts, and the gate-pillar ring on the horizon.
+    ///
+    /// ⚠ WHY THIS EXISTS. The approved city was not merely unbuilt — it was UNEXPRESSIBLE. Districts
+    /// are axis-aligned rectangles, canals are rectangles, and a landmark is {name, pos, height,
+    /// width}, so there was no way to author a wedge, a ring canal, a breach, or a tower that leans.
+    /// Every "build the city from the concept art" task was blocked on a data model, not on effort.
+    ///
+    /// Default OFF. A layout that never opts in renders exactly as it does today.
+    /// </summary>
+    [Serializable]
+    public class RingCityDef
+    {
+        [Tooltip("Master switch. Off = the legacy rectangular districts, unchanged.")]
+        public bool enabled = false;
+
+        [Header("1. The Tower island (centre)")]
+        [Tooltip("Radius of the island the hero tower rises from.")]
+        public float islandRadius = 26f;
+        [Tooltip("Stacked mismatched decks. K1/K2/K5 agree on the silhouette.")]
+        public int towerDeckCount = 7;
+        public float towerHeight = 78f;
+        [Tooltip("The lean is the tower's signature. The spec says 10-15 degrees.")]
+        public float towerLeanDegrees = 12f;
+        [Tooltip("Cranes at the crown.")]
+        public int crownCraneCount = 3;
+
+        [Header("2. Shanty wedges + the canal ring")]
+        [Tooltip("4-5 irregular wedges of stacked corrugated tenements.")]
+        public int wedgeCount = 5;
+        public float wedgeOuterRadius = 108f;
+        [Tooltip("The ring canal that separates the island knot from the wedges.")]
+        public float canalRingRadius = 62f;
+        public float canalWidth = 9f;
+        [Tooltip("Radial canals cutting the wedges apart.")]
+        public int radialCanalCount = 4;
+        [Tooltip("Causeway / foot bridges crossing the ring canal (~4 per the spec).")]
+        public int causewayCount = 4;
+
+        [Header("3. The old sea wall")]
+        public float seaWallRadius = 126f;
+        public float seaWallHeight = 7f;
+        public float seaWallThickness = 3.5f;
+        [Tooltip("Breaches are gameplay and flyover landmarks, not damage decoration.")]
+        public int seaWallBreachCount = 2;
+
+        [Header("4. The harbour wedge (south face)")]
+        public float harbourAzimuthDegrees = 180f;
+        public float harbourArcDegrees = 46f;
+        [Tooltip("Double-armed stone breakwater enclosing the berth basin.")]
+        public float breakwaterLength = 58f;
+
+        [Header("5. The flyable outskirts")]
+        public float outskirtsRadius = 190f;
+        [Tooltip("Beached wreck clusters. K7 names them (RUSTBUCKET, SEAWEED) -- naming is the pattern.")]
+        public int beachedWreckCount = 6;
+        [Tooltip("Stilt-pier shanty villages linked by plank causeways.")]
+        public int stiltVillageCount = 2;
+        [Tooltip("Glowing green tide pools: they light the flats for the night flyover.")]
+        public int tidePoolCount = 9;
+
+        [Header("6. The gate pillar ring (far anchor, NOT geometry you can reach)")]
+        public float gatePillarAzimuthDegrees = 45f;
+        public float gatePillarDistance = 320f;
+        public int gatePillarCount = 7;
+        public float gatePillarHeight = 46f;
+
+        /// <summary>Structural sanity. Empty list == valid. Pure; the audit and tests both read it.</summary>
+        public List<string> Validate()
+        {
+            var issues = new List<string>();
+            if (!enabled) return issues;
+
+            if (islandRadius <= 0f) issues.Add("rings.islandRadius must be positive.");
+            if (canalRingRadius <= islandRadius)
+                issues.Add("rings.canalRingRadius must sit outside the tower island.");
+            if (wedgeOuterRadius <= canalRingRadius)
+                issues.Add("rings.wedgeOuterRadius must sit outside the canal ring.");
+            if (seaWallRadius <= wedgeOuterRadius)
+                issues.Add("rings.seaWallRadius must sit outside the wedges.");
+            if (outskirtsRadius <= seaWallRadius)
+                issues.Add("rings.outskirtsRadius must sit outside the sea wall.");
+            if (gatePillarDistance <= outskirtsRadius)
+                issues.Add("rings.gatePillarDistance must sit beyond the outskirts — the pillars are a "
+                    + "horizon anchor, not walkable geometry.");
+
+            if (wedgeCount < 3) issues.Add("rings.wedgeCount below 3 cannot read as a ring of districts.");
+            if (canalWidth <= 0f) issues.Add("rings.canalWidth must be positive.");
+            if (seaWallBreachCount >= wedgeCount)
+                issues.Add("rings.seaWallBreachCount at or above the wedge count leaves no wall.");
+            if (towerLeanDegrees < 0f || towerLeanDegrees > 30f)
+                issues.Add("rings.towerLeanDegrees outside 0-30 stops reading as a lean.");
+            if (harbourArcDegrees <= 0f || harbourArcDegrees >= 180f)
+                issues.Add("rings.harbourArcDegrees must be a real arc under a half-turn.");
+
+            return issues;
+        }
     }
 
     /// <summary>Per-surface colors. A district may override via <see cref="DistrictDef.paletteOverride"/>.</summary>
