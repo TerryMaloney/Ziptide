@@ -457,6 +457,19 @@ namespace Ziptide.Editor.Patching
             var existingCollider = go.GetComponent<Collider>();
             if (existingCollider != null && !collider) Object.DestroyImmediate(existingCollider);
 
+            // ⚠ A Unity cylinder ships a CAPSULE collider, and a capsule does not scale like its mesh:
+            // its radius takes the LARGER of X/Z and its height is clamped to at least twice that. A
+            // 380 m wide, 0.5 m thick disc therefore becomes a 380 m TALL pill that swallows the whole
+            // world — which is exactly how the tidal flat came to overlap ToxicCity's spawn
+            // (SPAWN_OVERLAP_SOLID, run 30415165711). A box matches the mesh's footprint honestly, and
+            // under a round visual the player never sees the difference.
+            if (collider && type == PrimitiveType.Cylinder)
+            {
+                var capsule = go.GetComponent<CapsuleCollider>();
+                if (capsule != null) Object.DestroyImmediate(capsule);
+                go.AddComponent<BoxCollider>();
+            }
+
             var renderer = go.GetComponent<Renderer>();
             if (renderer != null)
             {

@@ -128,6 +128,22 @@ namespace Ziptide.Tests.EditMode
         }
 
         [Test]
+        public void ADiscThePlayerStandsOn_GetsABoxCollider_NotAScaledCapsule()
+        {
+            // A Unity cylinder ships a CAPSULE collider, whose radius takes the larger of X/Z and
+            // whose height is clamped to at least twice that. Scaled to a 380 m wide, 0.5 m thick
+            // tidal flat it becomes a 380 m TALL pill that swallows the world -- which is precisely
+            // how the flat came to overlap ToxicCity's spawn (SPAWN_OVERLAP_SOLID, run 30415165711).
+            string source = System.IO.File.ReadAllText(System.IO.Path.Combine(
+                UnityEngine.Application.dataPath,
+                "Ziptide/Editor/Patching/RingCityBuilder.cs".Replace('/', System.IO.Path.DirectorySeparatorChar)));
+
+            StringAssert.Contains("type == PrimitiveType.Cylinder", source);
+            StringAssert.Contains("DestroyImmediate(capsule)", source);
+            StringAssert.Contains("AddComponent<BoxCollider>()", source);
+        }
+
+        [Test]
         public void TheLayoutsOwnValidate_SurfacesRingProblems()
         {
             var kit = UnityEngine.ScriptableObject.CreateInstance<CityLayoutDefinition>();
