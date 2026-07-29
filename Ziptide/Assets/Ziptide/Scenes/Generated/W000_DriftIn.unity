@@ -7675,7 +7675,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6807e2d764c548149ba72cf183c5738f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetScene: ToxicCity
+  targetScene: SpaceLane_Trial
   streakSeconds: 6
 --- !u!1 &1185342621
 GameObject:

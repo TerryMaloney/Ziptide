@@ -116,12 +116,15 @@ namespace Ziptide.Gameplay
         /// </summary>
         private void ArmTheTide(bool silent)
         {
+            // PARENT CHAIN ONLY. A scene-wide search would happily arm a DIFFERENT ship: the moment
+            // a world has two berths, the key seated in yours would re-point somebody else's hull.
+            // If this socket is not mounted on a launch owner, that is a build error worth hearing
+            // about, not something to paper over by grabbing the first ship in the scene.
             var castOff = GetComponentInParent<ShipCastOffRuntime>();
-            if (castOff == null) castOff = FindObjectOfType<ShipCastOffRuntime>();
             if (castOff == null)
             {
-                Debug.LogWarning("ZIPTIDE: KEY_SEAT_NO_CASTOFF — the key is seated but no launch owner "
-                    + "exists on this ship, so the tide cannot be armed.");
+                Debug.LogWarning("ZIPTIDE: KEY_SEAT_NO_CASTOFF — this socket is not mounted on a ship "
+                    + "that owns a launch, so the tide cannot be armed. Check where the author placed it.");
                 return;
             }
 

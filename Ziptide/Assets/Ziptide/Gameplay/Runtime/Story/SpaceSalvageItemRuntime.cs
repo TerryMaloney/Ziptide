@@ -88,9 +88,19 @@ namespace Ziptide.Gameplay
             if (_materialised || Time.unscaledTime < _nextScanAt) return;
             _nextScanAt = Time.unscaledTime + ScanIntervalSeconds;
 
+            // Camera.main depends on a MainCamera tag that a generated scene is not guaranteed to
+            // carry. The persistent rig always exists, so fall back to it rather than having the find
+            // silently never materialise -- which would look exactly like the artifact being missing.
+            Transform viewer = null;
             Camera cam = Camera.main;
-            if (cam == null) return;
-            if (Vector3.Distance(cam.transform.position, transform.position) > MaterialiseRange) return;
+            if (cam != null) viewer = cam.transform;
+            else
+            {
+                var rig = FindObjectOfType<PlayerRigPersistence>();
+                if (rig != null) viewer = rig.transform;
+            }
+            if (viewer == null) return;
+            if (Vector3.Distance(viewer.position, transform.position) > MaterialiseRange) return;
 
             _materialised = true;
 

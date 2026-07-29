@@ -73,6 +73,10 @@ namespace Ziptide.Gameplay
             if (_joined || Time.unscaledTime < _nextScanAt) return;
             _nextScanAt = Time.unscaledTime + ScanIntervalSeconds;
 
+            // Cheap gate first. Until the player actually HAS both halves this can never fire, and
+            // there is no reason to sweep every item in the world ten times a second to prove it.
+            if (!HasBothHalves()) return;
+
             ItemRuntime halfA = FindHeldHalf(HalfAItemId);
             ItemRuntime halfB = FindHeldHalf(HalfBItemId);
             if (halfA == null || halfB == null) return;
@@ -94,6 +98,17 @@ namespace Ziptide.Gameplay
             }
 
             Join(halfA, halfB, Vector3.Lerp(a, b, 0.5f));
+        }
+
+        /// <summary>
+        /// Both halves collected, per the profile. This is a flag read, not a scene search.
+        /// </summary>
+        private static bool HasBothHalves()
+        {
+            PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;
+            if (profile == null) return false;
+            return profile.HasFlag(ZiptideFlags.ARTIFACT_HALF_A)
+                && profile.HasFlag(ZiptideFlags.ARTIFACT_HALF_B);
         }
 
         /// <summary>
