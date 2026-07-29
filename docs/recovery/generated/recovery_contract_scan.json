@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-29T18:36:48.667125+00:00",
+  "generatedAtUtc": "2026-07-29T18:40:54.520896+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -9,10 +9,10 @@
     "Ziptide/Assets/ZiptideNet"
   ],
   "scannedFiles": 783,
-  "findingCount": 2842,
+  "findingCount": 2843,
   "categoryCounts": {
     "bootstrap": 46,
-    "diagnostics": 678,
+    "diagnostics": 679,
     "events": 71,
     "fallback_debt": 176,
     "global_render": 92,
@@ -57,7 +57,7 @@
     "XRI_MANAGER_LOOKUP": 45,
     "XR_INTERACTABLE_COMPONENT": 66,
     "XR_UI_INPUT_MODULE": 2,
-    "ZIPTIDE_LOG_TAG": 678
+    "ZIPTIDE_LOG_TAG": 679
   },
   "findings": [
     {
@@ -1541,7 +1541,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CanalStalkerBehavior.cs",
-      "line": 77,
+      "line": 91,
       "symbol": "Ziptide.Gameplay.CanalStalkerBehavior",
       "snippet": "Debug.Log(\"ZIPTIDE: STALKER stage=\" + stage + \" ride=\" + _rideCount"
     },
@@ -1550,7 +1550,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CanalStalkerBehavior.cs",
-      "line": 151,
+      "line": 165,
       "symbol": "Ziptide.Gameplay.CanalStalkerBehavior",
       "snippet": "Debug.Log(\"ZIPTIDE: STALKER stunned=\" + seconds.ToString(\"F1\"));"
     },
@@ -3530,7 +3530,16 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-      "line": 157,
+      "line": 137,
+      "symbol": "Ziptide.Gameplay.ArtifactJoinRuntime",
+      "snippet": "Debug.Log(\"ZIPTIDE: ARTIFACT_JOIN_HINT both halves carried, not joined\");"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
+      "line": 194,
       "symbol": "Ziptide.Gameplay.ArtifactJoinRuntime",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: ARTIFACT_JOIN_NO_KEY id=\" + KeyItemId"
     },
@@ -3539,7 +3548,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-      "line": 163,
+      "line": 200,
       "symbol": "Ziptide.Gameplay.ArtifactJoinRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: ARTIFACT_JOINED at=\" + where.ToString(\"F2\"));"
     },
@@ -3548,7 +3557,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-      "line": 172,
+      "line": 209,
       "symbol": "Ziptide.Gameplay.ArtifactJoinRuntime",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: ARTIFACT_JOIN_LISTENER_FAIL error=\" + ex.Message);"
     },
@@ -11918,7 +11927,7 @@
       "code": "RUNTIME_MATERIAL_CREATE",
       "description": "Runtime Material allocation",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs",
-      "line": 239,
+      "line": 244,
       "symbol": "Ziptide.Editor.Patching.ToxicCityVehicleBuilder",
       "snippet": "material = new Material(shader) { name = \"VehiclePad_\" + ColorUtility.ToHtmlStringRGB(color) };"
     },
@@ -12944,7 +12953,7 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs",
-      "line": 237,
+      "line": 242,
       "symbol": "Ziptide.Editor.Patching.ToxicCityVehicleBuilder",
       "snippet": "Shader shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
     },
@@ -12953,7 +12962,7 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs",
-      "line": 238,
+      "line": 243,
       "symbol": "Ziptide.Editor.Patching.ToxicCityVehicleBuilder",
       "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
     },
@@ -14987,7 +14996,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs",
-      "line": 211,
+      "line": 216,
       "symbol": "Ziptide.Editor.Patching.ToxicCityVehicleBuilder",
       "snippet": "GameObject part = GameObject.CreatePrimitive(primitive);"
     },
@@ -17948,7 +17957,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs",
-      "line": 165,
+      "line": 170,
       "symbol": "Ziptide.Editor.Patching.ToxicCityVehicleBuilder",
       "snippet": "Transform preview = new GameObject(PreviewRootName).transform;"
     },
@@ -22709,7 +22718,7 @@
       "code": "PLAYER_PROFILE_REFERENCE",
       "description": "PlayerProfile reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-      "line": 108,
+      "line": 145,
       "symbol": "Ziptide.Gameplay.ArtifactJoinRuntime",
       "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
     },
@@ -22718,7 +22727,7 @@
       "code": "PLAYER_PROFILE_REFERENCE",
       "description": "PlayerProfile reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-      "line": 160,
+      "line": 197,
       "symbol": "Ziptide.Gameplay.ArtifactJoinRuntime",
       "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
     },
@@ -23933,7 +23942,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-      "line": 108,
+      "line": 145,
       "symbol": "Ziptide.Gameplay.ArtifactJoinRuntime",
       "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
     },
@@ -23942,7 +23951,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-      "line": 160,
+      "line": 197,
       "symbol": "Ziptide.Gameplay.ArtifactJoinRuntime",
       "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
     },

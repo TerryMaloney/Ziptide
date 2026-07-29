@@ -260,7 +260,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-      "line": 142,
+      "line": 179,
       "owner": "Ziptide.Gameplay.ArtifactJoinRuntime",
       "target": "item.transform.position",
       "detail": "delta",
@@ -2868,7 +2868,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-        "line": 110,
+        "line": 147,
         "owner": "Ziptide.Gameplay.ArtifactJoinRuntime",
         "target": "HasFlag",
         "detail": "profile",
@@ -2877,7 +2877,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-        "line": 111,
+        "line": 148,
         "owner": "Ziptide.Gameplay.ArtifactJoinRuntime",
         "target": "HasFlag",
         "detail": "profile",
@@ -4654,7 +4654,7 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-        "line": 108,
+        "line": 145,
         "owner": "Ziptide.Gameplay.ArtifactJoinRuntime",
         "target": "SaveSystem.Profile",
         "detail": "",
@@ -4663,7 +4663,7 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-        "line": 160,
+        "line": 197,
         "owner": "Ziptide.Gameplay.ArtifactJoinRuntime",
         "target": "SaveSystem.Profile",
         "detail": "",
@@ -5980,7 +5980,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-        "line": 104,
+        "line": 141,
         "owner": "Ziptide.Gameplay.ArtifactJoinRuntime",
         "target": "This",
         "detail": "profile",
@@ -7078,7 +7078,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-        "line": 142,
+        "line": 179,
         "owner": "Ziptide.Gameplay.ArtifactJoinRuntime",
         "target": "item.transform.position",
         "detail": "delta",
@@ -11562,7 +11562,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-      "line": 104,
+      "line": 141,
       "owner": "Ziptide.Gameplay.ArtifactJoinRuntime",
       "target": "This",
       "detail": "profile",
@@ -11571,7 +11571,7 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-      "line": 108,
+      "line": 145,
       "owner": "Ziptide.Gameplay.ArtifactJoinRuntime",
       "target": "SaveSystem.Profile",
       "detail": "",
@@ -11580,7 +11580,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-      "line": 110,
+      "line": 147,
       "owner": "Ziptide.Gameplay.ArtifactJoinRuntime",
       "target": "HasFlag",
       "detail": "profile",
@@ -11589,7 +11589,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-      "line": 111,
+      "line": 148,
       "owner": "Ziptide.Gameplay.ArtifactJoinRuntime",
       "target": "HasFlag",
       "detail": "profile",
@@ -11598,7 +11598,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-      "line": 142,
+      "line": 179,
       "owner": "Ziptide.Gameplay.ArtifactJoinRuntime",
       "target": "item.transform.position",
       "detail": "delta",
@@ -11607,7 +11607,7 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-      "line": 160,
+      "line": 197,
       "owner": "Ziptide.Gameplay.ArtifactJoinRuntime",
       "target": "SaveSystem.Profile",
       "detail": "",

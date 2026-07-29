@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
 - Scanned files: **783**
-- Scanner findings: **2842**
+- Scanner findings: **2843**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -1228,11 +1228,11 @@ None.
   - `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:92` **NEW_GAME_OBJECT** — `GameObject vehicle = new GameObject("Vehicle_" + id);`
   - `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:99` **NEW_GAME_OBJECT** — `GameObject label = new GameObject("BayLabel");`
   - `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:102` **TEXTMESH_COMPONENT** — `TextMesh text = label.AddComponent<TextMesh>();`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:165` **NEW_GAME_OBJECT** — `Transform preview = new GameObject(PreviewRootName).transform;`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:211` **CREATE_PRIMITIVE** — `GameObject part = GameObject.CreatePrimitive(primitive);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:237` **SHADER_FIND** — `Shader shader = Shader.Find("Universal Render Pipeline/Lit");`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:238` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:239` **RUNTIME_MATERIAL_CREATE** — `material = new Material(shader) { name = "VehiclePad_" + ColorUtility.ToHtmlStringRGB(color) };`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:170` **NEW_GAME_OBJECT** — `Transform preview = new GameObject(PreviewRootName).transform;`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:216` **CREATE_PRIMITIVE** — `GameObject part = GameObject.CreatePrimitive(primitive);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:242` **SHADER_FIND** — `Shader shader = Shader.Find("Universal Render Pipeline/Lit");`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:243` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:244` **RUNTIME_MATERIAL_CREATE** — `material = new Material(shader) { name = "VehiclePad_" + ColorUtility.ToHtmlStringRGB(color) };`
 
 ### `Ziptide.Editor.Patching.WaterAuthor` — 1 signal(s)
 
@@ -3584,10 +3584,10 @@ None.
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs:41` **STATIC_EVENT_DECLARATION** — `public static event System.Action Joined;`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs:62` **PLAYER_PROFILE_REFERENCE** — `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs:62` **SAVE_SYSTEM_REFERENCE** — `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs:108` **PLAYER_PROFILE_REFERENCE** — `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs:108` **SAVE_SYSTEM_REFERENCE** — `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs:160` **PLAYER_PROFILE_REFERENCE** — `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs:160` **SAVE_SYSTEM_REFERENCE** — `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs:145` **PLAYER_PROFILE_REFERENCE** — `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs:145` **SAVE_SYSTEM_REFERENCE** — `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs:197` **PLAYER_PROFILE_REFERENCE** — `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs:197` **SAVE_SYSTEM_REFERENCE** — `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 
 ### `Ziptide.Gameplay.AudioMixSettings` — 2 signal(s)
 

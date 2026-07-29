@@ -2,7 +2,7 @@
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
   "scannedFiles": 783,
-  "findingCount": 2842,
+  "findingCount": 2843,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -5552,35 +5552,35 @@
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs",
-            "line": 165,
+            "line": 170,
             "symbol": "Ziptide.Editor.Patching.ToxicCityVehicleBuilder",
             "snippet": "Transform preview = new GameObject(PreviewRootName).transform;"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs",
-            "line": 211,
+            "line": 216,
             "symbol": "Ziptide.Editor.Patching.ToxicCityVehicleBuilder",
             "snippet": "GameObject part = GameObject.CreatePrimitive(primitive);"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs",
-            "line": 237,
+            "line": 242,
             "symbol": "Ziptide.Editor.Patching.ToxicCityVehicleBuilder",
             "snippet": "Shader shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs",
-            "line": 238,
+            "line": 243,
             "symbol": "Ziptide.Editor.Patching.ToxicCityVehicleBuilder",
             "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
           },
           {
             "code": "RUNTIME_MATERIAL_CREATE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs",
-            "line": 239,
+            "line": 244,
             "symbol": "Ziptide.Editor.Patching.ToxicCityVehicleBuilder",
             "snippet": "material = new Material(shader) { name = \"VehiclePad_\" + ColorUtility.ToHtmlStringRGB(color) };"
           }
@@ -16290,28 +16290,28 @@
           {
             "code": "PLAYER_PROFILE_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-            "line": 108,
+            "line": 145,
             "symbol": "Ziptide.Gameplay.ArtifactJoinRuntime",
             "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
           },
           {
             "code": "SAVE_SYSTEM_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-            "line": 108,
+            "line": 145,
             "symbol": "Ziptide.Gameplay.ArtifactJoinRuntime",
             "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
           },
           {
             "code": "PLAYER_PROFILE_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-            "line": 160,
+            "line": 197,
             "symbol": "Ziptide.Gameplay.ArtifactJoinRuntime",
             "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
           },
           {
             "code": "SAVE_SYSTEM_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-            "line": 160,
+            "line": 197,
             "symbol": "Ziptide.Gameplay.ArtifactJoinRuntime",
             "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
           }

@@ -1,7 +1,7 @@
 # ZIPTIDE Recovery Contract Scan
 
 - Scanned files: **783**
-- Findings: **2842**
+- Findings: **2843**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
@@ -9,7 +9,7 @@
 | Category | Count |
 |---|---:|
 | `bootstrap` | 46 |
-| `diagnostics` | 678 |
+| `diagnostics` | 679 |
 | `events` | 71 |
 | `fallback_debt` | 176 |
 | `global_render` | 92 |
@@ -192,8 +192,8 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:310` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: BOARD_PROBE phase=aim ray=none hit=none layer=-1 manager=0"`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Diagnostics/SingletonValidator.cs:54` · `Ziptide.Gameplay.SingletonValidator` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: DUP_SINGLETON " + label + " count=" + all.Length);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CanalStalkerBehavior.cs:15` · `Ziptide.Gameplay.CanalStalkerBehavior` — ZIPTIDE diagnostic tag. `/// this is the body and the water it stays in. Logs ZIPTIDE: STALKER stage=… .`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CanalStalkerBehavior.cs:77` · `Ziptide.Gameplay.CanalStalkerBehavior` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: STALKER stage=" + stage + " ride=" + _rideCount`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CanalStalkerBehavior.cs:151` · `Ziptide.Gameplay.CanalStalkerBehavior` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: STALKER stunned=" + seconds.ToString("F1"));`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CanalStalkerBehavior.cs:91` · `Ziptide.Gameplay.CanalStalkerBehavior` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: STALKER stage=" + stage + " ride=" + _rideCount`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CanalStalkerBehavior.cs:165` · `Ziptide.Gameplay.CanalStalkerBehavior` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: STALKER stunned=" + seconds.ToString("F1"));`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:16` · `Ziptide.Gameplay.CreatureRuntime` — ZIPTIDE diagnostic tag. `/// disable. Loot pays the profile on disable. Logs ZIPTIDE: CREATURE_DOWN id=… / CREATURE_RESPAWN.`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:76` · `Ziptide.Gameplay.CreatureRuntime` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: CREATURE_DEF_MISSING id=" + creatureId);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:154` · `Ziptide.Gameplay.CreatureRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: CREATURE_DOWN id=" + creatureId + " name=" + gameObject.name);`
@@ -413,9 +413,10 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/WristScanner.cs:216` · `Ziptide.Gameplay.WristScanner` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: WRIST_SCAN_PULSE targets=" + _targets.Count);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/WristScanner.cs:217` · `Ziptide.Gameplay.WristScanner` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: WRIST_SCAN_RESULT count=" + result.Count + " kinds=" + result.KindSummary());`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/WristScanner.cs:221` · `Ziptide.Gameplay.WristScanner` — ZIPTIDE diagnostic tag. `ex => Debug.LogWarning("ZIPTIDE: WRIST_SCAN_SUBSCRIBER_FAIL reason=" + ex.Message));`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs:157` · `Ziptide.Gameplay.ArtifactJoinRuntime` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: ARTIFACT_JOIN_NO_KEY id=" + KeyItemId`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs:163` · `Ziptide.Gameplay.ArtifactJoinRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: ARTIFACT_JOINED at=" + where.ToString("F2"));`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs:172` · `Ziptide.Gameplay.ArtifactJoinRuntime` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: ARTIFACT_JOIN_LISTENER_FAIL error=" + ex.Message);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs:137` · `Ziptide.Gameplay.ArtifactJoinRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: ARTIFACT_JOIN_HINT both halves carried, not joined");`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs:194` · `Ziptide.Gameplay.ArtifactJoinRuntime` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: ARTIFACT_JOIN_NO_KEY id=" + KeyItemId`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs:200` · `Ziptide.Gameplay.ArtifactJoinRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: ARTIFACT_JOINED at=" + where.ToString("F2"));`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs:209` · `Ziptide.Gameplay.ArtifactJoinRuntime` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: ARTIFACT_JOIN_LISTENER_FAIL error=" + ex.Message);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/BuildSocketRuntime.cs:15` · `Ziptide.Gameplay.BuildSocketRuntime` — ZIPTIDE diagnostic tag. `/// Logs ZIPTIDE: SOCKET_BUILD id=… cost=… / SOCKET_BLOCKED reason=poor.`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/BuildSocketRuntime.cs:94` · `Ziptide.Gameplay.BuildSocketRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: SOCKET_BLOCKED id=" + _def.id + " reason=poor need=" + _def.buildCost);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/BuildSocketRuntime.cs:104` · `Ziptide.Gameplay.BuildSocketRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: SOCKET_BUILD id=" + _def.id + " cost=" + _def.buildCost +`
@@ -1355,7 +1356,7 @@
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Editor/Patching/SignRecipeLibrary.cs:159` · `Ziptide.Editor.Patching.SignRecipeLibrary` — Runtime Material allocation. `var material = new Material(shader)`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityRiverBuilder.cs:201` · `Ziptide.Editor.Patching.ToxicCityRiverBuilder` — Runtime Material allocation. `var material = new Material(shader) { name = "ToxicRiver_" + slot };`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageB.cs:233` · `Ziptide.Editor.Patching.ToxicCityStageB` — Runtime Material allocation. `material = new Material(shader) { name = "CityStageB_" + slot };`
-- **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:239` · `Ziptide.Editor.Patching.ToxicCityVehicleBuilder` — Runtime Material allocation. `material = new Material(shader) { name = "VehiclePad_" + ColorUtility.ToHtmlStringRGB(color) };`
+- **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:244` · `Ziptide.Editor.Patching.ToxicCityVehicleBuilder` — Runtime Material allocation. `material = new Material(shader) { name = "VehiclePad_" + ColorUtility.ToHtmlStringRGB(color) };`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Editor/Patching/WorldDressingBuilder.cs:311` · `Ziptide.Editor.Patching.WorldDressingBuilder` — Runtime Material allocation. `m = new Material(shader) { name = "DressMat_" + ColorUtility.ToHtmlStringRGB(color) };`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Editor/Patching/WorldExperienceBuilder.cs:466` · `Ziptide.Editor.Patching.WorldExperienceBuilder` — Runtime Material allocation. `var m = new Material(shader) { name = name };`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Editor/Patching/WorldPoiBuilder.cs:382` · `Ziptide.Editor.Patching.WorldPoiBuilder` — Runtime Material allocation. `var m = new Material(shader) { name = "PoiMat_" + ColorUtility.ToHtmlStringRGB(color) };`
@@ -1469,8 +1470,8 @@
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityRiverBuilder.cs:200` · `Ziptide.Editor.Patching.ToxicCityRiverBuilder` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Standard");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageB.cs:231` · `Ziptide.Editor.Patching.ToxicCityStageB` — Runtime shader lookup. `Shader shader = Shader.Find("Universal Render Pipeline/Lit");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageB.cs:232` · `Ziptide.Editor.Patching.ToxicCityStageB` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Standard");`
-- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:237` · `Ziptide.Editor.Patching.ToxicCityVehicleBuilder` — Runtime shader lookup. `Shader shader = Shader.Find("Universal Render Pipeline/Lit");`
-- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:238` · `Ziptide.Editor.Patching.ToxicCityVehicleBuilder` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Standard");`
+- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:242` · `Ziptide.Editor.Patching.ToxicCityVehicleBuilder` — Runtime shader lookup. `Shader shader = Shader.Find("Universal Render Pipeline/Lit");`
+- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:243` · `Ziptide.Editor.Patching.ToxicCityVehicleBuilder` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Standard");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Editor/Patching/WorldDressingBuilder.cs:309` · `Ziptide.Editor.Patching.WorldDressingBuilder` — Runtime shader lookup. `var shader = Shader.Find("Universal Render Pipeline/Lit");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Editor/Patching/WorldDressingBuilder.cs:310` · `Ziptide.Editor.Patching.WorldDressingBuilder` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Standard");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Editor/Patching/WorldExperienceBuilder.cs:464` · `Ziptide.Editor.Patching.WorldExperienceBuilder` — Runtime shader lookup. `var shader = Shader.Find("Universal Render Pipeline/Lit");`
@@ -1700,7 +1701,7 @@
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityRiverBuilder.cs:177` · `Ziptide.Editor.Patching.ToxicCityRiverBuilder` — Runtime primitive construction. `GameObject go = GameObject.CreatePrimitive(type);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityStageB.cs:209` · `Ziptide.Editor.Patching.ToxicCityStageB` — Runtime primitive construction. `GameObject go = GameObject.CreatePrimitive(primitive);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:77` · `Ziptide.Editor.Patching.ToxicCityVehicleBuilder` — Runtime primitive construction. `GameObject pad = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:211` · `Ziptide.Editor.Patching.ToxicCityVehicleBuilder` — Runtime primitive construction. `GameObject part = GameObject.CreatePrimitive(primitive);`
+- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:216` · `Ziptide.Editor.Patching.ToxicCityVehicleBuilder` — Runtime primitive construction. `GameObject part = GameObject.CreatePrimitive(primitive);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/WorldDressingBuilder.cs:296` · `Ziptide.Editor.Patching.WorldDressingBuilder` — Runtime primitive construction. `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/WorldExperienceBuilder.cs:445` · `Ziptide.Editor.Patching.WorldExperienceBuilder` — Runtime primitive construction. `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/WorldPoiBuilder.cs:355` · `Ziptide.Editor.Patching.WorldPoiBuilder` — Runtime primitive construction. `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
@@ -2029,7 +2030,7 @@
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:73` · `Ziptide.Editor.Patching.ToxicCityVehicleBuilder` — Runtime GameObject construction. `Transform bay = new GameObject("VehicleBay_" + id).transform;`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:92` · `Ziptide.Editor.Patching.ToxicCityVehicleBuilder` — Runtime GameObject construction. `GameObject vehicle = new GameObject("Vehicle_" + id);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:99` · `Ziptide.Editor.Patching.ToxicCityVehicleBuilder` — Runtime GameObject construction. `GameObject label = new GameObject("BayLabel");`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:165` · `Ziptide.Editor.Patching.ToxicCityVehicleBuilder` — Runtime GameObject construction. `Transform preview = new GameObject(PreviewRootName).transform;`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs:170` · `Ziptide.Editor.Patching.ToxicCityVehicleBuilder` — Runtime GameObject construction. `Transform preview = new GameObject(PreviewRootName).transform;`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/WaterAuthor.cs:23` · `Ziptide.Editor.Patching.WaterAuthor` — Runtime GameObject construction. `var go = new GameObject("BerthWater");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/WorldDressingBuilder.cs:37` · `Ziptide.Editor.Patching.WorldDressingBuilder` — Runtime GameObject construction. `var dressRoot = new GameObject("Dressing").transform;`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/WorldDressingBuilder.cs:94` · `Ziptide.Editor.Patching.WorldDressingBuilder` — Runtime GameObject construction. `var cairnRoot = new GameObject("Route").transform;`
@@ -2562,8 +2563,8 @@
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Persistence/SaveSystem.cs:24` · `Ziptide.Gameplay.SaveSystem` — PlayerProfile reference. `public PlayerProfile Profile { get; private set; }`
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Persistence/SaveSystem.cs:94` · `Ziptide.Gameplay.SaveSystem` — PlayerProfile reference. `public PlayerProfile StartNewProfile()`
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs:62` · `Ziptide.Gameplay.ArtifactJoinRuntime` — PlayerProfile reference. `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
-- **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs:108` · `Ziptide.Gameplay.ArtifactJoinRuntime` — PlayerProfile reference. `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
-- **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs:160` · `Ziptide.Gameplay.ArtifactJoinRuntime` — PlayerProfile reference. `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
+- **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs:145` · `Ziptide.Gameplay.ArtifactJoinRuntime` — PlayerProfile reference. `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
+- **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs:197` · `Ziptide.Gameplay.ArtifactJoinRuntime` — PlayerProfile reference. `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/BeaconThreadRuntime.cs:61` · `Ziptide.Gameplay.BeaconThreadRuntime` — PlayerProfile reference. `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs:42` · `Ziptide.Gameplay.KeySocketRuntime` — PlayerProfile reference. `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs:104` · `Ziptide.Gameplay.KeySocketRuntime` — PlayerProfile reference. `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
@@ -2698,8 +2699,8 @@
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:93` · `Ziptide.Gameplay.PvpProgressionRuntime` — SaveSystem reference. `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:143` · `Ziptide.Gameplay.PvpProgressionRuntime` — SaveSystem reference. `SaveSystem.AutosaveNow("pvp_match");`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs:62` · `Ziptide.Gameplay.ArtifactJoinRuntime` — SaveSystem reference. `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
-- **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs:108` · `Ziptide.Gameplay.ArtifactJoinRuntime` — SaveSystem reference. `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
-- **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs:160` · `Ziptide.Gameplay.ArtifactJoinRuntime` — SaveSystem reference. `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
+- **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs:145` · `Ziptide.Gameplay.ArtifactJoinRuntime` — SaveSystem reference. `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
+- **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs:197` · `Ziptide.Gameplay.ArtifactJoinRuntime` — SaveSystem reference. `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/BeaconThreadRuntime.cs:61` · `Ziptide.Gameplay.BeaconThreadRuntime` — SaveSystem reference. `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/BuildSocketRuntime.cs:46` · `Ziptide.Gameplay.BuildSocketRuntime` — SaveSystem reference. `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/BuildSocketRuntime.cs:88` · `Ziptide.Gameplay.BuildSocketRuntime` — SaveSystem reference. `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
