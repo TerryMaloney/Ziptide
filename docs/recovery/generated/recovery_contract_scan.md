@@ -1,15 +1,15 @@
 # ZIPTIDE Recovery Contract Scan
 
-- Scanned files: **755**
-- Findings: **2781**
+- Scanned files: **758**
+- Findings: **2784**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
 
 | Category | Count |
 |---|---:|
-| `bootstrap` | 45 |
-| `diagnostics` | 657 |
+| `bootstrap` | 46 |
+| `diagnostics` | 659 |
 | `events` | 71 |
 | `fallback_debt` | 171 |
 | `global_render` | 91 |
@@ -63,6 +63,7 @@
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubAnchorLockInstallerRuntime.cs:11` · `Ziptide.Gameplay.HomeHubAnchorLockInstallerRuntime` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubAnchorLockInstallerRuntime.cs:17` · `Ziptide.Gameplay.HomeHubAnchorLockInstallerRuntime` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:39` · `Ziptide.Gameplay.ConquestMissionRuntime` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
+- **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ReentryArrivalRuntime.cs:56` · `Ziptide.Gameplay.ReentryArrivalRuntime` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleSafetyRuntime.cs:35` · `Ziptide.Ship.VehicleSafetyRuntime` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleSafetyRuntime.cs:42` · `Ziptide.Ship.VehicleSafetyRuntime` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Tests/EditMode/DevToolsSingletonTests.cs:17` · `Ziptide.Tests.EditMode.DevToolsSingletonTests` — RuntimeInitializeOnLoadMethod bootstrap. `private const string BootstrapMarker = "[RuntimeInitializeOnLoadMethod";`
@@ -550,6 +551,8 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/QuartersRoom.cs:20` · `Ziptide.Gameplay.QuartersRoom` — ZIPTIDE diagnostic tag. `/// Logs ZIPTIDE: QUARTERS_BROWSE kind=… / COSMETIC_EQUIPPED id=… target=…`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/QuartersRoom.cs:156` · `Ziptide.Gameplay.QuartersRoom` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: QUARTERS_BROWSE kind=" + kind + " owned=" + owned.Count);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/QuartersRoom.cs:190` · `Ziptide.Gameplay.QuartersRoom` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: COSMETIC_EQUIPPED id=" + cRef.cosmeticId + " target=" + targetKey);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ReentryArrivalRuntime.cs:19` · `Ziptide.Gameplay.ReentryArrivalRuntime` — ZIPTIDE diagnostic tag. `/// Logs: ZIPTIDE: REENTRY_ARRIVAL from=… world=…`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ReentryArrivalRuntime.cs:35` · `Ziptide.Gameplay.ReentryArrivalRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: REENTRY_ARRIVAL from=" + previous + " world=" + current);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/SalvageCacheRuntime.cs:86` · `Ziptide.Gameplay.SalvageCacheRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: SALVAGE_CACHE resource=" + resourceId + " amount=" + amount +`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingPresentationGuard.cs:161` · `Ziptide.Gameplay.ShipBoardingPresentationGuard` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: SHIP_PANEL_ADOPT panel=" + panelName`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:18` · `Ziptide.Gameplay.ShipBoardingStation` — ZIPTIDE diagnostic tag. `/// Awake. Logs ZIPTIDE: SHIP_BOARD / SHIP_DISEMBARK / SHIP_DEPART dest=…`
@@ -1652,8 +1655,8 @@
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherStarterWorld.cs:217` · `Ziptide.Editor.Patching.ScenePatcherStarterWorld` — Runtime primitive construction. `var drone = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherStarterWorld.cs:280` · `Ziptide.Editor.Patching.ScenePatcherStarterWorld` — Runtime primitive construction. `if (go == null) { go = GameObject.CreatePrimitive(PrimitiveType.Cube); go.name = name; }`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherStarterWorld.cs:334` · `Ziptide.Editor.Patching.ScenePatcherStarterWorld` — Runtime primitive construction. `var go = GameObject.CreatePrimitive(type);`
-- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:112` · `Ziptide.Editor.Patching.ScenePatcherToxicCity` — Runtime primitive construction. `var target = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:124` · `Ziptide.Editor.Patching.ScenePatcherToxicCity` — Runtime primitive construction. `var post = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:125` · `Ziptide.Editor.Patching.ScenePatcherToxicCity` — Runtime primitive construction. `var target = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:137` · `Ziptide.Editor.Patching.ScenePatcherToxicCity` — Runtime primitive construction. `var post = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/ShipHullBuilder.cs:225` · `Ziptide.Editor.Patching.ShipHullBuilder` — Runtime primitive construction. `GameObject go = GameObject.CreatePrimitive(primitive);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/SignAuthor.cs:130` · `Ziptide.Editor.Patching.SignAuthor` — Runtime primitive construction. `var fallback = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/SignAuthor.cs:151` · `Ziptide.Editor.Patching.SignAuthor` — Runtime primitive construction. `var glyph = GameObject.CreatePrimitive(PrimitiveType.Quad);`
@@ -1954,8 +1957,8 @@
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:283` · `Ziptide.Editor.Patching.ScenePatcherSpaceLane` — Runtime GameObject construction. `var marker = new GameObject("__SALVAGE_ARTIFACT_HALF_A");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherStarterWorld.cs:253` · `Ziptide.Editor.Patching.ScenePatcherStarterWorld` — Runtime GameObject construction. `var go = new GameObject(name);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherStarterWorld.cs:324` · `Ziptide.Editor.Patching.ScenePatcherStarterWorld` — Runtime GameObject construction. `GameObject go = t != null ? t.gameObject : new GameObject(name);`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:142` · `Ziptide.Editor.Patching.ScenePatcherToxicCity` — Runtime GameObject construction. `var zip = new GameObject(ZipName);`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:252` · `Ziptide.Editor.Patching.ScenePatcherToxicCity` — Runtime GameObject construction. `var go = new GameObject(name);`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:155` · `Ziptide.Editor.Patching.ScenePatcherToxicCity` — Runtime GameObject construction. `var zip = new GameObject(ZipName);`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:265` · `Ziptide.Editor.Patching.ScenePatcherToxicCity` — Runtime GameObject construction. `var go = new GameObject(name);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/SignAuthor.cs:99` · `Ziptide.Editor.Patching.SignAuthor` — Runtime GameObject construction. `var root = new GameObject(RootName).transform;`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/SignAuthor.cs:120` · `Ziptide.Editor.Patching.SignAuthor` — Runtime GameObject construction. `var holder = new GameObject(string.IsNullOrEmpty(plan.name) ? "ShellSign" : plan.name);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityRiverBuilder.cs:47` · `Ziptide.Editor.Patching.ToxicCityRiverBuilder` — Runtime GameObject construction. `var root = new GameObject(RootName).transform;`

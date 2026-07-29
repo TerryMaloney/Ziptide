@@ -1,18 +1,18 @@
 {
   "tool": "recovery_event_save_graph",
-  "scannedFiles": 755,
-  "evidenceCount": 823,
+  "scannedFiles": 758,
+  "evidenceCount": 824,
   "kindCounts": {
     "AUTOSAVE": 8,
     "EVENT_DECLARE": 49,
     "EVENT_INVOKE": 61,
-    "EVENT_SUBSCRIBE": 137,
+    "EVENT_SUBSCRIBE": 138,
     "EVENT_UNSUBSCRIBE": 84,
     "PLAYER_PREFS_ACCESS": 20,
     "PROFILE_FIELD_ACCESS": 383,
     "SAVE_ACCESS": 81
   },
-  "unmatchedNamedSubscriptionCount": 59,
+  "unmatchedNamedSubscriptionCount": 60,
   "unmatchedNamedSubscriptions": [
     {
       "kind": "EVENT_SUBSCRIBE",
@@ -373,6 +373,15 @@
       "target": "_rig.position",
       "detail": "delta",
       "snippet": "if (onDeck) _rig.position += delta; // delta-translate \u2014 NEVER parent the rig"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ReentryArrivalRuntime.cs",
+      "line": 61,
+      "owner": "Ziptide.Gameplay.ReentryArrivalRuntime",
+      "target": "SceneManager.sceneUnloaded",
+      "detail": "OnSceneUnloaded",
+      "snippet": "SceneManager.sceneUnloaded += OnSceneUnloaded;"
     },
     {
       "kind": "EVENT_SUBSCRIBE",
@@ -5477,6 +5486,17 @@
         "target": "SceneManager.sceneLoaded",
         "detail": "OnBootSceneLoadedBeforeStart",
         "snippet": "SceneManager.sceneLoaded -= OnBootSceneLoadedBeforeStart;"
+      }
+    ],
+    "SceneManager.sceneUnloaded": [
+      {
+        "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ReentryArrivalRuntime.cs",
+        "line": 61,
+        "owner": "Ziptide.Gameplay.ReentryArrivalRuntime",
+        "target": "SceneManager.sceneUnloaded",
+        "detail": "OnSceneUnloaded",
+        "snippet": "SceneManager.sceneUnloaded += OnSceneUnloaded;"
       }
     ],
     "SetFlag": [
@@ -12762,6 +12782,15 @@
       "target": "onSelect",
       "detail": "",
       "snippet": "interactable.selectEntered.AddListener(_ => onSelect?.Invoke());"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ReentryArrivalRuntime.cs",
+      "line": 61,
+      "owner": "Ziptide.Gameplay.ReentryArrivalRuntime",
+      "target": "SceneManager.sceneUnloaded",
+      "detail": "OnSceneUnloaded",
+      "snippet": "SceneManager.sceneUnloaded += OnSceneUnloaded;"
     },
     {
       "kind": "SAVE_ACCESS",

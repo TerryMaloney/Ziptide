@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
-- Scanned files: **755**
-- Scanner findings: **2781**
+- Scanned files: **758**
+- Scanner findings: **2784**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -236,6 +236,12 @@ None.
 - Codes: `RUNTIME_BOOTSTRAP`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs:12` **RUNTIME_BOOTSTRAP** — `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]`
+
+### `Ziptide.Gameplay.ReentryArrivalRuntime` — 1 signal(s)
+
+- Codes: `RUNTIME_BOOTSTRAP`
+- Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ReentryArrivalRuntime.cs`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ReentryArrivalRuntime.cs:56` **RUNTIME_BOOTSTRAP** — `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]`
 
 ### `Ziptide.Gameplay.RepairPartSafetyInstallerRuntime` — 3 signal(s)
 
@@ -1127,10 +1133,10 @@ None.
 
 - Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`
 - Paths: `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:112` **CREATE_PRIMITIVE** — `var target = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:124` **CREATE_PRIMITIVE** — `var post = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:142` **NEW_GAME_OBJECT** — `var zip = new GameObject(ZipName);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:252` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:125` **CREATE_PRIMITIVE** — `var target = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:137` **CREATE_PRIMITIVE** — `var post = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:155` **NEW_GAME_OBJECT** — `var zip = new GameObject(ZipName);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:265` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
 
 ### `Ziptide.Editor.Patching.ShipHullBuilder` — 4 signal(s)
 

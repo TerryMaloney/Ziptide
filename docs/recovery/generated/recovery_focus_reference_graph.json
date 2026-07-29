@@ -1,6 +1,6 @@
 {
   "tool": "recovery_focus_reference_graph",
-  "scannedFiles": 755,
+  "scannedFiles": 758,
   "referenceCount": 445,
   "summaries": {
     "melee": {
@@ -1560,7 +1560,7 @@
           "focus": "repairObjective",
           "token": "JobDirector",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-          "line": 339,
+          "line": 352,
           "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
           "snippet": "var jdGo = PatcherUtil.EnsureRootObject(\"JobDirector\", Vector3.zero);",
           "declaration_file": false
@@ -1569,7 +1569,7 @@
           "focus": "repairObjective",
           "token": "JobDirector",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-          "line": 340,
+          "line": 353,
           "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
           "snippet": "var director = PatcherUtil.EnsureComponent<JobDirector>(jdGo);",
           "declaration_file": false
@@ -2392,7 +2392,7 @@
           "focus": "repairObjective",
           "token": "ObjectiveBoard",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-          "line": 351,
+          "line": 364,
           "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
           "snippet": "var boardGo = PatcherUtil.EnsureRootObject(\"ObjectiveBoard\", spawnPos + new Vector3(-1.5f, 1.6f, 1.5f));",
           "declaration_file": false
@@ -2401,7 +2401,7 @@
           "focus": "repairObjective",
           "token": "ObjectiveBoard",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-          "line": 352,
+          "line": 365,
           "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
           "snippet": "PatcherUtil.EnsureComponent<ObjectiveBoard>(boardGo);",
           "declaration_file": false
@@ -5090,7 +5090,7 @@
       "focus": "repairObjective",
       "token": "JobDirector",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-      "line": 339,
+      "line": 352,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
       "snippet": "var jdGo = PatcherUtil.EnsureRootObject(\"JobDirector\", Vector3.zero);",
       "declaration_file": false
@@ -5099,7 +5099,7 @@
       "focus": "repairObjective",
       "token": "JobDirector",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-      "line": 340,
+      "line": 353,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
       "snippet": "var director = PatcherUtil.EnsureComponent<JobDirector>(jdGo);",
       "declaration_file": false
@@ -5108,7 +5108,7 @@
       "focus": "repairObjective",
       "token": "ObjectiveBoard",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-      "line": 351,
+      "line": 364,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
       "snippet": "var boardGo = PatcherUtil.EnsureRootObject(\"ObjectiveBoard\", spawnPos + new Vector3(-1.5f, 1.6f, 1.5f));",
       "declaration_file": false
@@ -5117,7 +5117,7 @@
       "focus": "repairObjective",
       "token": "ObjectiveBoard",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-      "line": 352,
+      "line": 365,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
       "snippet": "PatcherUtil.EnsureComponent<ObjectiveBoard>(boardGo);",
       "declaration_file": false

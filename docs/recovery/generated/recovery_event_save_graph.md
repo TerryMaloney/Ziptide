@@ -1,8 +1,8 @@
 # ZIPTIDE Event and Save Ownership Graph
 
-- Scanned C# files: **755**
-- Evidence edges: **823**
-- Named subscriptions without matching unsubscribe in the same owner: **59**
+- Scanned C# files: **758**
+- Evidence edges: **824**
+- Named subscriptions without matching unsubscribe in the same owner: **60**
 
 This is a static ownership graph. An unmatched row is a review target, not automatic proof of a leak; process-lifetime static hooks may be intentional.
 
@@ -11,7 +11,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **AUTOSAVE:** 8
 - **EVENT_DECLARE:** 49
 - **EVENT_INVOKE:** 61
-- **EVENT_SUBSCRIBE:** 137
+- **EVENT_SUBSCRIBE:** 138
 - **EVENT_UNSUBSCRIBE:** 84
 - **PLAYER_PREFS_ACCESS:** 20
 - **PROFILE_FIELD_ACCESS:** 383
@@ -59,6 +59,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - `Ziptide.Gameplay.HazardZoneRuntime` subscribes `_rig.transform.position` → `dir` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HazardZoneRuntime.cs:111`
 - `Ziptide.Gameplay.HazardZoneRuntime` subscribes `_rig.transform.position` → `outDir` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HazardZoneRuntime.cs:134`
 - `Ziptide.Gameplay.LiftRuntime` subscribes `_rig.position` → `delta` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/LiftRuntime.cs:88`
+- `Ziptide.Gameplay.ReentryArrivalRuntime` subscribes `SceneManager.sceneUnloaded` → `OnSceneUnloaded` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ReentryArrivalRuntime.cs:61`
 - `Ziptide.Gameplay.ToxicRiverSurfaceRuntime` subscribes `p.y` → `Mathf` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ToxicRiverSurfaceRuntime.cs:78`
 - `Ziptide.Gameplay.ToxicRiverSurfaceRuntime` subscribes `p.y` → `Mathf` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ToxicRiverSurfaceRuntime.cs:88`
 - `Ziptide.Gameplay.ZiplineRuntime` subscribes `_rig.position` → `delta` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ZiplineRuntime.cs:217`
@@ -878,6 +879,10 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:44` · `OnBootSceneLoadedBeforeStart` — `SceneManager.sceneLoaded -= OnBootSceneLoadedBeforeStart;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:63` · `OnBootSceneLoadedBeforeStart` — `SceneManager.sceneLoaded += OnBootSceneLoadedBeforeStart;`
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:76` · `OnBootSceneLoadedBeforeStart` — `SceneManager.sceneLoaded -= OnBootSceneLoadedBeforeStart;`
+
+### `SceneManager.sceneUnloaded`
+
+- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.ReentryArrivalRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ReentryArrivalRuntime.cs:61` · `OnSceneUnloaded` — `SceneManager.sceneUnloaded += OnSceneUnloaded;`
 
 ### `SetFlag`
 

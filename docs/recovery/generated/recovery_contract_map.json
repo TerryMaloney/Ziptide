@@ -1,8 +1,8 @@
 {
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
-  "scannedFiles": 755,
-  "findingCount": 2781,
+  "scannedFiles": 758,
+  "findingCount": 2784,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -771,6 +771,25 @@
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Photo/QuartersCameraFeature.cs",
             "line": 12,
             "symbol": "Ziptide.Gameplay.QuartersCameraFeature",
+            "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Gameplay.ReentryArrivalRuntime",
+        "evidenceCount": 1,
+        "codes": [
+          "RUNTIME_BOOTSTRAP"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ReentryArrivalRuntime.cs"
+        ],
+        "evidence": [
+          {
+            "code": "RUNTIME_BOOTSTRAP",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ReentryArrivalRuntime.cs",
+            "line": 56,
+            "symbol": "Ziptide.Gameplay.ReentryArrivalRuntime",
             "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]"
           }
         ]
@@ -5034,28 +5053,28 @@
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-            "line": 112,
+            "line": 125,
             "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
             "snippet": "var target = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-            "line": 124,
+            "line": 137,
             "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
             "snippet": "var post = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-            "line": 142,
+            "line": 155,
             "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
             "snippet": "var zip = new GameObject(ZipName);"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-            "line": 252,
+            "line": 265,
             "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
             "snippet": "var go = new GameObject(name);"
           }
