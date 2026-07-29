@@ -132,7 +132,7 @@ hesitation interval, by id. A player who simply does the thing hears nothing.
 | Item | State | Note |
 |---|---|---|
 | **The space leg** | 🟨 | The scene now GENERATES in the build — its patcher was menu-only, which is why it had never existed. Reachable from the ship's destination list. Still unbuilt: the route beats, the neutral signals, the reentry act, and retargeting `PUNCH IT` (locked travel contract — after a headset pass) |
-| **The ring city** | 🟨 | The blocker was the data model, not effort: wedges, a canal ring and a leaning tower were unexpressible. `RingCityDef` + `RingCityBuilder` ship them; ToxicCity takes the tidal flat, canal ring, sea wall, harbour, outskirts and horizon pillars now. Tower island and wedges wait for the district re-layout |
+| **The ring city** | 🟦 | Built and audit-green at `bf6ef0d2`. ToxicCity stands on its tidal flat, inside its breached sea wall, with the harbour to the south and the gate pillars on the horizon. Tower island and wedges wait for the district re-layout. Device verdict outstanding |
 | **FH-A01** | 🟨 | Species decided and documented (`W001_SIGNATURE_CREATURE_PASSPORT.md` — the Husk-Molter). Remaining: the contact sheets, and the pair shot that decides whether the molt is fair |
 | **Audio rails** | ⬜ | Mixer, buses, event registry, sliders, ducking, non-speech captions. Then assets. Both first-level worlds now at least have music assigned |
 | **The shell** | ⬜ | Volume sliders, save-failure UX, version display, legal screens, credits, the doff/resume × 7 matrix |
