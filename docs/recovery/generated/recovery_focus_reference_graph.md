@@ -1,6 +1,6 @@
 # ZIPTIDE Focused Recovery Reference Graph
 
-- Scanned C# files: **747**
+- Scanned C# files: **750**
 - Focused references: **439**
 
 ## melee
@@ -199,7 +199,7 @@
 - **reference** · `Ziptide.Editor.Patching.WorldStubGenerator` · `Ziptide/Assets/Ziptide/Editor/Patching/WorldStubGenerator.cs:18` — `/// WorldPackDefinition (+ exit pack) · spawn · JobDirector/kiosk/board · Build Settings entry.`
 - **reference** · `Ziptide.Editor.Patching.WorldStubGenerator` · `Ziptide/Assets/Ziptide/Editor/Patching/WorldStubGenerator.cs:454` — `var jdGo = PatcherUtil.EnsureRootObject("JobDirector", Vector3.zero);`
 - **reference** · `Ziptide.Editor.Patching.WorldStubGenerator` · `Ziptide/Assets/Ziptide/Editor/Patching/WorldStubGenerator.cs:455` — `var director = PatcherUtil.EnsureComponent<JobDirector>(jdGo);`
-- **reference** · `Ziptide.Gameplay.AudioDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs:64` — `var jd = FindObjectOfType<JobDirector>();`
+- **reference** · `Ziptide.Gameplay.AudioDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs:66` — `var jd = FindObjectOfType<JobDirector>();`
 - **reference** · `Ziptide.Gameplay.BeltPadSpawner` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltPadSpawner.cs:9` — `/// <see cref="BeltFloorSpawnDefinition"/> entries at scene start (the JobDirector`
 - **reference** · `Ziptide.Gameplay.DeliveryCradleSocketInteractor` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/DeliveryCradleSocketInteractor.cs:9` — `/// Socket that accepts delivery items (by itemId) and notifies JobDirector for DeliverToSocketStep.`
 - **reference** · `Ziptide.Gameplay.DeliveryCradleSocketInteractor` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/DeliveryCradleSocketInteractor.cs:13` — `[Tooltip("Socket id reported to JobDirector (e.g. delivery_cradle).")]`

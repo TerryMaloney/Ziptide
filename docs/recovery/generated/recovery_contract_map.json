@@ -1,8 +1,8 @@
 {
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
-  "scannedFiles": 747,
-  "findingCount": 2727,
+  "scannedFiles": 750,
+  "findingCount": 2735,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -346,14 +346,14 @@
           {
             "code": "RUNTIME_BOOTSTRAP",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs",
-            "line": 35,
+            "line": 42,
             "symbol": "Ziptide.Gameplay.AmbienceDirector",
             "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]"
           },
           {
             "code": "DONT_DESTROY_ON_LOAD",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs",
-            "line": 41,
+            "line": 48,
             "symbol": "Ziptide.Gameplay.AmbienceDirector",
             "snippet": "DontDestroyOnLoad(go);"
           }
@@ -6123,7 +6123,7 @@
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs",
-            "line": 40,
+            "line": 47,
             "symbol": "Ziptide.Gameplay.AmbienceDirector",
             "snippet": "var go = new GameObject(\"__AmbienceDirector\");"
           }
@@ -15775,6 +15775,33 @@
         ]
       },
       {
+        "owner": "Ziptide.Gameplay.AudioMixSettings",
+        "evidenceCount": 2,
+        "codes": [
+          "EVENT_DECLARATION",
+          "STATIC_EVENT_DECLARATION"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs"
+        ],
+        "evidence": [
+          {
+            "code": "EVENT_DECLARATION",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs",
+            "line": 22,
+            "symbol": "Ziptide.Gameplay.AudioMixSettings",
+            "snippet": "public static event Action Changed;"
+          },
+          {
+            "code": "STATIC_EVENT_DECLARATION",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs",
+            "line": 22,
+            "symbol": "Ziptide.Gameplay.AudioMixSettings",
+            "snippet": "public static event Action Changed;"
+          }
+        ]
+      },
+      {
         "owner": "Ziptide.Gameplay.BeltCellSpec",
         "evidenceCount": 9,
         "codes": [
@@ -20242,6 +20269,32 @@
         ]
       },
       {
+        "owner": "Ziptide.Core.AudioBus",
+        "evidenceCount": 2,
+        "codes": [
+          "FALLBACK_MARKER"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Core/Runtime/Audio/AudioMixCore.cs"
+        ],
+        "evidence": [
+          {
+            "code": "FALLBACK_MARKER",
+            "path": "Ziptide/Assets/Ziptide/Core/Runtime/Audio/AudioMixCore.cs",
+            "line": 46,
+            "symbol": "Ziptide.Core.AudioBus",
+            "snippet": "public static float Clamp01(float value, float fallback)"
+          },
+          {
+            "code": "FALLBACK_MARKER",
+            "path": "Ziptide/Assets/Ziptide/Core/Runtime/Audio/AudioMixCore.cs",
+            "line": 48,
+            "symbol": "Ziptide.Core.AudioBus",
+            "snippet": "if (float.IsNaN(value) || float.IsInfinity(value)) return fallback;"
+          }
+        ]
+      },
+      {
         "owner": "Ziptide.Core.CosmeticLocker",
         "evidenceCount": 1,
         "codes": [
@@ -21038,6 +21091,32 @@
             "line": 239,
             "symbol": "Ziptide.Editor.WorldImprovement.GroundedRouteModule",
             "snippet": "trace.position = fallback;"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Gameplay.AudioMixSettings",
+        "evidenceCount": 2,
+        "codes": [
+          "FALLBACK_MARKER"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs"
+        ],
+        "evidence": [
+          {
+            "code": "FALLBACK_MARKER",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs",
+            "line": 76,
+            "symbol": "Ziptide.Gameplay.AudioMixSettings",
+            "snippet": "private static void Set(ref float field, string key, float value, float fallback)"
+          },
+          {
+            "code": "FALLBACK_MARKER",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs",
+            "line": 78,
+            "symbol": "Ziptide.Gameplay.AudioMixSettings",
+            "snippet": "float clamped = AudioMixCore.Clamp01(value, fallback);"
           }
         ]
       },

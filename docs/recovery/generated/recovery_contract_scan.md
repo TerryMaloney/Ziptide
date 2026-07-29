@@ -1,7 +1,7 @@
 # ZIPTIDE Recovery Contract Scan
 
-- Scanned files: **747**
-- Findings: **2727**
+- Scanned files: **750**
+- Findings: **2735**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
@@ -9,9 +9,9 @@
 | Category | Count |
 |---|---:|
 | `bootstrap` | 44 |
-| `diagnostics` | 642 |
-| `events` | 67 |
-| `fallback_debt` | 167 |
+| `diagnostics` | 644 |
+| `events` | 69 |
+| `fallback_debt` | 171 |
 | `global_render` | 89 |
 | `input` | 230 |
 | `materials` | 255 |
@@ -44,7 +44,7 @@
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeInputEnabler.cs:15` · `Ziptide.Core.RuntimeInputEnabler` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeMaterialFixer.cs:14` · `Ziptide.Core.RuntimeMaterialFixer` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Core/Runtime/VRBootDiagnostics.cs:14` · `Ziptide.Core.VRBootDiagnostics` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
-- **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs:35` · `Ziptide.Gameplay.AmbienceDirector` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
+- **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs:42` · `Ziptide.Gameplay.AmbienceDirector` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:60` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs:40` · `Ziptide.Gameplay.EcologyDirector` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Persistence/SaveSystem.cs:50` · `Ziptide.Gameplay.SaveSystem` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
@@ -149,8 +149,10 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/WorldImprovement/WorldImprovementCompiler.cs:129` · `Ziptide.Editor.WorldImprovement.WorldImprovementCompiler` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: WORLD_IMPROVEMENT_MODULE scene=" + sceneName`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/WorldImprovement/WorldImprovementCompiler.cs:162` · `Ziptide.Editor.WorldImprovement.WorldImprovementCompiler` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: WORLD_IMPROVEMENT_COMPILED scene=" + sceneName`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/WorldImprovement/WorldImprovementCompiler.cs:225` · `Ziptide.Editor.WorldImprovement.WorldImprovementCompiler` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: WORLD_IMPROVEMENT_REPORT path=" + path`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs:95` · `Ziptide.Gameplay.AmbienceDirector` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: AMBIENCE biome=" + biome + " wind=" + _spec.WindLevel.ToString("F2") +`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs:80` · `Ziptide.Gameplay.AudioDirector` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: AUDIO_CLIP_MISSING on profile " + profile.name);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs:102` · `Ziptide.Gameplay.AmbienceDirector` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: AMBIENCE biome=" + biome + " wind=" + _spec.WindLevel.ToString("F2") +`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs:82` · `Ziptide.Gameplay.AudioDirector` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: AUDIO_CLIP_MISSING on profile " + profile.name);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs:105` · `Ziptide.Gameplay.AudioMixSettings` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: AUDIO_MIX " + detail);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs:117` · `Ziptide.Gameplay.AudioMixSettings` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: AUDIO_MIX_LISTENER_FAIL error=" + ex.Message);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltBlueprintWandItem.cs:141` · `Ziptide.Gameplay.BeltBlueprintWandItem` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: BELT_BLUEPRINT_CAPTURE cells=" + bp.Count);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltConductorRuntime.cs:101` · `Ziptide.Gameplay.BeltConductorRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: BELT_RIDE_NO_ROUTE cells=" + path.Count);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltConductorRuntime.cs:109` · `Ziptide.Gameplay.BeltConductorRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: BELT_RIDE_START cells=" + path.Count);`
@@ -716,6 +718,7 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/ZiptideNet/PhotonPvpTransport.cs:179` · `ZiptideNet.PhotonPvpTransport` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: NET_DISCONNECTED cause=" + cause);`
 ### events
 
+- **EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs:22` · `Ziptide.Gameplay.AudioMixSettings` — Event declaration. `public static event Action Changed;`
 - **EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:64` · `Ziptide.Gameplay.CreatureRuntime` — Event declaration. `public static event System.Action<CreatureRuntime> CreatureDisabled;`
 - **EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneRuntime.cs:47` · `Ziptide.Gameplay.DroneRuntime` — Event declaration. `public static event System.Action<DroneRuntime> OnDroneDisabled;`
 - **EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:30` · `Ziptide.Gameplay.HolsterSocketInteractor` — Event declaration. `public static event Action<string> ItemHolstered;`
@@ -766,6 +769,7 @@
 - **EVENT_DECLARATION** — `Ziptide/Assets/ZiptideNet/PhotonPvpTransport.cs:38` · `ZiptideNet.PhotonPvpTransport` — Event declaration. `public event Action<HitMsg> OnHit;`
 - **EVENT_DECLARATION** — `Ziptide/Assets/ZiptideNet/PhotonPvpTransport.cs:39` · `ZiptideNet.PhotonPvpTransport` — Event declaration. `public event Action<ScoreMsg> OnScore;`
 - **EVENT_DECLARATION** — `Ziptide/Assets/ZiptideNet/PhotonPvpTransport.cs:40` · `ZiptideNet.PhotonPvpTransport` — Event declaration. `public event Action<WallMsg> OnWall;`
+- **STATIC_EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs:22` · `Ziptide.Gameplay.AudioMixSettings` — Static event declaration. `public static event Action Changed;`
 - **STATIC_EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:64` · `Ziptide.Gameplay.CreatureRuntime` — Static event declaration. `public static event System.Action<CreatureRuntime> CreatureDisabled;`
 - **STATIC_EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneRuntime.cs:47` · `Ziptide.Gameplay.DroneRuntime` — Static event declaration. `public static event System.Action<DroneRuntime> OnDroneDisabled;`
 - **STATIC_EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:30` · `Ziptide.Gameplay.HolsterSocketInteractor` — Static event declaration. `public static event Action<string> ItemHolstered;`
@@ -799,6 +803,8 @@
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Content/WorldImprovement/WorldImprovementManifest.cs:111` · `Ziptide.Content.WorldImprovementModuleSpec` — Source text marks fallback/prototype debt. `public Color ResolvePrimary(Color fallback) => primaryColor.a > 0.001f ? primaryColor : fallback;`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Content/WorldImprovement/WorldImprovementManifest.cs:112` · `Ziptide.Content.WorldImprovementModuleSpec` — Source text marks fallback/prototype debt. `public Color ResolveAccent(Color fallback) => accentColor.a > 0.001f ? accentColor : fallback;`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Content/WorldImprovement/WorldImprovementManifest.cs:113` · `Ziptide.Content.WorldImprovementModuleSpec` — Source text marks fallback/prototype debt. `public Color ResolveGlow(Color fallback) => glowColor.a > 0.001f ? glowColor : fallback;`
+- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Core/Runtime/Audio/AudioMixCore.cs:46` · `Ziptide.Core.AudioBus` — Source text marks fallback/prototype debt. `public static float Clamp01(float value, float fallback)`
+- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Core/Runtime/Audio/AudioMixCore.cs:48` · `Ziptide.Core.AudioBus` — Source text marks fallback/prototype debt. `if (float.IsNaN(value) || float.IsInfinity(value)) return fallback;`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Core/Runtime/CosmeticLocker.cs:8` · `Ziptide.Core.CosmeticLocker` — Source text marks fallback/prototype debt. `/// with the existing profile plumbing for free and never needs its own persistence. One equipped`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Core/Runtime/Persistence/SaveFileStore.cs:32` · `Ziptide.Core.SaveFileStore` — Source text marks fallback/prototype debt. `// fallback still never leaves us without at least one complete file.`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeMaterialFixer.cs:51` · `Ziptide.Core.RuntimeMaterialFixer` — Source text marks fallback/prototype debt. `Material fallback = new Material(urpLit);`
@@ -867,6 +873,8 @@
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Editor/WorldImprovement/RoundThreeWorldImprovementModules.cs:64` · `Ziptide.Editor.WorldImprovement.GroundedRouteModule` — Source text marks fallback/prototype debt. `float angle = i * Mathf.PI * 2f / fallback;`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Editor/WorldImprovement/RoundThreeWorldImprovementModules.cs:235` · `Ziptide.Editor.WorldImprovement.GroundedRouteModule` — Source text marks fallback/prototype debt. `if (count == 0 && context.TryGround(origin + Vector3.forward * 6f, out Vector3 fallback))`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Editor/WorldImprovement/RoundThreeWorldImprovementModules.cs:239` · `Ziptide.Editor.WorldImprovement.GroundedRouteModule` — Source text marks fallback/prototype debt. `trace.position = fallback;`
+- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs:76` · `Ziptide.Gameplay.AudioMixSettings` — Source text marks fallback/prototype debt. `private static void Set(ref float field, string key, float value, float fallback)`
+- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs:78` · `Ziptide.Gameplay.AudioMixSettings` — Source text marks fallback/prototype debt. `float clamped = AudioMixCore.Clamp01(value, fallback);`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltMinePortRuntime.cs:79` · `Ziptide.Gameplay.BeltMinePortRuntime` — Source text marks fallback/prototype debt. `// A stub drill over the port — enough to read "this is where the ore comes from".`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:70` · `Ziptide.Gameplay.DevTools.DevMenu` — Source text marks fallback/prototype debt. `/// fallback if a scene forgot one) and force every UI-enabled ray interactor to re-register`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:92` · `Ziptide.Gameplay.CreatureRuntime` — Source text marks fallback/prototype debt. `// ── Hit entry points (existing weapon plumbing) ─────────────────────`
@@ -1536,7 +1544,7 @@
 
 - **DONT_DESTROY_ON_LOAD** — `Ziptide/Assets/Ziptide/Core/Runtime/DebugHUD.cs:29` · `Ziptide.Core.DebugHUD` — Object promoted across scene loads. `Object.DontDestroyOnLoad(s_Root);`
 - **DONT_DESTROY_ON_LOAD** — `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs:39` · `Ziptide.Core.RuntimeHealthMonitor` — Object promoted across scene loads. `DontDestroyOnLoad(go);`
-- **DONT_DESTROY_ON_LOAD** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs:41` · `Ziptide.Gameplay.AmbienceDirector` — Object promoted across scene loads. `DontDestroyOnLoad(go);`
+- **DONT_DESTROY_ON_LOAD** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs:48` · `Ziptide.Gameplay.AmbienceDirector` — Object promoted across scene loads. `DontDestroyOnLoad(go);`
 - **DONT_DESTROY_ON_LOAD** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs:32` · `Ziptide.Gameplay.AudioDirector` — Object promoted across scene loads. `DontDestroyOnLoad(gameObject);`
 - **DONT_DESTROY_ON_LOAD** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarp.cs:78` · `Ziptide.Gameplay.DevTools.DevWarp` — Object promoted across scene loads. `Object.DontDestroyOnLoad(go);`
 - **DONT_DESTROY_ON_LOAD** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:66` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — Object promoted across scene loads. `DontDestroyOnLoad(go);`
@@ -1979,7 +1987,7 @@
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/WorldImprovement/StandardWorldImprovementModules.cs:158` · `Ziptide.Editor.WorldImprovement.ArrivalIdentityModule` — Runtime GameObject construction. `var tower = new GameObject("HorizonLandmark_" + i).transform;`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/WorldImprovement/WorldImprovementCompiler.cs:89` · `Ziptide.Editor.WorldImprovement.WorldImprovementCompiler` — Runtime GameObject construction. `var rootObject = new GameObject(RootName);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/WorldImprovement/WorldImprovementCompiler.cs:107` · `Ziptide.Editor.WorldImprovement.WorldImprovementCompiler` — Runtime GameObject construction. `var moduleRoot = new GameObject("__WIM_" + safeName).transform;`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs:40` · `Ziptide.Gameplay.AmbienceDirector` — Runtime GameObject construction. `var go = new GameObject("__AmbienceDirector");`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs:47` · `Ziptide.Gameplay.AmbienceDirector` — Runtime GameObject construction. `var go = new GameObject("__AmbienceDirector");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltBlueprintWandItem.cs:27` · `Ziptide.Gameplay.BeltBlueprintWandItem` — Runtime GameObject construction. `var go = new GameObject("BeltBlueprintWand");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltBlueprintWandItem.cs:62` · `Ziptide.Gameplay.BeltBlueprintWandItem` — Runtime GameObject construction. `var labelGo = new GameObject("WandCount");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltFloorRuntime.cs:227` · `Ziptide.Gameplay.BeltCellSpec` — Runtime GameObject construction. `var cellRoot = new GameObject("Cell_" + c.x + "_" + c.z);`

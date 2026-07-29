@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
-- Scanned files: **747**
-- Scanner findings: **2727**
+- Scanned files: **750**
+- Scanner findings: **2735**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -123,8 +123,8 @@ None.
 
 - Codes: `DONT_DESTROY_ON_LOAD`, `RUNTIME_BOOTSTRAP`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs:35` **RUNTIME_BOOTSTRAP** — `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs:41` **DONT_DESTROY_ON_LOAD** — `DontDestroyOnLoad(go);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs:42` **RUNTIME_BOOTSTRAP** — `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs:48` **DONT_DESTROY_ON_LOAD** — `DontDestroyOnLoad(go);`
 
 ### `Ziptide.Gameplay.AudioDirector` — 1 signal(s)
 
@@ -1343,7 +1343,7 @@ None.
 
 - Codes: `NEW_GAME_OBJECT`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs:40` **NEW_GAME_OBJECT** — `var go = new GameObject("__AmbienceDirector");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs:47` **NEW_GAME_OBJECT** — `var go = new GameObject("__AmbienceDirector");`
 
 ### `Ziptide.Gameplay.ArenaLobbyBoard` — 6 signal(s)
 
@@ -3471,6 +3471,13 @@ None.
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/ArenaLobbyBoard.cs`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/ArenaLobbyBoard.cs:248` **SAVE_SYSTEM_REFERENCE** — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 
+### `Ziptide.Gameplay.AudioMixSettings` — 2 signal(s)
+
+- Codes: `EVENT_DECLARATION`, `STATIC_EVENT_DECLARATION`
+- Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs:22` **EVENT_DECLARATION** — `public static event Action Changed;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs:22` **STATIC_EVENT_DECLARATION** — `public static event Action Changed;`
+
 ### `Ziptide.Gameplay.BeltCellSpec` — 9 signal(s)
 
 - Codes: `AUTOSAVE_CALL`, `SAVE_SYSTEM_REFERENCE`
@@ -4578,6 +4585,13 @@ None.
   - `Ziptide/Assets/Ziptide/Content/WorldImprovement/WorldImprovementManifest.cs:112` **FALLBACK_MARKER** — `public Color ResolveAccent(Color fallback) => accentColor.a > 0.001f ? accentColor : fallback;`
   - `Ziptide/Assets/Ziptide/Content/WorldImprovement/WorldImprovementManifest.cs:113` **FALLBACK_MARKER** — `public Color ResolveGlow(Color fallback) => glowColor.a > 0.001f ? glowColor : fallback;`
 
+### `Ziptide.Core.AudioBus` — 2 signal(s)
+
+- Codes: `FALLBACK_MARKER`
+- Paths: `Ziptide/Assets/Ziptide/Core/Runtime/Audio/AudioMixCore.cs`
+  - `Ziptide/Assets/Ziptide/Core/Runtime/Audio/AudioMixCore.cs:46` **FALLBACK_MARKER** — `public static float Clamp01(float value, float fallback)`
+  - `Ziptide/Assets/Ziptide/Core/Runtime/Audio/AudioMixCore.cs:48` **FALLBACK_MARKER** — `if (float.IsNaN(value) || float.IsInfinity(value)) return fallback;`
+
 ### `Ziptide.Core.CosmeticLocker` — 1 signal(s)
 
 - Codes: `FALLBACK_MARKER`
@@ -4780,6 +4794,13 @@ None.
   - `Ziptide/Assets/Ziptide/Editor/WorldImprovement/RoundThreeWorldImprovementModules.cs:64` **FALLBACK_MARKER** — `float angle = i * Mathf.PI * 2f / fallback;`
   - `Ziptide/Assets/Ziptide/Editor/WorldImprovement/RoundThreeWorldImprovementModules.cs:235` **FALLBACK_MARKER** — `if (count == 0 && context.TryGround(origin + Vector3.forward * 6f, out Vector3 fallback))`
   - `Ziptide/Assets/Ziptide/Editor/WorldImprovement/RoundThreeWorldImprovementModules.cs:239` **FALLBACK_MARKER** — `trace.position = fallback;`
+
+### `Ziptide.Gameplay.AudioMixSettings` — 2 signal(s)
+
+- Codes: `FALLBACK_MARKER`
+- Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs:76` **FALLBACK_MARKER** — `private static void Set(ref float field, string key, float value, float fallback)`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs:78` **FALLBACK_MARKER** — `float clamped = AudioMixCore.Clamp01(value, fallback);`
 
 ### `Ziptide.Gameplay.BeltMinePortRuntime` — 1 signal(s)
 

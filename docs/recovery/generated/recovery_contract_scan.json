@@ -1,20 +1,20 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-29T01:26:13.495706+00:00",
+  "generatedAtUtc": "2026-07-29T01:38:02.669053+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
     "Ziptide/Assets/Ziptide",
     "Ziptide/Assets/ZiptideNet"
   ],
-  "scannedFiles": 747,
-  "findingCount": 2727,
+  "scannedFiles": 750,
+  "findingCount": 2735,
   "categoryCounts": {
     "bootstrap": 44,
-    "diagnostics": 642,
-    "events": 67,
-    "fallback_debt": 167,
+    "diagnostics": 644,
+    "events": 69,
+    "fallback_debt": 171,
     "global_render": 89,
     "input": 230,
     "materials": 255,
@@ -35,9 +35,9 @@
     "DIRECT_SCENE_LOAD_ASYNC": 7,
     "DONT_DESTROY_ON_LOAD": 26,
     "EDITOR_BOOTSTRAP": 10,
-    "EVENT_DECLARATION": 50,
+    "EVENT_DECLARATION": 51,
     "EVENT_SYSTEM_COMPONENT": 2,
-    "FALLBACK_MARKER": 167,
+    "FALLBACK_MARKER": 171,
     "FRAME_BUTTON_POLL": 1,
     "INPUT_ACTION_REFERENCE": 219,
     "INPUT_BUTTON_REFERENCE": 10,
@@ -48,7 +48,7 @@
     "RUNTIME_MATERIAL_CREATE": 97,
     "SAVE_SYSTEM_REFERENCE": 117,
     "SHADER_FIND": 158,
-    "STATIC_EVENT_DECLARATION": 17,
+    "STATIC_EVENT_DECLARATION": 18,
     "TEXTMESH_COMPONENT": 53,
     "TMP_COMPONENT": 3,
     "VOLUME_COMPONENT": 1,
@@ -57,7 +57,7 @@
     "XRI_MANAGER_LOOKUP": 45,
     "XR_INTERACTABLE_COMPONENT": 66,
     "XR_UI_INPUT_MODULE": 2,
-    "ZIPTIDE_LOG_TAG": 642
+    "ZIPTIDE_LOG_TAG": 644
   },
   "findings": [
     {
@@ -227,7 +227,7 @@
       "code": "RUNTIME_BOOTSTRAP",
       "description": "RuntimeInitializeOnLoadMethod bootstrap",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs",
-      "line": 35,
+      "line": 42,
       "symbol": "Ziptide.Gameplay.AmbienceDirector",
       "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]"
     },
@@ -1154,7 +1154,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs",
-      "line": 95,
+      "line": 102,
       "symbol": "Ziptide.Gameplay.AmbienceDirector",
       "snippet": "Debug.Log(\"ZIPTIDE: AMBIENCE biome=\" + biome + \" wind=\" + _spec.WindLevel.ToString(\"F2\") +"
     },
@@ -1163,9 +1163,27 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs",
-      "line": 80,
+      "line": 82,
       "symbol": "Ziptide.Gameplay.AudioDirector",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: AUDIO_CLIP_MISSING on profile \" + profile.name);"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs",
+      "line": 105,
+      "symbol": "Ziptide.Gameplay.AudioMixSettings",
+      "snippet": "Debug.Log(\"ZIPTIDE: AUDIO_MIX \" + detail);"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs",
+      "line": 117,
+      "symbol": "Ziptide.Gameplay.AudioMixSettings",
+      "snippet": "Debug.LogWarning(\"ZIPTIDE: AUDIO_MIX_LISTENER_FAIL error=\" + ex.Message);"
     },
     {
       "category": "diagnostics",
@@ -6238,6 +6256,15 @@
       "category": "events",
       "code": "EVENT_DECLARATION",
       "description": "Event declaration",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs",
+      "line": 22,
+      "symbol": "Ziptide.Gameplay.AudioMixSettings",
+      "snippet": "public static event Action Changed;"
+    },
+    {
+      "category": "events",
+      "code": "EVENT_DECLARATION",
+      "description": "Event declaration",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs",
       "line": 64,
       "symbol": "Ziptide.Gameplay.CreatureRuntime",
@@ -6688,6 +6715,15 @@
       "category": "events",
       "code": "STATIC_EVENT_DECLARATION",
       "description": "Static event declaration",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs",
+      "line": 22,
+      "symbol": "Ziptide.Gameplay.AudioMixSettings",
+      "snippet": "public static event Action Changed;"
+    },
+    {
+      "category": "events",
+      "code": "STATIC_EVENT_DECLARATION",
+      "description": "Static event declaration",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs",
       "line": 64,
       "symbol": "Ziptide.Gameplay.CreatureRuntime",
@@ -6962,6 +6998,24 @@
       "line": 113,
       "symbol": "Ziptide.Content.WorldImprovementModuleSpec",
       "snippet": "public Color ResolveGlow(Color fallback) => glowColor.a > 0.001f ? glowColor : fallback;"
+    },
+    {
+      "category": "fallback_debt",
+      "code": "FALLBACK_MARKER",
+      "description": "Source text marks fallback/prototype debt",
+      "path": "Ziptide/Assets/Ziptide/Core/Runtime/Audio/AudioMixCore.cs",
+      "line": 46,
+      "symbol": "Ziptide.Core.AudioBus",
+      "snippet": "public static float Clamp01(float value, float fallback)"
+    },
+    {
+      "category": "fallback_debt",
+      "code": "FALLBACK_MARKER",
+      "description": "Source text marks fallback/prototype debt",
+      "path": "Ziptide/Assets/Ziptide/Core/Runtime/Audio/AudioMixCore.cs",
+      "line": 48,
+      "symbol": "Ziptide.Core.AudioBus",
+      "snippet": "if (float.IsNaN(value) || float.IsInfinity(value)) return fallback;"
     },
     {
       "category": "fallback_debt",
@@ -7574,6 +7628,24 @@
       "line": 239,
       "symbol": "Ziptide.Editor.WorldImprovement.GroundedRouteModule",
       "snippet": "trace.position = fallback;"
+    },
+    {
+      "category": "fallback_debt",
+      "code": "FALLBACK_MARKER",
+      "description": "Source text marks fallback/prototype debt",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs",
+      "line": 76,
+      "symbol": "Ziptide.Gameplay.AudioMixSettings",
+      "snippet": "private static void Set(ref float field, string key, float value, float fallback)"
+    },
+    {
+      "category": "fallback_debt",
+      "code": "FALLBACK_MARKER",
+      "description": "Source text marks fallback/prototype debt",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs",
+      "line": 78,
+      "symbol": "Ziptide.Gameplay.AudioMixSettings",
+      "snippet": "float clamped = AudioMixCore.Clamp01(value, fallback);"
     },
     {
       "category": "fallback_debt",
@@ -13529,7 +13601,7 @@
       "code": "DONT_DESTROY_ON_LOAD",
       "description": "Object promoted across scene loads",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs",
-      "line": 41,
+      "line": 48,
       "symbol": "Ziptide.Gameplay.AmbienceDirector",
       "snippet": "DontDestroyOnLoad(go);"
     },
@@ -17498,7 +17570,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs",
-      "line": 40,
+      "line": 47,
       "symbol": "Ziptide.Gameplay.AmbienceDirector",
       "snippet": "var go = new GameObject(\"__AmbienceDirector\");"
     },

@@ -1,7 +1,7 @@
 # ZIPTIDE Event and Save Ownership Graph
 
-- Scanned C# files: **747**
-- Evidence edges: **792**
+- Scanned C# files: **750**
+- Evidence edges: **805**
 - Named subscriptions without matching unsubscribe in the same owner: **58**
 
 This is a static ownership graph. An unmatched row is a review target, not automatic proof of a leak; process-lifetime static hooks may be intentional.
@@ -9,12 +9,12 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 ## Evidence counts
 
 - **AUTOSAVE:** 8
-- **EVENT_DECLARE:** 47
+- **EVENT_DECLARE:** 48
 - **EVENT_INVOKE:** 61
-- **EVENT_SUBSCRIBE:** 134
-- **EVENT_UNSUBSCRIBE:** 82
-- **PLAYER_PREFS_ACCESS:** 11
-- **PROFILE_FIELD_ACCESS:** 375
+- **EVENT_SUBSCRIBE:** 135
+- **EVENT_UNSUBSCRIBE:** 83
+- **PLAYER_PREFS_ACCESS:** 20
+- **PROFILE_FIELD_ACCESS:** 376
 - **SAVE_ACCESS:** 74
 
 ## Named subscriptions without matching unsubscribe
@@ -163,6 +163,11 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CrashProofingTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CrashProofingTests.cs:90` · `profile` — `// The public Deserialize contract is unchanged: garbage still yields a fresh profile.`
 
+### `AudioMixSettings.Changed`
+
+- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.AudioDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs:41` · `OnMixChanged` — `AudioMixSettings.Changed += OnMixChanged;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.AudioDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs:49` · `OnMixChanged` — `AudioMixSettings.Changed -= OnMixChanged;`
+
 ### `BehaviorSourceRelativePath`
 
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Editor.Audit.CreatureBehaviorAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/CreatureBehaviorAuditRules.cs:111` · `profile` — `string sourcePath = ResolveAssetRelativeSource(profile.BehaviorSourceRelativePath);`
@@ -185,6 +190,10 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 ### `BootPresentationReady`
 
 - **EVENT_DECLARE** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:114` · `static Action<bool>` — `public static event Action<bool> BootPresentationReady;`
+
+### `Changed`
+
+- **EVENT_DECLARE** · `Ziptide.Gameplay.AudioMixSettings` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs:22` · `static Action` — `public static event Action Changed;`
 
 ### `ChoiceSelected`
 
@@ -641,6 +650,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `PlayerPrefs.GetFloat`
 
+- **PLAYER_PREFS_ACCESS** · `Ziptide.Gameplay.AudioMixSettings` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs:92` — `PlayerPrefs.GetFloat(AudioMixCore.MasterPrefKey, AudioMixCore.DefaultMaster),`
+- **PLAYER_PREFS_ACCESS** · `Ziptide.Gameplay.AudioMixSettings` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs:98` — `float stored = PlayerPrefs.GetFloat(AudioMixCore.PrefKey(bus), AudioMixCore.DefaultFor(bus));`
 - **PLAYER_PREFS_ACCESS** · `Ziptide.Gameplay.ComfortVignette` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/ComfortVignette.cs:51` — `_strength = Mathf.Clamp01(PlayerPrefs.GetFloat(PrefKey, DefaultStrength));`
 
 ### `PlayerPrefs.GetInt`
@@ -651,9 +662,16 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 ### `PlayerPrefs.Save`
 
 - **PLAYER_PREFS_ACCESS** · `Ziptide.Core.ComfortDialSet` · `Ziptide/Assets/Ziptide/Core/Runtime/ComfortSettings.cs:86` — `PlayerPrefs.Save();`
+- **PLAYER_PREFS_ACCESS** · `Ziptide.Gameplay.AudioMixSettings` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs:49` — `PlayerPrefs.Save();`
+- **PLAYER_PREFS_ACCESS** · `Ziptide.Gameplay.AudioMixSettings` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs:72` — `PlayerPrefs.Save();`
+- **PLAYER_PREFS_ACCESS** · `Ziptide.Gameplay.AudioMixSettings` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs:82` — `PlayerPrefs.Save();`
 
 ### `PlayerPrefs.SetFloat`
 
+- **PLAYER_PREFS_ACCESS** · `Ziptide.Gameplay.AudioMixSettings` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs:48` — `PlayerPrefs.SetFloat(AudioMixCore.PrefKey(bus), clamped);`
+- **PLAYER_PREFS_ACCESS** · `Ziptide.Gameplay.AudioMixSettings` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs:65` — `PlayerPrefs.SetFloat(AudioMixCore.MasterPrefKey, _master);`
+- **PLAYER_PREFS_ACCESS** · `Ziptide.Gameplay.AudioMixSettings` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs:70` — `PlayerPrefs.SetFloat(AudioMixCore.PrefKey(bus), _buses[i]);`
+- **PLAYER_PREFS_ACCESS** · `Ziptide.Gameplay.AudioMixSettings` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs:81` — `PlayerPrefs.SetFloat(key, clamped);`
 - **PLAYER_PREFS_ACCESS** · `Ziptide.Gameplay.ComfortVignette` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/ComfortVignette.cs:69` — `PlayerPrefs.SetFloat(PrefKey, _strength);`
 
 ### `PlayerPrefs.SetInt`
@@ -802,10 +820,10 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **EVENT_SUBSCRIBE** · `Ziptide.Core.GamePool` · `Ziptide/Assets/Ziptide/Core/Runtime/GamePool.cs:50` · `(_, __) =>` — `SceneManager.sceneLoaded += (_, __) => ResetForNewScene();`
 - **EVENT_SUBSCRIBE** · `Ziptide.Core.RuntimeHealthMonitor` · `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs:49` · `OnSceneLoaded` — `SceneManager.sceneLoaded += OnSceneLoaded;`
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Core.RuntimeHealthMonitor` · `Ziptide/Assets/Ziptide/Core/Runtime/RuntimeHealthMonitor.cs:55` · `OnSceneLoaded` — `if (_instance == this) { SceneManager.sceneLoaded -= OnSceneLoaded; _instance = null; }`
-- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.AmbienceDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs:51` · `OnSceneLoaded` — `SceneManager.sceneLoaded += OnSceneLoaded;`
-- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.AmbienceDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs:57` · `OnSceneLoaded` — `if (_instance == this) { SceneManager.sceneLoaded -= OnSceneLoaded; _instance = null; }`
+- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.AmbienceDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs:58` · `OnSceneLoaded` — `SceneManager.sceneLoaded += OnSceneLoaded;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.AmbienceDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs:64` · `OnSceneLoaded` — `if (_instance == this) { SceneManager.sceneLoaded -= OnSceneLoaded; _instance = null; }`
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.AudioDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs:40` · `OnSceneLoaded` — `SceneManager.sceneLoaded += OnSceneLoaded;`
-- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.AudioDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs:47` · `OnSceneLoaded` — `SceneManager.sceneLoaded -= OnSceneLoaded;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.AudioDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs:48` · `OnSceneLoaded` — `SceneManager.sceneLoaded -= OnSceneLoaded;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.DevTools.DevWarpBoard` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:79` · `OnSceneLoaded` — `SceneManager.sceneLoaded += OnSceneLoaded;`
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.DevTools.DevWarpBoard` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:82` · `OnSceneLoaded` — `private void OnDisable() => SceneManager.sceneLoaded -= OnSceneLoaded;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.SingletonValidator` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Diagnostics/SingletonValidator.cs:31` · `OnSceneLoaded` — `SceneManager.sceneLoaded += OnSceneLoaded;`
@@ -1076,16 +1094,16 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 ### `clip`
 
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Editor.Patching.ScenePatcherD2` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherD2.cs:197` · `profile` — `profile.clip = clip;`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.AudioDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs:78` · `profile` — `if (profile.clip == null)`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.AudioDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs:85` · `profile` — `if (profile.clip == _currentClip && _active != null && _active.isPlaying)`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.AudioDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs:88` · `profile` — `_currentClip = profile.clip;`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.AudioDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs:95` · `profile` — `next.clip = profile.clip;`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.AudioDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs:80` · `profile` — `if (profile.clip == null)`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.AudioDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs:87` · `profile` — `if (profile.clip == _currentClip && _active != null && _active.isPlaying)`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.AudioDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs:90` · `profile` — `_currentClip = profile.clip;`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.AudioDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs:97` · `profile` — `next.clip = profile.clip;`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.AudioDirectorLifecycleTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/AudioDirectorLifecycleTests.cs:72` · `profile` — `int assignNext = source.IndexOf("next.clip = profile.clip;", clearNext);`
 
 ### `crossfadeSeconds`
 
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Editor.Patching.ScenePatcherD2` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherD2.cs:200` · `profile` — `profile.crossfadeSeconds = 2f;`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.AudioDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs:105` · `profile` — `Mathf.Max(0f, profile.crossfadeSeconds)));`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.AudioDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs:108` · `profile` — `Mathf.Max(0f, profile.crossfadeSeconds)));`
 
 ### `crouchSpeedFactor`
 
@@ -1201,7 +1219,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 ### `loop`
 
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Editor.Patching.ScenePatcherD2` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherD2.cs:199` · `profile` — `profile.loop = true;`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.AudioDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs:96` · `profile` — `next.loop = profile.loop;`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.AudioDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs:98` · `profile` — `next.loop = profile.loop;`
 
 ### `loseRange`
 
@@ -1219,7 +1237,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `name`
 
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.AudioDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs:80` · `profile` — `Debug.LogWarning("ZIPTIDE: AUDIO_CLIP_MISSING on profile " + profile.name);`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.AudioDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs:82` · `profile` — `Debug.LogWarning("ZIPTIDE: AUDIO_CLIP_MISSING on profile " + profile.name);`
 
 ### `onSelect`
 
@@ -1491,5 +1509,6 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 ### `volume`
 
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Editor.Patching.ScenePatcherD2` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherD2.cs:198` · `profile` — `profile.volume = 0.35f;`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.AudioDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs:104` · `profile` — `profile.volume,`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.AudioDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs:103` · `profile` — `_authoredVolume = profile.volume;`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.AudioDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs:107` · `profile` — `AudioMixSettings.Effective(Ziptide.Core.AudioBus.Music, profile.volume),`
 

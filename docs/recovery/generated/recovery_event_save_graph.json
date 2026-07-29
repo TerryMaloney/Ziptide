@@ -1,15 +1,15 @@
 {
   "tool": "recovery_event_save_graph",
-  "scannedFiles": 747,
-  "evidenceCount": 792,
+  "scannedFiles": 750,
+  "evidenceCount": 805,
   "kindCounts": {
     "AUTOSAVE": 8,
-    "EVENT_DECLARE": 47,
+    "EVENT_DECLARE": 48,
     "EVENT_INVOKE": 61,
-    "EVENT_SUBSCRIBE": 134,
-    "EVENT_UNSUBSCRIBE": 82,
-    "PLAYER_PREFS_ACCESS": 11,
-    "PROFILE_FIELD_ACCESS": 375,
+    "EVENT_SUBSCRIBE": 135,
+    "EVENT_UNSUBSCRIBE": 83,
+    "PLAYER_PREFS_ACCESS": 20,
+    "PROFILE_FIELD_ACCESS": 376,
     "SAVE_ACCESS": 74
   },
   "unmatchedNamedSubscriptionCount": 58,
@@ -1035,6 +1035,26 @@
         "snippet": "// The public Deserialize contract is unchanged: garbage still yields a fresh profile."
       }
     ],
+    "AudioMixSettings.Changed": [
+      {
+        "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs",
+        "line": 41,
+        "owner": "Ziptide.Gameplay.AudioDirector",
+        "target": "AudioMixSettings.Changed",
+        "detail": "OnMixChanged",
+        "snippet": "AudioMixSettings.Changed += OnMixChanged;"
+      },
+      {
+        "kind": "EVENT_UNSUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs",
+        "line": 49,
+        "owner": "Ziptide.Gameplay.AudioDirector",
+        "target": "AudioMixSettings.Changed",
+        "detail": "OnMixChanged",
+        "snippet": "AudioMixSettings.Changed -= OnMixChanged;"
+      }
+    ],
     "BehaviorSourceRelativePath": [
       {
         "kind": "PROFILE_FIELD_ACCESS",
@@ -1165,6 +1185,17 @@
         "target": "BootPresentationReady",
         "detail": "static Action<bool>",
         "snippet": "public static event Action<bool> BootPresentationReady;"
+      }
+    ],
+    "Changed": [
+      {
+        "kind": "EVENT_DECLARE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs",
+        "line": 22,
+        "owner": "Ziptide.Gameplay.AudioMixSettings",
+        "target": "Changed",
+        "detail": "static Action",
+        "snippet": "public static event Action Changed;"
       }
     ],
     "ChoiceSelected": [
@@ -3897,6 +3928,24 @@
     "PlayerPrefs.GetFloat": [
       {
         "kind": "PLAYER_PREFS_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs",
+        "line": 92,
+        "owner": "Ziptide.Gameplay.AudioMixSettings",
+        "target": "PlayerPrefs.GetFloat",
+        "detail": "",
+        "snippet": "PlayerPrefs.GetFloat(AudioMixCore.MasterPrefKey, AudioMixCore.DefaultMaster),"
+      },
+      {
+        "kind": "PLAYER_PREFS_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs",
+        "line": 98,
+        "owner": "Ziptide.Gameplay.AudioMixSettings",
+        "target": "PlayerPrefs.GetFloat",
+        "detail": "",
+        "snippet": "float stored = PlayerPrefs.GetFloat(AudioMixCore.PrefKey(bus), AudioMixCore.DefaultFor(bus));"
+      },
+      {
+        "kind": "PLAYER_PREFS_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/ComfortVignette.cs",
         "line": 51,
         "owner": "Ziptide.Gameplay.ComfortVignette",
@@ -3934,9 +3983,72 @@
         "target": "PlayerPrefs.Save",
         "detail": "",
         "snippet": "PlayerPrefs.Save();"
+      },
+      {
+        "kind": "PLAYER_PREFS_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs",
+        "line": 49,
+        "owner": "Ziptide.Gameplay.AudioMixSettings",
+        "target": "PlayerPrefs.Save",
+        "detail": "",
+        "snippet": "PlayerPrefs.Save();"
+      },
+      {
+        "kind": "PLAYER_PREFS_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs",
+        "line": 72,
+        "owner": "Ziptide.Gameplay.AudioMixSettings",
+        "target": "PlayerPrefs.Save",
+        "detail": "",
+        "snippet": "PlayerPrefs.Save();"
+      },
+      {
+        "kind": "PLAYER_PREFS_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs",
+        "line": 82,
+        "owner": "Ziptide.Gameplay.AudioMixSettings",
+        "target": "PlayerPrefs.Save",
+        "detail": "",
+        "snippet": "PlayerPrefs.Save();"
       }
     ],
     "PlayerPrefs.SetFloat": [
+      {
+        "kind": "PLAYER_PREFS_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs",
+        "line": 48,
+        "owner": "Ziptide.Gameplay.AudioMixSettings",
+        "target": "PlayerPrefs.SetFloat",
+        "detail": "",
+        "snippet": "PlayerPrefs.SetFloat(AudioMixCore.PrefKey(bus), clamped);"
+      },
+      {
+        "kind": "PLAYER_PREFS_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs",
+        "line": 65,
+        "owner": "Ziptide.Gameplay.AudioMixSettings",
+        "target": "PlayerPrefs.SetFloat",
+        "detail": "",
+        "snippet": "PlayerPrefs.SetFloat(AudioMixCore.MasterPrefKey, _master);"
+      },
+      {
+        "kind": "PLAYER_PREFS_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs",
+        "line": 70,
+        "owner": "Ziptide.Gameplay.AudioMixSettings",
+        "target": "PlayerPrefs.SetFloat",
+        "detail": "",
+        "snippet": "PlayerPrefs.SetFloat(AudioMixCore.PrefKey(bus), _buses[i]);"
+      },
+      {
+        "kind": "PLAYER_PREFS_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs",
+        "line": 81,
+        "owner": "Ziptide.Gameplay.AudioMixSettings",
+        "target": "PlayerPrefs.SetFloat",
+        "detail": "",
+        "snippet": "PlayerPrefs.SetFloat(key, clamped);"
+      },
       {
         "kind": "PLAYER_PREFS_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/ComfortVignette.cs",
@@ -4872,7 +4984,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs",
-        "line": 51,
+        "line": 58,
         "owner": "Ziptide.Gameplay.AmbienceDirector",
         "target": "SceneManager.sceneLoaded",
         "detail": "OnSceneLoaded",
@@ -4881,7 +4993,7 @@
       {
         "kind": "EVENT_UNSUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs",
-        "line": 57,
+        "line": 64,
         "owner": "Ziptide.Gameplay.AmbienceDirector",
         "target": "SceneManager.sceneLoaded",
         "detail": "OnSceneLoaded",
@@ -4899,7 +5011,7 @@
       {
         "kind": "EVENT_UNSUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs",
-        "line": 47,
+        "line": 48,
         "owner": "Ziptide.Gameplay.AudioDirector",
         "target": "SceneManager.sceneLoaded",
         "detail": "OnSceneLoaded",
@@ -6263,7 +6375,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs",
-        "line": 78,
+        "line": 80,
         "owner": "Ziptide.Gameplay.AudioDirector",
         "target": "clip",
         "detail": "profile",
@@ -6272,7 +6384,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs",
-        "line": 85,
+        "line": 87,
         "owner": "Ziptide.Gameplay.AudioDirector",
         "target": "clip",
         "detail": "profile",
@@ -6281,7 +6393,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs",
-        "line": 88,
+        "line": 90,
         "owner": "Ziptide.Gameplay.AudioDirector",
         "target": "clip",
         "detail": "profile",
@@ -6290,7 +6402,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs",
-        "line": 95,
+        "line": 97,
         "owner": "Ziptide.Gameplay.AudioDirector",
         "target": "clip",
         "detail": "profile",
@@ -6319,7 +6431,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs",
-        "line": 105,
+        "line": 108,
         "owner": "Ziptide.Gameplay.AudioDirector",
         "target": "crossfadeSeconds",
         "detail": "profile",
@@ -6963,7 +7075,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs",
-        "line": 96,
+        "line": 98,
         "owner": "Ziptide.Gameplay.AudioDirector",
         "target": "loop",
         "detail": "profile",
@@ -7050,7 +7162,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs",
-        "line": 80,
+        "line": 82,
         "owner": "Ziptide.Gameplay.AudioDirector",
         "target": "name",
         "detail": "profile",
@@ -8073,11 +8185,20 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs",
-        "line": 104,
+        "line": 103,
         "owner": "Ziptide.Gameplay.AudioDirector",
         "target": "volume",
         "detail": "profile",
-        "snippet": "profile.volume,"
+        "snippet": "_authoredVolume = profile.volume;"
+      },
+      {
+        "kind": "PROFILE_FIELD_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs",
+        "line": 107,
+        "owner": "Ziptide.Gameplay.AudioDirector",
+        "target": "volume",
+        "detail": "profile",
+        "snippet": "AudioMixSettings.Effective(Ziptide.Core.AudioBus.Music, profile.volume),"
       }
     ]
   },
@@ -9507,7 +9628,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs",
-      "line": 51,
+      "line": 58,
       "owner": "Ziptide.Gameplay.AmbienceDirector",
       "target": "SceneManager.sceneLoaded",
       "detail": "OnSceneLoaded",
@@ -9516,7 +9637,7 @@
     {
       "kind": "EVENT_UNSUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AmbienceDirector.cs",
-      "line": 57,
+      "line": 64,
       "owner": "Ziptide.Gameplay.AmbienceDirector",
       "target": "SceneManager.sceneLoaded",
       "detail": "OnSceneLoaded",
@@ -9532,18 +9653,36 @@
       "snippet": "SceneManager.sceneLoaded += OnSceneLoaded;"
     },
     {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs",
+      "line": 41,
+      "owner": "Ziptide.Gameplay.AudioDirector",
+      "target": "AudioMixSettings.Changed",
+      "detail": "OnMixChanged",
+      "snippet": "AudioMixSettings.Changed += OnMixChanged;"
+    },
+    {
       "kind": "EVENT_UNSUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs",
-      "line": 47,
+      "line": 48,
       "owner": "Ziptide.Gameplay.AudioDirector",
       "target": "SceneManager.sceneLoaded",
       "detail": "OnSceneLoaded",
       "snippet": "SceneManager.sceneLoaded -= OnSceneLoaded;"
     },
     {
+      "kind": "EVENT_UNSUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs",
+      "line": 49,
+      "owner": "Ziptide.Gameplay.AudioDirector",
+      "target": "AudioMixSettings.Changed",
+      "detail": "OnMixChanged",
+      "snippet": "AudioMixSettings.Changed -= OnMixChanged;"
+    },
+    {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs",
-      "line": 78,
+      "line": 80,
       "owner": "Ziptide.Gameplay.AudioDirector",
       "target": "clip",
       "detail": "profile",
@@ -9552,7 +9691,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs",
-      "line": 80,
+      "line": 82,
       "owner": "Ziptide.Gameplay.AudioDirector",
       "target": "name",
       "detail": "profile",
@@ -9561,7 +9700,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs",
-      "line": 85,
+      "line": 87,
       "owner": "Ziptide.Gameplay.AudioDirector",
       "target": "clip",
       "detail": "profile",
@@ -9570,7 +9709,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs",
-      "line": 88,
+      "line": 90,
       "owner": "Ziptide.Gameplay.AudioDirector",
       "target": "clip",
       "detail": "profile",
@@ -9579,7 +9718,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs",
-      "line": 95,
+      "line": 97,
       "owner": "Ziptide.Gameplay.AudioDirector",
       "target": "clip",
       "detail": "profile",
@@ -9588,7 +9727,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs",
-      "line": 96,
+      "line": 98,
       "owner": "Ziptide.Gameplay.AudioDirector",
       "target": "loop",
       "detail": "profile",
@@ -9597,20 +9736,119 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs",
-      "line": 104,
+      "line": 103,
       "owner": "Ziptide.Gameplay.AudioDirector",
       "target": "volume",
       "detail": "profile",
-      "snippet": "profile.volume,"
+      "snippet": "_authoredVolume = profile.volume;"
     },
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs",
-      "line": 105,
+      "line": 107,
+      "owner": "Ziptide.Gameplay.AudioDirector",
+      "target": "volume",
+      "detail": "profile",
+      "snippet": "AudioMixSettings.Effective(Ziptide.Core.AudioBus.Music, profile.volume),"
+    },
+    {
+      "kind": "PROFILE_FIELD_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs",
+      "line": 108,
       "owner": "Ziptide.Gameplay.AudioDirector",
       "target": "crossfadeSeconds",
       "detail": "profile",
       "snippet": "Mathf.Max(0f, profile.crossfadeSeconds)));"
+    },
+    {
+      "kind": "EVENT_DECLARE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs",
+      "line": 22,
+      "owner": "Ziptide.Gameplay.AudioMixSettings",
+      "target": "Changed",
+      "detail": "static Action",
+      "snippet": "public static event Action Changed;"
+    },
+    {
+      "kind": "PLAYER_PREFS_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs",
+      "line": 48,
+      "owner": "Ziptide.Gameplay.AudioMixSettings",
+      "target": "PlayerPrefs.SetFloat",
+      "detail": "",
+      "snippet": "PlayerPrefs.SetFloat(AudioMixCore.PrefKey(bus), clamped);"
+    },
+    {
+      "kind": "PLAYER_PREFS_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs",
+      "line": 49,
+      "owner": "Ziptide.Gameplay.AudioMixSettings",
+      "target": "PlayerPrefs.Save",
+      "detail": "",
+      "snippet": "PlayerPrefs.Save();"
+    },
+    {
+      "kind": "PLAYER_PREFS_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs",
+      "line": 65,
+      "owner": "Ziptide.Gameplay.AudioMixSettings",
+      "target": "PlayerPrefs.SetFloat",
+      "detail": "",
+      "snippet": "PlayerPrefs.SetFloat(AudioMixCore.MasterPrefKey, _master);"
+    },
+    {
+      "kind": "PLAYER_PREFS_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs",
+      "line": 70,
+      "owner": "Ziptide.Gameplay.AudioMixSettings",
+      "target": "PlayerPrefs.SetFloat",
+      "detail": "",
+      "snippet": "PlayerPrefs.SetFloat(AudioMixCore.PrefKey(bus), _buses[i]);"
+    },
+    {
+      "kind": "PLAYER_PREFS_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs",
+      "line": 72,
+      "owner": "Ziptide.Gameplay.AudioMixSettings",
+      "target": "PlayerPrefs.Save",
+      "detail": "",
+      "snippet": "PlayerPrefs.Save();"
+    },
+    {
+      "kind": "PLAYER_PREFS_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs",
+      "line": 81,
+      "owner": "Ziptide.Gameplay.AudioMixSettings",
+      "target": "PlayerPrefs.SetFloat",
+      "detail": "",
+      "snippet": "PlayerPrefs.SetFloat(key, clamped);"
+    },
+    {
+      "kind": "PLAYER_PREFS_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs",
+      "line": 82,
+      "owner": "Ziptide.Gameplay.AudioMixSettings",
+      "target": "PlayerPrefs.Save",
+      "detail": "",
+      "snippet": "PlayerPrefs.Save();"
+    },
+    {
+      "kind": "PLAYER_PREFS_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs",
+      "line": 92,
+      "owner": "Ziptide.Gameplay.AudioMixSettings",
+      "target": "PlayerPrefs.GetFloat",
+      "detail": "",
+      "snippet": "PlayerPrefs.GetFloat(AudioMixCore.MasterPrefKey, AudioMixCore.DefaultMaster),"
+    },
+    {
+      "kind": "PLAYER_PREFS_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs",
+      "line": 98,
+      "owner": "Ziptide.Gameplay.AudioMixSettings",
+      "target": "PlayerPrefs.GetFloat",
+      "detail": "",
+      "snippet": "float stored = PlayerPrefs.GetFloat(AudioMixCore.PrefKey(bus), AudioMixCore.DefaultFor(bus));"
     },
     {
       "kind": "EVENT_SUBSCRIBE",

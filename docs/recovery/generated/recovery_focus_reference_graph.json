@@ -1,6 +1,6 @@
 {
   "tool": "recovery_focus_reference_graph",
-  "scannedFiles": 747,
+  "scannedFiles": 750,
   "referenceCount": 439,
   "summaries": {
     "melee": {
@@ -1669,7 +1669,7 @@
           "focus": "repairObjective",
           "token": "JobDirector",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs",
-          "line": 64,
+          "line": 66,
           "symbol": "Ziptide.Gameplay.AudioDirector",
           "snippet": "var jd = FindObjectOfType<JobDirector>();",
           "declaration_file": false
@@ -5271,7 +5271,7 @@
       "focus": "repairObjective",
       "token": "JobDirector",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioDirector.cs",
-      "line": 64,
+      "line": 66,
       "symbol": "Ziptide.Gameplay.AudioDirector",
       "snippet": "var jd = FindObjectOfType<JobDirector>();",
       "declaration_file": false
