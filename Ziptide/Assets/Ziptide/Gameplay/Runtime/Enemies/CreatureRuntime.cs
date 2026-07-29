@@ -48,6 +48,21 @@ namespace Ziptide.Gameplay
         public bool IsActive => !_down && Time.time >= _stunnedUntil;
         public Vector3 HomePos => _homePos;
 
+        /// <summary>
+        /// FH-S05. The creature has been resolved non-lethally and is crumpled. This is a READ of the
+        /// existing <c>_down</c> state — the disable rules, loot, ecology and respawn are untouched.
+        /// </summary>
+        public bool IsDisabled => _down;
+
+        /// <summary>
+        /// FH-S05. Raised exactly once per down cycle, after the disable has fully applied. Carries the
+        /// runtime so a listener can filter by <see cref="creatureId"/> and instance — the first-hour
+        /// orchestrator must react to THE signature creature, not to any swarm bug that happens to fall
+        /// over nearby. A respawn permits a later event; damage taken while already down does not.
+        /// Subscribers must unsubscribe; this owner never assumes there is one.
+        /// </summary>
+        public static event System.Action<CreatureRuntime> CreatureDisabled;
+
         // IPvpDamageable — index -1 marks "not a combatant" (PvpMatchDirector only registers players/bots).
         public int PlayerIndex => -1;
         public bool IsAlive => !_down;
@@ -114,6 +129,7 @@ namespace Ziptide.Gameplay
 
         private void Disable()
         {
+            if (_down) return; // one disable per down cycle, whatever the caller does
             _down = true;
             if (_behavior != null) _behavior.enabled = false;
             Tint(DownTint);
@@ -136,7 +152,38 @@ namespace Ziptide.Gameplay
                     creatureId, System.DateTimeOffset.UtcNow.ToUnixTimeSeconds());
 
             Debug.Log("ZIPTIDE: CREATURE_DOWN id=" + creatureId + " name=" + gameObject.name);
+
+            // FH-S05: published LAST, so every listener observes a fully-applied disable (loot paid,
+            // ecology recorded, behavior stopped). A throwing listener must not corrupt this creature's
+            // state or block the respawn below.
+            PublishDisabled();
+
             if (respawnDelay > 0f) StartCoroutine(RespawnAfter());
+        }
+
+        private void PublishDisabled()
+        {
+            Debug.Log("ZIPTIDE: FIRST_HOUR_CREATURE id=" + creatureId
+                + " name=" + gameObject.name + " state=disabled");
+
+            var handler = CreatureDisabled;
+            if (handler == null) return;
+
+            // Invoked one subscriber at a time: a single throwing listener must not swallow the
+            // others, and must never leave this creature half-disabled.
+            var subscribers = handler.GetInvocationList();
+            for (int i = 0; i < subscribers.Length; i++)
+            {
+                try
+                {
+                    ((System.Action<CreatureRuntime>)subscribers[i])(this);
+                }
+                catch (System.Exception ex)
+                {
+                    Debug.LogWarning("ZIPTIDE: FIRST_HOUR_CREATURE_LISTENER_FAIL id=" + creatureId
+                        + " error=" + ex.Message);
+                }
+            }
         }
 
         private IEnumerator RespawnAfter()

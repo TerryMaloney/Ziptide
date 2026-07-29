@@ -154,6 +154,65 @@ namespace Ziptide.Editor.Patching
             Gate("gate_w012", "W012_MarasLastJump", "Mara crossed from here last. Watch the sky when we land.", once: true);
 
             // ═══════════════════════════════════════════════════════════════════════════════════════
+            // THE FIRST HOUR — the 15 teaching lines (docs/first_hour/first_hour_beats.json).
+            //
+            // These use the Cue trigger: they NEVER fire on a world load or a flag. The first-hour
+            // director asks for one BY ID only after the beat's hesitation interval has elapsed, so a
+            // player who just does the thing hears nothing at all. That is the design law — the game
+            // teaches by waiting, not by narrating. Register stays RILL's: dry, brief, never a manual
+            // page, never the word "button" where a physical noun will do.
+            // ═══════════════════════════════════════════════════════════════════════════════════════
+            void Cue(string id, string text) =>
+                L.Add(new RillLine { id = id, trigger = RillTrigger.Cue, key = id, text = text });
+
+            Cue("TUT_LOOK_RILL",        "Over here. Small, floating, opinionated — that is me.");
+            Cue("TUT_COMFORT_CONSOLE",  "The console by the bunk sets how you move. Pick what your stomach likes; you can change it whenever.");
+            Cue("TUT_MOVE_QUARTERS",    "Walk it off. The compartment is small and nothing in it bites.");
+            Cue("TUT_GRAB_BUNK_OBJECT", "Your papers are on the bunk. Reach out and take them — properly, with your hand.");
+            Cue("TUT_HOLSTER_ITEM",     "Put it on your hip. Anything holstered comes with us; anything loose stays where the world left it.");
+            Cue("TUT_INTERACT_HELM",    "The helm is lit. Tell it where we are going.");
+            Cue("TUT_PUNCH_IT",         "Coupler is green. When you are ready — punch it.");
+            Cue("TUT_ACCEPT_FIRST_JOB", "The kiosk has our contract. Take it and we are working.");
+            Cue("TUT_SCAN_FAULT",       "Scan it. Your wrist will show you what is wrong faster than I can describe it.");
+            Cue("TUT_REPAIR_ACCESS",    "Panel first. Nothing inside is live until you open it.");
+            Cue("TUT_SHOOT_PRACTICE",   "That target is there to be discharged. Better here than somewhere it matters.");
+            Cue("TUT_OBSERVE_CREATURE", "Do not close. Watch it — everything out here tells you what it is about to do, if you let it.");
+            Cue("TUT_COUNTER_CREATURE", "You saw its tell. Answer it. We disable; we do not kill.");
+            Cue("TUT_ZIPLINE",          "Take the line. It is quicker than the long way round, and the long way round is flooded.");
+            Cue("TUT_RETURN_HOME",      "That is the contract closed. The ship is where we left it.");
+
+            // ── First-hour flag reactions: the tutorial's own beats had NO voice at all ──────────────
+            // W000 grants TUTORIAL_COMPLETE / FIRST_TRAVEL / C1_W001_RILL_BOOT and W001 grants its
+            // arrival and completion flags; none of them said anything. The whole point of W000 is
+            // these moments.
+            Flag("react_tutorial_complete", ZiptideFlags.TUTORIAL_COMPLETE,
+                 "Coupler holds. Ship answers. Whatever we were before this morning, we are a working crew now.");
+            Flag("react_first_travel", ZiptideFlags.FIRST_TRAVEL,
+                 "First crossing logged. However that felt — it does not stop feeling like that.");
+            Flag("react_w001_arrived", ZiptideFlags.C1_W001_ARRIVED,
+                 "Toxic Venice. Do not drink anything, do not fall in anything, and mind the tower — it leans on purpose.");
+            Flag("react_w001_job", ZiptideFlags.C1_W001_JOB_COMPLETE,
+                 "Relay is up. Half this district gets light back tonight because you opened a panel.");
+            Flag("react_first_holster", ZiptideFlags.FIRST_HOLSTER,
+                 "Good. That comes with us now.");
+            Flag("react_first_drone", ZiptideFlags.FIRST_DRONE_DOWN,
+                 "Down, not destroyed. It will be somebody's spare parts and nobody's grave.");
+            Flag("react_first_job", ZiptideFlags.FIRST_JOB_COMPLETE,
+                 "Paid. I have logged it. I have also logged that you did it in the correct order, which I did not expect.");
+
+            // The tutorial's final beat — the W000→W001 launch — had no line of its own and fell
+            // through to the generic wildcard pool.
+            Gate("gate_toxiccity", ZiptideConstants.SceneToxicCity,
+                 "First one. Eyes open — the tide does not ask twice.", once: true);
+
+            CalGate("cal_gate_toxiccity", ZiptideConstants.SceneToxicCity,
+                    "Eyes open. Right. Sure. Absolutely.", once: true);
+            CalFlag("cal_react_tutorial_complete", ZiptideFlags.TUTORIAL_COMPLETE,
+                    "A working crew. One of us has a ship and the other one has opinions. Let's see how far that gets us.");
+            CalEnter("cal_w001_arrival", ZiptideConstants.SceneToxicCity,
+                     "It leans ON PURPOSE. Great. Love that. Really settling in already.");
+
+            // ═══════════════════════════════════════════════════════════════════════════════════════
             // CAL'S LINES — the other half of the conversation (STORY_BIBLE §3b, soul pass 2, 2026-07-06).
             // Appended after all of RILL's above so, for any shared trigger+key, RILL's entry (earlier
             // list index) always plays first and Cal's answers it — one exchange, not two monologues.

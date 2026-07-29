@@ -12,9 +12,13 @@ namespace Ziptide.Content
         FlagSet,      // key = a ZiptideFlags name; fires when the profile gains that flag
         GateDeparture,// key = DESTINATION scene name (or "*" = any); fires as THE ZIPTIDE rises.
                       // One line is picked at random from the matches (specific beats wildcard).
-        FollowUp      // key = a ZiptideFlags name RILL noticed earlier; fires unprompted, `crossingsDelay`
+        FollowUp,     // key = a ZiptideFlags name RILL noticed earlier; fires unprompted, `crossingsDelay`
                        // gate-departures later — a companion who's still thinking about something, not
                        // just reacting to it once (see docs/systems/COMPANION_MEMORY.md, added 2026-07-06).
+        Cue           // never fires on its own — a director asks for it BY ID (RillLineLibrary.TryGetById).
+                      // The first-hour teaching lines live here: they must fire on hesitation, not on a
+                      // world load or a flag, and a player who never hesitates must never hear them.
+                      // ⚠ Append new triggers at the END ONLY — this enum serializes by VALUE.
     }
 
     /// <summary>One deliverable line (subtitle now; a VO clip slots in at the art/audio pass). Despite the
@@ -61,6 +65,24 @@ namespace Ziptide.Content
     public class RillLineLibrary : ScriptableObject
     {
         public List<RillLine> lines = new List<RillLine>();
+
+        /// <summary>
+        /// Look a line up by its stable id. This is how a director delivers a specific beat — the
+        /// first-hour teaching lines are addressed by id, never by world or flag, so a confident
+        /// player who never hesitates never hears one. Returns false for a missing or blank id so a
+        /// caller can log the gap instead of speaking an empty subtitle.
+        /// </summary>
+        public bool TryGetById(string id, out RillLine line)
+        {
+            line = null;
+            if (string.IsNullOrEmpty(id)) return false;
+            for (int i = 0; i < lines.Count; i++)
+            {
+                var candidate = lines[i];
+                if (candidate != null && candidate.id == id) { line = candidate; return true; }
+            }
+            return false;
+        }
 
         /// <summary>All lines matching a trigger+key (cheap linear scan — the library is small).</summary>
         public void Collect(RillTrigger trigger, string key, List<RillLine> into)

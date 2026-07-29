@@ -14,6 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cityId: toxic_city
   seed: 1337
+  sceneName: ToxicCity
+  displayName: Toxic City
+  spawnDistrictId: Dispatch
+  spawnStarterWeapons: 0
   walkwayHeight: 0
   palette:
     concrete: {r: 0.34, g: 0.35, b: 0.37, a: 1}
@@ -29,10 +33,31 @@ MonoBehaviour:
   fogEnabled: 1
   fogColor: {r: 0.18, g: 0.22, b: 0.16, a: 1}
   fogDensity: 0.018
+  skyHorizonColor: {r: 0.62, g: 0.55, b: 0.34, a: 1}
+  skyTopColor: {r: 0.16, g: 0.26, b: 0.24, a: 1}
+  themeGroundTint: {r: 0.36, g: 0.36, b: 0.33, a: 1}
+  planetVisible: 1
+  planetBaseColor: {r: 0.72, g: 0.62, b: 0.44, a: 1}
+  planetAccentColor: {r: 0.45, g: 0.5, b: 0.38, a: 1}
+  planetAngularSize: 22
   skylineRingRadius: 140
   skylineCount: 26
   skylineMinHeight: 30
   skylineMaxHeight: 90
+  experience:
+    enabled: 0
+    authored: 1
+    biome: 5
+    worldRadius: 300
+    heightAmplitude: 6
+    groundColor: {r: 0.34, g: 0.33, b: 0.28, a: 1}
+    vista: 1
+    vistaDirection: {x: 0.5, y: 0, z: 1}
+    vistaDistance: 190
+    vistaHeight: 70
+    vistaColor: {r: 0.5, g: 0.54, b: 0.48, a: 1}
+    vistaAccentColor: {r: 0.45, g: 0.95, b: 0.6, a: 1}
+  pois: []
   districts:
   - id: Shipyard
     anchor: {x: 0, y: 0, z: -30}
@@ -220,21 +245,59 @@ MonoBehaviour:
     count: 3
     respawnDelay: 0
     combat: 0
-    variantId: 
+    variantId: drone_easy
   - id: Patrol_Market
     center: {x: 26, y: 0, z: 8}
     radius: 6
     count: 3
     respawnDelay: 14
     combat: 1
-    variantId: 
+    variantId: drone_standard
   - id: Patrol_Canal
     center: {x: -14, y: 0, z: 16}
     radius: 4
     count: 2
     respawnDelay: 16
     combat: 1
-    variantId: 
+    variantId: drone_easy
+  hazards:
+  - id: Acid_CanalRow
+    kind: 2
+    center: {x: -14, y: 0, z: 16}
+    size: {x: 14, y: 3, z: 30}
+    strength: 1.4
+    direction: {x: 1, y: 0, z: 0}
+  - id: Acid_DispatchPool
+    kind: 2
+    center: {x: 0, y: 0, z: 10}
+    size: {x: 10, y: 3, z: 12}
+    strength: 1.2
+    direction: {x: 1, y: 0, z: 0}
+  creatureZones:
+  - id: Swarm_CanalRow
+    center: {x: -26, y: 0, z: 8}
+    radius: 5
+    count: 4
+    respawnDelay: 25
+    creatureId: swarm_bug
+  - id: Mites_Plaza
+    center: {x: 0, y: 0, z: 28}
+    radius: 6
+    count: 3
+    respawnDelay: 30
+    creatureId: witness_mite
+  - id: Tendrils_Market
+    center: {x: 26, y: 0, z: 8}
+    radius: 5
+    count: 3
+    respawnDelay: 0
+    creatureId: tendril
+  - id: Molters_Relay
+    center: {x: 0, y: 0, z: 16}
+    radius: 4
+    count: 2
+    respawnDelay: 40
+    creatureId: husk_molter
   shipyard:
     enabled: 1
     berthCenter: {x: 0, y: 0, z: -48}
