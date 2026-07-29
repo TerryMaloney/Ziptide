@@ -1,0 +1,1230 @@
+{
+    "specVersion": 1,
+    "sceneName": "ToxicCity",
+    "cityId": "toxic_city",
+    "displayName": "Toxic City",
+    "seed": 1337,
+    "spawnDistrictId": "Dispatch",
+    "spawnStarterWeapons": false,
+    "walkwayHeight": 0,
+    "fogEnabled": true,
+    "fogColor": {
+        "r": 0.18,
+        "g": 0.22,
+        "b": 0.16,
+        "a": 1
+    },
+    "fogDensity": 0.018,
+    "skyHorizonColor": {
+        "r": 0.62,
+        "g": 0.55,
+        "b": 0.34,
+        "a": 1
+    },
+    "skyTopColor": {
+        "r": 0.16,
+        "g": 0.26,
+        "b": 0.24,
+        "a": 1
+    },
+    "themeGroundTint": {
+        "r": 0.36,
+        "g": 0.36,
+        "b": 0.33,
+        "a": 1
+    },
+    "planetVisible": true,
+    "planetBaseColor": {
+        "r": 0.72,
+        "g": 0.62,
+        "b": 0.44,
+        "a": 1
+    },
+    "planetAccentColor": {
+        "r": 0.45,
+        "g": 0.5,
+        "b": 0.38,
+        "a": 1
+    },
+    "planetAngularSize": 22,
+    "skyVistaId": "",
+    "skylineRingRadius": 250,
+    "skylineCount": 26,
+    "skylineMinHeight": 30,
+    "skylineMaxHeight": 90,
+    "experience": {
+        "enabled": false,
+        "authored": true,
+        "biome": 5,
+        "worldRadius": 300,
+        "heightAmplitude": 6,
+        "groundColor": {
+            "r": 0.34,
+            "g": 0.33,
+            "b": 0.28,
+            "a": 1
+        },
+        "vista": 1,
+        "vistaDirection": {
+            "x": 0.5,
+            "y": 0,
+            "z": 1
+        },
+        "vistaDistance": 190,
+        "vistaHeight": 70,
+        "vistaColor": {
+            "r": 0.5,
+            "g": 0.54,
+            "b": 0.48,
+            "a": 1
+        },
+        "vistaAccentColor": {
+            "r": 0.45,
+            "g": 0.95,
+            "b": 0.6,
+            "a": 1
+        }
+    },
+    "pois": [],
+    "palette": {
+        "concrete": {
+            "r": 0.34,
+            "g": 0.35,
+            "b": 0.37,
+            "a": 1
+        },
+        "metal": {
+            "r": 0.28,
+            "g": 0.3,
+            "b": 0.33,
+            "a": 1
+        },
+        "toxic": {
+            "r": 0.22,
+            "g": 0.45,
+            "b": 0.12,
+            "a": 1
+        },
+        "building1": {
+            "r": 0.3,
+            "g": 0.31,
+            "b": 0.34,
+            "a": 1
+        },
+        "building2": {
+            "r": 0.24,
+            "g": 0.26,
+            "b": 0.3,
+            "a": 1
+        },
+        "rail": {
+            "r": 0.45,
+            "g": 0.28,
+            "b": 0.18,
+            "a": 1
+        },
+        "catwalk": {
+            "r": 0.4,
+            "g": 0.4,
+            "b": 0.42,
+            "a": 1
+        },
+        "facadeWindow": {
+            "r": 0.08,
+            "g": 0.12,
+            "b": 0.14,
+            "a": 1
+        },
+        "skyline": {
+            "r": 0.16,
+            "g": 0.17,
+            "b": 0.2,
+            "a": 1
+        },
+        "accent": {
+            "r": 0.9,
+            "g": 0.75,
+            "b": 0.1,
+            "a": 1
+        }
+    },
+    "districts": [
+        {
+            "id": "Shipyard",
+            "anchor": {
+                "x": 0,
+                "y": 0,
+                "z": -30
+            },
+            "bounds": {
+                "x": 22,
+                "y": 18
+            },
+            "buildingStyleId": "",
+            "heightTier": 1,
+            "useOverride": false,
+            "paletteOverride": {
+                "concrete": {
+                    "r": 0.34,
+                    "g": 0.35,
+                    "b": 0.37,
+                    "a": 1
+                },
+                "metal": {
+                    "r": 0.28,
+                    "g": 0.3,
+                    "b": 0.33,
+                    "a": 1
+                },
+                "toxic": {
+                    "r": 0.22,
+                    "g": 0.45,
+                    "b": 0.12,
+                    "a": 1
+                },
+                "building1": {
+                    "r": 0.3,
+                    "g": 0.31,
+                    "b": 0.34,
+                    "a": 1
+                },
+                "building2": {
+                    "r": 0.24,
+                    "g": 0.26,
+                    "b": 0.3,
+                    "a": 1
+                },
+                "rail": {
+                    "r": 0.45,
+                    "g": 0.28,
+                    "b": 0.18,
+                    "a": 1
+                },
+                "catwalk": {
+                    "r": 0.4,
+                    "g": 0.4,
+                    "b": 0.42,
+                    "a": 1
+                },
+                "facadeWindow": {
+                    "r": 0.08,
+                    "g": 0.12,
+                    "b": 0.14,
+                    "a": 1
+                },
+                "skyline": {
+                    "r": 0.16,
+                    "g": 0.17,
+                    "b": 0.2,
+                    "a": 1
+                },
+                "accent": {
+                    "r": 0.9,
+                    "g": 0.75,
+                    "b": 0.1,
+                    "a": 1
+                }
+            },
+            "landmarks": [
+                {
+                    "name": "Crane",
+                    "localPos": {
+                        "x": 8,
+                        "y": 0,
+                        "z": -6
+                    },
+                    "height": 16,
+                    "width": 2
+                }
+            ],
+            "heroBuildings": [
+                {
+                    "id": "ShipyardOffice",
+                    "localPos": {
+                        "x": -7,
+                        "y": 0,
+                        "z": 2
+                    },
+                    "footprint": {
+                        "x": 7,
+                        "y": 7
+                    },
+                    "height": 4,
+                    "interior": 1,
+                    "doorLocalPos": {
+                        "x": 0,
+                        "y": 0,
+                        "z": -3.5
+                    },
+                    "interiorMarkerId": "shipyard_office"
+                }
+            ],
+            "props": []
+        },
+        {
+            "id": "Dispatch",
+            "anchor": {
+                "x": 0,
+                "y": 0,
+                "z": -8
+            },
+            "bounds": {
+                "x": 20,
+                "y": 18
+            },
+            "buildingStyleId": "",
+            "heightTier": 1,
+            "useOverride": false,
+            "paletteOverride": {
+                "concrete": {
+                    "r": 0.34,
+                    "g": 0.35,
+                    "b": 0.37,
+                    "a": 1
+                },
+                "metal": {
+                    "r": 0.28,
+                    "g": 0.3,
+                    "b": 0.33,
+                    "a": 1
+                },
+                "toxic": {
+                    "r": 0.22,
+                    "g": 0.45,
+                    "b": 0.12,
+                    "a": 1
+                },
+                "building1": {
+                    "r": 0.3,
+                    "g": 0.31,
+                    "b": 0.34,
+                    "a": 1
+                },
+                "building2": {
+                    "r": 0.24,
+                    "g": 0.26,
+                    "b": 0.3,
+                    "a": 1
+                },
+                "rail": {
+                    "r": 0.45,
+                    "g": 0.28,
+                    "b": 0.18,
+                    "a": 1
+                },
+                "catwalk": {
+                    "r": 0.4,
+                    "g": 0.4,
+                    "b": 0.42,
+                    "a": 1
+                },
+                "facadeWindow": {
+                    "r": 0.08,
+                    "g": 0.12,
+                    "b": 0.14,
+                    "a": 1
+                },
+                "skyline": {
+                    "r": 0.16,
+                    "g": 0.17,
+                    "b": 0.2,
+                    "a": 1
+                },
+                "accent": {
+                    "r": 0.9,
+                    "g": 0.75,
+                    "b": 0.1,
+                    "a": 1
+                }
+            },
+            "landmarks": [],
+            "heroBuildings": [
+                {
+                    "id": "DispatchHall",
+                    "localPos": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 6
+                    },
+                    "footprint": {
+                        "x": 8,
+                        "y": 7
+                    },
+                    "height": 4.5,
+                    "interior": 1,
+                    "doorLocalPos": {
+                        "x": 0,
+                        "y": 0,
+                        "z": -3.5
+                    },
+                    "interiorMarkerId": "dispatch_inside"
+                }
+            ],
+            "props": []
+        },
+        {
+            "id": "Plaza",
+            "anchor": {
+                "x": 0,
+                "y": 0,
+                "z": 28
+            },
+            "bounds": {
+                "x": 24,
+                "y": 22
+            },
+            "buildingStyleId": "",
+            "heightTier": 2,
+            "useOverride": false,
+            "paletteOverride": {
+                "concrete": {
+                    "r": 0.34,
+                    "g": 0.35,
+                    "b": 0.37,
+                    "a": 1
+                },
+                "metal": {
+                    "r": 0.28,
+                    "g": 0.3,
+                    "b": 0.33,
+                    "a": 1
+                },
+                "toxic": {
+                    "r": 0.22,
+                    "g": 0.45,
+                    "b": 0.12,
+                    "a": 1
+                },
+                "building1": {
+                    "r": 0.3,
+                    "g": 0.31,
+                    "b": 0.34,
+                    "a": 1
+                },
+                "building2": {
+                    "r": 0.24,
+                    "g": 0.26,
+                    "b": 0.3,
+                    "a": 1
+                },
+                "rail": {
+                    "r": 0.45,
+                    "g": 0.28,
+                    "b": 0.18,
+                    "a": 1
+                },
+                "catwalk": {
+                    "r": 0.4,
+                    "g": 0.4,
+                    "b": 0.42,
+                    "a": 1
+                },
+                "facadeWindow": {
+                    "r": 0.08,
+                    "g": 0.12,
+                    "b": 0.14,
+                    "a": 1
+                },
+                "skyline": {
+                    "r": 0.16,
+                    "g": 0.17,
+                    "b": 0.2,
+                    "a": 1
+                },
+                "accent": {
+                    "r": 0.9,
+                    "g": 0.75,
+                    "b": 0.1,
+                    "a": 1
+                }
+            },
+            "landmarks": [
+                {
+                    "name": "OligarchTower",
+                    "localPos": {
+                        "x": 9,
+                        "y": 0,
+                        "z": 6
+                    },
+                    "height": 40,
+                    "width": 6
+                },
+                {
+                    "name": "GardenTower",
+                    "localPos": {
+                        "x": -9,
+                        "y": 0,
+                        "z": 6
+                    },
+                    "height": 18,
+                    "width": 5
+                }
+            ],
+            "heroBuildings": [],
+            "props": []
+        },
+        {
+            "id": "Market",
+            "anchor": {
+                "x": 26,
+                "y": 0,
+                "z": 8
+            },
+            "bounds": {
+                "x": 22,
+                "y": 20
+            },
+            "buildingStyleId": "",
+            "heightTier": 1,
+            "useOverride": false,
+            "paletteOverride": {
+                "concrete": {
+                    "r": 0.34,
+                    "g": 0.35,
+                    "b": 0.37,
+                    "a": 1
+                },
+                "metal": {
+                    "r": 0.28,
+                    "g": 0.3,
+                    "b": 0.33,
+                    "a": 1
+                },
+                "toxic": {
+                    "r": 0.22,
+                    "g": 0.45,
+                    "b": 0.12,
+                    "a": 1
+                },
+                "building1": {
+                    "r": 0.3,
+                    "g": 0.31,
+                    "b": 0.34,
+                    "a": 1
+                },
+                "building2": {
+                    "r": 0.24,
+                    "g": 0.26,
+                    "b": 0.3,
+                    "a": 1
+                },
+                "rail": {
+                    "r": 0.45,
+                    "g": 0.28,
+                    "b": 0.18,
+                    "a": 1
+                },
+                "catwalk": {
+                    "r": 0.4,
+                    "g": 0.4,
+                    "b": 0.42,
+                    "a": 1
+                },
+                "facadeWindow": {
+                    "r": 0.08,
+                    "g": 0.12,
+                    "b": 0.14,
+                    "a": 1
+                },
+                "skyline": {
+                    "r": 0.16,
+                    "g": 0.17,
+                    "b": 0.2,
+                    "a": 1
+                },
+                "accent": {
+                    "r": 0.9,
+                    "g": 0.75,
+                    "b": 0.1,
+                    "a": 1
+                }
+            },
+            "landmarks": [],
+            "heroBuildings": [],
+            "props": [
+                {
+                    "kind": "Stall",
+                    "center": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    },
+                    "size": {
+                        "x": 12,
+                        "y": 12
+                    },
+                    "density": 0.5
+                }
+            ]
+        },
+        {
+            "id": "CanalRow",
+            "anchor": {
+                "x": -26,
+                "y": 0,
+                "z": 8
+            },
+            "bounds": {
+                "x": 16,
+                "y": 26
+            },
+            "buildingStyleId": "",
+            "heightTier": 1,
+            "useOverride": false,
+            "paletteOverride": {
+                "concrete": {
+                    "r": 0.34,
+                    "g": 0.35,
+                    "b": 0.37,
+                    "a": 1
+                },
+                "metal": {
+                    "r": 0.28,
+                    "g": 0.3,
+                    "b": 0.33,
+                    "a": 1
+                },
+                "toxic": {
+                    "r": 0.22,
+                    "g": 0.45,
+                    "b": 0.12,
+                    "a": 1
+                },
+                "building1": {
+                    "r": 0.3,
+                    "g": 0.31,
+                    "b": 0.34,
+                    "a": 1
+                },
+                "building2": {
+                    "r": 0.24,
+                    "g": 0.26,
+                    "b": 0.3,
+                    "a": 1
+                },
+                "rail": {
+                    "r": 0.45,
+                    "g": 0.28,
+                    "b": 0.18,
+                    "a": 1
+                },
+                "catwalk": {
+                    "r": 0.4,
+                    "g": 0.4,
+                    "b": 0.42,
+                    "a": 1
+                },
+                "facadeWindow": {
+                    "r": 0.08,
+                    "g": 0.12,
+                    "b": 0.14,
+                    "a": 1
+                },
+                "skyline": {
+                    "r": 0.16,
+                    "g": 0.17,
+                    "b": 0.2,
+                    "a": 1
+                },
+                "accent": {
+                    "r": 0.9,
+                    "g": 0.75,
+                    "b": 0.1,
+                    "a": 1
+                }
+            },
+            "landmarks": [],
+            "heroBuildings": [
+                {
+                    "id": "RelayVault",
+                    "localPos": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    },
+                    "footprint": {
+                        "x": 9,
+                        "y": 8
+                    },
+                    "height": 5,
+                    "interior": 2,
+                    "doorLocalPos": {
+                        "x": 0,
+                        "y": 0,
+                        "z": -4
+                    },
+                    "interiorMarkerId": "relay_node"
+                }
+            ],
+            "props": []
+        },
+        {
+            "id": "Quay",
+            "anchor": {
+                "x": 24,
+                "y": 0,
+                "z": -50
+            },
+            "bounds": {
+                "x": 24,
+                "y": 12
+            },
+            "buildingStyleId": "",
+            "heightTier": 1,
+            "useOverride": false,
+            "paletteOverride": {
+                "concrete": {
+                    "r": 0.34,
+                    "g": 0.35,
+                    "b": 0.37,
+                    "a": 1
+                },
+                "metal": {
+                    "r": 0.28,
+                    "g": 0.3,
+                    "b": 0.33,
+                    "a": 1
+                },
+                "toxic": {
+                    "r": 0.22,
+                    "g": 0.45,
+                    "b": 0.12,
+                    "a": 1
+                },
+                "building1": {
+                    "r": 0.3,
+                    "g": 0.31,
+                    "b": 0.34,
+                    "a": 1
+                },
+                "building2": {
+                    "r": 0.24,
+                    "g": 0.26,
+                    "b": 0.3,
+                    "a": 1
+                },
+                "rail": {
+                    "r": 0.45,
+                    "g": 0.28,
+                    "b": 0.18,
+                    "a": 1
+                },
+                "catwalk": {
+                    "r": 0.4,
+                    "g": 0.4,
+                    "b": 0.42,
+                    "a": 1
+                },
+                "facadeWindow": {
+                    "r": 0.08,
+                    "g": 0.12,
+                    "b": 0.14,
+                    "a": 1
+                },
+                "skyline": {
+                    "r": 0.16,
+                    "g": 0.17,
+                    "b": 0.2,
+                    "a": 1
+                },
+                "accent": {
+                    "r": 0.9,
+                    "g": 0.75,
+                    "b": 0.1,
+                    "a": 1
+                }
+            },
+            "landmarks": [
+                {
+                    "name": "QuayCrane",
+                    "localPos": {
+                        "x": -8,
+                        "y": 0,
+                        "z": -3
+                    },
+                    "height": 12,
+                    "width": 2
+                }
+            ],
+            "heroBuildings": [
+                {
+                    "id": "DockmasterBooth",
+                    "localPos": {
+                        "x": 6,
+                        "y": 0,
+                        "z": -2
+                    },
+                    "footprint": {
+                        "x": 6,
+                        "y": 6
+                    },
+                    "height": 3.5,
+                    "interior": 1,
+                    "doorLocalPos": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 3
+                    },
+                    "interiorMarkerId": "dockmaster_booth"
+                }
+            ],
+            "props": [
+                {
+                    "kind": "Crate",
+                    "center": {
+                        "x": -2,
+                        "y": 0,
+                        "z": 2
+                    },
+                    "size": {
+                        "x": 14,
+                        "y": 6
+                    },
+                    "density": 0.5
+                }
+            ]
+        },
+        {
+            "id": "Colonnade",
+            "anchor": {
+                "x": -20,
+                "y": 0,
+                "z": 38
+            },
+            "bounds": {
+                "x": 10,
+                "y": 12
+            },
+            "buildingStyleId": "",
+            "heightTier": 1,
+            "useOverride": false,
+            "paletteOverride": {
+                "concrete": {
+                    "r": 0.34,
+                    "g": 0.35,
+                    "b": 0.37,
+                    "a": 1
+                },
+                "metal": {
+                    "r": 0.28,
+                    "g": 0.3,
+                    "b": 0.33,
+                    "a": 1
+                },
+                "toxic": {
+                    "r": 0.22,
+                    "g": 0.45,
+                    "b": 0.12,
+                    "a": 1
+                },
+                "building1": {
+                    "r": 0.3,
+                    "g": 0.31,
+                    "b": 0.34,
+                    "a": 1
+                },
+                "building2": {
+                    "r": 0.24,
+                    "g": 0.26,
+                    "b": 0.3,
+                    "a": 1
+                },
+                "rail": {
+                    "r": 0.45,
+                    "g": 0.28,
+                    "b": 0.18,
+                    "a": 1
+                },
+                "catwalk": {
+                    "r": 0.4,
+                    "g": 0.4,
+                    "b": 0.42,
+                    "a": 1
+                },
+                "facadeWindow": {
+                    "r": 0.08,
+                    "g": 0.12,
+                    "b": 0.14,
+                    "a": 1
+                },
+                "skyline": {
+                    "r": 0.16,
+                    "g": 0.17,
+                    "b": 0.2,
+                    "a": 1
+                },
+                "accent": {
+                    "r": 0.9,
+                    "g": 0.75,
+                    "b": 0.1,
+                    "a": 1
+                }
+            },
+            "landmarks": [
+                {
+                    "name": "ColonnadeArch",
+                    "localPos": {
+                        "x": 0,
+                        "y": 0,
+                        "z": 0
+                    },
+                    "height": 8,
+                    "width": 2
+                }
+            ],
+            "heroBuildings": [],
+            "props": []
+        }
+    ],
+    "connections": [
+        {
+            "fromDistrictId": "Shipyard",
+            "toDistrictId": "Dispatch",
+            "kind": 0,
+            "width": 8,
+            "tier": 0
+        },
+        {
+            "fromDistrictId": "Dispatch",
+            "toDistrictId": "Plaza",
+            "kind": 0,
+            "width": 8,
+            "tier": 0
+        },
+        {
+            "fromDistrictId": "Plaza",
+            "toDistrictId": "Market",
+            "kind": 0,
+            "width": 6,
+            "tier": 0
+        },
+        {
+            "fromDistrictId": "Dispatch",
+            "toDistrictId": "Market",
+            "kind": 0,
+            "width": 6,
+            "tier": 0
+        },
+        {
+            "fromDistrictId": "Plaza",
+            "toDistrictId": "CanalRow",
+            "kind": 1,
+            "width": 5,
+            "tier": 1
+        },
+        {
+            "fromDistrictId": "Dispatch",
+            "toDistrictId": "CanalRow",
+            "kind": 2,
+            "width": 5,
+            "tier": 0
+        },
+        {
+            "fromDistrictId": "CanalRow",
+            "toDistrictId": "Market",
+            "kind": 3,
+            "width": 5,
+            "tier": 0
+        },
+        {
+            "fromDistrictId": "Quay",
+            "toDistrictId": "Shipyard",
+            "kind": 2,
+            "width": 5,
+            "tier": 0
+        },
+        {
+            "fromDistrictId": "Plaza",
+            "toDistrictId": "Colonnade",
+            "kind": 0,
+            "width": 5,
+            "tier": 0
+        },
+        {
+            "fromDistrictId": "Colonnade",
+            "toDistrictId": "CanalRow",
+            "kind": 0,
+            "width": 5,
+            "tier": 0
+        }
+    ],
+    "canals": [
+        {
+            "center": {
+                "x": -14,
+                "y": 0,
+                "z": 16
+            },
+            "size": {
+                "x": 14,
+                "y": 30
+            },
+            "depth": 2.2,
+            "useOverride": false,
+            "colorOverride": {
+                "r": 0.22,
+                "g": 0.45,
+                "b": 0.12,
+                "a": 1
+            }
+        },
+        {
+            "center": {
+                "x": 0,
+                "y": 0,
+                "z": 10
+            },
+            "size": {
+                "x": 10,
+                "y": 12
+            },
+            "depth": 2,
+            "useOverride": false,
+            "colorOverride": {
+                "r": 0.22,
+                "g": 0.45,
+                "b": 0.12,
+                "a": 1
+            }
+        },
+        {
+            "center": {
+                "x": 24,
+                "y": 0,
+                "z": -41
+            },
+            "size": {
+                "x": 24,
+                "y": 6
+            },
+            "depth": 2,
+            "useOverride": false,
+            "colorOverride": {
+                "r": 0.22,
+                "g": 0.45,
+                "b": 0.12,
+                "a": 1
+            }
+        }
+    ],
+    "shipyard": {
+        "enabled": true,
+        "berthCenter": {
+            "x": 0,
+            "y": 0,
+            "z": -48
+        },
+        "berthSize": {
+            "x": 20,
+            "y": 16
+        },
+        "shipLocalPos": {
+            "x": 0,
+            "y": 1.6,
+            "z": 0
+        },
+        "shipSize": {
+            "x": 5,
+            "y": 3,
+            "z": 12
+        },
+        "shipRotationY": 0
+    },
+    "droneZones": [
+        {
+            "id": "Tutorial_Dispatch",
+            "center": {
+                "x": 0,
+                "y": 0,
+                "z": -10
+            },
+            "radius": 3,
+            "count": 3,
+            "respawnDelay": 0,
+            "combat": false,
+            "variantId": "drone_easy"
+        },
+        {
+            "id": "Patrol_Market",
+            "center": {
+                "x": 26,
+                "y": 0,
+                "z": 8
+            },
+            "radius": 6,
+            "count": 3,
+            "respawnDelay": 14,
+            "combat": true,
+            "variantId": "drone_standard"
+        },
+        {
+            "id": "Patrol_Canal",
+            "center": {
+                "x": -26,
+                "y": 0,
+                "z": 26
+            },
+            "radius": 4,
+            "count": 2,
+            "respawnDelay": 16,
+            "combat": true,
+            "variantId": "drone_easy"
+        }
+    ],
+    "creatureZones": [
+        {
+            "id": "Swarm_CanalRow",
+            "center": {
+                "x": -26,
+                "y": 0,
+                "z": 14.5
+            },
+            "radius": 2.5,
+            "count": 4,
+            "respawnDelay": 25,
+            "creatureId": "swarm_bug"
+        },
+        {
+            "id": "Mites_Plaza",
+            "center": {
+                "x": 0,
+                "y": 0,
+                "z": 28
+            },
+            "radius": 6,
+            "count": 3,
+            "respawnDelay": 30,
+            "creatureId": "witness_mite"
+        },
+        {
+            "id": "Tendrils_Flats",
+            "center": {
+                "x": 44,
+                "y": 0,
+                "z": 8
+            },
+            "radius": 4,
+            "count": 3,
+            "respawnDelay": 0,
+            "creatureId": "tendril"
+        },
+        {
+            "id": "Molters_Colonnade",
+            "center": {
+                "x": -20,
+                "y": 0,
+                "z": 38
+            },
+            "radius": 3,
+            "count": 2,
+            "respawnDelay": 40,
+            "creatureId": "husk_molter"
+        }
+    ],
+    "hazards": [
+        {
+            "id": "Acid_CanalRow",
+            "kind": 2,
+            "center": {
+                "x": -14,
+                "y": 0,
+                "z": 16
+            },
+            "size": {
+                "x": 14,
+                "y": 3,
+                "z": 30
+            },
+            "strength": 1.4,
+            "direction": {
+                "x": 1,
+                "y": 0,
+                "z": 0
+            }
+        },
+        {
+            "id": "Acid_DispatchPool",
+            "kind": 2,
+            "center": {
+                "x": 0,
+                "y": 0,
+                "z": 10
+            },
+            "size": {
+                "x": 10,
+                "y": 3,
+                "z": 12
+            },
+            "strength": 1.2,
+            "direction": {
+                "x": 1,
+                "y": 0,
+                "z": 0
+            }
+        },
+        {
+            "id": "Acid_CanalOne",
+            "kind": 2,
+            "center": {
+                "x": 24,
+                "y": 0,
+                "z": -41
+            },
+            "size": {
+                "x": 24,
+                "y": 3,
+                "z": 6
+            },
+            "strength": 1.2,
+            "direction": {
+                "x": 1,
+                "y": 0,
+                "z": 0
+            }
+        }
+    ],
+    "collectibles": [
+        {
+            "itemId": "artifact_half_b",
+            "displayName": "the Dockmaster's paperweight",
+            "localPosition": {
+                "x": -3.2,
+                "y": 0.1,
+                "z": -30
+            },
+            "flagOnCollect": "ARTIFACT_HALF_B",
+            "accentColor": {
+                "r": 0.45,
+                "g": 0.85,
+                "b": 0.82,
+                "a": 1
+            }
+        }
+    ],
+    "machines": [
+        {
+            "machineId": "signal_relay",
+            "displayName": "signal relay",
+            "localPosition": {
+                "x": -26,
+                "y": 0.1,
+                "z": 10
+            },
+            "partItemId": "relay_cell",
+            "partLocalPosition": {
+                "x": -24,
+                "y": 0.1,
+                "z": 7
+            }
+        }
+    ],
+    "mines": [],
+    "gardens": [],
+    "sockets": [],
+    "flagsRequired": [],
+    "flagsGranted": [
+        "C1_W001_ARRIVED",
+        "C1_W001_JOB_COMPLETE",
+        "W001_COMPLETE"
+    ]
+}

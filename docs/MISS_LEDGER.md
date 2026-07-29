@@ -164,6 +164,22 @@ Read by every lane at session start alongside HANDOFF. Full spec: `FINISHED_GAME
     delivery gate before any APK reaches Terry (G5) · standing/seated/child reach proxies (G6).
     (→ pending: fix shipped rb110; the entry CLOSES only when G1-G4 exist and are green.)
 
+19. **WHAT:** a false "the city has NO level inside it" claim (rb126: `ToxicCityLayout.asset` has
+    "EMPTY districts:/canals:/creatureZones:/droneZones:/shipyard:/experience: blocks") shaped a
+    session of planning — the asset actually carries 5 districts, 7 connections, 2 canals, 3 drone
+    zones, 4 creature zones, hazards, and a berth; only `pois:[]` was empty. **FOUND BY:** the
+    plan-mode exploration's full-file read (2026-07-29), before any code acted on the claim.
+    **WHY MISSED:** the state was measured with `grep -E "^  [a-zA-Z]+:"` — on multi-line Unity
+    YAML that pattern matches only top-level keys, so a populated list (items on subsequent,
+    deeper-indented lines) is indistinguishable from an empty one; the tool's output shape was
+    mistaken for the data's shape. **CLASS:** measurement-by-grep on multi-line structured data —
+    a line-oriented probe answering a structure-shaped question. **SYSTEM CHANGE:** asset/scene
+    content claims ("empty", "missing", "N of X") must come from a full read of the block or a
+    structure-aware parse, never a line-regex; any doc claim that cites grep as its evidence is
+    treated as UNVERIFIED. Corrected in the docs by rb127 (HANDOFF) — `LEVEL1_SPATIAL_SCRIPT`'s
+    affected rows are re-marked as the spec supersedes them. (→ pending: closes when the spatial
+    script's §3 [∅] rows are reconciled against the compiled spec.)
+
 ## CLOSED
 
 *(entries move here when their SYSTEM CHANGE is verified in place — the fix alone never closes

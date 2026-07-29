@@ -38,13 +38,51 @@
 > `docs/HANDOFF_HISTORY_THROUGH_RB24.md`.
 
 
+### 2026-07-29 (rb127) — Fable 5: 🏗 B1 — ToxicCity world spec (the city interior as spec data) + relay_cell item + bake-order fix
+
+- **Terry approved the completion plan with the honest-reporting mandate** ("just let me know
+  honestly what you've built and what hasn't been built, not planned, built"). Executing the batch
+  checklist B1→B12. This entry is B1.
+- **BUILT (committed, real):**
+  1. **`docs/worldspecs/ToxicCity.spec.json`** — the FIRST world spec (folder was empty). A
+     faithful superset of the committed `ToxicCityLayout.asset` + `ToxicCity_WorldPack.asset`
+     (all 5 districts/7 connections/2 canals/3 droneZones/4 creatureZones/2 hazards/shipyard/
+     palette/sky verbatim; pack collectibles+machines+flags mirrored EXACTLY so
+     `WorldSpecCompiler.ApplyToPack`'s wholesale overwrite cannot wipe anything) **plus the B1
+     expansion:** **Quay** district east of the berth (Dockmaster booth hero w/ new
+     `dockmaster_booth` interior marker, quay crane, crate props — the §3 toy-beat dockfront),
+     **Colonnade** district on the Plaza→CanalRow leg (the Husk-Molter observation walk;
+     `Molters_Relay` zone re-sited there as `Molters_Colonnade` per WS2), **Canal One** east–west
+     between quay and city + its Flood hazard, and 3 new connections (Quay bridge, colonnade walk).
+  2. **`Resources/Items/RelayCell.asset`** — `relay_cell` ItemDefinition (was a LATENT GAP: the
+     pack's `signal_relay` machine referenced it but no definition existed; the spec validator
+     would have red-lit `SPEC_ITEM_UNKNOWN` at Terry's desk).
+  3. **`LEVEL1_BAKE_AND_SMOKE.md` bake order fixed:** Compile World Specs is now step 2, BEFORE
+     Build Toxic City (else the bake uses the old prototype layout), with the one-time
+     `SPEC_DRIFT` formatting warn explained.
+- **NOT BUILT yet (honesty per the mandate):** the spec is DATA — it becomes geometry only when
+  Terry runs Compile + Build Toxic City (nothing bakes in the cloud). Skiff dock/zipline-over-
+  Canal-One placement, garage/breach/flats site (B5), stalker (B7 — no `tox_canal_stalker_01`
+  CreatureDefinition exists yet, so NO stalker zone in this spec: it would silently fall back to
+  a Swarmer), space-leg presentation batches (B3/B4x), keyed departure (B9), W002 close (B10).
+- **Heads-up:** decisions of record — spec keeps `experience.enabled=0` + `pois:[]` (POIs are
+  gated on experience; expedition site is staked by B5's author instead), half B stays "the
+  Dockmaster's paperweight" collectible until B5 resites it to the flats per Terry's ⚖ (rb126),
+  `rings`/jobs/spawnMarkers/audioProfile are not spec-carried (compiler never touches them —
+  verified in `WorldSpecCompiler.cs`). Next: B2 (contract marker retarget check) then Wave 2
+  space batches.
+- Commit: (this one).
+
 ### 2026-07-29 (rb126) — Fable 5: 📐 LEVEL1_SPATIAL_SCRIPT — the placement layer, + ⚖ Terry's two story corrections (expedition + boat/stalker)
 
 - **Terry demanded the missing DETAIL layer** ("placement of everything, how far apart, the little
   stuff in between, how do we know where we're going, are the rings there immediately, how do the
-  droids act") and guessed it wasn't built. **Confirmed at the data layer:** the committed
+  droids act") and guessed it wasn't built. ~~**Confirmed at the data layer:** the committed
   `ToxicCityLayout.asset` has EMPTY `districts:/canals:/creatureZones:/droneZones:/pois:/shipyard:/
-  experience:` blocks — the city is a 250 m shell (26 towers, fog, sky) with NO level inside it.
+  experience:` blocks — the city is a 250 m shell (26 towers, fog, sky) with NO level inside it.~~
+  **⚠ CORRECTED rb127 / MISS_LEDGER #19:** that was a grep artifact — the asset carries 5 districts,
+  7 connections, 2 canals, 3 drone zones, 4 creature zones + berth (a prototype-scale interior);
+  only `pois:[]` was empty. The spec (rb127) supersedes it either way.
   Wrote **`docs/design/LEVEL1_SPATIAL_SCRIPT.md`**: every placement marked **[M] measured** (space
   lane ring/drone coordinates, 40 m/s flight, drone bob/recharge/list behavior, city shell) /
   **[∅] empty** / **[S] spec'd** (W000 eyeline chain, the 400 m job loop, dispatch sightline

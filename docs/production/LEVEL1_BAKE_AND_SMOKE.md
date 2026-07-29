@@ -15,11 +15,12 @@ its Console line before the next:
 | # | Menu | Expect in Console | Produces |
 |---|---|---|---|
 | 1 | `Ziptide → First Hour → Author W000 Surfaces` | W000 authored/surfaces lines | `W000_DriftIn.unity` content (wake room, comfort, keepsake, adapters) |
-| 2 | `Ziptide → Worlds → Build Toxic City` | `[Ziptide]` city build + audit lines | `ToxicCity.unity` populated (ring city, dispatch, zipline, **ReentryArrival**) |
-| 3 | `Ziptide → Worlds → Build Toxic City Contract` | contract/job lines | the 5-step W001 contract |
-| 4 | `Ziptide → Worlds → Build Space Lane (Flight Trial)` | `Space lane built: … (5 rings)` | `SpaceLane_Trial.unity` (dock, helm, rings, salvage drones, THE FIND, onward leg) |
-| 5 | (if listed) `Ziptide → Worlds → Build W002 …` / Cavern | W002 lines | `W002_DryCistern.unity` |
-| 6 | **File → Save Project**, then `git add -A` + commit + push | — | the baked scenes/assets land in the repo so the cloud lanes can finally see them |
+| 2 | `Ziptide → Worlds → Compile World Specs (docs-worldspecs)` | `SPEC_APPLIED ToxicCity` (a one-time `SPEC_DRIFT` **warning** after this first compile is formatting noise — run `Export All World Specs (JSON)` once and commit to silence it; a red `SPEC_REJECTED` is real, send it) | the layout/pack assets updated from `docs/worldspecs/ToxicCity.spec.json` — the expanded city (Quay + Dockmaster booth, Colonnade, Canal One) as data. **Must run BEFORE step 3** or the bake uses the old prototype layout |
+| 3 | `Ziptide → Worlds → Build Toxic City` | `[Ziptide]` city build + audit lines | `ToxicCity.unity` populated (ring city, dispatch, quay, colonnade, **ReentryArrival**) |
+| 4 | `Ziptide → Worlds → Build Toxic City Contract` | contract/job lines | the 5-step W001 contract |
+| 5 | `Ziptide → Worlds → Build Space Lane (Flight Trial)` | `Space lane built: … (5 rings)` | `SpaceLane_Trial.unity` (dock, helm, rings, salvage drones, THE FIND, onward leg) |
+| 6 | (if listed) `Ziptide → Worlds → Build W002 …` / Cavern | W002 lines | `W002_DryCistern.unity` |
+| 7 | **File → Save Project**, then `git add -A` + commit + push | — | the baked scenes/assets land in the repo so the cloud lanes can finally see them |
 
 **If a bake errors:** screenshot/copy the FIRST red Console line + the menu name. Don't debug —
 send it; that one line is usually enough.
