@@ -1,6 +1,6 @@
 {
   "tool": "recovery_event_save_graph",
-  "scannedFiles": 772,
+  "scannedFiles": 773,
   "evidenceCount": 824,
   "kindCounts": {
     "AUTOSAVE": 8,
@@ -5023,7 +5023,7 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Ship/Runtime/SpaceTargetRuntime.cs",
-        "line": 125,
+        "line": 140,
         "owner": "Ziptide.Ship.SpaceTargetRuntime",
         "target": "SaveSystem.Profile",
         "detail": "",
@@ -13272,7 +13272,7 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/SpaceTargetRuntime.cs",
-      "line": 125,
+      "line": 140,
       "owner": "Ziptide.Ship.SpaceTargetRuntime",
       "target": "SaveSystem.Profile",
       "detail": "",

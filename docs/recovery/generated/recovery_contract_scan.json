@@ -1,14 +1,14 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-29T16:44:48.467085+00:00",
+  "generatedAtUtc": "2026-07-29T16:47:05.256295+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
     "Ziptide/Assets/Ziptide",
     "Ziptide/Assets/ZiptideNet"
   ],
-  "scannedFiles": 772,
+  "scannedFiles": 773,
   "findingCount": 2814,
   "categoryCounts": {
     "bootstrap": 46,
@@ -5411,7 +5411,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-      "line": 444,
+      "line": 450,
       "symbol": "Ziptide.Ship.ShipFlightRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: FLIGHT_SALVAGE target=\" + t.name + \" granted=\" + granted.ToString(\"F0\"));"
     },
@@ -5420,7 +5420,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/SpaceTargetRuntime.cs",
-      "line": 102,
+      "line": 103,
       "symbol": "Ziptide.Ship.SpaceTargetRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: DRONE_MOOD target=\" + name + \" mood=\" + mood"
     },
@@ -8273,7 +8273,7 @@
       "code": "FALLBACK_MARKER",
       "description": "Source text marks fallback/prototype debt",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-      "line": 480,
+      "line": 487,
       "symbol": "Ziptide.Ship.ShipFlightRuntime",
       "snippet": "// \u2500\u2500 Rig plumbing (ShipBoardingStation patterns \u2014 teleport, never parent) \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500"
     },
@@ -24212,7 +24212,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/SpaceTargetRuntime.cs",
-      "line": 125,
+      "line": 140,
       "symbol": "Ziptide.Ship.SpaceTargetRuntime",
       "snippet": "SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null,"
     },

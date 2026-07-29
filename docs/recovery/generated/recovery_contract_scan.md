@@ -1,6 +1,6 @@
 # ZIPTIDE Recovery Contract Scan
 
-- Scanned files: **772**
+- Scanned files: **773**
 - Findings: **2814**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
@@ -622,8 +622,8 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:385` · `Ziptide.Ship.ShipFlightRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FLIGHT_COURSE_DONE rings=" + _course.RingCount);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:427` · `Ziptide.Ship.ShipFlightRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FLIGHT_FIRE hit=" + (hit != null ? hit.name : "none"));`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:431` · `Ziptide.Ship.ShipFlightRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FLIGHT_DISABLE target=" + hit.name);`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:444` · `Ziptide.Ship.ShipFlightRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FLIGHT_SALVAGE target=" + t.name + " granted=" + granted.ToString("F0"));`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Ship/Runtime/SpaceTargetRuntime.cs:102` · `Ziptide.Ship.SpaceTargetRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: DRONE_MOOD target=" + name + " mood=" + mood`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:450` · `Ziptide.Ship.ShipFlightRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FLIGHT_SALVAGE target=" + t.name + " granted=" + granted.ToString("F0"));`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Ship/Runtime/SpaceTargetRuntime.cs:103` · `Ziptide.Ship.SpaceTargetRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: DRONE_MOOD target=" + name + " mood=" + mood`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:88` · `Ziptide.Ship.VehicleRuntime` — ZIPTIDE diagnostic tag. `if (_def == null) Debug.LogWarning("ZIPTIDE: VEHICLE_DEF_MISSING id=" + vehicleId);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:152` · `Ziptide.Ship.VehicleRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: VEHICLE_VISUAL_READY id=" + vehicleId`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:323` · `Ziptide.Ship.VehicleRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: VEHICLE_MOUNT id=" + vehicleId + " maxSpeed=" + _params.maxSpeed`
@@ -944,7 +944,7 @@
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ToxicRiverRuntime.cs:14` · `Ziptide.Gameplay.ToxicRiverRuntime` — Source text marks fallback/prototype debt. `/// logged fallback when the visual surface cannot be resolved.`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ZiptideGateEffect.cs:123` · `Ziptide.Gameplay.ZiptideGateEffect` — Source text marks fallback/prototype debt. `/// <summary>URP/Unlit with a hard fallback — a stripped shader on device would make`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldRuntime.cs:78` · `Ziptide.Gameplay.WorldRuntime` — Source text marks fallback/prototype debt. `// and create a respawn-fall loop. Marker first, profile only as fallback.`
-- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:480` · `Ziptide.Ship.ShipFlightRuntime` — Source text marks fallback/prototype debt. `// ── Rig plumbing (ShipBoardingStation patterns — teleport, never parent) ───────────────────`
+- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:487` · `Ziptide.Ship.ShipFlightRuntime` — Source text marks fallback/prototype debt. `// ── Rig plumbing (ShipBoardingStation patterns — teleport, never parent) ───────────────────`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/EditMode/BootConfigTests.cs:8` · `Ziptide.Tests.EditMode.BootConfigTests` — Source text marks fallback/prototype debt. `/// at the SandboxTestLab graybox "temporarily," and it silently stayed for weeks — booting testers`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/EditMode/BootConfigTests.cs:11` · `Ziptide.Tests.EditMode.BootConfigTests` — Source text marks fallback/prototype debt. `/// the sandbox graybox, and never _Boot itself.`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Tests/EditMode/BootConfigTests.cs:26` · `Ziptide.Tests.EditMode.BootConfigTests` — Source text marks fallback/prototype debt. `"boot must not land in the SandboxTestLab graybox — that stranded testers behind the broken dev menu");`
@@ -2729,7 +2729,7 @@
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:64` · `Ziptide.Gameplay.WorldTravelStation` — SaveSystem reference. `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:149` · `Ziptide.Gameplay.WorldTravelStation` — SaveSystem reference. `+ " missing=" + (WorldGating.FirstMissingRequirement(pack, SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null) ?? "?"));`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:137` · `Ziptide.Ship.ShipFlightRuntime` — SaveSystem reference. `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
-- **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Ship/Runtime/SpaceTargetRuntime.cs:125` · `Ziptide.Ship.SpaceTargetRuntime` — SaveSystem reference. `SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null,`
+- **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Ship/Runtime/SpaceTargetRuntime.cs:140` · `Ziptide.Ship.SpaceTargetRuntime` — SaveSystem reference. `SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null,`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/EditMode/ComfortSettingsTests.cs:106` · `Ziptide.Tests.EditMode.ComfortSettingsTests` — SaveSystem reference. `StringAssert.DoesNotContain("SaveSystem.", source);`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/EditMode/ComfortSettingsTests.cs:121` · `Ziptide.Tests.EditMode.ComfortSettingsTests` — SaveSystem reference. `StringAssert.DoesNotContain("SaveSystem.", source);`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourObservationCoreTests.cs:184` · `Ziptide.Tests.EditMode.FirstHourObservationCoreTests` — SaveSystem reference. `StringAssert.DoesNotContain("SaveSystem", source);`

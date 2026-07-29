@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
-  "scannedFiles": 772,
+  "scannedFiles": 773,
   "findingCount": 2814,
   "maps": {
     "bootstrapPersistence": [
@@ -18106,7 +18106,7 @@
           {
             "code": "SAVE_SYSTEM_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Ship/Runtime/SpaceTargetRuntime.cs",
-            "line": 125,
+            "line": 140,
             "symbol": "Ziptide.Ship.SpaceTargetRuntime",
             "snippet": "SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null,"
           }
@@ -22315,7 +22315,7 @@
           {
             "code": "FALLBACK_MARKER",
             "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-            "line": 480,
+            "line": 487,
             "symbol": "Ziptide.Ship.ShipFlightRuntime",
             "snippet": "// \u2500\u2500 Rig plumbing (ShipBoardingStation patterns \u2014 teleport, never parent) \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500"
           }
