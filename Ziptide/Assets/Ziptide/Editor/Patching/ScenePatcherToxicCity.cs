@@ -93,6 +93,19 @@ namespace Ziptide.Editor.Patching
             EnsureDispatchAndBoard(pack, spawnPos);
             SpawnStarterWeapons(root, spawnPos);
             EnsureFirstHourRoute(root, kit, spawnPos);
+            EnsureReentryArrival();
+        }
+
+        // The reentry/landing handoff owner (product contract §4 — was "no canonical owner/beat").
+        // Fires only on the space-leg → world route; every other way into this scene stays silent.
+        private static void EnsureReentryArrival()
+        {
+            var go = PatcherUtil.EnsureRootObject("ReentryArrival", Vector3.zero);
+            var runtime = PatcherUtil.EnsureComponent<ReentryArrivalRuntime>(go);
+            var so = new SerializedObject(runtime);
+            PatcherUtil.SetString(so, "expectedOriginScene", ZiptideConstants.SceneSpaceLane);
+            PatcherUtil.SetString(so, "rillLineId", string.Empty);
+            so.ApplyModifiedPropertiesWithoutUndo();
         }
 
         /// <summary>
