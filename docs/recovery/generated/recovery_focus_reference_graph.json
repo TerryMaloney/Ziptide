@@ -1,7 +1,7 @@
 {
   "tool": "recovery_focus_reference_graph",
-  "scannedFiles": 782,
-  "referenceCount": 447,
+  "scannedFiles": 783,
+  "referenceCount": 459,
   "summaries": {
     "melee": {
       "referenceCount": 112,
@@ -87,7 +87,7 @@
       ]
     },
     "repairObjective": {
-      "referenceCount": 234,
+      "referenceCount": 244,
       "fileCount": 57,
       "callerFileCount": 56,
       "paths": [
@@ -209,7 +209,7 @@
       ]
     },
     "shipPresentation": {
-      "referenceCount": 101,
+      "referenceCount": 103,
       "fileCount": 21,
       "callerFileCount": 18,
       "paths": [
@@ -1317,7 +1317,7 @@
           "focus": "repairObjective",
           "token": "CastOffArming",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-          "line": 179,
+          "line": 205,
           "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
           "snippet": "// but never cache absence: a truly machine-less scene stays armed (CastOffArming law).",
           "declaration_file": false
@@ -1326,7 +1326,7 @@
           "focus": "repairObjective",
           "token": "CastOffArming",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-          "line": 183,
+          "line": 211,
           "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
           "snippet": "bool armed = CastOffArming.IsArmed(gateConfigured, _armingMachine != null,",
           "declaration_file": false
@@ -1383,6 +1383,78 @@
           "line": 37,
           "symbol": "Ziptide.Tests.EditMode.CastOffArmingTests",
           "snippet": "Assert.IsTrue(CastOffArming.IsArmed(gateConfigured: false, machineFound: true, machineRepaired: false));",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "CastOffArming",
+          "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CastOffArmingTests.cs",
+          "line": 45,
+          "symbol": "Ziptide.Tests.EditMode.CastOffArmingTests",
+          "snippet": "Assert.IsFalse(CastOffArming.IsArmed(false, false, false, keyRequired: true, keySeated: false),",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "CastOffArming",
+          "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CastOffArmingTests.cs",
+          "line": 47,
+          "symbol": "Ziptide.Tests.EditMode.CastOffArmingTests",
+          "snippet": "Assert.IsTrue(CastOffArming.IsArmed(false, false, false, keyRequired: true, keySeated: true));",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "CastOffArming",
+          "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CastOffArmingTests.cs",
+          "line": 55,
+          "symbol": "Ziptide.Tests.EditMode.CastOffArmingTests",
+          "snippet": "Assert.IsTrue(CastOffArming.IsArmed(gateConfigured: true, machineFound: false, machineRepaired: false));",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "CastOffArming",
+          "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CastOffArmingTests.cs",
+          "line": 56,
+          "symbol": "Ziptide.Tests.EditMode.CastOffArmingTests",
+          "snippet": "Assert.IsFalse(CastOffArming.IsArmed(false, false, false, keyRequired: true, keySeated: false));",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "CastOffArming",
+          "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CastOffArmingTests.cs",
+          "line": 62,
+          "symbol": "Ziptide.Tests.EditMode.CastOffArmingTests",
+          "snippet": "Assert.IsTrue(CastOffArming.IsArmed(false, false, false, keyRequired: false, keySeated: false),",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "CastOffArming",
+          "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CastOffArmingTests.cs",
+          "line": 64,
+          "symbol": "Ziptide.Tests.EditMode.CastOffArmingTests",
+          "snippet": "Assert.IsFalse(CastOffArming.IsArmed(true, true, false, keyRequired: false, keySeated: true),",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "CastOffArming",
+          "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CastOffArmingTests.cs",
+          "line": 71,
+          "symbol": "Ziptide.Tests.EditMode.CastOffArmingTests",
+          "snippet": "Assert.IsFalse(CastOffArming.IsArmed(true, true, false, keyRequired: true, keySeated: true),",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "CastOffArming",
+          "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CastOffArmingTests.cs",
+          "line": 73,
+          "symbol": "Ziptide.Tests.EditMode.CastOffArmingTests",
+          "snippet": "Assert.IsTrue(CastOffArming.IsArmed(true, true, true, keyRequired: true, keySeated: true));",
           "declaration_file": false
         }
       ],
@@ -2039,7 +2111,7 @@
           "focus": "repairObjective",
           "token": "JobDirector",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-          "line": 178,
+          "line": 204,
           "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
           "snippet": "// The machine is spawned at runtime by JobDirector, so keep looking until found \u2014",
           "declaration_file": false
@@ -2048,7 +2120,7 @@
           "focus": "repairObjective",
           "token": "JobDirector",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-          "line": 187,
+          "line": 216,
           "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
           "snippet": "// observes and its repaired state \u2014 divergence from the JobDirector-spawned machine",
           "declaration_file": false
@@ -2594,7 +2666,7 @@
           "focus": "repairObjective",
           "token": "REPAIR_TRACE",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-          "line": 193,
+          "line": 222,
           "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
           "snippet": "Debug.Log(\"ZIPTIDE: REPAIR_TRACE hop=castoff armed=\" + armed",
           "declaration_file": false
@@ -2931,7 +3003,7 @@
           "focus": "repairObjective",
           "token": "RepairableMachine",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-          "line": 40,
+          "line": 44,
           "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
           "snippet": "private RepairableMachine _armingMachine; // cached once found; absence is re-checked per press",
           "declaration_file": false
@@ -2940,7 +3012,7 @@
           "focus": "repairObjective",
           "token": "RepairableMachine",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-          "line": 180,
+          "line": 206,
           "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
           "snippet": "foreach (var m in FindObjectsOfType<RepairableMachine>())",
           "declaration_file": false
@@ -3276,6 +3348,24 @@
         {
           "focus": "repairObjective",
           "token": "ShipCastOffRuntime",
+          "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
+          "line": 417,
+          "symbol": "Ziptide.Editor.Patching.CityBuilder",
+          "snippet": "var castOff = ship.GetComponent<ShipCastOffRuntime>()",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "ShipCastOffRuntime",
+          "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
+          "line": 418,
+          "symbol": "Ziptide.Editor.Patching.CityBuilder",
+          "snippet": "?? ship.gameObject.AddComponent<ShipCastOffRuntime>();",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "ShipCastOffRuntime",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs",
           "line": 37,
           "symbol": "Ziptide.Editor.FirstHourSurfaceAuthor",
@@ -3466,6 +3556,24 @@
           "token": "ShipCastOffRuntime",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
           "line": 390,
+          "symbol": "Ziptide.Editor.Patching.CityBuilder",
+          "snippet": "?? ship.gameObject.AddComponent<ShipCastOffRuntime>();",
+          "declaration_file": false
+        },
+        {
+          "focus": "shipPresentation",
+          "token": "ShipCastOffRuntime",
+          "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
+          "line": 417,
+          "symbol": "Ziptide.Editor.Patching.CityBuilder",
+          "snippet": "var castOff = ship.GetComponent<ShipCastOffRuntime>()",
+          "declaration_file": false
+        },
+        {
+          "focus": "shipPresentation",
+          "token": "ShipCastOffRuntime",
+          "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
+          "line": 418,
           "symbol": "Ziptide.Editor.Patching.CityBuilder",
           "snippet": "?? ship.gameObject.AddComponent<ShipCastOffRuntime>();",
           "declaration_file": false
@@ -4819,6 +4927,24 @@
       "declaration_file": false
     },
     {
+      "focus": "repairObjective",
+      "token": "ShipCastOffRuntime",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
+      "line": 417,
+      "symbol": "Ziptide.Editor.Patching.CityBuilder",
+      "snippet": "var castOff = ship.GetComponent<ShipCastOffRuntime>()",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
+      "token": "ShipCastOffRuntime",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
+      "line": 418,
+      "symbol": "Ziptide.Editor.Patching.CityBuilder",
+      "snippet": "?? ship.gameObject.AddComponent<ShipCastOffRuntime>();",
+      "declaration_file": false
+    },
+    {
       "focus": "shipPresentation",
       "token": "ShipCastOffRuntime",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
@@ -4832,6 +4958,24 @@
       "token": "ShipCastOffRuntime",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
       "line": 390,
+      "symbol": "Ziptide.Editor.Patching.CityBuilder",
+      "snippet": "?? ship.gameObject.AddComponent<ShipCastOffRuntime>();",
+      "declaration_file": false
+    },
+    {
+      "focus": "shipPresentation",
+      "token": "ShipCastOffRuntime",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
+      "line": 417,
+      "symbol": "Ziptide.Editor.Patching.CityBuilder",
+      "snippet": "var castOff = ship.GetComponent<ShipCastOffRuntime>()",
+      "declaration_file": false
+    },
+    {
+      "focus": "shipPresentation",
+      "token": "ShipCastOffRuntime",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
+      "line": 418,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "?? ship.gameObject.AddComponent<ShipCastOffRuntime>();",
       "declaration_file": false
@@ -6397,7 +6541,7 @@
       "focus": "repairObjective",
       "token": "CastOffArming",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 179,
+      "line": 205,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "// but never cache absence: a truly machine-less scene stays armed (CastOffArming law).",
       "declaration_file": false
@@ -6406,7 +6550,7 @@
       "focus": "repairObjective",
       "token": "CastOffArming",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 183,
+      "line": 211,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "bool armed = CastOffArming.IsArmed(gateConfigured, _armingMachine != null,",
       "declaration_file": false
@@ -6415,7 +6559,7 @@
       "focus": "repairObjective",
       "token": "JobDirector",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 178,
+      "line": 204,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "// The machine is spawned at runtime by JobDirector, so keep looking until found \u2014",
       "declaration_file": false
@@ -6424,7 +6568,7 @@
       "focus": "repairObjective",
       "token": "JobDirector",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 187,
+      "line": 216,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "// observes and its repaired state \u2014 divergence from the JobDirector-spawned machine",
       "declaration_file": false
@@ -6433,7 +6577,7 @@
       "focus": "repairObjective",
       "token": "REPAIR_TRACE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 193,
+      "line": 222,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: REPAIR_TRACE hop=castoff armed=\" + armed",
       "declaration_file": false
@@ -6451,7 +6595,7 @@
       "focus": "repairObjective",
       "token": "RepairableMachine",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 40,
+      "line": 44,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "private RepairableMachine _armingMachine; // cached once found; absence is re-checked per press",
       "declaration_file": false
@@ -6460,7 +6604,7 @@
       "focus": "repairObjective",
       "token": "RepairableMachine",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 180,
+      "line": 206,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "foreach (var m in FindObjectsOfType<RepairableMachine>())",
       "declaration_file": false
@@ -7327,6 +7471,78 @@
       "line": 37,
       "symbol": "Ziptide.Tests.EditMode.CastOffArmingTests",
       "snippet": "Assert.IsTrue(CastOffArming.IsArmed(gateConfigured: false, machineFound: true, machineRepaired: false));",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
+      "token": "CastOffArming",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CastOffArmingTests.cs",
+      "line": 45,
+      "symbol": "Ziptide.Tests.EditMode.CastOffArmingTests",
+      "snippet": "Assert.IsFalse(CastOffArming.IsArmed(false, false, false, keyRequired: true, keySeated: false),",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
+      "token": "CastOffArming",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CastOffArmingTests.cs",
+      "line": 47,
+      "symbol": "Ziptide.Tests.EditMode.CastOffArmingTests",
+      "snippet": "Assert.IsTrue(CastOffArming.IsArmed(false, false, false, keyRequired: true, keySeated: true));",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
+      "token": "CastOffArming",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CastOffArmingTests.cs",
+      "line": 55,
+      "symbol": "Ziptide.Tests.EditMode.CastOffArmingTests",
+      "snippet": "Assert.IsTrue(CastOffArming.IsArmed(gateConfigured: true, machineFound: false, machineRepaired: false));",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
+      "token": "CastOffArming",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CastOffArmingTests.cs",
+      "line": 56,
+      "symbol": "Ziptide.Tests.EditMode.CastOffArmingTests",
+      "snippet": "Assert.IsFalse(CastOffArming.IsArmed(false, false, false, keyRequired: true, keySeated: false));",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
+      "token": "CastOffArming",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CastOffArmingTests.cs",
+      "line": 62,
+      "symbol": "Ziptide.Tests.EditMode.CastOffArmingTests",
+      "snippet": "Assert.IsTrue(CastOffArming.IsArmed(false, false, false, keyRequired: false, keySeated: false),",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
+      "token": "CastOffArming",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CastOffArmingTests.cs",
+      "line": 64,
+      "symbol": "Ziptide.Tests.EditMode.CastOffArmingTests",
+      "snippet": "Assert.IsFalse(CastOffArming.IsArmed(true, true, false, keyRequired: false, keySeated: true),",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
+      "token": "CastOffArming",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CastOffArmingTests.cs",
+      "line": 71,
+      "symbol": "Ziptide.Tests.EditMode.CastOffArmingTests",
+      "snippet": "Assert.IsFalse(CastOffArming.IsArmed(true, true, false, keyRequired: true, keySeated: true),",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
+      "token": "CastOffArming",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CastOffArmingTests.cs",
+      "line": 73,
+      "symbol": "Ziptide.Tests.EditMode.CastOffArmingTests",
+      "snippet": "Assert.IsTrue(CastOffArming.IsArmed(true, true, true, keyRequired: true, keySeated: true));",
       "declaration_file": false
     },
     {

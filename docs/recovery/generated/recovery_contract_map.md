@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
-- Scanned files: **782**
-- Scanner findings: **2831**
+- Scanned files: **783**
+- Scanner findings: **2840**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -883,10 +883,10 @@ None.
   - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:229` **CREATE_PRIMITIVE** — `var w = GameObject.CreatePrimitive(PrimitiveType.Cube);`
   - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:272` **NEW_GAME_OBJECT** — `var marker = new GameObject("Marker_" + hb.interiorMarkerId);`
   - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:353` **CREATE_PRIMITIVE** — `var rail = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:461` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:507` **NEW_GAME_OBJECT** — `var go = new GameObject("Hazard_" + h.id);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:536` **CREATE_PRIMITIVE** — `var drone = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:560` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:485` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:531` **NEW_GAME_OBJECT** — `var go = new GameObject("Hazard_" + h.id);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:560` **CREATE_PRIMITIVE** — `var drone = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:584` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
 
 ### `Ziptide.Editor.Patching.CityStageAPrimitiveFactory` — 4 signal(s)
 
@@ -1417,6 +1417,14 @@ None.
 - Codes: `XR_INTERACTABLE_COMPONENT`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/AugmentPickupRuntime.cs`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Items/AugmentPickupRuntime.cs:13` **XR_INTERACTABLE_COMPONENT** — `[RequireComponent(typeof(XRSimpleInteractable))]`
+
+### `Ziptide.Gameplay.BeaconThreadRuntime` — 3 signal(s)
+
+- Codes: `RUNTIME_MATERIAL_CREATE`, `SHADER_FIND`
+- Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/BeaconThreadRuntime.cs`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/BeaconThreadRuntime.cs:44` **SHADER_FIND** — `Shader shader = Shader.Find("Universal Render Pipeline/Unlit");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/BeaconThreadRuntime.cs:45` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Sprites/Default");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/BeaconThreadRuntime.cs:46` **RUNTIME_MATERIAL_CREATE** — `_material = new Material(shader);`
 
 ### `Ziptide.Gameplay.BeltBlueprintWandItem` — 9 signal(s)
 
@@ -2302,11 +2310,11 @@ None.
 
 - Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`, `TEXTMESH_COMPONENT`, `XR_INTERACTABLE_COMPONENT`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:116` **CREATE_PRIMITIVE** — `var pedestal = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:127` **CREATE_PRIMITIVE** — `var button = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:134` **NEW_GAME_OBJECT** — `var label = new GameObject("Label_PUNCH_IT");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:139` **TEXTMESH_COMPONENT** — `var tm = label.AddComponent<TextMesh>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:148` **XR_INTERACTABLE_COMPONENT** — `var interactable = button.AddComponent<XRSimpleInteractable>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:132` **CREATE_PRIMITIVE** — `var pedestal = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:143` **CREATE_PRIMITIVE** — `var button = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:150` **NEW_GAME_OBJECT** — `var label = new GameObject("Label_PUNCH_IT");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:155` **TEXTMESH_COMPONENT** — `var tm = label.AddComponent<TextMesh>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:164` **XR_INTERACTABLE_COMPONENT** — `var interactable = button.AddComponent<XRSimpleInteractable>();`
 
 ### `Ziptide.Gameplay.ShipRefit` — 4 signal(s)
 
@@ -3286,8 +3294,8 @@ None.
 
 - Codes: `XRI_MANAGER_ASSIGN`, `XRI_MANAGER_LOOKUP`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:149` **XRI_MANAGER_LOOKUP** — `var mgr = FindObjectOfType<XRInteractionManager>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:150` **XRI_MANAGER_ASSIGN** — `if (mgr != null) interactable.interactionManager = mgr;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:165` **XRI_MANAGER_LOOKUP** — `var mgr = FindObjectOfType<XRInteractionManager>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:166` **XRI_MANAGER_ASSIGN** — `if (mgr != null) interactable.interactionManager = mgr;`
 
 ### `Ziptide.Gameplay.TransmissionConsole` — 4 signal(s)
 
@@ -3584,6 +3592,13 @@ None.
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs:22` **EVENT_DECLARATION** — `public static event Action Changed;`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Audio/AudioMixSettings.cs:22` **STATIC_EVENT_DECLARATION** — `public static event Action Changed;`
+
+### `Ziptide.Gameplay.BeaconThreadRuntime` — 2 signal(s)
+
+- Codes: `PLAYER_PROFILE_REFERENCE`, `SAVE_SYSTEM_REFERENCE`
+- Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/BeaconThreadRuntime.cs`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/BeaconThreadRuntime.cs:61` **PLAYER_PROFILE_REFERENCE** — `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/BeaconThreadRuntime.cs:61` **SAVE_SYSTEM_REFERENCE** — `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 
 ### `Ziptide.Gameplay.BeltCellSpec` — 9 signal(s)
 
@@ -3918,11 +3933,13 @@ None.
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:161` **SAVE_SYSTEM_REFERENCE** — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:181` **SAVE_SYSTEM_REFERENCE** — `SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null) ?? "?")))`
 
-### `Ziptide.Gameplay.ShipCastOffRuntime` — 1 signal(s)
+### `Ziptide.Gameplay.ShipCastOffRuntime` — 3 signal(s)
 
-- Codes: `EVENT_DECLARATION`
+- Codes: `EVENT_DECLARATION`, `SAVE_SYSTEM_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:59` **EVENT_DECLARATION** — `public event Action<string> DestinationSelected;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:75` **EVENT_DECLARATION** — `public event Action<string> DestinationSelected;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:177` **SAVE_SYSTEM_REFERENCE** — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:209` **SAVE_SYSTEM_REFERENCE** — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 
 ### `Ziptide.Gameplay.ShipRefit` — 4 signal(s)
 
@@ -4558,7 +4575,7 @@ None.
 
 - Codes: `CAMERA_MAIN_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:220` **CAMERA_MAIN_REFERENCE** — `var cam = Camera.main;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:249` **CAMERA_MAIN_REFERENCE** — `var cam = Camera.main;`
 
 ### `Ziptide.Gameplay.SpaceSalvageItemRuntime` — 2 signal(s)
 

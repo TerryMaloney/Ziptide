@@ -1,8 +1,8 @@
 {
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
-  "scannedFiles": 782,
-  "findingCount": 2831,
+  "scannedFiles": 783,
+  "findingCount": 2840,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -3730,28 +3730,28 @@
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-            "line": 461,
+            "line": 485,
             "symbol": "Ziptide.Editor.Patching.CityBuilder",
             "snippet": "var go = new GameObject(name);"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-            "line": 507,
+            "line": 531,
             "symbol": "Ziptide.Editor.Patching.CityBuilder",
             "snippet": "var go = new GameObject(\"Hazard_\" + h.id);"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-            "line": 536,
+            "line": 560,
             "symbol": "Ziptide.Editor.Patching.CityBuilder",
             "snippet": "var drone = GameObject.CreatePrimitive(PrimitiveType.Sphere);"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-            "line": 560,
+            "line": 584,
             "symbol": "Ziptide.Editor.Patching.CityBuilder",
             "snippet": "var go = new GameObject(name);"
           }
@@ -6465,6 +6465,40 @@
             "line": 13,
             "symbol": "Ziptide.Gameplay.AugmentPickupRuntime",
             "snippet": "[RequireComponent(typeof(XRSimpleInteractable))]"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Gameplay.BeaconThreadRuntime",
+        "evidenceCount": 3,
+        "codes": [
+          "RUNTIME_MATERIAL_CREATE",
+          "SHADER_FIND"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/BeaconThreadRuntime.cs"
+        ],
+        "evidence": [
+          {
+            "code": "SHADER_FIND",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/BeaconThreadRuntime.cs",
+            "line": 44,
+            "symbol": "Ziptide.Gameplay.BeaconThreadRuntime",
+            "snippet": "Shader shader = Shader.Find(\"Universal Render Pipeline/Unlit\");"
+          },
+          {
+            "code": "SHADER_FIND",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/BeaconThreadRuntime.cs",
+            "line": 45,
+            "symbol": "Ziptide.Gameplay.BeaconThreadRuntime",
+            "snippet": "if (shader == null) shader = Shader.Find(\"Sprites/Default\");"
+          },
+          {
+            "code": "RUNTIME_MATERIAL_CREATE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/BeaconThreadRuntime.cs",
+            "line": 46,
+            "symbol": "Ziptide.Gameplay.BeaconThreadRuntime",
+            "snippet": "_material = new Material(shader);"
           }
         ]
       },
@@ -10875,35 +10909,35 @@
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-            "line": 116,
+            "line": 132,
             "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
             "snippet": "var pedestal = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-            "line": 127,
+            "line": 143,
             "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
             "snippet": "var button = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-            "line": 134,
+            "line": 150,
             "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
             "snippet": "var label = new GameObject(\"Label_PUNCH_IT\");"
           },
           {
             "code": "TEXTMESH_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-            "line": 139,
+            "line": 155,
             "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
             "snippet": "var tm = label.AddComponent<TextMesh>();"
           },
           {
             "code": "XR_INTERACTABLE_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-            "line": 148,
+            "line": 164,
             "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
             "snippet": "var interactable = button.AddComponent<XRSimpleInteractable>();"
           }
@@ -15104,14 +15138,14 @@
           {
             "code": "XRI_MANAGER_LOOKUP",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-            "line": 149,
+            "line": 165,
             "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
             "snippet": "var mgr = FindObjectOfType<XRInteractionManager>();"
           },
           {
             "code": "XRI_MANAGER_ASSIGN",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-            "line": 150,
+            "line": 166,
             "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
             "snippet": "if (mgr != null) interactable.interactionManager = mgr;"
           }
@@ -16285,6 +16319,33 @@
             "line": 22,
             "symbol": "Ziptide.Gameplay.AudioMixSettings",
             "snippet": "public static event Action Changed;"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Gameplay.BeaconThreadRuntime",
+        "evidenceCount": 2,
+        "codes": [
+          "PLAYER_PROFILE_REFERENCE",
+          "SAVE_SYSTEM_REFERENCE"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/BeaconThreadRuntime.cs"
+        ],
+        "evidence": [
+          {
+            "code": "PLAYER_PROFILE_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/BeaconThreadRuntime.cs",
+            "line": 61,
+            "symbol": "Ziptide.Gameplay.BeaconThreadRuntime",
+            "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
+          },
+          {
+            "code": "SAVE_SYSTEM_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/BeaconThreadRuntime.cs",
+            "line": 61,
+            "symbol": "Ziptide.Gameplay.BeaconThreadRuntime",
+            "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
           }
         ]
       },
@@ -17702,9 +17763,10 @@
       },
       {
         "owner": "Ziptide.Gameplay.ShipCastOffRuntime",
-        "evidenceCount": 1,
+        "evidenceCount": 3,
         "codes": [
-          "EVENT_DECLARATION"
+          "EVENT_DECLARATION",
+          "SAVE_SYSTEM_REFERENCE"
         ],
         "paths": [
           "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs"
@@ -17713,9 +17775,23 @@
           {
             "code": "EVENT_DECLARATION",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-            "line": 59,
+            "line": 75,
             "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
             "snippet": "public event Action<string> DestinationSelected;"
+          },
+          {
+            "code": "SAVE_SYSTEM_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
+            "line": 177,
+            "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
+            "snippet": "var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
+          },
+          {
+            "code": "SAVE_SYSTEM_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
+            "line": 209,
+            "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
+            "snippet": "var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
           }
         ]
       },
@@ -20280,7 +20356,7 @@
           {
             "code": "CAMERA_MAIN_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-            "line": 220,
+            "line": 249,
             "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
             "snippet": "var cam = Camera.main;"
           }

@@ -1,8 +1,8 @@
 # ZIPTIDE Event and Save Ownership Graph
 
-- Scanned C# files: **782**
-- Evidence edges: **824**
-- Named subscriptions without matching unsubscribe in the same owner: **60**
+- Scanned C# files: **783**
+- Evidence edges: **832**
+- Named subscriptions without matching unsubscribe in the same owner: **61**
 
 This is a static ownership graph. An unmatched row is a review target, not automatic proof of a leak; process-lifetime static hooks may be intentional.
 
@@ -11,11 +11,11 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **AUTOSAVE:** 8
 - **EVENT_DECLARE:** 49
 - **EVENT_INVOKE:** 61
-- **EVENT_SUBSCRIBE:** 138
+- **EVENT_SUBSCRIBE:** 139
 - **EVENT_UNSUBSCRIBE:** 84
 - **PLAYER_PREFS_ACCESS:** 20
-- **PROFILE_FIELD_ACCESS:** 383
-- **SAVE_ACCESS:** 81
+- **PROFILE_FIELD_ACCESS:** 387
+- **SAVE_ACCESS:** 84
 
 ## Named subscriptions without matching unsubscribe
 
@@ -47,6 +47,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - `Ziptide.Gameplay.PvpBolt` subscribes `transform.position` → `step` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpBolt.cs:67`
 - `Ziptide.Gameplay.PvpBot` subscribes `transform.position` → `k` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpBot.cs:346`
 - `Ziptide.Gameplay.ArtifactJoinRuntime` subscribes `item.transform.position` → `delta` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs:142`
+- `Ziptide.Gameplay.BeaconThreadRuntime` subscribes `p.y` → `Mathf` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/BeaconThreadRuntime.cs:100`
 - `Ziptide.Gameplay.MiningRigRuntime` subscribes `_mine.stored` → `_mine` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/MiningRigRuntime.cs:114`
 - `Ziptide.Gameplay.WeaponPoseCore` subscribes `bot.transform.position` → `transform` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:209`
 - `Ziptide.Gameplay.SonicThumperRuntime` subscribes `bot.transform.position` → `shoveDir` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/SonicThumperRuntime.cs:78`
@@ -260,7 +261,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `DestinationSelected`
 
-- **EVENT_DECLARE** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:59` · `Action<string>` — `public event Action<string> DestinationSelected;`
+- **EVENT_DECLARE** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:75` · `Action<string>` — `public event Action<string> DestinationSelected;`
 
 ### `DisabledState`
 
@@ -447,6 +448,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.ArtifactJoinRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs:63` · `profile` — `_joined = profile != null && profile.HasFlag(ZiptideFlags.ARTIFACT_JOINED);`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.ArtifactJoinRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs:110` · `profile` — `return profile.HasFlag(ZiptideFlags.ARTIFACT_HALF_A)`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.ArtifactJoinRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs:111` · `profile` — `&& profile.HasFlag(ZiptideFlags.ARTIFACT_HALF_B);`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.BeaconThreadRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/BeaconThreadRuntime.cs:63` · `profile` — `&& profile.HasFlag(ZiptideFlags.ARTIFACT_JOINED)`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.BeaconThreadRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/BeaconThreadRuntime.cs:64` · `profile` — `&& !profile.HasFlag(ZiptideFlags.KEY_SEATED);`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.ChoiceStation` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ChoiceStation.cs:35` · `profile` — `bool aTaken = profile != null && !string.IsNullOrEmpty(_def.flagA) && profile.HasFlag(_def.flagA);`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.ChoiceStation` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ChoiceStation.cs:36` · `profile` — `bool bTaken = profile != null && !string.IsNullOrEmpty(_def.flagB) && profile.HasFlag(_def.flagB);`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.KeySocketRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs:43` · `profile` — `if (profile != null && profile.HasFlag(ZiptideFlags.KEY_SEATED))`
@@ -454,6 +457,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.RillCompanion` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs:113` · `profile` — `if (profile.HasFlag(SaidFlagPrefix + line.id)) return;`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.RillCompanion` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs:135` · `profile` — `if (profile.HasFlag(SaidFlagPrefix + line.id)) return false;`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.RillCompanion` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs:153` · `profile` — `if (line.once && profile != null && profile.HasFlag(SaidFlagPrefix + line.id)) continue;`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:179` · `profile` — `&& (profile == null || !profile.HasFlag(ZiptideFlags.KEY_SEATED));`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:210` · `profile` — `bool keySeated = profile != null && profile.HasFlag(ZiptideFlags.KEY_SEATED);`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.SpaceSalvageItemRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/SpaceSalvageItemRuntime.cs:44` · `profile` — `if (profile != null && !string.IsNullOrEmpty(grantsFlag) && profile.HasFlag(grantsFlag))`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.FirstHourW001Orchestrator` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourW001Orchestrator.cs:159` · `profile` — `if (profile == null || !profile.HasFlag(ZiptideFlags.W001_COMPLETE)) return;`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.ProximityTravelTrigger` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ProximityTravelTrigger.cs:47` · `profile` — `if (profile == null || !profile.HasFlag(requiredFlag))`
@@ -772,6 +777,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **SAVE_ACCESS** · `Ziptide.Gameplay.ArtifactJoinRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs:62` — `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_ACCESS** · `Ziptide.Gameplay.ArtifactJoinRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs:108` — `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_ACCESS** · `Ziptide.Gameplay.ArtifactJoinRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs:160` — `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
+- **SAVE_ACCESS** · `Ziptide.Gameplay.BeaconThreadRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/BeaconThreadRuntime.cs:61` — `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_ACCESS** · `Ziptide.Gameplay.BuildSocketRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/BuildSocketRuntime.cs:46` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_ACCESS** · `Ziptide.Gameplay.BuildSocketRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/BuildSocketRuntime.cs:88` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_ACCESS** · `Ziptide.Gameplay.ChoiceStation` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ChoiceStation.cs:34` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
@@ -788,6 +794,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **SAVE_ACCESS** · `Ziptide.Gameplay.RillCompanion` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs:146` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_ACCESS** · `Ziptide.Gameplay.RillCompanion` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs:175` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_ACCESS** · `Ziptide.Gameplay.RillCompanion` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs:290` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
+- **SAVE_ACCESS** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:177` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
+- **SAVE_ACCESS** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:209` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_ACCESS** · `Ziptide.Gameplay.SpaceSalvageItemRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/SpaceSalvageItemRuntime.cs:43` — `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_ACCESS** · `Ziptide.Gameplay.SpaceSalvageItemRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/SpaceSalvageItemRuntime.cs:117` — `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_ACCESS** · `Ziptide.Gameplay.TransmissionConsole` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/TransmissionConsole.cs:69` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
@@ -1293,6 +1301,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 ### `p.y`
 
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.TurnModeCore` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs:258` · `RecoveryEyeHeight` — `p.y += RecoveryEyeHeight - eyeHeight;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.BeaconThreadRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/BeaconThreadRuntime.cs:100` · `Mathf` — `p.y += Mathf.Sin(t * Mathf.PI) * ArcHeight`
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.CityStreetLifeRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/CityStreetLifeRuntime.cs:52` · `phase` — `p.y += phase * 1.15f;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.ToxicRiverSurfaceRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ToxicRiverSurfaceRuntime.cs:78` · `Mathf` — `p.y += Mathf.Sin(Time.time * 1.8f + i * 0.9f) * waveAmplitude`
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.ToxicRiverSurfaceRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ToxicRiverSurfaceRuntime.cs:88` · `Mathf` — `p.y += Mathf.Sin(Time.time * (1.2f + i * 0.07f) + i)`
