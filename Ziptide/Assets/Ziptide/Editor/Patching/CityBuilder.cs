@@ -36,6 +36,11 @@ namespace Ziptide.Editor.Patching
             // Quality Bar P1: heightfield terrain + arrival vista UNDER the districts (no-op unless
             // kit.experience.enabled). Runs after fog setup so it can thin fog for vista visibility.
             WorldExperienceBuilder.Build(root, kit);
+            // CITY_VISUAL_SPEC §1: the approved concentric shell — tower island, canal ring, wedges,
+            // breached sea wall, harbour, outskirts and the horizon gate pillars. No-op unless the
+            // layout opts in, and each ring has its own switch so a world with hand-authored walkable
+            // districts can adopt the shape without a 78 m tower landing in a working plaza.
+            RingCityBuilder.Build(root, kit);
             BuildCanals(root, kit);
 
             foreach (var d in kit.districts)

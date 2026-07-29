@@ -229,6 +229,19 @@ namespace Ziptide.Content
         [Tooltip("Master switch. Off = the legacy rectangular districts, unchanged.")]
         public bool enabled = false;
 
+        [Header("Per-element switches")]
+        // Each ring can be adopted on its own. A world whose walkable districts were authored before
+        // this model existed can take the sea wall, harbour, outskirts and horizon TODAY, and adopt
+        // the tower island and wedges in the pass that re-lays its districts onto the wedge arcs.
+        // Without this, adopting the shape would mean standing a 78 m tower through a working plaza.
+        public bool buildTowerIsland = true;
+        public bool buildWedges = true;
+        public bool buildCanalRing = true;
+        public bool buildSeaWall = true;
+        public bool buildHarbour = true;
+        public bool buildOutskirts = true;
+        public bool buildGatePillars = true;
+
         [Header("1. The Tower island (centre)")]
         [Tooltip("Radius of the island the hero tower rises from.")]
         public float islandRadius = 26f;

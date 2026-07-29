@@ -91,6 +91,43 @@ namespace Ziptide.Tests.EditMode
         }
 
         [Test]
+        public void EachRingCanBeAdoptedOnItsOwn()
+        {
+            // A world whose walkable districts predate this model must be able to take the sea wall,
+            // harbour, outskirts and horizon today and adopt the tower island and wedges in the pass
+            // that re-lays its districts. Without per-element switches, adopting the approved shape
+            // would mean standing a 78 m leaning tower through a working plaza.
+            var rings = Approved();
+            rings.buildTowerIsland = false;
+            rings.buildWedges = false;
+
+            Assert.IsEmpty(rings.Validate(),
+                "declining an element is a layout decision, not a validation error");
+            Assert.IsTrue(rings.buildSeaWall && rings.buildHarbour
+                && rings.buildOutskirts && rings.buildGatePillars,
+                "the elements that never collide with authored districts stay on by default");
+        }
+
+        [Test]
+        public void TheBuilderRespectsEveryElementSwitch()
+        {
+            string source = System.IO.File.ReadAllText(System.IO.Path.Combine(
+                UnityEngine.Application.dataPath,
+                "Ziptide/Editor/Patching/RingCityBuilder.cs".Replace('/', System.IO.Path.DirectorySeparatorChar)));
+
+            StringAssert.Contains("if (r.buildTowerIsland)", source);
+            StringAssert.Contains("if (r.buildWedges)", source);
+            StringAssert.Contains("if (r.buildCanalRing)", source);
+            StringAssert.Contains("if (r.buildSeaWall)", source);
+            StringAssert.Contains("if (r.buildHarbour)", source);
+            StringAssert.Contains("if (r.buildOutskirts)", source);
+            StringAssert.Contains("if (r.buildGatePillars)", source);
+            // The pillars are a horizon anchor; giving them colliders would let a player walk up and
+            // touch the thing the whole wide shot depends on being unreachable.
+            StringAssert.Contains("never walkable geometry", source);
+        }
+
+        [Test]
         public void TheLayoutsOwnValidate_SurfacesRingProblems()
         {
             var kit = UnityEngine.ScriptableObject.CreateInstance<CityLayoutDefinition>();
