@@ -79,6 +79,10 @@ FEATURES: tuple[tuple[str, str, str, str], ...] = (
      r"FlightBoundsCore\.Evaluate\(", r"FlightBoundsVoiceCore\.ShouldSpeak\("),
     ("tender tool arms", "Ship/Runtime/SpaceTargetRuntime.cs",
      r'"AccessPanel"', r"PoseForMood\(mood"),
+    ("city compass", "Editor/Patching/CityWayfindingAuthor.cs",
+     r"CityWayfindingAuthor\.Build\(", r"WayfindingCore\.LanternPositions\("),
+    ("relay fault strobe", "Gameplay/Runtime/World/FaultStrobeRuntime.cs",
+     r"AddComponent<FaultStrobeRuntime>", r"SetPropertyBlock\("),
 )
 
 # Ids the city bake and the contract depend on. A spec that loses one of these strands a step.

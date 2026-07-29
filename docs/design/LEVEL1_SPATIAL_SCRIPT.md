@@ -210,7 +210,13 @@ Terry's next bake. Precisely:
 - **4 ✅** `CanalWaterCore`/`SkiffWaterLockRuntime` (the **ring canal** at r=74 is the ~465 m
   waterway — it existed as geometry all along) + `CanalStalkerCore`/`CanalStalkerBehavior`
   (shadow → bump → block) + the `tox_canal_stalker_01` CreatureDefinition.
-- **5 ❌ NOT BUILT** — lantern route + sightline triple.
+- **5 ✅** `WayfindingCore` + `CityWayfindingAuthor` — the lantern route hangs over the
+  contract's walk (Dispatch → Market → Plaza → Colonnade → CanalRow → Dispatch, every leg an
+  authored connection) and nowhere else, so unlit street = you are exploring; plus the
+  sightline triple (relay mast + red fault strobe NW · north tower's lit crown · berth
+  floodlights S). **Both are LAWS now, not intentions:** `CityWayfindingTests` reads the
+  compiled spec and fails CI if a lantern leg has no street under it or if the three
+  landmarks fall within 45° of each other. Measured separation today: **72°**.
 - **6 ✅** ring lamp-chase, drone wake/evade reactions, find debris shell, **the Moss-orbit sky**
   (giant/sibling moon/sun/starfield on the ground sky's bearings), plus the ascent + reentry
   plasma veils and the helm compass ribbon.

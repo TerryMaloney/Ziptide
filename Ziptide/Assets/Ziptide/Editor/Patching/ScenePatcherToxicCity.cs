@@ -98,6 +98,11 @@ namespace Ziptide.Editor.Patching
             // THE EXPEDITION (⚖ Terry): half B lives outside the wall, so the site, its burn-off
             // column, and the drivable breach are part of the city bake — not a separate world.
             FlatsSiteAuthor.Build(root, kit);
+
+            // THE COMPASS: the lantern route over the contract's walk, and the sightline triple
+            // (relay strobe / north crown / berth floods) that makes "which way is home" a thing
+            // you look at rather than a thing you are told. Last of the §3 wayfinding rows.
+            CityWayfindingAuthor.Build(root, kit);
         }
 
         // The reentry/landing handoff owner (product contract §4 — was "no canonical owner/beat").
