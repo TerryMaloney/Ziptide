@@ -38,6 +38,40 @@
 > `docs/HANDOFF_HISTORY_THROUGH_RB24.md`.
 
 
+### 2026-07-29 (rb122) — Fable 5 takes the LEVEL 1 baton: build it playable, start to finish
+
+- **Terry, verbatim:** *"I want it all built, the whole level start to finish… I want to be able to
+  actually play this level… one level, that's all we need… we've spent months planning, let's
+  execute."* Discover-by-playing; broken things get **fixed AND logged so the next level doesn't
+  repeat them**; art/sound are **modular stand-ins logged as yet-to-be-done** (real Tripo art in
+  ~6 days once he's paid). Continuing from T-Dog's rb121 session close; T-Dog's Level 1 lane is
+  wrapped, I hold it now (if T-Dog resumes we split by wave).
+- **THE SYSTEMS TERRY ASKED FOR ALREADY EXIST — I will NOT build parallels (no-parallel-system law):**
+  - *Stand-ins / art-swap:* `TRIPO_INTAKE_EXECUTION_PACKET.md` — everything ships with a **Forge-native
+    placeholder now**; the real Tripo GLB **swaps in via `ForgeVisualApplier`** later; "no visual swap
+    may erase gameplay tells." That IS "play now, pretty in 6 days." Nothing new needed.
+  - *Defect → prevention:* `MISS_LEDGER.md` (every miss → class → a gate/test so it can't recur) +
+    `LEVEL_INVARIANTS.md` (the cross-level consistency gates) + `FAST_LANE.md` (velocity). The
+    play→find→fix→log→prevent loop is these, used per defect.
+  - *State truth:* `LEVEL1_MASTER_TRACKER.md` (rows move only with proof; code-green ≠ device-green).
+- **COMPLETION EXECUTION ORDER (to playable start→finish; each = Forge-stand-in content + CI-green
+  proof + a Terry build+play checkpoint; defects route to MISS_LEDGER):**
+  - **W-A · make the CURRENT slice playable TODAY** — the Terry bake batch (`LEVEL1_MASTER_TRACKER`
+    §5: Author W000 Surfaces · Build Toxic City + Contract · Build Space Lane) so W000→helm→cast-off
+    →W001→contract→artifact FIND/JOIN→return runs on device now, with a smoke checklist keyed to log
+    tags so any break is localized in minutes (the anti-lost-day mechanism).
+  - **W-2 · production space route** (W000→space→W001 chain from idempotent authors; PlayMode headless).
+  - **W-3 · launch / first-Ziptide / reentry seam** (data-driven sequencer around `TravelCoordinator`,
+    timeouts so presentation never strands travel, rig never parents the hull; reads as one journey).
+  - **W-4 · flight + salvage playable pass** (soft-lock target, tractor-salvage, non-lethal disable).
+  - **W-5 · W001 model-city arrival + route legibility** (arrival composition; landmarks read).
+  - **W-6 · first contract + creature encounter + payoff + audio rails** (stand-in SFX; the Husk-Molter).
+  - **W-7 · W002 replication** — Level 2 staged from the same route packet (Terry's "ready for level 2").
+- **Next (this operator):** W-A — write the exact bake+smoke runbook so Terry can play the existing
+  slice today, then start W-2 code (space route) keeping CI green; **circuit breaker holds — 3 CI reds
+  on one task → stop and escalate.**
+- **Commit:** this entry (ownership + order; docs-only, CI-safe).
+
 ### 2026-07-29 (rb121) — THE STORY: the first world was never built as one
 
 - **Terry, verbatim:** *"It doesn't really make sense to punch it because we haven't even found the
