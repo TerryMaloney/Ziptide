@@ -2,7 +2,7 @@
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
   "scannedFiles": 777,
-  "findingCount": 2825,
+  "findingCount": 2826,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -9829,49 +9829,49 @@
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs",
-            "line": 33,
+            "line": 47,
             "symbol": "Ziptide.Gameplay.PortholeRuntime",
             "snippet": "var pane = GameObject.CreatePrimitive(PrimitiveType.Quad);"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs",
-            "line": 51,
+            "line": 66,
             "symbol": "Ziptide.Gameplay.PortholeRuntime",
             "snippet": "var shader = Shader.Find(\"Universal Render Pipeline/Unlit\");"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs",
-            "line": 52,
+            "line": 67,
             "symbol": "Ziptide.Gameplay.PortholeRuntime",
             "snippet": "if (shader == null) shader = Shader.Find(\"Sprites/Default\");"
           },
           {
             "code": "RUNTIME_MATERIAL_CREATE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs",
-            "line": 53,
+            "line": 68,
             "symbol": "Ziptide.Gameplay.PortholeRuntime",
             "snippet": "var mat = new Material(shader);"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs",
-            "line": 63,
+            "line": 79,
             "symbol": "Ziptide.Gameplay.PortholeRuntime",
             "snippet": "var giant = GameObject.CreatePrimitive(PrimitiveType.Sphere);"
           },
           {
             "code": "RUNTIME_MATERIAL_CREATE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs",
-            "line": 70,
+            "line": 86,
             "symbol": "Ziptide.Gameplay.PortholeRuntime",
             "snippet": "var gm = new Material(shader);"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs",
-            "line": 92,
+            "line": 109,
             "symbol": "Ziptide.Gameplay.PortholeRuntime",
             "snippet": "var b = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           }
@@ -11959,6 +11959,25 @@
             "line": 56,
             "symbol": "Ziptide.Ship.HelmCompassRuntime",
             "snippet": "var marker = GameObject.CreatePrimitive(PrimitiveType.Cube);"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Ship.SalvageTractorFx",
+        "evidenceCount": 1,
+        "codes": [
+          "NEW_GAME_OBJECT"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Ship/Runtime/SalvageTractorFx.cs"
+        ],
+        "evidence": [
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Ship/Runtime/SalvageTractorFx.cs",
+            "line": 45,
+            "symbol": "Ziptide.Ship.SalvageTractorFx",
+            "snippet": "var go = new GameObject(\"__SalvagePluck\");"
           }
         ]
       },

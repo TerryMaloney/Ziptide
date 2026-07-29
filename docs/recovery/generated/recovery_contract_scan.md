@@ -1,7 +1,7 @@
 # ZIPTIDE Recovery Contract Scan
 
 - Scanned files: **777**
-- Findings: **2825**
+- Findings: **2826**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
@@ -16,7 +16,7 @@
 | `input` | 230 |
 | `materials` | 269 |
 | `persistence` | 28 |
-| `runtime_creation` | 723 |
+| `runtime_creation` | 724 |
 | `runtime_ui` | 131 |
 | `save_state` | 285 |
 | `scene_loading` | 9 |
@@ -555,7 +555,7 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/LiftRuntime.cs:188` · `Ziptide.Gameplay.LiftRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: JUMPPAD_LAND");`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ObjectiveBeacon.cs:29` · `Ziptide.Gameplay.ObjectiveBeacon` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: BEACON_TARGET host=" + host.name + " scene=" + host.scene.name);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ObjectiveBeacon.cs:65` · `Ziptide.Gameplay.ObjectiveBeacon` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: BEACON_CLOSE_HIDE host=" + transform.parent.name`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs:77` · `Ziptide.Gameplay.PortholeRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: PORTHOLE built seed=" + seed + " density=" + starDensity.ToString("F2"));`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs:94` · `Ziptide.Gameplay.PortholeRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: PORTHOLE built seed=" + seed + " density=" + starDensity.ToString("F2"));`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ProximityTravelTrigger.cs:51` · `Ziptide.Gameplay.ProximityTravelTrigger` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: TRAVEL_LOCKED dest=" + destinationSceneName +`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ProximityTravelTrigger.cs:57` · `Ziptide.Gameplay.ProximityTravelTrigger` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: PROXIMITY_TRAVEL dest=" + destinationSceneName);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/QuartersRoom.cs:20` · `Ziptide.Gameplay.QuartersRoom` — ZIPTIDE diagnostic tag. `/// Logs ZIPTIDE: QUARTERS_BROWSE kind=… / COSMETIC_EQUIPPED id=… target=…`
@@ -1401,8 +1401,8 @@
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/AtmosphereVeilEffect.cs:72` · `Ziptide.Gameplay.AtmosphereVeilEffect` — Runtime Material allocation. `return new Material(shader);`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HazardZoneRuntime.cs:71` · `Ziptide.Gameplay.HazardZoneRuntime` — Runtime Material allocation. `var mat = new Material(shader);`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ObjectiveBeacon.cs:45` · `Ziptide.Gameplay.ObjectiveBeacon` — Runtime Material allocation. `_mat = shader != null ? new Material(shader) : null;`
-- **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs:53` · `Ziptide.Gameplay.PortholeRuntime` — Runtime Material allocation. `var mat = new Material(shader);`
-- **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs:70` · `Ziptide.Gameplay.PortholeRuntime` — Runtime Material allocation. `var gm = new Material(shader);`
+- **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs:68` · `Ziptide.Gameplay.PortholeRuntime` — Runtime Material allocation. `var mat = new Material(shader);`
+- **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs:86` · `Ziptide.Gameplay.PortholeRuntime` — Runtime Material allocation. `var gm = new Material(shader);`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/QuartersPhotoWall.cs:96` · `Ziptide.Gameplay.QuartersPhotoWall` — Runtime Material allocation. `var material = new Material(shader) { name = name };`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/QuartersRoom.cs:287` · `Ziptide.Gameplay.QuartersRoom` — Runtime Material allocation. `var mat = new Material(shader);`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:224` · `Ziptide.Gameplay.ShipBoardingStation` — Runtime Material allocation. `var mat = new Material(shader);`
@@ -1558,8 +1558,8 @@
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HazardZoneRuntime.cs:67` · `Ziptide.Gameplay.HazardZoneRuntime` — Runtime shader lookup. `var shader = Shader.Find("Universal Render Pipeline/Lit");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HazardZoneRuntime.cs:68` · `Ziptide.Gameplay.HazardZoneRuntime` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Standard");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ObjectiveBeacon.cs:44` · `Ziptide.Gameplay.ObjectiveBeacon` — Runtime shader lookup. `Shader shader = Shader.Find("Universal Render Pipeline/Unlit");`
-- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs:51` · `Ziptide.Gameplay.PortholeRuntime` — Runtime shader lookup. `var shader = Shader.Find("Universal Render Pipeline/Unlit");`
-- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs:52` · `Ziptide.Gameplay.PortholeRuntime` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Sprites/Default");`
+- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs:66` · `Ziptide.Gameplay.PortholeRuntime` — Runtime shader lookup. `var shader = Shader.Find("Universal Render Pipeline/Unlit");`
+- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs:67` · `Ziptide.Gameplay.PortholeRuntime` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Sprites/Default");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/QuartersPhotoWall.cs:94` · `Ziptide.Gameplay.QuartersPhotoWall` — Runtime shader lookup. `Shader shader = Shader.Find("Universal Render Pipeline/Unlit") ?? Shader.Find("Unlit/Texture") ?? Shader.Find("Sprites/Default");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/QuartersRoom.cs:284` · `Ziptide.Gameplay.QuartersRoom` — Runtime shader lookup. `var shader = Shader.Find("Universal Render Pipeline/Lit");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/QuartersRoom.cs:285` · `Ziptide.Gameplay.QuartersRoom` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Standard");`
@@ -1842,9 +1842,9 @@
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/LiftRuntime.cs:53` · `Ziptide.Gameplay.LiftRuntime` — Runtime primitive construction. `var deck = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/LiftRuntime.cs:127` · `Ziptide.Gameplay.LiftRuntime` — Runtime primitive construction. `var pad = GameObject.CreatePrimitive(PrimitiveType.Cylinder);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ObjectiveBeacon.cs:36` · `Ziptide.Gameplay.ObjectiveBeacon` — Runtime primitive construction. `GameObject pillar = GameObject.CreatePrimitive(PrimitiveType.Cylinder);`
-- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs:33` · `Ziptide.Gameplay.PortholeRuntime` — Runtime primitive construction. `var pane = GameObject.CreatePrimitive(PrimitiveType.Quad);`
-- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs:63` · `Ziptide.Gameplay.PortholeRuntime` — Runtime primitive construction. `var giant = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
-- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs:92` · `Ziptide.Gameplay.PortholeRuntime` — Runtime primitive construction. `var b = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs:47` · `Ziptide.Gameplay.PortholeRuntime` — Runtime primitive construction. `var pane = GameObject.CreatePrimitive(PrimitiveType.Quad);`
+- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs:79` · `Ziptide.Gameplay.PortholeRuntime` — Runtime primitive construction. `var giant = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
+- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs:109` · `Ziptide.Gameplay.PortholeRuntime` — Runtime primitive construction. `var b = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/QuartersPhotoWall.cs:103` · `Ziptide.Gameplay.QuartersPhotoWall` — Runtime primitive construction. `GameObject go = GameObject.CreatePrimitive(type);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/QuartersRoom.cs:234` · `Ziptide.Gameplay.QuartersRoom` — Runtime primitive construction. `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/QuartersRoom.cs:252` · `Ziptide.Gameplay.QuartersRoom` — Runtime primitive construction. `var plate = GameObject.CreatePrimitive(PrimitiveType.Cube);`
@@ -2233,6 +2233,7 @@
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:88` · `Ziptide.Gameplay.WorldTravelStation` — Runtime GameObject construction. `var doorRoot = new GameObject("TravelDoor_" + (pack.packId ?? "?"));`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:108` · `Ziptide.Gameplay.WorldTravelStation` — Runtime GameObject construction. `var door = new GameObject("Door");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:226` · `Ziptide.Gameplay.WorldTravelStation` — Runtime GameObject construction. `var go = new GameObject("Label");`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Ship/Runtime/SalvageTractorFx.cs:45` · `Ziptide.Ship.SalvageTractorFx` — Runtime GameObject construction. `var go = new GameObject("__SalvagePluck");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:205` · `Ziptide.Ship.ShipFlightRuntime` — Runtime GameObject construction. `var statusGo = new GameObject("FlightStatus");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:253` · `Ziptide.Ship.ShipFlightRuntime` — Runtime GameObject construction. `var label = new GameObject("Label");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:155` · `Ziptide.Ship.VehicleRuntime` — Runtime GameObject construction. `Transform visual = new GameObject(VisualRootName).transform;`

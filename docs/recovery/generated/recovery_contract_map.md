@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
 - Scanned files: **777**
-- Scanner findings: **2825**
+- Scanner findings: **2826**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -2092,13 +2092,13 @@ None.
 
 - Codes: `CREATE_PRIMITIVE`, `RUNTIME_MATERIAL_CREATE`, `SHADER_FIND`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs:33` **CREATE_PRIMITIVE** — `var pane = GameObject.CreatePrimitive(PrimitiveType.Quad);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs:51` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Unlit");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs:52` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Sprites/Default");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs:53` **RUNTIME_MATERIAL_CREATE** — `var mat = new Material(shader);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs:63` **CREATE_PRIMITIVE** — `var giant = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs:70` **RUNTIME_MATERIAL_CREATE** — `var gm = new Material(shader);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs:92` **CREATE_PRIMITIVE** — `var b = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs:47` **CREATE_PRIMITIVE** — `var pane = GameObject.CreatePrimitive(PrimitiveType.Quad);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs:66` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Unlit");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs:67` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Sprites/Default");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs:68` **RUNTIME_MATERIAL_CREATE** — `var mat = new Material(shader);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs:79` **CREATE_PRIMITIVE** — `var giant = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs:86` **RUNTIME_MATERIAL_CREATE** — `var gm = new Material(shader);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs:109` **CREATE_PRIMITIVE** — `var b = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 
 ### `Ziptide.Gameplay.PrismBeamRuntime` — 3 signal(s)
 
@@ -2530,6 +2530,12 @@ None.
 - Paths: `Ziptide/Assets/Ziptide/Ship/Runtime/HelmCompassRuntime.cs`
   - `Ziptide/Assets/Ziptide/Ship/Runtime/HelmCompassRuntime.cs:49` **CREATE_PRIMITIVE** — `var strip = GameObject.CreatePrimitive(PrimitiveType.Cube);`
   - `Ziptide/Assets/Ziptide/Ship/Runtime/HelmCompassRuntime.cs:56` **CREATE_PRIMITIVE** — `var marker = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+
+### `Ziptide.Ship.SalvageTractorFx` — 1 signal(s)
+
+- Codes: `NEW_GAME_OBJECT`
+- Paths: `Ziptide/Assets/Ziptide/Ship/Runtime/SalvageTractorFx.cs`
+  - `Ziptide/Assets/Ziptide/Ship/Runtime/SalvageTractorFx.cs:45` **NEW_GAME_OBJECT** — `var go = new GameObject("__SalvagePluck");`
 
 ### `Ziptide.Ship.ShipFlightRuntime` — 9 signal(s)
 

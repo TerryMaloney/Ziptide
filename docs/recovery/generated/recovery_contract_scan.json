@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-29T16:54:54.000559+00:00",
+  "generatedAtUtc": "2026-07-29T16:56:52.970481+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -9,7 +9,7 @@
     "Ziptide/Assets/ZiptideNet"
   ],
   "scannedFiles": 777,
-  "findingCount": 2825,
+  "findingCount": 2826,
   "categoryCounts": {
     "bootstrap": 46,
     "diagnostics": 672,
@@ -19,7 +19,7 @@
     "input": 230,
     "materials": 269,
     "persistence": 28,
-    "runtime_creation": 723,
+    "runtime_creation": 724,
     "runtime_ui": 131,
     "save_state": 285,
     "scene_loading": 9,
@@ -41,7 +41,7 @@
     "FRAME_BUTTON_POLL": 1,
     "INPUT_ACTION_REFERENCE": 219,
     "INPUT_BUTTON_REFERENCE": 10,
-    "NEW_GAME_OBJECT": 447,
+    "NEW_GAME_OBJECT": 448,
     "PLAYER_PROFILE_REFERENCE": 152,
     "RENDER_SETTINGS_MUTATION": 37,
     "RUNTIME_BOOTSTRAP": 36,
@@ -4808,7 +4808,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs",
-      "line": 77,
+      "line": 94,
       "symbol": "Ziptide.Gameplay.PortholeRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: PORTHOLE built seed=\" + seed + \" density=\" + starDensity.ToString(\"F2\"));"
     },
@@ -12332,7 +12332,7 @@
       "code": "RUNTIME_MATERIAL_CREATE",
       "description": "Runtime Material allocation",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs",
-      "line": 53,
+      "line": 68,
       "symbol": "Ziptide.Gameplay.PortholeRuntime",
       "snippet": "var mat = new Material(shader);"
     },
@@ -12341,7 +12341,7 @@
       "code": "RUNTIME_MATERIAL_CREATE",
       "description": "Runtime Material allocation",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs",
-      "line": 70,
+      "line": 86,
       "symbol": "Ziptide.Gameplay.PortholeRuntime",
       "snippet": "var gm = new Material(shader);"
     },
@@ -13745,7 +13745,7 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs",
-      "line": 51,
+      "line": 66,
       "symbol": "Ziptide.Gameplay.PortholeRuntime",
       "snippet": "var shader = Shader.Find(\"Universal Render Pipeline/Unlit\");"
     },
@@ -13754,7 +13754,7 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs",
-      "line": 52,
+      "line": 67,
       "symbol": "Ziptide.Gameplay.PortholeRuntime",
       "snippet": "if (shader == null) shader = Shader.Find(\"Sprites/Default\");"
     },
@@ -16265,7 +16265,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs",
-      "line": 33,
+      "line": 47,
       "symbol": "Ziptide.Gameplay.PortholeRuntime",
       "snippet": "var pane = GameObject.CreatePrimitive(PrimitiveType.Quad);"
     },
@@ -16274,7 +16274,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs",
-      "line": 63,
+      "line": 79,
       "symbol": "Ziptide.Gameplay.PortholeRuntime",
       "snippet": "var giant = GameObject.CreatePrimitive(PrimitiveType.Sphere);"
     },
@@ -16283,7 +16283,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs",
-      "line": 92,
+      "line": 109,
       "symbol": "Ziptide.Gameplay.PortholeRuntime",
       "snippet": "var b = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -19778,6 +19778,15 @@
       "line": 226,
       "symbol": "Ziptide.Gameplay.WorldTravelStation",
       "snippet": "var go = new GameObject(\"Label\");"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Ship/Runtime/SalvageTractorFx.cs",
+      "line": 45,
+      "symbol": "Ziptide.Ship.SalvageTractorFx",
+      "snippet": "var go = new GameObject(\"__SalvagePluck\");"
     },
     {
       "category": "runtime_creation",
