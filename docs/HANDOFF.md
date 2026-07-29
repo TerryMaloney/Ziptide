@@ -38,6 +38,32 @@
 > `docs/HANDOFF_HISTORY_THROUGH_RB24.md`.
 
 
+### 2026-07-29 (rb125) — Fable 5: 🔨 LEVEL 1 build pass 1 — the reentry handoff has an OWNER (first 🔴 closed at code layer)
+
+- **Terry: "finish the level."** Working the rb124 accurate 🔴 list top-down as compiling increments;
+  CI is the compile-verifier (cloud has no Unity), circuit breaker 3 reds → stop.
+- **BUILT (commit `cc21b03b`):** the **reentry/landing handoff** — product contract §4's red row
+  with "no canonical owner/beat" — now has one:
+  - `ReentryArrivalCore` (Core, pure): plays ONLY on space-leg→world; cold boot / gate travel /
+    dev warp / in-leg all fail closed. **5 EditMode tests** pin the routing table (the "gate
+    spectacle on the wrong beat" class from rb121 cannot return).
+  - `ReentryArrivalRuntime` + `SceneArrivalLog` (Gameplay): origin via `sceneUnloaded` (no travel-
+    owner edits; TravelCoordinator untouched), `ZIPTIDE: REENTRY_ARRIVAL from=… world=…`, optional
+    guarded RILL line (default empty — the existing `react_w001_arrived` producer keeps the beat;
+    `FH_W001_ARRIVAL`'s adapter is NOT double-fired).
+  - `ScenePatcherToxicCity.EnsureReentryArrival()` — authored into the scene at bake, idempotent.
+  - **v1 is the SEAM: the plasma-veil visual is an art stand-in** (a LOOK problem needing reference
+    plates, same rule that deferred the hangar walk) — logged for the Tripo/art pass.
+- **State honesty:** row moves 🔴→🟨 only when CI (EditMode + patch-scenes) is green on this SHA;
+  tracker updated then, not now. Nothing device-proven.
+- **NEXT INCREMENTS (in order, after this batch's verdict):** ① space-leg neutral signals
+  (helm/course/disable/salvage/approach — needs coordinated `first_hour_beats.json` + producer +
+  gate edits, done as one batch so the beats-lose-producer test stays green) · ② the shell
+  (pause/legal/credits — genuinely absent) · ③ W001 district re-layout (tower island + wedges) ·
+  ④ changed-ship payoff decal content · ⑤ W002 staging check. 📣 other auditing lanes: claim rows
+  in the tracker before building — collisions red the tree.
+- **Commit:** `cc21b03b` + this entry.
+
 ### 2026-07-29 (rb124) — Fable 5: ⚠ RETRACTION of rb123's "~70% built" — the ACCURATE state (Terry was right to be skeptical)
 
 - **rb123 was WRONG. I conflated "a generator exists" with "content is committed and works."** Terry
