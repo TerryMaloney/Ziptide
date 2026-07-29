@@ -609,7 +609,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs",
-        "line": 248,
+        "line": 268,
         "owner": "Ziptide.Content.CreatureBehaviorStateEvidence",
         "target": "ActiveStates",
         "detail": "profile",
@@ -1133,7 +1133,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs",
-        "line": 245,
+        "line": 265,
         "owner": "Ziptide.Content.CreatureBehaviorStateEvidence",
         "target": "BehaviorTypeName",
         "detail": "profile",
@@ -1260,7 +1260,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs",
-        "line": 263,
+        "line": 283,
         "owner": "Ziptide.Content.CreatureBehaviorStateEvidence",
         "target": "CounterState",
         "detail": "profile",
@@ -1269,7 +1269,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs",
-        "line": 264,
+        "line": 284,
         "owner": "Ziptide.Content.CreatureBehaviorStateEvidence",
         "target": "CounterState",
         "detail": "profile",
@@ -1291,7 +1291,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs",
-        "line": 244,
+        "line": 264,
         "owner": "Ziptide.Content.CreatureBehaviorStateEvidence",
         "target": "CreatureId",
         "detail": "profile",
@@ -1300,7 +1300,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs",
-        "line": 306,
+        "line": 326,
         "owner": "Ziptide.Content.CreatureBehaviorStateEvidence",
         "target": "CreatureId",
         "detail": "profile",
@@ -1309,7 +1309,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs",
-        "line": 307,
+        "line": 327,
         "owner": "Ziptide.Content.CreatureBehaviorStateEvidence",
         "target": "CreatureId",
         "detail": "profile",
@@ -1639,7 +1639,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs",
-        "line": 266,
+        "line": 286,
         "owner": "Ziptide.Content.CreatureBehaviorStateEvidence",
         "target": "DisabledState",
         "detail": "profile",
@@ -1648,7 +1648,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs",
-        "line": 268,
+        "line": 288,
         "owner": "Ziptide.Content.CreatureBehaviorStateEvidence",
         "target": "DisabledState",
         "detail": "profile",
@@ -1657,7 +1657,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs",
-        "line": 269,
+        "line": 289,
         "owner": "Ziptide.Content.CreatureBehaviorStateEvidence",
         "target": "DisabledState",
         "detail": "profile",
@@ -4396,7 +4396,7 @@
       {
         "kind": "AUTOSAVE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs",
-        "line": 119,
+        "line": 133,
         "owner": "Ziptide.Gameplay.TravelCoordinator",
         "target": "SaveSystem.AutosaveNow",
         "detail": "travel_fallback",
@@ -4405,7 +4405,7 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs",
-        "line": 119,
+        "line": 133,
         "owner": "Ziptide.Gameplay.TravelCoordinator",
         "target": "SaveSystem.AutosaveNow",
         "detail": "",
@@ -4414,7 +4414,7 @@
       {
         "kind": "AUTOSAVE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs",
-        "line": 187,
+        "line": 201,
         "owner": "Ziptide.Gameplay.TravelCoordinator",
         "target": "SaveSystem.AutosaveNow",
         "detail": "travel",
@@ -4423,7 +4423,7 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs",
-        "line": 187,
+        "line": 201,
         "owner": "Ziptide.Gameplay.TravelCoordinator",
         "target": "SaveSystem.AutosaveNow",
         "detail": "",
@@ -5960,7 +5960,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs",
-        "line": 261,
+        "line": 281,
         "owner": "Ziptide.Content.CreatureBehaviorStateEvidence",
         "target": "TelegraphState",
         "detail": "profile",
@@ -5969,7 +5969,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs",
-        "line": 262,
+        "line": 282,
         "owner": "Ziptide.Content.CreatureBehaviorStateEvidence",
         "target": "TelegraphState",
         "detail": "profile",
@@ -6020,7 +6020,7 @@
       {
         "kind": "EVENT_INVOKE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs",
-        "line": 330,
+        "line": 344,
         "owner": "Ziptide.Gameplay.TravelCoordinator",
         "target": "TravelCompleted",
         "detail": "",
@@ -7874,7 +7874,7 @@
       {
         "kind": "EVENT_INVOKE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs",
-        "line": 306,
+        "line": 320,
         "owner": "Ziptide.Gameplay.TravelCoordinator",
         "target": "publish",
         "detail": "",
@@ -8484,7 +8484,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs",
-      "line": 244,
+      "line": 264,
       "owner": "Ziptide.Content.CreatureBehaviorStateEvidence",
       "target": "CreatureId",
       "detail": "profile",
@@ -8493,7 +8493,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs",
-      "line": 245,
+      "line": 265,
       "owner": "Ziptide.Content.CreatureBehaviorStateEvidence",
       "target": "BehaviorTypeName",
       "detail": "profile",
@@ -8502,7 +8502,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs",
-      "line": 248,
+      "line": 268,
       "owner": "Ziptide.Content.CreatureBehaviorStateEvidence",
       "target": "ActiveStates",
       "detail": "profile",
@@ -8511,7 +8511,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs",
-      "line": 261,
+      "line": 281,
       "owner": "Ziptide.Content.CreatureBehaviorStateEvidence",
       "target": "TelegraphState",
       "detail": "profile",
@@ -8520,7 +8520,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs",
-      "line": 262,
+      "line": 282,
       "owner": "Ziptide.Content.CreatureBehaviorStateEvidence",
       "target": "TelegraphState",
       "detail": "profile",
@@ -8529,7 +8529,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs",
-      "line": 263,
+      "line": 283,
       "owner": "Ziptide.Content.CreatureBehaviorStateEvidence",
       "target": "CounterState",
       "detail": "profile",
@@ -8538,7 +8538,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs",
-      "line": 264,
+      "line": 284,
       "owner": "Ziptide.Content.CreatureBehaviorStateEvidence",
       "target": "CounterState",
       "detail": "profile",
@@ -8547,7 +8547,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs",
-      "line": 266,
+      "line": 286,
       "owner": "Ziptide.Content.CreatureBehaviorStateEvidence",
       "target": "DisabledState",
       "detail": "profile",
@@ -8556,7 +8556,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs",
-      "line": 268,
+      "line": 288,
       "owner": "Ziptide.Content.CreatureBehaviorStateEvidence",
       "target": "DisabledState",
       "detail": "profile",
@@ -8565,7 +8565,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs",
-      "line": 269,
+      "line": 289,
       "owner": "Ziptide.Content.CreatureBehaviorStateEvidence",
       "target": "DisabledState",
       "detail": "profile",
@@ -8574,7 +8574,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs",
-      "line": 306,
+      "line": 326,
       "owner": "Ziptide.Content.CreatureBehaviorStateEvidence",
       "target": "CreatureId",
       "detail": "profile",
@@ -8583,7 +8583,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs",
-      "line": 307,
+      "line": 327,
       "owner": "Ziptide.Content.CreatureBehaviorStateEvidence",
       "target": "CreatureId",
       "detail": "profile",
@@ -13074,7 +13074,7 @@
     {
       "kind": "AUTOSAVE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs",
-      "line": 119,
+      "line": 133,
       "owner": "Ziptide.Gameplay.TravelCoordinator",
       "target": "SaveSystem.AutosaveNow",
       "detail": "travel_fallback",
@@ -13083,7 +13083,7 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs",
-      "line": 119,
+      "line": 133,
       "owner": "Ziptide.Gameplay.TravelCoordinator",
       "target": "SaveSystem.AutosaveNow",
       "detail": "",
@@ -13092,7 +13092,7 @@
     {
       "kind": "AUTOSAVE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs",
-      "line": 187,
+      "line": 201,
       "owner": "Ziptide.Gameplay.TravelCoordinator",
       "target": "SaveSystem.AutosaveNow",
       "detail": "travel",
@@ -13101,7 +13101,7 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs",
-      "line": 187,
+      "line": 201,
       "owner": "Ziptide.Gameplay.TravelCoordinator",
       "target": "SaveSystem.AutosaveNow",
       "detail": "",
@@ -13110,7 +13110,7 @@
     {
       "kind": "EVENT_INVOKE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs",
-      "line": 306,
+      "line": 320,
       "owner": "Ziptide.Gameplay.TravelCoordinator",
       "target": "publish",
       "detail": "",
@@ -13119,7 +13119,7 @@
     {
       "kind": "EVENT_INVOKE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs",
-      "line": 330,
+      "line": 344,
       "owner": "Ziptide.Gameplay.TravelCoordinator",
       "target": "TravelCompleted",
       "detail": "",

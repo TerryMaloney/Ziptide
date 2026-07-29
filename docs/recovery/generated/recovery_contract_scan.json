@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-29T17:05:29.107762+00:00",
+  "generatedAtUtc": "2026-07-29T17:13:13.725177+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -9,10 +9,10 @@
     "Ziptide/Assets/ZiptideNet"
   ],
   "scannedFiles": 783,
-  "findingCount": 2840,
+  "findingCount": 2839,
   "categoryCounts": {
     "bootstrap": 46,
-    "diagnostics": 679,
+    "diagnostics": 678,
     "events": 71,
     "fallback_debt": 176,
     "global_render": 92,
@@ -57,7 +57,7 @@
     "XRI_MANAGER_LOOKUP": 45,
     "XR_INTERACTABLE_COMPONENT": 66,
     "XR_UI_INPUT_MODULE": 2,
-    "ZIPTIDE_LOG_TAG": 679
+    "ZIPTIDE_LOG_TAG": 678
   },
   "findings": [
     {
@@ -515,7 +515,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs",
-      "line": 212,
+      "line": 232,
       "symbol": "Ziptide.Content.CreatureBehaviorStateEvidence",
       "snippet": "State(\"arrest_disengage\", \"Debug.Log(\\\"ZIPTIDE: WARDEN_ARREST\\\");\"),"
     },
@@ -3944,18 +3944,9 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 284,
-      "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
-      "snippet": "Debug.Log(\"ZIPTIDE: FLIGHT_DEPART target=\" + targetScene + \" gate=suppressed\");"
-    },
-    {
-      "category": "diagnostics",
-      "code": "ZIPTIDE_LOG_TAG",
-      "description": "ZIPTIDE diagnostic tag",
-      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
       "line": 297,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
-      "snippet": "Debug.Log(\"ZIPTIDE: FLIGHT_DEPART target=\" + targetScene + \" gate=full berth=\""
+      "snippet": "Debug.Log(\"ZIPTIDE: FLIGHT_DEPART target=\" + targetScene"
     },
     {
       "category": "diagnostics",
@@ -5114,7 +5105,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs",
-      "line": 96,
+      "line": 110,
       "symbol": "Ziptide.Gameplay.TravelCoordinator",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: TRAVEL_BLOCKED dest=_Boot (boot is not a world) \u2013 redirecting to \""
     },
@@ -5123,7 +5114,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs",
-      "line": 107,
+      "line": 121,
       "symbol": "Ziptide.Gameplay.TravelCoordinator",
       "snippet": "Debug.LogError(\"ZIPTIDE: TRAVEL_FAIL dest=\" + sceneName +"
     },
@@ -5132,7 +5123,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs",
-      "line": 118,
+      "line": 132,
       "symbol": "Ziptide.Gameplay.TravelCoordinator",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: TravelCoordinator not found \u2013 falling back to direct load\");"
     },
@@ -5141,7 +5132,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs",
-      "line": 138,
+      "line": 152,
       "symbol": "Ziptide.Gameplay.TravelCoordinator",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: TravelCoordinator already travelling \u2013 ignoring duplicate request\");"
     },
@@ -5150,7 +5141,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs",
-      "line": 148,
+      "line": 162,
       "symbol": "Ziptide.Gameplay.TravelCoordinator",
       "snippet": "Debug.Log(\"ZIPTIDE: TRAVEL_START dest=\" + sceneName);"
     },
@@ -5159,7 +5150,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs",
-      "line": 179,
+      "line": 193,
       "symbol": "Ziptide.Gameplay.TravelCoordinator",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: GATE_FAIL depart dest=\" + sceneName + \" \u2013 \" + ex.Message);"
     },
@@ -5168,7 +5159,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs",
-      "line": 199,
+      "line": 213,
       "symbol": "Ziptide.Gameplay.TravelCoordinator",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: TRAVEL_FAIL dest=\" + sceneName + \" reason=async_load_not_started\");"
     },
@@ -5177,7 +5168,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs",
-      "line": 214,
+      "line": 228,
       "symbol": "Ziptide.Gameplay.TravelCoordinator",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: TRAVEL_TIMEOUT dest=\" + sceneName +"
     },
@@ -5186,7 +5177,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs",
-      "line": 228,
+      "line": 242,
       "symbol": "Ziptide.Gameplay.TravelCoordinator",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: TRAVEL_FAIL dest=\" + sceneName + \" reason=no_PlayerRigPersistence_after_load\");"
     },
@@ -5195,7 +5186,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs",
-      "line": 241,
+      "line": 255,
       "symbol": "Ziptide.Gameplay.TravelCoordinator",
       "snippet": "catch (System.Exception ex) { Debug.LogWarning(\"ZIPTIDE: GATE_FAIL arrive dest=\" + sceneName + \" \u2013 \" + ex.Message); }"
     },
@@ -5204,7 +5195,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs",
-      "line": 262,
+      "line": 276,
       "symbol": "Ziptide.Gameplay.TravelCoordinator",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: XRI_NOT_READY after \" + timeout + \"s \u2013 proceeding anyway\");"
     },
@@ -5213,7 +5204,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs",
-      "line": 263,
+      "line": 277,
       "symbol": "Ziptide.Gameplay.TravelCoordinator",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: TRAVEL_FAIL dest=\" + sceneName + \" reason=XRI_NOT_READY\");"
     },
@@ -5222,7 +5213,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs",
-      "line": 267,
+      "line": 281,
       "symbol": "Ziptide.Gameplay.TravelCoordinator",
       "snippet": "Debug.Log(\"ZIPTIDE: XRI_READY elapsed=\" + elapsed.ToString(\"F2\") + \"s\");"
     },
@@ -5231,7 +5222,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs",
-      "line": 276,
+      "line": 290,
       "symbol": "Ziptide.Gameplay.TravelCoordinator",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: AUDIT_FAIL multiple_managers_after_travel count=\" + (managers?.Length ?? 0));"
     },
@@ -5240,7 +5231,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs",
-      "line": 280,
+      "line": 294,
       "symbol": "Ziptide.Gameplay.TravelCoordinator",
       "snippet": "Debug.Log(\"ZIPTIDE: TRAVEL_OK dest=\" + sceneName);"
     },
@@ -5249,7 +5240,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs",
-      "line": 287,
+      "line": 301,
       "symbol": "Ziptide.Gameplay.TravelCoordinator",
       "snippet": "Debug.Log(\"ZIPTIDE: FIRST_HOUR_TRAVEL dest=\" + sceneName +"
     },
@@ -10739,7 +10730,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs",
-      "line": 358,
+      "line": 372,
       "symbol": "Ziptide.Gameplay.TravelCoordinator",
       "snippet": "var iam = Object.FindObjectOfType<InputActionManager>();"
     },
@@ -14555,7 +14546,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 560,
+      "line": 552,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var drone = GameObject.CreatePrimitive(PrimitiveType.Sphere);"
     },
@@ -17039,7 +17030,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 485,
+      "line": 477,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var go = new GameObject(name);"
     },
@@ -17048,7 +17039,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 531,
+      "line": 523,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var go = new GameObject(\"Hazard_\" + h.id);"
     },
@@ -17057,7 +17048,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 584,
+      "line": 576,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var go = new GameObject(name);"
     },
@@ -22160,7 +22151,7 @@
       "code": "AUTOSAVE_CALL",
       "description": "Autosave request",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs",
-      "line": 119,
+      "line": 133,
       "symbol": "Ziptide.Gameplay.TravelCoordinator",
       "snippet": "SaveSystem.AutosaveNow(\"travel_fallback\");"
     },
@@ -22169,7 +22160,7 @@
       "code": "AUTOSAVE_CALL",
       "description": "Autosave request",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs",
-      "line": 187,
+      "line": 201,
       "symbol": "Ziptide.Gameplay.TravelCoordinator",
       "snippet": "SaveSystem.AutosaveNow(\"travel\");"
     },
@@ -24392,7 +24383,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs",
-      "line": 119,
+      "line": 133,
       "symbol": "Ziptide.Gameplay.TravelCoordinator",
       "snippet": "SaveSystem.AutosaveNow(\"travel_fallback\");"
     },
@@ -24401,7 +24392,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs",
-      "line": 187,
+      "line": 201,
       "symbol": "Ziptide.Gameplay.TravelCoordinator",
       "snippet": "SaveSystem.AutosaveNow(\"travel\");"
     },
@@ -24707,7 +24698,7 @@
       "code": "DIRECT_SCENE_LOAD",
       "description": "Direct synchronous scene load",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs",
-      "line": 122,
+      "line": 136,
       "symbol": "Ziptide.Gameplay.TravelCoordinator",
       "snippet": "SceneManager.LoadScene(sceneName);"
     },
@@ -24725,7 +24716,7 @@
       "code": "DIRECT_SCENE_LOAD_ASYNC",
       "description": "Direct asynchronous scene load",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs",
-      "line": 196,
+      "line": 210,
       "symbol": "Ziptide.Gameplay.TravelCoordinator",
       "snippet": "AsyncOperation loadOperation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);"
     },
@@ -25535,7 +25526,7 @@
       "code": "XRI_MANAGER_LOOKUP",
       "description": "XRInteractionManager lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs",
-      "line": 274,
+      "line": 288,
       "symbol": "Ziptide.Gameplay.TravelCoordinator",
       "snippet": "var managers = Object.FindObjectsOfType<XRInteractionManager>();"
     },
@@ -25544,7 +25535,7 @@
       "code": "XRI_MANAGER_LOOKUP",
       "description": "XRInteractionManager lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs",
-      "line": 349,
+      "line": 363,
       "symbol": "Ziptide.Gameplay.TravelCoordinator",
       "snippet": "var mgr = Object.FindObjectOfType<XRInteractionManager>();"
     },

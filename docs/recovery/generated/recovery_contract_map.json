@@ -2,7 +2,7 @@
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
   "scannedFiles": 783,
-  "findingCount": 2840,
+  "findingCount": 2839,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -1129,14 +1129,14 @@
           {
             "code": "DIRECT_SCENE_LOAD",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs",
-            "line": 122,
+            "line": 136,
             "symbol": "Ziptide.Gameplay.TravelCoordinator",
             "snippet": "SceneManager.LoadScene(sceneName);"
           },
           {
             "code": "DIRECT_SCENE_LOAD_ASYNC",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs",
-            "line": 196,
+            "line": 210,
             "symbol": "Ziptide.Gameplay.TravelCoordinator",
             "snippet": "AsyncOperation loadOperation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);"
           }
@@ -2323,7 +2323,7 @@
           {
             "code": "INPUT_ACTION_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs",
-            "line": 358,
+            "line": 372,
             "symbol": "Ziptide.Gameplay.TravelCoordinator",
             "snippet": "var iam = Object.FindObjectOfType<InputActionManager>();"
           }
@@ -3730,28 +3730,28 @@
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-            "line": 485,
+            "line": 477,
             "symbol": "Ziptide.Editor.Patching.CityBuilder",
             "snippet": "var go = new GameObject(name);"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-            "line": 531,
+            "line": 523,
             "symbol": "Ziptide.Editor.Patching.CityBuilder",
             "snippet": "var go = new GameObject(\"Hazard_\" + h.id);"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-            "line": 560,
+            "line": 552,
             "symbol": "Ziptide.Editor.Patching.CityBuilder",
             "snippet": "var drone = GameObject.CreatePrimitive(PrimitiveType.Sphere);"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-            "line": 584,
+            "line": 576,
             "symbol": "Ziptide.Editor.Patching.CityBuilder",
             "snippet": "var go = new GameObject(name);"
           }
@@ -15205,14 +15205,14 @@
           {
             "code": "XRI_MANAGER_LOOKUP",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs",
-            "line": 274,
+            "line": 288,
             "symbol": "Ziptide.Gameplay.TravelCoordinator",
             "snippet": "var managers = Object.FindObjectsOfType<XRInteractionManager>();"
           },
           {
             "code": "XRI_MANAGER_LOOKUP",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs",
-            "line": 349,
+            "line": 363,
             "symbol": "Ziptide.Gameplay.TravelCoordinator",
             "snippet": "var mgr = Object.FindObjectOfType<XRInteractionManager>();"
           }
@@ -17926,28 +17926,28 @@
           {
             "code": "AUTOSAVE_CALL",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs",
-            "line": 119,
+            "line": 133,
             "symbol": "Ziptide.Gameplay.TravelCoordinator",
             "snippet": "SaveSystem.AutosaveNow(\"travel_fallback\");"
           },
           {
             "code": "SAVE_SYSTEM_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs",
-            "line": 119,
+            "line": 133,
             "symbol": "Ziptide.Gameplay.TravelCoordinator",
             "snippet": "SaveSystem.AutosaveNow(\"travel_fallback\");"
           },
           {
             "code": "AUTOSAVE_CALL",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs",
-            "line": 187,
+            "line": 201,
             "symbol": "Ziptide.Gameplay.TravelCoordinator",
             "snippet": "SaveSystem.AutosaveNow(\"travel\");"
           },
           {
             "code": "SAVE_SYSTEM_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs",
-            "line": 187,
+            "line": 201,
             "symbol": "Ziptide.Gameplay.TravelCoordinator",
             "snippet": "SaveSystem.AutosaveNow(\"travel\");"
           }

@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
 - Scanned files: **783**
-- Scanner findings: **2840**
+- Scanner findings: **2839**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -341,8 +341,8 @@ None.
 
 - Codes: `DIRECT_SCENE_LOAD`, `DIRECT_SCENE_LOAD_ASYNC`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:122` **DIRECT_SCENE_LOAD** — `SceneManager.LoadScene(sceneName);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:196` **DIRECT_SCENE_LOAD_ASYNC** — `AsyncOperation loadOperation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:136` **DIRECT_SCENE_LOAD** — `SceneManager.LoadScene(sceneName);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:210` **DIRECT_SCENE_LOAD_ASYNC** — `AsyncOperation loadOperation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);`
 
 ### `Ziptide.Tests.EditMode.FirstHourTravelSignalTests` — 3 signal(s)
 
@@ -586,7 +586,7 @@ None.
 - Codes: `INPUT_ACTION_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:18` **INPUT_ACTION_REFERENCE** — `/// and InputActionManager are all ready`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:358` **INPUT_ACTION_REFERENCE** — `var iam = Object.FindObjectOfType<InputActionManager>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:372` **INPUT_ACTION_REFERENCE** — `var iam = Object.FindObjectOfType<InputActionManager>();`
 
 ### `Ziptide.Gameplay.TurnModeCore` — 2 signal(s)
 
@@ -883,10 +883,10 @@ None.
   - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:229` **CREATE_PRIMITIVE** — `var w = GameObject.CreatePrimitive(PrimitiveType.Cube);`
   - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:272` **NEW_GAME_OBJECT** — `var marker = new GameObject("Marker_" + hb.interiorMarkerId);`
   - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:353` **CREATE_PRIMITIVE** — `var rail = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:485` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:531` **NEW_GAME_OBJECT** — `var go = new GameObject("Hazard_" + h.id);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:560` **CREATE_PRIMITIVE** — `var drone = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:584` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:477` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:523` **NEW_GAME_OBJECT** — `var go = new GameObject("Hazard_" + h.id);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:552` **CREATE_PRIMITIVE** — `var drone = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:576` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
 
 ### `Ziptide.Editor.Patching.CityStageAPrimitiveFactory` — 4 signal(s)
 
@@ -3310,8 +3310,8 @@ None.
 
 - Codes: `XRI_MANAGER_LOOKUP`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:274` **XRI_MANAGER_LOOKUP** — `var managers = Object.FindObjectsOfType<XRInteractionManager>();`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:349` **XRI_MANAGER_LOOKUP** — `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:288` **XRI_MANAGER_LOOKUP** — `var managers = Object.FindObjectsOfType<XRInteractionManager>();`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:363` **XRI_MANAGER_LOOKUP** — `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
 
 ### `Ziptide.Gameplay.WateringCanRuntime` — 2 signal(s)
 
@@ -3971,10 +3971,10 @@ None.
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:38` **EVENT_DECLARATION** — `public static event Action<string> TravelCompleted;`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:38` **STATIC_EVENT_DECLARATION** — `public static event Action<string> TravelCompleted;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:119` **AUTOSAVE_CALL** — `SaveSystem.AutosaveNow("travel_fallback");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:119` **SAVE_SYSTEM_REFERENCE** — `SaveSystem.AutosaveNow("travel_fallback");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:187` **AUTOSAVE_CALL** — `SaveSystem.AutosaveNow("travel");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:187` **SAVE_SYSTEM_REFERENCE** — `SaveSystem.AutosaveNow("travel");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:133` **AUTOSAVE_CALL** — `SaveSystem.AutosaveNow("travel_fallback");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:133` **SAVE_SYSTEM_REFERENCE** — `SaveSystem.AutosaveNow("travel_fallback");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:201` **AUTOSAVE_CALL** — `SaveSystem.AutosaveNow("travel");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:201` **SAVE_SYSTEM_REFERENCE** — `SaveSystem.AutosaveNow("travel");`
 
 ### `Ziptide.Gameplay.Tutorial.FirstHourObservationAdapter` — 1 signal(s)
 

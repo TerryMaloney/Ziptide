@@ -1,7 +1,7 @@
 # ZIPTIDE Recovery Contract Scan
 
 - Scanned files: **783**
-- Findings: **2840**
+- Findings: **2839**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
@@ -9,7 +9,7 @@
 | Category | Count |
 |---|---:|
 | `bootstrap` | 46 |
-| `diagnostics` | 679 |
+| `diagnostics` | 678 |
 | `events` | 71 |
 | `fallback_debt` | 176 |
 | `global_render` | 92 |
@@ -78,7 +78,7 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Content/Runtime/DefinitionRegistry.cs:35` · `Ziptide.Content.DefinitionRegistry` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: DUP_DEFINITION type=" + typeof(TDef).Name + " id=" + def.id +`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Content/Runtime/DefinitionRegistry.cs:76` · `Ziptide.Content.DefinitionRegistry` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: REGISTRY_LOADED type=" + typeof(TDef).Name +`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs:196` · `Ziptide.Content.CreatureBehaviorStateEvidence` — ZIPTIDE diagnostic tag. `State("molt_escape", "Debug.Log(\"ZIPTIDE: HUSK_MOLT\");"),`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs:212` · `Ziptide.Content.CreatureBehaviorStateEvidence` — ZIPTIDE diagnostic tag. `State("arrest_disengage", "Debug.Log(\"ZIPTIDE: WARDEN_ARREST\");"),`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs:232` · `Ziptide.Content.CreatureBehaviorStateEvidence` — ZIPTIDE diagnostic tag. `State("arrest_disengage", "Debug.Log(\"ZIPTIDE: WARDEN_ARREST\");"),`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Content/Runtime/WorldPacks/WorldPackValidator.cs:8` · `Ziptide.Content.WorldPackValidator` — ZIPTIDE diagnostic tag. `/// pack data fails LOUD at world entry (`ZIPTIDE: PACK_VALIDATION_FAIL`) instead of silently`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Core/Runtime/GamePool.cs:158` · `Ziptide.Core.GamePool` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: POOL_STAT key=" + kv.Key + " created=" + p.Created +`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Core/Runtime/Recovery/PersistentDiagnosticRing.cs:68` · `Ziptide.Core.PersistentDiagnosticRing` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: DIAG_RING_READY file=" + CurrentFileName`
@@ -459,8 +459,7 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:192` · `Ziptide.Gameplay.ShipCastOffRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FLIGHT_LAUNCH scene=" + gameObject.scene.name + " target=" + targetScene);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:222` · `Ziptide.Gameplay.ShipCastOffRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: REPAIR_TRACE hop=castoff armed=" + armed`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:250` · `Ziptide.Gameplay.ShipCastOffRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FLIGHT_STREAKS seconds=" + streakSeconds);`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:284` · `Ziptide.Gameplay.ShipCastOffRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FLIGHT_DEPART target=" + targetScene + " gate=suppressed");`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:297` · `Ziptide.Gameplay.ShipCastOffRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FLIGHT_DEPART target=" + targetScene + " gate=full berth="`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:297` · `Ziptide.Gameplay.ShipCastOffRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FLIGHT_DEPART target=" + targetScene`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:311` · `Ziptide.Gameplay.ShipCastOffRuntime` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: FLIGHT_DESTINATION_SUBSCRIBER_FAIL reason=" + ex.Message);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/SpaceSalvageItemRuntime.cs:47` · `Ziptide.Gameplay.SpaceSalvageItemRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: SALVAGE_FIND_ALREADY_TAKEN id=" + itemId);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/SpaceSalvageItemRuntime.cs:112` · `Ziptide.Gameplay.SpaceSalvageItemRuntime` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: SALVAGE_FIND_FAILED id=" + itemId`
@@ -589,22 +588,22 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ToxicRiverRuntime.cs:129` · `Ziptide.Gameplay.ToxicRiverRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: TOXIC_RIVER_LETHAL id=" + riverId`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:44` · `Ziptide.Gameplay.TravelCoordinator` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: DUP_SINGLETON TravelCoordinator – destroying extra");`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:50` · `Ziptide.Gameplay.TravelCoordinator` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: TravelCoordinator AWAKE");`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:96` · `Ziptide.Gameplay.TravelCoordinator` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: TRAVEL_BLOCKED dest=_Boot (boot is not a world) – redirecting to "`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:107` · `Ziptide.Gameplay.TravelCoordinator` — ZIPTIDE diagnostic tag. `Debug.LogError("ZIPTIDE: TRAVEL_FAIL dest=" + sceneName +`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:118` · `Ziptide.Gameplay.TravelCoordinator` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: TravelCoordinator not found – falling back to direct load");`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:138` · `Ziptide.Gameplay.TravelCoordinator` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: TravelCoordinator already travelling – ignoring duplicate request");`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:148` · `Ziptide.Gameplay.TravelCoordinator` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: TRAVEL_START dest=" + sceneName);`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:179` · `Ziptide.Gameplay.TravelCoordinator` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: GATE_FAIL depart dest=" + sceneName + " – " + ex.Message);`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:199` · `Ziptide.Gameplay.TravelCoordinator` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: TRAVEL_FAIL dest=" + sceneName + " reason=async_load_not_started");`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:214` · `Ziptide.Gameplay.TravelCoordinator` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: TRAVEL_TIMEOUT dest=" + sceneName +`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:228` · `Ziptide.Gameplay.TravelCoordinator` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: TRAVEL_FAIL dest=" + sceneName + " reason=no_PlayerRigPersistence_after_load");`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:241` · `Ziptide.Gameplay.TravelCoordinator` — ZIPTIDE diagnostic tag. `catch (System.Exception ex) { Debug.LogWarning("ZIPTIDE: GATE_FAIL arrive dest=" + sceneName + " – " + ex.Message); }`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:262` · `Ziptide.Gameplay.TravelCoordinator` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: XRI_NOT_READY after " + timeout + "s – proceeding anyway");`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:263` · `Ziptide.Gameplay.TravelCoordinator` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: TRAVEL_FAIL dest=" + sceneName + " reason=XRI_NOT_READY");`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:267` · `Ziptide.Gameplay.TravelCoordinator` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: XRI_READY elapsed=" + elapsed.ToString("F2") + "s");`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:276` · `Ziptide.Gameplay.TravelCoordinator` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: AUDIT_FAIL multiple_managers_after_travel count=" + (managers?.Length ?? 0));`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:280` · `Ziptide.Gameplay.TravelCoordinator` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: TRAVEL_OK dest=" + sceneName);`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:287` · `Ziptide.Gameplay.TravelCoordinator` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FIRST_HOUR_TRAVEL dest=" + sceneName +`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:110` · `Ziptide.Gameplay.TravelCoordinator` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: TRAVEL_BLOCKED dest=_Boot (boot is not a world) – redirecting to "`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:121` · `Ziptide.Gameplay.TravelCoordinator` — ZIPTIDE diagnostic tag. `Debug.LogError("ZIPTIDE: TRAVEL_FAIL dest=" + sceneName +`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:132` · `Ziptide.Gameplay.TravelCoordinator` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: TravelCoordinator not found – falling back to direct load");`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:152` · `Ziptide.Gameplay.TravelCoordinator` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: TravelCoordinator already travelling – ignoring duplicate request");`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:162` · `Ziptide.Gameplay.TravelCoordinator` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: TRAVEL_START dest=" + sceneName);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:193` · `Ziptide.Gameplay.TravelCoordinator` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: GATE_FAIL depart dest=" + sceneName + " – " + ex.Message);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:213` · `Ziptide.Gameplay.TravelCoordinator` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: TRAVEL_FAIL dest=" + sceneName + " reason=async_load_not_started");`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:228` · `Ziptide.Gameplay.TravelCoordinator` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: TRAVEL_TIMEOUT dest=" + sceneName +`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:242` · `Ziptide.Gameplay.TravelCoordinator` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: TRAVEL_FAIL dest=" + sceneName + " reason=no_PlayerRigPersistence_after_load");`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:255` · `Ziptide.Gameplay.TravelCoordinator` — ZIPTIDE diagnostic tag. `catch (System.Exception ex) { Debug.LogWarning("ZIPTIDE: GATE_FAIL arrive dest=" + sceneName + " – " + ex.Message); }`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:276` · `Ziptide.Gameplay.TravelCoordinator` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: XRI_NOT_READY after " + timeout + "s – proceeding anyway");`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:277` · `Ziptide.Gameplay.TravelCoordinator` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: TRAVEL_FAIL dest=" + sceneName + " reason=XRI_NOT_READY");`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:281` · `Ziptide.Gameplay.TravelCoordinator` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: XRI_READY elapsed=" + elapsed.ToString("F2") + "s");`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:290` · `Ziptide.Gameplay.TravelCoordinator` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: AUDIT_FAIL multiple_managers_after_travel count=" + (managers?.Length ?? 0));`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:294` · `Ziptide.Gameplay.TravelCoordinator` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: TRAVEL_OK dest=" + sceneName);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:301` · `Ziptide.Gameplay.TravelCoordinator` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FIRST_HOUR_TRAVEL dest=" + sceneName +`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldDiscoveryNodeRuntime.cs:66` · `Ziptide.Gameplay.WorldDiscoveryNodeRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: WORLD_DISCOVERY scene=" + gameObject.scene.name`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ZiplineRuntime.cs:72` · `Ziptide.Gameplay.ZiplineRuntime` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: ZIPLINE_DEGENERATE anchors too close — disabled");`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ZiplineRuntime.cs:125` · `Ziptide.Gameplay.ZiplineRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: ZIPLINE_READY len=" +`
@@ -1222,7 +1221,7 @@
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs:15` · `Ziptide.Gameplay.TurnModeCore` — Input System action reference. `/// only after its InputAction can safely resolve and read a Vector2. This prevents XRI from calling`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerSafetyRuntime.cs:47` · `Ziptide.Gameplay.TurnModeCore` — Input System action reference. `public static bool IsTurnActionReady(InputAction action)`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:18` · `Ziptide.Gameplay.TravelCoordinator` — Input System action reference. `/// and InputActionManager are all ready`
-- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:358` · `Ziptide.Gameplay.TravelCoordinator` — Input System action reference. `var iam = Object.FindObjectOfType<InputActionManager>();`
+- **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:372` · `Ziptide.Gameplay.TravelCoordinator` — Input System action reference. `var iam = Object.FindObjectOfType<InputActionManager>();`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:62` · `Ziptide.Ship.ShipFlightRuntime` — Input System action reference. `private InputAction _leftStick;`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:63` · `Ziptide.Ship.ShipFlightRuntime` — Input System action reference. `private InputAction _rightStick;`
 - **INPUT_ACTION_REFERENCE** — `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:64` · `Ziptide.Ship.ShipFlightRuntime` — Input System action reference. `private InputAction _boostStickClick; // L3 — same finger as sprint on foot`
@@ -1652,7 +1651,7 @@
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:86` · `Ziptide.Editor.Patching.CityBuilder` — Runtime primitive construction. `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:229` · `Ziptide.Editor.Patching.CityBuilder` — Runtime primitive construction. `var w = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:353` · `Ziptide.Editor.Patching.CityBuilder` — Runtime primitive construction. `var rail = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:560` · `Ziptide.Editor.Patching.CityBuilder` — Runtime primitive construction. `var drone = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
+- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:552` · `Ziptide.Editor.Patching.CityBuilder` — Runtime primitive construction. `var drone = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/CityStageAPrimitiveFactory.cs:23` · `Ziptide.Editor.Patching.CityStageAPrimitiveFactory` — Runtime primitive construction. `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs:109` · `Ziptide.Editor.FirstHourSurfaceAuthor` — Runtime primitive construction. `var visual = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/FlatsSiteAuthor.cs:210` · `Ziptide.Editor.Patching.FlatsSiteAuthor` — Runtime primitive construction. `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
@@ -1928,9 +1927,9 @@
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/BuildingBuilder.cs:198` · `Ziptide.Editor.Patching.BuildingBuilder` — Runtime GameObject construction. `var frame = new GameObject("DoorFrame");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/BuildingBuilder.cs:210` · `Ziptide.Editor.Patching.BuildingBuilder` — Runtime GameObject construction. `var marker = new GameObject("__DOOR");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:272` · `Ziptide.Editor.Patching.CityBuilder` — Runtime GameObject construction. `var marker = new GameObject("Marker_" + hb.interiorMarkerId);`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:485` · `Ziptide.Editor.Patching.CityBuilder` — Runtime GameObject construction. `var go = new GameObject(name);`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:531` · `Ziptide.Editor.Patching.CityBuilder` — Runtime GameObject construction. `var go = new GameObject("Hazard_" + h.id);`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:584` · `Ziptide.Editor.Patching.CityBuilder` — Runtime GameObject construction. `var go = new GameObject(name);`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:477` · `Ziptide.Editor.Patching.CityBuilder` — Runtime GameObject construction. `var go = new GameObject(name);`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:523` · `Ziptide.Editor.Patching.CityBuilder` — Runtime GameObject construction. `var go = new GameObject("Hazard_" + h.id);`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:576` · `Ziptide.Editor.Patching.CityBuilder` — Runtime GameObject construction. `var go = new GameObject(name);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs:91` · `Ziptide.Editor.FirstHourSurfaceAuthor` — Runtime GameObject construction. `var marker = new GameObject(markerName);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/FlatsSiteAuthor.cs:80` · `Ziptide.Editor.Patching.FlatsSiteAuthor` — Runtime GameObject construction. `Transform root = new GameObject(RootName).transform;`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/FlatsSiteAuthor.cs:90` · `Ziptide.Editor.Patching.FlatsSiteAuthor` — Runtime GameObject construction. `var marker = new GameObject("Marker_" + SiteMarkerId);`
@@ -2501,8 +2500,8 @@
 - **AUTOSAVE_CALL** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Persistence/SaveSystem.cs:123` · `Ziptide.Gameplay.SaveSystem` — Autosave request. `public static void AutosaveNow(string reason)`
 - **AUTOSAVE_CALL** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs:139` · `Ziptide.Gameplay.LifecycleState` — Autosave request. `SaveSystem.AutosaveNow("system_overlay");`
 - **AUTOSAVE_CALL** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:143` · `Ziptide.Gameplay.PvpProgressionRuntime` — Autosave request. `SaveSystem.AutosaveNow("pvp_match");`
-- **AUTOSAVE_CALL** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:119` · `Ziptide.Gameplay.TravelCoordinator` — Autosave request. `SaveSystem.AutosaveNow("travel_fallback");`
-- **AUTOSAVE_CALL** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:187` · `Ziptide.Gameplay.TravelCoordinator` — Autosave request. `SaveSystem.AutosaveNow("travel");`
+- **AUTOSAVE_CALL** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:133` · `Ziptide.Gameplay.TravelCoordinator` — Autosave request. `SaveSystem.AutosaveNow("travel_fallback");`
+- **AUTOSAVE_CALL** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:201` · `Ziptide.Gameplay.TravelCoordinator` — Autosave request. `SaveSystem.AutosaveNow("travel");`
 - **AUTOSAVE_CALL** — `Ziptide/Assets/Ziptide/Tests/EditMode/SaveAutosaveTests.cs:17` · `Ziptide.Tests.EditMode.SaveAutosaveTests` — Autosave request. `Assert.DoesNotThrow(() => SaveSystem.AutosaveNow("travel"));`
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Content/Runtime/Economy/GardenService.cs:151` · `Ziptide.Content.TendStatus` — PlayerProfile reference. `public static HarvestPlantResult Harvest(PlayerProfile profile, PlotState plot, PlantDefinition plant, ToolDefinition tool, long nowUnix)`
 - **PLAYER_PROFILE_REFERENCE** — `Ziptide/Assets/Ziptide/Content/Runtime/Economy/MiningService.cs:49` · `Ziptide.Content.BuildMineStatus` — PlayerProfile reference. `PlayerProfile profile, WorldState world,`
@@ -2749,8 +2748,8 @@
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:161` · `Ziptide.Gameplay.ShipBoardingStation` — SaveSystem reference. `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:181` · `Ziptide.Gameplay.ShipBoardingStation` — SaveSystem reference. `SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null) ?? "?")))`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipRefit.cs:33` · `Ziptide.Gameplay.ShipRefit` — SaveSystem reference. `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
-- **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:119` · `Ziptide.Gameplay.TravelCoordinator` — SaveSystem reference. `SaveSystem.AutosaveNow("travel_fallback");`
-- **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:187` · `Ziptide.Gameplay.TravelCoordinator` — SaveSystem reference. `SaveSystem.AutosaveNow("travel");`
+- **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:133` · `Ziptide.Gameplay.TravelCoordinator` — SaveSystem reference. `SaveSystem.AutosaveNow("travel_fallback");`
+- **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:201` · `Ziptide.Gameplay.TravelCoordinator` — SaveSystem reference. `SaveSystem.AutosaveNow("travel");`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldRuntime.cs:46` · `Ziptide.Gameplay.WorldRuntime` — SaveSystem reference. `var save = SaveSystem.Instance;`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:64` · `Ziptide.Gameplay.WorldTravelStation` — SaveSystem reference. `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:149` · `Ziptide.Gameplay.WorldTravelStation` — SaveSystem reference. `+ " missing=" + (WorldGating.FirstMissingRequirement(pack, SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null) ?? "?"));`
@@ -2786,9 +2785,9 @@
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:382` · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` — SaveSystem reference. `string json = File.ReadAllText(SaveSystem.SavePath);`
 ### scene_loading
 
-- **DIRECT_SCENE_LOAD** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:122` · `Ziptide.Gameplay.TravelCoordinator` — Direct synchronous scene load. `SceneManager.LoadScene(sceneName);`
+- **DIRECT_SCENE_LOAD** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:136` · `Ziptide.Gameplay.TravelCoordinator` — Direct synchronous scene load. `SceneManager.LoadScene(sceneName);`
 - **DIRECT_SCENE_LOAD** — `Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourTravelSignalTests.cs:118` · `Ziptide.Tests.EditMode.FirstHourTravelSignalTests` — Direct synchronous scene load. `Assert.AreEqual(1, Count(source, "SceneManager.LoadScene(sceneName);"),`
-- **DIRECT_SCENE_LOAD_ASYNC** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:196` · `Ziptide.Gameplay.TravelCoordinator` — Direct asynchronous scene load. `AsyncOperation loadOperation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);`
+- **DIRECT_SCENE_LOAD_ASYNC** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:210` · `Ziptide.Gameplay.TravelCoordinator` — Direct asynchronous scene load. `AsyncOperation loadOperation = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);`
 - **DIRECT_SCENE_LOAD_ASYNC** — `Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourTravelSignalTests.cs:121` · `Ziptide.Tests.EditMode.FirstHourTravelSignalTests` — Direct asynchronous scene load. `"SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);"),`
 - **DIRECT_SCENE_LOAD_ASYNC** — `Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourTravelSignalTests.cs:134` · `Ziptide.Tests.EditMode.FirstHourTravelSignalTests` — Direct asynchronous scene load. `int asyncLoad = source.IndexOf("SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);");`
 - **DIRECT_SCENE_LOAD_ASYNC** — `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:64` · `Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests` — Direct asynchronous scene load. `AsyncOperation bootLoad = SceneManager.LoadSceneAsync(`
@@ -2880,8 +2879,8 @@
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:383` · `Ziptide.Gameplay.HomeHubChoice` — XRInteractionManager lookup. `XRInteractionManager manager = FindObjectOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/QuartersRoom.cs:260` · `Ziptide.Gameplay.QuartersRoom` — XRInteractionManager lookup. `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs:332` · `Ziptide.Gameplay.ShipBoardingStation` — XRInteractionManager lookup. `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
-- **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:274` · `Ziptide.Gameplay.TravelCoordinator` — XRInteractionManager lookup. `var managers = Object.FindObjectsOfType<XRInteractionManager>();`
-- **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:349` · `Ziptide.Gameplay.TravelCoordinator` — XRInteractionManager lookup. `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
+- **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:288` · `Ziptide.Gameplay.TravelCoordinator` — XRInteractionManager lookup. `var managers = Object.FindObjectsOfType<XRInteractionManager>();`
+- **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:363` · `Ziptide.Gameplay.TravelCoordinator` — XRInteractionManager lookup. `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/WorldDiscoveryNodeRuntime.cs:44` · `Ziptide.Gameplay.WorldDiscoveryNodeRuntime` — XRInteractionManager lookup. `_interactable.interactionManager = FindObjectOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:119` · `Ziptide.Gameplay.WorldTravelStation` — XRInteractionManager lookup. `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
 - **XRI_MANAGER_LOOKUP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:264` · `Ziptide.Gameplay.WorldTravelStation` — XRInteractionManager lookup. `var mgr = Object.FindObjectOfType<XRInteractionManager>();`

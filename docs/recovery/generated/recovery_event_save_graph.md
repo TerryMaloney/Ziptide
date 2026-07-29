@@ -95,7 +95,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `ActiveStates`
 
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Content.CreatureBehaviorStateEvidence` · `Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs:248` · `profile` — `foreach (string state in profile.ActiveStates)`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Content.CreatureBehaviorStateEvidence` · `Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs:268` · `profile` — `foreach (string state in profile.ActiveStates)`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs:26` · `profile` — `Assert.AreEqual(profile.ActiveStates.Count, profile.ActiveStateEvidence.Count);`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs:27` · `profile` — `Assert.GreaterOrEqual(profile.ActiveStates.Count,`
 
@@ -181,7 +181,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `BehaviorTypeName`
 
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Content.CreatureBehaviorStateEvidence` · `Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs:245` · `profile` — `if (string.IsNullOrWhiteSpace(profile.BehaviorTypeName)) errors.Add("BEHAVIOR_TYPE_EMPTY");`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Content.CreatureBehaviorStateEvidence` · `Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs:265` · `profile` — `if (string.IsNullOrWhiteSpace(profile.BehaviorTypeName)) errors.Add("BEHAVIOR_TYPE_EMPTY");`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Editor.Audit.CreatureBehaviorAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/CreatureBehaviorAuditRules.cs:98` · `profile` — `"Ziptide.Gameplay." + profile.BehaviorTypeName,`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Editor.Audit.CreatureBehaviorAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/CreatureBehaviorAuditRules.cs:104` · `profile` — `profile.BehaviorTypeName + "'.");`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs:36` · `profile` — `StringAssert.Contains(profile.BehaviorTypeName, source, profile.CreatureId);`
@@ -209,8 +209,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `CounterState`
 
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Content.CreatureBehaviorStateEvidence` · `Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs:263` · `profile` — `if (!states.Contains(profile.CounterState))`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Content.CreatureBehaviorStateEvidence` · `Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs:264` · `profile` — `errors.Add("COUNTER_NOT_ACTIVE:" + profile.CounterState);`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Content.CreatureBehaviorStateEvidence` · `Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs:283` · `profile` — `if (!states.Contains(profile.CounterState))`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Content.CreatureBehaviorStateEvidence` · `Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs:284` · `profile` — `errors.Add("COUNTER_NOT_ACTIVE:" + profile.CounterState);`
 
 ### `CreatureDisabled`
 
@@ -218,9 +218,9 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `CreatureId`
 
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Content.CreatureBehaviorStateEvidence` · `Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs:244` · `profile` — `if (string.IsNullOrWhiteSpace(profile.CreatureId)) errors.Add("CREATURE_ID_EMPTY");`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Content.CreatureBehaviorStateEvidence` · `Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs:306` · `profile` — `if (profile == null || string.IsNullOrEmpty(profile.CreatureId)) continue;`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Content.CreatureBehaviorStateEvidence` · `Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs:307` · `profile` — `lookup.Add(profile.CreatureId, profile);`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Content.CreatureBehaviorStateEvidence` · `Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs:264` · `profile` — `if (string.IsNullOrWhiteSpace(profile.CreatureId)) errors.Add("CREATURE_ID_EMPTY");`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Content.CreatureBehaviorStateEvidence` · `Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs:326` · `profile` — `if (profile == null || string.IsNullOrEmpty(profile.CreatureId)) continue;`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Content.CreatureBehaviorStateEvidence` · `Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs:327` · `profile` — `lookup.Add(profile.CreatureId, profile);`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Editor.Audit.CreatureBehaviorAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/CreatureBehaviorAuditRules.cs:40` · `profile` — `"Creature '" + profile.CreatureId + "' profile error: " + error);`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Editor.Audit.CreatureBehaviorAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/CreatureBehaviorAuditRules.cs:42` · `profile` — `if (string.IsNullOrWhiteSpace(profile.CreatureId)) continue;`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Editor.Audit.CreatureBehaviorAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/CreatureBehaviorAuditRules.cs:43` · `profile` — `if (!profilesById.TryAdd(profile.CreatureId, profile))`
@@ -265,9 +265,9 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `DisabledState`
 
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Content.CreatureBehaviorStateEvidence` · `Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs:266` · `profile` — `if (string.IsNullOrWhiteSpace(profile.DisabledState))`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Content.CreatureBehaviorStateEvidence` · `Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs:268` · `profile` — `else if (states.Contains(profile.DisabledState))`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Content.CreatureBehaviorStateEvidence` · `Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs:269` · `profile` — `errors.Add("DISABLED_STATE_DUPLICATES_ACTIVE:" + profile.DisabledState);`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Content.CreatureBehaviorStateEvidence` · `Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs:286` · `profile` — `if (string.IsNullOrWhiteSpace(profile.DisabledState))`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Content.CreatureBehaviorStateEvidence` · `Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs:288` · `profile` — `else if (states.Contains(profile.DisabledState))`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Content.CreatureBehaviorStateEvidence` · `Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs:289` · `profile` — `errors.Add("DISABLED_STATE_DUPLICATES_ACTIVE:" + profile.DisabledState);`
 
 ### `DroneRuntime.OnDroneDisabled`
 
@@ -738,10 +738,10 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **SAVE_ACCESS** · `Ziptide.Gameplay.SystemFocusStateMachine` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/SystemFocusLifecycle.cs:139` — `SaveSystem.AutosaveNow("system_overlay");`
 - **AUTOSAVE** · `Ziptide.Gameplay.PvpProgressionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:143` · `pvp_match` — `SaveSystem.AutosaveNow("pvp_match");`
 - **SAVE_ACCESS** · `Ziptide.Gameplay.PvpProgressionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:143` — `SaveSystem.AutosaveNow("pvp_match");`
-- **AUTOSAVE** · `Ziptide.Gameplay.TravelCoordinator` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:119` · `travel_fallback` — `SaveSystem.AutosaveNow("travel_fallback");`
-- **SAVE_ACCESS** · `Ziptide.Gameplay.TravelCoordinator` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:119` — `SaveSystem.AutosaveNow("travel_fallback");`
-- **AUTOSAVE** · `Ziptide.Gameplay.TravelCoordinator` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:187` · `travel` — `SaveSystem.AutosaveNow("travel");`
-- **SAVE_ACCESS** · `Ziptide.Gameplay.TravelCoordinator` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:187` — `SaveSystem.AutosaveNow("travel");`
+- **AUTOSAVE** · `Ziptide.Gameplay.TravelCoordinator` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:133` · `travel_fallback` — `SaveSystem.AutosaveNow("travel_fallback");`
+- **SAVE_ACCESS** · `Ziptide.Gameplay.TravelCoordinator` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:133` — `SaveSystem.AutosaveNow("travel_fallback");`
+- **AUTOSAVE** · `Ziptide.Gameplay.TravelCoordinator` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:201` · `travel` — `SaveSystem.AutosaveNow("travel");`
+- **SAVE_ACCESS** · `Ziptide.Gameplay.TravelCoordinator` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:201` — `SaveSystem.AutosaveNow("travel");`
 - **AUTOSAVE** · `Ziptide.Tests.EditMode.SaveAutosaveTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/SaveAutosaveTests.cs:17` · `travel` — `Assert.DoesNotThrow(() => SaveSystem.AutosaveNow("travel"));`
 - **SAVE_ACCESS** · `Ziptide.Tests.EditMode.SaveAutosaveTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/SaveAutosaveTests.cs:17` — `Assert.DoesNotThrow(() => SaveSystem.AutosaveNow("travel"));`
 
@@ -959,8 +959,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `TelegraphState`
 
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Content.CreatureBehaviorStateEvidence` · `Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs:261` · `profile` — `if (!states.Contains(profile.TelegraphState))`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Content.CreatureBehaviorStateEvidence` · `Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs:262` · `profile` — `errors.Add("TELEGRAPH_NOT_ACTIVE:" + profile.TelegraphState);`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Content.CreatureBehaviorStateEvidence` · `Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs:281` · `profile` — `if (!states.Contains(profile.TelegraphState))`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Content.CreatureBehaviorStateEvidence` · `Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs:282` · `profile` — `errors.Add("TELEGRAPH_NOT_ACTIVE:" + profile.TelegraphState);`
 
 ### `This`
 
@@ -974,7 +974,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 ### `TravelCompleted`
 
 - **EVENT_DECLARE** · `Ziptide.Gameplay.TravelCoordinator` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:38` · `static Action<string>` — `public static event Action<string> TravelCompleted;`
-- **EVENT_INVOKE** · `Ziptide.Gameplay.TravelCoordinator` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:330` — `TravelCompleted?.Invoke(destination);`
+- **EVENT_INVOKE** · `Ziptide.Gameplay.TravelCoordinator` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:344` — `TravelCompleted?.Invoke(destination);`
 - **EVENT_INVOKE** · `Ziptide.Tests.EditMode.FirstHourTravelSignalTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourTravelSignalTests.cs:124` — `StringAssert.DoesNotContain("TravelCompleted?.Invoke(sceneName)",`
 
 ### `TravelCoordinator.TravelCompleted`
@@ -1380,7 +1380,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 - **EVENT_INVOKE** · `Ziptide.Gameplay.FirstHourHolsterSignal` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/FirstHourHolsterSignal.cs:29` — `publish?.Invoke(itemId);`
 - **EVENT_INVOKE** · `Ziptide.Gameplay.RepairStageSignals` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairStage.cs:50` — `publish?.Invoke(designatedMachine);`
-- **EVENT_INVOKE** · `Ziptide.Gameplay.TravelCoordinator` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:306` — `publish?.Invoke(destination);`
+- **EVENT_INVOKE** · `Ziptide.Gameplay.TravelCoordinator` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/TravelCoordinator.cs:320` — `publish?.Invoke(destination);`
 
 ### `pvpCareer`
 
