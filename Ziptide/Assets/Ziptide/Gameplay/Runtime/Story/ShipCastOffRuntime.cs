@@ -270,33 +270,33 @@ namespace Ziptide.Gameplay
                 }
                 yield return new WaitForSeconds(0.06f);
             }
+            // TWO LAUNCHES, ONE EXIT. An ordinary cast-off is a FLIGHT: the atmosphere veil brackets
+            // the cut so leaving a planet reads as leaving a planet, and the destination's
+            // ReentryArrivalRuntime picks the same burn up on the far side. The keyed transit is not
+            // a flight at all — the tide erupts around the hull and takes the ship, anchored at the
+            // berth so it pours out of YOUR ship instead of ringing you wherever you stand, and with
+            // no veil on purpose: the gate IS the event, and a plasma burn over it would bury the
+            // beat this whole hour exists to earn.
+            //
+            // Both paths leave through the SAME call into travel. A second entry point here is how a
+            // parallel travel path gets born, and HomeHubFlowTests pins that there is only one.
+            Vector3? gateAnchor = null;
             if (suppressGateEffect)
             {
-                // THE ORDINARY CAST-OFF. The atmosphere veil brackets the cut: the burn builds, the
-                // scene swaps at its peak, and the destination's ReentryArrivalRuntime picks the same
-                // fire up on the far side — so leaving a planet reads as leaving a planet instead of
-                // a load. The lead is bounded by AtmosphereVeilCore and the veil self-destructs at
-                // its hard cap, so this can never hold travel: worst case the burn is invisible and
-                // the flight departs on schedule.
+                // The veil is bounded by AtmosphereVeilCore and self-destructs at its hard cap, so
+                // this can never hold travel: worst case the burn is invisible and the flight leaves
+                // on schedule.
                 float lead = AtmosphereVeilEffect.Play(VeilLeg.Ascent);
                 yield return new WaitForSeconds(lead);
-
-                Debug.Log("ZIPTIDE: FLIGHT_DEPART target=" + targetScene + " gate=suppressed");
-                TravelCoordinator.TravelTo(targetScene, skipGate: true);
-                yield break;
+            }
+            else
+            {
+                gateAnchor = transform.position;
             }
 
-            // THE FIRST ZIPTIDE (FIRST_HOUR_DIRECTORS_CUT §2.5). The key is seated, so this launch is
-            // not a flight at all — the tide erupts AROUND THE HULL and takes the ship. Passing the
-            // berth as the gate position is what makes it pour out of your own ship rather than
-            // ringing the player wherever they happen to stand; it is the difference between the
-            // game's biggest moment happening TO the ship and happening near it.
-            //
-            // No atmosphere veil here on purpose: the gate IS the event, and stacking a plasma burn
-            // over it would bury the beat this whole hour was built to earn.
-            Debug.Log("ZIPTIDE: FLIGHT_DEPART target=" + targetScene + " gate=full berth="
-                + transform.position.ToString("F1"));
-            TravelCoordinator.TravelTo(targetScene, transform.position);
+            Debug.Log("ZIPTIDE: FLIGHT_DEPART target=" + targetScene
+                + " gate=" + (suppressGateEffect ? "suppressed" : "full berth=" + transform.position.ToString("F1")));
+            TravelCoordinator.TravelTo(targetScene, skipGate: suppressGateEffect, gatePos: gateAnchor);
         }
 
         private void PublishDestinationSelected(string destination)

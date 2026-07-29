@@ -200,6 +200,26 @@ namespace Ziptide.Content
                 "cooldown_vulnerable",
                 "stunned_down"),
 
+            // ⚖ The canal stalker plays against the BOAT, so its readable states are the three
+            // stages of that escalation rather than an approach/attack loop: it escorts, it warns
+            // by shouldering the hull, and only then does it stand in the channel — and it yields.
+            // Telegraph = the shadow (you always get one free ride), counter = the stun, which drops
+            // it straight back to shadowing at any stage.
+            Profile(
+                "tox_canal_stalker_01",
+                CreatureArchetype.Swarmer,
+                "CanalStalkerBehavior",
+                "case \"tox_canal_stalker_01\": go.AddComponent<CanalStalkerBehavior>(); return;",
+                new[]
+                {
+                    State("shadow_escort", "case StalkerStage.Shadow: Escort(dt); break;"),
+                    State("hull_bump", "case StalkerStage.Bump: Shoulder(dt); break;"),
+                    State("channel_block", "case StalkerStage.Block: Block(dt); break;"),
+                },
+                "shadow_escort",
+                "hull_bump",
+                "channel_block"),
+
             Profile(
                 "warden",
                 CreatureArchetype.Bruiser,

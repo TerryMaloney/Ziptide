@@ -189,6 +189,21 @@
   (the rb121 deferred LOOK problem) hangs a sagging tide-lit arc between the joined key and the
   socket, brightening as you carry it closer, alive only in the ARTIFACT_JOINED → KEY_SEATED
   window — so "follow the beacon back to your berth" is something you can see.
+- **🔴→ CI red on `a260b835`, diagnosed and fixed (1326/1332 — it COMPILED; all 6 were guardrail
+  tests doing their job, and every one was right):**
+  1. `OnlyTheKeySocketReArmsTheTide` — I authored the ToxicCity berth `suppressGate: false`, which
+     would have let the gate exist without the key. **The invariant is better than my code was:**
+     both berths are now authored gate-SUPPRESSED and `KeySocketRuntime` remains the only thing in
+     the game that hands the gate back.
+  2. `TheFirstLaunchIsACastOff_NotAZiptide` + `HelmAndAuthorSourcesDoNotCreateASecondTravelOrLaunchPath`
+     — my two-branch launch created a SECOND `TravelCoordinator.TravelTo(` call in the launch owner
+     (exactly how a parallel travel path is born). Collapsed to one exit via a new
+     `TravelTo(scene, skipGate, gatePos)` overload; both paths now leave through one call.
+  3. Three creature-readability tests — `tox_canal_stalker_01` shipped without a
+     `CreatureBehaviorReadabilityCatalog` profile. Added, with its three stages as the readable
+     states (shadow escort / hull bump / channel block) and the stun as the counter.
+  Also folded the W000 and ToxicCity berth authoring into ONE parameterized block rather than two
+  near-duplicate ones.
 - Commit: (this one).
 
 ### 2026-07-29 (rb126) — Fable 5: 📐 LEVEL1_SPATIAL_SCRIPT — the placement layer, + ⚖ Terry's two story corrections (expedition + boat/stalker)

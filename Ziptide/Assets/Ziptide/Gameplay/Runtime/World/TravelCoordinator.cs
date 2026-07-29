@@ -82,6 +82,20 @@ namespace Ziptide.Gameplay
         }
 
         /// <summary>
+        /// Both at once: suppress-or-not AND where the tide erupts from. The cast-off needs this
+        /// because its two launches differ only in these two values — an ordinary flight suppresses
+        /// the gate, the keyed transit pours it out of the berth — and the launch owner is required
+        /// to have exactly ONE call into travel (HomeHubFlowTests pins that; a second entry point is
+        /// how a parallel travel path gets born).
+        /// </summary>
+        public static void TravelTo(string sceneName, bool skipGate, Vector3? gatePos)
+        {
+            _skipGateNext = skipGate;
+            if (gatePos.HasValue) _pendingGatePos = gatePos.Value;
+            TravelTo(sceneName);
+        }
+
+        /// <summary>
         /// Primary travel API. Falls back to direct SceneManager.LoadScene if no coordinator.
         /// </summary>
         public static void TravelTo(string sceneName)

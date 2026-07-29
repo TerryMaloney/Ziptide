@@ -382,43 +382,35 @@ namespace Ziptide.Editor.Patching
             ship.localRotation = Quaternion.Euler(0f, s.shipRotationY, 0f);
             ShipHullBuilder.Build(ship, s.shipSize, kit.palette);
 
-            // PUNCH IT (Test Day 1): only the W000 tutorial ship gets the cast-off console —
-            // its launch IS the tutorial's final beat. Other berths stay boarding stations.
-            if (kit.sceneName == "W000_DriftIn")
-            {
-                var castOff = ship.GetComponent<ShipCastOffRuntime>()
-                    ?? ship.gameObject.AddComponent<ShipCastOffRuntime>();
-                // The AUTHOR owns the route, not the .unity file. The committed scene still carried
-                // targetScene: ToxicCity from an older arc; configuring here means a regenerated world
-                // always ships the current one. First launch = the outbound salvage leg, no gate FX --
-                // the Ziptide is reserved for the key transit (FIRST_HOUR_DIRECTORS_CUT §5).
-                castOff.Configure(ZiptideConstants.SceneSpaceLane, suppressGate: true);
-
-                // THE KEY SOCKET, on the hull beside the cast-off console. It sits there dark for the
-                // whole first act; the player finds half an artifact in a wreck, is paid the other
-                // half in Toxic City, joins them, follows the beacon back to this berth, and seats it
-                // HERE -- which is the moment the Ziptide is armed. The spectacle is earned by an
-                // object the player carried, not spent on the tutorial's first bus ride.
-                var socket = ship.GetComponent<KeySocketRuntime>()
-                    ?? ship.gameObject.AddComponent<KeySocketRuntime>();
-                socket.Configure(ArtifactJoinRuntime.KeyItemId, ZiptideConstants.SceneW002);
-                ship.gameObject.AddComponent<BeaconThreadRuntime>();
-            }
-
-            // ⚖ THE BERTH THE FIRST HOUR ENDS AT. The join happens back at the berth in Toxic City
-            // (Terry, 2026-07-29), which means THIS hull is the one that has to erupt — and until
-            // now only W000's ship had a socket, so the minute-45 beat had nowhere to happen.
+            // PUNCH IT — the two berths whose launch is a STORY BEAT rather than a boarding station.
             //
-            // The launch here is gated on the KEY rather than on a coupler: no machine to repair,
-            // no route until the artifact gives it one. Seating the key re-points the ship at W002
-            // and un-suppresses the gate through the same KeySocketRuntime path W000 uses.
-            if (kit.sceneName == ZiptideConstants.SceneToxicCity)
+            // W000: the tutorial's final beat. The launch is the outbound salvage leg with the gate
+            // suppressed; the Ziptide is reserved for the key transit (FIRST_HOUR_DIRECTORS_CUT §5).
+            //
+            // ⚖ ToxicCity: the berth the first hour ENDS at (Terry, 2026-07-29 — the join happens
+            // back at the berth after the drive). Until now only W000's ship carried a socket, so
+            // the minute-45 beat had nowhere to happen at all. Here the launch is gated on the KEY
+            // instead of a coupler: no machine to repair, and no route until the artifact gives the
+            // ship one.
+            //
+            // BOTH are authored gate-SUPPRESSED. Only KeySocketRuntime may ever hand the gate back
+            // (ArtifactThreadTests pins that invariant), and it does so at the moment the key is
+            // seated — which is the whole point of the beat.
+            bool tutorialBerth = kit.sceneName == "W000_DriftIn";
+            bool keyedBerth = kit.sceneName == ZiptideConstants.SceneToxicCity;
+            if (tutorialBerth || keyedBerth)
             {
+                // The AUTHOR owns the route, not the .unity file — a regenerated world always ships
+                // the current one rather than whatever string was serialized months ago.
                 var castOff = ship.GetComponent<ShipCastOffRuntime>()
                     ?? ship.gameObject.AddComponent<ShipCastOffRuntime>();
-                castOff.Configure(ZiptideConstants.SceneW002, suppressGate: false);
-                castOff.ConfigureKeyGate(required: true, machineId: "");
+                castOff.Configure(
+                    tutorialBerth ? ZiptideConstants.SceneSpaceLane : ZiptideConstants.SceneW002,
+                    suppressGate: true);
+                if (keyedBerth) castOff.ConfigureKeyGate(required: true, machineId: "");
 
+                // THE KEY SOCKET on the hull beside the console: dark through the whole first act,
+                // then lit by an object the player found, joined and seated with their own hands.
                 var socket = ship.GetComponent<KeySocketRuntime>()
                     ?? ship.gameObject.AddComponent<KeySocketRuntime>();
                 socket.Configure(ArtifactJoinRuntime.KeyItemId, ZiptideConstants.SceneW002);
