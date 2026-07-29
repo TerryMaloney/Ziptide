@@ -29,6 +29,9 @@ MonoBehaviour:
   mines: []
   gardens: []
   sockets: []
-  audioProfile: {fileID: 0}
+  audioProfile: {fileID: 11400000, guid: 6fbda911a1633ed4eac94eed037a0781, type: 2}
   flagsRequired: []
-  flagsGranted: []
+  flagsGranted:
+  - C1_W001_ARRIVED
+  - C1_W001_JOB_COMPLETE
+  - W001_COMPLETE

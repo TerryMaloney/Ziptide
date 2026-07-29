@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: W000_DriftInExit_WorldPack
   m_EditorClassIdentifier: 
   packId: w000_drift_in_exit
-  displayName: Leave
-  sceneName: MilestoneA_GrabCube
+  displayName: Toxic City
+  sceneName: ToxicCity
   defaultTheme: {fileID: 0}
   availableThemes: []
   jobs: []

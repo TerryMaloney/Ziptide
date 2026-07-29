@@ -20,6 +20,8 @@ namespace Ziptide.Gameplay
 
         private JobRuntime _runtime = new JobRuntime();
         private readonly List<Transform> _markerTransforms = new List<Transform>();
+        private readonly Dictionary<string, Transform> _resolvedMarkers = new Dictionary<string, Transform>();
+        private readonly HashSet<string> _reportedMissingMarkers = new HashSet<string>();
         private Transform _playerTransform;
         private float _goToCheckTimer;
 
@@ -266,16 +268,79 @@ namespace Ziptide.Gameplay
             var step = _runtime.GetCurrentStep() as GoToMarkerStepDefinition;
             if (step == null) return;
 
-            Transform marker = null;
-            foreach (var t in _markerTransforms)
-            {
-                if (t.name == "Marker_" + step.markerId) { marker = t; break; }
-            }
+            Transform marker = ResolveMarker(step.markerId);
             if (marker == null) return;
 
             float dist = Vector3.Distance(_playerTransform.position, marker.position);
             if (dist <= step.arriveDistance)
                 _runtime.ReportGoToArrived(step.markerId);
+        }
+
+        /// <summary>
+        /// Find the transform a <c>GoToMarker</c> step means. Pack-declared markers win; authored
+        /// scene markers are the fallback.
+        ///
+        /// ⚠ WHY THE FALLBACK EXISTS. This used to search only <see cref="_markerTransforms"/> — the
+        /// markers this director creates from <c>worldPack.spawnMarkers</c>. But world builders also
+        /// author <c>Marker_&lt;id&gt;</c> objects straight into the scene (hero-building interiors,
+        /// berths, POIs), and those are never in the pack. ToxicCity shipped with exactly ONE pack
+        /// marker (<c>player</c>) while its contract's steps pointed at <c>dispatch_inside</c>,
+        /// <c>relay_node</c> and <c>shipyard_office</c> — objects that were right there in the scene.
+        /// Three of the first level's four contract steps could therefore never complete, which also
+        /// meant <c>toxiccity_complete</c> was never granted and W002 stayed locked forever. The step
+        /// data was right, the scene was right, and the lookup silently returned null.
+        ///
+        /// Resolution is cached per id, and an unresolvable id is reported ONCE as a loud diagnostic
+        /// rather than stalling in silence.
+        /// </summary>
+        public Transform ResolveMarker(string markerId)
+        {
+            if (string.IsNullOrEmpty(markerId)) return null;
+
+            if (_resolvedMarkers.TryGetValue(markerId, out var cached) && cached != null)
+                return cached;
+
+            string wanted = "Marker_" + markerId;
+
+            for (int i = 0; i < _markerTransforms.Count; i++)
+            {
+                var t = _markerTransforms[i];
+                if (t != null && t.name == wanted)
+                {
+                    _resolvedMarkers[markerId] = t;
+                    return t;
+                }
+            }
+
+            var roots = gameObject.scene.GetRootGameObjects();
+            for (int i = 0; i < roots.Length; i++)
+            {
+                var found = FindDescendantNamed(roots[i].transform, wanted);
+                if (found == null) continue;
+                _resolvedMarkers[markerId] = found;
+                Debug.Log("ZIPTIDE: JOB_MARKER_RESOLVED id=" + markerId + " source=scene");
+                return found;
+            }
+
+            if (_reportedMissingMarkers.Add(markerId))
+                Debug.LogWarning("ZIPTIDE: JOB_MARKER_MISSING id=" + markerId
+                    + " pack=" + (worldPack != null ? worldPack.packId : "?")
+                    + " scene=" + gameObject.scene.name
+                    + " — this step can never complete.");
+
+            return null;
+        }
+
+        private static Transform FindDescendantNamed(Transform root, string wanted)
+        {
+            if (root == null) return null;
+            if (root.name == wanted) return root;
+            for (int i = 0; i < root.childCount; i++)
+            {
+                var found = FindDescendantNamed(root.GetChild(i), wanted);
+                if (found != null) return found;
+            }
+            return null;
         }
 
         private void EnsureBoardAndKiosk()

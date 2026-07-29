@@ -102,7 +102,7 @@ MonoBehaviour:
     ratePerSecond: 0.05
     storageCap: 40
     localPosition: {x: 108.65401, y: 7.747499, z: 73.974396}
-  audioProfile: {fileID: 0}
+  audioProfile: {fileID: 11400000, guid: 6fbda911a1633ed4eac94eed037a0781, type: 2}
   flagsRequired:
   - toxiccity_complete
   flagsGranted:

@@ -175,6 +175,7 @@ namespace Ziptide.Gameplay
             EnsureCreditsHud();
             EnsureRillCompanion();
             EnsurePingTool();
+            EnsurePlayerMenu();
 
             // #region agent log
             LogRaySnapshot("Awake_AFTER");
@@ -297,6 +298,23 @@ namespace Ziptide.Gameplay
             {
                 gameObject.AddComponent<RillCompanion>();
                 Debug.Log("ZIPTIDE: RILL_ENSURED on persistent rig");
+            }
+        }
+
+        /// <summary>
+        /// DV-02 (device 2026-07-26): "no pause, return-to-hub, or world-exit path — after entering
+        /// ToxicCity I could not leave the world." The escape surface itself existed, but it was only
+        /// installed as a side effect of <c>DashLocomotion</c>'s Awake. Any rig or world where that
+        /// component was absent, disabled, or simply ran in a different order shipped with NO way out.
+        /// The player's escape hatch belongs to the persistent rig, next to the fall-safety net —
+        /// nothing optional may own it.
+        /// </summary>
+        private void EnsurePlayerMenu()
+        {
+            if (GetComponent<PlayerMenuRuntime>() == null)
+            {
+                gameObject.AddComponent<PlayerMenuRuntime>();
+                Debug.Log("ZIPTIDE: PLAYER_MENU_ENSURED on persistent rig");
             }
         }
 

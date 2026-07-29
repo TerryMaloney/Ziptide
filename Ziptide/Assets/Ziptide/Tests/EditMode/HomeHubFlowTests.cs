@@ -82,12 +82,14 @@ namespace Ziptide.Tests.EditMode
             HomeHubAnchor.Solve(head, Vector3.forward,
                 HomeHubRuntime.AnchorDistance, 0.15f, out Vector3 board, out _);
 
-            // Furthest authored tile offsets: x = 0.72 (three-tile layout), y = -0.22.
+            // Furthest authored tile offsets: x = 0.60 (three-tile layout), y = -0.22.
             float along = Vector3.ProjectOnPlane(board - head, Vector3.up).magnitude
                 - HomeHubRuntime.TileForwardOffset;
-            float furthestTile = new Vector3(0.72f, -0.22f, along).magnitude;
+            float furthestTile = new Vector3(0.60f, -0.22f, along).magnitude;
 
-            Assert.Greater(along, 0.25f, "Tiles must not be pushed into the player's face.");
+            Assert.Greater(along, 0.6f,
+                "DV-01: 0.45 m read as uncomfortably close on device — keep the centre tile at a "
+                + "relaxed-arm distance, not a face-plant.");
             Assert.LessOrEqual(furthestTile, 0.95f,
                 "Every tile must be reachable by an extended arm/lean when no ray interactor is active.");
             Assert.Less(furthestTile, 1.4f,

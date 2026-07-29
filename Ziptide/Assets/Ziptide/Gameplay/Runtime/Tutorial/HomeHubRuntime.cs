@@ -91,7 +91,13 @@ namespace Ziptide.Gameplay
         // 0.45 m row was uncomfortably close, so the board moved 0.10 m farther while the shipped
         // three-tile layout remains inside the tested 0.95 m hand/lean liveness envelope.
         public const float AnchorDistance = 1.6f;     // board centre from the head
-        public const float TileForwardOffset = 1.05f; // tiles sit this much NEARER than the board
+        // DV-01 (device 2026-07-26): the first reach fix overshot — tiles landed 0.45 m from the head,
+        // "uncomfortably close". Pulling the offset back to 0.95 puts the centre tile at 0.65 m: a
+        // relaxed-arm distance rather than a face-plant, while the narrower tile spacing below keeps
+        // the FURTHEST (diagonal) tile inside the same extended-arm envelope the liveness test pins.
+        public const float TileForwardOffset = 0.95f; // tiles sit this much NEARER than the board
+        private const float TileSpanWide = 0.60f;     // three-tile layout, centre-to-centre
+        private const float TileSpanNarrow = 0.36f;   // two-tile layout
         private const float AnchorDrop = 0.15f;       // board centre slightly below eye level
         private const float ReanchorDistanceMeters = 0.35f;
         private const float ReanchorYawDegrees = 25f;
@@ -299,18 +305,18 @@ namespace Ziptide.Gameplay
 
             if (canContinue)
             {
-                AddTile("NEW GAME", new Vector3(-0.72f, -0.22f, -TileForwardOffset),
+                AddTile("NEW GAME", new Vector3(-TileSpanWide, -0.22f, -TileForwardOffset),
                     new Color(0.18f, 0.62f, 0.78f), () => Choose(HomeHubChoice.NewGame));
                 AddTile("CONTINUE", new Vector3(0f, -0.22f, -TileForwardOffset),
                     new Color(0.25f, 0.72f, 0.48f), () => Choose(HomeHubChoice.Continue));
-                AddTile("SETTINGS", new Vector3(0.72f, -0.22f, -TileForwardOffset),
+                AddTile("SETTINGS", new Vector3(TileSpanWide, -0.22f, -TileForwardOffset),
                     new Color(0.72f, 0.48f, 0.18f), () => Choose(HomeHubChoice.Settings));
             }
             else
             {
-                AddTile("NEW GAME", new Vector3(-0.42f, -0.22f, -TileForwardOffset),
+                AddTile("NEW GAME", new Vector3(-TileSpanNarrow, -0.22f, -TileForwardOffset),
                     new Color(0.18f, 0.62f, 0.78f), () => Choose(HomeHubChoice.NewGame));
-                AddTile("SETTINGS", new Vector3(0.42f, -0.22f, -TileForwardOffset),
+                AddTile("SETTINGS", new Vector3(TileSpanNarrow, -0.22f, -TileForwardOffset),
                     new Color(0.72f, 0.48f, 0.18f), () => Choose(HomeHubChoice.Settings));
             }
         }
@@ -321,7 +327,7 @@ namespace Ziptide.Gameplay
             tile.name = "Tile_" + text.Replace(' ', '_');
             tile.transform.SetParent(transform, false);
             tile.transform.localPosition = localPosition;
-            tile.transform.localScale = new Vector3(0.58f, 0.28f, 0.12f);
+            tile.transform.localScale = new Vector3(0.52f, 0.28f, 0.12f);
             Paint(tile, color);
 
             var interactable = tile.AddComponent<XRSimpleInteractable>();

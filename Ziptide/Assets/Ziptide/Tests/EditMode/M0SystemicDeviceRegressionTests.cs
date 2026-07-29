@@ -126,6 +126,18 @@ namespace Ziptide.Tests.EditMode
         }
 
         [Test]
+        public void TheEscapeHatch_IsOwnedByThePersistentRig_NotByAnOptionalLocomotionComponent()
+        {
+            // DV-02: "after entering ToxicCity I could not leave the world." PlayerMenuRuntime existed
+            // the whole time — it was installed only as a side effect of DashLocomotion's Awake, so a
+            // rig without that component shipped with no way out at all.
+            string rig = Read("Gameplay", "Runtime", "Player", "PlayerRigPersistence.cs");
+            StringAssert.Contains("EnsurePlayerMenu();", rig);
+            StringAssert.Contains("PLAYER_MENU_ENSURED", rig);
+            StringAssert.Contains("AddComponent<PlayerMenuRuntime>()", rig);
+        }
+
+        [Test]
         public void SameSceneReturnToShip_IsAnUnstuckRecovery_NotANoop()
         {
             string source = Read("Gameplay", "Runtime", "Player", "PlayerMenuRuntime.cs");
