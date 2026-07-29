@@ -5,6 +5,25 @@
 
 > This is the CURRENT status layer, not a replacement for the deeper sources of truth. When detail is needed, follow the linked boards and historical plans below. When this file conflicts with an older unchecked row, prefer the newest implementation log, `HANDOFF.md`, and `CI_VERDICT.md`, then correct this file.
 
+
+## ⚠ 2026-07-29 — OPERATOR TAKEOVER IN FLIGHT
+
+Terry is driving home to test on the headset. The full takeover packet is **`docs/HANDOFF.md`
+entry rb130** — read it before anything else. Short version:
+
+- Head `30f3ed84`. **CI, Fast Preflight and Golden Android are green (run-level).**
+- **One open red, pre-existing and diagnosed:** `Recovery PlayMode Observation` 41/43 — four
+  uncatalogued `[RuntimeInitializeOnLoadMethod]` bootstraps. Fix shape is written out in rb130 §4.
+  Does not block the headset test.
+- **Built today:** the five Catch keepers as geometry · the tender's tool arms (were dead code) ·
+  the lighting law derived from the sun bearing · THE BOUNDS LADDER (graduated flight correction +
+  40 no-repeat RILL lines) · THE CITY'S COMPASS (lantern route + sightline triple, both CI-enforced
+  laws) · `scrap` registered in the economy · two stale evidence tokens refreshed.
+- **Not built:** zipline · berths 1–5 quay pads · W002 defend wave/garden/glyph plate · pause board ·
+  title/credits · all music and VO · all final art.
+- **Nothing is in a scene yet** — Terry must run `LEVEL1_BAKE_AND_SMOKE.md` §1 steps 1–6 in order
+  (step 2 before step 3) before any of it exists to play.
+
 ## 1. Operating truth
 
 - Branch: `terry-local-wip`.

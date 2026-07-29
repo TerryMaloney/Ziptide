@@ -38,6 +38,178 @@
 > `docs/HANDOFF_HISTORY_THROUGH_RB24.md`.
 
 
+### 2026-07-29 (rb130) — 🔴 OPERATOR TAKEOVER PACKET (session ended near usage limit; Terry is driving home to test)
+
+**Read this entry first. It supersedes rb129 below as the current picture.** Terry is on his way home
+to put the headset on. Your job before he arrives: confirm the state below is real, do NOT start a new
+feature, and be ready to turn his one-line defect reports into fixes.
+
+---
+
+#### 0 · STATE OF THE WORKFLOW (verify this first — CLAUDE.md §WORKFLOW INTEGRITY)
+
+Head at handoff: **`30f3ed84`** (plus `[skip ci]` doc/verdict commits on top).
+
+| Workflow | On `30f3ed84` |
+|---|---|
+| **CI** (EditMode + patch-scenes + audit) | ✅ **success** — RUN-level, all jobs |
+| **Fast Preflight** (python gates) | ✅ success |
+| **Recovery Golden Android** (APK) | ✅ success |
+| **Recovery Contract Scan / Owner Proof** | ✅ success |
+| **Recovery PlayMode Observation** | ❌ **failure, 41/43 — PRE-EXISTING, see §4** |
+
+**⚖ Verification rule adopted today (MISS_LEDGER #20):** a CI-green claim must cite the **RUN's**
+conclusion, never one job's. I claimed green from the EditMode job while the audit job was red for
+three commits. Do not repeat it — check every workflow on the sha.
+
+---
+
+#### 1 · WHAT WAS BUILT TODAY (committed, CI-verified, NOT device-verified)
+
+**A. The five Catch keepers became geometry** (`25db6a43`)
+- `docs/project_art_plan/measured_specs/the_catch_measured_spec.md` — numbers pulled off Terry's five
+  approved Nano Banana keepers, including the generator's departures that are BETTER than my prompt
+  (ring came back double-ringed; pod has two drive bands; tender is a soft rounded box). Stencils
+  (`CP-0974`, `SERVICER-9`, `SECTION A-12`, `P/N 99`…) adopted as canon nomenclature.
+- `ScenePatcherSpaceLane.BuildDebrisField` — **28 grey rocks replaced by 9 typed pieces**, each a
+  broken part of something else in the pack, so the Overrun reads as consequence not nature.
+  Lane kept clear (`|x| >= 14`), every piece gets `DriftTumbleRuntime`.
+- `BuildCargoPod(root, burst)` — twin drive bands per the keeper; burst splits at the waist.
+- `BuildDroneTarget` → **SERVICER-9**: Hull + chamfers + side pods + nozzles + Eye/Bezel/Indicators +
+  **Arm_L/Arm_R** + **AccessPanel** (hatch, green board, copper loom).
+- `SpaceTargetRuntime.PoseForMood` — **was written last pass and never called** (dead code wearing a
+  feature's name). Now called from `Awake`, `SetMood` and `TakeHit`. Arms stow dormant → deploy woken
+  → drop slack with the panel hanging open when disabled (that open panel IS the salvage read).
+- **⚖ THE LIGHTING LAW (Terry):** `EnsureLighting()` now DERIVES the lane's key light from
+  `SkyVistaLibrary.MossSunBearing` (0.18, 0.62, −0.76) instead of a hand-typed `Euler(35,−30,0)` that
+  pointed nowhere near the sun in the sky. Sun over the shoulder; everything ahead is lit.
+- **Rings squared to the trajectory** via `FlightBoundsCore.PathAxis` (patcher and runtime call the
+  SAME function, so aim and measurement cannot drift), and `RingPassRadius` is now the 6 m bore —
+  it was 7 m against a 6 m opening, so a run could be credited on a line that clips the truss.
+
+**B. THE BOUNDS LADDER — Terry's "what happens if I fly too close?"** (`25db6a43`)
+New pure cores: `Content/Runtime/Flight/FlightBoundsCore.cs` + `FlightBoundsVoiceCore.cs`.
+Wired in `ShipFlightRuntime` (`BuildBounds` / `TickBounds` / `SampleBounds`).
+- Five bound classes — **Corridor · Structure · Gate · Ground · Deep** — on a three-tier ladder:
+  **ADVISORY (words only) → CORRECTING (push + speed bleed) → HARD (double authority)**.
+- Before this the ONLY answer was `FlightModel`'s silent 1.8 km sphere snap. No warning, no gradation,
+  RILL said nothing.
+- **Three laws, each pinned by a test:** nothing is taken from the pilot without a warning tier first ·
+  **straying off the swept lane is ADVISORY forever** (exploring is not a mistake) · **no correction
+  ever rotates the ship** (comfort).
+- **Variety is mechanical, not hopeful:** 40 authored RILL lines in pools of 4; the picker WALKS each
+  pool by a coprime stride so every line is spent before any repeats; she only speaks on a RISE, so
+  holding station near a wreck is silent. Cooldown 6 s, re-arm 4 s.
+- **Ground is authored but OFF in orbit** (`boundsHasGround=false`) — there is no floor out there.
+  It binds the first time an atmospheric leg turns it on. Say that plainly if Terry asks about
+  "too close to a building": in Level 1 he never flies near buildings.
+- Diagnostics: `ZIPTIDE: FLIGHT_BOUNDS_READY hulls=… corridor=… ground=…` on entering flight, and
+  `ZIPTIDE: FLIGHT_BOUNDS kind=… level=… sev=… line=…` per spoken line.
+
+**C. THE CITY'S COMPASS** (`30f3ed84`) — closes `LEVEL1_SPATIAL_SCRIPT` §3 row 5.
+New: `Content/Runtime/City/WayfindingCore.cs` (pure) · `Editor/Patching/CityWayfindingAuthor.cs` ·
+`Gameplay/Runtime/World/FaultStrobeRuntime.cs`. Called from `ScenePatcherToxicCity.Populate`.
+- **Lantern route** over the contract's walk (Dispatch → Market → Plaza → Colonnade → CanalRow →
+  Dispatch, ~147 m, ~18 lanterns at 12 m) **and nowhere else** — unlit street = you are exploring.
+- **Sightline triple** from dispatch: relay mast's RED fault strobe NW (offset −6.5,0,−5.5 off the
+  CanalRow anchor so it does not grow through the RelayVault's roof) · north tower's WHITE crown ·
+  berth FLOODLIGHTS south. Measured separation **72°**.
+- **Both are LAWS:** `CityWayfindingTests` reads the compiled spec and fails CI if a lantern leg has
+  no authored street under it, or if the three landmarks fall within 45° of each other.
+- Diagnostic: `ZIPTIDE: WAYFINDING lanterns=… legs=… tripleSeparation=…`.
+
+**D. Two CI reds fixed that had been hiding**
+- `9a9e281c` — **`RESOURCE_ID_UNREGISTERED: 'scrap'`**. Disabled ring-tenders and the interior salvage
+  cache both pay `scrap`; nothing had ever registered it. Added via `EconomyAuthor` (create-only) AND
+  committed as `Resources/Economy/scrap.asset` so a local project has it without a build.
+- `d87836c5` — two stale first-hour evidence tokens (`FH_INTERACT_HELM`, `FH_FIRST_ZIPTIDE`) that named
+  `ShipCastOffRuntime` lines my earlier cast-off work had rewritten. Refreshed through
+  `tools/first_hour_evidence_refresh.py` with a queued reviewable request, never by hand.
+
+**E. Guardrails added so none of this can rot into dead code**
+`tools/level1_wiring_gate.py` grew from 16 → **20 features**: `bounds ladder`, `tender tool arms`,
+`city compass`, `relay fault strobe`. Each must be EXISTS + CREATED + DRIVEN or CI reds.
+
+---
+
+#### 2 · WHAT TERRY MUST DO BEFORE HE CAN PLAY ANY OF IT
+
+**None of today's geometry is in a scene yet.** It is all generators. He must run the bake batch:
+`docs/production/LEVEL1_BAKE_AND_SMOKE.md` §1 — steps 1–6, **in order**, and step 2 (Compile World
+Specs) MUST run before step 3 (Build Toxic City) or the bake uses the old prototype layout.
+Then §2 build+install, then §3 the play route.
+
+**Code-green ≠ device-green.** Nothing below has been seen in a headset. Expect defects; that is the
+point of the session.
+
+---
+
+#### 3 · WHAT IS **NOT** BUILT (honest list — do not let this drift)
+
+- **The zipline** — placement as data was never authored.
+- **Berths 1–5 quay pads** (the hangar walk). The beacon thread IS built; the pads are not.
+- **W002's defend wave · garden plot · glyph plate** — `WorldStubGenerator` bakes the scene and
+  `w002_pumps` is a full 9-step contract, but these three staging beats are absent.
+- **Pause/settings board** and the **title + legal/credits panel**.
+- **All music and VO.** Zero.
+- **All final art.** Everything is procedural stand-in geometry per the stand-in law; Tripo re-skins
+  behind the same ids later.
+- **`TextMesh` labels on the helm** — likely to read badly at Quest resolution; flag it if Terry
+  squints at the console.
+
+---
+
+#### 4 · THE ONE OPEN RED, FULLY DIAGNOSED (I chose NOT to fix it — read why)
+
+`Recovery PlayMode Observation` → **41/43**, failing since at least `59a91c2f`, well before today's
+batch. Named failure: `RecoveryGateBypassTests.RuntimeBootstrapDiscovery_CoversAllFirstPartySource
+Attributes:78`.
+
+**Cause, reproduced offline (scan `[RuntimeInitializeOnLoadMethod]` vs the catalog):** four runtime
+files auto-bootstrap but are absent from the closed exposure catalog
+(`Core/Runtime/Recovery/RecoveryAutomaticOwnerCatalog.cs` + `docs/recovery/automatic_runtime_owners.json`):
+
+1. `Gameplay/Runtime/Story/ArtifactJoinRuntime.cs`
+2. `Gameplay/Runtime/World/ReentryArrivalRuntime.cs`
+3. `Gameplay/Runtime/Tutorial/FirstHourDirector.cs`
+4. `Gameplay/Runtime/Tutorial/FirstHourW001Orchestrator.cs`
+
+**Two of those four came out of this Level 1 stream, so part of the debt is ours.**
+
+**The fix shape:** one `Required(...)` registration each (use `Required`, not `Gated` — the test only
+demands an exact `RecoveryRuntimeGate.Allows(RecoveryFeatureId.X)` token in source for `FeatureGated`
+entries, so `Required` avoids editing four runtime files), a `RecoveryFeatureId` enum value each, and a
+mirrored owner record in the JSON (schema: id/source/symbol/startup/persistence/sideEffects/
+recoveryExposure/canonicalDisposition/priority).
+
+**Why I stopped:** the recovery program is a separate authority under a documented freeze, PlayMode is
+not run by the main CI (so verification costs a full separate workflow cycle), and doing four contract
+registrations blind at the end of a session is exactly how the three reds earlier today happened.
+**Terry's call whether to open that lane.** It does not block the headset test — Golden Android is green.
+
+---
+
+#### 5 · NEXT OPERATOR: DO THIS, IN THIS ORDER
+
+1. **Verify, don't trust.** `git log --oneline -5`; confirm every workflow on the head sha (not one
+   job). Run `python3 tools/level1_wiring_gate.py --root .` and
+   `python3 -m unittest discover tools/tests -q` — both should be clean in seconds.
+2. **Do not start a new feature.** Terry is minutes from a headset. Be a fix-responder.
+3. **When defects come in**, they will arrive as one-liners with a `ZIPTIDE:` tag. The tag map for the
+   new work: `FLIGHT_BOUNDS*` (bounds ladder) · `WAYFINDING` (compass) · `DRONE_MOOD` (tender arms) ·
+   `FLATS_SITE` (expedition) · `CATCH_*` / `ARTIFACT_JOIN_HINT` (RILL cues).
+4. **Every defect → fix AND a MISS_LEDGER class.** That is the standing contract.
+5. **Circuit breaker: 3 CI reds on one task → STOP and escalate to Terry.** I hit exactly 3 today on
+   the guardrail-conformance task; the discipline is what kept it from becoming a lost evening.
+
+**⚖ Terry's standing corrections (canon, do not re-litigate):** artifact half B is at the crashed
+survey skiff OUTSIDE town, reached BY VEHICLE through the sea-wall breach — not the Dockmaster's
+paperweight · the canal stalker interacts with the player's BOAT · the rings are THE CATCH's arrestor
+infrastructure (see `docs/design/THE_CATCH.md`), not a lamp chase · art/sound are modular procedural
+stand-ins swappable via Tripo later · **report honestly what was BUILT, not planned.**
+
+---
+
 ### 2026-07-29 (rb129) — the five Catch keepers built, the bounds ladder, and a CI-green retraction
 
 - **⚠ WORKFLOW INTEGRITY — I got this wrong and it is logged.** I reported the space-leg batch as
