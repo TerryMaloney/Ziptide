@@ -116,6 +116,30 @@ namespace Ziptide.Gameplay
             _pending.Enqueue(line);
         }
 
+        /// <summary>
+        /// Deliver one specific line by id. This is the ONLY way a Cue line ever reaches the player:
+        /// the first-hour director asks for a teaching line after that beat's hesitation interval, so a
+        /// player who simply does the thing never hears it. Uses the same once-latch and subtitle path
+        /// as every other line, so nothing about delivery or VO forks. Returns false when the library
+        /// is missing, the id is unknown, or the line has already been said on this save — the caller
+        /// logs the gap instead of the game speaking an empty subtitle.
+        /// </summary>
+        public bool SayById(string lineId)
+        {
+            if (_library == null || string.IsNullOrEmpty(lineId)) return false;
+            if (!_library.TryGetById(lineId, out RillLine line) || line == null) return false;
+
+            var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;
+            if (line.once && profile != null)
+            {
+                if (profile.HasFlag(SaidFlagPrefix + line.id)) return false;
+                profile.SetFlag(SaidFlagPrefix + line.id);
+            }
+
+            _pending.Enqueue(line);
+            return true;
+        }
+
         private void EnqueueMatching(RillTrigger trigger, string key)
         {
             if (_library == null) return;
