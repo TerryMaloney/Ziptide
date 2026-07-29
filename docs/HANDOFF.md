@@ -88,6 +88,14 @@
   `ShipFlightRuntime.NextRingIndex/RingCountTotal` accessors + `EnsureRingLights` in
   `ScenePatcherSpaceLane.Populate` + 7 EditMode tests. NOT yet real until Terry's Build Space
   Lane bake re-runs (the committed scene predates the component).
+- **B4: the drones now REACT + THE FIND gets its debris field.** `SpaceTargetReactionCore` (pure:
+  wake at 40 m / sleep at 55 m — a hysteresis band so a pilot hovering at the boundary never
+  sees the eye strobe; a 3 s evade window after each hit that outranks waking; ±6 m slide at
+  0.35 Hz; eye emissive + bob ×2 escalate with mood) wired into `SpaceTargetRuntime`
+  (`ObservePilot` fed from `ShipFlightRuntime.TickCombat`, `ZIPTIDE: DRONE_MOOD` on transitions,
+  non-lethal law intact — reactions change motion and light only, nothing chases or shoots),
+  plus `DriftTumbleRuntime` and a 9-piece golden-angle scrap shell around the artifact cradle so
+  "one object does not scan" has ordinary objects to hide among. 12 more EditMode tests.
 - Commit: (this one).
 
 ### 2026-07-29 (rb126) — Fable 5: 📐 LEVEL1_SPATIAL_SCRIPT — the placement layer, + ⚖ Terry's two story corrections (expedition + boat/stalker)

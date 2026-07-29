@@ -299,6 +299,41 @@ namespace Ziptide.Editor.Patching
             marker.transform.SetParent(cradle.transform, false);
             marker.transform.localPosition = new Vector3(0f, 1.7f, 0f);
             marker.AddComponent<SpaceSalvageItemRuntime>().Init("artifact_half_a");
+
+            BuildFindShell(cradle.transform);
+        }
+
+        /// <summary>
+        /// THE FIND'S DEBRIS SHELL (LEVEL1_SPATIAL_SCRIPT §2). "One object does not scan" only
+        /// lands if there are OTHER objects — a lone artifact on a bare hulk reads as a quest
+        /// marker. Nine tumbling scrap pieces drift in a 12 m shell around the cradle, deliberately
+        /// ordinary, so the humming one is a discovery the player makes rather than a thing the
+        /// level points at. Procedural stand-in per the stand-in law; Tripo re-skins later.
+        /// </summary>
+        private static void BuildFindShell(Transform cradle)
+        {
+            const int Pieces = 9;
+            const float ShellRadius = 12f;
+            for (int i = 0; i < Pieces; i++)
+            {
+                // Deterministic scatter (golden-angle spiral) — same wreck field every bake.
+                float a = i * 2.39996f;
+                float y = 1f - (i / (float)(Pieces - 1)) * 2f;
+                float r = Mathf.Sqrt(Mathf.Max(0f, 1f - y * y));
+                var dir = new Vector3(Mathf.Cos(a) * r, y * 0.55f, Mathf.Sin(a) * r);
+
+                var scrap = GameObject.CreatePrimitive(
+                    i % 3 == 0 ? PrimitiveType.Cube : PrimitiveType.Capsule);
+                scrap.name = "Scrap_" + i;
+                scrap.transform.SetParent(cradle, false);
+                scrap.transform.localPosition = dir * ShellRadius * (0.55f + (i % 4) * 0.15f);
+                scrap.transform.localRotation = Quaternion.Euler(i * 37f, i * 61f, i * 23f);
+                float s = 0.5f + (i % 3) * 0.35f;
+                scrap.transform.localScale = new Vector3(s, s * (0.6f + (i % 2) * 0.5f), s);
+                Object.DestroyImmediate(scrap.GetComponent<Collider>()); // drift past, never bump
+                Paint(scrap, new Color(0.26f + (i % 3) * 0.03f, 0.25f, 0.23f));
+                scrap.AddComponent<DriftTumbleRuntime>();
+            }
         }
 
         /// <summary>

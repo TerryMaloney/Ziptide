@@ -379,6 +379,11 @@ namespace Ziptide.Ship
             if (_targets.Length == 0) return;
             float now = Time.time;
 
+            // Tell every drone where the pilot is — the only input the reaction layer needs
+            // (SpaceTargetReactionCore: wake, brighten, and slide when hit).
+            foreach (var t in _targets)
+                if (t != null && t.gameObject.activeSelf) t.ObservePilot(_state.position);
+
             if (_fireAction.IsPressed() && SpaceCombatCore.CanFire(_lastFireTime, now))
             {
                 _lastFireTime = now;
