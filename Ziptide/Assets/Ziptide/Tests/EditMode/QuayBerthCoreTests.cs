@@ -48,11 +48,26 @@ namespace Ziptide.Tests.EditMode
         }
 
         [Test]
-        public void TheGuard_ActuallyBites_WhenSpacingWouldOverlap()
+        public void TheGuard_ActuallyBites_WhenSpacingIsNarrowerThanADeck()
         {
-            // A berth wide enough that the 14 m rhythm would run the first deck into it. If this
-            // ever returns true the invariant has become decorative.
-            Assert.IsFalse(QuayBerthCore.DecksAreDisjoint(Berth, 400f));
+            // The axis that can genuinely fail. Berth WIDTH cannot cause an overlap — the pads are
+            // placed off the berth's own edge and just move west with it — so the honest mutation
+            // is a spacing tighter than the decks it has to separate.
+            Assert.IsFalse(QuayBerthCore.DecksAreDisjoint(Berth, BerthWidth,
+                spacing: 6f, padWidth: QuayBerthCore.PadWidth),
+                "6 m spacing cannot separate 12 m decks — the guard must catch it");
+
+            // ...and a wider berth must still be fine, precisely because the walk follows the edge.
+            Assert.IsTrue(QuayBerthCore.DecksAreDisjoint(Berth, 400f));
+        }
+
+        [Test]
+        public void TheShippedConstants_ObeyTheLawTheGuardEnforces()
+        {
+            // The production call sites use the consts, so the consts themselves are the contract.
+            Assert.GreaterOrEqual(QuayBerthCore.Spacing, QuayBerthCore.PadWidth,
+                "decks must fit inside their own spacing");
+            Assert.Greater(QuayBerthCore.EdgeMargin, 0f, "the first deck must not touch berth six");
         }
 
         [Test]

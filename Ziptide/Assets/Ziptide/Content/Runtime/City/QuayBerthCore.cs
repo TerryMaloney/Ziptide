@@ -37,12 +37,19 @@ namespace Ziptide.Content
         /// 14 m rhythm carries the rest.
         /// </summary>
         public static List<Vector3> PadCentres(Vector3 berthCentre, float berthWidth)
+            => PadCentres(berthCentre, berthWidth, Spacing, PadWidth);
+
+        /// <summary>Spacing/width overload — exists so the disjointness check below can be proven
+        /// to FAIL on bad geometry. With the shipped constants the layout is disjoint by
+        /// construction, which makes a guard that only ever sees those constants untestable.</summary>
+        public static List<Vector3> PadCentres(Vector3 berthCentre, float berthWidth,
+            float spacing, float padWidth)
         {
             var pads = new List<Vector3>(BerthCount);
             // East edge of the first empty deck sits EdgeMargin clear of berth six's west edge.
-            float firstCentreX = berthCentre.x - (berthWidth * 0.5f) - EdgeMargin - (PadWidth * 0.5f);
+            float firstCentreX = berthCentre.x - (berthWidth * 0.5f) - EdgeMargin - (padWidth * 0.5f);
             for (int i = 0; i < BerthCount; i++)
-                pads.Add(new Vector3(firstCentreX - i * Spacing, berthCentre.y, berthCentre.z));
+                pads.Add(new Vector3(firstCentreX - i * spacing, berthCentre.y, berthCentre.z));
             return pads;
         }
 
@@ -55,17 +62,24 @@ namespace Ziptide.Content
         /// Pinned by QuayBerthCoreTests.
         /// </summary>
         public static bool DecksAreDisjoint(Vector3 berthCentre, float berthWidth)
+            => DecksAreDisjoint(berthCentre, berthWidth, Spacing, PadWidth);
+
+        /// <summary>Spacing/width overload. The failure this detects is spacing narrower than a
+        /// deck: berth width cannot cause an overlap, because the pads are placed relative to the
+        /// berth's own edge and simply move west with it.</summary>
+        public static bool DecksAreDisjoint(Vector3 berthCentre, float berthWidth,
+            float spacing, float padWidth)
         {
-            var pads = PadCentres(berthCentre, berthWidth);
+            var pads = PadCentres(berthCentre, berthWidth, spacing, padWidth);
             float berthMinX = berthCentre.x - berthWidth * 0.5f;
 
             for (int i = 0; i < pads.Count; i++)
             {
-                float maxX = pads[i].x + PadWidth * 0.5f;
-                if (maxX >= berthMinX) return false; // runs into the player's berth
+                float maxX = pads[i].x + padWidth * 0.5f;
+                if (maxX > berthMinX) return false; // runs into the player's berth
 
                 for (int j = i + 1; j < pads.Count; j++)
-                    if (Mathf.Abs(pads[i].x - pads[j].x) < PadWidth) return false;
+                    if (Mathf.Abs(pads[i].x - pads[j].x) < padWidth) return false;
             }
             return true;
         }
