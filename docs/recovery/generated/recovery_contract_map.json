@@ -7472,21 +7472,21 @@
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs",
-            "line": 217,
+            "line": 221,
             "symbol": "Ziptide.Gameplay.CreatureRuntime",
             "snippet": "var shader = Shader.Find(\"Universal Render Pipeline/Unlit\");"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs",
-            "line": 218,
+            "line": 222,
             "symbol": "Ziptide.Gameplay.CreatureRuntime",
             "snippet": "if (shader == null) shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
           },
           {
             "code": "RUNTIME_MATERIAL_CREATE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs",
-            "line": 221,
+            "line": 225,
             "symbol": "Ziptide.Gameplay.CreatureRuntime",
             "snippet": "var mat = new Material(shader);"
           }

@@ -244,8 +244,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:177` · `OnCreatureDisabled` — `CreatureRuntime.CreatureDisabled -= OnCreatureDisabled;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Tests.EditMode.CreatureDisabledSignalTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureDisabledSignalTests.cs:25` · `OnDisabled` — `CreatureRuntime.CreatureDisabled += OnDisabled;`
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.EditMode.CreatureDisabledSignalTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureDisabledSignalTests.cs:36` · `OnDisabled` — `CreatureRuntime.CreatureDisabled -= OnDisabled;`
-- **EVENT_SUBSCRIBE** · `Ziptide.Tests.EditMode.CreatureDisabledSignalTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureDisabledSignalTests.cs:98` · `thrower` — `CreatureRuntime.CreatureDisabled += thrower;`
-- **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.EditMode.CreatureDisabledSignalTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureDisabledSignalTests.cs:108` · `thrower` — `CreatureRuntime.CreatureDisabled -= thrower;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Tests.EditMode.CreatureDisabledSignalTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureDisabledSignalTests.cs:105` · `thrower` — `CreatureRuntime.CreatureDisabled += thrower;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.EditMode.CreatureDisabledSignalTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureDisabledSignalTests.cs:115` · `thrower` — `CreatureRuntime.CreatureDisabled -= thrower;`
 
 ### `DestinationSelected`
 

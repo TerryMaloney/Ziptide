@@ -1550,7 +1550,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureDisabledSignalTests.cs",
-        "line": 98,
+        "line": 105,
         "owner": "Ziptide.Tests.EditMode.CreatureDisabledSignalTests",
         "target": "CreatureRuntime.CreatureDisabled",
         "detail": "thrower",
@@ -1559,7 +1559,7 @@
       {
         "kind": "EVENT_UNSUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureDisabledSignalTests.cs",
-        "line": 108,
+        "line": 115,
         "owner": "Ziptide.Tests.EditMode.CreatureDisabledSignalTests",
         "target": "CreatureRuntime.CreatureDisabled",
         "detail": "thrower",
@@ -13143,7 +13143,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureDisabledSignalTests.cs",
-      "line": 98,
+      "line": 105,
       "owner": "Ziptide.Tests.EditMode.CreatureDisabledSignalTests",
       "target": "CreatureRuntime.CreatureDisabled",
       "detail": "thrower",
@@ -13152,7 +13152,7 @@
     {
       "kind": "EVENT_UNSUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureDisabledSignalTests.cs",
-      "line": 108,
+      "line": 115,
       "owner": "Ziptide.Tests.EditMode.CreatureDisabledSignalTests",
       "target": "CreatureRuntime.CreatureDisabled",
       "detail": "thrower",
