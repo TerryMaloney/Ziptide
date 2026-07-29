@@ -31,6 +31,13 @@ permissions:
   checks: write
   contents: read
 
+# A superseded push burns a full Unity run nobody will read, and lengthens the queue for the run
+# that matters. recovery-golden-android.yml has had this since it was written
+# (docs/FAST_LANE.md section 4, item 3).
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
 env:
   PROJECT_PATH: Ziptide
   UNITY_VERSION: 2022.3.62f3
@@ -145,6 +152,31 @@ jobs:
           if not result_files:
               raise SystemExit('EditMode produced no NUnit result XML.')
 
+          def name_the_failures(xml_root):
+              """Print WHICH test failed, and why.
+
+              Without this the gate said only 'failed: 1' out of ~1200, and finding the culprit meant
+              downloading and hand-parsing the artifact -- a 20-minute detour on every red. One
+              glance at the log should be enough (docs/FAST_LANE.md section 4, item 4).
+              """
+              reported = []
+              for case in xml_root.iter():
+                  if case.tag.split('}')[-1] != 'test-case':
+                      continue
+                  if case.attrib.get('result') in ('Passed', 'Skipped', None):
+                      continue
+                  message = ''
+                  for child in case.iter():
+                      if child.tag.split('}')[-1] == 'message' and child.text:
+                          message = ' '.join(child.text.split())[:400]
+                          break
+                  reported.append((case.attrib.get('fullname') or case.attrib.get('name'), message))
+              for full_name, message in reported:
+                  print(f'FAILED TEST: {full_name}')
+                  if message:
+                      print(f'    {message}')
+              return reported
+
           totals = {key: 0 for key in ('total', 'passed', 'failed', 'skipped', 'inconclusive')}
           counted = []
           for path in result_files:
@@ -155,7 +187,10 @@ jobs:
               for key in totals:
                   totals[key] += int(root.attrib.get(key, 0) or 0)
               if root.attrib.get('result') != 'Passed':
-                  raise SystemExit(f'NUnit root is not Passed: {path} {root.attrib}')
+                  named = name_the_failures(root)
+                  summary = '; '.join(n for n, _ in named) or 'no named test-case failure in the XML'
+                  raise SystemExit(
+                      f'NUnit root is not Passed: {path} {root.attrib}\nFAILING TESTS: {summary}')
 
           if not counted or totals['total'] <= 0:
               raise SystemExit('EditMode produced no counted NUnit tests.')

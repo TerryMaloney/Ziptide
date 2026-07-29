@@ -82,10 +82,11 @@ namespace Ziptide.Tests.EditMode
             HomeHubAnchor.Solve(head, Vector3.forward,
                 HomeHubRuntime.AnchorDistance, 0.15f, out Vector3 board, out _);
 
-            // Furthest authored tile offsets: x = 0.60 (three-tile layout), y = -0.22.
+            // Furthest authored tile offsets, read from the shipped constants.
             float along = Vector3.ProjectOnPlane(board - head, Vector3.up).magnitude
                 - HomeHubRuntime.TileForwardOffset;
-            float furthestTile = new Vector3(0.60f, -0.22f, along).magnitude;
+            float furthestTile = new Vector3(HomeHubRuntime.TileSpanWide,
+                HomeHubRuntime.TileVerticalOffset, along).magnitude;
 
             Assert.Greater(along, 0.6f,
                 "DV-01: 0.45 m read as uncomfortably close on device — keep the centre tile at a "

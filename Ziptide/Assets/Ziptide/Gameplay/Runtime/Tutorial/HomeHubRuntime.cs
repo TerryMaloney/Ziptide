@@ -96,8 +96,12 @@ namespace Ziptide.Gameplay
         // relaxed-arm distance rather than a face-plant, while the narrower tile spacing below keeps
         // the FURTHEST (diagonal) tile inside the same extended-arm envelope the liveness test pins.
         public const float TileForwardOffset = 0.95f; // tiles sit this much NEARER than the board
-        private const float TileSpanWide = 0.60f;     // three-tile layout, centre-to-centre
-        private const float TileSpanNarrow = 0.36f;   // two-tile layout
+        // Public because the reach gates must measure the SHIPPED layout. Two separate tests used to
+        // hard-code 0.72 here, so retuning the board moved the game and left the gates asserting a
+        // row of tiles that no longer existed.
+        public const float TileSpanWide = 0.60f;     // three-tile layout, centre-to-centre
+        public const float TileSpanNarrow = 0.36f;   // two-tile layout
+        public const float TileVerticalOffset = -0.22f;
         private const float AnchorDrop = 0.15f;       // board centre slightly below eye level
         private const float ReanchorDistanceMeters = 0.35f;
         private const float ReanchorYawDegrees = 25f;
@@ -305,18 +309,18 @@ namespace Ziptide.Gameplay
 
             if (canContinue)
             {
-                AddTile("NEW GAME", new Vector3(-TileSpanWide, -0.22f, -TileForwardOffset),
+                AddTile("NEW GAME", new Vector3(-TileSpanWide, TileVerticalOffset, -TileForwardOffset),
                     new Color(0.18f, 0.62f, 0.78f), () => Choose(HomeHubChoice.NewGame));
-                AddTile("CONTINUE", new Vector3(0f, -0.22f, -TileForwardOffset),
+                AddTile("CONTINUE", new Vector3(0f, TileVerticalOffset, -TileForwardOffset),
                     new Color(0.25f, 0.72f, 0.48f), () => Choose(HomeHubChoice.Continue));
-                AddTile("SETTINGS", new Vector3(TileSpanWide, -0.22f, -TileForwardOffset),
+                AddTile("SETTINGS", new Vector3(TileSpanWide, TileVerticalOffset, -TileForwardOffset),
                     new Color(0.72f, 0.48f, 0.18f), () => Choose(HomeHubChoice.Settings));
             }
             else
             {
-                AddTile("NEW GAME", new Vector3(-TileSpanNarrow, -0.22f, -TileForwardOffset),
+                AddTile("NEW GAME", new Vector3(-TileSpanNarrow, TileVerticalOffset, -TileForwardOffset),
                     new Color(0.18f, 0.62f, 0.78f), () => Choose(HomeHubChoice.NewGame));
-                AddTile("SETTINGS", new Vector3(TileSpanNarrow, -0.22f, -TileForwardOffset),
+                AddTile("SETTINGS", new Vector3(TileSpanNarrow, TileVerticalOffset, -TileForwardOffset),
                     new Color(0.72f, 0.48f, 0.18f), () => Choose(HomeHubChoice.Settings));
             }
         }

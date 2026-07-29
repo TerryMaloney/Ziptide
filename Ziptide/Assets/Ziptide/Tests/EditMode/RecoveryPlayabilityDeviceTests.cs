@@ -109,7 +109,12 @@ namespace Ziptide.Tests.EditMode
         {
             float along = Ziptide.Gameplay.HomeHubRuntime.AnchorDistance
                 - Ziptide.Gameplay.HomeHubRuntime.TileForwardOffset;
-            float furthestTile = new Vector3(0.72f, -0.22f, along).magnitude;
+            // Read from the shipped constants: this assertion used to hard-code 0.72 and went red
+            // the moment the board was retuned, while asserting a tile row the game no longer had.
+            float furthestTile = new Vector3(
+                Ziptide.Gameplay.HomeHubRuntime.TileSpanWide,
+                Ziptide.Gameplay.HomeHubRuntime.TileVerticalOffset,
+                along).magnitude;
 
             Assert.GreaterOrEqual(along, 0.50f, "The tile row must not sit in the player's face.");
             Assert.LessOrEqual(furthestTile, 0.95f,
