@@ -81,6 +81,22 @@ namespace Ziptide.Ship
         /// <summary>How many rings the course has (0 before the patcher-authored list loads).</summary>
         public int RingCountTotal => _course != null ? _course.RingCount : 0;
 
+        /// <summary>
+        /// Signed yaw bearing from the nose to the next ring, degrees (negative = left). False when
+        /// there is nothing to steer toward — not flying, or the course is finished. The helm
+        /// compass reads this; the math itself lives in <see cref="CompassRibbonCore"/>.
+        /// </summary>
+        public bool TryGetCourseBearing(out float bearingDegrees)
+        {
+            bearingDegrees = 0f;
+            if (!_flying || _course == null || _course.IsComplete) return false;
+            int next = _course.NextRing;
+            if (next < 0 || next >= ringPositions.Count) return false;
+            bearingDegrees = CompassRibbonCore.BearingDegrees(
+                FlightModel.Forward(_state), _state.position, ringPositions[next]);
+            return true;
+        }
+
         /// <summary>ShipDefinition → FlightParams (pure; pinned by ShipFlightParamsTests). The
         /// definition's cruise is the lane max and its boost multiplier carries over (clamped to
         /// MaxDataBoost); comfort caps (pitch clamp, snap yaw, lane radius, reverse fraction, roll

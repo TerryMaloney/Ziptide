@@ -16,6 +16,7 @@ namespace Ziptide.Editor
         public const string ComfortMarker = "__FIRST_HOUR_COMFORT_CONSOLE";
         public const string BunkMarker = "__FIRST_HOUR_BUNK_OBJECT";
         public const string HelmMarker = "__FIRST_HOUR_FIRST_HELM";
+        public const string PortholeMarker = "__FIRST_HOUR_PORTHOLE";
         public const string W000ScenePath = "Assets/Ziptide/Scenes/Generated/W000_DriftIn.unity";
 
         [MenuItem("Ziptide/First Hour/Author W000 Surfaces")]
@@ -63,8 +64,19 @@ namespace Ziptide.Editor
             var helmRuntime = EnsureComponent<FirstDestinationHelmRuntime>(helm);
             if (castOff != null) helmRuntime.Configure(castOff);
 
+            // THE PORTHOLE: the first hour opened inside a spaceship you could not see out of, so
+            // the premise of the game was invisible for its first ten minutes. Set into the wall
+            // past the bunk and turned to face the room, at standing eye height — the first thing
+            // worth walking toward after you get up.
+            GameObject porthole = EnsureMarker(
+                scene,
+                PortholeMarker,
+                origin + right * 2.6f + forward * 1.6f + Vector3.up * 1.5f,
+                Quaternion.LookRotation(-right, Vector3.up));
+            EnsureComponent<PortholeRuntime>(porthole);
+
             Debug.Log("ZIPTIDE: FIRST_HOUR_SURFACES_AUTHORED scene=" + scene.name +
-                      " castoff=" + (castOff != null));
+                      " castoff=" + (castOff != null) + " porthole=true");
         }
 
         public static GameObject EnsureMarker(

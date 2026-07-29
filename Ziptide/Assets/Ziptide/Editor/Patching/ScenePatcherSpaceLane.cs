@@ -111,9 +111,17 @@ namespace Ziptide.Editor.Patching
             var profile = ThemeAuthor.EnsureWorldProfileAsset(SceneName, 0f, theme);
             EnsureWorldRuntime(profile);
 
+            // SPACE IS A PLACE: seed + assign the Moss-orbit vista here rather than leaving it to
+            // the Android build hook, so Terry's single "Build Space Lane" menu item produces the
+            // giant, the sibling moon, the sun and the starfield instead of the placeholder void.
+            // Both calls are create-only/idempotent (existing assets are never overwritten).
+            SkyVistaLibrary.EnsureAllAuthored();
+            SkyVistaAuthor.AssignAll();
+
             EnsureSpawn("player", PlayerSpawn);
             EnsureFlightRuntime(lane);
             EnsureRingLights(lane);
+            EnsureCompassWiring();
             EnsureWorldPack();
             EnsureOnwardLeg();
             EnsureTheFind(lane);
@@ -135,6 +143,14 @@ namespace Ziptide.Editor.Patching
                 new Color(0.25f, 0.28f, 0.34f));
             Cube(frame, "CanopyBar", new Vector3(0f, 2.2f, 1.2f), new Vector3(3f, 0.15f, 0.15f),
                 new Color(0.25f, 0.28f, 0.34f));
+
+            // THE COMPASS RIBBON on the canopy bar: open space has no landmarks, so without this a
+            // pilot who turns away from the course has nothing to steer back by. An instrument
+            // bolted to the frame — never a HUD welded to the face.
+            var compass = new GameObject("HelmCompass");
+            compass.transform.SetParent(frame, false);
+            compass.transform.localPosition = new Vector3(0f, 1.95f, 1.18f);
+            compass.AddComponent<HelmCompassRuntime>();
         }
 
         // ── The lane: everything that moves past the pilot lives under this one root ───────────────
@@ -263,6 +279,18 @@ namespace Ziptide.Editor.Patching
             PatcherUtil.SetObjectRef(so, "flight",
                 helm != null ? helm.GetComponent<ShipFlightRuntime>() : null);
             PatcherUtil.SetObjectRef(so, "lane", lane);
+            so.ApplyModifiedPropertiesWithoutUndo();
+        }
+
+        // The compass is built with the dock (it is part of the cockpit frame) but the helm it
+        // reads is created later, so the reference is serialized here once both exist.
+        private static void EnsureCompassWiring()
+        {
+            var compass = Object.FindObjectOfType<HelmCompassRuntime>();
+            var helm = GameObject.Find("ShipFlightHelm");
+            if (compass == null || helm == null) return;
+            var so = new SerializedObject(compass);
+            PatcherUtil.SetObjectRef(so, "flight", helm.GetComponent<ShipFlightRuntime>());
             so.ApplyModifiedPropertiesWithoutUndo();
         }
 

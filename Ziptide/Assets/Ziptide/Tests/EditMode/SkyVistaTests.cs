@@ -370,6 +370,52 @@ namespace Ziptide.Tests.EditMode
             }
         }
 
+        [Test]
+        public void Canon_SpaceOverTheMoss_ShowsGiantSiblingMoonAndSun()
+        {
+            var space = BuildLibrary()["SpaceLane_Trial"];
+            bool giant = false, moon = false, sun = false;
+            foreach (var b in space.bodies)
+            {
+                if (b.type == SkyVistaDefinition.BodyType.BandedPlanet) giant = true;
+                if (b.type == SkyVistaDefinition.BodyType.Moon) moon = true;
+                if (b.type == SkyVistaDefinition.BodyType.SunDisc) sun = true;
+            }
+            Assert.IsTrue(giant && moon && sun,
+                "CELESTIAL_SYSTEM_CANON §4: from Moss orbit you see the parent giant, the sibling "
+                + "grey moon, and the sun");
+            Assert.IsEmpty(space.Validate());
+        }
+
+        [Test]
+        public void Canon_SpaceKeepsTheGroundsBearings_AndOnlyGainsRevelation()
+        {
+            var lib = BuildLibrary();
+            var ground = lib["ToxicCity"];
+            var space = lib["SpaceLane_Trial"];
+
+            SkyVistaDefinition.CelestialBodyDef Giant(SkyVistaDefinition d)
+            {
+                foreach (var b in d.bodies)
+                    if (b.type == SkyVistaDefinition.BodyType.BandedPlanet) return b;
+                return null;
+            }
+            var g = Giant(ground);
+            var s = Giant(space);
+            Assert.IsNotNull(g); Assert.IsNotNull(s);
+
+            // §3 "directions are identical": same bearing on the ground and in orbit.
+            Assert.Less(Vector3.Angle(g.direction.normalized, s.direction.normalized), 1f,
+                "the giant must hold its clock position between ground and orbit");
+            // §3 "apparent size barely changes — what changes is REVELATION, not scale."
+            Assert.LessOrEqual(Mathf.Abs(s.angularSizeDeg - g.angularSizeDeg), 4f,
+                "a short hop to orbit must not resize the giant");
+            // What DOES change: the smog lifts and the starfield arrives.
+            Assert.AreEqual(0f, ground.stars.density, "W001's smog vetoes stars on the ground");
+            Assert.Greater(space.stars.density, 0.5f, "space is where the starfield finally shows up");
+            Assert.AreEqual(0f, space.stars.horizonFade, "no atmosphere means no horizon to fade into");
+        }
+
         private static float ColorDistance(Color a, Color b)
         {
             return Mathf.Abs(a.r - b.r) + Mathf.Abs(a.g - b.g) + Mathf.Abs(a.b - b.b);

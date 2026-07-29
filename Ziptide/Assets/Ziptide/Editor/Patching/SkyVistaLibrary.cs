@@ -56,7 +56,67 @@ namespace Ziptide.Editor.Patching
                 Spec("Arena_MirrorFlats", BuildArenaMirrorFlats),
                 Spec("Arena_Tidal", BuildArenaTidal),
                 Spec("Arena_Void", BuildArenaVoid),
+                Spec("SpaceLane_Trial", BuildSpaceLaneMossOrbit),  // the space leg is a PLACE, not a void
             };
+        }
+
+        // ── The space leg (CELESTIAL_SYSTEM_CANON §3/§4 — Moss orbit) ─────────────────────────────
+
+        /// <summary>
+        /// SPACE OVER THE MOSS. The flight trial shipped against a near-black placeholder sky, which
+        /// made the one scene that is literally about being in space the least space-like place in
+        /// the game. Canon §4 says what you see from Moss orbit: the ringed giant it orbits, the
+        /// sibling grey moon, the one warm sun, and the full starfield with its galactic band.
+        ///
+        /// Canon §3 governs how it relates to the ground sky: same BEARINGS ("if the giant was
+        /// south-southwest at dusk, it's south-southwest from orbit"), barely-changed apparent size —
+        /// what space adds is REVELATION, not scale. So the giant keeps W001's exact direction and
+        /// grows only 12° → 14° (the horizon no longer cuts it), while the atmosphere's smog veto on
+        /// stars lifts completely: density 0 on the ground, 0.9 here.
+        ///
+        /// ⚖ open for Terry: canon §4 also describes the giant as filling "~⅓ of sky", which is far
+        /// larger than the 12° the shipped W001 ground vista authors. This vista deliberately matches
+        /// the SHIPPED GROUND ASSET rather than the doc, because the player sees both skies minutes
+        /// apart and continuity between them beats matching a proposed number. Retuning both together
+        /// is a one-line change here + in BuildW001ToxicVenice.
+        /// </summary>
+        private static SkyVistaDefinition BuildSpaceLaneMossOrbit()
+        {
+            var d = NewVista("space_moss_orbit",
+                new Color(0.02f, 0.03f, 0.05f), new Color(0.01f, 0.01f, 0.03f));
+
+            // The parent body — same bearing as the ground sky, fully revealed, ringplane crisp.
+            Body(d, SkyVistaDefinition.BodyType.BandedPlanet, 14f, new Vector3(0.5f, 0.22f, 0.84f),
+                new Color(0.46f, 0.56f, 0.76f), new Color(0.28f, 0.38f, 0.54f), bands: 7, seed: 1, phase: 0.18f);
+            // The sibling grey moon — a whole world you can see from here (the in-system hop tease).
+            Body(d, SkyVistaDefinition.BodyType.Moon, 5f, new Vector3(-0.62f, 0.34f, 0.71f),
+                new Color(0.72f, 0.73f, 0.76f), new Color(0.48f, 0.50f, 0.55f), bands: 5, seed: 51, phase: 0.35f);
+            // One warm star, harsher without air to soften it.
+            Body(d, SkyVistaDefinition.BodyType.SunDisc, 3f, new Vector3(0.18f, 0.62f, -0.76f),
+                new Color(1f, 0.94f, 0.80f), new Color(1f, 0.80f, 0.52f), bands: 1, seed: 52, phase: 0f);
+
+            // No air, no horizon: the whole starfield, all the way down.
+            d.stars.density = 0.9f;
+            d.stars.seed = 50;
+            d.stars.tint = new Color(0.92f, 0.94f, 1f);
+            d.stars.horizonFade = 0f;
+
+            // The faint galactic band the night keeper shows — shared across the Moss system.
+            d.nebula.enabled = true;
+            d.nebula.seed = 53;
+            d.nebula.coverage = 0.26f;
+            d.nebula.altitudeBias = 0.1f;
+            d.nebula.colorA = new Color(0.16f, 0.18f, 0.30f);
+            d.nebula.colorB = new Color(0.10f, 0.14f, 0.20f);
+
+            d.shellGridIntensity = 0f;          // canon baseline for the Moss system
+
+            // The sun is the key light out here — hard, warm, and unfiltered, against a dark ambient.
+            d.directionalLightColor = new Color(1f, 0.95f, 0.86f);
+            d.directionalLightIntensity = 1.1f;
+            d.overrideAmbient = true;
+            d.ambientColor = new Color(0.06f, 0.07f, 0.10f);
+            return d;
         }
 
         /// <summary>Create any missing vista assets. Returns how many were created.</summary>

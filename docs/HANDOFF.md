@@ -110,6 +110,27 @@
   inside the peak and shorter than the veil, always clear past the cap). This retires the
   contract's "reentry visual is queued art" row — the veil is a procedural v1 per the stand-in
   law, tunable/replaceable, but BUILT.
+- **✅ CI GREEN `fa1bc5ec`** — that run compiled B1–B4b together (spec + gate + lamp-chase + drone
+  reactions + veils) and passed EditMode. B1/B2/B3/B4's own runs show `cancelled`: that is the
+  concurrency group superseding in-flight runs on each new push, NOT a red.
+- **B4c: SPACE IS A PLACE.** (1) `SkyVistaLibrary` gains `SpaceLane_Trial` → **the Moss-orbit
+  vista**: the ringed giant on W001's *exact ground bearing* (canon §3 "directions are identical")
+  grown only 12°→14° because "space adds REVELATION, not scale", the sibling grey moon, the one
+  warm sun, starfield density 0.9 with `horizonFade=0` (no air, no horizon), the faint galactic
+  band, sun-as-key-light + dark ambient — replacing the near-black placeholder. `ScenePatcherSpaceLane`
+  now calls `EnsureAllAuthored` + `AssignAll` itself, so Terry's ONE menu item produces the sky.
+  2 canon tests pin the ground↔space relationship. **⚖ FOR TERRY:** canon §4 also calls the giant
+  "~⅓ of sky", ~3× the shipped W001 ground value; I matched the SHIPPED GROUND ASSET (continuity
+  between two skies seen minutes apart) rather than the doc — retuning both together is a two-line
+  change, your call. (2) **The W000 porthole** — `PortholeStarfieldCore` (pure, deterministic
+  starfield + galactic band bake) + `PortholeRuntime` (framed pane, generated 128² texture, the
+  giant hanging in the corner so the window agrees with the sky outside), authored into W000 by
+  `FirstHourSurfaceAuthor` at standing eye height past the bunk. This closes the "no space in a
+  space game" hole: the first ten minutes happened inside a spaceship you could not see out of.
+  (3) **The helm compass ribbon** — `CompassRibbonCore` (pure yaw bearing → clamped ribbon offset,
+  distinct BEHIND state, color ramp) + `HelmCompassRuntime` (physical strip on the canopy bar, an
+  instrument not a HUD, dark when there is nothing to steer to) + `ShipFlightRuntime.TryGetCourseBearing`.
+  11 more EditMode tests.
 - Commit: (this one).
 
 ### 2026-07-29 (rb126) — Fable 5: 📐 LEVEL1_SPATIAL_SCRIPT — the placement layer, + ⚖ Terry's two story corrections (expedition + boat/stalker)
