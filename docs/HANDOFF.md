@@ -96,6 +96,20 @@
   non-lethal law intact — reactions change motion and light only, nothing chases or shoots),
   plus `DriftTumbleRuntime` and a 9-piece golden-angle scrap shell around the artifact cradle so
   "one object does not scan" has ordinary objects to hide among. 12 more EditMode tests.
+- **B4b: the ascent + reentry are REAL presentations now, not a logged seam.**
+  `AtmosphereVeilCore` (pure schedule: ascent builds 1.2 s → peak 0.5 s with the travel cut at
+  1.5 s *inside* the peak; reentry holds 0.6 s then clears 1.9 s = exactly the 2.5 s
+  `ReentryArrivalCore.PresentationSeconds` budget; `HardCapSeconds` 4 s forces intensity to zero
+  no matter what) + `AtmosphereVeilEffect` (gate-effect house style: 16 opaque unlit corona
+  blades parented to the CAMERA so they ride the rig across the scene load, licking inward with
+  per-blade flicker, ember tracers streaming back past the canopy, procedural 2.4 s roar, camera
+  never moves, self-destructs at the cap, `ZIPTIDE: VEIL leg=/phase=`). Hooked BOTH ends:
+  `ShipCastOffRuntime.LaunchSequence` plays Ascent and waits the bounded lead before
+  `TravelCoordinator.TravelTo`; `ReentryArrivalRuntime` plays Reentry on the space→world route
+  it already owns. 9 EditMode tests, most of them the safety contract (bounded intensity, lead
+  inside the peak and shorter than the veil, always clear past the cap). This retires the
+  contract's "reentry visual is queued art" row — the veil is a procedural v1 per the stand-in
+  law, tunable/replaceable, but BUILT.
 - Commit: (this one).
 
 ### 2026-07-29 (rb126) — Fable 5: 📐 LEVEL1_SPATIAL_SCRIPT — the placement layer, + ⚖ Terry's two story corrections (expedition + boat/stalker)

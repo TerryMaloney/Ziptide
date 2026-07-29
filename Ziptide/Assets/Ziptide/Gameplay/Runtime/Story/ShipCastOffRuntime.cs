@@ -241,6 +241,14 @@ namespace Ziptide.Gameplay
                 }
                 yield return new WaitForSeconds(0.06f);
             }
+            // THE ATMOSPHERE VEIL brackets the cut: the burn builds, the scene swaps at its peak,
+            // and the destination's ReentryArrivalRuntime picks the same fire up on the far side —
+            // so leaving a planet reads as leaving a planet instead of a load. The lead is bounded
+            // by AtmosphereVeilCore, and the veil self-destructs at its hard cap, so this can never
+            // hold travel: worst case the burn is invisible and the flight departs on schedule.
+            float lead = AtmosphereVeilEffect.Play(VeilLeg.Ascent);
+            yield return new WaitForSeconds(lead);
+
             Debug.Log("ZIPTIDE: FLIGHT_DEPART target=" + targetScene
                 + " gate=" + (suppressGateEffect ? "suppressed" : "full"));
             TravelCoordinator.TravelTo(targetScene, skipGate: suppressGateEffect);

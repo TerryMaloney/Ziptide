@@ -34,6 +34,12 @@ namespace Ziptide.Gameplay
 
             Debug.Log("ZIPTIDE: REENTRY_ARRIVAL from=" + previous + " world=" + current);
 
+            // The plasma veil is no longer a stand-in seam: the same burn that closed around the
+            // hull on the way up opens here and CLEARS, so arriving from space reads as punching
+            // down through atmosphere. It cannot strand anything — the effect owns its own hard
+            // cap and the arrival has already happened by the time it plays.
+            AtmosphereVeilEffect.Play(VeilLeg.Reentry);
+
             if (!string.IsNullOrEmpty(rillLineId))
             {
                 var rill = FindObjectOfType<RillCompanion>();
