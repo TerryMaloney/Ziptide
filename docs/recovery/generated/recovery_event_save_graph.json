@@ -589,7 +589,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs",
-        "line": 26,
+        "line": 29,
         "owner": "Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests",
         "target": "ActiveStateEvidence",
         "detail": "profile",
@@ -598,7 +598,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs",
-        "line": 38,
+        "line": 41,
         "owner": "Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests",
         "target": "ActiveStateEvidence",
         "detail": "profile",
@@ -618,7 +618,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs",
-        "line": 26,
+        "line": 29,
         "owner": "Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests",
         "target": "ActiveStates",
         "detail": "profile",
@@ -627,7 +627,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs",
-        "line": 27,
+        "line": 30,
         "owner": "Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests",
         "target": "ActiveStates",
         "detail": "profile",
@@ -1113,7 +1113,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs",
-        "line": 29,
+        "line": 32,
         "owner": "Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests",
         "target": "BehaviorSourceRelativePath",
         "detail": "profile",
@@ -1122,7 +1122,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs",
-        "line": 33,
+        "line": 36,
         "owner": "Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests",
         "target": "BehaviorSourceRelativePath",
         "detail": "profile",
@@ -1160,7 +1160,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs",
-        "line": 36,
+        "line": 39,
         "owner": "Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests",
         "target": "BehaviorTypeName",
         "detail": "profile",
@@ -1169,7 +1169,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs",
-        "line": 107,
+        "line": 110,
         "owner": "Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests",
         "target": "BehaviorTypeName",
         "detail": "profile",
@@ -1417,7 +1417,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs",
-        "line": 25,
+        "line": 28,
         "owner": "Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests",
         "target": "CreatureId",
         "detail": "profile",
@@ -1426,7 +1426,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs",
-        "line": 28,
+        "line": 31,
         "owner": "Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests",
         "target": "CreatureId",
         "detail": "profile",
@@ -1435,7 +1435,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs",
-        "line": 29,
+        "line": 32,
         "owner": "Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests",
         "target": "CreatureId",
         "detail": "profile",
@@ -1444,7 +1444,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs",
-        "line": 30,
+        "line": 33,
         "owner": "Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests",
         "target": "CreatureId",
         "detail": "profile",
@@ -1453,7 +1453,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs",
-        "line": 36,
+        "line": 39,
         "owner": "Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests",
         "target": "CreatureId",
         "detail": "profile",
@@ -1462,7 +1462,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs",
-        "line": 40,
+        "line": 43,
         "owner": "Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests",
         "target": "CreatureId",
         "detail": "profile",
@@ -1471,7 +1471,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs",
-        "line": 41,
+        "line": 44,
         "owner": "Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests",
         "target": "CreatureId",
         "detail": "profile",
@@ -1480,7 +1480,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs",
-        "line": 43,
+        "line": 46,
         "owner": "Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests",
         "target": "CreatureId",
         "detail": "profile",
@@ -1489,7 +1489,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs",
-        "line": 45,
+        "line": 48,
         "owner": "Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests",
         "target": "CreatureId",
         "detail": "profile",
@@ -1498,7 +1498,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs",
-        "line": 70,
+        "line": 73,
         "owner": "Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests",
         "target": "CreatureId",
         "detail": "profile",
@@ -1507,7 +1507,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs",
-        "line": 84,
+        "line": 87,
         "owner": "Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests",
         "target": "CreatureId",
         "detail": "profile",
@@ -1516,7 +1516,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs",
-        "line": 110,
+        "line": 113,
         "owner": "Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests",
         "target": "CreatureId",
         "detail": "profile",
@@ -1838,7 +1838,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs",
-        "line": 65,
+        "line": 68,
         "owner": "Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests",
         "target": "ExpectedArchetype",
         "detail": "profile",
@@ -1876,7 +1876,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs",
-        "line": 30,
+        "line": 33,
         "owner": "Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests",
         "target": "FactoryEvidenceToken",
         "detail": "profile",
@@ -1885,7 +1885,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs",
-        "line": 83,
+        "line": 86,
         "owner": "Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests",
         "target": "FactoryEvidenceToken",
         "detail": "profile",
@@ -13596,7 +13596,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs",
-      "line": 25,
+      "line": 28,
       "owner": "Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests",
       "target": "CreatureId",
       "detail": "profile",
@@ -13605,7 +13605,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs",
-      "line": 26,
+      "line": 29,
       "owner": "Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests",
       "target": "ActiveStateEvidence",
       "detail": "profile",
@@ -13614,7 +13614,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs",
-      "line": 26,
+      "line": 29,
       "owner": "Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests",
       "target": "ActiveStates",
       "detail": "profile",
@@ -13623,7 +13623,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs",
-      "line": 27,
+      "line": 30,
       "owner": "Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests",
       "target": "ActiveStates",
       "detail": "profile",
@@ -13632,7 +13632,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs",
-      "line": 28,
+      "line": 31,
       "owner": "Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests",
       "target": "CreatureId",
       "detail": "profile",
@@ -13641,7 +13641,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs",
-      "line": 29,
+      "line": 32,
       "owner": "Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests",
       "target": "BehaviorSourceRelativePath",
       "detail": "profile",
@@ -13650,7 +13650,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs",
-      "line": 29,
+      "line": 32,
       "owner": "Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests",
       "target": "CreatureId",
       "detail": "profile",
@@ -13659,18 +13659,9 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs",
-      "line": 30,
+      "line": 33,
       "owner": "Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests",
       "target": "CreatureId",
-      "detail": "profile",
-      "snippet": "Assert.IsFalse(string.IsNullOrWhiteSpace(profile.FactoryEvidenceToken), profile.CreatureId);"
-    },
-    {
-      "kind": "PROFILE_FIELD_ACCESS",
-      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs",
-      "line": 30,
-      "owner": "Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests",
-      "target": "FactoryEvidenceToken",
       "detail": "profile",
       "snippet": "Assert.IsFalse(string.IsNullOrWhiteSpace(profile.FactoryEvidenceToken), profile.CreatureId);"
     },
@@ -13679,6 +13670,15 @@
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs",
       "line": 33,
       "owner": "Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests",
+      "target": "FactoryEvidenceToken",
+      "detail": "profile",
+      "snippet": "Assert.IsFalse(string.IsNullOrWhiteSpace(profile.FactoryEvidenceToken), profile.CreatureId);"
+    },
+    {
+      "kind": "PROFILE_FIELD_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs",
+      "line": 36,
+      "owner": "Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests",
       "target": "BehaviorSourceRelativePath",
       "detail": "profile",
       "snippet": "profile.BehaviorSourceRelativePath);"
@@ -13686,7 +13686,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs",
-      "line": 36,
+      "line": 39,
       "owner": "Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests",
       "target": "BehaviorTypeName",
       "detail": "profile",
@@ -13695,7 +13695,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs",
-      "line": 36,
+      "line": 39,
       "owner": "Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests",
       "target": "CreatureId",
       "detail": "profile",
@@ -13704,7 +13704,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs",
-      "line": 38,
+      "line": 41,
       "owner": "Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests",
       "target": "ActiveStateEvidence",
       "detail": "profile",
@@ -13713,7 +13713,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs",
-      "line": 40,
+      "line": 43,
       "owner": "Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests",
       "target": "CreatureId",
       "detail": "profile",
@@ -13722,7 +13722,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs",
-      "line": 41,
+      "line": 44,
       "owner": "Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests",
       "target": "CreatureId",
       "detail": "profile",
@@ -13731,7 +13731,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs",
-      "line": 43,
+      "line": 46,
       "owner": "Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests",
       "target": "CreatureId",
       "detail": "profile",
@@ -13740,7 +13740,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs",
-      "line": 45,
+      "line": 48,
       "owner": "Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests",
       "target": "CreatureId",
       "detail": "profile",
@@ -13749,7 +13749,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs",
-      "line": 65,
+      "line": 68,
       "owner": "Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests",
       "target": "ExpectedArchetype",
       "detail": "profile",
@@ -13758,7 +13758,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs",
-      "line": 70,
+      "line": 73,
       "owner": "Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests",
       "target": "CreatureId",
       "detail": "profile",
@@ -13767,7 +13767,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs",
-      "line": 83,
+      "line": 86,
       "owner": "Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests",
       "target": "FactoryEvidenceToken",
       "detail": "profile",
@@ -13776,7 +13776,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs",
-      "line": 84,
+      "line": 87,
       "owner": "Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests",
       "target": "CreatureId",
       "detail": "profile",
@@ -13785,7 +13785,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs",
-      "line": 107,
+      "line": 110,
       "owner": "Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests",
       "target": "BehaviorTypeName",
       "detail": "profile",
@@ -13794,7 +13794,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs",
-      "line": 110,
+      "line": 113,
       "owner": "Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests",
       "target": "CreatureId",
       "detail": "profile",

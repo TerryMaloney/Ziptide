@@ -3730,28 +3730,28 @@
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-            "line": 477,
+            "line": 491,
             "symbol": "Ziptide.Editor.Patching.CityBuilder",
             "snippet": "var go = new GameObject(name);"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-            "line": 523,
+            "line": 537,
             "symbol": "Ziptide.Editor.Patching.CityBuilder",
             "snippet": "var go = new GameObject(\"Hazard_\" + h.id);"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-            "line": 552,
+            "line": 566,
             "symbol": "Ziptide.Editor.Patching.CityBuilder",
             "snippet": "var drone = GameObject.CreatePrimitive(PrimitiveType.Sphere);"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-            "line": 576,
+            "line": 590,
             "symbol": "Ziptide.Editor.Patching.CityBuilder",
             "snippet": "var go = new GameObject(name);"
           }

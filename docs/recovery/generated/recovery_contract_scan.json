@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-29T17:13:13.725177+00:00",
+  "generatedAtUtc": "2026-07-29T18:27:00.384905+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -14546,7 +14546,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 552,
+      "line": 566,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var drone = GameObject.CreatePrimitive(PrimitiveType.Sphere);"
     },
@@ -17030,7 +17030,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 477,
+      "line": 491,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var go = new GameObject(name);"
     },
@@ -17039,7 +17039,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 523,
+      "line": 537,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var go = new GameObject(\"Hazard_\" + h.id);"
     },
@@ -17048,7 +17048,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 576,
+      "line": 590,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var go = new GameObject(name);"
     },

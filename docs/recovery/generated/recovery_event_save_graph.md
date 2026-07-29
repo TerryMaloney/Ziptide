@@ -90,14 +90,14 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 ### `ActiveStateEvidence`
 
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Editor.Audit.CreatureBehaviorAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/CreatureBehaviorAuditRules.cs:120` · `profile` — `foreach (var state in profile.ActiveStateEvidence)`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs:26` · `profile` — `Assert.AreEqual(profile.ActiveStates.Count, profile.ActiveStateEvidence.Count);`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs:38` · `profile` — `foreach (var state in profile.ActiveStateEvidence)`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs:29` · `profile` — `Assert.AreEqual(profile.ActiveStates.Count, profile.ActiveStateEvidence.Count);`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs:41` · `profile` — `foreach (var state in profile.ActiveStateEvidence)`
 
 ### `ActiveStates`
 
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Content.CreatureBehaviorStateEvidence` · `Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs:268` · `profile` — `foreach (string state in profile.ActiveStates)`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs:26` · `profile` — `Assert.AreEqual(profile.ActiveStates.Count, profile.ActiveStateEvidence.Count);`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs:27` · `profile` — `Assert.GreaterOrEqual(profile.ActiveStates.Count,`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs:29` · `profile` — `Assert.AreEqual(profile.ActiveStates.Count, profile.ActiveStateEvidence.Count);`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs:30` · `profile` — `Assert.GreaterOrEqual(profile.ActiveStates.Count,`
 
 ### `Add`
 
@@ -176,16 +176,16 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Editor.Audit.CreatureBehaviorAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/CreatureBehaviorAuditRules.cs:111` · `profile` — `string sourcePath = ResolveAssetRelativeSource(profile.BehaviorSourceRelativePath);`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Editor.Audit.CreatureBehaviorAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/CreatureBehaviorAuditRules.cs:127` · `profile` — `profile.BehaviorSourceRelativePath);`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Editor.Audit.CreatureBehaviorAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/CreatureBehaviorAuditRules.cs:135` · `profile` — `profile.BehaviorSourceRelativePath);`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs:29` · `profile` — `Assert.IsFalse(string.IsNullOrWhiteSpace(profile.BehaviorSourceRelativePath), profile.CreatureId);`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs:33` · `profile` — `profile.BehaviorSourceRelativePath);`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs:32` · `profile` — `Assert.IsFalse(string.IsNullOrWhiteSpace(profile.BehaviorSourceRelativePath), profile.CreatureId);`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs:36` · `profile` — `profile.BehaviorSourceRelativePath);`
 
 ### `BehaviorTypeName`
 
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Content.CreatureBehaviorStateEvidence` · `Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs:265` · `profile` — `if (string.IsNullOrWhiteSpace(profile.BehaviorTypeName)) errors.Add("BEHAVIOR_TYPE_EMPTY");`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Editor.Audit.CreatureBehaviorAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/CreatureBehaviorAuditRules.cs:98` · `profile` — `"Ziptide.Gameplay." + profile.BehaviorTypeName,`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Editor.Audit.CreatureBehaviorAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/CreatureBehaviorAuditRules.cs:104` · `profile` — `profile.BehaviorTypeName + "'.");`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs:36` · `profile` — `StringAssert.Contains(profile.BehaviorTypeName, source, profile.CreatureId);`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs:107` · `profile` — `"Ziptide.Gameplay." + profile.BehaviorTypeName,`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs:39` · `profile` — `StringAssert.Contains(profile.BehaviorTypeName, source, profile.CreatureId);`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs:110` · `profile` — `"Ziptide.Gameplay." + profile.BehaviorTypeName,`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorReadabilityTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorReadabilityTests.cs:69` · `profile` — `"Ziptide.Gameplay." + profile.BehaviorTypeName,`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorReadabilityTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorReadabilityTests.cs:73` · `profile` — `definition.id + " points at missing behavior type " + profile.BehaviorTypeName);`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorReadabilityTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorReadabilityTests.cs:75` · `profile` — `profile.BehaviorTypeName + " must remain a CreatureBehaviorBase subclass");`
@@ -232,18 +232,18 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Editor.Audit.CreatureBehaviorAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/CreatureBehaviorAuditRules.cs:126` · `profile` — `"Creature '" + profile.CreatureId + "' has an empty state/evidence token.",`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Editor.Audit.CreatureBehaviorAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/CreatureBehaviorAuditRules.cs:133` · `profile` — `"Creature '" + profile.CreatureId + "' state '" + state.StateName +`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Editor.Audit.CreatureBehaviorAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/CreatureBehaviorAuditRules.cs:157` · `profile` — `"Creature '" + (profile != null ? profile.CreatureId : "<null>") +`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs:25` · `profile` — `Assert.IsTrue(ids.Add(profile.CreatureId), "duplicate profile " + profile.CreatureId);`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs:28` · `profile` — `CreatureBehaviorReadabilityCatalog.MinimumActiveStates, profile.CreatureId);`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs:29` · `profile` — `Assert.IsFalse(string.IsNullOrWhiteSpace(profile.BehaviorSourceRelativePath), profile.CreatureId);`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs:30` · `profile` — `Assert.IsFalse(string.IsNullOrWhiteSpace(profile.FactoryEvidenceToken), profile.CreatureId);`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs:36` · `profile` — `StringAssert.Contains(profile.BehaviorTypeName, source, profile.CreatureId);`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs:40` · `profile` — `Assert.IsNotNull(state, profile.CreatureId);`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs:41` · `profile` — `Assert.IsFalse(string.IsNullOrWhiteSpace(state.StateName), profile.CreatureId);`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs:43` · `profile` — `profile.CreatureId + "/" + state.StateName);`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs:45` · `profile` — `profile.CreatureId + "/" + state.StateName + " evidence drifted");`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs:70` · `profile` — `Assert.IsTrue(assetIds.Contains(profile.CreatureId), "orphan profile " + profile.CreatureId);`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs:84` · `profile` — `profile.CreatureId + " factory wiring drifted");`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs:110` · `profile` — `Assert.IsNotNull(behaviorType, profile.CreatureId);`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs:28` · `profile` — `Assert.IsTrue(ids.Add(profile.CreatureId), "duplicate profile " + profile.CreatureId);`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs:31` · `profile` — `CreatureBehaviorReadabilityCatalog.MinimumActiveStates, profile.CreatureId);`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs:32` · `profile` — `Assert.IsFalse(string.IsNullOrWhiteSpace(profile.BehaviorSourceRelativePath), profile.CreatureId);`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs:33` · `profile` — `Assert.IsFalse(string.IsNullOrWhiteSpace(profile.FactoryEvidenceToken), profile.CreatureId);`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs:39` · `profile` — `StringAssert.Contains(profile.BehaviorTypeName, source, profile.CreatureId);`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs:43` · `profile` — `Assert.IsNotNull(state, profile.CreatureId);`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs:44` · `profile` — `Assert.IsFalse(string.IsNullOrWhiteSpace(state.StateName), profile.CreatureId);`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs:46` · `profile` — `profile.CreatureId + "/" + state.StateName);`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs:48` · `profile` — `profile.CreatureId + "/" + state.StateName + " evidence drifted");`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs:73` · `profile` — `Assert.IsTrue(assetIds.Contains(profile.CreatureId), "orphan profile " + profile.CreatureId);`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs:87` · `profile` — `profile.CreatureId + " factory wiring drifted");`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs:113` · `profile` — `Assert.IsNotNull(behaviorType, profile.CreatureId);`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorReadabilityTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorReadabilityTests.cs:32` · `profile` — `Assert.IsTrue(ids.Add(profile.CreatureId),`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorReadabilityTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorReadabilityTests.cs:33` · `profile` — `"duplicate readability profile for " + profile.CreatureId);`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorReadabilityTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorReadabilityTests.cs:37` · `profile` — `profile.CreatureId + " readability profile invalid: " + string.Join(", ", errors));`
@@ -301,15 +301,15 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Editor.Audit.CreatureBehaviorAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/CreatureBehaviorAuditRules.cs:78` · `profile` — `if (definition.archetype != profile.ExpectedArchetype)`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Editor.Audit.CreatureBehaviorAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/CreatureBehaviorAuditRules.cs:81` · `profile` — `" disagrees with profile " + profile.ExpectedArchetype + ".", path);`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs:65` · `profile` — `Assert.AreEqual(definition.archetype, profile.ExpectedArchetype, definition.id);`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs:68` · `profile` — `Assert.AreEqual(definition.archetype, profile.ExpectedArchetype, definition.id);`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorReadabilityTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorReadabilityTests.cs:61` · `profile` — `Assert.AreEqual(definition.archetype, profile.ExpectedArchetype,`
 
 ### `FactoryEvidenceToken`
 
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Editor.Audit.CreatureBehaviorAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/CreatureBehaviorAuditRules.cs:154` · `profile` — `if (profile == null || string.IsNullOrWhiteSpace(profile.FactoryEvidenceToken) ||`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Editor.Audit.CreatureBehaviorAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/CreatureBehaviorAuditRules.cs:155` · `profile` — `!factorySource.Contains(profile.FactoryEvidenceToken))`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs:30` · `profile` — `Assert.IsFalse(string.IsNullOrWhiteSpace(profile.FactoryEvidenceToken), profile.CreatureId);`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs:83` · `profile` — `StringAssert.Contains(profile.FactoryEvidenceToken, source,`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs:33` · `profile` — `Assert.IsFalse(string.IsNullOrWhiteSpace(profile.FactoryEvidenceToken), profile.CreatureId);`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorAuditRulesTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorAuditRulesTests.cs:86` · `profile` — `StringAssert.Contains(profile.FactoryEvidenceToken, source,`
 
 ### `Family`
 

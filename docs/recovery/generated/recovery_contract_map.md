@@ -883,10 +883,10 @@ None.
   - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:229` **CREATE_PRIMITIVE** — `var w = GameObject.CreatePrimitive(PrimitiveType.Cube);`
   - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:272` **NEW_GAME_OBJECT** — `var marker = new GameObject("Marker_" + hb.interiorMarkerId);`
   - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:353` **CREATE_PRIMITIVE** — `var rail = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:477` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:523` **NEW_GAME_OBJECT** — `var go = new GameObject("Hazard_" + h.id);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:552` **CREATE_PRIMITIVE** — `var drone = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:576` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:491` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:537` **NEW_GAME_OBJECT** — `var go = new GameObject("Hazard_" + h.id);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:566` **CREATE_PRIMITIVE** — `var drone = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:590` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
 
 ### `Ziptide.Editor.Patching.CityStageAPrimitiveFactory` — 4 signal(s)
 

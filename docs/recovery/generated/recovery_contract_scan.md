@@ -1651,7 +1651,7 @@
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:86` · `Ziptide.Editor.Patching.CityBuilder` — Runtime primitive construction. `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:229` · `Ziptide.Editor.Patching.CityBuilder` — Runtime primitive construction. `var w = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:353` · `Ziptide.Editor.Patching.CityBuilder` — Runtime primitive construction. `var rail = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:552` · `Ziptide.Editor.Patching.CityBuilder` — Runtime primitive construction. `var drone = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
+- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:566` · `Ziptide.Editor.Patching.CityBuilder` — Runtime primitive construction. `var drone = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/CityStageAPrimitiveFactory.cs:23` · `Ziptide.Editor.Patching.CityStageAPrimitiveFactory` — Runtime primitive construction. `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs:109` · `Ziptide.Editor.FirstHourSurfaceAuthor` — Runtime primitive construction. `var visual = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/FlatsSiteAuthor.cs:210` · `Ziptide.Editor.Patching.FlatsSiteAuthor` — Runtime primitive construction. `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
@@ -1927,9 +1927,9 @@
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/BuildingBuilder.cs:198` · `Ziptide.Editor.Patching.BuildingBuilder` — Runtime GameObject construction. `var frame = new GameObject("DoorFrame");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/BuildingBuilder.cs:210` · `Ziptide.Editor.Patching.BuildingBuilder` — Runtime GameObject construction. `var marker = new GameObject("__DOOR");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:272` · `Ziptide.Editor.Patching.CityBuilder` — Runtime GameObject construction. `var marker = new GameObject("Marker_" + hb.interiorMarkerId);`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:477` · `Ziptide.Editor.Patching.CityBuilder` — Runtime GameObject construction. `var go = new GameObject(name);`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:523` · `Ziptide.Editor.Patching.CityBuilder` — Runtime GameObject construction. `var go = new GameObject("Hazard_" + h.id);`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:576` · `Ziptide.Editor.Patching.CityBuilder` — Runtime GameObject construction. `var go = new GameObject(name);`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:491` · `Ziptide.Editor.Patching.CityBuilder` — Runtime GameObject construction. `var go = new GameObject(name);`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:537` · `Ziptide.Editor.Patching.CityBuilder` — Runtime GameObject construction. `var go = new GameObject("Hazard_" + h.id);`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:590` · `Ziptide.Editor.Patching.CityBuilder` — Runtime GameObject construction. `var go = new GameObject(name);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs:91` · `Ziptide.Editor.FirstHourSurfaceAuthor` — Runtime GameObject construction. `var marker = new GameObject(markerName);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/FlatsSiteAuthor.cs:80` · `Ziptide.Editor.Patching.FlatsSiteAuthor` — Runtime GameObject construction. `Transform root = new GameObject(RootName).transform;`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/FlatsSiteAuthor.cs:90` · `Ziptide.Editor.Patching.FlatsSiteAuthor` — Runtime GameObject construction. `var marker = new GameObject("Marker_" + SiteMarkerId);`
