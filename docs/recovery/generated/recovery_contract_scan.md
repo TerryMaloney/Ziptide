@@ -1,7 +1,7 @@
 # ZIPTIDE Recovery Contract Scan
 
 - Scanned files: **794**
-- Findings: **2867**
+- Findings: **2868**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
@@ -11,7 +11,7 @@
 | `bootstrap` | 46 |
 | `diagnostics` | 683 |
 | `events` | 71 |
-| `fallback_debt` | 176 |
+| `fallback_debt` | 177 |
 | `global_render` | 94 |
 | `input` | 230 |
 | `materials` | 278 |
@@ -896,6 +896,7 @@
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherStarterWorld.cs:231` · `Ziptide.Editor.Patching.ScenePatcherStarterWorld` — Source text marks fallback/prototype debt. `// Dormant gate ring (ring of pillars as a placeholder for the portal).`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherStarterWorld.cs:327` · `Ziptide.Editor.Patching.ScenePatcherStarterWorld` — Source text marks fallback/prototype debt. `// Pure placeholder transform — named marker for missions/spawns; no renderer/collider.`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherStarterWorld.cs:392` · `Ziptide.Editor.Patching.ScenePatcherStarterWorld` — Source text marks fallback/prototype debt. `pack.displayName = "Starter World (graybox)";`
+- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:364` · `Ziptide.Editor.Patching.ScenePatcherToxicCity` — Source text marks fallback/prototype debt. `Vector3 relay = new Vector3(-26f, kit.walkwayHeight, 8f); // fallback: the authored CanalRow anchor`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Editor/Patching/ShipHullBuilder.cs:9` · `Ziptide.Editor.Patching.ShipHullBuilder` — Source text marks fallback/prototype debt. `/// Shared hero-ship fallback used by every berth. It preserves the named refit skeleton and overall`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Editor/Patching/ShipHullBuilder.cs:41` · `Ziptide.Editor.Patching.ShipHullBuilder` — Source text marks fallback/prototype debt. `// Refit skeleton: these exact direct-child names remain authoritative.`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Editor/Patching/ShipHullBuilder.cs:55` · `Ziptide.Editor.Patching.ShipHullBuilder` — Source text marks fallback/prototype debt. `// Curved shell volumes soften the refit skeleton without replacing it.`

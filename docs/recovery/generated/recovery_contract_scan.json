@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-29T23:20:57.331403+00:00",
+  "generatedAtUtc": "2026-07-29T23:26:28.716442+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -9,12 +9,12 @@
     "Ziptide/Assets/ZiptideNet"
   ],
   "scannedFiles": 794,
-  "findingCount": 2867,
+  "findingCount": 2868,
   "categoryCounts": {
     "bootstrap": 46,
     "diagnostics": 683,
     "events": 71,
-    "fallback_debt": 176,
+    "fallback_debt": 177,
     "global_render": 94,
     "input": 230,
     "materials": 278,
@@ -37,7 +37,7 @@
     "EDITOR_BOOTSTRAP": 10,
     "EVENT_DECLARATION": 52,
     "EVENT_SYSTEM_COMPONENT": 2,
-    "FALLBACK_MARKER": 176,
+    "FALLBACK_MARKER": 177,
     "FRAME_BUTTON_POLL": 1,
     "INPUT_ACTION_REFERENCE": 219,
     "INPUT_BUTTON_REFERENCE": 10,
@@ -7835,6 +7835,15 @@
       "line": 392,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherStarterWorld",
       "snippet": "pack.displayName = \"Starter World (graybox)\";"
+    },
+    {
+      "category": "fallback_debt",
+      "code": "FALLBACK_MARKER",
+      "description": "Source text marks fallback/prototype debt",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
+      "line": 364,
+      "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
+      "snippet": "Vector3 relay = new Vector3(-26f, kit.walkwayHeight, 8f); // fallback: the authored CanalRow anchor"
     },
     {
       "category": "fallback_debt",

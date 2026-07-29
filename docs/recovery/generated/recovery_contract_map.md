@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
 - Scanned files: **794**
-- Scanner findings: **2867**
+- Scanner findings: **2868**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -4937,6 +4937,12 @@ None.
   - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherStarterWorld.cs:231` **FALLBACK_MARKER** — `// Dormant gate ring (ring of pillars as a placeholder for the portal).`
   - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherStarterWorld.cs:327` **FALLBACK_MARKER** — `// Pure placeholder transform — named marker for missions/spawns; no renderer/collider.`
   - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherStarterWorld.cs:392` **FALLBACK_MARKER** — `pack.displayName = "Starter World (graybox)";`
+
+### `Ziptide.Editor.Patching.ScenePatcherToxicCity` — 1 signal(s)
+
+- Codes: `FALLBACK_MARKER`
+- Paths: `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:364` **FALLBACK_MARKER** — `Vector3 relay = new Vector3(-26f, kit.walkwayHeight, 8f); // fallback: the authored CanalRow anchor`
 
 ### `Ziptide.Editor.Patching.ShipHullBuilder` — 3 signal(s)
 

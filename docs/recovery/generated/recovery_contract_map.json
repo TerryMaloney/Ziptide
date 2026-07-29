@@ -2,7 +2,7 @@
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
   "scannedFiles": 794,
-  "findingCount": 2867,
+  "findingCount": 2868,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -21773,6 +21773,25 @@
             "line": 392,
             "symbol": "Ziptide.Editor.Patching.ScenePatcherStarterWorld",
             "snippet": "pack.displayName = \"Starter World (graybox)\";"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
+        "evidenceCount": 1,
+        "codes": [
+          "FALLBACK_MARKER"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs"
+        ],
+        "evidence": [
+          {
+            "code": "FALLBACK_MARKER",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
+            "line": 364,
+            "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
+            "snippet": "Vector3 relay = new Vector3(-26f, kit.walkwayHeight, 8f); // fallback: the authored CanalRow anchor"
           }
         ]
       },
