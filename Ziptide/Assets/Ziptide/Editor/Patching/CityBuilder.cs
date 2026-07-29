@@ -474,6 +474,7 @@ namespace Ziptide.Editor.Patching
                 case "light_grazer": go.AddComponent<LightGrazerBehavior>(); return;
                 case "tether_swarm": go.AddComponent<TetherSwarmBehavior>(); return;
                 case "husk_molter": go.AddComponent<HuskMolterBehavior>(); return;
+                case "tox_canal_stalker_01": go.AddComponent<CanalStalkerBehavior>(); return;
             }
             var def = AssetDatabase.LoadAssetAtPath<CreatureDefinition>(
                 "Assets/Ziptide/Resources/Enemies/" + creatureId + ".asset");

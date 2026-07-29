@@ -159,6 +159,20 @@
   only 190 m in radius, so the real route is **quay → breach ≈75 m → around the wall to the site
   ≈195 m, ~270 m total**. Still a real drive with the city shrinking behind you; not 700 m. The
   script's number was written before the site was placed against the actual ring geometry.
+- **B6+B7 (Wave 4): THE CANALS ARE A WATERWAY AND SOMETHING LIVES IN THEM.** The insight that made
+  this cheap: the **ring canal already exists as real generated geometry** (`canalRingRadius` 74,
+  width 9 → a ~465 m continuous circuit), so the "navigable route" was built all along and unused.
+  `CanalWaterCore` (pure: ring annulus + authored rects, 1.2 m shore tolerance, a unit-length
+  correction *direction* — the lock NUDGES like grounding out, never teleports or freezes, both of
+  which would be comfort events) + `SkiffWaterLockRuntime`, and **`tide_skiff` now spawns ON the
+  ring canal** at the CanalRow bearing instead of on a shipyard slab, configured with the layout's
+  own canal data at bake time. `CanalStalkerCore` + `CanalStalkerBehavior` deliver Terry's three
+  stages — **ride 1 is ALWAYS just the shadow** (escort, never ambush), ride 2+ or long lingering
+  earns the bump (10° yaw, assist recovers), ride 3 + lingering earns a block that yields after
+  6 s; stun always drops it back to shadowing; **no boat = the animal isn't there at all**. Added
+  the missing `tox_canal_stalker_01` CreatureDefinition (without it the zone would have silently
+  fallen back to a Swarmer — the exact trap I flagged at B1) + the CityBuilder id case + the spec
+  zone on the ring canal. 13 EditMode tests.
 - Commit: (this one).
 
 ### 2026-07-29 (rb126) — Fable 5: 📐 LEVEL1_SPATIAL_SCRIPT — the placement layer, + ⚖ Terry's two story corrections (expedition + boat/stalker)

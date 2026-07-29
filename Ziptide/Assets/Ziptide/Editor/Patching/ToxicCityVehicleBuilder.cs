@@ -40,7 +40,6 @@ namespace Ziptide.Editor.Patching
             root.SetParent(cityRoot, false);
             Materials.Clear();
 
-            DistrictDef shipyard = FindDistrict(kit, "Shipyard");
             DistrictDef dispatch = FindDistrict(kit, "Dispatch");
             // ⚖ The expedition ride parks at the QUAY, beside the Dockmaster's booth: he hands over
             // the work order and the keys in the same breath, so the drive out to the flats starts
@@ -48,9 +47,12 @@ namespace Ziptide.Editor.Patching
             // layouts authored before the quay existed.
             DistrictDef expeditionYard = FindDistrict(kit, "Quay") ?? FindDistrict(kit, "Market");
 
-            Spawn(root, "tide_skiff",
-                (shipyard != null ? shipyard.anchor : new Vector3(0f, 0f, -30f)) + new Vector3(6f, 0.55f, 3f),
-                ColorFor("tide_skiff"));
+            // ⚖ THE BOAT LEG: the skiff belongs ON the water, not on a shipyard slab. It launches
+            // from the ring canal — the city's one continuous waterway — so the canals become a
+            // route you travel rather than sludge you walk beside.
+            Vector3 skiffDock = SkiffDockPosition(kit);
+            Transform skiffBay = Spawn(root, "tide_skiff", skiffDock, ColorFor("tide_skiff"));
+            AttachWaterLock(skiffBay, kit);
             Spawn(root, "dune_hoverbike",
                 (dispatch != null ? dispatch.anchor : new Vector3(0f, 0f, -8f)) + new Vector3(-5f, 0.82f, 4f),
                 ColorFor("dune_hoverbike"));
@@ -66,7 +68,7 @@ namespace Ziptide.Editor.Patching
             return summary;
         }
 
-        private static void Spawn(Transform parent, string id, Vector3 position, Color color)
+        private static Transform Spawn(Transform parent, string id, Vector3 position, Color color)
         {
             Transform bay = new GameObject("VehicleBay_" + id).transform;
             bay.SetParent(parent, false);
@@ -104,6 +106,47 @@ namespace Ziptide.Editor.Patching
             text.anchor = TextAnchor.MiddleCenter;
             text.alignment = TextAlignment.Center;
             text.color = color;
+            return bay;
+        }
+
+        /// <summary>
+        /// Where the skiff waits: on the ring canal, at the bearing of the CanalRow district so it
+        /// is a short walk from the job route rather than a scavenger hunt. Falls back to a fixed
+        /// point on the ring when the layout has no such district.
+        /// </summary>
+        private static Vector3 SkiffDockPosition(CityLayoutDefinition kit)
+        {
+            RingCityDef rings = kit != null ? kit.rings : null;
+            float radius = rings != null && rings.canalRingRadius > 0f ? rings.canalRingRadius : 74f;
+
+            DistrictDef canalRow = FindDistrict(kit, "CanalRow");
+            Vector3 toward = canalRow != null ? canalRow.anchor : new Vector3(-26f, 0f, 8f);
+            Vector2 flat = new Vector2(toward.x, toward.z);
+            if (flat.sqrMagnitude < 0.01f) flat = Vector2.left;
+            flat = flat.normalized * radius;
+            return new Vector3(flat.x, 0.35f, flat.y);
+        }
+
+        /// <summary>
+        /// Teach the skiff where the water is, straight from the layout that drew it — the ring
+        /// canal plus every authored canal rectangle. Serialized at author time (gotcha #7).
+        /// </summary>
+        private static void AttachWaterLock(Transform bay, CityLayoutDefinition kit)
+        {
+            if (bay == null || kit == null) return;
+            VehicleRuntime runtime = bay.GetComponentInChildren<VehicleRuntime>(true);
+            if (runtime == null) return;
+
+            var rects = new List<Vector4>();
+            foreach (CanalRegionDef canal in kit.canals)
+                if (canal != null)
+                    rects.Add(new Vector4(canal.center.x, canal.center.z, canal.size.x, canal.size.y));
+
+            RingCityDef rings = kit.rings;
+            bool ringWater = rings != null && rings.enabled && rings.buildCanalRing;
+            var lock_ = runtime.gameObject.AddComponent<SkiffWaterLockRuntime>();
+            lock_.Configure(ringWater ? rings.canalRingRadius : 0f,
+                ringWater ? rings.canalWidth : 0f, rects);
         }
 
         private static void EnsureSavedPreviews(Transform root)
