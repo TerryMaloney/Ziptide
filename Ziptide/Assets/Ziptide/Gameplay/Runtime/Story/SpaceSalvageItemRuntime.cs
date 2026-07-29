@@ -119,6 +119,11 @@ namespace Ziptide.Gameplay
 
             Debug.Log("ZIPTIDE: SALVAGE_FIND id=" + itemId + " flag=" + grantsFlag);
 
+            // Four words that turn a pickup into a story beat: everything else in the Overrun is
+            // cargo that missed the catch. This is not (docs/design/THE_CATCH.md §6).
+            var rill = FindObjectOfType<RillCompanion>();
+            if (rill != null) rill.SayById("CATCH_THE_FIND");
+
             Transform glow = transform.Find("FindGlow");
             if (glow != null) Destroy(glow.gameObject);
         }

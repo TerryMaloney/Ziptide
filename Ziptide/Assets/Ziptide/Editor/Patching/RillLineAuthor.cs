@@ -96,6 +96,19 @@ namespace Ziptide.Editor.Patching
             Enter("enter_w000", "W000_DriftIn",
                   "...there you are. I have been awake for six minutes and I already have opinions. The coupler is down; your papers are by the bunk. Shall we?");
             Enter("enter_w002", "W002_DryCistern", "Cistern registry says these pumps died forty years ago. Contract says otherwise.");
+
+            // THE CATCH (docs/design/THE_CATCH.md §6). The rings are an orbital cargo arrestor — the
+            // catching end of the mass driver on the Moss's horizon — and four lines are the whole
+            // explanation. Said once on arrival, so the corridor stops being scenery the moment the
+            // player first sees it.
+            Enter("enter_the_catch", ZiptideConstants.SceneSpaceLane,
+                  "Catch corridor's still lit. Nobody has thrown a pod up here in years and the lamps are still running.");
+            Cue("CATCH_DEAD_RING",
+                "Catch Three is dark. That has been dark a while.");
+            Cue("CATCH_OVERRUN",
+                "Everything that missed the catch ends up out here. Us too, if you get careless.");
+            Cue("CATCH_THE_FIND",
+                "That is not cargo.");
             Enter("enter_w003", "W003_GlassShelf", "Wind advisory. The baffles are down. That is the whole briefing.");
             Enter("enter_w004", "W004_BroadcastTomb", "The broadcast spine is dark. Something here was transmitting long before the Guild arrived.");
             Enter("enter_w005", "W005_OxidizedCanopy", "The canopy is growing through the machines. Do you think it minds us fixing them?");

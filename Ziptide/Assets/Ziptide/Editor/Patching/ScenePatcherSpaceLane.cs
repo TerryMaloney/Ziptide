@@ -233,24 +233,140 @@ namespace Ziptide.Editor.Patching
             drone.AddComponent<SpaceTargetRuntime>(); // serialized defaults: 6 armor, "scrap" ×6
         }
 
+        /// <summary>
+        /// CATCH 3 is the dead one (docs/design/THE_CATCH.md §5): blown coil, welded patch, and no
+        /// sequencer at all. The corridor visibly degrades without anybody having to say so.
+        /// </summary>
+        private const int DeadRingIndex = 2;
+
+        /// <summary>
+        /// A CATCH RING — an orbital cargo arrestor, not a race hoop (docs/design/THE_CATCH.md).
+        ///
+        /// The Moss throws cargo to orbit on a mass driver, so orbit needs something to CATCH it:
+        /// a line of electromagnetic brake rings on the pods' arrival arc. Every part below is the
+        /// answer to a question an engineer would ask — open truss because mass costs money, coil
+        /// blocks because the braking has to happen somewhere, radiator fins because vacuum has
+        /// nowhere to put the heat, a numeral collar because a pilot needs to know which gate this
+        /// is, and rungs because somebody used to come out here and service it.
+        ///
+        /// THE LAMPS LIVE IN THEIR OWN CHILD. The chase used to repaint the entire ring green, which
+        /// is most of why it read as a toy: machines do not change colour, their indicators do.
+        /// RingCourseLightsRuntime paints Ring_&lt;i&gt;/Lamps and nothing else.
+        /// </summary>
         private static void BuildRing(Transform lane, int index, Vector3 center)
         {
             var ring = new GameObject("Ring_" + index).transform;
             ring.SetParent(lane, false);
             ring.localPosition = center;
-            const int segments = 10;
+            bool dead = index == DeadRingIndex;
+
+            var structure = new GameObject("Truss").transform;
+            structure.SetParent(ring, false);
+
+            // 1. The truss torus — girders with cross-bracing, so the silhouette reads as built
+            //    rather than extruded.
+            const int segments = 12;
+            var alloy = new Color(0.42f, 0.40f, 0.36f);
+            var primer = new Color(0.45f, 0.31f, 0.19f);
             for (int s = 0; s < segments; s++)
             {
                 float a = (s / (float)segments) * Mathf.PI * 2f;
-                var seg = GameObject.CreatePrimitive(PrimitiveType.Cube);
-                seg.name = "Seg_" + s;
-                seg.transform.SetParent(ring, false);
-                seg.transform.localPosition = new Vector3(Mathf.Cos(a), Mathf.Sin(a), 0f) * RingVisualRadius;
-                seg.transform.localRotation = Quaternion.Euler(0f, 0f, a * Mathf.Rad2Deg);
-                seg.transform.localScale = new Vector3(1.2f, 0.35f, 0.35f);
-                Object.DestroyImmediate(seg.GetComponent<Collider>()); // fly THROUGH, never into
-                Paint(seg, new Color(0.9f, 0.55f, 0.2f));
+                Vector3 outward = new Vector3(Mathf.Cos(a), Mathf.Sin(a), 0f);
+
+                var girder = Cube(structure, "Girder_" + s, outward * RingVisualRadius,
+                    new Vector3(1.35f, 0.42f, 0.42f), s % 4 == 0 ? primer : alloy);
+                girder.transform.localRotation = Quaternion.Euler(0f, 0f, a * Mathf.Rad2Deg);
+
+                // Cross-brace between this girder and the next, angled so the lattice reads.
+                float aNext = ((s + 0.5f) / segments) * Mathf.PI * 2f;
+                var brace = Cube(structure, "Brace_" + s,
+                    new Vector3(Mathf.Cos(aNext), Mathf.Sin(aNext), 0f) * (RingVisualRadius + 0.35f),
+                    new Vector3(0.9f, 0.12f, 0.12f), alloy * 0.85f);
+                brace.transform.localRotation = Quaternion.Euler(0f, 0f, aNext * Mathf.Rad2Deg + 28f);
+
+                // 2. Coil housings on the INNER face — the working part. Ribbed, heavy, bolted.
+                bool blown = dead && s == 5;
+                var coil = Cube(structure, blown ? "Coil_Blown_" + s : "Coil_" + s,
+                    outward * (RingVisualRadius - 0.55f),
+                    new Vector3(0.85f, 0.62f, 0.72f),
+                    blown ? new Color(0.10f, 0.09f, 0.09f) : new Color(0.33f, 0.34f, 0.36f));
+                coil.transform.localRotation = Quaternion.Euler(0f, 0f, a * Mathf.Rad2Deg);
+                if (!blown)
+                    Cube(coil.transform, "Ribs", new Vector3(0f, 0.62f, 0f),
+                        new Vector3(1.05f, 0.18f, 1.15f), new Color(0.28f, 0.29f, 0.31f));
+
+                // 3. Radiator fins standing off the OUTER rim — the honest tell that this does work.
+                if (s % 2 == 0)
+                {
+                    var fin = Cube(structure, "Fin_" + s, outward * (RingVisualRadius + 1.35f),
+                        new Vector3(0.08f, 1.9f, 1.15f), new Color(0.38f, 0.36f, 0.34f));
+                    fin.transform.localRotation = Quaternion.Euler(0f, 0f, a * Mathf.Rad2Deg);
+                }
             }
+
+            // The welded patch plate over the blown housing — somebody tried, once.
+            if (dead)
+            {
+                float a = (5f / segments) * Mathf.PI * 2f;
+                var patch = Cube(structure, "PatchPlate",
+                    new Vector3(Mathf.Cos(a), Mathf.Sin(a), 0f) * (RingVisualRadius - 0.2f),
+                    new Vector3(1.25f, 0.9f, 0.12f), new Color(0.30f, 0.26f, 0.22f));
+                patch.transform.localRotation = Quaternion.Euler(0f, 0f, a * Mathf.Rad2Deg);
+            }
+
+            // 5. The numeral collar — CATCH 1..5, readable from a long way out, plus hazard chevrons.
+            var collar = Cube(structure, "NumeralCollar",
+                new Vector3(0f, -(RingVisualRadius + 1.1f), 0f),
+                new Vector3(3.4f, 1.5f, 0.14f), new Color(0.52f, 0.50f, 0.46f));
+            var label = new GameObject("CatchNumber");
+            label.transform.SetParent(collar.transform, false);
+            label.transform.localPosition = new Vector3(0f, 0f, -0.12f);
+            label.transform.localScale = new Vector3(1f / 3.4f, 1f / 1.5f, 1f) * 2.2f;
+            var text = label.AddComponent<TextMesh>();
+            text.text = "CATCH " + (index + 1);
+            text.characterSize = 0.5f;
+            text.fontSize = 64;
+            text.anchor = TextAnchor.MiddleCenter;
+            text.alignment = TextAlignment.Center;
+            text.color = dead ? new Color(0.35f, 0.33f, 0.30f) : new Color(0.88f, 0.84f, 0.74f);
+            for (int c = 0; c < 3; c++)
+                Cube(collar.transform, "Chevron_" + c, new Vector3(-1.1f + c * 1.1f, -0.62f, -0.1f),
+                    new Vector3(0.24f, 0.12f, 0.6f), new Color(0.62f, 0.52f, 0.12f));
+
+            // 6. Service spar with grab rungs and a drone perch — human scale, so the bore reads big.
+            var spar = Cube(structure, "ServiceSpar",
+                new Vector3(RingVisualRadius + 1.6f, 0.9f, 0f),
+                new Vector3(2.2f, 0.22f, 0.22f), alloy);
+            for (int r = 0; r < 4; r++)
+                Cube(spar.transform, "Rung_" + r, new Vector3(-0.3f + r * 0.22f, 0.6f, 0f),
+                    new Vector3(0.05f, 1.6f, 0.05f), new Color(0.55f, 0.45f, 0.20f));
+            Cube(spar.transform, "DronePerch", new Vector3(0.42f, 1.4f, 0f),
+                new Vector3(0.25f, 0.9f, 1.8f), new Color(0.34f, 0.33f, 0.32f));
+
+            // 4. THE SEQUENCER — small amber fixtures on the inner rim, the chase's only moving part.
+            //    The dead ring gets none at all, which is how the player learns the Catch is failing.
+            var lamps = new GameObject("Lamps").transform;
+            lamps.SetParent(ring, false);
+            if (dead) { StripColliders(ring); return; }
+
+            const int lampCount = 16;
+            for (int l = 0; l < lampCount; l++)
+            {
+                float a = (l / (float)lampCount) * Mathf.PI * 2f;
+                var lamp = Cube(lamps, "Lamp_" + l,
+                    new Vector3(Mathf.Cos(a), Mathf.Sin(a), 0.28f) * (RingVisualRadius - 0.05f),
+                    new Vector3(0.26f, 0.16f, 0.1f), new Color(0.9f, 0.55f, 0.2f));
+                lamp.transform.localRotation = Quaternion.Euler(0f, 0f, a * Mathf.Rad2Deg);
+            }
+
+            StripColliders(ring);
+        }
+
+        /// <summary>Strip colliders from a built ring: the corridor is flown THROUGH, never into.</summary>
+        private static void StripColliders(Transform root)
+        {
+            foreach (var c in root.GetComponentsInChildren<Collider>(true))
+                Object.DestroyImmediate(c);
         }
 
         private static void EnsureFlightRuntime(Transform lane)

@@ -127,6 +127,54 @@ namespace Ziptide.Editor.Patching
                 var pos = new Vector3(Mathf.Cos(a) * r, kit.walkwayHeight + h * 0.5f - SlabThickness, Mathf.Sin(a) * r);
                 Cube(skyRoot, "Silhouette_" + i, pos, new Vector3(w, h, w), kit.palette.skyline, false);
             }
+
+            if (kit.sceneName == ZiptideConstants.SceneToxicCity) BuildTheThrow(skyRoot, kit);
+        }
+
+        /// <summary>
+        /// THE THROW — the mass driver on the horizon (docs/design/THE_CATCH.md §4). This world's
+        /// whole economy is getting mass off the ground, and a wet industrial moon does that with an
+        /// electromagnetic track rather than fuel. It is the ground end of the same system as the
+        /// catch rings the player just flew: you came DOWN that corridor.
+        ///
+        /// Unreachable horizon geometry on purpose — a landmark, not a location. Its job is to make
+        /// the sky and the city one place instead of two levels, and to be the thing a player points
+        /// at and asks about.
+        /// </summary>
+        private static void BuildTheThrow(Transform skyRoot, CityLayoutDefinition kit)
+        {
+            var throwRoot = NewChild(skyRoot, "TheThrow");
+            // North-east, beyond the skyline ring, climbing away from the water.
+            float bearing = 55f * Mathf.Deg2Rad;
+            float distance = kit.skylineRingRadius * 1.35f;
+            var basePos = new Vector3(Mathf.Cos(bearing) * distance, kit.walkwayHeight, Mathf.Sin(bearing) * distance);
+
+            // The track itself: a long shallow ramp of segments climbing toward the sky, each one
+            // a little higher — the silhouette of something built to throw, not to hold.
+            const int segments = 14;
+            for (int i = 0; i < segments; i++)
+            {
+                float t = i / (float)(segments - 1);
+                var pos = basePos
+                          + new Vector3(-Mathf.Cos(bearing), 0f, -Mathf.Sin(bearing)) * (t * -95f)
+                          + Vector3.up * (6f + t * t * 62f);
+                var seg = Cube(throwRoot, "Track_" + i, pos, new Vector3(9f, 4.5f, 16f),
+                    kit.palette.skyline, false);
+                seg.transform.localRotation = Quaternion.Euler(-Mathf.Lerp(2f, 26f, t), -55f, 0f);
+
+                // Accelerator coil houses along the track, and the running lights that make it read
+                // at night — the same amber the catch rings use, because it is the same system.
+                if (i % 3 != 0) continue;
+                Cube(seg.transform, "CoilHouse", new Vector3(0f, 0.75f, 0f), new Vector3(1.35f, 0.7f, 0.35f),
+                    kit.palette.metal, false);
+                Cube(seg.transform, "Lamp", new Vector3(0.6f, 1.15f, 0f), new Vector3(0.2f, 0.2f, 0.2f),
+                    new Color(0.95f, 0.62f, 0.2f), false);
+            }
+
+            // The muzzle gantry at the top of the climb — where a pod leaves the ground for good.
+            var muzzle = basePos + new Vector3(-Mathf.Cos(bearing), 0f, -Mathf.Sin(bearing)) * -95f
+                         + Vector3.up * 74f;
+            Cube(throwRoot, "MuzzleGantry", muzzle, new Vector3(26f, 20f, 8f), kit.palette.skyline, false);
         }
 
         // ── Canals (decorative; collider stripped) ───────────────────────────

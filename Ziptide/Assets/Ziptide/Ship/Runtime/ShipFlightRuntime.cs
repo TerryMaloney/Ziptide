@@ -379,10 +379,17 @@ namespace Ziptide.Ship
             if (_course.Advance(_state.position))
             {
                 Debug.Log("ZIPTIDE: FLIGHT_RING " + _course.NextRing + "/" + _course.RingCount);
-                TintRing(_course.NextRing - 1);
+                // The passed gate's sequencer goes steady green (CLEAR) on its own —
+                // RingCourseLightsRuntime watches NextRingIndex and owns every lamp.
                 UpdateStatus();
                 if (_course.IsComplete)
+                {
                     Debug.Log("ZIPTIDE: FLIGHT_COURSE_DONE rings=" + _course.RingCount);
+                    // Past the last gate is THE OVERRUN — where everything that missed the catch
+                    // ends up, which is also why there is anything worth salvaging out here.
+                    var rill = FindObjectOfType<Ziptide.Gameplay.RillCompanion>();
+                    if (rill != null) rill.SayById("CATCH_OVERRUN");
+                }
             }
 
             TickCombat();
@@ -469,19 +476,6 @@ namespace Ziptide.Ship
                 : "RINGS " + _course.NextRing + "/" + _course.RingCount
                   + "\nleft stick fly + slide (back = reverse)"
                   + "\nright stick steer - L3/A boost - X/B barrel roll" + targets;
-        }
-
-        private void TintRing(int index)
-        {
-            if (laneContent == null) return;
-            var ring = laneContent.Find("Ring_" + index);
-            if (ring == null) return;
-            foreach (var r in ring.GetComponentsInChildren<Renderer>())
-                if (r.material != null)
-                {
-                    if (r.material.HasProperty("_BaseColor")) r.material.SetColor("_BaseColor", new Color(0.25f, 0.9f, 0.45f));
-                    else r.material.color = new Color(0.25f, 0.9f, 0.45f);
-                }
         }
 
         // ── Rig plumbing (ShipBoardingStation patterns — teleport, never parent) ───────────────────
