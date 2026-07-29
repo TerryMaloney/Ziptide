@@ -1,18 +1,18 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-29T16:56:52.970481+00:00",
+  "generatedAtUtc": "2026-07-29T17:01:30.208499+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
     "Ziptide/Assets/Ziptide",
     "Ziptide/Assets/ZiptideNet"
   ],
-  "scannedFiles": 777,
-  "findingCount": 2826,
+  "scannedFiles": 782,
+  "findingCount": 2831,
   "categoryCounts": {
     "bootstrap": 46,
-    "diagnostics": 672,
+    "diagnostics": 677,
     "events": 71,
     "fallback_debt": 176,
     "global_render": 92,
@@ -57,7 +57,7 @@
     "XRI_MANAGER_LOOKUP": 45,
     "XR_INTERACTABLE_COMPONENT": 66,
     "XR_UI_INPUT_MODULE": 2,
-    "ZIPTIDE_LOG_TAG": 672
+    "ZIPTIDE_LOG_TAG": 677
   },
   "findings": [
     {
@@ -1109,7 +1109,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs",
-      "line": 63,
+      "line": 65,
       "symbol": "Ziptide.Editor.Patching.ToxicCityVehicleBuilder",
       "snippet": "Debug.Log(\"ZIPTIDE: TOXIC_CITY_VEHICLES vehicles=\" + summary.Vehicles"
     },
@@ -1526,6 +1526,33 @@
       "line": 54,
       "symbol": "Ziptide.Gameplay.SingletonValidator",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: DUP_SINGLETON \" + label + \" count=\" + all.Length);"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CanalStalkerBehavior.cs",
+      "line": 15,
+      "symbol": "Ziptide.Gameplay.CanalStalkerBehavior",
+      "snippet": "/// this is the body and the water it stays in. Logs ZIPTIDE: STALKER stage=\u2026 ."
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CanalStalkerBehavior.cs",
+      "line": 77,
+      "symbol": "Ziptide.Gameplay.CanalStalkerBehavior",
+      "snippet": "Debug.Log(\"ZIPTIDE: STALKER stage=\" + stage + \" ride=\" + _rideCount"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CanalStalkerBehavior.cs",
+      "line": 151,
+      "symbol": "Ziptide.Gameplay.CanalStalkerBehavior",
+      "snippet": "Debug.Log(\"ZIPTIDE: STALKER stunned=\" + seconds.ToString(\"F1\"));"
     },
     {
       "category": "diagnostics",
@@ -5450,6 +5477,24 @@
       "line": 450,
       "symbol": "Ziptide.Ship.ShipFlightRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: FLIGHT_SALVAGE target=\" + t.name + \" granted=\" + granted.ToString(\"F0\"));"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Ship/Runtime/SkiffWaterLockRuntime.cs",
+      "line": 65,
+      "symbol": "Ziptide.Ship.SkiffWaterLockRuntime",
+      "snippet": "Debug.Log(\"ZIPTIDE: SKIFF_WATER state=afloat\");"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Ship/Runtime/SkiffWaterLockRuntime.cs",
+      "line": 73,
+      "symbol": "Ziptide.Ship.SkiffWaterLockRuntime",
+      "snippet": "Debug.Log(\"ZIPTIDE: SKIFF_WATER state=aground pos=\" + pos.ToString(\"F1\"));"
     },
     {
       "category": "diagnostics",
@@ -11864,7 +11909,7 @@
       "code": "RUNTIME_MATERIAL_CREATE",
       "description": "Runtime Material allocation",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs",
-      "line": 196,
+      "line": 239,
       "symbol": "Ziptide.Editor.Patching.ToxicCityVehicleBuilder",
       "snippet": "material = new Material(shader) { name = \"VehiclePad_\" + ColorUtility.ToHtmlStringRGB(color) };"
     },
@@ -12881,7 +12926,7 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs",
-      "line": 194,
+      "line": 237,
       "symbol": "Ziptide.Editor.Patching.ToxicCityVehicleBuilder",
       "snippet": "Shader shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
     },
@@ -12890,7 +12935,7 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs",
-      "line": 195,
+      "line": 238,
       "symbol": "Ziptide.Editor.Patching.ToxicCityVehicleBuilder",
       "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
     },
@@ -14465,7 +14510,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 535,
+      "line": 536,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var drone = GameObject.CreatePrimitive(PrimitiveType.Sphere);"
     },
@@ -14906,7 +14951,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs",
-      "line": 75,
+      "line": 77,
       "symbol": "Ziptide.Editor.Patching.ToxicCityVehicleBuilder",
       "snippet": "GameObject pad = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -14915,7 +14960,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs",
-      "line": 168,
+      "line": 211,
       "symbol": "Ziptide.Editor.Patching.ToxicCityVehicleBuilder",
       "snippet": "GameObject part = GameObject.CreatePrimitive(primitive);"
     },
@@ -16958,7 +17003,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 506,
+      "line": 507,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var go = new GameObject(\"Hazard_\" + h.id);"
     },
@@ -16967,7 +17012,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 559,
+      "line": 560,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var go = new GameObject(name);"
     },
@@ -17822,7 +17867,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs",
-      "line": 71,
+      "line": 73,
       "symbol": "Ziptide.Editor.Patching.ToxicCityVehicleBuilder",
       "snippet": "Transform bay = new GameObject(\"VehicleBay_\" + id).transform;"
     },
@@ -17831,7 +17876,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs",
-      "line": 90,
+      "line": 92,
       "symbol": "Ziptide.Editor.Patching.ToxicCityVehicleBuilder",
       "snippet": "GameObject vehicle = new GameObject(\"Vehicle_\" + id);"
     },
@@ -17840,7 +17885,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs",
-      "line": 97,
+      "line": 99,
       "symbol": "Ziptide.Editor.Patching.ToxicCityVehicleBuilder",
       "snippet": "GameObject label = new GameObject(\"BayLabel\");"
     },
@@ -17849,7 +17894,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs",
-      "line": 122,
+      "line": 165,
       "symbol": "Ziptide.Editor.Patching.ToxicCityVehicleBuilder",
       "snippet": "Transform preview = new GameObject(PreviewRootName).transform;"
     },
@@ -20918,7 +20963,7 @@
       "code": "TEXTMESH_COMPONENT",
       "description": "Legacy TextMesh creation/reference",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityVehicleBuilder.cs",
-      "line": 100,
+      "line": 102,
       "symbol": "Ziptide.Editor.Patching.ToxicCityVehicleBuilder",
       "snippet": "TextMesh text = label.AddComponent<TextMesh>();"
     },
