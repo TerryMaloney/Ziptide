@@ -1,6 +1,6 @@
 # ZIPTIDE R0 Ownership Maps
 
-- Scanned files: **745**
+- Scanned files: **746**
 - Scanner findings: **2721**
 - Inventory systems: **22**
 
@@ -1075,21 +1075,21 @@ None.
 
 - Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`, `RUNTIME_MATERIAL_CREATE`, `SHADER_FIND`
 - Paths: `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:66` **NEW_GAME_OBJECT** — `var root = new GameObject("__SPACELANE_ROOT").transform;`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:96` **NEW_GAME_OBJECT** — `var frame = new GameObject("CockpitFrame").transform;`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:118` **NEW_GAME_OBJECT** — `var lane = new GameObject("LaneContent").transform;`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:129` **NEW_GAME_OBJECT** — `var rocks = new GameObject("DriftRocks").transform;`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:138` **CREATE_PRIMITIVE** — `var rock = GameObject.CreatePrimitive(rng.Next(2) == 0 ? PrimitiveType.Cube : PrimitiveType.Sphere);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:153` **NEW_GAME_OBJECT** — `var drone = new GameObject("Drone_" + index);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:157` **CREATE_PRIMITIVE** — `var hull = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:166` **CREATE_PRIMITIVE** — `var wing = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:175` **CREATE_PRIMITIVE** — `var eye = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:188` **NEW_GAME_OBJECT** — `var ring = new GameObject("Ring_" + index).transform;`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:195` **CREATE_PRIMITIVE** — `var seg = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:292` **CREATE_PRIMITIVE** — `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:305` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Lit");`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:306` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:308` **RUNTIME_MATERIAL_CREATE** — `var mat = new Material(shader);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:97` **NEW_GAME_OBJECT** — `var root = new GameObject("__SPACELANE_ROOT").transform;`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:127` **NEW_GAME_OBJECT** — `var frame = new GameObject("CockpitFrame").transform;`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:149` **NEW_GAME_OBJECT** — `var lane = new GameObject("LaneContent").transform;`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:160` **NEW_GAME_OBJECT** — `var rocks = new GameObject("DriftRocks").transform;`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:169` **CREATE_PRIMITIVE** — `var rock = GameObject.CreatePrimitive(rng.Next(2) == 0 ? PrimitiveType.Cube : PrimitiveType.Sphere);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:184` **NEW_GAME_OBJECT** — `var drone = new GameObject("Drone_" + index);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:188` **CREATE_PRIMITIVE** — `var hull = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:197` **CREATE_PRIMITIVE** — `var wing = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:206` **CREATE_PRIMITIVE** — `var eye = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:219` **NEW_GAME_OBJECT** — `var ring = new GameObject("Ring_" + index).transform;`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:226` **CREATE_PRIMITIVE** — `var seg = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:323` **CREATE_PRIMITIVE** — `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:336` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Lit");`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:337` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:339` **RUNTIME_MATERIAL_CREATE** — `var mat = new Material(shader);`
 
 ### `Ziptide.Editor.Patching.ScenePatcherStarterWorld` — 5 signal(s)
 
@@ -4521,7 +4521,7 @@ None.
 
 - Codes: `FALLBACK_MARKER`
 - Paths: `Ziptide/Assets/Ziptide/Content/Runtime/City/CityLayoutDefinition.cs`
-  - `Ziptide/Assets/Ziptide/Content/Runtime/City/CityLayoutDefinition.cs:372` **FALLBACK_MARKER** — `/// <summary>The shipyard berth + a static (non-flyable) ship placeholder.</summary>`
+  - `Ziptide/Assets/Ziptide/Content/Runtime/City/CityLayoutDefinition.cs:479` **FALLBACK_MARKER** — `/// <summary>The shipyard berth + a static (non-flyable) ship placeholder.</summary>`
 
 ### `Ziptide.Content.CosmeticKind` — 1 signal(s)
 

@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
-  "scannedFiles": 745,
+  "scannedFiles": 746,
   "findingCount": 2721,
   "maps": {
     "bootstrapPersistence": [
@@ -4756,105 +4756,105 @@
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-            "line": 66,
+            "line": 97,
             "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
             "snippet": "var root = new GameObject(\"__SPACELANE_ROOT\").transform;"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-            "line": 96,
+            "line": 127,
             "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
             "snippet": "var frame = new GameObject(\"CockpitFrame\").transform;"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-            "line": 118,
+            "line": 149,
             "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
             "snippet": "var lane = new GameObject(\"LaneContent\").transform;"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-            "line": 129,
+            "line": 160,
             "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
             "snippet": "var rocks = new GameObject(\"DriftRocks\").transform;"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-            "line": 138,
+            "line": 169,
             "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
             "snippet": "var rock = GameObject.CreatePrimitive(rng.Next(2) == 0 ? PrimitiveType.Cube : PrimitiveType.Sphere);"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-            "line": 153,
+            "line": 184,
             "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
             "snippet": "var drone = new GameObject(\"Drone_\" + index);"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-            "line": 157,
+            "line": 188,
             "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
             "snippet": "var hull = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-            "line": 166,
+            "line": 197,
             "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
             "snippet": "var wing = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-            "line": 175,
+            "line": 206,
             "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
             "snippet": "var eye = GameObject.CreatePrimitive(PrimitiveType.Sphere);"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-            "line": 188,
+            "line": 219,
             "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
             "snippet": "var ring = new GameObject(\"Ring_\" + index).transform;"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-            "line": 195,
+            "line": 226,
             "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
             "snippet": "var seg = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-            "line": 292,
+            "line": 323,
             "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
             "snippet": "var go = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-            "line": 305,
+            "line": 336,
             "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
             "snippet": "var shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-            "line": 306,
+            "line": 337,
             "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
             "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
           },
           {
             "code": "RUNTIME_MATERIAL_CREATE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-            "line": 308,
+            "line": 339,
             "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
             "snippet": "var mat = new Material(shader);"
           }
@@ -20031,7 +20031,7 @@
           {
             "code": "FALLBACK_MARKER",
             "path": "Ziptide/Assets/Ziptide/Content/Runtime/City/CityLayoutDefinition.cs",
-            "line": 372,
+            "line": 479,
             "symbol": "Ziptide.Content.CityLayoutDefinition",
             "snippet": "/// <summary>The shipyard berth + a static (non-flyable) ship placeholder.</summary>"
           }
