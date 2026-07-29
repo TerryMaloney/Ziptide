@@ -83,6 +83,8 @@ FEATURES: tuple[tuple[str, str, str, str], ...] = (
      r"CityWayfindingAuthor\.Build\(", r"WayfindingCore\.LanternPositions\("),
     ("relay fault strobe", "Gameplay/Runtime/World/FaultStrobeRuntime.cs",
      r"AddComponent<FaultStrobeRuntime>", r"SetPropertyBlock\("),
+    ("quay berths", "Editor/Patching/QuayBerthAuthor.cs",
+     r"QuayBerthAuthor\.Build\(", r"QuayBerthCore\.PadCentres\("),
 )
 
 # Ids the city bake and the contract depend on. A spec that loses one of these strands a step.

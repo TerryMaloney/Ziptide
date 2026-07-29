@@ -59,6 +59,7 @@ class Level1WiringGateTests(unittest.TestCase):
             'transform.Find("AccessPanel"); PoseForMood(mood, _armor.Disabled);',
             "CityWayfindingAuthor.Build(root, kit); WayfindingCore.LanternPositions(route, 12f);",
             "AddComponent<FaultStrobeRuntime>(); r.SetPropertyBlock(_block);",
+            "QuayBerthAuthor.Build(root, kit); QuayBerthCore.PadCentres(centre, 20f);",
             'rill.SayById("CATCH_DEAD_RING"); rill.SayById("CATCH_OVERRUN"); rill.SayById("CATCH_THE_FIND"); rill.SayById("ARTIFACT_JOIN_HINT");',
         ]
         _write(assets / "Gameplay" / "Wiring.cs", "\n".join(wiring))

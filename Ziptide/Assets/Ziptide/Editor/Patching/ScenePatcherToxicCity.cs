@@ -103,6 +103,10 @@ namespace Ziptide.Editor.Patching
             // (relay strobe / north crown / berth floods) that makes "which way is home" a thing
             // you look at rather than a thing you are told. Last of the §3 wayfinding rows.
             CityWayfindingAuthor.Build(root, kit);
+
+            // THE HANGAR WALK: berths 1-5 west of your own, empty. Runs after the shipyard exists
+            // so it can measure off the real berth rather than the design doc's coordinates.
+            QuayBerthAuthor.Build(root, kit);
         }
 
         // The reentry/landing handoff owner (product contract §4 — was "no canonical owner/beat").
