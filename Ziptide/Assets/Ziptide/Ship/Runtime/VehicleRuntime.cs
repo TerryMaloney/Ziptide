@@ -16,7 +16,7 @@ namespace Ziptide.Ship
     /// retains local physical-head freedom. Mounting is a compact seat-side affordance, not giant UI
     /// blocks in the rider's view; X is the explicit step-off action while riding.
     /// </summary>
-    public class VehicleRuntime : MonoBehaviour
+    public class VehicleRuntime : MonoBehaviour, Ziptide.Core.IResonanceSensitive
     {
         [SerializeField] private string vehicleId = "tide_skiff";
 
@@ -115,6 +115,37 @@ namespace Ziptide.Ship
         {
             _leftStick?.Dispose(); _rightStick?.Dispose();
             _boostL3?.Dispose(); _boostA?.Dispose(); _dismountX?.Dispose();
+        }
+
+        /// <summary>
+        /// THE RESONANCE TELL reaching the ride (Ziptide.Core.IResonanceSensitive): lifting an
+        /// artifact half kills the panel light and drains the paint toward black for a beat.
+        /// LOOKS only — steering, mounting and dismounting are untouched, because stranding the
+        /// player's vehicle out on the flats would be a bug dressed as a story moment.
+        /// </summary>
+        public void SetInstrumentPower(float power01)
+        {
+            power01 = Mathf.Clamp01(power01);
+            if (_label != null)
+                _label.color = new Color(0.95f, 0.8f, 0.5f) * (0.15f + 0.85f * power01);
+
+            Transform visual = transform.Find(VisualRootName);
+            if (visual == null) return;
+            foreach (var r in visual.GetComponentsInChildren<Renderer>(true))
+            {
+                if (r == null || r.sharedMaterial == null) continue;
+                Color baseColor = r.sharedMaterial.HasProperty("_BaseColor")
+                    ? r.sharedMaterial.GetColor("_BaseColor")
+                    : r.sharedMaterial.color;
+                // Never all the way to black — a vehicle that vanishes reads as deleted, and the
+                // player has to be able to find it again when the lights come back.
+                Color dimmed = Color.Lerp(baseColor * 0.2f, baseColor, power01);
+                var block = new MaterialPropertyBlock();
+                r.GetPropertyBlock(block);
+                block.SetColor("_BaseColor", dimmed);
+                block.SetColor("_Color", dimmed);
+                r.SetPropertyBlock(block);
+            }
         }
 
         private void BuildVisualAndPanels()

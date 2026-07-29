@@ -94,6 +94,10 @@ namespace Ziptide.Editor.Patching
             SpawnStarterWeapons(root, spawnPos);
             EnsureFirstHourRoute(root, kit, spawnPos);
             EnsureReentryArrival();
+
+            // THE EXPEDITION (⚖ Terry): half B lives outside the wall, so the site, its burn-off
+            // column, and the drivable breach are part of the city bake — not a separate world.
+            FlatsSiteAuthor.Build(root, kit);
         }
 
         // The reentry/landing handoff owner (product contract §4 — was "no canonical owner/beat").

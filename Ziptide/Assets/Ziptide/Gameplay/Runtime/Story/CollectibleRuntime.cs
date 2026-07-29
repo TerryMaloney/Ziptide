@@ -126,6 +126,11 @@ namespace Ziptide.Gameplay
             Debug.Log("ZIPTIDE: COLLECTED item=" + _itemId +
                       (string.IsNullOrEmpty(_flagOnCollect) ? "" : " flag=" + _flagOnCollect));
 
+            // THE RESONANCE TELL: lifting an artifact half kills the instruments around it for a
+            // beat. Taught here, out on the flats, long before the join at the berth explains it.
+            if (_itemId == "artifact_half_a" || _itemId == "artifact_half_b")
+                ResonanceTellRuntime.PlayAt(transform.position);
+
             // Absorb: it's in the inventory now, not the hand.
             Destroy(gameObject);
         }

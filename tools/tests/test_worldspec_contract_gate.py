@@ -122,6 +122,23 @@ class WorldspecContractGateTests(unittest.TestCase):
         result = gate.run_gate(self.root)
         self.assertNotIn("CONTRACT_MARKER_UNKNOWN", self._codes(result))
 
+    def test_editor_authored_marker_satisfies_a_step(self):
+        # Places staged by an editor author (the flats expedition site sits outside the sea wall,
+        # so it is neither a district hero nor a POI) must count as planted — otherwise the gate
+        # would force real content into a schema that does not describe it.
+        self._stage(marker="flats_site")
+        _write(self.root / gate.EDITOR_DIR / "Patching" / "FlatsSiteAuthor.cs",
+               'public const string SiteMarkerId = "flats_site";')
+        result = gate.run_gate(self.root)
+        self.assertNotIn("CONTRACT_MARKER_UNKNOWN", self._codes(result))
+
+    def test_marker_nobody_plants_still_fails(self):
+        self._stage(marker="ghost_room")
+        _write(self.root / gate.EDITOR_DIR / "Patching" / "FlatsSiteAuthor.cs",
+               'public const string SiteMarkerId = "flats_site";')
+        result = gate.run_gate(self.root)
+        self.assertIn("CONTRACT_MARKER_UNKNOWN", self._codes(result))
+
     def test_unresolvable_item_fails(self):
         self._stage(spec=_spec(part_id="phantom_cell"))
         result = gate.run_gate(self.root)

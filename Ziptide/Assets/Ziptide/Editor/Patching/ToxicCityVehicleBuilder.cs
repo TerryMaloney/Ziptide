@@ -42,7 +42,11 @@ namespace Ziptide.Editor.Patching
 
             DistrictDef shipyard = FindDistrict(kit, "Shipyard");
             DistrictDef dispatch = FindDistrict(kit, "Dispatch");
-            DistrictDef market = FindDistrict(kit, "Market");
+            // ⚖ The expedition ride parks at the QUAY, beside the Dockmaster's booth: he hands over
+            // the work order and the keys in the same breath, so the drive out to the flats starts
+            // where the lead is given rather than across town. Falls back to the old Market pad for
+            // layouts authored before the quay existed.
+            DistrictDef expeditionYard = FindDistrict(kit, "Quay") ?? FindDistrict(kit, "Market");
 
             Spawn(root, "tide_skiff",
                 (shipyard != null ? shipyard.anchor : new Vector3(0f, 0f, -30f)) + new Vector3(6f, 0.55f, 3f),
@@ -51,7 +55,8 @@ namespace Ziptide.Editor.Patching
                 (dispatch != null ? dispatch.anchor : new Vector3(0f, 0f, -8f)) + new Vector3(-5f, 0.82f, 4f),
                 ColorFor("dune_hoverbike"));
             Spawn(root, "cavern_crawler",
-                (market != null ? market.anchor : new Vector3(26f, 0f, 8f)) + new Vector3(-4f, 0.22f, -5f),
+                (expeditionYard != null ? expeditionYard.anchor : new Vector3(24f, 0f, -50f))
+                    + new Vector3(-4f, 0.22f, 3f),
                 ColorFor("cavern_crawler"));
 
             Summary summary = Measure(root);

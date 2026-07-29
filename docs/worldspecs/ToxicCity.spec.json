@@ -1186,17 +1186,33 @@
     "collectibles": [
         {
             "itemId": "artifact_half_b",
-            "displayName": "the Dockmaster's paperweight",
+            "displayName": "the humming half",
             "localPosition": {
-                "x": -3.2,
-                "y": 0.1,
-                "z": -30
+                "x": 151.6,
+                "y": 1.4,
+                "z": 87.5
             },
             "flagOnCollect": "ARTIFACT_HALF_B",
             "accentColor": {
                 "r": 0.45,
                 "g": 0.85,
                 "b": 0.82,
+                "a": 1
+            }
+        },
+        {
+            "itemId": "waker_log_flats",
+            "displayName": "survey log slate",
+            "localPosition": {
+                "x": 148.4,
+                "y": 0.4,
+                "z": 84.6
+            },
+            "flagOnCollect": "WAKER_LOG_FLATS",
+            "accentColor": {
+                "r": 0.85,
+                "g": 0.72,
+                "b": 0.35,
                 "a": 1
             }
         }

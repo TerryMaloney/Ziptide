@@ -50,7 +50,15 @@ namespace Ziptide.Editor.Patching
             // spent its whole opening teaching.
             var s4 = RepairMachine("ToxicCity_S4_RelayRepair", RelayMachineId,
                 "Seat the relay cell and bring the signal back online");
-            var s5 = GoToMarker("ToxicCity_S5_Return", "shipyard_office",
+            // ⚖ THE EXPEDITION (Terry, 2026-07-29). The Dockmaster's second job: a survey site
+            // outside the sea wall where the instruments died the same week the relay went wrong.
+            // This is the step that sends the player through the breach in a vehicle — without it
+            // the drive, the flats, and half B are content nothing ever asks for. The marker is
+            // authored into the scene by FlatsSiteAuthor and resolved by JobDirector's scene
+            // fallback; arrive distance is generous because you get there driving, not walking.
+            var s5 = GoToMarker("ToxicCity_S5_Flats", FlatsSiteAuthor.SiteMarkerId,
+                "Take the crawler out past the breach — the survey site on the flats", 6f);
+            var s6 = GoToMarker("ToxicCity_S6_Return", "shipyard_office",
                 "Return to your berth at the shipyard", 2.5f);
 
             // ── Job ──
@@ -60,7 +68,7 @@ namespace Ziptide.Editor.Patching
 
             job.jobId = "toxiccity_contract";
             job.title = "Dockmaster's Bounty";
-            job.steps = new List<JobStepDefinition> { s1, s2, s3, s4, s5 };
+            job.steps = new List<JobStepDefinition> { s1, s2, s3, s4, s5, s6 };
             job.completionFlag = CompletionFlag;
             job.reward = new List<ResourceCost>
             {
@@ -77,7 +85,7 @@ namespace Ziptide.Editor.Patching
             Debug.Log("[Ziptide] Built Toxic City contract: " + JobPath
                 + " (reward " + RewardAmount + " " + RewardResourceId + ", flag '" + CompletionFlag + "').");
             EditorUtility.DisplayDialog("Toxic City Contract",
-                "Authored ToxicCity_Contract (5 steps incl. the relay repair + bounty reward) and attached it to the ToxicCity "
+                "Authored ToxicCity_Contract (6 steps incl. the relay repair, the flats expedition, and the bounty reward) and attached it to the ToxicCity "
                 + "WorldPack as job 0.\n\nStill needed (T-Dog/runtime): JobDirector -> JobRewards.Grant on "
                 + "completion, and ObjectiveBoard/RILL text.", "OK");
         }

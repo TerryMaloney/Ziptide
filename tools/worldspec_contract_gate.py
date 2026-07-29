@@ -8,7 +8,8 @@ W002 permanently locked. This gate fails CI the moment a spec and its world's jo
 instead of letting Terry find it on the headset.
 
 Per spec it checks, via the world's WorldPack (pack -> jobs -> steps, all by guid):
-  - every GoToMarker step's markerId exists in the spec (hero interiorMarkerId or poi_<id>);
+  - every GoToMarker step's markerId is planted by SOMETHING — a spec hero interiorMarkerId,
+    a poi_<id>, or an editor author declaring a `…MarkerId = "…"` constant;
   - every RepairMachine step's machineId exists in the spec's machines;
   - every DisableDrones step's count is coverable by the spec's droneZones;
   - every spec collectible/machine-part item id has an ItemDefinition in Resources/Items
@@ -37,6 +38,15 @@ SPEC_DIR = "docs/worldspecs"
 PACK_DIR = "Ziptide/Assets/Ziptide/Content/Worlds/Packs"
 JOBS_DIR = "Ziptide/Assets/Ziptide/Content/Jobs"
 ITEMS_DIR = "Ziptide/Assets/Ziptide/Resources/Items"
+EDITOR_DIR = "Ziptide/Assets/Ziptide/Editor"
+
+# Not every objective marker can live in a world spec: some places are staged by an editor author
+# instead of by the layout (the flats expedition site sits outside the sea wall, so it is not a
+# district hero building and not a POI). Those authors declare their marker with a constant whose
+# name ends in MarkerId, and JobDirector's scene fallback resolves it at runtime. Scanning for that
+# convention keeps the gate honest — a step pointing at a marker NOBODY plants is still a red —
+# without forcing scene-authored places into a schema that does not describe them.
+_AUTHORED_MARKER = re.compile(r"MarkerId\s*=\s*\"([A-Za-z0-9_]+)\"")
 
 _GUID_REF = re.compile(r"guid: ([0-9a-f]{32})")
 _META_GUID = re.compile(r"^guid: ([0-9a-f]{32})", re.MULTILINE)
@@ -132,6 +142,16 @@ def _spec_marker_ids(spec: dict[str, Any]) -> set[str]:
     return ids
 
 
+def _authored_marker_ids(editor_dir: Path) -> set[str]:
+    """Marker ids declared by committed editor authors (the `…MarkerId = "…"` convention)."""
+    ids: set[str] = set()
+    if not editor_dir.is_dir():
+        return ids
+    for source in editor_dir.rglob("*.cs"):
+        ids.update(_AUTHORED_MARKER.findall(source.read_text(encoding="utf-8", errors="replace")))
+    return ids
+
+
 def _item_ids(items_dir: Path) -> set[str]:
     ids: set[str] = set()
     if not items_dir.is_dir():
@@ -148,6 +168,7 @@ def run_gate(root: Path) -> GateResult:
     spec_dir = root / SPEC_DIR
     spec_paths = sorted(spec_dir.glob("*.spec.json")) if spec_dir.is_dir() else []
     known_items = _item_ids(root / ITEMS_DIR)
+    authored_markers = _authored_marker_ids(root / EDITOR_DIR)
     job_index = _guid_index(root / JOBS_DIR)
     checked_steps = 0
 
@@ -164,7 +185,7 @@ def run_gate(root: Path) -> GateResult:
             findings.append(Finding("WSPEC_SCENE_MISSING", f"{rel}: sceneName is empty", path=rel))
             continue
 
-        markers = _spec_marker_ids(spec)
+        markers = _spec_marker_ids(spec) | authored_markers
         machines = {m.get("machineId", "") for m in spec.get("machines", [])}
         drone_capacity = sum(int(z.get("count", 0)) for z in spec.get("droneZones", []))
 
@@ -224,8 +245,9 @@ def run_gate(root: Path) -> GateResult:
                     findings.append(Finding(
                         "CONTRACT_MARKER_UNKNOWN",
                         f"{scene}: job '{job_id}' step '{step_path.stem}' targets marker "
-                        f"'{marker}' but the spec authors no hero/poi with that id — "
-                        "compiling the spec would strand this step (JOB_MARKER_MISSING class)",
+                        f"'{marker}' but no spec hero/poi and no editor author "
+                        "declares it — nothing plants this marker, so the step can never "
+                        "complete (JOB_MARKER_MISSING class)",
                         scene=scene, path=step_rel))
                 if machine and machine not in machines:
                     findings.append(Finding(

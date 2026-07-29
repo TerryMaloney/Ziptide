@@ -138,6 +138,27 @@
   with a rising pluck (deliberately unlike any damage cue). 2 more tests. **WAVE 2 COMPLETE:**
   lamp-chase, drone reactions, ascent/reentry veils, Moss-orbit sky, porthole, compass, salvage
   confirm — the space leg is built, not deferred.
+- **B5 (Wave 3): THE EXPEDITION IS BUILT — half B moved out of town.** `FlatsSiteAuthor` stages
+  the crashed survey skiff (tilted hull, cracked cargo cage you can see the pickup inside), the
+  burn-off smoke column (7 stacked puffs, the "follow the wall then the smoke" wayfinding), the
+  salvage scatter, and rubble ramps at the breach mouth. **The breach bearing is COMPUTED with
+  RingCityBuilder's own formula, not guessed** — a ramp against solid wall would have silently
+  killed the leg; 3 tests pin it (real gap · not the harbour mouth · faces the site). The spec
+  moves `artifact_half_b` from "the Dockmaster's paperweight" at (-3.2, 0.1, -30) to the wreck at
+  (151.6, 1.4, 87.5) and adds a `waker_log_flats` slate + its ItemDefinition. The contract gains
+  step **S5 "Take the crawler out past the breach"** (now 6 steps) and `cavern_crawler` re-parks
+  at the **Quay** beside the Dockmaster — work order and keys in the same breath. The **resonance
+  tell** fires on grabbing either half: `ResonanceTellCore` (pure — 0.8 s blackout, smooth
+  recovery, provably always hands power back) + `ResonanceTellRuntime`, reaching the vehicle
+  through a new `Ziptide.Core.IResonanceSensitive` so Gameplay never has to reference Ship.
+  `VehicleRuntime` implements it: LOOKS only, the ride still drives. 8 EditMode + 2 gate tests.
+  The gate learned about editor-authored markers (the `…MarkerId = "…"` convention) — the flats
+  site is outside the wall, so it is neither a district hero nor a POI, but a step pointing at a
+  marker *nobody* plants is still a red.
+- **⚠ HONEST SCALE CORRECTION:** the spatial script called the drive "~700 m". The city shell is
+  only 190 m in radius, so the real route is **quay → breach ≈75 m → around the wall to the site
+  ≈195 m, ~270 m total**. Still a real drive with the city shrinking behind you; not 700 m. The
+  script's number was written before the site was placed against the actual ring geometry.
 - Commit: (this one).
 
 ### 2026-07-29 (rb126) — Fable 5: 📐 LEVEL1_SPATIAL_SCRIPT — the placement layer, + ⚖ Terry's two story corrections (expedition + boat/stalker)
