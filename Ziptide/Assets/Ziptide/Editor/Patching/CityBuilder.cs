@@ -396,30 +396,44 @@ namespace Ziptide.Editor.Patching
             // BOTH are authored gate-SUPPRESSED. Only KeySocketRuntime may ever hand the gate back
             // (ArtifactThreadTests pins that invariant), and it does so at the moment the key is
             // seated — which is the whole point of the beat.
-            bool tutorialBerth = kit.sceneName == "W000_DriftIn";
-            bool keyedBerth = kit.sceneName == ZiptideConstants.SceneToxicCity;
-            if (tutorialBerth || keyedBerth)
+            if (kit.sceneName == "W000_DriftIn")
             {
                 // The AUTHOR owns the route, not the .unity file — a regenerated world always ships
                 // the current one rather than whatever string was serialized months ago.
                 var castOff = ship.GetComponent<ShipCastOffRuntime>()
                     ?? ship.gameObject.AddComponent<ShipCastOffRuntime>();
-                castOff.Configure(
-                    tutorialBerth ? ZiptideConstants.SceneSpaceLane : ZiptideConstants.SceneW002,
-                    suppressGate: true);
-                if (keyedBerth) castOff.ConfigureKeyGate(required: true, machineId: "");
-
-                // THE KEY SOCKET on the hull beside the console: dark through the whole first act,
-                // then lit by an object the player found, joined and seated with their own hands.
-                var socket = ship.GetComponent<KeySocketRuntime>()
-                    ?? ship.gameObject.AddComponent<KeySocketRuntime>();
-                socket.Configure(ArtifactJoinRuntime.KeyItemId, ZiptideConstants.SceneW002);
-
-                // The thread that makes the join legible: it hangs between the joined key and this
-                // socket, so "follow the beacon back to your berth" is something you can SEE.
-                ship.gameObject.AddComponent<BeaconThreadRuntime>();
+                castOff.Configure(ZiptideConstants.SceneSpaceLane, suppressGate: true);
+                AddKeySocketAndBeacon(ship);
+            }
+            else if (kit.sceneName == ZiptideConstants.SceneToxicCity)
+            {
+                var castOff = ship.GetComponent<ShipCastOffRuntime>()
+                    ?? ship.gameObject.AddComponent<ShipCastOffRuntime>();
+                castOff.Configure(ZiptideConstants.SceneW002, suppressGate: true);
+                castOff.ConfigureKeyGate(required: true, machineId: "");
+                AddKeySocketAndBeacon(ship);
             }
 
+            AddBoardingStation(ship, kit, s);
+            return;
+        }
+
+        /// <summary>
+        /// THE KEY SOCKET on the hull beside the cast-off console — dark through the whole first
+        /// act, then lit by an object the player found, joined and seated with their own hands —
+        /// plus the beacon thread that hangs between the joined key and this socket, so "follow the
+        /// beacon back to your berth" is something you can SEE rather than something you're told.
+        /// </summary>
+        private static void AddKeySocketAndBeacon(Transform ship)
+        {
+            var socket = ship.GetComponent<KeySocketRuntime>()
+                ?? ship.gameObject.AddComponent<KeySocketRuntime>();
+            socket.Configure(ArtifactJoinRuntime.KeyItemId, ZiptideConstants.SceneW002);
+            ship.gameObject.AddComponent<BeaconThreadRuntime>();
+        }
+
+        private static void AddBoardingStation(Transform ship, CityLayoutDefinition kit, ShipyardBerthDef s)
+        {
             // S1 (GAME_PLAN M4 / SHIPS.md): the berthed ship is BOARDABLE — a travel station wearing a
             // ship costume. Destinations = every authored world pack whose scene ships in the build
             // (skip Exit return-packs and this world's own pack); story-gating happens at runtime.

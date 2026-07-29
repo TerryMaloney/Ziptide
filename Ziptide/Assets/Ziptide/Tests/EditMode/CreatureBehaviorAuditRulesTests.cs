@@ -17,7 +17,10 @@ namespace Ziptide.Tests.EditMode
         public void CanonicalProfiles_CarrySourceEvidenceForEveryActiveState()
         {
             var ids = new HashSet<string>(StringComparer.Ordinal);
-            Assert.AreEqual(7, CreatureBehaviorReadabilityCatalog.All.Count);
+            // 8 = the seven original creatures + tox_canal_stalker_01 (the canal stalker, added
+            // with the boat leg). This number is a ratchet: it may only grow alongside a real
+            // shipped CreatureDefinition, which the one-to-one test below enforces.
+            Assert.AreEqual(8, CreatureBehaviorReadabilityCatalog.All.Count);
 
             foreach (var profile in CreatureBehaviorReadabilityCatalog.All)
             {

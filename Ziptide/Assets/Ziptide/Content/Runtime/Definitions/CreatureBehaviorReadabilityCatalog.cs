@@ -218,7 +218,7 @@ namespace Ziptide.Content
                 },
                 "shadow_escort",
                 "hull_bump",
-                "channel_block"),
+                "stunned_sink"),
 
             Profile(
                 "warden",
