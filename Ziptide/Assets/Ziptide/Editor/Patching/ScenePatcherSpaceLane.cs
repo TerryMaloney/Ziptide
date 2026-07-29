@@ -114,6 +114,8 @@ namespace Ziptide.Editor.Patching
             EnsureSpawn("player", PlayerSpawn);
             EnsureFlightRuntime(lane);
             EnsureWorldPack();
+            EnsureOnwardLeg();
+            EnsureTheFind(lane);
         }
 
         // ── Dock: a small pad + open cockpit frame around the helm (interior stays static) ─────────
@@ -247,6 +249,74 @@ namespace Ziptide.Editor.Patching
             for (int i = 0; i < Rings.Length; i++)
                 list.GetArrayElementAtIndex(i).vector3Value = Rings[i];
             so.ApplyModifiedPropertiesWithoutUndo();
+        }
+
+        /// <summary>
+        /// THE FIND (FIRST_HOUR_DIRECTORS_CUT §2.1) — among the scrap, one object does not scan.
+        ///
+        /// It sits on the far wreck, past the last ring, so reaching it means actually flying the
+        /// course rather than stepping off the dock and picking it up. It is an ordinary grabbable
+        /// item, which means the holster contract carries it to Toxic City for free — the artifact
+        /// needed no new inventory system, only a reason to exist.
+        /// </summary>
+        private static void EnsureTheFind(Transform lane)
+        {
+            const string Name = "__ARTIFACT_HALF_A";
+            if (lane.Find(Name) != null) return;
+
+            var cradle = new GameObject(Name);
+            cradle.transform.SetParent(lane, false);
+            // Just beyond the final ring (0, 10, 380) and off the racing line, so it reads as
+            // salvage you went looking for rather than something dropped on the path.
+            cradle.transform.localPosition = new Vector3(9f, 8f, 405f);
+
+            // A wreck fragment to find it ON. Without something to pull it out of, an artifact
+            // floating in open space reads as a pickup, not a discovery.
+            var hulk = GameObject.CreatePrimitive(PrimitiveType.Cube);
+            hulk.name = "WreckFragment";
+            hulk.transform.SetParent(cradle.transform, false);
+            hulk.transform.localScale = new Vector3(6f, 2.4f, 9f);
+            hulk.transform.localRotation = Quaternion.Euler(14f, 32f, 8f);
+            Object.DestroyImmediate(hulk.GetComponent<Collider>());
+            Paint(hulk, new Color(0.24f, 0.25f, 0.28f));
+
+            var marker = new GameObject("__SALVAGE_ARTIFACT_HALF_A");
+            marker.transform.SetParent(cradle.transform, false);
+            marker.transform.localPosition = new Vector3(0f, 1.7f, 0f);
+            marker.AddComponent<SpaceSalvageItemRuntime>().Init("artifact_half_a");
+        }
+
+        /// <summary>
+        /// The salvage sortie is a LEG, not a destination. Canon (FIRST_HOUR_DIRECTORS_CUT §5):
+        /// W000 -> lane (fly, stun, salvage, THE FIND) -> dock at Toxic City. Without this the lane
+        /// was a cul-de-sac whose only exit was RETURN HOME, so the first hour could never continue
+        /// through it and the whole middle of the level stayed unreachable.
+        ///
+        /// The station stands ON the dock pad, beside the helm, so it reads as "the next hop" rather
+        /// than a door hidden somewhere in open space.
+        /// </summary>
+        private static void EnsureOnwardLeg()
+        {
+            var pack = AssetDatabase.LoadAssetAtPath<WorldPackDefinition>(
+                ZiptideConstants.PathToxicCityWorldPack);
+            if (pack == null)
+            {
+                Debug.LogWarning("[Ziptide] space lane: ToxicCity world pack missing — the onward leg "
+                    + "was not placed, so the salvage sortie has no continuation.");
+                return;
+            }
+
+            var go = PatcherUtil.EnsureRootObject(ZiptideConstants.GoWorldTravelStation,
+                new Vector3(2.6f, 0.1f, -1.4f));
+            var station = PatcherUtil.EnsureComponent<WorldTravelStation>(go);
+            var so = new SerializedObject(station);
+            var list = so.FindProperty("destinationPacks");
+            if (list != null)
+            {
+                list.arraySize = 1;
+                list.GetArrayElementAtIndex(0).objectReferenceValue = pack;
+                so.ApplyModifiedPropertiesWithoutUndo();
+            }
         }
 
         // ── Standard shell (same as every patcher) ──────────────────────────────────────────────────

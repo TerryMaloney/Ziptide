@@ -15,6 +15,17 @@ namespace Ziptide.Core
         public const string FIRST_JOB_COMPLETE      = "FIRST_JOB_COMPLETE";
         public const string FIRST_DRONE_DOWN        = "FIRST_DRONE_DOWN";
 
+        // ── THE ARTIFACT THREAD (first hour — "The Key That Knew You") ────
+        // Cal finds half of something in a wreck; the Toxic City contract pays her the other half;
+        // joined, it beacons to her OWN berth and seats into the coupler she repaired in minute
+        // eight. These four flags are the whole thread's state — the beat order, the beacon target
+        // and which job yields which half all stay DATA, so the arc survives a change of heart.
+        public const string ARTIFACT_HALF_A         = "ARTIFACT_HALF_A";   // the salvage find
+        public const string ARTIFACT_HALF_B         = "ARTIFACT_HALF_B";   // the Dockmaster's "paperweight"
+        public const string ARTIFACT_JOINED         = "ARTIFACT_JOINED";   // the two-handed join
+        public const string KEY_SEATED              = "KEY_SEATED";        // seated in the ship's coupler
+        public const string FIRST_ZIPTIDE_RIDDEN    = "FIRST_ZIPTIDE_RIDDEN";
+
         // ── Chapter 1 (W001-W004) ─────────────────────────────────────────
         public const string C1_W001_ARRIVED         = "C1_W001_ARRIVED";
         public const string C1_W001_RILL_BOOT       = "C1_W001_RILL_BOOT";

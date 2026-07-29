@@ -23,7 +23,12 @@ MonoBehaviour:
   - markerId: player
     localPosition: {x: 0, y: 0.1, z: -8}
     localEulerAngles: {x: 0, y: 0, z: 0}
-  collectibles: []
+  collectibles:
+  - itemId: artifact_half_b
+    displayName: the Dockmaster's paperweight
+    localPosition: {x: -3.2, y: 0.1, z: -30}
+    flagOnCollect: ARTIFACT_HALF_B
+    accentColor: {r: 0.45, g: 0.85, b: 0.82, a: 1}
   choices: []
   machines:
   - machineId: signal_relay

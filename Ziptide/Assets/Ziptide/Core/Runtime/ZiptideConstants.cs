@@ -15,6 +15,11 @@ namespace Ziptide.Core
         public const string SceneSandbox        = "SandboxTestLab";
         public const string SceneSample         = "SampleScene";
         public const string SceneW000           = "W000_DriftIn";
+        public const string SceneW002           = "W002_DryCistern";
+        /// <summary>The outbound salvage leg. The FIRST launch out of W000 goes HERE, not to W001 —
+        /// the first hour's canon is a routine wreck-clearance sortie, and the Ziptide is saved for
+        /// the key transit at minute 45 (docs/design/FIRST_HOUR_DIRECTORS_CUT.md §5).</summary>
+        public const string SceneSpaceLane      = "SpaceLane_Trial";
 
         /// <summary>Scene loaded by _Boot on Start. Change this to redirect the entry point.</summary>
         // 2026-07-06 (Picasso): REVERTED the June-18 Sandbox dev-bypass — booting into the graybox left

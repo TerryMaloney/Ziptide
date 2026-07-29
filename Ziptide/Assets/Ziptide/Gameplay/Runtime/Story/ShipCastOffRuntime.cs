@@ -22,7 +22,16 @@ namespace Ziptide.Gameplay
         private const string ArmedLabel = "PUNCH IT";
         private const float HintSeconds = 2.5f;
 
-        [SerializeField] private string targetScene = "ToxicCity";
+        // THE FIRST LAUNCH IS NOT A ZIPTIDE. Canon (FIRST_HOUR_DIRECTORS_CUT §5, minute 10-13):
+        // "helm -> PUNCH IT -> cast-off rails (ship flight, NO gate FX)". Cal is flying to a routine
+        // wreck-clearance job, not crossing the network. This used to point straight at ToxicCity AND
+        // fire the full gate spectacle, which spent the game's biggest moment on a bus ride and left
+        // nothing for the beat designed to earn it -- the key transit at minute 45.
+        [SerializeField] private string targetScene = ZiptideConstants.SceneSpaceLane;
+
+        [Tooltip("Suppress the Ziptide gate effect on this launch. TRUE for the ordinary cast-off; the "
+                 + "gate belongs to the key transit alone.")]
+        [SerializeField] private bool suppressGateEffect = true;
         [SerializeField] private float streakSeconds = 6f;
         [Tooltip("RepairableMachine id that must be RUNNING before PUNCH IT arms (empty = no gate).")]
         [SerializeField] private string armingMachineId = "gate_coupler";
@@ -32,6 +41,17 @@ namespace Ziptide.Gameplay
         private TextMesh _buttonLabel;
         private Coroutine _hintRoutine;
 
+        /// <summary>
+        /// Author entry point (public Init idiom — the no-reflection law). The generating patcher owns
+        /// the destination, so a scene regenerated from data always carries the current route rather
+        /// than whatever string was serialized into the .unity file months ago.
+        /// </summary>
+        public void Configure(string destinationScene, bool suppressGate)
+        {
+            if (!string.IsNullOrEmpty(destinationScene)) targetScene = destinationScene;
+            suppressGateEffect = suppressGate;
+        }
+
         /// <summary>The destination currently consumed by the existing PUNCH IT launch sequence.</summary>
         public string SelectedDestination => targetScene;
 
@@ -39,12 +59,19 @@ namespace Ziptide.Gameplay
         public event Action<string> DestinationSelected;
 
         /// <summary>
-        /// The first-hour helm may select only W001/ToxicCity. This changes the existing serialized
-        /// destination truth; TryLaunch and LaunchSequence remain the sole launch/travel owners.
+        /// The first-hour helm selects the OUTBOUND SALVAGE LEG. ToxicCity stays accepted because the
+        /// return trip and any recovery/dev route still name it, and rejecting it would strand a build
+        /// whose lane scene has not been generated yet. Anything else is refused: this is the tutorial's
+        /// one-way launch, not a free destination picker.
+        ///
+        /// TryLaunch and LaunchSequence remain the sole launch/travel owners.
         /// </summary>
         public bool SelectFirstDestination(string destinationScene)
         {
-            if (!string.Equals(destinationScene, ZiptideConstants.SceneToxicCity, StringComparison.Ordinal))
+            bool allowed =
+                string.Equals(destinationScene, ZiptideConstants.SceneSpaceLane, StringComparison.Ordinal)
+                || string.Equals(destinationScene, ZiptideConstants.SceneToxicCity, StringComparison.Ordinal);
+            if (!allowed)
             {
                 Debug.LogWarning("ZIPTIDE: FLIGHT_DESTINATION_REJECTED target=" + destinationScene);
                 return false;
@@ -214,8 +241,9 @@ namespace Ziptide.Gameplay
                 }
                 yield return new WaitForSeconds(0.06f);
             }
-            Debug.Log("ZIPTIDE: FLIGHT_DEPART target=" + targetScene);
-            TravelCoordinator.TravelTo(targetScene);
+            Debug.Log("ZIPTIDE: FLIGHT_DEPART target=" + targetScene
+                + " gate=" + (suppressGateEffect ? "suppressed" : "full"));
+            TravelCoordinator.TravelTo(targetScene, skipGate: suppressGateEffect);
         }
 
         private void PublishDestinationSelected(string destination)

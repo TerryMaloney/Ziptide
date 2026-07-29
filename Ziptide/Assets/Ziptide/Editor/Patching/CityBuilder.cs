@@ -383,8 +383,25 @@ namespace Ziptide.Editor.Patching
 
             // PUNCH IT (Test Day 1): only the W000 tutorial ship gets the cast-off console —
             // its launch IS the tutorial's final beat. Other berths stay boarding stations.
-            if (kit.sceneName == "W000_DriftIn" && ship.GetComponent<ShipCastOffRuntime>() == null)
-                ship.gameObject.AddComponent<ShipCastOffRuntime>();
+            if (kit.sceneName == "W000_DriftIn")
+            {
+                var castOff = ship.GetComponent<ShipCastOffRuntime>()
+                    ?? ship.gameObject.AddComponent<ShipCastOffRuntime>();
+                // The AUTHOR owns the route, not the .unity file. The committed scene still carried
+                // targetScene: ToxicCity from an older arc; configuring here means a regenerated world
+                // always ships the current one. First launch = the outbound salvage leg, no gate FX --
+                // the Ziptide is reserved for the key transit (FIRST_HOUR_DIRECTORS_CUT §5).
+                castOff.Configure(ZiptideConstants.SceneSpaceLane, suppressGate: true);
+
+                // THE KEY SOCKET, on the hull beside the cast-off console. It sits there dark for the
+                // whole first act; the player finds half an artifact in a wreck, is paid the other
+                // half in Toxic City, joins them, follows the beacon back to this berth, and seats it
+                // HERE -- which is the moment the Ziptide is armed. The spectacle is earned by an
+                // object the player carried, not spent on the tutorial's first bus ride.
+                var socket = ship.GetComponent<KeySocketRuntime>()
+                    ?? ship.gameObject.AddComponent<KeySocketRuntime>();
+                socket.Configure(ArtifactJoinRuntime.KeyItemId, ZiptideConstants.SceneW002);
+            }
 
             // S1 (GAME_PLAN M4 / SHIPS.md): the berthed ship is BOARDABLE — a travel station wearing a
             // ship costume. Destinations = every authored world pack whose scene ships in the build

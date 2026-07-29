@@ -181,6 +181,44 @@ namespace Ziptide.Editor.Patching
             Cue("TUT_ZIPLINE",          "Take the line. It is quicker than the long way round, and the long way round is flooded.");
             Cue("TUT_RETURN_HOME",      "That is the contract closed. The ship is where we left it.");
 
+            // ═══════════════════════════════════════════════════════════════════════════════════════
+            // THE ARTIFACT THREAD — "The Key That Knew You" (FIRST_HOUR_DIRECTORS_CUT §2).
+            //
+            // Direction, not final VO. Two contracts, two halves, one signer; the question gets
+            // planted and left unanswered, because it is the engine for every act after this one.
+            // Nobody says "it knew YOU" — RILL only ever says it rewrote its fitting to the SHIP.
+            // The Transmission layer stays sealed, so a player who replays this hour after finishing
+            // the game should get chills. That is the test of the line.
+            // ═══════════════════════════════════════════════════════════════════════════════════════
+            Flag("artifact_find", ZiptideFlags.ARTIFACT_HALF_A,
+                 "Scrap... scrap... hull plate... wait. That one's not scrap. That's not supposed to be — anywhere.");
+            CalFlag("cal_artifact_find", ZiptideFlags.ARTIFACT_HALF_A,
+                    "So what are you supposed to be?");
+
+            Flag("artifact_second", ZiptideFlags.ARTIFACT_HALF_B,
+                 "The Dockmaster called that a paperweight. It has a fracture face. Cal — it has the SAME fracture face.");
+            CalFlag("cal_artifact_second", ZiptideFlags.ARTIFACT_HALF_B,
+                    "Two contracts. One signer. I'm choosing not to think about that yet.");
+
+            Flag("artifact_joined", ZiptideFlags.ARTIFACT_JOINED,
+                 "That's a heading. It goes... back the way we came.");
+            CalFlag("cal_artifact_joined", ZiptideFlags.ARTIFACT_JOINED,
+                    "That's OUR berth.");
+
+            Flag("artifact_key_seated", ZiptideFlags.KEY_SEATED,
+                 "It's not a beacon. It's a key. And it already knows the lock — it rewrote its own fitting. To OURS.");
+
+            Flag("artifact_first_ziptide", ZiptideFlags.FIRST_ZIPTIDE_RIDDEN,
+                 "I have no chart for where we just went. I have a depth reading. That is all I have.");
+            CalFlag("cal_first_ziptide", ZiptideFlags.FIRST_ZIPTIDE_RIDDEN,
+                    "Then we're the first ones to write one. Come on.");
+
+            // The signer. Planted in hour one, explained in none of it.
+            Flag("vex_noticed", "VEX_NOTICED",
+                 "Two contracts. Two halves. One signer. Cal — who is Vex Bootstrapper?");
+            CalFlag("cal_vex_noticed", "VEX_NOTICED",
+                    "Somebody with terrible taste in paperweights.");
+
             // ── First-hour flag reactions: the tutorial's own beats had NO voice at all ──────────────
             // W000 grants TUTORIAL_COMPLETE / FIRST_TRAVEL / C1_W001_RILL_BOOT and W001 grants its
             // arrival and completion flags; none of them said anything. The whole point of W000 is
