@@ -1,7 +1,7 @@
 {
   "tool": "recovery_focus_reference_graph",
-  "scannedFiles": 751,
-  "referenceCount": 439,
+  "scannedFiles": 755,
+  "referenceCount": 447,
   "summaries": {
     "melee": {
       "referenceCount": 112,
@@ -87,9 +87,9 @@
       ]
     },
     "repairObjective": {
-      "referenceCount": 229,
-      "fileCount": 54,
-      "callerFileCount": 53,
+      "referenceCount": 233,
+      "fileCount": 56,
+      "callerFileCount": 55,
       "paths": [
         "Ziptide/Assets/Ziptide/Content/Runtime/Jobs/JobRewards.cs",
         "Ziptide/Assets/Ziptide/Content/Runtime/Jobs/RepairMachineCountStepDefinition.cs",
@@ -125,6 +125,7 @@
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ChoiceStation.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/CollectibleRuntime.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/GardenPlotRuntime.cs",
+        "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/MiningRigRuntime.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairPartSafetyInstallerRuntime.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairPartSafetyRuntime.cs",
@@ -135,6 +136,7 @@
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HazardZoneRuntime.cs",
+        "Ziptide/Assets/Ziptide/Tests/EditMode/ArtifactThreadTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/CastOffArmingTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/FirstRouteFeelTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
@@ -180,6 +182,7 @@
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ChoiceStation.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/CollectibleRuntime.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/GardenPlotRuntime.cs",
+        "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/MiningRigRuntime.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairPartSafetyInstallerRuntime.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairPartSafetyRuntime.cs",
@@ -190,6 +193,7 @@
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HazardZoneRuntime.cs",
+        "Ziptide/Assets/Ziptide/Tests/EditMode/ArtifactThreadTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/CastOffArmingTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/FirstRouteFeelTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
@@ -203,9 +207,9 @@
       ]
     },
     "shipPresentation": {
-      "referenceCount": 98,
-      "fileCount": 19,
-      "callerFileCount": 16,
+      "referenceCount": 102,
+      "fileCount": 21,
+      "callerFileCount": 18,
       "paths": [
         "Ziptide/Assets/Ziptide/Content/Runtime/Ship/ShipLoadoutCore.cs",
         "Ziptide/Assets/Ziptide/Core/Runtime/ShipLocker.cs",
@@ -213,6 +217,7 @@
         "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
         "Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs",
         "Ziptide/Assets/Ziptide/Editor/Patching/ShipHullBuilder.cs",
+        "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourW001Orchestrator.cs",
@@ -221,6 +226,7 @@
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipRefit.cs",
         "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
+        "Ziptide/Assets/Ziptide/Tests/EditMode/ArtifactThreadTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/HeroShipHullBuilderTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/ShipFlightParamsTests.cs",
@@ -232,6 +238,7 @@
         "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
         "Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs",
         "Ziptide/Assets/Ziptide/Editor/Patching/ShipHullBuilder.cs",
+        "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourW001Orchestrator.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
@@ -239,6 +246,7 @@
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipBoardingStation.cs",
         "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipRefit.cs",
         "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
+        "Ziptide/Assets/Ziptide/Tests/EditMode/ArtifactThreadTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/HeroShipHullBuilderTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/ShipFlightParamsTests.cs",
@@ -1307,7 +1315,7 @@
           "focus": "repairObjective",
           "token": "CastOffArming",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-          "line": 152,
+          "line": 179,
           "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
           "snippet": "// but never cache absence: a truly machine-less scene stays armed (CastOffArming law).",
           "declaration_file": false
@@ -1316,7 +1324,7 @@
           "focus": "repairObjective",
           "token": "CastOffArming",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-          "line": 156,
+          "line": 183,
           "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
           "snippet": "bool armed = CastOffArming.IsArmed(gateConfigured, _armingMachine != null,",
           "declaration_file": false
@@ -2011,7 +2019,7 @@
           "focus": "repairObjective",
           "token": "JobDirector",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-          "line": 151,
+          "line": 178,
           "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
           "snippet": "// The machine is spawned at runtime by JobDirector, so keep looking until found \u2014",
           "declaration_file": false
@@ -2020,7 +2028,7 @@
           "focus": "repairObjective",
           "token": "JobDirector",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-          "line": 160,
+          "line": 187,
           "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
           "snippet": "// observes and its repaired state \u2014 divergence from the JobDirector-spawned machine",
           "declaration_file": false
@@ -2566,7 +2574,7 @@
           "focus": "repairObjective",
           "token": "REPAIR_TRACE",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-          "line": 166,
+          "line": 193,
           "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
           "snippet": "Debug.Log(\"ZIPTIDE: REPAIR_TRACE hop=castoff armed=\" + armed",
           "declaration_file": false
@@ -2894,7 +2902,7 @@
           "focus": "repairObjective",
           "token": "RepairableMachine",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-          "line": 27,
+          "line": 36,
           "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
           "snippet": "[Tooltip(\"RepairableMachine id that must be RUNNING before PUNCH IT arms (empty = no gate).\")]",
           "declaration_file": false
@@ -2903,7 +2911,7 @@
           "focus": "repairObjective",
           "token": "RepairableMachine",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-          "line": 31,
+          "line": 40,
           "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
           "snippet": "private RepairableMachine _armingMachine; // cached once found; absence is re-checked per press",
           "declaration_file": false
@@ -2912,7 +2920,7 @@
           "focus": "repairObjective",
           "token": "RepairableMachine",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-          "line": 153,
+          "line": 180,
           "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
           "snippet": "foreach (var m in FindObjectsOfType<RepairableMachine>())",
           "declaration_file": false
@@ -3231,18 +3239,18 @@
           "focus": "repairObjective",
           "token": "ShipCastOffRuntime",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-          "line": 386,
+          "line": 388,
           "symbol": "Ziptide.Editor.Patching.CityBuilder",
-          "snippet": "if (kit.sceneName == \"W000_DriftIn\" && ship.GetComponent<ShipCastOffRuntime>() == null)",
+          "snippet": "var castOff = ship.GetComponent<ShipCastOffRuntime>()",
           "declaration_file": false
         },
         {
           "focus": "repairObjective",
           "token": "ShipCastOffRuntime",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-          "line": 387,
+          "line": 389,
           "symbol": "Ziptide.Editor.Patching.CityBuilder",
-          "snippet": "ship.gameObject.AddComponent<ShipCastOffRuntime>();",
+          "snippet": "?? ship.gameObject.AddComponent<ShipCastOffRuntime>();",
           "declaration_file": false
         },
         {
@@ -3252,6 +3260,33 @@
           "line": 36,
           "symbol": "Ziptide.Editor.FirstHourSurfaceAuthor",
           "snippet": "ShipCastOffRuntime castOff = FindInScene<ShipCastOffRuntime>(scene);",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "ShipCastOffRuntime",
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs",
+          "line": 18,
+          "symbol": "Ziptide.Gameplay.KeySocketRuntime",
+          "snippet": "/// It owns nothing: `ShipCastOffRuntime` still owns arming and launch, `TravelCoordinator` still",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "ShipCastOffRuntime",
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs",
+          "line": 119,
+          "symbol": "Ziptide.Gameplay.KeySocketRuntime",
+          "snippet": "var castOff = GetComponentInParent<ShipCastOffRuntime>();",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "ShipCastOffRuntime",
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs",
+          "line": 120,
+          "symbol": "Ziptide.Gameplay.KeySocketRuntime",
+          "snippet": "if (castOff == null) castOff = FindObjectOfType<ShipCastOffRuntime>();",
           "declaration_file": false
         },
         {
@@ -3311,6 +3346,15 @@
         {
           "focus": "repairObjective",
           "token": "ShipCastOffRuntime",
+          "path": "Ziptide/Assets/Ziptide/Tests/EditMode/ArtifactThreadTests.cs",
+          "line": 30,
+          "symbol": "Ziptide.Tests.EditMode.ArtifactThreadTests",
+          "snippet": "string castOff = Source(\"Gameplay\", \"Runtime\", \"Story\", \"ShipCastOffRuntime.cs\");",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "ShipCastOffRuntime",
           "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
           "line": 182,
           "symbol": "Ziptide.Tests.EditMode.HomeHubFlowTests",
@@ -3350,7 +3394,7 @@
           "focus": "repairObjective",
           "token": "gate_coupler",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-          "line": 28,
+          "line": 37,
           "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
           "snippet": "[SerializeField] private string armingMachineId = \"gate_coupler\";",
           "declaration_file": false
@@ -3401,18 +3445,18 @@
           "focus": "shipPresentation",
           "token": "ShipCastOffRuntime",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-          "line": 386,
+          "line": 388,
           "symbol": "Ziptide.Editor.Patching.CityBuilder",
-          "snippet": "if (kit.sceneName == \"W000_DriftIn\" && ship.GetComponent<ShipCastOffRuntime>() == null)",
+          "snippet": "var castOff = ship.GetComponent<ShipCastOffRuntime>()",
           "declaration_file": false
         },
         {
           "focus": "shipPresentation",
           "token": "ShipCastOffRuntime",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-          "line": 387,
+          "line": 389,
           "symbol": "Ziptide.Editor.Patching.CityBuilder",
-          "snippet": "ship.gameObject.AddComponent<ShipCastOffRuntime>();",
+          "snippet": "?? ship.gameObject.AddComponent<ShipCastOffRuntime>();",
           "declaration_file": false
         },
         {
@@ -3422,6 +3466,33 @@
           "line": 36,
           "symbol": "Ziptide.Editor.FirstHourSurfaceAuthor",
           "snippet": "ShipCastOffRuntime castOff = FindInScene<ShipCastOffRuntime>(scene);",
+          "declaration_file": false
+        },
+        {
+          "focus": "shipPresentation",
+          "token": "ShipCastOffRuntime",
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs",
+          "line": 18,
+          "symbol": "Ziptide.Gameplay.KeySocketRuntime",
+          "snippet": "/// It owns nothing: `ShipCastOffRuntime` still owns arming and launch, `TravelCoordinator` still",
+          "declaration_file": false
+        },
+        {
+          "focus": "shipPresentation",
+          "token": "ShipCastOffRuntime",
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs",
+          "line": 119,
+          "symbol": "Ziptide.Gameplay.KeySocketRuntime",
+          "snippet": "var castOff = GetComponentInParent<ShipCastOffRuntime>();",
+          "declaration_file": false
+        },
+        {
+          "focus": "shipPresentation",
+          "token": "ShipCastOffRuntime",
+          "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs",
+          "line": 120,
+          "symbol": "Ziptide.Gameplay.KeySocketRuntime",
+          "snippet": "if (castOff == null) castOff = FindObjectOfType<ShipCastOffRuntime>();",
           "declaration_file": false
         },
         {
@@ -3476,6 +3547,15 @@
           "line": 32,
           "symbol": "Ziptide.Gameplay.FirstDestinationHelmRuntime",
           "snippet": "if (_castOff == null) _castOff = FindObjectOfType<ShipCastOffRuntime>();",
+          "declaration_file": false
+        },
+        {
+          "focus": "shipPresentation",
+          "token": "ShipCastOffRuntime",
+          "path": "Ziptide/Assets/Ziptide/Tests/EditMode/ArtifactThreadTests.cs",
+          "line": 30,
+          "symbol": "Ziptide.Tests.EditMode.ArtifactThreadTests",
+          "snippet": "string castOff = Source(\"Gameplay\", \"Runtime\", \"Story\", \"ShipCastOffRuntime.cs\");",
           "declaration_file": false
         },
         {
@@ -4722,36 +4802,36 @@
       "focus": "repairObjective",
       "token": "ShipCastOffRuntime",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 386,
+      "line": 388,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
-      "snippet": "if (kit.sceneName == \"W000_DriftIn\" && ship.GetComponent<ShipCastOffRuntime>() == null)",
+      "snippet": "var castOff = ship.GetComponent<ShipCastOffRuntime>()",
       "declaration_file": false
     },
     {
       "focus": "repairObjective",
       "token": "ShipCastOffRuntime",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 387,
+      "line": 389,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
-      "snippet": "ship.gameObject.AddComponent<ShipCastOffRuntime>();",
+      "snippet": "?? ship.gameObject.AddComponent<ShipCastOffRuntime>();",
       "declaration_file": false
     },
     {
       "focus": "shipPresentation",
       "token": "ShipCastOffRuntime",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 386,
+      "line": 388,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
-      "snippet": "if (kit.sceneName == \"W000_DriftIn\" && ship.GetComponent<ShipCastOffRuntime>() == null)",
+      "snippet": "var castOff = ship.GetComponent<ShipCastOffRuntime>()",
       "declaration_file": false
     },
     {
       "focus": "shipPresentation",
       "token": "ShipCastOffRuntime",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 387,
+      "line": 389,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
-      "snippet": "ship.gameObject.AddComponent<ShipCastOffRuntime>();",
+      "snippet": "?? ship.gameObject.AddComponent<ShipCastOffRuntime>();",
       "declaration_file": false
     },
     {
@@ -6097,6 +6177,60 @@
     },
     {
       "focus": "repairObjective",
+      "token": "ShipCastOffRuntime",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs",
+      "line": 18,
+      "symbol": "Ziptide.Gameplay.KeySocketRuntime",
+      "snippet": "/// It owns nothing: `ShipCastOffRuntime` still owns arming and launch, `TravelCoordinator` still",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
+      "token": "ShipCastOffRuntime",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs",
+      "line": 119,
+      "symbol": "Ziptide.Gameplay.KeySocketRuntime",
+      "snippet": "var castOff = GetComponentInParent<ShipCastOffRuntime>();",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
+      "token": "ShipCastOffRuntime",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs",
+      "line": 120,
+      "symbol": "Ziptide.Gameplay.KeySocketRuntime",
+      "snippet": "if (castOff == null) castOff = FindObjectOfType<ShipCastOffRuntime>();",
+      "declaration_file": false
+    },
+    {
+      "focus": "shipPresentation",
+      "token": "ShipCastOffRuntime",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs",
+      "line": 18,
+      "symbol": "Ziptide.Gameplay.KeySocketRuntime",
+      "snippet": "/// It owns nothing: `ShipCastOffRuntime` still owns arming and launch, `TravelCoordinator` still",
+      "declaration_file": false
+    },
+    {
+      "focus": "shipPresentation",
+      "token": "ShipCastOffRuntime",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs",
+      "line": 119,
+      "symbol": "Ziptide.Gameplay.KeySocketRuntime",
+      "snippet": "var castOff = GetComponentInParent<ShipCastOffRuntime>();",
+      "declaration_file": false
+    },
+    {
+      "focus": "shipPresentation",
+      "token": "ShipCastOffRuntime",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs",
+      "line": 120,
+      "symbol": "Ziptide.Gameplay.KeySocketRuntime",
+      "snippet": "if (castOff == null) castOff = FindObjectOfType<ShipCastOffRuntime>();",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
       "token": "JobDirector",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/MiningRigRuntime.cs",
       "line": 13,
@@ -6261,7 +6395,7 @@
       "focus": "repairObjective",
       "token": "CastOffArming",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 152,
+      "line": 179,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "// but never cache absence: a truly machine-less scene stays armed (CastOffArming law).",
       "declaration_file": false
@@ -6270,7 +6404,7 @@
       "focus": "repairObjective",
       "token": "CastOffArming",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 156,
+      "line": 183,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "bool armed = CastOffArming.IsArmed(gateConfigured, _armingMachine != null,",
       "declaration_file": false
@@ -6279,7 +6413,7 @@
       "focus": "repairObjective",
       "token": "JobDirector",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 151,
+      "line": 178,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "// The machine is spawned at runtime by JobDirector, so keep looking until found \u2014",
       "declaration_file": false
@@ -6288,7 +6422,7 @@
       "focus": "repairObjective",
       "token": "JobDirector",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 160,
+      "line": 187,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "// observes and its repaired state \u2014 divergence from the JobDirector-spawned machine",
       "declaration_file": false
@@ -6297,7 +6431,7 @@
       "focus": "repairObjective",
       "token": "REPAIR_TRACE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 166,
+      "line": 193,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: REPAIR_TRACE hop=castoff armed=\" + armed",
       "declaration_file": false
@@ -6306,7 +6440,7 @@
       "focus": "repairObjective",
       "token": "RepairableMachine",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 27,
+      "line": 36,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "[Tooltip(\"RepairableMachine id that must be RUNNING before PUNCH IT arms (empty = no gate).\")]",
       "declaration_file": false
@@ -6315,7 +6449,7 @@
       "focus": "repairObjective",
       "token": "RepairableMachine",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 31,
+      "line": 40,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "private RepairableMachine _armingMachine; // cached once found; absence is re-checked per press",
       "declaration_file": false
@@ -6324,7 +6458,7 @@
       "focus": "repairObjective",
       "token": "RepairableMachine",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 153,
+      "line": 180,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "foreach (var m in FindObjectsOfType<RepairableMachine>())",
       "declaration_file": false
@@ -6342,7 +6476,7 @@
       "focus": "repairObjective",
       "token": "gate_coupler",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 28,
+      "line": 37,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "[SerializeField] private string armingMachineId = \"gate_coupler\";",
       "declaration_file": false
@@ -7119,6 +7253,24 @@
       "line": 121,
       "symbol": "Ziptide.Ship.ShipFlightRuntime",
       "snippet": "foreach (var id in ShipLocker.EquippedModules(profile, chassis.SlotIds))",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
+      "token": "ShipCastOffRuntime",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/ArtifactThreadTests.cs",
+      "line": 30,
+      "symbol": "Ziptide.Tests.EditMode.ArtifactThreadTests",
+      "snippet": "string castOff = Source(\"Gameplay\", \"Runtime\", \"Story\", \"ShipCastOffRuntime.cs\");",
+      "declaration_file": false
+    },
+    {
+      "focus": "shipPresentation",
+      "token": "ShipCastOffRuntime",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/ArtifactThreadTests.cs",
+      "line": 30,
+      "symbol": "Ziptide.Tests.EditMode.ArtifactThreadTests",
+      "snippet": "string castOff = Source(\"Gameplay\", \"Runtime\", \"Story\", \"ShipCastOffRuntime.cs\");",
       "declaration_file": false
     },
     {

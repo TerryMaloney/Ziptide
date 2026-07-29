@@ -1,54 +1,54 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-29T09:44:56.134555+00:00",
+  "generatedAtUtc": "2026-07-29T11:08:44.885506+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
     "Ziptide/Assets/Ziptide",
     "Ziptide/Assets/ZiptideNet"
   ],
-  "scannedFiles": 751,
-  "findingCount": 2739,
+  "scannedFiles": 755,
+  "findingCount": 2778,
   "categoryCounts": {
-    "bootstrap": 44,
-    "diagnostics": 648,
-    "events": 69,
+    "bootstrap": 45,
+    "diagnostics": 657,
+    "events": 71,
     "fallback_debt": 171,
-    "global_render": 89,
+    "global_render": 90,
     "input": 230,
-    "materials": 255,
-    "persistence": 26,
-    "runtime_creation": 703,
+    "materials": 261,
+    "persistence": 28,
+    "runtime_creation": 709,
     "runtime_ui": 131,
-    "save_state": 271,
+    "save_state": 283,
     "scene_loading": 9,
     "xri_ownership": 93
   },
   "codeCounts": {
     "AUTOSAVE_CALL": 9,
-    "CAMERA_MAIN_REFERENCE": 50,
+    "CAMERA_MAIN_REFERENCE": 51,
     "CAMERA_POST_PROCESSING": 1,
     "CANVAS_COMPONENT": 5,
-    "CREATE_PRIMITIVE": 265,
+    "CREATE_PRIMITIVE": 268,
     "DIRECT_SCENE_LOAD": 2,
     "DIRECT_SCENE_LOAD_ASYNC": 7,
-    "DONT_DESTROY_ON_LOAD": 26,
+    "DONT_DESTROY_ON_LOAD": 28,
     "EDITOR_BOOTSTRAP": 10,
-    "EVENT_DECLARATION": 51,
+    "EVENT_DECLARATION": 52,
     "EVENT_SYSTEM_COMPONENT": 2,
     "FALLBACK_MARKER": 171,
     "FRAME_BUTTON_POLL": 1,
     "INPUT_ACTION_REFERENCE": 219,
     "INPUT_BUTTON_REFERENCE": 10,
-    "NEW_GAME_OBJECT": 438,
-    "PLAYER_PROFILE_REFERENCE": 145,
+    "NEW_GAME_OBJECT": 441,
+    "PLAYER_PROFILE_REFERENCE": 151,
     "RENDER_SETTINGS_MUTATION": 37,
-    "RUNTIME_BOOTSTRAP": 34,
-    "RUNTIME_MATERIAL_CREATE": 97,
-    "SAVE_SYSTEM_REFERENCE": 117,
-    "SHADER_FIND": 158,
-    "STATIC_EVENT_DECLARATION": 18,
+    "RUNTIME_BOOTSTRAP": 35,
+    "RUNTIME_MATERIAL_CREATE": 99,
+    "SAVE_SYSTEM_REFERENCE": 123,
+    "SHADER_FIND": 162,
+    "STATIC_EVENT_DECLARATION": 19,
     "TEXTMESH_COMPONENT": 53,
     "TMP_COMPONENT": 3,
     "VOLUME_COMPONENT": 1,
@@ -57,7 +57,7 @@
     "XRI_MANAGER_LOOKUP": 45,
     "XR_INTERACTABLE_COMPONENT": 66,
     "XR_UI_INPUT_MODULE": 2,
-    "ZIPTIDE_LOG_TAG": 648
+    "ZIPTIDE_LOG_TAG": 657
   },
   "findings": [
     {
@@ -310,6 +310,15 @@
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs",
       "line": 26,
       "symbol": "Ziptide.Gameplay.PvpProgressionRuntime",
+      "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]"
+    },
+    {
+      "category": "bootstrap",
+      "code": "RUNTIME_BOOTSTRAP",
+      "description": "RuntimeInitializeOnLoadMethod bootstrap",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
+      "line": 46,
+      "symbol": "Ziptide.Gameplay.ArtifactJoinRuntime",
       "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]"
     },
     {
@@ -623,7 +632,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Core/Runtime/ZiptideConstants.cs",
-      "line": 54,
+      "line": 59,
       "symbol": "Ziptide.Core.ZiptideConstants",
       "snippet": "public const string DiagPrefix = \"ZIPTIDE: \";"
     },
@@ -632,7 +641,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Core/Runtime/ZiptideConstants.cs",
-      "line": 55,
+      "line": 60,
       "symbol": "Ziptide.Core.ZiptideConstants",
       "snippet": "public const string DiagTravelStart = \"ZIPTIDE: TRAVEL_START\";"
     },
@@ -641,7 +650,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Core/Runtime/ZiptideConstants.cs",
-      "line": 56,
+      "line": 61,
       "symbol": "Ziptide.Core.ZiptideConstants",
       "snippet": "public const string DiagTravelOk = \"ZIPTIDE: TRAVEL_OK\";"
     },
@@ -650,7 +659,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Core/Runtime/ZiptideConstants.cs",
-      "line": 57,
+      "line": 62,
       "symbol": "Ziptide.Core.ZiptideConstants",
       "snippet": "public const string DiagTravelFail = \"ZIPTIDE: TRAVEL_FAIL\";"
     },
@@ -659,7 +668,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Core/Runtime/ZiptideConstants.cs",
-      "line": 58,
+      "line": 63,
       "symbol": "Ziptide.Core.ZiptideConstants",
       "snippet": "public const string DiagXriReady = \"ZIPTIDE: XRI_READY\";"
     },
@@ -668,7 +677,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Core/Runtime/ZiptideConstants.cs",
-      "line": 59,
+      "line": 64,
       "symbol": "Ziptide.Core.ZiptideConstants",
       "snippet": "public const string DiagXriNotReady = \"ZIPTIDE: XRI_NOT_READY\";"
     },
@@ -677,7 +686,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Core/Runtime/ZiptideConstants.cs",
-      "line": 60,
+      "line": 65,
       "symbol": "Ziptide.Core.ZiptideConstants",
       "snippet": "public const string DiagAuditOk = \"ZIPTIDE: AUDIT_OK\";"
     },
@@ -686,7 +695,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Core/Runtime/ZiptideConstants.cs",
-      "line": 61,
+      "line": 66,
       "symbol": "Ziptide.Core.ZiptideConstants",
       "snippet": "public const string DiagAuditFail = \"ZIPTIDE: AUDIT_FAIL\";"
     },
@@ -695,7 +704,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Core/Runtime/ZiptideConstants.cs",
-      "line": 62,
+      "line": 67,
       "symbol": "Ziptide.Core.ZiptideConstants",
       "snippet": "public const string DiagDupSingleton = \"ZIPTIDE: DUP_SINGLETON\";"
     },
@@ -704,7 +713,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Core/Runtime/ZiptideConstants.cs",
-      "line": 63,
+      "line": 68,
       "symbol": "Ziptide.Core.ZiptideConstants",
       "snippet": "public const string DiagProximityTravel = \"ZIPTIDE: PROXIMITY_TRAVEL\";"
     },
@@ -3475,6 +3484,33 @@
       "category": "diagnostics",
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
+      "line": 142,
+      "symbol": "Ziptide.Gameplay.ArtifactJoinRuntime",
+      "snippet": "Debug.LogWarning(\"ZIPTIDE: ARTIFACT_JOIN_NO_KEY id=\" + KeyItemId"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
+      "line": 148,
+      "symbol": "Ziptide.Gameplay.ArtifactJoinRuntime",
+      "snippet": "Debug.Log(\"ZIPTIDE: ARTIFACT_JOINED at=\" + where.ToString(\"F2\"));"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
+      "line": 157,
+      "symbol": "Ziptide.Gameplay.ArtifactJoinRuntime",
+      "snippet": "Debug.LogWarning(\"ZIPTIDE: ARTIFACT_JOIN_LISTENER_FAIL error=\" + ex.Message);"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/BuildSocketRuntime.cs",
       "line": 15,
       "symbol": "Ziptide.Gameplay.BuildSocketRuntime",
@@ -3596,6 +3632,33 @@
       "line": 166,
       "symbol": "Ziptide.Gameplay.GardenPlotRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: GARDEN_HARVEST_BLOCKED plot=\" + _def.id + \" reason=\" + result.status +"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs",
+      "line": 110,
+      "symbol": "Ziptide.Gameplay.KeySocketRuntime",
+      "snippet": "Debug.Log(\"ZIPTIDE: KEY_SEATED destination=\" + destinationScene);"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs",
+      "line": 123,
+      "symbol": "Ziptide.Gameplay.KeySocketRuntime",
+      "snippet": "Debug.LogWarning(\"ZIPTIDE: KEY_SEAT_NO_CASTOFF \u2014 the key is seated but no launch owner \""
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs",
+      "line": 130,
+      "symbol": "Ziptide.Gameplay.KeySocketRuntime",
+      "snippet": "Debug.Log(\"ZIPTIDE: ZIPTIDE_ARMED destination=\" + destinationScene);"
     },
     {
       "category": "diagnostics",
@@ -3728,7 +3791,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 49,
+      "line": 76,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: FLIGHT_DESTINATION_REJECTED target=\" + destinationScene);"
     },
@@ -3737,7 +3800,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 54,
+      "line": 81,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: FLIGHT_DESTINATION_SELECTED target=\" + targetScene);"
     },
@@ -3746,7 +3809,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 78,
+      "line": 105,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: CASTOFF_CONSOLE_LOCATION mode=cockpit\");"
     },
@@ -3755,7 +3818,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 86,
+      "line": 113,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: CASTOFF_CONSOLE_LOCATION mode=berth_fallback reason=no_cockpit_deck\");"
     },
@@ -3764,7 +3827,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 134,
+      "line": 161,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: FLIGHT_BLOCKED reason=unarmed machine=\" + armingMachineId);"
     },
@@ -3773,7 +3836,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 139,
+      "line": 166,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: FLIGHT_LAUNCH scene=\" + gameObject.scene.name + \" target=\" + targetScene);"
     },
@@ -3782,7 +3845,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 166,
+      "line": 193,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: REPAIR_TRACE hop=castoff armed=\" + armed"
     },
@@ -3791,7 +3854,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 194,
+      "line": 221,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: FLIGHT_STREAKS seconds=\" + streakSeconds);"
     },
@@ -3800,18 +3863,45 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 217,
+      "line": 244,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
-      "snippet": "Debug.Log(\"ZIPTIDE: FLIGHT_DEPART target=\" + targetScene);"
+      "snippet": "Debug.Log(\"ZIPTIDE: FLIGHT_DEPART target=\" + targetScene"
     },
     {
       "category": "diagnostics",
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 230,
+      "line": 258,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: FLIGHT_DESTINATION_SUBSCRIBER_FAIL reason=\" + ex.Message);"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/SpaceSalvageItemRuntime.cs",
+      "line": 47,
+      "symbol": "Ziptide.Gameplay.SpaceSalvageItemRuntime",
+      "snippet": "Debug.Log(\"ZIPTIDE: SALVAGE_FIND_ALREADY_TAKEN id=\" + itemId);"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/SpaceSalvageItemRuntime.cs",
+      "line": 102,
+      "symbol": "Ziptide.Gameplay.SpaceSalvageItemRuntime",
+      "snippet": "Debug.LogWarning(\"ZIPTIDE: SALVAGE_FIND_FAILED id=\" + itemId"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/SpaceSalvageItemRuntime.cs",
+      "line": 110,
+      "symbol": "Ziptide.Gameplay.SpaceSalvageItemRuntime",
+      "snippet": "Debug.Log(\"ZIPTIDE: SALVAGE_FIND id=\" + itemId + \" flag=\" + grantsFlag);"
     },
     {
       "category": "diagnostics",
@@ -6400,6 +6490,15 @@
       "category": "events",
       "code": "EVENT_DECLARATION",
       "description": "Event declaration",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
+      "line": 41,
+      "symbol": "Ziptide.Gameplay.ArtifactJoinRuntime",
+      "snippet": "public static event System.Action Joined;"
+    },
+    {
+      "category": "events",
+      "code": "EVENT_DECLARATION",
+      "description": "Event declaration",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs",
       "line": 31,
       "symbol": "Ziptide.Gameplay.RepairableMachine",
@@ -6410,7 +6509,7 @@
       "code": "EVENT_DECLARATION",
       "description": "Event declaration",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 39,
+      "line": 59,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "public event Action<string> DestinationSelected;"
     },
@@ -6805,6 +6904,15 @@
       "category": "events",
       "code": "STATIC_EVENT_DECLARATION",
       "description": "Static event declaration",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
+      "line": 41,
+      "symbol": "Ziptide.Gameplay.ArtifactJoinRuntime",
+      "snippet": "public static event System.Action Joined;"
+    },
+    {
+      "category": "events",
+      "code": "STATIC_EVENT_DECLARATION",
+      "description": "Static event declaration",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/ComfortConsoleRuntime.cs",
       "line": 15,
       "symbol": "Ziptide.Gameplay.ComfortConsoleRuntime",
@@ -7139,7 +7247,7 @@
       "code": "FALLBACK_MARKER",
       "description": "Source text marks fallback/prototype debt",
       "path": "Ziptide/Assets/Ziptide/Core/Runtime/ZiptideConstants.cs",
-      "line": 20,
+      "line": 25,
       "symbol": "Ziptide.Core.ZiptideConstants",
       "snippet": "// 2026-07-06 (Picasso): REVERTED the June-18 Sandbox dev-bypass \u2014 booting into the graybox left"
     },
@@ -8714,9 +8822,18 @@
       "code": "CAMERA_MAIN_REFERENCE",
       "description": "Camera.main dependency",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 193,
+      "line": 220,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "var cam = Camera.main;"
+    },
+    {
+      "category": "global_render",
+      "code": "CAMERA_MAIN_REFERENCE",
+      "description": "Camera.main dependency",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/SpaceSalvageItemRuntime.cs",
+      "line": 91,
+      "symbol": "Ziptide.Gameplay.SpaceSalvageItemRuntime",
+      "snippet": "Camera cam = Camera.main;"
     },
     {
       "category": "global_render",
@@ -11495,7 +11612,7 @@
       "code": "RUNTIME_MATERIAL_CREATE",
       "description": "Runtime Material allocation",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-      "line": 339,
+      "line": 409,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
       "snippet": "var mat = new Material(shader);"
     },
@@ -11845,6 +11962,15 @@
       "category": "materials",
       "code": "RUNTIME_MATERIAL_CREATE",
       "description": "Runtime Material allocation",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs",
+      "line": 153,
+      "symbol": "Ziptide.Gameplay.KeySocketRuntime",
+      "snippet": "var material = new Material(shader);"
+    },
+    {
+      "category": "materials",
+      "code": "RUNTIME_MATERIAL_CREATE",
+      "description": "Runtime Material allocation",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/MiningRigRuntime.cs",
       "line": 155,
       "symbol": "Ziptide.Gameplay.MiningRigRuntime",
@@ -11867,6 +11993,15 @@
       "line": 253,
       "symbol": "Ziptide.Gameplay.RillCompanion",
       "snippet": "_orbMat = new Material(shader);"
+    },
+    {
+      "category": "materials",
+      "code": "RUNTIME_MATERIAL_CREATE",
+      "description": "Runtime Material allocation",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/SpaceSalvageItemRuntime.cs",
+      "line": 75,
+      "symbol": "Ziptide.Gameplay.SpaceSalvageItemRuntime",
+      "snippet": "var material = new Material(shader);"
     },
     {
       "category": "materials",
@@ -12404,7 +12539,7 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-      "line": 336,
+      "line": 406,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
       "snippet": "var shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
     },
@@ -12413,7 +12548,7 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-      "line": 337,
+      "line": 407,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
       "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
     },
@@ -13087,6 +13222,24 @@
       "category": "materials",
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs",
+      "line": 148,
+      "symbol": "Ziptide.Gameplay.KeySocketRuntime",
+      "snippet": "Shader shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
+    },
+    {
+      "category": "materials",
+      "code": "SHADER_FIND",
+      "description": "Runtime shader lookup",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs",
+      "line": 149,
+      "symbol": "Ziptide.Gameplay.KeySocketRuntime",
+      "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
+    },
+    {
+      "category": "materials",
+      "code": "SHADER_FIND",
+      "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/MiningRigRuntime.cs",
       "line": 152,
       "symbol": "Ziptide.Gameplay.MiningRigRuntime",
@@ -13135,6 +13288,24 @@
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs",
       "line": 250,
       "symbol": "Ziptide.Gameplay.RillCompanion",
+      "snippet": "if (shader == null) shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
+    },
+    {
+      "category": "materials",
+      "code": "SHADER_FIND",
+      "description": "Runtime shader lookup",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/SpaceSalvageItemRuntime.cs",
+      "line": 70,
+      "symbol": "Ziptide.Gameplay.SpaceSalvageItemRuntime",
+      "snippet": "Shader shader = Shader.Find(\"Universal Render Pipeline/Unlit\");"
+    },
+    {
+      "category": "materials",
+      "code": "SHADER_FIND",
+      "description": "Runtime shader lookup",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/SpaceSalvageItemRuntime.cs",
+      "line": 71,
+      "symbol": "Ziptide.Gameplay.SpaceSalvageItemRuntime",
       "snippet": "if (shader == null) shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
     },
     {
@@ -13753,6 +13924,24 @@
       "category": "persistence",
       "code": "DONT_DESTROY_ON_LOAD",
       "description": "Object promoted across scene loads",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
+      "line": 51,
+      "symbol": "Ziptide.Gameplay.ArtifactJoinRuntime",
+      "snippet": "DontDestroyOnLoad(go);"
+    },
+    {
+      "category": "persistence",
+      "code": "DONT_DESTROY_ON_LOAD",
+      "description": "Object promoted across scene loads",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
+      "line": 59,
+      "symbol": "Ziptide.Gameplay.ArtifactJoinRuntime",
+      "snippet": "DontDestroyOnLoad(gameObject);"
+    },
+    {
+      "category": "persistence",
+      "code": "DONT_DESTROY_ON_LOAD",
+      "description": "Object promoted across scene loads",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairPartSafetyInstallerRuntime.cs",
       "line": 23,
       "symbol": "Ziptide.Gameplay.RepairPartSafetyInstallerRuntime",
@@ -13997,7 +14186,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 517,
+      "line": 534,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var drone = GameObject.CreatePrimitive(PrimitiveType.Sphere);"
     },
@@ -14267,7 +14456,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-      "line": 169,
+      "line": 171,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
       "snippet": "var rock = GameObject.CreatePrimitive(rng.Next(2) == 0 ? PrimitiveType.Cube : PrimitiveType.Sphere);"
     },
@@ -14276,7 +14465,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-      "line": 188,
+      "line": 190,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
       "snippet": "var hull = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -14285,7 +14474,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-      "line": 197,
+      "line": 199,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
       "snippet": "var wing = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -14294,7 +14483,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-      "line": 206,
+      "line": 208,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
       "snippet": "var eye = GameObject.CreatePrimitive(PrimitiveType.Sphere);"
     },
@@ -14303,7 +14492,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-      "line": 226,
+      "line": 228,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
       "snippet": "var seg = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -14312,7 +14501,16 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-      "line": 323,
+      "line": 275,
+      "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
+      "snippet": "var hulk = GameObject.CreatePrimitive(PrimitiveType.Cube);"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "CREATE_PRIMITIVE",
+      "description": "Runtime primitive construction",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
+      "line": 393,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
       "snippet": "var go = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -15274,6 +15472,15 @@
       "category": "runtime_creation",
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs",
+      "line": 139,
+      "symbol": "Ziptide.Gameplay.KeySocketRuntime",
+      "snippet": "var ring = GameObject.CreatePrimitive(PrimitiveType.Cylinder);"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "CREATE_PRIMITIVE",
+      "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/MiningRigRuntime.cs",
       "line": 68,
       "symbol": "Ziptide.Gameplay.MiningRigRuntime",
@@ -15365,7 +15572,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 89,
+      "line": 116,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "var pedestal = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -15374,9 +15581,18 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 100,
+      "line": 127,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "var button = GameObject.CreatePrimitive(PrimitiveType.Cube);"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "CREATE_PRIMITIVE",
+      "description": "Runtime primitive construction",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/SpaceSalvageItemRuntime.cs",
+      "line": 61,
+      "symbol": "Ziptide.Gameplay.SpaceSalvageItemRuntime",
+      "snippet": "var glow = GameObject.CreatePrimitive(PrimitiveType.Sphere);"
     },
     {
       "category": "runtime_creation",
@@ -16382,7 +16598,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 443,
+      "line": 460,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var go = new GameObject(name);"
     },
@@ -16391,7 +16607,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 488,
+      "line": 505,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var go = new GameObject(\"Hazard_\" + h.id);"
     },
@@ -16400,7 +16616,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-      "line": 541,
+      "line": 558,
       "symbol": "Ziptide.Editor.Patching.CityBuilder",
       "snippet": "var go = new GameObject(name);"
     },
@@ -16967,7 +17183,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-      "line": 127,
+      "line": 129,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
       "snippet": "var frame = new GameObject(\"CockpitFrame\").transform;"
     },
@@ -16976,7 +17192,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-      "line": 149,
+      "line": 151,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
       "snippet": "var lane = new GameObject(\"LaneContent\").transform;"
     },
@@ -16985,7 +17201,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-      "line": 160,
+      "line": 162,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
       "snippet": "var rocks = new GameObject(\"DriftRocks\").transform;"
     },
@@ -16994,7 +17210,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-      "line": 184,
+      "line": 186,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
       "snippet": "var drone = new GameObject(\"Drone_\" + index);"
     },
@@ -17003,9 +17219,27 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-      "line": 219,
+      "line": 221,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
       "snippet": "var ring = new GameObject(\"Ring_\" + index).transform;"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
+      "line": 267,
+      "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
+      "snippet": "var cradle = new GameObject(Name);"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
+      "line": 283,
+      "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
+      "snippet": "var marker = new GameObject(\"__SALVAGE_ARTIFACT_HALF_A\");"
     },
     {
       "category": "runtime_creation",
@@ -18451,6 +18685,15 @@
       "category": "runtime_creation",
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
+      "line": 50,
+      "symbol": "Ziptide.Gameplay.ArtifactJoinRuntime",
+      "snippet": "var go = new GameObject(\"__ArtifactJoin\");"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/BuildSocketRuntime.cs",
       "line": 74,
       "symbol": "Ziptide.Gameplay.BuildSocketRuntime",
@@ -18587,7 +18830,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 107,
+      "line": 134,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "var label = new GameObject(\"Label_PUNCH_IT\");"
     },
@@ -20468,7 +20711,7 @@
       "code": "TEXTMESH_COMPONENT",
       "description": "Legacy TextMesh creation/reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 112,
+      "line": 139,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "var tm = label.AddComponent<TextMesh>();"
     },
@@ -21008,7 +21251,7 @@
       "code": "XR_INTERACTABLE_COMPONENT",
       "description": "XR interactable creation/reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 121,
+      "line": 148,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "var interactable = button.AddComponent<XRSimpleInteractable>();"
     },
@@ -21929,6 +22172,60 @@
       "line": 94,
       "symbol": "Ziptide.Gameplay.SaveSystem",
       "snippet": "public PlayerProfile StartNewProfile()"
+    },
+    {
+      "category": "save_state",
+      "code": "PLAYER_PROFILE_REFERENCE",
+      "description": "PlayerProfile reference",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
+      "line": 62,
+      "symbol": "Ziptide.Gameplay.ArtifactJoinRuntime",
+      "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
+    },
+    {
+      "category": "save_state",
+      "code": "PLAYER_PROFILE_REFERENCE",
+      "description": "PlayerProfile reference",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
+      "line": 145,
+      "symbol": "Ziptide.Gameplay.ArtifactJoinRuntime",
+      "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
+    },
+    {
+      "category": "save_state",
+      "code": "PLAYER_PROFILE_REFERENCE",
+      "description": "PlayerProfile reference",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs",
+      "line": 42,
+      "symbol": "Ziptide.Gameplay.KeySocketRuntime",
+      "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
+    },
+    {
+      "category": "save_state",
+      "code": "PLAYER_PROFILE_REFERENCE",
+      "description": "PlayerProfile reference",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs",
+      "line": 104,
+      "symbol": "Ziptide.Gameplay.KeySocketRuntime",
+      "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
+    },
+    {
+      "category": "save_state",
+      "code": "PLAYER_PROFILE_REFERENCE",
+      "description": "PlayerProfile reference",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/SpaceSalvageItemRuntime.cs",
+      "line": 43,
+      "symbol": "Ziptide.Gameplay.SpaceSalvageItemRuntime",
+      "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
+    },
+    {
+      "category": "save_state",
+      "code": "PLAYER_PROFILE_REFERENCE",
+      "description": "PlayerProfile reference",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/SpaceSalvageItemRuntime.cs",
+      "line": 107,
+      "symbol": "Ziptide.Gameplay.SpaceSalvageItemRuntime",
+      "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
     },
     {
       "category": "save_state",
@@ -23086,6 +23383,24 @@
       "category": "save_state",
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
+      "line": 62,
+      "symbol": "Ziptide.Gameplay.ArtifactJoinRuntime",
+      "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
+    },
+    {
+      "category": "save_state",
+      "code": "SAVE_SYSTEM_REFERENCE",
+      "description": "SaveSystem reference",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
+      "line": 145,
+      "symbol": "Ziptide.Gameplay.ArtifactJoinRuntime",
+      "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
+    },
+    {
+      "category": "save_state",
+      "code": "SAVE_SYSTEM_REFERENCE",
+      "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/BuildSocketRuntime.cs",
       "line": 46,
       "symbol": "Ziptide.Gameplay.BuildSocketRuntime",
@@ -23149,6 +23464,24 @@
       "category": "save_state",
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs",
+      "line": 42,
+      "symbol": "Ziptide.Gameplay.KeySocketRuntime",
+      "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
+    },
+    {
+      "category": "save_state",
+      "code": "SAVE_SYSTEM_REFERENCE",
+      "description": "SaveSystem reference",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs",
+      "line": 104,
+      "symbol": "Ziptide.Gameplay.KeySocketRuntime",
+      "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
+    },
+    {
+      "category": "save_state",
+      "code": "SAVE_SYSTEM_REFERENCE",
+      "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/MiningRigRuntime.cs",
       "line": 40,
       "symbol": "Ziptide.Gameplay.MiningRigRuntime",
@@ -23207,6 +23540,24 @@
       "line": 290,
       "symbol": "Ziptide.Gameplay.RillCompanion",
       "snippet": "var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
+    },
+    {
+      "category": "save_state",
+      "code": "SAVE_SYSTEM_REFERENCE",
+      "description": "SaveSystem reference",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/SpaceSalvageItemRuntime.cs",
+      "line": 43,
+      "symbol": "Ziptide.Gameplay.SpaceSalvageItemRuntime",
+      "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
+    },
+    {
+      "category": "save_state",
+      "code": "SAVE_SYSTEM_REFERENCE",
+      "description": "SaveSystem reference",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/SpaceSalvageItemRuntime.cs",
+      "line": 107,
+      "symbol": "Ziptide.Gameplay.SpaceSalvageItemRuntime",
+      "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
     },
     {
       "category": "save_state",
@@ -24041,7 +24392,7 @@
       "code": "XRI_MANAGER_ASSIGN",
       "description": "Explicit interactable interactionManager assignment",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 123,
+      "line": 150,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "if (mgr != null) interactable.interactionManager = mgr;"
     },
@@ -24527,7 +24878,7 @@
       "code": "XRI_MANAGER_LOOKUP",
       "description": "XRInteractionManager lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 122,
+      "line": 149,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "var mgr = FindObjectOfType<XRInteractionManager>();"
     },
