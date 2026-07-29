@@ -113,6 +113,7 @@ namespace Ziptide.Editor.Patching
 
             EnsureSpawn("player", PlayerSpawn);
             EnsureFlightRuntime(lane);
+            EnsureRingLights(lane);
             EnsureWorldPack();
             EnsureOnwardLeg();
             EnsureTheFind(lane);
@@ -248,6 +249,20 @@ namespace Ziptide.Editor.Patching
             list.arraySize = Rings.Length;
             for (int i = 0; i < Rings.Length; i++)
                 list.GetArrayElementAtIndex(i).vector3Value = Rings[i];
+            so.ApplyModifiedPropertiesWithoutUndo();
+        }
+
+        // The lamp-chase (LEVEL1_SPATIAL_SCRIPT §2): the lights runtime rides the lane root and
+        // reads course progress off the helm's flight runtime — next ring chases amber, passed
+        // rings settle green. Lane is rebuilt every Populate, so AddComponent lands fresh.
+        private static void EnsureRingLights(Transform lane)
+        {
+            var lights = PatcherUtil.EnsureComponent<RingCourseLightsRuntime>(lane.gameObject);
+            var helm = GameObject.Find("ShipFlightHelm");
+            var so = new SerializedObject(lights);
+            PatcherUtil.SetObjectRef(so, "flight",
+                helm != null ? helm.GetComponent<ShipFlightRuntime>() : null);
+            PatcherUtil.SetObjectRef(so, "lane", lane);
             so.ApplyModifiedPropertiesWithoutUndo();
         }
 

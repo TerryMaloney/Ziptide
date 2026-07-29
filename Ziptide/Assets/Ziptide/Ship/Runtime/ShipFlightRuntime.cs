@@ -74,6 +74,13 @@ namespace Ziptide.Ship
         private GameObject _returnPanel;
         private readonly List<Behaviour> _suspended = new List<Behaviour>();
 
+        /// <summary>0-based index of the ring to fly NEXT (== rings passed so far); equals
+        /// RingCountTotal once the course is complete. Drives RingCourseLightsRuntime.</summary>
+        public int NextRingIndex => _course != null ? _course.NextRing : 0;
+
+        /// <summary>How many rings the course has (0 before the patcher-authored list loads).</summary>
+        public int RingCountTotal => _course != null ? _course.RingCount : 0;
+
         /// <summary>ShipDefinition → FlightParams (pure; pinned by ShipFlightParamsTests). The
         /// definition's cruise is the lane max and its boost multiplier carries over (clamped to
         /// MaxDataBoost); comfort caps (pitch clamp, snap yaw, lane radius, reverse fraction, roll

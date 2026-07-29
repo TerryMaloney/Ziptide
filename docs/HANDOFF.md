@@ -81,6 +81,13 @@
   rb120 JOB_MARKER_MISSING class). All 233 tools tests green. Note: committed job assets are the
   older 5-step bake whose return step file is named `ToxicCity_S4_Return`; the builder's next run
   authors `S5_Return` — cosmetic, both carry `shipyard_office`.
+- **B3 (Wave 2 opens — the space leg): ring lamp-chase, CODE-built.** `RingLampChaseCore` (pure:
+  next ring = amber window sweeping its segments at 0.8 Hz, passed = dim green, future = dim
+  amber — a traveling lamp, never a strobe) + `RingCourseLightsRuntime` (MaterialPropertyBlock
+  painting, full repaint only on ring change, `ZIPTIDE: RING_LIGHTS next=` on transitions) +
+  `ShipFlightRuntime.NextRingIndex/RingCountTotal` accessors + `EnsureRingLights` in
+  `ScenePatcherSpaceLane.Populate` + 7 EditMode tests. NOT yet real until Terry's Build Space
+  Lane bake re-runs (the committed scene predates the component).
 - Commit: (this one).
 
 ### 2026-07-29 (rb126) — Fable 5: 📐 LEVEL1_SPATIAL_SCRIPT — the placement layer, + ⚖ Terry's two story corrections (expedition + boat/stalker)
