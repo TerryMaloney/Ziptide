@@ -127,18 +127,16 @@ hesitation interval, by id. A player who simply does the thing hears nothing.
 
 ---
 
-## 4. What Level 1 still needs that is not started
+## 4. What Level 1 still needs
 
-1. **The space leg** (Waves 2–4) — the single biggest unbuilt block. `SpaceLane_Trial.unity` has never
-   been generated; flight, salvage, approach and reentry have no beats, signals or route data.
-2. **The ring city** (Wave 5) — of the six elements in `CITY_VISUAL_SPEC.md` §1, none are built. The
-   `CityLayoutDefinition` schema cannot express wedges, a canal ring or a breached sea wall, so the
-   schema comes before the content.
-3. **FH-A01** — the signature creature passport; the root of the FH-A01 → FH-S05 → FH-S08 chain.
-4. **Audio rails** — mixer, buses, event registry, sliders, ducking, non-speech captions. Then assets.
-5. **The shell** — pause/system menu polish, volume sliders, save-failure UX, version display, legal
-   screens, credits, the doff/resume × 7 interrupt matrix.
-6. **Level 2** — W002 built from the same route packet, measured for replication speed.
+| Item | State | Note |
+|---|---|---|
+| **The space leg** | 🟨 | The scene now GENERATES in the build — its patcher was menu-only, which is why it had never existed. Reachable from the ship's destination list. Still unbuilt: the route beats, the neutral signals, the reentry act, and retargeting `PUNCH IT` (locked travel contract — after a headset pass) |
+| **The ring city** | 🟨 | The blocker was the data model, not effort: wedges, a canal ring and a leaning tower were unexpressible. `RingCityDef` + `RingCityBuilder` ship them; ToxicCity takes the tidal flat, canal ring, sea wall, harbour, outskirts and horizon pillars now. Tower island and wedges wait for the district re-layout |
+| **FH-A01** | 🟨 | Species decided and documented (`W001_SIGNATURE_CREATURE_PASSPORT.md` — the Husk-Molter). Remaining: the contact sheets, and the pair shot that decides whether the molt is fair |
+| **Audio rails** | ⬜ | Mixer, buses, event registry, sliders, ducking, non-speech captions. Then assets. Both first-level worlds now at least have music assigned |
+| **The shell** | ⬜ | Volume sliders, save-failure UX, version display, legal screens, credits, the doff/resume × 7 matrix |
+| **Level 2** | 🟨 | No longer locked — the contract that grants `toxiccity_complete` can complete. Still owed: W002 built from the same route packet and measured for replication speed |
 
 ---
 
