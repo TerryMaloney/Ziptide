@@ -44,6 +44,10 @@ namespace Ziptide.Editor.Patching
             n += Res("resonator", "resonator", ResourceCategory.Salvage, 1, "W011_TheHum", "the_hum");
             n += Res("jump_core", "jump core", ResourceCategory.Artifact, 2, "W012_MarasLastJump", "mara");
             n += Res("memory_shard", "memory shard", ResourceCategory.Artifact, 2, "W004_BroadcastTomb", "transmission");
+            // What the Overrun pays. Every pod that missed the catch ends up out there, so scrap is
+            // the space leg's currency — disabled ring-tenders and canal caches both grant it, and
+            // an unregistered id is a build blocker by design (the one-economy law).
+            n += Res("scrap", "scrap", ResourceCategory.Salvage, 0, "SpaceLane_Trial", "the_catch");
             // The first crafted component — the golden loop's output.
             n += Res("stun_charge_cell", "stun charge cell", ResourceCategory.CraftedComponent, 1,
                 "W002_DryCistern", "guild_work");
