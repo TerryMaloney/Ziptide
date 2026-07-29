@@ -38,6 +38,52 @@
 > `docs/HANDOFF_HISTORY_THROUGH_RB24.md`.
 
 
+### 2026-07-29 (rb129) — the five Catch keepers built, the bounds ladder, and a CI-green retraction
+
+- **⚠ WORKFLOW INTEGRITY — I got this wrong and it is logged.** I reported the space-leg batch as
+  "CI GREEN on `94e363a4`". The **EditMode job** was green; the **"Patch scenes + world audit"
+  job was RED on that commit and stayed red** through `c42b1311`, on one blocker:
+  `RESOURCE_ID_UNREGISTERED: 'scrap'`. Fast Preflight was red too, on two stale first-hour
+  evidence tokens. Both are fixed here. **MISS_LEDGER #20** records the class: part-for-whole
+  verification — one job's conclusion reported as the run's. A CI-green claim must now cite the
+  RUN's conclusion, never a job's.
+
+- **BUILT (committed, real) — the keepers become geometry:**
+  1. **`measured_specs/the_catch_measured_spec.md`** — numbers pulled off the five approved
+     keepers, including the departures the generator made that are better than my prompt (the
+     ring came back DOUBLE-ringed; the pod has TWO drive bands; the tender is a soft rounded box,
+     bureaucratic not hostile). Stencil strings (`CP-0974`, `SERVICER-9`, `SECTION A-12` …)
+     adopted as canon nomenclature.
+  2. **The debris field is no longer 28 grey rocks** — 9 typed pieces, each a broken part of
+     something else in this pack, so the Overrun reads as consequence rather than as nature.
+  3. **SERVICER-9** — the tender rebuilt with eye, side pods, access panel and **two tool arms
+     that now actually move**: stowed dormant, deployed woken, slack with the panel hanging open
+     when disabled. `PoseForMood` was written last pass and never called; it is wired now and a
+     new wiring-gate row keeps it that way.
+  4. **THE LIGHTING LAW (⚖ Terry):** the lane's key light is DERIVED from
+     `SkyVistaLibrary.MossSunBearing` instead of a hand-authored Euler pointing nowhere near the
+     sun in the sky. Sun over the shoulder; everything ahead lit.
+  5. **Rings are squared to the trajectory** (`FlightBoundsCore.PathAxis`), and the ring PASS test
+     is now the bore itself (was 7 m against a 6 m opening — a run could be credited on a line
+     that also clips the truss).
+
+- **BUILT — THE BOUNDS LADDER (⚖ Terry: "what happens if I get too close…"):**
+  `FlightBoundsCore` + `FlightBoundsVoiceCore`, both pure. Five bound classes (corridor · hull ·
+  gate · ground · deep) on a three-tier ladder — **told, then nudged, then held**. Three laws are
+  pinned by tests: nothing is taken from the pilot without a warning tier first; **straying off
+  the swept lane is ADVISORY forever** because exploring is not a mistake; and no correction ever
+  rotates the ship. Variety is mechanical: **40 authored RILL lines in pools of four**, and the
+  picker WALKS each pool by a coprime stride, so every line is spent before any repeats; she also
+  only speaks on a RISE, so holding station near a wreck is silent. Ground is authored but OFF in
+  orbit (there is no floor); it binds the first time an atmospheric leg turns it on.
+  Before this the only answer the game had was FlightModel's silent 1.8 km sphere snap.
+
+- **NOT BUILT (unchanged, still honest):** city lantern route + sightline triple · the zipline ·
+  berths 1–5 quay pads · W002's defend wave / garden plot / glyph plate · pause board · title and
+  credits panel · all music and VO. Everything visual remains a procedural stand-in.
+
+- **Next:** confirm the run (not the job) is green, then the city wayfinding pass.
+
 ### 2026-07-29 (rb127) — Fable 5: 🏗 B1 — ToxicCity world spec (the city interior as spec data) + relay_cell item + bake-order fix
 
 - **Terry approved the completion plan with the honest-reporting mandate** ("just let me know
