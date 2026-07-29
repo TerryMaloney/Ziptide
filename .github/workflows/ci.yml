@@ -307,10 +307,12 @@ jobs:
         run: |
           set +e
           echo "── Audit blockers ──────────────────────────────────────────────"
-          grep -rhiE 'BLOCKER|Required build step failed|ZIPTIDE: .*_FAIL' \
-            docs/AUDIT_REPORT.* "${PROJECT_PATH}/Builds/Reports/" 2>/dev/null | head -60
-          echo "── Audit report head ───────────────────────────────────────────"
-          head -80 docs/AUDIT_REPORT.md 2>/dev/null
+          # The report writes one "- [BLOCKER] CODE: message" line per finding. A thrown build step
+          # never reaches the report at all, so match that phrasing too.
+          grep -rhE '\[BLOCKER\]|Required build step failed' \
+            docs/AUDIT_REPORT.md "${PROJECT_PATH}/Builds/Reports/" 2>/dev/null | head -60
+          echo "── Totals ──────────────────────────────────────────────────────"
+          grep -nE '^\*\*Total Blockers|^## Scene:|^Blockers: [1-9]' docs/AUDIT_REPORT.md 2>/dev/null | head -40
           exit 0
 
       - name: Upload audit report

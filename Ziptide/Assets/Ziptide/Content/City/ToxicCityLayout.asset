@@ -59,7 +59,7 @@ MonoBehaviour:
     vistaAccentColor: {r: 0.45, g: 0.95, b: 0.6, a: 1}
   pois: []
   rings:
-    enabled: 0
+    enabled: 1
     buildTidalFlat: 1
     buildTowerIsland: 0
     buildWedges: 0
