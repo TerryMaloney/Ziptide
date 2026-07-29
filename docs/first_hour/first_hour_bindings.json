@@ -219,7 +219,7 @@
         {
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
           "tokens": [
-            "[SerializeField] private string targetScene = \"ToxicCity\";",
+            "[SerializeField] private string targetScene = ZiptideConstants.SceneSpaceLane;",
             "interactable.selectEntered.AddListener(_ => TryLaunch());"
           ]
         }
@@ -246,7 +246,7 @@
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
           "tokens": [
             "Debug.Log(\"ZIPTIDE: FLIGHT_LAUNCH scene=\" + gameObject.scene.name + \" target=\" + targetScene);",
-            "TravelCoordinator.TravelTo(targetScene);"
+            "TravelCoordinator.TravelTo(targetScene, skipGate: suppressGateEffect, gatePos: gateAnchor);"
           ]
         },
         {

@@ -180,6 +180,22 @@ Read by every lane at session start alongside HANDOFF. Full spec: `FINISHED_GAME
     affected rows are re-marked as the spec supersedes them. (→ pending: closes when the spatial
     script's §3 [∅] rows are reconciled against the compiled spec.)
 
+20. **WHAT:** I told Terry the space-leg batch was "CI GREEN on `94e363a4`". The **EditMode job**
+    was green; the **"Patch scenes + world audit" job was RED on that same commit** and stayed red
+    through `c42b1311` — one blocker, `RESOURCE_ID_UNREGISTERED: 'scrap'`. So for three commits the
+    project was flying with a broken verification workflow while a session report said otherwise,
+    which is precisely the condition CLAUDE.md §WORKFLOW INTEGRITY says must be announced LOUDLY.
+    **FOUND BY:** reading the run's per-job conclusions (2026-07-29) instead of the run's headline.
+    **WHY MISSED:** I checked the job I cared about (tests) and generalised it to "CI". A CI run is
+    a set of jobs with independent conclusions; "the tests passed" and "CI is green" are different
+    claims, and the audit job is the one that catches content-law breaks like an unregistered
+    resource id — exactly the class of thing that reaches the headset as a broken build.
+    **CLASS:** part-for-whole verification — reporting a subsystem's status as the system's status.
+    **SYSTEM CHANGE:** a CI-green claim must cite the RUN's conclusion (or every job's), never one
+    job's; when a run is red, the reply leads with the workflow-integrity warning before any
+    feature report. Fixed in `scrap` registration; the honesty rule is the durable half.
+    (→ pending: closes when a green-run citation is part of the standard session report format.)
+
 ## CLOSED
 
 *(entries move here when their SYSTEM CHANGE is verified in place — the fix alone never closes
