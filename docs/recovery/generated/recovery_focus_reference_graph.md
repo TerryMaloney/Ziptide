@@ -1,7 +1,7 @@
 # ZIPTIDE Focused Recovery Reference Graph
 
 - Scanned C# files: **745**
-- Focused references: **436**
+- Focused references: **439**
 
 ## melee
 
@@ -147,7 +147,7 @@
 
 ## repairObjective
 
-- References: **226**
+- References: **229**
 - Files: **54**
 - Non-declaration caller files: **53**
 
@@ -186,10 +186,10 @@
 - **reference** · `Ziptide.Editor.Patching.ScenePatcherD0` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherD0.cs:212` — `private static void EnsureJobDirector(WorldPackDefinition worldPack)`
 - **reference** · `Ziptide.Editor.Patching.ScenePatcherD0` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherD0.cs:214` — `var go = PatcherUtil.EnsureRootObject("JobDirector", Vector3.zero);`
 - **reference** · `Ziptide.Editor.Patching.ScenePatcherD0` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherD0.cs:215` — `var director = PatcherUtil.EnsureComponent<JobDirector>(go);`
-- **reference** · `Ziptide.Editor.Patching.ScenePatcherToxicCity` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:283` — `var jdGo = PatcherUtil.EnsureRootObject("JobDirector", Vector3.zero);`
-- **reference** · `Ziptide.Editor.Patching.ScenePatcherToxicCity` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:284` — `var director = PatcherUtil.EnsureComponent<JobDirector>(jdGo);`
+- **reference** · `Ziptide.Editor.Patching.ScenePatcherToxicCity` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:332` — `var jdGo = PatcherUtil.EnsureRootObject("JobDirector", Vector3.zero);`
+- **reference** · `Ziptide.Editor.Patching.ScenePatcherToxicCity` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:333` — `var director = PatcherUtil.EnsureComponent<JobDirector>(jdGo);`
 - **reference** · `Ziptide.Editor.Patching.ToxicCityContractBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityContractBuilder.cs:19` — `/// that GameObject name (JobDirector.CheckGoToMarker).`
-- **reference** · `Ziptide.Editor.Patching.ToxicCityContractBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityContractBuilder.cs:72` — `+ "WorldPack as job 0.\n\nStill needed (T-Dog/runtime): JobDirector -> JobRewards.Grant on "`
+- **reference** · `Ziptide.Editor.Patching.ToxicCityContractBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityContractBuilder.cs:81` — `+ "WorldPack as job 0.\n\nStill needed (T-Dog/runtime): JobDirector -> JobRewards.Grant on "`
 - **reference** · `Ziptide.Editor.Patching.WorldJobLibrary` · `Ziptide/Assets/Ziptide/Editor/Patching/WorldJobLibrary.cs:16` — `/// target (JobDirector materializes them as Marker_&lt;id&gt; at runtime — pure data, no scene objects).`
 - **reference** · `Ziptide.Editor.Patching.WorldJobLibrary` · `Ziptide/Assets/Ziptide/Editor/Patching/WorldJobLibrary.cs:54` — `// A physical pickup in the world (JobDirector spawns a CollectibleRuntime from pack data).`
 - **reference** · `Ziptide.Editor.Patching.WorldJobLibrary` · `Ziptide/Assets/Ziptide/Editor/Patching/WorldJobLibrary.cs:73` — `// A repairable machine in the world (JobDirector spawns a RepairableMachine from pack data).`
@@ -240,8 +240,8 @@
 - **reference** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:151` — `// The machine is spawned at runtime by JobDirector, so keep looking until found —`
 - **reference** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:160` — `// observes and its repaired state — divergence from the JobDirector-spawned machine`
 - **reference** · `Ziptide.Gameplay.TransmissionConsole` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/TransmissionConsole.cs:12` — `/// screen. Spawned by JobDirector next to any fragment pickup (the playback device lives where the`
-- **reference** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:187` — `// finishes loading — JobDirector materialises them in its own Start. Rebind a moment later.`
-- **reference** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:213` — `var director = FindObjectOfType<JobDirector>();`
+- **reference** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:189` — `// finishes loading — JobDirector materialises them in its own Start. Rebind a moment later.`
+- **reference** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:215` — `var director = FindObjectOfType<JobDirector>();`
 - **reference** · `Ziptide.Gameplay.HazardZoneRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HazardZoneRuntime.cs:10` — `/// Player detection is a cheap poll against the rig position (same style as JobDirector's marker`
 - **reference** · `Ziptide.Tests.EditMode.JobDirectorMarkerResolutionTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/JobDirectorMarkerResolutionTests.cs:14` — `public class JobDirectorMarkerResolutionTests`
 - **reference** · `Ziptide.Tests.EditMode.JobDirectorMarkerResolutionTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/JobDirectorMarkerResolutionTests.cs:22` — `_director = new GameObject("JobDirector");`
@@ -262,8 +262,8 @@
 - **reference** · `Ziptide.Gameplay.ObjectiveBoard` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:18` — `private JobRuntime _subscribedRuntime;`
 - **reference** · `Ziptide.Gameplay.ObjectiveBoard` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:85` — `JobRuntime runtime = jobDirector != null ? jobDirector.Runtime : null;`
 - **reference** · `Ziptide.Gameplay.ObjectiveBoard` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:141` — `JobRuntime runtime = jobDirector.Runtime;`
-- **reference** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:14` — `/// choice, the comfort console owns comfort, RepairableMachine owns repair stages, JobRuntime owns`
-- **reference** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:47` — `private JobRuntime _job;`
+- **reference** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:16` — `/// choice, the comfort console owns comfort, RepairableMachine owns repair stages, JobRuntime owns`
+- **reference** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:49` — `private JobRuntime _job;`
 - **reference** · `Ziptide.Tests.EditMode.JobRuntimeCollectTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/JobRuntimeCollectTests.cs:13` — `public class JobRuntimeCollectTests`
 - **reference** · `Ziptide.Tests.EditMode.JobRuntimeCollectTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/JobRuntimeCollectTests.cs:42` — `var rt = new JobRuntime();`
 - **reference** · `Ziptide.Tests.EditMode.JobRuntimeCollectTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/JobRuntimeCollectTests.cs:57` — `var rt = new JobRuntime();`
@@ -284,9 +284,9 @@
 - **reference** · `Ziptide.Editor.Patching.ScenePatcherD0` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherD0.cs:234` — `private static void EnsureObjectiveBoard()`
 - **reference** · `Ziptide.Editor.Patching.ScenePatcherD0` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherD0.cs:236` — `var go = PatcherUtil.EnsureRootObject("ObjectiveBoard", new Vector3(-1f, 4.0f, 1.5f));`
 - **reference** · `Ziptide.Editor.Patching.ScenePatcherD0` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherD0.cs:237` — `PatcherUtil.EnsureComponent<ObjectiveBoard>(go);`
-- **reference** · `Ziptide.Editor.Patching.ScenePatcherToxicCity` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:295` — `var boardGo = PatcherUtil.EnsureRootObject("ObjectiveBoard", spawnPos + new Vector3(-1.5f, 1.6f, 1.5f));`
-- **reference** · `Ziptide.Editor.Patching.ScenePatcherToxicCity` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:296` — `PatcherUtil.EnsureComponent<ObjectiveBoard>(boardGo);`
-- **reference** · `Ziptide.Editor.Patching.ToxicCityContractBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityContractBuilder.cs:73` — `+ "completion, and ObjectiveBoard/RILL text.", "OK");`
+- **reference** · `Ziptide.Editor.Patching.ScenePatcherToxicCity` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:344` — `var boardGo = PatcherUtil.EnsureRootObject("ObjectiveBoard", spawnPos + new Vector3(-1.5f, 1.6f, 1.5f));`
+- **reference** · `Ziptide.Editor.Patching.ScenePatcherToxicCity` · `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:345` — `PatcherUtil.EnsureComponent<ObjectiveBoard>(boardGo);`
+- **reference** · `Ziptide.Editor.Patching.ToxicCityContractBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityContractBuilder.cs:82` — `+ "completion, and ObjectiveBoard/RILL text.", "OK");`
 - **reference** · `Ziptide.Editor.Patching.WorldStubGenerator` · `Ziptide/Assets/Ziptide/Editor/Patching/WorldStubGenerator.cs:466` — `var boardGo = PatcherUtil.EnsureRootObject("ObjectiveBoard", spawnPos + new Vector3(-1.5f, 1.6f, 1.5f));`
 - **reference** · `Ziptide.Editor.Patching.WorldStubGenerator` · `Ziptide/Assets/Ziptide/Editor/Patching/WorldStubGenerator.cs:467` — `PatcherUtil.EnsureComponent<ObjectiveBoard>(boardGo);`
 - **reference** · `Ziptide.Gameplay.JobDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs:8` — `/// Scene-level owner of JobRuntime. References WorldPackDefinition, updates ObjectiveBoard, creates spawn markers, and wires DispatchKiosk and delivery/target callbacks.`
@@ -316,6 +316,9 @@
 - **declaration** · `Ziptide.Content.RepairMachineCountStepDefinition` · `Ziptide/Assets/Ziptide/Content/Runtime/Jobs/RepairMachineCountStepDefinition.cs:8` — `public class RepairMachineCountStepDefinition : JobStepDefinition`
 - **reference** · `Ziptide.Content.MachineSpawnDefinition` · `Ziptide/Assets/Ziptide/Content/Runtime/WorldPacks/MachineSpawnDefinition.cs:16` — `[Tooltip("Machine id — matched by RepairMachineCountStepDefinition.machineId.")]`
 - **reference** · `Ziptide.Content.WorldPackValidator` · `Ziptide/Assets/Ziptide/Content/Runtime/WorldPacks/WorldPackValidator.cs:132` — `if (job.steps[s] is RepairMachineCountStepDefinition rm)`
+- **reference** · `Ziptide.Editor.Patching.ToxicCityContractBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityContractBuilder.cs:126` — `private static RepairMachineCountStepDefinition RepairMachine(string assetName, string machineId, string label)`
+- **reference** · `Ziptide.Editor.Patching.ToxicCityContractBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityContractBuilder.cs:129` — `var step = AssetDatabase.LoadAssetAtPath<RepairMachineCountStepDefinition>(path);`
+- **reference** · `Ziptide.Editor.Patching.ToxicCityContractBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityContractBuilder.cs:131` — `if (created) step = ScriptableObject.CreateInstance<RepairMachineCountStepDefinition>();`
 - **reference** · `Ziptide.Editor.Patching.WorldJobLibrary` · `Ziptide/Assets/Ziptide/Editor/Patching/WorldJobLibrary.cs:417` — `var step = LoadOrCreate<RepairMachineCountStepDefinition>(stepPath);`
 - **reference** · `Ziptide.Gameplay.JobRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobRuntime.cs:95` — `if (step is RepairMachineCountStepDefinition repair &&`
 - **reference** · `Ziptide.Gameplay.JobRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobRuntime.cs:196` — `var step = GetCurrentStep() as RepairMachineCountStepDefinition;`
@@ -349,10 +352,10 @@
 - **reference** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:27` — `[Tooltip("RepairableMachine id that must be RUNNING before PUNCH IT arms (empty = no gate).")]`
 - **reference** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:31` — `private RepairableMachine _armingMachine; // cached once found; absence is re-checked per press`
 - **reference** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:153` — `foreach (var m in FindObjectsOfType<RepairableMachine>())`
-- **reference** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:14` — `/// choice, the comfort console owns comfort, RepairableMachine owns repair stages, JobRuntime owns`
-- **reference** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:44` — `private readonly List<RepairableMachine> _machines = new List<RepairableMachine>();`
-- **reference** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:200` — `_machines.AddRange(FindObjectsOfType<RepairableMachine>(true));`
-- **reference** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:310` — `var machine = result.Targets[i].Source as RepairableMachine;`
+- **reference** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:16` — `/// choice, the comfort console owns comfort, RepairableMachine owns repair stages, JobRuntime owns`
+- **reference** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:46` — `private readonly List<RepairableMachine> _machines = new List<RepairableMachine>();`
+- **reference** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:202` — `_machines.AddRange(FindObjectsOfType<RepairableMachine>(true));`
+- **reference** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:312` — `var machine = result.Targets[i].Source as RepairableMachine;`
 - **reference** · `Ziptide.Tests.EditMode.FirstRouteFeelTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/FirstRouteFeelTests.cs:19` — `string source = ReadCode("Gameplay", "Runtime", "Story", "RepairableMachine.cs");`
 - **reference** · `Ziptide.Tests.EditMode.FirstRouteFeelTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/FirstRouteFeelTests.cs:37` — `string source = ReadCode("Gameplay", "Runtime", "Story", "RepairableMachine.cs");`
 - **reference** · `Ziptide.Tests.EditMode.QuestWeaponAndCouplerRegressionTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/QuestWeaponAndCouplerRegressionTests.cs:123` — `var machine = machineRoot.AddComponent<RepairableMachine>();`

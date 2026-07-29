@@ -192,8 +192,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `ComfortConsoleRuntime.PresetConfirmed`
 
-- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:152` · `OnComfortConfirmed` — `ComfortConsoleRuntime.PresetConfirmed += OnComfortConfirmed;`
-- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:170` · `OnComfortConfirmed` — `ComfortConsoleRuntime.PresetConfirmed -= OnComfortConfirmed;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:154` · `OnComfortConfirmed` — `ComfortConsoleRuntime.PresetConfirmed += OnComfortConfirmed;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:172` · `OnComfortConfirmed` — `ComfortConsoleRuntime.PresetConfirmed -= OnComfortConfirmed;`
 
 ### `CounterState`
 
@@ -240,8 +240,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `CreatureRuntime.CreatureDisabled`
 
-- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:157` · `OnCreatureDisabled` — `CreatureRuntime.CreatureDisabled += OnCreatureDisabled;`
-- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:175` · `OnCreatureDisabled` — `CreatureRuntime.CreatureDisabled -= OnCreatureDisabled;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:159` · `OnCreatureDisabled` — `CreatureRuntime.CreatureDisabled += OnCreatureDisabled;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:177` · `OnCreatureDisabled` — `CreatureRuntime.CreatureDisabled -= OnCreatureDisabled;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Tests.EditMode.CreatureDisabledSignalTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureDisabledSignalTests.cs:25` · `OnDisabled` — `CreatureRuntime.CreatureDisabled += OnDisabled;`
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.EditMode.CreatureDisabledSignalTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureDisabledSignalTests.cs:36` · `OnDisabled` — `CreatureRuntime.CreatureDisabled -= OnDisabled;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Tests.EditMode.CreatureDisabledSignalTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureDisabledSignalTests.cs:98` · `thrower` — `CreatureRuntime.CreatureDisabled += thrower;`
@@ -307,8 +307,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `FirstDestinationHelmRuntime.FirstDestinationSelected`
 
-- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:154` · `OnFirstDestinationSelected` — `FirstDestinationHelmRuntime.FirstDestinationSelected += OnFirstDestinationSelected;`
-- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:172` · `OnFirstDestinationSelected` — `FirstDestinationHelmRuntime.FirstDestinationSelected -= OnFirstDestinationSelected;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:156` · `OnFirstDestinationSelected` — `FirstDestinationHelmRuntime.FirstDestinationSelected += OnFirstDestinationSelected;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:174` · `OnFirstDestinationSelected` — `FirstDestinationHelmRuntime.FirstDestinationSelected -= OnFirstDestinationSelected;`
 
 ### `FirstDestinationSelected`
 
@@ -316,15 +316,15 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `FirstHourBunkObjectRuntime.NamedBunkObjectGrabbed`
 
-- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:153` · `OnBunkObjectGrabbed` — `FirstHourBunkObjectRuntime.NamedBunkObjectGrabbed += OnBunkObjectGrabbed;`
-- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:171` · `OnBunkObjectGrabbed` — `FirstHourBunkObjectRuntime.NamedBunkObjectGrabbed -= OnBunkObjectGrabbed;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:155` · `OnBunkObjectGrabbed` — `FirstHourBunkObjectRuntime.NamedBunkObjectGrabbed += OnBunkObjectGrabbed;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:173` · `OnBunkObjectGrabbed` — `FirstHourBunkObjectRuntime.NamedBunkObjectGrabbed -= OnBunkObjectGrabbed;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Tests.EditMode.HomeHubFlowTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:208` · `handler` — `FirstHourBunkObjectRuntime.NamedBunkObjectGrabbed += handler;`
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.EditMode.HomeHubFlowTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:220` · `handler` — `FirstHourBunkObjectRuntime.NamedBunkObjectGrabbed -= handler;`
 
 ### `FirstHourObservationAdapter.Instance.SignalCompleted`
 
-- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:161` · `Accept` — `FirstHourObservationAdapter.Instance.SignalCompleted += Accept;`
-- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:179` · `Accept` — `FirstHourObservationAdapter.Instance.SignalCompleted -= Accept;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:163` · `Accept` — `FirstHourObservationAdapter.Instance.SignalCompleted += Accept;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:181` · `Accept` — `FirstHourObservationAdapter.Instance.SignalCompleted -= Accept;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Tests.EditMode.FirstHourDirectorTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourDirectorTests.cs:107` · `Accept` — `StringAssert.Contains("FirstHourObservationAdapter.Instance.SignalCompleted += Accept", source);`
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.EditMode.FirstHourDirectorTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourDirectorTests.cs:108` · `Accept` — `StringAssert.Contains("FirstHourObservationAdapter.Instance.SignalCompleted -= Accept", source);`
 
@@ -454,13 +454,13 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `HolsterSocketInteractor.ItemHolstered`
 
-- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:155` · `OnItemHolstered` — `HolsterSocketInteractor.ItemHolstered += OnItemHolstered;`
-- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:173` · `OnItemHolstered` — `HolsterSocketInteractor.ItemHolstered -= OnItemHolstered;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:157` · `OnItemHolstered` — `HolsterSocketInteractor.ItemHolstered += OnItemHolstered;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:175` · `OnItemHolstered` — `HolsterSocketInteractor.ItemHolstered -= OnItemHolstered;`
 
 ### `HomeHubRuntime.BootPresentationReady`
 
-- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:150` · `OnBootReady` — `HomeHubRuntime.BootPresentationReady += OnBootReady;`
-- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:168` · `OnBootReady` — `HomeHubRuntime.BootPresentationReady -= OnBootReady;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:152` · `OnBootReady` — `HomeHubRuntime.BootPresentationReady += OnBootReady;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:170` · `OnBootReady` — `HomeHubRuntime.BootPresentationReady -= OnBootReady;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:38` · `OnBootReady` — `HomeHubRuntime.BootPresentationReady += OnBootReady;`
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryActualSceneSnapshotTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs:45` · `OnBootReady` — `HomeHubRuntime.BootPresentationReady -= OnBootReady;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryBootSceneSmokeTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryBootSceneSmokeTests.cs:43` · `OnBootReady` — `HomeHubRuntime.BootPresentationReady += OnBootReady;`
@@ -480,8 +480,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `HomeHubRuntime.NewGameProfileCreated`
 
-- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:151` · `OnNewGameProfile` — `HomeHubRuntime.NewGameProfileCreated += OnNewGameProfile;`
-- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:169` · `OnNewGameProfile` — `HomeHubRuntime.NewGameProfileCreated -= OnNewGameProfile;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:153` · `OnNewGameProfile` — `HomeHubRuntime.NewGameProfileCreated += OnNewGameProfile;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:171` · `OnNewGameProfile` — `HomeHubRuntime.NewGameProfileCreated -= OnNewGameProfile;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:57` · `OnNewGameProfileCreated` — `HomeHubRuntime.NewGameProfileCreated += OnNewGameProfileCreated;`
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:69` · `OnNewGameProfileCreated` — `HomeHubRuntime.NewGameProfileCreated -= OnNewGameProfileCreated;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:67` · `OnNewGameProfileCreated` — `HomeHubRuntime.NewGameProfileCreated += OnNewGameProfileCreated;`
@@ -755,9 +755,9 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **SAVE_ACCESS** · `Ziptide.Gameplay.RillCompanion` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs:175` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_ACCESS** · `Ziptide.Gameplay.RillCompanion` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs:290` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_ACCESS** · `Ziptide.Gameplay.TransmissionConsole` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/TransmissionConsole.cs:69` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
-- **SAVE_ACCESS** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:126` — `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
-- **SAVE_ACCESS** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:364` — `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
-- **SAVE_ACCESS** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:371` — `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
+- **SAVE_ACCESS** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:128` — `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
+- **SAVE_ACCESS** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:366` — `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
+- **SAVE_ACCESS** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:373` — `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_ACCESS** · `Ziptide.Gameplay.FirstHourW001Orchestrator` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourW001Orchestrator.cs:158` — `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_ACCESS** · `Ziptide.Gameplay.ConquestMissionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:361` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_ACCESS** · `Ziptide.Gameplay.ConquestTableRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestTableRuntime.cs:76` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
@@ -828,8 +828,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.PvpProgressionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/PvpProgressionRuntime.cs:55` · `OnSceneLoaded` — `SceneManager.sceneLoaded -= OnSceneLoaded;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.RillCompanion` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs:56` · `OnSceneLoaded` — `SceneManager.sceneLoaded += OnSceneLoaded;`
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.RillCompanion` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs:61` · `OnSceneLoaded` — `SceneManager.sceneLoaded -= OnSceneLoaded;`
-- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:148` · `OnSceneLoaded` — `SceneManager.sceneLoaded += OnSceneLoaded;`
-- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:166` · `OnSceneLoaded` — `SceneManager.sceneLoaded -= OnSceneLoaded;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:150` · `OnSceneLoaded` — `SceneManager.sceneLoaded += OnSceneLoaded;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:168` · `OnSceneLoaded` — `SceneManager.sceneLoaded -= OnSceneLoaded;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.FirstHourW001Orchestrator` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourW001Orchestrator.cs:66` · `OnSceneLoaded` — `SceneManager.sceneLoaded += OnSceneLoaded;`
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.FirstHourW001Orchestrator` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourW001Orchestrator.cs:72` · `OnSceneLoaded` — `SceneManager.sceneLoaded -= OnSceneLoaded;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.ConquestMissionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:45` · `OnSceneLoaded` — `SceneManager.sceneLoaded += OnSceneLoaded;`
@@ -856,8 +856,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.RillCompanion` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs:114` · `profile` — `profile.SetFlag(SaidFlagPrefix + line.id);`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.RillCompanion` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs:136` · `profile` — `profile.SetFlag(SaidFlagPrefix + line.id);`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.RillCompanion` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs:154` · `profile` — `if (line.once && profile != null) profile.SetFlag(SaidFlagPrefix + line.id);`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:378` · `profile` — `profile.SetFlag(flag);`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:382` · `profile` — `if (flag == ContractDoneFlag) profile.SetFlag(ZiptideFlags.TUTORIAL_COMPLETE);`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:380` · `profile` — `profile.SetFlag(flag);`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:384` · `profile` — `if (flag == ContractDoneFlag) profile.SetFlag(ZiptideFlags.TUTORIAL_COMPLETE);`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.HangarBayRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs:99` · `profile` — `profile.SetFlag("SHIP_REFIT"); // RILL notices the first refit`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.FirstHourDirectorTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourDirectorTests.cs:137` · `profile` — `StringAssert.Contains("profile.SetFlag(ZiptideFlags.TUTORIAL_COMPLETE)", source);`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.FirstHourHolsterAdapterTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourHolsterAdapterTests.cs:88` · `profile` — `profile.SetFlag(ZiptideFlags.FIRST_HOLSTER);`
@@ -924,8 +924,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `TravelCoordinator.TravelCompleted`
 
-- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:156` · `OnTravelCompleted` — `TravelCoordinator.TravelCompleted += OnTravelCompleted;`
-- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:174` · `OnTravelCompleted` — `TravelCoordinator.TravelCompleted -= OnTravelCompleted;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:158` · `OnTravelCompleted` — `TravelCoordinator.TravelCompleted += OnTravelCompleted;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:176` · `OnTravelCompleted` — `TravelCoordinator.TravelCompleted -= OnTravelCompleted;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:58` · `OnTravelCompleted` — `TravelCoordinator.TravelCompleted += OnTravelCompleted;`
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:70` · `OnTravelCompleted` — `TravelCoordinator.TravelCompleted -= OnTravelCompleted;`
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.PlayMode.RecoveryGoldenTravelVisualCapture` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenTravelVisualCapture.cs:41` · `MarkCompletedDestinationPending` — `TravelCoordinator.TravelCompleted -= MarkCompletedDestinationPending;`
@@ -943,8 +943,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `WristScanner.ScanResultPublished`
 
-- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:158` · `OnScanResult` — `WristScanner.ScanResultPublished += OnScanResult;`
-- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:176` · `OnScanResult` — `WristScanner.ScanResultPublished -= OnScanResult;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:160` · `OnScanResult` — `WristScanner.ScanResultPublished += OnScanResult;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:178` · `OnScanResult` — `WristScanner.ScanResultPublished -= OnScanResult;`
 
 ### `Ziptide.Core.FlightSignals.TargetDisabled`
 
@@ -978,13 +978,13 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `_job.JobCompleted`
 
-- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:219` · `OnJobCompleted` — `_job.JobCompleted += OnJobCompleted;`
-- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:245` · `OnJobCompleted` — `_job.JobCompleted -= OnJobCompleted;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:221` · `OnJobCompleted` — `_job.JobCompleted += OnJobCompleted;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:247` · `OnJobCompleted` — `_job.JobCompleted -= OnJobCompleted;`
 
 ### `_job.StepChanged`
 
-- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:218` · `OnJobStepChanged` — `_job.StepChanged += OnJobStepChanged;`
-- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:244` · `OnJobStepChanged` — `_job.StepChanged -= OnJobStepChanged;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:220` · `OnJobStepChanged` — `_job.StepChanged += OnJobStepChanged;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:246` · `OnJobStepChanged` — `_job.StepChanged -= OnJobStepChanged;`
 
 ### `_mine.stored`
 
@@ -1132,9 +1132,9 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.RillCompanion` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs:183` · `profile` — `for (int i = 0; i < profile.flags.Count; i++) _knownFlags.Add(profile.flags[i]);`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.RillCompanion` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs:187` · `profile` — `for (int i = 0; i < profile.flags.Count; i++)`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.RillCompanion` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs:189` · `profile` — `string flag = profile.flags[i];`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:127` · `profile` — `if (profile == null || profile.flags == null) return done;`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:129` · `profile` — `for (int i = 0; i < profile.flags.Count; i++)`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:131` · `profile` — `string flag = profile.flags[i];`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:129` · `profile` — `if (profile == null || profile.flags == null) return done;`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:131` · `profile` — `for (int i = 0; i < profile.flags.Count; i++)`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:133` · `profile` — `string flag = profile.flags[i];`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.ConquestTableRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestTableRuntime.cs:78` · `profile` — `profile.flags.RemoveAll(f => f.StartsWith(ConquestSave.FlagPrefix, System.StringComparison.Ordinal));`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.ConquestTableRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestTableRuntime.cs:79` · `profile` — `profile.flags.Add(ConquestSave.FlagPrefix + ConquestSave.Serialize(_state, _hotseat, _activeSide));`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.ConquestTableRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestTableRuntime.cs:86` · `profile` — `foreach (var f in profile.flags)`

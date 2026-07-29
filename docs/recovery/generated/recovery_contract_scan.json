@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-29T00:53:24.861324+00:00",
+  "generatedAtUtc": "2026-07-29T01:00:04.649761+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -9,7 +9,7 @@
     "Ziptide/Assets/ZiptideNet"
   ],
   "scannedFiles": 745,
-  "findingCount": 2718,
+  "findingCount": 2721,
   "categoryCounts": {
     "bootstrap": 44,
     "diagnostics": 642,
@@ -19,7 +19,7 @@
     "input": 230,
     "materials": 252,
     "persistence": 26,
-    "runtime_creation": 697,
+    "runtime_creation": 700,
     "runtime_ui": 131,
     "save_state": 271,
     "scene_loading": 9,
@@ -30,7 +30,7 @@
     "CAMERA_MAIN_REFERENCE": 50,
     "CAMERA_POST_PROCESSING": 1,
     "CANVAS_COMPONENT": 5,
-    "CREATE_PRIMITIVE": 262,
+    "CREATE_PRIMITIVE": 264,
     "DIRECT_SCENE_LOAD": 2,
     "DIRECT_SCENE_LOAD_ASYNC": 7,
     "DONT_DESTROY_ON_LOAD": 26,
@@ -41,7 +41,7 @@
     "FRAME_BUTTON_POLL": 1,
     "INPUT_ACTION_REFERENCE": 219,
     "INPUT_BUTTON_REFERENCE": 10,
-    "NEW_GAME_OBJECT": 435,
+    "NEW_GAME_OBJECT": 436,
     "PLAYER_PROFILE_REFERENCE": 145,
     "RENDER_SETTINGS_MUTATION": 37,
     "RUNTIME_BOOTSTRAP": 34,
@@ -335,7 +335,7 @@
       "code": "RUNTIME_BOOTSTRAP",
       "description": "RuntimeInitializeOnLoadMethod bootstrap",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
-      "line": 56,
+      "line": 58,
       "symbol": "Ziptide.Gameplay.FirstHourDirector",
       "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]"
     },
@@ -3863,7 +3863,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
-      "line": 86,
+      "line": 88,
       "symbol": "Ziptide.Gameplay.FirstHourDirector",
       "snippet": "Debug.Log(\"ZIPTIDE: FIRST_HOUR_DIRECTOR ready beats=\" + _contract.beats.Count"
     },
@@ -3872,7 +3872,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
-      "line": 141,
+      "line": 143,
       "symbol": "Ziptide.Gameplay.FirstHourDirector",
       "snippet": "Debug.Log(\"ZIPTIDE: FIRST_HOUR_DIRECTOR_DISABLED reason=\" + reason);"
     },
@@ -3881,7 +3881,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
-      "line": 222,
+      "line": 224,
       "symbol": "Ziptide.Gameplay.FirstHourDirector",
       "snippet": "Debug.Log(\"ZIPTIDE: FIRST_HOUR_BIND scene=\" + SceneManager.GetActiveScene().name"
     },
@@ -3890,7 +3890,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
-      "line": 352,
+      "line": 354,
       "symbol": "Ziptide.Gameplay.FirstHourDirector",
       "snippet": "Debug.Log(\"ZIPTIDE: FIRST_HOUR_BEAT done=\" + result.CompletedBeatId"
     },
@@ -3899,7 +3899,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
-      "line": 356,
+      "line": 358,
       "symbol": "Ziptide.Gameplay.FirstHourDirector",
       "snippet": "Debug.Log(\"ZIPTIDE: FIRST_HOUR_COMPLETE beats=\" + _core.CompletedBeatIds.Count);"
     },
@@ -3908,7 +3908,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
-      "line": 426,
+      "line": 428,
       "symbol": "Ziptide.Gameplay.FirstHourDirector",
       "snippet": "Debug.Log(\"ZIPTIDE: FIRST_HOUR_HINT beat=\" + _core.CurrentBeatId + \" line=\" + lineId);"
     },
@@ -3917,7 +3917,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
-      "line": 428,
+      "line": 430,
       "symbol": "Ziptide.Gameplay.FirstHourDirector",
       "snippet": "Debug.Log(\"ZIPTIDE: FIRST_HOUR_HINT_SKIPPED beat=\" + _core.CurrentBeatId"
     },
@@ -13628,7 +13628,7 @@
       "code": "DONT_DESTROY_ON_LOAD",
       "description": "Object promoted across scene loads",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
-      "line": 61,
+      "line": 63,
       "symbol": "Ziptide.Gameplay.FirstHourDirector",
       "snippet": "DontDestroyOnLoad(go);"
     },
@@ -13637,7 +13637,7 @@
       "code": "DONT_DESTROY_ON_LOAD",
       "description": "Object promoted across scene loads",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
-      "line": 69,
+      "line": 71,
       "symbol": "Ziptide.Gameplay.FirstHourDirector",
       "snippet": "DontDestroyOnLoad(gameObject);"
     },
@@ -14198,6 +14198,24 @@
       "line": 334,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherStarterWorld",
       "snippet": "var go = GameObject.CreatePrimitive(type);"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "CREATE_PRIMITIVE",
+      "description": "Runtime primitive construction",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
+      "line": 112,
+      "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
+      "snippet": "var target = GameObject.CreatePrimitive(PrimitiveType.Cube);"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "CREATE_PRIMITIVE",
+      "description": "Runtime primitive construction",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
+      "line": 121,
+      "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
+      "snippet": "var post = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
     {
       "category": "runtime_creation",
@@ -16850,7 +16868,16 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-      "line": 196,
+      "line": 139,
+      "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
+      "snippet": "var zip = new GameObject(ZipName);"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
+      "line": 245,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
       "snippet": "var go = new GameObject(name);"
     },
@@ -18452,7 +18479,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
-      "line": 60,
+      "line": 62,
       "symbol": "Ziptide.Gameplay.FirstHourDirector",
       "snippet": "var go = new GameObject(\"__FirstHourDirector\");"
     },
@@ -21755,7 +21782,7 @@
       "code": "PLAYER_PROFILE_REFERENCE",
       "description": "PlayerProfile reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
-      "line": 126,
+      "line": 128,
       "symbol": "Ziptide.Gameplay.FirstHourDirector",
       "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
     },
@@ -21764,7 +21791,7 @@
       "code": "PLAYER_PROFILE_REFERENCE",
       "description": "PlayerProfile reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
-      "line": 254,
+      "line": 256,
       "symbol": "Ziptide.Gameplay.FirstHourDirector",
       "snippet": "private void OnNewGameProfile(PlayerProfile profile) => Accept(\"NEW_GAME_PROFILE_CREATED\");"
     },
@@ -21773,7 +21800,7 @@
       "code": "PLAYER_PROFILE_REFERENCE",
       "description": "PlayerProfile reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
-      "line": 364,
+      "line": 366,
       "symbol": "Ziptide.Gameplay.FirstHourDirector",
       "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
     },
@@ -21782,7 +21809,7 @@
       "code": "PLAYER_PROFILE_REFERENCE",
       "description": "PlayerProfile reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
-      "line": 371,
+      "line": 373,
       "symbol": "Ziptide.Gameplay.FirstHourDirector",
       "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
     },
@@ -23033,7 +23060,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
-      "line": 126,
+      "line": 128,
       "symbol": "Ziptide.Gameplay.FirstHourDirector",
       "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
     },
@@ -23042,7 +23069,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
-      "line": 364,
+      "line": 366,
       "symbol": "Ziptide.Gameplay.FirstHourDirector",
       "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
     },
@@ -23051,7 +23078,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
-      "line": 371,
+      "line": 373,
       "symbol": "Ziptide.Gameplay.FirstHourDirector",
       "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
     },

@@ -1,7 +1,7 @@
 {
   "tool": "recovery_focus_reference_graph",
   "scannedFiles": 745,
-  "referenceCount": 436,
+  "referenceCount": 439,
   "summaries": {
     "melee": {
       "referenceCount": 112,
@@ -87,7 +87,7 @@
       ]
     },
     "repairObjective": {
-      "referenceCount": 226,
+      "referenceCount": 229,
       "fileCount": 54,
       "callerFileCount": 53,
       "paths": [
@@ -1552,7 +1552,7 @@
           "focus": "repairObjective",
           "token": "JobDirector",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-          "line": 283,
+          "line": 332,
           "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
           "snippet": "var jdGo = PatcherUtil.EnsureRootObject(\"JobDirector\", Vector3.zero);",
           "declaration_file": false
@@ -1561,7 +1561,7 @@
           "focus": "repairObjective",
           "token": "JobDirector",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-          "line": 284,
+          "line": 333,
           "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
           "snippet": "var director = PatcherUtil.EnsureComponent<JobDirector>(jdGo);",
           "declaration_file": false
@@ -1579,7 +1579,7 @@
           "focus": "repairObjective",
           "token": "JobDirector",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityContractBuilder.cs",
-          "line": 72,
+          "line": 81,
           "symbol": "Ziptide.Editor.Patching.ToxicCityContractBuilder",
           "snippet": "+ \"WorldPack as job 0.\\n\\nStill needed (T-Dog/runtime): JobDirector -> JobRewards.Grant on \"",
           "declaration_file": false
@@ -2038,7 +2038,7 @@
           "focus": "repairObjective",
           "token": "JobDirector",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
-          "line": 187,
+          "line": 189,
           "symbol": "Ziptide.Gameplay.FirstHourDirector",
           "snippet": "// finishes loading \u2014 JobDirector materialises them in its own Start. Rebind a moment later.",
           "declaration_file": false
@@ -2047,7 +2047,7 @@
           "focus": "repairObjective",
           "token": "JobDirector",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
-          "line": 213,
+          "line": 215,
           "symbol": "Ziptide.Gameplay.FirstHourDirector",
           "snippet": "var director = FindObjectOfType<JobDirector>();",
           "declaration_file": false
@@ -2211,7 +2211,7 @@
           "focus": "repairObjective",
           "token": "JobRuntime",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
-          "line": 14,
+          "line": 16,
           "symbol": "Ziptide.Gameplay.FirstHourDirector",
           "snippet": "/// choice, the comfort console owns comfort, RepairableMachine owns repair stages, JobRuntime owns",
           "declaration_file": false
@@ -2220,7 +2220,7 @@
           "focus": "repairObjective",
           "token": "JobRuntime",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
-          "line": 47,
+          "line": 49,
           "symbol": "Ziptide.Gameplay.FirstHourDirector",
           "snippet": "private JobRuntime _job;",
           "declaration_file": false
@@ -2384,7 +2384,7 @@
           "focus": "repairObjective",
           "token": "ObjectiveBoard",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-          "line": 295,
+          "line": 344,
           "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
           "snippet": "var boardGo = PatcherUtil.EnsureRootObject(\"ObjectiveBoard\", spawnPos + new Vector3(-1.5f, 1.6f, 1.5f));",
           "declaration_file": false
@@ -2393,7 +2393,7 @@
           "focus": "repairObjective",
           "token": "ObjectiveBoard",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-          "line": 296,
+          "line": 345,
           "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
           "snippet": "PatcherUtil.EnsureComponent<ObjectiveBoard>(boardGo);",
           "declaration_file": false
@@ -2402,7 +2402,7 @@
           "focus": "repairObjective",
           "token": "ObjectiveBoard",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityContractBuilder.cs",
-          "line": 73,
+          "line": 82,
           "symbol": "Ziptide.Editor.Patching.ToxicCityContractBuilder",
           "snippet": "+ \"completion, and ObjectiveBoard/RILL text.\", \"OK\");",
           "declaration_file": false
@@ -2616,6 +2616,33 @@
           "line": 132,
           "symbol": "Ziptide.Content.WorldPackValidator",
           "snippet": "if (job.steps[s] is RepairMachineCountStepDefinition rm)",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "RepairMachineCountStepDefinition",
+          "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityContractBuilder.cs",
+          "line": 126,
+          "symbol": "Ziptide.Editor.Patching.ToxicCityContractBuilder",
+          "snippet": "private static RepairMachineCountStepDefinition RepairMachine(string assetName, string machineId, string label)",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "RepairMachineCountStepDefinition",
+          "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityContractBuilder.cs",
+          "line": 129,
+          "symbol": "Ziptide.Editor.Patching.ToxicCityContractBuilder",
+          "snippet": "var step = AssetDatabase.LoadAssetAtPath<RepairMachineCountStepDefinition>(path);",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "RepairMachineCountStepDefinition",
+          "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityContractBuilder.cs",
+          "line": 131,
+          "symbol": "Ziptide.Editor.Patching.ToxicCityContractBuilder",
+          "snippet": "if (created) step = ScriptableObject.CreateInstance<RepairMachineCountStepDefinition>();",
           "declaration_file": false
         },
         {
@@ -2894,7 +2921,7 @@
           "focus": "repairObjective",
           "token": "RepairableMachine",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
-          "line": 14,
+          "line": 16,
           "symbol": "Ziptide.Gameplay.FirstHourDirector",
           "snippet": "/// choice, the comfort console owns comfort, RepairableMachine owns repair stages, JobRuntime owns",
           "declaration_file": false
@@ -2903,7 +2930,7 @@
           "focus": "repairObjective",
           "token": "RepairableMachine",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
-          "line": 44,
+          "line": 46,
           "symbol": "Ziptide.Gameplay.FirstHourDirector",
           "snippet": "private readonly List<RepairableMachine> _machines = new List<RepairableMachine>();",
           "declaration_file": false
@@ -2912,7 +2939,7 @@
           "focus": "repairObjective",
           "token": "RepairableMachine",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
-          "line": 200,
+          "line": 202,
           "symbol": "Ziptide.Gameplay.FirstHourDirector",
           "snippet": "_machines.AddRange(FindObjectsOfType<RepairableMachine>(true));",
           "declaration_file": false
@@ -2921,7 +2948,7 @@
           "focus": "repairObjective",
           "token": "RepairableMachine",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
-          "line": 310,
+          "line": 312,
           "symbol": "Ziptide.Gameplay.FirstHourDirector",
           "snippet": "var machine = result.Targets[i].Source as RepairableMachine;",
           "declaration_file": false
@@ -5001,7 +5028,7 @@
       "focus": "repairObjective",
       "token": "JobDirector",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-      "line": 283,
+      "line": 332,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
       "snippet": "var jdGo = PatcherUtil.EnsureRootObject(\"JobDirector\", Vector3.zero);",
       "declaration_file": false
@@ -5010,7 +5037,7 @@
       "focus": "repairObjective",
       "token": "JobDirector",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-      "line": 284,
+      "line": 333,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
       "snippet": "var director = PatcherUtil.EnsureComponent<JobDirector>(jdGo);",
       "declaration_file": false
@@ -5019,7 +5046,7 @@
       "focus": "repairObjective",
       "token": "ObjectiveBoard",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-      "line": 295,
+      "line": 344,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
       "snippet": "var boardGo = PatcherUtil.EnsureRootObject(\"ObjectiveBoard\", spawnPos + new Vector3(-1.5f, 1.6f, 1.5f));",
       "declaration_file": false
@@ -5028,7 +5055,7 @@
       "focus": "repairObjective",
       "token": "ObjectiveBoard",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-      "line": 296,
+      "line": 345,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
       "snippet": "PatcherUtil.EnsureComponent<ObjectiveBoard>(boardGo);",
       "declaration_file": false
@@ -5064,7 +5091,7 @@
       "focus": "repairObjective",
       "token": "JobDirector",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityContractBuilder.cs",
-      "line": 72,
+      "line": 81,
       "symbol": "Ziptide.Editor.Patching.ToxicCityContractBuilder",
       "snippet": "+ \"WorldPack as job 0.\\n\\nStill needed (T-Dog/runtime): JobDirector -> JobRewards.Grant on \"",
       "declaration_file": false
@@ -5073,9 +5100,36 @@
       "focus": "repairObjective",
       "token": "ObjectiveBoard",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityContractBuilder.cs",
-      "line": 73,
+      "line": 82,
       "symbol": "Ziptide.Editor.Patching.ToxicCityContractBuilder",
       "snippet": "+ \"completion, and ObjectiveBoard/RILL text.\", \"OK\");",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
+      "token": "RepairMachineCountStepDefinition",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityContractBuilder.cs",
+      "line": 126,
+      "symbol": "Ziptide.Editor.Patching.ToxicCityContractBuilder",
+      "snippet": "private static RepairMachineCountStepDefinition RepairMachine(string assetName, string machineId, string label)",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
+      "token": "RepairMachineCountStepDefinition",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityContractBuilder.cs",
+      "line": 129,
+      "symbol": "Ziptide.Editor.Patching.ToxicCityContractBuilder",
+      "snippet": "var step = AssetDatabase.LoadAssetAtPath<RepairMachineCountStepDefinition>(path);",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
+      "token": "RepairMachineCountStepDefinition",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityContractBuilder.cs",
+      "line": 131,
+      "symbol": "Ziptide.Editor.Patching.ToxicCityContractBuilder",
+      "snippet": "if (created) step = ScriptableObject.CreateInstance<RepairMachineCountStepDefinition>();",
       "declaration_file": false
     },
     {
@@ -6405,7 +6459,7 @@
       "focus": "repairObjective",
       "token": "JobDirector",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
-      "line": 187,
+      "line": 189,
       "symbol": "Ziptide.Gameplay.FirstHourDirector",
       "snippet": "// finishes loading \u2014 JobDirector materialises them in its own Start. Rebind a moment later.",
       "declaration_file": false
@@ -6414,7 +6468,7 @@
       "focus": "repairObjective",
       "token": "JobDirector",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
-      "line": 213,
+      "line": 215,
       "symbol": "Ziptide.Gameplay.FirstHourDirector",
       "snippet": "var director = FindObjectOfType<JobDirector>();",
       "declaration_file": false
@@ -6423,7 +6477,7 @@
       "focus": "repairObjective",
       "token": "JobRuntime",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
-      "line": 14,
+      "line": 16,
       "symbol": "Ziptide.Gameplay.FirstHourDirector",
       "snippet": "/// choice, the comfort console owns comfort, RepairableMachine owns repair stages, JobRuntime owns",
       "declaration_file": false
@@ -6432,7 +6486,7 @@
       "focus": "repairObjective",
       "token": "JobRuntime",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
-      "line": 47,
+      "line": 49,
       "symbol": "Ziptide.Gameplay.FirstHourDirector",
       "snippet": "private JobRuntime _job;",
       "declaration_file": false
@@ -6441,7 +6495,7 @@
       "focus": "repairObjective",
       "token": "RepairableMachine",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
-      "line": 14,
+      "line": 16,
       "symbol": "Ziptide.Gameplay.FirstHourDirector",
       "snippet": "/// choice, the comfort console owns comfort, RepairableMachine owns repair stages, JobRuntime owns",
       "declaration_file": false
@@ -6450,7 +6504,7 @@
       "focus": "repairObjective",
       "token": "RepairableMachine",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
-      "line": 44,
+      "line": 46,
       "symbol": "Ziptide.Gameplay.FirstHourDirector",
       "snippet": "private readonly List<RepairableMachine> _machines = new List<RepairableMachine>();",
       "declaration_file": false
@@ -6459,7 +6513,7 @@
       "focus": "repairObjective",
       "token": "RepairableMachine",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
-      "line": 200,
+      "line": 202,
       "symbol": "Ziptide.Gameplay.FirstHourDirector",
       "snippet": "_machines.AddRange(FindObjectsOfType<RepairableMachine>(true));",
       "declaration_file": false
@@ -6468,7 +6522,7 @@
       "focus": "repairObjective",
       "token": "RepairableMachine",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
-      "line": 310,
+      "line": 312,
       "symbol": "Ziptide.Gameplay.FirstHourDirector",
       "snippet": "var machine = result.Targets[i].Source as RepairableMachine;",
       "declaration_file": false
