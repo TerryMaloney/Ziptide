@@ -1,6 +1,6 @@
 {
   "tool": "recovery_focus_reference_graph",
-  "scannedFiles": 783,
+  "scannedFiles": 787,
   "referenceCount": 460,
   "summaries": {
     "melee": {
@@ -3892,7 +3892,7 @@
           "focus": "shipPresentation",
           "token": "ShipChassisPreset",
           "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-          "line": 141,
+          "line": 159,
           "symbol": "Ziptide.Ship.ShipFlightRuntime",
           "snippet": "var chassis = ShipChassisPreset.Find(equipped);",
           "declaration_file": false
@@ -4168,7 +4168,7 @@
           "focus": "shipPresentation",
           "token": "ShipLocker",
           "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-          "line": 138,
+          "line": 156,
           "symbol": "Ziptide.Ship.ShipFlightRuntime",
           "snippet": "string equipped = profile != null ? ShipLocker.GetEquipped(profile, \"chassis\") : null;",
           "declaration_file": false
@@ -4177,7 +4177,7 @@
           "focus": "shipPresentation",
           "token": "ShipLocker",
           "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-          "line": 144,
+          "line": 162,
           "symbol": "Ziptide.Ship.ShipFlightRuntime",
           "snippet": "foreach (var id in ShipLocker.EquippedModules(profile, chassis.SlotIds))",
           "declaration_file": false
@@ -7398,7 +7398,7 @@
       "focus": "shipPresentation",
       "token": "ShipChassisPreset",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-      "line": 141,
+      "line": 159,
       "symbol": "Ziptide.Ship.ShipFlightRuntime",
       "snippet": "var chassis = ShipChassisPreset.Find(equipped);",
       "declaration_file": false
@@ -7407,7 +7407,7 @@
       "focus": "shipPresentation",
       "token": "ShipLocker",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-      "line": 138,
+      "line": 156,
       "symbol": "Ziptide.Ship.ShipFlightRuntime",
       "snippet": "string equipped = profile != null ? ShipLocker.GetEquipped(profile, \"chassis\") : null;",
       "declaration_file": false
@@ -7416,7 +7416,7 @@
       "focus": "shipPresentation",
       "token": "ShipLocker",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-      "line": 144,
+      "line": 162,
       "symbol": "Ziptide.Ship.ShipFlightRuntime",
       "snippet": "foreach (var id in ShipLocker.EquippedModules(profile, chassis.SlotIds))",
       "declaration_file": false

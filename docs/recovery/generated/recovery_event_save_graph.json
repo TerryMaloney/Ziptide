@@ -1,18 +1,18 @@
 {
   "tool": "recovery_event_save_graph",
-  "scannedFiles": 783,
-  "evidenceCount": 832,
+  "scannedFiles": 787,
+  "evidenceCount": 834,
   "kindCounts": {
     "AUTOSAVE": 8,
     "EVENT_DECLARE": 49,
     "EVENT_INVOKE": 61,
-    "EVENT_SUBSCRIBE": 139,
-    "EVENT_UNSUBSCRIBE": 84,
+    "EVENT_SUBSCRIBE": 140,
+    "EVENT_UNSUBSCRIBE": 85,
     "PLAYER_PREFS_ACCESS": 20,
     "PROFILE_FIELD_ACCESS": 387,
     "SAVE_ACCESS": 84
   },
-  "unmatchedNamedSubscriptionCount": 61,
+  "unmatchedNamedSubscriptionCount": 62,
   "unmatchedNamedSubscriptions": [
     {
       "kind": "EVENT_SUBSCRIBE",
@@ -22,6 +22,15 @@
       "target": "plot.yieldMultiplier",
       "detail": "TendYieldBonusPerPower",
       "snippet": "plot.yieldMultiplier += TendYieldBonusPerPower * power;"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Content/Runtime/Flight/FlightBoundsCore.cs",
+      "line": 313,
+      "owner": "Ziptide.Content.FlightBoundsParams",
+      "target": "s.position",
+      "detail": "r",
+      "snippet": "s.position += r.Push.normalized * (p.correctionSpeed * authority * sev * dt);"
     },
     {
       "kind": "EVENT_SUBSCRIBE",
@@ -5086,7 +5095,7 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-        "line": 137,
+        "line": 155,
         "owner": "Ziptide.Ship.ShipFlightRuntime",
         "target": "SaveSystem.Profile",
         "detail": "",
@@ -5095,7 +5104,7 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Ship/Runtime/SpaceTargetRuntime.cs",
-        "line": 140,
+        "line": 172,
         "owner": "Ziptide.Ship.SpaceTargetRuntime",
         "target": "SaveSystem.Profile",
         "detail": "",
@@ -5938,7 +5947,7 @@
       {
         "kind": "EVENT_INVOKE",
         "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-        "line": 439,
+        "line": 561,
         "owner": "Ziptide.Ship.ShipFlightRuntime",
         "target": "TargetDisabled",
         "detail": "",
@@ -8114,6 +8123,15 @@
     "s.position": [
       {
         "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Content/Runtime/Flight/FlightBoundsCore.cs",
+        "line": 313,
+        "owner": "Ziptide.Content.FlightBoundsParams",
+        "target": "s.position",
+        "detail": "r",
+        "snippet": "s.position += r.Push.normalized * (p.correctionSpeed * authority * sev * dt);"
+      },
+      {
+        "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Content/Runtime/Flight/FlightModel.cs",
         "line": 112,
         "owner": "Ziptide.Content.FlightState",
@@ -8140,6 +8158,17 @@
         "target": "s.rollDeg",
         "detail": "s",
         "snippet": "s.rollDeg += s.rollDirection * rollRate * dt;"
+      }
+    ],
+    "s.speed": [
+      {
+        "kind": "EVENT_UNSUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Content/Runtime/Flight/FlightBoundsCore.cs",
+        "line": 314,
+        "owner": "Ziptide.Content.FlightBoundsParams",
+        "target": "s.speed",
+        "detail": "s",
+        "snippet": "s.speed -= s.speed * Mathf.Clamp01(p.speedBleed * authority * sev * dt);"
       }
     ],
     "skyGradient": [
@@ -8633,6 +8662,24 @@
       "target": "GetResource",
       "detail": "profile",
       "snippet": "if (profile.GetResource(c.resourceId) < c.amount) return false;"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Content/Runtime/Flight/FlightBoundsCore.cs",
+      "line": 313,
+      "owner": "Ziptide.Content.FlightBoundsParams",
+      "target": "s.position",
+      "detail": "r",
+      "snippet": "s.position += r.Push.normalized * (p.correctionSpeed * authority * sev * dt);"
+    },
+    {
+      "kind": "EVENT_UNSUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Content/Runtime/Flight/FlightBoundsCore.cs",
+      "line": 314,
+      "owner": "Ziptide.Content.FlightBoundsParams",
+      "target": "s.speed",
+      "detail": "s",
+      "snippet": "s.speed -= s.speed * Mathf.Clamp01(p.speedBleed * authority * sev * dt);"
     },
     {
       "kind": "EVENT_SUBSCRIBE",
@@ -13407,7 +13454,7 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-      "line": 137,
+      "line": 155,
       "owner": "Ziptide.Ship.ShipFlightRuntime",
       "target": "SaveSystem.Profile",
       "detail": "",
@@ -13416,7 +13463,7 @@
     {
       "kind": "EVENT_INVOKE",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-      "line": 439,
+      "line": 561,
       "owner": "Ziptide.Ship.ShipFlightRuntime",
       "target": "TargetDisabled",
       "detail": "",
@@ -13425,7 +13472,7 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/SpaceTargetRuntime.cs",
-      "line": 140,
+      "line": 172,
       "owner": "Ziptide.Ship.SpaceTargetRuntime",
       "target": "SaveSystem.Profile",
       "detail": "",

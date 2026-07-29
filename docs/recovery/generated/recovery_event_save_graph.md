@@ -1,8 +1,8 @@
 # ZIPTIDE Event and Save Ownership Graph
 
-- Scanned C# files: **783**
-- Evidence edges: **832**
-- Named subscriptions without matching unsubscribe in the same owner: **61**
+- Scanned C# files: **787**
+- Evidence edges: **834**
+- Named subscriptions without matching unsubscribe in the same owner: **62**
 
 This is a static ownership graph. An unmatched row is a review target, not automatic proof of a leak; process-lifetime static hooks may be intentional.
 
@@ -11,8 +11,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **AUTOSAVE:** 8
 - **EVENT_DECLARE:** 49
 - **EVENT_INVOKE:** 61
-- **EVENT_SUBSCRIBE:** 139
-- **EVENT_UNSUBSCRIBE:** 84
+- **EVENT_SUBSCRIBE:** 140
+- **EVENT_UNSUBSCRIBE:** 85
 - **PLAYER_PREFS_ACCESS:** 20
 - **PROFILE_FIELD_ACCESS:** 387
 - **SAVE_ACCESS:** 84
@@ -20,6 +20,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 ## Named subscriptions without matching unsubscribe
 
 - `Ziptide.Content.HarvestPlantResult` subscribes `plot.yieldMultiplier` → `TendYieldBonusPerPower` at `Ziptide/Assets/Ziptide/Content/Runtime/Economy/GardenService.cs:127`
+- `Ziptide.Content.FlightBoundsParams` subscribes `s.position` → `r` at `Ziptide/Assets/Ziptide/Content/Runtime/Flight/FlightBoundsCore.cs:313`
 - `Ziptide.Content.FlightState` subscribes `s.rollDeg` → `s` at `Ziptide/Assets/Ziptide/Content/Runtime/Flight/FlightModel.cs:104`
 - `Ziptide.Content.FlightState` subscribes `s.position` → `Forward` at `Ziptide/Assets/Ziptide/Content/Runtime/Flight/FlightModel.cs:112`
 - `Ziptide.Content.FlightState` subscribes `s.position` → `right` at `Ziptide/Assets/Ziptide/Content/Runtime/Flight/FlightModel.cs:119`
@@ -823,8 +824,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **SAVE_ACCESS** · `Ziptide.Gameplay.ShipRefit` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipRefit.cs:33` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_ACCESS** · `Ziptide.Gameplay.WorldTravelStation` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:64` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_ACCESS** · `Ziptide.Gameplay.WorldTravelStation` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/WorldTravelStation.cs:149` — `+ " missing=" + (WorldGating.FirstMissingRequirement(pack, SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null) ?? "?"));`
-- **SAVE_ACCESS** · `Ziptide.Ship.ShipFlightRuntime` · `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:137` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
-- **SAVE_ACCESS** · `Ziptide.Ship.SpaceTargetRuntime` · `Ziptide/Assets/Ziptide/Ship/Runtime/SpaceTargetRuntime.cs:140` — `SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null,`
+- **SAVE_ACCESS** · `Ziptide.Ship.ShipFlightRuntime` · `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:155` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
+- **SAVE_ACCESS** · `Ziptide.Ship.SpaceTargetRuntime` · `Ziptide/Assets/Ziptide/Ship/Runtime/SpaceTargetRuntime.cs:172` — `SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null,`
 - **SAVE_ACCESS** · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:132` — `PlayerProfile live = SaveSystem.Instance.Profile;`
 - **SAVE_ACCESS** · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:370` — `PlayerProfile profile = SaveSystem.Instance.Profile;`
 
@@ -951,7 +952,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `TargetDisabled`
 
-- **EVENT_INVOKE** · `Ziptide.Ship.ShipFlightRuntime` · `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:439` — `Ziptide.Core.FlightSignals.TargetDisabled?.Invoke(hit.name); // announced append (tf-space1): Tidefront space-defense counts these`
+- **EVENT_INVOKE** · `Ziptide.Ship.ShipFlightRuntime` · `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:561` — `Ziptide.Core.FlightSignals.TargetDisabled?.Invoke(hit.name); // announced append (tf-space1): Tidefront space-defense counts these`
 
 ### `TargetFleetSize`
 
@@ -1454,12 +1455,17 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `s.position`
 
+- **EVENT_SUBSCRIBE** · `Ziptide.Content.FlightBoundsParams` · `Ziptide/Assets/Ziptide/Content/Runtime/Flight/FlightBoundsCore.cs:313` · `r` — `s.position += r.Push.normalized * (p.correctionSpeed * authority * sev * dt);`
 - **EVENT_SUBSCRIBE** · `Ziptide.Content.FlightState` · `Ziptide/Assets/Ziptide/Content/Runtime/Flight/FlightModel.cs:112` · `Forward` — `s.position += Forward(s) * (s.speed * dt);`
 - **EVENT_SUBSCRIBE** · `Ziptide.Content.FlightState` · `Ziptide/Assets/Ziptide/Content/Runtime/Flight/FlightModel.cs:119` · `right` — `s.position += right * (strafe * p.maxSpeed * Mathf.Clamp01(p.strafeFraction) * dt);`
 
 ### `s.rollDeg`
 
 - **EVENT_SUBSCRIBE** · `Ziptide.Content.FlightState` · `Ziptide/Assets/Ziptide/Content/Runtime/Flight/FlightModel.cs:104` · `s` — `s.rollDeg += s.rollDirection * rollRate * dt;`
+
+### `s.speed`
+
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Content.FlightBoundsParams` · `Ziptide/Assets/Ziptide/Content/Runtime/Flight/FlightBoundsCore.cs:314` · `s` — `s.speed -= s.speed * Mathf.Clamp01(p.speedBleed * authority * sev * dt);`
 
 ### `skyGradient`
 

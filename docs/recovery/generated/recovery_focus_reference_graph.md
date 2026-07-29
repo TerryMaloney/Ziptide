@@ -1,6 +1,6 @@
 # ZIPTIDE Focused Recovery Reference Graph
 
-- Scanned C# files: **783**
+- Scanned C# files: **787**
 - Focused references: **460**
 
 ## melee
@@ -481,7 +481,7 @@
 - **reference** · `Ziptide.Gameplay.ShipRefit` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipRefit.cs:176` — `private static void ApplyNameplate(Transform root, PlayerProfile profile, ShipChassisPreset chassis)`
 - **reference** · `Ziptide.Gameplay.ShipRefit` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipRefit.cs:196` — `private static void ApplyHum(GameObject shipRoot, ShipChassisPreset chassis)`
 - **reference** · `Ziptide.Gameplay.ShipRefit` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipRefit.cs:210` — `private static AudioClip MakeHum(ShipChassisPreset chassis)`
-- **reference** · `Ziptide.Ship.ShipFlightRuntime` · `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:141` — `var chassis = ShipChassisPreset.Find(equipped);`
+- **reference** · `Ziptide.Ship.ShipFlightRuntime` · `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:159` — `var chassis = ShipChassisPreset.Find(equipped);`
 - **reference** · `Ziptide.Tests.EditMode.ShipFlightParamsTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/ShipFlightParamsTests.cs:77` — `var racer = ShipLoadoutCore.Resolve(ShipChassisPreset.Find("racer"), null);`
 - **reference** · `Ziptide.Tests.EditMode.ShipFlightParamsTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/ShipFlightParamsTests.cs:102` — `foreach (var chassis in ShipChassisPreset.All)`
 - **reference** · `Ziptide.Tests.EditMode.ShipLoadoutCoreTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/ShipLoadoutCoreTests.cs:14` — `Assert.AreEqual(6, ShipChassisPreset.All.Length, "the spec's >=6 chassis");`
@@ -520,8 +520,8 @@
 - **reference** · `Ziptide.Gameplay.ShipRefit` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipRefit.cs:21` — `/// · NAMEPLATE — the ship's name (ShipLocker "name") on the bow.`
 - **reference** · `Ziptide.Gameplay.ShipRefit` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipRefit.cs:35` — `string chassisId = ShipLocker.GetEquipped(profile, "chassis");`
 - **reference** · `Ziptide.Gameplay.ShipRefit` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipRefit.cs:180` — `string shipName = ShipLocker.GetEquipped(profile, "name");`
-- **reference** · `Ziptide.Ship.ShipFlightRuntime` · `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:138` — `string equipped = profile != null ? ShipLocker.GetEquipped(profile, "chassis") : null;`
-- **reference** · `Ziptide.Ship.ShipFlightRuntime` · `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:144` — `foreach (var id in ShipLocker.EquippedModules(profile, chassis.SlotIds))`
+- **reference** · `Ziptide.Ship.ShipFlightRuntime` · `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:156` — `string equipped = profile != null ? ShipLocker.GetEquipped(profile, "chassis") : null;`
+- **reference** · `Ziptide.Ship.ShipFlightRuntime` · `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:162` — `foreach (var id in ShipLocker.EquippedModules(profile, chassis.SlotIds))`
 - **reference** · `Ziptide.Tests.EditMode.ShipLockerTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/ShipLockerTests.cs:8` — `public class ShipLockerTests`
 - **reference** · `Ziptide.Tests.EditMode.ShipLockerTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/ShipLockerTests.cs:14` — `ShipLocker.Equip(p, "chassis", "interceptor");`
 - **reference** · `Ziptide.Tests.EditMode.ShipLockerTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/ShipLockerTests.cs:15` — `Assert.AreEqual("interceptor", ShipLocker.GetEquipped(p, "chassis"));`

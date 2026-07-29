@@ -1,6 +1,6 @@
 {
   "tool": "recovery_input_contract_scan",
-  "scannedFiles": 783,
+  "scannedFiles": 787,
   "bindingCount": 21,
   "chordReferenceCount": 0,
   "collisionControlCount": 6,
@@ -92,8 +92,8 @@
       "field": "_leftStick",
       "action_name": "ZiptideFlightThrottle",
       "binding": "<XRController>{LeftHand}/thumbstick",
-      "action_line": 162,
-      "binding_line": 163
+      "action_line": 180,
+      "binding_line": 181
     },
     {
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
@@ -101,8 +101,8 @@
       "field": "_rightStick",
       "action_name": "ZiptideFlightSteer",
       "binding": "<XRController>{RightHand}/thumbstick",
-      "action_line": 164,
-      "binding_line": 165
+      "action_line": 182,
+      "binding_line": 183
     },
     {
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
@@ -110,8 +110,8 @@
       "field": "_boostStickClick",
       "action_name": "ZiptideFlightBoostL3",
       "binding": "<XRController>{LeftHand}/thumbstickClicked",
-      "action_line": 166,
-      "binding_line": 167
+      "action_line": 184,
+      "binding_line": 185
     },
     {
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
@@ -119,8 +119,8 @@
       "field": "_boostButton",
       "action_name": "ZiptideFlightBoostA",
       "binding": "<XRController>{RightHand}/primaryButton",
-      "action_line": 168,
-      "binding_line": 169
+      "action_line": 186,
+      "binding_line": 187
     },
     {
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
@@ -128,8 +128,8 @@
       "field": "_rollLeftButton",
       "action_name": "ZiptideFlightRollL",
       "binding": "<XRController>{LeftHand}/primaryButton",
-      "action_line": 170,
-      "binding_line": 171
+      "action_line": 188,
+      "binding_line": 189
     },
     {
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
@@ -137,8 +137,8 @@
       "field": "_rollRightButton",
       "action_name": "ZiptideFlightRollR",
       "binding": "<XRController>{RightHand}/secondaryButton",
-      "action_line": 172,
-      "binding_line": 173
+      "action_line": 190,
+      "binding_line": 191
     },
     {
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
@@ -146,8 +146,8 @@
       "field": "_fireAction",
       "action_name": "ZiptideFlightFire",
       "binding": "<XRController>{RightHand}/trigger",
-      "action_line": 174,
-      "binding_line": 175
+      "action_line": 192,
+      "binding_line": 193
     },
     {
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
@@ -204,8 +204,8 @@
         "field": "_rollLeftButton",
         "action_name": "ZiptideFlightRollL",
         "binding": "<XRController>{LeftHand}/primaryButton",
-        "action_line": 170,
-        "binding_line": 171
+        "action_line": 188,
+        "binding_line": 189
       },
       {
         "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
@@ -224,8 +224,8 @@
         "field": "_leftStick",
         "action_name": "ZiptideFlightThrottle",
         "binding": "<XRController>{LeftHand}/thumbstick",
-        "action_line": 162,
-        "binding_line": 163
+        "action_line": 180,
+        "binding_line": 181
       },
       {
         "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
@@ -253,8 +253,8 @@
         "field": "_boostStickClick",
         "action_name": "ZiptideFlightBoostL3",
         "binding": "<XRController>{LeftHand}/thumbstickClicked",
-        "action_line": 166,
-        "binding_line": 167
+        "action_line": 184,
+        "binding_line": 185
       },
       {
         "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
@@ -282,8 +282,8 @@
         "field": "_boostButton",
         "action_name": "ZiptideFlightBoostA",
         "binding": "<XRController>{RightHand}/primaryButton",
-        "action_line": 168,
-        "binding_line": 169
+        "action_line": 186,
+        "binding_line": 187
       },
       {
         "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
@@ -311,8 +311,8 @@
         "field": "_rollRightButton",
         "action_name": "ZiptideFlightRollR",
         "binding": "<XRController>{RightHand}/secondaryButton",
-        "action_line": 172,
-        "binding_line": 173
+        "action_line": 190,
+        "binding_line": 191
       }
     ],
     "<XRController>{RightHand}/thumbstick": [
@@ -331,8 +331,8 @@
         "field": "_rightStick",
         "action_name": "ZiptideFlightSteer",
         "binding": "<XRController>{RightHand}/thumbstick",
-        "action_line": 164,
-        "binding_line": 165
+        "action_line": 182,
+        "binding_line": 183
       },
       {
         "path": "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs",
