@@ -1,25 +1,25 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-29T15:56:29.046445+00:00",
+  "generatedAtUtc": "2026-07-29T16:02:40.674569+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
     "Ziptide/Assets/Ziptide",
     "Ziptide/Assets/ZiptideNet"
   ],
-  "scannedFiles": 761,
-  "findingCount": 2786,
+  "scannedFiles": 764,
+  "findingCount": 2788,
   "categoryCounts": {
     "bootstrap": 46,
-    "diagnostics": 661,
+    "diagnostics": 662,
     "events": 71,
     "fallback_debt": 171,
     "global_render": 91,
     "input": 230,
     "materials": 261,
     "persistence": 28,
-    "runtime_creation": 709,
+    "runtime_creation": 710,
     "runtime_ui": 131,
     "save_state": 285,
     "scene_loading": 9,
@@ -30,7 +30,7 @@
     "CAMERA_MAIN_REFERENCE": 52,
     "CAMERA_POST_PROCESSING": 1,
     "CANVAS_COMPONENT": 5,
-    "CREATE_PRIMITIVE": 268,
+    "CREATE_PRIMITIVE": 269,
     "DIRECT_SCENE_LOAD": 2,
     "DIRECT_SCENE_LOAD_ASYNC": 7,
     "DONT_DESTROY_ON_LOAD": 28,
@@ -57,7 +57,7 @@
     "XRI_MANAGER_LOOKUP": 45,
     "XR_INTERACTABLE_COMPONENT": 66,
     "XR_UI_INPUT_MODULE": 2,
-    "ZIPTIDE_LOG_TAG": 661
+    "ZIPTIDE_LOG_TAG": 662
   },
   "findings": [
     {
@@ -5339,7 +5339,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-      "line": 406,
+      "line": 411,
       "symbol": "Ziptide.Ship.ShipFlightRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: FLIGHT_FIRE hit=\" + (hit != null ? hit.name : \"none\"));"
     },
@@ -5348,7 +5348,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-      "line": 410,
+      "line": 415,
       "symbol": "Ziptide.Ship.ShipFlightRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: FLIGHT_DISABLE target=\" + hit.name);"
     },
@@ -5357,9 +5357,18 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-      "line": 423,
+      "line": 428,
       "symbol": "Ziptide.Ship.ShipFlightRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: FLIGHT_SALVAGE target=\" + t.name + \" granted=\" + granted.ToString(\"F0\"));"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Ship/Runtime/SpaceTargetRuntime.cs",
+      "line": 102,
+      "symbol": "Ziptide.Ship.SpaceTargetRuntime",
+      "snippet": "Debug.Log(\"ZIPTIDE: DRONE_MOOD target=\" + name + \" mood=\" + mood"
     },
     {
       "category": "diagnostics",
@@ -8183,7 +8192,7 @@
       "code": "FALLBACK_MARKER",
       "description": "Source text marks fallback/prototype debt",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-      "line": 459,
+      "line": 464,
       "symbol": "Ziptide.Ship.ShipFlightRuntime",
       "snippet": "// \u2500\u2500 Rig plumbing (ShipBoardingStation patterns \u2014 teleport, never parent) \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500"
     },
@@ -11666,7 +11675,7 @@
       "code": "RUNTIME_MATERIAL_CREATE",
       "description": "Runtime Material allocation",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-      "line": 424,
+      "line": 459,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
       "snippet": "var mat = new Material(shader);"
     },
@@ -12593,7 +12602,7 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-      "line": 421,
+      "line": 456,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
       "snippet": "var shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
     },
@@ -12602,7 +12611,7 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-      "line": 422,
+      "line": 457,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
       "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
     },
@@ -14564,7 +14573,16 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-      "line": 408,
+      "line": 325,
+      "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
+      "snippet": "var scrap = GameObject.CreatePrimitive("
+    },
+    {
+      "category": "runtime_creation",
+      "code": "CREATE_PRIMITIVE",
+      "description": "Runtime primitive construction",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
+      "line": 443,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
       "snippet": "var go = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -23960,7 +23978,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/SpaceTargetRuntime.cs",
-      "line": 74,
+      "line": 125,
       "symbol": "Ziptide.Ship.SpaceTargetRuntime",
       "snippet": "SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null,"
     },

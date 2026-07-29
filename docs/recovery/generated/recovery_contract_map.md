@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
-- Scanned files: **761**
-- Scanner findings: **2786**
+- Scanned files: **764**
+- Scanner findings: **2788**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -1096,7 +1096,7 @@ None.
   - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSandbox.cs:382` **CREATE_PRIMITIVE** — `floor = GameObject.CreatePrimitive(PrimitiveType.Plane);`
   - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSandbox.cs:419` **CREATE_PRIMITIVE** — `post = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 
-### `Ziptide.Editor.Patching.ScenePatcherSpaceLane` — 18 signal(s)
+### `Ziptide.Editor.Patching.ScenePatcherSpaceLane` — 19 signal(s)
 
 - Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`, `RUNTIME_MATERIAL_CREATE`, `SHADER_FIND`
 - Paths: `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs`
@@ -1114,10 +1114,11 @@ None.
   - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:282` **NEW_GAME_OBJECT** — `var cradle = new GameObject(Name);`
   - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:290` **CREATE_PRIMITIVE** — `var hulk = GameObject.CreatePrimitive(PrimitiveType.Cube);`
   - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:298` **NEW_GAME_OBJECT** — `var marker = new GameObject("__SALVAGE_ARTIFACT_HALF_A");`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:408` **CREATE_PRIMITIVE** — `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:421` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Lit");`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:422` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:424` **RUNTIME_MATERIAL_CREATE** — `var mat = new Material(shader);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:325` **CREATE_PRIMITIVE** — `var scrap = GameObject.CreatePrimitive(`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:443` **CREATE_PRIMITIVE** — `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:456` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Lit");`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:457` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:459` **RUNTIME_MATERIAL_CREATE** — `var mat = new Material(shader);`
 
 ### `Ziptide.Editor.Patching.ScenePatcherStarterWorld` — 5 signal(s)
 
@@ -3988,7 +3989,7 @@ None.
 
 - Codes: `SAVE_SYSTEM_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Ship/Runtime/SpaceTargetRuntime.cs`
-  - `Ziptide/Assets/Ziptide/Ship/Runtime/SpaceTargetRuntime.cs:74` **SAVE_SYSTEM_REFERENCE** — `SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null,`
+  - `Ziptide/Assets/Ziptide/Ship/Runtime/SpaceTargetRuntime.cs:125` **SAVE_SYSTEM_REFERENCE** — `SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null,`
 
 ### `Ziptide.Tests.EditMode.ComfortSettingsTests` — 2 signal(s)
 
@@ -5058,7 +5059,7 @@ None.
 
 - Codes: `FALLBACK_MARKER`
 - Paths: `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs`
-  - `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:459` **FALLBACK_MARKER** — `// ── Rig plumbing (ShipBoardingStation patterns — teleport, never parent) ───────────────────`
+  - `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:464` **FALLBACK_MARKER** — `// ── Rig plumbing (ShipBoardingStation patterns — teleport, never parent) ───────────────────`
 
 ### `Ziptide.Tests.EditMode.BootConfigTests` — 3 signal(s)
 

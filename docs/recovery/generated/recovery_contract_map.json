@@ -1,8 +1,8 @@
 {
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
-  "scannedFiles": 761,
-  "findingCount": 2786,
+  "scannedFiles": 764,
+  "findingCount": 2788,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -4852,7 +4852,7 @@
       },
       {
         "owner": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
-        "evidenceCount": 18,
+        "evidenceCount": 19,
         "codes": [
           "CREATE_PRIMITIVE",
           "NEW_GAME_OBJECT",
@@ -4964,28 +4964,35 @@
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-            "line": 408,
+            "line": 325,
+            "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
+            "snippet": "var scrap = GameObject.CreatePrimitive("
+          },
+          {
+            "code": "CREATE_PRIMITIVE",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
+            "line": 443,
             "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
             "snippet": "var go = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-            "line": 421,
+            "line": 456,
             "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
             "snippet": "var shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-            "line": 422,
+            "line": 457,
             "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
             "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
           },
           {
             "code": "RUNTIME_MATERIAL_CREATE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-            "line": 424,
+            "line": 459,
             "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
             "snippet": "var mat = new Material(shader);"
           }
@@ -17946,7 +17953,7 @@
           {
             "code": "SAVE_SYSTEM_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Ship/Runtime/SpaceTargetRuntime.cs",
-            "line": 74,
+            "line": 125,
             "symbol": "Ziptide.Ship.SpaceTargetRuntime",
             "snippet": "SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null,"
           }
@@ -22079,7 +22086,7 @@
           {
             "code": "FALLBACK_MARKER",
             "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-            "line": 459,
+            "line": 464,
             "symbol": "Ziptide.Ship.ShipFlightRuntime",
             "snippet": "// \u2500\u2500 Rig plumbing (ShipBoardingStation patterns \u2014 teleport, never parent) \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500"
           }
