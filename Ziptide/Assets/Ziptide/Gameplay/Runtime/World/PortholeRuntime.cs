@@ -22,6 +22,20 @@ namespace Ziptide.Gameplay
 
         private const int Resolution = 128;
 
+        // Owned so they can be released with the window — a generated texture and its materials
+        // belong to this object, not to the scene at large.
+        private Texture2D _texture;
+        private readonly System.Collections.Generic.List<Material> _materials =
+            new System.Collections.Generic.List<Material>();
+
+        private void OnDestroy()
+        {
+            if (_texture != null) Destroy(_texture);
+            foreach (var m in _materials)
+                if (m != null) Destroy(m);
+            _materials.Clear();
+        }
+
         private void Start()
         {
             if (transform.Find("Pane") != null) return; // authored twice / re-entered — leave it be
@@ -43,6 +57,7 @@ namespace Ziptide.Gameplay
                 filterMode = FilterMode.Bilinear,
                 wrapMode = TextureWrapMode.Clamp,
             };
+            _texture = tex;
             var buffer = new byte[Resolution * Resolution * 4];
             PortholeStarfieldCore.Bake(buffer, Resolution, Resolution, seed, starDensity);
             tex.LoadRawTextureData(buffer);
@@ -51,6 +66,7 @@ namespace Ziptide.Gameplay
             var shader = Shader.Find("Universal Render Pipeline/Unlit");
             if (shader == null) shader = Shader.Find("Sprites/Default");
             var mat = new Material(shader);
+            _materials.Add(mat);
             if (mat.HasProperty("_BaseMap")) mat.SetTexture("_BaseMap", tex);
             mat.mainTexture = tex;
             if (mat.HasProperty("_BaseColor")) mat.SetColor("_BaseColor", Color.white);
@@ -68,6 +84,7 @@ namespace Ziptide.Gameplay
                 var gc = giant.GetComponent<Collider>();
                 if (gc != null) Destroy(gc);
                 var gm = new Material(shader);
+                _materials.Add(gm);
                 if (gm.HasProperty("_BaseColor")) gm.SetColor("_BaseColor", new Color(0.46f, 0.56f, 0.76f));
                 else gm.color = new Color(0.46f, 0.56f, 0.76f);
                 giant.GetComponent<Renderer>().sharedMaterial = gm;

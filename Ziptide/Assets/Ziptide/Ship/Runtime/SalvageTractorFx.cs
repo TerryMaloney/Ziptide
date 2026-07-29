@@ -16,7 +16,6 @@ namespace Ziptide.Ship
     {
         private const int Strands = 6;
         private static readonly Color Beam = new Color(0.45f, 0.9f, 0.75f, 0.9f);
-        private static AudioClip _pluck;
 
         /// <summary>Draw the pull from a wreck to the cockpit and voice it once.</summary>
         public static void Play(Vector3 fromWorld, Vector3 toWorld)
@@ -30,8 +29,51 @@ namespace Ziptide.Ship
                 TracerFx.Spawn(mid, toWorld, Beam, 0.03f, 0.28f);
             }
 
-            if (_pluck == null) _pluck = MakePluck();
-            if (_pluck != null) AudioSource.PlayClipAtPoint(_pluck, toWorld, 0.6f);
+            PlayPluckAt(toWorld);
+        }
+
+        /// <summary>
+        /// Voice the pluck through a self-cleaning one-shot. The clip is synthesised per pickup
+        /// rather than cached in a static, so nothing this class creates outlives the sound —
+        /// a few thousand samples, three times a sortie, is cheaper than a leak.
+        /// </summary>
+        private static void PlayPluckAt(Vector3 at)
+        {
+            var clip = MakePluck();
+            if (clip == null) return;
+
+            var go = new GameObject("__SalvagePluck");
+            go.transform.position = at;
+            var source = go.AddComponent<AudioSource>();
+            source.clip = clip;
+            source.spatialBlend = 1f;
+            source.volume = 0.6f;
+            source.Play();
+            go.AddComponent<OneShotCleanup>().Begin(clip, clip.length + 0.2f);
+        }
+
+        /// <summary>Destroys the one-shot AND the clip it was given once the sound has played.</summary>
+        private sealed class OneShotCleanup : MonoBehaviour
+        {
+            private AudioClip _clip;
+            private float _life;
+
+            public void Begin(AudioClip clip, float seconds)
+            {
+                _clip = clip;
+                _life = seconds;
+            }
+
+            private void Update()
+            {
+                _life -= Time.deltaTime;
+                if (_life <= 0f) Destroy(gameObject);
+            }
+
+            private void OnDestroy()
+            {
+                if (_clip != null) Destroy(_clip);
+            }
         }
 
         /// <summary>0.35 s rising pluck — a "got it" that can't be confused with taking a hit.</summary>
