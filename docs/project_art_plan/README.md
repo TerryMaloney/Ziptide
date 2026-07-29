@@ -12,6 +12,15 @@ This directory is the art/audio/presentation plan of record. Read the active spr
 5b. `FORGE_V_AND_BEYOND.md` — the horizon program (Forge V Living Stage · VI World Compiler · VII Director's Chair); planning only, hard-gated behind recovery exit → Forge III close → FORGE IV two-world proof.
 6. `../GPT_ADDITIONS/2026-07-11_GPT56_CINEMATIC_PRESENCE/CINEMATIC_PRESENCE_HANDOFF.md` — Did/Next/Heads-up/Commits and the preserved Picasso queue.
 
+### Live concept-generation packs (prompts out, keepers in)
+
+- `CONCEPT_ART_PROMPT_PLAYBOOK.md` — **the prompt engine.** Anatomy (§2), canonical structured
+  template (§3), world visual constants (§4), archetypes (§5). Every pack below uses it.
+- `PROMPT_TEST_09_THE_CATCH_SPACE_INFRASTRUCTURE.md` — **awaiting keepers.** Six prompts for the
+  space leg: catch ring, cargo pod, ring-tender drone, orbital debris kit, Overrun hauler, and THE
+  THROW. Design authority is `../design/THE_CATCH.md` — read it before generating, because these six
+  are one machine and the prompts only work if the generator knows what the machine does.
+
 ## Canonical program sequence
 
 ### Forge I — generation
