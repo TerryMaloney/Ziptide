@@ -32,6 +32,7 @@ namespace Ziptide.Ship
         private float _lastHitTime = float.NegativeInfinity;
         private Renderer _eye;
         private Color _eyeBase = new Color(1f, 0.3f, 0.2f);
+        private float _approach;   // 0..1 salvage-approach read while downed
 
         public bool Disabled => _armor.Disabled;
         public bool Salvaged => _salvaged;
@@ -101,6 +102,20 @@ namespace Ziptide.Ship
                 Paint(_eye, _eyeBase * SpaceTargetReactionCore.EyeIntensity(mood));
             Debug.Log("ZIPTIDE: DRONE_MOOD target=" + name + " mood=" + mood
                 + " dist=" + (float.IsInfinity(_pilotDistance) ? "inf" : _pilotDistance.ToString("F0")));
+        }
+
+        /// <summary>
+        /// The pilot's closeness to claiming this wreck, 0..1 (SpaceCombatCore.SalvageApproach01).
+        /// A downed drone glows toward salvage-teal as you close, so the pickup is something you
+        /// can SEE coming instead of a number that changes somewhere off-screen.
+        /// </summary>
+        public void ReportSalvageApproach(float approach01)
+        {
+            if (!_armor.Disabled || _salvaged) return;
+            approach01 = Mathf.Clamp01(approach01);
+            if (Mathf.Abs(approach01 - _approach) < 0.02f) return;
+            _approach = approach01;
+            Tint(Color.Lerp(new Color(0.25f, 0.25f, 0.28f), new Color(0.40f, 0.85f, 0.72f), approach01));
         }
 
         /// <summary>A bolt from the player connects. Returns true when THIS hit disables the drone.</summary>

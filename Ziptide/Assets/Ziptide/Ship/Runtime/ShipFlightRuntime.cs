@@ -438,10 +438,17 @@ namespace Ziptide.Ship
             {
                 if (t == null || !t.gameObject.activeSelf || !t.Disabled || t.Salvaged) continue;
                 Vector3 lanePos = laneContent.InverseTransformPoint(t.transform.position);
+
+                // The wreck answers the approach BEFORE it pays, so "fly closer" is something the
+                // pilot discovers rather than something the status text has to tell them.
+                t.ReportSalvageApproach(SpaceCombatCore.SalvageApproach01(_state.position, lanePos));
+
                 if (SpaceCombatCore.InSalvageRange(_state.position, lanePos))
                 {
+                    Vector3 wreckWorld = t.transform.position;
                     double granted = t.Salvage();
                     Debug.Log("ZIPTIDE: FLIGHT_SALVAGE target=" + t.name + " granted=" + granted.ToString("F0"));
+                    SalvageTractorFx.Play(wreckWorld, transform.position + Vector3.up * 1.1f);
                     UpdateStatus();
                 }
             }

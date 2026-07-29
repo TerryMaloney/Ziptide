@@ -131,6 +131,13 @@
   distinct BEHIND state, color ramp) + `HelmCompassRuntime` (physical strip on the canopy bar, an
   instrument not a HUD, dark when there is nothing to steer to) + `ShipFlightRuntime.TryGetCourseBearing`.
   11 more EditMode tests.
+- **B4d closes Wave 2: the salvage loop is now VISIBLE.** It always worked and always paid — but
+  silently, so on device the only evidence salvage existed was a log line.
+  `SpaceCombatCore.SalvageApproach01` (pure, 2.5× range band) drives a downed drone glowing toward
+  salvage-teal as you close, and the payout draws a `SalvageTractorFx` beam from wreck to cockpit
+  with a rising pluck (deliberately unlike any damage cue). 2 more tests. **WAVE 2 COMPLETE:**
+  lamp-chase, drone reactions, ascent/reentry veils, Moss-orbit sky, porthole, compass, salvage
+  confirm — the space leg is built, not deferred.
 - Commit: (this one).
 
 ### 2026-07-29 (rb126) — Fable 5: 📐 LEVEL1_SPATIAL_SCRIPT — the placement layer, + ⚖ Terry's two story corrections (expedition + boat/stalker)

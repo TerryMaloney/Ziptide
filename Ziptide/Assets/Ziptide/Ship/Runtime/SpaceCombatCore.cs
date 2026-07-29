@@ -65,5 +65,23 @@ namespace Ziptide.Ship
 
         public static bool InSalvageRange(Vector3 shipPos, Vector3 targetPos)
             => (targetPos - shipPos).sqrMagnitude <= SalvageRange * SalvageRange;
+
+        /// <summary>How far out the wreck starts answering your approach, as a multiple of range.</summary>
+        public const float ApproachBandMultiplier = 2.5f;
+
+        /// <summary>
+        /// 0..1 approach read for a downed wreck: 0 outside the band, rising as you close, 1 once
+        /// you are actually in salvage range. Without it the salvage loop was invisible — a pilot
+        /// either got the pickup or got nothing, with no signal that flying closer was the verb.
+        /// Pure so the cue's shape is testable without a scene.
+        /// </summary>
+        public static float SalvageApproach01(Vector3 shipPos, Vector3 targetPos)
+        {
+            float d = (targetPos - shipPos).magnitude;
+            float band = SalvageRange * ApproachBandMultiplier;
+            if (d >= band) return 0f;
+            if (d <= SalvageRange) return 1f;
+            return 1f - (d - SalvageRange) / (band - SalvageRange);
+        }
     }
 }

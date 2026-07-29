@@ -81,5 +81,33 @@ namespace Ziptide.Tests.EditMode
             Assert.IsTrue(SpaceCombatCore.InSalvageRange(Vector3.zero, new Vector3(0f, 0f, SpaceCombatCore.SalvageRange - 1f)));
             Assert.IsFalse(SpaceCombatCore.InSalvageRange(Vector3.zero, new Vector3(0f, 0f, SpaceCombatCore.SalvageRange + 1f)));
         }
+
+        [Test]
+        public void SalvageApproach_AnnouncesThePickupBeforeItHappens()
+        {
+            // The whole point of the cue: something changes on the wreck WHILE you're still
+            // approaching, so "fly closer" is discoverable instead of announced by text.
+            float band = SpaceCombatCore.SalvageRange * SpaceCombatCore.ApproachBandMultiplier;
+            Assert.AreEqual(0f, SpaceCombatCore.SalvageApproach01(Vector3.zero, new Vector3(0f, 0f, band + 5f)));
+            Assert.AreEqual(1f, SpaceCombatCore.SalvageApproach01(Vector3.zero, new Vector3(0f, 0f, SpaceCombatCore.SalvageRange - 1f)));
+
+            float far = SpaceCombatCore.SalvageApproach01(Vector3.zero, new Vector3(0f, 0f, band * 0.9f));
+            float near = SpaceCombatCore.SalvageApproach01(Vector3.zero, new Vector3(0f, 0f, SpaceCombatCore.SalvageRange * 1.2f));
+            Assert.Greater(near, far, "closing must always read as closing");
+            Assert.Greater(far, 0f, "inside the band the wreck has to be answering already");
+        }
+
+        [Test]
+        public void SalvageApproach_IsBounded_AndFullWhenInRange()
+        {
+            for (float d = 0f; d < 60f; d += 0.5f)
+            {
+                float a = SpaceCombatCore.SalvageApproach01(Vector3.zero, new Vector3(0f, 0f, d));
+                Assert.GreaterOrEqual(a, 0f);
+                Assert.LessOrEqual(a, 1f);
+                if (SpaceCombatCore.InSalvageRange(Vector3.zero, new Vector3(0f, 0f, d)))
+                    Assert.AreEqual(1f, a, "anything payable must read as fully acquired");
+            }
+        }
     }
 }
