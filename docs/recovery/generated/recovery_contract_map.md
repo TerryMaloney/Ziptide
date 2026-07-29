@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
-- Scanned files: **767**
-- Scanner findings: **2801**
+- Scanned files: **772**
+- Scanner findings: **2814**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -606,16 +606,16 @@ None.
   - `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:66` **INPUT_ACTION_REFERENCE** — `private InputAction _rollLeftButton; // X`
   - `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:67` **INPUT_ACTION_REFERENCE** — `private InputAction _rollRightButton; // B`
   - `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:68` **INPUT_ACTION_REFERENCE** — `private InputAction _fireAction; // RT — fire ship weapon (CONTROLS_AND_FLIGHT)`
-  - `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:146` **INPUT_ACTION_REFERENCE** — `_leftStick = new InputAction("ZiptideFlightThrottle", InputActionType.Value);`
-  - `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:148` **INPUT_ACTION_REFERENCE** — `_rightStick = new InputAction("ZiptideFlightSteer", InputActionType.Value);`
-  - `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:150` **INPUT_ACTION_REFERENCE** — `_boostStickClick = new InputAction("ZiptideFlightBoostL3", InputActionType.Button);`
-  - `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:152` **INPUT_ACTION_REFERENCE** — `_boostButton = new InputAction("ZiptideFlightBoostA", InputActionType.Button);`
-  - `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:153` **INPUT_BUTTON_REFERENCE** — `_boostButton.AddBinding("<XRController>{RightHand}/primaryButton"); // A`
-  - `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:154` **INPUT_ACTION_REFERENCE** — `_rollLeftButton = new InputAction("ZiptideFlightRollL", InputActionType.Button);`
-  - `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:155` **INPUT_BUTTON_REFERENCE** — `_rollLeftButton.AddBinding("<XRController>{LeftHand}/primaryButton"); // X`
-  - `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:156` **INPUT_ACTION_REFERENCE** — `_rollRightButton = new InputAction("ZiptideFlightRollR", InputActionType.Button);`
-  - `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:157` **INPUT_BUTTON_REFERENCE** — `_rollRightButton.AddBinding("<XRController>{RightHand}/secondaryButton"); // B`
-  - `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:158` **INPUT_ACTION_REFERENCE** — `_fireAction = new InputAction("ZiptideFlightFire", InputActionType.Button);`
+  - `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:162` **INPUT_ACTION_REFERENCE** — `_leftStick = new InputAction("ZiptideFlightThrottle", InputActionType.Value);`
+  - `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:164` **INPUT_ACTION_REFERENCE** — `_rightStick = new InputAction("ZiptideFlightSteer", InputActionType.Value);`
+  - `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:166` **INPUT_ACTION_REFERENCE** — `_boostStickClick = new InputAction("ZiptideFlightBoostL3", InputActionType.Button);`
+  - `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:168` **INPUT_ACTION_REFERENCE** — `_boostButton = new InputAction("ZiptideFlightBoostA", InputActionType.Button);`
+  - `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:169` **INPUT_BUTTON_REFERENCE** — `_boostButton.AddBinding("<XRController>{RightHand}/primaryButton"); // A`
+  - `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:170` **INPUT_ACTION_REFERENCE** — `_rollLeftButton = new InputAction("ZiptideFlightRollL", InputActionType.Button);`
+  - `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:171` **INPUT_BUTTON_REFERENCE** — `_rollLeftButton.AddBinding("<XRController>{LeftHand}/primaryButton"); // X`
+  - `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:172` **INPUT_ACTION_REFERENCE** — `_rollRightButton = new InputAction("ZiptideFlightRollR", InputActionType.Button);`
+  - `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:173` **INPUT_BUTTON_REFERENCE** — `_rollRightButton.AddBinding("<XRController>{RightHand}/secondaryButton"); // B`
+  - `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:174` **INPUT_ACTION_REFERENCE** — `_fireAction = new InputAction("ZiptideFlightFire", InputActionType.Button);`
 
 ### `Ziptide.Ship.VehicleRuntime` — 8 signal(s)
 
@@ -845,8 +845,8 @@ None.
 
 - Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`
 - Paths: `Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs:79` **NEW_GAME_OBJECT** — `var marker = new GameObject(markerName);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs:97` **CREATE_PRIMITIVE** — `var visual = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs:91` **NEW_GAME_OBJECT** — `var marker = new GameObject(markerName);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs:109` **CREATE_PRIMITIVE** — `var visual = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 
 ### `Ziptide.Editor.Patching.AmbientMoteAuthor` — 2 signal(s)
 
@@ -1096,29 +1096,30 @@ None.
   - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSandbox.cs:382` **CREATE_PRIMITIVE** — `floor = GameObject.CreatePrimitive(PrimitiveType.Plane);`
   - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSandbox.cs:419` **CREATE_PRIMITIVE** — `post = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 
-### `Ziptide.Editor.Patching.ScenePatcherSpaceLane` — 19 signal(s)
+### `Ziptide.Editor.Patching.ScenePatcherSpaceLane` — 20 signal(s)
 
 - Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`, `RUNTIME_MATERIAL_CREATE`, `SHADER_FIND`
 - Paths: `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs`
   - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:97` **NEW_GAME_OBJECT** — `var root = new GameObject("__SPACELANE_ROOT").transform;`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:130` **NEW_GAME_OBJECT** — `var frame = new GameObject("CockpitFrame").transform;`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:152` **NEW_GAME_OBJECT** — `var lane = new GameObject("LaneContent").transform;`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:163` **NEW_GAME_OBJECT** — `var rocks = new GameObject("DriftRocks").transform;`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:172` **CREATE_PRIMITIVE** — `var rock = GameObject.CreatePrimitive(rng.Next(2) == 0 ? PrimitiveType.Cube : PrimitiveType.Sphere);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:187` **NEW_GAME_OBJECT** — `var drone = new GameObject("Drone_" + index);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:191` **CREATE_PRIMITIVE** — `var hull = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:200` **CREATE_PRIMITIVE** — `var wing = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:209` **CREATE_PRIMITIVE** — `var eye = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:222` **NEW_GAME_OBJECT** — `var ring = new GameObject("Ring_" + index).transform;`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:229` **CREATE_PRIMITIVE** — `var seg = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:282` **NEW_GAME_OBJECT** — `var cradle = new GameObject(Name);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:290` **CREATE_PRIMITIVE** — `var hulk = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:298` **NEW_GAME_OBJECT** — `var marker = new GameObject("__SALVAGE_ARTIFACT_HALF_A");`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:325` **CREATE_PRIMITIVE** — `var scrap = GameObject.CreatePrimitive(`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:443` **CREATE_PRIMITIVE** — `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:456` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Lit");`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:457` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:459` **RUNTIME_MATERIAL_CREATE** — `var mat = new Material(shader);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:138` **NEW_GAME_OBJECT** — `var frame = new GameObject("CockpitFrame").transform;`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:150` **NEW_GAME_OBJECT** — `var compass = new GameObject("HelmCompass");`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:168` **NEW_GAME_OBJECT** — `var lane = new GameObject("LaneContent").transform;`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:179` **NEW_GAME_OBJECT** — `var rocks = new GameObject("DriftRocks").transform;`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:188` **CREATE_PRIMITIVE** — `var rock = GameObject.CreatePrimitive(rng.Next(2) == 0 ? PrimitiveType.Cube : PrimitiveType.Sphere);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:203` **NEW_GAME_OBJECT** — `var drone = new GameObject("Drone_" + index);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:207` **CREATE_PRIMITIVE** — `var hull = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:216` **CREATE_PRIMITIVE** — `var wing = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:225` **CREATE_PRIMITIVE** — `var eye = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:238` **NEW_GAME_OBJECT** — `var ring = new GameObject("Ring_" + index).transform;`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:245` **CREATE_PRIMITIVE** — `var seg = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:310` **NEW_GAME_OBJECT** — `var cradle = new GameObject(Name);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:318` **CREATE_PRIMITIVE** — `var hulk = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:326` **NEW_GAME_OBJECT** — `var marker = new GameObject("__SALVAGE_ARTIFACT_HALF_A");`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:353` **CREATE_PRIMITIVE** — `var scrap = GameObject.CreatePrimitive(`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:471` **CREATE_PRIMITIVE** — `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:484` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Lit");`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:485` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:487` **RUNTIME_MATERIAL_CREATE** — `var mat = new Material(shader);`
 
 ### `Ziptide.Editor.Patching.ScenePatcherStarterWorld` — 5 signal(s)
 
@@ -2078,6 +2079,18 @@ None.
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerStunReceiver.cs:119` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Universal Render Pipeline/Unlit");`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerStunReceiver.cs:120` **RUNTIME_MATERIAL_CREATE** — `var mat = new Material(shader);`
 
+### `Ziptide.Gameplay.PortholeRuntime` — 7 signal(s)
+
+- Codes: `CREATE_PRIMITIVE`, `RUNTIME_MATERIAL_CREATE`, `SHADER_FIND`
+- Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs:33` **CREATE_PRIMITIVE** — `var pane = GameObject.CreatePrimitive(PrimitiveType.Quad);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs:51` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Unlit");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs:52` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Sprites/Default");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs:53` **RUNTIME_MATERIAL_CREATE** — `var mat = new Material(shader);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs:63` **CREATE_PRIMITIVE** — `var giant = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs:70` **RUNTIME_MATERIAL_CREATE** — `var gm = new Material(shader);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs:92` **CREATE_PRIMITIVE** — `var b = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+
 ### `Ziptide.Gameplay.PrismBeamRuntime` — 3 signal(s)
 
 - Codes: `CREATE_PRIMITIVE`, `XR_INTERACTABLE_COMPONENT`
@@ -2496,19 +2509,26 @@ None.
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ZiptideGateEffect.cs:153` **CREATE_PRIMITIVE** — `var pool = GameObject.CreatePrimitive(PrimitiveType.Cylinder);`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ZiptideGateEffect.cs:230` **CREATE_PRIMITIVE** — `_flash = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
 
+### `Ziptide.Ship.HelmCompassRuntime` — 2 signal(s)
+
+- Codes: `CREATE_PRIMITIVE`
+- Paths: `Ziptide/Assets/Ziptide/Ship/Runtime/HelmCompassRuntime.cs`
+  - `Ziptide/Assets/Ziptide/Ship/Runtime/HelmCompassRuntime.cs:49` **CREATE_PRIMITIVE** — `var strip = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Ship/Runtime/HelmCompassRuntime.cs:56` **CREATE_PRIMITIVE** — `var marker = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+
 ### `Ziptide.Ship.ShipFlightRuntime` — 9 signal(s)
 
 - Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`, `TEXTMESH_COMPONENT`, `XR_INTERACTABLE_COMPONENT`
 - Paths: `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs`
-  - `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:177` **CREATE_PRIMITIVE** — `var console = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:189` **NEW_GAME_OBJECT** — `var statusGo = new GameObject("FlightStatus");`
-  - `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:193` **TEXTMESH_COMPONENT** — `_statusText = statusGo.AddComponent<TextMesh>();`
-  - `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:201` **CREATE_PRIMITIVE** — `_returnPanel = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:208` **XR_INTERACTABLE_COMPONENT** — `var ret = _returnPanel.AddComponent<XRSimpleInteractable>();`
-  - `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:223` **CREATE_PRIMITIVE** — `var tile = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:230` **XR_INTERACTABLE_COMPONENT** — `var interactable = tile.AddComponent<XRSimpleInteractable>();`
-  - `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:237` **NEW_GAME_OBJECT** — `var label = new GameObject("Label");`
-  - `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:241` **TEXTMESH_COMPONENT** — `var tm = label.AddComponent<TextMesh>();`
+  - `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:193` **CREATE_PRIMITIVE** — `var console = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:205` **NEW_GAME_OBJECT** — `var statusGo = new GameObject("FlightStatus");`
+  - `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:209` **TEXTMESH_COMPONENT** — `_statusText = statusGo.AddComponent<TextMesh>();`
+  - `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:217` **CREATE_PRIMITIVE** — `_returnPanel = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:224` **XR_INTERACTABLE_COMPONENT** — `var ret = _returnPanel.AddComponent<XRSimpleInteractable>();`
+  - `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:239` **CREATE_PRIMITIVE** — `var tile = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:246` **XR_INTERACTABLE_COMPONENT** — `var interactable = tile.AddComponent<XRSimpleInteractable>();`
+  - `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:253` **NEW_GAME_OBJECT** — `var label = new GameObject("Label");`
+  - `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:257` **TEXTMESH_COMPONENT** — `var tm = label.AddComponent<TextMesh>();`
 
 ### `Ziptide.Ship.VehicleRuntime` — 9 signal(s)
 
@@ -3292,8 +3312,8 @@ None.
 
 - Codes: `XRI_MANAGER_ASSIGN`, `XRI_MANAGER_LOOKUP`
 - Paths: `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs`
-  - `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:252` **XRI_MANAGER_LOOKUP** — `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
-  - `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:253` **XRI_MANAGER_ASSIGN** — `if (mgr != null) interactable.interactionManager = mgr;`
+  - `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:268` **XRI_MANAGER_LOOKUP** — `var mgr = Object.FindObjectOfType<XRInteractionManager>();`
+  - `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:269` **XRI_MANAGER_ASSIGN** — `if (mgr != null) interactable.interactionManager = mgr;`
 
 ### `Ziptide.Ship.VehicleRuntime` — 2 signal(s)
 
@@ -3994,7 +4014,7 @@ None.
 
 - Codes: `SAVE_SYSTEM_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs`
-  - `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:121` **SAVE_SYSTEM_REFERENCE** — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
+  - `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:137` **SAVE_SYSTEM_REFERENCE** — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 
 ### `Ziptide.Ship.SpaceTargetRuntime` — 1 signal(s)
 
@@ -4815,6 +4835,12 @@ None.
 - Paths: `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherD0.cs`
   - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherD0.cs:15` **FALLBACK_MARKER** — `/// Idempotent scene patcher for D0 City: ensures D0_City scene exists, blockout (plaza, terraces, alley, railings), and runtime objects (JobDirector, DispatchKiosk, ObjectiveBoard, DeliveryCradle). Call from BuildAndroid or menu.`
 
+### `Ziptide.Editor.Patching.ScenePatcherSpaceLane` — 1 signal(s)
+
+- Codes: `FALLBACK_MARKER`
+- Paths: `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:116` **FALLBACK_MARKER** — `// giant, the sibling moon, the sun and the starfield instead of the placeholder void.`
+
 ### `Ziptide.Editor.Patching.ScenePatcherStarterWorld` — 10 signal(s)
 
 - Codes: `FALLBACK_MARKER`
@@ -4849,6 +4875,12 @@ None.
   - `Ziptide/Assets/Ziptide/Editor/Patching/SignAuthor.cs:134` **FALLBACK_MARKER** — `fallback.isStatic = true;`
   - `Ziptide/Assets/Ziptide/Editor/Patching/SignAuthor.cs:135` **FALLBACK_MARKER** — `Collider bodyCollider = fallback.GetComponent<Collider>();`
   - `Ziptide/Assets/Ziptide/Editor/Patching/SignAuthor.cs:137` **FALLBACK_MARKER** — `Renderer bodyRenderer = fallback.GetComponent<Renderer>();`
+
+### `Ziptide.Editor.Patching.SkyVistaLibrary` — 1 signal(s)
+
+- Codes: `FALLBACK_MARKER`
+- Paths: `Ziptide/Assets/Ziptide/Editor/Patching/SkyVistaLibrary.cs`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/SkyVistaLibrary.cs:66` **FALLBACK_MARKER** — `/// SPACE OVER THE MOSS. The flight trial shipped against a near-black placeholder sky, which`
 
 ### `Ziptide.Editor.Patching.WorldDressingBuilder` — 1 signal(s)
 
@@ -5082,7 +5114,7 @@ None.
 
 - Codes: `FALLBACK_MARKER`
 - Paths: `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs`
-  - `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:464` **FALLBACK_MARKER** — `// ── Rig plumbing (ShipBoardingStation patterns — teleport, never parent) ───────────────────`
+  - `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:480` **FALLBACK_MARKER** — `// ── Rig plumbing (ShipBoardingStation patterns — teleport, never parent) ───────────────────`
 
 ### `Ziptide.Tests.EditMode.BootConfigTests` — 3 signal(s)
 

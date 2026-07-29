@@ -1,6 +1,6 @@
 # ZIPTIDE Focused Recovery Reference Graph
 
-- Scanned C# files: **767**
+- Scanned C# files: **772**
 - Focused references: **445**
 
 ## melee
@@ -394,7 +394,7 @@
 
 - **reference** · `Ziptide.Editor.Patching.CityBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:389` — `var castOff = ship.GetComponent<ShipCastOffRuntime>()`
 - **reference** · `Ziptide.Editor.Patching.CityBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:390` — `?? ship.gameObject.AddComponent<ShipCastOffRuntime>();`
-- **reference** · `Ziptide.Editor.FirstHourSurfaceAuthor` · `Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs:36` — `ShipCastOffRuntime castOff = FindInScene<ShipCastOffRuntime>(scene);`
+- **reference** · `Ziptide.Editor.FirstHourSurfaceAuthor` · `Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs:37` — `ShipCastOffRuntime castOff = FindInScene<ShipCastOffRuntime>(scene);`
 - **reference** · `Ziptide.Gameplay.KeySocketRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs:18` — `/// It owns nothing: `ShipCastOffRuntime` still owns arming and launch, `TravelCoordinator` still`
 - **reference** · `Ziptide.Gameplay.KeySocketRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs:123` — `var castOff = GetComponentInParent<ShipCastOffRuntime>();`
 - **declaration** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:20` — `public class ShipCastOffRuntime : MonoBehaviour`
@@ -430,7 +430,7 @@
 
 - **reference** · `Ziptide.Editor.Patching.CityBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:389` — `var castOff = ship.GetComponent<ShipCastOffRuntime>()`
 - **reference** · `Ziptide.Editor.Patching.CityBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:390` — `?? ship.gameObject.AddComponent<ShipCastOffRuntime>();`
-- **reference** · `Ziptide.Editor.FirstHourSurfaceAuthor` · `Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs:36` — `ShipCastOffRuntime castOff = FindInScene<ShipCastOffRuntime>(scene);`
+- **reference** · `Ziptide.Editor.FirstHourSurfaceAuthor` · `Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs:37` — `ShipCastOffRuntime castOff = FindInScene<ShipCastOffRuntime>(scene);`
 - **reference** · `Ziptide.Gameplay.KeySocketRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs:18` — `/// It owns nothing: `ShipCastOffRuntime` still owns arming and launch, `TravelCoordinator` still`
 - **reference** · `Ziptide.Gameplay.KeySocketRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs:123` — `var castOff = GetComponentInParent<ShipCastOffRuntime>();`
 - **declaration** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:20` — `public class ShipCastOffRuntime : MonoBehaviour`
@@ -466,7 +466,7 @@
 - **reference** · `Ziptide.Gameplay.ShipRefit` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipRefit.cs:176` — `private static void ApplyNameplate(Transform root, PlayerProfile profile, ShipChassisPreset chassis)`
 - **reference** · `Ziptide.Gameplay.ShipRefit` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipRefit.cs:196` — `private static void ApplyHum(GameObject shipRoot, ShipChassisPreset chassis)`
 - **reference** · `Ziptide.Gameplay.ShipRefit` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipRefit.cs:210` — `private static AudioClip MakeHum(ShipChassisPreset chassis)`
-- **reference** · `Ziptide.Ship.ShipFlightRuntime` · `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:125` — `var chassis = ShipChassisPreset.Find(equipped);`
+- **reference** · `Ziptide.Ship.ShipFlightRuntime` · `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:141` — `var chassis = ShipChassisPreset.Find(equipped);`
 - **reference** · `Ziptide.Tests.EditMode.ShipFlightParamsTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/ShipFlightParamsTests.cs:77` — `var racer = ShipLoadoutCore.Resolve(ShipChassisPreset.Find("racer"), null);`
 - **reference** · `Ziptide.Tests.EditMode.ShipFlightParamsTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/ShipFlightParamsTests.cs:102` — `foreach (var chassis in ShipChassisPreset.All)`
 - **reference** · `Ziptide.Tests.EditMode.ShipLoadoutCoreTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/ShipLoadoutCoreTests.cs:14` — `Assert.AreEqual(6, ShipChassisPreset.All.Length, "the spec's >=6 chassis");`
@@ -505,8 +505,8 @@
 - **reference** · `Ziptide.Gameplay.ShipRefit` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipRefit.cs:21` — `/// · NAMEPLATE — the ship's name (ShipLocker "name") on the bow.`
 - **reference** · `Ziptide.Gameplay.ShipRefit` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipRefit.cs:35` — `string chassisId = ShipLocker.GetEquipped(profile, "chassis");`
 - **reference** · `Ziptide.Gameplay.ShipRefit` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ShipRefit.cs:180` — `string shipName = ShipLocker.GetEquipped(profile, "name");`
-- **reference** · `Ziptide.Ship.ShipFlightRuntime` · `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:122` — `string equipped = profile != null ? ShipLocker.GetEquipped(profile, "chassis") : null;`
-- **reference** · `Ziptide.Ship.ShipFlightRuntime` · `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:128` — `foreach (var id in ShipLocker.EquippedModules(profile, chassis.SlotIds))`
+- **reference** · `Ziptide.Ship.ShipFlightRuntime` · `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:138` — `string equipped = profile != null ? ShipLocker.GetEquipped(profile, "chassis") : null;`
+- **reference** · `Ziptide.Ship.ShipFlightRuntime` · `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:144` — `foreach (var id in ShipLocker.EquippedModules(profile, chassis.SlotIds))`
 - **reference** · `Ziptide.Tests.EditMode.ShipLockerTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/ShipLockerTests.cs:8` — `public class ShipLockerTests`
 - **reference** · `Ziptide.Tests.EditMode.ShipLockerTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/ShipLockerTests.cs:14` — `ShipLocker.Equip(p, "chassis", "interceptor");`
 - **reference** · `Ziptide.Tests.EditMode.ShipLockerTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/ShipLockerTests.cs:15` — `Assert.AreEqual("interceptor", ShipLocker.GetEquipped(p, "chassis"));`

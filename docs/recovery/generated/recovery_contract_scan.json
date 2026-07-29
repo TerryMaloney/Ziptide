@@ -1,25 +1,25 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-29T16:06:28.252282+00:00",
+  "generatedAtUtc": "2026-07-29T16:44:48.467085+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
     "Ziptide/Assets/Ziptide",
     "Ziptide/Assets/ZiptideNet"
   ],
-  "scannedFiles": 767,
-  "findingCount": 2801,
+  "scannedFiles": 772,
+  "findingCount": 2814,
   "categoryCounts": {
     "bootstrap": 46,
-    "diagnostics": 667,
+    "diagnostics": 668,
     "events": 71,
-    "fallback_debt": 172,
+    "fallback_debt": 174,
     "global_render": 92,
     "input": 230,
-    "materials": 265,
+    "materials": 269,
     "persistence": 28,
-    "runtime_creation": 712,
+    "runtime_creation": 718,
     "runtime_ui": 131,
     "save_state": 285,
     "scene_loading": 9,
@@ -30,24 +30,24 @@
     "CAMERA_MAIN_REFERENCE": 53,
     "CAMERA_POST_PROCESSING": 1,
     "CANVAS_COMPONENT": 5,
-    "CREATE_PRIMITIVE": 270,
+    "CREATE_PRIMITIVE": 275,
     "DIRECT_SCENE_LOAD": 2,
     "DIRECT_SCENE_LOAD_ASYNC": 7,
     "DONT_DESTROY_ON_LOAD": 28,
     "EDITOR_BOOTSTRAP": 10,
     "EVENT_DECLARATION": 52,
     "EVENT_SYSTEM_COMPONENT": 2,
-    "FALLBACK_MARKER": 172,
+    "FALLBACK_MARKER": 174,
     "FRAME_BUTTON_POLL": 1,
     "INPUT_ACTION_REFERENCE": 219,
     "INPUT_BUTTON_REFERENCE": 10,
-    "NEW_GAME_OBJECT": 442,
+    "NEW_GAME_OBJECT": 443,
     "PLAYER_PROFILE_REFERENCE": 152,
     "RENDER_SETTINGS_MUTATION": 37,
     "RUNTIME_BOOTSTRAP": 36,
-    "RUNTIME_MATERIAL_CREATE": 101,
+    "RUNTIME_MATERIAL_CREATE": 103,
     "SAVE_SYSTEM_REFERENCE": 124,
-    "SHADER_FIND": 164,
+    "SHADER_FIND": 166,
     "STATIC_EVENT_DECLARATION": 19,
     "TEXTMESH_COMPONENT": 53,
     "TMP_COMPONENT": 3,
@@ -57,7 +57,7 @@
     "XRI_MANAGER_LOOKUP": 45,
     "XR_INTERACTABLE_COMPONENT": 66,
     "XR_UI_INPUT_MODULE": 2,
-    "ZIPTIDE_LOG_TAG": 667
+    "ZIPTIDE_LOG_TAG": 668
   },
   "findings": [
     {
@@ -884,7 +884,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs",
-      "line": 28,
+      "line": 29,
       "symbol": "Ziptide.Editor.FirstHourSurfaceAuthor",
       "snippet": "Debug.Log(\"ZIPTIDE: FIRST_HOUR_SURFACES_SAVED scene=\" + scene.name);"
     },
@@ -893,7 +893,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs",
-      "line": 66,
+      "line": 78,
       "symbol": "Ziptide.Editor.FirstHourSurfaceAuthor",
       "snippet": "Debug.Log(\"ZIPTIDE: FIRST_HOUR_SURFACES_AUTHORED scene=\" + scene.name +"
     },
@@ -4771,6 +4771,15 @@
       "category": "diagnostics",
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs",
+      "line": 77,
+      "symbol": "Ziptide.Gameplay.PortholeRuntime",
+      "snippet": "Debug.Log(\"ZIPTIDE: PORTHOLE built seed=\" + seed + \" density=\" + starDensity.ToString(\"F2\"));"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ProximityTravelTrigger.cs",
       "line": 51,
       "symbol": "Ziptide.Gameplay.ProximityTravelTrigger",
@@ -5312,7 +5321,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-      "line": 212,
+      "line": 228,
       "symbol": "Ziptide.Ship.ShipFlightRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: FLIGHT_RETURN target=\" + returnScene);"
     },
@@ -5321,7 +5330,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-      "line": 288,
+      "line": 304,
       "symbol": "Ziptide.Ship.ShipFlightRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: FLIGHT_MODE on scene=\" + gameObject.scene.name +"
     },
@@ -5330,7 +5339,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-      "line": 308,
+      "line": 324,
       "symbol": "Ziptide.Ship.ShipFlightRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: FLIGHT_MODE off rings=\" + _course.NextRing + \"/\" + _course.RingCount);"
     },
@@ -5339,7 +5348,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-      "line": 332,
+      "line": 348,
       "symbol": "Ziptide.Ship.ShipFlightRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: FLIGHT_TRACE snap=\" + frame.YawSnap"
     },
@@ -5348,7 +5357,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-      "line": 341,
+      "line": 357,
       "symbol": "Ziptide.Ship.ShipFlightRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: FLIGHT_ROLL dir=left\");"
     },
@@ -5357,7 +5366,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-      "line": 346,
+      "line": 362,
       "symbol": "Ziptide.Ship.ShipFlightRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: FLIGHT_ROLL dir=right\");"
     },
@@ -5366,7 +5375,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-      "line": 365,
+      "line": 381,
       "symbol": "Ziptide.Ship.ShipFlightRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: FLIGHT_RING \" + _course.NextRing + \"/\" + _course.RingCount);"
     },
@@ -5375,7 +5384,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-      "line": 369,
+      "line": 385,
       "symbol": "Ziptide.Ship.ShipFlightRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: FLIGHT_COURSE_DONE rings=\" + _course.RingCount);"
     },
@@ -5384,7 +5393,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-      "line": 411,
+      "line": 427,
       "symbol": "Ziptide.Ship.ShipFlightRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: FLIGHT_FIRE hit=\" + (hit != null ? hit.name : \"none\"));"
     },
@@ -5393,7 +5402,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-      "line": 415,
+      "line": 431,
       "symbol": "Ziptide.Ship.ShipFlightRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: FLIGHT_DISABLE target=\" + hit.name);"
     },
@@ -5402,7 +5411,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-      "line": 428,
+      "line": 444,
       "symbol": "Ziptide.Ship.ShipFlightRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: FLIGHT_SALVAGE target=\" + t.name + \" granted=\" + granted.ToString(\"F0\"));"
     },
@@ -7588,6 +7597,15 @@
       "category": "fallback_debt",
       "code": "FALLBACK_MARKER",
       "description": "Source text marks fallback/prototype debt",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
+      "line": 116,
+      "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
+      "snippet": "// giant, the sibling moon, the sun and the starfield instead of the placeholder void."
+    },
+    {
+      "category": "fallback_debt",
+      "code": "FALLBACK_MARKER",
+      "description": "Source text marks fallback/prototype debt",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherStarterWorld.cs",
       "line": 14,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherStarterWorld",
@@ -7763,6 +7781,15 @@
       "line": 137,
       "symbol": "Ziptide.Editor.Patching.SignAuthor",
       "snippet": "Renderer bodyRenderer = fallback.GetComponent<Renderer>();"
+    },
+    {
+      "category": "fallback_debt",
+      "code": "FALLBACK_MARKER",
+      "description": "Source text marks fallback/prototype debt",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/SkyVistaLibrary.cs",
+      "line": 66,
+      "symbol": "Ziptide.Editor.Patching.SkyVistaLibrary",
+      "snippet": "/// SPACE OVER THE MOSS. The flight trial shipped against a near-black placeholder sky, which"
     },
     {
       "category": "fallback_debt",
@@ -8246,7 +8273,7 @@
       "code": "FALLBACK_MARKER",
       "description": "Source text marks fallback/prototype debt",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-      "line": 464,
+      "line": 480,
       "symbol": "Ziptide.Ship.ShipFlightRuntime",
       "snippet": "// \u2500\u2500 Rig plumbing (ShipBoardingStation patterns \u2014 teleport, never parent) \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500"
     },
@@ -10667,7 +10694,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-      "line": 146,
+      "line": 162,
       "symbol": "Ziptide.Ship.ShipFlightRuntime",
       "snippet": "_leftStick = new InputAction(\"ZiptideFlightThrottle\", InputActionType.Value);"
     },
@@ -10676,7 +10703,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-      "line": 148,
+      "line": 164,
       "symbol": "Ziptide.Ship.ShipFlightRuntime",
       "snippet": "_rightStick = new InputAction(\"ZiptideFlightSteer\", InputActionType.Value);"
     },
@@ -10685,7 +10712,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-      "line": 150,
+      "line": 166,
       "symbol": "Ziptide.Ship.ShipFlightRuntime",
       "snippet": "_boostStickClick = new InputAction(\"ZiptideFlightBoostL3\", InputActionType.Button);"
     },
@@ -10694,7 +10721,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-      "line": 152,
+      "line": 168,
       "symbol": "Ziptide.Ship.ShipFlightRuntime",
       "snippet": "_boostButton = new InputAction(\"ZiptideFlightBoostA\", InputActionType.Button);"
     },
@@ -10703,7 +10730,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-      "line": 154,
+      "line": 170,
       "symbol": "Ziptide.Ship.ShipFlightRuntime",
       "snippet": "_rollLeftButton = new InputAction(\"ZiptideFlightRollL\", InputActionType.Button);"
     },
@@ -10712,7 +10739,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-      "line": 156,
+      "line": 172,
       "symbol": "Ziptide.Ship.ShipFlightRuntime",
       "snippet": "_rollRightButton = new InputAction(\"ZiptideFlightRollR\", InputActionType.Button);"
     },
@@ -10721,7 +10748,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-      "line": 158,
+      "line": 174,
       "symbol": "Ziptide.Ship.ShipFlightRuntime",
       "snippet": "_fireAction = new InputAction(\"ZiptideFlightFire\", InputActionType.Button);"
     },
@@ -11504,7 +11531,7 @@
       "code": "INPUT_BUTTON_REFERENCE",
       "description": "Controller/button reference",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-      "line": 153,
+      "line": 169,
       "symbol": "Ziptide.Ship.ShipFlightRuntime",
       "snippet": "_boostButton.AddBinding(\"<XRController>{RightHand}/primaryButton\"); // A"
     },
@@ -11513,7 +11540,7 @@
       "code": "INPUT_BUTTON_REFERENCE",
       "description": "Controller/button reference",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-      "line": 155,
+      "line": 171,
       "symbol": "Ziptide.Ship.ShipFlightRuntime",
       "snippet": "_rollLeftButton.AddBinding(\"<XRController>{LeftHand}/primaryButton\"); // X"
     },
@@ -11522,7 +11549,7 @@
       "code": "INPUT_BUTTON_REFERENCE",
       "description": "Controller/button reference",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-      "line": 157,
+      "line": 173,
       "symbol": "Ziptide.Ship.ShipFlightRuntime",
       "snippet": "_rollRightButton.AddBinding(\"<XRController>{RightHand}/secondaryButton\"); // B"
     },
@@ -11738,7 +11765,7 @@
       "code": "RUNTIME_MATERIAL_CREATE",
       "description": "Runtime Material allocation",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-      "line": 459,
+      "line": 487,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
       "snippet": "var mat = new Material(shader);"
     },
@@ -12250,6 +12277,24 @@
       "category": "materials",
       "code": "RUNTIME_MATERIAL_CREATE",
       "description": "Runtime Material allocation",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs",
+      "line": 53,
+      "symbol": "Ziptide.Gameplay.PortholeRuntime",
+      "snippet": "var mat = new Material(shader);"
+    },
+    {
+      "category": "materials",
+      "code": "RUNTIME_MATERIAL_CREATE",
+      "description": "Runtime Material allocation",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs",
+      "line": 70,
+      "symbol": "Ziptide.Gameplay.PortholeRuntime",
+      "snippet": "var gm = new Material(shader);"
+    },
+    {
+      "category": "materials",
+      "code": "RUNTIME_MATERIAL_CREATE",
+      "description": "Runtime Material allocation",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/QuartersPhotoWall.cs",
       "line": 96,
       "symbol": "Ziptide.Gameplay.QuartersPhotoWall",
@@ -12683,7 +12728,7 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-      "line": 456,
+      "line": 484,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
       "snippet": "var shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
     },
@@ -12692,7 +12737,7 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-      "line": 457,
+      "line": 485,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
       "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
     },
@@ -13645,6 +13690,24 @@
       "category": "materials",
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs",
+      "line": 51,
+      "symbol": "Ziptide.Gameplay.PortholeRuntime",
+      "snippet": "var shader = Shader.Find(\"Universal Render Pipeline/Unlit\");"
+    },
+    {
+      "category": "materials",
+      "code": "SHADER_FIND",
+      "description": "Runtime shader lookup",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs",
+      "line": 52,
+      "symbol": "Ziptide.Gameplay.PortholeRuntime",
+      "snippet": "if (shader == null) shader = Shader.Find(\"Sprites/Default\");"
+    },
+    {
+      "category": "materials",
+      "code": "SHADER_FIND",
+      "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/QuartersPhotoWall.cs",
       "line": 94,
       "symbol": "Ziptide.Gameplay.QuartersPhotoWall",
@@ -14366,7 +14429,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs",
-      "line": 97,
+      "line": 109,
       "symbol": "Ziptide.Editor.FirstHourSurfaceAuthor",
       "snippet": "var visual = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -14618,7 +14681,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-      "line": 172,
+      "line": 188,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
       "snippet": "var rock = GameObject.CreatePrimitive(rng.Next(2) == 0 ? PrimitiveType.Cube : PrimitiveType.Sphere);"
     },
@@ -14627,7 +14690,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-      "line": 191,
+      "line": 207,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
       "snippet": "var hull = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -14636,7 +14699,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-      "line": 200,
+      "line": 216,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
       "snippet": "var wing = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -14645,7 +14708,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-      "line": 209,
+      "line": 225,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
       "snippet": "var eye = GameObject.CreatePrimitive(PrimitiveType.Sphere);"
     },
@@ -14654,7 +14717,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-      "line": 229,
+      "line": 245,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
       "snippet": "var seg = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -14663,7 +14726,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-      "line": 290,
+      "line": 318,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
       "snippet": "var hulk = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -14672,7 +14735,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-      "line": 325,
+      "line": 353,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
       "snippet": "var scrap = GameObject.CreatePrimitive("
     },
@@ -14681,7 +14744,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-      "line": 443,
+      "line": 471,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
       "snippet": "var go = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -16138,6 +16201,33 @@
       "category": "runtime_creation",
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs",
+      "line": 33,
+      "symbol": "Ziptide.Gameplay.PortholeRuntime",
+      "snippet": "var pane = GameObject.CreatePrimitive(PrimitiveType.Quad);"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "CREATE_PRIMITIVE",
+      "description": "Runtime primitive construction",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs",
+      "line": 63,
+      "symbol": "Ziptide.Gameplay.PortholeRuntime",
+      "snippet": "var giant = GameObject.CreatePrimitive(PrimitiveType.Sphere);"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "CREATE_PRIMITIVE",
+      "description": "Runtime primitive construction",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/PortholeRuntime.cs",
+      "line": 92,
+      "symbol": "Ziptide.Gameplay.PortholeRuntime",
+      "snippet": "var b = GameObject.CreatePrimitive(PrimitiveType.Cube);"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "CREATE_PRIMITIVE",
+      "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/QuartersPhotoWall.cs",
       "line": 103,
       "symbol": "Ziptide.Gameplay.QuartersPhotoWall",
@@ -16282,8 +16372,26 @@
       "category": "runtime_creation",
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
+      "path": "Ziptide/Assets/Ziptide/Ship/Runtime/HelmCompassRuntime.cs",
+      "line": 49,
+      "symbol": "Ziptide.Ship.HelmCompassRuntime",
+      "snippet": "var strip = GameObject.CreatePrimitive(PrimitiveType.Cube);"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "CREATE_PRIMITIVE",
+      "description": "Runtime primitive construction",
+      "path": "Ziptide/Assets/Ziptide/Ship/Runtime/HelmCompassRuntime.cs",
+      "line": 56,
+      "symbol": "Ziptide.Ship.HelmCompassRuntime",
+      "snippet": "var marker = GameObject.CreatePrimitive(PrimitiveType.Cube);"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "CREATE_PRIMITIVE",
+      "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-      "line": 177,
+      "line": 193,
       "symbol": "Ziptide.Ship.ShipFlightRuntime",
       "snippet": "var console = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -16292,7 +16400,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-      "line": 201,
+      "line": 217,
       "symbol": "Ziptide.Ship.ShipFlightRuntime",
       "snippet": "_returnPanel = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -16301,7 +16409,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-      "line": 223,
+      "line": 239,
       "symbol": "Ziptide.Ship.ShipFlightRuntime",
       "snippet": "var tile = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -16805,7 +16913,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs",
-      "line": 79,
+      "line": 91,
       "symbol": "Ziptide.Editor.FirstHourSurfaceAuthor",
       "snippet": "var marker = new GameObject(markerName);"
     },
@@ -17363,7 +17471,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-      "line": 130,
+      "line": 138,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
       "snippet": "var frame = new GameObject(\"CockpitFrame\").transform;"
     },
@@ -17372,7 +17480,16 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-      "line": 152,
+      "line": 150,
+      "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
+      "snippet": "var compass = new GameObject(\"HelmCompass\");"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
+      "line": 168,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
       "snippet": "var lane = new GameObject(\"LaneContent\").transform;"
     },
@@ -17381,7 +17498,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-      "line": 163,
+      "line": 179,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
       "snippet": "var rocks = new GameObject(\"DriftRocks\").transform;"
     },
@@ -17390,7 +17507,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-      "line": 187,
+      "line": 203,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
       "snippet": "var drone = new GameObject(\"Drone_\" + index);"
     },
@@ -17399,7 +17516,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-      "line": 222,
+      "line": 238,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
       "snippet": "var ring = new GameObject(\"Ring_\" + index).transform;"
     },
@@ -17408,7 +17525,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-      "line": 282,
+      "line": 310,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
       "snippet": "var cradle = new GameObject(Name);"
     },
@@ -17417,7 +17534,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-      "line": 298,
+      "line": 326,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
       "snippet": "var marker = new GameObject(\"__SALVAGE_ARTIFACT_HALF_A\");"
     },
@@ -19568,7 +19685,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-      "line": 189,
+      "line": 205,
       "symbol": "Ziptide.Ship.ShipFlightRuntime",
       "snippet": "var statusGo = new GameObject(\"FlightStatus\");"
     },
@@ -19577,7 +19694,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-      "line": 237,
+      "line": 253,
       "symbol": "Ziptide.Ship.ShipFlightRuntime",
       "snippet": "var label = new GameObject(\"Label\");"
     },
@@ -21071,7 +21188,7 @@
       "code": "TEXTMESH_COMPONENT",
       "description": "Legacy TextMesh creation/reference",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-      "line": 193,
+      "line": 209,
       "symbol": "Ziptide.Ship.ShipFlightRuntime",
       "snippet": "_statusText = statusGo.AddComponent<TextMesh>();"
     },
@@ -21080,7 +21197,7 @@
       "code": "TEXTMESH_COMPONENT",
       "description": "Legacy TextMesh creation/reference",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-      "line": 241,
+      "line": 257,
       "symbol": "Ziptide.Ship.ShipFlightRuntime",
       "snippet": "var tm = label.AddComponent<TextMesh>();"
     },
@@ -21710,7 +21827,7 @@
       "code": "XR_INTERACTABLE_COMPONENT",
       "description": "XR interactable creation/reference",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-      "line": 208,
+      "line": 224,
       "symbol": "Ziptide.Ship.ShipFlightRuntime",
       "snippet": "var ret = _returnPanel.AddComponent<XRSimpleInteractable>();"
     },
@@ -21719,7 +21836,7 @@
       "code": "XR_INTERACTABLE_COMPONENT",
       "description": "XR interactable creation/reference",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-      "line": 230,
+      "line": 246,
       "symbol": "Ziptide.Ship.ShipFlightRuntime",
       "snippet": "var interactable = tile.AddComponent<XRSimpleInteractable>();"
     },
@@ -24086,7 +24203,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-      "line": 121,
+      "line": 137,
       "symbol": "Ziptide.Ship.ShipFlightRuntime",
       "snippet": "var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
     },
@@ -24734,7 +24851,7 @@
       "code": "XRI_MANAGER_ASSIGN",
       "description": "Explicit interactable interactionManager assignment",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-      "line": 253,
+      "line": 269,
       "symbol": "Ziptide.Ship.ShipFlightRuntime",
       "snippet": "if (mgr != null) interactable.interactionManager = mgr;"
     },
@@ -25229,7 +25346,7 @@
       "code": "XRI_MANAGER_LOOKUP",
       "description": "XRInteractionManager lookup",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-      "line": 252,
+      "line": 268,
       "symbol": "Ziptide.Ship.ShipFlightRuntime",
       "snippet": "var mgr = Object.FindObjectOfType<XRInteractionManager>();"
     },

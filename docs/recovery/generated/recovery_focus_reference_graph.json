@@ -1,6 +1,6 @@
 {
   "tool": "recovery_focus_reference_graph",
-  "scannedFiles": 767,
+  "scannedFiles": 772,
   "referenceCount": 445,
   "summaries": {
     "melee": {
@@ -3257,7 +3257,7 @@
           "focus": "repairObjective",
           "token": "ShipCastOffRuntime",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs",
-          "line": 36,
+          "line": 37,
           "symbol": "Ziptide.Editor.FirstHourSurfaceAuthor",
           "snippet": "ShipCastOffRuntime castOff = FindInScene<ShipCastOffRuntime>(scene);",
           "declaration_file": false
@@ -3454,7 +3454,7 @@
           "focus": "shipPresentation",
           "token": "ShipCastOffRuntime",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs",
-          "line": 36,
+          "line": 37,
           "symbol": "Ziptide.Editor.FirstHourSurfaceAuthor",
           "snippet": "ShipCastOffRuntime castOff = FindInScene<ShipCastOffRuntime>(scene);",
           "declaration_file": false
@@ -3753,7 +3753,7 @@
           "focus": "shipPresentation",
           "token": "ShipChassisPreset",
           "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-          "line": 125,
+          "line": 141,
           "symbol": "Ziptide.Ship.ShipFlightRuntime",
           "snippet": "var chassis = ShipChassisPreset.Find(equipped);",
           "declaration_file": false
@@ -4029,7 +4029,7 @@
           "focus": "shipPresentation",
           "token": "ShipLocker",
           "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-          "line": 122,
+          "line": 138,
           "symbol": "Ziptide.Ship.ShipFlightRuntime",
           "snippet": "string equipped = profile != null ? ShipLocker.GetEquipped(profile, \"chassis\") : null;",
           "declaration_file": false
@@ -4038,7 +4038,7 @@
           "focus": "shipPresentation",
           "token": "ShipLocker",
           "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-          "line": 128,
+          "line": 144,
           "symbol": "Ziptide.Ship.ShipFlightRuntime",
           "snippet": "foreach (var id in ShipLocker.EquippedModules(profile, chassis.SlotIds))",
           "declaration_file": false
@@ -4847,7 +4847,7 @@
       "focus": "repairObjective",
       "token": "ShipCastOffRuntime",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs",
-      "line": 36,
+      "line": 37,
       "symbol": "Ziptide.Editor.FirstHourSurfaceAuthor",
       "snippet": "ShipCastOffRuntime castOff = FindInScene<ShipCastOffRuntime>(scene);",
       "declaration_file": false
@@ -4856,7 +4856,7 @@
       "focus": "shipPresentation",
       "token": "ShipCastOffRuntime",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs",
-      "line": 36,
+      "line": 37,
       "symbol": "Ziptide.Editor.FirstHourSurfaceAuthor",
       "snippet": "ShipCastOffRuntime castOff = FindInScene<ShipCastOffRuntime>(scene);",
       "declaration_file": false
@@ -7196,7 +7196,7 @@
       "focus": "shipPresentation",
       "token": "ShipChassisPreset",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-      "line": 125,
+      "line": 141,
       "symbol": "Ziptide.Ship.ShipFlightRuntime",
       "snippet": "var chassis = ShipChassisPreset.Find(equipped);",
       "declaration_file": false
@@ -7205,7 +7205,7 @@
       "focus": "shipPresentation",
       "token": "ShipLocker",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-      "line": 122,
+      "line": 138,
       "symbol": "Ziptide.Ship.ShipFlightRuntime",
       "snippet": "string equipped = profile != null ? ShipLocker.GetEquipped(profile, \"chassis\") : null;",
       "declaration_file": false
@@ -7214,7 +7214,7 @@
       "focus": "shipPresentation",
       "token": "ShipLocker",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-      "line": 128,
+      "line": 144,
       "symbol": "Ziptide.Ship.ShipFlightRuntime",
       "snippet": "foreach (var id in ShipLocker.EquippedModules(profile, chassis.SlotIds))",
       "declaration_file": false
