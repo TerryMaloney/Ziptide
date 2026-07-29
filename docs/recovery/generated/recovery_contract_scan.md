@@ -1,7 +1,7 @@
 # ZIPTIDE Recovery Contract Scan
 
-- Scanned files: **740**
-- Findings: **2678**
+- Scanned files: **742**
+- Findings: **2683**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
@@ -9,14 +9,14 @@
 | Category | Count |
 |---|---:|
 | `bootstrap` | 42 |
-| `diagnostics` | 629 |
-| `events` | 65 |
+| `diagnostics` | 631 |
+| `events` | 67 |
 | `fallback_debt` | 162 |
 | `global_render` | 88 |
 | `input` | 230 |
 | `materials` | 252 |
 | `persistence` | 22 |
-| `runtime_creation` | 694 |
+| `runtime_creation` | 695 |
 | `runtime_ui` | 131 |
 | `save_state` | 261 |
 | `scene_loading` | 9 |
@@ -185,9 +185,11 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:310` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: BOARD_PROBE phase=aim ray=none hit=none layer=-1 manager=0"`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Diagnostics/SingletonValidator.cs:54` · `Ziptide.Gameplay.SingletonValidator` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: DUP_SINGLETON " + label + " count=" + all.Length);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:16` · `Ziptide.Gameplay.CreatureRuntime` — ZIPTIDE diagnostic tag. `/// disable. Loot pays the profile on disable. Logs ZIPTIDE: CREATURE_DOWN id=… / CREATURE_RESPAWN.`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:61` · `Ziptide.Gameplay.CreatureRuntime` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: CREATURE_DEF_MISSING id=" + creatureId);`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:138` · `Ziptide.Gameplay.CreatureRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: CREATURE_DOWN id=" + creatureId + " name=" + gameObject.name);`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:152` · `Ziptide.Gameplay.CreatureRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: CREATURE_RESPAWN id=" + creatureId);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:76` · `Ziptide.Gameplay.CreatureRuntime` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: CREATURE_DEF_MISSING id=" + creatureId);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:154` · `Ziptide.Gameplay.CreatureRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: CREATURE_DOWN id=" + creatureId + " name=" + gameObject.name);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:166` · `Ziptide.Gameplay.CreatureRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FIRST_HOUR_CREATURE id=" + creatureId`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:183` · `Ziptide.Gameplay.CreatureRuntime` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: FIRST_HOUR_CREATURE_LISTENER_FAIL id=" + creatureId`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:199` · `Ziptide.Gameplay.CreatureRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: CREATURE_RESPAWN id=" + creatureId);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:227` · `Ziptide.Gameplay.DroneCombatBehavior` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: DRONE_SHOT instance=" + GetInstanceID()`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:325` · `Ziptide.Gameplay.DroneCombatBehavior` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: DRONE_PHASE instance=" + GetInstanceID()`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneRuntime.cs:186` · `Ziptide.Gameplay.DroneRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: DRONE_DOWN name=" + gameObject.name + " zone=" + zone);`
@@ -701,6 +703,7 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/ZiptideNet/PhotonPvpTransport.cs:179` · `ZiptideNet.PhotonPvpTransport` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: NET_DISCONNECTED cause=" + cause);`
 ### events
 
+- **EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:64` · `Ziptide.Gameplay.CreatureRuntime` — Event declaration. `public static event System.Action<CreatureRuntime> CreatureDisabled;`
 - **EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneRuntime.cs:47` · `Ziptide.Gameplay.DroneRuntime` — Event declaration. `public static event System.Action<DroneRuntime> OnDroneDisabled;`
 - **EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:30` · `Ziptide.Gameplay.HolsterSocketInteractor` — Event declaration. `public static event Action<string> ItemHolstered;`
 - **EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobRuntime.cs:13` · `Ziptide.Gameplay.JobRuntime` — Event declaration. `public event Action StepChanged;`
@@ -750,6 +753,7 @@
 - **EVENT_DECLARATION** — `Ziptide/Assets/ZiptideNet/PhotonPvpTransport.cs:38` · `ZiptideNet.PhotonPvpTransport` — Event declaration. `public event Action<HitMsg> OnHit;`
 - **EVENT_DECLARATION** — `Ziptide/Assets/ZiptideNet/PhotonPvpTransport.cs:39` · `ZiptideNet.PhotonPvpTransport` — Event declaration. `public event Action<ScoreMsg> OnScore;`
 - **EVENT_DECLARATION** — `Ziptide/Assets/ZiptideNet/PhotonPvpTransport.cs:40` · `ZiptideNet.PhotonPvpTransport` — Event declaration. `public event Action<WallMsg> OnWall;`
+- **STATIC_EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:64` · `Ziptide.Gameplay.CreatureRuntime` — Static event declaration. `public static event System.Action<CreatureRuntime> CreatureDisabled;`
 - **STATIC_EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneRuntime.cs:47` · `Ziptide.Gameplay.DroneRuntime` — Static event declaration. `public static event System.Action<DroneRuntime> OnDroneDisabled;`
 - **STATIC_EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/HolsterSocketInteractor.cs:30` · `Ziptide.Gameplay.HolsterSocketInteractor` — Static event declaration. `public static event Action<string> ItemHolstered;`
 - **STATIC_EVENT_DECLARATION** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerStunReceiver.cs:16` · `Ziptide.Gameplay.PlayerStunReceiver` — Static event declaration. `public static event System.Action OnPlayerStunned;`
@@ -852,7 +856,7 @@
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Editor/WorldImprovement/RoundThreeWorldImprovementModules.cs:239` · `Ziptide.Editor.WorldImprovement.GroundedRouteModule` — Source text marks fallback/prototype debt. `trace.position = fallback;`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltMinePortRuntime.cs:79` · `Ziptide.Gameplay.BeltMinePortRuntime` — Source text marks fallback/prototype debt. `// A stub drill over the port — enough to read "this is where the ore comes from".`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevMenu.cs:70` · `Ziptide.Gameplay.DevTools.DevMenu` — Source text marks fallback/prototype debt. `/// fallback if a scene forgot one) and force every UI-enabled ray interactor to re-register`
-- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:77` · `Ziptide.Gameplay.CreatureRuntime` — Source text marks fallback/prototype debt. `// ── Hit entry points (existing weapon plumbing) ─────────────────────`
+- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:92` · `Ziptide.Gameplay.CreatureRuntime` — Source text marks fallback/prototype debt. `// ── Hit entry points (existing weapon plumbing) ─────────────────────`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/GazeMath.cs:7` · `Ziptide.Gameplay.GazeMath` — Source text marks fallback/prototype debt. `/// "Observed" = inside the viewer's forward cone AND within range — the graybox stand-in for`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/LightGrazerBehavior.cs:8` · `Ziptide.Gameplay.LightGrazerBehavior` — Source text marks fallback/prototype debt. `/// (W002's cistern). Graybox light source = the player's ATTENTION: facing it up close "shines your`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Inventory/InventoryState.cs:92` · `Ziptide.Gameplay.InventoryState` — Source text marks fallback/prototype debt. `// Legacy parent fallback remains readable for one migration cycle, but proximity alone is`
@@ -1284,7 +1288,7 @@
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Editor/Setup/SetupMilestoneAScene.cs:215` · `Ziptide.Editor.Setup.SetupMilestoneAScene` — Runtime Material allocation. `mat = new Material(shader);`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Editor/WorldImprovement/WorldImprovementModules.cs:58` · `Ziptide.Editor.WorldImprovement.WorldImprovementModuleResult` — Runtime Material allocation. `material = new Material(shader) { name = "WIM_" + hex };`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureBehaviorBase.cs:163` · `Ziptide.Gameplay.CreatureBehaviorBase` — Runtime Material allocation. `var mat = new Material(shader);`
-- **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:174` · `Ziptide.Gameplay.CreatureRuntime` — Runtime Material allocation. `var mat = new Material(shader);`
+- **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:221` · `Ziptide.Gameplay.CreatureRuntime` — Runtime Material allocation. `var mat = new Material(shader);`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:275` · `Ziptide.Gameplay.DroneCombatBehavior` — Runtime Material allocation. `_threatMaterial = new Material(shader) { name = "DroneThreatPresentation" };`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneRuntime.cs:68` · `Ziptide.Gameplay.DroneRuntime` — Runtime Material allocation. `_mat = new Material(shader);`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneRuntime.cs:170` · `Ziptide.Gameplay.DroneRuntime` — Runtime Material allocation. `var mat = new Material(shader);`
@@ -1396,8 +1400,8 @@
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Editor/WorldImprovement/WorldImprovementModules.cs:49` · `Ziptide.Editor.WorldImprovement.WorldImprovementModuleResult` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Standard");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureBehaviorBase.cs:159` · `Ziptide.Gameplay.CreatureBehaviorBase` — Runtime shader lookup. `var shader = Shader.Find("Universal Render Pipeline/Lit");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureBehaviorBase.cs:160` · `Ziptide.Gameplay.CreatureBehaviorBase` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Standard");`
-- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:170` · `Ziptide.Gameplay.CreatureRuntime` — Runtime shader lookup. `var shader = Shader.Find("Universal Render Pipeline/Unlit");`
-- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:171` · `Ziptide.Gameplay.CreatureRuntime` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Universal Render Pipeline/Lit");`
+- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:217` · `Ziptide.Gameplay.CreatureRuntime` — Runtime shader lookup. `var shader = Shader.Find("Universal Render Pipeline/Unlit");`
+- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:218` · `Ziptide.Gameplay.CreatureRuntime` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Universal Render Pipeline/Lit");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:273` · `Ziptide.Gameplay.DroneCombatBehavior` — Runtime shader lookup. `Shader shader = Shader.Find("Universal Render Pipeline/Unlit");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:274` · `Ziptide.Gameplay.DroneCombatBehavior` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Universal Render Pipeline/Lit");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneRuntime.cs:64` · `Ziptide.Gameplay.DroneRuntime` — Runtime shader lookup. `var shader = Shader.Find("Universal Render Pipeline/Lit");`
@@ -1630,7 +1634,7 @@
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:188` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — Runtime primitive construction. `var panel = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/DevTools/DevWarpBoard.cs:225` · `Ziptide.Gameplay.DevTools.DevWarpBoard` — Runtime primitive construction. `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureBehaviorBase.cs:146` · `Ziptide.Gameplay.CreatureBehaviorBase` — Runtime primitive construction. `var go = GameObject.CreatePrimitive(type);`
-- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:158` · `Ziptide.Gameplay.CreatureRuntime` — Runtime primitive construction. `var arc = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:205` · `Ziptide.Gameplay.CreatureRuntime` — Runtime primitive construction. `var arc = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneCombatBehavior.cs:287` · `Ziptide.Gameplay.DroneCombatBehavior` — Runtime primitive construction. `_telegraphFx = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/DroneRuntime.cs:152` · `Ziptide.Gameplay.DroneRuntime` — Runtime primitive construction. `var arc = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/HuskMolterBehavior.cs:55` · `Ziptide.Gameplay.HuskMolterBehavior` — Runtime primitive construction. `husk = GameObject.CreatePrimitive(PrimitiveType.Capsule);`
@@ -2123,6 +2127,7 @@
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/BeltPadTests.cs:26` · `Ziptide.Tests.EditMode.BeltPadTests` — Runtime GameObject construction. `_parent = new GameObject("PadTestParent");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/BuildProfileTravelAuditRulesTests.cs:33` · `Ziptide.Tests.EditMode.BuildProfileTravelAuditRulesTests` — Runtime GameObject construction. `go = new GameObject("BrokenGoldenExit");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/BuildProfileTravelAuditRulesTests.cs:59` · `Ziptide.Tests.EditMode.BuildProfileTravelAuditRulesTests` — Runtime GameObject construction. `go = new GameObject("ValidGoldenExit");`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureDisabledSignalTests.cs:27` · `Ziptide.Tests.EditMode.CreatureDisabledSignalTests` — Runtime GameObject construction. `_creature = new GameObject("Creature_swarm_bug");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/DispatchKioskSpatialContractTests.cs:24` · `Ziptide.Tests.EditMode.DispatchKioskSpatialContractTests` — Runtime GameObject construction. `GameObject sign = new GameObject("KioskSignFacingTest");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/ForgeBodyTellTests.cs:17` · `Ziptide.Tests.EditMode.ForgeBodyTellTests` — Runtime GameObject construction. `var host = new GameObject("bare");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Tests/EditMode/ForgeBodyTellTests.cs:30` · `Ziptide.Tests.EditMode.ForgeBodyTellTests` — Runtime GameObject construction. `var host = new GameObject("host");`
@@ -2521,7 +2526,7 @@
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltFloorRuntime.cs:207` · `Ziptide.Gameplay.BeltCellSpec` — SaveSystem reference. `SaveSystem.AutosaveNow("belt_edit");`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltFloorRuntime.cs:618` · `Ziptide.Gameplay.BeltCellSpec` — SaveSystem reference. `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltMinePortRuntime.cs:52` · `Ziptide.Gameplay.BeltMinePortRuntime` — SaveSystem reference. `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
-- **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:125` · `Ziptide.Gameplay.CreatureRuntime` — SaveSystem reference. `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
+- **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:141` · `Ziptide.Gameplay.CreatureRuntime` — SaveSystem reference. `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs:93` · `Ziptide.Gameplay.EcologyDirector` — SaveSystem reference. `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/NestRuntime.cs:125` · `Ziptide.Gameplay.NestRuntime` — SaveSystem reference. `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_SYSTEM_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/WardenBehavior.cs:43` · `Ziptide.Gameplay.WardenBehavior` — SaveSystem reference. `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`

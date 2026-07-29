@@ -1,8 +1,8 @@
 {
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
-  "scannedFiles": 740,
-  "findingCount": 2678,
+  "scannedFiles": 742,
+  "findingCount": 2683,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -7375,28 +7375,28 @@
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs",
-            "line": 158,
+            "line": 205,
             "symbol": "Ziptide.Gameplay.CreatureRuntime",
             "snippet": "var arc = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs",
-            "line": 170,
+            "line": 217,
             "symbol": "Ziptide.Gameplay.CreatureRuntime",
             "snippet": "var shader = Shader.Find(\"Universal Render Pipeline/Unlit\");"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs",
-            "line": 171,
+            "line": 218,
             "symbol": "Ziptide.Gameplay.CreatureRuntime",
             "snippet": "if (shader == null) shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
           },
           {
             "code": "RUNTIME_MATERIAL_CREATE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs",
-            "line": 174,
+            "line": 221,
             "symbol": "Ziptide.Gameplay.CreatureRuntime",
             "snippet": "var mat = new Material(shader);"
           }
@@ -11667,6 +11667,25 @@
         ]
       },
       {
+        "owner": "Ziptide.Tests.EditMode.CreatureDisabledSignalTests",
+        "evidenceCount": 1,
+        "codes": [
+          "NEW_GAME_OBJECT"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureDisabledSignalTests.cs"
+        ],
+        "evidence": [
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureDisabledSignalTests.cs",
+            "line": 27,
+            "symbol": "Ziptide.Tests.EditMode.CreatureDisabledSignalTests",
+            "snippet": "_creature = new GameObject(\"Creature_swarm_bug\");"
+          }
+        ]
+      },
+      {
         "owner": "Ziptide.Tests.EditMode.DispatchKioskSpatialContractTests",
         "evidenceCount": 1,
         "codes": [
@@ -15851,18 +15870,34 @@
       },
       {
         "owner": "Ziptide.Gameplay.CreatureRuntime",
-        "evidenceCount": 1,
+        "evidenceCount": 3,
         "codes": [
-          "SAVE_SYSTEM_REFERENCE"
+          "EVENT_DECLARATION",
+          "SAVE_SYSTEM_REFERENCE",
+          "STATIC_EVENT_DECLARATION"
         ],
         "paths": [
           "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs"
         ],
         "evidence": [
           {
+            "code": "EVENT_DECLARATION",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs",
+            "line": 64,
+            "symbol": "Ziptide.Gameplay.CreatureRuntime",
+            "snippet": "public static event System.Action<CreatureRuntime> CreatureDisabled;"
+          },
+          {
+            "code": "STATIC_EVENT_DECLARATION",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs",
+            "line": 64,
+            "symbol": "Ziptide.Gameplay.CreatureRuntime",
+            "snippet": "public static event System.Action<CreatureRuntime> CreatureDisabled;"
+          },
+          {
             "code": "SAVE_SYSTEM_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs",
-            "line": 125,
+            "line": 141,
             "symbol": "Ziptide.Gameplay.CreatureRuntime",
             "snippet": "var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
           }
@@ -20776,7 +20811,7 @@
           {
             "code": "FALLBACK_MARKER",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs",
-            "line": 77,
+            "line": 92,
             "symbol": "Ziptide.Gameplay.CreatureRuntime",
             "snippet": "// \u2500\u2500 Hit entry points (existing weapon plumbing) \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500"
           }

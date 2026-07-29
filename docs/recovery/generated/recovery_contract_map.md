@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
-- Scanned files: **740**
-- Scanner findings: **2678**
+- Scanned files: **742**
+- Scanner findings: **2683**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -1587,10 +1587,10 @@ None.
 
 - Codes: `CREATE_PRIMITIVE`, `RUNTIME_MATERIAL_CREATE`, `SHADER_FIND`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:158` **CREATE_PRIMITIVE** — `var arc = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:170` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Unlit");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:171` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Universal Render Pipeline/Lit");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:174` **RUNTIME_MATERIAL_CREATE** — `var mat = new Material(shader);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:205` **CREATE_PRIMITIVE** — `var arc = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:217` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Unlit");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:218` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Universal Render Pipeline/Lit");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:221` **RUNTIME_MATERIAL_CREATE** — `var mat = new Material(shader);`
 
 ### `Ziptide.Gameplay.CreditsHud` — 2 signal(s)
 
@@ -2466,6 +2466,12 @@ None.
 - Paths: `Ziptide/Assets/Ziptide/Tests/EditMode/BuildProfileTravelAuditRulesTests.cs`
   - `Ziptide/Assets/Ziptide/Tests/EditMode/BuildProfileTravelAuditRulesTests.cs:33` **NEW_GAME_OBJECT** — `go = new GameObject("BrokenGoldenExit");`
   - `Ziptide/Assets/Ziptide/Tests/EditMode/BuildProfileTravelAuditRulesTests.cs:59` **NEW_GAME_OBJECT** — `go = new GameObject("ValidGoldenExit");`
+
+### `Ziptide.Tests.EditMode.CreatureDisabledSignalTests` — 1 signal(s)
+
+- Codes: `NEW_GAME_OBJECT`
+- Paths: `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureDisabledSignalTests.cs`
+  - `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureDisabledSignalTests.cs:27` **NEW_GAME_OBJECT** — `_creature = new GameObject("Creature_swarm_bug");`
 
 ### `Ziptide.Tests.EditMode.DispatchKioskSpatialContractTests` — 1 signal(s)
 
@@ -3492,11 +3498,13 @@ None.
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestTableRuntime.cs:104` **SAVE_SYSTEM_REFERENCE** — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestTableRuntime.cs:414` **SAVE_SYSTEM_REFERENCE** — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 
-### `Ziptide.Gameplay.CreatureRuntime` — 1 signal(s)
+### `Ziptide.Gameplay.CreatureRuntime` — 3 signal(s)
 
-- Codes: `SAVE_SYSTEM_REFERENCE`
+- Codes: `EVENT_DECLARATION`, `SAVE_SYSTEM_REFERENCE`, `STATIC_EVENT_DECLARATION`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:125` **SAVE_SYSTEM_REFERENCE** — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:64` **EVENT_DECLARATION** — `public static event System.Action<CreatureRuntime> CreatureDisabled;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:64` **STATIC_EVENT_DECLARATION** — `public static event System.Action<CreatureRuntime> CreatureDisabled;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:141` **SAVE_SYSTEM_REFERENCE** — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 
 ### `Ziptide.Gameplay.CreditsHud` — 1 signal(s)
 
@@ -4727,7 +4735,7 @@ None.
 
 - Codes: `FALLBACK_MARKER`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:77` **FALLBACK_MARKER** — `// ── Hit entry points (existing weapon plumbing) ─────────────────────`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:92` **FALLBACK_MARKER** — `// ── Hit entry points (existing weapon plumbing) ─────────────────────`
 
 ### `Ziptide.Gameplay.DevTools.DevMenu` — 1 signal(s)
 

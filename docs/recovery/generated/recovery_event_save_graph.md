@@ -1,7 +1,7 @@
 # ZIPTIDE Event and Save Ownership Graph
 
-- Scanned C# files: **740**
-- Evidence edges: **743**
+- Scanned C# files: **742**
+- Evidence edges: **748**
 - Named subscriptions without matching unsubscribe in the same owner: **58**
 
 This is a static ownership graph. An unmatched row is a review target, not automatic proof of a leak; process-lifetime static hooks may be intentional.
@@ -9,10 +9,10 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 ## Evidence counts
 
 - **AUTOSAVE:** 8
-- **EVENT_DECLARE:** 46
+- **EVENT_DECLARE:** 47
 - **EVENT_INVOKE:** 61
-- **EVENT_SUBSCRIBE:** 117
-- **EVENT_UNSUBSCRIBE:** 65
+- **EVENT_SUBSCRIBE:** 119
+- **EVENT_UNSUBSCRIBE:** 67
 - **PLAYER_PREFS_ACCESS:** 11
 - **PROFILE_FIELD_ACCESS:** 366
 - **SAVE_ACCESS:** 69
@@ -35,9 +35,9 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - `Ziptide.Gameplay.BeltCellSpec` subscribes `plate.transform.position` → `q` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltFloorRuntime.cs:297`
 - `Ziptide.Gameplay.BeltMinePortRuntime` subscribes `_mine.stored` → `_mine` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltMinePortRuntime.cs:128`
 - `Ziptide.Gameplay.BruiserBehavior` subscribes `transform.position` → `new` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/BruiserBehavior.cs:61`
-- `Ziptide.Gameplay.CreatureRuntime` subscribes `transform.position` → `flat` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:105`
-- `Ziptide.Gameplay.CreatureRuntime` subscribes `transform.position` → `flat` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:106`
-- `Ziptide.Gameplay.CreatureRuntime` subscribes `transform.position` → `flat` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:107`
+- `Ziptide.Gameplay.CreatureRuntime` subscribes `transform.position` → `flat` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:120`
+- `Ziptide.Gameplay.CreatureRuntime` subscribes `transform.position` → `flat` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:121`
+- `Ziptide.Gameplay.CreatureRuntime` subscribes `transform.position` → `flat` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:122`
 - `Ziptide.Gameplay.StunBolt` subscribes `transform.position` → `step` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/StunBolt.cs:65`
 - `Ziptide.Gameplay.ObjectiveBoard` subscribes `runtime.StepChanged` → `OnStepChanged` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:93`
 - `Ziptide.Gameplay.ObjectiveBoard` subscribes `runtime.JobCompleted` → `OnJobCompleted` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:94`
@@ -195,6 +195,10 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Content.CreatureBehaviorStateEvidence` · `Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs:263` · `profile` — `if (!states.Contains(profile.CounterState))`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Content.CreatureBehaviorStateEvidence` · `Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs:264` · `profile` — `errors.Add("COUNTER_NOT_ACTIVE:" + profile.CounterState);`
 
+### `CreatureDisabled`
+
+- **EVENT_DECLARE** · `Ziptide.Gameplay.CreatureRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:64` · `static System.Action<CreatureRuntime>` — `public static event System.Action<CreatureRuntime> CreatureDisabled;`
+
 ### `CreatureId`
 
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Content.CreatureBehaviorStateEvidence` · `Ziptide/Assets/Ziptide/Content/Runtime/Definitions/CreatureBehaviorReadabilityCatalog.cs:244` · `profile` — `if (string.IsNullOrWhiteSpace(profile.CreatureId)) errors.Add("CREATURE_ID_EMPTY");`
@@ -228,6 +232,13 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorReadabilityTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorReadabilityTests.cs:37` · `profile` — `profile.CreatureId + " readability profile invalid: " + string.Join(", ", errors));`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorReadabilityTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorReadabilityTests.cs:79` · `profile` — `Assert.IsTrue(assetIds.Contains(profile.CreatureId),`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.CreatureBehaviorReadabilityTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureBehaviorReadabilityTests.cs:80` · `profile` — `"stale/invented readability profile has no shipped CreatureDefinition: " + profile.CreatureId);`
+
+### `CreatureRuntime.CreatureDisabled`
+
+- **EVENT_SUBSCRIBE** · `Ziptide.Tests.EditMode.CreatureDisabledSignalTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureDisabledSignalTests.cs:25` · `OnDisabled` — `CreatureRuntime.CreatureDisabled += OnDisabled;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.EditMode.CreatureDisabledSignalTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureDisabledSignalTests.cs:36` · `OnDisabled` — `CreatureRuntime.CreatureDisabled -= OnDisabled;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Tests.EditMode.CreatureDisabledSignalTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureDisabledSignalTests.cs:98` · `thrower` — `CreatureRuntime.CreatureDisabled += thrower;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.EditMode.CreatureDisabledSignalTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/CreatureDisabledSignalTests.cs:108` · `thrower` — `CreatureRuntime.CreatureDisabled -= thrower;`
 
 ### `DestinationSelected`
 
@@ -336,7 +347,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Core.WorldResolveResult` · `Ziptide/Assets/Ziptide/Core/Runtime/Economy/ProfileEconomy.cs:66` · `profile` — `var world = profile.GetWorld(worldId, createIfMissing: true);`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.BeltCellSpec` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltFloorRuntime.cs:119` · `profile` — `var world = profile.GetWorld(gameObject.scene.name, createIfMissing);`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.BeltMinePortRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltMinePortRuntime.cs:54` · `profile` — `var world = profile.GetWorld(worldId, createIfMissing: true);`
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.CreatureRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:135` · `profile` — `profile.GetWorld(gameObject.scene.name, createIfMissing: true).ecologyPressures,`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.CreatureRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:151` · `profile` — `profile.GetWorld(gameObject.scene.name, createIfMissing: true).ecologyPressures,`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.EcologyDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs:95` · `profile` — `? profile.GetWorld(world, createIfMissing: true).ecologyPressures`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.BuildSocketRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/BuildSocketRuntime.cs:47` · `profile` — `return profile != null ? profile.GetWorld(_worldId, createIfMissing: true) : null;`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Gameplay.GardenPlotRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/GardenPlotRuntime.cs:91` · `profile` — `var world = profile.GetWorld(_worldId, createIfMissing: true);`
@@ -685,7 +696,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - **SAVE_ACCESS** · `Ziptide.Gameplay.BeltCellSpec` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltFloorRuntime.cs:117` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_ACCESS** · `Ziptide.Gameplay.BeltCellSpec` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltFloorRuntime.cs:618` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_ACCESS** · `Ziptide.Gameplay.BeltMinePortRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Automation/BeltMinePortRuntime.cs:52` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
-- **SAVE_ACCESS** · `Ziptide.Gameplay.CreatureRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:125` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
+- **SAVE_ACCESS** · `Ziptide.Gameplay.CreatureRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:141` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_ACCESS** · `Ziptide.Gameplay.EcologyDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/EcologyDirector.cs:93` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_ACCESS** · `Ziptide.Gameplay.NestRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/NestRuntime.cs:125` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 - **SAVE_ACCESS** · `Ziptide.Gameplay.WardenBehavior` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/WardenBehavior.cs:43` — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
@@ -1395,9 +1406,9 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 ### `transform.position`
 
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.BruiserBehavior` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/BruiserBehavior.cs:61` · `new` — `transform.position += new Vector3(Mathf.Sin(Time.time * 30f) * 0.008f, 0f, 0f);`
-- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.CreatureRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:105` · `flat` — `case PvpWeapon.TidePike: transform.position += flat * 0.75f; break; // committed thrust`
-- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.CreatureRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:106` · `flat` — `case PvpWeapon.BreakerBlade: transform.position += flat * 0.3f; break; // light stagger`
-- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.CreatureRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:107` · `flat` — `default: transform.position += flat * 0.5f; break; // gravity/net/etc kick`
+- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.CreatureRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:120` · `flat` — `case PvpWeapon.TidePike: transform.position += flat * 0.75f; break; // committed thrust`
+- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.CreatureRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:121` · `flat` — `case PvpWeapon.BreakerBlade: transform.position += flat * 0.3f; break; // light stagger`
+- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.CreatureRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/CreatureRuntime.cs:122` · `flat` — `default: transform.position += flat * 0.5f; break; // gravity/net/etc kick`
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.StunBolt` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Enemies/StunBolt.cs:65` · `step` — `transform.position += step;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.BootHoldState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs:1017` · `headDelta` — `transform.position += headDelta;`
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.QuestDeviceCorrectionsRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/QuestDeviceCorrectionsRuntime.cs:332` · `handAttach` — `transform.position += handAttach.position - grip.position;`
