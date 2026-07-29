@@ -298,6 +298,21 @@ jobs:
           buildMethod: Ziptide.Build.BuildAndroid.PatchScenesAndAudit
           allowDirtyBuild: true
 
+      # The audit already writes exactly what went wrong; it just wrote it into an artifact nobody
+      # could read without downloading and unzipping it. Same lesson as the EditMode gate: a red that
+      # cannot be read from the log costs a manual dig every single time (docs/FAST_LANE.md §4).
+      - name: Name the audit blockers
+        if: failure()
+        shell: bash
+        run: |
+          set +e
+          echo "── Audit blockers ──────────────────────────────────────────────"
+          grep -rhiE 'BLOCKER|Required build step failed|ZIPTIDE: .*_FAIL' \
+            docs/AUDIT_REPORT.* "${PROJECT_PATH}/Builds/Reports/" 2>/dev/null | head -60
+          echo "── Audit report head ───────────────────────────────────────────"
+          head -80 docs/AUDIT_REPORT.md 2>/dev/null
+          exit 0
+
       - name: Upload audit report
         uses: actions/upload-artifact@v4
         if: always()
