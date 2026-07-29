@@ -1,25 +1,25 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-29T22:06:14.363929+00:00",
+  "generatedAtUtc": "2026-07-29T22:31:10.433449+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
     "Ziptide/Assets/Ziptide",
     "Ziptide/Assets/ZiptideNet"
   ],
-  "scannedFiles": 787,
-  "findingCount": 2847,
+  "scannedFiles": 791,
+  "findingCount": 2859,
   "categoryCounts": {
     "bootstrap": 46,
-    "diagnostics": 681,
+    "diagnostics": 682,
     "events": 71,
     "fallback_debt": 176,
     "global_render": 94,
     "input": 230,
-    "materials": 272,
+    "materials": 275,
     "persistence": 28,
-    "runtime_creation": 726,
+    "runtime_creation": 734,
     "runtime_ui": 132,
     "save_state": 289,
     "scene_loading": 9,
@@ -30,7 +30,7 @@
     "CAMERA_MAIN_REFERENCE": 53,
     "CAMERA_POST_PROCESSING": 1,
     "CANVAS_COMPONENT": 5,
-    "CREATE_PRIMITIVE": 271,
+    "CREATE_PRIMITIVE": 276,
     "DIRECT_SCENE_LOAD": 2,
     "DIRECT_SCENE_LOAD_ASYNC": 7,
     "DONT_DESTROY_ON_LOAD": 28,
@@ -41,13 +41,13 @@
     "FRAME_BUTTON_POLL": 1,
     "INPUT_ACTION_REFERENCE": 219,
     "INPUT_BUTTON_REFERENCE": 10,
-    "NEW_GAME_OBJECT": 455,
+    "NEW_GAME_OBJECT": 458,
     "PLAYER_PROFILE_REFERENCE": 153,
     "RENDER_SETTINGS_MUTATION": 39,
     "RUNTIME_BOOTSTRAP": 36,
-    "RUNTIME_MATERIAL_CREATE": 104,
+    "RUNTIME_MATERIAL_CREATE": 105,
     "SAVE_SYSTEM_REFERENCE": 127,
-    "SHADER_FIND": 168,
+    "SHADER_FIND": 170,
     "STATIC_EVENT_DECLARATION": 19,
     "TEXTMESH_COMPONENT": 54,
     "TMP_COMPONENT": 3,
@@ -57,7 +57,7 @@
     "XRI_MANAGER_LOOKUP": 45,
     "XR_INTERACTABLE_COMPONENT": 66,
     "XR_UI_INPUT_MODULE": 2,
-    "ZIPTIDE_LOG_TAG": 681
+    "ZIPTIDE_LOG_TAG": 682
   },
   "findings": [
     {
@@ -869,6 +869,15 @@
       "line": 47,
       "symbol": "Ziptide.Editor.Patching.AmbientMoteAuthor",
       "snippet": "Debug.Log(\"ZIPTIDE: AMBIENT_MOTES_AUTHORED recipe=\" + recipeId +"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs",
+      "line": 77,
+      "symbol": "Ziptide.Editor.Patching.CityWayfindingAuthor",
+      "snippet": "Debug.Log(\"ZIPTIDE: WAYFINDING lanterns=\" + lanterns + \" legs=\" + Mathf.Max(0, route.Count - 1)"
     },
     {
       "category": "diagnostics",
@@ -11782,6 +11791,15 @@
       "category": "materials",
       "code": "RUNTIME_MATERIAL_CREATE",
       "description": "Runtime Material allocation",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs",
+      "line": 298,
+      "symbol": "Ziptide.Editor.Patching.CityWayfindingAuthor",
+      "snippet": "var mat = new Material(shader);"
+    },
+    {
+      "category": "materials",
+      "code": "RUNTIME_MATERIAL_CREATE",
+      "description": "Runtime Material allocation",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ForgeBaker.cs",
       "line": 215,
       "symbol": "Ziptide.Editor.Patching.ForgeBaker",
@@ -12730,6 +12748,24 @@
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityStageAPrimitiveFactory.cs",
       "line": 71,
       "symbol": "Ziptide.Editor.Patching.CityStageAPrimitiveFactory",
+      "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
+    },
+    {
+      "category": "materials",
+      "code": "SHADER_FIND",
+      "description": "Runtime shader lookup",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs",
+      "line": 295,
+      "symbol": "Ziptide.Editor.Patching.CityWayfindingAuthor",
+      "snippet": "var shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
+    },
+    {
+      "category": "materials",
+      "code": "SHADER_FIND",
+      "description": "Runtime shader lookup",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs",
+      "line": 296,
+      "symbol": "Ziptide.Editor.Patching.CityWayfindingAuthor",
       "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
     },
     {
@@ -14608,6 +14644,51 @@
       "category": "runtime_creation",
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs",
+      "line": 138,
+      "symbol": "Ziptide.Editor.Patching.CityWayfindingAuthor",
+      "snippet": "var globe = GameObject.CreatePrimitive(PrimitiveType.Sphere);"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "CREATE_PRIMITIVE",
+      "description": "Runtime primitive construction",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs",
+      "line": 203,
+      "symbol": "Ziptide.Editor.Patching.CityWayfindingAuthor",
+      "snippet": "var strobe = GameObject.CreatePrimitive(PrimitiveType.Sphere);"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "CREATE_PRIMITIVE",
+      "description": "Runtime primitive construction",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs",
+      "line": 228,
+      "symbol": "Ziptide.Editor.Patching.CityWayfindingAuthor",
+      "snippet": "var lamp = GameObject.CreatePrimitive(PrimitiveType.Cube);"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "CREATE_PRIMITIVE",
+      "description": "Runtime primitive construction",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs",
+      "line": 255,
+      "symbol": "Ziptide.Editor.Patching.CityWayfindingAuthor",
+      "snippet": "var lens = GameObject.CreatePrimitive(PrimitiveType.Cube);"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "CREATE_PRIMITIVE",
+      "description": "Runtime primitive construction",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs",
+      "line": 278,
+      "symbol": "Ziptide.Editor.Patching.CityWayfindingAuthor",
+      "snippet": "var go = GameObject.CreatePrimitive(PrimitiveType.Cube);"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "CREATE_PRIMITIVE",
+      "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs",
       "line": 109,
       "symbol": "Ziptide.Editor.FirstHourSurfaceAuthor",
@@ -14924,7 +15005,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-      "line": 129,
+      "line": 134,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
       "snippet": "var target = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -14933,7 +15014,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-      "line": 141,
+      "line": 146,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
       "snippet": "var post = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -17056,6 +17137,33 @@
       "category": "runtime_creation",
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs",
+      "line": 70,
+      "symbol": "Ziptide.Editor.Patching.CityWayfindingAuthor",
+      "snippet": "Transform root = new GameObject(RootName).transform;"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs",
+      "line": 129,
+      "symbol": "Ziptide.Editor.Patching.CityWayfindingAuthor",
+      "snippet": "Transform t = new GameObject(name).transform;"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityWayfindingAuthor.cs",
+      "line": 269,
+      "symbol": "Ziptide.Editor.Patching.CityWayfindingAuthor",
+      "snippet": "var t = new GameObject(name).transform;"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs",
       "line": 91,
       "symbol": "Ziptide.Editor.FirstHourSurfaceAuthor",
@@ -17795,7 +17903,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-      "line": 159,
+      "line": 164,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
       "snippet": "var zip = new GameObject(ZipName);"
     },
@@ -17804,7 +17912,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-      "line": 269,
+      "line": 274,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
       "snippet": "var go = new GameObject(name);"
     },
