@@ -1,8 +1,8 @@
 {
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
-  "scannedFiles": 742,
-  "findingCount": 2683,
+  "scannedFiles": 745,
+  "findingCount": 2718,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -518,6 +518,74 @@
             "line": 40,
             "symbol": "Ziptide.Gameplay.EcologyDirector",
             "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Gameplay.FirstHourDirector",
+        "evidenceCount": 3,
+        "codes": [
+          "DONT_DESTROY_ON_LOAD",
+          "RUNTIME_BOOTSTRAP"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs"
+        ],
+        "evidence": [
+          {
+            "code": "RUNTIME_BOOTSTRAP",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+            "line": 56,
+            "symbol": "Ziptide.Gameplay.FirstHourDirector",
+            "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]"
+          },
+          {
+            "code": "DONT_DESTROY_ON_LOAD",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+            "line": 61,
+            "symbol": "Ziptide.Gameplay.FirstHourDirector",
+            "snippet": "DontDestroyOnLoad(go);"
+          },
+          {
+            "code": "DONT_DESTROY_ON_LOAD",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+            "line": 69,
+            "symbol": "Ziptide.Gameplay.FirstHourDirector",
+            "snippet": "DontDestroyOnLoad(gameObject);"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Gameplay.FirstHourW001Orchestrator",
+        "evidenceCount": 3,
+        "codes": [
+          "DONT_DESTROY_ON_LOAD",
+          "RUNTIME_BOOTSTRAP"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourW001Orchestrator.cs"
+        ],
+        "evidence": [
+          {
+            "code": "RUNTIME_BOOTSTRAP",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourW001Orchestrator.cs",
+            "line": 52,
+            "symbol": "Ziptide.Gameplay.FirstHourW001Orchestrator",
+            "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]"
+          },
+          {
+            "code": "DONT_DESTROY_ON_LOAD",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourW001Orchestrator.cs",
+            "line": 57,
+            "symbol": "Ziptide.Gameplay.FirstHourW001Orchestrator",
+            "snippet": "DontDestroyOnLoad(go);"
+          },
+          {
+            "code": "DONT_DESTROY_ON_LOAD",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourW001Orchestrator.cs",
+            "line": 65,
+            "symbol": "Ziptide.Gameplay.FirstHourW001Orchestrator",
+            "snippet": "DontDestroyOnLoad(gameObject);"
           }
         ]
       },
@@ -7858,6 +7926,44 @@
         ]
       },
       {
+        "owner": "Ziptide.Gameplay.FirstHourDirector",
+        "evidenceCount": 1,
+        "codes": [
+          "NEW_GAME_OBJECT"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs"
+        ],
+        "evidence": [
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+            "line": 60,
+            "symbol": "Ziptide.Gameplay.FirstHourDirector",
+            "snippet": "var go = new GameObject(\"__FirstHourDirector\");"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Gameplay.FirstHourW001Orchestrator",
+        "evidenceCount": 1,
+        "codes": [
+          "NEW_GAME_OBJECT"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourW001Orchestrator.cs"
+        ],
+        "evidence": [
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourW001Orchestrator.cs",
+            "line": 56,
+            "symbol": "Ziptide.Gameplay.FirstHourW001Orchestrator",
+            "snippet": "var go = new GameObject(\"__FirstHourW001Orchestrator\");"
+          }
+        ]
+      },
+      {
         "owner": "Ziptide.Gameplay.GardenPlotRuntime",
         "evidenceCount": 8,
         "codes": [
@@ -10101,42 +10207,42 @@
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs",
-            "line": 217,
+            "line": 241,
             "symbol": "Ziptide.Gameplay.RillCompanion",
             "snippet": "_orb = GameObject.CreatePrimitive(PrimitiveType.Sphere);"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs",
-            "line": 225,
+            "line": 249,
             "symbol": "Ziptide.Gameplay.RillCompanion",
             "snippet": "var shader = Shader.Find(\"Universal Render Pipeline/Unlit\");"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs",
-            "line": 226,
+            "line": 250,
             "symbol": "Ziptide.Gameplay.RillCompanion",
             "snippet": "if (shader == null) shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
           },
           {
             "code": "RUNTIME_MATERIAL_CREATE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs",
-            "line": 229,
+            "line": 253,
             "symbol": "Ziptide.Gameplay.RillCompanion",
             "snippet": "_orbMat = new Material(shader);"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs",
-            "line": 238,
+            "line": 262,
             "symbol": "Ziptide.Gameplay.RillCompanion",
             "snippet": "var go = new GameObject(\"__RillSubtitle\");"
           },
           {
             "code": "TEXTMESH_COMPONENT",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs",
-            "line": 239,
+            "line": 263,
             "symbol": "Ziptide.Gameplay.RillCompanion",
             "snippet": "_text = go.AddComponent<TextMesh>();"
           }
@@ -16010,6 +16116,68 @@
         ]
       },
       {
+        "owner": "Ziptide.Gameplay.FirstHourDirector",
+        "evidenceCount": 7,
+        "codes": [
+          "PLAYER_PROFILE_REFERENCE",
+          "SAVE_SYSTEM_REFERENCE"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs"
+        ],
+        "evidence": [
+          {
+            "code": "PLAYER_PROFILE_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+            "line": 126,
+            "symbol": "Ziptide.Gameplay.FirstHourDirector",
+            "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
+          },
+          {
+            "code": "SAVE_SYSTEM_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+            "line": 126,
+            "symbol": "Ziptide.Gameplay.FirstHourDirector",
+            "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
+          },
+          {
+            "code": "PLAYER_PROFILE_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+            "line": 254,
+            "symbol": "Ziptide.Gameplay.FirstHourDirector",
+            "snippet": "private void OnNewGameProfile(PlayerProfile profile) => Accept(\"NEW_GAME_PROFILE_CREATED\");"
+          },
+          {
+            "code": "PLAYER_PROFILE_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+            "line": 364,
+            "symbol": "Ziptide.Gameplay.FirstHourDirector",
+            "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
+          },
+          {
+            "code": "SAVE_SYSTEM_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+            "line": 364,
+            "symbol": "Ziptide.Gameplay.FirstHourDirector",
+            "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
+          },
+          {
+            "code": "PLAYER_PROFILE_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+            "line": 371,
+            "symbol": "Ziptide.Gameplay.FirstHourDirector",
+            "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
+          },
+          {
+            "code": "SAVE_SYSTEM_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+            "line": 371,
+            "symbol": "Ziptide.Gameplay.FirstHourDirector",
+            "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
+          }
+        ]
+      },
+      {
         "owner": "Ziptide.Gameplay.FirstHourHolsterSignal",
         "evidenceCount": 1,
         "codes": [
@@ -16025,6 +16193,33 @@
             "line": 15,
             "symbol": "Ziptide.Gameplay.FirstHourHolsterSignal",
             "snippet": "PlayerProfile profile,"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Gameplay.FirstHourW001Orchestrator",
+        "evidenceCount": 2,
+        "codes": [
+          "PLAYER_PROFILE_REFERENCE",
+          "SAVE_SYSTEM_REFERENCE"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourW001Orchestrator.cs"
+        ],
+        "evidence": [
+          {
+            "code": "PLAYER_PROFILE_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourW001Orchestrator.cs",
+            "line": 158,
+            "symbol": "Ziptide.Gameplay.FirstHourW001Orchestrator",
+            "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
+          },
+          {
+            "code": "SAVE_SYSTEM_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourW001Orchestrator.cs",
+            "line": 158,
+            "symbol": "Ziptide.Gameplay.FirstHourW001Orchestrator",
+            "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
           }
         ]
       },
@@ -16668,7 +16863,7 @@
       },
       {
         "owner": "Ziptide.Gameplay.RillCompanion",
-        "evidenceCount": 4,
+        "evidenceCount": 5,
         "codes": [
           "SAVE_SYSTEM_REFERENCE"
         ],
@@ -16686,21 +16881,28 @@
           {
             "code": "SAVE_SYSTEM_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs",
-            "line": 122,
+            "line": 132,
             "symbol": "Ziptide.Gameplay.RillCompanion",
             "snippet": "var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
           },
           {
             "code": "SAVE_SYSTEM_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs",
-            "line": 151,
+            "line": 146,
             "symbol": "Ziptide.Gameplay.RillCompanion",
             "snippet": "var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
           },
           {
             "code": "SAVE_SYSTEM_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs",
-            "line": 266,
+            "line": 175,
+            "symbol": "Ziptide.Gameplay.RillCompanion",
+            "snippet": "var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
+          },
+          {
+            "code": "SAVE_SYSTEM_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs",
+            "line": 290,
             "symbol": "Ziptide.Gameplay.RillCompanion",
             "snippet": "var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
           }
@@ -19028,6 +19230,25 @@
         ]
       },
       {
+        "owner": "Ziptide.Gameplay.FirstHourW001Orchestrator",
+        "evidenceCount": 1,
+        "codes": [
+          "CAMERA_MAIN_REFERENCE"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourW001Orchestrator.cs"
+        ],
+        "evidence": [
+          {
+            "code": "CAMERA_MAIN_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourW001Orchestrator.cs",
+            "line": 102,
+            "symbol": "Ziptide.Gameplay.FirstHourW001Orchestrator",
+            "snippet": "Camera cam = Camera.main;"
+          }
+        ]
+      },
+      {
         "owner": "Ziptide.Gameplay.GardenPlotRuntime",
         "evidenceCount": 1,
         "codes": [
@@ -19327,7 +19548,7 @@
           {
             "code": "CAMERA_MAIN_REFERENCE",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs",
-            "line": 210,
+            "line": 234,
             "symbol": "Ziptide.Gameplay.RillCompanion",
             "snippet": "if (cam == null) cam = Camera.main;"
           }
@@ -20852,6 +21073,53 @@
             "line": 71,
             "symbol": "Ziptide.Gameplay.EmergencyRespawn",
             "snippet": "// Fallback: teleport to SpawnMarkerRuntime."
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Gameplay.FirstHourW001Orchestrator",
+        "evidenceCount": 5,
+        "codes": [
+          "FALLBACK_MARKER"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourW001Orchestrator.cs"
+        ],
+        "evidence": [
+          {
+            "code": "FALLBACK_MARKER",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourW001Orchestrator.cs",
+            "line": 132,
+            "symbol": "Ziptide.Gameplay.FirstHourW001Orchestrator",
+            "snippet": "CreatureRuntime fallback = null;"
+          },
+          {
+            "code": "FALLBACK_MARKER",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourW001Orchestrator.cs",
+            "line": 138,
+            "symbol": "Ziptide.Gameplay.FirstHourW001Orchestrator",
+            "snippet": "if (fallback == null) fallback = candidate;"
+          },
+          {
+            "code": "FALLBACK_MARKER",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourW001Orchestrator.cs",
+            "line": 143,
+            "symbol": "Ziptide.Gameplay.FirstHourW001Orchestrator",
+            "snippet": "if (fallback != null && !_speciesFallbackLogged)"
+          },
+          {
+            "code": "FALLBACK_MARKER",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourW001Orchestrator.cs",
+            "line": 147,
+            "symbol": "Ziptide.Gameplay.FirstHourW001Orchestrator",
+            "snippet": "+ \" using=\" + fallback.creatureId);"
+          },
+          {
+            "code": "FALLBACK_MARKER",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourW001Orchestrator.cs",
+            "line": 149,
+            "symbol": "Ziptide.Gameplay.FirstHourW001Orchestrator",
+            "snippet": "return fallback;"
           }
         ]
       },

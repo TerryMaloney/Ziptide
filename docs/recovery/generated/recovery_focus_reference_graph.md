@@ -1,7 +1,7 @@
 # ZIPTIDE Focused Recovery Reference Graph
 
-- Scanned C# files: **742**
-- Focused references: **427**
+- Scanned C# files: **745**
+- Focused references: **436**
 
 ## melee
 
@@ -147,9 +147,9 @@
 
 ## repairObjective
 
-- References: **218**
-- Files: **53**
-- Non-declaration caller files: **52**
+- References: **226**
+- Files: **54**
+- Non-declaration caller files: **53**
 
 ### `CastOffArming`
 
@@ -240,6 +240,8 @@
 - **reference** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:151` — `// The machine is spawned at runtime by JobDirector, so keep looking until found —`
 - **reference** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:160` — `// observes and its repaired state — divergence from the JobDirector-spawned machine`
 - **reference** · `Ziptide.Gameplay.TransmissionConsole` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/TransmissionConsole.cs:12` — `/// screen. Spawned by JobDirector next to any fragment pickup (the playback device lives where the`
+- **reference** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:187` — `// finishes loading — JobDirector materialises them in its own Start. Rebind a moment later.`
+- **reference** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:213` — `var director = FindObjectOfType<JobDirector>();`
 - **reference** · `Ziptide.Gameplay.HazardZoneRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HazardZoneRuntime.cs:10` — `/// Player detection is a cheap poll against the rig position (same style as JobDirector's marker`
 - **reference** · `Ziptide.Tests.EditMode.JobDirectorMarkerResolutionTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/JobDirectorMarkerResolutionTests.cs:14` — `public class JobDirectorMarkerResolutionTests`
 - **reference** · `Ziptide.Tests.EditMode.JobDirectorMarkerResolutionTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/JobDirectorMarkerResolutionTests.cs:22` — `_director = new GameObject("JobDirector");`
@@ -260,6 +262,8 @@
 - **reference** · `Ziptide.Gameplay.ObjectiveBoard` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:18` — `private JobRuntime _subscribedRuntime;`
 - **reference** · `Ziptide.Gameplay.ObjectiveBoard` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:85` — `JobRuntime runtime = jobDirector != null ? jobDirector.Runtime : null;`
 - **reference** · `Ziptide.Gameplay.ObjectiveBoard` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:141` — `JobRuntime runtime = jobDirector.Runtime;`
+- **reference** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:14` — `/// choice, the comfort console owns comfort, RepairableMachine owns repair stages, JobRuntime owns`
+- **reference** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:47` — `private JobRuntime _job;`
 - **reference** · `Ziptide.Tests.EditMode.JobRuntimeCollectTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/JobRuntimeCollectTests.cs:13` — `public class JobRuntimeCollectTests`
 - **reference** · `Ziptide.Tests.EditMode.JobRuntimeCollectTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/JobRuntimeCollectTests.cs:42` — `var rt = new JobRuntime();`
 - **reference** · `Ziptide.Tests.EditMode.JobRuntimeCollectTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/JobRuntimeCollectTests.cs:57` — `var rt = new JobRuntime();`
@@ -345,6 +349,10 @@
 - **reference** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:27` — `[Tooltip("RepairableMachine id that must be RUNNING before PUNCH IT arms (empty = no gate).")]`
 - **reference** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:31` — `private RepairableMachine _armingMachine; // cached once found; absence is re-checked per press`
 - **reference** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:153` — `foreach (var m in FindObjectsOfType<RepairableMachine>())`
+- **reference** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:14` — `/// choice, the comfort console owns comfort, RepairableMachine owns repair stages, JobRuntime owns`
+- **reference** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:44` — `private readonly List<RepairableMachine> _machines = new List<RepairableMachine>();`
+- **reference** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:200` — `_machines.AddRange(FindObjectsOfType<RepairableMachine>(true));`
+- **reference** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:310` — `var machine = result.Targets[i].Source as RepairableMachine;`
 - **reference** · `Ziptide.Tests.EditMode.FirstRouteFeelTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/FirstRouteFeelTests.cs:19` — `string source = ReadCode("Gameplay", "Runtime", "Story", "RepairableMachine.cs");`
 - **reference** · `Ziptide.Tests.EditMode.FirstRouteFeelTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/FirstRouteFeelTests.cs:37` — `string source = ReadCode("Gameplay", "Runtime", "Story", "RepairableMachine.cs");`
 - **reference** · `Ziptide.Tests.EditMode.QuestWeaponAndCouplerRegressionTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/QuestWeaponAndCouplerRegressionTests.cs:123` — `var machine = machineRoot.AddComponent<RepairableMachine>();`
@@ -401,9 +409,9 @@
 
 ## shipPresentation
 
-- References: **97**
-- Files: **18**
-- Non-declaration caller files: **15**
+- References: **98**
+- Files: **19**
+- Non-declaration caller files: **16**
 
 ### `Fuselage_Aft`
 
@@ -509,6 +517,7 @@
 
 ### `ShipRefit`
 
+- **reference** · `Ziptide.Gameplay.FirstHourW001Orchestrator` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourW001Orchestrator.cs:179` — `/// "JourneyDecals" rail by ShipRefit. Looking for the object — not the flag that earned it —`
 - **reference** · `Ziptide.Gameplay.ConquestMissionRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:372` — `/// Public sibling, never a nested MonoBehaviour (the ShipRefitBaseXf lesson).</summary>`
 - **reference** · `Ziptide.Gameplay.HangarBayRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs:13` — `/// equips via ShipLocker (profile-flag persistence) and re-runs ShipRefit LIVE on the berth hull —`
 - **reference** · `Ziptide.Gameplay.HangarBayRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HangarBayRuntime.cs:19` — `[Tooltip("The hull root ShipRefit applies to (the boarding station's ship).")]`

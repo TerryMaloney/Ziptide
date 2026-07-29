@@ -1,16 +1,16 @@
 {
   "tool": "recovery_event_save_graph",
-  "scannedFiles": 742,
-  "evidenceCount": 748,
+  "scannedFiles": 745,
+  "evidenceCount": 792,
   "kindCounts": {
     "AUTOSAVE": 8,
     "EVENT_DECLARE": 47,
     "EVENT_INVOKE": 61,
-    "EVENT_SUBSCRIBE": 119,
-    "EVENT_UNSUBSCRIBE": 67,
+    "EVENT_SUBSCRIBE": 134,
+    "EVENT_UNSUBSCRIBE": 82,
     "PLAYER_PREFS_ACCESS": 11,
-    "PROFILE_FIELD_ACCESS": 366,
-    "SAVE_ACCESS": 69
+    "PROFILE_FIELD_ACCESS": 375,
+    "SAVE_ACCESS": 74
   },
   "unmatchedNamedSubscriptionCount": 58,
   "unmatchedNamedSubscriptions": [
@@ -1178,6 +1178,26 @@
         "snippet": "public static event Action<HomeHubChoice> ChoiceSelected;"
       }
     ],
+    "ComfortConsoleRuntime.PresetConfirmed": [
+      {
+        "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+        "line": 152,
+        "owner": "Ziptide.Gameplay.FirstHourDirector",
+        "target": "ComfortConsoleRuntime.PresetConfirmed",
+        "detail": "OnComfortConfirmed",
+        "snippet": "ComfortConsoleRuntime.PresetConfirmed += OnComfortConfirmed;"
+      },
+      {
+        "kind": "EVENT_UNSUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+        "line": 170,
+        "owner": "Ziptide.Gameplay.FirstHourDirector",
+        "target": "ComfortConsoleRuntime.PresetConfirmed",
+        "detail": "OnComfortConfirmed",
+        "snippet": "ComfortConsoleRuntime.PresetConfirmed -= OnComfortConfirmed;"
+      }
+    ],
     "CounterState": [
       {
         "kind": "PROFILE_FIELD_ACCESS",
@@ -1491,6 +1511,24 @@
       }
     ],
     "CreatureRuntime.CreatureDisabled": [
+      {
+        "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+        "line": 157,
+        "owner": "Ziptide.Gameplay.FirstHourDirector",
+        "target": "CreatureRuntime.CreatureDisabled",
+        "detail": "OnCreatureDisabled",
+        "snippet": "CreatureRuntime.CreatureDisabled += OnCreatureDisabled;"
+      },
+      {
+        "kind": "EVENT_UNSUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+        "line": 175,
+        "owner": "Ziptide.Gameplay.FirstHourDirector",
+        "target": "CreatureRuntime.CreatureDisabled",
+        "detail": "OnCreatureDisabled",
+        "snippet": "CreatureRuntime.CreatureDisabled -= OnCreatureDisabled;"
+      },
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Tests/EditMode/CreatureDisabledSignalTests.cs",
@@ -1825,6 +1863,26 @@
         "snippet": "Assert.That(profile.Family, Is.EqualTo(\"utility\"));"
       }
     ],
+    "FirstDestinationHelmRuntime.FirstDestinationSelected": [
+      {
+        "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+        "line": 154,
+        "owner": "Ziptide.Gameplay.FirstHourDirector",
+        "target": "FirstDestinationHelmRuntime.FirstDestinationSelected",
+        "detail": "OnFirstDestinationSelected",
+        "snippet": "FirstDestinationHelmRuntime.FirstDestinationSelected += OnFirstDestinationSelected;"
+      },
+      {
+        "kind": "EVENT_UNSUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+        "line": 172,
+        "owner": "Ziptide.Gameplay.FirstHourDirector",
+        "target": "FirstDestinationHelmRuntime.FirstDestinationSelected",
+        "detail": "OnFirstDestinationSelected",
+        "snippet": "FirstDestinationHelmRuntime.FirstDestinationSelected -= OnFirstDestinationSelected;"
+      }
+    ],
     "FirstDestinationSelected": [
       {
         "kind": "EVENT_DECLARE",
@@ -1837,6 +1895,24 @@
       }
     ],
     "FirstHourBunkObjectRuntime.NamedBunkObjectGrabbed": [
+      {
+        "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+        "line": 153,
+        "owner": "Ziptide.Gameplay.FirstHourDirector",
+        "target": "FirstHourBunkObjectRuntime.NamedBunkObjectGrabbed",
+        "detail": "OnBunkObjectGrabbed",
+        "snippet": "FirstHourBunkObjectRuntime.NamedBunkObjectGrabbed += OnBunkObjectGrabbed;"
+      },
+      {
+        "kind": "EVENT_UNSUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+        "line": 171,
+        "owner": "Ziptide.Gameplay.FirstHourDirector",
+        "target": "FirstHourBunkObjectRuntime.NamedBunkObjectGrabbed",
+        "detail": "OnBunkObjectGrabbed",
+        "snippet": "FirstHourBunkObjectRuntime.NamedBunkObjectGrabbed -= OnBunkObjectGrabbed;"
+      },
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
@@ -1854,6 +1930,44 @@
         "target": "FirstHourBunkObjectRuntime.NamedBunkObjectGrabbed",
         "detail": "handler",
         "snippet": "FirstHourBunkObjectRuntime.NamedBunkObjectGrabbed -= handler;"
+      }
+    ],
+    "FirstHourObservationAdapter.Instance.SignalCompleted": [
+      {
+        "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+        "line": 161,
+        "owner": "Ziptide.Gameplay.FirstHourDirector",
+        "target": "FirstHourObservationAdapter.Instance.SignalCompleted",
+        "detail": "Accept",
+        "snippet": "FirstHourObservationAdapter.Instance.SignalCompleted += Accept;"
+      },
+      {
+        "kind": "EVENT_UNSUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+        "line": 179,
+        "owner": "Ziptide.Gameplay.FirstHourDirector",
+        "target": "FirstHourObservationAdapter.Instance.SignalCompleted",
+        "detail": "Accept",
+        "snippet": "FirstHourObservationAdapter.Instance.SignalCompleted -= Accept;"
+      },
+      {
+        "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourDirectorTests.cs",
+        "line": 107,
+        "owner": "Ziptide.Tests.EditMode.FirstHourDirectorTests",
+        "target": "FirstHourObservationAdapter.Instance.SignalCompleted",
+        "detail": "Accept",
+        "snippet": "StringAssert.Contains(\"FirstHourObservationAdapter.Instance.SignalCompleted += Accept\", source);"
+      },
+      {
+        "kind": "EVENT_UNSUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourDirectorTests.cs",
+        "line": 108,
+        "owner": "Ziptide.Tests.EditMode.FirstHourDirectorTests",
+        "target": "FirstHourObservationAdapter.Instance.SignalCompleted",
+        "detail": "Accept",
+        "snippet": "StringAssert.Contains(\"FirstHourObservationAdapter.Instance.SignalCompleted -= Accept\", source);"
       }
     ],
     "GetResource": [
@@ -2723,11 +2837,29 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs",
-        "line": 129,
+        "line": 135,
+        "owner": "Ziptide.Gameplay.RillCompanion",
+        "target": "HasFlag",
+        "detail": "profile",
+        "snippet": "if (profile.HasFlag(SaidFlagPrefix + line.id)) return false;"
+      },
+      {
+        "kind": "PROFILE_FIELD_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs",
+        "line": 153,
         "owner": "Ziptide.Gameplay.RillCompanion",
         "target": "HasFlag",
         "detail": "profile",
         "snippet": "if (line.once && profile != null && profile.HasFlag(SaidFlagPrefix + line.id)) continue;"
+      },
+      {
+        "kind": "PROFILE_FIELD_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourW001Orchestrator.cs",
+        "line": 159,
+        "owner": "Ziptide.Gameplay.FirstHourW001Orchestrator",
+        "target": "HasFlag",
+        "detail": "profile",
+        "snippet": "if (profile == null || !profile.HasFlag(ZiptideFlags.W001_COMPLETE)) return;"
       },
       {
         "kind": "PROFILE_FIELD_ACCESS",
@@ -2829,7 +2961,45 @@
         "snippet": "Assert.IsTrue(profile.HasFlag(ProbeFlag), \"Recovery probe flag was not persisted to disk.\");"
       }
     ],
+    "HolsterSocketInteractor.ItemHolstered": [
+      {
+        "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+        "line": 155,
+        "owner": "Ziptide.Gameplay.FirstHourDirector",
+        "target": "HolsterSocketInteractor.ItemHolstered",
+        "detail": "OnItemHolstered",
+        "snippet": "HolsterSocketInteractor.ItemHolstered += OnItemHolstered;"
+      },
+      {
+        "kind": "EVENT_UNSUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+        "line": 173,
+        "owner": "Ziptide.Gameplay.FirstHourDirector",
+        "target": "HolsterSocketInteractor.ItemHolstered",
+        "detail": "OnItemHolstered",
+        "snippet": "HolsterSocketInteractor.ItemHolstered -= OnItemHolstered;"
+      }
+    ],
     "HomeHubRuntime.BootPresentationReady": [
+      {
+        "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+        "line": 150,
+        "owner": "Ziptide.Gameplay.FirstHourDirector",
+        "target": "HomeHubRuntime.BootPresentationReady",
+        "detail": "OnBootReady",
+        "snippet": "HomeHubRuntime.BootPresentationReady += OnBootReady;"
+      },
+      {
+        "kind": "EVENT_UNSUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+        "line": 168,
+        "owner": "Ziptide.Gameplay.FirstHourDirector",
+        "target": "HomeHubRuntime.BootPresentationReady",
+        "detail": "OnBootReady",
+        "snippet": "HomeHubRuntime.BootPresentationReady -= OnBootReady;"
+      },
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryActualSceneSnapshotTests.cs",
@@ -2951,6 +3121,24 @@
       }
     ],
     "HomeHubRuntime.NewGameProfileCreated": [
+      {
+        "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+        "line": 151,
+        "owner": "Ziptide.Gameplay.FirstHourDirector",
+        "target": "HomeHubRuntime.NewGameProfileCreated",
+        "detail": "OnNewGameProfile",
+        "snippet": "HomeHubRuntime.NewGameProfileCreated += OnNewGameProfile;"
+      },
+      {
+        "kind": "EVENT_UNSUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+        "line": 169,
+        "owner": "Ziptide.Gameplay.FirstHourDirector",
+        "target": "HomeHubRuntime.NewGameProfileCreated",
+        "detail": "OnNewGameProfile",
+        "snippet": "HomeHubRuntime.NewGameProfileCreated -= OnNewGameProfile;"
+      },
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs",
@@ -4316,7 +4504,7 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs",
-        "line": 122,
+        "line": 132,
         "owner": "Ziptide.Gameplay.RillCompanion",
         "target": "SaveSystem.Profile",
         "detail": "",
@@ -4325,7 +4513,7 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs",
-        "line": 151,
+        "line": 146,
         "owner": "Ziptide.Gameplay.RillCompanion",
         "target": "SaveSystem.Profile",
         "detail": "",
@@ -4334,7 +4522,16 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs",
-        "line": 266,
+        "line": 175,
+        "owner": "Ziptide.Gameplay.RillCompanion",
+        "target": "SaveSystem.Profile",
+        "detail": "",
+        "snippet": "var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
+      },
+      {
+        "kind": "SAVE_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs",
+        "line": 290,
         "owner": "Ziptide.Gameplay.RillCompanion",
         "target": "SaveSystem.Profile",
         "detail": "",
@@ -4348,6 +4545,42 @@
         "target": "SaveSystem.Profile",
         "detail": "",
         "snippet": "var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
+      },
+      {
+        "kind": "SAVE_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+        "line": 126,
+        "owner": "Ziptide.Gameplay.FirstHourDirector",
+        "target": "SaveSystem.Profile",
+        "detail": "",
+        "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
+      },
+      {
+        "kind": "SAVE_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+        "line": 364,
+        "owner": "Ziptide.Gameplay.FirstHourDirector",
+        "target": "SaveSystem.Profile",
+        "detail": "",
+        "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
+      },
+      {
+        "kind": "SAVE_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+        "line": 371,
+        "owner": "Ziptide.Gameplay.FirstHourDirector",
+        "target": "SaveSystem.Profile",
+        "detail": "",
+        "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
+      },
+      {
+        "kind": "SAVE_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourW001Orchestrator.cs",
+        "line": 158,
+        "owner": "Ziptide.Gameplay.FirstHourW001Orchestrator",
+        "target": "SaveSystem.Profile",
+        "detail": "",
+        "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
       },
       {
         "kind": "SAVE_ACCESS",
@@ -4872,6 +5105,42 @@
       },
       {
         "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+        "line": 148,
+        "owner": "Ziptide.Gameplay.FirstHourDirector",
+        "target": "SceneManager.sceneLoaded",
+        "detail": "OnSceneLoaded",
+        "snippet": "SceneManager.sceneLoaded += OnSceneLoaded;"
+      },
+      {
+        "kind": "EVENT_UNSUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+        "line": 166,
+        "owner": "Ziptide.Gameplay.FirstHourDirector",
+        "target": "SceneManager.sceneLoaded",
+        "detail": "OnSceneLoaded",
+        "snippet": "SceneManager.sceneLoaded -= OnSceneLoaded;"
+      },
+      {
+        "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourW001Orchestrator.cs",
+        "line": 66,
+        "owner": "Ziptide.Gameplay.FirstHourW001Orchestrator",
+        "target": "SceneManager.sceneLoaded",
+        "detail": "OnSceneLoaded",
+        "snippet": "SceneManager.sceneLoaded += OnSceneLoaded;"
+      },
+      {
+        "kind": "EVENT_UNSUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourW001Orchestrator.cs",
+        "line": 72,
+        "owner": "Ziptide.Gameplay.FirstHourW001Orchestrator",
+        "target": "SceneManager.sceneLoaded",
+        "detail": "OnSceneLoaded",
+        "snippet": "SceneManager.sceneLoaded -= OnSceneLoaded;"
+      },
+      {
+        "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs",
         "line": 45,
         "owner": "Ziptide.Gameplay.ConquestMissionRuntime",
@@ -5046,11 +5315,38 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs",
-        "line": 130,
+        "line": 136,
+        "owner": "Ziptide.Gameplay.RillCompanion",
+        "target": "SetFlag",
+        "detail": "profile",
+        "snippet": "profile.SetFlag(SaidFlagPrefix + line.id);"
+      },
+      {
+        "kind": "PROFILE_FIELD_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs",
+        "line": 154,
         "owner": "Ziptide.Gameplay.RillCompanion",
         "target": "SetFlag",
         "detail": "profile",
         "snippet": "if (line.once && profile != null) profile.SetFlag(SaidFlagPrefix + line.id);"
+      },
+      {
+        "kind": "PROFILE_FIELD_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+        "line": 378,
+        "owner": "Ziptide.Gameplay.FirstHourDirector",
+        "target": "SetFlag",
+        "detail": "profile",
+        "snippet": "profile.SetFlag(flag);"
+      },
+      {
+        "kind": "PROFILE_FIELD_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+        "line": 382,
+        "owner": "Ziptide.Gameplay.FirstHourDirector",
+        "target": "SetFlag",
+        "detail": "profile",
+        "snippet": "if (flag == ContractDoneFlag) profile.SetFlag(ZiptideFlags.TUTORIAL_COMPLETE);"
       },
       {
         "kind": "PROFILE_FIELD_ACCESS",
@@ -5060,6 +5356,15 @@
         "target": "SetFlag",
         "detail": "profile",
         "snippet": "profile.SetFlag(\"SHIP_REFIT\"); // RILL notices the first refit"
+      },
+      {
+        "kind": "PROFILE_FIELD_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourDirectorTests.cs",
+        "line": 137,
+        "owner": "Ziptide.Tests.EditMode.FirstHourDirectorTests",
+        "target": "SetFlag",
+        "detail": "profile",
+        "snippet": "StringAssert.Contains(\"profile.SetFlag(ZiptideFlags.TUTORIAL_COMPLETE)\", source);"
       },
       {
         "kind": "PROFILE_FIELD_ACCESS",
@@ -5364,6 +5669,24 @@
     "TravelCoordinator.TravelCompleted": [
       {
         "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+        "line": 156,
+        "owner": "Ziptide.Gameplay.FirstHourDirector",
+        "target": "TravelCoordinator.TravelCompleted",
+        "detail": "OnTravelCompleted",
+        "snippet": "TravelCoordinator.TravelCompleted += OnTravelCompleted;"
+      },
+      {
+        "kind": "EVENT_UNSUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+        "line": 174,
+        "owner": "Ziptide.Gameplay.FirstHourDirector",
+        "target": "TravelCoordinator.TravelCompleted",
+        "detail": "OnTravelCompleted",
+        "snippet": "TravelCoordinator.TravelCompleted -= OnTravelCompleted;"
+      },
+      {
+        "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs",
         "line": 58,
         "owner": "Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests",
@@ -5437,6 +5760,26 @@
         "target": "Uses",
         "detail": "profile",
         "snippet": "// Pay the job's reward + set its completion flag into the live profile. Uses Architect's"
+      }
+    ],
+    "WristScanner.ScanResultPublished": [
+      {
+        "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+        "line": 158,
+        "owner": "Ziptide.Gameplay.FirstHourDirector",
+        "target": "WristScanner.ScanResultPublished",
+        "detail": "OnScanResult",
+        "snippet": "WristScanner.ScanResultPublished += OnScanResult;"
+      },
+      {
+        "kind": "EVENT_UNSUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+        "line": 176,
+        "owner": "Ziptide.Gameplay.FirstHourDirector",
+        "target": "WristScanner.ScanResultPublished",
+        "detail": "OnScanResult",
+        "snippet": "WristScanner.ScanResultPublished -= OnScanResult;"
       }
     ],
     "Ziptide.Core.FlightSignals.TargetDisabled": [
@@ -5557,6 +5900,46 @@
         "target": "_director.MatchEnded",
         "detail": "OnMatchEnded",
         "snippet": "_director.MatchEnded -= OnMatchEnded;"
+      }
+    ],
+    "_job.JobCompleted": [
+      {
+        "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+        "line": 219,
+        "owner": "Ziptide.Gameplay.FirstHourDirector",
+        "target": "_job.JobCompleted",
+        "detail": "OnJobCompleted",
+        "snippet": "_job.JobCompleted += OnJobCompleted;"
+      },
+      {
+        "kind": "EVENT_UNSUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+        "line": 245,
+        "owner": "Ziptide.Gameplay.FirstHourDirector",
+        "target": "_job.JobCompleted",
+        "detail": "OnJobCompleted",
+        "snippet": "_job.JobCompleted -= OnJobCompleted;"
+      }
+    ],
+    "_job.StepChanged": [
+      {
+        "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+        "line": 218,
+        "owner": "Ziptide.Gameplay.FirstHourDirector",
+        "target": "_job.StepChanged",
+        "detail": "OnJobStepChanged",
+        "snippet": "_job.StepChanged += OnJobStepChanged;"
+      },
+      {
+        "kind": "EVENT_UNSUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+        "line": 244,
+        "owner": "Ziptide.Gameplay.FirstHourDirector",
+        "target": "_job.StepChanged",
+        "detail": "OnJobStepChanged",
+        "snippet": "_job.StepChanged -= OnJobStepChanged;"
       }
     ],
     "_mine.stored": [
@@ -6148,7 +6531,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs",
-        "line": 152,
+        "line": 176,
         "owner": "Ziptide.Gameplay.RillCompanion",
         "target": "flags",
         "detail": "profile",
@@ -6157,7 +6540,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs",
-        "line": 159,
+        "line": 183,
         "owner": "Ziptide.Gameplay.RillCompanion",
         "target": "flags",
         "detail": "profile",
@@ -6166,7 +6549,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs",
-        "line": 163,
+        "line": 187,
         "owner": "Ziptide.Gameplay.RillCompanion",
         "target": "flags",
         "detail": "profile",
@@ -6175,8 +6558,35 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs",
-        "line": 165,
+        "line": 189,
         "owner": "Ziptide.Gameplay.RillCompanion",
+        "target": "flags",
+        "detail": "profile",
+        "snippet": "string flag = profile.flags[i];"
+      },
+      {
+        "kind": "PROFILE_FIELD_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+        "line": 127,
+        "owner": "Ziptide.Gameplay.FirstHourDirector",
+        "target": "flags",
+        "detail": "profile",
+        "snippet": "if (profile == null || profile.flags == null) return done;"
+      },
+      {
+        "kind": "PROFILE_FIELD_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+        "line": 129,
+        "owner": "Ziptide.Gameplay.FirstHourDirector",
+        "target": "flags",
+        "detail": "profile",
+        "snippet": "for (int i = 0; i < profile.flags.Count; i++)"
+      },
+      {
+        "kind": "PROFILE_FIELD_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+        "line": 131,
+        "owner": "Ziptide.Gameplay.FirstHourDirector",
         "target": "flags",
         "detail": "profile",
         "snippet": "string flag = profile.flags[i];"
@@ -10843,7 +11253,7 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs",
-      "line": 122,
+      "line": 132,
       "owner": "Ziptide.Gameplay.RillCompanion",
       "target": "SaveSystem.Profile",
       "detail": "",
@@ -10852,7 +11262,34 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs",
-      "line": 129,
+      "line": 135,
+      "owner": "Ziptide.Gameplay.RillCompanion",
+      "target": "HasFlag",
+      "detail": "profile",
+      "snippet": "if (profile.HasFlag(SaidFlagPrefix + line.id)) return false;"
+    },
+    {
+      "kind": "PROFILE_FIELD_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs",
+      "line": 136,
+      "owner": "Ziptide.Gameplay.RillCompanion",
+      "target": "SetFlag",
+      "detail": "profile",
+      "snippet": "profile.SetFlag(SaidFlagPrefix + line.id);"
+    },
+    {
+      "kind": "SAVE_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs",
+      "line": 146,
+      "owner": "Ziptide.Gameplay.RillCompanion",
+      "target": "SaveSystem.Profile",
+      "detail": "",
+      "snippet": "var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
+    },
+    {
+      "kind": "PROFILE_FIELD_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs",
+      "line": 153,
       "owner": "Ziptide.Gameplay.RillCompanion",
       "target": "HasFlag",
       "detail": "profile",
@@ -10861,7 +11298,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs",
-      "line": 130,
+      "line": 154,
       "owner": "Ziptide.Gameplay.RillCompanion",
       "target": "SetFlag",
       "detail": "profile",
@@ -10870,7 +11307,7 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs",
-      "line": 151,
+      "line": 175,
       "owner": "Ziptide.Gameplay.RillCompanion",
       "target": "SaveSystem.Profile",
       "detail": "",
@@ -10879,7 +11316,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs",
-      "line": 152,
+      "line": 176,
       "owner": "Ziptide.Gameplay.RillCompanion",
       "target": "flags",
       "detail": "profile",
@@ -10888,7 +11325,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs",
-      "line": 159,
+      "line": 183,
       "owner": "Ziptide.Gameplay.RillCompanion",
       "target": "flags",
       "detail": "profile",
@@ -10897,7 +11334,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs",
-      "line": 163,
+      "line": 187,
       "owner": "Ziptide.Gameplay.RillCompanion",
       "target": "flags",
       "detail": "profile",
@@ -10906,7 +11343,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs",
-      "line": 165,
+      "line": 189,
       "owner": "Ziptide.Gameplay.RillCompanion",
       "target": "flags",
       "detail": "profile",
@@ -10915,7 +11352,7 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RillCompanion.cs",
-      "line": 266,
+      "line": 290,
       "owner": "Ziptide.Gameplay.RillCompanion",
       "target": "SaveSystem.Profile",
       "detail": "",
@@ -10976,6 +11413,312 @@
       "snippet": "public static event Action<string> NamedBunkObjectGrabbed;"
     },
     {
+      "kind": "SAVE_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+      "line": 126,
+      "owner": "Ziptide.Gameplay.FirstHourDirector",
+      "target": "SaveSystem.Profile",
+      "detail": "",
+      "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
+    },
+    {
+      "kind": "PROFILE_FIELD_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+      "line": 127,
+      "owner": "Ziptide.Gameplay.FirstHourDirector",
+      "target": "flags",
+      "detail": "profile",
+      "snippet": "if (profile == null || profile.flags == null) return done;"
+    },
+    {
+      "kind": "PROFILE_FIELD_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+      "line": 129,
+      "owner": "Ziptide.Gameplay.FirstHourDirector",
+      "target": "flags",
+      "detail": "profile",
+      "snippet": "for (int i = 0; i < profile.flags.Count; i++)"
+    },
+    {
+      "kind": "PROFILE_FIELD_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+      "line": 131,
+      "owner": "Ziptide.Gameplay.FirstHourDirector",
+      "target": "flags",
+      "detail": "profile",
+      "snippet": "string flag = profile.flags[i];"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+      "line": 148,
+      "owner": "Ziptide.Gameplay.FirstHourDirector",
+      "target": "SceneManager.sceneLoaded",
+      "detail": "OnSceneLoaded",
+      "snippet": "SceneManager.sceneLoaded += OnSceneLoaded;"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+      "line": 150,
+      "owner": "Ziptide.Gameplay.FirstHourDirector",
+      "target": "HomeHubRuntime.BootPresentationReady",
+      "detail": "OnBootReady",
+      "snippet": "HomeHubRuntime.BootPresentationReady += OnBootReady;"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+      "line": 151,
+      "owner": "Ziptide.Gameplay.FirstHourDirector",
+      "target": "HomeHubRuntime.NewGameProfileCreated",
+      "detail": "OnNewGameProfile",
+      "snippet": "HomeHubRuntime.NewGameProfileCreated += OnNewGameProfile;"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+      "line": 152,
+      "owner": "Ziptide.Gameplay.FirstHourDirector",
+      "target": "ComfortConsoleRuntime.PresetConfirmed",
+      "detail": "OnComfortConfirmed",
+      "snippet": "ComfortConsoleRuntime.PresetConfirmed += OnComfortConfirmed;"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+      "line": 153,
+      "owner": "Ziptide.Gameplay.FirstHourDirector",
+      "target": "FirstHourBunkObjectRuntime.NamedBunkObjectGrabbed",
+      "detail": "OnBunkObjectGrabbed",
+      "snippet": "FirstHourBunkObjectRuntime.NamedBunkObjectGrabbed += OnBunkObjectGrabbed;"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+      "line": 154,
+      "owner": "Ziptide.Gameplay.FirstHourDirector",
+      "target": "FirstDestinationHelmRuntime.FirstDestinationSelected",
+      "detail": "OnFirstDestinationSelected",
+      "snippet": "FirstDestinationHelmRuntime.FirstDestinationSelected += OnFirstDestinationSelected;"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+      "line": 155,
+      "owner": "Ziptide.Gameplay.FirstHourDirector",
+      "target": "HolsterSocketInteractor.ItemHolstered",
+      "detail": "OnItemHolstered",
+      "snippet": "HolsterSocketInteractor.ItemHolstered += OnItemHolstered;"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+      "line": 156,
+      "owner": "Ziptide.Gameplay.FirstHourDirector",
+      "target": "TravelCoordinator.TravelCompleted",
+      "detail": "OnTravelCompleted",
+      "snippet": "TravelCoordinator.TravelCompleted += OnTravelCompleted;"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+      "line": 157,
+      "owner": "Ziptide.Gameplay.FirstHourDirector",
+      "target": "CreatureRuntime.CreatureDisabled",
+      "detail": "OnCreatureDisabled",
+      "snippet": "CreatureRuntime.CreatureDisabled += OnCreatureDisabled;"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+      "line": 158,
+      "owner": "Ziptide.Gameplay.FirstHourDirector",
+      "target": "WristScanner.ScanResultPublished",
+      "detail": "OnScanResult",
+      "snippet": "WristScanner.ScanResultPublished += OnScanResult;"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+      "line": 161,
+      "owner": "Ziptide.Gameplay.FirstHourDirector",
+      "target": "FirstHourObservationAdapter.Instance.SignalCompleted",
+      "detail": "Accept",
+      "snippet": "FirstHourObservationAdapter.Instance.SignalCompleted += Accept;"
+    },
+    {
+      "kind": "EVENT_UNSUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+      "line": 166,
+      "owner": "Ziptide.Gameplay.FirstHourDirector",
+      "target": "SceneManager.sceneLoaded",
+      "detail": "OnSceneLoaded",
+      "snippet": "SceneManager.sceneLoaded -= OnSceneLoaded;"
+    },
+    {
+      "kind": "EVENT_UNSUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+      "line": 168,
+      "owner": "Ziptide.Gameplay.FirstHourDirector",
+      "target": "HomeHubRuntime.BootPresentationReady",
+      "detail": "OnBootReady",
+      "snippet": "HomeHubRuntime.BootPresentationReady -= OnBootReady;"
+    },
+    {
+      "kind": "EVENT_UNSUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+      "line": 169,
+      "owner": "Ziptide.Gameplay.FirstHourDirector",
+      "target": "HomeHubRuntime.NewGameProfileCreated",
+      "detail": "OnNewGameProfile",
+      "snippet": "HomeHubRuntime.NewGameProfileCreated -= OnNewGameProfile;"
+    },
+    {
+      "kind": "EVENT_UNSUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+      "line": 170,
+      "owner": "Ziptide.Gameplay.FirstHourDirector",
+      "target": "ComfortConsoleRuntime.PresetConfirmed",
+      "detail": "OnComfortConfirmed",
+      "snippet": "ComfortConsoleRuntime.PresetConfirmed -= OnComfortConfirmed;"
+    },
+    {
+      "kind": "EVENT_UNSUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+      "line": 171,
+      "owner": "Ziptide.Gameplay.FirstHourDirector",
+      "target": "FirstHourBunkObjectRuntime.NamedBunkObjectGrabbed",
+      "detail": "OnBunkObjectGrabbed",
+      "snippet": "FirstHourBunkObjectRuntime.NamedBunkObjectGrabbed -= OnBunkObjectGrabbed;"
+    },
+    {
+      "kind": "EVENT_UNSUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+      "line": 172,
+      "owner": "Ziptide.Gameplay.FirstHourDirector",
+      "target": "FirstDestinationHelmRuntime.FirstDestinationSelected",
+      "detail": "OnFirstDestinationSelected",
+      "snippet": "FirstDestinationHelmRuntime.FirstDestinationSelected -= OnFirstDestinationSelected;"
+    },
+    {
+      "kind": "EVENT_UNSUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+      "line": 173,
+      "owner": "Ziptide.Gameplay.FirstHourDirector",
+      "target": "HolsterSocketInteractor.ItemHolstered",
+      "detail": "OnItemHolstered",
+      "snippet": "HolsterSocketInteractor.ItemHolstered -= OnItemHolstered;"
+    },
+    {
+      "kind": "EVENT_UNSUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+      "line": 174,
+      "owner": "Ziptide.Gameplay.FirstHourDirector",
+      "target": "TravelCoordinator.TravelCompleted",
+      "detail": "OnTravelCompleted",
+      "snippet": "TravelCoordinator.TravelCompleted -= OnTravelCompleted;"
+    },
+    {
+      "kind": "EVENT_UNSUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+      "line": 175,
+      "owner": "Ziptide.Gameplay.FirstHourDirector",
+      "target": "CreatureRuntime.CreatureDisabled",
+      "detail": "OnCreatureDisabled",
+      "snippet": "CreatureRuntime.CreatureDisabled -= OnCreatureDisabled;"
+    },
+    {
+      "kind": "EVENT_UNSUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+      "line": 176,
+      "owner": "Ziptide.Gameplay.FirstHourDirector",
+      "target": "WristScanner.ScanResultPublished",
+      "detail": "OnScanResult",
+      "snippet": "WristScanner.ScanResultPublished -= OnScanResult;"
+    },
+    {
+      "kind": "EVENT_UNSUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+      "line": 179,
+      "owner": "Ziptide.Gameplay.FirstHourDirector",
+      "target": "FirstHourObservationAdapter.Instance.SignalCompleted",
+      "detail": "Accept",
+      "snippet": "FirstHourObservationAdapter.Instance.SignalCompleted -= Accept;"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+      "line": 218,
+      "owner": "Ziptide.Gameplay.FirstHourDirector",
+      "target": "_job.StepChanged",
+      "detail": "OnJobStepChanged",
+      "snippet": "_job.StepChanged += OnJobStepChanged;"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+      "line": 219,
+      "owner": "Ziptide.Gameplay.FirstHourDirector",
+      "target": "_job.JobCompleted",
+      "detail": "OnJobCompleted",
+      "snippet": "_job.JobCompleted += OnJobCompleted;"
+    },
+    {
+      "kind": "EVENT_UNSUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+      "line": 244,
+      "owner": "Ziptide.Gameplay.FirstHourDirector",
+      "target": "_job.StepChanged",
+      "detail": "OnJobStepChanged",
+      "snippet": "_job.StepChanged -= OnJobStepChanged;"
+    },
+    {
+      "kind": "EVENT_UNSUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+      "line": 245,
+      "owner": "Ziptide.Gameplay.FirstHourDirector",
+      "target": "_job.JobCompleted",
+      "detail": "OnJobCompleted",
+      "snippet": "_job.JobCompleted -= OnJobCompleted;"
+    },
+    {
+      "kind": "SAVE_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+      "line": 364,
+      "owner": "Ziptide.Gameplay.FirstHourDirector",
+      "target": "SaveSystem.Profile",
+      "detail": "",
+      "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
+    },
+    {
+      "kind": "SAVE_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+      "line": 371,
+      "owner": "Ziptide.Gameplay.FirstHourDirector",
+      "target": "SaveSystem.Profile",
+      "detail": "",
+      "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
+    },
+    {
+      "kind": "PROFILE_FIELD_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+      "line": 378,
+      "owner": "Ziptide.Gameplay.FirstHourDirector",
+      "target": "SetFlag",
+      "detail": "profile",
+      "snippet": "profile.SetFlag(flag);"
+    },
+    {
+      "kind": "PROFILE_FIELD_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+      "line": 382,
+      "owner": "Ziptide.Gameplay.FirstHourDirector",
+      "target": "SetFlag",
+      "detail": "profile",
+      "snippet": "if (flag == ContractDoneFlag) profile.SetFlag(ZiptideFlags.TUTORIAL_COMPLETE);"
+    },
+    {
       "kind": "EVENT_DECLARE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourObservationAdapter.cs",
       "line": 38,
@@ -10992,6 +11735,42 @@
       "target": "SignalCompleted",
       "detail": "",
       "snippet": "SignalCompleted?.Invoke(_activeSignalId);"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourW001Orchestrator.cs",
+      "line": 66,
+      "owner": "Ziptide.Gameplay.FirstHourW001Orchestrator",
+      "target": "SceneManager.sceneLoaded",
+      "detail": "OnSceneLoaded",
+      "snippet": "SceneManager.sceneLoaded += OnSceneLoaded;"
+    },
+    {
+      "kind": "EVENT_UNSUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourW001Orchestrator.cs",
+      "line": 72,
+      "owner": "Ziptide.Gameplay.FirstHourW001Orchestrator",
+      "target": "SceneManager.sceneLoaded",
+      "detail": "OnSceneLoaded",
+      "snippet": "SceneManager.sceneLoaded -= OnSceneLoaded;"
+    },
+    {
+      "kind": "SAVE_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourW001Orchestrator.cs",
+      "line": 158,
+      "owner": "Ziptide.Gameplay.FirstHourW001Orchestrator",
+      "target": "SaveSystem.Profile",
+      "detail": "",
+      "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
+    },
+    {
+      "kind": "PROFILE_FIELD_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourW001Orchestrator.cs",
+      "line": 159,
+      "owner": "Ziptide.Gameplay.FirstHourW001Orchestrator",
+      "target": "HasFlag",
+      "detail": "profile",
+      "snippet": "if (profile == null || !profile.HasFlag(ZiptideFlags.W001_COMPLETE)) return;"
     },
     {
       "kind": "EVENT_SUBSCRIBE",
@@ -12387,6 +13166,33 @@
       "target": "SceneManager.sceneLoaded",
       "detail": "OnSceneLoaded",
       "snippet": "StringAssert.Contains(\"SceneManager.sceneLoaded += OnSceneLoaded\", feature);"
+    },
+    {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourDirectorTests.cs",
+      "line": 107,
+      "owner": "Ziptide.Tests.EditMode.FirstHourDirectorTests",
+      "target": "FirstHourObservationAdapter.Instance.SignalCompleted",
+      "detail": "Accept",
+      "snippet": "StringAssert.Contains(\"FirstHourObservationAdapter.Instance.SignalCompleted += Accept\", source);"
+    },
+    {
+      "kind": "EVENT_UNSUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourDirectorTests.cs",
+      "line": 108,
+      "owner": "Ziptide.Tests.EditMode.FirstHourDirectorTests",
+      "target": "FirstHourObservationAdapter.Instance.SignalCompleted",
+      "detail": "Accept",
+      "snippet": "StringAssert.Contains(\"FirstHourObservationAdapter.Instance.SignalCompleted -= Accept\", source);"
+    },
+    {
+      "kind": "PROFILE_FIELD_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/FirstHourDirectorTests.cs",
+      "line": 137,
+      "owner": "Ziptide.Tests.EditMode.FirstHourDirectorTests",
+      "target": "SetFlag",
+      "detail": "profile",
+      "snippet": "StringAssert.Contains(\"profile.SetFlag(ZiptideFlags.TUTORIAL_COMPLETE)\", source);"
     },
     {
       "kind": "PROFILE_FIELD_ACCESS",
