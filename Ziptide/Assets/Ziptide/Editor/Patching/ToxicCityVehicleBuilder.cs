@@ -110,17 +110,22 @@ namespace Ziptide.Editor.Patching
         }
 
         /// <summary>
-        /// Where the skiff waits: on the ring canal, at the bearing of the CanalRow district so it
-        /// is a short walk from the job route rather than a scavenger hunt. Falls back to a fixed
-        /// point on the ring when the layout has no such district.
+        /// Where the skiff waits: on the ring canal, at the bearing of the QUAY.
+        ///
+        /// The bearing matters more than it looks. The walkable districts sit inside ~30 m of the
+        /// centre and the ring canal is at 74 m, so picking the wrong bearing puts the boat a long
+        /// unmarked walk across open mud from anywhere the player has a reason to be. The quay is
+        /// where they already are — it holds the Dockmaster, the expedition crawler, and the berth
+        /// they fly home to — so the ring's nearest point to the quay is the shortest honest walk
+        /// to water in the whole layout. Falls back to CanalRow, then to a fixed bearing.
         /// </summary>
         private static Vector3 SkiffDockPosition(CityLayoutDefinition kit)
         {
             RingCityDef rings = kit != null ? kit.rings : null;
             float radius = rings != null && rings.canalRingRadius > 0f ? rings.canalRingRadius : 74f;
 
-            DistrictDef canalRow = FindDistrict(kit, "CanalRow");
-            Vector3 toward = canalRow != null ? canalRow.anchor : new Vector3(-26f, 0f, 8f);
+            DistrictDef anchorDistrict = FindDistrict(kit, "Quay") ?? FindDistrict(kit, "CanalRow");
+            Vector3 toward = anchorDistrict != null ? anchorDistrict.anchor : new Vector3(24f, 0f, -50f);
             Vector2 flat = new Vector2(toward.x, toward.z);
             if (flat.sqrMagnitude < 0.01f) flat = Vector2.left;
             flat = flat.normalized * radius;

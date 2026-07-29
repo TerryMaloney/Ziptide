@@ -55,7 +55,7 @@ class Level1WiringGateTests(unittest.TestCase):
             "AddComponent<BeaconThreadRuntime>(); ZiptideFlags.ARTIFACT_JOINED;",
             "castOff.ConfigureKeyGate(true, \"\"); bool keyRequired = true;",
             "BuildTheThrow(root, kit); Cube(t, \"MuzzleGantry\", a, b, c, false);",
-            'rill.SayById("CATCH_DEAD_RING"); rill.SayById("CATCH_OVERRUN"); rill.SayById("CATCH_THE_FIND");',
+            'rill.SayById("CATCH_DEAD_RING"); rill.SayById("CATCH_OVERRUN"); rill.SayById("CATCH_THE_FIND"); rill.SayById("ARTIFACT_JOIN_HINT");',
         ]
         _write(assets / "Gameplay" / "Wiring.cs", "\n".join(wiring))
 

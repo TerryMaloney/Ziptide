@@ -85,7 +85,7 @@ REQUIRED_SPEC_IDS = (
 
 # Companion cues added for the Catch. Unlike the TUT_* teaching lines (which the first-hour beat
 # contract fires by data), these are fired directly, so a caller must exist in code.
-DIRECT_CUES = ("CATCH_DEAD_RING", "CATCH_OVERRUN", "CATCH_THE_FIND")
+DIRECT_CUES = ("CATCH_DEAD_RING", "CATCH_OVERRUN", "CATCH_THE_FIND", "ARTIFACT_JOIN_HINT")
 
 
 @dataclass(frozen=True)

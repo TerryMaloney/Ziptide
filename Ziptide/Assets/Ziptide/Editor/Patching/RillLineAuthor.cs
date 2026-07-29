@@ -109,6 +109,12 @@ namespace Ziptide.Editor.Patching
                 "Everything that missed the catch ends up out here. Us too, if you get careless.");
             Cue("CATCH_THE_FIND",
                 "That is not cargo.");
+
+            // The peak of the first hour is a two-handed gesture nobody explains. Owning both
+            // halves and never discovering they join would end the hour with the best beat still
+            // in a holster, so ArtifactJoinRuntime waits — and only then says this.
+            Cue("ARTIFACT_JOIN_HINT",
+                "Both of them out. One in each hand — I want to see what they do when they can reach.");
             Enter("enter_w003", "W003_GlassShelf", "Wind advisory. The baffles are down. That is the whole briefing.");
             Enter("enter_w004", "W004_BroadcastTomb", "The broadcast spine is dark. Something here was transmitting long before the Guild arrived.");
             Enter("enter_w005", "W005_OxidizedCanopy", "The canopy is growing through the machines. Do you think it minds us fixing them?");

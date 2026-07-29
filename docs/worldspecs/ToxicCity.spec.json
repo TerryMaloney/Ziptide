@@ -1123,9 +1123,9 @@
         {
             "id": "Stalker_RingCanal",
             "center": {
-                "x": -70.7,
+                "x": 72.9,
                 "y": 0,
-                "z": 21.8
+                "z": -12.8
             },
             "radius": 26,
             "count": 1,

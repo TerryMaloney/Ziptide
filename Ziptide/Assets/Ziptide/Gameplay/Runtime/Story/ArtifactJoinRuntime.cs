@@ -79,7 +79,17 @@ namespace Ziptide.Gameplay
 
             ItemRuntime halfA = FindHeldHalf(HalfAItemId);
             ItemRuntime halfB = FindHeldHalf(HalfBItemId);
-            if (halfA == null || halfB == null) return;
+            if (halfA == null || halfB == null)
+            {
+                // THE HESITATION HINT. Owning both halves and never discovering that they join is
+                // the single worst way this hour can end — the peak beat sitting unreachable in a
+                // holster because nobody said "one in each hand". Told the project's way: only
+                // after the player has carried both for a while without working it out, so a player
+                // who simply does it hears nothing at all.
+                NudgeTowardTheJoin();
+                return;
+            }
+            _hintDeadline = 0f;
 
             Vector3 a = halfA.transform.position;
             Vector3 b = halfB.transform.position;
@@ -98,6 +108,33 @@ namespace Ziptide.Gameplay
             }
 
             Join(halfA, halfB, Vector3.Lerp(a, b, 0.5f));
+        }
+
+        /// <summary>Seconds of carrying both halves un-joined before RILL says the quiet part.</summary>
+        private const float HintAfterSeconds = 25f;
+
+        private float _hintDeadline;
+        private bool _hinted;
+
+        /// <summary>
+        /// Waits, then hints once. The teaching law here is the same one the tutorial cues follow:
+        /// the game waits rather than narrates, so competence is never interrupted — but it does
+        /// eventually speak, because a beat nobody can find is not a beat.
+        /// </summary>
+        private void NudgeTowardTheJoin()
+        {
+            if (_hinted) return;
+            if (_hintDeadline <= 0f)
+            {
+                _hintDeadline = Time.unscaledTime + HintAfterSeconds;
+                return;
+            }
+            if (Time.unscaledTime < _hintDeadline) return;
+
+            _hinted = true;
+            var rill = FindObjectOfType<RillCompanion>();
+            if (rill != null) rill.SayById("ARTIFACT_JOIN_HINT");
+            Debug.Log("ZIPTIDE: ARTIFACT_JOIN_HINT both halves carried, not joined");
         }
 
         /// <summary>

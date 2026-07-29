@@ -19,6 +19,20 @@ namespace Ziptide.Gameplay
         public float swimSpeed = 3.4f;
         public float waterLevel = -0.35f;   // the canal surface the wake rides at
 
+        /// <summary>
+        /// This animal ESCORTS a boat along a canal, which the base class's defaults make
+        /// impossible: a 12 m leash and a 10 m detect range pen it inside a circle smaller than the
+        /// skiff's turning room, so the shadow would appear for a second and then be left behind
+        /// forever. It owns a STRETCH of the ring canal instead — far enough to run alongside you
+        /// for a real ride, still bounded so it never follows you into town.
+        /// </summary>
+        protected override void Awake()
+        {
+            leashRadius = 140f;
+            detectRange = 60f;
+            base.Awake();
+        }
+
         private static readonly Color HideColor = new Color(0.18f, 0.26f, 0.20f);
         private static readonly Color StripeColor = new Color(0.85f, 0.72f, 0.18f);
 
