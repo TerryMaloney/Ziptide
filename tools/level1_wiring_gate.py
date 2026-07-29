@@ -85,6 +85,12 @@ FEATURES: tuple[tuple[str, str, str, str], ...] = (
      r"AddComponent<FaultStrobeRuntime>", r"SetPropertyBlock\("),
     ("quay berths", "Editor/Patching/QuayBerthAuthor.cs",
      r"QuayBerthAuthor\.Build\(", r"QuayBerthCore\.PadCentres\("),
+    # The contract's repair step and the pack machine it repairs are written in two different
+    # files by hand (generated worlds pair them automatically; ToxicCity does not). They were
+    # unpaired, so step 4 of 6 could never complete. This binds the halves: lose either and CI reds.
+    ("relay repair machine", "Editor/Patching/ToxicCityContractBuilder.cs",
+     r"machineId = ToxicCityContractBuilder\.RelayMachineId",
+     r'RepairMachine\("ToxicCity_S4_RelayRepair"'),
 )
 
 # Ids the city bake and the contract depend on. A spec that loses one of these strands a step.

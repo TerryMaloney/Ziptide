@@ -334,8 +334,55 @@ namespace Ziptide.Editor.Patching
             pack.sceneName = SceneName;
             pack.spawnMarkers.Clear();
             pack.spawnMarkers.Add(new SpawnMarkerDefinition { markerId = "player", localPosition = spawnPos });
+            EnsureRelayMachine(pack, kit);
             EditorUtility.SetDirty(pack);
             return pack;
+        }
+
+        /// <summary>
+        /// THE RELAY THE CONTRACT ASKS YOU TO REPAIR.
+        ///
+        /// Step 4 of the Dockmaster's Bounty is RepairMachine("signal_relay"), and the pack spawned
+        /// no machines at all — JobDirector materialises repairables from the PACK, so there was
+        /// nothing in the world with that id and the contract could never advance past it. Steps 5
+        /// (the drive out to the flats for half B) and 6 (return to the berth) sat behind a step
+        /// that could not complete, and `toxiccity_complete` — which gates W002 — could never be
+        /// granted. `WorldPackValidator` already predicts this exact failure in words: "Repair 'X'
+        /// but the pack spawns no such machine — likely un-completable".
+        ///
+        /// Placed at the RelayVault the contract's own relay_node marker lives in, read off the LIVE
+        /// layout rather than typed coordinates, so re-laying the city moves the machine with it.
+        /// The cell spawns a few metres off the machine: the fetch is the beat, per the schema's
+        /// own note, and it repeats the coupler lesson W000 taught rather than inventing a new verb.
+        /// </summary>
+        private static void EnsureRelayMachine(WorldPackDefinition pack, CityLayoutDefinition kit)
+        {
+            if (pack.machines == null) pack.machines = new List<MachineSpawnDefinition>();
+            pack.machines.RemoveAll(m => m == null ||
+                m.machineId == ToxicCityContractBuilder.RelayMachineId);
+
+            Vector3 relay = new Vector3(-26f, kit.walkwayHeight, 8f); // fallback: the authored CanalRow anchor
+            var canalRow = FindDistrict(kit, "CanalRow");
+            if (canalRow != null)
+            {
+                relay = canalRow.anchor + new Vector3(0f, kit.walkwayHeight, 0f);
+                for (int i = 0; i < canalRow.heroBuildings.Count; i++)
+                {
+                    var hero = canalRow.heroBuildings[i];
+                    if (hero == null || hero.interiorMarkerId != "relay_node") continue;
+                    relay = canalRow.anchor + hero.localPos + new Vector3(0f, kit.walkwayHeight, 0f);
+                    break;
+                }
+            }
+
+            pack.machines.Add(new MachineSpawnDefinition
+            {
+                machineId = ToxicCityContractBuilder.RelayMachineId,
+                displayName = "signal relay",
+                localPosition = relay,
+                partItemId = "relay_cell",
+                partLocalPosition = relay + new Vector3(3.2f, 0f, -2.4f),
+            });
         }
 
         private static void EnsureTravelStation(CityLayoutDefinition kit)
