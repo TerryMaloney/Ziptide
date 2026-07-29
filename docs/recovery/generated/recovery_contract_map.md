@@ -970,9 +970,9 @@ None.
   - `Ziptide/Assets/Ziptide/Editor/Patching/RingCityBuilder.cs:62` **NEW_GAME_OBJECT** — `var root = new GameObject(RootName).transform;`
   - `Ziptide/Assets/Ziptide/Editor/Patching/RingCityBuilder.cs:424` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
   - `Ziptide/Assets/Ziptide/Editor/Patching/RingCityBuilder.cs:451` **CREATE_PRIMITIVE** — `var go = GameObject.CreatePrimitive(type);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/RingCityBuilder.cs:475` **SHADER_FIND** — `Shader shader = Shader.Find("Universal Render Pipeline/Lit");`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/RingCityBuilder.cs:476` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/RingCityBuilder.cs:479` **RUNTIME_MATERIAL_CREATE** — `var material = new Material(shader) { name = "RingCity_" + slot };`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/RingCityBuilder.cs:488` **SHADER_FIND** — `Shader shader = Shader.Find("Universal Render Pipeline/Lit");`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/RingCityBuilder.cs:489` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/RingCityBuilder.cs:492` **RUNTIME_MATERIAL_CREATE** — `var material = new Material(shader) { name = "RingCity_" + slot };`
 
 ### `Ziptide.Editor.Patching.ScenePatcherArena` — 11 signal(s)
 

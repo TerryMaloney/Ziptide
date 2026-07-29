@@ -4192,21 +4192,21 @@
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/RingCityBuilder.cs",
-            "line": 475,
+            "line": 488,
             "symbol": "Ziptide.Editor.Patching.RingCityBuilder",
             "snippet": "Shader shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/RingCityBuilder.cs",
-            "line": 476,
+            "line": 489,
             "symbol": "Ziptide.Editor.Patching.RingCityBuilder",
             "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
           },
           {
             "code": "RUNTIME_MATERIAL_CREATE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/RingCityBuilder.cs",
-            "line": 479,
+            "line": 492,
             "symbol": "Ziptide.Editor.Patching.RingCityBuilder",
             "snippet": "var material = new Material(shader) { name = \"RingCity_\" + slot };"
           }

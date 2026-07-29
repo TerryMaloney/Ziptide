@@ -1,7 +1,7 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-29T01:38:02.669053+00:00",
+  "generatedAtUtc": "2026-07-29T02:01:36.361980+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
@@ -11405,7 +11405,7 @@
       "code": "RUNTIME_MATERIAL_CREATE",
       "description": "Runtime Material allocation",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/RingCityBuilder.cs",
-      "line": 479,
+      "line": 492,
       "symbol": "Ziptide.Editor.Patching.RingCityBuilder",
       "snippet": "var material = new Material(shader) { name = \"RingCity_\" + slot };"
     },
@@ -12305,7 +12305,7 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/RingCityBuilder.cs",
-      "line": 475,
+      "line": 488,
       "symbol": "Ziptide.Editor.Patching.RingCityBuilder",
       "snippet": "Shader shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
     },
@@ -12314,7 +12314,7 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/RingCityBuilder.cs",
-      "line": 476,
+      "line": 489,
       "symbol": "Ziptide.Editor.Patching.RingCityBuilder",
       "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
     },
