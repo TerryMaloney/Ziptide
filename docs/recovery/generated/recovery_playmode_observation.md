@@ -1,7 +1,7 @@
 # Recovery PlayMode Observation
 
-- Tested SHA: `8a59724505078293fe79af09acd08918ce64ab2f`
-- Workflow run: `30472306191`
+- Tested SHA: `59a91c2f89f59fbe7aad59ae8a6815db458133c8`
+- Workflow run: `30474309586`
 - Attempt: `1`
 - Test step outcome: **failure**
 - NUnit totals: total=43 passed=42 failed=1 skipped=0 inconclusive=0
