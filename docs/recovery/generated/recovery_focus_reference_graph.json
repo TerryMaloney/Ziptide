@@ -1,7 +1,7 @@
 {
   "tool": "recovery_focus_reference_graph",
-  "scannedFiles": 773,
-  "referenceCount": 445,
+  "scannedFiles": 777,
+  "referenceCount": 447,
   "summaries": {
     "melee": {
       "referenceCount": 112,
@@ -87,9 +87,9 @@
       ]
     },
     "repairObjective": {
-      "referenceCount": 232,
-      "fileCount": 56,
-      "callerFileCount": 55,
+      "referenceCount": 234,
+      "fileCount": 57,
+      "callerFileCount": 56,
       "paths": [
         "Ziptide/Assets/Ziptide/Content/Runtime/Jobs/JobRewards.cs",
         "Ziptide/Assets/Ziptide/Content/Runtime/Jobs/RepairMachineCountStepDefinition.cs",
@@ -106,6 +106,7 @@
         "Ziptide/Assets/Ziptide/Editor/Audit/PerceptualCoverageAuditRules.cs",
         "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
         "Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs",
+        "Ziptide/Assets/Ziptide/Editor/Patching/FlatsSiteAuthor.cs",
         "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherD0.cs",
         "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
         "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityContractBuilder.cs",
@@ -164,6 +165,7 @@
         "Ziptide/Assets/Ziptide/Editor/Audit/PerceptualCoverageAuditRules.cs",
         "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
         "Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs",
+        "Ziptide/Assets/Ziptide/Editor/Patching/FlatsSiteAuthor.cs",
         "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherD0.cs",
         "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
         "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityContractBuilder.cs",
@@ -1514,6 +1516,15 @@
         {
           "focus": "repairObjective",
           "token": "JobDirector",
+          "path": "Ziptide/Assets/Ziptide/Editor/Patching/FlatsSiteAuthor.cs",
+          "line": 29,
+          "symbol": "Ziptide.Editor.Patching.FlatsSiteAuthor",
+          "snippet": "/// literal name \"Marker_flats_site\" so JobDirector's scene fallback resolves it and the",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "JobDirector",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherD0.cs",
           "line": 15,
           "symbol": "Ziptide.Editor.Patching.ScenePatcherD0",
@@ -1560,7 +1571,7 @@
           "focus": "repairObjective",
           "token": "JobDirector",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-          "line": 352,
+          "line": 356,
           "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
           "snippet": "var jdGo = PatcherUtil.EnsureRootObject(\"JobDirector\", Vector3.zero);",
           "declaration_file": false
@@ -1569,7 +1580,7 @@
           "focus": "repairObjective",
           "token": "JobDirector",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-          "line": 353,
+          "line": 357,
           "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
           "snippet": "var director = PatcherUtil.EnsureComponent<JobDirector>(jdGo);",
           "declaration_file": false
@@ -1587,7 +1598,16 @@
           "focus": "repairObjective",
           "token": "JobDirector",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityContractBuilder.cs",
-          "line": 81,
+          "line": 57,
+          "symbol": "Ziptide.Editor.Patching.ToxicCityContractBuilder",
+          "snippet": "// authored into the scene by FlatsSiteAuthor and resolved by JobDirector's scene",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "JobDirector",
+          "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityContractBuilder.cs",
+          "line": 89,
           "symbol": "Ziptide.Editor.Patching.ToxicCityContractBuilder",
           "snippet": "+ \"WorldPack as job 0.\\n\\nStill needed (T-Dog/runtime): JobDirector -> JobRewards.Grant on \"",
           "declaration_file": false
@@ -2392,7 +2412,7 @@
           "focus": "repairObjective",
           "token": "ObjectiveBoard",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-          "line": 364,
+          "line": 368,
           "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
           "snippet": "var boardGo = PatcherUtil.EnsureRootObject(\"ObjectiveBoard\", spawnPos + new Vector3(-1.5f, 1.6f, 1.5f));",
           "declaration_file": false
@@ -2401,7 +2421,7 @@
           "focus": "repairObjective",
           "token": "ObjectiveBoard",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-          "line": 365,
+          "line": 369,
           "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
           "snippet": "PatcherUtil.EnsureComponent<ObjectiveBoard>(boardGo);",
           "declaration_file": false
@@ -2410,7 +2430,7 @@
           "focus": "repairObjective",
           "token": "ObjectiveBoard",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityContractBuilder.cs",
-          "line": 82,
+          "line": 90,
           "symbol": "Ziptide.Editor.Patching.ToxicCityContractBuilder",
           "snippet": "+ \"completion, and ObjectiveBoard/RILL text.\", \"OK\");",
           "declaration_file": false
@@ -2630,7 +2650,7 @@
           "focus": "repairObjective",
           "token": "RepairMachineCountStepDefinition",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityContractBuilder.cs",
-          "line": 126,
+          "line": 134,
           "symbol": "Ziptide.Editor.Patching.ToxicCityContractBuilder",
           "snippet": "private static RepairMachineCountStepDefinition RepairMachine(string assetName, string machineId, string label)",
           "declaration_file": false
@@ -2639,7 +2659,7 @@
           "focus": "repairObjective",
           "token": "RepairMachineCountStepDefinition",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityContractBuilder.cs",
-          "line": 129,
+          "line": 137,
           "symbol": "Ziptide.Editor.Patching.ToxicCityContractBuilder",
           "snippet": "var step = AssetDatabase.LoadAssetAtPath<RepairMachineCountStepDefinition>(path);",
           "declaration_file": false
@@ -2648,7 +2668,7 @@
           "focus": "repairObjective",
           "token": "RepairMachineCountStepDefinition",
           "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityContractBuilder.cs",
-          "line": 131,
+          "line": 139,
           "symbol": "Ziptide.Editor.Patching.ToxicCityContractBuilder",
           "snippet": "if (created) step = ScriptableObject.CreateInstance<RepairMachineCountStepDefinition>();",
           "declaration_file": false
@@ -4862,6 +4882,15 @@
       "declaration_file": false
     },
     {
+      "focus": "repairObjective",
+      "token": "JobDirector",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/FlatsSiteAuthor.cs",
+      "line": 29,
+      "symbol": "Ziptide.Editor.Patching.FlatsSiteAuthor",
+      "snippet": "/// literal name \"Marker_flats_site\" so JobDirector's scene fallback resolves it and the",
+      "declaration_file": false
+    },
+    {
       "focus": "melee",
       "token": "Muzzle",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ForgeRecipeLibrary.cs",
@@ -5090,7 +5119,7 @@
       "focus": "repairObjective",
       "token": "JobDirector",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-      "line": 352,
+      "line": 356,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
       "snippet": "var jdGo = PatcherUtil.EnsureRootObject(\"JobDirector\", Vector3.zero);",
       "declaration_file": false
@@ -5099,7 +5128,7 @@
       "focus": "repairObjective",
       "token": "JobDirector",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-      "line": 353,
+      "line": 357,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
       "snippet": "var director = PatcherUtil.EnsureComponent<JobDirector>(jdGo);",
       "declaration_file": false
@@ -5108,7 +5137,7 @@
       "focus": "repairObjective",
       "token": "ObjectiveBoard",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-      "line": 364,
+      "line": 368,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
       "snippet": "var boardGo = PatcherUtil.EnsureRootObject(\"ObjectiveBoard\", spawnPos + new Vector3(-1.5f, 1.6f, 1.5f));",
       "declaration_file": false
@@ -5117,7 +5146,7 @@
       "focus": "repairObjective",
       "token": "ObjectiveBoard",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-      "line": 365,
+      "line": 369,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
       "snippet": "PatcherUtil.EnsureComponent<ObjectiveBoard>(boardGo);",
       "declaration_file": false
@@ -5153,7 +5182,16 @@
       "focus": "repairObjective",
       "token": "JobDirector",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityContractBuilder.cs",
-      "line": 81,
+      "line": 57,
+      "symbol": "Ziptide.Editor.Patching.ToxicCityContractBuilder",
+      "snippet": "// authored into the scene by FlatsSiteAuthor and resolved by JobDirector's scene",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
+      "token": "JobDirector",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityContractBuilder.cs",
+      "line": 89,
       "symbol": "Ziptide.Editor.Patching.ToxicCityContractBuilder",
       "snippet": "+ \"WorldPack as job 0.\\n\\nStill needed (T-Dog/runtime): JobDirector -> JobRewards.Grant on \"",
       "declaration_file": false
@@ -5162,7 +5200,7 @@
       "focus": "repairObjective",
       "token": "ObjectiveBoard",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityContractBuilder.cs",
-      "line": 82,
+      "line": 90,
       "symbol": "Ziptide.Editor.Patching.ToxicCityContractBuilder",
       "snippet": "+ \"completion, and ObjectiveBoard/RILL text.\", \"OK\");",
       "declaration_file": false
@@ -5171,7 +5209,7 @@
       "focus": "repairObjective",
       "token": "RepairMachineCountStepDefinition",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityContractBuilder.cs",
-      "line": 126,
+      "line": 134,
       "symbol": "Ziptide.Editor.Patching.ToxicCityContractBuilder",
       "snippet": "private static RepairMachineCountStepDefinition RepairMachine(string assetName, string machineId, string label)",
       "declaration_file": false
@@ -5180,7 +5218,7 @@
       "focus": "repairObjective",
       "token": "RepairMachineCountStepDefinition",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityContractBuilder.cs",
-      "line": 129,
+      "line": 137,
       "symbol": "Ziptide.Editor.Patching.ToxicCityContractBuilder",
       "snippet": "var step = AssetDatabase.LoadAssetAtPath<RepairMachineCountStepDefinition>(path);",
       "declaration_file": false
@@ -5189,7 +5227,7 @@
       "focus": "repairObjective",
       "token": "RepairMachineCountStepDefinition",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityContractBuilder.cs",
-      "line": 131,
+      "line": 139,
       "symbol": "Ziptide.Editor.Patching.ToxicCityContractBuilder",
       "snippet": "if (created) step = ScriptableObject.CreateInstance<RepairMachineCountStepDefinition>();",
       "declaration_file": false

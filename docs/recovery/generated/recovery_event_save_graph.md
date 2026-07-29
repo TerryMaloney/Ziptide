@@ -1,6 +1,6 @@
 # ZIPTIDE Event and Save Ownership Graph
 
-- Scanned C# files: **773**
+- Scanned C# files: **777**
 - Evidence edges: **824**
 - Named subscriptions without matching unsubscribe in the same owner: **60**
 
@@ -84,7 +84,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `Accent`
 
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Ship.VehicleRuntime` · `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:150` · `profile` — `ObjectiveBeacon.Attach(gameObject, profile.Accent, 5f);`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Ship.VehicleRuntime` · `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:181` · `profile` — `ObjectiveBeacon.Attach(gameObject, profile.Accent, 5f);`
 
 ### `ActiveStateEvidence`
 
@@ -312,7 +312,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `Family`
 
-- **PROFILE_FIELD_ACCESS** · `Ziptide.Ship.VehicleRuntime` · `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:153` · `profile` — `+ " family=" + profile.Family + " parts=" + parts`
+- **PROFILE_FIELD_ACCESS** · `Ziptide.Ship.VehicleRuntime` · `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleRuntime.cs:184` · `profile` — `+ " family=" + profile.Family + " parts=" + parts`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.VehiclePresentationCoreTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/VehiclePresentationCoreTests.cs:18` · `profile` — `Assert.That(profile.Family, Is.EqualTo(family));`
 - **PROFILE_FIELD_ACCESS** · `Ziptide.Tests.EditMode.VehiclePresentationCoreTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/VehiclePresentationCoreTests.cs:37` · `profile` — `Assert.That(profile.Family, Is.EqualTo("utility"));`
 
