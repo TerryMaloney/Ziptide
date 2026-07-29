@@ -96,8 +96,29 @@ namespace Ziptide.Tests.EditMode
             StringAssert.Contains("ZiptideFlags.KEY_SEATED", lines);
             StringAssert.Contains("Vex Bootstrapper", lines);
 
-            // Nobody says "it knew YOU". The Transmission layer stays sealed for the whole hour.
-            StringAssert.DoesNotContain("it knew you", lines.ToLowerInvariant());
+            // Nobody says the quiet part. The Transmission layer stays sealed for the whole hour, so
+            // a player replaying this after finishing the game gets chills instead of a recap.
+            //
+            // Scanned over DIALOGUE ONLY. The first version of this test read the whole file and
+            // failed on the comment that explains the rule -- a guard that fires on its own
+            // documentation is worse than no guard, because the next person deletes the comment.
+            StringAssert.DoesNotContain("it knew you", DialogueOnly(lines));
+        }
+
+        /// <summary>
+        /// The authored line text with comments removed. Prose about the rules must never be mistaken
+        /// for prose the player hears.
+        /// </summary>
+        private static string DialogueOnly(string source)
+        {
+            var kept = new System.Text.StringBuilder();
+            foreach (string line in source.Split('\n'))
+            {
+                string trimmed = line.TrimStart();
+                if (trimmed.StartsWith("//") || trimmed.StartsWith("///")) continue;
+                kept.Append(line.ToLowerInvariant()).Append('\n');
+            }
+            return kept.ToString();
         }
 
         [Test]
