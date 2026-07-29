@@ -19,7 +19,14 @@ namespace Ziptide.Gameplay
         private const int SampleRate = 22050;
         private const float LoopSeconds = 6f;
         private const float CrossfadeSeconds = 2.5f;
-        private const float MasterVolume = 0.5f;   // a bed, never a lead
+        private const float AuthoredBedVolume = 0.5f;   // a bed, never a lead
+
+        /// <summary>
+        /// The bed's level after the player's mix. It used to be a hard-coded 0.5 with no way to turn
+        /// it down -- which for a VR game a child plays in headphones is not a taste question.
+        /// </summary>
+        private static float MasterVolume => AudioMixSettings.Effective(
+            Ziptide.Core.AudioBus.Ambience, AuthoredBedVolume);
 
         private static AmbienceDirector _instance;
 

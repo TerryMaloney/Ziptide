@@ -38,6 +38,7 @@ namespace Ziptide.Gameplay
             _active = _sourceA;
 
             SceneManager.sceneLoaded += OnSceneLoaded;
+            AudioMixSettings.Changed += OnMixChanged;
         }
 
         private void OnDestroy()
@@ -45,6 +46,7 @@ namespace Ziptide.Gameplay
             if (_instance != this) return;
 
             SceneManager.sceneLoaded -= OnSceneLoaded;
+            AudioMixSettings.Changed -= OnMixChanged;
             CancelTransition();
             StopAndClear(_sourceA);
             StopAndClear(_sourceB);
@@ -98,11 +100,25 @@ namespace Ziptide.Gameplay
             next.Play();
 
             _active = next;
+            _authoredVolume = profile.volume;
             _transitionRoutine = StartCoroutine(Crossfade(
                 fadeOut,
                 next,
-                profile.volume,
+                AudioMixSettings.Effective(Ziptide.Core.AudioBus.Music, profile.volume),
                 Mathf.Max(0f, profile.crossfadeSeconds)));
+        }
+
+        /// <summary>
+        /// The volume the world's profile asked for, kept so a live mix change can be re-applied
+        /// without restarting the track. Music used to play at a hard-coded 0.35 with no way for a
+        /// player to turn it down.
+        /// </summary>
+        private float _authoredVolume;
+
+        private void OnMixChanged()
+        {
+            if (_active == null || _transitionRoutine != null) return;
+            _active.volume = AudioMixSettings.Effective(Ziptide.Core.AudioBus.Music, _authoredVolume);
         }
 
         private IEnumerator Crossfade(
