@@ -1,7 +1,7 @@
 {
   "tool": "recovery_focus_reference_graph",
-  "scannedFiles": 739,
-  "referenceCount": 419,
+  "scannedFiles": 740,
+  "referenceCount": 427,
   "summaries": {
     "melee": {
       "referenceCount": 112,
@@ -87,9 +87,9 @@
       ]
     },
     "repairObjective": {
-      "referenceCount": 210,
-      "fileCount": 52,
-      "callerFileCount": 51,
+      "referenceCount": 218,
+      "fileCount": 53,
+      "callerFileCount": 52,
       "paths": [
         "Ziptide/Assets/Ziptide/Content/Runtime/Jobs/JobRewards.cs",
         "Ziptide/Assets/Ziptide/Content/Runtime/Jobs/RepairMachineCountStepDefinition.cs",
@@ -137,6 +137,7 @@
         "Ziptide/Assets/Ziptide/Tests/EditMode/CastOffArmingTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/FirstRouteFeelTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
+        "Ziptide/Assets/Ziptide/Tests/EditMode/JobDirectorMarkerResolutionTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/JobRuntimeCollectTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/JobRuntimeRepairTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/QuestWeaponAndCouplerRegressionTests.cs",
@@ -190,6 +191,7 @@
         "Ziptide/Assets/Ziptide/Tests/EditMode/CastOffArmingTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/FirstRouteFeelTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
+        "Ziptide/Assets/Ziptide/Tests/EditMode/JobDirectorMarkerResolutionTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/JobRuntimeCollectTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/JobRuntimeRepairTests.cs",
         "Ziptide/Assets/Ziptide/Tests/EditMode/QuestWeaponAndCouplerRegressionTests.cs",
@@ -2036,6 +2038,78 @@
           "symbol": "Ziptide.Gameplay.HazardZoneRuntime",
           "snippet": "/// Player detection is a cheap poll against the rig position (same style as JobDirector's marker",
           "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "JobDirector",
+          "path": "Ziptide/Assets/Ziptide/Tests/EditMode/JobDirectorMarkerResolutionTests.cs",
+          "line": 14,
+          "symbol": "Ziptide.Tests.EditMode.JobDirectorMarkerResolutionTests",
+          "snippet": "public class JobDirectorMarkerResolutionTests",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "JobDirector",
+          "path": "Ziptide/Assets/Ziptide/Tests/EditMode/JobDirectorMarkerResolutionTests.cs",
+          "line": 22,
+          "symbol": "Ziptide.Tests.EditMode.JobDirectorMarkerResolutionTests",
+          "snippet": "_director = new GameObject(\"JobDirector\");",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "JobDirector",
+          "path": "Ziptide/Assets/Ziptide/Tests/EditMode/JobDirectorMarkerResolutionTests.cs",
+          "line": 23,
+          "symbol": "Ziptide.Tests.EditMode.JobDirectorMarkerResolutionTests",
+          "snippet": "_director.AddComponent<JobDirector>();",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "JobDirector",
+          "path": "Ziptide/Assets/Ziptide/Tests/EditMode/JobDirectorMarkerResolutionTests.cs",
+          "line": 41,
+          "symbol": "Ziptide.Tests.EditMode.JobDirectorMarkerResolutionTests",
+          "snippet": "var resolved = _director.GetComponent<JobDirector>().ResolveMarker(\"dispatch_inside\");",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "JobDirector",
+          "path": "Ziptide/Assets/Ziptide/Tests/EditMode/JobDirectorMarkerResolutionTests.cs",
+          "line": 58,
+          "symbol": "Ziptide.Tests.EditMode.JobDirectorMarkerResolutionTests",
+          "snippet": "var resolved = _director.GetComponent<JobDirector>().ResolveMarker(\"shipyard_office\");",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "JobDirector",
+          "path": "Ziptide/Assets/Ziptide/Tests/EditMode/JobDirectorMarkerResolutionTests.cs",
+          "line": 68,
+          "symbol": "Ziptide.Tests.EditMode.JobDirectorMarkerResolutionTests",
+          "snippet": "var director = _director.GetComponent<JobDirector>();",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "JobDirector",
+          "path": "Ziptide/Assets/Ziptide/Tests/EditMode/JobDirectorMarkerResolutionTests.cs",
+          "line": 79,
+          "symbol": "Ziptide.Tests.EditMode.JobDirectorMarkerResolutionTests",
+          "snippet": "Assert.IsNull(_director.GetComponent<JobDirector>().ResolveMarker(\"no_such_marker\"));",
+          "declaration_file": false
+        },
+        {
+          "focus": "repairObjective",
+          "token": "JobDirector",
+          "path": "Ziptide/Assets/Ziptide/Tests/EditMode/JobDirectorMarkerResolutionTests.cs",
+          "line": 85,
+          "symbol": "Ziptide.Tests.EditMode.JobDirectorMarkerResolutionTests",
+          "snippet": "var director = _director.GetComponent<JobDirector>();",
+          "declaration_file": false
         }
       ],
       "JobRuntime": [
@@ -2061,7 +2135,7 @@
           "focus": "repairObjective",
           "token": "JobRuntime",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-          "line": 26,
+          "line": 28,
           "symbol": "Ziptide.Gameplay.JobDirector",
           "snippet": "public JobRuntime Runtime => _runtime;",
           "declaration_file": false
@@ -2333,7 +2407,7 @@
           "focus": "repairObjective",
           "token": "ObjectiveBoard",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-          "line": 284,
+          "line": 349,
           "symbol": "Ziptide.Gameplay.JobDirector",
           "snippet": "objectiveBoard = FindObjectOfType<ObjectiveBoard>();",
           "declaration_file": false
@@ -2389,7 +2463,7 @@
           "focus": "repairObjective",
           "token": "REPAIR_TRACE",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-          "line": 123,
+          "line": 125,
           "symbol": "Ziptide.Gameplay.JobDirector",
           "snippet": "Debug.Log(\"ZIPTIDE: REPAIR_TRACE hop=director id=\" + GetInstanceID()",
           "declaration_file": false
@@ -2627,7 +2701,7 @@
           "focus": "repairObjective",
           "token": "RepairableMachine",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-          "line": 117,
+          "line": 119,
           "symbol": "Ziptide.Gameplay.JobDirector",
           "snippet": "/// Called by RepairableMachine when its final repair stage completes. For RepairMachineCountStep.",
           "declaration_file": false
@@ -2636,7 +2710,7 @@
           "focus": "repairObjective",
           "token": "RepairableMachine",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-          "line": 217,
+          "line": 219,
           "symbol": "Ziptide.Gameplay.JobDirector",
           "snippet": "go.AddComponent<RepairableMachine>().Init(m, this);",
           "declaration_file": false
@@ -2935,7 +3009,7 @@
           "focus": "repairObjective",
           "token": "ReportRepair",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-          "line": 119,
+          "line": 121,
           "symbol": "Ziptide.Gameplay.JobDirector",
           "snippet": "public void ReportRepair(string machineId)",
           "declaration_file": false
@@ -2944,7 +3018,7 @@
           "focus": "repairObjective",
           "token": "ReportRepair",
           "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-          "line": 125,
+          "line": 127,
           "symbol": "Ziptide.Gameplay.JobDirector",
           "snippet": "_runtime.ReportRepair(machineId);",
           "declaration_file": false
@@ -3135,7 +3209,7 @@
           "focus": "repairObjective",
           "token": "ShipCastOffRuntime",
           "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-          "line": 179,
+          "line": 181,
           "symbol": "Ziptide.Tests.EditMode.HomeHubFlowTests",
           "snippet": "var castOff = go.AddComponent<ShipCastOffRuntime>();",
           "declaration_file": false
@@ -3144,7 +3218,7 @@
           "focus": "repairObjective",
           "token": "ShipCastOffRuntime",
           "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-          "line": 261,
+          "line": 263,
           "symbol": "Ziptide.Tests.EditMode.HomeHubFlowTests",
           "snippet": "string castOff = Read(\"Gameplay\", \"Runtime\", \"Story\", \"ShipCastOffRuntime.cs\");",
           "declaration_file": false
@@ -3305,7 +3379,7 @@
           "focus": "shipPresentation",
           "token": "ShipCastOffRuntime",
           "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-          "line": 179,
+          "line": 181,
           "symbol": "Ziptide.Tests.EditMode.HomeHubFlowTests",
           "snippet": "var castOff = go.AddComponent<ShipCastOffRuntime>();",
           "declaration_file": false
@@ -3314,7 +3388,7 @@
           "focus": "shipPresentation",
           "token": "ShipCastOffRuntime",
           "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-          "line": 261,
+          "line": 263,
           "symbol": "Ziptide.Tests.EditMode.HomeHubFlowTests",
           "snippet": "string castOff = Read(\"Gameplay\", \"Runtime\", \"Story\", \"ShipCastOffRuntime.cs\");",
           "declaration_file": false
@@ -5400,7 +5474,7 @@
       "focus": "repairObjective",
       "token": "JobRuntime",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-      "line": 26,
+      "line": 28,
       "symbol": "Ziptide.Gameplay.JobDirector",
       "snippet": "public JobRuntime Runtime => _runtime;",
       "declaration_file": false
@@ -5427,7 +5501,7 @@
       "focus": "repairObjective",
       "token": "ObjectiveBoard",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-      "line": 284,
+      "line": 349,
       "symbol": "Ziptide.Gameplay.JobDirector",
       "snippet": "objectiveBoard = FindObjectOfType<ObjectiveBoard>();",
       "declaration_file": false
@@ -5436,7 +5510,7 @@
       "focus": "repairObjective",
       "token": "REPAIR_TRACE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-      "line": 123,
+      "line": 125,
       "symbol": "Ziptide.Gameplay.JobDirector",
       "snippet": "Debug.Log(\"ZIPTIDE: REPAIR_TRACE hop=director id=\" + GetInstanceID()",
       "declaration_file": false
@@ -5445,7 +5519,7 @@
       "focus": "repairObjective",
       "token": "RepairableMachine",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-      "line": 117,
+      "line": 119,
       "symbol": "Ziptide.Gameplay.JobDirector",
       "snippet": "/// Called by RepairableMachine when its final repair stage completes. For RepairMachineCountStep.",
       "declaration_file": false
@@ -5454,7 +5528,7 @@
       "focus": "repairObjective",
       "token": "RepairableMachine",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-      "line": 217,
+      "line": 219,
       "symbol": "Ziptide.Gameplay.JobDirector",
       "snippet": "go.AddComponent<RepairableMachine>().Init(m, this);",
       "declaration_file": false
@@ -5463,7 +5537,7 @@
       "focus": "repairObjective",
       "token": "ReportRepair",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-      "line": 119,
+      "line": 121,
       "symbol": "Ziptide.Gameplay.JobDirector",
       "snippet": "public void ReportRepair(string machineId)",
       "declaration_file": false
@@ -5472,7 +5546,7 @@
       "focus": "repairObjective",
       "token": "ReportRepair",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-      "line": 125,
+      "line": 127,
       "symbol": "Ziptide.Gameplay.JobDirector",
       "snippet": "_runtime.ReportRepair(machineId);",
       "declaration_file": false
@@ -7047,7 +7121,7 @@
       "focus": "repairObjective",
       "token": "ShipCastOffRuntime",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-      "line": 179,
+      "line": 181,
       "symbol": "Ziptide.Tests.EditMode.HomeHubFlowTests",
       "snippet": "var castOff = go.AddComponent<ShipCastOffRuntime>();",
       "declaration_file": false
@@ -7056,7 +7130,7 @@
       "focus": "repairObjective",
       "token": "ShipCastOffRuntime",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-      "line": 261,
+      "line": 263,
       "symbol": "Ziptide.Tests.EditMode.HomeHubFlowTests",
       "snippet": "string castOff = Read(\"Gameplay\", \"Runtime\", \"Story\", \"ShipCastOffRuntime.cs\");",
       "declaration_file": false
@@ -7065,7 +7139,7 @@
       "focus": "shipPresentation",
       "token": "ShipCastOffRuntime",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-      "line": 179,
+      "line": 181,
       "symbol": "Ziptide.Tests.EditMode.HomeHubFlowTests",
       "snippet": "var castOff = go.AddComponent<ShipCastOffRuntime>();",
       "declaration_file": false
@@ -7074,9 +7148,81 @@
       "focus": "shipPresentation",
       "token": "ShipCastOffRuntime",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-      "line": 261,
+      "line": 263,
       "symbol": "Ziptide.Tests.EditMode.HomeHubFlowTests",
       "snippet": "string castOff = Read(\"Gameplay\", \"Runtime\", \"Story\", \"ShipCastOffRuntime.cs\");",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
+      "token": "JobDirector",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/JobDirectorMarkerResolutionTests.cs",
+      "line": 14,
+      "symbol": "Ziptide.Tests.EditMode.JobDirectorMarkerResolutionTests",
+      "snippet": "public class JobDirectorMarkerResolutionTests",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
+      "token": "JobDirector",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/JobDirectorMarkerResolutionTests.cs",
+      "line": 22,
+      "symbol": "Ziptide.Tests.EditMode.JobDirectorMarkerResolutionTests",
+      "snippet": "_director = new GameObject(\"JobDirector\");",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
+      "token": "JobDirector",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/JobDirectorMarkerResolutionTests.cs",
+      "line": 23,
+      "symbol": "Ziptide.Tests.EditMode.JobDirectorMarkerResolutionTests",
+      "snippet": "_director.AddComponent<JobDirector>();",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
+      "token": "JobDirector",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/JobDirectorMarkerResolutionTests.cs",
+      "line": 41,
+      "symbol": "Ziptide.Tests.EditMode.JobDirectorMarkerResolutionTests",
+      "snippet": "var resolved = _director.GetComponent<JobDirector>().ResolveMarker(\"dispatch_inside\");",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
+      "token": "JobDirector",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/JobDirectorMarkerResolutionTests.cs",
+      "line": 58,
+      "symbol": "Ziptide.Tests.EditMode.JobDirectorMarkerResolutionTests",
+      "snippet": "var resolved = _director.GetComponent<JobDirector>().ResolveMarker(\"shipyard_office\");",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
+      "token": "JobDirector",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/JobDirectorMarkerResolutionTests.cs",
+      "line": 68,
+      "symbol": "Ziptide.Tests.EditMode.JobDirectorMarkerResolutionTests",
+      "snippet": "var director = _director.GetComponent<JobDirector>();",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
+      "token": "JobDirector",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/JobDirectorMarkerResolutionTests.cs",
+      "line": 79,
+      "symbol": "Ziptide.Tests.EditMode.JobDirectorMarkerResolutionTests",
+      "snippet": "Assert.IsNull(_director.GetComponent<JobDirector>().ResolveMarker(\"no_such_marker\"));",
+      "declaration_file": false
+    },
+    {
+      "focus": "repairObjective",
+      "token": "JobDirector",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/JobDirectorMarkerResolutionTests.cs",
+      "line": 85,
+      "symbol": "Ziptide.Tests.EditMode.JobDirectorMarkerResolutionTests",
+      "snippet": "var director = _director.GetComponent<JobDirector>();",
       "declaration_file": false
     },
     {

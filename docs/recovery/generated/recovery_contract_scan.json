@@ -1,25 +1,25 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-28T20:37:58.409003+00:00",
+  "generatedAtUtc": "2026-07-29T00:36:30.848886+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
     "Ziptide/Assets/Ziptide",
     "Ziptide/Assets/ZiptideNet"
   ],
-  "scannedFiles": 739,
-  "findingCount": 2664,
+  "scannedFiles": 740,
+  "findingCount": 2678,
   "categoryCounts": {
     "bootstrap": 42,
-    "diagnostics": 626,
+    "diagnostics": 629,
     "events": 65,
-    "fallback_debt": 159,
+    "fallback_debt": 162,
     "global_render": 88,
     "input": 230,
     "materials": 252,
     "persistence": 22,
-    "runtime_creation": 686,
+    "runtime_creation": 694,
     "runtime_ui": 131,
     "save_state": 261,
     "scene_loading": 9,
@@ -37,11 +37,11 @@
     "EDITOR_BOOTSTRAP": 10,
     "EVENT_DECLARATION": 49,
     "EVENT_SYSTEM_COMPONENT": 2,
-    "FALLBACK_MARKER": 159,
+    "FALLBACK_MARKER": 162,
     "FRAME_BUTTON_POLL": 1,
     "INPUT_ACTION_REFERENCE": 219,
     "INPUT_BUTTON_REFERENCE": 10,
-    "NEW_GAME_OBJECT": 424,
+    "NEW_GAME_OBJECT": 432,
     "PLAYER_PROFILE_REFERENCE": 140,
     "RENDER_SETTINGS_MUTATION": 37,
     "RUNTIME_BOOTSTRAP": 32,
@@ -57,7 +57,7 @@
     "XRI_MANAGER_LOOKUP": 45,
     "XR_INTERACTABLE_COMPONENT": 66,
     "XR_UI_INPUT_MODULE": 2,
-    "ZIPTIDE_LOG_TAG": 626
+    "ZIPTIDE_LOG_TAG": 629
   },
   "findings": [
     {
@@ -1874,7 +1874,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-      "line": 37,
+      "line": 39,
       "symbol": "Ziptide.Gameplay.JobDirector",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: PACK_VALIDATION_FAIL pack=\" + worldPack.packId + \" issue=\" + issues[i]);"
     },
@@ -1883,7 +1883,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-      "line": 45,
+      "line": 47,
       "symbol": "Ziptide.Gameplay.JobDirector",
       "snippet": "Debug.Log(\"ZIPTIDE: WORLD_LOCKED world=\" + worldPack.packId + \" missingFlag=\" + missing);"
     },
@@ -1892,7 +1892,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-      "line": 123,
+      "line": 125,
       "symbol": "Ziptide.Gameplay.JobDirector",
       "snippet": "Debug.Log(\"ZIPTIDE: REPAIR_TRACE hop=director id=\" + GetInstanceID()"
     },
@@ -1901,7 +1901,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-      "line": 181,
+      "line": 183,
       "symbol": "Ziptide.Gameplay.JobDirector",
       "snippet": "Debug.Log(\"ZIPTIDE: GARDEN_SPAWNED id=\" + g.id + \" pos=\" + go.transform.position.ToString(\"F1\"));"
     },
@@ -1910,7 +1910,25 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-      "line": 312,
+      "line": 321,
+      "symbol": "Ziptide.Gameplay.JobDirector",
+      "snippet": "Debug.Log(\"ZIPTIDE: JOB_MARKER_RESOLVED id=\" + markerId + \" source=scene\");"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
+      "line": 326,
+      "symbol": "Ziptide.Gameplay.JobDirector",
+      "snippet": "Debug.LogWarning(\"ZIPTIDE: JOB_MARKER_MISSING id=\" + markerId"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
+      "line": 377,
       "symbol": "Ziptide.Gameplay.JobDirector",
       "snippet": "Debug.Log(\"ZIPTIDE: JOB_REWARD_GRANTED job=\" + _runtime.Definition.jobId);"
     },
@@ -1919,7 +1937,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-      "line": 318,
+      "line": 383,
       "symbol": "Ziptide.Gameplay.JobDirector",
       "snippet": "Debug.Log(\"ZIPTIDE: WORLD_FLAGS_GRANTED world=\" +"
     },
@@ -1928,7 +1946,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-      "line": 325,
+      "line": 390,
       "symbol": "Ziptide.Gameplay.JobDirector",
       "snippet": "Debug.Log(\"ZIPTIDE: TRANSMISSION_CLARITY tier=\" +"
     },
@@ -2576,7 +2594,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 211,
+      "line": 212,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: FALL_SAFETY y=\" + transform.position.y.ToString(\"F1\")"
     },
@@ -2585,7 +2603,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 242,
+      "line": 243,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "Debug.Log(\"ZIPTIDE: FALL_SAFETY_RESPAWN to \" + transform.position.ToString(\"F2\"));"
     },
@@ -2594,7 +2612,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 271,
+      "line": 272,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "Debug.Log(\"ZIPTIDE: STUN_RECEIVER_ENSURED on persistent rig\");"
     },
@@ -2603,7 +2621,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 285,
+      "line": 286,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "Debug.Log(\"ZIPTIDE: CREDITS_HUD_ENSURED on persistent rig\");"
     },
@@ -2612,7 +2630,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 299,
+      "line": 300,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "Debug.Log(\"ZIPTIDE: RILL_ENSURED on persistent rig\");"
     },
@@ -2621,7 +2639,16 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 310,
+      "line": 317,
+      "symbol": "Ziptide.Gameplay.BootHoldState",
+      "snippet": "Debug.Log(\"ZIPTIDE: PLAYER_MENU_ENSURED on persistent rig\");"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
+      "line": 328,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "Debug.Log(\"ZIPTIDE: BELT_ENSURED on persistent rig\");"
     },
@@ -2630,7 +2657,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 430,
+      "line": 448,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: XRI_MISSING (creating XRInteractionManager)\");"
     },
@@ -2639,7 +2666,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 513,
+      "line": 531,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "Debug.Log(\"ZIPTIDE: XRI_WIRING cams=\" + cams + \" rays=\" + totalRays +"
     },
@@ -2648,7 +2675,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 515,
+      "line": 533,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "if (totalRays == 0) Debug.LogWarning(\"ZIPTIDE: NO_RAY_INTERACTORS\");"
     },
@@ -2657,7 +2684,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 536,
+      "line": 554,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: ANCHOR_FIELD_MISSING m_AllowAnchorControl \u2014 gun may still rotate\");"
     },
@@ -2666,7 +2693,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 606,
+      "line": 624,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "Debug.Log(\"ZIPTIDE: ANCHOR_ACTIONS_DISABLED count=\" + disabled);"
     },
@@ -2675,7 +2702,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 638,
+      "line": 656,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: INPUT_ACTIONS_MISSING\");"
     },
@@ -2684,7 +2711,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 662,
+      "line": 680,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "Debug.Log(\"ZIPTIDE: INPUT_ASSET_RECOVERED count=\" + recoveredAssets);"
     },
@@ -2693,7 +2720,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 687,
+      "line": 705,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: ClearInputActionAssets failed: \" + ex.Message);"
     },
@@ -2702,7 +2729,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 714,
+      "line": 732,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: SafeClearInputActionAssets failed: \" + ex.Message);"
     },
@@ -2711,7 +2738,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 770,
+      "line": 788,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: BOOT_HOLD no_rig held=\" + held);"
     },
@@ -2720,7 +2747,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 786,
+      "line": 804,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "Debug.Log(\"ZIPTIDE: BOOT_HOLD on pose=\" + transform.position.ToString(\"F2\")"
     },
@@ -2729,7 +2756,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 801,
+      "line": 819,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "Debug.Log(\"ZIPTIDE: BOOT_HOLD off safe=\" + transform.position.ToString(\"F2\")"
     },
@@ -2738,7 +2765,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 868,
+      "line": 886,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "Debug.LogError(\"ZIPTIDE: INPUT_MUTATION_SETTLE_FAIL readers=\""
     },
@@ -2747,7 +2774,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 883,
+      "line": 901,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "Debug.Log(\"ZIPTIDE: INPUT_MUTATION_READERS restored=\" + _mutationSuspendedReaders.Count"
     },
@@ -2756,7 +2783,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 1017,
+      "line": 1035,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "Debug.Log(\"ZIPTIDE: SPAWN_AT marker='\" + marker.markerId + \"' rig=\" + transform.position.ToString(\"F2\")"
     },
@@ -3854,7 +3881,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 130,
+      "line": 136,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: HOME_HUB_MISSING_CONFIG\");"
     },
@@ -3863,7 +3890,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 138,
+      "line": 144,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "Debug.Log(\"ZIPTIDE: HOME_HUB_READY continue=\" + canContinue.ToString().ToLowerInvariant());"
     },
@@ -3872,7 +3899,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 188,
+      "line": 194,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "Debug.Log(\"ZIPTIDE: HOME_HUB_ANCHOR mode=follow dist=\" + posError.ToString(\"F2\")"
     },
@@ -3881,7 +3908,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 207,
+      "line": 213,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "Debug.Log(\"ZIPTIDE: HOME_HUB_ANCHOR mode=\" + mode"
     },
@@ -3890,7 +3917,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 221,
+      "line": 227,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: HOME_HUB_CHOICE_BLOCKED reason=save_unavailable\");"
     },
@@ -3899,7 +3926,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 233,
+      "line": 239,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "Debug.Log(\"ZIPTIDE: HOME_HUB_CHOICE choice=\" + choiceName);"
     },
@@ -3908,7 +3935,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 257,
+      "line": 263,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "else Debug.LogWarning(\"ZIPTIDE: HOME_HUB_TRAVEL_MISSING dest=\" + _targetScene);"
     },
@@ -3917,7 +3944,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 285,
+      "line": 291,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: HOME_HUB_ANCHOR mode=no_camera pending_track=true\");"
     },
@@ -3926,7 +3953,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 336,
+      "line": 342,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "Debug.Log(\"ZIPTIDE: HOME_HUB_TILE_BOUND tile=\" + tile.name +"
     },
@@ -3935,7 +3962,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 379,
+      "line": 385,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "Debug.Log(\"ZIPTIDE: HOME_HUB_TILE_BOUND tile=\" + tileName +"
     },
@@ -3944,7 +3971,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 391,
+      "line": 397,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: HOME_HUB_TILE_BIND_TIMEOUT tile=\" + tileName +"
     },
@@ -3953,7 +3980,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 405,
+      "line": 411,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "Debug.Log(\"ZIPTIDE: BOARD_PROBE surface=HomeHub phase=\" + phase"
     },
@@ -3962,7 +3989,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 432,
+      "line": 438,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "Debug.Log(\"ZIPTIDE: BOARD_PROBE surface=HomeHub phase=aim\""
     },
@@ -3971,7 +3998,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 442,
+      "line": 448,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "Debug.Log(\"ZIPTIDE: BOARD_PROBE surface=HomeHub phase=aim\""
     },
@@ -3980,7 +4007,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 511,
+      "line": 517,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: HOME_HUB_SUBSCRIBER_FAIL phase=\" + phase + \" reason=\" + ex.Message);"
     },
@@ -3989,7 +4016,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 524,
+      "line": 530,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: HOME_HUB_SUBSCRIBER_FAIL phase=\" + phase + \" reason=\" + ex.Message);"
     },
@@ -5159,7 +5186,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-      "line": 165,
+      "line": 167,
       "symbol": "Ziptide.Tests.EditMode.HomeHubFlowTests",
       "snippet": "StringAssert.Contains(\"ZIPTIDE: HOME_HUB_READY continue=\", source);"
     },
@@ -5168,7 +5195,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-      "line": 166,
+      "line": 168,
       "symbol": "Ziptide.Tests.EditMode.HomeHubFlowTests",
       "snippet": "StringAssert.Contains(\"ZIPTIDE: HOME_HUB_CHOICE choice=\", source);"
     },
@@ -5177,7 +5204,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-      "line": 185,
+      "line": 187,
       "symbol": "Ziptide.Tests.EditMode.HomeHubFlowTests",
       "snippet": "new Regex(\"ZIPTIDE: FLIGHT_DESTINATION_REJECTED target=PvP_Arena01\"));"
     },
@@ -6221,7 +6248,7 @@
       "code": "EVENT_DECLARATION",
       "description": "Event declaration",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 104,
+      "line": 110,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "public static event Action<bool> BootPresentationReady;"
     },
@@ -6230,7 +6257,7 @@
       "code": "EVENT_DECLARATION",
       "description": "Event declaration",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 105,
+      "line": 111,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "public static event Action<PlayerProfile> NewGameProfileCreated;"
     },
@@ -6239,7 +6266,7 @@
       "code": "EVENT_DECLARATION",
       "description": "Event declaration",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 106,
+      "line": 112,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "public static event Action<HomeHubChoice> ChoiceSelected;"
     },
@@ -6248,7 +6275,7 @@
       "code": "EVENT_DECLARATION",
       "description": "Event declaration",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 107,
+      "line": 113,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "public static event Action SettingsRequested;"
     },
@@ -6581,7 +6608,7 @@
       "code": "STATIC_EVENT_DECLARATION",
       "description": "Static event declaration",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 104,
+      "line": 110,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "public static event Action<bool> BootPresentationReady;"
     },
@@ -6590,7 +6617,7 @@
       "code": "STATIC_EVENT_DECLARATION",
       "description": "Static event declaration",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 105,
+      "line": 111,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "public static event Action<PlayerProfile> NewGameProfileCreated;"
     },
@@ -6599,7 +6626,7 @@
       "code": "STATIC_EVENT_DECLARATION",
       "description": "Static event declaration",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 106,
+      "line": 112,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "public static event Action<HomeHubChoice> ChoiceSelected;"
     },
@@ -6608,7 +6635,7 @@
       "code": "STATIC_EVENT_DECLARATION",
       "description": "Static event declaration",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 107,
+      "line": 113,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "public static event Action SettingsRequested;"
     },
@@ -7471,6 +7498,24 @@
       "category": "fallback_debt",
       "code": "FALLBACK_MARKER",
       "description": "Source text marks fallback/prototype debt",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
+      "line": 281,
+      "symbol": "Ziptide.Gameplay.JobDirector",
+      "snippet": "/// scene markers are the fallback."
+    },
+    {
+      "category": "fallback_debt",
+      "code": "FALLBACK_MARKER",
+      "description": "Source text marks fallback/prototype debt",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
+      "line": 283,
+      "symbol": "Ziptide.Gameplay.JobDirector",
+      "snippet": "/// \u26a0 WHY THE FALLBACK EXISTS. This used to search only <see cref=\"_markerTransforms\"/> \u2014 the"
+    },
+    {
+      "category": "fallback_debt",
+      "code": "FALLBACK_MARKER",
+      "description": "Source text marks fallback/prototype debt",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/EmergencyRespawn.cs",
       "line": 71,
       "symbol": "Ziptide.Gameplay.EmergencyRespawn",
@@ -7490,7 +7535,7 @@
       "code": "FALLBACK_MARKER",
       "description": "Source text marks fallback/prototype debt",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 737,
+      "line": 755,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "// Name-based fallback for rigs without XROrigin component attached."
     },
@@ -7763,6 +7808,15 @@
       "line": 11,
       "symbol": "Ziptide.Tests.EditMode.ItemRegistryConventionTests",
       "snippet": "/// device (the loaded-objects fallback only sees assets a loaded scene happens to reference \u2014 a"
+    },
+    {
+      "category": "fallback_debt",
+      "code": "FALLBACK_MARKER",
+      "description": "Source text marks fallback/prototype debt",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/JobDirectorMarkerResolutionTests.cs",
+      "line": 12,
+      "symbol": "Ziptide.Tests.EditMode.JobDirectorMarkerResolutionTests",
+      "snippet": "/// never granted, which left W002 permanently locked. These tests pin the scene fallback."
     },
     {
       "category": "fallback_debt",
@@ -8183,7 +8237,7 @@
       "code": "CAMERA_MAIN_REFERENCE",
       "description": "Camera.main dependency",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-      "line": 334,
+      "line": 399,
       "symbol": "Ziptide.Gameplay.JobDirector",
       "snippet": "var cam = Camera.main;"
     },
@@ -8381,7 +8435,7 @@
       "code": "CAMERA_MAIN_REFERENCE",
       "description": "Camera.main dependency",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 161,
+      "line": 167,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "Camera cam = Camera.main;"
     },
@@ -8390,7 +8444,7 @@
       "code": "CAMERA_MAIN_REFERENCE",
       "description": "Camera.main dependency",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 273,
+      "line": 279,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "Camera cam = Camera.main;"
     },
@@ -8399,7 +8453,7 @@
       "code": "CAMERA_MAIN_REFERENCE",
       "description": "Camera.main dependency",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 403,
+      "line": 409,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "Camera cam = Camera.main;"
     },
@@ -9758,7 +9812,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 387,
+      "line": 405,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "// The scene-local manager always has the correct InputActionManager+assets wired up."
     },
@@ -9767,7 +9821,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 403,
+      "line": 421,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "// CRITICAL FIX: clear the OLD manager's InputActionManager asset list BEFORE"
     },
@@ -9776,7 +9830,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 404,
+      "line": 422,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "// destroying it. InputActionManager.OnDisable calls actionAsset.Disable() which"
     },
@@ -9785,7 +9839,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 585,
+      "line": 603,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "var primary = _xriManager != null ? _xriManager.GetComponent<InputActionManager>() : null;"
     },
@@ -9794,7 +9848,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 610,
+      "line": 628,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "/// Guarantees the persistent rig owns its input. The scene's InputActionManager often"
     },
@@ -9803,7 +9857,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 615,
+      "line": 633,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "/// the rig references, (2) put them on an InputActionManager on the PERSISTENT manager"
     },
@@ -9812,7 +9866,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 616,
+      "line": 634,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "/// object, (3) clear the asset list on every other InputActionManager so their OnDisable"
     },
@@ -9821,7 +9875,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 621,
+      "line": 639,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "var assets = new System.Collections.Generic.List<InputActionAsset>();"
     },
@@ -9830,7 +9884,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 622,
+      "line": 640,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "void Add(InputActionAsset a) { if (a != null && !assets.Contains(a)) assets.Add(a); }"
     },
@@ -9839,7 +9893,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 624,
+      "line": 642,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "var allManagers = FindObjectsOfType<InputActionManager>(true);"
     },
@@ -9848,7 +9902,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 633,
+      "line": 651,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "var primary = _xriManager.GetComponent<InputActionManager>()"
     },
@@ -9857,7 +9911,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 634,
+      "line": 652,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "?? _xriManager.gameObject.AddComponent<InputActionManager>();"
     },
@@ -9866,7 +9920,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 665,
+      "line": 683,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "private static InputActionAsset GetActionAssetFromController(ActionBasedController c)"
     },
@@ -9875,7 +9929,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 674,
+      "line": 692,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "/// <summary>Clears m_ActionAssets on an InputActionManager so its OnDisable won't disable shared assets.</summary>"
     },
@@ -9884,7 +9938,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 675,
+      "line": 693,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "private static void ClearInputActionAssets(InputActionManager iam)"
     },
@@ -9893,7 +9947,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 680,
+      "line": 698,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "var field = typeof(InputActionManager).GetField("
     },
@@ -9902,7 +9956,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 683,
+      "line": 701,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "field.SetValue(iam, new System.Collections.Generic.List<InputActionAsset>());"
     },
@@ -9911,7 +9965,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 692,
+      "line": 710,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "/// Clears the action asset list on an InputActionManager via reflection BEFORE"
     },
@@ -9920,7 +9974,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 693,
+      "line": 711,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "/// the manager is destroyed. This prevents InputActionManager.OnDisable from"
     },
@@ -9929,7 +9983,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 699,
+      "line": 717,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "var iam = mgr.GetComponent<InputActionManager>();"
     },
@@ -9938,7 +9992,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 703,
+      "line": 721,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "var field = typeof(InputActionManager).GetField("
     },
@@ -9947,7 +10001,7 @@
       "code": "INPUT_ACTION_REFERENCE",
       "description": "Input System action reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 707,
+      "line": 725,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "field.SetValue(iam, new System.Collections.Generic.List<InputActionAsset>());"
     },
@@ -11531,7 +11585,7 @@
       "code": "RUNTIME_MATERIAL_CREATE",
       "description": "Runtime Material allocation",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 496,
+      "line": 502,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "var material = new Material(shader);"
     },
@@ -12809,7 +12863,7 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 493,
+      "line": 499,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "Shader shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
     },
@@ -12818,7 +12872,7 @@
       "code": "SHADER_FIND",
       "description": "Runtime shader lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 494,
+      "line": 500,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
     },
@@ -13313,25 +13367,25 @@
       "code": "DONT_DESTROY_ON_LOAD",
       "description": "Object promoted across scene loads",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 416,
-      "symbol": "Ziptide.Gameplay.BootHoldState",
-      "snippet": "DontDestroyOnLoad(_xriManager.gameObject);"
-    },
-    {
-      "category": "persistence",
-      "code": "DONT_DESTROY_ON_LOAD",
-      "description": "Object promoted across scene loads",
-      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 426,
-      "symbol": "Ziptide.Gameplay.BootHoldState",
-      "snippet": "DontDestroyOnLoad(_xriManager.gameObject);"
-    },
-    {
-      "category": "persistence",
-      "code": "DONT_DESTROY_ON_LOAD",
-      "description": "Object promoted across scene loads",
-      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
       "line": 434,
+      "symbol": "Ziptide.Gameplay.BootHoldState",
+      "snippet": "DontDestroyOnLoad(_xriManager.gameObject);"
+    },
+    {
+      "category": "persistence",
+      "code": "DONT_DESTROY_ON_LOAD",
+      "description": "Object promoted across scene loads",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
+      "line": 444,
+      "symbol": "Ziptide.Gameplay.BootHoldState",
+      "snippet": "DontDestroyOnLoad(_xriManager.gameObject);"
+    },
+    {
+      "category": "persistence",
+      "code": "DONT_DESTROY_ON_LOAD",
+      "description": "Object promoted across scene loads",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
+      "line": 452,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "DontDestroyOnLoad(_xriManager.gameObject);"
     },
@@ -15023,7 +15077,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 288,
+      "line": 294,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "var board = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -15032,7 +15086,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 320,
+      "line": 326,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "var tile = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -17534,7 +17588,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-      "line": 136,
+      "line": 138,
       "symbol": "Ziptide.Gameplay.JobDirector",
       "snippet": "var root = new GameObject(\"SpawnMarkers\");"
     },
@@ -17543,7 +17597,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-      "line": 140,
+      "line": 142,
       "symbol": "Ziptide.Gameplay.JobDirector",
       "snippet": "var go = new GameObject(\"Marker_\" + m.markerId);"
     },
@@ -17552,7 +17606,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-      "line": 152,
+      "line": 154,
       "symbol": "Ziptide.Gameplay.JobDirector",
       "snippet": "var root = new GameObject(\"BuildSockets\");"
     },
@@ -17561,7 +17615,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-      "line": 158,
+      "line": 160,
       "symbol": "Ziptide.Gameplay.JobDirector",
       "snippet": "var go = new GameObject(\"Socket_\" + s.id);"
     },
@@ -17570,7 +17624,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-      "line": 169,
+      "line": 171,
       "symbol": "Ziptide.Gameplay.JobDirector",
       "snippet": "var root = new GameObject(\"Gardens\");"
     },
@@ -17579,7 +17633,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-      "line": 176,
+      "line": 178,
       "symbol": "Ziptide.Gameplay.JobDirector",
       "snippet": "var go = new GameObject(\"Garden_\" + g.id);"
     },
@@ -17588,7 +17642,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-      "line": 192,
+      "line": 194,
       "symbol": "Ziptide.Gameplay.JobDirector",
       "snippet": "var root = new GameObject(\"Mines\");"
     },
@@ -17597,7 +17651,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-      "line": 198,
+      "line": 200,
       "symbol": "Ziptide.Gameplay.JobDirector",
       "snippet": "var go = new GameObject(\"Mine_\" + m.id);"
     },
@@ -17606,7 +17660,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-      "line": 209,
+      "line": 211,
       "symbol": "Ziptide.Gameplay.JobDirector",
       "snippet": "var root = new GameObject(\"Machines\");"
     },
@@ -17615,7 +17669,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-      "line": 214,
+      "line": 216,
       "symbol": "Ziptide.Gameplay.JobDirector",
       "snippet": "var go = new GameObject(\"Machine_\" + m.machineId);"
     },
@@ -17624,7 +17678,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-      "line": 225,
+      "line": 227,
       "symbol": "Ziptide.Gameplay.JobDirector",
       "snippet": "var root = new GameObject(\"Choices\");"
     },
@@ -17633,7 +17687,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-      "line": 230,
+      "line": 232,
       "symbol": "Ziptide.Gameplay.JobDirector",
       "snippet": "var go = new GameObject(\"Choice_\" + c.choiceId);"
     },
@@ -17642,7 +17696,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-      "line": 242,
+      "line": 244,
       "symbol": "Ziptide.Gameplay.JobDirector",
       "snippet": "var root = new GameObject(\"Collectibles\");"
     },
@@ -17651,7 +17705,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-      "line": 247,
+      "line": 249,
       "symbol": "Ziptide.Gameplay.JobDirector",
       "snippet": "var go = new GameObject(\"Collectible_\" + c.itemId);"
     },
@@ -17660,7 +17714,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-      "line": 256,
+      "line": 258,
       "symbol": "Ziptide.Gameplay.JobDirector",
       "snippet": "var console = new GameObject(\"TransmissionConsole_\" + c.itemId);"
     },
@@ -17840,7 +17894,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 306,
+      "line": 324,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "var go = new GameObject(Ziptide.Core.ZiptideConstants.GoBeltRig);"
     },
@@ -17849,7 +17903,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 431,
+      "line": 449,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "var go = new GameObject(\"__XRI\");"
     },
@@ -18173,7 +18227,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 264,
+      "line": 270,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "var go = new GameObject(\"__HOME_HUB_COMFORT_SETTINGS\");"
     },
@@ -18182,7 +18236,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 471,
+      "line": 477,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "var go = new GameObject(\"Label_\" + text.Replace(' ', '_').Replace('\\n', '_'));"
     },
@@ -18821,7 +18875,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-      "line": 132,
+      "line": 134,
       "symbol": "Ziptide.Tests.EditMode.HomeHubFlowTests",
       "snippet": "StringAssert.Contains(\"new GameObject(\\\"__HOME_HUB_RUNTIME\\\").AddComponent<HomeHubRuntime>()\", source);"
     },
@@ -18830,7 +18884,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-      "line": 163,
+      "line": 165,
       "symbol": "Ziptide.Tests.EditMode.HomeHubFlowTests",
       "snippet": "StringAssert.Contains(\"new GameObject(\\\"__HOME_HUB_COMFORT_SETTINGS\\\")\", source);"
     },
@@ -18839,7 +18893,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-      "line": 176,
+      "line": 178,
       "symbol": "Ziptide.Tests.EditMode.HomeHubFlowTests",
       "snippet": "var go = new GameObject(\"castoff-test\");"
     },
@@ -18848,9 +18902,81 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-      "line": 201,
+      "line": 203,
       "symbol": "Ziptide.Tests.EditMode.HomeHubFlowTests",
       "snippet": "var go = new GameObject(\"bunk-test\");"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/JobDirectorMarkerResolutionTests.cs",
+      "line": 22,
+      "symbol": "Ziptide.Tests.EditMode.JobDirectorMarkerResolutionTests",
+      "snippet": "_director = new GameObject(\"JobDirector\");"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/JobDirectorMarkerResolutionTests.cs",
+      "line": 36,
+      "symbol": "Ziptide.Tests.EditMode.JobDirectorMarkerResolutionTests",
+      "snippet": "_authored = new GameObject(\"Hero_DispatchHall\");"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/JobDirectorMarkerResolutionTests.cs",
+      "line": 37,
+      "symbol": "Ziptide.Tests.EditMode.JobDirectorMarkerResolutionTests",
+      "snippet": "var marker = new GameObject(\"Marker_dispatch_inside\");"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/JobDirectorMarkerResolutionTests.cs",
+      "line": 50,
+      "symbol": "Ziptide.Tests.EditMode.JobDirectorMarkerResolutionTests",
+      "snippet": "_authored = new GameObject(\"__TOXIC_CITY_ROOT\");"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/JobDirectorMarkerResolutionTests.cs",
+      "line": 51,
+      "symbol": "Ziptide.Tests.EditMode.JobDirectorMarkerResolutionTests",
+      "snippet": "var district = new GameObject(\"District_Shipyard\");"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/JobDirectorMarkerResolutionTests.cs",
+      "line": 53,
+      "symbol": "Ziptide.Tests.EditMode.JobDirectorMarkerResolutionTests",
+      "snippet": "var hero = new GameObject(\"Hero_ShipyardOffice\");"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/JobDirectorMarkerResolutionTests.cs",
+      "line": 55,
+      "symbol": "Ziptide.Tests.EditMode.JobDirectorMarkerResolutionTests",
+      "snippet": "var marker = new GameObject(\"Marker_shipyard_office\");"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Tests/EditMode/JobDirectorMarkerResolutionTests.cs",
+      "line": 66,
+      "symbol": "Ziptide.Tests.EditMode.JobDirectorMarkerResolutionTests",
+      "snippet": "_authored = new GameObject(\"Marker_relay_node\");"
     },
     {
       "category": "runtime_creation",
@@ -19928,7 +20054,7 @@
       "code": "TEXTMESH_COMPONENT",
       "description": "Legacy TextMesh creation/reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 474,
+      "line": 480,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "var tm = go.AddComponent<TextMesh>();"
     },
@@ -20486,7 +20612,7 @@
       "code": "XR_INTERACTABLE_COMPONENT",
       "description": "XR interactable creation/reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 327,
+      "line": 333,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "var interactable = tile.AddComponent<XRSimpleInteractable>();"
     },
@@ -21359,7 +21485,7 @@
       "code": "PLAYER_PROFILE_REFERENCE",
       "description": "PlayerProfile reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 105,
+      "line": 111,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "public static event Action<PlayerProfile> NewGameProfileCreated;"
     },
@@ -21368,7 +21494,7 @@
       "code": "PLAYER_PROFILE_REFERENCE",
       "description": "PlayerProfile reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 245,
+      "line": 251,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "PlayerProfile profile = SaveSystem.Instance.StartNewProfile();"
     },
@@ -21647,7 +21773,7 @@
       "code": "PLAYER_PROFILE_REFERENCE",
       "description": "PlayerProfile reference",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-      "line": 147,
+      "line": 149,
       "symbol": "Ziptide.Tests.EditMode.HomeHubFlowTests",
       "snippet": "StringAssert.Contains(\"public PlayerProfile StartNewProfile()\", source);"
     },
@@ -22277,7 +22403,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-      "line": 42,
+      "line": 44,
       "symbol": "Ziptide.Gameplay.JobDirector",
       "snippet": "var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
     },
@@ -22286,7 +22412,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-      "line": 306,
+      "line": 371,
       "symbol": "Ziptide.Gameplay.JobDirector",
       "snippet": "// JobRewards.Grant + the self-bootstrapping SaveSystem (so no _Boot edit needed). This is the"
     },
@@ -22295,7 +22421,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-      "line": 308,
+      "line": 373,
       "symbol": "Ziptide.Gameplay.JobDirector",
       "snippet": "var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
     },
@@ -22592,7 +22718,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 134,
+      "line": 140,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "bool canContinue = SaveSystem.HasExistingProfile;"
     },
@@ -22601,7 +22727,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 219,
+      "line": 225,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "SaveSystem.Instance == null)"
     },
@@ -22610,7 +22736,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 245,
+      "line": 251,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "PlayerProfile profile = SaveSystem.Instance.StartNewProfile();"
     },
@@ -22619,7 +22745,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 250,
+      "line": 256,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "// Load remains SaveSystem's sole profile recovery/migration path."
     },
@@ -22628,7 +22754,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 251,
+      "line": 257,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "SaveSystem.Instance.Load();"
     },
@@ -22898,7 +23024,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-      "line": 143,
+      "line": 145,
       "symbol": "Ziptide.Tests.EditMode.HomeHubFlowTests",
       "snippet": "string source = Read(\"Gameplay\", \"Runtime\", \"Persistence\", \"SaveSystem.cs\");"
     },
@@ -22907,7 +23033,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-      "line": 160,
+      "line": 162,
       "symbol": "Ziptide.Tests.EditMode.HomeHubFlowTests",
       "snippet": "StringAssert.Contains(\"SaveSystem.Instance.StartNewProfile()\", source);"
     },
@@ -22916,7 +23042,7 @@
       "code": "SAVE_SYSTEM_REFERENCE",
       "description": "SaveSystem reference",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-      "line": 161,
+      "line": 163,
       "symbol": "Ziptide.Tests.EditMode.HomeHubFlowTests",
       "snippet": "StringAssert.Contains(\"SaveSystem.Instance.Load();\", source);"
     },
@@ -23267,7 +23393,7 @@
       "code": "XRI_MANAGER_ASSIGN",
       "description": "Explicit interactable interactionManager assignment",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 460,
+      "line": 478,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "i.interactionManager = _xriManager;"
     },
@@ -23429,7 +23555,7 @@
       "code": "XRI_MANAGER_ASSIGN",
       "description": "Explicit interactable interactionManager assignment",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 335,
+      "line": 341,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "interactable.interactionManager = manager;"
     },
@@ -23438,7 +23564,7 @@
       "code": "XRI_MANAGER_ASSIGN",
       "description": "Explicit interactable interactionManager assignment",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 377,
+      "line": 383,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "interactable.interactionManager = manager;"
     },
@@ -23582,7 +23708,7 @@
       "code": "XRI_MANAGER_CREATE",
       "description": "XRInteractionManager creation",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 433,
+      "line": 451,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "_xriManager = go.AddComponent<XRInteractionManager>();"
     },
@@ -23762,7 +23888,7 @@
       "code": "XRI_MANAGER_LOOKUP",
       "description": "XRInteractionManager lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 384,
+      "line": 402,
       "symbol": "Ziptide.Gameplay.BootHoldState",
       "snippet": "var allManagers = FindObjectsOfType<XRInteractionManager>(true);"
     },
@@ -23915,7 +24041,7 @@
       "code": "XRI_MANAGER_LOOKUP",
       "description": "XRInteractionManager lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 329,
+      "line": 335,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "if (manager == null) manager = FindObjectOfType<XRInteractionManager>();"
     },
@@ -23924,7 +24050,7 @@
       "code": "XRI_MANAGER_LOOKUP",
       "description": "XRInteractionManager lookup",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 373,
+      "line": 379,
       "symbol": "Ziptide.Gameplay.HomeHubChoice",
       "snippet": "XRInteractionManager manager = FindObjectOfType<XRInteractionManager>();"
     },

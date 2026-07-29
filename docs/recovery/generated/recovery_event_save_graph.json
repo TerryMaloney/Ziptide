@@ -1,6 +1,6 @@
 {
   "tool": "recovery_event_save_graph",
-  "scannedFiles": 739,
+  "scannedFiles": 740,
   "evidenceCount": 743,
   "kindCounts": {
     "AUTOSAVE": 8,
@@ -215,7 +215,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 999,
+      "line": 1017,
       "owner": "Ziptide.Gameplay.BootHoldState",
       "target": "transform.position",
       "detail": "headDelta",
@@ -449,7 +449,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-      "line": 181,
+      "line": 183,
       "owner": "Ziptide.Tests.EditMode.HomeHubFlowTests",
       "target": "castOff.DestinationSelected",
       "detail": "destination",
@@ -1160,7 +1160,7 @@
       {
         "kind": "EVENT_DECLARE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-        "line": 104,
+        "line": 110,
         "owner": "Ziptide.Gameplay.HomeHubFlowState",
         "target": "BootPresentationReady",
         "detail": "static Action<bool>",
@@ -1171,7 +1171,7 @@
       {
         "kind": "EVENT_DECLARE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-        "line": 106,
+        "line": 112,
         "owner": "Ziptide.Gameplay.HomeHubFlowState",
         "target": "ChoiceSelected",
         "detail": "static Action<HomeHubChoice>",
@@ -1523,7 +1523,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-        "line": 61,
+        "line": 63,
         "owner": "Ziptide.Gameplay.JobDirector",
         "target": "DroneRuntime.OnDroneDisabled",
         "detail": "OnDroneDisabled",
@@ -1532,7 +1532,7 @@
       {
         "kind": "EVENT_UNSUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-        "line": 69,
+        "line": 71,
         "owner": "Ziptide.Gameplay.JobDirector",
         "target": "DroneRuntime.OnDroneDisabled",
         "detail": "OnDroneDisabled",
@@ -1791,7 +1791,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-        "line": 205,
+        "line": 207,
         "owner": "Ziptide.Tests.EditMode.HomeHubFlowTests",
         "target": "FirstHourBunkObjectRuntime.NamedBunkObjectGrabbed",
         "detail": "handler",
@@ -1800,7 +1800,7 @@
       {
         "kind": "EVENT_UNSUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-        "line": 217,
+        "line": 219,
         "owner": "Ziptide.Tests.EditMode.HomeHubFlowTests",
         "target": "FirstHourBunkObjectRuntime.NamedBunkObjectGrabbed",
         "detail": "handler",
@@ -3216,7 +3216,7 @@
       {
         "kind": "EVENT_DECLARE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-        "line": 105,
+        "line": 111,
         "owner": "Ziptide.Gameplay.HomeHubFlowState",
         "target": "NewGameProfileCreated",
         "detail": "static Action<PlayerProfile>",
@@ -3984,7 +3984,7 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-        "line": 134,
+        "line": 140,
         "owner": "Ziptide.Gameplay.HomeHubFlowState",
         "target": "SaveSystem.HasExistingProfile",
         "detail": "",
@@ -4013,7 +4013,7 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-        "line": 251,
+        "line": 257,
         "owner": "Ziptide.Gameplay.HomeHubFlowState",
         "target": "SaveSystem.Load",
         "detail": "",
@@ -4022,7 +4022,7 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-        "line": 161,
+        "line": 163,
         "owner": "Ziptide.Tests.EditMode.HomeHubFlowTests",
         "target": "SaveSystem.Load",
         "detail": "",
@@ -4132,7 +4132,7 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-        "line": 42,
+        "line": 44,
         "owner": "Ziptide.Gameplay.JobDirector",
         "target": "SaveSystem.Profile",
         "detail": "",
@@ -4141,7 +4141,7 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-        "line": 308,
+        "line": 373,
         "owner": "Ziptide.Gameplay.JobDirector",
         "target": "SaveSystem.Profile",
         "detail": "",
@@ -4521,7 +4521,7 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-        "line": 245,
+        "line": 251,
         "owner": "Ziptide.Gameplay.HomeHubFlowState",
         "target": "SaveSystem.StartNewProfile",
         "detail": "",
@@ -4530,7 +4530,7 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-        "line": 160,
+        "line": 162,
         "owner": "Ziptide.Tests.EditMode.HomeHubFlowTests",
         "target": "SaveSystem.StartNewProfile",
         "detail": "",
@@ -4743,7 +4743,7 @@
       {
         "kind": "EVENT_UNSUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-        "line": 317,
+        "line": 335,
         "owner": "Ziptide.Gameplay.BootHoldState",
         "target": "SceneManager.sceneLoaded",
         "detail": "OnSceneLoaded",
@@ -5071,7 +5071,7 @@
       {
         "kind": "EVENT_DECLARE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-        "line": 107,
+        "line": 113,
         "owner": "Ziptide.Gameplay.HomeHubFlowState",
         "target": "SettingsRequested",
         "detail": "static Action",
@@ -5383,7 +5383,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-        "line": 305,
+        "line": 370,
         "owner": "Ziptide.Gameplay.JobDirector",
         "target": "Uses",
         "detail": "profile",
@@ -5634,7 +5634,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-        "line": 60,
+        "line": 62,
         "owner": "Ziptide.Gameplay.JobDirector",
         "target": "_runtime.JobCompleted",
         "detail": "OnJobCompleted",
@@ -5643,7 +5643,7 @@
       {
         "kind": "EVENT_UNSUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-        "line": 68,
+        "line": 70,
         "owner": "Ziptide.Gameplay.JobDirector",
         "target": "_runtime.JobCompleted",
         "detail": "OnJobCompleted",
@@ -5654,7 +5654,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-        "line": 59,
+        "line": 61,
         "owner": "Ziptide.Gameplay.JobDirector",
         "target": "_runtime.StepChanged",
         "detail": "OnStepChanged",
@@ -5663,7 +5663,7 @@
       {
         "kind": "EVENT_UNSUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-        "line": 67,
+        "line": 69,
         "owner": "Ziptide.Gameplay.JobDirector",
         "target": "_runtime.StepChanged",
         "detail": "OnStepChanged",
@@ -5811,7 +5811,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-        "line": 181,
+        "line": 183,
         "owner": "Ziptide.Tests.EditMode.HomeHubFlowTests",
         "target": "castOff.DestinationSelected",
         "detail": "destination",
@@ -7545,7 +7545,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-        "line": 999,
+        "line": 1017,
         "owner": "Ziptide.Gameplay.BootHoldState",
         "target": "transform.position",
         "detail": "headDelta",
@@ -9678,7 +9678,7 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-      "line": 42,
+      "line": 44,
       "owner": "Ziptide.Gameplay.JobDirector",
       "target": "SaveSystem.Profile",
       "detail": "",
@@ -9687,7 +9687,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-      "line": 59,
+      "line": 61,
       "owner": "Ziptide.Gameplay.JobDirector",
       "target": "_runtime.StepChanged",
       "detail": "OnStepChanged",
@@ -9696,7 +9696,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-      "line": 60,
+      "line": 62,
       "owner": "Ziptide.Gameplay.JobDirector",
       "target": "_runtime.JobCompleted",
       "detail": "OnJobCompleted",
@@ -9705,7 +9705,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-      "line": 61,
+      "line": 63,
       "owner": "Ziptide.Gameplay.JobDirector",
       "target": "DroneRuntime.OnDroneDisabled",
       "detail": "OnDroneDisabled",
@@ -9714,7 +9714,7 @@
     {
       "kind": "EVENT_UNSUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-      "line": 67,
+      "line": 69,
       "owner": "Ziptide.Gameplay.JobDirector",
       "target": "_runtime.StepChanged",
       "detail": "OnStepChanged",
@@ -9723,7 +9723,7 @@
     {
       "kind": "EVENT_UNSUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-      "line": 68,
+      "line": 70,
       "owner": "Ziptide.Gameplay.JobDirector",
       "target": "_runtime.JobCompleted",
       "detail": "OnJobCompleted",
@@ -9732,7 +9732,7 @@
     {
       "kind": "EVENT_UNSUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-      "line": 69,
+      "line": 71,
       "owner": "Ziptide.Gameplay.JobDirector",
       "target": "DroneRuntime.OnDroneDisabled",
       "detail": "OnDroneDisabled",
@@ -9741,7 +9741,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-      "line": 305,
+      "line": 370,
       "owner": "Ziptide.Gameplay.JobDirector",
       "target": "Uses",
       "detail": "profile",
@@ -9750,7 +9750,7 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs",
-      "line": 308,
+      "line": 373,
       "owner": "Ziptide.Gameplay.JobDirector",
       "target": "SaveSystem.Profile",
       "detail": "",
@@ -10101,7 +10101,7 @@
     {
       "kind": "EVENT_UNSUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 317,
+      "line": 335,
       "owner": "Ziptide.Gameplay.BootHoldState",
       "target": "SceneManager.sceneLoaded",
       "detail": "OnSceneLoaded",
@@ -10110,7 +10110,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 999,
+      "line": 1017,
       "owner": "Ziptide.Gameplay.BootHoldState",
       "target": "transform.position",
       "detail": "headDelta",
@@ -10965,7 +10965,7 @@
     {
       "kind": "EVENT_DECLARE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 104,
+      "line": 110,
       "owner": "Ziptide.Gameplay.HomeHubFlowState",
       "target": "BootPresentationReady",
       "detail": "static Action<bool>",
@@ -10974,7 +10974,7 @@
     {
       "kind": "EVENT_DECLARE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 105,
+      "line": 111,
       "owner": "Ziptide.Gameplay.HomeHubFlowState",
       "target": "NewGameProfileCreated",
       "detail": "static Action<PlayerProfile>",
@@ -10983,7 +10983,7 @@
     {
       "kind": "EVENT_DECLARE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 106,
+      "line": 112,
       "owner": "Ziptide.Gameplay.HomeHubFlowState",
       "target": "ChoiceSelected",
       "detail": "static Action<HomeHubChoice>",
@@ -10992,7 +10992,7 @@
     {
       "kind": "EVENT_DECLARE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 107,
+      "line": 113,
       "owner": "Ziptide.Gameplay.HomeHubFlowState",
       "target": "SettingsRequested",
       "detail": "static Action",
@@ -11001,7 +11001,7 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 134,
+      "line": 140,
       "owner": "Ziptide.Gameplay.HomeHubFlowState",
       "target": "SaveSystem.HasExistingProfile",
       "detail": "",
@@ -11010,7 +11010,7 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 245,
+      "line": 251,
       "owner": "Ziptide.Gameplay.HomeHubFlowState",
       "target": "SaveSystem.StartNewProfile",
       "detail": "",
@@ -11019,7 +11019,7 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 251,
+      "line": 257,
       "owner": "Ziptide.Gameplay.HomeHubFlowState",
       "target": "SaveSystem.Load",
       "detail": "",
@@ -12621,7 +12621,7 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-      "line": 160,
+      "line": 162,
       "owner": "Ziptide.Tests.EditMode.HomeHubFlowTests",
       "target": "SaveSystem.StartNewProfile",
       "detail": "",
@@ -12630,7 +12630,7 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-      "line": 161,
+      "line": 163,
       "owner": "Ziptide.Tests.EditMode.HomeHubFlowTests",
       "target": "SaveSystem.Load",
       "detail": "",
@@ -12639,7 +12639,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-      "line": 181,
+      "line": 183,
       "owner": "Ziptide.Tests.EditMode.HomeHubFlowTests",
       "target": "castOff.DestinationSelected",
       "detail": "destination",
@@ -12648,7 +12648,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-      "line": 205,
+      "line": 207,
       "owner": "Ziptide.Tests.EditMode.HomeHubFlowTests",
       "target": "FirstHourBunkObjectRuntime.NamedBunkObjectGrabbed",
       "detail": "handler",
@@ -12657,7 +12657,7 @@
     {
       "kind": "EVENT_UNSUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-      "line": 217,
+      "line": 219,
       "owner": "Ziptide.Tests.EditMode.HomeHubFlowTests",
       "target": "FirstHourBunkObjectRuntime.NamedBunkObjectGrabbed",
       "detail": "handler",

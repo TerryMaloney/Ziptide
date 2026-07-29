@@ -1,7 +1,7 @@
 # ZIPTIDE Focused Recovery Reference Graph
 
-- Scanned C# files: **739**
-- Focused references: **419**
+- Scanned C# files: **740**
+- Focused references: **427**
 
 ## melee
 
@@ -147,9 +147,9 @@
 
 ## repairObjective
 
-- References: **210**
-- Files: **52**
-- Non-declaration caller files: **51**
+- References: **218**
+- Files: **53**
+- Non-declaration caller files: **52**
 
 ### `CastOffArming`
 
@@ -241,12 +241,20 @@
 - **reference** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:160` — `// observes and its repaired state — divergence from the JobDirector-spawned machine`
 - **reference** · `Ziptide.Gameplay.TransmissionConsole` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/TransmissionConsole.cs:12` — `/// screen. Spawned by JobDirector next to any fragment pickup (the playback device lives where the`
 - **reference** · `Ziptide.Gameplay.HazardZoneRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HazardZoneRuntime.cs:10` — `/// Player detection is a cheap poll against the rig position (same style as JobDirector's marker`
+- **reference** · `Ziptide.Tests.EditMode.JobDirectorMarkerResolutionTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/JobDirectorMarkerResolutionTests.cs:14` — `public class JobDirectorMarkerResolutionTests`
+- **reference** · `Ziptide.Tests.EditMode.JobDirectorMarkerResolutionTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/JobDirectorMarkerResolutionTests.cs:22` — `_director = new GameObject("JobDirector");`
+- **reference** · `Ziptide.Tests.EditMode.JobDirectorMarkerResolutionTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/JobDirectorMarkerResolutionTests.cs:23` — `_director.AddComponent<JobDirector>();`
+- **reference** · `Ziptide.Tests.EditMode.JobDirectorMarkerResolutionTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/JobDirectorMarkerResolutionTests.cs:41` — `var resolved = _director.GetComponent<JobDirector>().ResolveMarker("dispatch_inside");`
+- **reference** · `Ziptide.Tests.EditMode.JobDirectorMarkerResolutionTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/JobDirectorMarkerResolutionTests.cs:58` — `var resolved = _director.GetComponent<JobDirector>().ResolveMarker("shipyard_office");`
+- **reference** · `Ziptide.Tests.EditMode.JobDirectorMarkerResolutionTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/JobDirectorMarkerResolutionTests.cs:68` — `var director = _director.GetComponent<JobDirector>();`
+- **reference** · `Ziptide.Tests.EditMode.JobDirectorMarkerResolutionTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/JobDirectorMarkerResolutionTests.cs:79` — `Assert.IsNull(_director.GetComponent<JobDirector>().ResolveMarker("no_such_marker"));`
+- **reference** · `Ziptide.Tests.EditMode.JobDirectorMarkerResolutionTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/JobDirectorMarkerResolutionTests.cs:85` — `var director = _director.GetComponent<JobDirector>();`
 
 ### `JobRuntime`
 
 - **reference** · `Ziptide.Gameplay.JobDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs:8` — `/// Scene-level owner of JobRuntime. References WorldPackDefinition, updates ObjectiveBoard, creates spawn markers, and wires DispatchKiosk and delivery/target callbacks.`
 - **reference** · `Ziptide.Gameplay.JobDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs:21` — `private JobRuntime _runtime = new JobRuntime();`
-- **reference** · `Ziptide.Gameplay.JobDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs:26` — `public JobRuntime Runtime => _runtime;`
+- **reference** · `Ziptide.Gameplay.JobDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs:28` — `public JobRuntime Runtime => _runtime;`
 - **declaration** · `Ziptide.Gameplay.JobRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobRuntime.cs:11` — `public class JobRuntime`
 - **reference** · `Ziptide.Gameplay.ObjectiveBoard` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:8` — `/// World-space contract board bound to the canonical JobRuntime. It shows the current job and step,`
 - **reference** · `Ziptide.Gameplay.ObjectiveBoard` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:18` — `private JobRuntime _subscribedRuntime;`
@@ -279,7 +287,7 @@
 - **reference** · `Ziptide.Editor.Patching.WorldStubGenerator` · `Ziptide/Assets/Ziptide/Editor/Patching/WorldStubGenerator.cs:467` — `PatcherUtil.EnsureComponent<ObjectiveBoard>(boardGo);`
 - **reference** · `Ziptide.Gameplay.JobDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs:8` — `/// Scene-level owner of JobRuntime. References WorldPackDefinition, updates ObjectiveBoard, creates spawn markers, and wires DispatchKiosk and delivery/target callbacks.`
 - **reference** · `Ziptide.Gameplay.JobDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs:16` — `[SerializeField] private ObjectiveBoard objectiveBoard;`
-- **reference** · `Ziptide.Gameplay.JobDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs:284` — `objectiveBoard = FindObjectOfType<ObjectiveBoard>();`
+- **reference** · `Ziptide.Gameplay.JobDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs:349` — `objectiveBoard = FindObjectOfType<ObjectiveBoard>();`
 - **declaration** · `Ziptide.Gameplay.ObjectiveBoard` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/ObjectiveBoard.cs:12` — `public class ObjectiveBoard : MonoBehaviour`
 - **reference** · `Ziptide.Tests.EditMode.FirstRouteFeelTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/FirstRouteFeelTests.cs:57` — `public void ObjectiveBoard_PresentsCanonicalRuntimeWithoutOwningProgress()`
 - **reference** · `Ziptide.Tests.EditMode.FirstRouteFeelTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/FirstRouteFeelTests.cs:59` — `string source = ReadCode("Gameplay", "Runtime", "Jobs", "ObjectiveBoard.cs");`
@@ -288,7 +296,7 @@
 
 ### `REPAIR_TRACE`
 
-- **reference** · `Ziptide.Gameplay.JobDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs:123` — `Debug.Log("ZIPTIDE: REPAIR_TRACE hop=director id=" + GetInstanceID()`
+- **reference** · `Ziptide.Gameplay.JobDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs:125` — `Debug.Log("ZIPTIDE: REPAIR_TRACE hop=director id=" + GetInstanceID()`
 - **reference** · `Ziptide.Gameplay.JobRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobRuntime.cs:87` — `// but the objective still asks" must show its cause — every branch logs REPAIR_TRACE.`
 - **reference** · `Ziptide.Gameplay.JobRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobRuntime.cs:90` — `Debug.Log("ZIPTIDE: REPAIR_TRACE hop=runtime machine=" + machineId`
 - **reference** · `Ziptide.Gameplay.JobRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobRuntime.cs:100` — `Debug.Log("ZIPTIDE: REPAIR_TRACE hop=runtime machine=" + machineId`
@@ -320,8 +328,8 @@
 - **reference** · `Ziptide.Content.WorldPackDefinition` · `Ziptide/Assets/Ziptide/Content/Runtime/WorldPacks/WorldPackDefinition.cs:48` — `"power). Pure data — JobDirector materializes RepairableMachine objects, like spawnMarkers.")]`
 - **reference** · `Ziptide.Editor.Audit.PerceptualCoverageAuditRules` · `Ziptide/Assets/Ziptide/Editor/Audit/PerceptualCoverageAuditRules.cs:30` — `foreach (RepairableMachine machine in Object.FindObjectsOfType<RepairableMachine>(true))`
 - **reference** · `Ziptide.Editor.Patching.WorldJobLibrary` · `Ziptide/Assets/Ziptide/Editor/Patching/WorldJobLibrary.cs:73` — `// A repairable machine in the world (JobDirector spawns a RepairableMachine from pack data).`
-- **reference** · `Ziptide.Gameplay.JobDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs:117` — `/// Called by RepairableMachine when its final repair stage completes. For RepairMachineCountStep.`
-- **reference** · `Ziptide.Gameplay.JobDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs:217` — `go.AddComponent<RepairableMachine>().Init(m, this);`
+- **reference** · `Ziptide.Gameplay.JobDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs:119` — `/// Called by RepairableMachine when its final repair stage completes. For RepairMachineCountStep.`
+- **reference** · `Ziptide.Gameplay.JobDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs:219` — `go.AddComponent<RepairableMachine>().Init(m, this);`
 - **reference** · `Ziptide.Gameplay.JobRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobRuntime.cs:83` — `/// <summary>A machine finished its hands-on repair (RepairableMachine's final stage).</summary>`
 - **reference** · `Ziptide.Gameplay.RepairPartSafetyInstallerRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairPartSafetyInstallerRuntime.cs:32` — `RepairableMachine[] machines = Object.FindObjectsOfType<RepairableMachine>(true);`
 - **reference** · `Ziptide.Gameplay.RepairPartSafetyInstallerRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairPartSafetyInstallerRuntime.cs:40` — `RepairableMachine nearest = null;`
@@ -357,8 +365,8 @@
 
 ### `ReportRepair`
 
-- **reference** · `Ziptide.Gameplay.JobDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs:119` — `public void ReportRepair(string machineId)`
-- **reference** · `Ziptide.Gameplay.JobDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs:125` — `_runtime.ReportRepair(machineId);`
+- **reference** · `Ziptide.Gameplay.JobDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs:121` — `public void ReportRepair(string machineId)`
+- **reference** · `Ziptide.Gameplay.JobDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobDirector.cs:127` — `_runtime.ReportRepair(machineId);`
 - **reference** · `Ziptide.Gameplay.JobRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Jobs/JobRuntime.cs:84` — `public void ReportRepair(string machineId)`
 - **reference** · `Ziptide.Gameplay.RepairableMachine` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairableMachine.cs:291` — `if (_director != null) _director.ReportRepair(_def.machineId);`
 - **reference** · `Ziptide.Tests.EditMode.JobRuntimeRepairTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/JobRuntimeRepairTests.cs:45` — `rt.ReportRepair("cistern_pump");`
@@ -382,8 +390,8 @@
 - **reference** · `Ziptide.Gameplay.FirstDestinationHelmRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:19` — `public void Configure(ShipCastOffRuntime castOff)`
 - **reference** · `Ziptide.Gameplay.FirstDestinationHelmRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:26` — `if (_castOff == null) _castOff = FindObjectOfType<ShipCastOffRuntime>();`
 - **reference** · `Ziptide.Gameplay.FirstDestinationHelmRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:32` — `if (_castOff == null) _castOff = FindObjectOfType<ShipCastOffRuntime>();`
-- **reference** · `Ziptide.Tests.EditMode.HomeHubFlowTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:179` — `var castOff = go.AddComponent<ShipCastOffRuntime>();`
-- **reference** · `Ziptide.Tests.EditMode.HomeHubFlowTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:261` — `string castOff = Read("Gameplay", "Runtime", "Story", "ShipCastOffRuntime.cs");`
+- **reference** · `Ziptide.Tests.EditMode.HomeHubFlowTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:181` — `var castOff = go.AddComponent<ShipCastOffRuntime>();`
+- **reference** · `Ziptide.Tests.EditMode.HomeHubFlowTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:263` — `string castOff = Read("Gameplay", "Runtime", "Story", "ShipCastOffRuntime.cs");`
 
 ### `gate_coupler`
 
@@ -415,8 +423,8 @@
 - **reference** · `Ziptide.Gameplay.FirstDestinationHelmRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:19` — `public void Configure(ShipCastOffRuntime castOff)`
 - **reference** · `Ziptide.Gameplay.FirstDestinationHelmRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:26` — `if (_castOff == null) _castOff = FindObjectOfType<ShipCastOffRuntime>();`
 - **reference** · `Ziptide.Gameplay.FirstDestinationHelmRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:32` — `if (_castOff == null) _castOff = FindObjectOfType<ShipCastOffRuntime>();`
-- **reference** · `Ziptide.Tests.EditMode.HomeHubFlowTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:179` — `var castOff = go.AddComponent<ShipCastOffRuntime>();`
-- **reference** · `Ziptide.Tests.EditMode.HomeHubFlowTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:261` — `string castOff = Read("Gameplay", "Runtime", "Story", "ShipCastOffRuntime.cs");`
+- **reference** · `Ziptide.Tests.EditMode.HomeHubFlowTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:181` — `var castOff = go.AddComponent<ShipCastOffRuntime>();`
+- **reference** · `Ziptide.Tests.EditMode.HomeHubFlowTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:263` — `string castOff = Read("Gameplay", "Runtime", "Story", "ShipCastOffRuntime.cs");`
 
 ### `ShipChassisPreset`
 
