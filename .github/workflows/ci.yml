@@ -88,6 +88,12 @@ jobs:
           python3 tools/first_hour_launch_gate.py \
             --json-report Builds/Reports/first_hour_launch_report.json
 
+      - name: Reconcile world specs against contracts
+        if: always()
+        run: |
+          python3 tools/worldspec_contract_gate.py \
+            --json-report Builds/Reports/worldspec_contract_report.json
+
       - name: Upload project contract reports
         uses: actions/upload-artifact@v4
         if: always()
@@ -99,6 +105,7 @@ jobs:
             Builds/Reports/first_hour_binding_report.json
             Builds/Reports/first_hour_envelope_report.json
             Builds/Reports/first_hour_launch_report.json
+            Builds/Reports/worldspec_contract_report.json
           if-no-files-found: warn
 
   test:

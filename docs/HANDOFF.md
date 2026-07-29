@@ -71,6 +71,16 @@
   `rings`/jobs/spawnMarkers/audioProfile are not spec-carried (compiler never touches them —
   verified in `WorldSpecCompiler.cs`). Next: B2 (contract marker retarget check) then Wave 2
   space batches.
+- **B2 (same day, second commit): `tools/worldspec_contract_gate.py` + 12 tests + CI hook** —
+  reconciles every spec against its world's ATTACHED contract assets (pack→jobs→steps by guid):
+  GoToMarker ids must exist as spec hero/poi markers, RepairMachine ids in spec machines,
+  DisableDrones counts within spec droneZone capacity, spec item ids resolvable in
+  `Resources/Items`. Verified against the real repo: 5 attached W001 steps (`dispatch_inside`,
+  ×5 drones, `relay_node`, `signal_relay`, `shipyard_office`) all reconcile with the B1 spec —
+  **no contract retarget was needed**; the gate now makes that divergence a CI red forever (the
+  rb120 JOB_MARKER_MISSING class). All 233 tools tests green. Note: committed job assets are the
+  older 5-step bake whose return step file is named `ToxicCity_S4_Return`; the builder's next run
+  authors `S5_Return` — cosmetic, both carry `shipyard_office`.
 - Commit: (this one).
 
 ### 2026-07-29 (rb126) — Fable 5: 📐 LEVEL1_SPATIAL_SCRIPT — the placement layer, + ⚖ Terry's two story corrections (expedition + boat/stalker)
