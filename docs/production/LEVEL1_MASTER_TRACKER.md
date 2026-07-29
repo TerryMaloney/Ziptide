@@ -131,7 +131,9 @@ hesitation interval, by id. A player who simply does the thing hears nothing.
 
 | Item | State | Note |
 |---|---|---|
-| **The space leg** | 🟨 | The scene now GENERATES in the build — its patcher was menu-only, which is why it had never existed. Reachable from the ship's destination list. Still unbuilt: the route beats, the neutral signals, the reentry act, and retargeting `PUNCH IT` (locked travel contract — after a headset pass) |
+| **The space leg** | 🟨 | The scene GENERATES in the build (its patcher was menu-only, which is why it had never existed). **rb127 built the experience: ring lamp-chase, drone wake/evade reactions, find debris shell + salvage tractor confirm, the Moss-orbit sky (giant/sibling moon/sun/starfield), the helm compass ribbon, and the ascent + reentry plasma veils bracketing travel.** All CODE-GREEN, none device-seen; the scene must be re-baked before any of it exists in the .unity |
+| **The expedition + the boat leg** | 🟨 | **rb127, new.** `FlatsSiteAuthor` (survey-skiff wreck outside the sea wall, breach ramps computed from the wall's own formula, burn-off smoke column), half B relocated there in the spec, contract step 5, the resonance tell; the ring canal made navigable (`CanalWaterCore` + skiff water-lock) and the canal stalker's three-stage escalation. Code-green; needs the bake + a device pass on feel |
+| **The first Ziptide** | 🟨 | **rb127 fixed a hole: the beat had nowhere to happen** — the key socket and cast-off existed only on W000's ship, so the ToxicCity berth (where the join happens) could not erupt or reach W002. Both are now authored there, key-gated, with the tide firing at the berth and the beacon thread leading you to it |
 | **The ring city** | 🟦 | Built and audit-green at `bf6ef0d2`. ToxicCity stands on its tidal flat, inside its breached sea wall, with the harbour to the south and the gate pillars on the horizon. Tower island and wedges wait for the district re-layout. Device verdict outstanding |
 | **FH-A01** | 🟨 | Species decided and documented (`W001_SIGNATURE_CREATURE_PASSPORT.md` — the Husk-Molter). Remaining: the contact sheets, and the pair shot that decides whether the molt is fair |
 | **Audio rails** | ⬜ | Mixer, buses, event registry, sliders, ducking, non-speech captions. Then assets. Both first-level worlds now at least have music assigned |
@@ -142,8 +144,10 @@ hesitation interval, by id. A player who simply does the thing hears nothing.
 
 ## 5. The Terry batch (one PC session, everything at once)
 
-1. `Ziptide → First Hour → Author W000 Surfaces` → commit `W000_DriftIn.unity`
-2. `Ziptide → Worlds → Build Toxic City` + `Build Toxic City Contract`
+1. `Ziptide → First Hour → Author W000 Surfaces` → commit `W000_DriftIn.unity` (now also stakes the porthole)
+1b. **`Ziptide → Worlds → Compile World Specs (docs-worldspecs)` — MUST run before step 2**, or the
+   city bakes from the old prototype layout instead of the rb127 spec
+2. `Ziptide → Worlds → Build Toxic City` + `Build Toxic City Contract` (the contract is 6 steps now)
 3. `Ziptide → Worlds → Build Space Lane (Flight Trial)` → commit scene + pack
 4. W002: delete the stale layout asset, reseed, re-bake interiors + portal culling
 5. `Ziptide → Worlds → Export All World Specs (JSON)` → commit `docs/worldspecs/*.spec.json`

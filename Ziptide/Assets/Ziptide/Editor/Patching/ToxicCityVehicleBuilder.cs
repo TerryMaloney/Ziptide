@@ -144,8 +144,8 @@ namespace Ziptide.Editor.Patching
 
             RingCityDef rings = kit.rings;
             bool ringWater = rings != null && rings.enabled && rings.buildCanalRing;
-            var lock_ = runtime.gameObject.AddComponent<SkiffWaterLockRuntime>();
-            lock_.Configure(ringWater ? rings.canalRingRadius : 0f,
+            var waterLock = runtime.gameObject.AddComponent<SkiffWaterLockRuntime>();
+            waterLock.Configure(ringWater ? rings.canalRingRadius : 0f,
                 ringWater ? rings.canalWidth : 0f, rects);
         }
 

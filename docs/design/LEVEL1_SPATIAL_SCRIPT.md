@@ -196,8 +196,31 @@ Every [S] above, in dependency order — each lands as generator/data extensions
 7. Hangar walk (berths 1–6 quay) + beacon thread staging (the rb121 look problem, now placed).
 8. W002 staging per §4.
 9. W000 porthole + eyeline-chain lighting pass per §1.
+### ✅ STATUS AFTER THE BUILD PASS (rb127, 2026-07-29) — what of the list above now exists
+
+Rows 1–4, 6, 7 (thread only) and 9 are **built as committed code/data**; they become geometry on
+Terry's next bake. Precisely:
+- **1 ✅** `docs/worldspecs/ToxicCity.spec.json` — the city as a spec (7 districts incl. the new
+  Quay + Colonnade, Canal One, connections, zones), compiled by `WorldSpecCompiler`.
+- **2 ✅ partly** — creature/drone zones and the relay/dispatch/quay markers are spec data; the
+  **zipline and lantern route are still [∅]**.
+- **3 ✅** `FlatsSiteAuthor` (wreck, cargo cage, burn-off column, scatter, breach ramps computed
+  from the wall's own formula) + half B relocated in the spec + contract step 5 + the resonance
+  tell. **⚠ the drive is ~270 m, not ~700 m** — the shell is only 190 m in radius (§3b corrected).
+- **4 ✅** `CanalWaterCore`/`SkiffWaterLockRuntime` (the **ring canal** at r=74 is the ~465 m
+  waterway — it existed as geometry all along) + `CanalStalkerCore`/`CanalStalkerBehavior`
+  (shadow → bump → block) + the `tox_canal_stalker_01` CreatureDefinition.
+- **5 ❌ NOT BUILT** — lantern route + sightline triple.
+- **6 ✅** ring lamp-chase, drone wake/evade reactions, find debris shell, **the Moss-orbit sky**
+  (giant/sibling moon/sun/starfield on the ground sky's bearings), plus the ascent + reentry
+  plasma veils and the helm compass ribbon.
+- **7 ◐** the **beacon thread is built**; the berth 1–5 quay pads are **[∅]**.
+- **8 ❌ NOT BUILT** — W002's defend wave, garden plot, glyph plate.
+- **9 ✅** the W000 porthole (`PortholeStarfieldCore` + `PortholeRuntime`).
+
 **Rule:** a row here flips [S]→[M] only when the number exists in committed code/data — the same
-honesty contract as the tracker. **⚖ of record (Terry, 2026-07-29):** half B moved from the
+honesty contract as the tracker. Note code-green ≠ device-green: every ✅ above means COMMITTED
+AND COMPILING, not seen in a headset. **⚖ of record (Terry, 2026-07-29):** half B moved from the
 Dockmaster's desk to the outside-town expedition site; the canal stalker's boat interaction is
 canon; both exercised through the DC §8 data-modifiability rule — the minute-map stretches
 (~min 27–41 becomes contract + expedition + optional boat leg) and the join now happens back at

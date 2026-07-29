@@ -39,17 +39,25 @@ tag that proves it fired. A beat that fails = send its tag line (or its absence)
 |---|---|---|---|
 | 1 | Cold boot → W000 | New Game | `TRAVEL_OK` (once), no `DUP_SINGLETON` |
 | 2 | Wake, move, grab keepsake, holster | — | `INVENTORY_SAVE`, no `XRI_NOT_READY` |
+| 2b | **NEW — look out the PORTHOLE** (wall past the bunk, standing eye height) | walk to it | `PORTHOLE built …` at scene start; judge whether the window sells "I'm on a ship in space" |
 | 3 | Repair the coupler (scan → panel → part → power) | machine steps | repair/`BELT_ENSURED` lines; launch arms |
-| 4 | Board, helm → **PUNCH IT** | press it | `FLIGHT_LAUNCH` → `FLIGHT_STREAKS` → `FLIGHT_DEPART` (blocked = `FLIGHT_BLOCKED` — coupler not repaired) |
-| 5 | Space leg: fly the 5 rings | throttle/steer | `LOCO_STATE`/flight lines; course progress |
-| 6 | Disable + salvage the drones (optional/pacifist-skippable) | aim cone | `DRONE_DOWN` ×N |
-| 7 | **THE FIND** — the artifact half on the wreck past the last ring | grab it | item pickup line (`ITEM_…`/inventory) |
-| 8 | Onward leg → Toxic City | travel station | `TRAVEL_START dest=ToxicCity` → `TRAVEL_OK` **→ `REENTRY_ARRIVAL from=SpaceLane_Trial world=ToxicCity`** (NEW — proves the reentry owner) |
-| 9 | Accept the contract; run all 5 steps | dispatch board | step advances; **any `JOB_MARKER_MISSING` = send immediately** (the level-locking class) |
-| 10 | Half B from the Dockmaster; **JOIN** the halves (one per hand, they reach + snap) | — | artifact join line |
-| 11 | Seat the key → the gate re-arms → **the FIRST ZIPTIDE** from the berth | — | gate/travel lines (full tide FX — this is the earned beat) |
-| 12 | Return home; payoff + save | — | `INVENTORY_RESTORE`; relaunch → Continue restores |
-| 13 | Vehicles (if placed): board, drive, exit | — | vehicle lines; note view/yaw feel (DV-06/07) |
+| 4 | Board, helm → **PUNCH IT** | press it | `FLIGHT_LAUNCH` → `FLIGHT_STREAKS` → **`VEIL leg=Ascent phase=start/Build/Peak`** → `FLIGHT_DEPART … gate=suppressed` (blocked = `FLIGHT_BLOCKED reason=unarmed`) |
+| 5 | Space leg: fly the 5 rings | throttle/steer | **`RING_LIGHTS next=N/5`** each ring (next ring chases amber, passed go green); `FLIGHT_RING n/5` |
+| 5b | **NEW — the sky.** Look around: ringed giant, sibling moon, sun, full starfield | — | no tag — judge it. Same bearing as the ground sky is intentional |
+| 5c | **NEW — the compass ribbon** on the canopy bar: turn away from the course | — | marker slides / goes red when the ring is behind you |
+| 6 | Fly at a drone (wake), shoot it, then fly close to salvage | aim cone | **`DRONE_MOOD … mood=Woken/Evading`**, `FLIGHT_DISABLE`, `FLIGHT_SALVAGE` + tractor beam + pluck |
+| 7 | **THE FIND** — the artifact half on the wreck past the last ring, among drifting scrap | grab it | `SALVAGE_FIND id=artifact_half_a` |
+| 8 | Onward leg → Toxic City | travel station | `TRAVEL_START dest=ToxicCity` → `TRAVEL_OK` → `REENTRY_ARRIVAL from=SpaceLane_Trial world=ToxicCity` **→ `VEIL leg=Reentry`** (the burn clears as you arrive) |
+| 9 | Accept the contract; run steps 1–4 (dispatch → 5 drones → relay → repair) | dispatch board | step advances; **any `JOB_MARKER_MISSING` = send immediately** (the level-locking class) |
+| 9b | **NEW — the Husk-Molter** meets you on the colonnade between Market Row and the relay | — | creature spawn/behaviour lines; judge the observation distance |
+| 10 | **NEW — THE EXPEDITION (step 5).** Take the crawler from the quay, out through the sea-wall breach, follow the wall to the smoke column | drive it | `FLATS_SITE built …` at bake; contract step 5 advances at the wreck |
+| 10b | **Grab half B** in the wreck's cargo cage → **the resonance tell** (your ride goes dark ~2 s) | grab it | `COLLECTED item=artifact_half_b` → **`RESONANCE_TELL lights=… instruments=…`** → `phase=recovered` |
+| 10c | **NEW — THE BOAT.** Take the tide skiff on the ring canal; ride it twice, linger | drive it | **`SKIFF_WATER state=afloat/aground`** (try to drive onto land — it should nudge you back) · **`STALKER stage=Shadow` → `Bump` → `Block`** (ride 1 must be shadow only) |
+| 11 | Return to the berth; **JOIN** the halves (one per hand, they reach + snap) | — | `ARTIFACT_JOINED at=…` → the **beacon thread** appears, pointing at your ship |
+| 11b | Follow the thread to the hull; **seat the key** | — | `KEY_SEATED destination=W002_DryCistern` → `ZIPTIDE_ARMED` |
+| 11c | **PUNCH IT → THE FIRST ZIPTIDE** (pressing it before seating must read "NO DESTINATION / seat the key") | press it | `FLIGHT_BLOCKED reason=no_key` before · `FLIGHT_DEPART … gate=full berth=…` + `ZIPTIDE_GATE depart` after |
+| 12 | Arrive W002; payoff + save | — | `TRAVEL_OK`; `INVENTORY_RESTORE`; relaunch → Continue restores |
+| 13 | Vehicles: board, drive, exit (crawler at the quay, hoverbike at Dispatch, skiff on the canal) | — | vehicle lines; note view/yaw feel (DV-06/07) |
 
 ## §4 — REPORTING (what turns a bug into a fix)
 
@@ -61,8 +69,17 @@ first-class bugs too — that's what device days are FOR.
 ## §5 — Known-in-advance (don't burn time on these)
 
 - **Art/SFX are Forge stand-ins everywhere** — logged for the Tripo pass (~6 days). Judge function
-  and feel, not looks.
-- The reentry beat is v1 seam (log + routing) — the plasma veil visual is queued art.
-- W000 has no space viewport yet; the hangar walk + beacon thread are deferred LOOK problems (rb121).
+  and feel, not looks. Every visual added this session (ring lamps, plasma veils, porthole, smoke
+  column, wreck, stalker, beacon thread) is a PROCEDURAL v1 by design: ugly is expected and
+  tunable, missing is not.
+- ~~The reentry beat is v1 seam~~ → **the plasma veil now plays on both ends** (`VEIL leg=…`).
+- ~~W000 has no space viewport~~ → **the porthole is in** (beat 2b).
+- ~~the beacon thread is a deferred LOOK problem~~ → **it's in** (beat 11).
+- **The drive is ~270 m, not the ~700 m the spatial script claimed** — the city shell is only 190 m
+  in radius. Judge whether the flats stretch feels like a journey at that length; if it needs to be
+  longer the site moves outward, which is a one-line change.
+- **The berth pads for berths 1–5 (the "hangar walk") are still NOT built** — the quay is a district
+  with the Dockmaster's booth, not a row of neighbour ships.
+- W002 is the arrival scene only: its defend wave, garden plot and glyph plate are **not built yet**.
 - DV-05 (R3 crouch), DV-09 (buried-torso spawn report), DV-13 (perf lows) are open known device
   items — confirm/deny, don't diagnose.
