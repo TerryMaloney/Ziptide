@@ -38,6 +38,37 @@
 > `docs/HANDOFF_HISTORY_THROUGH_RB24.md`.
 
 
+### 2026-07-29 (rb123) — Fable 5: the level is ~70% BUILT — the verified gap map (so I build the missing 30%, not duplicates)
+
+- **Terry:** *"I want the whole thing actually built… everything the level is supposed to have… the
+  whole thing could end up broken temporarily, we repair as we go."* Traced the actual CODE (not the
+  tracker's ⬜ rows) to find what genuinely needs building vs what already exists. **Hard floor: the
+  build must still COMPILE** — a level that won't build is one Terry can't test at all; "broken" = feel/
+  gameplay, never a red tree.
+- **VERIFIED ALREADY BUILT IN CODE (do NOT rebuild — no-parallel-system law):** W000 wake + coupler
+  repair (`ShipCastOffRuntime` arming) · cast-off/PUNCH IT → `SceneSpaceLane` · **the space leg is real**
+  (`ScenePatcherSpaceLane`: rings + drone SALVAGE targets via `SpaceTargetRuntime` + drift-parallax +
+  `EnsureOnwardLeg` to ToxicCity + `EnsureTheFind` = the artifact on a wreck) · ring city (`CityBuilder`)
+  · artifact FIND/JOIN/SOCKET (`ArtifactJoinRuntime`/`KeySocketRuntime`) · W001 contract (5 steps, marker
+  fix) · **vehicles** (`ToxicCityVehicleBuilder`+`VehicleSafetyRuntime`+`VehiclePlayabilityTests`) ·
+  teaching/RILL/Cal lines · `LEVEL_INVARIANTS` gates · `TravelCoordinator` already masks the scene loads.
+- **THE GENUINELY-MISSING (the 30% I will build, breadth-first, each a compiling increment):**
+  1. **Launch/reentry VEIL feel** (W-3) — the plasma ascent/reentry beat as an ADDITIVE presenter around
+     `TravelCoordinator.TravelCompleted` (structure exists via the fade; this is the designed "one
+     journey" polish). Stand-in VFX.
+  2. **W001 ARRIVAL composition + landmark legibility** (W-5, reqs 36/39) — CityBuilder arrival framing.
+  3. **First-contract polish** — story fragment (48), visible world-change (49), meaningful spend (55).
+  4. **Extraction/return FICTION** (50-53) — the fictional return path (travel exists; the fiction doesn't).
+  5. **Audio RAILS** (⬜) — mixer/buses/sliders/ducking + caption twins (stand-in SFX).
+  6. **The SHELL** (⬜) — volume sliders, save-failure UX, version/legal/credits, pause.
+  7. **W002 build** (Level 2 staged) — from the same route packet.
+  8. Deferred by T-Dog rb121: beacon thread, hangar-walk-to-berth-6, W000 viewport/prior-owner log.
+- **Execution:** build the above as compiling increments; keep CI green; **circuit breaker 3 reds →
+  stop.** Terry runs ONE bake batch (`LEVEL1_MASTER_TRACKER` §5) + build + plays the WHOLE level, finds
+  what's broken; defects → `MISS_LEDGER` so Level 2 can't inherit them. Art/SFX are Forge stand-ins now,
+  Tripo swap in ~6 days via the applier.
+- **Next:** build gap #1 (the launch/reentry veil presenter, additive). **Commit:** this entry.
+
 ### 2026-07-29 (rb122) — Fable 5 takes the LEVEL 1 baton: build it playable, start to finish
 
 - **Terry, verbatim:** *"I want it all built, the whole level start to finish… I want to be able to
