@@ -1,7 +1,7 @@
 # ZIPTIDE Recovery Contract Scan
 
-- Scanned files: **791**
-- Findings: **2859**
+- Scanned files: **794**
+- Findings: **2867**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
@@ -9,14 +9,14 @@
 | Category | Count |
 |---|---:|
 | `bootstrap` | 46 |
-| `diagnostics` | 682 |
+| `diagnostics` | 683 |
 | `events` | 71 |
 | `fallback_debt` | 176 |
 | `global_render` | 94 |
 | `input` | 230 |
-| `materials` | 275 |
+| `materials` | 278 |
 | `persistence` | 28 |
-| `runtime_creation` | 734 |
+| `runtime_creation` | 738 |
 | `runtime_ui` | 132 |
 | `save_state` | 289 |
 | `scene_loading` | 9 |
@@ -128,6 +128,7 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Patching/ForgePhotoBooth.cs:457` · `Ziptide.Editor.Patching.ForgePhotoBooth` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FORGE_PHOTO id=" + id + " shot=" + shot.name);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Patching/LocomotionContractEnforcer.cs:52` · `Ziptide.Editor.Patching.LocomotionContractEnforcer` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: TURN_CONTRACT_OK mode=smooth snapEnabled=false action="`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Patching/PlayerRigHeightContractEnforcer.cs:38` · `Ziptide.Editor.Patching.PlayerRigHeightContractEnforcer` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: RIG_HEIGHT_CONTRACT_OK tracking=Floor cameraYOffset=0 transformY=0");`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Patching/QuayBerthAuthor.cs:90` · `Ziptide.Editor.Patching.QuayBerthAuthor` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: QUAY_BERTHS built=" + centres.Count +`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Patching/ReactivePropAuthor.cs:70` · `Ziptide.Editor.Patching.ReactivePropAuthor` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: REACTIVE_PROPS_AUTHORED count=" + placed);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSandbox.cs:171` · `Ziptide.Editor.Patching.ScenePatcherSandbox` — ZIPTIDE diagnostic tag. `/// when you stand and stare, and the sink pays scrap (ZIPTIDE: BELT_SUNK). Authoring only —`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Editor/Patching/ShipHullBuilder.cs:214` · `Ziptide.Editor.Patching.ShipHullBuilder` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: HERO_SHIP_HULL renderers="`
@@ -1351,6 +1352,7 @@
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Editor/Patching/ForgePhotoBooth.cs:293` · `Ziptide.Editor.Patching.ForgePhotoBooth` — Runtime Material allocation. `var mat = new Material(Shader.Find("Universal Render Pipeline/Lit"));`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Editor/Patching/ForgePhotoBooth.cs:356` · `Ziptide.Editor.Patching.ForgePhotoBooth` — Runtime Material allocation. `var m = new Material(Shader.Find("Universal Render Pipeline/Lit")) { name = "BoothSingle_" + recipe.recipeId };`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Editor/Patching/PracticalAuthor.cs:177` · `Ziptide.Editor.Patching.PracticalAuthor` — Runtime Material allocation. `_fixtureMat = new Material(shader) { name = "PracticalFixture_Iron" };`
+- **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Editor/Patching/QuayBerthAuthor.cs:126` · `Ziptide.Editor.Patching.QuayBerthAuthor` — Runtime Material allocation. `var mat = new Material(shader);`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Editor/Patching/RingCityBuilder.cs:492` · `Ziptide.Editor.Patching.RingCityBuilder` — Runtime Material allocation. `var material = new Material(shader) { name = "RingCity_" + slot };`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherC0.cs:293` · `Ziptide.Editor.Patching.ScenePatcherC0` — Runtime Material allocation. `var mat = new Material(shader);`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherD1.cs:182` · `Ziptide.Editor.Patching.ScenePatcherD1` — Runtime Material allocation. `var mat = new Material(shader) { name = name };`
@@ -1460,6 +1462,8 @@
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Editor/Patching/ForgePhotoBooth.cs:356` · `Ziptide.Editor.Patching.ForgePhotoBooth` — Runtime shader lookup. `var m = new Material(Shader.Find("Universal Render Pipeline/Lit")) { name = "BoothSingle_" + recipe.recipeId };`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Editor/Patching/PracticalAuthor.cs:175` · `Ziptide.Editor.Patching.PracticalAuthor` — Runtime shader lookup. `var shader = Shader.Find("Universal Render Pipeline/Lit");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Editor/Patching/PracticalAuthor.cs:176` · `Ziptide.Editor.Patching.PracticalAuthor` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Standard");`
+- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Editor/Patching/QuayBerthAuthor.cs:123` · `Ziptide.Editor.Patching.QuayBerthAuthor` — Runtime shader lookup. `var shader = Shader.Find("Universal Render Pipeline/Lit");`
+- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Editor/Patching/QuayBerthAuthor.cs:124` · `Ziptide.Editor.Patching.QuayBerthAuthor` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Standard");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Editor/Patching/RingCityBuilder.cs:488` · `Ziptide.Editor.Patching.RingCityBuilder` — Runtime shader lookup. `Shader shader = Shader.Find("Universal Render Pipeline/Lit");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Editor/Patching/RingCityBuilder.cs:489` · `Ziptide.Editor.Patching.RingCityBuilder` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Standard");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherC0.cs:290` · `Ziptide.Editor.Patching.ScenePatcherC0` — Runtime shader lookup. `var shader = Shader.Find("Universal Render Pipeline/Lit");`
@@ -1676,6 +1680,8 @@
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/InteriorBuilder.cs:109` · `Ziptide.Editor.Patching.InteriorBuilder` — Runtime primitive construction. `var panel = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/InteriorFurnisher.cs:202` · `Ziptide.Editor.Patching.InteriorFurnisher` — Runtime primitive construction. `var go = GameObject.CreatePrimitive(type);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/PracticalAuthor.cs:144` · `Ziptide.Editor.Patching.PracticalAuthor` — Runtime primitive construction. `var fallback = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/QuayBerthAuthor.cs:97` · `Ziptide.Editor.Patching.QuayBerthAuthor` — Runtime primitive construction. `var go = GameObject.CreatePrimitive(PrimitiveType.Cylinder);`
+- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/QuayBerthAuthor.cs:108` · `Ziptide.Editor.Patching.QuayBerthAuthor` — Runtime primitive construction. `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/RingCityBuilder.cs:451` · `Ziptide.Editor.Patching.RingCityBuilder` — Runtime primitive construction. `var go = GameObject.CreatePrimitive(type);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherArena.cs:193` · `Ziptide.Editor.Patching.ScenePatcherArena` — Runtime primitive construction. `var bot = GameObject.CreatePrimitive(PrimitiveType.Capsule);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherArena.cs:404` · `Ziptide.Editor.Patching.ScenePatcherArena` — Runtime primitive construction. `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
@@ -1702,8 +1708,8 @@
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherStarterWorld.cs:217` · `Ziptide.Editor.Patching.ScenePatcherStarterWorld` — Runtime primitive construction. `var drone = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherStarterWorld.cs:280` · `Ziptide.Editor.Patching.ScenePatcherStarterWorld` — Runtime primitive construction. `if (go == null) { go = GameObject.CreatePrimitive(PrimitiveType.Cube); go.name = name; }`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherStarterWorld.cs:334` · `Ziptide.Editor.Patching.ScenePatcherStarterWorld` — Runtime primitive construction. `var go = GameObject.CreatePrimitive(type);`
-- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:134` · `Ziptide.Editor.Patching.ScenePatcherToxicCity` — Runtime primitive construction. `var target = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:146` · `Ziptide.Editor.Patching.ScenePatcherToxicCity` — Runtime primitive construction. `var post = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:138` · `Ziptide.Editor.Patching.ScenePatcherToxicCity` — Runtime primitive construction. `var target = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:150` · `Ziptide.Editor.Patching.ScenePatcherToxicCity` — Runtime primitive construction. `var post = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/ShipHullBuilder.cs:225` · `Ziptide.Editor.Patching.ShipHullBuilder` — Runtime primitive construction. `GameObject go = GameObject.CreatePrimitive(primitive);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/SignAuthor.cs:130` · `Ziptide.Editor.Patching.SignAuthor` — Runtime primitive construction. `var fallback = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Editor/Patching/SignAuthor.cs:151` · `Ziptide.Editor.Patching.SignAuthor` — Runtime primitive construction. `var glyph = GameObject.CreatePrimitive(PrimitiveType.Quad);`
@@ -1964,6 +1970,8 @@
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/PracticalAuthor.cs:28` · `Ziptide.Editor.Patching.PracticalAuthor` — Runtime GameObject construction. `var root = new GameObject("Practicals").transform;`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/PracticalAuthor.cs:105` · `Ziptide.Editor.Patching.PracticalAuthor` — Runtime GameObject construction. `var fixtureLift = new GameObject("LanternFixture");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/PracticalAuthor.cs:141` · `Ziptide.Editor.Patching.PracticalAuthor` — Runtime GameObject construction. `var go = new GameObject(name);`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/QuayBerthAuthor.cs:44` · `Ziptide.Editor.Patching.QuayBerthAuthor` — Runtime GameObject construction. `var root = new GameObject(RootName).transform;`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/QuayBerthAuthor.cs:53` · `Ziptide.Editor.Patching.QuayBerthAuthor` — Runtime GameObject construction. `var slip = new GameObject("Berth_" + number).transform;`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ReactivePropAuthor.cs:149` · `Ziptide.Editor.Patching.ReactivePropAuthor` — Runtime GameObject construction. `var proxyObject = new GameObject(HitProxyName);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/RingCityBuilder.cs:62` · `Ziptide.Editor.Patching.RingCityBuilder` — Runtime GameObject construction. `var root = new GameObject(RootName).transform;`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/RingCityBuilder.cs:424` · `Ziptide.Editor.Patching.RingCityBuilder` — Runtime GameObject construction. `var go = new GameObject(name);`
@@ -2024,8 +2032,8 @@
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs:661` · `Ziptide.Editor.Patching.ScenePatcherSpaceLane` — Runtime GameObject construction. `var marker = new GameObject("__SALVAGE_ARTIFACT_HALF_A");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherStarterWorld.cs:253` · `Ziptide.Editor.Patching.ScenePatcherStarterWorld` — Runtime GameObject construction. `var go = new GameObject(name);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherStarterWorld.cs:324` · `Ziptide.Editor.Patching.ScenePatcherStarterWorld` — Runtime GameObject construction. `GameObject go = t != null ? t.gameObject : new GameObject(name);`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:164` · `Ziptide.Editor.Patching.ScenePatcherToxicCity` — Runtime GameObject construction. `var zip = new GameObject(ZipName);`
-- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:274` · `Ziptide.Editor.Patching.ScenePatcherToxicCity` — Runtime GameObject construction. `var go = new GameObject(name);`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:168` · `Ziptide.Editor.Patching.ScenePatcherToxicCity` — Runtime GameObject construction. `var zip = new GameObject(ZipName);`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:278` · `Ziptide.Editor.Patching.ScenePatcherToxicCity` — Runtime GameObject construction. `var go = new GameObject(name);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/SignAuthor.cs:99` · `Ziptide.Editor.Patching.SignAuthor` — Runtime GameObject construction. `var root = new GameObject(RootName).transform;`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/SignAuthor.cs:120` · `Ziptide.Editor.Patching.SignAuthor` — Runtime GameObject construction. `var holder = new GameObject(string.IsNullOrEmpty(plan.name) ? "ShellSign" : plan.name);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Editor/Patching/ToxicCityRiverBuilder.cs:47` · `Ziptide.Editor.Patching.ToxicCityRiverBuilder` — Runtime GameObject construction. `var root = new GameObject(RootName).transform;`

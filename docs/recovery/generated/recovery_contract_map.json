@@ -1,8 +1,8 @@
 {
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
-  "scannedFiles": 791,
-  "findingCount": 2859,
+  "scannedFiles": 794,
+  "findingCount": 2867,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -4323,6 +4323,70 @@
         ]
       },
       {
+        "owner": "Ziptide.Editor.Patching.QuayBerthAuthor",
+        "evidenceCount": 7,
+        "codes": [
+          "CREATE_PRIMITIVE",
+          "NEW_GAME_OBJECT",
+          "RUNTIME_MATERIAL_CREATE",
+          "SHADER_FIND"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Editor/Patching/QuayBerthAuthor.cs"
+        ],
+        "evidence": [
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/QuayBerthAuthor.cs",
+            "line": 44,
+            "symbol": "Ziptide.Editor.Patching.QuayBerthAuthor",
+            "snippet": "var root = new GameObject(RootName).transform;"
+          },
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/QuayBerthAuthor.cs",
+            "line": 53,
+            "symbol": "Ziptide.Editor.Patching.QuayBerthAuthor",
+            "snippet": "var slip = new GameObject(\"Berth_\" + number).transform;"
+          },
+          {
+            "code": "CREATE_PRIMITIVE",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/QuayBerthAuthor.cs",
+            "line": 97,
+            "symbol": "Ziptide.Editor.Patching.QuayBerthAuthor",
+            "snippet": "var go = GameObject.CreatePrimitive(PrimitiveType.Cylinder);"
+          },
+          {
+            "code": "CREATE_PRIMITIVE",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/QuayBerthAuthor.cs",
+            "line": 108,
+            "symbol": "Ziptide.Editor.Patching.QuayBerthAuthor",
+            "snippet": "var go = GameObject.CreatePrimitive(PrimitiveType.Cube);"
+          },
+          {
+            "code": "SHADER_FIND",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/QuayBerthAuthor.cs",
+            "line": 123,
+            "symbol": "Ziptide.Editor.Patching.QuayBerthAuthor",
+            "snippet": "var shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
+          },
+          {
+            "code": "SHADER_FIND",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/QuayBerthAuthor.cs",
+            "line": 124,
+            "symbol": "Ziptide.Editor.Patching.QuayBerthAuthor",
+            "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
+          },
+          {
+            "code": "RUNTIME_MATERIAL_CREATE",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/QuayBerthAuthor.cs",
+            "line": 126,
+            "symbol": "Ziptide.Editor.Patching.QuayBerthAuthor",
+            "snippet": "var mat = new Material(shader);"
+          }
+        ]
+      },
+      {
         "owner": "Ziptide.Editor.Patching.ReactivePropAuthor",
         "evidenceCount": 1,
         "codes": [
@@ -5222,28 +5286,28 @@
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-            "line": 134,
+            "line": 138,
             "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
             "snippet": "var target = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-            "line": 146,
+            "line": 150,
             "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
             "snippet": "var post = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-            "line": 164,
+            "line": 168,
             "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
             "snippet": "var zip = new GameObject(ZipName);"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-            "line": 274,
+            "line": 278,
             "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
             "snippet": "var go = new GameObject(name);"
           }

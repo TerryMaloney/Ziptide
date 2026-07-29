@@ -1,25 +1,25 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-29T23:14:42.322830+00:00",
+  "generatedAtUtc": "2026-07-29T23:20:57.331403+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
     "Ziptide/Assets/Ziptide",
     "Ziptide/Assets/ZiptideNet"
   ],
-  "scannedFiles": 791,
-  "findingCount": 2859,
+  "scannedFiles": 794,
+  "findingCount": 2867,
   "categoryCounts": {
     "bootstrap": 46,
-    "diagnostics": 682,
+    "diagnostics": 683,
     "events": 71,
     "fallback_debt": 176,
     "global_render": 94,
     "input": 230,
-    "materials": 275,
+    "materials": 278,
     "persistence": 28,
-    "runtime_creation": 734,
+    "runtime_creation": 738,
     "runtime_ui": 132,
     "save_state": 289,
     "scene_loading": 9,
@@ -30,7 +30,7 @@
     "CAMERA_MAIN_REFERENCE": 53,
     "CAMERA_POST_PROCESSING": 1,
     "CANVAS_COMPONENT": 5,
-    "CREATE_PRIMITIVE": 276,
+    "CREATE_PRIMITIVE": 278,
     "DIRECT_SCENE_LOAD": 2,
     "DIRECT_SCENE_LOAD_ASYNC": 7,
     "DONT_DESTROY_ON_LOAD": 28,
@@ -41,13 +41,13 @@
     "FRAME_BUTTON_POLL": 1,
     "INPUT_ACTION_REFERENCE": 219,
     "INPUT_BUTTON_REFERENCE": 10,
-    "NEW_GAME_OBJECT": 458,
+    "NEW_GAME_OBJECT": 460,
     "PLAYER_PROFILE_REFERENCE": 153,
     "RENDER_SETTINGS_MUTATION": 39,
     "RUNTIME_BOOTSTRAP": 36,
-    "RUNTIME_MATERIAL_CREATE": 105,
+    "RUNTIME_MATERIAL_CREATE": 106,
     "SAVE_SYSTEM_REFERENCE": 127,
-    "SHADER_FIND": 170,
+    "SHADER_FIND": 172,
     "STATIC_EVENT_DECLARATION": 19,
     "TEXTMESH_COMPONENT": 54,
     "TMP_COMPONENT": 3,
@@ -57,7 +57,7 @@
     "XRI_MANAGER_LOOKUP": 45,
     "XR_INTERACTABLE_COMPONENT": 66,
     "XR_UI_INPUT_MODULE": 2,
-    "ZIPTIDE_LOG_TAG": 682
+    "ZIPTIDE_LOG_TAG": 683
   },
   "findings": [
     {
@@ -959,6 +959,15 @@
       "line": 38,
       "symbol": "Ziptide.Editor.Patching.PlayerRigHeightContractEnforcer",
       "snippet": "Debug.Log(\"ZIPTIDE: RIG_HEIGHT_CONTRACT_OK tracking=Floor cameraYOffset=0 transformY=0\");"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/QuayBerthAuthor.cs",
+      "line": 90,
+      "symbol": "Ziptide.Editor.Patching.QuayBerthAuthor",
+      "snippet": "Debug.Log(\"ZIPTIDE: QUAY_BERTHS built=\" + centres.Count +"
     },
     {
       "category": "diagnostics",
@@ -11881,6 +11890,15 @@
       "category": "materials",
       "code": "RUNTIME_MATERIAL_CREATE",
       "description": "Runtime Material allocation",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/QuayBerthAuthor.cs",
+      "line": 126,
+      "symbol": "Ziptide.Editor.Patching.QuayBerthAuthor",
+      "snippet": "var mat = new Material(shader);"
+    },
+    {
+      "category": "materials",
+      "code": "RUNTIME_MATERIAL_CREATE",
+      "description": "Runtime Material allocation",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/RingCityBuilder.cs",
       "line": 492,
       "symbol": "Ziptide.Editor.Patching.RingCityBuilder",
@@ -12856,6 +12874,24 @@
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/PracticalAuthor.cs",
       "line": 176,
       "symbol": "Ziptide.Editor.Patching.PracticalAuthor",
+      "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
+    },
+    {
+      "category": "materials",
+      "code": "SHADER_FIND",
+      "description": "Runtime shader lookup",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/QuayBerthAuthor.cs",
+      "line": 123,
+      "symbol": "Ziptide.Editor.Patching.QuayBerthAuthor",
+      "snippet": "var shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
+    },
+    {
+      "category": "materials",
+      "code": "SHADER_FIND",
+      "description": "Runtime shader lookup",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/QuayBerthAuthor.cs",
+      "line": 124,
+      "symbol": "Ziptide.Editor.Patching.QuayBerthAuthor",
       "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
     },
     {
@@ -14770,6 +14806,24 @@
       "category": "runtime_creation",
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/QuayBerthAuthor.cs",
+      "line": 97,
+      "symbol": "Ziptide.Editor.Patching.QuayBerthAuthor",
+      "snippet": "var go = GameObject.CreatePrimitive(PrimitiveType.Cylinder);"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "CREATE_PRIMITIVE",
+      "description": "Runtime primitive construction",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/QuayBerthAuthor.cs",
+      "line": 108,
+      "symbol": "Ziptide.Editor.Patching.QuayBerthAuthor",
+      "snippet": "var go = GameObject.CreatePrimitive(PrimitiveType.Cube);"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "CREATE_PRIMITIVE",
+      "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/RingCityBuilder.cs",
       "line": 451,
       "symbol": "Ziptide.Editor.Patching.RingCityBuilder",
@@ -15005,7 +15059,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-      "line": 134,
+      "line": 138,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
       "snippet": "var target = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -15014,7 +15068,7 @@
       "code": "CREATE_PRIMITIVE",
       "description": "Runtime primitive construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-      "line": 146,
+      "line": 150,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
       "snippet": "var post = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
@@ -17362,6 +17416,24 @@
       "category": "runtime_creation",
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/QuayBerthAuthor.cs",
+      "line": 44,
+      "symbol": "Ziptide.Editor.Patching.QuayBerthAuthor",
+      "snippet": "var root = new GameObject(RootName).transform;"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Editor/Patching/QuayBerthAuthor.cs",
+      "line": 53,
+      "symbol": "Ziptide.Editor.Patching.QuayBerthAuthor",
+      "snippet": "var slip = new GameObject(\"Berth_\" + number).transform;"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ReactivePropAuthor.cs",
       "line": 149,
       "symbol": "Ziptide.Editor.Patching.ReactivePropAuthor",
@@ -17903,7 +17975,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-      "line": 164,
+      "line": 168,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
       "snippet": "var zip = new GameObject(ZipName);"
     },
@@ -17912,7 +17984,7 @@
       "code": "NEW_GAME_OBJECT",
       "description": "Runtime GameObject construction",
       "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs",
-      "line": 274,
+      "line": 278,
       "symbol": "Ziptide.Editor.Patching.ScenePatcherToxicCity",
       "snippet": "var go = new GameObject(name);"
     },

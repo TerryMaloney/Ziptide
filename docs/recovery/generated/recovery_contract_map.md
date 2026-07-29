@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
-- Scanned files: **791**
-- Scanner findings: **2859**
+- Scanned files: **794**
+- Scanner findings: **2867**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -996,6 +996,18 @@ None.
   - `Ziptide/Assets/Ziptide/Editor/Patching/PracticalAuthor.cs:176` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
   - `Ziptide/Assets/Ziptide/Editor/Patching/PracticalAuthor.cs:177` **RUNTIME_MATERIAL_CREATE** — `_fixtureMat = new Material(shader) { name = "PracticalFixture_Iron" };`
 
+### `Ziptide.Editor.Patching.QuayBerthAuthor` — 7 signal(s)
+
+- Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`, `RUNTIME_MATERIAL_CREATE`, `SHADER_FIND`
+- Paths: `Ziptide/Assets/Ziptide/Editor/Patching/QuayBerthAuthor.cs`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/QuayBerthAuthor.cs:44` **NEW_GAME_OBJECT** — `var root = new GameObject(RootName).transform;`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/QuayBerthAuthor.cs:53` **NEW_GAME_OBJECT** — `var slip = new GameObject("Berth_" + number).transform;`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/QuayBerthAuthor.cs:97` **CREATE_PRIMITIVE** — `var go = GameObject.CreatePrimitive(PrimitiveType.Cylinder);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/QuayBerthAuthor.cs:108` **CREATE_PRIMITIVE** — `var go = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/QuayBerthAuthor.cs:123` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Lit");`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/QuayBerthAuthor.cs:124` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/QuayBerthAuthor.cs:126` **RUNTIME_MATERIAL_CREATE** — `var mat = new Material(shader);`
+
 ### `Ziptide.Editor.Patching.ReactivePropAuthor` — 1 signal(s)
 
 - Codes: `NEW_GAME_OBJECT`
@@ -1163,10 +1175,10 @@ None.
 
 - Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`
 - Paths: `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:134` **CREATE_PRIMITIVE** — `var target = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:146` **CREATE_PRIMITIVE** — `var post = GameObject.CreatePrimitive(PrimitiveType.Cube);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:164` **NEW_GAME_OBJECT** — `var zip = new GameObject(ZipName);`
-  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:274` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:138` **CREATE_PRIMITIVE** — `var target = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:150` **CREATE_PRIMITIVE** — `var post = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:168` **NEW_GAME_OBJECT** — `var zip = new GameObject(ZipName);`
+  - `Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherToxicCity.cs:278` **NEW_GAME_OBJECT** — `var go = new GameObject(name);`
 
 ### `Ziptide.Editor.Patching.ShipHullBuilder` — 4 signal(s)
 
