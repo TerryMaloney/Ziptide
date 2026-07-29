@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using Ziptide.Content;
+using Ziptide.Core;
 using Ziptide.Gameplay;
 
 namespace Ziptide.Editor.Patching
