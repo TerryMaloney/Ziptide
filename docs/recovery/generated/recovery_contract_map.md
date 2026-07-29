@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
 - Scanned files: **755**
-- Scanner findings: **2778**
+- Scanner findings: **2781**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -1930,10 +1930,10 @@ None.
 
 - Codes: `CREATE_PRIMITIVE`, `RUNTIME_MATERIAL_CREATE`, `SHADER_FIND`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs:139` **CREATE_PRIMITIVE** — `var ring = GameObject.CreatePrimitive(PrimitiveType.Cylinder);`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs:148` **SHADER_FIND** — `Shader shader = Shader.Find("Universal Render Pipeline/Lit");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs:149` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs:153` **RUNTIME_MATERIAL_CREATE** — `var material = new Material(shader);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs:142` **CREATE_PRIMITIVE** — `var ring = GameObject.CreatePrimitive(PrimitiveType.Cylinder);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs:151` **SHADER_FIND** — `Shader shader = Shader.Find("Universal Render Pipeline/Lit");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs:152` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Standard");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs:156` **RUNTIME_MATERIAL_CREATE** — `var material = new Material(shader);`
 
 ### `Ziptide.Gameplay.LifecycleState` — 1 signal(s)
 
@@ -3506,7 +3506,7 @@ None.
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/ArenaLobbyBoard.cs`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/ArenaLobbyBoard.cs:248` **SAVE_SYSTEM_REFERENCE** — `var profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 
-### `Ziptide.Gameplay.ArtifactJoinRuntime` — 6 signal(s)
+### `Ziptide.Gameplay.ArtifactJoinRuntime` — 8 signal(s)
 
 - Codes: `EVENT_DECLARATION`, `PLAYER_PROFILE_REFERENCE`, `SAVE_SYSTEM_REFERENCE`, `STATIC_EVENT_DECLARATION`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs`
@@ -3514,8 +3514,10 @@ None.
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs:41` **STATIC_EVENT_DECLARATION** — `public static event System.Action Joined;`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs:62` **PLAYER_PROFILE_REFERENCE** — `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs:62` **SAVE_SYSTEM_REFERENCE** — `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs:145` **PLAYER_PROFILE_REFERENCE** — `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs:145` **SAVE_SYSTEM_REFERENCE** — `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs:108` **PLAYER_PROFILE_REFERENCE** — `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs:108` **SAVE_SYSTEM_REFERENCE** — `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs:160` **PLAYER_PROFILE_REFERENCE** — `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs:160` **SAVE_SYSTEM_REFERENCE** — `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 
 ### `Ziptide.Gameplay.AudioMixSettings` — 2 signal(s)
 
@@ -3878,8 +3880,8 @@ None.
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/SpaceSalvageItemRuntime.cs`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/SpaceSalvageItemRuntime.cs:43` **PLAYER_PROFILE_REFERENCE** — `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/SpaceSalvageItemRuntime.cs:43` **SAVE_SYSTEM_REFERENCE** — `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/SpaceSalvageItemRuntime.cs:107` **PLAYER_PROFILE_REFERENCE** — `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/SpaceSalvageItemRuntime.cs:107` **SAVE_SYSTEM_REFERENCE** — `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/SpaceSalvageItemRuntime.cs:117` **PLAYER_PROFILE_REFERENCE** — `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/SpaceSalvageItemRuntime.cs:117` **SAVE_SYSTEM_REFERENCE** — `PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;`
 
 ### `Ziptide.Gameplay.TransmissionConsole` — 1 signal(s)
 
@@ -4493,11 +4495,12 @@ None.
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:220` **CAMERA_MAIN_REFERENCE** — `var cam = Camera.main;`
 
-### `Ziptide.Gameplay.SpaceSalvageItemRuntime` — 1 signal(s)
+### `Ziptide.Gameplay.SpaceSalvageItemRuntime` — 2 signal(s)
 
 - Codes: `CAMERA_MAIN_REFERENCE`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/SpaceSalvageItemRuntime.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/SpaceSalvageItemRuntime.cs:91` **CAMERA_MAIN_REFERENCE** — `Camera cam = Camera.main;`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/SpaceSalvageItemRuntime.cs:91` **CAMERA_MAIN_REFERENCE** — `// Camera.main depends on a MainCamera tag that a generated scene is not guaranteed to`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/SpaceSalvageItemRuntime.cs:95` **CAMERA_MAIN_REFERENCE** — `Camera cam = Camera.main;`
 
 ### `Ziptide.Gameplay.StaticNetGunRuntime` — 1 signal(s)
 

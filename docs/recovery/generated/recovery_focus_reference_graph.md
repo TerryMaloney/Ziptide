@@ -1,7 +1,7 @@
 # ZIPTIDE Focused Recovery Reference Graph
 
 - Scanned C# files: **755**
-- Focused references: **447**
+- Focused references: **445**
 
 ## melee
 
@@ -147,7 +147,7 @@
 
 ## repairObjective
 
-- References: **233**
+- References: **232**
 - Files: **56**
 - Non-declaration caller files: **55**
 
@@ -396,8 +396,7 @@
 - **reference** · `Ziptide.Editor.Patching.CityBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:390` — `?? ship.gameObject.AddComponent<ShipCastOffRuntime>();`
 - **reference** · `Ziptide.Editor.FirstHourSurfaceAuthor` · `Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs:36` — `ShipCastOffRuntime castOff = FindInScene<ShipCastOffRuntime>(scene);`
 - **reference** · `Ziptide.Gameplay.KeySocketRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs:18` — `/// It owns nothing: `ShipCastOffRuntime` still owns arming and launch, `TravelCoordinator` still`
-- **reference** · `Ziptide.Gameplay.KeySocketRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs:119` — `var castOff = GetComponentInParent<ShipCastOffRuntime>();`
-- **reference** · `Ziptide.Gameplay.KeySocketRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs:120` — `if (castOff == null) castOff = FindObjectOfType<ShipCastOffRuntime>();`
+- **reference** · `Ziptide.Gameplay.KeySocketRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs:123` — `var castOff = GetComponentInParent<ShipCastOffRuntime>();`
 - **declaration** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:20` — `public class ShipCastOffRuntime : MonoBehaviour`
 - **reference** · `Ziptide.Gameplay.FirstDestinationHelmRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:10` — `/// destination into ShipCastOffRuntime; it never launches or calls TravelCoordinator itself.`
 - **reference** · `Ziptide.Gameplay.FirstDestinationHelmRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:16` — `private ShipCastOffRuntime _castOff;`
@@ -416,7 +415,7 @@
 
 ## shipPresentation
 
-- References: **102**
+- References: **101**
 - Files: **21**
 - Non-declaration caller files: **18**
 
@@ -433,8 +432,7 @@
 - **reference** · `Ziptide.Editor.Patching.CityBuilder` · `Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs:390` — `?? ship.gameObject.AddComponent<ShipCastOffRuntime>();`
 - **reference** · `Ziptide.Editor.FirstHourSurfaceAuthor` · `Ziptide/Assets/Ziptide/Editor/Patching/FirstHourSurfaceAuthor.cs:36` — `ShipCastOffRuntime castOff = FindInScene<ShipCastOffRuntime>(scene);`
 - **reference** · `Ziptide.Gameplay.KeySocketRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs:18` — `/// It owns nothing: `ShipCastOffRuntime` still owns arming and launch, `TravelCoordinator` still`
-- **reference** · `Ziptide.Gameplay.KeySocketRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs:119` — `var castOff = GetComponentInParent<ShipCastOffRuntime>();`
-- **reference** · `Ziptide.Gameplay.KeySocketRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs:120` — `if (castOff == null) castOff = FindObjectOfType<ShipCastOffRuntime>();`
+- **reference** · `Ziptide.Gameplay.KeySocketRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/KeySocketRuntime.cs:123` — `var castOff = GetComponentInParent<ShipCastOffRuntime>();`
 - **declaration** · `Ziptide.Gameplay.ShipCastOffRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:20` — `public class ShipCastOffRuntime : MonoBehaviour`
 - **reference** · `Ziptide.Gameplay.FirstDestinationHelmRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:10` — `/// destination into ShipCastOffRuntime; it never launches or calls TravelCoordinator itself.`
 - **reference** · `Ziptide.Gameplay.FirstDestinationHelmRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:16` — `private ShipCastOffRuntime _castOff;`

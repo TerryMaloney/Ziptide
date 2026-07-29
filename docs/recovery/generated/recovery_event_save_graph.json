@@ -1,7 +1,7 @@
 {
   "tool": "recovery_event_save_graph",
   "scannedFiles": 755,
-  "evidenceCount": 819,
+  "evidenceCount": 823,
   "kindCounts": {
     "AUTOSAVE": 8,
     "EVENT_DECLARE": 49,
@@ -9,8 +9,8 @@
     "EVENT_SUBSCRIBE": 137,
     "EVENT_UNSUBSCRIBE": 84,
     "PLAYER_PREFS_ACCESS": 20,
-    "PROFILE_FIELD_ACCESS": 380,
-    "SAVE_ACCESS": 80
+    "PROFILE_FIELD_ACCESS": 383,
+    "SAVE_ACCESS": 81
   },
   "unmatchedNamedSubscriptionCount": 59,
   "unmatchedNamedSubscriptions": [
@@ -260,7 +260,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-      "line": 127,
+      "line": 142,
       "owner": "Ziptide.Gameplay.ArtifactJoinRuntime",
       "target": "item.transform.position",
       "detail": "delta",
@@ -2849,6 +2849,24 @@
       },
       {
         "kind": "PROFILE_FIELD_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
+        "line": 110,
+        "owner": "Ziptide.Gameplay.ArtifactJoinRuntime",
+        "target": "HasFlag",
+        "detail": "profile",
+        "snippet": "return profile.HasFlag(ZiptideFlags.ARTIFACT_HALF_A)"
+      },
+      {
+        "kind": "PROFILE_FIELD_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
+        "line": 111,
+        "owner": "Ziptide.Gameplay.ArtifactJoinRuntime",
+        "target": "HasFlag",
+        "detail": "profile",
+        "snippet": "&& profile.HasFlag(ZiptideFlags.ARTIFACT_HALF_B);"
+      },
+      {
+        "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ChoiceStation.cs",
         "line": 35,
         "owner": "Ziptide.Gameplay.ChoiceStation",
@@ -4582,7 +4600,16 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-        "line": 145,
+        "line": 108,
+        "owner": "Ziptide.Gameplay.ArtifactJoinRuntime",
+        "target": "SaveSystem.Profile",
+        "detail": "",
+        "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
+      },
+      {
+        "kind": "SAVE_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
+        "line": 160,
         "owner": "Ziptide.Gameplay.ArtifactJoinRuntime",
         "target": "SaveSystem.Profile",
         "detail": "",
@@ -4744,7 +4771,7 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/SpaceSalvageItemRuntime.cs",
-        "line": 107,
+        "line": 117,
         "owner": "Ziptide.Gameplay.SpaceSalvageItemRuntime",
         "target": "SaveSystem.Profile",
         "detail": "",
@@ -5564,7 +5591,7 @@
       {
         "kind": "PROFILE_FIELD_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/SpaceSalvageItemRuntime.cs",
-        "line": 108,
+        "line": 118,
         "owner": "Ziptide.Gameplay.SpaceSalvageItemRuntime",
         "target": "SetFlag",
         "detail": "profile",
@@ -5855,6 +5882,17 @@
         "target": "TelegraphState",
         "detail": "profile",
         "snippet": "errors.Add(\"TELEGRAPH_NOT_ACTIVE:\" + profile.TelegraphState);"
+      }
+    ],
+    "This": [
+      {
+        "kind": "PROFILE_FIELD_ACCESS",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
+        "line": 104,
+        "owner": "Ziptide.Gameplay.ArtifactJoinRuntime",
+        "target": "This",
+        "detail": "profile",
+        "snippet": "/// Both halves collected, per the profile. This is a flag read, not a scene search."
       }
     ],
     "TransportChanged": [
@@ -6948,7 +6986,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-        "line": 127,
+        "line": 142,
         "owner": "Ziptide.Gameplay.ArtifactJoinRuntime",
         "target": "item.transform.position",
         "detail": "delta",
@@ -11421,9 +11459,45 @@
       "snippet": "_joined = profile != null && profile.HasFlag(ZiptideFlags.ARTIFACT_JOINED);"
     },
     {
+      "kind": "PROFILE_FIELD_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
+      "line": 104,
+      "owner": "Ziptide.Gameplay.ArtifactJoinRuntime",
+      "target": "This",
+      "detail": "profile",
+      "snippet": "/// Both halves collected, per the profile. This is a flag read, not a scene search."
+    },
+    {
+      "kind": "SAVE_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
+      "line": 108,
+      "owner": "Ziptide.Gameplay.ArtifactJoinRuntime",
+      "target": "SaveSystem.Profile",
+      "detail": "",
+      "snippet": "PlayerProfile profile = SaveSystem.Instance != null ? SaveSystem.Instance.Profile : null;"
+    },
+    {
+      "kind": "PROFILE_FIELD_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
+      "line": 110,
+      "owner": "Ziptide.Gameplay.ArtifactJoinRuntime",
+      "target": "HasFlag",
+      "detail": "profile",
+      "snippet": "return profile.HasFlag(ZiptideFlags.ARTIFACT_HALF_A)"
+    },
+    {
+      "kind": "PROFILE_FIELD_ACCESS",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
+      "line": 111,
+      "owner": "Ziptide.Gameplay.ArtifactJoinRuntime",
+      "target": "HasFlag",
+      "detail": "profile",
+      "snippet": "&& profile.HasFlag(ZiptideFlags.ARTIFACT_HALF_B);"
+    },
+    {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-      "line": 127,
+      "line": 142,
       "owner": "Ziptide.Gameplay.ArtifactJoinRuntime",
       "target": "item.transform.position",
       "detail": "delta",
@@ -11432,7 +11506,7 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
-      "line": 145,
+      "line": 160,
       "owner": "Ziptide.Gameplay.ArtifactJoinRuntime",
       "target": "SaveSystem.Profile",
       "detail": "",
@@ -11855,7 +11929,7 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/SpaceSalvageItemRuntime.cs",
-      "line": 107,
+      "line": 117,
       "owner": "Ziptide.Gameplay.SpaceSalvageItemRuntime",
       "target": "SaveSystem.Profile",
       "detail": "",
@@ -11864,7 +11938,7 @@
     {
       "kind": "PROFILE_FIELD_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/SpaceSalvageItemRuntime.cs",
-      "line": 108,
+      "line": 118,
       "owner": "Ziptide.Gameplay.SpaceSalvageItemRuntime",
       "target": "SetFlag",
       "detail": "profile",
