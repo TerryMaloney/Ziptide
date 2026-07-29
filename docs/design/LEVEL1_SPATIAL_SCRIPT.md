@@ -115,6 +115,60 @@ outskirts; the DISTRICT layer inside it is the unbuilt part.)
   placement as data, drone/creature zone data, relay yard, lantern wayfinding, numbered doors,
   the Dockmaster booth interior, the hangar-walk beacon staging.
 
+## 3b · THE EXPEDITION — half B is OUTSIDE TOWN, and you DRIVE there (⚖ Terry-directed 2026-07-29)
+
+**Story change of record:** half B is NOT the Dockmaster's desk paperweight (v2.1's staging). The
+Dockmaster only has the LEAD: a work order for a site **outside the sea wall** where instruments
+died the same week the relay went wrong. **You take the VEHICLE.** (The DC §8 modifiability rule
+exists for exactly this — the halves' sources are data fields; this is Terry exercising it.)
+- **[M] machinery exists:** `ToxicCityVehicleBuilder` + `VehicleRuntime` + `VehicleSafetyRuntime`
+  + `VehiclePlayabilityTests` — the drivable ground vehicle is real code. **[∅]** its garage
+  placement, the route, and the site.
+- **[S] THE GARAGE:** a vehicle pad beside the Dockmaster's booth at (34, 0, −56) — you get the
+  work order and the keys in the same breath. RILL: *"He's paying us to drive AWAY from the
+  paying job. I've stopped being surprised."*
+- **[S] THE ROUTE (~700 m, 2–3 min drive — the level's breathing room):** out the harbor's east
+  gate (the sea-wall BREACH from the K-concepts, drivable ramp at (60, 0, −45)) → onto the tidal
+  flats OUTSIDE the wall — open mud, wreck ribs, tide pools, the city shrinking behind you (the
+  one place you SEE the whole ring from ground level — the postcard) → north along the wall's
+  outer face → the site.
+- **[S] THE SITE — the crashed survey skiff:** a half-buried wreck at flat coordinates
+  ≈ (140, 0, 120), nose-down in the mud, instruments fried. Half B sits in its cracked cargo
+  cage: same fracture face, humming. Around it: the FIRST WAKER-LOG of the outside thread + a
+  scatter of salvage. Grabbing half B kills every instrument on the vehicle for 2 s (the
+  resonance tell, taught before the join explains it).
+- **[S] wayfinding:** the work order pins a smoke column visible from the breach (site burn-off
+  stack, amber); driving = follow the wall then the smoke. Way home = the leaning tower over the
+  wall, always visible.
+- **[∅]** all of §3b's placement + the drive route + the site (vehicle CODE is the only built part).
+
+## 3c · THE CANALS BY BOAT — the stalker interaction (⚖ Terry-directed 2026-07-29)
+
+**The canals are a waterway, not scenery: the tide SKIFF runs them, and the CANAL STALKER lives
+in them.** The lizard-thing's whole identity (bestiary sheet: amphibious ambush, low-slung,
+eyeless-read head, hazard-stripe glow) plays against your hull, not on land.
+- **[M]** canal stalker recipe (`tox_canal_stalker_01`) + approved sheet + skiff concepts exist.
+  **[∅]** skiff as a pilotable vehicle, canal water volumes as navigable routes, and ALL stalker
+  water behavior.
+- **[S] THE BOAT LEG:** a skiff dock under the zipline platform at (16, 0, −48) — the canal ring
+  (Canal One east–west + the ring canal, ~300 m of navigable water, 14 m wide) is the slow
+  alternative route to the relay yard: zipline = fast/high, skiff = slow/low with salvage
+  floating in the water. Skiff drives like the ground vehicle family (VehicleRuntime variant,
+  water-locked, comfort-capped ~6 m/s).
+- **[S] THE STALKER INTERACTION (non-lethal, three-stage escalation, never a jump scare):**
+  1. **THE SHADOW (always, ride one):** a low wake parallels the skiff at 8–10 m, hazard-stripes
+     faintly visible under the green water. RILL: *"We're being escorted."* It never touches you.
+  2. **THE BUMP (ride two+, or lingering):** it shoulders the hull — a real physics nudge + deep
+     thud + haptics; the skiff yaws ~10° (assist recovers). Warning, not attack.
+  3. **THE BLOCK:** it surfaces AHEAD, jaw open — a stop-and-choose beat: taser-stun it (it
+     sinks, sulks, gone for the session) OR cut throttle and drift 10 s (it loses interest —
+     the pacifist read, taught by RILL: *"It's territorial, not hungry. Big difference."*).
+  Cozy comfort preset caps it at stage 1. All three stages are canal-only — it NEVER exits the
+  water (the rail/colonnade observation window in §3 is this same animal seen from land).
+- **[S] why you ride at all:** two canal-only salvage floats + the underside view of the city
+  (numbered pilings, tide-glow at the waterline) + it's the fastest way back from the relay yard
+  with heavy salvage.
+
 ## 4 · THE FIRST ZIPTIDE + W002 (min 45–63)
 
 - **[M]** Key seat → gate re-arm → travel is code-real (`KeySocketRuntime` exclusivity tested).
@@ -130,12 +184,21 @@ outskirts; the DISTRICT layer inside it is the unbuilt part.)
 Every [S] above, in dependency order — each lands as generator/data extensions until it's [M]:
 1. City interior plan → `ToxicCityLayout.asset` blocks filled (districts/canals/pois/zones as
    §3's coordinates) + CityBuilder consumes them. **This is the level design landing as data.**
+   Includes the §3b flats gate/breach + garage pad and the §3c skiff dock + navigable canal data.
 2. Zipline/dispatch/relay/creature/drone placements per §3 (job route becomes walkable truth).
-3. Lantern-route + sightline-triple wayfinding pass (the compass).
-4. Space lane: ring lamp-chase + drone reaction layer + find-moment dressing + skybox celestial
+3. **The expedition (§3b):** garage + breach ramp + flats route + the crashed survey skiff site
+   + half-B relocation there (contract step data: the Dockmaster gives the LEAD, not the half).
+4. **The boat leg (§3c):** skiff as water-locked vehicle variant + canal volumes + the stalker's
+   three-stage water behavior (shadow/bump/block, comfort-capped, non-lethal).
+5. Lantern-route + sightline-triple wayfinding pass (the compass).
+6. Space lane: ring lamp-chase + drone reaction layer + find-moment dressing + skybox celestial
    match per §2.
-5. Hangar walk (berths 1–6 quay) + beacon thread staging (the rb121 look problem, now placed).
-6. W002 staging per §4.
-7. W000 porthole + eyeline-chain lighting pass per §1.
+7. Hangar walk (berths 1–6 quay) + beacon thread staging (the rb121 look problem, now placed).
+8. W002 staging per §4.
+9. W000 porthole + eyeline-chain lighting pass per §1.
 **Rule:** a row here flips [S]→[M] only when the number exists in committed code/data — the same
-honesty contract as the tracker.
+honesty contract as the tracker. **⚖ of record (Terry, 2026-07-29):** half B moved from the
+Dockmaster's desk to the outside-town expedition site; the canal stalker's boat interaction is
+canon; both exercised through the DC §8 data-modifiability rule — the minute-map stretches
+(~min 27–41 becomes contract + expedition + optional boat leg) and the join now happens back at
+the berth with both halves after the drive home.

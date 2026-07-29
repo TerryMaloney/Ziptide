@@ -38,6 +38,32 @@
 > `docs/HANDOFF_HISTORY_THROUGH_RB24.md`.
 
 
+### 2026-07-29 (rb126) — Fable 5: 📐 LEVEL1_SPATIAL_SCRIPT — the placement layer, + ⚖ Terry's two story corrections (expedition + boat/stalker)
+
+- **Terry demanded the missing DETAIL layer** ("placement of everything, how far apart, the little
+  stuff in between, how do we know where we're going, are the rings there immediately, how do the
+  droids act") and guessed it wasn't built. **Confirmed at the data layer:** the committed
+  `ToxicCityLayout.asset` has EMPTY `districts:/canals:/creatureZones:/droneZones:/pois:/shipyard:/
+  experience:` blocks — the city is a 250 m shell (26 towers, fog, sky) with NO level inside it.
+  Wrote **`docs/design/LEVEL1_SPATIAL_SCRIPT.md`**: every placement marked **[M] measured** (space
+  lane ring/drone coordinates, 40 m/s flight, drone bob/recharge/list behavior, city shell) /
+  **[∅] empty** / **[S] spec'd** (W000 eyeline chain, the 400 m job loop, dispatch sightline
+  triple, lantern wayfinding, ring lamp-chase, drone reaction layer…). §5 = the [S]→[M] build order.
+- **⚖ TERRY STORY CORRECTIONS (2026-07-29, exercised via DC §8 modifiability — now canon in the
+  script §3b/§3c):**
+  1. **HALF B IS OUTSIDE TOWN, REACHED BY VEHICLE** — not the Dockmaster's paperweight. Dockmaster
+     gives the LEAD; you take the vehicle (code exists: `ToxicCityVehicleBuilder`/`VehicleRuntime`)
+     out the sea-wall breach, ~700 m across the tidal flats to a crashed survey skiff; half B in
+     its cargo cage + the first outside waker-log. Join happens back at the berth after the drive.
+  2. **THE CANAL STALKER INTERACTS WITH YOUR BOAT** — the skiff is a pilotable water vehicle on
+     ~300 m of navigable canal; the stalker escalates shadow→bump→block (non-lethal, comfort-
+     capped, never leaves the water; stun OR drift resolves it).
+- **The chasm is real and named:** vehicle/boat legs, city interior data, W002 staging, wayfinding,
+  reactions — all [∅] with [S] specs now. **Next: §5 item 1 — land the city interior as DATA via
+  the CityBuilder/author path (never hand-edited YAML), then items 2–4.** 📣 story lane: DC v2.1
+  minute-map + half-B sourcing superseded per the ⚖ above — reconcile the DC doc.
+- **Commit:** spatial script + additions + this entry.
+
 ### 2026-07-29 (rb125) — Fable 5: 🔨 LEVEL 1 build pass 1 — the reentry handoff has an OWNER (first 🔴 closed at code layer)
 
 - **Terry: "finish the level."** Working the rb124 accurate 🔴 list top-down as compiling increments;
