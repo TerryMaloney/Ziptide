@@ -1,13 +1,13 @@
 {
   "tool": "recovery_event_save_graph",
-  "scannedFiles": 750,
-  "evidenceCount": 805,
+  "scannedFiles": 751,
+  "evidenceCount": 807,
   "kindCounts": {
     "AUTOSAVE": 8,
     "EVENT_DECLARE": 48,
     "EVENT_INVOKE": 61,
-    "EVENT_SUBSCRIBE": 135,
-    "EVENT_UNSUBSCRIBE": 83,
+    "EVENT_SUBSCRIBE": 136,
+    "EVENT_UNSUBSCRIBE": 84,
     "PLAYER_PREFS_ACCESS": 20,
     "PROFILE_FIELD_ACCESS": 376,
     "SAVE_ACCESS": 74
@@ -215,7 +215,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 1017,
+      "line": 1032,
       "owner": "Ziptide.Gameplay.BootHoldState",
       "target": "transform.position",
       "detail": "headDelta",
@@ -3674,7 +3674,7 @@
       {
         "kind": "EVENT_INVOKE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerStunReceiver.cs",
-        "line": 53,
+        "line": 65,
         "owner": "Ziptide.Gameplay.PlayerStunReceiver",
         "target": "OnPlayerStunned",
         "detail": "",
@@ -5081,6 +5081,24 @@
         "snippet": "SceneManager.sceneLoaded += OnSceneLoaded;"
       },
       {
+        "kind": "EVENT_SUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/LevelStateContract.cs",
+        "line": 41,
+        "owner": "Ziptide.Gameplay.LevelStateContract",
+        "target": "SceneManager.sceneLoaded",
+        "detail": "OnSceneLoaded",
+        "snippet": "SceneManager.sceneLoaded += OnSceneLoaded;"
+      },
+      {
+        "kind": "EVENT_UNSUBSCRIBE",
+        "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/LevelStateContract.cs",
+        "line": 46,
+        "owner": "Ziptide.Gameplay.LevelStateContract",
+        "target": "SceneManager.sceneLoaded",
+        "detail": "OnSceneLoaded",
+        "snippet": "SceneManager.sceneLoaded -= OnSceneLoaded;"
+      },
+      {
         "kind": "EVENT_UNSUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
         "line": 32,
@@ -5137,7 +5155,7 @@
       {
         "kind": "EVENT_UNSUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-        "line": 335,
+        "line": 350,
         "owner": "Ziptide.Gameplay.BootHoldState",
         "target": "SceneManager.sceneLoaded",
         "detail": "OnSceneLoaded",
@@ -8116,7 +8134,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-        "line": 1017,
+        "line": 1032,
         "owner": "Ziptide.Gameplay.BootHoldState",
         "target": "transform.position",
         "detail": "headDelta",
@@ -10751,6 +10769,24 @@
       "snippet": "credits = (long)System.Math.Floor(save.Profile.GetResource(CreditsResourceId));"
     },
     {
+      "kind": "EVENT_SUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/LevelStateContract.cs",
+      "line": 41,
+      "owner": "Ziptide.Gameplay.LevelStateContract",
+      "target": "SceneManager.sceneLoaded",
+      "detail": "OnSceneLoaded",
+      "snippet": "SceneManager.sceneLoaded += OnSceneLoaded;"
+    },
+    {
+      "kind": "EVENT_UNSUBSCRIBE",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/LevelStateContract.cs",
+      "line": 46,
+      "owner": "Ziptide.Gameplay.LevelStateContract",
+      "target": "SceneManager.sceneLoaded",
+      "detail": "OnSceneLoaded",
+      "snippet": "SceneManager.sceneLoaded -= OnSceneLoaded;"
+    },
+    {
       "kind": "EVENT_UNSUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerInputSessionGuard.cs",
       "line": 32,
@@ -10807,7 +10843,7 @@
     {
       "kind": "EVENT_UNSUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 335,
+      "line": 350,
       "owner": "Ziptide.Gameplay.BootHoldState",
       "target": "SceneManager.sceneLoaded",
       "detail": "OnSceneLoaded",
@@ -10816,7 +10852,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerRigPersistence.cs",
-      "line": 1017,
+      "line": 1032,
       "owner": "Ziptide.Gameplay.BootHoldState",
       "target": "transform.position",
       "detail": "headDelta",
@@ -10861,7 +10897,7 @@
     {
       "kind": "EVENT_INVOKE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Player/PlayerStunReceiver.cs",
-      "line": 53,
+      "line": 65,
       "owner": "Ziptide.Gameplay.PlayerStunReceiver",
       "target": "OnPlayerStunned",
       "detail": "",
