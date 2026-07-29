@@ -2,7 +2,7 @@
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
   "scannedFiles": 783,
-  "findingCount": 2839,
+  "findingCount": 2842,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -3709,49 +3709,49 @@
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-            "line": 229,
+            "line": 277,
             "symbol": "Ziptide.Editor.Patching.CityBuilder",
             "snippet": "var w = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-            "line": 272,
+            "line": 320,
             "symbol": "Ziptide.Editor.Patching.CityBuilder",
             "snippet": "var marker = new GameObject(\"Marker_\" + hb.interiorMarkerId);"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-            "line": 353,
+            "line": 401,
             "symbol": "Ziptide.Editor.Patching.CityBuilder",
             "snippet": "var rail = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-            "line": 491,
+            "line": 539,
             "symbol": "Ziptide.Editor.Patching.CityBuilder",
             "snippet": "var go = new GameObject(name);"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-            "line": 537,
+            "line": 585,
             "symbol": "Ziptide.Editor.Patching.CityBuilder",
             "snippet": "var go = new GameObject(\"Hazard_\" + h.id);"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-            "line": 566,
+            "line": 614,
             "symbol": "Ziptide.Editor.Patching.CityBuilder",
             "snippet": "var drone = GameObject.CreatePrimitive(PrimitiveType.Sphere);"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/CityBuilder.cs",
-            "line": 590,
+            "line": 638,
             "symbol": "Ziptide.Editor.Patching.CityBuilder",
             "snippet": "var go = new GameObject(name);"
           }
@@ -4893,12 +4893,13 @@
       },
       {
         "owner": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
-        "evidenceCount": 20,
+        "evidenceCount": 23,
         "codes": [
           "CREATE_PRIMITIVE",
           "NEW_GAME_OBJECT",
           "RUNTIME_MATERIAL_CREATE",
-          "SHADER_FIND"
+          "SHADER_FIND",
+          "TEXTMESH_COMPONENT"
         ],
         "paths": [
           "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs"
@@ -4977,70 +4978,91 @@
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-            "line": 238,
+            "line": 258,
             "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
             "snippet": "var ring = new GameObject(\"Ring_\" + index).transform;"
           },
           {
-            "code": "CREATE_PRIMITIVE",
+            "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-            "line": 245,
+            "line": 263,
             "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
-            "snippet": "var seg = GameObject.CreatePrimitive(PrimitiveType.Cube);"
+            "snippet": "var structure = new GameObject(\"Truss\").transform;"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-            "line": 310,
+            "line": 321,
+            "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
+            "snippet": "var label = new GameObject(\"CatchNumber\");"
+          },
+          {
+            "code": "TEXTMESH_COMPONENT",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
+            "line": 325,
+            "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
+            "snippet": "var text = label.AddComponent<TextMesh>();"
+          },
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
+            "line": 348,
+            "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
+            "snippet": "var lamps = new GameObject(\"Lamps\").transform;"
+          },
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
+            "line": 426,
             "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
             "snippet": "var cradle = new GameObject(Name);"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-            "line": 318,
+            "line": 434,
             "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
             "snippet": "var hulk = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "NEW_GAME_OBJECT",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-            "line": 326,
+            "line": 442,
             "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
             "snippet": "var marker = new GameObject(\"__SALVAGE_ARTIFACT_HALF_A\");"
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-            "line": 353,
+            "line": 469,
             "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
             "snippet": "var scrap = GameObject.CreatePrimitive("
           },
           {
             "code": "CREATE_PRIMITIVE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-            "line": 471,
+            "line": 587,
             "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
             "snippet": "var go = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-            "line": 484,
+            "line": 600,
             "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
             "snippet": "var shader = Shader.Find(\"Universal Render Pipeline/Lit\");"
           },
           {
             "code": "SHADER_FIND",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-            "line": 485,
+            "line": 601,
             "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
             "snippet": "if (shader == null) shader = Shader.Find(\"Standard\");"
           },
           {
             "code": "RUNTIME_MATERIAL_CREATE",
             "path": "Ziptide/Assets/Ziptide/Editor/Patching/ScenePatcherSpaceLane.cs",
-            "line": 487,
+            "line": 603,
             "symbol": "Ziptide.Editor.Patching.ScenePatcherSpaceLane",
             "snippet": "var mat = new Material(shader);"
           }
@@ -22508,7 +22530,7 @@
           {
             "code": "FALLBACK_MARKER",
             "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-            "line": 487,
+            "line": 481,
             "symbol": "Ziptide.Ship.ShipFlightRuntime",
             "snippet": "// \u2500\u2500 Rig plumbing (ShipBoardingStation patterns \u2014 teleport, never parent) \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500"
           }

@@ -5938,7 +5938,7 @@
       {
         "kind": "EVENT_INVOKE",
         "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-        "line": 432,
+        "line": 439,
         "owner": "Ziptide.Ship.ShipFlightRuntime",
         "target": "TargetDisabled",
         "detail": "",
@@ -13416,7 +13416,7 @@
     {
       "kind": "EVENT_INVOKE",
       "path": "Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs",
-      "line": 432,
+      "line": 439,
       "owner": "Ziptide.Ship.ShipFlightRuntime",
       "target": "TargetDisabled",
       "detail": "",

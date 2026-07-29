@@ -951,7 +951,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `TargetDisabled`
 
-- **EVENT_INVOKE** · `Ziptide.Ship.ShipFlightRuntime` · `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:432` — `Ziptide.Core.FlightSignals.TargetDisabled?.Invoke(hit.name); // announced append (tf-space1): Tidefront space-defense counts these`
+- **EVENT_INVOKE** · `Ziptide.Ship.ShipFlightRuntime` · `Ziptide/Assets/Ziptide/Ship/Runtime/ShipFlightRuntime.cs:439` — `Ziptide.Core.FlightSignals.TargetDisabled?.Invoke(hit.name); // announced append (tf-space1): Tidefront space-defense counts these`
 
 ### `TargetFleetSize`
 
