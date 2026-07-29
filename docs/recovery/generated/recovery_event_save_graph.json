@@ -449,7 +449,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-      "line": 183,
+      "line": 184,
       "owner": "Ziptide.Tests.EditMode.HomeHubFlowTests",
       "target": "castOff.DestinationSelected",
       "detail": "destination",
@@ -1160,7 +1160,7 @@
       {
         "kind": "EVENT_DECLARE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-        "line": 110,
+        "line": 114,
         "owner": "Ziptide.Gameplay.HomeHubFlowState",
         "target": "BootPresentationReady",
         "detail": "static Action<bool>",
@@ -1171,7 +1171,7 @@
       {
         "kind": "EVENT_DECLARE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-        "line": 112,
+        "line": 116,
         "owner": "Ziptide.Gameplay.HomeHubFlowState",
         "target": "ChoiceSelected",
         "detail": "static Action<HomeHubChoice>",
@@ -1916,7 +1916,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-        "line": 207,
+        "line": 208,
         "owner": "Ziptide.Tests.EditMode.HomeHubFlowTests",
         "target": "FirstHourBunkObjectRuntime.NamedBunkObjectGrabbed",
         "detail": "handler",
@@ -1925,7 +1925,7 @@
       {
         "kind": "EVENT_UNSUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-        "line": 219,
+        "line": 220,
         "owner": "Ziptide.Tests.EditMode.HomeHubFlowTests",
         "target": "FirstHourBunkObjectRuntime.NamedBunkObjectGrabbed",
         "detail": "handler",
@@ -3453,7 +3453,7 @@
       {
         "kind": "EVENT_DECLARE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-        "line": 111,
+        "line": 115,
         "owner": "Ziptide.Gameplay.HomeHubFlowState",
         "target": "NewGameProfileCreated",
         "detail": "static Action<PlayerProfile>",
@@ -4221,7 +4221,7 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-        "line": 140,
+        "line": 144,
         "owner": "Ziptide.Gameplay.HomeHubFlowState",
         "target": "SaveSystem.HasExistingProfile",
         "detail": "",
@@ -4250,7 +4250,7 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-        "line": 257,
+        "line": 261,
         "owner": "Ziptide.Gameplay.HomeHubFlowState",
         "target": "SaveSystem.Load",
         "detail": "",
@@ -4259,7 +4259,7 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-        "line": 163,
+        "line": 164,
         "owner": "Ziptide.Tests.EditMode.HomeHubFlowTests",
         "target": "SaveSystem.Load",
         "detail": "",
@@ -4803,7 +4803,7 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-        "line": 251,
+        "line": 255,
         "owner": "Ziptide.Gameplay.HomeHubFlowState",
         "target": "SaveSystem.StartNewProfile",
         "detail": "",
@@ -4812,7 +4812,7 @@
       {
         "kind": "SAVE_ACCESS",
         "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-        "line": 162,
+        "line": 163,
         "owner": "Ziptide.Tests.EditMode.HomeHubFlowTests",
         "target": "SaveSystem.StartNewProfile",
         "detail": "",
@@ -5425,7 +5425,7 @@
       {
         "kind": "EVENT_DECLARE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-        "line": 113,
+        "line": 117,
         "owner": "Ziptide.Gameplay.HomeHubFlowState",
         "target": "SettingsRequested",
         "detail": "static Action",
@@ -6243,7 +6243,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-        "line": 183,
+        "line": 184,
         "owner": "Ziptide.Tests.EditMode.HomeHubFlowTests",
         "target": "castOff.DestinationSelected",
         "detail": "destination",
@@ -11802,7 +11802,7 @@
     {
       "kind": "EVENT_DECLARE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 110,
+      "line": 114,
       "owner": "Ziptide.Gameplay.HomeHubFlowState",
       "target": "BootPresentationReady",
       "detail": "static Action<bool>",
@@ -11811,7 +11811,7 @@
     {
       "kind": "EVENT_DECLARE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 111,
+      "line": 115,
       "owner": "Ziptide.Gameplay.HomeHubFlowState",
       "target": "NewGameProfileCreated",
       "detail": "static Action<PlayerProfile>",
@@ -11820,7 +11820,7 @@
     {
       "kind": "EVENT_DECLARE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 112,
+      "line": 116,
       "owner": "Ziptide.Gameplay.HomeHubFlowState",
       "target": "ChoiceSelected",
       "detail": "static Action<HomeHubChoice>",
@@ -11829,7 +11829,7 @@
     {
       "kind": "EVENT_DECLARE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 113,
+      "line": 117,
       "owner": "Ziptide.Gameplay.HomeHubFlowState",
       "target": "SettingsRequested",
       "detail": "static Action",
@@ -11838,7 +11838,7 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 140,
+      "line": 144,
       "owner": "Ziptide.Gameplay.HomeHubFlowState",
       "target": "SaveSystem.HasExistingProfile",
       "detail": "",
@@ -11847,7 +11847,7 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 251,
+      "line": 255,
       "owner": "Ziptide.Gameplay.HomeHubFlowState",
       "target": "SaveSystem.StartNewProfile",
       "detail": "",
@@ -11856,7 +11856,7 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs",
-      "line": 257,
+      "line": 261,
       "owner": "Ziptide.Gameplay.HomeHubFlowState",
       "target": "SaveSystem.Load",
       "detail": "",
@@ -13521,7 +13521,7 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-      "line": 162,
+      "line": 163,
       "owner": "Ziptide.Tests.EditMode.HomeHubFlowTests",
       "target": "SaveSystem.StartNewProfile",
       "detail": "",
@@ -13530,7 +13530,7 @@
     {
       "kind": "SAVE_ACCESS",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-      "line": 163,
+      "line": 164,
       "owner": "Ziptide.Tests.EditMode.HomeHubFlowTests",
       "target": "SaveSystem.Load",
       "detail": "",
@@ -13539,7 +13539,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-      "line": 183,
+      "line": 184,
       "owner": "Ziptide.Tests.EditMode.HomeHubFlowTests",
       "target": "castOff.DestinationSelected",
       "detail": "destination",
@@ -13548,7 +13548,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-      "line": 207,
+      "line": 208,
       "owner": "Ziptide.Tests.EditMode.HomeHubFlowTests",
       "target": "FirstHourBunkObjectRuntime.NamedBunkObjectGrabbed",
       "detail": "handler",
@@ -13557,7 +13557,7 @@
     {
       "kind": "EVENT_UNSUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs",
-      "line": 219,
+      "line": 220,
       "owner": "Ziptide.Tests.EditMode.HomeHubFlowTests",
       "target": "FirstHourBunkObjectRuntime.NamedBunkObjectGrabbed",
       "detail": "handler",

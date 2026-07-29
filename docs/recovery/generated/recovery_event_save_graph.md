@@ -67,7 +67,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - `Ziptide.Tests.EditMode.FieldCameraCompletionTests` subscribes `SceneManager.sceneLoaded` → `OnSceneLoaded` at `Ziptide/Assets/Ziptide/Tests/EditMode/FieldCameraCompletionTests.cs:82`
 - `Ziptide.Tests.EditMode.FirstRouteFeelTests` subscribes `runtime.JobCompleted` → `OnJobCompleted` at `Ziptide/Assets/Ziptide/Tests/EditMode/FirstRouteFeelTests.cs:61`
 - `Ziptide.Tests.EditMode.HeadsetBuildBlockerRegressionTests` subscribes `EditorSceneManager.sceneOpened` → `OnSceneOpened` at `Ziptide/Assets/Ziptide/Tests/EditMode/HeadsetBuildBlockerRegressionTests.cs:71`
-- `Ziptide.Tests.EditMode.HomeHubFlowTests` subscribes `castOff.DestinationSelected` → `destination` at `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:183`
+- `Ziptide.Tests.EditMode.HomeHubFlowTests` subscribes `castOff.DestinationSelected` → `destination` at `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:184`
 - `Ziptide.Tests.EditMode.PvpNetTests` subscribes `t.OnFire` → `m` at `Ziptide/Assets/Ziptide/Tests/EditMode/PvpNetTests.cs:27`
 - `Ziptide.Tests.EditMode.PvpNetTests` subscribes `t.OnHit` → `m` at `Ziptide/Assets/Ziptide/Tests/EditMode/PvpNetTests.cs:41`
 - `Ziptide.Tests.EditMode.PvpNetTests` subscribes `t.OnScore` → `m` at `Ziptide/Assets/Ziptide/Tests/EditMode/PvpNetTests.cs:56`
@@ -184,11 +184,11 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `BootPresentationReady`
 
-- **EVENT_DECLARE** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:110` · `static Action<bool>` — `public static event Action<bool> BootPresentationReady;`
+- **EVENT_DECLARE** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:114` · `static Action<bool>` — `public static event Action<bool> BootPresentationReady;`
 
 ### `ChoiceSelected`
 
-- **EVENT_DECLARE** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:112` · `static Action<HomeHubChoice>` — `public static event Action<HomeHubChoice> ChoiceSelected;`
+- **EVENT_DECLARE** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:116` · `static Action<HomeHubChoice>` — `public static event Action<HomeHubChoice> ChoiceSelected;`
 
 ### `ComfortConsoleRuntime.PresetConfirmed`
 
@@ -318,8 +318,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 - **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:153` · `OnBunkObjectGrabbed` — `FirstHourBunkObjectRuntime.NamedBunkObjectGrabbed += OnBunkObjectGrabbed;`
 - **EVENT_UNSUBSCRIBE** · `Ziptide.Gameplay.FirstHourDirector` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs:171` · `OnBunkObjectGrabbed` — `FirstHourBunkObjectRuntime.NamedBunkObjectGrabbed -= OnBunkObjectGrabbed;`
-- **EVENT_SUBSCRIBE** · `Ziptide.Tests.EditMode.HomeHubFlowTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:207` · `handler` — `FirstHourBunkObjectRuntime.NamedBunkObjectGrabbed += handler;`
-- **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.EditMode.HomeHubFlowTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:219` · `handler` — `FirstHourBunkObjectRuntime.NamedBunkObjectGrabbed -= handler;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Tests.EditMode.HomeHubFlowTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:208` · `handler` — `FirstHourBunkObjectRuntime.NamedBunkObjectGrabbed += handler;`
+- **EVENT_UNSUBSCRIBE** · `Ziptide.Tests.EditMode.HomeHubFlowTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:220` · `handler` — `FirstHourBunkObjectRuntime.NamedBunkObjectGrabbed -= handler;`
 
 ### `FirstHourObservationAdapter.Instance.SignalCompleted`
 
@@ -561,7 +561,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `NewGameProfileCreated`
 
-- **EVENT_DECLARE** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:111` · `static Action<PlayerProfile>` — `public static event Action<PlayerProfile> NewGameProfileCreated;`
+- **EVENT_DECLARE** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:115` · `static Action<PlayerProfile>` — `public static event Action<PlayerProfile> NewGameProfileCreated;`
 
 ### `Null`
 
@@ -713,14 +713,14 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `SaveSystem.HasExistingProfile`
 
-- **SAVE_ACCESS** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:140` — `bool canContinue = SaveSystem.HasExistingProfile;`
+- **SAVE_ACCESS** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:144` — `bool canContinue = SaveSystem.HasExistingProfile;`
 - **SAVE_ACCESS** · `Ziptide.Tests.PlayMode.RecoveryGoldenPerformanceRouteTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryGoldenPerformanceRouteTests.cs:85` — `Assert.IsFalse(SaveSystem.HasExistingProfile,`
 - **SAVE_ACCESS** · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:95` — `Assert.IsFalse(SaveSystem.HasExistingProfile,`
 
 ### `SaveSystem.Load`
 
-- **SAVE_ACCESS** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:257` — `SaveSystem.Instance.Load();`
-- **SAVE_ACCESS** · `Ziptide.Tests.EditMode.HomeHubFlowTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:163` — `StringAssert.Contains("SaveSystem.Instance.Load();", source);`
+- **SAVE_ACCESS** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:261` — `SaveSystem.Instance.Load();`
+- **SAVE_ACCESS** · `Ziptide.Tests.EditMode.HomeHubFlowTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:164` — `StringAssert.Contains("SaveSystem.Instance.Load();", source);`
 - **SAVE_ACCESS** · `Ziptide.Tests.PlayMode.RecoveryTravelSaveRoundTripTests` · `Ziptide/Assets/Ziptide/Tests/PlayMode/RecoveryTravelSaveRoundTripTests.cs:153` — `SaveSystem.Instance.Load();`
 
 ### `SaveSystem.Profile`
@@ -786,8 +786,8 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `SaveSystem.StartNewProfile`
 
-- **SAVE_ACCESS** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:251` — `PlayerProfile profile = SaveSystem.Instance.StartNewProfile();`
-- **SAVE_ACCESS** · `Ziptide.Tests.EditMode.HomeHubFlowTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:162` — `StringAssert.Contains("SaveSystem.Instance.StartNewProfile()", source);`
+- **SAVE_ACCESS** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:255` — `PlayerProfile profile = SaveSystem.Instance.StartNewProfile();`
+- **SAVE_ACCESS** · `Ziptide.Tests.EditMode.HomeHubFlowTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:163` — `StringAssert.Contains("SaveSystem.Instance.StartNewProfile()", source);`
 
 ### `SavesForBigShips`
 
@@ -869,7 +869,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `SettingsRequested`
 
-- **EVENT_DECLARE** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:113` · `static Action` — `public static event Action SettingsRequested;`
+- **EVENT_DECLARE** · `Ziptide.Gameplay.HomeHubFlowState` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:117` · `static Action` — `public static event Action SettingsRequested;`
 
 ### `SignalCompleted`
 
@@ -1071,7 +1071,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `castOff.DestinationSelected`
 
-- **EVENT_SUBSCRIBE** · `Ziptide.Tests.EditMode.HomeHubFlowTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:183` · `destination` — `castOff.DestinationSelected += destination => seen = destination;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Tests.EditMode.HomeHubFlowTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:184` · `destination` — `castOff.DestinationSelected += destination => seen = destination;`
 
 ### `clip`
 

@@ -398,8 +398,8 @@
 - **reference** · `Ziptide.Gameplay.FirstDestinationHelmRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:19` — `public void Configure(ShipCastOffRuntime castOff)`
 - **reference** · `Ziptide.Gameplay.FirstDestinationHelmRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:26` — `if (_castOff == null) _castOff = FindObjectOfType<ShipCastOffRuntime>();`
 - **reference** · `Ziptide.Gameplay.FirstDestinationHelmRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:32` — `if (_castOff == null) _castOff = FindObjectOfType<ShipCastOffRuntime>();`
-- **reference** · `Ziptide.Tests.EditMode.HomeHubFlowTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:181` — `var castOff = go.AddComponent<ShipCastOffRuntime>();`
-- **reference** · `Ziptide.Tests.EditMode.HomeHubFlowTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:263` — `string castOff = Read("Gameplay", "Runtime", "Story", "ShipCastOffRuntime.cs");`
+- **reference** · `Ziptide.Tests.EditMode.HomeHubFlowTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:182` — `var castOff = go.AddComponent<ShipCastOffRuntime>();`
+- **reference** · `Ziptide.Tests.EditMode.HomeHubFlowTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:264` — `string castOff = Read("Gameplay", "Runtime", "Story", "ShipCastOffRuntime.cs");`
 
 ### `gate_coupler`
 
@@ -431,8 +431,8 @@
 - **reference** · `Ziptide.Gameplay.FirstDestinationHelmRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:19` — `public void Configure(ShipCastOffRuntime castOff)`
 - **reference** · `Ziptide.Gameplay.FirstDestinationHelmRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:26` — `if (_castOff == null) _castOff = FindObjectOfType<ShipCastOffRuntime>();`
 - **reference** · `Ziptide.Gameplay.FirstDestinationHelmRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstDestinationHelmRuntime.cs:32` — `if (_castOff == null) _castOff = FindObjectOfType<ShipCastOffRuntime>();`
-- **reference** · `Ziptide.Tests.EditMode.HomeHubFlowTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:181` — `var castOff = go.AddComponent<ShipCastOffRuntime>();`
-- **reference** · `Ziptide.Tests.EditMode.HomeHubFlowTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:263` — `string castOff = Read("Gameplay", "Runtime", "Story", "ShipCastOffRuntime.cs");`
+- **reference** · `Ziptide.Tests.EditMode.HomeHubFlowTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:182` — `var castOff = go.AddComponent<ShipCastOffRuntime>();`
+- **reference** · `Ziptide.Tests.EditMode.HomeHubFlowTests` · `Ziptide/Assets/Ziptide/Tests/EditMode/HomeHubFlowTests.cs:264` — `string castOff = Read("Gameplay", "Runtime", "Story", "ShipCastOffRuntime.cs");`
 
 ### `ShipChassisPreset`
 
