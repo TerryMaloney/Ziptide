@@ -19,4 +19,5 @@ MonoBehaviour:
   availableThemes: []
   jobs: []
   spawnMarkers: []
+  deliberatelySilent: 1
   audioProfile: {fileID: 0}

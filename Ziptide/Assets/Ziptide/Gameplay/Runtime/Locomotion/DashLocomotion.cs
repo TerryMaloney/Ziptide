@@ -268,6 +268,18 @@ namespace Ziptide.Gameplay
             }
         }
 
+        /// <summary>
+        /// Force the player back to standing. Called when a level changes: travelling while crouched
+        /// used to carry a shortened CharacterController and a dropped camera into the next world,
+        /// because nothing reset it and nobody owned the reset.
+        /// </summary>
+        public void ForceStand()
+        {
+            _slideTimer = 0f;
+            if (_crouched) SetCrouch(false);
+            if (_cc != null && _ccStandHeight > 0f) _cc.height = _ccStandHeight;
+        }
+
         private void SetCrouch(bool crouch)
         {
             if (crouch == _crouched) return;

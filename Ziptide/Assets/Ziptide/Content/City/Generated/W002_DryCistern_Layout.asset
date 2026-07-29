@@ -210,7 +210,7 @@ MonoBehaviour:
   canals: []
   droneZones:
   - id: Patrol_Gallery
-    center: {x: 24, y: 0, z: 6}
+    center: {x: 24.0, y: 0, z: 18.0}
     radius: 5
     count: 3
     respawnDelay: 15
@@ -219,7 +219,7 @@ MonoBehaviour:
   hazards: []
   creatureZones:
   - id: Grazers_Dark
-    center: {x: -6, y: 0, z: 26}
+    center: {x: -3.0, y: 0, z: 26.0}
     radius: 3
     count: 2
     respawnDelay: 30

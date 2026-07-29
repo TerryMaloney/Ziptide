@@ -40,7 +40,7 @@ MonoBehaviour:
   planetBaseColor: {r: 0.72, g: 0.62, b: 0.44, a: 1}
   planetAccentColor: {r: 0.45, g: 0.5, b: 0.38, a: 1}
   planetAngularSize: 22
-  skylineRingRadius: 140
+  skylineRingRadius: 250
   skylineCount: 26
   skylineMinHeight: 30
   skylineMaxHeight: 90
@@ -75,7 +75,7 @@ MonoBehaviour:
     crownCraneCount: 3
     wedgeCount: 5
     wedgeOuterRadius: 108
-    canalRingRadius: 62
+    canalRingRadius: 74
     canalWidth: 9
     radialCanalCount: 4
     causewayCount: 4
@@ -276,8 +276,8 @@ MonoBehaviour:
     colorOverride: {r: 0.22, g: 0.45, b: 0.12, a: 1}
   droneZones:
   - id: Tutorial_Dispatch
-    center: {x: 0, y: 0, z: -8}
-    radius: 4
+    center: {x: 0, y: 0, z: -10}
+    radius: 3
     count: 3
     respawnDelay: 0
     combat: 0
@@ -290,7 +290,7 @@ MonoBehaviour:
     combat: 1
     variantId: drone_standard
   - id: Patrol_Canal
-    center: {x: -14, y: 0, z: 16}
+    center: {x: -26, y: 0, z: 26}
     radius: 4
     count: 2
     respawnDelay: 16
@@ -311,8 +311,8 @@ MonoBehaviour:
     direction: {x: 1, y: 0, z: 0}
   creatureZones:
   - id: Swarm_CanalRow
-    center: {x: -26, y: 0, z: 8}
-    radius: 5
+    center: {x: -26, y: 0, z: 14.5}
+    radius: 2.5
     count: 4
     respawnDelay: 25
     creatureId: swarm_bug
@@ -322,15 +322,15 @@ MonoBehaviour:
     count: 3
     respawnDelay: 30
     creatureId: witness_mite
-  - id: Tendrils_Market
-    center: {x: 26, y: 0, z: 8}
-    radius: 5
+  - id: Tendrils_Flats
+    center: {x: 44, y: 0, z: 8}
+    radius: 4
     count: 3
     respawnDelay: 0
     creatureId: tendril
   - id: Molters_Relay
-    center: {x: 0, y: 0, z: 16}
-    radius: 4
+    center: {x: -14, y: 0, z: -4}
+    radius: 3
     count: 2
     respawnDelay: 40
     creatureId: husk_molter

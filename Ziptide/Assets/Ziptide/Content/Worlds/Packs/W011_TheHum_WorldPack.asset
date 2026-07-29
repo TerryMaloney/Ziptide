@@ -77,6 +77,7 @@ MonoBehaviour:
     ratePerSecond: 0.05
     storageCap: 40
     localPosition: {x: 83.562386, y: 1.6717405, z: 102.185776}
+  deliberatelySilent: 1
   audioProfile: {fileID: 0}
   flagsRequired:
   - W010_COMPLETE

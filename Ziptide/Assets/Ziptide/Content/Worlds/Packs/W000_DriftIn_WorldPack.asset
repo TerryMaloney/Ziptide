@@ -42,6 +42,7 @@ MonoBehaviour:
   mines: []
   gardens: []
   sockets: []
+  deliberatelySilent: 0
   audioProfile: {fileID: 11400000, guid: 6fbda911a1633ed4eac94eed037a0781, type: 2}
   flagsRequired: []
   flagsGranted:

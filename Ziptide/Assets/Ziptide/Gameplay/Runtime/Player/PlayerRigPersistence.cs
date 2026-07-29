@@ -176,6 +176,7 @@ namespace Ziptide.Gameplay
             EnsureRillCompanion();
             EnsurePingTool();
             EnsurePlayerMenu();
+            EnsureLevelStateContract();
 
             // #region agent log
             LogRaySnapshot("Awake_AFTER");
@@ -315,6 +316,20 @@ namespace Ziptide.Gameplay
             {
                 gameObject.AddComponent<PlayerMenuRuntime>();
                 Debug.Log("ZIPTIDE: PLAYER_MENU_ENSURED on persistent rig");
+            }
+        }
+
+        /// <summary>
+        /// The player must arrive in every world in the same condition. The rig is DontDestroyOnLoad,
+        /// so a crouch, a stun slow or a suspended locomotion provider set by one world will follow
+        /// the player into the next unless someone restores the baseline. Someone now does.
+        /// </summary>
+        private void EnsureLevelStateContract()
+        {
+            if (GetComponent<LevelStateContract>() == null)
+            {
+                gameObject.AddComponent<LevelStateContract>();
+                Debug.Log("ZIPTIDE: LEVEL_STATE_ENSURED on persistent rig");
             }
         }
 

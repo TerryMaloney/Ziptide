@@ -206,7 +206,7 @@ MonoBehaviour:
   canals: []
   droneZones:
   - id: Patrol_Canopy
-    center: {x: 2, y: 0, z: 30}
+    center: {x: 4.3, y: 0, z: 43.3}
     radius: 6
     count: 4
     respawnDelay: 14
@@ -227,7 +227,7 @@ MonoBehaviour:
     direction: {x: 1, y: 0, z: 0}
   creatureZones:
   - id: Swarm_Canopy
-    center: {x: 18, y: 0, z: 22}
+    center: {x: 18.0, y: 0, z: 28.0}
     radius: 4
     count: 2
     respawnDelay: 25

@@ -215,14 +215,14 @@ MonoBehaviour:
   canals: []
   droneZones:
   - id: Swarm_Market
-    center: {x: 22, y: 0, z: 12}
+    center: {x: 37.0, y: 0, z: 12.0}
     radius: 6
     count: 3
     respawnDelay: 12
     combat: 1
     variantId: drone_standard
   - id: Swarm_Pylons
-    center: {x: 0, y: 0, z: 32}
+    center: {x: 0.0, y: 0, z: 44.0}
     radius: 5
     count: 3
     respawnDelay: 12
@@ -237,7 +237,7 @@ MonoBehaviour:
     respawnDelay: 40
     creatureId: tether_swarm
   - id: Molters_Wall
-    center: {x: -10, y: 0, z: 30}
+    center: {x: -12.3, y: 0, z: 31.9}
     radius: 4
     count: 2
     respawnDelay: 30

@@ -37,6 +37,18 @@ namespace Ziptide.Gameplay
             _move = GetComponentInChildren<ActionBasedContinuousMoveProvider>(true);
         }
 
+        /// <summary>
+        /// Drop any active stun immediately and restore full move speed. Called when a level changes:
+        /// a slow applied by a drone in one world used to follow the player into the next one, which
+        /// is the unexplained "walk speed is wrong after the arena" symptom on the device checklist.
+        /// </summary>
+        public void ClearStun()
+        {
+            _stun.Clear();
+            _flashTimer = 0f;
+            if (_move != null && _haveBase) _move.moveSpeed = _baseMoveSpeed;
+        }
+
         /// <summary>Apply a non-lethal stun: flash + slow for <paramref name="seconds"/>. Re-stuns refresh.</summary>
         public void ApplyStun(float seconds, float slowFactor)
         {

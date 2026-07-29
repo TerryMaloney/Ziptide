@@ -26,6 +26,16 @@ namespace Ziptide.Gameplay
             _slow = wasActive ? Mathf.Min(_slow, slowFactor) : slowFactor; // strongest slow while active
         }
 
+        /// <summary>
+        /// End any active stun now. A stun is a moment inside one world; it must not be a condition
+        /// the player carries into the next one.
+        /// </summary>
+        public void Clear()
+        {
+            _remaining = 0f;
+            _slow = 1f;
+        }
+
         public void Tick(float dt)
         {
             if (_remaining <= 0f) return;

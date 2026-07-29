@@ -41,6 +41,13 @@ jobs:
       - name: Coordination-only path policy gate
         run: python3 tools/coordination_path_policy.py --check
 
+      # The rules that must hold in EVERY world (docs/design/LEVEL_INVARIANTS.md). Data-only, ~1 s.
+      # Strict from the start: it was written against a clean tree, so anything it reports is new.
+      - name: Level invariants gate
+        run: |
+          python3 tools/level_invariants_gate.py --strict \
+            --json-report Builds/Reports/level_invariants.json
+
       - name: Third-party licensing gate
         run: |
           python3 tools/third_party_license_gate.py \

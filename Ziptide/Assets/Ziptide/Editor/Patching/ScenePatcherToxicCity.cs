@@ -112,7 +112,10 @@ namespace Ziptide.Editor.Patching
                 var target = GameObject.CreatePrimitive(PrimitiveType.Cube);
                 target.name = TargetName;
                 target.transform.SetParent(root, true);
-                target.transform.position = spawnPos + new Vector3(2.4f, 1.25f, 4.5f);
+                // Measured, not eyeballed: the first placement put the target at (2.4, -3.5),
+                // which is INSIDE Hero_DispatchHall's footprint (x -4..4, z -5.5..1.5). West of the
+                // spawn is the one open pocket clear of the hall and of both facade rows.
+                target.transform.position = spawnPos + new Vector3(-4.5f, 1.25f, 1.5f);
                 target.transform.localScale = new Vector3(0.45f, 0.45f, 0.08f);
                 target.AddComponent<TargetRuntime>();
                 target.AddComponent<JobTarget>();
@@ -138,9 +141,13 @@ namespace Ziptide.Editor.Patching
 
             var zip = new GameObject(ZipName);
             zip.transform.SetParent(root, true);
+            // ⚠ The start anchor carries the GRABBABLE HANDLE, so it has to be inside hand reach.
+            // The first placement strung it 7 m up -- a perfectly good zipline nobody could ever
+            // ride, because ToxicCity is flat and there is nothing to climb. Generated worlds get
+            // away with +5.5 m because their terrain gives you the climb; a flat city does not.
             zip.AddComponent<ZiplineRuntime>().Init(
-                new Vector3(plaza.anchor.x, kit.walkwayHeight + 7f, plaza.anchor.z),
-                new Vector3(canal.anchor.x, kit.walkwayHeight + 1.6f, canal.anchor.z + 6f));
+                new Vector3(plaza.anchor.x, kit.walkwayHeight + 2.2f, plaza.anchor.z),
+                new Vector3(canal.anchor.x, kit.walkwayHeight + 1.0f, canal.anchor.z + 6f));
         }
 
         // A taser + gravity gun by the spawn so you can actually fight the drones without hauling one in.

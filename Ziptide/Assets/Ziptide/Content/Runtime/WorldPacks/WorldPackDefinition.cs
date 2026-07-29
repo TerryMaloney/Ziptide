@@ -72,6 +72,13 @@ namespace Ziptide.Content
         [Tooltip("Background music for this world. Null = silence.")]
         public AudioProfile audioProfile;
 
+        [Tooltip("This world is scored SILENT on purpose (caves, sealed spaces, dev surfaces). " +
+                 "Quiet is a feature in this game — the design canon says music vanishes underground " +
+                 "unless a stinger earns entry. Without this flag there is no way to tell a world " +
+                 "that was authored quiet from one where somebody forgot the profile, and the " +
+                 "invariants gate has to treat both the same.")]
+        public bool deliberatelySilent = false;
+
         [Header("Story gating")]
         [Tooltip("Flags (use Ziptide.Core.ZiptideFlags constants) that must ALL be set before this world " +
                  "is available. Empty = always available. Checked by WorldGating.MeetsRequirements.")]
