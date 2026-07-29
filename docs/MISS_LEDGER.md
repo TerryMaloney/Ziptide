@@ -194,6 +194,26 @@ Read by every lane at session start alongside HANDOFF. Full spec: `FINISHED_GAME
     **SYSTEM CHANGE:** a CI-green claim must cite the RUN's conclusion (or every job's), never one
     job's; when a run is red, the reply leads with the workflow-integrity warning before any
     feature report. Fixed in `scrap` registration; the honesty rule is the durable half.
+
+21. **WHAT:** ToxicCity's contract step 4 asks you to repair machine `signal_relay`, and the
+    world pack spawned **no machines at all** — so the first level's contract stopped dead at step
+    4 of 6. Steps 5 (drive to the flats for half B) and 6 (return to the berth) sat behind a step
+    that could not complete, and `toxiccity_complete` — the flag gating W002 — was ungrantable.
+    **FOUND BY:** auditing every contract step's marker/machine against a real producer before the
+    2026-07-29 headset session (rb131), not by playing it. **WHY MISSED:** generated worlds pair
+    the two halves automatically (`WorldJobLibrary.Repair()` is documented "pair with a Machine()
+    entry", and the same spec writes `pack.machines`). ToxicCity is the ONE world that hand-writes
+    its contract and its pack in two different files, so the pairing was a convention no mechanism
+    enforced. **CLASS:** a cross-file invariant that is automatic on the generated path and manual
+    on the bespoke path — the bespoke path inherits the assumption without the enforcement.
+    **SYSTEM CHANGE:** ① the wiring gate's 22nd feature binds the contract step to the pack machine
+    (mutation-tested: removing either half reds CI) — DONE. ② **`WorldPackValidator` already
+    contains the rule that predicts this exact defect in words ("Repair 'X' but the pack spawns no
+    such machine — likely un-completable") and is called from NOTHING but its own unit tests.**
+    Wire it into `WorldAuditRunner` as a project-wide pack report so every world is checked, not
+    just the one someone remembered — WARN first per the `PerfBudgetAuditRules` ratchet, promote to
+    blocker after one clean run (→ open; deliberately not done mid-session with a bake imminent,
+    because a new blocker in the audit aborts Terry's local build).
     (→ pending: closes when a green-run citation is part of the standard session report format.)
 
 ## CLOSED

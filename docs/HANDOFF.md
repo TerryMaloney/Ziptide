@@ -32,6 +32,125 @@
 
 ## ENTRIES — newest first
 
+### 2026-07-29 (rb131) — 🚨 A LEVEL-LOCK FOUND AND FIXED before the headset, + the PlayMode red cleared + the hangar walk built
+
+**Read §1 first: the first level could not be completed, and the reason was not on anyone's list.**
+Took over from rb130 with Terry driving home. Verified rb130's state claims (all accurate; §0 below),
+then audited the whole Level 1 flow rather than only the items rb130 named as unbuilt — which is how
+the real blocker surfaced.
+
+---
+
+#### 0 · VERIFICATION OF rb130 (do this before trusting any handoff, including this one)
+Every workflow on `30f3ed84` matched rb130's table exactly: CI ✅ · Fast Preflight ✅ · Golden
+Android ✅ · Contract Scan ✅ · Owner Proof ✅ · **PlayMode ❌ 41/43**. `level1_wiring_gate` clean,
+`tools/tests` 297 OK. rb130's §0 was honest.
+
+---
+
+#### 1 · 🚨 THE LEVEL-LOCK: the contract's relay machine never existed (`8355ca07`)
+
+`ToxicCityContractBuilder` step 4 is `RepairMachine("signal_relay")`. `ScenePatcherToxicCity`'s
+`EnsureWorldPack` set packId/displayName/sceneName/spawnMarkers and **never touched
+`pack.machines`** — and `JobDirector` materialises repairables **from the pack**. So no object in
+the shipped world carried that id.
+
+**Consequence:** the Dockmaster's Bounty stopped at **step 4 of 6**. Step 5 (drive out through the
+breach to the flats — *how you get artifact half B*) and step 6 (return to the berth) sat behind a
+step that could never complete, and **`toxiccity_complete`, the flag gating W002, was ungrantable.**
+The back half of the level was reachable by wandering but not by playing the contract.
+
+**Why nobody saw it:** generated worlds pair the halves automatically — `WorldJobLibrary.Repair()`
+is literally documented "pair with a `Machine()` entry", and the same spec writes `pack.machines`.
+**ToxicCity is the one world that hand-writes its contract and its pack in two different files**, so
+the pairing was a convention with no mechanism behind it.
+
+**Fixed:** the machine is authored into the pack at the RelayVault its own `relay_node` marker lives
+in, read off the LIVE layout (not typed coordinates), part id `relay_cell` (the item already exists;
+`RepairableMachine` uses the id as a label and builds its own geometry, so nothing else can break).
+**Guard:** wiring-gate feature 22 binds the contract step to the pack machine — **mutation-tested,
+removing either half reds CI.** → **MISS_LEDGER #21.**
+
+**⚠ The systemic half is OPEN and is the highest-value next task:** `WorldPackValidator` *already*
+contains the rule that predicts this exact defect in words — "Repair 'X' but the pack spawns no such
+machine — likely un-completable" — and **it is called from nothing but its own unit tests.** Wire it
+into `WorldAuditRunner` as a project-wide pack report (WARN first per the `PerfBudgetAuditRules`
+ratchet, promote after one clean run). I deliberately did NOT do this mid-session: a new audit
+blocker aborts Terry's local bake, and he is about to run one.
+
+---
+
+#### 2 · THE PLAYMODE RED IS CLEARED (`d859d69b`) — rb130 §4 executed
+
+Registered all four uncatalogued bootstraps exactly as rb130 specced: `Required` (not `Gated`, so no
+runtime file is edited), one `RecoveryFeatureId` each, `GoldenFeatures` inclusion (every
+AlwaysRequired owner must be allowed by every profile), and the mirrored R0 owner records.
+**Two of the four — `FirstHourDirector` and `FirstHourW001Orchestrator` — drive five of the
+twenty-two first-hour beats, so this was Level 1 critical path, not paperwork.**
+Verified offline against all three PlayMode assertions before pushing: 25 discovered bootstraps all
+catalogued · 29 enum ids = 29 registrations = 29 owner records · no `Required` id missing from
+GoldenFeatures.
+
+---
+
+#### 3 · THE HANGAR WALK IS BUILT (`6d7012de`) — rb130 §3's berth row closed
+
+Berths 1–5 west of your own at the script's 14 m spacing: walkable decks, mooring bollards, and the
+berth number told in **tally bars, not text** — countable by a player who cannot read, and immune to
+the Quest-resolution problem rb130 flagged for the helm's `TextMesh`. Empty on purpose: five slips
+that used to hold something is what makes berth six read as home, and it is the runway the beacon
+thread descends. Positions come from a pure core measured off the live berth; `QuayBerthCoreTests`
+pins the property that actually bites — five coplanar decks overlapping would z-fight the length of
+the quay — and the guard is proven to bite, not merely to pass. Wiring-gate feature 21.
+
+---
+
+#### 4 · ⚖ CORRECTION TO rb130 §3: the zipline IS built and wired
+
+rb130 listed "the zipline — placement as data was never authored". It **is** authored:
+`ScenePatcherToxicCity.EnsureFirstHourRoute` strings it Plaza→CanalRow, and `FirstHourDirector`
+subscribes to `RideEnded` and accepts `FIRST_JOB_ZIPLINE_USED`, so beat 19 fires. The obvious worry
+— a nearly flat line that will not slide — is already answered inside the core: `ZiplineRide` has a
+2 m/s `kickSpeed` whose documented purpose is "so flat lines still move". §3 is corrected in place.
+*(Minor, not chased: `ZiplineRuntime.IsDesignatedArrival` is public, tested, and called by nothing —
+the director accepts ANY zipline's arrival. Harmless today because ToxicCity has exactly one line;
+worth binding when a second one exists.)*
+
+---
+
+#### 5 · THE FLOW AUDIT — what I actually verified end to end
+
+- **All 22 first-hour beats have a producer.** 17 accept-tokens in `FirstHourDirector`, 3 in
+  `FirstHourObservationAdapter` (look/move/arrival), 2 in `FirstHourW001Orchestrator` (observe,
+  payoff). No orphan beats.
+- **Every proof tag in `LEVEL1_BAKE_AND_SMOKE` §3 has a non-test producer** — all 16 checked
+  (`KEY_SEATED`, `ARTIFACT_JOINED`, `SALVAGE_FIND`, `RESONANCE_TELL`, `SKIFF_WATER`, `STALKER stage`,
+  `RING_LIGHTS`, `DRONE_MOOD`, `REENTRY_ARRIVAL`, `VEIL leg`, `FLIGHT_DEPART/BLOCKED`, …).
+- **Every ToxicCity contract step resolves:** s1 `dispatch_inside` ✅ · s2 five drones ✅
+  (Patrol_Market 3 + Patrol_Canal 2 authored) · s3 `relay_node` ✅ · **s4 `signal_relay` ❌ → fixed
+  above** · s5 `flats_site` ✅ (FlatsSiteAuthor) · s6 `shipyard_office` ✅.
+- **Scene chain:** `_Boot` · `W000_DriftIn` · `ToxicCity` · `W002_DryCistern` all enabled in Build
+  Settings; `SpaceLane_Trial` is created and enabled by the bake hook rb130 added, so **it exists
+  only after §1 of the bake batch runs** — one more reason step order matters.
+- **Terry installs the FULL build** (`dev_build_install.ps1` → `PatchScenesThenAPK`), not the
+  three-scene recovery Golden APK. Correct for tonight: the Golden profile locks to
+  `_Boot`/`W000`/`ToxicCity` and has no space leg.
+
+---
+
+#### 6 · NEXT OPERATOR
+
+1. Verify the run-level conclusions on the head sha before trusting §0 of anything.
+2. **Highest value: wire `WorldPackValidator` into the audit** (§1's open half, MISS_LEDGER #21) —
+   it turns one fixed world into a rule that covers all of them.
+3. Be a fix-responder for Terry's device reports; every defect gets a ledger class.
+4. Unchanged from rb130: circuit breaker at 3 CI reds; report what was BUILT, not planned.
+
+**Commits:** `d859d69b` bootstraps · `6d7012de` hangar walk · `8355ca07` relay machine + gate ·
+this entry + MISS_LEDGER #21 + the rb130 §3 correction. CI on the head sha was still running at
+write time — **do not infer green from this entry; read the runs.**
+
+
 > **📕 Older entries live in `docs/HANDOFF_ARCHIVE_2026-07.md`** (archived 2026-07-28).
 > Read them only when you need older context — reading the whole history every session is
 > the read-in tax `docs/FAST_LANE.md` exists to stop. Oldest of all:
@@ -146,7 +265,7 @@ point of the session.
 
 #### 3 · WHAT IS **NOT** BUILT (honest list — do not let this drift)
 
-- **The zipline** — placement as data was never authored.
+- ~~**The zipline**~~ — **CORRECTED rb131: it IS authored and wired.** `ScenePatcherToxicCity.EnsureFirstHourRoute` strings it Plaza→CanalRow and `FirstHourDirector` subscribes to `RideEnded`, so beat 19 fires. The flat-line worry is answered in the core: `ZiplineRide`'s 2 m/s kickSpeed exists so flat lines still move.
 - **Berths 1–5 quay pads** (the hangar walk). The beacon thread IS built; the pads are not.
 - **W002's defend wave · garden plot · glyph plate** — `WorldStubGenerator` bakes the scene and
   `w002_pumps` is a full 9-step contract, but these three staging beats are absent.
