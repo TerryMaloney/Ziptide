@@ -148,9 +148,35 @@ jobs:
           import xml.etree.ElementTree as ET
 
           root_dir = Path('test-results')
+
+          def compiler_errors():
+              """The CS errors, pulled out of the editor log.
+
+              No NUnit XML almost always means the project did not COMPILE, and the bare
+              'produced no result XML' message sent the last three investigations digging through a
+              200k-line log by hand. Print the actual errors instead.
+              """
+              seen, out = set(), []
+              for log in sorted(root_dir.rglob('*.log')):
+                  for line in log.read_text(encoding='utf-8', errors='replace').splitlines():
+                      if '): error CS' not in line:
+                          continue
+                      line = line.strip()
+                      if line in seen:
+                          continue
+                      seen.add(line)
+                      out.append(line)
+              return out
+
           result_files = sorted(root_dir.rglob('*results.xml'))
           if not result_files:
-              raise SystemExit('EditMode produced no NUnit result XML.')
+              errors = compiler_errors()
+              for line in errors[:40]:
+                  print('COMPILE ERROR: ' + line)
+              raise SystemExit(
+                  'EditMode produced no NUnit result XML'
+                  + (f' -- {len(errors)} compiler error(s), see above.' if errors
+                     else '. No CS errors in the log either; check the Unity licence and the run above.'))
 
           def name_the_failures(xml_root):
               """Print WHICH test failed, and why.

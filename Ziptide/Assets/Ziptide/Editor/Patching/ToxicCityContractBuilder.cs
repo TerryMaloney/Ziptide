@@ -29,6 +29,9 @@ namespace Ziptide.Editor.Patching
         private const double RewardAmount = 100;
         private const int DronesToClear = 5;               // Patrol_Market (3) + Patrol_Canal (2)
 
+        /// <summary>The repairable the contract turns back on — authored into the ToxicCity pack.</summary>
+        public const string RelayMachineId = "signal_relay";
+
         [MenuItem("Ziptide/Worlds/Build Toxic City Contract")]
         public static void Build()
         {
@@ -40,8 +43,14 @@ namespace Ziptide.Editor.Patching
             var s2 = DisableDrones("ToxicCity_S2_Drones", DronesToClear,
                 "Clear the feral maintenance drones");
             var s3 = GoToMarker("ToxicCity_S3_Relay", "relay_node",
-                "Re-seat the downed signal relay", 2.5f);
-            var s4 = GoToMarker("ToxicCity_S4_Return", "shipyard_office",
+                "Find the downed signal relay", 2.5f);
+            // The product contract's teaching law: W000 teaches SCAN and REPAIR on the gate coupler,
+            // and W001 USES them on a real job. This step used to be a third walk-to-a-marker, which
+            // meant the first level's contract never asked the player to do the thing the tutorial
+            // spent its whole opening teaching.
+            var s4 = RepairMachine("ToxicCity_S4_RelayRepair", RelayMachineId,
+                "Seat the relay cell and bring the signal back online");
+            var s5 = GoToMarker("ToxicCity_S5_Return", "shipyard_office",
                 "Return to your berth at the shipyard", 2.5f);
 
             // ── Job ──
@@ -51,7 +60,7 @@ namespace Ziptide.Editor.Patching
 
             job.jobId = "toxiccity_contract";
             job.title = "Dockmaster's Bounty";
-            job.steps = new List<JobStepDefinition> { s1, s2, s3, s4 };
+            job.steps = new List<JobStepDefinition> { s1, s2, s3, s4, s5 };
             job.completionFlag = CompletionFlag;
             job.reward = new List<ResourceCost>
             {
@@ -68,7 +77,7 @@ namespace Ziptide.Editor.Patching
             Debug.Log("[Ziptide] Built Toxic City contract: " + JobPath
                 + " (reward " + RewardAmount + " " + RewardResourceId + ", flag '" + CompletionFlag + "').");
             EditorUtility.DisplayDialog("Toxic City Contract",
-                "Authored ToxicCity_Contract (4 steps + bounty reward) and attached it to the ToxicCity "
+                "Authored ToxicCity_Contract (5 steps incl. the relay repair + bounty reward) and attached it to the ToxicCity "
                 + "WorldPack as job 0.\n\nStill needed (T-Dog/runtime): JobDirector -> JobRewards.Grant on "
                 + "completion, and ObjectiveBoard/RILL text.", "OK");
         }
@@ -109,6 +118,19 @@ namespace Ziptide.Editor.Patching
             if (created) step = ScriptableObject.CreateInstance<GoToMarkerStepDefinition>();
             step.markerId = markerId;
             step.arriveDistance = arrive;
+            step.stepLabel = label;
+            if (created) AssetDatabase.CreateAsset(step, path); else EditorUtility.SetDirty(step);
+            return step;
+        }
+
+        private static RepairMachineCountStepDefinition RepairMachine(string assetName, string machineId, string label)
+        {
+            var path = JobFolder + "/" + assetName + ".asset";
+            var step = AssetDatabase.LoadAssetAtPath<RepairMachineCountStepDefinition>(path);
+            bool created = step == null;
+            if (created) step = ScriptableObject.CreateInstance<RepairMachineCountStepDefinition>();
+            step.machineId = machineId;
+            step.count = 1;
             step.stepLabel = label;
             if (created) AssetDatabase.CreateAsset(step, path); else EditorUtility.SetDirty(step);
             return step;

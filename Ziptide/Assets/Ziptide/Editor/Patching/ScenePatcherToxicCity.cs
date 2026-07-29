@@ -92,6 +92,55 @@ namespace Ziptide.Editor.Patching
             EnsureTravelStation(kit);
             EnsureDispatchAndBoard(pack, spawnPos);
             SpawnStarterWeapons(root, spawnPos);
+            EnsureFirstHourRoute(root, kit, spawnPos);
+        }
+
+        /// <summary>
+        /// The two pieces of first-hour furniture the contract's beats need but no other author
+        /// places: a safe discharge target beside the spawn, and the designated job zipline.
+        ///
+        /// Both used to exist only as CI-green runtime classes with nowhere to stand. FH_SHOOT_PRACTICE
+        /// and FH_USE_JOB_ZIPLINE could therefore never fire in the shipped world — a whole verb the
+        /// tutorial claims to teach had no object to teach it on.
+        /// </summary>
+        private static void EnsureFirstHourRoute(Transform root, CityLayoutDefinition kit, Vector3 spawnPos)
+        {
+            // ── Discharge practice: teach the verb BEFORE the drones apply pressure ──────────────
+            const string TargetName = "__FIRST_HOUR_PRACTICE_TARGET";
+            if (root.Find(TargetName) == null)
+            {
+                var target = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                target.name = TargetName;
+                target.transform.SetParent(root, true);
+                target.transform.position = spawnPos + new Vector3(2.4f, 1.25f, 4.5f);
+                target.transform.localScale = new Vector3(0.45f, 0.45f, 0.08f);
+                target.AddComponent<TargetRuntime>();
+                target.AddComponent<JobTarget>();
+                ItemFactory.ApplyURPColor(target, new Color(0.85f, 0.30f, 0.22f));
+
+                var post = GameObject.CreatePrimitive(PrimitiveType.Cube);
+                post.name = "PracticePost";
+                post.transform.SetParent(target.transform.parent, true);
+                post.transform.position = target.transform.position + Vector3.down * 0.75f;
+                post.transform.localScale = new Vector3(0.08f, 1.5f, 0.08f);
+                ItemFactory.ApplyURPColor(post, new Color(0.28f, 0.29f, 0.31f));
+            }
+
+            // ── The designated job zipline: Plaza (high) down to the CanalRow relay ──────────────
+            // It runs along the actual contract route, so the traversal beat is on the way to the work
+            // rather than a detour the player has no reason to take.
+            const string ZipName = "__FIRST_HOUR_JOB_ZIPLINE";
+            if (root.Find(ZipName) != null) return;
+
+            DistrictDef plaza = FindDistrict(kit, "Plaza");
+            DistrictDef canal = FindDistrict(kit, "CanalRow");
+            if (plaza == null || canal == null) return;
+
+            var zip = new GameObject(ZipName);
+            zip.transform.SetParent(root, true);
+            zip.AddComponent<ZiplineRuntime>().Init(
+                new Vector3(plaza.anchor.x, kit.walkwayHeight + 7f, plaza.anchor.z),
+                new Vector3(canal.anchor.x, kit.walkwayHeight + 1.6f, canal.anchor.z + 6f));
         }
 
         // A taser + gravity gun by the spawn so you can actually fight the drones without hauling one in.

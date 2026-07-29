@@ -25,7 +25,12 @@ MonoBehaviour:
     localEulerAngles: {x: 0, y: 0, z: 0}
   collectibles: []
   choices: []
-  machines: []
+  machines:
+  - machineId: signal_relay
+    displayName: signal relay
+    localPosition: {x: -26, y: 0.1, z: 10}
+    partItemId: relay_cell
+    partLocalPosition: {x: -24, y: 0.1, z: 7}
   mines: []
   gardens: []
   sockets: []

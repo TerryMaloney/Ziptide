@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Ziptide.Content;
 using Ziptide.Core;
+// FH-S01's adapter lives one namespace deeper than the rest of the tutorial surfaces.
+using Ziptide.Gameplay.Tutorial;
 
 namespace Ziptide.Gameplay
 {
