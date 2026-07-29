@@ -204,8 +204,12 @@ namespace Ziptide.Gameplay
         {
             var arc = GameObject.CreatePrimitive(PrimitiveType.Cube);
             arc.name = "Arc";
-            var col = arc.GetComponent<Collider>();
-            if (col != null) Destroy(col);
+            // Parented to the creature's own root (the world's Creatures node when there is one), so a
+            // discharge burst can never orphan itself into the scene. Unparented arcs used to leak
+            // collider-bearing cubes at the world origin whenever the deferred Destroy did not run —
+            // enough to make a route-continuity raycast believe there was solid ground there.
+            arc.transform.SetParent(transform.parent != null ? transform.parent : transform, false);
+            DestroySafely(arc.GetComponent<Collider>());
             Vector3 dir = Random.onUnitSphere;
             float len = 0.12f + Random.value * 0.22f;
             arc.transform.position = transform.position + dir * (len * 0.5f);
@@ -225,7 +229,19 @@ namespace Ziptide.Gameplay
                     r.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
                 }
             }
-            Destroy(arc, 0.08f);
+            DestroySafely(arc, 0.08f);
+        }
+
+        /// <summary>
+        /// Unity's deferred <c>Destroy</c> is illegal outside play mode: it logs an error and leaves
+        /// the object alive. The disable path runs in EditMode tests, so use the immediate form there
+        /// rather than leaking objects and a red log into every suite that follows.
+        /// </summary>
+        private static void DestroySafely(UnityEngine.Object target, float delay = 0f)
+        {
+            if (target == null) return;
+            if (Application.isPlaying) Destroy(target, delay);
+            else DestroyImmediate(target);
         }
 
         private void Tint(Color c, bool restore = false)

@@ -35,6 +35,13 @@ namespace Ziptide.Tests.EditMode
         {
             CreatureRuntime.CreatureDisabled -= OnDisabled;
             if (_creature != null) Object.DestroyImmediate(_creature);
+
+            // Belt and braces. Discharge arcs are parented to the creature now, but a stray
+            // collider-bearing cube left at the world origin previously made an unrelated
+            // route-continuity raycast believe there was solid ground there — a test failing three
+            // suites away from its cause is not a debugging experience anyone should repeat.
+            foreach (var stray in Object.FindObjectsOfType<GameObject>())
+                if (stray != null && stray.name == "Arc") Object.DestroyImmediate(stray);
         }
 
         private void OnDisabled(CreatureRuntime runtime)
