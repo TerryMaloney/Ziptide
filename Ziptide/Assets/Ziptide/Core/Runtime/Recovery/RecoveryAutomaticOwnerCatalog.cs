@@ -60,6 +60,10 @@ namespace Ziptide.Core
             Required("VEHICLE_SAFETY_BOOTSTRAP", "Ziptide/Assets/Ziptide/Ship/Runtime/VehicleSafetyRuntime.cs", "Ziptide.Ship.VehicleSafetyRuntime", RecoveryFeatureId.VehicleSafety),
             Required("REPAIR_PART_SAFETY_INSTALLER", "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/RepairPartSafetyInstallerRuntime.cs", "Ziptide.Gameplay.RepairPartSafetyInstallerRuntime", RecoveryFeatureId.RepairPartSafetyInstaller),
             Required("HOME_HUB_ANCHOR_LOCK_INSTALLER", "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubAnchorLockInstallerRuntime.cs", "Ziptide.Gameplay.HomeHubAnchorLockInstallerRuntime", RecoveryFeatureId.HomeHubAnchorLockInstaller),
+            Required("ARTIFACT_JOIN_RUNTIME", "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs", "Ziptide.Gameplay.ArtifactJoinRuntime", RecoveryFeatureId.ArtifactJoin),
+            Required("REENTRY_ARRIVAL_RUNTIME", "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ReentryArrivalRuntime.cs", "Ziptide.Gameplay.ReentryArrivalRuntime", RecoveryFeatureId.ReentryArrival),
+            Required("FIRST_HOUR_DIRECTOR", "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs", "Ziptide.Gameplay.FirstHourDirector", RecoveryFeatureId.FirstHourDirector),
+            Required("FIRST_HOUR_W001_ORCHESTRATOR", "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourW001Orchestrator.cs", "Ziptide.Gameplay.FirstHourW001Orchestrator", RecoveryFeatureId.FirstHourW001Orchestrator),
             Gated("NET_BOOTSTRAP", "Ziptide/Assets/ZiptideNet/NetBootstrap.cs", "ZiptideNet.NetBootstrap", RecoveryFeatureId.NetBootstrap)
         };
 

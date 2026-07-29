@@ -30,7 +30,11 @@ namespace Ziptide.Core
         SystemFocusLifecycle = 21,
         VehicleSafety = 22,
         RepairPartSafetyInstaller = 23,
-        HomeHubAnchorLockInstaller = 24
+        HomeHubAnchorLockInstaller = 24,
+        ArtifactJoin = 25,
+        ReentryArrival = 26,
+        FirstHourDirector = 27,
+        FirstHourW001Orchestrator = 28
     }
 
     public enum RecoveryOwnerClassification

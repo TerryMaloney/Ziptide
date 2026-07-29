@@ -57,6 +57,10 @@ namespace Ziptide.Core
             RecoveryFeatureId.VehicleSafety,
             RecoveryFeatureId.RepairPartSafetyInstaller,
             RecoveryFeatureId.HomeHubAnchorLockInstaller,
+            RecoveryFeatureId.ArtifactJoin,
+            RecoveryFeatureId.ReentryArrival,
+            RecoveryFeatureId.FirstHourDirector,
+            RecoveryFeatureId.FirstHourW001Orchestrator,
         };
 
         private static readonly HashSet<RecoveryFeatureId> ApprovedDiagnostics =

@@ -367,6 +367,62 @@
    "recoveryExposure": "GOLDEN_PATH_REQUIRED",
    "canonicalDisposition": "Always-required Boot interaction safety subordinate to HomeHubRuntime; owns no menu choice or travel state",
    "priority": "M0_DEVICE_SAFETY"
+  },
+  {
+   "id": "ARTIFACT_JOIN_RUNTIME",
+   "source": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs",
+   "symbol": "Ziptide.Gameplay.ArtifactJoinRuntime",
+   "startup": "RuntimeInitializeOnLoadMethod AfterSceneLoad",
+   "persistence": "Scene-scoped join owner; writes ARTIFACT_JOINED through the profile",
+   "sideEffects": [
+    "Watches for both artifact halves held",
+    "Raises ARTIFACT_JOINED and starts the beacon thread"
+   ],
+   "recoveryExposure": "SUPPORT",
+   "canonicalDisposition": "Sole owner of the artifact-join beat (Level 1 story spine, docs/production/LEVEL1_BAKE_AND_SMOKE.md route 11)",
+   "priority": "LEVEL1_ROUTE_OWNER"
+  },
+  {
+   "id": "REENTRY_ARRIVAL_RUNTIME",
+   "source": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ReentryArrivalRuntime.cs",
+   "symbol": "Ziptide.Gameplay.ReentryArrivalRuntime",
+   "startup": "RuntimeInitializeOnLoadMethod BeforeSceneLoad",
+   "persistence": "Scene-scoped; no disk state",
+   "sideEffects": [
+    "Plays the reentry veil on the space-leg to world route only",
+    "Silent on every other entry path"
+   ],
+   "recoveryExposure": "SUPPORT",
+   "canonicalDisposition": "Sole owner of the reentry/landing handoff (Level 1 route 8)",
+   "priority": "LEVEL1_ROUTE_OWNER"
+  },
+  {
+   "id": "FIRST_HOUR_DIRECTOR",
+   "source": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourDirector.cs",
+   "symbol": "Ziptide.Gameplay.FirstHourDirector",
+   "startup": "RuntimeInitializeOnLoadMethod AfterSceneLoad",
+   "persistence": "DontDestroyOnLoad beat-state owner; persists beat progress through SaveSystem",
+   "sideEffects": [
+    "Subscribes to gameplay signals and accepts beat completion tokens",
+    "Advances the 22-beat first-hour contract"
+   ],
+   "recoveryExposure": "SUPPORT",
+   "canonicalDisposition": "Sole owner of first-hour beat state; drives 17 of the 22 contract beats",
+   "priority": "LEVEL1_ROUTE_OWNER"
+  },
+  {
+   "id": "FIRST_HOUR_W001_ORCHESTRATOR",
+   "source": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/FirstHourW001Orchestrator.cs",
+   "symbol": "Ziptide.Gameplay.FirstHourW001Orchestrator",
+   "startup": "RuntimeInitializeOnLoadMethod AfterSceneLoad",
+   "persistence": "Scene-scoped W001 staging; no disk state of its own",
+   "sideEffects": [
+    "Emits SIGNATURE_CREATURE_OBSERVED after the safe read window",
+    "Emits FIRST_HOUR_PAYOFF_OBSERVED on the changed-ship beat"
+   ],
+   "recoveryExposure": "SUPPORT",
+   "canonicalDisposition": "Sole owner of the W001 observation window and the final payoff beat (contract beats 17 and 22)",
+   "priority": "LEVEL1_ROUTE_OWNER"
   }
  ]
 }
