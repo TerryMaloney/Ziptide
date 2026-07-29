@@ -84,6 +84,29 @@
 
 - **Next:** confirm the run (not the job) is green, then the city wayfinding pass.
 
+- **✅ THE CITY'S COMPASS (built after the above, `30f3ed84`, CI + Fast Preflight green):**
+  `WayfindingCore` + `CityWayfindingAuthor` + `FaultStrobeRuntime`. Lantern route over the
+  contract's walk and nowhere else (unlit street = you are exploring), and the sightline triple
+  — relay mast's red fault strobe NW · north tower's white crown · berth floodlights S.
+  **Both are LAWS:** `CityWayfindingTests` reads the compiled spec and fails CI if a lantern leg
+  has no authored street under it, or if the three landmarks fall within 45° of each other.
+  Measured today: **72°**. That closes LEVEL1_SPATIAL_SCRIPT §3 row 5.
+
+- **🔎 HEADS-UP — a pre-existing red I did NOT fix, precisely diagnosed:**
+  `Recovery PlayMode Observation` has been failing since at least `59a91c2f`, **41/43**, and the
+  named failure is `RecoveryGateBypassTests.RuntimeBootstrapDiscovery_CoversAllFirstPartySource
+  Attributes:78`. Cause, reproduced offline: **four runtime files carry
+  `[RuntimeInitializeOnLoadMethod]` but are absent from the closed exposure catalog**
+  (`RecoveryAutomaticOwnerCatalog` / `docs/recovery/automatic_runtime_owners.json`) —
+  `Story/ArtifactJoinRuntime.cs`, `World/ReentryArrivalRuntime.cs`,
+  `Tutorial/FirstHourDirector.cs`, `Tutorial/FirstHourW001Orchestrator.cs`. **Two of those four
+  came out of this Level 1 stream, so this is partly my debt.** The fix is a registration each
+  (`Required` classification avoids needing a `RecoveryRuntimeGate.Allows` call in the source),
+  a `RecoveryFeatureId`, and a mirrored owner record in the JSON. **Not done here on purpose:**
+  the recovery program is a separate authority under a documented freeze, PlayMode is not run by
+  the main CI, and doing four contract registrations blind at the end of a session is how the
+  three reds earlier today happened. Terry's call on whether to open that lane.
+
 ### 2026-07-29 (rb127) — Fable 5: 🏗 B1 — ToxicCity world spec (the city interior as spec data) + relay_cell item + bake-order fix
 
 - **Terry approved the completion plan with the honest-reporting mandate** ("just let me know
