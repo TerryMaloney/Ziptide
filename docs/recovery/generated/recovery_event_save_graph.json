@@ -1,6 +1,6 @@
 {
   "tool": "recovery_event_save_graph",
-  "scannedFiles": 764,
+  "scannedFiles": 767,
   "evidenceCount": 824,
   "kindCounts": {
     "AUTOSAVE": 8,
@@ -377,7 +377,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ReentryArrivalRuntime.cs",
-      "line": 61,
+      "line": 67,
       "owner": "Ziptide.Gameplay.ReentryArrivalRuntime",
       "target": "SceneManager.sceneUnloaded",
       "detail": "OnSceneUnloaded",
@@ -5492,7 +5492,7 @@
       {
         "kind": "EVENT_SUBSCRIBE",
         "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ReentryArrivalRuntime.cs",
-        "line": 61,
+        "line": 67,
         "owner": "Ziptide.Gameplay.ReentryArrivalRuntime",
         "target": "SceneManager.sceneUnloaded",
         "detail": "OnSceneUnloaded",
@@ -12786,7 +12786,7 @@
     {
       "kind": "EVENT_SUBSCRIBE",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ReentryArrivalRuntime.cs",
-      "line": 61,
+      "line": 67,
       "owner": "Ziptide.Gameplay.ReentryArrivalRuntime",
       "target": "SceneManager.sceneUnloaded",
       "detail": "OnSceneUnloaded",

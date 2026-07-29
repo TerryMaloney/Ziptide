@@ -1,7 +1,7 @@
 # ZIPTIDE R0 Ownership Maps
 
-- Scanned files: **764**
-- Scanner findings: **2788**
+- Scanned files: **767**
+- Scanner findings: **2801**
 - Inventory systems: **22**
 
 This report groups exact lexical evidence. A row means the source contains the named ownership signal; it does not by itself declare a defect.
@@ -241,7 +241,7 @@ None.
 
 - Codes: `RUNTIME_BOOTSTRAP`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ReentryArrivalRuntime.cs`
-  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ReentryArrivalRuntime.cs:56` **RUNTIME_BOOTSTRAP** — `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ReentryArrivalRuntime.cs:62` **RUNTIME_BOOTSTRAP** — `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]`
 
 ### `Ziptide.Gameplay.RepairPartSafetyInstallerRuntime` — 3 signal(s)
 
@@ -1379,6 +1379,17 @@ None.
 - Codes: `NEW_GAME_OBJECT`
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ArtifactJoinRuntime.cs:50` **NEW_GAME_OBJECT** — `var go = new GameObject("__ArtifactJoin");`
+
+### `Ziptide.Gameplay.AtmosphereVeilEffect` — 6 signal(s)
+
+- Codes: `CREATE_PRIMITIVE`, `NEW_GAME_OBJECT`, `RUNTIME_MATERIAL_CREATE`, `SHADER_FIND`
+- Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/AtmosphereVeilEffect.cs`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/AtmosphereVeilEffect.cs:53` **NEW_GAME_OBJECT** — `var go = new GameObject("__AtmosphereVeil_" + leg);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/AtmosphereVeilEffect.cs:68` **RUNTIME_MATERIAL_CREATE** — `// Same hard fallback the gate uses: a stripped shader would make new Material(null)`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/AtmosphereVeilEffect.cs:70` **SHADER_FIND** — `var shader = Shader.Find("Universal Render Pipeline/Unlit");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/AtmosphereVeilEffect.cs:71` **SHADER_FIND** — `if (shader == null) shader = Shader.Find("Sprites/Default");`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/AtmosphereVeilEffect.cs:72` **RUNTIME_MATERIAL_CREATE** — `return new Material(shader);`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/AtmosphereVeilEffect.cs:83` **CREATE_PRIMITIVE** — `var b = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 
 ### `Ziptide.Gameplay.AugmentController` — 6 signal(s)
 
@@ -4320,6 +4331,12 @@ None.
 - Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/ArenaLobbyBoard.cs`
   - `Ziptide/Assets/Ziptide/Gameplay/Runtime/Pvp/ArenaLobbyBoard.cs:214` **CAMERA_MAIN_REFERENCE** — `var cam = Camera.main;`
 
+### `Ziptide.Gameplay.AtmosphereVeilEffect` — 1 signal(s)
+
+- Codes: `CAMERA_MAIN_REFERENCE`
+- Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/AtmosphereVeilEffect.cs`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/AtmosphereVeilEffect.cs:46` **CAMERA_MAIN_REFERENCE** — `var cam = Camera.main;`
+
 ### `Ziptide.Gameplay.BeltMinePortRuntime` — 1 signal(s)
 
 - Codes: `CAMERA_MAIN_REFERENCE`
@@ -4874,6 +4891,12 @@ None.
   - `Ziptide/Assets/Ziptide/Editor/WorldImprovement/RoundThreeWorldImprovementModules.cs:64` **FALLBACK_MARKER** — `float angle = i * Mathf.PI * 2f / fallback;`
   - `Ziptide/Assets/Ziptide/Editor/WorldImprovement/RoundThreeWorldImprovementModules.cs:235` **FALLBACK_MARKER** — `if (count == 0 && context.TryGround(origin + Vector3.forward * 6f, out Vector3 fallback))`
   - `Ziptide/Assets/Ziptide/Editor/WorldImprovement/RoundThreeWorldImprovementModules.cs:239` **FALLBACK_MARKER** — `trace.position = fallback;`
+
+### `Ziptide.Gameplay.AtmosphereVeilEffect` — 1 signal(s)
+
+- Codes: `FALLBACK_MARKER`
+- Paths: `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/AtmosphereVeilEffect.cs`
+  - `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/AtmosphereVeilEffect.cs:68` **FALLBACK_MARKER** — `// Same hard fallback the gate uses: a stripped shader would make new Material(null)`
 
 ### `Ziptide.Gameplay.AudioMixSettings` — 2 signal(s)
 

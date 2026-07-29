@@ -1,8 +1,8 @@
 {
   "tool": "recovery_contract_map",
   "sourceScanToolVersion": 1,
-  "scannedFiles": 764,
-  "findingCount": 2788,
+  "scannedFiles": 767,
+  "findingCount": 2801,
   "maps": {
     "bootstrapPersistence": [
       {
@@ -788,7 +788,7 @@
           {
             "code": "RUNTIME_BOOTSTRAP",
             "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ReentryArrivalRuntime.cs",
-            "line": 56,
+            "line": 62,
             "symbol": "Ziptide.Gameplay.ReentryArrivalRuntime",
             "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]"
           }
@@ -6283,6 +6283,63 @@
             "line": 50,
             "symbol": "Ziptide.Gameplay.ArtifactJoinRuntime",
             "snippet": "var go = new GameObject(\"__ArtifactJoin\");"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Gameplay.AtmosphereVeilEffect",
+        "evidenceCount": 6,
+        "codes": [
+          "CREATE_PRIMITIVE",
+          "NEW_GAME_OBJECT",
+          "RUNTIME_MATERIAL_CREATE",
+          "SHADER_FIND"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/AtmosphereVeilEffect.cs"
+        ],
+        "evidence": [
+          {
+            "code": "NEW_GAME_OBJECT",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/AtmosphereVeilEffect.cs",
+            "line": 53,
+            "symbol": "Ziptide.Gameplay.AtmosphereVeilEffect",
+            "snippet": "var go = new GameObject(\"__AtmosphereVeil_\" + leg);"
+          },
+          {
+            "code": "RUNTIME_MATERIAL_CREATE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/AtmosphereVeilEffect.cs",
+            "line": 68,
+            "symbol": "Ziptide.Gameplay.AtmosphereVeilEffect",
+            "snippet": "// Same hard fallback the gate uses: a stripped shader would make new Material(null)"
+          },
+          {
+            "code": "SHADER_FIND",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/AtmosphereVeilEffect.cs",
+            "line": 70,
+            "symbol": "Ziptide.Gameplay.AtmosphereVeilEffect",
+            "snippet": "var shader = Shader.Find(\"Universal Render Pipeline/Unlit\");"
+          },
+          {
+            "code": "SHADER_FIND",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/AtmosphereVeilEffect.cs",
+            "line": 71,
+            "symbol": "Ziptide.Gameplay.AtmosphereVeilEffect",
+            "snippet": "if (shader == null) shader = Shader.Find(\"Sprites/Default\");"
+          },
+          {
+            "code": "RUNTIME_MATERIAL_CREATE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/AtmosphereVeilEffect.cs",
+            "line": 72,
+            "symbol": "Ziptide.Gameplay.AtmosphereVeilEffect",
+            "snippet": "return new Material(shader);"
+          },
+          {
+            "code": "CREATE_PRIMITIVE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/AtmosphereVeilEffect.cs",
+            "line": 83,
+            "symbol": "Ziptide.Gameplay.AtmosphereVeilEffect",
+            "snippet": "var b = GameObject.CreatePrimitive(PrimitiveType.Cube);"
           }
         ]
       },
@@ -19429,6 +19486,25 @@
         ]
       },
       {
+        "owner": "Ziptide.Gameplay.AtmosphereVeilEffect",
+        "evidenceCount": 1,
+        "codes": [
+          "CAMERA_MAIN_REFERENCE"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/AtmosphereVeilEffect.cs"
+        ],
+        "evidence": [
+          {
+            "code": "CAMERA_MAIN_REFERENCE",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/AtmosphereVeilEffect.cs",
+            "line": 46,
+            "symbol": "Ziptide.Gameplay.AtmosphereVeilEffect",
+            "snippet": "var cam = Camera.main;"
+          }
+        ]
+      },
+      {
         "owner": "Ziptide.Gameplay.BeltMinePortRuntime",
         "evidenceCount": 1,
         "codes": [
@@ -21454,6 +21530,25 @@
             "line": 239,
             "symbol": "Ziptide.Editor.WorldImprovement.GroundedRouteModule",
             "snippet": "trace.position = fallback;"
+          }
+        ]
+      },
+      {
+        "owner": "Ziptide.Gameplay.AtmosphereVeilEffect",
+        "evidenceCount": 1,
+        "codes": [
+          "FALLBACK_MARKER"
+        ],
+        "paths": [
+          "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/AtmosphereVeilEffect.cs"
+        ],
+        "evidence": [
+          {
+            "code": "FALLBACK_MARKER",
+            "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/AtmosphereVeilEffect.cs",
+            "line": 68,
+            "symbol": "Ziptide.Gameplay.AtmosphereVeilEffect",
+            "snippet": "// Same hard fallback the gate uses: a stripped shader would make new Material(null)"
           }
         ]
       },

@@ -1,7 +1,7 @@
 # ZIPTIDE Recovery Contract Scan
 
-- Scanned files: **764**
-- Findings: **2788**
+- Scanned files: **767**
+- Findings: **2801**
 - Scan roots: `Ziptide/Assets/Ziptide, Ziptide/Assets/ZiptideNet`
 
 ## Category counts
@@ -9,14 +9,14 @@
 | Category | Count |
 |---|---:|
 | `bootstrap` | 46 |
-| `diagnostics` | 662 |
+| `diagnostics` | 667 |
 | `events` | 71 |
-| `fallback_debt` | 171 |
-| `global_render` | 91 |
+| `fallback_debt` | 172 |
+| `global_render` | 92 |
 | `input` | 230 |
-| `materials` | 261 |
+| `materials` | 265 |
 | `persistence` | 28 |
-| `runtime_creation` | 710 |
+| `runtime_creation` | 712 |
 | `runtime_ui` | 131 |
 | `save_state` | 285 |
 | `scene_loading` | 9 |
@@ -63,7 +63,7 @@
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubAnchorLockInstallerRuntime.cs:11` · `Ziptide.Gameplay.HomeHubAnchorLockInstallerRuntime` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubAnchorLockInstallerRuntime.cs:17` · `Ziptide.Gameplay.HomeHubAnchorLockInstallerRuntime` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:39` · `Ziptide.Gameplay.ConquestMissionRuntime` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
-- **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ReentryArrivalRuntime.cs:56` · `Ziptide.Gameplay.ReentryArrivalRuntime` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]`
+- **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ReentryArrivalRuntime.cs:62` · `Ziptide.Gameplay.ReentryArrivalRuntime` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleSafetyRuntime.cs:35` · `Ziptide.Ship.VehicleSafetyRuntime` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Ship/Runtime/VehicleSafetyRuntime.cs:42` · `Ziptide.Ship.VehicleSafetyRuntime` — RuntimeInitializeOnLoadMethod bootstrap. `[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]`
 - **RUNTIME_BOOTSTRAP** — `Ziptide/Assets/Ziptide/Tests/EditMode/DevToolsSingletonTests.cs:17` · `Ziptide.Tests.EditMode.DevToolsSingletonTests` — RuntimeInitializeOnLoadMethod bootstrap. `private const string BootstrapMarker = "[RuntimeInitializeOnLoadMethod";`
@@ -451,8 +451,8 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:166` · `Ziptide.Gameplay.ShipCastOffRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FLIGHT_LAUNCH scene=" + gameObject.scene.name + " target=" + targetScene);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:193` · `Ziptide.Gameplay.ShipCastOffRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: REPAIR_TRACE hop=castoff armed=" + armed`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:221` · `Ziptide.Gameplay.ShipCastOffRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FLIGHT_STREAKS seconds=" + streakSeconds);`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:244` · `Ziptide.Gameplay.ShipCastOffRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FLIGHT_DEPART target=" + targetScene`
-- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:258` · `Ziptide.Gameplay.ShipCastOffRuntime` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: FLIGHT_DESTINATION_SUBSCRIBER_FAIL reason=" + ex.Message);`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:252` · `Ziptide.Gameplay.ShipCastOffRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: FLIGHT_DEPART target=" + targetScene`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs:266` · `Ziptide.Gameplay.ShipCastOffRuntime` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: FLIGHT_DESTINATION_SUBSCRIBER_FAIL reason=" + ex.Message);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/SpaceSalvageItemRuntime.cs:47` · `Ziptide.Gameplay.SpaceSalvageItemRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: SALVAGE_FIND_ALREADY_TAKEN id=" + itemId);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/SpaceSalvageItemRuntime.cs:112` · `Ziptide.Gameplay.SpaceSalvageItemRuntime` — ZIPTIDE diagnostic tag. `Debug.LogWarning("ZIPTIDE: SALVAGE_FIND_FAILED id=" + itemId`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/SpaceSalvageItemRuntime.cs:120` · `Ziptide.Gameplay.SpaceSalvageItemRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: SALVAGE_FIND id=" + itemId + " flag=" + grantsFlag);`
@@ -509,6 +509,11 @@
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/StaticNetWeapon.cs:69` · `Ziptide.Gameplay.StaticNetGunRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: NET_THROWN");`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/StaticNetWeapon.cs:101` · `Ziptide.Gameplay.StaticNetGunRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: NET_ZONE_OPEN");`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/WeaponFeelRuntime.cs:48` · `Ziptide.Gameplay.WeaponFeelRuntime` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: WEAPON_FEEL_READY id=" + _weaponId`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/AtmosphereVeilEffect.cs:19` · `Ziptide.Gameplay.AtmosphereVeilEffect` — ZIPTIDE diagnostic tag. `/// burning. Logs ZIPTIDE: VEIL leg=… phase=… .`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/AtmosphereVeilEffect.cs:49` · `Ziptide.Gameplay.AtmosphereVeilEffect` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: VEIL leg=" + leg + " phase=skipped reason=no_camera");`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/AtmosphereVeilEffect.cs:59` · `Ziptide.Gameplay.AtmosphereVeilEffect` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: VEIL leg=" + leg + " phase=start seconds="`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/AtmosphereVeilEffect.cs:104` · `Ziptide.Gameplay.AtmosphereVeilEffect` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: VEIL leg=" + _leg + " phase=done");`
+- **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/AtmosphereVeilEffect.cs:113` · `Ziptide.Gameplay.AtmosphereVeilEffect` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: VEIL leg=" + _leg + " phase=" + phase);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/BootLoader.cs:37` · `Ziptide.Gameplay.BootLoader` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: BOOT_LOAD dest=" + destination);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ClimbRuntime.cs:35` · `Ziptide.Gameplay.ClimbableSurface` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: CLIMBABLE_READY name=" + gameObject.name);`
 - **ZIPTIDE_LOG_TAG** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ClimbRuntime.cs:150` · `Ziptide.Gameplay.ClimbableSurface` — ZIPTIDE diagnostic tag. `Debug.Log("ZIPTIDE: CLIMB_GRIP hand=" + hand);`
@@ -925,6 +930,7 @@
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:30` · `Ziptide.Gameplay.GunLaserSight` — Source text marks fallback/prototype debt. `/// Alpha 0 keeps the default sight color (ItemDefinition fallback idiom). Init repeats the melee`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:23` · `Ziptide.Gameplay.WeaponPoseCore` — Source text marks fallback/prototype debt. `Vector3 fallback = Mathf.Abs(Vector3.Dot(axis, Vector3.up)) < 0.9f`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/MeleeWeaponRuntime.cs:25` · `Ziptide.Gameplay.WeaponPoseCore` — Source text marks fallback/prototype debt. `up = Vector3.ProjectOnPlane(fallback, axis);`
+- **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/AtmosphereVeilEffect.cs:68` · `Ziptide.Gameplay.AtmosphereVeilEffect` — Source text marks fallback/prototype debt. `// Same hard fallback the gate uses: a stripped shader would make new Material(null)`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HazardZoneRuntime.cs:56` · `Ziptide.Gameplay.HazardZoneRuntime` — Source text marks fallback/prototype debt. `// A thin tinted floor slab marks the zone (graybox read; VFX at the M6 art pass).`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/QuartersRoom.cs:15` · `Ziptide.Gameplay.QuartersRoom` — Source text marks fallback/prototype debt. `/// stub — the ROOM and its plumbing are the deliverable.`
 - **FALLBACK_MARKER** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/QuartersRoom.cs:130` · `Ziptide.Gameplay.QuartersRoom` — Source text marks fallback/prototype debt. `// Open every bay once on build so the stub state is visible without a press.`
@@ -1023,6 +1029,7 @@
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:283` · `Ziptide.Gameplay.HomeHubChoice` — Camera.main dependency. `Camera cam = Camera.main;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Tutorial/HomeHubRuntime.cs:413` · `Ziptide.Gameplay.HomeHubChoice` — Camera.main dependency. `Camera cam = Camera.main;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/StaticNetWeapon.cs:124` · `Ziptide.Gameplay.StaticNetGunRuntime` — Camera.main dependency. `if (_playerHead == null && Camera.main != null) _playerHead = Camera.main.transform;`
+- **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/AtmosphereVeilEffect.cs:46` · `Ziptide.Gameplay.AtmosphereVeilEffect` — Camera.main dependency. `var cam = Camera.main;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:117` · `Ziptide.Gameplay.ConquestMissionRuntime` — Camera.main dependency. `var cam = Camera.main;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:309` · `Ziptide.Gameplay.ConquestMissionRuntime` — Camera.main dependency. `var cam = Camera.main;`
 - **CAMERA_MAIN_REFERENCE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:439` · `Ziptide.Gameplay.ConquestMissionRuntime` — Camera.main dependency. `var cam = Camera.main;`
@@ -1381,6 +1388,8 @@
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/GunLaserSight.cs:101` · `Ziptide.Gameplay.GunLaserSight` — Runtime Material allocation. `var mat = new Material(shader);`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/TaserDartProjectile.cs:118` · `Ziptide.Gameplay.TaserDartProjectile` — Runtime Material allocation. `var mat = new Material(shader);`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/TracerFx.cs:35` · `Ziptide.Gameplay.TracerFx` — Runtime Material allocation. `var mat = shader != null ? new Material(shader) : new Material(Shader.Find("Sprites/Default"));`
+- **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/AtmosphereVeilEffect.cs:68` · `Ziptide.Gameplay.AtmosphereVeilEffect` — Runtime Material allocation. `// Same hard fallback the gate uses: a stripped shader would make new Material(null)`
+- **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/AtmosphereVeilEffect.cs:72` · `Ziptide.Gameplay.AtmosphereVeilEffect` — Runtime Material allocation. `return new Material(shader);`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HazardZoneRuntime.cs:71` · `Ziptide.Gameplay.HazardZoneRuntime` — Runtime Material allocation. `var mat = new Material(shader);`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ObjectiveBeacon.cs:45` · `Ziptide.Gameplay.ObjectiveBeacon` — Runtime Material allocation. `_mat = shader != null ? new Material(shader) : null;`
 - **RUNTIME_MATERIAL_CREATE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/QuartersPhotoWall.cs:96` · `Ziptide.Gameplay.QuartersPhotoWall` — Runtime Material allocation. `var material = new Material(shader) { name = name };`
@@ -1533,6 +1542,8 @@
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/TaserDartProjectile.cs:115` · `Ziptide.Gameplay.TaserDartProjectile` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Universal Render Pipeline/Lit");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/TracerFx.cs:34` · `Ziptide.Gameplay.TracerFx` — Runtime shader lookup. `var shader = Shader.Find("Universal Render Pipeline/Unlit");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/TracerFx.cs:35` · `Ziptide.Gameplay.TracerFx` — Runtime shader lookup. `var mat = shader != null ? new Material(shader) : new Material(Shader.Find("Sprites/Default"));`
+- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/AtmosphereVeilEffect.cs:70` · `Ziptide.Gameplay.AtmosphereVeilEffect` — Runtime shader lookup. `var shader = Shader.Find("Universal Render Pipeline/Unlit");`
+- **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/AtmosphereVeilEffect.cs:71` · `Ziptide.Gameplay.AtmosphereVeilEffect` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Sprites/Default");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HazardZoneRuntime.cs:67` · `Ziptide.Gameplay.HazardZoneRuntime` — Runtime shader lookup. `var shader = Shader.Find("Universal Render Pipeline/Lit");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HazardZoneRuntime.cs:68` · `Ziptide.Gameplay.HazardZoneRuntime` — Runtime shader lookup. `if (shader == null) shader = Shader.Find("Standard");`
 - **SHADER_FIND** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ObjectiveBeacon.cs:44` · `Ziptide.Gameplay.ObjectiveBeacon` — Runtime shader lookup. `Shader shader = Shader.Find("Universal Render Pipeline/Unlit");`
@@ -1800,6 +1811,7 @@
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/TaserDartProjectile.cs:105` · `Ziptide.Gameplay.TaserDartProjectile` — Runtime primitive construction. `var spark = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/WeaponImpactFx.cs:25` · `Ziptide.Gameplay.WeaponImpactFx` — Runtime primitive construction. `GameObject root = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/WeaponImpactFx.cs:34` · `Ziptide.Gameplay.WeaponImpactFx` — Runtime primitive construction. `GameObject ray = GameObject.CreatePrimitive(PrimitiveType.Cube);`
+- **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/AtmosphereVeilEffect.cs:83` · `Ziptide.Gameplay.AtmosphereVeilEffect` — Runtime primitive construction. `var b = GameObject.CreatePrimitive(PrimitiveType.Cube);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ClimbRuntime.cs:89` · `Ziptide.Gameplay.ClimbableSurface` — Runtime primitive construction. `var stud = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:257` · `Ziptide.Gameplay.ConquestMissionRuntime` — Runtime primitive construction. `var body = GameObject.CreatePrimitive(PrimitiveType.Sphere);`
 - **CREATE_PRIMITIVE** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:279` · `Ziptide.Gameplay.ConquestMissionRuntime` — Runtime primitive construction. `var p = GameObject.CreatePrimitive(type);`
@@ -2154,6 +2166,7 @@
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/StaticNetWeapon.cs:98` · `Ziptide.Gameplay.StaticNetGunRuntime` — Runtime GameObject construction. `var zone = new GameObject("SlowZone");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/TaserDartGunRuntime.cs:46` · `Ziptide.Gameplay.TaserDartGunRuntime` — Runtime GameObject construction. `var m = new GameObject("Muzzle");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/Weapons/TracerFx.cs:18` · `Ziptide.Gameplay.TracerFx` — Runtime GameObject construction. `var go = new GameObject("__Tracer");`
+- **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/AtmosphereVeilEffect.cs:53` · `Ziptide.Gameplay.AtmosphereVeilEffect` — Runtime GameObject construction. `var go = new GameObject("__AtmosphereVeil_" + leg);`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/BootLoader.cs:34` · `Ziptide.Gameplay.BootLoader` — Runtime GameObject construction. `: new GameObject("__HOME_HUB_RUNTIME").AddComponent<HomeHubRuntime>();`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ClimbRuntime.cs:132` · `Ziptide.Gameplay.ClimbableSurface` — Runtime GameObject construction. `var go = new GameObject("__ClimbCoordinator");`
 - **NEW_GAME_OBJECT** — `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ConquestMissionRuntime.cs:53` · `Ziptide.Gameplay.ConquestMissionRuntime` — Runtime GameObject construction. `var go = new GameObject("__ConquestMission");`

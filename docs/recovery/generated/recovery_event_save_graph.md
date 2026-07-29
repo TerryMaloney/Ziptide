@@ -1,6 +1,6 @@
 # ZIPTIDE Event and Save Ownership Graph
 
-- Scanned C# files: **764**
+- Scanned C# files: **767**
 - Evidence edges: **824**
 - Named subscriptions without matching unsubscribe in the same owner: **60**
 
@@ -59,7 +59,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 - `Ziptide.Gameplay.HazardZoneRuntime` subscribes `_rig.transform.position` → `dir` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HazardZoneRuntime.cs:111`
 - `Ziptide.Gameplay.HazardZoneRuntime` subscribes `_rig.transform.position` → `outDir` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HazardZoneRuntime.cs:134`
 - `Ziptide.Gameplay.LiftRuntime` subscribes `_rig.position` → `delta` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/LiftRuntime.cs:88`
-- `Ziptide.Gameplay.ReentryArrivalRuntime` subscribes `SceneManager.sceneUnloaded` → `OnSceneUnloaded` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ReentryArrivalRuntime.cs:61`
+- `Ziptide.Gameplay.ReentryArrivalRuntime` subscribes `SceneManager.sceneUnloaded` → `OnSceneUnloaded` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ReentryArrivalRuntime.cs:67`
 - `Ziptide.Gameplay.ToxicRiverSurfaceRuntime` subscribes `p.y` → `Mathf` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ToxicRiverSurfaceRuntime.cs:78`
 - `Ziptide.Gameplay.ToxicRiverSurfaceRuntime` subscribes `p.y` → `Mathf` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ToxicRiverSurfaceRuntime.cs:88`
 - `Ziptide.Gameplay.ZiplineRuntime` subscribes `_rig.position` → `delta` at `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ZiplineRuntime.cs:217`
@@ -882,7 +882,7 @@ This is a static ownership graph. An unmatched row is a review target, not autom
 
 ### `SceneManager.sceneUnloaded`
 
-- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.ReentryArrivalRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ReentryArrivalRuntime.cs:61` · `OnSceneUnloaded` — `SceneManager.sceneUnloaded += OnSceneUnloaded;`
+- **EVENT_SUBSCRIBE** · `Ziptide.Gameplay.ReentryArrivalRuntime` · `Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ReentryArrivalRuntime.cs:67` · `OnSceneUnloaded` — `SceneManager.sceneUnloaded += OnSceneUnloaded;`
 
 ### `SetFlag`
 

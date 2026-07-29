@@ -1,25 +1,25 @@
 {
   "tool": "recovery_contract_scan",
   "toolVersion": 1,
-  "generatedAtUtc": "2026-07-29T16:02:40.674569+00:00",
+  "generatedAtUtc": "2026-07-29T16:06:28.252282+00:00",
   "status": "report",
   "root": "/home/runner/work/Ziptide/Ziptide",
   "scanRoots": [
     "Ziptide/Assets/Ziptide",
     "Ziptide/Assets/ZiptideNet"
   ],
-  "scannedFiles": 764,
-  "findingCount": 2788,
+  "scannedFiles": 767,
+  "findingCount": 2801,
   "categoryCounts": {
     "bootstrap": 46,
-    "diagnostics": 662,
+    "diagnostics": 667,
     "events": 71,
-    "fallback_debt": 171,
-    "global_render": 91,
+    "fallback_debt": 172,
+    "global_render": 92,
     "input": 230,
-    "materials": 261,
+    "materials": 265,
     "persistence": 28,
-    "runtime_creation": 710,
+    "runtime_creation": 712,
     "runtime_ui": 131,
     "save_state": 285,
     "scene_loading": 9,
@@ -27,27 +27,27 @@
   },
   "codeCounts": {
     "AUTOSAVE_CALL": 9,
-    "CAMERA_MAIN_REFERENCE": 52,
+    "CAMERA_MAIN_REFERENCE": 53,
     "CAMERA_POST_PROCESSING": 1,
     "CANVAS_COMPONENT": 5,
-    "CREATE_PRIMITIVE": 269,
+    "CREATE_PRIMITIVE": 270,
     "DIRECT_SCENE_LOAD": 2,
     "DIRECT_SCENE_LOAD_ASYNC": 7,
     "DONT_DESTROY_ON_LOAD": 28,
     "EDITOR_BOOTSTRAP": 10,
     "EVENT_DECLARATION": 52,
     "EVENT_SYSTEM_COMPONENT": 2,
-    "FALLBACK_MARKER": 171,
+    "FALLBACK_MARKER": 172,
     "FRAME_BUTTON_POLL": 1,
     "INPUT_ACTION_REFERENCE": 219,
     "INPUT_BUTTON_REFERENCE": 10,
-    "NEW_GAME_OBJECT": 441,
+    "NEW_GAME_OBJECT": 442,
     "PLAYER_PROFILE_REFERENCE": 152,
     "RENDER_SETTINGS_MUTATION": 37,
     "RUNTIME_BOOTSTRAP": 36,
-    "RUNTIME_MATERIAL_CREATE": 99,
+    "RUNTIME_MATERIAL_CREATE": 101,
     "SAVE_SYSTEM_REFERENCE": 124,
-    "SHADER_FIND": 162,
+    "SHADER_FIND": 164,
     "STATIC_EVENT_DECLARATION": 19,
     "TEXTMESH_COMPONENT": 53,
     "TMP_COMPONENT": 3,
@@ -57,7 +57,7 @@
     "XRI_MANAGER_LOOKUP": 45,
     "XR_INTERACTABLE_COMPONENT": 66,
     "XR_UI_INPUT_MODULE": 2,
-    "ZIPTIDE_LOG_TAG": 662
+    "ZIPTIDE_LOG_TAG": 667
   },
   "findings": [
     {
@@ -398,7 +398,7 @@
       "code": "RUNTIME_BOOTSTRAP",
       "description": "RuntimeInitializeOnLoadMethod bootstrap",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/ReentryArrivalRuntime.cs",
-      "line": 56,
+      "line": 62,
       "symbol": "Ziptide.Gameplay.ReentryArrivalRuntime",
       "snippet": "[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]"
     },
@@ -3872,7 +3872,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 244,
+      "line": 252,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: FLIGHT_DEPART target=\" + targetScene"
     },
@@ -3881,7 +3881,7 @@
       "code": "ZIPTIDE_LOG_TAG",
       "description": "ZIPTIDE diagnostic tag",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/Story/ShipCastOffRuntime.cs",
-      "line": 258,
+      "line": 266,
       "symbol": "Ziptide.Gameplay.ShipCastOffRuntime",
       "snippet": "Debug.LogWarning(\"ZIPTIDE: FLIGHT_DESTINATION_SUBSCRIBER_FAIL reason=\" + ex.Message);"
     },
@@ -4388,6 +4388,51 @@
       "line": 48,
       "symbol": "Ziptide.Gameplay.WeaponFeelRuntime",
       "snippet": "Debug.Log(\"ZIPTIDE: WEAPON_FEEL_READY id=\" + _weaponId"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/AtmosphereVeilEffect.cs",
+      "line": 19,
+      "symbol": "Ziptide.Gameplay.AtmosphereVeilEffect",
+      "snippet": "/// burning. Logs ZIPTIDE: VEIL leg=\u2026 phase=\u2026 ."
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/AtmosphereVeilEffect.cs",
+      "line": 49,
+      "symbol": "Ziptide.Gameplay.AtmosphereVeilEffect",
+      "snippet": "Debug.Log(\"ZIPTIDE: VEIL leg=\" + leg + \" phase=skipped reason=no_camera\");"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/AtmosphereVeilEffect.cs",
+      "line": 59,
+      "symbol": "Ziptide.Gameplay.AtmosphereVeilEffect",
+      "snippet": "Debug.Log(\"ZIPTIDE: VEIL leg=\" + leg + \" phase=start seconds=\""
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/AtmosphereVeilEffect.cs",
+      "line": 104,
+      "symbol": "Ziptide.Gameplay.AtmosphereVeilEffect",
+      "snippet": "Debug.Log(\"ZIPTIDE: VEIL leg=\" + _leg + \" phase=done\");"
+    },
+    {
+      "category": "diagnostics",
+      "code": "ZIPTIDE_LOG_TAG",
+      "description": "ZIPTIDE diagnostic tag",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/AtmosphereVeilEffect.cs",
+      "line": 113,
+      "symbol": "Ziptide.Gameplay.AtmosphereVeilEffect",
+      "snippet": "Debug.Log(\"ZIPTIDE: VEIL leg=\" + _leg + \" phase=\" + phase);"
     },
     {
       "category": "diagnostics",
@@ -8101,6 +8146,15 @@
       "category": "fallback_debt",
       "code": "FALLBACK_MARKER",
       "description": "Source text marks fallback/prototype debt",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/AtmosphereVeilEffect.cs",
+      "line": 68,
+      "symbol": "Ziptide.Gameplay.AtmosphereVeilEffect",
+      "snippet": "// Same hard fallback the gate uses: a stripped shader would make new Material(null)"
+    },
+    {
+      "category": "fallback_debt",
+      "code": "FALLBACK_MARKER",
+      "description": "Source text marks fallback/prototype debt",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HazardZoneRuntime.cs",
       "line": 56,
       "symbol": "Ziptide.Gameplay.HazardZoneRuntime",
@@ -8960,6 +9014,15 @@
       "line": 124,
       "symbol": "Ziptide.Gameplay.StaticNetGunRuntime",
       "snippet": "if (_playerHead == null && Camera.main != null) _playerHead = Camera.main.transform;"
+    },
+    {
+      "category": "global_render",
+      "code": "CAMERA_MAIN_REFERENCE",
+      "description": "Camera.main dependency",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/AtmosphereVeilEffect.cs",
+      "line": 46,
+      "symbol": "Ziptide.Gameplay.AtmosphereVeilEffect",
+      "snippet": "var cam = Camera.main;"
     },
     {
       "category": "global_render",
@@ -12151,6 +12214,24 @@
       "category": "materials",
       "code": "RUNTIME_MATERIAL_CREATE",
       "description": "Runtime Material allocation",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/AtmosphereVeilEffect.cs",
+      "line": 68,
+      "symbol": "Ziptide.Gameplay.AtmosphereVeilEffect",
+      "snippet": "// Same hard fallback the gate uses: a stripped shader would make new Material(null)"
+    },
+    {
+      "category": "materials",
+      "code": "RUNTIME_MATERIAL_CREATE",
+      "description": "Runtime Material allocation",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/AtmosphereVeilEffect.cs",
+      "line": 72,
+      "symbol": "Ziptide.Gameplay.AtmosphereVeilEffect",
+      "snippet": "return new Material(shader);"
+    },
+    {
+      "category": "materials",
+      "code": "RUNTIME_MATERIAL_CREATE",
+      "description": "Runtime Material allocation",
       "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/HazardZoneRuntime.cs",
       "line": 71,
       "symbol": "Ziptide.Gameplay.HazardZoneRuntime",
@@ -13514,6 +13595,24 @@
       "line": 35,
       "symbol": "Ziptide.Gameplay.TracerFx",
       "snippet": "var mat = shader != null ? new Material(shader) : new Material(Shader.Find(\"Sprites/Default\"));"
+    },
+    {
+      "category": "materials",
+      "code": "SHADER_FIND",
+      "description": "Runtime shader lookup",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/AtmosphereVeilEffect.cs",
+      "line": 70,
+      "symbol": "Ziptide.Gameplay.AtmosphereVeilEffect",
+      "snippet": "var shader = Shader.Find(\"Universal Render Pipeline/Unlit\");"
+    },
+    {
+      "category": "materials",
+      "code": "SHADER_FIND",
+      "description": "Runtime shader lookup",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/AtmosphereVeilEffect.cs",
+      "line": 71,
+      "symbol": "Ziptide.Gameplay.AtmosphereVeilEffect",
+      "snippet": "if (shader == null) shader = Shader.Find(\"Sprites/Default\");"
     },
     {
       "category": "materials",
@@ -15881,6 +15980,15 @@
       "line": 34,
       "symbol": "Ziptide.Gameplay.WeaponImpactFx",
       "snippet": "GameObject ray = GameObject.CreatePrimitive(PrimitiveType.Cube);"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "CREATE_PRIMITIVE",
+      "description": "Runtime primitive construction",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/AtmosphereVeilEffect.cs",
+      "line": 83,
+      "symbol": "Ziptide.Gameplay.AtmosphereVeilEffect",
+      "snippet": "var b = GameObject.CreatePrimitive(PrimitiveType.Cube);"
     },
     {
       "category": "runtime_creation",
@@ -19067,6 +19175,15 @@
       "line": 18,
       "symbol": "Ziptide.Gameplay.TracerFx",
       "snippet": "var go = new GameObject(\"__Tracer\");"
+    },
+    {
+      "category": "runtime_creation",
+      "code": "NEW_GAME_OBJECT",
+      "description": "Runtime GameObject construction",
+      "path": "Ziptide/Assets/Ziptide/Gameplay/Runtime/World/AtmosphereVeilEffect.cs",
+      "line": 53,
+      "symbol": "Ziptide.Gameplay.AtmosphereVeilEffect",
+      "snippet": "var go = new GameObject(\"__AtmosphereVeil_\" + leg);"
     },
     {
       "category": "runtime_creation",
