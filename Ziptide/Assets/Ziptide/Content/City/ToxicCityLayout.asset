@@ -58,6 +58,42 @@ MonoBehaviour:
     vistaColor: {r: 0.5, g: 0.54, b: 0.48, a: 1}
     vistaAccentColor: {r: 0.45, g: 0.95, b: 0.6, a: 1}
   pois: []
+  rings:
+    enabled: 1
+    buildTidalFlat: 1
+    buildTowerIsland: 0
+    buildWedges: 0
+    buildCanalRing: 1
+    buildSeaWall: 1
+    buildHarbour: 1
+    buildOutskirts: 1
+    buildGatePillars: 1
+    islandRadius: 26
+    towerDeckCount: 7
+    towerHeight: 78
+    towerLeanDegrees: 12
+    crownCraneCount: 3
+    wedgeCount: 5
+    wedgeOuterRadius: 108
+    canalRingRadius: 62
+    canalWidth: 9
+    radialCanalCount: 4
+    causewayCount: 4
+    seaWallRadius: 126
+    seaWallHeight: 7
+    seaWallThickness: 3.5
+    seaWallBreachCount: 2
+    harbourAzimuthDegrees: 180
+    harbourArcDegrees: 46
+    breakwaterLength: 58
+    outskirtsRadius: 190
+    beachedWreckCount: 6
+    stiltVillageCount: 2
+    tidePoolCount: 9
+    gatePillarAzimuthDegrees: 45
+    gatePillarDistance: 320
+    gatePillarCount: 7
+    gatePillarHeight: 46
   districts:
   - id: Shipyard
     anchor: {x: 0, y: 0, z: -30}

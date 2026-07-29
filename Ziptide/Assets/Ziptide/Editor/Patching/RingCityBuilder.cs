@@ -67,6 +67,7 @@ namespace Ziptide.Editor.Patching
             float y = kit.walkwayHeight;
             var rng = new System.Random(kit.seed ^ 0x21C17E);
 
+            if (r.buildTidalFlat) BuildTidalFlat(root, r, pal, y);
             if (r.buildTowerIsland) BuildTowerIsland(root, r, pal, y);
             if (r.buildCanalRing)
             {
@@ -85,6 +86,27 @@ namespace Ziptide.Editor.Patching
                 + " outerRadius=" + r.outskirtsRadius.ToString("F0"));
             Materials.Clear();
             return built;
+        }
+
+        // ── 0. The drowned tidal flat everything stands on ───────────────────
+        /// <summary>
+        /// A world with no terrain has no ground past its authored districts, so every outer ring
+        /// would hang in the void. The spec's own first line is "concentric rings on a drowned tidal
+        /// flat" — the flat is not scenery, it is the thing the city is built on.
+        ///
+        /// One disc, one collider, sitting just below walkway height so authored district slabs still
+        /// read as raised built pads rather than being z-fought into mud.
+        /// </summary>
+        private static void BuildTidalFlat(Transform root, RingCityDef r, GlobalPalette pal, float y)
+        {
+            Transform flat = Child(root, "TidalFlat", new Vector3(0f, y, 0f));
+            float diameter = r.outskirtsRadius * 2f;
+            Cylinder(flat, "Mudflat", new Vector3(0f, -0.55f, 0f),
+                new Vector3(diameter, 0.5f, diameter), SlotLand, pal.concrete, collider: true);
+
+            // A shallow water skirt beyond the flats so the horizon reads as sea, not as a cliff edge.
+            Cylinder(flat, "ShallowSea", new Vector3(0f, -0.75f, 0f),
+                new Vector3(diameter * 1.9f, 0.2f, diameter * 1.9f), SlotWater, pal.toxic);
         }
 
         // ── 1. The Tower island ──────────────────────────────────────────────

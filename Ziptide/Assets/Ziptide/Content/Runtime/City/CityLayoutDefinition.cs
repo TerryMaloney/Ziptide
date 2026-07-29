@@ -234,6 +234,9 @@ namespace Ziptide.Content
         // this model existed can take the sea wall, harbour, outskirts and horizon TODAY, and adopt
         // the tower island and wedges in the pass that re-lays its districts onto the wedge arcs.
         // Without this, adopting the shape would mean standing a 78 m tower through a working plaza.
+        [Tooltip("The drowned tidal flat the whole city stands on. Without it the outer rings float in "
+                 + "the void, because a world with no terrain has no ground past its districts.")]
+        public bool buildTidalFlat = true;
         public bool buildTowerIsland = true;
         public bool buildWedges = true;
         public bool buildCanalRing = true;
